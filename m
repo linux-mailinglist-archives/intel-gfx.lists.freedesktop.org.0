@@ -1,150 +1,151 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB57644ACDE
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Nov 2021 12:49:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0816344ACDF
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Nov 2021 12:49:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67C2F6E8C6;
-	Tue,  9 Nov 2021 11:49:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 186C06E8A6;
+	Tue,  9 Nov 2021 11:49:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
- [205.220.177.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F7F96E8A3;
- Tue,  9 Nov 2021 11:49:12 +0000 (UTC)
-Received: from pps.filterd (m0246630.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1A9A078e017419; 
- Tue, 9 Nov 2021 11:49:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : content-type : mime-version; s=corp-2021-07-09;
- bh=h5/eBmu47csnu766K5nMaghwmJ3AsR23URowhF9jqUk=;
- b=gBo1OYI1aVJw8EmjeMDrCNXC/YFXz96bpf+DljjSCpDE0SsZQhy7e5NWKtg2hV+Gb8X/
- SGH/bfuLtmLpUzmIshRPODx2YjnSU4hjAHak2+pL6QECWHU/K+z5Tgr8kviAd/LVEaBb
- j3C92cTJxQMfvPjl0BvwTvgrrXhGBXvohWuxZ1IuY7Sli6x2UOWmrekJDigdEunWO5IP
- YIgkXgbGQx6MLoupMdh11vHoiE47XDY0sC2FtZQiQULqyXjslxry573rD4+VESWwGKmD
- Wgaos0DMpmanNF9/36wT3c0XvWhocXg0/RlzwjPLUIT2Je+N6mmocYABW9QrbxkgaME2 FQ== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
- by mx0b-00069f02.pphosted.com with ESMTP id 3c6sbk9xm3-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 09 Nov 2021 11:49:08 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
- by aserp3020.oracle.com (8.16.1.2/8.16.1.2) with SMTP id 1A9BkFx4125893;
- Tue, 9 Nov 2021 11:49:07 GMT
-Received: from nam11-dm6-obe.outbound.protection.outlook.com
- (mail-dm6nam11lp2173.outbound.protection.outlook.com [104.47.57.173])
- by aserp3020.oracle.com with ESMTP id 3c5hh3g1rf-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 09 Nov 2021 11:49:07 +0000
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EEC46E8A6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Nov 2021 11:49:39 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10162"; a="293262832"
+X-IronPort-AV: E=Sophos;i="5.87,220,1631602800"; 
+ d="scan'208,217";a="293262832"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2021 03:49:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,220,1631602800"; 
+ d="scan'208,217";a="469949078"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by orsmga002.jf.intel.com with ESMTP; 09 Nov 2021 03:49:38 -0800
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Tue, 9 Nov 2021 03:49:38 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12 via Frontend Transport; Tue, 9 Nov 2021 03:49:38 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.41) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.12; Tue, 9 Nov 2021 03:49:37 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BLlTOvNQLtNq0KprxFdC5fBWRyZjtCnYUOmLwL2T1+cP3A+miXx7qJd8iSx4Fu9GoooRaJGnVaBii3bPiF4MEYWSFNiFE1N5PCpE1ZgBNR9wRv4w4AP1bRJbfd+YC9LO5DhFpWqeODTqfxwEx1dC3XuPn9Z3PsITWafRUGW+EySQ2oCiYSDBnd29pfTFeiVLC1W4/nAYiASSmQSY+GQRJElQh0TcyakZ0VMRx35wZyufYBQ7CWH/LLLKXSxtYNPKqqWPQNpcflrpv571GupNiwDtfXVJ/uXElSpeU8cy/b9RsLb/UvNyqV5/b+k9lIm4mQq3KA1BcEmIAO22mw2vGg==
+ b=Y5K/TbVNwyIrkev2OvkOrdyA5kit5IDK+CiR5cxpodf1ukJjkKYNnOEDMDQg814D3PPFbhZW8GrxcQqDQwJ1621Ll1psW+HWWc1b7MdfuLTRHmsAEjXVKfkIrDav5NKlkTCrENGt8heEN7Yn7pQl2PYKDovgoqJZJ/YUfyv/670rB9cSYeomb6zFEJhcthqfJFthVTfytOFR5bMX+4Nr/YVNh2faOc4FNeP+DQiJWl5aySzZlURyKqeuz8JRCsJ81A0GZ6f66Mot/FiwkewtiNw0BxRjW8pz85dtwlexe77ri+UkeMG/jr4vaOYH43wp0z8UiOplhIxauOr/Ce7Gsg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h5/eBmu47csnu766K5nMaghwmJ3AsR23URowhF9jqUk=;
- b=lp2XUe7fUZJ75gH2XA9iSGoKrR8g4Ryv0eGQs1pr8f++nW1ZsPN6KeQaZxLWmPYuLPiMgnQVKYL+08lZTm/JWbTqlHHbAV9LM8UVUdwIRnmxHr7k/GzuWN6tTmoxIswUdhHfsKGYmMwwsNSXiNv3tqVmvjpn7mfrUF80aFttv6zLFUPsSjASuKZF1aBPFdQwtOqfhNoKcjgEJxyZSoF1M8TKqcbO8WlL0e0icPW8kL5JGcagtohuTwE6R0gTUpk0KJn53utJGn4uH9L6wYOtf2+07Haf76WGOEjhkCoeB6QCsM3RoL4ZIQ9SfZNh94FEHDnc7EKhodCUuBVzEa5R/A==
+ bh=uek4Ii1xFXYaw9p/eHMzD+gitLC5pMNO59merVJzM5g=;
+ b=nrQYlngvioBOcZTl8TRblgQNJ03Gn7vbJd2zSIOI+MMAuaBiUx0QwFBkxkolG+bCnwlRh1q5M+APKKc5UAbH5HggQ9ttcIfhKiTU8ZXwQTvIVncL5kizUuxc+R3LRIVZRZ164OVrOKHNebBpS/8b40OV9HB/5ULH3xclL61Lkt+8iMWxbav10Ht47Ow57ur1jEDnRJ79slFbBeGgIcDIpDgCStBYHJRcsJ7/vhusmkdqVdSUJNBl483O2b29M6NrMmwfYK3AM9QXp7COwsNZnWbo+97IFD9Amq3e4me0Y6wndkY6d+5GBkbFkiha1KxRbIQz2gpy9U0ZopvAw9zLdw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h5/eBmu47csnu766K5nMaghwmJ3AsR23URowhF9jqUk=;
- b=Vo4VkvVSt8jwxVttV/A8XiFxKxWNbB1vrN8KbWPv++AbmtySCMvrdl17H3VFq/LCrOitgOOu61HQuImYhTLTF8X/Xc7XmLpVQOV/3T+MmxtNTdZMdsDSN9oXeFAwih1cCELkfGeLotW/evOYbAxf+TSh39KWiCVd2O/KuPkkvEg=
-Authentication-Results: linux.intel.com; dkim=none (message not signed)
- header.d=none; linux.intel.com; dmarc=none action=none header.from=oracle.com; 
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28) by MWHPR10MB1999.namprd10.prod.outlook.com
- (2603:10b6:300:10a::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.15; Tue, 9 Nov
- 2021 11:49:05 +0000
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::d409:11b5:5eb2:6be9]) by MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::d409:11b5:5eb2:6be9%5]) with mapi id 15.20.4690.015; Tue, 9 Nov 2021
- 11:49:05 +0000
-Date: Tue, 9 Nov 2021 14:48:50 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <20211109114850.GB16587@kili>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-ClientProxiedBy: AS9PR06CA0085.eurprd06.prod.outlook.com
- (2603:10a6:20b:464::15) To MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28)
+ bh=uek4Ii1xFXYaw9p/eHMzD+gitLC5pMNO59merVJzM5g=;
+ b=kkS49DmMBOtoGx5Tfif7N/wX7YzCi9FVBlxt1IV4uw32PVr3CLY40oDGNqQeHCQWHtMA4E4Jh2kcrAHOIBT1MYnUI14WPzafJJFRue6xeKnpx/gn5EmWTBemkbs6bfTuWYYdOoN1mUmVJgcoKMuTE0HUbRZ1azIZU4oR6mKwkls=
+Authentication-Results: intel.com; dkim=none (message not signed)
+ header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
+Received: from BL1PR11MB5464.namprd11.prod.outlook.com (2603:10b6:208:319::6)
+ by MN2PR11MB4093.namprd11.prod.outlook.com (2603:10b6:208:13f::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.16; Tue, 9 Nov
+ 2021 11:49:35 +0000
+Received: from BL1PR11MB5464.namprd11.prod.outlook.com
+ ([fe80::971:3a5b:6dbc:a045]) by BL1PR11MB5464.namprd11.prod.outlook.com
+ ([fe80::971:3a5b:6dbc:a045%9]) with mapi id 15.20.4690.015; Tue, 9 Nov 2021
+ 11:49:35 +0000
+Content-Type: multipart/alternative;
+ boundary="------------70E0i1C41NrU33jiNdtBfpf0"
+Message-ID: <2a41ec09-251a-7a68-307c-3396c38bb82c@intel.com>
+Date: Tue, 9 Nov 2021 17:19:26 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Content-Language: en-US
+To: Anshuman Gupta <anshuman.gupta@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+References: <20211026134022.20597-1-anshuman.gupta@intel.com>
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <20211026134022.20597-1-anshuman.gupta@intel.com>
+X-ClientProxiedBy: BM1PR0101CA0015.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:18::25) To BL1PR11MB5464.namprd11.prod.outlook.com
+ (2603:10b6:208:319::6)
 MIME-Version: 1.0
-Received: from kili (102.222.70.114) by
- AS9PR06CA0085.eurprd06.prod.outlook.com (2603:10a6:20b:464::15) with
+Received: from [192.168.1.106] (124.123.181.223) by
+ BM1PR0101CA0015.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:18::25) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11 via Frontend
- Transport; Tue, 9 Nov 2021 11:49:00 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10 via Frontend
+ Transport; Tue, 9 Nov 2021 11:49:33 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ed380d19-2ba8-44c5-53db-08d9a376ee3a
-X-MS-TrafficTypeDiagnostic: MWHPR10MB1999:
-X-Microsoft-Antispam-PRVS: <MWHPR10MB1999BD33A0C4973E01DE763E8E929@MWHPR10MB1999.namprd10.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1303;
+X-MS-Office365-Filtering-Correlation-Id: 6ab34dc3-481a-4266-0df8-08d9a376ffe9
+X-MS-TrafficTypeDiagnostic: MN2PR11MB4093:
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-Microsoft-Antispam-PRVS: <MN2PR11MB4093200FECE361EABC109F31E5929@MN2PR11MB4093.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2g+/54rzoNnEcQ48IW5r/eqebNnJEnruECDE55D04ORIBeYJjcOpQDiR/Pa++6VNA/1dWhYThcZZE5QcNZlnmjJdvS9p1nX5qlzz+ml1sPVDsOhAfxWOlPsRHWFsW1qBwvj0SreV999iLHEBxd+Pc27uePVON1ocMKhHYdHtjEwRlZ9cwPG4zoZcOyXSBOlkiPk+234VO1lI7EQla4JPEHL4IyJdEkuJ+3IPrkdqk3llIFREDGPD0TCC0w0MvcA249Qs+GDyc8RQkoW1PMZZgRKF1KyQj+sWzkVUPXqluNMyXZ54OMxpCdRWD4ZW2zK/ZE4yC+NbPSPDoNwfu665UPtGxNHmUjVStbe7XadofeFrkltdz9Qj0oY/ubcWnP2sSlmDdQ+3wt1asWUuO6eMqS3pYo817VCNhCXFjVakgl92tU8Ob+yXJ9VUB+ejygHTcfML5/9Wt7Y2cLHC+8lVtdfrsgNKXJ6YWu1QXs4fzONLYoblKVYFBBdkri2W620t0wPWTTrpWC2idZ4x8Uq5ha6LSJO97cJvRbg2wQhyDqgiEdesAEtr+PCb6HLXwITPMZTHpxhlBZSHH04RyBDQyPMXiO6Ur2bMhV1Ugd11BO84fr5J5lJCaH2TbmlLWSFJaIJZBGx5eLsd2T7B0kwT4l3Sr2ukwNyLidLpakTIS2QdUpJwK7zhY/JkQBGCBzBpmEauOudzWpxTn0XU61z8FA==
+X-Microsoft-Antispam-Message-Info: KwN/b+Y0Jv5aFQbZHOc4NeDUPwzehmU3/jiG3hr05VfhYjzPzzyNnJ/DC7RlLvdVAL/ijm1kuWXOqkApGmOL8GJveSQHf4/YezUwUzeuJmAQAzxjpxwKzAW/j866w7K4ooSw8yug7YTfv5524icsaZQEOGI+Gh7fsLt9ic1zruc56U4fWDJOqsOZnWuwn/U9zbCPGHXCwbbrbLdqvsMqTHXK9P+lX/GcmCmNOGrGcj3JMm9sxzpo5CpjjdNhrh8eAL8Pjjk9NAyuphvCEPKeAUslSnRZvQ+qPvkIeIXDvKVNVQ9TrLndMWRe3deWoIXojlgcEhMvVKt+zHhaLqS5Hj8rssVzRM3I/MqvCifpyhfaOlGkGEUb6IDtgb/7btMegh/wRxcyQgRasQ+4ZtGh6vJXqot0zjcXkj2SWzQdCri59i6vhhwDF/o4pDKENiVJFejdRMYDUL5Kkm4TQQsOgkL8eSCNgx0r4xkNiBTUN+xwUzHWRk6tkG5GJ28BdNucPsZ55wGeG06gFPQC4ucIVLG2J0383rPy6v9xlk2KBJLkN3GyiCzIgS9IxeI3h+cwbjb3pHdVnVqVQnJPK9uGwkUV0zCOxUMw1KL5RT/XqvdRzCi5paBZCESB0eHgy3kRiTpcfeZN2KJ69DhhQtzrNG4LUyQloCa7LfEyJ28v0bWcR9p3JYS2VHEGt3EH2Vxz8VSjAkn+Rs0b/MFEyxIV+0/iI0ByHgRN+9ZkbLowQQc=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1001MB2365.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(366004)(8936002)(33656002)(508600001)(7416002)(55016002)(110136005)(6496006)(26005)(186003)(9576002)(33716001)(54906003)(52116002)(86362001)(4326008)(4744005)(316002)(44832011)(9686003)(66946007)(38350700002)(38100700002)(6666004)(1076003)(83380400001)(956004)(5660300002)(2906002)(66556008)(66476007)(8676002);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BL1PR11MB5464.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(366004)(26005)(36756003)(5660300002)(38100700002)(316002)(4326008)(31696002)(16576012)(186003)(83380400001)(86362001)(508600001)(8936002)(33964004)(66556008)(66476007)(66946007)(31686004)(82960400001)(107886003)(2616005)(956004)(6666004)(6486002)(2906002)(53546011)(8676002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?X71ahBYabDTAW64PSpuHuafVUiqeCbCPU2E8fO6BERM76PN2Rw0cz9U93RHh?=
- =?us-ascii?Q?Z4yZMG50omytQMCBXCJiZJaUUnMB8wXZHCYrUzqcnO/JD6AVaXxHxqAdq1H4?=
- =?us-ascii?Q?q9fo+1S2JfZNfRR2UZ/J+zJi5xSBlJ7ViAXducQXMfvvQ4W/xUDaFlVi4d1x?=
- =?us-ascii?Q?C3Coo/VB1G3k/JFDvLn1XRx7ToJGnnuNzPFptqY+JiUTuDBvn24fYrhrqPIA?=
- =?us-ascii?Q?hLdFiTsc/AY3FpcrKo1EYmQpFODr0C0QgvEPBsRofJdNUynlj79f9oR6+wBr?=
- =?us-ascii?Q?DAFUAyugKiGSaDHZ//qHSBARkrp3q0dDFFbiBCJnKV18IPEQQwZIiZqWbUbc?=
- =?us-ascii?Q?RbvLkr02P7sjEnCoDvpwaxxAwgNdG7/DHVoMHBZMJoXQQoIFqPn/1w2glYPv?=
- =?us-ascii?Q?DbzTCvdZIdCXDQbi87t9T8scUu8vBTnt0WAup9BBPW2n5WYZXrcOZfrw++wv?=
- =?us-ascii?Q?52/fjG05squHbdJ4UBgQOeaZ0GAb6/xrPDK9V7QnjP/rlfQM0XdZWfnySNHm?=
- =?us-ascii?Q?zQIc0dN0UN/9iNB6O14AnGchcD7oVXF47XrlhKmeNc2gIxW/0MV9+pwiJDgw?=
- =?us-ascii?Q?SeaBMF8+/EFk6px1OzviHZjlifdYklWPgB2DAW6RmmJh0fUNsTQtE7EBecmd?=
- =?us-ascii?Q?Ju+U2cmWTT/nqdlHTTI14TJPJzObipOiBUBW6jvpWhvhdhTXm8jRQ7RseYYR?=
- =?us-ascii?Q?4Btg4lTdCoFQcLhjFc7YZvYFDDDdKtoU8tiFssvSVNK/PJtQa1vYdY+n+vMO?=
- =?us-ascii?Q?Z9Ex+1L0wJnJlIDWGDrEW+JIFCsSsPcWP3X2T3UA1nW5P8sbQD8hDckP2nHd?=
- =?us-ascii?Q?L7hGIQ0f6mpfa0YZ4E/1SbZU28pCxwttX1EP2VsitaLriDWeCz3aLi6Mwa7o?=
- =?us-ascii?Q?hOgp0u/iJSSlu5CN7r++VxjSnD4730KQjU3IODhWbxugv2gFqyWkNiX33gFH?=
- =?us-ascii?Q?uqKykrWcPX70Mxfu/bnLP4ZbnWSL7yu7dSpRD5lA/qjtHztEZ9r73rykJIc0?=
- =?us-ascii?Q?sTf/uUDGrc1pYIFGEbWBUA6JLVnAIGPwYL2Gv5Ln44sXyIKO0nfabMSA/CYe?=
- =?us-ascii?Q?042I+EBfcIirEhPFxphnTc6DPhMLmsdwS8HGj4u9txa49fTMf1rUjT6nUM25?=
- =?us-ascii?Q?oVWDPnHuVzZwsHbozlEO+qrTfZ0zdchfSzBznH4GdrUWVNvuqubVzcyKW4aM?=
- =?us-ascii?Q?n0NEttFaTjP/edrxELIcFfqcbvJlqtni3OTQMM+66X5QvLkq+zqhoWRdN4be?=
- =?us-ascii?Q?OgP1DsOuVgatGffhQtVKOZLv5oyf6m1nzWMH4I/SsvfC2GByzb6TaNPmORux?=
- =?us-ascii?Q?07vyFPhIhQNtMLcFTRfP+QUj3JCkKdfybj15NZP0yraqFAu8PKLdSXvNJOgJ?=
- =?us-ascii?Q?2QGaCxFvtKze9RjGWl/c0upQr0SpPCLriJfM7TD1MkUgdfOXHBJSrW2R0LzJ?=
- =?us-ascii?Q?SoAeeMWjCriB7VMky2YZFmDoXfZmOSgHeoJd1Z51GBgY+8OnzM9ifCora28T?=
- =?us-ascii?Q?akbt1+ke8DJkpY/Y1atfmy4chh8H71cYeoapy4iag/IOI5BR7aZu/n/qR0/A?=
- =?us-ascii?Q?ehPLv9E9i+fS2R8BFQQZPRcxbemcRPbw3lvuYK+ccMl/eJQ6QxWHlvr/wgr+?=
- =?us-ascii?Q?26tdtguyzIcpzXP3cfImeEKB6Vg12AJv/dmbGIrKWkoEUZia+S9z4ZR9qbax?=
- =?us-ascii?Q?CXN2zJHfz3kpAD11IP6tfhqe1BI=3D?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed380d19-2ba8-44c5-53db-08d9a376ee3a
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?azhFRWVsRURQRHRsZ01KUDhyMy9Ma3BPcHNlcXJQZ1JSQ3BQNE96dERqenJM?=
+ =?utf-8?B?bXBLeVhpbHN4SlQxQnBJWituNXpDQVRTeERwSTFpajduSXdPWGxQLzhJZnlI?=
+ =?utf-8?B?ckNUOFMyeU04dG8veFNTU1Q5dHFpdFEzbis4YUQxNTZCMjAvaUNJQlZxOERF?=
+ =?utf-8?B?OFV4L25pR04rSGlDdENNYzMvMmpyNVo1ZXNJNmlESEo4RFp0ZWN2Wm16Ujhn?=
+ =?utf-8?B?M2c1UUlMdzgxeEJrQXBpeG9Pekl6TVBXczNYbUZCbnZHTVRoZWVPT0pTQk1a?=
+ =?utf-8?B?RS9YRHlNMnYrQXdNdisxcFdCTDZBV0I0SDNjZXkxd3Y3YVdHS1NNOWtLUnRE?=
+ =?utf-8?B?T0dQZExWaGIxdERQSVZDbzlkbmZzaEJzWmhJSVM1VHpWTmlJNXFGa1hVb2pr?=
+ =?utf-8?B?N0xGckxEcEkxTi9zaFhjdWN0cVFBK1hyY1VRVGt2N2hGMDlsbEFYNTA5dGhV?=
+ =?utf-8?B?QTRYSUpqZktkNXJHVmxnSzV6cUl4cEhYN3NDM1hYczFMZnpFSnQzU3ZNN1Vz?=
+ =?utf-8?B?Q0tKczBVV3FWV2Q5RTUza1VZMEtiNjlwM3BuRk5taXVXU09FRTR2bUxxaG14?=
+ =?utf-8?B?UTVJUVEzVnd5cVMxakJiMXBoamxKOU1aaG82RWFxLzVqa3o3L3Q4ekhxQVI5?=
+ =?utf-8?B?L0hQMXlVR2ExUUp2bms5QmkyRGtlNVBmOGtIb1NIWmhLcit4aUdGdHZYNk14?=
+ =?utf-8?B?bytiVEQ1Q2pzekhBTjNMdXNCTG81YWVNSU5CQ0V6cHZzWUFuMmVNUGJOS3BG?=
+ =?utf-8?B?dGpKVS9GYmJneWwwQjY3RjNCajZIMTNrTDJlTDVwN2FuVW8rYUV4eVpPdVo4?=
+ =?utf-8?B?T3RMTEN0QlF4Ym9INFlLbkVtcTVhOUhNcnJmYnh2S01FV243dVRBNUNsWS9t?=
+ =?utf-8?B?NklYZkZhdVNUK2NIYldWSG9QcGl0blVHUmlwOGk1TGZtcHo3ZjJCOGFNNWlT?=
+ =?utf-8?B?UThZKzY0YVVzRmJLYlR4WGwyNzlHZEFzRGF6a2tTZEs3N2xDdVYyUHNGL0g4?=
+ =?utf-8?B?clM1LzdNSVNybXNQZVRtNlZYREhBL3JVRXo1em1FVFZHa1FWb1gwKzYvSURa?=
+ =?utf-8?B?SHNLc2d4NTVlMXpCbXJDVHpOVXNnNHU2Mms3NERaL0FxWTNhUGhqV09RQ01P?=
+ =?utf-8?B?S2IzaTFwSk5xNStlbmsxNzhPdnllRDREU2JtUTZrRjlVN1VLRktJaE1yZXd6?=
+ =?utf-8?B?ZjlycGF4OWtsRmF3YTVGbEJlU1c2SW4wUnk1elJyOGVZYkcrY2UvYXl6MnN0?=
+ =?utf-8?B?a2U5Mm5PaGpGT0prZVVPWU0rdFdiL1Boemc2MHpRbVhJWkJ6ZGh5ZXJNbUN0?=
+ =?utf-8?B?eUdJSUh5L0k5SWtJL003TDdtMlowbWpkWkxkQk5IZVk4dnRrbTdNNXBuRG4w?=
+ =?utf-8?B?a00rQy9McGQ3L05OaU9BSzJWM1lXZXkwRU9Fc2o0WW9KM2tUR0YwOWhucWRI?=
+ =?utf-8?B?S01CblBiMlFYNk5oRWF6blQ5RmVwQ3JTOWhEdzYvT0pFOVk4akg0YTgyVS9j?=
+ =?utf-8?B?V09hUlRBd1BscWlRaFMvaFdTZVNqV0U2cUd3NFdsNDQyZmQvRUk3b1dKeVZ5?=
+ =?utf-8?B?UDRCUFhYSTlmVFUzc2NsU2FVSlRHYzB2MDhoblBHU0NZSUQrQUc3ajBRL21m?=
+ =?utf-8?B?Nmxta0d1b2RDMjV2VFhvMGNtN1JJQ2NHVkNPNzJLdTF5d2FKaThUZVR1N0NC?=
+ =?utf-8?B?bVZNYm4veXJMN2k2K2dxVFRJNzBZSDlwQlVtRERka1U3aEs0N1lsZ0RndFdy?=
+ =?utf-8?B?dmNNQjdEZlpobTNYVERmZUtLeWgxTHFYYnEvQ0o5SGp3ZFJzNDlvNHIrVVlO?=
+ =?utf-8?B?LzhQRVp6NnJDNDFRN0NVenY4SFlNVU0vZFd5UEp1RmJvajBIZSsxaGpGblIy?=
+ =?utf-8?B?RVVLUlJmQVFDR3NuRVAyNHNlUGhURVBFaWpJSktLNjlQL0FuZENSZUlyaWdN?=
+ =?utf-8?B?SkNKbzNZNVVuR2p3bDhvR3RyZUQzY1RFR3hMVm0zOXpMVWZ2UE1Fd1M1ck05?=
+ =?utf-8?B?Z1hOL2lMdWdRWi9DejRabWZUdkRoWk5iZm1VbVVzbkVvSS9GcjIvTzBpKytx?=
+ =?utf-8?B?dWdOWHVDc1NLWlU3Zks4S2FITURtVmh5Wmhsb2xIY2lDNmFOc3Ntd2F1Mi9p?=
+ =?utf-8?B?bnlOOXFpbFhPelJqbkR1NWozSitFVDROL09jRVJZTnJNVXNVN2RLZGJFOHVH?=
+ =?utf-8?Q?zao/rvydOkAyir50w7cSonw=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ab34dc3-481a-4266-0df8-08d9a376ffe9
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR11MB5464.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2021 11:49:05.1741 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2021 11:49:34.9167 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ndI0KZmS987gtV4LaePrYe1IqmUBIr9keDTuf57OVggKn0y+fnuO1CZXp4b2r9D0NOC866qOHkCt/BY34p4CiSW10qBPE5YThQweGA8r/HM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR10MB1999
-X-Proofpoint-Virus-Version: vendor=nai engine=6300 definitions=10162
- signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
- bulkscore=0 mlxscore=0
- malwarescore=0 spamscore=0 adultscore=0 suspectscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
- definitions=main-2111090071
-X-Proofpoint-GUID: Zmkst-Q9M7DnMZpUOZWwJtpvE81UvX2x
-X-Proofpoint-ORIG-GUID: Zmkst-Q9M7DnMZpUOZWwJtpvE81UvX2x
-Subject: [Intel-gfx] [PATCH] drm/i915: pin: delete duplicate check in
- intel_pin_and_fence_fb_obj()
+X-MS-Exchange-CrossTenant-UserPrincipalName: V0EbUf6H8Z+Ut0lOVVgNoxHxnQ5E28bXYMBTQ7qafjKGwycBuukn+PYTRPh2ApzyWA7GVrbBc/lXdk3YRznr4g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4093
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] i915/selftest: Disable irq to calc eng
+ timestamp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,43 +158,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Dave Airlie <airlied@redhat.com>
+Cc: Chris P Wilson <chris.p.wilson@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The "ret" variable is checked on the previous line so we know it's
-zero.  No need to check again.
+--------------70E0i1C41NrU33jiNdtBfpf0
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+A couple of comments below, after addressing those this is:
+Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
+
+On 26-10-2021 19:10, Anshuman Gupta wrote:
+> gt_pm selftest calculates engine ticks cycles and wall time
+> cycles by delta of respective engine elapsed TIMESTAMP and ktime
+> for period of 1000us.
+> It compares the engine ticks cycles with wall time cycles.
+>
+> Disable local cpu interrupt so that interrupt handler
+> should not preempt the measure_clocks() to calculate
+> correct engine ticks cycles.
+>
+> Suggested-by: Chris P Wilson<chris.p.wilson@intel.com>
+> Signed-off-by: Anshuman Gupta<anshuman.gupta@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/selftest_gt_pm.c | 2 ++
+>   1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+> index b9441217ca3d..9cf76398bdf5 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+> @@ -43,6 +43,7 @@ static void measure_clocks(struct intel_engine_cs *engine,
+>   	int i;
+>   
+>   	for (i = 0; i < 5; i++) {
+> +		local_irq_disable();
+
+How about saving interrupt state before disabling it.
+
+Use local_irq_save here.
+
+>   		preempt_disable();
+>   		cycles[i] = -ENGINE_READ_FW(engine, RING_TIMESTAMP);
+>   		dt[i] = ktime_get();
+> @@ -52,6 +53,7 @@ static void measure_clocks(struct intel_engine_cs *engine,
+>   		dt[i] = ktime_sub(ktime_get(), dt[i]);
+>   		cycles[i] += ENGINE_READ_FW(engine, RING_TIMESTAMP);
+>   		preempt_enable();
+> +		local_irq_enable();
+Use local_irq_restore here.
+>   	}
+>   
+>   	/* Use the median of both cycle/dt; close enough */
+--------------70E0i1C41NrU33jiNdtBfpf0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <pre class="content" style="box-sizing: border-box; overflow: auto; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 13px; display: block; padding: 9.5px; margin: 0px 0px 10px; line-height: 14.3px; color: rgb(51, 51, 51); word-break: break-all; overflow-wrap: break-word; background-color: white; border: 0px; border-radius: 0px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">A couple of comments below, after addressing those this is:
+<span class="acked-by" style="box-sizing: border-box; color: rgb(45, 69, 102);">
+Reviewed-by: Badal Nilawar <a class="moz-txt-link-rfc2396E" href="mailto:badal.nilawar@intel.com">&lt;badal.nilawar@intel.com&gt;</a></span></pre>
+    <div class="moz-cite-prefix">On 26-10-2021 19:10, Anshuman Gupta
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20211026134022.20597-1-anshuman.gupta@intel.com">
+      <pre class="moz-quote-pre" wrap="">gt_pm selftest calculates engine ticks cycles and wall time
+cycles by delta of respective engine elapsed TIMESTAMP and ktime
+for period of 1000us.
+It compares the engine ticks cycles with wall time cycles.
+
+Disable local cpu interrupt so that interrupt handler
+should not preempt the measure_clocks() to calculate
+correct engine ticks cycles.
+
+Suggested-by: Chris P Wilson <a class="moz-txt-link-rfc2396E" href="mailto:chris.p.wilson@intel.com">&lt;chris.p.wilson@intel.com&gt;</a>
+Signed-off-by: Anshuman Gupta <a class="moz-txt-link-rfc2396E" href="mailto:anshuman.gupta@intel.com">&lt;anshuman.gupta@intel.com&gt;</a>
 ---
- drivers/gpu/drm/i915/display/intel_fb_pin.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_gt_pm.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index 3f77f3013584..3b20f69e0240 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -142,13 +142,11 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
- 	if (ret)
- 		goto err;
+diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+index b9441217ca3d..9cf76398bdf5 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+@@ -43,6 +43,7 @@ static void measure_clocks(struct intel_engine_cs *engine,
+ 	int i;
  
--	if (!ret) {
--		vma = i915_gem_object_pin_to_display_plane(obj, &ww, alignment,
--							   view, pinctl);
--		if (IS_ERR(vma)) {
--			ret = PTR_ERR(vma);
--			goto err_unpin;
--		}
-+	vma = i915_gem_object_pin_to_display_plane(obj, &ww, alignment,
-+						   view, pinctl);
-+	if (IS_ERR(vma)) {
-+		ret = PTR_ERR(vma);
-+		goto err_unpin;
+ 	for (i = 0; i &lt; 5; i++) {
++		local_irq_disable();</pre>
+    </blockquote>
+    <p>How about saving interrupt state before disabling it. <br>
+    </p>
+    <p>Use local_irq_save here.<br>
+    </p>
+    <blockquote type="cite" cite="mid:20211026134022.20597-1-anshuman.gupta@intel.com">
+      <pre class="moz-quote-pre" wrap="">
+ 		preempt_disable();
+ 		cycles[i] = -ENGINE_READ_FW(engine, RING_TIMESTAMP);
+ 		dt[i] = ktime_get();
+@@ -52,6 +53,7 @@ static void measure_clocks(struct intel_engine_cs *engine,
+ 		dt[i] = ktime_sub(ktime_get(), dt[i]);
+ 		cycles[i] += ENGINE_READ_FW(engine, RING_TIMESTAMP);
+ 		preempt_enable();
++		local_irq_enable();</pre>
+    </blockquote>
+    Use local_irq_restore here. <br>
+    <blockquote type="cite" cite="mid:20211026134022.20597-1-anshuman.gupta@intel.com">
+      <pre class="moz-quote-pre" wrap="">
  	}
  
- 	if (uses_fence && i915_vma_is_map_and_fenceable(vma)) {
--- 
-2.20.1
-
+ 	/* Use the median of both cycle/dt; close enough */
+</pre>
+    </blockquote>
+  </body>
+</html>
+--------------70E0i1C41NrU33jiNdtBfpf0--
