@@ -1,65 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7710044AD3D
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Nov 2021 13:14:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3E4B44AD64
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Nov 2021 13:18:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A89CA6E926;
-	Tue,  9 Nov 2021 12:14:07 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 838726E926
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Nov 2021 12:14:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10162"; a="318631820"
-X-IronPort-AV: E=Sophos;i="5.87,220,1631602800"; d="scan'208";a="318631820"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2021 04:14:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,220,1631602800"; d="scan'208";a="500462972"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga007.fm.intel.com with ESMTP; 09 Nov 2021 04:14:06 -0800
-Received: from bgsmsx601.gar.corp.intel.com (10.109.78.80) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 9 Nov 2021 04:14:04 -0800
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- BGSMSX601.gar.corp.intel.com (10.109.78.80) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Tue, 9 Nov 2021 17:44:02 +0530
-Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
- BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.012;
- Tue, 9 Nov 2021 17:44:02 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>, "Nikula, Jani"
- <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [V2 4/4] drm/i915/dsi: Ungate clock before enabling the phy
-Thread-Index: AQHXxPwAQUMpbbYG1Uik7LX3npT2nqvn+8gAgABvkRD//8CjgIAAXPLggAXC0ICAAYoLAP//4AkAgAB8x9CACwmwoA==
-Date: Tue, 9 Nov 2021 12:14:02 +0000
-Message-ID: <e16aa508baa246b9826aad6bc6480c9d@intel.com>
-References: <20211019151435.20477-1-vandita.kulkarni@intel.com>
- <20211019151435.20477-5-vandita.kulkarni@intel.com>
- <87zgqtfk8j.fsf@intel.com> <122a37fb754049608841b35115f6f594@intel.com>
- <87mtmtfc90.fsf@intel.com> <fddde7f0495645f79730c2f48bdbf468@intel.com>
- <87fssgdqqq.fsf@intel.com> <613940207027480ebc94a6f0d2ce0f6b@intel.com>
- <87sfwedhbb.fsf@intel.com> <d21e858e01f940b3adae84903d123f97@intel.com>
-In-Reply-To: <d21e858e01f940b3adae84903d123f97@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB8826E892;
+	Tue,  9 Nov 2021 12:18:12 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 303746E892;
+ Tue,  9 Nov 2021 12:18:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10162"; a="232678112"
+X-IronPort-AV: E=Sophos;i="5.87,220,1631602800"; d="scan'208";a="232678112"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2021 04:18:11 -0800
+X-IronPort-AV: E=Sophos;i="5.87,220,1631602800"; d="scan'208";a="503483050"
+Received: from fmpluck-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
+ ([10.213.200.63])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2021 04:18:09 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Tue,  9 Nov 2021 12:17:59 +0000
+Message-Id: <20211109121759.170915-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [V2 4/4] drm/i915/dsi: Ungate clock before enabling
- the phy
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Use per device iommu check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,274 +42,269 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lu Baolu <baolu.lu@linux.intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> Kulkarni, Vandita
-> Sent: Tuesday, November 2, 2021 5:13 PM
-> To: Nikula, Jani <jani.nikula@intel.com>; intel-gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [V2 4/4] drm/i915/dsi: Ungate clock before enabl=
-ing the
-> phy
->=20
-> > -----Original Message-----
-> > From: Nikula, Jani <jani.nikula@intel.com>
-> > Sent: Tuesday, November 2, 2021 3:13 PM
-> > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
-> > gfx@lists.freedesktop.org
-> > Cc: Deak, Imre <imre.deak@intel.com>; Roper, Matthew D
-> > <matthew.d.roper@intel.com>; ville.syrjala@linux.intel.com
-> > Subject: RE: [V2 4/4] drm/i915/dsi: Ungate clock before enabling the
-> > phy
-> >
-> > On Tue, 02 Nov 2021, "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-> > wrote:
-> > >> -----Original Message-----
-> > >> From: Nikula, Jani <jani.nikula@intel.com>
-> > >> Sent: Monday, November 1, 2021 5:37 PM
-> > >> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
-> > >> gfx@lists.freedesktop.org
-> > >> Cc: Deak, Imre <imre.deak@intel.com>; Roper, Matthew D
-> > >> <matthew.d.roper@intel.com>; ville.syrjala@linux.intel.com
-> > >> Subject: RE: [V2 4/4] drm/i915/dsi: Ungate clock before enabling
-> > >> the phy
-> > >>
-> > >> On Thu, 28 Oct 2021, "Kulkarni, Vandita"
-> > >> <vandita.kulkarni@intel.com>
-> > >> wrote:
-> > >> >> -----Original Message-----
-> > >> >> From: Nikula, Jani <jani.nikula@intel.com>
-> > >> >> Sent: Thursday, October 28, 2021 8:06 PM
-> > >> >> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
-> > >> >> gfx@lists.freedesktop.org
-> > >> >> Cc: Deak, Imre <imre.deak@intel.com>; Roper, Matthew D
-> > >> >> <matthew.d.roper@intel.com>; ville.syrjala@linux.intel.com
-> > >> >> Subject: RE: [V2 4/4] drm/i915/dsi: Ungate clock before enabling
-> > >> >> the phy
-> > >> >>
-> > >> >> On Thu, 28 Oct 2021, "Kulkarni, Vandita"
-> > >> >> <vandita.kulkarni@intel.com>
-> > >> >> wrote:
-> > >> >> >> -----Original Message-----
-> > >> >> >> From: Nikula, Jani <jani.nikula@intel.com>
-> > >> >> >> Sent: Thursday, October 28, 2021 5:13 PM
-> > >> >> >> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
-> > >> >> >> gfx@lists.freedesktop.org
-> > >> >> >> Cc: Deak, Imre <imre.deak@intel.com>; Roper, Matthew D
-> > >> >> >> <matthew.d.roper@intel.com>; ville.syrjala@linux.intel.com;
-> > >> >> >> Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> > >> >> >> Subject: Re: [V2 4/4] drm/i915/dsi: Ungate clock before
-> > >> >> >> enabling the phy
-> > >> >> >>
-> > >> >> >> On Tue, 19 Oct 2021, Vandita Kulkarni
-> > >> >> >> <vandita.kulkarni@intel.com>
-> > >> >> wrote:
-> > >> >> >> > For the PHY enable/disable signalling to propagate between
-> > >> >> >> > Dispaly and PHY, DDI clocks need to be running when
-> > >> >> >> > enabling the
-> > >> PHY.
-> > >> >> >> >
-> > >> >> >> > Bspec: 49188 says gate the clocks after enabling the
-> > >> >> >> >        DDI Buffer.
-> > >> >> >> >        We also have a commit 991d9557b0c4 ("drm/i915/tgl/dsi=
-:
-> > >> >> >> > Gate the
-> > >> >> ddi
-> > >> >> >> >        clocks after pll mapping") which gates the clocks muc=
-h before,
-> > >> >> >> >        as per the older spec. This commit nullifies its
-> > >> >> >> > effect and
-> > makes
-> > >> >> >> >        sure that the clocks are not gated while we enable th=
-e DDI
-> > >> >> >> >        buffer.
-> > >> >> >> > v2: Bspec ref, add a comment wrt earlier clock gating
-> > >> >> >> > sequence
-> > >> >> >> > (Jani)
-> > >> >> >> >
-> > >> >> >> > Signed-off-by: Vandita Kulkarni
-> > >> >> >> > <vandita.kulkarni@intel.com>
-> > >> >> >> > ---
-> > >> >> >> >  drivers/gpu/drm/i915/display/icl_dsi.c | 8 +++-----
-> > >> >> >> >  1 file changed, 3 insertions(+), 5 deletions(-)
-> > >> >> >> >
-> > >> >> >> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
-> > >> >> >> > b/drivers/gpu/drm/i915/display/icl_dsi.c
-> > >> >> >> > index 63dd75c6448a..e5ef5c4a32d7 100644
-> > >> >> >> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> > >> >> >> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> > >> >> >> > @@ -1135,8 +1135,6 @@ static void
-> > >> >> >> > gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
-> > >> >> >> >  			      const struct intel_crtc_state *crtc_state)
-> > >> {
-> > >> >> >> > -	struct drm_i915_private *dev_priv =3D to_i915(encoder-
-> > >> >base.dev);
-> > >> >> >> > -
-> > >> >> >> >  	/* step 4a: power up all lanes of the DDI used by DSI */
-> > >> >> >> >  	gen11_dsi_power_up_lanes(encoder);
-> > >> >> >> >
-> > >> >> >> > @@ -1146,6 +1144,8 @@
-> > gen11_dsi_enable_port_and_phy(struct
-> > >> >> >> intel_encoder *encoder,
-> > >> >> >> >  	/* step 4c: configure voltage swing and skew */
-> > >> >> >> >  	gen11_dsi_voltage_swing_program_seq(encoder);
-> > >> >> >> >
-> > >> >> >> > +	gen11_dsi_ungate_clocks(encoder);
-> > >> >> >> > +
-> > >> >> >>
-> > >> >> >> What about the changes to gen11_dsi_map_pll() in commit
-> > >> >> >> 991d9557b0c4
-> > >> >> >> ("drm/i915/tgl/dsi: Gate the ddi clocks after pll mapping")?
-> > >> >> >> It starts off with clocks gated for gen12+, ungated otherwise.
-> > >> >> >
-> > >> >> > Now the same spec is updated with the gate step after ddi
-> > >> >> > buffer
-> > >> enable.
-> > >> >> > And the one before is marked with remove tag.
-> > >> >> > That makes all gen12+ align with gen 11.
-> > >> >> > You suggested to update the same in the commit message on v1.
-> > >> >> > Should I still consider just reverting that commit?
-> > >> >>
-> > >> >> I'm just royally confused about the sequence myself, so I'm
-> > >> >> asking you. ;)
-> > >> >>
-> > >> >> It doesn't help that the code has step references to gen 11 mode
-> > >> >> set that are completely different from the steps in gen 12 sequen=
-ce.
-> > >> >
-> > >> > Right, they have lot of different steps coming in.
-> > >> > As per gen11 sequence, we were gating pll after enabling ddi buffe=
-r.
-> > >> >
-> > >> > Initially when there was only gen12 in the bspec, it stated to
-> > >> > gate the pll
-> > >> after mapping.
-> > >> > Hence we had that commit  991d9557b0c4.
-> > >> > Then Gen12's mipi dsi sequence was carried fwd for all later
-> > >> > platforms as
-> > >> well.
-> > >> >  with the modification saying that Do not gate the pll until we
-> > >> > enable the ddi buffer.
-> > >> > And this applies to gen 12 as well because they have marked the
-> > >> > earlier mentioned step of gating pll after pll mapping as removed
-> > >> > on all
-> > >> gen12 and later platforms.
-> > >> >
-> > >> > This patch now is keeping the older step as is, but making sure
-> > >> > that clocks
-> > >> are ungated while enabling ddi buffer.
-> > >>
-> > >> Where does it say for gen12+ that clocks should be ungated at any po=
-int?
-> > >>
-> > >> My reading of the spec:
-> > >>
-> > >> Gen11, bspec 20845 and 20597:
-> > >> - start with clocks ungated at mapping
-> > >> - gate after port/phy enabling (step 4m in gen11 mode set sequence)
-> > >>
-> > >> Gen12, bspec 49204, 49188 and 55316:
-> > >> - start with clocks gated at mapping
-> > >> - gate *if* not already gated (steps 4c and 4i in gen12 mode set
-> > >> sequence)
-> > >
-> > > Right the ungate step is not mentioned in the bspec.
-> > > Instead the step 4.c is marked as Removed.
-> > > I had added ungate just to make sure we are addressing the issue
-> > > mentioned in front of removed tag while Retaining the old sequence
-> > > of 4.c
-> > >
-> > > In order to completely adhere to the current bspec, I can 1. submit
-> > > a patch removing 4.c or 2.  submit a revert of the patch which was
-> > > adding 4.c
-> > > ("drm/i915/tgl/dsi: Gate the ddi clocks after pll mapping")
-> >
-> > I think if you remove the call to gen11_dsi_ungate_clocks(encoder)
-> > from this patch, the sequence matches bspec.
-> >
-> > But this means the sequence is different between display 11 and 12+,
-> > and the clock will be gated for the entire enabling sequence on 12+.
-> > That's my reading of bspec, anyway.
->=20
-> Right the current bspec doesn't show us where to enable the clocks.
-> Clock ungating is not mentioned anywhere, and we need to enable clocks
-> before enabling DDI_BUF_CTL , have requested for sequence update in the
-> bspec.
-As per the lates tbspec update, have floated the revert of=20
-("drm/i915/tgl/dsi: Gate the ddi clocks after pll mapping")
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-This patch can be ignored now.
+On igfx + dgfx setups, it appears that intel_iommu=igfx_off option only
+disables the igfx iommu. Stop relying on global intel_iommu_gfx_mapped
+and probe presence of iommu domain per device to accurately reflect its
+status.
 
-Thanks,
-Vandita
->=20
-> Thanks,
-> Vandita
-> >
-> > BR,
-> > Jani.
-> >
-> >
-> >
-> > >
-> > > Thanks,
-> > > Vandita
-> > >>
-> > >> It may be that your patch is correct, but IMO it does not match bspe=
-c.
-> > >>
-> > >>
-> > >> BR,
-> > >> Jani.
-> > >>
-> > >>
-> > >>
-> > >> >
-> > >> > Thanks
-> > >> > Vandita
-> > >> >>
-> > >> >> BR,
-> > >> >> Jani.
-> > >> >>
-> > >> >>
-> > >> >>
-> > >> >> >
-> > >> >> > Thanks,
-> > >> >> > Vandita
-> > >> >> >
-> > >> >> >>
-> > >> >> >> BR,
-> > >> >> >> Jani.
-> > >> >> >>
-> > >> >> >>
-> > >> >> >> >  	/* enable DDI buffer */
-> > >> >> >> >  	gen11_dsi_enable_ddi_buffer(encoder);
-> > >> >> >> >
-> > >> >> >> > @@ -1161,9 +1161,7 @@
-> > gen11_dsi_enable_port_and_phy(struct
-> > >> >> >> intel_encoder *encoder,
-> > >> >> >> >  	/* Step (4h, 4i, 4j, 4k): Configure transcoder */
-> > >> >> >> >  	gen11_dsi_configure_transcoder(encoder, crtc_state);
-> > >> >> >> >
-> > >> >> >> > -	/* Step 4l: Gate DDI clocks */
-> > >> >> >> > -	if (DISPLAY_VER(dev_priv) =3D=3D 11)
-> > >> >> >> > -		gen11_dsi_gate_clocks(encoder);
-> > >> >> >> > +	gen11_dsi_gate_clocks(encoder);
-> > >> >> >> >  }
-> > >> >> >> >
-> > >> >> >> >  static void gen11_dsi_powerup_panel(struct intel_encoder
-> > >> >> >> > *encoder)
-> > >> >> >>
-> > >> >> >> --
-> > >> >> >> Jani Nikula, Intel Open Source Graphics Center
-> > >> >>
-> > >> >> --
-> > >> >> Jani Nikula, Intel Open Source Graphics Center
-> > >>
-> > >> --
-> > >> Jani Nikula, Intel Open Source Graphics Center
-> >
-> > --
-> > Jani Nikula, Intel Open Source Graphics Center
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Lu Baolu <baolu.lu@linux.intel.com>
+---
+Baolu, is my understanding here correct? Maybe I am confused by both
+intel_iommu_gfx_mapped and dmar_map_gfx being globals in the intel_iommu
+driver. But it certainly appears the setup can assign some iommu ops (and
+assign the discrete i915 to iommu group) when those two are set to off.
+---
+ drivers/gpu/drm/i915/display/intel_bw.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_display.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c     |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c   |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gemfs.c        |  2 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c         |  4 ++--
+ drivers/gpu/drm/i915/i915_debugfs.c          |  1 +
+ drivers/gpu/drm/i915/i915_drv.c              |  7 +++++++
+ drivers/gpu/drm/i915/i915_drv.h              | 13 +++++++------
+ drivers/gpu/drm/i915/i915_gpu_error.c        |  5 +----
+ drivers/gpu/drm/i915/intel_device_info.c     | 14 +-------------
+ drivers/gpu/drm/i915/intel_pm.c              |  2 +-
+ 12 files changed, 25 insertions(+), 31 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 8d9d888e9316..a4d8088e4f71 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -490,7 +490,7 @@ static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
+ 	for_each_pipe(dev_priv, pipe)
+ 		data_rate += bw_state->data_rate[pipe];
+ 
+-	if (DISPLAY_VER(dev_priv) >= 13 && intel_vtd_active())
++	if (DISPLAY_VER(dev_priv) >= 13 && intel_vtd_active(dev_priv))
+ 		data_rate = data_rate * 105 / 100;
+ 
+ 	return data_rate;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 29392dfc46c8..80d206f3e9da 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1315,7 +1315,7 @@ static bool needs_async_flip_vtd_wa(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+ 
+-	return crtc_state->uapi.async_flip && intel_vtd_active() &&
++	return crtc_state->uapi.async_flip && intel_vtd_active(i915) &&
+ 		(DISPLAY_VER(i915) == 9 || IS_BROADWELL(i915) || IS_HASWELL(i915));
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 834eb4cc7c10..0ccbfc9e4101 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1539,7 +1539,7 @@ static int intel_sanitize_fbc_option(struct drm_i915_private *dev_priv)
+ static bool need_fbc_vtd_wa(struct drm_i915_private *dev_priv)
+ {
+ 	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
+-	if (intel_vtd_active() &&
++	if (intel_vtd_active(dev_priv) &&
+ 	    (IS_SKYLAKE(dev_priv) || IS_BROXTON(dev_priv))) {
+ 		drm_info(&dev_priv->drm,
+ 			 "Disabling framebuffer compression (FBC) to prevent screen flicker with VT-d enabled\n");
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+index ddd37ccb1362..cf100c0ea3b7 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+@@ -399,7 +399,7 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
+ 		return 0;
+ 	}
+ 
+-	if (intel_vtd_active() && GRAPHICS_VER(i915) < 8) {
++	if (intel_vtd_active(i915) && GRAPHICS_VER(i915) < 8) {
+ 		drm_notice(&i915->drm,
+ 			   "%s, disabling use of stolen memory\n",
+ 			   "DMAR active");
+diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c b/drivers/gpu/drm/i915/gem/i915_gemfs.c
+index dbdbdc344d87..11cd66d183e6 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
++++ b/drivers/gpu/drm/i915/gem/i915_gemfs.c
+@@ -31,7 +31,7 @@ int i915_gemfs_init(struct drm_i915_private *i915)
+ 	 */
+ 
+ 	opts = NULL;
+-	if (intel_vtd_active()) {
++	if (intel_vtd_active(i915)) {
+ 		if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE)) {
+ 			static char huge_opt[] = "huge=within_size"; /* r/w */
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 1fb4a03d7ac3..ddb4a9d039d4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -104,7 +104,7 @@ static bool needs_idle_maps(struct drm_i915_private *i915)
+ 	 * Query intel_iommu to see if we need the workaround. Presumably that
+ 	 * was loaded first.
+ 	 */
+-	if (!intel_vtd_active())
++	if (!intel_vtd_active(i915))
+ 		return false;
+ 
+ 	if (GRAPHICS_VER(i915) == 5 && IS_MOBILE(i915))
+@@ -1231,7 +1231,7 @@ int i915_ggtt_probe_hw(struct drm_i915_private *i915)
+ 	if (ret)
+ 		return ret;
+ 
+-	if (intel_vtd_active())
++	if (intel_vtd_active(i915))
+ 		drm_info(&i915->drm, "VT-d active for gfx access\n");
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index fe638b5da7c0..390d541f64ea 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -65,6 +65,7 @@ static int i915_capabilities(struct seq_file *m, void *data)
+ 
+ 	intel_device_info_print_static(INTEL_INFO(i915), &p);
+ 	intel_device_info_print_runtime(RUNTIME_INFO(i915), &p);
++	i915_print_iommu_status(i915, &p);
+ 	intel_gt_info_print(&i915->gt.info, &p);
+ 	intel_driver_caps_print(&i915->caps, &p);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index f184b44d05f2..8efd0ad5bef0 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -733,6 +733,12 @@ static void i915_driver_unregister(struct drm_i915_private *dev_priv)
+ 	i915_gem_driver_unregister(dev_priv);
+ }
+ 
++void
++i915_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p)
++{
++	drm_printf(p, "iommu: %s\n", enableddisabled(intel_vtd_active(i915)));
++}
++
+ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
+ {
+ 	if (drm_debug_enabled(DRM_UT_DRIVER)) {
+@@ -748,6 +754,7 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
+ 
+ 		intel_device_info_print_static(INTEL_INFO(dev_priv), &p);
+ 		intel_device_info_print_runtime(RUNTIME_INFO(dev_priv), &p);
++		i915_print_iommu_status(dev_priv, &p);
+ 		intel_gt_info_print(&dev_priv->gt.info, &p);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index e967cd08f23e..9fb38a54f1fe 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1763,26 +1763,27 @@ static inline bool run_as_guest(void)
+ #define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) || \
+ 					      IS_ALDERLAKE_S(dev_priv))
+ 
+-static inline bool intel_vtd_active(void)
++static inline bool intel_vtd_active(struct drm_i915_private *i915)
+ {
+-#ifdef CONFIG_INTEL_IOMMU
+-	if (intel_iommu_gfx_mapped)
++	if (iommu_get_domain_for_dev(i915->drm.dev))
+ 		return true;
+-#endif
+ 
+ 	/* Running as a guest, we assume the host is enforcing VT'd */
+ 	return run_as_guest();
+ }
+ 
++void
++i915_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p);
++
+ static inline bool intel_scanout_needs_vtd_wa(struct drm_i915_private *dev_priv)
+ {
+-	return GRAPHICS_VER(dev_priv) >= 6 && intel_vtd_active();
++	return GRAPHICS_VER(dev_priv) >= 6 && intel_vtd_active(dev_priv);
+ }
+ 
+ static inline bool
+ intel_ggtt_update_needs_vtd_wa(struct drm_i915_private *i915)
+ {
+-	return IS_BROXTON(i915) && intel_vtd_active();
++	return IS_BROXTON(i915) && intel_vtd_active(i915);
+ }
+ 
+ static inline bool
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index aa2b3aad9643..7672927ed10b 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -1750,10 +1750,7 @@ static void capture_gen(struct i915_gpu_coredump *error)
+ 	error->wakelock = atomic_read(&i915->runtime_pm.wakeref_count);
+ 	error->suspended = i915->runtime_pm.suspended;
+ 
+-	error->iommu = -1;
+-#ifdef CONFIG_INTEL_IOMMU
+-	error->iommu = intel_iommu_gfx_mapped;
+-#endif
++	error->iommu = intel_vtd_active(i915);
+ 	error->reset_count = i915_reset_count(&i915->gpu_error);
+ 	error->suspend_count = i915->suspend_count;
+ 
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 6e6b317bc33c..e6605b5181a5 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -83,17 +83,6 @@ const char *intel_platform_name(enum intel_platform platform)
+ 	return platform_names[platform];
+ }
+ 
+-static const char *iommu_name(void)
+-{
+-	const char *msg = "n/a";
+-
+-#ifdef CONFIG_INTEL_IOMMU
+-	msg = enableddisabled(intel_iommu_gfx_mapped);
+-#endif
+-
+-	return msg;
+-}
+-
+ void intel_device_info_print_static(const struct intel_device_info *info,
+ 				    struct drm_printer *p)
+ {
+@@ -114,7 +103,6 @@ void intel_device_info_print_static(const struct intel_device_info *info,
+ 		drm_printf(p, "display version: %u\n", info->display.ver);
+ 
+ 	drm_printf(p, "gt: %d\n", info->gt);
+-	drm_printf(p, "iommu: %s\n", iommu_name());
+ 	drm_printf(p, "memory-regions: %x\n", info->memory_regions);
+ 	drm_printf(p, "page-sizes: %x\n", info->page_sizes);
+ 	drm_printf(p, "platform: %s\n", intel_platform_name(info->platform));
+@@ -374,7 +362,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 			info->display.has_dsc = 0;
+ 	}
+ 
+-	if (GRAPHICS_VER(dev_priv) == 6 && intel_vtd_active()) {
++	if (GRAPHICS_VER(dev_priv) == 6 && intel_vtd_active(dev_priv)) {
+ 		drm_info(&dev_priv->drm,
+ 			 "Disabling ppGTT for VT-d support\n");
+ 		info->ppgtt_type = INTEL_PPGTT_NONE;
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 59adf0ce6719..f5b567f87c24 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -98,7 +98,7 @@ static void gen9_init_clock_gating(struct drm_i915_private *dev_priv)
+ 		 * "Plane N strech max must be programmed to 11b (x1)
+ 		 *  when Async flips are enabled on that plane."
+ 		 */
+-		if (!IS_GEMINILAKE(dev_priv) && intel_vtd_active())
++		if (!IS_GEMINILAKE(dev_priv) && intel_vtd_active(dev_priv))
+ 			intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
+ 					 SKL_PLANE1_STRETCH_MAX_MASK, SKL_PLANE1_STRETCH_MAX_X1);
+ 	}
+-- 
+2.30.2
+
