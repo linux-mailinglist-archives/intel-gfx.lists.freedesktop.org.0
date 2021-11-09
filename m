@@ -1,127 +1,129 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA7D44B3E4
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Nov 2021 21:22:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A6A444B449
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Nov 2021 21:48:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 907216E40A;
-	Tue,  9 Nov 2021 20:22:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0F6D6E8BB;
+	Tue,  9 Nov 2021 20:48:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam08on2044.outbound.protection.outlook.com [40.107.100.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CAC96E1AA;
- Tue,  9 Nov 2021 20:22:27 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2075.outbound.protection.outlook.com [40.107.94.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0EBC6E8B4;
+ Tue,  9 Nov 2021 20:48:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gbx6baj367tgtNFkkO+ado8CoOdqqxu2z8s44+deSRvNAa2hJiV7TtQKFjgguEs9hTZ0DIAm5Wbo9aPOlOXeAGr7/i2CWgv0YBucPIO+TVF9gNav2HYTrFrikYQuO+wMxLfD1EHZFpvQBQoDomu3jToWh3nDvBlDz5R2hcazbb8FJF4Mj3Lxbwz1hL78NOEIoxLcNQcjuuJfxReSeIv/G2NzWurnijcxDCj/wkUMvcK0hvv4oQJ+L9flpdsl6f9uap0SG54A63a2JmH93cKy3xh1IcdIQ14Oisof3rY+TpFdmpSzCz8Pcmcl89X3NAuJ+c0SecLkRLqmUTVpzJRHcg==
+ b=bta1lpSHhPVdPxkP2IjihdIovUwaniDXDpoOqjZpZT5/E9+JPGJ15R+yjlxNhtI8yl6ITB1u6NxxuA164egZ7E6Nw/uoa/smD8TDkWQRlm7AGEGrFi3/z2mepMvgli8CpV86Ux/rUUDZJPPRe0OdrtLHSxkdlaKY6CQhXr23GxmgsF6Ha6khZA8jUbfqAtNvks361ZIeWRdWAZ82ME6ONbs9qufct2ZJksd8Dqi7j83Mv0cFlym3At28Hiu6Zln+sRbj5+X47/p90KCdpoiR/U8xehznqHxt71fTMMdwBb6JPXVIk78iKQayoC8p7a/WeSeCdiHS6NFD5eG2sMQeyA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VdldP0G4JFAJRz2/1wvttbK3pvReNVljbOMSb58w3lo=;
- b=CNlaLvpc/tz7f+Y/1Ia7tKlh0XNJYGioN79ctbYLI2dfhozs9STqHa6pxoYawnj12Vz3QCAMv2A7Ku6FF5VU1bg74eZW3C7x668V4mi9cx5sv0M0Gpxag5ND4b72fuLMobiIR7y22eGAaBIDzSikhWHnWxJLtJ0Jrzx87oqGECYz/A7XqvRJu3WayCSqgpXqEreJbVF+s53paI163mkePZN1h27Jp+JXeWPPwDpJH1kJTqhQPta+063RqdmhRCsPYKSsf7Xq7qUAv7yybcY/+nuGtPg3vPlbvI4P7IUBvvA1OWEFoFCz/KDdgE+fY0c6l6BmxCqur+/oOXH1XG6lig==
+ bh=QIZ7Y+MwmN9/9dRBK6HgH339PeNEPRBcIdAPFk2U1N0=;
+ b=Rg0AWNO+0TxfipGXk8P1YsZtxkwqhcYJt/30CatXrL5/g3/GRrqdyhXf/ZA/FmD/pqPQxNf1Yto1uMKjD+xgNMpk21TGnLwsTef5v5CQGtifPxrJ0LEq1w8eG3ncuvb8THzxon18SdeWF72kn3260oVsvU14qhlqWdPzMU+dCrOD3akJqJtc3WMRFJLB54Md22uIRhQPY4Q2IZhLqJ4dDarDoPxy0fAfzHofAAXLFLcoVkJIV1KVF9rynes1GiSfg+whdiAXeqaMhu7ttEX29ggRP5bwy+4NivuuP1J7qiL16hCzP+WVwmFBq415OvVUviT7eL1BhDNkqJC+Ou7IdQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VdldP0G4JFAJRz2/1wvttbK3pvReNVljbOMSb58w3lo=;
- b=0UMIBeLqi2H5tsFynPG4Zw+yKNT80J9zBG87qKOvN8j60+T2NG9qtjD9PJrFyj4EAC75B4anI3h+sfyWh9UtydZXTuM0zwGx+U193qsilQwgIOwmloFZRlHh6KRdL6tjYcwLYL0q6Yo0doiL1tukPLQhX9++xZ9Ib+WPL5zXIJc=
-Authentication-Results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=amd.com;
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by CO6PR12MB5460.namprd12.prod.outlook.com (2603:10b6:5:357::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10; Tue, 9 Nov
- 2021 20:22:25 +0000
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::d095:131a:b99a:9975]) by CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::d095:131a:b99a:9975%3]) with mapi id 15.20.4669.016; Tue, 9 Nov 2021
- 20:22:25 +0000
-Message-ID: <f2aa29db-b5d2-6fbf-c997-b994b004d0a4@amd.com>
-Date: Tue, 9 Nov 2021 15:22:21 -0500
+ bh=QIZ7Y+MwmN9/9dRBK6HgH339PeNEPRBcIdAPFk2U1N0=;
+ b=Y6ji4V90mSVG4ZOxS1hzpNE5xjVxaU+3VROL8YOPDmSmxrj+sJPpFqR+Jn0B/SI1b2MTwzbGpMY5No7DoLa6ez8RV3wA63THvzqt0UDDtYRtVzDldo8LOkRz9rkHU8lcKqvXso+cV2gmEgbIEZWNZbPvvS+xm3LtLPe4GVJks50=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
+Received: from SJ0PR12MB5438.namprd12.prod.outlook.com (2603:10b6:a03:3ba::23)
+ by SJ0PR12MB5407.namprd12.prod.outlook.com (2603:10b6:a03:3ac::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.16; Tue, 9 Nov
+ 2021 20:48:03 +0000
+Received: from SJ0PR12MB5438.namprd12.prod.outlook.com
+ ([fe80::49da:65ef:4d6d:62e5]) by SJ0PR12MB5438.namprd12.prod.outlook.com
+ ([fe80::49da:65ef:4d6d:62e5%9]) with mapi id 15.20.4649.023; Tue, 9 Nov 2021
+ 20:48:03 +0000
+Message-ID: <8f189780-707d-0dda-778f-1a42b74ff4ae@amd.com>
+Date: Tue, 9 Nov 2021 15:47:58 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.0
 Content-Language: en-US
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+To: Pekka Paalanen <ppaalanen@gmail.com>
 References: <20210906213904.27918-1-uma.shankar@intel.com>
  <20210906213904.27918-3-uma.shankar@intel.com>
  <d67a9761-91b4-3432-dd55-f85bb0657b68@amd.com>
  <20211104103827.2cf48bb7@eldfell>
- <5780b3b6-5b12-df66-03be-5f1918d28989@amd.com> <YYUaWzxHZ7M2B7iY@intel.com>
+ <5780b3b6-5b12-df66-03be-5f1918d28989@amd.com>
+ <20211108115427.5c3f162e@eldfell>
 From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <YYUaWzxHZ7M2B7iY@intel.com>
+In-Reply-To: <20211108115427.5c3f162e@eldfell>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YQBPR01CA0138.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:1::38) To CO6PR12MB5427.namprd12.prod.outlook.com
- (2603:10b6:5:358::13)
+X-ClientProxiedBy: YQBPR0101CA0182.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:f::25) To SJ0PR12MB5438.namprd12.prod.outlook.com
+ (2603:10b6:a03:3ba::23)
 MIME-Version: 1.0
 Received: from [192.168.50.4] (198.200.67.104) by
- YQBPR01CA0138.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01:1::38) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4690.15 via Frontend Transport; Tue, 9 Nov 2021 20:22:23 +0000
+ YQBPR0101CA0182.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01:f::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.15 via Frontend
+ Transport; Tue, 9 Nov 2021 20:48:00 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2a6bd706-4ccd-4f28-728f-08d9a3bea49d
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5460:
-X-Microsoft-Antispam-PRVS: <CO6PR12MB54607D390F3119E341A552C78C929@CO6PR12MB5460.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 1304b1aa-86a5-41f2-1f7e-08d9a3c238dc
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB5407:
+X-Microsoft-Antispam-PRVS: <SJ0PR12MB540765DCFF25C491FC6B0E568C929@SJ0PR12MB5407.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4U6UUO1BxjxlXboMub1wdzK5KYwCkvz2j++BIELWY4wRIC4cwStutMOYSSiJjYGZyuYvyFJhubO5qu5i4Dcox7GO+oGp8f981dnVRs7uF+divF9Znf2fx/52vgHFMvx9jaT/KiDdVmTF1wHror689/apjcT5VA1qbHxncZ5LM9MRc/TUPmNHC6COPbsqdTVLIUePujP222VWF893cwIp9iCYBrFWqgKZZAj5+LSfP1122YAa5BzHVfjVS8Q8JaHWV8GG6rygu//m1mbcCgEw8LXGbVPy0iSX2l4wOD0kkLD0cMZssfUbmjUvvD2qy2+1ssgQvesK5ZhyLZXKX2wwQr+qZOw5JH0fZ5w3bvtgwUztE6jUQ7u+VAY6+ZILtJOpDjI11Hf7FRmP1fI0YmwbKXgdwg+UyhwY1qgKUjUVQFXiqJqxfmI8NXuDgQ8+5ZKWCJvJrPuLCuuotkdQOQcTlxmiaO+bKdnWGnQ6+jpwh4T4go38qbwMHikGQDDQC6hVCcgMhLGbmlWXP8EYaV+C+yHO4fawXHWbs4tkr317Sk/agWfUSGeHShRq46dUrlGGpz/ckjUGWoNpYnihNWSzsODxJPJz/UJLE6Z8G0wDnotmqbhozyOZjSJ2lP2QH6MgqLdVHbc2tf1RFk0KvetQ+G0poO9oWpgKt/ha5FSp9mNHls6x8MoTlAxuxzrm+gjXzsR4X7eIdS0s1B+SRWXB82mmw2I4+mkM9OzAup4CbkxHw/yfqjW5o0bPjOOeKfQRDcyDCrZ0YgidKiEIb3KDGGTWY9NnMvIWKKmlTPPR17CuA91RdME3DQXcITPb0vV4
+X-Microsoft-Antispam-Message-Info: pCNC9ybiOcTmzwVlnmGsdMMrUUAXXLTcV1Lu+PdAZL5LkUc9/cUTe+tqqA+ko7x2kWF6NWMuTDj9WNp97whgDdu92r2ZylFBBbd4AS2aSnAiPyzGtja2J4HvNQbl6N9uq9gGkvtiRZmALgdAdci5e9DnlgVRkWhBKt7odgxwzaybMcsKdyYDBk69OI0pamKwm7kI1QwGV9sBOikpSvKV2POHIfsM4SR91nkvIpoxAc5bTd6WLO9oLBVRFiq87XKqTGjpkJLAGkKhfGY9tMqkYJIfoOTJUt41XZ5XB+0/NeUOhAE/75iW98fwt3mIljhqU3x4Hhd6Xe/jnAd9ntL5hR/8Z02Jl+YLUjjVBAKLhL/fKeKd83Ww3QmHbKIm9ZQTckcrp3kAshKV5wynQmfvS34KnAZfPAEFssDA2u1Wax+4ZEdhuNBt1dNhLVzMbjEWTRO+GuCoSKzNBbdBbzTddRkCA1iYt3hKQEp5KJfmJL86R/K4CVzflPCk96b6oJS6XziMUWNAXWjDsb38C7zSMvGAyGvNROSNQsjrCXE0morxP9ExcJaFtCZ+rH1x5vgRcMpaKe8BQcbjyalps7Qf0mWd1OhP0RCvMtEk4amah+yfGYi64mGMQcvMTe8RfQ/SkELZZcHGGRkfQeQlnS9NZG4Zx3csobcswz6tGmugZ4yOIrDuX4P7977JupVamjmdxfx4GSH5zXbsHNNY2cIcjkg4LRo9IiAhOo6Lr7Ml/U/9vvgNZckBnImRp4HA6IIIp5goElAWxXxLpLLZ0A953IqbavlVS8OO7g69UbMLsDe5aVTKL7xT5Zoozn0g6+7FG+BH0PtWRTSTCvGT8Qkr2EvAV85GKmr84IKgUhBvIJk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(66946007)(186003)(5660300002)(36756003)(16576012)(38100700002)(31696002)(66574015)(31686004)(8936002)(83380400001)(966005)(53546011)(6916009)(44832011)(4326008)(2906002)(8676002)(26005)(66476007)(86362001)(6486002)(316002)(66556008)(508600001)(2616005)(956004)(54906003)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:SJ0PR12MB5438.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(8676002)(53546011)(186003)(4326008)(2616005)(8936002)(26005)(5660300002)(508600001)(36756003)(966005)(38100700002)(6486002)(31686004)(6916009)(54906003)(956004)(316002)(66556008)(2906002)(66476007)(16576012)(86362001)(83380400001)(30864003)(31696002)(44832011)(66946007)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?czBPdm54c0xYVEVTcWFvVHpadFJOcFdrZ1IyOVZmV2lnUFhBdENnazBjaFRO?=
- =?utf-8?B?TmpWSjYxZEVMcTBJWHp5Y0xnN2l0TlJ3Z0RWYk9HalJMYUhLdkhJMjJ1aUZv?=
- =?utf-8?B?RzlyRDQrZGxTVk9LWmlaa25IQmpDaFZTY1lPaUhackU2c0Ewa0dDQ0lVcWR4?=
- =?utf-8?B?T3dlQU1jakY0aVVVaFVSYU1CTFhrV0JBREZlRENNbnJDZE94dng0ZEpNdzJR?=
- =?utf-8?B?TEFJTzBVZlB5OFRaU0lHZlRCdjh5VUk5Y2daYjZ1SnM1VmhSRHZRV2xhWWlt?=
- =?utf-8?B?eWZxTWJaaUF2KzA5VWtYTE41cHMwTW95UkVpVFBIZnBIcUswR045QUNrMkR0?=
- =?utf-8?B?dHhPRVpsamFTMVZ4eEl0Z2tMVnhkNk9rWWhrdG9LOGJRUjJCbFoyY2tJWmxQ?=
- =?utf-8?B?L05wTVpsYnpxbExIeHl6eURxRHFHT0VLTURjQXVHbTlHc0hJY0FhNU1JbUFr?=
- =?utf-8?B?Mk8za1I1dncxMUFWZDlhYXdwaDFBbzhlU2xmUTN4TUhXMjJ5b0Z6c0pVTGUr?=
- =?utf-8?B?L2lvMURRSW9JQis2TUpQbS9uKzNFaGtGaFdzVTZhVS9VdHI5QUd3MkVaNHNU?=
- =?utf-8?B?WjNXbEp0N1NKY3dZcDNDM2dhR2xDREhWWEtwSGxOWkgvYnBEeTdpb2dFK1JR?=
- =?utf-8?B?Zy9GK29iVkVodmhndDdKa3pnOVZtZzdNNndWZmRWb1Z6Wkh4aFJMc2xtcVUy?=
- =?utf-8?B?bngrTE1jNEhEOWZNSFVTWi94OHNxZ1FtS3VVbkp3bDZOR1gvenppVWdMNHVZ?=
- =?utf-8?B?Mzl6ZldjcE9tWEh0T2ZqMzZLWnNDZWRjTCtXbW4zQTdyU21uNnJBYjJ1dDVO?=
- =?utf-8?B?amlCSVRBT3p6MlFaQUlVYTRicEtHVVhxM0NmMndrSmttMzBsQWRWaUVScEZ0?=
- =?utf-8?B?djNldWtrWTJ5bXRNUytRWGsyQmJIS2txYkhGVGVIYzdEU2xsRE5RTjNTZlZ6?=
- =?utf-8?B?N1VrcG9tWnVpY0RDUTUrM0JyS2VycVY3SVJtMmN1Wk5PMGhBTHM0MWkvNm5B?=
- =?utf-8?B?M2tZVlJ4dkhla1F3RFY0TVBKZkhPemQzZW9hS0g2ZHA1M1BjWUFsVzlJQnFn?=
- =?utf-8?B?a3Ftb01OYkoyK25KZ1Y0aUtnQkw2Z2hEWnoxcW5LZEVxR3AvQlo4QWQ4aEtn?=
- =?utf-8?B?NGx3ckZvUS93aXRnTXdXb2FSOUhQTFpubkpFcURoRHl4WlJ1eER0T1NDbHh5?=
- =?utf-8?B?VjNsTGRCcTNKQklhdzBoaGduS3puaWhCczc5dkVwalVDRTVPNVNvVUw2M21p?=
- =?utf-8?B?MHZvYWRvUjdYdWtQN2hDOE5UN0ZTUVRZKzBCOHBPL01ZTmlZT05WclFwVVNB?=
- =?utf-8?B?a0VFQm43Ky9wM3pXV0pPU1dnaWhPNkdhbDl2V2RzOGZGRHBvSkpkdUN3R00z?=
- =?utf-8?B?RmxtSEswUDJES0ZxcndxR0J2cTBZdjd6eGdhNWE5amhWK3hPcmVaVXlZTzNJ?=
- =?utf-8?B?UDlPa2xtTnFVUzgzMEdKSWh5RmJEL3UrWE0xZU42bWZacEkzaUpGeVd0OVJY?=
- =?utf-8?B?MDJIN3Uzc0kwUC9RTjlnR2RnL3h2Y3VEcWM0Ym1tYVFsQUlSWHpaUDQ0ZURV?=
- =?utf-8?B?TitwRmxqWDh6TnFQaXNxTzlPTHhqa3E0dzZobkJBR0FZQUFkbk96K0U5MlM3?=
- =?utf-8?B?NXRrOUR5eXhEaUcwL1FyRDR4SXBiMjZBdG5jR1NkNWp5Q1I0L05WTTZ2MFov?=
- =?utf-8?B?QVBIdHVCMDd3a0l1V05IQlk1a1l6Zm5GSXhvd0RVMHNJbTdkQTR0cSsveGp0?=
- =?utf-8?B?c2h5YVI1RHoxcSszMmJLNjdQdURMdUFBN0hGQWpld2pjV2V6NUlQUVJBL1l6?=
- =?utf-8?B?NGVveTkzUG9JejVlaEJLSnk4R0w0WUc2dGpwR0V2clVYZEd1Y3NrZjlzWVlm?=
- =?utf-8?B?eTlLNEdjcXd5UnZsaGF2bWhZenpiR1E1OUxSWDlUekpacjZRamJtdjRzOTNn?=
- =?utf-8?B?dUlibk1tU2lpN2RQMlRRM0pDbmF1M3NQQ1RPaWVPZWlBZW1jYUs2N2s2VXpZ?=
- =?utf-8?B?WkdaZEJqT3ByT05aN0dLOWtNYzNxQTRPS3h5YXRVNUp4ejU1NjhHdU95RGxR?=
- =?utf-8?B?ZGJRUEp5WHFLeHBRNGtQS0FLdkVFM3hma0VBVi9Qb3EySzhuMjZPNDl6VlF1?=
- =?utf-8?B?RExwUXl1SDRBcVRKdWdla1MyWmNuMmZOc3dnTFoyZHFJcXhUZXd0WFNpZ1pu?=
- =?utf-8?Q?Ab5qss3yQEqJhdlBbSa3uYM=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MWYyZFU1YVBMaVRrTEhFQTlQUnFWT2FIM2M0SmV4eWMxcGx3cVZ5QTdMNFFy?=
+ =?utf-8?B?cGo2emVoVU9pOWdBZDNSS0xJclZFb1p4OHpMS2dwY3FlNmxlMitWdUE2bWhF?=
+ =?utf-8?B?L25sOVd5WDJtazR5Yzd4Z3VmaTZLSCszcnJxL3IreUFVVzVjS1FDV1FNMFlE?=
+ =?utf-8?B?dlBnaUsvSzVkVElNNVJab2RKTk9sV3N3ZVZVdWdpMlZqa00zUkV1eFlpSWVR?=
+ =?utf-8?B?ek9teXFRTjAvUDA3SU5oTkRNTWdBbytDZ2NjVnZuK1F6WWZsdVNpbUF2eTZk?=
+ =?utf-8?B?TVlobEphcnhuYVZCVkhKSUhiUDg1cWUvbDBKUmNQZnVFUkJjZjdUU1VLS2Y0?=
+ =?utf-8?B?ZHZvSndjMGtndHVLZjIyUWl6Z20vL3Uza2tsZ0ozcnliQ0xrWnhzRkZZZ2d6?=
+ =?utf-8?B?eGxVYU5nZnlweWtyNVB6bGN3NUptYTVqZXFKUjhHTlhlc2lYTmdqbXJ4eThT?=
+ =?utf-8?B?NW1yVWgyTkZOOFBXd3k5dEZPelI4QklpYzJudkhQb2ZPdFBlVXQ3Z0RURHdL?=
+ =?utf-8?B?VUcrUy9GajJjemNHQndHSmR2QWc4YXV2Z3lBVVZHQUtkRmpETWdNRnZ2aS9k?=
+ =?utf-8?B?ZHdKMHdBSTRPNjdhZWJjS2pRS2MycnFOMWRtSndtRERBZ3dTSXR4YTR0S1lj?=
+ =?utf-8?B?M2dZeXlDckFYclgvVEU4VWJvai9XMVlseEIyazQxUDFjN2VjWHJweFFTUm9S?=
+ =?utf-8?B?L1ExOTRnUytaZmhSMklkazNMZHU0OThEWDBhS0Z6ZjV6OEl5Q0ppdEtEY3g3?=
+ =?utf-8?B?UU5MUURQUHlCUDJDMkhrR0NISTZWWm1zcm1PYldzL0NBWU9uQWhBQUU2SEs0?=
+ =?utf-8?B?VmVCRmxhdnJKNjg4R1ZMM0dDUDZGL3Axa2l3cnpFdm5KYkI3NTI3Mk1zQ3lB?=
+ =?utf-8?B?aGg4TkdlWVB0VkEwcy95ZXI4Vm1VZm9Uazh0QlI1Z25TVHB3akJNWHREdWRF?=
+ =?utf-8?B?UUFWZWRLQXlGSHVtcTNwcFM1eU9hbzVoaDQvaWJYQk1GcGJVZHliM1NaaUVy?=
+ =?utf-8?B?TlYycVJUZ1pXR3krVFgwcTVtRUloMkJLckNoanFpb2FxUDkvSnVrS01Maytt?=
+ =?utf-8?B?cGs3aUVVSjZKRkc4bEtWNmNXUUFUZUY3MHptcTVLTHZleUpRalpLNmt4R21E?=
+ =?utf-8?B?VUlrTS9sTVVQVURnb3Fsa1lWUi9ZaGV5SmtlRXlERWlKajU2R0hXckwxNGVF?=
+ =?utf-8?B?T1BlcXFCQ2ltUWx3eXdLZmpVaWlHTzZLQjBxZHpJR2ZvNlpRZnA0eFdzMTBu?=
+ =?utf-8?B?c0tXWDNxUUJFbFFjellza3J6SHR0Qi9YaFNJbXEzVXRmVFhaS3d0VFRaREJS?=
+ =?utf-8?B?UjJ0VHBwalFwRm9GRUVjUytDWkxrR0J1OWlBZEFHZkdyaEk2NUJGSW9rU0Vs?=
+ =?utf-8?B?TldzV1NicG9NeXBMcTRXdVA5UFVtdDZoYmNEWStIN3pQSkNYakt3d1dBVXJX?=
+ =?utf-8?B?SzhxWURpazAwNW5NQXM1M3VuYlJuRUhUeVdIVUtMNlVjM2ZHcFRyNkJlb1l6?=
+ =?utf-8?B?K0Vnc2U5TVY1N1BVd0dlMUVqYmhvcDlBS3Qyd3VCTDlQdFpjODZ5dThyc1RZ?=
+ =?utf-8?B?RWl1dElzSG9HT1ZEMHJhOEozcmZmTDRtQ2hHZHdvT0wyK3dRMERoQmZ3c3Jn?=
+ =?utf-8?B?ZWVkaE1NcWlpZUMzRzV2WTkzcnNGMWd6M0w4aWdDME5IbU5tRTBHWm4yZGNW?=
+ =?utf-8?B?L2htVkdOR294MWNFQ0NIck1rMWwwVjIrTS9SazBDcVltYnZTZXkydWJPYTJF?=
+ =?utf-8?B?d3FBMHkrM0tKb0JWazNkWUFGeFA0dHRHaGo5Tm5VRHoxbFdDcUtrQUdnQzdK?=
+ =?utf-8?B?ZU1vYWRzMUxjZHFXRDNXMXFoM3Q2SmZQbHc2eHh0V3Fkc3V1c3c3TWdyb2py?=
+ =?utf-8?B?djBZV2ZJTkZidXVjSlk5YjUxS0JnMmpqN0F0aklPUTI1RnhBVGVoalU2NnFD?=
+ =?utf-8?B?UTNqbytpQ0NwYzhicUJINjFYZ3BWZUN6NnhuSndWQno2V3lqUDJ2UDJHOWJI?=
+ =?utf-8?B?dmJCUHFWd1FyVnNiWGptZ0ljWHFVNmxFK2JsT0JRRXYxckdVUlBrSWJxSngx?=
+ =?utf-8?B?SFMxcTNVcCtXZTBKV1N6eHlwekpiMnFPNnV1YUFJUmpqNktoNHhPdWVqMUhk?=
+ =?utf-8?B?dzQ3TmRORkVsY1FuS05wUkg3MFlLQVZrNmZKc29IT1JFTzVxbVd4Q1dYUG9S?=
+ =?utf-8?Q?eBHtZbDSeVyCViVAG+lE7+Q=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a6bd706-4ccd-4f28-728f-08d9a3bea49d
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1304b1aa-86a5-41f2-1f7e-08d9a3c238dc
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB5438.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2021 20:22:25.3060 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2021 20:48:02.9836 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cVeLJUm4rfZOESy9nCYCBEc1B5RMJRW90Bg/iMsSiI0Svxi9t68Z1h3yX019NUIJLueJ2ib40UKUWZhugauFKw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5460
+X-MS-Exchange-CrossTenant-UserPrincipalName: hLebw6AjopEjHC5pKiDSsYMVX/nHzsKmIZsPC/YedB+SQlUJeOHr+Go7teLyHPUCT/YMlWru9AXR+a70MIoE5g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5407
 Subject: Re: [Intel-gfx] [RFC v2 02/22] drm: Add Enhanced Gamma and color
  lut range attributes
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -137,22 +139,19 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: "Cyr, Aric" <Aric.Cyr@amd.com>, intel-gfx@lists.freedesktop.org,
- Pekka Paalanen <ppaalanen@gmail.com>, dri-devel@lists.freedesktop.org,
- sebastian@sebastianwick.net
+ dri-devel@lists.freedesktop.org, sebastian@sebastianwick.net
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 2021-11-05 07:49, Ville Syrjälä wrote:
-> On Thu, Nov 04, 2021 at 12:27:56PM -0400, Harry Wentland wrote:
->>
->>
+On 2021-11-08 04:54, Pekka Paalanen wrote:
+> On Thu, 4 Nov 2021 12:27:56 -0400
+> Harry Wentland <harry.wentland@amd.com> wrote:
+> 
 >> On 2021-11-04 04:38, Pekka Paalanen wrote:
 >>> On Wed, 3 Nov 2021 11:08:13 -0400
 >>> Harry Wentland <harry.wentland@amd.com> wrote:
->>>
->>>> On 2021-09-06 17:38, Uma Shankar wrote:
+>>>   
+>>>> On 2021-09-06 17:38, Uma Shankar wrote:  
 >>>>> Existing LUT precision structure is having only 16 bit
 >>>>> precision. This is not enough for upcoming enhanced hardwares
 >>>>> and advance usecases like HDR processing. Hence added a new
@@ -231,7 +230,7 @@ On 2021-11-05 07:49, Ville Syrjälä wrote:
 >>>>> +	__u64 green;
 >>>>> +	__u64 blue;
 >>>>> +	__u64 reserved;
->>>>> +};  
+>>>>> +};    
 >>>>
 >>>> I've been drawing out examples of drm_color_lut_range defined PWLs
 >>>> and understand a bit better what you and Ville are trying to accomplish
@@ -263,7 +262,7 @@ On 2021-11-05 07:49, Ville Syrjälä wrote:
 >>>>
 >>>> E.g. any SDR data would map from 0.0 to 1.0 floating point, while HDR content would
 >>>> map from 0.0 to some value larger than 1.0. I don't (yet) have a clear picture how
->>>> to represent that with the drm_color_lut_range definition.
+>>>> to represent that with the drm_color_lut_range definition.  
 >>>
 >>>
 >>> Hi Harry,
@@ -285,58 +284,149 @@ On 2021-11-05 07:49, Ville Syrjälä wrote:
 >>> I'm of course open to other suggestions, but having values outside of
 >>> [0.0, 1.0] range in the abstract pipeline will always raise the
 >>> question: how do you feed those to the LUT next in the pipeline.
->>>
+>>>   
 >>
 >> AMD HW defines the LUT addressing in floating point space and allows
 >> for addressing beyond 1.0. In fact on other OSes our driver uses
 >> [0.0, 1.0] for SDR LUTs and [0.0, 128.0] for HDR LUTs.
->>
+> 
+> Hi Harry,
+> 
+> that sounds like some kind of absolute luminance encoding. Very much
+> like a PQ system. PQ system is very different to anything else, and
+> fitting that with a relative luminance system (which is everything else
+> in existence that I know of) has... things to be worked out.
+> 
+> I recall seeing some calculations where [0.0, 128.0] mapped very
+> nicely to exactly the theoretical absolute dynamic range of the PQ
+> system. It seems like that range is specifically tailored for operation
+> in the PQ system.
+> 
 >> There are color spaces that extend beyond 1.0 and even into the negative
->> range: https://en.wikipedia.org/wiki/ScRGB>>>
+>> range: https://en.wikipedia.org/wiki/ScRGB
+> 
+> scRGB is really special. It's more like a pure mathematical
+> representation than a color space. Just like you can take a color
+> triplet in any well-defined color space, and multiply it with a totally
+> arbitrary but invertible 3x3 matrix. You get totally arbitrary values
+> as a result, but you are not actually changing anything. It's just a
+> different encoding.
+> 
+> scRGB has two peculiar and different properties.
+> 
+> First, if no color component is negative, the values above 1.0 simply
+> extend the dynamic range.
+> 
+> Second, if any color component has a negative value, that extends the
+> color gamut, not just dynamic range. You can represent for example a
+> red color out of your gamut by using slightly negative values for green
+> and blue and compensate for the "negative light intensity" by
+> increasing the red value above 1.0, without actually going outside of
+> the "original" dynamic range.
+> 
+> When color spaces are usually defined, the properties are chosen such
+> that all color components will be non-negative. That makes them
+> intuitive, particularly with additive color models (RGB in particular),
+> because the concept of negative light intensity does not exist in
+> physics (but it can be emulated in color matching experiments by adding
+> the negative component of the matching color as a positive component to
+> the reference color instead).
+> 
+> Then there are the considerations of color gamut and available dynamic
+> range, which are inter-dependent and together form the available color
+> volume.
+> 
+> Traditional color management works with relative coordinates where the
+> per-channel range [0.0, 1.0] defines the color volume with relative,
+> not absolute, dynamic range. You also were not able to send values
+> outside of min..max to a monitor, so might as well map those to 0.0 and
+> 1.0. One could say the color volume definition is implicit here, with
+> the added confusion that you don't actually know the absolute dynamic
+> range (cd/m²).
+> 
+> Nowadays we have color spaces like BT.2020 which are larger than any
+> actual display can realize. Therefore, it is not enough to know the
+> color space to understand the available color volume, but you need
+> explicit information about the color gamut as well.
+> 
+> We need to know the available color volume to be able to map content
+> color volume nicely for the display. Likewise, we need to know the
+> actual color volume of the content too for a good color mapping.
+> 
+> If you use scRGB, you lose all intuitiveness. You have the concept of
+> negative light intensity which does not exist, but it is used simply as
+> a means to represent a larger color gamut than what the primaries of
+> the color space would imply. It can even extend to imaginary colors,
+> colors that do not exist: there is no light spectrum that would result
+> in that color in the human eye. (BT.2020 may be big, but all its colors
+> are real.) So you need to be able to handle arbitrary color channel
+> values, and you need explicit knowledge of the color volume you are
+> working with.
+> 
+> Essentially I think this means that one would better be using floating
+> point for everything, or maybe you can get away with formats like
+> s32.32 which takes 64 bits when a 16-bit float might have been enough.
+> But that then ties with the value encoding (linear vs. non-linear), so
+> one can't make a blanket statement about it.
+> 
+> Anyway, all the above is for the userspace to figure out. I just think
+> that using the range [0.0, 1.0] is very natural for most workflows,
+> even HDR. I don't see a practical need to go beyond that range, but I'm
+> also not against it. One can always program the [0.0, 1.0] range
+> explicitly via KMS.
+> 
+
+I agree that this should be for userspace to figure out. For that reason
+(and because we see OSes that do funky things) I prefer to not limit
+userspace to [0.0, 1.0].
+
+> The choice of the encoding at any point is always arbitrary, as long as
+> it doesn't lose too much information. The important thing is to be
+> consistent in a pipeline. That is why I'm not really concerned about
+> what range the abstract KMS pipeline is going to be defined with, as
+> long as it is consistent. An example of inconsistent pipeline would be
+> to allow arbitrary values in a LUT output, but defining only [0.0, 1.0]
+> input domain for the next element in the pipeline. Since any pipeline
+> element could be missing, you can't rely on some elements acting as
+> "sanitizer" but any earlier element could be feeding directly into any
+> later element.
+> 
 >> I don't think we should define the LUT to be limited to [0.0, 1.0].
 > 
-> That is not the intention, or at least wasn't my intention when
-> originally I proposed this gamma mode stuff. I specifically wanted
-> support for extended values. So 0.0-1.0 is supposed to be just the
-> range for the in gamut values.
+> That is fine. You get to define the UAPI and semantics for that, and
+> you also need to retrofit the existing pipeline components like CRTC
+> GAMMA and DEGAMMA to work with it somehow or replace them. You also
+> need to define how arbitrary values get converted to the cable.
 > 
-
-Make sense and good to hear.
-
->>
+> However, what happens if we define the abstract KMS color pipeline in
+> terms of supporting arbitrary values in any point of the pipeline, and
+> hardware just doesn't work that way because it happens to be using e.g.
+> limited integer arithmetic?
+> 
 >> If the framebuffer is not in FP16 the question then becomes how
 >> the integer pixel values relate to LUT addressing.
 > 
-> The idea again is that 0.0-1.0 is the range for the in gamut
-> values. IIRC our hw does have the possibility of scaling all
-> the fp16 input values by some programmable constant factor,
-> but exposing that would require yet another uapi addition.
+> Traditionally, and in any API I've seen (GL, Vulkan), a usual mapping
+> is to match minimum unsigned integer value to 0.0, and unsigned maximum
+> integer value to 1.0. This is how things work on the cable too, right?
+> (Also taking full vs. limited range video signal into account. And
+> conversion to cable-YUV if that happens.)
 > 
->>
+> If you want integer format FB values to map to something else, then you
+> have to tag the FB with that range information, somehow. New UAPI.
+> 
+
+On the cable we send integer values, not floating point. AMD HW uses
+floating point internally, though, and the PWL API defines floating
+point entries, so on some level we need to be clear what the floating
+point entries mean. Either we document that to be [0.0, 1.0] or we
+have some UAPI to define it. I'm leaning toward the latter but have
+to think about it some more.
+
 >> As well, LUT entries are defined to be U32.32 fixed point, also
 >> allowing for entries much greater than 1.0. If those are programmed
 >> as entries in the input (degamma) LUT how will they be used to address
 >> entries in the output (gamma) LUT?
-> 
-> The u32.32 is a mistake I think. IMO we should be going for signed
-> values everywhere. Though our hw does not actually let us directly
-> program negative values for the LUT, rather the hw just reflects
-> the whole curve across the origin so the lookup is basically just
-> something like:
-> output = input < 0 ? -lut[abs(input)] : lut[input];
-> 
-> That is why there is that proposed DRM_MODE_LUT_REFLECT_NEGATIVE flag.
-> 
-
-That's pretty much how I expect AMD HW to operate as well.
-
-Harry
-
-> I think nouveau had something funny in its lut programming that
-> made me think that it might actually have straight up programmable
-> LUT entries for negative inputs as well. But I'm not sure if anyone
-> has actually tested that.
-> 
 >>
 >> Maybe we want to say the actual input values are being used to
 >> address the LUT entries? But if we look at segment 1 of Uma's
@@ -344,7 +434,27 @@ Harry
 >> (1 << 24) -1 is covered by 128 (1 << 7) entries, so the range
 >> of 0 to 256 (for RGB with 8 bpc) would only be covered by 2
 >> LUT entries. So this interpretation doesn't make sense.
->>
+> 
+> FWIW, it seems Vulkan has a long list of how to interpret each
+> (integer) pixel format:
+> https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#_identification_of_formats
+> 
+> Essentially NORM vs. INT.
+
+Thanks for sharing.
+
+Harry
+
+> 
+> Hmm, I wonder how SNORM actually works. The integer range has one more
+> negative code points than positive code points, and zero. So if zero
+> code maps to 0.0, max maps 1.0, and min maps to -1.0, then the
+> conversion factor is different for negative vs. positive values?
+> 
+> 
+> Thanks,
+> pq
+> 
 >> You can see, I'm still confused by these definitions. An IGT
 >> test would help explain the API intentions a bit better, though
 >> I would like to see more precise documentation.
@@ -363,19 +473,20 @@ Harry
 >>> Thanks,
 >>> pq
 >>>
->>>
+>>>   
 >>>> If some of these questions should be obvious I apologize for being a bit dense,
 >>>> though it helps to make this accessible to the lowest common denominator
 >>>> to ensure not only the smartest devs can work with this.
 >>>>
 >>>> Harry
->>>>
+>>>>  
 >>>>> +
 >>>>>  #define DRM_MODE_PAGE_FLIP_EVENT 0x01
 >>>>>  #define DRM_MODE_PAGE_FLIP_ASYNC 0x02
 >>>>>  #define DRM_MODE_PAGE_FLIP_TARGET_ABSOLUTE 0x4
->>>>>   
->>>>
->>>
+>>>>>     
+>>>>  
+>>>   
+>>
 > 
 
