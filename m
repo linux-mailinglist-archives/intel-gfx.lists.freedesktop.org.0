@@ -2,42 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA0E244BC18
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Nov 2021 08:26:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1390A44BC4A
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Nov 2021 08:43:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07CB86E049;
-	Wed, 10 Nov 2021 07:26:04 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 285A189BD4;
- Wed, 10 Nov 2021 07:26:03 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10163"; a="219822294"
-X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="219822294"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F6D072BE6;
+	Wed, 10 Nov 2021 07:43:35 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1912C72BE6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Nov 2021 07:43:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10163"; a="219516176"
+X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="219516176"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2021 23:26:02 -0800
-X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="491991308"
-Received: from blu2-mobl3.ccr.corp.intel.com (HELO [10.254.212.217])
- ([10.254.212.217])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2021 23:43:32 -0800
+X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="491995313"
+Received: from linux-z370-aorus-gaming-5.iind.intel.com ([10.223.34.160])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2021 23:26:00 -0800
-Message-ID: <de8337fc-09c8-3c9c-1e30-34737afa50a8@linux.intel.com>
-Date: Wed, 10 Nov 2021 15:25:58 +0800
+ 09 Nov 2021 23:43:31 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 10 Nov 2021 12:59:45 +0530
+Message-Id: <20211110072947.171659-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20211109121759.170915-1-tvrtko.ursulin@linux.intel.com>
- <20211109171926.vrb5juvp64mv65b4@ldmartin-desk2>
- <bcb8736d-a46a-a756-e6ca-7872a21b075c@linux.intel.com>
-From: Lu Baolu <baolu.lu@linux.intel.com>
-In-Reply-To: <bcb8736d-a46a-a756-e6ca-7872a21b075c@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use per device iommu check
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/2] Some fixes in HDMI2.1 PCON FRL
+ configuration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,48 +42,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- baolu.lu@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021/11/10 1:35, Tvrtko Ursulin wrote:
-> 
-> On 09/11/2021 17:19, Lucas De Marchi wrote:
->> On Tue, Nov 09, 2021 at 12:17:59PM +0000, Tvrtko Ursulin wrote:
->>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>
->>> On igfx + dgfx setups, it appears that intel_iommu=igfx_off option only
->>> disables the igfx iommu. Stop relying on global intel_iommu_gfx_mapped
->>> and probe presence of iommu domain per device to accurately reflect its
->>> status.
->>
->> nice, I was just starting to look into thus but for another reason: we
->> are adding support for other archs, like aarch64, and the global from 
->> here
->> was a problem
-> 
-> Yes I realized the other iommu angle as well. To do this properly we 
-> need to sort the intel_vtd_active call sites into at least two buckets - 
-> which are truly about VT-d and which are just IOMMU.
-> 
-> For instance the THP decision in i915_gemfs.co would be "are we behind 
-> any iommu". Some other call sites are possibly only about the bugs in 
-> the igfx iommu. Not sure if there is a third bucket for any potential 
-> differences between igfx iommu and other Intel iommu in case of dgfx.
-> 
-> I'd like to hear from Baolu as well to confirm if intel_iommu driver is 
-> handling igfx + dgfx correctly in respect to the two global variables I 
-> mention in the commit message.
+Some optimizations in HDMI2.1 PCON configuration and avoiding
+resetting the config DPCD.
+v2: Addressed comments from Uma.
+v3: Rebased.
 
-I strongly agree that the drivers should call the IOMMU interface
-directly for portability. For Intel graphic driver, we have two issues:
+Ankit Nautiyal (2):
+  drm/i915/dp: Optimize the FRL configuration for HDMI2.1 PCON
+  drm/i915/dp: For PCON TMDS mode set only the relavant bits in config
+    DPCD
 
-#1) driver asks vt-d driver for identity map with intel_iommu=igfx_off.
-#2) driver query the status with a global intel_iommu_gfx_mapped.
+ drivers/gpu/drm/i915/display/intel_dp.c | 61 +++++++++++++++++++------
+ 1 file changed, 46 insertions(+), 15 deletions(-)
 
-We need to solve these two problems step by step. This patch is
-definitely a good start point.
+-- 
+2.25.1
 
-Best regards,
-baolu
