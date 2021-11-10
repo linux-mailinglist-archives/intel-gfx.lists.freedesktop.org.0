@@ -2,53 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A1244BF0B
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Nov 2021 11:48:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F88944C02A
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Nov 2021 12:34:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A40086EE61;
-	Wed, 10 Nov 2021 10:48:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D5216E160;
+	Wed, 10 Nov 2021 11:34:35 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com
- [IPv6:2607:f8b0:4864:20::82f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F6286EE49;
- Wed, 10 Nov 2021 10:48:49 +0000 (UTC)
-Received: by mail-qt1-x82f.google.com with SMTP id l8so1678363qtk.6;
- Wed, 10 Nov 2021 02:48:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=nk2Suy6J3YiB0zzsECNTnASz9gapNF6qF2MzFjIeiJI=;
- b=Eee4hv4Z4DBmibFUQLzPLHqyo9306QED/4FNETfu6p/G9npPXvQ+IhvGwHdkfhCKC6
- 3+ugW/L3QF5I6SfrY+WZaigkIqLU6L0Hq+IhmNBZXkSzWRjxjUtlF96XShIU1J53ZW2z
- q56cp1Q+d0DEk6+V8zrA1VVA9Mt6PnPnUYxXWch0r3MeFRtfQ6PqyBYtqcjqHyu6laB3
- SM9I19kWbbmOIkfCQMK1zSKPsm5MmswnM30YPg9j12X7azzU7J4bonHNLMS/gs6uG5O1
- RpuN1opbYn3HJCXBYPiogU/TVQ5T3przhJlRGrJ2wYT67WS1YvXJTGm22lMuFj2LyoI+
- 7qeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=nk2Suy6J3YiB0zzsECNTnASz9gapNF6qF2MzFjIeiJI=;
- b=3niUu/5SUnsPlb+9qsjh6s4K2RjO9w5Lkon+0tlEYB+TSGnlahGaQ4kgU7TbpEh90F
- tswv/t+D5bObjG+S/R9fIvmy9uCgyJ50y7PT+eOb43ZO/WAN4oBUMepVZB0KlokTBQuG
- kjgSAvuYaMxfJ2M9CqTXiGlnKWHw5OEQkcERYfMcJjl9m5vgwMq5Th3mwZecn9qiAee/
- CEY3ZFjB34b5wDPBv9g1hvvw+I+t8P5t/YV3ozjw774JaYcN+qdPX/kt3sHzE9CtMGlB
- TyKT5DmnWtXuGayQgapAAMo10148JAOmqX/hHgvYJSF3RxE5M4fBobvVe7iI6PtNpV4d
- /JPg==
-X-Gm-Message-State: AOAM533PqOnqfcGEK6blcseStByfX9zA2X6zMSpHwaCcvZKh4UjIItj/
- h6Uaj68wRCOWDdyffPZnL3ppvxHSgvzdUI+OLmYb1xVJW88=
-X-Google-Smtp-Source: ABdhPJxDJ+BqeHH0XvqQ8TLhsnNiwHhU2UsFTgaT6VUWge6F3SdXuvUE4DmJceGgFkZVpHSzusxrmAoLlwX7qvftd8g=
-X-Received: by 2002:a05:622a:1209:: with SMTP id
- y9mr16730883qtx.13.1636541328409; 
- Wed, 10 Nov 2021 02:48:48 -0800 (PST)
-MIME-Version: 1.0
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 347706E043;
+ Wed, 10 Nov 2021 11:34:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10163"; a="232497198"
+X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="232497198"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2021 03:34:32 -0800
+X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="582686329"
+Received: from dkeohane-mobl1.ger.corp.intel.com (HELO [10.213.222.153])
+ ([10.213.222.153])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2021 03:34:30 -0800
+To: Matthew Auld <matthew.william.auld@gmail.com>
 References: <20211109122037.171128-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20211109122037.171128-1-tvrtko.ursulin@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 10 Nov 2021 10:48:21 +0000
-Message-ID: <CAM0jSHOyj3ydgn-bZwk69RfpZLcG03Td_kxowEoJ1fg5PO=W3A@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+ <CAM0jSHOyj3ydgn-bZwk69RfpZLcG03Td_kxowEoJ1fg5PO=W3A@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <42489a16-292d-7ba3-64e6-de79dfa3dfb4@linux.intel.com>
+Date: Wed, 10 Nov 2021 11:34:27 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <CAM0jSHOyj3ydgn-bZwk69RfpZLcG03Td_kxowEoJ1fg5PO=W3A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Skip error capture when wedged on
  init
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,48 +55,59 @@ Cc: Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 9 Nov 2021 at 12:20, Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
-> Trying to capture uninitialised engines when we wedged on init ends in
-> tears. Skip that together with uC capture, since failure to initialise the
-> latter can actually be one of the reasons for wedging on init.
->
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-This fixes the issue with missing GuC wedging the GPU and then blowing
-up when trying to use the driver?
+On 10/11/2021 10:48, Matthew Auld wrote:
+> On Tue, 9 Nov 2021 at 12:20, Tvrtko Ursulin
+> <tvrtko.ursulin@linux.intel.com> wrote:
+>>
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> Trying to capture uninitialised engines when we wedged on init ends in
+>> tears. Skip that together with uC capture, since failure to initialise the
+>> latter can actually be one of the reasons for wedging on init.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> This fixes the issue with missing GuC wedging the GPU and then blowing
+> up when trying to use the driver?
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Probably does not blow up when using the driver, but definitely does 
+when accessing error state. Someone suggested it would instead be better 
+to call i915_disable_error_state from wedge on init/fini, and I think 
+indeed it would, so I plan to send v2 looking like that.
 
-> ---
->  drivers/gpu/drm/i915/i915_gpu_error.c | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index 2a2d7643b551..aa2b3aad9643 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -1866,10 +1866,14 @@ i915_gpu_coredump(struct intel_gt *gt, intel_engine_mask_t engine_mask)
->                 }
->
->                 gt_record_info(error->gt);
-> -               gt_record_engines(error->gt, engine_mask, compress);
->
-> -               if (INTEL_INFO(i915)->has_gt_uc)
-> -                       error->gt->uc = gt_record_uc(error->gt, compress);
-> +               if (!intel_gt_has_unrecoverable_error(gt)) {
-> +                       gt_record_engines(error->gt, engine_mask, compress);
-> +
-> +                       if (INTEL_INFO(i915)->has_gt_uc)
-> +                               error->gt->uc = gt_record_uc(error->gt,
-> +                                                            compress);
-> +               }
->
->                 i915_vma_capture_finish(error->gt, compress);
->
-> --
-> 2.30.2
->
+Regards,
+
+Tvrtko
+
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> 
+>> ---
+>>   drivers/gpu/drm/i915/i915_gpu_error.c | 10 +++++++---
+>>   1 file changed, 7 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+>> index 2a2d7643b551..aa2b3aad9643 100644
+>> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>> @@ -1866,10 +1866,14 @@ i915_gpu_coredump(struct intel_gt *gt, intel_engine_mask_t engine_mask)
+>>                  }
+>>
+>>                  gt_record_info(error->gt);
+>> -               gt_record_engines(error->gt, engine_mask, compress);
+>>
+>> -               if (INTEL_INFO(i915)->has_gt_uc)
+>> -                       error->gt->uc = gt_record_uc(error->gt, compress);
+>> +               if (!intel_gt_has_unrecoverable_error(gt)) {
+>> +                       gt_record_engines(error->gt, engine_mask, compress);
+>> +
+>> +                       if (INTEL_INFO(i915)->has_gt_uc)
+>> +                               error->gt->uc = gt_record_uc(error->gt,
+>> +                                                            compress);
+>> +               }
+>>
+>>                  i915_vma_capture_finish(error->gt, compress);
+>>
+>> --
+>> 2.30.2
+>>
