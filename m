@@ -2,32 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABC8044BE82
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Nov 2021 11:24:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 540A544BE9B
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Nov 2021 11:29:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 138F36EBA2;
-	Wed, 10 Nov 2021 10:24:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 430E26EAC8;
+	Wed, 10 Nov 2021 10:29:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 633A76EBA2
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Nov 2021 10:24:00 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10163"; a="219847125"
-X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="219847125"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2021 02:23:59 -0800
-X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="503911605"
-Received: from tsengwil-desk1.itwn.intel.com (HELO gar) ([10.5.253.7])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2021 02:23:57 -0800
-From: William Tseng <william.tseng@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Nov 2021 18:23:54 +0800
-Message-Id: <20211110102354.5640-1-william.tseng@intel.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/i915/dsi: let HW maintain the HS-TRAIL
- timing
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 825B06EABE;
+ Wed, 10 Nov 2021 10:29:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10163"; a="213373003"
+X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="213373003"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2021 02:29:40 -0800
+X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="534005231"
+Received: from mpolgar-mobl.ger.corp.intel.com (HELO [10.213.234.161])
+ ([10.213.234.161])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2021 02:29:38 -0800
+Message-ID: <a58e1d8e-68f8-0a81-4c2d-4cc21aeb37e3@intel.com>
+Date: Wed, 10 Nov 2021 10:29:36 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Content-Language: en-GB
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20211110085527.1033475-1-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20211110085527.1033475-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ttm: Fix illegal addition to
+ shrinker list
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,52 +49,17 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>,
- William Tseng <william.tseng@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This change is to avoid over-specification of the TEOT timing
-parameter, which is derived from software in current design.
-
-Supposed that THS-TRAIL and THS-EXIT have the minimum values,
-i.e., 60 and 100 in ns. If SW is overriding the HW default,
-the TEOT value becomes 150 ns, approximately calculated by
-the following formula.
-
-  DIV_ROUND_UP(60/50)*50 + DIV_ROUND_UP(100/50))*50/2, where 50
-  is LP Escape Clock time in ns.
-
-The TEOT value 150 ns is larger than the maximum value,
-around 136 ns if UI is 1.8ns, (105 ns + 12*UI, defined by MIPI
-DPHY specification).
-
-However, the TEOT value will meet the specification if THS-TRAIL
-is set to the HW default, instead of software overriding.
-
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Cc: Lee Shawn C <shawn.c.lee@intel.com>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-Signed-off-by: William Tseng <william.tseng@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 168c84a74d30..0d22d3ed9734 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1957,8 +1957,6 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
- 					 HS_PREPARE(prepare_cnt) |
- 					 HS_ZERO_OVERRIDE |
- 					 HS_ZERO(hs_zero_cnt) |
--					 HS_TRAIL_OVERRIDE |
--					 HS_TRAIL(trail_cnt) |
- 					 HS_EXIT_OVERRIDE |
- 					 HS_EXIT(exit_zero_cnt));
- 
--- 
-2.17.1
-
+On 10/11/2021 08:55, Thomas Hellström wrote:
+> There's a small window of opportunity during which the adjust_lru()
+> function can be called with a GEM refcount of zero from the TTM
+> eviction code. This results in a kernel BUG().
+> 
+> Ensure that we don't attempt to modify the GEM shrinker lists unless
+> we have a GEM refcount.
+> 
+> Fixes: ebd4a8ec7799 ("drm/i915/ttm: move shrinker management into adjust_lru")
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
