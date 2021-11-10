@@ -1,46 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B45A144C2CB
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Nov 2021 15:11:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 778CA44C301
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Nov 2021 15:32:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C29266E49A;
-	Wed, 10 Nov 2021 14:11:39 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B3416E1A3;
- Wed, 10 Nov 2021 14:11:38 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10163"; a="256367227"
-X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="256367227"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2021 06:11:23 -0800
-X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="582721529"
-Received: from dkeohane-mobl1.ger.corp.intel.com (HELO [10.213.222.153])
- ([10.213.222.153])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2021 06:11:21 -0800
-To: Lu Baolu <baolu.lu@linux.intel.com>, Intel-gfx@lists.freedesktop.org
-References: <20211109121759.170915-1-tvrtko.ursulin@linux.intel.com>
- <6e8c55a7-45b6-57ab-35f7-d522401efccb@linux.intel.com>
- <4d1a0ab9-e0d8-2ed9-1fc4-9ffaf2f19bef@linux.intel.com>
- <7b2e1427-69cf-8f5d-0c15-73c4e602953d@linux.intel.com>
- <2a1ae709-19f8-7983-b171-98ec2f3f010a@linux.intel.com>
- <4c5ab72f-aaff-8b92-7471-44dd907cf2f6@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <215fa7de-4ed7-1da5-724e-006e36286c08@linux.intel.com>
-Date: Wed, 10 Nov 2021 14:11:19 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 649796E049;
+	Wed, 10 Nov 2021 14:32:21 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 92E296E049;
+ Wed, 10 Nov 2021 14:32:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8B888A7E03;
+ Wed, 10 Nov 2021 14:32:20 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0597511529164344905=="
 MIME-Version: 1.0
-In-Reply-To: <4c5ab72f-aaff-8b92-7471-44dd907cf2f6@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use per device iommu check
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "William Tseng" <william.tseng@intel.com>
+Date: Wed, 10 Nov 2021 14:32:20 -0000
+Message-ID: <163655474056.15662.16069640929734254859@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211110102354.5640-1-william.tseng@intel.com>
+In-Reply-To: <20211110102354.5640-1-william.tseng@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dsi=3A_let_HW_maintain_the_HS-TRAIL_timing?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,120 +40,269 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Robin Murphy <robin.murphy@arm.com>, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0597511529164344905==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 10/11/2021 12:35, Lu Baolu wrote:
-> On 2021/11/10 20:08, Tvrtko Ursulin wrote:
->>
->> On 10/11/2021 12:04, Lu Baolu wrote:
->>> On 2021/11/10 17:30, Tvrtko Ursulin wrote:
->>>>
->>>> On 10/11/2021 07:12, Lu Baolu wrote:
->>>>> Hi Tvrtko,
->>>>>
->>>>> On 2021/11/9 20:17, Tvrtko Ursulin wrote:
->>>>>> From: Tvrtko Ursulin<tvrtko.ursulin@intel.com>
->>>>>>
->>>>>> On igfx + dgfx setups, it appears that intel_iommu=igfx_off option 
->>>>>> only
->>>>>> disables the igfx iommu. Stop relying on global 
->>>>>> intel_iommu_gfx_mapped
->>>>>> and probe presence of iommu domain per device to accurately 
->>>>>> reflect its
->>>>>> status.
->>>>>>
->>>>>> Signed-off-by: Tvrtko Ursulin<tvrtko.ursulin@intel.com>
->>>>>> Cc: Lu Baolu<baolu.lu@linux.intel.com>
->>>>>> ---
->>>>>> Baolu, is my understanding here correct? Maybe I am confused by both
->>>>>> intel_iommu_gfx_mapped and dmar_map_gfx being globals in the 
->>>>>> intel_iommu
->>>>>> driver. But it certainly appears the setup can assign some iommu 
->>>>>> ops (and
->>>>>> assign the discrete i915 to iommu group) when those two are set to 
->>>>>> off.
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/i915_drv.h 
->>>>> b/drivers/gpu/drm/i915/i915_drv.h
->>>>> index e967cd08f23e..9fb38a54f1fe 100644
->>>>> --- a/drivers/gpu/drm/i915/i915_drv.h
->>>>> +++ b/drivers/gpu/drm/i915/i915_drv.h
->>>>> @@ -1763,26 +1763,27 @@ static inline bool run_as_guest(void)
->>>>>   #define HAS_D12_PLANE_MINIMIZATION(dev_priv) 
->>>>> (IS_ROCKETLAKE(dev_priv) || \
->>>>>                             IS_ALDERLAKE_S(dev_priv))
->>>>>
->>>>> -static inline bool intel_vtd_active(void)
->>>>> +static inline bool intel_vtd_active(struct drm_i915_private *i915)
->>>>>   {
->>>>> -#ifdef CONFIG_INTEL_IOMMU
->>>>> -    if (intel_iommu_gfx_mapped)
->>>>> +    if (iommu_get_domain_for_dev(i915->drm.dev))
->>>>>           return true;
->>>>> -#endif
->>>>>
->>>>>       /* Running as a guest, we assume the host is enforcing VT'd */
->>>>>       return run_as_guest();
->>>>>   }
->>>>>
->>>>> Have you verified this change? I am afraid that
->>>>> iommu_get_domain_for_dev() always gets a valid iommu domain even
->>>>> intel_iommu_gfx_mapped == 0.
->>>>
->>>> Yes it seems to work as is:
->>>>
->>>> default:
->>>>
->>>> # grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
->>>> /sys/kernel/debug/dri/0/i915_capabilities:iommu: enabled
->>>> /sys/kernel/debug/dri/1/i915_capabilities:iommu: enabled
->>>>
->>>> intel_iommu=igfx_off:
->>>>
->>>> # grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
->>>> /sys/kernel/debug/dri/0/i915_capabilities:iommu: disabled
->>>> /sys/kernel/debug/dri/1/i915_capabilities:iommu: enabled
->>>>
->>>> On my system dri device 0 is integrated graphics and 1 is discrete.
->>>
->>> The drm device 0 has a dedicated iommu. When the user request igfx not
->>> mapped, the VT-d implementation will turn it off to save power. But for
->>> shared iommu, you definitely will get it enabled.
->>
->> Sorry I am not following, what exactly do you mean? Is there a 
->> platform with integrated graphics without a dedicated iommu, in which 
->> case intel_iommu=igfx_off results in intel_iommu_gfx_mapped == 0 and 
->> iommu_get_domain_for_dev returning non-NULL?
-> 
-> Your code always work for an igfx with a dedicated iommu. This might be
-> always true on today's platforms. But from driver's point of view, we
-> should not make such assumption.
-> 
-> For example, if the iommu implementation decides not to turn off the
-> graphic iommu (perhaps due to some hw quirk or for graphic
-> virtualization), your code will be broken.
+== Series Details ==
 
-If I got it right, this would go back to your earlier recommendation to 
-have the check look like this:
+Series: drm/i915/dsi: let HW maintain the HS-TRAIL timing
+URL   : https://patchwork.freedesktop.org/series/96750/
+State : success
 
-static bool intel_vtd_active(struct drm_i915_private *i915)
-{
-         struct iommu_domain *domain;
+== Summary ==
 
-         domain = iommu_get_domain_for_dev(i915->drm.dev);
-         if (domain && (domain->type & __IOMMU_DOMAIN_PAGING))
-                 return true;
-	...
+CI Bug Log - changes from CI_DRM_10863 -> Patchwork_21553
+====================================================
 
-This would be okay as a first step?
+Summary
+-------
 
-Elsewhere in the thread Robin suggested looking at the dec->dma_ops and 
-comparing against iommu_dma_ops. These two solution would be effectively 
-the same?
+  **SUCCESS**
 
-Regards,
+  No regressions found.
 
-Tvrtko
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/index.html
+
+Participating hosts (39 -> 35)
+------------------------------
+
+  Additional (2): fi-icl-u2 fi-tgl-u2 
+  Missing    (6): bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-pnv-d510 fi-icl-y fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21553 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@fork-gfx0:
+    - fi-icl-u2:          NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][2] ([i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html
+    - fi-icl-u2:          NOTRUN -> [SKIP][3] ([i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][4] ([fdo#109284] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-icl-u2:          NOTRUN -> [SKIP][5] ([fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][6] ([i915#4103]) +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-icl-u2:          NOTRUN -> [SKIP][7] ([fdo#109278]) +2 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][8] ([fdo#109285])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html
+    - fi-icl-u2:          NOTRUN -> [SKIP][9] ([fdo#109285])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-icl-u2:          NOTRUN -> [SKIP][10] ([i915#3301])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-icl-u2/igt@prime_vgem@basic-userptr.html
+    - fi-tgl-u2:          NOTRUN -> [SKIP][11] ([i915#3301])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-tgl-u2/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][12] ([i915#4269]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10863/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+    - {fi-hsw-gt1}:       [DMESG-WARN][14] ([i915#4290]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10863/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4290]: https://gitlab.freedesktop.org/drm/intel/issues/4290
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10863 -> Patchwork_21553
+
+  CI-20190529: 20190529
+  CI_DRM_10863: de2d87964c398bd4de93d264192e7f69928cf9c8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6276: 955e0652ed6b1c8697e7ea5c35f86b232b4d5c32 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21553: 314b2b5103a1617790b722288fad9268452285e0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+314b2b5103a1 drm/i915/dsi: let HW maintain the HS-TRAIL timing
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/index.html
+
+--===============0597511529164344905==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dsi: let HW maintain the HS-TRAIL timing</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96750/">https://patchwork.freedesktop.org/series/96750/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10863 -&gt; Patchwork_21553</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/index.html</p>
+<h2>Participating hosts (39 -&gt; 35)</h2>
+<p>Additional (2): fi-icl-u2 fi-tgl-u2 <br />
+  Missing    (6): bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-pnv-d510 fi-icl-y fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21553 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-hpd-fast:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
+</li>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-tgl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>
+<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10863/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></p>
+</li>
+<li>
+<p>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10863/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4290">i915#4290</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21553/fi-hsw-gt1/igt@kms_frontbuffer_tracking@basic.html">PASS</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10863 -&gt; Patchwork_21553</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10863: de2d87964c398bd4de93d264192e7f69928cf9c8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6276: 955e0652ed6b1c8697e7ea5c35f86b232b4d5c32 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21553: 314b2b5103a1617790b722288fad9268452285e0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>314b2b5103a1 drm/i915/dsi: let HW maintain the HS-TRAIL timing</p>
+
+</body>
+</html>
+
+--===============0597511529164344905==--
