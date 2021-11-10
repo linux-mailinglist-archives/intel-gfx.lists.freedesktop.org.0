@@ -2,37 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD6C544BD68
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Nov 2021 09:55:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C29444BDCB
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Nov 2021 10:31:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8A566FC5E;
-	Wed, 10 Nov 2021 08:55:39 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E61606FC5A;
- Wed, 10 Nov 2021 08:55:37 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10163"; a="231352665"
-X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="231352665"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2021 00:55:37 -0800
-X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="732381438"
-Received: from browns-mobl.ger.corp.intel.com (HELO thellstr-mobl1.intel.com)
- ([10.249.254.114])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2021 00:55:35 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Wed, 10 Nov 2021 09:55:27 +0100
-Message-Id: <20211110085527.1033475-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC60E6E44D;
+	Wed, 10 Nov 2021 09:31:07 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94BBE6E123;
+ Wed, 10 Nov 2021 09:31:05 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10163"; a="232482169"
+X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="232482169"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2021 01:31:04 -0800
+X-IronPort-AV: E=Sophos;i="5.87,223,1631602800"; d="scan'208";a="582588283"
+Received: from dkeohane-mobl1.ger.corp.intel.com (HELO [10.213.222.153])
+ ([10.213.222.153])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2021 01:30:50 -0800
+To: Lu Baolu <baolu.lu@linux.intel.com>, Intel-gfx@lists.freedesktop.org
+References: <20211109121759.170915-1-tvrtko.ursulin@linux.intel.com>
+ <6e8c55a7-45b6-57ab-35f7-d522401efccb@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <4d1a0ab9-e0d8-2ed9-1fc4-9ffaf2f19bef@linux.intel.com>
+Date: Wed, 10 Nov 2021 09:30:48 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <6e8c55a7-45b6-57ab-35f7-d522401efccb@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/ttm: Fix illegal addition to shrinker
- list
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use per device iommu check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,68 +49,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- matthew.auld@intel.com
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There's a small window of opportunity during which the adjust_lru()
-function can be called with a GEM refcount of zero from the TTM
-eviction code. This results in a kernel BUG().
 
-Ensure that we don't attempt to modify the GEM shrinker lists unless
-we have a GEM refcount.
+On 10/11/2021 07:12, Lu Baolu wrote:
+> Hi Tvrtko,
+> 
+> On 2021/11/9 20:17, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin<tvrtko.ursulin@intel.com>
+>>
+>> On igfx + dgfx setups, it appears that intel_iommu=igfx_off option only
+>> disables the igfx iommu. Stop relying on global intel_iommu_gfx_mapped
+>> and probe presence of iommu domain per device to accurately reflect its
+>> status.
+>>
+>> Signed-off-by: Tvrtko Ursulin<tvrtko.ursulin@intel.com>
+>> Cc: Lu Baolu<baolu.lu@linux.intel.com>
+>> ---
+>> Baolu, is my understanding here correct? Maybe I am confused by both
+>> intel_iommu_gfx_mapped and dmar_map_gfx being globals in the intel_iommu
+>> driver. But it certainly appears the setup can assign some iommu ops (and
+>> assign the discrete i915 to iommu group) when those two are set to off.
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h 
+> b/drivers/gpu/drm/i915/i915_drv.h
+> index e967cd08f23e..9fb38a54f1fe 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1763,26 +1763,27 @@ static inline bool run_as_guest(void)
+>   #define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) 
+> || \
+>                             IS_ALDERLAKE_S(dev_priv))
+> 
+> -static inline bool intel_vtd_active(void)
+> +static inline bool intel_vtd_active(struct drm_i915_private *i915)
+>   {
+> -#ifdef CONFIG_INTEL_IOMMU
+> -    if (intel_iommu_gfx_mapped)
+> +    if (iommu_get_domain_for_dev(i915->drm.dev))
+>           return true;
+> -#endif
+> 
+>       /* Running as a guest, we assume the host is enforcing VT'd */
+>       return run_as_guest();
+>   }
+> 
+> Have you verified this change? I am afraid that
+> iommu_get_domain_for_dev() always gets a valid iommu domain even
+> intel_iommu_gfx_mapped == 0.
 
-Fixes: ebd4a8ec7799 ("drm/i915/ttm: move shrinker management into adjust_lru")
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 31 +++++++++++++++++--------
- 1 file changed, 21 insertions(+), 10 deletions(-)
+Yes it seems to work as is:
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index e98503c0830b..68cfe6e9ceab 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -771,18 +771,29 @@ void i915_ttm_adjust_lru(struct drm_i915_gem_object *obj)
- 	 *
- 	 * TODO: consider maybe also bumping the shrinker list here when we have
- 	 * already unpinned it, which should give us something more like an LRU.
-+	 *
-+	 * TODO: There is a small window of opportunity for this function to
-+	 * get called from eviction after we've dropped the last GEM refcount,
-+	 * but before the TTM deleted flag is set on the object. Avoid
-+	 * adjusting the shrinker list in such cases, since the object is
-+	 * not available to the shrinker anyway due to its zero refcount.
-+	 * To fix this properly we should move to a TTM shrinker LRU list for
-+	 * these objects.
- 	 */
--	if (shrinkable != obj->mm.ttm_shrinkable) {
--		if (shrinkable) {
--			if (obj->mm.madv == I915_MADV_WILLNEED)
--				__i915_gem_object_make_shrinkable(obj);
--			else
--				__i915_gem_object_make_purgeable(obj);
--		} else {
--			i915_gem_object_make_unshrinkable(obj);
-+	if (kref_get_unless_zero(&obj->base.refcount)) {
-+		if (shrinkable != obj->mm.ttm_shrinkable) {
-+			if (shrinkable) {
-+				if (obj->mm.madv == I915_MADV_WILLNEED)
-+					__i915_gem_object_make_shrinkable(obj);
-+				else
-+					__i915_gem_object_make_purgeable(obj);
-+			} else {
-+				i915_gem_object_make_unshrinkable(obj);
-+			}
-+
-+			obj->mm.ttm_shrinkable = shrinkable;
- 		}
--
--		obj->mm.ttm_shrinkable = shrinkable;
-+		i915_gem_object_put(obj);
- 	}
- 
- 	/*
--- 
-2.31.1
+default:
 
+# grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
+/sys/kernel/debug/dri/0/i915_capabilities:iommu: enabled
+/sys/kernel/debug/dri/1/i915_capabilities:iommu: enabled
+
+intel_iommu=igfx_off:
+
+# grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
+/sys/kernel/debug/dri/0/i915_capabilities:iommu: disabled
+/sys/kernel/debug/dri/1/i915_capabilities:iommu: enabled
+
+On my system dri device 0 is integrated graphics and 1 is discrete.
+
+Regards,
+
+Tvrtko
+
+> 
+> A possible way could look like this:
+> 
+> static bool intel_vtd_active(struct drm_i915_private *i915)
+> {
+>          struct iommu_domain *domain;
+> 
+>          domain = iommu_get_domain_for_dev(i915->drm.dev);
+> 
+>          if (domain && (domain->type & __IOMMU_DOMAIN_PAGING))
+>                  return true;
+> 
+>      ... ...
+> }
+> 
+> Actually I don't like this either since it checks the domain->type out
+> of the iommu subsystem. We could refactor this later by export an iommu
+> interface for this check.
+> 
+> Best regards,
+> baolu
