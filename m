@@ -1,57 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA56744D362
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 09:48:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4939944D4C9
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 11:09:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B85E6E9D4;
-	Thu, 11 Nov 2021 08:48:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E4AA6EA5D;
+	Thu, 11 Nov 2021 10:09:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 451136E9D4;
- Thu, 11 Nov 2021 08:48:46 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 8F96A21B2B;
- Thu, 11 Nov 2021 08:48:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1636620524; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=po9C3M3KbuxkTrJ8RdbbNvKns+qCxEzjBqaykTrhByU=;
- b=lLzOuUBy0qPFAcg+ukJsKAMKmpbuRz53hFC4Iw52jdkazu3ZgZLJ2oSA1tRiqU63GdYXbO
- KbPUfrqMct+PGSgbmi4P5gU2zXZoowb2BT/TwJdvf61GZ1cD4V1Lzay/wptATmd2H5Ebsh
- 49BgFqumWOi8YnkovZ0GqG64dy+9Sa0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1636620524;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=po9C3M3KbuxkTrJ8RdbbNvKns+qCxEzjBqaykTrhByU=;
- b=frGpslBk4cE511VS5uaiuAmYSr32Y4LfkwHk4LTCohxzz9X0+4Z7a1EJW+tZWvMFheYaUW
- +C8DZIAlEG50qPDw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 53FEB13D4A;
- Thu, 11 Nov 2021 08:48:44 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id i6ejE+zYjGFQUwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 11 Nov 2021 08:48:44 +0000
-Date: Thu, 11 Nov 2021 09:48:42 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YYzY6jeox9EeI15i@linux-uq9g.fritz.box>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09CA26EA76
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Nov 2021 10:09:52 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10164"; a="212920948"
+X-IronPort-AV: E=Sophos;i="5.87,225,1631602800"; d="scan'208";a="212920948"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 02:09:51 -0800
+X-IronPort-AV: E=Sophos;i="5.87,225,1631602800"; d="scan'208";a="504374678"
+Received: from pbohlinb-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.33.242])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 02:09:48 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "20211110010217.26759-1-william.tseng\@intel.com"
+ <20211110010217.26759-1-william.tseng@intel.com>,
+ "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <SJ0PR11MB58948DC96596233FAC8AF443F1949@SJ0PR11MB5894.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211109082458.13740-1-william.tseng@intel.com>
+ <20211110010217.26759-1-william.tseng@intel.com> <87r1bo47dh.fsf@intel.com>
+ <SJ0PR11MB58948DC96596233FAC8AF443F1949@SJ0PR11MB5894.namprd11.prod.outlook.com>
+Date: Thu, 11 Nov 2021 12:09:46 +0200
+Message-ID: <87ilwz3swl.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/dsi: transmit brightness
+ command in HS state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,79 +49,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: "Chiou,
+ Cooper" <cooper.chiou@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+On Thu, 11 Nov 2021, "Tseng, William" <william.tseng@intel.com> wrote:
+> Noted.  Thanks for your consideration, Jani.
 
-here's this week's PR for drm-misc-fixes. I'm sending it as Maarten and
-Maxime are both on vacation this week.
+And pushed, thanks for the patch.
 
-Best regards
-Thomas
+BR,
+Jani.
 
-drm-misc-fixes-2021-11-11:
- * dma-buf: name_lock fixes
- * prime: Keep object ref during mmap
- * nouveau: Fix a refcount issue; Fix device removal; Protect client
-   list with dedicated mutex; Fix address CE0 address calculation
- * ttm: Fix race condition during BO eviction
-The following changes since commit 61b1d445f3bfe4c3ba4335ceeb7e8ba688fd31e2:
+>
+> Regards
+> William
+>
+> -----Original Message-----
+> From: Jani Nikula <jani.nikula@linux.intel.com> 
+> Sent: Wednesday, November 10, 2021 6:45 PM
+> To: Tseng, William <william.tseng@intel.com>; intel-gfx@lists.freedesktop.org
+> Cc: Tseng, William <william.tseng@intel.com>; Ville Syrjala <ville.syrjala@linux.intel.com>; Kulkarni, Vandita <vandita.kulkarni@intel.com>; Lee, Shawn C <shawn.c.lee@intel.com>; Chiou, Cooper <cooper.chiou@intel.com>
+> Subject: Re: [PATCH v3] drm/i915/dsi: transmit brightness command in HS state
+>
+> On Wed, 10 Nov 2021, William Tseng <william.tseng@intel.com> wrote:
+>> In Video Mode, if DSI transcoder is set to transmit packets in LP 
+>> Escape mode, screen flickering would be obseved when brightness 
+>> commands are continuously and quickly transmitted to a panel.
+>>
+>> The problem may be resolved by changing the mode to transmit packets 
+>> from Low Power to HS.
+>>
+>> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+>> Cc: Lee Shawn C <shawn.c.lee@intel.com>
+>> Cc: Cooper Chiou <cooper.chiou@intel.com>
+>> Signed-off-by: William Tseng <william.tseng@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c 
+>> b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+>> index f61ed82e8867..7d234429e71e 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+>> @@ -71,6 +71,7 @@ static void dcs_set_backlight(const struct drm_connector_state *conn_state, u32
+>>  	u8 data[2] = {};
+>>  	enum port port;
+>>  	size_t len = panel->backlight.max > U8_MAX ? 2 : 1;
+>> +	unsigned long mode_flags;
+>>  
+>>  	if (len == 1) {
+>>  		data[0] = level;
+>> @@ -81,8 +82,11 @@ static void dcs_set_backlight(const struct 
+>> drm_connector_state *conn_state, u32
+>>  
+>>  	for_each_dsi_port(port, intel_dsi->dcs_backlight_ports) {
+>>  		dsi_device = intel_dsi->dsi_hosts[port]->device;
+>> +		mode_flags = dsi_device->mode_flags;
+>> +		dsi_device->mode_flags &= ~MIPI_DSI_MODE_LPM;
+>>  		mipi_dsi_dcs_write(dsi_device, MIPI_DCS_SET_DISPLAY_BRIGHTNESS,
+>>  				   &data, len);
+>> +		dsi_device->mode_flags = mode_flags;
+>
+> I realize we don't really have a clear picture how to manage
+> ->mode_flags or MIPI_DSI_MODE_LPM in particular, but this seems like the
+> safest option for now.
+>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+>
+> I'll push once CI results are in; had to request a re-run.
+>
+>
+>
+>>  	}
+>>  }
+>
+> --
+> Jani Nikula, Intel Open Source Graphics Center
 
-  drm: panel-orientation-quirks: Add quirk for GPD Win3 (2021-10-26 20:57:10 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-11-11
-
-for you to fetch changes up to 7120a447c7fe37a123ab7a63afefdbf0787b9002:
-
-  drm/ttm: Double check mem_type of BO while eviction (2021-11-11 09:08:08 +0100)
-
-----------------------------------------------------------------
- * dma-buf: name_lock fixes
- * prime: Keep object ref during mmap
- * nouveau: Fix a refcount issue; Fix device removal; Protect client
-   list with dedicated mutex; Fix address CE0 address calculation
- * ttm: Fix race condition during BO eviction
-
-----------------------------------------------------------------
-Anand K Mistry (1):
-      drm/prime: Fix use after free in mmap with drm_gem_ttm_mmap
-
-Ben Skeggs (1):
-      ce/gf100: fix incorrect CE0 address calculation on some GPUs
-
-Chenyuan Mi (1):
-      drm/nouveau/svm: Fix refcount leak bug and missing check against null bug
-
-Guangming Cao (1):
-      dma-buf: acquire name lock before read/write dma_buf.name
-
-Jeremy Cline (3):
-      drm/nouveau: use drm_dev_unplug() during device removal
-      drm/nouveau: Add a dedicated mutex for the clients list
-      drm/nouveau: clean up all clients on device removal
-
-xinhui pan (1):
-      drm/ttm: Double check mem_type of BO while eviction
-
- drivers/dma-buf/dma-buf.c                         |  3 ++
- drivers/gpu/drm/drm_prime.c                       |  6 ++--
- drivers/gpu/drm/nouveau/nouveau_drm.c             | 42 ++++++++++++++++++++---
- drivers/gpu/drm/nouveau/nouveau_drv.h             |  5 +++
- drivers/gpu/drm/nouveau/nouveau_svm.c             |  4 +++
- drivers/gpu/drm/nouveau/nvkm/engine/ce/gt215.c    |  2 +-
- drivers/gpu/drm/nouveau/nvkm/engine/device/base.c |  3 +-
- drivers/gpu/drm/ttm/ttm_bo.c                      |  3 +-
- 8 files changed, 57 insertions(+), 11 deletions(-)
-
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Ivo Totev
+-- 
+Jani Nikula, Intel Open Source Graphics Center
