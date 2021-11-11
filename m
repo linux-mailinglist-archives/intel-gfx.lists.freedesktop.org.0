@@ -1,34 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6343744DD38
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 22:40:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB1E44DD5C
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 22:56:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63B2C89F69;
-	Thu, 11 Nov 2021 21:40:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF8536E32F;
+	Thu, 11 Nov 2021 21:56:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C430F6E0EF;
- Thu, 11 Nov 2021 21:40:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BBFECA7E03;
- Thu, 11 Nov 2021 21:40:50 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE4FB6E3F4;
+ Thu, 11 Nov 2021 21:56:53 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10165"; a="233264833"
+X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="233264833"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 13:56:52 -0800
+X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="643240214"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 13:56:52 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 11 Nov 2021 13:56:40 -0800
+Message-Id: <20211111215644.1123373-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 11 Nov 2021 21:40:50 -0000
-Message-ID: <163666685074.5311.16589200882563690011@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211111212000.2237-1-matthew.brost@intel.com>
-In-Reply-To: <20211111212000.2237-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915/execlists=3A_Weak_parallel_submission_support_for_execli?=
- =?utf-8?q?sts_=28rev2=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/4] i915: Additional DG2 workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,25 +42,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+We have a few more DG2 workarounds that weren't included in the initial
+batch.
 
-Series: drm/i915/execlists: Weak parallel submission support for execlists (rev2)
-URL   : https://patchwork.freedesktop.org/series/96088/
-State : warning
 
-== Summary ==
+Matt Atwood (1):
+  drm/i915/dg2: extend Wa_1409120013 to DG2
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
-./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
-./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Function parameter or member 'fbc' not described in 'intel_fbc_is_active'
-./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
-./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Function parameter or member 'fbc' not described in 'intel_fbc_handle_fifo_underrun_irq'
-./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
+Matt Roper (2):
+  drm/i915/dg2: Add Wa_14010547955
+  drm/i915/dg2: Add Wa_16011777198
 
+Ramalingam C (1):
+  drm/i915/dg2: Add Wa_16013000631
+
+ drivers/gpu/drm/i915/display/intel_display.c |  4 ++++
+ drivers/gpu/drm/i915/gt/intel_lrc.c          |  5 +++++
+ drivers/gpu/drm/i915/gt/intel_rc6.c          | 15 +++++++++++----
+ drivers/gpu/drm/i915/i915_reg.h              |  5 +++--
+ drivers/gpu/drm/i915/intel_pm.c              |  4 ++--
+ 5 files changed, 25 insertions(+), 8 deletions(-)
+
+-- 
+2.33.0
 
