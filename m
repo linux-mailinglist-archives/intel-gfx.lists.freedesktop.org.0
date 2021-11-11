@@ -1,38 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BD7644D6FE
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 14:07:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B09944D705
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 14:12:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 174B689E08;
-	Thu, 11 Nov 2021 13:06:54 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C32E289DEA;
- Thu, 11 Nov 2021 13:06:51 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10164"; a="213632517"
-X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="213632517"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2021 05:06:43 -0800
-X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="470781114"
-Received: from hscahill-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.223.189])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2021 05:06:41 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Nov 2021 13:06:34 +0000
-Message-Id: <20211111130634.266098-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211110114327.200470-1-tvrtko.ursulin@linux.intel.com>
-References: <20211110114327.200470-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3ADA86EA39;
+	Thu, 11 Nov 2021 13:12:03 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D9A8C6EA39;
+ Thu, 11 Nov 2021 13:12:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 801A3A7E03;
+ Thu, 11 Nov 2021 13:12:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] drm/i915: Skip error capture when wedged on
- init
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Date: Thu, 11 Nov 2021 13:12:01 -0000
+Message-ID: <163663632152.5313.6902825616862997691@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211111124208.3550952-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20211111124208.3550952-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/gt=3A_Hold_RPM_wakelock_during_PXP_suspend_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,62 +40,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Series Details ==
 
-Trying to capture uninitialised engines when we wedged on init ends in
-tears. Skip that together with uC capture, since failure to initialise the
-latter can actually be one of the reasons for wedging on init.
+Series: drm/i915/gt: Hold RPM wakelock during PXP suspend (rev2)
+URL   : https://patchwork.freedesktop.org/series/96658/
+State : failure
 
-v2:
- * Use i915_disable_error_state when wedging on init/fini.
+== Summary ==
 
-v3:
- * Handle mock tests.
+CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  DESCEND objtool
+  CHK     include/generated/compile.h
+  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_pm.o
+drivers/gpu/drm/i915/gt/intel_gt_pm.c: In function ‘intel_gt_suspend_prepare’:
+drivers/gpu/drm/i915/gt/intel_gt_pm.c:306:2: error: too few arguments to function ‘intel_pxp_suspend_prepare’
+  intel_pxp_suspend_prepare(&gt->pxp);
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from drivers/gpu/drm/i915/gt/intel_gt_pm.c:21:
+./drivers/gpu/drm/i915/pxp/intel_pxp_pm.h:17:20: note: declared here
+ static inline void intel_pxp_suspend_prepare(struct intel_pxp *pxp, bool runtime)
+                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+scripts/Makefile.build:277: recipe for target 'drivers/gpu/drm/i915/gt/intel_gt_pm.o' failed
+make[4]: *** [drivers/gpu/drm/i915/gt/intel_gt_pm.o] Error 1
+scripts/Makefile.build:540: recipe for target 'drivers/gpu/drm/i915' failed
+make[3]: *** [drivers/gpu/drm/i915] Error 2
+scripts/Makefile.build:540: recipe for target 'drivers/gpu/drm' failed
+make[2]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:540: recipe for target 'drivers/gpu' failed
+make[1]: *** [drivers/gpu] Error 2
+Makefile:1868: recipe for target 'drivers' failed
+make: *** [drivers] Error 2
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com> # v1
----
- drivers/gpu/drm/i915/gt/intel_reset.c            | 2 ++
- drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 ++
- 2 files changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 51b56b8e5003..0fbd6dbadce7 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -1448,6 +1448,7 @@ void intel_gt_set_wedged_on_init(struct intel_gt *gt)
- 	BUILD_BUG_ON(I915_RESET_ENGINE + I915_NUM_ENGINES >
- 		     I915_WEDGED_ON_INIT);
- 	intel_gt_set_wedged(gt);
-+	i915_disable_error_state(gt->i915, -ENODEV);
- 	set_bit(I915_WEDGED_ON_INIT, &gt->reset.flags);
- 
- 	/* Wedged on init is non-recoverable */
-@@ -1457,6 +1458,7 @@ void intel_gt_set_wedged_on_init(struct intel_gt *gt)
- void intel_gt_set_wedged_on_fini(struct intel_gt *gt)
- {
- 	intel_gt_set_wedged(gt);
-+	i915_disable_error_state(gt->i915, -ENODEV);
- 	set_bit(I915_WEDGED_ON_FINI, &gt->reset.flags);
- 	intel_gt_retire_requests(gt); /* cleanup any wedged requests */
- }
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index 9ab3f284d1dd..d0e2e61de8d4 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -177,6 +177,8 @@ struct drm_i915_private *mock_gem_device(void)
- 
- 	mock_uncore_init(&i915->uncore, i915);
- 
-+	spin_lock_init(&i915->gpu_error.lock);
-+
- 	i915_gem_init__mm(i915);
- 	intel_gt_init_early(&i915->gt, i915);
- 	atomic_inc(&i915->gt.wakeref.count); /* disable; no hw support */
--- 
-2.30.2
 
