@@ -2,43 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4443344D86E
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 15:37:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6485E44D8DB
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 16:06:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E5956E19A;
-	Thu, 11 Nov 2021 14:37:48 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 335166E19A
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Nov 2021 14:37:47 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10164"; a="319120661"
-X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="319120661"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A15FB89BA5;
+	Thu, 11 Nov 2021 15:06:16 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B37489BA5;
+ Thu, 11 Nov 2021 15:06:15 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10164"; a="213650384"
+X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="213650384"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2021 06:37:46 -0800
-X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="589968359"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 07:06:14 -0800
+X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="589986603"
 Received: from hscahill-mobl.ger.corp.intel.com (HELO [10.213.223.189])
  ([10.213.223.189])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2021 06:37:45 -0800
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20211103224708.1931-1-umesh.nerlige.ramappa@intel.com>
- <68f76da9-6b70-fee4-6cc6-17e74c867bd2@linux.intel.com>
- <20211104220407.GA23493@unerlige-ril-10.165.21.208>
+ 11 Nov 2021 07:06:13 -0800
+To: Lu Baolu <baolu.lu@linux.intel.com>, Intel-gfx@lists.freedesktop.org
+References: <20211109121759.170915-1-tvrtko.ursulin@linux.intel.com>
+ <6e8c55a7-45b6-57ab-35f7-d522401efccb@linux.intel.com>
+ <4d1a0ab9-e0d8-2ed9-1fc4-9ffaf2f19bef@linux.intel.com>
+ <7b2e1427-69cf-8f5d-0c15-73c4e602953d@linux.intel.com>
+ <2a1ae709-19f8-7983-b171-98ec2f3f010a@linux.intel.com>
+ <4c5ab72f-aaff-8b92-7471-44dd907cf2f6@linux.intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <2c1af88a-93d3-cc8f-5e4e-e4a494fd21f0@linux.intel.com>
-Date: Thu, 11 Nov 2021 14:37:43 +0000
+Message-ID: <24c75ce7-1b14-42e1-a4d4-943e472aed68@linux.intel.com>
+Date: Thu, 11 Nov 2021 15:06:11 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20211104220407.GA23493@unerlige-ril-10.165.21.208>
+In-Reply-To: <4c5ab72f-aaff-8b92-7471-44dd907cf2f6@linux.intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Fix synchronization of PMU
- callback with reset
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use per device iommu check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,166 +53,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 04/11/2021 22:04, Umesh Nerlige Ramappa wrote:
-> On Thu, Nov 04, 2021 at 05:37:37PM +0000, Tvrtko Ursulin wrote:
+On 10/11/2021 12:35, Lu Baolu wrote:
+> On 2021/11/10 20:08, Tvrtko Ursulin wrote:
 >>
->> On 03/11/2021 22:47, Umesh Nerlige Ramappa wrote:
->>> Since the PMU callback runs in irq context, it synchronizes with gt
->>> reset using the reset count. We could run into a case where the PMU
->>> callback could read the reset count before it is updated. This has a
->>> potential of corrupting the busyness stats.
+>> On 10/11/2021 12:04, Lu Baolu wrote:
+>>> On 2021/11/10 17:30, Tvrtko Ursulin wrote:
+>>>>
+>>>> On 10/11/2021 07:12, Lu Baolu wrote:
+>>>>> Hi Tvrtko,
+>>>>>
+>>>>> On 2021/11/9 20:17, Tvrtko Ursulin wrote:
+>>>>>> From: Tvrtko Ursulin<tvrtko.ursulin@intel.com>
+>>>>>>
+>>>>>> On igfx + dgfx setups, it appears that intel_iommu=igfx_off option 
+>>>>>> only
+>>>>>> disables the igfx iommu. Stop relying on global 
+>>>>>> intel_iommu_gfx_mapped
+>>>>>> and probe presence of iommu domain per device to accurately 
+>>>>>> reflect its
+>>>>>> status.
+>>>>>>
+>>>>>> Signed-off-by: Tvrtko Ursulin<tvrtko.ursulin@intel.com>
+>>>>>> Cc: Lu Baolu<baolu.lu@linux.intel.com>
+>>>>>> ---
+>>>>>> Baolu, is my understanding here correct? Maybe I am confused by both
+>>>>>> intel_iommu_gfx_mapped and dmar_map_gfx being globals in the 
+>>>>>> intel_iommu
+>>>>>> driver. But it certainly appears the setup can assign some iommu 
+>>>>>> ops (and
+>>>>>> assign the discrete i915 to iommu group) when those two are set to 
+>>>>>> off.
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/i915_drv.h 
+>>>>> b/drivers/gpu/drm/i915/i915_drv.h
+>>>>> index e967cd08f23e..9fb38a54f1fe 100644
+>>>>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>>>>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>>>>> @@ -1763,26 +1763,27 @@ static inline bool run_as_guest(void)
+>>>>>   #define HAS_D12_PLANE_MINIMIZATION(dev_priv) 
+>>>>> (IS_ROCKETLAKE(dev_priv) || \
+>>>>>                             IS_ALDERLAKE_S(dev_priv))
+>>>>>
+>>>>> -static inline bool intel_vtd_active(void)
+>>>>> +static inline bool intel_vtd_active(struct drm_i915_private *i915)
+>>>>>   {
+>>>>> -#ifdef CONFIG_INTEL_IOMMU
+>>>>> -    if (intel_iommu_gfx_mapped)
+>>>>> +    if (iommu_get_domain_for_dev(i915->drm.dev))
+>>>>>           return true;
+>>>>> -#endif
+>>>>>
+>>>>>       /* Running as a guest, we assume the host is enforcing VT'd */
+>>>>>       return run_as_guest();
+>>>>>   }
+>>>>>
+>>>>> Have you verified this change? I am afraid that
+>>>>> iommu_get_domain_for_dev() always gets a valid iommu domain even
+>>>>> intel_iommu_gfx_mapped == 0.
+>>>>
+>>>> Yes it seems to work as is:
+>>>>
+>>>> default:
+>>>>
+>>>> # grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
+>>>> /sys/kernel/debug/dri/0/i915_capabilities:iommu: enabled
+>>>> /sys/kernel/debug/dri/1/i915_capabilities:iommu: enabled
+>>>>
+>>>> intel_iommu=igfx_off:
+>>>>
+>>>> # grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
+>>>> /sys/kernel/debug/dri/0/i915_capabilities:iommu: disabled
+>>>> /sys/kernel/debug/dri/1/i915_capabilities:iommu: enabled
+>>>>
+>>>> On my system dri device 0 is integrated graphics and 1 is discrete.
 >>>
->>> In addition to the reset count, check if the reset bit is set before
->>> capturing busyness.
->>>
->>> In addition save the previous stats only if you intend to update them.
->>>
->>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 ++++++++----
->>>  1 file changed, 8 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> index 5cc49c0b3889..d83ade77ca07 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> @@ -1183,6 +1183,7 @@ static ktime_t guc_engine_busyness(struct 
->>> intel_engine_cs *engine, ktime_t *now)
->>>      u64 total, gt_stamp_saved;
->>>      unsigned long flags;
->>>      u32 reset_count;
->>> +    bool in_reset;
->>>      spin_lock_irqsave(&guc->timestamp.lock, flags);
->>> @@ -1191,7 +1192,9 @@ static ktime_t guc_engine_busyness(struct 
->>> intel_engine_cs *engine, ktime_t *now)
->>>       * engine busyness from GuC, so we just use the driver stored
->>>       * copy of busyness. Synchronize with gt reset using reset_count.
->>>       */
->>> -    reset_count = i915_reset_count(gpu_error);
->>> +    rcu_read_lock();
->>> +    in_reset = test_bit(I915_RESET_BACKOFF, &gt->reset.flags);
->>> +    rcu_read_unlock();
+>>> The drm device 0 has a dedicated iommu. When the user request igfx not
+>>> mapped, the VT-d implementation will turn it off to save power. But for
+>>> shared iommu, you definitely will get it enabled.
 >>
->> I don't really understand the point of rcu_read_lock over test_bit but 
->> I guess you copied it from the trylock loop.
+>> Sorry I am not following, what exactly do you mean? Is there a 
+>> platform with integrated graphics without a dedicated iommu, in which 
+>> case intel_iommu=igfx_off results in intel_iommu_gfx_mapped == 0 and 
+>> iommu_get_domain_for_dev returning non-NULL?
 > 
-> Yes, I don't see other parts of code using the lock though. I can drop it.
+> Your code always work for an igfx with a dedicated iommu. This might be
+> always true on today's platforms. But from driver's point of view, we
+> should not make such assumption.
 > 
->>
->>>      *now = ktime_get();
->>> @@ -1201,9 +1204,10 @@ static ktime_t guc_engine_busyness(struct 
->>> intel_engine_cs *engine, ktime_t *now)
->>>       * start_gt_clk is derived from GuC state. To get a consistent
->>>       * view of activity, we query the GuC state only if gt is awake.
->>>       */
->>> -    stats_saved = *stats;
->>> -    gt_stamp_saved = guc->timestamp.gt_stamp;
->>> -    if (intel_gt_pm_get_if_awake(gt)) {
->>> +    if (intel_gt_pm_get_if_awake(gt) && !in_reset) {
->>
->> What is the point of looking at the old value of in_reset here?  Gut 
->> feeling says if there is a race this does not fix it.
->>
->> I did not figure out from the commit message what does "could read the 
->> reset count before it is updated" mean?
->> I thought the point of reading 
-> 
->> the reset count twice was that you are sure there was no reset while 
->> in here, in which case it is safe to update the software copy. I don't 
->> easily see what test_bit does on top.
-> 
-> This is what I see in the reset flow
-> ---------------
-> 
-> R1) test_and_set_bit(I915_RESET_BACKOFF, &gt->reset.flags)
-> R2) atomic_inc(&gt->i915->gpu_error.reset_count)
-> R3) reset prepare
-> R4) do the HW reset
-> 
-> The reset count is updated only once above and that's before an actual 
-> HW reset happens.
-> 
-> PMU callback flow before this patch
-> ---------------
-> 
-> P1) read reset count
-> P2) update stats
-> P3) read reset count
-> P4) if reset count changed, use old stats. if not use updated stats.
-> 
-> I am concerned that the PMU flow could run after step (R2). Then we 
-> wrongly conclude that the count stayed the same and no HW reset happened.
-> 
-> PMU callback flow with this patch
-> ---------------
-> This would rely on the reset_count only if a reset is not in progress.
-> 
-> P0) test_bit for I915_RESET_BACKOFF
-> P1) read reset count if not in reset. if in reset, use old stats
-> P2) update stats
-> P3) read reset count
-> P4) if reset count changed, use old stats. if not use updated stats.
-> 
-> Now that I think about it more, I do see one sequence that still needs 
-> fixing though - P0, R1, R2, P1 - P4. For that, I think I need to re-read 
-> the BACKOFF bit after reading the reset_count for the first time.
-> Modified PMU callback sequence would be:
-> ----------
-> 
-> M0) test_bit for I915_RESET_BACKOFF
-> M1) read reset count if not in reset, if in reset, use old stats
-> 
-> M1.1) test_bit for I915_RESET_BACKOFF. if set, use old stats. if not, 
-> use reset_count to synchronize
-> 
-> M2) update stats
-> M3) read reset count
-> M4) if reset count changed, use old stats. if not use updated stats.
+> For example, if the iommu implementation decides not to turn off the
+> graphic iommu (perhaps due to some hw quirk or for graphic
+> virtualization), your code will be broken.
 
-You did not end up implementing this flow? Have you later changed your 
-mind whether it is required or not? Or maybe I am looking at not the 
-latest patch.
+I tried your suggestion (checking for __IOMMU_DOMAIN_PAGING) and it works better, however I have observed one odd behaviour (for me at least).
 
-Is the below the latest?
+In short - why does the DMAR mode for the discrete device change depending on igfx_off parameter?
 
-"""
-v2:
-- The 2 reset counts captured in the PMU callback can end up being the
-   same if they were captured right after the count is incremented in the
-   reset flow. This can lead to a bad busyness state. Ensure that reset
-   is not in progress when the initial reset count is captured.
-"""
+Consider the laptop has these two graphics cards:
 
-Is the key now that you rely on ordering of atomic_inc and set_bit in 
-the reset path? Frankly I still don't understand why you can get away 
-with using stale in_reset in v2. If you acknowledge it can change 
-between sampling and checking, then what is the point in having it 
-altogether? You still solely rely on reset count in that case, no?
+# cat /sys/kernel/debug/dri/0/name
+i915 dev=0000:00:02.0 unique=0000:00:02.0 # integrated
 
+# cat /sys/kernel/debug/dri/1/name
+i915 dev=0000:03:00.0 unique=0000:03:00.0 # discrete
+
+Booting with different options:
+===============================
+
+default / intel_iommu=on
+------------------------
+
+# cat /sys/class/iommu/dmar0/devices/0000:00:02.0/iommu_group/type
+DMA-FQ
+# cat /sys/class/iommu/dmar2/devices/0000:03:00.0/iommu_group/type
+DMA-FQ
+
+# grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
+/sys/kernel/debug/dri/0/i915_capabilities:iommu: enabled
+/sys/kernel/debug/dri/1/i915_capabilities:iommu: enabled
+
+All good.
+
+intel_iommu=igfx_off
+--------------------
+
+## no dmar0 in sysfs
+# cat /sys/class/iommu/dmar2/devices/0000:03:00.0/iommu_group/type
+identity
+
+Unexpected!?
+
+# grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
+/sys/kernel/debug/dri/0/i915_capabilities:iommu: disabled
+/sys/kernel/debug/dri/1/i915_capabilities:iommu: disabled # At least the i915 patch detects it correctly.
+
+intel_iommu=off
+---------------
+
+## no dmar0 in sysfs
+## no dmar2 in sysfs
+
+# grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
+/sys/kernel/debug/dri/0/i915_capabilities:iommu: disabled
+/sys/kernel/debug/dri/1/i915_capabilities:iommu: disabled
+
+All good.
+
+The fact discrete graphics changes from translated to pass-through when igfx_off is set is surprising to me. Is this a bug?
 
 Regards,
 
 Tvrtko
-
-> 
-> Thanks,
-> Umesh
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>> +        stats_saved = *stats;
->>> +        gt_stamp_saved = guc->timestamp.gt_stamp;
->>> +        reset_count = i915_reset_count(gpu_error);
->>>          guc_update_engine_gt_clks(engine);
->>>          guc_update_pm_timestamp(guc, engine, now);
->>>          intel_gt_pm_put_async(gt);
->>>
