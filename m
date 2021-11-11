@@ -1,33 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B6C44DDCA
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 23:17:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFDAD44DDED
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 23:40:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 947116E23B;
-	Thu, 11 Nov 2021 22:17:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4069C6E23B;
+	Thu, 11 Nov 2021 22:40:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 967766E23B;
- Thu, 11 Nov 2021 22:17:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D8F726E23B;
+ Thu, 11 Nov 2021 22:40:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8FBCFA8830;
- Thu, 11 Nov 2021 22:17:18 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D198EAA917;
+ Thu, 11 Nov 2021 22:40:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 11 Nov 2021 22:17:18 -0000
-Message-ID: <163666903855.5314.3028048528638469082@emeril.freedesktop.org>
+To: "Jim Cromie" <jim.cromie@gmail.com>
+Date: Thu, 11 Nov 2021 22:40:05 -0000
+Message-ID: <163667040582.5314.6394394282404320559@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20211111215644.1123373-1-matthew.d.roper@intel.com>
-In-Reply-To: <20211111215644.1123373-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGk5?=
- =?utf-8?q?15=3A_Additional_DG2_workarounds?=
+References: <20211111220206.121610-1-jim.cromie@gmail.com>
+In-Reply-To: <20211111220206.121610-1-jim.cromie@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciB1?=
+ =?utf-8?q?se_DYNAMIC=5FDEBUG_to_implement_DRM=2Edebug_=26_DRM=2Etrace_=28?=
+ =?utf-8?q?rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,18 +48,15 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: i915: Additional DG2 workarounds
-URL   : https://patchwork.freedesktop.org/series/96824/
-State : warning
+Series: use DYNAMIC_DEBUG to implement DRM.debug & DRM.trace (rev3)
+URL   : https://patchwork.freedesktop.org/series/96327/
+State : failure
 
 == Summary ==
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
-./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
-./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Function parameter or member 'fbc' not described in 'intel_fbc_is_active'
-./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
-./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Function parameter or member 'fbc' not described in 'intel_fbc_handle_fifo_underrun_irq'
-./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
+Patch is empty.
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
