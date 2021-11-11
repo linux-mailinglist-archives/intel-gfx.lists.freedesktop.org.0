@@ -1,43 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC78844DAC1
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 17:48:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8A4444DAD6
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 17:55:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88CCD6EAE2;
-	Thu, 11 Nov 2021 16:48:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58FF36E1A4;
+	Thu, 11 Nov 2021 16:55:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD4D06EA41
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Nov 2021 16:48:10 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10165"; a="296395521"
-X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="296395521"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2021 08:48:10 -0800
-X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="670302448"
-Received: from unerlige-ril-10.jf.intel.com (HELO unerlige-ril-10.165.21.208)
- ([10.165.21.208])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2021 08:48:10 -0800
-Date: Thu, 11 Nov 2021 08:48:10 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7439A6E1A4;
+ Thu, 11 Nov 2021 16:55:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10165"; a="256669076"
+X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="256669076"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 08:55:27 -0800
+X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="452780948"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 08:55:27 -0800
+Date: Thu, 11 Nov 2021 08:49:49 -0800
+From: Matthew Brost <matthew.brost@intel.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20211111164810.GH6789@unerlige-ril-10.165.21.208>
-References: <20211103224708.1931-1-umesh.nerlige.ramappa@intel.com>
- <68f76da9-6b70-fee4-6cc6-17e74c867bd2@linux.intel.com>
- <20211104220407.GA23493@unerlige-ril-10.165.21.208>
- <2c1af88a-93d3-cc8f-5e4e-e4a494fd21f0@linux.intel.com>
+Message-ID: <20211111164946.GA875@jons-linux-dev-box>
+References: <20211020214751.34602-1-matthew.brost@intel.com>
+ <c9a1cd3e-dc3a-2b2b-ee37-73c0c50f3f60@intel.com>
+ <20211027191732.GA16188@jons-linux-dev-box>
+ <af017ae0-e826-7b6a-03d7-0e422030da02@intel.com>
+ <20211027201001.GA16265@jons-linux-dev-box>
+ <a86e7ea7-3c70-2540-9538-44adc3d12e52@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2c1af88a-93d3-cc8f-5e4e-e4a494fd21f0@linux.intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Fix synchronization of PMU
- callback with reset
+In-Reply-To: <a86e7ea7-3c70-2540-9538-44adc3d12e52@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Weak parallel
+ submission support for execlists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,207 +51,229 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 11, 2021 at 02:37:43PM +0000, Tvrtko Ursulin wrote:
->
->On 04/11/2021 22:04, Umesh Nerlige Ramappa wrote:
->>On Thu, Nov 04, 2021 at 05:37:37PM +0000, Tvrtko Ursulin wrote:
->>>
->>>On 03/11/2021 22:47, Umesh Nerlige Ramappa wrote:
->>>>Since the PMU callback runs in irq context, it synchronizes with gt
->>>>reset using the reset count. We could run into a case where the PMU
->>>>callback could read the reset count before it is updated. This has a
->>>>potential of corrupting the busyness stats.
->>>>
->>>>In addition to the reset count, check if the reset bit is set before
->>>>capturing busyness.
->>>>
->>>>In addition save the previous stats only if you intend to update them.
->>>>
->>>>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>>>---
->>>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 ++++++++----
->>>> 1 file changed, 8 insertions(+), 4 deletions(-)
->>>>
->>>>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>>>b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>index 5cc49c0b3889..d83ade77ca07 100644
->>>>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>@@ -1183,6 +1183,7 @@ static ktime_t guc_engine_busyness(struct 
->>>>intel_engine_cs *engine, ktime_t *now)
->>>>     u64 total, gt_stamp_saved;
->>>>     unsigned long flags;
->>>>     u32 reset_count;
->>>>+    bool in_reset;
->>>>     spin_lock_irqsave(&guc->timestamp.lock, flags);
->>>>@@ -1191,7 +1192,9 @@ static ktime_t guc_engine_busyness(struct 
->>>>intel_engine_cs *engine, ktime_t *now)
->>>>      * engine busyness from GuC, so we just use the driver stored
->>>>      * copy of busyness. Synchronize with gt reset using reset_count.
->>>>      */
->>>>-    reset_count = i915_reset_count(gpu_error);
->>>>+    rcu_read_lock();
->>>>+    in_reset = test_bit(I915_RESET_BACKOFF, &gt->reset.flags);
->>>>+    rcu_read_unlock();
->>>
->>>I don't really understand the point of rcu_read_lock over test_bit 
->>>but I guess you copied it from the trylock loop.
->>
->>Yes, I don't see other parts of code using the lock though. I can drop it.
->>
->>>
->>>>     *now = ktime_get();
->>>>@@ -1201,9 +1204,10 @@ static ktime_t guc_engine_busyness(struct 
->>>>intel_engine_cs *engine, ktime_t *now)
->>>>      * start_gt_clk is derived from GuC state. To get a consistent
->>>>      * view of activity, we query the GuC state only if gt is awake.
->>>>      */
->>>>-    stats_saved = *stats;
->>>>-    gt_stamp_saved = guc->timestamp.gt_stamp;
->>>>-    if (intel_gt_pm_get_if_awake(gt)) {
->>>>+    if (intel_gt_pm_get_if_awake(gt) && !in_reset) {
->>>
->>>What is the point of looking at the old value of in_reset here?  
->>>Gut feeling says if there is a race this does not fix it.
->>>
->>>I did not figure out from the commit message what does "could read 
->>>the reset count before it is updated" mean?
->>>I thought the point of reading
->>
->>>the reset count twice was that you are sure there was no reset 
->>>while in here, in which case it is safe to update the software 
->>>copy. I don't easily see what test_bit does on top.
->>
->>This is what I see in the reset flow
->>---------------
->>
->>R1) test_and_set_bit(I915_RESET_BACKOFF, &gt->reset.flags)
->>R2) atomic_inc(&gt->i915->gpu_error.reset_count)
->>R3) reset prepare
->>R4) do the HW reset
->>
->>The reset count is updated only once above and that's before an 
->>actual HW reset happens.
->>
->>PMU callback flow before this patch
->>---------------
->>
->>P1) read reset count
->>P2) update stats
->>P3) read reset count
->>P4) if reset count changed, use old stats. if not use updated stats.
->>
->>I am concerned that the PMU flow could run after step (R2). Then we 
->>wrongly conclude that the count stayed the same and no HW reset 
->>happened.
+On Mon, Nov 01, 2021 at 10:35:09AM +0000, Tvrtko Ursulin wrote:
+> 
+> On 27/10/2021 21:10, Matthew Brost wrote:
+> > On Wed, Oct 27, 2021 at 01:04:49PM -0700, John Harrison wrote:
+> > > On 10/27/2021 12:17, Matthew Brost wrote:
+> > > > On Tue, Oct 26, 2021 at 02:58:00PM -0700, John Harrison wrote:
+> > > > > On 10/20/2021 14:47, Matthew Brost wrote:
+> > > > > > A weak implementation of parallel submission (multi-bb execbuf IOCTL) for
+> > > > > > execlists. Doing as little as possible to support this interface for
+> > > > > > execlists - basically just passing submit fences between each request
+> > > > > > generated and virtual engines are not allowed. This is on par with what
+> > > > > > is there for the existing (hopefully soon deprecated) bonding interface.
+> > > > > > 
+> > > > > > We perma-pin these execlists contexts to align with GuC implementation.
+> > > > > > 
+> > > > > > v2:
+> > > > > >     (John Harrison)
+> > > > > >      - Drop siblings array as num_siblings must be 1
+> > > > > > 
+> > > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > > > ---
+> > > > > >     drivers/gpu/drm/i915/gem/i915_gem_context.c   | 10 +++--
+> > > > > >     drivers/gpu/drm/i915/gt/intel_context.c       |  4 +-
+> > > > > >     .../drm/i915/gt/intel_execlists_submission.c  | 44 ++++++++++++++++++-
+> > > > > >     drivers/gpu/drm/i915/gt/intel_lrc.c           |  2 +
+> > > > > >     .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  2 -
+> > > > > >     5 files changed, 52 insertions(+), 10 deletions(-)
+> > > > > > 
+> > > > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > > > > > index fb33d0322960..35e87a7d0ea9 100644
+> > > > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > > > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > > > > > @@ -570,10 +570,6 @@ set_proto_ctx_engines_parallel_submit(struct i915_user_extension __user *base,
+> > > > > >     	struct intel_engine_cs **siblings = NULL;
+> > > > > >     	intel_engine_mask_t prev_mask;
+> > > > > > -	/* FIXME: This is NIY for execlists */
+> > > > > > -	if (!(intel_uc_uses_guc_submission(&i915->gt.uc)))
+> > > > > > -		return -ENODEV;
+> > > > > > -
+> > > > > >     	if (get_user(slot, &ext->engine_index))
+> > > > > >     		return -EFAULT;
+> > > > > > @@ -583,6 +579,12 @@ set_proto_ctx_engines_parallel_submit(struct i915_user_extension __user *base,
+> > > > > >     	if (get_user(num_siblings, &ext->num_siblings))
+> > > > > >     		return -EFAULT;
+> > > > > > +	if (!intel_uc_uses_guc_submission(&i915->gt.uc) && num_siblings != 1) {
+> > > > > > +		drm_dbg(&i915->drm, "Only 1 sibling (%d) supported in non-GuC mode\n",
+> > > > > > +			num_siblings);
+> > > > > > +		return -EINVAL;
+> > > > > > +	}
+> > > > > > +
+> > > > > >     	if (slot >= set->num_engines) {
+> > > > > >     		drm_dbg(&i915->drm, "Invalid placement value, %d >= %d\n",
+> > > > > >     			slot, set->num_engines);
+> > > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> > > > > > index 5634d14052bc..1bec92e1d8e6 100644
+> > > > > > --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> > > > > > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> > > > > > @@ -79,7 +79,8 @@ static int intel_context_active_acquire(struct intel_context *ce)
+> > > > > >     	__i915_active_acquire(&ce->active);
+> > > > > > -	if (intel_context_is_barrier(ce) || intel_engine_uses_guc(ce->engine))
+> > > > > > +	if (intel_context_is_barrier(ce) || intel_engine_uses_guc(ce->engine) ||
+> > > > > > +	    intel_context_is_parallel(ce))
+> > > > > >     		return 0;
+> > > > > >     	/* Preallocate tracking nodes */
+> > > > > > @@ -563,7 +564,6 @@ void intel_context_bind_parent_child(struct intel_context *parent,
+> > > > > >     	 * Callers responsibility to validate that this function is used
+> > > > > >     	 * correctly but we use GEM_BUG_ON here ensure that they do.
+> > > > > >     	 */
+> > > > > > -	GEM_BUG_ON(!intel_engine_uses_guc(parent->engine));
+> > > > > >     	GEM_BUG_ON(intel_context_is_pinned(parent));
+> > > > > >     	GEM_BUG_ON(intel_context_is_child(parent));
+> > > > > >     	GEM_BUG_ON(intel_context_is_pinned(child));
+> > > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > > > > > index bedb80057046..2865b422300d 100644
+> > > > > > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > > > > > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > > > > > @@ -927,8 +927,7 @@ static void execlists_submit_ports(struct intel_engine_cs *engine)
+> > > > > >     static bool ctx_single_port_submission(const struct intel_context *ce)
+> > > > > >     {
+> > > > > > -	return (IS_ENABLED(CONFIG_DRM_I915_GVT) &&
+> > > > > > -		intel_context_force_single_submission(ce));
+> > > > > > +	return intel_context_force_single_submission(ce);
+> > > > > I think this is actually going to break GVT.
+> > > > > 
+> > > > > Not so much this change here but the whole use of single submission outside
+> > > > > of GVT. It looks like the GVT driver overloads the single submission flag to
+> > > > > tag requests that it owns. If we start using that flag elsewhere when GVT is
+> > > > > active, I think that will cause much confusion within the GVT code.
+> > > > > 
+> > > > > The correct fix would be to create a new flag just for GVT usage alongside
+> > > > > the single submission one. GVT would then set both but only check for its
+> > > > > own private flag. The parallel code would obviously only set the existing
+> > > > > single submission flag.
+> > > > > 
+> > > > Ok, see below.
+> > > > 
+> > > > > >     }
+> > > > > >     static bool can_merge_ctx(const struct intel_context *prev,
+> > > > > > @@ -2598,6 +2597,46 @@ static void execlists_context_cancel_request(struct intel_context *ce,
+> > > > > >     				      current->comm);
+> > > > > >     }
+> > > > > > +static struct intel_context *
+> > > > > > +execlists_create_parallel(struct intel_engine_cs **engines,
+> > > > > > +			  unsigned int num_siblings,
+> > > > > > +			  unsigned int width)
+> > > > > > +{
+> > > > > > +	struct intel_context *parent = NULL, *ce, *err;
+> > > > > > +	int i;
+> > > > > > +
+> > > > > > +	GEM_BUG_ON(num_siblings != 1);
+> > > > > > +
+> > > > > > +	for (i = 0; i < width; ++i) {
+> > > > > > +		ce = intel_context_create(engines[i]);
+> > > > > > +		if (!ce) {
+> > > > > > +			err = ERR_PTR(-ENOMEM);
+> > > > > > +			goto unwind;
+> > > > > > +		}
+> > > > > > +
+> > > > > > +		if (i == 0)
+> > > > > > +			parent = ce;
+> > > > > > +		else
+> > > > > > +			intel_context_bind_parent_child(parent, ce);
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	parent->parallel.fence_context = dma_fence_context_alloc(1);
+> > > > > > +
+> > > > > > +	intel_context_set_nopreempt(parent);
+> > > > > > +	intel_context_set_single_submission(parent);
+> > > > > Can you explain the need for setting single submission?
+> > > > > 
+> > > > I think I can actually pull this out. This was needed when I tried to
+> > > > truely implement a guarante that all the parallel requests would be
+> > > > running simultaneously. Couldn't ever to get that working because of the
+> > > > mess that is the execlists scheduler - a simple wait at the head of
+> > > > queue until everyone joined just blew up for whatever reason. I don't
+> > > > believe this servers a purpose anymore, so I'll just drop it.
+> > > > 
+> > > > Matt
+> > > Is that not going to be a problem? I thought concurrent execution was a
+> > > fundamental requirement?
+> > > 
+> > 
+> > I don't think so. See the commit message. This implmementation is on par
+> > with the bonding interface - there is no guarantee whatsoever that with
+> > the bonding interface bonded requests actually run at the same time. It
+> > says hopefully these submissions run together. That's what I do in this
+> > patch too for execlists, hence the 'weak' clause in the commit message.
+> 
+> With the new uapi definition implying a stricter guarantee - why not have
+> this patch use special bb semaphore pre/post-ambles so scheduling behaviour
+> is closer between the two backends?
+> 
 
-Here is the problematic sequence: Threads R and P.
-------------
-R1) test_and_set_bit(I915_RESET_BACKOFF, &gt->reset.flags)
-R2) atomic_inc(&gt->i915->gpu_error.reset_count)
-	P1) read reset count
-	P2) update stats
-	P3) read reset count
-	P4) if reset count changed, use old stats. if not use updated 
-stats.
-R3) reset prepare
-R4) do the HW reset
+We could do that in a follow up if needed, as this bare minimum to get
+this uAPI working. The real fix would be update the execlists scheduler
+to be able to do a join of parallel requests and then schedule them
+together. Should be fairly simple, tried to do this, but the execlists
+scheduler is such a mess doing something simple is near impossible. IMO
+there is little point wasting time on a legacy submission interface.
+This implementation works as well as the old uAPI, let's get this in and
+move on.
 
-Do you agree that this is racy? In thread P we don't know in if the 
-reset flag was set or not when we captured the reset count in P1?
+Matt 
 
->>
->>PMU callback flow with this patch
->>---------------
->>This would rely on the reset_count only if a reset is not in progress.
->>
->>P0) test_bit for I915_RESET_BACKOFF
->>P1) read reset count if not in reset. if in reset, use old stats
->>P2) update stats
->>P3) read reset count
->>P4) if reset count changed, use old stats. if not use updated stats.
->>
->>Now that I think about it more, I do see one sequence that still 
->>needs fixing though - P0, R1, R2, P1 - P4. For that, I think I need 
->>to re-read the BACKOFF bit after reading the reset_count for the 
->>first time.
->>Modified PMU callback sequence would be:
->>----------
->>
->>M0) test_bit for I915_RESET_BACKOFF
->>M1) read reset count if not in reset, if in reset, use old stats
->>
->>M1.1) test_bit for I915_RESET_BACKOFF. if set, use old stats. if 
->>not, use reset_count to synchronize
->>
->>M2) update stats
->>M3) read reset count
->>M4) if reset count changed, use old stats. if not use updated stats.
->
->You did not end up implementing this flow? Have you later changed your 
->mind whether it is required or not? Or maybe I am looking at not the 
->latest patch.
->
->Is the below the latest?
->
->"""
->v2:
->- The 2 reset counts captured in the PMU callback can end up being the
->  same if they were captured right after the count is incremented in the
->  reset flow. This can lead to a bad busyness state. Ensure that reset
->  is not in progress when the initial reset count is captured.
->"""
-
-Yes, v2 is the latest (maybe CI results re-ordered the patches). Instead 
-of sampling the BACKOFF flag before and after the reset count (as in the 
-modified sequence), I just sample it after. The order is critical - 
-first sample reset count and then the reset flag.
-
->
->Is the key now that you rely on ordering of atomic_inc and set_bit in 
->the reset path?
-
-Yes
-
->Frankly I still don't understand why you can get away 
-
->with using stale in_reset in v2. If you acknowledge it can change 
->between sampling and checking, then what is the point in having it 
->altogether? You still solely rely on reset count in that case, no?
-
-Correct, but now I know for sure that the first sample of reset_count 
-was captured when reset flag was not set (since I am relying on the 
-order of sampling).
-
-About solely using the reset_count, I have listed the problematic 
-sequence above to highlight what the issue is.
-
-Thanks,
-Umesh
-
->
->
->Regards,
->
->Tvrtko
->
->>
->>Thanks,
->>Umesh
->>
->>>
->>>Regards,
->>>
->>>Tvrtko
->>>
->>>>+        stats_saved = *stats;
->>>>+        gt_stamp_saved = guc->timestamp.gt_stamp;
->>>>+        reset_count = i915_reset_count(gpu_error);
->>>>         guc_update_engine_gt_clks(engine);
->>>>         guc_update_pm_timestamp(guc, engine, now);
->>>>         intel_gt_pm_put_async(gt);
->>>>
+> Regards,
+> 
+> Tvrtko
+> 
+> > 
+> > Matt
+> > 
+> > > John.
+> > > 
+> > > > 
+> > > > > John.
+> > > > > 
+> > > > > > +	for_each_child(parent, ce) {
+> > > > > > +		intel_context_set_nopreempt(ce);
+> > > > > > +		intel_context_set_single_submission(ce);
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	return parent;
+> > > > > > +
+> > > > > > +unwind:
+> > > > > > +	if (parent)
+> > > > > > +		intel_context_put(parent);
+> > > > > > +	return err;
+> > > > > > +}
+> > > > > > +
+> > > > > >     static const struct intel_context_ops execlists_context_ops = {
+> > > > > >     	.flags = COPS_HAS_INFLIGHT,
+> > > > > > @@ -2616,6 +2655,7 @@ static const struct intel_context_ops execlists_context_ops = {
+> > > > > >     	.reset = lrc_reset,
+> > > > > >     	.destroy = lrc_destroy,
+> > > > > > +	.create_parallel = execlists_create_parallel,
+> > > > > >     	.create_virtual = execlists_create_virtual,
+> > > > > >     };
+> > > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > > > > > index 56156cf18c41..70f4b309522d 100644
+> > > > > > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > > > > > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > > > > > @@ -1065,6 +1065,8 @@ lrc_pin(struct intel_context *ce,
+> > > > > >     void lrc_unpin(struct intel_context *ce)
+> > > > > >     {
+> > > > > > +	if (unlikely(ce->parallel.last_rq))
+> > > > > > +		i915_request_put(ce->parallel.last_rq);
+> > > > > >     	check_redzone((void *)ce->lrc_reg_state - LRC_STATE_OFFSET,
+> > > > > >     		      ce->engine);
+> > > > > >     }
+> > > > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > > > > index 1341752dc70e..ddc9a97fcc8f 100644
+> > > > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > > > > @@ -2961,8 +2961,6 @@ static void guc_parent_context_unpin(struct intel_context *ce)
+> > > > > >     	GEM_BUG_ON(!intel_context_is_parent(ce));
+> > > > > >     	GEM_BUG_ON(!intel_engine_is_virtual(ce->engine));
+> > > > > > -	if (ce->parallel.last_rq)
+> > > > > > -		i915_request_put(ce->parallel.last_rq);
+> > > > > >     	unpin_guc_id(guc, ce);
+> > > > > >     	lrc_unpin(ce);
+> > > > > >     }
+> > > 
