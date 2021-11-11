@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0265744DAA2
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 17:42:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC78844DAC1
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 17:48:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEE5F6E17F;
-	Thu, 11 Nov 2021 16:42:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88CCD6EAE2;
+	Thu, 11 Nov 2021 16:48:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 436BC6E17D;
- Thu, 11 Nov 2021 16:42:47 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10165"; a="319157569"
-X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="319157569"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2021 08:42:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="470848936"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga002.jf.intel.com with SMTP; 11 Nov 2021 08:42:39 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 11 Nov 2021 18:42:39 +0200
-Date: Thu, 11 Nov 2021 18:42:39 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Harry Wentland <harry.wentland@amd.com>
-Message-ID: <YY1H//+XISVMFZNL@intel.com>
-References: <20210906213904.27918-1-uma.shankar@intel.com>
- <20210906213904.27918-6-uma.shankar@intel.com>
- <52ce874c-64ae-d7a9-bc4e-255cfa49f410@amd.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD4D06EA41
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Nov 2021 16:48:10 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10165"; a="296395521"
+X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="296395521"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 08:48:10 -0800
+X-IronPort-AV: E=Sophos;i="5.87,226,1631602800"; d="scan'208";a="670302448"
+Received: from unerlige-ril-10.jf.intel.com (HELO unerlige-ril-10.165.21.208)
+ ([10.165.21.208])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 08:48:10 -0800
+Date: Thu, 11 Nov 2021 08:48:10 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20211111164810.GH6789@unerlige-ril-10.165.21.208>
+References: <20211103224708.1931-1-umesh.nerlige.ramappa@intel.com>
+ <68f76da9-6b70-fee4-6cc6-17e74c867bd2@linux.intel.com>
+ <20211104220407.GA23493@unerlige-ril-10.165.21.208>
+ <2c1af88a-93d3-cc8f-5e4e-e4a494fd21f0@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <52ce874c-64ae-d7a9-bc4e-255cfa49f410@amd.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [RFC v2 05/22] drm/i915/xelpd: Define Degamma Lut
- range struct for HDR planes
+In-Reply-To: <2c1af88a-93d3-cc8f-5e4e-e4a494fd21f0@linux.intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Fix synchronization of PMU
+ callback with reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,112 +50,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, ppaalanen@gmail.com,
- dri-devel@lists.freedesktop.org, sebastian@sebastianwick.net
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 11, 2021 at 10:17:17AM -0500, Harry Wentland wrote:
-> 
-> 
-> On 2021-09-06 17:38, Uma Shankar wrote:
-> > Define the structure with XE_LPD degamma lut ranges. HDR and SDR
-> > planes have different capabilities, implemented respective
-> > structure for the HDR planes.
-> > 
-> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_color.c | 52 ++++++++++++++++++++++
-> >  1 file changed, 52 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> > index afcb4bf3826c..6403bd74324b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_color.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> > @@ -2092,6 +2092,58 @@ static void icl_read_luts(struct intel_crtc_state *crtc_state)
-> >  	}
-> >  }
-> >  
-> > + /* FIXME input bpc? */
-> > +__maybe_unused
-> > +static const struct drm_color_lut_range d13_degamma_hdr[] = {
-> > +	/* segment 1 */
-> > +	{
-> > +		.flags = (DRM_MODE_LUT_GAMMA |
-> > +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
-> > +			  DRM_MODE_LUT_INTERPOLATE |
-> > +			  DRM_MODE_LUT_NON_DECREASING),
-> > +		.count = 128,
-> > +		.input_bpc = 24, .output_bpc = 16,
-> > +		.start = 0, .end = (1 << 24) - 1,
-> > +		.min = 0, .max = (1 << 24) - 1,
-> > +	},
-> > +	/* segment 2 */
-> > +	{
-> > +		.flags = (DRM_MODE_LUT_GAMMA |
-> > +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
-> > +			  DRM_MODE_LUT_INTERPOLATE |
-> > +			  DRM_MODE_LUT_REUSE_LAST |
-> > +			  DRM_MODE_LUT_NON_DECREASING),
-> > +		.count = 1,
-> > +		.input_bpc = 24, .output_bpc = 16,
-> > +		.start = (1 << 24) - 1, .end = 1 << 24,
-> > +		.min = 0, .max = (1 << 27) - 1,
-> > +	},
-> > +	/* Segment 3 */
-> > +	{
-> > +		.flags = (DRM_MODE_LUT_GAMMA |
-> > +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
-> > +			  DRM_MODE_LUT_INTERPOLATE |
-> > +			  DRM_MODE_LUT_REUSE_LAST |
-> > +			  DRM_MODE_LUT_NON_DECREASING),
-> > +		.count = 1,
-> > +		.input_bpc = 24, .output_bpc = 16,
-> > +		.start = 1 << 24, .end = 3 << 24,
-> > +		.min = 0, .max = (1 << 27) - 1,
-> > +	},
-> > +	/* Segment 4 */
-> > +	{
-> > +		.flags = (DRM_MODE_LUT_GAMMA |
-> > +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
-> > +			  DRM_MODE_LUT_INTERPOLATE |
-> > +			  DRM_MODE_LUT_REUSE_LAST |
-> > +			  DRM_MODE_LUT_NON_DECREASING),
-> > +		.count = 1,
-> > +		.input_bpc = 24, .output_bpc = 16,
-> > +		.start = 3 << 24, .end = 7 << 24,
-> > +		.min = 0, .max = (1 << 27) - 1,
-> > +	},
-> > +};
-> 
-> If I understand this right, userspace would need this definition in order
-> to populate the degamma blob. Should this sit in a UAPI header?
+On Thu, Nov 11, 2021 at 02:37:43PM +0000, Tvrtko Ursulin wrote:
+>
+>On 04/11/2021 22:04, Umesh Nerlige Ramappa wrote:
+>>On Thu, Nov 04, 2021 at 05:37:37PM +0000, Tvrtko Ursulin wrote:
+>>>
+>>>On 03/11/2021 22:47, Umesh Nerlige Ramappa wrote:
+>>>>Since the PMU callback runs in irq context, it synchronizes with gt
+>>>>reset using the reset count. We could run into a case where the PMU
+>>>>callback could read the reset count before it is updated. This has a
+>>>>potential of corrupting the busyness stats.
+>>>>
+>>>>In addition to the reset count, check if the reset bit is set before
+>>>>capturing busyness.
+>>>>
+>>>>In addition save the previous stats only if you intend to update them.
+>>>>
+>>>>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>>>>---
+>>>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 ++++++++----
+>>>> 1 file changed, 8 insertions(+), 4 deletions(-)
+>>>>
+>>>>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>>>>b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>index 5cc49c0b3889..d83ade77ca07 100644
+>>>>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>@@ -1183,6 +1183,7 @@ static ktime_t guc_engine_busyness(struct 
+>>>>intel_engine_cs *engine, ktime_t *now)
+>>>>     u64 total, gt_stamp_saved;
+>>>>     unsigned long flags;
+>>>>     u32 reset_count;
+>>>>+    bool in_reset;
+>>>>     spin_lock_irqsave(&guc->timestamp.lock, flags);
+>>>>@@ -1191,7 +1192,9 @@ static ktime_t guc_engine_busyness(struct 
+>>>>intel_engine_cs *engine, ktime_t *now)
+>>>>      * engine busyness from GuC, so we just use the driver stored
+>>>>      * copy of busyness. Synchronize with gt reset using reset_count.
+>>>>      */
+>>>>-    reset_count = i915_reset_count(gpu_error);
+>>>>+    rcu_read_lock();
+>>>>+    in_reset = test_bit(I915_RESET_BACKOFF, &gt->reset.flags);
+>>>>+    rcu_read_unlock();
+>>>
+>>>I don't really understand the point of rcu_read_lock over test_bit 
+>>>but I guess you copied it from the trylock loop.
+>>
+>>Yes, I don't see other parts of code using the lock though. I can drop it.
+>>
+>>>
+>>>>     *now = ktime_get();
+>>>>@@ -1201,9 +1204,10 @@ static ktime_t guc_engine_busyness(struct 
+>>>>intel_engine_cs *engine, ktime_t *now)
+>>>>      * start_gt_clk is derived from GuC state. To get a consistent
+>>>>      * view of activity, we query the GuC state only if gt is awake.
+>>>>      */
+>>>>-    stats_saved = *stats;
+>>>>-    gt_stamp_saved = guc->timestamp.gt_stamp;
+>>>>-    if (intel_gt_pm_get_if_awake(gt)) {
+>>>>+    if (intel_gt_pm_get_if_awake(gt) && !in_reset) {
+>>>
+>>>What is the point of looking at the old value of in_reset here?  
+>>>Gut feeling says if there is a race this does not fix it.
+>>>
+>>>I did not figure out from the commit message what does "could read 
+>>>the reset count before it is updated" mean?
+>>>I thought the point of reading
+>>
+>>>the reset count twice was that you are sure there was no reset 
+>>>while in here, in which case it is safe to update the software 
+>>>copy. I don't easily see what test_bit does on top.
+>>
+>>This is what I see in the reset flow
+>>---------------
+>>
+>>R1) test_and_set_bit(I915_RESET_BACKOFF, &gt->reset.flags)
+>>R2) atomic_inc(&gt->i915->gpu_error.reset_count)
+>>R3) reset prepare
+>>R4) do the HW reset
+>>
+>>The reset count is updated only once above and that's before an 
+>>actual HW reset happens.
+>>
+>>PMU callback flow before this patch
+>>---------------
+>>
+>>P1) read reset count
+>>P2) update stats
+>>P3) read reset count
+>>P4) if reset count changed, use old stats. if not use updated stats.
+>>
+>>I am concerned that the PMU flow could run after step (R2). Then we 
+>>wrongly conclude that the count stayed the same and no HW reset 
+>>happened.
 
-My original idea (not sure it's fully realized in this series) is to
-have a new GAMMA_MODE/etc. enum property on each crtc (or plane) for
-which each enum value points to a kernel provided blob that contains
-one of these LUT descriptors. Userspace can then query them dynamically
-and pick the best one for its current use case.
+Here is the problematic sequence: Threads R and P.
+------------
+R1) test_and_set_bit(I915_RESET_BACKOFF, &gt->reset.flags)
+R2) atomic_inc(&gt->i915->gpu_error.reset_count)
+	P1) read reset count
+	P2) update stats
+	P3) read reset count
+	P4) if reset count changed, use old stats. if not use updated 
+stats.
+R3) reset prepare
+R4) do the HW reset
 
-The algorithm for choosing the best one might be something like:
-- prefer LUT with bpc >= FB bpc, but perhaps not needlessly high bpc
-- prefer interpolated vs. direct lookup based on current needs (eg. X
-  could prefer direct lookup to get directcolor visuals).
-- prefer one with extended range values if needed
-- for HDR prefer smaller step size in dark tones,
-  for SDR perhaps prefer a more uniform step size
+Do you agree that this is racy? In thread P we don't know in if the 
+reset flag was set or not when we captured the reset count in P1?
 
-Or maybe we should include some kind of usage hints as well?
+>>
+>>PMU callback flow with this patch
+>>---------------
+>>This would rely on the reset_count only if a reset is not in progress.
+>>
+>>P0) test_bit for I915_RESET_BACKOFF
+>>P1) read reset count if not in reset. if in reset, use old stats
+>>P2) update stats
+>>P3) read reset count
+>>P4) if reset count changed, use old stats. if not use updated stats.
+>>
+>>Now that I think about it more, I do see one sequence that still 
+>>needs fixing though - P0, R1, R2, P1 - P4. For that, I think I need 
+>>to re-read the BACKOFF bit after reading the reset_count for the 
+>>first time.
+>>Modified PMU callback sequence would be:
+>>----------
+>>
+>>M0) test_bit for I915_RESET_BACKOFF
+>>M1) read reset count if not in reset, if in reset, use old stats
+>>
+>>M1.1) test_bit for I915_RESET_BACKOFF. if set, use old stats. if 
+>>not, use reset_count to synchronize
+>>
+>>M2) update stats
+>>M3) read reset count
+>>M4) if reset count changed, use old stats. if not use updated stats.
+>
+>You did not end up implementing this flow? Have you later changed your 
+>mind whether it is required or not? Or maybe I am looking at not the 
+>latest patch.
+>
+>Is the below the latest?
+>
+>"""
+>v2:
+>- The 2 reset counts captured in the PMU callback can end up being the
+>  same if they were captured right after the count is incremented in the
+>  reset flow. This can lead to a bad busyness state. Ensure that reset
+>  is not in progress when the initial reset count is captured.
+>"""
 
-And I was thinking of even adding a new property type (eg.
-ENUM_BLOB) just for this sort of usecase. That could let us
-have a bit more generic code to do all the validation around
-the property values and whatnot.
+Yes, v2 is the latest (maybe CI results re-ordered the patches). Instead 
+of sampling the BACKOFF flag before and after the reset count (as in the 
+modified sequence), I just sample it after. The order is critical - 
+first sample reset count and then the reset flag.
 
-The one nagging concern I really have with GAMMA_MODE is how a
-mix of old and new userspace would work. Though that is more 
-of a generic issue with any new property really.
+>
+>Is the key now that you rely on ordering of atomic_inc and set_bit in 
+>the reset path?
 
--- 
-Ville Syrj�l�
-Intel
+Yes
+
+>Frankly I still don't understand why you can get away 
+
+>with using stale in_reset in v2. If you acknowledge it can change 
+>between sampling and checking, then what is the point in having it 
+>altogether? You still solely rely on reset count in that case, no?
+
+Correct, but now I know for sure that the first sample of reset_count 
+was captured when reset flag was not set (since I am relying on the 
+order of sampling).
+
+About solely using the reset_count, I have listed the problematic 
+sequence above to highlight what the issue is.
+
+Thanks,
+Umesh
+
+>
+>
+>Regards,
+>
+>Tvrtko
+>
+>>
+>>Thanks,
+>>Umesh
+>>
+>>>
+>>>Regards,
+>>>
+>>>Tvrtko
+>>>
+>>>>+        stats_saved = *stats;
+>>>>+        gt_stamp_saved = guc->timestamp.gt_stamp;
+>>>>+        reset_count = i915_reset_count(gpu_error);
+>>>>         guc_update_engine_gt_clks(engine);
+>>>>         guc_update_pm_timestamp(guc, engine, now);
+>>>>         intel_gt_pm_put_async(gt);
+>>>>
