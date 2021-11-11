@@ -1,36 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7B8E44DD62
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 22:57:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C004E44DD5F
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 22:57:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30B366E500;
-	Thu, 11 Nov 2021 21:56:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E4046E486;
+	Thu, 11 Nov 2021 21:56:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1E106E32F;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 050296E3F4;
  Thu, 11 Nov 2021 21:56:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10165"; a="233264835"
-X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="233264835"
+X-IronPort-AV: E=McAfee;i="6200,9189,10165"; a="233264837"
+X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="233264837"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2021 13:56:52 -0800
-X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="643240220"
+ 11 Nov 2021 13:56:53 -0800
+X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="643240223"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Nov 2021 13:56:52 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Nov 2021 13:56:42 -0800
-Message-Id: <20211111215644.1123373-3-matthew.d.roper@intel.com>
+Date: Thu, 11 Nov 2021 13:56:43 -0800
+Message-Id: <20211111215644.1123373-4-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211111215644.1123373-1-matthew.d.roper@intel.com>
 References: <20211111215644.1123373-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/4] drm/i915/dg2: Add Wa_16011777198
+Subject: [Intel-gfx] [PATCH 3/4] drm/i915/dg2: Add Wa_16013000631
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,45 +43,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Chris Wilson <chris.p.wilson@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Coarse power gating for render should not be enabled on some DG2
-steppings.
+From: Ramalingam C <ramalingam.c@intel.com>
 
-Bspec: 52698
+Invalidate IC cache through pipe control command as part of the ctx
+restore flow through indirect ctx pointer
+
+Cc: Chris Wilson <chris.p.wilson@intel.com>
+Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_rc6.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-index 43093dd2d0c9..c3155ee58689 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -117,10 +117,17 @@ static void gen11_rc6_enable(struct intel_rc6 *rc6)
- 			GEN6_RC_CTL_RC6_ENABLE |
- 			GEN6_RC_CTL_EI_MODE(1);
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 56156cf18c41..5523d7b2f983 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1176,6 +1176,11 @@ gen12_emit_indirect_ctx_xcs(const struct intel_context *ce, u32 *cs)
+ 	cs = gen12_emit_timestamp_wa(ce, cs);
+ 	cs = gen12_emit_restore_scratch(ce, cs);
  
--	pg_enable =
--		GEN9_RENDER_PG_ENABLE |
--		GEN9_MEDIA_PG_ENABLE |
--		GEN11_MEDIA_SAMPLER_PG_ENABLE;
-+	/* Wa_16011777198 - Render powergating must remain disabled */
-+	if (IS_DG2_GRAPHICS_STEP(gt->i915, G10, STEP_A0, STEP_C0) ||
-+	    IS_DG2_GRAPHICS_STEP(gt->i915, G11, STEP_A0, STEP_B0))
-+		pg_enable =
-+			GEN9_MEDIA_PG_ENABLE |
-+			GEN11_MEDIA_SAMPLER_PG_ENABLE;
-+	else
-+		pg_enable =
-+			GEN9_RENDER_PG_ENABLE |
-+			GEN9_MEDIA_PG_ENABLE |
-+			GEN11_MEDIA_SAMPLER_PG_ENABLE;
++	/* Wa_16013000631:dg2 */
++	if (IS_DG2_GRAPHICS_STEP(ce->engine->i915, G10, STEP_B0, STEP_C0) ||
++	    IS_DG2_G11(ce->engine->i915))
++		cs = gen8_emit_pipe_control(cs, PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE, 0);
++
+ 	return cs;
+ }
  
- 	if (GRAPHICS_VER(gt->i915) >= 12) {
- 		for (i = 0; i < I915_MAX_VCS; i++)
 -- 
 2.33.0
 
