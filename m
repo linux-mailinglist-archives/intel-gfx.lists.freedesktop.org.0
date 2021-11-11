@@ -1,33 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AD2B44DDEE
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 23:41:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC83944DE01
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 23:56:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 150B26E23B;
-	Thu, 11 Nov 2021 22:41:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5E876E3CE;
+	Thu, 11 Nov 2021 22:56:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2F7436E23B;
- Thu, 11 Nov 2021 22:41:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2C742AA917;
- Thu, 11 Nov 2021 22:41:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7227227786158793369=="
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4D996E3CE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Nov 2021 22:56:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10165"; a="213067829"
+X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="213067829"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 14:56:49 -0800
+X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="590166039"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 11 Nov 2021 14:56:48 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 11 Nov 2021 15:09:49 -0800
+Message-Id: <20211111230949.28590-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 11 Nov 2021 22:41:22 -0000
-Message-ID: <163667048217.5312.3606684194115362317@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211111215644.1123373-1-matthew.d.roper@intel.com>
-In-Reply-To: <20211111215644.1123373-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgaTkx?=
- =?utf-8?q?5=3A_Additional_DG2_workarounds?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display/dsc: Clamp the max DSC input
+ BPP to connector's max bpp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,142 +43,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7227227786158793369==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Pipe_bpp limits are decided by connectors max bpp as computed in
+compute_sink_pipe_bpp() before computing link and DSC config.
+Currently dsc_compute_config() sets the max input bpp only based
+on DSC Input BPPs supported and max bpc requested for the connector
+but does not clamp it based on connector's max bpp.
+This patch fixes that.
 
-== Series Details ==
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Series: i915: Additional DG2 workarounds
-URL   : https://patchwork.freedesktop.org/series/96824/
-State : success
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 45373c213d9e..82209d995969 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1400,6 +1400,7 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 		return -EINVAL;
+ 
+ 	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
++	pipe_bpp = min(pipe_bpp, limits->max_bpp);
+ 
+ 	/* Min Input BPC for ICL+ is 8 */
+ 	if (pipe_bpp < 8 * 3) {
+-- 
+2.19.1
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10872 -> Patchwork_21565
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21565/index.html
-
-Participating hosts (29 -> 24)
-------------------------------
-
-  Missing    (5): fi-kbl-soraka bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21565 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2] ([i915#146])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10872/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21565/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-
-  
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10872 -> Patchwork_21565
-
-  CI-20190529: 20190529
-  CI_DRM_10872: 50c74a91cbcff9d1ca50d3774391c4757e9816b8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6279: 1c70b17877974491273ac3fb1de93ba75309df79 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21565: 9ffd3298a379883c46d4e3b90d94bd0e93f8d5ae @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-9ffd3298a379 drm/i915/dg2: extend Wa_1409120013 to DG2
-eaf9b856bf53 drm/i915/dg2: Add Wa_16013000631
-71dd49e2be9b drm/i915/dg2: Add Wa_16011777198
-65c9c68de0fa drm/i915/dg2: Add Wa_14010547955
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21565/index.html
-
---===============7227227786158793369==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>i915: Additional DG2 workarounds</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96824/">https://patchwork.freedesktop.org/series/96824/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21565/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21565/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10872 -&gt; Patchwork_21565</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21565/index.html</p>
-<h2>Participating hosts (29 -&gt; 24)</h2>
-<p>Missing    (5): fi-kbl-soraka bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21565 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3:<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10872/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21565/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10872 -&gt; Patchwork_21565</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10872: 50c74a91cbcff9d1ca50d3774391c4757e9816b8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6279: 1c70b17877974491273ac3fb1de93ba75309df79 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21565: 9ffd3298a379883c46d4e3b90d94bd0e93f8d5ae @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>9ffd3298a379 drm/i915/dg2: extend Wa_1409120013 to DG2<br />
-eaf9b856bf53 drm/i915/dg2: Add Wa_16013000631<br />
-71dd49e2be9b drm/i915/dg2: Add Wa_16011777198<br />
-65c9c68de0fa drm/i915/dg2: Add Wa_14010547955</p>
-
-</body>
-</html>
-
---===============7227227786158793369==--
