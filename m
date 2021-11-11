@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDD8244D937
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 16:33:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 203F344D945
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Nov 2021 16:38:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B2C66E463;
-	Thu, 11 Nov 2021 15:33:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32E3A6E523;
+	Thu, 11 Nov 2021 15:37:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A34ED6E431;
- Thu, 11 Nov 2021 15:33:47 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BEC1F6E463;
+ Thu, 11 Nov 2021 15:37:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9B57EAADD3;
- Thu, 11 Nov 2021 15:33:47 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B5FAEAA917;
+ Thu, 11 Nov 2021 15:37:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Takashi Iwai" <tiwai@suse.de>
-Date: Thu, 11 Nov 2021 15:33:47 -0000
-Message-ID: <163664482761.5313.950547892614243241@emeril.freedesktop.org>
+Date: Thu, 11 Nov 2021 15:37:56 -0000
+Message-ID: <163664507672.5311.5788690973384041942@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20211110210307.1172004-1-kai.vehmanen@linux.intel.com>
 In-Reply-To: <20211110210307.1172004-1-kai.vehmanen@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_ALSA=3A_hda=3A_fix_general_protection_fault_in_azx=5Fruntim?=
- =?utf-8?q?e=5Fidle_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIEFM?=
+ =?utf-8?q?SA=3A_hda=3A_fix_general_protection_fault_in_azx=5Fruntime=5Fid?=
+ =?utf-8?b?bGUgKHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,14 +54,12 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-791aebc9d846 ALSA: hda: fix general protection fault in azx_runtime_idle
--:19: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#19: 
-> > >  - https://intel-gfx-ci.01.org/tree/linux-next/next-20211109/fi-tgl-1115g4/igt@i915_module_load@reload.html
-
--:83: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
-
-total: 1 errors, 1 warnings, 0 checks, 21 lines checked
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
+./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
+./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Function parameter or member 'fbc' not described in 'intel_fbc_is_active'
+./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
+./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Function parameter or member 'fbc' not described in 'intel_fbc_handle_fifo_underrun_irq'
+./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
 
 
