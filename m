@@ -1,49 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A0CD44DF7F
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Nov 2021 02:03:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA06844E091
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Nov 2021 03:52:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 522C08976D;
-	Fri, 12 Nov 2021 01:03:07 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9155E88A72;
- Fri, 12 Nov 2021 01:03:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10165"; a="213085586"
-X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="213085586"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2021 17:03:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="452956969"
-Received: from allen-box.sh.intel.com (HELO [10.239.159.118])
- ([10.239.159.118])
- by orsmga006.jf.intel.com with ESMTP; 11 Nov 2021 17:03:01 -0800
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Robin Murphy <robin.murphy@arm.com>, Intel-gfx@lists.freedesktop.org
-References: <20211109121759.170915-1-tvrtko.ursulin@linux.intel.com>
- <6e8c55a7-45b6-57ab-35f7-d522401efccb@linux.intel.com>
- <4d1a0ab9-e0d8-2ed9-1fc4-9ffaf2f19bef@linux.intel.com>
- <7b2e1427-69cf-8f5d-0c15-73c4e602953d@linux.intel.com>
- <2a1ae709-19f8-7983-b171-98ec2f3f010a@linux.intel.com>
- <4c5ab72f-aaff-8b92-7471-44dd907cf2f6@linux.intel.com>
- <215fa7de-4ed7-1da5-724e-006e36286c08@linux.intel.com>
- <9463fda7-d215-6c14-3ca7-a2ff94349c3e@arm.com>
- <bc873275-eb22-0cbd-7ee4-094f210f7ffe@linux.intel.com>
-From: Lu Baolu <baolu.lu@linux.intel.com>
-Message-ID: <8d88c76e-5ca8-5675-a2fb-306b972ad4f5@linux.intel.com>
-Date: Fri, 12 Nov 2021 08:58:39 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EECF6E4EA;
+	Fri, 12 Nov 2021 02:52:33 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B63936E4AD;
+ Fri, 12 Nov 2021 02:52:30 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10165"; a="233006304"
+X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="233006304"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 18:52:30 -0800
+X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="504705021"
+Received: from orsosgc001.jf.intel.com ([10.165.21.154])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 18:52:30 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Thu, 11 Nov 2021 18:52:22 -0800
+Message-Id: <20211112025222.61031-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <bc873275-eb22-0cbd-7ee4-094f210f7ffe@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use per device iommu check
+Subject: [Intel-gfx] [PATCH] drm/i915/pmu: Increase the
+ live_engine_busy_stats sample period
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,161 +43,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, baolu.lu@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/11/21 11:18 PM, Tvrtko Ursulin wrote:
-> 
-> On 10/11/2021 14:37, Robin Murphy wrote:
->> On 2021-11-10 14:11, Tvrtko Ursulin wrote:
->>>
->>> On 10/11/2021 12:35, Lu Baolu wrote:
->>>> On 2021/11/10 20:08, Tvrtko Ursulin wrote:
->>>>>
->>>>> On 10/11/2021 12:04, Lu Baolu wrote:
->>>>>> On 2021/11/10 17:30, Tvrtko Ursulin wrote:
->>>>>>>
->>>>>>> On 10/11/2021 07:12, Lu Baolu wrote:
->>>>>>>> Hi Tvrtko,
->>>>>>>>
->>>>>>>> On 2021/11/9 20:17, Tvrtko Ursulin wrote:
->>>>>>>>> From: Tvrtko Ursulin<tvrtko.ursulin@intel.com>
->>>>>>>>>
->>>>>>>>> On igfx + dgfx setups, it appears that intel_iommu=igfx_off 
->>>>>>>>> option only
->>>>>>>>> disables the igfx iommu. Stop relying on global 
->>>>>>>>> intel_iommu_gfx_mapped
->>>>>>>>> and probe presence of iommu domain per device to accurately 
->>>>>>>>> reflect its
->>>>>>>>> status.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Tvrtko Ursulin<tvrtko.ursulin@intel.com>
->>>>>>>>> Cc: Lu Baolu<baolu.lu@linux.intel.com>
->>>>>>>>> ---
->>>>>>>>> Baolu, is my understanding here correct? Maybe I am confused by 
->>>>>>>>> both
->>>>>>>>> intel_iommu_gfx_mapped and dmar_map_gfx being globals in the 
->>>>>>>>> intel_iommu
->>>>>>>>> driver. But it certainly appears the setup can assign some 
->>>>>>>>> iommu ops (and
->>>>>>>>> assign the discrete i915 to iommu group) when those two are set 
->>>>>>>>> to off.
->>>>>>>>
->>>>>>>> diff --git a/drivers/gpu/drm/i915/i915_drv.h 
->>>>>>>> b/drivers/gpu/drm/i915/i915_drv.h
->>>>>>>> index e967cd08f23e..9fb38a54f1fe 100644
->>>>>>>> --- a/drivers/gpu/drm/i915/i915_drv.h
->>>>>>>> +++ b/drivers/gpu/drm/i915/i915_drv.h
->>>>>>>> @@ -1763,26 +1763,27 @@ static inline bool run_as_guest(void)
->>>>>>>>   #define HAS_D12_PLANE_MINIMIZATION(dev_priv) 
->>>>>>>> (IS_ROCKETLAKE(dev_priv) || \
->>>>>>>>                             IS_ALDERLAKE_S(dev_priv))
->>>>>>>>
->>>>>>>> -static inline bool intel_vtd_active(void)
->>>>>>>> +static inline bool intel_vtd_active(struct drm_i915_private *i915)
->>>>>>>>   {
->>>>>>>> -#ifdef CONFIG_INTEL_IOMMU
->>>>>>>> -    if (intel_iommu_gfx_mapped)
->>>>>>>> +    if (iommu_get_domain_for_dev(i915->drm.dev))
->>>>>>>>           return true;
->>>>>>>> -#endif
->>>>>>>>
->>>>>>>>       /* Running as a guest, we assume the host is enforcing 
->>>>>>>> VT'd */
->>>>>>>>       return run_as_guest();
->>>>>>>>   }
->>>>>>>>
->>>>>>>> Have you verified this change? I am afraid that
->>>>>>>> iommu_get_domain_for_dev() always gets a valid iommu domain even
->>>>>>>> intel_iommu_gfx_mapped == 0.
->>>>>>>
->>>>>>> Yes it seems to work as is:
->>>>>>>
->>>>>>> default:
->>>>>>>
->>>>>>> # grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
->>>>>>> /sys/kernel/debug/dri/0/i915_capabilities:iommu: enabled
->>>>>>> /sys/kernel/debug/dri/1/i915_capabilities:iommu: enabled
->>>>>>>
->>>>>>> intel_iommu=igfx_off:
->>>>>>>
->>>>>>> # grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
->>>>>>> /sys/kernel/debug/dri/0/i915_capabilities:iommu: disabled
->>>>>>> /sys/kernel/debug/dri/1/i915_capabilities:iommu: enabled
->>>>>>>
->>>>>>> On my system dri device 0 is integrated graphics and 1 is discrete.
->>>>>>
->>>>>> The drm device 0 has a dedicated iommu. When the user request igfx 
->>>>>> not
->>>>>> mapped, the VT-d implementation will turn it off to save power. 
->>>>>> But for
->>>>>> shared iommu, you definitely will get it enabled.
->>>>>
->>>>> Sorry I am not following, what exactly do you mean? Is there a 
->>>>> platform with integrated graphics without a dedicated iommu, in 
->>>>> which case intel_iommu=igfx_off results in intel_iommu_gfx_mapped 
->>>>> == 0 and iommu_get_domain_for_dev returning non-NULL?
->>>>
->>>> Your code always work for an igfx with a dedicated iommu. This might be
->>>> always true on today's platforms. But from driver's point of view, we
->>>> should not make such assumption.
->>>>
->>>> For example, if the iommu implementation decides not to turn off the
->>>> graphic iommu (perhaps due to some hw quirk or for graphic
->>>> virtualization), your code will be broken.
->>>
->>> If I got it right, this would go back to your earlier recommendation 
->>> to have the check look like this:
->>>
->>> static bool intel_vtd_active(struct drm_i915_private *i915)
->>> {
->>>          struct iommu_domain *domain;
->>>
->>>          domain = iommu_get_domain_for_dev(i915->drm.dev);
->>>          if (domain && (domain->type & __IOMMU_DOMAIN_PAGING))
->>>                  return true;
->>>      ...
->>>
->>> This would be okay as a first step?
->>>
->>> Elsewhere in the thread Robin suggested looking at the dec->dma_ops 
->>> and comparing against iommu_dma_ops. These two solution would be 
->>> effectively the same?
->>
->> Effectively, yes. See iommu_setup_dma_ops() - the only way to end up 
->> with iommu_dma_ops is if a managed translation domain is present; if 
->> the IOMMU is present but the default domain type has been set to 
->> passthrough (either globally or forced for the given device) it will 
->> do nothing and leave you with dma-direct, while if the IOMMU has been 
->> ignored entirely then it should never even be called. Thus it neatly 
->> encapsulates what you're after here.
-> 
-> One concern I have is whether the pass-through mode truly does nothing 
-> or addresses perhaps still go through the dmar hardware just with no 
-> translation?
+Irrespective of the backend for request submissions, busyness for an
+engine with an active context is calculated using:
 
-Pass-through mode means the latter.
+busyness = total + (current_time - context_switch_in_time)
 
-> 
-> If latter then most like for like change is actually exactly what the 
-> first version of my patch did. That is replace intel_iommu_gfx_mapped 
-> with a plain non-NULL check on iommu_get_domain_for_dev.
+In execlists mode of operation, the context switch events are handled
+by the CPU. Context switch in/out time and current_time are captured
+in CPU time domain using ktime_get().
 
-Depends on what you want here,
+In GuC mode of submission, context switch events are handled by GuC and
+the times in the above formula are captured in GT clock domain. This
+information is shared with the CPU through shared memory. This results
+in 2 caveats:
 
-#1) the graphic device works in iommu pass-through mode
-    - device have an iommu
-    - but iommu does no translation
-    - the dma transactions go through iommu with the same destination
-      memory address specified by the device;
+1) The time taken between start of a batch and the time that CPU is able
+to see the context_switch_in_time in shared memory is dependent on GuC
+and memory bandwidth constraints.
 
-#2) the graphic device works without a system iommu
-    - the iommu is off
-    - there's no iommu on the path of DMA transaction.
+2) Determining current_time requires an MMIO read that can take anywhere
+between a few us to a couple ms. A reference CPU time is captured soon
+after reading the MMIO so that the caller can compare the cpu delta
+between 2 busyness samples. The issue here is that the CPU delta and the
+busyness delta can be skewed because of the time taken to read the
+register.
 
-My suggestion works for #1). Robin's suggestion (device_iommu_mapped())
-could work for #2).
+These 2 factors affect the accuracy of the selftest -
+live_engine_busy_stats. For (1) the selftest waits until busyness stats
+are visible to the CPU. The effects of (2) are more prominent for the
+current busyness sample period of 100 us. Increase the busyness sample
+period from 100 us to 10 ms to overccome (2).
 
-Best regards,
-baolu
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+index 0bfd738dbf3a..96cc565afa78 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
++++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+@@ -316,7 +316,7 @@ static int live_engine_busy_stats(void *arg)
+ 		ENGINE_TRACE(engine, "measuring busy time\n");
+ 		preempt_disable();
+ 		de = intel_engine_get_busy_time(engine, &t[0]);
+-		udelay(100);
++		udelay(10000);
+ 		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
+ 		preempt_enable();
+ 		dt = ktime_sub(t[1], t[0]);
+-- 
+2.20.1
+
