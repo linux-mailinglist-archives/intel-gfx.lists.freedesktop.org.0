@@ -1,34 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90EA444DE96
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Nov 2021 00:41:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E769B44DF70
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Nov 2021 01:57:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31CFD89E0E;
-	Thu, 11 Nov 2021 23:41:36 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8415889E0E;
- Thu, 11 Nov 2021 23:41:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7BE59A8830;
- Thu, 11 Nov 2021 23:41:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0657332010807120069=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2191A6EB2C;
+	Fri, 12 Nov 2021 00:57:37 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77A196EB28;
+ Fri, 12 Nov 2021 00:57:35 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10165"; a="230510952"
+X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="230510952"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2021 16:57:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,227,1631602800"; d="scan'208";a="452955248"
+Received: from allen-box.sh.intel.com (HELO [10.239.159.118])
+ ([10.239.159.118])
+ by orsmga006.jf.intel.com with ESMTP; 11 Nov 2021 16:57:32 -0800
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Intel-gfx@lists.freedesktop.org
+References: <20211109121759.170915-1-tvrtko.ursulin@linux.intel.com>
+ <6e8c55a7-45b6-57ab-35f7-d522401efccb@linux.intel.com>
+ <4d1a0ab9-e0d8-2ed9-1fc4-9ffaf2f19bef@linux.intel.com>
+ <7b2e1427-69cf-8f5d-0c15-73c4e602953d@linux.intel.com>
+ <2a1ae709-19f8-7983-b171-98ec2f3f010a@linux.intel.com>
+ <4c5ab72f-aaff-8b92-7471-44dd907cf2f6@linux.intel.com>
+ <24c75ce7-1b14-42e1-a4d4-943e472aed68@linux.intel.com>
+From: Lu Baolu <baolu.lu@linux.intel.com>
+Message-ID: <2a99dbb9-9ed2-2e3e-b329-21730056d940@linux.intel.com>
+Date: Fri, 12 Nov 2021 08:53:10 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Thu, 11 Nov 2021 23:41:35 -0000
-Message-ID: <163667409546.5314.17109365665102604072@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211111230949.28590-1-manasi.d.navare@intel.com>
-In-Reply-To: <20211111230949.28590-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/display/dsc=3A_Clamp_the_max_DSC_input_BPP_to_connector?=
- =?utf-8?q?=27s_max_bpp?=
+In-Reply-To: <24c75ce7-1b14-42e1-a4d4-943e472aed68@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use per device iommu check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,193 +54,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, baolu.lu@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0657332010807120069==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 11/11/21 11:06 PM, Tvrtko Ursulin wrote:
+> 
+> On 10/11/2021 12:35, Lu Baolu wrote:
+>> On 2021/11/10 20:08, Tvrtko Ursulin wrote:
+>>>
+>>> On 10/11/2021 12:04, Lu Baolu wrote:
+>>>> On 2021/11/10 17:30, Tvrtko Ursulin wrote:
+>>>>>
+>>>>> On 10/11/2021 07:12, Lu Baolu wrote:
+>>>>>> Hi Tvrtko,
+>>>>>>
+>>>>>> On 2021/11/9 20:17, Tvrtko Ursulin wrote:
+>>>>>>> From: Tvrtko Ursulin<tvrtko.ursulin@intel.com>
+>>>>>>>
+>>>>>>> On igfx + dgfx setups, it appears that intel_iommu=igfx_off 
+>>>>>>> option only
+>>>>>>> disables the igfx iommu. Stop relying on global 
+>>>>>>> intel_iommu_gfx_mapped
+>>>>>>> and probe presence of iommu domain per device to accurately 
+>>>>>>> reflect its
+>>>>>>> status.
+>>>>>>>
+>>>>>>> Signed-off-by: Tvrtko Ursulin<tvrtko.ursulin@intel.com>
+>>>>>>> Cc: Lu Baolu<baolu.lu@linux.intel.com>
+>>>>>>> ---
+>>>>>>> Baolu, is my understanding here correct? Maybe I am confused by both
+>>>>>>> intel_iommu_gfx_mapped and dmar_map_gfx being globals in the 
+>>>>>>> intel_iommu
+>>>>>>> driver. But it certainly appears the setup can assign some iommu 
+>>>>>>> ops (and
+>>>>>>> assign the discrete i915 to iommu group) when those two are set 
+>>>>>>> to off.
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/i915/i915_drv.h 
+>>>>>> b/drivers/gpu/drm/i915/i915_drv.h
+>>>>>> index e967cd08f23e..9fb38a54f1fe 100644
+>>>>>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>>>>>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>>>>>> @@ -1763,26 +1763,27 @@ static inline bool run_as_guest(void)
+>>>>>>   #define HAS_D12_PLANE_MINIMIZATION(dev_priv) 
+>>>>>> (IS_ROCKETLAKE(dev_priv) || \
+>>>>>>                             IS_ALDERLAKE_S(dev_priv))
+>>>>>>
+>>>>>> -static inline bool intel_vtd_active(void)
+>>>>>> +static inline bool intel_vtd_active(struct drm_i915_private *i915)
+>>>>>>   {
+>>>>>> -#ifdef CONFIG_INTEL_IOMMU
+>>>>>> -    if (intel_iommu_gfx_mapped)
+>>>>>> +    if (iommu_get_domain_for_dev(i915->drm.dev))
+>>>>>>           return true;
+>>>>>> -#endif
+>>>>>>
+>>>>>>       /* Running as a guest, we assume the host is enforcing VT'd */
+>>>>>>       return run_as_guest();
+>>>>>>   }
+>>>>>>
+>>>>>> Have you verified this change? I am afraid that
+>>>>>> iommu_get_domain_for_dev() always gets a valid iommu domain even
+>>>>>> intel_iommu_gfx_mapped == 0.
+>>>>>
+>>>>> Yes it seems to work as is:
+>>>>>
+>>>>> default:
+>>>>>
+>>>>> # grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
+>>>>> /sys/kernel/debug/dri/0/i915_capabilities:iommu: enabled
+>>>>> /sys/kernel/debug/dri/1/i915_capabilities:iommu: enabled
+>>>>>
+>>>>> intel_iommu=igfx_off:
+>>>>>
+>>>>> # grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
+>>>>> /sys/kernel/debug/dri/0/i915_capabilities:iommu: disabled
+>>>>> /sys/kernel/debug/dri/1/i915_capabilities:iommu: enabled
+>>>>>
+>>>>> On my system dri device 0 is integrated graphics and 1 is discrete.
+>>>>
+>>>> The drm device 0 has a dedicated iommu. When the user request igfx not
+>>>> mapped, the VT-d implementation will turn it off to save power. But for
+>>>> shared iommu, you definitely will get it enabled.
+>>>
+>>> Sorry I am not following, what exactly do you mean? Is there a 
+>>> platform with integrated graphics without a dedicated iommu, in which 
+>>> case intel_iommu=igfx_off results in intel_iommu_gfx_mapped == 0 and 
+>>> iommu_get_domain_for_dev returning non-NULL?
+>>
+>> Your code always work for an igfx with a dedicated iommu. This might be
+>> always true on today's platforms. But from driver's point of view, we
+>> should not make such assumption.
+>>
+>> For example, if the iommu implementation decides not to turn off the
+>> graphic iommu (perhaps due to some hw quirk or for graphic
+>> virtualization), your code will be broken.
+> 
+> I tried your suggestion (checking for __IOMMU_DOMAIN_PAGING) and it 
+> works better, however I have observed one odd behaviour (for me at least).
+> 
+> In short - why does the DMAR mode for the discrete device change 
+> depending on igfx_off parameter?
+> 
+> Consider the laptop has these two graphics cards:
+> 
+> # cat /sys/kernel/debug/dri/0/name
+> i915 dev=0000:00:02.0 unique=0000:00:02.0 # integrated
+> 
+> # cat /sys/kernel/debug/dri/1/name
+> i915 dev=0000:03:00.0 unique=0000:03:00.0 # discrete
+> 
+> Booting with different options:
+> ===============================
+> 
+> default / intel_iommu=on
+> ------------------------
+> 
+> # cat /sys/class/iommu/dmar0/devices/0000:00:02.0/iommu_group/type
+> DMA-FQ
+> # cat /sys/class/iommu/dmar2/devices/0000:03:00.0/iommu_group/type
+> DMA-FQ
+> 
+> # grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
+> /sys/kernel/debug/dri/0/i915_capabilities:iommu: enabled
+> /sys/kernel/debug/dri/1/i915_capabilities:iommu: enabled
+> 
+> All good.
+> 
+> intel_iommu=igfx_off
+> --------------------
+> 
+> ## no dmar0 in sysfs
+> # cat /sys/class/iommu/dmar2/devices/0000:03:00.0/iommu_group/type
+> identity
+> 
+> Unexpected!?
+> 
+> # grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
+> /sys/kernel/debug/dri/0/i915_capabilities:iommu: disabled
+> /sys/kernel/debug/dri/1/i915_capabilities:iommu: disabled # At least the 
+> i915 patch detects it correctly.
+> 
+> intel_iommu=off
+> ---------------
+> 
+> ## no dmar0 in sysfs
+> ## no dmar2 in sysfs
+> 
+> # grep -i iommu /sys/kernel/debug/dri/*/i915_capabilities
+> /sys/kernel/debug/dri/0/i915_capabilities:iommu: disabled
+> /sys/kernel/debug/dri/1/i915_capabilities:iommu: disabled
+> 
+> All good.
+> 
+> The fact discrete graphics changes from translated to pass-through when 
+> igfx_off is set is surprising to me. Is this a bug?
 
-== Series Details ==
+The existing VT-d implementation doesn't distinguish igfx from dgfx. It
+only checks whether the device is of a display class:
 
-Series: drm/i915/display/dsc: Clamp the max DSC input BPP to connector's max bpp
-URL   : https://patchwork.freedesktop.org/series/96832/
-State : failure
+#define IS_GFX_DEVICE(pdev) ((pdev->class >> 16) == PCI_BASE_CLASS_DISPLAY)
 
-== Summary ==
+When igfx_off is specified, all graphic devices will put into pass-
+through (the same meaning as identity mapping) mode. For igfx, since
+the iommu is always dedicated, hence it further turn off the iommu
+(hence there's no iommu domain) to save power.
 
-CI Bug Log - changes from CI_DRM_10872 -> Patchwork_21567
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_21567 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_21567, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21567/index.html
-
-Participating hosts (29 -> 24)
-------------------------------
-
-  Missing    (5): fi-kbl-soraka bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21567:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-blb-e6850:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10872/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21567/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21567 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][3] ([i915#1602] / [i915#2426] / [i915#4312])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21567/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][4] ([i915#4269]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10872/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21567/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10872 -> Patchwork_21567
-
-  CI-20190529: 20190529
-  CI_DRM_10872: 50c74a91cbcff9d1ca50d3774391c4757e9816b8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6279: 1c70b17877974491273ac3fb1de93ba75309df79 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21567: 708ee9debb6c11531bbf0a359abbd226cc198d93 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-708ee9debb6c drm/i915/display/dsc: Clamp the max DSC input BPP to connector's max bpp
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21567/index.html
-
---===============0657332010807120069==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display/dsc: Clamp the max DSC input BPP to connector&#39;s max bpp</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96832/">https://patchwork.freedesktop.org/series/96832/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21567/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21567/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10872 -&gt; Patchwork_21567</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_21567 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_21567, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21567/index.html</p>
-<h2>Participating hosts (29 -&gt; 24)</h2>
-<p>Missing    (5): fi-kbl-soraka bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21567:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10872/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21567/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21567 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21567/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10872/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21567/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10872 -&gt; Patchwork_21567</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10872: 50c74a91cbcff9d1ca50d3774391c4757e9816b8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6279: 1c70b17877974491273ac3fb1de93ba75309df79 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21567: 708ee9debb6c11531bbf0a359abbd226cc198d93 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>708ee9debb6c drm/i915/display/dsc: Clamp the max DSC input BPP to connector's max bpp</p>
-
-</body>
-</html>
-
---===============0657332010807120069==--
+Best regards,
+baolu
