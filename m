@@ -1,40 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CFF044ED5A
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Nov 2021 20:38:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 577A744ED5B
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Nov 2021 20:38:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0E016F471;
-	Fri, 12 Nov 2021 19:38:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89BB86F46F;
+	Fri, 12 Nov 2021 19:38:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10B7D6E288
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Nov 2021 19:38:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10166"; a="213229427"
-X-IronPort-AV: E=Sophos;i="5.87,230,1631602800"; d="scan'208";a="213229427"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2021 11:38:30 -0800
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 904FD6F46F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Nov 2021 19:38:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10166"; a="294019214"
+X-IronPort-AV: E=Sophos;i="5.87,230,1631602800"; d="scan'208";a="294019214"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2021 11:38:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,230,1631602800"; d="scan'208";a="643700221"
+X-IronPort-AV: E=Sophos;i="5.87,230,1631602800"; d="scan'208";a="505009439"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga001.fm.intel.com with SMTP; 12 Nov 2021 11:38:28 -0800
+ by orsmga008.jf.intel.com with SMTP; 12 Nov 2021 11:38:31 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Nov 2021 21:38:27 +0200
+ Fri, 12 Nov 2021 21:38:30 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 12 Nov 2021 21:38:09 +0200
-Message-Id: <20211112193813.8224-6-ville.syrjala@linux.intel.com>
+Date: Fri, 12 Nov 2021 21:38:10 +0200
+Message-Id: <20211112193813.8224-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211112193813.8224-1-ville.syrjala@linux.intel.com>
 References: <20211112193813.8224-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/9] drm/i915: Clean up
- PCH_TRANSCONF/TRANS_DP_CTL bit defines
+Subject: [Intel-gfx] [PATCH 6/9] drm/i915: Clean up PIPESRC defines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,132 +51,70 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Use REG_BIT & co. for PCH_TRANSCONF/TRANS_DP_CTL bits, and
-adjust the naming a some bits to be more consistent.
+Use REG_GENMASK() & co. when dealing with PIPESRC.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../gpu/drm/i915/display/intel_pch_display.c  | 13 +++--
- drivers/gpu/drm/i915/i915_reg.h               | 58 +++++++++----------
- 2 files changed, 33 insertions(+), 38 deletions(-)
+ drivers/gpu/drm/i915/display/i9xx_plane.c    | 4 ++--
+ drivers/gpu/drm/i915/display/intel_display.c | 7 ++++---
+ drivers/gpu/drm/i915/i915_reg.h              | 4 ++++
+ 3 files changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-index 81ab761251ae..155c2d19a6bb 100644
---- a/drivers/gpu/drm/i915/display/intel_pch_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-@@ -166,11 +166,11 @@ static void ilk_enable_pch_transcoder(const struct intel_crtc_state *crtc_state)
- 	if ((pipeconf_val & PIPECONF_INTERLACE_MASK_ILK) == PIPECONF_INTERLACE_IF_ID_ILK) {
- 		if (HAS_PCH_IBX(dev_priv) &&
- 		    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_SDVO))
--			val |= TRANS_LEGACY_INTERLACED_ILK;
-+			val |= TRANS_INTERLACE_LEGACY_VSYNC_IBX;
- 		else
--			val |= TRANS_INTERLACED;
-+			val |= TRANS_INTERLACE_INTERLACED;
- 	} else {
--		val |= TRANS_PROGRESSIVE;
-+		val |= TRANS_INTERLACE_PROGRESSIVE;
- 	}
+diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+index 2194f74101ae..f586e39cb378 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_plane.c
++++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+@@ -1048,8 +1048,8 @@ i9xx_get_initial_plane_config(struct intel_crtc *crtc,
+ 	plane_config->base = base;
  
- 	intel_de_write(dev_priv, reg, val | TRANS_ENABLE);
-@@ -279,7 +279,8 @@ void ilk_pch_enable(struct intel_atomic_state *state,
+ 	val = intel_de_read(dev_priv, PIPESRC(pipe));
+-	fb->width = ((val >> 16) & 0xfff) + 1;
+-	fb->height = ((val >> 0) & 0xfff) + 1;
++	fb->width = REG_FIELD_GET(PIPESRC_WIDTH_MASK, val) + 1;
++	fb->height = REG_FIELD_GET(PIPESRC_HEIGHT_MASK, val) + 1;
  
- 		temp = intel_de_read(dev_priv, reg);
- 		temp &= ~(TRANS_DP_PORT_SEL_MASK |
--			  TRANS_DP_SYNC_MASK |
-+			  TRANS_DP_VSYNC_ACTIVE_HIGH |
-+			  TRANS_DP_HSYNC_ACTIVE_HIGH |
- 			  TRANS_DP_BPC_MASK);
- 		temp |= TRANS_DP_OUTPUT_ENABLE;
- 		temp |= bpc << 9; /* same format but at 11:9 */
-@@ -423,9 +424,9 @@ static void lpt_enable_pch_transcoder(struct drm_i915_private *dev_priv,
- 	pipeconf_val = intel_de_read(dev_priv, PIPECONF(cpu_transcoder));
+ 	val = intel_de_read(dev_priv, DSPSTRIDE(i9xx_plane));
+ 	fb->pitches[0] = val & 0xffffffc0;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 4e29032b29d6..e1959a17805c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -3236,7 +3236,8 @@ static void intel_set_pipe_src_size(const struct intel_crtc_state *crtc_state)
+ 	 * always be the user's requested size.
+ 	 */
+ 	intel_de_write(dev_priv, PIPESRC(pipe),
+-		       ((crtc_state->pipe_src_w - 1) << 16) | (crtc_state->pipe_src_h - 1));
++		       PIPESRC_WIDTH(crtc_state->pipe_src_w - 1) |
++		       PIPESRC_HEIGHT(crtc_state->pipe_src_h - 1));
+ }
  
- 	if ((pipeconf_val & PIPECONF_INTERLACE_MASK_HSW) == PIPECONF_INTERLACE_IF_ID_ILK)
--		val |= TRANS_INTERLACED;
-+		val |= TRANS_INTERLACE_INTERLACED;
- 	else
--		val |= TRANS_PROGRESSIVE;
-+		val |= TRANS_INTERLACE_PROGRESSIVE;
+ static bool intel_pipe_is_interlaced(const struct intel_crtc_state *crtc_state)
+@@ -3307,8 +3308,8 @@ static void intel_get_pipe_src_size(struct intel_crtc *crtc,
+ 	u32 tmp;
  
- 	intel_de_write(dev_priv, LPT_TRANSCONF, val);
- 	if (intel_de_wait_for_set(dev_priv, LPT_TRANSCONF,
+ 	tmp = intel_de_read(dev_priv, PIPESRC(crtc->pipe));
+-	pipe_config->pipe_src_h = (tmp & 0xffff) + 1;
+-	pipe_config->pipe_src_w = ((tmp >> 16) & 0xffff) + 1;
++	pipe_config->pipe_src_w = REG_FIELD_GET(PIPESRC_WIDTH_MASK, tmp) + 1;
++	pipe_config->pipe_src_h = REG_FIELD_GET(PIPESRC_HEIGHT_MASK, tmp) + 1;
+ }
+ 
+ static void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index d2d5b2fa2a4a..eea009e76e15 100644
+index eea009e76e15..211e2b415e50 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -8994,22 +8994,19 @@ enum {
- #define _PCH_TRANSBCONF              0xf1008
- #define PCH_TRANSCONF(pipe)	_MMIO_PIPE(pipe, _PCH_TRANSACONF, _PCH_TRANSBCONF)
- #define LPT_TRANSCONF		PCH_TRANSCONF(PIPE_A) /* lpt has only one transcoder */
--#define  TRANS_DISABLE          (0 << 31)
--#define  TRANS_ENABLE           (1 << 31)
--#define  TRANS_STATE_MASK       (1 << 30)
--#define  TRANS_STATE_DISABLE    (0 << 30)
--#define  TRANS_STATE_ENABLE     (1 << 30)
--#define  TRANS_FRAME_START_DELAY_MASK	(3 << 27) /* ibx */
--#define  TRANS_FRAME_START_DELAY(x)	((x) << 27) /* ibx: 0-3 */
--#define  TRANS_INTERLACE_MASK   (7 << 21)
--#define  TRANS_PROGRESSIVE      (0 << 21)
--#define  TRANS_INTERLACED       (3 << 21)
--#define  TRANS_LEGACY_INTERLACED_ILK (2 << 21)
--#define  TRANS_8BPC             (0 << 5)
--#define  TRANS_10BPC            (1 << 5)
--#define  TRANS_6BPC             (2 << 5)
--#define  TRANS_12BPC            (3 << 5)
--
-+#define  TRANS_ENABLE			REG_BIT(31)
-+#define  TRANS_STATE_ENABLE		REG_BIT(30)
-+#define  TRANS_FRAME_START_DELAY_MASK	REG_GENMASK(28, 27) /* ibx */
-+#define  TRANS_FRAME_START_DELAY(x)	REG_FIELD_PREP(TRANS_FRAME_START_DELAY_MASK, (x)) /* ibx: 0-3 */
-+#define  TRANS_INTERLACE_MASK		REG_GENMASK(23, 21)
-+#define  TRANS_INTERLACE_PROGRESSIVE	REG_FIELD_PREP(TRANS_INTERLACE_MASK, 0)
-+#define  TRANS_INTERLACE_LEGACY_VSYNC_IBX	REG_FIELD_PREP(TRANS_INTERLACE_MASK, 2) /* ibx */
-+#define  TRANS_INTERLACE_INTERLACED	REG_FIELD_PREP(TRANS_INTERLACE_MASK, 3)
-+#define  TRANS_BPC_MASK			REG_GENMASK(7, 5) /* ibx */
-+#define  TRANS_BPC_8			REG_FIELD_PREP(TRANS_BPC_MASK, 0)
-+#define  TRANS_BPC_10			REG_FIELD_PREP(TRANS_BPC_MASK, 1)
-+#define  TRANS_BPC_6			REG_FIELD_PREP(TRANS_BPC_MASK, 2)
-+#define  TRANS_BPC_12			REG_FIELD_PREP(TRANS_BPC_MASK, 3)
- #define _TRANSA_CHICKEN1	 0xf0060
- #define _TRANSB_CHICKEN1	 0xf1060
- #define TRANS_CHICKEN1(pipe)	_MMIO_PIPE(pipe, _TRANSA_CHICKEN1, _TRANSB_CHICKEN1)
-@@ -9219,22 +9216,19 @@ enum {
- #define _TRANS_DP_CTL_B		0xe1300
- #define _TRANS_DP_CTL_C		0xe2300
- #define TRANS_DP_CTL(pipe)	_MMIO_PIPE(pipe, _TRANS_DP_CTL_A, _TRANS_DP_CTL_B)
--#define  TRANS_DP_OUTPUT_ENABLE	(1 << 31)
--#define  TRANS_DP_PORT_SEL_MASK		(3 << 29)
--#define  TRANS_DP_PORT_SEL_NONE		(3 << 29)
--#define  TRANS_DP_PORT_SEL(port)	(((port) - PORT_B) << 29)
--#define  TRANS_DP_AUDIO_ONLY	(1 << 26)
--#define  TRANS_DP_ENH_FRAMING	(1 << 18)
--#define  TRANS_DP_8BPC		(0 << 9)
--#define  TRANS_DP_10BPC		(1 << 9)
--#define  TRANS_DP_6BPC		(2 << 9)
--#define  TRANS_DP_12BPC		(3 << 9)
--#define  TRANS_DP_BPC_MASK	(3 << 9)
--#define  TRANS_DP_VSYNC_ACTIVE_HIGH	(1 << 4)
--#define  TRANS_DP_VSYNC_ACTIVE_LOW	0
--#define  TRANS_DP_HSYNC_ACTIVE_HIGH	(1 << 3)
--#define  TRANS_DP_HSYNC_ACTIVE_LOW	0
--#define  TRANS_DP_SYNC_MASK	(3 << 3)
-+#define  TRANS_DP_OUTPUT_ENABLE		REG_BIT(31)
-+#define  TRANS_DP_PORT_SEL_MASK		REG_GENMASK(30, 29)
-+#define  TRANS_DP_PORT_SEL_NONE		REG_FIELD_PREP(TRANS_DP_PORT_SEL_MASK, 3)
-+#define  TRANS_DP_PORT_SEL(port)	REG_FIELD_PREP(TRANS_DP_PORT_SEL_MASK, (port) - PORT_B)
-+#define  TRANS_DP_AUDIO_ONLY		REG_BIT(26)
-+#define  TRANS_DP_ENH_FRAMING		REG_BIT(18)
-+#define  TRANS_DP_BPC_MASK		REG_GENMASK(10, 9)
-+#define  TRANS_DP_BPC_8			REG_FIELD_PREP(TRANS_DP_BPC_MASK, 0)
-+#define  TRANS_DP_BPC_10		REG_FIELD_PREP(TRANS_DP_BPC_MASK, 1)
-+#define  TRANS_DP_BPC_6			REG_FIELD_PREP(TRANS_DP_BPC_MASK, 2)
-+#define  TRANS_DP_BPC_12		REG_FIELD_PREP(TRANS_DP_BPC_MASK, 3)
-+#define  TRANS_DP_VSYNC_ACTIVE_HIGH	REG_BIT(4)
-+#define  TRANS_DP_HSYNC_ACTIVE_HIGH	REG_BIT(3)
- 
- #define _TRANS_DP2_CTL_A			0x600a0
- #define _TRANS_DP2_CTL_B			0x610a0
+@@ -4476,6 +4476,10 @@ enum {
+ #define _VSYNC_A	0x60014
+ #define _EXITLINE_A	0x60018
+ #define _PIPEASRC	0x6001c
++#define   PIPESRC_WIDTH_MASK	REG_GENMASK(31, 16)
++#define   PIPESRC_WIDTH(w)	REG_FIELD_PREP(PIPESRC_WIDTH_MASK, (w))
++#define   PIPESRC_HEIGHT_MASK	REG_GENMASK(15, 0)
++#define   PIPESRC_HEIGHT(h)	REG_FIELD_PREP(PIPESRC_HEIGHT_MASK, (h))
+ #define _BCLRPAT_A	0x60020
+ #define _VSYNCSHIFT_A	0x60028
+ #define _PIPE_MULT_A	0x6002c
 -- 
 2.32.0
 
