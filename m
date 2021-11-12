@@ -2,33 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C8EE44EC10
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Nov 2021 18:38:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8169544EC47
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Nov 2021 18:55:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11C5C6E85F;
-	Fri, 12 Nov 2021 17:38:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 105706E979;
+	Fri, 12 Nov 2021 17:54:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DBA2F6E8EC;
- Fri, 12 Nov 2021 17:38:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D2581AA0EA;
- Fri, 12 Nov 2021 17:38:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2EAC6E85F;
+ Fri, 12 Nov 2021 17:54:55 +0000 (UTC)
+Received: from gandalf.local.home (cpe-66-24-58-225.stny.res.rr.com
+ [66.24.58.225])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 6771D60EBD;
+ Fri, 12 Nov 2021 17:54:53 +0000 (UTC)
+Date: Fri, 12 Nov 2021 12:54:51 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Jason Baron <jbaron@akamai.com>
+Message-ID: <20211112125451.76b00818@gandalf.local.home>
+In-Reply-To: <cfbc074c-73a5-b6be-580b-dae398d95d6b@akamai.com>
+References: <20211111220206.121610-1-jim.cromie@gmail.com>
+ <20211111220206.121610-9-jim.cromie@gmail.com>
+ <20211112114953.GA1381@axis.com>
+ <f3914fa9-8b22-d54e-3f77-d998e74094b9@akamai.com>
+ <20211112120721.3a4827ce@gandalf.local.home>
+ <cfbc074c-73a5-b6be-580b-dae398d95d6b@akamai.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mullati Siva" <siva.mullati@intel.com>
-Date: Fri, 12 Nov 2021 17:38:37 -0000
-Message-ID: <163673871785.27230.13512696747974831363@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211112171828.21770-1-siva.mullati@intel.com>
-In-Reply-To: <20211112171828.21770-1-siva.mullati@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915=3A_Skip_remap=5Fio=5Fmapping=28=29_for_non-x86_platforms?=
- =?utf-8?q?_=28rev2=29?=
+Subject: Re: [Intel-gfx] [PATCH v10 08/10] dyndbg: add print-to-tracefs,
+ selftest with it - RFC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,25 +47,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: quic_saipraka@quicinc.com, catalin.marinas@arm.com,
+ dri-devel@lists.freedesktop.org, will@kernel.org, maz@kernel.org,
+ Vincent Whitchurch <vincent.whitchurch@axis.com>,
+ amd-gfx@lists.freedesktop.org, mingo@redhat.com, daniel.vetter@ffwll.ch,
+ arnd@arndb.de, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ seanpaul@chromium.org, intel-gvt-dev@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, Jim Cromie <jim.cromie@gmail.com>,
+ gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+ quic_psodagud@quicinc.com, mathieu.desnoyers@efficios.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 12 Nov 2021 12:32:23 -0500
+Jason Baron <jbaron@akamai.com> wrote:
 
-Series: drm/i915: Skip remap_io_mapping() for non-x86 platforms (rev2)
-URL   : https://patchwork.freedesktop.org/series/96855/
-State : warning
+> Ok, it looks like Vincent's patch defines a dyndbg event and then uses
+> 'trace_dyndbg()' to output to the 'main' log. So all dynamic output to
+> the 'main' ftrace buffer goes through that event if I understand it
+> correctly. Here's a pointer to it for reference:
+> 
+> https://lore.kernel.org/lkml/20200825153338.17061-3-vincent.whitchurch@axis.com/
+> 
+> Would you be ok with that approach?
 
-== Summary ==
+Yes that approach is fine, because it doesn't actually go to the main log
+unless you enable the dyndbg trace event in the main buffer. You could
+also enable that event in an instance and have it go there.
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
-./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
-./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Function parameter or member 'fbc' not described in 'intel_fbc_is_active'
-./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
-./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Function parameter or member 'fbc' not described in 'intel_fbc_handle_fifo_underrun_irq'
-./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
-
-
+-- Steve
