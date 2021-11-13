@@ -2,43 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5120B44F41B
-	for <lists+intel-gfx@lfdr.de>; Sat, 13 Nov 2021 17:22:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAD6744F458
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 Nov 2021 18:33:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E75572F34;
-	Sat, 13 Nov 2021 16:22:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB72D6E175;
+	Sat, 13 Nov 2021 17:33:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F202572F34
- for <intel-gfx@lists.freedesktop.org>; Sat, 13 Nov 2021 16:22:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10166"; a="213305644"
-X-IronPort-AV: E=Sophos;i="5.87,232,1631602800"; d="scan'208";a="213305644"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2021 08:22:07 -0800
-X-IronPort-AV: E=Sophos;i="5.87,232,1631602800"; d="scan'208";a="493419230"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 728E06E175
+ for <intel-gfx@lists.freedesktop.org>; Sat, 13 Nov 2021 17:33:55 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10167"; a="220484658"
+X-IronPort-AV: E=Sophos;i="5.87,232,1631602800"; d="scan'208";a="220484658"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2021 09:33:54 -0800
+X-IronPort-AV: E=Sophos;i="5.87,232,1631602800"; d="scan'208";a="505315157"
 Received: from avgutkin-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
  ([10.251.13.224])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2021 08:22:04 -0800
-Date: Sat, 13 Nov 2021 08:22:20 -0800
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2021 09:33:54 -0800
+Date: Sat, 13 Nov 2021 09:34:13 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20211113162220.zhykx4i3waqdrmxd@ldmartin-desk2>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20211113173413.d3qsmxjiztfla6t2@ldmartin-desk2>
 X-Patchwork-Hint: comment
-References: <20211111004549.144706-1-michael.cheng@intel.com>
- <20211111004549.144706-2-michael.cheng@intel.com>
- <20211113012807.GD137318@mdroper-desk1.amr.corp.intel.com>
- <20211113013146.GE137318@mdroper-desk1.amr.corp.intel.com>
- <b02449e7-d921-72f9-efef-612eb45576da@intel.com>
- <20211113014727.GG137318@mdroper-desk1.amr.corp.intel.com>
+References: <20211112171828.21770-1-siva.mullati@intel.com>
+ <87r1bl2f31.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20211113014727.GG137318@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 1/3] drm/i915: Introduce new macros for
- i915 PTE
+In-Reply-To: <87r1bl2f31.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Skip remap_io_mapping() for
+ non-x86 platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,28 +47,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michael Cheng <michael.cheng@intel.com>, wayne.boyer@intel.com,
- jani.nikula@intel.com, intel-gfx@lists.freedesktop.org, siva.mullati@intel.com
+Cc: Mullati Siva <siva.mullati@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 12, 2021 at 05:47:27PM -0800, Matt Roper wrote:
->On Fri, Nov 12, 2021 at 05:42:28PM -0800, Michael Cheng wrote:
->> Thanks for the feed back! I feel like using something name GEN6 or BYT for a
->> platform that's not GEN6 or BYT could be a bit confusing, that's why we
->> decided to go with something more generic. I do agree I need to cite the
->> bspec more. Ill wait for more feedback before I send a new revision out.
+On Sat, Nov 13, 2021 at 12:18:10AM +0200, Jani Nikula wrote:
+>On Fri, 12 Nov 2021, Mullati Siva <siva.mullati@intel.com> wrote:
+>> The _PAGE_CACHE_MASK macro is not defined in non-x86
+>> architectures and it's been used in remap_io_mapping().
+>> Only hw that supports mappable aperture would hit this path
+>> remap_io_mapping(), So skip this code for non-x86 architectures.
 >
->In general that's the pattern that i915 tries to use --- we name
->functions, macros, etc. after the first platform or generation that they
->apply to and then continue to use them on all subsequent platforms until
->the hardware changes again and we need a new version.  E.g., we're still
->calling "gen8_ppgtt_create" to create our PPGTTs on the latest
->platforms, even though we're well past gen8 at this point.
+>Patch changelog goes here.
+>
+>> Signed-off-by: Mullati Siva <siva.mullati@intel.com>
+
+Is your git config correct?
 
 
-I'd be totally ok with it if it was gen8 or gen6, but here the define is
-BYT.  But if it's only me who find strange using the BYT_ define, I'm
-fine with it.
+>> ---
+>>  drivers/gpu/drm/i915/i915_mm.c | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
+>> index 666808cb3a32..d76feeaf3fd1 100644
+>> --- a/drivers/gpu/drm/i915/i915_mm.c
+>> +++ b/drivers/gpu/drm/i915/i915_mm.c
+>> @@ -91,6 +91,7 @@ int remap_io_mapping(struct vm_area_struct *vma,
+>>  		     unsigned long addr, unsigned long pfn, unsigned long size,
+>>  		     struct io_mapping *iomap)
+>>  {
+>> +#if IS_ENABLED(CONFIG_X86)
+>
+>My feedback to the previous version was:
+>
+>Please don't add conditional compilation within functions.
+>
+>I mean it.
 
+if it's not clear, that means we should have a stub remap_io_mapping()
+in the header rather than doing the conditional compilation here.
+
+However, I'm still not confident about the approach since in DG1 for
+example we have mappable aperture. And even for the cases we don't need
+it, are you sure we never call remap_io_mapping()?  Did you add a trace
+or printk() in this function to confirm that while loading the module?
+
+Lastly, see commit b87482dfe800 ("Revert "i915: use io_mapping_map_user"")
+We had a function added in mm/io-mapping.c - io_mapping_map_user() that
+is now unused.
+
+We still want to use that api (see https://lore.kernel.org/all/20211021061839.GA27953@lst.de/so).
+So since you are touching this area, it would be good if you can help
+figure out why it was failing.
+
+thanks
 Lucas De Marchi
