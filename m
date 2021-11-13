@@ -1,40 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2FEB44F419
-	for <lists+intel-gfx@lfdr.de>; Sat, 13 Nov 2021 17:20:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5120B44F41B
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 Nov 2021 17:22:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CA1472F32;
-	Sat, 13 Nov 2021 16:20:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E75572F34;
+	Sat, 13 Nov 2021 16:22:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDF9772F32
- for <intel-gfx@lists.freedesktop.org>; Sat, 13 Nov 2021 16:19:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10166"; a="230732297"
-X-IronPort-AV: E=Sophos;i="5.87,232,1631602800"; d="scan'208";a="230732297"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2021 08:19:59 -0800
-X-IronPort-AV: E=Sophos;i="5.87,232,1631602800"; d="scan'208";a="471450018"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F202572F34
+ for <intel-gfx@lists.freedesktop.org>; Sat, 13 Nov 2021 16:22:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10166"; a="213305644"
+X-IronPort-AV: E=Sophos;i="5.87,232,1631602800"; d="scan'208";a="213305644"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2021 08:22:07 -0800
+X-IronPort-AV: E=Sophos;i="5.87,232,1631602800"; d="scan'208";a="493419230"
 Received: from avgutkin-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
  ([10.251.13.224])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2021 08:19:58 -0800
-Date: Sat, 13 Nov 2021 08:20:14 -0800
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2021 08:22:04 -0800
+Date: Sat, 13 Nov 2021 08:22:20 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20211113162014.bnypj7vgnm3hddpd@ldmartin-desk2>
+Message-ID: <20211113162220.zhykx4i3waqdrmxd@ldmartin-desk2>
 X-Patchwork-Hint: comment
 References: <20211111004549.144706-1-michael.cheng@intel.com>
  <20211111004549.144706-2-michael.cheng@intel.com>
  <20211113012807.GD137318@mdroper-desk1.amr.corp.intel.com>
  <20211113013146.GE137318@mdroper-desk1.amr.corp.intel.com>
+ <b02449e7-d921-72f9-efef-612eb45576da@intel.com>
+ <20211113014727.GG137318@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20211113013146.GE137318@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20211113014727.GG137318@mdroper-desk1.amr.corp.intel.com>
 Subject: Re: [Intel-gfx] [PATCH v4 1/3] drm/i915: Introduce new macros for
  i915 PTE
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -54,41 +56,23 @@ Cc: Michael Cheng <michael.cheng@intel.com>, wayne.boyer@intel.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 12, 2021 at 05:31:46PM -0800, Matt Roper wrote:
->On Fri, Nov 12, 2021 at 05:28:09PM -0800, Matt Roper wrote:
->> On Wed, Nov 10, 2021 at 04:45:47PM -0800, Michael Cheng wrote:
->> > Certain functions within i915 uses macros that are defined for
->> > specific architectures by the mmu, such as _PAGE_RW and _PAGE_PRESENT
->> > (Some architectures don't even have these macros defined, like ARM64).
->> >
->> > Instead of re-using bits defined for the CPU, we should use bits
->> > defined for i915. This patch introduces two new macros,
->> > I915_PAGE_PRESENT and I915_PAGE_RW, to check for bits 0 and 1 and, to
->> > replace all occurrences of _PAGE_RW and _PAGE_PRESENT within i915.
->>
->> On older platforms we already had our own definition of GEN6_PTE_VALID
->> (the spec uses "present" and "valid" interchangeably) which we were
->> using to encode our ggtt ptes up through HSW; it might be better to go
->> back to using that rather than adding a new define.
->>
->> It looks like BYT is when the writable bit showed up, and we did add a
->> new define there (BYT_PTE_WRITEABLE), but on the next platform (BDW) we
->> switched over to using the CPU page table flags instead and never used
->> it again.  So we could probably replace _PAGE_RW with BYT_PTE_WRITEABLE
->> as well.
+On Fri, Nov 12, 2021 at 05:47:27PM -0800, Matt Roper wrote:
+>On Fri, Nov 12, 2021 at 05:42:28PM -0800, Michael Cheng wrote:
+>> Thanks for the feed back! I feel like using something name GEN6 or BYT for a
+>> platform that's not GEN6 or BYT could be a bit confusing, that's why we
+>> decided to go with something more generic. I do agree I need to cite the
+>> bspec more. Ill wait for more feedback before I send a new revision out.
 >
->Okay, I should have looked at the rest of the series before reviewing
->the first patch; it looks like your next two patches replace
->GEN6_PTE_VALID and BYT_PTE_WRITEABLE with the new definitions here.  I
->still think it might be preferable to reuse the existing macros (which
->also help clarify the platforms that those bits first showed up in the
->PTE on) rather than replacing them with new macros, but I don't feel
->super strongly about it if other reviewers feel differently.
+>In general that's the pattern that i915 tries to use --- we name
+>functions, macros, etc. after the first platform or generation that they
+>apply to and then continue to use them on all subsequent platforms until
+>the hardware changes again and we need a new version.  E.g., we're still
+>calling "gen8_ppgtt_create" to create our PPGTTs on the latest
+>platforms, even though we're well past gen8 at this point.
 
-I think it deserves a I915_ particularly because of the RW definition.
-To me it's always suspicious when code spanning for several platforms
-use a definition for BYT or CHV, because those are usually the one that
-deviates from the norm, not the ones that dictate new behavior going
-forward.
+
+I'd be totally ok with it if it was gen8 or gen6, but here the define is
+BYT.  But if it's only me who find strange using the BYT_ define, I'm
+fine with it.
 
 Lucas De Marchi
