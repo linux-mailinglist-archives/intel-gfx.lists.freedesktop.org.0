@@ -2,43 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CF9E4504AD
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Nov 2021 13:44:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 987244504B2
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Nov 2021 13:45:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DC506EC6D;
-	Mon, 15 Nov 2021 12:44:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55DD66ECDF;
+	Mon, 15 Nov 2021 12:45:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A38FF6EC69;
- Mon, 15 Nov 2021 12:44:49 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10168"; a="214154360"
-X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="214154360"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2021 04:44:49 -0800
-X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="454012443"
-Received: from ldyrga-mobl1.ger.corp.intel.com (HELO [10.249.254.10])
- ([10.249.254.10])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2021 04:44:47 -0800
-Message-ID: <df4eb5b5-d49f-c30a-1143-0c447caa2948@linux.intel.com>
-Date: Mon, 15 Nov 2021 13:44:46 +0100
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A89E06ECDB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Nov 2021 12:45:41 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10168"; a="319641873"
+X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="319641873"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2021 04:45:41 -0800
+X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="671494173"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2021 04:45:39 -0800
+Date: Mon, 15 Nov 2021 14:45:36 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20211115124536.GB117099@ideak-desk.fi.intel.com>
+References: <20211112190904.62920-1-imre.deak@intel.com>
+ <YY7ZTAMj/VKorHJH@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20211114111218.623138-1-thomas.hellstrom@linux.intel.com>
- <20211114111218.623138-2-thomas.hellstrom@linux.intel.com>
- <bc238bbf-a4df-7b97-ba18-d6c5cc93827e@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <bc238bbf-a4df-7b97-ba18-d6c5cc93827e@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 1/6] drm/i915: Add functions to set/get
- moving fence
+In-Reply-To: <YY7ZTAMj/VKorHJH@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix fastsets on TypeC ports
+ following a non-blocking modeset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,57 +46,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, Nov 12, 2021 at 11:14:52PM +0200, Ville Syrj�l� wrote:
+> On Fri, Nov 12, 2021 at 09:09:04PM +0200, Imre Deak wrote:
+> > After a non-blocking modeset on a TypeC port's CRTC - possibly blocked
+> > later in drm_atomic_helper_wait_for_dependencies() - a fastset on the
+> > same CRTC may copy the state of CRTC before this gets updated to reflect
+> > the up-to-date DP-alt vs. TBT-alt TypeC mode DPLL used for the CRTC. In
+> > this case after the first (non-blocking) commit completes enabling the
+> > DPLL required for the up-to-date TypeC mode the following fastset will
+> > update the CRTC state pointing to the wrong DPLL. A subsequent disabling
+> > modeset will try to disable the wrong PLL, triggering a state checker
+> > WARN (and leaving the DPLL which is actually used active for good).
+> > 
+> > Fix the above race by copying the DPLL state for fastset CRTCs from the
+> > old CRTC state at the point where it's guaranteed to be up-to-date
+> > already. This could be handled in the encoder's update_prepare() hook as
+> > well, but that's a bigger change, which is better done as a follow-up.
+> > 
+> > Testcase: igt/kms_busy/extended-modeset-hang-newfb-with-reset
+> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4308
+> > Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> 
+> This is getting a bit unpleasant.
 
-On 11/15/21 13:39, Matthew Auld wrote:
-> On 14/11/2021 11:12, Thomas Hellström wrote:
->> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>
->> We want to get rid of i915_vma tracking to simplify the code and
->> lifetimes. Add a way to set/put the moving fence, in preparation for
->> removing the tracking.
->>
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_object.c | 37 ++++++++++++++++++++++
->>   drivers/gpu/drm/i915/gem/i915_gem_object.h |  9 ++++++
->>   2 files changed, 46 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> index 591ee3cb7275..ec4313836597 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> @@ -33,6 +33,7 @@
->>   #include "i915_gem_object.h"
->>   #include "i915_memcpy.h"
->>   #include "i915_trace.h"
->> +#include "i915_gem_ttm.h"
->>     static struct kmem_cache *slab_objects;
->>   @@ -726,6 +727,42 @@ static const struct drm_gem_object_funcs 
->> i915_gem_object_funcs = {
->>       .export = i915_gem_prime_export,
->>   };
->>   +struct dma_fence *
->> +i915_gem_object_get_moving_fence(struct drm_i915_gem_object *obj)
->> +{
->> +    return dma_fence_get(i915_gem_to_ttm(obj)->moving);
->> +}
->> +
->> +void i915_gem_object_set_moving_fence(struct drm_i915_gem_object *obj,
->> +                      struct dma_fence *fence)
->> +{
->> +    dma_fence_put(i915_gem_to_ttm(obj)->moving);
->> +
->> +    i915_gem_to_ttm(obj)->moving = dma_fence_get(fence);
->> +}
->
-> Are these also assert_object_held()? Should we maybe squash this patch 
-> with the first user?
+Thanks for looking into this. Yes, special casing the fastset case and
+copying from the old crtc state is odd. I don't see a problem with it
+though, so is it acceptable as a minimal fix until a proper solution?
 
-Yes these are also assert_object_held(). We could probably squash these, 
-yes.
+> Maybe we should just get rid of shared_dpll entirely and track the
+> currently active pll entirely elsewhere, I guess maybe in intel_crtc?
+> That would at least make it a bit more clear that it's no longer your
+> normal pre-computed state thing.
 
+I also considered this initially (using intel_digital_port::tc_mode),
+but there were arguments against storing state in DRM objects. I agree
+that keeping crtc_state intact after pre-computing it and tracking more
+dynamic state in intel_crtc (akin to intel_crtc::active for instance)
+is the proper way, I can look into this as a follow-up.
 
+> Though that would have some implications for state readout, so might
+> turn a bit hairy as well.  Dunno.
+
+AFAICS, icl_port_dplls would still remain in intel_crtc_state - checked
+by intel_pipe_config_compare() - and
+intel_crtc_state::shared_dpll/dpll_hw_state could be moved to intel_crtc
+(as a pointer/index to icl_port_dplls), which would be checked in
+verify_crtc_state()/verify_shared_dpll_state().
+
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 25 ++++++++++++++++----
+> >  1 file changed, 20 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 0ceee8ac66717..76ebb3c91a75b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -1572,10 +1572,24 @@ intel_connector_primary_encoder(struct intel_connector *connector)
+> >  
+> >  static void intel_encoders_update_prepare(struct intel_atomic_state *state)
+> >  {
+> > +	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+> > +	struct intel_crtc *crtc;
+> >  	struct drm_connector_state *new_conn_state;
+> >  	struct drm_connector *connector;
+> >  	int i;
+> >  
+> > +	/*
+> > +	 * Make sure the DPLL state is up-to-date for fastset TypeC ports after non-blocking commits.
+> > +	 * TODO: Update the DPLL state for all cases in the encoder->update_prepare() hook.
+> > +	 */
+> > +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+> > +		if (!intel_crtc_needs_modeset(new_crtc_state))
+> > +			new_crtc_state->shared_dpll = old_crtc_state->shared_dpll;
+> > +	}
+> 
+> Don't we want to copy the pll state as well?
+
+Yes, forgot about that. (I don't think it's used anywhere after having
+enabled the PLL and having checked its state, but needs to be copied for
+consistency.)
+
+We'd also need
+BUG_ON(sizeof(crtc_state->dpll_hw_state) < sizeof(crtc_state->mpllb_state));
+at places where this is assumed, and eventually make mpllb_state part of
+dpll_hw_state (maybe changing dpll_hw_state to be a union of per-platform
+dpll state structs?).
+
+> > +
+> > +	if (!state->modeset)
+> > +		return;
+> > +
+> >  	for_each_new_connector_in_state(&state->base, connector, new_conn_state,
+> >  					i) {
+> >  		struct intel_connector *intel_connector;
+> > @@ -1602,6 +1616,9 @@ static void intel_encoders_update_complete(struct intel_atomic_state *state)
+> >  	struct drm_connector *connector;
+> >  	int i;
+> >  
+> > +	if (!state->modeset)
+> > +		return;
+> > +
+> >  	for_each_new_connector_in_state(&state->base, connector, new_conn_state,
+> >  					i) {
+> >  		struct intel_connector *intel_connector;
+> > @@ -8670,8 +8687,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+> >  		}
+> >  	}
+> >  
+> > -	if (state->modeset)
+> > -		intel_encoders_update_prepare(state);
+> > +	intel_encoders_update_prepare(state);
+> >  
+> >  	intel_dbuf_pre_plane_update(state);
+> >  
+> > @@ -8683,11 +8699,10 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+> >  	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
+> >  	dev_priv->display->commit_modeset_enables(state);
+> >  
+> > -	if (state->modeset) {
+> > -		intel_encoders_update_complete(state);
+> > +	intel_encoders_update_complete(state);
+> >  
+> > +	if (state->modeset)
+> >  		intel_set_cdclk_post_plane_update(state);
+> > -	}
+> >  
+> >  	intel_wait_for_vblank_workers(state);
+> >  
+> > -- 
+> > 2.27.0
+> 
+> -- 
+> Ville Syrj�l�
+> Intel
