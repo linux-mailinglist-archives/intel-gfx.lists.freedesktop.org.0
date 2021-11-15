@@ -1,40 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE024450BBA
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Nov 2021 18:26:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45707450BC9
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Nov 2021 18:27:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 821CC6EE54;
-	Mon, 15 Nov 2021 17:26:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 809C86EE2A;
+	Mon, 15 Nov 2021 17:27:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C11E6EE2A;
- Mon, 15 Nov 2021 17:26:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10169"; a="319697811"
-X-IronPort-AV: E=Sophos;i="5.87,237,1631602800"; d="scan'208";a="319697811"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2021 09:26:39 -0800
-X-IronPort-AV: E=Sophos;i="5.87,237,1631602800"; d="scan'208";a="506012232"
-Received: from csrini4x-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.218.37])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2021 09:26:36 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <87lf1p1nko.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1636977089.git.jani.nikula@intel.com>
- <87y25p1vm3.fsf@intel.com> <YZJvSyQCgWZA1lcb@phenom.ffwll.local>
- <87lf1p1nko.fsf@intel.com>
-Date: Mon, 15 Nov 2021 19:26:34 +0200
-Message-ID: <87ilwt1gad.fsf@intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A597C6EE61
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Nov 2021 17:27:04 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10169"; a="220375427"
+X-IronPort-AV: E=Sophos;i="5.87,237,1631602800"; d="scan'208";a="220375427"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2021 09:27:04 -0800
+X-IronPort-AV: E=Sophos;i="5.87,237,1631602800"; d="scan'208";a="454105269"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2021 09:27:03 -0800
+Date: Mon, 15 Nov 2021 19:26:59 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20211115172659.GD117099@ideak-desk.fi.intel.com>
+References: <20211112190904.62920-1-imre.deak@intel.com>
+ <YY7ZTAMj/VKorHJH@intel.com>
+ <20211115124536.GB117099@ideak-desk.fi.intel.com>
+ <YZJ/EoqyKMJUny3h@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 0/3] drm/i915,
- agp/intel-ggt: clean up includes
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YZJ/EoqyKMJUny3h@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix fastsets on TypeC ports
+ following a non-blocking modeset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,68 +48,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 15 Nov 2021, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Mon, 15 Nov 2021, Daniel Vetter <daniel@ffwll.ch> wrote:
->> On Mon, Nov 15, 2021 at 01:55:32PM +0200, Jani Nikula wrote:
->>> On Mon, 15 Nov 2021, Jani Nikula <jani.nikula@intel.com> wrote:
->>> > Took Andy's patch [1] and expanded on it a bit.
->>> >
->>> > BR,
->>> > Jani.
->>> >
->>> >
->>> > [1] https://patchwork.freedesktop.org/patch/msgid/20211110102857.59604-1-andriy.shevchenko@linux.intel.com
->>> >
->>> > Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
->>> >
->>> > Andy Shevchenko (1):
->>> >   agp/intel-gtt: Replace kernel.h with the necessary inclusions
->>> 
->>> Forgot to mention, I replaced the drm/i915 prefix with agp/intel-gtt
->>> here, no other changes to Andy's patch.
->>
->> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->>
->> Also feel free to push through drm-intel.git just in case you wondered
->> about that.
->
-> Thanks; that's what I was planning on doing anyway. ;)
+On Mon, Nov 15, 2021 at 05:38:58PM +0200, Ville Syrjälä wrote:
+> On Mon, Nov 15, 2021 at 02:45:36PM +0200, Imre Deak wrote:
+> > On Fri, Nov 12, 2021 at 11:14:52PM +0200, Ville Syrjälä wrote:
+> > > On Fri, Nov 12, 2021 at 09:09:04PM +0200, Imre Deak wrote:
+> > > > After a non-blocking modeset on a TypeC port's CRTC - possibly blocked
+> > > > later in drm_atomic_helper_wait_for_dependencies() - a fastset on the
+> > > > same CRTC may copy the state of CRTC before this gets updated to reflect
+> > > > the up-to-date DP-alt vs. TBT-alt TypeC mode DPLL used for the CRTC. In
+> > > > this case after the first (non-blocking) commit completes enabling the
+> > > > DPLL required for the up-to-date TypeC mode the following fastset will
+> > > > update the CRTC state pointing to the wrong DPLL. A subsequent disabling
+> > > > modeset will try to disable the wrong PLL, triggering a state checker
+> > > > WARN (and leaving the DPLL which is actually used active for good).
+> > > > 
+> > > > Fix the above race by copying the DPLL state for fastset CRTCs from the
+> > > > old CRTC state at the point where it's guaranteed to be up-to-date
+> > > > already. This could be handled in the encoder's update_prepare() hook as
+> > > > well, but that's a bigger change, which is better done as a follow-up.
+> > > > 
+> > > > Testcase: igt/kms_busy/extended-modeset-hang-newfb-with-reset
+> > > > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4308
+> > > > Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > 
+> > > This is getting a bit unpleasant.
+> > 
+> > Thanks for looking into this. Yes, special casing the fastset case and
+> > copying from the old crtc state is odd. I don't see a problem with it
+> > though, so is it acceptable as a minimal fix until a proper solution?
+> > 
+> > > Maybe we should just get rid of shared_dpll entirely and track the
+> > > currently active pll entirely elsewhere, I guess maybe in intel_crtc?
+> > > That would at least make it a bit more clear that it's no longer your
+> > > normal pre-computed state thing.
+> > 
+> > I also considered this initially (using intel_digital_port::tc_mode),
+> > but there were arguments against storing state in DRM objects. I agree
+> > that keeping crtc_state intact after pre-computing it and tracking more
+> > dynamic state in intel_crtc (akin to intel_crtc::active for instance)
+> > is the proper way, I can look into this as a follow-up.
+> > 
+> > > Though that would have some implications for state readout, so might
+> > > turn a bit hairy as well.  Dunno.
+> > 
+> > AFAICS, icl_port_dplls would still remain in intel_crtc_state - checked
+> > by intel_pipe_config_compare() - and
+> > intel_crtc_state::shared_dpll/dpll_hw_state could be moved to intel_crtc
+> > (as a pointer/index to icl_port_dplls), which would be checked in
+> > verify_crtc_state()/verify_shared_dpll_state().
+> 
+> Well, the issue is that during readout we don't want to clobber the
+> stuff stored under intel_crtc. So that would need its own special step
+> during the initial state readout, and perhaps some kind of extra sanity
+> check in the state checker. So could turn out far more annoying than the
+> current method.
 
-And pushed to drm-intel-next, thanks for the patch, acks and reviews.
+The only additional thing the state checker would need is the active
+port_pll index. We could also add a valid flag to struct port_dpll
+and have intel_pipe_config_compare() etc., check only the valid port
+PLLs (so the new intel_crtc::active_port_pll index would be only
+set/used by the modesetting code, but not by the state checker).
 
-BR,
-Jani.
+> Though we could perhaps make the current thing a bit less confusing by
+> always using the port_pll[] stuff on every platform, and just change
+> the current shared_pll to point at the selected port_pll[] instead.
+> That would also shrink the crtc state a bit by removing one redundant
+> pll state.
 
+Sounds ok too, but that would mean keeping the intel_crtc_state
+overwriting in this patch (if only for the shared_pll pointer).
 
->
-> BR,
-> Jani.
->
->
->
->> -Daniel
->>
->>> 
->>> >
->>> > Jani Nikula (2):
->>> >   drm/i915: include intel-gtt.h only where needed
->>> >   agp/intel-gtt: reduce intel-gtt dependencies more
->>> >
->>> >  drivers/char/agp/intel-gtt.c         | 1 +
->>> >  drivers/gpu/drm/i915/gt/intel_ggtt.c | 2 ++
->>> >  drivers/gpu/drm/i915/gt/intel_gt.c   | 2 ++
->>> >  drivers/gpu/drm/i915/i915_drv.h      | 1 -
->>> >  include/drm/intel-gtt.h              | 8 +++++---
->>> >  5 files changed, 10 insertions(+), 4 deletions(-)
->>> 
->>> -- 
->>> Jani Nikula, Intel Open Source Graphics Center
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_display.c | 25 ++++++++++++++++----
+> > > >  1 file changed, 20 insertions(+), 5 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > index 0ceee8ac66717..76ebb3c91a75b 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > @@ -1572,10 +1572,24 @@ intel_connector_primary_encoder(struct intel_connector *connector)
+> > > >  
+> > > >  static void intel_encoders_update_prepare(struct intel_atomic_state *state)
+> > > >  {
+> > > > +	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+> > > > +	struct intel_crtc *crtc;
+> > > >  	struct drm_connector_state *new_conn_state;
+> > > >  	struct drm_connector *connector;
+> > > >  	int i;
+> > > >  
+> > > > +	/*
+> > > > +	 * Make sure the DPLL state is up-to-date for fastset TypeC ports after non-blocking commits.
+> > > > +	 * TODO: Update the DPLL state for all cases in the encoder->update_prepare() hook.
+> > > > +	 */
+> > > > +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+> > > > +		if (!intel_crtc_needs_modeset(new_crtc_state))
+> > > > +			new_crtc_state->shared_dpll = old_crtc_state->shared_dpll;
+> > > > +	}
+> > > 
+> > > Don't we want to copy the pll state as well?
+> > 
+> > Yes, forgot about that. (I don't think it's used anywhere after having
+> > enabled the PLL and having checked its state, but needs to be copied for
+> > consistency.)
+> > 
+> > We'd also need
+> > BUG_ON(sizeof(crtc_state->dpll_hw_state) < sizeof(crtc_state->mpllb_state));
+> > at places where this is assumed,
+> 
+> Or just not do the copy if shared_pll (or maybe dpll_mgr?) is NULL?
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Checking again, mpllb_state seems to be needed for the state checker
+crtc_state->update_pipe case to work (and for fastsets on DG2, though
+intel_pipe_config_compare() still lacks the check for that). So imo we
+should always copy dpll_hw_state/mpllb_state here (maybe have a helper
+and use it also in
+copy_bigjoiner_crtc_state()/intel_crtc_prepare_cleared_state()).
+
+> > and eventually make mpllb_state part of
+> > dpll_hw_state (maybe changing dpll_hw_state to be a union of per-platform
+> > dpll state structs?).
+> 
+> Yeah, the current mpllb stuff is quite annoying. Should just convert
+> it work like all the other PLLs on modern platforms to get rid of
+> all the special casing.
+> 
+> -- 
+> Ville Syrjälä
+> Intel
