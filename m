@@ -1,33 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11AE945099F
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Nov 2021 17:28:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D17164509A2
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Nov 2021 17:30:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EAFB6E1AA;
-	Mon, 15 Nov 2021 16:28:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5139C6E221;
+	Mon, 15 Nov 2021 16:30:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AF4186E170;
- Mon, 15 Nov 2021 16:28:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A674BAA0EA;
- Mon, 15 Nov 2021 16:28:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F4756E170;
+ Mon, 15 Nov 2021 16:30:05 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10169"; a="233717418"
+X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="233717418"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2021 08:30:04 -0800
+X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="453874044"
+Received: from mvaradha-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.108.39])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2021 08:30:04 -0800
+Date: Mon, 15 Nov 2021 08:30:03 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20211115163003.cilfnli4ovavsoml@ldmartin-desk2>
+References: <cover.1636977089.git.jani.nikula@intel.com>
+ <034f57db24d6936ac2e4e6830261d791240cdd79.1636977089.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tilak Tangudu" <tilak.tangudu@intel.com>
-Date: Mon, 15 Nov 2021 16:28:37 -0000
-Message-ID: <163699371767.2946.366214333137530812@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211115154054.3220476-1-tilak.tangudu@intel.com>
-In-Reply-To: <20211115154054.3220476-1-tilak.tangudu@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915=3A_Disable_D3Cold_in_s2idle_and_runtime_pm?=
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <034f57db24d6936ac2e4e6830261d791240cdd79.1636977089.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: include intel-gtt.h only
+ where needed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,25 +46,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: Disable D3Cold in s2idle and runtime pm
-URL   : https://patchwork.freedesktop.org/series/96914/
-State : warning
-
-== Summary ==
-
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
-./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
-./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Function parameter or member 'fbc' not described in 'intel_fbc_is_active'
-./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
-./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Function parameter or member 'fbc' not described in 'intel_fbc_handle_fifo_underrun_irq'
-./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
+On Mon, Nov 15, 2021 at 01:53:11PM +0200, Jani Nikula wrote:
+>Only intel_gt.c and intel_ggtt.c need the interface.
+>
+>Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Lucas De Marchi
