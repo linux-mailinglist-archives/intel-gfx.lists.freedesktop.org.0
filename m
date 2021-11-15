@@ -1,43 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E20F2450B11
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Nov 2021 18:16:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D960B450B54
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Nov 2021 18:18:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5C316EB79;
-	Mon, 15 Nov 2021 17:16:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E6246EE31;
+	Mon, 15 Nov 2021 17:18:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 168476EB6E;
- Mon, 15 Nov 2021 17:16:15 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10169"; a="220694159"
-X-IronPort-AV: E=Sophos;i="5.87,237,1631602800"; d="scan'208";a="220694159"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2021 09:16:14 -0800
-X-IronPort-AV: E=Sophos;i="5.87,237,1631602800"; d="scan'208";a="566516546"
-Received: from jmegan-mobl.ger.corp.intel.com (HELO [10.252.8.73])
- ([10.252.8.73])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2021 09:16:12 -0800
-Message-ID: <12fa8629-d05f-908c-d127-5fe53bc45c1d@intel.com>
-Date: Mon, 15 Nov 2021 17:16:08 +0000
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88C5F6EE31
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Nov 2021 17:18:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10169"; a="230945274"
+X-IronPort-AV: E=Sophos;i="5.87,237,1631602800"; d="scan'208";a="230945274"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2021 09:18:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,237,1631602800"; d="scan'208";a="506008705"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga008.jf.intel.com with SMTP; 15 Nov 2021 09:18:47 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 15 Nov 2021 19:18:46 +0200
+Date: Mon, 15 Nov 2021 19:18:46 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <YZKWdl3Hy0Mrf5IA@intel.com>
+References: <20211102193214.99448-1-jose.souza@intel.com>
+ <YYPpysij7Oovwzhx@intel.com>
+ <50dd687c006667f95dab06cfbcfbef8a6e193496.camel@intel.com>
+ <YYU1u4fu75vdK1PT@intel.com>
+ <38902e7a71287702db079f0c0ca5c35eabafa4b4.camel@intel.com>
+ <YYVwCOe/xyeOlTSZ@intel.com>
+ <8cd6252fca125547e6d7bd926106e13569b33521.camel@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Content-Language: en-GB
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20211114111218.623138-1-thomas.hellstrom@linux.intel.com>
- <20211114111218.623138-6-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20211114111218.623138-6-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 5/6] drm/i915/ttm: Implement asynchronous
- TTM moves
+In-Reply-To: <8cd6252fca125547e6d7bd926106e13569b33521.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: Exit PSR when doing
+ async flips
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,557 +54,250 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 14/11/2021 11:12, Thomas HellstrÃ¶m wrote:
-> Don't wait sync while migrating, but rather make the GPU blit await the
-> dependencies and add a moving fence to the object.
+On Tue, Nov 09, 2021 at 07:13:34PM +0000, Souza, Jose wrote:
+> On Fri, 2021-11-05 at 19:55 +0200, Ville Syrjälä wrote:
+> > On Fri, Nov 05, 2021 at 05:44:21PM +0000, Souza, Jose wrote:
+> > > On Fri, 2021-11-05 at 15:46 +0200, Ville Syrjälä wrote:
+> > > > On Thu, Nov 04, 2021 at 05:56:52PM +0000, Souza, Jose wrote:
+> > > > > On Thu, 2021-11-04 at 16:10 +0200, Ville Syrjälä wrote:
+> > > > > > On Tue, Nov 02, 2021 at 12:32:14PM -0700, José Roberto de Souza wrote:
+> > > > > > > Changing the buffer in the middle of the scanout then entering an
+> > > > > > > period of flip idleness will cause part of the previous buffer being
+> > > > > > > diplayed to user when PSR is enabled.
+> > > > > > > 
+> > > > > > > So here disabling PSR and scheduling activation during the next
+> > > > > > > sync flip.
+> > > > > > > 
+> > > > > > > The async flip check that we had in PSR compute is not executed at
+> > > > > > > every flip so it was not doing anything useful and is also being
+> > > > > > > dropped here.
+> > > > > > > 
+> > > > > > > v2:
+> > > > > > > - scheduling the PSR work in _intel_psr_post_plane_update()
+> > > > > > > 
+> > > > > > > v3:
+> > > > > > > - only re enabling PSR when doing a sync flip
+> > > > > > > 
+> > > > > > > Cc: Karthik B S <karthik.b.s@intel.com>
+> > > > > > > Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> > > > > > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > > > > Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> > > > > > > ---
+> > > > > > >  drivers/gpu/drm/i915/display/intel_psr.c | 37 ++++++++++++++----------
+> > > > > > >  1 file changed, 21 insertions(+), 16 deletions(-)
+> > > > > > > 
+> > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> > > > > > > index 9d589d471e335..b8fac53d57df1 100644
+> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> > > > > > > @@ -731,12 +731,6 @@ static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
+> > > > > > >  		return false;
+> > > > > > >  	}
+> > > > > > >  
+> > > > > > > -	if (crtc_state->uapi.async_flip) {
+> > > > > > > -		drm_dbg_kms(&dev_priv->drm,
+> > > > > > > -			    "PSR2 sel fetch not enabled, async flip enabled\n");
+> > > > > > > -		return false;
+> > > > > > > -	}
+> > > > > > > -
+> > > > > > >  	/* Wa_14010254185 Wa_14010103792 */
+> > > > > > >  	if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0)) {
+> > > > > > >  		drm_dbg_kms(&dev_priv->drm,
+> > > > > > > @@ -1780,36 +1774,47 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
+> > > > > > >  		if (psr->enabled && needs_to_disable)
+> > > > > > >  			intel_psr_disable_locked(intel_dp);
+> > > > > > >  
+> > > > > > > +		if (psr->enabled && crtc_state->uapi.async_flip)
+> > > > > > > +			intel_psr_exit(intel_dp);
+> > > > > > > +
+> > > > > > >  		mutex_unlock(&psr->lock);
+> > > > > > >  	}
+> > > > > > >  }
+> > > > > > >  
+> > > > > > >  static void _intel_psr_post_plane_update(const struct intel_atomic_state *state,
+> > > > > > > -					 const struct intel_crtc_state *crtc_state)
+> > > > > > > +					 const struct intel_crtc_state *old_crtc_state,
+> > > > > > > +					 const struct intel_crtc_state *new_crtc_state)
+> > > > > > 
+> > > > > > Might make sense to change this to match how psr_pre_plane_update()
+> > > > > > works these days.
+> > > > > 
+> > > > > Will do as follow up.
+> > > > > 
+> > > > > > 
+> > > > > > >  {
+> > > > > > >  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > > > > > >  	struct intel_encoder *encoder;
+> > > > > > >  
+> > > > > > > -	if (!crtc_state->has_psr)
+> > > > > > > +	if (!new_crtc_state->has_psr)
+> > > > > > >  		return;
+> > > > > > >  
+> > > > > > >  	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
+> > > > > > > -					     crtc_state->uapi.encoder_mask) {
+> > > > > > > +					     new_crtc_state->uapi.encoder_mask) {
+> > > > > > >  		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> > > > > > >  		struct intel_psr *psr = &intel_dp->psr;
+> > > > > > >  
+> > > > > > >  		mutex_lock(&psr->lock);
+> > > > > > >  
+> > > > > > > -		drm_WARN_ON(&dev_priv->drm, psr->enabled && !crtc_state->active_planes);
+> > > > > > > +		drm_WARN_ON(&dev_priv->drm, psr->enabled &&
+> > > > > > > +			    !new_crtc_state->active_planes);
+> > > > > > >  
+> > > > > > >  		/* Only enable if there is active planes */
+> > > > > > > -		if (!psr->enabled && crtc_state->active_planes)
+> > > > > > > -			intel_psr_enable_locked(intel_dp, crtc_state);
+> > > > > > > +		if (!psr->enabled && new_crtc_state->active_planes)
+> > > > > > > +			intel_psr_enable_locked(intel_dp, new_crtc_state);
+> > > > > > 
+> > > > > > What prevents this guy from activating PSR while we're doing
+> > > > > > an async flip?
+> > > > > 
+> > > > > enabled != active, when doing a async flip it will set active = false but enabled will be kept on.
+> > > > 
+> > > > intel_psr_enable_locked() calls intel_psr_activate() uncoditionally.
+> > > > There is no active=false thing anywhere that I can see.
+> > > > 
+> > > > > 
+> > > > > And to change the number of active_planes it will need to do a sync flip, so we are safe.
+> > > > 
+> > > > Why would the number of active planes need to change for this
+> > > > to get called?
+> > > 
+> > > If CRTC is left on but the number of planes goes to 0, PSR is disabled.
+> > > Then it is enabled again if the number of planes goes to 1 or more.
+> > > 
+> > > > 
+> > > > I guess maybe there's some reason why this can't happen but it is
+> > > > entirely non-obvious when reading this code. Also seems pretty
+> > > > fragile if some other code now changes and suddenly causes this
+> > > > to get called. In fact from the looks of things the only thing
+> > > > needed would be for someone to call intel_psr_disable_locked()
+> > > > so that psr->enabled gets cleared.
+> > > 
+> > > If someone calls intel_psr_disable_locked() then in the next flip the code above will indeed enable it again but as PSR takes at least 2 frames to
+> > > actually activate after registers are programmed, we are safe. (see PSR2 EDP_PSR2_FRAME_BEFORE_SU and PSR1 psr_compute_idle_frames())
+> > > 
+> > > Then on the next async flip, it will exited again and active set to false.
+> > > 
+> > > > 
+> > > > I might suggest adding crtc_state->psr_active or soemthing along
+> > > > those lines to make it obvious when we want to have psr logically
+> > > > enabled, but actually inactive.
+> > > 
+> > > Because of the invalidate frontbuffer rendering cases, we can't keep PSR status in atomic state.
+> > 
+> > Not fully. But it shouldn't prevent us from having something there as
+> > well. So if crtc_state says to not activate PSR then don't, otherwise
+> > let it activate/deactive as needed based on frontbuffer activity.
+> > 
+> > ATM it seems to be kind of ad-hoc when we fully disable vs. just
+> > deactivate PSR. Dunno how feasible it would be to make that either:
+> > a) logically enable/disable PSR only during full modesets, and
+> >    otherwise just activate/deactivate as needed whether it be due to
+> >    stuff we can calculate based on crtc_state (eg. active_planes or
+> >    async_flip) or frontbuffer activity
+> > or
+> > b) always logically enable/disable PSR based on stuff we can calculate
+> >    from the crtc state, and leave the activate/deactivate stuff to only
+> >    frontbuffer rendering activity
+> > 
 > 
-> This also enables asynchronous VRAM management in that on eviction,
-> rather than waiting for the moving fence to expire before freeing VRAM,
-> it is freed immediately and the fence is stored with the VRAM manager and
-> handed out to newly allocated objects to await before clears and swapins,
-> or for kernel objects before setting up gpu vmas or mapping.
+> Something like this for a)?
 > 
-> To collect dependencies before migrating, add a set of utilities that
-> coalesce these to a single dma_fence.
 > 
-> What is still missing for fully asynchronous operation is asynchronous vma
-> unbinding, which is still to be implemented.
+> void intel_psr_pre_plane_update(struct intel_atomic_state *state,
+> 				struct intel_crtc *crtc)
+> {
+> 	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> 	const struct intel_crtc_state *crtc_state =
+> 		intel_atomic_get_new_crtc_state(state, crtc);
+> 	struct intel_encoder *encoder;
 > 
-> This commit substantially reduces execution time in the gem_lmem_swapping
-> test.
+> 	if (!HAS_PSR(i915))
+> 		return;
 > 
-> v2:
-> - Make a couple of functions static.
+> 	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
+> 					     crtc_state->uapi.encoder_mask) {
+> 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> 		struct intel_psr *psr = &intel_dp->psr;
+> 		bool needs_to_disable = false;
+> 		bool needs_to_exit = false;
 > 
-> Signed-off-by: Thomas HellstrÃ¶m <thomas.hellstrom@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.c      |  10 +
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.h      |   2 +-
->   drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 329 +++++++++++++++++--
->   drivers/gpu/drm/i915/gem/i915_gem_wait.c     |   4 +-
->   4 files changed, 318 insertions(+), 27 deletions(-)
+> 		mutex_lock(&psr->lock);
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index a1df49378a0f..111a4282d779 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -326,6 +326,9 @@ static bool i915_ttm_eviction_valuable(struct ttm_buffer_object *bo,
->   {
->   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
->   
-> +	if (!obj)
-> +		return false;
-> +
->   	/*
->   	 * EXTERNAL objects should never be swapped out by TTM, instead we need
->   	 * to handle that ourselves. TTM will already skip such objects for us,
-> @@ -448,6 +451,10 @@ static int i915_ttm_shrinker_release_pages(struct drm_i915_gem_object *obj,
->   	if (bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED)
->   		return 0;
->   
-> +	ret = ttm_bo_wait_ctx(bo, &ctx);
-> +	if (ret)
-> +		return ret;
-
-
-Why do we need this? Also not needed for the above purge case?
-
-> +
->   	bo->ttm->page_flags |= TTM_TT_FLAG_SWAPPED;
->   	ret = ttm_bo_validate(bo, &place, &ctx);
->   	if (ret) {
-> @@ -549,6 +556,9 @@ static void i915_ttm_swap_notify(struct ttm_buffer_object *bo)
->   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
->   	int ret = i915_ttm_move_notify(bo);
->   
-> +	if (!obj)
-> +		return;
-
-It looks like the i915_ttm_move_notify(bo) already dereferenced the GEM 
-bo. Or did something in there maybe nuke it?
-
-> +
->   	GEM_WARN_ON(ret);
->   	GEM_WARN_ON(obj->ttm.cached_io_rsgt);
->   	if (!ret && obj->mm.madv != I915_MADV_WILLNEED)
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.h b/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
-> index 82cdabb542be..9d698ad00853 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.h
-> @@ -37,7 +37,7 @@ void i915_ttm_bo_destroy(struct ttm_buffer_object *bo);
->   static inline struct drm_i915_gem_object *
->   i915_ttm_to_gem(struct ttm_buffer_object *bo)
->   {
-> -	if (GEM_WARN_ON(bo->destroy != i915_ttm_bo_destroy))
-> +	if (bo->destroy != i915_ttm_bo_destroy)
->   		return NULL;
-
-So this would indicate a "ghost" object, or is this something else? How 
-scared should we be with this, like with the above checking for NULL GEM 
-object state? In general do you know where we need the above checking?
-
->   
->   	return container_of(bo, struct drm_i915_gem_object, __do_not_access);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> index f35b386c56ca..ae2c49fc3500 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> @@ -3,6 +3,8 @@
->    * Copyright Â© 2021 Intel Corporation
->    */
->   
-> +#include <linux/dma-fence-array.h>
-> +
->   #include <drm/ttm/ttm_bo_driver.h>
->   
->   #include "i915_drv.h"
-> @@ -41,6 +43,228 @@ void i915_ttm_migrate_set_failure_modes(bool gpu_migration,
->   }
->   #endif
->   
-> +/**
-> + * DOC: Set of utilities to dynamically collect dependencies and
-> + * eventually coalesce them into a single fence which is fed into
-> + * the migration code. That single fence is, in the case of dependencies
-> + * from multiple contexts, a struct dma_fence_array, since the
-> + * i915 request code can break that up and await the individual
-> + * fences.
-
-Would it make sense to add few more more details here for why we need 
-this? IIUC it looks like TTM expects single context/timeline for 
-pipelined move, like with that dma_fence_is_later() check in 
-pipeline_evict? Maybe there is something already documented in TTM we 
-can link to here?
-
-> + *
-> + * While collecting the individual dependencies, we store the refcounted
-> + * struct dma_fence pointers in a realloc-type-managed pointer array, since
-> + * that can be easily fed into a dma_fence_array. Other options are
-> + * available, like for example an xarray for similarity with drm/sched.
-> + * Can be changed easily if needed.
-> + *
-> + * We might want to break this out into a separate file as a utility.
-> + */
-> +
-> +#define I915_DEPS_MIN_ALLOC_CHUNK 8U
-> +
-> +/**
-> + * struct i915_deps - Collect dependencies into a single dma-fence
-> + * @single: Storage for pointer if the collection is a single fence.
-> + * @fence: Allocated array of fence pointers if more than a single fence;
-> + * otherwise points to the address of @single.
-> + * @num_deps: Current number of dependency fences.
-> + * @fences_size: Size of the @fences array in number of pointers.
-> + * @gfp: Allocation mode.
-> + */
-> +struct i915_deps {
-> +	struct dma_fence *single;
-> +	struct dma_fence **fences;
-> +	unsigned int num_deps;
-> +	unsigned int fences_size;
-> +	gfp_t gfp;
-> +};
-> +
-> +static void i915_deps_reset_fences(struct i915_deps *deps)
-> +{
-> +	if (deps->fences != &deps->single)
-> +		kfree(deps->fences);
-> +	deps->num_deps = 0;
-> +	deps->fences_size = 1;
-> +	deps->fences = &deps->single;
-> +}
-> +
-> +static void i915_deps_init(struct i915_deps *deps, gfp_t gfp)
-> +{
-> +	deps->fences = NULL;
-> +	deps->gfp = gfp;
-> +	i915_deps_reset_fences(deps);
-> +}
-> +
-> +static void i915_deps_fini(struct i915_deps *deps)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < deps->num_deps; ++i)
-> +		dma_fence_put(deps->fences[i]);
-> +
-> +	if (deps->fences != &deps->single)
-> +		kfree(deps->fences);
-> +}
-> +
-> +static int i915_deps_grow(struct i915_deps *deps, struct dma_fence *fence,
-> +			  const struct ttm_operation_ctx *ctx)
-> +{
-> +	int ret;
-> +
-> +	if (deps->num_deps >= deps->fences_size) {
-> +		unsigned int new_size = 2 * deps->fences_size;
-> +		struct dma_fence **new_fences;
-> +
-> +		new_size = max(new_size, I915_DEPS_MIN_ALLOC_CHUNK);
-> +		new_fences = kmalloc_array(new_size, sizeof(*new_fences), deps->gfp);
-> +		if (!new_fences)
-> +			goto sync;
-> +
-> +		memcpy(new_fences, deps->fences,
-> +		       deps->fences_size * sizeof(*new_fences));
-> +		swap(new_fences, deps->fences);
-> +		if (new_fences != &deps->single)
-> +			kfree(new_fences);
-> +		deps->fences_size = new_size;
-> +	}
-> +	deps->fences[deps->num_deps++] = dma_fence_get(fence);
-> +	return 0;
-> +
-> +sync:
-> +	if (ctx->no_wait_gpu) {
-> +		ret = -EBUSY;
-> +		goto unref;
-> +	}
-> +
-> +	ret = dma_fence_wait(fence, ctx->interruptible);
-> +	if (ret)
-> +		goto unref;
-> +
-> +	ret = fence->error;
-> +	if (ret)
-> +		goto unref;
-> +
-> +	return 0;
-> +
-> +unref:
-> +	i915_deps_fini(deps);
-> +	return ret;
-> +}
-> +
-> +static int i915_deps_sync(struct i915_deps *deps,
-> +			  const struct ttm_operation_ctx *ctx)
-> +{
-> +	unsigned int i;
-> +	int ret = 0;
-> +	struct dma_fence **fences = deps->fences;
-
-Nit: Christmas tree.
-
-> +
-> +	for (i = 0; i < deps->num_deps; ++i, ++fences) {
-> +		if (ctx->no_wait_gpu) {
-> +			ret = -EBUSY;
-> +			goto unref;
-> +		}
-> +
-> +		ret = dma_fence_wait(*fences, ctx->interruptible);
-> +		if (ret)
-> +			goto unref;
-> +
-> +		ret = (*fences)->error;
-> +		if (ret)
-> +			goto unref;
-> +	}
-> +
-> +	i915_deps_fini(deps);
-> +	return 0;
-> +
-> +unref:
-> +	i915_deps_fini(deps);
-> +	return ret;
-> +}
-> +
-> +static int i915_deps_add_dependency(struct i915_deps *deps,
-> +				    struct dma_fence *fence,
-> +				    const struct ttm_operation_ctx *ctx)
-> +{
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	if (!fence)
-> +		return 0;
-> +
-> +	if (dma_fence_is_signaled(fence)) {
-> +		ret = fence->error;
-> +		if (ret)
-> +			i915_deps_fini(deps);
-> +		return ret;
-> +	}
-> +
-> +	for (i = 0; i < deps->num_deps; ++i) {
-> +		struct dma_fence *entry = deps->fences[i];
-> +
-> +		if (!entry->context || entry->context != fence->context)
-> +			continue;
-> +
-> +		if (dma_fence_is_later(fence, entry)) {
-> +			dma_fence_put(entry);
-> +			deps->fences[i] = dma_fence_get(fence);
-> +		}
-> +
-> +		return 0;
-> +	}
-> +
-> +	return i915_deps_grow(deps, fence, ctx);
-> +}
-> +
-> +static struct dma_fence *i915_deps_to_fence(struct i915_deps *deps,
-> +					    const struct ttm_operation_ctx *ctx)
-> +{
-> +	struct dma_fence_array *array;
-> +
-> +	if (deps->num_deps == 0)
-> +		return NULL;
-> +
-> +	if (deps->num_deps == 1) {
-> +		deps->num_deps = 0;
-> +		return deps->fences[0];
-> +	}
-> +
-> +	/*
-> +	 * TODO: Alter the allocation mode here to not try too hard to
-> +	 * make things async.
-> +	 */
-> +	array = dma_fence_array_create(deps->num_deps, deps->fences, 0, 0,
-> +				       false);
-> +	if (!array)
-> +		return ERR_PTR(i915_deps_sync(deps, ctx));
-> +
-> +	deps->fences = NULL;
-> +	i915_deps_reset_fences(deps);
-> +
-> +	return &array->base;
-> +}
-> +
-> +static int i915_deps_add_resv(struct i915_deps *deps, struct dma_resv *resv,
-> +			      bool all, const bool no_excl,
-> +			      const struct ttm_operation_ctx *ctx)
-> +{
-> +	struct dma_resv_iter iter;
-> +	struct dma_fence *fence;
-> +
-> +	dma_resv_assert_held(resv);
-> +	dma_resv_for_each_fence(&iter, resv, all, fence) {
-> +		int ret;
-> +
-> +		if (no_excl && !iter.index)
-> +			continue;
-> +
-> +		ret = i915_deps_add_dependency(deps, fence, ctx);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->   static enum i915_cache_level
->   i915_ttm_cache_level(struct drm_i915_private *i915, struct ttm_resource *res,
->   		     struct ttm_tt *ttm)
-> @@ -156,7 +380,8 @@ static struct dma_fence *i915_ttm_accel_move(struct ttm_buffer_object *bo,
->   					     bool clear,
->   					     struct ttm_resource *dst_mem,
->   					     struct ttm_tt *dst_ttm,
-> -					     struct sg_table *dst_st)
-> +					     struct sg_table *dst_st,
-> +					     struct dma_fence *dep)
->   {
->   	struct drm_i915_private *i915 = container_of(bo->bdev, typeof(*i915),
->   						     bdev);
-> @@ -180,7 +405,7 @@ static struct dma_fence *i915_ttm_accel_move(struct ttm_buffer_object *bo,
->   			return ERR_PTR(-EINVAL);
->   
->   		intel_engine_pm_get(i915->gt.migrate.context->engine);
-> -		ret = intel_context_migrate_clear(i915->gt.migrate.context, NULL,
-> +		ret = intel_context_migrate_clear(i915->gt.migrate.context, dep,
->   						  dst_st->sgl, dst_level,
->   						  i915_ttm_gtt_binds_lmem(dst_mem),
->   						  0, &rq);
-> @@ -194,7 +419,7 @@ static struct dma_fence *i915_ttm_accel_move(struct ttm_buffer_object *bo,
->   		src_level = i915_ttm_cache_level(i915, bo->resource, src_ttm);
->   		intel_engine_pm_get(i915->gt.migrate.context->engine);
->   		ret = intel_context_migrate_copy(i915->gt.migrate.context,
-> -						 NULL, src_rsgt->table.sgl,
-> +						 dep, src_rsgt->table.sgl,
->   						 src_level,
->   						 i915_ttm_gtt_binds_lmem(bo->resource),
->   						 dst_st->sgl, dst_level,
-> @@ -378,10 +603,11 @@ i915_ttm_memcpy_work_arm(struct i915_ttm_memcpy_work *work,
->   	return &work->fence;
->   }
->   
-> -static void __i915_ttm_move(struct ttm_buffer_object *bo, bool clear,
-> -			    struct ttm_resource *dst_mem,
-> -			    struct ttm_tt *dst_ttm,
-> -			    struct i915_refct_sgt *dst_rsgt, bool allow_accel)
-> +static struct dma_fence *
-> +__i915_ttm_move(struct ttm_buffer_object *bo, bool clear,
-> +		struct ttm_resource *dst_mem, struct ttm_tt *dst_ttm,
-> +		struct i915_refct_sgt *dst_rsgt, bool allow_accel,
-> +		struct dma_fence *move_dep)
->   {
->   	struct i915_ttm_memcpy_work *copy_work = NULL;
->   	struct i915_ttm_memcpy_arg _arg, *arg = &_arg;
-> @@ -389,7 +615,7 @@ static void __i915_ttm_move(struct ttm_buffer_object *bo, bool clear,
->   
->   	if (allow_accel) {
->   		fence = i915_ttm_accel_move(bo, clear, dst_mem, dst_ttm,
-> -					    &dst_rsgt->table);
-> +					    &dst_rsgt->table, move_dep);
->   
->   		/*
->   		 * We only need to intercept the error when moving to lmem.
-> @@ -423,6 +649,11 @@ static void __i915_ttm_move(struct ttm_buffer_object *bo, bool clear,
->   
->   		if (!IS_ERR(fence))
->   			goto out;
-> +	} else if (move_dep) {
-> +		int err = dma_fence_wait(move_dep, true);
-> +
-> +		if (err)
-> +			return ERR_PTR(err);
->   	}
->   
->   	/* Error intercept failed or no accelerated migration to start with */
-> @@ -433,16 +664,35 @@ static void __i915_ttm_move(struct ttm_buffer_object *bo, bool clear,
->   	i915_ttm_memcpy_release(arg);
->   	kfree(copy_work);
->   
-> -	return;
-> +	return NULL;
->   out:
-> -	/* Sync here for now, forward the fence to caller when fully async. */
-> -	if (fence) {
-> -		dma_fence_wait(fence, false);
-> -		dma_fence_put(fence);
-> -	} else if (copy_work) {
-> +	if (!fence && copy_work) {
->   		i915_ttm_memcpy_release(arg);
->   		kfree(copy_work);
->   	}
-> +
-> +	return fence;
-> +}
-> +
-> +static struct dma_fence *prev_fence(struct ttm_buffer_object *bo,
-> +				    struct ttm_operation_ctx *ctx)
-> +{
-> +	struct i915_deps deps;
-> +	int ret;
-> +
-> +	/*
-> +	 * Instead of trying hard with GFP_KERNEL to allocate memory,
-> +	 * the dependency collection will just sync if it doesn't
-> +	 * succeed.
-> +	 */
-> +	i915_deps_init(&deps, GFP_KERNEL | __GFP_NORETRY | __GFP_NOWARN);
-> +	ret = i915_deps_add_dependency(&deps, bo->moving, ctx);
-> +	if (!ret)
-> +		ret = i915_deps_add_resv(&deps, bo->base.resv, false, false, ctx);
-> +	if (ret)
-> +		return ERR_PTR(ret);
-> +
-> +	return i915_deps_to_fence(&deps, ctx);
->   }
->   
->   /**
-> @@ -462,16 +712,12 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
->   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
->   	struct ttm_resource_manager *dst_man =
->   		ttm_manager_type(bo->bdev, dst_mem->mem_type);
-> +	struct dma_fence *migration_fence = NULL;
->   	struct ttm_tt *ttm = bo->ttm;
->   	struct i915_refct_sgt *dst_rsgt;
->   	bool clear;
->   	int ret;
->   
-> -	/* Sync for now. We could do the actual copy async. */
-> -	ret = ttm_bo_wait_ctx(bo, ctx);
-> -	if (ret)
-> -		return ret;
-> -
->   	ret = i915_ttm_move_notify(bo);
->   	if (ret)
->   		return ret;
-> @@ -494,10 +740,37 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
->   		return PTR_ERR(dst_rsgt);
->   
->   	clear = !i915_ttm_cpu_maps_iomem(bo->resource) && (!ttm || !ttm_tt_is_populated(ttm));
-> -	if (!(clear && ttm && !(ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC)))
-> -		__i915_ttm_move(bo, clear, dst_mem, bo->ttm, dst_rsgt, true);
-> +	if (!(clear && ttm && !(ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC))) {
-> +		struct dma_fence *dep = prev_fence(bo, ctx);
-> +
-> +		if (IS_ERR(dep)) {
-> +			i915_refct_sgt_put(dst_rsgt);
-> +			return PTR_ERR(dep);
-> +		}
-> +
-> +		migration_fence = __i915_ttm_move(bo, clear, dst_mem, bo->ttm,
-> +						  dst_rsgt, true, dep);
-> +		dma_fence_put(dep);
-> +	}
-> +
-> +	/* We can possibly get an -ERESTARTSYS here */
-> +	if (IS_ERR(migration_fence)) {
-> +		i915_refct_sgt_put(dst_rsgt);
-> +		return PTR_ERR(migration_fence);
-> +	}
-> +
-> +	if (migration_fence) {
-> +		ret = ttm_bo_move_accel_cleanup(bo, migration_fence, evict,
-> +						true, dst_mem);
-> +		if (ret) {
-> +			dma_fence_wait(migration_fence, false);
-> +			ttm_bo_move_sync_cleanup(bo, dst_mem);
-> +		}
-> +		dma_fence_put(migration_fence);
-> +	} else {
-> +		ttm_bo_move_sync_cleanup(bo, dst_mem);
-> +	}
->   
-> -	ttm_bo_move_sync_cleanup(bo, dst_mem);
->   	i915_ttm_adjust_domains_after_move(obj);
->   	i915_ttm_free_cached_io_rsgt(obj);
->   
-> @@ -538,6 +811,7 @@ int i915_gem_obj_copy_ttm(struct drm_i915_gem_object *dst,
->   		.interruptible = intr,
->   	};
->   	struct i915_refct_sgt *dst_rsgt;
-> +	struct dma_fence *copy_fence;
->   	int ret;
->   
->   	assert_object_held(dst);
-> @@ -553,10 +827,17 @@ int i915_gem_obj_copy_ttm(struct drm_i915_gem_object *dst,
->   		return ret;
->   
->   	dst_rsgt = i915_ttm_resource_get_st(dst, dst_bo->resource);
-> -	__i915_ttm_move(src_bo, false, dst_bo->resource, dst_bo->ttm,
-> -			dst_rsgt, allow_accel);
-> +	copy_fence = __i915_ttm_move(src_bo, false, dst_bo->resource,
-> +				     dst_bo->ttm, dst_rsgt, allow_accel, NULL);
->   
->   	i915_refct_sgt_put(dst_rsgt);
-> +	if (IS_ERR(copy_fence))
-> +		return PTR_ERR(copy_fence);
-> +
-> +	if (copy_fence) {
-> +		dma_fence_wait(copy_fence, false);
-> +		dma_fence_put(copy_fence);
-> +	}
->   
->   	return 0;
->   }
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-> index f909aaa09d9c..bae65796a6cc 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-> @@ -306,6 +306,6 @@ int i915_gem_object_wait_migration(struct drm_i915_gem_object *obj,
->   				   unsigned int flags)
->   {
->   	might_sleep();
-> -	/* NOP for now. */
-> -	return 0;
-> +
-> +	return i915_gem_object_wait_moving_fence(obj, !!(flags & I915_WAIT_INTERRUPTIBLE));
->   }
+> 		/*
+> 		 * Reasons to disable:
+> 		 * - PSR disabled in new state
+> 		 * - Changing between PSR versions
+> 		 */
+> 		needs_to_disable |= intel_crtc_needs_modeset(crtc_state);
+> 		needs_to_disable |= !crtc_state->has_psr;
+> 		needs_to_disable |= crtc_state->has_psr2 != psr->psr2_enabled;
+> 		if (psr->enabled && needs_to_disable)
+> 			intel_psr_disable_locked(intel_dp);
 > 
+> 		needs_to_exit |= crtc_state->uapi.async_flip;
+> 		needs_to_exit |= crtc_state->active_planes == 0;
+> 		if (psr->enabled && needs_to_exit)
+> 			intel_psr_exit(intel_dp);
+> 
+> 		mutex_unlock(&psr->lock);
+> 	}
+> }
+> 
+> static void _intel_psr_post_plane_update(const struct intel_atomic_state *state,
+> 					 const struct intel_crtc_state *old_crtc_state,
+> 					 const struct intel_crtc_state *new_crtc_state)
+> {
+> 	struct intel_encoder *encoder;
+> 
+> 	if (!new_crtc_state->has_psr)
+> 		return;
+> 
+> 	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
+> 					     new_crtc_state->uapi.encoder_mask) {
+> 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> 		struct intel_psr *psr = &intel_dp->psr;
+> 		bool can_activate = true;
+> 
+> 		mutex_lock(&psr->lock);
+> 
+> 		/* Only enable if there is active planes */
+> 		if (new_crtc_state->uapi.async_flip ||
+> 		    new_crtc_state->active_planes == 0 ||
+> 		    psr->sink_not_reliable)
+> 			can_activate = false;
+> 
+> 		if (!psr->enabled && can_activate)
+> 			intel_psr_enable_locked(intel_dp, new_crtc_state);
+
+This still conflates activate vs. enable, so not quite what I was
+suggesting.
+
+> 
+> 		if (psr->enabled && !psr->active && can_activate)
+> 			intel_psr_activate(intel_dp);
+> 
+> 		/* Force a PSR exit when enabling CRC to avoid CRC timeouts */
+> 		if (new_crtc_state->crc_enabled && psr->enabled)
+> 			psr_force_hw_tracking_exit(intel_dp);
+> 
+> 		mutex_unlock(&psr->lock);
+> 	}
+> }
+> 
+> > Although there is also the AUX vs. PSR case to consider, but looks like
+> > that is still not fixed.
+> > 
+> 
+
+-- 
+Ville Syrjälä
+Intel
