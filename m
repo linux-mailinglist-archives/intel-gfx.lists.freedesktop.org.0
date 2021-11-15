@@ -1,42 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0253450327
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Nov 2021 12:07:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 035FA450365
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Nov 2021 12:24:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B4426E86B;
-	Mon, 15 Nov 2021 11:07:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7793C6E063;
+	Mon, 15 Nov 2021 11:24:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAED56E040;
- Mon, 15 Nov 2021 11:07:15 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10168"; a="213454539"
-X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="213454539"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2021 03:07:15 -0800
-X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="471871683"
-Received: from smile.fi.intel.com ([10.237.72.184])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2021 03:07:09 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1mmZpE-0072P3-CN; Mon, 15 Nov 2021 13:07:00 +0200
-Date: Mon, 15 Nov 2021 13:07:00 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <YZI/VB+RhScL1wAi@smile.fi.intel.com>
-References: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
- <20211005213423.dklsii4jx37pjvb4@ldmartin-desk2>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 512246E063;
+ Mon, 15 Nov 2021 11:24:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4B85AA008A;
+ Mon, 15 Nov 2021 11:24:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211005213423.dklsii4jx37pjvb4@ldmartin-desk2>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v1 1/3] string: Consolidate yesno() helpers
- under string.h hood
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tilak Tangudu" <tilak.tangudu@intel.com>
+Date: Mon, 15 Nov 2021 11:24:39 -0000
+Message-ID: <163697547930.2947.3638923998056349540@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211115101018.3141302-1-tilak.tangudu@intel.com>
+In-Reply-To: <20211115101018.3141302-1-tilak.tangudu@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIEVu?=
+ =?utf-8?q?able_runtime_pm_autosuspend_by_default?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,44 +40,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- amd-gfx@lists.freedesktop.org, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Mikita Lipski <mikita.lipski@amd.com>, Eryk Brol <eryk.brol@amd.com>,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>, Raju Rangoju <rajur@chelsio.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 05, 2021 at 02:34:23PM -0700, Lucas De Marchi wrote:
-> On Mon, Feb 15, 2021 at 04:21:35PM +0200, Andy Shevchenko wrote:
-> > We have already few similar implementation and a lot of code that can benefit
-> > of the yesno() helper.  Consolidate yesno() helpers under string.h hood.
-> 
-> I was taking a look on i915_utils.h to reduce it and move some of it
-> elsewhere to be shared with others.  I was starting with these helpers
-> and had [1] done, then Jani pointed me to this thread and also his
-> previous tentative. I thought the natural place for this would be
-> include/linux/string_helpers.h, but I will leave it up to you.
+== Series Details ==
 
-Seems reasonable to use string_helpers (headers and/or C-file).
+Series: Enable runtime pm autosuspend by default
+URL   : https://patchwork.freedesktop.org/series/96897/
+State : warning
 
-> After reading the threads, I don't see real opposition to it.
-> Is there a tree you plan to take this through?
+== Summary ==
 
-I rest my series in favour of Jani's approach, so I suppose there is no go
-for _this_ series.
-
-> [1] https://lore.kernel.org/lkml/20211005212634.3223113-1-lucas.demarchi@intel.com/T/#u
-
--- 
-With Best Regards,
-Andy Shevchenko
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
+./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
+./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Function parameter or member 'fbc' not described in 'intel_fbc_is_active'
+./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
+./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Function parameter or member 'fbc' not described in 'intel_fbc_handle_fifo_underrun_irq'
+./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
 
 
