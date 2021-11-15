@@ -1,40 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B28E04503D9
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Nov 2021 12:53:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15C5A4503DC
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Nov 2021 12:55:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33E3C6E9B9;
-	Mon, 15 Nov 2021 11:53:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A24ED6E8CA;
+	Mon, 15 Nov 2021 11:55:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD9566E9A8;
- Mon, 15 Nov 2021 11:53:32 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10168"; a="213459181"
-X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="213459181"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2021 03:53:32 -0800
-X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="671477488"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 563336E123;
+ Mon, 15 Nov 2021 11:55:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10168"; a="220635789"
+X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="220635789"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2021 03:55:35 -0800
+X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="505891946"
 Received: from csrini4x-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.251.218.37])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2021 03:53:30 -0800
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2021 03:55:34 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 15 Nov 2021 13:53:13 +0200
-Message-Id: <7bcaa1684587b9b008d3c41468fb40e63c54fbc7.1636977089.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1636977089.git.jani.nikula@intel.com>
-References: <cover.1636977089.git.jani.nikula@intel.com>
-MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] agp/intel-gtt: reduce intel-gtt
- dependencies more
+References: <cover.1636977089.git.jani.nikula@intel.com>
+Date: Mon, 15 Nov 2021 13:55:32 +0200
+Message-ID: <87y25p1vm3.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 0/3] drm/i915,
+ agp/intel-ggt: clean up includes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,62 +45,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Don't include stuff on behalf of users if they're not strictly necessary
-for the header.
+On Mon, 15 Nov 2021, Jani Nikula <jani.nikula@intel.com> wrote:
+> Took Andy's patch [1] and expanded on it a bit.
+>
+> BR,
+> Jani.
+>
+>
+> [1] https://patchwork.freedesktop.org/patch/msgid/20211110102857.59604-1-andriy.shevchenko@linux.intel.com
+>
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+>
+> Andy Shevchenko (1):
+>   agp/intel-gtt: Replace kernel.h with the necessary inclusions
 
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/char/agp/intel-gtt.c         | 1 +
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 1 +
- include/drm/intel-gtt.h              | 3 +--
- 3 files changed, 3 insertions(+), 2 deletions(-)
+Forgot to mention, I replaced the drm/i915 prefix with agp/intel-gtt
+here, no other changes to Andy's patch.
 
-diff --git a/drivers/char/agp/intel-gtt.c b/drivers/char/agp/intel-gtt.c
-index 5bfdf222d5f9..c53cc9868cd8 100644
---- a/drivers/char/agp/intel-gtt.c
-+++ b/drivers/char/agp/intel-gtt.c
-@@ -20,6 +20,7 @@
- #include <linux/kernel.h>
- #include <linux/pagemap.h>
- #include <linux/agp_backend.h>
-+#include <linux/intel-iommu.h>
- #include <linux/delay.h>
- #include <asm/smp.h>
- #include "agp.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 0c956e5e7fc7..555111c3bee5 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -3,6 +3,7 @@
-  * Copyright © 2020 Intel Corporation
-  */
- 
-+#include <linux/agp_backend.h>
- #include <linux/stop_machine.h>
- 
- #include <asm/set_memory.h>
-diff --git a/include/drm/intel-gtt.h b/include/drm/intel-gtt.h
-index 4e5f8e7e25d0..67530bfef129 100644
---- a/include/drm/intel-gtt.h
-+++ b/include/drm/intel-gtt.h
-@@ -4,10 +4,9 @@
- #ifndef _DRM_INTEL_GTT_H
- #define	_DRM_INTEL_GTT_H
- 
--#include <linux/agp_backend.h>
--#include <linux/intel-iommu.h>
- #include <linux/types.h>
- 
-+struct agp_bridge_data;
- struct pci_dev;
- struct sg_table;
- 
+>
+> Jani Nikula (2):
+>   drm/i915: include intel-gtt.h only where needed
+>   agp/intel-gtt: reduce intel-gtt dependencies more
+>
+>  drivers/char/agp/intel-gtt.c         | 1 +
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c | 2 ++
+>  drivers/gpu/drm/i915/gt/intel_gt.c   | 2 ++
+>  drivers/gpu/drm/i915/i915_drv.h      | 1 -
+>  include/drm/intel-gtt.h              | 8 +++++---
+>  5 files changed, 10 insertions(+), 4 deletions(-)
+
 -- 
-2.30.2
-
+Jani Nikula, Intel Open Source Graphics Center
