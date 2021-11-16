@@ -2,35 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E073451B39
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Nov 2021 00:54:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E2B6451D4F
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Nov 2021 01:25:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 467126E811;
-	Mon, 15 Nov 2021 23:53:58 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E2AA6E811
- for <Intel-gfx@lists.freedesktop.org>; Mon, 15 Nov 2021 23:53:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10169"; a="233501492"
-X-IronPort-AV: E=Sophos;i="5.87,237,1631602800"; d="scan'208";a="233501492"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2021 15:53:56 -0800
-X-IronPort-AV: E=Sophos;i="5.87,237,1631602800"; d="scan'208";a="604079815"
-Received: from rlhoskin-mobl5.amr.corp.intel.com (HELO
- cataylo2-mobl1.intel.com) ([10.251.137.60])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2021 15:53:55 -0800
-From: clinton.a.taylor@intel.com
-To: Intel-gfx@lists.freedesktop.org
-Date: Mon, 15 Nov 2021 15:53:45 -0800
-Message-Id: <20211115235345.32206-1-clinton.a.taylor@intel.com>
-X-Mailer: git-send-email 2.33.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2435B6E131;
+	Tue, 16 Nov 2021 00:25:25 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 38EA16E131;
+ Tue, 16 Nov 2021 00:25:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 21982AADD1;
+ Tue, 16 Nov 2021 00:25:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/adlp: Remove require_force_probe
- protection
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: clinton.a.taylor@intel.com
+Date: Tue, 16 Nov 2021 00:25:24 -0000
+Message-ID: <163702232410.28810.6024241792813795713@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211115235345.32206-1-clinton.a.taylor@intel.com>
+In-Reply-To: <20211115235345.32206-1-clinton.a.taylor@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/adlp=3A_Remove_require=5Fforce=5Fprobe_protection?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,40 +40,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Clint Taylor <clinton.a.taylor@intel.com>
+== Series Details ==
 
-    drm/i915/adlp: Remove require_force_probe protection
+Series: drm/i915/adlp: Remove require_force_probe protection
+URL   : https://patchwork.freedesktop.org/series/96939/
+State : warning
 
-    Removing force probe protection from ADL_P platform. Did
-    not observe warnings, errors, flickering or any visual
-    defects while doing ordinary tasks like browsing and
-    editing documents in a two monitor setup.
+== Summary ==
 
-    For more info drm-tip idle run results :
-    https://intel-gfx-ci.01.org/tree/drm-tip/drmtip.html?
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
+./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
+./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Function parameter or member 'fbc' not described in 'intel_fbc_is_active'
+./drivers/gpu/drm/i915/display/intel_fbc.c:635: warning: Excess function parameter 'i915' description in 'intel_fbc_is_active'
+./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Function parameter or member 'fbc' not described in 'intel_fbc_handle_fifo_underrun_irq'
+./drivers/gpu/drm/i915/display/intel_fbc.c:1638: warning: Excess function parameter 'i915' description in 'intel_fbc_handle_fifo_underrun_irq'
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
----
- drivers/gpu/drm/i915/i915_pci.c | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 4c7fcc5f9a97..af9f4988bd88 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -970,7 +970,6 @@ static const struct intel_device_info adl_p_info = {
- 	GEN12_FEATURES,
- 	XE_LPD_FEATURES,
- 	PLATFORM(INTEL_ALDERLAKE_P),
--	.require_force_probe = 1,
- 	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
- 			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |
- 			       BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),
--- 
-2.33.1
 
