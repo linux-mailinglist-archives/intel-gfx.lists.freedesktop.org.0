@@ -2,67 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 473C4452C85
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Nov 2021 09:15:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 517E9452D1A
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Nov 2021 09:46:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D45F96E939;
-	Tue, 16 Nov 2021 08:15:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 212136F3FA;
+	Tue, 16 Nov 2021 08:46:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com
- [IPv6:2a00:1450:4864:20::12d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14AB66E8B6;
- Tue, 16 Nov 2021 08:15:17 +0000 (UTC)
-Received: by mail-lf1-x12d.google.com with SMTP id f18so51019869lfv.6;
- Tue, 16 Nov 2021 00:15:16 -0800 (PST)
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com
+ [IPv6:2a00:1450:4864:20::22e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91BD46F3F2;
+ Tue, 16 Nov 2021 08:46:41 +0000 (UTC)
+Received: by mail-lj1-x22e.google.com with SMTP id e7so27086564ljq.12;
+ Tue, 16 Nov 2021 00:46:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=gGI9vBrtVlwKVGirQTh2+IVKELrHvVGVaSJiW5k7XdY=;
- b=ZgoYQ+/EEo92M087UvI76z8gJ15gBu3glVLs1RFhymtIOVT9hs4jMSmPizTc7ztzT7
- W8nWRexa9qDbGY7SRwJiPCTKhNp6sUsBly+Ap8CHHQW8N4V8yEmoIMArAespnTTZzk97
- RKhEq9JcJK+SWs2Bxk/2xEbULOK7r1Qaga6jNk7Z7SAVgxYmRG3FIkT8UC8sGGFmznzW
- HljDBoVzNEh0E85mA4ffPYZuz7mOl7qg2oPfoSNNAzmZ/nH6SaQN06R3Vwb0+a8e6GW7
- nycLbVZQdc0M0MiOPi0oCnJrBJNjefW4VBDBJYItWWh7nvZK3LrovEwpbFYJOOSIyfS6
- Z6cg==
+ :mime-version; bh=B+4475Nz0EJEw1btKnS6lbGHGzgnMTR6vRIDIHfcqkg=;
+ b=AHjnsSgzVUrwMtIn2hzKlQ7zcUO9w2GxgF7iClKlNlQkjIwFGpO584TH3tmeXy97zF
+ gZBJJiZtURTMLV9CzFsoOrn3DlNdSYs06nMlEIMpVhxTnKRawq3Cg5WiAnHG9H/r7afV
+ i2BMBtpJiDhzO/y5stgpGkCV59rHJPJ7IkMBOKJ/dSTinie5byqIB7sjXwlvYH9sNnjr
+ vKGy8b1l7meUPMQ/M9RlZd416KZNlN+bRznsZ3+YzywCmOBAgkgoCb9BkuqunSH1/hQL
+ ITC2w/0pAXLOHmjwxGuNkfSqM3QgAObfTJpMBcPSF4fDDwLbI6GC2gcRxsy9vpjFYC+J
+ VDMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
  :references:mime-version;
- bh=gGI9vBrtVlwKVGirQTh2+IVKELrHvVGVaSJiW5k7XdY=;
- b=LV11KrYnHoePdhKHPtrpetmYY66uzMweDv5aw2gBoV8lIInF8GwKMtP0B3XcNVh8lc
- DGoZrB8c+PgdPX1UpIaCPPl6hghYUeHoMnjCwe9JZeNUfJMOJq0AN9efWLCkxou2UEpM
- /ytMOBjoIR1qPipyaqYlwytnPvkHlJuOu4lguDkb6qwERXvmXafu4NBoeGNtT4d1kfg/
- g6jcThRVhPGbNv2P6PFIPWTxqJV1eIDhXFeO+sKyAcXO7K5iizba7tNHzGKa0B+HzW4i
- YvN4k9l6CggdQiitnU5Q1t9ujBR9W+KTEb40on9ReaLdfHZ5BDroNyLkAbgwrG+v+jrd
- 92LA==
-X-Gm-Message-State: AOAM53119oju+k3sHpQ+hs7wFtNVSIOkEu4mlOlaOXdltY6ejJXoDfgx
- NWFKvOWl1seoxOxAY10lEbM=
-X-Google-Smtp-Source: ABdhPJxzXwUPArY5aQvxy7Emp8GvdjrZr0OE0/IMJUD0aI+GQEJg1cAwZc0DsUN4CQPcLnmAVK4GaA==
-X-Received: by 2002:a05:6512:114e:: with SMTP id
- m14mr4886439lfg.418.1637050515312; 
- Tue, 16 Nov 2021 00:15:15 -0800 (PST)
+ bh=B+4475Nz0EJEw1btKnS6lbGHGzgnMTR6vRIDIHfcqkg=;
+ b=Ffz8gYrO0I1DzBl/tMVdbOY4bCIZYnV5svMg3SpgF+mZF3RUujcvBhuAsDz0sEb6Lp
+ 8OYCE8GfNxF/Y7Y8kJMf7Ss+eEyQtalKRDOq+4C6vc8MEyvYVRz5xuVlQbxgzmwGKCuv
+ ihLf8ZaSThMaVyCUlP7pU90UnTo60Wj4FpmrTWpFomzkBJMhYhVv6klmrYAPBPN4pdbw
+ YduGnJV/3Cn3C0rVU3ubeNRVsz7NjxWRgzMKxm9Jrrp9rZXKMmy7MqR96GyhGRsMbH66
+ kNq+AxRW5Fizkq635CWRh32F2rWwGtXZzPAd/V1luFZ8whP91vuCe8hJ9buP+L5HQYV1
+ CNzg==
+X-Gm-Message-State: AOAM532HTgCh20PkFBqfo4caq8ge2aAl6KeGNZ0OqhHaijGT3jmpLkrd
+ qHLyj02pFxgiQuZqsL6VFV0=
+X-Google-Smtp-Source: ABdhPJx+P8W2uhzddSw3fnTmEhpfFIZRj2/R8Je3b+El+xG49yzo/zN4B9vsrQxVsH5Cm9iD/9YFHw==
+X-Received: by 2002:a2e:b88d:: with SMTP id r13mr5295292ljp.362.1637052399848; 
+ Tue, 16 Nov 2021 00:46:39 -0800 (PST)
 Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id m15sm1679349lfg.165.2021.11.16.00.15.14
+ by smtp.gmail.com with ESMTPSA id d23sm1692776lfm.107.2021.11.16.00.46.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 16 Nov 2021 00:15:14 -0800 (PST)
-Date: Tue, 16 Nov 2021 10:15:05 +0200
+ Tue, 16 Nov 2021 00:46:39 -0800 (PST)
+Date: Tue, 16 Nov 2021 10:46:31 +0200
 From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Message-ID: <20211116101505.68d3b4f3@eldfell>
-In-Reply-To: <YY6AK/sTiWooE+rQ@intel.com>
-References: <20210906213904.27918-1-uma.shankar@intel.com>
- <20210906213904.27918-6-uma.shankar@intel.com>
- <52ce874c-64ae-d7a9-bc4e-255cfa49f410@amd.com>
- <YY1H//+XISVMFZNL@intel.com>
- <edc4b80279354ec7bcdb0a890dae7d79@intel.com>
- <4a26ada6-feaa-76df-3ffe-d694e367d809@amd.com>
- <YY6AK/sTiWooE+rQ@intel.com>
+To: Jason Baron <jbaron@akamai.com>
+Message-ID: <20211116104631.195cbd0b@eldfell>
+In-Reply-To: <f3914fa9-8b22-d54e-3f77-d998e74094b9@akamai.com>
+References: <20211111220206.121610-1-jim.cromie@gmail.com>
+ <20211111220206.121610-9-jim.cromie@gmail.com>
+ <20211112114953.GA1381@axis.com>
+ <f3914fa9-8b22-d54e-3f77-d998e74094b9@akamai.com>
 X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/6ffaBqCQ0SNGd4vmg7Rn3le";
+Content-Type: multipart/signed; boundary="Sig_/Y5Z_1H8x236jEerk/fTWs86";
  protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: Re: [Intel-gfx] [RFC v2 05/22] drm/i915/xelpd: Define Degamma Lut
- range struct for HDR planes
+Subject: Re: [Intel-gfx] [PATCH v10 08/10] dyndbg: add print-to-tracefs,
+ selftest with it - RFC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,252 +71,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "sebastian@sebastianwick.net" <sebastian@sebastianwick.net>,
- Harry Wentland <harry.wentland@amd.com>
+Cc: quic_saipraka@quicinc.com, catalin.marinas@arm.com,
+ dri-devel@lists.freedesktop.org, will@kernel.org,
+ intel-gvt-dev@lists.freedesktop.org,
+ Vincent Whitchurch <vincent.whitchurch@axis.com>,
+ amd-gfx@lists.freedesktop.org, mingo@redhat.com, daniel.vetter@ffwll.ch,
+ arnd@arndb.de, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ rostedt@goodmis.org, mathieu.desnoyers@efficios.com,
+ linux-arm-kernel@lists.infradead.org, Jim Cromie <jim.cromie@gmail.com>,
+ gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+ quic_psodagud@quicinc.com, maz@kernel.org, seanpaul@chromium.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/6ffaBqCQ0SNGd4vmg7Rn3le
-Content-Type: text/plain; charset=UTF-8
+--Sig_/Y5Z_1H8x236jEerk/fTWs86
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 12 Nov 2021 16:54:35 +0200
-Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com> wrote:
+On Fri, 12 Nov 2021 10:08:41 -0500
+Jason Baron <jbaron@akamai.com> wrote:
 
-> On Thu, Nov 11, 2021 at 04:10:41PM -0500, Harry Wentland wrote:
+> On 11/12/21 6:49 AM, Vincent Whitchurch wrote:
+> > On Thu, Nov 11, 2021 at 03:02:04PM -0700, Jim Cromie wrote: =20
+> >> Sean Paul proposed, in:
+> >> https://urldefense.com/v3/__https://patchwork.freedesktop.org/series/7=
+8133/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQjlN5aBIomzJR1an3YWXM6KXs0EftVMQdrewRA=
+8Dki4A$=20
+> >> drm/trace: Mirror DRM debug logs to tracefs
+> >>
+> >> His patchset's objective is to be able to independently steer some of
+> >> the drm.debug stream to an alternate tracing destination, by splitting
+> >> drm_debug_enabled() into syslog & trace flavors, and enabling them
+> >> separately.  2 advantages were identified:
+> >>
+> >> 1- syslog is heavyweight, tracefs is much lighter
+> >> 2- separate selection of enabled categories means less traffic
+> >>
+> >> Dynamic-Debug can do 2nd exceedingly well:
+> >>
+> >> A- all work is behind jump-label's NOOP, zero off cost.
+> >> B- exact site selectivity, precisely the useful traffic.
+> >>    can tailor enabled set interactively, at shell.
+> >>
+> >> Since the tracefs interface is effective for drm (the threads suggest
+> >> so), adding that interface to dynamic-debug has real potential for
+> >> everyone including drm.
+> >>
+> >> if CONFIG_TRACING:
+> >>
+> >> Grab Sean's trace_init/cleanup code, use it to provide tracefs
+> >> available by default to all pr_debugs.  This will likely need some
+> >> further per-module treatment; perhaps something reflecting hierarchy
+> >> of module,file,function,line, maybe with a tuned flattening.
+> >>
+> >> endif CONFIG_TRACING
+> >>
+> >> Add a new +T flag to enable tracing, independent of +p, and add and
+> >> use 3 macros: dyndbg_site_is_enabled/logging/tracing(), to encapsulate
+> >> the flag checks.  Existing code treats T like other flags. =20
 > >=20
+> > I posted a patchset a while ago to do something very similar, but that
+> > got stalled for some reason and I unfortunately didn't follow it up:
 > >=20
-> > On 2021-11-11 15:42, Shankar, Uma wrote: =20
-> > >=20
-> > >  =20
-> > >> -----Original Message-----
-> > >> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> > >> Sent: Thursday, November 11, 2021 10:13 PM
-> > >> To: Harry Wentland <harry.wentland@amd.com>
-> > >> Cc: Shankar, Uma <uma.shankar@intel.com>; intel-gfx@lists.freedeskto=
-p.org; dri-
-> > >> devel@lists.freedesktop.org; ppaalanen@gmail.com; brian.starkey@arm.=
-com;
-> > >> sebastian@sebastianwick.net; Shashank.Sharma@amd.com
-> > >> Subject: Re: [RFC v2 05/22] drm/i915/xelpd: Define Degamma Lut range=
- struct for
-> > >> HDR planes
-> > >>
-> > >> On Thu, Nov 11, 2021 at 10:17:17AM -0500, Harry Wentland wrote: =20
-> > >>>
-> > >>>
-> > >>> On 2021-09-06 17:38, Uma Shankar wrote: =20
-> > >>>> Define the structure with XE_LPD degamma lut ranges. HDR and SDR
-> > >>>> planes have different capabilities, implemented respective structu=
-re
-> > >>>> for the HDR planes.
-> > >>>>
-> > >>>> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> > >>>> ---
-> > >>>>  drivers/gpu/drm/i915/display/intel_color.c | 52
-> > >>>> ++++++++++++++++++++++
-> > >>>>  1 file changed, 52 insertions(+)
-> > >>>>
-> > >>>> diff --git a/drivers/gpu/drm/i915/display/intel_color.c
-> > >>>> b/drivers/gpu/drm/i915/display/intel_color.c
-> > >>>> index afcb4bf3826c..6403bd74324b 100644
-> > >>>> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> > >>>> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> > >>>> @@ -2092,6 +2092,58 @@ static void icl_read_luts(struct intel_crtc=
-_state =20
-> > >> *crtc_state) =20
-> > >>>>  	}
-> > >>>>  }
-> > >>>>
-> > >>>> + /* FIXME input bpc? */
-> > >>>> +__maybe_unused
-> > >>>> +static const struct drm_color_lut_range d13_degamma_hdr[] =3D {
-> > >>>> +	/* segment 1 */
-> > >>>> +	{
-> > >>>> +		.flags =3D (DRM_MODE_LUT_GAMMA |
-> > >>>> +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
-> > >>>> +			  DRM_MODE_LUT_INTERPOLATE |
-> > >>>> +			  DRM_MODE_LUT_NON_DECREASING),
-> > >>>> +		.count =3D 128,
-> > >>>> +		.input_bpc =3D 24, .output_bpc =3D 16,
-> > >>>> +		.start =3D 0, .end =3D (1 << 24) - 1,
-> > >>>> +		.min =3D 0, .max =3D (1 << 24) - 1,
-> > >>>> +	},
-> > >>>> +	/* segment 2 */
-> > >>>> +	{
-> > >>>> +		.flags =3D (DRM_MODE_LUT_GAMMA |
-> > >>>> +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
-> > >>>> +			  DRM_MODE_LUT_INTERPOLATE |
-> > >>>> +			  DRM_MODE_LUT_REUSE_LAST |
-> > >>>> +			  DRM_MODE_LUT_NON_DECREASING),
-> > >>>> +		.count =3D 1,
-> > >>>> +		.input_bpc =3D 24, .output_bpc =3D 16,
-> > >>>> +		.start =3D (1 << 24) - 1, .end =3D 1 << 24,
-> > >>>> +		.min =3D 0, .max =3D (1 << 27) - 1,
-> > >>>> +	},
-> > >>>> +	/* Segment 3 */
-> > >>>> +	{
-> > >>>> +		.flags =3D (DRM_MODE_LUT_GAMMA |
-> > >>>> +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
-> > >>>> +			  DRM_MODE_LUT_INTERPOLATE |
-> > >>>> +			  DRM_MODE_LUT_REUSE_LAST |
-> > >>>> +			  DRM_MODE_LUT_NON_DECREASING),
-> > >>>> +		.count =3D 1,
-> > >>>> +		.input_bpc =3D 24, .output_bpc =3D 16,
-> > >>>> +		.start =3D 1 << 24, .end =3D 3 << 24,
-> > >>>> +		.min =3D 0, .max =3D (1 << 27) - 1,
-> > >>>> +	},
-> > >>>> +	/* Segment 4 */
-> > >>>> +	{
-> > >>>> +		.flags =3D (DRM_MODE_LUT_GAMMA |
-> > >>>> +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
-> > >>>> +			  DRM_MODE_LUT_INTERPOLATE |
-> > >>>> +			  DRM_MODE_LUT_REUSE_LAST |
-> > >>>> +			  DRM_MODE_LUT_NON_DECREASING),
-> > >>>> +		.count =3D 1,
-> > >>>> +		.input_bpc =3D 24, .output_bpc =3D 16,
-> > >>>> +		.start =3D 3 << 24, .end =3D 7 << 24,
-> > >>>> +		.min =3D 0, .max =3D (1 << 27) - 1,
-> > >>>> +	},
-> > >>>> +}; =20
-> > >>>
-> > >>> If I understand this right, userspace would need this definition in
-> > >>> order to populate the degamma blob. Should this sit in a UAPI heade=
-r? =20
-> > >=20
-> > > Hi Harry, Pekka and Ville,
-> > > Sorry for being a bit late on the replies, got side tracked with vari=
-ous issues.
-> > > I am back on this. Apologies for delay.
-> > >  =20
-> > >> My original idea (not sure it's fully realized in this series) is to=
- have a new
-> > >> GAMMA_MODE/etc. enum property on each crtc (or plane) for which each=
- enum
-> > >> value points to a kernel provided blob that contains one of these LU=
-T descriptors.
-> > >> Userspace can then query them dynamically and pick the best one for =
-its current use
-> > >> case. =20
-> > >=20
-> > > We have this as part of the series Ville. Patch 3 of this series crea=
-tes a DEGAMMA_MODE
-> > > property just for this. With that userspace can just query the blob_i=
-d's and will get the
-> > > various degamma mode possible and the respective segment and lut dist=
-ributions.
-> > >=20
-> > > This will be generic, so for userspace it should just be able to quer=
-y this and parse and get
-> > > the lut distribution and segment ranges.
-> > >  =20
+> >  https://urldefense.com/v3/__https://lore.kernel.org/lkml/2020082515333=
+8.17061-1-vincent.whitchurch@axis.com/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQjlN5=
+aBIomzJR1an3YWXM6KXs0EftVMQdrewRGytKHPg$=20
 > >=20
-> > Thanks for the explanation.
-> >=20
-> > Uma, have you had a chance to sketch some of this out in IGT? I'm trying
-> > to see how userspace would do this in practice and will try to sketch an
-> > IGT test for this myself, but if you have it already we could share the
-> > effort.
-> >  =20
-> > >> The algorithm for choosing the best one might be something like:
-> > >> - prefer LUT with bpc >=3D FB bpc, but perhaps not needlessly high b=
-pc
-> > >> - prefer interpolated vs. direct lookup based on current needs (eg. X
-> > >>   could prefer direct lookup to get directcolor visuals).
-> > >> - prefer one with extended range values if needed
-> > >> - for HDR prefer smaller step size in dark tones,
-> > >>   for SDR perhaps prefer a more uniform step size
-> > >>
-> > >> Or maybe we should include some kind of usage hints as well? =20
-> > >=20
-> > > I think the segment range and distribution of lut should be enough fo=
-r a userspace
-> > > to pick the right ones, but we can add some examples in UAPI descript=
-ions as hints.
-> > >  =20
-> >=20
-> > The range might be enough, but we're already parsing hints like "GAMMA"
-> > or "DEGAMMA". I wonder if it would make sense to add a flag for "HDR" or
-> > "SDR" as well.
-> >  =20
-> > >> And I was thinking of even adding a new property type (eg.
-> > >> ENUM_BLOB) just for this sort of usecase. That could let us have a b=
-it more generic
-> > >> code to do all the validation around the property values and whatnot.
-> > >>
-> > >> The one nagging concern I really have with GAMMA_MODE is how a mix o=
-f old and
-> > >> new userspace would work. Though that is more of a generic issue wit=
-h any new
-> > >> property really. =20
-> > >=20
-> > > For plane properties getting added newly, old userspace will not get =
-it so I think this should be ok.
-> > > Newer userspace will implement this and get the new functionality.
-> > > Problem will be in extending this to crtc where we have a legacy bagg=
-age, the client caps approach
-> > > may help us there. Have it as part of separate series just to not mix=
- it with this new plane stuff, though
-> > > the idea remains same based on your design. Series below for referenc=
-e: =20
-> > > https://patchwork.freedesktop.org/series/90821/>>  =20
-> >=20
-> > Could we just assume we do a uniform LUT if userspace doesn't
-> > set a _MODE enum value for the respective gamma?
-> >=20
-> > Maybe the _MODE should have a default enum value that means
-> > a uniform (legacy) LUT. =20
+> > A key difference between that patchset and this patch (besides that
+> > small fact that I used +x instead of +T) was that my patchset allowed
+> > the dyndbg trace to be emitted to the main buffer and did not force them
+> > to be in an instance-specific buffer. =20
 >=20
-> Yeah, it definitely needs a default like that. But the problem arises
-> when new userspace sets it to something else and then hands the reins
-> over to some old userspace that doesn't know how to reset it back to
-> default.
+> Yes, I agree I'd prefer that we print here to the 'main' buffer - it
+> seems to keep things simpler and easier to combine the output from
+> different sources as you mentioned.
 
-This very problem is the one where I have been suggesting that
-userspace that supports temporarily handing DRM-master to something
-else needs to be prepared to save and restore also unrecognized KMS
-properties.
+Hi,
 
-We've also had talk about a "reset" switch in KMS, but I forget the
-conclusion.
+I'm not quite sure I understand this discussion, but I would like to
+remind you all of what Sean's original work is about:
 
-Both ideas lack the people working on them. I don't think we can design
-each new KMS property ad hoc to somehow magically be compatible with
-old vs. new client interoperation. In fact, the problem exists already
-with e.g. the old GAMMA etc. properties.
+Userspace configures DRM tracing into a flight recorder buffer (I guess
+this is what you refer to "instance-specific buffer").
 
-OTOH, when a userspace client is reported to misbehave because
-something else left KMS in a funny state, it is just too easy to simply
-patch the innocent but misbehaving client to understand whatever new
-property the other one was using, particularly if it's just to reset it
-to some hardcoded expected value. So it's unclear if this problem even
-needs a solution.
+Userspace runs happily for months, and then hits a problem: a failure
+in the DRM sub-system most likely, e.g. an ioctl that should never
+fail, failed. Userspace handles that failure by dumping the flight
+recorder buffer into a file and saving or sending a bug report. The
+flight recorder contents give a log of all relevant DRM in-kernel
+actions leading to the unexpected failure to help developers debug it.
+
+I don't mind if one can additionally send the flight recorder stream to
+the main buffer, but I do want the separate flight recorder buffer to
+be an option so that a) unrelated things cannot flood the interesting
+bits out of it, and b) the scope of collected information is relevant.
+
+The very reason for this work is problems that are very difficult to
+reproduce in practice, either because the problem itself is triggered
+very rarely and randomly, or because the end users of the system have
+either no knowledge or no access to reconfigure debug logging and then
+reproduce the problem with good debug logs.
+
+Thank you very much for pushing this work forward!
 
 
 Thanks,
 pq
 
---Sig_/6ffaBqCQ0SNGd4vmg7Rn3le
+>=20
+> Thanks,
+>=20
+> -Jason
+>=20
+> >=20
+> > That feature is quite important at least for my use case since I often
+> > use dyndbg combined with function tracing, and the latter doesn't work
+> > on non-main instances according to Documentation/trace/ftrace.rst.
+> >=20
+> > For example, here's a random example of a bootargs from one of my recent
+> > debugging sessions:
+> >=20
+> >  trace_event=3Dprintk:* ftrace_filter=3D_mmc*,mmc*,sd*,dw_mci*,mci*
+> >  ftrace=3Dfunction trace_buf_size=3D20M dyndbg=3D"file drivers/mmc/* +x"
+> >  =20
+
+
+--Sig_/Y5Z_1H8x236jEerk/fTWs86
 Content-Type: application/pgp-signature
 Content-Description: OpenPGP digital signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmGTaIkACgkQI1/ltBGq
-qqfxIA/9HUaeZI5V0K1QfAvoUO67IYnLZBpUO2vEYMgRjKwYgOKQG9jy+8KCpgsr
-bpxxzBUNTR4yGvs/wQ7lnzlh9fNX/hULBf/+iI+laFXIUtVic/wtvZiOJaRutZyG
-2dDTj6QTS88vSIc8Rik761K2MwIftO6vR6ZPWJASqpDXof7W0AFViLugL1jOq9kJ
-aaxl5JN1Qb4OGBh+RS7wPyyBQ0Pm4yjca25rRuFmaaGjMIubNvJ6Zvvjq8yE/t+4
-wAe00GneLjHqWMV/uhyPRX/2gbJKBLxNjuYHGJgH6A5BZtYleDJVLZD1QGi1PiBW
-8adI2/2xlV/ArvjLoLGSJuy6hO/RLEY6WBlD3UVc6ov/BjzqFQnT3X25lkWyM97Q
-sGHRDdK7U1tkXH/9Lw+zUl2mJWtYEgKXmjYRqzSjPx1QoiOCA8tpZbUl2ioQ1PLB
-x0F7dhbpwFNu0LcqRwohda+FeIxN0xtp1OG6voQSjJBp7usGnFPBMHsXcJUvEJik
-zhsOEg9GKawdJOP+vGu91Kf3+9+LdTKpnjWX2RtVr6b7pmcSXzWBJcGIl96CJKev
-sb9SHKO2kG6yfKy0OPELx/+Zu9311yQoS7000cgvMrrfNEClpbwnp40bKVHXEyMD
-v5neiBWuritfSX4UNNwg0qJdP6AUYG5eS5r8ZYcV+Hx86z4338Q=
-=5ThE
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmGTb+cACgkQI1/ltBGq
+qqdRKg/+JPfzhGvv0UVAPJ+OJ9EYLVCYiKfXrGgNS2ks5BZLaBFB2l4WeRLmL59R
+wqm2UkmeiIAnR+tWVZ5YPBPm5nhaHMfwNdOR2J9AHxI3goTZoJkGNeizBSLVi0jb
+QK6RTGsy2CdF4se9MO7e6IS6nGu+Qb4W6MrSZSCCiTwQMjAPYgxOCeMngdlTjkOp
+CRen7osuGgeRhm74yyyhX/BPg2WKORPFPL80sBiw6IET1IxPen5DgGJ4Nc0jXc7r
+62bncv0J74eOe+w3XRpwwlz1Gm3rNlBQ9zQfkYtsWJe9oA6cD7+cJ6W2SvDSjZi6
+utYM7hnrLbOK/XBkAFcetb8dHAQ/uuaIq75hcz3nho9/P2Hk+5SnwtzzYYcwvV5A
+UIrq96U6r4mWKoGaBySkdBQ0qvi+YUzDDX6SVCTGKcfncjHNcZNyryO7F7/CDMlr
+3yEvgr+8gOIcgWAhKpHgF5DsY8GfKfcgHf0USwDZVmDNmrkProTf3MeFSryXeEiI
+867arY2KKHcGUVvfyfwT28/W+Y+LK7aD9UhUyvnMIVd0IbZ7+Adl9Q/F1wYikYW8
+QtlynecLTKZACjYRqUe2Wow4b9Uqlz7bsexOFE8xGoV/+Z7wsYFKm7wx732ZBy/V
+E9sUEn/oqiTQSv0/gi5U2e2g9Sv0N8wotSgs1ENwb+2ixHc2i/w=
+=CCnA
 -----END PGP SIGNATURE-----
 
---Sig_/6ffaBqCQ0SNGd4vmg7Rn3le--
+--Sig_/Y5Z_1H8x236jEerk/fTWs86--
