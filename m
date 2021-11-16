@@ -2,33 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CC33453842
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Nov 2021 18:05:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B04445386B
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Nov 2021 18:21:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75FC289F5B;
-	Tue, 16 Nov 2021 17:05:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 286CA6E064;
+	Tue, 16 Nov 2021 17:21:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9BFA989F5B;
- Tue, 16 Nov 2021 17:05:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 981DDA008A;
- Tue, 16 Nov 2021 17:05:29 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 586DB6E064
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Nov 2021 17:21:04 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10169"; a="297165709"
+X-IronPort-AV: E=Sophos;i="5.87,239,1631602800"; d="scan'208";a="297165709"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2021 09:14:40 -0800
+X-IronPort-AV: E=Sophos;i="5.87,239,1631602800"; d="scan'208";a="494539449"
+Received: from mramya-mobl1.gar.corp.intel.com (HELO localhost)
+ ([10.251.219.100])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2021 09:14:38 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 16 Nov 2021 19:14:30 +0200
+Message-Id: <20211116171434.20516-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Date: Tue, 16 Nov 2021 17:05:29 -0000
-Message-ID: <163708232962.28808.6155902830691724332@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211116102431.198905-1-christian.koenig@amd.com>
-In-Reply-To: <20211116102431.198905-1-christian.koenig@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/6=5D_drm/i915=3A_use_the_new_iterator?=
- =?utf-8?q?_in_i915=5Fgem=5Fbusy=5Fioctl_v2?=
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/5] drm/i915: drop intel_display.h include from
+ intel_ddi.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +44,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Use forward declarations instead.
 
-Series: series starting with [1/6] drm/i915: use the new iterator in i915_gem_busy_ioctl v2
-URL   : https://patchwork.freedesktop.org/series/96975/
-State : warning
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
+index 6f4551c9d5b7..c2fea6562917 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.h
++++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+@@ -6,11 +6,11 @@
+ #ifndef __INTEL_DDI_H__
+ #define __INTEL_DDI_H__
+ 
+-#include "intel_display.h"
+ #include "i915_reg.h"
+ 
+ struct drm_connector_state;
+ struct drm_i915_private;
++struct intel_atomic_state;
+ struct intel_connector;
+ struct intel_crtc;
+ struct intel_crtc_state;
+@@ -18,6 +18,8 @@ struct intel_dp;
+ struct intel_dpll_hw_state;
+ struct intel_encoder;
+ struct intel_shared_dpll;
++enum pipe;
++enum port;
+ enum transcoder;
+ 
+ i915_reg_t dp_tp_ctl_reg(struct intel_encoder *encoder,
+-- 
+2.30.2
 
