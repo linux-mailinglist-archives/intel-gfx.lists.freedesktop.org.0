@@ -2,38 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B315E4537E6
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Nov 2021 17:43:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FF1B453840
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Nov 2021 18:04:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00124896E4;
-	Tue, 16 Nov 2021 16:43:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB7BE89F5B;
+	Tue, 16 Nov 2021 17:04:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B1AF896E4;
- Tue, 16 Nov 2021 16:43:00 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10169"; a="297151928"
-X-IronPort-AV: E=Sophos;i="5.87,239,1631602800"; d="scan'208";a="297151928"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2021 08:42:59 -0800
-X-IronPort-AV: E=Sophos;i="5.87,239,1631602800"; d="scan'208";a="494525139"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2021 08:42:59 -0800
-Date: Tue, 16 Nov 2021 08:37:23 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Message-ID: <20211116163723.GA14280@jons-linux-dev-box>
-References: <20211116114558.GA11936@kili>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2A7F589DB7;
+ Tue, 16 Nov 2021 17:04:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 22112A47E1;
+ Tue, 16 Nov 2021 17:04:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211116114558.GA11936@kili>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix error pointer dereference in
- i915_gem_do_execbuffer()
+Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Date: Tue, 16 Nov 2021 17:04:12 -0000
+Message-ID: <163708225210.28809.4400328856833487246@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211116102431.198905-1-christian.koenig@amd.com>
+In-Reply-To: <20211116102431.198905-1-christian.koenig@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/6=5D_drm/i915=3A_use_the_new_iter?=
+ =?utf-8?q?ator_in_i915=5Fgem=5Fbusy=5Fioctl_v2?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,40 +41,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- kernel-janitors@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 16, 2021 at 02:48:17PM +0300, Dan Carpenter wrote:
-> Originally "out_fence" was set using out_fence = sync_file_create() but
-> which returns NULL, but now it is set with out_fence = eb_requests_create()
-> which returns error pointers.  The error path needs to be modified to
-> avoid an Oops in the "goto err_request;" path.
-> 
-> Fixes: 544460c33821 ("drm/i915: Multi-BB execbuf")
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+== Series Details ==
 
-Thanks for the fix. LGTM. With that:
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Series: series starting with [1/6] drm/i915: use the new iterator in i915_gem_busy_ioctl v2
+URL   : https://patchwork.freedesktop.org/series/96975/
+State : warning
 
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 1 +
->  2 files changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 4d7da07442f2..9b24d9b5ade1 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -3277,6 +3277,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->  	out_fence = eb_requests_create(&eb, in_fence, out_fence_fd);
->  	if (IS_ERR(out_fence)) {
->  		err = PTR_ERR(out_fence);
-> +		out_fence = NULL;
->  		if (eb.requests[0])
->  			goto err_request;
->  		else
-> -- 
-> 2.20.1
-> 
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+762356daf76d drm/i915: use the new iterator in i915_gem_busy_ioctl v2
+-:69: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 49 lines checked
+34c56a4b70b8 drm/i915: use new iterator in i915_gem_object_wait_priority
+-:56: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 38 lines checked
+d087edd46d1b drm/i915: use the new iterator in i915_sw_fence_await_reservation v3
+-:90: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 67 lines checked
+326cc15f6f96 drm/i915: use new cursor in intel_prepare_plane_fb v2
+-:43: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+4f71252a8bd6 drm/i915: Fix i915_request fence wait semantics
+bfb07458d173 drm/i915: use new iterator in i915_gem_object_wait_reservation
+-:114: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 91 lines checked
+
+
