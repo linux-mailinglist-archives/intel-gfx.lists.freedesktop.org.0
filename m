@@ -2,44 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A88DE455078
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 23:29:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD3424550BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 23:50:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10A8F6E0E1;
-	Wed, 17 Nov 2021 22:29:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E7466E1F4;
+	Wed, 17 Nov 2021 22:50:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A2F86E0E1
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 22:29:42 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="297488267"
-X-IronPort-AV: E=Sophos;i="5.87,243,1631602800"; d="scan'208";a="297488267"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2021 14:29:41 -0800
-X-IronPort-AV: E=Sophos;i="5.87,243,1631602800"; d="scan'208";a="472907547"
-Received: from yohanpar-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.209.32.122])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2021 14:29:40 -0800
-Date: Wed, 17 Nov 2021 14:29:40 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20211117222940.gyxnctt7vylyj2b2@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20211111004549.144706-1-michael.cheng@intel.com>
- <20211111004549.144706-2-michael.cheng@intel.com>
- <20211113012807.GD137318@mdroper-desk1.amr.corp.intel.com>
- <20211113013146.GE137318@mdroper-desk1.amr.corp.intel.com>
- <b02449e7-d921-72f9-efef-612eb45576da@intel.com>
- <20211113014727.GG137318@mdroper-desk1.amr.corp.intel.com>
- <20211113162220.zhykx4i3waqdrmxd@ldmartin-desk2>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B5D66E1F4;
+ Wed, 17 Nov 2021 22:50:09 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="233905370"
+X-IronPort-AV: E=Sophos;i="5.87,243,1631602800"; d="scan'208";a="233905370"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2021 14:50:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,243,1631602800"; d="scan'208";a="536467561"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by orsmga001.jf.intel.com with ESMTP; 17 Nov 2021 14:50:08 -0800
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Wed, 17 Nov 2021 14:49:52 -0800
+Message-Id: <20211117224955.28999-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.34.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20211113162220.zhykx4i3waqdrmxd@ldmartin-desk2>
-Subject: Re: [Intel-gfx] [PATCH v4 1/3] drm/i915: Introduce new macros for
- i915 PTE
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/3] drm/i915/gt: RPS tuning for light media
+ playback
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,34 +43,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, siva.mullati@intel.com,
- intel-gfx@lists.freedesktop.org, Michael Cheng <michael.cheng@intel.com>,
- wayne.boyer@intel.com
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Nov 13, 2021 at 08:22:20AM -0800, Lucas De Marchi wrote:
->On Fri, Nov 12, 2021 at 05:47:27PM -0800, Matt Roper wrote:
->>On Fri, Nov 12, 2021 at 05:42:28PM -0800, Michael Cheng wrote:
->>>Thanks for the feed back! I feel like using something name GEN6 or BYT for a
->>>platform that's not GEN6 or BYT could be a bit confusing, that's why we
->>>decided to go with something more generic. I do agree I need to cite the
->>>bspec more. Ill wait for more feedback before I send a new revision out.
->>
->>In general that's the pattern that i915 tries to use --- we name
->>functions, macros, etc. after the first platform or generation that they
->>apply to and then continue to use them on all subsequent platforms until
->>the hardware changes again and we need a new version.  E.g., we're still
->>calling "gen8_ppgtt_create" to create our PPGTTs on the latest
->>platforms, even though we're well past gen8 at this point.
->
->
->I'd be totally ok with it if it was gen8 or gen6, but here the define is
->BYT.  But if it's only me who find strange using the BYT_ define, I'm
->fine with it.
+      Switch from tgl to adl, sees one particular media decode pipeline fit
+into a single vcs engine on adl, whereas it took two on tgl. However, it
+was observed that the power consumtpion for adl remained higher than for
+tgl. One contibution is that each engine is treated individually for rps
+evaluation, another is that it appears that we prefer to avoid low
+frequencies (with no rc6) and use slightly higher frequencies (with lots
+of rc6). So let's try tweaking the balancer to smear busy virtual
+contexts across multiple engines (trying to make adl look more like
+tgl), and tweak the rps evaluation to "race to idle" harder.
 
-let's ignore that and go with the GEN6 + BYT defines. Please also Cc
-dri-devel since this touches gt/  code.
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-thanks
-Lucas De Marchi
+Chris Wilson (3):
+  drm/i915/gt: Spread virtual engines over idle engines
+  drm/i915/gt: Compare average group occupancy for RPS evaluation
+  drm/i915/gt: Improve "race-to-idle" at low frequencies
+
+ .../drm/i915/gt/intel_execlists_submission.c  | 80 ++++++++++++-------
+ drivers/gpu/drm/i915/gt/intel_rps.c           | 79 +++++++++++++-----
+ 2 files changed, 112 insertions(+), 47 deletions(-)
+
+-- 
+2.34.0
+
