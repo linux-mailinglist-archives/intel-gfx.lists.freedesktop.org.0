@@ -1,36 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6235B4549CC
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 16:20:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59A694549D4
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 16:21:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B3CD6E935;
-	Wed, 17 Nov 2021 15:20:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86C1C6E973;
+	Wed, 17 Nov 2021 15:21:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F75E6E935
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 15:20:02 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10170"; a="231443149"
-X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="231443149"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2021 07:20:01 -0800
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A4346E973
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 15:21:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10170"; a="257733834"
+X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="257733834"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2021 07:21:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="536313749"
-Received: from sorvi2.fi.intel.com ([10.237.72.194])
- by orsmga001.jf.intel.com with ESMTP; 17 Nov 2021 07:19:59 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 Nov 2021 17:19:14 +0200
-Message-Id: <20211117151914.627778-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.27.0
+X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="645902160"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga001.fm.intel.com with SMTP; 17 Nov 2021 07:21:44 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 17 Nov 2021 17:21:43 +0200
+Date: Wed, 17 Nov 2021 17:21:43 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YZUeB01L6HBXxGTT@intel.com>
+References: <20211116154234.15696-1-jani.nikula@intel.com>
+ <20211116154234.15696-2-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display/dg2: Set CD clock squashing
- registers
+In-Reply-To: <20211116154234.15696-2-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/trace: split out display trace
+ to a separate file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,115 +49,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Set CD clock squashing registers based on selected CD clock.
+On Tue, Nov 16, 2021 at 05:42:34PM +0200, Jani Nikula wrote:
+> Add display/intel_display_trace.[ch] for defining display
+> tracepoints. The main goal is to reduce cross-includes between gem and
+> display. It would be possible split up tracing even further, but that
+> would lead to more boilerplate.
+> 
+> There should be no changes to tracepoints.
+> 
+> Cc: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |   1 +
+>  .../gpu/drm/i915/display/intel_atomic_plane.c |   5 +-
+>  drivers/gpu/drm/i915/display/intel_crtc.c     |   5 +-
+>  .../drm/i915/display/intel_display_trace.c    |   9 +
+>  .../drm/i915/display/intel_display_trace.h    | 588 ++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_fbc.c      |   2 +-
+>  .../drm/i915/display/intel_fifo_underrun.c    |   2 +-
+>  .../gpu/drm/i915/display/intel_frontbuffer.c  |   7 +-
+>  drivers/gpu/drm/i915/display/intel_sprite.c   |   1 -
+>  drivers/gpu/drm/i915/i915_debugfs.c           |   1 -
+>  drivers/gpu/drm/i915/i915_drv.c               |   1 -
+>  drivers/gpu/drm/i915/i915_irq.c               |   2 +-
+>  drivers/gpu/drm/i915/i915_trace.h             | 567 -----------------
+>  drivers/gpu/drm/i915/intel_pm.c               |   2 +-
+>  14 files changed, 610 insertions(+), 583 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_trace.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_trace.h
+> 
+<snip>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.c b/drivers/gpu/drm/i915/display/intel_display_trace.c
+> new file mode 100644
+> index 000000000000..737979ada869
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.c
+> @@ -0,0 +1,9 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright © 2021 Intel Corporation
+> + */
+> +
+> +#ifndef __CHECKER__
+> +#define CREATE_TRACE_POINTS
+> +#include "intel_display_trace.h"
+> +#endif
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
+> new file mode 100644
+> index 000000000000..8608f5a6ff32
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
+> @@ -0,0 +1,588 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +
+> +#undef TRACE_SYSTEM
+> +#define TRACE_SYSTEM i915
+> +
+> +#if !defined(__INTEL_DISPLAY_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
+> +#define __INTEL_DISPLAY_TRACE_H__
+> +
+> +#include <linux/types.h>
+> +#include <linux/tracepoint.h>
+> +
+> +#include "i915_drv.h"
+> +#include "intel_crtc.h"
+> +#include "intel_display_types.h"
+> +
+> +/* watermark/fifo updates */
 
-v2: use slk_cdclk_decimal() to compute decimal values instead of a
-    specific table (Ville)
-    Set waveform based on CD clock table (Ville)
-    Drop unnecessary local variable (Ville)
-v3: Correct function naming (Ville)
-    Correct if-else structure (Ville)
-[v4: vsyrjala: Fix spaces vs. tabs]
-[v5: vsyrjala: Fix cd2x divider calculation (Uma),
-               Add warn to waveform lookup (Uma),
-               Handle bypass freq in waveform lookup,
-               Generalize waveform handling in bxt_set_cdclk()]
+That comment is a bit misplaced. I guess it already was like that in the
+old file. Maybe just nuke all these comments? I don't think they really
+serve any useful purpose.
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 41 +++++++++++++++++++++-
- drivers/gpu/drm/i915/i915_reg.h            |  8 +++++
- 2 files changed, 48 insertions(+), 1 deletion(-)
+Series is
+Reviewed-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 91c19e0a98d7..69bdec6abf1e 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1626,6 +1626,26 @@ static u32 bxt_cdclk_cd2x_div_sel(struct drm_i915_private *dev_priv,
- 	}
- }
- 
-+static u32 cdclk_squash_waveform(struct drm_i915_private *dev_priv,
-+				 int cdclk)
-+{
-+	const struct intel_cdclk_vals *table = dev_priv->cdclk.table;
-+	int i;
-+
-+	if (cdclk == dev_priv->cdclk.hw.bypass)
-+		return 0;
-+
-+	for (i = 0; table[i].refclk; i++)
-+		if (table[i].refclk == dev_priv->cdclk.hw.ref &&
-+		    table[i].cdclk == cdclk)
-+			return table[i].waveform;
-+
-+	drm_WARN(&dev_priv->drm, 1, "cdclk %d not valid for refclk %u\n",
-+		 cdclk, dev_priv->cdclk.hw.ref);
-+
-+	return 0xffff;
-+}
-+
- static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
- 			  const struct intel_cdclk_config *cdclk_config,
- 			  enum pipe pipe)
-@@ -1633,6 +1653,8 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
- 	int cdclk = cdclk_config->cdclk;
- 	int vco = cdclk_config->vco;
- 	u32 val;
-+	u16 waveform;
-+	int clock;
- 	int ret;
- 
- 	/* Inform power controller of upcoming frequency change. */
-@@ -1676,7 +1698,24 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
- 			bxt_de_pll_enable(dev_priv, vco);
- 	}
- 
--	val = bxt_cdclk_cd2x_div_sel(dev_priv, cdclk, vco) |
-+	waveform = cdclk_squash_waveform(dev_priv, cdclk);
-+
-+	if (waveform)
-+		clock = vco / 2;
-+	else
-+		clock = cdclk;
-+
-+	if (has_cdclk_squasher(dev_priv)) {
-+		u32 squash_ctl = 0;
-+
-+		if (waveform)
-+			squash_ctl = CDCLK_SQUASH_ENABLE |
-+				CDCLK_SQUASH_WINDOW_SIZE(0xf) | waveform;
-+
-+		intel_de_write(dev_priv, CDCLK_SQUASH_CTL, squash_ctl);
-+	}
-+
-+	val = bxt_cdclk_cd2x_div_sel(dev_priv, clock, vco) |
- 		bxt_cdclk_cd2x_pipe(dev_priv, pipe) |
- 		skl_cdclk_decimal(cdclk);
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index f15ffc53e858..cfedbca0b5d3 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -10649,6 +10649,14 @@ enum skl_power_gate {
- #define  BXT_CDCLK_SSA_PRECHARGE_ENABLE	(1 << 16)
- #define  CDCLK_FREQ_DECIMAL_MASK	(0x7ff)
- 
-+/* CDCLK_SQUASH_CTL */
-+#define CDCLK_SQUASH_CTL		_MMIO(0x46008)
-+#define  CDCLK_SQUASH_ENABLE		REG_BIT(31)
-+#define  CDCLK_SQUASH_WINDOW_SIZE_MASK	REG_GENMASK(27, 24)
-+#define  CDCLK_SQUASH_WINDOW_SIZE(x)	REG_FIELD_PREP(CDCLK_SQUASH_WINDOW_SIZE_MASK, (x))
-+#define  CDCLK_SQUASH_WAVEFORM_MASK	REG_GENMASK(15, 0)
-+#define  CDCLK_SQUASH_WAVEFORM(x)	REG_FIELD_PREP(CDCLK_SQUASH_WAVEFORM_MASK, (x))
-+
- /* LCPLL_CTL */
- #define LCPLL1_CTL		_MMIO(0x46010)
- #define LCPLL2_CTL		_MMIO(0x46014)
 -- 
-2.27.0
-
+Ville Syrj‰l‰
+Intel
