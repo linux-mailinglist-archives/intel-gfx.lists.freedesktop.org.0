@@ -1,40 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D5FF454D3A
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 19:31:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29336454D4E
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 19:39:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42ED56E4CD;
-	Wed, 17 Nov 2021 18:31:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E76276E4F1;
+	Wed, 17 Nov 2021 18:39:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 898906E4CD
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 18:31:24 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="233970411"
-X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="233970411"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2021 10:31:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="536395241"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 17 Nov 2021 10:31:10 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 17 Nov 2021 20:31:10 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 Nov 2021 20:31:03 +0200
-Message-Id: <20211117183103.27418-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211117183103.27418-1-ville.syrjala@linux.intel.com>
-References: <20211117183103.27418-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D3F5B6E4CD;
+ Wed, 17 Nov 2021 18:39:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CC587A008A;
+ Wed, 17 Nov 2021 18:39:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Fix framestart_delay commens in
- VRR code
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Date: Wed, 17 Nov 2021 18:39:00 -0000
+Message-ID: <163717434081.18223.10832338704544147548@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211117133456.688802-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20211117133456.688802-1-andi.shyti@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBN?=
+ =?utf-8?q?ore_preparation_for_multi_gt_patches?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,50 +40,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Since I originally wrote these comments we decided to change our
-definition of framestart_delay from 0-3 to 1-4. Adjust the comments
-to match that new convention. The actual code was adjusted already.
+Series: More preparation for multi gt patches
+URL   : https://patchwork.freedesktop.org/series/97020/
+State : failure
 
-Cc: Manasi Navare <manasi.d.navare@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index db1c3902fc2d..139e8936edc5 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -60,7 +60,7 @@ intel_vrr_check_modeset(struct intel_atomic_state *state)
-  * Between those two points the vblank exit starts (and hence registers get
-  * latched) ASAP after a push is sent.
-  *
-- * framestart_delay is programmable 0-3.
-+ * framestart_delay is programmable 1-4.
-  */
- static int intel_vrr_vblank_exit_length(const struct intel_crtc_state *crtc_state)
- {
-@@ -138,13 +138,13 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 			i915->window2_delay;
- 	else
- 		/*
--		 * FIXME: s/4/framestart_delay+1/ to get consistent
-+		 * FIXME: s/4/framestart_delay/ to get consistent
- 		 * earliest/latest points for register latching regardless
- 		 * of the framestart_delay used?
- 		 *
- 		 * FIXME: this really needs the extra scanline to provide consistent
- 		 * behaviour for all framestart_delay values. Otherwise with
--		 * framestart_delay==3 we will end up extending the min vblank by
-+		 * framestart_delay==4 we will end up extending the min vblank by
- 		 * one extra line.
- 		 */
- 		crtc_state->vrr.pipeline_full =
--- 
-2.32.0
+CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  DESCEND objtool
+  CHK     include/generated/compile.h
+  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_mman.o
+In file included from drivers/gpu/drm/i915/gem/i915_gem_mman.c:1010:
+drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c: In function ‘check_partial_mapping’:
+drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:144:54: error: ‘struct drm_i915_private’ has no member named ‘gt’; did you mean ‘gvt’?
+  intel_gt_flush_ggtt_writes(&to_i915(obj->base.dev)->gt);
+                                                      ^~
+                                                      gvt
+In file included from drivers/gpu/drm/i915/gem/i915_gem_mman.c:1010:
+drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c: In function ‘check_partial_mappings’:
+drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:237:55: error: ‘struct drm_i915_private’ has no member named ‘gt’; did you mean ‘gvt’?
+   intel_gt_flush_ggtt_writes(&to_i915(obj->base.dev)->gt);
+                                                       ^~
+                                                       gvt
+scripts/Makefile.build:287: recipe for target 'drivers/gpu/drm/i915/gem/i915_gem_mman.o' failed
+make[4]: *** [drivers/gpu/drm/i915/gem/i915_gem_mman.o] Error 1
+scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm/i915' failed
+make[3]: *** [drivers/gpu/drm/i915] Error 2
+scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm' failed
+make[2]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:549: recipe for target 'drivers/gpu' failed
+make[1]: *** [drivers/gpu] Error 2
+Makefile:1846: recipe for target 'drivers' failed
+make: *** [drivers] Error 2
+
 
