@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D946454D39
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 19:31:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D5FF454D3A
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 19:31:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3EB66E4C5;
-	Wed, 17 Nov 2021 18:31:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42ED56E4CD;
+	Wed, 17 Nov 2021 18:31:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C96D46E4C5
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 18:31:10 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="231505249"
-X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="231505249"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2021 10:31:10 -0800
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 898906E4CD
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 18:31:24 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="233970411"
+X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="233970411"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2021 10:31:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="454989880"
+X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="536395241"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 17 Nov 2021 10:31:07 -0800
+ by orsmga001.jf.intel.com with SMTP; 17 Nov 2021 10:31:10 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 17 Nov 2021 20:31:06 +0200
+ Wed, 17 Nov 2021 20:31:10 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 Nov 2021 20:31:02 +0200
-Message-Id: <20211117183103.27418-2-ville.syrjala@linux.intel.com>
+Date: Wed, 17 Nov 2021 20:31:03 +0200
+Message-Id: <20211117183103.27418-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211117183103.27418-1-ville.syrjala@linux.intel.com>
 References: <20211117183103.27418-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Do vblank evasion correctly if
- vrr push has already been sent
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Fix framestart_delay commens in
+ VRR code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,83 +52,45 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Let's adjust the vblank evasion to account for the case where
-a push has already been sent. In that case the vblank exit will start
-at vmin vblank start (as opposed to vmax vblank start when no push
-has been sent).
-
-This should minimize the effects of the tiny race between sampling
-the frame counter vs. intel_vrr_send_push() during the previous frame.
-This will also be required if we want to do mailbox style updates with
-vrr since then we'd definitely do multiple commits per frame. Currently
-mailbox updates are only used by the legacy cursor, but we don't do
-vrr push for those.
+Since I originally wrote these comments we decided to change our
+definition of framestart_delay from 0-3 to 1-4. Adjust the comments
+to match that new convention. The actual code was adjusted already.
 
 Cc: Manasi Navare <manasi.d.navare@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c | 10 +++++++---
- drivers/gpu/drm/i915/display/intel_vrr.c  | 12 ++++++++++++
- drivers/gpu/drm/i915/display/intel_vrr.h  |  1 +
- 3 files changed, 20 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index cf403be7736c..eb5444f90e77 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -470,10 +470,14 @@ void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state)
- 	if (intel_crtc_needs_vblank_work(new_crtc_state))
- 		intel_crtc_vblank_work_init(new_crtc_state);
- 
--	if (new_crtc_state->vrr.enable)
--		vblank_start = intel_vrr_vmax_vblank_start(new_crtc_state);
--	else
-+	if (new_crtc_state->vrr.enable) {
-+		if (intel_vrr_is_push_sent(new_crtc_state))
-+			vblank_start = intel_vrr_vmin_vblank_start(new_crtc_state);
-+		else
-+			vblank_start = intel_vrr_vmax_vblank_start(new_crtc_state);
-+	} else {
- 		vblank_start = intel_mode_vblank_start(adjusted_mode);
-+	}
- 
- 	/* FIXME needs to be calibrated sensibly */
- 	min = vblank_start - intel_usecs_to_scanlines(adjusted_mode,
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index c335b1dbafcf..db1c3902fc2d 100644
+index db1c3902fc2d..139e8936edc5 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -193,6 +193,18 @@ void intel_vrr_send_push(const struct intel_crtc_state *crtc_state)
- 		       TRANS_PUSH_EN | TRANS_PUSH_SEND);
- }
- 
-+bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+
-+	if (!crtc_state->vrr.enable)
-+		return false;
-+
-+	return intel_de_read(dev_priv, TRANS_PUSH(cpu_transcoder)) & TRANS_PUSH_SEND;
-+}
-+
- void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+@@ -60,7 +60,7 @@ intel_vrr_check_modeset(struct intel_atomic_state *state)
+  * Between those two points the vblank exit starts (and hence registers get
+  * latched) ASAP after a push is sent.
+  *
+- * framestart_delay is programmable 0-3.
++ * framestart_delay is programmable 1-4.
+  */
+ static int intel_vrr_vblank_exit_length(const struct intel_crtc_state *crtc_state)
  {
- 	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 96f9c9c27ab9..1c2da572693d 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -23,6 +23,7 @@ void intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- void intel_vrr_enable(struct intel_encoder *encoder,
- 		      const struct intel_crtc_state *crtc_state);
- void intel_vrr_send_push(const struct intel_crtc_state *crtc_state);
-+bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state);
- void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state);
- void intel_vrr_get_config(struct intel_crtc *crtc,
- 			  struct intel_crtc_state *crtc_state);
+@@ -138,13 +138,13 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 			i915->window2_delay;
+ 	else
+ 		/*
+-		 * FIXME: s/4/framestart_delay+1/ to get consistent
++		 * FIXME: s/4/framestart_delay/ to get consistent
+ 		 * earliest/latest points for register latching regardless
+ 		 * of the framestart_delay used?
+ 		 *
+ 		 * FIXME: this really needs the extra scanline to provide consistent
+ 		 * behaviour for all framestart_delay values. Otherwise with
+-		 * framestart_delay==3 we will end up extending the min vblank by
++		 * framestart_delay==4 we will end up extending the min vblank by
+ 		 * one extra line.
+ 		 */
+ 		crtc_state->vrr.pipeline_full =
 -- 
 2.32.0
 
