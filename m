@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9649454840
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 15:11:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E7AC45485A
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 15:17:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00AA989958;
-	Wed, 17 Nov 2021 14:11:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBB466E459;
+	Wed, 17 Nov 2021 14:17:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
- [IPv6:2607:f8b0:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5460F6E09E
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 14:00:19 +0000 (UTC)
-Received: by mail-pf1-x434.google.com with SMTP id i12so2749709pfd.6
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 06:00:19 -0800 (PST)
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com
+ [IPv6:2607:f8b0:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F13736E42F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 14:13:56 +0000 (UTC)
+Received: by mail-pl1-x634.google.com with SMTP id u17so2274695plg.9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 06:13:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=OH6t+6GIHRg0CG1WLw2l583TcotSnecp5ZKg3XsxKq4=;
- b=ImseyeJrN9aNnVJwlmMsLJjwzLQWDpwWdK+SiqOIycbcFMCDRMonQ6/TSVls8RgDdZ
- sLW9X/aLzT6yALgv5qEjpHWSHG154iv3K6z3PVVuAz5PAT2o6acFdnfjPk2g+O7EClYv
- gpMvPhhOxdabdgf5Ejzrz8bKBjcLnGe24vZGRepIZDu4L/MABxZ/lOUknHKcowll7cIZ
- cGxsD70bldSz5bkcBK5PDE2QbdvcLg5XQgNpZd7o5YD3dw5In9m078Tlbg2NmH3yk3MV
- mtRLN2ubJEc0Cd2WQnaPV0C8rRaXjJA8O7yU3c9oyBp3KbJNYB6TU+rINfal1O50sgIL
- gcIw==
+ :cc; bh=IgStfDj6Zt8/izR4m2I+R4rKgneA+zot1vY4zu2seXI=;
+ b=KLnxhrkR1IsKhVwXMgOB+qgWhAUovbWTtfngFa7WnQpekMmfyXMjjK2GRHM3F86m6W
+ T07MxTS+lz1/hQpuP5IYM82WR3PiTbWLZINqoK+6dfNisI4iO0f7r2TR2CD10fatZ1xK
+ BuMev3ho4tuEmY6afbO+M5c3dxek2pDDEZFVmUamgXuJ/ZskQUl3dw4Tq2pRhEpGgO8Q
+ nmMk7T65yvleI7jY1bjeZCWXp7gKFaBddxnO66vl6PKjJpKehq4N+d2Os3IQgy+8dfhE
+ uDRO91j84C7c5AUVYAnyiqGNLD7FmLHOSWgEcCu3gsfheQtud3nJEICR5EQq7uFZsAUj
+ 5ukg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=OH6t+6GIHRg0CG1WLw2l583TcotSnecp5ZKg3XsxKq4=;
- b=NVfd0etCPO9Rk8kC+kDcceuow2uj829dRYlSxC17eVveXmeNhHVZIA6l+f8DkyYLB5
- j6MczSxaaFCsVaZYESqqm3hUorlgkgsXFpPvZ44YOc7oB/yMSelfSMcJ0mOrY3M3eF3w
- 0m+RKoZ7aU4T7fHKYmIa6vw1dAQX1OFYSZekI8DNoQlgmr89QjiUs0kfCK6ilp3LwLgl
- heGB2156oRl9jByrnL9HkQ99aD+0uZDbfBeUgJejJBxeoWuUzIJAiA6+f4PvG2fqLK3r
- 3Oex9zOCBX8yG25iS8uq6jcaP5tl41/HnH8puZy7DVwEoMMsjiNLD7GRSyLXNwlzbZR2
- YP3A==
-X-Gm-Message-State: AOAM530n58wOfwg5XRXezlaZ4LTM8SOPfaUJdRPdf6vxu27x8Cljil/5
- 6c8RjKbHBZ6F/ACGCXFVSK8NuYNsWCB4SNc8Q+STCw==
-X-Google-Smtp-Source: ABdhPJxgLSxww5kuJzc6S+KFRA2AXFiV5ZpCLeyHJ2zPUYXN7gXRZmxtxajvD5DacB2ZtDMiQhDxeKpaLxanteBbE6E=
-X-Received: by 2002:a63:8a4a:: with SMTP id y71mr5315024pgd.378.1637157618452; 
- Wed, 17 Nov 2021 06:00:18 -0800 (PST)
+ bh=IgStfDj6Zt8/izR4m2I+R4rKgneA+zot1vY4zu2seXI=;
+ b=Ee+zeVG1VEuyCyMUn2DItea65YthQJiS21mfPgEFN0jrAY44zR6zpMPQauVyGqj7fN
+ JNIgASqvgNgq8EsTDbEG/tSOzgD5gfVY8bDX3lM19pm/BJ6klbDe6CtdVDWIM2lXEvaA
+ eDJdVz3PSlhx1HzX95fyOKjYEy/rnjKA6j01vDPTiPPiQEnE9BMlOPALr3P80XuLpca8
+ q3Su9czBLAVvYRdXVP1oJBbJe5l2QBWolTR/EyzDL3LZ/LZ6m+3NYQd7Fqv6OQsWBtxA
+ irBrplxzX1ALaDaS4f8d/dry5ihG+gbu4ND8tRCofhehUrrFwLwZXO2OsLzVQbh1g9xS
+ 60xA==
+X-Gm-Message-State: AOAM531iD2xKHp1Rk1Xllc74t5RvSCPIPtKedsjZg8EDAusb5/iC3sHB
+ CIo4JbBAsJB4xiU8kw7Gjo7q7jwSSD3FHmUaB5Umrg==
+X-Google-Smtp-Source: ABdhPJztN01MsmsVrgqJm5CuFA9id9S1SkYImXP6NdcqtoJxewUiH+wfb1mJfLy/qFsI0HaqCU6n5C79URnCGVfIXbY=
+X-Received: by 2002:a17:902:d50d:b0:141:ea03:5193 with SMTP id
+ b13-20020a170902d50d00b00141ea035193mr55802159plg.89.1637158436225; Wed, 17
+ Nov 2021 06:13:56 -0800 (PST)
 MIME-Version: 1.0
 References: <20211005202322.700909-1-hdegoede@redhat.com>
- <20211005202322.700909-11-hdegoede@redhat.com>
-In-Reply-To: <20211005202322.700909-11-hdegoede@redhat.com>
+ <20211005202322.700909-4-hdegoede@redhat.com>
+In-Reply-To: <20211005202322.700909-4-hdegoede@redhat.com>
 From: Rajat Jain <rajatja@google.com>
-Date: Wed, 17 Nov 2021 05:59:42 -0800
-Message-ID: <CACK8Z6GWdv9cbzk+8Ym90+3FjeToarhBjON8RGXQ9Dc0_zAKtg@mail.gmail.com>
+Date: Wed, 17 Nov 2021 06:13:20 -0800
+Message-ID: <CACK8Z6EhQnn6xiGsYvx-GyEs==-LDC642OFjPH7mBbMpPYvn_A@mail.gmail.com>
 To: Hans de Goede <hdegoede@redhat.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Wed, 17 Nov 2021 14:11:16 +0000
-Subject: Re: [Intel-gfx] [PATCH 10/10] drm/i915: Add privacy-screen support
- (v3)
+X-Mailman-Approved-At: Wed, 17 Nov 2021 14:17:44 +0000
+Subject: Re: [Intel-gfx] [PATCH 03/10] drm/privacy-screen: Add X86 specific
+ arch init code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,138 +79,180 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hello Hans,
 
-I'm working on my platform's privacy-screen support based on your
-patches, and had some (I know late) questions. Would be great if you
-could please help answer. Please see inline.
-
-On Tue, Oct 5, 2021 at 1:25 PM Hans de Goede <hdegoede@redhat.com> wrote:
+On Tue, Oct 5, 2021 at 1:23 PM Hans de Goede <hdegoede@redhat.com> wrote:
 >
-> Add support for eDP panels with a built-in privacy screen using the
-> new drm_privacy_screen class.
+> Add X86 specific arch init code, which fills the privacy-screen lookup
+> table by checking for various vendor specific ACPI interfaces for
+> controlling the privacy-screen.
 >
-> Changes in v3:
-> - Move drm_privacy_screen_get() call to intel_ddi_init_dp_connector()
+> This initial version only checks for the Lenovo Thinkpad specific ACPI
+> methods for privacy-screen control.
 >
-> Changes in v2:
-> - Call drm_connector_update_privacy_screen() from
->   intel_enable_ddi_dp() / intel_ddi_update_pipe_dp() instead of adding a
->   for_each_new_connector_in_state() loop to intel_atomic_commit_tail()
-> - Move the probe-deferral check to the intel_modeset_probe_defer() helper
->
+> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
+> Reviewed-by: Lyude Paul <lyude@redhat.com>
 > Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_atomic.c  |  1 +
->  drivers/gpu/drm/i915/display/intel_ddi.c     | 16 ++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
->  3 files changed, 27 insertions(+)
+>  drivers/gpu/drm/Makefile                 |  2 +-
+>  drivers/gpu/drm/drm_privacy_screen_x86.c | 86 ++++++++++++++++++++++++
+>  include/drm/drm_privacy_screen_machine.h |  5 ++
+>  3 files changed, 92 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/drm_privacy_screen_x86.c
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
-> index b4e7ac51aa31..a62550711e98 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-> @@ -139,6 +139,7 @@ int intel_digital_connector_atomic_check(struct drm_connector *conn,
->             new_conn_state->base.picture_aspect_ratio != old_conn_state->base.picture_aspect_ratio ||
->             new_conn_state->base.content_type != old_conn_state->base.content_type ||
->             new_conn_state->base.scaling_mode != old_conn_state->base.scaling_mode ||
-> +           new_conn_state->base.privacy_screen_sw_state != old_conn_state->base.privacy_screen_sw_state ||
->             !drm_connector_atomic_hdr_metadata_equal(old_state, new_state))
->                 crtc_state->mode_changed = true;
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index 788fc37096f6..12997ca5670d 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -32,7 +32,7 @@ drm-$(CONFIG_OF) += drm_of.o
+>  drm-$(CONFIG_PCI) += drm_pci.o
+>  drm-$(CONFIG_DEBUG_FS) += drm_debugfs.o drm_debugfs_crc.o
+>  drm-$(CONFIG_DRM_LOAD_EDID_FIRMWARE) += drm_edid_load.o
+> -drm-$(CONFIG_DRM_PRIVACY_SCREEN) += drm_privacy_screen.o
+> +drm-$(CONFIG_DRM_PRIVACY_SCREEN) += drm_privacy_screen.o drm_privacy_screen_x86.o
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 0d4cf7fa8720..272714e07cc6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -25,6 +25,7 @@
->   *
->   */
+>  obj-$(CONFIG_DRM_DP_AUX_BUS) += drm_dp_aux_bus.o
 >
-> +#include <drm/drm_privacy_screen_consumer.h>
->  #include <drm/drm_scdc_helper.h>
->
->  #include "i915_drv.h"
-> @@ -2946,6 +2947,7 @@ static void intel_enable_ddi_dp(struct intel_atomic_state *state,
->         if (port == PORT_A && DISPLAY_VER(dev_priv) < 9)
->                 intel_dp_stop_link_train(intel_dp, crtc_state);
->
-> +       drm_connector_update_privacy_screen(conn_state);
->         intel_edp_backlight_on(crtc_state, conn_state);
->
->         if (!dig_port->lspcon.active || dig_port->dp.has_hdmi_sink)
-> @@ -3161,6 +3163,7 @@ static void intel_ddi_update_pipe_dp(struct intel_atomic_state *state,
->         intel_drrs_update(intel_dp, crtc_state);
->
->         intel_backlight_update(state, encoder, crtc_state, conn_state);
-> +       drm_connector_update_privacy_screen(conn_state);
->  }
->
->  void intel_ddi_update_pipe(struct intel_atomic_state *state,
-> @@ -3979,6 +3982,19 @@ intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
->                 return NULL;
->         }
->
-> +       if (dig_port->base.type == INTEL_OUTPUT_EDP) {
-> +               struct drm_device *dev = dig_port->base.base.dev;
-> +               struct drm_privacy_screen *privacy_screen;
+> diff --git a/drivers/gpu/drm/drm_privacy_screen_x86.c b/drivers/gpu/drm/drm_privacy_screen_x86.c
+> new file mode 100644
+> index 000000000000..a2cafb294ca6
+> --- /dev/null
+> +++ b/drivers/gpu/drm/drm_privacy_screen_x86.c
+> @@ -0,0 +1,86 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright (C) 2020 Red Hat, Inc.
+> + *
+> + * Authors:
+> + * Hans de Goede <hdegoede@redhat.com>
+> + */
 > +
-> +               privacy_screen = drm_privacy_screen_get(dev->dev, NULL);
+> +#include <linux/acpi.h>
+> +#include <drm/drm_privacy_screen_machine.h>
+> +
+> +#ifdef CONFIG_X86
+> +static struct drm_privacy_screen_lookup arch_lookup;
+> +
+> +struct arch_init_data {
+> +       struct drm_privacy_screen_lookup lookup;
+> +       bool (*detect)(void);
+> +};
+> +
+> +#if IS_ENABLED(CONFIG_THINKPAD_ACPI)
+> +static acpi_status __init acpi_set_handle(acpi_handle handle, u32 level,
+> +                                         void *context, void **return_value)
+> +{
+> +       *(acpi_handle *)return_value = handle;
+> +       return AE_CTRL_TERMINATE;
+> +}
+> +
+> +static bool __init detect_thinkpad_privacy_screen(void)
+> +{
+> +       union acpi_object obj = { .type = ACPI_TYPE_INTEGER };
+> +       struct acpi_object_list args = { .count = 1, .pointer = &obj, };
+> +       acpi_handle ec_handle = NULL;
+> +       unsigned long long output;
+> +       acpi_status status;
+> +
+> +       /* Get embedded-controller handle */
+> +       status = acpi_get_devices("PNP0C09", acpi_set_handle, NULL, &ec_handle);
+> +       if (ACPI_FAILURE(status) || !ec_handle)
+> +               return false;
+> +
+> +       /* And call the privacy-screen get-status method */
+> +       status = acpi_evaluate_integer(ec_handle, "HKEY.GSSS", &args, &output);
+> +       if (ACPI_FAILURE(status))
+> +               return false;
+> +
+> +       return (output & 0x10000) ? true : false;
+> +}
+> +#endif
+> +
+> +static const struct arch_init_data arch_init_data[] __initconst = {
+> +#if IS_ENABLED(CONFIG_THINKPAD_ACPI)
+> +       {
+> +               .lookup = {
+> +                       .dev_id = NULL,
+> +                       .con_id = NULL,
+> +                       .provider = "privacy_screen-thinkpad_acpi",
+> +               },
+> +               .detect = detect_thinkpad_privacy_screen,
+> +       },
+> +#endif
+> +};
 
-Why pass NULL for con_id? Can we pass something more meaningful (e.g.
-"eDP-1") so that the non-KMS platform components that provide the
-privacy-screen can provide a more specific lookup? Or is that
-information (connector name) not available at the time this call is
-being made?
+As I'm trying to add privacy-screen support for my platform, I'm
+trying to understand if my platform needs to make an entry in this
+static list.
 
-Thanks,
+Do I understand it right that the reason you needed this static list
+(and this whole file really), instead of just doing a
+drm_privacy_screen_lookup_add() in the platform code in
+thinkpad_acpi.c, was because that code was executed AFTER the
+drm_connectors had already initialized?
+
+In other words, the privacy-screen providers (platform code) need to
+register a privacy-screen and a lookup structure, BEFORE the drm
+connectors are initialized. If the platform code that provides a
+privacy-screen is executed AFTER the drm-connector initializes, then
+we need an entry in this static list, so that the drm probe (for i915
+atleast) is DEFERRED until the privacy-screen provider registers the
+privacy-screen?
+
+OTOH, if the platform can register a privacy-screen and a lookup
+function (via drm_privacy_screen_lookup_add()) BEFORE drm probe, then
+I do not need an entry in this static list.
+
+Is this correct understanding?
+
+Thanks & Best Regards,
 
 Rajat
 
-
-> +               if (!IS_ERR(privacy_screen)) {
-> +                       drm_connector_attach_privacy_screen_provider(&connector->base,
-> +                                                                    privacy_screen);
-> +               } else if (PTR_ERR(privacy_screen) != -ENODEV) {
-> +                       drm_warn(dev, "Error getting privacy-screen\n");
-> +               }
+> +
+> +void __init drm_privacy_screen_lookup_init(void)
+> +{
+> +       int i;
+> +
+> +       for (i = 0; i < ARRAY_SIZE(arch_init_data); i++) {
+> +               if (!arch_init_data[i].detect())
+> +                       continue;
+> +
+> +               pr_info("Found '%s' privacy-screen provider\n",
+> +                       arch_init_data[i].lookup.provider);
+> +
+> +               /* Make a copy because arch_init_data is __initconst */
+> +               arch_lookup = arch_init_data[i].lookup;
+> +               drm_privacy_screen_lookup_add(&arch_lookup);
+> +               break;
 > +       }
+> +}
 > +
->         return connector;
->  }
+> +void drm_privacy_screen_lookup_exit(void)
+> +{
+> +       if (arch_lookup.provider)
+> +               drm_privacy_screen_lookup_remove(&arch_lookup);
+> +}
+> +#endif /* ifdef CONFIG_X86 */
+> diff --git a/include/drm/drm_privacy_screen_machine.h b/include/drm/drm_privacy_screen_machine.h
+> index aaa0d38cce92..02e5371904d3 100644
+> --- a/include/drm/drm_privacy_screen_machine.h
+> +++ b/include/drm/drm_privacy_screen_machine.h
+> @@ -31,11 +31,16 @@ struct drm_privacy_screen_lookup {
+>  void drm_privacy_screen_lookup_add(struct drm_privacy_screen_lookup *lookup);
+>  void drm_privacy_screen_lookup_remove(struct drm_privacy_screen_lookup *lookup);
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 86dbe366a907..84715a779d9d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -42,6 +42,7 @@
->  #include <drm/drm_edid.h>
->  #include <drm/drm_fourcc.h>
->  #include <drm/drm_plane_helper.h>
-> +#include <drm/drm_privacy_screen_consumer.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_rect.h>
->
-> @@ -12769,6 +12770,8 @@ void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915)
->
->  bool intel_modeset_probe_defer(struct pci_dev *pdev)
+> +#if IS_ENABLED(CONFIG_DRM_PRIVACY_SCREEN) && IS_ENABLED(CONFIG_X86)
+> +void drm_privacy_screen_lookup_init(void);
+> +void drm_privacy_screen_lookup_exit(void);
+> +#else
+>  static inline void drm_privacy_screen_lookup_init(void)
 >  {
-> +       struct drm_privacy_screen *privacy_screen;
-> +
->         /*
->          * apple-gmux is needed on dual GPU MacBook Pro
->          * to probe the panel if we're the inactive GPU.
-> @@ -12776,6 +12779,13 @@ bool intel_modeset_probe_defer(struct pci_dev *pdev)
->         if (vga_switcheroo_client_probe_defer(pdev))
->                 return true;
->
-> +       /* If the LCD panel has a privacy-screen, wait for it */
-> +       privacy_screen = drm_privacy_screen_get(&pdev->dev, NULL);
-> +       if (IS_ERR(privacy_screen) && PTR_ERR(privacy_screen) == -EPROBE_DEFER)
-> +               return true;
-> +
-> +       drm_privacy_screen_put(privacy_screen);
-> +
->         return false;
 >  }
+>  static inline void drm_privacy_screen_lookup_exit(void)
+>  {
+>  }
+> +#endif
 >
+>  #endif
 > --
 > 2.31.1
 >
