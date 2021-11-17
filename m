@@ -2,37 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E58E4548DA
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 15:32:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A07B45487C
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 15:20:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B3D66E483;
-	Wed, 17 Nov 2021 14:32:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C75406E4BB;
+	Wed, 17 Nov 2021 14:20:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 985 seconds by postgrey-1.36 at gabe;
- Wed, 17 Nov 2021 14:32:43 UTC
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 829E76E483;
- Wed, 17 Nov 2021 14:32:43 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 151790-1500050 for multiple; Wed, 17 Nov 2021 14:16:15 +0000
-Content-Type: text/plain; charset="utf-8"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20A896E4B3;
+ Wed, 17 Nov 2021 14:20:37 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10170"; a="232675078"
+X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="232675078"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2021 06:20:36 -0800
+X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="593363777"
+Received: from ianock-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.8.140])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2021 06:20:35 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 17 Nov 2021 14:20:19 +0000
+Message-Id: <20211117142024.1043017-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211117133456.688802-3-andi.shyti@linux.intel.com>
-References: <20211117133456.688802-1-andi.shyti@linux.intel.com>
- <20211117133456.688802-3-andi.shyti@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Intel GFX <intel-gfx@lists.freedesktop.org>
-Date: Wed, 17 Nov 2021 14:16:13 +0000
-Message-ID: <163715857341.11567.6516227738264680366@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Rename gt to gt0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 1/6] drm/i915: move the pre_pin earlier
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,138 +43,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Michał Winiarski <michal.winiarski@intel.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Andi Shyti (2021-11-17 13:34:56)
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/=
-gpu/drm/i915/display/intel_atomic_plane.c
-> index 089fb4658b216..0bbf8c0c42eac 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -817,7 +817,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
->          * maximum clocks following a vblank miss (see do_rps_boost()).
->          */
->         if (!state->rps_interactive) {
-> -               intel_rps_mark_interactive(&dev_priv->gt.rps, true);
-> +               intel_rps_mark_interactive(&dev_priv->gt0.rps, true);
+In intel_context_do_pin_ww, when calling into the pre_pin hook(which is
+passed the ww context) it could in theory return -EDEADLK(which is very
+likely with debug kernels), once we start adding more ww locking in there,
+like in the next patch. If so then we need to be mindful of having to
+restart the do_pin at this point.
 
-This should be across all gt, so probably wants a fresh interface that
-takes i915 and does for_each_gt in a later patch. (Since we could be
-rendering on a remote tile to present on a display.)
+If this is the kernel_context, or some other early in-kernel context
+where we have yet to setup the default_state, then we always inhibit the
+context restore, and instead rely on the delayed active_release to set
+the CONTEXT_VALID_BIT for us(if we even care), which should indicate
+that we have context switched away, and that our newly saved context
+state should now be valid. However, since we currently grab the active
+reference before the potential ww dance, we can end up setting the
+CONTEXT_VALID_BIT much too early, if we need to backoff, and then upon
+re-trying the do_pin, we could potentially cause the hardware to
+incorrectly load some garbage context state when later context switching
+to that context, but at the very least this will trigger the
+GEM_BUG_ON() in __engine_unpark. For now let's just move any ww dance
+stuff prior to arming the active reference.
 
->                 state->rps_interactive =3D true;
->         }
-> =20
-> @@ -851,7 +851,7 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
->                 return;
-> =20
->         if (state->rps_interactive) {
-> -               intel_rps_mark_interactive(&dev_priv->gt.rps, false);
-> +               intel_rps_mark_interactive(&dev_priv->gt0.rps, false);
->                 state->rps_interactive =3D false;
->         }
-> =20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 0ceee8ac66717..d4fcd8f236476 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -838,7 +838,7 @@ __intel_display_resume(struct drm_device *dev,
->  static bool gpu_reset_clobbers_display(struct drm_i915_private *dev_priv)
->  {
->         return (INTEL_INFO(dev_priv)->gpu_reset_clobbers_display &&
-> -               intel_has_gpu_reset(&dev_priv->gt));
-> +               intel_has_gpu_reset(&dev_priv->gt0));
+For normal user contexts this shouldn't be a concern, since we should
+already have the default_state ready when initialising the lrc state,
+and so there should be no concern with active_release somehow
+prematurely setting the CONTEXT_VALID_BIT.
 
-All these display consumers probably want to use
-dev_priv->ggtt->vm.gt, since the scanout capable GGTT would seem to be
-the defining feature.
+v2(Thomas):
+  - Also re-order the union unwind
 
-to_scanout_gt(i915) ?
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_context.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
->  static bool pxp_is_borked(struct drm_i915_gem_object *obj)
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/dr=
-m/i915/gem/i915_gem_context.c
-> index ebd775cb1661c..c62253d0af044 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -237,7 +237,7 @@ static int proto_context_set_persistence(struct drm_i=
-915_private *i915,
->                  * colateral damage, and we should not pretend we can by
->                  * exposing the interface.
->                  */
-> -               if (!intel_has_reset_engine(&i915->gt))
-> +               if (!intel_has_reset_engine(&i915->gt0))
->                         return -ENODEV;
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index 5634d14052bc..4c296de1d67d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -228,17 +228,17 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
+ 	if (err)
+ 		return err;
+ 
+-	err = i915_active_acquire(&ce->active);
++	err = ce->ops->pre_pin(ce, ww, &vaddr);
+ 	if (err)
+ 		goto err_ctx_unpin;
+ 
+-	err = ce->ops->pre_pin(ce, ww, &vaddr);
++	err = i915_active_acquire(&ce->active);
+ 	if (err)
+-		goto err_release;
++		goto err_post_unpin;
+ 
+ 	err = mutex_lock_interruptible(&ce->pin_mutex);
+ 	if (err)
+-		goto err_post_unpin;
++		goto err_release;
+ 
+ 	intel_engine_pm_might_get(ce->engine);
+ 
+@@ -273,11 +273,11 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
+ 
+ err_unlock:
+ 	mutex_unlock(&ce->pin_mutex);
++err_release:
++	i915_active_release(&ce->active);
+ err_post_unpin:
+ 	if (!handoff)
+ 		ce->ops->post_unpin(ce);
+-err_release:
+-	i915_active_release(&ce->active);
+ err_ctx_unpin:
+ 	intel_context_post_unpin(ce);
+ 
+-- 
+2.31.1
 
-Prep for all gt. A lot of these need an all-gt interface so we don't
-have for_each_gt spread all other the place.
-
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/d=
-rm/i915/gem/i915_gem_ttm_move.c
-> index ef22d4ed66ad6..69ad407eb15f3 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> @@ -166,7 +166,7 @@ static struct dma_fence *i915_ttm_accel_move(struct t=
-tm_buffer_object *bo,
->         enum i915_cache_level src_level, dst_level;
->         int ret;
-> =20
-> -       if (!i915->gt.migrate.context || intel_gt_is_wedged(&i915->gt))
-> +       if (!i915->gt0.migrate.context || intel_gt_is_wedged(&i915->gt0))
-
-This should already be looking at lmem->gt
-
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/dr=
-m/i915/gt/intel_engine_user.c
-> index 8f8bea08e734d..176ea5c7d422f 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> @@ -116,7 +116,7 @@ static void set_scheduler_caps(struct drm_i915_privat=
-e *i915)
->                         disabled |=3D (I915_SCHEDULER_CAP_ENABLED |
->                                      I915_SCHEDULER_CAP_PRIORITY);
-> =20
-> -               if (intel_uc_uses_guc_submission(&i915->gt.uc))
-> +               if (intel_uc_uses_guc_submission(&i915->gt0.uc))
-
-This shouldn't be looking at gt at all, but if it must, that information
-must be coming via engine->gt. Kind of renders the mapping moot
-currently.
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/g=
-t/intel_rps.c
-> index 07ff7ba7b2b71..63089e671a242 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> @@ -2302,7 +2302,7 @@ unsigned long i915_read_mch_val(void)
->                 return 0;
-> =20
->         with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
-> -               struct intel_ips *ips =3D &i915->gt.rps.ips;
-> +               struct intel_ips *ips =3D &i915->gt0.rps.ips;
-
-Make mchdev_get() return the gt or rps, at the slight cost of making the
-drm_dev_put() more complicated (but can be pushed into a mchdev_put for
-symmetry).
-
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
-m/i915/gt/intel_workarounds.c
-> index a9727447c0379..4bfedc04f5c70 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -936,7 +936,7 @@ hsw_gt_workarounds_init(struct intel_gt *gt, struct i=
-915_wa_list *wal)
->  static void
->  gen9_wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
->  {
-> -       const struct sseu_dev_info *sseu =3D &i915->gt.info.sseu;
-> +       const struct sseu_dev_info *sseu =3D &i915->gt0.info.sseu;
-
-This feels like it should be pulling from uncore->gt, since the MCR is
-across an uncore.
-
-Overall though, rather than introduce bare &i915->gt0, how about pulling in
-the patch for to_gt(i915)?
--Chris
