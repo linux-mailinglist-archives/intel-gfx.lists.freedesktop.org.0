@@ -2,39 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 800A8454ED2
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 21:55:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAE79454ED6
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 21:56:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A33B6E858;
-	Wed, 17 Nov 2021 20:55:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 384D36E858;
+	Wed, 17 Nov 2021 20:56:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4C406E858
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 20:55:22 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="214086759"
-X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="214086759"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2021 12:50:21 -0800
-X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="505274213"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32D9D6E858
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 20:56:55 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="220937322"
+X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="220937322"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2021 12:56:55 -0800
+X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="593495128"
 Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
  ([10.165.21.211])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2021 12:50:21 -0800
-Date: Wed, 17 Nov 2021 13:03:38 -0800
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2021 12:56:54 -0800
+Date: Wed, 17 Nov 2021 13:10:13 -0800
 From: "Navare, Manasi" <manasi.d.navare@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20211117210338.GA593@labuser-Z97X-UD5H>
+Message-ID: <20211117211006.GB593@labuser-Z97X-UD5H>
 References: <20211117183103.27418-1-ville.syrjala@linux.intel.com>
+ <20211117183103.27418-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211117183103.27418-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20211117183103.27418-2-ville.syrjala@linux.intel.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Move vrr push after the frame
- counter sampling again
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Do vblank evasion correctly
+ if vrr push has already been sent
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,85 +52,95 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 17, 2021 at 08:31:01PM +0200, Ville Syrjala wrote:
+On Wed, Nov 17, 2021 at 08:31:02PM +0200, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Moving the vrr push to happen before sampling the frame counter
-> was wrong. If we are already in vblank when the push is sent
-> the vblank exit will start immediately which causes the sampled
-> frame counter to correspond to the next frame instead of the current
-> frame.
+> Let's adjust the vblank evasion to account for the case where
+> a push has already been sent. In that case the vblank exit will start
+> at vmin vblank start (as opposed to vmax vblank start when no push
+> has been sent).
 > 
-> So put things back into the original order (except we should
-> keep the vrr push within the irq disable section to avoid
-> pointless irq related delays here).
-> 
-> We'll just have to accept the tiny race that exists between
-> sampling the frame counter vs. vrr push. And let's at least
-> document said race properly in a comment.
-> 
-> I suppose we could try to minimize the race by sampling the frame
-> counter just before sending the push, but that would require
-> changing drm_crtc_arm_vblank_event() to accept a caller provided
-> vblank counter value, so leave it be for now. Another thing we
-> could do is change the vblank evasion to account for the case
-> where a push was already sent. That would anyway be required
-> for mailbox style updates. Currently mailbox updates are only
-> used by the legacy cursor, but we don't do a vrr push for those.
+> This should minimize the effects of the tiny race between sampling
+> the frame counter vs. intel_vrr_send_push() during the previous frame.
+> This will also be required if we want to do mailbox style updates with
+> vrr since then we'd definitely do multiple commits per frame. Currently
+> mailbox updates are only used by the legacy cursor, but we don't do
+> vrr push for those.
 > 
 > Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Fixes: 6f9976bd1310 ("drm/i915: Do vrr push before sampling the frame counter")
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_crtc.c | 10 +++++++---
+>  drivers/gpu/drm/i915/display/intel_vrr.c  | 12 ++++++++++++
+>  drivers/gpu/drm/i915/display/intel_vrr.h  |  1 +
+>  3 files changed, 20 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> index cf403be7736c..eb5444f90e77 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -470,10 +470,14 @@ void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state)
+>  	if (intel_crtc_needs_vblank_work(new_crtc_state))
+>  		intel_crtc_vblank_work_init(new_crtc_state);
+>  
+> -	if (new_crtc_state->vrr.enable)
+> -		vblank_start = intel_vrr_vmax_vblank_start(new_crtc_state);
+> -	else
+> +	if (new_crtc_state->vrr.enable) {
+> +		if (intel_vrr_is_push_sent(new_crtc_state))
+> +			vblank_start = intel_vrr_vmin_vblank_start(new_crtc_state);
 
-The original order was to send push after enabling IRQs but I think it makes
-sense to send push just before enabling IRQs so avoid the vblank
-termination getting delayed due to IRQs
+Actually if Push is sent then the vblank gets terminated at that point which falls between vmin and vmax so
+not necessarily at Vmin but at anytime between vmin and vmax. Is it correct to calculate it based on vmin?
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+> +		else
+> +			vblank_start = intel_vrr_vmax_vblank_start(new_crtc_state);
+> +	} else {
+>  		vblank_start = intel_mode_vblank_start(adjusted_mode);
+> +	}
+>  
+>  	/* FIXME needs to be calibrated sensibly */
+>  	min = vblank_start - intel_usecs_to_scanlines(adjusted_mode,
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index c335b1dbafcf..db1c3902fc2d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -193,6 +193,18 @@ void intel_vrr_send_push(const struct intel_crtc_state *crtc_state)
+>  		       TRANS_PUSH_EN | TRANS_PUSH_SEND);
+>  }
+>  
+> +bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> +
+> +	if (!crtc_state->vrr.enable)
+> +		return false;
+> +
+> +	return intel_de_read(dev_priv, TRANS_PUSH(cpu_transcoder)) & TRANS_PUSH_SEND;
+
+But HW clears this bit after double buffer update. Is this a good inidcation to check the PUSH_SEND bit?
 
 Manasi
 
-> ---
->  drivers/gpu/drm/i915/display/intel_crtc.c | 19 ++++++++++++++++---
->  1 file changed, 16 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> index f09df2cf052b..cf403be7736c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -610,9 +610,6 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
->  
->  	trace_intel_pipe_update_end(crtc, end_vbl_count, scanline_end);
->  
-> -	/* Send VRR Push to terminate Vblank */
-> -	intel_vrr_send_push(new_crtc_state);
-> -
->  	/*
->  	 * Incase of mipi dsi command mode, we need to set frame update
->  	 * request for every commit.
-> @@ -641,6 +638,22 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
->  		new_crtc_state->uapi.event = NULL;
->  	}
->  
-> +	/*
-> +	 * Send VRR Push to terminate Vblank. If we are already in vblank
-> +	 * this has to be done _after_ sampling the frame counter, as
-> +	 * otherwise the push would immediately terminate the vblank and
-> +	 * the sampled frame counter would correspond to the next frame
-> +	 * instead of the current frame.
-> +	 *
-> +	 * There is a tiny race here (iff vblank evasion failed us) where
-> +	 * we might sample the frame counter just before vmax vblank start
-> +	 * but the push would be sent just after it. That would cause the
-> +	 * push to affect the next frame instead of the current frame,
-> +	 * which would cause the next frame to terminate already at vmin
-> +	 * vblank start instead of vmax vblank start.
-> +	 */
-> +	intel_vrr_send_push(new_crtc_state);
+> +}
 > +
->  	local_irq_enable();
->  
->  	if (intel_vgpu_active(dev_priv))
+>  void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
+> index 96f9c9c27ab9..1c2da572693d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+> @@ -23,6 +23,7 @@ void intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>  void intel_vrr_enable(struct intel_encoder *encoder,
+>  		      const struct intel_crtc_state *crtc_state);
+>  void intel_vrr_send_push(const struct intel_crtc_state *crtc_state);
+> +bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state);
+>  void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state);
+>  void intel_vrr_get_config(struct intel_crtc *crtc,
+>  			  struct intel_crtc_state *crtc_state);
 > -- 
 > 2.32.0
 > 
