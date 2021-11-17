@@ -2,37 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B105454510
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 11:36:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E0D7454547
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Nov 2021 12:01:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 450C26E4F3;
-	Wed, 17 Nov 2021 10:35:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D94066E1F1;
+	Wed, 17 Nov 2021 11:00:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE2876E51C
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 10:35:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10170"; a="233868115"
-X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="233868115"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2021 02:35:56 -0800
-X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; d="scan'208";a="506858473"
-Received: from sorenthe-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.249.254.159])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2021 02:35:53 -0800
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211117100223.52c7460a@canb.auug.org.au>
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC21F6E1F1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Nov 2021 11:00:58 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4HvKjL3ZBfz4xbH;
+ Wed, 17 Nov 2021 22:00:53 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1637146856;
+ bh=RtfnGt8HIvX8gJjNg0RB+qEpTL+Cr6T2c8qv8d5pI0Q=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=rti8rBfiUmCqx+F+bXUB2rB3TRL2dB570+jVuAxbpi4Z+yyuYuEhBfpe8PfI7A7H7
+ lRjY5HZrPzrS/C9OxpuXxvVFf1rb9FfbwKDD3UER/YR8v7Rjml5Krq7R+V8fjTTppm
+ RX3sqN8EoecqWVro0ygsuZ1FnN1dDa1iAyN3Sor41Ty3pk1CDk0shsxV3F2GjgbAAV
+ 1/PzreNP0kpvZQIlaEbdIrqUQFwNeAGVCJt7OOJwZ/yR+17jSfylCXC8Bg24JpWsoz
+ eWc/9auugoUONJ6lv+UXED91ZfKWwqAgB4SNlNoKWW4kK7E3tDkgnA1guNDHUc/Chi
+ 2sv3GkVUdj99w==
+Date: Wed, 17 Nov 2021 22:00:53 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <20211117220053.179a82e4@canb.auug.org.au>
+In-Reply-To: <163714535048.4529.4694769143307309201@jlahtine-mobl.ger.corp.intel.com>
 References: <20211117100223.52c7460a@canb.auug.org.au>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <163714535048.4529.4694769143307309201@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Wed, 17 Nov 2021 12:35:50 +0200
+ <163714535048.4529.4694769143307309201@jlahtine-mobl.ger.corp.intel.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="Sig_/WpZm5acPgFKXFiIr8uVD1kW";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
  drm-intel-gt tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -56,68 +61,37 @@ Cc: thomas.hellstrom@linux.intel.com, Daniel Vetter <daniel.vetter@ffwll.ch>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-+ intel-gfx mailing list (Stephen, can you include this going forward?)
+--Sig_/WpZm5acPgFKXFiIr8uVD1kW
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Adding Thomas for this specific patch.
+Hi Joonas,
 
-Regards, Joonas
+On Wed, 17 Nov 2021 12:35:50 +0200 Joonas Lahtinen <joonas.lahtinen@linux.i=
+ntel.com> wrote:
+>
+> + intel-gfx mailing list (Stephen, can you include this going forward?)
 
-Quoting Stephen Rothwell (2021-11-17 01:02:23)
-> Hi all,
->=20
-> After merging the etnaviv tree, today's linux-next build (x86_64
-> allmodconfig) failed like this:
->=20
-> drivers/gpu/drm/i915/gem/i915_gem_ttm.c: In function 'vm_fault_ttm':
-> drivers/gpu/drm/i915/gem/i915_gem_ttm.c:862:9: error: too many arguments =
-to function 'ttm_bo_vm_fault_reserved'
->   862 |   ret =3D ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
->       |         ^~~~~~~~~~~~~~~~~~~~~~~~
-> In file included from include/drm/ttm/ttm_bo_driver.h:42,
->                  from drivers/gpu/drm/i915/gem/i915_gem_ttm.c:6:
-> include/drm/ttm/ttm_bo_api.h:585:12: note: declared here
->   585 | vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
->       |            ^~~~~~~~~~~~~~~~~~~~~~~~
->=20
-> Caused by commit
->=20
->   ebd4a8ec7799 ("drm/i915/ttm: move shrinker management into adjust_lru")
->=20
-> interacting with commit
->=20
->   0d979509539e ("drm/ttm: remove ttm_bo_vm_insert_huge()")
->=20
-> from Linus' tree.
->=20
-> I applied the following merge fix patch.
->=20
-> From: Stephen Rothwell <sfr@canb.auug.org.au>
-> Date: Wed, 17 Nov 2021 09:57:09 +1100
-> Subject: [PATCH] fix up for "drm/ttm: remove ttm_bo_vm_insert_huge()"
->=20
-> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i9=
-15/gem/i915_gem_ttm.c
-> index d08a270b0921..68cfe6e9ceab 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -860,7 +860,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
-> =20
->         if (drm_dev_enter(dev, &idx)) {
->                 ret =3D ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_p=
-rot,
-> -                                              TTM_BO_VM_NUM_PREFAULT, 1);
-> +                                              TTM_BO_VM_NUM_PREFAULT);
->                 drm_dev_exit(idx);
->         } else {
->                 ret =3D ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
-> --=20
-> 2.33.0
->=20
-> --=20
-> Cheers,
-> Stephen Rothwell
+I have added that to my contacts for this tree (so, yes :-)).
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/WpZm5acPgFKXFiIr8uVD1kW
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmGU4OUACgkQAVBC80lX
+0Gwtwgf/QNDmqkupa9pHTublHJve4GjVHVX+cQ0FNkZ6ZVlfXI8eM9lspa3PNcna
++3/e8s30k0xEUPsEgJw+tWM1aRQsSY4VcK2dR9doJJCwWnYWldjL8Kod+4jsslmQ
+80Cz8sBIUwzI+GQADbAddiQtjQh0KKnhN5nSmgmieh0elip7UJxh/CGhHGIaMlIb
+k6nC2u/NRaaRmA10+pZlJX7Bp0V5sblPdZAuxAnj83J37Y7TngyxCfq82MGmMHkr
+qMWzawgN3CsMCaUxHTSU4V34yMqxuBAK2I8eKBf1rCmWfP/uG1a43UE3xgTrVMOP
+jiooGKH7xjADdEBiDnvSM2aTuvnnPw==
+=FIHS
+-----END PGP SIGNATURE-----
+
+--Sig_/WpZm5acPgFKXFiIr8uVD1kW--
