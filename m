@@ -2,50 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517C6457149
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 15:58:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 855BB457181
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 16:16:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD2AE6E214;
-	Fri, 19 Nov 2021 14:58:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA58E6EAE2;
+	Fri, 19 Nov 2021 15:16:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3A976EA09
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 14:58:37 +0000 (UTC)
-Date: Fri, 19 Nov 2021 15:58:34 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1637333916;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=05S1EPoS2uCX2lmLqI0lPAWhqGCTzNdjavtXIoQ/TEk=;
- b=RvfRVk2nS+wgtRkmEnsBnoqdfzI5lU1hbXVq59T69+buDeuS/MGkwwbJBA0cQuRmz2b+fH
- ecotyNv309e/26bd4sXyQLy9qaa9SHsHrt/aWDnmSUg7bPkxwdN8UPgeO/4Y+cIWR0dnAx
- M6RMCepU0vuZiMUzBn7KUeTT0la+XY18nr/QmA/036MfCP9wrM4mWVG5oA16QbRPXTbT1q
- f/QNUyf4v7ZD2XMYAgWUYdwUN4oGRtG3lZj7kZ/4Jc+44j/4ELWAeZjP1hMC8RBAIyMW3M
- Bk9+YmG5g4hoVRJq/sbIMz+yc5BUAv04MD7xl9iSDgw9P9H0H77f/rKsv19dpw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1637333916;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=05S1EPoS2uCX2lmLqI0lPAWhqGCTzNdjavtXIoQ/TEk=;
- b=jugc2L0BBz+Yx/J6dauORXJUrsMcKoiZwIINxK52Hop8ihgrx6RxnTyHtfin/MCdnldzFQ
- 0pdez5f9/gs5HSAw==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20211119145834.dmdhs74dqr7dcdt7@linutronix.de>
-References: <20211118165914.pckik75emivsilek@linutronix.de>
- <163731167626.2300.15452635334943775421@emeril.freedesktop.org>
+Received: from mx0b-00190b01.pphosted.com (mx0b-00190b01.pphosted.com
+ [IPv6:2620:100:9005:57f::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B75D6E96C;
+ Thu, 18 Nov 2021 14:30:41 +0000 (UTC)
+Received: from pps.filterd (m0050096.ppops.net [127.0.0.1])
+ by m0050096.ppops.net-00190b01. (8.16.1.2/8.16.1.2) with ESMTP id
+ 1AIBKkIv005884; Thu, 18 Nov 2021 14:30:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akamai.com;
+ h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=jan2016.eng;
+ bh=EEv+FO0y2LcqM6PtDCyOArBwCLcxVvnGTnV08q5cqI8=;
+ b=Idci0ujFpG3jtuCOuphPhIyMPpDzd5jCyJYZOmtKJTGkLCERXkSH3wcbAMdk9gVmJm+H
+ YDbEK+jUygH6ci5qP1UHTxs+AxWiIrRHPsHDGuYOqJvp+457GfAT7AZOFEIVIvanYWvZ
+ cy/J+/X7EA5rFT8quo9FuATXp5KPGLhk7F6+C66o8jZb2RKBRgzmOidWTJfvfw5Vw23j
+ ZWq2uaYUaAVOCPqPY1jM1krTTcTUl20PWIcGAdh+XCIfkjIGr8HYmIrK0xxPVpDxTyK0
+ a6EOxiUmF1MrznpM4CZAj+iypwVjkAkumF4V9snAwT6Lulcrv1OvRFd8OGypNmyE+JfZ 9g== 
+Received: from prod-mail-ppoint8
+ (a72-247-45-34.deploy.static.akamaitechnologies.com [72.247.45.34] (may be
+ forged))
+ by m0050096.ppops.net-00190b01. (PPS) with ESMTPS id 3cdnvjuq7y-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 18 Nov 2021 14:30:05 +0000
+Received: from pps.filterd (prod-mail-ppoint8.akamai.com [127.0.0.1])
+ by prod-mail-ppoint8.akamai.com (8.16.1.2/8.16.1.2) with SMTP id
+ 1AIEK558022965; Thu, 18 Nov 2021 09:29:29 -0500
+Received: from prod-mail-relay18.dfw02.corp.akamai.com ([172.27.165.172])
+ by prod-mail-ppoint8.akamai.com with ESMTP id 3ccjst50g6-1;
+ Thu, 18 Nov 2021 09:29:29 -0500
+Received: from [0.0.0.0] (unknown [172.27.119.138])
+ by prod-mail-relay18.dfw02.corp.akamai.com (Postfix) with ESMTP id 2366F3DA;
+ Thu, 18 Nov 2021 14:29:28 +0000 (GMT)
+To: Pekka Paalanen <ppaalanen@gmail.com>
+References: <20211111220206.121610-1-jim.cromie@gmail.com>
+ <20211111220206.121610-9-jim.cromie@gmail.com>
+ <20211112114953.GA1381@axis.com>
+ <f3914fa9-8b22-d54e-3f77-d998e74094b9@akamai.com>
+ <20211116104631.195cbd0b@eldfell>
+From: Jason Baron <jbaron@akamai.com>
+Message-ID: <f87b7076-47e6-89b1-aaf9-b67aa6713e01@akamai.com>
+Date: Thu, 18 Nov 2021 09:29:27 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <163731167626.2300.15452635334943775421@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Don=27t_disable_interrupts_and_pretend_a_lock_as_been_?=
- =?utf-8?b?YWNxdWlyZWQgaW4gX190aW1lbGluZV9tYXJrX2xvY2soKS4=?=
+In-Reply-To: <20211116104631.195cbd0b@eldfell>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.425, 18.0.790
+ definitions=2021-11-18_12:2021-11-17,
+ 2021-11-18 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ suspectscore=0 bulkscore=0
+ spamscore=0 phishscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
+ definitions=main-2111180080
+X-Proofpoint-ORIG-GUID: PZH91yPu5Slhl0tBH1YNzfOEtC8OZPwU
+X-Proofpoint-GUID: PZH91yPu5Slhl0tBH1YNzfOEtC8OZPwU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-11-18_12,2021-11-17_01,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
+ lowpriorityscore=0 suspectscore=0
+ bulkscore=0 adultscore=0 mlxlogscore=999 spamscore=0 impostorscore=0
+ mlxscore=0 phishscore=0 malwarescore=0 clxscore=1011 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
+ definitions=main-2111180081
+X-Mailman-Approved-At: Fri, 19 Nov 2021 15:16:46 +0000
+Subject: Re: [Intel-gfx] [PATCH v10 08/10] dyndbg: add print-to-tracefs,
+ selftest with it - RFC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,48 +91,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tglx@linutronix.de
+Cc: quic_saipraka@quicinc.com, catalin.marinas@arm.com,
+ dri-devel@lists.freedesktop.org, will@kernel.org,
+ intel-gvt-dev@lists.freedesktop.org,
+ Vincent Whitchurch <vincent.whitchurch@axis.com>,
+ amd-gfx@lists.freedesktop.org, mingo@redhat.com, daniel.vetter@ffwll.ch,
+ arnd@arndb.de, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ rostedt@goodmis.org, mathieu.desnoyers@efficios.com,
+ linux-arm-kernel@lists.infradead.org, Jim Cromie <jim.cromie@gmail.com>,
+ gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+ quic_psodagud@quicinc.com, maz@kernel.org, seanpaul@chromium.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-11-19 08:47:56 [-0000], Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/i915: Don't disable interrupts and pretend a lock as been acquired in __timeline_mark_lock().
-> URL   : https://patchwork.freedesktop.org/series/97082/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_10900_full -> Patchwork_21633_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_21633_full absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_21633_full, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
 
-My bug team?
 
-> #### Possible regressions ####
+On 11/16/21 3:46 AM, Pekka Paalanen wrote:
+> On Fri, 12 Nov 2021 10:08:41 -0500
+> Jason Baron <jbaron@akamai.com> wrote:
 > 
->   * igt@kms_vblank@pipe-b-query-forked-hang:
->     - shard-tglb:         [PASS][1] -> [INCOMPLETE][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10900/shard-tglb8/igt@kms_vblank@pipe-b-query-forked-hang.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21633/shard-tglb6/igt@kms_vblank@pipe-b-query-forked-hang.html
+>> On 11/12/21 6:49 AM, Vincent Whitchurch wrote:
+>>> On Thu, Nov 11, 2021 at 03:02:04PM -0700, Jim Cromie wrote:  
+>>>> Sean Paul proposed, in:
+>>>> https://urldefense.com/v3/__https://patchwork.freedesktop.org/series/78133/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQjlN5aBIomzJR1an3YWXM6KXs0EftVMQdrewRA8Dki4A$ 
+>>>> drm/trace: Mirror DRM debug logs to tracefs
+>>>>
+>>>> His patchset's objective is to be able to independently steer some of
+>>>> the drm.debug stream to an alternate tracing destination, by splitting
+>>>> drm_debug_enabled() into syslog & trace flavors, and enabling them
+>>>> separately.  2 advantages were identified:
+>>>>
+>>>> 1- syslog is heavyweight, tracefs is much lighter
+>>>> 2- separate selection of enabled categories means less traffic
+>>>>
+>>>> Dynamic-Debug can do 2nd exceedingly well:
+>>>>
+>>>> A- all work is behind jump-label's NOOP, zero off cost.
+>>>> B- exact site selectivity, precisely the useful traffic.
+>>>>    can tailor enabled set interactively, at shell.
+>>>>
+>>>> Since the tracefs interface is effective for drm (the threads suggest
+>>>> so), adding that interface to dynamic-debug has real potential for
+>>>> everyone including drm.
+>>>>
+>>>> if CONFIG_TRACING:
+>>>>
+>>>> Grab Sean's trace_init/cleanup code, use it to provide tracefs
+>>>> available by default to all pr_debugs.  This will likely need some
+>>>> further per-module treatment; perhaps something reflecting hierarchy
+>>>> of module,file,function,line, maybe with a tuned flattening.
+>>>>
+>>>> endif CONFIG_TRACING
+>>>>
+>>>> Add a new +T flag to enable tracing, independent of +p, and add and
+>>>> use 3 macros: dyndbg_site_is_enabled/logging/tracing(), to encapsulate
+>>>> the flag checks.  Existing code treats T like other flags.  
+>>>
+>>> I posted a patchset a while ago to do something very similar, but that
+>>> got stalled for some reason and I unfortunately didn't follow it up:
+>>>
+>>>  https://urldefense.com/v3/__https://lore.kernel.org/lkml/20200825153338.17061-1-vincent.whitchurch@axis.com/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQjlN5aBIomzJR1an3YWXM6KXs0EftVMQdrewRGytKHPg$ 
+>>>
+>>> A key difference between that patchset and this patch (besides that
+>>> small fact that I used +x instead of +T) was that my patchset allowed
+>>> the dyndbg trace to be emitted to the main buffer and did not force them
+>>> to be in an instance-specific buffer.  
+>>
+>> Yes, I agree I'd prefer that we print here to the 'main' buffer - it
+>> seems to keep things simpler and easier to combine the output from
+>> different sources as you mentioned.
+> 
+> Hi,
+> 
+> I'm not quite sure I understand this discussion, but I would like to
+> remind you all of what Sean's original work is about:
+> 
+> Userspace configures DRM tracing into a flight recorder buffer (I guess
+> this is what you refer to "instance-specific buffer").
+> 
+> Userspace runs happily for months, and then hits a problem: a failure
+> in the DRM sub-system most likely, e.g. an ioctl that should never
+> fail, failed. Userspace handles that failure by dumping the flight
+> recorder buffer into a file and saving or sending a bug report. The
+> flight recorder contents give a log of all relevant DRM in-kernel
+> actions leading to the unexpected failure to help developers debug it.
+> 
+> I don't mind if one can additionally send the flight recorder stream to
+> the main buffer, but I do want the separate flight recorder buffer to
+> be an option so that a) unrelated things cannot flood the interesting
+> bits out of it, and b) the scope of collected information is relevant.
+> 
+> The very reason for this work is problems that are very difficult to
+> reproduce in practice, either because the problem itself is triggered
+> very rarely and randomly, or because the end users of the system have
+> either no knowledge or no access to reconfigure debug logging and then
+> reproduce the problem with good debug logs.
+> 
+> Thank you very much for pushing this work forward!
+> 
+> 
 
-By comparing the two dmesg outputs I see that the INCOMPLETE ones stops,
-while the PASS one continues with
-|<7> [82.256394] heartbeat rcs0 heartbeat {seqno:5:7, prio:2147483646} not ticking
+So I think Vincent (earlier in the thread) was saying that he finds it
+very helpful have dynamic debug output go to the 'main' trace buffer,
+while you seem to be saying you'd prefer it just go to dynamic debug
+specific trace buffer.
 
-I cloned igt-gpu-tools and run 'kms_vblank' on my box. I was a little
-surprised by the suspend part but the test passed here.
+So we certainly can have dynamic output potentially go to both places -
+although I think this would mean two tracepoints? But I really wonder
+if we really need a separate tracing buffer for dynamic debug when
+what goes to the 'main' buffer can be controlled and filtered to avoid
+your concern around a 'flood'?
 
-Sebastian
+Thanks,
+
+-Jason
+
