@@ -1,86 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5EFE455B04
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 12:55:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37B62455B7E
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 13:25:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 852536E90D;
-	Thu, 18 Nov 2021 11:55:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B8436E90D;
+	Thu, 18 Nov 2021 12:25:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44AC76E103
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Nov 2021 11:55:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1637236512;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=PKOvDTAFBhDmqnXLpoIbGl8D9QI4dRnPaHVnV1n7JeM=;
- b=cQ7ilm3Di9jMNyflLvbaVpx/zTcWDdcOe7Tlmap47VIX0WIDNpZpukDkq4ppwU78GmBUjf
- s+gtcRgjapBE3lHvWzw7kvP/bG9gncBIgf4OY2NXhYUdgaxe4/Q7DvseZAxdPp/Yaqzn6f
- 0i7GcqRlxvzFNEjVQzJmg80BWsPFxjs=
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
- [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-595-yD3QFT9_P3ap1l-DvR-Yiw-1; Thu, 18 Nov 2021 06:55:07 -0500
-X-MC-Unique: yD3QFT9_P3ap1l-DvR-Yiw-1
-Received: by mail-ed1-f70.google.com with SMTP id
- l15-20020a056402124f00b003e57269ab87so5065515edw.6
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Nov 2021 03:55:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=PKOvDTAFBhDmqnXLpoIbGl8D9QI4dRnPaHVnV1n7JeM=;
- b=TNT/OGcVzSyDs3ADUB3c6goAYY8dToPKcqSs6eYqMC4qo1VP8hLV8Ro5wnSgCFN3zT
- YAhSD3tPKW+C1EtswI4waWqklOTfw5XXyzTYBGtohUi1cm18oORvwLvUdgT7WQdtZAEw
- V1+osqdnhNSCay5lZ+zvsTAecO6W3AtJetRjySlwJLw7h0rYROLbbtt4bYJ7VmvA16Y0
- Y8LhksBqtn3CI3000i0BA/9Die/K5LMnVMQsFcD1OQN70lGdw8ZdN+r8E9r3U5uqbvri
- rHaJf3XRc35B2W9OPQ+712p1PNUFdr71k/DSoHsskEZ2WCCrrqy1SI/XJwQXee+x/ZMa
- rXuA==
-X-Gm-Message-State: AOAM5317qgOJn/PjdoQgrT6mgZbVap4qqjKGAGo5MLCHwbyJAQpN4xbY
- c+gxhRp6DeHKqJE7GdvB15WQ0HraSnqb6kreQJVXbT0Wfh7iwnwkX0Skrhhbe88YtgVbUsdoAYR
- 2MrenEinDcjlXwpfyXWJXP1O4GVnM
-X-Received: by 2002:a05:6402:5206:: with SMTP id
- s6mr10446460edd.113.1637236505985; 
- Thu, 18 Nov 2021 03:55:05 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwr+I+nxD7AjLfY9b2kvq0xzCH75smOJzqcr6LSQOb8QawBns0oHgGTfeVSlG0lA3tGiElJqA==
-X-Received: by 2002:a05:6402:5206:: with SMTP id
- s6mr10446420edd.113.1637236505807; 
- Thu, 18 Nov 2021 03:55:05 -0800 (PST)
-Received: from ?IPV6:2001:1c00:c1e:bf00:1054:9d19:e0f0:8214?
- (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id de15sm1206723ejc.70.2021.11.18.03.55.04
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 18 Nov 2021 03:55:05 -0800 (PST)
-Message-ID: <74c4f844-74d4-5af0-c31f-513e0483ecad@redhat.com>
-Date: Thu, 18 Nov 2021 12:55:04 +0100
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AD796E90D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Nov 2021 12:25:11 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="214890578"
+X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; d="scan'208";a="214890578"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2021 04:25:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; d="scan'208";a="605147104"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.167])
+ by orsmga004.jf.intel.com with ESMTP; 18 Nov 2021 04:25:08 -0800
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 18 Nov 2021 14:24:53 +0200
+Message-Id: <20211118122453.11035-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20211024155020.126328-1-hdegoede@redhat.com>
- <87a6ixldqx.fsf@intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <87a6ixldqx.fsf@intel.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/vlv_dsi: Double pixelclock on
- read-back for dual-link panels
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Tile 4 plane format support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,73 +43,251 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, Tsuchiya Yuto <kitakar@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+TileF(Tile4 in bspec) format is 4K tile organized into
+64B subtiles with same basic shape as for legacy TileY
+which will be supported by Display13.
 
-On 10/25/21 10:17, Jani Nikula wrote:
-> On Sun, 24 Oct 2021, Hans de Goede <hdegoede@redhat.com> wrote:
->> In intel_dsi_get_config() double the pclk returned by foo_dsi_get_pclk()
->> for dual-link panels. This fixes the following WARN triggering:
->>
->>  i915 0000:00:02.0: [drm] *ERROR* [CRTC:51:pipe A] mismatch in pixel_rate (expected 235710, found 118056)
->>  i915 0000:00:02.0: [drm] *ERROR* [CRTC:51:pipe A] mismatch in hw.pipe_mode.crtc_clock (expected 235710, found 118056)
->>  i915 0000:00:02.0: [drm] *ERROR* [CRTC:51:pipe A] mismatch in hw.adjusted_mode.crtc_clock (expected 235710, found 118056)
->>  i915 0000:00:02.0: [drm] *ERROR* [CRTC:51:pipe A] mismatch in port_clock (expected 235710, found 118056)
->>  ------------[ cut here ]------------
->>  pipe state doesn't match!
->>  WARNING: CPU: 3 PID: 136 at drivers/gpu/drm/i915/display/intel_display.c:9125 intel_display_finish_reset+0x1bd3/0x2050 [i915]
->>  ...
->>
->> This has been tested on a Xiaomi Mi Pad 2 (with CHT x5-Z8500 SoC) tablet,
->> with a 1536x2048 dual-link DSI panel.
->>
->> Note this fix was taken from icl_dsi.c which does the same in
->> its get_config().
->>
->> Cc: Tsuchiya Yuto <kitakar@gmail.com>
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
-> 
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
+v2: - Fixed wrong case condition(Jani Nikula)
+    - Increased I915_FORMAT_MOD_F_TILED up to 12(Imre Deak)
 
-Thank you, I've pushed this to drm-intel-next now.
+v3: - s/I915_TILING_F/TILING_4/g
+    - s/I915_FORMAT_MOD_F_TILED/I915_FORMAT_MOD_4_TILED/g
+    - Removed unneeded fencing code
 
-Regards,
+v4: - Rebased, fixed merge conflict with new table-oriented
+      format modifier checking(Stan)
+    - Replaced the rest of "Tile F" mentions to "Tile 4"(Stan)
 
-Hans
+v5: - Still had to remove some Tile F mentionings
+    - Moved has_4tile from adlp to DG2(Ramalingam C)
+    - Check specifically for DG2, but not the Display13(Imre)
 
+v6: - Moved Tile4 assocating struct for modifier/display to
+      the beginning(Imre Deak)
+    - Removed unneeded case I915_FORMAT_MOD_4_TILED modifier
+      checks(Imre Deak)
+    - Fixed I915_FORMAT_MOD_4_TILED to be 9 instead of 12
+      (Imre Deak)
 
-> 
->> ---
->>  drivers/gpu/drm/i915/display/vlv_dsi.c | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
->> index 3e646a58b38a..2b7909bc52ff 100644
->> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
->> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
->> @@ -1265,7 +1265,9 @@ static void intel_dsi_get_config(struct intel_encoder *encoder,
->>  				 struct intel_crtc_state *pipe_config)
->>  {
->>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->> +	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
->>  	u32 pclk;
->> +
->>  	drm_dbg_kms(&dev_priv->drm, "\n");
->>  
->>  	pipe_config->output_types |= BIT(INTEL_OUTPUT_DSI);
->> @@ -1277,6 +1279,9 @@ static void intel_dsi_get_config(struct intel_encoder *encoder,
->>  		pclk = vlv_dsi_get_pclk(encoder, pipe_config);
->>  	}
->>  
->> +	if (intel_dsi->dual_link)
->> +		pclk *= 2;
->> +
->>  	if (pclk) {
->>  		pipe_config->hw.adjusted_mode.crtc_clock = pclk;
->>  		pipe_config->port_clock = pclk;
-> 
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c  |  1 +
+ drivers/gpu/drm/i915/display/intel_fb.c       | 10 ++++++++++
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  1 +
+ .../drm/i915/display/intel_plane_initial.c    |  1 +
+ .../drm/i915/display/skl_universal_plane.c    | 20 +++++++++++--------
+ drivers/gpu/drm/i915/i915_drv.h               |  1 +
+ drivers/gpu/drm/i915/i915_pci.c               |  1 +
+ drivers/gpu/drm/i915/i915_reg.h               |  1 +
+ drivers/gpu/drm/i915/intel_device_info.h      |  1 +
+ drivers/gpu/drm/i915/intel_pm.c               |  1 +
+ include/uapi/drm/drm_fourcc.h                 |  8 ++++++++
+ 11 files changed, 38 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f3c9208a30b1..7429965d3682 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7766,6 +7766,7 @@ static int intel_atomic_check_async(struct intel_atomic_state *state, struct int
+ 		case I915_FORMAT_MOD_X_TILED:
+ 		case I915_FORMAT_MOD_Y_TILED:
+ 		case I915_FORMAT_MOD_Yf_TILED:
++		case I915_FORMAT_MOD_4_TILED:
+ 			break;
+ 		default:
+ 			drm_dbg_kms(&i915->drm,
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index c4a743d0913f..2a0c562f6494 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -139,6 +139,9 @@ struct intel_modifier_desc {
+ 
+ static const struct intel_modifier_desc intel_modifiers[] = {
+ 	{
++		.modifier = I915_FORMAT_MOD_4_TILED,
++		.display_ver = { 12, 13 },
++	}, {
+ 		.modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
+ 		.display_ver = { 12, 13 },
+ 		.plane_caps = INTEL_PLANE_CAP_TILING_Y | INTEL_PLANE_CAP_CCS_MC,
+@@ -184,6 +187,7 @@ static const struct intel_modifier_desc intel_modifiers[] = {
+ 		.modifier = I915_FORMAT_MOD_Yf_TILED,
+ 		.display_ver = { 9, 11 },
+ 		.plane_caps = INTEL_PLANE_CAP_TILING_Yf,
++
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_Y_TILED,
+ 		.display_ver = { 9, 13 },
+@@ -544,6 +548,12 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+ 			return 128;
+ 		else
+ 			return 512;
++	case I915_FORMAT_MOD_4_TILED:
++		/*
++		 * Each 4K tile consists of 64B(8*8) subtiles, with
++		 * same shape as Y Tile(i.e 4*16B OWords)
++		 */
++		return 128;
+ 	case I915_FORMAT_MOD_Y_TILED_CCS:
+ 		if (intel_fb_is_ccs_aux_plane(fb, color_plane))
+ 			return 128;
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index d0c34bc3af6c..0ceabe40d8c9 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -898,6 +898,7 @@ static bool tiling_is_valid(struct drm_i915_private *i915,
+ 	case I915_FORMAT_MOD_Y_TILED:
+ 	case I915_FORMAT_MOD_Yf_TILED:
+ 		return DISPLAY_VER(i915) >= 9;
++	case I915_FORMAT_MOD_4_TILED:
+ 	case I915_FORMAT_MOD_X_TILED:
+ 		return true;
+ 	default:
+diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+index dcd698a02da2..d80855ee9b96 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
++++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+@@ -125,6 +125,7 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
+ 	case DRM_FORMAT_MOD_LINEAR:
+ 	case I915_FORMAT_MOD_X_TILED:
+ 	case I915_FORMAT_MOD_Y_TILED:
++	case I915_FORMAT_MOD_4_TILED:
+ 		break;
+ 	default:
+ 		drm_dbg(&dev_priv->drm,
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 28890876bdeb..e5cda5bcbde4 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -751,6 +751,8 @@ static u32 skl_plane_ctl_tiling(u64 fb_modifier)
+ 		return PLANE_CTL_TILED_X;
+ 	case I915_FORMAT_MOD_Y_TILED:
+ 		return PLANE_CTL_TILED_Y;
++	case I915_FORMAT_MOD_4_TILED:
++		return PLANE_CTL_TILED_4;
+ 	case I915_FORMAT_MOD_Y_TILED_CCS:
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+ 		return PLANE_CTL_TILED_Y | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
+@@ -1971,9 +1973,7 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
+ 	case DRM_FORMAT_Y216:
+ 	case DRM_FORMAT_XVYU12_16161616:
+ 	case DRM_FORMAT_XVYU16161616:
+-		if (modifier == DRM_FORMAT_MOD_LINEAR ||
+-		    modifier == I915_FORMAT_MOD_X_TILED ||
+-		    modifier == I915_FORMAT_MOD_Y_TILED)
++		if (!intel_fb_is_ccs_modifier(modifier))
+ 			return true;
+ 		fallthrough;
+ 	default:
+@@ -2299,11 +2299,15 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
+ 		else
+ 			fb->modifier = I915_FORMAT_MOD_Y_TILED;
+ 		break;
+-	case PLANE_CTL_TILED_YF:
+-		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
+-			fb->modifier = I915_FORMAT_MOD_Yf_TILED_CCS;
+-		else
+-			fb->modifier = I915_FORMAT_MOD_Yf_TILED;
++	case PLANE_CTL_TILED_YF: /* aka PLANE_CTL_TILED_4 on XE_LPD+ */
++		if (HAS_4TILE(dev_priv)) {
++			fb->modifier = I915_FORMAT_MOD_4_TILED;
++		} else {
++			if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
++				fb->modifier = I915_FORMAT_MOD_Yf_TILED_CCS;
++			else
++				fb->modifier = I915_FORMAT_MOD_Yf_TILED;
++		}
+ 		break;
+ 	default:
+ 		MISSING_CASE(tiling);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index f2a546d58481..bb0400f1c679 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1627,6 +1627,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define CMDPARSER_USES_GGTT(dev_priv) (GRAPHICS_VER(dev_priv) == 7)
+ 
+ #define HAS_LLC(dev_priv)	(INTEL_INFO(dev_priv)->has_llc)
++#define HAS_4TILE(dev_priv)    (INTEL_INFO(dev_priv)->has_4tile)
+ #define HAS_SNOOP(dev_priv)	(INTEL_INFO(dev_priv)->has_snoop)
+ #define HAS_EDRAM(dev_priv)	((dev_priv)->edram_size_mb)
+ #define HAS_SECURE_BATCHES(dev_priv) (GRAPHICS_VER(dev_priv) < 6)
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 8449ce843b91..5dff145e46db 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -1038,6 +1038,7 @@ static const struct intel_device_info dg2_info = {
+ 	DGFX_FEATURES,
+ 	.graphics.rel = 55,
+ 	.media.rel = 55,
++	.has_4tile = 1,
+ 	PLATFORM(INTEL_DG2),
+ 	.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) |
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index f15ffc53e858..7813a56473e5 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -7279,6 +7279,7 @@ enum {
+ #define   PLANE_CTL_TILED_X			(1 << 10)
+ #define   PLANE_CTL_TILED_Y			(4 << 10)
+ #define   PLANE_CTL_TILED_YF			(5 << 10)
++#define   PLANE_CTL_TILED_4			(5 << 10)
+ #define   PLANE_CTL_ASYNC_FLIP			(1 << 9)
+ #define   PLANE_CTL_FLIP_HORIZONTAL		(1 << 8)
+ #define   PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE	(1 << 4) /* TGL+ */
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index 669f0d26c3c3..67177e18704a 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -125,6 +125,7 @@ enum intel_ppgtt_type {
+ 	func(has_64bit_reloc); \
+ 	func(gpu_reset_clobbers_display); \
+ 	func(has_reset_engine); \
++	func(has_4tile); \
+ 	func(has_global_mocs); \
+ 	func(has_gt_uc); \
+ 	func(has_l3_dpf); \
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 89dc7f69baf3..310588354202 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -5378,6 +5378,7 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 	}
+ 
+ 	wp->y_tiled = modifier == I915_FORMAT_MOD_Y_TILED ||
++		      modifier == I915_FORMAT_MOD_4_TILED ||
+ 		      modifier == I915_FORMAT_MOD_Yf_TILED ||
+ 		      modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
+ 		      modifier == I915_FORMAT_MOD_Yf_TILED_CCS;
+diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+index 7f652c96845b..41184a94935d 100644
+--- a/include/uapi/drm/drm_fourcc.h
++++ b/include/uapi/drm/drm_fourcc.h
+@@ -564,6 +564,14 @@ extern "C" {
+  * pitch is required to be a multiple of 4 tile widths.
+  */
+ #define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC fourcc_mod_code(INTEL, 8)
++/*
++ * Intel F-tiling(aka Tile4) layout
++ *
++ * This is a tiled layout using 4Kb tiles in row-major layout.
++ * Within the tile pixels are laid out in 64 byte units / sub-tiles in OWORD
++ * (16 bytes) chunks column-major..
++ */
++#define I915_FORMAT_MOD_4_TILED         fourcc_mod_code(INTEL, 9)
+ 
+ /*
+  * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+-- 
+2.24.1.485.gad05a3d8e5
 
