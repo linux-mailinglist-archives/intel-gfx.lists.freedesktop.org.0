@@ -1,36 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D0D445582E
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 10:39:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93CE145586E
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 10:58:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DA476E1D6;
-	Thu, 18 Nov 2021 09:39:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29D4D6E977;
+	Thu, 18 Nov 2021 09:58:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A67E6E914
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Nov 2021 09:39:24 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="232872588"
-X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; d="scan'208";a="232872588"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2021 01:39:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; d="scan'208";a="495306693"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.167])
- by orsmga007.jf.intel.com with ESMTP; 18 Nov 2021 01:39:21 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Nov 2021 11:39:07 +0200
-Message-Id: <20211118093907.18510-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C020C6E918;
+ Thu, 18 Nov 2021 09:58:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="234100722"
+X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; d="scan'208";a="234100722"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2021 01:58:54 -0800
+X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; d="scan'208";a="473093351"
+Received: from davidmor-mobl1.ger.corp.intel.com (HELO [10.252.9.238])
+ ([10.252.9.238])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2021 01:58:53 -0800
+Message-ID: <1fe8005d-912b-1ed8-6b70-d218235a2428@intel.com>
+Date: Thu, 18 Nov 2021 09:58:49 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Content-Language: en-GB
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20211117142024.1043017-1-matthew.auld@intel.com>
+ <9ea7ae8e-c9c4-8b1e-2057-5be69eb35555@linux.intel.com>
+ <ea91cc10df3f0a5463566c1eea00ff044efe0db4.camel@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <ea91cc10df3f0a5463566c1eea00ff044efe0db4.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Implement WM0 cursor WA for DG2
+Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm/i915: move the pre_pin earlier
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,62 +50,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Bug in the register unit which results in WM1 register
-used when only WM0 is enabled on cursor.
-Software workaround is when only WM0 enabled on cursor,
-copy contents of CUR_WM_0[30:0] (exclude the enable bit)
-into CUR_WM_1[30:0].
+On 18/11/2021 06:57, Thomas Hellström wrote:
+> On Wed, 2021-11-17 at 19:49 +0100, Thomas Hellström wrote:
+>>
+>> On 11/17/21 15:20, Matthew Auld wrote:
+>>> In intel_context_do_pin_ww, when calling into the pre_pin
+>>> hook(which is
+>>> passed the ww context) it could in theory return -EDEADLK(which is
+>>> very
+>>> likely with debug kernels), once we start adding more ww locking in
+>>> there,
+>>> like in the next patch. If so then we need to be mindful of having
+>>> to
+>>> restart the do_pin at this point.
+>>>
+>>> If this is the kernel_context, or some other early in-kernel
+>>> context
+>>> where we have yet to setup the default_state, then we always
+>>> inhibit the
+>>> context restore, and instead rely on the delayed active_release to
+>>> set
+>>> the CONTEXT_VALID_BIT for us(if we even care), which should
+>>> indicate
+>>> that we have context switched away, and that our newly saved
+>>> context
+>>> state should now be valid. However, since we currently grab the
+>>> active
+>>> reference before the potential ww dance, we can end up setting the
+>>> CONTEXT_VALID_BIT much too early, if we need to backoff, and then
+>>> upon
+>>> re-trying the do_pin, we could potentially cause the hardware to
+>>> incorrectly load some garbage context state when later context
+>>> switching
+>>> to that context, but at the very least this will trigger the
+>>> GEM_BUG_ON() in __engine_unpark. For now let's just move any ww
+>>> dance
+>>> stuff prior to arming the active reference.
+>>>
+>>> For normal user contexts this shouldn't be a concern, since we
+>>> should
+>>> already have the default_state ready when initialising the lrc
+>>> state,
+>>> and so there should be no concern with active_release somehow
+>>> prematurely setting the CONTEXT_VALID_BIT.
+>>>
+>>> v2(Thomas):
+>>>     - Also re-order the union unwind
+> 
+> Oh should this be
+> 
+> s/union/onion/ ?
 
-v2:  - s/dev_priv/i915/ (Ville Syrjälä)
-     - Removed unneeded brackets (Ville Syrjälä)
+Oops, will fixup when pushing :)
 
-HSDES: 14012656716
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/intel_pm.c | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 89dc7f69baf3..01fa3fac1b57 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -5095,6 +5095,18 @@ skl_check_nv12_wm_level(struct skl_wm_level *wm, struct skl_wm_level *uv_wm,
- 	}
- }
- 
-+static bool icl_need_wm1_wa(struct drm_i915_private *i915,
-+			    enum plane_id plane_id)
-+{
-+	/*
-+	 * Wa_1408961008:icl, ehl
-+	 * Wa_14012656716:tgl, adl
-+	 * Underruns with WM1+ disabled
-+	 */
-+	return DISPLAY_VER(i915) == 11 ||
-+	       (IS_DISPLAY_VER(i915, 12, 13) && plane_id == PLANE_CURSOR);
-+}
-+
- static int
- skl_allocate_plane_ddb(struct intel_atomic_state *state,
- 		       struct intel_crtc *crtc)
-@@ -5265,11 +5277,7 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
- 			skl_check_nv12_wm_level(&wm->wm[level], &wm->uv_wm[level],
- 						total[plane_id], uv_total[plane_id]);
- 
--			/*
--			 * Wa_1408961008:icl, ehl
--			 * Underruns with WM1+ disabled
--			 */
--			if (DISPLAY_VER(dev_priv) == 11 &&
-+			if (icl_need_wm1_wa(dev_priv, plane_id) &&
- 			    level == 1 && wm->wm[0].enable) {
- 				wm->wm[level].blocks = wm->wm[0].blocks;
- 				wm->wm[level].lines = wm->wm[0].lines;
--- 
-2.24.1.485.gad05a3d8e5
-
+> 
+> 
+>>>
+>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>>
+>> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>
+>>
+>>> ---
+>>>    drivers/gpu/drm/i915/gt/intel_context.c | 12 ++++++------
+>>>    1 file changed, 6 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c
+>>> b/drivers/gpu/drm/i915/gt/intel_context.c
+>>> index 5634d14052bc..4c296de1d67d 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+>>> @@ -228,17 +228,17 @@ int __intel_context_do_pin_ww(struct
+>>> intel_context *ce,
+>>>          if (err)
+>>>                  return err;
+>>>    
+>>> -       err = i915_active_acquire(&ce->active);
+>>> +       err = ce->ops->pre_pin(ce, ww, &vaddr);
+>>>          if (err)
+>>>                  goto err_ctx_unpin;
+>>>    
+>>> -       err = ce->ops->pre_pin(ce, ww, &vaddr);
+>>> +       err = i915_active_acquire(&ce->active);
+>>>          if (err)
+>>> -               goto err_release;
+>>> +               goto err_post_unpin;
+>>>    
+>>>          err = mutex_lock_interruptible(&ce->pin_mutex);
+>>>          if (err)
+>>> -               goto err_post_unpin;
+>>> +               goto err_release;
+>>>    
+>>>          intel_engine_pm_might_get(ce->engine);
+>>>    
+>>> @@ -273,11 +273,11 @@ int __intel_context_do_pin_ww(struct
+>>> intel_context *ce,
+>>>    
+>>>    err_unlock:
+>>>          mutex_unlock(&ce->pin_mutex);
+>>> +err_release:
+>>> +       i915_active_release(&ce->active);
+>>>    err_post_unpin:
+>>>          if (!handoff)
+>>>                  ce->ops->post_unpin(ce);
+>>> -err_release:
+>>> -       i915_active_release(&ce->active);
+>>>    err_ctx_unpin:
+>>>          intel_context_post_unpin(ce);
+>>>    
+> 
+> 
