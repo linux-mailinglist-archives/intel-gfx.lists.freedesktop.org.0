@@ -2,39 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12E8D455C23
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 14:03:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6511F455CE3
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 14:42:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25B106EB08;
-	Thu, 18 Nov 2021 13:03:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCC8A6EE95;
+	Thu, 18 Nov 2021 13:42:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80BA16E995;
- Thu, 18 Nov 2021 13:03:02 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="297596159"
-X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; d="scan'208";a="297596159"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2021 05:02:52 -0800
-X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; d="scan'208";a="455319647"
-Received: from ntaiyeby-mobl1.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.166])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2021 05:02:50 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu, 18 Nov 2021 14:02:30 +0100
-Message-Id: <20211118130230.154988-7-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211118130230.154988-1-thomas.hellstrom@linux.intel.com>
-References: <20211118130230.154988-1-thomas.hellstrom@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 86BCE6EE95;
+ Thu, 18 Nov 2021 13:42:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 78A02A73C7;
+ Thu, 18 Nov 2021 13:42:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 6/6] drm/i915/ttm: Update
- i915_gem_obj_copy_ttm() to be asynchronous
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kahola, Mika" <mika.kahola@intel.com>
+Date: Thu, 18 Nov 2021 13:42:45 -0000
+Message-ID: <163724296546.10080.16214798064930731156@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211118085424.685686-1-mika.kahola@intel.com>
+In-Reply-To: <20211118085424.685686-1-mika.kahola@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display/dg2=3A_Add_CD_clock_squashing?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,107 +40,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- matthew.auld@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Update the copy function i915_gem_obj_copy_ttm() to be asynchronous for
-future users and update the only current user to sync the objects
-as needed after this function.
+== Series Details ==
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 40 ++++++++++++++------
- drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c   |  2 +
- 2 files changed, 30 insertions(+), 12 deletions(-)
+Series: drm/i915/display/dg2: Add CD clock squashing
+URL   : https://patchwork.freedesktop.org/series/97058/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-index 38623fde170a..d377c86232f1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-@@ -822,33 +822,49 @@ int i915_gem_obj_copy_ttm(struct drm_i915_gem_object *dst,
- 		.interruptible = intr,
- 	};
- 	struct i915_refct_sgt *dst_rsgt;
--	struct dma_fence *copy_fence;
--	int ret;
-+	struct dma_fence *copy_fence, *dep_fence;
-+	struct i915_deps deps;
-+	int ret, shared_err;
- 
- 	assert_object_held(dst);
- 	assert_object_held(src);
-+	i915_deps_init(&deps, GFP_KERNEL | __GFP_NORETRY | __GFP_NOWARN);
- 
- 	/*
--	 * Sync for now. This will change with async moves.
-+	 * We plan to add a shared fence only for the source. If that
-+	 * fails, we await all source fences before commencing
-+	 * the copy instead of only the exclusive.
- 	 */
--	ret = ttm_bo_wait_ctx(dst_bo, &ctx);
-+	shared_err = dma_resv_reserve_shared(src_bo->base.resv, 1);
-+	ret = i915_deps_add_resv(&deps, dst_bo->base.resv, true, false, &ctx);
- 	if (!ret)
--		ret = ttm_bo_wait_ctx(src_bo, &ctx);
-+		ret = i915_deps_add_resv(&deps, src_bo->base.resv,
-+					 !!shared_err, false, &ctx);
- 	if (ret)
- 		return ret;
- 
-+	dep_fence = i915_deps_to_fence(&deps, &ctx);
-+	if (IS_ERR(dep_fence))
-+		return PTR_ERR(dep_fence);
-+
- 	dst_rsgt = i915_ttm_resource_get_st(dst, dst_bo->resource);
- 	copy_fence = __i915_ttm_move(src_bo, false, dst_bo->resource,
--				     dst_bo->ttm, dst_rsgt, allow_accel, NULL);
-+				     dst_bo->ttm, dst_rsgt, allow_accel,
-+				     dep_fence);
- 
- 	i915_refct_sgt_put(dst_rsgt);
--	if (IS_ERR(copy_fence))
--		return PTR_ERR(copy_fence);
-+	if (IS_ERR_OR_NULL(copy_fence))
-+		return PTR_ERR_OR_ZERO(copy_fence);
- 
--	if (copy_fence) {
--		dma_fence_wait(copy_fence, false);
--		dma_fence_put(copy_fence);
--	}
-+	dma_resv_add_excl_fence(dst_bo->base.resv, copy_fence);
-+
-+	/* If we failed to reserve a shared slot, add an exclusive fence */
-+	if (shared_err)
-+		dma_resv_add_excl_fence(src_bo->base.resv, copy_fence);
-+	else
-+		dma_resv_add_shared_fence(src_bo->base.resv, copy_fence);
-+
-+	dma_fence_put(copy_fence);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
-index 60d10ab55d1e..9aad84059d56 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
-@@ -80,6 +80,7 @@ static int i915_ttm_backup(struct i915_gem_apply_to_region *apply,
- 
- 	err = i915_gem_obj_copy_ttm(backup, obj, pm_apply->allow_gpu, false);
- 	GEM_WARN_ON(err);
-+	ttm_bo_wait_ctx(backup_bo, &ctx);
- 
- 	obj->ttm.backup = backup;
- 	return 0;
-@@ -170,6 +171,7 @@ static int i915_ttm_restore(struct i915_gem_apply_to_region *apply,
- 		err = i915_gem_obj_copy_ttm(obj, backup, pm_apply->allow_gpu,
- 					    false);
- 		GEM_WARN_ON(err);
-+		ttm_bo_wait_ctx(backup_bo, &ctx);
- 
- 		obj->ttm.backup = NULL;
- 		err = 0;
--- 
-2.31.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+406193c026fe drm/i915/display/dg2: Introduce CD clock squashing table
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#9: 
+For CD clock squashing method, we need to define corresponding CD clock table for
+
+total: 0 errors, 1 warnings, 0 checks, 32 lines checked
+58e49ef9f241 drm/i915/display/dg2: Read CD clock from squasher table
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#9: 
+To calculate CD clock with squasher unit, we set CD clock ratio to fixed value of 34.
+
+total: 0 errors, 1 warnings, 0 checks, 29 lines checked
+ab77ac821b7c drm/i915/display/dg2: Sanitize CD clock
+ca84b729d4ae drm/i915/display/dg2: Set CD clock squashing registers
+
 
