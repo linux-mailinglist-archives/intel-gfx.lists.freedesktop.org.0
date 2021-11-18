@@ -1,39 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17C224554FB
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 07:57:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A34F745554A
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 08:12:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F6E46F381;
-	Thu, 18 Nov 2021 06:57:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84BE16F400;
+	Thu, 18 Nov 2021 07:12:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CAA56F380;
- Thu, 18 Nov 2021 06:57:15 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="297546185"
-X-IronPort-AV: E=Sophos;i="5.87,243,1631602800"; d="scan'208";a="297546185"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2021 22:57:14 -0800
-X-IronPort-AV: E=Sophos;i="5.87,243,1631602800"; d="scan'208";a="454943222"
-Received: from ntaiyeby-mobl1.ger.corp.intel.com (HELO [10.249.254.166])
- ([10.249.254.166])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2021 22:57:13 -0800
-Message-ID: <ea91cc10df3f0a5463566c1eea00ff044efe0db4.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Nov 2021 07:57:10 +0100
-In-Reply-To: <9ea7ae8e-c9c4-8b1e-2057-5be69eb35555@linux.intel.com>
-References: <20211117142024.1043017-1-matthew.auld@intel.com>
- <9ea7ae8e-c9c4-8b1e-2057-5be69eb35555@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 29B696F3FC;
+ Thu, 18 Nov 2021 07:12:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 204D1AA914;
+ Thu, 18 Nov 2021 07:12:47 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2748385736542894400=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm/i915: move the pre_pin earlier
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vidya Srinivas" <vidya.srinivas@intel.com>
+Date: Thu, 18 Nov 2021 07:12:47 -0000
+Message-ID: <163721956710.10080.16853909124626651615@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211118062516.22535-1-vidya.srinivas@intel.com>
+In-Reply-To: <20211118062516.22535-1-vidya.srinivas@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Reject_5k_on_HDR_planes_for_planar_fb_formats?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,115 +40,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2021-11-17 at 19:49 +0100, Thomas Hellström wrote:
-> 
-> On 11/17/21 15:20, Matthew Auld wrote:
-> > In intel_context_do_pin_ww, when calling into the pre_pin
-> > hook(which is
-> > passed the ww context) it could in theory return -EDEADLK(which is
-> > very
-> > likely with debug kernels), once we start adding more ww locking in
-> > there,
-> > like in the next patch. If so then we need to be mindful of having
-> > to
-> > restart the do_pin at this point.
-> > 
-> > If this is the kernel_context, or some other early in-kernel
-> > context
-> > where we have yet to setup the default_state, then we always
-> > inhibit the
-> > context restore, and instead rely on the delayed active_release to
-> > set
-> > the CONTEXT_VALID_BIT for us(if we even care), which should
-> > indicate
-> > that we have context switched away, and that our newly saved
-> > context
-> > state should now be valid. However, since we currently grab the
-> > active
-> > reference before the potential ww dance, we can end up setting the
-> > CONTEXT_VALID_BIT much too early, if we need to backoff, and then
-> > upon
-> > re-trying the do_pin, we could potentially cause the hardware to
-> > incorrectly load some garbage context state when later context
-> > switching
-> > to that context, but at the very least this will trigger the
-> > GEM_BUG_ON() in __engine_unpark. For now let's just move any ww
-> > dance
-> > stuff prior to arming the active reference.
-> > 
-> > For normal user contexts this shouldn't be a concern, since we
-> > should
-> > already have the default_state ready when initialising the lrc
-> > state,
-> > and so there should be no concern with active_release somehow
-> > prematurely setting the CONTEXT_VALID_BIT.
-> > 
-> > v2(Thomas):
-> >    - Also re-order the union unwind
+--===============2748385736542894400==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Oh should this be 
+== Series Details ==
 
-s/union/onion/ ?
+Series: drm/i915: Reject 5k on HDR planes for planar fb formats
+URL   : https://patchwork.freedesktop.org/series/97053/
+State : success
 
+== Summary ==
 
-> > 
-> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> 
-> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> 
-> 
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_context.c | 12 ++++++------
-> >   1 file changed, 6 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c
-> > b/drivers/gpu/drm/i915/gt/intel_context.c
-> > index 5634d14052bc..4c296de1d67d 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_context.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-> > @@ -228,17 +228,17 @@ int __intel_context_do_pin_ww(struct
-> > intel_context *ce,
-> >         if (err)
-> >                 return err;
-> >   
-> > -       err = i915_active_acquire(&ce->active);
-> > +       err = ce->ops->pre_pin(ce, ww, &vaddr);
-> >         if (err)
-> >                 goto err_ctx_unpin;
-> >   
-> > -       err = ce->ops->pre_pin(ce, ww, &vaddr);
-> > +       err = i915_active_acquire(&ce->active);
-> >         if (err)
-> > -               goto err_release;
-> > +               goto err_post_unpin;
-> >   
-> >         err = mutex_lock_interruptible(&ce->pin_mutex);
-> >         if (err)
-> > -               goto err_post_unpin;
-> > +               goto err_release;
-> >   
-> >         intel_engine_pm_might_get(ce->engine);
-> >   
-> > @@ -273,11 +273,11 @@ int __intel_context_do_pin_ww(struct
-> > intel_context *ce,
-> >   
-> >   err_unlock:
-> >         mutex_unlock(&ce->pin_mutex);
-> > +err_release:
-> > +       i915_active_release(&ce->active);
-> >   err_post_unpin:
-> >         if (!handoff)
-> >                 ce->ops->post_unpin(ce);
-> > -err_release:
-> > -       i915_active_release(&ce->active);
-> >   err_ctx_unpin:
-> >         intel_context_post_unpin(ce);
-> >   
+CI Bug Log - changes from CI_DRM_10897 -> Patchwork_21625
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/index.html
+
+Participating hosts (39 -> 31)
+------------------------------
+
+  Missing    (8): fi-kbl-soraka bat-dg1-6 fi-hsw-4200u fi-skl-guc fi-icl-u2 fi-bsw-cyan fi-ctg-p8600 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21625 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][2] -> [INCOMPLETE][3] ([i915#2940])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10897/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-bsw-nick:        NOTRUN -> [FAIL][4] ([fdo#109271] / [i915#1436] / [i915#2722] / [i915#3428] / [i915#4312])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/fi-bsw-nick/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-skl-6600u:       [FAIL][5] ([i915#3239]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10897/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - {fi-tgl-dsi}:       [DMESG-FAIL][7] ([i915#541]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10897/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][9] ([i915#3921]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10897/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3239]: https://gitlab.freedesktop.org/drm/intel/issues/3239
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4290]: https://gitlab.freedesktop.org/drm/intel/issues/4290
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_10897 -> Patchwork_21625
+
+  CI-20190529: 20190529
+  CI_DRM_10897: 6afd200919ae894c775326ea99e607e5a8adf51b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6284: 2971051d07d02da90c20ccb842e76ee711b02ecb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21625: 1115e33cd27836f37a8840e9fe9940310466e059 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1115e33cd278 drm/i915: Reject 5k on HDR planes for planar fb formats
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/index.html
+
+--===============2748385736542894400==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Reject 5k on HDR planes for planar fb formats</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97053/">https://patchwork.freedesktop.org/series/97053/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10897 -&gt; Patchwork_21625</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/index.html</p>
+<h2>Participating hosts (39 -&gt; 31)</h2>
+<p>Missing    (8): fi-kbl-soraka bat-dg1-6 fi-hsw-4200u fi-skl-guc fi-icl-u2 fi-bsw-cyan fi-ctg-p8600 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21625 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10897/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10897/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3239">i915#3239</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10897/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10897/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21625/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10897 -&gt; Patchwork_21625</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10897: 6afd200919ae894c775326ea99e607e5a8adf51b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6284: 2971051d07d02da90c20ccb842e76ee711b02ecb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21625: 1115e33cd27836f37a8840e9fe9940310466e059 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>1115e33cd278 drm/i915: Reject 5k on HDR planes for planar fb formats</p>
+
+</body>
+</html>
+
+--===============2748385736542894400==--
