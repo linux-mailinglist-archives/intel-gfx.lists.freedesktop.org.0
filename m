@@ -1,43 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93CE145586E
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 10:58:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E37EE4558C9
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 11:12:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29D4D6E977;
-	Thu, 18 Nov 2021 09:58:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A75C46E91F;
+	Thu, 18 Nov 2021 10:12:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C020C6E918;
- Thu, 18 Nov 2021 09:58:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="234100722"
-X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; d="scan'208";a="234100722"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FDC26E922
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Nov 2021 10:12:34 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="234102989"
+X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; d="scan'208";a="234102989"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2021 01:58:54 -0800
-X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; d="scan'208";a="473093351"
-Received: from davidmor-mobl1.ger.corp.intel.com (HELO [10.252.9.238])
- ([10.252.9.238])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2021 01:58:53 -0800
-Message-ID: <1fe8005d-912b-1ed8-6b70-d218235a2428@intel.com>
-Date: Thu, 18 Nov 2021 09:58:49 +0000
+ 18 Nov 2021 02:12:33 -0800
+X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; d="scan'208";a="455263812"
+Received: from mduignan-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.9.13])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2021 02:12:32 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211118085424.685686-4-mika.kahola@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211118085424.685686-1-mika.kahola@intel.com>
+ <20211118085424.685686-4-mika.kahola@intel.com>
+Date: Thu, 18 Nov 2021 12:12:27 +0200
+Message-ID: <874k89lqlw.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Content-Language: en-GB
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20211117142024.1043017-1-matthew.auld@intel.com>
- <9ea7ae8e-c9c4-8b1e-2057-5be69eb35555@linux.intel.com>
- <ea91cc10df3f0a5463566c1eea00ff044efe0db4.camel@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <ea91cc10df3f0a5463566c1eea00ff044efe0db4.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm/i915: move the pre_pin earlier
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/display/dg2: Sanitize CD clock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,119 +46,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 18/11/2021 06:57, Thomas Hellström wrote:
-> On Wed, 2021-11-17 at 19:49 +0100, Thomas Hellström wrote:
->>
->> On 11/17/21 15:20, Matthew Auld wrote:
->>> In intel_context_do_pin_ww, when calling into the pre_pin
->>> hook(which is
->>> passed the ww context) it could in theory return -EDEADLK(which is
->>> very
->>> likely with debug kernels), once we start adding more ww locking in
->>> there,
->>> like in the next patch. If so then we need to be mindful of having
->>> to
->>> restart the do_pin at this point.
->>>
->>> If this is the kernel_context, or some other early in-kernel
->>> context
->>> where we have yet to setup the default_state, then we always
->>> inhibit the
->>> context restore, and instead rely on the delayed active_release to
->>> set
->>> the CONTEXT_VALID_BIT for us(if we even care), which should
->>> indicate
->>> that we have context switched away, and that our newly saved
->>> context
->>> state should now be valid. However, since we currently grab the
->>> active
->>> reference before the potential ww dance, we can end up setting the
->>> CONTEXT_VALID_BIT much too early, if we need to backoff, and then
->>> upon
->>> re-trying the do_pin, we could potentially cause the hardware to
->>> incorrectly load some garbage context state when later context
->>> switching
->>> to that context, but at the very least this will trigger the
->>> GEM_BUG_ON() in __engine_unpark. For now let's just move any ww
->>> dance
->>> stuff prior to arming the active reference.
->>>
->>> For normal user contexts this shouldn't be a concern, since we
->>> should
->>> already have the default_state ready when initialising the lrc
->>> state,
->>> and so there should be no concern with active_release somehow
->>> prematurely setting the CONTEXT_VALID_BIT.
->>>
->>> v2(Thomas):
->>>     - Also re-order the union unwind
-> 
-> Oh should this be
-> 
-> s/union/onion/ ?
+On Thu, 18 Nov 2021, Mika Kahola <mika.kahola@intel.com> wrote:
+> In case of CD clock squashing the divider is always 1. We don't
+> need to calculate the divider in use so let's skip that for DG2.
+>
+> v2: Drop unnecessary local variable (Ville)
+> v3: Avoid if-else structure (Ville)
+> [v4: vsyrjala: Fix cd2x divider calculation (Uma),
+>                Introduce has_cdclk_squasher()]
+>
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
+/i915/display/intel_cdclk.c
+> index 630a53d4f882..e8c58779c2a8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1212,6 +1212,11 @@ static void skl_cdclk_uninit_hw(struct drm_i915_pr=
+ivate *dev_priv)
+>  	skl_set_cdclk(dev_priv, &cdclk_config, INVALID_PIPE);
+>  }
+>=20=20
+> +static bool has_cdclk_squasher(struct drm_i915_private *i915)
+> +{
+> +	return IS_DG2(i915);
+> +}
 
-Oops, will fixup when pushing :)
+The obvious problem is that you use this function already in patch 2.
 
-> 
-> 
->>>
->>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>
->> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>
->>
->>> ---
->>>    drivers/gpu/drm/i915/gt/intel_context.c | 12 ++++++------
->>>    1 file changed, 6 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c
->>> b/drivers/gpu/drm/i915/gt/intel_context.c
->>> index 5634d14052bc..4c296de1d67d 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_context.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
->>> @@ -228,17 +228,17 @@ int __intel_context_do_pin_ww(struct
->>> intel_context *ce,
->>>          if (err)
->>>                  return err;
->>>    
->>> -       err = i915_active_acquire(&ce->active);
->>> +       err = ce->ops->pre_pin(ce, ww, &vaddr);
->>>          if (err)
->>>                  goto err_ctx_unpin;
->>>    
->>> -       err = ce->ops->pre_pin(ce, ww, &vaddr);
->>> +       err = i915_active_acquire(&ce->active);
->>>          if (err)
->>> -               goto err_release;
->>> +               goto err_post_unpin;
->>>    
->>>          err = mutex_lock_interruptible(&ce->pin_mutex);
->>>          if (err)
->>> -               goto err_post_unpin;
->>> +               goto err_release;
->>>    
->>>          intel_engine_pm_might_get(ce->engine);
->>>    
->>> @@ -273,11 +273,11 @@ int __intel_context_do_pin_ww(struct
->>> intel_context *ce,
->>>    
->>>    err_unlock:
->>>          mutex_unlock(&ce->pin_mutex);
->>> +err_release:
->>> +       i915_active_release(&ce->active);
->>>    err_post_unpin:
->>>          if (!handoff)
->>>                  ce->ops->post_unpin(ce);
->>> -err_release:
->>> -       i915_active_release(&ce->active);
->>>    err_ctx_unpin:
->>>          intel_context_post_unpin(ce);
->>>    
-> 
-> 
+I'm also not sure we want to start sprinkling the has_ or HAS_ query
+stuff all over the place in .c. files. Or if we do, we should do it in a
+more planned manner, not by starting to sneak these in.
+
+BR,
+Jani.
+
+> +
+>  static const struct intel_cdclk_vals bxt_cdclk_table[] =3D {
+>  	{ .refclk =3D 19200, .cdclk =3D 144000, .divider =3D 8, .ratio =3D 60 },
+>  	{ .refclk =3D 19200, .cdclk =3D 288000, .divider =3D 4, .ratio =3D 60 },
+> @@ -1750,7 +1755,7 @@ static void bxt_set_cdclk(struct drm_i915_private *=
+dev_priv,
+>  static void bxt_sanitize_cdclk(struct drm_i915_private *dev_priv)
+>  {
+>  	u32 cdctl, expected;
+> -	int cdclk, vco;
+> +	int cdclk, clock, vco;
+>=20=20
+>  	intel_update_cdclk(dev_priv);
+>  	intel_dump_cdclk_config(&dev_priv->cdclk.hw, "Current CDCLK");
+> @@ -1786,8 +1791,12 @@ static void bxt_sanitize_cdclk(struct drm_i915_pri=
+vate *dev_priv)
+>  	expected =3D skl_cdclk_decimal(cdclk);
+>=20=20
+>  	/* Figure out what CD2X divider we should be using for this cdclk */
+> -	expected |=3D bxt_cdclk_cd2x_div_sel(dev_priv,
+> -					   dev_priv->cdclk.hw.cdclk,
+> +	if (has_cdclk_squasher(dev_priv))
+> +		clock =3D dev_priv->cdclk.hw.vco / 2;
+> +	else
+> +		clock =3D dev_priv->cdclk.hw.cdclk;
+> +
+> +	expected |=3D bxt_cdclk_cd2x_div_sel(dev_priv, clock,
+>  					   dev_priv->cdclk.hw.vco);
+>=20=20
+>  	/*
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
