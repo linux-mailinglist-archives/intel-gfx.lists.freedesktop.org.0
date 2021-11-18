@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F953455E87
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 15:48:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2661455EC1
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 15:56:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF83D6E94D;
-	Thu, 18 Nov 2021 14:48:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4811C6E96B;
+	Thu, 18 Nov 2021 14:56:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 813966E94D;
- Thu, 18 Nov 2021 14:48:11 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 81FE36E96B;
+ Thu, 18 Nov 2021 14:56:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7D6BFAA917;
- Thu, 18 Nov 2021 14:48:11 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7C249A73C9;
+ Thu, 18 Nov 2021 14:56:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mullati Siva" <siva.mullati@intel.com>
-Date: Thu, 18 Nov 2021 14:48:11 -0000
-Message-ID: <163724689150.10079.7422473936854103909@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Thu, 18 Nov 2021 14:56:00 -0000
+Message-ID: <163724736048.10081.12725226825483355850@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20211118111319.412926-1-siva.mullati@intel.com>
-In-Reply-To: <20211118111319.412926-1-siva.mullati@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_Skip_remap=5Fio=28=29_calls_for_non-x86_platforms?=
+References: <20211118122453.11035-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20211118122453.11035-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dg2=3A_Tile_4_plane_format_support_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,38 +47,19 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: Skip remap_io() calls for non-x86 platforms
-URL   : https://patchwork.freedesktop.org/series/97069/
-State : failure
+Series: drm/i915/dg2: Tile 4 plane format support (rev4)
+URL   : https://patchwork.freedesktop.org/series/95715/
+State : warning
 
 == Summary ==
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND objtool
-  CHK     include/generated/compile.h
-  LD [M]  drivers/gpu/drm/i915/i915.o
-  HDRTEST drivers/gpu/drm/i915/i915_mm.h
-In file included from <command-line>:
-./drivers/gpu/drm/i915/i915_mm.h:12:29: error: ‘struct io_mapping’ declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
-                      struct io_mapping *iomap);
-                             ^~~~~~~~~~
-./drivers/gpu/drm/i915/i915_mm.h:10:29: error: ‘struct vm_area_struct’ declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
- int remap_io_mapping(struct vm_area_struct *vma,
-                             ^~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_mm.h:15:42: error: unknown type name ‘resource_size_t’
-                 struct scatterlist *sgl, resource_size_t iobase);
-                                          ^~~~~~~~~~~~~~~
-cc1: all warnings being treated as errors
-drivers/gpu/drm/i915/Makefile:340: recipe for target 'drivers/gpu/drm/i915/i915_mm.hdrtest' failed
-make[4]: *** [drivers/gpu/drm/i915/i915_mm.hdrtest] Error 1
-scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm/i915' failed
-make[3]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:549: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1846: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
+$ dim checkpatch origin/drm-tip
+419c0f4c0f6d drm/i915/dg2: Tile 4 plane format support
+-:28: WARNING:TYPO_SPELLING: 'assocating' may be misspelled - perhaps 'associating'?
+#28: 
+v6: - Moved Tile4 assocating struct for modifier/display to
+                  ^^^^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 136 lines checked
 
 
