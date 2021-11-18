@@ -2,32 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98A3945657E
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 23:11:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 631664565BA
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 23:31:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 001ED6E090;
-	Thu, 18 Nov 2021 22:11:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E0176E5A4;
+	Thu, 18 Nov 2021 22:31:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A701C6E090;
- Thu, 18 Nov 2021 22:11:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9EAA4A73C7;
- Thu, 18 Nov 2021 22:11:40 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F32126E5A2;
+ Thu, 18 Nov 2021 22:31:30 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="295122450"
+X-IronPort-AV: E=Sophos;i="5.87,246,1631602800"; d="scan'208";a="295122450"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2021 14:31:30 -0800
+X-IronPort-AV: E=Sophos;i="5.87,246,1631602800"; d="scan'208";a="495598180"
+Received: from marthapr-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.255.35.105])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2021 14:31:26 -0800
+Date: Thu, 18 Nov 2021 17:31:24 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YZbUPIHpR1S3JZ2b@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael Cheng" <michael.cheng@intel.com>
-Date: Thu, 18 Nov 2021 22:11:40 -0000
-Message-ID: <163727350061.10080.11111967836488392058@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211118205432.579910-1-michael.cheng@intel.com>
-In-Reply-To: <20211118205432.579910-1-michael.cheng@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Re-use_i915_macros_for_checking_PTEs?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,25 +42,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave and Daniel,
 
-Series: drm/i915: Re-use i915 macros for checking PTEs
-URL   : https://patchwork.freedesktop.org/series/97090/
-State : warning
+Here goes drm-intel-fixes-2021-11-18:
 
-== Summary ==
+One quick fix for return error handling, one fix for ADL-P display
+and one revert targeting stable 5.4, for TGL's DSI display clocks
 
-$ dim checkpatch origin/drm-tip
-07d207216906 drm/i915: Re-use i915 macros for checking PTEs
--:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#6: 
-Certain gen8 ppgtt/gtt functions are using _PAGE_RW and _PAGE_PRESENT to check
+Thanks,
+Rodrigo.
 
-total: 0 errors, 1 warnings, 0 checks, 72 lines checked
+The following changes since commit fa55b7dcdc43c1aa1ba12bca9d2dd4318c2a0dbf:
 
+  Linux 5.16-rc1 (2021-11-14 13:56:52 -0800)
 
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2021-11-18
+
+for you to fetch changes up to 8b2abf777d8ea8d8db15af553454e0e976804225:
+
+  drm/i915/guc: fix NULL vs IS_ERR() checking (2021-11-17 08:46:55 -0500)
+
+----------------------------------------------------------------
+One quick fix for return error handling, one fix for ADL-P display
+and one revert targeting stable 5.4, for TGL's DSI display clocks
+
+----------------------------------------------------------------
+Dan Carpenter (1):
+      drm/i915/guc: fix NULL vs IS_ERR() checking
+
+Vandita Kulkarni (2):
+      Revert "drm/i915/tgl/dsi: Gate the ddi clocks after pll mapping"
+      drm/i915/dsi/xelpd: Fix the bit mask for wakeup GB
+
+ drivers/gpu/drm/i915/display/icl_dsi.c            | 13 ++++---------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  4 ++--
+ drivers/gpu/drm/i915/i915_reg.h                   |  4 +++-
+ 3 files changed, 9 insertions(+), 12 deletions(-)
