@@ -2,35 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 668EB4554D2
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 07:33:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17C224554FB
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Nov 2021 07:57:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E0216EC16;
-	Thu, 18 Nov 2021 06:33:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F6E46F381;
+	Thu, 18 Nov 2021 06:57:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FBD46EC16
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Nov 2021 06:33:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="257903212"
-X-IronPort-AV: E=Sophos;i="5.87,243,1631602800"; d="scan'208";a="257903212"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2021 22:33:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,243,1631602800"; d="scan'208";a="550001750"
-Received: from vsrini4-xps-8920.iind.intel.com (HELO localhost.localdomain)
- ([10.223.163.28])
- by fmsmga008.fm.intel.com with ESMTP; 17 Nov 2021 22:33:52 -0800
-From: Vidya Srinivas <vidya.srinivas@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Nov 2021 11:55:16 +0530
-Message-Id: <20211118062516.22535-1-vidya.srinivas@intel.com>
-X-Mailer: git-send-email 2.33.0
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CAA56F380;
+ Thu, 18 Nov 2021 06:57:15 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10171"; a="297546185"
+X-IronPort-AV: E=Sophos;i="5.87,243,1631602800"; d="scan'208";a="297546185"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2021 22:57:14 -0800
+X-IronPort-AV: E=Sophos;i="5.87,243,1631602800"; d="scan'208";a="454943222"
+Received: from ntaiyeby-mobl1.ger.corp.intel.com (HELO [10.249.254.166])
+ ([10.249.254.166])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2021 22:57:13 -0800
+Message-ID: <ea91cc10df3f0a5463566c1eea00ff044efe0db4.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Thu, 18 Nov 2021 07:57:10 +0100
+In-Reply-To: <9ea7ae8e-c9c4-8b1e-2057-5be69eb35555@linux.intel.com>
+References: <20211117142024.1043017-1-matthew.auld@intel.com>
+ <9ea7ae8e-c9c4-8b1e-2057-5be69eb35555@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Reject 5k on HDR planes for planar fb
- formats
+Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm/i915: move the pre_pin earlier
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,52 +46,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Yashashvi Shantam <shantam.yashashvi@intel.com>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PLANE_CUS_CTL has a restriction of 4096 width even though
-PLANE_SIZE and scaler size registers supports max 5120.
-Reject 5k on HDR plane for planar formats like NV12
-to let the user space know about it.
+On Wed, 2021-11-17 at 19:49 +0100, Thomas Hellström wrote:
+> 
+> On 11/17/21 15:20, Matthew Auld wrote:
+> > In intel_context_do_pin_ww, when calling into the pre_pin
+> > hook(which is
+> > passed the ww context) it could in theory return -EDEADLK(which is
+> > very
+> > likely with debug kernels), once we start adding more ww locking in
+> > there,
+> > like in the next patch. If so then we need to be mindful of having
+> > to
+> > restart the do_pin at this point.
+> > 
+> > If this is the kernel_context, or some other early in-kernel
+> > context
+> > where we have yet to setup the default_state, then we always
+> > inhibit the
+> > context restore, and instead rely on the delayed active_release to
+> > set
+> > the CONTEXT_VALID_BIT for us(if we even care), which should
+> > indicate
+> > that we have context switched away, and that our newly saved
+> > context
+> > state should now be valid. However, since we currently grab the
+> > active
+> > reference before the potential ww dance, we can end up setting the
+> > CONTEXT_VALID_BIT much too early, if we need to backoff, and then
+> > upon
+> > re-trying the do_pin, we could potentially cause the hardware to
+> > incorrectly load some garbage context state when later context
+> > switching
+> > to that context, but at the very least this will trigger the
+> > GEM_BUG_ON() in __engine_unpark. For now let's just move any ww
+> > dance
+> > stuff prior to arming the active reference.
+> > 
+> > For normal user contexts this shouldn't be a concern, since we
+> > should
+> > already have the default_state ready when initialising the lrc
+> > state,
+> > and so there should be no concern with active_release somehow
+> > prematurely setting the CONTEXT_VALID_BIT.
+> > 
+> > v2(Thomas):
+> >    - Also re-order the union unwind
 
-Without this patch, when 5k content is sent on HDR plane
-with NV12 content, FIFO underrun is seen and screen blanks
-out. Issue is seen on both TGL and ADL platforms.
+Oh should this be 
 
-Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
-Signed-off-by: Yashashvi Shantam <shantam.yashashvi@intel.com>
----
- drivers/gpu/drm/i915/display/skl_scaler.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+s/union/onion/ ?
 
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 37eabeff8197..e2e52f5dca3b 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -86,6 +86,7 @@ static u16 skl_scaler_calc_phase(int sub, int scale, bool chroma_cosited)
- #define ICL_MAX_DST_H 4096
- #define SKL_MIN_YUV_420_SRC_W 16
- #define SKL_MIN_YUV_420_SRC_H 16
-+#define MAX_CUSCTL_W 4096
- 
- static int
- skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
-@@ -221,6 +222,14 @@ int skl_update_scaler_plane(struct intel_crtc_state *crtc_state,
- 	bool force_detach = !fb || !plane_state->uapi.visible;
- 	bool need_scaler = false;
- 
-+	/* PLANE_CUS_CTL size max 4096 */
-+	if (icl_is_hdr_plane(dev_priv, intel_plane->id) &&
-+	    fb && intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier) &&
-+	    (drm_rect_width(&plane_state->uapi.src) >> 16) > MAX_CUSCTL_W) {
-+		DRM_ERROR("HDR chroma upsampler size exceeds limits\n");
-+		return -EINVAL;
-+	}
-+
- 	/* Pre-gen11 and SDR planes always need a scaler for planar formats. */
- 	if (!icl_is_hdr_plane(dev_priv, intel_plane->id) &&
- 	    fb && intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
--- 
-2.33.0
+
+> > 
+> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> 
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> 
+> 
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_context.c | 12 ++++++------
+> >   1 file changed, 6 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c
+> > b/drivers/gpu/drm/i915/gt/intel_context.c
+> > index 5634d14052bc..4c296de1d67d 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> > @@ -228,17 +228,17 @@ int __intel_context_do_pin_ww(struct
+> > intel_context *ce,
+> >         if (err)
+> >                 return err;
+> >   
+> > -       err = i915_active_acquire(&ce->active);
+> > +       err = ce->ops->pre_pin(ce, ww, &vaddr);
+> >         if (err)
+> >                 goto err_ctx_unpin;
+> >   
+> > -       err = ce->ops->pre_pin(ce, ww, &vaddr);
+> > +       err = i915_active_acquire(&ce->active);
+> >         if (err)
+> > -               goto err_release;
+> > +               goto err_post_unpin;
+> >   
+> >         err = mutex_lock_interruptible(&ce->pin_mutex);
+> >         if (err)
+> > -               goto err_post_unpin;
+> > +               goto err_release;
+> >   
+> >         intel_engine_pm_might_get(ce->engine);
+> >   
+> > @@ -273,11 +273,11 @@ int __intel_context_do_pin_ww(struct
+> > intel_context *ce,
+> >   
+> >   err_unlock:
+> >         mutex_unlock(&ce->pin_mutex);
+> > +err_release:
+> > +       i915_active_release(&ce->active);
+> >   err_post_unpin:
+> >         if (!handoff)
+> >                 ce->ops->post_unpin(ce);
+> > -err_release:
+> > -       i915_active_release(&ce->active);
+> >   err_ctx_unpin:
+> >         intel_context_post_unpin(ce);
+> >   
+
 
