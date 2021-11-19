@@ -2,57 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20E90457327
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 17:37:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67839457336
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 17:38:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5150E6E06B;
-	Fri, 19 Nov 2021 16:36:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B093D6E12E;
+	Fri, 19 Nov 2021 16:38:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 270CB6E06B;
- Fri, 19 Nov 2021 16:36:58 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="234274406"
-X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="234274406"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 08:36:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="455836540"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga006.jf.intel.com with ESMTP; 19 Nov 2021 08:36:57 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 19 Nov 2021 08:36:57 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 19 Nov 2021 08:36:56 -0800
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Fri, 19 Nov 2021 08:36:56 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v3 5/5] drm/i915/dg2: extend Wa_1409120013 to DG2
-Thread-Index: AQHX2xIqj+cfS646BEGaQFoRxfUA2awLl3iA
-Date: Fri, 19 Nov 2021 16:36:56 +0000
-Message-ID: <8be6ba7e22774dd2ca42518f0a9af3cf5dd19d1f.camel@intel.com>
-References: <20211116174818.2128062-1-matthew.d.roper@intel.com>
- <20211116174818.2128062-6-matthew.d.roper@intel.com>
-In-Reply-To: <20211116174818.2128062-6-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C187FB38690CB240A74038A22FEC776F@intel.com>
-Content-Transfer-Encoding: base64
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 714B76E12E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 16:38:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="320659881"
+X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="320659881"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 08:38:11 -0800
+X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="537156505"
+Received: from smile.fi.intel.com ([10.237.72.184])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 08:38:02 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1mo6te-008atg-H8; Fri, 19 Nov 2021 18:37:54 +0200
+Date: Fri, 19 Nov 2021 18:37:54 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: "Alejandro Colomar (man-pages)" <alx.manpages@gmail.com>
+Message-ID: <YZfS4lCt8rMZ7UlS@smile.fi.intel.com>
+References: <20211119113644.1600-1-alx.manpages@gmail.com>
+ <CAK8P3a0qT9tAxFkLN_vJYRcocDW2TcBq79WcYKZFyAG0udZx5Q@mail.gmail.com>
+ <434296d3-8fe1-f1d2-ee9d-ea25d6c4e43e@gmail.com>
+ <CAK8P3a2yVXw9gf8-BNvX_rzectNoiy0MqGKvBcXydiUSrc_fCA@mail.gmail.com>
+ <f751fb48-d19c-88af-452e-680994a586b4@gmail.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 5/5] drm/i915/dg2: extend Wa_1409120013
- to DG2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f751fb48-d19c-88af-452e-680994a586b4@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH 00/17] Add memberof(), split some headers,
+ and slightly simplify code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,31 +52,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: Corey Minyard <cminyard@mvista.com>,
+ Ajit Khaparde <ajit.khaparde@broadcom.com>,
+ "Michael S. Tsirkin" <mst@redhat.com>, Jason Wang <jasowang@redhat.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>, Chris Mason <clm@fb.com>,
+ Christian Brauner <christian.brauner@ubuntu.com>,
+ Ketan Mukadam <ketan.mukadam@broadcom.com>,
+ linux-scsi <linux-scsi@vger.kernel.org>,
+ Subbu Seetharaman <subbu.seetharaman@broadcom.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Mike Rapoport <rppt@linux.ibm.com>,
+ ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+ Miguel Ojeda <ojeda@kernel.org>, Borislav Petkov <bp@suse.de>,
+ "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE"
+ <virtualization@lists.linux-foundation.org>, Len Brown <lenb@kernel.org>,
+ Kees Cook <keescook@chromium.org>, Arnd Bergmann <arnd@arndb.de>,
+ John Hubbard <jhubbard@nvidia.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Josef Bacik <josef@toxicpanda.com>,
+ Jitendra Bhivare <jitendra.bhivare@broadcom.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ David Sterba <dsterba@suse.com>, Somnath Kotur <somnath.kotur@broadcom.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Sriharsha Basavapatna <sriharsha.basavapatna@broadcom.com>,
+ Networking <netdev@vger.kernel.org>,
+ Nick Desaulniers <ndesaulniers@google.com>,
+ LKML <linux-kernel@vger.kernel.org>, "John S . Gruber" <JohnSGruber@gmail.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ linux-btrfs <linux-btrfs@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIxLTExLTE2IGF0IDA5OjQ4IC0wODAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBG
-cm9tOiBNYXR0IEF0d29vZCA8bWF0dGhldy5zLmF0d29vZEBpbnRlbC5jb20+DQo+IA0KPiBFeHRl
-bmQgZXhpc3Rpbmcgd29ya2Fyb3VuZCAxNDA5MTIwMDEzIHRvIERHMi4NCj4gDQo+IENjOiBKb3PD
-qSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1i
-eTogTWF0dCBBdHdvb2QgPG1hdHRoZXcucy5hdHdvb2RAaW50ZWwuY29tPg0KPiBTaWduZWQtb2Zm
-LWJ5OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMgfCA0ICsrLS0NCj4gIDEgZmlsZSBjaGFuZ2Vk
-LCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
-X3BtLmMNCj4gaW5kZXggODlkYzdmNjliYWYzLi5lNzIxYzQyMWNjNTggMTAwNjQ0DQo+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaW50ZWxfcG0uYw0KPiBAQCAtNzQ0NCw5ICs3NDQ0LDkgQEAgc3RhdGljIHZvaWQgaWNs
-X2luaXRfY2xvY2tfZ2F0aW5nKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4g
-IA0KPiAgc3RhdGljIHZvaWQgZ2VuMTJscF9pbml0X2Nsb2NrX2dhdGluZyhzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ICB7DQo+IC0JLyogV2FfMTQwOTEyMDAxMzp0Z2wscmts
-LGFkbC1zLGRnMSAqLw0KPiArCS8qIFdhXzE0MDkxMjAwMTM6dGdsLHJrbCxhZGwtcyxkZzEsZGcy
-ICovDQoNCkknbSBub3QgZmluZGluZyB0aGlzIHdvcmthcm91bmQgaW4gdGhlIERHMiBXQSBzcGVj
-IHBhZ2UsIG1heWJlIGl0IHdhcyByZW1vdmVkIGJlY2F1c2UgaXQgaXMgbm90IG5lY2Vzc2FyeSBh
-bnltb3JlPw0KDQo+ICAJaWYgKElTX1RJR0VSTEFLRShkZXZfcHJpdikgfHwgSVNfUk9DS0VUTEFL
-RShkZXZfcHJpdikgfHwNCj4gLQkgICAgSVNfQUxERVJMQUtFX1MoZGV2X3ByaXYpIHx8IElTX0RH
-MShkZXZfcHJpdikpDQo+ICsJICAgIElTX0FMREVSTEFLRV9TKGRldl9wcml2KSB8fCBJU19ERzEo
-ZGV2X3ByaXYpIHx8IElTX0RHMihkZXZfcHJpdikpDQo+ICAJCWludGVsX3VuY29yZV93cml0ZSgm
-ZGV2X3ByaXYtPnVuY29yZSwgSUxLX0RQRkNfQ0hJQ0tFTiwNCj4gIAkJCQkgICBEUEZDX0NISUNL
-RU5fQ09NUF9EVU1NWV9QSVhFTCk7DQo+ICANCg0K
+On Fri, Nov 19, 2021 at 05:12:19PM +0100, Alejandro Colomar (man-pages) wrote:
+> On 11/19/21 16:57, Arnd Bergmann wrote:
+
+...
+
+> > On the plus side, I did see something on the order of a 30%
+> > compile speed improvement with clang, which is insane
+> > given that this only removed dead definitions.
+> 
+> Huh!
+> 
+> I'd like to see the kernel some day
+> not having _any_ hidden dependencies.
+
+It's neither feasible nor practical. If we know the hard dependencies between
+headers, why should we not use implicit inclusion?
+
+We all know that bitmap.h includes bitops.h and this is good and a must, why
+to avoid this?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
