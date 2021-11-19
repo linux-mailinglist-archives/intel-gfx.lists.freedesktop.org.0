@@ -1,34 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F515456DE2
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 11:58:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44CDF456F11
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 13:47:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B26206E876;
-	Fri, 19 Nov 2021 10:58:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D06E6F4E4;
+	Fri, 19 Nov 2021 12:47:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8EAA16E876;
- Fri, 19 Nov 2021 10:58:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 88731A73C7;
- Fri, 19 Nov 2021 10:58:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0904165505717034846=="
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF7D56F4E4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 12:47:27 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="215121319"
+X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="215121319"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 04:47:27 -0800
+X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="507883791"
+Received: from sgconnee-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.21.83])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 04:47:15 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Alejandro Colomar <alx.manpages@gmail.com>, LKML
+ <linux-kernel@vger.kernel.org>
+In-Reply-To: <20211119113644.1600-1-alx.manpages@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211119113644.1600-1-alx.manpages@gmail.com>
+Date: Fri, 19 Nov 2021 14:47:08 +0200
+Message-ID: <87mtm0jos3.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 19 Nov 2021 10:58:52 -0000
-Message-ID: <163731953253.2300.6570228449817374406@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211117142024.1043017-1-matthew.auld@intel.com>
-In-Reply-To: <20211117142024.1043017-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/6=5D_drm/i915=3A_move_the_pre=5Fpin?=
- =?utf-8?q?_earlier_=28rev3=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 00/17] Add memberof(), split some headers,
+ and slightly simplify code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,223 +46,219 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alejandro Colomar <alx.manpages@gmail.com>,
+ Corey Minyard <cminyard@mvista.com>,
+ Ajit Khaparde <ajit.khaparde@broadcom.com>, "Michael S.
+ Tsirkin" <mst@redhat.com>, Jason Wang <jasowang@redhat.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>, Chris Mason <clm@fb.com>,
+ Christian Brauner <christian.brauner@ubuntu.com>,
+ Ketan Mukadam <ketan.mukadam@broadcom.com>,
+ Somnath Kotur <somnath.kotur@broadcom.com>, linux-scsi@vger.kernel.org,
+ Subbu Seetharaman <subbu.seetharaman@broadcom.com>, "Rafael
+ J. Wysocki" <rafael@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Mike Rapoport <rppt@linux.ibm.com>, linux-acpi@vger.kernel.org,
+ Miguel Ojeda <ojeda@kernel.org>, Borislav Petkov <bp@suse.de>,
+ virtualization@lists.linux-foundation.org, Len Brown <lenb@kernel.org>,
+ Kees Cook <keescook@chromium.org>, Arnd Bergmann <arnd@arndb.de>,
+ John Hubbard <jhubbard@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ Josef Bacik <josef@toxicpanda.com>,
+ Jitendra Bhivare <jitendra.bhivare@broadcom.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ David Sterba <dsterba@suse.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Sriharsha Basavapatna <sriharsha.basavapatna@broadcom.com>,
+ netdev@vger.kernel.org, Nick Desaulniers <ndesaulniers@google.com>,
+ "John S . Gruber" <JohnSGruber@gmail.com>,
+ Andrew Morton <akpm@linux-foundation.org>, linux-btrfs@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0904165505717034846==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 19 Nov 2021, Alejandro Colomar <alx.manpages@gmail.com> wrote:
+> Hi all,
+>
+> I simplified some xxxof() macros,
+> by adding a new macro memberof(),
+> which implements a common operation in many of them.
+>
+> I also splitted many of those macros into tiny headers,
+> since I noticed that touching those headers implied
+> recompiling almost the whole kernel.
+>
+> Hopefully after this patch there will be less
+> things to recompile after touching one of those.
+>
+> Having simpler headers means that now one can
+> include one of those without pulling too much stuff
+> that might break other stuff.
+>
+> I removed some unnecessary casts too.
+>
+> Every few commits in this series
+> and of course after the last commit
+> I rebuilt the kernel and run for a while with it without any problems.
+>
+> Please note that I have written very few kernel code
+> and for example some files wouldn't let me include some of these files,
+> so I didn't change those.
+>
+> What I mean is that,
+> even though this is super obvious and shouldn't break stuff,
+> and I'm not new to C,
+> I'm quite new to the kernel,
+> and ask that reviewers take deep look, please.
+>
+>
+> In the first and second commits
+> I changed a lot of stuff in many parts,
+> and that's why I CCd so many people (also in this cover letter).
+> However, to avoid spamming,
+> and since it would be a nightmare to
+> find all the relevant people affected in so many different areas,
+> I only CCd in 01, 02 and in the cover letter.
+> If anyone is interested in reading the full patch set,
+> I sent it to the LKML.
 
-== Series Details ==
+I think with the patch split you have this would be a nightmare to get
+merged. Please consider refactoring the headers first, and once those
+are reviewed and merged, you can proceed with using them elsewhere. For
+example, we'd want the drm/i915 changes in patches separate from changes
+to other drivers or the core headers.
 
-Series: series starting with [v2,1/6] drm/i915: move the pre_pin earlier (rev3)
-URL   : https://patchwork.freedesktop.org/series/97026/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10904 -> Patchwork_21637
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/index.html
-
-Participating hosts (37 -> 30)
-------------------------------
-
-  Missing    (7): fi-kbl-soraka bat-dg1-6 fi-tgl-u2 fi-bsw-cyan bat-jsl-2 bat-jsl-1 fi-hsw-gt1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21637 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +31 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#1888])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10904/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [PASS][5] -> [FAIL][6] ([i915#4547])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10904/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [INCOMPLETE][8] ([i915#2940]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10904/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       [FAIL][10] ([i915#2722] / [i915#3363] / [i915#4312]) -> [FAIL][11] ([i915#3363] / [i915#4312])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10904/fi-skl-6600u/igt@runner@aborted.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-skl-6600u/igt@runner@aborted.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+BR,
+Jani.
 
 
-Build changes
--------------
 
-  * Linux: CI_DRM_10904 -> Patchwork_21637
+>
+>
+> Thanks,
+> Alex
+>
+>
+> Alejandro Colomar (17):
+>   linux/container_of.h: Add memberof(T, m)
+>   Use memberof(T, m) instead of explicit NULL dereference
+>   Replace some uses of memberof() by its wrappers
+>   linux/memberof.h: Move memberof() to separate header
+>   linux/typeof_member.h: Move typeof_member() to a separate header
+>   Simplify sizeof(typeof_member()) to sizeof_field()
+>   linux/NULL.h: Move NULL to a separate header
+>   linux/offsetof.h: Move offsetof(T, m) to a separate header
+>   linux/offsetof.h: Implement offsetof() in terms of memberof()
+>   linux/container_of.h: Implement container_of_safe() in terms of
+>     container_of()
+>   linux/container_of.h: Cosmetic
+>   linux/container_of.h: Remove unnecessary cast to (void *)
+>   linux/sizeof_field.h: Move sizeof_field(T, m) to a separate header
+>   include/linux/: Include a smaller header if just for NULL
+>   linux/offsetofend.h: Move offsetofend(T, m) to a separate header
+>   linux/array_size.h: Move ARRAY_SIZE(arr) to a separate header
+>   include/: Include <linux/array_size.h> for ARRAY_SIZE()
+>
+>  arch/x86/include/asm/bootparam_utils.h        |  3 +-
+>  arch/x86/kernel/signal_compat.c               |  5 ++--
+>  drivers/gpu/drm/i915/i915_sw_fence.c          |  1 +
+>  drivers/gpu/drm/i915/i915_utils.h             |  5 ++--
+>  drivers/gpu/drm/i915/intel_runtime_pm.h       |  3 +-
+>  drivers/net/ethernet/emulex/benet/be.h        | 10 +++----
+>  drivers/net/ethernet/i825xx/ether1.c          |  7 +++--
+>  drivers/platform/x86/wmi.c                    |  3 +-
+>  drivers/scsi/be2iscsi/be.h                    | 12 ++++----
+>  drivers/scsi/be2iscsi/be_cmds.h               |  5 +++-
+>  fs/btrfs/ctree.h                              |  5 ++--
+>  fs/proc/inode.c                               |  1 +
+>  include/acpi/actypes.h                        |  4 ++-
+>  include/crypto/internal/blake2b.h             |  1 +
+>  include/crypto/internal/blake2s.h             |  1 +
+>  include/crypto/internal/chacha.h              |  1 +
+>  include/drm/drm_mipi_dbi.h                    |  1 +
+>  include/drm/drm_mode_object.h                 |  1 +
+>  include/kunit/test.h                          |  1 +
+>  include/linux/NULL.h                          | 10 +++++++
+>  include/linux/arm_ffa.h                       |  1 +
+>  include/linux/array_size.h                    | 15 ++++++++++
+>  include/linux/blk_types.h                     |  1 +
+>  include/linux/can/core.h                      |  1 +
+>  include/linux/clk-provider.h                  |  1 +
+>  include/linux/container_of.h                  | 28 ++++++++++-------
+>  include/linux/counter.h                       |  1 +
+>  include/linux/crash_core.h                    |  1 +
+>  include/linux/efi.h                           |  1 +
+>  include/linux/extable.h                       |  2 +-
+>  include/linux/f2fs_fs.h                       |  1 +
+>  include/linux/filter.h                        |  3 ++
+>  include/linux/fs.h                            |  1 +
+>  include/linux/genl_magic_func.h               |  1 +
+>  include/linux/hashtable.h                     |  1 +
+>  include/linux/ieee80211.h                     |  1 +
+>  include/linux/kbuild.h                        |  3 ++
+>  include/linux/kernel.h                        |  7 +----
+>  include/linux/kfifo.h                         |  1 +
+>  include/linux/kvm_host.h                      |  3 ++
+>  include/linux/libata.h                        |  1 +
+>  include/linux/llist.h                         |  1 +
+>  include/linux/memberof.h                      | 11 +++++++
+>  include/linux/mlx5/device.h                   |  1 +
+>  include/linux/mlx5/driver.h                   |  1 +
+>  include/linux/mm_types.h                      |  1 +
+>  include/linux/moduleparam.h                   |  3 ++
+>  include/linux/mtd/rawnand.h                   |  1 +
+>  include/linux/netdevice.h                     |  1 +
+>  include/linux/netfilter.h                     |  1 +
+>  include/linux/nvme-fc.h                       |  2 ++
+>  include/linux/offsetof.h                      | 17 +++++++++++
+>  include/linux/offsetofend.h                   | 19 ++++++++++++
+>  include/linux/pagemap.h                       |  1 +
+>  include/linux/phy.h                           |  1 +
+>  include/linux/phy_led_triggers.h              |  1 +
+>  include/linux/pinctrl/machine.h               |  1 +
+>  include/linux/property.h                      |  1 +
+>  include/linux/rcupdate.h                      |  1 +
+>  include/linux/rcupdate_wait.h                 |  1 +
+>  include/linux/regmap.h                        |  1 +
+>  include/linux/sched/task.h                    |  1 +
+>  include/linux/sizeof_field.h                  | 14 +++++++++
+>  include/linux/skb_array.h                     |  1 +
+>  include/linux/skbuff.h                        |  1 +
+>  include/linux/skmsg.h                         |  3 ++
+>  include/linux/slab.h                          |  2 ++
+>  include/linux/spinlock_types.h                |  1 +
+>  include/linux/stddef.h                        | 30 +++----------------
+>  include/linux/string.h                        |  5 +++-
+>  include/linux/surface_aggregator/controller.h |  1 +
+>  include/linux/surface_aggregator/serial_hub.h |  1 +
+>  include/linux/swap.h                          |  1 +
+>  include/linux/ti-emif-sram.h                  |  1 +
+>  include/linux/typeof_member.h                 | 11 +++++++
+>  include/linux/ucs2_string.h                   |  2 +-
+>  include/linux/vdpa.h                          |  1 +
+>  include/linux/virtio_config.h                 | 17 ++++++-----
+>  include/linux/wireless.h                      |  2 ++
+>  include/net/bond_3ad.h                        |  1 +
+>  include/net/dsa.h                             |  1 +
+>  include/net/ip_vs.h                           |  1 +
+>  include/net/netfilter/nf_conntrack_tuple.h    |  1 +
+>  include/net/netfilter/nf_tables.h             |  1 +
+>  include/net/netlink.h                         |  1 +
+>  include/rdma/uverbs_ioctl.h                   |  1 +
+>  include/rdma/uverbs_named_ioctl.h             |  1 +
+>  include/scsi/scsi_host.h                      |  1 +
+>  include/sound/soc-dapm.h                      |  1 +
+>  include/sound/soc.h                           |  1 +
+>  include/trace/events/wbt.h                    |  1 +
+>  include/uapi/linux/netfilter/xt_sctp.h        |  1 +
+>  include/xen/hvm.h                             |  1 +
+>  kernel/kallsyms.c                             |  3 +-
+>  94 files changed, 255 insertions(+), 79 deletions(-)
+>  create mode 100644 include/linux/NULL.h
+>  create mode 100644 include/linux/array_size.h
+>  create mode 100644 include/linux/memberof.h
+>  create mode 100644 include/linux/offsetof.h
+>  create mode 100644 include/linux/offsetofend.h
+>  create mode 100644 include/linux/sizeof_field.h
+>  create mode 100644 include/linux/typeof_member.h
 
-  CI-20190529: 20190529
-  CI_DRM_10904: 4d1a823dfeaff3ce8b2c411fd180c02629aa66c4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6285: 2e0355faad5c2e81cd6705b76e529ce526c7c9bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21637: 20e7d3632102cfa20db879e858a072215ccb8661 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-20e7d3632102 drm/i915: Drain the ttm delayed workqueue too
-80281c273e9b drm/i915: Remove resv from i915_vma
-7be7dadd1aaa drm/i915: vma is always backed by an object.
-08321cc32088 drm/i915: Create a full object for mock_ring, v2.
-df5d86064286 drm/i915: Create a dummy object for gen6 ppgtt
-9579a9eeb7e3 drm/i915: move the pre_pin earlier
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/index.html
-
---===============0904165505717034846==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/6] drm/i915: move the pre_pin earlier (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97026/">https://patchwork.freedesktop.org/series/97026/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10904 -&gt; Patchwork_21637</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/index.html</p>
-<h2>Participating hosts (37 -&gt; 30)</h2>
-<p>Missing    (7): fi-kbl-soraka bat-dg1-6 fi-tgl-u2 fi-bsw-cyan bat-jsl-2 bat-jsl-1 fi-hsw-gt1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21637 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>
-<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10904/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10904/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@execlists:<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10904/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10904/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21637/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10904 -&gt; Patchwork_21637</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10904: 4d1a823dfeaff3ce8b2c411fd180c02629aa66c4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6285: 2e0355faad5c2e81cd6705b76e529ce526c7c9bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21637: 20e7d3632102cfa20db879e858a072215ccb8661 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>20e7d3632102 drm/i915: Drain the ttm delayed workqueue too<br />
-80281c273e9b drm/i915: Remove resv from i915_vma<br />
-7be7dadd1aaa drm/i915: vma is always backed by an object.<br />
-08321cc32088 drm/i915: Create a full object for mock_ring, v2.<br />
-df5d86064286 drm/i915: Create a dummy object for gen6 ppgtt<br />
-9579a9eeb7e3 drm/i915: move the pre_pin earlier</p>
-
-</body>
-</html>
-
---===============0904165505717034846==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
