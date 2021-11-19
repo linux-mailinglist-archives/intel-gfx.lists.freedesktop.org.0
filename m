@@ -2,39 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70E9C457213
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 16:48:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9F74457235
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 16:55:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3CE36EC3D;
-	Fri, 19 Nov 2021 15:47:45 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF61A6EC48;
- Fri, 19 Nov 2021 15:47:40 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="221651590"
-X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="221651590"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 07:47:40 -0800
-X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="495913286"
-Received: from clillies-mobl.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.201])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 07:47:39 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 19 Nov 2021 16:47:18 +0100
-Message-Id: <20211119154718.3705-7-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211119154718.3705-1-thomas.hellstrom@linux.intel.com>
-References: <20211119154718.3705-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 012006ECF8;
+	Fri, 19 Nov 2021 15:55:48 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76C346ECF3;
+ Fri, 19 Nov 2021 15:55:46 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="214463533"
+X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="214463533"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 07:55:46 -0800
+X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="605590769"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.72.185])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 07:55:44 -0800
+Received: from platvala by thrakatuluk with local (Exim 4.94)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1mo6Dq-0005Z4-T5; Fri, 19 Nov 2021 17:54:42 +0200
+Date: Fri, 19 Nov 2021 17:54:42 +0200
+From: Petri Latvala <petri.latvala@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YZfIwtCEqbqs1dIz@platvala-desk.ger.corp.intel.com>
+References: <20211119125945.55056-1-tvrtko.ursulin@linux.intel.com>
+ <20211119125945.55056-3-tvrtko.ursulin@linux.intel.com>
+ <YZesawet06wfQ1SG@platvala-desk.ger.corp.intel.com>
+ <8b1bdb41-fe31-8482-655d-724a6937d2c7@linux.intel.com>
+ <YZfFlI/cB2OyXZeE@platvala-desk.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 6/6] drm/i915/ttm: Update
- i915_gem_obj_copy_ttm() to be asynchronous
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YZfFlI/cB2OyXZeE@platvala-desk.ger.corp.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 3/6] igt/core: Fix build
+ warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,107 +52,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- matthew.auld@intel.com
+Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Update the copy function i915_gem_obj_copy_ttm() to be asynchronous for
-future users and update the only current user to sync the objects
-as needed after this function.
+On Fri, Nov 19, 2021 at 05:41:08PM +0200, Petri Latvala wrote:
+> On Fri, Nov 19, 2021 at 03:34:54PM +0000, Tvrtko Ursulin wrote:
+> > On 19/11/2021 13:53, Petri Latvala wrote:
+> > > On Fri, Nov 19, 2021 at 12:59:42PM +0000, Tvrtko Ursulin wrote:
+> > Okay I wasn't sufficiently focused while trying to fix this. No idea then
+> > apart for playing with pragmas.
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 40 ++++++++++++++------
- drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c   |  2 +
- 2 files changed, 30 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-index 38623fde170a..d377c86232f1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-@@ -822,33 +822,49 @@ int i915_gem_obj_copy_ttm(struct drm_i915_gem_object *dst,
- 		.interruptible = intr,
- 	};
- 	struct i915_refct_sgt *dst_rsgt;
--	struct dma_fence *copy_fence;
--	int ret;
-+	struct dma_fence *copy_fence, *dep_fence;
-+	struct i915_deps deps;
-+	int ret, shared_err;
- 
- 	assert_object_held(dst);
- 	assert_object_held(src);
-+	i915_deps_init(&deps, GFP_KERNEL | __GFP_NORETRY | __GFP_NOWARN);
- 
- 	/*
--	 * Sync for now. This will change with async moves.
-+	 * We plan to add a shared fence only for the source. If that
-+	 * fails, we await all source fences before commencing
-+	 * the copy instead of only the exclusive.
- 	 */
--	ret = ttm_bo_wait_ctx(dst_bo, &ctx);
-+	shared_err = dma_resv_reserve_shared(src_bo->base.resv, 1);
-+	ret = i915_deps_add_resv(&deps, dst_bo->base.resv, true, false, &ctx);
- 	if (!ret)
--		ret = ttm_bo_wait_ctx(src_bo, &ctx);
-+		ret = i915_deps_add_resv(&deps, src_bo->base.resv,
-+					 !!shared_err, false, &ctx);
- 	if (ret)
- 		return ret;
- 
-+	dep_fence = i915_deps_to_fence(&deps, &ctx);
-+	if (IS_ERR(dep_fence))
-+		return PTR_ERR(dep_fence);
-+
- 	dst_rsgt = i915_ttm_resource_get_st(dst, dst_bo->resource);
- 	copy_fence = __i915_ttm_move(src_bo, false, dst_bo->resource,
--				     dst_bo->ttm, dst_rsgt, allow_accel, NULL);
-+				     dst_bo->ttm, dst_rsgt, allow_accel,
-+				     dep_fence);
- 
- 	i915_refct_sgt_put(dst_rsgt);
--	if (IS_ERR(copy_fence))
--		return PTR_ERR(copy_fence);
-+	if (IS_ERR_OR_NULL(copy_fence))
-+		return PTR_ERR_OR_ZERO(copy_fence);
- 
--	if (copy_fence) {
--		dma_fence_wait(copy_fence, false);
--		dma_fence_put(copy_fence);
--	}
-+	dma_resv_add_excl_fence(dst_bo->base.resv, copy_fence);
-+
-+	/* If we failed to reserve a shared slot, add an exclusive fence */
-+	if (shared_err)
-+		dma_resv_add_excl_fence(src_bo->base.resv, copy_fence);
-+	else
-+		dma_resv_add_shared_fence(src_bo->base.resv, copy_fence);
-+
-+	dma_fence_put(copy_fence);
- 
- 	return 0;
+How's this:
+
+diff --git a/lib/igt_core.c b/lib/igt_core.c
+index ec05535c..6a4d0270 100644
+--- a/lib/igt_core.c
++++ b/lib/igt_core.c
+@@ -2727,6 +2727,8 @@ void igt_log(const char *domain, enum igt_log_level level, const char *format, .
  }
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
-index 60d10ab55d1e..9aad84059d56 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c
-@@ -80,6 +80,7 @@ static int i915_ttm_backup(struct i915_gem_apply_to_region *apply,
  
- 	err = i915_gem_obj_copy_ttm(backup, obj, pm_apply->allow_gpu, false);
- 	GEM_WARN_ON(err);
-+	ttm_bo_wait_ctx(backup_bo, &ctx);
+ static pthread_key_t __vlog_line_continuation;
++static const bool __dummy_true = true;
++static const bool __dummy_false = false;
  
- 	obj->ttm.backup = backup;
- 	return 0;
-@@ -170,6 +171,7 @@ static int i915_ttm_restore(struct i915_gem_apply_to_region *apply,
- 		err = i915_gem_obj_copy_ttm(obj, backup, pm_apply->allow_gpu,
- 					    false);
- 		GEM_WARN_ON(err);
-+		ttm_bo_wait_ctx(backup_bo, &ctx);
+ igt_constructor {
+ 	pthread_key_create(&__vlog_line_continuation, NULL);
+@@ -2751,6 +2753,7 @@ void igt_vlog(const char *domain, enum igt_log_level level, const char *format,
+ 	FILE *file;
+ 	char *line, *formatted_line;
+ 	char *thread_id;
++	void *line_continuation;
+ 	const char *program_name;
+ 	const char *igt_log_level_str[] = {
+ 		"DEBUG",
+@@ -2785,7 +2788,8 @@ void igt_vlog(const char *domain, enum igt_log_level level, const char *format,
+ 	if (vasprintf(&line, format, args) == -1)
+ 		return;
  
- 		obj->ttm.backup = NULL;
- 		err = 0;
--- 
-2.31.1
-
+-	if (pthread_getspecific(__vlog_line_continuation)) {
++	line_continuation = pthread_getspecific(__vlog_line_continuation);
++	if (line_continuation != NULL && *(bool *)line_continuation) {
+ 		formatted_line = strdup(line);
+ 		if (!formatted_line)
+ 			goto out;
+@@ -2796,9 +2800,9 @@ void igt_vlog(const char *domain, enum igt_log_level level, const char *format,
+ 	}
+ 
+ 	if (line[strlen(line) - 1] == '\n')
+-		pthread_setspecific(__vlog_line_continuation, (void*) false);
++		pthread_setspecific(__vlog_line_continuation, &__dummy_false);
+ 	else
+-		pthread_setspecific(__vlog_line_continuation, (void*) true);
++		pthread_setspecific(__vlog_line_continuation, &__dummy_true);
+ 
+ 	/* append log buffer */
+ 	_igt_log_buffer_append(formatted_line);
+diff --git a/lib/igt_thread.c b/lib/igt_thread.c
+index 5bdda410..0d7bce80 100644
+--- a/lib/igt_thread.c
++++ b/lib/igt_thread.c
+@@ -29,6 +29,7 @@
+ #include "igt_thread.h"
+ 
+ static pthread_key_t __igt_is_main_thread;
++static const bool __dummy_true = true;
+ 
+ static _Atomic(bool) __thread_failed = false;
+ 
+@@ -65,5 +66,5 @@ bool igt_thread_is_main(void)
+ 
+ igt_constructor {
+ 	pthread_key_create(&__igt_is_main_thread, NULL);
+-	pthread_setspecific(__igt_is_main_thread, (void*) 0x1);
++	pthread_setspecific(__igt_is_main_thread, &__dummy_true);
+ }
