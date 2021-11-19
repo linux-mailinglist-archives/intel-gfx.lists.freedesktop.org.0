@@ -2,42 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28C2B45713C
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 15:55:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 517C6457149
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 15:58:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E5466EA5D;
-	Fri, 19 Nov 2021 14:55:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD2AE6E214;
+	Fri, 19 Nov 2021 14:58:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4421E6EA6A
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 14:54:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="234254689"
-X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="234254689"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 06:54:58 -0800
-X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="568904791"
-Received: from smile.fi.intel.com ([10.237.72.184])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 06:54:50 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1mo5Hl-008ZVj-Jj; Fri, 19 Nov 2021 16:54:41 +0200
-Date: Fri, 19 Nov 2021 16:54:41 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: "Alejandro Colomar (man-pages)" <alx.manpages@gmail.com>
-Message-ID: <YZe6seRR7SIzDrX/@smile.fi.intel.com>
-References: <20211119113644.1600-1-alx.manpages@gmail.com>
- <87mtm0jos3.fsf@intel.com>
- <a9522c0e-0762-c7cd-edb1-0376c435c4d9@gmail.com>
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3A976EA09
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 14:58:37 +0000 (UTC)
+Date: Fri, 19 Nov 2021 15:58:34 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1637333916;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=05S1EPoS2uCX2lmLqI0lPAWhqGCTzNdjavtXIoQ/TEk=;
+ b=RvfRVk2nS+wgtRkmEnsBnoqdfzI5lU1hbXVq59T69+buDeuS/MGkwwbJBA0cQuRmz2b+fH
+ ecotyNv309e/26bd4sXyQLy9qaa9SHsHrt/aWDnmSUg7bPkxwdN8UPgeO/4Y+cIWR0dnAx
+ M6RMCepU0vuZiMUzBn7KUeTT0la+XY18nr/QmA/036MfCP9wrM4mWVG5oA16QbRPXTbT1q
+ f/QNUyf4v7ZD2XMYAgWUYdwUN4oGRtG3lZj7kZ/4Jc+44j/4ELWAeZjP1hMC8RBAIyMW3M
+ Bk9+YmG5g4hoVRJq/sbIMz+yc5BUAv04MD7xl9iSDgw9P9H0H77f/rKsv19dpw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1637333916;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=05S1EPoS2uCX2lmLqI0lPAWhqGCTzNdjavtXIoQ/TEk=;
+ b=jugc2L0BBz+Yx/J6dauORXJUrsMcKoiZwIINxK52Hop8ihgrx6RxnTyHtfin/MCdnldzFQ
+ 0pdez5f9/gs5HSAw==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <20211119145834.dmdhs74dqr7dcdt7@linutronix.de>
+References: <20211118165914.pckik75emivsilek@linutronix.de>
+ <163731167626.2300.15452635334943775421@emeril.freedesktop.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <a9522c0e-0762-c7cd-edb1-0376c435c4d9@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH 00/17] Add memberof(), split some headers,
- and slightly simplify code
+In-Reply-To: <163731167626.2300.15452635334943775421@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Don=27t_disable_interrupts_and_pretend_a_lock_as_been_?=
+ =?utf-8?b?YWNxdWlyZWQgaW4gX190aW1lbGluZV9tYXJrX2xvY2soKS4=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,52 +58,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Corey Minyard <cminyard@mvista.com>,
- Ajit Khaparde <ajit.khaparde@broadcom.com>,
- "Michael S. Tsirkin" <mst@redhat.com>, Jason Wang <jasowang@redhat.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Bjorn Andersson <bjorn.andersson@linaro.org>, Chris Mason <clm@fb.com>,
- Christian Brauner <christian.brauner@ubuntu.com>,
- Ketan Mukadam <ketan.mukadam@broadcom.com>, linux-scsi@vger.kernel.org,
- Subbu Seetharaman <subbu.seetharaman@broadcom.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Mike Rapoport <rppt@linux.ibm.com>, linux-acpi@vger.kernel.org,
- Miguel Ojeda <ojeda@kernel.org>, Borislav Petkov <bp@suse.de>,
- virtualization@lists.linux-foundation.org, Len Brown <lenb@kernel.org>,
- Kees Cook <keescook@chromium.org>, Arnd Bergmann <arnd@arndb.de>,
- John Hubbard <jhubbard@nvidia.com>, intel-gfx@lists.freedesktop.org,
- Josef Bacik <josef@toxicpanda.com>,
- Jitendra Bhivare <jitendra.bhivare@broadcom.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- David Sterba <dsterba@suse.com>, Somnath Kotur <somnath.kotur@broadcom.com>,
- linux-arm-kernel@lists.infradead.org,
- Sriharsha Basavapatna <sriharsha.basavapatna@broadcom.com>,
- netdev@vger.kernel.org, Nick Desaulniers <ndesaulniers@google.com>,
- LKML <linux-kernel@vger.kernel.org>, "John S . Gruber" <JohnSGruber@gmail.com>,
- Andrew Morton <akpm@linux-foundation.org>, linux-btrfs@vger.kernel.org
+Cc: tglx@linutronix.de
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 19, 2021 at 02:16:03PM +0100, Alejandro Colomar (man-pages) wrote:
-> On 11/19/21 13:47, Jani Nikula wrote:
-> > On Fri, 19 Nov 2021, Alejandro Colomar <alx.manpages@gmail.com> wrote:
+On 2021-11-19 08:47:56 [-0000], Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/i915: Don't disable interrupts and pretend a lock as been acquired in __timeline_mark_lock().
+> URL   : https://patchwork.freedesktop.org/series/97082/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_10900_full -> Patchwork_21633_full
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_21633_full absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_21633_full, please notify your bug team to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
 
-...
+My bug team?
 
-> Patch set 1:
-> - Add <linux/memberof.h> with memberof()
-> - Split offsetof() to <linux/offsetof.h>
-> - Split offsetofend() to <linux/offsetofend.h>
-> - Split typeof_member() to <linux/typeof_member.h>
-> - Split sizeof_field() to <linux/sizeof_field.h>
-> - Split NULL to <linux/NULL.h>
-> - Split ARRAY_SIZE() to <linux/array_size.h>
+> #### Possible regressions ####
+> 
+>   * igt@kms_vblank@pipe-b-query-forked-hang:
+>     - shard-tglb:         [PASS][1] -> [INCOMPLETE][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10900/shard-tglb8/igt@kms_vblank@pipe-b-query-forked-hang.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21633/shard-tglb6/igt@kms_vblank@pipe-b-query-forked-hang.html
 
-Isn't it way too small granularity? I agree on having the separate header
-for ARRAY_SIZE() and it was discussed, but the rest...
+By comparing the two dmesg outputs I see that the INCOMPLETE ones stops,
+while the PASS one continues with
+|<7> [82.256394] heartbeat rcs0 heartbeat {seqno:5:7, prio:2147483646} not ticking
 
--- 
-With Best Regards,
-Andy Shevchenko
+I cloned igt-gpu-tools and run 'kms_vblank' on my box. I was a little
+surprised by the suspend part but the test passed here.
 
-
+Sebastian
