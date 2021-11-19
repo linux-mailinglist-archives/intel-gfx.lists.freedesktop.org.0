@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E76F4572D9
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 17:25:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D304572E5
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 17:27:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C0126EA5D;
-	Fri, 19 Nov 2021 16:25:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C78516EA7C;
+	Fri, 19 Nov 2021 16:27:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 048166EA5D
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 16:25:39 +0000 (UTC)
-Received: from mail-wm1-f49.google.com ([209.85.128.49]) by
- mrelayeu.kundenserver.de (mreue009 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MBDva-1mxVRU1V78-00Ckvg for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov
- 2021 17:25:38 +0100
-Received: by mail-wm1-f49.google.com with SMTP id
- 67-20020a1c1946000000b0030d4c90fa87so7943046wmz.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 08:25:37 -0800 (PST)
-X-Gm-Message-State: AOAM530abzct9d2xApHzGuqtIW8hs02o7DpkQrDU7cWMRn/I/SI1BRKL
- eMT7Vyw+KXlpmPi9jKp70fC2xoJzsi6BBpn3iHM=
-X-Google-Smtp-Source: ABdhPJxceAOgZg4K9oWzLDHPv4QMPRjgvN2Y7oQmQdzE+p3Y265dv2VJvOf0muRFSn+nfOr9pX8E0TuGzsEYEIm5yn0=
-X-Received: by 2002:a1c:770e:: with SMTP id t14mr963230wmi.173.1637339127628; 
- Fri, 19 Nov 2021 08:25:27 -0800 (PST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE68D6EA7C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 16:27:46 +0000 (UTC)
+Received: from mail-wm1-f50.google.com ([209.85.128.50]) by
+ mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1N3sye-1mf8Vc3zrk-00zmnb for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov
+ 2021 17:27:44 +0100
+Received: by mail-wm1-f50.google.com with SMTP id i12so9023915wmq.4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 08:27:44 -0800 (PST)
+X-Gm-Message-State: AOAM533Gklc5B0Jl2+csf3dyoaFEtsMroXlSIMugcwiEa7jrDDqIAgiR
+ 8Ox142PhEm7nogzQohZC+p2T8+CYPJg2ciuLOm0=
+X-Google-Smtp-Source: ABdhPJw9pjl15kxNckhoztOwSEHm2BAFAg53rxD/nLG+Vq3q5u2bghokZvEuTw1FbjRLUctINZWvpCeY9JlD3tiwY20=
+X-Received: by 2002:a1c:2382:: with SMTP id j124mr1036531wmj.35.1637339254218; 
+ Fri, 19 Nov 2021 08:27:34 -0800 (PST)
 MIME-Version: 1.0
 References: <20211119113644.1600-1-alx.manpages@gmail.com>
  <CAK8P3a0qT9tAxFkLN_vJYRcocDW2TcBq79WcYKZFyAG0udZx5Q@mail.gmail.com>
  <434296d3-8fe1-f1d2-ee9d-ea25d6c4e43e@gmail.com>
  <CAK8P3a2yVXw9gf8-BNvX_rzectNoiy0MqGKvBcXydiUSrc_fCA@mail.gmail.com>
- <f751fb48-d19c-88af-452e-680994a586b4@gmail.com>
-In-Reply-To: <f751fb48-d19c-88af-452e-680994a586b4@gmail.com>
+ <YZfMXlqvG52ls2TE@smile.fi.intel.com>
+ <CAK8P3a06CMzWVj2C3P5v0u8ZVPumXJKrq=TdjSq1NugmeT7-RQ@mail.gmail.com>
+ <2d790206-124b-f850-895f-a57a74c55f79@gmail.com>
+In-Reply-To: <2d790206-124b-f850-895f-a57a74c55f79@gmail.com>
 From: Arnd Bergmann <arnd@arndb.de>
-Date: Fri, 19 Nov 2021 17:25:11 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a0DD+odXthvGq2UWwrvhDDavukUB=bW-m+=HohjoiTE6w@mail.gmail.com>
-Message-ID: <CAK8P3a0DD+odXthvGq2UWwrvhDDavukUB=bW-m+=HohjoiTE6w@mail.gmail.com>
+Date: Fri, 19 Nov 2021 17:27:17 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a3O1KLzxSTn1xqi2HjUVw2Utf6m5PZWd1ns7xsExxbJOA@mail.gmail.com>
+Message-ID: <CAK8P3a3O1KLzxSTn1xqi2HjUVw2Utf6m5PZWd1ns7xsExxbJOA@mail.gmail.com>
 To: "Alejandro Colomar (man-pages)" <alx.manpages@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:Fp14u4eX5shEITsdUFeTPEBYXIgPeI/XRMumoOp0AoRA5sLLAM9
- JWalmjyDps0iLSt8k7oduMQ+7g3T1aKKL/wVRAPbDG3wVo+77zTU3zIhrVIUBs/XJTI9j5A
- qR5QtWh4cW2euMjg12LVtTJ1QL2cauBW1eAou714FCpuhhJLmRdHPFFkO6Sc1HQBlB1dJvy
- lE0BPr4shTqcYkmQmhhog==
+X-Provags-ID: V03:K1:nXGG2z9CIGPbn7OeP1ZtvVyaCjs9UCwfp+y5KF7GF0VsCm7phdg
+ 7r3+OlFtwmVohDf9x/vF5HQTTdjd1vvnIXRVpgDLBDohchIKkdmQZU1CZDAVd3yFc/jjb64
+ 9ocfZ0ujDiHuHAwdL+Hjai9XZryxkniPFmW51SoBDsfyxKL7TONZzjB8RAW8VLxAEC2Ktnb
+ W20iFpmS3oGHREWMtUlFQ==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:T/5gyc2vauA=:C4e2aHWM9LLCaau3jLaxtj
- DqQgeiYxS9KX2PMEOx1WRyM9C6iUx4WuM262QHhf8YCNqt6XASiyJltNXfIr3chrFU8+iCQCf
- oY21lk9GWflIm01mFX/YD4tJ0boFR6DnJV/w7RqljooqwuizA95Hq+yolkBSrtxRFlC1bvJBN
- kAeblbts5kl1taObOEzrHkvyK5AtiIPaBTSWZEiQeNvL8Vr5yw0HiLZHiA8sYA6cZWSmnSvbT
- DXJrLXjKeUm81bPi1TuzyIduGOhDgqhiqjp/mpFEjAX0xXVpdbjh3W8ntCUBguDkVfOpOC12P
- rqh7e9qL3oTQlOd00fGVJPt4/aUiYKrSVyjKsK9x/W8+VqIAB3RSB5sxejXS8lBE6/AjloXme
- NJmNkdnr1KfLVnRPDst/MKRYEhPEcyffdqxv0CbTq5MC7Pfoa+gmfBSFQnmVQXlT1vyTzKap/
- XfKhfiLaJRXDfkkaj8p8yd+1KhEZWp5I7Wyd5dKGWk1rbWXJONMG1e+gubp/RGLrrW9pVKUlE
- pkwJ7U5pxl0bCUcFm55zRWGqaZdMZjQ6IMaRfVeZEPNMNYs0tkT6Mr3BXBcoZWyU5zcFzOaPr
- oHhxvzdqCd09/1k+b81qrTYhfWsdyl8s5Z5Aw32GT2LHjjww5/TVbcqNm3Yo3gOJEnoLBbTtB
- Osr3m1tXtMfABvITVyhf4cA9oknQp41QC3OiXE5XGLRRGIXleTkB4G8dmq6ei/u89TI/RJ1L5
- 4XHiddCkmTmphIT8wHo2NAIgAaoPphLUyiBxR18jwb1BLsRqR4GVDFaTJOanA/s4uXyoBcIxn
- 7v92giunxVvE6y5/yM9d7k1f4EU3v8Z3CAzf6dO4OdOuhg4R3Y=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:JEhvOjR9IN0=:pV1qR3k6wIycWUOdkadTtW
+ 1GcomEaNe0Zm0rz0cnpF9EiS8woQcIZZAmsqV0QATk3MM6AWQQONzCWPKDfcZkj/ALBf+UFN/
+ 7GBltVFNFspLiPVgBycl1DEUZGmLHVxsWmRssl8BxF2D+ij+XWDLokN/oewdZGu/MZycTS0mo
+ Ox/ayHK4GHXqsEfQk/XmX2jL99iSik9u3aOuV8MuItbGjrn64UentgsE5l2KB+HnSB7/k3MAJ
+ AhvUNvD48fvKzLfeS0W/q7/Iz4stRykxi7oVVsmcQt3n4+ATS9+63J6THvnNWFmpphL5DLYXI
+ +0HJGzfjaAw38wWW2dENp2K3zKp7yiH66M4TWZBClU8sSIanoSLM39QNb312ZxVpAHXces31m
+ iZFPZvnXEx9hwgzX3ikE2ahx5l3coCURaO6+zCfMCHR6M8rwfpV5VT77BqXjSUJ0dFXRcoU10
+ /CBsTTHhxffebp+zKeMEne3VfGjF46/XiSMfNrl/FkzmBH79+VqZD3u7ExBUisnYXFu+TGysK
+ iw703tOoL1fxhFDI2qU/8vMocYMnfBc5BoBwFaMM3fWHKTU+QF2cKJy8NgQlrUJu9NMbEf+ai
+ GJ/3jJplWI3ldhuxxYgRBTWwb6PzSdcEApeNx/RcNEXIz0bjaTGn4ao8kFVrzhZtQhNfjvozr
+ jiLH7F9szPyZeaCR+pxpb/SSweX06sOUjNKMOe1HQV2MUt3ebnJ2+qbwap46orsJDiC73kyyr
+ a/aClZhy37BJvbMsoajeNFeFmrBe7qJ7OdAPEV844WE3wLfFWzrFzOK/r7YUJ8rvsAZxjVmbG
+ PseWeHJiGlPyJPGmpco/8x7Di/5kyrdErr3yp4A+9qAlaLhkw57Y898vk96Cw8I/1Sg5Gqf
 Subject: Re: [Intel-gfx] [PATCH 00/17] Add memberof(), split some headers,
  and slightly simplify code
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -103,58 +104,37 @@ Cc: Corey Minyard <cminyard@mvista.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 19, 2021 at 5:12 PM Alejandro Colomar (man-pages)
+On Fri, Nov 19, 2021 at 5:22 PM Alejandro Colomar (man-pages)
 <alx.manpages@gmail.com> wrote:
->
-> On 11/19/21 16:57, Arnd Bergmann wrote:
+> On 11/19/21 17:18, Arnd Bergmann wrote:
+> > On Fri, Nov 19, 2021 at 5:10 PM Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> wrote:
+> >> On Fri, Nov 19, 2021 at 04:57:46PM +0100, Arnd Bergmann wrote:
 > >
-> > From what I can tell, linux/stddef.h is tiny, I don't think it's really
-> > worth optimizing this part. I have spent some time last year
-> > trying to untangle some of the more interesting headers, but ended
-> > up not completing this as there are some really hard problems
-> > once you start getting to the interesting bits.
+> >>> The main problem with this approach is that as soon as you start
+> >>> actually reducing the unneeded indirect includes, you end up with
+> >>> countless .c files that no longer build because they are missing a
+> >>> direct include for something that was always included somewhere
+> >>> deep underneath, so I needed a second set of scripts to add
+> >>> direct includes to every .c file.
+> >>
+> >> Can't it be done with cocci support?
+> >
+> > There are many ways of doing it, but they all tend to suffer from the
+> > problem of identifying which headers are actually needed based on
+> > the contents of a file, and also figuring out where to put the extra
+> > #include if there are complex #ifdefs.
+> >
+> > For reference, see below for the naive pattern matching I tried.
+> > This is obviously incomplete and partially wrong.
 >
-> In this case it was not about being worth it or not,
-> but that the fact that adding memberof() would break,
-> unless I use 0 instead of NULL for the implementation of memberof(),
-> which I'm against, or I split stddef.
->
-> If I don't do either of those,
-> I'm creating a circular dependency,
-> and it doesn't compile.
+> FYI, if you may not know the tool,
+> theres include-what-you-use(1) (a.k.a. iwyu(1))[1],
+> although it is still not mature,
+> and I'm helping improve it a bit.
 
-Sorry for missing the background here, but I don't see what that
-dependency is. If memberof() is a macro, then including the definition
-should not require having the NULL definition first, you just need to
-have both at the time you use it.
+Yes, I know that one, I tried using it as well, but it did not really
+scale to the size of the kernel as it requires having all files to use
+the correct set of #include, and to know about all the definitions.
 
-> > The main issue here is that user space code should not
-> > include anything outside of include/uapi/ and arch/*/include/uapi/
->
-> Okay.  That's good to know.
->
-> So everything can use uapi code,
-> and uapi code can only use uapi code,
-> right?
-
-Correct.
-
-> > offsetof() is defined in include/linux/stddef.h, so this is by
-> > definition not accessible here. It appears that there is also
-> > an include/uapi/linux/stddef.h that is really strange because
-> > it includes linux/compiler_types.h, which in turn is outside
-> > of uapi/. This should probably be fixed.
->
-> I see.
-> Then,
-> perhaps it would be better to define offsetof() _only_ inside uapi/,
-> and use that definition from everywhere else,
-> and therefore remove the non-uapi version,
-> right?
-
-No, because the user-space <stddef.h> provided by the compiler
-also includes an offsetof() definition. In the uapi/ namespace, the
-kernel must only provide definitions that do not clash with anything
-in user space.
-
-        Arnd
+       Arnd
