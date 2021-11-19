@@ -1,41 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 143BD456C6C
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 10:37:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E228456CD5
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 10:56:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 223896F99C;
-	Fri, 19 Nov 2021 09:37:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF676EE22;
+	Fri, 19 Nov 2021 09:56:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E4C06F99C
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 09:37:17 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="214417903"
-X-IronPort-AV: E=Sophos;i="5.87,246,1631602800"; d="scan'208";a="214417903"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 01:37:16 -0800
-X-IronPort-AV: E=Sophos;i="5.87,246,1631602800"; d="scan'208";a="507834419"
-Received: from sgconnee-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.21.83])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 01:37:14 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Navare, Manasi" <manasi.d.navare@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20211118224721.GA29932@labuser-Z97X-UD5H>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211111230949.28590-1-manasi.d.navare@intel.com>
- <20211118224721.GA29932@labuser-Z97X-UD5H>
-Date: Fri, 19 Nov 2021 11:37:06 +0200
-Message-ID: <87tug8jxkt.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00CD66EE25;
+ Fri, 19 Nov 2021 09:56:18 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="215104281"
+X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="215104281"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 01:56:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="605501829"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga004.jf.intel.com with ESMTP; 19 Nov 2021 01:56:18 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Fri, 19 Nov 2021 01:56:17 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Fri, 19 Nov 2021 01:56:16 -0800
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
+ Fri, 19 Nov 2021 15:26:14 +0530
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Tangudu, Tilak" <tilak.tangudu@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Thread-Topic: [PATCH v3] drm/i915/rpm: Enable runtime pm autosuspend by default
+Thread-Index: AQHX2wIJy/Eb1GVv70SB+yiWd30GPqwKmoaA
+Date: Fri, 19 Nov 2021 09:56:13 +0000
+Message-ID: <2411d9693d5845b8873f713cf3ae8c9d@intel.com>
+References: <20211116155238.3226516-1-tilak.tangudu@intel.com>
+In-Reply-To: <20211116155238.3226516-1-tilak.tangudu@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.200.16
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/dsc: Clamp the max DSC
- input BPP to connector's max bpp
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/rpm: Enable runtime pm
+ autosuspend by default
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,56 +67,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Syrjala, Ville" <ville.syrjala@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 18 Nov 2021, "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
-> @Jani , @Ville, can you take a look at this, this was how the original DS=
-C patches
-> clamped the max bpp, but with latest DSC changes looks like this is not
-> obeyed anymore and needs to be fixed.
 
-When was this changed?
 
-Fixes: ?
+> -----Original Message-----
+> From: Tangudu, Tilak <tilak.tangudu@intel.com>
+> Sent: Tuesday, November 16, 2021 9:23 PM
+> To: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+> Cc: Tangudu, Tilak <tilak.tangudu@intel.com>; Ewins, Jon
+> <jon.ewins@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>; Nilawar, B=
+adal
+> <badal.nilawar@intel.com>; Gupta, Anshuman <anshuman.gupta@intel.com>;
+> Syrjala, Ville <ville.syrjala@intel.com>
+> Subject: [PATCH v3] drm/i915/rpm: Enable runtime pm autosuspend by defaul=
+t
+>=20
+> v1: Enable runtime pm autosuspend by default for Gen12 and later versions=
+.
+>=20
+> v2: Enable runtime pm autosuspend by default for all platforms(Syrjala Vi=
+lle)
+>=20
+> v3: Change commit message(Nikula Jani)
+> Let's enable runtime pm autosuspend by default everywhere.
+> So, we can allow D3hot and bigger power savings on idle scenarios.
+>=20
+> But at this time let's not touch the autosuspend_delay time, what caused =
+some
+> regression on our previous attempt.
+>=20
+> Also, the latest identified issue on GuC PM has been fixed by commit
+> 1a52faed3131 ("drm/i915/guc: Take GT PM ref when deregistering
+> context")
+>=20
+> Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_runtime_pm.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> index 0d85f3c5c526..22dab36afcb6 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> @@ -590,6 +590,9 @@ void intel_runtime_pm_enable(struct intel_runtime_pm
+> *rpm)
+>  		pm_runtime_use_autosuspend(kdev);
+>  	}
+>=20
+> +	/* Enable by default */
+> +	pm_runtime_allow(kdev);
+> +
+BAT is failing due to soft lockup on SKL.
+How about to enable the runtime PM only for discrete platforms till we fixe=
+s all issues on Gen9 for hybrid gfx use cases.
+(when discrete card will used only for rendering)
+Thanks,
+Anshuman Gupta.
+>  	/*
+>  	 * The core calls the driver load handler with an RPM reference held.
+>  	 * We drop that here and will reacquire it during unloading in
+> --
+> 2.25.1
 
->
-> Manasi
->
-> On Thu, Nov 11, 2021 at 03:09:49PM -0800, Manasi Navare wrote:
->> Pipe_bpp limits are decided by connectors max bpp as computed in
->> compute_sink_pipe_bpp() before computing link and DSC config.
->> Currently dsc_compute_config() sets the max input bpp only based
->> on DSC Input BPPs supported and max bpc requested for the connector
->> but does not clamp it based on connector's max bpp.
->> This patch fixes that.
->>=20
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
->> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_dp.c | 1 +
->>  1 file changed, 1 insertion(+)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i=
-915/display/intel_dp.c
->> index 45373c213d9e..82209d995969 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -1400,6 +1400,7 @@ static int intel_dp_dsc_compute_config(struct inte=
-l_dp *intel_dp,
->>  		return -EINVAL;
->>=20=20
->>  	pipe_bpp =3D intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_reques=
-ted_bpc);
->> +	pipe_bpp =3D min(pipe_bpp, limits->max_bpp);
->>=20=20
->>  	/* Min Input BPC for ICL+ is 8 */
->>  	if (pipe_bpp < 8 * 3) {
->> --=20
->> 2.19.1
->>=20
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
