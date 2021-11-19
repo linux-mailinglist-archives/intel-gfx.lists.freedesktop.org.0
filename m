@@ -1,38 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1207456F38
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 14:00:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E93456F60
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 14:14:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DCBD6F568;
-	Fri, 19 Nov 2021 13:00:19 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52A1E6F564;
- Fri, 19 Nov 2021 13:00:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="295222751"
-X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="295222751"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 05:00:16 -0800
-X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="455769643"
-Received: from egedeon-mobl2.amr.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.209.179.224])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 05:00:14 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Fri, 19 Nov 2021 12:59:45 +0000
-Message-Id: <20211119125945.55056-6-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211119125945.55056-1-tvrtko.ursulin@linux.intel.com>
-References: <20211119125945.55056-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4485A6EAC3;
+	Fri, 19 Nov 2021 13:14:32 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C556D6EAC3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 13:14:30 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="215124484"
+X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="215124484"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 05:14:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="507894051"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by orsmga008.jf.intel.com with ESMTP; 19 Nov 2021 05:14:28 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 19 Nov 2021 15:13:43 +0200
+Message-Id: <20211119131348.725220-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 6/6] intel_gpu_top: Add a sanity check
- discovered busy metric is per engine
+Subject: [Intel-gfx] [PATCH v2 0/5] Add support for CD clock squashing
+ feature.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,38 +43,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Add support for CD clock squashing feature.
 
-Adding a cross-check with ABI config name space and not just relying on
-sysfs names.
+v2: Reorder patches (Jani)
+    Add Ville's "Allow cdclk squasher to be reconfigured live"
+    to the series
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Dmitry Rogozhkin <dmitry.v.rogozhkin@intel.com>
----
- tools/intel_gpu_top.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-index 41c59a72c09d..81c724d1fe1c 100644
---- a/tools/intel_gpu_top.c
-+++ b/tools/intel_gpu_top.c
-@@ -376,6 +376,12 @@ static struct engines *discover_engines(char *device)
- 			break;
- 		}
- 
-+		/* Double check config is an engine config. */
-+		if (engine->busy.config >= __I915_PMU_OTHER(0)) {
-+			free((void *)engine->name);
-+			continue;
-+		}
-+
- 		engine->class = (engine->busy.config &
- 				 (__I915_PMU_OTHER(0) - 1)) >>
- 				I915_PMU_CLASS_SHIFT;
+Mika Kahola (4):
+  drm/i915/display/dg2: Introduce CD clock squashing table
+  drm/i915/display/dg2: Sanitize CD clock
+  drm/i915/display/dg2: Set CD clock squashing registers
+  drm/i915/display/dg2: Read CD clock from squasher table
+
+Ville Syrjälä (1):
+  drm/i915: Allow cdclk squasher to be reconfigured live
+
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 132 ++++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_cdclk.h |   1 +
+ drivers/gpu/drm/i915/i915_reg.h            |   8 ++
+ 3 files changed, 127 insertions(+), 14 deletions(-)
+
 -- 
-2.32.0
+2.27.0
 
