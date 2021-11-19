@@ -1,43 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E053456D34
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 11:24:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B525456D42
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 11:27:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D38AB6EEBD;
-	Fri, 19 Nov 2021 10:24:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 135736F3EF;
+	Fri, 19 Nov 2021 10:27:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C65C56EEBB
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 10:24:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="234629674"
-X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="234629674"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 02:24:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="507845599"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga008.jf.intel.com with SMTP; 19 Nov 2021 02:24:51 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 19 Nov 2021 12:24:51 +0200
-Date: Fri, 19 Nov 2021 12:24:51 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <YZd7c4TEGJpTJ+aj@intel.com>
-References: <20211112193813.8224-1-ville.syrjala@linux.intel.com>
- <20211112193813.8224-3-ville.syrjala@linux.intel.com>
- <YZKxLzpW3Q4jwDBl@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27B386F3EF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 10:27:28 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="231875216"
+X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="231875216"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 02:27:27 -0800
+X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="455403040"
+Received: from wchopkin-mobl1.ger.corp.intel.com (HELO [10.252.22.53])
+ ([10.252.22.53])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 02:27:26 -0800
+Message-ID: <047d6659-062f-9790-7908-29ec8990ae52@intel.com>
+Date: Fri, 19 Nov 2021 10:27:24 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YZKxLzpW3Q4jwDBl@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915: Clean up PIPEMISC register
- defines
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Content-Language: en-GB
+To: intel-gfx@lists.freedesktop.org,
+ "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
+References: <20211117142024.1043017-1-matthew.auld@intel.com>
+ <163725340920.10079.9032111196043168461@emeril.freedesktop.org>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <163725340920.10079.9032111196043168461@emeril.freedesktop.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/6=5D_drm/i915=3A_move_the_pre=5Fpin?=
+ =?utf-8?q?_earlier_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,169 +52,323 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 15, 2021 at 02:12:47PM -0500, Rodrigo Vivi wrote:
-> On Fri, Nov 12, 2021 at 09:38:06PM +0200, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Use REG_BIT() & co. for PIPEMISC* bits, and while at it
-> > fill in the missing dithering bits since we already had some
-> > of them defined.
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 18 +++++-----
-> >  drivers/gpu/drm/i915/i915_reg.h              | 35 +++++++++++---------
-> >  2 files changed, 28 insertions(+), 25 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 6073f94632ab..e293241450b1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -3724,18 +3724,18 @@ static void bdw_set_pipemisc(const struct intel_crtc_state *crtc_state)
-> >  
-> >  	switch (crtc_state->pipe_bpp) {
-> >  	case 18:
-> > -		val |= PIPEMISC_6_BPC;
-> > +		val |= PIPEMISC_BPC_6;
-> >  		break;
-> >  	case 24:
-> > -		val |= PIPEMISC_8_BPC;
-> > +		val |= PIPEMISC_BPC_8;
-> >  		break;
-> >  	case 30:
-> > -		val |= PIPEMISC_10_BPC;
-> > +		val |= PIPEMISC_BPC_10;
-> >  		break;
-> >  	case 36:
-> >  		/* Port output 12BPC defined for ADLP+ */
-> >  		if (DISPLAY_VER(dev_priv) > 12)
-> > -			val |= PIPEMISC_12_BPC_ADLP;
-> > +			val |= PIPEMISC_BPC_12_ADLP;
+On 18/11/2021 16:36, Patchwork wrote:
+> *Patch Details*
+> *Series:*	series starting with [v2,1/6] drm/i915: move the pre_pin 
+> earlier (rev2)
+> *URL:*	https://patchwork.freedesktop.org/series/97026/ 
+> <https://patchwork.freedesktop.org/series/97026/>
+> *State:*	failure
+> *Details:* 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/index.html 
+> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/index.html>
 > 
-> while on it, I wonder if we could remove this "ADLP" suffix.
 > 
-> First because prefix seems to be the most used case for the platform.
+>   CI Bug Log - changes from CI_DRM_10900 -> Patchwork_21631
+> 
+> 
+>     Summary
+> 
+> *FAILURE*
+> 
+> Serious unknown changes coming with Patchwork_21631 absolutely need to be
+> verified manually.
+> 
+> If you think the reported changes have nothing to do with the changes
+> introduced in Patchwork_21631, please notify your bug team to allow them
+> to document this new failure mode, which will reduce false positives in CI.
+> 
+> External URL: 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/index.html
+> 
+> 
+>     Participating hosts (38 -> 33)
+> 
+> Additional (1): fi-tgl-1115g4
+> Missing (6): fi-kbl-soraka fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 
+> bat-jsl-2 bat-jsl-1
+> 
+> 
+>     Possible new issues
+> 
+> Here are the unknown changes that may have been introduced in 
+> Patchwork_21631:
+> 
+> 
+>       IGT changes
+> 
+> 
+>         Possible regressions
+> 
+>   * igt@kms_psr@primary_page_flip:
+>       o fi-skl-6600u: NOTRUN -> INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-skl-6600u/igt@kms_psr@primary_page_flip.html>
 
-I don't like prefix for such things since it screws up the namespace for
-the bits of the same register. So suffix is better IMO.
-
-> But also because there's a clear if here and a clear comment in the definition.
-
-Yeah, I've been removing some similar things in other places for that exact
-reason. The only case where we might really need platform designators is
-when the bit(s) move etc.
-
-Though I was even pondering removing the 'if' since this only controls
-dithering on older platforms and we don't enable dithering for anything
-but 6bpc output. Although the whole pipe_bpp concept is kinda wrong and
-we should perhaps split it up into pipe_bpp vs. port_bpp, or something 
-along those lines.
-
-> (Btw, I'd prefer the ver >= 13 than > 12 to be really clear :/)
-
-Yeah, >= is what we should use.
+Looks like some ext4 specific issue.
 
 > 
-> >  		break;
-> >  	default:
-> >  		MISSING_CASE(crtc_state->pipe_bpp);
-> > @@ -3771,7 +3771,7 @@ static void bdw_set_pipemisc(const struct intel_crtc_state *crtc_state)
-> >  		}
-> >  
-> >  		intel_de_rmw(dev_priv, PIPE_MISC2(crtc->pipe),
-> > -			     PIPE_MISC2_UNDERRUN_BUBBLE_COUNTER_MASK,
-> > +			     PIPE_MISC2_BUBBLE_COUNTER_MASK,
-> >  			     scaler_in_use ? PIPE_MISC2_BUBBLE_COUNTER_SCALER_EN :
-> >  			     PIPE_MISC2_BUBBLE_COUNTER_SCALER_DIS);
-> >  	}
-> > @@ -3787,11 +3787,11 @@ int bdw_get_pipemisc_bpp(struct intel_crtc *crtc)
-> >  	tmp = intel_de_read(dev_priv, PIPEMISC(crtc->pipe));
-> >  
-> >  	switch (tmp & PIPEMISC_BPC_MASK) {
-> > -	case PIPEMISC_6_BPC:
-> > +	case PIPEMISC_BPC_6:
-> >  		return 18;
-> > -	case PIPEMISC_8_BPC:
-> > +	case PIPEMISC_BPC_8:
-> >  		return 24;
-> > -	case PIPEMISC_10_BPC:
-> > +	case PIPEMISC_BPC_10:
-> >  		return 30;
-> >  	/*
-> >  	 * PORT OUTPUT 12 BPC defined for ADLP+.
-> > @@ -3803,7 +3803,7 @@ int bdw_get_pipemisc_bpp(struct intel_crtc *crtc)
-> >  	 * on older platforms, need to find a workaround for 12 BPC
-> >  	 * MIPI DSI HW readout.
-> >  	 */
-> > -	case PIPEMISC_12_BPC_ADLP:
-> > +	case PIPEMISC_BPC_12_ADLP:
-> >  		if (DISPLAY_VER(dev_priv) > 12)
-> >  			return 36;
-> >  		fallthrough;
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > index f5d54ed2efc1..e300a202ce2d 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -6308,32 +6308,35 @@ enum {
-> >  
-> >  #define _PIPE_MISC_A			0x70030
-> >  #define _PIPE_MISC_B			0x71030
-> > -#define   PIPEMISC_YUV420_ENABLE	(1 << 27) /* glk+ */
-> > -#define   PIPEMISC_YUV420_MODE_FULL_BLEND (1 << 26) /* glk+ */
-> > -#define   PIPEMISC_HDR_MODE_PRECISION	(1 << 23) /* icl+ */
-> > -#define   PIPEMISC_OUTPUT_COLORSPACE_YUV  (1 << 11)
-> > -#define   PIPEMISC_PIXEL_ROUNDING_TRUNC	REG_BIT(8) /* tgl+ */
-> > +#define   PIPEMISC_YUV420_ENABLE		REG_BIT(27) /* glk+ */
-> > +#define   PIPEMISC_YUV420_MODE_FULL_BLEND	REG_BIT(26) /* glk+ */
-> > +#define   PIPEMISC_HDR_MODE_PRECISION		REG_BIT(23) /* icl+ */
-> > +#define   PIPEMISC_OUTPUT_COLORSPACE_YUV	REG_BIT(11)
-> > +#define   PIPEMISC_PIXEL_ROUNDING_TRUNC		REG_BIT(8) /* tgl+ */
-> >  /*
-> >   * For Display < 13, Bits 5-7 of PIPE MISC represent DITHER BPC with
-> >   * valid values of: 6, 8, 10 BPC.
-> >   * ADLP+, the bits 5-7 represent PORT OUTPUT BPC with valid values of:
-> >   * 6, 8, 10, 12 BPC.
-> >   */
-> > -#define   PIPEMISC_BPC_MASK		(7 << 5)
-> > -#define   PIPEMISC_8_BPC		(0 << 5)
-> > -#define   PIPEMISC_10_BPC		(1 << 5)
-> > -#define   PIPEMISC_6_BPC		(2 << 5)
-> > -#define   PIPEMISC_12_BPC_ADLP		(4 << 5) /* adlp+ */
-> > -#define   PIPEMISC_DITHER_ENABLE	(1 << 4)
-> > -#define   PIPEMISC_DITHER_TYPE_MASK	(3 << 2)
-> > -#define   PIPEMISC_DITHER_TYPE_SP	(0 << 2)
-> > +#define   PIPEMISC_BPC_MASK			REG_GENMASK(7, 5)
-> > +#define   PIPEMISC_BPC_8			REG_FIELD_PREP(PIPEMISC_BPC_MASK, 0)
-> > +#define   PIPEMISC_BPC_10			REG_FIELD_PREP(PIPEMISC_BPC_MASK, 1)
-> > +#define   PIPEMISC_BPC_6			REG_FIELD_PREP(PIPEMISC_BPC_MASK, 2)
-> > +#define   PIPEMISC_BPC_12_ADLP			REG_FIELD_PREP(PIPEMISC_BPC_MASK, 4) /* adlp+ */
-> > +#define   PIPEMISC_DITHER_ENABLE		REG_BIT(4)
-> > +#define   PIPEMISC_DITHER_TYPE_MASK		REG_GENMASK(3, 2)
-> > +#define   PIPEMISC_DITHER_TYPE_SP		REG_FIELD_PREP(PIPEMISC_DITHER_TYPE_MASK, 0)
-> > +#define   PIPEMISC_DITHER_TYPE_ST1		REG_FIELD_PREP(PIPEMISC_DITHER_TYPE_MASK, 1)
-> > +#define   PIPEMISC_DITHER_TYPE_ST2		REG_FIELD_PREP(PIPEMISC_DITHER_TYPE_MASK, 2)
-> > +#define   PIPEMISC_DITHER_TYPE_TEMP		REG_FIELD_PREP(PIPEMISC_DITHER_TYPE_MASK, 3)
-> >  #define PIPEMISC(pipe)			_MMIO_PIPE2(pipe, _PIPE_MISC_A)
-> >  
-> >  #define _PIPE_MISC2_A					0x7002C
-> >  #define _PIPE_MISC2_B					0x7102C
-> > -#define   PIPE_MISC2_BUBBLE_COUNTER_SCALER_EN		(0x50 << 24)
-> > -#define   PIPE_MISC2_BUBBLE_COUNTER_SCALER_DIS		(0x14 << 24)
-> > -#define   PIPE_MISC2_UNDERRUN_BUBBLE_COUNTER_MASK	(0xff << 24)
-> > +#define   PIPE_MISC2_BUBBLE_COUNTER_MASK	REG_GENMASK(31, 24)
-> > +#define   PIPE_MISC2_BUBBLE_COUNTER_SCALER_EN	REG_FIELD_PREP(PIPE_MISC2_BUBBLE_COUNTER_MASK, 80)
-> > +#define   PIPE_MISC2_BUBBLE_COUNTER_SCALER_DIS	REG_FIELD_PREP(PIPE_MISC2_BUBBLE_COUNTER_MASK, 20)
-> >  #define PIPE_MISC2(pipe)					_MMIO_PIPE2(pipe, _PIPE_MISC2_A)
-> >  
-> >  /* Skylake+ pipe bottom (background) color */
-> > -- 
-> > 2.32.0
-> > 
-
--- 
-Ville Syrjälä
-Intel
+> 
+>     Known issues
+> 
+> Here are the changes found in Patchwork_21631 that come from known issues:
+> 
+> 
+>       IGT changes
+> 
+> 
+>         Issues hit
+> 
+>   *
+> 
+>     igt@amdgpu/amd_basic@query-info:
+> 
+>       o fi-tgl-1115g4: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html>
+>         (fdo#109315 <https://bugs.freedesktop.org/show_bug.cgi?id=109315>)
+>   *
+> 
+>     igt@amdgpu/amd_basic@semaphore:
+> 
+>       o fi-bdw-5557u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271>) +31
+>         similar issues
+>   *
+> 
+>     igt@amdgpu/amd_cs_nop@nop-gfx0:
+> 
+>       o fi-tgl-1115g4: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html>
+>         (fdo#109315
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109315> /
+>         i915#2575
+>         <https://gitlab.freedesktop.org/drm/intel/issues/2575>) +16
+>         similar issues
+>   *
+> 
+>     igt@core_hotunplug@unbind-rebind:
+> 
+>       o fi-tgl-u2: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10900/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html>
+>         -> INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html>
+>         (i915#4006 <https://gitlab.freedesktop.org/drm/intel/issues/4006>)
+>   *
+> 
+>     igt@gem_exec_suspend@basic-s3:
+> 
+>       o fi-tgl-1115g4: NOTRUN -> FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html>
+>         (i915#1888 <https://gitlab.freedesktop.org/drm/intel/issues/1888>)
+>   *
+> 
+>     igt@gem_huc_copy@huc-copy:
+> 
+>       o
+> 
+>         fi-skl-6600u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271> /
+>         i915#2190 <https://gitlab.freedesktop.org/drm/intel/issues/2190>)
+> 
+>       o
+> 
+>         fi-tgl-1115g4: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html>
+>         (i915#2190 <https://gitlab.freedesktop.org/drm/intel/issues/2190>)
+> 
+>   *
+> 
+>     igt@gem_lmem_swapping@basic:
+> 
+>       o fi-tgl-1115g4: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-1115g4/igt@gem_lmem_swapping@basic.html>
+>         (i915#4555 <https://gitlab.freedesktop.org/drm/intel/issues/4555>)
+>   *
+> 
+>     igt@gem_lmem_swapping@verify-random:
+> 
+>       o
+> 
+>         fi-skl-6600u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271>) +6
+>         similar issues
+> 
+>       o
+> 
+>         fi-tgl-1115g4: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-1115g4/igt@gem_lmem_swapping@verify-random.html>
+>         (i915#4555
+>         <https://gitlab.freedesktop.org/drm/intel/issues/4555> /
+>         i915#4565
+>         <https://gitlab.freedesktop.org/drm/intel/issues/4565>) +2
+>         similar issues
+> 
+>   *
+> 
+>     igt@i915_pm_backlight@basic-brightness:
+> 
+>       o fi-tgl-1115g4: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html>
+>         (i915#1155 <https://gitlab.freedesktop.org/drm/intel/issues/1155>)
+>   *
+> 
+>     igt@kms_chamelium@common-hpd-after-suspend:
+> 
+>       o fi-tgl-1115g4: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html>
+>         (fdo#111827
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=111827>) +8
+>         similar issues
+>   *
+> 
+>     igt@kms_chamelium@dp-crc-fast:
+> 
+>       o fi-bdw-5557u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271> /
+>         fdo#111827
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=111827>) +8
+>         similar issues
+>   *
+> 
+>     igt@kms_chamelium@vga-edid-read:
+> 
+>       o fi-skl-6600u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271> /
+>         fdo#111827
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=111827>) +8
+>         similar issues
+>   *
+> 
+>     igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+> 
+>       o fi-tgl-1115g4: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html>
+>         (i915#4103
+>         <https://gitlab.freedesktop.org/drm/intel/issues/4103>) +1
+>         similar issue
+>   *
+> 
+>     igt@kms_force_connector_basic@force-load-detect:
+> 
+>       o fi-tgl-1115g4: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html>
+>         (fdo#109285 <https://bugs.freedesktop.org/show_bug.cgi?id=109285>)
+>   *
+> 
+>     igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+> 
+>       o fi-skl-6600u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271> / i915#533
+>         <https://gitlab.freedesktop.org/drm/intel/issues/533>)
+>   *
+> 
+>     igt@kms_psr@primary_mmap_gtt:
+> 
+>       o fi-tgl-1115g4: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html>
+>         (i915#1072
+>         <https://gitlab.freedesktop.org/drm/intel/issues/1072>) +3
+>         similar issues
+>   *
+> 
+>     igt@prime_vgem@basic-userptr:
+> 
+>       o fi-tgl-1115g4: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html>
+>         (i915#3301 <https://gitlab.freedesktop.org/drm/intel/issues/3301>)
+>   *
+> 
+>     igt@runner@aborted:
+> 
+>       o fi-tgl-u2: NOTRUN -> FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-u2/igt@runner@aborted.html>
+>         (i915#1602
+>         <https://gitlab.freedesktop.org/drm/intel/issues/1602> /
+>         i915#2722 <https://gitlab.freedesktop.org/drm/intel/issues/2722>
+>         / i915#4312 <https://gitlab.freedesktop.org/drm/intel/issues/4312>)
+> 
+> 
+>         Possible fixes
+> 
+>   *
+> 
+>     igt@gem_exec_suspend@basic-s3:
+> 
+>       o fi-bdw-5557u: INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10900/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html>
+>         (i915#146 <https://gitlab.freedesktop.org/drm/intel/issues/146>)
+>         -> PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html>
+>   *
+> 
+>     igt@gem_flink_basic@bad-flink:
+> 
+>       o fi-skl-6600u: FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10900/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html>
+>         (i915#4547
+>         <https://gitlab.freedesktop.org/drm/intel/issues/4547>) -> PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html>
+>   *
+> 
+>     igt@kms_frontbuffer_tracking@basic:
+> 
+>       o fi-cml-u2: DMESG-WARN
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10900/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html>
+>         (i915#4269
+>         <https://gitlab.freedesktop.org/drm/intel/issues/4269>) -> PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html>
+> 
+> 
+>         Warnings
+> 
+>   * igt@gem_lmem_swapping@verify-random:
+>       o fi-tgl-u2: SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10900/fi-tgl-u2/igt@gem_lmem_swapping@verify-random.html>
+>         (i915#4555
+>         <https://gitlab.freedesktop.org/drm/intel/issues/4555>) -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21631/fi-tgl-u2/igt@gem_lmem_swapping@verify-random.html>
+>         (i915#4555
+>         <https://gitlab.freedesktop.org/drm/intel/issues/4555> /
+>         i915#4565
+>         <https://gitlab.freedesktop.org/drm/intel/issues/4565>) +2
+>         similar issues
+> 
+> {name}: This element is suppressed. This means it is ignored when computing
+> the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+> 
+>     Build changes
+> 
+>   * Linux: CI_DRM_10900 -> Patchwork_21631
+> 
+> CI-20190529: 20190529
+> CI_DRM_10900: b50839f33180500c64a505623ab77829b869a57c @ 
+> git://anongit.freedesktop.org/gfx-ci/linux
+> IGT_6285: 2e0355faad5c2e81cd6705b76e529ce526c7c9bf @ 
+> https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+> Patchwork_21631: 59b76c709a722b22b4ad4c6757b8472f42c33389 @ 
+> git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> == Linux commits ==
+> 
+> 59b76c709a72 drm/i915: Drain the ttm delayed workqueue too
+> 31d1314bebea drm/i915: Remove resv from i915_vma
+> a3ec36b94293 drm/i915: vma is always backed by an object.
+> af937f97b589 drm/i915: Create a full object for mock_ring, v2.
+> 0e6d48163844 drm/i915: Create a dummy object for gen6 ppgtt
+> ffd0efc92828 drm/i915: move the pre_pin earlier
+> 
