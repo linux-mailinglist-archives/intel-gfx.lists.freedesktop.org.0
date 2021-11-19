@@ -1,69 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 875874572C9
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 17:22:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E76F4572D9
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 17:25:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 995316EE73;
-	Fri, 19 Nov 2021 16:22:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C0126EA5D;
+	Fri, 19 Nov 2021 16:25:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68CDC6EE73
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 16:22:53 +0000 (UTC)
-Received: by mail-wr1-x435.google.com with SMTP id b12so19052494wrh.4
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 08:22:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=gJ7nvh3PYL8XuI32u9B1gA3gTx9kf/bMqpXsk3AEZsU=;
- b=fpsj7+4SpFXqpTSemI06B9IcXVdlbuued/IQBN4FCqBdSC/xtpTgB2iz9UIQnOPSv5
- 7dinU35yvOUDiH/9vJWKbZ9GctdBbeB/cRDVHk0phW4F/NxhOCWoSFMTVcX26VVw3HMt
- GPKNYBxNtyTgnGx50kBrFXzcpurXEIcb4r3vdAScw53cOY82S+nnM1F4LxEs39YLMQ/S
- uDHYEpfJs9WPfjtx2YvKeV+ilwmoATVlGw8z6GW1nGOzQsTXfXgbQ/sMgtuNKtzjMgO+
- m/GWqEfFdALvOcc/k4vNSzQQ8s1MyiSdciXJWtO0mjZ1O20qNFBqF7s2UCtRG1bgp0aS
- YbJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=gJ7nvh3PYL8XuI32u9B1gA3gTx9kf/bMqpXsk3AEZsU=;
- b=KLkPZWOsB2M7gbqVyS+wmdC/YNXxVSdpGKUgsCU9GCoiEvhX+dsUBJadrRTJWGXw3v
- hznF95Mn+ZwEaC0vQEk3TodYBhK3DYYtiEGvLiRtv/5r8w2Wj1oSJ77oolK9vnrBCJyw
- KwDxse829YY7+2AFTc/h2snYAyoCrf0rpxFRtvMcNs9PdpNK6BGIPC10VceruKu3Pbzk
- W3FAgJoYu1yvZop3e2VCs14acl6qaxZENqRwCZm7OWHgDtelYLRtmDNsY5zO0YGvOf9Q
- Kal31CR3KVEF2ia5+09I0sD8oZ2Z8YDKHcGmLY4UE0J7Dqp0gqRxL1BUCuTLhgQOI5ad
- q9uQ==
-X-Gm-Message-State: AOAM530oacHF72ltdWCf4iCPXbQXzDnKmNZDgRvEHceeC3cm5fihyq4f
- EMls2KRWNuDONFGyQhtKz0s=
-X-Google-Smtp-Source: ABdhPJz+RkhKg2oPM+DFfdJrmKTihG8D5yySz9/H4aR55REMYZ6fa+PNcb8l7yv++672VBes+PtaDw==
-X-Received: by 2002:a5d:5986:: with SMTP id n6mr9039788wri.297.1637338971943; 
- Fri, 19 Nov 2021 08:22:51 -0800 (PST)
-Received: from [192.168.0.160] ([170.253.36.171])
- by smtp.gmail.com with ESMTPSA id n2sm12993701wmi.36.2021.11.19.08.22.49
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 19 Nov 2021 08:22:51 -0800 (PST)
-Message-ID: <2d790206-124b-f850-895f-a57a74c55f79@gmail.com>
-Date: Fri, 19 Nov 2021 17:22:48 +0100
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 048166EA5D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 16:25:39 +0000 (UTC)
+Received: from mail-wm1-f49.google.com ([209.85.128.49]) by
+ mrelayeu.kundenserver.de (mreue009 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MBDva-1mxVRU1V78-00Ckvg for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov
+ 2021 17:25:38 +0100
+Received: by mail-wm1-f49.google.com with SMTP id
+ 67-20020a1c1946000000b0030d4c90fa87so7943046wmz.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 08:25:37 -0800 (PST)
+X-Gm-Message-State: AOAM530abzct9d2xApHzGuqtIW8hs02o7DpkQrDU7cWMRn/I/SI1BRKL
+ eMT7Vyw+KXlpmPi9jKp70fC2xoJzsi6BBpn3iHM=
+X-Google-Smtp-Source: ABdhPJxceAOgZg4K9oWzLDHPv4QMPRjgvN2Y7oQmQdzE+p3Y265dv2VJvOf0muRFSn+nfOr9pX8E0TuGzsEYEIm5yn0=
+X-Received: by 2002:a1c:770e:: with SMTP id t14mr963230wmi.173.1637339127628; 
+ Fri, 19 Nov 2021 08:25:27 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Arnd Bergmann <arnd@arndb.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 References: <20211119113644.1600-1-alx.manpages@gmail.com>
  <CAK8P3a0qT9tAxFkLN_vJYRcocDW2TcBq79WcYKZFyAG0udZx5Q@mail.gmail.com>
  <434296d3-8fe1-f1d2-ee9d-ea25d6c4e43e@gmail.com>
  <CAK8P3a2yVXw9gf8-BNvX_rzectNoiy0MqGKvBcXydiUSrc_fCA@mail.gmail.com>
- <YZfMXlqvG52ls2TE@smile.fi.intel.com>
- <CAK8P3a06CMzWVj2C3P5v0u8ZVPumXJKrq=TdjSq1NugmeT7-RQ@mail.gmail.com>
-From: "Alejandro Colomar (man-pages)" <alx.manpages@gmail.com>
-In-Reply-To: <CAK8P3a06CMzWVj2C3P5v0u8ZVPumXJKrq=TdjSq1NugmeT7-RQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ <f751fb48-d19c-88af-452e-680994a586b4@gmail.com>
+In-Reply-To: <f751fb48-d19c-88af-452e-680994a586b4@gmail.com>
+From: Arnd Bergmann <arnd@arndb.de>
+Date: Fri, 19 Nov 2021 17:25:11 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0DD+odXthvGq2UWwrvhDDavukUB=bW-m+=HohjoiTE6w@mail.gmail.com>
+Message-ID: <CAK8P3a0DD+odXthvGq2UWwrvhDDavukUB=bW-m+=HohjoiTE6w@mail.gmail.com>
+To: "Alejandro Colomar (man-pages)" <alx.manpages@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:Fp14u4eX5shEITsdUFeTPEBYXIgPeI/XRMumoOp0AoRA5sLLAM9
+ JWalmjyDps0iLSt8k7oduMQ+7g3T1aKKL/wVRAPbDG3wVo+77zTU3zIhrVIUBs/XJTI9j5A
+ qR5QtWh4cW2euMjg12LVtTJ1QL2cauBW1eAou714FCpuhhJLmRdHPFFkO6Sc1HQBlB1dJvy
+ lE0BPr4shTqcYkmQmhhog==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:T/5gyc2vauA=:C4e2aHWM9LLCaau3jLaxtj
+ DqQgeiYxS9KX2PMEOx1WRyM9C6iUx4WuM262QHhf8YCNqt6XASiyJltNXfIr3chrFU8+iCQCf
+ oY21lk9GWflIm01mFX/YD4tJ0boFR6DnJV/w7RqljooqwuizA95Hq+yolkBSrtxRFlC1bvJBN
+ kAeblbts5kl1taObOEzrHkvyK5AtiIPaBTSWZEiQeNvL8Vr5yw0HiLZHiA8sYA6cZWSmnSvbT
+ DXJrLXjKeUm81bPi1TuzyIduGOhDgqhiqjp/mpFEjAX0xXVpdbjh3W8ntCUBguDkVfOpOC12P
+ rqh7e9qL3oTQlOd00fGVJPt4/aUiYKrSVyjKsK9x/W8+VqIAB3RSB5sxejXS8lBE6/AjloXme
+ NJmNkdnr1KfLVnRPDst/MKRYEhPEcyffdqxv0CbTq5MC7Pfoa+gmfBSFQnmVQXlT1vyTzKap/
+ XfKhfiLaJRXDfkkaj8p8yd+1KhEZWp5I7Wyd5dKGWk1rbWXJONMG1e+gubp/RGLrrW9pVKUlE
+ pkwJ7U5pxl0bCUcFm55zRWGqaZdMZjQ6IMaRfVeZEPNMNYs0tkT6Mr3BXBcoZWyU5zcFzOaPr
+ oHhxvzdqCd09/1k+b81qrTYhfWsdyl8s5Z5Aw32GT2LHjjww5/TVbcqNm3Yo3gOJEnoLBbTtB
+ Osr3m1tXtMfABvITVyhf4cA9oknQp41QC3OiXE5XGLRRGIXleTkB4G8dmq6ei/u89TI/RJ1L5
+ 4XHiddCkmTmphIT8wHo2NAIgAaoPphLUyiBxR18jwb1BLsRqR4GVDFaTJOanA/s4uXyoBcIxn
+ 7v92giunxVvE6y5/yM9d7k1f4EU3v8Z3CAzf6dO4OdOuhg4R3Y=
 Subject: Re: [Intel-gfx] [PATCH 00/17] Add memberof(), split some headers,
  and slightly simplify code
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -85,6 +76,7 @@ Cc: Corey Minyard <cminyard@mvista.com>,
  Bjorn Andersson <bjorn.andersson@linaro.org>, Chris Mason <clm@fb.com>,
  Christian Brauner <christian.brauner@ubuntu.com>,
  Ketan Mukadam <ketan.mukadam@broadcom.com>,
+ Somnath Kotur <somnath.kotur@broadcom.com>,
  linux-scsi <linux-scsi@vger.kernel.org>,
  Subbu Seetharaman <subbu.seetharaman@broadcom.com>,
  "Rafael J. Wysocki" <rafael@kernel.org>, Russell King <linux@armlinux.org.uk>,
@@ -93,12 +85,14 @@ Cc: Corey Minyard <cminyard@mvista.com>,
  Miguel Ojeda <ojeda@kernel.org>, Borislav Petkov <bp@suse.de>,
  "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE"
  <virtualization@lists.linux-foundation.org>, Len Brown <lenb@kernel.org>,
- Kees Cook <keescook@chromium.org>, John Hubbard <jhubbard@nvidia.com>,
+ Kees Cook <keescook@chromium.org>, Arnd Bergmann <arnd@arndb.de>,
+ John Hubbard <jhubbard@nvidia.com>,
  Intel Graphics <intel-gfx@lists.freedesktop.org>,
  Josef Bacik <josef@toxicpanda.com>,
  Jitendra Bhivare <jitendra.bhivare@broadcom.com>,
  Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- David Sterba <dsterba@suse.com>, Somnath Kotur <somnath.kotur@broadcom.com>,
+ David Sterba <dsterba@suse.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Linux ARM <linux-arm-kernel@lists.infradead.org>,
  Sriharsha Basavapatna <sriharsha.basavapatna@broadcom.com>,
  Networking <netdev@vger.kernel.org>,
@@ -109,49 +103,58 @@ Cc: Corey Minyard <cminyard@mvista.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, Nov 19, 2021 at 5:12 PM Alejandro Colomar (man-pages)
+<alx.manpages@gmail.com> wrote:
+>
+> On 11/19/21 16:57, Arnd Bergmann wrote:
+> >
+> > From what I can tell, linux/stddef.h is tiny, I don't think it's really
+> > worth optimizing this part. I have spent some time last year
+> > trying to untangle some of the more interesting headers, but ended
+> > up not completing this as there are some really hard problems
+> > once you start getting to the interesting bits.
+>
+> In this case it was not about being worth it or not,
+> but that the fact that adding memberof() would break,
+> unless I use 0 instead of NULL for the implementation of memberof(),
+> which I'm against, or I split stddef.
+>
+> If I don't do either of those,
+> I'm creating a circular dependency,
+> and it doesn't compile.
 
+Sorry for missing the background here, but I don't see what that
+dependency is. If memberof() is a macro, then including the definition
+should not require having the NULL definition first, you just need to
+have both at the time you use it.
 
-On 11/19/21 17:18, Arnd Bergmann wrote:
-> On Fri, Nov 19, 2021 at 5:10 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
->> On Fri, Nov 19, 2021 at 04:57:46PM +0100, Arnd Bergmann wrote:
-> 
->>> The main problem with this approach is that as soon as you start
->>> actually reducing the unneeded indirect includes, you end up with
->>> countless .c files that no longer build because they are missing a
->>> direct include for something that was always included somewhere
->>> deep underneath, so I needed a second set of scripts to add
->>> direct includes to every .c file.
->>
->> Can't it be done with cocci support?
-> 
-> There are many ways of doing it, but they all tend to suffer from the
-> problem of identifying which headers are actually needed based on
-> the contents of a file, and also figuring out where to put the extra
-> #include if there are complex #ifdefs.
-> 
-> For reference, see below for the naive pattern matching I tried.
-> This is obviously incomplete and partially wrong.
+> > The main issue here is that user space code should not
+> > include anything outside of include/uapi/ and arch/*/include/uapi/
+>
+> Okay.  That's good to know.
+>
+> So everything can use uapi code,
+> and uapi code can only use uapi code,
+> right?
 
-FYI, if you may not know the tool,
-theres include-what-you-use(1) (a.k.a. iwyu(1))[1],
-although it is still not mature,
-and I'm helping improve it a bit.
+Correct.
 
-If I understood better the kernel Makefiles,
-I'd try it.
+> > offsetof() is defined in include/linux/stddef.h, so this is by
+> > definition not accessible here. It appears that there is also
+> > an include/uapi/linux/stddef.h that is really strange because
+> > it includes linux/compiler_types.h, which in turn is outside
+> > of uapi/. This should probably be fixed.
+>
+> I see.
+> Then,
+> perhaps it would be better to define offsetof() _only_ inside uapi/,
+> and use that definition from everywhere else,
+> and therefore remove the non-uapi version,
+> right?
 
-You can try it yourselves.
-I still can't use it for my own code,
-since it has a lot of false positives.
+No, because the user-space <stddef.h> provided by the compiler
+also includes an offsetof() definition. In the uapi/ namespace, the
+kernel must only provide definitions that do not clash with anything
+in user space.
 
-Cheers,
-Alex
-
-[1]: <https://include-what-you-use.org/>
-
-
--- 
-Alejandro Colomar
-Linux man-pages comaintainer; https://www.kernel.org/doc/man-pages/
-http://www.alejandro-colomar.es/
+        Arnd
