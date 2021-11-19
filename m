@@ -1,34 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3EB64576E5
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 20:08:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0C734576F2
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 20:17:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED7F36E2C8;
-	Fri, 19 Nov 2021 19:08:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2CA46E34B;
+	Fri, 19 Nov 2021 19:17:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BD63E6E2D1;
- Fri, 19 Nov 2021 19:08:13 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A6B446E3F0;
+ Fri, 19 Nov 2021 19:17:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B55F9AA917;
- Fri, 19 Nov 2021 19:08:13 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9DD70A73C9;
+ Fri, 19 Nov 2021 19:17:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhi Wang" <zhi.wang.linux@gmail.com>
-Date: Fri, 19 Nov 2021 19:08:13 -0000
-Message-ID: <163734889373.2298.10170910781950421730@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Fri, 19 Nov 2021 19:17:19 -0000
+Message-ID: <163734943960.2298.2219008488289263169@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20211119130307.21098-1-zhi.a.wang@intel.com>
-In-Reply-To: <20211119130307.21098-1-zhi.a.wang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B1/2=5D_i915/gvt=3A_Introduce_the_mmio=5F?=
- =?utf-8?q?info=5Ftable=2Ec_to_support_VFIO_new_mdev_API?=
+References: <20211119154718.3705-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20211119154718.3705-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/ttm=3A_Async_migration_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,54 +47,14 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/2] i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API
-URL   : https://patchwork.freedesktop.org/series/97110/
-State : failure
+Series: drm/i915/ttm: Async migration (rev6)
+URL   : https://patchwork.freedesktop.org/series/96798/
+State : warning
 
 == Summary ==
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND objtool
-  CHK     include/generated/compile.h
-  LD [M]  drivers/gpu/drm/i915/i915.o
-  HDRTEST drivers/gpu/drm/i915/gvt/mmio_info_table.h
-In file included from <command-line>:
-./drivers/gpu/drm/i915/gvt/mmio_info_table.h:28:48: error: ‘struct intel_gvt’ declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
- unsigned long intel_gvt_get_device_type(struct intel_gvt *gvt);
-                                                ^~~~~~~~~
-./drivers/gpu/drm/i915/gvt/mmio_info_table.h:29:1: error: unknown type name ‘bool’; did you mean ‘_Bool’?
- bool intel_gvt_match_device(struct intel_gvt *gvt, unsigned long device);
- ^~~~
- _Bool
-./drivers/gpu/drm/i915/gvt/mmio_info_table.h:29:36: error: ‘struct intel_gvt’ declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
- bool intel_gvt_match_device(struct intel_gvt *gvt, unsigned long device);
-                                    ^~~~~~~~~
-./drivers/gpu/drm/i915/gvt/mmio_info_table.h:31:40: error: unknown type name ‘u32’
-  int (*handler)(struct intel_gvt *gvt, u32 offset, void *data),
-                                        ^~~
-./drivers/gpu/drm/i915/gvt/mmio_info_table.h:32:2: error: expected ‘;’, ‘,’ or ‘)’ before ‘void’
-  void *data);
-  ^~~~
-./drivers/gpu/drm/i915/gvt/mmio_info_table.h:33:61: error: ‘struct intel_gvt’ declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
- struct intel_gvt_mmio_info *intel_gvt_find_mmio_info(struct intel_gvt *gvt,
-                                                             ^~~~~~~~~
-./drivers/gpu/drm/i915/gvt/mmio_info_table.h:35:38: error: ‘struct intel_gvt’ declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
- int intel_gvt_setup_mmio_info(struct intel_gvt *gvt);
-                                      ^~~~~~~~~
-./drivers/gpu/drm/i915/gvt/mmio_info_table.h:36:39: error: ‘struct intel_gvt’ declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
- void intel_gvt_clean_mmio_info(struct intel_gvt *gvt);
-                                       ^~~~~~~~~
-cc1: all warnings being treated as errors
-drivers/gpu/drm/i915/Makefile:340: recipe for target 'drivers/gpu/drm/i915/gvt/mmio_info_table.hdrtest' failed
-make[4]: *** [drivers/gpu/drm/i915/gvt/mmio_info_table.hdrtest] Error 1
-scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm/i915' failed
-make[3]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:549: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1846: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
