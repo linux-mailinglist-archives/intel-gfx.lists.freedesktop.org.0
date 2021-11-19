@@ -2,41 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51E2745701E
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 14:54:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1276E45701C
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Nov 2021 14:54:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BE146E03B;
-	Fri, 19 Nov 2021 13:54:51 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 494D16E03B;
- Fri, 19 Nov 2021 13:54:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="221633401"
-X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="221633401"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 05:54:49 -0800
-X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="473546898"
-Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.72.185])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 05:54:48 -0800
-Received: from platvala by thrakatuluk with local (Exim 4.94)
- (envelope-from <petri.latvala@intel.com>)
- id 1mo4Kp-0002hU-29; Fri, 19 Nov 2021 15:53:47 +0200
-Date: Fri, 19 Nov 2021 15:53:47 +0200
-From: Petri Latvala <petri.latvala@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YZesawet06wfQ1SG@platvala-desk.ger.corp.intel.com>
-References: <20211119125945.55056-1-tvrtko.ursulin@linux.intel.com>
- <20211119125945.55056-3-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 193DC6E06B;
+	Fri, 19 Nov 2021 13:54:10 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F8776E06B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 13:54:08 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="233134828"
+X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="233134828"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 05:54:08 -0800
+X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; d="scan'208";a="495879833"
+Received: from sgconnee-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.21.83])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 05:54:06 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <YZPFIcMXsYPD/o2S@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211116135813.19806-1-jani.nikula@intel.com>
+ <YZPFIcMXsYPD/o2S@intel.com>
+Date: Fri, 19 Nov 2021 15:53:58 +0200
+Message-ID: <87ee7cjlop.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211119125945.55056-3-tvrtko.ursulin@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH i-g-t 3/6] igt/core: Fix build warning
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pxp: fix includes for headers in
+ include/drm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,83 +46,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 19, 2021 at 12:59:42PM +0000, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> .../lib/igt_thread.c: In function ‘__igt_unique____igt_constructor_l66’:
-> .../lib/igt_thread.c:68:9: warning: ‘pthread_setspecific’ expecting 1 byte in a region of size 0 [-Wstringop-overread]
->    68 |         pthread_setspecific(__igt_is_main_thread, (void*) 0x1);
->       |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Petri Latvala <petri.latvala@intel.com>
-> ---
->  lib/igt_core.c   | 6 ++++--
->  lib/igt_thread.c | 4 +++-
->  2 files changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/lib/igt_core.c b/lib/igt_core.c
-> index ec05535cd56e..acb9743c4a24 100644
-> --- a/lib/igt_core.c
-> +++ b/lib/igt_core.c
-> @@ -2752,6 +2752,8 @@ void igt_vlog(const char *domain, enum igt_log_level level, const char *format,
->  	char *line, *formatted_line;
->  	char *thread_id;
->  	const char *program_name;
-> +	const uintptr_t false_key = 0;
-> +	const uintptr_t true_key = 1;
->  	const char *igt_log_level_str[] = {
->  		"DEBUG",
->  		"INFO",
-> @@ -2796,9 +2798,9 @@ void igt_vlog(const char *domain, enum igt_log_level level, const char *format,
->  	}
->  
->  	if (line[strlen(line) - 1] == '\n')
-> -		pthread_setspecific(__vlog_line_continuation, (void*) false);
-> +		pthread_setspecific(__vlog_line_continuation, &false_key);
->  	else
-> -		pthread_setspecific(__vlog_line_continuation, (void*) true);
-> +		pthread_setspecific(__vlog_line_continuation, &true_key);
+On Tue, 16 Nov 2021, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Tue, Nov 16, 2021 at 03:58:13PM +0200, Jani Nikula wrote:
+>> Use <> not "" for including headers from include/drm.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Quoting the usage of this:
-        if (pthread_getspecific(__vlog_line_continuation)) {
+Thanks, pushed to drm-intel-next.
 
-That's going to give a non-null pointer in both cases.
+BR,
+Jani.
 
-
-
->  
->  	/* append log buffer */
->  	_igt_log_buffer_append(formatted_line);
-> diff --git a/lib/igt_thread.c b/lib/igt_thread.c
-> index 5bdda4102def..f5de2d57eaaa 100644
-> --- a/lib/igt_thread.c
-> +++ b/lib/igt_thread.c
-> @@ -64,6 +64,8 @@ bool igt_thread_is_main(void)
->  }
->  
->  igt_constructor {
-> +	const uintptr_t key = 1;
-> +
->  	pthread_key_create(&__igt_is_main_thread, NULL);
-> -	pthread_setspecific(__igt_is_main_thread, (void*) 0x1);
-> +	pthread_setspecific(__igt_is_main_thread, &key);
-
-This is fine, __igt_is_main_thread key will have non-null only on the
-main thread. But still a bit sus slapping the address of a
-function-local variable to setspecific, we might just be trading a
-compiler warning for a new future one.
-
+>
+>> ---
+>>  drivers/gpu/drm/i915/pxp/intel_pxp_session.c | 3 ++-
+>>  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     | 6 ++++--
+>>  2 files changed, 6 insertions(+), 3 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+>> index d02732f04757..598840b73dfa 100644
+>> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+>> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+>> @@ -3,7 +3,8 @@
+>>   * Copyright(c) 2020, Intel Corporation. All rights reserved.
+>>   */
+>>  
+>> -#include "drm/i915_drm.h"
+>> +#include <drm/i915_drm.h>
+>> +
+>>  #include "i915_drv.h"
+>>  
+>>  #include "intel_pxp.h"
+>> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+>> index 49508f31dcb7..5d169624ad60 100644
+>> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+>> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+>> @@ -4,8 +4,10 @@
+>>   */
+>>  
+>>  #include <linux/component.h>
+>> -#include "drm/i915_pxp_tee_interface.h"
+>> -#include "drm/i915_component.h"
+>> +
+>> +#include <drm/i915_pxp_tee_interface.h>
+>> +#include <drm/i915_component.h>
+>> +
+>>  #include "i915_drv.h"
+>>  #include "intel_pxp.h"
+>>  #include "intel_pxp_session.h"
+>> -- 
+>> 2.30.2
+>> 
 
 -- 
-Petri Latvala
-
-
->  }
-> -- 
-> 2.32.0
-> 
+Jani Nikula, Intel Open Source Graphics Center
