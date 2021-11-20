@@ -2,43 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4544457A1F
-	for <lists+intel-gfx@lfdr.de>; Sat, 20 Nov 2021 01:25:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F099457A28
+	for <lists+intel-gfx@lfdr.de>; Sat, 20 Nov 2021 01:30:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 232D76E821;
-	Sat, 20 Nov 2021 00:25:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60C4A6E821;
+	Sat, 20 Nov 2021 00:30:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFEB36E821
- for <intel-gfx@lists.freedesktop.org>; Sat, 20 Nov 2021 00:25:33 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10173"; a="295328385"
-X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="295328385"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 16:25:18 -0800
-X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="737401087"
-Received: from unerlige-ril-10.jf.intel.com (HELO unerlige-ril-10.165.21.208)
- ([10.165.21.208])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2021 16:25:18 -0800
-Date: Fri, 19 Nov 2021 16:25:17 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20211120002517.GC28961@unerlige-ril-10.165.21.208>
-References: <20211103224708.1931-1-umesh.nerlige.ramappa@intel.com>
- <68f76da9-6b70-fee4-6cc6-17e74c867bd2@linux.intel.com>
- <20211104220407.GA23493@unerlige-ril-10.165.21.208>
- <2c1af88a-93d3-cc8f-5e4e-e4a494fd21f0@linux.intel.com>
- <20211111164810.GH6789@unerlige-ril-10.165.21.208>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD3DB6E821
+ for <intel-gfx@lists.freedesktop.org>; Sat, 20 Nov 2021 00:30:52 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10173"; a="297932976"
+X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="297932976"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 16:30:51 -0800
+X-IronPort-AV: E=Sophos;i="5.87,248,1631602800"; d="scan'208";a="506939267"
+Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2021 16:30:51 -0800
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 19 Nov 2021 16:29:18 -0800
+Message-Id: <20211120002921.1939452-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211111164810.GH6789@unerlige-ril-10.165.21.208>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Fix synchronization of PMU
- callback with reset
+Subject: [Intel-gfx] [v2 0/3]  Introduce Raptor Lake S
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,217 +41,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+Raptor Lake S(RPL-S) is a version 12
+Display, Media and Render. For all i915
+purposes it is the same as Alder Lake S (ADL-S).
 
-Any inputs on this one?
+The series introduces it as a subplatform
+of ADL-S. The one difference is the GuC
+submission which is default on RPL-S but
+was not the case with ADL-S.
 
-Thanks,
-Umesh
+Anusha Srivatsa (3):
+  drm/i915/rpl-s: Add PCI IDS for Raptor Lake S
+  drm/i915/rpl-s: Add PCH Support for Raptor Lake S
+  drm/i915/rpl-s: Enable guc submission by default
 
-On Thu, Nov 11, 2021 at 08:48:10AM -0800, Umesh Nerlige Ramappa wrote:
->On Thu, Nov 11, 2021 at 02:37:43PM +0000, Tvrtko Ursulin wrote:
->>
->>On 04/11/2021 22:04, Umesh Nerlige Ramappa wrote:
->>>On Thu, Nov 04, 2021 at 05:37:37PM +0000, Tvrtko Ursulin wrote:
->>>>
->>>>On 03/11/2021 22:47, Umesh Nerlige Ramappa wrote:
->>>>>Since the PMU callback runs in irq context, it synchronizes with gt
->>>>>reset using the reset count. We could run into a case where the PMU
->>>>>callback could read the reset count before it is updated. This has a
->>>>>potential of corrupting the busyness stats.
->>>>>
->>>>>In addition to the reset count, check if the reset bit is set before
->>>>>capturing busyness.
->>>>>
->>>>>In addition save the previous stats only if you intend to update them.
->>>>>
->>>>>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>>>>---
->>>>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 ++++++++----
->>>>> 1 file changed, 8 insertions(+), 4 deletions(-)
->>>>>
->>>>>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>>>>b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>index 5cc49c0b3889..d83ade77ca07 100644
->>>>>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>@@ -1183,6 +1183,7 @@ static ktime_t 
->>>>>guc_engine_busyness(struct intel_engine_cs *engine, ktime_t 
->>>>>*now)
->>>>>     u64 total, gt_stamp_saved;
->>>>>     unsigned long flags;
->>>>>     u32 reset_count;
->>>>>+    bool in_reset;
->>>>>     spin_lock_irqsave(&guc->timestamp.lock, flags);
->>>>>@@ -1191,7 +1192,9 @@ static ktime_t 
->>>>>guc_engine_busyness(struct intel_engine_cs *engine, ktime_t 
->>>>>*now)
->>>>>      * engine busyness from GuC, so we just use the driver stored
->>>>>      * copy of busyness. Synchronize with gt reset using reset_count.
->>>>>      */
->>>>>-    reset_count = i915_reset_count(gpu_error);
->>>>>+    rcu_read_lock();
->>>>>+    in_reset = test_bit(I915_RESET_BACKOFF, &gt->reset.flags);
->>>>>+    rcu_read_unlock();
->>>>
->>>>I don't really understand the point of rcu_read_lock over 
->>>>test_bit but I guess you copied it from the trylock loop.
->>>
->>>Yes, I don't see other parts of code using the lock though. I can drop it.
->>>
->>>>
->>>>>     *now = ktime_get();
->>>>>@@ -1201,9 +1204,10 @@ static ktime_t 
->>>>>guc_engine_busyness(struct intel_engine_cs *engine, ktime_t 
->>>>>*now)
->>>>>      * start_gt_clk is derived from GuC state. To get a consistent
->>>>>      * view of activity, we query the GuC state only if gt is awake.
->>>>>      */
->>>>>-    stats_saved = *stats;
->>>>>-    gt_stamp_saved = guc->timestamp.gt_stamp;
->>>>>-    if (intel_gt_pm_get_if_awake(gt)) {
->>>>>+    if (intel_gt_pm_get_if_awake(gt) && !in_reset) {
->>>>
->>>>What is the point of looking at the old value of in_reset here?  
->>>>Gut feeling says if there is a race this does not fix it.
->>>>
->>>>I did not figure out from the commit message what does "could 
->>>>read the reset count before it is updated" mean?
->>>>I thought the point of reading
->>>
->>>>the reset count twice was that you are sure there was no reset 
->>>>while in here, in which case it is safe to update the software 
->>>>copy. I don't easily see what test_bit does on top.
->>>
->>>This is what I see in the reset flow
->>>---------------
->>>
->>>R1) test_and_set_bit(I915_RESET_BACKOFF, &gt->reset.flags)
->>>R2) atomic_inc(&gt->i915->gpu_error.reset_count)
->>>R3) reset prepare
->>>R4) do the HW reset
->>>
->>>The reset count is updated only once above and that's before an 
->>>actual HW reset happens.
->>>
->>>PMU callback flow before this patch
->>>---------------
->>>
->>>P1) read reset count
->>>P2) update stats
->>>P3) read reset count
->>>P4) if reset count changed, use old stats. if not use updated stats.
->>>
->>>I am concerned that the PMU flow could run after step (R2). Then 
->>>we wrongly conclude that the count stayed the same and no HW reset 
->>>happened.
->
->Here is the problematic sequence: Threads R and P.
->------------
->R1) test_and_set_bit(I915_RESET_BACKOFF, &gt->reset.flags)
->R2) atomic_inc(&gt->i915->gpu_error.reset_count)
->	P1) read reset count
->	P2) update stats
->	P3) read reset count
->	P4) if reset count changed, use old stats. if not use updated stats.
->R3) reset prepare
->R4) do the HW reset
->
->Do you agree that this is racy? In thread P we don't know in if the 
->reset flag was set or not when we captured the reset count in P1?
->
->>>
->>>PMU callback flow with this patch
->>>---------------
->>>This would rely on the reset_count only if a reset is not in progress.
->>>
->>>P0) test_bit for I915_RESET_BACKOFF
->>>P1) read reset count if not in reset. if in reset, use old stats
->>>P2) update stats
->>>P3) read reset count
->>>P4) if reset count changed, use old stats. if not use updated stats.
->>>
->>>Now that I think about it more, I do see one sequence that still 
->>>needs fixing though - P0, R1, R2, P1 - P4. For that, I think I 
->>>need to re-read the BACKOFF bit after reading the reset_count for 
->>>the first time.
->>>Modified PMU callback sequence would be:
->>>----------
->>>
->>>M0) test_bit for I915_RESET_BACKOFF
->>>M1) read reset count if not in reset, if in reset, use old stats
->>>
->>>M1.1) test_bit for I915_RESET_BACKOFF. if set, use old stats. if 
->>>not, use reset_count to synchronize
->>>
->>>M2) update stats
->>>M3) read reset count
->>>M4) if reset count changed, use old stats. if not use updated stats.
->>
->>You did not end up implementing this flow? Have you later changed 
->>your mind whether it is required or not? Or maybe I am looking at 
->>not the latest patch.
->>
->>Is the below the latest?
->>
->>"""
->>v2:
->>- The 2 reset counts captured in the PMU callback can end up being the
->> same if they were captured right after the count is incremented in the
->> reset flow. This can lead to a bad busyness state. Ensure that reset
->> is not in progress when the initial reset count is captured.
->>"""
->
->Yes, v2 is the latest (maybe CI results re-ordered the patches). 
->Instead of sampling the BACKOFF flag before and after the reset count 
->(as in the modified sequence), I just sample it after. The order is 
->critical - first sample reset count and then the reset flag.
->
->>
->>Is the key now that you rely on ordering of atomic_inc and set_bit 
->>in the reset path?
->
->Yes
->
->>Frankly I still don't understand why you can get away
->
->>with using stale in_reset in v2. If you acknowledge it can change 
->>between sampling and checking, then what is the point in having it 
->>altogether? You still solely rely on reset count in that case, no?
->
->Correct, but now I know for sure that the first sample of reset_count 
->was captured when reset flag was not set (since I am relying on the 
->order of sampling).
->
->About solely using the reset_count, I have listed the problematic 
->sequence above to highlight what the issue is.
->
->Thanks,
->Umesh
->
->>
->>
->>Regards,
->>
->>Tvrtko
->>
->>>
->>>Thanks,
->>>Umesh
->>>
->>>>
->>>>Regards,
->>>>
->>>>Tvrtko
->>>>
->>>>>+        stats_saved = *stats;
->>>>>+        gt_stamp_saved = guc->timestamp.gt_stamp;
->>>>>+        reset_count = i915_reset_count(gpu_error);
->>>>>         guc_update_engine_gt_clks(engine);
->>>>>         guc_update_pm_timestamp(guc, engine, now);
->>>>>         intel_gt_pm_put_async(gt);
->>>>>
+ arch/x86/kernel/early-quirks.c           | 1 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c    | 2 +-
+ drivers/gpu/drm/i915/i915_drv.h          | 2 ++
+ drivers/gpu/drm/i915/i915_pci.c          | 1 +
+ drivers/gpu/drm/i915/intel_device_info.c | 7 +++++++
+ drivers/gpu/drm/i915/intel_device_info.h | 3 +++
+ drivers/gpu/drm/i915/intel_pch.c         | 1 +
+ drivers/gpu/drm/i915/intel_pch.h         | 1 +
+ include/drm/i915_pciids.h                | 9 +++++++++
+ 9 files changed, 26 insertions(+), 1 deletion(-)
+
+-- 
+2.25.1
+
