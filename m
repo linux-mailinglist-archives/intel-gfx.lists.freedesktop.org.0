@@ -2,34 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 010E9458C47
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 11:32:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 286BB458C4A
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 11:32:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE676EB78;
-	Mon, 22 Nov 2021 10:32:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57C6D6EB81;
+	Mon, 22 Nov 2021 10:32:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C77136EE51;
- Sat, 20 Nov 2021 07:39:30 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2D4B960E94;
- Sat, 20 Nov 2021 07:39:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99F8E6E040;
+ Sat, 20 Nov 2021 15:26:05 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E5B5B60EB6;
+ Sat, 20 Nov 2021 15:26:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1637393970;
- bh=ZyTVqjOSKrp5VXX+khXGou2v7HAND6IAqcRDKMOPn8Y=;
- h=From:To:Cc:Subject:Date:In-Reply-To:From;
- b=ZNY8zejO7ZM9vSZU3k/3RhBSZVfY+X1xLg24jqzDlINwEMfwdsUpBy52yy39ph8U1
- QkaFwY9aS9WTX+epYdzXdXkopMDOMC5k/M63z2LFT5JCZRmh3GqV92YIoZtqvG9MdB
- GK7QyNq0MDqN2y5lCLEQUBZGiglKVPGjNgJAjNVnWcbYVdVGwnEBfn2Lh0Emtzd7fU
- py4QIBzbJREgfjDafPxbqahs/TQX5uQRdLTtBH62NCYQXma+jnSEDADCW8yHP1mMfi
- lmaDkgqZof3YJh3Sl4K+AQsiP5Q3DLStqZdCWXb5x7Egvya0m3h92NVSTyQjYVk13x
- WJqcnz6aXuBfw==
-From: SeongJae Park <sj@kernel.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Date: Sat, 20 Nov 2021 07:39:19 +0000
-Message-Id: <20211120073920.16261-1-sj@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211120035253.72074-1-kuba@kernel.org>
+ s=k20201202; t=1637421964;
+ bh=sL04+7/Tziaw15CHiE2bty/Bv6qeql7yB4oQSwHL8Rw=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=N35/MX+Bk5IfQeZQiu16BeV4YuD31Ephij5WJvzDmZ2G+K+MjYa+HWqb1ahmMn5Hb
+ 8nTHe95BsmdqkyFWylC9DLYJd5w68+maTSegSteQm994SJN2V2euBCo7o5awfS7MX1
+ 1EqL1r1uDdGsdYVLkB0LepzAMd/DMg1DnO37cYnq/TOnx6T6gg4l1tr4VYZFrfdNBr
+ fu07uKG0PLQcKTAn5J7IOkR76pmhpIN6NdZJHm5NPKAY2SAGobyGEmgVfnmJURZZPl
+ Ncx/4o043Jc/OWEbZSwAM5dDl3KRkS71kl4wzNRFF/bIFRAmgFMC+aeEM6/O5rxXi9
+ UVuYgRSm1FojA==
+Date: Sat, 20 Nov 2021 07:26:02 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Peter Chen <peter.chen@kernel.org>
+Message-ID: <20211120072602.22f9e722@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20211120073011.GA36650@Peter>
+References: <20211120035253.72074-1-kuba@kernel.org>
+ <20211120073011.GA36650@Peter>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 22 Nov 2021 10:32:05 +0000
 Subject: Re: [Intel-gfx] [PATCH bpf] treewide: add missing includes masked
  by cgroup -> bpf dependency
@@ -58,30 +62,32 @@ Cc: kw@linux.com, songliubraving@fb.com, kafai@fb.com, airlied@linux.ie,
  akpm@linux-foundation.org, linux-arm-kernel@lists.infradead.org,
  axboe@kernel.dk, linux-block@vger.kernel.org, sj@kernel.org,
  lima@lists.freedesktop.org, linux-mm@kvack.org, jingoohan1@gmail.com,
- peter.chen@kernel.org, linux-usb@vger.kernel.org, christian.koenig@amd.com,
- hkelam@marvell.com, yuq825@gmail.com, gregkh@linuxfoundation.org,
- bpf@vger.kernel.org, colin.king@intel.com, freedreno@lists.freedesktop.org,
- gakula@marvell.com
+ linux-usb@vger.kernel.org, christian.koenig@amd.com, hkelam@marvell.com,
+ yuq825@gmail.com, gregkh@linuxfoundation.org, bpf@vger.kernel.org,
+ colin.king@intel.com, freedreno@lists.freedesktop.org, gakula@marvell.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jakub,
+On Sat, 20 Nov 2021 15:30:11 +0800 Peter Chen wrote:
+> > diff --git a/drivers/usb/cdns3/host.c b/drivers/usb/cdns3/host.c
+> > index 84dadfa726aa..9643b905e2d8 100644
+> > --- a/drivers/usb/cdns3/host.c
+> > +++ b/drivers/usb/cdns3/host.c
+> > @@ -10,6 +10,7 @@
+> >   */
+> > =20
+> >  #include <linux/platform_device.h>
+> > +#include <linux/slab.h> =20
+>=20
+> Should be "#include <linux/module.h>"?
 
-On Fri, 19 Nov 2021 19:52:53 -0800 Jakub Kicinski <kuba@kernel.org> wrote:
+Why? Different files are missing different includes, this one needs
+slab.h:
 
-> cgroup.h (therefore swap.h, therefore half of the universe)
-> includes bpf.h which in turn includes module.h and slab.h.
-> Since we're about to get rid of that dependency we need
-> to clean things up.
-> 
-> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
-
-Acked-by: SeongJae Park <sj@kernel.org>
-
-for DAMON part.
-
-
-Thanks,
-SJ
-
-[...]
+../drivers/usb/cdns3/host.c: In function =E2=80=98__cdns_host_init=E2=80=99:
+../drivers/usb/cdns3/host.c:86:2: error: implicit declaration of function =
+=E2=80=98kfree=E2=80=99; did you mean =E2=80=98vfree=E2=80=99? [-Werror=3Di=
+mplicit-function-declaration]
+  kfree(cdns->xhci_plat_data);
+  ^~~~~
+  vfree
