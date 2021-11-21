@@ -2,41 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 286BB458C4A
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 11:32:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 729D3458C45
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 11:32:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57C6D6EB81;
-	Mon, 22 Nov 2021 10:32:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C04D66EB72;
+	Mon, 22 Nov 2021 10:32:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99F8E6E040;
- Sat, 20 Nov 2021 15:26:05 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E5B5B60EB6;
- Sat, 20 Nov 2021 15:26:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1637421964;
- bh=sL04+7/Tziaw15CHiE2bty/Bv6qeql7yB4oQSwHL8Rw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=N35/MX+Bk5IfQeZQiu16BeV4YuD31Ephij5WJvzDmZ2G+K+MjYa+HWqb1ahmMn5Hb
- 8nTHe95BsmdqkyFWylC9DLYJd5w68+maTSegSteQm994SJN2V2euBCo7o5awfS7MX1
- 1EqL1r1uDdGsdYVLkB0LepzAMd/DMg1DnO37cYnq/TOnx6T6gg4l1tr4VYZFrfdNBr
- fu07uKG0PLQcKTAn5J7IOkR76pmhpIN6NdZJHm5NPKAY2SAGobyGEmgVfnmJURZZPl
- Ncx/4o043Jc/OWEbZSwAM5dDl3KRkS71kl4wzNRFF/bIFRAmgFMC+aeEM6/O5rxXi9
- UVuYgRSm1FojA==
-Date: Sat, 20 Nov 2021 07:26:02 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Peter Chen <peter.chen@kernel.org>
-Message-ID: <20211120072602.22f9e722@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20211120073011.GA36650@Peter>
-References: <20211120035253.72074-1-kuba@kernel.org>
- <20211120073011.GA36650@Peter>
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
+ [IPv6:2607:f8b0:4864:20::102f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B27BD6E933;
+ Sun, 21 Nov 2021 10:13:23 +0000 (UTC)
+Received: by mail-pj1-x102f.google.com with SMTP id
+ y14-20020a17090a2b4e00b001a5824f4918so14444119pjc.4; 
+ Sun, 21 Nov 2021 02:13:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=jz7G1X3noj7SdKT0BssmGxJwd6YdQwKy8J5O5kFPx/A=;
+ b=hPjd7zP2W3VwO1Z4CBoUY6mieF4iT+nIUjE7tgeP2gy8/frGuaHMkBG/+mKnA2bC+j
+ +jfZ7DMeKU1bArdHF1OTamHF/fVBElYmgMq/vRR/ocLZxsQ+oK0/E5Wi1h42zpRZnwC6
+ yUeWyfrvpxYJ2XmhK8gR2ud97z85681CWEJJ5J9Ij0sGpu7paI3tQ6pUN4xsUQ4sXp0u
+ Xo5Z3uKQtYAf8hL5gxePQozs1DiazIfX1McQc/PO0FDiWe1pK8SH5faQe99UQa1xxroc
+ Maqe3KXuXrvsxCk3vo8XPs0S5bMKVmZbmFOe5FNlFwqTPG/VHoL+e34oAvngej0zo3gz
+ t/FQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=jz7G1X3noj7SdKT0BssmGxJwd6YdQwKy8J5O5kFPx/A=;
+ b=f06zW1vqlV0592SC7UF3EODx/AK1HUQZBrJH5+p+6NI8HqjpbIerzH7FXX5M6D5IPa
+ FqnrA5tba5v1h4gg+EYzhJB3SATOhea8Pxf784P0w8AgWIZBPZJwVlR4RuIqIV/80fQz
+ j3m5YoxVd/vCi3JLb77KEQ4Mq6HYC8+6oLv6Mf0cghwyiptmGpXspNVdBdpjQbQ699OA
+ Kns6TC8VVD6cblp8Jbzop1IUwhs0+7/fLpcPxxgW6Qn180dF3XBGMCzipzDCejA0sU33
+ 5SAic9c1/lT4N9Mjml26y9sAfXaEx/atZ/7DvFuE/cL4lnsMjJKg+O49btdx2/MoNi4J
+ z8nQ==
+X-Gm-Message-State: AOAM532+5g2hwt+zKO1rKnXVM7Z9d1TRpCSWpjtpcc8M6sLO2Y/BgzKf
+ apIWnyF1aneZohIaRsOQmCY=
+X-Google-Smtp-Source: ABdhPJyQsqrMCoVLEZdQ+jQfLlJBDck3tb4ASoikt4GWJZqLMSci4BkU90KnfkyY3OtsEXKlj0LavQ==
+X-Received: by 2002:a17:902:ab47:b0:141:95b2:7eaf with SMTP id
+ ij7-20020a170902ab4700b0014195b27eafmr95815169plb.40.1637489603356; 
+ Sun, 21 Nov 2021 02:13:23 -0800 (PST)
+Received: from localhost.localdomain ([193.203.214.57])
+ by smtp.gmail.com with ESMTPSA id nl16sm16226182pjb.13.2021.11.21.02.13.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 21 Nov 2021 02:13:22 -0800 (PST)
+From: cgel.zte@gmail.com
+X-Google-Original-From: yong.yiran@zte.com.cn
+To: jani.nikula@linux.intel.com
+Date: Sun, 21 Nov 2021 10:13:09 +0000
+Message-Id: <20211121101309.23577-1-yong.yiran@zte.com.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 22 Nov 2021 10:32:05 +0000
-Subject: Re: [Intel-gfx] [PATCH bpf] treewide: add missing includes masked
- by cgroup -> bpf dependency
+Subject: [Intel-gfx] [PATCH linux-next] drm/i915/request: Remove unused
+ variables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,45 +70,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kw@linux.com, songliubraving@fb.com, kafai@fb.com, airlied@linux.ie,
- linux-pci@vger.kernel.org, ast@kernel.org, dri-devel@lists.freedesktop.org,
- andrii@kernel.org, a-govindraju@ti.com, ray.huang@amd.com, sbhatta@marvell.com,
- robh@kernel.org, lorenzo.pieralisi@arm.com, daniel@iogearbox.net,
- krzysztof.kozlowski@canonical.com, john.fastabend@gmail.com,
- geert@linux-m68k.org, matthew.auld@intel.com, yhs@fb.com, sgoutham@marvell.com,
- thomas.hellstrom@linux.intel.com, pawell@cadence.com, tzimmermann@suse.de,
- mani@kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, mripard@kernel.org, kpsingh@kernel.org,
- rogerq@kernel.org, linux-samsung-soc@vger.kernel.org, bhelgaas@google.com,
- akpm@linux-foundation.org, linux-arm-kernel@lists.infradead.org,
- axboe@kernel.dk, linux-block@vger.kernel.org, sj@kernel.org,
- lima@lists.freedesktop.org, linux-mm@kvack.org, jingoohan1@gmail.com,
- linux-usb@vger.kernel.org, christian.koenig@amd.com, hkelam@marvell.com,
- yuq825@gmail.com, gregkh@linuxfoundation.org, bpf@vger.kernel.org,
- colin.king@intel.com, freedreno@lists.freedesktop.org, gakula@marvell.com
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ yong yiran <yong.yiran@zte.com.cn>, Zeal Robot <zealci@zte.com.cn>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 20 Nov 2021 15:30:11 +0800 Peter Chen wrote:
-> > diff --git a/drivers/usb/cdns3/host.c b/drivers/usb/cdns3/host.c
-> > index 84dadfa726aa..9643b905e2d8 100644
-> > --- a/drivers/usb/cdns3/host.c
-> > +++ b/drivers/usb/cdns3/host.c
-> > @@ -10,6 +10,7 @@
-> >   */
-> > =20
-> >  #include <linux/platform_device.h>
-> > +#include <linux/slab.h> =20
->=20
-> Should be "#include <linux/module.h>"?
+From: yong yiran <yong.yiran@zte.com.cn>
 
-Why? Different files are missing different includes, this one needs
-slab.h:
+The clang_analyzer complains as follows:
+drivers/gpu/drm/i915/i915_request.c:2119:2 warning:
+Value stored to 'x' is never read
 
-../drivers/usb/cdns3/host.c: In function =E2=80=98__cdns_host_init=E2=80=99:
-../drivers/usb/cdns3/host.c:86:2: error: implicit declaration of function =
-=E2=80=98kfree=E2=80=99; did you mean =E2=80=98vfree=E2=80=99? [-Werror=3Di=
-mplicit-function-declaration]
-  kfree(cdns->xhci_plat_data);
-  ^~~~~
-  vfree
+Reported-by: Zeal Robot <zealci@zte.com.cn>
+Signed-off-by: yong yiran <yong.yiran@zte.com.cn>
+---
+ drivers/gpu/drm/i915/i915_request.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 820a1f38b271..5e4420f461e9 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -2047,7 +2047,6 @@ void i915_request_show(struct drm_printer *m,
+ {
+ 	const char *name = rq->fence.ops->get_timeline_name((struct dma_fence *)&rq->fence);
+ 	char buf[80] = "";
+-	int x = 0;
+ 
+ 	/*
+ 	 * The prefix is used to show the queue status, for which we use
+@@ -2079,8 +2078,6 @@ void i915_request_show(struct drm_printer *m,
+ 	 *      from the lists
+ 	 */
+ 
+-	x = print_sched_attr(&rq->sched.attr, buf, x, sizeof(buf));
+-
+ 	drm_printf(m, "%s%.*s%c %llx:%lld%s%s %s @ %dms: %s\n",
+ 		   prefix, indent, "                ",
+ 		   queue_status(rq),
+-- 
+2.25.1
+
