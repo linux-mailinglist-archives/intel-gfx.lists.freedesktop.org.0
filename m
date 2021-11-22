@@ -2,46 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943D1458AFE
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 10:03:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B92B5458B1D
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 10:09:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E011B6E113;
-	Mon, 22 Nov 2021 09:03:42 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2032E89E33;
+	Mon, 22 Nov 2021 09:09:31 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED29F6E0FC;
- Mon, 22 Nov 2021 09:03:40 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10175"; a="221632792"
-X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="221632792"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5113F89E33;
+ Mon, 22 Nov 2021 09:09:30 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10175"; a="221633682"
+X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="221633682"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2021 01:03:40 -0800
-X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="508455611"
-Received: from aalazizi-mobl1.amr.corp.intel.com (HELO [10.213.249.159])
- ([10.213.249.159])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2021 01:03:39 -0800
-Message-ID: <88dca452-9cbb-b99f-0567-519c665736b1@linux.intel.com>
-Date: Mon, 22 Nov 2021 09:03:23 +0000
+ 22 Nov 2021 01:09:29 -0800
+X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="456569866"
+Received: from rmcdonax-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.19.217])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2021 01:09:24 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, cgel.zte@gmail.com
+In-Reply-To: <80173779-5c91-a56e-6bac-ad4ff7c435f7@wanadoo.fr>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211121101309.23577-1-yong.yiran@zte.com.cn>
+ <80173779-5c91-a56e-6bac-ad4ff7c435f7@wanadoo.fr>
+Date: Mon, 22 Nov 2021 11:09:21 +0200
+Message-ID: <87o86co8u6.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Content-Language: en-US
-To: Petri Latvala <petri.latvala@intel.com>
-References: <20211119125945.55056-1-tvrtko.ursulin@linux.intel.com>
- <20211119125945.55056-3-tvrtko.ursulin@linux.intel.com>
- <YZesawet06wfQ1SG@platvala-desk.ger.corp.intel.com>
- <8b1bdb41-fe31-8482-655d-724a6937d2c7@linux.intel.com>
- <YZfFlI/cB2OyXZeE@platvala-desk.ger.corp.intel.com>
- <YZfIwtCEqbqs1dIz@platvala-desk.ger.corp.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <YZfIwtCEqbqs1dIz@platvala-desk.ger.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 3/6] igt/core: Fix build
- warning
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH linux-next] drm/i915/request: Remove unused
+ variables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,86 +47,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ yong yiran <yong.yiran@zte.com.cn>, Zeal Robot <zealci@zte.com.cn>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Sun, 21 Nov 2021, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wro=
+te:
+> Le 21/11/2021 =C3=A0 11:13, cgel.zte@gmail.com a =C3=A9crit=C2=A0:
+>> From: yong yiran <yong.yiran@zte.com.cn>
+>>=20
+>> The clang_analyzer complains as follows:
+>> drivers/gpu/drm/i915/i915_request.c:2119:2 warning:
+>> Value stored to 'x' is never read
+>>=20
+>> Reported-by: Zeal Robot <zealci@zte.com.cn>
+>> Signed-off-by: yong yiran <yong.yiran@zte.com.cn>
 
-On 19/11/2021 15:54, Petri Latvala wrote:
-> On Fri, Nov 19, 2021 at 05:41:08PM +0200, Petri Latvala wrote:
->> On Fri, Nov 19, 2021 at 03:34:54PM +0000, Tvrtko Ursulin wrote:
->>> On 19/11/2021 13:53, Petri Latvala wrote:
->>>> On Fri, Nov 19, 2021 at 12:59:42PM +0000, Tvrtko Ursulin wrote:
->>> Okay I wasn't sufficiently focused while trying to fix this. No idea then
->>> apart for playing with pragmas.
-> 
-> 
-> How's this:
-> 
-> diff --git a/lib/igt_core.c b/lib/igt_core.c
-> index ec05535c..6a4d0270 100644
-> --- a/lib/igt_core.c
-> +++ b/lib/igt_core.c
-> @@ -2727,6 +2727,8 @@ void igt_log(const char *domain, enum igt_log_level level, const char *format, .
->   }
->   
->   static pthread_key_t __vlog_line_continuation;
-> +static const bool __dummy_true = true;
-> +static const bool __dummy_false = false;
->   
->   igt_constructor {
->   	pthread_key_create(&__vlog_line_continuation, NULL);
-> @@ -2751,6 +2753,7 @@ void igt_vlog(const char *domain, enum igt_log_level level, const char *format,
->   	FILE *file;
->   	char *line, *formatted_line;
->   	char *thread_id;
-> +	void *line_continuation;
->   	const char *program_name;
->   	const char *igt_log_level_str[] = {
->   		"DEBUG",
-> @@ -2785,7 +2788,8 @@ void igt_vlog(const char *domain, enum igt_log_level level, const char *format,
->   	if (vasprintf(&line, format, args) == -1)
->   		return;
->   
-> -	if (pthread_getspecific(__vlog_line_continuation)) {
-> +	line_continuation = pthread_getspecific(__vlog_line_continuation);
-> +	if (line_continuation != NULL && *(bool *)line_continuation) {
->   		formatted_line = strdup(line);
->   		if (!formatted_line)
->   			goto out;
-> @@ -2796,9 +2800,9 @@ void igt_vlog(const char *domain, enum igt_log_level level, const char *format,
->   	}
->   
->   	if (line[strlen(line) - 1] == '\n')
-> -		pthread_setspecific(__vlog_line_continuation, (void*) false);
-> +		pthread_setspecific(__vlog_line_continuation, &__dummy_false);
->   	else
-> -		pthread_setspecific(__vlog_line_continuation, (void*) true);
-> +		pthread_setspecific(__vlog_line_continuation, &__dummy_true);
->   
->   	/* append log buffer */
->   	_igt_log_buffer_append(formatted_line);
-> diff --git a/lib/igt_thread.c b/lib/igt_thread.c
-> index 5bdda410..0d7bce80 100644
-> --- a/lib/igt_thread.c
-> +++ b/lib/igt_thread.c
-> @@ -29,6 +29,7 @@
->   #include "igt_thread.h"
->   
->   static pthread_key_t __igt_is_main_thread;
-> +static const bool __dummy_true = true;
->   
->   static _Atomic(bool) __thread_failed = false;
->   
-> @@ -65,5 +66,5 @@ bool igt_thread_is_main(void)
->   
->   igt_constructor {
->   	pthread_key_create(&__igt_is_main_thread, NULL);
-> -	pthread_setspecific(__igt_is_main_thread, (void*) 0x1);
-> +	pthread_setspecific(__igt_is_main_thread, &__dummy_true);
+The sender's Signed-off-by is missing.
 
-LGTM.
+>> ---
+>>   drivers/gpu/drm/i915/i915_request.c | 3 ---
+>>   1 file changed, 3 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/=
+i915_request.c
+>> index 820a1f38b271..5e4420f461e9 100644
+>> --- a/drivers/gpu/drm/i915/i915_request.c
+>> +++ b/drivers/gpu/drm/i915/i915_request.c
+>> @@ -2047,7 +2047,6 @@ void i915_request_show(struct drm_printer *m,
+>>   {
+>>   	const char *name =3D rq->fence.ops->get_timeline_name((struct dma_fen=
+ce *)&rq->fence);
+>>   	char buf[80] =3D "";
+>> -	int x =3D 0;
+>>=20=20=20
+>>   	/*
+>>   	 * The prefix is used to show the queue status, for which we use
+>> @@ -2079,8 +2078,6 @@ void i915_request_show(struct drm_printer *m,
+>>   	 *      from the lists
+>>   	 */
+>>=20=20=20
+>> -	x =3D print_sched_attr(&rq->sched.attr, buf, x, sizeof(buf));
+>> -
+>
+> Seriously?
 
-Regards,
+Basically I've started considering all of these patches as static
+analyzer reports *only*. The "fixes" have often been completely wrong or
+have missed the real issue and merely silenced the warning.
 
-Tvrtko
+I really couldn't say anything about the "Zeal Robot" itself, but the
+patches are giving it a bad reputation.
+
+
+BR,
+Jani.
+
+
+
+
+>
+> CJ
+>
+>
+>>   	drm_printf(m, "%s%.*s%c %llx:%lld%s%s %s @ %dms: %s\n",
+>>   		   prefix, indent, "                ",
+>>   		   queue_status(rq),
+>>=20
+>
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
