@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F03E94596D3
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 22:37:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13FCE4596D5
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 22:40:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 531E589B20;
-	Mon, 22 Nov 2021 21:37:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 284F589D39;
+	Mon, 22 Nov 2021 21:40:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EF7B689B0D;
- Mon, 22 Nov 2021 21:37:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8C78689D39;
+ Mon, 22 Nov 2021 21:40:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E6292AA914;
- Mon, 22 Nov 2021 21:37:52 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 74E92A01BB;
+ Mon, 22 Nov 2021 21:40:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Mon, 22 Nov 2021 21:37:52 -0000
-Message-ID: <163761707291.5693.17167408385458810822@emeril.freedesktop.org>
+Date: Mon, 22 Nov 2021 21:40:11 -0000
+Message-ID: <163761721145.5694.9078305110279012966@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20211122211420.31584-1-stanislav.lisovskiy@intel.com>
 In-Reply-To: <20211122211420.31584-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/dg2=3A_Tile_4_plane_format_support_=28rev5=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/dg2=3A_Tile_4_plane_format_support_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,13 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-5aed8d5e5781 drm/i915/dg2: Tile 4 plane format support
--:28: WARNING:TYPO_SPELLING: 'assocating' may be misspelled - perhaps 'associating'?
-#28: 
-v6: - Moved Tile4 assocating struct for modifier/display to
-                  ^^^^^^^^^^
-
-total: 0 errors, 1 warnings, 0 checks, 129 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
