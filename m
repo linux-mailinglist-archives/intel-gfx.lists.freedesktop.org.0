@@ -2,55 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75AA345936C
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 17:50:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BDCF4590E3
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 16:06:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 908DA89D2F;
-	Mon, 22 Nov 2021 16:49:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67B0289FD1;
+	Mon, 22 Nov 2021 15:06:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1132 seconds by postgrey-1.36 at gabe;
- Mon, 22 Nov 2021 12:55:29 UTC
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com
- [185.176.79.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C19189E7C
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Nov 2021 12:55:29 +0000 (UTC)
-Received: from fraeml708-chm.china.huawei.com (unknown [172.18.147.200])
- by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4HyRZy2XJ5z67Yqx;
- Mon, 22 Nov 2021 20:36:10 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml708-chm.china.huawei.com (10.206.15.36) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Mon, 22 Nov 2021 13:36:34 +0100
-Received: from localhost (10.202.226.41) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.20; Mon, 22 Nov
- 2021 12:36:33 +0000
-Date: Mon, 22 Nov 2021 12:36:32 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Message-ID: <20211122123632.00004b22@Huawei.com>
-In-Reply-To: <YZfSTrbAr3d2xORr@smile.fi.intel.com>
-References: <20211119113644.1600-1-alx.manpages@gmail.com>
- <CAK8P3a0qT9tAxFkLN_vJYRcocDW2TcBq79WcYKZFyAG0udZx5Q@mail.gmail.com>
- <434296d3-8fe1-f1d2-ee9d-ea25d6c4e43e@gmail.com>
- <CAK8P3a2yVXw9gf8-BNvX_rzectNoiy0MqGKvBcXydiUSrc_fCA@mail.gmail.com>
- <YZfMXlqvG52ls2TE@smile.fi.intel.com>
- <CAK8P3a06CMzWVj2C3P5v0u8ZVPumXJKrq=TdjSq1NugmeT7-RQ@mail.gmail.com>
- <2d790206-124b-f850-895f-a57a74c55f79@gmail.com>
- <YZfSTrbAr3d2xORr@smile.fi.intel.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 616EC89FC0;
+ Mon, 22 Nov 2021 15:06:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10175"; a="258622422"
+X-IronPort-AV: E=Sophos;i="5.87,255,1631602800"; d="scan'208";a="258622422"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2021 07:04:55 -0800
+X-IronPort-AV: E=Sophos;i="5.87,255,1631602800"; d="scan'208";a="456665989"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.205])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2021 07:04:53 -0800
+Date: Mon, 22 Nov 2021 20:38:01 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <20211122150801.GA13257@intel.com>
+References: <20211108174547.979714-1-thomas.hellstrom@linux.intel.com>
+ <20211108174547.979714-2-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.41]
-X-ClientProxiedBy: lhreml737-chm.china.huawei.com (10.201.108.187) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Mon, 22 Nov 2021 16:49:55 +0000
-Subject: Re: [Intel-gfx] [PATCH 00/17] Add memberof(), split some headers,
- and slightly simplify code
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211108174547.979714-2-thomas.hellstrom@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v6 1/4] drm/i915: Avoid allocating a page
+ array for the gpu coredump
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,107 +47,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Alejandro Colomar \(man-pages\)" <alx.manpages@gmail.com>,
- Corey Minyard <cminyard@mvista.com>,
- Ajit Khaparde <ajit.khaparde@broadcom.com>, "Michael S.
- Tsirkin" <mst@redhat.com>, Jason Wang <jasowang@redhat.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Bjorn Andersson <bjorn.andersson@linaro.org>, Chris Mason <clm@fb.com>,
- Christian Brauner <christian.brauner@ubuntu.com>,
- Ketan Mukadam <ketan.mukadam@broadcom.com>,
- linux-scsi <linux-scsi@vger.kernel.org>,
- Subbu Seetharaman <subbu.seetharaman@broadcom.com>, "Rafael J.
- Wysocki" <rafael@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Mike Rapoport <rppt@linux.ibm.com>,
- ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, Borislav Petkov <bp@suse.de>,
- "open list:DRM DRIVER FOR QEMU'S CIRRUS
- DEVICE" <virtualization@lists.linux-foundation.org>,
- Len Brown <lenb@kernel.org>, Kees Cook <keescook@chromium.org>,
- Arnd Bergmann <arnd@arndb.de>, John Hubbard <jhubbard@nvidia.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Josef Bacik <josef@toxicpanda.com>,
- Jitendra Bhivare <jitendra.bhivare@broadcom.com>,
- David Sterba <dsterba@suse.com>, Somnath Kotur <somnath.kotur@broadcom.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Sriharsha Basavapatna <sriharsha.basavapatna@broadcom.com>,
- Networking <netdev@vger.kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>,
- LKML <linux-kernel@vger.kernel.org>, "John S . Gruber" <JohnSGruber@gmail.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- linux-btrfs <linux-btrfs@vger.kernel.org>
+Cc: intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 19 Nov 2021 18:35:26 +0200
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-
-> On Fri, Nov 19, 2021 at 05:22:48PM +0100, Alejandro Colomar (man-pages) wrote:
-> > 
-> > 
-> > On 11/19/21 17:18, Arnd Bergmann wrote:  
-> > > On Fri, Nov 19, 2021 at 5:10 PM Andy Shevchenko
-> > > <andriy.shevchenko@linux.intel.com> wrote:  
-> > >> On Fri, Nov 19, 2021 at 04:57:46PM +0100, Arnd Bergmann wrote:  
-> > >   
-> > >>> The main problem with this approach is that as soon as you start
-> > >>> actually reducing the unneeded indirect includes, you end up with
-> > >>> countless .c files that no longer build because they are missing a
-> > >>> direct include for something that was always included somewhere
-> > >>> deep underneath, so I needed a second set of scripts to add
-> > >>> direct includes to every .c file.  
-> > >>
-> > >> Can't it be done with cocci support?  
-> > > 
-> > > There are many ways of doing it, but they all tend to suffer from the
-> > > problem of identifying which headers are actually needed based on
-> > > the contents of a file, and also figuring out where to put the extra
-> > > #include if there are complex #ifdefs.
-> > > 
-> > > For reference, see below for the naive pattern matching I tried.
-> > > This is obviously incomplete and partially wrong.  
-> > 
-> > FYI, if you may not know the tool,
-> > theres include-what-you-use(1) (a.k.a. iwyu(1))[1],
-> > although it is still not mature,
-> > and I'm helping improve it a bit.  
+On 2021-11-08 at 18:45:44 +0100, Thomas Hellström wrote:
+> The gpu coredump typically takes place in a dma_fence signalling
+> critical path, and hence can't use GFP_KERNEL allocations, as that
+> means we might hit deadlocks under memory pressure. However
+> changing to __GFP_KSWAPD_RECLAIM which will be done in an upcoming
+> patch will instead mean a lower chance of the allocation succeeding.
+> In particular large contigous allocations like the coredump page
+> vector.
+> Remove the page vector in favor of a linked list of single pages.
+> Use the page lru list head as the list link, as the page owner is
+> allowed to do that.
 > 
-> Yes, I know the tool, but it produces insanity. Jonathan (maintainer
-> of IIO subsystem) actually found it useful after manual work applied.
-> Perhaps you can chat with him about usage of it in the Linux kernel.
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-IIO drivers use a fairly limited subset of headers, so it wasn't implausible
-to produce a mapping file to get to fairly sane results.
+Looks good to me
 
-https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/commit/?h=iio-iwyu-cleanups&id=8bc7ff8d5385e89a5199e792fda18dbf2ca8f2e5
+Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
 
-If we did head towards a general mapping file that 'more or less made sense'
-then maybe this tool can be fairly useful kernel wide.
-
-Typical patch that results in clean checks with that mapping file is:
-https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/commit/?h=iio-iwyu-cleanups&id=0eff2dd097add84c464710003c3bc9929f646427
-
-There are always going to be questions of how many of the really low level
-direct includes make sense though which was the stumbling block.
-
-It is nice to get rid of the pointless includes though for things that due
-to refactors etc are no longer used in a file, or were cut and paste from
-another driver.
-
-I've paused efforts on this front for now given series like this one can
-have significant impact and it seems to be an active area at the moment.
-Might revisit later this cycle.
-
-Jonathan
-
+> ---
+>  drivers/gpu/drm/i915/i915_gpu_error.c | 50 +++++++++++++++------------
+>  drivers/gpu/drm/i915/i915_gpu_error.h |  4 +--
+>  2 files changed, 28 insertions(+), 26 deletions(-)
 > 
-> > If I understood better the kernel Makefiles,
-> > I'd try it.
-> > 
-> > You can try it yourselves.
-> > I still can't use it for my own code,
-> > since it has a lot of false positives.  
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 2a2d7643b551..14de64282697 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -275,16 +275,16 @@ static bool compress_start(struct i915_vma_compress *c)
+>  static void *compress_next_page(struct i915_vma_compress *c,
+>  				struct i915_vma_coredump *dst)
+>  {
+> -	void *page;
+> +	void *page_addr;
+> +	struct page *page;
+>  
+> -	if (dst->page_count >= dst->num_pages)
+> -		return ERR_PTR(-ENOSPC);
+> -
+> -	page = pool_alloc(&c->pool, ALLOW_FAIL);
+> -	if (!page)
+> +	page_addr = pool_alloc(&c->pool, ALLOW_FAIL);
+> +	if (!page_addr)
+>  		return ERR_PTR(-ENOMEM);
+>  
+> -	return dst->pages[dst->page_count++] = page;
+> +	page = virt_to_page(page_addr);
+> +	list_add_tail(&page->lru, &dst->page_list);
+> +	return page_addr;
+>  }
+>  
+>  static int compress_page(struct i915_vma_compress *c,
+> @@ -397,7 +397,7 @@ static int compress_page(struct i915_vma_compress *c,
+>  
+>  	if (!(wc && i915_memcpy_from_wc(ptr, src, PAGE_SIZE)))
+>  		memcpy(ptr, src, PAGE_SIZE);
+> -	dst->pages[dst->page_count++] = ptr;
+> +	list_add_tail(&virt_to_page(ptr)->lru, &dst->page_list);
+>  	cond_resched();
+>  
+>  	return 0;
+> @@ -614,7 +614,7 @@ static void print_error_vma(struct drm_i915_error_state_buf *m,
+>  			    const struct i915_vma_coredump *vma)
+>  {
+>  	char out[ASCII85_BUFSZ];
+> -	int page;
+> +	struct page *page;
+>  
+>  	if (!vma)
+>  		return;
+> @@ -628,16 +628,17 @@ static void print_error_vma(struct drm_i915_error_state_buf *m,
+>  		err_printf(m, "gtt_page_sizes = 0x%08x\n", vma->gtt_page_sizes);
+>  
+>  	err_compression_marker(m);
+> -	for (page = 0; page < vma->page_count; page++) {
+> +	list_for_each_entry(page, &vma->page_list, lru) {
+>  		int i, len;
+> +		const u32 *addr = page_address(page);
+>  
+>  		len = PAGE_SIZE;
+> -		if (page == vma->page_count - 1)
+> +		if (page == list_last_entry(&vma->page_list, typeof(*page), lru))
+>  			len -= vma->unused;
+>  		len = ascii85_encode_len(len);
+>  
+>  		for (i = 0; i < len; i++)
+> -			err_puts(m, ascii85_encode(vma->pages[page][i], out));
+> +			err_puts(m, ascii85_encode(addr[i], out));
+>  	}
+>  	err_puts(m, "\n");
+>  }
+> @@ -946,10 +947,12 @@ static void i915_vma_coredump_free(struct i915_vma_coredump *vma)
+>  {
+>  	while (vma) {
+>  		struct i915_vma_coredump *next = vma->next;
+> -		int page;
+> +		struct page *page, *n;
+>  
+> -		for (page = 0; page < vma->page_count; page++)
+> -			free_page((unsigned long)vma->pages[page]);
+> +		list_for_each_entry_safe(page, n, &vma->page_list, lru) {
+> +			list_del_init(&page->lru);
+> +			__free_page(page);
+> +		}
+>  
+>  		kfree(vma);
+>  		vma = next;
+> @@ -1016,7 +1019,6 @@ i915_vma_coredump_create(const struct intel_gt *gt,
+>  	struct i915_ggtt *ggtt = gt->ggtt;
+>  	const u64 slot = ggtt->error_capture.start;
+>  	struct i915_vma_coredump *dst;
+> -	unsigned long num_pages;
+>  	struct sgt_iter iter;
+>  	int ret;
+>  
+> @@ -1025,9 +1027,7 @@ i915_vma_coredump_create(const struct intel_gt *gt,
+>  	if (!vma || !vma->pages || !compress)
+>  		return NULL;
+>  
+> -	num_pages = min_t(u64, vma->size, vma->obj->base.size) >> PAGE_SHIFT;
+> -	num_pages = DIV_ROUND_UP(10 * num_pages, 8); /* worstcase zlib growth */
+> -	dst = kmalloc(sizeof(*dst) + num_pages * sizeof(u32 *), ALLOW_FAIL);
+> +	dst = kmalloc(sizeof(*dst), ALLOW_FAIL);
+>  	if (!dst)
+>  		return NULL;
+>  
+> @@ -1036,14 +1036,13 @@ i915_vma_coredump_create(const struct intel_gt *gt,
+>  		return NULL;
+>  	}
+>  
+> +	INIT_LIST_HEAD(&dst->page_list);
+>  	strcpy(dst->name, name);
+>  	dst->next = NULL;
+>  
+>  	dst->gtt_offset = vma->node.start;
+>  	dst->gtt_size = vma->node.size;
+>  	dst->gtt_page_sizes = vma->page_sizes.gtt;
+> -	dst->num_pages = num_pages;
+> -	dst->page_count = 0;
+>  	dst->unused = 0;
+>  
+>  	ret = -EINVAL;
+> @@ -1106,8 +1105,13 @@ i915_vma_coredump_create(const struct intel_gt *gt,
+>  	}
+>  
+>  	if (ret || compress_flush(compress, dst)) {
+> -		while (dst->page_count--)
+> -			pool_free(&compress->pool, dst->pages[dst->page_count]);
+> +		struct page *page, *n;
+> +
+> +		list_for_each_entry_safe_reverse(page, n, &dst->page_list, lru) {
+> +			list_del_init(&page->lru);
+> +			pool_free(&compress->pool, page_address(page));
+> +		}
+> +
+>  		kfree(dst);
+>  		dst = NULL;
+>  	}
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
+> index b98d8cdbe4f2..5aedf5129814 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
+> @@ -39,10 +39,8 @@ struct i915_vma_coredump {
+>  	u64 gtt_size;
+>  	u32 gtt_page_sizes;
+>  
+> -	int num_pages;
+> -	int page_count;
+>  	int unused;
+> -	u32 *pages[];
+> +	struct list_head page_list;
+>  };
+>  
+>  struct i915_request_coredump {
+> -- 
+> 2.31.1
 > 
-> > [1]: <https://include-what-you-use.org/>  
-> 
-
