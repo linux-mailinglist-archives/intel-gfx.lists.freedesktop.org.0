@@ -1,45 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABF5745987B
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Nov 2021 00:39:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52124459884
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Nov 2021 00:44:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A08C489EFF;
-	Mon, 22 Nov 2021 23:39:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B239A89E5A;
+	Mon, 22 Nov 2021 23:44:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D495C89EFF
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Nov 2021 23:39:38 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10176"; a="222129684"
-X-IronPort-AV: E=Sophos;i="5.87,255,1631602800"; d="scan'208";a="222129684"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2021 15:39:38 -0800
-X-IronPort-AV: E=Sophos;i="5.87,255,1631602800"; d="scan'208";a="474531492"
-Received: from unerlige-ril-10.jf.intel.com (HELO unerlige-ril-10.165.21.208)
- ([10.165.21.208])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2021 15:39:38 -0800
-Date: Mon, 22 Nov 2021 15:39:33 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20211122233933.GA1371@unerlige-ril-10.165.21.208>
-References: <20211103224708.1931-1-umesh.nerlige.ramappa@intel.com>
- <68f76da9-6b70-fee4-6cc6-17e74c867bd2@linux.intel.com>
- <20211104220407.GA23493@unerlige-ril-10.165.21.208>
- <2c1af88a-93d3-cc8f-5e4e-e4a494fd21f0@linux.intel.com>
- <20211111164810.GH6789@unerlige-ril-10.165.21.208>
- <0183b8b0-5c8d-a7d5-55d5-fd068355fb3a@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AF11089E5A;
+ Mon, 22 Nov 2021 23:44:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A8E8EA9932;
+ Mon, 22 Nov 2021 23:44:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0183b8b0-5c8d-a7d5-55d5-fd068355fb3a@linux.intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Fix synchronization of PMU
- callback with reset
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Mon, 22 Nov 2021 23:44:08 -0000
+Message-ID: <163762464867.5693.12757561706719071692@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211122230402.2023576-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20211122230402.2023576-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_GuC_Error_Capture_Support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,245 +40,465 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 22, 2021 at 03:44:29PM +0000, Tvrtko Ursulin wrote:
->
->On 11/11/2021 16:48, Umesh Nerlige Ramappa wrote:
->>On Thu, Nov 11, 2021 at 02:37:43PM +0000, Tvrtko Ursulin wrote:
->>>
->>>On 04/11/2021 22:04, Umesh Nerlige Ramappa wrote:
->>>>On Thu, Nov 04, 2021 at 05:37:37PM +0000, Tvrtko Ursulin wrote:
->>>>>
->>>>>On 03/11/2021 22:47, Umesh Nerlige Ramappa wrote:
->>>>>>Since the PMU callback runs in irq context, it synchronizes with gt
->>>>>>reset using the reset count. We could run into a case where the PMU
->>>>>>callback could read the reset count before it is updated. This has a
->>>>>>potential of corrupting the busyness stats.
->>>>>>
->>>>>>In addition to the reset count, check if the reset bit is set before
->>>>>>capturing busyness.
->>>>>>
->>>>>>In addition save the previous stats only if you intend to update them.
->>>>>>
->>>>>>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>>>>>---
->>>>>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 ++++++++----
->>>>>> 1 file changed, 8 insertions(+), 4 deletions(-)
->>>>>>
->>>>>>diff --git 
->>>>>>a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>>>>>b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>index 5cc49c0b3889..d83ade77ca07 100644
->>>>>>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>@@ -1183,6 +1183,7 @@ static ktime_t 
->>>>>>guc_engine_busyness(struct intel_engine_cs *engine, ktime_t 
->>>>>>*now)
->>>>>>     u64 total, gt_stamp_saved;
->>>>>>     unsigned long flags;
->>>>>>     u32 reset_count;
->>>>>>+    bool in_reset;
->>>>>>     spin_lock_irqsave(&guc->timestamp.lock, flags);
->>>>>>@@ -1191,7 +1192,9 @@ static ktime_t 
->>>>>>guc_engine_busyness(struct intel_engine_cs *engine, ktime_t 
->>>>>>*now)
->>>>>>      * engine busyness from GuC, so we just use the driver stored
->>>>>>      * copy of busyness. Synchronize with gt reset using reset_count.
->>>>>>      */
->>>>>>-    reset_count = i915_reset_count(gpu_error);
->>>>>>+    rcu_read_lock();
->>>>>>+    in_reset = test_bit(I915_RESET_BACKOFF, &gt->reset.flags);
->>>>>>+    rcu_read_unlock();
->>>>>
->>>>>I don't really understand the point of rcu_read_lock over 
->>>>>test_bit but I guess you copied it from the trylock loop.
->>>>
->>>>Yes, I don't see other parts of code using the lock though. I 
->>>>can drop it.
->>>>
->>>>>
->>>>>>     *now = ktime_get();
->>>>>>@@ -1201,9 +1204,10 @@ static ktime_t 
->>>>>>guc_engine_busyness(struct intel_engine_cs *engine, ktime_t 
->>>>>>*now)
->>>>>>      * start_gt_clk is derived from GuC state. To get a consistent
->>>>>>      * view of activity, we query the GuC state only if gt is awake.
->>>>>>      */
->>>>>>-    stats_saved = *stats;
->>>>>>-    gt_stamp_saved = guc->timestamp.gt_stamp;
->>>>>>-    if (intel_gt_pm_get_if_awake(gt)) {
->>>>>>+    if (intel_gt_pm_get_if_awake(gt) && !in_reset) {
->>>>>
->>>>>What is the point of looking at the old value of in_reset 
->>>>>here? Gut feeling says if there is a race this does not fix 
->>>>>it.
->>>>>
->>>>>I did not figure out from the commit message what does "could 
->>>>>read the reset count before it is updated" mean?
->>>>>I thought the point of reading
->>>>
->>>>>the reset count twice was that you are sure there was no reset 
->>>>>while in here, in which case it is safe to update the software 
->>>>>copy. I don't easily see what test_bit does on top.
->>>>
->>>>This is what I see in the reset flow
->>>>---------------
->>>>
->>>>R1) test_and_set_bit(I915_RESET_BACKOFF, &gt->reset.flags)
->>>>R2) atomic_inc(&gt->i915->gpu_error.reset_count)
->>>>R3) reset prepare
->>>>R4) do the HW reset
->>>>
->>>>The reset count is updated only once above and that's before an 
->>>>actual HW reset happens.
->>>>
->>>>PMU callback flow before this patch
->>>>---------------
->>>>
->>>>P1) read reset count
->>>>P2) update stats
->>>>P3) read reset count
->>>>P4) if reset count changed, use old stats. if not use updated stats.
->>>>
->>>>I am concerned that the PMU flow could run after step (R2). Then 
->>>>we wrongly conclude that the count stayed the same and no HW 
->>>>reset happened.
->>
->>Here is the problematic sequence: Threads R and P.
->>------------
->>R1) test_and_set_bit(I915_RESET_BACKOFF, &gt->reset.flags)
->>R2) atomic_inc(&gt->i915->gpu_error.reset_count)
->>     P1) read reset count
->>     P2) update stats
->>     P3) read reset count
->>     P4) if reset count changed, use old stats. if not use updated stats.
->>R3) reset prepare
->>R4) do the HW reset
->>
->>Do you agree that this is racy? In thread P we don't know in if the 
->>reset flag was set or not when we captured the reset count in P1?
->>
->>>>
->>>>PMU callback flow with this patch
->>>>---------------
->>>>This would rely on the reset_count only if a reset is not in progress.
->>>>
->>>>P0) test_bit for I915_RESET_BACKOFF
->>>>P1) read reset count if not in reset. if in reset, use old stats
->>>>P2) update stats
->>>>P3) read reset count
->>>>P4) if reset count changed, use old stats. if not use updated stats.
->>>>
->>>>Now that I think about it more, I do see one sequence that still 
->>>>needs fixing though - P0, R1, R2, P1 - P4. For that, I think I 
->>>>need to re-read the BACKOFF bit after reading the reset_count 
->>>>for the first time.
->>>>Modified PMU callback sequence would be:
->>>>----------
->>>>
->>>>M0) test_bit for I915_RESET_BACKOFF
->>>>M1) read reset count if not in reset, if in reset, use old stats
->>>>
->>>>M1.1) test_bit for I915_RESET_BACKOFF. if set, use old stats. if 
->>>>not, use reset_count to synchronize
->>>>
->>>>M2) update stats
->>>>M3) read reset count
->>>>M4) if reset count changed, use old stats. if not use updated stats.
->>>
->>>You did not end up implementing this flow? Have you later changed 
->>>your mind whether it is required or not? Or maybe I am looking at 
->>>not the latest patch.
->>>
->>>Is the below the latest?
->>>
->>>"""
->>>v2:
->>>- The 2 reset counts captured in the PMU callback can end up being the
->>> same if they were captured right after the count is incremented in the
->>> reset flow. This can lead to a bad busyness state. Ensure that reset
->>> is not in progress when the initial reset count is captured.
->>>"""
->>
->>Yes, v2 is the latest (maybe CI results re-ordered the patches). 
->>Instead of sampling the BACKOFF flag before and after the reset 
->>count (as in the modified sequence), I just sample it after. The 
->>order is critical - first sample reset count and then the reset 
->>flag.
->>
->>>
->>>Is the key now that you rely on ordering of atomic_inc and set_bit 
->>>in the reset path?
->>
->>Yes
->>
->>>Frankly I still don't understand why you can get away
->>
->>>with using stale in_reset in v2. If you acknowledge it can change 
->>>between sampling and checking, then what is the point in having it 
->>>altogether? You still solely rely on reset count in that case, no?
->>
->>Correct, but now I know for sure that the first sample of 
->>reset_count was captured when reset flag was not set (since I am 
->>relying on the order of sampling).
->>
->>About solely using the reset_count, I have listed the problematic 
->>sequence above to highlight what the issue is.
->
->It was this:
->
->"""
->R1) test_and_set_bit(I915_RESET_BACKOFF, &gt->reset.flags)
->R2) atomic_inc(&gt->i915->gpu_error.reset_count)
->     P1) read reset count
->     P2) update stats
->     P3) read reset count
->     P4) if reset count changed, use old stats. if not use updated stats.
->R3) reset prepare
->R4) do the HW reset
->
->Do you agree that this is racy? In thread P we don't know in if the reset flag was set or not when we captured the reset count in P1?
->"""
->
->Why it matter if reset flag was set or not? Lets see how things are after this patch:
->
->After this patch it ends like this:
->
->     P1) Read and store reset bit
->R1) test_and_set_bit(I915_RESET_BACKOFF, &gt->reset.flags)
->     P2) If reset bit was not set:
->           P2.1) read reset count
->R2) atomic_inc(&gt->i915->gpu_error.reset_count)
->           P2.2) update stats
->           P2.3) read reset count
->           P2.4) if reset count changed, use old stats. if not use updated stats.
->R3) reset prepare
->R4) do the HW reset
->
->So the reset bit got set between P1 and P2. How is that then not the same as not looking at the reset bit at all?
+== Series Details ==
 
-But the new sequence in this patch is this:
+Series: Add GuC Error Capture Support
+URL   : https://patchwork.freedesktop.org/series/97187/
+State : warning
 
-     P0) read reset count
-     P1) Read and store reset bit
-R1) test_and_set_bit(I915_RESET_BACKOFF, &gt->reset.flags)
-     P2) If reset bit was not set:
-R2) atomic_inc(&gt->i915->gpu_error.reset_count)
-	   P2.2) update stats
-	   P2.3) read reset count
-	   P2.4) if reset count changed, use old stats. if not use updated stats.
-R3) reset prepare
-R4) do the HW reset
+== Summary ==
 
-P2.1 moved to P0 when compared to the sequence you shared above.
+$ dim checkpatch origin/drm-tip
+3b28aa6f3791 drm/i915/guc: Add basic support for error capture lists
+-:101: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#101: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc.h:396:
++int intel_guc_error_capture_process_msg(struct intel_guc *guc,
++					 const u32 *msg, u32 len);
 
-Thanks,
-Umesh
+-:244: ERROR:OPEN_BRACE: open brace '{' following enum go on the same line
+#244: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:289:
++enum
++{
 
->
->Regards,
->
->Tvrtko
+-:340: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#340: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4001:
++int intel_guc_error_capture_process_msg(struct intel_guc *guc,
++					 const u32 *msg, u32 len)
+
+total: 1 errors, 0 warnings, 2 checks, 289 lines checked
+5d7b43376e65 drm/i915/guc: Update GuC ADS size for error capture lists
+-:315: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#315: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 578 lines checked
+55daaa2dfbb8 drm/i915/guc: Populate XE_LP register lists for GuC error state capture.
+-:35: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#35: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:22:
++#define COMMON_GEN12BASE_GLOBAL() \
++	{GEN12_FAULT_TLB_DATA0,    0,      0, "GEN12_FAULT_TLB_DATA0"}, \
++	{GEN12_FAULT_TLB_DATA1,    0,      0, "GEN12_FAULT_TLB_DATA1"}, \
++	{FORCEWAKE_MT,             0,      0, "FORCEWAKE_MT"}, \
++	{DERRMR,                   0,      0, "DERRMR"}, \
++	{GEN12_AUX_ERR_DBG,        0,      0, "GEN12_AUX_ERR_DBG"}, \
++	{GEN12_GAM_DONE,           0,      0, "GEN12_GAM_DONE"}, \
++	{GEN11_GUC_SG_INTR_ENABLE, 0,      0, "GEN11_GUC_SG_INTR_ENABLE"}, \
++	{GEN11_CRYPTO_RSVD_INTR_ENABLE, 0, 0, "GEN11_CRYPTO_RSVD_INTR_ENABLE"}, \
++	{GEN11_GUNIT_CSME_INTR_ENABLE, 0,  0, "GEN11_GUNIT_CSME_INTR_ENABLE"}, \
++	{GEN12_RING_FAULT_REG,     0,      0, "GEN12_RING_FAULT_REG"}
+
+-:47: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#47: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:34:
++#define COMMON_GEN12BASE_ENGINE_INSTANCE() \
++	{RING_PSMI_CTL(0),         0,      0, "RING_PSMI_CTL"}, \
++	{RING_ESR(0),              0,      0, "RING_ESR"}, \
++	{RING_ESR(0),              0,      0, "RING_ESR"}, \
++	{RING_DMA_FADD(0),         0,      0, "RING_DMA_FADD_LOW32"}, \
++	{RING_DMA_FADD_UDW(0),     0,      0, "RING_DMA_FADD_UP32"}, \
++	{RING_IPEIR(0),            0,      0, "RING_IPEIR"}, \
++	{RING_IPEHR(0),            0,      0, "RING_IPEHR"}, \
++	{RING_INSTPS(0),           0,      0, "RING_INSTPS"}, \
++	{RING_BBADDR(0),           0,      0, "RING_BBADDR_LOW32"}, \
++	{RING_BBADDR_UDW(0),       0,      0, "RING_BBADDR_UP32"}, \
++	{RING_BBSTATE(0),          0,      0, "RING_BBSTATE"}, \
++	{CCID(0),                  0,      0, "CCID"}, \
++	{RING_ACTHD(0),            0,      0, "RING_ACTHD_LOW32"}, \
++	{RING_ACTHD_UDW(0),        0,      0, "RING_ACTHD_UP32"}, \
++	{RING_INSTPM(0),           0,      0, "RING_INSTPM"}, \
++	{RING_NOPID(0),            0,      0, "RING_NOPID"}, \
++	{RING_START(0),            0,      0, "RING_START"}, \
++	{RING_HEAD(0),             0,      0, "RING_HEAD"}, \
++	{RING_TAIL(0),             0,      0, "RING_TAIL"}, \
++	{RING_CTL(0),              0,      0, "RING_CTL"}, \
++	{RING_MI_MODE(0),          0,      0, "RING_MI_MODE"}, \
++	{RING_CONTEXT_CONTROL(0),  0,      0, "RING_CONTEXT_CONTROL"}, \
++	{RING_INSTDONE(0),         0,      0, "RING_INSTDONE"}, \
++	{RING_HWS_PGA(0),          0,      0, "RING_HWS_PGA"}, \
++	{RING_MODE_GEN7(0),        0,      0, "RING_MODE_GEN7"}, \
++	{GEN8_RING_PDP_LDW(0, 0),  0,      0, "GEN8_RING_PDP0_LDW"}, \
++	{GEN8_RING_PDP_UDW(0, 0),  0,      0, "GEN8_RING_PDP0_UDW"}, \
++	{GEN8_RING_PDP_LDW(0, 1),  0,      0, "GEN8_RING_PDP1_LDW"}, \
++	{GEN8_RING_PDP_UDW(0, 1),  0,      0, "GEN8_RING_PDP1_UDW"}, \
++	{GEN8_RING_PDP_LDW(0, 2),  0,      0, "GEN8_RING_PDP2_LDW"}, \
++	{GEN8_RING_PDP_UDW(0, 2),  0,      0, "GEN8_RING_PDP2_UDW"}, \
++	{GEN8_RING_PDP_LDW(0, 3),  0,      0, "GEN8_RING_PDP3_LDW"}, \
++	{GEN8_RING_PDP_UDW(0, 3),  0,      0, "GEN8_RING_PDP3_UDW"}
+
+-:85: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#85: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:72:
++#define COMMON_GEN12BASE_RENDER() \
++	{GEN7_SC_INSTDONE,         0,      0, "GEN7_SC_INSTDONE"}, \
++	{GEN12_SC_INSTDONE_EXTRA,  0,      0, "GEN12_SC_INSTDONE_EXTRA"}, \
++	{GEN12_SC_INSTDONE_EXTRA2, 0,      0, "GEN12_SC_INSTDONE_EXTRA2"}
+
+-:90: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#90: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:77:
++#define COMMON_GEN12BASE_VEC() \
++	{GEN11_VCS_VECS_INTR_ENABLE, 0,    0, "GEN11_VCS_VECS_INTR_ENABLE"}, \
++	{GEN12_SFC_DONE(0),        0,      0, "GEN12_SFC_DONE0"}, \
++	{GEN12_SFC_DONE(1),        0,      0, "GEN12_SFC_DONE1"}, \
++	{GEN12_SFC_DONE(2),        0,      0, "GEN12_SFC_DONE2"}, \
++	{GEN12_SFC_DONE(3),        0,      0, "GEN12_SFC_DONE3"}
+
+-:174: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#174: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:147:
++
++
+
+-:228: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#228: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:151:
++	MAKE_GCAP_REGLIST_DESCR(gen12lp_rc_class_regs, INDEX_PF, TYPE_ENGINE_CLASS, GUC_RENDER_CLASS),
+
+-:229: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#229: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:152:
++	MAKE_GCAP_REGLIST_DESCR(gen12lp_rc_inst_regs, INDEX_PF, TYPE_ENGINE_INSTANCE, GUC_RENDER_CLASS),
+
+-:230: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#230: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:153:
++	MAKE_GCAP_REGLIST_DESCR(gen12lp_vd_class_regs, INDEX_PF, TYPE_ENGINE_CLASS, GUC_VIDEO_CLASS),
+
+-:231: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#231: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:154:
++	MAKE_GCAP_REGLIST_DESCR(gen12lp_vd_inst_regs, INDEX_PF, TYPE_ENGINE_INSTANCE, GUC_VIDEO_CLASS),
+
+-:232: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#232: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:155:
++	MAKE_GCAP_REGLIST_DESCR(gen12lp_vec_class_regs, INDEX_PF, TYPE_ENGINE_CLASS, GUC_VIDEOENHANCE_CLASS),
+
+-:233: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#233: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:156:
++	MAKE_GCAP_REGLIST_DESCR(gen12lp_vec_inst_regs, INDEX_PF, TYPE_ENGINE_INSTANCE, GUC_VIDEOENHANCE_CLASS),
+
+-:234: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#234: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:157:
++	MAKE_GCAP_REGLIST_DESCR(gen12lp_blt_class_regs, INDEX_PF, TYPE_ENGINE_CLASS, GUC_BLITTER_CLASS),
+
+-:235: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#235: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:158:
++	MAKE_GCAP_REGLIST_DESCR(gen12lp_blt_inst_regs, INDEX_PF, TYPE_ENGINE_INSTANCE, GUC_BLITTER_CLASS),
+
+-:243: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#243: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:165:
++guc_capture_get_ext_list_ptr(struct __guc_mmio_reg_descr_group * lists, u32 owner, u32 type, u32 class)
+
+-:243: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#243: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:165:
++guc_capture_get_ext_list_ptr(struct __guc_mmio_reg_descr_group * lists, u32 owner, u32 type, u32 class)
+
+-:245: ERROR:SPACING: space required before the open brace '{'
+#245: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:167:
++	while(lists->list){
+
+-:245: ERROR:SPACING: space required before the open parenthesis '('
+#245: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:167:
++	while(lists->list){
+
+-:253: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around lists->ext
+#253: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:175:
++	return &(lists->ext);
+
+-:256: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#256: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:178:
++void guc_capture_clear_ext_regs(struct __guc_mmio_reg_descr_group * lists)
+
+-:258: ERROR:SPACING: space required before the open brace '{'
+#258: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:180:
++	while(lists->list){
+
+-:258: ERROR:SPACING: space required before the open parenthesis '('
+#258: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:180:
++	while(lists->list){
+
+-:260: WARNING:NEEDLESS_IF: kfree(NULL) is safe and this check is probably not required
+#260: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:182:
++		if (lists->ext) {
++			kfree(lists->ext);
+
+-:266: WARNING:RETURN_VOID: void function return statements are not generally useful
+#266: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:188:
++	return;
++}
+
+-:270: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#270: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:192:
++			     struct __guc_mmio_reg_descr_group * lists)
+
+-:323: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#323: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:244:
++		/*
++		* For certain engine classes, there are slice and subslice
+
+-:350: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#350: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h:29:
++	struct __guc_mmio_reg_descr * ext;
+
+total: 12 errors, 12 warnings, 2 checks, 335 lines checked
+f20287422c25 drm/i915/guc: Add GuC's error state capture output structures.
+-:24: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
+#24: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h:35:
++		#define GUC_CAPTURE_DATAHDR_SRC_TYPE GENMASK(3, 0) /* as per enum guc_capture_type */
+
+-:25: WARNING:LONG_LINE_COMMENT: line length of 103 exceeds 100 columns
+#25: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h:36:
++		#define GUC_CAPTURE_DATAHDR_SRC_CLASS GENMASK(7, 4) /* as per GUC_MAX_ENGINE_CLASSES */
+
+total: 0 errors, 2 warnings, 0 checks, 41 lines checked
+c9432d4f7471 drm/i915/guc: Update GuC's log-buffer-state access for error capture.
+f56313a6f708 drm/i915/guc: Copy new GuC error capture logs upon G2H notification.
+-:224: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#224: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:567:
++	if (!guc->capture.out_store.addr) {
++		drm_warn(&dev_priv->drm, "GuC-capture interim-store populated at init!\n");
+
+-:357: ERROR:TRAILING_WHITESPACE: trailing whitespace
+#357: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_log.h:71:
++ $
+
+-:357: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#357: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_log.h:71:
++ $
+
+total: 1 errors, 2 warnings, 0 checks, 347 lines checked
+cd819348e021 drm/i915/guc: Print the GuC error capture output register list.
+-:128: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 20)
+#128: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:500:
++	if (CIRC_CNT_TO_END(store->head, store->tail, store->size) >= fullsize) {
++		    memcpy(group, (store->addr + store->tail), fullsize);
+
+-:154: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 20)
+#154: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:526:
++	if (CIRC_CNT_TO_END(store->head, store->tail, store->size) >= fullsize) {
++		    memcpy(data, (store->addr + store->tail), fullsize);
+
+-:183: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 20)
+#183: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:555:
++	if (CIRC_CNT_TO_END(store->head, store->tail, store->size) >= fullsize) {
++		    memcpy(reg, (store->addr + store->tail), fullsize);
+
+-:210: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#210: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:582:
++#define guc_capt_err_print(a, b, ...) \
++	do { \
++		drm_warn(a, __VA_ARGS__); \
++		if (b) \
++			i915_error_printf(b, __VA_ARGS__); \
++	} while (0)
+
+-:217: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#217: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:589:
++#define guc_capt_err_print(a, b, ...) \
++	do { \
++		if (b) \
++			i915_error_printf(b, __VA_ARGS__); \
++	} while (0)
+
+-:257: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#257: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:629:
++
++
+
+-:261: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
+#261: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:633:
++#define GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng) \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Name: %s\n", (eng)->name); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Class: 0x%02x\n", (eng)->class); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Inst: 0x%02x\n", (eng)->instance); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-LogicalMask: 0x%08x\n", (eng)->logical_mask)
+
+-:261: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#261: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:633:
++#define GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng) \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Name: %s\n", (eng)->name); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Class: 0x%02x\n", (eng)->class); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Inst: 0x%02x\n", (eng)->instance); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-LogicalMask: 0x%08x\n", (eng)->logical_mask)
+
+-:261: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'i915' may be better as '(i915)' to avoid precedence issues
+#261: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:633:
++#define GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng) \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Name: %s\n", (eng)->name); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Class: 0x%02x\n", (eng)->class); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Inst: 0x%02x\n", (eng)->instance); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-LogicalMask: 0x%08x\n", (eng)->logical_mask)
+
+-:261: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ebuf' - possible side-effects?
+#261: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:633:
++#define GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng) \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Name: %s\n", (eng)->name); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Class: 0x%02x\n", (eng)->class); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Inst: 0x%02x\n", (eng)->instance); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-LogicalMask: 0x%08x\n", (eng)->logical_mask)
+
+-:261: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'eng' - possible side-effects?
+#261: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:633:
++#define GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng) \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Name: %s\n", (eng)->name); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Class: 0x%02x\n", (eng)->class); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Inst: 0x%02x\n", (eng)->instance); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-LogicalMask: 0x%08x\n", (eng)->logical_mask)
+
+-:262: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around i915->drm
+#262: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:634:
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Name: %s\n", (eng)->name); \
+
+-:263: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around i915->drm
+#263: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:635:
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Class: 0x%02x\n", (eng)->class); \
+
+-:264: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around i915->drm
+#264: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:636:
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-Inst: 0x%02x\n", (eng)->instance); \
+
+-:265: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around i915->drm
+#265: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:637:
++	PRINT(&(i915->drm), (ebuf), "    i915-Eng-LogicalMask: 0x%08x\n", (eng)->logical_mask)
+
+-:267: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
+#267: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:639:
++#define GCAP_PRINT_GUC_INST_INFO(i915, ebuf, data) \
++	PRINT(&(i915->drm), (ebuf), "    LRCA: 0x%08x\n", (data).lrca); \
++	PRINT(&(i915->drm), (ebuf), "    GuC-ContextID: 0x%08x\n", (data).guc_ctx_id); \
++	PRINT(&(i915->drm), (ebuf), "    GuC-Engine-Instance: 0x%08x\n", \
++	      (uint32_t) FIELD_GET(GUC_CAPTURE_DATAHDR_SRC_INSTANCE, (data).info));
+
+-:267: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#267: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:639:
++#define GCAP_PRINT_GUC_INST_INFO(i915, ebuf, data) \
++	PRINT(&(i915->drm), (ebuf), "    LRCA: 0x%08x\n", (data).lrca); \
++	PRINT(&(i915->drm), (ebuf), "    GuC-ContextID: 0x%08x\n", (data).guc_ctx_id); \
++	PRINT(&(i915->drm), (ebuf), "    GuC-Engine-Instance: 0x%08x\n", \
++	      (uint32_t) FIELD_GET(GUC_CAPTURE_DATAHDR_SRC_INSTANCE, (data).info));
+
+-:267: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'i915' may be better as '(i915)' to avoid precedence issues
+#267: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:639:
++#define GCAP_PRINT_GUC_INST_INFO(i915, ebuf, data) \
++	PRINT(&(i915->drm), (ebuf), "    LRCA: 0x%08x\n", (data).lrca); \
++	PRINT(&(i915->drm), (ebuf), "    GuC-ContextID: 0x%08x\n", (data).guc_ctx_id); \
++	PRINT(&(i915->drm), (ebuf), "    GuC-Engine-Instance: 0x%08x\n", \
++	      (uint32_t) FIELD_GET(GUC_CAPTURE_DATAHDR_SRC_INSTANCE, (data).info));
+
+-:267: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ebuf' - possible side-effects?
+#267: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:639:
++#define GCAP_PRINT_GUC_INST_INFO(i915, ebuf, data) \
++	PRINT(&(i915->drm), (ebuf), "    LRCA: 0x%08x\n", (data).lrca); \
++	PRINT(&(i915->drm), (ebuf), "    GuC-ContextID: 0x%08x\n", (data).guc_ctx_id); \
++	PRINT(&(i915->drm), (ebuf), "    GuC-Engine-Instance: 0x%08x\n", \
++	      (uint32_t) FIELD_GET(GUC_CAPTURE_DATAHDR_SRC_INSTANCE, (data).info));
+
+-:267: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'data' - possible side-effects?
+#267: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:639:
++#define GCAP_PRINT_GUC_INST_INFO(i915, ebuf, data) \
++	PRINT(&(i915->drm), (ebuf), "    LRCA: 0x%08x\n", (data).lrca); \
++	PRINT(&(i915->drm), (ebuf), "    GuC-ContextID: 0x%08x\n", (data).guc_ctx_id); \
++	PRINT(&(i915->drm), (ebuf), "    GuC-Engine-Instance: 0x%08x\n", \
++	      (uint32_t) FIELD_GET(GUC_CAPTURE_DATAHDR_SRC_INSTANCE, (data).info));
+
+-:267: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#267: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:639:
++#define GCAP_PRINT_GUC_INST_INFO(i915, ebuf, data) \
++	PRINT(&(i915->drm), (ebuf), "    LRCA: 0x%08x\n", (data).lrca); \
++	PRINT(&(i915->drm), (ebuf), "    GuC-ContextID: 0x%08x\n", (data).guc_ctx_id); \
++	PRINT(&(i915->drm), (ebuf), "    GuC-Engine-Instance: 0x%08x\n", \
++	      (uint32_t) FIELD_GET(GUC_CAPTURE_DATAHDR_SRC_INSTANCE, (data).info));
+
+-:268: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around i915->drm
+#268: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:640:
++	PRINT(&(i915->drm), (ebuf), "    LRCA: 0x%08x\n", (data).lrca); \
+
+-:269: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around i915->drm
+#269: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:641:
++	PRINT(&(i915->drm), (ebuf), "    GuC-ContextID: 0x%08x\n", (data).guc_ctx_id); \
+
+-:270: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around i915->drm
+#270: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:642:
++	PRINT(&(i915->drm), (ebuf), "    GuC-Engine-Instance: 0x%08x\n", \
+
+-:271: CHECK:SPACING: No space is necessary after a cast
+#271: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:643:
++	      (uint32_t) FIELD_GET(GUC_CAPTURE_DATAHDR_SRC_INSTANCE, (data).info));
+
+-:273: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
+#273: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:645:
++#define GCAP_PRINT_INTEL_CTX_INFO(i915, ebuf, ce) \
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-GuC-ID: 0x%016x\n", (ce)->guc_id.id);
+
+-:273: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#273: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:645:
++#define GCAP_PRINT_INTEL_CTX_INFO(i915, ebuf, ce) \
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-GuC-ID: 0x%016x\n", (ce)->guc_id.id);
+
+-:273: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'i915' may be better as '(i915)' to avoid precedence issues
+#273: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:645:
++#define GCAP_PRINT_INTEL_CTX_INFO(i915, ebuf, ce) \
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-GuC-ID: 0x%016x\n", (ce)->guc_id.id);
+
+-:273: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ebuf' - possible side-effects?
+#273: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:645:
++#define GCAP_PRINT_INTEL_CTX_INFO(i915, ebuf, ce) \
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-GuC-ID: 0x%016x\n", (ce)->guc_id.id);
+
+-:273: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ce' - possible side-effects?
+#273: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:645:
++#define GCAP_PRINT_INTEL_CTX_INFO(i915, ebuf, ce) \
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-GuC-ID: 0x%016x\n", (ce)->guc_id.id);
+
+-:273: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#273: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:645:
++#define GCAP_PRINT_INTEL_CTX_INFO(i915, ebuf, ce) \
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-GuC-ID: 0x%016x\n", (ce)->guc_id.id);
+
+-:274: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around i915->drm
+#274: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:646:
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
+
+-:275: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around i915->drm
+#275: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:647:
++	PRINT(&(i915->drm), (ebuf), "    i915-Ctx-GuC-ID: 0x%016x\n", (ce)->guc_id.id);
+
+-:368: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#368: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:740:
++				if (eng) {
+[...]
++				} else {
+[...]
+
+-:374: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#374: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:746:
++				if (ce) {
+[...]
++				} else {
+[...]
+
+-:398: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#398: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:770:
++
++		}
+
+-:401: WARNING:LINE_SPACING: Missing a blank line after declarations
+#401: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:773:
++			const struct intel_engine_coredump *ee;
++			for (ee = gt->engine; ee; ee = ee->next) {
+
+-:403: WARNING:LINE_SPACING: Missing a blank line after declarations
+#403: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:775:
++				const struct i915_vma_coredump *vma;
++				if (ee->engine == eng) {
+
+-:522: CHECK:BRACES: Unbalanced braces around else statement
+#522: FILE: drivers/gpu/drm/i915/i915_gpu_error.c:779:
++	else {
+
+total: 3 errors, 9 warnings, 27 checks, 562 lines checked
+
+
