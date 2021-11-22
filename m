@@ -2,37 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DEEC458B86
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 10:29:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48C13458BB7
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 10:43:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0955F89EF7;
-	Mon, 22 Nov 2021 09:29:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8BA489C0D;
+	Mon, 22 Nov 2021 09:43:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9019189F03;
- Mon, 22 Nov 2021 09:29:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10175"; a="234698194"
-X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="234698194"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2021 01:29:30 -0800
-X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="508879579"
-Received: from rmcdonax-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.19.217])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2021 01:29:13 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jakub Kicinski <kuba@kernel.org>, bpf@vger.kernel.org
-In-Reply-To: <20211120035253.72074-1-kuba@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211120035253.72074-1-kuba@kernel.org>
-Date: Mon, 22 Nov 2021 11:29:10 +0200
-Message-ID: <87fsroo7x5.fsf@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A53AF6E092;
+ Mon, 22 Nov 2021 09:43:20 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10175"; a="221977718"
+X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="221977718"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2021 01:43:20 -0800
+X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="508465571"
+Received: from aalazizi-mobl1.amr.corp.intel.com (HELO [10.213.249.159])
+ ([10.213.249.159])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2021 01:43:18 -0800
+Message-ID: <4d5deeb3-1eb9-f374-6729-1fe03d5e774e@linux.intel.com>
+Date: Mon, 22 Nov 2021 09:43:15 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH bpf] treewide: add missing includes masked
- by cgroup -> bpf dependency
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20211028092638.3142258-1-matthew.auld@intel.com>
+ <20211028092638.3142258-2-matthew.auld@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20211028092638.3142258-2-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/gtt: stop caching the
+ scratch page
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,102 +50,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kw@linux.com, songliubraving@fb.com, kafai@fb.com, airlied@linux.ie,
- yhs@fb.com, ast@kernel.org, dri-devel@lists.freedesktop.org, andrii@kernel.org,
- a-govindraju@ti.com, ray.huang@amd.com, sbhatta@marvell.com, robh@kernel.org,
- lorenzo.pieralisi@arm.com, daniel@iogearbox.net,
- krzysztof.kozlowski@canonical.com, john.fastabend@gmail.com,
- geert@linux-m68k.org, matthew.auld@intel.com, linux-pci@vger.kernel.org,
- Jakub Kicinski <kuba@kernel.org>, sgoutham@marvell.com,
- thomas.hellstrom@linux.intel.com, pawell@cadence.com, tzimmermann@suse.de,
- mani@kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, mripard@kernel.org, kpsingh@kernel.org,
- rogerq@kernel.org, linux-samsung-soc@vger.kernel.org, bhelgaas@google.com,
- linux-arm-kernel@lists.infradead.org, axboe@kernel.dk,
- linux-block@vger.kernel.org, sj@kernel.org, lima@lists.freedesktop.org,
- linux-mm@kvack.org, jingoohan1@gmail.com, peter.chen@kernel.org,
- linux-usb@vger.kernel.org, christian.koenig@amd.com, hkelam@marvell.com,
- yuq825@gmail.com, gregkh@linuxfoundation.org, akpm@linux-foundation.org,
- colin.king@intel.com, freedreno@lists.freedesktop.org, gakula@marvell.com
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 19 Nov 2021, Jakub Kicinski <kuba@kernel.org> wrote:
-> cgroup.h (therefore swap.h, therefore half of the universe)
-> includes bpf.h which in turn includes module.h and slab.h.
-> Since we're about to get rid of that dependency we need
-> to clean things up.
->
-> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+
+On 28/10/2021 10:26, Matthew Auld wrote:
+> Normal users shouldn't be hitting this, likely this would indicate a
+> userspace bug. So don't bother caching, which should be safe now that we
+> manually flush the page.
+
+Could this have a performance impact if "things" overfetch often enough 
+in normal operation?
+
+Regards,
+
+Tvrtko
+
+> Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > ---
-> CC: axboe@kernel.dk
-> CC: maarten.lankhorst@linux.intel.com
-> CC: mripard@kernel.org
-> CC: tzimmermann@suse.de
-> CC: airlied@linux.ie
-> CC: daniel@ffwll.ch
-> CC: jani.nikula@linux.intel.com
-> CC: joonas.lahtinen@linux.intel.com
-> CC: rodrigo.vivi@intel.com
-> CC: yuq825@gmail.com
-> CC: robdclark@gmail.com
-> CC: sean@poorly.run
-> CC: christian.koenig@amd.com
-> CC: ray.huang@amd.com
-> CC: sgoutham@marvell.com
-> CC: gakula@marvell.com
-> CC: sbhatta@marvell.com
-> CC: hkelam@marvell.com
-> CC: jingoohan1@gmail.com
-> CC: lorenzo.pieralisi@arm.com
-> CC: robh@kernel.org
-> CC: kw@linux.com
-> CC: bhelgaas@google.com
-> CC: krzysztof.kozlowski@canonical.com
-> CC: mani@kernel.org
-> CC: pawell@cadence.com
-> CC: peter.chen@kernel.org
-> CC: rogerq@kernel.org
-> CC: a-govindraju@ti.com
-> CC: gregkh@linuxfoundation.org
-> CC: ast@kernel.org
-> CC: daniel@iogearbox.net
-> CC: andrii@kernel.org
-> CC: kafai@fb.com
-> CC: songliubraving@fb.com
-> CC: yhs@fb.com
-> CC: john.fastabend@gmail.com
-> CC: kpsingh@kernel.org
-> CC: sj@kernel.org
-> CC: akpm@linux-foundation.org
-> CC: thomas.hellstrom@linux.intel.com
-> CC: matthew.auld@intel.com
-> CC: colin.king@intel.com
-> CC: geert@linux-m68k.org
-> CC: linux-block@vger.kernel.org
-> CC: dri-devel@lists.freedesktop.org
-> CC: intel-gfx@lists.freedesktop.org
-> CC: lima@lists.freedesktop.org
-> CC: linux-arm-msm@vger.kernel.org
-> CC: freedreno@lists.freedesktop.org
-> CC: linux-pci@vger.kernel.org
-> CC: linux-arm-kernel@lists.infradead.org
-> CC: linux-samsung-soc@vger.kernel.org
-> CC: linux-usb@vger.kernel.org
-> CC: bpf@vger.kernel.org
-> CC: linux-mm@kvack.org
->
-> Well, let's see if this makes it thru email servers...
-> ---
->  block/fops.c                                          | 1 +
->  drivers/gpu/drm/drm_gem_shmem_helper.c                | 1 +
->  drivers/gpu/drm/i915/gt/intel_gtt.c                   | 1 +
->  drivers/gpu/drm/i915/i915_request.c                   | 1 +
-
-For the i915 parts,
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+>   drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> index 8af2f709571c..9966e9dc5218 100644
+> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> @@ -651,7 +651,7 @@ static int gen8_init_scratch(struct i915_address_space *vm)
+>   
+>   	vm->scratch[0]->encode =
+>   		gen8_pte_encode(px_dma(vm->scratch[0]),
+> -				I915_CACHE_LLC, pte_flags);
+> +				I915_CACHE_NONE, pte_flags);
+>   
+>   	for (i = 1; i <= vm->top; i++) {
+>   		struct drm_i915_gem_object *obj;
+> @@ -667,7 +667,7 @@ static int gen8_init_scratch(struct i915_address_space *vm)
+>   		}
+>   
+>   		fill_px(obj, vm->scratch[i - 1]->encode);
+> -		obj->encode = gen8_pde_encode(px_dma(obj), I915_CACHE_LLC);
+> +		obj->encode = gen8_pde_encode(px_dma(obj), I915_CACHE_NONE);
+>   
+>   		vm->scratch[i] = obj;
+>   	}
+> 
