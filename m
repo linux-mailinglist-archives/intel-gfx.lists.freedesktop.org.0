@@ -2,42 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26B6A458B2B
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 10:12:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01A47458B2D
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 10:13:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6575C89E7B;
-	Mon, 22 Nov 2021 09:12:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD75B89C9C;
+	Mon, 22 Nov 2021 09:13:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5A0889E7B
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Nov 2021 09:12:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10175"; a="295560933"
-X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="295560933"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA8CA89C9C;
+ Mon, 22 Nov 2021 09:13:35 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10175"; a="298164319"
+X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="298164319"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2021 01:12:53 -0800
-X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="508458206"
-Received: from aalazizi-mobl1.amr.corp.intel.com (HELO [10.213.249.159])
- ([10.213.249.159])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2021 01:13:04 -0800
+X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="508458246"
+Received: from rmcdonax-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.19.217])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2021 01:12:52 -0800
-Message-ID: <afa62a68-43e8-460e-ad7a-0b21aba79d93@linux.intel.com>
-Date: Mon, 22 Nov 2021 09:12:50 +0000
+ 22 Nov 2021 01:13:01 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>, Lyude <lyude@redhat.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+In-Reply-To: <20211121110032.4720-2-hdegoede@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211121110032.4720-1-hdegoede@redhat.com>
+ <20211121110032.4720-2-hdegoede@redhat.com>
+Date: Mon, 22 Nov 2021 11:12:58 +0200
+Message-ID: <87ilwko8o5.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Content-Language: en-US
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20211120014201.26480-1-umesh.nerlige.ramappa@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20211120014201.26480-1-umesh.nerlige.ramappa@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Avoid with_intel_runtime_pm
- within spinlock
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/backlight: Make
+ ext_pwm_disable_backlight() call intel_backlight_set_pwm_level()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,88 +48,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Sun, 21 Nov 2021, Hans de Goede <hdegoede@redhat.com> wrote:
+> At least the Bay Trail LPSS PWM controller used with DSI panels on many
+> Bay Trail tablets seems to leave the PWM pin in whatever state it was
+> (high or low) ATM that the PWM gets disabled. Combined with some panels
+> not having a separate backlight-enable pin this leads to the backlight
+> sometimes staying on while it should not (when the pin was high during
+> PWM-disabling).
+>
+> First calling intel_backlight_set_pwm_level() will ensure that the pin
+> is always low (or high for inverted brightness panels) since the passed
+> in duty-cycle is 0% (or 100%) when the PWM gets disabled fixing the
+> backlight sometimes staying on.
+>
+> With the exception of ext_pwm_disable_backlight() all other
+> foo_disable_backlight() functions call intel_backlight_set_pwm_level()
+> already before disabling the backlight, so this change also aligns
+> ext_pwm_disable_backlight() with all the other disable() functions.
+>
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 
-On 20/11/2021 01:42, Umesh Nerlige Ramappa wrote:
-> When guc timestamp ping worker runs it takes the spinlock and calls
-> with_intel_runtime_pm.  Since with_intel_runtime_pm may sleep, move the
-> spinlock inside __update_guc_busyness_stats.
-> 
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+I'll take your word for it.
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+
 > ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 +++---------
->   1 file changed, 3 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 77fbcd8730ee..a7108b38973e 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -1251,12 +1251,15 @@ static void __update_guc_busyness_stats(struct intel_guc *guc)
->   	struct intel_gt *gt = guc_to_gt(guc);
->   	struct intel_engine_cs *engine;
->   	enum intel_engine_id id;
-> +	unsigned long flags;
->   	ktime_t unused;
->   
-> +	spin_lock_irqsave(&guc->timestamp.lock, flags);
->   	for_each_engine(engine, gt, id) {
->   		guc_update_pm_timestamp(guc, engine, &unused);
->   		guc_update_engine_gt_clks(engine);
->   	}
-> +	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
->   }
->   
->   static void guc_timestamp_ping(struct work_struct *wrk)
-> @@ -1266,7 +1269,6 @@ static void guc_timestamp_ping(struct work_struct *wrk)
->   	struct intel_uc *uc = container_of(guc, typeof(*uc), guc);
->   	struct intel_gt *gt = guc_to_gt(guc);
->   	intel_wakeref_t wakeref;
-> -	unsigned long flags;
->   	int srcu, ret;
->   
->   	/*
-> @@ -1277,13 +1279,9 @@ static void guc_timestamp_ping(struct work_struct *wrk)
->   	if (ret)
->   		return;
->   
-> -	spin_lock_irqsave(&guc->timestamp.lock, flags);
-> -
->   	with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref)
->   		__update_guc_busyness_stats(guc);
->   
-> -	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
-> -
->   	intel_gt_reset_unlock(gt, srcu);
->   
->   	mod_delayed_work(system_highpri_wq, &guc->timestamp.work,
-> @@ -1322,16 +1320,12 @@ static void guc_init_engine_stats(struct intel_guc *guc)
->   void intel_guc_busyness_park(struct intel_gt *gt)
->   {
->   	struct intel_guc *guc = &gt->uc.guc;
-> -	unsigned long flags;
->   
->   	if (!guc_submission_initialized(guc))
->   		return;
->   
->   	cancel_delayed_work(&guc->timestamp.work);
-> -
-> -	spin_lock_irqsave(&guc->timestamp.lock, flags);
->   	__update_guc_busyness_stats(guc);
-> -	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
->   }
->   
->   void intel_guc_busyness_unpark(struct intel_gt *gt)
-> 
+>  drivers/gpu/drm/i915/display/intel_backlight.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+> index 03cd730c926a..2758a2f6c093 100644
+> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+> @@ -421,6 +421,8 @@ static void ext_pwm_disable_backlight(const struct drm_connector_state *old_conn
+>  	struct intel_connector *connector = to_intel_connector(old_conn_state->connector);
+>  	struct intel_panel *panel = &connector->panel;
+>  
+> +	intel_backlight_set_pwm_level(old_conn_state, level);
+> +
+>  	panel->backlight.pwm_state.enabled = false;
+>  	pwm_apply_state(panel->backlight.pwm, &panel->backlight.pwm_state);
+>  }
 
-Not sure how this sneaked in when I think topic was mentioned. Or if I 
-misremembering, are the might_sleep annotations not there in runtime pm get?
-
-Anyway:
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
+-- 
+Jani Nikula, Intel Open Source Graphics Center
