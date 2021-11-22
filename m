@@ -1,39 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EBEB458FAE
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 14:47:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C20D458FBD
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 14:51:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 812376E14F;
-	Mon, 22 Nov 2021 13:47:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 537E989E35;
+	Mon, 22 Nov 2021 13:51:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A2376E14F;
- Mon, 22 Nov 2021 13:47:35 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10175"; a="295595544"
-X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="295595544"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2021 05:47:34 -0800
-X-IronPort-AV: E=Sophos;i="5.87,255,1631602800"; d="scan'208";a="674065992"
-Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
- ([10.223.74.179])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2021 05:47:32 -0800
-Date: Mon, 22 Nov 2021 19:18:17 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Tilak Tangudu <tilak.tangudu@intel.com>
-Message-ID: <20211122134816.GA30494@intel.com>
-References: <20211116155238.3226516-1-tilak.tangudu@intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 902D789E35
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Nov 2021 13:51:15 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10175"; a="221668158"
+X-IronPort-AV: E=Sophos;i="5.87,255,1631602800"; d="scan'208";a="221668158"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2021 05:51:14 -0800
+X-IronPort-AV: E=Sophos;i="5.87,255,1631602800"; d="scan'208";a="496866998"
+Received: from rmcdonax-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.19.217])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2021 05:51:13 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 22 Nov 2021 15:51:01 +0200
+Message-Id: <cover.1637588831.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211116155238.3226516-1-tilak.tangudu@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/rpm: Enable runtime pm
- autosuspend by default
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/8] drm/i915: break intel_display_types.h
+ dependency on i915_drv.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,52 +44,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ville.syrjala@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-11-16 at 21:22:38 +0530, Tilak Tangudu wrote:
-> v1: Enable runtime pm autosuspend by default for Gen12
-> and later versions.
-> 
-> v2: Enable runtime pm autosuspend by default for all
-> platforms(Syrjala Ville)
-> 
-> v3: Change commit message(Nikula Jani)
-It would require to reorder the commit log, version log
-need to move after commit message.
-Thanks,
-Anshuman.
-> Let's enable runtime pm autosuspend by default everywhere.
-> So, we can allow D3hot and bigger power savings on idle scenarios.
-> 
-> But at this time let's not touch the autosuspend_delay time,
-> what caused some regression on our previous attempt.
-> 
-> Also, the latest identified issue on GuC PM has been fixed by
-> commit 1a52faed3131 ("drm/i915/guc: Take GT PM ref when deregistering
-> context")
-> 
-> Signed-off-by: Tilak Tangudu <tilak.tangudu@intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_runtime_pm.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-> index 0d85f3c5c526..22dab36afcb6 100644
-> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-> @@ -590,6 +590,9 @@ void intel_runtime_pm_enable(struct intel_runtime_pm *rpm)
->  		pm_runtime_use_autosuspend(kdev);
->  	}
->  
-> +	/* Enable by default */
-> +	pm_runtime_allow(kdev);
-> +
->  	/*
->  	 * The core calls the driver load handler with an RPM reference held.
->  	 * We drop that here and will reacquire it during unloading in
-> -- 
-> 2.25.1
-> 
+Basically the rule of thumb should be that no headers include
+i915_drv.h. It's just too big and includes the world. One of the worst
+is intel_display_types.h. Untangle the mess a bit. There are some
+changes here that are less than perfect, and there's further cleanup to
+be done, but with the dependency gone, it should gradually get easier.
+
+BR,
+Jani.
+
+Jani Nikula (8):
+  drm/i915/display: use drm_crtc_wait_one_vblank() directly when
+    possible
+  drm/i915/display: remove intel_wait_for_vblank()
+  drm/i915/crtc: un-inline some crtc functions and move to
+    intel_crtc.[ch]
+  drm/i915/fb: move intel_fb_uses_dpt to intel_fb.c and un-inline
+  drm/i915: split out intel_pm_types.h
+  drm/i915: move enum hpd_pin to intel_display.h
+  drm/i915/display: convert dp_to_i915() to a macro
+  drm/i915/display: stop including i915_drv.h from intel_display_types.h
+
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |  6 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     | 37 ++++++++
+ drivers/gpu/drm/i915/display/intel_crtc.h     |  9 ++
+ drivers/gpu/drm/i915/display/intel_display.c  | 37 ++++----
+ drivers/gpu/drm/i915/display/intel_display.h  | 24 +++++
+ .../drm/i915/display/intel_display_types.h    | 72 +++------------
+ drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
+ .../drm/i915/display/intel_dp_aux_backlight.c |  1 +
+ .../drm/i915/display/intel_dp_link_training.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_dsi.c      |  2 +
+ drivers/gpu/drm/i915/display/intel_fb.c       | 11 +++
+ drivers/gpu/drm/i915/display/intel_fb.h       |  2 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   | 10 +--
+ .../drm/i915/display/intel_plane_initial.c    |  5 +-
+ drivers/gpu/drm/i915/display/intel_quirks.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_tv.c       |  7 +-
+ drivers/gpu/drm/i915/i915_drv.h               | 88 +------------------
+ drivers/gpu/drm/i915/intel_pm_types.h         | 76 ++++++++++++++++
+ 20 files changed, 212 insertions(+), 184 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/intel_pm_types.h
+
+-- 
+2.30.2
+
