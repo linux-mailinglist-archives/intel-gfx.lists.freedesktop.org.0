@@ -1,38 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B637458DB3
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 12:46:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C0F4458E65
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 13:32:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3B846E09F;
-	Mon, 22 Nov 2021 11:46:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE2916E10F;
+	Mon, 22 Nov 2021 12:32:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BACEF6E09F
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Nov 2021 11:46:33 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10175"; a="234594581"
-X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="234594581"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2021 03:46:33 -0800
-X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="674037200"
-Received: from calebjia-mobl.gar.corp.intel.com (HELO intel.com)
- ([10.255.37.192])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2021 03:46:32 -0800
-Date: Mon, 22 Nov 2021 06:46:31 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Message-ID: <YZuDF8wpZeJ3pkWg@intel.com>
-References: <20211122042730.3743330-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 776B76E10F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Nov 2021 12:32:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10175"; a="298187706"
+X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="298187706"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2021 04:31:57 -0800
+X-IronPort-AV: E=Sophos;i="5.87,254,1631602800"; d="scan'208";a="474332377"
+Received: from kananth2-mobl1.gar.corp.intel.com (HELO
+ smulati-desk.gar.corp.intel.com) ([10.213.104.183])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2021 04:31:55 -0800
+From: Mullati Siva <siva.mullati@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	siva.mullati@intel.com
+Date: Mon, 22 Nov 2021 18:01:42 +0530
+Message-Id: <20211122123142.319367-1-siva.mullati@intel.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211122042730.3743330-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pxp: Trybot - run CI with PXP and
- MEI_PXP enabled
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Skip remap_io_mapping() for non-x86
+ platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,187 +45,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 22, 2021 at 09:57:30AM +0530, Tejas Upadhyay wrote:
-> Please do not merge this is trybot patch to run CI with PXP
-> and MEI PXP enabled to get premegre results for
-> https://patchwork.freedesktop.org/series/96658/#rev3 change.
+From: Siva Mullati <siva.mullati@intel.com>
 
-Please don't send this kind of tests to intel-gfx ml.
+Only hw that supports mappable aperture would hit this path
+vm_fault_gtt/vm_fault_tmm, So we never hit this function
+remap_io_mapping() in discrete, So skip this code for non-x86
+architectures.
 
-Please use the actual try-bot ml:
+Signed-off-by: Siva Mullati <siva.mullati@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c |  1 +
+ drivers/gpu/drm/i915/i915_drv.h          |  8 ------
+ drivers/gpu/drm/i915/i915_mm.c           |  1 +
+ drivers/gpu/drm/i915/i915_mm.h           | 32 ++++++++++++++++++++++++
+ 4 files changed, 34 insertions(+), 8 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_mm.h
 
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx-trybot
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index 65fc6ff5f59d..39bb15eafc07 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -17,6 +17,7 @@
+ #include "i915_gem_ioctls.h"
+ #include "i915_gem_object.h"
+ #include "i915_gem_mman.h"
++#include "i915_mm.h"
+ #include "i915_trace.h"
+ #include "i915_user_extensions.h"
+ #include "i915_gem_ttm.h"
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 1bfadd9127fc..7ae0f0cc6866 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1967,14 +1967,6 @@ mkwrite_device_info(struct drm_i915_private *dev_priv)
+ int i915_reg_read_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file);
+ 
+-/* i915_mm.c */
+-int remap_io_mapping(struct vm_area_struct *vma,
+-		     unsigned long addr, unsigned long pfn, unsigned long size,
+-		     struct io_mapping *iomap);
+-int remap_io_sg(struct vm_area_struct *vma,
+-		unsigned long addr, unsigned long size,
+-		struct scatterlist *sgl, resource_size_t iobase);
+-
+ static inline int intel_hws_csb_write_index(struct drm_i915_private *i915)
+ {
+ 	if (GRAPHICS_VER(i915) >= 11)
+diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
+index 666808cb3a32..f4df15fe7cf8 100644
+--- a/drivers/gpu/drm/i915/i915_mm.c
++++ b/drivers/gpu/drm/i915/i915_mm.c
+@@ -27,6 +27,7 @@
+ 
+ 
+ #include "i915_drv.h"
++#include "i915_mm.h"
+ 
+ struct remap_pfn {
+ 	struct mm_struct *mm;
+diff --git a/drivers/gpu/drm/i915/i915_mm.h b/drivers/gpu/drm/i915/i915_mm.h
+new file mode 100644
+index 000000000000..1d3bbb9cbf43
+--- /dev/null
++++ b/drivers/gpu/drm/i915/i915_mm.h
+@@ -0,0 +1,32 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2021 Intel Corporation
++ */
++
++#ifndef __I915_MM_H__
++#define __I915_MM_H__
++
++#include <linux/types.h>
++
++struct vm_area_struct;
++struct io_mapping;
++struct scatterlist;
++
++#if IS_ENABLED(CONFIG_X86)
++int remap_io_mapping(struct vm_area_struct *vma,
++		unsigned long addr, unsigned long pfn, unsigned long size,
++		struct io_mapping *iomap);
++#else
++static inline int remap_io_mapping(struct vm_area_struct *vma,
++		unsigned long addr, unsigned long pfn, unsigned long size,
++		struct io_mapping *iomap)
++{
++	return 0;
++}
++#endif
++
++int remap_io_sg(struct vm_area_struct *vma,
++		unsigned long addr, unsigned long size,
++		struct scatterlist *sgl, resource_size_t iobase);
++
++#endif /* __I915_MM_H__ */
+-- 
+2.33.0
 
-and check the results at:
-
-https://patchwork.freedesktop.org/project/intel-gfx-trybot/series/?ordering=-last_updated
-
-Thanks,
-Rodrigo.
-
-> 
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> ---
->  drivers/gpu/drm/i915/Kconfig.debug      |  2 ++
->  drivers/gpu/drm/i915/gt/intel_gt_pm.c   |  7 +++--
->  drivers/gpu/drm/i915/pxp/intel_pxp_pm.c | 37 +++++++++++++++++--------
->  drivers/gpu/drm/i915/pxp/intel_pxp_pm.h | 19 +++++++++++--
->  4 files changed, 48 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-> index e7fd3e76f8a2..fa181693184b 100644
-> --- a/drivers/gpu/drm/i915/Kconfig.debug
-> +++ b/drivers/gpu/drm/i915/Kconfig.debug
-> @@ -48,6 +48,8 @@ config DRM_I915_DEBUG
->  	select DRM_I915_DEBUG_RUNTIME_PM
->  	select DRM_I915_SW_FENCE_DEBUG_OBJECTS
->  	select DRM_I915_SELFTEST
-> +	select INTEL_MEI_PXP # used by igt/gem_pxp
-> +	select DRM_I915_PXP # used by igt/gem_pxp
->  	select BROKEN # for prototype uAPI
->  	default n
->  	help
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> index b4a8594bc46c..c0fa41e4c803 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> @@ -303,7 +303,7 @@ void intel_gt_suspend_prepare(struct intel_gt *gt)
->  	user_forcewake(gt, true);
->  	wait_for_suspend(gt);
->  
-> -	intel_pxp_suspend(&gt->pxp, false);
-> +	intel_pxp_suspend_prepare(&gt->pxp);
->  }
->  
->  static suspend_state_t pm_suspend_target(void)
-> @@ -328,6 +328,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
->  	GEM_BUG_ON(gt->awake);
->  
->  	intel_uc_suspend(&gt->uc);
-> +	intel_pxp_suspend(&gt->pxp);
->  
->  	/*
->  	 * On disabling the device, we want to turn off HW access to memory
-> @@ -355,7 +356,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
->  
->  void intel_gt_runtime_suspend(struct intel_gt *gt)
->  {
-> -	intel_pxp_suspend(&gt->pxp, true);
-> +	intel_pxp_runtime_suspend(&gt->pxp);
->  	intel_uc_runtime_suspend(&gt->uc);
->  
->  	GT_TRACE(gt, "\n");
-> @@ -373,7 +374,7 @@ int intel_gt_runtime_resume(struct intel_gt *gt)
->  	if (ret)
->  		return ret;
->  
-> -	intel_pxp_resume(&gt->pxp);
-> +	intel_pxp_runtime_resume(&gt->pxp);
->  
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> index 23fd86de5a24..6a7d4e2ee138 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> @@ -7,26 +7,29 @@
->  #include "intel_pxp_irq.h"
->  #include "intel_pxp_pm.h"
->  #include "intel_pxp_session.h"
-> +#include "i915_drv.h"
->  
-> -void intel_pxp_suspend(struct intel_pxp *pxp, bool runtime)
-> +void intel_pxp_suspend_prepare(struct intel_pxp *pxp)
->  {
->  	if (!intel_pxp_is_enabled(pxp))
->  		return;
->  
->  	pxp->arb_is_valid = false;
->  
-> -	/*
-> -	 * Contexts using protected objects keep a runtime PM reference, so we
-> -	 * can only runtime suspend when all of them have been either closed
-> -	 * or banned. Therefore, there is no need to invalidate in that
-> -	 * scenario.
-> -	 */
-> -	if (!runtime)
-> -		intel_pxp_invalidate(pxp);
-> +	intel_pxp_invalidate(pxp);
-> +}
->  
-> -	intel_pxp_fini_hw(pxp);
-> +void intel_pxp_suspend(struct intel_pxp *pxp)
-> +{
-> +	intel_wakeref_t wakeref;
->  
-> -	pxp->hw_state_invalidated = false;
-> +	if (!intel_pxp_is_enabled(pxp))
-> +		return;
-> +
-> +	with_intel_runtime_pm(&pxp_to_gt(pxp)->i915->runtime_pm, wakeref) {
-> +		intel_pxp_fini_hw(pxp);
-> +		pxp->hw_state_invalidated = false;
-> +	}
->  }
->  
->  void intel_pxp_resume(struct intel_pxp *pxp)
-> @@ -44,3 +47,15 @@ void intel_pxp_resume(struct intel_pxp *pxp)
->  
->  	intel_pxp_init_hw(pxp);
->  }
-> +
-> +void intel_pxp_runtime_suspend(struct intel_pxp *pxp)
-> +{
-> +	if (!intel_pxp_is_enabled(pxp))
-> +		return;
-> +
-> +	pxp->arb_is_valid = false;
-> +
-> +	intel_pxp_fini_hw(pxp);
-> +
-> +	pxp->hw_state_invalidated = false;
-> +}
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-> index c89e97a0c3d0..16990a3f2f85 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-> @@ -9,16 +9,29 @@
->  #include "intel_pxp_types.h"
->  
->  #ifdef CONFIG_DRM_I915_PXP
-> -void intel_pxp_suspend(struct intel_pxp *pxp, bool runtime);
-> +void intel_pxp_suspend_prepare(struct intel_pxp *pxp);
-> +void intel_pxp_suspend(struct intel_pxp *pxp);
->  void intel_pxp_resume(struct intel_pxp *pxp);
-> +void intel_pxp_runtime_suspend(struct intel_pxp *pxp);
->  #else
-> -static inline void intel_pxp_suspend(struct intel_pxp *pxp, bool runtime)
-> +static inline void intel_pxp_suspend_prepare(struct intel_pxp *pxp)
-> +{
-> +}
-> +
-> +static inline void intel_pxp_suspend(struct intel_pxp *pxp)
->  {
->  }
->  
->  static inline void intel_pxp_resume(struct intel_pxp *pxp)
->  {
->  }
-> -#endif
->  
-> +static inline void intel_pxp_runtime_suspend(struct intel_pxp *pxp)
-> +{
-> +}
-> +#endif
-> +static inline void intel_pxp_runtime_resume(struct intel_pxp *pxp)
-> +{
-> +	intel_pxp_resume(pxp);
-> +}
->  #endif /* __INTEL_PXP_PM_H__ */
-> -- 
-> 2.31.1
-> 
