@@ -2,32 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE6AD459330
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 17:37:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5C5645936B
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 17:49:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EC8E89C61;
-	Mon, 22 Nov 2021 16:37:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE6BA89B29;
+	Mon, 22 Nov 2021 16:49:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B100A89B9E;
- Mon, 22 Nov 2021 16:37:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A90D4A9932;
- Mon, 22 Nov 2021 16:37:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7389339212312364096=="
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39EC389C08;
+ Mon, 22 Nov 2021 16:47:19 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C4E6960F48;
+ Mon, 22 Nov 2021 16:47:18 +0000 (UTC)
+Authentication-Results: mail.kernel.org;
+ dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
+ header.b="iOCicwL2"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
+ t=1637599637;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=nx1NlZdwj8PiM1PkkfjZLo7ZeKru7gZg5nAsco+kW4s=;
+ b=iOCicwL2JFJ9wuSXZb/K3vmWDQ9s2K25J+oTxVSHB5Enjp/uXVM59zhr1PjFEFtnl4ONy4
+ lL1dlXFzgPIvyiMp+afDjjYsjhOD4IGH913za0oVgzRkwCRYLv1/WW5Yv8NBsYKuDYB3H9
+ OQtjUTTHsO14O8Bz41uc2UUboaLRKXQ=
+Received: by mail.zx2c4.com (OpenSMTPD) with ESMTPSA id 3351b3c6
+ (TLSv1.3:AEAD-AES256-GCM-SHA384:256:NO); 
+ Mon, 22 Nov 2021 16:47:16 +0000 (UTC)
+Received: by mail-yb1-f173.google.com with SMTP id d10so51821822ybe.3;
+ Mon, 22 Nov 2021 08:47:16 -0800 (PST)
+X-Gm-Message-State: AOAM533LqUxdQ0pIbB4t+Hz5qLUISi4fKKWredJGKImXxCTcJ0KiM3s0
+ OsQtBiiwyVgoVri8LewMUmNyiOPJHBFBzA7Fivo=
+X-Google-Smtp-Source: ABdhPJyObd5dZicfYqfgZGS7t623RNq1HBJuihwrzy+uNE8E/S1ybLq2MDhXTWvYE6go/0WP8FDk7HMUmfiwoT/terk=
+X-Received: by 2002:a25:ae12:: with SMTP id a18mr62038171ybj.412.1637599635956; 
+ Mon, 22 Nov 2021 08:47:15 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Mon, 22 Nov 2021 16:37:04 -0000
-Message-ID: <163759902465.5694.15653432655173496465@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211122082252.223689-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20211122082252.223689-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/ttm=3A_Async_migration_=28rev7=29?=
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Mon, 22 Nov 2021 17:47:05 +0100
+X-Gmail-Original-Message-ID: <CAHmME9pShXywMogVkcBsXtfKxFHmQLe0F9cMF27aveUz6iyWhA@mail.gmail.com>
+Message-ID: <CAHmME9pShXywMogVkcBsXtfKxFHmQLe0F9cMF27aveUz6iyWhA@mail.gmail.com>
+To: Vitaly Lubart <vitaly.lubart@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>, 
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Mon, 22 Nov 2021 16:49:55 +0000
+Subject: [Intel-gfx] RPM raw-wakeref not held in intel_pxp_fini_hw
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,242 +58,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7389339212312364096==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey Intel PXPers,
 
-== Series Details ==
+I hit this splat on 5.16-rc1 during system suspend:
 
-Series: drm/i915/ttm: Async migration (rev7)
-URL   : https://patchwork.freedesktop.org/series/96798/
-State : success
+Nov 22 13:54:09 thinkpad systemd-logind[934]: Lid closed.
+Nov 22 13:54:09 thinkpad systemd[1]: Reached target Sleep.
+Nov 22 13:54:09 thinkpad systemd[1]: Starting System Suspend...
+Nov 22 13:54:09 thinkpad systemd-sleep[519259]: Entering sleep state
+'suspend'...
+Nov 22 13:54:09 thinkpad kernel: PM: suspend entry (s2idle)
+Nov 22 15:22:05 thinkpad kernel: Filesystems sync: 0.124 seconds
+Nov 22 15:22:05 thinkpad kernel: Freezing user space processes ...
+(elapsed 0.001 seconds) done.
+Nov 22 15:22:05 thinkpad kernel: OOM killer disabled.
+Nov 22 15:22:05 thinkpad kernel: Freezing remaining freezable tasks
+... (elapsed 0.001 seconds) done.
+Nov 22 15:22:05 thinkpad kernel: printk: Suspending console(s) (use
+no_console_suspend to debug)
+Nov 22 15:22:05 thinkpad kernel: ------------[ cut here ]------------
+Nov 22 15:22:05 thinkpad kernel: RPM wakelock ref not held during HW access
+Nov 22 15:22:05 thinkpad kernel: WARNING: CPU: 10 PID: 519259 at
+drivers/gpu/drm/i915/intel_runtime_pm.h:112
+fwtable_write32+0x1cb/0x200 [i915]
+Nov 22 15:22:05 thinkpad kernel: Modules linked in: cdc_mbim cdc_wdm
+cdc_ncm cdc_ether usbnet mii snd_seq_dummy snd_hrtimer snd_seq
+snd_seq_device rfcomm cmac algif_skcipher bnep uvcvideo
+videobuf2_vmalloc videobuf2_memops videobuf2_v4l2 btusb
+videobuf2_common btintel blue>
+Nov 22 15:22:05 thinkpad kernel:  i2c_designware_platform
+i2c_designware_core mei_pxp mei_hdcp ac97_bus kvm_intel snd_hda_intel
+snd_intel_dspcfg intel_rapl_msr think_lmi snd_intel_sdw_acpi i915
+firmware_attributes_class wmi_bmof snd_hda_codec kvm i2c_algo_bit
+snd_hwdep int>
+Nov 22 15:22:05 thinkpad kernel: CPU: 10 PID: 519259 Comm:
+systemd-sleep Tainted: G S   U            5.16.0-rc1+ #192
+Nov 22 15:22:05 thinkpad kernel: Hardware name: LENOVO
+20Y5CTO1WW/20Y5CTO1WW, BIOS N40ET28W (1.10 ) 09/09/2021
+Nov 22 15:22:05 thinkpad kernel: RIP: 0010:fwtable_write32+0x1cb/0x200 [i915]
+Nov 22 15:22:05 thinkpad kernel: Code: 21 cb df 0f 0b e9 85 fe ff ff
+80 3d 36 68 1f 00 00 0f 85 82 fe ff ff 48 c7 c7 70 cf c4 a1 c6 05 22
+68 1f 00 01 e8 1c 21 cb df <0f> 0b e9 68 fe ff ff 48 8b bb 40 01 00 00
+e8 a2 cf ce df b9 01 00
+Nov 22 15:22:05 thinkpad kernel: RSP: 0018:ffff88821d283c80 EFLAGS: 00010282
+Nov 22 15:22:05 thinkpad kernel: RAX: 000000000000002a RBX:
+ffff88813df707d0 RCX: 0000000000000027
+Nov 22 15:22:05 thinkpad kernel: RDX: ffff88901f69b448 RSI:
+0000000000000001 RDI: ffff88901f69b440
+Nov 22 15:22:05 thinkpad kernel: RBP: 00000000000320f0 R08:
+0000000000000d17 R09: ffff88821d283c20
+Nov 22 15:22:05 thinkpad kernel: R10: 3fffffffffffffff R11:
+fffffffffff93a78 R12: 0000000040000000
+Nov 22 15:22:05 thinkpad kernel: R13: 0000000000000000 R14:
+ffff888101311150 R15: ffffffff81491b20
+Nov 22 15:22:05 thinkpad kernel: FS:  00007efcfaa87800(0000)
+GS:ffff88901f680000(0000) knlGS:0000000000000000
+Nov 22 15:22:05 thinkpad kernel: CS:  0010 DS: 0000 ES: 0000 CR0:
+0000000080050033
+Nov 22 15:22:05 thinkpad kernel: CR2: 00007efcfb41e6f0 CR3:
+00000005ed937004 CR4: 0000000000770ee0
+Nov 22 15:22:05 thinkpad kernel: PKRU: 55555554
+Nov 22 15:22:05 thinkpad kernel: Call Trace:
+Nov 22 15:22:05 thinkpad kernel:  <TASK>
+Nov 22 15:22:05 thinkpad kernel:  intel_pxp_fini_hw+0x23/0x30 [i915]
+Nov 22 15:22:05 thinkpad kernel:  intel_pxp_suspend+0x2f/0x40 [i915]
+Nov 22 15:22:05 thinkpad kernel:  i915_gem_backup_suspend+0x6e/0x150 [i915]
+Nov 22 15:22:05 thinkpad kernel:  ? pci_target_state+0xc/0xc0
+Nov 22 15:22:05 thinkpad kernel:  pci_pm_prepare+0x28/0x60
+Nov 22 15:22:05 thinkpad kernel:  dpm_prepare+0xbd/0x370
+Nov 22 15:22:05 thinkpad kernel:  dpm_suspend_start+0x16/0x80
+Nov 22 15:22:05 thinkpad kernel:  suspend_devices_and_enter+0x104/0x6d0
+Nov 22 15:22:05 thinkpad kernel:  pm_suspend.cold+0x2f6/0x33d
+Nov 22 15:22:05 thinkpad kernel:  state_store+0x6b/0xe0
+Nov 22 15:22:05 thinkpad kernel:  kernfs_fop_write_iter+0x107/0x190
+Nov 22 15:22:05 thinkpad kernel:  new_sync_write+0x100/0x170
+Nov 22 15:22:05 thinkpad kernel:  vfs_write+0x1c5/0x260
+Nov 22 15:22:05 thinkpad kernel:  ksys_write+0x4a/0xc0
+Nov 22 15:22:05 thinkpad kernel:  do_syscall_64+0x35/0x80
+Nov 22 15:22:05 thinkpad kernel:  entry_SYSCALL_64_after_hwframe+0x44/0xae
+Nov 22 15:22:05 thinkpad kernel: RIP: 0033:0x7efcfb27ccb3
+Nov 22 15:22:05 thinkpad kernel: Code: 8b 15 81 11 0f 00 f7 d8 64 89
+02 48 c7 c0 ff ff ff ff eb b7 0f 1f 00 64 8b 04 25 18 00 00 00 85 c0
+75 14 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 55 c3 0f 1f 40 00 48
+83 ec 28 48 89 54 24 18
+Nov 22 15:22:05 thinkpad kernel: RSP: 002b:00007fff279a5308 EFLAGS:
+00000246 ORIG_RAX: 0000000000000001
+Nov 22 15:22:05 thinkpad kernel: RAX: ffffffffffffffda RBX:
+0000000000000004 RCX: 00007efcfb27ccb3
+Nov 22 15:22:05 thinkpad kernel: RDX: 0000000000000004 RSI:
+00007fff279a5400 RDI: 0000000000000004
+Nov 22 15:22:05 thinkpad kernel: RBP: 00005571997e72d0 R08:
+0000000000000007 R09: 00005571997eb4a0
+Nov 22 15:22:05 thinkpad kernel: R10: 11500bc5676901a3 R11:
+0000000000000246 R12: 0000000000000004
+Nov 22 15:22:05 thinkpad kernel: R13: 00007fff279a5400 R14:
+0000000000000004 R15: 00007efcfb36aa00
+Nov 22 15:22:05 thinkpad kernel:  </TASK>
+Nov 22 15:22:05 thinkpad kernel: ---[ end trace efcf3c6627ff7163 ]---
+Nov 22 15:22:05 thinkpad kernel: ------------[ cut here ]------------
+Nov 22 15:22:05 thinkpad kernel: RPM raw-wakeref not held
+Nov 22 15:22:05 thinkpad kernel: WARNING: CPU: 0 PID: 518230 at
+drivers/gpu/drm/i915/intel_runtime_pm.h:104
+fwtable_write32+0x1a4/0x200 [i915]
+Nov 22 15:22:05 thinkpad kernel: Modules linked in: cdc_mbim cdc_wdm
+cdc_ncm cdc_ether usbnet mii snd_seq_dummy snd_hrtimer snd_seq
+snd_seq_device rfcomm cmac algif_skcipher bnep uvcvideo
+videobuf2_vmalloc videobuf2_memops videobuf2_v4l2 btusb
+videobuf2_common btintel blue>
+Nov 22 15:22:05 thinkpad kernel:  i2c_designware_platform
+i2c_designware_core mei_pxp mei_hdcp ac97_bus kvm_intel snd_hda_intel
+snd_intel_dspcfg intel_rapl_msr think_lmi snd_intel_sdw_acpi i915
+firmware_attributes_class wmi_bmof snd_hda_codec kvm i2c_algo_bit
+snd_hwdep int>
+Nov 22 15:22:05 thinkpad kernel: CPU: 0 PID: 518230 Comm:
+kworker/u32:4 Tainted: G S   U  W         5.16.0-rc1+ #192
+Nov 22 15:22:05 thinkpad kernel: Hardware name: LENOVO
+20Y5CTO1WW/20Y5CTO1WW, BIOS N40ET28W (1.10 ) 09/09/2021
+Nov 22 15:22:05 thinkpad kernel: Workqueue: events_unbound async_run_entry_fn
+Nov 22 15:22:05 thinkpad kernel: RIP: 0010:fwtable_write32+0x1a4/0x200 [i915]
+Nov 22 15:22:05 thinkpad kernel: Code: 00 00 c6 00 00 e9 02 ff ff ff
+80 3d 5e 68 1f 00 00 0f 85 9f fe ff ff 48 c7 c7 a0 51 c7 a1 c6 05 4a
+68 1f 00 01 e8 43 21 cb df <0f> 0b e9 85 fe ff ff 80 3d 36 68 1f 00 00
+0f 85 82 fe ff ff 48 c7
+Nov 22 15:22:05 thinkpad kernel: RSP: 0018:ffff8882e341bc60 EFLAGS: 00010286
+Nov 22 15:22:05 thinkpad kernel: RAX: 0000000000000018 RBX:
+ffff88813df707d0 RCX: 0000000000000027
+Nov 22 15:22:05 thinkpad kernel: RDX: ffff88901f41b448 RSI:
+0000000000000001 RDI: ffff88901f41b440
+Nov 22 15:22:05 thinkpad kernel: RBP: 00000000000320f0 R08:
+0000000000000da7 R09: ffff8882e341bc00
+Nov 22 15:22:05 thinkpad kernel: R10: 3fffffffffffffff R11:
+fffffffffff94e08 R12: 0000000040000000
+Nov 22 15:22:05 thinkpad kernel: R13: 0000000000000000 R14:
+ffff888102394150 R15: ffff888100068005
+Nov 22 15:22:05 thinkpad kernel: FS:  0000000000000000(0000)
+GS:ffff88901f400000(0000) knlGS:0000000000000000
+Nov 22 15:22:05 thinkpad kernel: CS:  0010 DS: 0000 ES: 0000 CR0:
+0000000080050033
+Nov 22 15:22:05 thinkpad kernel: CR2: 00007f3018027098 CR3:
+000000000200a001 CR4: 0000000000770ef0
+Nov 22 15:22:05 thinkpad kernel: PKRU: 55555554
+Nov 22 15:22:05 thinkpad kernel: Call Trace:
+Nov 22 15:22:05 thinkpad kernel:  <TASK>
+Nov 22 15:22:05 thinkpad kernel:  intel_pxp_fini_hw+0x23/0x30 [i915]
+Nov 22 15:22:05 thinkpad kernel:  i915_pxp_tee_component_unbind+0x19/0x40 [i915]
+Nov 22 15:22:05 thinkpad kernel:  component_unbind+0x26/0x40
+Nov 22 15:22:05 thinkpad kernel:  component_unbind_all+0x85/0x90
+Nov 22 15:22:05 thinkpad kernel:  component_master_del+0x73/0x90
+Nov 22 15:22:05 thinkpad kernel:  mei_pxp_remove+0x23/0x50 [mei_pxp]
+Nov 22 15:22:05 thinkpad kernel:  mei_cl_device_remove+0x1a/0x80 [mei]
+Nov 22 15:22:05 thinkpad kernel:  __device_release_driver+0x172/0x230
+Nov 22 15:22:05 thinkpad kernel:  device_release_driver+0x1f/0x30
+Nov 22 15:22:05 thinkpad kernel:  mei_cl_bus_remove_devices+0x56/0x70 [mei]
+Nov 22 15:22:05 thinkpad kernel:  mei_stop+0x32/0xc0 [mei]
+Nov 22 15:22:05 thinkpad kernel:  mei_me_pci_suspend+0x1f/0x50 [mei_me]
+Nov 22 15:22:05 thinkpad kernel:  ? pci_pm_suspend_noirq+0x270/0x270
+Nov 22 15:22:05 thinkpad kernel:  pci_pm_suspend+0x6c/0x200
+Nov 22 15:22:05 thinkpad kernel:  ? pci_pm_suspend_noirq+0x270/0x270
+Nov 22 15:22:05 thinkpad kernel:  dpm_run_callback+0x36/0x100
+Nov 22 15:22:05 thinkpad kernel:  __device_suspend+0x122/0x4c0
+Nov 22 15:22:05 thinkpad kernel:  async_suspend+0x16/0x90
+Nov 22 15:22:05 thinkpad kernel:  async_run_entry_fn+0x15/0x90
+Nov 22 15:22:05 thinkpad kernel:  process_one_work+0x1ce/0x370
+Nov 22 15:22:05 thinkpad kernel:  worker_thread+0x48/0x3c0
+Nov 22 15:22:05 thinkpad kernel:  ? rescuer_thread+0x350/0x350
+Nov 22 15:22:05 thinkpad kernel:  kthread+0x13c/0x160
+Nov 22 15:22:05 thinkpad kernel:  ? set_kthread_struct+0x40/0x40
+Nov 22 15:22:05 thinkpad kernel:  ret_from_fork+0x1f/0x30
+Nov 22 15:22:05 thinkpad kernel:  </TASK>
+Nov 22 15:22:05 thinkpad kernel: ---[ end trace efcf3c6627ff7164 ]---
 
-== Summary ==
+As this is new code in 5.16, I thought I should report it to you. I
+haven't started debugging it yet, and I'll load up rc2 this evening as
+well.
 
-CI Bug Log - changes from CI_DRM_10913 -> Patchwork_21651
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/index.html
-
-Participating hosts (43 -> 34)
-------------------------------
-
-  Missing    (9): bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-icl-u2 fi-bsw-cyan bat-adlp-6 bat-adlp-4 bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21651 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +31 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [PASS][2] -> [FAIL][3] ([i915#1888])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10913/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-skl-6600u:       [PASS][4] -> [INCOMPLETE][5] ([i915#4547])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10913/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][7] ([i915#2722] / [i915#3363] / [i915#4312])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-skl-6600u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-glk-dsi:         [DMESG-WARN][8] ([i915#2943]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10913/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cfl-8109u:       [DMESG-FAIL][10] ([i915#295]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10913/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
-    - fi-cfl-8109u:       [DMESG-WARN][12] ([i915#295]) -> [PASS][13] +10 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10913/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#2943]: https://gitlab.freedesktop.org/drm/intel/issues/2943
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10913 -> Patchwork_21651
-
-  CI-20190529: 20190529
-  CI_DRM_10913: 2350312b9d034c596a510f1eabff0f74de5f2ab7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6286: cdcbf81f734fdb1d102e84490e49e9fec23760cd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21651: 5259cbae353e9edd51ac80a7721d10624f04ae9c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-5259cbae353e drm/i915/ttm: Update i915_gem_obj_copy_ttm() to be asynchronous
-e133b2236211 drm/i915/ttm: Implement asynchronous TTM moves
-0e5dbd15f6bf drm/i915/ttm: Correctly handle waiting for gpu when shrinking
-aa379114fb27 drm/i915/ttm: Drop region reference counting
-ae72d5add158 drm/i915/ttm: Move the i915_gem_obj_copy_ttm() function
-afc130e0c643 drm/i915: Add support for moving fence waiting
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/index.html
-
---===============7389339212312364096==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/ttm: Async migration (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96798/">https://patchwork.freedesktop.org/series/96798/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10913 -&gt; Patchwork_21651</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/index.html</p>
-<h2>Participating hosts (43 -&gt; 34)</h2>
-<p>Missing    (9): bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-icl-u2 fi-bsw-cyan bat-adlp-6 bat-adlp-4 bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21651 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10913/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10913/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10913/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2943">i915#2943</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10913/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10913/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21651/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> +10 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10913 -&gt; Patchwork_21651</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10913: 2350312b9d034c596a510f1eabff0f74de5f2ab7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6286: cdcbf81f734fdb1d102e84490e49e9fec23760cd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21651: 5259cbae353e9edd51ac80a7721d10624f04ae9c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>5259cbae353e drm/i915/ttm: Update i915_gem_obj_copy_ttm() to be asynchronous<br />
-e133b2236211 drm/i915/ttm: Implement asynchronous TTM moves<br />
-0e5dbd15f6bf drm/i915/ttm: Correctly handle waiting for gpu when shrinking<br />
-aa379114fb27 drm/i915/ttm: Drop region reference counting<br />
-ae72d5add158 drm/i915/ttm: Move the i915_gem_obj_copy_ttm() function<br />
-afc130e0c643 drm/i915: Add support for moving fence waiting</p>
-
-</body>
-</html>
-
---===============7389339212312364096==--
+Jason
