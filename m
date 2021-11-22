@@ -2,32 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D171A459736
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 23:14:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C369C4597D5
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 23:43:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33CD989CF1;
-	Mon, 22 Nov 2021 22:14:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28D2E89B00;
+	Mon, 22 Nov 2021 22:43:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EE10889ACC;
- Mon, 22 Nov 2021 22:14:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E94A3AA0ED;
- Mon, 22 Nov 2021 22:14:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0705557854877008952=="
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com
+ [IPv6:2a00:1450:4864:20::12d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC2E389AD2;
+ Mon, 22 Nov 2021 22:43:38 +0000 (UTC)
+Received: by mail-lf1-x12d.google.com with SMTP id y26so85699644lfa.11;
+ Mon, 22 Nov 2021 14:43:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=SOGMy7fQppmIi2lh+bBNZKhDlmtVTvAMYZ6ML5vXHQk=;
+ b=Y/XQX8HoLTQ/AiZ0PyjthwW0sS+Bz5PYFZcLuPVi3KmxkRzAGZJAbvmSCaWKk3VXSO
+ H8pze+C3mbthtuPTOBbxee11vj2ndOwmrxG3vapPWK6NuXryfGtyRWKgLjDtvVIvMTvh
+ p7usOsqZiv95/HpUu7YRrHMInOJX7ddiWbjSnTPiZA7gn6WrFef4Ke/lLvjA7HNZLIIw
+ UsTO37nTaqoO8zOnap3eTMNd2h2hmwYONDJGBFupp4Q6lNTyNlMtcqwMqXRNVY/1m1Ad
+ RApj+/F6MvLKhFgZMQtErcu6g5E8eWZWCgUuZX5kKc5H8eJ7TfiZRRIgQ1NpNaVgmhcN
+ C05w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=SOGMy7fQppmIi2lh+bBNZKhDlmtVTvAMYZ6ML5vXHQk=;
+ b=cMQraFJGX6S3P7roHo0y7Ufc2HTKxRenaupeDuewi1YYQg7i6zNJrhdKb+aeJFSE4i
+ DLDmiyTCwBXeRlD8ZPoTtMnCauTSfLY1gls6ioh20j9gbsZcZ4nVBHbz6QPE/Hrgq0vX
+ omOxPx77FkQivxwUlWu5pPMTszn5OQnaRzdFcZoXK0LdW8yfsVulrjaQLqv8qXaIDNO9
+ c0jOaUJZCSkVIcpLURPqqC9JpSgS6IYcyoAIyIb32IZ/0xUaS4tAKBpveQtAyP6Av+Zr
+ RFQxRXOc7qEtZyxv9+JcAZOiLWiBk3Vl/NIScaqpbb9/mdNc7lKf4U4rM0YM9FjlNLbm
+ 9Bbw==
+X-Gm-Message-State: AOAM532rSrI4asbI4feQmu2OOYJklAdMUWgtPSDLrS7d6igCYlrMqe9r
+ K2eRiSJ9wwAXBRGOaRnDO5woScxQHIuObxjGaOQ=
+X-Google-Smtp-Source: ABdhPJy5vsW1PcvFZiwn9kAx0mHvt3wDdudHp7YXdnTzsic6PsUQQbhUWWqAtAAWiuSlEfFJA7syF7mk1Arujhc6srw=
+X-Received: by 2002:a05:6512:3c85:: with SMTP id
+ h5mr482306lfv.544.1637621016935; 
+ Mon, 22 Nov 2021 14:43:36 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Mon, 22 Nov 2021 22:14:48 -0000
-Message-ID: <163761928895.5693.3963839314540142142@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211122211420.31584-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20211122211420.31584-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dg2=3A_Tile_4_plane_format_support_=28rev5=29?=
+References: <20211111220206.121610-1-jim.cromie@gmail.com>
+ <20211111220206.121610-9-jim.cromie@gmail.com>
+ <20211112114953.GA1381@axis.com>
+ <f3914fa9-8b22-d54e-3f77-d998e74094b9@akamai.com>
+ <20211116104631.195cbd0b@eldfell>
+ <f87b7076-47e6-89b1-aaf9-b67aa6713e01@akamai.com>
+ <20211118172401.0b4d722e@eldfell>
+ <41ea83b2-a707-cb6f-521e-070bb12502de@akamai.com>
+ <20211122110208.528e1d80@eldfell>
+In-Reply-To: <20211122110208.528e1d80@eldfell>
+From: jim.cromie@gmail.com
+Date: Mon, 22 Nov 2021 15:42:38 -0700
+Message-ID: <CAJfuBxyFzA++2JUxLY-6yLqmrETbmsWpTiyJH5w1qKiAkMriNw@mail.gmail.com>
+To: Pekka Paalanen <ppaalanen@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v10 08/10] dyndbg: add print-to-tracefs,
+ selftest with it - RFC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,262 +71,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: quic_saipraka@quicinc.com, Catalin Marinas <catalin.marinas@arm.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Will Deacon <will@kernel.org>,
+ maz@kernel.org, Vincent Whitchurch <vincent.whitchurch@axis.com>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Ingo Molnar <mingo@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Arnd Bergmann <arnd@arndb.de>, linux-arm-msm@vger.kernel.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Steven Rostedt <rostedt@goodmis.org>, Jason Baron <jbaron@akamai.com>,
+ Sean Paul <seanpaul@chromium.org>, intel-gvt-dev@lists.freedesktop.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Greg KH <gregkh@linuxfoundation.org>, LKML <linux-kernel@vger.kernel.org>,
+ quic_psodagud@quicinc.com, mathieu.desnoyers@efficios.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0705557854877008952==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Nov 22, 2021 at 2:02 AM Pekka Paalanen <ppaalanen@gmail.com> wrote:
+>
+> On Fri, 19 Nov 2021 11:21:36 -0500
+> Jason Baron <jbaron@akamai.com> wrote:
+>
+> > On 11/18/21 10:24 AM, Pekka Paalanen wrote:
+> > > On Thu, 18 Nov 2021 09:29:27 -0500
+> > > Jason Baron <jbaron@akamai.com> wrote:
+> > >
+> > >> On 11/16/21 3:46 AM, Pekka Paalanen wrote:
+> > >>> On Fri, 12 Nov 2021 10:08:41 -0500
+> > >>> Jason Baron <jbaron@akamai.com> wrote:
+> > >>>
+> > >>>> On 11/12/21 6:49 AM, Vincent Whitchurch wrote:
+> > >>>>> On Thu, Nov 11, 2021 at 03:02:04PM -0700, Jim Cromie wrote:
+> > >>>>>> Sean Paul proposed, in:
+> > >>>>>> https://urldefense.com/v3/__https://patchwork.freedesktop.org/series/78133/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQjlN5aBIomzJR1an3YWXM6KXs0EftVMQdrewRA8Dki4A$
+> > >>>>>> drm/trace: Mirror DRM debug logs to tracefs
+> > >>>>>>
+> > >>>>>> His patchset's objective is to be able to independently steer some of
+> > >>>>>> the drm.debug stream to an alternate tracing destination, by splitting
+> > >>>>>> drm_debug_enabled() into syslog & trace flavors, and enabling them
+> > >>>>>> separately.  2 advantages were identified:
+> > >>>>>>
+> > >>>>>> 1- syslog is heavyweight, tracefs is much lighter
+> > >>>>>> 2- separate selection of enabled categories means less traffic
+> > >>>>>>
+> > >>>>>> Dynamic-Debug can do 2nd exceedingly well:
+> > >>>>>>
+> > >>>>>> A- all work is behind jump-label's NOOP, zero off cost.
+> > >>>>>> B- exact site selectivity, precisely the useful traffic.
+> > >>>>>>    can tailor enabled set interactively, at shell.
+> > >>>>>>
+> > >>>>>> Since the tracefs interface is effective for drm (the threads suggest
+> > >>>>>> so), adding that interface to dynamic-debug has real potential for
+> > >>>>>> everyone including drm.
+> > >>>>>>
+> > >>>>>> if CONFIG_TRACING:
+> > >>>>>>
+> > >>>>>> Grab Sean's trace_init/cleanup code, use it to provide tracefs
+> > >>>>>> available by default to all pr_debugs.  This will likely need some
+> > >>>>>> further per-module treatment; perhaps something reflecting hierarchy
+> > >>>>>> of module,file,function,line, maybe with a tuned flattening.
+> > >>>>>>
+> > >>>>>> endif CONFIG_TRACING
+> > >>>>>>
+> > >>>>>> Add a new +T flag to enable tracing, independent of +p, and add and
+> > >>>>>> use 3 macros: dyndbg_site_is_enabled/logging/tracing(), to encapsulate
+> > >>>>>> the flag checks.  Existing code treats T like other flags.
+> > >>>>>
+> > >>>>> I posted a patchset a while ago to do something very similar, but that
+> > >>>>> got stalled for some reason and I unfortunately didn't follow it up:
+> > >>>>>
+> > >>>>>  https://urldefense.com/v3/__https://lore.kernel.org/lkml/20200825153338.17061-1-vincent.whitchurch@axis.com/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQjlN5aBIomzJR1an3YWXM6KXs0EftVMQdrewRGytKHPg$
+> > >>>>>
+> > >>>>> A key difference between that patchset and this patch (besides that
+> > >>>>> small fact that I used +x instead of +T) was that my patchset allowed
+> > >>>>> the dyndbg trace to be emitted to the main buffer and did not force them
+> > >>>>> to be in an instance-specific buffer.
+> > >>>>
+> > >>>> Yes, I agree I'd prefer that we print here to the 'main' buffer - it
+> > >>>> seems to keep things simpler and easier to combine the output from
+> > >>>> different sources as you mentioned.
+> > >>>
+> > >>> Hi,
+> > >>>
+> > >>> I'm not quite sure I understand this discussion, but I would like to
+> > >>> remind you all of what Sean's original work is about:
+> > >>>
+> > >>> Userspace configures DRM tracing into a flight recorder buffer (I guess
+> > >>> this is what you refer to "instance-specific buffer").
+> > >>>
+> > >>> Userspace runs happily for months, and then hits a problem: a failure
+> > >>> in the DRM sub-system most likely, e.g. an ioctl that should never
+> > >>> fail, failed. Userspace handles that failure by dumping the flight
+> > >>> recorder buffer into a file and saving or sending a bug report. The
+> > >>> flight recorder contents give a log of all relevant DRM in-kernel
+> > >>> actions leading to the unexpected failure to help developers debug it.
+> > >>>
+> > >>> I don't mind if one can additionally send the flight recorder stream to
+> > >>> the main buffer, but I do want the separate flight recorder buffer to
+> > >>> be an option so that a) unrelated things cannot flood the interesting
+> > >>> bits out of it, and b) the scope of collected information is relevant.
+> > >>>
+> > >>> The very reason for this work is problems that are very difficult to
+> > >>> reproduce in practice, either because the problem itself is triggered
+> > >>> very rarely and randomly, or because the end users of the system have
+> > >>> either no knowledge or no access to reconfigure debug logging and then
+> > >>> reproduce the problem with good debug logs.
+> > >>>
+> > >>> Thank you very much for pushing this work forward!
+> > >>>
+> > >>>
+> > >>
+> > >> So I think Vincent (earlier in the thread) was saying that he finds it
+> > >> very helpful have dynamic debug output go to the 'main' trace buffer,
+> > >> while you seem to be saying you'd prefer it just go to dynamic debug
+> > >> specific trace buffer.
+> > >
+> > > Seems like we have different use cases: traditional debugging, and
+> > > in-production flight recorder for problem reporting. I'm not surprised
+> > > if they need different treatment.
+> > >
+> > >> So we certainly can have dynamic output potentially go to both places -
+> > >> although I think this would mean two tracepoints? But I really wonder
+> > >> if we really need a separate tracing buffer for dynamic debug when
+> > >> what goes to the 'main' buffer can be controlled and filtered to avoid
+> > >> your concern around a 'flood'?
+> > >
+> > > If the DRM tracing goes into the main buffer, then systems in
+> > > production cannot have any other sub-system traced in a similar
+> > > fashion. To me it would feel very arrogant to say that to make use of
+> > > DRM flight recording, you cannot trace much or anything else.
+> > >
+> > > The very purpose of the flight recorder is run in production all the
+> > > time, not in a special debugging session.
+> > >
+> > > There is also the question of access and contents of the trace buffer.
+> > > Ultimately, if automatic bug reports are enabled in a system, the
+> > > contents of the trace buffer would be sent as-is to some bug tracking
+> > > system. If there is a chance to put non-DRM stuff in the trace buffer,
+> > > that could be a security problem.
+> > >
+> > > My use case is Weston. When Weston encounters an unexpected problem in
+> > > production, something should automatically capture the DRM flight
+> > > recorder contents and save it alongside the Weston log. Would be really
+> > > nice if Weston itself could do that, but I suspect it is going to need
+> > > root privileges so it needs some helper daemon.
+> > >
+> > > Maybe Sean can reiterate their use case more?
+> > >
+> > >
+> > > Thanks,
+> > > pq
+> > >
+> >
+> > Ok, so in this current thread the proposal was to create a "dyndbg-tracefs"
+> > buffer to put the dynamic debug output (including drm output from dynamic
+> > debug) into. And I was saying let's just put in the 'main' trace buffer
+> > (predicated on a dynamic debug specific tracepoint), since there seems
+> > to be a a use-case for that and it keeps things simpler.
+> >
+> > But I went back to Sean's original patch, and it creates a drm specific
+> > trace buffer "drm" (via trace_array_get_by_name("drm")). Here:
+> > https://patchwork.freedesktop.org/patch/445549/?series=78133&rev=5
+> >
+> > So I think that may be some of the confusion here? The current thread/
+> > proposal is not for a drm specific trace buffer...
+>
+> Hi Jason,
+>
+> I may very well have confused things, sorry about that. If this series
+> is not superseding the idea of the DRM flight recorder, then don't mind
+> me. It just sounded very similar and I also haven't seen new revisions
+> of the flight recorder in a long time.
 
-== Series Details ==
+IMO this series has clarified the requirement for a flight-recorder mode,
+which seems to fit ideally in a separate instance.
 
-Series: drm/i915/dg2: Tile 4 plane format support (rev5)
-URL   : https://patchwork.freedesktop.org/series/95715/
-State : success
+> > Having a subsystem specific trace buffer would allow subsystem specific
+> > trace log permissions depending on the sensitivity of the data. But
+> > doesn't drm output today go to the system log which is typically world
+> > readable today?
+>
+> Yes, and that is exactly the problem. The DRM debug output is so high
+> traffic it would make the system log both unusable due to cruft and
+> slow down the whole machine. The debug output is only useful when
+> something went wrong, and at that point it is too late to enable
+> debugging. That's why a flight recorder with an over-written circular
+> in-memory buffer is needed.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10916 -> Patchwork_21659
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/index.html
-
-Participating hosts (42 -> 35)
-------------------------------
-
-  Additional (1): fi-icl-u2 
-  Missing    (8): bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-bsw-cyan bat-adlp-6 bat-adlp-4 bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21659 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@amdgpu/amd_cs_nop@fork-gfx0:
-    - fi-icl-u2:          NOTRUN -> [SKIP][2] ([fdo#109315]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][3] ([i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-icl-u2:          NOTRUN -> [SKIP][4] ([i915#4555]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-kefka:       [PASS][5] -> [INCOMPLETE][6] ([i915#2940])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10916/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          NOTRUN -> [SKIP][7] ([fdo#111827]) +8 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][8] ([fdo#109278]) +2 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-u2:          NOTRUN -> [SKIP][9] ([fdo#109285])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-icl-u2:          NOTRUN -> [SKIP][10] ([i915#3301])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-bsw-kefka:       NOTRUN -> [FAIL][11] ([fdo#109271] / [i915#1436] / [i915#3428] / [i915#4312])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-bsw-kefka/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [INCOMPLETE][12] ([i915#2940]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10916/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4555]: https://gitlab.freedesktop.org/drm/intel/issues/4555
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10916 -> Patchwork_21659
-
-  CI-20190529: 20190529
-  CI_DRM_10916: 876217519d26774d843128cc66640ae501a5c38d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6286: cdcbf81f734fdb1d102e84490e49e9fec23760cd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21659: 5aed8d5e578103edb32ed0c1648f8f629980c290 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-5aed8d5e5781 drm/i915/dg2: Tile 4 plane format support
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/index.html
-
---===============0705557854877008952==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dg2: Tile 4 plane format support (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95715/">https://patchwork.freedesktop.org/series/95715/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10916 -&gt; Patchwork_21659</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/index.html</p>
-<h2>Participating hosts (42 -&gt; 35)</h2>
-<p>Additional (1): fi-icl-u2 <br />
-  Missing    (8): bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-bsw-cyan bat-adlp-6 bat-adlp-4 bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21659 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4555">i915#4555</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10916/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@execlists:<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10916/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21659/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10916 -&gt; Patchwork_21659</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10916: 876217519d26774d843128cc66640ae501a5c38d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6286: cdcbf81f734fdb1d102e84490e49e9fec23760cd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21659: 5aed8d5e578103edb32ed0c1648f8f629980c290 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>5aed8d5e5781 drm/i915/dg2: Tile 4 plane format support</p>
-
-</body>
-</html>
-
---===============0705557854877008952==--
+Seans patch reuses enum drm_debug_category to split the tracing
+stream into 10 sub-streams
+- how much traffic from each ?
+- are some sub-streams more valuable for post-mortem ?
+- any value from further refinement of categories ?
+- drop irrelevant callsites individually to reduce clutter, extend
+buffer time/space ?
