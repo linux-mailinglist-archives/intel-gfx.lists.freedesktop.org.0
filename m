@@ -2,34 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B80844588A5
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 05:33:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1D8B4588C1
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Nov 2021 06:08:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D61EA6E0D6;
-	Mon, 22 Nov 2021 04:33:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41E356E7D2;
+	Mon, 22 Nov 2021 05:08:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 469CC6E0D6
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Nov 2021 04:33:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10175"; a="258537073"
-X-IronPort-AV: E=Sophos;i="5.87,253,1631602800"; d="scan'208";a="258537073"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2021 20:33:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,253,1631602800"; d="scan'208";a="508798619"
-Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by orsmga008.jf.intel.com with ESMTP; 21 Nov 2021 20:33:21 -0800
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 22 Nov 2021 09:57:30 +0530
-Message-Id: <20211122042730.3743330-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D76D26E7D1;
+ Mon, 22 Nov 2021 05:08:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CC9E9AA917;
+ Mon, 22 Nov 2021 05:08:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2390824770224314801=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/pxp: Trybot - run CI with PXP and
- MEI_PXP enabled
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Date: Mon, 22 Nov 2021 05:08:42 -0000
+Message-ID: <163755772279.5697.3270869562958757730@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211122042730.3743330-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20211122042730.3743330-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/pxp=3A_Trybot_-_run_CI_with_PXP_and_MEI=5FPXP_enabled?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,171 +40,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Please do not merge this is trybot patch to run CI with PXP
-and MEI PXP enabled to get premegre results for
-https://patchwork.freedesktop.org/series/96658/#rev3 change.
+--===============2390824770224314801==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
----
- drivers/gpu/drm/i915/Kconfig.debug      |  2 ++
- drivers/gpu/drm/i915/gt/intel_gt_pm.c   |  7 +++--
- drivers/gpu/drm/i915/pxp/intel_pxp_pm.c | 37 +++++++++++++++++--------
- drivers/gpu/drm/i915/pxp/intel_pxp_pm.h | 19 +++++++++++--
- 4 files changed, 48 insertions(+), 17 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-index e7fd3e76f8a2..fa181693184b 100644
---- a/drivers/gpu/drm/i915/Kconfig.debug
-+++ b/drivers/gpu/drm/i915/Kconfig.debug
-@@ -48,6 +48,8 @@ config DRM_I915_DEBUG
- 	select DRM_I915_DEBUG_RUNTIME_PM
- 	select DRM_I915_SW_FENCE_DEBUG_OBJECTS
- 	select DRM_I915_SELFTEST
-+	select INTEL_MEI_PXP # used by igt/gem_pxp
-+	select DRM_I915_PXP # used by igt/gem_pxp
- 	select BROKEN # for prototype uAPI
- 	default n
- 	help
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index b4a8594bc46c..c0fa41e4c803 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -303,7 +303,7 @@ void intel_gt_suspend_prepare(struct intel_gt *gt)
- 	user_forcewake(gt, true);
- 	wait_for_suspend(gt);
- 
--	intel_pxp_suspend(&gt->pxp, false);
-+	intel_pxp_suspend_prepare(&gt->pxp);
- }
- 
- static suspend_state_t pm_suspend_target(void)
-@@ -328,6 +328,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
- 	GEM_BUG_ON(gt->awake);
- 
- 	intel_uc_suspend(&gt->uc);
-+	intel_pxp_suspend(&gt->pxp);
- 
- 	/*
- 	 * On disabling the device, we want to turn off HW access to memory
-@@ -355,7 +356,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
- 
- void intel_gt_runtime_suspend(struct intel_gt *gt)
- {
--	intel_pxp_suspend(&gt->pxp, true);
-+	intel_pxp_runtime_suspend(&gt->pxp);
- 	intel_uc_runtime_suspend(&gt->uc);
- 
- 	GT_TRACE(gt, "\n");
-@@ -373,7 +374,7 @@ int intel_gt_runtime_resume(struct intel_gt *gt)
- 	if (ret)
- 		return ret;
- 
--	intel_pxp_resume(&gt->pxp);
-+	intel_pxp_runtime_resume(&gt->pxp);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-index 23fd86de5a24..6a7d4e2ee138 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-@@ -7,26 +7,29 @@
- #include "intel_pxp_irq.h"
- #include "intel_pxp_pm.h"
- #include "intel_pxp_session.h"
-+#include "i915_drv.h"
- 
--void intel_pxp_suspend(struct intel_pxp *pxp, bool runtime)
-+void intel_pxp_suspend_prepare(struct intel_pxp *pxp)
- {
- 	if (!intel_pxp_is_enabled(pxp))
- 		return;
- 
- 	pxp->arb_is_valid = false;
- 
--	/*
--	 * Contexts using protected objects keep a runtime PM reference, so we
--	 * can only runtime suspend when all of them have been either closed
--	 * or banned. Therefore, there is no need to invalidate in that
--	 * scenario.
--	 */
--	if (!runtime)
--		intel_pxp_invalidate(pxp);
-+	intel_pxp_invalidate(pxp);
-+}
- 
--	intel_pxp_fini_hw(pxp);
-+void intel_pxp_suspend(struct intel_pxp *pxp)
-+{
-+	intel_wakeref_t wakeref;
- 
--	pxp->hw_state_invalidated = false;
-+	if (!intel_pxp_is_enabled(pxp))
-+		return;
-+
-+	with_intel_runtime_pm(&pxp_to_gt(pxp)->i915->runtime_pm, wakeref) {
-+		intel_pxp_fini_hw(pxp);
-+		pxp->hw_state_invalidated = false;
-+	}
- }
- 
- void intel_pxp_resume(struct intel_pxp *pxp)
-@@ -44,3 +47,15 @@ void intel_pxp_resume(struct intel_pxp *pxp)
- 
- 	intel_pxp_init_hw(pxp);
- }
-+
-+void intel_pxp_runtime_suspend(struct intel_pxp *pxp)
-+{
-+	if (!intel_pxp_is_enabled(pxp))
-+		return;
-+
-+	pxp->arb_is_valid = false;
-+
-+	intel_pxp_fini_hw(pxp);
-+
-+	pxp->hw_state_invalidated = false;
-+}
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-index c89e97a0c3d0..16990a3f2f85 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-@@ -9,16 +9,29 @@
- #include "intel_pxp_types.h"
- 
- #ifdef CONFIG_DRM_I915_PXP
--void intel_pxp_suspend(struct intel_pxp *pxp, bool runtime);
-+void intel_pxp_suspend_prepare(struct intel_pxp *pxp);
-+void intel_pxp_suspend(struct intel_pxp *pxp);
- void intel_pxp_resume(struct intel_pxp *pxp);
-+void intel_pxp_runtime_suspend(struct intel_pxp *pxp);
- #else
--static inline void intel_pxp_suspend(struct intel_pxp *pxp, bool runtime)
-+static inline void intel_pxp_suspend_prepare(struct intel_pxp *pxp)
-+{
-+}
-+
-+static inline void intel_pxp_suspend(struct intel_pxp *pxp)
- {
- }
- 
- static inline void intel_pxp_resume(struct intel_pxp *pxp)
- {
- }
--#endif
- 
-+static inline void intel_pxp_runtime_suspend(struct intel_pxp *pxp)
-+{
-+}
-+#endif
-+static inline void intel_pxp_runtime_resume(struct intel_pxp *pxp)
-+{
-+	intel_pxp_resume(pxp);
-+}
- #endif /* __INTEL_PXP_PM_H__ */
--- 
-2.31.1
+Series: drm/i915/pxp: Trybot - run CI with PXP and MEI_PXP enabled
+URL   : https://patchwork.freedesktop.org/series/97145/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10909 -> Patchwork_21649
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_21649 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_21649, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/index.html
+
+Participating hosts (40 -> 31)
+------------------------------
+
+  Missing    (9): bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-icl-u2 bat-adlp-6 bat-adlp-4 fi-kbl-guc bat-jsl-2 bat-jsl-1 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_21649:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@mman:
+    - fi-snb-2600:        [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10909/fi-snb-2600/igt@i915_selftest@live@mman.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/fi-snb-2600/igt@i915_selftest@live@mman.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21649 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-bdw-samus:       [PASS][3] -> [INCOMPLETE][4] ([i915#2539])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10909/fi-bdw-samus/igt@gem_exec_suspend@basic-s3.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/fi-bdw-samus/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][5] ([i915#1602] / [i915#2426] / [i915#4312])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/fi-bdw-5557u/igt@runner@aborted.html
+    - fi-snb-2600:        NOTRUN -> [FAIL][6] ([i915#2426] / [i915#4312])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/fi-snb-2600/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-bdw-5557u:       [INCOMPLETE][7] ([i915#146]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10909/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
+
+  
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2539]: https://gitlab.freedesktop.org/drm/intel/issues/2539
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10909 -> Patchwork_21649
+
+  CI-20190529: 20190529
+  CI_DRM_10909: 53d1bbf96a00ffdda479653e10627875a16c0c2d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6285: 2e0355faad5c2e81cd6705b76e529ce526c7c9bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21649: 9e85a4069894478d2fca4d8fa3344c21380c6308 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9e85a4069894 drm/i915/pxp: Trybot - run CI with PXP and MEI_PXP enabled
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/index.html
+
+--===============2390824770224314801==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pxp: Trybot - run CI with PXP and MEI_PXP enabled</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97145/">https://patchwork.freedesktop.org/series/97145/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10909 -&gt; Patchwork_21649</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_21649 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_21649, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/index.html</p>
+<h2>Participating hosts (40 -&gt; 31)</h2>
+<p>Missing    (9): bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-icl-u2 bat-adlp-6 bat-adlp-4 fi-kbl-guc bat-jsl-2 bat-jsl-1 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_21649:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@mman:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10909/fi-snb-2600/igt@i915_selftest@live@mman.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/fi-snb-2600/igt@i915_selftest@live@mman.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21649 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-bdw-samus:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10909/fi-bdw-samus/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/fi-bdw-samus/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2539">i915#2539</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/fi-snb-2600/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3:<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10909/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21649/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10909 -&gt; Patchwork_21649</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10909: 53d1bbf96a00ffdda479653e10627875a16c0c2d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6285: 2e0355faad5c2e81cd6705b76e529ce526c7c9bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21649: 9e85a4069894478d2fca4d8fa3344c21380c6308 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9e85a4069894 drm/i915/pxp: Trybot - run CI with PXP and MEI_PXP enabled</p>
+
+</body>
+</html>
+
+--===============2390824770224314801==--
