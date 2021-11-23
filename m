@@ -2,39 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E58459B5F
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Nov 2021 06:09:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42D82459B8E
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Nov 2021 06:24:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63B4C6E0EE;
-	Tue, 23 Nov 2021 05:09:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E04E6EA19;
+	Tue, 23 Nov 2021 05:24:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A61F6E0EE;
- Tue, 23 Nov 2021 05:09:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=XcTY0WjwUY8rhTXzrXCh5eTVe9RMeOMTY8mUb3Id2RY=; b=tayXV/n6xHxzHRwDtBtjjgLIq8
- XgrZCBGxU1Ef3RwKU6GCqxJ3YioRw0BDV2elC5+IhIkvwB/BSnVomB8OchFIDjBVLPQYdv29Y5DYH
- aMeLKWUU3PisYAEY4tuKkibdLEfrhjNOaZ/qby/UFVxztf77uP5AyVqgumjFsN4Ayh03xWWJLiy6/
- j6O9ufUm6HzsF5i7TuDIjNOWtbWrMZ092tggOtI9HKPrPyejHHhXQ8EublTdN6WjSHxNEpKLa6jRh
- REnVYul1d4WAn5pbLC7C6lqXf2exKuXY+eNFz3uYp4IthTQAyk5P5vrzL0py7YM3v/yZF57iNtgNn
- qx7M73lg==;
-Received: from [2601:1c0:6280:3f0::aa0b] (helo=bombadil.infradead.org)
- by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mpO3d-000orn-6h; Tue, 23 Nov 2021 05:09:29 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: dri-devel@lists.freedesktop.org
-Date: Mon, 22 Nov 2021 21:09:28 -0800
-Message-Id: <20211123050928.20434-1-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.31.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A1A8B6EA16;
+ Tue, 23 Nov 2021 05:24:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 96DEEA9932;
+ Tue, 23 Nov 2021 05:24:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: placate scripts/kernel-doc
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Randy Dunlap" <rdunlap@infradead.org>
+Date: Tue, 23 Nov 2021 05:24:55 -0000
+Message-ID: <163764509558.2114.15983398873760827206@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211123050928.20434-1-rdunlap@infradead.org>
+In-Reply-To: <20211123050928.20434-1-rdunlap@infradead.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gem=3A_placate_scripts/kernel-doc?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,61 +40,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Randy Dunlap <rdunlap@infradead.org>, intel-gfx@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Correct kernel-doc warnings in i915_drm_object.c:
+== Series Details ==
 
+Series: drm/i915/gem: placate scripts/kernel-doc
+URL   : https://patchwork.freedesktop.org/series/97190/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+960cb066fb23 drm/i915/gem: placate scripts/kernel-doc
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
 i915_gem_object.c:103: warning: expecting prototype for i915_gem_object_fini(). Prototype was for __i915_gem_object_fini() instead
-i915_gem_object.c:110: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
- * Mark up the object's coherency levels for a given cache_level
-i915_gem_object.c:110: warning: missing initial short description on line:
- * Mark up the object's coherency levels for a given cache_level
-i915_gem_object.c:457: warning: No description found for return value of 'i915_gem_object_read_from_page'
 
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Reported-by: kernel test robot <lkp@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
----
- drivers/gpu/drm/i915/gem/i915_gem_object.c |    7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
 
---- linux-next-20211118.orig/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ linux-next-20211118/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -91,7 +91,7 @@ void i915_gem_object_init(struct drm_i91
- }
- 
- /**
-- * i915_gem_object_fini - Clean up a GEM object initialization
-+ * __i915_gem_object_fini - Clean up a GEM object initialization
-  * @obj: The gem object to cleanup
-  *
-  * This function cleans up gem object fields that are set up by
-@@ -107,7 +107,8 @@ void __i915_gem_object_fini(struct drm_i
- }
- 
- /**
-- * Mark up the object's coherency levels for a given cache_level
-+ * i915_gem_object_set_cache_coherency - Mark up the object's coherency levels
-+ * for a given cache_level
-  * @obj: #drm_i915_gem_object
-  * @cache_level: cache level
-  */
-@@ -450,7 +451,7 @@ i915_gem_object_read_from_page_iomap(str
-  * from can't cross a page boundary. The caller must ensure that @obj pages
-  * are pinned and that @obj is synced wrt. any related writes.
-  *
-- * Returns 0 on success or -ENODEV if the type of @obj's backing store is
-+ * Return: %0 on success or -ENODEV if the type of @obj's backing store is
-  * unsupported.
-  */
- int i915_gem_object_read_from_page(struct drm_i915_gem_object *obj, u64 offset, void *dst, int size)
+
