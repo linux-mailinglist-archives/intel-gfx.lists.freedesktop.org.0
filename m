@@ -2,140 +2,128 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88B4445BC3A
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 13:26:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3365E45C301
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 14:32:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C09776E88C;
-	Wed, 24 Nov 2021 12:26:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 692216E8A0;
+	Wed, 24 Nov 2021 13:32:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1343B6E885;
- Wed, 24 Nov 2021 12:26:20 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10177"; a="222141909"
-X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; d="scan'208";a="222141909"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2021 04:26:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; d="scan'208";a="674843655"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga005.jf.intel.com with ESMTP; 24 Nov 2021 04:26:19 -0800
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 24 Nov 2021 04:26:19 -0800
-Received: from orsmsx604.amr.corp.intel.com (10.22.229.17) by
- ORSMSX607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 24 Nov 2021 04:26:18 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Wed, 24 Nov 2021 04:26:18 -0800
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.46) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Wed, 24 Nov 2021 04:26:18 -0800
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2085.outbound.protection.outlook.com [40.107.96.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D05089C1E;
+ Tue, 23 Nov 2021 22:30:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OkzRCQqDLHYB9k642Smxt1oAoUifqvuTDAqJQDygXG9FqOAlXASt9+UkLi9WWWvlj7Nfkxml3eVL5y8qbVjQaiycU5UsLeJITZ2VNOezi+p/XptiLzsrWFwG+KdEBkRybjx5ZYrfyXsTp4RjfnP1quxV1kWxg8pKxaaYltb8EI5wEa1G5OrB3JjFRO/a9vIC6gfQjTMyba4vbOzvi3BZyBCQXRtcrof2J/B+OAWYEljj7RsGVE8UzswwWcXfAsYZSCG6gOBUlwO81hohw/BgDD0z9y41UoxyHZuDR7XgZ57v3aRJSAv3/+rYvihe1rmiz5j0WFfSj+LIRXSfZ76tnw==
+ b=PRUTS9Pbqj7Z/FrJbUvsdFzXOcrGrNpIYAP8sX4XtenLF/affo5ajtEvEXSggW31CYwi7R/Emlnx1HyRy6iGY2LYoizHsR7s0KGkrTlC5bKHR3ByJruxq8QJ8srDokU/uhl96yEg4sNni5Ufdiwl0oHYHArKUqs+5FS0cP+raborH1+OxnZgc9l74uBKtBQj39iddzZcD4oAu10/Dt/Ketjmppq/gZNQa2CpbuFDCT8GJs2eW8+kWSC1m9ZSLA1Xb3RFBJ/DY9j3gjfFEjOz9b+5gLBYrg8bu3JHBEzrIVZ+nh0mZkEiLT6rnaC3PPzmxFkS09ROis8BpeBPE9GYWg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YeOTfjnrDG6ffXA/iauLtVpwJaoOLKGK+95DQN6YRmA=;
- b=YT+vYICyvi7pFQgfF2U69d36DgG+4nE4wdA6VqqBMdtD2wnOTWYF7rdtqixMz34wfML2Oc8dSGtw+787ecAm2Q9myvtm/TFd7UEe+yhyBpHRkoi8DbL8Q+v4CSTMbkJnUuBkSr8xwMyL9GYIYqxZ3DJN44umY8OcZUP+rShSoEvL9Z5WqX0EocsH6MfjuEQEDV2glo1JPWIWk7WNY05rwa19ty7m3rf96pRV2U3G4ghBJx5L6KBEdQNlh74oRfoXH8db0cdhUHwZv9LRAhIOcTS7JPSnXG22JZl1DF35j6dcnOVmyh7qLs1PGB1DwToAGAa/lM/BrqQWSjlS2KAPXg==
+ bh=VlvmjHsccTjSQGFE7SJpngD6sOiegIVToez0p5KNIk8=;
+ b=IpBlWXbKeZygw74plW/IzmuJv4BYj9yK7cmNIeFoQUGJuAmRp6495f5fEiLevrN5fZnqrrNvdLsi5OMSbxqvdRvmm3CnxNZ+K+7A69aghAOP6G5fN6SQkOnqAE02Qw+CDYtg3IklvPTifHMfO360ha3K2jjDZValiE1owslmpCU/YP+CDgS6RjWyrDrUNETS3QuqUdYy2sNas+9uBZwNpO+KZQMnDDTfcCYm+Ka5lWBCg6ecxlA4/JKI8BF37VKDiAjauzJDSlrgew5nKLmVC4IQpgfXITNbw4X/FZ2Iv4OSwPMqVxbX13D61l0ux5kiDyvxUHPjh4pN9hOTYs8hVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YeOTfjnrDG6ffXA/iauLtVpwJaoOLKGK+95DQN6YRmA=;
- b=r7wXuXdWxsj9Cx+YNLB+hqfF6pkrSUNASfT/Uk6VXWG0xsrp5SuShk6eqbhw4jY7qAI4eD0WPYKXbDfAQ4dpl7FHkqxR3P+SefQwIH/R6TfobAHWEyAdT8swNzkKCXaqPQ6S7E9ByVL6TzdvLoGkBxUH/cghbfyy7BufVIxL84M=
-Received: from PH0PR11MB5658.namprd11.prod.outlook.com (2603:10b6:510:e2::23)
- by PH0PR11MB5628.namprd11.prod.outlook.com (2603:10b6:510:d4::22)
+ bh=VlvmjHsccTjSQGFE7SJpngD6sOiegIVToez0p5KNIk8=;
+ b=EOEA6JaIeOJDEGSkuyLiElVGMF9dg7wZfE7qZh5OSvRx1XJg3rxHGKDtKVj4hF9ZWL5sk35BLNdVqnj0rGaYhrdj8LZMDHIyOqOALeWHFAHY8Vm8XKeUN0Jg1ieylWoR3gfJwHsz1erZ5GTDG/A6ZsiiGExW9hBOCmlsVr2lwk4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
+ by MN2PR12MB3901.namprd12.prod.outlook.com (2603:10b6:208:16c::27)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.15; Wed, 24 Nov
- 2021 12:25:41 +0000
-Received: from PH0PR11MB5658.namprd11.prod.outlook.com
- ([fe80::68d8:8332:4e66:914c]) by PH0PR11MB5658.namprd11.prod.outlook.com
- ([fe80::68d8:8332:4e66:914c%6]) with mapi id 15.20.4690.027; Wed, 24 Nov 2021
- 12:25:41 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>, "farman@linux.ibm.com"
- <farman@linux.ibm.com>
-Thread-Topic: [RE]: [PATCH v3 10/10] vfio/ccw: Move the lifecycle of the
- struct vfio_ccw_private to the mdev
-Thread-Index: AdfhLVFmZ0XHPxlhQzGj9kpPq8pmyA==
-Date: Wed, 24 Nov 2021 12:25:40 +0000
-Message-ID: <PH0PR11MB5658A7BB11922E5B6267892AC3619@PH0PR11MB5658.namprd11.prod.outlook.com>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.22; Tue, 23 Nov
+ 2021 22:30:24 +0000
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::6972:7084:df02:6dc3]) by MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::6972:7084:df02:6dc3%9]) with mapi id 15.20.4713.026; Tue, 23 Nov 2021
+ 22:30:24 +0000
+Message-ID: <23bcceec-f626-eb8e-631d-d858c77f3d04@amd.com>
+Date: Wed, 24 Nov 2021 04:09:58 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-dlp-product: dlpe-windows
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 501d3b5b-423d-4a82-31de-08d9af45877f
-x-ms-traffictypediagnostic: PH0PR11MB5628:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <PH0PR11MB56287D9088EEBCF9A3D2B36AC3619@PH0PR11MB5628.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:109;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: gbSEuuf+Ky9DbmO3T6kP+YwWTW6c7jcrH9A7slVQICluYtqa6fiMmTx/gPLxkzIM5jStLvZdfUXq4tGohi8H4/Z4D63cC1NN3PbsqHXolIbXbBXnLW7ug83fNWctk0bO17G6s3iPNnhU3Sxn2xOG4gvIqmsVitWH77eyGhVpqi/DVWyK+u19AimkmHPpqnyEwGFbeJyIZjxBJv5aVoBCo5lq/TooWWetWmYsyy8gXYiJJZhSUm0lnudCiX96TCd2KV6hmZ8DDhAUK3Fs37ebGuSH2RJ/ekNzhPj1axseX42c2piXZpr70FTyIjxNs50NBdwisrImQHOUnD22uIV9X90a8nV7Nv746h6TxedFF1LaGR1WIC0x9r9Uxh3sgw56RRVoc1NeAraUIkZ1EdipugzVOkJ1kNOdSt2t1nWvogNKvXj53MtZSXUY4/PdVFVx0zjHtTdXeTfGkFrX4a/GxpEJrWnd2uNaNlE35S6sX1fekbgHqSkY3JMFdDdWXfp+B+xOFiphSMe8BdupvIOp78Nn/16JoQME8Ij3HSIPGDVwlvFhzzUl1GhgLUKNtfyQS+yMsKCWqrD+alFUopvgM47QG4B0oUscEvs9+yE/Q6zuhbVAmEtmJ4FM14+WhDdlHzlhTxslX03YjsRK+o67ePx1dCC8Kg01urwfXln08B0NC5kIxG4W8nZFmQ6BWCJE8lGmtL4xijYlVBm4MV0Npw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR11MB5658.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(366004)(4326008)(6506007)(7696005)(54906003)(66446008)(7416002)(66476007)(2906002)(33656002)(86362001)(26005)(82960400001)(8936002)(38070700005)(71200400001)(8676002)(66556008)(64756008)(9686003)(316002)(122000001)(5660300002)(55016003)(110136005)(66946007)(508600001)(52536014)(186003)(83380400001)(76116006)(30864003)(38100700002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?gvDrkeWQS+UMSLOWrVZsQ1wRUidbRxeyj5XBmXrKLTW0Adrg74Y3qvwWLTX+?=
- =?us-ascii?Q?rQZKO07mZ9/NLVHf9N/Ri47WNLsZ5y8IWfxr3ihvZntCk8Vb86gMZ4SjgC2C?=
- =?us-ascii?Q?pu6PZVq8ML0R/uXrqJrh4RPsN/YhYMvMUjcbyW20seCqbkuoZuzwmMeM8M6E?=
- =?us-ascii?Q?qDkDjcSVa6p8BpdEiRjSB/uxeEuKH1rJIKbUbEXq1qeEprq0Qn57LQjDIgCG?=
- =?us-ascii?Q?su5xOL9tF+475dQED6BAznw41OcChFx1SKM7/fZNEyI+0eMrXrskMKkigXux?=
- =?us-ascii?Q?qCYkl0JP+Foq0YNVSot1Gbo9OkQJHgJyUoSllHU2Vcua70ZFmObvAnT4ocyV?=
- =?us-ascii?Q?xWf6Ak6QLOvFWN2xmRAIFDy28LhytHHiz9ohAOarHqueT86QCJFJwHWPfdYo?=
- =?us-ascii?Q?GcT7YtPtBPwSy+eBVvtbuq5B2AG+vU+8lXZkm+yXIXqmqCMfRSJchLtQvdte?=
- =?us-ascii?Q?jXozhNGsmH4QdM4n+ILAM006l0Ho3cUBK1SL5jBLLY1xfJ7r2r5CJeqvWqaO?=
- =?us-ascii?Q?dvuFqgli8yJ0nKr2OH8KCUomdN8E0KBvTu9dBho2QqW3lP16Zu+khECqIy5n?=
- =?us-ascii?Q?e1UKV4uycQCw73dr43mdCEFnCAti7o4b7NkdPlt8DYT/JwQz/CM/HM8/yNyl?=
- =?us-ascii?Q?B3ModZhLkBvB+1Ny5ieuCmm7pdbJcxx5ii8RaV5RZdxMl6s4NT0Fy3dc7Tt8?=
- =?us-ascii?Q?PbCWEjgzBAzRTqcEEyDXxEee+BvuzQPUq1DlkA3zn7Rc/SHf470gX360yliw?=
- =?us-ascii?Q?tiHBxQShJHUvpc7PiSXh5Wpg5jqJYVKXCdTWKroDseVWCZJJSwF0Ej9PV1S/?=
- =?us-ascii?Q?99LKsZHpyYlNmQW00QDF6yymk6+qfXXhRQNqStxh5nPxuEg70XpsEDiQEO2G?=
- =?us-ascii?Q?qCZMGNnrcSyssKXhGsm5uQVpGnn/1bHKiqctyRxhEAupzuG7DnL4dGUj9CkC?=
- =?us-ascii?Q?8EDYfEM9bQWI81XrDMUqoVzBwuPyqDsZAB4IkKF4Oaqt2Ji1/+9ssGNIog4K?=
- =?us-ascii?Q?28xMxpsaQkYnVQx5TYVJJsRQDalvMuBYiWp90kfAfhc54knG0o8C9K8XAwHS?=
- =?us-ascii?Q?nUmxUWxJV0kjctEK/eC+nzVE35D0rlGkRCMddGA1u+fkwGOhzC6rMVbpDkgH?=
- =?us-ascii?Q?gf9NQuSIEf5bi9uhrPTpiW7o0eKbhrwgevGVJkQZNNVhk0WFXTF9s/LBJr8s?=
- =?us-ascii?Q?d7SdOOIrcKH5ywHwLktYCGEHvcqBcqFNEKLDe5Wxo7cCfb97gnEbxh9hMuxi?=
- =?us-ascii?Q?eRPUzDwStL9MIjjMaPN/DcgKg4If5/qvytNJID6UBC6Cv18EtTTMibIzZvTv?=
- =?us-ascii?Q?zDiO1i7/sZIvZLR2RnbK7811GD2Dnfa/XM1ioAXUau3bvQ/BGyY0cNW3WcME?=
- =?us-ascii?Q?4bMr1GVOJPNm34568miWlWips8Rfj8LnAPHS8W75f9z7MHHhrGHtMpX6U80Q?=
- =?us-ascii?Q?MDcehVV2omh8aBL3wrvKvQ2z9gHi5GW7aB2wuN+uHffnSAbZQES6b9SJWfFO?=
- =?us-ascii?Q?OKeEbR5XuZ2ZGIg18OShkPesRStuAr6HcbIw7lzhmC6DOH5nnogumvPWo40/?=
- =?us-ascii?Q?XzaUrUQ6G2QxS3V/UZGWjfIvbOFH1bu50Qu526p+yZXA69HEdu4VM2kFNltj?=
- =?us-ascii?Q?FA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+To: Matthew Auld <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+References: <20211116201807.147486-1-Arunpravin.PaneerSelvam@amd.com>
+ <20211116201807.147486-2-Arunpravin.PaneerSelvam@amd.com>
+ <bb9bbfc8-be80-a9d9-961b-564055b6f083@intel.com>
+From: Arunpravin <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <bb9bbfc8-be80-a9d9-961b-564055b6f083@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BM1PR0101CA0023.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:18::33) To MN2PR12MB4342.namprd12.prod.outlook.com
+ (2603:10b6:208:264::7)
 MIME-Version: 1.0
+Received: from [10.138.142.32] (165.204.156.251) by
+ BM1PR0101CA0023.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:18::33) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.20 via Frontend
+ Transport; Tue, 23 Nov 2021 22:30:21 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3d133862-be11-4d30-ed47-08d9aed0d75e
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3901:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3901C7DEF49B4825467EDD4FE4609@MN2PR12MB3901.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HzT9FhGeQWBKMTtr0X+b9uCjcfZBbej902vAdBSLKkqwTdtLFKxbIhqczidYrpBx0v8AnHpauas/ZCEr1a+lHRmay9XbIGzQi+zCGs9HHa3wQFP7YxNZgBSRC2eNK9JHcSYpklKn3hXUkHiRrGbfhqEGM1b/Y6SgnWL7mCGbc1UJu5U5B6HN3mb7p+wSCZSbLBZTaL7dVQRmd5y3JJmt9PVn7v7ydvkdNqyeGMhQtP+KEOJQ+9ABeFT4qeicN/HLsnKraOK9z20XiUM42+dsyDu+Lap+Cy8+SZnLDjdcYrq44z5zGcaItC0YUDzEQRuTyJbTT1zXBwmzIbxAUIv+kEag11KLBmxAFCf3E0pJ8XNIwvJtzMqkBn7I1GWJcNwwNMun2T/0fpa1KGW4aRt4ehaZSSvZxlyu37bqywbprE57NuLIV1QLf4HhZqzWIhnaCLeOrrqgt3WfEitiJndFhb0jySMF+UP6o1v+/f92VfRKXLTp0lMrVzZ8fLed+ZFl6d1v9jT9BQxkrJcIX6MezlQlCDbh5W7ATx0J7isnU27z+wksUywbXUW9MRkWpqHr1uLvJTv74H3sYLsQVTcJ2Z90Unl+LgddDfkgLdv63NejRWlFUfMmOz5dJxgJqAUVvS4vSukxz3AUZqq2G+FhvzU0X79IgLssme1lQzSpzZVta+fGv/d3lKec0bnQ13gxz+FpEsEYaMou3smVDn1OrBpFAOP+opqZeGP2HBf6frk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(8676002)(186003)(30864003)(956004)(38100700002)(66476007)(66946007)(8936002)(4326008)(2616005)(31686004)(86362001)(66556008)(508600001)(6486002)(53546011)(31696002)(16576012)(5660300002)(6666004)(2906002)(316002)(83380400001)(36756003)(26005)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q1REcHV1T1poZVZ5ais4REFsVFI2NCtxOVhKSmhBendsdzkwbmVUeFVwSFZZ?=
+ =?utf-8?B?TFNPaG83M1NaVmt5UmZVSVF5ZkFlOVRFWXFMRmIyNTFJeWE2VE1yMGFHenZW?=
+ =?utf-8?B?THZDSW5jNFZMQ2Y5ZndXZ2tqdXNDQS9ITWd2Q2hvYW5UVm5DbzRZSXc4SkV2?=
+ =?utf-8?B?K3ZDVnFoMWxWbWxWcjEzQzNEQUpwZk1HalNGblVLdXQybFhXNERnQXZRZk1R?=
+ =?utf-8?B?bHkwcHBlM1IxTm1yd05XM3diRlYwb2FWdUFGSGp2anZjRUw4M01rd3pFWUhU?=
+ =?utf-8?B?UHE3eUN0SFNKWUF3RFh2c2JIYzdKU2YvdkZKRll6QVZ4RjhuUTd6d1dIY2wy?=
+ =?utf-8?B?dzdPbzdTL2NwSFFKdDBhQ0dRV3VHSkFMRFFhSzQrTUtsMzNGaHljQmtMOVJQ?=
+ =?utf-8?B?ZjQ0TmE5cnovSWNiSWl3TmZvbkhSYk1jb0pMZ29SR3RnZHAzazU0K0NXN1hH?=
+ =?utf-8?B?Y3dIVlliRnYwM25xZ1FWSkQzRFJ6ZjEvbTFwWmNOUlBYT3k2eWlWdkZpRG1y?=
+ =?utf-8?B?Ynd3VWJ5ZTJ5Q3Z5ckxVYWlyQTZ3aC9CL3BlK0FoWU1GeG9KVXV1OHUvMW1Z?=
+ =?utf-8?B?RGNBVXYrYnNFZGp2WGlxZ0t0R095YUJBUllNM2NQdkRLYlVvRWEwNkZjSXY2?=
+ =?utf-8?B?UGFMRFFydkVWNm5hb3lDTjdtOWVpQXIrNWRDc2Q2L2pTcFhiNFVqQlU0SjEx?=
+ =?utf-8?B?b21zOVJCUVNlZjhwUnpkYm9LZERyU1Ftb1pjRlluYTBwVndQdGRSS2MyUVg1?=
+ =?utf-8?B?VVNBQm9SMTB5NHpZVDZ1bnBoeFRzQ1YyVkprcHlvTGM5TGRvamhHb281VENE?=
+ =?utf-8?B?T3Z1WEdDTk9sSzM2Uit3VDB4UFRpWHJraWljVHBpNjlUR3h5b0dYTFFkVkhs?=
+ =?utf-8?B?NzE5M09ZejY1cnN3aWhMOUpQTzlyUmo5YUpFRDdzejlkaEd5YkxTUC9laFBM?=
+ =?utf-8?B?Sm1ydzhBcW1mOVo0L3VRdnc4bytQL1ViTSttbEtXYjI2M3Q4Z1lSRUswY2FI?=
+ =?utf-8?B?NUNxZUphUld6cjVyOTBFamlsdG9VOVlnclU3cjVSdFl0NjkwY2YzVHNOQWFr?=
+ =?utf-8?B?dWlNTzFONkI2eC8xUzF5RjcvZUNlVDJnYmJzZklDVE1hSVJNTmVBOFVZQ1FW?=
+ =?utf-8?B?dUhvSjdXOGN1L01Qb1M3SHdCc2lySFgrWXI1YzJSblBJTGpHRjV5bndxSnNK?=
+ =?utf-8?B?ekNDT1FEZSswZS95elE1UUJCVDdzVXdkZmdsWllRTkUvbDB5dmZGSVcyS0lW?=
+ =?utf-8?B?cFpoNTVUNG15eG5qMzkzZVFaV3hZbTU2TzlMTVJnS3Q1eEFqVHAxckE3VXl6?=
+ =?utf-8?B?R0FxcHJTa0lzWFg4SGIrUUpOZlc4Qi9tUTVnRlpaL1doMEkxK3ozS21KUXZC?=
+ =?utf-8?B?WFl6NjFJWVNhMFpodHVLV3RCQkR0VEl6WnJlejMrWDNnUVJ5ZnQvbFgzR1c4?=
+ =?utf-8?B?MzhGVjlPTGdCNm1EWUt3ZTZHbmpWYzZLMGM2Wk5XUDlaVHdlMXVxYk1LeEQy?=
+ =?utf-8?B?NDdnK2dEbzhxSnZVbUdTNS9PYWZvRUJJaDBjSXlqMHllem9ob0tCSmlLVml4?=
+ =?utf-8?B?K3NaL0pXeGxQak90NmZ0a2NLTUdhOUNWZG1jTitwcVNaMlZSL1FIeWRCcVVm?=
+ =?utf-8?B?WHlnSi96SzY4ZFQvV2FwQlZYSStFcFVhdFczcjBzZlkyb2JoZlh5a2dUU3dQ?=
+ =?utf-8?B?aEd4WnhtMVFPVG1xQWhnaTRUbW9FdzJUdVh6YnF3OHVybUJqcDltNXc5aU0x?=
+ =?utf-8?B?ZW1mWWJlZG5XRjcrMUdEWm9WVGtnQi83anlyT0VRYnRKMGRXL2VnVzN0OWNa?=
+ =?utf-8?B?SDY1NjE5cEszTDBJYUg2V3o4ZEhrRWRyZlkyTHIyQnBHYk43ejlidjkrMHIx?=
+ =?utf-8?B?SStyNnR4bEFwbkdrZ0g2Mjl3bEo5eG9NRWdBU0FuRE40Qkd6bWdndVBjL1Ry?=
+ =?utf-8?B?UTNOWm5qdm9sTW1sTjE5bXR6WDV3YjlVMm52RmM1blFJR0VQMzU3TWFOeW1l?=
+ =?utf-8?B?eG5wbklXcDRzVjlFNkltNFVBRkt2azBRcDI5cUdiUCtTdDk5SFBRUEhpRnJ3?=
+ =?utf-8?B?ZmluRGU4U3M3eURQYUxhZ0pmUERQVGgzRnpFSUdVdjlmUnkvRGZCM3pCN09K?=
+ =?utf-8?B?VWNSaTlBTFp1eGF6NUx1bTEwcmoxVzQxeEZUY3lWWWhiZTV6N1VxNXJOTXd5?=
+ =?utf-8?Q?ve20oX4aiJk3drJSw8NBqpI=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3d133862-be11-4d30-ed47-08d9aed0d75e
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5658.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 501d3b5b-423d-4a82-31de-08d9af45877f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Nov 2021 12:25:40.9076 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LgEoCZkFRGh2Lcaz0Q44eYFDRV6/nP0Bn/MmkPN8gK8ye7bijF97VR1tEf7lrbtYc3v25mE0QKgQK7SmqMh/Sw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5628
-X-OriginatorOrg: intel.com
-Subject: [Intel-gfx] [RE]: [PATCH v3 10/10] vfio/ccw: Move the lifecycle of
- the struct vfio_ccw_private to the mdev
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2021 22:30:24.0464 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QgaNfw8qqAO+6OV+UOgeWWhZx1SOB5GfQnnyhZK7xn12YwZ5pVkuepPOUwmtkDNyDkOtAaKYUrc4VlMcJJO8yg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3901
+X-Mailman-Approved-At: Wed, 24 Nov 2021 13:31:59 +0000
+Subject: Re: [Intel-gfx] [PATCH v3 2/6] drm: improve drm_buddy_alloc function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,415 +136,606 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew
- Rosato <mjrosato@linux.ibm.com>, "airlied@linux.ie" <airlied@linux.ie>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "kwankhede@nvidia.com" <kwankhede@nvidia.com>,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>, "corbet@lwn.net" <corbet@lwn.net>,
- Halil Pasic <pasic@linux.ibm.com>,
- "borntraeger@de.ibm.com" <borntraeger@de.ibm.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Jason Herne <jjherne@linux.ibm.com>, Eric
- Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- "akrowiak@linux.ibm.com" <akrowiak@linux.ibm.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>
+Cc: alexander.deucher@amd.com, tzimmermann@suse.de, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Jason Gunthorpe <jgg@nvidia.com>
-> Sent: Fri, 1 Oct 2021 14:52:51 -0300
->
-> The css_driver's main purpose is to create/destroy the mdev and relay the
-> shutdown, irq, sch_event, and chp_event css_driver ops to the single
-> created vfio_device, if it exists.
->=20
-> Reframe the boundary where the css_driver domain switches to the vfio
-> domain by using rcu to read and refcount the vfio_device out of the sch's
-> drvdata. The mdev probe/remove will manage the drvdata of the parent.
->=20
-> The vfio core code refcounting thus guarantees that when a css_driver
-> callback is running the vfio_device is registered, simplifying the
-> understanding of the whole lifecycle.
->=20
-> Finally the vfio_ccw_private is allocated/freed during probe/remove of th=
-e
-> mdev like any other vfio_device struct.
 
-Hi Eric,
 
-how about the status of this patch? I found it is a good clean up to make
-vfio ccw behave same with other vfio_device users. Also, I'd like to do a
-clean up to consolidate the vfio_device allocation which needs the vfio
-ccw private allocation happen in the mdev probe. So it would be nice to
-build the cleanup based on this patch.
+On 18/11/21 12:09 am, Matthew Auld wrote:
+> On 16/11/2021 20:18, Arunpravin wrote:
+>> - Make drm_buddy_alloc a single function to handle
+>>    range allocation and non-range allocation demands
+>>
+>> - Implemented a new function alloc_range() which allocates
+>>    the requested power-of-two block comply with range limitations
+>>
+>> - Moved order computation and memory alignment logic from
+>>    i915 driver to drm buddy
+>>
+>> v2:
+>>    merged below changes to keep the build unbroken
+>>     - drm_buddy_alloc_range() becomes obsolete and may be removed
+>>     - enable ttm range allocation (fpfn / lpfn) support in i915 driver
+>>     - apply enhanced drm_buddy_alloc() function to i915 driver
+>>
+>> v3(Matthew Auld):
+>>    - Fix alignment issues and remove unnecessary list_empty check
+>>    - add more validation checks for input arguments
+>>    - make alloc_range() block allocations as bottom-up
+>>    - optimize order computation logic
+>>    - replace uint64_t with u64, which is preferred in the kernel
+>>
+>> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+>> ---
+>>   drivers/gpu/drm/drm_buddy.c                   | 259 ++++++++++--------
+>>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c |  69 ++---
+>>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.h |   2 +
+>>   include/drm/drm_buddy.h                       |  22 +-
+>>   4 files changed, 203 insertions(+), 149 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+>> index 39eb1d224bec..c9b18a29f8d1 100644
+>> --- a/drivers/gpu/drm/drm_buddy.c
+>> +++ b/drivers/gpu/drm/drm_buddy.c
+>> @@ -274,63 +274,6 @@ void drm_buddy_free_list(struct drm_buddy_mm *mm, struct list_head *objects)
+>>   }
+>>   EXPORT_SYMBOL(drm_buddy_free_list);
+>>   
+>> -/**
+>> - * drm_buddy_alloc - allocate power-of-two blocks
+>> - *
+>> - * @mm: DRM buddy manager to allocate from
+>> - * @order: size of the allocation
+>> - *
+>> - * The order value here translates to:
+>> - *
+>> - * 0 = 2^0 * mm->chunk_size
+>> - * 1 = 2^1 * mm->chunk_size
+>> - * 2 = 2^2 * mm->chunk_size
+>> - *
+>> - * Returns:
+>> - * allocated ptr to the &drm_buddy_block on success
+>> - */
+>> -struct drm_buddy_block *
+>> -drm_buddy_alloc(struct drm_buddy_mm *mm, unsigned int order)
+>> -{
+>> -	struct drm_buddy_block *block = NULL;
+>> -	unsigned int i;
+>> -	int err;
+>> -
+>> -	for (i = order; i <= mm->max_order; ++i) {
+>> -		block = list_first_entry_or_null(&mm->free_list[i],
+>> -						 struct drm_buddy_block,
+>> -						 link);
+>> -		if (block)
+>> -			break;
+>> -	}
+>> -
+>> -	if (!block)
+>> -		return ERR_PTR(-ENOSPC);
+>> -
+>> -	BUG_ON(!drm_buddy_block_is_free(block));
+>> -
+>> -	while (i != order) {
+>> -		err = split_block(mm, block);
+>> -		if (unlikely(err))
+>> -			goto out_free;
+>> -
+>> -		/* Go low */
+>> -		block = block->left;
+>> -		i--;
+>> -	}
+>> -
+>> -	mark_allocated(block);
+>> -	mm->avail -= drm_buddy_block_size(mm, block);
+>> -	kmemleak_update_trace(block);
+>> -	return block;
+>> -
+>> -out_free:
+>> -	if (i != order)
+>> -		__drm_buddy_free(mm, block);
+>> -	return ERR_PTR(err);
+>> -}
+>> -EXPORT_SYMBOL(drm_buddy_alloc);
+>> -
+>>   static inline bool overlaps(u64 s1, u64 e1, u64 s2, u64 e2)
+>>   {
+>>   	return s1 <= e2 && e1 >= s2;
+>> @@ -341,52 +284,22 @@ static inline bool contains(u64 s1, u64 e1, u64 s2, u64 e2)
+>>   	return s1 <= s2 && e1 >= e2;
+>>   }
+>>   
+>> -/**
+>> - * drm_buddy_alloc_range - allocate range
+>> - *
+>> - * @mm: DRM buddy manager to allocate from
+>> - * @blocks: output list head to add allocated blocks
+>> - * @start: start of the allowed range for this block
+>> - * @size: size of the allocation
+>> - *
+>> - * Intended for pre-allocating portions of the address space, for example to
+>> - * reserve a block for the initial framebuffer or similar, hence the expectation
+>> - * here is that drm_buddy_alloc() is still the main vehicle for
+>> - * allocations, so if that's not the case then the drm_mm range allocator is
+>> - * probably a much better fit, and so you should probably go use that instead.
+>> - *
+>> - * Note that it's safe to chain together multiple alloc_ranges
+>> - * with the same blocks list
+>> - *
+>> - * Returns:
+>> - * 0 on success, error code on failure.
+>> - */
+>> -int drm_buddy_alloc_range(struct drm_buddy_mm *mm,
+>> -			  struct list_head *blocks,
+>> -			  u64 start, u64 size)
+>> +static struct drm_buddy_block *
+>> +alloc_range(struct drm_buddy_mm *mm,
+>> +	    u64 start, u64 end,
+>> +	    unsigned int order)
+>>   {
+>>   	struct drm_buddy_block *block;
+>>   	struct drm_buddy_block *buddy;
+>> -	LIST_HEAD(allocated);
+>>   	LIST_HEAD(dfs);
+>> -	u64 end;
+>>   	int err;
+>>   	int i;
+>>   
+>> -	if (size < mm->chunk_size)
+>> -		return -EINVAL;
+>> -
+>> -	if (!IS_ALIGNED(size | start, mm->chunk_size))
+>> -		return -EINVAL;
+>> -
+>> -	if (range_overflows(start, size, mm->size))
+>> -		return -EINVAL;
+>> +	end = end - 1;
+>>   
+>>   	for (i = 0; i < mm->n_roots; ++i)
+>>   		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
+>>   
+>> -	end = start + size - 1;
+>> -
+>>   	do {
+>>   		u64 block_start;
+>>   		u64 block_end;
+>> @@ -399,26 +312,26 @@ int drm_buddy_alloc_range(struct drm_buddy_mm *mm,
+>>   
+>>   		list_del(&block->tmp_link);
+>>   
+>> +		if (drm_buddy_block_order(block) < order)
+>> +			continue;
+>> +
+>>   		block_start = drm_buddy_block_offset(block);
+>>   		block_end = block_start + drm_buddy_block_size(mm, block) - 1;
+>>   
+>>   		if (!overlaps(start, end, block_start, block_end))
+>>   			continue;
+>>   
+>> -		if (drm_buddy_block_is_allocated(block)) {
+>> -			err = -ENOSPC;
+>> -			goto err_free;
+>> -		}
+>> +		if (drm_buddy_block_is_allocated(block))
+>> +			continue;
+>>   
+>> -		if (contains(start, end, block_start, block_end)) {
+>> -			if (!drm_buddy_block_is_free(block)) {
+>> -				err = -ENOSPC;
+>> -				goto err_free;
+>> -			}
+>> +		if (contains(start, end, block_start, block_end) &&
+>> +		    order == drm_buddy_block_order(block)) {
+>> +			/*
+>> +			 * Find the free block within the range.
+>> +			 */
+>> +			if (drm_buddy_block_is_free(block))
+>> +				return block;
+> 
+> AFAIK this is still randomly ordered when dealing with actual range 
+> allocation. Maybe I'm missing something, but it looks like we are just 
+> repeatedly picking the largest order that fits in the remaining number 
+> of pages, but it might be the case that the smallest block is for 
+> example at the start of the range, depending on the layout of the 
+> address space, which would then only get allocated last.
+> 
+> I think I mentioned this before, but most of the block_trim() looks to 
+> already do what we want for this case, and could maybe be factored out, 
+> since that is also just another range allocation, except we start with 
+> one root node for our "dfs" search.
+> 
+> Maybe something like:
+> 
+> drm_buddy_trim(block, new_size...)
+> {
+>      ....
+>      mark_free(block);
+>      list_add(&block->tmp_link, &dfs);
+>      err = __alloc_range(mm, &dfs, block->start, new_size, ...);
+>      if (err)
+>      ....
+> }
+> 
+> __drm_buddy_alloc_range(start, size, blocks)
+> {
+>      for_each_root()
+>          list_add(&root->tmp_link, &dfs);
+> 
+>      err = __alloc_range(mm, &dfs, start, size, ...);
+>      if (err)
+>      ....
+> }
+> 
+> drm_buddy_alloc(...)
+> {
+>      /* Actual range allocation */
+>      if (start + size == end)
+>              return __drm_buddy_alloc_range(...);
+>     ....
+> }
+> 
+> And then have something different for the alloc_range_bias()?
+> 
+Yes, we will have a common function __alloc_range() which does the range
+allocation for block_trim() and __drm_buddy_alloc_range() (actual range
+allocation).
 
-Regards,
-Yi Liu
+And, I understood that we keep the alloc_range() implementation for end
+bias allocations?
 
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> ---
->  drivers/s390/cio/vfio_ccw_drv.c     | 67 ++++++++++++++---------------
->  drivers/s390/cio/vfio_ccw_ops.c     | 40 +++++++----------
->  drivers/s390/cio/vfio_ccw_private.h | 23 +++++++++-
->  3 files changed, 69 insertions(+), 61 deletions(-)
->=20
-> diff --git a/drivers/s390/cio/vfio_ccw_drv.c b/drivers/s390/cio/vfio_ccw_=
-drv.c
-> index 18ad047811d111..c5582fc9c46c9e 100644
-> --- a/drivers/s390/cio/vfio_ccw_drv.c
-> +++ b/drivers/s390/cio/vfio_ccw_drv.c
-> @@ -86,13 +86,19 @@ static void vfio_ccw_crw_todo(struct work_struct *wor=
-k)
->   */
->  static void vfio_ccw_sch_irq(struct subchannel *sch)
->  {
-> -	struct vfio_ccw_private *private =3D dev_get_drvdata(&sch->dev);
-> +	struct vfio_ccw_private *private =3D vfio_ccw_get_priv(sch);
-> +
-> +	/* IRQ should not be delivered after the mdev is destroyed */
-> +	if (WARN_ON(!private))
-> +		return;
-> =20
->  	inc_irq_stat(IRQIO_CIO);
->  	vfio_ccw_fsm_event(private, VFIO_CCW_EVENT_INTERRUPT);
-> +	vfio_device_put(&private->vdev);
->  }
-> =20
-> -static struct vfio_ccw_private *vfio_ccw_alloc_private(struct subchannel=
- *sch)
-> +struct vfio_ccw_private *vfio_ccw_alloc_private(struct mdev_device *mdev=
-,
-> +						struct subchannel *sch)
->  {
->  	struct vfio_ccw_private *private;
-> =20
-> @@ -100,6 +106,8 @@ static struct vfio_ccw_private *vfio_ccw_alloc_privat=
-e(struct subchannel *sch)
->  	if (!private)
->  		return ERR_PTR(-ENOMEM);
-> =20
-> +	vfio_init_group_dev(&private->vdev, &mdev->dev,
-> +			    &vfio_ccw_dev_ops);
->  	private->sch =3D sch;
->  	mutex_init(&private->io_mutex);
->  	private->state =3D VFIO_CCW_STATE_CLOSED;
-> @@ -145,11 +153,12 @@ static struct vfio_ccw_private *vfio_ccw_alloc_priv=
-ate(struct subchannel *sch)
->  	kfree(private->cp.guest_cp);
->  out_free_private:
->  	mutex_destroy(&private->io_mutex);
-> +	vfio_uninit_group_dev(&private->vdev);
->  	kfree(private);
->  	return ERR_PTR(-ENOMEM);
->  }
-> =20
-> -static void vfio_ccw_free_private(struct vfio_ccw_private *private)
-> +void vfio_ccw_free_private(struct vfio_ccw_private *private)
->  {
->  	struct vfio_ccw_crw *crw, *temp;
-> =20
-> @@ -164,14 +173,14 @@ static void vfio_ccw_free_private(struct vfio_ccw_p=
-rivate *private)
->  	kmem_cache_free(vfio_ccw_io_region, private->io_region);
->  	kfree(private->cp.guest_cp);
->  	mutex_destroy(&private->io_mutex);
-> -	kfree(private);
-> +	vfio_uninit_group_dev(&private->vdev);
-> +	kfree_rcu(private, rcu);
->  }
-> =20
->  static int vfio_ccw_sch_probe(struct subchannel *sch)
->  {
->  	struct pmcw *pmcw =3D &sch->schib.pmcw;
-> -	struct vfio_ccw_private *private;
-> -	int ret =3D -ENOMEM;
-> +	int ret;
-> =20
->  	if (pmcw->qf) {
->  		dev_warn(&sch->dev, "vfio: ccw: does not support QDIO: %s\n",
-> @@ -179,15 +188,9 @@ static int vfio_ccw_sch_probe(struct subchannel *sch=
-)
->  		return -ENODEV;
->  	}
-> =20
-> -	private =3D vfio_ccw_alloc_private(sch);
-> -	if (IS_ERR(private))
-> -		return PTR_ERR(private);
-> -
-> -	dev_set_drvdata(&sch->dev, private);
-> -
-> -	ret =3D vfio_ccw_mdev_reg(sch);
-> +	ret =3D mdev_register_device(&sch->dev, &vfio_ccw_mdev_ops);
->  	if (ret)
-> -		goto out_free;
-> +		return ret;
-> =20
->  	if (dev_get_uevent_suppress(&sch->dev)) {
->  		dev_set_uevent_suppress(&sch->dev, 0);
-> @@ -198,22 +201,11 @@ static int vfio_ccw_sch_probe(struct subchannel *sc=
-h)
->  			   sch->schid.cssid, sch->schid.ssid,
->  			   sch->schid.sch_no);
->  	return 0;
-> -
-> -out_free:
-> -	dev_set_drvdata(&sch->dev, NULL);
-> -	vfio_ccw_free_private(private);
-> -	return ret;
->  }
-> =20
->  static void vfio_ccw_sch_remove(struct subchannel *sch)
->  {
-> -	struct vfio_ccw_private *private =3D dev_get_drvdata(&sch->dev);
-> -
-> -	vfio_ccw_mdev_unreg(sch);
-> -
-> -	dev_set_drvdata(&sch->dev, NULL);
-> -
-> -	vfio_ccw_free_private(private);
-> +	mdev_unregister_device(&sch->dev);
-> =20
->  	VFIO_CCW_MSG_EVENT(4, "unbound from subchannel %x.%x.%04x\n",
->  			   sch->schid.cssid, sch->schid.ssid,
-> @@ -222,10 +214,14 @@ static void vfio_ccw_sch_remove(struct subchannel *=
-sch)
-> =20
->  static void vfio_ccw_sch_shutdown(struct subchannel *sch)
->  {
-> -	struct vfio_ccw_private *private =3D dev_get_drvdata(&sch->dev);
-> +	struct vfio_ccw_private *private =3D vfio_ccw_get_priv(sch);
-> +
-> +	if (!private)
-> +		return;
-> =20
->  	vfio_ccw_fsm_event(private, VFIO_CCW_EVENT_CLOSE);
->  	vfio_ccw_fsm_event(private, VFIO_CCW_EVENT_BROKEN);
-> +	vfio_device_put(&private->vdev);
->  }
-> =20
->  /**
-> @@ -240,14 +236,14 @@ static void vfio_ccw_sch_shutdown(struct subchannel=
- *sch)
->   */
->  static int vfio_ccw_sch_event(struct subchannel *sch, int process)
->  {
-> -	struct vfio_ccw_private *private =3D dev_get_drvdata(&sch->dev);
-> +	struct vfio_ccw_private *private =3D vfio_ccw_get_priv(sch);
->  	unsigned long flags;
->  	int rc =3D -EAGAIN;
-> =20
-> -	spin_lock_irqsave(sch->lock, flags);
-> -	if (!device_is_registered(&sch->dev))
-> -		goto out_unlock;
-> +	if (!private)
-> +		return -EAGAIN;
-> =20
-> +	spin_lock_irqsave(sch->lock, flags);
->  	if (work_pending(&sch->todo_work))
->  		goto out_unlock;
-> =20
-> @@ -260,7 +256,7 @@ static int vfio_ccw_sch_event(struct subchannel *sch,=
- int process)
-> =20
->  out_unlock:
->  	spin_unlock_irqrestore(sch->lock, flags);
-> -
-> +	vfio_device_put(&private->vdev);
->  	return rc;
->  }
-> =20
-> @@ -294,7 +290,7 @@ static void vfio_ccw_queue_crw(struct vfio_ccw_privat=
-e *private,
->  static int vfio_ccw_chp_event(struct subchannel *sch,
->  			      struct chp_link *link, int event)
->  {
-> -	struct vfio_ccw_private *private =3D dev_get_drvdata(&sch->dev);
-> +	struct vfio_ccw_private *private =3D vfio_ccw_get_priv(sch);
->  	int mask =3D chp_ssd_get_mask(&sch->ssd_info, link);
->  	int retry =3D 255;
-> =20
-> @@ -307,8 +303,10 @@ static int vfio_ccw_chp_event(struct subchannel *sch=
-,
->  			   sch->schid.ssid, sch->schid.sch_no,
->  			   mask, event);
-> =20
-> -	if (cio_update_schib(sch))
-> +	if (cio_update_schib(sch)) {
-> +		vfio_device_put(&private->vdev);
->  		return -ENODEV;
-> +	}
-> =20
->  	switch (event) {
->  	case CHP_VARY_OFF:
-> @@ -338,6 +336,7 @@ static int vfio_ccw_chp_event(struct subchannel *sch,
->  		break;
->  	}
-> =20
-> +	vfio_device_put(&private->vdev);
->  	return 0;
->  }
-> =20
-> diff --git a/drivers/s390/cio/vfio_ccw_ops.c b/drivers/s390/cio/vfio_ccw_=
-ops.c
-> index 68aae25a0a4be0..414b11ea7eebf9 100644
-> --- a/drivers/s390/cio/vfio_ccw_ops.c
-> +++ b/drivers/s390/cio/vfio_ccw_ops.c
-> @@ -17,8 +17,6 @@
-> =20
->  #include "vfio_ccw_private.h"
-> =20
-> -static const struct vfio_device_ops vfio_ccw_dev_ops;
-> -
->  static int vfio_ccw_mdev_reset(struct vfio_ccw_private *private)
->  {
->  	/*
-> @@ -88,26 +86,27 @@ static struct attribute_group *mdev_type_groups[] =3D=
- {
-> =20
->  static int vfio_ccw_mdev_probe(struct mdev_device *mdev)
->  {
-> -	struct vfio_ccw_private *private =3D dev_get_drvdata(mdev->dev.parent);
-> +	struct subchannel *sch =3D to_subchannel(mdev->dev.parent);
-> +	struct vfio_ccw_private *private;
->  	int ret;
-> =20
-> -	memset(&private->vdev, 0, sizeof(private->vdev));
-> -	vfio_init_group_dev(&private->vdev, &mdev->dev,
-> -			    &vfio_ccw_dev_ops);
-> +	private =3D vfio_ccw_alloc_private(mdev, sch);
-> +	if (IS_ERR(private))
-> +		return PTR_ERR(private);
-> =20
->  	VFIO_CCW_MSG_EVENT(2, "mdev %s, sch %x.%x.%04x: create\n",
-> -			   dev_name(private->vdev.dev),
-> -			   private->sch->schid.cssid, private->sch->schid.ssid,
-> -			   private->sch->schid.sch_no);
-> +			   dev_name(private->vdev.dev), sch->schid.cssid,
-> +			   sch->schid.ssid, sch->schid.sch_no);
-> =20
->  	ret =3D vfio_register_emulated_iommu_dev(&private->vdev);
->  	if (ret)
-> -		goto err_init;
-> +		goto err_alloc;
->  	dev_set_drvdata(&mdev->dev, private);
-> +	dev_set_drvdata(&sch->dev, private);
->  	return 0;
-> =20
-> -err_init:
-> -	vfio_uninit_group_dev(&private->vdev);
-> +err_alloc:
-> +	vfio_ccw_free_private(private);
->  	return ret;
->  }
-> =20
-> @@ -120,8 +119,9 @@ static void vfio_ccw_mdev_remove(struct mdev_device *=
-mdev)
->  			   private->sch->schid.cssid, private->sch->schid.ssid,
->  			   private->sch->schid.sch_no);
-> =20
-> +	dev_set_drvdata(&private->sch->dev, NULL);
->  	vfio_unregister_group_dev(&private->vdev);
-> -	vfio_uninit_group_dev(&private->vdev);
-> +	vfio_ccw_free_private(private);
->  }
-> =20
->  static int vfio_ccw_mdev_open_device(struct vfio_device *vdev)
-> @@ -595,7 +595,7 @@ static unsigned int vfio_ccw_get_available(struct mde=
-v_type *mtype)
->  	return 1;
->  }
-> =20
-> -static const struct vfio_device_ops vfio_ccw_dev_ops =3D {
-> +const struct vfio_device_ops vfio_ccw_dev_ops =3D {
->  	.open_device =3D vfio_ccw_mdev_open_device,
->  	.close_device =3D vfio_ccw_mdev_close_device,
->  	.read =3D vfio_ccw_mdev_read,
-> @@ -615,19 +615,9 @@ struct mdev_driver vfio_ccw_mdev_driver =3D {
->  	.get_available =3D vfio_ccw_get_available,
->  };
-> =20
-> -static const struct mdev_parent_ops vfio_ccw_mdev_ops =3D {
-> +const struct mdev_parent_ops vfio_ccw_mdev_ops =3D {
->  	.owner			=3D THIS_MODULE,
->  	.device_driver		=3D &vfio_ccw_mdev_driver,
->  	.device_api		=3D VFIO_DEVICE_API_CCW_STRING,
->  	.supported_type_groups  =3D mdev_type_groups,
->  };
-> -
-> -int vfio_ccw_mdev_reg(struct subchannel *sch)
-> -{
-> -	return mdev_register_device(&sch->dev, &vfio_ccw_mdev_ops);
-> -}
-> -
-> -void vfio_ccw_mdev_unreg(struct subchannel *sch)
-> -{
-> -	mdev_unregister_device(&sch->dev);
-> -}
-> diff --git a/drivers/s390/cio/vfio_ccw_private.h b/drivers/s390/cio/vfio_=
-ccw_private.h
-> index 67ee9c624393b0..852ff94fc107d6 100644
-> --- a/drivers/s390/cio/vfio_ccw_private.h
-> +++ b/drivers/s390/cio/vfio_ccw_private.h
-> @@ -24,6 +24,8 @@
->  #include "css.h"
->  #include "vfio_ccw_cp.h"
-> =20
-> +struct mdev_device;
-> +
->  #define VFIO_CCW_OFFSET_SHIFT   10
->  #define VFIO_CCW_OFFSET_TO_INDEX(off)	(off >> VFIO_CCW_OFFSET_SHIFT)
->  #define VFIO_CCW_INDEX_TO_OFFSET(index)	((u64)(index) << VFIO_CCW_OFFSET=
-_SHIFT)
-> @@ -69,6 +71,7 @@ struct vfio_ccw_crw {
->  /**
->   * struct vfio_ccw_private
->   * @vdev: Embedded VFIO device
-> + * @rcu: head for kfree_rcu()
->   * @sch: pointer to the subchannel
->   * @state: internal state of the device
->   * @completion: synchronization helper of the I/O completion
-> @@ -91,6 +94,7 @@ struct vfio_ccw_crw {
->   */
->  struct vfio_ccw_private {
->  	struct vfio_device vdev;
-> +	struct rcu_head rcu;
->  	struct subchannel	*sch;
->  	int			state;
->  	struct completion	*completion;
-> @@ -115,10 +119,25 @@ struct vfio_ccw_private {
->  	struct work_struct	crw_work;
->  } __aligned(8);
-> =20
-> -extern int vfio_ccw_mdev_reg(struct subchannel *sch);
-> -extern void vfio_ccw_mdev_unreg(struct subchannel *sch);
-> +struct vfio_ccw_private *vfio_ccw_alloc_private(struct mdev_device *mdev=
-,
-> +						struct subchannel *sch);
-> +void vfio_ccw_free_private(struct vfio_ccw_private *private);
-> =20
->  extern struct mdev_driver vfio_ccw_mdev_driver;
-> +extern const struct mdev_parent_ops vfio_ccw_mdev_ops;
-> +extern const struct vfio_device_ops vfio_ccw_dev_ops;
-> +
-> +static inline struct vfio_ccw_private *vfio_ccw_get_priv(struct subchann=
-el *sch)
-> +{
-> +	struct vfio_ccw_private *private;
-> +
-> +	rcu_read_lock();
-> +	private =3D dev_get_drvdata(&sch->dev);
-> +	if (private && !vfio_device_try_get(&private->vdev))
-> +		private =3D NULL;
-> +	rcu_read_unlock();
-> +	return private;
-> +}
-> =20
->  /*
->   * States of the device statemachine.
-> --=20
-> 2.33.0
+>>   
+>> -			mark_allocated(block);
+>> -			mm->avail -= drm_buddy_block_size(mm, block);
+>> -			list_add_tail(&block->link, &allocated);
+>>   			continue;
+>>   		}
+>>   
+>> @@ -432,8 +345,7 @@ int drm_buddy_alloc_range(struct drm_buddy_mm *mm,
+>>   		list_add(&block->left->tmp_link, &dfs);
+>>   	} while (1);
+>>   
+>> -	list_splice_tail(&allocated, blocks);
+>> -	return 0;
+>> +	return ERR_PTR(-ENOSPC);
+>>   
+>>   err_undo:
+>>   	/*
+>> @@ -446,12 +358,145 @@ int drm_buddy_alloc_range(struct drm_buddy_mm *mm,
+>>   	    (drm_buddy_block_is_free(block) &&
+>>   	     drm_buddy_block_is_free(buddy)))
+>>   		__drm_buddy_free(mm, block);
+>> +	return ERR_PTR(err);
+>> +}
+>> +
+>> +static struct drm_buddy_block *
+>> +alloc_from_freelist(struct drm_buddy_mm *mm,
+>> +		    unsigned int order,
+>> +		    unsigned long flags)
+>> +{
+>> +	struct drm_buddy_block *block = NULL;
+>> +	unsigned int i;
+>> +	int err;
+>> +
+>> +	for (i = order; i <= mm->max_order; ++i) {
+>> +		block = list_first_entry_or_null(&mm->free_list[i],
+>> +						 struct drm_buddy_block,
+>> +						 link);
+>> +		if (block)
+>> +			break;
+>> +	}
+>> +
+>> +	if (!block)
+>> +		return ERR_PTR(-ENOSPC);
+>> +
+>> +	BUG_ON(!drm_buddy_block_is_free(block));
+>> +
+>> +	while (i != order) {
+>> +		err = split_block(mm, block);
+>> +		if (unlikely(err))
+>> +			goto err_undo;
+>> +
+>> +		block = block->right;
+>> +		i--;
+>> +	}
+>> +	return block;
+>> +
+>> +err_undo:
+>> +	if (i != order)
+>> +		__drm_buddy_free(mm, block);
+>> +	return ERR_PTR(err);
+>> +}
+>> +
+>> +/**
+>> + * drm_buddy_alloc - allocate power-of-two blocks
+>> + *
+>> + * @mm: DRM buddy manager to allocate from
+>> + * @start: start of the allowed range for this block
+>> + * @end: end of the allowed range for this block
+>> + * @size: size of the allocation
+>> + * @min_page_size: alignment of the allocation
+>> + * @blocks: output list head to add allocated blocks
+>> + * @flags: DRM_BUDDY_*_ALLOCATION flags
+>> + *
+>> + * alloc_range() called on range limitations, which traverses
+>> + * the tree and returns the desired block.
+>> + *
+>> + * alloc_from_freelist() called when *no* range restrictions
+>> + * are enforced, which picks the block from the freelist.
+>> + *
+>> + * blocks are allocated in order, the order value here translates to:
+>> + *
+>> + * 0 = 2^0 * mm->chunk_size
+>> + * 1 = 2^1 * mm->chunk_size
+>> + * 2 = 2^2 * mm->chunk_size
+>> + *
+>> + * Returns:
+>> + * 0 on success, error code on failure.
+>> + */
+>> +int drm_buddy_alloc(struct drm_buddy_mm *mm,
+>> +		    u64 start, u64 end, u64 size,
+>> +		    u64 min_page_size,
+>> +		    struct list_head *blocks,
+>> +		    unsigned long flags)
+>> +{
+>> +	struct drm_buddy_block *block = NULL;
+>> +	unsigned int min_order, order;
+>> +	unsigned long pages;
+>> +	LIST_HEAD(allocated);
+>> +	int err;
+>> +
+>> +	if (size < mm->chunk_size)
+>> +		return -EINVAL;
+>> +
+>> +	if (min_page_size < mm->chunk_size)
+>> +		return -EINVAL;
+>> +
+>> +	if (!is_power_of_2(min_page_size))
+>> +		return -EINVAL;
+>> +
+>> +	if (!IS_ALIGNED(start | end | size, mm->chunk_size))
+>> +		return -EINVAL;
+>> +
+>> +	if (check_range_overflow(start, end, size, mm->size))
+>> +		return -EINVAL;
+>> +
+>> +	pages = size >> ilog2(mm->chunk_size);
+>> +	order = fls(pages) - 1;
+>> +	min_order = ilog2(min_page_size) - ilog2(mm->chunk_size);
+>> +
+>> +	do {
+>> +		order = min(order, (unsigned int)fls(pages) - 1);
+>> +		BUG_ON(order > mm->max_order);
+>> +		BUG_ON(order < min_order);
+>> +
+>> +		do {
+>> +			if (flags & DRM_BUDDY_RANGE_ALLOCATION)
+>> +				/* Allocate traversing within the range */
+>> +				block = alloc_range(mm, start, end, order);
+>> +			else
+>> +				/* Allocate from freelist */
+>> +				block = alloc_from_freelist(mm, order, flags);
+>> +
+>> +			if (!IS_ERR(block))
+>> +				break;
+>> +
+>> +			if (order-- == min_order) {
+>> +				err = -ENOSPC;
+>> +				goto err_free;
+>> +			}
+>> +		} while (1);
+>> +
+>> +		mark_allocated(block);
+>> +		mm->avail -= drm_buddy_block_size(mm, block);
+>> +		kmemleak_update_trace(block);
+>> +		list_add_tail(&block->link, &allocated);
+>> +
+>> +		pages -= BIT(order);
+>> +
+>> +		if (!pages)
+>> +			break;
+>> +	} while (1);
+>> +
+>> +	list_splice_tail(&allocated, blocks);
+>> +	return 0;
+>>   
+>>   err_free:
+>>   	drm_buddy_free_list(mm, &allocated);
+>>   	return err;
+>>   }
+>> -EXPORT_SYMBOL(drm_buddy_alloc_range);
+>> +EXPORT_SYMBOL(drm_buddy_alloc);
+>>   
+>>   /**
+>>    * drm_buddy_block_print - print block information
+>> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+>> index c4b70cb8c248..9e3d130c3f42 100644
+>> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+>> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+>> @@ -36,13 +36,14 @@ static int i915_ttm_buddy_man_alloc(struct ttm_resource_manager *man,
+>>   	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
+>>   	struct i915_ttm_buddy_resource *bman_res;
+>>   	struct drm_buddy_mm *mm = &bman->mm;
+>> -	unsigned long n_pages;
+>> -	unsigned int min_order;
+>> +	unsigned long n_pages, lpfn;
+>>   	u64 min_page_size;
+>>   	u64 size;
+>>   	int err;
+>>   
+>> -	GEM_BUG_ON(place->fpfn || place->lpfn);
+>> +	lpfn = place->lpfn;
+>> +	if (!lpfn)
+>> +		lpfn = man->size;
+>>   
+>>   	bman_res = kzalloc(sizeof(*bman_res), GFP_KERNEL);
+>>   	if (!bman_res)
+>> @@ -52,6 +53,9 @@ static int i915_ttm_buddy_man_alloc(struct ttm_resource_manager *man,
+>>   	INIT_LIST_HEAD(&bman_res->blocks);
+>>   	bman_res->mm = mm;
+>>   
+>> +	if (place->fpfn || lpfn != man->size)
+>> +		bman_res->flags |= DRM_BUDDY_RANGE_ALLOCATION;
+>> +
+>>   	GEM_BUG_ON(!bman_res->base.num_pages);
+>>   	size = bman_res->base.num_pages << PAGE_SHIFT;
+>>   
+>> @@ -60,10 +64,16 @@ static int i915_ttm_buddy_man_alloc(struct ttm_resource_manager *man,
+>>   		min_page_size = bo->page_alignment << PAGE_SHIFT;
+>>   
+>>   	GEM_BUG_ON(min_page_size < mm->chunk_size);
+>> -	min_order = ilog2(min_page_size) - ilog2(mm->chunk_size);
+>> +
+>>   	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+>> +		unsigned long pages;
+>> +
+>>   		size = roundup_pow_of_two(size);
+>> -		min_order = ilog2(size) - ilog2(mm->chunk_size);
+>> +		min_page_size = size;
+>> +
+>> +		pages = size >> ilog2(mm->chunk_size);
+>> +		if (pages > lpfn)
+>> +			lpfn = pages;
+>>   	}
+>>   
+>>   	if (size > mm->size) {
+>> @@ -73,34 +83,16 @@ static int i915_ttm_buddy_man_alloc(struct ttm_resource_manager *man,
+>>   
+>>   	n_pages = size >> ilog2(mm->chunk_size);
+>>   
+>> -	do {
+>> -		struct drm_buddy_block *block;
+>> -		unsigned int order;
+>> -
+>> -		order = fls(n_pages) - 1;
+>> -		GEM_BUG_ON(order > mm->max_order);
+>> -		GEM_BUG_ON(order < min_order);
+>> -
+>> -		do {
+>> -			mutex_lock(&bman->lock);
+>> -			block = drm_buddy_alloc(mm, order);
+>> -			mutex_unlock(&bman->lock);
+>> -			if (!IS_ERR(block))
+>> -				break;
+>> -
+>> -			if (order-- == min_order) {
+>> -				err = -ENOSPC;
+>> -				goto err_free_blocks;
+>> -			}
+>> -		} while (1);
+>> -
+>> -		n_pages -= BIT(order);
+>> -
+>> -		list_add_tail(&block->link, &bman_res->blocks);
+>> -
+>> -		if (!n_pages)
+>> -			break;
+>> -	} while (1);
+>> +	mutex_lock(&bman->lock);
+>> +	err = drm_buddy_alloc(mm, (u64)place->fpfn << PAGE_SHIFT,
+>> +			(u64)place->lpfn << PAGE_SHIFT,
+>> +			(u64)n_pages << PAGE_SHIFT,
+>> +			 min_page_size,
+>> +			 &bman_res->blocks,
+>> +			 bman_res->flags);
+>> +	mutex_unlock(&bman->lock);
+>> +	if (unlikely(err))
+>> +		goto err_free_blocks;
+>>   
+>>   	*res = &bman_res->base;
+>>   	return 0;
+>> @@ -266,10 +258,19 @@ int i915_ttm_buddy_man_reserve(struct ttm_resource_manager *man,
+>>   {
+>>   	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
+>>   	struct drm_buddy_mm *mm = &bman->mm;
+>> +	unsigned long flags = 0;
+>> +	u64 min_size;
+>>   	int ret;
+>>   
+>> +	min_size = size;
+>> +	flags |= DRM_BUDDY_RANGE_ALLOCATION;
+>> +
+>>   	mutex_lock(&bman->lock);
+>> -	ret = drm_buddy_alloc_range(mm, &bman->reserved, start, size);
+>> +	ret = drm_buddy_alloc(mm, start,
+>> +			start + size,
+>> +			size, min_size,
+> 
+> min_page_size = min_size = size. I don't think we want that here. Also 
+> the size here might not be power of two. I guess we need to use 
+> chunk_size here instead?
+ok, we will use chunk_size here.
+> 
+>> +			&bman->reserved,
+>> +			flags);
+>>   	mutex_unlock(&bman->lock);
+>>   
+>>   	return ret;
+>> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
+>> index fa644b512c2e..5ba490875f66 100644
+>> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
+>> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
+>> @@ -20,6 +20,7 @@ struct drm_buddy_mm;
+>>    *
+>>    * @base: struct ttm_resource base class we extend
+>>    * @blocks: the list of struct i915_buddy_block for this resource/allocation
+>> + * @flags: DRM_BUDDY_*_ALLOCATION flags
+>>    * @mm: the struct i915_buddy_mm for this resource
+>>    *
+>>    * Extends the struct ttm_resource to manage an address space allocation with
+>> @@ -28,6 +29,7 @@ struct drm_buddy_mm;
+>>   struct i915_ttm_buddy_resource {
+>>   	struct ttm_resource base;
+>>   	struct list_head blocks;
+>> +	unsigned long flags;
+>>   	struct drm_buddy_mm *mm;
+>>   };
+>>   
+>> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
+>> index 5ce3fc702f80..2ec3cbc9d5d7 100644
+>> --- a/include/drm/drm_buddy.h
+>> +++ b/include/drm/drm_buddy.h
+>> @@ -13,15 +13,22 @@
+>>   
+>>   #include <drm/drm_print.h>
+>>   
+>> -#define range_overflows(start, size, max) ({ \
+>> +#define check_range_overflow(start, end, size, max) ({ \
+>>   	typeof(start) start__ = (start); \
+>> +	typeof(end) end__ = (end);\
+>>   	typeof(size) size__ = (size); \
+>>   	typeof(max) max__ = (max); \
+>>   	(void)(&start__ == &size__); \
+>>   	(void)(&start__ == &max__); \
+>> -	start__ >= max__ || size__ > max__ - start__; \
+>> +	(void)(&start__ == &end__); \
+>> +	(void)(&end__ == &size__); \
+>> +	(void)(&end__ == &max__); \
+>> +	start__ >= max__ || end__ > max__ || \
+>> +	size__ > end__ - start__; \
+>>   })
+>>   
+>> +#define DRM_BUDDY_RANGE_ALLOCATION (1 << 0)
+>> +
+>>   struct drm_buddy_block {
+>>   #define DRM_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
+>>   #define DRM_BUDDY_HEADER_STATE  GENMASK_ULL(11, 10)
+>> @@ -131,12 +138,11 @@ int drm_buddy_init(struct drm_buddy_mm *mm, u64 size, u64 chunk_size);
+>>   
+>>   void drm_buddy_fini(struct drm_buddy_mm *mm);
+>>   
+>> -struct drm_buddy_block *
+>> -drm_buddy_alloc(struct drm_buddy_mm *mm, unsigned int order);
+>> -
+>> -int drm_buddy_alloc_range(struct drm_buddy_mm *mm,
+>> -			  struct list_head *blocks,
+>> -			  u64 start, u64 size);
+>> +int drm_buddy_alloc(struct drm_buddy_mm *mm,
+>> +		    u64 start, u64 end, u64 size,
+>> +		    u64 min_page_size,
+>> +		    struct list_head *blocks,
+>> +		    unsigned long flags);
+>>   
+>>   void drm_buddy_free(struct drm_buddy_mm *mm, struct drm_buddy_block *block);
+>>   
+>>
