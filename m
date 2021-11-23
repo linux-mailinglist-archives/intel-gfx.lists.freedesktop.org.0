@@ -1,41 +1,132 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4242D45A3E0
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Nov 2021 14:37:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B248045A5F0
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Nov 2021 15:41:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C13B26FA02;
-	Tue, 23 Nov 2021 13:37:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3326F6E1BA;
+	Tue, 23 Nov 2021 14:41:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B13F6FA01
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Nov 2021 13:37:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10176"; a="215049923"
-X-IronPort-AV: E=Sophos;i="5.87,257,1631602800"; d="scan'208";a="215049923"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2021 05:37:06 -0800
-X-IronPort-AV: E=Sophos;i="5.87,257,1631602800"; d="scan'208";a="456696027"
-Received: from unknown (HELO intel.com) ([10.237.72.167])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2021 05:37:03 -0800
-Date: Tue, 23 Nov 2021 15:36:45 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: "Chery, Nanley G" <nanley.g.chery@intel.com>
-Message-ID: <20211123133645.GA26968@intel.com>
-References: <20211122211420.31584-1-stanislav.lisovskiy@intel.com>
- <CAJDL4uK=5sVT2Ae1gi8jUiFCtRmg_yzuoUn1VBMyX-K2mNbN5Q@mail.gmail.com>
- <20211123081358.GA17294@intel.com>
- <3d74cdc0a6c94699b3e952ada6f903b3@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2052.outbound.protection.outlook.com [40.107.236.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73EC06E176;
+ Tue, 23 Nov 2021 14:41:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aIpXH8Evuzab5TpGTrsZl2J4CW9hUqGKqkTgMj1iRP5X8W4w5DRiaEsji1ep7nuCeSJuw3shIUH8AQaE4pkf5vr8J2RfE7eGY2f6KIatseL4z9GgfnK3CQpwtH+S2Xq4Mk9oP3ZJ0Ga51wZluaaFUkfDUKgTXIlVNbKWBHK2B9wYNwphMgxf75oUFbsTL+nTU80lXbvt+H2r0IHB4VFQBBDD9joOYYzKu/7Eh0r0GVViKzNfykLgu091oNoPx+uF+qhq7GEV3KIX1amhqShV3SEjh41LGmZoFzbt8kI6zFOJx0G3LJXbnSpySHy8pCuvwAvKbTwX8AODZ+1LkXAs5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=81ZFQluNKlv5vWotlHPDj+ZkQ/73cijfS2zPAg9G3yk=;
+ b=UWaZLnTRL4EjzWqP3nOKpPtz9QfRFPbMX3hduDXPHRGbnG2ZK7/X0Ry1fM/6mbKZ3BnC+ApCfhcs/6sJIG5H5tCkfVA6qaMmnRXMM6JnhDAzBuSIZFzuJ8ATkg7GTgjrWmra84Nkt1uKx/lodh3oBJjpFLzkZswL48TnGgfedABAUVTUH4oC/gf1LIfLmOk6iTLzroc5xhGQhuuNOvfNoI4aX395X9H4N3NLSM8SSk2A0cdOHMtDd4+NSTwePNLYRqzCCjmwPz2OerGJi88nApL2gP5bcrSKJyYTlIEtswaeHBod2LN2xDMDoidBukup56LhBGaSHKl8XDS9FjA4PA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=81ZFQluNKlv5vWotlHPDj+ZkQ/73cijfS2zPAg9G3yk=;
+ b=uZHXR9WpyFdGtNfRU3cwvdGOAh2fElFVuuCC4h4U7resvHZPAtZvwIhh7hc+H34EKlDLVmvgUlKKAeHey9+ewodmnomKUBw2ugX2NLXVq5SGZ/FuV0QGfriy6jKTZexktocWkHkuYxi03lmibGeui8O04ggaqpLnRFv392FfgUk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by CO6PR12MB5476.namprd12.prod.outlook.com (2603:10b6:303:138::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.22; Tue, 23 Nov
+ 2021 14:41:03 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::e492:c86b:9906:1b46]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::e492:c86b:9906:1b46%5]) with mapi id 15.20.4713.025; Tue, 23 Nov 2021
+ 14:41:03 +0000
+Message-ID: <7da31336-551d-6d3c-e2a4-6db927b30c6e@amd.com>
+Date: Tue, 23 Nov 2021 09:40:59 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Content-Language: en-US
+To: Pekka Paalanen <ppaalanen@gmail.com>, "Shankar, Uma"
+ <uma.shankar@intel.com>
+References: <20210906213904.27918-1-uma.shankar@intel.com>
+ <20210906213904.27918-6-uma.shankar@intel.com>
+ <52ce874c-64ae-d7a9-bc4e-255cfa49f410@amd.com> <YY1H//+XISVMFZNL@intel.com>
+ <edc4b80279354ec7bcdb0a890dae7d79@intel.com>
+ <4a26ada6-feaa-76df-3ffe-d694e367d809@amd.com>
+ <965b42dd64844e7c8c1b0af7582a4306@intel.com>
+ <20211112103702.7139cec7@eldfell>
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <20211112103702.7139cec7@eldfell>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3d74cdc0a6c94699b3e952ada6f903b3@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Tile 4 plane format support
+X-ClientProxiedBy: YQBPR01CA0046.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:2::18) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
+MIME-Version: 1.0
+Received: from [192.168.50.4] (198.200.67.104) by
+ YQBPR01CA0046.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01:2::18) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4734.20 via Frontend Transport; Tue, 23 Nov 2021 14:41:01 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f0400dea-b206-423e-fc43-08d9ae8f45f7
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5476:
+X-Microsoft-Antispam-PRVS: <CO6PR12MB54763B223E490F39D5326CB48C609@CO6PR12MB5476.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7PJtVX+ODxtWT61/Vk+2JgkIrR6svqDpzA/mUQyBwxYtTejnKJSd8jtcob+5b9NgecJ0YAwhAsJG1kcNBZXPnJ7+KhCHz28guVWEWszRxkoH4gmCryypfjGxPPKEbV9F0zbeFCep5KEBYUFP9zuFL9ElczfdiD4kUwaS6Ys9fZ7wV/a29/E9HQNSoVe9bkEPT1TinHpG2Tu6Ub4V6IKBJKScAW0Fjl9PeuGNLtAMSqgiHPJUP+thuwnZLTQ88VdahxJDbiwCuDMUNz3w/Zb9yvJJSHT3HIlm2a29qQoa8p23lu0NnbCEmbo2XzCTOj05u8UBP3Z9nH2+Ri29hfvusjvQ8GXNKD1ZMpducA6jqXfcpxMyX33SiJmch+SbE9Vio64QD6RM+Y3+z7fl01VsUWWBhh87dp87fTc4NR9lEp0ndz0gwfzYDX0WS61XFcb1yvv6hBalvusqB/kwCXjRztfDuJTCaJHqAnFcSUcRmUMknXsxTj4bJfbSLadLsfpdE6aJCgwtwH2cACGFB13FrJfKXwUjnLY6dAuhGJmrn2zcKRPdv414B7PvutZ4iQf16sUjqf4KzcTWG5aBXjiBnHAk/NdmcBq9cDfNYPDjDSAoVcM59o+PM/qFmzXXO6H2LhZkCnOoEnNN1GV5245lGlquMAx9OQL2xhX2YrjwaoG6dMfRfU0Oisj3mH/KLR0GupIDpOou0UCLT13S1Q8pG3Z7PfQ7nDbuRfoiwTthyx6+XjmeQKL74Es3aYkVMyJz
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(2906002)(16576012)(44832011)(6486002)(316002)(31696002)(2616005)(83380400001)(966005)(956004)(186003)(26005)(38100700002)(66574015)(8676002)(66476007)(508600001)(66946007)(8936002)(53546011)(66556008)(5660300002)(31686004)(110136005)(4001150100001)(4326008)(86362001)(36756003)(54906003)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YmFDV2E0TFV4TzIwNGk3d1hWcVBDdm9yeWxHZDNNbnB4dVIvNUNzdTlaelVo?=
+ =?utf-8?B?aGMzRHpKdGI4OC8zekcyb3ZQN3hqZTVVMjJRSzFobEFnbHVJWFhZS3BkTXNY?=
+ =?utf-8?B?SEhuMG5wY2tBUzFPVldQYjdWTURIcDhKQnlySGFpNndMWkZQb0NTRmQrc3dE?=
+ =?utf-8?B?VUthWmtXazNJejNIWmMrOWVKalBzalVNRlJkRW1LcVR1MzZZY0t2akM2VlJz?=
+ =?utf-8?B?a0JQWWNMUTd5Q1VLSTdwWllXdEpjZ3hXSnJDQmJabVovaC9IdGczMWcvNFZ2?=
+ =?utf-8?B?Ny8zblFFUzdoUUUyVm9NK2ZOc0tQVE9PZHhyRUdRYVE4VHJLTEFNb2R5TnYv?=
+ =?utf-8?B?aWVGQm05Tzdhd0Y4NEcrTDBkdFFXMzJrL1lGcnNtNm9PVHVvdndrdGdINFdK?=
+ =?utf-8?B?R2VFOG9MWGZ1SVZVNHlHcEFUQzBmczIzWkpGaEVrbFZSK24xeW4rM05WaGRp?=
+ =?utf-8?B?MlIyU0pmR3ZpV1NHVDNMWXY1ekU3bmFoV0wvcjZEOU1RWmNMV1ZYdVNaZzUv?=
+ =?utf-8?B?OXhWS01McDVOT2ZtUDgza2FZUUszTW95VlJBeHBPeHp4WTVibjJQM1pqekZV?=
+ =?utf-8?B?SXBoeHlla1ZiV3NHNTFCYmlZNGZRbjkrNzcvMEpJNnpScWtDU2F3SG9MeTJ0?=
+ =?utf-8?B?dEtyRyt4QWU2RlhCditmb1BnZUpDRGJyTW5kYlhaYWI0d3d6SmJiZ0RWcE9Y?=
+ =?utf-8?B?LzhaRnZ5enFPQUM3bmErUEZhS2IxemgwZkx3anNNcjJDMEQ0VkJMT0Y4bjFI?=
+ =?utf-8?B?UjNlTXJyUURsZ0xMNXhnWWx4cWtSRms1Rm1BR256QWx0ZHdKbHRWd1ZoRS9p?=
+ =?utf-8?B?OGdHQU1MU3AwYjhRU01MWlBSNlZqanVyTTVwSHNkTHJIblE2RW0wUk1Ea1A1?=
+ =?utf-8?B?dTFjOENEaE9UYzRocnVrQ2RLbEpoQUk0L0N1Uk5wb242UXhxTWF1WEcwOWNH?=
+ =?utf-8?B?OE1JdEFXNWtwZTBzdDVYR2ZZRWJSWTNYUkVxT25yZVoxSWJ6TjlzMWMzWTBv?=
+ =?utf-8?B?RjFIZFJWZ3F1MUZmNjJDNURzYTVTbHljNU9mT3B3ajU3UWszWWlwbm9OcDIr?=
+ =?utf-8?B?djVkN0FKS0VEdmVneUN1UWZnTTgwcDVUVDFVbDV6S3J4YlFCVU40VFBhK01h?=
+ =?utf-8?B?eWNNQ09KOW5vSjZ2Z2t1NjU2cXo0U0lPdS91U2JqWWw3VzhJbk1yeUs5Ymhr?=
+ =?utf-8?B?L0E1STR3dGxJK1czTnozcDQzLzNJbUtxTDhkMDQ2ZU1BcnBzbWwrc0JmZkkr?=
+ =?utf-8?B?YWJ0ZHRUWlVzVks3S2gwOU82MDJFMTA1NnljWjlnRVdoTTNWNXFJT2I0L0ZK?=
+ =?utf-8?B?T3d1WlcxckorZ3hRRHh1ZnR6aW1IUXI4NmxWS2lhbGVxSnQyMzRJZENsY1A4?=
+ =?utf-8?B?N1ppeHpiUytzOHdGS1J6UnRMSGxKV1g5NldqZmZYUVpacUxhQ2s4QzRXRHRv?=
+ =?utf-8?B?K0JlVHVXeUN1eHZ1TzE0cVZ0cGlhTEJyTnJiNHhaQTlwZHhqNTA3MnFQZE5N?=
+ =?utf-8?B?TllucmhLc3NHM3l2cXBhZ2RpazQ3ZTVCTkI3azBVb3FHUnRkN1FhamNNR1Nx?=
+ =?utf-8?B?d29uQTQ5K0tkcCt6NFhpaEg5c0cydkVveDRiNk9WV0NiYmg5UnFGR1AvKzFK?=
+ =?utf-8?B?L0FhMXMxY1ByTVQraFY3bTR6YWlRdUxZYzJSMjNBRHJLWnRlQXpyaDhiNnlH?=
+ =?utf-8?B?QnZWbUsrVWEwb2hWcGJKaENzem96eWVZdXNxcFJMTzVYUy9BaGR4SEpvQnpu?=
+ =?utf-8?B?dndLVDBqT3UxdDNMeUNETm8rOFVKK2hhUlp4bTRXMVZhbE1kK3U4c05qd0F5?=
+ =?utf-8?B?bVhuYWhxMnJDVDQ4ay91c3J3a3p2WE00d3B5dlVIWUYrTS84Rm42WWM3SWF3?=
+ =?utf-8?B?eFBGbCtEcnpqUGhFWDVKNU5xaFBmUWF6VkpnMzBjdC9VUEc0bjQrc3RIWlMy?=
+ =?utf-8?B?cU1UNWhEeHE4SEtzWEd5TlJtYnYxMTB4VVdYQ1cyakg0Q2REMktRY0J6Y0V5?=
+ =?utf-8?B?eGFhVEtHWnZUVjhsZjdYdzhHRGtPV1VpK2Y2aFBXcVhuTzg5VVh3dUFKNXlT?=
+ =?utf-8?B?QU1oaHlVM0lGZXkrZEl3cUhXWjJVTzR2UkkzZlJwcUVFNndnbUN5L3JkOWtI?=
+ =?utf-8?B?Y2VsN0xqbmozem1oY1kxMTA2bzdRUUxwQzVudTVyZ1VPZmEwdm1Md2R4ejJk?=
+ =?utf-8?Q?gdjCksdEeu/u4QQBJjPS4BM=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0400dea-b206-423e-fc43-08d9ae8f45f7
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2021 14:41:02.8744 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jyURIbnbBtbs2n1vrjhyB+gkEBgiGdpZhDmtKsbBcM82K31bMiai4Tk/RSgDuxcb1q53NQY469L3Ub5oLqTIfg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5476
+Subject: Re: [Intel-gfx] [RFC v2 05/22] drm/i915/xelpd: Define Degamma Lut
+ range struct for HDR planes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,340 +139,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "sebastian@sebastianwick.net" <sebastian@sebastianwick.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 23, 2021 at 02:41:20PM +0200, Chery, Nanley G wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Lisovskiy, Stanislav <stanislav.lisovskiy@intel.com>
-> > Sent: Tuesday, November 23, 2021 3:14 AM
-> > To: Nanley Chery <nanleychery@gmail.com>
-> > Cc: intel-gfx@lists.freedesktop.org; Chery, Nanley G
-> > <nanley.g.chery@intel.com>
-> > Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Tile 4 plane format support
-> > 
-> > On Mon, Nov 22, 2021 at 05:08:31PM -0500, Nanley Chery wrote:
-> > > Hi Stanislav,
-> > >
-> > > Are there IGT tests for this modifier?
-> > 
-> > Hi Nanley
-> > 
-> > Yes, there should be plenty of those, not sure they
-> > are all sent to upstream though.
-> > We have a separate team doing this.
-> > That modifier should be added to kms_plane_multiple
-> > and many others
-> > 
-> 
-> Okay, I'll be on the lookout for them.
-> 
-> > Stan
-> > 
-> 
-> Looks like you missed the other review comments I left in my prior email.
 
-Oh, sorry just saw those. I pushed this already, I will check those anyway
-and sent additional patch, if needed.
 
-Stan
+On 2021-11-12 03:37, Pekka Paalanen wrote:
+> On Thu, 11 Nov 2021 21:58:35 +0000
+> "Shankar, Uma" <uma.shankar@intel.com> wrote:
+> 
+>>> -----Original Message-----
+>>> From: Harry Wentland <harry.wentland@amd.com>
+>>> Sent: Friday, November 12, 2021 2:41 AM
+>>> To: Shankar, Uma <uma.shankar@intel.com>; Ville Syrjälä
+>>> <ville.syrjala@linux.intel.com>
+>>> Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org;
+>>> ppaalanen@gmail.com; brian.starkey@arm.com; sebastian@sebastianwick.net;
+>>> Shashank.Sharma@amd.com
+>>> Subject: Re: [RFC v2 05/22] drm/i915/xelpd: Define Degamma Lut range struct for
+>>> HDR planes
+>>>
+>>>
+>>>
+>>> On 2021-11-11 15:42, Shankar, Uma wrote:  
+>>>>
+>>>>  
+>>>>> -----Original Message-----
+>>>>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>>>> Sent: Thursday, November 11, 2021 10:13 PM
+>>>>> To: Harry Wentland <harry.wentland@amd.com>
+>>>>> Cc: Shankar, Uma <uma.shankar@intel.com>;
+>>>>> intel-gfx@lists.freedesktop.org; dri- devel@lists.freedesktop.org;
+>>>>> ppaalanen@gmail.com; brian.starkey@arm.com;
+>>>>> sebastian@sebastianwick.net; Shashank.Sharma@amd.com
+>>>>> Subject: Re: [RFC v2 05/22] drm/i915/xelpd: Define Degamma Lut range
+>>>>> struct for HDR planes
+>>>>>
+>>>>> On Thu, Nov 11, 2021 at 10:17:17AM -0500, Harry Wentland wrote:  
+>>>>>>
+>>>>>>
+>>>>>> On 2021-09-06 17:38, Uma Shankar wrote:  
+>>>>>>> Define the structure with XE_LPD degamma lut ranges. HDR and SDR
+>>>>>>> planes have different capabilities, implemented respective
+>>>>>>> structure for the HDR planes.
+>>>>>>>
+>>>>>>> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+>>>>>>> ---
+>>>>>>>  drivers/gpu/drm/i915/display/intel_color.c | 52
+>>>>>>> ++++++++++++++++++++++
+>>>>>>>  1 file changed, 52 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_color.c
+>>>>>>> b/drivers/gpu/drm/i915/display/intel_color.c
+>>>>>>> index afcb4bf3826c..6403bd74324b 100644
+>>>>>>> --- a/drivers/gpu/drm/i915/display/intel_color.c
+>>>>>>> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+>>>>>>> @@ -2092,6 +2092,58 @@ static void icl_read_luts(struct
+>>>>>>> intel_crtc_state  
+>>>>> *crtc_state)  
+>>>>>>>  	}
+>>>>>>>  }
+>>>>>>>
+>>>>>>> + /* FIXME input bpc? */
+>>>>>>> +__maybe_unused
+>>>>>>> +static const struct drm_color_lut_range d13_degamma_hdr[] = {
+>>>>>>> +	/* segment 1 */
+>>>>>>> +	{
+>>>>>>> +		.flags = (DRM_MODE_LUT_GAMMA |
+>>>>>>> +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
+>>>>>>> +			  DRM_MODE_LUT_INTERPOLATE |
+>>>>>>> +			  DRM_MODE_LUT_NON_DECREASING),
+>>>>>>> +		.count = 128,
+>>>>>>> +		.input_bpc = 24, .output_bpc = 16,
+>>>>>>> +		.start = 0, .end = (1 << 24) - 1,
+>>>>>>> +		.min = 0, .max = (1 << 24) - 1,
+>>>>>>> +	},
+>>>>>>> +	/* segment 2 */
+>>>>>>> +	{
+>>>>>>> +		.flags = (DRM_MODE_LUT_GAMMA |
+>>>>>>> +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
+>>>>>>> +			  DRM_MODE_LUT_INTERPOLATE |
+>>>>>>> +			  DRM_MODE_LUT_REUSE_LAST |
+>>>>>>> +			  DRM_MODE_LUT_NON_DECREASING),
+>>>>>>> +		.count = 1,
+>>>>>>> +		.input_bpc = 24, .output_bpc = 16,
+>>>>>>> +		.start = (1 << 24) - 1, .end = 1 << 24,
+>>>>>>> +		.min = 0, .max = (1 << 27) - 1,
+>>>>>>> +	},
+>>>>>>> +	/* Segment 3 */
+>>>>>>> +	{
+>>>>>>> +		.flags = (DRM_MODE_LUT_GAMMA |
+>>>>>>> +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
+>>>>>>> +			  DRM_MODE_LUT_INTERPOLATE |
+>>>>>>> +			  DRM_MODE_LUT_REUSE_LAST |
+>>>>>>> +			  DRM_MODE_LUT_NON_DECREASING),
+>>>>>>> +		.count = 1,
+>>>>>>> +		.input_bpc = 24, .output_bpc = 16,
+>>>>>>> +		.start = 1 << 24, .end = 3 << 24,
+>>>>>>> +		.min = 0, .max = (1 << 27) - 1,
+>>>>>>> +	},
+>>>>>>> +	/* Segment 4 */
+>>>>>>> +	{
+>>>>>>> +		.flags = (DRM_MODE_LUT_GAMMA |
+>>>>>>> +			  DRM_MODE_LUT_REFLECT_NEGATIVE |
+>>>>>>> +			  DRM_MODE_LUT_INTERPOLATE |
+>>>>>>> +			  DRM_MODE_LUT_REUSE_LAST |
+>>>>>>> +			  DRM_MODE_LUT_NON_DECREASING),
+>>>>>>> +		.count = 1,
+>>>>>>> +		.input_bpc = 24, .output_bpc = 16,
+>>>>>>> +		.start = 3 << 24, .end = 7 << 24,
+>>>>>>> +		.min = 0, .max = (1 << 27) - 1,
+>>>>>>> +	},
+>>>>>>> +};  
+>>>>>>
+>>>>>> If I understand this right, userspace would need this definition in
+>>>>>> order to populate the degamma blob. Should this sit in a UAPI header?  
+> 
+> Are you asking whether 'struct drm_color_lut_range` is defined in any
+> userspace visible header?
+> 
+> It seems to be in patch 2.
+> 
+>>>>
+>>>> Hi Harry, Pekka and Ville,
+>>>> Sorry for being a bit late on the replies, got side tracked with various issues.
+>>>> I am back on this. Apologies for delay.
+>>>>  
+>>>>> My original idea (not sure it's fully realized in this series) is to
+>>>>> have a new GAMMA_MODE/etc. enum property on each crtc (or plane) for
+>>>>> which each enum value points to a kernel provided blob that contains one of  
+>>> these LUT descriptors.  
+>>>>> Userspace can then query them dynamically and pick the best one for
+>>>>> its current use case.  
+>>>>
+>>>> We have this as part of the series Ville. Patch 3 of this series
+>>>> creates a DEGAMMA_MODE property just for this. With that userspace can
+>>>> just query the blob_id's and will get the various degamma mode possible and the  
+>>> respective segment and lut distributions.  
+>>>>
+>>>> This will be generic, so for userspace it should just be able to query
+>>>> this and parse and get the lut distribution and segment ranges.
+>>>>  
+>>>
+>>> Thanks for the explanation.
+>>>
+>>> Uma, have you had a chance to sketch some of this out in IGT? I'm trying to see how
+>>> userspace would do this in practice and will try to sketch an IGT test for this myself,
+>>> but if you have it already we could share the effort.  
+>>
+>> Yes Harry, we do have some sample IGT's to test this. Will send those out and will copy
+>> you and all the stakeholders.
+>>
+
+Thanks. The set is on my list of items to review.
+
+>>>>> The algorithm for choosing the best one might be something like:
+>>>>> - prefer LUT with bpc >= FB bpc, but perhaps not needlessly high bpc
+>>>>> - prefer interpolated vs. direct lookup based on current needs (eg. X
+>>>>>   could prefer direct lookup to get directcolor visuals).
+>>>>> - prefer one with extended range values if needed
+>>>>> - for HDR prefer smaller step size in dark tones,
+>>>>>   for SDR perhaps prefer a more uniform step size
+>>>>>
+>>>>> Or maybe we should include some kind of usage hints as well?  
+>>>>
+>>>> I think the segment range and distribution of lut should be enough for
+>>>> a userspace to pick the right ones, but we can add some examples in UAPI  
+>>> descriptions as hints.  
+>>>>  
+>>>
+>>> The range might be enough, but we're already parsing hints like "GAMMA"
+>>> or "DEGAMMA". I wonder if it would make sense to add a flag for "HDR" or "SDR" as
+>>> well.  
+> 
+> What hints are GAMMA or DEGAMMA and who's parsing them? I thought they
+> are just arbitrary names to identify the element's position in the
+> abstract pipeline.
+> 
+
+They are provided with the segment definitions, e.g. in 
+https://patchwork.freedesktop.org/patch/452589/?series=90826&rev=2
+
+I believe they are indicating whether a segment definition is
+intended for degamma (linearization) use or for gamma (delinearization)
+use.
+
+>>
+>> On Intel hardware, we differentiate this with precision and have HDR planes (they have extra
+>> Lut precision and samples) separately called out. We could add SDR/HDR FLAG as well.
+> 
+> What about wide color gamut SDR? That probably needs more precision
+> than "normal" SDR but is not HDR.
+> 
+> I can't think of how SDR/HDR flags would work or what they would mean.
+> Feels a bit too simple for practice. Maybe that concept should be
+> created by a hypothetical userspace helper library instead.
+> 
+
+Maybe this is a decision best left up to compositors. A compositor
+will know best what precision and range it needs.
+
+Harry
 
 > 
-> -Nanley
+> Thanks,
+> pq
 > 
-> > >
-> > > On Mon, Nov 22, 2021 at 4:14 PM Stanislav Lisovskiy
-> > > <stanislav.lisovskiy@intel.com> wrote:
-> > > >
-> > > > TileF(Tile4 in bspec) format is 4K tile organized into
-> > > > 64B subtiles with same basic shape as for legacy TileY
-> > > > which will be supported by Display13.
-> > > >
-> > > > v2: - Fixed wrong case condition(Jani Nikula)
-> > > >     - Increased I915_FORMAT_MOD_F_TILED up to 12(Imre Deak)
-> > > >
-> > > > v3: - s/I915_TILING_F/TILING_4/g
-> > > >     - s/I915_FORMAT_MOD_F_TILED/I915_FORMAT_MOD_4_TILED/g
-> > > >     - Removed unneeded fencing code
-> > > >
-> > > > v4: - Rebased, fixed merge conflict with new table-oriented
-> > > >       format modifier checking(Stan)
-> > > >     - Replaced the rest of "Tile F" mentions to "Tile 4"(Stan)
-> > > >
-> > > > v5: - Still had to remove some Tile F mentionings
-> > > >     - Moved has_4tile from adlp to DG2(Ramalingam C)
-> > > >     - Check specifically for DG2, but not the Display13(Imre)
-> > > >
-> > > > v6: - Moved Tile4 assocating struct for modifier/display to
-> > > >       the beginning(Imre Deak)
-> > > >     - Removed unneeded case I915_FORMAT_MOD_4_TILED modifier
-> > > >       checks(Imre Deak)
-> > > >     - Fixed I915_FORMAT_MOD_4_TILED to be 9 instead of 12
-> > > >       (Imre Deak)
-> > > >
-> > > > v7: - Fixed display_ver to { 13, 13 }(Imre Deak)
-> > > >     - Removed redundant newline(Imre Deak)
-> > > >
-> > > > Reviewed-by: Imre Deak <imre.deak@intel.com>
-> > > > Cc: Imre Deak <imre.deak@intel.com>
-> > > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > > > Signed-off-by: Juha-Pekka Heikkil� <juha-pekka.heikkila@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_display.c  |  1 +
-> > > >  drivers/gpu/drm/i915/display/intel_fb.c       |  9 +++++++++
-> > > >  drivers/gpu/drm/i915/display/intel_fbc.c      |  1 +
-> > > >  .../drm/i915/display/intel_plane_initial.c    |  1 +
-> > > >  .../drm/i915/display/skl_universal_plane.c    | 20 +++++++++++--------
-> > > >  drivers/gpu/drm/i915/i915_drv.h               |  1 +
-> > > >  drivers/gpu/drm/i915/i915_pci.c               |  1 +
-> > > >  drivers/gpu/drm/i915/i915_reg.h               |  1 +
-> > > >  drivers/gpu/drm/i915/intel_device_info.h      |  1 +
-> > > >  drivers/gpu/drm/i915/intel_pm.c               |  1 +
-> > > >  include/uapi/drm/drm_fourcc.h                 |  8 ++++++++
-> > > >  11 files changed, 37 insertions(+), 8 deletions(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > index f3c9208a30b1..7429965d3682 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > @@ -7766,6 +7766,7 @@ static int intel_atomic_check_async(struct
-> > intel_atomic_state *state, struct int
-> > > >                 case I915_FORMAT_MOD_X_TILED:
-> > > >                 case I915_FORMAT_MOD_Y_TILED:
-> > > >                 case I915_FORMAT_MOD_Yf_TILED:
-> > > > +               case I915_FORMAT_MOD_4_TILED:
-> > > >                         break;
-> > > >                 default:
-> > > >                         drm_dbg_kms(&i915->drm,
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c
-> > b/drivers/gpu/drm/i915/display/intel_fb.c
-> > > > index c4a743d0913f..b7f1ef62072c 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> > > > @@ -139,6 +139,9 @@ struct intel_modifier_desc {
-> > > >
-> > > >  static const struct intel_modifier_desc intel_modifiers[] = {
-> > > >         {
-> > > > +               .modifier = I915_FORMAT_MOD_4_TILED,
-> > > > +               .display_ver = { 13, 13 },
-> > >
-> > > I see that every other modifier has the plane_cap field set. Why is it
-> > > okay for it to be zero here?
-> > >
-> > > > +       }, {
-> > > >                 .modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
-> > > >                 .display_ver = { 12, 13 },
-> > > >                 .plane_caps = INTEL_PLANE_CAP_TILING_Y |
-> > INTEL_PLANE_CAP_CCS_MC,
-> > > > @@ -544,6 +547,12 @@ intel_tile_width_bytes(const struct
-> > drm_framebuffer *fb, int color_plane)
-> > > >                         return 128;
-> > > >                 else
-> > > >                         return 512;
-> > > > +       case I915_FORMAT_MOD_4_TILED:
-> > > > +               /*
-> > > > +                * Each 4K tile consists of 64B(8*8) subtiles, with
-> > > > +                * same shape as Y Tile(i.e 4*16B OWords)
-> > > > +                */
-> > > > +               return 128;
-> > > >         case I915_FORMAT_MOD_Y_TILED_CCS:
-> > > >                 if (intel_fb_is_ccs_aux_plane(fb, color_plane))
-> > > >                         return 128;
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > > index d0c34bc3af6c..0ceabe40d8c9 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > > @@ -898,6 +898,7 @@ static bool tiling_is_valid(struct drm_i915_private
-> > *i915,
-> > > >         case I915_FORMAT_MOD_Y_TILED:
-> > > >         case I915_FORMAT_MOD_Yf_TILED:
-> > > >                 return DISPLAY_VER(i915) >= 9;
-> > > > +       case I915_FORMAT_MOD_4_TILED:
-> > >
-> > > The tile Y cases above check the display version. Should we do the same here?
-> > >
-> > > >         case I915_FORMAT_MOD_X_TILED:
-> > > >                 return true;
-> > > >         default:
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > > > index dcd698a02da2..d80855ee9b96 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > > > @@ -125,6 +125,7 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
-> > > >         case DRM_FORMAT_MOD_LINEAR:
-> > > >         case I915_FORMAT_MOD_X_TILED:
-> > > >         case I915_FORMAT_MOD_Y_TILED:
-> > > > +       case I915_FORMAT_MOD_4_TILED:
-> > > >                 break;
-> > > >         default:
-> > > >                 drm_dbg(&dev_priv->drm,
-> > > > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > > index 28890876bdeb..e5cda5bcbde4 100644
-> > > > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > > @@ -751,6 +751,8 @@ static u32 skl_plane_ctl_tiling(u64 fb_modifier)
-> > > >                 return PLANE_CTL_TILED_X;
-> > > >         case I915_FORMAT_MOD_Y_TILED:
-> > > >                 return PLANE_CTL_TILED_Y;
-> > > > +       case I915_FORMAT_MOD_4_TILED:
-> > > > +               return PLANE_CTL_TILED_4;
-> > > >         case I915_FORMAT_MOD_Y_TILED_CCS:
-> > > >         case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
-> > > >                 return PLANE_CTL_TILED_Y |
-> > PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
-> > > > @@ -1971,9 +1973,7 @@ static bool
-> > gen12_plane_format_mod_supported(struct drm_plane *_plane,
-> > > >         case DRM_FORMAT_Y216:
-> > > >         case DRM_FORMAT_XVYU12_16161616:
-> > > >         case DRM_FORMAT_XVYU16161616:
-> > > > -               if (modifier == DRM_FORMAT_MOD_LINEAR ||
-> > > > -                   modifier == I915_FORMAT_MOD_X_TILED ||
-> > > > -                   modifier == I915_FORMAT_MOD_Y_TILED)
-> > > > +               if (!intel_fb_is_ccs_modifier(modifier))
-> > > >                         return true;
-> > > >                 fallthrough;
-> > > >         default:
-> > > > @@ -2299,11 +2299,15 @@ skl_get_initial_plane_config(struct intel_crtc
-> > *crtc,
-> > > >                 else
-> > > >                         fb->modifier = I915_FORMAT_MOD_Y_TILED;
-> > > >                 break;
-> > > > -       case PLANE_CTL_TILED_YF:
-> > > > -               if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
-> > > > -                       fb->modifier = I915_FORMAT_MOD_Yf_TILED_CCS;
-> > > > -               else
-> > > > -                       fb->modifier = I915_FORMAT_MOD_Yf_TILED;
-> > > > +       case PLANE_CTL_TILED_YF: /* aka PLANE_CTL_TILED_4 on XE_LPD+ */
-> > >
-> > > To be safe, maybe add a static_assert(PLANE_CTL_TILED_YF ==
-> > > PLANE_CTL_TILED_4); ?
-> > >
-> > > > +               if (HAS_4TILE(dev_priv)) {
-> > > > +                       fb->modifier = I915_FORMAT_MOD_4_TILED;
-> > > > +               } else {
-> > > > +                       if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
-> > > > +                               fb->modifier = I915_FORMAT_MOD_Yf_TILED_CCS;
-> > > > +                       else
-> > > > +                               fb->modifier = I915_FORMAT_MOD_Yf_TILED;
-> > > > +               }
-> > > >                 break;
-> > > >         default:
-> > > >                 MISSING_CASE(tiling);
-> > > > diff --git a/drivers/gpu/drm/i915/i915_drv.h
-> > b/drivers/gpu/drm/i915/i915_drv.h
-> > > > index 1bfadd9127fc..3d90bd732e91 100644
-> > > > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > > > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > > > @@ -1627,6 +1627,7 @@ IS_SUBPLATFORM(const struct drm_i915_private
-> > *i915,
-> > > >  #define CMDPARSER_USES_GGTT(dev_priv) (GRAPHICS_VER(dev_priv) == 7)
-> > > >
-> > > >  #define HAS_LLC(dev_priv)      (INTEL_INFO(dev_priv)->has_llc)
-> > > > +#define HAS_4TILE(dev_priv)    (INTEL_INFO(dev_priv)->has_4tile)
-> > > >  #define HAS_SNOOP(dev_priv)    (INTEL_INFO(dev_priv)->has_snoop)
-> > > >  #define HAS_EDRAM(dev_priv)    ((dev_priv)->edram_size_mb)
-> > > >  #define HAS_SECURE_BATCHES(dev_priv) (GRAPHICS_VER(dev_priv) < 6)
-> > > > diff --git a/drivers/gpu/drm/i915/i915_pci.c
-> > b/drivers/gpu/drm/i915/i915_pci.c
-> > > > index f01cba4ec283..403d3a581ce7 100644
-> > > > --- a/drivers/gpu/drm/i915/i915_pci.c
-> > > > +++ b/drivers/gpu/drm/i915/i915_pci.c
-> > > > @@ -1044,6 +1044,7 @@ static const struct intel_device_info dg2_info = {
-> > > >         DGFX_FEATURES,
-> > > >         .graphics.rel = 55,
-> > > >         .media.rel = 55,
-> > > > +       .has_4tile = 1,
-> > > >         PLATFORM(INTEL_DG2),
-> > > >         .platform_engine_mask =
-> > > >                 BIT(RCS0) | BIT(BCS0) |
-> > > > diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> > b/drivers/gpu/drm/i915/i915_reg.h
-> > > > index 3450818802c2..22d18a292430 100644
-> > > > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > > > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > > > @@ -7284,6 +7284,7 @@ enum {
-> > > >  #define   PLANE_CTL_TILED_X                    (1 << 10)
-> > > >  #define   PLANE_CTL_TILED_Y                    (4 << 10)
-> > > >  #define   PLANE_CTL_TILED_YF                   (5 << 10)
-> > > > +#define   PLANE_CTL_TILED_4                    (5 << 10)
-> > > >  #define   PLANE_CTL_ASYNC_FLIP                 (1 << 9)
-> > > >  #define   PLANE_CTL_FLIP_HORIZONTAL            (1 << 8)
-> > > >  #define   PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE (1 << 4) /* TGL+ */
-> > > > diff --git a/drivers/gpu/drm/i915/intel_device_info.h
-> > b/drivers/gpu/drm/i915/intel_device_info.h
-> > > > index 669f0d26c3c3..67177e18704a 100644
-> > > > --- a/drivers/gpu/drm/i915/intel_device_info.h
-> > > > +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> > > > @@ -125,6 +125,7 @@ enum intel_ppgtt_type {
-> > > >         func(has_64bit_reloc); \
-> > > >         func(gpu_reset_clobbers_display); \
-> > > >         func(has_reset_engine); \
-> > > > +       func(has_4tile); \
-> > > >         func(has_global_mocs); \
-> > > >         func(has_gt_uc); \
-> > > >         func(has_l3_dpf); \
-> > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c
-> > b/drivers/gpu/drm/i915/intel_pm.c
-> > > > index 01fa3fac1b57..167704f0acf0 100644
-> > > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > > @@ -5386,6 +5386,7 @@ skl_compute_wm_params(const struct
-> > intel_crtc_state *crtc_state,
-> > > >         }
-> > > >
-> > > >         wp->y_tiled = modifier == I915_FORMAT_MOD_Y_TILED ||
-> > > > +                     modifier == I915_FORMAT_MOD_4_TILED ||
-> > > >                       modifier == I915_FORMAT_MOD_Yf_TILED ||
-> > > >                       modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
-> > > >                       modifier == I915_FORMAT_MOD_Yf_TILED_CCS;
-> > > > diff --git a/include/uapi/drm/drm_fourcc.h
-> > b/include/uapi/drm/drm_fourcc.h
-> > > > index 7f652c96845b..41184a94935d 100644
-> > > > --- a/include/uapi/drm/drm_fourcc.h
-> > > > +++ b/include/uapi/drm/drm_fourcc.h
-> > > > @@ -564,6 +564,14 @@ extern "C" {
-> > > >   * pitch is required to be a multiple of 4 tile widths.
-> > > >   */
-> > > >  #define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC
-> > fourcc_mod_code(INTEL, 8)
-> > > > +/*
-> > > > + * Intel F-tiling(aka Tile4) layout
-> > > > + *
-> > >
-> > > v4 and v5 attempted to get rid of the F-tile references, but this was
-> > > left behind.
-> > >
-> > > > + * This is a tiled layout using 4Kb tiles in row-major layout.
-> > > > + * Within the tile pixels are laid out in 64 byte units / sub-tiles in OWORD
-> > > > + * (16 bytes) chunks column-major..
-> > >
-> > > I can't picture how tile 4 is organized from this description. Could
-> > > we update it?
-> > > Here's a draft I came up with when wondering how I might do this myself:
-> > >
-> > > * This is a tiled layout using 4KB tiles in a row-major layout. It has the same
-> > > * shape as Tile Y at two granularities: 4KB (128B x 32) and 64B (16B x 4). It
-> > > * only differs from Tile Y at the 256B granularity in between. At this
-> > > * granularity, Tile Y has a shape of 16B x 32 rows, but this tiling has a shape
-> > > * of 64B x 8 rows.
-> > >
-> > > -Nanley
-> > >
-> > > > + */
-> > > > +#define I915_FORMAT_MOD_4_TILED         fourcc_mod_code(INTEL, 9)
-> > > >
-> > > >  /*
-> > > >   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
-> > > > --
-> > > > 2.24.1.485.gad05a3d8e5
-> > > >
+
