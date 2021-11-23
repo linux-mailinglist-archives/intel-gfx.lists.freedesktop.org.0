@@ -2,38 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 280F0459D96
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Nov 2021 09:14:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD5EF459E83
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Nov 2021 09:45:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F3506E4D0;
-	Tue, 23 Nov 2021 08:14:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44BF86EBFF;
+	Tue, 23 Nov 2021 08:45:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B83E6E4D2
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Nov 2021 08:14:18 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10176"; a="222200558"
-X-IronPort-AV: E=Sophos;i="5.87,257,1631602800"; d="scan'208";a="222200558"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2021 00:14:17 -0800
-X-IronPort-AV: E=Sophos;i="5.87,257,1631602800"; d="scan'208";a="570922639"
-Received: from unknown (HELO intel.com) ([10.237.72.167])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2021 00:14:15 -0800
-Date: Tue, 23 Nov 2021 10:13:58 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Nanley Chery <nanleychery@gmail.com>
-Message-ID: <20211123081358.GA17294@intel.com>
-References: <20211122211420.31584-1-stanislav.lisovskiy@intel.com>
- <CAJDL4uK=5sVT2Ae1gi8jUiFCtRmg_yzuoUn1VBMyX-K2mNbN5Q@mail.gmail.com>
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com
+ [IPv6:2a00:1450:4864:20::22d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F30886EC0D;
+ Tue, 23 Nov 2021 08:45:34 +0000 (UTC)
+Received: by mail-lj1-x22d.google.com with SMTP id 13so9518564ljj.11;
+ Tue, 23 Nov 2021 00:45:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=pFkWXRQLp2a0JXFEH49pnNMiPhMmJWIqjtYLx7Q5kGA=;
+ b=dF4UyjpdB+iP41WpCUCrsF3UGY/KQCvb3oZrc7Ej7HMg1GoRifBwlslRRA42Rq43xN
+ BQ7jyu72TpWea0lQr33qusYVAPohx4QE1TDof8nmwfct3eXmGB0Es+vUDvhYfGP+g84h
+ dFK979uDCDfgw7TwB63X85BKdulXxCQzDvqC3IYhbDxBlxr7r6DBw1zCKL74ititeTup
+ BJO1VelsnMhfnz1AJWOX3mmBiUa9g/ktHEc5UDxXn8d9A1o5XvxhewFV7DlTpF7gtXPs
+ O0kyVD7Uja7fIhZIdHMIBsmIt5FvBpqM7w+Rei1i+CYI5HNN8ReGujAScZBdW9S3z67z
+ bz6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=pFkWXRQLp2a0JXFEH49pnNMiPhMmJWIqjtYLx7Q5kGA=;
+ b=vdtixO+t4RZTFsWSali8phuGTd+hXa0lDVeGksAzEjrMy7pbA9ognemvkqzHd+NVzf
+ SsDlxJrcvwUmOpudGW6zLdDxee3eVXnMgUYXn7mYFgO1VxiIbEdFihchp2OVJxB+hdGI
+ zBpRu3M+v20qdlKMimtYulBACfuVNeVb7OqCJTbHqCZk7Rskhn2ukrQBhk03yG0lpi3P
+ mroZ3BqEHswm9MfRXW3ExHCA72emlobVEOHxxy7Gc23iQ/jjSb0uYChnD2c5MxsrUFcI
+ s/55w/kYKoZakY8Gonpu8JWcGlTIuw57h5FmnRnP6Hfa5DLEjKUuqZSHCIvAUS093sf/
+ Wklw==
+X-Gm-Message-State: AOAM531exDtWUy/71I0NavLGlAYvSqtaZYXrkvr7sMEsvFH05XILLL3A
+ jfrNc1NQZFt+i34DNkieDe4=
+X-Google-Smtp-Source: ABdhPJyEOqSJ0LhmELDrpw4I2/N1YyxLqNhCZOrEjPb43q6Cz1GF37urc88ZaxhIEJYQonG3pltBnQ==
+X-Received: by 2002:a2e:6e0b:: with SMTP id j11mr3273521ljc.80.1637657132900; 
+ Tue, 23 Nov 2021 00:45:32 -0800 (PST)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id o20sm1080045lfc.276.2021.11.23.00.45.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 23 Nov 2021 00:45:32 -0800 (PST)
+Date: Tue, 23 Nov 2021 10:45:22 +0200
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: jim.cromie@gmail.com
+Message-ID: <20211123104522.7a336773@eldfell>
+In-Reply-To: <CAJfuBxyFzA++2JUxLY-6yLqmrETbmsWpTiyJH5w1qKiAkMriNw@mail.gmail.com>
+References: <20211111220206.121610-1-jim.cromie@gmail.com>
+ <20211111220206.121610-9-jim.cromie@gmail.com>
+ <20211112114953.GA1381@axis.com>
+ <f3914fa9-8b22-d54e-3f77-d998e74094b9@akamai.com>
+ <20211116104631.195cbd0b@eldfell>
+ <f87b7076-47e6-89b1-aaf9-b67aa6713e01@akamai.com>
+ <20211118172401.0b4d722e@eldfell>
+ <41ea83b2-a707-cb6f-521e-070bb12502de@akamai.com>
+ <20211122110208.528e1d80@eldfell>
+ <CAJfuBxyFzA++2JUxLY-6yLqmrETbmsWpTiyJH5w1qKiAkMriNw@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJDL4uK=5sVT2Ae1gi8jUiFCtRmg_yzuoUn1VBMyX-K2mNbN5Q@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Tile 4 plane format support
+Content-Type: multipart/signed; boundary="Sig_/SxG3EvWI4147tD=7h0CnB9L";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: Re: [Intel-gfx] [PATCH v10 08/10] dyndbg: add print-to-tracefs,
+ selftest with it - RFC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,294 +77,309 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Nanley Chery <nanley.g.chery@intel.com>
+Cc: quic_saipraka@quicinc.com, Catalin Marinas <catalin.marinas@arm.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Will Deacon <will@kernel.org>,
+ maz@kernel.org, Vincent Whitchurch <vincent.whitchurch@axis.com>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Ingo Molnar <mingo@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Arnd Bergmann <arnd@arndb.de>, linux-arm-msm@vger.kernel.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Steven Rostedt <rostedt@goodmis.org>, Jason Baron <jbaron@akamai.com>,
+ Sean Paul <seanpaul@chromium.org>, intel-gvt-dev@lists.freedesktop.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Greg KH <gregkh@linuxfoundation.org>, LKML <linux-kernel@vger.kernel.org>,
+ quic_psodagud@quicinc.com, mathieu.desnoyers@efficios.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 22, 2021 at 05:08:31PM -0500, Nanley Chery wrote:
-> Hi Stanislav,
-> 
-> Are there IGT tests for this modifier?
+--Sig_/SxG3EvWI4147tD=7h0CnB9L
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Hi Nanley
+On Mon, 22 Nov 2021 15:42:38 -0700
+jim.cromie@gmail.com wrote:
 
-Yes, there should be plenty of those, not sure they
-are all sent to upstream though.
-We have a separate team doing this.
-That modifier should be added to kms_plane_multiple
-and many others
+> On Mon, Nov 22, 2021 at 2:02 AM Pekka Paalanen <ppaalanen@gmail.com> wrot=
+e:
+> >
+> > On Fri, 19 Nov 2021 11:21:36 -0500
+> > Jason Baron <jbaron@akamai.com> wrote:
+> > =20
+> > > On 11/18/21 10:24 AM, Pekka Paalanen wrote: =20
+> > > > On Thu, 18 Nov 2021 09:29:27 -0500
+> > > > Jason Baron <jbaron@akamai.com> wrote:
+> > > > =20
+> > > >> On 11/16/21 3:46 AM, Pekka Paalanen wrote: =20
+> > > >>> On Fri, 12 Nov 2021 10:08:41 -0500
+> > > >>> Jason Baron <jbaron@akamai.com> wrote:
+> > > >>> =20
+> > > >>>> On 11/12/21 6:49 AM, Vincent Whitchurch wrote: =20
+> > > >>>>> On Thu, Nov 11, 2021 at 03:02:04PM -0700, Jim Cromie wrote: =20
+> > > >>>>>> Sean Paul proposed, in:
+> > > >>>>>> https://urldefense.com/v3/__https://patchwork.freedesktop.org/=
+series/78133/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQjlN5aBIomzJR1an3YWXM6KXs0EftV=
+MQdrewRA8Dki4A$
+> > > >>>>>> drm/trace: Mirror DRM debug logs to tracefs
+> > > >>>>>>
+> > > >>>>>> His patchset's objective is to be able to independently steer =
+some of
+> > > >>>>>> the drm.debug stream to an alternate tracing destination, by s=
+plitting
+> > > >>>>>> drm_debug_enabled() into syslog & trace flavors, and enabling =
+them
+> > > >>>>>> separately.  2 advantages were identified:
+> > > >>>>>>
+> > > >>>>>> 1- syslog is heavyweight, tracefs is much lighter
+> > > >>>>>> 2- separate selection of enabled categories means less traffic
+> > > >>>>>>
+> > > >>>>>> Dynamic-Debug can do 2nd exceedingly well:
+> > > >>>>>>
+> > > >>>>>> A- all work is behind jump-label's NOOP, zero off cost.
+> > > >>>>>> B- exact site selectivity, precisely the useful traffic.
+> > > >>>>>>    can tailor enabled set interactively, at shell.
+> > > >>>>>>
+> > > >>>>>> Since the tracefs interface is effective for drm (the threads =
+suggest
+> > > >>>>>> so), adding that interface to dynamic-debug has real potential=
+ for
+> > > >>>>>> everyone including drm.
+> > > >>>>>>
+> > > >>>>>> if CONFIG_TRACING:
+> > > >>>>>>
+> > > >>>>>> Grab Sean's trace_init/cleanup code, use it to provide tracefs
+> > > >>>>>> available by default to all pr_debugs.  This will likely need =
+some
+> > > >>>>>> further per-module treatment; perhaps something reflecting hie=
+rarchy
+> > > >>>>>> of module,file,function,line, maybe with a tuned flattening.
+> > > >>>>>>
+> > > >>>>>> endif CONFIG_TRACING
+> > > >>>>>>
+> > > >>>>>> Add a new +T flag to enable tracing, independent of +p, and ad=
+d and
+> > > >>>>>> use 3 macros: dyndbg_site_is_enabled/logging/tracing(), to enc=
+apsulate
+> > > >>>>>> the flag checks.  Existing code treats T like other flags. =20
+> > > >>>>>
+> > > >>>>> I posted a patchset a while ago to do something very similar, b=
+ut that
+> > > >>>>> got stalled for some reason and I unfortunately didn't follow i=
+t up:
+> > > >>>>>
+> > > >>>>>  https://urldefense.com/v3/__https://lore.kernel.org/lkml/20200=
+825153338.17061-1-vincent.whitchurch@axis.com/__;!!GjvTz_vk!HcKnMRByYkIdyF1=
+apqQjlN5aBIomzJR1an3YWXM6KXs0EftVMQdrewRGytKHPg$
+> > > >>>>>
+> > > >>>>> A key difference between that patchset and this patch (besides =
+that
+> > > >>>>> small fact that I used +x instead of +T) was that my patchset a=
+llowed
+> > > >>>>> the dyndbg trace to be emitted to the main buffer and did not f=
+orce them
+> > > >>>>> to be in an instance-specific buffer. =20
+> > > >>>>
+> > > >>>> Yes, I agree I'd prefer that we print here to the 'main' buffer =
+- it
+> > > >>>> seems to keep things simpler and easier to combine the output fr=
+om
+> > > >>>> different sources as you mentioned. =20
+> > > >>>
+> > > >>> Hi,
+> > > >>>
+> > > >>> I'm not quite sure I understand this discussion, but I would like=
+ to
+> > > >>> remind you all of what Sean's original work is about:
+> > > >>>
+> > > >>> Userspace configures DRM tracing into a flight recorder buffer (I=
+ guess
+> > > >>> this is what you refer to "instance-specific buffer").
+> > > >>>
+> > > >>> Userspace runs happily for months, and then hits a problem: a fai=
+lure
+> > > >>> in the DRM sub-system most likely, e.g. an ioctl that should never
+> > > >>> fail, failed. Userspace handles that failure by dumping the flight
+> > > >>> recorder buffer into a file and saving or sending a bug report. T=
+he
+> > > >>> flight recorder contents give a log of all relevant DRM in-kernel
+> > > >>> actions leading to the unexpected failure to help developers debu=
+g it.
+> > > >>>
+> > > >>> I don't mind if one can additionally send the flight recorder str=
+eam to
+> > > >>> the main buffer, but I do want the separate flight recorder buffe=
+r to
+> > > >>> be an option so that a) unrelated things cannot flood the interes=
+ting
+> > > >>> bits out of it, and b) the scope of collected information is rele=
+vant.
+> > > >>>
+> > > >>> The very reason for this work is problems that are very difficult=
+ to
+> > > >>> reproduce in practice, either because the problem itself is trigg=
+ered
+> > > >>> very rarely and randomly, or because the end users of the system =
+have
+> > > >>> either no knowledge or no access to reconfigure debug logging and=
+ then
+> > > >>> reproduce the problem with good debug logs.
+> > > >>>
+> > > >>> Thank you very much for pushing this work forward!
+> > > >>>
+> > > >>> =20
+> > > >>
+> > > >> So I think Vincent (earlier in the thread) was saying that he find=
+s it
+> > > >> very helpful have dynamic debug output go to the 'main' trace buff=
+er,
+> > > >> while you seem to be saying you'd prefer it just go to dynamic deb=
+ug
+> > > >> specific trace buffer. =20
+> > > >
+> > > > Seems like we have different use cases: traditional debugging, and
+> > > > in-production flight recorder for problem reporting. I'm not surpri=
+sed
+> > > > if they need different treatment.
+> > > > =20
+> > > >> So we certainly can have dynamic output potentially go to both pla=
+ces -
+> > > >> although I think this would mean two tracepoints? But I really won=
+der
+> > > >> if we really need a separate tracing buffer for dynamic debug when
+> > > >> what goes to the 'main' buffer can be controlled and filtered to a=
+void
+> > > >> your concern around a 'flood'? =20
+> > > >
+> > > > If the DRM tracing goes into the main buffer, then systems in
+> > > > production cannot have any other sub-system traced in a similar
+> > > > fashion. To me it would feel very arrogant to say that to make use =
+of
+> > > > DRM flight recording, you cannot trace much or anything else.
+> > > >
+> > > > The very purpose of the flight recorder is run in production all the
+> > > > time, not in a special debugging session.
+> > > >
+> > > > There is also the question of access and contents of the trace buff=
+er.
+> > > > Ultimately, if automatic bug reports are enabled in a system, the
+> > > > contents of the trace buffer would be sent as-is to some bug tracki=
+ng
+> > > > system. If there is a chance to put non-DRM stuff in the trace buff=
+er,
+> > > > that could be a security problem.
+> > > >
+> > > > My use case is Weston. When Weston encounters an unexpected problem=
+ in
+> > > > production, something should automatically capture the DRM flight
+> > > > recorder contents and save it alongside the Weston log. Would be re=
+ally
+> > > > nice if Weston itself could do that, but I suspect it is going to n=
+eed
+> > > > root privileges so it needs some helper daemon.
+> > > >
+> > > > Maybe Sean can reiterate their use case more?
+> > > >
+> > > >
+> > > > Thanks,
+> > > > pq
+> > > > =20
+> > >
+> > > Ok, so in this current thread the proposal was to create a "dyndbg-tr=
+acefs"
+> > > buffer to put the dynamic debug output (including drm output from dyn=
+amic
+> > > debug) into. And I was saying let's just put in the 'main' trace buff=
+er
+> > > (predicated on a dynamic debug specific tracepoint), since there seems
+> > > to be a a use-case for that and it keeps things simpler.
+> > >
+> > > But I went back to Sean's original patch, and it creates a drm specif=
+ic
+> > > trace buffer "drm" (via trace_array_get_by_name("drm")). Here:
+> > > https://patchwork.freedesktop.org/patch/445549/?series=3D78133&rev=3D5
+> > >
+> > > So I think that may be some of the confusion here? The current thread/
+> > > proposal is not for a drm specific trace buffer... =20
+> >
+> > Hi Jason,
+> >
+> > I may very well have confused things, sorry about that. If this series
+> > is not superseding the idea of the DRM flight recorder, then don't mind
+> > me. It just sounded very similar and I also haven't seen new revisions
+> > of the flight recorder in a long time. =20
+>=20
+> IMO this series has clarified the requirement for a flight-recorder mode,
+> which seems to fit ideally in a separate instance.
+>=20
+> > > Having a subsystem specific trace buffer would allow subsystem specif=
+ic
+> > > trace log permissions depending on the sensitivity of the data. But
+> > > doesn't drm output today go to the system log which is typically world
+> > > readable today? =20
+> >
+> > Yes, and that is exactly the problem. The DRM debug output is so high
+> > traffic it would make the system log both unusable due to cruft and
+> > slow down the whole machine. The debug output is only useful when
+> > something went wrong, and at that point it is too late to enable
+> > debugging. That's why a flight recorder with an over-written circular
+> > in-memory buffer is needed. =20
+>=20
+> Seans patch reuses enum drm_debug_category to split the tracing
+> stream into 10 sub-streams
+> - how much traffic from each ?
+> - are some sub-streams more valuable for post-mortem ?
+> - any value from further refinement of categories ?
+> - drop irrelevant callsites individually to reduce clutter, extend
+> buffer time/space ?
 
-Stan
+I think it's hard to predict which sub-streams you are going to need
+before you have a bug to debug. Hence I would err on the side of
+enabling too much. This also means that better or more refined
+categorisation might not be that much of help - or if it is, then are
+the excluded debug messages worth having in the kernel to begin with.
+Well, we're probably not that interested in GPU debugs but just
+everything related to the KMS side, which on the existing categories
+is... everything except half of CORE and DRIVER, maybe? Not sure.
 
-> 
-> On Mon, Nov 22, 2021 at 4:14 PM Stanislav Lisovskiy
-> <stanislav.lisovskiy@intel.com> wrote:
-> >
-> > TileF(Tile4 in bspec) format is 4K tile organized into
-> > 64B subtiles with same basic shape as for legacy TileY
-> > which will be supported by Display13.
-> >
-> > v2: - Fixed wrong case condition(Jani Nikula)
-> >     - Increased I915_FORMAT_MOD_F_TILED up to 12(Imre Deak)
-> >
-> > v3: - s/I915_TILING_F/TILING_4/g
-> >     - s/I915_FORMAT_MOD_F_TILED/I915_FORMAT_MOD_4_TILED/g
-> >     - Removed unneeded fencing code
-> >
-> > v4: - Rebased, fixed merge conflict with new table-oriented
-> >       format modifier checking(Stan)
-> >     - Replaced the rest of "Tile F" mentions to "Tile 4"(Stan)
-> >
-> > v5: - Still had to remove some Tile F mentionings
-> >     - Moved has_4tile from adlp to DG2(Ramalingam C)
-> >     - Check specifically for DG2, but not the Display13(Imre)
-> >
-> > v6: - Moved Tile4 assocating struct for modifier/display to
-> >       the beginning(Imre Deak)
-> >     - Removed unneeded case I915_FORMAT_MOD_4_TILED modifier
-> >       checks(Imre Deak)
-> >     - Fixed I915_FORMAT_MOD_4_TILED to be 9 instead of 12
-> >       (Imre Deak)
-> >
-> > v7: - Fixed display_ver to { 13, 13 }(Imre Deak)
-> >     - Removed redundant newline(Imre Deak)
-> >
-> > Reviewed-by: Imre Deak <imre.deak@intel.com>
-> > Cc: Imre Deak <imre.deak@intel.com>
-> > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > Signed-off-by: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c  |  1 +
-> >  drivers/gpu/drm/i915/display/intel_fb.c       |  9 +++++++++
-> >  drivers/gpu/drm/i915/display/intel_fbc.c      |  1 +
-> >  .../drm/i915/display/intel_plane_initial.c    |  1 +
-> >  .../drm/i915/display/skl_universal_plane.c    | 20 +++++++++++--------
-> >  drivers/gpu/drm/i915/i915_drv.h               |  1 +
-> >  drivers/gpu/drm/i915/i915_pci.c               |  1 +
-> >  drivers/gpu/drm/i915/i915_reg.h               |  1 +
-> >  drivers/gpu/drm/i915/intel_device_info.h      |  1 +
-> >  drivers/gpu/drm/i915/intel_pm.c               |  1 +
-> >  include/uapi/drm/drm_fourcc.h                 |  8 ++++++++
-> >  11 files changed, 37 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index f3c9208a30b1..7429965d3682 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -7766,6 +7766,7 @@ static int intel_atomic_check_async(struct intel_atomic_state *state, struct int
-> >                 case I915_FORMAT_MOD_X_TILED:
-> >                 case I915_FORMAT_MOD_Y_TILED:
-> >                 case I915_FORMAT_MOD_Yf_TILED:
-> > +               case I915_FORMAT_MOD_4_TILED:
-> >                         break;
-> >                 default:
-> >                         drm_dbg_kms(&i915->drm,
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> > index c4a743d0913f..b7f1ef62072c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> > @@ -139,6 +139,9 @@ struct intel_modifier_desc {
-> >
-> >  static const struct intel_modifier_desc intel_modifiers[] = {
-> >         {
-> > +               .modifier = I915_FORMAT_MOD_4_TILED,
-> > +               .display_ver = { 13, 13 },
-> 
-> I see that every other modifier has the plane_cap field set. Why is it
-> okay for it to be zero here?
-> 
-> > +       }, {
-> >                 .modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
-> >                 .display_ver = { 12, 13 },
-> >                 .plane_caps = INTEL_PLANE_CAP_TILING_Y | INTEL_PLANE_CAP_CCS_MC,
-> > @@ -544,6 +547,12 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
-> >                         return 128;
-> >                 else
-> >                         return 512;
-> > +       case I915_FORMAT_MOD_4_TILED:
-> > +               /*
-> > +                * Each 4K tile consists of 64B(8*8) subtiles, with
-> > +                * same shape as Y Tile(i.e 4*16B OWords)
-> > +                */
-> > +               return 128;
-> >         case I915_FORMAT_MOD_Y_TILED_CCS:
-> >                 if (intel_fb_is_ccs_aux_plane(fb, color_plane))
-> >                         return 128;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > index d0c34bc3af6c..0ceabe40d8c9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > @@ -898,6 +898,7 @@ static bool tiling_is_valid(struct drm_i915_private *i915,
-> >         case I915_FORMAT_MOD_Y_TILED:
-> >         case I915_FORMAT_MOD_Yf_TILED:
-> >                 return DISPLAY_VER(i915) >= 9;
-> > +       case I915_FORMAT_MOD_4_TILED:
-> 
-> The tile Y cases above check the display version. Should we do the same here?
-> 
-> >         case I915_FORMAT_MOD_X_TILED:
-> >                 return true;
-> >         default:
-> > diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > index dcd698a02da2..d80855ee9b96 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> > @@ -125,6 +125,7 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
-> >         case DRM_FORMAT_MOD_LINEAR:
-> >         case I915_FORMAT_MOD_X_TILED:
-> >         case I915_FORMAT_MOD_Y_TILED:
-> > +       case I915_FORMAT_MOD_4_TILED:
-> >                 break;
-> >         default:
-> >                 drm_dbg(&dev_priv->drm,
-> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > index 28890876bdeb..e5cda5bcbde4 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > @@ -751,6 +751,8 @@ static u32 skl_plane_ctl_tiling(u64 fb_modifier)
-> >                 return PLANE_CTL_TILED_X;
-> >         case I915_FORMAT_MOD_Y_TILED:
-> >                 return PLANE_CTL_TILED_Y;
-> > +       case I915_FORMAT_MOD_4_TILED:
-> > +               return PLANE_CTL_TILED_4;
-> >         case I915_FORMAT_MOD_Y_TILED_CCS:
-> >         case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
-> >                 return PLANE_CTL_TILED_Y | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
-> > @@ -1971,9 +1973,7 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
-> >         case DRM_FORMAT_Y216:
-> >         case DRM_FORMAT_XVYU12_16161616:
-> >         case DRM_FORMAT_XVYU16161616:
-> > -               if (modifier == DRM_FORMAT_MOD_LINEAR ||
-> > -                   modifier == I915_FORMAT_MOD_X_TILED ||
-> > -                   modifier == I915_FORMAT_MOD_Y_TILED)
-> > +               if (!intel_fb_is_ccs_modifier(modifier))
-> >                         return true;
-> >                 fallthrough;
-> >         default:
-> > @@ -2299,11 +2299,15 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
-> >                 else
-> >                         fb->modifier = I915_FORMAT_MOD_Y_TILED;
-> >                 break;
-> > -       case PLANE_CTL_TILED_YF:
-> > -               if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
-> > -                       fb->modifier = I915_FORMAT_MOD_Yf_TILED_CCS;
-> > -               else
-> > -                       fb->modifier = I915_FORMAT_MOD_Yf_TILED;
-> > +       case PLANE_CTL_TILED_YF: /* aka PLANE_CTL_TILED_4 on XE_LPD+ */
-> 
-> To be safe, maybe add a static_assert(PLANE_CTL_TILED_YF ==
-> PLANE_CTL_TILED_4); ?
-> 
-> > +               if (HAS_4TILE(dev_priv)) {
-> > +                       fb->modifier = I915_FORMAT_MOD_4_TILED;
-> > +               } else {
-> > +                       if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
-> > +                               fb->modifier = I915_FORMAT_MOD_Yf_TILED_CCS;
-> > +                       else
-> > +                               fb->modifier = I915_FORMAT_MOD_Yf_TILED;
-> > +               }
-> >                 break;
-> >         default:
-> >                 MISSING_CASE(tiling);
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> > index 1bfadd9127fc..3d90bd732e91 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > @@ -1627,6 +1627,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
-> >  #define CMDPARSER_USES_GGTT(dev_priv) (GRAPHICS_VER(dev_priv) == 7)
-> >
-> >  #define HAS_LLC(dev_priv)      (INTEL_INFO(dev_priv)->has_llc)
-> > +#define HAS_4TILE(dev_priv)    (INTEL_INFO(dev_priv)->has_4tile)
-> >  #define HAS_SNOOP(dev_priv)    (INTEL_INFO(dev_priv)->has_snoop)
-> >  #define HAS_EDRAM(dev_priv)    ((dev_priv)->edram_size_mb)
-> >  #define HAS_SECURE_BATCHES(dev_priv) (GRAPHICS_VER(dev_priv) < 6)
-> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> > index f01cba4ec283..403d3a581ce7 100644
-> > --- a/drivers/gpu/drm/i915/i915_pci.c
-> > +++ b/drivers/gpu/drm/i915/i915_pci.c
-> > @@ -1044,6 +1044,7 @@ static const struct intel_device_info dg2_info = {
-> >         DGFX_FEATURES,
-> >         .graphics.rel = 55,
-> >         .media.rel = 55,
-> > +       .has_4tile = 1,
-> >         PLATFORM(INTEL_DG2),
-> >         .platform_engine_mask =
-> >                 BIT(RCS0) | BIT(BCS0) |
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > index 3450818802c2..22d18a292430 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -7284,6 +7284,7 @@ enum {
-> >  #define   PLANE_CTL_TILED_X                    (1 << 10)
-> >  #define   PLANE_CTL_TILED_Y                    (4 << 10)
-> >  #define   PLANE_CTL_TILED_YF                   (5 << 10)
-> > +#define   PLANE_CTL_TILED_4                    (5 << 10)
-> >  #define   PLANE_CTL_ASYNC_FLIP                 (1 << 9)
-> >  #define   PLANE_CTL_FLIP_HORIZONTAL            (1 << 8)
-> >  #define   PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE (1 << 4) /* TGL+ */
-> > diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> > index 669f0d26c3c3..67177e18704a 100644
-> > --- a/drivers/gpu/drm/i915/intel_device_info.h
-> > +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> > @@ -125,6 +125,7 @@ enum intel_ppgtt_type {
-> >         func(has_64bit_reloc); \
-> >         func(gpu_reset_clobbers_display); \
-> >         func(has_reset_engine); \
-> > +       func(has_4tile); \
-> >         func(has_global_mocs); \
-> >         func(has_gt_uc); \
-> >         func(has_l3_dpf); \
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> > index 01fa3fac1b57..167704f0acf0 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > @@ -5386,6 +5386,7 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
-> >         }
-> >
-> >         wp->y_tiled = modifier == I915_FORMAT_MOD_Y_TILED ||
-> > +                     modifier == I915_FORMAT_MOD_4_TILED ||
-> >                       modifier == I915_FORMAT_MOD_Yf_TILED ||
-> >                       modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
-> >                       modifier == I915_FORMAT_MOD_Yf_TILED_CCS;
-> > diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
-> > index 7f652c96845b..41184a94935d 100644
-> > --- a/include/uapi/drm/drm_fourcc.h
-> > +++ b/include/uapi/drm/drm_fourcc.h
-> > @@ -564,6 +564,14 @@ extern "C" {
-> >   * pitch is required to be a multiple of 4 tile widths.
-> >   */
-> >  #define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC fourcc_mod_code(INTEL, 8)
-> > +/*
-> > + * Intel F-tiling(aka Tile4) layout
-> > + *
-> 
-> v4 and v5 attempted to get rid of the F-tile references, but this was
-> left behind.
-> 
-> > + * This is a tiled layout using 4Kb tiles in row-major layout.
-> > + * Within the tile pixels are laid out in 64 byte units / sub-tiles in OWORD
-> > + * (16 bytes) chunks column-major..
-> 
-> I can't picture how tile 4 is organized from this description. Could
-> we update it?
-> Here's a draft I came up with when wondering how I might do this myself:
-> 
-> * This is a tiled layout using 4KB tiles in a row-major layout. It has the same
-> * shape as Tile Y at two granularities: 4KB (128B x 32) and 64B (16B x 4). It
-> * only differs from Tile Y at the 256B granularity in between. At this
-> * granularity, Tile Y has a shape of 16B x 32 rows, but this tiling has a shape
-> * of 64B x 8 rows.
-> 
-> -Nanley
-> 
-> > + */
-> > +#define I915_FORMAT_MOD_4_TILED         fourcc_mod_code(INTEL, 9)
-> >
-> >  /*
-> >   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
-> > --
-> > 2.24.1.485.gad05a3d8e5
-> >
+Maybe Sean has a better idea.
+
+My feeling is that that could mean in the order of hundreds of log
+events at framerate (e.g. 60 times per second) per each enabled output
+individually. And per DRM device, of course. This is with the
+uninteresting GPU debugs already excluded.
+
+Still, I don't think the flight recorder buffer would need to be
+massive. I suspect it would be enough to hold a few frames' worth which
+is just a split second under active operation. When something happens,
+the userspace stack is likely going to stop on its tracks immediately
+to collect the debug information, which means the flooding should pause
+and the relevant messages don't get overwritten before we get them. In
+a multi-seat system where each device is controlled by a separate
+display server instance, per-device logs would help with this. OTOH,
+multi-seat is not a very common use case I suppose.
+
+
+Thanks,
+pq
+
+--Sig_/SxG3EvWI4147tD=7h0CnB9L
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmGcqiIACgkQI1/ltBGq
+qqez3RAAkXUMG4UuD6XSePo0AVaVuwMwx+7cQa9DRYYvNf4WRXNCc/JSJb0DTHlj
+rQw52jZo8zPsCIFKJOUgr1PundY7y/FKu3TVQiObz11oiy8lS94RPa0FmLaX8Hr9
+zf2YXqQmY31vvOLPj9zzmzfCUMcT9AFZUtydqXpxhx7qF/Z/+39fJ0a6JMpT6nLP
+FEZwlIYFs43DdEnb0X2+uoLU34fgw4FXO9NOK94fP1tfWfWwAJsVpuKcnfDj56aG
+CIcTv24D8ew0lChcchyWfMf88L7f+tiZqirTL8KxmDdzdWEZY1GzNfQGg7346wo7
+2FwtD5PqY+WtvimUB8uQeI04q651SXPqPqYk7g95GZkRy62kwa4x0U5wCPLr9apj
+TWcZsoGFoIqJ4Hv/dV0c/9CxOGS+eOthYalvgKgHo1mBuIj1aYk1oSfwedZoqyCr
+ZTFzKh6CjrqInz5OsR5P7wldWX6R/JvetZTK0eacsUrQaYwAB2UWUCvd7L/tdodK
+ReJ3OY7Fs5ATgs7CEK78sEx5edWY4fCxmxapw4XzMLvX97vFMrGwkMpOa6VSc1VX
+1D8K4ydltSmzUDKzaWe6JnzRY0dJadrhLPRkuyVLQTACu7EpmIoEz6jOf7jfoiyM
+fecd46WNdBI5+J49C4Ld7h59Qo4OMcsoOmen/xMWDAcsNRRcEhA=
+=xgJy
+-----END PGP SIGNATURE-----
+
+--Sig_/SxG3EvWI4147tD=7h0CnB9L--
