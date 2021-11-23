@@ -1,53 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28C5845A4EB
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Nov 2021 15:12:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C262145A4EA
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Nov 2021 15:12:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2B496E200;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CABA66E215;
 	Tue, 23 Nov 2021 14:12:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F147589CE0;
- Mon, 22 Nov 2021 16:54:36 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8DD3360241;
- Mon, 22 Nov 2021 16:54:36 +0000 (UTC)
-Authentication-Results: mail.kernel.org;
- dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
- header.b="dP4QVNMf"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
- t=1637600074;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=gFB4GGO7VWHQ+sHus62itweDuqdAMpzJGDCrOx7Sl+o=;
- b=dP4QVNMfSY4LMQGoIsQd1bXzVBqBnIQdji9g635rBa5MrXNngFIb7ns5m+skmXDLacidx/
- KVvVKkYjfvyWzs7tqKXk2ZmnH5v/ycgZZaHYYWZFdjbrWSY0OdPfcUDQ7kpRtv0tlVR7Dl
- XK0ay9GNE9xlDz1wxXxmjRwVlimdYqo=
-Received: by mail.zx2c4.com (OpenSMTPD) with ESMTPSA id 46a738fc
- (TLSv1.3:AEAD-AES256-GCM-SHA384:256:NO); 
- Mon, 22 Nov 2021 16:54:34 +0000 (UTC)
-Received: by mail-yb1-f169.google.com with SMTP id e136so51809845ybc.4;
- Mon, 22 Nov 2021 08:54:34 -0800 (PST)
-X-Gm-Message-State: AOAM5306SdGMLJI8OalleqQpJbYSFvcHcuSUknpBfq+Dtg5fgKdPw/mU
- 4uX5Cjvgg5zvoxUx6ZBBOX89YuMr1rcmuGHWDlg=
-X-Google-Smtp-Source: ABdhPJxQCZYDHGUlMO1aafPrAbyf5t9NtzQjwUTLTK2qy3WoWzWX94MpQ5F7E6I3jpnFtG0Lh5Wkf4D8W6lABPYYIq8=
-X-Received: by 2002:a25:acd4:: with SMTP id x20mr67974442ybd.416.1637600073306; 
- Mon, 22 Nov 2021 08:54:33 -0800 (PST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 538FE6F977;
+ Tue, 23 Nov 2021 12:51:38 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 57D3560F9F;
+ Tue, 23 Nov 2021 12:51:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1637671898;
+ bh=wIrWQf7YDEFEE/QQ99FQt/AhMw3wdmvSFHVUP3uKPJM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=QGkZLrvRZ8KTMwcjmn6QaI1qSGzu+DoXhu8PQwdm/+cC5pDtmTATs6POIbgvzvvxo
+ dvx+KAr/Q+u+JS9xVPk6U+7MmUsBqP+41x4NGLkHYCxIDvlSTvBzSwwSfjybOfj2nq
+ TWRsQoUsqmsGmFLBAmPGIX/fzXnDaxy9cZciaQXE+GdZ9Q0gggepiKZXZcNrbqfcrR
+ nHkhXzC+DvQ0+sPze3evyAcW6a63+vYer0kxBjG7JGzCBaYsm5sgS1HDHOjsFSlWxO
+ c9lRiHDTKp2sG2VkVB8n9OMhlpaRH11oqA5Gp/3+CBjyqqPEmeO+zBNBu7sa5kiK9F
+ SG13871QjbYqQ==
+Date: Tue, 23 Nov 2021 20:51:08 +0800
+From: Peter Chen <peter.chen@kernel.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Message-ID: <20211123125108.GA4453@Peter>
+References: <20211120035253.72074-1-kuba@kernel.org>
+ <20211120073011.GA36650@Peter>
+ <20211120072602.22f9e722@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
 MIME-Version: 1.0
-References: <CAHmME9pShXywMogVkcBsXtfKxFHmQLe0F9cMF27aveUz6iyWhA@mail.gmail.com>
- <454da641-c065-132e-174b-4e6c9d7db83e@intel.com>
-In-Reply-To: <454da641-c065-132e-174b-4e6c9d7db83e@intel.com>
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Date: Mon, 22 Nov 2021 17:54:22 +0100
-X-Gmail-Original-Message-ID: <CAHmME9pDO-vXtRaKWRET3V7bPhEoQMV8ofvsVSeFswSiUGjBrA@mail.gmail.com>
-Message-ID: <CAHmME9pDO-vXtRaKWRET3V7bPhEoQMV8ofvsVSeFswSiUGjBrA@mail.gmail.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211120072602.22f9e722@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
 X-Mailman-Approved-At: Tue, 23 Nov 2021 14:12:22 +0000
-Subject: Re: [Intel-gfx] RPM raw-wakeref not held in intel_pxp_fini_hw
+Subject: Re: [Intel-gfx] [PATCH bpf] treewide: add missing includes masked
+ by cgroup -> bpf dependency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,14 +51,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Vitaly Lubart <vitaly.lubart@intel.com>
+Cc: kw@linux.com, songliubraving@fb.com, kafai@fb.com, airlied@linux.ie,
+ linux-pci@vger.kernel.org, ast@kernel.org, dri-devel@lists.freedesktop.org,
+ andrii@kernel.org, a-govindraju@ti.com, ray.huang@amd.com, sbhatta@marvell.com,
+ robh@kernel.org, lorenzo.pieralisi@arm.com, daniel@iogearbox.net,
+ krzysztof.kozlowski@canonical.com, john.fastabend@gmail.com,
+ geert@linux-m68k.org, matthew.auld@intel.com, yhs@fb.com, sgoutham@marvell.com,
+ thomas.hellstrom@linux.intel.com, pawell@cadence.com, tzimmermann@suse.de,
+ mani@kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, mripard@kernel.org, kpsingh@kernel.org,
+ rogerq@kernel.org, linux-samsung-soc@vger.kernel.org, bhelgaas@google.com,
+ akpm@linux-foundation.org, linux-arm-kernel@lists.infradead.org,
+ axboe@kernel.dk, linux-block@vger.kernel.org, sj@kernel.org,
+ lima@lists.freedesktop.org, linux-mm@kvack.org, jingoohan1@gmail.com,
+ linux-usb@vger.kernel.org, christian.koenig@amd.com, hkelam@marvell.com,
+ yuq825@gmail.com, gregkh@linuxfoundation.org, bpf@vger.kernel.org,
+ colin.king@intel.com, freedreno@lists.freedesktop.org, gakula@marvell.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniele,
+On 21-11-20 07:26:02, Jakub Kicinski wrote:
+> On Sat, 20 Nov 2021 15:30:11 +0800 Peter Chen wrote:
+> > > diff --git a/drivers/usb/cdns3/host.c b/drivers/usb/cdns3/host.c
+> > > index 84dadfa726aa..9643b905e2d8 100644
+> > > --- a/drivers/usb/cdns3/host.c
+> > > +++ b/drivers/usb/cdns3/host.c
+> > > @@ -10,6 +10,7 @@
+> > >   */
+> > >  
+> > >  #include <linux/platform_device.h>
+> > > +#include <linux/slab.h>  
+> > 
+> > Should be "#include <linux/module.h>"?
+> 
+> Why? Different files are missing different includes, this one needs
+> slab.h:
+> 
+> ../drivers/usb/cdns3/host.c: In function ‘__cdns_host_init’:
+> ../drivers/usb/cdns3/host.c:86:2: error: implicit declaration of function ‘kfree’; did you mean ‘vfree’? [-Werror=implicit-function-declaration]
+>   kfree(cdns->xhci_plat_data);
+>   ^~~~~
+>   vfree
 
-I'll give it a whirl on my laptop. Thanks.
+Oh, my fault.
 
-Jason
+Acked-by: Peter Chen <peter.chen@kernel.org>
+
+-- 
+
+Thanks,
+Peter Chen
+
