@@ -2,36 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 921C745ACA4
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Nov 2021 20:37:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFD9145ACA3
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Nov 2021 20:37:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1997E6E3DB;
-	Tue, 23 Nov 2021 19:37:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FC3A6E3F5;
+	Tue, 23 Nov 2021 19:37:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C43B6E3DB
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Nov 2021 19:37:19 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10177"; a="235062410"
-X-IronPort-AV: E=Sophos;i="5.87,258,1631602800"; d="scan'208";a="235062410"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2021 11:37:18 -0800
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0406A6E221;
+ Tue, 23 Nov 2021 19:37:13 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10177"; a="258990952"
+X-IronPort-AV: E=Sophos;i="5.87,258,1631602800"; d="scan'208";a="258990952"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2021 11:37:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,258,1631602800"; d="scan'208";a="591333669"
-Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by FMSMGA003.fm.intel.com with ESMTP; 23 Nov 2021 11:37:16 -0800
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 24 Nov 2021 01:06:49 +0530
-Message-Id: <20211123193649.3153258-4-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211123193649.3153258-1-uma.shankar@intel.com>
-References: <20211123193649.3153258-1-uma.shankar@intel.com>
+X-IronPort-AV: E=Sophos;i="5.87,258,1631602800"; d="scan'208";a="740749591"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga006.fm.intel.com with ESMTP; 23 Nov 2021 11:37:13 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Tue, 23 Nov 2021 11:37:13 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Tue, 23 Nov 2021 11:37:12 -0800
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
+ Tue, 23 Nov 2021 11:37:12 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Manna, Animesh" <animesh.manna@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v3 1/5] drm/i915/panelreplay: dpcd register definition
+ for panelreplay
+Thread-Index: AQHXvdMbU+LIe5afkkGIhVCDLK7ZfqwSTa0A
+Date: Tue, 23 Nov 2021 19:37:12 +0000
+Message-ID: <5b91f3f1f0397401ea6bbc408940027448494259.camel@intel.com>
+References: <20211010121039.14725-1-animesh.manna@intel.com>
+ <20211010121039.14725-2-animesh.manna@intel.com>
+In-Reply-To: <20211010121039.14725-2-animesh.manna@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <76507B065478F340BCB02A169E95511F@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/xelpd: Add Pipe Color Lut caps to
- platform config
+Subject: Re: [Intel-gfx] [PATCH v3 1/5] drm/i915/panelreplay: dpcd register
+ definition for panelreplay
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,32 +67,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =ville.syrjala@linux.intel.com
+Cc: "Nikula, Jani" <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-XE_LPD has 128 Lut entries for Degamma, with additional 3 entries for
-extended range. It has 511 entries for gamma with additional 2 entries
-for extended range.
-
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
----
- drivers/gpu/drm/i915/i915_pci.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index f01cba4ec283..40d21a8c50ff 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -938,7 +938,7 @@ static const struct intel_device_info adl_s_info = {
- 
- #define XE_LPD_FEATURES \
- 	.abox_mask = GENMASK(1, 0),						\
--	.color = { .degamma_lut_size = 0, .gamma_lut_size = 0 },		\
-+	.color = { .degamma_lut_size = 128, .gamma_lut_size = 513 },		\
- 	.dbuf.size = 4096,							\
- 	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |		\
- 		BIT(DBUF_S4),							\
--- 
-2.25.1
-
+T24gU3VuLCAyMDIxLTEwLTEwIGF0IDE3OjQwICswNTMwLCBBbmltZXNoIE1hbm5hIHdyb3RlOg0K
+PiBEUENEIHJlZ2lzdGVyIGRlZmluaXRpb24gYWRkZWQgdG8gY2hlY2sgYW5kIGVuYWJsZSBwYW5l
+bCByZXBsYXkNCj4gY2FwYWJpbGl0eSBvZiB0aGUgc2luay4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6
+IEFuaW1lc2ggTWFubmEgPGFuaW1lc2gubWFubmFAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGluY2x1
+ZGUvZHJtL2RybV9kcF9oZWxwZXIuaCB8IDYgKysrKysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgNiBp
+bnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJtX2RwX2hlbHBl
+ci5oIGIvaW5jbHVkZS9kcm0vZHJtX2RwX2hlbHBlci5oDQo+IGluZGV4IGI1MmRmNGRiM2U4Zi4u
+OGEyYjkyOWMzZjg4IDEwMDY0NA0KPiAtLS0gYS9pbmNsdWRlL2RybS9kcm1fZHBfaGVscGVyLmgN
+Cj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX2RwX2hlbHBlci5oDQo+IEBAIC01NDEsNiArNTQxLDkg
+QEAgc3RydWN0IGRybV9wYW5lbDsNCj4gIC8qIERGUCBDYXBhYmlsaXR5IEV4dGVuc2lvbiAqLw0K
+PiAgI2RlZmluZSBEUF9ERlBfQ0FQQUJJTElUWV9FWFRFTlNJT05fU1VQUE9SVAkweDBhMwkvKiAy
+LjAgKi8NCj4gIA0KPiArI2RlZmluZSBEUF9QQU5FTF9SRVBMQVlfQ0FQICAgICAgICAgICAgICAg
+ICAweDBiMA0KPiArIyBkZWZpbmUgUEFORUxfUkVQTEFZX1NVUFBPUlQgICAgICAgICAgICAgICAo
+MSA8PCAwKQ0KDQpNaXNzaW5nIGJpdCAxLCB0aGF0IGlzIHZlcnkgaW1wb3J0YW50IHdoZW4gcGFu
+ZWwgZG8gbm90IHN1cHBvcnQgc2VsZWN0aXZlIHVwZGF0ZSBwYW5lbCByZXBsYXkgbmVlZHMgdG8g
+YWN0IGxpa2UgUFNSMSB3aGVuIGl0IGlzIHNldHMgaXQgbmVlZHMgdG8gYWN0DQpsaWtlIFBTUjIu
+DQoNCj4gKw0KPiAgLyogTGluayBDb25maWd1cmF0aW9uICovDQo+ICAjZGVmaW5lCURQX0xJTktf
+QldfU0VUCQkgICAgICAgICAgICAweDEwMA0KPiAgIyBkZWZpbmUgRFBfTElOS19SQVRFX1RBQkxF
+CQkgICAgMHgwMCAgICAvKiBlRFAgMS40ICovDQo+IEBAIC03MDksNiArNzEyLDkgQEAgc3RydWN0
+IGRybV9wYW5lbDsNCj4gICNkZWZpbmUgRFBfQlJBTkNIX0RFVklDRV9DVFJMCQkgICAgMHgxYTEN
+Cj4gICMgZGVmaW5lIERQX0JSQU5DSF9ERVZJQ0VfSVJRX0hQRAkgICAgKDEgPDwgMCkNCj4gIA0K
+PiArI2RlZmluZSBQQU5FTF9SRVBMQVlfQ09ORklHICAgICAgICAgICAgICAgICAweDFiMA0KPiAr
+IyBkZWZpbmUgUEFORUxfUkVQTEFZX0VOQUJMRSAgICAgICAgICAgICAgICAoMSA8PCAwKQ0KDQpB
+bGwgb3RoZXIgYml0cyBhcmUgYWxzbyBpbXBvcnRhbnQsIGZvciB0aGUgZXJyb3JzIG9uZXMgd2Ug
+aGF2ZSBQU1IgY291bnRlciBwYXJ0cyBhbmQgeW91ciBhcmUgbWlzc2luZyB0aGUgZXJyb3Igc3Rh
+dHVzIHJlZ2lzdGVyLg0KDQo+ICsNCj4gICNkZWZpbmUgRFBfUEFZTE9BRF9BTExPQ0FURV9TRVQJ
+CSAgICAweDFjMA0KPiAgI2RlZmluZSBEUF9QQVlMT0FEX0FMTE9DQVRFX1NUQVJUX1RJTUVfU0xP
+VCAweDFjMQ0KPiAgI2RlZmluZSBEUF9QQVlMT0FEX0FMTE9DQVRFX1RJTUVfU0xPVF9DT1VOVCAw
+eDFjMg0KDQo=
