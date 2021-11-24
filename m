@@ -2,33 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 640D245C5B9
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 14:58:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07C1B45C5D1
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 14:59:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C46506E0D5;
-	Wed, 24 Nov 2021 13:58:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 187516E0D5;
+	Wed, 24 Nov 2021 13:59:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BE5736E0D5;
- Wed, 24 Nov 2021 13:58:46 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 388806E0D5;
+ Wed, 24 Nov 2021 13:59:40 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B72ABA9932;
- Wed, 24 Nov 2021 13:58:46 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 34D78A9932;
+ Wed, 24 Nov 2021 13:59:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: cgel.zte@gmail.com
-Date: Wed, 24 Nov 2021 13:58:46 -0000
-Message-ID: <163776232671.25293.5099355206049786707@emeril.freedesktop.org>
+To: "Luis Chamberlain" <mcgrof@kernel.org>
+Date: Wed, 24 Nov 2021 13:59:40 -0000
+Message-ID: <163776238021.25292.23091894014753179@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20211124030607.34914-1-yao.jing2@zte.com.cn>
-In-Reply-To: <20211124030607.34914-1-yao.jing2@zte.com.cn>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/dmabuf=3A_remove_duplicate_include_in_i915=5Fgem=5Fdmab?=
- =?utf-8?q?uf=2Ec?=
+References: <20211123202422.819032-1-mcgrof@kernel.org>
+In-Reply-To: <20211123202422.819032-1-mcgrof@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?ysctl=3A_second_set_of_kernel/sysctl_cleanups_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,21 +47,24 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/dmabuf: remove duplicate include in i915_gem_dmabuf.c
-URL   : https://patchwork.freedesktop.org/series/97244/
+Series: sysctl: second set of kernel/sysctl cleanups (rev2)
+URL   : https://patchwork.freedesktop.org/series/97221/
 State : failure
 
 == Summary ==
 
-Applying: drm/i915/dmabuf: remove duplicate include in i915_gem_dmabuf.c
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-error: Failed to merge in the changes.
+Applying: hpet: simplify subdirectory registration with register_sysctl()
+Applying: i915: simplify subdirectory registration with register_sysctl()
+Applying: macintosh/mac_hid.c: simplify subdirectory registration with register_sysctl()
+Applying: ocfs2: simplify subdirectory registration with register_sysctl()
+Applying: test_sysctl: simplify subdirectory registration with register_sysctl()
+Applying: inotify: simplify subdirectory registration with register_sysctl()
+Applying: cdrom: simplify subdirectory registration with register_sysctl()
+Applying: eventpoll: simplify sysctl declaration with register_sysctl()
+error: sha1 information is lacking or useless (include/linux/sysctl.h).
+error: could not build fake ancestor
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/dmabuf: remove duplicate include in i915_gem_dmabuf.c
+Patch failed at 0008 eventpoll: simplify sysctl declaration with register_sysctl()
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
