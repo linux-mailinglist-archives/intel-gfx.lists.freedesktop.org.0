@@ -1,43 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73CCA45C3ED
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 14:41:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0C5845C56F
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 14:55:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BFBE6EA0B;
-	Wed, 24 Nov 2021 13:41:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FC866E0D5;
+	Wed, 24 Nov 2021 13:55:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED45D6EA05;
- Wed, 24 Nov 2021 13:41:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=u5Bp6Rfma9GvNlchoY1NvLTwJANeJ3HEug26+8isXwE=; b=hhbQZhJwK1Tb9e+q0Q28e25DAv
- Od9pIYN2Gyiv0dA95pkKXYVes6wIzr6Dyrdz7zE6LWYwQgtKQRddQQj3KlF/6e+rGlvDwZn81SO0L
- jmyNcKHUwuAAL4hqFxxBoCLbZ78/8YU9GtUBk2390mHdprFJB6Q5NEsOuCM+WqTROXedt17OSU57K
- Znwqwh32TO/nbgJf5ps0iEH4WpPxtncH2AfxYxaIDPl/mI7K7oszTaCg2ZYrE3yeotZ03DTuOQM8q
- SbFyM9HClWrBqJvP/vIs76mbieTIOeBHp8+RY1gteGkIKaIRwSzmIllOlYTn9YYs66Or0n5wDgTmB
- pHDv3JGg==;
-Received: from mcgrof by bombadil.infradead.org with local (Exim 4.94.2 #2
- (Red Hat Linux)) id 1mpsWA-004tSi-D1; Wed, 24 Nov 2021 13:40:58 +0000
-Date: Wed, 24 Nov 2021 05:40:58 -0800
-From: Luis Chamberlain <mcgrof@kernel.org>
-To: Jan Kara <jack@suse.cz>
-Message-ID: <YZ5A6iWLb0h3N3RC@bombadil.infradead.org>
-References: <20211123202422.819032-1-mcgrof@kernel.org>
- <20211123202422.819032-7-mcgrof@kernel.org>
- <20211124094409.GF8583@quack2.suse.cz>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22ED56E0D5;
+ Wed, 24 Nov 2021 13:55:42 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10177"; a="298684346"
+X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; d="scan'208";a="298684346"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2021 05:55:41 -0800
+X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; d="scan'208";a="509881197"
+Received: from kkarvas-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.255.34.182])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2021 05:55:40 -0800
+Date: Wed, 24 Nov 2021 08:55:39 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YZ5EW6laGv3zlBj7@intel.com>
+References: <20211117224955.28999-1-vinay.belgaumkar@intel.com>
+ <20211117224955.28999-2-vinay.belgaumkar@intel.com>
+ <6e19db61-dee6-f012-9dd4-b8ef455509e7@linux.intel.com>
+ <YZ1GcMR6C6YN9szK@intel.com>
+ <b1cc5b51-d8cb-6500-021a-2505fa1e0350@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211124094409.GF8583@quack2.suse.cz>
-Subject: Re: [Intel-gfx] [PATCH v2 6/8] inotify: simplify subdirectory
- registration with register_sysctl()
+In-Reply-To: <b1cc5b51-d8cb-6500-021a-2505fa1e0350@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Spread virtual engines
+ over idle engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,82 +49,219 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, benh@kernel.crashing.org, amir73il@gmail.com,
- clemens@ladisch.de, dri-devel@lists.freedesktop.org, phil@philpotter.co.uk,
- joseph.qi@linux.alibaba.com, mark@fasheh.com, yzaikin@google.com,
- keescook@chromium.org, arnd@arndb.de, intel-gfx@lists.freedesktop.org,
- viro@zeniv.linux.org.uk, nixiaoming@huawei.com, gregkh@linuxfoundation.org,
- linux-kernel@vger.kernel.org, julia.lawall@inria.fr, ebiederm@xmission.com,
- linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
- linuxppc-dev@lists.ozlabs.org, ocfs2-devel@oss.oracle.com, jlbec@evilplan.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 24, 2021 at 10:44:09AM +0100, Jan Kara wrote:
-> On Tue 23-11-21 12:24:20, Luis Chamberlain wrote:
-> > From: Xiaoming Ni <nixiaoming@huawei.com>
-> > 
-> > There is no need to user boiler plate code to specify a set of base
-> > directories we're going to stuff sysctls under. Simplify this by using
-> > register_sysctl() and specifying the directory path directly.
-> > 
-> > Move inotify_user sysctl to inotify_user.c while at it to remove clutter
-> > from kernel/sysctl.c.
-> > 
-> > Signed-off-by: Xiaoming Ni <nixiaoming@huawei.com>
-> > [mcgrof: update commit log to reflect new path we decided to take]
-> > Signed-off-by: Luis Chamberlain <mcgrof@kernel.org>
+On Wed, Nov 24, 2021 at 08:56:52AM +0000, Tvrtko Ursulin wrote:
 > 
-> This looks fishy. You register inotify_table but not fanotify_table and
-> remove both...
+> On 23/11/2021 19:52, Rodrigo Vivi wrote:
+> > On Tue, Nov 23, 2021 at 09:39:25AM +0000, Tvrtko Ursulin wrote:
+> > > 
+> > > On 17/11/2021 22:49, Vinay Belgaumkar wrote:
+> > > > From: Chris Wilson <chris@chris-wilson.co.uk>
+> > > > 
+> > > > Everytime we come to the end of a virtual engine's context, re-randomise
+> > > > it's siblings[]. As we schedule the siblings' tasklets in the order they
+> > > > are in the array, earlier entries are executed first (when idle) and so
+> > > > will be preferred when scheduling the next virtual request. Currently,
+> > > > we only update the array when switching onto a new idle engine, so we
+> > > > prefer to stick on the last execute engine, keeping the work compact.
+> > > > However, it can be beneficial to spread the work out across idle
+> > > > engines, so choose another sibling as our preferred target at the end of
+> > > > the context's execution.
+> > > 
+> > > This partially brings back, from a different angle, the more dynamic
+> > > scheduling behavior which has been lost since bugfix 90a987205c6c
+> > > ("drm/i915/gt: Only swap to a random sibling once upon creation").
+> > 
+> > Shouldn't we use the Fixes tag here since this is targeting to fix one
+> > of the performance regressions of this patch?
+> 
+> Probably not but hard to say. Note that it wasn't a performance regression
+> that was reported but power.
+> 
+> And to go back to what we said elsewhere in the thread, I am actually with
+> you in thinking that in the ideal world we need PnP testing across a variety
+> of workloads and platforms. And "in the ideal world" should really be in the
+> normal world. It is not professional to be reactive to isolated bug reports
+> from users, without being able to see the overall picture.
 
-Indeed, the following was missing, I'll roll it in:
+We surely need to address the bug report from users. I'm just asking to address
+that with the smallest fix that we can backport and fit to the products milestones.
 
-diff --git a/fs/notify/fanotify/fanotify_user.c b/fs/notify/fanotify/fanotify_user.c
-index 559bc1e9926d..a35693eb1f36 100644
---- a/fs/notify/fanotify/fanotify_user.c
-+++ b/fs/notify/fanotify/fanotify_user.c
-@@ -59,7 +59,7 @@ static int fanotify_max_queued_events __read_mostly;
- static long ft_zero = 0;
- static long ft_int_max = INT_MAX;
- 
--struct ctl_table fanotify_table[] = {
-+static struct ctl_table fanotify_table[] = {
- 	{
- 		.procname	= "max_user_groups",
- 		.data	= &init_user_ns.ucount_max[UCOUNT_FANOTIFY_GROUPS],
-@@ -88,6 +88,13 @@ struct ctl_table fanotify_table[] = {
- 	},
- 	{ }
- };
-+
-+static void __init fanotify_sysctls_init(void)
-+{
-+	register_sysctl("fs/fanotify", fanotify_table);
-+}
-+#else
-+#define fanotify_sysctls_init() do { } while (0)
- #endif /* CONFIG_SYSCTL */
- 
- /*
-@@ -1685,6 +1692,7 @@ static int __init fanotify_user_setup(void)
- 	init_user_ns.ucount_max[UCOUNT_FANOTIFY_GROUPS] =
- 					FANOTIFY_DEFAULT_MAX_GROUPS;
- 	init_user_ns.ucount_max[UCOUNT_FANOTIFY_MARKS] = max_marks;
-+	fanotify_sysctls_init();
- 
- 	return 0;
- }
-diff --git a/include/linux/fanotify.h b/include/linux/fanotify.h
-index 616af2ea20f3..556cc63c88ee 100644
---- a/include/linux/fanotify.h
-+++ b/include/linux/fanotify.h
-@@ -5,8 +5,6 @@
- #include <linux/sysctl.h>
- #include <uapi/linux/fanotify.h>
- 
--extern struct ctl_table fanotify_table[]; /* for sysctl */
--
- #define FAN_GROUP_FLAG(group, flag) \
- 	((group)->fanotify_data.flags & (flag))
- 
+Instead, we are creating another optimization feature on a rush. Without a proper
+validation.
+
+I believe it is too risk to add an algorithm like that without a broader test.
+I see a big risk of introducing corner cases that will results in more bug report
+from other users in a near future.
+
+So, let's all be professionals and provide a smaller fix for a regression on
+the load balancing scenario and provide a better validation with more data
+to justify this new feature.
+
+Thanks,
+Rodrigo.
+
+> 
+> > > One day we could experiment with using engine busyness as criteria (instead
+> > > of random). Back in the day busyness was kind of the best strategy, although
+> > > sampled at submit, not at the trailing edge like here, but it still may be
+> > > able to settle down to engine configuration better in some scenarios. Only
+> > > testing could say.
+> > > 
+> > > Still, from memory random also wasn't that bad so this should be okay for
+> > > now.
+> > > 
+> > > Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > 
+> > Since you reviewed and it looks to be a middle ground point in terms
+> > of when to balancing (always like in the initial implementation vs
+> > only once like the in 90a987205c6c).
+> > 
+> > If this one is really fixing the regression by itself:
+> > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > on this patch here.
+> > 
+> > But I still don't want to take the risk with touching the freq with
+> > race to idle, until not convinced that it is absolutely needed and
+> > that we are not breaking the world out there.
+> 
+> Yes agreed in principle, we have users with different priorities.
+> 
+> However the RPS patches in the series, definitely the 1st one which looks at
+> classes versus individual engines, sound plausible to me. Given the absence
+> of automated PnP testing mentioned above, in the past it was usually Chris
+> who was making the above and beyond effort to evaluate changes like these on
+> as many platforms as he could, and with different workloads. Not sure who
+> has the mandate and drive to fill that space but something will need to
+> happen.
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> > > 
+> > > Regards,
+> > > 
+> > > Tvrtko
+> > > 
+> > > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > > > Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> > > > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> > > > ---
+> > > >    .../drm/i915/gt/intel_execlists_submission.c  | 80 ++++++++++++-------
+> > > >    1 file changed, 52 insertions(+), 28 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > > > index ca03880fa7e4..b95bbc8fb91a 100644
+> > > > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > > > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > > > @@ -539,6 +539,41 @@ static void execlists_schedule_in(struct i915_request *rq, int idx)
+> > > >    	GEM_BUG_ON(intel_context_inflight(ce) != rq->engine);
+> > > >    }
+> > > > +static void virtual_xfer_context(struct virtual_engine *ve,
+> > > > +				 struct intel_engine_cs *engine)
+> > > > +{
+> > > > +	unsigned int n;
+> > > > +
+> > > > +	if (likely(engine == ve->siblings[0]))
+> > > > +		return;
+> > > > +
+> > > > +	if (!intel_engine_has_relative_mmio(engine))
+> > > > +		lrc_update_offsets(&ve->context, engine);
+> > > > +
+> > > > +	/*
+> > > > +	 * Move the bound engine to the top of the list for
+> > > > +	 * future execution. We then kick this tasklet first
+> > > > +	 * before checking others, so that we preferentially
+> > > > +	 * reuse this set of bound registers.
+> > > > +	 */
+> > > > +	for (n = 1; n < ve->num_siblings; n++) {
+> > > > +		if (ve->siblings[n] == engine) {
+> > > > +			swap(ve->siblings[n], ve->siblings[0]);
+> > > > +			break;
+> > > > +		}
+> > > > +	}
+> > > > +}
+> > > > +
+> > > > +static int ve_random_sibling(struct virtual_engine *ve)
+> > > > +{
+> > > > +	return prandom_u32_max(ve->num_siblings);
+> > > > +}
+> > > > +
+> > > > +static int ve_random_other_sibling(struct virtual_engine *ve)
+> > > > +{
+> > > > +	return 1 + prandom_u32_max(ve->num_siblings - 1);
+> > > > +}
+> > > > +
+> > > >    static void
+> > > >    resubmit_virtual_request(struct i915_request *rq, struct virtual_engine *ve)
+> > > >    {
+> > > > @@ -578,8 +613,23 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+> > > >    	    rq->execution_mask != engine->mask)
+> > > >    		resubmit_virtual_request(rq, ve);
+> > > > -	if (READ_ONCE(ve->request))
+> > > > +	/*
+> > > > +	 * Reschedule with a new "preferred" sibling.
+> > > > +	 *
+> > > > +	 * The tasklets are executed in the order of ve->siblings[], so
+> > > > +	 * siblings[0] receives preferrential treatment of greedily checking
+> > > > +	 * for execution of the virtual engine. At this point, the virtual
+> > > > +	 * engine is no longer in the current GPU cache due to idleness or
+> > > > +	 * contention, so it can be executed on any without penalty. We
+> > > > +	 * re-randomise at this point in order to spread light loads across
+> > > > +	 * the system, heavy overlapping loads will continue to be greedily
+> > > > +	 * executed by the first available engine.
+> > > > +	 */
+> > > > +	if (READ_ONCE(ve->request)) {
+> > > > +		virtual_xfer_context(ve,
+> > > > +				     ve->siblings[ve_random_other_sibling(ve)]);
+> > > >    		tasklet_hi_schedule(&ve->base.sched_engine->tasklet);
+> > > > +	}
+> > > >    }
+> > > >    static void __execlists_schedule_out(struct i915_request * const rq,
+> > > > @@ -1030,32 +1080,6 @@ first_virtual_engine(struct intel_engine_cs *engine)
+> > > >    	return NULL;
+> > > >    }
+> > > > -static void virtual_xfer_context(struct virtual_engine *ve,
+> > > > -				 struct intel_engine_cs *engine)
+> > > > -{
+> > > > -	unsigned int n;
+> > > > -
+> > > > -	if (likely(engine == ve->siblings[0]))
+> > > > -		return;
+> > > > -
+> > > > -	GEM_BUG_ON(READ_ONCE(ve->context.inflight));
+> > > > -	if (!intel_engine_has_relative_mmio(engine))
+> > > > -		lrc_update_offsets(&ve->context, engine);
+> > > > -
+> > > > -	/*
+> > > > -	 * Move the bound engine to the top of the list for
+> > > > -	 * future execution. We then kick this tasklet first
+> > > > -	 * before checking others, so that we preferentially
+> > > > -	 * reuse this set of bound registers.
+> > > > -	 */
+> > > > -	for (n = 1; n < ve->num_siblings; n++) {
+> > > > -		if (ve->siblings[n] == engine) {
+> > > > -			swap(ve->siblings[n], ve->siblings[0]);
+> > > > -			break;
+> > > > -		}
+> > > > -	}
+> > > > -}
+> > > > -
+> > > >    static void defer_request(struct i915_request *rq, struct list_head * const pl)
+> > > >    {
+> > > >    	LIST_HEAD(list);
+> > > > @@ -3590,7 +3614,7 @@ static void virtual_engine_initial_hint(struct virtual_engine *ve)
+> > > >    	 * NB This does not force us to execute on this engine, it will just
+> > > >    	 * typically be the first we inspect for submission.
+> > > >    	 */
+> > > > -	swp = prandom_u32_max(ve->num_siblings);
+> > > > +	swp = ve_random_sibling(ve);
+> > > >    	if (swp)
+> > > >    		swap(ve->siblings[swp], ve->siblings[0]);
+> > > >    }
+> > > > 
