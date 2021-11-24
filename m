@@ -2,53 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13B2745B7C6
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 10:49:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B77845B7D4
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 10:52:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6D9E6E5A1;
-	Wed, 24 Nov 2021 09:49:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC3946EA1A;
+	Wed, 24 Nov 2021 09:52:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72D3C6E5A1;
- Wed, 24 Nov 2021 09:49:08 +0000 (UTC)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out1.suse.de (Postfix) with ESMTP id D12AA21961;
- Wed, 24 Nov 2021 09:49:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1637747346; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=twMSLJi3dl6PV+ZvrQLD6fxiNCqI+8+IiOyNzLqomls=;
- b=AsSjhq5UWoJxHloKmYuZMvWa9oGBfue4hStjTj62gtxvDfOAPjPRfciIvzyhYYT/brTJj8
- ij8R2kAZIUFvqMD6QnOcHfmigo/jvWBIYGMwcHmpM2xFKF08a1tSD7at/XI9gi09iiD1G0
- fNjGCCcV8c01TxYpYRSJOBqjuIubvsU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1637747346;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=twMSLJi3dl6PV+ZvrQLD6fxiNCqI+8+IiOyNzLqomls=;
- b=zCpp+oSvqqEv+CCnvQnyAl+aiBQHmm2JBPCnsf3bwPtwcrPXovFbQnJN14LhTM2NOvpTLr
- 3+hSl9JsXeV7JADw==
-Received: from quack2.suse.cz (unknown [10.100.200.198])
- by relay2.suse.de (Postfix) with ESMTP id B87A0A3B83;
- Wed, 24 Nov 2021 09:49:06 +0000 (UTC)
-Received: by quack2.suse.cz (Postfix, from userid 1000)
- id A4FC61E14AC; Wed, 24 Nov 2021 10:49:06 +0100 (CET)
-Date: Wed, 24 Nov 2021 10:49:06 +0100
-From: Jan Kara <jack@suse.cz>
-To: Luis Chamberlain <mcgrof@kernel.org>
-Message-ID: <20211124094906.GG8583@quack2.suse.cz>
-References: <20211123202422.819032-1-mcgrof@kernel.org>
- <20211123202422.819032-5-mcgrof@kernel.org>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F02C86E4B1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Nov 2021 09:52:45 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10177"; a="235064889"
+X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; d="scan'208";a="235064889"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2021 01:52:45 -0800
+X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; d="scan'208";a="497617488"
+Received: from moconno1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.21.40])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2021 01:52:43 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>, Alan Previn
+ <alan.previn.teres.alexis@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <3d153da0-8bef-1a6b-d292-34b1f54ac938@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211122230402.2023576-1-alan.previn.teres.alexis@intel.com>
+ <20211122230402.2023576-3-alan.previn.teres.alexis@intel.com>
+ <3d153da0-8bef-1a6b-d292-34b1f54ac938@intel.com>
+Date: Wed, 24 Nov 2021 11:52:41 +0200
+Message-ID: <87fsrlnamu.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211123202422.819032-5-mcgrof@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 4/8] ocfs2: simplify subdirectory
- registration with register_sysctl()
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RFC 2/7] drm/i915/guc: Update GuC ADS size for
+ error capture lists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,177 +48,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jack@suse.cz, airlied@linux.ie, benh@kernel.crashing.org,
- amir73il@gmail.com, clemens@ladisch.de, dri-devel@lists.freedesktop.org,
- phil@philpotter.co.uk, joseph.qi@linux.alibaba.com, mark@fasheh.com,
- yzaikin@google.com, keescook@chromium.org, arnd@arndb.de,
- intel-gfx@lists.freedesktop.org, viro@zeniv.linux.org.uk,
- nixiaoming@huawei.com, gregkh@linuxfoundation.org,
- linux-kernel@vger.kernel.org, julia.lawall@inria.fr, ebiederm@xmission.com,
- linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
- linuxppc-dev@lists.ozlabs.org, ocfs2-devel@oss.oracle.com, jlbec@evilplan.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue 23-11-21 12:24:18, Luis Chamberlain wrote:
-> There is no need to user boiler plate code to specify a set of base
-> directories we're going to stuff sysctls under. Simplify this by using
-> register_sysctl() and specifying the directory path directly.
-> 
-> // pycocci sysctl-subdir-register-sysctl-simplify.cocci PATH
+On Tue, 23 Nov 2021, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
+> Hi,
+>
+> just few random nits below
+>
+> -Michal
+>
+>
+> On 23.11.2021 00:03, Alan Previn wrote:
+>> +/* Define all device tables of GuC error capture register lists */
+>> +
+>> +/********************************* Gen12 LP  *********************************/
+>
+> didn't we move away from "GEN" naming ?
 
-Heh, nice example of using Coccinelle. The result looks good. Feel free to
-add:
+Yes.
 
-Reviewed-by: Jan Kara <jack@suse.cz>
+>
+>> +/************** GLOBAL *************/
+>
+> do we really need all these decorations ?
 
-								Honza
+No, please remove them.
+
+>
+>> +struct __guc_mmio_reg_descr gen12lp_global_regs[] = {
+>> +	{SWF_ILK(0),               0,      0, "SWF_ILK0"},
+>> +	/* Add additional register list */
+>
+> do we need this reminder ?
+
+No, please remove them.
+
+Also, all of these need to be static.
 
 
-> 
-> @c1@
-> expression E1;
-> identifier subdir, sysctls;
-> @@
-> 
-> static struct ctl_table subdir[] = {
-> 	{
-> 		.procname = E1,
-> 		.maxlen = 0,
-> 		.mode = 0555,
-> 		.child = sysctls,
-> 	},
-> 	{ }
-> };
-> 
-> @c2@
-> identifier c1.subdir;
-> 
-> expression E2;
-> identifier base;
-> @@
-> 
-> static struct ctl_table base[] = {
-> 	{
-> 		.procname = E2,
-> 		.maxlen = 0,
-> 		.mode = 0555,
-> 		.child = subdir,
-> 	},
-> 	{ }
-> };
-> 
-> @c3@
-> identifier c2.base;
-> identifier header;
-> @@
-> 
-> header = register_sysctl_table(base);
-> 
-> @r1 depends on c1 && c2 && c3@
-> expression c1.E1;
-> identifier c1.subdir, c1.sysctls;
-> @@
-> 
-> -static struct ctl_table subdir[] = {
-> -	{
-> -		.procname = E1,
-> -		.maxlen = 0,
-> -		.mode = 0555,
-> -		.child = sysctls,
-> -	},
-> -	{ }
-> -};
-> 
-> @r2 depends on c1 && c2 && c3@
-> identifier c1.subdir;
-> 
-> expression c2.E2;
-> identifier c2.base;
-> @@
-> -static struct ctl_table base[] = {
-> -	{
-> -		.procname = E2,
-> -		.maxlen = 0,
-> -		.mode = 0555,
-> -		.child = subdir,
-> -	},
-> -	{ }
-> -};
-> 
-> @initialize:python@
-> @@
-> 
-> def make_my_fresh_expression(s1, s2):
->   return '"' + s1.strip('"') + "/" + s2.strip('"') + '"'
-> 
-> @r3 depends on c1 && c2 && c3@
-> expression c1.E1;
-> identifier c1.sysctls;
-> expression c2.E2;
-> identifier c2.base;
-> identifier c3.header;
-> fresh identifier E3 = script:python(E2, E1) { make_my_fresh_expression(E2, E1) };
-> @@
-> 
-> header =
-> -register_sysctl_table(base);
-> +register_sysctl(E3, sysctls);
-> 
-> Generated-by: Coccinelle SmPL
-> Signed-off-by: Luis Chamberlain <mcgrof@kernel.org>
-> ---
->  fs/ocfs2/stackglue.c | 25 +------------------------
->  1 file changed, 1 insertion(+), 24 deletions(-)
-> 
-> diff --git a/fs/ocfs2/stackglue.c b/fs/ocfs2/stackglue.c
-> index 16f1bfc407f2..731558a6f27d 100644
-> --- a/fs/ocfs2/stackglue.c
-> +++ b/fs/ocfs2/stackglue.c
-> @@ -672,31 +672,8 @@ static struct ctl_table ocfs2_mod_table[] = {
->  	{ }
->  };
->  
-> -static struct ctl_table ocfs2_kern_table[] = {
-> -	{
-> -		.procname	= "ocfs2",
-> -		.data		= NULL,
-> -		.maxlen		= 0,
-> -		.mode		= 0555,
-> -		.child		= ocfs2_mod_table
-> -	},
-> -	{ }
-> -};
-> -
-> -static struct ctl_table ocfs2_root_table[] = {
-> -	{
-> -		.procname	= "fs",
-> -		.data		= NULL,
-> -		.maxlen		= 0,
-> -		.mode		= 0555,
-> -		.child		= ocfs2_kern_table
-> -	},
-> -	{ }
-> -};
-> -
->  static struct ctl_table_header *ocfs2_table_header;
->  
-> -
->  /*
->   * Initialization
->   */
-> @@ -705,7 +682,7 @@ static int __init ocfs2_stack_glue_init(void)
->  {
->  	strcpy(cluster_stack_name, OCFS2_STACK_PLUGIN_O2CB);
->  
-> -	ocfs2_table_header = register_sysctl_table(ocfs2_root_table);
-> +	ocfs2_table_header = register_sysctl("fs/ocfs2", ocfs2_mod_table);
->  	if (!ocfs2_table_header) {
->  		printk(KERN_ERR
->  		       "ocfs2 stack glue: unable to register sysctl\n");
-> -- 
-> 2.33.0
-> 
+BR,
+Jani.
+
+
 -- 
-Jan Kara <jack@suse.com>
-SUSE Labs, CR
+Jani Nikula, Intel Open Source Graphics Center
