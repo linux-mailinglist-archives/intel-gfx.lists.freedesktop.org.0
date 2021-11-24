@@ -2,42 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33C8645C84B
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 16:09:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89DE245C916
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 16:43:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43A3A6E9D7;
-	Wed, 24 Nov 2021 15:09:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A25156E7EF;
+	Wed, 24 Nov 2021 15:43:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAD1A6E9D7;
- Wed, 24 Nov 2021 15:09:11 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10178"; a="298698319"
-X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; d="scan'208";a="298698319"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2A0A6E7EF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Nov 2021 15:43:56 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10178"; a="235246888"
+X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; d="scan'208";a="235246888"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2021 07:09:11 -0800
-X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; d="scan'208";a="509904302"
-Received: from kkarvas-mobl1.amr.corp.intel.com (HELO intel.com)
- ([10.255.34.182])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2021 07:43:56 -0800
+X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; d="scan'208";a="509917847"
+Received: from moconno1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.21.40])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2021 07:09:10 -0800
-Date: Wed, 24 Nov 2021 10:09:08 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YZ5VlB5NHKNg51S/@intel.com>
-References: <20211117224955.28999-1-vinay.belgaumkar@intel.com>
- <20211117224955.28999-2-vinay.belgaumkar@intel.com>
- <6e19db61-dee6-f012-9dd4-b8ef455509e7@linux.intel.com>
- <YZ1GcMR6C6YN9szK@intel.com>
- <b1cc5b51-d8cb-6500-021a-2505fa1e0350@linux.intel.com>
- <YZ5EW6laGv3zlBj7@intel.com>
+ 24 Nov 2021 07:43:55 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211124113652.22090-12-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211124113652.22090-1-ville.syrjala@linux.intel.com>
+ <20211124113652.22090-12-ville.syrjala@linux.intel.com>
+Date: Wed, 24 Nov 2021 17:43:52 +0200
+Message-ID: <87pmqplft3.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YZ5EW6laGv3zlBj7@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Spread virtual engines
- over idle engines
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 11/20] drm/i915/fbc: Move FBC debugfs stuff
+ into intel_fbc.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,229 +48,282 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 24, 2021 at 08:55:39AM -0500, Rodrigo Vivi wrote:
-> On Wed, Nov 24, 2021 at 08:56:52AM +0000, Tvrtko Ursulin wrote:
-> > 
-> > On 23/11/2021 19:52, Rodrigo Vivi wrote:
-> > > On Tue, Nov 23, 2021 at 09:39:25AM +0000, Tvrtko Ursulin wrote:
-> > > > 
-> > > > On 17/11/2021 22:49, Vinay Belgaumkar wrote:
-> > > > > From: Chris Wilson <chris@chris-wilson.co.uk>
-> > > > > 
-> > > > > Everytime we come to the end of a virtual engine's context, re-randomise
-> > > > > it's siblings[]. As we schedule the siblings' tasklets in the order they
-> > > > > are in the array, earlier entries are executed first (when idle) and so
-> > > > > will be preferred when scheduling the next virtual request. Currently,
-> > > > > we only update the array when switching onto a new idle engine, so we
-> > > > > prefer to stick on the last execute engine, keeping the work compact.
-> > > > > However, it can be beneficial to spread the work out across idle
-> > > > > engines, so choose another sibling as our preferred target at the end of
-> > > > > the context's execution.
-> > > > 
-> > > > This partially brings back, from a different angle, the more dynamic
-> > > > scheduling behavior which has been lost since bugfix 90a987205c6c
-> > > > ("drm/i915/gt: Only swap to a random sibling once upon creation").
-> > > 
-> > > Shouldn't we use the Fixes tag here since this is targeting to fix one
-> > > of the performance regressions of this patch?
-> > 
-> > Probably not but hard to say. Note that it wasn't a performance regression
-> > that was reported but power.
-> > 
-> > And to go back to what we said elsewhere in the thread, I am actually with
-> > you in thinking that in the ideal world we need PnP testing across a variety
-> > of workloads and platforms. And "in the ideal world" should really be in the
-> > normal world. It is not professional to be reactive to isolated bug reports
-> > from users, without being able to see the overall picture.
-> 
-> We surely need to address the bug report from users. I'm just asking to address
-> that with the smallest fix that we can backport and fit to the products milestones.
-> 
-> Instead, we are creating another optimization feature on a rush. Without a proper
-> validation.
-> 
-> I believe it is too risk to add an algorithm like that without a broader test.
-> I see a big risk of introducing corner cases that will results in more bug report
-> from other users in a near future.
-> 
-> So, let's all be professionals and provide a smaller fix for a regression on
-> the load balancing scenario and provide a better validation with more data
-> to justify this new feature.
+On Wed, 24 Nov 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> In order to encapsulate FBC harder let's just move the debugfs
+> stuff into intel_fbc.c.
 
-Okay, after more IRC discussions I see that patch 2 is also part of the solution
-and probably safe.
+Mmmh, I've kind of moved towards a split where i915_debugfs.c and
+intel_display_debugfs.c have all the debugfs boilerplate, while the
+implementation files have the guts with struct drm_i915_private *i915
+(or something more specific) and struct seq_file *m passed in.
 
-Let me be clear that my biggest complain and the risk is with race-to-idle in
-patch 3 on trying to predict the rc6 behavior and increasing the freq to try to
-complete job faster and then get to rc6 faster... That one would need a lot
-more validation.
+In some ways the split is arbitrary, but I kind of find the debugfs
+boilerplate a distraction in the implementation files, and we also skip
+building the debugfs files completely for CONFIG_DEBUG_FS=3Dn. I don't
+think I'd want to add #ifdefs on that spread around either.
 
-> 
-> Thanks,
-> Rodrigo.
-> 
-> > 
-> > > > One day we could experiment with using engine busyness as criteria (instead
-> > > > of random). Back in the day busyness was kind of the best strategy, although
-> > > > sampled at submit, not at the trailing edge like here, but it still may be
-> > > > able to settle down to engine configuration better in some scenarios. Only
-> > > > testing could say.
-> > > > 
-> > > > Still, from memory random also wasn't that bad so this should be okay for
-> > > > now.
-> > > > 
-> > > > Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > 
-> > > Since you reviewed and it looks to be a middle ground point in terms
-> > > of when to balancing (always like in the initial implementation vs
-> > > only once like the in 90a987205c6c).
-> > > 
-> > > If this one is really fixing the regression by itself:
-> > > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > on this patch here.
-> > > 
-> > > But I still don't want to take the risk with touching the freq with
-> > > race to idle, until not convinced that it is absolutely needed and
-> > > that we are not breaking the world out there.
-> > 
-> > Yes agreed in principle, we have users with different priorities.
-> > 
-> > However the RPS patches in the series, definitely the 1st one which looks at
-> > classes versus individual engines, sound plausible to me. Given the absence
-> > of automated PnP testing mentioned above, in the past it was usually Chris
-> > who was making the above and beyond effort to evaluate changes like these on
-> > as many platforms as he could, and with different workloads. Not sure who
-> > has the mandate and drive to fill that space but something will need to
-> > happen.
-> > 
-> > Regards,
-> > 
-> > Tvrtko
-> > 
-> > > > 
-> > > > Regards,
-> > > > 
-> > > > Tvrtko
-> > > > 
-> > > > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > > > Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> > > > > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> > > > > ---
-> > > > >    .../drm/i915/gt/intel_execlists_submission.c  | 80 ++++++++++++-------
-> > > > >    1 file changed, 52 insertions(+), 28 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > > index ca03880fa7e4..b95bbc8fb91a 100644
-> > > > > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > > @@ -539,6 +539,41 @@ static void execlists_schedule_in(struct i915_request *rq, int idx)
-> > > > >    	GEM_BUG_ON(intel_context_inflight(ce) != rq->engine);
-> > > > >    }
-> > > > > +static void virtual_xfer_context(struct virtual_engine *ve,
-> > > > > +				 struct intel_engine_cs *engine)
-> > > > > +{
-> > > > > +	unsigned int n;
-> > > > > +
-> > > > > +	if (likely(engine == ve->siblings[0]))
-> > > > > +		return;
-> > > > > +
-> > > > > +	if (!intel_engine_has_relative_mmio(engine))
-> > > > > +		lrc_update_offsets(&ve->context, engine);
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * Move the bound engine to the top of the list for
-> > > > > +	 * future execution. We then kick this tasklet first
-> > > > > +	 * before checking others, so that we preferentially
-> > > > > +	 * reuse this set of bound registers.
-> > > > > +	 */
-> > > > > +	for (n = 1; n < ve->num_siblings; n++) {
-> > > > > +		if (ve->siblings[n] == engine) {
-> > > > > +			swap(ve->siblings[n], ve->siblings[0]);
-> > > > > +			break;
-> > > > > +		}
-> > > > > +	}
-> > > > > +}
-> > > > > +
-> > > > > +static int ve_random_sibling(struct virtual_engine *ve)
-> > > > > +{
-> > > > > +	return prandom_u32_max(ve->num_siblings);
-> > > > > +}
-> > > > > +
-> > > > > +static int ve_random_other_sibling(struct virtual_engine *ve)
-> > > > > +{
-> > > > > +	return 1 + prandom_u32_max(ve->num_siblings - 1);
-> > > > > +}
-> > > > > +
-> > > > >    static void
-> > > > >    resubmit_virtual_request(struct i915_request *rq, struct virtual_engine *ve)
-> > > > >    {
-> > > > > @@ -578,8 +613,23 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
-> > > > >    	    rq->execution_mask != engine->mask)
-> > > > >    		resubmit_virtual_request(rq, ve);
-> > > > > -	if (READ_ONCE(ve->request))
-> > > > > +	/*
-> > > > > +	 * Reschedule with a new "preferred" sibling.
-> > > > > +	 *
-> > > > > +	 * The tasklets are executed in the order of ve->siblings[], so
-> > > > > +	 * siblings[0] receives preferrential treatment of greedily checking
-> > > > > +	 * for execution of the virtual engine. At this point, the virtual
-> > > > > +	 * engine is no longer in the current GPU cache due to idleness or
-> > > > > +	 * contention, so it can be executed on any without penalty. We
-> > > > > +	 * re-randomise at this point in order to spread light loads across
-> > > > > +	 * the system, heavy overlapping loads will continue to be greedily
-> > > > > +	 * executed by the first available engine.
-> > > > > +	 */
-> > > > > +	if (READ_ONCE(ve->request)) {
-> > > > > +		virtual_xfer_context(ve,
-> > > > > +				     ve->siblings[ve_random_other_sibling(ve)]);
-> > > > >    		tasklet_hi_schedule(&ve->base.sched_engine->tasklet);
-> > > > > +	}
-> > > > >    }
-> > > > >    static void __execlists_schedule_out(struct i915_request * const rq,
-> > > > > @@ -1030,32 +1080,6 @@ first_virtual_engine(struct intel_engine_cs *engine)
-> > > > >    	return NULL;
-> > > > >    }
-> > > > > -static void virtual_xfer_context(struct virtual_engine *ve,
-> > > > > -				 struct intel_engine_cs *engine)
-> > > > > -{
-> > > > > -	unsigned int n;
-> > > > > -
-> > > > > -	if (likely(engine == ve->siblings[0]))
-> > > > > -		return;
-> > > > > -
-> > > > > -	GEM_BUG_ON(READ_ONCE(ve->context.inflight));
-> > > > > -	if (!intel_engine_has_relative_mmio(engine))
-> > > > > -		lrc_update_offsets(&ve->context, engine);
-> > > > > -
-> > > > > -	/*
-> > > > > -	 * Move the bound engine to the top of the list for
-> > > > > -	 * future execution. We then kick this tasklet first
-> > > > > -	 * before checking others, so that we preferentially
-> > > > > -	 * reuse this set of bound registers.
-> > > > > -	 */
-> > > > > -	for (n = 1; n < ve->num_siblings; n++) {
-> > > > > -		if (ve->siblings[n] == engine) {
-> > > > > -			swap(ve->siblings[n], ve->siblings[0]);
-> > > > > -			break;
-> > > > > -		}
-> > > > > -	}
-> > > > > -}
-> > > > > -
-> > > > >    static void defer_request(struct i915_request *rq, struct list_head * const pl)
-> > > > >    {
-> > > > >    	LIST_HEAD(list);
-> > > > > @@ -3590,7 +3614,7 @@ static void virtual_engine_initial_hint(struct virtual_engine *ve)
-> > > > >    	 * NB This does not force us to execute on this engine, it will just
-> > > > >    	 * typically be the first we inspect for submission.
-> > > > >    	 */
-> > > > > -	swp = prandom_u32_max(ve->num_siblings);
-> > > > > +	swp = ve_random_sibling(ve);
-> > > > >    	if (swp)
-> > > > >    		swap(ve->siblings[swp], ve->siblings[0]);
-> > > > >    }
-> > > > > 
+
+BR,
+Jani.
+
+
+
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  .../drm/i915/display/intel_display_debugfs.c  |  50 +-------
+>  drivers/gpu/drm/i915/display/intel_fbc.c      | 110 +++++++++++++-----
+>  drivers/gpu/drm/i915/display/intel_fbc.h      |   4 +-
+>  3 files changed, 82 insertions(+), 82 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
+rs/gpu/drm/i915/display/intel_display_debugfs.c
+> index 3e456e595010..572445299b04 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -40,52 +40,6 @@ static int i915_frontbuffer_tracking(struct seq_file *=
+m, void *unused)
+>  	return 0;
+>  }
+>=20=20
+> -static int i915_fbc_status(struct seq_file *m, void *unused)
+> -{
+> -	struct drm_i915_private *dev_priv =3D node_to_i915(m->private);
+> -	struct intel_fbc *fbc =3D &dev_priv->fbc;
+> -	intel_wakeref_t wakeref;
+> -
+> -	if (!HAS_FBC(dev_priv))
+> -		return -ENODEV;
+> -
+> -	wakeref =3D intel_runtime_pm_get(&dev_priv->runtime_pm);
+> -	mutex_lock(&fbc->lock);
+> -
+> -	if (intel_fbc_is_active(fbc)) {
+> -		seq_puts(m, "FBC enabled\n");
+> -		seq_printf(m, "Compressing: %s\n",
+> -			   yesno(intel_fbc_is_compressing(fbc)));
+> -	} else {
+> -		seq_printf(m, "FBC disabled: %s\n", fbc->no_fbc_reason);
+> -	}
+> -
+> -	mutex_unlock(&fbc->lock);
+> -	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
+> -
+> -	return 0;
+> -}
+> -
+> -static int i915_fbc_false_color_get(void *data, u64 *val)
+> -{
+> -	struct drm_i915_private *dev_priv =3D data;
+> -
+> -	*val =3D dev_priv->fbc.false_color;
+> -
+> -	return 0;
+> -}
+> -
+> -static int i915_fbc_false_color_set(void *data, u64 val)
+> -{
+> -	struct drm_i915_private *dev_priv =3D data;
+> -
+> -	return intel_fbc_set_false_color(&dev_priv->fbc, val);
+> -}
+> -
+> -DEFINE_SIMPLE_ATTRIBUTE(i915_fbc_false_color_fops,
+> -			i915_fbc_false_color_get, i915_fbc_false_color_set,
+> -			"%llu\n");
+> -
+>  static int i915_ips_status(struct seq_file *m, void *unused)
+>  {
+>  	struct drm_i915_private *dev_priv =3D node_to_i915(m->private);
+> @@ -2058,7 +2012,6 @@ static const struct file_operations i915_fifo_under=
+run_reset_ops =3D {
+>=20=20
+>  static const struct drm_info_list intel_display_debugfs_list[] =3D {
+>  	{"i915_frontbuffer_tracking", i915_frontbuffer_tracking, 0},
+> -	{"i915_fbc_status", i915_fbc_status, 0},
+>  	{"i915_ips_status", i915_ips_status, 0},
+>  	{"i915_sr_status", i915_sr_status, 0},
+>  	{"i915_opregion", i915_opregion, 0},
+> @@ -2083,7 +2036,6 @@ static const struct {
+>  	{"i915_pri_wm_latency", &i915_pri_wm_latency_fops},
+>  	{"i915_spr_wm_latency", &i915_spr_wm_latency_fops},
+>  	{"i915_cur_wm_latency", &i915_cur_wm_latency_fops},
+> -	{"i915_fbc_false_color", &i915_fbc_false_color_fops},
+>  	{"i915_dp_test_data", &i915_displayport_test_data_fops},
+>  	{"i915_dp_test_type", &i915_displayport_test_type_fops},
+>  	{"i915_dp_test_active", &i915_displayport_test_active_fops},
+> @@ -2110,6 +2062,8 @@ void intel_display_debugfs_register(struct drm_i915=
+_private *i915)
+>  	drm_debugfs_create_files(intel_display_debugfs_list,
+>  				 ARRAY_SIZE(intel_display_debugfs_list),
+>  				 minor->debugfs_root, minor);
+> +
+> +	intel_fbc_debugfs_register(i915);
+>  }
+>=20=20
+>  static int i915_panel_show(struct seq_file *m, void *data)
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+> index 00c93040529e..ee4e3186cc9c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -600,7 +600,7 @@ static void intel_fbc_hw_deactivate(struct intel_fbc =
+*fbc)
+>  	fbc->funcs->deactivate(fbc);
+>  }
+>=20=20
+> -bool intel_fbc_is_compressing(struct intel_fbc *fbc)
+> +static bool intel_fbc_is_compressing(struct intel_fbc *fbc)
+>  {
+>  	return fbc->funcs->is_compressing(fbc);
+>  }
+> @@ -612,36 +612,6 @@ static void intel_fbc_nuke(struct intel_fbc *fbc)
+>  	fbc->funcs->nuke(fbc);
+>  }
+>=20=20
+> -int intel_fbc_set_false_color(struct intel_fbc *fbc, bool enable)
+> -{
+> -	if (!fbc->funcs || !fbc->funcs->set_false_color)
+> -		return -ENODEV;
+> -
+> -	mutex_lock(&fbc->lock);
+> -
+> -	fbc->false_color =3D enable;
+> -
+> -	fbc->funcs->set_false_color(fbc, enable);
+> -
+> -	mutex_unlock(&fbc->lock);
+> -
+> -	return 0;
+> -}
+> -
+> -/**
+> - * intel_fbc_is_active - Is FBC active?
+> - * @fbc: The FBC instance
+> - *
+> - * This function is used to verify the current state of FBC.
+> - *
+> - * FIXME: This should be tracked in the plane config eventually
+> - * instead of queried at runtime for most callers.
+> - */
+> -bool intel_fbc_is_active(struct intel_fbc *fbc)
+> -{
+> -	return fbc->active;
+> -}
+> -
+>  static void intel_fbc_activate(struct intel_fbc *fbc)
+>  {
+>  	intel_fbc_hw_activate(fbc);
+> @@ -1691,3 +1661,81 @@ void intel_fbc_init(struct drm_i915_private *i915)
+>  	if (intel_fbc_hw_is_active(fbc))
+>  		intel_fbc_hw_deactivate(fbc);
+>  }
+> +
+> +static int intel_fbc_debugfs_status_show(struct seq_file *m, void *unuse=
+d)
+> +{
+> +	struct intel_fbc *fbc =3D m->private;
+> +	struct drm_i915_private *i915 =3D fbc->i915;
+> +	intel_wakeref_t wakeref;
+> +
+> +	wakeref =3D intel_runtime_pm_get(&i915->runtime_pm);
+> +	mutex_lock(&fbc->lock);
+> +
+> +	if (fbc->active) {
+> +		seq_puts(m, "FBC enabled\n");
+> +		seq_printf(m, "Compressing: %s\n",
+> +			   yesno(intel_fbc_is_compressing(fbc)));
+> +	} else {
+> +		seq_printf(m, "FBC disabled: %s\n", fbc->no_fbc_reason);
+> +	}
+> +
+> +	mutex_unlock(&fbc->lock);
+> +	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+> +
+> +	return 0;
+> +}
+> +
+> +DEFINE_SHOW_ATTRIBUTE(intel_fbc_debugfs_status);
+> +
+> +static int intel_fbc_debugfs_false_color_get(void *data, u64 *val)
+> +{
+> +	struct intel_fbc *fbc =3D data;
+> +
+> +	*val =3D fbc->false_color;
+> +
+> +	return 0;
+> +}
+> +
+> +static int intel_fbc_debugfs_false_color_set(void *data, u64 val)
+> +{
+> +	struct intel_fbc *fbc =3D data;
+> +
+> +	mutex_lock(&fbc->lock);
+> +
+> +	fbc->false_color =3D val;
+> +
+> +	if (fbc->active)
+> +		fbc->funcs->set_false_color(fbc, fbc->false_color);
+> +
+> +	mutex_unlock(&fbc->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +DEFINE_SIMPLE_ATTRIBUTE(intel_fbc_debugfs_false_color_fops,
+> +			intel_fbc_debugfs_false_color_get,
+> +			intel_fbc_debugfs_false_color_set,
+> +			"%llu\n");
+> +
+> +static void intel_fbc_debugfs_add(struct intel_fbc *fbc)
+> +{
+> +	struct drm_i915_private *i915 =3D fbc->i915;
+> +	struct drm_minor *minor =3D i915->drm.primary;
+> +
+> +	debugfs_create_file("i915_fbc_status", 0444,
+> +			    minor->debugfs_root, fbc,
+> +			    &intel_fbc_debugfs_status_fops);
+> +
+> +	if (fbc->funcs->set_false_color)
+> +		debugfs_create_file("i915_fbc_false_color", 0644,
+> +				    minor->debugfs_root, fbc,
+> +				    &intel_fbc_debugfs_false_color_fops);
+> +}
+> +
+> +void intel_fbc_debugfs_register(struct drm_i915_private *i915)
+> +{
+> +	struct intel_fbc *fbc =3D &i915->fbc;
+> +
+> +	if (HAS_FBC(i915))
+> +		intel_fbc_debugfs_add(fbc);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i=
+915/display/intel_fbc.h
+> index 36e9e5f93bcb..0f5884f1e095 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.h
+> @@ -18,8 +18,6 @@ struct intel_fbc;
+>  struct intel_plane_state;
+>=20=20
+>  int intel_fbc_atomic_check(struct intel_atomic_state *state);
+> -bool intel_fbc_is_active(struct intel_fbc *fbc);
+> -bool intel_fbc_is_compressing(struct intel_fbc *fbc);
+>  bool intel_fbc_pre_update(struct intel_atomic_state *state,
+>  			  struct intel_crtc *crtc);
+>  void intel_fbc_post_update(struct intel_atomic_state *state,
+> @@ -37,6 +35,6 @@ void intel_fbc_flush(struct drm_i915_private *dev_priv,
+>  		     unsigned int frontbuffer_bits, enum fb_op_origin origin);
+>  void intel_fbc_handle_fifo_underrun_irq(struct drm_i915_private *i915);
+>  void intel_fbc_reset_underrun(struct drm_i915_private *i915);
+> -int intel_fbc_set_false_color(struct intel_fbc *fbc, bool enable);
+> +void intel_fbc_debugfs_register(struct drm_i915_private *i915);
+>=20=20
+>  #endif /* __INTEL_FBC_H__ */
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
