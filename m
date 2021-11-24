@@ -2,38 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BF2C45B79F
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 10:42:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B5B45B7AC
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 10:44:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34A326EC46;
-	Wed, 24 Nov 2021 09:42:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 245476E222;
+	Wed, 24 Nov 2021 09:44:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B03BA6EC46
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Nov 2021 09:42:33 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10177"; a="259129745"
-X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; d="scan'208";a="259129745"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2021 01:42:32 -0800
-X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; d="scan'208";a="509810142"
-Received: from moconno1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.21.40])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2021 01:42:31 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Hans de Goede <hdegoede@redhat.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <821c3bee-0b70-45fe-5d66-dcfca9437fa7@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211122111504.223248-1-jani.nikula@intel.com>
- <821c3bee-0b70-45fe-5d66-dcfca9437fa7@redhat.com>
-Date: Wed, 24 Nov 2021 11:42:28 +0200
-Message-ID: <87k0gxnb3v.fsf@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 262AB6E222;
+ Wed, 24 Nov 2021 09:44:12 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out1.suse.de (Postfix) with ESMTP id 57BF02193C;
+ Wed, 24 Nov 2021 09:44:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1637747050; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=xjctS9e3aLk//fWwNzII/UY4G5OnovggWZdyEKD1t34=;
+ b=Fa3DfqPoxkPRyFtLFipUAPsRoQ7583RIvIkjGcirn+ZDIVuZJxTkgHZCWQWJkaYcgx/XTF
+ 6Tg+qvMREmzgGwP+y0PqF0I8yljZj0emBD/1N75E2fyVfhSwuHdlW27Cq87y3T4+dKDpTg
+ m3CDIAdfVxCay7j/D++92R/TIMACYbw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1637747050;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=xjctS9e3aLk//fWwNzII/UY4G5OnovggWZdyEKD1t34=;
+ b=jBk0LyCfiE1g4jR+z/f8PsVbXLRirmoGyBWY3eutEhQ8eC54ZtfGnQdZjQkRNSqRSaajn0
+ YL6WjUHTxaO0ZHAA==
+Received: from quack2.suse.cz (unknown [10.100.200.198])
+ by relay2.suse.de (Postfix) with ESMTP id A4AA0A3B8E;
+ Wed, 24 Nov 2021 09:44:09 +0000 (UTC)
+Received: by quack2.suse.cz (Postfix, from userid 1000)
+ id 844E41E14AC; Wed, 24 Nov 2021 10:44:09 +0100 (CET)
+Date: Wed, 24 Nov 2021 10:44:09 +0100
+From: Jan Kara <jack@suse.cz>
+To: Luis Chamberlain <mcgrof@kernel.org>
+Message-ID: <20211124094409.GF8583@quack2.suse.cz>
+References: <20211123202422.819032-1-mcgrof@kernel.org>
+ <20211123202422.819032-7-mcgrof@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/dsi: split out intel_dsi_vbt.h
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211123202422.819032-7-mcgrof@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 6/8] inotify: simplify subdirectory
+ registration with register_sysctl()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,135 +61,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jack@suse.cz, airlied@linux.ie, benh@kernel.crashing.org,
+ amir73il@gmail.com, clemens@ladisch.de, dri-devel@lists.freedesktop.org,
+ phil@philpotter.co.uk, joseph.qi@linux.alibaba.com, mark@fasheh.com,
+ yzaikin@google.com, keescook@chromium.org, arnd@arndb.de,
+ intel-gfx@lists.freedesktop.org, viro@zeniv.linux.org.uk,
+ nixiaoming@huawei.com, gregkh@linuxfoundation.org,
+ linux-kernel@vger.kernel.org, julia.lawall@inria.fr, ebiederm@xmission.com,
+ linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
+ linuxppc-dev@lists.ozlabs.org, ocfs2-devel@oss.oracle.com, jlbec@evilplan.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 22 Nov 2021, Hans de Goede <hdegoede@redhat.com> wrote:
-> Hi,
->
-> On 11/22/21 12:15, Jani Nikula wrote:
->> Follow the convention of corresponding .h for .c.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> This series looks good to me:
->
-> Reviewed-by: Hans de Goede <hdegoede@redhat.com>
->
-> For the series.
+On Tue 23-11-21 12:24:20, Luis Chamberlain wrote:
+> From: Xiaoming Ni <nixiaoming@huawei.com>
+> 
+> There is no need to user boiler plate code to specify a set of base
+> directories we're going to stuff sysctls under. Simplify this by using
+> register_sysctl() and specifying the directory path directly.
+> 
+> Move inotify_user sysctl to inotify_user.c while at it to remove clutter
+> from kernel/sysctl.c.
+> 
+> Signed-off-by: Xiaoming Ni <nixiaoming@huawei.com>
+> [mcgrof: update commit log to reflect new path we decided to take]
+> Signed-off-by: Luis Chamberlain <mcgrof@kernel.org>
 
-Thanks for the reviews, pushed to drm-intel-next.
+This looks fishy. You register inotify_table but not fanotify_table and
+remove both...
 
-BR,
-Jani.
+								Honza
 
-
->
-> Regards,
->
-> Hans
->
->> ---
->>  drivers/gpu/drm/i915/display/icl_dsi.c       |  1 +
->>  drivers/gpu/drm/i915/display/intel_dsi.h     |  9 --------
->>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c |  1 +
->>  drivers/gpu/drm/i915/display/intel_dsi_vbt.h | 22 ++++++++++++++++++++
->>  drivers/gpu/drm/i915/display/vlv_dsi.c       |  1 +
->>  5 files changed, 25 insertions(+), 9 deletions(-)
->>  create mode 100644 drivers/gpu/drm/i915/display/intel_dsi_vbt.h
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i9=
-15/display/icl_dsi.c
->> index edc38fbd2545..2f15b322d78f 100644
->> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
->> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
->> @@ -36,6 +36,7 @@
->>  #include "intel_ddi.h"
->>  #include "intel_de.h"
->>  #include "intel_dsi.h"
->> +#include "intel_dsi_vbt.h"
->>  #include "intel_panel.h"
->>  #include "intel_vdsc.h"
->>  #include "skl_scaler.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/=
-i915/display/intel_dsi.h
->> index fbc40ffdc02e..e3571ca7db5c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dsi.h
->> +++ b/drivers/gpu/drm/i915/display/intel_dsi.h
->> @@ -210,13 +210,4 @@ void bxt_dsi_reset_clocks(struct intel_encoder *enc=
-oder, enum port port);
->>  void assert_dsi_pll_enabled(struct drm_i915_private *i915);
->>  void assert_dsi_pll_disabled(struct drm_i915_private *i915);
->>=20=20
->> -/* intel_dsi_vbt.c */
->> -bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id);
->> -void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is=
-_on);
->> -void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *intel_dsi);
->> -void intel_dsi_vbt_exec_sequence(struct intel_dsi *intel_dsi,
->> -				 enum mipi_seq seq_id);
->> -void intel_dsi_msleep(struct intel_dsi *intel_dsi, int msec);
->> -void intel_dsi_log_params(struct intel_dsi *intel_dsi);
->> -
->>  #endif /* _INTEL_DSI_H */
->> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/=
-drm/i915/display/intel_dsi_vbt.c
->> index f241bedb8597..c29a13619224 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
->> @@ -41,6 +41,7 @@
->>  #include "i915_drv.h"
->>  #include "intel_display_types.h"
->>  #include "intel_dsi.h"
->> +#include "intel_dsi_vbt.h"
->>  #include "vlv_sideband.h"
->>=20=20
->>  #define MIPI_TRANSFER_MODE_SHIFT	0
->> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.h b/drivers/gpu/=
-drm/i915/display/intel_dsi_vbt.h
->> new file mode 100644
->> index 000000000000..dc642c1fe7ef
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.h
->> @@ -0,0 +1,22 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright =C2=A9 2021 Intel Corporation
->> + */
->> +
->> +#ifndef __INTEL_DSI_VBT_H__
->> +#define __INTEL_DSI_VBT_H__
->> +
->> +#include <linux/types.h>
->> +
->> +enum mipi_seq;
->> +struct intel_dsi;
->> +
->> +bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id);
->> +void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is=
-_on);
->> +void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *intel_dsi);
->> +void intel_dsi_vbt_exec_sequence(struct intel_dsi *intel_dsi,
->> +				 enum mipi_seq seq_id);
->> +void intel_dsi_msleep(struct intel_dsi *intel_dsi, int msec);
->> +void intel_dsi_log_params(struct intel_dsi *intel_dsi);
->> +
->> +#endif /* __INTEL_DSI_VBT_H__ */
->> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i9=
-15/display/vlv_dsi.c
->> index 59ebfbd46e6f..be070a1afcd0 100644
->> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
->> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
->> @@ -38,6 +38,7 @@
->>  #include "intel_de.h"
->>  #include "intel_display_types.h"
->>  #include "intel_dsi.h"
->> +#include "intel_dsi_vbt.h"
->>  #include "intel_fifo_underrun.h"
->>  #include "intel_panel.h"
->>  #include "skl_scaler.h"
->>=20
->
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+> ---
+>  fs/notify/inotify/inotify_user.c | 11 ++++++++++-
+>  include/linux/inotify.h          |  3 ---
+>  kernel/sysctl.c                  | 21 ---------------------
+>  3 files changed, 10 insertions(+), 25 deletions(-)
+> 
+> diff --git a/fs/notify/inotify/inotify_user.c b/fs/notify/inotify/inotify_user.c
+> index 29fca3284bb5..54583f62dc44 100644
+> --- a/fs/notify/inotify/inotify_user.c
+> +++ b/fs/notify/inotify/inotify_user.c
+> @@ -58,7 +58,7 @@ struct kmem_cache *inotify_inode_mark_cachep __read_mostly;
+>  static long it_zero = 0;
+>  static long it_int_max = INT_MAX;
+>  
+> -struct ctl_table inotify_table[] = {
+> +static struct ctl_table inotify_table[] = {
+>  	{
+>  		.procname	= "max_user_instances",
+>  		.data		= &init_user_ns.ucount_max[UCOUNT_INOTIFY_INSTANCES],
+> @@ -87,6 +87,14 @@ struct ctl_table inotify_table[] = {
+>  	},
+>  	{ }
+>  };
+> +
+> +static void __init inotify_sysctls_init(void)
+> +{
+> +	register_sysctl("fs/inotify", inotify_table);
+> +}
+> +
+> +#else
+> +#define inotify_sysctls_init() do { } while (0)
+>  #endif /* CONFIG_SYSCTL */
+>  
+>  static inline __u32 inotify_arg_to_mask(struct inode *inode, u32 arg)
+> @@ -849,6 +857,7 @@ static int __init inotify_user_setup(void)
+>  	inotify_max_queued_events = 16384;
+>  	init_user_ns.ucount_max[UCOUNT_INOTIFY_INSTANCES] = 128;
+>  	init_user_ns.ucount_max[UCOUNT_INOTIFY_WATCHES] = watches_max;
+> +	inotify_sysctls_init();
+>  
+>  	return 0;
+>  }
+> diff --git a/include/linux/inotify.h b/include/linux/inotify.h
+> index 6a24905f6e1e..8d20caa1b268 100644
+> --- a/include/linux/inotify.h
+> +++ b/include/linux/inotify.h
+> @@ -7,11 +7,8 @@
+>  #ifndef _LINUX_INOTIFY_H
+>  #define _LINUX_INOTIFY_H
+>  
+> -#include <linux/sysctl.h>
+>  #include <uapi/linux/inotify.h>
+>  
+> -extern struct ctl_table inotify_table[]; /* for sysctl */
+> -
+>  #define ALL_INOTIFY_BITS (IN_ACCESS | IN_MODIFY | IN_ATTRIB | IN_CLOSE_WRITE | \
+>  			  IN_CLOSE_NOWRITE | IN_OPEN | IN_MOVED_FROM | \
+>  			  IN_MOVED_TO | IN_CREATE | IN_DELETE | \
+> diff --git a/kernel/sysctl.c b/kernel/sysctl.c
+> index 7a90a12b9ea4..6aa67c737e4e 100644
+> --- a/kernel/sysctl.c
+> +++ b/kernel/sysctl.c
+> @@ -125,13 +125,6 @@ static const int maxolduid = 65535;
+>  static const int ngroups_max = NGROUPS_MAX;
+>  static const int cap_last_cap = CAP_LAST_CAP;
+>  
+> -#ifdef CONFIG_INOTIFY_USER
+> -#include <linux/inotify.h>
+> -#endif
+> -#ifdef CONFIG_FANOTIFY
+> -#include <linux/fanotify.h>
+> -#endif
+> -
+>  #ifdef CONFIG_PROC_SYSCTL
+>  
+>  /**
+> @@ -3099,20 +3092,6 @@ static struct ctl_table fs_table[] = {
+>  		.proc_handler	= proc_dointvec,
+>  	},
+>  #endif
+> -#ifdef CONFIG_INOTIFY_USER
+> -	{
+> -		.procname	= "inotify",
+> -		.mode		= 0555,
+> -		.child		= inotify_table,
+> -	},
+> -#endif
+> -#ifdef CONFIG_FANOTIFY
+> -	{
+> -		.procname	= "fanotify",
+> -		.mode		= 0555,
+> -		.child		= fanotify_table,
+> -	},
+> -#endif
+>  #ifdef CONFIG_EPOLL
+>  	{
+>  		.procname	= "epoll",
+> -- 
+> 2.33.0
+> 
+-- 
+Jan Kara <jack@suse.com>
+SUSE Labs, CR
