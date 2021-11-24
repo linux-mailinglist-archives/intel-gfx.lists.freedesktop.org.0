@@ -2,61 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B88545C30A
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 14:32:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE4F745C22E
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Nov 2021 14:23:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 397F96E8CE;
-	Wed, 24 Nov 2021 13:32:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BDBE6E4EC;
+	Wed, 24 Nov 2021 13:23:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com
- [IPv6:2607:f8b0:4864:20::733])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32EBA898BE;
- Wed, 24 Nov 2021 03:06:21 +0000 (UTC)
-Received: by mail-qk1-x733.google.com with SMTP id b67so1336010qkg.6;
- Tue, 23 Nov 2021 19:06:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=QCenGapdn8pT6BA4FKRLRxExah4bAbpes3InHq8HGvg=;
- b=UawLjgDp7UuXebp108LzicGASAjyfMpWQdBSpYTCyay8pEQuUdaTl92noI/5GKMkPl
- uzjxtoE2Hxvmmhjce1XE9VK5adj0kjToackYRsvIPi1e0uGWKMHAVRKt4tfH4o7IqEi0
- TC9iq4szjHrO4XPZhsCamPu40+A7rP/2dC01+lSPyQqBRGR+TvqdUXcJSnIJxGgSTVNf
- pgQcspc3raIjtUJIXzq6fqlz70ImZFHiv28ZdjV5EN6qcb9L/01H7BMxz64TerS+cWiB
- Fnfl+KNyv54cf11oNRs7WXnFu6MrMHV1Z4DZuKaEZo8mMLYoyMFrzUaSgzwjTFPXzfdk
- HrQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=QCenGapdn8pT6BA4FKRLRxExah4bAbpes3InHq8HGvg=;
- b=XD4bxCRlDQZR1fkdaAbPg4sTy8to8tFjNSzxyVhrX4TjfpcVbYcx1T6nOwx+xINmx9
- pU8TOFqOVndG+naQyP11FYRNIoOQqGLyJQJbnXBKCyxJ5uSAZWMawQk5s8bzwZql8xJh
- ooUpoxqYon+LpS7Yt6SCU6ZgRkYDop500ngREDwAyloO3xM127ma+JTwFv/VryVqJEaM
- pRr5bi8Zy1cyXJqXo86+wOvp1mOpgTvXz3KBYkIvwOMyfeYbOfM866oR/0JFrZDd0DXM
- M2vMEMa4Lrh+yN/xxHt3dAQHp2VSWaXJH5GPFTumWfcNbQsXLM9r4jF6bptgWLwc7B8s
- d/OA==
-X-Gm-Message-State: AOAM532oZSxVyFeGygxuUax9/fq6nVv40bZsStXKMOCmwoodaJ+kau7D
- oH0EUMesLqrOPGuyf/JE5K8=
-X-Google-Smtp-Source: ABdhPJwZTAzMHM0RV0zs9uZ1TEV8MK2HEv7somuIawMXs6UxXRsg4W9y1/otfg50ZrxFMeP2k1Gyeg==
-X-Received: by 2002:a05:620a:223:: with SMTP id
- u3mr2434295qkm.158.1637723180323; 
- Tue, 23 Nov 2021 19:06:20 -0800 (PST)
-Received: from localhost.localdomain ([193.203.214.57])
- by smtp.gmail.com with ESMTPSA id d15sm7234780qtd.70.2021.11.23.19.06.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 23 Nov 2021 19:06:20 -0800 (PST)
-From: cgel.zte@gmail.com
-X-Google-Original-From: yao.jing2@zte.com.cn
-To: jani.nikula@linux.intel.com
-Date: Wed, 24 Nov 2021 03:06:07 +0000
-Message-Id: <20211124030607.34914-1-yao.jing2@zte.com.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 45D7E6E4A5;
+ Wed, 24 Nov 2021 13:23:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3E6C9A01BB;
+ Wed, 24 Nov 2021 13:23:09 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7942567783173478323=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 24 Nov 2021 13:31:59 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/dmabuf: remove duplicate include in
- i915_gem_dmabuf.c
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Date: Wed, 24 Nov 2021 13:23:09 -0000
+Message-ID: <163776018924.25292.10938357513700133335@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211124092355.16668-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20211124092355.16668-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgUmV2?=
+ =?utf-8?q?ert_=22drm/i915/dg2=3A_Tile_4_plane_format_support=22?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,40 +40,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: yao.jing2@zte.com.cn, thomas.hellstrom@linux.intel.com, airlied@linux.ie,
- gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- chris@chris-wilson.co.uk, matthew.auld@intel.com,
- Zeal Robot <zealci@zte.com.cn>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Yao Jing <yao.jing2@zte.com.cn>
+--===============7942567783173478323==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-'asm/smp.h' included in 'drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c' is
-duplicated. It is clearly included on the 12 line.
+== Series Details ==
 
-Reported-by: Zeal Robot <zealci@zte.com.cn>
-Signed-off-by: Yao Jing <yao.jing2@zte.com.cn>
----
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+Series: Revert "drm/i915/dg2: Tile 4 plane format support"
+URL   : https://patchwork.freedesktop.org/series/97231/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-index f291cf4c3886..5712b6b5f285 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-@@ -17,9 +17,7 @@
- 
- MODULE_IMPORT_NS(DMA_BUF);
- 
--#if defined(CONFIG_X86)
--#include <asm/smp.h>
--#else
-+#if !defined(CONFIG_X86)
- #define wbinvd_on_all_cpus() \
- 	pr_warn(DRIVER_NAME ": Missing cache flush in %s\n", __func__)
- #endif
--- 
-2.25.1
+== Summary ==
 
+Applying: Revert "drm/i915/dg2: Tile 4 plane format support"
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_display.c
+M	drivers/gpu/drm/i915/display/intel_fb.c
+M	drivers/gpu/drm/i915/display/intel_fbc.c
+M	drivers/gpu/drm/i915/display/intel_plane_initial.c
+M	drivers/gpu/drm/i915/display/skl_universal_plane.c
+M	drivers/gpu/drm/i915/i915_drv.h
+M	drivers/gpu/drm/i915/i915_pci.c
+M	drivers/gpu/drm/i915/i915_reg.h
+M	drivers/gpu/drm/i915/intel_device_info.h
+M	drivers/gpu/drm/i915/intel_pm.c
+M	include/uapi/drm/drm_fourcc.h
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/display/intel_display.c
+No changes -- Patch already applied.
+
+
+
+--===============7942567783173478323==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Revert &quot;drm/i915/dg2: Tile 4 plane format support&quot;</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97231/">https://patchwork.freedesktop.org/series/97231/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</table>
+
+
+    <p>Applying: Revert "drm/i915/dg2: Tile 4 plane format support"<br />
+Using index info to reconstruct a base tree...<br />
+M   drivers/gpu/drm/i915/display/intel_display.c<br />
+M   drivers/gpu/drm/i915/display/intel_fb.c<br />
+M   drivers/gpu/drm/i915/display/intel_fbc.c<br />
+M   drivers/gpu/drm/i915/display/intel_plane_initial.c<br />
+M   drivers/gpu/drm/i915/display/skl_universal_plane.c<br />
+M   drivers/gpu/drm/i915/i915_drv.h<br />
+M   drivers/gpu/drm/i915/i915_pci.c<br />
+M   drivers/gpu/drm/i915/i915_reg.h<br />
+M   drivers/gpu/drm/i915/intel_device_info.h<br />
+M   drivers/gpu/drm/i915/intel_pm.c<br />
+M   include/uapi/drm/drm_fourcc.h<br />
+Falling back to patching base and 3-way merge...<br />
+Auto-merging drivers/gpu/drm/i915/display/intel_display.c<br />
+No changes -- Patch already applied.</p>
+
+</body>
+</html>
+
+--===============7942567783173478323==--
