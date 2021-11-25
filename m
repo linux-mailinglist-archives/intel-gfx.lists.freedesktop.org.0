@@ -2,32 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F1DF45DB3C
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Nov 2021 14:38:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF62745DBEE
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Nov 2021 15:06:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65E136EA84;
-	Thu, 25 Nov 2021 13:38:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE4D06EE42;
+	Thu, 25 Nov 2021 14:06:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 30DC26EA84;
- Thu, 25 Nov 2021 13:38:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 29D4BA008A;
- Thu, 25 Nov 2021 13:38:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0023650702058617681=="
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECC2D6EE38
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Nov 2021 14:06:46 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10178"; a="235460365"
+X-IronPort-AV: E=Sophos;i="5.87,263,1631602800"; d="scan'208";a="235460365"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2021 06:06:43 -0800
+X-IronPort-AV: E=Sophos;i="5.87,263,1631602800"; d="scan'208";a="510318029"
+Received: from dlathrox-mobl1.amr.corp.intel.com (HELO [10.212.122.191])
+ ([10.212.122.191])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2021 06:06:40 -0800
+Message-ID: <91e37161-7148-5d71-2efa-0176fbe2f468@linux.intel.com>
+Date: Thu, 25 Nov 2021 14:06:38 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Thu, 25 Nov 2021 13:38:43 -0000
-Message-ID: <163784752314.17558.9876716830091635606@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211125111043.27502-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20211125111043.27502-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dg2=3A_Tile_4_plane_format_support_=28rev6=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Content-Language: en-US
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+References: <20211124113652.22090-1-ville.syrjala@linux.intel.com>
+ <20211124113652.22090-12-ville.syrjala@linux.intel.com>
+ <87pmqplft3.fsf@intel.com> <YZ9azCw2Rc96QuNL@intel.com>
+ <87bl28lcyw.fsf@intel.com> <YZ991bmhNaIj4MrQ@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <YZ991bmhNaIj4MrQ@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 11/20] drm/i915/fbc: Move FBC debugfs stuff
+ into intel_fbc.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,209 +53,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0023650702058617681==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 25/11/2021 12:13, Ville Syrjälä wrote:
+> On Thu, Nov 25, 2021 at 12:57:27PM +0200, Jani Nikula wrote:
+>> On Thu, 25 Nov 2021, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+>>> On Wed, Nov 24, 2021 at 05:43:52PM +0200, Jani Nikula wrote:
+>>>> On Wed, 24 Nov 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+>>>>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>>>>
+>>>>> In order to encapsulate FBC harder let's just move the debugfs
+>>>>> stuff into intel_fbc.c.
+>>>>
+>>>> Mmmh, I've kind of moved towards a split where i915_debugfs.c and
+>>>> intel_display_debugfs.c have all the debugfs boilerplate, while the
+>>>> implementation files have the guts with struct drm_i915_private *i915
+>>>> (or something more specific) and struct seq_file *m passed in.
+>>>>
+>>>> In some ways the split is arbitrary, but I kind of find the debugfs
+>>>> boilerplate a distraction in the implementation files, and we also skip
+>>>> building the debugfs files completely for CONFIG_DEBUG_FS=n. I don't
+>>>> think I'd want to add #ifdefs on that spread around either.
+>>>
+>>> If we want to keep the debugfs in a separate file then we'll have to
+>>> expose the guts of the FBC implementation in intel_fbc.h (or some other
+>>> header) just for that, or we add a whole bunch of otherwise useless
+>>> functions that pretend to provide some higher level of abstraction.
+>>>
+>>> Not really a fan of either of those options.
+>>
+>> Obviously I'm in favour of hiding the guts, no question about it. I'm
+>> also very much in favour of moving the details out of our *debugfs.c
+>> files. It's just a question of where to draw the line, and which side of
+>> the line the debugfs boilerplate lands.
+>>
+>> Which leaves us either your approach in the patch at hand, or adding the
+>> fbc helper functions for debugfs, which would be something like:
+>>
+>> intel_fbc_get_status
+>> intel_fbc_get_false_color
+>> intel_fbc_set_false_color
+> 
+> So I guess you're suggesting that just the DEFINE_ATTRIBUTE
+> and debugfs_create_file() stuff should remain in
+> intel_display_debugfs.c?
+> 
+> Not sure that approach has any benefits whatsoever. The get/set
+> functions will need to be non-static and they'll get included in
+> the binary whether or not debugfs is enabled or not (unless you
+> lto it perhaps). If everything is in intel_fbc.c all that stuff
+> just gets optimized out entirely when not needed.
+> 
+> Also then I couldn't do this sort of stuff:
+>   if (fbc->funcs->set_false_color)
+>   	debugfs_create_file(...)
+> because that requires knowledge only available to intel_fbc.c.
+> I'd need to add some kind of intel_fbc_has_false_color() thing
+> just for that.
 
-Series: drm/i915/dg2: Tile 4 plane format support (rev6)
-URL   : https://patchwork.freedesktop.org/series/95715/
-State : success
+Not guaranteeing I captured all the nuances here but how about an 
+approach similar to selftests? That is, have a separate file for debugfs 
+registration and bits (each "module" explicitly registers as in Ville's 
+patch), and have the owning "module" include the debugfs part at the end 
+of it. That way no exports, or defining too much API, would be needed. 
+And not needing common debugfs code to know the guts of any module. 
+Benefit of not compiling any of it when !CONFIG_DEBUG_FS is kept (or 
+gained, not even sure any more..).
 
-== Summary ==
+Regards,
 
-CI Bug Log - changes from CI_DRM_10927 -> Patchwork_21681
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/index.html
-
-Participating hosts (41 -> 34)
-------------------------------
-
-  Missing    (7): bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-bsw-cyan fi-bdw-samus bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21681 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-gfx0:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +21 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#4269])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10927/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#533])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [FAIL][8] ([i915#4547]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10927/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10927 -> Patchwork_21681
-
-  CI-20190529: 20190529
-  CI_DRM_10927: 70433a630c297848b18003cec38e17f9655ffa56 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6289: 04f17901d1a64e5ddc15f2f3873c04b756b1727d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21681: ad3b55a8a4dfac3e040bc73776467a3e98a0bbea @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ad3b55a8a4df drm/i915/dg2: Tile 4 plane format support
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/index.html
-
---===============0023650702058617681==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dg2: Tile 4 plane format support (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/95715/">https://patchwork.freedesktop.org/series/95715/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10927 -&gt; Patchwork_21681</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/index.html</p>
-<h2>Participating hosts (41 -&gt; 34)</h2>
-<p>Missing    (7): bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-bsw-cyan fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21681 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-gfx0:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +21 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10927/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_flink_basic@bad-flink:<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10927/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21681/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10927 -&gt; Patchwork_21681</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10927: 70433a630c297848b18003cec38e17f9655ffa56 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6289: 04f17901d1a64e5ddc15f2f3873c04b756b1727d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21681: ad3b55a8a4dfac3e040bc73776467a3e98a0bbea @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>ad3b55a8a4df drm/i915/dg2: Tile 4 plane format support</p>
-
-</body>
-</html>
-
---===============0023650702058617681==--
+Tvrtko
