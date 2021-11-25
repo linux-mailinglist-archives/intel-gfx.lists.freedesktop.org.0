@@ -1,34 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A64BC461108
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 10:25:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5485B4615A8
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 14:00:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1CD26E7F1;
-	Mon, 29 Nov 2021 09:25:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41F966FD02;
+	Mon, 29 Nov 2021 13:00:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F18196E7F1;
- Mon, 29 Nov 2021 09:25:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E94BEAA914;
- Mon, 29 Nov 2021 09:25:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6909411753775259035=="
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com
+ [IPv6:2607:f8b0:4864:20::730])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8095C6E82D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Nov 2021 09:23:10 +0000 (UTC)
+Received: by mail-qk1-x730.google.com with SMTP id m186so10793798qkb.4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Nov 2021 01:23:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=philpotter-co-uk.20210112.gappssmtp.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=6cQ2VBT6GEq5IzxtMFOrkAmdfUkzXXUJICym+jfQClw=;
+ b=4mJ9AwSHB31PIpdJFgjtZiPI3O5U6l1D0qy0KW0UNf5MH6ozT0e6B86+3bb+ubsNsn
+ bM94zULnP3/Sn5TW2sU/aVPK6VkQM9qy7472OA32+vcwka6MF4HPtv3JEMMLnnF7wmI8
+ ICnVsm3JYbKZ1EmnKJc5Z6apqZ2RUZkPkq+9OUBvr5SxgxoGUUCPzzNRjS9cNIPRmf9W
+ FkRzAaXZcf5J4VFjOvxT6jDJIPAkJGMRS0lNjaglMXitLBGhfTqTjyAGLSVTx96zOYvc
+ geD85MYGed6A2vdWo2NGX8n2KXD9U2AGeoO0+MzV1KSKw8zpkUNflxlTE2C1KHr75DOI
+ PH4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=6cQ2VBT6GEq5IzxtMFOrkAmdfUkzXXUJICym+jfQClw=;
+ b=3n5CFreyaC4TErlR952Ce9Q7Yj0JirnO6AkNofj5R/W9nZOtoPRZe88HMX9dG0lBd0
+ sRkgtWlELHfqLdDu2ua6wFs+TYsiV0rOi9mTgGLsZwbUyEcUgOni0nHx5OzSHBvnZZ6R
+ mxs4nTnqnoDj6N2fP3qA3+kresj4r51e+3ivX9SbT9k3MR41rTxgQF7bbxRi23ZoqTMR
+ hKc1UVxQ6l+k7PFzpZQ8jn+92UBWp9I7TfqO29NesRz0HobUlIWSbZaDNxXzcOorzlam
+ DeIGW9vRbBPPLnWcIATPumcVx6ddpacUH9Xuo1F9hVpOjprMnohrWZn5LfpMmsu/Np+o
+ FHVg==
+X-Gm-Message-State: AOAM533EPOhCyJQVNbZVkAS2QQhEWBIybLwabW7NV2ZvL6Ase6onQ08u
+ ZdhRkZ8F1CjtNZSYvLpcTd7S0w==
+X-Google-Smtp-Source: ABdhPJwrHAepVsZs+KL0K+Dovd/v3IZvIaLP3c/YHUpcEAnEaPTq5AjU/2Qs0P+96c5OryJ5OBqRAA==
+X-Received: by 2002:a05:620a:f8b:: with SMTP id
+ b11mr13482119qkn.81.1637832189250; 
+ Thu, 25 Nov 2021 01:23:09 -0800 (PST)
+Received: from equinox
+ (2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.a.1.e.e.d.f.d.0.b.8.0.1.0.0.2.ip6.arpa.
+ [2001:8b0:dfde:e1a0::2])
+ by smtp.gmail.com with ESMTPSA id 16sm1314112qty.2.2021.11.25.01.23.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 25 Nov 2021 01:23:08 -0800 (PST)
+Date: Thu, 25 Nov 2021 09:23:03 +0000
+From: Phillip Potter <phil@philpotter.co.uk>
+To: Luis Chamberlain <mcgrof@kernel.org>, axboe@kernel.dk
+Message-ID: <YZ9V9yxGapfPF4+g@equinox>
+References: <20211123202422.819032-1-mcgrof@kernel.org>
+ <20211123202422.819032-8-mcgrof@kernel.org>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Mon, 29 Nov 2021 09:25:53 -0000
-Message-ID: <163817795393.16117.14918547509623144500@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211129073533.414008-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20211129073533.414008-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZG1h?=
- =?utf-8?q?=5Ffence=5Farray=3A_Fix_PENDING=5FERROR_leak_in_dma=5Ffence=5Fa?=
- =?utf-8?b?cnJheV9zaWduYWxlZCgp?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211123202422.819032-8-mcgrof@kernel.org>
+X-Mailman-Approved-At: Mon, 29 Nov 2021 13:00:35 +0000
+Subject: Re: [Intel-gfx] [PATCH v2 7/8] cdrom: simplify subdirectory
+ registration with register_sysctl()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,195 +74,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jack@suse.cz, airlied@linux.ie, benh@kernel.crashing.org,
+ amir73il@gmail.com, clemens@ladisch.de, dri-devel@lists.freedesktop.org,
+ phil@philpotter.co.uk, joseph.qi@linux.alibaba.com, mark@fasheh.com,
+ yzaikin@google.com, keescook@chromium.org, arnd@arndb.de,
+ intel-gfx@lists.freedesktop.org, linux-block@vger.kernel.org,
+ viro@zeniv.linux.org.uk, nixiaoming@huawei.com, gregkh@linuxfoundation.org,
+ linux-kernel@vger.kernel.org, julia.lawall@inria.fr, ebiederm@xmission.com,
+ linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
+ linuxppc-dev@lists.ozlabs.org, ocfs2-devel@oss.oracle.com, jlbec@evilplan.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6909411753775259035==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Nov 23, 2021 at 12:24:21PM -0800, Luis Chamberlain wrote:
+> There is no need to user boiler plate code to specify a set of base
+> directories we're going to stuff sysctls under. Simplify this by using
+> register_sysctl() and specifying the directory path directly.
+> 
+> // pycocci sysctl-subdir-register-sysctl-simplify.cocci PATH
+> 
+> @c1@
+> expression E1;
+> identifier subdir, sysctls;
+> @@
+> 
+> static struct ctl_table subdir[] = {
+> 	{
+> 		.procname = E1,
+> 		.maxlen = 0,
+> 		.mode = 0555,
+> 		.child = sysctls,
+> 	},
+> 	{ }
+> };
+> 
+> @c2@
+> identifier c1.subdir;
+> 
+> expression E2;
+> identifier base;
+> @@
+> 
+> static struct ctl_table base[] = {
+> 	{
+> 		.procname = E2,
+> 		.maxlen = 0,
+> 		.mode = 0555,
+> 		.child = subdir,
+> 	},
+> 	{ }
+> };
+> 
+> @c3@
+> identifier c2.base;
+> identifier header;
+> @@
+> 
+> header = register_sysctl_table(base);
+> 
+> @r1 depends on c1 && c2 && c3@
+> expression c1.E1;
+> identifier c1.subdir, c1.sysctls;
+> @@
+> 
+> -static struct ctl_table subdir[] = {
+> -	{
+> -		.procname = E1,
+> -		.maxlen = 0,
+> -		.mode = 0555,
+> -		.child = sysctls,
+> -	},
+> -	{ }
+> -};
+> 
+> @r2 depends on c1 && c2 && c3@
+> identifier c1.subdir;
+> 
+> expression c2.E2;
+> identifier c2.base;
+> @@
+> -static struct ctl_table base[] = {
+> -	{
+> -		.procname = E2,
+> -		.maxlen = 0,
+> -		.mode = 0555,
+> -		.child = subdir,
+> -	},
+> -	{ }
+> -};
+> 
+> @initialize:python@
+> @@
+> 
+> def make_my_fresh_expression(s1, s2):
+>   return '"' + s1.strip('"') + "/" + s2.strip('"') + '"'
+> 
+> @r3 depends on c1 && c2 && c3@
+> expression c1.E1;
+> identifier c1.sysctls;
+> expression c2.E2;
+> identifier c2.base;
+> identifier c3.header;
+> fresh identifier E3 = script:python(E2, E1) { make_my_fresh_expression(E2, E1) };
+> @@
+> 
+> header =
+> -register_sysctl_table(base);
+> +register_sysctl(E3, sysctls);
+> 
+> Generated-by: Coccinelle SmPL
+> Signed-off-by: Luis Chamberlain <mcgrof@kernel.org>
+> ---
+>  drivers/cdrom/cdrom.c | 23 +----------------------
+>  1 file changed, 1 insertion(+), 22 deletions(-)
+> 
+> diff --git a/drivers/cdrom/cdrom.c b/drivers/cdrom/cdrom.c
+> index 9877e413fce3..1b57d4666e43 100644
+> --- a/drivers/cdrom/cdrom.c
+> +++ b/drivers/cdrom/cdrom.c
+> @@ -3691,27 +3691,6 @@ static struct ctl_table cdrom_table[] = {
+>  	},
+>  	{ }
+>  };
+> -
+> -static struct ctl_table cdrom_cdrom_table[] = {
+> -	{
+> -		.procname	= "cdrom",
+> -		.maxlen		= 0,
+> -		.mode		= 0555,
+> -		.child		= cdrom_table,
+> -	},
+> -	{ }
+> -};
+> -
+> -/* Make sure that /proc/sys/dev is there */
+> -static struct ctl_table cdrom_root_table[] = {
+> -	{
+> -		.procname	= "dev",
+> -		.maxlen		= 0,
+> -		.mode		= 0555,
+> -		.child		= cdrom_cdrom_table,
+> -	},
+> -	{ }
+> -};
+>  static struct ctl_table_header *cdrom_sysctl_header;
+>  
+>  static void cdrom_sysctl_register(void)
+> @@ -3721,7 +3700,7 @@ static void cdrom_sysctl_register(void)
+>  	if (!atomic_add_unless(&initialized, 1, 1))
+>  		return;
+>  
+> -	cdrom_sysctl_header = register_sysctl_table(cdrom_root_table);
+> +	cdrom_sysctl_header = register_sysctl("dev/cdrom", cdrom_table);
+>  
+>  	/* set the defaults */
+>  	cdrom_sysctl_settings.autoclose = autoclose;
+> -- 
+> 2.33.0
+> 
 
-== Series Details ==
+Dear Luis,
 
-Series: dma_fence_array: Fix PENDING_ERROR leak in dma_fence_array_signaled()
-URL   : https://patchwork.freedesktop.org/series/97362/
-State : success
+Thank you for the patch. Tested and working, looks good to me. As this
+has already been pulled into Andrew Morton's tree, I have added in Jens
+and the linux-block list so there is awareness that the patch will go
+via -mm then linux-next tree.
 
-== Summary ==
+For what it's worth (although guess it won't be in the commit now):
+Reviewed-by: Phillip Potter <phil@philpotter.co.uk>
 
-CI Bug Log - changes from CI_DRM_10935 -> Patchwork_21692
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/index.html
-
-Participating hosts (36 -> 32)
-------------------------------
-
-  Additional (1): fi-skl-6600u 
-  Missing    (5): fi-kbl-soraka bat-dg1-6 bat-adlp-6 bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21692 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-gfx0:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +23 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#4269])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10935/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#533])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10935 -> Patchwork_21692
-
-  CI-20190529: 20190529
-  CI_DRM_10935: 5c0966fffb522e45d76063065b3b915cff246b23 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6293: bf11f87c27ad1cec3e60bd31c23080d19aa093f3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21692: be15ec0983143cfc7011d2be1e3ea3be5970a80d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-be15ec098314 dma_fence_array: Fix PENDING_ERROR leak in dma_fence_array_signaled()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/index.html
-
---===============6909411753775259035==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>dma_fence_array: Fix PENDING_ERROR leak in dma_fence_array_signaled()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97362/">https://patchwork.freedesktop.org/series/97362/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10935 -&gt; Patchwork_21692</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/index.html</p>
-<h2>Participating hosts (36 -&gt; 32)</h2>
-<p>Additional (1): fi-skl-6600u <br />
-  Missing    (5): fi-kbl-soraka bat-dg1-6 bat-adlp-6 bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21692 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-gfx0:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +23 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10935/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21692/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10935 -&gt; Patchwork_21692</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10935: 5c0966fffb522e45d76063065b3b915cff246b23 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6293: bf11f87c27ad1cec3e60bd31c23080d19aa093f3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21692: be15ec0983143cfc7011d2be1e3ea3be5970a80d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>be15ec098314 dma_fence_array: Fix PENDING_ERROR leak in dma_fence_array_signaled()</p>
-
-</body>
-</html>
-
---===============6909411753775259035==--
+Regards,
+Phil
