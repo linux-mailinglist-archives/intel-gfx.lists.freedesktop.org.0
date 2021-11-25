@@ -2,45 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5BE745E12C
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Nov 2021 20:49:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5EB45E169
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Nov 2021 21:12:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B8A96E11F;
-	Thu, 25 Nov 2021 19:49:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBB296E1B8;
+	Thu, 25 Nov 2021 20:12:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D1606E11F
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Nov 2021 19:49:26 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10179"; a="235500868"
-X-IronPort-AV: E=Sophos;i="5.87,263,1631602800"; d="scan'208";a="235500868"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2021 11:49:25 -0800
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0BCB6E079
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Nov 2021 20:12:37 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10179"; a="259462736"
+X-IronPort-AV: E=Sophos;i="5.87,263,1631602800"; d="scan'208";a="259462736"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2021 12:12:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,263,1631602800"; d="scan'208";a="457475041"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by orsmga003.jf.intel.com with ESMTP; 25 Nov 2021 11:49:25 -0800
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 25 Nov 2021 11:49:24 -0800
+X-IronPort-AV: E=Sophos;i="5.87,263,1631602800"; d="scan'208";a="457957150"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga006.jf.intel.com with ESMTP; 25 Nov 2021 12:12:37 -0800
 Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX602.gar.corp.intel.com (10.109.78.81) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 26 Nov 2021 01:19:22 +0530
+ 15.1.2308.20; Thu, 25 Nov 2021 12:12:36 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX604.gar.corp.intel.com (10.67.234.6) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Fri, 26 Nov 2021 01:42:34 +0530
 Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
  BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.012;
- Fri, 26 Nov 2021 01:19:22 +0530
+ Fri, 26 Nov 2021 01:42:34 +0530
 From: "Shankar, Uma" <uma.shankar@intel.com>
 To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 2/3] drm/i915/xelpd: Enable Pipe Degamma
-Thread-Index: AQHX4KGDAzRWEeggMk2Q+ZtGD98bq6wSaIEAgAJBCkA=
-Date: Thu, 25 Nov 2021 19:49:22 +0000
-Message-ID: <3371d6fe2d124fb38b53de48b2bbabef@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 3/3] drm/i915/xelpd: Add Pipe Color Lut caps
+ to platform config
+Thread-Index: AQHX4KGH6jmzojjvK0ao/2wa/nH866wSacMAgAJFz2A=
+Date: Thu, 25 Nov 2021 20:12:33 +0000
+Message-ID: <1497ef97072846129998fb9cca084439@intel.com>
 References: <20211123193649.3153258-1-uma.shankar@intel.com>
- <20211123193649.3153258-3-uma.shankar@intel.com> <YZ5R0JmEmkL04Phm@intel.com>
-In-Reply-To: <YZ5R0JmEmkL04Phm@intel.com>
+ <20211123193649.3153258-4-uma.shankar@intel.com> <YZ5S3tnYZZbYPbYo@intel.com>
+In-Reply-To: <YZ5S3tnYZZbYPbYo@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -52,7 +53,8 @@ x-originating-ip: [10.223.10.1]
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/xelpd: Enable Pipe Degamma
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/xelpd: Add Pipe Color Lut caps
+ to platform config
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,70 +75,56 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 > -----Original Message-----
 > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Wednesday, November 24, 2021 8:23 PM
+> Sent: Wednesday, November 24, 2021 8:28 PM
 > To: Shankar, Uma <uma.shankar@intel.com>
 > Cc: intel-gfx@lists.freedesktop.org; =3Dville.syrjala@linux.intel.com
-> Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/xelpd: Enable Pipe Degamma
+> Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/xelpd: Add Pipe Color Lut c=
+aps to
+> platform config
 >=20
-> On Wed, Nov 24, 2021 at 01:06:48AM +0530, Uma Shankar wrote:
-> > Enable Pipe Degamma for XE_LPD. Extend the legacy implementation to
-> > incorparate the extended lut size for XE_LPD.
+> On Wed, Nov 24, 2021 at 01:06:49AM +0530, Uma Shankar wrote:
+> > XE_LPD has 128 Lut entries for Degamma, with additional 3 entries for
+> > extended range. It has 511 entries for gamma with additional 2 entries
+> > for extended range.
 > >
 > > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_color.c | 12 +++++++++---
-> >  1 file changed, 9 insertions(+), 3 deletions(-)
+> >  drivers/gpu/drm/i915/i915_pci.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
 > >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c
-> > b/drivers/gpu/drm/i915/display/intel_color.c
-> > index e529dbeee525..81046d5ab509 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_color.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> > @@ -815,6 +815,12 @@ static void glk_load_degamma_lut(const struct
-> intel_crtc_state *crtc_state)
-> >  	enum pipe pipe =3D crtc->pipe;
-> >  	int i, lut_size =3D INTEL_INFO(dev_priv)->color.degamma_lut_size;
-> >  	const struct drm_color_lut *lut =3D crtc_state->hw.degamma_lut->data;
-> > +	u32 extended_lut_size;
-> > +
-> > +	if (DISPLAY_VER(dev_priv) >=3D 13)
-> > +		extended_lut_size =3D 131;
-> > +	else
-> > +		extended_lut_size =3D 35;
+> > diff --git a/drivers/gpu/drm/i915/i915_pci.c
+> > b/drivers/gpu/drm/i915/i915_pci.c index f01cba4ec283..40d21a8c50ff
+> > 100644
+> > --- a/drivers/gpu/drm/i915/i915_pci.c
+> > +++ b/drivers/gpu/drm/i915/i915_pci.c
+> > @@ -938,7 +938,7 @@ static const struct intel_device_info adl_s_info =
+=3D
+> > {
+> >
+> >  #define XE_LPD_FEATURES \
+> >  	.abox_mask =3D GENMASK(1, 0),						\
+> > -	.color =3D { .degamma_lut_size =3D 0, .gamma_lut_size =3D 0 },		\
+> > +	.color =3D { .degamma_lut_size =3D 128, .gamma_lut_size =3D 513 },		\
 >=20
-> Can you extract that into a small helper? IIRC I did that for the interna=
-l version
-> already.
+> Missing .degamma_lut_tests.
 
-Ok sure, will update this.
+Yeah, will update this.
+
+> Shouldn't .gamma_lut_size be 1024 or did they really change it?
+
+Right, for 10bit gamma 1024 is the size as data is in 0.10 formats. It gets=
+ limited to
+513 in case of logarithmic due to increased precision needing 2 register sp=
+ace for
+1 entry. Thanks Ville for catching it, will fix this.
 
 Regards,
 Uma Shankar
-> >
-> >  	/*
-> >  	 * When setting the auto-increment bit, the hardware seems to @@
-> > -827,8 +833,8 @@ static void glk_load_degamma_lut(const struct
-> > intel_crtc_state *crtc_state)
-> >
-> >  	for (i =3D 0; i < lut_size; i++) {
-> >  		/*
-> > -		 * First 33 entries represent range from 0 to 1.0
-> > -		 * 34th and 35th entry will represent extended range
-> > +		 * First lut_size entries represent range from 0 to 1.0
-> > +		 * 3 additional lut entries will represent extended range
-> >  		 * inputs 3.0 and 7.0 respectively, currently clamped
-> >  		 * at 1.0. Since the precision is 16bit, the user
-> >  		 * value can be directly filled to register.
-> > @@ -844,7 +850,7 @@ static void glk_load_degamma_lut(const struct
-> intel_crtc_state *crtc_state)
-> >  	}
-> >
-> >  	/* Clamp values > 1.0. */
-> > -	while (i++ < 35)
-> > +	while (i++ < extended_lut_size)
-> >  		intel_de_write_fw(dev_priv, PRE_CSC_GAMC_DATA(pipe), 1 << 16);
-> >
-> >  	intel_de_write_fw(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
+
+> >  	.dbuf.size =3D 4096,							\
+> >  	.dbuf.slice_mask =3D BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |
+> 	\
+> >  		BIT(DBUF_S4),							\
 > > --
 > > 2.25.1
 >=20
