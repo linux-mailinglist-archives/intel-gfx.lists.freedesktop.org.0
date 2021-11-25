@@ -2,69 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943AC45D816
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Nov 2021 11:18:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C840545D82F
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Nov 2021 11:23:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D47C76E40B;
-	Thu, 25 Nov 2021 10:18:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E75D6E4A5;
+	Thu, 25 Nov 2021 10:23:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A60286E40B;
- Thu, 25 Nov 2021 10:18:27 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.west.internal (Postfix) with ESMTP id A52962B01525;
- Thu, 25 Nov 2021 05:18:23 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute3.internal (MEProxy); Thu, 25 Nov 2021 05:18:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:mime-version:content-type; s=
- fm1; bh=Zu0IJTgPFLVVVVNSyljNTJUvEm64C0DoxYXK3icoM9c=; b=Xhj9IRmz
- qxH4LrUzKCkguQHvmINap5OsJ0ydRtkU/Z35LNt8hApnEE9hW2o54DYjVApyyGSu
- ubsJVH6EQ+vN3yjE2F7/1Fr49Ksq/I7lQfKD91eF4r+zIvF5TzgTD7GJz5z/QLR9
- nphR8lJL7FicYclw3N1TvNVAHDHh5W4VnohBN+MWLNm+yKDz0D18/7DxlLOyP5JG
- hJCUzQUucruJzDxsGZV1kY53D1uDlNICVXBe4SOQHLZG+nT5iIOWZrXawtWQOjSu
- o6FNrGpMA7gNTjpu5AMkzLOwlvSpAXSt6F5ZiOQQUA2wAiM9RCsE85mgo+MjxLDw
- hAxqMlRkLGrTBg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:message-id
- :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm1; bh=Zu0IJTgPFLVVVVNSyljNTJUvEm64C
- 0DoxYXK3icoM9c=; b=oMEksy10cWCFvBbc2KUBuHNOpZiOvFNy4x9sCXVI64YZo
- UunOH9lDgo6/Qpc021fsbPGE2fxRoRnx7AdzrtLn9C1ZnXUiLPE+GeqpNhgH1Ie6
- O6hCoRxE+vvwVBCg5yG+1KjW/lGDpx+DPsWz2yqs+96bgqIQmBvlD4SnSbXvJbGG
- 3BIoDZuFbvK7QkCJsihOyt7xtgaP8tF/BNgL5CcsdDucs8NgBsed3XrEp0/0T58X
- 3v5RgE1Bjmu3L5+1TI++0bgT8EK4+ljdfkkRehnpaWsXDfdFFMJKXGHnAUWOfwzu
- 7URyDbl1IS+oD7GGrlel8CQqfSgYJLukRaoXjDgIg==
-X-ME-Sender: <xms:7mKfYdp1CYvm0ChUQcXC6d3Quynej2l5ytHzbiFgtgigb0g4tMmq7A>
- <xme:7mKfYfol16tuvTuDY6N_Vx8sq--NFPs8JxKuJT3mdqc4i5cFK35GTM4tgFB4umQCi
- P4T46eTS7lEz1Bgdf8>
-X-ME-Received: <xmr:7mKfYaMfkjyu-aqYI_1-YXFZO66bbY-Qt2vVLiJ3qTL6cUv13Wci9rOGVX0Z8WOXGCc1cMxf1N72a0sXoInjMBmR65h-Jbk2fnc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrhedtgddufecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvuffkgggtugesghdtreertddtvdenucfhrhhomhepofgrgihimhgvucft
- ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrh
- hnpeeguedvtdehgeeghefhieegteffueefleevgefgkeevgeeiveduleejueegvdeigfen
- ucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghrufhiii
- gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgv
- tghh
-X-ME-Proxy: <xmx:7mKfYY5Wy9sz2m3N6KHDzKq5PvLYuymaLwL9hkEIM4eeJamu38Nz8Q>
- <xmx:7mKfYc4yg3CHdsSo9G085iOIYyM2l2JokhyHwv5_rCYNFOWKDWBb1A>
- <xmx:7mKfYQhSUMJ-3Cqcc5WjdMNYV3SgUmBJDlHucAmnCW5pCpHZKUaa1w>
- <xmx:72KfYZwUdG1nb94ztrfuTlZmOehJeEP9E7UPjUR-DtHdGRhah4pPiJYWlFs>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 25 Nov 2021 05:18:21 -0500 (EST)
-Date: Thu, 25 Nov 2021 11:18:19 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20211125101819.ynu7zgbs7yfwedri@houat>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F39F6E4A5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Nov 2021 10:23:26 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10178"; a="296295772"
+X-IronPort-AV: E=Sophos;i="5.87,263,1631602800"; d="scan'208";a="296295772"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2021 02:23:26 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,263,1631602800"; d="scan'208";a="475600371"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga002.jf.intel.com with SMTP; 25 Nov 2021 02:23:23 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 25 Nov 2021 12:23:22 +0200
+Date: Thu, 25 Nov 2021 12:23:22 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YZ9kGqXSDTnTqeoG@intel.com>
+References: <cover.1637588831.git.jani.nikula@intel.com>
+ <0afc1d559c463fb5f9fc74b768df6a4e6bfcd2c6.1637588831.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="ngzrvu7y6m2aqdfv"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0afc1d559c463fb5f9fc74b768df6a4e6bfcd2c6.1637588831.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/8] drm/i915/display: remove
+ intel_wait_for_vblank()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,74 +49,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Nov 22, 2021 at 03:51:03PM +0200, Jani Nikula wrote:
+> There are only three call sites remaining for
+> intel_wait_for_vblank(). Remove the function, and open code it to avoid
+> new users from showing up.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c         | 2 +-
+>  drivers/gpu/drm/i915/display/intel_crt.c           | 2 +-
+>  drivers/gpu/drm/i915/display/intel_display.c       | 8 ++++++--
+>  drivers/gpu/drm/i915/display/intel_display_types.h | 8 --------
+>  4 files changed, 8 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 91c19e0a98d7..e3b863ee0bbb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1690,7 +1690,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+>  	intel_de_write(dev_priv, CDCLK_CTL, val);
+>  
+>  	if (pipe != INVALID_PIPE)
+> -		intel_wait_for_vblank(dev_priv, pipe);
+> +		drm_crtc_wait_one_vblank(&intel_get_crtc_for_pipe(dev_priv, pipe)->base);
 
---ngzrvu7y6m2aqdfv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+That looks rather hideuous. I think I'd prefer to keep the wrapper.
 
-Hi Daniel, Dave,
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 11) {
+>  		ret = sandybridge_pcode_write(dev_priv, SKL_PCODE_CDCLK_CONTROL,
+> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+> index 8796527f74e5..43b3f6044f96 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> @@ -721,7 +721,7 @@ intel_crt_load_detect(struct intel_crt *crt, u32 pipe)
+>  		intel_uncore_posting_read(uncore, pipeconf_reg);
+>  		/* Wait for next Vblank to substitue
+>  		 * border color for Color info */
+> -		intel_wait_for_vblank(dev_priv, pipe);
+> +		drm_crtc_wait_one_vblank(&intel_get_crtc_for_pipe(dev_priv, pipe)->base);
+>  		st00 = intel_uncore_read8(uncore, _VGA_MSR_WRITE);
+>  		status = ((st00 & (1 << 4)) != 0) ?
+>  			connector_status_connected :
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 48d93d1f6c1a..1fc602bdfde1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2098,8 +2098,12 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+>  	 * to change the workaround. */
+>  	hsw_workaround_pipe = new_crtc_state->hsw_workaround_pipe;
+>  	if (IS_HASWELL(dev_priv) && hsw_workaround_pipe != INVALID_PIPE) {
+> -		intel_wait_for_vblank(dev_priv, hsw_workaround_pipe);
+> -		intel_wait_for_vblank(dev_priv, hsw_workaround_pipe);
+> +		struct intel_crtc *wa_crtc;
+> +
+> +		wa_crtc = intel_get_crtc_for_pipe(dev_priv, hsw_workaround_pipe);
+> +
+> +		drm_crtc_wait_one_vblank(&wa_crtc->base);
+> +		drm_crtc_wait_one_vblank(&wa_crtc->base);
+>  	}
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index a5508b8cdf63..2a18c4e554ef 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -2016,14 +2016,6 @@ intel_crtc_needs_modeset(const struct intel_crtc_state *crtc_state)
+>  	return drm_atomic_crtc_needs_modeset(&crtc_state->uapi);
+>  }
+>  
+> -static inline void
+> -intel_wait_for_vblank(struct drm_i915_private *dev_priv, enum pipe pipe)
+> -{
+> -	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> -
+> -	drm_crtc_wait_one_vblank(&crtc->base);
+> -}
+> -
+>  static inline void
+>  intel_wait_for_vblank_if_active(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  {
+> -- 
+> 2.30.2
 
-Here's this week drm-misc-fixes PR
-
-Maxime
-
-drm-misc-fixes-2021-11-25:
-One removal fix for hyperv, one fix in aspeed for the vga_pw sysfs file
-content, one error-checking fix for vc4 and two fixes for nouveau, one
-to support a new device and another one to properly check for errors.
-The following changes since commit fb561bf9abde49f7e00fdbf9ed2ccf2d86cac8ee:
-
-  fbdev: Prevent probing generic drivers if a FB is already registered (2021-11-17 10:15:05 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-11-25
-
-for you to fetch changes up to e048834c209a02e3776bcc47d43c6d863e3a67ca:
-
-  drm/hyperv: Fix device removal on Gen1 VMs (2021-11-23 10:56:12 -0800)
-
-----------------------------------------------------------------
-One removal fix for hyperv, one fix in aspeed for the vga_pw sysfs file
-content, one error-checking fix for vc4 and two fixes for nouveau, one
-to support a new device and another one to properly check for errors.
-
-----------------------------------------------------------------
-Ben Skeggs (1):
-      drm/nouveau: recognise GA106
-
-Dan Carpenter (2):
-      drm/nouveau/acr: fix a couple NULL vs IS_ERR() checks
-      drm/vc4: fix error code in vc4_create_object()
-
-Joel Stanley (1):
-      drm/aspeed: Fix vga_pw sysfs output
-
-Mohammed Gamal (1):
-      drm/hyperv: Fix device removal on Gen1 VMs
-
- drivers/gpu/drm/aspeed/aspeed_gfx_drv.c           |  2 +-
- drivers/gpu/drm/hyperv/hyperv_drm_drv.c           | 19 ++++++++++++++++++-
- drivers/gpu/drm/nouveau/nvkm/engine/device/base.c | 22 ++++++++++++++++++++++
- drivers/gpu/drm/nouveau/nvkm/subdev/acr/gm200.c   |  6 ++++--
- drivers/gpu/drm/nouveau/nvkm/subdev/acr/gp102.c   |  6 ++++--
- drivers/gpu/drm/vc4/vc4_bo.c                      |  2 +-
- 6 files changed, 50 insertions(+), 7 deletions(-)
-
---ngzrvu7y6m2aqdfv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYZ9i6wAKCRDj7w1vZxhR
-xfrXAP0Xd3o/zkq1Vb8BnhYfdRMYemPSp+VkfUhGjLiolStSygEAqkt06Zjz5/Uo
-PRMFaHs5sPISyRBdFw/uSyVqXl5L7gg=
-=3RhE
------END PGP SIGNATURE-----
-
---ngzrvu7y6m2aqdfv--
+-- 
+Ville Syrjälä
+Intel
