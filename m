@@ -1,67 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5485B4615A8
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 14:00:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2859E4615A9
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 14:00:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41F966FD02;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC77D6FD03;
 	Mon, 29 Nov 2021 13:00:39 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com
- [IPv6:2607:f8b0:4864:20::730])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8095C6E82D
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Nov 2021 09:23:10 +0000 (UTC)
-Received: by mail-qk1-x730.google.com with SMTP id m186so10793798qkb.4
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Nov 2021 01:23:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=philpotter-co-uk.20210112.gappssmtp.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=6cQ2VBT6GEq5IzxtMFOrkAmdfUkzXXUJICym+jfQClw=;
- b=4mJ9AwSHB31PIpdJFgjtZiPI3O5U6l1D0qy0KW0UNf5MH6ozT0e6B86+3bb+ubsNsn
- bM94zULnP3/Sn5TW2sU/aVPK6VkQM9qy7472OA32+vcwka6MF4HPtv3JEMMLnnF7wmI8
- ICnVsm3JYbKZ1EmnKJc5Z6apqZ2RUZkPkq+9OUBvr5SxgxoGUUCPzzNRjS9cNIPRmf9W
- FkRzAaXZcf5J4VFjOvxT6jDJIPAkJGMRS0lNjaglMXitLBGhfTqTjyAGLSVTx96zOYvc
- geD85MYGed6A2vdWo2NGX8n2KXD9U2AGeoO0+MzV1KSKw8zpkUNflxlTE2C1KHr75DOI
- PH4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=6cQ2VBT6GEq5IzxtMFOrkAmdfUkzXXUJICym+jfQClw=;
- b=3n5CFreyaC4TErlR952Ce9Q7Yj0JirnO6AkNofj5R/W9nZOtoPRZe88HMX9dG0lBd0
- sRkgtWlELHfqLdDu2ua6wFs+TYsiV0rOi9mTgGLsZwbUyEcUgOni0nHx5OzSHBvnZZ6R
- mxs4nTnqnoDj6N2fP3qA3+kresj4r51e+3ivX9SbT9k3MR41rTxgQF7bbxRi23ZoqTMR
- hKc1UVxQ6l+k7PFzpZQ8jn+92UBWp9I7TfqO29NesRz0HobUlIWSbZaDNxXzcOorzlam
- DeIGW9vRbBPPLnWcIATPumcVx6ddpacUH9Xuo1F9hVpOjprMnohrWZn5LfpMmsu/Np+o
- FHVg==
-X-Gm-Message-State: AOAM533EPOhCyJQVNbZVkAS2QQhEWBIybLwabW7NV2ZvL6Ase6onQ08u
- ZdhRkZ8F1CjtNZSYvLpcTd7S0w==
-X-Google-Smtp-Source: ABdhPJwrHAepVsZs+KL0K+Dovd/v3IZvIaLP3c/YHUpcEAnEaPTq5AjU/2Qs0P+96c5OryJ5OBqRAA==
-X-Received: by 2002:a05:620a:f8b:: with SMTP id
- b11mr13482119qkn.81.1637832189250; 
- Thu, 25 Nov 2021 01:23:09 -0800 (PST)
-Received: from equinox
- (2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.a.1.e.e.d.f.d.0.b.8.0.1.0.0.2.ip6.arpa.
- [2001:8b0:dfde:e1a0::2])
- by smtp.gmail.com with ESMTPSA id 16sm1314112qty.2.2021.11.25.01.23.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Nov 2021 01:23:08 -0800 (PST)
-Date: Thu, 25 Nov 2021 09:23:03 +0000
-From: Phillip Potter <phil@philpotter.co.uk>
-To: Luis Chamberlain <mcgrof@kernel.org>, axboe@kernel.dk
-Message-ID: <YZ9V9yxGapfPF4+g@equinox>
-References: <20211123202422.819032-1-mcgrof@kernel.org>
- <20211123202422.819032-8-mcgrof@kernel.org>
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7FD5A6EB14;
+ Thu, 25 Nov 2021 11:47:44 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 928001042;
+ Thu, 25 Nov 2021 03:47:43 -0800 (PST)
+Received: from [10.57.56.56] (unknown [10.57.56.56])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 811E43F66F;
+ Thu, 25 Nov 2021 03:47:42 -0800 (PST)
+Message-ID: <a4d089ad-995c-7a6b-4446-46b03d373070@arm.com>
+Date: Thu, 25 Nov 2021 11:47:37 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211123202422.819032-8-mcgrof@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Content-Language: en-GB
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Intel-gfx@lists.freedesktop.org
+References: <20211125104202.417171-1-tvrtko.ursulin@linux.intel.com>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20211125104202.417171-1-tvrtko.ursulin@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 29 Nov 2021 13:00:35 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 7/8] cdrom: simplify subdirectory
- registration with register_sysctl()
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use per device iommu check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,174 +45,315 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jack@suse.cz, airlied@linux.ie, benh@kernel.crashing.org,
- amir73il@gmail.com, clemens@ladisch.de, dri-devel@lists.freedesktop.org,
- phil@philpotter.co.uk, joseph.qi@linux.alibaba.com, mark@fasheh.com,
- yzaikin@google.com, keescook@chromium.org, arnd@arndb.de,
- intel-gfx@lists.freedesktop.org, linux-block@vger.kernel.org,
- viro@zeniv.linux.org.uk, nixiaoming@huawei.com, gregkh@linuxfoundation.org,
- linux-kernel@vger.kernel.org, julia.lawall@inria.fr, ebiederm@xmission.com,
- linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
- linuxppc-dev@lists.ozlabs.org, ocfs2-devel@oss.oracle.com, jlbec@evilplan.org
+Cc: Lu Baolu <baolu.lu@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 23, 2021 at 12:24:21PM -0800, Luis Chamberlain wrote:
-> There is no need to user boiler plate code to specify a set of base
-> directories we're going to stuff sysctls under. Simplify this by using
-> register_sysctl() and specifying the directory path directly.
+On 2021-11-25 10:42, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > 
-> // pycocci sysctl-subdir-register-sysctl-simplify.cocci PATH
+> With both integrated and discrete Intel GPUs in a system, the current
+> global check of intel_iommu_gfx_mapped, as done from intel_vtd_active()
+> may not be completely accurate.
 > 
-> @c1@
-> expression E1;
-> identifier subdir, sysctls;
-> @@
+> In this patch we add i915 parameter to intel_vtd_active() in order to
+> prepare it for multiple GPUs and we also change the check away from Intel
+> specific intel_iommu_gfx_mapped (global exported by the Intel IOMMU
+> driver) to probing the presence of IOMMU domain on a specific device
+> using iommu_get_domain_for_dev().
+
+FWIW the way you have it now is functionally equivalent to using 
+device_iommu_mapped(), which I think might be slightly clearer for the 
+current intent, but I don't have a significantly strong preference 
+(after all, this *was* the de-facto way of checking before 
+device_iommu_mapped() was introduced, and there are still other examples 
+of it around). So from the IOMMU perspective,
+
+Acked-by: Robin Murphy <robin.murphy@arm.com>
+
+Perhaps the AGP driver could also be tweaked and intel_iommu_gfx_mapped 
+cleaned away entirely, but I'll leave that for Baolu to think about :)
+
+Cheers,
+Robin.
+
+> It was suggested to additionally check for __IOMMU_DOMAIN_PAGING bit
+> present in the returned iommu domain, however I opted not to do that at
+> this point.
 > 
-> static struct ctl_table subdir[] = {
-> 	{
-> 		.procname = E1,
-> 		.maxlen = 0,
-> 		.mode = 0555,
-> 		.child = sysctls,
-> 	},
-> 	{ }
-> };
+> Checking for this flag would detect whether IOMMU is in address
+> translation mode, with the assumption that is the only relevant question.
+> Downside to that is that in identity mapping (pass-through) mode IOMMU
+> hardware is still active, sitting on the communication path, just not
+> doing address translation.
 > 
-> @c2@
-> identifier c1.subdir;
+> My rationale was, that for the many intel_vtd_active() checks in our code
+> base, while some clearly are about performance impact of address
+> translation, some may be about working around functional issues when the
+> IOMMU hardware is simply being active. There also may be some performance
+> impact in pass-through mode, but I have not specifically attempted to
+> measure it.
 > 
-> expression E2;
-> identifier base;
-> @@
+> Therefore the safest option feels to be to keep intel_vtd_active()
+> answering the question of "is the IOMMU hardware active" for this device.
+> If in the future we want to expand the set of questions to "is IOMMU
+> active and doing address translation" we can easily do that by adding a
+> new helper to be called from appropriate sites.
 > 
-> static struct ctl_table base[] = {
-> 	{
-> 		.procname = E2,
-> 		.maxlen = 0,
-> 		.mode = 0555,
-> 		.child = subdir,
-> 	},
-> 	{ }
-> };
+> v2:
+>    * Check for dmar translation specifically, not just iommu domain. (Baolu)
 > 
-> @c3@
-> identifier c2.base;
-> identifier header;
-> @@
+> v3:
+>   * Go back to plain "any domain" check for now, rewrite commit message.
 > 
-> header = register_sysctl_table(base);
-> 
-> @r1 depends on c1 && c2 && c3@
-> expression c1.E1;
-> identifier c1.subdir, c1.sysctls;
-> @@
-> 
-> -static struct ctl_table subdir[] = {
-> -	{
-> -		.procname = E1,
-> -		.maxlen = 0,
-> -		.mode = 0555,
-> -		.child = sysctls,
-> -	},
-> -	{ }
-> -};
-> 
-> @r2 depends on c1 && c2 && c3@
-> identifier c1.subdir;
-> 
-> expression c2.E2;
-> identifier c2.base;
-> @@
-> -static struct ctl_table base[] = {
-> -	{
-> -		.procname = E2,
-> -		.maxlen = 0,
-> -		.mode = 0555,
-> -		.child = subdir,
-> -	},
-> -	{ }
-> -};
-> 
-> @initialize:python@
-> @@
-> 
-> def make_my_fresh_expression(s1, s2):
->   return '"' + s1.strip('"') + "/" + s2.strip('"') + '"'
-> 
-> @r3 depends on c1 && c2 && c3@
-> expression c1.E1;
-> identifier c1.sysctls;
-> expression c2.E2;
-> identifier c2.base;
-> identifier c3.header;
-> fresh identifier E3 = script:python(E2, E1) { make_my_fresh_expression(E2, E1) };
-> @@
-> 
-> header =
-> -register_sysctl_table(base);
-> +register_sysctl(E3, sysctls);
-> 
-> Generated-by: Coccinelle SmPL
-> Signed-off-by: Luis Chamberlain <mcgrof@kernel.org>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Lu Baolu <baolu.lu@linux.intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Robin Murphy <robin.murphy@arm.com>
 > ---
->  drivers/cdrom/cdrom.c | 23 +----------------------
->  1 file changed, 1 insertion(+), 22 deletions(-)
+>   drivers/gpu/drm/i915/display/intel_bw.c      |  2 +-
+>   drivers/gpu/drm/i915/display/intel_display.c |  2 +-
+>   drivers/gpu/drm/i915/display/intel_fbc.c     |  2 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_stolen.c   |  2 +-
+>   drivers/gpu/drm/i915/gem/i915_gemfs.c        |  2 +-
+>   drivers/gpu/drm/i915/gt/intel_ggtt.c         |  4 ++--
+>   drivers/gpu/drm/i915/i915_debugfs.c          |  1 +
+>   drivers/gpu/drm/i915/i915_driver.c           |  7 +++++++
+>   drivers/gpu/drm/i915/i915_drv.h              | 13 +++++++------
+>   drivers/gpu/drm/i915/i915_gpu_error.c        |  5 +----
+>   drivers/gpu/drm/i915/intel_device_info.c     | 14 +-------------
+>   drivers/gpu/drm/i915/intel_pm.c              |  2 +-
+>   12 files changed, 25 insertions(+), 31 deletions(-)
 > 
-> diff --git a/drivers/cdrom/cdrom.c b/drivers/cdrom/cdrom.c
-> index 9877e413fce3..1b57d4666e43 100644
-> --- a/drivers/cdrom/cdrom.c
-> +++ b/drivers/cdrom/cdrom.c
-> @@ -3691,27 +3691,6 @@ static struct ctl_table cdrom_table[] = {
->  	},
->  	{ }
->  };
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index abec394f6869..2da4aacc956b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -634,7 +634,7 @@ static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
+>   	for_each_pipe(dev_priv, pipe)
+>   		data_rate += bw_state->data_rate[pipe];
+>   
+> -	if (DISPLAY_VER(dev_priv) >= 13 && intel_vtd_active())
+> +	if (DISPLAY_VER(dev_priv) >= 13 && intel_vtd_active(dev_priv))
+>   		data_rate = data_rate * 105 / 100;
+>   
+>   	return data_rate;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index b2d51cd79d6c..1ef77ba7f645 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1293,7 +1293,7 @@ static bool needs_async_flip_vtd_wa(const struct intel_crtc_state *crtc_state)
+>   {
+>   	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+>   
+> -	return crtc_state->uapi.async_flip && intel_vtd_active() &&
+> +	return crtc_state->uapi.async_flip && intel_vtd_active(i915) &&
+>   		(DISPLAY_VER(i915) == 9 || IS_BROADWELL(i915) || IS_HASWELL(i915));
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index d0c34bc3af6c..614e8697c068 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -1677,7 +1677,7 @@ static int intel_sanitize_fbc_option(struct drm_i915_private *i915)
+>   static bool need_fbc_vtd_wa(struct drm_i915_private *i915)
+>   {
+>   	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
+> -	if (intel_vtd_active() &&
+> +	if (intel_vtd_active(i915) &&
+>   	    (IS_SKYLAKE(i915) || IS_BROXTON(i915))) {
+>   		drm_info(&i915->drm,
+>   			 "Disabling framebuffer compression (FBC) to prevent screen flicker with VT-d enabled\n");
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> index ddd37ccb1362..cf100c0ea3b7 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> @@ -399,7 +399,7 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
+>   		return 0;
+>   	}
+>   
+> -	if (intel_vtd_active() && GRAPHICS_VER(i915) < 8) {
+> +	if (intel_vtd_active(i915) && GRAPHICS_VER(i915) < 8) {
+>   		drm_notice(&i915->drm,
+>   			   "%s, disabling use of stolen memory\n",
+>   			   "DMAR active");
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c b/drivers/gpu/drm/i915/gem/i915_gemfs.c
+> index dbdbdc344d87..11cd66d183e6 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gemfs.c
+> @@ -31,7 +31,7 @@ int i915_gemfs_init(struct drm_i915_private *i915)
+>   	 */
+>   
+>   	opts = NULL;
+> -	if (intel_vtd_active()) {
+> +	if (intel_vtd_active(i915)) {
+>   		if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE)) {
+>   			static char huge_opt[] = "huge=within_size"; /* r/w */
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> index 555111c3bee5..110d3944f9a2 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -106,7 +106,7 @@ static bool needs_idle_maps(struct drm_i915_private *i915)
+>   	 * Query intel_iommu to see if we need the workaround. Presumably that
+>   	 * was loaded first.
+>   	 */
+> -	if (!intel_vtd_active())
+> +	if (!intel_vtd_active(i915))
+>   		return false;
+>   
+>   	if (GRAPHICS_VER(i915) == 5 && IS_MOBILE(i915))
+> @@ -1233,7 +1233,7 @@ int i915_ggtt_probe_hw(struct drm_i915_private *i915)
+>   	if (ret)
+>   		return ret;
+>   
+> -	if (intel_vtd_active())
+> +	if (intel_vtd_active(i915))
+>   		drm_info(&i915->drm, "VT-d active for gfx access\n");
+>   
+>   	return 0;
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+> index fe638b5da7c0..390d541f64ea 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -65,6 +65,7 @@ static int i915_capabilities(struct seq_file *m, void *data)
+>   
+>   	intel_device_info_print_static(INTEL_INFO(i915), &p);
+>   	intel_device_info_print_runtime(RUNTIME_INFO(i915), &p);
+> +	i915_print_iommu_status(i915, &p);
+>   	intel_gt_info_print(&i915->gt.info, &p);
+>   	intel_driver_caps_print(&i915->caps, &p);
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index a13666627dad..bbc99fc5888f 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -741,6 +741,12 @@ static void i915_driver_unregister(struct drm_i915_private *dev_priv)
+>   	i915_gem_driver_unregister(dev_priv);
+>   }
+>   
+> +void
+> +i915_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p)
+> +{
+> +	drm_printf(p, "iommu: %s\n", enableddisabled(intel_vtd_active(i915)));
+> +}
+> +
+>   static void i915_welcome_messages(struct drm_i915_private *dev_priv)
+>   {
+>   	if (drm_debug_enabled(DRM_UT_DRIVER)) {
+> @@ -756,6 +762,7 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
+>   
+>   		intel_device_info_print_static(INTEL_INFO(dev_priv), &p);
+>   		intel_device_info_print_runtime(RUNTIME_INFO(dev_priv), &p);
+> +		i915_print_iommu_status(dev_priv, &p);
+>   		intel_gt_info_print(&dev_priv->gt.info, &p);
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 1bfadd9127fc..da3b32ae65e0 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1760,26 +1760,27 @@ static inline bool run_as_guest(void)
+>   #define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) || \
+>   					      IS_ALDERLAKE_S(dev_priv))
+>   
+> -static inline bool intel_vtd_active(void)
+> +static inline bool intel_vtd_active(struct drm_i915_private *i915)
+>   {
+> -#ifdef CONFIG_INTEL_IOMMU
+> -	if (intel_iommu_gfx_mapped)
+> +	if (iommu_get_domain_for_dev(i915->drm.dev))
+>   		return true;
+> -#endif
+>   
+>   	/* Running as a guest, we assume the host is enforcing VT'd */
+>   	return run_as_guest();
+>   }
+>   
+> +void
+> +i915_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p);
+> +
+>   static inline bool intel_scanout_needs_vtd_wa(struct drm_i915_private *dev_priv)
+>   {
+> -	return GRAPHICS_VER(dev_priv) >= 6 && intel_vtd_active();
+> +	return GRAPHICS_VER(dev_priv) >= 6 && intel_vtd_active(dev_priv);
+>   }
+>   
+>   static inline bool
+>   intel_ggtt_update_needs_vtd_wa(struct drm_i915_private *i915)
+>   {
+> -	return IS_BROXTON(i915) && intel_vtd_active();
+> +	return IS_BROXTON(i915) && intel_vtd_active(i915);
+>   }
+>   
+>   static inline bool
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 2a2d7643b551..3f39d6641894 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -1750,10 +1750,7 @@ static void capture_gen(struct i915_gpu_coredump *error)
+>   	error->wakelock = atomic_read(&i915->runtime_pm.wakeref_count);
+>   	error->suspended = i915->runtime_pm.suspended;
+>   
+> -	error->iommu = -1;
+> -#ifdef CONFIG_INTEL_IOMMU
+> -	error->iommu = intel_iommu_gfx_mapped;
+> -#endif
+> +	error->iommu = intel_vtd_active(i915);
+>   	error->reset_count = i915_reset_count(&i915->gpu_error);
+>   	error->suspend_count = i915->suspend_count;
+>   
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+> index 6e6b317bc33c..e6605b5181a5 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -83,17 +83,6 @@ const char *intel_platform_name(enum intel_platform platform)
+>   	return platform_names[platform];
+>   }
+>   
+> -static const char *iommu_name(void)
+> -{
+> -	const char *msg = "n/a";
 > -
-> -static struct ctl_table cdrom_cdrom_table[] = {
-> -	{
-> -		.procname	= "cdrom",
-> -		.maxlen		= 0,
-> -		.mode		= 0555,
-> -		.child		= cdrom_table,
-> -	},
-> -	{ }
-> -};
+> -#ifdef CONFIG_INTEL_IOMMU
+> -	msg = enableddisabled(intel_iommu_gfx_mapped);
+> -#endif
 > -
-> -/* Make sure that /proc/sys/dev is there */
-> -static struct ctl_table cdrom_root_table[] = {
-> -	{
-> -		.procname	= "dev",
-> -		.maxlen		= 0,
-> -		.mode		= 0555,
-> -		.child		= cdrom_cdrom_table,
-> -	},
-> -	{ }
-> -};
->  static struct ctl_table_header *cdrom_sysctl_header;
->  
->  static void cdrom_sysctl_register(void)
-> @@ -3721,7 +3700,7 @@ static void cdrom_sysctl_register(void)
->  	if (!atomic_add_unless(&initialized, 1, 1))
->  		return;
->  
-> -	cdrom_sysctl_header = register_sysctl_table(cdrom_root_table);
-> +	cdrom_sysctl_header = register_sysctl("dev/cdrom", cdrom_table);
->  
->  	/* set the defaults */
->  	cdrom_sysctl_settings.autoclose = autoclose;
-> -- 
-> 2.33.0
+> -	return msg;
+> -}
+> -
+>   void intel_device_info_print_static(const struct intel_device_info *info,
+>   				    struct drm_printer *p)
+>   {
+> @@ -114,7 +103,6 @@ void intel_device_info_print_static(const struct intel_device_info *info,
+>   		drm_printf(p, "display version: %u\n", info->display.ver);
+>   
+>   	drm_printf(p, "gt: %d\n", info->gt);
+> -	drm_printf(p, "iommu: %s\n", iommu_name());
+>   	drm_printf(p, "memory-regions: %x\n", info->memory_regions);
+>   	drm_printf(p, "page-sizes: %x\n", info->page_sizes);
+>   	drm_printf(p, "platform: %s\n", intel_platform_name(info->platform));
+> @@ -374,7 +362,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+>   			info->display.has_dsc = 0;
+>   	}
+>   
+> -	if (GRAPHICS_VER(dev_priv) == 6 && intel_vtd_active()) {
+> +	if (GRAPHICS_VER(dev_priv) == 6 && intel_vtd_active(dev_priv)) {
+>   		drm_info(&dev_priv->drm,
+>   			 "Disabling ppGTT for VT-d support\n");
+>   		info->ppgtt_type = INTEL_PPGTT_NONE;
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> index 01fa3fac1b57..cff0f32bedc9 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -98,7 +98,7 @@ static void gen9_init_clock_gating(struct drm_i915_private *dev_priv)
+>   		 * "Plane N strech max must be programmed to 11b (x1)
+>   		 *  when Async flips are enabled on that plane."
+>   		 */
+> -		if (!IS_GEMINILAKE(dev_priv) && intel_vtd_active())
+> +		if (!IS_GEMINILAKE(dev_priv) && intel_vtd_active(dev_priv))
+>   			intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
+>   					 SKL_PLANE1_STRETCH_MAX_MASK, SKL_PLANE1_STRETCH_MAX_X1);
+>   	}
 > 
-
-Dear Luis,
-
-Thank you for the patch. Tested and working, looks good to me. As this
-has already been pulled into Andrew Morton's tree, I have added in Jens
-and the linux-block list so there is awareness that the patch will go
-via -mm then linux-next tree.
-
-For what it's worth (although guess it won't be in the commit now):
-Reviewed-by: Phillip Potter <phil@philpotter.co.uk>
-
-Regards,
-Phil
