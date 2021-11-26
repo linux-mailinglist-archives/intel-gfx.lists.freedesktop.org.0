@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8153045EDD1
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Nov 2021 13:25:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE07645EE57
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Nov 2021 13:56:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C0B36E4AD;
-	Fri, 26 Nov 2021 12:25:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47BC36EA29;
+	Fri, 26 Nov 2021 12:56:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 03CA46E4AD;
- Fri, 26 Nov 2021 12:25:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8470F6EA29;
+ Fri, 26 Nov 2021 12:56:12 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E05FAAA917;
- Fri, 26 Nov 2021 12:25:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7BB16A363C;
+ Fri, 26 Nov 2021 12:56:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2932665349244374857=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Zhi Wang" <zhi.wang.linux@gmail.com>
-Date: Fri, 26 Nov 2021 12:25:11 -0000
-Message-ID: <163792951188.11080.11834948659359584292@emeril.freedesktop.org>
+Date: Fri, 26 Nov 2021 12:56:12 -0000
+Message-ID: <163793137246.11080.2975501086544241973@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20211126114623.88739-1-zhi.a.wang@intel.com>
 In-Reply-To: <20211126114623.88739-1-zhi.a.wang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv3=2C1/2=5D_i915/gvt=3A_Introduce_t?=
- =?utf-8?q?he_mmio=5Finfo=5Ftable=2Ec_to_support_VFIO_new_mdev_API?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv3=2C1/2=5D_i915/gvt=3A_Introduce_the_mmio?=
+ =?utf-8?q?=5Finfo=5Ftable=2Ec_to_support_VFIO_new_mdev_API?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,255 +46,310 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============2932665349244374857==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: series starting with [v3,1/2] i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API
 URL   : https://patchwork.freedesktop.org/series/97323/
-State : warning
+State : success
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-cc176fe57a84 i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API
--:9: WARNING:TYPO_SPELLING: 'seperated' may be misspelled - perhaps 'separated'?
-#9: 
-initialization path has to be seperated into two phases:
-                              ^^^^^^^^^
+CI Bug Log - changes from CI_DRM_10930 -> Patchwork_21686
+====================================================
 
--:14: WARNING:TYPO_SPELLING: 'inital' may be misspelled - perhaps 'initial'?
-#14: 
-Mostly it's because the inital clean HW state needs to be saved before
-                        ^^^^^^
+Summary
+-------
 
--:215: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#215: FILE: drivers/gpu/drm/i915/gvt/handlers.c:57:
-+static int setup_mmio_handler(struct intel_gvt *gvt,
-+		u32 offset, u32 size, u32 device,
+  **SUCCESS**
 
--:246: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#246: FILE: drivers/gpu/drm/i915/gvt/handlers.c:76:
-+			WARN(1, "assign a handler to a non-tracked mmio %x\n",
-+				i);
+  No regressions found.
 
--:270: WARNING:MACRO_WITH_FLOW_CONTROL: Macros with flow control statements should be avoided
-#270: FILE: drivers/gpu/drm/i915/gvt/handlers.c:2072:
-+#define MMIO_F(reg, s, d, r, w) do { \
-+	ret = setup_mmio_handler(gvt, i915_mmio_reg_offset(reg), \
-+		s, d, r, w); \
- 	if (ret) \
- 		return ret; \
- } while (0)
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/index.html
 
--:302: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'prefix' - possible side-effects?
-#302: FILE: drivers/gpu/drm/i915/gvt/handlers.c:2082:
-+#define MMIO_RING_F(prefix, s, d, r, w) do { \
-+	MMIO_F(prefix(RENDER_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(BLT_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(GEN6_BSD_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(VEBOX_RING_BASE), s, d, r, w); \
- 	if (HAS_ENGINE(gvt->gt, VCS1)) \
-+		MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, d, r, w); \
- } while (0)
+Participating hosts (39 -> 34)
+------------------------------
 
--:302: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
-#302: FILE: drivers/gpu/drm/i915/gvt/handlers.c:2082:
-+#define MMIO_RING_F(prefix, s, d, r, w) do { \
-+	MMIO_F(prefix(RENDER_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(BLT_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(GEN6_BSD_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(VEBOX_RING_BASE), s, d, r, w); \
- 	if (HAS_ENGINE(gvt->gt, VCS1)) \
-+		MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, d, r, w); \
- } while (0)
+  Additional (2): fi-kbl-soraka fi-tgl-u2 
+  Missing    (7): bat-dg1-6 bat-dg1-5 bat-adlp-6 bat-adlp-4 fi-bdw-samus bat-jsl-2 bat-jsl-1 
 
--:302: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
-#302: FILE: drivers/gpu/drm/i915/gvt/handlers.c:2082:
-+#define MMIO_RING_F(prefix, s, d, r, w) do { \
-+	MMIO_F(prefix(RENDER_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(BLT_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(GEN6_BSD_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(VEBOX_RING_BASE), s, d, r, w); \
- 	if (HAS_ENGINE(gvt->gt, VCS1)) \
-+		MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, d, r, w); \
- } while (0)
+Known issues
+------------
 
--:302: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'r' - possible side-effects?
-#302: FILE: drivers/gpu/drm/i915/gvt/handlers.c:2082:
-+#define MMIO_RING_F(prefix, s, d, r, w) do { \
-+	MMIO_F(prefix(RENDER_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(BLT_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(GEN6_BSD_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(VEBOX_RING_BASE), s, d, r, w); \
- 	if (HAS_ENGINE(gvt->gt, VCS1)) \
-+		MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, d, r, w); \
- } while (0)
+  Here are the changes found in Patchwork_21686 that come from known issues:
 
--:302: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'w' - possible side-effects?
-#302: FILE: drivers/gpu/drm/i915/gvt/handlers.c:2082:
-+#define MMIO_RING_F(prefix, s, d, r, w) do { \
-+	MMIO_F(prefix(RENDER_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(BLT_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(GEN6_BSD_RING_BASE), s, d, r, w); \
-+	MMIO_F(prefix(VEBOX_RING_BASE), s, d, r, w); \
- 	if (HAS_ENGINE(gvt->gt, VCS1)) \
-+		MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, d, r, w); \
- } while (0)
+### IGT changes ###
 
--:2091: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#2091: 
-new file mode 100644
+#### Issues hit ####
 
--:2096: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#2096: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:1:
-+/*
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-tgl-u2:          NOTRUN -> [INCOMPLETE][1] ([i915#4006])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
 
--:2158: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#2158: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:63:
-+bool intel_gvt_match_device(struct intel_gvt *gvt,
-+		unsigned long device)
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271]) +2 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
 
--:2175: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#2175: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:80:
-+struct intel_gvt_mmio_info *intel_gvt_find_mmio_info(struct intel_gvt *gvt,
-+						  unsigned int offset)
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][3] ([i915#4221])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
+    - fi-tgl-u2:          NOTRUN -> [FAIL][4] ([i915#1888])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
 
--:2187: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#2187: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:92:
-+static int new_mmio_info(struct intel_gvt *gvt,
-+		u32 offset, u16 flags, u32 size,
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-bdw-5557u:       [PASS][5] -> [INCOMPLETE][6] ([i915#146])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10930/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
+    - fi-tgl-1115g4:      [PASS][7] -> [FAIL][8] ([i915#1888])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10930/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
 
--:2211: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#2211: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:116:
-+			WARN(1, "dup mmio definition offset %x\n",
-+				info->offset);
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][9] ([i915#2190])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html
 
--:2231: WARNING:MACRO_WITH_FLOW_CONTROL: Macros with flow control statements should be avoided
-#2231: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:136:
-+#define MMIO_F(reg, s, f, am, rm, d) do { \
-+	ret = new_mmio_info(gvt, i915_mmio_reg_offset(reg), \
-+		f, s, am, rm, d); \
-+	if (ret) \
-+		return ret; \
-+} while (0)
+  * igt@gem_lmem_swapping@verify-random:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][10] ([i915#4613]) +3 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@gem_lmem_swapping@verify-random.html
 
--:2247: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'f' may be better as '(f)' to avoid precedence issues
-#2247: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:152:
-+#define MMIO_RO(reg, d, f, rm) \
-+	MMIO_F(reg, 4, F_RO | f, 0, rm, d)
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-bsw-n3050:       [PASS][11] -> [DMESG-FAIL][12] ([i915#2373])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10930/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
 
--:2250: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'prefix' - possible side-effects?
-#2250: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:155:
-+#define MMIO_RING_F(prefix, s, f, am, rm, d) do { \
-+	MMIO_F(prefix(RENDER_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(BLT_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(GEN6_BSD_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(VEBOX_RING_BASE), s, f, am, rm, d); \
-+	if (HAS_ENGINE(gvt->gt, VCS1)) \
-+		MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, f, am, rm, d); \
-+} while (0)
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][13] -> [INCOMPLETE][14] ([i915#3921])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10930/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
 
--:2250: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
-#2250: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:155:
-+#define MMIO_RING_F(prefix, s, f, am, rm, d) do { \
-+	MMIO_F(prefix(RENDER_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(BLT_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(GEN6_BSD_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(VEBOX_RING_BASE), s, f, am, rm, d); \
-+	if (HAS_ENGINE(gvt->gt, VCS1)) \
-+		MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, f, am, rm, d); \
-+} while (0)
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][15] ([fdo#109284] / [fdo#111827]) +8 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html
 
--:2250: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'f' - possible side-effects?
-#2250: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:155:
-+#define MMIO_RING_F(prefix, s, f, am, rm, d) do { \
-+	MMIO_F(prefix(RENDER_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(BLT_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(GEN6_BSD_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(VEBOX_RING_BASE), s, f, am, rm, d); \
-+	if (HAS_ENGINE(gvt->gt, VCS1)) \
-+		MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, f, am, rm, d); \
-+} while (0)
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][16] ([i915#4103]) +1 similar issue
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
 
--:2250: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'am' - possible side-effects?
-#2250: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:155:
-+#define MMIO_RING_F(prefix, s, f, am, rm, d) do { \
-+	MMIO_F(prefix(RENDER_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(BLT_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(GEN6_BSD_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(VEBOX_RING_BASE), s, f, am, rm, d); \
-+	if (HAS_ENGINE(gvt->gt, VCS1)) \
-+		MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, f, am, rm, d); \
-+} while (0)
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][17] ([fdo#109285])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html
 
--:2250: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'rm' - possible side-effects?
-#2250: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:155:
-+#define MMIO_RING_F(prefix, s, f, am, rm, d) do { \
-+	MMIO_F(prefix(RENDER_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(BLT_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(GEN6_BSD_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(VEBOX_RING_BASE), s, f, am, rm, d); \
-+	if (HAS_ENGINE(gvt->gt, VCS1)) \
-+		MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, f, am, rm, d); \
-+} while (0)
+  * igt@kms_psr@primary_page_flip:
+    - fi-skl-6600u:       [PASS][18] -> [FAIL][19] ([i915#4547])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10930/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
 
--:2250: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
-#2250: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:155:
-+#define MMIO_RING_F(prefix, s, f, am, rm, d) do { \
-+	MMIO_F(prefix(RENDER_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(BLT_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(GEN6_BSD_RING_BASE), s, f, am, rm, d); \
-+	MMIO_F(prefix(VEBOX_RING_BASE), s, f, am, rm, d); \
-+	if (HAS_ENGINE(gvt->gt, VCS1)) \
-+		MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, f, am, rm, d); \
-+} while (0)
+  * igt@prime_vgem@basic-userptr:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][20] ([i915#3301])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@prime_vgem@basic-userptr.html
 
--:2271: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'f' may be better as '(f)' to avoid precedence issues
-#2271: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:176:
-+#define MMIO_RING_RO(prefix, d, f, rm) \
-+	MMIO_RING_F(prefix, 4, F_RO | f, 0, rm, d)
+  * igt@runner@aborted:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][21] ([i915#3363] / [i915#4312])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-skl-6600u/igt@runner@aborted.html
+    - fi-tgl-u2:          NOTRUN -> [FAIL][22] ([i915#1602] / [i915#2722] / [i915#4312])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@runner@aborted.html
 
--:2315: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#2315: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:220:
-+	MMIO_RING_DF(RING_REG, D_ALL,
-+		F_MODE_MASK | F_CMD_ACCESS | F_CMD_WRITE_PATCH);
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2373]: https://gitlab.freedesktop.org/drm/intel/issues/2373
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4006]: https://gitlab.freedesktop.org/drm/intel/issues/4006
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4221]: https://gitlab.freedesktop.org/drm/intel/issues/4221
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
 
--:3014: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#3014: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:919:
-+	MMIO_RING_F(RING_REG, 4, F_RO, 0,
-+		~_MASKED_BIT_ENABLE(RESET_CTL_REQUEST_RESET), D_BDW_PLUS);
 
--:3079: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#3079: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:984:
-+	MMIO_F(_MMIO(0x24d0), 48, F_CMD_ACCESS | F_CMD_WRITE_PATCH, 0, 0,
-+		D_BDW_PLUS);
+Build changes
+-------------
 
--:3563: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#3563: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.h:1:
-+/*
+  * Linux: CI_DRM_10930 -> Patchwork_21686
 
--:3659: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*gvt)...) over kzalloc(sizeof(struct intel_gvt)...)
-#3659: FILE: drivers/gpu/drm/i915/intel_gvt.c:136:
-+	gvt = kzalloc(sizeof(struct intel_gvt), GFP_KERNEL);
+  CI-20190529: 20190529
+  CI_DRM_10930: 2c9ba65f2befe9febd864f0795227b351bd62dba @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6291: 9ff3844d8c1fee8d8736d888f16223c4789fb69f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21686: 293556a047eabf38da53dd4d5ae9066b95467b5c @ git://anongit.freedesktop.org/gfx-ci/linux
 
-total: 0 errors, 7 warnings, 23 checks, 3600 lines checked
+
+== Linux commits ==
+
 293556a047ea i915/gvt: save the MMIO snapshot in the early init of GVT-g
--:195: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#195: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:1421:
-+int intel_gvt_for_each_tracked_mmio(struct intel_gvt *gvt,
-+	int (*handler)(struct intel_gvt *gvt, u32 offset, void *data),
-+	void *data)
-+{
+cc176fe57a84 i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API
 
--:196: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#196: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.c:1422:
-+int intel_gvt_for_each_tracked_mmio(struct intel_gvt *gvt,
-+	int (*handler)(struct intel_gvt *gvt, u32 offset, void *data),
+== Logs ==
 
--:274: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#274: FILE: drivers/gpu/drm/i915/gvt/mmio_info_table.h:33:
-+int intel_gvt_for_each_tracked_mmio(struct intel_gvt *gvt,
-+	int (*handler)(struct intel_gvt *gvt, u32 offset, void *data),
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/index.html
 
-total: 1 errors, 0 warnings, 2 checks, 229 lines checked
+--===============2932665349244374857==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v3,1/2] i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97323/">https://patchwork.freedesktop.org/series/97323/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10930 -&gt; Patchwork_21686</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/index.html</p>
+<h2>Participating hosts (39 -&gt; 34)</h2>
+<p>Additional (2): fi-kbl-soraka fi-tgl-u2 <br />
+  Missing    (7): bat-dg1-6 bat-dg1-5 bat-adlp-6 bat-adlp-4 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21686 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4006">i915#4006</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4221">i915#4221</a>)</p>
+</li>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>
+<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10930/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</p>
+</li>
+<li>
+<p>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10930/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10930/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2373">i915#2373</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10930/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-hpd-fast:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10930/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21686/fi-tgl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10930 -&gt; Patchwork_21686</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10930: 2c9ba65f2befe9febd864f0795227b351bd62dba @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6291: 9ff3844d8c1fee8d8736d888f16223c4789fb69f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21686: 293556a047eabf38da53dd4d5ae9066b95467b5c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>293556a047ea i915/gvt: save the MMIO snapshot in the early init of GVT-g<br />
+cc176fe57a84 i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API</p>
+
+</body>
+</html>
+
+--===============2932665349244374857==--
