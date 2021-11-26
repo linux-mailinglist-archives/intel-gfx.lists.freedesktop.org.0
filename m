@@ -2,34 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AD9C45EFB6
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Nov 2021 15:14:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9255E45EFBB
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Nov 2021 15:16:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EC0D6EE35;
-	Fri, 26 Nov 2021 14:14:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93BC06F390;
+	Fri, 26 Nov 2021 14:16:36 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87CCA6E98A;
- Fri, 26 Nov 2021 14:14:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10179"; a="234401577"
-X-IronPort-AV: E=Sophos;i="5.87,266,1631602800"; d="scan'208";a="234401577"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE0736F390;
+ Fri, 26 Nov 2021 14:16:35 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10179"; a="234401821"
+X-IronPort-AV: E=Sophos;i="5.87,266,1631602800"; d="scan'208";a="234401821"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2021 06:14:35 -0800
-X-IronPort-AV: E=Sophos;i="5.87,266,1631602800"; d="scan'208";a="592519301"
-Received: from slee54-mobl2.amr.corp.intel.com (HELO tursulin-mobl2.home)
+ 26 Nov 2021 06:16:35 -0800
+X-IronPort-AV: E=Sophos;i="5.87,266,1631602800"; d="scan'208";a="498413637"
+Received: from slee54-mobl2.amr.corp.intel.com (HELO [10.209.166.109])
  ([10.209.166.109])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2021 06:14:33 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Fri, 26 Nov 2021 14:14:24 +0000
-Message-Id: <20211126141424.493753-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2021 06:16:33 -0800
+Message-ID: <a8a48258-7dc0-35f5-8007-434d02944653@linux.intel.com>
+Date: Fri, 26 Nov 2021 14:16:31 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Content-Language: en-US
+To: Petri Latvala <petri.latvala@intel.com>
+References: <20211119125945.55056-1-tvrtko.ursulin@linux.intel.com>
+ <20211119125945.55056-5-tvrtko.ursulin@linux.intel.com>
+ <d8edf1b5-89e7-d2cf-0689-5357c8f06251@linux.intel.com>
+ <YaDous43wLnrFUhL@platvala-desk.ger.corp.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <YaDous43wLnrFUhL@platvala-desk.ger.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4] drm/i915: Use per device iommu check
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 5/6] intel_gpu_top: Remove
+ clients support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,290 +52,955 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Robin Murphy <robin.murphy@arm.com>, Lu Baolu <baolu.lu@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-With both integrated and discrete Intel GPUs in a system, the current
-global check of intel_iommu_gfx_mapped, as done from intel_vtd_active()
-may not be completely accurate.
+On 26/11/2021 14:01, Petri Latvala wrote:
+> On Fri, Nov 26, 2021 at 01:07:24PM +0000, Tvrtko Ursulin wrote:
+>>
+>> On 19/11/2021 12:59, Tvrtko Ursulin wrote:
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> When kernel feature was removed the intel_gpu_top part was forgotten.
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+>>
+>> Will someone ack this or we carry this code until it ships, if it hasn't
+>> already?
+> 
+> Does that question mean client busyness will some day return?
 
-In this patch we add i915 parameter to intel_vtd_active() in order to
-prepare it for multiple GPUs and we also change the check away from Intel
-specific intel_iommu_gfx_mapped (global exported by the Intel IOMMU
-driver) to probing the presence of IOMMU on a specific device using
-device_iommu_mapped().
+No, question meant I was pinging to ack the removal ever since the i915 
+code was removed months ago. "Until it ships" was referring to IGT 
+codebase containing defunct code potentially shipping to distros.
 
-This will return true both for IOMMU pass-through and address translation
-modes which matches the current behaviour. If in the future we wanted to
-distinguish between these two modes we could either use
-iommu_get_domain_for_dev() and check for __IOMMU_DOMAIN_PAGING bit
-indicating address translation, or ask for a new API to be exported from
-the IOMMU core code.
+Regarding the return of per client busyness - I certainly hope so. i915 
+and intel_gpu_top code exposing it via /proc fdinfo is available and 
+given positive noises from the community we could probably merge it with 
+some reviews. A couple of userspace clients are interested as well, like 
+Chromium and KDE, although I think intel_gpu_top is enough really given 
+AMD already has this exposed via fdinfo and they are supportive of 
+documenting the shared spec.
 
-v2:
-  * Check for dmar translation specifically, not just iommu domain. (Baolu)
+> Either way,
+> Acked-by: Petri Latvala <petri.latvala@intel.com>
 
-v3:
- * Go back to plain "any domain" check for now, rewrite commit message.
+Thanks!
 
-v4:
- * Use device_iommu_mapped. (Robin, Baolu)
+Regards,
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Lu Baolu <baolu.lu@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Robin Murphy <robin.murphy@arm.com>
-Acked-by: Robin Murphy <robin.murphy@arm.com>
-Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_display.c |  2 +-
- drivers/gpu/drm/i915/display/intel_fbc.c     |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c   |  2 +-
- drivers/gpu/drm/i915/gem/i915_gemfs.c        |  2 +-
- drivers/gpu/drm/i915/gt/intel_ggtt.c         |  4 ++--
- drivers/gpu/drm/i915/i915_debugfs.c          |  1 +
- drivers/gpu/drm/i915/i915_driver.c           |  7 +++++++
- drivers/gpu/drm/i915/i915_drv.h              | 13 +++++++------
- drivers/gpu/drm/i915/i915_gpu_error.c        |  5 +----
- drivers/gpu/drm/i915/intel_device_info.c     | 14 +-------------
- drivers/gpu/drm/i915/intel_pm.c              |  2 +-
- 12 files changed, 25 insertions(+), 31 deletions(-)
+Tvrtko
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index abec394f6869..2da4aacc956b 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -634,7 +634,7 @@ static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
- 	for_each_pipe(dev_priv, pipe)
- 		data_rate += bw_state->data_rate[pipe];
- 
--	if (DISPLAY_VER(dev_priv) >= 13 && intel_vtd_active())
-+	if (DISPLAY_VER(dev_priv) >= 13 && intel_vtd_active(dev_priv))
- 		data_rate = data_rate * 105 / 100;
- 
- 	return data_rate;
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b2d51cd79d6c..1ef77ba7f645 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1293,7 +1293,7 @@ static bool needs_async_flip_vtd_wa(const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
- 
--	return crtc_state->uapi.async_flip && intel_vtd_active() &&
-+	return crtc_state->uapi.async_flip && intel_vtd_active(i915) &&
- 		(DISPLAY_VER(i915) == 9 || IS_BROADWELL(i915) || IS_HASWELL(i915));
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index d0c34bc3af6c..614e8697c068 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1677,7 +1677,7 @@ static int intel_sanitize_fbc_option(struct drm_i915_private *i915)
- static bool need_fbc_vtd_wa(struct drm_i915_private *i915)
- {
- 	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
--	if (intel_vtd_active() &&
-+	if (intel_vtd_active(i915) &&
- 	    (IS_SKYLAKE(i915) || IS_BROXTON(i915))) {
- 		drm_info(&i915->drm,
- 			 "Disabling framebuffer compression (FBC) to prevent screen flicker with VT-d enabled\n");
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 80680395bb3b..bce03d74a0b4 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -399,7 +399,7 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
- 		return 0;
- 	}
- 
--	if (intel_vtd_active() && GRAPHICS_VER(i915) < 8) {
-+	if (intel_vtd_active(i915) && GRAPHICS_VER(i915) < 8) {
- 		drm_notice(&i915->drm,
- 			   "%s, disabling use of stolen memory\n",
- 			   "DMAR active");
-diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c b/drivers/gpu/drm/i915/gem/i915_gemfs.c
-index dbdbdc344d87..11cd66d183e6 100644
---- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gemfs.c
-@@ -31,7 +31,7 @@ int i915_gemfs_init(struct drm_i915_private *i915)
- 	 */
- 
- 	opts = NULL;
--	if (intel_vtd_active()) {
-+	if (intel_vtd_active(i915)) {
- 		if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE)) {
- 			static char huge_opt[] = "huge=within_size"; /* r/w */
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 555111c3bee5..110d3944f9a2 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -106,7 +106,7 @@ static bool needs_idle_maps(struct drm_i915_private *i915)
- 	 * Query intel_iommu to see if we need the workaround. Presumably that
- 	 * was loaded first.
- 	 */
--	if (!intel_vtd_active())
-+	if (!intel_vtd_active(i915))
- 		return false;
- 
- 	if (GRAPHICS_VER(i915) == 5 && IS_MOBILE(i915))
-@@ -1233,7 +1233,7 @@ int i915_ggtt_probe_hw(struct drm_i915_private *i915)
- 	if (ret)
- 		return ret;
- 
--	if (intel_vtd_active())
-+	if (intel_vtd_active(i915))
- 		drm_info(&i915->drm, "VT-d active for gfx access\n");
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index fe638b5da7c0..390d541f64ea 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -65,6 +65,7 @@ static int i915_capabilities(struct seq_file *m, void *data)
- 
- 	intel_device_info_print_static(INTEL_INFO(i915), &p);
- 	intel_device_info_print_runtime(RUNTIME_INFO(i915), &p);
-+	i915_print_iommu_status(i915, &p);
- 	intel_gt_info_print(&i915->gt.info, &p);
- 	intel_driver_caps_print(&i915->caps, &p);
- 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index a13666627dad..bbc99fc5888f 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -741,6 +741,12 @@ static void i915_driver_unregister(struct drm_i915_private *dev_priv)
- 	i915_gem_driver_unregister(dev_priv);
- }
- 
-+void
-+i915_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p)
-+{
-+	drm_printf(p, "iommu: %s\n", enableddisabled(intel_vtd_active(i915)));
-+}
-+
- static void i915_welcome_messages(struct drm_i915_private *dev_priv)
- {
- 	if (drm_debug_enabled(DRM_UT_DRIVER)) {
-@@ -756,6 +762,7 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
- 
- 		intel_device_info_print_static(INTEL_INFO(dev_priv), &p);
- 		intel_device_info_print_runtime(RUNTIME_INFO(dev_priv), &p);
-+		i915_print_iommu_status(dev_priv, &p);
- 		intel_gt_info_print(&dev_priv->gt.info, &p);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 1bfadd9127fc..d99e020773ac 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1760,26 +1760,27 @@ static inline bool run_as_guest(void)
- #define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) || \
- 					      IS_ALDERLAKE_S(dev_priv))
- 
--static inline bool intel_vtd_active(void)
-+static inline bool intel_vtd_active(struct drm_i915_private *i915)
- {
--#ifdef CONFIG_INTEL_IOMMU
--	if (intel_iommu_gfx_mapped)
-+	if (device_iommu_mapped(i915->drm.dev))
- 		return true;
--#endif
- 
- 	/* Running as a guest, we assume the host is enforcing VT'd */
- 	return run_as_guest();
- }
- 
-+void
-+i915_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p);
-+
- static inline bool intel_scanout_needs_vtd_wa(struct drm_i915_private *dev_priv)
- {
--	return GRAPHICS_VER(dev_priv) >= 6 && intel_vtd_active();
-+	return GRAPHICS_VER(dev_priv) >= 6 && intel_vtd_active(dev_priv);
- }
- 
- static inline bool
- intel_ggtt_update_needs_vtd_wa(struct drm_i915_private *i915)
- {
--	return IS_BROXTON(i915) && intel_vtd_active();
-+	return IS_BROXTON(i915) && intel_vtd_active(i915);
- }
- 
- static inline bool
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index b1e4ce0f798f..a485aa4ca669 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -1754,10 +1754,7 @@ static void capture_gen(struct i915_gpu_coredump *error)
- 	error->wakelock = atomic_read(&i915->runtime_pm.wakeref_count);
- 	error->suspended = i915->runtime_pm.suspended;
- 
--	error->iommu = -1;
--#ifdef CONFIG_INTEL_IOMMU
--	error->iommu = intel_iommu_gfx_mapped;
--#endif
-+	error->iommu = intel_vtd_active(i915);
- 	error->reset_count = i915_reset_count(&i915->gpu_error);
- 	error->suspend_count = i915->suspend_count;
- 
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 6e6b317bc33c..e6605b5181a5 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -83,17 +83,6 @@ const char *intel_platform_name(enum intel_platform platform)
- 	return platform_names[platform];
- }
- 
--static const char *iommu_name(void)
--{
--	const char *msg = "n/a";
--
--#ifdef CONFIG_INTEL_IOMMU
--	msg = enableddisabled(intel_iommu_gfx_mapped);
--#endif
--
--	return msg;
--}
--
- void intel_device_info_print_static(const struct intel_device_info *info,
- 				    struct drm_printer *p)
- {
-@@ -114,7 +103,6 @@ void intel_device_info_print_static(const struct intel_device_info *info,
- 		drm_printf(p, "display version: %u\n", info->display.ver);
- 
- 	drm_printf(p, "gt: %d\n", info->gt);
--	drm_printf(p, "iommu: %s\n", iommu_name());
- 	drm_printf(p, "memory-regions: %x\n", info->memory_regions);
- 	drm_printf(p, "page-sizes: %x\n", info->page_sizes);
- 	drm_printf(p, "platform: %s\n", intel_platform_name(info->platform));
-@@ -374,7 +362,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
- 			info->display.has_dsc = 0;
- 	}
- 
--	if (GRAPHICS_VER(dev_priv) == 6 && intel_vtd_active()) {
-+	if (GRAPHICS_VER(dev_priv) == 6 && intel_vtd_active(dev_priv)) {
- 		drm_info(&dev_priv->drm,
- 			 "Disabling ppGTT for VT-d support\n");
- 		info->ppgtt_type = INTEL_PPGTT_NONE;
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 01fa3fac1b57..cff0f32bedc9 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -98,7 +98,7 @@ static void gen9_init_clock_gating(struct drm_i915_private *dev_priv)
- 		 * "Plane N strech max must be programmed to 11b (x1)
- 		 *  when Async flips are enabled on that plane."
- 		 */
--		if (!IS_GEMINILAKE(dev_priv) && intel_vtd_active())
-+		if (!IS_GEMINILAKE(dev_priv) && intel_vtd_active(dev_priv))
- 			intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
- 					 SKL_PLANE1_STRETCH_MAX_MASK, SKL_PLANE1_STRETCH_MAX_X1);
- 	}
--- 
-2.32.0
-
+> 
+> 
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>> ---
+>>>    man/intel_gpu_top.rst |   4 -
+>>>    tools/intel_gpu_top.c | 810 +-----------------------------------------
+>>>    2 files changed, 1 insertion(+), 813 deletions(-)
+>>>
+>>> diff --git a/man/intel_gpu_top.rst b/man/intel_gpu_top.rst
+>>> index f4dbfc5b44d9..b3b765b05feb 100644
+>>> --- a/man/intel_gpu_top.rst
+>>> +++ b/man/intel_gpu_top.rst
+>>> @@ -56,10 +56,6 @@ Supported keys:
+>>>        'q'    Exit from the tool.
+>>>        'h'    Show interactive help.
+>>>        '1'    Toggle between aggregated engine class and physical engine mode.
+>>> -    'n'    Toggle display of numeric client busyness overlay.
+>>> -    's'    Toggle between sort modes (runtime, total runtime, pid, client id).
+>>> -    'i'    Toggle display of clients which used no GPU time.
+>>> -    'H'    Toggle between per PID aggregation and individual clients.
+>>>    DEVICE SELECTION
+>>>    ================
+>>> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+>>> index 7311038a39f4..41c59a72c09d 100644
+>>> --- a/tools/intel_gpu_top.c
+>>> +++ b/tools/intel_gpu_top.c
+>>> @@ -627,562 +627,6 @@ static void pmu_sample(struct engines *engines)
+>>>    	}
+>>>    }
+>>> -enum client_status {
+>>> -	FREE = 0, /* mbz */
+>>> -	ALIVE,
+>>> -	PROBE
+>>> -};
+>>> -
+>>> -struct clients;
+>>> -
+>>> -struct client {
+>>> -	struct clients *clients;
+>>> -
+>>> -	enum client_status status;
+>>> -	int sysfs_root;
+>>> -	int busy_root;
+>>> -	unsigned int id;
+>>> -	unsigned int pid;
+>>> -	char name[24];
+>>> -	char print_name[24];
+>>> -	unsigned int samples;
+>>> -	unsigned long total_runtime;
+>>> -	unsigned long last_runtime;
+>>> -	struct engines *engines;
+>>> -	unsigned long *val;
+>>> -	uint64_t *last;
+>>> -};
+>>> -
+>>> -struct clients {
+>>> -	unsigned int num_clients;
+>>> -	unsigned int active_clients;
+>>> -
+>>> -	unsigned int num_classes;
+>>> -	struct engine_class *class;
+>>> -
+>>> -	char sysfs_root[128];
+>>> -
+>>> -	struct client *client;
+>>> -};
+>>> -
+>>> -#define for_each_client(clients, c, tmp) \
+>>> -	for ((tmp) = (clients)->num_clients, c = (clients)->client; \
+>>> -	     (tmp > 0); (tmp)--, (c)++)
+>>> -
+>>> -static struct clients *init_clients(const char *drm_card)
+>>> -{
+>>> -	struct clients *clients;
+>>> -	const char *slash;
+>>> -	ssize_t ret;
+>>> -	int dir;
+>>> -
+>>> -	clients = malloc(sizeof(*clients));
+>>> -	if (!clients)
+>>> -		return NULL;
+>>> -
+>>> -	memset(clients, 0, sizeof(*clients));
+>>> -
+>>> -	if (drm_card) {
+>>> -		slash = rindex(drm_card, '/');
+>>> -		assert(slash);
+>>> -	} else {
+>>> -		slash = "card0";
+>>> -	}
+>>> -
+>>> -	ret = snprintf(clients->sysfs_root, sizeof(clients->sysfs_root),
+>>> -		       "/sys/class/drm/%s/clients/", slash);
+>>> -	assert(ret > 0 && ret < sizeof(clients->sysfs_root));
+>>> -
+>>> -	dir = open(clients->sysfs_root, O_DIRECTORY | O_RDONLY);
+>>> -	if (dir < 0) {
+>>> -		free(clients);
+>>> -		clients = NULL;
+>>> -	} else {
+>>> -		close(dir);
+>>> -	}
+>>> -
+>>> -	return clients;
+>>> -}
+>>> -
+>>> -static int __read_to_buf(int fd, char *buf, unsigned int bufsize)
+>>> -{
+>>> -	ssize_t ret;
+>>> -	int err;
+>>> -
+>>> -	ret = read(fd, buf, bufsize - 1);
+>>> -	err = errno;
+>>> -	if (ret < 1) {
+>>> -		errno = ret < 0 ? err : ENOMSG;
+>>> -
+>>> -		return -1;
+>>> -	}
+>>> -
+>>> -	if (ret > 1 && buf[ret - 1] == '\n')
+>>> -		buf[ret - 1] = '\0';
+>>> -	else
+>>> -		buf[ret] = '\0';
+>>> -
+>>> -	return 0;
+>>> -}
+>>> -
+>>> -static int
+>>> -__read_client_field(int root, const char *field, char *buf, unsigned int bufsize)
+>>> -{
+>>> -	int fd, ret;
+>>> -
+>>> -	fd = openat(root, field, O_RDONLY);
+>>> -	if (fd < 0)
+>>> -		return -1;
+>>> -
+>>> -	ret = __read_to_buf(fd, buf, bufsize);
+>>> -
+>>> -	close(fd);
+>>> -
+>>> -	return ret;
+>>> -}
+>>> -
+>>> -static uint64_t
+>>> -read_client_busy(struct client *client, unsigned int class)
+>>> -{
+>>> -	const char *class_str[] = { "0", "1", "2", "3", "4", "5", "6", "7" };
+>>> -	char buf[256], *b;
+>>> -	int ret;
+>>> -
+>>> -	assert(class < ARRAY_SIZE(class_str));
+>>> -	if (class >= ARRAY_SIZE(class_str))
+>>> -		return 0;
+>>> -
+>>> -	assert(client->sysfs_root >= 0);
+>>> -	if (client->sysfs_root < 0)
+>>> -		return 0;
+>>> -
+>>> -	if (client->busy_root < 0)
+>>> -		client->busy_root = openat(client->sysfs_root, "busy",
+>>> -					   O_RDONLY | O_DIRECTORY);
+>>> -
+>>> -	assert(client->busy_root);
+>>> -	if (client->busy_root < 0)
+>>> -		return 0;
+>>> -
+>>> -	ret = __read_client_field(client->busy_root, class_str[class], buf,
+>>> -				  sizeof(buf));
+>>> -	if (ret) {
+>>> -		close(client->busy_root);
+>>> -		client->busy_root = -1;
+>>> -		return 0;
+>>> -	}
+>>> -
+>>> -	/*
+>>> -	 * Handle both single integer and key=value formats by skipping
+>>> -	 * leading non-digits.
+>>> -	 */
+>>> -	b = buf;
+>>> -	while (*b && !isdigit(*b))
+>>> -		b++;
+>>> -
+>>> -	return strtoull(b, NULL, 10);
+>>> -}
+>>> -
+>>> -static struct client *
+>>> -find_client(struct clients *clients, enum client_status status, unsigned int id)
+>>> -{
+>>> -	unsigned int start, num;
+>>> -	struct client *c;
+>>> -
+>>> -	start = status == FREE ? clients->active_clients : 0; /* Free block at the end. */
+>>> -	num = clients->num_clients - start;
+>>> -
+>>> -	for (c = &clients->client[start]; num; c++, num--) {
+>>> -		if (status != c->status)
+>>> -			continue;
+>>> -
+>>> -		if (status == FREE || c->id == id)
+>>> -			return c;
+>>> -	}
+>>> -
+>>> -	return NULL;
+>>> -}
+>>> -
+>>> -static void update_client(struct client *c, unsigned int pid, char *name)
+>>> -{
+>>> -	uint64_t val[c->clients->num_classes];
+>>> -	unsigned int i;
+>>> -
+>>> -	if (c->pid != pid)
+>>> -		c->pid = pid;
+>>> -
+>>> -	if (strcmp(c->name, name)) {
+>>> -		char *p;
+>>> -
+>>> -		strncpy(c->name, name, sizeof(c->name) - 1);
+>>> -		strncpy(c->print_name, name, sizeof(c->print_name) - 1);
+>>> -
+>>> -		p = c->print_name;
+>>> -		while (*p) {
+>>> -			if (!isprint(*p))
+>>> -				*p = '*';
+>>> -			p++;
+>>> -		}
+>>> -	}
+>>> -
+>>> -	for (i = 0; i < c->clients->num_classes; i++)
+>>> -		val[i] = read_client_busy(c, c->clients->class[i].class);
+>>> -
+>>> -	c->last_runtime = 0;
+>>> -	c->total_runtime = 0;
+>>> -
+>>> -	for (i = 0; i < c->clients->num_classes; i++) {
+>>> -		if (val[i] < c->last[i])
+>>> -			continue; /* It will catch up soon. */
+>>> -
+>>> -		c->total_runtime += val[i];
+>>> -		c->val[i] = val[i] - c->last[i];
+>>> -		c->last_runtime += c->val[i];
+>>> -		c->last[i] = val[i];
+>>> -	}
+>>> -
+>>> -	c->samples++;
+>>> -	c->status = ALIVE;
+>>> -}
+>>> -
+>>> -static void
+>>> -add_client(struct clients *clients, unsigned int id, unsigned int pid,
+>>> -	   char *name, int sysfs_root)
+>>> -{
+>>> -	struct client *c;
+>>> -
+>>> -	assert(!find_client(clients, ALIVE, id));
+>>> -
+>>> -	c = find_client(clients, FREE, 0);
+>>> -	if (!c) {
+>>> -		unsigned int idx = clients->num_clients;
+>>> -
+>>> -		clients->num_clients += (clients->num_clients + 2) / 2;
+>>> -		clients->client = realloc(clients->client,
+>>> -					  clients->num_clients * sizeof(*c));
+>>> -		assert(clients->client);
+>>> -
+>>> -		c = &clients->client[idx];
+>>> -		memset(c, 0, (clients->num_clients - idx) * sizeof(*c));
+>>> -	}
+>>> -
+>>> -	c->sysfs_root = sysfs_root;
+>>> -	c->busy_root = -1;
+>>> -	c->id = id;
+>>> -	c->clients = clients;
+>>> -	c->val = calloc(clients->num_classes, sizeof(c->val));
+>>> -	c->last = calloc(clients->num_classes, sizeof(c->last));
+>>> -	assert(c->val && c->last);
+>>> -
+>>> -	update_client(c, pid, name);
+>>> -}
+>>> -
+>>> -static void free_client(struct client *c)
+>>> -{
+>>> -	if (c->sysfs_root >= 0)
+>>> -		close(c->sysfs_root);
+>>> -	if (c->busy_root >= 0)
+>>> -		close(c->busy_root);
+>>> -	free(c->val);
+>>> -	free(c->last);
+>>> -	memset(c, 0, sizeof(*c));
+>>> -}
+>>> -
+>>> -static int
+>>> -read_client_sysfs(char *buf, int bufsize, const char *sysfs_root,
+>>> -		  unsigned int id, const char *field, int *client_root)
+>>> -{
+>>> -	ssize_t ret;
+>>> -
+>>> -	if (*client_root < 0) {
+>>> -		char namebuf[256];
+>>> -
+>>> -		ret = snprintf(namebuf, sizeof(namebuf), "%s/%u",
+>>> -			       sysfs_root, id);
+>>> -		assert(ret > 0 && ret < sizeof(namebuf));
+>>> -		if (ret <= 0 || ret == sizeof(namebuf))
+>>> -			return -1;
+>>> -
+>>> -		*client_root = open(namebuf, O_RDONLY | O_DIRECTORY);
+>>> -	}
+>>> -
+>>> -	if (*client_root < 0)
+>>> -		return -1;
+>>> -
+>>> -	return __read_client_field(*client_root, field, buf, bufsize);
+>>> -}
+>>> -
+>>> -static int client_last_cmp(const void *_a, const void *_b)
+>>> -{
+>>> -	const struct client *a = _a;
+>>> -	const struct client *b = _b;
+>>> -	long tot_a, tot_b;
+>>> -
+>>> -	/*
+>>> -	 * Sort clients in descending order of runtime in the previous sampling
+>>> -	 * period for active ones, followed by inactive. Tie-breaker is client
+>>> -	 * id.
+>>> -	 */
+>>> -
+>>> -	tot_a = a->status == ALIVE ? a->last_runtime : -1;
+>>> -	tot_b = b->status == ALIVE ? b->last_runtime : -1;
+>>> -
+>>> -	tot_b -= tot_a;
+>>> -	if (tot_b > 0)
+>>> -		return 1;
+>>> -	if (tot_b < 0)
+>>> -		return -1;
+>>> -
+>>> -	return (int)b->id - a->id;
+>>> -}
+>>> -
+>>> -static int client_total_cmp(const void *_a, const void *_b)
+>>> -{
+>>> -	const struct client *a = _a;
+>>> -	const struct client *b = _b;
+>>> -	long tot_a, tot_b;
+>>> -
+>>> -	tot_a = a->status == ALIVE ? a->total_runtime : -1;
+>>> -	tot_b = b->status == ALIVE ? b->total_runtime : -1;
+>>> -
+>>> -	tot_b -= tot_a;
+>>> -	if (tot_b > 0)
+>>> -		return 1;
+>>> -	if (tot_b < 0)
+>>> -		return -1;
+>>> -
+>>> -	return (int)b->id - a->id;
+>>> -}
+>>> -
+>>> -static int client_id_cmp(const void *_a, const void *_b)
+>>> -{
+>>> -	const struct client *a = _a;
+>>> -	const struct client *b = _b;
+>>> -	int id_a, id_b;
+>>> -
+>>> -	id_a = a->status == ALIVE ? a->id : -1;
+>>> -	id_b = b->status == ALIVE ? b->id : -1;
+>>> -
+>>> -	id_b -= id_a;
+>>> -	if (id_b > 0)
+>>> -		return 1;
+>>> -	if (id_b < 0)
+>>> -		return -1;
+>>> -
+>>> -	return (int)b->id - a->id;
+>>> -}
+>>> -
+>>> -static int client_pid_cmp(const void *_a, const void *_b)
+>>> -{
+>>> -	const struct client *a = _a;
+>>> -	const struct client *b = _b;
+>>> -	int pid_a, pid_b;
+>>> -
+>>> -	pid_a = a->status == ALIVE ? a->pid : INT_MAX;
+>>> -	pid_b = b->status == ALIVE ? b->pid : INT_MAX;
+>>> -
+>>> -	pid_b -= pid_a;
+>>> -	if (pid_b > 0)
+>>> -		return -1;
+>>> -	if (pid_b < 0)
+>>> -		return 1;
+>>> -
+>>> -	return (int)a->id - b->id;
+>>> -}
+>>> -
+>>> -static int (*client_cmp)(const void *, const void *) = client_last_cmp;
+>>> -
+>>> -static struct clients *sort_clients(struct clients *clients,
+>>> -				    int (*cmp)(const void *, const void *))
+>>> -{
+>>> -	unsigned int active, free;
+>>> -	struct client *c;
+>>> -	int tmp;
+>>> -
+>>> -	if (!clients)
+>>> -		return clients;
+>>> -
+>>> -	qsort(clients->client, clients->num_clients, sizeof(*clients->client),
+>>> -	      cmp);
+>>> -
+>>> -	/* Trim excessive array space. */
+>>> -	active = 0;
+>>> -	for_each_client(clients, c, tmp) {
+>>> -		if (c->status != ALIVE)
+>>> -			break; /* Active clients are first in the array. */
+>>> -		active++;
+>>> -	}
+>>> -
+>>> -	clients->active_clients = active;
+>>> -
+>>> -	free = clients->num_clients - active;
+>>> -	if (free > clients->num_clients / 2) {
+>>> -		active = clients->num_clients - free / 2;
+>>> -		if (active != clients->num_clients) {
+>>> -			clients->num_clients = active;
+>>> -			clients->client = realloc(clients->client,
+>>> -						  clients->num_clients *
+>>> -						  sizeof(*c));
+>>> -		}
+>>> -	}
+>>> -
+>>> -	return clients;
+>>> -}
+>>> -
+>>> -static bool aggregate_pids = true;
+>>> -
+>>> -static struct clients *display_clients(struct clients *clients)
+>>> -{
+>>> -	struct client *ac, *c, *cp = NULL;
+>>> -	struct clients *aggregated;
+>>> -	int tmp, num = 0;
+>>> -
+>>> -	if (!aggregate_pids)
+>>> -		goto out;
+>>> -
+>>> -	/* Sort by pid first to make it easy to aggregate while walking. */
+>>> -	sort_clients(clients, client_pid_cmp);
+>>> -
+>>> -	aggregated = calloc(1, sizeof(*clients));
+>>> -	assert(aggregated);
+>>> -
+>>> -	ac = calloc(clients->num_clients, sizeof(*c));
+>>> -	assert(ac);
+>>> -
+>>> -	aggregated->num_classes = clients->num_classes;
+>>> -	aggregated->class = clients->class;
+>>> -	aggregated->client = ac;
+>>> -
+>>> -	for_each_client(clients, c, tmp) {
+>>> -		unsigned int i;
+>>> -
+>>> -		if (c->status == FREE)
+>>> -			break;
+>>> -
+>>> -		assert(c->status == ALIVE);
+>>> -
+>>> -		if ((cp && c->pid != cp->pid) || !cp) {
+>>> -			ac = &aggregated->client[num++];
+>>> -
+>>> -			/* New pid. */
+>>> -			ac->clients = aggregated;
+>>> -			ac->status = ALIVE;
+>>> -			ac->id = -c->pid;
+>>> -			ac->pid = c->pid;
+>>> -			ac->busy_root = -1;
+>>> -			ac->sysfs_root = -1;
+>>> -			strcpy(ac->name, c->name);
+>>> -			strcpy(ac->print_name, c->print_name);
+>>> -			ac->engines = c->engines;
+>>> -			ac->val = calloc(clients->num_classes,
+>>> -					 sizeof(ac->val[0]));
+>>> -			assert(ac->val);
+>>> -			ac->samples = 1;
+>>> -		}
+>>> -
+>>> -		cp = c;
+>>> -
+>>> -		if (c->samples < 2)
+>>> -			continue;
+>>> -
+>>> -		ac->samples = 2; /* All what matters for display. */
+>>> -		ac->total_runtime += c->total_runtime;
+>>> -		ac->last_runtime += c->last_runtime;
+>>> -
+>>> -		for (i = 0; i < clients->num_classes; i++)
+>>> -			ac->val[i] += c->val[i];
+>>> -	}
+>>> -
+>>> -	aggregated->num_clients = num;
+>>> -	aggregated->active_clients = num;
+>>> -
+>>> -	clients = aggregated;
+>>> -
+>>> -out:
+>>> -	return sort_clients(clients, client_cmp);
+>>> -}
+>>> -
+>>> -static void free_clients(struct clients *clients)
+>>> -{
+>>> -	struct client *c;
+>>> -	unsigned int tmp;
+>>> -
+>>> -	for_each_client(clients, c, tmp) {
+>>> -		free(c->val);
+>>> -		free(c->last);
+>>> -	}
+>>> -
+>>> -	free(clients->client);
+>>> -	free(clients);
+>>> -}
+>>> -
+>>> -static struct clients *scan_clients(struct clients *clients)
+>>> -{
+>>> -	struct dirent *dent;
+>>> -	struct client *c;
+>>> -	unsigned int id;
+>>> -	int tmp;
+>>> -	DIR *d;
+>>> -
+>>> -	if (!clients)
+>>> -		return clients;
+>>> -
+>>> -	for_each_client(clients, c, tmp) {
+>>> -		assert(c->status != PROBE);
+>>> -		if (c->status == ALIVE)
+>>> -			c->status = PROBE;
+>>> -		else
+>>> -			break; /* Free block at the end of array. */
+>>> -	}
+>>> -
+>>> -	d = opendir(clients->sysfs_root);
+>>> -	if (!d)
+>>> -		return clients;
+>>> -
+>>> -	while ((dent = readdir(d)) != NULL) {
+>>> -		char name[24], pid[24];
+>>> -		int ret, root = -1, *pr;
+>>> -
+>>> -		if (dent->d_type != DT_DIR)
+>>> -			continue;
+>>> -		if (!isdigit(dent->d_name[0]))
+>>> -			continue;
+>>> -
+>>> -		id = atoi(dent->d_name);
+>>> -
+>>> -		c = find_client(clients, PROBE, id);
+>>> -
+>>> -		if (c)
+>>> -			pr = &c->sysfs_root;
+>>> -		else
+>>> -			pr = &root;
+>>> -
+>>> -		ret = read_client_sysfs(name, sizeof(name), clients->sysfs_root,
+>>> -					id, "name", pr);
+>>> -		ret |= read_client_sysfs(pid, sizeof(pid), clients->sysfs_root,
+>>> -					id, "pid", pr);
+>>> -		if (!ret) {
+>>> -			if (!c)
+>>> -				add_client(clients, id, atoi(pid), name, root);
+>>> -			else
+>>> -				update_client(c, atoi(pid), name);
+>>> -		} else if (c) {
+>>> -			c->status = PROBE; /* Will be deleted below. */
+>>> -		}
+>>> -	}
+>>> -
+>>> -	closedir(d);
+>>> -
+>>> -	for_each_client(clients, c, tmp) {
+>>> -		if (c->status == PROBE)
+>>> -			free_client(c);
+>>> -		else if (c->status == FREE)
+>>> -			break;
+>>> -	}
+>>> -
+>>> -	return display_clients(clients);
+>>> -}
+>>> -
+>>>    static const char *bars[] = { " ", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█" };
+>>>    static void n_spaces(const unsigned int n)
+>>> @@ -1324,18 +768,6 @@ json_close_struct(void)
+>>>    		fflush(stdout);
+>>>    }
+>>> -static void
+>>> -__json_add_member(const char *key, const char *val)
+>>> -{
+>>> -	assert(json_indent_level < ARRAY_SIZE(json_indent));
+>>> -
+>>> -	fprintf(out, "%s%s\"%s\": \"%s\"",
+>>> -		json_struct_members ? ",\n" : "",
+>>> -		json_indent[json_indent_level], key, val);
+>>> -
+>>> -	json_struct_members++;
+>>> -}
+>>> -
+>>>    static unsigned int
+>>>    json_add_member(const struct cnt_group *parent, struct cnt_item *item,
+>>>    		unsigned int headers)
+>>> @@ -2061,157 +1493,6 @@ print_engines(struct engines *engines, double t, int lines, int w, int h)
+>>>    	return lines;
+>>>    }
+>>> -static int
+>>> -print_clients_header(struct clients *clients, int lines,
+>>> -		     int con_w, int con_h, int *class_w)
+>>> -{
+>>> -	if (output_mode == INTERACTIVE) {
+>>> -		const char *pidname = "   PID              NAME ";
+>>> -		unsigned int num_active = 0;
+>>> -		int len = strlen(pidname);
+>>> -
+>>> -		if (lines++ >= con_h)
+>>> -			return lines;
+>>> -
+>>> -		printf("\033[7m");
+>>> -		printf("%s", pidname);
+>>> -
+>>> -		if (lines++ >= con_h || len >= con_w)
+>>> -			return lines;
+>>> -
+>>> -		if (clients->num_classes) {
+>>> -			unsigned int i;
+>>> -			int width;
+>>> -
+>>> -			for (i = 0; i < clients->num_classes; i++) {
+>>> -				if (clients->class[i].num_engines)
+>>> -					num_active++;
+>>> -			}
+>>> -
+>>> -			*class_w = width = (con_w - len) / num_active;
+>>> -
+>>> -			for (i = 0; i < clients->num_classes; i++) {
+>>> -				const char *name = clients->class[i].name;
+>>> -				int name_len = strlen(name);
+>>> -				int pad = (width - name_len) / 2;
+>>> -				int spaces = width - pad - name_len;
+>>> -
+>>> -				if (!clients->class[i].num_engines)
+>>> -					continue; /* Assert in the ideal world. */
+>>> -
+>>> -				if (pad < 0 || spaces < 0)
+>>> -					continue;
+>>> -
+>>> -				n_spaces(pad);
+>>> -				printf("%s", name);
+>>> -				n_spaces(spaces);
+>>> -				len += pad + name_len + spaces;
+>>> -			}
+>>> -		}
+>>> -
+>>> -		n_spaces(con_w - len);
+>>> -		printf("\033[0m\n");
+>>> -	} else {
+>>> -		if (clients->num_classes)
+>>> -			pops->open_struct("clients");
+>>> -	}
+>>> -
+>>> -	return lines;
+>>> -}
+>>> -
+>>> -static bool numeric_clients;
+>>> -static bool filter_idle;
+>>> -
+>>> -static int
+>>> -print_client(struct client *c, struct engines *engines, double t, int lines,
+>>> -	     int con_w, int con_h, unsigned int period_us, int *class_w)
+>>> -{
+>>> -	struct clients *clients = c->clients;
+>>> -	unsigned int i;
+>>> -
+>>> -	if (output_mode == INTERACTIVE) {
+>>> -		if (filter_idle && (!c->total_runtime || c->samples < 2))
+>>> -			return lines;
+>>> -
+>>> -		lines++;
+>>> -
+>>> -		printf("%6u %17s ", c->pid, c->print_name);
+>>> -
+>>> -		for (i = 0; c->samples > 1 && i < clients->num_classes; i++) {
+>>> -			double pct;
+>>> -
+>>> -			if (!clients->class[i].num_engines)
+>>> -				continue; /* Assert in the ideal world. */
+>>> -
+>>> -			pct = (double)c->val[i] / period_us / 1e3 * 100 /
+>>> -			      clients->class[i].num_engines;
+>>> -
+>>> -			/*
+>>> -			 * Guard against possible time-drift between sampling
+>>> -			 * client data and time we obtained our time-delta from
+>>> -			 * PMU.
+>>> -			 */
+>>> -			if (pct > 100.0)
+>>> -				pct = 100.0;
+>>> -
+>>> -			print_percentage_bar(pct, *class_w, numeric_clients);
+>>> -		}
+>>> -
+>>> -		putchar('\n');
+>>> -	} else if (output_mode == JSON) {
+>>> -		char buf[64];
+>>> -
+>>> -		snprintf(buf, sizeof(buf), "%u", c->id);
+>>> -		pops->open_struct(buf);
+>>> -
+>>> -		__json_add_member("name", c->print_name);
+>>> -
+>>> -		snprintf(buf, sizeof(buf), "%u", c->pid);
+>>> -		__json_add_member("pid", buf);
+>>> -
+>>> -		if (c->samples > 1) {
+>>> -			pops->open_struct("engine-classes");
+>>> -
+>>> -			for (i = 0; i < clients->num_classes; i++) {
+>>> -				double pct;
+>>> -
+>>> -				snprintf(buf, sizeof(buf), "%s",
+>>> -					clients->class[i].name);
+>>> -				pops->open_struct(buf);
+>>> -
+>>> -				pct = (double)c->val[i] / period_us / 1e3 * 100;
+>>> -				snprintf(buf, sizeof(buf), "%f", pct);
+>>> -				__json_add_member("busy", buf);
+>>> -
+>>> -				__json_add_member("unit", "%");
+>>> -
+>>> -				pops->close_struct();
+>>> -			}
+>>> -
+>>> -			pops->close_struct();
+>>> -		}
+>>> -
+>>> -		pops->close_struct();
+>>> -	}
+>>> -
+>>> -	return lines;
+>>> -}
+>>> -
+>>> -static int
+>>> -print_clients_footer(struct clients *clients, double t,
+>>> -		     int lines, int con_w, int con_h)
+>>> -{
+>>> -	if (output_mode == INTERACTIVE) {
+>>> -		if (lines++ < con_h)
+>>> -			printf("\n");
+>>> -	} else {
+>>> -		if (clients->num_classes)
+>>> -			pops->close_struct();
+>>> -	}
+>>> -
+>>> -	return lines;
+>>> -}
+>>> -
+>>>    static bool stop_top;
+>>>    static void sigint_handler(int  sig)
+>>> @@ -2267,31 +1548,6 @@ static void interactive_stdin(void)
+>>>    	assert(ret == 0);
+>>>    }
+>>> -static void select_client_sort(void)
+>>> -{
+>>> -	struct {
+>>> -		int (*cmp)(const void *, const void *);
+>>> -		const char *msg;
+>>> -	} cmp[] = {
+>>> -		{ client_last_cmp, "Sorting clients by current GPU usage." },
+>>> -		{ client_total_cmp, "Sorting clients by accummulated GPU usage." },
+>>> -		{ client_pid_cmp, "Sorting clients by pid." },
+>>> -		{ client_id_cmp, "Sorting clients by sysfs id." },
+>>> -	};
+>>> -	static unsigned int client_sort;
+>>> -
+>>> -bump:
+>>> -	if (++client_sort >= ARRAY_SIZE(cmp))
+>>> -		client_sort = 0;
+>>> -
+>>> -	client_cmp = cmp[client_sort].cmp;
+>>> -	header_msg = cmp[client_sort].msg;
+>>> -
+>>> -	/* Sort by client id makes no sense with pid aggregation. */
+>>> -	if (aggregate_pids && client_cmp == client_id_cmp)
+>>> -		goto bump;
+>>> -}
+>>> -
+>>>    static bool in_help;
+>>>    static void process_help_stdin(void)
+>>> @@ -2334,29 +1590,9 @@ static void process_normal_stdin(void)
+>>>    			else
+>>>    				header_msg = "Showing physical engines.";
+>>>    			break;
+>>> -		case 'i':
+>>> -			filter_idle ^= true;
+>>> -			if (filter_idle)
+>>> -				header_msg = "Hiding inactive clients.";
+>>> -			else
+>>> -				header_msg = "Showing inactive clients.";
+>>> -			break;
+>>> -		case 'n':
+>>> -			numeric_clients ^= true;
+>>> -			break;
+>>> -		case 's':
+>>> -			select_client_sort();
+>>> -			break;
+>>>    		case 'h':
+>>>    			in_help = true;
+>>>    			break;
+>>> -		case 'H':
+>>> -			aggregate_pids ^= true;
+>>> -			if (aggregate_pids)
+>>> -				header_msg = "Aggregating clients.";
+>>> -			else
+>>> -				header_msg = "Showing individual clients.";
+>>> -			break;
+>>>    		};
+>>>    	}
+>>>    }
+>>> @@ -2384,10 +1620,6 @@ static void show_help_screen(void)
+>>>    	printf(
+>>>    "Help for interactive commands:\n\n"
+>>>    "    '1'    Toggle between aggregated engine class and physical engine mode.\n"
+>>> -"    'n'    Toggle display of numeric client busyness overlay.\n"
+>>> -"    's'    Toggle between sort modes (runtime, total runtime, pid, client id).\n"
+>>> -"    'i'    Toggle display of clients which used no GPU time.\n"
+>>> -"    'H'    Toggle between per PID aggregation and individual clients.\n"
+>>>    "\n"
+>>>    "    'h' or 'q'    Exit interactive help.\n"
+>>>    "\n");
+>>> @@ -2396,7 +1628,6 @@ static void show_help_screen(void)
+>>>    int main(int argc, char **argv)
+>>>    {
+>>>    	unsigned int period_us = DEFAULT_PERIOD_MS * 1000;
+>>> -	struct clients *clients = NULL;
+>>>    	int con_w = -1, con_h = -1;
+>>>    	char *output_path = NULL;
+>>>    	struct engines *engines;
+>>> @@ -2530,23 +1761,15 @@ int main(int argc, char **argv)
+>>>    	ret = EXIT_SUCCESS;
+>>> -	clients = init_clients(card.pci_slot_name[0] ? card.card : NULL);
+>>>    	init_engine_classes(engines);
+>>> -	if (clients) {
+>>> -		clients->num_classes = engines->num_classes;
+>>> -		clients->class = engines->class;
+>>> -	}
+>>>    	pmu_sample(engines);
+>>> -	scan_clients(clients);
+>>>    	codename = igt_device_get_pretty_name(&card, false);
+>>>    	while (!stop_top) {
+>>> -		struct clients *disp_clients;
+>>>    		bool consumed = false;
+>>> -		int j, lines = 0;
+>>>    		struct winsize ws;
+>>> -		struct client *c;
+>>> +		int lines = 0;
+>>>    		double t;
+>>>    		/* Update terminal size. */
+>>> @@ -2565,8 +1788,6 @@ int main(int argc, char **argv)
+>>>    		pmu_sample(engines);
+>>>    		t = (double)(engines->ts.cur - engines->ts.prev) / 1e9;
+>>> -		disp_clients = scan_clients(clients);
+>>> -
+>>>    		if (stop_top)
+>>>    			break;
+>>> @@ -2586,41 +1807,12 @@ int main(int argc, char **argv)
+>>>    			lines = print_engines(engines, t, lines, con_w, con_h);
+>>> -			if (disp_clients) {
+>>> -				int class_w;
+>>> -
+>>> -				lines = print_clients_header(disp_clients, lines,
+>>> -							     con_w, con_h,
+>>> -							     &class_w);
+>>> -
+>>> -				for_each_client(disp_clients, c, j) {
+>>> -					assert(c->status != PROBE);
+>>> -					if (c->status != ALIVE)
+>>> -						break; /* Active clients are first in the array. */
+>>> -
+>>> -					if (lines >= con_h)
+>>> -						break;
+>>> -
+>>> -					lines = print_client(c, engines, t,
+>>> -							     lines, con_w,
+>>> -							     con_h, period_us,
+>>> -							     &class_w);
+>>> -				}
+>>> -
+>>> -				lines = print_clients_footer(disp_clients, t,
+>>> -							     lines, con_w,
+>>> -							     con_h);
+>>> -			}
+>>> -
+>>>    			pops->close_struct();
+>>>    		}
+>>>    		if (stop_top)
+>>>    			break;
+>>> -		if (disp_clients != clients)
+>>> -			free_clients(disp_clients);
+>>> -
+>>>    		if (output_mode == INTERACTIVE)
+>>>    			process_stdin(period_us);
+>>>    		else
+>>>
