@@ -1,35 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12AA445EC37
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Nov 2021 12:09:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCFA845EC3A
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Nov 2021 12:10:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C6E06E5C1;
-	Fri, 26 Nov 2021 11:09:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 057CC6E7D4;
+	Fri, 26 Nov 2021 11:10:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07AB36E5C1
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Nov 2021 11:09:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10179"; a="296451210"
-X-IronPort-AV: E=Sophos;i="5.87,265,1631602800"; d="scan'208";a="296451210"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2021 03:09:07 -0800
-X-IronPort-AV: E=Sophos;i="5.87,265,1631602800"; d="scan'208";a="675526010"
-Received: from dmadorsx-mobl2.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.23.2])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2021 03:09:06 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 26 Nov 2021 11:08:43 +0000
-Message-Id: <20211126110843.2028582-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E0236E7D4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Nov 2021 11:10:39 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10179"; a="235890014"
+X-IronPort-AV: E=Sophos;i="5.87,265,1631602800"; d="scan'208";a="235890014"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2021 03:10:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,265,1631602800"; d="scan'208";a="498374311"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 26 Nov 2021 03:10:35 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 26 Nov 2021 13:10:35 +0200
+Date: Fri, 26 Nov 2021 13:10:35 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <YaDAqwQIpLbYja9b@intel.com>
+References: <20211125171603.1775179-1-imre.deak@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gemfs: don't mark huge_opt as static
+In-Reply-To: <20211125171603.1775179-1-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix DPT suspend/resume on
+ !HAS_DISPLAY platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,46 +48,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-vfs_kernel_mount() modifies the passed in mount options, leaving us with
-"huge", instead of "huge=within_size". Normally this shouldn't matter
-with the usual module load/unload flow, however with the core_hotunplug
-IGT we are hitting the following, when re-probing the memory regions:
+On Thu, Nov 25, 2021 at 07:16:03PM +0200, Imre Deak wrote:
+> The drm.mode_config state is not initialized in case of !HAS_DISPLAY
+> so taking the fb_lock and iterating the fb list won't work on those
+> platforms. Skip the suspend/resume with an explicit check for this.
+> 
+> Fixes: 9755f055f512 ("drm/i915: Restore memory mapping for DPT FBs across system suspend/resume")
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-i915 0000:00:02.0: [drm] Transparent Hugepage mode 'huge'
-tmpfs: Bad value for 'huge'
-[drm] Unable to create a private tmpfs mount, hugepage support will be disabled(-22).
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/4651
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gemfs.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+> ---
+>  drivers/gpu/drm/i915/display/intel_dpt.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
+> index 56755788547d2..963ca7155b064 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
+> @@ -183,6 +183,9 @@ void intel_dpt_resume(struct drm_i915_private *i915)
+>  {
+>  	struct drm_framebuffer *drm_fb;
+>  
+> +	if (!HAS_DISPLAY(i915))
+> +		return;
+> +
+>  	mutex_lock(&i915->drm.mode_config.fb_lock);
+>  	drm_for_each_fb(drm_fb, &i915->drm) {
+>  		struct intel_framebuffer *fb = to_intel_framebuffer(drm_fb);
+> @@ -207,6 +210,9 @@ void intel_dpt_suspend(struct drm_i915_private *i915)
+>  {
+>  	struct drm_framebuffer *drm_fb;
+>  
+> +	if (!HAS_DISPLAY(i915))
+> +		return;
+> +
+>  	mutex_lock(&i915->drm.mode_config.fb_lock);
+>  
+>  	drm_for_each_fb(drm_fb, &i915->drm) {
+> -- 
+> 2.27.0
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c b/drivers/gpu/drm/i915/gem/i915_gemfs.c
-index dbdbdc344d87..182da3c04771 100644
---- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gemfs.c
-@@ -12,6 +12,7 @@
- 
- int i915_gemfs_init(struct drm_i915_private *i915)
- {
-+	char huge_opt[] = "huge=within_size"; /* r/w */
- 	struct file_system_type *type;
- 	struct vfsmount *gemfs;
- 	char *opts;
-@@ -33,8 +34,6 @@ int i915_gemfs_init(struct drm_i915_private *i915)
- 	opts = NULL;
- 	if (intel_vtd_active()) {
- 		if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE)) {
--			static char huge_opt[] = "huge=within_size"; /* r/w */
--
- 			opts = huge_opt;
- 			drm_info(&i915->drm,
- 				 "Transparent Hugepage mode '%s'\n",
 -- 
-2.31.1
-
+Ville Syrjälä
+Intel
