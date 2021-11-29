@@ -1,28 +1,28 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 339C9461735
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 14:58:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7468461733
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 14:58:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1A66EDB0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E0936EDBF;
 	Mon, 29 Nov 2021 13:57:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8904B6ECBC;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 034456EDAD;
  Mon, 29 Nov 2021 13:57:18 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 29 Nov 2021 14:47:29 +0100
-Message-Id: <20211129134735.628712-11-maarten.lankhorst@linux.intel.com>
+Date: Mon, 29 Nov 2021 14:47:30 +0100
+Message-Id: <20211129134735.628712-12-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.34.0
 In-Reply-To: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
 References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 10/16] drm/i915: Make i915_gem_evict_vm work
- correctly for already locked objects
+Subject: [Intel-gfx] [PATCH v2 11/16] drm/i915: Call i915_gem_evict_vm in
+ vm_fault_gtt to prevent new ENOSPC errors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,66 +39,44 @@ Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915_gem_execbuf will call i915_gem_evict_vm() after failing to pin
-all objects in the first round. We are about to remove those short-term
-pins, but even without those the objects are still locked. Add a special
-case to allow i915_gem_evict_vm to evict locked objects as well.
-
-This might also allow multiple objects sharing the same resv to be evicted.
+Now that we cannot unbind kill the currently locked object directly
+because we're removing short term pinning, we may have to unbind the
+object from gtt manually, using a i915_gem_evict_vm() call.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_gem_evict.c | 23 ++++++++++++++++++++++-
- 1 file changed, 22 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
-index 24f5e3345e43..f502a617b35c 100644
---- a/drivers/gpu/drm/i915/i915_gem_evict.c
-+++ b/drivers/gpu/drm/i915/i915_gem_evict.c
-@@ -410,21 +410,42 @@ int i915_gem_evict_vm(struct i915_address_space *vm, struct i915_gem_ww_ctx *ww)
- 	do {
- 		struct i915_vma *vma, *vn;
- 		LIST_HEAD(eviction_list);
-+		LIST_HEAD(locked_eviction_list);
- 
- 		list_for_each_entry(vma, &vm->bound_list, vm_link) {
- 			if (i915_vma_is_pinned(vma))
- 				continue;
- 
-+			/*
-+			 * If we already own the lock, trylock fails. In case the resv
-+			 * is shared among multiple objects, we still need the object ref.
-+			 */
-+			if (ww && (dma_resv_locking_ctx(vma->obj->base.resv) == &ww->ctx)) {
-+				__i915_vma_pin(vma);
-+				list_add(&vma->evict_link, &locked_eviction_list);
-+				continue;
-+			}
-+
- 			if (!i915_gem_object_trylock(vma->obj, ww))
- 				continue;
- 
- 			__i915_vma_pin(vma);
- 			list_add(&vma->evict_link, &eviction_list);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index 65fc6ff5f59d..6d557bb9926f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -357,8 +357,22 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
+ 			vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
  		}
--		if (list_empty(&eviction_list))
-+		if (list_empty(&eviction_list) && list_empty(&locked_eviction_list))
- 			break;
  
- 		ret = 0;
-+		/* Unbind locked objects first, before unlocking the eviction_list */
-+		list_for_each_entry_safe(vma, vn, &locked_eviction_list, evict_link) {
-+			__i915_vma_unpin(vma);
-+
-+			if (ret == 0)
-+				ret = __i915_vma_unbind(vma);
-+			if (ret != -EINTR) /* "Get me out of here!" */
-+				ret = 0;
+-		/* The entire mappable GGTT is pinned? Unexpected! */
+-		GEM_BUG_ON(vma == ERR_PTR(-ENOSPC));
++		/*
++		 * The entire mappable GGTT is pinned? Unexpected!
++		 * Try to evict the object we locked too, as normally we skip it
++		 * due to lack of short term pinning inside execbuf.
++		 */
++		if (vma == ERR_PTR(-ENOSPC)) {
++			ret = mutex_lock_interruptible(&ggtt->vm.mutex);
++			if (!ret) {
++				ret = i915_gem_evict_vm(&ggtt->vm, &ww);
++				mutex_unlock(&ggtt->vm.mutex);
++			}
++			if (ret)
++				goto err_reset;
++			vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
 +		}
-+
- 		list_for_each_entry_safe(vma, vn, &eviction_list, evict_link) {
- 			__i915_vma_unpin(vma);
- 			if (ret == 0)
++		GEM_WARN_ON(vma == ERR_PTR(-ENOSPC));
+ 	}
+ 	if (IS_ERR(vma)) {
+ 		ret = PTR_ERR(vma);
 -- 
 2.34.0
 
