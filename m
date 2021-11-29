@@ -1,34 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B043461630
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 14:23:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F605461647
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 14:26:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C581089895;
-	Mon, 29 Nov 2021 13:23:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 670116E430;
+	Mon, 29 Nov 2021 13:25:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 74CC689895;
- Mon, 29 Nov 2021 13:23:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6E3C5A47DF;
- Mon, 29 Nov 2021 13:23:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7916406735294082300=="
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B13F6E237;
+ Mon, 29 Nov 2021 13:25:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10182"; a="233458180"
+X-IronPort-AV: E=Sophos;i="5.87,273,1631602800"; d="scan'208";a="233458180"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2021 05:25:50 -0800
+X-IronPort-AV: E=Sophos;i="5.87,273,1631602800"; d="scan'208";a="499329309"
+Received: from epaglier-mobl.amr.corp.intel.com (HELO [10.249.36.141])
+ ([10.249.36.141])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2021 05:25:48 -0800
+Message-ID: <63197a54-511f-e18f-8355-5527215a79bd@linux.intel.com>
+Date: Mon, 29 Nov 2021 14:25:46 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhi Wang" <zhi.wang.linux@gmail.com>
-Date: Mon, 29 Nov 2021 13:23:13 -0000
-Message-ID: <163819219342.16118.16602663666106750393@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211129123832.105196-1-zhi.a.wang@intel.com>
-In-Reply-To: <20211129123832.105196-1-zhi.a.wang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv4=2C1/2=5D_i915/gvt=3A_Introduce_the_mmio?=
- =?utf-8?q?=5Finfo=5Ftable=2Ec_to_support_VFIO_new_mdev_API?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.3.2
+Content-Language: en-US
+To: Matthew Auld <matthew.william.auld@gmail.com>
+References: <20211021103605.735002-1-maarten.lankhorst@linux.intel.com>
+ <20211021103605.735002-15-maarten.lankhorst@linux.intel.com>
+ <CAM0jSHPq1s9hV2gFmGK0Y9PPbgyTYKiaxzR-+xojbFNzU9EW-A@mail.gmail.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <CAM0jSHPq1s9hV2gFmGK0Y9PPbgyTYKiaxzR-+xojbFNzU9EW-A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 15/28] drm/i915: Add lock for unbinding to
+ i915_gem_object_ggtt_pin_ww
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,215 +50,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7916406735294082300==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 21-10-2021 19:48, Matthew Auld wrote:
+> On Thu, 21 Oct 2021 at 11:37, Maarten Lankhorst
+> <maarten.lankhorst@linux.intel.com> wrote:
+>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Needs a proper commit message.
 
-== Series Details ==
-
-Series: series starting with [v4,1/2] i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API
-URL   : https://patchwork.freedesktop.org/series/97369/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10936 -> Patchwork_21693
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/index.html
-
-Participating hosts (36 -> 31)
-------------------------------
-
-  Missing    (5): bat-dg1-6 bat-adlp-4 fi-pnv-d510 bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21693 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-snb-2520m:       [PASS][2] -> [DMESG-FAIL][3] ([i915#4610])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-snb-2520m/igt@i915_selftest@live@requests.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-snb-2520m/igt@i915_selftest@live@requests.html
-    - fi-blb-e6850:       [PASS][4] -> [DMESG-FAIL][5] ([i915#4528])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-skl-6600u:       [PASS][6] -> [FAIL][7] ([i915#4547])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][8] ([i915#3363] / [i915#4312])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-skl-6600u/igt@runner@aborted.html
-    - fi-snb-2520m:       NOTRUN -> [FAIL][9] ([i915#2426] / [i915#4312])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-snb-2520m/igt@runner@aborted.html
-    - fi-blb-e6850:       NOTRUN -> [FAIL][10] ([fdo#109271] / [i915#2403] / [i915#4312])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-blb-e6850/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bsw-nick:        [DMESG-FAIL][11] ([i915#2927] / [i915#3428]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4610]: https://gitlab.freedesktop.org/drm/intel/issues/4610
+What about this?
 
 
-Build changes
--------------
+>> ---
+>>  drivers/gpu/drm/i915/i915_gem.c | 9 ++++++++-
+>>  1 file changed, 8 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+>> index 981e383d1a5d..6aa9e465b48e 100644
+>> --- a/drivers/gpu/drm/i915/i915_gem.c
+>> +++ b/drivers/gpu/drm/i915/i915_gem.c
+>> @@ -931,7 +931,14 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
+>>                         goto new_vma;
+>>                 }
+>>
+>> -               ret = i915_vma_unbind(vma);
+>> +               ret = 0;
+>> +               if (!ww)
+>> +                       ret = i915_gem_object_lock_interruptible(obj, NULL);
+>> +               if (!ret) {
+>> +                       ret = i915_vma_unbind(vma);
+>> +                       if (!ww)
+>> +                               i915_gem_object_unlock(obj);
+>> +               }
+> There is also a wait_for_bind below. Do we need the lock for that also?
 
-  * Linux: CI_DRM_10936 -> Patchwork_21693
+Hmm good find.
 
-  CI-20190529: 20190529
-  CI_DRM_10936: bb84fd984ef382c1dbc265a6ace8829b6b178886 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6294: 5598666e8612fa98c6b4a92a824998f52135b0cc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21693: 45c6c722d2fcacabad6d28f9deb7b8b6e1e0bf2f @ git://anongit.freedesktop.org/gfx-ci/linux
+Not sure if required in this patch series. I have some patches on top that require the lock because of async binding / unbinding, that would need it for sure.
 
+I will fix this function to use WARN_ON(!ww), and add ww handling to i915_gem_object_ggtt_pin(). That should fix all issues without special casing !ww.
 
-== Linux commits ==
+~Maarten
 
-45c6c722d2fc i915/gvt: save the MMIO snapshot in the early init of GVT-g
-20204614807c i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/index.html
-
---===============7916406735294082300==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v4,1/2] i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97369/">https://patchwork.freedesktop.org/series/97369/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10936 -&gt; Patchwork_21693</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/index.html</p>
-<h2>Participating hosts (36 -&gt; 31)</h2>
-<p>Missing    (5): bat-dg1-6 bat-adlp-4 fi-pnv-d510 bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21693 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>
-<p>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-snb-2520m/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-snb-2520m/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4610">i915#4610</a>)</p>
-</li>
-<li>
-<p>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-snb-2520m/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-blb-e6850/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@late_gt_pm:<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10936 -&gt; Patchwork_21693</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10936: bb84fd984ef382c1dbc265a6ace8829b6b178886 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6294: 5598666e8612fa98c6b4a92a824998f52135b0cc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21693: 45c6c722d2fcacabad6d28f9deb7b8b6e1e0bf2f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>45c6c722d2fc i915/gvt: save the MMIO snapshot in the early init of GVT-g<br />
-20204614807c i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API</p>
-
-</body>
-</html>
-
---===============7916406735294082300==--
