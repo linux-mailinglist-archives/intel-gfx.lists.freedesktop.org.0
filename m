@@ -2,44 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 606CD461604
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 14:14:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B043461630
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 14:23:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5D1D6ECB2;
-	Mon, 29 Nov 2021 13:14:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C581089895;
+	Mon, 29 Nov 2021 13:23:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DCC86ECB2;
- Mon, 29 Nov 2021 13:14:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10182"; a="223189455"
-X-IronPort-AV: E=Sophos;i="5.87,273,1631602800"; d="scan'208";a="223189455"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2021 05:14:40 -0800
-X-IronPort-AV: E=Sophos;i="5.87,273,1631602800"; d="scan'208";a="459143628"
-Received: from keyanli-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.249.254.196])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2021 05:14:38 -0800
-Content-Type: text/plain; charset="utf-8"
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 74CC689895;
+ Mon, 29 Nov 2021 13:23:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6E3C5A47DF;
+ Mon, 29 Nov 2021 13:23:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7916406735294082300=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <180f069a-bf29-cf05-c9f9-5b1737ec5664@gmail.com>
-References: <20211129073533.414008-1-thomas.hellstrom@linux.intel.com>
- <4fd0eee6-342f-fb31-717c-901440f38c35@gmail.com>
- <58ca11648ab29d96b84640760d2acc3ac2d39d19.camel@linux.intel.com>
- <e4d8e272-8175-4298-f227-240febc0bda0@gmail.com>
- <ee128e237dbc2b6b2341b49ab07661c1f1b65e0b.camel@linux.intel.com>
- <180f069a-bf29-cf05-c9f9-5b1737ec5664@gmail.com>
-To: Christian König <ckoenig.leichtzumerken@gmail.com>, Thomas Hellström <thomas.hellstrom@linux.intel.com>, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <163819167565.18436.3361321032268102014@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Mon, 29 Nov 2021 15:14:35 +0200
-Subject: Re: [Intel-gfx] [PATCH] dma_fence_array: Fix PENDING_ERROR leak in
- dma_fence_array_signaled()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhi Wang" <zhi.wang.linux@gmail.com>
+Date: Mon, 29 Nov 2021 13:23:13 -0000
+Message-ID: <163819219342.16118.16602663666106750393@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211129123832.105196-1-zhi.a.wang@intel.com>
+In-Reply-To: <20211129123832.105196-1-zhi.a.wang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv4=2C1/2=5D_i915/gvt=3A_Introduce_the_mmio?=
+ =?utf-8?q?=5Finfo=5Ftable=2Ec_to_support_VFIO_new_mdev_API?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,110 +41,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linaro-mm-sig@lists.linaro.org, Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-(Switching to my @linux.intel.com address)
+--===============7916406735294082300==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Quoting Christian K=C3=B6nig (2021-11-29 14:55:37)
-> Am 29.11.21 um 13:46 schrieb Thomas Hellstr=C3=B6m:
-> > On Mon, 2021-11-29 at 13:33 +0100, Christian K=C3=B6nig wrote:
-> >> Am 29.11.21 um 13:23 schrieb Thomas Hellstr=C3=B6m:
-> >>> Hi, Christian,
-> >>>
-> >>> On Mon, 2021-11-29 at 09:21 +0100, Christian K=C3=B6nig wrote:
-> >>>> Am 29.11.21 um 08:35 schrieb Thomas Hellstr=C3=B6m:
-> >>>>> If a dma_fence_array is reported signaled by a call to
-> >>>>> dma_fence_is_signaled(), it may leak the PENDING_ERROR status.
-> >>>>>
-> >>>>> Fix this by clearing the PENDING_ERROR status if we return true
-> >>>>> in
-> >>>>> dma_fence_array_signaled().
-> >>>>>
-> >>>>> Fixes: 1f70b8b812f3 ("dma-fence: Propagate errors to dma-fence-
-> >>>>> array container")
-> >>>>> Cc: linaro-mm-sig@lists.linaro.org
-> >>>>> Cc: Christian K=C3=B6nig <ckoenig.leichtzumerken@gmail.com>
-> >>>>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> >>>>> Signed-off-by: Thomas Hellstr=C3=B6m
-> >>>>> <thomas.hellstrom@linux.intel.com>
-> >>>> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> >>> How are the dma-buf / dma-fence patches typically merged? If i915
-> >>> is
-> >>> the only fence->error user, could we take this through drm-intel to
-> >>> avoid a backmerge for upcoming i915 work?
-> >> Well that one here looks like a bugfix to me, so either through
-> >> drm-misc-fixes ore some i915 -fixes branch sounds fine to me.
-> >>
-> >> If you have any new development based on that a backmerge of the -
-> >> fixes
-> >> into your -next branch is unavoidable anyway.
-> > Ok, I'll check with Joonas if I can take it through
-> > drm-intel-gt-next, since fixes are cherry-picked from that one. Patch
-> > will then appear in both the -fixes and the -next branch.
->=20
-> Well exactly that's the stuff Daniel told me to avoid :)
->=20
-> But maybe your i915 workflow is somehow better handling that than the=20
-> AMD workflow.
+== Series Details ==
 
-If it's a bugfix to a patch that merged through drm-misc-next, I'd
-always be inclined to merge the fixup using the same process (which
-would be drm-next-fixes).
+Series: series starting with [v4,1/2] i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API
+URL   : https://patchwork.freedesktop.org/series/97369/
+State : success
 
-In i915 we do always merge the patches to -next first, and never do a
-backmerge of -fixes (as it's a cherry-picked branch) so the workflows
-differ there.
+== Summary ==
 
-Here the time between the fixup and the previous patch is so long that
-either way is fine with. So feel free to apply to drm-intel-gt-next.
+CI Bug Log - changes from CI_DRM_10936 -> Patchwork_21693
+====================================================
 
-Regards, Joonas
+Summary
+-------
 
-> Christian.
->=20
-> >
-> > Thanks,
-> > /Thomas
-> >
-> >
-> >> Regards,
-> >> Christian.
-> >>
-> >>> /Thomas
-> >>>
-> >>>
-> >>>>> ---
-> >>>>>  =C2=A0=C2=A0 drivers/dma-buf/dma-fence-array.c | 6 +++++-
-> >>>>>  =C2=A0=C2=A0 1 file changed, 5 insertions(+), 1 deletion(-)
-> >>>>>
-> >>>>> diff --git a/drivers/dma-buf/dma-fence-array.c b/drivers/dma-
-> >>>>> buf/dma-fence-array.c
-> >>>>> index d3fbd950be94..3e07f961e2f3 100644
-> >>>>> --- a/drivers/dma-buf/dma-fence-array.c
-> >>>>> +++ b/drivers/dma-buf/dma-fence-array.c
-> >>>>> @@ -104,7 +104,11 @@ static bool
-> >>>>> dma_fence_array_signaled(struct
-> >>>>> dma_fence *fence)
-> >>>>>  =C2=A0=C2=A0 {
-> >>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct dma_f=
-ence_array *array =3D
-> >>>>> to_dma_fence_array(fence);
-> >>>>>    =20
-> >>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return atomic_read(&arra=
-y->num_pending) <=3D 0;
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (atomic_read(&array->=
-num_pending) > 0)
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0return false;
-> >>>>> +
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dma_fence_array_clear_pe=
-nding_error(array);
-> >>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return true;
-> >>>>>  =C2=A0=C2=A0 }
-> >>>>>    =20
-> >>>>>  =C2=A0=C2=A0 static void dma_fence_array_release(struct dma_fence =
-*fence)
-> >
->=20
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/index.html
+
+Participating hosts (36 -> 31)
+------------------------------
+
+  Missing    (5): bat-dg1-6 bat-adlp-4 fi-pnv-d510 bat-jsl-2 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21693 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-snb-2520m:       [PASS][2] -> [DMESG-FAIL][3] ([i915#4610])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-snb-2520m/igt@i915_selftest@live@requests.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-snb-2520m/igt@i915_selftest@live@requests.html
+    - fi-blb-e6850:       [PASS][4] -> [DMESG-FAIL][5] ([i915#4528])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-skl-6600u:       [PASS][6] -> [FAIL][7] ([i915#4547])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][8] ([i915#3363] / [i915#4312])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-skl-6600u/igt@runner@aborted.html
+    - fi-snb-2520m:       NOTRUN -> [FAIL][9] ([i915#2426] / [i915#4312])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-snb-2520m/igt@runner@aborted.html
+    - fi-blb-e6850:       NOTRUN -> [FAIL][10] ([fdo#109271] / [i915#2403] / [i915#4312])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-blb-e6850/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-bsw-nick:        [DMESG-FAIL][11] ([i915#2927] / [i915#3428]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4610]: https://gitlab.freedesktop.org/drm/intel/issues/4610
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10936 -> Patchwork_21693
+
+  CI-20190529: 20190529
+  CI_DRM_10936: bb84fd984ef382c1dbc265a6ace8829b6b178886 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6294: 5598666e8612fa98c6b4a92a824998f52135b0cc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21693: 45c6c722d2fcacabad6d28f9deb7b8b6e1e0bf2f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+45c6c722d2fc i915/gvt: save the MMIO snapshot in the early init of GVT-g
+20204614807c i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/index.html
+
+--===============7916406735294082300==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v4,1/2] i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97369/">https://patchwork.freedesktop.org/series/97369/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10936 -&gt; Patchwork_21693</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/index.html</p>
+<h2>Participating hosts (36 -&gt; 31)</h2>
+<p>Missing    (5): bat-dg1-6 bat-adlp-4 fi-pnv-d510 bat-jsl-2 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21693 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>
+<p>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-snb-2520m/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-snb-2520m/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4610">i915#4610</a>)</p>
+</li>
+<li>
+<p>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-snb-2520m/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-blb-e6850/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@late_gt_pm:<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10936/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21693/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10936 -&gt; Patchwork_21693</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10936: bb84fd984ef382c1dbc265a6ace8829b6b178886 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6294: 5598666e8612fa98c6b4a92a824998f52135b0cc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21693: 45c6c722d2fcacabad6d28f9deb7b8b6e1e0bf2f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>45c6c722d2fc i915/gvt: save the MMIO snapshot in the early init of GVT-g<br />
+20204614807c i915/gvt: Introduce the mmio_info_table.c to support VFIO new mdev API</p>
+
+</body>
+</html>
+
+--===============7916406735294082300==--
