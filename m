@@ -1,38 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C22F461AD8
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 16:27:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E61461AEE
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 16:32:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82B026F5A6;
-	Mon, 29 Nov 2021 15:27:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CE826F518;
+	Mon, 29 Nov 2021 15:32:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C90F6F49A;
- Mon, 29 Nov 2021 15:27:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10182"; a="259904703"
-X-IronPort-AV: E=Sophos;i="5.87,273,1631602800"; d="scan'208";a="259904703"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2021 07:27:45 -0800
-X-IronPort-AV: E=Sophos;i="5.87,273,1631602800"; d="scan'208";a="558842006"
-Received: from vanderss-mobl.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.176])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2021 07:27:42 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Mon, 29 Nov 2021 16:27:27 +0100
-Message-Id: <20211129152727.448908-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C2C426F513;
+ Mon, 29 Nov 2021 15:32:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BB7A3AA917;
+ Mon, 29 Nov 2021 15:32:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] dma_fence_array: Fix PENDING_ERROR leak in
- dma_fence_array_signaled()
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Mon, 29 Nov 2021 15:32:00 -0000
+Message-ID: <163819992073.16118.7945353336983623620@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Remove_short_term_pins_from_execbuf=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,57 +40,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Gustavo Padovan <gustavo@padovan.org>, stable@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, linaro-mm-sig@lists.linaro.org,
- matthew.auld@intel.com, Sumit Semwal <sumit.semwal@linaro.org>,
- linux-media@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If a dma_fence_array is reported signaled by a call to
-dma_fence_is_signaled(), it may leak the PENDING_ERROR status.
+== Series Details ==
 
-Fix this by clearing the PENDING_ERROR status if we return true in
-dma_fence_array_signaled().
+Series: drm/i915: Remove short term pins from execbuf.
+URL   : https://patchwork.freedesktop.org/series/97371/
+State : warning
 
-v2:
-- Update Cc list, and add R-b.
+== Summary ==
 
-Fixes: 1f70b8b812f3 ("dma-fence: Propagate errors to dma-fence-array container")
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>
-Cc: Gustavo Padovan <gustavo@padovan.org>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: linux-media@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linaro-mm-sig@lists.linaro.org
-Cc: <stable@vger.kernel.org> # v5.4+
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
----
- drivers/dma-buf/dma-fence-array.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+$ dim checkpatch origin/drm-tip
+21c47bda3457 drm/i915: Remove unused bits of i915_vma/active api
+27e1019e84ca drm/i915: Change shrink ordering to use locking around unbinding.
+-:28: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#28: FILE: drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:40:
++static int drop_pages(struct drm_i915_gem_object *obj,
++		       unsigned long shrink, bool trylock_vm)
 
-diff --git a/drivers/dma-buf/dma-fence-array.c b/drivers/dma-buf/dma-fence-array.c
-index d3fbd950be94..3e07f961e2f3 100644
---- a/drivers/dma-buf/dma-fence-array.c
-+++ b/drivers/dma-buf/dma-fence-array.c
-@@ -104,7 +104,11 @@ static bool dma_fence_array_signaled(struct dma_fence *fence)
- {
- 	struct dma_fence_array *array = to_dma_fence_array(fence);
+total: 0 errors, 0 warnings, 1 checks, 52 lines checked
+49b241bdc60e drm/i915: Remove pages_mutex and intel_gtt->vma_ops.set/clear_pages members, v2.
+49c514431121 drm/i915: Take object lock in i915_ggtt_pin if ww is not set
+aed8ae5a8f09 drm/i915: Force ww lock for i915_gem_object_ggtt_pin_ww
+9187bec11688 drm/i915: Ensure gem_contexts selftests work with unbind changes.
+568c85687baf drm/i915: Take trylock during eviction, v2.
+-:92: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#92: FILE: drivers/gpu/drm/i915/i915_gem_evict.c:250:
  
--	return atomic_read(&array->num_pending) <= 0;
-+	if (atomic_read(&array->num_pending) > 0)
-+		return false;
 +
-+	dma_fence_array_clear_pending_error(array);
-+	return true;
- }
- 
- static void dma_fence_array_release(struct dma_fence *fence)
--- 
-2.31.1
+
+total: 0 errors, 0 warnings, 1 checks, 109 lines checked
+6ceb6112dcde drm/i915: Pass trylock context to callers
+-:399: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#399: FILE: drivers/gpu/drm/i915/i915_vma.c:1463:
+ 		if (mutex_lock_interruptible(&vm->mutex) == 0) {
++
+
+total: 0 errors, 0 warnings, 1 checks, 446 lines checked
+166f1a537863 drm/i915: Ensure i915_vma tests do not get -ENOSPC with the locking changes.
+d46f7b03f645 drm/i915: Make i915_gem_evict_vm work correctly for already locked objects
+cace6794e201 drm/i915: Call i915_gem_evict_vm in vm_fault_gtt to prevent new ENOSPC errors
+11f3797a384a drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#7: 
+We want to remove more members of i915_vma, which requires the locking to be
+
+total: 0 errors, 1 warnings, 0 checks, 314 lines checked
+ba94479fef46 drm/i915: Require object lock when freeing pages during destruction
+9e25276fb506 drm/i915: Remove assert_object_held_shared
+b44c0dcf9f1b drm/i915: Remove support for unlocked i915_vma unbind
+f7d4a25d39c5 drm/i915: Remove short-term pins from execbuf, v5.
+
 
