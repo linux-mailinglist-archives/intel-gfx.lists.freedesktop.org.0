@@ -2,48 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEEE74615AE
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 14:00:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7107A4615A7
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Nov 2021 14:00:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FF5F6FD07;
-	Mon, 29 Nov 2021 13:00:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE0456FCFD;
+	Mon, 29 Nov 2021 13:00:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F10396EF38;
- Thu, 25 Nov 2021 13:51:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=axis.com; q=dns/txt; s=axis-central1; t=1637848282;
- x=1669384282; h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=IZMfh96pc1eATKuBd9LQI2ag0STcz/D7Jqsa3v1w6EA=;
- b=jgzgG10w9vP4Gs2lzNKK5OcYWIoSjFCceX8DfO4YOJzZrwuB6uWkU+lh
- N/CD5xSySDkCXP39gNpoQDqbD9npZ2jEJ67qoJ4Y1m4s8/63qSGXmtpdX
- v5+YKWgrrJK5qrNiqgPcu2XvrW3x/1/v+fDfTHjFniB74T+Az0yq/bY+d
- QuIqeYSQVmODoOG7SlniN07TqY+gmVtrFhfcvJrzsUfO+ayb/EoOACknS
- Ecc+Tik9aU72uOh3QCtDj7VvFxOM7Md34cuvpJxb4ZiUm7St+4SVFi2zd
- fQeBhoivxxvTPhX68ikboM3RrwAH98C6zhGLcjst+LHcPtZt5qNv1CAHJ A==;
-Date: Thu, 25 Nov 2021 14:51:19 +0100
-From: Vincent Whitchurch <vincent.whitchurch@axis.com>
-To: "jim.cromie@gmail.com" <jim.cromie@gmail.com>
-Message-ID: <20211125135119.GA7625@axis.com>
-References: <20211111220206.121610-1-jim.cromie@gmail.com>
- <20211111220206.121610-9-jim.cromie@gmail.com>
- <20211112114953.GA1381@axis.com>
- <f3914fa9-8b22-d54e-3f77-d998e74094b9@akamai.com>
- <20211116104631.195cbd0b@eldfell>
- <f87b7076-47e6-89b1-aaf9-b67aa6713e01@akamai.com>
- <20211118172401.0b4d722e@eldfell>
- <41ea83b2-a707-cb6f-521e-070bb12502de@akamai.com>
- <CAJfuBxyvDtALAHM53RdnWT4ke6Cjrc3OWTAqNKe_n-o_LhtpYg@mail.gmail.com>
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
+ [IPv6:2a00:1450:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0A586E1BD;
+ Mon, 29 Nov 2021 08:22:01 +0000 (UTC)
+Received: by mail-wr1-x42d.google.com with SMTP id j3so34889720wrp.1;
+ Mon, 29 Nov 2021 00:22:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=Hq1bgqxxCdegLBVOo7l4Q7H1Xie6p+wm7vH0Y40mkwo=;
+ b=CtNwvmW+uiYnu8xy64dsZh+j2/65YctzX6oqs2wOYwbMozt8JZF1cV5+4Y7H4uNO8h
+ QCH7gI6Q72FTybeCnLQWb14URcpKiR7AndKkYpXOkC8Q9n7MUr+8wws4u3GY1irCXSD3
+ vvmaAef8eAGIpyf5lsxsUWtqdVOo19QpajKqE8rOWNBwJYVukHD4HPX9lHgtTkFOc+Bj
+ kp2PBi3Ox3w9cjOe46WQuh27R/m9Ya+lVOXzciZa0FsQ65iq4SRqzGYf25SSzOhvBjEZ
+ VPCQJ0aSSAgZrfu8cgT0JsRs/Bpj9RKIWkh3GJoV+MufxqZdmQKVJkDzH3UoohTJRzHN
+ TF1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=Hq1bgqxxCdegLBVOo7l4Q7H1Xie6p+wm7vH0Y40mkwo=;
+ b=suFezEQyw5sZNtSb3Blv3Rk/+yrXktdgnnZaZ5AwGSClKyIgT+HKWFPhNYH5pPyajp
+ FsuMSsHssM1BBhe6DdzGSj+6F/2qQyCSVe8CHH96GS+r9zqputywegZhNA3VdZRcaDqQ
+ zqY/1l0JSE7c7b3YoSsTJMOVKjinTTySTo2glDSj+j8G9d3fsKUsKXfXrkY51IcaUloU
+ UNSVyLApewUZaSws/7CRx6Iq9gdedoRzI2KLMf3a0Se3erXUquTzbGmJkJLL1sT0Q2LX
+ x4K4o5c5V4jIkj0EXdpYYKYeO+82xtNSFm2iSH+nz/mSugvXjkfsYf7AhntatTtZ1X2g
+ FrfQ==
+X-Gm-Message-State: AOAM533kZgXx4GER/1lIj7LvDNIQ4UCVXUPR2cEQVBUYw250TOvlrc1S
+ qCNaDOxiQx0T8DyNtHRakKk=
+X-Google-Smtp-Source: ABdhPJzM2sppvC4WxGqvhpvtbRdPMWvSKAbROEghlA2ucohzHDqrxrVpH61SK17Yl6Nfbz7PsOLtuA==
+X-Received: by 2002:adf:fbc5:: with SMTP id d5mr34606968wrs.291.1638174120446; 
+ Mon, 29 Nov 2021 00:22:00 -0800 (PST)
+Received: from [192.168.178.21] (p57b0b77b.dip0.t-ipconnect.de.
+ [87.176.183.123])
+ by smtp.gmail.com with ESMTPSA id az15sm13456982wmb.0.2021.11.29.00.21.59
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 29 Nov 2021 00:22:00 -0800 (PST)
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20211129073533.414008-1-thomas.hellstrom@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <4fd0eee6-342f-fb31-717c-901440f38c35@gmail.com>
+Date: Mon, 29 Nov 2021 09:21:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAJfuBxyvDtALAHM53RdnWT4ke6Cjrc3OWTAqNKe_n-o_LhtpYg@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20211129073533.414008-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 X-Mailman-Approved-At: Mon, 29 Nov 2021 13:00:35 +0000
-Subject: Re: [Intel-gfx] [PATCH v10 08/10] dyndbg: add print-to-tracefs,
- selftest with it - RFC
+Subject: Re: [Intel-gfx] [PATCH] dma_fence_array: Fix PENDING_ERROR leak in
+ dma_fence_array_signaled()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,56 +75,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "quic_saipraka@quicinc.com" <quic_saipraka@quicinc.com>,
- Jason Baron <jbaron@akamai.com>, Catalin Marinas <catalin.marinas@arm.com>,
- dri-devel <dri-devel@lists.freedesktop.org>, Will Deacon <will@kernel.org>,
- "maz@kernel.org" <maz@kernel.org>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- Ingo Molnar <mingo@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Arnd Bergmann <arnd@arndb.de>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Steven Rostedt <rostedt@goodmis.org>, Pekka Paalanen <ppaalanen@gmail.com>,
- Sean Paul <seanpaul@chromium.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Greg KH <gregkh@linuxfoundation.org>, LKML <linux-kernel@vger.kernel.org>,
- "quic_psodagud@quicinc.com" <quic_psodagud@quicinc.com>,
- "mathieu.desnoyers@efficios.com" <mathieu.desnoyers@efficios.com>
+Cc: linaro-mm-sig@lists.linaro.org, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 19, 2021 at 11:46:31PM +0100, jim.cromie@gmail.com wrote:
-> Vincent's code has the macro magic to define that event, which IIUC
-> is what  makes it controllable by ftrace, and therefore acceptable in
-> principle to Steve.
-> Would there be any reason to expand his set of 2 events into dev_dbg,
-> pr_debug etc varieties ?
-> (ie any value to separating dev, !dev ?, maybe so
-> 
-> Sean's code uses trace_array_printk primarily, which is EXPORTed,
-> which is a virtue.
-> 
-> Vincents code does
-> +/*
-> + * This code is heavily based on __ftrace_trace_stack().
-> + *
-> + * Allow 4 levels of nesting: normal, softirq, irq, NMI.
-> + */
-> 
-> to implement
-> 
-> +static void dynamic_trace(const char *fmt, va_list args)
-> 
-> Has this __ftrace_trace_stack() code been bundled into or hidden under
-> a supported interface ?
-> 
-> would it look anything like trace_array_printk() ?
-> 
-> what problem is that code solving inside dynamic-debug.c ?
+Am 29.11.21 um 08:35 schrieb Thomas Hellström:
+> If a dma_fence_array is reported signaled by a call to
+> dma_fence_is_signaled(), it may leak the PENDING_ERROR status.
+>
+> Fix this by clearing the PENDING_ERROR status if we return true in
+> dma_fence_array_signaled().
+>
+> Fixes: 1f70b8b812f3 ("dma-fence: Propagate errors to dma-fence-array container")
+> Cc: linaro-mm-sig@lists.linaro.org
+> Cc: Christian König <ckoenig.leichtzumerken@gmail.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-I'm not sure I fully understand all of your questions, but perhaps this
-thread with Steven's reply to the first version of my patchset will
-answer some of them:
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
- https://lore.kernel.org/lkml/20200723112644.7759f82f@oasis.local.home/
+> ---
+>   drivers/dma-buf/dma-fence-array.c | 6 +++++-
+>   1 file changed, 5 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/dma-buf/dma-fence-array.c b/drivers/dma-buf/dma-fence-array.c
+> index d3fbd950be94..3e07f961e2f3 100644
+> --- a/drivers/dma-buf/dma-fence-array.c
+> +++ b/drivers/dma-buf/dma-fence-array.c
+> @@ -104,7 +104,11 @@ static bool dma_fence_array_signaled(struct dma_fence *fence)
+>   {
+>   	struct dma_fence_array *array = to_dma_fence_array(fence);
+>   
+> -	return atomic_read(&array->num_pending) <= 0;
+> +	if (atomic_read(&array->num_pending) > 0)
+> +		return false;
+> +
+> +	dma_fence_array_clear_pending_error(array);
+> +	return true;
+>   }
+>   
+>   static void dma_fence_array_release(struct dma_fence *fence)
+
