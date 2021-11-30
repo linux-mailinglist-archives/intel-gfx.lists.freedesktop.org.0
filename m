@@ -1,67 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9594A462EB8
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 09:43:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 243F5462F03
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 09:55:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE1556EC25;
-	Tue, 30 Nov 2021 08:43:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 391336F8FE;
+	Tue, 30 Nov 2021 08:55:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7B506EC39
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 08:43:50 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id t9so25682188wrx.7
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 00:43:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=sJyA0wgEIxttMi/MVC00O0LmA1DZEBGPTAclUWb8fME=;
- b=Op4WSSG5UGUzW/XYeP1GvmGmeAPH1OXYu6cxevk8eWyzL9BBxON6f9DjOQ47ZaqLci
- 1eDLIy1g8iM8u/q0PzUdvz1aZC034cKDJGpWDDbfnrzA5FKZUiCf6H7LCpdcXA+7SOrN
- mYsy3wOlTM4uycnZSB/B90A2KCz0Vk3DN/T78=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=sJyA0wgEIxttMi/MVC00O0LmA1DZEBGPTAclUWb8fME=;
- b=kGoPGXFtgU6yl7Oez6oGgQQOAtz11apcLX4gtwyQAJe8mNZbazeetv9mxeKMmWJ9D2
- G/3YkSm8Y9j5oRQ7I3C+yBkWMYE1plP4g6I9n//NccxMsorwIAO4nkd2/4W9qxr9VKgU
- r8qCDMHN4b1ZPvx2/lagmSo6TFIL3clyBl+jzdQ9DaxfLoDUPkojEmxGIPlY+vcZyHGX
- ADZAgP+sCer0bOjh/cXTYRS4pco7ZzTQUXtG+oTDP4vb+QxkHGxawz2YwsijNthyDj5l
- 1/cpU9zyaF0J7Xe+QSyuYVQl71lV9mVQVCv+HE7wMkS8inWDYxopDHt2WEAsemdGitiQ
- R9ZA==
-X-Gm-Message-State: AOAM533yAB62BCmOdXGQs/ll5WG0eshFiu1EhmZXn0MdxABOAEZx0jrK
- 92k79+iOJOXY3QOzDbxiDgDb4A==
-X-Google-Smtp-Source: ABdhPJyTiAxBsuBxuoBHPHIgrpslQEeCRowbGO09n3L4vZrzmXnYGqWZgYAJcta4QX59nENVDniF3A==
-X-Received: by 2002:a5d:618f:: with SMTP id j15mr38202876wru.506.1638261829178; 
- Tue, 30 Nov 2021 00:43:49 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id b10sm16069956wrt.36.2021.11.30.00.43.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Nov 2021 00:43:48 -0800 (PST)
-Date: Tue, 30 Nov 2021 09:43:46 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <YaXkQvdlQ4F6+pvz@phenom.ffwll.local>
-References: <20211129073533.414008-1-thomas.hellstrom@linux.intel.com>
- <4fd0eee6-342f-fb31-717c-901440f38c35@gmail.com>
- <58ca11648ab29d96b84640760d2acc3ac2d39d19.camel@linux.intel.com>
- <e4d8e272-8175-4298-f227-240febc0bda0@gmail.com>
- <ee128e237dbc2b6b2341b49ab07661c1f1b65e0b.camel@linux.intel.com>
- <180f069a-bf29-cf05-c9f9-5b1737ec5664@gmail.com>
- <163819167565.18436.3361321032268102014@jlahtine-mobl.ger.corp.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BA5E6F8F1;
+ Tue, 30 Nov 2021 08:55:01 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10183"; a="233674559"
+X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="233674559"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 00:55:01 -0800
+X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="477046471"
+Received: from sghadai-mobl.amr.corp.intel.com (HELO [10.213.181.11])
+ ([10.213.181.11])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 00:55:00 -0800
+Message-ID: <f1202314-f42d-e37a-49a7-16148f5018be@linux.intel.com>
+Date: Tue, 30 Nov 2021 08:54:58 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <163819167565.18436.3361321032268102014@jlahtine-mobl.ger.corp.intel.com>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH] dma_fence_array: Fix
- PENDING_ERROR leak in dma_fence_array_signaled()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Content-Language: en-US
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 00/16] drm/i915: Remove short term pins
+ from execbuf.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,130 +50,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, linaro-mm-sig@lists.linaro.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 29, 2021 at 03:14:35PM +0200, Joonas Lahtinen wrote:
-> (Switching to my @linux.intel.com address)
-> 
-> Quoting Christian König (2021-11-29 14:55:37)
-> > Am 29.11.21 um 13:46 schrieb Thomas Hellström:
-> > > On Mon, 2021-11-29 at 13:33 +0100, Christian König wrote:
-> > >> Am 29.11.21 um 13:23 schrieb Thomas Hellström:
-> > >>> Hi, Christian,
-> > >>>
-> > >>> On Mon, 2021-11-29 at 09:21 +0100, Christian König wrote:
-> > >>>> Am 29.11.21 um 08:35 schrieb Thomas Hellström:
-> > >>>>> If a dma_fence_array is reported signaled by a call to
-> > >>>>> dma_fence_is_signaled(), it may leak the PENDING_ERROR status.
-> > >>>>>
-> > >>>>> Fix this by clearing the PENDING_ERROR status if we return true
-> > >>>>> in
-> > >>>>> dma_fence_array_signaled().
-> > >>>>>
-> > >>>>> Fixes: 1f70b8b812f3 ("dma-fence: Propagate errors to dma-fence-
-> > >>>>> array container")
-> > >>>>> Cc: linaro-mm-sig@lists.linaro.org
-> > >>>>> Cc: Christian König <ckoenig.leichtzumerken@gmail.com>
-> > >>>>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > >>>>> Signed-off-by: Thomas Hellström
-> > >>>>> <thomas.hellstrom@linux.intel.com>
-> > >>>> Reviewed-by: Christian König <christian.koenig@amd.com>
-> > >>> How are the dma-buf / dma-fence patches typically merged? If i915
-> > >>> is
-> > >>> the only fence->error user, could we take this through drm-intel to
-> > >>> avoid a backmerge for upcoming i915 work?
-> > >> Well that one here looks like a bugfix to me, so either through
-> > >> drm-misc-fixes ore some i915 -fixes branch sounds fine to me.
-> > >>
-> > >> If you have any new development based on that a backmerge of the -
-> > >> fixes
-> > >> into your -next branch is unavoidable anyway.
-> > > Ok, I'll check with Joonas if I can take it through
-> > > drm-intel-gt-next, since fixes are cherry-picked from that one. Patch
-> > > will then appear in both the -fixes and the -next branch.
-> > 
-> > Well exactly that's the stuff Daniel told me to avoid :)
-> > 
-> > But maybe your i915 workflow is somehow better handling that than the 
-> > AMD workflow.
-> 
-> If it's a bugfix to a patch that merged through drm-misc-next, I'd
-> always be inclined to merge the fixup using the same process (which
-> would be drm-next-fixes).
-> 
-> In i915 we do always merge the patches to -next first, and never do a
-> backmerge of -fixes (as it's a cherry-picked branch) so the workflows
-> differ there.
-> 
-> Here the time between the fixup and the previous patch is so long that
-> either way is fine with. So feel free to apply to drm-intel-gt-next.
 
-To make this clear and avoid confusion: drm-misc and drm-intel work
-differently for bugfixes.
+Hi,
 
-drm-intel has paid maintainers who take care of cherry-picking and testing
-and making sure nothing is lost.
+On 29/11/2021 13:47, Maarten Lankhorst wrote:
+> New version of the series, with feedback from previous series added.
 
-drm-misc is all volunteers, so committers need to make sure stuff ends up
-in the right place.
+If there was a cover letter sent for this work in the past could you 
+please keep attaching it? Or if there wasn't, could you please write one?
 
-Hence different rules.
--Daniel
+I am worried about two things. First is that we need to have a high 
+level overview of the rules/design changes documented so third party 
+people have any hope of getting code right after this lands. (Where we 
+are, where we are going, how we will get there, how far did we get and 
+when we will get to the end.)
 
+Second is that when parts of the series land piecemeal (Which they have 
+in this right, right?), it gets very hard to write up a maintainer level 
+changelog.
+
+But in any case, even on the mundane process level, we need to have 
+cover letters for any non trivial work was the conclusion since some 
+time ago.
+
+Regards,
+
+Tvrtko
+
+> First 11 patches are clean, some small fixes might required still for all to pass.
 > 
-> Regards, Joonas
+> Maarten Lankhorst (16):
+>    drm/i915: Remove unused bits of i915_vma/active api
+>    drm/i915: Change shrink ordering to use locking around unbinding.
+>    drm/i915: Remove pages_mutex and intel_gtt->vma_ops.set/clear_pages
+>      members, v2.
+>    drm/i915: Take object lock in i915_ggtt_pin if ww is not set
+>    drm/i915: Force ww lock for i915_gem_object_ggtt_pin_ww
+>    drm/i915: Ensure gem_contexts selftests work with unbind changes.
+>    drm/i915: Take trylock during eviction, v2.
+>    drm/i915: Pass trylock context to callers
+>    drm/i915: Ensure i915_vma tests do not get -ENOSPC with the locking
+>      changes.
+>    drm/i915: Make i915_gem_evict_vm work correctly for already locked
+>      objects
+>    drm/i915: Call i915_gem_evict_vm in vm_fault_gtt to prevent new ENOSPC
+>      errors
+>    drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for
+>      i915_vma_unbind
+>    drm/i915: Require object lock when freeing pages during destruction
+>    drm/i915: Remove assert_object_held_shared
+>    drm/i915: Remove support for unlocked i915_vma unbind
+>    drm/i915: Remove short-term pins from execbuf, v5.
 > 
-> > Christian.
-> > 
-> > >
-> > > Thanks,
-> > > /Thomas
-> > >
-> > >
-> > >> Regards,
-> > >> Christian.
-> > >>
-> > >>> /Thomas
-> > >>>
-> > >>>
-> > >>>>> ---
-> > >>>>>     drivers/dma-buf/dma-fence-array.c | 6 +++++-
-> > >>>>>     1 file changed, 5 insertions(+), 1 deletion(-)
-> > >>>>>
-> > >>>>> diff --git a/drivers/dma-buf/dma-fence-array.c b/drivers/dma-
-> > >>>>> buf/dma-fence-array.c
-> > >>>>> index d3fbd950be94..3e07f961e2f3 100644
-> > >>>>> --- a/drivers/dma-buf/dma-fence-array.c
-> > >>>>> +++ b/drivers/dma-buf/dma-fence-array.c
-> > >>>>> @@ -104,7 +104,11 @@ static bool
-> > >>>>> dma_fence_array_signaled(struct
-> > >>>>> dma_fence *fence)
-> > >>>>>     {
-> > >>>>>           struct dma_fence_array *array =
-> > >>>>> to_dma_fence_array(fence);
-> > >>>>>     
-> > >>>>> -       return atomic_read(&array->num_pending) <= 0;
-> > >>>>> +       if (atomic_read(&array->num_pending) > 0)
-> > >>>>> +               return false;
-> > >>>>> +
-> > >>>>> +       dma_fence_array_clear_pending_error(array);
-> > >>>>> +       return true;
-> > >>>>>     }
-> > >>>>>     
-> > >>>>>     static void dma_fence_array_release(struct dma_fence *fence)
-> > >
-> > 
-> _______________________________________________
-> Linaro-mm-sig mailing list
-> Linaro-mm-sig@lists.linaro.org
-> https://lists.linaro.org/mailman/listinfo/linaro-mm-sig
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+>   drivers/gpu/drm/i915/display/intel_dpt.c      |   2 -
+>   drivers/gpu/drm/i915/display/intel_fb_pin.c   |   2 +-
+>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 250 ++++----
+>   drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  18 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_object.c    |   9 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  22 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  12 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  44 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |   2 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |   2 +-
+>   .../gpu/drm/i915/gem/selftests/huge_pages.c   |   2 +-
+>   .../i915/gem/selftests/i915_gem_client_blt.c  |   2 +-
+>   .../drm/i915/gem/selftests/i915_gem_context.c |  54 +-
+>   .../drm/i915/gem/selftests/i915_gem_mman.c    |   6 +
+>   drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |  15 -
+>   drivers/gpu/drm/i915/gt/intel_engine_pm.c     |   2 +-
+>   drivers/gpu/drm/i915/gt/intel_ggtt.c          | 450 ++------------
+>   drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |   1 -
+>   drivers/gpu/drm/i915/gt/intel_gtt.c           |  13 -
+>   drivers/gpu/drm/i915/gt/intel_gtt.h           |   7 -
+>   drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  12 -
+>   drivers/gpu/drm/i915/gt/mock_engine.c         |   2 +-
+>   drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |   2 +-
+>   drivers/gpu/drm/i915/gt/selftest_migrate.c    |   2 +-
+>   drivers/gpu/drm/i915/gvt/aperture_gm.c        |   2 +-
+>   drivers/gpu/drm/i915/i915_active.c            |  28 +-
+>   drivers/gpu/drm/i915/i915_active.h            |  17 +-
+>   drivers/gpu/drm/i915/i915_drv.h               |  12 +-
+>   drivers/gpu/drm/i915/i915_gem.c               |  28 +-
+>   drivers/gpu/drm/i915/i915_gem_evict.c         |  64 +-
+>   drivers/gpu/drm/i915/i915_gem_gtt.c           |   8 +-
+>   drivers/gpu/drm/i915/i915_gem_gtt.h           |   4 +
+>   drivers/gpu/drm/i915/i915_vgpu.c              |   2 +-
+>   drivers/gpu/drm/i915/i915_vma.c               | 580 +++++++++++++++---
+>   drivers/gpu/drm/i915/i915_vma.h               |   6 +-
+>   drivers/gpu/drm/i915/i915_vma_types.h         |   1 -
+>   .../gpu/drm/i915/selftests/i915_gem_evict.c   |  27 +-
+>   drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  48 +-
+>   drivers/gpu/drm/i915/selftests/i915_vma.c     |  19 +-
+>   drivers/gpu/drm/i915/selftests/mock_gtt.c     |   4 -
+>   40 files changed, 942 insertions(+), 841 deletions(-)
+> 
