@@ -2,42 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94E4B463222
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 12:17:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC3D463229
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 12:18:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73C466E58B;
-	Tue, 30 Nov 2021 11:17:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4444A6E2D5;
+	Tue, 30 Nov 2021 11:18:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE9F06E58B;
- Tue, 30 Nov 2021 11:17:40 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10183"; a="236017784"
-X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="236017784"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2021 03:17:40 -0800
-X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="512136237"
-Received: from dcondura-mobl.ger.corp.intel.com (HELO [10.252.36.49])
- ([10.252.36.49])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2021 03:17:39 -0800
-Message-ID: <b40c5455-7b60-7c97-9fcd-fba67ed71f6d@linux.intel.com>
-Date: Tue, 30 Nov 2021 12:17:37 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E45A26E029;
+ Tue, 30 Nov 2021 11:18:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DCF8DAADE0;
+ Tue, 30 Nov 2021 11:18:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.3.2
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
- <f1202314-f42d-e37a-49a7-16148f5018be@linux.intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <f1202314-f42d-e37a-49a7-16148f5018be@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 00/16] drm/i915: Remove short term pins
- from execbuf.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Tue, 30 Nov 2021 11:18:36 -0000
+Message-ID: <163827111690.20410.10333494016726262769@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Remove_short_term_pins_from_execbuf=2E_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,42 +41,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 30-11-2021 09:54, Tvrtko Ursulin wrote:
->
-> Hi,
->
-> On 29/11/2021 13:47, Maarten Lankhorst wrote:
->> New version of the series, with feedback from previous series added.
->
-> If there was a cover letter sent for this work in the past could you please keep attaching it? Or if there wasn't, could you please write one?
->
-> I am worried about two things. First is that we need to have a high level overview of the rules/design changes documented so third party people have any hope of getting code right after this lands. (Where we are, where we are going, how we will get there, how far did we get and when we will get to the end.)
->
-> Second is that when parts of the series land piecemeal (Which they have in this right, right?), it gets very hard to write up a maintainer level changelog.
+== Series Details ==
 
-The preparation part is to ensure we always hold vma->obj->resv when unbinding.
+Series: drm/i915: Remove short term pins from execbuf. (rev2)
+URL   : https://patchwork.freedesktop.org/series/97371/
+State : warning
 
-The first preparation series ensured vma->obj always existed. This was not the case for mock gtt and gen6 aliasing gtt. This allowed us to remove all the special handling for those uncommon cases, and actually enforce we can always take that lock. This part is merged.
+== Summary ==
 
-Patch 2-11 in this series adds the vma->obj->resv to eviction and shrinker. Those are the only parts where we don't take the lock yet.
+$ dim checkpatch origin/drm-tip
+d65c71e4c92c drm/i915: Remove unused bits of i915_vma/active api
+fadb5f274a4c drm/i915: Change shrink ordering to use locking around unbinding.
+-:28: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#28: FILE: drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:40:
++static int drop_pages(struct drm_i915_gem_object *obj,
++		       unsigned long shrink, bool trylock_vm)
 
-After that, we always hold the lock when required, and we can start requiring the obj-> resv lock when unbinding. This is completed in patch 15.
+total: 0 errors, 0 warnings, 1 checks, 52 lines checked
+9fceaa51b585 drm/i915: Remove pages_mutex and intel_gtt->vma_ops.set/clear_pages members, v2.
+7b675e7d0598 drm/i915: Take object lock in i915_ggtt_pin if ww is not set
+ae6ba039701c drm/i915: Force ww lock for i915_gem_object_ggtt_pin_ww, v2.
+7a6579de7714 drm/i915: Ensure gem_contexts selftests work with unbind changes.
+7f406571a8b2 drm/i915: Take trylock during eviction, v2.
+-:92: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#92: FILE: drivers/gpu/drm/i915/i915_gem_evict.c:250:
+ 
++
 
-With that fixed, removing short term pins can be done, because for unbind we now always take obj->resv, so holding obj->resv during execbuf submission is sufficient, and all short term pinning can be removed.
+total: 0 errors, 0 warnings, 1 checks, 109 lines checked
+09d297c5af88 drm/i915: Pass trylock context to callers
+-:399: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#399: FILE: drivers/gpu/drm/i915/i915_vma.c:1463:
+ 		if (mutex_lock_interruptible(&vm->mutex) == 0) {
++
 
-We only pin temporarily when calling i915_gem_evict_vm in execbuf, which could also be handled in theory by just marking all objects as unpinned.
+total: 0 errors, 0 warnings, 1 checks, 446 lines checked
+bbd7fe8346e2 drm/i915: Ensure i915_vma tests do not get -ENOSPC with the locking changes.
+2fa114f12b15 drm/i915: Make i915_gem_evict_vm work correctly for already locked objects
+987f5b2664da drm/i915: Call i915_gem_evict_vm in vm_fault_gtt to prevent new ENOSPC errors
+1a3c1ee723a0 drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#7: 
+We want to remove more members of i915_vma, which requires the locking to be
 
-As a bonus, using TTM for delayed eviction on all objects becomes easy, just need to get rid of i915_active in i915_vma, as it keeps the object refcount alive.
+total: 0 errors, 1 warnings, 0 checks, 314 lines checked
+8e3854a73b6d drm/i915: Require object lock when freeing pages during destruction
+bec379c96571 drm/i915: Remove assert_object_held_shared
+32e3349d5f17 drm/i915: Remove support for unlocked i915_vma unbind
+af771ff7d089 drm/i915: Remove short-term pins from execbuf, v5.
 
-Remainder is removing refcount to i915_vma, to make it a real
-
-> But in any case, even on the mundane process level, we need to have cover letters for any non trivial work was the conclusion since some time ago. 
-
-Here you go! I hope it explains the reasoning.
-
-~Maarten
 
