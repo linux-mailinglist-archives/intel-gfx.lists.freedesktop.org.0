@@ -2,59 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44BE24631D8
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 12:09:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E4B463222
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 12:17:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F0D26E140;
-	Tue, 30 Nov 2021 11:09:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73C466E58B;
+	Tue, 30 Nov 2021 11:17:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 737866E140
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 11:09:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10183"; a="322435639"
-X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="322435639"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2021 03:09:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="575798881"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga004.fm.intel.com with ESMTP; 30 Nov 2021 03:09:54 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 30 Nov 2021 03:09:53 -0800
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2308.020;
- Tue, 30 Nov 2021 03:09:53 -0800
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Tvrtko
- Ursulin" <tvrtko.ursulin@linux.intel.com>, "Syrjala, Ville"
- <ville.syrjala@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Joonas
- Lahtinen" <joonas.lahtinen@linux.intel.com>
-Thread-Topic: [v2 3/3] drm/i915/rpl-s: Enable guc submission by default
-Thread-Index: AQHX3aXingb3zzO9C0y4iO8YFfFmH6wP2agAgAwWnoA=
-Date: Tue, 30 Nov 2021 11:09:53 +0000
-Message-ID: <dcefb2694a0045dda5844893d401fe87@intel.com>
-References: <20211120002921.1939452-1-anusha.srivatsa@intel.com>
- <20211120002921.1939452-4-anusha.srivatsa@intel.com>
- <87czmso6l7.fsf@intel.com>
-In-Reply-To: <87czmso6l7.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.200.16
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE9F06E58B;
+ Tue, 30 Nov 2021 11:17:40 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10183"; a="236017784"
+X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="236017784"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 03:17:40 -0800
+X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="512136237"
+Received: from dcondura-mobl.ger.corp.intel.com (HELO [10.252.36.49])
+ ([10.252.36.49])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 03:17:39 -0800
+Message-ID: <b40c5455-7b60-7c97-9fcd-fba67ed71f6d@linux.intel.com>
+Date: Tue, 30 Nov 2021 12:17:37 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v2 3/3] drm/i915/rpl-s: Enable guc submission by
- default
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.3.2
+Content-Language: en-US
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
+ <f1202314-f42d-e37a-49a7-16148f5018be@linux.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <f1202314-f42d-e37a-49a7-16148f5018be@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 00/16] drm/i915: Remove short term pins
+ from execbuf.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,106 +50,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 30-11-2021 09:54, Tvrtko Ursulin wrote:
+>
+> Hi,
+>
+> On 29/11/2021 13:47, Maarten Lankhorst wrote:
+>> New version of the series, with feedback from previous series added.
+>
+> If there was a cover letter sent for this work in the past could you please keep attaching it? Or if there wasn't, could you please write one?
+>
+> I am worried about two things. First is that we need to have a high level overview of the rules/design changes documented so third party people have any hope of getting code right after this lands. (Where we are, where we are going, how we will get there, how far did we get and when we will get to the end.)
+>
+> Second is that when parts of the series land piecemeal (Which they have in this right, right?), it gets very hard to write up a maintainer level changelog.
 
+The preparation part is to ensure we always hold vma->obj->resv when unbinding.
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Monday, November 22, 2021 3:28 PM
-> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>; intel-
-> gfx@lists.freedesktop.org; Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com=
->;
-> Syrjala, Ville <ville.syrjala@intel.com>; Vivi, Rodrigo
-> <rodrigo.vivi@intel.com>; Joonas Lahtinen
-> <joonas.lahtinen@linux.intel.com>
-> Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; Dhanavanthri, Swathi
-> <swathi.dhanavanthri@intel.com>
-> Subject: Re: [v2 3/3] drm/i915/rpl-s: Enable guc submission by default
->=20
-> On Fri, 19 Nov 2021, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
-> > Though, RPL-S is defined as subplatform of ADL-S, unlike ADL-S, it has
-> > GuC submission by default.
-> >
-> > v2: Remove extra parenthesis (Jani)
-> >
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > Cc: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-> > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/uc/intel_uc.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> > b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> > index 2fef3b0bbe95..6aa843a1c25f 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> > @@ -35,7 +35,7 @@ static void uc_expand_default_options(struct intel_uc
-> *uc)
-> >  	}
-> >
-> >  	/* Intermediate platforms are HuC authentication only */
-> > -	if (IS_ALDERLAKE_S(i915)) {
-> > +	if (IS_ALDERLAKE_S(i915) && !IS_RAPTORLAKE_S(i915)) {
->=20
-> I know I looked through the previous version, but I only realized this no=
-w.
-> The above just feels wrong. Like, if it's ADL-S it obviously can't be RPL=
--S, so
-> why the check.
->=20
-> We've had this type of thing before when IS_VALLEYVIEW() used to mean
-> VLV || CHV, and you'd have these really confusing checks:
->=20
-> 	if (IS_VALLEYVIEW() && !IS_CHERRYVIEW())
->=20
-> We had to change that later on, and it was pretty annoying.
->=20
-> I'm really sorry I didn't spot this before, but I firmly believe adding a=
- platform
-> check macro IS_RAPTORLAKE_S() as a subplatform check is the wrong thing
-> to do.
->=20
-> I think there are maybe three options:
->=20
-> 1) Add RPL-S as a full blown platform of its own. Convert
->    IS_ALDERLAKE_S() checks to IS_ALDERLAKE_S() || IS_RAPTORLAKE_S(). If
->    we think there's going to be more differences than just the guc
->    submission, this is the way to go.
+The first preparation series ensured vma->obj always existed. This was not the case for mock gtt and gen6 aliasing gtt. This allowed us to remove all the special handling for those uncommon cases, and actually enforce we can always take that lock. This part is merged.
 
-No. there is nothing else different between the 2 platforms.
+Patch 2-11 in this series adds the vma->obj->resv to eviction and shrinker. Those are the only parts where we don't take the lock yet.
 
-> 2) Add RPL-S as a subplatform of ADL-S like here, but then don't add a
->    platform macro IS_RAPTORLAKE_S(). Make the check something that
->    conveys the subplatform idea. See all the users of IS_SUBPLATFORM()
->    in i915_drv.h; for example IS_DG2_G10(). It's obvious it's a DG2 but
->    subtype G10. So maybe IS_ADLS_RPLS(), I don't know.
+After that, we always hold the lock when required, and we can start requiring the obj-> resv lock when unbinding. This is completed in patch 15.
 
-I am trying to understand what this will serve. The above check will change=
- from=20
-(IS_ALDERLAKE_S(i915) && !IS_RAPTORLAKE_S(i915) to (IS_ALDERLAKE_S(i915) &&=
- !IS_ADLS_RPLS(i915). Agreed it will make the fact that RPLS is subplatform=
- of ADLS a lot clear. Is that what you are suggesting?
+With that fixed, removing short term pins can be done, because for unbind we now always take obj->resv, so holding obj->resv during execbuf submission is sufficient, and all short term pinning can be removed.
 
+We only pin temporarily when calling i915_gem_evict_vm in execbuf, which could also be handled in theory by just marking all objects as unpinned.
 
-Anusha
-> 3) Add RPL-S PCI IDs as ADL-S with separate device info, but add a
->    feature flag for the guc submission default. Then RPL-S does not
->    exist as a platform or subplatform in code, rather as ADL-S, but the
->    difference is recorded via flags.
->=20
->=20
-> BR,
-> Jani.
->=20
->=20
->=20
->=20
-> >  		i915->params.enable_guc =3D ENABLE_GUC_LOAD_HUC;
-> >  		return;
-> >  	}
->=20
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+As a bonus, using TTM for delayed eviction on all objects becomes easy, just need to get rid of i915_active in i915_vma, as it keeps the object refcount alive.
+
+Remainder is removing refcount to i915_vma, to make it a real
+
+> But in any case, even on the mundane process level, we need to have cover letters for any non trivial work was the conclusion since some time ago. 
+
+Here you go! I hope it explains the reasoning.
+
+~Maarten
+
