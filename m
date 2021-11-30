@@ -2,33 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CCC84631DE
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 12:11:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44BE24631D8
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 12:09:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 828736E270;
-	Tue, 30 Nov 2021 11:11:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F0D26E140;
+	Tue, 30 Nov 2021 11:09:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E38E6E270
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 11:11:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10183"; a="233693819"
-X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="233693819"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2021 03:11:50 -0800
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 737866E140
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 11:09:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10183"; a="322435639"
+X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="322435639"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 03:09:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="499728002"
-Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by orsmga007.jf.intel.com with ESMTP; 30 Nov 2021 03:11:48 -0800
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 Nov 2021 16:36:07 +0530
-Message-Id: <20211130110607.3902085-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-X-Mailer: git-send-email 2.31.1
+X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="575798881"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga004.fm.intel.com with ESMTP; 30 Nov 2021 03:09:54 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 30 Nov 2021 03:09:53 -0800
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2308.020;
+ Tue, 30 Nov 2021 03:09:53 -0800
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Tvrtko
+ Ursulin" <tvrtko.ursulin@linux.intel.com>, "Syrjala, Ville"
+ <ville.syrjala@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Joonas
+ Lahtinen" <joonas.lahtinen@linux.intel.com>
+Thread-Topic: [v2 3/3] drm/i915/rpl-s: Enable guc submission by default
+Thread-Index: AQHX3aXingb3zzO9C0y4iO8YFfFmH6wP2agAgAwWnoA=
+Date: Tue, 30 Nov 2021 11:09:53 +0000
+Message-ID: <dcefb2694a0045dda5844893d401fe87@intel.com>
+References: <20211120002921.1939452-1-anusha.srivatsa@intel.com>
+ <20211120002921.1939452-4-anusha.srivatsa@intel.com>
+ <87czmso6l7.fsf@intel.com>
+In-Reply-To: <87czmso6l7.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.200.16
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/adl-n: Enable ADL-N platform
+Subject: Re: [Intel-gfx] [v2 3/3] drm/i915/rpl-s: Enable guc submission by
+ default
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,111 +70,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Adding PCI device ids and enabling ADL-N platform.
-ADL-N from i915 point of view is subplatform of ADL-P.
 
-BSpec: 68397
 
-Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
----
- arch/x86/kernel/early-quirks.c           | 1 +
- drivers/gpu/drm/i915/i915_drv.h          | 2 ++
- drivers/gpu/drm/i915/i915_pci.c          | 1 +
- drivers/gpu/drm/i915/intel_device_info.c | 7 +++++++
- drivers/gpu/drm/i915/intel_device_info.h | 3 +++
- include/drm/i915_pciids.h                | 5 +++++
- 6 files changed, 19 insertions(+)
+> -----Original Message-----
+> From: Jani Nikula <jani.nikula@linux.intel.com>
+> Sent: Monday, November 22, 2021 3:28 PM
+> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>; intel-
+> gfx@lists.freedesktop.org; Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com=
+>;
+> Syrjala, Ville <ville.syrjala@intel.com>; Vivi, Rodrigo
+> <rodrigo.vivi@intel.com>; Joonas Lahtinen
+> <joonas.lahtinen@linux.intel.com>
+> Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; Dhanavanthri, Swathi
+> <swathi.dhanavanthri@intel.com>
+> Subject: Re: [v2 3/3] drm/i915/rpl-s: Enable guc submission by default
+>=20
+> On Fri, 19 Nov 2021, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
+> > Though, RPL-S is defined as subplatform of ADL-S, unlike ADL-S, it has
+> > GuC submission by default.
+> >
+> > v2: Remove extra parenthesis (Jani)
+> >
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > Cc: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+> > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/uc/intel_uc.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> > b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> > index 2fef3b0bbe95..6aa843a1c25f 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> > @@ -35,7 +35,7 @@ static void uc_expand_default_options(struct intel_uc
+> *uc)
+> >  	}
+> >
+> >  	/* Intermediate platforms are HuC authentication only */
+> > -	if (IS_ALDERLAKE_S(i915)) {
+> > +	if (IS_ALDERLAKE_S(i915) && !IS_RAPTORLAKE_S(i915)) {
+>=20
+> I know I looked through the previous version, but I only realized this no=
+w.
+> The above just feels wrong. Like, if it's ADL-S it obviously can't be RPL=
+-S, so
+> why the check.
+>=20
+> We've had this type of thing before when IS_VALLEYVIEW() used to mean
+> VLV || CHV, and you'd have these really confusing checks:
+>=20
+> 	if (IS_VALLEYVIEW() && !IS_CHERRYVIEW())
+>=20
+> We had to change that later on, and it was pretty annoying.
+>=20
+> I'm really sorry I didn't spot this before, but I firmly believe adding a=
+ platform
+> check macro IS_RAPTORLAKE_S() as a subplatform check is the wrong thing
+> to do.
+>=20
+> I think there are maybe three options:
+>=20
+> 1) Add RPL-S as a full blown platform of its own. Convert
+>    IS_ALDERLAKE_S() checks to IS_ALDERLAKE_S() || IS_RAPTORLAKE_S(). If
+>    we think there's going to be more differences than just the guc
+>    submission, this is the way to go.
 
-diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
-index 391a4e2b8604..b9800d9f11b0 100644
---- a/arch/x86/kernel/early-quirks.c
-+++ b/arch/x86/kernel/early-quirks.c
-@@ -554,6 +554,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
- 	INTEL_RKL_IDS(&gen11_early_ops),
- 	INTEL_ADLS_IDS(&gen11_early_ops),
- 	INTEL_ADLP_IDS(&gen11_early_ops),
-+	INTEL_ADLN_IDS(&gen11_early_ops),
- };
- 
- struct resource intel_graphics_stolen_res __ro_after_init = DEFINE_RES_MEM(0, 0);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 1bfadd9127fc..e8fd98064692 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1463,6 +1463,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_DG1(dev_priv)        IS_PLATFORM(dev_priv, INTEL_DG1)
- #define IS_ALDERLAKE_S(dev_priv) IS_PLATFORM(dev_priv, INTEL_ALDERLAKE_S)
- #define IS_ALDERLAKE_P(dev_priv) IS_PLATFORM(dev_priv, INTEL_ALDERLAKE_P)
-+#define IS_ALDERLAKE_N(dev_priv) \
-+	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_N)
- #define IS_XEHPSDV(dev_priv) IS_PLATFORM(dev_priv, INTEL_XEHPSDV)
- #define IS_DG2(dev_priv)	IS_PLATFORM(dev_priv, INTEL_DG2)
- #define IS_DG2_G10(dev_priv) \
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index f01cba4ec283..9b816eddbcaf 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -1130,6 +1130,7 @@ static const struct pci_device_id pciidlist[] = {
- 	INTEL_RKL_IDS(&rkl_info),
- 	INTEL_ADLS_IDS(&adl_s_info),
- 	INTEL_ADLP_IDS(&adl_p_info),
-+	INTEL_ADLN_IDS(&adl_p_info),
- 	INTEL_DG1_IDS(&dg1_info),
- 	{0, 0, 0}
- };
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 6e6b317bc33c..5d04dea5bd01 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -182,6 +182,10 @@ static const u16 subplatform_portf_ids[] = {
- 	INTEL_ICL_PORT_F_IDS(0),
- };
- 
-+static const u16 subplatform_n_ids[] = {
-+	INTEL_ADLN_IDS(0),
-+};
-+
- static bool find_devid(u16 id, const u16 *p, unsigned int num)
- {
- 	for (; num; num--, p++) {
-@@ -218,6 +222,9 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
- 	} else if (find_devid(devid, subplatform_portf_ids,
- 			      ARRAY_SIZE(subplatform_portf_ids))) {
- 		mask = BIT(INTEL_SUBPLATFORM_PORTF);
-+	} else if (find_devid(devid, subplatform_n_ids,
-+			      ARRAY_SIZE(subplatform_n_ids))) {
-+		mask = BIT(INTEL_SUBPLATFORM_N);
- 	}
- 
- 	if (IS_TIGERLAKE(i915)) {
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index 669f0d26c3c3..d4d2d230d04a 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -110,6 +110,9 @@ enum intel_platform {
- #define INTEL_SUBPLATFORM_G10	0
- #define INTEL_SUBPLATFORM_G11	1
- 
-+/* ADL */
-+#define INTEL_SUBPLATFORM_N	0
-+
- enum intel_ppgtt_type {
- 	INTEL_PPGTT_NONE = I915_GEM_PPGTT_NONE,
- 	INTEL_PPGTT_ALIASING = I915_GEM_PPGTT_ALIASING,
-diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
-index c00ac54692d7..5de540db8269 100644
---- a/include/drm/i915_pciids.h
-+++ b/include/drm/i915_pciids.h
-@@ -666,4 +666,9 @@
- 	INTEL_VGA_DEVICE(0x46C2, info), \
- 	INTEL_VGA_DEVICE(0x46C3, info)
- 
-+/* ADL-N */
-+#define INTEL_ADLN_IDS(info) \
-+	INTEL_VGA_DEVICE(0x46D0, info), \
-+	INTEL_VGA_DEVICE(0x46D1, info), \
-+	INTEL_VGA_DEVICE(0x46D2, info)
- #endif /* _I915_PCIIDS_H */
--- 
-2.31.1
+No. there is nothing else different between the 2 platforms.
 
+> 2) Add RPL-S as a subplatform of ADL-S like here, but then don't add a
+>    platform macro IS_RAPTORLAKE_S(). Make the check something that
+>    conveys the subplatform idea. See all the users of IS_SUBPLATFORM()
+>    in i915_drv.h; for example IS_DG2_G10(). It's obvious it's a DG2 but
+>    subtype G10. So maybe IS_ADLS_RPLS(), I don't know.
+
+I am trying to understand what this will serve. The above check will change=
+ from=20
+(IS_ALDERLAKE_S(i915) && !IS_RAPTORLAKE_S(i915) to (IS_ALDERLAKE_S(i915) &&=
+ !IS_ADLS_RPLS(i915). Agreed it will make the fact that RPLS is subplatform=
+ of ADLS a lot clear. Is that what you are suggesting?
+
+
+Anusha
+> 3) Add RPL-S PCI IDs as ADL-S with separate device info, but add a
+>    feature flag for the guc submission default. Then RPL-S does not
+>    exist as a platform or subplatform in code, rather as ADL-S, but the
+>    difference is recorded via flags.
+>=20
+>=20
+> BR,
+> Jani.
+>=20
+>=20
+>=20
+>=20
+> >  		i915->params.enable_guc =3D ENABLE_GUC_LOAD_HUC;
+> >  		return;
+> >  	}
+>=20
+> --
+> Jani Nikula, Intel Open Source Graphics Center
