@@ -2,61 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF29463107
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 11:33:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66C0E463125
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 11:37:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C368689CB5;
-	Tue, 30 Nov 2021 10:33:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3672B6E329;
+	Tue, 30 Nov 2021 10:37:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A37689B96
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 10:33:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10183"; a="223415272"
-X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="223415272"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2021 02:33:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="601352593"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by fmsmga002.fm.intel.com with ESMTP; 30 Nov 2021 02:33:01 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 30 Nov 2021 02:33:00 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 30 Nov 2021 02:33:00 -0800
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2308.020;
- Tue, 30 Nov 2021 02:33:00 -0800
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [v2 1/3] drm/i915/rpl-s: Add PCI IDS for Raptor Lake
- S
-Thread-Index: AQHX3aXgTQ2DKEii+Ee0QWEnsRkwnqwP352AgAwQM9A=
-Date: Tue, 30 Nov 2021 10:33:00 +0000
-Message-ID: <d3f5bbcc5e684e4d945e4ec796d28379@intel.com>
-References: <20211120002921.1939452-1-anusha.srivatsa@intel.com>
- <20211120002921.1939452-2-anusha.srivatsa@intel.com>
- <b1afa331-d39c-95c2-c737-155782b00449@linux.intel.com>
-In-Reply-To: <b1afa331-d39c-95c2-c737-155782b00449@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.200.16
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4060F6E30D;
+ Tue, 30 Nov 2021 10:37:01 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10183"; a="223070080"
+X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="223070080"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 02:37:00 -0800
+X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="477071284"
+Received: from dmeldon-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.12.174])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 02:36:54 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211129233354.101347-1-lyude@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211129233354.101347-1-lyude@redhat.com>
+Date: Tue, 30 Nov 2021 12:36:42 +0200
+Message-ID: <871r2yj5fp.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v2 1/3] drm/i915/rpl-s: Add PCI IDS for Raptor
- Lake S
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/dp: Perform 30ms delay after
+ source OUI write
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,107 +46,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>,
+ stable@vger.kernel.org, Dave Airlie <airlied@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogVHZydGtvIFVyc3VsaW4g
-PHR2cnRrby51cnN1bGluQGxpbnV4LmludGVsLmNvbT4NCj4gU2VudDogTW9uZGF5LCBOb3ZlbWJl
-ciAyMiwgMjAyMSAzOjQ5IFBNDQo+IFRvOiBTcml2YXRzYSwgQW51c2hhIDxhbnVzaGEuc3JpdmF0
-c2FAaW50ZWwuY29tPjsgaW50ZWwtDQo+IGdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3Vi
-amVjdDogUmU6IFtJbnRlbC1nZnhdIFt2MiAxLzNdIGRybS9pOTE1L3JwbC1zOiBBZGQgUENJIElE
-UyBmb3IgUmFwdG9yIExha2UgUw0KPiANCj4gDQo+IE9uIDIwLzExLzIwMjEgMDA6MjksIEFudXNo
-YSBTcml2YXRzYSB3cm90ZToNCj4gPiBSYXB0b3IgTGFrZSBTKFJQTC1TKSBpcyBhIHZlcnNpb24g
-MTINCj4gPiBEaXNwbGF5LCBNZWRpYSBhbmQgUmVuZGVyLiBGb3IgYWxsIGk5MTUgcHVycG9zZXMg
-aXQgaXMgdGhlIHNhbWUgYXMNCj4gPiBBbGRlciBMYWtlIFMgKEFETC1TKS4NCj4gPg0KPiA+IElu
-dHJvZHVjZSBSUEwtUyBhcyBhIHN1YnBsYXRmb3JtDQo+ID4gb2YgQURMLVMuIFRoaXMgcGF0Y2gg
-YWRkcyBQQ0kgaWRzIGZvciBSUEwtUy4NCj4gPg0KPiA+IHYyOiBVcGRhdGUgUENJIElEcy4NCj4g
-PiAtIEFkZCBtb3JlIGRlc2NyaXB0aW9uIHRvIGNvbW1pdCBtZXNzYWdlIChKYW5pKQ0KPiA+DQo+
-ID4gQlNwZWM6IDUzNjU1DQo+ID4gQ2M6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRl
-bC5jb20+DQo+ID4gQ2M6IFN3YXRoaSBEaGFuYXZhbnRocmkgPHN3YXRoaS5kaGFuYXZhbnRocmlA
-aW50ZWwuY29tPg0KPiA+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAbGludXguaW50ZWwu
-Y29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEFudXNoYSBTcml2YXRzYSA8YW51c2hhLnNyaXZhdHNh
-QGludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiAgIGFyY2gveDg2L2tlcm5lbC9lYXJseS1xdWlya3Mu
-YyAgICAgICAgICAgfCAxICsNCj4gPiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2Lmgg
-ICAgICAgICAgfCAyICsrDQo+ID4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jICAg
-ICAgICAgIHwgMSArDQo+ID4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5m
-by5jIHwgNyArKysrKysrDQo+ID4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2Vf
-aW5mby5oIHwgMyArKysNCj4gPiAgIGluY2x1ZGUvZHJtL2k5MTVfcGNpaWRzLmggICAgICAgICAg
-ICAgICAgfCA5ICsrKysrKysrKw0KPiA+ICAgNiBmaWxlcyBjaGFuZ2VkLCAyMyBpbnNlcnRpb25z
-KCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC94ODYva2VybmVsL2Vhcmx5LXF1aXJrcy5j
-DQo+ID4gYi9hcmNoL3g4Ni9rZXJuZWwvZWFybHktcXVpcmtzLmMgaW5kZXggMzkxYTRlMmI4NjA0
-Li5mZDJkM2FiMzhlYmINCj4gPiAxMDA2NDQNCj4gPiAtLS0gYS9hcmNoL3g4Ni9rZXJuZWwvZWFy
-bHktcXVpcmtzLmMNCj4gPiArKysgYi9hcmNoL3g4Ni9rZXJuZWwvZWFybHktcXVpcmtzLmMNCj4g
-PiBAQCAtNTU0LDYgKzU1NCw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCBp
-bnRlbF9lYXJseV9pZHNbXQ0KPiBfX2luaXRjb25zdCA9IHsNCj4gPiAgIAlJTlRFTF9SS0xfSURT
-KCZnZW4xMV9lYXJseV9vcHMpLA0KPiA+ICAgCUlOVEVMX0FETFNfSURTKCZnZW4xMV9lYXJseV9v
-cHMpLA0KPiA+ICAgCUlOVEVMX0FETFBfSURTKCZnZW4xMV9lYXJseV9vcHMpLA0KPiA+ICsJSU5U
-RUxfUlBMU19JRFMoJmdlbjExX2Vhcmx5X29wcyksDQo+ID4gICB9Ow0KPiA+DQo+ID4gICBzdHJ1
-Y3QgcmVzb3VyY2UgaW50ZWxfZ3JhcGhpY3Nfc3RvbGVuX3JlcyBfX3JvX2FmdGVyX2luaXQgPQ0K
-PiA+IERFRklORV9SRVNfTUVNKDAsIDApOyBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9kcnYuaA0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCBpbmRl
-eCAxYmZhZGQ5MTI3ZmMuLmM1M2RhMDcyNTVjNQ0KPiA+IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X2Rydi5oDQo+ID4gQEAgLTE0NjksNiArMTQ2OSw4IEBAIElTX1NVQlBMQVRGT1JNKGNv
-bnN0IHN0cnVjdCBkcm1faTkxNV9wcml2YXRlDQo+ICppOTE1LA0KPiA+ICAgCUlTX1NVQlBMQVRG
-T1JNKGRldl9wcml2LCBJTlRFTF9ERzIsIElOVEVMX1NVQlBMQVRGT1JNX0cxMCkNCj4gPiAgICNk
-ZWZpbmUgSVNfREcyX0cxMShkZXZfcHJpdikgXA0KPiA+ICAgCUlTX1NVQlBMQVRGT1JNKGRldl9w
-cml2LCBJTlRFTF9ERzIsIElOVEVMX1NVQlBMQVRGT1JNX0cxMSkNCj4gPiArI2RlZmluZSBJU19S
-QVBUT1JMQUtFX1MoZGV2X3ByaXYpIFwNCj4gPiArCUlTX1NVQlBMQVRGT1JNKGRldl9wcml2LCBJ
-TlRFTF9BTERFUkxBS0VfUywNCj4gSU5URUxfU1VCUExBVEZPUk1fUlBMKQ0KPiA+ICAgI2RlZmlu
-ZSBJU19IU1dfRUFSTFlfU0RWKGRldl9wcml2KSAoSVNfSEFTV0VMTChkZXZfcHJpdikgJiYgXA0K
-PiA+ICAgCQkJCSAgICAoSU5URUxfREVWSUQoZGV2X3ByaXYpICYgMHhGRjAwKSA9PQ0KPiAweDBD
-MDApDQo+ID4gICAjZGVmaW5lIElTX0JEV19VTFQoZGV2X3ByaXYpIFwNCj4gPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9wY2kuYyBpbmRleCBmMDFjYmE0ZWMyODMuLjA2MWIyZTA3NjM3Mw0KPiA+IDEw
-MDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMNCj4gPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jDQo+ID4gQEAgLTExMzEsNiArMTEzMSw3
-IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCBwY2lpZGxpc3RbXSA9IHsNCj4g
-PiAgIAlJTlRFTF9BRExTX0lEUygmYWRsX3NfaW5mbyksDQo+ID4gICAJSU5URUxfQURMUF9JRFMo
-JmFkbF9wX2luZm8pLA0KPiA+ICAgCUlOVEVMX0RHMV9JRFMoJmRnMV9pbmZvKSwNCj4gPiArCUlO
-VEVMX1JQTFNfSURTKCZhZGxfc19pbmZvKSwNCj4gPiAgIAl7MCwgMCwgMH0NCj4gPiAgIH07DQo+
-ID4gICBNT0RVTEVfREVWSUNFX1RBQkxFKHBjaSwgcGNpaWRsaXN0KTsgZGlmZiAtLWdpdA0KPiA+
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYw0KPiA+IGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYw0KPiA+IGluZGV4IDZlNmIzMTdiYzMz
-Yy4uNTY1YjUwYzNmMzRmIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
-dGVsX2RldmljZV9pbmZvLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9k
-ZXZpY2VfaW5mby5jDQo+ID4gQEAgLTE4Miw2ICsxODIsMTAgQEAgc3RhdGljIGNvbnN0IHUxNiBz
-dWJwbGF0Zm9ybV9wb3J0Zl9pZHNbXSA9IHsNCj4gPiAgIAlJTlRFTF9JQ0xfUE9SVF9GX0lEUygw
-KSwNCj4gPiAgIH07DQo+ID4NCj4gPiArc3RhdGljIGNvbnN0IHUxNiBzdWJwbGF0Zm9ybV9ycGxf
-aWRzW10gPSB7DQo+ID4gKwlJTlRFTF9SUExTX0lEUygwKSwNCj4gPiArfTsNCj4gPiArDQo+ID4g
-ICBzdGF0aWMgYm9vbCBmaW5kX2RldmlkKHUxNiBpZCwgY29uc3QgdTE2ICpwLCB1bnNpZ25lZCBp
-bnQgbnVtKQ0KPiA+ICAgew0KPiA+ICAgCWZvciAoOyBudW07IG51bS0tLCBwKyspIHsNCj4gPiBA
-QCAtMjE4LDYgKzIyMiw5IEBAIHZvaWQgaW50ZWxfZGV2aWNlX2luZm9fc3VicGxhdGZvcm1faW5p
-dChzdHJ1Y3QNCj4gZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkNCj4gPiAgIAl9IGVsc2UgaWYgKGZp
-bmRfZGV2aWQoZGV2aWQsIHN1YnBsYXRmb3JtX3BvcnRmX2lkcywNCj4gPiAgIAkJCSAgICAgIEFS
-UkFZX1NJWkUoc3VicGxhdGZvcm1fcG9ydGZfaWRzKSkpIHsNCj4gPiAgIAkJbWFzayA9IEJJVChJ
-TlRFTF9TVUJQTEFURk9STV9QT1JURik7DQo+ID4gKwl9IGVsc2UgaWYgKGZpbmRfZGV2aWQoZGV2
-aWQsIHN1YnBsYXRmb3JtX3JwbF9pZHMsDQo+ID4gKwkJCSAgICAgIEFSUkFZX1NJWkUoc3VicGxh
-dGZvcm1fcnBsX2lkcykpKSB7DQo+ID4gKwkJbWFzayA9IEJJVChJTlRFTF9TVUJQTEFURk9STV9S
-UEwpOw0KPiA+ICAgCX0NCj4gPg0KPiA+ICAgCWlmIChJU19USUdFUkxBS0UoaTkxNSkpIHsNCj4g
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaA0K
-PiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaA0KPiA+IGluZGV4
-IDY2OWYwZDI2YzNjMy4uMTg2ZTc3M2ZkMGRhIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmgNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oDQo+ID4gQEAgLTExMCw2ICsxMTAsOSBAQCBlbnVtIGlu
-dGVsX3BsYXRmb3JtIHsNCj4gPiAgICNkZWZpbmUgSU5URUxfU1VCUExBVEZPUk1fRzEwCTANCj4g
-PiAgICNkZWZpbmUgSU5URUxfU1VCUExBVEZPUk1fRzExCTENCj4gPg0KPiA+ICsvKiBSUEwgKi8N
-Cj4gPiArI2RlZmluZSBJTlRFTF9TVUJQTEFURk9STV9SUEwJMA0KPiANCj4gQ29tbWVudCBpcyB3
-cm9uZyBhcyBzYWlkIGJlZm9yZS4gQ29tbWVudCBzaG91bGQgc2F5IHRvIHdoaWNoIHBsYXRmb3Jt
-DQo+IHRoZSBzdWJwbGF0Zm9ybSBiaXRzIGFwcGx5LiBJdCBjYW5ub3QgYXBwbHkgdG8gaXRzZWxm
-IHNpbmNlIFJQTCBwbGF0Zm9ybSBkb2VzDQo+IG5vdCBleGlzdC4NClRoYXQgaXMgY29ycmVjdC4g
-R29vZCBjYXRjaC4gSSBsbCBmaXggdGhpcy4NCg0KVGhhbmtzIFR2cnRrby4NCkFudXNoYQ0KPiAN
-Cj4gUmVnYXJkcywNCj4gDQo+IFR2cnRrbw0KPiANCj4gPiArDQo+ID4gICBlbnVtIGludGVsX3Bw
-Z3R0X3R5cGUgew0KPiA+ICAgCUlOVEVMX1BQR1RUX05PTkUgPSBJOTE1X0dFTV9QUEdUVF9OT05F
-LA0KPiA+ICAgCUlOVEVMX1BQR1RUX0FMSUFTSU5HID0gSTkxNV9HRU1fUFBHVFRfQUxJQVNJTkcs
-IGRpZmYgLS1naXQNCj4gPiBhL2luY2x1ZGUvZHJtL2k5MTVfcGNpaWRzLmggYi9pbmNsdWRlL2Ry
-bS9pOTE1X3BjaWlkcy5oIGluZGV4DQo+ID4gYzAwYWM1NDY5MmQ3Li5iYWYzZDFkM2Q1NjYgMTAw
-NjQ0DQo+ID4gLS0tIGEvaW5jbHVkZS9kcm0vaTkxNV9wY2lpZHMuaA0KPiA+ICsrKyBiL2luY2x1
-ZGUvZHJtL2k5MTVfcGNpaWRzLmgNCj4gPiBAQCAtNjY2LDQgKzY2NiwxMyBAQA0KPiA+ICAgCUlO
-VEVMX1ZHQV9ERVZJQ0UoMHg0NkMyLCBpbmZvKSwgXA0KPiA+ICAgCUlOVEVMX1ZHQV9ERVZJQ0Uo
-MHg0NkMzLCBpbmZvKQ0KPiA+DQo+ID4gKy8qIFJQTC1TICovDQo+ID4gKyNkZWZpbmUgSU5URUxf
-UlBMU19JRFMoaW5mbykgXA0KPiA+ICsJSU5URUxfVkdBX0RFVklDRSgweEE3ODAsIGluZm8pLCBc
-DQo+ID4gKwlJTlRFTF9WR0FfREVWSUNFKDB4QTc4MSwgaW5mbyksIFwNCj4gPiArCUlOVEVMX1ZH
-QV9ERVZJQ0UoMHhBNzgyLCBpbmZvKSwgXA0KPiA+ICsJSU5URUxfVkdBX0RFVklDRSgweEE3ODMs
-IGluZm8pLCBcDQo+ID4gKwlJTlRFTF9WR0FfREVWSUNFKDB4QTc4OCwgaW5mbyksIFwNCj4gPiAr
-CUlOVEVMX1ZHQV9ERVZJQ0UoMHhBNzg5LCBpbmZvKQ0KPiA+ICsNCj4gPiAgICNlbmRpZiAvKiBf
-STkxNV9QQ0lJRFNfSCAqLw0KPiA+DQo=
+On Mon, 29 Nov 2021, Lyude Paul <lyude@redhat.com> wrote:
+> While working on supporting the Intel HDR backlight interface, I noticed
+> that there's a couple of laptops that will very rarely manage to boot up
+> without detecting Intel HDR backlight support - even though it's supported
+> on the system. One example of such a laptop is the Lenovo P17 1st
+> generation.
+>
+> Following some investigation Ville Syrj=C3=A4l=C3=A4 did through the docs=
+ they have
+> available to them, they discovered that there's actually supposed to be a
+> 30ms wait after writing the source OUI before we begin setting up the rest
+> of the backlight interface.
+>
+> This seems to be correct, as adding this 30ms delay seems to have
+> completely fixed the probing issues I was previously seeing. So - let's
+> start performing a 30ms wait after writing the OUI, which we do in a mann=
+er
+> similar to how we keep track of PPS delays (e.g. record the timestamp of
+> the OUI write, and then wait for however many ms are left since that
+> timestamp right before we interact with the backlight) in order to avoid
+> waiting any longer then we need to. As well, this also avoids us performi=
+ng
+> this delay on systems where we don't end up using the HDR backlight
+> interface.
+>
+> V2:
+> * Move panel delays into intel_pps
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Fixes: 4a8d79901d5b ("drm/i915/dp: Enable Intel's HDR backlight interface=
+ (only SDR for now)")
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: <stable@vger.kernel.org> # v5.12+
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_types.h    |  4 ++++
+>  drivers/gpu/drm/i915/display/intel_dp.c               | 11 +++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.h               |  2 ++
+>  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c |  5 +++++
+>  4 files changed, 22 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index ea1e8a6e10b0..ad64f9caa7ff 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1485,6 +1485,7 @@ struct intel_pps {
+>  	bool want_panel_vdd;
+>  	unsigned long last_power_on;
+>  	unsigned long last_backlight_off;
+> +	unsigned long last_oui_write;
+>  	ktime_t panel_power_off_time;
+>  	intel_wakeref_t vdd_wakeref;
+>=20=20
+> @@ -1653,6 +1654,9 @@ struct intel_dp {
+>  	struct intel_dp_pcon_frl frl;
+>=20=20
+>  	struct intel_psr psr;
+> +
+> +	/* When we last wrote the OUI for eDP */
+> +	unsigned long last_oui_write;
+
+Now you're adding last_oui_write to both intel_pps and intel_dp, forgot
+to git add? ;)
+
+I guess I'd add this to intel_dp only, because it's not strictly about
+PPS. I just wanted the mechanism to be similar to that.
+
+>  };
+>=20=20
+>  enum lspcon_vendor {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 0a424bf69396..45318891ba07 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -29,6 +29,7 @@
+>  #include <linux/i2c.h>
+>  #include <linux/notifier.h>
+>  #include <linux/slab.h>
+> +#include <linux/timekeeping.h>
+>  #include <linux/types.h>
+>=20=20
+>  #include <asm/byteorder.h>
+> @@ -2010,6 +2011,16 @@ intel_edp_init_source_oui(struct intel_dp *intel_d=
+p, bool careful)
+>=20=20
+>  	if (drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, oui, sizeof(oui)) =
+< 0)
+>  		drm_err(&i915->drm, "Failed to write source OUI\n");
+> +
+> +	intel_dp->pps.last_oui_write =3D jiffies;
+
+Set to intel_dp->last_oui_write.
+
+With those fixes,
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
+> +}
+> +
+> +void intel_dp_wait_source_oui(struct intel_dp *intel_dp)
+> +{
+> +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> +
+> +	drm_dbg_kms(&i915->drm, "Performing OUI wait\n");
+> +	wait_remaining_ms_from_jiffies(intel_dp->last_oui_write, 30);
+>  }
+>=20=20
+>  /* If the device supports it, try to set the power state appropriately */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
+15/display/intel_dp.h
+> index ce229026dc91..b64145a3869a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -119,4 +119,6 @@ void intel_dp_pcon_dsc_configure(struct intel_dp *int=
+el_dp,
+>  				 const struct intel_crtc_state *crtc_state);
+>  void intel_dp_phy_test(struct intel_encoder *encoder);
+>=20=20
+> +void intel_dp_wait_source_oui(struct intel_dp *intel_dp);
+> +
+>  #endif /* __INTEL_DP_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index 8b9c925c4c16..62c112daacf2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -36,6 +36,7 @@
+>=20=20
+>  #include "intel_backlight.h"
+>  #include "intel_display_types.h"
+> +#include "intel_dp.h"
+>  #include "intel_dp_aux_backlight.h"
+>=20=20
+>  /* TODO:
+> @@ -106,6 +107,8 @@ intel_dp_aux_supports_hdr_backlight(struct intel_conn=
+ector *connector)
+>  	int ret;
+>  	u8 tcon_cap[4];
+>=20=20
+> +	intel_dp_wait_source_oui(intel_dp);
+> +
+>  	ret =3D drm_dp_dpcd_read(aux, INTEL_EDP_HDR_TCON_CAP0, tcon_cap, sizeof=
+(tcon_cap));
+>  	if (ret !=3D sizeof(tcon_cap))
+>  		return false;
+> @@ -204,6 +207,8 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_=
+crtc_state *crtc_state,
+>  	int ret;
+>  	u8 old_ctrl, ctrl;
+>=20=20
+> +	intel_dp_wait_source_oui(intel_dp);
+> +
+>  	ret =3D drm_dp_dpcd_readb(&intel_dp->aux, INTEL_EDP_HDR_GETSET_CTRL_PAR=
+AMS, &old_ctrl);
+>  	if (ret !=3D 1) {
+>  		drm_err(&i915->drm, "Failed to read current backlight control mode: %d=
+\n", ret);
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
