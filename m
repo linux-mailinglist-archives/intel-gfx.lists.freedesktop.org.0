@@ -2,39 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CF93463E8B
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 20:17:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29D09463E9C
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 20:28:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8226E22F;
-	Tue, 30 Nov 2021 19:17:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 362C96E0C9;
+	Tue, 30 Nov 2021 19:28:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 107C96E1B7
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 19:17:30 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="216317185"
-X-IronPort-AV: E=Sophos;i="5.87,276,1631602800"; d="scan'208";a="216317185"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A73B6E05C;
+ Tue, 30 Nov 2021 19:28:10 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="216318966"
+X-IronPort-AV: E=Sophos;i="5.87,276,1631602800"; d="scan'208";a="216318966"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2021 11:17:29 -0800
-X-IronPort-AV: E=Sophos;i="5.87,276,1631602800"; d="scan'208";a="540533562"
-Received: from astamour-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.16.69])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2021 11:17:28 -0800
-Date: Tue, 30 Nov 2021 11:17:28 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Mullati Siva <siva.mullati@intel.com>
-Message-ID: <20211130191728.hiyeuvchddhly3qx@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20211122123142.319367-1-siva.mullati@intel.com>
+ 30 Nov 2021 11:27:54 -0800
+X-IronPort-AV: E=Sophos;i="5.87,276,1631602800"; d="scan'208";a="595566014"
+Received: from hekner-mobl5.ger.corp.intel.com (HELO [10.249.254.206])
+ ([10.249.254.206])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 11:27:52 -0800
+Message-ID: <49cf2d43-9a8a-7738-0889-7e16b0256249@linux.intel.com>
+Date: Tue, 30 Nov 2021 20:27:49 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Content-Language: en-US
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20211130121936.586031-1-thomas.hellstrom@linux.intel.com>
+ <20211130121936.586031-2-thomas.hellstrom@linux.intel.com>
+ <c7502701-e85c-39f0-c249-702d029faa9e@linux.intel.com>
+ <b440cfbc-2b9a-1aa2-76d6-17337f835777@linux.intel.com>
+ <52a7cf8c-59c7-fec0-2274-d19bdc505314@amd.com>
+ <57df8b0b-1d65-155f-a9a6-8073bbd4f28f@linux.intel.com>
+ <2551da4d-2e51-cc24-7d4a-84ae00a1547c@amd.com>
+ <29d096c91d720fbe5d410124580a02b663155b56.camel@linux.intel.com>
+ <250a8e47-2093-1a98-3859-0204ec4e60e6@amd.com>
+ <712b54fa1c09ae5cc1d75739ad8a7286f1dae8db.camel@linux.intel.com>
+In-Reply-To: <712b54fa1c09ae5cc1d75739ad8a7286f1dae8db.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211122123142.319367-1-siva.mullati@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Skip remap_io_mapping() for
- non-x86 platforms
+Subject: Re: [Intel-gfx] [RFC PATCH 1/2] dma-fence: Avoid establishing a
+ locking order between fence classes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,131 +59,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- matthew.auld@intel.com
+Cc: linaro-mm-sig@lists.linaro.org, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 22, 2021 at 06:01:42PM +0530, Mullati Siva wrote:
->From: Siva Mullati <siva.mullati@intel.com>
+
+On 11/30/21 19:12, Thomas Hellström wrote:
+> On Tue, 2021-11-30 at 16:02 +0100, Christian König wrote:
+>> Am 30.11.21 um 15:35 schrieb Thomas Hellström:
+>>> On Tue, 2021-11-30 at 14:26 +0100, Christian König wrote:
+>>>> Am 30.11.21 um 13:56 schrieb Thomas Hellström:
+>>>>> On 11/30/21 13:42, Christian König wrote:
+>>>>>> Am 30.11.21 um 13:31 schrieb Thomas Hellström:
+>>>>>>> [SNIP]
+>>>>>>>> Other than that, I didn't investigate the nesting fails
+>>>>>>>> enough to
+>>>>>>>> say I can accurately review this. :)
+>>>>>>> Basically the problem is that within enable_signaling()
+>>>>>>> which
+>>>>>>> is
+>>>>>>> called with the dma_fence lock held, we take the dma_fence
+>>>>>>> lock
+>>>>>>> of
+>>>>>>> another fence. If that other fence is a dma_fence_array, or
+>>>>>>> a
+>>>>>>> dma_fence_chain which in turn tries to lock a
+>>>>>>> dma_fence_array
+>>>>>>> we hit
+>>>>>>> a splat.
+>>>>>> Yeah, I already thought that you constructed something like
+>>>>>> that.
+>>>>>>
+>>>>>> You get the splat because what you do here is illegal, you
+>>>>>> can't
+>>>>>> mix
+>>>>>> dma_fence_array and dma_fence_chain like this or you can end
+>>>>>> up
+>>>>>> in a
+>>>>>> stack corruption.
+>>>>> Hmm. Ok, so what is the stack corruption, is it that the
+>>>>> enable_signaling() will end up with endless recursion? If so,
+>>>>> wouldn't
+>>>>> it be more usable we break that recursion chain and allow a
+>>>>> more
+>>>>> general use?
+>>>> The problem is that this is not easily possible for
+>>>> dma_fence_array
+>>>> containers. Just imagine that you drop the last reference to the
+>>>> containing fences during dma_fence_array destruction if any of
+>>>> the
+>>>> contained fences is another container you can easily run into
+>>>> recursion
+>>>> and with that stack corruption.
+>>> Indeed, that would require some deeper surgery.
+>>>
+>>>> That's one of the major reasons I came up with the
+>>>> dma_fence_chain
+>>>> container. This one you can chain any number of elements together
+>>>> without running into any recursion.
+>>>>
+>>>>> Also what are the mixing rules between these? Never use a
+>>>>> dma-fence-chain as one of the array fences and never use a
+>>>>> dma-fence-array as a dma-fence-chain fence?
+>>>> You can't add any other container to a dma_fence_array, neither
+>>>> other
+>>>> dma_fence_array instances nor dma_fence_chain instances.
+>>>>
+>>>> IIRC at least technically a dma_fence_chain can contain a
+>>>> dma_fence_array if you absolutely need that, but Daniel, Jason
+>>>> and I
+>>>> already had the same discussion a while back and came to the
+>>>> conclusion
+>>>> to avoid that as well if possible.
+>>> Yes, this is actually the use-case. But what I can't easily
+>>> guarantee
+>>> is that that dma_fence_chain isn't fed into a dma_fence_array
+>>> somewhere
+>>> else. How do you typically avoid that?
+>>>
+>>> Meanwhile I guess I need to take a different approach in the driver
+>>> to
+>>> avoid this altogether.
+>> Jason and I came up with a deep dive iterator for his use case, but I
+>> think we don't want to use that any more after my dma_resv rework.
+>>
+>> In other words when you need to create a new dma_fence_array you
+>> flatten
+>> out the existing construct which is at worst case
+>> dma_fence_chain->dma_fence_array->dma_fence.
+> Ok, Are there any cross-driver contract here, Like every driver using a
+> dma_fence_array need to check for dma_fence_chain and flatten like
+> above?
 >
->Only hw that supports mappable aperture would hit this path
->vm_fault_gtt/vm_fault_tmm, So we never hit this function
->remap_io_mapping() in discrete, So skip this code for non-x86
->architectures.
+> /Thomas
+
+Oh, and a follow up question:
+
+If there was a way to break the recursion on final put() (using the same 
+basic approach as patch 2 in this series uses to break recursion in 
+enable_signaling()), so that none of these containers did require any 
+special treatment, would it be worth pursuing? I guess it might be 
+possible by having the callbacks drop the references rather than the 
+loop in the final put. + a couple of changes in code iterating over the 
+fence pointers.
+
+/Thomas
+
 >
->Signed-off-by: Siva Mullati <siva.mullati@intel.com>
->---
-> drivers/gpu/drm/i915/gem/i915_gem_mman.c |  1 +
-> drivers/gpu/drm/i915/i915_drv.h          |  8 ------
-> drivers/gpu/drm/i915/i915_mm.c           |  1 +
-> drivers/gpu/drm/i915/i915_mm.h           | 32 ++++++++++++++++++++++++
-> 4 files changed, 34 insertions(+), 8 deletions(-)
-> create mode 100644 drivers/gpu/drm/i915/i915_mm.h
->
->diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->index 65fc6ff5f59d..39bb15eafc07 100644
->--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->@@ -17,6 +17,7 @@
-> #include "i915_gem_ioctls.h"
-> #include "i915_gem_object.h"
-> #include "i915_gem_mman.h"
->+#include "i915_mm.h"
-> #include "i915_trace.h"
-> #include "i915_user_extensions.h"
-> #include "i915_gem_ttm.h"
->diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->index 1bfadd9127fc..7ae0f0cc6866 100644
->--- a/drivers/gpu/drm/i915/i915_drv.h
->+++ b/drivers/gpu/drm/i915/i915_drv.h
->@@ -1967,14 +1967,6 @@ mkwrite_device_info(struct drm_i915_private *dev_priv)
-> int i915_reg_read_ioctl(struct drm_device *dev, void *data,
-> 			struct drm_file *file);
->
->-/* i915_mm.c */
->-int remap_io_mapping(struct vm_area_struct *vma,
->-		     unsigned long addr, unsigned long pfn, unsigned long size,
->-		     struct io_mapping *iomap);
->-int remap_io_sg(struct vm_area_struct *vma,
->-		unsigned long addr, unsigned long size,
->-		struct scatterlist *sgl, resource_size_t iobase);
->-
-> static inline int intel_hws_csb_write_index(struct drm_i915_private *i915)
-> {
-> 	if (GRAPHICS_VER(i915) >= 11)
->diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
->index 666808cb3a32..f4df15fe7cf8 100644
->--- a/drivers/gpu/drm/i915/i915_mm.c
->+++ b/drivers/gpu/drm/i915/i915_mm.c
->@@ -27,6 +27,7 @@
->
->
-> #include "i915_drv.h"
->+#include "i915_mm.h"
->
-> struct remap_pfn {
-> 	struct mm_struct *mm;
->diff --git a/drivers/gpu/drm/i915/i915_mm.h b/drivers/gpu/drm/i915/i915_mm.h
->new file mode 100644
->index 000000000000..1d3bbb9cbf43
->--- /dev/null
->+++ b/drivers/gpu/drm/i915/i915_mm.h
->@@ -0,0 +1,32 @@
->+/* SPDX-License-Identifier: MIT */
->+/*
->+ * Copyright � 2021 Intel Corporation
->+ */
->+
->+#ifndef __I915_MM_H__
->+#define __I915_MM_H__
->+
->+#include <linux/types.h>
->+
->+struct vm_area_struct;
->+struct io_mapping;
->+struct scatterlist;
->+
->+#if IS_ENABLED(CONFIG_X86)
->+int remap_io_mapping(struct vm_area_struct *vma,
->+		unsigned long addr, unsigned long pfn, unsigned long size,
->+		struct io_mapping *iomap);
->+#else
->+static inline int remap_io_mapping(struct vm_area_struct *vma,
->+		unsigned long addr, unsigned long pfn, unsigned long size,
->+		struct io_mapping *iomap)
->+{
-
-would probably be good to add:
-
-	pr_err("Architecture has no remap_io_mapping() and shouldn't be calling this function\n");
-	WARN_ON_ONCE(1);
-
-the same way that is done in drivers/gpu/drm/drm_cache.c
-
-Other than that:
-
-
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Since you're adding this header, can you follow up with one additional
-patch to move the rest of the prototypes off i915_drv.h and into this
-new header?
-
-
-thanks
-Lucas De Marchi
-
-
->+	return 0;
->+}
->+#endif
->+
->+int remap_io_sg(struct vm_area_struct *vma,
->+		unsigned long addr, unsigned long size,
->+		struct scatterlist *sgl, resource_size_t iobase);
->+
->+#endif /* __I915_MM_H__ */
->-- 
->2.33.0
->
+>> Regards,
+>> Christian.
+>>
+>>> /Thomas
+>>>
+>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>>> /Thomas
+>>>>>
+>>>>>
+>>>>>
+>>>>>
+>>>>>> Regards,
+>>>>>> Christian.
+>>>>>>
+>>>>>>> But I'll update the commit message with a typical splat.
+>>>>>>>
+>>>>>>> /Thomas
