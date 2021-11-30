@@ -1,34 +1,81 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E9A463626
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 15:10:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 128B546369C
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 15:25:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23B7F6E5BB;
-	Tue, 30 Nov 2021 14:10:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5CAA6E082;
+	Tue, 30 Nov 2021 14:25:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 74CE96E999;
- Tue, 30 Nov 2021 14:10:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5F998AADDC;
- Tue, 30 Nov 2021 14:10:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5908361859259134339=="
+X-Greylist: delayed 382 seconds by postgrey-1.36 at gabe;
+ Tue, 30 Nov 2021 14:23:23 UTC
+Received: from mta-p8.oit.umn.edu (mta-p8.oit.umn.edu [134.84.196.208])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FDC46E082
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 14:23:23 +0000 (UTC)
+Received: from localhost (unknown [127.0.0.1])
+ by mta-p8.oit.umn.edu (Postfix) with ESMTP id 4J3PRc5Q51z9vCGw
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 14:17:00 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at umn.edu
+Received: from mta-p8.oit.umn.edu ([127.0.0.1])
+ by localhost (mta-p8.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 3CBlytb2hNQ6 for <intel-gfx@lists.freedesktop.org>;
+ Tue, 30 Nov 2021 08:17:00 -0600 (CST)
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com
+ [209.85.216.72])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mta-p8.oit.umn.edu (Postfix) with ESMTPS id 4J3PRc3KFhz9vCGP
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 08:17:00 -0600 (CST)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p8.oit.umn.edu 4J3PRc3KFhz9vCGP
+DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p8.oit.umn.edu 4J3PRc3KFhz9vCGP
+Received: by mail-pj1-f72.google.com with SMTP id
+ r23-20020a17090a941700b001a74be6cf80so6854481pjo.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 06:17:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umn.edu; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Br9hM7P/V/R39racOZSbovY60IQqXaZlTn4ZHVtwfgE=;
+ b=F/plmO+lDIBEUmhbzZT9f4kxQ1Xrqyir+jK2tT0U4wr8TJJ6EKuuTfxvk4jjv3vkJv
+ BW3tZWfIWNTuRVA3ewqNODzHaWhICIFxNCqJDHWLTJrsExH1A1IYMkkREyn5kaFnallc
+ KxPHQg6n+trmZGL5qLwkWqYF7ipwIdpXnXwE1g+XJw5cYoJ1fjTTOthppmJkR6e4Tm4F
+ cmRiBb0rWHQR3yF/UIqg/+M99wJ1MpgaSfhRyq6QUvOYXYfNPgEVCZtb6sCTyA7wRFsO
+ k4tcLiOLVewR714qjx69DdNvXujpyGDA8SBzDORGW/ojUgV9wJhkPtn//H4ChM8lHVHv
+ S4Zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Br9hM7P/V/R39racOZSbovY60IQqXaZlTn4ZHVtwfgE=;
+ b=nW7hgYSn4llWPU5mCgXGmfs0KEer/xjq+AqTmxrlAYb5j8/K7+avEhs2antaAINx+k
+ Zeoi63VnUPgHAxq/TwaJEzK0E2nQZB6qUFRuAkB5FfZoUXTmHgJ0nDAm5aZmVQm7YFeY
+ 1HfJdTwO7Ze/aT8daKwMnZPIuLcG0gJU+Bh0ZfrLKl47kKRsj4QbkMDS+1BfemgaeNaP
+ 0a3kwzxt+Gp418u+mBvpuJaJePcf6EfaSHISUj2lAkWOjFlOdrSjdRBiCO3GZh7F2hUh
+ 6UAtBwOmEeyGpcgjVx+SrctqEwi0QLhOOvDpdr3t0VGyIQRt0vCrLVSI6k7tNrcaUhCT
+ mwnw==
+X-Gm-Message-State: AOAM532RLh2tNE1WYSgkI9cBEzY34Q6GmThNG7u2ih4Ljhcp9Nrmeo8n
+ RcDqc/LeXDo3wM3bSxXBRlLbThaMOnS0n2uT0lMSjWlF2rGgsbSjPDEqe5Qry//kmKTcM5BmAKn
+ CMxmAreCxwUyfyyxsho3nH4VnsaxyHZ32
+X-Received: by 2002:a65:4d03:: with SMTP id i3mr10181766pgt.623.1638281819755; 
+ Tue, 30 Nov 2021 06:16:59 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwYhKO0APLVwerxxpbVWgXBtWNaBFn9ENpSead2gdy6fg/I7r3VA59NSxP8PMR0M6Q2gB5YBg==
+X-Received: by 2002:a65:4d03:: with SMTP id i3mr10181744pgt.623.1638281819551; 
+ Tue, 30 Nov 2021 06:16:59 -0800 (PST)
+Received: from zqy787-GE5S.lan ([36.7.42.137])
+ by smtp.gmail.com with ESMTPSA id q13sm21904082pfk.22.2021.11.30.06.16.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 30 Nov 2021 06:16:59 -0800 (PST)
+From: Zhou Qingyang <zhou1615@umn.edu>
+To: zhou1615@umn.edu
+Date: Tue, 30 Nov 2021 22:15:44 +0800
+Message-Id: <20211130141545.153899-1-zhou1615@umn.edu>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Tue, 30 Nov 2021 14:10:09 -0000
-Message-ID: <163828140936.20410.14059648894505668513@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211130132005.6305-1-anshuman.gupta@intel.com>
-In-Reply-To: <20211130132005.6305-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftest=3A_Disable_IRQ_for_timestamp_calculation_=28rev3?=
- =?utf-8?q?=29?=
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 30 Nov 2021 14:25:49 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Fix a NULL pointer dereference in
+ igt_request_rewind()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,177 +88,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org, kjlu@umn.edu,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Matthew Auld <matthew.auld@intel.com>, Zhihao Cheng <chengzhihao1@huawei.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5908361859259134339==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+In igt_request_rewind(), mock_context(i915, "A") is assigned to ctx[0]
+and used in i915_gem_context_get_engine(). There is a dereference
+of ctx[0] in i915_gem_context_get_engine(), which could lead to a NULL
+pointer dereference on failure of mock_context(i915, "A") .
 
-== Series Details ==
+So as mock_context(i915, "B").
 
-Series: drm/i915/selftest: Disable IRQ for timestamp calculation (rev3)
-URL   : https://patchwork.freedesktop.org/series/96853/
-State : success
+Although this bug is not serious for it belongs to testing code, it is
+better to be fixed to avoid unexpected failure in testing.
 
-== Summary ==
+Fix this bugs by adding checks about ctx[0] and ctx[1].
 
-CI Bug Log - changes from CI_DRM_10943 -> Patchwork_21701
-====================================================
+This bug was found by a static analyzer. The analysis employs
+differential checking to identify inconsistent security operations
+(e.g., checks or kfrees) between two code paths and confirms that the
+inconsistent operations are not recovered in the current function or
+the callers, so they constitute bugs.
 
-Summary
--------
+Note that, as a bug found by static analysis, it can be a false
+positive or hard to trigger. Multiple researchers have cross-reviewed
+the bug.
 
-  **SUCCESS**
+Builds with CONFIG_DRM_I915_SELFTEST=y show no new warnings,
+and our static analyzer no longer warns about this code.
 
-  No regressions found.
+Fixes: ca883c304f54 ("drm/i915/selftests: Pass intel_context to mock_request")
+Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
+---
+ drivers/gpu/drm/i915/selftests/i915_request.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/index.html
+diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+index d67710d10615..d6fc7b892793 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_request.c
++++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+@@ -209,6 +209,10 @@ static int igt_request_rewind(void *arg)
+ 	int err = -EINVAL;
+ 
+ 	ctx[0] = mock_context(i915, "A");
++	if (!ctx[0]) {
++		err = -ENOMEM;
++		goto err_ctx_0;
++	}
+ 
+ 	ce = i915_gem_context_get_engine(ctx[0], RCS0);
+ 	GEM_BUG_ON(IS_ERR(ce));
+@@ -223,6 +227,10 @@ static int igt_request_rewind(void *arg)
+ 	i915_request_add(request);
+ 
+ 	ctx[1] = mock_context(i915, "B");
++	if (!ctx[1]) {
++		err = -ENOMEM;
++		goto err_ctx_1;
++	}
+ 
+ 	ce = i915_gem_context_get_engine(ctx[1], RCS0);
+ 	GEM_BUG_ON(IS_ERR(ce));
+@@ -261,9 +269,11 @@ static int igt_request_rewind(void *arg)
+ 	i915_request_put(vip);
+ err_context_1:
+ 	mock_context_close(ctx[1]);
++err_ctx_1:
+ 	i915_request_put(request);
+ err_context_0:
+ 	mock_context_close(ctx[0]);
++err_ctx_0:
+ 	mock_device_flush(i915);
+ 	return err;
+ }
+-- 
+2.25.1
 
-Participating hosts (38 -> 33)
-------------------------------
-
-  Missing    (5): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21701 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-soraka:      [PASS][2] -> [DMESG-WARN][3] ([i915#1982])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10943/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][4] -> [DMESG-WARN][5] ([i915#4269])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10943/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - fi-rkl-guc:         [INCOMPLETE][6] ([i915#4432]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10943/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
-
-  
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4432]: https://gitlab.freedesktop.org/drm/intel/issues/4432
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10943 -> Patchwork_21701
-
-  CI-20190529: 20190529
-  CI_DRM_10943: f506b61984977c7785a54b8860720bfb5334aa08 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6295: 2d7f671b872ed856a97957051098974be2380019 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21701: cf5015ce5beee9fb7f992684a23719f344335c60 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-cf5015ce5bee drm/i915/selftest: Disable IRQ for timestamp calculation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/index.html
-
---===============5908361859259134339==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftest: Disable IRQ for timestamp calculation (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96853/">https://patchwork.freedesktop.org/series/96853/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10943 -&gt; Patchwork_21701</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/index.html</p>
-<h2>Participating hosts (38 -&gt; 33)</h2>
-<p>Missing    (5): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21701 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10943/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10943/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_engines:<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10943/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4432">i915#4432</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21701/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10943 -&gt; Patchwork_21701</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10943: f506b61984977c7785a54b8860720bfb5334aa08 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6295: 2d7f671b872ed856a97957051098974be2380019 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21701: cf5015ce5beee9fb7f992684a23719f344335c60 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>cf5015ce5bee drm/i915/selftest: Disable IRQ for timestamp calculation</p>
-
-</body>
-</html>
-
---===============5908361859259134339==--
