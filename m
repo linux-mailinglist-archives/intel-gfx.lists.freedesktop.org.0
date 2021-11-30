@@ -1,81 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 128B546369C
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 15:25:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB3C4636D3
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 15:35:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5CAA6E082;
-	Tue, 30 Nov 2021 14:25:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C99F6E922;
+	Tue, 30 Nov 2021 14:35:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 382 seconds by postgrey-1.36 at gabe;
- Tue, 30 Nov 2021 14:23:23 UTC
-Received: from mta-p8.oit.umn.edu (mta-p8.oit.umn.edu [134.84.196.208])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FDC46E082
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 14:23:23 +0000 (UTC)
-Received: from localhost (unknown [127.0.0.1])
- by mta-p8.oit.umn.edu (Postfix) with ESMTP id 4J3PRc5Q51z9vCGw
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 14:17:00 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at umn.edu
-Received: from mta-p8.oit.umn.edu ([127.0.0.1])
- by localhost (mta-p8.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 3CBlytb2hNQ6 for <intel-gfx@lists.freedesktop.org>;
- Tue, 30 Nov 2021 08:17:00 -0600 (CST)
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com
- [209.85.216.72])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mta-p8.oit.umn.edu (Postfix) with ESMTPS id 4J3PRc3KFhz9vCGP
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 08:17:00 -0600 (CST)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p8.oit.umn.edu 4J3PRc3KFhz9vCGP
-DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p8.oit.umn.edu 4J3PRc3KFhz9vCGP
-Received: by mail-pj1-f72.google.com with SMTP id
- r23-20020a17090a941700b001a74be6cf80so6854481pjo.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 06:17:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umn.edu; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Br9hM7P/V/R39racOZSbovY60IQqXaZlTn4ZHVtwfgE=;
- b=F/plmO+lDIBEUmhbzZT9f4kxQ1Xrqyir+jK2tT0U4wr8TJJ6EKuuTfxvk4jjv3vkJv
- BW3tZWfIWNTuRVA3ewqNODzHaWhICIFxNCqJDHWLTJrsExH1A1IYMkkREyn5kaFnallc
- KxPHQg6n+trmZGL5qLwkWqYF7ipwIdpXnXwE1g+XJw5cYoJ1fjTTOthppmJkR6e4Tm4F
- cmRiBb0rWHQR3yF/UIqg/+M99wJ1MpgaSfhRyq6QUvOYXYfNPgEVCZtb6sCTyA7wRFsO
- k4tcLiOLVewR714qjx69DdNvXujpyGDA8SBzDORGW/ojUgV9wJhkPtn//H4ChM8lHVHv
- S4Zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Br9hM7P/V/R39racOZSbovY60IQqXaZlTn4ZHVtwfgE=;
- b=nW7hgYSn4llWPU5mCgXGmfs0KEer/xjq+AqTmxrlAYb5j8/K7+avEhs2antaAINx+k
- Zeoi63VnUPgHAxq/TwaJEzK0E2nQZB6qUFRuAkB5FfZoUXTmHgJ0nDAm5aZmVQm7YFeY
- 1HfJdTwO7Ze/aT8daKwMnZPIuLcG0gJU+Bh0ZfrLKl47kKRsj4QbkMDS+1BfemgaeNaP
- 0a3kwzxt+Gp418u+mBvpuJaJePcf6EfaSHISUj2lAkWOjFlOdrSjdRBiCO3GZh7F2hUh
- 6UAtBwOmEeyGpcgjVx+SrctqEwi0QLhOOvDpdr3t0VGyIQRt0vCrLVSI6k7tNrcaUhCT
- mwnw==
-X-Gm-Message-State: AOAM532RLh2tNE1WYSgkI9cBEzY34Q6GmThNG7u2ih4Ljhcp9Nrmeo8n
- RcDqc/LeXDo3wM3bSxXBRlLbThaMOnS0n2uT0lMSjWlF2rGgsbSjPDEqe5Qry//kmKTcM5BmAKn
- CMxmAreCxwUyfyyxsho3nH4VnsaxyHZ32
-X-Received: by 2002:a65:4d03:: with SMTP id i3mr10181766pgt.623.1638281819755; 
- Tue, 30 Nov 2021 06:16:59 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwYhKO0APLVwerxxpbVWgXBtWNaBFn9ENpSead2gdy6fg/I7r3VA59NSxP8PMR0M6Q2gB5YBg==
-X-Received: by 2002:a65:4d03:: with SMTP id i3mr10181744pgt.623.1638281819551; 
- Tue, 30 Nov 2021 06:16:59 -0800 (PST)
-Received: from zqy787-GE5S.lan ([36.7.42.137])
- by smtp.gmail.com with ESMTPSA id q13sm21904082pfk.22.2021.11.30.06.16.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Nov 2021 06:16:59 -0800 (PST)
-From: Zhou Qingyang <zhou1615@umn.edu>
-To: zhou1615@umn.edu
-Date: Tue, 30 Nov 2021 22:15:44 +0800
-Message-Id: <20211130141545.153899-1-zhou1615@umn.edu>
-X-Mailer: git-send-email 2.25.1
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A809E6E911;
+ Tue, 30 Nov 2021 14:35:06 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10183"; a="223453512"
+X-IronPort-AV: E=Sophos;i="5.87,276,1631602800"; d="scan'208";a="223453512"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 06:35:06 -0800
+X-IronPort-AV: E=Sophos;i="5.87,276,1631602800"; d="scan'208";a="512207455"
+Received: from hekner-mobl5.ger.corp.intel.com (HELO [10.249.254.206])
+ ([10.249.254.206])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 06:35:03 -0800
+Message-ID: <29d096c91d720fbe5d410124580a02b663155b56.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org,  dri-devel@lists.freedesktop.org
+Date: Tue, 30 Nov 2021 15:35:01 +0100
+In-Reply-To: <2551da4d-2e51-cc24-7d4a-84ae00a1547c@amd.com>
+References: <20211130121936.586031-1-thomas.hellstrom@linux.intel.com>
+ <20211130121936.586031-2-thomas.hellstrom@linux.intel.com>
+ <c7502701-e85c-39f0-c249-702d029faa9e@linux.intel.com>
+ <b440cfbc-2b9a-1aa2-76d6-17337f835777@linux.intel.com>
+ <52a7cf8c-59c7-fec0-2274-d19bdc505314@amd.com>
+ <57df8b0b-1d65-155f-a9a6-8073bbd4f28f@linux.intel.com>
+ <2551da4d-2e51-cc24-7d4a-84ae00a1547c@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 30 Nov 2021 14:25:49 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Fix a NULL pointer dereference in
- igt_request_rewind()
+Subject: Re: [Intel-gfx] [RFC PATCH 1/2] dma-fence: Avoid establishing a
+ locking order between fence classes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,82 +54,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org, kjlu@umn.edu,
- linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Matthew Auld <matthew.auld@intel.com>, Zhihao Cheng <chengzhihao1@huawei.com>
+Cc: linaro-mm-sig@lists.linaro.org, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In igt_request_rewind(), mock_context(i915, "A") is assigned to ctx[0]
-and used in i915_gem_context_get_engine(). There is a dereference
-of ctx[0] in i915_gem_context_get_engine(), which could lead to a NULL
-pointer dereference on failure of mock_context(i915, "A") .
+On Tue, 2021-11-30 at 14:26 +0100, Christian König wrote:
+> Am 30.11.21 um 13:56 schrieb Thomas Hellström:
+> > 
+> > On 11/30/21 13:42, Christian König wrote:
+> > > Am 30.11.21 um 13:31 schrieb Thomas Hellström:
+> > > > [SNIP]
+> > > > > Other than that, I didn't investigate the nesting fails
+> > > > > enough to 
+> > > > > say I can accurately review this. :)
+> > > > 
+> > > > Basically the problem is that within enable_signaling() which
+> > > > is 
+> > > > called with the dma_fence lock held, we take the dma_fence lock
+> > > > of 
+> > > > another fence. If that other fence is a dma_fence_array, or a 
+> > > > dma_fence_chain which in turn tries to lock a dma_fence_array
+> > > > we hit 
+> > > > a splat.
+> > > 
+> > > Yeah, I already thought that you constructed something like that.
+> > > 
+> > > You get the splat because what you do here is illegal, you can't
+> > > mix 
+> > > dma_fence_array and dma_fence_chain like this or you can end up
+> > > in a 
+> > > stack corruption.
+> > 
+> > Hmm. Ok, so what is the stack corruption, is it that the 
+> > enable_signaling() will end up with endless recursion? If so,
+> > wouldn't 
+> > it be more usable we break that recursion chain and allow a more 
+> > general use?
+> 
+> The problem is that this is not easily possible for dma_fence_array 
+> containers. Just imagine that you drop the last reference to the 
+> containing fences during dma_fence_array destruction if any of the 
+> contained fences is another container you can easily run into
+> recursion 
+> and with that stack corruption.
 
-So as mock_context(i915, "B").
+Indeed, that would require some deeper surgery.
 
-Although this bug is not serious for it belongs to testing code, it is
-better to be fixed to avoid unexpected failure in testing.
+> 
+> That's one of the major reasons I came up with the dma_fence_chain 
+> container. This one you can chain any number of elements together 
+> without running into any recursion.
+> 
+> > Also what are the mixing rules between these? Never use a 
+> > dma-fence-chain as one of the array fences and never use a 
+> > dma-fence-array as a dma-fence-chain fence?
+> 
+> You can't add any other container to a dma_fence_array, neither other
+> dma_fence_array instances nor dma_fence_chain instances.
+> 
+> IIRC at least technically a dma_fence_chain can contain a 
+> dma_fence_array if you absolutely need that, but Daniel, Jason and I 
+> already had the same discussion a while back and came to the
+> conclusion 
+> to avoid that as well if possible.
 
-Fix this bugs by adding checks about ctx[0] and ctx[1].
+Yes, this is actually the use-case. But what I can't easily guarantee
+is that that dma_fence_chain isn't fed into a dma_fence_array somewhere
+else. How do you typically avoid that?
 
-This bug was found by a static analyzer. The analysis employs
-differential checking to identify inconsistent security operations
-(e.g., checks or kfrees) between two code paths and confirms that the
-inconsistent operations are not recovered in the current function or
-the callers, so they constitute bugs.
+Meanwhile I guess I need to take a different approach in the driver to
+avoid this altogether.
 
-Note that, as a bug found by static analysis, it can be a false
-positive or hard to trigger. Multiple researchers have cross-reviewed
-the bug.
+/Thomas
 
-Builds with CONFIG_DRM_I915_SELFTEST=y show no new warnings,
-and our static analyzer no longer warns about this code.
 
-Fixes: ca883c304f54 ("drm/i915/selftests: Pass intel_context to mock_request")
-Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
----
- drivers/gpu/drm/i915/selftests/i915_request.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> 
+> Regards,
+> Christian.
+> 
+> > 
+> > /Thomas
+> > 
+> > 
+> > 
+> > 
+> > > 
+> > > Regards,
+> > > Christian.
+> > > 
+> > > > 
+> > > > But I'll update the commit message with a typical splat.
+> > > > 
+> > > > /Thomas
+> > > 
+> 
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index d67710d10615..d6fc7b892793 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -209,6 +209,10 @@ static int igt_request_rewind(void *arg)
- 	int err = -EINVAL;
- 
- 	ctx[0] = mock_context(i915, "A");
-+	if (!ctx[0]) {
-+		err = -ENOMEM;
-+		goto err_ctx_0;
-+	}
- 
- 	ce = i915_gem_context_get_engine(ctx[0], RCS0);
- 	GEM_BUG_ON(IS_ERR(ce));
-@@ -223,6 +227,10 @@ static int igt_request_rewind(void *arg)
- 	i915_request_add(request);
- 
- 	ctx[1] = mock_context(i915, "B");
-+	if (!ctx[1]) {
-+		err = -ENOMEM;
-+		goto err_ctx_1;
-+	}
- 
- 	ce = i915_gem_context_get_engine(ctx[1], RCS0);
- 	GEM_BUG_ON(IS_ERR(ce));
-@@ -261,9 +269,11 @@ static int igt_request_rewind(void *arg)
- 	i915_request_put(vip);
- err_context_1:
- 	mock_context_close(ctx[1]);
-+err_ctx_1:
- 	i915_request_put(request);
- err_context_0:
- 	mock_context_close(ctx[0]);
-+err_ctx_0:
- 	mock_device_flush(i915);
- 	return err;
- }
--- 
-2.25.1
 
