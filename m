@@ -2,48 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C36C463BD0
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 17:33:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9CEB463C32
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 17:46:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 423E389FD4;
-	Tue, 30 Nov 2021 16:33:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F34C16E4BB;
+	Tue, 30 Nov 2021 16:46:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8643F89FD1;
- Tue, 30 Nov 2021 16:33:13 +0000 (UTC)
-Date: Tue, 30 Nov 2021 17:33:09 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1638289991;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=wlrkKRjry6Z/mnNwslRoD3PA5GVO9PCdB3soxYzHl44=;
- b=guxNpgdFCv41mfy1V885JnPNSWaauWHhdptLxJ6ihKKXd3lKC/i0vSMEq2u75ZZuJwyTx9
- kBMWt+6GhhzUyeXJdLvQz4OOqQt+1azAvOiH7BgYDL1iw3a3h6RCOAnKBC5GvcroelJWfi
- 9oMQkYBT8ljwwPGC7mch8oqdTwKvRWNhpIzea79c3mDgO9rDKVz6IkQ+ZbK0TCjppHUC91
- 4PxjLm1W4S013bIEn/6fIc0Z9eZkAoJvMWRZP0Un1/TjrAEQi+OfFprhs3WTrThyUUYW4W
- C87BPGGPLfIS5kb8Ql/nRZ51mMILan9Vu24LykPUbK8C4vfL9/CEbjSrifhlVQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1638289991;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=wlrkKRjry6Z/mnNwslRoD3PA5GVO9PCdB3soxYzHl44=;
- b=0LDtgM7ReYFgj4MxjlFJuHuHED2P8IBCqrCDnPEv660hLbBQ82mJRNW7QHjWEpD1W5+mnN
- 3BQ6Fg293TjdmPAw==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20211130163309.kvw6kbuzwurnqlt7@linutronix.de>
-References: <20211118165914.pckik75emivsilek@linutronix.de>
- <YZfK8LDcGzQEchel@phenom.ffwll.local>
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C64746E487;
+ Tue, 30 Nov 2021 16:46:27 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 1EC9D68B05; Tue, 30 Nov 2021 17:46:23 +0100 (CET)
+Date: Tue, 30 Nov 2021 17:46:22 +0100
+From: Christoph Hellwig <hch@lst.de>
+To: Zhi Wang <zhi.wang.linux@gmail.com>
+Message-ID: <20211130164622.GA15150@lst.de>
+References: <20211129123832.105196-1-zhi.a.wang@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YZfK8LDcGzQEchel@phenom.ffwll.local>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't disable interrupts and
- pretend a lock as been acquired in __timeline_mark_lock().
+In-Reply-To: <20211129123832.105196-1-zhi.a.wang@intel.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] [PATCH v4 1/2] i915/gvt: Introduce the
+ mmio_info_table.c to support VFIO new mdev API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,22 +38,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- Peter Zijlstra <peterz@infradead.org>, dri-devel@lists.freedesktop.org,
- Thomas Gleixner <tglx@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Terrence Xu <terrence.xu@intel.com>,
+ Jason Gunthorpe <jgg@nvidia.com>, intel-gvt-dev@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-11-19 17:04:00 [+0100], Daniel Vetter wrote:
-> Yeah if we can simplify this with reverts then I'm all for this.
-> 
-> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> 
-> I've asked drm/i915 maintainers to check&merge.
+I still think this goes into the wrong direction.
 
-Thanks. Should I repost my queue (excluding this one) or should wait
-until this one has been taken care?
+Something closer to your first version that also saves away the
+gvt->mmio.mmio_attribute flags in the core i915 module, and which
+splits the MMIO table into one that contains just the offset, size
+and flags (core i915) and one that has the read-only mask and handlers
+(gvt) would be much simpler and not create this super-tight coupling
+between core i915 and gvt.
 
-> -Daniel
-
-Sebastian
+Bonus points for moving your new intel_gvt_hw_state structure out
+of struct intel_gvt and into struct i915_virtual_gpu.
