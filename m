@@ -2,46 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E9F4634EC
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 13:56:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA90646369D
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 15:25:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 477D96E8DB;
-	Tue, 30 Nov 2021 12:56:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 144076E2B4;
+	Tue, 30 Nov 2021 14:25:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 564C86E8A6;
- Tue, 30 Nov 2021 12:56:26 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10183"; a="223088867"
-X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="223088867"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2021 04:56:17 -0800
-X-IronPort-AV: E=Sophos;i="5.87,275,1631602800"; d="scan'208";a="595373081"
-Received: from hekner-mobl5.ger.corp.intel.com (HELO [10.249.254.206])
- ([10.249.254.206])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2021 04:56:15 -0800
-Message-ID: <57df8b0b-1d65-155f-a9a6-8073bbd4f28f@linux.intel.com>
-Date: Tue, 30 Nov 2021 13:56:13 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20211130121936.586031-1-thomas.hellstrom@linux.intel.com>
- <20211130121936.586031-2-thomas.hellstrom@linux.intel.com>
- <c7502701-e85c-39f0-c249-702d029faa9e@linux.intel.com>
- <b440cfbc-2b9a-1aa2-76d6-17337f835777@linux.intel.com>
- <52a7cf8c-59c7-fec0-2274-d19bdc505314@amd.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <52a7cf8c-59c7-fec0-2274-d19bdc505314@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC PATCH 1/2] dma-fence: Avoid establishing a
- locking order between fence classes
+Received: from mail-wm1-x34a.google.com (mail-wm1-x34a.google.com
+ [IPv6:2a00:1450:4864:20::34a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E51E26E838
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 10:14:07 +0000 (UTC)
+Received: by mail-wm1-x34a.google.com with SMTP id
+ a64-20020a1c7f43000000b003335e5dc26bso10179224wmd.8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 02:14:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=date:message-id:mime-version:subject:from:to:cc;
+ bh=GIp7EQn2UnohoTj+yPMh1P0FmhJDYsjIC78ghQsH60U=;
+ b=PGw1FmJ+9GtdWBnIbq7f+hljBVAL0lFbftpkYi1JLWLVMNYhLv7261fjg4MqiYs3kv
+ R8poFfyshuoIbY13aW6fVh2RUJjOfFJqRKmb1Qu540Xuco19JGFOfU0aRxU0/gVTqb7L
+ d+miGay8ofozSEpc9+9bgYsb4ZzIqZgdc5Lyqo/qUcinDbViru5aSfKjydYBhCxM9gSI
+ /ZJxKOVZHWtHUmb0Gz7Q8CoK2/VjU2W0+ZJye7JyyG7XHPK4CLdYWyKbHAOZc3NTwBmJ
+ bxHO1oIuPKFcdO7fehRy7s/817CNqQ968rheE0GoOAdmojCvdHngtz1Y4yINbTR0iKeN
+ QJ9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+ bh=GIp7EQn2UnohoTj+yPMh1P0FmhJDYsjIC78ghQsH60U=;
+ b=dJ+BeJyRIbIS6yDi0BotRF981V3Okb8j+Y/2hwtgoOLr2GVF0a7Sk0HLr6L+WbBROa
+ q+V/mP74p900EQ3IFScXz/yLZ6XfS0v/LvZMdWN6ySEYfM8N9QZ7zU0hJPdFVT9v9HGD
+ xljtntgZ65Qr+WAvO+dCIhsppuzDmIiNPLibyBurBDnN1XXsTdXk5207DKzJVi89EkAe
+ UgpRDkW3DMK9Aq8pOjIDlJ/YxBkpFQ/zUuFOpVdV6D7P6Hw9dTR+a4ctdIHHpwi3c9cL
+ f5mpwveg3hHhHlpQ2sLtNFtCee0yJo+ywYUMJjvYzLQvgatkaQwTOPaxWYi4LJt5mIah
+ 7/hw==
+X-Gm-Message-State: AOAM5321bW90og4cDGlWytd59hM4+XjC37lxnHe9wtpjpfr3INOMdN3K
+ 3+3YE3UzKvzyos/riRUVh30wmcaopA==
+X-Google-Smtp-Source: ABdhPJxZ/cQtxZDq13eLfl7Z5mw2/skPl5gwILIaBmKsGNdiwTMcLcVdLHag+IyGI45Qp/W/X+ZIkCuzcA==
+X-Received: from elver.muc.corp.google.com
+ ([2a00:79e0:15:13:86b7:11e9:7797:99f0])
+ (user=elver job=sendgmr) by 2002:adf:dd0a:: with SMTP id
+ a10mr39649481wrm.60.1638267246341; 
+ Tue, 30 Nov 2021 02:14:06 -0800 (PST)
+Date: Tue, 30 Nov 2021 10:57:27 +0100
+Message-Id: <20211130095727.2378739-1-elver@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.34.0.rc2.393.gf8c9666880-goog
+From: Marco Elver <elver@google.com>
+To: elver@google.com, Andrew Morton <akpm@linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Tue, 30 Nov 2021 14:25:49 +0000
+Subject: [Intel-gfx] [PATCH] lib/stackdepot: always do filter_irq_stacks()
+ in stack_depot_save()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,49 +65,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linaro-mm-sig@lists.linaro.org, matthew.auld@intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, kasan-dev@googlegroups.com,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+ Andrey Ryabinin <ryabinin.a.a@gmail.com>,
+ Alexander Potapenko <glider@google.com>, Dmitry Vyukov <dvyukov@google.com>,
+ Imran Khan <imran.f.khan@oracle.com>, Vijayanand Jitta <vjitta@codeaurora.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org,
+ Vlastimil Babka <vbabka@suse.cz>, Andrey Konovalov <andreyknvl@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+The non-interrupt portion of interrupt stack traces before interrupt
+entry is usually arbitrary. Therefore, saving stack traces of interrupts
+(that include entries before interrupt entry) to stack depot leads to
+unbounded stackdepot growth.
 
-On 11/30/21 13:42, Christian König wrote:
-> Am 30.11.21 um 13:31 schrieb Thomas Hellström:
->> [SNIP]
->>> Other than that, I didn't investigate the nesting fails enough to 
->>> say I can accurately review this. :)
->>
->> Basically the problem is that within enable_signaling() which is 
->> called with the dma_fence lock held, we take the dma_fence lock of 
->> another fence. If that other fence is a dma_fence_array, or a 
->> dma_fence_chain which in turn tries to lock a dma_fence_array we hit 
->> a splat.
->
-> Yeah, I already thought that you constructed something like that.
->
-> You get the splat because what you do here is illegal, you can't mix 
-> dma_fence_array and dma_fence_chain like this or you can end up in a 
-> stack corruption.
+As such, use of filter_irq_stacks() is a requirement to ensure
+stackdepot can efficiently deduplicate interrupt stacks.
 
-Hmm. Ok, so what is the stack corruption, is it that the 
-enable_signaling() will end up with endless recursion? If so, wouldn't 
-it be more usable we break that recursion chain and allow a more general 
-use?
+Looking through all current users of stack_depot_save(), none (except
+KASAN) pass the stack trace through filter_irq_stacks() before passing
+it on to stack_depot_save().
 
-Also what are the mixing rules between these? Never use a 
-dma-fence-chain as one of the array fences and never use a 
-dma-fence-array as a dma-fence-chain fence?
+Rather than adding filter_irq_stacks() to all current users of
+stack_depot_save(), it became clear that stack_depot_save() should
+simply do filter_irq_stacks().
 
-/Thomas
+Signed-off-by: Marco Elver <elver@google.com>
+---
+ lib/stackdepot.c  | 13 +++++++++++++
+ mm/kasan/common.c |  1 -
+ 2 files changed, 13 insertions(+), 1 deletion(-)
 
+diff --git a/lib/stackdepot.c b/lib/stackdepot.c
+index b437ae79aca1..519c7898c7f2 100644
+--- a/lib/stackdepot.c
++++ b/lib/stackdepot.c
+@@ -305,6 +305,9 @@ EXPORT_SYMBOL_GPL(stack_depot_fetch);
+  * (allocates using GFP flags of @alloc_flags). If @can_alloc is %false, avoids
+  * any allocations and will fail if no space is left to store the stack trace.
+  *
++ * If the stack trace in @entries is from an interrupt, only the portion up to
++ * interrupt entry is saved.
++ *
+  * Context: Any context, but setting @can_alloc to %false is required if
+  *          alloc_pages() cannot be used from the current context. Currently
+  *          this is the case from contexts where neither %GFP_ATOMIC nor
+@@ -323,6 +326,16 @@ depot_stack_handle_t __stack_depot_save(unsigned long *entries,
+ 	unsigned long flags;
+ 	u32 hash;
+ 
++	/*
++	 * If this stack trace is from an interrupt, including anything before
++	 * interrupt entry usually leads to unbounded stackdepot growth.
++	 *
++	 * Because use of filter_irq_stacks() is a requirement to ensure
++	 * stackdepot can efficiently deduplicate interrupt stacks, always
++	 * filter_irq_stacks() to simplify all callers' use of stackdepot.
++	 */
++	nr_entries = filter_irq_stacks(entries, nr_entries);
++
+ 	if (unlikely(nr_entries == 0) || stack_depot_disable)
+ 		goto fast_exit;
+ 
+diff --git a/mm/kasan/common.c b/mm/kasan/common.c
+index 8428da2aaf17..efaa836e5132 100644
+--- a/mm/kasan/common.c
++++ b/mm/kasan/common.c
+@@ -36,7 +36,6 @@ depot_stack_handle_t kasan_save_stack(gfp_t flags, bool can_alloc)
+ 	unsigned int nr_entries;
+ 
+ 	nr_entries = stack_trace_save(entries, ARRAY_SIZE(entries), 0);
+-	nr_entries = filter_irq_stacks(entries, nr_entries);
+ 	return __stack_depot_save(entries, nr_entries, flags, can_alloc);
+ }
+ 
+-- 
+2.34.0.rc2.393.gf8c9666880-goog
 
-
-
->
-> Regards,
-> Christian.
->
->>
->> But I'll update the commit message with a typical splat.
->>
->> /Thomas
->
