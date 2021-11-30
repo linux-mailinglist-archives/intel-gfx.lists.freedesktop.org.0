@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ECA1463364
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 12:53:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A291F463376
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 12:54:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64DF26E428;
-	Tue, 30 Nov 2021 11:53:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 089976E527;
+	Tue, 30 Nov 2021 11:54:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 05A046E428;
- Tue, 30 Nov 2021 11:53:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5A93C6E48F;
+ Tue, 30 Nov 2021 11:54:31 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F304DA363C;
- Tue, 30 Nov 2021 11:53:22 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 56CDFA363C;
+ Tue, 30 Nov 2021 11:54:31 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Tue, 30 Nov 2021 11:53:22 -0000
-Message-ID: <163827320299.20413.15686415462583533807@emeril.freedesktop.org>
+Date: Tue, 30 Nov 2021 11:54:31 -0000
+Message-ID: <163827327135.20412.10339176318666258282@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20211130110607.3902085-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 In-Reply-To: <20211130110607.3902085-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/adl-n=3A_Enable_ADL-N_platform?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/adl-n=3A_Enable_ADL-N_platform?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,22 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-39db60e0b083 drm/i915/adl-n: Enable ADL-N platform
--:98: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#98: FILE: include/drm/i915_pciids.h:670:
-+#define INTEL_ADLN_IDS(info) \
-+	INTEL_VGA_DEVICE(0x46D0, info), \
-+	INTEL_VGA_DEVICE(0x46D1, info), \
-+	INTEL_VGA_DEVICE(0x46D2, info)
-
--:98: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#98: FILE: include/drm/i915_pciids.h:670:
-+#define INTEL_ADLN_IDS(info) \
-+	INTEL_VGA_DEVICE(0x46D0, info), \
-+	INTEL_VGA_DEVICE(0x46D1, info), \
-+	INTEL_VGA_DEVICE(0x46D2, info)
-
-total: 1 errors, 0 warnings, 1 checks, 59 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
