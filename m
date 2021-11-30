@@ -2,45 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01E2E463F5C
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 21:35:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7946F463FB3
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Nov 2021 22:08:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE4A66E528;
-	Tue, 30 Nov 2021 20:35:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35A236E197;
+	Tue, 30 Nov 2021 21:08:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org
- [IPv6:2404:9400:2:0:216:3eff:fee2:21ea])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 440A36E0A6;
- Tue, 30 Nov 2021 20:35:11 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4J3Yqs6TGqz4xR7;
- Wed,  1 Dec 2021 07:35:05 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1638304506;
- bh=mD60RP7abxz0LTkN0LokOd+KJofCAnrjXIk27vJ5P6o=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=quuF2oNZynHJKaATdJYo/otW1PLNte26tvGhKnEYaGx+TSUpmWnypM0Gw3Gjjokys
- te+KyWwpWEVqQ8JZACD5EkVa4g/p2msEj3X0WKGygP4segsoPgCmxY1XEoIwszoZ4M
- wx6s0nw1EHqZGauCJn+U6gFKmVuFAX0QvOsEhxwGzCoeER5xM6/GDt8fgh49FNcQP+
- 1hbB+IRIvYxX5F2o8pqJGctkYjS/UxDDJzWfsNGp7iyWwAhykkc7BAs/f2o+NGLO+L
- tkEqwygafMpdVToOESf1cuQRJHUQZhlTTCNczvqOI6rNBqOtSmDmK067TBMW0p5uC2
- NBmNH6j9iCbZA==
-Date: Wed, 1 Dec 2021 07:35:04 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Maxime Ripard <maxime@cerno.tech>
-Message-ID: <20211201073504.24a6494b@canb.auug.org.au>
-In-Reply-To: <20211130085831.wghfw7l4qksg2dbm@houat>
-References: <20211130103353.0ab1a44f@canb.auug.org.au>
- <20211130085831.wghfw7l4qksg2dbm@houat>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3700B6E0BE;
+ Tue, 30 Nov 2021 21:08:19 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="299710458"
+X-IronPort-AV: E=Sophos;i="5.87,277,1631602800"; d="scan'208";a="299710458"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 13:08:18 -0800
+X-IronPort-AV: E=Sophos;i="5.87,277,1631602800"; d="scan'208";a="676992720"
+Received: from astamour-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.16.69])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 13:08:17 -0800
+Date: Tue, 30 Nov 2021 13:07:30 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Message-ID: <20211130210730.wbuy3znor6jel3cc@ldmartin-desk2>
+References: <20211128110926.2569-1-andi.shyti@linux.intel.com>
+ <20211128110926.2569-3-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/2EKH4NfA_IxKvEmYjAKFHwb";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: Re: [Intel-gfx] linux-next: manual merge of the drm tree with the
- drm-misc-fixes tree
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20211128110926.2569-3-andi.shyti@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 2/2] drm/i915: Use to_root_gt() to refer
+ to the root tile
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,91 +46,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
+Cc: =?utf-8?Q?Michal=C5=82Winiarski?= <michal.winiarski@intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/2EKH4NfA_IxKvEmYjAKFHwb
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi Maxime,
-
-On Tue, 30 Nov 2021 09:58:31 +0100 Maxime Ripard <maxime@cerno.tech> wrote:
+On Sun, Nov 28, 2021 at 01:09:26PM +0200, Andi Shyti wrote:
+>Starting from a patch from Matt to_root_gt() returns the
+>reference to the root tile in order to abstract the root tile
+>from th callers.
 >
-> Unfortunately the merge resolution isn't entirely correct :/
->=20
-> There's multiple conflicts between those two branches on that file, but
-> things went wrong between 16e101051f32 and 0c980a006d3f
->=20
-> The first one changes the logic a bit for the clk_set_min_rate argument,
-> and the second moves the clk_set_min_rate around.
->=20
-> However, the merge resolution reintroduced the initial clk_set_min_rate
-> call line (line 373), without changing the logic of the proper call site
-> (line 396).
->=20
-> This is the patch to fix the resolution:
->=20
-> -- >8 -- =20
-> --- a/drivers/gpu/drm/vc4/vc4_kms.c	2021-11-30 08:56:28.748524275 +0100
-> +++ b/drivers/gpu/drm/vc4/vc4_kms.c	2021-11-29 15:46:11.692151678 +0100
-> @@ -365,14 +365,6 @@
->  		vc4_hvs_mask_underrun(dev, vc4_crtc_state->assigned_channel);
->  	}
->=20
-> -	if (vc4->hvs->hvs5) {
-> -		unsigned long core_rate =3D max_t(unsigned long,
-> -						500000000,
-> -						new_hvs_state->core_clock_rate);
-> -
-> -		clk_set_min_rate(hvs->core_clk, core_rate);
-> -	}
-> -
->  	for (channel =3D 0; channel < HVS_NUM_CHANNELS; channel++) {
->  		struct drm_crtc_commit *commit;
->  		int ret;
-> @@ -392,8 +384,13 @@
->  		old_hvs_state->fifo_state[channel].pending_commit =3D NULL;
->  	}
->=20
-> -	if (vc4->hvs->hvs5)
-> -		clk_set_min_rate(hvs->core_clk, 500000000);
-> +	if (vc4->hvs->hvs5) {
-> +		unsigned long core_rate =3D max_t(unsigned long,
-> +						500000000,
-> +						new_hvs_state->core_clock_rate);
-> +
-> +		clk_set_min_rate(hvs->core_clk, core_rate);
-> +	}
->=20
->  	drm_atomic_helper_commit_modeset_disables(dev, state);
-> -- >8 -- =20
+>Being the root tile identified as tile '0', embed the id in the
+>name so that i915->gt becomes i915->gt0.
+>
+>The renaming has been mostly done with the following command and
+>some manual fixes.
+>
+>sed -i -e sed -i 's/\&i915\->gt\./\&to_root_gt(i915)\->/g' \
+>	-e sed -i 's/\&dev_priv\->gt\./\&to_root_gt(dev_priv)\->/g' \
+>	-e 's/\&dev_priv\->gt/to_root_gt(dev_priv)/g' \
+>	-e 's/\&i915\->gt/to_root_gt(i915)/g' \
+>	-e 's/dev_priv\->gt\./to_root_gt(dev_priv)\->/g' \
+>	-e 's/i915\->gt\./to_root_gt(i915)\->/g' \
+>	`find drivers/gpu/drm/i915/ -name *.[ch]`
+>
+>Two small changes have been added to this commit:
+>
+> 1. intel_reset_gpu() in intel_display.c retreives the gt from
+>    to_scanout_gt()
+> 2. in set_scheduler_caps() the gt is taken from the engine and
+>    not from i915.
 
-Thanks, I have fixed that up in my resolution.
+Ideally the non-automatic changes should be in separate patches, before
+the ones that can be done by automation. Because then it becomes easier
+to apply the final result without conflicts.
 
---=20
-Cheers,
-Stephen Rothwell
+This is quite a big diff to merge in one go. Looking at the pending
+patches from Michal however I see he had similar changes, split in
+sensible chunks..  Could you split your version like that? at least
+gt/gem and display would be good to have separate. Or sync with Michal
+on how to proceed with these versions Here are his patches:
 
---Sig_/2EKH4NfA_IxKvEmYjAKFHwb
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+	drm/i915: Remove i915->ggtt
+	drm/i915: Use to_gt() helper for GGTT accesses
+	drm/i915: Use to_gt() helper
+	drm/i915/gvt: Use to_gt() helper
+	drm/i915/gem: Use to_gt() helper
+	drm/i915/gt: Use to_gt() helper
+	drm/i915/display: Use to_gt() helper
+	drm/i915: Introduce to_gt() helper
 
------BEGIN PGP SIGNATURE-----
+This first patch also removed the `struct intel_gt *gt = to_gt(pool)`,
+that would otherwise be a leftover in drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmGmivgACgkQAVBC80lX
-0Gwxfgf9HRdU6pis3b8dQs8qmOiujsA2zuiEqOYyfKD/4c26T08NzIUV1n++eaGk
-nxBRB9w4ulIhNeDFmdc4xgdDTsCf/ixBuVdjVOvVTlhglcNeYxx507rmZv3VSp9/
-IZI1B1mXuJ4IJBeDXRy5/Y7/UX7Z+WI0se18/Su4NhouEs5AoAUpJ/d6jdorkOnC
-Wb2mPeeSYD7pVCcm8QwF9nWQfcntD7J+Fc3APRjBaQUxhkmFTvZYEh0Lv45qUxQB
-YfGStPEFf+J89eQsFO50EWhXJPv+urSrDNJ8hR+PlFs3NaEfqIsELd0aZmjtYHS3
-p3Qbzvrdub5OpWkZ4KHeLnNMrqH6eg==
-=AABu
------END PGP SIGNATURE-----
-
---Sig_/2EKH4NfA_IxKvEmYjAKFHwb--
+thanks
+Lucas De Marchi
