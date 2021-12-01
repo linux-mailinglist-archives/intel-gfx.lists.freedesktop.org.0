@@ -1,42 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6248A465142
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 16:17:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E164465188
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 16:25:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6D256ECBE;
-	Wed,  1 Dec 2021 15:17:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABA1E6EBFB;
+	Wed,  1 Dec 2021 15:25:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 250E46ECBE
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 15:16:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="260454763"
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="260454763"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 07:16:55 -0800
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7995B6EBFB
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 15:25:56 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="297279123"
+X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="297279123"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2021 07:25:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="596353621"
+X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="602188912"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by FMSMGA003.fm.intel.com with SMTP; 01 Dec 2021 07:16:53 -0800
+ by fmsmga002.fm.intel.com with SMTP; 01 Dec 2021 07:25:53 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 01 Dec 2021 17:16:52 +0200
-Date: Wed, 1 Dec 2021 17:16:52 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YaeR5LKWQD8grC+L@intel.com>
-References: <cover.1638366969.git.jani.nikula@intel.com>
- <ed6c43455d13c90ebfed442b196625af5e6ede88.1638366969.git.jani.nikula@intel.com>
+ Wed, 01 Dec 2021 17:25:52 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  1 Dec 2021 17:25:38 +0200
+Message-Id: <20211201152552.7821-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ed6c43455d13c90ebfed442b196625af5e6ede88.1638366969.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 09/10] drm/i915/display: convert
- dp_to_i915() to a macro
+Subject: [Intel-gfx] [PATCH 00/14] drm/i915: Plane register cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,46 +44,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 01, 2021 at 03:57:11PM +0200, Jani Nikula wrote:
-> Avoid looking into the guts of struct drm_i915_private in
-> headers. Again, converting an inline function to a macro is less than
-> ideal, but avoids having to pull in i915_drv.h just for the to_i915()
-> part.
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
-Ugly, but gets the job done.
+Bunch of cleanup around plane registers, and a bit of
+reshuffling in the skl+ universal plane code.
 
-Reviewed-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+Ville Syrj√§l√§ (14):
+  drm/i915: Get rid of the 64bit PLANE_CC_VAL mmio
+  drm/i915: Rename plane YUV order bits
+  drm/i915: Get rid of the "sizes are 0 based" stuff
+  drm/i915: Sipmplify PLANE_STRIDE masking
+  drm/i915: Rename PLANE_CUS_CTL Y plane bits
+  drm/i915: Use REG_BIT() & co. for universal plane bits
+  drm/i915: Clean up pre-skl primary plane registers
+  drm/i915: Clean up ivb+ sprite plane registers
+  drm/i915: Clean up vlv/chv sprite plane registers
+  drm/i915: Clean up g4x+ sprite plane registers
+  drm/i915: Clean up cursor registers
+  drm/i915: Extract skl_plane_aux_dist()
+  drm/i915: Declutter color key register stuff
+  drm/i915: Nuke pointless middle men for skl+ plane programming
 
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_types.h | 6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 14b4c3bb6030..f6e76b4d377d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1883,11 +1883,7 @@ dp_to_lspcon(struct intel_dp *intel_dp)
->  	return &dp_to_dig_port(intel_dp)->lspcon;
->  }
->  
-> -static inline struct drm_i915_private *
-> -dp_to_i915(struct intel_dp *intel_dp)
-> -{
-> -	return to_i915(dp_to_dig_port(intel_dp)->base.base.dev);
-> -}
-> +#define dp_to_i915(__intel_dp) to_i915(dp_to_dig_port(__intel_dp)->base.base.dev)
->  
->  #define CAN_PSR(intel_dp) ((intel_dp)->psr.sink_support && \
->  			   (intel_dp)->psr.source_support)
-> -- 
-> 2.30.2
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  99 ++-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  25 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  25 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  57 +-
+ .../drm/i915/display/skl_universal_plane.c    | 191 +++---
+ drivers/gpu/drm/i915/gvt/reg.h                |   1 -
+ drivers/gpu/drm/i915/i915_reg.h               | 646 ++++++++++--------
+ drivers/gpu/drm/i915/intel_pm.c               |  14 +-
+ 8 files changed, 581 insertions(+), 477 deletions(-)
 
 -- 
-Ville Syrj‰l‰
-Intel
+2.32.0
+
