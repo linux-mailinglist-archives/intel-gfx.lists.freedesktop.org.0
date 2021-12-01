@@ -2,44 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10D2D464B31
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 11:06:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ACE0464B38
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 11:08:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29B0C6E9E2;
-	Wed,  1 Dec 2021 10:06:33 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E3556E9E2;
- Wed,  1 Dec 2021 10:06:32 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="223658221"
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="223658221"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 02:06:31 -0800
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="609496167"
-Received: from zma6-mobl1.amr.corp.intel.com (HELO [10.212.27.7])
- ([10.212.27.7])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 02:06:30 -0800
-Message-ID: <6ee343d6-df54-3c89-5d80-9073884805f5@linux.intel.com>
-Date: Wed, 1 Dec 2021 10:06:28 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67B856EABF;
+	Wed,  1 Dec 2021 10:08:35 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 430436EA2C
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 10:08:34 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="236248375"
+X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="236248375"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2021 02:08:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="677208931"
+Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
+ by orsmga005.jf.intel.com with ESMTP; 01 Dec 2021 02:08:33 -0800
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Wed, 1 Dec 2021 10:08:30 +0000
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
+ IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.2308.020;
+ Wed, 1 Dec 2021 10:08:30 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 10/20] drm/i915/fbc: Pass i915 instead of FBC
+ instance to FBC underrun stuff
+Thread-Index: AQHX4SexxCFI6AHAJkWQQi6mtKARiKwddG3Q
+Date: Wed, 1 Dec 2021 10:08:30 +0000
+Message-ID: <459d726ffa494a179b9e6c44dff86465@intel.com>
+References: <20211124113652.22090-1-ville.syrjala@linux.intel.com>
+ <20211124113652.22090-11-ville.syrjala@linux.intel.com>
+In-Reply-To: <20211124113652.22090-11-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: "Rogozhkin, Dmitry V" <dmitry.v.rogozhkin@intel.com>,
- "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>
-References: <20211119125945.55056-1-tvrtko.ursulin@linux.intel.com>
- <20211119125945.55056-6-tvrtko.ursulin@linux.intel.com>
- <3894f6c21d51bdd4a188f077e146d36a3d6ddb71.camel@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <3894f6c21d51bdd4a188f077e146d36a3d6ddb71.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t 6/6] intel_gpu_top: Add a sanity check
- discovered busy metric is per engine
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.253.164]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 10/20] drm/i915/fbc: Pass i915 instead of
+ FBC instance to FBC underrun stuff
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,58 +61,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 01/12/2021 02:20, Rogozhkin, Dmitry V wrote:
-> On Fri, 2021-11-19 at 12:59 +0000, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Adding a cross-check with ABI config name space and not just relying
->> on
->> sysfs names.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Dmitry Rogozhkin <dmitry.v.rogozhkin@intel.com>
->> ---
->>   tools/intel_gpu_top.c | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
->> index 41c59a72c09d..81c724d1fe1c 100644
->> --- a/tools/intel_gpu_top.c
->> +++ b/tools/intel_gpu_top.c
->> @@ -376,6 +376,12 @@ static struct engines *discover_engines(char
->> *device)
->>   			break;
->>   		}
->>   
->> +		/* Double check config is an engine config. */
->> +		if (engine->busy.config >= __I915_PMU_OTHER(0)) {
->> +			free((void *)engine->name);
->> +			continue;
->> +		}
->> +
->>   		engine->class = (engine->busy.config &
->>   				 (__I915_PMU_OTHER(0) - 1)) >>
->>   				I915_PMU_CLASS_SHIFT;
-> 
-> This works for me.
-> Acked-by: Dmitry Rogozhkin <dmitry.v.rogozhkin@intel.com>
-
-Thanks, pushed!
-
-> However, looking to the existing code down below the place where you've
-> added a fix, it seems to me that 'free((void *)engine->name)' might be
-> missing on a number of other error paths and on non-error exit path as
-> well.
-
-Error paths are all fatal (tool simply exits) so it's moot. No real 
-value to cleanup piecemeal. It is the same for normal exit if that is 
-what you mean. Would be nicer I guess but it's a task for a rainy idle day.
-
-Regards,
-
-Tvrtko
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
+eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIFZpbGxlDQo+IFN5
+cmphbGENCj4gU2VudDogV2VkbmVzZGF5LCBOb3ZlbWJlciAyNCwgMjAyMSAxOjM3IFBNDQo+IFRv
+OiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFN1YmplY3Q6IFtJbnRlbC1nZnhd
+IFtQQVRDSCAxMC8yMF0gZHJtL2k5MTUvZmJjOiBQYXNzIGk5MTUgaW5zdGVhZCBvZiBGQkMNCj4g
+aW5zdGFuY2UgdG8gRkJDIHVuZGVycnVuIHN0dWZmDQo+IA0KPiBGcm9tOiBWaWxsZSBTeXJqw6Rs
+w6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiANCj4gVGhlIHVuZGVycnVuIGNv
+ZGUgZG9lc24ndCBuZWVkIHRvIGtub3cgYW55IGRldGFpbHMgYWJvdXQgRkJDLCBzbyBqdXN0IHBh
+c3MgaW4NCj4gdGhlIHdob2xlIGRldmljZSByYXRoZXIgdGhhbiBhIHNwZWNpZmljIEZCQyBpbnN0
+YW5jZS4NCj4gV2UgY291bGQgbWFrZSB0aGlzIGEgYml0IG1vcmUgZmluZSBncmFpbmVkIGJ5IGFs
+c28gcGFzc2luZyBpbiB0aGUgcGlwZSB0bw0KPiBpbnRlbF9mYmNfaGFuZGxlX2ZpZm9fdW5kZXJy
+dW5faXJxKCkgYW5kIGxldHRpbmcgdGhlIEZCQyBjb2RlIGZpZ3VyZSB3aGljaCBGQkMNCj4gaW5z
+dGFuY2UgKGlmIGFueSkgaXMgYWN0aXZlIG9uIHNhaWQgcGlwZS4NCj4gQnV0IHRoYXQgc2VlbXMg
+YSBiaXQgb3ZlcmtpbGwgZm9yIHRoaXMgc28gZG9uJ3QgYm90aGVyLg0KPiANCj4gU2lnbmVkLW9m
+Zi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCg0K
+UmV2aWV3ZWQtYnk6IE1pa2EgS2Fob2xhIDxtaWthLmthaG9sYUBpbnRlbC5jb20+DQoNCj4gLS0t
+DQo+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYyAgfCAgNCAr
+LS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jICAgICAgfCAy
+NCArKysrKysrKystLS0tLS0tLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2ZiYy5oICAgICAgfCAgNCArKy0tDQo+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9m
+aWZvX3VuZGVycnVuLmMgICAgfCAgMiArLQ0KPiAgNCBmaWxlcyBjaGFuZ2VkLCAxNiBpbnNlcnRp
+b25zKCspLCAxOCBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jDQo+IGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYw0KPiBpbmRleCBhY2Y3MGFl
+NjZhMjkuLjNlNDU2ZTU5NTAxMCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jDQo+IEBAIC0yMDQ0LDkgKzIwNDQs
+NyBAQCBpOTE1X2ZpZm9fdW5kZXJydW5fcmVzZXRfd3JpdGUoc3RydWN0IGZpbGUgKmZpbHAsDQo+
+ICAJCQlyZXR1cm4gcmV0Ow0KPiAgCX0NCj4gDQo+IC0JcmV0ID0gaW50ZWxfZmJjX3Jlc2V0X3Vu
+ZGVycnVuKCZkZXZfcHJpdi0+ZmJjKTsNCj4gLQlpZiAocmV0KQ0KPiAtCQlyZXR1cm4gcmV0Ow0K
+PiArCWludGVsX2ZiY19yZXNldF91bmRlcnJ1bihkZXZfcHJpdik7DQo+IA0KPiAgCXJldHVybiBj
+bnQ7DQo+ICB9DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2ZiYy5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYw0K
+PiBpbmRleCAwYmVmM2I5NDg2NzAuLjAwYzkzMDQwNTI5ZSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jDQo+IEBAIC0xNTQ3LDIxICsxNTQ3LDIxIEBAIHN0
+YXRpYyB2b2lkIGludGVsX2ZiY191bmRlcnJ1bl93b3JrX2ZuKHN0cnVjdA0KPiB3b3JrX3N0cnVj
+dCAqd29yaykNCj4gDQo+ICAvKg0KPiAgICogaW50ZWxfZmJjX3Jlc2V0X3VuZGVycnVuIC0gcmVz
+ZXQgRkJDIGZpZm8gdW5kZXJydW4gc3RhdHVzLg0KPiAtICogQGZiYzogVGhlIEZCQyBpbnN0YW5j
+ZQ0KPiArICogQGk5MTU6IHRoZSBpOTE1IGRldmljZQ0KPiAgICoNCj4gICAqIFNlZSBpbnRlbF9m
+YmNfaGFuZGxlX2ZpZm9fdW5kZXJydW5faXJxKCkuIEZvciBhdXRvbWF0ZWQgdGVzdGluZyB3ZQ0K
+PiAgICogd2FudCB0byByZS1lbmFibGUgRkJDIGFmdGVyIGFuIHVuZGVycnVuIHRvIGluY3JlYXNl
+IHRlc3QgY292ZXJhZ2UuDQo+ICAgKi8NCj4gLWludCBpbnRlbF9mYmNfcmVzZXRfdW5kZXJydW4o
+c3RydWN0IGludGVsX2ZiYyAqZmJjKQ0KPiArdm9pZCBpbnRlbF9mYmNfcmVzZXRfdW5kZXJydW4o
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpDQo+ICB7DQo+IC0Jc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmk5MTUgPSBmYmMtPmk5MTU7DQo+IC0JaW50IHJldDsNCj4gKwlzdHJ1Y3QgaW50
+ZWxfZmJjICpmYmMgPSAmaTkxNS0+ZmJjOw0KPiArDQo+ICsJaWYgKCFIQVNfRkJDKGk5MTUpKQ0K
+PiArCQlyZXR1cm47DQo+IA0KPiAgCWNhbmNlbF93b3JrX3N5bmMoJmZiYy0+dW5kZXJydW5fd29y
+ayk7DQo+IA0KPiAtCXJldCA9IG11dGV4X2xvY2tfaW50ZXJydXB0aWJsZSgmZmJjLT5sb2NrKTsN
+Cj4gLQlpZiAocmV0KQ0KPiAtCQlyZXR1cm4gcmV0Ow0KPiArCW11dGV4X2xvY2soJmZiYy0+bG9j
+ayk7DQo+IA0KPiAgCWlmIChmYmMtPnVuZGVycnVuX2RldGVjdGVkKSB7DQo+ICAJCWRybV9kYmdf
+a21zKCZpOTE1LT5kcm0sDQo+IEBAIC0xNTcxLDEzICsxNTcxLDExIEBAIGludCBpbnRlbF9mYmNf
+cmVzZXRfdW5kZXJydW4oc3RydWN0IGludGVsX2ZiYyAqZmJjKQ0KPiANCj4gIAlmYmMtPnVuZGVy
+cnVuX2RldGVjdGVkID0gZmFsc2U7DQo+ICAJbXV0ZXhfdW5sb2NrKCZmYmMtPmxvY2spOw0KPiAt
+DQo+IC0JcmV0dXJuIDA7DQo+ICB9DQo+IA0KPiAgLyoqDQo+ICAgKiBpbnRlbF9mYmNfaGFuZGxl
+X2ZpZm9fdW5kZXJydW5faXJxIC0gZGlzYWJsZSBGQkMgd2hlbiB3ZSBnZXQgYSBGSUZPDQo+IHVu
+ZGVycnVuDQo+IC0gKiBAZmJjOiBUaGUgRkJDIGluc3RhbmNlDQo+ICsgKiBAaTkxNTogaTkxNSBk
+ZXZpY2UNCj4gICAqDQo+ICAgKiBXaXRob3V0IEZCQywgbW9zdCB1bmRlcnJ1bnMgYXJlIGhhcm1s
+ZXNzIGFuZCBkb24ndCByZWFsbHkgY2F1c2UgdG9vIG1hbnkNCj4gICAqIHByb2JsZW1zLCBleGNl
+cHQgZm9yIGFuIGFubm95aW5nIG1lc3NhZ2Ugb24gZG1lc2cuIFdpdGggRkJDLCB1bmRlcnJ1bnMN
+Cj4gY2FuIEBAIC0xNTg5LDkgKzE1ODcsMTEgQEAgaW50IGludGVsX2ZiY19yZXNldF91bmRlcnJ1
+bihzdHJ1Y3QgaW50ZWxfZmJjDQo+ICpmYmMpDQo+ICAgKg0KPiAgICogVGhpcyBmdW5jdGlvbiBp
+cyBjYWxsZWQgZnJvbSB0aGUgSVJRIGhhbmRsZXIuDQo+ICAgKi8NCj4gLXZvaWQgaW50ZWxfZmJj
+X2hhbmRsZV9maWZvX3VuZGVycnVuX2lycShzdHJ1Y3QgaW50ZWxfZmJjICpmYmMpDQo+ICt2b2lk
+IGludGVsX2ZiY19oYW5kbGVfZmlmb191bmRlcnJ1bl9pcnEoc3RydWN0IGRybV9pOTE1X3ByaXZh
+dGUgKmk5MTUpDQo+ICB7DQo+IC0JaWYgKCFIQVNfRkJDKGZiYy0+aTkxNSkpDQo+ICsJc3RydWN0
+IGludGVsX2ZiYyAqZmJjID0gJmk5MTUtPmZiYzsNCj4gKw0KPiArCWlmICghSEFTX0ZCQyhpOTE1
+KSkNCj4gIAkJcmV0dXJuOw0KPiANCj4gIAkvKiBUaGVyZSdzIG5vIGd1YXJhbnRlZSB0aGF0IHVu
+ZGVycnVuX2RldGVjdGVkIHdvbid0IGJlIHNldCB0byB0cnVlDQo+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5oDQo+IGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuaA0KPiBpbmRleCA3NDQ5MmUwNWExYzkuLjM2ZTllNWY5
+M2JjYiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9m
+YmMuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5oDQo+
+IEBAIC0zNSw4ICszNSw4IEBAIHZvaWQgaW50ZWxfZmJjX2ludmFsaWRhdGUoc3RydWN0IGRybV9p
+OTE1X3ByaXZhdGUNCj4gKmRldl9wcml2LA0KPiAgCQkJICBlbnVtIGZiX29wX29yaWdpbiBvcmln
+aW4pOw0KPiAgdm9pZCBpbnRlbF9mYmNfZmx1c2goc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
+dl9wcml2LA0KPiAgCQkgICAgIHVuc2lnbmVkIGludCBmcm9udGJ1ZmZlcl9iaXRzLCBlbnVtIGZi
+X29wX29yaWdpbiBvcmlnaW4pOyAtDQo+IHZvaWQgaW50ZWxfZmJjX2hhbmRsZV9maWZvX3VuZGVy
+cnVuX2lycShzdHJ1Y3QgaW50ZWxfZmJjICpmYmMpOyAtaW50DQo+IGludGVsX2ZiY19yZXNldF91
+bmRlcnJ1bihzdHJ1Y3QgaW50ZWxfZmJjICpmYmMpOw0KPiArdm9pZCBpbnRlbF9mYmNfaGFuZGxl
+X2ZpZm9fdW5kZXJydW5faXJxKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KTsNCj4gK3Zv
+aWQgaW50ZWxfZmJjX3Jlc2V0X3VuZGVycnVuKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1
+KTsNCj4gIGludCBpbnRlbF9mYmNfc2V0X2ZhbHNlX2NvbG9yKHN0cnVjdCBpbnRlbF9mYmMgKmZi
+YywgYm9vbCBlbmFibGUpOw0KPiANCj4gICNlbmRpZiAvKiBfX0lOVEVMX0ZCQ19IX18gKi8NCj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmlmb191bmRl
+cnJ1bi5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9maWZvX3VuZGVy
+cnVuLmMNCj4gaW5kZXggMjhkOWVlYjdiNGYzLi5lYjg0MTk2MDg0MGQgMTAwNjQ0DQo+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmlmb191bmRlcnJ1bi5jDQo+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmlmb191bmRlcnJ1bi5jDQo+
+IEBAIC00MzQsNyArNDM0LDcgQEAgdm9pZCBpbnRlbF9jcHVfZmlmb191bmRlcnJ1bl9pcnFfaGFu
+ZGxlcihzdHJ1Y3QNCj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsDQo+ICAJCQlkcm1fZXJy
+KCZkZXZfcHJpdi0+ZHJtLCAiQ1BVIHBpcGUgJWMgRklGTw0KPiB1bmRlcnJ1blxuIiwgcGlwZV9u
+YW1lKHBpcGUpKTsNCj4gIAl9DQo+IA0KPiAtCWludGVsX2ZiY19oYW5kbGVfZmlmb191bmRlcnJ1
+bl9pcnEoJmRldl9wcml2LT5mYmMpOw0KPiArCWludGVsX2ZiY19oYW5kbGVfZmlmb191bmRlcnJ1
+bl9pcnEoZGV2X3ByaXYpOw0KPiAgfQ0KPiANCj4gIC8qKg0KPiAtLQ0KPiAyLjMyLjANCg0K
