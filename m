@@ -2,39 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50AA4464A3C
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 09:58:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5647E464A53
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 10:04:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 365C66E872;
-	Wed,  1 Dec 2021 08:58:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EAD26EA4C;
+	Wed,  1 Dec 2021 09:04:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B81276E996;
- Wed,  1 Dec 2021 08:58:09 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="216434710"
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="216434710"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 00:58:09 -0800
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="459948084"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5C046EA4C
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 09:04:35 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="217112500"
+X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="217112500"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2021 01:04:33 -0800
+X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="540749184"
 Received: from pwedlarx-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.26.43])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 00:58:03 -0800
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2021 01:04:30 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20211130212912.212044-1-lyude@redhat.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Mullati Siva
+ <siva.mullati@intel.com>
+In-Reply-To: <20211130191728.hiyeuvchddhly3qx@ldmartin-desk2>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211129233354.101347-1-lyude@redhat.com>
- <20211130212912.212044-1-lyude@redhat.com>
-Date: Wed, 01 Dec 2021 10:58:00 +0200
-Message-ID: <87k0goitwn.fsf@intel.com>
+References: <20211122123142.319367-1-siva.mullati@intel.com>
+ <20211130191728.hiyeuvchddhly3qx@ldmartin-desk2>
+Date: Wed, 01 Dec 2021 11:04:27 +0200
+Message-ID: <87h7bsitlw.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/dp: Perform 30ms delay after
- source OUI write
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Skip remap_io_mapping() for
+ non-x86 platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,157 +48,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>,
- stable@vger.kernel.org, Dave Airlie <airlied@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 30 Nov 2021, Lyude Paul <lyude@redhat.com> wrote:
-> While working on supporting the Intel HDR backlight interface, I noticed
-> that there's a couple of laptops that will very rarely manage to boot up
-> without detecting Intel HDR backlight support - even though it's supported
-> on the system. One example of such a laptop is the Lenovo P17 1st
-> generation.
+On Tue, 30 Nov 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Mon, Nov 22, 2021 at 06:01:42PM +0530, Mullati Siva wrote:
+>>From: Siva Mullati <siva.mullati@intel.com>
+>>
+>>Only hw that supports mappable aperture would hit this path
+>>vm_fault_gtt/vm_fault_tmm, So we never hit this function
+>>remap_io_mapping() in discrete, So skip this code for non-x86
+>>architectures.
+>>
+>>Signed-off-by: Siva Mullati <siva.mullati@intel.com>
+>>---
+>> drivers/gpu/drm/i915/gem/i915_gem_mman.c |  1 +
+>> drivers/gpu/drm/i915/i915_drv.h          |  8 ------
+>> drivers/gpu/drm/i915/i915_mm.c           |  1 +
+>> drivers/gpu/drm/i915/i915_mm.h           | 32 ++++++++++++++++++++++++
+>> 4 files changed, 34 insertions(+), 8 deletions(-)
+>> create mode 100644 drivers/gpu/drm/i915/i915_mm.h
+>>
+>>diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i=
+915/gem/i915_gem_mman.c
+>>index 65fc6ff5f59d..39bb15eafc07 100644
+>>--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>>+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>>@@ -17,6 +17,7 @@
+>> #include "i915_gem_ioctls.h"
+>> #include "i915_gem_object.h"
+>> #include "i915_gem_mman.h"
+>>+#include "i915_mm.h"
+>> #include "i915_trace.h"
+>> #include "i915_user_extensions.h"
+>> #include "i915_gem_ttm.h"
+>>diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+>>index 1bfadd9127fc..7ae0f0cc6866 100644
+>>--- a/drivers/gpu/drm/i915/i915_drv.h
+>>+++ b/drivers/gpu/drm/i915/i915_drv.h
+>>@@ -1967,14 +1967,6 @@ mkwrite_device_info(struct drm_i915_private *dev_p=
+riv)
+>> int i915_reg_read_ioctl(struct drm_device *dev, void *data,
+>> 			struct drm_file *file);
+>>
+>>-/* i915_mm.c */
+>>-int remap_io_mapping(struct vm_area_struct *vma,
+>>-		     unsigned long addr, unsigned long pfn, unsigned long size,
+>>-		     struct io_mapping *iomap);
+>>-int remap_io_sg(struct vm_area_struct *vma,
+>>-		unsigned long addr, unsigned long size,
+>>-		struct scatterlist *sgl, resource_size_t iobase);
+>>-
+>> static inline int intel_hws_csb_write_index(struct drm_i915_private *i91=
+5)
+>> {
+>> 	if (GRAPHICS_VER(i915) >=3D 11)
+>>diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_m=
+m.c
+>>index 666808cb3a32..f4df15fe7cf8 100644
+>>--- a/drivers/gpu/drm/i915/i915_mm.c
+>>+++ b/drivers/gpu/drm/i915/i915_mm.c
+>>@@ -27,6 +27,7 @@
+>>
+>>
+>> #include "i915_drv.h"
+>>+#include "i915_mm.h"
+>>
+>> struct remap_pfn {
+>> 	struct mm_struct *mm;
+>>diff --git a/drivers/gpu/drm/i915/i915_mm.h b/drivers/gpu/drm/i915/i915_m=
+m.h
+>>new file mode 100644
+>>index 000000000000..1d3bbb9cbf43
+>>--- /dev/null
+>>+++ b/drivers/gpu/drm/i915/i915_mm.h
+>>@@ -0,0 +1,32 @@
+>>+/* SPDX-License-Identifier: MIT */
+>>+/*
+>>+ * Copyright =C2=A9 2021 Intel Corporation
+>>+ */
+>>+
+>>+#ifndef __I915_MM_H__
+>>+#define __I915_MM_H__
+>>+
+>>+#include <linux/types.h>
+>>+
+>>+struct vm_area_struct;
+>>+struct io_mapping;
+>>+struct scatterlist;
+>>+
+>>+#if IS_ENABLED(CONFIG_X86)
+>>+int remap_io_mapping(struct vm_area_struct *vma,
+>>+		unsigned long addr, unsigned long pfn, unsigned long size,
+>>+		struct io_mapping *iomap);
+>>+#else
+>>+static inline int remap_io_mapping(struct vm_area_struct *vma,
+>>+		unsigned long addr, unsigned long pfn, unsigned long size,
+>>+		struct io_mapping *iomap)
+>>+{
 >
-> Following some investigation Ville Syrj=C3=A4l=C3=A4 did through the docs=
- they have
-> available to them, they discovered that there's actually supposed to be a
-> 30ms wait after writing the source OUI before we begin setting up the rest
-> of the backlight interface.
+> would probably be good to add:
 >
-> This seems to be correct, as adding this 30ms delay seems to have
-> completely fixed the probing issues I was previously seeing. So - let's
-> start performing a 30ms wait after writing the OUI, which we do in a mann=
-er
-> similar to how we keep track of PPS delays (e.g. record the timestamp of
-> the OUI write, and then wait for however many ms are left since that
-> timestamp right before we interact with the backlight) in order to avoid
-> waiting any longer then we need to. As well, this also avoids us performi=
-ng
-> this delay on systems where we don't end up using the HDR backlight
-> interface.
+> 	pr_err("Architecture has no remap_io_mapping() and shouldn't be calling =
+this function\n");
+> 	WARN_ON_ONCE(1);
 >
-> V3:
-> * Move last_oui_write into intel_dp
-> V2:
-> * Move panel delays into intel_pps
+> the same way that is done in drivers/gpu/drm/drm_cache.c
 >
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> Fixes: 4a8d79901d5b ("drm/i915/dp: Enable Intel's HDR backlight interface=
- (only SDR for now)")
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Cc: <stable@vger.kernel.org> # v5.12+
+> Other than that:
+>
+>
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+> Since you're adding this header, can you follow up with one additional
+> patch to move the rest of the prototypes off i915_drv.h and into this
+> new header?
 
-Thanks, pushed to drm-intel-next.
+There's only the two functions?
 
 BR,
 Jani.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display_types.h    |  3 +++
->  drivers/gpu/drm/i915/display/intel_dp.c               | 11 +++++++++++
->  drivers/gpu/drm/i915/display/intel_dp.h               |  2 ++
->  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c |  5 +++++
->  4 files changed, 21 insertions(+)
+
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index ea1e8a6e10b0..b9c967837872 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1653,6 +1653,9 @@ struct intel_dp {
->  	struct intel_dp_pcon_frl frl;
->=20=20
->  	struct intel_psr psr;
-> +
-> +	/* When we last wrote the OUI for eDP */
-> +	unsigned long last_oui_write;
->  };
->=20=20
->  enum lspcon_vendor {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 0a424bf69396..5a8206298691 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -29,6 +29,7 @@
->  #include <linux/i2c.h>
->  #include <linux/notifier.h>
->  #include <linux/slab.h>
-> +#include <linux/timekeeping.h>
->  #include <linux/types.h>
->=20=20
->  #include <asm/byteorder.h>
-> @@ -2010,6 +2011,16 @@ intel_edp_init_source_oui(struct intel_dp *intel_d=
-p, bool careful)
->=20=20
->  	if (drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, oui, sizeof(oui)) =
-< 0)
->  		drm_err(&i915->drm, "Failed to write source OUI\n");
-> +
-> +	intel_dp->last_oui_write =3D jiffies;
-> +}
-> +
-> +void intel_dp_wait_source_oui(struct intel_dp *intel_dp)
-> +{
-> +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> +
-> +	drm_dbg_kms(&i915->drm, "Performing OUI wait\n");
-> +	wait_remaining_ms_from_jiffies(intel_dp->last_oui_write, 30);
->  }
->=20=20
->  /* If the device supports it, try to set the power state appropriately */
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
-15/display/intel_dp.h
-> index ce229026dc91..b64145a3869a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -119,4 +119,6 @@ void intel_dp_pcon_dsc_configure(struct intel_dp *int=
-el_dp,
->  				 const struct intel_crtc_state *crtc_state);
->  void intel_dp_phy_test(struct intel_encoder *encoder);
->=20=20
-> +void intel_dp_wait_source_oui(struct intel_dp *intel_dp);
-> +
->  #endif /* __INTEL_DP_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/driv=
-ers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index 8b9c925c4c16..62c112daacf2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -36,6 +36,7 @@
->=20=20
->  #include "intel_backlight.h"
->  #include "intel_display_types.h"
-> +#include "intel_dp.h"
->  #include "intel_dp_aux_backlight.h"
->=20=20
->  /* TODO:
-> @@ -106,6 +107,8 @@ intel_dp_aux_supports_hdr_backlight(struct intel_conn=
-ector *connector)
->  	int ret;
->  	u8 tcon_cap[4];
->=20=20
-> +	intel_dp_wait_source_oui(intel_dp);
-> +
->  	ret =3D drm_dp_dpcd_read(aux, INTEL_EDP_HDR_TCON_CAP0, tcon_cap, sizeof=
-(tcon_cap));
->  	if (ret !=3D sizeof(tcon_cap))
->  		return false;
-> @@ -204,6 +207,8 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_=
-crtc_state *crtc_state,
->  	int ret;
->  	u8 old_ctrl, ctrl;
->=20=20
-> +	intel_dp_wait_source_oui(intel_dp);
-> +
->  	ret =3D drm_dp_dpcd_readb(&intel_dp->aux, INTEL_EDP_HDR_GETSET_CTRL_PAR=
-AMS, &old_ctrl);
->  	if (ret !=3D 1) {
->  		drm_err(&i915->drm, "Failed to read current backlight control mode: %d=
-\n", ret);
+>
+> thanks
+> Lucas De Marchi
+>
+>
+>>+	return 0;
+>>+}
+>>+#endif
+>>+
+>>+int remap_io_sg(struct vm_area_struct *vma,
+>>+		unsigned long addr, unsigned long size,
+>>+		struct scatterlist *sgl, resource_size_t iobase);
+>>+
+>>+#endif /* __I915_MM_H__ */
+>>--=20
+>>2.33.0
+>>
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
