@@ -2,33 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB0E346457D
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 04:36:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 436C546459F
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 04:56:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C1AB6E466;
-	Wed,  1 Dec 2021 03:36:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9311E6E270;
+	Wed,  1 Dec 2021 03:56:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 48EDA6E466;
- Wed,  1 Dec 2021 03:36:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 42A6DA47DF;
- Wed,  1 Dec 2021 03:36:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DAE36E483
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 03:56:27 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="216394484"
+X-IronPort-AV: E=Sophos;i="5.87,277,1631602800"; d="scan'208";a="216394484"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 19:56:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,277,1631602800"; d="scan'208";a="576076418"
+Received: from vsrini4-xps-8920.iind.intel.com (HELO localhost.localdomain)
+ ([10.223.163.28])
+ by fmsmga004.fm.intel.com with ESMTP; 30 Nov 2021 19:56:25 -0800
+From: Vidya Srinivas <vidya.srinivas@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  1 Dec 2021 09:17:27 +0530
+Message-Id: <20211201034727.1666-1-vidya.srinivas@intel.com>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211130171220.8622-1-vidya.srinivas@intel.com>
+References: <20211130171220.8622-1-vidya.srinivas@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vidya Srinivas" <vidya.srinivas@intel.com>
-Date: Wed, 01 Dec 2021 03:36:34 -0000
-Message-ID: <163832979425.14896.10264633312670558758@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211118062516.22535-1-vidya.srinivas@intel.com>
-In-Reply-To: <20211118062516.22535-1-vidya.srinivas@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Reject_5k_on_HDR_planes_for_planar_fb_formats_?=
- =?utf-8?b?KHJldjcp?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Add PLANE_CUS_CTL restriction in
+ max_width
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,31 +46,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Yashashvi Shantam <shantam.yashashvi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+PLANE_CUS_CTL has a restriction of 4096 width even though
+PLANE_SIZE and scaler size registers supports max 5120.
+Take care of this restriction in max_width.
 
-Series: drm/i915: Reject 5k on HDR planes for planar fb formats (rev7)
-URL   : https://patchwork.freedesktop.org/series/97053/
-State : warning
+Without this patch, when 5k content is sent on HDR plane
+with NV12 content, FIFO underrun is seen and screen blanks
+out.
 
-== Summary ==
+v2: Addressed review comments from Ville. Added separate
+functions for max_width - for HDR and SDR
 
-$ dim checkpatch origin/drm-tip
-24b77f8800af drm/i915: Add PLANE_CUS_CTL restriction in max_width
--:38: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#38: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:424:
+v3: Addressed review comments from Ville. Changed names of
+HDR and SDR max_width functions to icl_hdr_plane_max_width
+and icl_sdr_plane_max_width
+
+v4: Fixed paranthesis alignment. No code change
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+Signed-off-by: Yashashvi Shantam <shantam.yashashvi@intel.com>
+---
+ .../drm/i915/display/skl_universal_plane.c    | 21 +++++++++++++++----
+ 1 file changed, 17 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 28890876bdeb..e717eb58b105 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -420,9 +420,19 @@ static int icl_plane_min_width(const struct drm_framebuffer *fb,
+ 	}
+ }
+ 
+-static int icl_plane_max_width(const struct drm_framebuffer *fb,
+-			       int color_plane,
+-			       unsigned int rotation)
 +static int icl_hdr_plane_max_width(const struct drm_framebuffer *fb,
-+			       int color_plane,
-
--:48: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#48: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:434:
++				int color_plane,
++				unsigned int rotation)
++{
++	if (intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
++		return 4096;
++	else
++		return 5120;
++}
++
 +static int icl_sdr_plane_max_width(const struct drm_framebuffer *fb,
- 			       int color_plane,
-
-total: 0 errors, 0 warnings, 2 checks, 29 lines checked
-
++				int color_plane,
++				unsigned int rotation)
+ {
+ 	return 5120;
+ }
+@@ -2108,7 +2118,10 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 11) {
+ 		plane->min_width = icl_plane_min_width;
+-		plane->max_width = icl_plane_max_width;
++		if (icl_is_hdr_plane(dev_priv, plane_id))
++			plane->max_width = icl_hdr_plane_max_width;
++		else
++			plane->max_width = icl_sdr_plane_max_width;
+ 		plane->max_height = icl_plane_max_height;
+ 		plane->min_cdclk = icl_plane_min_cdclk;
+ 	} else if (DISPLAY_VER(dev_priv) >= 10) {
+-- 
+2.33.0
 
