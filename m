@@ -1,42 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ECCE465374
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 17:59:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EA344650F4
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 16:08:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 420DA89A67;
-	Wed,  1 Dec 2021 16:59:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36E9C6E94B;
+	Wed,  1 Dec 2021 15:08:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E22989A67
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 16:59:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="322745688"
-X-IronPort-AV: E=Sophos;i="5.87,279,1631602800"; d="scan'208";a="322745688"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 08:59:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,279,1631602800"; d="scan'208";a="560538208"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 01 Dec 2021 07:02:43 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 01 Dec 2021 17:02:43 +0200
-Date: Wed, 1 Dec 2021 17:02:43 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Vidya Srinivas <vidya.srinivas@intel.com>
-Message-ID: <YaeOkxURq25NfLhy@intel.com>
-References: <20211130171220.8622-1-vidya.srinivas@intel.com>
- <20211201034727.1666-1-vidya.srinivas@intel.com>
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com
+ [IPv6:2607:f8b0:4864:20::82a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5C5F6E927;
+ Wed,  1 Dec 2021 15:07:59 +0000 (UTC)
+Received: by mail-qt1-x82a.google.com with SMTP id l8so24310371qtk.6;
+ Wed, 01 Dec 2021 07:07:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=uHBn4fMc9zNgwGNibCQstuDT+KOctW9FPdsBc/74IZA=;
+ b=R7W5cQVmOzkCy4vdezVw2fD+Usma4S/vh1hIsgcHho9rNfCQNvYpqNP342lmKoQV7R
+ E6znTHanuK11XQG8OMvCIXKiS2CeNFrrNh9eaTC9NHyMUY4k/4BRTO7MegsypHmnKsk6
+ FnKeLlS0xfJK/RBzKX950nIP1dQD3tR+K2qOieGLSDAJBpwOUD4I/UFKhBst2GGbsATm
+ xEty9IUdelaj8RcEOXMDm/n/WpQWcwPg7913/uS2DCcEKw0ITCcMNiD9q0zNSuvDn+ui
+ WqOvaToopg90Pv76fKd4g2dTaqys6Pgzl3p9AiKoqJwPcn1KpwCp8579Wjo4GQ0ap40y
+ g9gA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=uHBn4fMc9zNgwGNibCQstuDT+KOctW9FPdsBc/74IZA=;
+ b=RvR+NrPKKa3/fPKY11Gq5Jkh1ZpVJc3nd0Qk6menZ2/UmDatUXmfcvWk64aifTf471
+ m+uC6tzAlPvbRvCAA9dUTjAIBPNVWC4UYIM6WC3pDbfJ4ISwZEqESsKGkDrQd1z9IU5p
+ oi6EbH+YSs+WH1W4IxaJZuxzMZm/ur5TQqk/Qe0VxX2BjVTnOnh2i5IWTKVhJot4Zaca
+ Irypi9U5CKSYfALiB6SRnKhDmn2PT9GAn7iHYpzRtPtb3/1ECiwfCiLf1m0mkOKW/6MJ
+ ZQgKZX8/ue5VtWMVC4tEOj2gp54h5Eul88/Wy7eu8ME3SJEIjlWaA06txoAdV4tLWXuv
+ YMIw==
+X-Gm-Message-State: AOAM532BvnnKZSO/B1kdSqfSxWcGirsnuItNUo84wCG0c9bYeWQ75oa9
+ GxjcWCGPwAiJPS7+RAF/lXtIht8iWAGR+HhHwPbkRkH7+3g=
+X-Google-Smtp-Source: ABdhPJyXXQJPA8CW8ybB9dUwY17jKVYrdqMukindK+W3MKGmdTURUt14UFIpLaJR0cSRlFVua9eCcCScXRsVJE2F4BM=
+X-Received: by 2002:ac8:5bd6:: with SMTP id b22mr7371239qtb.231.1638371278684; 
+ Wed, 01 Dec 2021 07:07:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211201034727.1666-1-vidya.srinivas@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add PLANE_CUS_CTL restriction in
- max_width
+References: <20211129134735.628712-6-maarten.lankhorst@linux.intel.com>
+ <20211130092055.679740-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20211130092055.679740-1-maarten.lankhorst@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 1 Dec 2021 15:07:32 +0000
+Message-ID: <CAM0jSHNfQZpT-mQpqohNGgunbtxh_tsibQRM1H-Yp2XcyUT4zQ@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Force ww lock for
+ i915_gem_object_ggtt_pin_ww, v2.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,81 +63,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Yashashvi Shantam <shantam.yashashvi@intel.com>,
- intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 01, 2021 at 09:17:27AM +0530, Vidya Srinivas wrote:
-> PLANE_CUS_CTL has a restriction of 4096 width even though
-> PLANE_SIZE and scaler size registers supports max 5120.
-> Take care of this restriction in max_width.
-> 
-> Without this patch, when 5k content is sent on HDR plane
-> with NV12 content, FIFO underrun is seen and screen blanks
-> out.
-> 
-> v2: Addressed review comments from Ville. Added separate
-> functions for max_width - for HDR and SDR
-> 
-> v3: Addressed review comments from Ville. Changed names of
-> HDR and SDR max_width functions to icl_hdr_plane_max_width
-> and icl_sdr_plane_max_width
-> 
-> v4: Fixed paranthesis alignment. No code change
-> 
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
-> Signed-off-by: Yashashvi Shantam <shantam.yashashvi@intel.com>
-
-Hmm. What's this extra sob doing here?
-
+On Tue, 30 Nov 2021 at 09:21, Maarten Lankhorst
+<maarten.lankhorst@linux.intel.com> wrote:
+>
+> We will need the lock to unbind the vma, and wait for bind to complete.
+> Remove the special casing for the !ww path, and force ww locking for all.
+>
+> Changes since v1:
+> - Pass err to for_i915_gem_ww handling for -EDEADLK handling.
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 > ---
->  .../drm/i915/display/skl_universal_plane.c    | 21 +++++++++++++++----
->  1 file changed, 17 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 28890876bdeb..e717eb58b105 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -420,9 +420,19 @@ static int icl_plane_min_width(const struct drm_framebuffer *fb,
->  	}
+>  drivers/gpu/drm/i915/i915_drv.h |  7 ++-----
+>  drivers/gpu/drm/i915/i915_gem.c | 30 ++++++++++++++++++++++++++----
+>  2 files changed, 28 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 1bfadd9127fc..8322abe194da 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1842,13 +1842,10 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
+>                             const struct i915_ggtt_view *view,
+>                             u64 size, u64 alignment, u64 flags);
+>
+> -static inline struct i915_vma * __must_check
+> +struct i915_vma * __must_check
+>  i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
+>                          const struct i915_ggtt_view *view,
+> -                        u64 size, u64 alignment, u64 flags)
+> -{
+> -       return i915_gem_object_ggtt_pin_ww(obj, NULL, view, size, alignment, flags);
+> -}
+> +                        u64 size, u64 alignment, u64 flags);
+>
+>  int i915_gem_object_unbind(struct drm_i915_gem_object *obj,
+>                            unsigned long flags);
+> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+> index 527228d4da7e..6002045bd194 100644
+> --- a/drivers/gpu/drm/i915/i915_gem.c
+> +++ b/drivers/gpu/drm/i915/i915_gem.c
+> @@ -877,6 +877,8 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
+>         struct i915_vma *vma;
+>         int ret;
+>
+> +       GEM_WARN_ON(!ww);
+
+Return something here, or GEM_BUG_ON()? I assume it's going to crash
+and burn anyway?
+
+> +
+>         if (flags & PIN_MAPPABLE &&
+>             (!view || view->type == I915_GGTT_VIEW_NORMAL)) {
+>                 /*
+> @@ -936,10 +938,7 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
+>                         return ERR_PTR(ret);
+>         }
+>
+> -       if (ww)
+> -               ret = i915_vma_pin_ww(vma, ww, size, alignment, flags | PIN_GLOBAL);
+> -       else
+> -               ret = i915_vma_pin(vma, size, alignment, flags | PIN_GLOBAL);
+> +       ret = i915_vma_pin_ww(vma, ww, size, alignment, flags | PIN_GLOBAL);
+>
+>         if (ret)
+>                 return ERR_PTR(ret);
+> @@ -959,6 +958,29 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
+>         return vma;
 >  }
->  
-> -static int icl_plane_max_width(const struct drm_framebuffer *fb,
-> -			       int color_plane,
-> -			       unsigned int rotation)
-> +static int icl_hdr_plane_max_width(const struct drm_framebuffer *fb,
-> +				int color_plane,
-> +				unsigned int rotation)
+>
+> +struct i915_vma * __must_check
+> +i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
+> +                        const struct i915_ggtt_view *view,
+> +                        u64 size, u64 alignment, u64 flags)
 > +{
-> +	if (intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
-> +		return 4096;
-> +	else
-> +		return 5120;
+> +       struct i915_gem_ww_ctx ww;
+> +       struct i915_vma *ret;
+> +       int err;
+> +
+> +       for_i915_gem_ww(&ww, err, true) {
+> +               err = i915_gem_object_lock(obj, &ww);
+> +               if (err)
+> +                       continue;
+> +
+> +               ret = i915_gem_object_ggtt_pin_ww(obj, &ww, view, size,
+> +                                                 alignment, flags);
+> +               if (IS_ERR(ret))
+> +                       err = PTR_ERR(ret);
+
+Maybe s/ret/vma/ ? Seeing ret makes me think it's an integer.
+
+Anyway,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+> +       }
+> +
+> +       return err ? ERR_PTR(err) : ret;
 > +}
 > +
-> +static int icl_sdr_plane_max_width(const struct drm_framebuffer *fb,
-> +				int color_plane,
-> +				unsigned int rotation)
->  {
->  	return 5120;
->  }
-> @@ -2108,7 +2118,10 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  
->  	if (DISPLAY_VER(dev_priv) >= 11) {
->  		plane->min_width = icl_plane_min_width;
-> -		plane->max_width = icl_plane_max_width;
-> +		if (icl_is_hdr_plane(dev_priv, plane_id))
-> +			plane->max_width = icl_hdr_plane_max_width;
-> +		else
-> +			plane->max_width = icl_sdr_plane_max_width;
->  		plane->max_height = icl_plane_max_height;
->  		plane->min_cdclk = icl_plane_min_cdclk;
->  	} else if (DISPLAY_VER(dev_priv) >= 10) {
-> -- 
-> 2.33.0
-
--- 
-Ville Syrjälä
-Intel
+>  int
+>  i915_gem_madvise_ioctl(struct drm_device *dev, void *data,
+>                        struct drm_file *file_priv)
+> --
+> 2.34.1
+>
