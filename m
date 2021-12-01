@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A486464F44
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 14:57:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ED1A464F45
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 14:57:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9ED8C72D8C;
-	Wed,  1 Dec 2021 13:57:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63D6A72D90;
+	Wed,  1 Dec 2021 13:57:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7225772D8A
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 13:57:37 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="235190982"
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="235190982"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 05:57:36 -0800
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="477545427"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64D9472D90
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 13:57:42 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="260436354"
+X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="260436354"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2021 05:57:41 -0800
+X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="500260879"
 Received: from pwedlarx-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.26.43])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 05:57:35 -0800
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2021 05:57:39 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Dec 2021 15:57:06 +0200
-Message-Id: <aabcda1208072a732d7796e6dacce37dca9bb843.1638366969.git.jani.nikula@intel.com>
+Date: Wed,  1 Dec 2021 15:57:07 +0200
+Message-Id: <c0be2adc4a7f7e72a47e12a57f742aaa42b813e6.1638366969.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1638366969.git.jani.nikula@intel.com>
 References: <cover.1638366969.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 04/10] drm/i915/display: remove
- intel_wait_for_vblank()
+Subject: [Intel-gfx] [PATCH v2 05/10] drm/i915/crtc: un-inline some crtc
+ functions and move to intel_crtc.[ch]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,85 +50,159 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There are only three call sites remaining for
-intel_wait_for_vblank(). Remove the function, and open code it to avoid
-new users from showing up.
-
-v2:
-- Use intel_crtc_wait_for_next_vblank() (Ville)
+Move a number of crtc/pipe related functions to intel_crtc.[ch], and
+un-inline to avoid looking into struct drm_i915_private guts in header
+files.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c         | 2 +-
- drivers/gpu/drm/i915/display/intel_crt.c           | 2 +-
- drivers/gpu/drm/i915/display/intel_display.c       | 8 ++++++--
- drivers/gpu/drm/i915/display/intel_display_types.h | 8 --------
- 4 files changed, 8 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c     | 42 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_crtc.h     | 10 +++++
+ .../drm/i915/display/intel_display_types.h    | 44 -------------------
+ 3 files changed, 52 insertions(+), 44 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 5a475aa52079..986fb9ba750e 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1690,7 +1690,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
- 	intel_de_write(dev_priv, CDCLK_CTL, val);
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 243d5cc29734..43554b591904 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -36,6 +36,48 @@ static void assert_vblank_disabled(struct drm_crtc *crtc)
+ 		drm_crtc_vblank_put(crtc);
+ }
  
- 	if (pipe != INVALID_PIPE)
--		intel_wait_for_vblank(dev_priv, pipe);
-+		intel_crtc_wait_for_next_vblank(intel_crtc_for_pipe(dev_priv, pipe));
++bool intel_pipe_valid(struct drm_i915_private *i915, enum pipe pipe)
++{
++	return (pipe >= 0 &&
++		pipe < ARRAY_SIZE(i915->pipe_to_crtc_mapping) &&
++		INTEL_INFO(i915)->pipe_mask & BIT(pipe) &&
++		i915->pipe_to_crtc_mapping[pipe]);
++}
++
++struct intel_crtc *intel_get_first_crtc(struct drm_i915_private *i915)
++{
++	return to_intel_crtc(drm_crtc_from_index(&i915->drm, 0));
++}
++
++struct intel_crtc *intel_crtc_for_pipe(struct drm_i915_private *i915,
++				       enum pipe pipe)
++{
++	/* pipe_to_crtc_mapping may have hole on any of 3 display pipe system */
++	drm_WARN_ON(&i915->drm,
++		    !(INTEL_INFO(i915)->pipe_mask & BIT(pipe)));
++	return i915->pipe_to_crtc_mapping[pipe];
++}
++
++struct intel_crtc *intel_crtc_for_plane(struct drm_i915_private *i915,
++					enum i9xx_plane_id plane)
++{
++	return i915->plane_to_crtc_mapping[plane];
++}
++
++void intel_crtc_wait_for_next_vblank(struct intel_crtc *crtc)
++{
++	drm_crtc_wait_one_vblank(&crtc->base);
++}
++
++void intel_wait_for_vblank_if_active(struct drm_i915_private *i915,
++				     enum pipe pipe)
++{
++	struct intel_crtc *crtc = intel_crtc_for_pipe(i915, pipe);
++
++	if (crtc->active)
++		intel_crtc_wait_for_next_vblank(crtc);
++}
++
+ u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc)
+ {
+ 	struct drm_device *dev = crtc->base.dev;
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
+index a0039fdb1eb0..23110e91ecd6 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.h
++++ b/drivers/gpu/drm/i915/display/intel_crtc.h
+@@ -8,6 +8,7 @@
  
- 	if (DISPLAY_VER(dev_priv) >= 11) {
- 		ret = sandybridge_pcode_write(dev_priv, SKL_PCODE_CDCLK_CONTROL,
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index 42533e6457b5..6a3893c8ff22 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -721,7 +721,7 @@ intel_crt_load_detect(struct intel_crt *crt, u32 pipe)
- 		intel_uncore_posting_read(uncore, pipeconf_reg);
- 		/* Wait for next Vblank to substitue
- 		 * border color for Color info */
--		intel_wait_for_vblank(dev_priv, pipe);
-+		intel_crtc_wait_for_next_vblank(intel_crtc_for_pipe(dev_priv, pipe));
- 		st00 = intel_uncore_read8(uncore, _VGA_MSR_WRITE);
- 		status = ((st00 & (1 << 4)) != 0) ?
- 			connector_status_connected :
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 624a7d719531..09f088e6272b 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2101,8 +2101,12 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 	 * to change the workaround. */
- 	hsw_workaround_pipe = new_crtc_state->hsw_workaround_pipe;
- 	if (IS_HASWELL(dev_priv) && hsw_workaround_pipe != INVALID_PIPE) {
--		intel_wait_for_vblank(dev_priv, hsw_workaround_pipe);
--		intel_wait_for_vblank(dev_priv, hsw_workaround_pipe);
-+		struct intel_crtc *wa_crtc;
-+
-+		wa_crtc = intel_crtc_for_pipe(dev_priv, hsw_workaround_pipe);
-+
-+		intel_crtc_wait_for_next_vblank(wa_crtc);
-+		intel_crtc_wait_for_next_vblank(wa_crtc);
+ #include <linux/types.h>
+ 
++enum i9xx_plane_id;
+ enum pipe;
+ struct drm_display_mode;
+ struct drm_i915_private;
+@@ -28,5 +29,14 @@ void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state);
+ void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state);
+ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state);
+ void intel_wait_for_vblank_workers(struct intel_atomic_state *state);
++bool intel_pipe_valid(struct drm_i915_private *i915, enum pipe pipe);
++struct intel_crtc *intel_get_first_crtc(struct drm_i915_private *i915);
++struct intel_crtc *intel_crtc_for_pipe(struct drm_i915_private *i915,
++				       enum pipe pipe);
++struct intel_crtc *intel_crtc_for_plane(struct drm_i915_private *i915,
++					enum i9xx_plane_id plane);
++void intel_wait_for_vblank_if_active(struct drm_i915_private *i915,
++				     enum pipe pipe);
++void intel_crtc_wait_for_next_vblank(struct intel_crtc *crtc);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index a48dfd1474dd..eeaaa101a7b6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1773,35 +1773,6 @@ vlv_pipe_to_channel(enum pipe pipe)
  	}
  }
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 036f9be3045d..a48dfd1474dd 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -2025,14 +2025,6 @@ intel_crtc_wait_for_next_vblank(struct intel_crtc *crtc)
- 	drm_crtc_wait_one_vblank(&crtc->base);
+-static inline bool intel_pipe_valid(struct drm_i915_private *i915, enum pipe pipe)
+-{
+-	return (pipe >= 0 &&
+-		pipe < ARRAY_SIZE(i915->pipe_to_crtc_mapping) &&
+-		INTEL_INFO(i915)->pipe_mask & BIT(pipe) &&
+-		i915->pipe_to_crtc_mapping[pipe]);
+-}
+-
+-static inline struct intel_crtc *
+-intel_get_first_crtc(struct drm_i915_private *dev_priv)
+-{
+-	return to_intel_crtc(drm_crtc_from_index(&dev_priv->drm, 0));
+-}
+-
+-static inline struct intel_crtc *
+-intel_crtc_for_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+-{
+-	/* pipe_to_crtc_mapping may have hole on any of 3 display pipe system */
+-	drm_WARN_ON(&dev_priv->drm,
+-		    !(INTEL_INFO(dev_priv)->pipe_mask & BIT(pipe)));
+-	return dev_priv->pipe_to_crtc_mapping[pipe];
+-}
+-
+-static inline struct intel_crtc *
+-intel_crtc_for_plane(struct drm_i915_private *dev_priv, enum i9xx_plane_id plane)
+-{
+-	return dev_priv->plane_to_crtc_mapping[plane];
+-}
+-
+ struct intel_load_detect_pipe {
+ 	struct drm_atomic_state *restore_state;
+ };
+@@ -2019,21 +1990,6 @@ intel_crtc_needs_modeset(const struct intel_crtc_state *crtc_state)
+ 	return drm_atomic_crtc_needs_modeset(&crtc_state->uapi);
  }
  
 -static inline void
--intel_wait_for_vblank(struct drm_i915_private *dev_priv, enum pipe pipe)
+-intel_crtc_wait_for_next_vblank(struct intel_crtc *crtc)
+-{
+-	drm_crtc_wait_one_vblank(&crtc->base);
+-}
+-
+-static inline void
+-intel_wait_for_vblank_if_active(struct drm_i915_private *dev_priv, enum pipe pipe)
 -{
 -	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
 -
--	intel_crtc_wait_for_next_vblank(crtc);
+-	if (crtc->active)
+-		intel_crtc_wait_for_next_vblank(crtc);
 -}
 -
- static inline void
- intel_wait_for_vblank_if_active(struct drm_i915_private *dev_priv, enum pipe pipe)
+ static inline bool intel_modifier_uses_dpt(struct drm_i915_private *i915, u64 modifier)
  {
+ 	return DISPLAY_VER(i915) >= 13 && modifier != DRM_FORMAT_MOD_LINEAR;
 -- 
 2.30.2
 
