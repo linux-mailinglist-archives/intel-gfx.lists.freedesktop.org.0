@@ -1,34 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE332464BB7
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 11:34:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19526464BB8
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 11:35:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DC026F5E4;
-	Wed,  1 Dec 2021 10:34:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51CDC6F5CC;
+	Wed,  1 Dec 2021 10:34:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 134A76F5CC
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 10:34:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="236251695"
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="236251695"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 106B46F5CC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 10:34:56 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="236251697"
+X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="236251697"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 02:34:54 -0800
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="677216962"
+ 01 Dec 2021 02:34:55 -0800
+X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="677216968"
 Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 02:34:54 -0800
+ 01 Dec 2021 02:34:55 -0800
 From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Dec 2021 02:33:17 -0800
-Message-Id: <20211201103320.2211867-1-anusha.srivatsa@intel.com>
+Date: Wed,  1 Dec 2021 02:33:18 -0800
+Message-Id: <20211201103320.2211867-2-anusha.srivatsa@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211201103320.2211867-1-anusha.srivatsa@intel.com>
+References: <20211201103320.2211867-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [v3 0/3]  Introduce Raptor Lake S
+Subject: [Intel-gfx] [v3 1/3] drm/i915/rpl-s: Add PCI IDS for Raptor Lake S
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,27 +50,125 @@ Raptor Lake S(RPL-S) is a version 12
 Display, Media and Render. For all i915
 purposes it is the same as Alder Lake S (ADL-S).
 
-The series introduces it as a subplatform
-of ADL-S. The one difference is the GuC
-submission which is default on RPL-S but
-was not the case with ADL-S.
+Introduce RPL-S as a subplatform
+of ADL-S. This patch adds PCI ids for RPL-S.
 
-Anusha Srivatsa (3):
-  drm/i915/rpl-s: Add PCI IDS for Raptor Lake S
-  drm/i915/rpl-s: Add PCH Support for Raptor Lake S
-  drm/i915/rpl-s: Enable guc submission by default
+v2: Update PCI IDs.
+- Add more description to commit message (Jani)
 
+v3: s/IS_RAPTORLAKE/IS_ADLS_RPLS (Jani)
+- Fix comment (Tvrtko)
+
+BSpec: 53655
+
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+---
  arch/x86/kernel/early-quirks.c           | 1 +
- drivers/gpu/drm/i915/gt/uc/intel_uc.c    | 2 +-
  drivers/gpu/drm/i915/i915_drv.h          | 2 ++
  drivers/gpu/drm/i915/i915_pci.c          | 1 +
  drivers/gpu/drm/i915/intel_device_info.c | 7 +++++++
  drivers/gpu/drm/i915/intel_device_info.h | 3 +++
- drivers/gpu/drm/i915/intel_pch.c         | 1 +
- drivers/gpu/drm/i915/intel_pch.h         | 1 +
  include/drm/i915_pciids.h                | 9 +++++++++
- 9 files changed, 26 insertions(+), 1 deletion(-)
+ 6 files changed, 23 insertions(+)
 
+diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+index 391a4e2b8604..fd2d3ab38ebb 100644
+--- a/arch/x86/kernel/early-quirks.c
++++ b/arch/x86/kernel/early-quirks.c
+@@ -554,6 +554,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
+ 	INTEL_RKL_IDS(&gen11_early_ops),
+ 	INTEL_ADLS_IDS(&gen11_early_ops),
+ 	INTEL_ADLP_IDS(&gen11_early_ops),
++	INTEL_RPLS_IDS(&gen11_early_ops),
+ };
+ 
+ struct resource intel_graphics_stolen_res __ro_after_init = DEFINE_RES_MEM(0, 0);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 1bfadd9127fc..88c4fd80dcbe 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1469,6 +1469,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G10)
+ #define IS_DG2_G11(dev_priv) \
+ 	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G11)
++#define IS_ADLS_RPLS(dev_priv) \
++	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_S, INTEL_SUBPLATFORM_RPL_S)
+ #define IS_HSW_EARLY_SDV(dev_priv) (IS_HASWELL(dev_priv) && \
+ 				    (INTEL_DEVID(dev_priv) & 0xFF00) == 0x0C00)
+ #define IS_BDW_ULT(dev_priv) \
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index f01cba4ec283..061b2e076373 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -1131,6 +1131,7 @@ static const struct pci_device_id pciidlist[] = {
+ 	INTEL_ADLS_IDS(&adl_s_info),
+ 	INTEL_ADLP_IDS(&adl_p_info),
+ 	INTEL_DG1_IDS(&dg1_info),
++	INTEL_RPLS_IDS(&adl_s_info),
+ 	{0, 0, 0}
+ };
+ MODULE_DEVICE_TABLE(pci, pciidlist);
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 6e6b317bc33c..cae51d9dd7ea 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -182,6 +182,10 @@ static const u16 subplatform_portf_ids[] = {
+ 	INTEL_ICL_PORT_F_IDS(0),
+ };
+ 
++static const u16 subplatform_rpls_ids[] = {
++	INTEL_RPLS_IDS(0),
++};
++
+ static bool find_devid(u16 id, const u16 *p, unsigned int num)
+ {
+ 	for (; num; num--, p++) {
+@@ -218,6 +222,9 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+ 	} else if (find_devid(devid, subplatform_portf_ids,
+ 			      ARRAY_SIZE(subplatform_portf_ids))) {
+ 		mask = BIT(INTEL_SUBPLATFORM_PORTF);
++	} else if (find_devid(devid, subplatform_rpls_ids,
++			      ARRAY_SIZE(subplatform_rpls_ids))) {
++		mask = BIT(INTEL_SUBPLATFORM_RPL_S);
+ 	}
+ 
+ 	if (IS_TIGERLAKE(i915)) {
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index 669f0d26c3c3..2bedf73e0a7d 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -110,6 +110,9 @@ enum intel_platform {
+ #define INTEL_SUBPLATFORM_G10	0
+ #define INTEL_SUBPLATFORM_G11	1
+ 
++/* ADL-S */
++#define INTEL_SUBPLATFORM_RPL_S	0
++
+ enum intel_ppgtt_type {
+ 	INTEL_PPGTT_NONE = I915_GEM_PPGTT_NONE,
+ 	INTEL_PPGTT_ALIASING = I915_GEM_PPGTT_ALIASING,
+diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+index c00ac54692d7..baf3d1d3d566 100644
+--- a/include/drm/i915_pciids.h
++++ b/include/drm/i915_pciids.h
+@@ -666,4 +666,13 @@
+ 	INTEL_VGA_DEVICE(0x46C2, info), \
+ 	INTEL_VGA_DEVICE(0x46C3, info)
+ 
++/* RPL-S */
++#define INTEL_RPLS_IDS(info) \
++	INTEL_VGA_DEVICE(0xA780, info), \
++	INTEL_VGA_DEVICE(0xA781, info), \
++	INTEL_VGA_DEVICE(0xA782, info), \
++	INTEL_VGA_DEVICE(0xA783, info), \
++	INTEL_VGA_DEVICE(0xA788, info), \
++	INTEL_VGA_DEVICE(0xA789, info)
++
+ #endif /* _I915_PCIIDS_H */
 -- 
 2.25.1
 
