@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF7C46510B
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 16:11:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54C89465109
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 16:11:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC85A6EA34;
-	Wed,  1 Dec 2021 15:11:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95B956E9F2;
+	Wed,  1 Dec 2021 15:11:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 772EB6EA02
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 15:11:32 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="260452902"
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="260452902"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 07:10:29 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E42426EA02
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 15:11:26 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="223705536"
+X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="223705536"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2021 07:11:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="602184609"
+X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="512077421"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 01 Dec 2021 07:10:26 -0800
+ by fmsmga007.fm.intel.com with SMTP; 01 Dec 2021 07:11:18 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 01 Dec 2021 17:10:26 +0200
-Date: Wed, 1 Dec 2021 17:10:26 +0200
+ Wed, 01 Dec 2021 17:11:17 +0200
+Date: Wed, 1 Dec 2021 17:11:17 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YaeQYgSPTPPR0r8H@intel.com>
+Message-ID: <YaeQlXVYIXEj3zG9@intel.com>
 References: <cover.1638366969.git.jani.nikula@intel.com>
- <90cfbd8c3e79a742b0ee9e3ae75493acb0785dbb.1638366969.git.jani.nikula@intel.com>
+ <6105d0ff44efac3c999af6382e4b0729e251f1e1.1638366969.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <90cfbd8c3e79a742b0ee9e3ae75493acb0785dbb.1638366969.git.jani.nikula@intel.com>
+In-Reply-To: <6105d0ff44efac3c999af6382e4b0729e251f1e1.1638366969.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 01/10] drm/i915/display: add
- intel_crtc_wait_for_next_vblank() and use it
+Subject: Re: [Intel-gfx] [PATCH v2 02/10] drm/i915/crtc: rename
+ intel_get_crtc_for_pipe() to intel_crtc_for_pipe()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,276 +53,361 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 01, 2021 at 03:57:03PM +0200, Jani Nikula wrote:
-> intel_wait_for_vblank() goes through a pipe to crtc lookup, while in
-> most cases we already have the crtc available. Avoid the extra lookups
-> by adding an intel_crtc based helper.
+On Wed, Dec 01, 2021 at 03:57:04PM +0200, Jani Nikula wrote:
+> The "get" in the name implies reference counting, remove it. This also
+> makes the function conform to naming style.
 > 
-> v2:
-> - Add intel_crtc_wait_for_next_vblank() helper (Ville)
-> 
+> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_crt.c      |  4 +--
->  drivers/gpu/drm/i915/display/intel_display.c  | 32 +++++++++----------
->  .../drm/i915/display/intel_display_types.h    | 12 +++++--
->  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
->  drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_tv.c       |  7 ++--
->  6 files changed, 32 insertions(+), 27 deletions(-)
+>  .../gpu/drm/i915/display/intel_atomic_plane.c    |  2 +-
+>  drivers/gpu/drm/i915/display/intel_cdclk.c       |  2 +-
+>  drivers/gpu/drm/i915/display/intel_display.c     | 16 ++++++++--------
+>  .../gpu/drm/i915/display/intel_display_types.h   |  6 +++---
+>  drivers/gpu/drm/i915/display/intel_dpll.c        |  2 +-
+>  drivers/gpu/drm/i915/display/intel_fdi.c         |  4 ++--
+>  .../gpu/drm/i915/display/intel_fifo_underrun.c   | 10 +++++-----
+>  drivers/gpu/drm/i915/display/intel_sprite.c      |  4 ++--
+>  drivers/gpu/drm/i915/display/intel_vdsc.c        |  2 +-
+>  drivers/gpu/drm/i915/i915_irq.c                  |  6 +++---
+>  drivers/gpu/drm/i915/i915_trace.h                |  4 ++--
+>  drivers/gpu/drm/i915/intel_pm.c                  |  8 ++++----
+>  12 files changed, 33 insertions(+), 33 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-> index f0f28572dfdc..42533e6457b5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> @@ -321,8 +321,8 @@ static void hsw_enable_crt(struct intel_atomic_state *state,
->  
->  	intel_crt_set_dpms(encoder, crtc_state, DRM_MODE_DPMS_ON);
->  
-> -	intel_wait_for_vblank(dev_priv, pipe);
-> -	intel_wait_for_vblank(dev_priv, pipe);
-> +	intel_crtc_wait_for_next_vblank(crtc);
-> +	intel_crtc_wait_for_next_vblank(crtc);
->  	intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, true);
->  	intel_set_pch_fifo_underrun_reporting(dev_priv, PIPE_A, true);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 4b065a281d69..503074dc5690 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -775,7 +775,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
->  	 */
->  	if (HAS_GMCH(dev_priv) &&
->  	    intel_set_memory_cxsr(dev_priv, false))
-> -		intel_wait_for_vblank(dev_priv, crtc->pipe);
-> +		intel_crtc_wait_for_next_vblank(crtc);
->  
->  	/*
->  	 * Gen2 reports pipe underruns whenever all planes are disabled.
-> @@ -785,7 +785,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
->  		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, false);
->  
->  	intel_plane_disable_arm(plane, crtc_state);
-> -	intel_wait_for_vblank(dev_priv, crtc->pipe);
-> +	intel_crtc_wait_for_next_vblank(crtc);
->  }
->  
->  unsigned int
-> @@ -1011,7 +1011,7 @@ bool intel_has_pending_fb_unpin(struct drm_i915_private *dev_priv)
->  		if (cleanup_done)
->  			continue;
->  
-> -		drm_crtc_wait_one_vblank(crtc);
-> +		intel_crtc_wait_for_next_vblank(to_intel_crtc(crtc));
->  
->  		return true;
->  	}
-> @@ -1158,7 +1158,7 @@ void hsw_disable_ips(const struct intel_crtc_state *crtc_state)
->  	}
->  
->  	/* We need to wait for a vblank before we can disable the plane. */
-> -	intel_wait_for_vblank(dev_priv, crtc->pipe);
-> +	intel_crtc_wait_for_next_vblank(crtc);
->  }
->  
->  static void intel_crtc_dpms_overlay_disable(struct intel_crtc *crtc)
-> @@ -1389,7 +1389,6 @@ static void intel_crtc_disable_flip_done(struct intel_atomic_state *state,
->  static void intel_crtc_async_flip_disable_wa(struct intel_atomic_state *state,
->  					     struct intel_crtc *crtc)
->  {
-> -	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> index e3a0bfb7be84..27b8f99dd099 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -395,7 +395,7 @@ int intel_plane_atomic_check(struct intel_atomic_state *state,
+>  	const struct intel_plane_state *old_plane_state =
+>  		intel_atomic_get_old_plane_state(state, plane);
+>  	const struct intel_plane_state *new_master_plane_state;
+> -	struct intel_crtc *crtc = intel_get_crtc_for_pipe(i915, plane->pipe);
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(i915, plane->pipe);
 >  	const struct intel_crtc_state *old_crtc_state =
 >  		intel_atomic_get_old_crtc_state(state, crtc);
->  	const struct intel_crtc_state *new_crtc_state =
-> @@ -1415,7 +1414,7 @@ static void intel_crtc_async_flip_disable_wa(struct intel_atomic_state *state,
->  	}
+>  	struct intel_crtc_state *new_crtc_state =
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 91c19e0a98d7..5a475aa52079 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -2592,7 +2592,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+>  		struct intel_crtc_state *crtc_state;
 >  
->  	if (need_vbl_wait)
-> -		intel_wait_for_vblank(i915, crtc->pipe);
-> +		intel_crtc_wait_for_next_vblank(crtc);
+>  		pipe = ilog2(new_cdclk_state->active_pipes);
+> -		crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +		crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  
+>  		crtc_state = intel_atomic_get_crtc_state(&state->base, crtc);
+>  		if (IS_ERR(crtc_state))
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 503074dc5690..624a7d719531 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4830,7 +4830,7 @@ intel_encoder_current_mode(struct intel_encoder *encoder)
+>  	if (!encoder->get_hw_state(encoder, &pipe))
+>  		return NULL;
+>  
+> -	crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +	crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  
+>  	mode = kzalloc(sizeof(*mode), GFP_KERNEL);
+>  	if (!mode)
+> @@ -8962,8 +8962,8 @@ static void intel_plane_possible_crtcs_init(struct drm_i915_private *dev_priv)
+>  	struct intel_plane *plane;
+>  
+>  	for_each_intel_plane(&dev_priv->drm, plane) {
+> -		struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv,
+> -								  plane->pipe);
+> +		struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv,
+> +							      plane->pipe);
+>  
+>  		plane->base.possible_crtcs = drm_crtc_mask(&crtc->base);
+>  	}
+> @@ -9956,7 +9956,7 @@ int intel_modeset_init(struct drm_i915_private *i915)
+>  
+>  void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  {
+> -	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  	/* 640x480@60Hz, ~25175 kHz */
+>  	struct dpll clock = {
+>  		.m1 = 18,
+> @@ -10029,7 +10029,7 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  
+>  void i830_disable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  {
+> -	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  
+>  	drm_dbg_kms(&dev_priv->drm, "disabling pipe %c due to force quirk\n",
+>  		    pipe_name(pipe));
+> @@ -10081,7 +10081,7 @@ intel_sanitize_plane_mapping(struct drm_i915_private *dev_priv)
+>  			    "[PLANE:%d:%s] attached to the wrong pipe, disabling plane\n",
+>  			    plane->base.base.id, plane->base.name);
+>  
+> -		plane_crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +		plane_crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  		intel_plane_disable_noatomic(plane_crtc, plane);
+>  	}
 >  }
+> @@ -10334,7 +10334,7 @@ static void readout_plane_state(struct drm_i915_private *dev_priv)
 >  
->  static void intel_pre_plane_update(struct intel_atomic_state *state,
-> @@ -1434,7 +1433,7 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
->  		hsw_disable_ips(old_crtc_state);
+>  		visible = plane->get_hw_state(plane, &pipe);
 >  
->  	if (intel_fbc_pre_update(state, crtc))
-> -		intel_wait_for_vblank(dev_priv, pipe);
-> +		intel_crtc_wait_for_next_vblank(crtc);
+> -		crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +		crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  		crtc_state = to_intel_crtc_state(crtc->base.state);
 >  
->  	if (!needs_async_flip_vtd_wa(old_crtc_state) &&
->  	    needs_async_flip_vtd_wa(new_crtc_state))
-> @@ -1466,7 +1465,7 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
->  	 */
->  	if (HAS_GMCH(dev_priv) && old_crtc_state->hw.active &&
->  	    new_crtc_state->disable_cxsr && intel_set_memory_cxsr(dev_priv, false))
-> -		intel_wait_for_vblank(dev_priv, pipe);
-> +		intel_crtc_wait_for_next_vblank(crtc);
+>  		intel_set_plane_visible(crtc_state, plane_state, visible);
+> @@ -10401,7 +10401,7 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+>  		pipe = 0;
 >  
->  	/*
->  	 * IVB workaround: must disable low power watermarks for at least
-> @@ -1477,7 +1476,7 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
->  	 */
->  	if (old_crtc_state->hw.active &&
->  	    new_crtc_state->disable_lp_wm && ilk_disable_lp_wm(dev_priv))
-> -		intel_wait_for_vblank(dev_priv, pipe);
-> +		intel_crtc_wait_for_next_vblank(crtc);
+>  		if (encoder->get_hw_state(encoder, &pipe)) {
+> -			crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +			crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  			crtc_state = to_intel_crtc_state(crtc->base.state);
 >  
->  	/*
->  	 * If we're doing a modeset we don't need to do any
-> @@ -1893,8 +1892,8 @@ static void ilk_crtc_enable(struct intel_atomic_state *state,
->  	 * in case there are more corner cases we don't know about.
->  	 */
->  	if (new_crtc_state->has_pch_encoder) {
-> -		intel_wait_for_vblank(dev_priv, pipe);
-> -		intel_wait_for_vblank(dev_priv, pipe);
-> +		intel_crtc_wait_for_next_vblank(crtc);
-> +		intel_crtc_wait_for_next_vblank(crtc);
->  	}
->  	intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, true);
->  	intel_set_pch_fifo_underrun_reporting(dev_priv, pipe, true);
-> @@ -2094,7 +2093,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
->  	intel_encoders_enable(state, crtc);
->  
->  	if (psl_clkgate_wa) {
-> -		intel_wait_for_vblank(dev_priv, pipe);
-> +		intel_crtc_wait_for_next_vblank(crtc);
->  		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, false);
->  	}
->  
-> @@ -2529,7 +2528,7 @@ static void i9xx_crtc_enable(struct intel_atomic_state *state,
->  
->  	/* prevents spurious underruns */
->  	if (DISPLAY_VER(dev_priv) == 2)
-> -		intel_wait_for_vblank(dev_priv, pipe);
-> +		intel_crtc_wait_for_next_vblank(crtc);
->  }
->  
->  static void i9xx_pfit_disable(const struct intel_crtc_state *old_crtc_state)
-> @@ -2560,7 +2559,7 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
->  	 * wait for planes to fully turn off before disabling the pipe.
->  	 */
->  	if (DISPLAY_VER(dev_priv) == 2)
-> -		intel_wait_for_vblank(dev_priv, pipe);
-> +		intel_crtc_wait_for_next_vblank(crtc);
->  
->  	intel_encoders_disable(state, crtc);
->  
-> @@ -4645,7 +4644,8 @@ int intel_get_load_detect_pipe(struct drm_connector *connector,
->  	drm_atomic_state_put(state);
->  
->  	/* let the connector get through one full cycle before testing */
-> -	intel_wait_for_vblank(dev_priv, crtc->pipe);
-> +	intel_crtc_wait_for_next_vblank(crtc);
-> +
->  	return true;
->  
->  fail:
-> @@ -8462,7 +8462,7 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  			if (!skl_ddb_entry_equal(&new_crtc_state->wm.skl.ddb,
->  						 &old_crtc_state->wm.skl.ddb) &&
->  			    (update_pipes | modeset_pipes))
-> -				intel_wait_for_vblank(dev_priv, pipe);
-> +				intel_crtc_wait_for_next_vblank(crtc);
->  		}
->  	}
->  
+>  			encoder->base.crtc = &crtc->base;
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index b9c967837872..286c55c45f01 100644
+> index 286c55c45f01..8009bcfa1a38 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -2019,21 +2019,27 @@ intel_crtc_needs_modeset(const struct intel_crtc_state *crtc_state)
->  	return drm_atomic_crtc_needs_modeset(&crtc_state->uapi);
+> @@ -1788,7 +1788,7 @@ intel_get_first_crtc(struct drm_i915_private *dev_priv)
 >  }
 >  
-> +static inline void
-> +intel_crtc_wait_for_next_vblank(struct intel_crtc *crtc)
-> +{
-> +	drm_crtc_wait_one_vblank(&crtc->base);
-> +}
-> +
+>  static inline struct intel_crtc *
+> -intel_get_crtc_for_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+> +intel_crtc_for_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  {
+>  	/* pipe_to_crtc_mapping may have hole on any of 3 display pipe system */
+>  	drm_WARN_ON(&dev_priv->drm,
+> @@ -2028,7 +2028,7 @@ intel_crtc_wait_for_next_vblank(struct intel_crtc *crtc)
 >  static inline void
 >  intel_wait_for_vblank(struct drm_i915_private *dev_priv, enum pipe pipe)
 >  {
->  	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> -	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
 >  
-> -	drm_crtc_wait_one_vblank(&crtc->base);
-> +	intel_crtc_wait_for_next_vblank(crtc);
+>  	intel_crtc_wait_for_next_vblank(crtc);
 >  }
->  
+> @@ -2036,7 +2036,7 @@ intel_wait_for_vblank(struct drm_i915_private *dev_priv, enum pipe pipe)
 >  static inline void
 >  intel_wait_for_vblank_if_active(struct drm_i915_private *dev_priv, enum pipe pipe)
 >  {
-> -	const struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
-> +	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> -	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
 >  
 >  	if (crtc->active)
-> -		intel_wait_for_vblank(dev_priv, pipe);
-> +		intel_crtc_wait_for_next_vblank(crtc);
+>  		intel_crtc_wait_for_next_vblank(crtc);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+> index 04a7af8340ca..1ce0c171f4fb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> @@ -1823,7 +1823,7 @@ void chv_enable_pll(const struct intel_crtc_state *crtc_state)
+>  int vlv_force_pll_on(struct drm_i915_private *dev_priv, enum pipe pipe,
+>  		     const struct dpll *dpll)
+>  {
+> -	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  	struct intel_crtc_state *crtc_state;
+>  
+>  	crtc_state = intel_crtc_state_alloc(crtc);
+> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
+> index 2b5f80f3b4e0..be77be626420 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+> @@ -157,7 +157,7 @@ static int ilk_check_fdi_lanes(struct drm_device *dev, enum pipe pipe,
+>  		if (pipe_config->fdi_lanes <= 2)
+>  			return 0;
+>  
+> -		other_crtc = intel_get_crtc_for_pipe(dev_priv, PIPE_C);
+> +		other_crtc = intel_crtc_for_pipe(dev_priv, PIPE_C);
+>  		other_crtc_state =
+>  			intel_atomic_get_crtc_state(state, other_crtc);
+>  		if (IS_ERR(other_crtc_state))
+> @@ -178,7 +178,7 @@ static int ilk_check_fdi_lanes(struct drm_device *dev, enum pipe pipe,
+>  			return -EINVAL;
+>  		}
+>  
+> -		other_crtc = intel_get_crtc_for_pipe(dev_priv, PIPE_B);
+> +		other_crtc = intel_crtc_for_pipe(dev_priv, PIPE_B);
+>  		other_crtc_state =
+>  			intel_atomic_get_crtc_state(state, other_crtc);
+>  		if (IS_ERR(other_crtc_state))
+> diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> index 28d9eeb7b4f3..98b401d60b31 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> @@ -61,7 +61,7 @@ static bool ivb_can_enable_err_int(struct drm_device *dev)
+>  	lockdep_assert_held(&dev_priv->irq_lock);
+>  
+>  	for_each_pipe(dev_priv, pipe) {
+> -		crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +		crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  
+>  		if (crtc->cpu_fifo_underrun_disabled)
+>  			return false;
+> @@ -79,7 +79,7 @@ static bool cpt_can_enable_serr_int(struct drm_device *dev)
+>  	lockdep_assert_held(&dev_priv->irq_lock);
+>  
+>  	for_each_pipe(dev_priv, pipe) {
+> -		crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +		crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  
+>  		if (crtc->pch_fifo_underrun_disabled)
+>  			return false;
+> @@ -279,7 +279,7 @@ static bool __intel_set_cpu_fifo_underrun_reporting(struct drm_device *dev,
+>  						    enum pipe pipe, bool enable)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(dev);
+> -	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  	bool old;
+>  
+>  	lockdep_assert_held(&dev_priv->irq_lock);
+> @@ -348,7 +348,7 @@ bool intel_set_pch_fifo_underrun_reporting(struct drm_i915_private *dev_priv,
+>  					   bool enable)
+>  {
+>  	struct intel_crtc *crtc =
+> -		intel_get_crtc_for_pipe(dev_priv, pch_transcoder);
+> +		intel_crtc_for_pipe(dev_priv, pch_transcoder);
+>  	unsigned long flags;
+>  	bool old;
+>  
+> @@ -391,7 +391,7 @@ bool intel_set_pch_fifo_underrun_reporting(struct drm_i915_private *dev_priv,
+>  void intel_cpu_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
+>  					 enum pipe pipe)
+>  {
+> -	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  	u32 underruns = 0;
+>  
+>  	/* We may be called too early in init, thanks BIOS! */
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+> index 1b99a9501a45..6befd30f9883 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -1584,8 +1584,8 @@ int intel_sprite_set_colorkey_ioctl(struct drm_device *dev, void *data,
+>  		 */
+>  		if (!ret && has_dst_key_in_primary_plane(dev_priv)) {
+>  			struct intel_crtc *crtc =
+> -				intel_get_crtc_for_pipe(dev_priv,
+> -							to_intel_plane(plane)->pipe);
+> +				intel_crtc_for_pipe(dev_priv,
+> +						    to_intel_plane(plane)->pipe);
+>  
+>  			plane_state = drm_atomic_get_plane_state(state,
+>  								 crtc->base.primary);
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index bf8d3c7ca2d9..c6851b0e0bed 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -1116,7 +1116,7 @@ _get_crtc_for_pipe(struct drm_i915_private *i915, enum pipe pipe)
+>  	if (!intel_pipe_valid(i915, pipe))
+>  		return NULL;
+>  
+> -	return intel_get_crtc_for_pipe(i915, pipe);
+> +	return intel_crtc_for_pipe(i915, pipe);
 >  }
 >  
->  static inline bool intel_modifier_uses_dpt(struct drm_i915_private *i915, u64 modifier)
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 5a8206298691..a24831acb7da 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3905,7 +3905,7 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
+>  struct intel_crtc *
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index 6aea159abc50..d0be94456bd8 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -224,7 +224,7 @@ static void intel_hpd_init_pins(struct drm_i915_private *dev_priv)
+>  static void
+>  intel_handle_vblank(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  {
+> -	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  
+>  	drm_crtc_handle_vblank(&crtc->base);
+>  }
+> @@ -1318,7 +1318,7 @@ static void display_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+>  					 u32 crc2, u32 crc3,
+>  					 u32 crc4)
+>  {
+> -	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  	struct intel_pipe_crc *pipe_crc = &crtc->pipe_crc;
+>  	u32 crcs[5] = { crc0, crc1, crc2, crc3, crc4 };
+>  
+> @@ -1357,7 +1357,7 @@ display_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+>  static void flip_done_handler(struct drm_i915_private *i915,
+>  			      enum pipe pipe)
+>  {
+> -	struct intel_crtc *crtc = intel_get_crtc_for_pipe(i915, pipe);
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(i915, pipe);
+>  	struct drm_crtc_state *crtc_state = crtc->base.state;
+>  	struct drm_pending_vblank_event *e = crtc_state->event;
+>  	struct drm_device *dev = &i915->drm;
+> diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
+> index 6b8fb6ffe8da..26b8d75029d4 100644
+> --- a/drivers/gpu/drm/i915/i915_trace.h
+> +++ b/drivers/gpu/drm/i915/i915_trace.h
+> @@ -109,7 +109,7 @@ TRACE_EVENT(intel_cpu_fifo_underrun,
+>  			     ),
+>  
+>  	    TP_fast_assign(
+> -			    struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +			    struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  			   __entry->pipe = pipe;
+>  			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
+>  			   __entry->scanline = intel_get_crtc_scanline(crtc);
+> @@ -132,7 +132,7 @@ TRACE_EVENT(intel_pch_fifo_underrun,
+>  
+>  	    TP_fast_assign(
+>  			   enum pipe pipe = pch_transcoder;
+> -			   struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+> +			   struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
+>  			   __entry->pipe = pipe;
+>  			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
+>  			   __entry->scanline = intel_get_crtc_scanline(crtc);
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> index 01fa3fac1b57..fadcd8af5452 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -989,7 +989,7 @@ static void g4x_write_wm_values(struct drm_i915_private *dev_priv,
+>  	enum pipe pipe;
+>  
+>  	for_each_pipe(dev_priv, pipe)
+> -		trace_g4x_wm(intel_get_crtc_for_pipe(dev_priv, pipe), wm);
+> +		trace_g4x_wm(intel_crtc_for_pipe(dev_priv, pipe), wm);
+>  
+>  	intel_uncore_write(&dev_priv->uncore, DSPFW1,
+>  		   FW_WM(wm->sr.plane, SR) |
+> @@ -1021,7 +1021,7 @@ static void vlv_write_wm_values(struct drm_i915_private *dev_priv,
+>  	enum pipe pipe;
+>  
+>  	for_each_pipe(dev_priv, pipe) {
+> -		trace_vlv_wm(intel_get_crtc_for_pipe(dev_priv, pipe), wm);
+> +		trace_vlv_wm(intel_crtc_for_pipe(dev_priv, pipe), wm);
+>  
+>  		intel_uncore_write(&dev_priv->uncore, VLV_DDL(pipe),
+>  			   (wm->ddl[pipe].plane[PLANE_CURSOR] << DDL_CURSOR_SHIFT) |
+> @@ -6909,7 +6909,7 @@ void g4x_wm_sanitize(struct drm_i915_private *dev_priv)
+>  
+>  	for_each_intel_plane(&dev_priv->drm, plane) {
+>  		struct intel_crtc *crtc =
+> -			intel_get_crtc_for_pipe(dev_priv, plane->pipe);
+> +			intel_crtc_for_pipe(dev_priv, plane->pipe);
+>  		struct intel_crtc_state *crtc_state =
 >  			to_intel_crtc_state(crtc->base.state);
+>  		struct intel_plane_state *plane_state =
+> @@ -7065,7 +7065,7 @@ void vlv_wm_sanitize(struct drm_i915_private *dev_priv)
 >  
->  		/* Keep underrun reporting disabled until things are stable */
-> -		intel_wait_for_vblank(dev_priv, crtc->pipe);
-> +		intel_crtc_wait_for_next_vblank(crtc);
->  
->  		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, true);
->  		if (crtc_state->has_pch_encoder)
-> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> index 2dc6c3742ba2..76e1188b01d4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -1842,7 +1842,7 @@ static void intel_enable_sdvo(struct intel_atomic_state *state,
->  	intel_sdvo_write_sdvox(intel_sdvo, temp);
->  
->  	for (i = 0; i < 2; i++)
-> -		intel_wait_for_vblank(dev_priv, crtc->pipe);
-> +		intel_crtc_wait_for_next_vblank(crtc);
->  
->  	success = intel_sdvo_get_trained_inputs(intel_sdvo, &input1, &input2);
->  	/*
-> diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-> index 88a398df9621..fc77947dc3d5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tv.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tv.c
-> @@ -924,8 +924,7 @@ intel_enable_tv(struct intel_atomic_state *state,
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  
->  	/* Prevents vblank waits from timing out in intel_tv_detect_type() */
-> -	intel_wait_for_vblank(dev_priv,
-> -			      to_intel_crtc(pipe_config->uapi.crtc)->pipe);
-> +	intel_crtc_wait_for_next_vblank(to_intel_crtc(pipe_config->uapi.crtc));
->  
->  	intel_de_write(dev_priv, TV_CTL,
->  		       intel_de_read(dev_priv, TV_CTL) | TV_ENC_ENABLE);
-> @@ -1618,7 +1617,7 @@ intel_tv_detect_type(struct intel_tv *intel_tv,
->  	intel_de_write(dev_priv, TV_DAC, tv_dac);
->  	intel_de_posting_read(dev_priv, TV_DAC);
->  
-> -	intel_wait_for_vblank(dev_priv, crtc->pipe);
-> +	intel_crtc_wait_for_next_vblank(crtc);
->  
->  	type = -1;
->  	tv_dac = intel_de_read(dev_priv, TV_DAC);
-> @@ -1651,7 +1650,7 @@ intel_tv_detect_type(struct intel_tv *intel_tv,
->  	intel_de_posting_read(dev_priv, TV_CTL);
->  
->  	/* For unknown reasons the hw barfs if we don't do this vblank wait. */
-> -	intel_wait_for_vblank(dev_priv, crtc->pipe);
-> +	intel_crtc_wait_for_next_vblank(crtc);
->  
->  	/* Restore interrupt config */
->  	if (connector->polled & DRM_CONNECTOR_POLL_HPD) {
+>  	for_each_intel_plane(&dev_priv->drm, plane) {
+>  		struct intel_crtc *crtc =
+> -			intel_get_crtc_for_pipe(dev_priv, plane->pipe);
+> +			intel_crtc_for_pipe(dev_priv, plane->pipe);
+>  		struct intel_crtc_state *crtc_state =
+>  			to_intel_crtc_state(crtc->base.state);
+>  		struct intel_plane_state *plane_state =
 > -- 
 > 2.30.2
 
