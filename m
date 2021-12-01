@@ -2,33 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED49A465893
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 22:50:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B15B465915
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 23:24:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A36526E922;
-	Wed,  1 Dec 2021 21:50:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C59896E02C;
+	Wed,  1 Dec 2021 22:24:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0793D6E922;
- Wed,  1 Dec 2021 21:50:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F3056A66C8;
- Wed,  1 Dec 2021 21:50:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89C996E02C
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 22:24:13 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="235303893"
+X-IronPort-AV: E=Sophos;i="5.87,280,1631602800"; d="scan'208";a="235303893"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2021 14:24:13 -0800
+X-IronPort-AV: E=Sophos;i="5.87,280,1631602800"; d="scan'208";a="512216140"
+Received: from achikarm-mobl.amr.corp.intel.com (HELO
+ mtolakan-mobl1.intel.com) ([10.209.31.199])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2021 14:24:12 -0800
+From: Madhumitha Tolakanahalli Pradeep
+ <madhumitha.tolakanahalli.pradeep@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  1 Dec 2021 14:24:03 -0800
+Message-Id: <20211201222404.690285-1-madhumitha.tolakanahalli.pradeep@intel.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin" <arunpravin.paneerselvam@amd.com>
-Date: Wed, 01 Dec 2021 21:50:06 -0000
-Message-ID: <163839540694.14898.4673384435701923736@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211201163938.133226-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20211201163938.133226-1-Arunpravin.PaneerSelvam@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5Bv4=2C1/6=5D_drm=3A_move_the_buddy_alloca?=
- =?utf-8?q?tor_from_i915_into_common_drm?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [v2 0/1] Bump DMC to v2.14 on ADL-P
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,41 +43,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Adding PR for CI to pick the firmware,
 
-Series: series starting with [v4,1/6] drm: move the buddy allocator from i915 into common drm
-URL   : https://patchwork.freedesktop.org/series/97476/
-State : failure
+The following changes since commit f5d519563ac9d2d1f382a817aae5ec5473811ac8:
 
-== Summary ==
+  linux-firmware: Update AMD cpu microcode (2021-11-15 12:49:19 -0500)
 
-Applying: drm: move the buddy allocator from i915 into common drm
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/Kconfig
-M	drivers/gpu/drm/Makefile
-M	drivers/gpu/drm/i915/Makefile
-M	drivers/gpu/drm/i915/i915_module.c
-M	drivers/gpu/drm/i915/i915_scatterlist.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/i915_scatterlist.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/i915_scatterlist.c
-Auto-merging drivers/gpu/drm/i915/i915_module.c
-Removing drivers/gpu/drm/i915/i915_buddy.h
-Removing drivers/gpu/drm/i915/i915_buddy.c
-Auto-merging drivers/gpu/drm/i915/Makefile
-Auto-merging drivers/gpu/drm/Makefile
-CONFLICT (content): Merge conflict in drivers/gpu/drm/Makefile
-Auto-merging drivers/gpu/drm/Kconfig
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm: move the buddy allocator from i915 into common drm
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+are available in the Git repository at:
 
+  git://anongit.freedesktop.org/drm/drm-firmware adlp_dmc_v2.14
+
+for you to fetch changes up to dd81b8ccf199693e382596eb785cffde9db217c6:
+
+  i915: Add DMC firmware v2.14 for ADL-P (2021-11-17 17:49:57 -0800)
+
+Madhumitha Tolakanahalli Pradeep (1):
+  drm/i915/dmc: Update DMC to v2.14 on ADL-P
+
+ drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+-- 
+2.33.1
 
