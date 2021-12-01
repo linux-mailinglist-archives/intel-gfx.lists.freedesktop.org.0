@@ -1,54 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ACE0464B38
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 11:08:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B29464B8F
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 11:25:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67B856EABF;
-	Wed,  1 Dec 2021 10:08:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40B986F5EE;
+	Wed,  1 Dec 2021 10:25:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 430436EA2C
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 10:08:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="236248375"
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="236248375"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 02:08:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="677208931"
-Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
- by orsmga005.jf.intel.com with ESMTP; 01 Dec 2021 02:08:33 -0800
-Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
- irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Wed, 1 Dec 2021 10:08:30 +0000
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
- IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.2308.020;
- Wed, 1 Dec 2021 10:08:30 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 10/20] drm/i915/fbc: Pass i915 instead of FBC
- instance to FBC underrun stuff
-Thread-Index: AQHX4SexxCFI6AHAJkWQQi6mtKARiKwddG3Q
-Date: Wed, 1 Dec 2021 10:08:30 +0000
-Message-ID: <459d726ffa494a179b9e6c44dff86465@intel.com>
-References: <20211124113652.22090-1-ville.syrjala@linux.intel.com>
- <20211124113652.22090-11-ville.syrjala@linux.intel.com>
-In-Reply-To: <20211124113652.22090-11-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.253.164]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-Greylist: delayed 565 seconds by postgrey-1.36 at gabe;
+ Wed, 01 Dec 2021 10:25:29 UTC
+Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
+ [213.80.101.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AEF76F5B4;
+ Wed,  1 Dec 2021 10:25:29 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 16FAD3F3B3;
+ Wed,  1 Dec 2021 11:16:02 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.738
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.738 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.639,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: ste-pvt-msa1.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 5XLpvDYEWWnm; Wed,  1 Dec 2021 11:16:00 +0100 (CET)
+Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id DB0183F27F;
+ Wed,  1 Dec 2021 11:15:59 +0100 (CET)
+Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
+ [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 699B536256A;
+ Wed,  1 Dec 2021 11:15:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1638353759; bh=ccUzI4OwRxrmYh6goQk2dMUaiYd/BXAPoDZdeFjeLvE=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=DhiJm29V+knoT2EPt8JV/ECYyDhKcmuAHJc5cnv2nTO4cbEvu5psWUqsOtxy6QDIi
+ Hf5kCbavflmQiCzvU4T3NHM4SUghDNaocMZojPyv4kEsivKIeZZ/0maWDEkLOK1Fxa
+ 0ENNqaXMA0kZxh/wxfOazXXlOepAaYMkJn26NsFE=
+Message-ID: <7ef3db03-8ae2-d886-2c39-36f661cac9a6@shipmail.org>
+Date: Wed, 1 Dec 2021 11:15:59 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 10/20] drm/i915/fbc: Pass i915 instead of
- FBC instance to FBC underrun stuff
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20211130121936.586031-1-thomas.hellstrom@linux.intel.com>
+ <20211130121936.586031-2-thomas.hellstrom@linux.intel.com>
+ <c7502701-e85c-39f0-c249-702d029faa9e@linux.intel.com>
+ <b440cfbc-2b9a-1aa2-76d6-17337f835777@linux.intel.com>
+ <52a7cf8c-59c7-fec0-2274-d19bdc505314@amd.com>
+ <57df8b0b-1d65-155f-a9a6-8073bbd4f28f@linux.intel.com>
+ <2551da4d-2e51-cc24-7d4a-84ae00a1547c@amd.com>
+ <29d096c91d720fbe5d410124580a02b663155b56.camel@linux.intel.com>
+ <250a8e47-2093-1a98-3859-0204ec4e60e6@amd.com>
+ <712b54fa1c09ae5cc1d75739ad8a7286f1dae8db.camel@linux.intel.com>
+ <49cf2d43-9a8a-7738-0889-7e16b0256249@linux.intel.com>
+ <193e36bd-ba64-1358-8178-73ee3afc3c41@amd.com>
+ <c9109ec6-4265-ba8f-238f-4c793d076825@shipmail.org>
+ <d1ada94c-88d3-d34d-9c51-0d427c3aca06@amd.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <d1ada94c-88d3-d34d-9c51-0d427c3aca06@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [RFC PATCH 1/2] dma-fence: Avoid
+ establishing a locking order between fence classes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,101 +85,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linaro-mm-sig@lists.linaro.org, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
-eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIFZpbGxlDQo+IFN5
-cmphbGENCj4gU2VudDogV2VkbmVzZGF5LCBOb3ZlbWJlciAyNCwgMjAyMSAxOjM3IFBNDQo+IFRv
-OiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFN1YmplY3Q6IFtJbnRlbC1nZnhd
-IFtQQVRDSCAxMC8yMF0gZHJtL2k5MTUvZmJjOiBQYXNzIGk5MTUgaW5zdGVhZCBvZiBGQkMNCj4g
-aW5zdGFuY2UgdG8gRkJDIHVuZGVycnVuIHN0dWZmDQo+IA0KPiBGcm9tOiBWaWxsZSBTeXJqw6Rs
-w6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiANCj4gVGhlIHVuZGVycnVuIGNv
-ZGUgZG9lc24ndCBuZWVkIHRvIGtub3cgYW55IGRldGFpbHMgYWJvdXQgRkJDLCBzbyBqdXN0IHBh
-c3MgaW4NCj4gdGhlIHdob2xlIGRldmljZSByYXRoZXIgdGhhbiBhIHNwZWNpZmljIEZCQyBpbnN0
-YW5jZS4NCj4gV2UgY291bGQgbWFrZSB0aGlzIGEgYml0IG1vcmUgZmluZSBncmFpbmVkIGJ5IGFs
-c28gcGFzc2luZyBpbiB0aGUgcGlwZSB0bw0KPiBpbnRlbF9mYmNfaGFuZGxlX2ZpZm9fdW5kZXJy
-dW5faXJxKCkgYW5kIGxldHRpbmcgdGhlIEZCQyBjb2RlIGZpZ3VyZSB3aGljaCBGQkMNCj4gaW5z
-dGFuY2UgKGlmIGFueSkgaXMgYWN0aXZlIG9uIHNhaWQgcGlwZS4NCj4gQnV0IHRoYXQgc2VlbXMg
-YSBiaXQgb3ZlcmtpbGwgZm9yIHRoaXMgc28gZG9uJ3QgYm90aGVyLg0KPiANCj4gU2lnbmVkLW9m
-Zi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCg0K
-UmV2aWV3ZWQtYnk6IE1pa2EgS2Fob2xhIDxtaWthLmthaG9sYUBpbnRlbC5jb20+DQoNCj4gLS0t
-DQo+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYyAgfCAgNCAr
-LS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jICAgICAgfCAy
-NCArKysrKysrKystLS0tLS0tLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2ZiYy5oICAgICAgfCAgNCArKy0tDQo+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9m
-aWZvX3VuZGVycnVuLmMgICAgfCAgMiArLQ0KPiAgNCBmaWxlcyBjaGFuZ2VkLCAxNiBpbnNlcnRp
-b25zKCspLCAxOCBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jDQo+IGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYw0KPiBpbmRleCBhY2Y3MGFl
-NjZhMjkuLjNlNDU2ZTU5NTAxMCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jDQo+IEBAIC0yMDQ0LDkgKzIwNDQs
-NyBAQCBpOTE1X2ZpZm9fdW5kZXJydW5fcmVzZXRfd3JpdGUoc3RydWN0IGZpbGUgKmZpbHAsDQo+
-ICAJCQlyZXR1cm4gcmV0Ow0KPiAgCX0NCj4gDQo+IC0JcmV0ID0gaW50ZWxfZmJjX3Jlc2V0X3Vu
-ZGVycnVuKCZkZXZfcHJpdi0+ZmJjKTsNCj4gLQlpZiAocmV0KQ0KPiAtCQlyZXR1cm4gcmV0Ow0K
-PiArCWludGVsX2ZiY19yZXNldF91bmRlcnJ1bihkZXZfcHJpdik7DQo+IA0KPiAgCXJldHVybiBj
-bnQ7DQo+ICB9DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2ZiYy5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYw0K
-PiBpbmRleCAwYmVmM2I5NDg2NzAuLjAwYzkzMDQwNTI5ZSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jDQo+IEBAIC0xNTQ3LDIxICsxNTQ3LDIxIEBAIHN0
-YXRpYyB2b2lkIGludGVsX2ZiY191bmRlcnJ1bl93b3JrX2ZuKHN0cnVjdA0KPiB3b3JrX3N0cnVj
-dCAqd29yaykNCj4gDQo+ICAvKg0KPiAgICogaW50ZWxfZmJjX3Jlc2V0X3VuZGVycnVuIC0gcmVz
-ZXQgRkJDIGZpZm8gdW5kZXJydW4gc3RhdHVzLg0KPiAtICogQGZiYzogVGhlIEZCQyBpbnN0YW5j
-ZQ0KPiArICogQGk5MTU6IHRoZSBpOTE1IGRldmljZQ0KPiAgICoNCj4gICAqIFNlZSBpbnRlbF9m
-YmNfaGFuZGxlX2ZpZm9fdW5kZXJydW5faXJxKCkuIEZvciBhdXRvbWF0ZWQgdGVzdGluZyB3ZQ0K
-PiAgICogd2FudCB0byByZS1lbmFibGUgRkJDIGFmdGVyIGFuIHVuZGVycnVuIHRvIGluY3JlYXNl
-IHRlc3QgY292ZXJhZ2UuDQo+ICAgKi8NCj4gLWludCBpbnRlbF9mYmNfcmVzZXRfdW5kZXJydW4o
-c3RydWN0IGludGVsX2ZiYyAqZmJjKQ0KPiArdm9pZCBpbnRlbF9mYmNfcmVzZXRfdW5kZXJydW4o
-c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpDQo+ICB7DQo+IC0Jc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmk5MTUgPSBmYmMtPmk5MTU7DQo+IC0JaW50IHJldDsNCj4gKwlzdHJ1Y3QgaW50
-ZWxfZmJjICpmYmMgPSAmaTkxNS0+ZmJjOw0KPiArDQo+ICsJaWYgKCFIQVNfRkJDKGk5MTUpKQ0K
-PiArCQlyZXR1cm47DQo+IA0KPiAgCWNhbmNlbF93b3JrX3N5bmMoJmZiYy0+dW5kZXJydW5fd29y
-ayk7DQo+IA0KPiAtCXJldCA9IG11dGV4X2xvY2tfaW50ZXJydXB0aWJsZSgmZmJjLT5sb2NrKTsN
-Cj4gLQlpZiAocmV0KQ0KPiAtCQlyZXR1cm4gcmV0Ow0KPiArCW11dGV4X2xvY2soJmZiYy0+bG9j
-ayk7DQo+IA0KPiAgCWlmIChmYmMtPnVuZGVycnVuX2RldGVjdGVkKSB7DQo+ICAJCWRybV9kYmdf
-a21zKCZpOTE1LT5kcm0sDQo+IEBAIC0xNTcxLDEzICsxNTcxLDExIEBAIGludCBpbnRlbF9mYmNf
-cmVzZXRfdW5kZXJydW4oc3RydWN0IGludGVsX2ZiYyAqZmJjKQ0KPiANCj4gIAlmYmMtPnVuZGVy
-cnVuX2RldGVjdGVkID0gZmFsc2U7DQo+ICAJbXV0ZXhfdW5sb2NrKCZmYmMtPmxvY2spOw0KPiAt
-DQo+IC0JcmV0dXJuIDA7DQo+ICB9DQo+IA0KPiAgLyoqDQo+ICAgKiBpbnRlbF9mYmNfaGFuZGxl
-X2ZpZm9fdW5kZXJydW5faXJxIC0gZGlzYWJsZSBGQkMgd2hlbiB3ZSBnZXQgYSBGSUZPDQo+IHVu
-ZGVycnVuDQo+IC0gKiBAZmJjOiBUaGUgRkJDIGluc3RhbmNlDQo+ICsgKiBAaTkxNTogaTkxNSBk
-ZXZpY2UNCj4gICAqDQo+ICAgKiBXaXRob3V0IEZCQywgbW9zdCB1bmRlcnJ1bnMgYXJlIGhhcm1s
-ZXNzIGFuZCBkb24ndCByZWFsbHkgY2F1c2UgdG9vIG1hbnkNCj4gICAqIHByb2JsZW1zLCBleGNl
-cHQgZm9yIGFuIGFubm95aW5nIG1lc3NhZ2Ugb24gZG1lc2cuIFdpdGggRkJDLCB1bmRlcnJ1bnMN
-Cj4gY2FuIEBAIC0xNTg5LDkgKzE1ODcsMTEgQEAgaW50IGludGVsX2ZiY19yZXNldF91bmRlcnJ1
-bihzdHJ1Y3QgaW50ZWxfZmJjDQo+ICpmYmMpDQo+ICAgKg0KPiAgICogVGhpcyBmdW5jdGlvbiBp
-cyBjYWxsZWQgZnJvbSB0aGUgSVJRIGhhbmRsZXIuDQo+ICAgKi8NCj4gLXZvaWQgaW50ZWxfZmJj
-X2hhbmRsZV9maWZvX3VuZGVycnVuX2lycShzdHJ1Y3QgaW50ZWxfZmJjICpmYmMpDQo+ICt2b2lk
-IGludGVsX2ZiY19oYW5kbGVfZmlmb191bmRlcnJ1bl9pcnEoc3RydWN0IGRybV9pOTE1X3ByaXZh
-dGUgKmk5MTUpDQo+ICB7DQo+IC0JaWYgKCFIQVNfRkJDKGZiYy0+aTkxNSkpDQo+ICsJc3RydWN0
-IGludGVsX2ZiYyAqZmJjID0gJmk5MTUtPmZiYzsNCj4gKw0KPiArCWlmICghSEFTX0ZCQyhpOTE1
-KSkNCj4gIAkJcmV0dXJuOw0KPiANCj4gIAkvKiBUaGVyZSdzIG5vIGd1YXJhbnRlZSB0aGF0IHVu
-ZGVycnVuX2RldGVjdGVkIHdvbid0IGJlIHNldCB0byB0cnVlDQo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5oDQo+IGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuaA0KPiBpbmRleCA3NDQ5MmUwNWExYzkuLjM2ZTllNWY5
-M2JjYiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9m
-YmMuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5oDQo+
-IEBAIC0zNSw4ICszNSw4IEBAIHZvaWQgaW50ZWxfZmJjX2ludmFsaWRhdGUoc3RydWN0IGRybV9p
-OTE1X3ByaXZhdGUNCj4gKmRldl9wcml2LA0KPiAgCQkJICBlbnVtIGZiX29wX29yaWdpbiBvcmln
-aW4pOw0KPiAgdm9pZCBpbnRlbF9mYmNfZmx1c2goc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
-dl9wcml2LA0KPiAgCQkgICAgIHVuc2lnbmVkIGludCBmcm9udGJ1ZmZlcl9iaXRzLCBlbnVtIGZi
-X29wX29yaWdpbiBvcmlnaW4pOyAtDQo+IHZvaWQgaW50ZWxfZmJjX2hhbmRsZV9maWZvX3VuZGVy
-cnVuX2lycShzdHJ1Y3QgaW50ZWxfZmJjICpmYmMpOyAtaW50DQo+IGludGVsX2ZiY19yZXNldF91
-bmRlcnJ1bihzdHJ1Y3QgaW50ZWxfZmJjICpmYmMpOw0KPiArdm9pZCBpbnRlbF9mYmNfaGFuZGxl
-X2ZpZm9fdW5kZXJydW5faXJxKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KTsNCj4gK3Zv
-aWQgaW50ZWxfZmJjX3Jlc2V0X3VuZGVycnVuKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1
-KTsNCj4gIGludCBpbnRlbF9mYmNfc2V0X2ZhbHNlX2NvbG9yKHN0cnVjdCBpbnRlbF9mYmMgKmZi
-YywgYm9vbCBlbmFibGUpOw0KPiANCj4gICNlbmRpZiAvKiBfX0lOVEVMX0ZCQ19IX18gKi8NCj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmlmb191bmRl
-cnJ1bi5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9maWZvX3VuZGVy
-cnVuLmMNCj4gaW5kZXggMjhkOWVlYjdiNGYzLi5lYjg0MTk2MDg0MGQgMTAwNjQ0DQo+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmlmb191bmRlcnJ1bi5jDQo+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmlmb191bmRlcnJ1bi5jDQo+
-IEBAIC00MzQsNyArNDM0LDcgQEAgdm9pZCBpbnRlbF9jcHVfZmlmb191bmRlcnJ1bl9pcnFfaGFu
-ZGxlcihzdHJ1Y3QNCj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsDQo+ICAJCQlkcm1fZXJy
-KCZkZXZfcHJpdi0+ZHJtLCAiQ1BVIHBpcGUgJWMgRklGTw0KPiB1bmRlcnJ1blxuIiwgcGlwZV9u
-YW1lKHBpcGUpKTsNCj4gIAl9DQo+IA0KPiAtCWludGVsX2ZiY19oYW5kbGVfZmlmb191bmRlcnJ1
-bl9pcnEoJmRldl9wcml2LT5mYmMpOw0KPiArCWludGVsX2ZiY19oYW5kbGVfZmlmb191bmRlcnJ1
-bl9pcnEoZGV2X3ByaXYpOw0KPiAgfQ0KPiANCj4gIC8qKg0KPiAtLQ0KPiAyLjMyLjANCg0K
+
+On 12/1/21 09:36, Christian König wrote:
+> Am 01.12.21 um 09:23 schrieb Thomas Hellström (Intel):
+>>  [SNIP]
+>>>>>> Jason and I came up with a deep dive iterator for his use case, 
+>>>>>> but I
+>>>>>> think we don't want to use that any more after my dma_resv rework.
+>>>>>>
+>>>>>> In other words when you need to create a new dma_fence_array you
+>>>>>> flatten
+>>>>>> out the existing construct which is at worst case
+>>>>>> dma_fence_chain->dma_fence_array->dma_fence.
+>>>>> Ok, Are there any cross-driver contract here, Like every driver 
+>>>>> using a
+>>>>> dma_fence_array need to check for dma_fence_chain and flatten like
+>>>>> above?
+>>>
+>>> So far we only discussed that on the mailing list but haven't made 
+>>> any documentation for that.
+>>
+>> OK, one other cross-driver pitfall I see is if someone accidently 
+>> joins two fence chains together by creating a fence chain unknowingly 
+>> using another fence chain as the @fence argument?
+>
+> That would indeed be illegal and we should probably add a WARN_ON() 
+> for that.
+>
+>>
+>> The third cross-driver pitfall IMHO is the locking dependency these 
+>> containers add. Other drivers (read at least i915) may have defined 
+>> slightly different locking orders and that should also be addressed 
+>> if needed, but that requires a cross driver agreement what the 
+>> locking orders really are. Patch 1 actually addresses this, while 
+>> keeping the container lockdep warnings for deep recursions, so at 
+>> least I think that could serve as a discussion starter.
+>
+> No, drivers should never make any assumptions on that.
+
+Yes that i915 assumption of taking the lock of the last signaled fence 
+first goes back a while in time. We should look at fixing that up, and 
+document any (possibly forbidden) assumptions about fence lock locking 
+orders to avoid it happening again, if there is no common cross-driver 
+locking order that can be agreed.
+
+>
+> E.g. when you need to take a look from a callback you must guarantee 
+> that you never have that lock taken when you call any of the dma_fence 
+> functions. Your patch breaks the lockdep annotation for that.
+
+I'm pretty sure that could be fixed in a satisfactory way if needed.
+
+>
+> What we could do is to avoid all this by not calling the callback with 
+> the lock held in the first place.
+
+If that's possible that might be a good idea, pls also see below.
+
+>
+>>>
+>>>>>
+>>>>> /Thomas
+>>>>
+>>>> Oh, and a follow up question:
+>>>>
+>>>> If there was a way to break the recursion on final put() (using the 
+>>>> same basic approach as patch 2 in this series uses to break 
+>>>> recursion in enable_signaling()), so that none of these containers 
+>>>> did require any special treatment, would it be worth pursuing? I 
+>>>> guess it might be possible by having the callbacks drop the 
+>>>> references rather than the loop in the final put. + a couple of 
+>>>> changes in code iterating over the fence pointers.
+>>>
+>>> That won't really help, you just move the recursion from the final 
+>>> put into the callback.
+>>
+>> How do we recurse from the callback? The introduced fence_put() of 
+>> individual fence pointers
+>> doesn't recurse anymore (at most 1 level), and any callback recursion 
+>> is broken by the irq_work?
+>
+> Yeah, but then you would need to take another lock to avoid racing 
+> with dma_fence_array_signaled().
+>
+>>
+>> I figure the big amount of work would be to adjust code that iterates 
+>> over the individual fence pointers to recognize that they are rcu 
+>> protected.
+>
+> Could be that we could solve this with RCU, but that sounds like a lot 
+> of churn for no gain at all.
+>
+> In other words even with the problems solved I think it would be a 
+> really bad idea to allow chaining of dma_fence_array objects.
+
+Yes, that was really the question, Is it worth pursuing this? I'm not 
+really suggesting we should allow this as an intentional feature. I'm 
+worried, however, that if we allow these containers to start floating 
+around cross-driver (or even internally) disguised as ordinary 
+dma_fences, they would require a lot of driver special casing, or else 
+completely unexpeced WARN_ON()s and lockdep splats would start to turn 
+up, scaring people off from using them. And that would be a breeding 
+ground for hairy driver-private constructs.
+
+/Thomas
+
+
+>
+> Christian.
+>
+>>
+>>
+>> Thanks,
+>>
+>> /Thomas
+>>
+>>
