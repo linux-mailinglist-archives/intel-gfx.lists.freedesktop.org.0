@@ -1,54 +1,76 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89872464C4C
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 12:03:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 205DF464C52
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 12:04:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D25B6E97B;
-	Wed,  1 Dec 2021 11:03:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B6C76EAC3;
+	Wed,  1 Dec 2021 11:04:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4F836E97B
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 11:03:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10184"; a="223665692"
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="223665692"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 03:03:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,278,1631602800"; d="scan'208";a="459209251"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.146.8])
- by orsmga003.jf.intel.com with ESMTP; 01 Dec 2021 03:03:22 -0800
-Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Wed, 1 Dec 2021 11:03:21 +0000
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
- IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.2308.020;
- Wed, 1 Dec 2021 11:03:21 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 14/20] drm/i915/fbc: Move stuff from
- intel_fbc_can_enable() into intel_fbc_check_plane()
-Thread-Index: AQHX4Se429vEmRmzVkioB+YwFjzeoqwdg7Qg
-Date: Wed, 1 Dec 2021 11:03:21 +0000
-Message-ID: <ea04d1679f2144d8b1d6eccbeb2ff6b6@intel.com>
-References: <20211124113652.22090-1-ville.syrjala@linux.intel.com>
- <20211124113652.22090-15-ville.syrjala@linux.intel.com>
-In-Reply-To: <20211124113652.22090-15-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.253.164]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from pio-pvt-msa3.bahnhof.se (pio-pvt-msa3.bahnhof.se [79.136.2.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DC626EAAB;
+ Wed,  1 Dec 2021 11:04:32 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTP id 37C023F3E9;
+ Wed,  1 Dec 2021 12:04:30 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -3.189
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.189 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-1.09,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: pio-pvt-msa3.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from pio-pvt-msa3.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa3.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id pu0yktp1vGlj; Wed,  1 Dec 2021 12:04:29 +0100 (CET)
+Received: by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTPA id 599D93F3B2;
+ Wed,  1 Dec 2021 12:04:27 +0100 (CET)
+Received: from [192.168.0.209] (unknown [192.198.151.54])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 4ABBB36256A;
+ Wed,  1 Dec 2021 12:04:26 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1638356667; bh=eQM8NmS6ghJyWMI4iPorWbTPmePRTBLQvFlmhegmo7U=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=Xu7+8pZueSp0BTFZ9QUsy/5E4YSxZWLzYZsoRsFY8dYaTaqAnZ6m7s0IctAgUORE8
+ APSFZUpf+RPLiHTdSiP3jwMIKkhEVQDR6PU/t1w0CqPO3WpVETbuWMeSG70HuOtfCj
+ ysa5R4ckgFHGHxQcwf8MHSJtbSbq36YGnQttc54I=
+Message-ID: <94435e0e-01db-5ae4-e424-64f73a09199f@shipmail.org>
+Date: Wed, 1 Dec 2021 12:04:24 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 14/20] drm/i915/fbc: Move stuff from
- intel_fbc_can_enable() into intel_fbc_check_plane()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20211130121936.586031-1-thomas.hellstrom@linux.intel.com>
+ <20211130121936.586031-2-thomas.hellstrom@linux.intel.com>
+ <c7502701-e85c-39f0-c249-702d029faa9e@linux.intel.com>
+ <b440cfbc-2b9a-1aa2-76d6-17337f835777@linux.intel.com>
+ <52a7cf8c-59c7-fec0-2274-d19bdc505314@amd.com>
+ <57df8b0b-1d65-155f-a9a6-8073bbd4f28f@linux.intel.com>
+ <2551da4d-2e51-cc24-7d4a-84ae00a1547c@amd.com>
+ <29d096c91d720fbe5d410124580a02b663155b56.camel@linux.intel.com>
+ <250a8e47-2093-1a98-3859-0204ec4e60e6@amd.com>
+ <712b54fa1c09ae5cc1d75739ad8a7286f1dae8db.camel@linux.intel.com>
+ <49cf2d43-9a8a-7738-0889-7e16b0256249@linux.intel.com>
+ <193e36bd-ba64-1358-8178-73ee3afc3c41@amd.com>
+ <c9109ec6-4265-ba8f-238f-4c793d076825@shipmail.org>
+ <d1ada94c-88d3-d34d-9c51-0d427c3aca06@amd.com>
+ <7ef3db03-8ae2-d886-2c39-36f661cac9a6@shipmail.org>
+ <4805074d-7039-3eaf-eb5d-5797278b7f31@amd.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <4805074d-7039-3eaf-eb5d-5797278b7f31@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [RFC PATCH 1/2] dma-fence: Avoid
+ establishing a locking order between fence classes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +83,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linaro-mm-sig@lists.linaro.org, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
-eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIFZpbGxlDQo+IFN5
-cmphbGENCj4gU2VudDogV2VkbmVzZGF5LCBOb3ZlbWJlciAyNCwgMjAyMSAxOjM3IFBNDQo+IFRv
-OiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFN1YmplY3Q6IFtJbnRlbC1nZnhd
-IFtQQVRDSCAxNC8yMF0gZHJtL2k5MTUvZmJjOiBNb3ZlIHN0dWZmIGZyb20NCj4gaW50ZWxfZmJj
-X2Nhbl9lbmFibGUoKSBpbnRvIGludGVsX2ZiY19jaGVja19wbGFuZSgpDQo+IA0KPiBGcm9tOiBW
-aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiANCj4gRG9u
-J3QgcmVhbGx5IHNlZSBhIGdvb2QgcmVhc29uIHdoeSB3ZSBjYW4ndCBqdXN0IGRvIHRoZSB2Z3B1
-IGFuZCBtb2RwYXJhbQ0KPiBjaGVja3MgYWxyZWFkeSBpbiBpbnRlbF9mYmNfY2hlY2tfcGxhbmUo
-KS4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+DQoNClJldmlld2VkLWJ5OiBNaWthIEthaG9sYSA8bWlrYS5rYWhvbGFA
-aW50ZWwuY29tPg0KDQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9mYmMuYyB8IDIyICsrKysrKysrKystLS0tLS0tLS0tLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAx
-MCBpbnNlcnRpb25zKCspLCAxMiBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jDQo+IGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYw0KPiBpbmRleCAxZGFmNGY3YjVkODAuLjYxNmFiOTU3
-NjZiMiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9m
-YmMuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jDQo+
-IEBAIC05OTYsMTggKzk5Niw2IEBAIHN0YXRpYyBib29sIGludGVsX2ZiY19jZmJfc2l6ZV9jaGFu
-Z2VkKHN0cnVjdCBpbnRlbF9mYmMNCj4gKmZiYykNCj4gDQo+ICBzdGF0aWMgYm9vbCBpbnRlbF9m
-YmNfY2FuX2VuYWJsZShzdHJ1Y3QgaW50ZWxfZmJjICpmYmMpICB7DQo+IC0Jc3RydWN0IGRybV9p
-OTE1X3ByaXZhdGUgKmk5MTUgPSBmYmMtPmk5MTU7DQo+IC0NCj4gLQlpZiAoaW50ZWxfdmdwdV9h
-Y3RpdmUoaTkxNSkpIHsNCj4gLQkJZmJjLT5ub19mYmNfcmVhc29uID0gIlZHUFUgaXMgYWN0aXZl
-IjsNCj4gLQkJcmV0dXJuIGZhbHNlOw0KPiAtCX0NCj4gLQ0KPiAtCWlmICghaTkxNS0+cGFyYW1z
-LmVuYWJsZV9mYmMpIHsNCj4gLQkJZmJjLT5ub19mYmNfcmVhc29uID0gImRpc2FibGVkIHBlciBt
-b2R1bGUgcGFyYW0gb3IgYnkNCj4gZGVmYXVsdCI7DQo+IC0JCXJldHVybiBmYWxzZTsNCj4gLQl9
-DQo+IC0NCj4gIAlpZiAoZmJjLT51bmRlcnJ1bl9kZXRlY3RlZCkgew0KPiAgCQlmYmMtPm5vX2Zi
-Y19yZWFzb24gPSAidW5kZXJydW4gZGV0ZWN0ZWQiOw0KPiAgCQlyZXR1cm4gZmFsc2U7DQo+IEBA
-IC0xMDMwLDYgKzEwMTgsMTYgQEAgc3RhdGljIGludCBpbnRlbF9mYmNfY2hlY2tfcGxhbmUoc3Ry
-dWN0DQo+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ICAJaWYgKCFmYmMpDQo+ICAJCXJl
-dHVybiAwOw0KPiANCj4gKwlpZiAoaW50ZWxfdmdwdV9hY3RpdmUoaTkxNSkpIHsNCj4gKwkJcGxh
-bmVfc3RhdGUtPm5vX2ZiY19yZWFzb24gPSAiVkdQVSBhY3RpdmUiOw0KPiArCQlyZXR1cm4gMDsN
-Cj4gKwl9DQo+ICsNCj4gKwlpZiAoIWk5MTUtPnBhcmFtcy5lbmFibGVfZmJjKSB7DQo+ICsJCXBs
-YW5lX3N0YXRlLT5ub19mYmNfcmVhc29uID0gImRpc2FibGVkIHBlciBtb2R1bGUgcGFyYW0gb3IN
-Cj4gYnkgZGVmYXVsdCI7DQo+ICsJCXJldHVybiAwOw0KPiArCX0NCj4gKw0KPiAgCWlmICghcGxh
-bmVfc3RhdGUtPnVhcGkudmlzaWJsZSkgew0KPiAgCQlwbGFuZV9zdGF0ZS0+bm9fZmJjX3JlYXNv
-biA9ICJwbGFuZSBub3QgdmlzaWJsZSI7DQo+ICAJCXJldHVybiAwOw0KPiAtLQ0KPiAyLjMyLjAN
-Cg0K
+
+On 12/1/21 11:32, Christian König wrote:
+> Am 01.12.21 um 11:15 schrieb Thomas Hellström (Intel):
+>> [SNIP]
+>>>
+>>> What we could do is to avoid all this by not calling the callback 
+>>> with the lock held in the first place.
+>>
+>> If that's possible that might be a good idea, pls also see below.
+>
+> The problem with that is 
+> dma_fence_signal_locked()/dma_fence_signal_timestamp_locked(). If we 
+> could avoid using that or at least allow it to drop the lock then we 
+> could call the callback without holding it.
+>
+> Somebody would need to audit the drivers and see if holding the lock 
+> is really necessary anywhere.
+>
+>>>
+>>>>>
+>>>>>>>
+>>>>>>> /Thomas
+>>>>>>
+>>>>>> Oh, and a follow up question:
+>>>>>>
+>>>>>> If there was a way to break the recursion on final put() (using 
+>>>>>> the same basic approach as patch 2 in this series uses to break 
+>>>>>> recursion in enable_signaling()), so that none of these 
+>>>>>> containers did require any special treatment, would it be worth 
+>>>>>> pursuing? I guess it might be possible by having the callbacks 
+>>>>>> drop the references rather than the loop in the final put. + a 
+>>>>>> couple of changes in code iterating over the fence pointers.
+>>>>>
+>>>>> That won't really help, you just move the recursion from the final 
+>>>>> put into the callback.
+>>>>
+>>>> How do we recurse from the callback? The introduced fence_put() of 
+>>>> individual fence pointers
+>>>> doesn't recurse anymore (at most 1 level), and any callback 
+>>>> recursion is broken by the irq_work?
+>>>
+>>> Yeah, but then you would need to take another lock to avoid racing 
+>>> with dma_fence_array_signaled().
+>>>
+>>>>
+>>>> I figure the big amount of work would be to adjust code that 
+>>>> iterates over the individual fence pointers to recognize that they 
+>>>> are rcu protected.
+>>>
+>>> Could be that we could solve this with RCU, but that sounds like a 
+>>> lot of churn for no gain at all.
+>>>
+>>> In other words even with the problems solved I think it would be a 
+>>> really bad idea to allow chaining of dma_fence_array objects.
+>>
+>> Yes, that was really the question, Is it worth pursuing this? I'm not 
+>> really suggesting we should allow this as an intentional feature. I'm 
+>> worried, however, that if we allow these containers to start floating 
+>> around cross-driver (or even internally) disguised as ordinary 
+>> dma_fences, they would require a lot of driver special casing, or 
+>> else completely unexpeced WARN_ON()s and lockdep splats would start 
+>> to turn up, scaring people off from using them. And that would be a 
+>> breeding ground for hairy driver-private constructs.
+>
+> Well the question is why we would want to do it?
+>
+> If it's to avoid inter driver lock dependencies by avoiding to call 
+> the callback with the spinlock held, then yes please. We had tons of 
+> problems with that, resulting in irq_work and work_item delegation all 
+> over the place.
+
+Yes, that sounds like something desirable, but in these containers, 
+what's causing the lock dependencies is the enable_signaling() callback 
+that is typically called locked.
+
+
+>
+> If it's to allow nesting of dma_fence_array instances, then it's most 
+> likely a really bad idea even if we fix all the locking order problems.
+
+Well I think my use-case where I hit a dead end may illustrate what 
+worries me here:
+
+1) We use a dma-fence-array to coalesce all dependencies for ttm object 
+migration.
+2) We use a dma-fence-chain to order the resulting dm_fence into a 
+timeline because the TTM resource manager code requires that.
+
+Initially seemingly harmless to me.
+
+But after a sequence evict->alloc->clear, the dma-fence-chain feeds into 
+the dma-fence-array for the clearing operation. Code still works fine, 
+and no deep recursion, no warnings. But if I were to add another driver 
+to the system that instead feeds a dma-fence-array into a 
+dma-fence-chain, this would give me a lockdep splat.
+
+So then if somebody were to come up with the splendid idea of using a 
+dma-fence-chain to initially coalesce fences, I'd hit the same problem 
+or risk illegaly joining two dma-fence-chains together.
+
+To fix this, I would need to look at the incoming fences and iterate 
+over any dma-fence-array or dma-fence-chain that is fed into the 
+dma-fence-array to flatten out the input. In fact all dma-fence-array 
+users would need to do that, and even dma-fence-chain users watching out 
+for not joining chains together or accidently add an array that perhaps 
+came as a disguised dma-fence from antother driver.
+
+So the purpose to me would be to allow these containers as input to 
+eachother without a lot of in-driver special-casing, be it by breaking 
+recursion on built-in flattening to avoid
+
+a) Hitting issues in the future or with existing interoperating drivers.
+b) Avoid driver-private containers that also might break the 
+interoperability. (For example the i915 currently driver-private 
+dma_fence_work avoid all these problems, but we're attempting to address 
+issues in common code rather than re-inventing stuff internally).
+
+/Thomas
+
+
+>
+> Christian.
+>
+>>
+>> /Thomas
+>>
+>>
+>>>
+>>> Christian.
+>>>
+>>>>
+>>>>
+>>>> Thanks,
+>>>>
+>>>> /Thomas
+>>>>
+>>>>
