@@ -2,37 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A352465919
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 23:24:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F28D465943
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Dec 2021 23:29:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D3386E0F8;
-	Wed,  1 Dec 2021 22:24:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 379186E169;
+	Wed,  1 Dec 2021 22:29:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53DCD6E0F8
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 22:24:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="235303907"
-X-IronPort-AV: E=Sophos;i="5.87,280,1631602800"; d="scan'208";a="235303907"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 14:24:16 -0800
-X-IronPort-AV: E=Sophos;i="5.87,280,1631602800"; d="scan'208";a="512216157"
-Received: from achikarm-mobl.amr.corp.intel.com (HELO
- mtolakan-mobl1.intel.com) ([10.209.31.199])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 14:24:15 -0800
-From: Madhumitha Tolakanahalli Pradeep
- <madhumitha.tolakanahalli.pradeep@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Dec 2021 14:24:04 -0800
-Message-Id: <20211201222404.690285-2-madhumitha.tolakanahalli.pradeep@intel.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211201222404.690285-1-madhumitha.tolakanahalli.pradeep@intel.com>
-References: <20211201222404.690285-1-madhumitha.tolakanahalli.pradeep@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 90D076E169;
+ Wed,  1 Dec 2021 22:29:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 88C27A47E1;
+ Wed,  1 Dec 2021 22:29:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [v2 1/1] drm/i915/dmc: Update DMC to v2.14 on ADL-P
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael Cheng" <michael.cheng@intel.com>
+Date: Wed, 01 Dec 2021 22:29:03 -0000
+Message-ID: <163839774352.14896.8055498846333833772@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211118205432.579910-1-michael.cheng@intel.com>
+In-Reply-To: <20211118205432.579910-1-michael.cheng@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Re-use_i915_macros_for_checking_PTEs_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,39 +40,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Changes since v2.12:
-  - Release notes for v2.13:
-      1. Fix for simple flip queue with DC6v
-  - Release notes for v2.14:
-      1. Fix for flip queue roll over cases with DC6v
-      2. Enhancement for residency
-      3. Workaround for 3Dlut restore issue
+== Series Details ==
 
-v2: Commit message update (Imre)
+Series: drm/i915: Re-use i915 macros for checking PTEs (rev9)
+URL   : https://patchwork.freedesktop.org/series/97090/
+State : warning
 
-Signed-off-by: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 2dc9d632969d..8617cd1ec9b2 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -45,8 +45,8 @@
- 
- #define GEN12_DMC_MAX_FW_SIZE		ICL_DMC_MAX_FW_SIZE
- 
--#define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 12)
--#define ADLP_DMC_VERSION_REQUIRED	DMC_VERSION(2, 12)
-+#define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 14)
-+#define ADLP_DMC_VERSION_REQUIRED	DMC_VERSION(2, 14)
- MODULE_FIRMWARE(ADLP_DMC_PATH);
- 
- #define ADLS_DMC_PATH			DMC_PATH(adls, 2, 01)
--- 
-2.33.1
+$ dim checkpatch origin/drm-tip
+3809a1d72d34 drm/i915: Re-use i915 macros for checking PTEs
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
+Certain gen8 ppgtt/gtt functions are using _PAGE_RW and _PAGE_PRESENT to check
+
+total: 0 errors, 1 warnings, 0 checks, 72 lines checked
+
 
