@@ -2,39 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEFDE465B07
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Dec 2021 01:35:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58B7D465B76
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Dec 2021 01:57:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ED9C6E870;
-	Thu,  2 Dec 2021 00:35:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB9D6E935;
+	Thu,  2 Dec 2021 00:57:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E48A6E870
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Dec 2021 00:35:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="236531777"
-X-IronPort-AV: E=Sophos;i="5.87,280,1631602800"; d="scan'208";a="236531777"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 16:35:20 -0800
-X-IronPort-AV: E=Sophos;i="5.87,280,1631602800"; d="scan'208";a="745650985"
-Received: from robingo1-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.213.164.45])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 16:35:20 -0800
-Date: Wed, 1 Dec 2021 16:35:19 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Madhumitha Tolakanahalli Pradeep
- <madhumitha.tolakanahalli.pradeep@intel.com>
-Message-ID: <20211202003519.esdmjnfeku5keewp@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20211201222404.690285-1-madhumitha.tolakanahalli.pradeep@intel.com>
- <20211201222404.690285-2-madhumitha.tolakanahalli.pradeep@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A5E86E8E3;
+ Thu,  2 Dec 2021 00:56:59 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="235327493"
+X-IronPort-AV: E=Sophos;i="5.87,280,1631602800"; d="scan'208";a="235327493"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2021 16:56:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,280,1631602800"; d="scan'208";a="512249292"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+ by fmsmga007.fm.intel.com with ESMTP; 01 Dec 2021 16:56:55 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1msaP9-000Faz-8m; Thu, 02 Dec 2021 00:56:55 +0000
+Date: Thu, 2 Dec 2021 08:56:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Message-ID: <202112020812.Si0y9psY-lkp@intel.com>
+References: <20211201163938.133226-1-Arunpravin.PaneerSelvam@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20211201222404.690285-2-madhumitha.tolakanahalli.pradeep@intel.com>
-Subject: Re: [Intel-gfx] [v2 1/1] drm/i915/dmc: Update DMC to v2.14 on ADL-P
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211201163938.133226-1-Arunpravin.PaneerSelvam@amd.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 1/6] drm: move the buddy allocator from
+ i915 into common drm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,48 +51,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: kbuild-all@lists.01.org, Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
+ llvm@lists.linux.dev, matthew.auld@intel.com, tzimmermann@suse.de,
+ alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 01, 2021 at 02:24:04PM -0800, Madhumitha Tolakanahalli Pradeep wrote:
->Changes since v2.12:
->  - Release notes for v2.13:
->      1. Fix for simple flip queue with DC6v
->  - Release notes for v2.14:
->      1. Fix for flip queue roll over cases with DC6v
->      2. Enhancement for residency
->      3. Workaround for 3Dlut restore issue
->
->v2: Commit message update (Imre)
->
->Signed-off-by: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
+Hi Arunpravin,
+
+Thank you for the patch! Yet something to improve:
+
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on v5.16-rc3]
+[cannot apply to drm/drm-next drm-tip/drm-tip next-20211201]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Arunpravin/drm-move-the-buddy-allocator-from-i915-into-common-drm/20211202-004327
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+config: x86_64-randconfig-a012-20211130 (https://download.01.org/0day-ci/archive/20211202/202112020812.Si0y9psY-lkp@intel.com/config)
+compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 4b553297ef3ee4dc2119d5429adf3072e90fac38)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/afbc900c0399e8c6220abd729932e877e81f37c8
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Arunpravin/drm-move-the-buddy-allocator-from-i915-into-common-drm/20211202-004327
+        git checkout afbc900c0399e8c6220abd729932e877e81f37c8
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/i915/intel_memory_region.c:242:
+>> drivers/gpu/drm/i915/selftests/intel_memory_region.c:23:10: fatal error: 'i915_buddy.h' file not found
+   #include "i915_buddy.h"
+            ^~~~~~~~~~~~~~
+   1 error generated.
 
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+vim +23 drivers/gpu/drm/i915/selftests/intel_memory_region.c
 
-thanks
-Lucas De Marchi
+232a6ebae419193 Matthew Auld     2019-10-08  14  
+340be48f2c5a3c0 Matthew Auld     2019-10-25  15  #include "gem/i915_gem_context.h"
+b908be543e44414 Matthew Auld     2019-10-25  16  #include "gem/i915_gem_lmem.h"
+232a6ebae419193 Matthew Auld     2019-10-08  17  #include "gem/i915_gem_region.h"
+340be48f2c5a3c0 Matthew Auld     2019-10-25  18  #include "gem/selftests/igt_gem_utils.h"
+232a6ebae419193 Matthew Auld     2019-10-08  19  #include "gem/selftests/mock_context.h"
+99919be74aa3753 Thomas Hellström 2021-06-17  20  #include "gt/intel_engine_pm.h"
+6804da20bb549e3 Chris Wilson     2019-10-27  21  #include "gt/intel_engine_user.h"
+b908be543e44414 Matthew Auld     2019-10-25  22  #include "gt/intel_gt.h"
+d53ec322dc7de32 Matthew Auld     2021-06-16 @23  #include "i915_buddy.h"
+99919be74aa3753 Thomas Hellström 2021-06-17  24  #include "gt/intel_migrate.h"
+ba12993c5228015 Matthew Auld     2020-01-29  25  #include "i915_memcpy.h"
+d53ec322dc7de32 Matthew Auld     2021-06-16  26  #include "i915_ttm_buddy_manager.h"
+01377a0d7e6648b Abdiel Janulgue  2019-10-25  27  #include "selftests/igt_flush_test.h"
+2f0b97ca0211863 Matthew Auld     2019-10-08  28  #include "selftests/i915_random.h"
+232a6ebae419193 Matthew Auld     2019-10-08  29  
 
->---
-> drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++--
-> 1 file changed, 2 insertions(+), 2 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
->index 2dc9d632969d..8617cd1ec9b2 100644
->--- a/drivers/gpu/drm/i915/display/intel_dmc.c
->+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
->@@ -45,8 +45,8 @@
->
-> #define GEN12_DMC_MAX_FW_SIZE		ICL_DMC_MAX_FW_SIZE
->
->-#define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 12)
->-#define ADLP_DMC_VERSION_REQUIRED	DMC_VERSION(2, 12)
->+#define ADLP_DMC_PATH			DMC_PATH(adlp, 2, 14)
->+#define ADLP_DMC_VERSION_REQUIRED	DMC_VERSION(2, 14)
-> MODULE_FIRMWARE(ADLP_DMC_PATH);
->
-> #define ADLS_DMC_PATH			DMC_PATH(adls, 2, 01)
->-- 
->2.33.1
->
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
