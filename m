@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47E5466028
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Dec 2021 10:08:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2278E46602B
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Dec 2021 10:10:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C88846E9E6;
-	Thu,  2 Dec 2021 09:08:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AA4A6EA05;
+	Thu,  2 Dec 2021 09:10:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 892C36E9E6;
- Thu,  2 Dec 2021 09:08:55 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 34AA76EA05;
+ Thu,  2 Dec 2021 09:10:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 822EEA66C8;
- Thu,  2 Dec 2021 09:08:55 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 25A8BA363C;
+ Thu,  2 Dec 2021 09:10:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Thu, 02 Dec 2021 09:08:55 -0000
-Message-ID: <163843613549.9455.10650823168311924450@emeril.freedesktop.org>
+Date: Thu, 02 Dec 2021 09:10:04 -0000
+Message-ID: <163843620415.9455.8540173918848942316@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20211202083125.3999668-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 In-Reply-To: <20211202083125.3999668-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Replace_VT-d_workaround_with_guard_pages?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Replace_VT-d_workaround_with_guard_pages?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,15 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-9f65b4ead78d drm/i915: Wrap all access to i915_vma.node.start|size
-aab382a940c6 drm/i915: Introduce guard pages to i915_vma
-3ab5c1e98b07 drm/i915: Refine VT-d scanout workaround
--:63: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#63: FILE: drivers/gpu/drm/i915/gem/i915_gem_domain.c:434:
-+			guard = max(guard,
-+					i915_gem_object_get_tile_row_size(obj));
-
-total: 0 errors, 0 warnings, 1 checks, 101 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
