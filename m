@@ -1,38 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA0DB4664D0
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Dec 2021 14:57:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 624D74665A4
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Dec 2021 15:45:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BADEE6FBFE;
-	Thu,  2 Dec 2021 13:56:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8B3B6EB37;
+	Thu,  2 Dec 2021 14:45:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC6D26FBFA;
- Thu,  2 Dec 2021 13:56:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="236651033"
-X-IronPort-AV: E=Sophos;i="5.87,282,1631602800"; d="scan'208";a="236651033"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2021 05:56:54 -0800
-X-IronPort-AV: E=Sophos;i="5.87,282,1631602800"; d="scan'208";a="500751556"
-Received: from dev.igk.intel.com (HELO localhost) ([10.102.12.162])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2021 05:56:52 -0800
-From: Maciej Patelczyk <maciej.patelczyk@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>, Intel GFX
- <intel-gfx@lists.freedesktop.org>, DRI Devel
- <dri-devel@lists.freedesktop.org>
-In-Reply-To: <20211127011715.274205-1-andi.shyti@linux.intel.com>
-References: <20211127011715.274205-1-andi.shyti@linux.intel.com>
-Date: Thu, 02 Dec 2021 14:53:59 +0100
-Message-ID: <87bl1z15ag.fsf@dev.i-did-not-set--mail-host-address--so-tickle-me>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E65D6EB37
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Dec 2021 14:45:04 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="297516436"
+X-IronPort-AV: E=Sophos;i="5.87,282,1631602800"; d="scan'208";a="297516436"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2021 06:45:03 -0800
+X-IronPort-AV: E=Sophos;i="5.87,282,1631602800"; d="scan'208";a="460485115"
+Received: from ticela-or-016.ger.corp.intel.com (HELO localhost)
+ ([10.252.0.235])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2021 06:45:02 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  2 Dec 2021 16:44:56 +0200
+Message-Id: <20211202144456.2541305-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: Do not return '0' if
- there is nothing to return
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/snps: use div32 version of MPLLB word
+ clock for UHBR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,170 +44,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Andi Shyti <andi.shyti@linux.intel.com> writes:
+The mode set sequence for 128b/132b requires setting the div32 version
+of MPLLB clock.
 
-> Change functions that always return '0' to be void type.
->
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_debugfs.c    |  7 ++++---
->  drivers/gpu/drm/i915/gt/intel_gt_debugfs.h    |  2 +-
->  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 16 ++++++++--------
->  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h |  4 ++--
->  drivers/gpu/drm/i915/i915_debugfs.c           | 12 +++++++++---
->  5 files changed, 24 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-> index f103664b71d4..53b90b4f73d7 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-> @@ -29,7 +29,7 @@ int intel_gt_debugfs_reset_show(struct intel_gt *gt, u64 *val)
->  	}
->  }
->  
-> -int intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val)
-> +void intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val)
->  {
->  	/* Flush any previous reset before applying for a new one */
->  	wait_event(gt->reset.queue,
-> @@ -37,7 +37,6 @@ int intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val)
->  
->  	intel_gt_handle_error(gt, val, I915_ERROR_CAPTURE,
->  			      "Manually reset engine mask to %llx", val);
-> -	return 0;
->  }
->  
->  /*
-> @@ -51,7 +50,9 @@ static int __intel_gt_debugfs_reset_show(void *data, u64 *val)
->  
->  static int __intel_gt_debugfs_reset_store(void *data, u64 val)
->  {
-> -	return intel_gt_debugfs_reset_store(data, val);
-> +	intel_gt_debugfs_reset_store(data, val);
-> +
-> +	return 0;
->  }
->  
->  DEFINE_SIMPLE_ATTRIBUTE(reset_fops, __intel_gt_debugfs_reset_show,
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
-> index e307ceb99031..a4baf8e7f068 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
-> @@ -37,6 +37,6 @@ void intel_gt_debugfs_register_files(struct dentry *root,
->  
->  /* functions that need to be accessed by the upper level non-gt interfaces */
->  int intel_gt_debugfs_reset_show(struct intel_gt *gt, u64 *val);
-> -int intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val);
-> +void intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val);
->  
->  #endif /* INTEL_GT_DEBUGFS_H */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> index 404dfa7673c6..7a30157aa9d3 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> @@ -20,38 +20,38 @@
->  #include "intel_uncore.h"
->  #include "vlv_sideband.h"
->  
-> -int intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt)
-> +void intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt)
->  {
->  	atomic_inc(&gt->user_wakeref);
->  	intel_gt_pm_get(gt);
->  	if (GRAPHICS_VER(gt->i915) >= 6)
->  		intel_uncore_forcewake_user_get(gt->uncore);
-> -
-> -	return 0;
->  }
->  
-> -int intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt)
-> +void intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt)
->  {
->  	if (GRAPHICS_VER(gt->i915) >= 6)
->  		intel_uncore_forcewake_user_put(gt->uncore);
->  	intel_gt_pm_put(gt);
->  	atomic_dec(&gt->user_wakeref);
-> -
-> -	return 0;
->  }
->  
->  static int forcewake_user_open(struct inode *inode, struct file *file)
->  {
->  	struct intel_gt *gt = inode->i_private;
->  
-> -	return intel_gt_pm_debugfs_forcewake_user_open(gt);
-> +	intel_gt_pm_debugfs_forcewake_user_open(gt);
-> +
-> +	return 0;
->  }
->  
->  static int forcewake_user_release(struct inode *inode, struct file *file)
->  {
->  	struct intel_gt *gt = inode->i_private;
->  
-> -	return intel_gt_pm_debugfs_forcewake_user_release(gt);
-> +	intel_gt_pm_debugfs_forcewake_user_release(gt);
-> +
-> +	return 0;
->  }
->  
->  static const struct file_operations forcewake_user_fops = {
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
-> index a8457887ec65..0ace8c2da0ac 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
-> @@ -14,7 +14,7 @@ void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root);
->  void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *m);
->  
->  /* functions that need to be accessed by the upper level non-gt interfaces */
-> -int intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt);
-> -int intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt);
-> +void intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt);
-> +void intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt);
->  
->  #endif /* INTEL_GT_PM_DEBUGFS_H */
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index fe638b5da7c0..88ef63f05ead 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -565,7 +565,9 @@ static int i915_wedged_set(void *data, u64 val)
->  {
->  	struct drm_i915_private *i915 = data;
->  
-> -	return intel_gt_debugfs_reset_store(&i915->gt, val);
-> +	intel_gt_debugfs_reset_store(&i915->gt, val);
-> +
-> +	return 0;
->  }
->  
->  DEFINE_SIMPLE_ATTRIBUTE(i915_wedged_fops,
-> @@ -711,14 +713,18 @@ static int i915_forcewake_open(struct inode *inode, struct file *file)
->  {
->  	struct drm_i915_private *i915 = inode->i_private;
->  
-> -	return intel_gt_pm_debugfs_forcewake_user_open(&i915->gt);
-> +	intel_gt_pm_debugfs_forcewake_user_open(&i915->gt);
-> +
-> +	return 0;
->  }
->  
->  static int i915_forcewake_release(struct inode *inode, struct file *file)
->  {
->  	struct drm_i915_private *i915 = inode->i_private;
->  
-> -	return intel_gt_pm_debugfs_forcewake_user_release(&i915->gt);
-> +	intel_gt_pm_debugfs_forcewake_user_release(&i915->gt);
-> +
-> +	return 0;
->  }
->  
->  static const struct file_operations i915_forcewake_fops = {
-> -- 
-> 2.34.0
+Bspec: 53880, 54128
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_snps_phy.c | 2 ++
+ drivers/gpu/drm/i915/i915_reg.h               | 1 +
+ 2 files changed, 3 insertions(+)
 
-Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
+diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+index c2251218a39e..09f405e4d363 100644
+--- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+@@ -186,6 +186,7 @@ static const struct intel_mpllb_state dg2_dp_uhbr10_100 = {
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SHIM_DIV32_CLK_SEL, 1) |
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2),
+ 	.mpllb_div2 =
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 2) |
+@@ -369,6 +370,7 @@ static const struct intel_mpllb_state dg2_dp_uhbr10_38_4 = {
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
++		REG_FIELD_PREP(SNPS_PHY_MPLLB_SHIM_DIV32_CLK_SEL, 1) |
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2),
+ 	.mpllb_div2 =
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 3450818802c2..1fad1d593e13 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2265,6 +2265,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define   SNPS_PHY_MPLLB_DP2_MODE		REG_BIT(9)
+ #define   SNPS_PHY_MPLLB_WORD_DIV2_EN		REG_BIT(8)
+ #define   SNPS_PHY_MPLLB_TX_CLK_DIV		REG_GENMASK(7, 5)
++#define   SNPS_PHY_MPLLB_SHIM_DIV32_CLK_SEL	REG_BIT(0)
+ 
+ #define SNPS_PHY_MPLLB_FRACN1(phy)		_MMIO_SNPS(phy, 0x168008)
+ #define   SNPS_PHY_MPLLB_FRACN_EN		REG_BIT(31)
+-- 
+2.30.2
+
