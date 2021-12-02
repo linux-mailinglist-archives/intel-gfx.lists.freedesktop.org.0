@@ -2,69 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 396CB465FCA
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Dec 2021 09:44:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8540A466011
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Dec 2021 10:02:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40C986E9D4;
-	Thu,  2 Dec 2021 08:44:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 882946E9D0;
+	Thu,  2 Dec 2021 09:02:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com
- [64.147.123.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57AF16E314;
- Thu,  2 Dec 2021 08:44:47 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.west.internal (Postfix) with ESMTP id 73FE32B00359;
- Thu,  2 Dec 2021 03:44:43 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Thu, 02 Dec 2021 03:44:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:mime-version:content-type; s=
- fm1; bh=+1imycJviwAhOimDYN66UcNf5O5JiPbYSIDqwnLGwnM=; b=VGx4diLt
- F7XFEs7UjOEHWrBI+yiJVTHLtILosO6+VkKAglQc+Hd3xza2UrsPrOXNPSY6C5Sf
- ebngo3k1TzzH77J8Yin7D15cb1KEunl76yrxkaSLdANReFCjeY3xVbJRbzHiFDXP
- MgTHlwFhHg9oz7z5hinbN69mT3BkvzTRvYfAJrjOIR/MXdLQe1YXY9BCKVa6hcHK
- VPpz94ffG9f5FHVRGOIHbQHp+I+0RpAJzJTFKlu7sInt4eMM53gYRj0KP4YN8Ls6
- zNw+oAagklHPkxgXjVsZ02rZea0QVadRbw4uCfR1WcXmq4BgTUHd1u/uNDjt4K7q
- LZ+0xY5tmHkLVA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:message-id
- :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm1; bh=+1imycJviwAhOimDYN66UcNf5O5Ji
- PbYSIDqwnLGwnM=; b=cZDNXReap35XoVZhuXkFrxCfXriOgulDgyKU6CuCpNeBj
- BPwSnuLg0szVbWkXCKSA8/x1eWLEYJwuvGW2bmk21wMgcx9i8q0LrHesIV/zX9RC
- /pR26d1e+wGy5b54+5t/e80xLRDFU01F5gj8018xo/nkUNkkvbgLCfyH7YMBn2Me
- nP13XVLtCbtD/5lViLhY0YZ4S/+X6jy17KJb6KNOFR8Mv5XlgB5bNosgJOPxJdA5
- V9gVdK7nkAJWktmozH17f8oFP3Q2rWKNLVOTkdna3FvAQCNb9gX1mDLXk41lK7/z
- S4Ub9VRFsDvOAjAffhjmaXuQYpPjmHRKaHxa/afMA==
-X-ME-Sender: <xms:eoeoYYDOb7-5DDHOxde5LKopz4VtPmoxXqc9m-q5r3TsSgnZKCI9Qw>
- <xme:eoeoYagIGJzOThg8Ta_gBTuRpWhFfdzy2bLgz6362hVAMf3yAGoeqogsBV7n0hHx5
- zTN2fnCjxm4oXy89TM>
-X-ME-Received: <xmr:eoeoYbn3QrBfR2Utf5Um4C9v8OlTC1HMOjY3RO-E8aS0sDBHc67zlaSoJvDvdJYf7E6VBhlRwPgWx1A1T0E2fo2YT31Rwk7SloyiVbppOZkCrQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieeggdduvdeiucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
- tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
- hrnhepgeeuvddtheeggeehhfeigeetffeufeelveeggfekveegieevudeljeeugedviefg
- necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuih
- iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
- vggthh
-X-ME-Proxy: <xmx:eoeoYewbg0i3xTRl4KzQa6HJNKJ_UFq7u0CtkRu4s7GIJOIX4qkF_g>
- <xmx:eoeoYdSvvEy9X-LzsOCHwGFDYm0m81MXnBxLU7r-3XqYAep4S2GBBw>
- <xmx:eoeoYZbxpaKJ_fOX6-Qt11NWTsaUPTR_jDQQg3UXWVi2goTDVSvmsQ>
- <xmx:eoeoYSLfvrGYeiMHlKOzvxphBSI4VfmbkapQ0RPc4uTACfzlQmKw_9invw8>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 2 Dec 2021 03:44:41 -0500 (EST)
-Date: Thu, 2 Dec 2021 09:44:40 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20211202084440.u3b7lbeulj7k3ltg@houat>
+Received: from pio-pvt-msa2.bahnhof.se (pio-pvt-msa2.bahnhof.se [79.136.2.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1917A6E9D0
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Dec 2021 09:02:27 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTP id C65EC3F35C;
+ Thu,  2 Dec 2021 10:02:24 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.738
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.738 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.639,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: pio-pvt-msa2.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from pio-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id dD9rY3bnVOLo; Thu,  2 Dec 2021 10:02:20 +0100 (CET)
+Received: by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 5AE0C3F240;
+ Thu,  2 Dec 2021 10:02:18 +0100 (CET)
+Received: from [192.168.0.209] (fmdmzpr02-ext.fm.intel.com [192.55.54.37])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 85850360B69;
+ Thu,  2 Dec 2021 10:02:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1638435738; bh=e/WH/kXYsFwQ798IZLMVF1wplbkLi8d2EsRG+EvGKjM=;
+ h=Date:Subject:To:References:From:In-Reply-To:From;
+ b=UGnvDOf0H1dMQDQHDwBjKybkNUBJ6/V3DVi+qUHcPDzKgqgMtYuYFCfnFgK1qNJiu
+ s6etTeEPgfHO+AkcohehhWgfgWlU+OsODhp/X2qUak3nppntKGYVmf5b7WFigyG7Kq
+ X4LpuENPjDpOL6LgtCpdX1YWU/EJvEpD6wKUpzG0=
+Message-ID: <ad910125-de32-3a35-d1a5-1ff9cecc7e97@shipmail.org>
+Date: Thu, 2 Dec 2021 10:02:13 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="5ybb4bf6tko3g7fo"
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Pallavi Mishra <pallavi.mishra@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20211202043849.40094-1-pallavi.mishra@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <20211202043849.40094-1-pallavi.mishra@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 0/1] static analysis failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,76 +64,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
---5ybb4bf6tko3g7fo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 12/2/21 05:38, Pallavi Mishra wrote:
+> fix for null ptr dereferences
+>
+> Pallavi Mishra (1):
+>    static analysis failure
 
-Hi Dave, Daniel,
+No need for cover letter for a single patch.
 
-Here's this week drm-misc-fixes PR
-
-Maxime
-
-drm-misc-fixes-2021-12-02:
-Switch back to drm_poll for virtio, multiple fixes (memory leak,
-improper error check, some functional fixes too) for vc4, memory leak
-fix in dma-buf,
-The following changes since commit e048834c209a02e3776bcc47d43c6d863e3a67ca:
-
-  drm/hyperv: Fix device removal on Gen1 VMs (2021-11-23 10:56:12 -0800)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-12-02
-
-for you to fetch changes up to 679d94cd7d900871e5bc9cf780bd5b73af35ab42:
-
-  dma-buf: system_heap: Use 'for_each_sgtable_sg' in pages free flow (2021-12-01 15:30:10 +0530)
-
-----------------------------------------------------------------
-Switch back to drm_poll for virtio, multiple fixes (memory leak,
-improper error check, some functional fixes too) for vc4, memory leak
-fix in dma-buf,
-
-----------------------------------------------------------------
-Guangming (1):
-      dma-buf: system_heap: Use 'for_each_sgtable_sg' in pages free flow
-
-Gurchetan Singh (2):
-      drm/virtgpu api: define a dummy fence signaled event
-      drm/virtio: use drm_poll(..) instead of virtio_gpu_poll(..)
-
-Maxime Ripard (6):
-      drm/vc4: kms: Wait for the commit before increasing our clock rate
-      drm/vc4: kms: Fix return code check
-      drm/vc4: kms: Add missing drm_crtc_commit_put
-      drm/vc4: kms: Clear the HVS FIFO commit pointer once done
-      drm/vc4: kms: Don't duplicate pending commit
-      drm/vc4: kms: Fix previous HVS commit wait
-
- drivers/dma-buf/heaps/system_heap.c    |  2 +-
- drivers/gpu/drm/vc4/vc4_kms.c          | 42 +++++++++++++++-------------------
- drivers/gpu/drm/virtio/virtgpu_drv.c   | 42 +---------------------------------
- drivers/gpu/drm/virtio/virtgpu_drv.h   |  1 -
- drivers/gpu/drm/virtio/virtgpu_ioctl.c |  2 +-
- include/uapi/drm/virtgpu_drm.h         |  7 ++++++
- 6 files changed, 29 insertions(+), 67 deletions(-)
-
---5ybb4bf6tko3g7fo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYaiHeAAKCRDj7w1vZxhR
-xTVYAQDIwGAVrxxz3PG7/4icelQ0bAG17jTiNFIdMRh1cw+N1wEA38kIWQZzOXLy
-OhswDKOwh0Kwg+hVfD6r62sBOtZMmQ8=
-=vwrB
------END PGP SIGNATURE-----
-
---5ybb4bf6tko3g7fo--
+>
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c      | 3 +++
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 4 +++-
+>   2 files changed, 6 insertions(+), 1 deletion(-)
+>
