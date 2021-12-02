@@ -2,58 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 705224664B0
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Dec 2021 14:46:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA0DB4664D0
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Dec 2021 14:57:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BF2B6FBBF;
-	Thu,  2 Dec 2021 13:46:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BADEE6FBFE;
+	Thu,  2 Dec 2021 13:56:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDC936FBBF
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Dec 2021 13:46:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="223942669"
-X-IronPort-AV: E=Sophos;i="5.87,282,1631602800"; d="scan'208";a="223942669"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2021 05:46:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,282,1631602800"; d="scan'208";a="748112880"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga005.fm.intel.com with ESMTP; 02 Dec 2021 05:46:30 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 2 Dec 2021 05:46:30 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 2 Dec 2021 05:46:30 -0800
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2308.020;
- Thu, 2 Dec 2021 05:46:30 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [v3 2/3] drm/i915/rpl-s: Add PCH Support for Raptor
- Lake S
-Thread-Index: AQHX5p8b8wewBBLqjE+HTgVKLV1/VKwfvx4A
-Date: Thu, 2 Dec 2021 13:46:30 +0000
-Message-ID: <b564ad29dac10bbf0c482ba35e4c43976946c150.camel@intel.com>
-References: <20211201103320.2211867-1-anusha.srivatsa@intel.com>
- <20211201103320.2211867-3-anusha.srivatsa@intel.com>
-In-Reply-To: <20211201103320.2211867-3-anusha.srivatsa@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C007ED59244B3841921DB06B39900BB1@intel.com>
-Content-Transfer-Encoding: base64
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC6D26FBFA;
+ Thu,  2 Dec 2021 13:56:56 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="236651033"
+X-IronPort-AV: E=Sophos;i="5.87,282,1631602800"; d="scan'208";a="236651033"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2021 05:56:54 -0800
+X-IronPort-AV: E=Sophos;i="5.87,282,1631602800"; d="scan'208";a="500751556"
+Received: from dev.igk.intel.com (HELO localhost) ([10.102.12.162])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2021 05:56:52 -0800
+From: Maciej Patelczyk <maciej.patelczyk@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>, Intel GFX
+ <intel-gfx@lists.freedesktop.org>, DRI Devel
+ <dri-devel@lists.freedesktop.org>
+In-Reply-To: <20211127011715.274205-1-andi.shyti@linux.intel.com>
+References: <20211127011715.274205-1-andi.shyti@linux.intel.com>
+Date: Thu, 02 Dec 2021 14:53:59 +0100
+Message-ID: <87bl1z15ag.fsf@dev.i-did-not-set--mail-host-address--so-tickle-me>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v3 2/3] drm/i915/rpl-s: Add PCH Support for Raptor
- Lake S
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: Do not return '0' if
+ there is nothing to return
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,37 +45,170 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIxLTEyLTAxIGF0IDAyOjMzIC0wODAwLCBBbnVzaGEgU3JpdmF0c2Egd3JvdGU6
-DQo+IEFkZCB0aGUgUENIIElEIGZvciBSUEwtUy4NCj4gDQo+IHYyOiBTZWxmIGNvbnRhaW5lZCBj
-b21taXQgbWVzc2FnZSAoSmFuaSkNCg0KUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291
-emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KDQo+IA0KPiBDYzogSmFuaSBOaWt1bGEgPGphbmku
-bmlrdWxhQGxpbnV4LmludGVsLmNvbT4NCj4gQ2M6IFN3YXRoaSBEaGFuYXZhbnRocmkgPHN3YXRo
-aS5kaGFuYXZhbnRocmlAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBBbnVzaGEgU3JpdmF0
-c2EgPGFudXNoYS5zcml2YXRzYUBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaW50ZWxfcGNoLmMgfCAxICsNCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Bj
-aC5oIHwgMSArDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BjaC5jIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaW50ZWxfcGNoLmMNCj4gaW5kZXggZDFkNGI5N2I4NmY1Li5kYThmODJjMjM0MmYg
-MTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BjaC5jDQo+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BjaC5jDQo+IEBAIC0xMjksNiArMTI5LDcgQEAg
-aW50ZWxfcGNoX3R5cGUoY29uc3Qgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCB1
-bnNpZ25lZCBzaG9ydCBpZCkNCj4gIAkJcmV0dXJuIFBDSF9KU1A7DQo+ICAJY2FzZSBJTlRFTF9Q
-Q0hfQURQX0RFVklDRV9JRF9UWVBFOg0KPiAgCWNhc2UgSU5URUxfUENIX0FEUDJfREVWSUNFX0lE
-X1RZUEU6DQo+ICsJY2FzZSBJTlRFTF9QQ0hfQURQM19ERVZJQ0VfSURfVFlQRToNCj4gIAkJZHJt
-X2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICJGb3VuZCBBbGRlciBMYWtlIFBDSFxuIik7DQo+ICAJ
-CWRybV9XQVJOX09OKCZkZXZfcHJpdi0+ZHJtLCAhSVNfQUxERVJMQUtFX1MoZGV2X3ByaXYpICYm
-DQo+ICAJCQkgICAgIUlTX0FMREVSTEFLRV9QKGRldl9wcml2KSk7DQo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wY2guaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
-dGVsX3BjaC5oDQo+IGluZGV4IDdjMGQ4M2QyOTJkYy4uNmJmZjc3NTIxMDk0IDEwMDY0NA0KPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wY2guaA0KPiArKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pbnRlbF9wY2guaA0KPiBAQCAtNTcsNiArNTcsNyBAQCBlbnVtIGludGVsX3Bj
-aCB7DQo+ICAjZGVmaW5lIElOVEVMX1BDSF9KU1AyX0RFVklDRV9JRF9UWVBFCQkweDM4ODANCj4g
-ICNkZWZpbmUgSU5URUxfUENIX0FEUF9ERVZJQ0VfSURfVFlQRQkJMHg3QTgwDQo+ICAjZGVmaW5l
-IElOVEVMX1BDSF9BRFAyX0RFVklDRV9JRF9UWVBFCQkweDUxODANCj4gKyNkZWZpbmUgSU5URUxf
-UENIX0FEUDNfREVWSUNFX0lEX1RZUEUJCTB4N0EwMA0KPiAgI2RlZmluZSBJTlRFTF9QQ0hfUDJY
-X0RFVklDRV9JRF9UWVBFCQkweDcxMDANCj4gICNkZWZpbmUgSU5URUxfUENIX1AzWF9ERVZJQ0Vf
-SURfVFlQRQkJMHg3MDAwDQo+ICAjZGVmaW5lIElOVEVMX1BDSF9RRU1VX0RFVklDRV9JRF9UWVBF
-CQkweDI5MDAgLyogcWVtdSBxMzUgaGFzIDI5MTggKi8NCg0K
+Andi Shyti <andi.shyti@linux.intel.com> writes:
+
+> Change functions that always return '0' to be void type.
+>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_debugfs.c    |  7 ++++---
+>  drivers/gpu/drm/i915/gt/intel_gt_debugfs.h    |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 16 ++++++++--------
+>  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h |  4 ++--
+>  drivers/gpu/drm/i915/i915_debugfs.c           | 12 +++++++++---
+>  5 files changed, 24 insertions(+), 17 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
+> index f103664b71d4..53b90b4f73d7 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
+> @@ -29,7 +29,7 @@ int intel_gt_debugfs_reset_show(struct intel_gt *gt, u64 *val)
+>  	}
+>  }
+>  
+> -int intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val)
+> +void intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val)
+>  {
+>  	/* Flush any previous reset before applying for a new one */
+>  	wait_event(gt->reset.queue,
+> @@ -37,7 +37,6 @@ int intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val)
+>  
+>  	intel_gt_handle_error(gt, val, I915_ERROR_CAPTURE,
+>  			      "Manually reset engine mask to %llx", val);
+> -	return 0;
+>  }
+>  
+>  /*
+> @@ -51,7 +50,9 @@ static int __intel_gt_debugfs_reset_show(void *data, u64 *val)
+>  
+>  static int __intel_gt_debugfs_reset_store(void *data, u64 val)
+>  {
+> -	return intel_gt_debugfs_reset_store(data, val);
+> +	intel_gt_debugfs_reset_store(data, val);
+> +
+> +	return 0;
+>  }
+>  
+>  DEFINE_SIMPLE_ATTRIBUTE(reset_fops, __intel_gt_debugfs_reset_show,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
+> index e307ceb99031..a4baf8e7f068 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
+> @@ -37,6 +37,6 @@ void intel_gt_debugfs_register_files(struct dentry *root,
+>  
+>  /* functions that need to be accessed by the upper level non-gt interfaces */
+>  int intel_gt_debugfs_reset_show(struct intel_gt *gt, u64 *val);
+> -int intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val);
+> +void intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val);
+>  
+>  #endif /* INTEL_GT_DEBUGFS_H */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> index 404dfa7673c6..7a30157aa9d3 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> @@ -20,38 +20,38 @@
+>  #include "intel_uncore.h"
+>  #include "vlv_sideband.h"
+>  
+> -int intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt)
+> +void intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt)
+>  {
+>  	atomic_inc(&gt->user_wakeref);
+>  	intel_gt_pm_get(gt);
+>  	if (GRAPHICS_VER(gt->i915) >= 6)
+>  		intel_uncore_forcewake_user_get(gt->uncore);
+> -
+> -	return 0;
+>  }
+>  
+> -int intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt)
+> +void intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt)
+>  {
+>  	if (GRAPHICS_VER(gt->i915) >= 6)
+>  		intel_uncore_forcewake_user_put(gt->uncore);
+>  	intel_gt_pm_put(gt);
+>  	atomic_dec(&gt->user_wakeref);
+> -
+> -	return 0;
+>  }
+>  
+>  static int forcewake_user_open(struct inode *inode, struct file *file)
+>  {
+>  	struct intel_gt *gt = inode->i_private;
+>  
+> -	return intel_gt_pm_debugfs_forcewake_user_open(gt);
+> +	intel_gt_pm_debugfs_forcewake_user_open(gt);
+> +
+> +	return 0;
+>  }
+>  
+>  static int forcewake_user_release(struct inode *inode, struct file *file)
+>  {
+>  	struct intel_gt *gt = inode->i_private;
+>  
+> -	return intel_gt_pm_debugfs_forcewake_user_release(gt);
+> +	intel_gt_pm_debugfs_forcewake_user_release(gt);
+> +
+> +	return 0;
+>  }
+>  
+>  static const struct file_operations forcewake_user_fops = {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
+> index a8457887ec65..0ace8c2da0ac 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
+> @@ -14,7 +14,7 @@ void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root);
+>  void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *m);
+>  
+>  /* functions that need to be accessed by the upper level non-gt interfaces */
+> -int intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt);
+> -int intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt);
+> +void intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt);
+> +void intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt);
+>  
+>  #endif /* INTEL_GT_PM_DEBUGFS_H */
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+> index fe638b5da7c0..88ef63f05ead 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -565,7 +565,9 @@ static int i915_wedged_set(void *data, u64 val)
+>  {
+>  	struct drm_i915_private *i915 = data;
+>  
+> -	return intel_gt_debugfs_reset_store(&i915->gt, val);
+> +	intel_gt_debugfs_reset_store(&i915->gt, val);
+> +
+> +	return 0;
+>  }
+>  
+>  DEFINE_SIMPLE_ATTRIBUTE(i915_wedged_fops,
+> @@ -711,14 +713,18 @@ static int i915_forcewake_open(struct inode *inode, struct file *file)
+>  {
+>  	struct drm_i915_private *i915 = inode->i_private;
+>  
+> -	return intel_gt_pm_debugfs_forcewake_user_open(&i915->gt);
+> +	intel_gt_pm_debugfs_forcewake_user_open(&i915->gt);
+> +
+> +	return 0;
+>  }
+>  
+>  static int i915_forcewake_release(struct inode *inode, struct file *file)
+>  {
+>  	struct drm_i915_private *i915 = inode->i_private;
+>  
+> -	return intel_gt_pm_debugfs_forcewake_user_release(&i915->gt);
+> +	intel_gt_pm_debugfs_forcewake_user_release(&i915->gt);
+> +
+> +	return 0;
+>  }
+>  
+>  static const struct file_operations i915_forcewake_fops = {
+> -- 
+> 2.34.0
+
+Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
