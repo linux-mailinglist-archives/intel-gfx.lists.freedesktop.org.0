@@ -2,36 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E7C1465F9F
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Dec 2021 09:38:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 396CB465FCA
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Dec 2021 09:44:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AB026E9DA;
-	Thu,  2 Dec 2021 08:38:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40C986E9D4;
+	Thu,  2 Dec 2021 08:44:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 424436E9DA
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Dec 2021 08:38:43 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="236600077"
-X-IronPort-AV: E=Sophos;i="5.87,281,1631602800"; d="scan'208";a="236600077"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2021 00:37:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,281,1631602800"; d="scan'208";a="500642678"
-Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by orsmga007.jf.intel.com with ESMTP; 02 Dec 2021 00:37:08 -0800
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Dec 2021 14:01:25 +0530
-Message-Id: <20211202083125.3999668-4-tejaskumarx.surendrakumar.upadhyay@intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211202083125.3999668-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-References: <20211202083125.3999668-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com
+ [64.147.123.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57AF16E314;
+ Thu,  2 Dec 2021 08:44:47 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.west.internal (Postfix) with ESMTP id 73FE32B00359;
+ Thu,  2 Dec 2021 03:44:43 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute3.internal (MEProxy); Thu, 02 Dec 2021 03:44:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:mime-version:content-type; s=
+ fm1; bh=+1imycJviwAhOimDYN66UcNf5O5JiPbYSIDqwnLGwnM=; b=VGx4diLt
+ F7XFEs7UjOEHWrBI+yiJVTHLtILosO6+VkKAglQc+Hd3xza2UrsPrOXNPSY6C5Sf
+ ebngo3k1TzzH77J8Yin7D15cb1KEunl76yrxkaSLdANReFCjeY3xVbJRbzHiFDXP
+ MgTHlwFhHg9oz7z5hinbN69mT3BkvzTRvYfAJrjOIR/MXdLQe1YXY9BCKVa6hcHK
+ VPpz94ffG9f5FHVRGOIHbQHp+I+0RpAJzJTFKlu7sInt4eMM53gYRj0KP4YN8Ls6
+ zNw+oAagklHPkxgXjVsZ02rZea0QVadRbw4uCfR1WcXmq4BgTUHd1u/uNDjt4K7q
+ LZ+0xY5tmHkLVA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:message-id
+ :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+ :x-me-sender:x-sasl-enc; s=fm1; bh=+1imycJviwAhOimDYN66UcNf5O5Ji
+ PbYSIDqwnLGwnM=; b=cZDNXReap35XoVZhuXkFrxCfXriOgulDgyKU6CuCpNeBj
+ BPwSnuLg0szVbWkXCKSA8/x1eWLEYJwuvGW2bmk21wMgcx9i8q0LrHesIV/zX9RC
+ /pR26d1e+wGy5b54+5t/e80xLRDFU01F5gj8018xo/nkUNkkvbgLCfyH7YMBn2Me
+ nP13XVLtCbtD/5lViLhY0YZ4S/+X6jy17KJb6KNOFR8Mv5XlgB5bNosgJOPxJdA5
+ V9gVdK7nkAJWktmozH17f8oFP3Q2rWKNLVOTkdna3FvAQCNb9gX1mDLXk41lK7/z
+ S4Ub9VRFsDvOAjAffhjmaXuQYpPjmHRKaHxa/afMA==
+X-ME-Sender: <xms:eoeoYYDOb7-5DDHOxde5LKopz4VtPmoxXqc9m-q5r3TsSgnZKCI9Qw>
+ <xme:eoeoYagIGJzOThg8Ta_gBTuRpWhFfdzy2bLgz6362hVAMf3yAGoeqogsBV7n0hHx5
+ zTN2fnCjxm4oXy89TM>
+X-ME-Received: <xmr:eoeoYbn3QrBfR2Utf5Um4C9v8OlTC1HMOjY3RO-E8aS0sDBHc67zlaSoJvDvdJYf7E6VBhlRwPgWx1A1T0E2fo2YT31Rwk7SloyiVbppOZkCrQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieeggdduvdeiucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
+ tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
+ hrnhepgeeuvddtheeggeehhfeigeetffeufeelveeggfekveegieevudeljeeugedviefg
+ necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuih
+ iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
+ vggthh
+X-ME-Proxy: <xmx:eoeoYewbg0i3xTRl4KzQa6HJNKJ_UFq7u0CtkRu4s7GIJOIX4qkF_g>
+ <xmx:eoeoYdSvvEy9X-LzsOCHwGFDYm0m81MXnBxLU7r-3XqYAep4S2GBBw>
+ <xmx:eoeoYZbxpaKJ_fOX6-Qt11NWTsaUPTR_jDQQg3UXWVi2goTDVSvmsQ>
+ <xmx:eoeoYSLfvrGYeiMHlKOzvxphBSI4VfmbkapQ0RPc4uTACfzlQmKw_9invw8>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 2 Dec 2021 03:44:41 -0500 (EST)
+Date: Thu, 2 Dec 2021 09:44:40 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20211202084440.u3b7lbeulj7k3ltg@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Refine VT-d scanout workaround
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="5ybb4bf6tko3g7fo"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,174 +77,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris@chris-wilson.co.uk>
 
-VT-d may cause overfetch of the scanout PTE, both before and after the
-vma (depending on the scanout orientation). bspec recommends that we
-provide a tile-row in either directions, and suggests using 168 PTE,
-warning that the accesses will wrap around the ends of the GGTT.
-Currently, we fill the entire GGTT with scratch pages when using VT-d to
-always ensure there are valid entries around every vma, including
-scanout. However, writing every PTE is slow as on recent devices we
-perform 8MiB of uncached writes, incurring an extra 100ms during resume.
+--5ybb4bf6tko3g7fo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-If instead we focus on only putting guard pages around scanout, we can
-avoid touching the whole GGTT. To avoid having to introduce extra nodes
-around each scanout vma, we adjust the scanout drm_mm_node to be smaller
-than the allocated space, and fixup the extra PTE during dma binding.
+Hi Dave, Daniel,
 
-v2: Move the guard from modifying drm_mm_node.start which is still used
-by the drm_mm itself, into an adjustment of node.start at the point of
-use.
+Here's this week drm-misc-fixes PR
 
-v3: Pass the requested guard padding from the caller, so we can drop the
-VT-d w/a knowledge from the i915_vma allocator.
+Maxime
 
-v4: Bump minimum padding to 168 PTE and cautiously ensure that a full
-tile row around the vma is included with the guard.
+drm-misc-fixes-2021-12-02:
+Switch back to drm_poll for virtio, multiple fixes (memory leak,
+improper error check, some functional fixes too) for vc4, memory leak
+fix in dma-buf,
+The following changes since commit e048834c209a02e3776bcc47d43c6d863e3a67ca:
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_domain.c | 13 +++++++++++
- drivers/gpu/drm/i915/gt/intel_ggtt.c       | 25 +---------------------
- drivers/gpu/drm/i915/i915_gem_gtt.h        |  1 +
- drivers/gpu/drm/i915/i915_vma.c            |  8 +++++++
- 4 files changed, 23 insertions(+), 24 deletions(-)
+  drm/hyperv: Fix device removal on Gen1 VMs (2021-11-23 10:56:12 -0800)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-index 26532c07d467..0e014f186807 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-@@ -16,6 +16,8 @@
- #include "i915_gem_lmem.h"
- #include "i915_gem_mman.h"
- 
-+#define VTD_GUARD (168u * I915_GTT_PAGE_SIZE) /* 168 or tile-row PTE padding */
-+
- static bool gpu_write_needs_clflush(struct drm_i915_gem_object *obj)
- {
- 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-@@ -423,6 +425,17 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
- 	if (ret)
- 		return ERR_PTR(ret);
- 
-+	/* VT-d may overfetch before/after the vma, so pad with scratch */
-+	if (intel_scanout_needs_vtd_wa(i915)) {
-+		unsigned int guard = VTD_GUARD;
-+
-+		if (i915_gem_object_is_tiled(obj))
-+			guard = max(guard,
-+					i915_gem_object_get_tile_row_size(obj));
-+
-+		flags |= PIN_OFFSET_GUARD | guard;
-+	}
-+
- 	/*
- 	 * As the user may map the buffer once pinned in the display plane
- 	 * (e.g. libkms for the bootup splash), we have to ensure that we
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 282ed6dd3ca2..4a0f916ab03f 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -337,27 +337,6 @@ static void nop_clear_range(struct i915_address_space *vm,
- {
- }
- 
--static void gen8_ggtt_clear_range(struct i915_address_space *vm,
--				  u64 start, u64 length)
--{
--	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
--	unsigned int first_entry = start / I915_GTT_PAGE_SIZE;
--	unsigned int num_entries = length / I915_GTT_PAGE_SIZE;
--	const gen8_pte_t scratch_pte = vm->scratch[0]->encode;
--	gen8_pte_t __iomem *gtt_base =
--		(gen8_pte_t __iomem *)ggtt->gsm + first_entry;
--	const int max_entries = ggtt_total_entries(ggtt) - first_entry;
--	int i;
--
--	if (WARN(num_entries > max_entries,
--		 "First entry = %d; Num entries = %d (max=%d)\n",
--		 first_entry, num_entries, max_entries))
--		num_entries = max_entries;
--
--	for (i = 0; i < num_entries; i++)
--		gen8_set_pte(&gtt_base[i], scratch_pte);
--}
--
- static void bxt_vtd_ggtt_wa(struct i915_address_space *vm)
- {
- 	/*
-@@ -956,8 +935,6 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- 	ggtt->vm.cleanup = gen6_gmch_remove;
- 	ggtt->vm.insert_page = gen8_ggtt_insert_page;
- 	ggtt->vm.clear_range = nop_clear_range;
--	if (intel_scanout_needs_vtd_wa(i915))
--		ggtt->vm.clear_range = gen8_ggtt_clear_range;
- 
- 	ggtt->vm.insert_entries = gen8_ggtt_insert_entries;
- 
-@@ -1105,7 +1082,7 @@ static int gen6_gmch_probe(struct i915_ggtt *ggtt)
- 	ggtt->vm.alloc_pt_dma = alloc_pt_dma;
- 
- 	ggtt->vm.clear_range = nop_clear_range;
--	if (!HAS_FULL_PPGTT(i915) || intel_scanout_needs_vtd_wa(i915))
-+	if (!HAS_FULL_PPGTT(i915))
- 		ggtt->vm.clear_range = gen6_ggtt_clear_range;
- 	ggtt->vm.insert_page = gen6_ggtt_insert_page;
- 	ggtt->vm.insert_entries = gen6_ggtt_insert_entries;
-diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.h b/drivers/gpu/drm/i915/i915_gem_gtt.h
-index c9b0ee5e1d23..f3ae9afdee15 100644
---- a/drivers/gpu/drm/i915/i915_gem_gtt.h
-+++ b/drivers/gpu/drm/i915/i915_gem_gtt.h
-@@ -41,6 +41,7 @@ int i915_gem_gtt_insert(struct i915_address_space *vm,
- #define PIN_HIGH		BIT_ULL(5)
- #define PIN_OFFSET_BIAS		BIT_ULL(6)
- #define PIN_OFFSET_FIXED	BIT_ULL(7)
-+#define PIN_OFFSET_GUARD	BIT_ULL(8)
- 
- #define PIN_GLOBAL		BIT_ULL(10) /* I915_VMA_GLOBAL_BIND */
- #define PIN_USER		BIT_ULL(11) /* I915_VMA_LOCAL_BIND */
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 080ffa583edf..d92a9f938c68 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -587,6 +587,9 @@ bool i915_vma_misplaced(const struct i915_vma *vma,
- 	    i915_vma_offset(vma) != (flags & PIN_OFFSET_MASK))
- 		return true;
- 
-+	if (flags & PIN_OFFSET_GUARD && vma->guard < (flags & PIN_OFFSET_MASK))
-+		return true;
-+
- 	return false;
- }
- 
-@@ -664,6 +667,7 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- 
- 	GEM_BUG_ON(i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND));
- 	GEM_BUG_ON(drm_mm_node_allocated(&vma->node));
-+	GEM_BUG_ON(hweight64(flags & (PIN_OFFSET_GUARD | PIN_OFFSET_FIXED | PIN_OFFSET_BIAS)) > 1);
- 
- 	size = max(size, vma->size);
- 	alignment = max_t(typeof(alignment), alignment, vma->display_alignment);
-@@ -678,6 +682,10 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- 	GEM_BUG_ON(!is_power_of_2(alignment));
- 
- 	guard = vma->guard; /* retain guard across rebinds */
-+	if (flags & PIN_OFFSET_GUARD) {
-+		GEM_BUG_ON(overflows_type(flags & PIN_OFFSET_MASK, u32));
-+		guard = max_t(u32, guard, flags & PIN_OFFSET_MASK);
-+	}
- 	guard = ALIGN(guard, alignment);
- 
- 	start = flags & PIN_OFFSET_BIAS ? flags & PIN_OFFSET_MASK : 0;
--- 
-2.31.1
+are available in the Git repository at:
 
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-12-02
+
+for you to fetch changes up to 679d94cd7d900871e5bc9cf780bd5b73af35ab42:
+
+  dma-buf: system_heap: Use 'for_each_sgtable_sg' in pages free flow (2021-12-01 15:30:10 +0530)
+
+----------------------------------------------------------------
+Switch back to drm_poll for virtio, multiple fixes (memory leak,
+improper error check, some functional fixes too) for vc4, memory leak
+fix in dma-buf,
+
+----------------------------------------------------------------
+Guangming (1):
+      dma-buf: system_heap: Use 'for_each_sgtable_sg' in pages free flow
+
+Gurchetan Singh (2):
+      drm/virtgpu api: define a dummy fence signaled event
+      drm/virtio: use drm_poll(..) instead of virtio_gpu_poll(..)
+
+Maxime Ripard (6):
+      drm/vc4: kms: Wait for the commit before increasing our clock rate
+      drm/vc4: kms: Fix return code check
+      drm/vc4: kms: Add missing drm_crtc_commit_put
+      drm/vc4: kms: Clear the HVS FIFO commit pointer once done
+      drm/vc4: kms: Don't duplicate pending commit
+      drm/vc4: kms: Fix previous HVS commit wait
+
+ drivers/dma-buf/heaps/system_heap.c    |  2 +-
+ drivers/gpu/drm/vc4/vc4_kms.c          | 42 +++++++++++++++-------------------
+ drivers/gpu/drm/virtio/virtgpu_drv.c   | 42 +---------------------------------
+ drivers/gpu/drm/virtio/virtgpu_drv.h   |  1 -
+ drivers/gpu/drm/virtio/virtgpu_ioctl.c |  2 +-
+ include/uapi/drm/virtgpu_drm.h         |  7 ++++++
+ 6 files changed, 29 insertions(+), 67 deletions(-)
+
+--5ybb4bf6tko3g7fo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYaiHeAAKCRDj7w1vZxhR
+xTVYAQDIwGAVrxxz3PG7/4icelQ0bAG17jTiNFIdMRh1cw+N1wEA38kIWQZzOXLy
+OhswDKOwh0Kwg+hVfD6r62sBOtZMmQ8=
+=vwrB
+-----END PGP SIGNATURE-----
+
+--5ybb4bf6tko3g7fo--
