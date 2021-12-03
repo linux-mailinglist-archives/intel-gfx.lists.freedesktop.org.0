@@ -2,39 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C353F4675E7
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 12:07:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 285A64675EB
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 12:08:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0835F73A74;
-	Fri,  3 Dec 2021 11:07:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BD8172FF2;
+	Fri,  3 Dec 2021 11:08:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4CE773A74
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Dec 2021 11:07:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10186"; a="224198880"
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="224198880"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 03:07:33 -0800
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="603523262"
-Received: from mgonchar-mobl1.ccr.corp.intel.com (HELO [10.249.254.50])
- ([10.249.254.50])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 03:07:31 -0800
-Message-ID: <38d8d4458215227dcf2983f1cdc920c7771c9108.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, 
- Pallavi Mishra <pallavi.mishra@intel.com>
-Date: Fri, 03 Dec 2021 12:07:28 +0100
-In-Reply-To: <Yan5RE4+T7hTHDI/@intel.com>
-References: <20211203063257.52053-1-pallavi.mishra@intel.com>
- <Yan5RE4+T7hTHDI/@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A0CB72FF2
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Dec 2021 11:08:41 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10186"; a="234465672"
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="234465672"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 03:08:41 -0800
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="678054377"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.205])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 03:08:39 -0800
+Date: Fri, 3 Dec 2021 16:41:54 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Message-ID: <20211203111154.GF25851@intel.com>
+References: <20211202092424.4000107-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix possible null ptr dereferences
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211202092424.4000107-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 0/3] Replace VT-d workaround with guard pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,84 +48,67 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2021-12-03 at 13:02 +0200, Ville Syrjälä wrote:
-> On Fri, Dec 03, 2021 at 12:02:57PM +0530, Pallavi Mishra wrote:
-> > add null ptr checks to prevent crash/exceptions.
+On 2021-12-02 at 14:54:21 +0530, Tejas Upadhyay wrote:
+> Replace filling the GGTT entirely with scratch pages to avoid invalid
+> accesses from VT-d overfetch of scanout by only surrounding scanout vma
+> with guard pages. This eliminates the 100+ms delay in resume where we
+> have to repopulate the GGTT with scratch.
 > 
-> BUG_ON()s aren't going to fix anything.
+> This should also help in avoiding slow suspend/resume on GEN11/12
+> platforms. Which will also resolve issues with following reported 
+> errors : "slow framebuffer consoles issue impacts Linux S3"
+
+Please remove the R-b tag received not from upstreaming review and
+change logs for the iterations happened somewhere else.
+
+Ram.
 > 
-> > Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
-
-Pallavi, 
-
-The NULL pointer dereferences here are probably all false positives
-from a static analyzer. However the GEM_BUG_ONs are fine to assert that
-the assumption really holds and to clearly point out what's going wrong
-if they are hit in CI tests.
-
-But the commit message must reflect that.
-
-/Thomas.
-
-
-> > ---
-> >  drivers/gpu/drm/i915/gem/i915_gem_ttm.c      | 3 +++
-> >  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 3 ++-
-> >  2 files changed, 5 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > index 218a9b3037c7..997fe73c205b 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > @@ -906,6 +906,8 @@ vm_access_ttm(struct vm_area_struct *area,
-> > unsigned long addr,
-> >         struct drm_i915_gem_object *obj =
-> >                 i915_ttm_to_gem(area->vm_private_data);
-> >  
-> > +       GEM_BUG_ON(!obj);
-> > +
-> >         if (i915_gem_object_is_readonly(obj) && write)
-> >                 return -EACCES;
-> >  
-> > @@ -966,6 +968,7 @@ static const struct drm_i915_gem_object_ops
-> > i915_gem_ttm_obj_ops = {
-> >  void i915_ttm_bo_destroy(struct ttm_buffer_object *bo)
-> >  {
-> >         struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
-> > +       GEM_BUG_ON(!obj);
-> >  
-> >         i915_gem_object_release_memory_region(obj);
-> >         mutex_destroy(&obj->ttm.get_io_page.lock);
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> > b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> > index 80df9f592407..2b684903a9f5 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-> > @@ -371,6 +371,7 @@ int i915_ttm_move_notify(struct
-> > ttm_buffer_object *bo)
-> >         struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
-> >         int ret;
-> >  
-> > +       GEM_BUG_ON(!obj);
-> >         ret = i915_gem_object_unbind(obj,
-> > I915_GEM_OBJECT_UNBIND_ACTIVE);
-> >         if (ret)
-> >                 return ret;
-> > @@ -506,7 +507,7 @@ static void i915_ttm_memcpy_init(struct
-> > i915_ttm_memcpy_arg *arg,
-> >  
-> >         dst_reg = i915_ttm_region(bo->bdev, dst_mem->mem_type);
-> >         src_reg = i915_ttm_region(bo->bdev, bo->resource-
-> > >mem_type);
-> > -       GEM_BUG_ON(!dst_reg || !src_reg);
-> > +       GEM_BUG_ON(!dst_reg || !src_reg || !obj);
-> >  
-> >         arg->dst_iter = !i915_ttm_cpu_maps_iomem(dst_mem) ?
-> >                 ttm_kmap_iter_tt_init(&arg->_dst_iter.tt, dst_ttm)
-> > :
-> > -- 
-> > 2.25.1
+> V2: solved checkpatch warning
 > 
-
-
+> Chris Wilson (3):
+>   drm/i915: Wrap all access to i915_vma.node.start|size
+>   drm/i915: Introduce guard pages to i915_vma
+>   drm/i915: Refine VT-d scanout workaround
+> 
+>  drivers/gpu/drm/i915/display/intel_dpt.c      |  4 +-
+>  drivers/gpu/drm/i915/display/intel_fbdev.c    |  6 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 13 +++++
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 34 ++++++------
+>  drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  2 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  2 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_tiling.c    |  4 +-
+>  .../gpu/drm/i915/gem/selftests/huge_pages.c   |  2 +-
+>  .../i915/gem/selftests/i915_gem_client_blt.c  | 15 ++---
+>  .../drm/i915/gem/selftests/i915_gem_context.c | 19 +++++--
+>  .../drm/i915/gem/selftests/i915_gem_mman.c    |  2 +-
+>  .../drm/i915/gem/selftests/igt_gem_utils.c    |  6 +-
+>  drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |  2 +-
+>  drivers/gpu/drm/i915/gt/gen7_renderclear.c    |  2 +-
+>  drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  8 +--
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c          | 42 +++++---------
+>  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |  3 +-
+>  drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  5 +-
+>  drivers/gpu/drm/i915/gt/intel_renderstate.c   |  2 +-
+>  .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +-
+>  drivers/gpu/drm/i915/gt/selftest_engine_cs.c  |  8 +--
+>  drivers/gpu/drm/i915/gt/selftest_execlists.c  | 18 +++---
+>  drivers/gpu/drm/i915/gt/selftest_hangcheck.c  | 15 ++---
+>  drivers/gpu/drm/i915/gt/selftest_lrc.c        | 16 +++---
+>  .../drm/i915/gt/selftest_ring_submission.c    |  2 +-
+>  drivers/gpu/drm/i915/gt/selftest_rps.c        | 12 ++--
+>  .../gpu/drm/i915/gt/selftest_workarounds.c    |  8 +--
+>  drivers/gpu/drm/i915/i915_cmd_parser.c        |  4 +-
+>  drivers/gpu/drm/i915/i915_debugfs.c           |  2 +-
+>  drivers/gpu/drm/i915/i915_gem_gtt.h           |  1 +
+>  drivers/gpu/drm/i915/i915_perf.c              |  2 +-
+>  drivers/gpu/drm/i915/i915_vma.c               | 55 ++++++++++++++-----
+>  drivers/gpu/drm/i915/i915_vma.h               | 24 +++++++-
+>  drivers/gpu/drm/i915/i915_vma_types.h         |  3 +-
+>  drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 12 +++-
+>  drivers/gpu/drm/i915/selftests/i915_request.c | 20 +++----
+>  drivers/gpu/drm/i915/selftests/igt_spinner.c  |  8 +--
+>  37 files changed, 226 insertions(+), 159 deletions(-)
+> 
+> -- 
+> 2.31.1
+> 
