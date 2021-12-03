@@ -1,40 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B696467CA8
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 18:37:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 219ED467CBD
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 18:42:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB517B02F;
-	Fri,  3 Dec 2021 17:37:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6761D7B061;
+	Fri,  3 Dec 2021 17:42:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01E797B02B;
- Fri,  3 Dec 2021 17:37:13 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="217039842"
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="217039842"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 09:36:59 -0800
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="610483286"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.205])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 09:36:56 -0800
-Date: Fri, 3 Dec 2021 23:10:12 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <20211203174012.GD27873@intel.com>
-References: <20211203122426.2859679-1-matthew.auld@intel.com>
- <20211203122426.2859679-7-matthew.auld@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB4557B05F
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Dec 2021 17:42:30 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="323277018"
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="323277018"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 09:42:30 -0800
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="541696447"
+Received: from ibrewste-mobl.amr.corp.intel.com (HELO mvcheng-desk2.intel.com)
+ ([10.255.228.163])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 09:42:29 -0800
+From: Michael Cheng <michael.cheng@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  3 Dec 2021 09:42:24 -0800
+Message-Id: <20211203174225.220825-1-michael.cheng@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211203122426.2859679-7-matthew.auld@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 6/8] drm/i915/selftests: handle object
- rounding
+Subject: [Intel-gfx] [PATCH v5 0/1]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,38 +42,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, adrian.larumbe@collabora.com,
- dri-devel@lists.freedesktop.org
+Cc: michael.cheng@intel.com, wayne.boyer@intel.com, jani.nikula@intel.com,
+ lucas.demarchi@intel.com, siva.mullati@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-12-03 at 12:24:24 +0000, Matthew Auld wrote:
-> Ensure we account for any object rounding due to min_page_size
-> restrictions.
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+This series is to introduce new macros generic to i915 for checking 0 and 1 
+bits, instead on relying on whats defined by the mmu, since it could 
+be different or non-exisitent between different platforms.
 
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+v2: Corrected sender's email.
 
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/selftest_migrate.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-> index 12ef2837c89b..e21787301bbd 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-> @@ -49,6 +49,7 @@ static int copy(struct intel_migrate *migrate,
->  	if (IS_ERR(src))
->  		return 0;
->  
-> +	sz = src->base.size;
->  	dst = i915_gem_object_create_internal(i915, sz);
->  	if (IS_ERR(dst))
->  		goto err_free_src;
-> -- 
-> 2.31.1
-> 
+v3: Corrected spelling error.
+
+v4: Clean up a few other macros that are checking 0 and 1 bits. 
+Thanks to Lucas De Marchi for suggesting these cleanups. 
+
+v5: Remove changes to GEN6_PTE_VALID/GEN6_PDE_VALID and BYT_PTE_WRITEABLE.
+Those macros checks for 32bit PTEs, and our new macro is checking for 64bit.
+
+Michael Cheng (1):
+  drm/i915: Introduce new macros for i915 PTE
+
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c |  6 +++---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.h  |  3 +++
+ drivers/gpu/drm/i915/gvt/gtt.c       | 12 ++++++------
+ 4 files changed, 13 insertions(+), 10 deletions(-)
+
+-- 
+2.25.1
+
