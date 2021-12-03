@@ -1,34 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC724680EE
-	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 00:53:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46B884680FF
+	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 00:59:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87B3BAB59A;
-	Fri,  3 Dec 2021 23:53:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F18EAB6C3;
+	Fri,  3 Dec 2021 23:59:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 301CDAB59A;
- Fri,  3 Dec 2021 23:53:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 267FAA0169;
- Fri,  3 Dec 2021 23:53:00 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bruce Chang" <yu.bruce.chang@intel.com>
-Date: Fri, 03 Dec 2021 23:53:00 -0000
-Message-ID: <163857558012.5407.16531991813099740859@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF95AB6B4
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Dec 2021 23:59:24 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="235811401"
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="235811401"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 15:59:23 -0800
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="678283221"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 15:59:23 -0800
+Date: Fri, 3 Dec 2021 15:53:56 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Bruce Chang <yu.bruce.chang@intel.com>
+Message-ID: <20211203235356.GA3393@jons-linux-dev-box>
 References: <20211203233057.2854-1-yu.bruce.chang@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 In-Reply-To: <20211203233057.2854-1-yu.bruce.chang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/selftests=3A_Follow_up_on_increase_timeout_in_i915?=
- =?utf-8?q?=5Fgem=5Fcontexts_selftests?=
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Follow up on increase
+ timeout in i915_gem_contexts selftests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,26 +46,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Dec 03, 2021 at 03:30:57PM -0800, Bruce Chang wrote:
+> Follow up on patch https://patchwork.freedesktop.org/patch/446832/
+> 
+> Different platforms will take a bit longer while GuC is enabled, so
+> increase the timeout and also add some margin in i915_gem_context
+> selftest.
+> 
+> Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+> index b32f7fed2d9c..ae33e8c705da 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+> @@ -88,7 +88,7 @@ static int live_nop_switch(void *arg)
+>  			rq = i915_request_get(this);
+>  			i915_request_add(this);
+>  		}
+> -		if (i915_request_wait(rq, 0, HZ) < 0) {
+> +		if (i915_request_wait(rq, 0, 10*HZ) < 0) {
 
-Series: drm/i915/selftests: Follow up on increase timeout in i915_gem_contexts selftests
-URL   : https://patchwork.freedesktop.org/series/97577/
-State : warning
+s/10*HZ/10 * HZ/
 
-== Summary ==
+With that and an agreed upon audit of selftests / IGTs:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com
 
-$ dim checkpatch origin/drm-tip
-06b07fd47af5 drm/i915/selftests: Follow up on increase timeout in i915_gem_contexts selftests
--:26: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#26: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:91:
-+		if (i915_request_wait(rq, 0, 10*HZ) < 0) {
- 		                               ^
+s/10*HZ/10 * HZ/
 
-total: 0 errors, 0 warnings, 1 checks, 8 lines checked
+With that and an agreed upon audit of selftests / IGTs:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com
 
+s/10*HZ/10 * HZ/
 
+With that and an agreed upon audit of selftests / IGTs:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com
+
+s/10*HZ/10 * HZ/
+
+With that and an agreed upon audit of selftests / IGTs:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com
+
+s/10*HZ/10 * HZ/
+
+With that and an agreed upon audit of selftests / IGTs:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com
+
+s/10*HZ/10 * HZ/
+
+With that and an agreed upon audit of selftests / IGTs:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com
+
+s/10*HZ/10 * HZ/
+
+With that and an agreed upon audit of selftests / IGTs:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com
+
+s/10*HZ/10 * HZ/
+
+With that and an agreed upon audit of selftests / IGTs:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com
+
+s/10*HZ/10 * HZ/
+
+With that and an agreed upon audit of selftests / IGTs:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+>  			pr_err("Failed to populated %d contexts\n", nctx);
+>  			intel_gt_set_wedged(&i915->gt);
+>  			i915_request_put(rq);
+> -- 
+> 2.21.3
+> 
