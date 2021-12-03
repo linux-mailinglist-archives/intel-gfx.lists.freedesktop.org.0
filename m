@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 125F7468006
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 23:52:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94CEE468051
+	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 00:22:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CCABAA305;
-	Fri,  3 Dec 2021 22:52:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAFEE8A9EB;
+	Fri,  3 Dec 2021 23:22:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7D1E5AA302;
- Fri,  3 Dec 2021 22:52:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id DD8F68A9EB;
+ Fri,  3 Dec 2021 23:22:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7300DAADD7;
- Fri,  3 Dec 2021 22:52:35 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CA1B3A66C8;
+ Fri,  3 Dec 2021 23:22:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jasmine Newsome" <jasmine.newsome@intel.com>
-Date: Fri, 03 Dec 2021 22:52:35 -0000
-Message-ID: <163857195543.5409.198240039366917045@emeril.freedesktop.org>
+Date: Fri, 03 Dec 2021 23:22:46 -0000
+Message-ID: <163857376680.5408.11676192515241725979@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20211203204753.1634865-1-jasmine.newsome@intel.com>
-In-Reply-To: <20211203204753.1634865-1-jasmine.newsome@intel.com>
+References: <20211203214931.1635863-1-jasmine.newsome@intel.com>
+In-Reply-To: <20211203214931.1635863-1-jasmine.newsome@intel.com>
 Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gem=3A_Use_local_pointer_for_=5F=5Fi915=5Fttm=5Fmo?=
- =?utf-8?q?ve?=
+ =?utf-8?q?for_drm/i915/gem=3A_Use_local_pointer_ttm_for_=5F=5Fi915=5Fttm?=
+ =?utf-8?q?=5Fmove?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,15 +48,15 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gem: Use local pointer for __i915_ttm_move
-URL   : https://patchwork.freedesktop.org/series/97571/
+Series: drm/i915/gem: Use local pointer ttm for __i915_ttm_move
+URL   : https://patchwork.freedesktop.org/series/97572/
 State : warning
 
 == Summary ==
 
 $ dim checkpatch origin/drm-tip
-c48a10e7ad67 drm/i915/gem: Use local pointer for __i915_ttm_move
--:21: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+4f37b82c97ec drm/i915/gem: Use local pointer ttm for __i915_ttm_move
+-:22: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
 total: 1 errors, 0 warnings, 0 checks, 8 lines checked
 
