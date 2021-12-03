@@ -2,37 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED594467215
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 07:37:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A438467258
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 08:00:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50CC6732D6;
-	Fri,  3 Dec 2021 06:37:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14A3872FA7;
+	Fri,  3 Dec 2021 07:00:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6B9A732D5;
- Fri,  3 Dec 2021 06:37:30 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10186"; a="323174344"
-X-IronPort-AV: E=Sophos;i="5.87,283,1631602800"; d="scan'208";a="323174344"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2021 22:37:30 -0800
-X-IronPort-AV: E=Sophos;i="5.87,283,1631602800"; d="scan'208";a="478221072"
-Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2021 22:37:29 -0800
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Dec 2021 22:35:45 -0800
-Message-Id: <20211203063545.2254380-4-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211203063545.2254380-1-anusha.srivatsa@intel.com>
-References: <20211203063545.2254380-1-anusha.srivatsa@intel.com>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B46E372FA0;
+ Fri,  3 Dec 2021 07:00:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=L9TEsOSb6kRI6cv6AHNLCgEMmFVJ2TwOFsBuT0mf2uI=; b=WJ8/zUe+SXuI4BfCR+BUL7Vkst
+ WOwpe629JqT5Ndyc5srczyQ4GFkF24TYiT9Ch+yu8WMHtIQ/kJXhe/tuz17Cebczq4jV8M3AysQi5
+ IgnYWA1kanCUQrzI2U5A3adQJk08pfuWgEJBtPO/lspAYfPYeqYQt8PgEhjJ0Qd/1dSX8qSaPZBFp
+ VDcLl0khw9Eoc+u80YauIiJ5fAb/cmt5z3dorT2qy/OKtIwbKJDwXRoiU0cYCt2N1MD16BOV5V7Ow
+ A1b7zYc8+EHrUAHlxpQL3ln0AcvSdc3xmv6xquHn5CofPFcYFWarkubJ7fDXuxOSQm8ryuWQcS3Se
+ gQvjr07w==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red
+ Hat Linux)) id 1mt2Xj-00EeJY-SA; Fri, 03 Dec 2021 06:59:39 +0000
+Date: Thu, 2 Dec 2021 22:59:39 -0800
+From: Christoph Hellwig <hch@infradead.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Message-ID: <YanAW6KnyNQ1V34r@infradead.org>
+References: <20211202203400.1208663-1-kuba@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [v3 3/3] drm/i915/rpl-s: Enable guc submission by
- default
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211202203400.1208663-1-kuba@kernel.org>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Subject: Re: [Intel-gfx] [PATCH bpf v2] treewide: add missing includes
+ masked by cgroup -> bpf dependency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,39 +50,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, songliubraving@fb.com,
+ kafai@fb.com, airlied@linux.ie, linux-pci@vger.kernel.org, ast@kernel.org,
+ dri-devel@lists.freedesktop.org, andrii@kernel.org, a-govindraju@ti.com,
+ ray.huang@amd.com, sbhatta@marvell.com, robh@kernel.org,
+ lorenzo.pieralisi@arm.com, daniel@iogearbox.net,
+ krzysztof.kozlowski@canonical.com, john.fastabend@gmail.com,
+ hkelam@marvell.com, geert@linux-m68k.org, matthew.auld@intel.com, yhs@fb.com,
+ sgoutham@marvell.com, thomas.hellstrom@linux.intel.com, pawell@cadence.com,
+ tzimmermann@suse.de, mani@kernel.org, Jani Nikula <jani.nikula@intel.com>,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ mripard@kernel.org, kpsingh@kernel.org, rogerq@kernel.org,
+ linux-samsung-soc@vger.kernel.org, bhelgaas@google.com,
+ akpm@linux-foundation.org, linux-arm-kernel@lists.infradead.org,
+ axboe@kernel.dk, linux-block@vger.kernel.org, SeongJae Park <sj@kernel.org>,
+ lima@lists.freedesktop.org, linux-mm@kvack.org, jingoohan1@gmail.com,
+ Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
+ christian.koenig@amd.com, yuq825@gmail.com, gregkh@linuxfoundation.org,
+ bpf@vger.kernel.org, colin.king@intel.com, freedreno@lists.freedesktop.org,
+ gakula@marvell.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Though, RPL-S is defined as subplatform of ADL-S, unlike
-ADL-S, it has GuC submission by default.
+Thanks, always good to see someone else helping to unwind our include
+dependency mess..
 
-v2: Remove extra parenthesis (Jani)
-v3: s/IS_RAPTORLAKE/IS_ADLS_RPLS (Jani)
-
-Cc: dri-devel@lists.freedesktop.org
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_uc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 2fef3b0bbe95..8f17005ce85f 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -35,7 +35,7 @@ static void uc_expand_default_options(struct intel_uc *uc)
- 	}
- 
- 	/* Intermediate platforms are HuC authentication only */
--	if (IS_ALDERLAKE_S(i915)) {
-+	if (IS_ALDERLAKE_S(i915) && !IS_ADLS_RPLS(i915)) {
- 		i915->params.enable_guc = ENABLE_GUC_LOAD_HUC;
- 		return;
- 	}
--- 
-2.25.1
-
+Reviewed-by: Christoph Hellwig <hch@lst.de>
