@@ -1,38 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A1AD467CCD
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 18:48:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E746467CEF
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 19:05:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8093F6FCC4;
-	Fri,  3 Dec 2021 17:48:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6579C7B220;
+	Fri,  3 Dec 2021 18:05:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 327C86FCC4
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Dec 2021 17:48:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="217044118"
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="217044118"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 09:48:49 -0800
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="541698032"
-Received: from ibrewste-mobl.amr.corp.intel.com (HELO mvcheng-desk2.intel.com)
- ([10.255.228.163])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 09:48:49 -0800
-From: Michael Cheng <michael.cheng@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Dec 2021 09:48:43 -0800
-Message-Id: <20211203174843.221641-2-michael.cheng@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211203174843.221641-1-michael.cheng@intel.com>
-References: <20211203174843.221641-1-michael.cheng@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9ADF7B220;
+ Fri,  3 Dec 2021 18:05:06 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="235761353"
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="235761353"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 10:04:42 -0800
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="746782818"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 10:04:41 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Fri,  3 Dec 2021 09:59:10 -0800
+Message-Id: <20211203175910.28516-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 1/1] drm/i915: Introduce new macros for i915
- PTE
+Subject: [Intel-gfx] [PATCH] drm/i915: Rollback seqno when request creation
+ fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,133 +43,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: michael.cheng@intel.com, wayne.boyer@intel.com, jani.nikula@intel.com,
- lucas.demarchi@intel.com, siva.mullati@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Certain functions within i915 uses macros that are defined for
-specific architectures by the mmu, such as _PAGE_RW and _PAGE_PRESENT
-(Some architectures don't even have these macros defined, like ARM64).
+gem_ctx_create.basic-files can slam on kernel contexts to the extent
+where request creation fails because the ring is full. When this happens
+seqno numbers are skipped which can result the below GEM_BUG_ON blowing
+in gt/intel_engine_pm.c:__engine_unpark:
 
-Instead of re-using bits defined for the CPU, we should use bits
-defined for i915. This patch introduces two new 64 bit macros,
-I915_PAGE_PRESENT and I915_PAGE_RW, to check for bits 0 and 1 and, to
-replace all occurrences of _PAGE_RW and _PAGE_PRESENT within i915.
+GEM_BUG_ON(ce->timeline->seqno !=
+           READ_ONCE(*ce->timeline->hwsp_seqno));
 
-Signed-off-by: Michael Cheng <michael.cheng@intel.com>
+Fixup request creation code to roll back seqno when request creation
+fails.
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c |  6 +++---
- drivers/gpu/drm/i915/gt/intel_ggtt.c |  2 +-
- drivers/gpu/drm/i915/gt/intel_gtt.h  |  3 +++
- drivers/gpu/drm/i915/gvt/gtt.c       | 12 ++++++------
- 4 files changed, 13 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_timeline.c | 5 +++++
+ drivers/gpu/drm/i915/gt/intel_timeline.h | 1 +
+ drivers/gpu/drm/i915/i915_request.c      | 1 +
+ 3 files changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index 9966e9dc5218..f89b50ffc286 100644
---- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -18,7 +18,7 @@
- static u64 gen8_pde_encode(const dma_addr_t addr,
- 			   const enum i915_cache_level level)
- {
--	u64 pde = addr | _PAGE_PRESENT | _PAGE_RW;
-+	u64 pde = addr | I915_PAGE_PRESENT | I915_PAGE_RW;
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 438bbc7b8147..64ea9a90c7a0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -301,6 +301,11 @@ static u32 timeline_advance(struct intel_timeline *tl)
+ 	return tl->seqno += 1 + tl->has_initial_breadcrumb;
+ }
  
- 	if (level != I915_CACHE_NONE)
- 		pde |= PPAT_CACHED_PDE;
-@@ -32,10 +32,10 @@ static u64 gen8_pte_encode(dma_addr_t addr,
- 			   enum i915_cache_level level,
- 			   u32 flags)
- {
--	gen8_pte_t pte = addr | _PAGE_PRESENT | _PAGE_RW;
-+	gen8_pte_t pte = addr | I915_PAGE_PRESENT | I915_PAGE_RW;
- 
- 	if (unlikely(flags & PTE_READ_ONLY))
--		pte &= ~_PAGE_RW;
-+		pte &= ~I915_PAGE_RW;
- 
- 	if (flags & PTE_LM)
- 		pte |= GEN12_PPGTT_PTE_LM;
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 110d3944f9a2..43cbfdb60412 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -209,7 +209,7 @@ u64 gen8_ggtt_pte_encode(dma_addr_t addr,
- 			 enum i915_cache_level level,
- 			 u32 flags)
- {
--	gen8_pte_t pte = addr | _PAGE_PRESENT;
-+	gen8_pte_t pte = addr | I915_PAGE_PRESENT;
- 
- 	if (flags & PTE_LM)
- 		pte |= GEN12_GGTT_PTE_LM;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index dfeaef680aac..fba9c0c18f4a 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -39,6 +39,9 @@
- 
- #define NALLOC 3 /* 1 normal, 1 for concurrent threads, 1 for preallocation */
- 
-+#define I915_PAGE_PRESENT BIT_ULL(0)
-+#define I915_PAGE_RW BIT_ULL(1)
++void intel_timeline_rollback_seqno(struct intel_timeline *tl)
++{
++	timeline_rollback(tl);
++}
 +
- #define I915_GTT_PAGE_SIZE_4K	BIT_ULL(12)
- #define I915_GTT_PAGE_SIZE_64K	BIT_ULL(16)
- #define I915_GTT_PAGE_SIZE_2M	BIT_ULL(21)
-diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-index 53d0cb327539..8f6a055854f7 100644
---- a/drivers/gpu/drm/i915/gvt/gtt.c
-+++ b/drivers/gpu/drm/i915/gvt/gtt.c
-@@ -446,17 +446,17 @@ static bool gen8_gtt_test_present(struct intel_gvt_gtt_entry *e)
- 			|| e->type == GTT_TYPE_PPGTT_ROOT_L4_ENTRY)
- 		return (e->val64 != 0);
- 	else
--		return (e->val64 & _PAGE_PRESENT);
-+		return (e->val64 & I915_PAGE_PRESENT);
- }
+ static noinline int
+ __intel_timeline_get_seqno(struct intel_timeline *tl,
+ 			   u32 *seqno)
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
+index 57308c4d664a..a2f2e0ea186f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.h
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
+@@ -72,6 +72,7 @@ void intel_timeline_enter(struct intel_timeline *tl);
+ int intel_timeline_get_seqno(struct intel_timeline *tl,
+ 			     struct i915_request *rq,
+ 			     u32 *seqno);
++void intel_timeline_rollback_seqno(struct intel_timeline *tl);
+ void intel_timeline_exit(struct intel_timeline *tl);
+ void intel_timeline_unpin(struct intel_timeline *tl);
  
- static void gtt_entry_clear_present(struct intel_gvt_gtt_entry *e)
- {
--	e->val64 &= ~_PAGE_PRESENT;
-+	e->val64 &= ~I915_PAGE_PRESENT;
- }
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index a72c8f0346a0..86f32ee082f7 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -966,6 +966,7 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
  
- static void gtt_entry_set_present(struct intel_gvt_gtt_entry *e)
- {
--	e->val64 |= _PAGE_PRESENT;
-+	e->val64 |= I915_PAGE_PRESENT;
- }
+ err_unwind:
+ 	ce->ring->emit = rq->head;
++	intel_timeline_rollback_seqno(tl);
  
- static bool gen8_gtt_test_64k_splited(struct intel_gvt_gtt_entry *e)
-@@ -2439,7 +2439,7 @@ static int alloc_scratch_pages(struct intel_vgpu *vgpu,
- 		/* The entry parameters like present/writeable/cache type
- 		 * set to the same as i915's scratch page tree.
- 		 */
--		se.val64 |= _PAGE_PRESENT | _PAGE_RW;
-+		se.val64 |= I915_PAGE_PRESENT | I915_PAGE_RW;
- 		if (type == GTT_TYPE_PPGTT_PDE_PT)
- 			se.val64 |= PPAT_CACHED;
- 
-@@ -2896,7 +2896,7 @@ void intel_gvt_restore_ggtt(struct intel_gvt *gvt)
- 		offset = vgpu_aperture_gmadr_base(vgpu) >> PAGE_SHIFT;
- 		for (idx = 0; idx < num_low; idx++) {
- 			pte = mm->ggtt_mm.host_ggtt_aperture[idx];
--			if (pte & _PAGE_PRESENT)
-+			if (pte & I915_PAGE_PRESENT)
- 				write_pte64(vgpu->gvt->gt->ggtt, offset + idx, pte);
- 		}
- 
-@@ -2904,7 +2904,7 @@ void intel_gvt_restore_ggtt(struct intel_gvt *gvt)
- 		offset = vgpu_hidden_gmadr_base(vgpu) >> PAGE_SHIFT;
- 		for (idx = 0; idx < num_hi; idx++) {
- 			pte = mm->ggtt_mm.host_ggtt_hidden[idx];
--			if (pte & _PAGE_PRESENT)
-+			if (pte & I915_PAGE_PRESENT)
- 				write_pte64(vgpu->gvt->gt->ggtt, offset + idx, pte);
- 		}
- 	}
+ 	/* Make sure we didn't add ourselves to external state before freeing */
+ 	GEM_BUG_ON(!list_empty(&rq->sched.signalers_list));
 -- 
-2.25.1
+2.33.1
 
