@@ -1,79 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF1D467A1A
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 16:13:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49C80467A1C
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 16:13:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A46ED6EDB0;
-	Fri,  3 Dec 2021 15:13:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 786506FD98;
+	Fri,  3 Dec 2021 15:13:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa1.bahnhof.se (pio-pvt-msa1.bahnhof.se [79.136.2.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A3936E21A;
- Fri,  3 Dec 2021 15:13:14 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 8C3273F4B4;
- Fri,  3 Dec 2021 16:13:12 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -3.189
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.189 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-1.09,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Authentication-Results: pio-pvt-msa1.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from pio-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id FqDGDIDgag9V; Fri,  3 Dec 2021 16:13:11 +0100 (CET)
-Received: by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 729203F449;
- Fri,  3 Dec 2021 16:13:10 +0100 (CET)
-Received: from [192.168.0.209] (unknown [192.55.54.50])
- by mail1.shipmail.org (Postfix) with ESMTPSA id A57E3362AD7;
- Fri,  3 Dec 2021 16:13:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1638544390; bh=R6orVX9tGpTYIIPRlGHucB/HyXpm9/hllXlfKl4zCY0=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=AhnOFHr8dzshTkySo43N2LqpVEKiaeOyzvZzIN++fCgmHOjYHvVHoM4KTLUyW2071
- b3oOb9ogXF8J2FPtCH/PNx/gca7YoR8goF9LiTz4xtTLVlT8imjSsX0f7HAyYdNmQg
- qyNvN8JWYpz5xAtjOHNJ++i1tASVOBtkAPs5OZGg=
-Message-ID: <962a5319-62b5-00f5-a987-80d8abd75ece@shipmail.org>
-Date: Fri, 3 Dec 2021 16:13:02 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 705026FD98;
+ Fri,  3 Dec 2021 15:13:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6C7F6A0118;
+ Fri,  3 Dec 2021 15:13:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4189547428436766267=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>
-References: <20211130121936.586031-1-thomas.hellstrom@linux.intel.com>
- <29d096c91d720fbe5d410124580a02b663155b56.camel@linux.intel.com>
- <250a8e47-2093-1a98-3859-0204ec4e60e6@amd.com>
- <712b54fa1c09ae5cc1d75739ad8a7286f1dae8db.camel@linux.intel.com>
- <49cf2d43-9a8a-7738-0889-7e16b0256249@linux.intel.com>
- <193e36bd-ba64-1358-8178-73ee3afc3c41@amd.com>
- <c9109ec6-4265-ba8f-238f-4c793d076825@shipmail.org>
- <d1ada94c-88d3-d34d-9c51-0d427c3aca06@amd.com>
- <7ef3db03-8ae2-d886-2c39-36f661cac9a6@shipmail.org>
- <4805074d-7039-3eaf-eb5d-5797278b7f31@amd.com>
- <94435e0e-01db-5ae4-e424-64f73a09199f@shipmail.org>
- <a4df4d5f-ea74-8725-aca9-d0edae986e5c@amd.com>
- <fb9f50e2-aeba-6138-0cc0-aed252dc876d@shipmail.org>
- <8a7dbf22-727d-c1ec-1d3f-75e23394fee8@amd.com>
- <d4a9cb5a554ffc3af3d30ecacad6e57533eb7f3b.camel@linux.intel.com>
- <f8f1500c-170d-ccf9-ac2d-1484bbdc587e@amd.com>
- <96eca78d-2b92-cce0-0aee-2d5f72c26bdf@linux.intel.com>
- <4d3c9eb5-f093-84c9-47da-ee27630ee646@amd.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <4d3c9eb5-f093-84c9-47da-ee27630ee646@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [RFC PATCH 1/2] dma-fence: Avoid
- establishing a locking order between fence classes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 03 Dec 2021 15:13:31 -0000
+Message-ID: <163854441144.5408.1261482609276004219@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211203131318.2885969-1-jani.nikula@intel.com>
+In-Reply-To: <20211203131318.2885969-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/ddi=3A_add_use=5Fedp=5Fhobl=28=29_and_use=5Fedp=5Flow=5Fv?=
+ =?utf-8?q?swing=28=29_helpers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,79 +41,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linaro-mm-sig@lists.linaro.org, matthew.auld@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============4189547428436766267==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 12/3/21 16:00, Christian König wrote:
-> Am 03.12.21 um 15:50 schrieb Thomas Hellström:
->>
->> On 12/3/21 15:26, Christian König wrote:
->>> [Adding Daniel here as well]
->>>
->>> Am 03.12.21 um 15:18 schrieb Thomas Hellström:
->>>> [SNIP]
->>>>> Well that's ok as well. My question is why does this single dma_fence
->>>>> then shows up in the dma_fence_chain representing the whole
->>>>> migration?
->>>> What we'd like to happen during eviction is that we
->>>>
->>>> 1) await any exclusive- or moving fences, then schedule the migration
->>>> blit. The blit manages its own GPU ptes. Results in a single fence.
->>>> 2) Schedule unbind of any gpu vmas, resulting possibly in multiple
->>>> fences.
->>>> 3) Most but not all of the remaining resv shared fences will have been
->>>> finished in 2) We can't easily tell which so we have a couple of 
->>>> shared
->>>> fences left.
->>>
->>> Stop, wait a second here. We are going a bit in circles.
->>>
->>> Before you migrate a buffer, you *MUST* wait for all shared fences 
->>> to complete. This is documented mandatory DMA-buf behavior.
->>>
->>> Daniel and I have discussed that quite extensively in the last few 
->>> month.
->>>
->>> So how does it come that you do the blit before all shared fences 
->>> are completed?
->>
->> Well we don't currently but wanted to... (I haven't consulted Daniel 
->> in the matter, tbh).
->>
->> I was under the impression that all writes would add an exclusive 
->> fence to the dma_resv.
->
-> Yes that's correct. I'm working on to have more than one write fence, 
-> but that is currently under review.
->
->> If that's not the case or this is otherwise against the mandatory 
->> DMA-buf bevhavior, we can certainly keep that part as is and that 
->> would eliminate 3).
->
-> Ah, now that somewhat starts to make sense.
->
-> So your blit only waits for the writes to finish before starting the 
-> blit. Yes that's legal as long as you don't change the original 
-> content with the blit.
->
-> But don't you then need to wait for both reads and writes before you 
-> unmap the VMAs?
+== Series Details ==
 
-Yes, but that's planned to be done all async, and those unbind jobs are 
-scheduled simultaneosly with the blit, and the blit itself manages its 
-own page-table-entries, so no need to unbind any blit vmas.
+Series: drm/i915/ddi: add use_edp_hobl() and use_edp_low_vswing() helpers
+URL   : https://patchwork.freedesktop.org/series/97547/
+State : success
 
->
-> Anyway the good news is your problem totally goes away with the 
-> DMA-resv rework I've already send out. Basically it is now possible to 
-> have more than one fence in the DMA-resv object for migrations and all 
-> existing fences are kept around until they are finished.
+== Summary ==
 
-Sounds good.
+CI Bug Log - changes from CI_DRM_10961 -> Patchwork_21745
+====================================================
 
-Thanks,
+Summary
+-------
 
-Thomas
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/index.html
+
+Participating hosts (42 -> 33)
+------------------------------
+
+  Missing    (9): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-2 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21745 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_engines:
+    - fi-rkl-guc:         [INCOMPLETE][3] ([i915#4432]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10961/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-bsw-nick:        [DMESG-FAIL][5] ([i915#2927] / [i915#3428]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10961/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][7] ([i915#4269]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10961/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Warnings ####
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-skl-6600u:       [INCOMPLETE][9] ([i915#198] / [i915#4547]) -> [INCOMPLETE][10] ([i915#198])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10961/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
+  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4432]: https://gitlab.freedesktop.org/drm/intel/issues/4432
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10961 -> Patchwork_21745
+
+  CI-20190529: 20190529
+  CI_DRM_10961: e7bbdc541b4748718cd6ce8b839f3db335f3a0fc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6299: 0933b7ccdb2bb054b6a8154171e35315d84299b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21745: 914a84c9e0dd1dcc52d4d9107a02dc9e83e43d00 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+914a84c9e0dd drm/i915/ddi: add use_edp_hobl() and use_edp_low_vswing() helpers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/index.html
+
+--===============4189547428436766267==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/ddi: add use_edp_hobl() and use_edp_low_vswing() helpers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97547/">https://patchwork.freedesktop.org/series/97547/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10961 -&gt; Patchwork_21745</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/index.html</p>
+<h2>Participating hosts (42 -&gt; 33)</h2>
+<p>Missing    (9): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21745 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-gfx:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10961/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4432">i915#4432</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10961/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10961/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_psr@primary_page_flip:<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10961/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21745/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10961 -&gt; Patchwork_21745</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10961: e7bbdc541b4748718cd6ce8b839f3db335f3a0fc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6299: 0933b7ccdb2bb054b6a8154171e35315d84299b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21745: 914a84c9e0dd1dcc52d4d9107a02dc9e83e43d00 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>914a84c9e0dd drm/i915/ddi: add use_edp_hobl() and use_edp_low_vswing() helpers</p>
+
+</body>
+</html>
+
+--===============4189547428436766267==--
