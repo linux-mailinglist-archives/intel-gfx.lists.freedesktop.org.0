@@ -2,39 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD102467623
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 12:20:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB36A4676A9
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 12:42:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C33F473B37;
-	Fri,  3 Dec 2021 11:20:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FDC273808;
+	Fri,  3 Dec 2021 11:42:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2169473B37
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Dec 2021 11:20:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10186"; a="224200385"
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="224200385"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 03:20:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="460847959"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 03 Dec 2021 03:20:36 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 03 Dec 2021 13:20:35 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Dec 2021 13:20:29 +0200
-Message-Id: <20211203112029.1057-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211203112029.1057-1-ville.syrjala@linux.intel.com>
-References: <20211203112029.1057-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D08C2738A0;
+ Fri,  3 Dec 2021 11:42:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C652DAA3D8;
+ Fri,  3 Dec 2021 11:42:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2025053990052331845=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915:
- s/intel_get_first_crtc/intel_first_crtc/
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: ravitejax.goud.talla@intel.com
+Date: Fri, 03 Dec 2021 11:42:01 -0000
+Message-ID: <163853172177.5406.17215805681162829982@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211203073720.3823371-1-ravitejax.goud.talla@intel.com>
+In-Reply-To: <20211203073720.3823371-1-ravitejax.goud.talla@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/adl=5Fp=3A_Fix_ddc_pin_mapping?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,74 +40,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============2025053990052331845==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Since we got rid of the "_get_" from intel_get_crtc_for_pipe()
-let's do the same for intel_get_first_crtc() for consistency.
+== Series Details ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_audio.c   | 2 +-
- drivers/gpu/drm/i915/display/intel_crtc.c    | 2 +-
- drivers/gpu/drm/i915/display/intel_crtc.h    | 2 +-
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+Series: drm/i915/adl_p: Fix ddc pin mapping
+URL   : https://patchwork.freedesktop.org/series/97527/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index 03c3111ebdf0..3fdbae60a050 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -1019,7 +1019,7 @@ static void glk_force_audio_cdclk(struct drm_i915_private *dev_priv,
- 	struct intel_crtc *crtc;
- 	int ret;
- 
--	crtc = intel_get_first_crtc(dev_priv);
-+	crtc = intel_first_crtc(dev_priv);
- 	if (!crtc)
- 		return;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 6a9640767a05..d2c765455ac8 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -36,7 +36,7 @@ static void assert_vblank_disabled(struct drm_crtc *crtc)
- 		drm_crtc_vblank_put(crtc);
- }
- 
--struct intel_crtc *intel_get_first_crtc(struct drm_i915_private *i915)
-+struct intel_crtc *intel_first_crtc(struct drm_i915_private *i915)
- {
- 	return to_intel_crtc(drm_crtc_from_index(&i915->drm, 0));
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
-index f397f4b8ec47..73077137fb99 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.h
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.h
-@@ -29,7 +29,7 @@ void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state);
- void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state);
- void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state);
- void intel_wait_for_vblank_workers(struct intel_atomic_state *state);
--struct intel_crtc *intel_get_first_crtc(struct drm_i915_private *i915);
-+struct intel_crtc *intel_first_crtc(struct drm_i915_private *i915);
- struct intel_crtc *intel_crtc_for_pipe(struct drm_i915_private *i915,
- 				       enum pipe pipe);
- void intel_wait_for_vblank_if_active(struct drm_i915_private *i915,
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index aebb41195c41..038643080bf6 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -697,7 +697,7 @@ u32 intel_plane_fb_max_stride(struct drm_i915_private *dev_priv,
- 	 * the highest stride limits of them all,
- 	 * if in case pipe A is disabled, use the first pipe from pipe_mask.
- 	 */
--	crtc = intel_get_first_crtc(dev_priv);
-+	crtc = intel_first_crtc(dev_priv);
- 	if (!crtc)
- 		return 0;
- 
--- 
-2.32.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_10959 -> Patchwork_21739
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/index.html
+
+Participating hosts (40 -> 32)
+------------------------------
+
+  Missing    (8): fi-bdw-5557u bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-pnv-d510 bat-jsl-2 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21739 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][1] ([fdo#109271]) +35 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [PASS][2] -> [SKIP][3] ([fdo#109271])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10959/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/fi-bsw-kefka/igt@kms_chamelium@hdmi-edid-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-bsw-kefka:       [INCOMPLETE][5] ([i915#2539]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10959/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2539]: https://gitlab.freedesktop.org/drm/intel/issues/2539
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10959 -> Patchwork_21739
+
+  CI-20190529: 20190529
+  CI_DRM_10959: f4fd510ca94904204dd82f90459283531d63cf19 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6299: 0933b7ccdb2bb054b6a8154171e35315d84299b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21739: 934a247db756120d46c33bcb726b325a737170be @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+934a247db756 drm/i915/adl_p: Fix ddc pin mapping
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/index.html
+
+--===============2025053990052331845==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/adl_p: Fix ddc pin mapping</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97527/">https://patchwork.freedesktop.org/series/97527/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10959 -&gt; Patchwork_21739</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/index.html</p>
+<h2>Participating hosts (40 -&gt; 32)</h2>
+<p>Missing    (8): fi-bdw-5557u bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-pnv-d510 bat-jsl-2 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21739 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10959/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/fi-bsw-kefka/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s0:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10959/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2539">i915#2539</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21739/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10959 -&gt; Patchwork_21739</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10959: f4fd510ca94904204dd82f90459283531d63cf19 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6299: 0933b7ccdb2bb054b6a8154171e35315d84299b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21739: 934a247db756120d46c33bcb726b325a737170be @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>934a247db756 drm/i915/adl_p: Fix ddc pin mapping</p>
+
+</body>
+</html>
+
+--===============2025053990052331845==--
