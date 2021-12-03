@@ -2,39 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE25467ED2
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 21:30:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33D5B467EF3
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 21:49:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D18A7B9EC;
-	Fri,  3 Dec 2021 20:30:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D2898B0CF;
+	Fri,  3 Dec 2021 20:49:29 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70BB07B9EC;
- Fri,  3 Dec 2021 20:30:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="300435518"
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="300435518"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 12:30:39 -0800
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="678223489"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 12:30:38 -0800
-Date: Fri, 3 Dec 2021 12:25:11 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: John.C.Harrison@Intel.com
-Message-ID: <20211203202511.GA32650@jons-linux-dev-box>
-References: <20211203183339.3276250-1-John.C.Harrison@Intel.com>
- <20211203183339.3276250-3-John.C.Harrison@Intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11AD78B0CF
+ for <Intel-GFX@lists.freedesktop.org>; Fri,  3 Dec 2021 20:49:27 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="234561628"
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="234561628"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 12:49:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="478452521"
+Received: from sdutt-nuc10i5fnh.jf.intel.com ([10.165.21.151])
+ by orsmga002.jf.intel.com with ESMTP; 03 Dec 2021 12:49:26 -0800
+From: Jasmine Newsome <jasmine.newsome@intel.com>
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Fri,  3 Dec 2021 12:47:53 -0800
+Message-Id: <20211203204753.1634865-1-jasmine.newsome@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211203183339.3276250-3-John.C.Harrison@Intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915/guc: Increase GuC log size for
- CONFIG_DEBUG_GEM
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Use local pointer for
+ __i915_ttm_move
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,46 +42,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@Lists.FreeDesktop.Org, DRI-Devel@Lists.FreeDesktop.Org
+Cc: thomas.hellstrom@intel.com, jasmine.newsome@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 03, 2021 at 10:33:36AM -0800, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> Lots of testing is done with the DEBUG_GEM config option enabled but
-> not the DEBUG_GUC option. That means we only get teeny-tiny GuC logs
-> which are not hugely useful. Enabling full DEBUG_GUC also spews lots
-> of other detailed output that is not generally desired. However,
-> bigger GuC logs are extremely useful for almost any regression debug.
-> So enable bigger logs for DEBUG_GEM builds as well.
-> 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Replace pointer bo->ttm with ttm in i915_ttm_move
+when passed as argument to __i915_ttm_move
+---
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+index 80df9f592407..56b6573b5c93 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+@@ -763,7 +763,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
+ 			return PTR_ERR(dep);
+ 		}
+ 
+-		migration_fence = __i915_ttm_move(bo, clear, dst_mem, bo->ttm,
++		migration_fence = __i915_ttm_move(bo, clear, dst_mem, ttm,
+ 						  dst_rsgt, true, dep);
+ 		dma_fence_put(dep);
+ 	}
+-- 
+2.25.1
 
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_log.h | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
-> index ac1ee1d5ce10..fe6ab7550a14 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
-> @@ -15,9 +15,12 @@
->  
->  struct intel_guc;
->  
-> -#ifdef CONFIG_DRM_I915_DEBUG_GUC
-> +#if defined(CONFIG_DRM_I915_DEBUG_GUC)
->  #define CRASH_BUFFER_SIZE	SZ_2M
->  #define DEBUG_BUFFER_SIZE	SZ_16M
-> +#elif defined(CONFIG_DRM_I915_DEBUG_GEM)
-> +#define CRASH_BUFFER_SIZE	SZ_1M
-> +#define DEBUG_BUFFER_SIZE	SZ_2M
->  #else
->  #define CRASH_BUFFER_SIZE	SZ_8K
->  #define DEBUG_BUFFER_SIZE	SZ_64K
-> -- 
-> 2.25.1
-> 
