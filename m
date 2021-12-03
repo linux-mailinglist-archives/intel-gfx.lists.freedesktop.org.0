@@ -2,38 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA594467A99
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 16:50:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 330BE467AAA
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 16:55:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8414273E6E;
-	Fri,  3 Dec 2021 15:50:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40DD47347E;
+	Fri,  3 Dec 2021 15:55:05 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B87873073;
- Fri,  3 Dec 2021 15:50:12 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10186"; a="261004656"
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="261004656"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 07:50:11 -0800
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="501232405"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1AFA73513;
+ Fri,  3 Dec 2021 15:55:03 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10186"; a="234503072"
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="234503072"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 07:55:02 -0800
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="513751038"
 Received: from barrettd-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
  ([10.213.208.70])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 07:50:09 -0800
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 07:55:01 -0800
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Dec 2021 15:49:47 +0000
-Message-Id: <20211203154947.3953995-8-tvrtko.ursulin@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Fri,  3 Dec 2021 15:54:56 +0000
+Message-Id: <20211203155456.3954189-1-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211203154947.3953995-1-tvrtko.ursulin@linux.intel.com>
-References: <20211203154947.3953995-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 7/7] drm/i915: Expose client engine utilisation
- via fdinfo
+Subject: [Intel-gfx] [PATCH i-g-t] intel-gpu-top: Add support for per client
+ stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,217 +44,1024 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David M Nieto <David.Nieto@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
+Cc: Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Similar to AMD commit
-874442541133 ("drm/amdgpu: Add show_fdinfo() interface"), using the
-infrastructure added in previous patches, we add basic client info
-and GPU engine utilisation for i915.
+Use the i915 exported data in /proc/<pid>/fdinfo to show GPU utilization
+per DRM client.
 
 Example of the output:
 
-  pos:    0
-  flags:  0100002
-  mnt_id: 21
-  drm-driver: i915
-  drm-pdev:   0000:00:02.0
-  drm-client-id:      7
-  drm-engine-render:  9288864723 ns
-  drm-engine-copy:    2035071108 ns
-  drm-engine-video:   0 ns
-  drm-engine-video-enhance:   0 ns
+intel-gpu-top: Intel Tigerlake (Gen12) @ /dev/dri/card0 -  220/ 221 MHz
+    70% RC6;  0.62/ 7.08 W;      760 irqs/s
 
-v2:
- * Update for removal of name and pid.
+         ENGINES     BUSY                                 MI_SEMA MI_WAIT
+       Render/3D   23.06% |██████▊                      |      0%      0%
+         Blitter    0.00% |                             |      0%      0%
+           Video    5.40% |█▋                           |      0%      0%
+    VideoEnhance   20.67% |██████                       |      0%      0%
 
-v3:
- * Use drm_driver.name.
+   PID              NAME  Render/3D    Blitter      Video    VideoEnhance
+  3082               mpv |          ||          ||▌         ||██        |
+  3117         neverball |█▉        ||          ||          ||          |
+     1           systemd |▍         ||          ||          ||          |
+  2338       gnome-shell |          ||          ||          ||          |
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: David M Nieto <David.Nieto@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Acked-by: Christian König <christian.koenig@amd.com>
 ---
- Documentation/gpu/drm-usage-stats.rst  |  6 +++
- Documentation/gpu/i915.rst             | 27 ++++++++++
- drivers/gpu/drm/i915/i915_driver.c     |  3 ++
- drivers/gpu/drm/i915/i915_drm_client.c | 73 ++++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_drm_client.h |  4 ++
- 5 files changed, 113 insertions(+)
+ man/intel_gpu_top.rst |   4 +
+ tools/intel_gpu_top.c | 866 +++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 868 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/gpu/drm-usage-stats.rst b/Documentation/gpu/drm-usage-stats.rst
-index c669026be244..6952f8389d07 100644
---- a/Documentation/gpu/drm-usage-stats.rst
-+++ b/Documentation/gpu/drm-usage-stats.rst
-@@ -95,3 +95,9 @@ object belong to this client, in the respective memory region.
+diff --git a/man/intel_gpu_top.rst b/man/intel_gpu_top.rst
+index b3b765b05feb..f4dbfc5b44d9 100644
+--- a/man/intel_gpu_top.rst
++++ b/man/intel_gpu_top.rst
+@@ -56,6 +56,10 @@ Supported keys:
+     'q'    Exit from the tool.
+     'h'    Show interactive help.
+     '1'    Toggle between aggregated engine class and physical engine mode.
++    'n'    Toggle display of numeric client busyness overlay.
++    's'    Toggle between sort modes (runtime, total runtime, pid, client id).
++    'i'    Toggle display of clients which used no GPU time.
++    'H'    Toggle between per PID aggregation and individual clients.
  
- Default unit shall be bytes with optional unit specifiers of 'KiB' or 'MiB'
- indicating kibi- or mebi-bytes.
-+
-+===============================
-+Driver specific implementations
-+===============================
-+
-+:ref:`i915-usage-stats`
-diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-index b7d801993bfa..29f412a0c3dc 100644
---- a/Documentation/gpu/i915.rst
-+++ b/Documentation/gpu/i915.rst
-@@ -708,3 +708,30 @@ The style guide for ``i915_reg.h``.
+ DEVICE SELECTION
+ ================
+diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+index 81c724d1fe1c..5c9a195ea275 100644
+--- a/tools/intel_gpu_top.c
++++ b/tools/intel_gpu_top.c
+@@ -43,6 +43,7 @@
+ #include <sys/types.h>
+ #include <unistd.h>
+ #include <termios.h>
++#include <sys/sysmacros.h>
  
- .. kernel-doc:: drivers/gpu/drm/i915/i915_reg.h
-    :doc: The i915 register macro definition style guide
-+
-+.. _i915-usage-stats:
-+
-+i915 DRM client usage stats implementation
-+==========================================
-+
-+The drm/i915 driver implements the DRM client usage stats specification as
-+documented in :ref:`drm-client-usage-stats`.
-+
-+Example of the output showing the implemented key value pairs and entirety of
-+the currenly possible format options:
-+
-+::
-+
-+      pos:    0
-+      flags:  0100002
-+      mnt_id: 21
-+      drm-driver: i915
-+      drm-pdev:   0000:00:02.0
-+      drm-client-id:      7
-+      drm-engine-render:  9288864723 ns
-+      drm-engine-copy:    2035071108 ns
-+      drm-engine-video:   0 ns
-+      drm-engine-video-enhance:   0 ns
-+
-+Possible `drm-engine-` key names are: `render`, `copy`, `video` and
-+`video-enhance`.
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index a4f8031602b3..3b75e88de1b8 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1753,6 +1753,9 @@ static const struct file_operations i915_driver_fops = {
- 	.read = drm_read,
- 	.compat_ioctl = i915_ioc32_compat_ioctl,
- 	.llseek = noop_llseek,
-+#ifdef CONFIG_PROC_FS
-+	.show_fdinfo = i915_drm_client_fdinfo,
-+#endif
- };
+ #include "igt_perf.h"
  
- static int
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-index 91a8559bebf7..06dbd20ce763 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.c
-+++ b/drivers/gpu/drm/i915/i915_drm_client.c
-@@ -7,6 +7,11 @@
- #include <linux/slab.h>
- #include <linux/types.h>
- 
-+#include <uapi/drm/i915_drm.h>
-+
-+#include <drm/drm_print.h>
-+
-+#include "gem/i915_gem_context.h"
- #include "i915_drm_client.h"
- #include "i915_gem.h"
- #include "i915_utils.h"
-@@ -68,3 +73,71 @@ void i915_drm_clients_fini(struct i915_drm_clients *clients)
- 	GEM_BUG_ON(!xa_empty(&clients->xarray));
- 	xa_destroy(&clients->xarray);
+@@ -309,7 +310,8 @@ static int engine_cmp(const void *__a, const void *__b)
+ 		return a->instance - b->instance;
  }
-+
-+#ifdef CONFIG_PROC_FS
-+static const char * const uabi_class_names[] = {
-+	[I915_ENGINE_CLASS_RENDER] = "render",
-+	[I915_ENGINE_CLASS_COPY] = "copy",
-+	[I915_ENGINE_CLASS_VIDEO] = "video",
-+	[I915_ENGINE_CLASS_VIDEO_ENHANCE] = "video-enhance",
+ 
+-#define is_igpu_pci(x) (strcmp(x, "0000:00:02.0") == 0)
++#define IGPU_PCI "0000:00:02.0"
++#define is_igpu_pci(x) (strcmp(x, IGPU_PCI) == 0)
+ #define is_igpu(x) (strcmp(x, "i915") == 0)
+ 
+ static struct engines *discover_engines(char *device)
+@@ -633,6 +635,613 @@ static void pmu_sample(struct engines *engines)
+ 	}
+ }
+ 
++enum client_status {
++	FREE = 0, /* mbz */
++	ALIVE,
++	PROBE
 +};
 +
-+static u64 busy_add(struct i915_gem_context *ctx, unsigned int class)
-+{
-+	struct i915_gem_engines_iter it;
-+	struct intel_context *ce;
-+	u64 total = 0;
++struct clients;
 +
-+	for_each_gem_engine(ce, rcu_dereference(ctx->engines), it) {
-+		if (ce->engine->uabi_class != class)
++struct client {
++	struct clients *clients;
++
++	enum client_status status;
++	unsigned int id;
++	unsigned int pid;
++	char name[24];
++	char print_name[24];
++	unsigned int samples;
++	unsigned long total_runtime;
++	unsigned long last_runtime;
++	struct engines *engines;
++	unsigned long *val;
++	uint64_t *last;
++};
++
++struct clients {
++	unsigned int num_clients;
++	unsigned int active_clients;
++
++	unsigned int num_classes;
++	struct engine_class *class;
++
++	char pci_slot[64];
++
++	struct client *client;
++};
++
++#define for_each_client(clients, c, tmp) \
++	for ((tmp) = (clients)->num_clients, c = (clients)->client; \
++	     (tmp > 0); (tmp)--, (c)++)
++
++static struct clients *init_clients(const char *pci_slot)
++{
++	struct clients *clients;
++
++	clients = malloc(sizeof(*clients));
++	if (!clients)
++		return NULL;
++
++	memset(clients, 0, sizeof(*clients));
++
++	strncpy(clients->pci_slot, pci_slot, sizeof(clients->pci_slot));
++
++	return clients;
++}
++
++static struct client *
++find_client(struct clients *clients, enum client_status status, unsigned int id)
++{
++	unsigned int start, num;
++	struct client *c;
++
++	start = status == FREE ? clients->active_clients : 0; /* Free block at the end. */
++	num = clients->num_clients - start;
++
++	for (c = &clients->client[start]; num; c++, num--) {
++		if (status != c->status)
 +			continue;
 +
-+		total += intel_context_get_total_runtime_ns(ce);
++		if (status == FREE || c->id == id)
++			return c;
 +	}
 +
-+	return total;
++	return NULL;
 +}
 +
 +static void
-+show_client_class(struct seq_file *m,
-+		  struct i915_drm_client *client,
-+		  unsigned int class)
++update_client(struct client *c, unsigned int pid, char *name, uint64_t val[16])
 +{
-+	const struct list_head *list = &client->ctx_list;
-+	u64 total = atomic64_read(&client->past_runtime[class]);
-+	struct i915_gem_context *ctx;
-+
-+	rcu_read_lock();
-+	list_for_each_entry_rcu(ctx, list, client_link)
-+		total += busy_add(ctx, class);
-+	rcu_read_unlock();
-+
-+	return seq_printf(m, "drm-engine-%s:\t%llu ns\n",
-+			  uabi_class_names[class], total);
-+}
-+
-+void i915_drm_client_fdinfo(struct seq_file *m, struct file *f)
-+{
-+	struct drm_file *file = f->private_data;
-+	struct drm_i915_file_private *file_priv = file->driver_priv;
-+	struct drm_i915_private *i915 = file_priv->dev_priv;
-+	struct i915_drm_client *client = file_priv->client;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
 +	unsigned int i;
 +
++	if (c->pid != pid)
++		c->pid = pid;
++
++	if (strcmp(c->name, name)) {
++		char *p;
++
++		strncpy(c->name, name, sizeof(c->name) - 1);
++		strncpy(c->print_name, name, sizeof(c->print_name) - 1);
++
++		p = c->print_name;
++		while (*p) {
++			if (!isprint(*p))
++				*p = '*';
++			p++;
++		}
++	}
++
++	c->last_runtime = 0;
++	c->total_runtime = 0;
++
++	for (i = 0; i < c->clients->num_classes; i++) {
++		if (val[i] < c->last[i])
++			continue; /* It will catch up soon. */
++
++		c->total_runtime += val[i];
++		c->val[i] = val[i] - c->last[i];
++		c->last_runtime += c->val[i];
++		c->last[i] = val[i];
++	}
++
++	c->samples++;
++	c->status = ALIVE;
++}
++
++static void
++add_client(struct clients *clients, unsigned int id, unsigned int pid,
++	   char *name, uint64_t busy[16])
++{
++	struct client *c;
++
++	assert(!find_client(clients, ALIVE, id));
++
++	c = find_client(clients, FREE, 0);
++	if (!c) {
++		unsigned int idx = clients->num_clients;
++
++		clients->num_clients += (clients->num_clients + 2) / 2;
++		clients->client = realloc(clients->client,
++					  clients->num_clients * sizeof(*c));
++		assert(clients->client);
++
++		c = &clients->client[idx];
++		memset(c, 0, (clients->num_clients - idx) * sizeof(*c));
++	}
++
++	c->id = id;
++	c->clients = clients;
++	c->val = calloc(clients->num_classes, sizeof(c->val));
++	c->last = calloc(clients->num_classes, sizeof(c->last));
++	assert(c->val && c->last);
++
++	update_client(c, pid, name, busy);
++}
++
++static void free_client(struct client *c)
++{
++	free(c->val);
++	free(c->last);
++	memset(c, 0, sizeof(*c));
++}
++
++static int client_last_cmp(const void *_a, const void *_b)
++{
++	const struct client *a = _a;
++	const struct client *b = _b;
++	long tot_a, tot_b;
++
 +	/*
-+	 * ******************************************************************
-+	 * For text output format description please see drm-usage-stats.rst!
-+	 * ******************************************************************
++	 * Sort clients in descending order of runtime in the previous sampling
++	 * period for active ones, followed by inactive. Tie-breaker is client
++	 * id.
 +	 */
 +
-+	seq_printf(m, "drm-driver:\t%s\n", i915->drm.driver->name);
-+	seq_printf(m, "drm-pdev:\t%04x:%02x:%02x.%d\n",
-+		   pci_domain_nr(pdev->bus), pdev->bus->number,
-+		   PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
-+	seq_printf(m, "drm-client-id:\t%u\n", client->id);
++	tot_a = a->status == ALIVE ? a->last_runtime : -1;
++	tot_b = b->status == ALIVE ? b->last_runtime : -1;
 +
-+	for (i = 0; i < ARRAY_SIZE(uabi_class_names); i++)
-+		show_client_class(m, client, i);
++	tot_b -= tot_a;
++	if (tot_b > 0)
++		return 1;
++	if (tot_b < 0)
++		return -1;
++
++	return (int)b->id - a->id;
 +}
-+#endif
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
-index 7416e18aa33c..d96d6a06302e 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.h
-+++ b/drivers/gpu/drm/i915/i915_drm_client.h
-@@ -57,6 +57,10 @@ static inline void i915_drm_client_put(struct i915_drm_client *client)
- 
- struct i915_drm_client *i915_drm_client_add(struct i915_drm_clients *clients);
- 
-+#ifdef CONFIG_PROC_FS
-+void i915_drm_client_fdinfo(struct seq_file *m, struct file *f);
-+#endif
 +
- void i915_drm_clients_fini(struct i915_drm_clients *clients);
++static int client_total_cmp(const void *_a, const void *_b)
++{
++	const struct client *a = _a;
++	const struct client *b = _b;
++	long tot_a, tot_b;
++
++	tot_a = a->status == ALIVE ? a->total_runtime : -1;
++	tot_b = b->status == ALIVE ? b->total_runtime : -1;
++
++	tot_b -= tot_a;
++	if (tot_b > 0)
++		return 1;
++	if (tot_b < 0)
++		return -1;
++
++	return (int)b->id - a->id;
++}
++
++static int client_id_cmp(const void *_a, const void *_b)
++{
++	const struct client *a = _a;
++	const struct client *b = _b;
++	int id_a, id_b;
++
++	id_a = a->status == ALIVE ? a->id : -1;
++	id_b = b->status == ALIVE ? b->id : -1;
++
++	id_b -= id_a;
++	if (id_b > 0)
++		return 1;
++	if (id_b < 0)
++		return -1;
++
++	return (int)b->id - a->id;
++}
++
++static int client_pid_cmp(const void *_a, const void *_b)
++{
++	const struct client *a = _a;
++	const struct client *b = _b;
++	int pid_a, pid_b;
++
++	pid_a = a->status == ALIVE ? a->pid : INT_MAX;
++	pid_b = b->status == ALIVE ? b->pid : INT_MAX;
++
++	pid_b -= pid_a;
++	if (pid_b > 0)
++		return -1;
++	if (pid_b < 0)
++		return 1;
++
++	return (int)a->id - b->id;
++}
++
++static int (*client_cmp)(const void *, const void *) = client_last_cmp;
++
++static struct clients *sort_clients(struct clients *clients,
++				    int (*cmp)(const void *, const void *))
++{
++	unsigned int active, free;
++	struct client *c;
++	int tmp;
++
++	if (!clients)
++		return clients;
++
++	qsort(clients->client, clients->num_clients, sizeof(*clients->client),
++	      cmp);
++
++	/* Trim excessive array space. */
++	active = 0;
++	for_each_client(clients, c, tmp) {
++		if (c->status != ALIVE)
++			break; /* Active clients are first in the array. */
++		active++;
++	}
++
++	clients->active_clients = active;
++
++	free = clients->num_clients - active;
++	if (free > clients->num_clients / 2) {
++		active = clients->num_clients - free / 2;
++		if (active != clients->num_clients) {
++			clients->num_clients = active;
++			clients->client = realloc(clients->client,
++						  clients->num_clients *
++						  sizeof(*c));
++		}
++	}
++
++	return clients;
++}
++
++static bool aggregate_pids = true;
++
++static struct clients *display_clients(struct clients *clients)
++{
++	struct client *ac, *c, *cp = NULL;
++	struct clients *aggregated;
++	int tmp, num = 0;
++
++	if (!aggregate_pids)
++		goto out;
++
++	/* Sort by pid first to make it easy to aggregate while walking. */
++	sort_clients(clients, client_pid_cmp);
++
++	aggregated = calloc(1, sizeof(*clients));
++	assert(aggregated);
++
++	ac = calloc(clients->num_clients, sizeof(*c));
++	assert(ac);
++
++	aggregated->num_classes = clients->num_classes;
++	aggregated->class = clients->class;
++	aggregated->client = ac;
++
++	for_each_client(clients, c, tmp) {
++		unsigned int i;
++
++		if (c->status == FREE)
++			break;
++
++		assert(c->status == ALIVE);
++
++		if ((cp && c->pid != cp->pid) || !cp) {
++			ac = &aggregated->client[num++];
++
++			/* New pid. */
++			ac->clients = aggregated;
++			ac->status = ALIVE;
++			ac->id = -c->pid;
++			ac->pid = c->pid;
++			strcpy(ac->name, c->name);
++			strcpy(ac->print_name, c->print_name);
++			ac->engines = c->engines;
++			ac->val = calloc(clients->num_classes,
++					 sizeof(ac->val[0]));
++			assert(ac->val);
++			ac->samples = 1;
++		}
++
++		cp = c;
++
++		if (c->samples < 2)
++			continue;
++
++		ac->samples = 2; /* All what matters for display. */
++		ac->total_runtime += c->total_runtime;
++		ac->last_runtime += c->last_runtime;
++
++		for (i = 0; i < clients->num_classes; i++)
++			ac->val[i] += c->val[i];
++	}
++
++	aggregated->num_clients = num;
++	aggregated->active_clients = num;
++
++	clients = aggregated;
++
++out:
++	return sort_clients(clients, client_cmp);
++}
++
++static void free_clients(struct clients *clients)
++{
++	struct client *c;
++	unsigned int tmp;
++
++	for_each_client(clients, c, tmp) {
++		free(c->val);
++		free(c->last);
++	}
++
++	free(clients->client);
++	free(clients);
++}
++
++static bool is_drm_fd(DIR *fd_dir, const char *name)
++{
++	struct stat stat;
++	int ret;
++
++	ret = fstatat(dirfd(fd_dir), name, &stat, 0);
++
++	return ret == 0 &&
++	       (stat.st_mode & S_IFMT) == S_IFCHR &&
++	       major(stat.st_rdev) == 226;
++}
++
++static bool get_task_name(const char *buffer, char *out, unsigned long sz)
++{
++	char *s = index(buffer, '(');
++	char *e = rindex(buffer, ')');
++	unsigned int len;
++
++	if (!s || !e)
++		return false;
++
++	len = --e - ++s + 1;
++	if(!len || (len + 1) >= sz)
++		return false;
++
++	strncpy(out, s, len);
++	out[len] = 0;
++
++	return true;
++}
++
++static DIR *opendirat(DIR *at, const char *name)
++{
++	DIR *dir;
++	int fd;
++
++	fd = openat(dirfd(at), name, O_DIRECTORY);
++	if (fd < 0)
++		return NULL;
++
++	dir = fdopendir(fd);
++	if (!dir)
++		close(fd);
++
++	return dir;
++}
++
++static FILE *fropenat(DIR *at, const char *name)
++{
++	FILE *f;
++	int fd;
++
++	fd = openat(dirfd(at), name, O_RDONLY);
++	if (fd < 0)
++		return NULL;
++
++	f = fdopen(fd, "r");
++	if (!f)
++		close(fd);
++
++	return f;
++}
++
++static size_t freadat2buf(char *buf, const size_t sz, DIR *at, const char *name)
++{
++	size_t count;
++	FILE *f;
++
++	f = fropenat(at, name);
++	if (!f)
++		return 0;
++
++	memset(buf, 0, sz);
++	count = fread(buf, 1, sz, f);
++	fclose(f);
++
++	return count;
++}
++
++static bool parse_engine(char *line, uint64_t busy[16])
++{
++	static const char *e2class[] = {
++		"render",
++		"copy",
++		"video",
++		"video-enhance",
++	};
++	bool found = false;
++	char name[256];
++	unsigned int i;
++	uint64_t val;
++	char *t;
++
++	t = line;
++	while (!isdigit(*t))
++		t++;
++	val = strtoull(t, NULL, 10);
++
++	t = line;
++	while (*t != ':')
++		t++;
++	*t = 0;
++
++	if (sscanf(line, "drm-engine-%s", name) != 1)
++		return false;
++
++	for (i = 0; i < ARRAY_SIZE(e2class); i++) {
++		if (!strcmp(name, e2class[i])) {
++			busy[i] = val;
++			found = true;
++			break;
++		}
++	}
++
++	return found;
++}
++
++static struct clients *scan_clients(struct clients *clients)
++{
++	struct dirent *proc_dent;
++	struct client *c;
++	DIR *proc_dir;
++	int tmp;
++
++	if (!clients)
++		return clients;
++
++	for_each_client(clients, c, tmp) {
++		assert(c->status != PROBE);
++		if (c->status == ALIVE)
++			c->status = PROBE;
++		else
++			break; /* Free block at the end of array. */
++	}
++
++	proc_dir = opendir("/proc");
++	if (!proc_dir)
++		return clients;
++
++	while ((proc_dent = readdir(proc_dir)) != NULL) {
++		DIR *pid_dir = NULL, *fd_dir = NULL, *fdinfo_dir = NULL;
++		struct dirent *fdinfo_dent;
++		char client_name[64] = { };
++		unsigned int client_pid;
++		char buf[4096];
++		size_t count;
++
++		if (proc_dent->d_type != DT_DIR)
++			continue;
++		if (!isdigit(proc_dent->d_name[0]))
++			continue;
++
++		pid_dir = opendirat(proc_dir, proc_dent->d_name);
++		if (!pid_dir)
++			continue;
++
++		count = freadat2buf(buf, sizeof(buf), pid_dir, "stat");
++		if (!count)
++			goto next;
++
++		client_pid = atoi(buf);
++		if (!client_pid)
++			goto next;
++
++		if (!get_task_name(buf, client_name, sizeof(client_name)))
++			goto next;
++
++		fd_dir = opendirat(pid_dir, "fd");
++		if (!fd_dir)
++			goto next;
++
++		fdinfo_dir = opendirat(pid_dir, "fdinfo");
++		if (!fdinfo_dir)
++			goto next;
++
++		while ((fdinfo_dent = readdir(fdinfo_dir)) != NULL) {
++			unsigned int num_engines = 0;
++			unsigned int good_fdinfo = 0;
++			uint64_t busy[16] = { };
++			unsigned int client_id;
++			char *line, *ctx, *_buf;
++			char driver[128] = { };
++			char pdev[128] = { };
++
++			if (fdinfo_dent->d_type != DT_REG)
++				continue;
++			if (!isdigit(fdinfo_dent->d_name[0]))
++				continue;
++
++			if (!is_drm_fd(fd_dir, fdinfo_dent->d_name))
++				continue;
++
++			count = freadat2buf(buf, sizeof(buf), fdinfo_dir,
++					    fdinfo_dent->d_name);
++			if (!count)
++				continue;
++
++			ctx = NULL;
++			_buf = buf;
++			while ((line = strtok_r(_buf, "\n", &ctx))) {
++				_buf = NULL;
++
++				if (sscanf(line, "drm-driver:\t%s", driver)) {
++					good_fdinfo++;
++				} else if (sscanf(line, "drm-pdev:\t%s",
++						  pdev)) {
++					good_fdinfo++;
++				}  else if (sscanf(line, "drm-client-id:\t%u",
++						   &client_id) == 1) {
++					good_fdinfo++;
++				} else if (!strncmp(line, "drm-engine-", 11)) {
++					if (parse_engine(line, busy))
++						num_engines++;
++				}
++			}
++
++			if (good_fdinfo < 3 || !num_engines)
++				continue; /* fdinfo format not as expected */
++			if (strcmp(driver, "i915"))
++				continue;
++			if (strcmp(pdev, clients->pci_slot))
++				continue;
++			if (find_client(clients, ALIVE, client_id))
++				continue; /* Skip duplicate fds. */
++
++			c = find_client(clients, PROBE, client_id);
++			if (!c)
++				add_client(clients, client_id, client_pid,
++					   client_name, busy);
++			else
++				update_client(c, client_pid, client_name, busy);
++		}
++
++next:
++		if (fdinfo_dir)
++			closedir(fdinfo_dir);
++		if (fd_dir)
++			closedir(fd_dir);
++		if (pid_dir)
++			closedir(pid_dir);
++	}
++
++	closedir(proc_dir);
++
++	for_each_client(clients, c, tmp) {
++		if (c->status == PROBE)
++			free_client(c);
++		else if (c->status == FREE)
++			break;
++	}
++
++	return display_clients(clients);
++}
++
+ static const char *bars[] = { " ", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█" };
  
- #endif /* !__I915_DRM_CLIENT_H__ */
+ static void n_spaces(const unsigned int n)
+@@ -774,6 +1383,18 @@ json_close_struct(void)
+ 		fflush(stdout);
+ }
+ 
++static void
++__json_add_member(const char *key, const char *val)
++{
++	assert(json_indent_level < ARRAY_SIZE(json_indent));
++
++	fprintf(out, "%s%s\"%s\": \"%s\"",
++		json_struct_members ? ",\n" : "",
++		json_indent[json_indent_level], key, val);
++
++	json_struct_members++;
++}
++
+ static unsigned int
+ json_add_member(const struct cnt_group *parent, struct cnt_item *item,
+ 		unsigned int headers)
+@@ -1499,6 +2120,157 @@ print_engines(struct engines *engines, double t, int lines, int w, int h)
+ 	return lines;
+ }
+ 
++static int
++print_clients_header(struct clients *clients, int lines,
++		     int con_w, int con_h, int *class_w)
++{
++	if (output_mode == INTERACTIVE) {
++		const char *pidname = "   PID              NAME ";
++		unsigned int num_active = 0;
++		int len = strlen(pidname);
++
++		if (lines++ >= con_h)
++			return lines;
++
++		printf("\033[7m");
++		printf("%s", pidname);
++
++		if (lines++ >= con_h || len >= con_w)
++			return lines;
++
++		if (clients->num_classes) {
++			unsigned int i;
++			int width;
++
++			for (i = 0; i < clients->num_classes; i++) {
++				if (clients->class[i].num_engines)
++					num_active++;
++			}
++
++			*class_w = width = (con_w - len) / num_active;
++
++			for (i = 0; i < clients->num_classes; i++) {
++				const char *name = clients->class[i].name;
++				int name_len = strlen(name);
++				int pad = (width - name_len) / 2;
++				int spaces = width - pad - name_len;
++
++				if (!clients->class[i].num_engines)
++					continue; /* Assert in the ideal world. */
++
++				if (pad < 0 || spaces < 0)
++					continue;
++
++				n_spaces(pad);
++				printf("%s", name);
++				n_spaces(spaces);
++				len += pad + name_len + spaces;
++			}
++		}
++
++		n_spaces(con_w - len);
++		printf("\033[0m\n");
++	} else {
++		if (clients->num_classes)
++			pops->open_struct("clients");
++	}
++
++	return lines;
++}
++
++static bool numeric_clients;
++static bool filter_idle;
++
++static int
++print_client(struct client *c, struct engines *engines, double t, int lines,
++	     int con_w, int con_h, unsigned int period_us, int *class_w)
++{
++	struct clients *clients = c->clients;
++	unsigned int i;
++
++	if (output_mode == INTERACTIVE) {
++		if (filter_idle && (!c->total_runtime || c->samples < 2))
++			return lines;
++
++		lines++;
++
++		printf("%6u %17s ", c->pid, c->print_name);
++
++		for (i = 0; c->samples > 1 && i < clients->num_classes; i++) {
++			double pct;
++
++			if (!clients->class[i].num_engines)
++				continue; /* Assert in the ideal world. */
++
++			pct = (double)c->val[i] / period_us / 1e3 * 100 /
++			      clients->class[i].num_engines;
++
++			/*
++			 * Guard against possible time-drift between sampling
++			 * client data and time we obtained our time-delta from
++			 * PMU.
++			 */
++			if (pct > 100.0)
++				pct = 100.0;
++
++			print_percentage_bar(pct, *class_w, numeric_clients);
++		}
++
++		putchar('\n');
++	} else if (output_mode == JSON) {
++		char buf[64];
++
++		snprintf(buf, sizeof(buf), "%u", c->id);
++		pops->open_struct(buf);
++
++		__json_add_member("name", c->print_name);
++
++		snprintf(buf, sizeof(buf), "%u", c->pid);
++		__json_add_member("pid", buf);
++
++		if (c->samples > 1) {
++			pops->open_struct("engine-classes");
++
++			for (i = 0; i < clients->num_classes; i++) {
++				double pct;
++
++				snprintf(buf, sizeof(buf), "%s",
++					clients->class[i].name);
++				pops->open_struct(buf);
++
++				pct = (double)c->val[i] / period_us / 1e3 * 100;
++				snprintf(buf, sizeof(buf), "%f", pct);
++				__json_add_member("busy", buf);
++
++				__json_add_member("unit", "%");
++
++				pops->close_struct();
++			}
++
++			pops->close_struct();
++		}
++
++		pops->close_struct();
++	}
++
++	return lines;
++}
++
++static int
++print_clients_footer(struct clients *clients, double t,
++		     int lines, int con_w, int con_h)
++{
++	if (output_mode == INTERACTIVE) {
++		if (lines++ < con_h)
++			printf("\n");
++	} else {
++		if (clients->num_classes)
++			pops->close_struct();
++	}
++
++	return lines;
++}
++
+ static bool stop_top;
+ 
+ static void sigint_handler(int  sig)
+@@ -1554,6 +2326,31 @@ static void interactive_stdin(void)
+ 	assert(ret == 0);
+ }
+ 
++static void select_client_sort(void)
++{
++	struct {
++		int (*cmp)(const void *, const void *);
++		const char *msg;
++	} cmp[] = {
++		{ client_last_cmp, "Sorting clients by current GPU usage." },
++		{ client_total_cmp, "Sorting clients by accummulated GPU usage." },
++		{ client_pid_cmp, "Sorting clients by pid." },
++		{ client_id_cmp, "Sorting clients by sysfs id." },
++	};
++	static unsigned int client_sort;
++
++bump:
++	if (++client_sort >= ARRAY_SIZE(cmp))
++		client_sort = 0;
++
++	client_cmp = cmp[client_sort].cmp;
++	header_msg = cmp[client_sort].msg;
++
++	/* Sort by client id makes no sense with pid aggregation. */
++	if (aggregate_pids && client_cmp == client_id_cmp)
++		goto bump;
++}
++
+ static bool in_help;
+ 
+ static void process_help_stdin(void)
+@@ -1596,9 +2393,29 @@ static void process_normal_stdin(void)
+ 			else
+ 				header_msg = "Showing physical engines.";
+ 			break;
++		case 'i':
++			filter_idle ^= true;
++			if (filter_idle)
++				header_msg = "Hiding inactive clients.";
++			else
++				header_msg = "Showing inactive clients.";
++			break;
++		case 'n':
++			numeric_clients ^= true;
++			break;
++		case 's':
++			select_client_sort();
++			break;
+ 		case 'h':
+ 			in_help = true;
+ 			break;
++		case 'H':
++			aggregate_pids ^= true;
++			if (aggregate_pids)
++				header_msg = "Aggregating clients.";
++			else
++				header_msg = "Showing individual clients.";
++			break;
+ 		};
+ 	}
+ }
+@@ -1626,6 +2443,10 @@ static void show_help_screen(void)
+ 	printf(
+ "Help for interactive commands:\n\n"
+ "    '1'    Toggle between aggregated engine class and physical engine mode.\n"
++"    'n'    Toggle display of numeric client busyness overlay.\n"
++"    's'    Toggle between sort modes (runtime, total runtime, pid, client id).\n"
++"    'i'    Toggle display of clients which used no GPU time.\n"
++"    'H'    Toggle between per PID aggregation and individual clients.\n"
+ "\n"
+ "    'h' or 'q'    Exit interactive help.\n"
+ "\n");
+@@ -1634,6 +2455,7 @@ static void show_help_screen(void)
+ int main(int argc, char **argv)
+ {
+ 	unsigned int period_us = DEFAULT_PERIOD_MS * 1000;
++	struct clients *clients = NULL;
+ 	int con_w = -1, con_h = -1;
+ 	char *output_path = NULL;
+ 	struct engines *engines;
+@@ -1767,15 +2589,24 @@ int main(int argc, char **argv)
+ 
+ 	ret = EXIT_SUCCESS;
+ 
++	clients = init_clients(card.pci_slot_name[0] ?
++			       card.pci_slot_name : IGPU_PCI);
+ 	init_engine_classes(engines);
++	if (clients) {
++		clients->num_classes = engines->num_classes;
++		clients->class = engines->class;
++	}
+ 
+ 	pmu_sample(engines);
++	scan_clients(clients);
+ 	codename = igt_device_get_pretty_name(&card, false);
+ 
+ 	while (!stop_top) {
++		struct clients *disp_clients;
+ 		bool consumed = false;
++		int j, lines = 0;
+ 		struct winsize ws;
+-		int lines = 0;
++		struct client *c;
+ 		double t;
+ 
+ 		/* Update terminal size. */
+@@ -1794,6 +2625,8 @@ int main(int argc, char **argv)
+ 		pmu_sample(engines);
+ 		t = (double)(engines->ts.cur - engines->ts.prev) / 1e9;
+ 
++		disp_clients = scan_clients(clients);
++
+ 		if (stop_top)
+ 			break;
+ 
+@@ -1813,12 +2646,41 @@ int main(int argc, char **argv)
+ 
+ 			lines = print_engines(engines, t, lines, con_w, con_h);
+ 
++			if (disp_clients) {
++				int class_w;
++
++				lines = print_clients_header(disp_clients, lines,
++							     con_w, con_h,
++							     &class_w);
++
++				for_each_client(disp_clients, c, j) {
++					assert(c->status != PROBE);
++					if (c->status != ALIVE)
++						break; /* Active clients are first in the array. */
++
++					if (lines >= con_h)
++						break;
++
++					lines = print_client(c, engines, t,
++							     lines, con_w,
++							     con_h, period_us,
++							     &class_w);
++				}
++
++				lines = print_clients_footer(disp_clients, t,
++							     lines, con_w,
++							     con_h);
++			}
++
+ 			pops->close_struct();
+ 		}
+ 
+ 		if (stop_top)
+ 			break;
+ 
++		if (disp_clients != clients)
++			free_clients(disp_clients);
++
+ 		if (output_mode == INTERACTIVE)
+ 			process_stdin(period_us);
+ 		else
 -- 
 2.32.0
 
