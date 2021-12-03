@@ -2,34 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5D7B467F8D
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 22:51:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4418A467FC1
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 23:14:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A28D8BCA6;
-	Fri,  3 Dec 2021 21:51:07 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1DF98BCA6
- for <Intel-GFX@lists.freedesktop.org>; Fri,  3 Dec 2021 21:51:05 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="297861765"
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="297861765"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 13:51:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="598119996"
-Received: from sdutt-nuc10i5fnh.jf.intel.com ([10.165.21.151])
- by FMSMGA003.fm.intel.com with ESMTP; 03 Dec 2021 13:51:05 -0800
-From: Jasmine Newsome <jasmine.newsome@intel.com>
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Fri,  3 Dec 2021 13:49:31 -0800
-Message-Id: <20211203214931.1635863-1-jasmine.newsome@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 689887ADEC;
+	Fri,  3 Dec 2021 22:14:03 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 686057ADEB;
+ Fri,  3 Dec 2021 22:14:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 60B26A47DF;
+ Fri,  3 Dec 2021 22:14:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Use local pointer ttm for
- __i915_ttm_move
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Fri, 03 Dec 2021 22:14:02 -0000
+Message-ID: <163856964235.5409.2800788158876034340@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211203175910.28516-1-matthew.brost@intel.com>
+In-Reply-To: <20211203175910.28516-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Rollback_seqno_when_request_creation_fails?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,30 +40,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com, jasmine.newsome@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To avoid confusion with deferencing possible null pointer bo->ttm,
-replace pointer bo->ttm with local pointer ttm in i915_ttm_move
-as ttm has checks for null before getting passed to __i915_ttm_move
----
- drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-index 80df9f592407..56b6573b5c93 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-@@ -763,7 +763,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
- 			return PTR_ERR(dep);
- 		}
- 
--		migration_fence = __i915_ttm_move(bo, clear, dst_mem, bo->ttm,
-+		migration_fence = __i915_ttm_move(bo, clear, dst_mem, ttm,
- 						  dst_rsgt, true, dep);
- 		dma_fence_put(dep);
- 	}
--- 
-2.25.1
+Series: drm/i915: Rollback seqno when request creation fails
+URL   : https://patchwork.freedesktop.org/series/97562/
+State : failure
+
+== Summary ==
+
+CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  DESCEND objtool
+  CHK     include/generated/compile.h
+  CC [M]  drivers/gpu/drm/i915/gt/intel_timeline.o
+drivers/gpu/drm/i915/gt/intel_timeline.c: In function ‘intel_timeline_rollback_seqno’:
+drivers/gpu/drm/i915/gt/intel_timeline.c:306:2: error: implicit declaration of function ‘timeline_rollback’; did you mean ‘timeline_advance’? [-Werror=implicit-function-declaration]
+  timeline_rollback(tl);
+  ^~~~~~~~~~~~~~~~~
+  timeline_advance
+cc1: all warnings being treated as errors
+scripts/Makefile.build:287: recipe for target 'drivers/gpu/drm/i915/gt/intel_timeline.o' failed
+make[4]: *** [drivers/gpu/drm/i915/gt/intel_timeline.o] Error 1
+scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm/i915' failed
+make[3]: *** [drivers/gpu/drm/i915] Error 2
+scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm' failed
+make[2]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:549: recipe for target 'drivers/gpu' failed
+make[1]: *** [drivers/gpu] Error 2
+Makefile:1846: recipe for target 'drivers' failed
+make: *** [drivers] Error 2
+
 
