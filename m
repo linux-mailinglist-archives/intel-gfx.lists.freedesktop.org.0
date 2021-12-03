@@ -2,45 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B27A4673BE
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 10:13:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 831634673E7
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 10:25:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6CB272F0B;
-	Fri,  3 Dec 2021 09:13:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 860B073AC1;
+	Fri,  3 Dec 2021 09:25:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6295872F09
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Dec 2021 09:13:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10186"; a="223817070"
-X-IronPort-AV: E=Sophos;i="5.87,283,1631602800"; d="scan'208";a="223817070"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 01:13:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,283,1631602800"; d="scan'208";a="513199685"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga007.fm.intel.com with SMTP; 03 Dec 2021 01:13:30 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 03 Dec 2021 11:13:29 +0200
-Date: Fri, 3 Dec 2021 11:13:29 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YanfuTTEODQQwHV7@intel.com>
-References: <20211124113652.22090-1-ville.syrjala@linux.intel.com>
- <20211124113652.22090-12-ville.syrjala@linux.intel.com>
- <87pmqplft3.fsf@intel.com> <YZ9azCw2Rc96QuNL@intel.com>
- <87bl28lcyw.fsf@intel.com> <YZ991bmhNaIj4MrQ@intel.com>
- <91e37161-7148-5d71-2efa-0176fbe2f468@linux.intel.com>
- <871r34l395.fsf@intel.com>
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com
+ [IPv6:2607:f8b0:4864:20::52d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38D5B73AC0
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Dec 2021 09:25:20 +0000 (UTC)
+Received: by mail-pg1-x52d.google.com with SMTP id 200so2482283pga.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Dec 2021 01:25:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ay7XRE2rD2I+7gg1x2EDf6O3JoxM77TpfPU8SOa5edA=;
+ b=i3XxHF+gHaRCpRZmAYCifGU00eO9bKCbebuWYQI5dC2+HdNurJEGT/zgRSGxLuWkn9
+ ZTeaLmsGhm4PQu2Mc+A1nQD1VS+0wqe/I+IlLJu2Kx/FnsEvmOJqqrXDc6zPiq+3F2I9
+ VbUgc4nouQdgnY/5XBVOtUeBjonoxTnLiIl7Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ay7XRE2rD2I+7gg1x2EDf6O3JoxM77TpfPU8SOa5edA=;
+ b=ODgMtK0q/e5PMyFrMYg9Qu1YjkVTZOZCGT0jT7TsWiee4mChq07bKPLb17ConMj7Pn
+ 75GcQfPJSIIry9+Qu9SV5OvFNGZNugYlZ4uAzkA80xLrS87bJ4mKhBWDSk3A8g8FQRDy
+ v8A8qvhgkRsB8+WeHiiuSBwVj5dVcmYpdBk7/c33pWPdtsw/tTiacyDhfVwCJqBxv9Km
+ 9Vgng5UtGKFNocJvsRUk7g31DTF0ki30cDNcNe/9uypX0Ezq9Ls/aHTtmMCKVmXkpkTZ
+ SJk1k6ZIXY7TC1XoVwfFShk3dH+kYe3/5WVjzklruv18DJEIxD1EaWAiAvnvO/+tbQ+P
+ U/TQ==
+X-Gm-Message-State: AOAM5337MvxTQNH2BaHK3hOh7WiVitHjH9yssTPMBIFYladq9MOpZtn3
+ eoOj5n2AkzT2v+r8/4ZNWmW/Lw==
+X-Google-Smtp-Source: ABdhPJwJi+OcMzlYRpc4XdvGNKEi1tFSpvHjpF8caac+kl7RhNRGyW9zE8g4Wn2j5nvvy6Si+3F7AA==
+X-Received: by 2002:a05:6a00:22d2:b0:4a0:93a:e165 with SMTP id
+ f18-20020a056a0022d200b004a0093ae165mr18055631pfj.68.1638523519678; 
+ Fri, 03 Dec 2021 01:25:19 -0800 (PST)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+ by smtp.gmail.com with ESMTPSA id w186sm1844630pgb.80.2021.12.03.01.25.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 03 Dec 2021 01:25:19 -0800 (PST)
+From: Kees Cook <keescook@chromium.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date: Fri,  3 Dec 2021 01:25:17 -0800
+Message-Id: <20211203092517.3592532-1-keescook@chromium.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2990; h=from:subject;
+ bh=EDL54WuXbUixxVch1YJlggYbmNuBFOLBhCWw5v5p1Yk=;
+ b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBhqeJ8s17VDWgb8AUyVOeH19b0QFsCGC/PP9t5ifhw
+ Fjt6sAeJAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCYanifAAKCRCJcvTf3G3AJsyjD/
+ 9kUFZ6QVigvhYHljTPsjOw7rSBaK61jBsu9yB/fgaQ9kLZwGgimnLY5rQAOlbn8Qjh17GJnibI+3N9
+ d86iwJb86SR438UrqeBcB88DaZ+tq5qO8KXZRasDBJjMrJxRrTDDrFj729jL2rnw2pjuSlYD/qjT3q
+ QjnM5ypttORxdG8AO8/RmTlL/VaqGHOwE/q0zUI4BFm3hNhI+5LfyGXlhPcOKqEKQBmHM9Ctdfb2Po
+ Tpb4UtvClUal0jP8cz5zxxloSVoMpanOi7DYZ5YdiwG9eBDEO9kMlSPAUVRzSvocRLftWgIitpxUFe
+ yLqqXLs5xf7UhbgdpUuUIsXikNPReqemZI/qFqI98IrK9bOxKXaJ3FkGkap+itUc1nUVKpfMuEdI2H
+ aqkKrQRpKqYPpIR7EXvwacLC/NXvzbO2MFcOhxtvtzoq0crXSPYVmKey+NGAp9wiTb1hDkqDiKGbu8
+ VZU26m70TADkJyMHkaA/4HRAvb3hYh9V9T4PWgW1iloeRbopjURYfo0lc1Rx7ACr8AX+XuvjlgarcG
+ EgVZ0qI7j3cFD91FananEbQAy+x66ezF+wtmFKSpt4uR6SlWodA15diBD7+y8XotGGJx2hY8teWHc4
+ rog0jpgf6wdIqD0CcbzekT5lAKTU0hMOPemXXH3Lx2mBrM0wQPwGGxRslu1A==
+X-Developer-Key: i=keescook@chromium.org; a=openpgp;
+ fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <871r34l395.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 11/20] drm/i915/fbc: Move FBC debugfs stuff
- into intel_fbc.c
+Subject: [Intel-gfx] [PATCH v2] drm/dp: Actually read Adjust Request Post
+ Cursor2 register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,93 +79,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ linux-hardening@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Thierry Reding <treding@nvidia.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 25, 2021 at 04:27:18PM +0200, Jani Nikula wrote:
-> On Thu, 25 Nov 2021, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> > On 25/11/2021 12:13, Ville Syrjälä wrote:
-> >> On Thu, Nov 25, 2021 at 12:57:27PM +0200, Jani Nikula wrote:
-> >>> On Thu, 25 Nov 2021, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >>>> On Wed, Nov 24, 2021 at 05:43:52PM +0200, Jani Nikula wrote:
-> >>>>> On Wed, 24 Nov 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> >>>>>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >>>>>>
-> >>>>>> In order to encapsulate FBC harder let's just move the debugfs
-> >>>>>> stuff into intel_fbc.c.
-> >>>>>
-> >>>>> Mmmh, I've kind of moved towards a split where i915_debugfs.c and
-> >>>>> intel_display_debugfs.c have all the debugfs boilerplate, while the
-> >>>>> implementation files have the guts with struct drm_i915_private *i915
-> >>>>> (or something more specific) and struct seq_file *m passed in.
-> >>>>>
-> >>>>> In some ways the split is arbitrary, but I kind of find the debugfs
-> >>>>> boilerplate a distraction in the implementation files, and we also skip
-> >>>>> building the debugfs files completely for CONFIG_DEBUG_FS=n. I don't
-> >>>>> think I'd want to add #ifdefs on that spread around either.
-> >>>>
-> >>>> If we want to keep the debugfs in a separate file then we'll have to
-> >>>> expose the guts of the FBC implementation in intel_fbc.h (or some other
-> >>>> header) just for that, or we add a whole bunch of otherwise useless
-> >>>> functions that pretend to provide some higher level of abstraction.
-> >>>>
-> >>>> Not really a fan of either of those options.
-> >>>
-> >>> Obviously I'm in favour of hiding the guts, no question about it. I'm
-> >>> also very much in favour of moving the details out of our *debugfs.c
-> >>> files. It's just a question of where to draw the line, and which side of
-> >>> the line the debugfs boilerplate lands.
-> >>>
-> >>> Which leaves us either your approach in the patch at hand, or adding the
-> >>> fbc helper functions for debugfs, which would be something like:
-> >>>
-> >>> intel_fbc_get_status
-> >>> intel_fbc_get_false_color
-> >>> intel_fbc_set_false_color
-> >> 
-> >> So I guess you're suggesting that just the DEFINE_ATTRIBUTE
-> >> and debugfs_create_file() stuff should remain in
-> >> intel_display_debugfs.c?
-> >> 
-> >> Not sure that approach has any benefits whatsoever. The get/set
-> >> functions will need to be non-static and they'll get included in
-> >> the binary whether or not debugfs is enabled or not (unless you
-> >> lto it perhaps). If everything is in intel_fbc.c all that stuff
-> >> just gets optimized out entirely when not needed.
-> >> 
-> >> Also then I couldn't do this sort of stuff:
-> >>   if (fbc->funcs->set_false_color)
-> >>   	debugfs_create_file(...)
-> >> because that requires knowledge only available to intel_fbc.c.
-> >> I'd need to add some kind of intel_fbc_has_false_color() thing
-> >> just for that.
-> >
-> > Not guaranteeing I captured all the nuances here but how about an 
-> > approach similar to selftests? That is, have a separate file for debugfs 
-> > registration and bits (each "module" explicitly registers as in Ville's 
-> > patch), and have the owning "module" include the debugfs part at the end 
-> > of it. That way no exports, or defining too much API, would be needed. 
-> > And not needing common debugfs code to know the guts of any module. 
-> > Benefit of not compiling any of it when !CONFIG_DEBUG_FS is kept (or 
-> > gained, not even sure any more..).
-> 
-> Frankly, I really dislike the "include code" part about selftests...
+The link_status array was not large enough to read the Adjust Request
+Post Cursor2 register. Adjust the size to include it. Found with a
+-Warray-bounds build:
 
-We seem to have gone a bit off track in the discussion here. There
-is no plan to do any kind of "include code" or anything here. All
-I want to do is put the debugfs stuff into the same file as the
-real implementation so that a) no implementation details need to
-leak outside, b) the code gets optimized away when debufs is
-disabled resulting in a smaller binary. Though I don't know if
-anyone seriously compiles w/o debugfs anyway.
+drivers/gpu/drm/drm_dp_helper.c: In function 'drm_dp_get_adjust_request_post_cursor':
+drivers/gpu/drm/drm_dp_helper.c:59:27: error: array subscript 10 is outside array bounds of 'const u8[6]' {aka 'const unsigned char[6]'} [-Werror=array-bounds]
+   59 |         return link_status[r - DP_LANE0_1_STATUS];
+      |                ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/drm_dp_helper.c:147:51: note: while referencing 'link_status'
+  147 | u8 drm_dp_get_adjust_request_post_cursor(const u8 link_status[DP_LINK_STATUS_SIZE],
+      |                                          ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-I guess another benefit is that it's harder to forget to
-update the debugfs code when making changes to the rest of the
-implementation. I've lost count how many times I've forgeotten
-to do that with the debugfs code living in a totally separate
-file.
+Fixes: 79465e0ffeb9 ("drm/dp: Add helper to get post-cursor adjustments")
+Signed-off-by: Kees Cook <keescook@chromium.org>
+---
+v2: Fix missed array size change in intel_dp_check_mst_status()
+---
+ drivers/gpu/drm/i915/display/intel_dp.c |  8 ++++----
+ include/drm/drm_dp_helper.h             | 10 +++++++++-
+ 2 files changed, 13 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 5a8206298691..97367afc7243 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3647,17 +3647,17 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
+ 
+ 	for (;;) {
+ 		/*
+-		 * The +2 is because DP_DPRX_ESI_LEN is 14, but we then
++		 * The +10 is because while DP_DPRX_ESI_LEN is 14, we then
+ 		 * pass in "esi+10" to drm_dp_channel_eq_ok(), which
+-		 * takes a 6-byte array. So we actually need 16 bytes
+-		 * here.
++		 * takes a DP_LINK_STATUS_SIZE array. So we actually need
++		 * 10 bytes more than DP_LINK_STATUS_SIZE.
+ 		 *
+ 		 * Somebody who knows what the limits actually are
+ 		 * should check this, but for now this is at least
+ 		 * harmless and avoids a valid compiler warning about
+ 		 * using more of the array than we have allocated.
+ 		 */
+-		u8 esi[DP_DPRX_ESI_LEN+2] = {};
++		u8 esi[DP_LINK_STATUS_SIZE + 10] = {};
+ 		bool handled;
+ 		int retry;
+ 
+diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+index 472dac376284..277643d2fe2c 100644
+--- a/include/drm/drm_dp_helper.h
++++ b/include/drm/drm_dp_helper.h
+@@ -1517,7 +1517,15 @@ enum drm_dp_phy {
+ #define DP_MST_LOGICAL_PORT_0 8
+ 
+ #define DP_LINK_CONSTANT_N_VALUE 0x8000
+-#define DP_LINK_STATUS_SIZE	   6
++/*
++ * DPCD registers in link_status:
++ * Link Status:		0x202 through 0x204
++ * Sink Status:		0x205
++ * Adjust Request:	0x206 through 0x207
++ * Training Score:	0x208 through 0x20b
++ * AR Post Cursor2:	0x20c
++ */
++#define DP_LINK_STATUS_SIZE	   11
+ bool drm_dp_channel_eq_ok(const u8 link_status[DP_LINK_STATUS_SIZE],
+ 			  int lane_count);
+ bool drm_dp_clock_recovery_ok(const u8 link_status[DP_LINK_STATUS_SIZE],
 -- 
-Ville Syrjälä
-Intel
+2.30.2
+
