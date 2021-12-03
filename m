@@ -2,45 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D7F3467282
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 08:21:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E6F94672A9
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 08:33:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F62D7343E;
-	Fri,  3 Dec 2021 07:21:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 721076FF39;
+	Fri,  3 Dec 2021 07:33:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 553 seconds by postgrey-1.36 at gabe;
- Fri, 03 Dec 2021 07:21:07 UTC
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EC1A73436;
- Fri,  3 Dec 2021 07:21:07 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 0D70A62445;
- Fri,  3 Dec 2021 07:11:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60916C53FC7;
- Fri,  3 Dec 2021 07:11:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1638515512;
- bh=83CYGlqu4IxdxRASAP3V0vFTniV6uzw++7hL/O+6/M0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=BiBjhaMFMXTr8yUd30E6nsfplxjABvl7IKlFzvV5/HAjmRAL8iKhBGupVxzXNVTo0
- jOqXmxMQCMOYsoawohqAxNgqWtK8RkIGAkAAd+KR+iyEHiLsc/hRGO0eV1eTkv3oWR
- JEW4F8wU1v09/Sc0rHQwH87d6EWoTd7DtXn8fcak=
-Date: Fri, 3 Dec 2021 08:11:47 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Message-ID: <YanDM7hD9KucIRq6@kroah.com>
-References: <20211202203400.1208663-1-kuba@kernel.org>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD0956FF39
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Dec 2021 07:33:55 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10186"; a="237155851"
+X-IronPort-AV: E=Sophos;i="5.87,283,1631602800"; d="scan'208";a="237155851"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2021 23:33:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,283,1631602800"; d="scan'208";a="460790527"
+Received: from raviteja-system-product-name.iind.intel.com ([10.145.162.127])
+ by orsmga006.jf.intel.com with ESMTP; 02 Dec 2021 23:33:52 -0800
+From: ravitejax.goud.talla@intel.com
+To: intel-gfx@lists.freedesktop.org,
+ tejaskumarx.surendrakumar.upadhyay@intel.com
+Date: Fri,  3 Dec 2021 13:07:20 +0530
+Message-Id: <20211203073720.3823371-1-ravitejax.goud.talla@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211202203400.1208663-1-kuba@kernel.org>
-Subject: Re: [Intel-gfx] [PATCH bpf v2] treewide: add missing includes
- masked by cgroup -> bpf dependency
+Subject: [Intel-gfx] [v2] drm/i915/adl_p: Fix ddc pin mapping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,42 +42,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, songliubraving@fb.com,
- kafai@fb.com, airlied@linux.ie, linux-pci@vger.kernel.org, ast@kernel.org,
- dri-devel@lists.freedesktop.org, andrii@kernel.org, a-govindraju@ti.com,
- ray.huang@amd.com, sbhatta@marvell.com, robh@kernel.org,
- lorenzo.pieralisi@arm.com, daniel@iogearbox.net,
- krzysztof.kozlowski@canonical.com, john.fastabend@gmail.com,
- hkelam@marvell.com, geert@linux-m68k.org, matthew.auld@intel.com, yhs@fb.com,
- sgoutham@marvell.com, thomas.hellstrom@linux.intel.com, pawell@cadence.com,
- tzimmermann@suse.de, mani@kernel.org, Jani Nikula <jani.nikula@intel.com>,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- mripard@kernel.org, kpsingh@kernel.org, rogerq@kernel.org,
- linux-samsung-soc@vger.kernel.org, bhelgaas@google.com,
- akpm@linux-foundation.org, linux-arm-kernel@lists.infradead.org,
- axboe@kernel.dk, linux-block@vger.kernel.org, SeongJae Park <sj@kernel.org>,
- lima@lists.freedesktop.org, linux-mm@kvack.org, jingoohan1@gmail.com,
- Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
- christian.koenig@amd.com, yuq825@gmail.com, bpf@vger.kernel.org,
- colin.king@intel.com, freedreno@lists.freedesktop.org, gakula@marvell.com
+Cc: ravitejax.goud.talla@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 02, 2021 at 12:34:00PM -0800, Jakub Kicinski wrote:
-> cgroup.h (therefore swap.h, therefore half of the universe)
-> includes bpf.h which in turn includes module.h and slab.h.
-> Since we're about to get rid of that dependency we need
-> to clean things up.
-> 
-> v2: drop the cpu.h include from cacheinfo.h, it's not necessary
-> and it makes riscv sensitive to ordering of include files.
-> 
-> Link: https://lore.kernel.org/all/20211120035253.72074-1-kuba@kernel.org/  # v1
-> Link: https://lore.kernel.org/all/20211120165528.197359-1-kuba@kernel.org/ # cacheinfo discussion
-> Acked-by: Krzysztof Wilczyński <kw@linux.com>
-> Acked-by: Peter Chen <peter.chen@kernel.org>
-> Acked-by: SeongJae Park <sj@kernel.org>
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+From VBT, ddc pin info suggests the following mapping:
+    VBT                                    DRIVER
+    DDI TC1->ddc_pin=3 should translate to PORT_TC1->0x9
+    DDI TC2->ddc_pin=4 should translate to PORT_TC2->0xa
+    DDI TC3->ddc_pin=5 should translate to PORT_TC3->0xb
+    DDI TC4->ddc_pin=6 should translate to PORT_TC4->0xc
+
+Adding pin map to facilitate this translation as we cannot use existing
+icl ddc pin map due to conflict with DDI C and DDI TC1 info.
+
+Bspec:20124
+
+v2:
+  - Changed Author to Tejas Upadhyay
+
+Cc: Clinton Taylor <Clinton.A.Taylor@intel.com>
+Cc: Matt Atwood <matthew.s.atwood@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Acked-by: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Signed-off-by: Raviteja Goud Talla <ravitejax.goud.talla@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c     | 14 +++++++++++++-
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h |  7 ++++++-
+ 2 files changed, 19 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 2b1423a43437..9d989c9f5da4 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -1555,12 +1555,24 @@ static const u8 gen9bc_tgp_ddc_pin_map[] = {
+ 	[DDC_BUS_DDI_D] = GMBUS_PIN_10_TC2_ICP,
+ };
+ 
++static const u8 adlp_ddc_pin_map[] = {
++	[ICL_DDC_BUS_DDI_A] = GMBUS_PIN_1_BXT,
++	[ICL_DDC_BUS_DDI_B] = GMBUS_PIN_2_BXT,
++	[ADLP_DDC_BUS_PORT_TC1] = GMBUS_PIN_9_TC1_ICP,
++	[ADLP_DDC_BUS_PORT_TC2] = GMBUS_PIN_10_TC2_ICP,
++	[ADLP_DDC_BUS_PORT_TC3] = GMBUS_PIN_11_TC3_ICP,
++	[ADLP_DDC_BUS_PORT_TC4] = GMBUS_PIN_12_TC4_ICP,
++};
++
+ static u8 map_ddc_pin(struct drm_i915_private *i915, u8 vbt_pin)
+ {
+ 	const u8 *ddc_pin_map;
+ 	int n_entries;
+ 
+-	if (IS_ALDERLAKE_S(i915)) {
++	if (IS_ALDERLAKE_P(i915)) {
++		ddc_pin_map = adlp_ddc_pin_map;
++		n_entries = ARRAY_SIZE(adlp_ddc_pin_map);
++	} else if (IS_ALDERLAKE_S(i915)) {
+ 		ddc_pin_map = adls_ddc_pin_map;
+ 		n_entries = ARRAY_SIZE(adls_ddc_pin_map);
+ 	} else if (INTEL_PCH_TYPE(i915) >= PCH_DG1) {
+diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+index a2108a8f544d..f043d85ba64d 100644
+--- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
++++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+@@ -330,7 +330,12 @@ enum vbt_gmbus_ddi {
+ 	ADLS_DDC_BUS_PORT_TC1 = 0x2,
+ 	ADLS_DDC_BUS_PORT_TC2,
+ 	ADLS_DDC_BUS_PORT_TC3,
+-	ADLS_DDC_BUS_PORT_TC4
++	ADLS_DDC_BUS_PORT_TC4,
++	ADLP_DDC_BUS_PORT_TC1 = 0x3,
++	ADLP_DDC_BUS_PORT_TC2,
++	ADLP_DDC_BUS_PORT_TC3,
++	ADLP_DDC_BUS_PORT_TC4
++
+ };
+ 
+ #define DP_AUX_A 0x40
+-- 
+2.34.1
+
