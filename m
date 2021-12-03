@@ -2,61 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78AAE4679BC
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 15:50:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 159B64679C3
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 15:52:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8E4F7ABD6;
-	Fri,  3 Dec 2021 14:50:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 117137AC68;
+	Fri,  3 Dec 2021 14:52:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32F607ABD6;
- Fri,  3 Dec 2021 14:50:19 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10186"; a="235718410"
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="235718410"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 06:50:18 -0800
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="597998255"
-Received: from shishpan-mobl2.ccr.corp.intel.com (HELO [10.249.254.149])
- ([10.249.254.149])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 06:50:16 -0800
-Message-ID: <96eca78d-2b92-cce0-0aee-2d5f72c26bdf@linux.intel.com>
-Date: Fri, 3 Dec 2021 15:50:13 +0100
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 203487AC68
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Dec 2021 14:52:43 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10186"; a="223857601"
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="223857601"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 06:52:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="513731752"
+Received: from raviteja-system-product-name.iind.intel.com ([10.145.162.127])
+ by orsmga008.jf.intel.com with ESMTP; 03 Dec 2021 06:52:36 -0800
+From: ravitejax.goud.talla@intel.com
+To: intel-gfx@lists.freedesktop.org,
+ tejaskumarx.surendrakumar.upadhyay@intel.com, hariom.pandey@intel.com
+Date: Fri,  3 Dec 2021 20:26:03 +0530
+Message-Id: <20211203145603.4006937-1-ravitejax.goud.talla@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>
-References: <20211130121936.586031-1-thomas.hellstrom@linux.intel.com>
- <57df8b0b-1d65-155f-a9a6-8073bbd4f28f@linux.intel.com>
- <2551da4d-2e51-cc24-7d4a-84ae00a1547c@amd.com>
- <29d096c91d720fbe5d410124580a02b663155b56.camel@linux.intel.com>
- <250a8e47-2093-1a98-3859-0204ec4e60e6@amd.com>
- <712b54fa1c09ae5cc1d75739ad8a7286f1dae8db.camel@linux.intel.com>
- <49cf2d43-9a8a-7738-0889-7e16b0256249@linux.intel.com>
- <193e36bd-ba64-1358-8178-73ee3afc3c41@amd.com>
- <c9109ec6-4265-ba8f-238f-4c793d076825@shipmail.org>
- <d1ada94c-88d3-d34d-9c51-0d427c3aca06@amd.com>
- <7ef3db03-8ae2-d886-2c39-36f661cac9a6@shipmail.org>
- <4805074d-7039-3eaf-eb5d-5797278b7f31@amd.com>
- <94435e0e-01db-5ae4-e424-64f73a09199f@shipmail.org>
- <a4df4d5f-ea74-8725-aca9-d0edae986e5c@amd.com>
- <fb9f50e2-aeba-6138-0cc0-aed252dc876d@shipmail.org>
- <8a7dbf22-727d-c1ec-1d3f-75e23394fee8@amd.com>
- <d4a9cb5a554ffc3af3d30ecacad6e57533eb7f3b.camel@linux.intel.com>
- <f8f1500c-170d-ccf9-ac2d-1484bbdc587e@amd.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <f8f1500c-170d-ccf9-ac2d-1484bbdc587e@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [RFC PATCH 1/2] dma-fence: Avoid
- establishing a locking order between fence classes
+Subject: [Intel-gfx] [v2] drm/i915/gen11: Moving WAs to
+ icl_gt_workarounds_init()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,46 +43,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linaro-mm-sig@lists.linaro.org, matthew.auld@intel.com
+Cc: ravitejax.goud.talla@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Raviteja Goud Talla <ravitejax.goud.talla@intel.com>
 
-On 12/3/21 15:26, Christian König wrote:
-> [Adding Daniel here as well]
->
-> Am 03.12.21 um 15:18 schrieb Thomas Hellström:
->> [SNIP]
->>> Well that's ok as well. My question is why does this single dma_fence
->>> then shows up in the dma_fence_chain representing the whole
->>> migration?
->> What we'd like to happen during eviction is that we
->>
->> 1) await any exclusive- or moving fences, then schedule the migration
->> blit. The blit manages its own GPU ptes. Results in a single fence.
->> 2) Schedule unbind of any gpu vmas, resulting possibly in multiple
->> fences.
->> 3) Most but not all of the remaining resv shared fences will have been
->> finished in 2) We can't easily tell which so we have a couple of shared
->> fences left.
->
-> Stop, wait a second here. We are going a bit in circles.
->
-> Before you migrate a buffer, you *MUST* wait for all shared fences to 
-> complete. This is documented mandatory DMA-buf behavior.
->
-> Daniel and I have discussed that quite extensively in the last few month.
->
-> So how does it come that you do the blit before all shared fences are 
-> completed?
+Bspec page says "Reset: BUS", Accordingly moving w/a's:
+Wa_1407352427,Wa_1406680159 to proper function icl_gt_workarounds_init()
+Which will resolve guc enabling error
 
-Well we don't currently but wanted to... (I haven't consulted Daniel in 
-the matter, tbh).
+v2:
+  - Previous patch rev2 was created by email client which caused the
+    Build failure, This v2 is to resolve the previous broken series
 
-I was under the impression that all writes would add an exclusive fence 
-to the dma_resv. If that's not the case or this is otherwise against the 
-mandatory DMA-buf bevhavior, we can certainly keep that part as is and 
-that would eliminate 3).
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+Signed-off-by: Raviteja Goud Talla <ravitejax.goud.talla@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-/Thomas
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index c3211325c2d3..3113266c286e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1224,6 +1224,15 @@ icl_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 		    GAMT_CHKN_BIT_REG,
+ 		    GAMT_CHKN_DISABLE_L3_COH_PIPE);
+ 
++	/* Wa_1407352427:icl,ehl */
++	wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
++		    PSDUNIT_CLKGATE_DIS);
++
++	/* Wa_1406680159:icl,ehl */
++	wa_write_or(wal,
++		    SUBSLICE_UNIT_LEVEL_CLKGATE,
++		    GWUNIT_CLKGATE_DIS);
++
+ 	/* Wa_1607087056:icl,ehl,jsl */
+ 	if (IS_ICELAKE(i915) ||
+ 	    IS_JSL_EHL_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+@@ -2269,15 +2278,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE,
+ 			    VSUNIT_CLKGATE_DIS | HSUNIT_CLKGATE_DIS);
+ 
+-		/* Wa_1407352427:icl,ehl */
+-		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
+-			    PSDUNIT_CLKGATE_DIS);
+-
+-		/* Wa_1406680159:icl,ehl */
+-		wa_write_or(wal,
+-			    SUBSLICE_UNIT_LEVEL_CLKGATE,
+-			    GWUNIT_CLKGATE_DIS);
+-
+ 		/*
+ 		 * Wa_1408767742:icl[a2..forever],ehl[all]
+ 		 * Wa_1605460711:icl[a0..c0]
+-- 
+2.34.1
 
