@@ -2,32 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07BC4466E75
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 01:21:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C01C466E80
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Dec 2021 01:33:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E8066E11F;
-	Fri,  3 Dec 2021 00:21:34 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 49D666E11F;
- Fri,  3 Dec 2021 00:21:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 46583AA3D8;
- Fri,  3 Dec 2021 00:21:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Date: Fri, 03 Dec 2021 00:21:33 -0000
-Message-ID: <163849089328.5409.15803924223306338880@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BDA26E049;
+	Fri,  3 Dec 2021 00:33:11 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 064756E045;
+ Fri,  3 Dec 2021 00:33:08 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10186"; a="236691509"
+X-IronPort-AV: E=Sophos;i="5.87,283,1631602800"; d="scan'208";a="236691509"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2021 16:33:08 -0800
+X-IronPort-AV: E=Sophos;i="5.87,283,1631602800"; d="scan'208";a="460682319"
+Received: from huymcao-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.4.213])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2021 16:33:08 -0800
+Date: Thu, 2 Dec 2021 16:33:07 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: John.C.Harrison@intel.com
+Message-ID: <20211203003307.ju75hmimn6sfhfmk@ldmartin-desk2>
 References: <20211203000623.3086309-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20211203000623.3086309-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Assorted_fixes/tweaks_to_GuC_support?=
+ <20211203000623.3086309-5-John.C.Harrison@Intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20211203000623.3086309-5-John.C.Harrison@Intel.com>
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/guc: Don't go bang in GuC log
+ if no GuC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +46,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel-GFX@lists.freedesktop.org, DRI-Devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Assorted fixes/tweaks to GuC support
-URL   : https://patchwork.freedesktop.org/series/97514/
-State : warning
-
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+On Thu, Dec 02, 2021 at 04:06:23PM -0800, John.C.Harrison@Intel.com wrote:
+>From: John Harrison <John.C.Harrison@Intel.com>
+>
+>If the GuC has failed to load for any reason and then the user pokes
+>the debugfs GuC log interface, a BUG and/or null pointer deref can
+>occur. Don't let that happen.
+>
+>Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 
 
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Lucas De Marchi
+
+>---
+> drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c | 4 ++--
+> 1 file changed, 2 insertions(+), 2 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c
+>index 46026c2c1722..8fd068049376 100644
+>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c
+>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c
+>@@ -31,7 +31,7 @@ static int guc_log_level_get(void *data, u64 *val)
+> {
+> 	struct intel_guc_log *log = data;
+>
+>-	if (!intel_guc_is_used(log_to_guc(log)))
+>+	if (!log->vma)
+> 		return -ENODEV;
+>
+> 	*val = intel_guc_log_get_level(log);
+>@@ -43,7 +43,7 @@ static int guc_log_level_set(void *data, u64 val)
+> {
+> 	struct intel_guc_log *log = data;
+>
+>-	if (!intel_guc_is_used(log_to_guc(log)))
+>+	if (!log->vma)
+> 		return -ENODEV;
+>
+> 	return intel_guc_log_set_level(log, val);
+>-- 
+>2.25.1
+>
