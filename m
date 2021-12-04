@@ -1,34 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0038F46814B
-	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 01:31:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8013468194
+	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 01:49:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E089AB595;
-	Sat,  4 Dec 2021 00:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5F0DABA45;
+	Sat,  4 Dec 2021 00:49:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 540607BDB7;
- Sat,  4 Dec 2021 00:30:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 865A1ABA45;
+ Sat,  4 Dec 2021 00:49:15 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 45777AADD5;
- Sat,  4 Dec 2021 00:30:59 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7FCDFA66C8;
+ Sat,  4 Dec 2021 00:49:15 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============3378461232327397441=="
+ boundary="===============6799116170374570639=="
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bruce Chang" <yu.bruce.chang@intel.com>
-Date: Sat, 04 Dec 2021 00:30:59 -0000
-Message-ID: <163857785927.1805.4615484065079484450@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Sat, 04 Dec 2021 00:49:15 -0000
+Message-ID: <163857895549.1803.2572830547443023269@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20211203233057.2854-1-yu.bruce.chang@intel.com>
-In-Reply-To: <20211203233057.2854-1-yu.bruce.chang@intel.com>
+References: <20211203235112.3358-1-matthew.brost@intel.com>
+In-Reply-To: <20211203235112.3358-1-matthew.brost@intel.com>
 Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Follow_up_on_increase_timeout_in_i915=5Fgem?=
- =?utf-8?q?=5Fcontexts_selftests?=
+ =?utf-8?q?/i915=3A_Rollback_seqno_when_request_creation_fails_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,20 +45,20 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3378461232327397441==
+--===============6799116170374570639==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/i915/selftests: Follow up on increase timeout in i915_gem_contexts selftests
-URL   : https://patchwork.freedesktop.org/series/97577/
+Series: drm/i915: Rollback seqno when request creation fails (rev2)
+URL   : https://patchwork.freedesktop.org/series/97562/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10963 -> Patchwork_21755
+CI Bug Log - changes from CI_DRM_10963 -> Patchwork_21756
 ====================================================
 
 Summary
@@ -69,7 +68,7 @@ Summary
 
   No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/index.html
 
 Participating hosts (45 -> 33)
 ------------------------------
@@ -79,7 +78,7 @@ Participating hosts (45 -> 33)
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_21755 that come from known issues:
+  Here are the changes found in Patchwork_21756 that come from known issues:
 
 ### IGT changes ###
 
@@ -87,73 +86,52 @@ Known issues
 
   * igt@amdgpu/amd_basic@semaphore:
     - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +31 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
 
   * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [PASS][2] -> [FAIL][3] ([i915#4547])
+    - fi-skl-6600u:       [PASS][2] -> [INCOMPLETE][3] ([i915#198])
    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-
-  * igt@i915_selftest@live@gt_engines:
-    - fi-rkl-guc:         [PASS][4] -> [INCOMPLETE][5] ([i915#4432])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
 
   * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#4269])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][9] ([i915#3363] / [i915#4312])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-skl-6600u/igt@runner@aborted.html
-    - fi-rkl-guc:         NOTRUN -> [FAIL][10] ([i915#3928] / [i915#4312])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-rkl-guc/igt@runner@aborted.html
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
 
   
 #### Possible fixes ####
 
   * igt@gem_exec_suspend@basic-s3:
-    - fi-bdw-5557u:       [INCOMPLETE][11] ([i915#146]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
+    - fi-bdw-5557u:       [INCOMPLETE][5] ([i915#146]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
 
   
   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
   [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
   [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3928]: https://gitlab.freedesktop.org/drm/intel/issues/3928
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4432]: https://gitlab.freedesktop.org/drm/intel/issues/4432
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
 
 
 Build changes
 -------------
 
-  * Linux: CI_DRM_10963 -> Patchwork_21755
+  * Linux: CI_DRM_10963 -> Patchwork_21756
 
   CI-20190529: 20190529
   CI_DRM_10963: 2b63a468d3e3c264a3d1a4773edfe8785d45d4ec @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_6300: f69bd65fa9f72b7d5e5a5a22981f16d034334761 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21755: 06b07fd47af5e769f56fed3e5727ddb759d70f50 @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_21756: 1cf3b54b7c910952dcd286013db37f0d7b927b21 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 == Linux commits ==
 
-06b07fd47af5 drm/i915/selftests: Follow up on increase timeout in i915_gem_contexts selftests
+1cf3b54b7c91 drm/i915: Rollback seqno when request creation fails
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/index.html
 
---===============3378461232327397441==
+--===============6799116170374570639==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -173,88 +151,65 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftests: Follow up on increase timeout in i915_gem_contexts selftests</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97577/">https://patchwork.freedesktop.org/series/97577/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/i915: Rollback seqno when request creation fails (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97562/">https://patchwork.freedesktop.org/series/97562/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_10963 -&gt; Patchwork_21755</h1>
+    <h1>CI Bug Log - changes from CI_DRM_10963 -&gt; Patchwork_21756</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/index.html</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/index.html</p>
 <h2>Participating hosts (45 -&gt; 33)</h2>
 <p>Missing    (12): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
 <h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21755 that come from known issues:</p>
+<p>Here are the changes found in Patchwork_21756 that come from known issues:</p>
 <h3>IGT changes</h3>
 <h4>Issues hit</h4>
 <ul>
 <li>
 <p>igt@amdgpu/amd_basic@semaphore:</p>
 <ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 similar issues</li>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 similar issues</li>
 </ul>
 </li>
 <li>
 <p>igt@gem_flink_basic@bad-flink:</p>
 <ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4432">i915#4432</a>)</li>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_chamelium@dp-crc-fast:</p>
 <ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
 </ul>
 </li>
 </ul>
 <h4>Possible fixes</h4>
 <ul>
 <li>igt@gem_exec_suspend@basic-s3:<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
 </ul>
 </li>
 </ul>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: CI_DRM_10963 -&gt; Patchwork_21755</li>
+<li>Linux: CI_DRM_10963 -&gt; Patchwork_21756</li>
 </ul>
 <p>CI-20190529: 20190529<br />
   CI_DRM_10963: 2b63a468d3e3c264a3d1a4773edfe8785d45d4ec @ git://anongit.freedesktop.org/gfx-ci/linux<br />
   IGT_6300: f69bd65fa9f72b7d5e5a5a22981f16d034334761 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21755: 06b07fd47af5e769f56fed3e5727ddb759d70f50 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+  Patchwork_21756: 1cf3b54b7c910952dcd286013db37f0d7b927b21 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
 <p>== Linux commits ==</p>
-<p>06b07fd47af5 drm/i915/selftests: Follow up on increase timeout in i915_gem_contexts selftests</p>
+<p>1cf3b54b7c91 drm/i915: Rollback seqno when request creation fails</p>
 
 </body>
 </html>
 
---===============3378461232327397441==--
+--===============6799116170374570639==--
