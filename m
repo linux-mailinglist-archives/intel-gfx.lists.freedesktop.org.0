@@ -1,33 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8013468194
-	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 01:49:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A4DE468195
+	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 01:51:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5F0DABA45;
-	Sat,  4 Dec 2021 00:49:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13500ABABA;
+	Sat,  4 Dec 2021 00:51:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 865A1ABA45;
- Sat,  4 Dec 2021 00:49:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7FCDFA66C8;
- Sat,  4 Dec 2021 00:49:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6799116170374570639=="
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF233ABAB6;
+ Sat,  4 Dec 2021 00:51:29 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="300467392"
+X-IronPort-AV: E=Sophos;i="5.87,286,1631602800"; d="scan'208";a="300467392"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 16:51:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,286,1631602800"; d="scan'208";a="610608615"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+ by orsmga004.jf.intel.com with ESMTP; 03 Dec 2021 16:51:27 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1mtJGw-000IGY-Lz; Sat, 04 Dec 2021 00:51:26 +0000
+Date: Sat, 4 Dec 2021 08:50:58 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <202112040802.QqhQIE5v-lkp@intel.com>
+References: <20211203175910.28516-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Sat, 04 Dec 2021 00:49:15 -0000
-Message-ID: <163857895549.1803.2572830547443023269@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211203235112.3358-1-matthew.brost@intel.com>
-In-Reply-To: <20211203235112.3358-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Rollback_seqno_when_request_creation_fails_=28rev2=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211203175910.28516-1-matthew.brost@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Rollback seqno when request
+ creation fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,176 +49,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: kbuild-all@lists.01.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6799116170374570639==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Matthew,
 
-== Series Details ==
+Thank you for the patch! Yet something to improve:
 
-Series: drm/i915: Rollback seqno when request creation fails (rev2)
-URL   : https://patchwork.freedesktop.org/series/97562/
-State : success
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on drm-tip/drm-tip drm-exynos/exynos-drm-next drm/drm-next tegra-drm/drm/tegra/for-next v5.16-rc3 next-20211203]
+[cannot apply to airlied/drm-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-== Summary ==
+url:    https://github.com/0day-ci/linux/commits/Matthew-Brost/drm-i915-Rollback-seqno-when-request-creation-fails/20211204-020638
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+config: i386-randconfig-m021-20211203 (https://download.01.org/0day-ci/archive/20211204/202112040802.QqhQIE5v-lkp@intel.com/config)
+compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/0day-ci/linux/commit/af590220a3160c7a680487eac25eb2dc24baf42d
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Matthew-Brost/drm-i915-Rollback-seqno-when-request-creation-fails/20211204-020638
+        git checkout af590220a3160c7a680487eac25eb2dc24baf42d
+        # save the config file to linux build tree
+        mkdir build_dir
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
 
-CI Bug Log - changes from CI_DRM_10963 -> Patchwork_21756
-====================================================
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Summary
--------
+All errors (new ones prefixed by >>):
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/index.html
-
-Participating hosts (45 -> 33)
-------------------------------
-
-  Missing    (12): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21756 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +31 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [PASS][2] -> [INCOMPLETE][3] ([i915#198])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-bdw-5557u:       [INCOMPLETE][5] ([i915#146]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
+   drivers/gpu/drm/i915/gt/intel_timeline.c: In function 'intel_timeline_rollback_seqno':
+>> drivers/gpu/drm/i915/gt/intel_timeline.c:306:2: error: implicit declaration of function 'timeline_rollback' [-Werror=implicit-function-declaration]
+     306 |  timeline_rollback(tl);
+         |  ^~~~~~~~~~~~~~~~~
+   cc1: some warnings being treated as errors
 
 
-Build changes
--------------
+vim +/timeline_rollback +306 drivers/gpu/drm/i915/gt/intel_timeline.c
 
-  * Linux: CI_DRM_10963 -> Patchwork_21756
+   303	
+   304	void intel_timeline_rollback_seqno(struct intel_timeline *tl)
+   305	{
+ > 306		timeline_rollback(tl);
+   307	}
+   308	
 
-  CI-20190529: 20190529
-  CI_DRM_10963: 2b63a468d3e3c264a3d1a4773edfe8785d45d4ec @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6300: f69bd65fa9f72b7d5e5a5a22981f16d034334761 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21756: 1cf3b54b7c910952dcd286013db37f0d7b927b21 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1cf3b54b7c91 drm/i915: Rollback seqno when request creation fails
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/index.html
-
---===============6799116170374570639==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Rollback seqno when request creation fails (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97562/">https://patchwork.freedesktop.org/series/97562/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10963 -&gt; Patchwork_21756</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/index.html</p>
-<h2>Participating hosts (45 -&gt; 33)</h2>
-<p>Missing    (12): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21756 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3:<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21756/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10963 -&gt; Patchwork_21756</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10963: 2b63a468d3e3c264a3d1a4773edfe8785d45d4ec @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6300: f69bd65fa9f72b7d5e5a5a22981f16d034334761 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21756: 1cf3b54b7c910952dcd286013db37f0d7b927b21 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>1cf3b54b7c91 drm/i915: Rollback seqno when request creation fails</p>
-
-</body>
-</html>
-
---===============6799116170374570639==--
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
