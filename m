@@ -1,61 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD5A3468148
-	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 01:30:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0038F46814B
+	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 01:31:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35344AB595;
-	Sat,  4 Dec 2021 00:30:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E089AB595;
+	Sat,  4 Dec 2021 00:31:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com
- [IPv6:2607:f8b0:4864:20::102b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB7B9AB71D
- for <intel-gfx@lists.freedesktop.org>; Sat,  4 Dec 2021 00:30:13 +0000 (UTC)
-Received: by mail-pj1-x102b.google.com with SMTP id
- w33-20020a17090a6ba400b001a722a06212so6138136pjj.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 03 Dec 2021 16:30:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=Y4bA6B58sO/DZFiWQPyn2M4tT+W9TdiU/GNQ/jYac3Y=;
- b=dONWm8orH3rHUYSth5Iu/7D5o9GfvJHjytD1XASds1m9DG5Iu2xtV+VIJqFns9+sCW
- gtVXtQ+X75glpuBDyjZuBrz5E2x65R67MRUHyYgMxoRbtj2iT7FB4LVqbxZaCTcsZp/N
- XgqXSY5G2qAHh4XaPeq45yLBcfhCQFiswdF4I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Y4bA6B58sO/DZFiWQPyn2M4tT+W9TdiU/GNQ/jYac3Y=;
- b=m/qkhKoJj0y0L2xrgVd5yczTDzhLwvBSlVM9jBCGkOOaoJb1vaMR1F0EqnpCpp15C6
- pPZsELHjA66YeRpuqEfiM1O8GsA6q0l2zs0WuF5BwcmSI+fB1GE/tsGvq46iY++Pa2VI
- MMIFxtNhb4vtrs0h0OYB3Kd+3OjTBK+fW+T6It5y34bWHiswS+zIrl5fhFuenaZndLOl
- rjwBAXX43bckMeYiWHSZmHWsjCaVJrBaPzBgpsikpaDv6kMXJAdp4Y7oPDY17snNUz4t
- 0hBJ6IIqePFa8Ox1nSemGtZ5neKepxhTWwGofx7i2a9B6LZsbJHMQ/ZkIOWDcXebTbXS
- AFkA==
-X-Gm-Message-State: AOAM5332zVIYcwNGkkl49GSc8AItR7GFbRvtR7yMp5YX1I45r5+Mr6Ts
- FqCNMXMDWo0+Ic6ebFFCYt8qFw==
-X-Google-Smtp-Source: ABdhPJy5+D2oCiE3ykyx5Czt8xcCI64YJaODeOVQrz0mW/Nu4udeXpuxcyGClFdtOCvXH6jCy9Bo8w==
-X-Received: by 2002:a17:90b:2251:: with SMTP id
- hk17mr18109616pjb.31.1638577813403; 
- Fri, 03 Dec 2021 16:30:13 -0800 (PST)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id i67sm4367649pfg.189.2021.12.03.16.30.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Dec 2021 16:30:12 -0800 (PST)
-Date: Fri, 3 Dec 2021 16:30:12 -0800
-From: Kees Cook <keescook@chromium.org>
-To: Thierry Reding <treding@nvidia.com>
-Message-ID: <202112031627.C312CCDD0@keescook>
-References: <20211203092517.3592532-1-keescook@chromium.org>
- <Yao3uMmXM+IvrVrF@orome.fritz.box>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 540607BDB7;
+ Sat,  4 Dec 2021 00:30:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 45777AADD5;
+ Sat,  4 Dec 2021 00:30:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3378461232327397441=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yao3uMmXM+IvrVrF@orome.fritz.box>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/dp: Actually read Adjust Request
- Post Cursor2 register
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bruce Chang" <yu.bruce.chang@intel.com>
+Date: Sat, 04 Dec 2021 00:30:59 -0000
+Message-ID: <163857785927.1805.4615484065079484450@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211203233057.2854-1-yu.bruce.chang@intel.com>
+In-Reply-To: <20211203233057.2854-1-yu.bruce.chang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Follow_up_on_increase_timeout_in_i915=5Fgem?=
+ =?utf-8?q?=5Fcontexts_selftests?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,59 +41,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- intel-gfx@lists.freedesktop.org, linux-hardening@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 03, 2021 at 04:28:56PM +0100, Thierry Reding wrote:
-> On Fri, Dec 03, 2021 at 01:25:17AM -0800, Kees Cook wrote:
-> > The link_status array was not large enough to read the Adjust Request
-> > Post Cursor2 register. Adjust the size to include it. Found with a
-> > -Warray-bounds build:
-> > 
-> > drivers/gpu/drm/drm_dp_helper.c: In function 'drm_dp_get_adjust_request_post_cursor':
-> > drivers/gpu/drm/drm_dp_helper.c:59:27: error: array subscript 10 is outside array bounds of 'const u8[6]' {aka 'const unsigned char[6]'} [-Werror=array-bounds]
-> >    59 |         return link_status[r - DP_LANE0_1_STATUS];
-> >       |                ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
-> > drivers/gpu/drm/drm_dp_helper.c:147:51: note: while referencing 'link_status'
-> >   147 | u8 drm_dp_get_adjust_request_post_cursor(const u8 link_status[DP_LINK_STATUS_SIZE],
-> >       |                                          ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > 
-> > Fixes: 79465e0ffeb9 ("drm/dp: Add helper to get post-cursor adjustments")
-> > Signed-off-by: Kees Cook <keescook@chromium.org>
-> > ---
-> > v2: Fix missed array size change in intel_dp_check_mst_status()
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c |  8 ++++----
-> >  include/drm/drm_dp_helper.h             | 10 +++++++++-
-> >  2 files changed, 13 insertions(+), 5 deletions(-)
-> 
-> This sounds very familiar and I vaguely recall typing up a patch like
-> that a long time ago. But I obviously failed because that never seems
-> to have made it upstream.
-> 
-> Or perhaps I'm misremembering and was thinking about this instead:
-> 
-> 	https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/338590/
+--===============3378461232327397441==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Oh! Yeah, that's the same thing. Looks like that never made its way
-upstream. :(
+== Series Details ==
 
-> 
-> Bonus points for adding that comment with background information on why
-> we need this.
+Series: drm/i915/selftests: Follow up on increase timeout in i915_gem_contexts selftests
+URL   : https://patchwork.freedesktop.org/series/97577/
+State : success
 
-Thanks! Yeah, I needed to really convince myself everything added up and
-made sense, and figured I should try to capture that research. ;)
+== Summary ==
 
-> Reviewed-by: Thierry Reding <treding@nvidia.com>
+CI Bug Log - changes from CI_DRM_10963 -> Patchwork_21755
+====================================================
 
-Thanks!
+Summary
+-------
 
--Kees
+  **SUCCESS**
 
--- 
-Kees Cook
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/index.html
+
+Participating hosts (45 -> 33)
+------------------------------
+
+  Missing    (12): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus bat-jsl-2 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21755 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +31 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@gem_flink_basic@bad-flink:
+    - fi-skl-6600u:       [PASS][2] -> [FAIL][3] ([i915#4547])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+
+  * igt@i915_selftest@live@gt_engines:
+    - fi-rkl-guc:         [PASS][4] -> [INCOMPLETE][5] ([i915#4432])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#4269])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][9] ([i915#3363] / [i915#4312])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-skl-6600u/igt@runner@aborted.html
+    - fi-rkl-guc:         NOTRUN -> [FAIL][10] ([i915#3928] / [i915#4312])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-rkl-guc/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-bdw-5557u:       [INCOMPLETE][11] ([i915#146]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3928]: https://gitlab.freedesktop.org/drm/intel/issues/3928
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4432]: https://gitlab.freedesktop.org/drm/intel/issues/4432
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10963 -> Patchwork_21755
+
+  CI-20190529: 20190529
+  CI_DRM_10963: 2b63a468d3e3c264a3d1a4773edfe8785d45d4ec @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6300: f69bd65fa9f72b7d5e5a5a22981f16d034334761 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21755: 06b07fd47af5e769f56fed3e5727ddb759d70f50 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+06b07fd47af5 drm/i915/selftests: Follow up on increase timeout in i915_gem_contexts selftests
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/index.html
+
+--===============3378461232327397441==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/selftests: Follow up on increase timeout in i915_gem_contexts selftests</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97577/">https://patchwork.freedesktop.org/series/97577/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10963 -&gt; Patchwork_21755</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/index.html</p>
+<h2>Participating hosts (45 -&gt; 33)</h2>
+<p>Missing    (12): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21755 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_flink_basic@bad-flink:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4432">i915#4432</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3:<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10963/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21755/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10963 -&gt; Patchwork_21755</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10963: 2b63a468d3e3c264a3d1a4773edfe8785d45d4ec @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6300: f69bd65fa9f72b7d5e5a5a22981f16d034334761 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21755: 06b07fd47af5e769f56fed3e5727ddb759d70f50 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>06b07fd47af5 drm/i915/selftests: Follow up on increase timeout in i915_gem_contexts selftests</p>
+
+</body>
+</html>
+
+--===============3378461232327397441==--
