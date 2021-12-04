@@ -1,62 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36CA9468146
-	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 01:29:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD5A3468148
+	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 01:30:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4496B7A41E;
-	Sat,  4 Dec 2021 00:29:27 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE6E37A41E
- for <Intel-gfx@lists.freedesktop.org>; Sat,  4 Dec 2021 00:29:25 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="223951803"
-X-IronPort-AV: E=Sophos;i="5.87,286,1631602800"; d="scan'208";a="223951803"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 16:29:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; d="scan'208";a="478503446"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga002.jf.intel.com with ESMTP; 03 Dec 2021 16:29:24 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 3 Dec 2021 16:29:24 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 3 Dec 2021 16:29:23 -0800
-Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
- fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.2308.020;
- Fri, 3 Dec 2021 16:29:23 -0800
-From: "Bloomfield, Jon" <jon.bloomfield@intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Taylor, Clinton A"
- <clinton.a.taylor@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/adlp: Remove require_force_probe
- protection
-Thread-Index: AQHX2nwWOJlwZLejFUGjqTJPd265/qwHROwAgBpM0GA=
-Date: Sat, 4 Dec 2021 00:28:30 +0000
-Deferred-Delivery: Sat, 4 Dec 2021 00:27:43 +0000
-Message-ID: <b5c438f0b05b41ffbd9dbfcba26467d9@intel.com>
-References: <20211115235345.32206-1-clinton.a.taylor@intel.com>
- <YZQxlF5B0kcqzJvO@intel.com>
-In-Reply-To: <YZQxlF5B0kcqzJvO@intel.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35344AB595;
+	Sat,  4 Dec 2021 00:30:14 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com
+ [IPv6:2607:f8b0:4864:20::102b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB7B9AB71D
+ for <intel-gfx@lists.freedesktop.org>; Sat,  4 Dec 2021 00:30:13 +0000 (UTC)
+Received: by mail-pj1-x102b.google.com with SMTP id
+ w33-20020a17090a6ba400b001a722a06212so6138136pjj.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Dec 2021 16:30:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=Y4bA6B58sO/DZFiWQPyn2M4tT+W9TdiU/GNQ/jYac3Y=;
+ b=dONWm8orH3rHUYSth5Iu/7D5o9GfvJHjytD1XASds1m9DG5Iu2xtV+VIJqFns9+sCW
+ gtVXtQ+X75glpuBDyjZuBrz5E2x65R67MRUHyYgMxoRbtj2iT7FB4LVqbxZaCTcsZp/N
+ XgqXSY5G2qAHh4XaPeq45yLBcfhCQFiswdF4I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=Y4bA6B58sO/DZFiWQPyn2M4tT+W9TdiU/GNQ/jYac3Y=;
+ b=m/qkhKoJj0y0L2xrgVd5yczTDzhLwvBSlVM9jBCGkOOaoJb1vaMR1F0EqnpCpp15C6
+ pPZsELHjA66YeRpuqEfiM1O8GsA6q0l2zs0WuF5BwcmSI+fB1GE/tsGvq46iY++Pa2VI
+ MMIFxtNhb4vtrs0h0OYB3Kd+3OjTBK+fW+T6It5y34bWHiswS+zIrl5fhFuenaZndLOl
+ rjwBAXX43bckMeYiWHSZmHWsjCaVJrBaPzBgpsikpaDv6kMXJAdp4Y7oPDY17snNUz4t
+ 0hBJ6IIqePFa8Ox1nSemGtZ5neKepxhTWwGofx7i2a9B6LZsbJHMQ/ZkIOWDcXebTbXS
+ AFkA==
+X-Gm-Message-State: AOAM5332zVIYcwNGkkl49GSc8AItR7GFbRvtR7yMp5YX1I45r5+Mr6Ts
+ FqCNMXMDWo0+Ic6ebFFCYt8qFw==
+X-Google-Smtp-Source: ABdhPJy5+D2oCiE3ykyx5Czt8xcCI64YJaODeOVQrz0mW/Nu4udeXpuxcyGClFdtOCvXH6jCy9Bo8w==
+X-Received: by 2002:a17:90b:2251:: with SMTP id
+ hk17mr18109616pjb.31.1638577813403; 
+ Fri, 03 Dec 2021 16:30:13 -0800 (PST)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+ by smtp.gmail.com with ESMTPSA id i67sm4367649pfg.189.2021.12.03.16.30.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 03 Dec 2021 16:30:12 -0800 (PST)
+Date: Fri, 3 Dec 2021 16:30:12 -0800
+From: Kees Cook <keescook@chromium.org>
+To: Thierry Reding <treding@nvidia.com>
+Message-ID: <202112031627.C312CCDD0@keescook>
+References: <20211203092517.3592532-1-keescook@chromium.org>
+ <Yao3uMmXM+IvrVrF@orome.fritz.box>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/adlp: Remove require_force_probe
- protection
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yao3uMmXM+IvrVrF@orome.fritz.box>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/dp: Actually read Adjust Request
+ Post Cursor2 register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,71 +68,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>
+Cc: dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
+ Maxime Ripard <mripard@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ intel-gfx@lists.freedesktop.org, linux-hardening@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Assuming the whitespace cleanup requested below is completed:
-
-Acked-by: Jon Bloomfield <jon.bloomfield@intel.com>
-
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> Rodrigo Vivi
-> Sent: Tuesday, November 16, 2021 2:33 PM
-> To: Taylor, Clinton A <clinton.a.taylor@intel.com>
-> Cc: Intel-gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH] drm/i915/adlp: Remove
-> require_force_probe protection
->=20
-> On Mon, Nov 15, 2021 at 03:53:45PM -0800, clinton.a.taylor@intel.com
-> wrote:
-> > From: Clint Taylor <clinton.a.taylor@intel.com>
-> >
-> >     drm/i915/adlp: Remove require_force_probe protection
-> >
-> >     Removing force probe protection from ADL_P platform. Did
-> >     not observe warnings, errors, flickering or any visual
-> >     defects while doing ordinary tasks like browsing and
-> >     editing documents in a two monitor setup.
->=20
-> some strange alignment here... please remove the extra
-> tabs here.
->=20
-> >
-> >     For more info drm-tip idle run results :
-> >     https://intel-gfx-ci.01.org/tree/drm-tip/drmtip.html?
->=20
-> hmm... I could swear that I had seen the ADL-P green there a few
-> days ago as well... But right now I couldn't see ADL-P there...
->=20
-> So that fails on having a *reliable* green CI picture...
-> Any idea why that is down at this moment?
->=20
-> >
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >
-> > Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+On Fri, Dec 03, 2021 at 04:28:56PM +0100, Thierry Reding wrote:
+> On Fri, Dec 03, 2021 at 01:25:17AM -0800, Kees Cook wrote:
+> > The link_status array was not large enough to read the Adjust Request
+> > Post Cursor2 register. Adjust the size to include it. Found with a
+> > -Warray-bounds build:
+> > 
+> > drivers/gpu/drm/drm_dp_helper.c: In function 'drm_dp_get_adjust_request_post_cursor':
+> > drivers/gpu/drm/drm_dp_helper.c:59:27: error: array subscript 10 is outside array bounds of 'const u8[6]' {aka 'const unsigned char[6]'} [-Werror=array-bounds]
+> >    59 |         return link_status[r - DP_LANE0_1_STATUS];
+> >       |                ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+> > drivers/gpu/drm/drm_dp_helper.c:147:51: note: while referencing 'link_status'
+> >   147 | u8 drm_dp_get_adjust_request_post_cursor(const u8 link_status[DP_LINK_STATUS_SIZE],
+> >       |                                          ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> > 
+> > Fixes: 79465e0ffeb9 ("drm/dp: Add helper to get post-cursor adjustments")
+> > Signed-off-by: Kees Cook <keescook@chromium.org>
 > > ---
-> >  drivers/gpu/drm/i915/i915_pci.c | 1 -
-> >  1 file changed, 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_pci.c
-> b/drivers/gpu/drm/i915/i915_pci.c
-> > index 4c7fcc5f9a97..af9f4988bd88 100644
-> > --- a/drivers/gpu/drm/i915/i915_pci.c
-> > +++ b/drivers/gpu/drm/i915/i915_pci.c
-> > @@ -970,7 +970,6 @@ static const struct intel_device_info adl_p_info =
-=3D {
-> >  	GEN12_FEATURES,
-> >  	XE_LPD_FEATURES,
-> >  	PLATFORM(INTEL_ALDERLAKE_P),
-> > -	.require_force_probe =3D 1,
-> >  	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) |
-> BIT(TRANSCODER_B) |
-> >  			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |
-> >  			       BIT(TRANSCODER_DSI_0) |
-> BIT(TRANSCODER_DSI_1),
-> > --
-> > 2.33.1
-> >
+> > v2: Fix missed array size change in intel_dp_check_mst_status()
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c |  8 ++++----
+> >  include/drm/drm_dp_helper.h             | 10 +++++++++-
+> >  2 files changed, 13 insertions(+), 5 deletions(-)
+> 
+> This sounds very familiar and I vaguely recall typing up a patch like
+> that a long time ago. But I obviously failed because that never seems
+> to have made it upstream.
+> 
+> Or perhaps I'm misremembering and was thinking about this instead:
+> 
+> 	https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/338590/
+
+Oh! Yeah, that's the same thing. Looks like that never made its way
+upstream. :(
+
+> 
+> Bonus points for adding that comment with background information on why
+> we need this.
+
+Thanks! Yeah, I needed to really convince myself everything added up and
+made sense, and figured I should try to capture that research. ;)
+
+> Reviewed-by: Thierry Reding <treding@nvidia.com>
+
+Thanks!
+
+-Kees
+
+-- 
+Kees Cook
