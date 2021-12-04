@@ -1,42 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A4DE468195
-	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 01:51:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DA724681A6
+	for <lists+intel-gfx@lfdr.de>; Sat,  4 Dec 2021 02:01:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13500ABABA;
-	Sat,  4 Dec 2021 00:51:31 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF233ABAB6;
- Sat,  4 Dec 2021 00:51:29 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="300467392"
-X-IronPort-AV: E=Sophos;i="5.87,286,1631602800"; d="scan'208";a="300467392"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2021 16:51:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,286,1631602800"; d="scan'208";a="610608615"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
- by orsmga004.jf.intel.com with ESMTP; 03 Dec 2021 16:51:27 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1mtJGw-000IGY-Lz; Sat, 04 Dec 2021 00:51:26 +0000
-Date: Sat, 4 Dec 2021 08:50:58 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <202112040802.QqhQIE5v-lkp@intel.com>
-References: <20211203175910.28516-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 916CAABBE7;
+	Sat,  4 Dec 2021 01:01:34 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90C4BABBE7
+ for <Intel-gfx@lists.freedesktop.org>; Sat,  4 Dec 2021 01:01:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="234591025"
+X-IronPort-AV: E=Sophos;i="5.87,286,1631602800"; d="scan'208";a="234591025"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 17:01:32 -0800
+X-IronPort-AV: E=Sophos;i="5.87,286,1631602800"; d="scan'208";a="678297442"
+Received: from amwaterm-mobl1.amr.corp.intel.com (HELO
+ cataylo2-mobl1.intel.com) ([10.255.65.88])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2021 17:01:31 -0800
+From: clinton.a.taylor@intel.com
+To: Intel-gfx@lists.freedesktop.org
+Date: Fri,  3 Dec 2021 17:01:40 -0800
+Message-Id: <20211204010140.22839-1-clinton.a.taylor@intel.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211203175910.28516-1-matthew.brost@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Rollback seqno when request
- creation fails
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/adlp: Remove require_force_probe
+ protection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,55 +43,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matthew,
+From: Clint Taylor <clinton.a.taylor@intel.com>
 
-Thank you for the patch! Yet something to improve:
+Remove force probe protection from ADL_P platform. Did not obsevre
+warnings, errors, flickering or any visual defects while doing ordinary
+tasks like browsing and editing documents in a two monitor setup.
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip drm-exynos/exynos-drm-next drm/drm-next tegra-drm/drm/tegra/for-next v5.16-rc3 next-20211203]
-[cannot apply to airlied/drm-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+For more info drm-tip idle run results :
+https://intel-gfx-ci.01.org/tree/drm-tip/drmtip.html?
 
-url:    https://github.com/0day-ci/linux/commits/Matthew-Brost/drm-i915-Rollback-seqno-when-request-creation-fails/20211204-020638
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: i386-randconfig-m021-20211203 (https://download.01.org/0day-ci/archive/20211204/202112040802.QqhQIE5v-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/0day-ci/linux/commit/af590220a3160c7a680487eac25eb2dc24baf42d
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Matthew-Brost/drm-i915-Rollback-seqno-when-request-creation-fails/20211204-020638
-        git checkout af590220a3160c7a680487eac25eb2dc24baf42d
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   drivers/gpu/drm/i915/gt/intel_timeline.c: In function 'intel_timeline_rollback_seqno':
->> drivers/gpu/drm/i915/gt/intel_timeline.c:306:2: error: implicit declaration of function 'timeline_rollback' [-Werror=implicit-function-declaration]
-     306 |  timeline_rollback(tl);
-         |  ^~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +/timeline_rollback +306 drivers/gpu/drm/i915/gt/intel_timeline.c
-
-   303	
-   304	void intel_timeline_rollback_seqno(struct intel_timeline *tl)
-   305	{
- > 306		timeline_rollback(tl);
-   307	}
-   308	
-
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Acked-by: Jon Bloomfield <jon.bloomfield@intel.com>
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+ drivers/gpu/drm/i915/i915_pci.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index f01cba4ec283..0ba516838b02 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -977,7 +977,6 @@ static const struct intel_device_info adl_p_info = {
+ 	GEN12_FEATURES,
+ 	XE_LPD_FEATURES,
+ 	PLATFORM(INTEL_ALDERLAKE_P),
+-	.require_force_probe = 1,
+ 	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+ 			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |
+ 			       BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),
+-- 
+2.33.1
+
