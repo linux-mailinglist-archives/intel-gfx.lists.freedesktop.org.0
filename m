@@ -2,56 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1004696AF
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Dec 2021 14:18:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB01B469718
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Dec 2021 14:32:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CBB27A551;
-	Mon,  6 Dec 2021 13:18:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B411B7374A;
+	Mon,  6 Dec 2021 13:32:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com
- [IPv6:2607:f8b0:4864:20::f30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF3CC7A550;
- Mon,  6 Dec 2021 13:18:33 +0000 (UTC)
-Received: by mail-qv1-xf30.google.com with SMTP id p3so9765216qvj.9;
- Mon, 06 Dec 2021 05:18:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=QfM6r7Wt9Tj5DOQylxIiCrnk8we9qJZjFbxTCRe5N8g=;
- b=pUc1gFPFaQFVbYToMurfMFG+PXLRppxmJtxwnME6/elUbZrgi5HawGgd48R4WjeGpi
- gTzclBPZHXOYRBOSuXpqQD+q+5IOR74fbKRoiqCGpH4DHp/WDoPeN2csmUiX1G3RNxye
- jkkb0SlixTmADjrnkMK1QFMZbOo7n1cPiVQ+RYCsHCekoaCvLG5XRkY8Q69cFV2dEo03
- 8cHwfYlvcR0kTZ1GN/ufNzdb1o8OH63qdXu4YYCdiQzuKBrxZANPi7Upw73C7svPXtC9
- ZYMQDrK70iW9vXz2mb3M9kt6lX4fkXtIaHSNaKOQdZbAFEHfjmfvpOvcNlQeDrJ084AX
- lOzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=QfM6r7Wt9Tj5DOQylxIiCrnk8we9qJZjFbxTCRe5N8g=;
- b=nDijp//vSHQ/PrKbORVqmDyNh+9IaQ14hfYBWW64YLc/tsISNep/es84vaPgICZLWI
- EhEHIMe33lLLVSeQPpZxaNmlReFt8uCWwBG2p2WtQL1As4msWIy7zkjEDNs0ayVookIB
- X87AlO0R6m5CRBVWP4Kho/xmIXQOdL4ADp6WGaK+BIIVWFtJfoD9vEJJUe/muDw8xOoo
- 8mI+mDLjXcpRsTc+fIpu1X9h1fDzHMLyN4Ktt3GheUYYOGIla7gJoYA8RrCTPoHwYBiX
- X+SFCR0zBTArdVBMT4odaXpwZwdYccLzCuDOb4nmNeXYgK4d+HIWLbhE/hsCT1g21t0V
- c3TA==
-X-Gm-Message-State: AOAM533xRquqgUrgFv5te4zK045pwQ06f5yiLLorHvIPH1DFYA/HzBx2
- wxnpl7rfpD7dkUWZrjauXuUBveQr0irsg3NbSxtMPPaEZgY=
-X-Google-Smtp-Source: ABdhPJz7c7LEIVEFU57L2VkMAzwDatIU9ROvYwekbreTvUydYPInrMLkhy7Y5xvubjoM6QYeHg7kPeTb0wDwfhOh40E=
-X-Received: by 2002:a05:6214:18c7:: with SMTP id
- cy7mr36305584qvb.0.1638796710217; 
- Mon, 06 Dec 2021 05:18:30 -0800 (PST)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ADA46FA9F;
+ Mon,  6 Dec 2021 13:32:26 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10189"; a="237537369"
+X-IronPort-AV: E=Sophos;i="5.87,291,1631602800"; d="scan'208";a="237537369"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2021 05:32:25 -0800
+X-IronPort-AV: E=Sophos;i="5.87,291,1631602800"; d="scan'208";a="514737350"
+Received: from bgodonne-mobl1.amr.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.17.226])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2021 05:32:23 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  6 Dec 2021 13:31:32 +0000
+Message-Id: <20211206133140.3166205-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
- <20211129134735.628712-5-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211129134735.628712-5-maarten.lankhorst@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 6 Dec 2021 13:18:04 +0000
-Message-ID: <CAM0jSHNf84JhZ3j2XawWbnv1Lmrvf0D+PG+U8n3QwZ6NFHozoA@mail.gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v2 04/16] drm/i915: Take object lock in
- i915_ggtt_pin if ww is not set
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/8] DG2 accelerated migration/clearing
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,15 +44,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 29 Nov 2021 at 13:58, Maarten Lankhorst
-<maarten.lankhorst@linux.intel.com> wrote:
->
-> i915_vma_wait_for_bind needs the vma lock held, fix the caller.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Enable accelerated moves and clearing on DG2. On such HW we have minimum page
+size restrictions when accessing LMEM from the GTT, where we now have to use 64K
+GTT pages or larger. With the ppGTT the page-table also has a slightly different
+layout from past generations when using the 64K GTT mode(which is still enabled
+on via some PDE bit), where it is now compacted down to 32 qword entries. Note
+that on discrete the paging structures must also be placed in LMEM, and we need
+to able to modify them via the GTT itself(see patch 7), which is one of the
+complications here.
+
+The series needs to be applied on top of the DG2 enabling branch:
+https://cgit.freedesktop.org/~ramaling/linux/log/?h=dg2_enabling_ww49.3
+
+Matthew Auld (8):
+  drm/i915/migrate: don't check the scratch page
+  drm/i915/migrate: fix offset calculation
+  drm/i915/migrate: fix length calculation
+  drm/i915/selftests: handle object rounding
+  drm/i915/gtt: allow overriding the pt alignment
+  drm/i915/gtt: add xehpsdv_ppgtt_insert_entry
+  drm/i915/migrate: add acceleration support for DG2
+  drm/i915/migrate: turn on acceleration for DG2
+
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c       |  50 +++++-
+ drivers/gpu/drm/i915/gt/intel_gtt.h        |  10 +-
+ drivers/gpu/drm/i915/gt/intel_migrate.c    | 195 ++++++++++++++++-----
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c      |  16 +-
+ drivers/gpu/drm/i915/gt/selftest_migrate.c |   1 +
+ 5 files changed, 221 insertions(+), 51 deletions(-)
+
+-- 
+2.31.1
+
