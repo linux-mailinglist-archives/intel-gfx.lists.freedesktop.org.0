@@ -2,54 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED57146A1E2
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Dec 2021 18:01:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96C7246A285
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Dec 2021 18:11:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9627572E56;
-	Mon,  6 Dec 2021 17:01:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49CCA72E70;
+	Mon,  6 Dec 2021 17:10:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com
- [IPv6:2607:f8b0:4864:20::72a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1AC06FD36;
- Mon,  6 Dec 2021 17:01:13 +0000 (UTC)
-Received: by mail-qk1-x72a.google.com with SMTP id g28so11773022qkk.9;
- Mon, 06 Dec 2021 09:01:13 -0800 (PST)
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com
+ [IPv6:2607:f8b0:4864:20::72d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB2AB72E65;
+ Mon,  6 Dec 2021 17:10:56 +0000 (UTC)
+Received: by mail-qk1-x72d.google.com with SMTP id 132so11815349qkj.11;
+ Mon, 06 Dec 2021 09:10:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=MVwsJYpONmEmVEn0jaYYepe0KfNbDz2OtRqVJGAt+AM=;
- b=eqvsYaH+lCEeKUbMV8eaxilZmR8UWxBmTdrIN4XSbxVTrwGIUCF9pHQcNrcpP7uFv0
- uHPi3pg02YLGyi+vOFobwU2Re/qgNIOmbl1YXpFWQi0fP/Kjoq9Xun5A+fUdvICnYjyi
- RkiyEuhABX3Z9hUKfXl5QXsW8C2Uzs9ICkF9a9nJoejJjDXC67p2JCE5WdQAGp6P2qCR
- XpWhQpGpebzLSlzO6Y+79awEzx0i/crQf5RDWaVnbpCGhxHEefwnrjIXC1BQw2//njGT
- DJ4qP+qAaLw1T9TKauAhBGiEgyihxH5apsYqjzc9Nje2NxNzSkR2arKJgQe7rY+nI4hg
- qIpA==
+ :cc; bh=zjYSXYg470nR7ckqptIrxorwhCDAywKz/IJWQi0knlY=;
+ b=OjDn0B63a1TiKO+9wFFBS+U+DVk8jlVf7A6foGuf+xYa5Pw3ixcinA1Zzm3W4bNlwV
+ hT1hDtZ1WsTOG1kx/tWA20HV0an0gcy6d7WudzDK3JYTvvQlmGdVrWUvBwVcNaUeoXcN
+ h7Kx3LFGbSc5OvEzYiKZ9Xbe8P0RCETS0SbTZrNMfKVju5tvdyb/gDdLyvoqkJoYlhGU
+ lsbt80Reox8aGkZxqBhtOchTU6iO/TLEOv5qlwgL/GH2W7Dprn0zaGuR+DqAslBGMTay
+ bc/q58K3GvaPzCu78CA1cFmAmghlURxdci5Mz5YX9wn7VQHLusdwsOasXwCmMFiXCJA4
+ xYbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=MVwsJYpONmEmVEn0jaYYepe0KfNbDz2OtRqVJGAt+AM=;
- b=qVnUuPC1cp/tWH97nawiM+5qDIfqsuo/rqqturmGVsfvpZvINC3uKC5rW8hJoYR0Pu
- LRpS7g1z4JRp/fmhZHvJurgAQ20UiPAa0LjA4kBD2PEC+lzg9CMEhmH0reWmgSgqAZhO
- SVqYDKU4HZHk4Hon/OsmWEuQmfUg5tUKSh1bYB7yTrHNkmR761CV9apGN3FzfgwleejH
- OUz8LIeZmAk/PIl8PTJehpnP24HhffICA1rIJ7hOXamE2eHcl8qA3IisZXNohBJMwlrI
- 8C3BMC9OdMNITc0dVh3olY7K/dSrRaXsUu1Q9pRbvjTZzJIyuLXXGZKiAlhZ/mKZHfI3
- 8ovA==
-X-Gm-Message-State: AOAM533ZTvtQNcd0B8FUHZ38rk4EjQJLMI5eQq4KIaU7aEeWwqpG/eaz
- VqWmaER7Vmw++hPMVeib/rcHsmYOI5uHXT641ykR1N05gtA=
-X-Google-Smtp-Source: ABdhPJz7cKPFRiGCIfqcoTPlRurmBOTFf3JyU6ipZqkqdiFxSdjFLRMniDx6H+/fd/zFoRUl4JZX5DlzOB3LZ8Tsz6E=
-X-Received: by 2002:a05:620a:2413:: with SMTP id
- d19mr34627680qkn.82.1638810072502; 
- Mon, 06 Dec 2021 09:01:12 -0800 (PST)
+ bh=zjYSXYg470nR7ckqptIrxorwhCDAywKz/IJWQi0knlY=;
+ b=1s+oym8k7aBKSwXgVexS7ueASkbvlG1iBZzXNva9l9uo1WPBYk41lvilJKguy4ozxE
+ HCEP3XYCUiXbnqORpb05G194+kzgibwZ0VzQHt007ShGWRseuVlkK/9iXlnAb5nxdaq1
+ XSgxm7LCDvVPfc+Ei0jI1Hi4F3W3feiBZyCFiFlxpu4cPiJenmgcbPM2P6UH/WYkR2y6
+ 3OUf0Wb6cy5XwZPM8digRX1o91p1Yd1JLKXrdx5Erztpca0U808uAbucLlPRxp6H8wxq
+ 4/B/pKefC1bo/K9cdKmOzt8jHQEg5aHRZyH53HzCGQBJ2GutK5E3iwjI5ZfbVrwU/Xoc
+ C1BA==
+X-Gm-Message-State: AOAM530xWHIsC1UFkjIr1ErEEck59wM1KwozEgiHooY1AVTArcFkbiQK
+ Frr8KGt6NnDpz5jCGVBnY22/sow2RIvIM8Ozi1c=
+X-Google-Smtp-Source: ABdhPJzHc/tptzMUMYRywMiUVFxk7zo+/7BASxQGX8bRB6yZfgx94t5pUJoQ8sia21yooGLIMcF1y0Aq8EhKoRQi9wU=
+X-Received: by 2002:a37:a353:: with SMTP id m80mr35112086qke.7.1638810655968; 
+ Mon, 06 Dec 2021 09:10:55 -0800 (PST)
 MIME-Version: 1.0
 References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
  <20211129134735.628712-4-maarten.lankhorst@linux.intel.com>
- <CAM0jSHPcJJLV7Sx170FWBdGhc1X+bwC=cshP3ndEHYJvZDmMYw@mail.gmail.com>
- <b7fe0261-2528-b862-ec41-eda79a035a94@linux.intel.com>
-In-Reply-To: <b7fe0261-2528-b862-ec41-eda79a035a94@linux.intel.com>
+In-Reply-To: <20211129134735.628712-4-maarten.lankhorst@linux.intel.com>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 6 Dec 2021 17:00:46 +0000
-Message-ID: <CAM0jSHMY0DiPC7R_saw6i-q-YWohyc7UsarwTWmiQ1wbmFfgtw@mail.gmail.com>
+Date: Mon, 6 Dec 2021 17:10:29 +0000
+Message-ID: <CAM0jSHMdahtPqwh559wBNitxm=XBm1Mws6F7UEWVrns2Qtxa1g@mail.gmail.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Subject: Re: [Intel-gfx] [PATCH v2 03/16] drm/i915: Remove pages_mutex and
@@ -71,104 +68,81 @@ Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 6 Dec 2021 at 15:18, Maarten Lankhorst
+On Mon, 29 Nov 2021 at 13:57, Maarten Lankhorst
 <maarten.lankhorst@linux.intel.com> wrote:
 >
-> On 06-12-2021 14:13, Matthew Auld wrote:
-> > On Mon, 29 Nov 2021 at 13:57, Maarten Lankhorst
-> > <maarten.lankhorst@linux.intel.com> wrote:
-> >> Big delta, but boils down to moving set_pages to i915_vma.c, and removing
-> >> the special handling, all callers use the defaults anyway. We only remap
-> >> in ggtt, so default case will fall through.
-> >>
-> >> Because we still don't require locking in i915_vma_unpin(), handle this by
-> >> using xchg in get_pages(), as it's locked with obj->mutex, and cmpxchg in
-> >> unpin, which only fails if we race a against a new pin.
-> >>
-> >> Changes since v1:
-> >> - aliasing gtt sets ZERO_SIZE_PTR, not -ENODEV, remove special case
-> >>   from __i915_vma_get_pages(). (Matt)
-> >>
-> >> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_dpt.c      |   2 -
-> >>  drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |  15 -
-> >>  drivers/gpu/drm/i915/gt/intel_ggtt.c          | 403 ----------------
-> >>  drivers/gpu/drm/i915/gt/intel_gtt.c           |  13 -
-> >>  drivers/gpu/drm/i915/gt/intel_gtt.h           |   7 -
-> >>  drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  12 -
-> >>  drivers/gpu/drm/i915/i915_vma.c               | 444 ++++++++++++++++--
-> >>  drivers/gpu/drm/i915/i915_vma.h               |   3 +
-> >>  drivers/gpu/drm/i915/i915_vma_types.h         |   1 -
-> >>  drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  12 +-
-> >>  drivers/gpu/drm/i915/selftests/mock_gtt.c     |   4 -
-> >>  11 files changed, 424 insertions(+), 492 deletions(-)
-> >>
-> > <snip>
-> >
-> >>  }
-> >> @@ -854,18 +1233,22 @@ static int vma_get_pages(struct i915_vma *vma)
-> >>  static void __vma_put_pages(struct i915_vma *vma, unsigned int count)
-> >>  {
-> >>         /* We allocate under vma_get_pages, so beware the shrinker */
-> >> -       mutex_lock_nested(&vma->pages_mutex, SINGLE_DEPTH_NESTING);
-> >> +       struct sg_table *pages = READ_ONCE(vma->pages);
-> >> +
-> >>         GEM_BUG_ON(atomic_read(&vma->pages_count) < count);
-> >> +
-> >>         if (atomic_sub_return(count, &vma->pages_count) == 0) {
-> > Does this emit a barrier? Or can the READ_ONCE(vma->pages) be moved
-> > past this, and does that matter?
+> Big delta, but boils down to moving set_pages to i915_vma.c, and removing
+> the special handling, all callers use the defaults anyway. We only remap
+> in ggtt, so default case will fall through.
 >
-> It's not that tricky, and only there because we still have to support unlocked until patch 13, patch 15 removes it.
+> Because we still don't require locking in i915_vma_unpin(), handle this by
+> using xchg in get_pages(), as it's locked with obj->mutex, and cmpxchg in
+> unpin, which only fails if we race a against a new pin.
 >
-> From the kernel doc:
+> Changes since v1:
+> - aliasing gtt sets ZERO_SIZE_PTR, not -ENODEV, remove special case
+>   from __i915_vma_get_pages(). (Matt)
 >
->  - RMW operations that have a return value are fully ordered;
->
->  - RMW operations that are conditional are unordered on FAILURE,
->    otherwise the above rules apply.
->
-> so READ_ONCE followed by a bunch of stuff that only happens when cmpxchg is succesful, is ok.
->
-> At the beginning of vma_put_pages(), we hold at least 1 reference to vma->pages, and we assume vma->pages is set to something sane.
->
-> We use READ_ONCE to read vma->pages before decreasing refcount on vma->pages_count, after which we attempt to clear vma->pages.
->
-> HOWEVER, as we are not guaranteed to hold the lock, we are careful. New pages may have been set by __i915_vma_get_pages(), using xchg.
->
-> In that case, we fail, and _get_pages() cleans up instead.
->
-> After that, we drop the reference to the object's page pin, which we needed for the pages != vma->obj->mm.pages comparison.
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Ok, I can buy that.
+<snip>
 
->
-> >> -               vma->ops->clear_pages(vma);
-> >> -               GEM_BUG_ON(vma->pages);
-> >> +               if (pages == cmpxchg(&vma->pages, pages, NULL) &&
-> > try_cmpxchg? Also can pages be NULL here?
->
-> cmpxchg is correct here. We don't need to loop, and only need to try once. The only time we can fail, will happen after at least one get_pages() call, and that would have otherwise freed it for us.
->
-> > As an aside, is it somehow possible to re-order the series or
-> > something to avoid introducing the transient lockless trickery here? I
-> > know by the end of the series this all gets removed, but still just
-> > slightly worried here.
->
-> The locked version would actually be identical in this case.
->
-> I removed the locking because it didn't add anything. The same ops would be required, only with additional locking for something that is using atomic ops for a refcount anyway..
->
->
-> >> +                   pages != vma->obj->mm.pages) {
-> >> +                       sg_free_table(pages);
-> >> +                       kfree(pages);
-> >> +               }
-> >>
-> >>                 i915_gem_object_unpin_pages(vma->obj);
-> >>         }
-> >> -       mutex_unlock(&vma->pages_mutex);
-> >>  }
->
->
+> +static int
+> +__i915_vma_get_pages(struct i915_vma *vma)
+> +{
+> +       struct sg_table *pages;
+> +       int ret;
+> +
+> +       /*
+> +        * The vma->pages are only valid within the lifespan of the borrowed
+> +        * obj->mm.pages. When the obj->mm.pages sg_table is regenerated, so
+> +        * must be the vma->pages. A simple rule is that vma->pages must only
+> +        * be accessed when the obj->mm.pages are pinned.
+> +        */
+> +       GEM_BUG_ON(!i915_gem_object_has_pinned_pages(vma->obj));
+> +
+> +       switch (vma->ggtt_view.type) {
+> +       default:
+> +               GEM_BUG_ON(vma->ggtt_view.type);
+> +               fallthrough;
+> +       case I915_GGTT_VIEW_NORMAL:
+> +               pages = vma->obj->mm.pages;
+> +               break;
+> +
+> +       case I915_GGTT_VIEW_ROTATED:
+> +               pages =
+> +                       intel_rotate_pages(&vma->ggtt_view.rotated, vma->obj);
+> +               break;
+> +
+> +       case I915_GGTT_VIEW_REMAPPED:
+> +               pages =
+> +                       intel_remap_pages(&vma->ggtt_view.remapped, vma->obj);
+> +               break;
+> +
+> +       case I915_GGTT_VIEW_PARTIAL:
+> +               pages = intel_partial_pages(&vma->ggtt_view, vma->obj);
+> +               break;
+> +       }
+> +
+> +       ret = 0;
+> +       if (IS_ERR(pages)) {
+> +               ret = PTR_ERR(pages);
+> +               pages = NULL;
+> +               drm_err(&vma->vm->i915->drm,
+> +                       "Failed to get pages for VMA view type %u (%d)!\n",
+> +                       vma->ggtt_view.type, ret);
+> +       }
+> +
+> +       pages = xchg(&vma->pages, pages);
+> +
+> +       /* did we race against a put_pages? */
+> +       if (pages && pages != vma->obj->mm.pages) {
+> +               sg_free_table(vma->pages);
+> +               kfree(vma->pages);
+
+So should this one rather be:
+
+sg_free_table(pages);
+kfree(pages);
+
+Or am I missing something?
