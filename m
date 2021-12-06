@@ -1,36 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE0A74693F1
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Dec 2021 11:29:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 919224693F2
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Dec 2021 11:29:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D2367AAA4;
-	Mon,  6 Dec 2021 10:22:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 043107BBD4;
+	Mon,  6 Dec 2021 10:22:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7D826F58D
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Dec 2021 05:25:37 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10189"; a="261279898"
-X-IronPort-AV: E=Sophos;i="5.87,290,1631602800"; d="scan'208";a="261279898"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2021 21:25:37 -0800
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D43CB6FEB8
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Dec 2021 08:16:08 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10189"; a="298068333"
+X-IronPort-AV: E=Sophos;i="5.87,290,1631602800"; d="scan'208";a="298068333"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2021 00:16:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,290,1631602800"; d="scan'208";a="501990986"
-Received: from pallavi-nuc8i7beh.iind.intel.com ([10.145.162.8])
- by orsmga007.jf.intel.com with ESMTP; 05 Dec 2021 21:25:35 -0800
-From: Pallavi Mishra <pallavi.mishra@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	thomas.hellstrom@linux.intel.com
-Date: Mon,  6 Dec 2021 10:54:07 +0530
-Message-Id: <20211206052407.84468-1-pallavi.mishra@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="5.87,290,1631602800"; d="scan'208";a="461719086"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by orsmga006.jf.intel.com with ESMTP; 06 Dec 2021 00:16:02 -0800
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  6 Dec 2021 13:40:26 +0530
+Message-Id: <20211206081026.4024401-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Use GEM_BUG_ON for obj ptr NULL
- check
+Subject: [Intel-gfx] [PATCH V2] drm/i915/gt: Use hw_engine_masks as
+ reset_domains
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,63 +42,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pallavi Mishra <pallavi.mishra@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-add GEM_BUG_ON to check for NULL ptr dereferences with
-obj ptr, this will help catch exceptions in CI tests.
+We need a way to reset engines by their reset domains.
+This change sets up way to fetch reset domains of each
+engine globally.
 
-v2 change commit text
+Changes since V1:
+	- Use static reset domain array - Ville and Tvrtko
+	- Use BUG_ON at appropriate place - Tvrtko
 
-Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
+Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c      | 3 +++
- drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 3 ++-
- 2 files changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 32 ++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |  1 +
+ drivers/gpu/drm/i915/gt/intel_reset.c        | 29 ++----------------
+ 3 files changed, 35 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 218a9b3037c7..997fe73c205b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -906,6 +906,8 @@ vm_access_ttm(struct vm_area_struct *area, unsigned long addr,
- 	struct drm_i915_gem_object *obj =
- 		i915_ttm_to_gem(area->vm_private_data);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index f2ccd5b53d42..352254e001b4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -325,6 +325,38 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id,
+ 	engine->id = id;
+ 	engine->legacy_idx = INVALID_ENGINE;
+ 	engine->mask = BIT(id);
++	if (GRAPHICS_VER(gt->i915) >= 11) {
++		static const u32 engine_reset_domains[] = {
++			[RCS0]  = GEN11_GRDOM_RENDER,
++			[BCS0]  = GEN11_GRDOM_BLT,
++			[VCS0]  = GEN11_GRDOM_MEDIA,
++			[VCS1]  = GEN11_GRDOM_MEDIA2,
++			[VCS2]  = GEN11_GRDOM_MEDIA3,
++			[VCS3]  = GEN11_GRDOM_MEDIA4,
++			[VCS4]  = GEN11_GRDOM_MEDIA5,
++			[VCS5]  = GEN11_GRDOM_MEDIA6,
++			[VCS6]  = GEN11_GRDOM_MEDIA7,
++			[VCS7]  = GEN11_GRDOM_MEDIA8,
++			[VECS0] = GEN11_GRDOM_VECS,
++			[VECS1] = GEN11_GRDOM_VECS2,
++			[VECS2] = GEN11_GRDOM_VECS3,
++			[VECS3] = GEN11_GRDOM_VECS4,
++		};
++		GEM_BUG_ON(id >= ARRAY_SIZE(engine_reset_domains) ||
++			   !engine_reset_domains[id]);
++		engine->reset_domain = engine_reset_domains[id];
++	} else {
++		static const u32 engine_reset_domains[] = {
++			[RCS0]  = GEN6_GRDOM_RENDER,
++			[BCS0]  = GEN6_GRDOM_BLT,
++			[VCS0]  = GEN6_GRDOM_MEDIA,
++			[VCS1]  = GEN8_GRDOM_MEDIA2,
++			[VECS0] = GEN6_GRDOM_VECS,
++		};
++		GEM_BUG_ON(id >= ARRAY_SIZE(engine_reset_domains) ||
++			   !engine_reset_domains[id]);
++		engine->reset_domain = engine_reset_domains[id];
++	}
+ 	engine->i915 = i915;
+ 	engine->gt = gt;
+ 	engine->uncore = gt->uncore;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 5732e0d71513..36365bdbe1ee 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -318,6 +318,7 @@ struct intel_engine_cs {
+ 	unsigned int guc_id;
  
-+	GEM_BUG_ON(!obj);
-+
- 	if (i915_gem_object_is_readonly(obj) && write)
- 		return -EACCES;
- 
-@@ -966,6 +968,7 @@ static const struct drm_i915_gem_object_ops i915_gem_ttm_obj_ops = {
- void i915_ttm_bo_destroy(struct ttm_buffer_object *bo)
+ 	intel_engine_mask_t mask;
++	u32 reset_domain;
+ 	/**
+ 	 * @logical_mask: logical mask of engine, reported to user space via
+ 	 * query IOCTL and used to communicate with the GuC in logical space.
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index 0fbd6dbadce7..63199f0550e6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -297,13 +297,6 @@ static int gen6_reset_engines(struct intel_gt *gt,
+ 			      intel_engine_mask_t engine_mask,
+ 			      unsigned int retry)
  {
- 	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
-+	GEM_BUG_ON(!obj);
+-	static const u32 hw_engine_mask[] = {
+-		[RCS0]  = GEN6_GRDOM_RENDER,
+-		[BCS0]  = GEN6_GRDOM_BLT,
+-		[VCS0]  = GEN6_GRDOM_MEDIA,
+-		[VCS1]  = GEN8_GRDOM_MEDIA2,
+-		[VECS0] = GEN6_GRDOM_VECS,
+-	};
+ 	struct intel_engine_cs *engine;
+ 	u32 hw_mask;
  
- 	i915_gem_object_release_memory_region(obj);
- 	mutex_destroy(&obj->ttm.get_io_page.lock);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-index 80df9f592407..2b684903a9f5 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-@@ -371,6 +371,7 @@ int i915_ttm_move_notify(struct ttm_buffer_object *bo)
- 	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
- 	int ret;
+@@ -314,8 +307,7 @@ static int gen6_reset_engines(struct intel_gt *gt,
  
-+	GEM_BUG_ON(!obj);
- 	ret = i915_gem_object_unbind(obj, I915_GEM_OBJECT_UNBIND_ACTIVE);
- 	if (ret)
- 		return ret;
-@@ -506,7 +507,7 @@ static void i915_ttm_memcpy_init(struct i915_ttm_memcpy_arg *arg,
+ 		hw_mask = 0;
+ 		for_each_engine_masked(engine, gt, engine_mask, tmp) {
+-			GEM_BUG_ON(engine->id >= ARRAY_SIZE(hw_engine_mask));
+-			hw_mask |= hw_engine_mask[engine->id];
++			hw_mask |= engine->reset_domain;
+ 		}
+ 	}
  
- 	dst_reg = i915_ttm_region(bo->bdev, dst_mem->mem_type);
- 	src_reg = i915_ttm_region(bo->bdev, bo->resource->mem_type);
--	GEM_BUG_ON(!dst_reg || !src_reg);
-+	GEM_BUG_ON(!dst_reg || !src_reg || !obj);
- 
- 	arg->dst_iter = !i915_ttm_cpu_maps_iomem(dst_mem) ?
- 		ttm_kmap_iter_tt_init(&arg->_dst_iter.tt, dst_ttm) :
+@@ -492,22 +484,6 @@ static int gen11_reset_engines(struct intel_gt *gt,
+ 			       intel_engine_mask_t engine_mask,
+ 			       unsigned int retry)
+ {
+-	static const u32 hw_engine_mask[] = {
+-		[RCS0]  = GEN11_GRDOM_RENDER,
+-		[BCS0]  = GEN11_GRDOM_BLT,
+-		[VCS0]  = GEN11_GRDOM_MEDIA,
+-		[VCS1]  = GEN11_GRDOM_MEDIA2,
+-		[VCS2]  = GEN11_GRDOM_MEDIA3,
+-		[VCS3]  = GEN11_GRDOM_MEDIA4,
+-		[VCS4]  = GEN11_GRDOM_MEDIA5,
+-		[VCS5]  = GEN11_GRDOM_MEDIA6,
+-		[VCS6]  = GEN11_GRDOM_MEDIA7,
+-		[VCS7]  = GEN11_GRDOM_MEDIA8,
+-		[VECS0] = GEN11_GRDOM_VECS,
+-		[VECS1] = GEN11_GRDOM_VECS2,
+-		[VECS2] = GEN11_GRDOM_VECS3,
+-		[VECS3] = GEN11_GRDOM_VECS4,
+-	};
+ 	struct intel_engine_cs *engine;
+ 	intel_engine_mask_t tmp;
+ 	u32 reset_mask, unlock_mask = 0;
+@@ -518,8 +494,7 @@ static int gen11_reset_engines(struct intel_gt *gt,
+ 	} else {
+ 		reset_mask = 0;
+ 		for_each_engine_masked(engine, gt, engine_mask, tmp) {
+-			GEM_BUG_ON(engine->id >= ARRAY_SIZE(hw_engine_mask));
+-			reset_mask |= hw_engine_mask[engine->id];
++			reset_mask |= engine->reset_domain;
+ 			ret = gen11_lock_sfc(engine, &reset_mask, &unlock_mask);
+ 			if (ret)
+ 				goto sfc_unlock;
 -- 
-2.25.1
+2.31.1
 
