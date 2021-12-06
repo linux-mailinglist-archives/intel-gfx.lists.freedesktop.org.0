@@ -1,38 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81A114694FF
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Dec 2021 12:26:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BED7469540
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Dec 2021 12:51:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 879FD73CBD;
-	Mon,  6 Dec 2021 11:26:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12CFB73996;
+	Mon,  6 Dec 2021 11:51:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E94773CBA
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Dec 2021 11:26:19 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10189"; a="224548856"
-X-IronPort-AV: E=Sophos;i="5.87,291,1631602800"; d="scan'208";a="224548856"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2021 03:26:13 -0800
-X-IronPort-AV: E=Sophos;i="5.87,291,1631602800"; d="scan'208";a="678957298"
-Received: from bgodonne-mobl1.amr.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.17.226])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2021 03:26:12 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Dec 2021 11:25:39 +0000
-Message-Id: <20211206112539.3149779-4-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211206112539.3149779-1-matthew.auld@intel.com>
-References: <20211206112539.3149779-1-matthew.auld@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 721DC73996;
+ Mon,  6 Dec 2021 11:51:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 69C0AA0096;
+ Mon,  6 Dec 2021 11:51:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/selftests: handle object rounding
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Date: Mon, 06 Dec 2021 11:51:29 -0000
+Message-ID: <163879148939.15873.10630856816253870768@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211206004901.69729-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20211206004901.69729-1-andi.shyti@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_More_preparation_for_multi_gt_patches_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,33 +40,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ensure we account for any object rounding due to min_page_size
-restrictions.
+== Series Details ==
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_migrate.c | 1 +
- 1 file changed, 1 insertion(+)
+Series: More preparation for multi gt patches (rev5)
+URL   : https://patchwork.freedesktop.org/series/97020/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-index 12ef2837c89b..e21787301bbd 100644
---- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-@@ -49,6 +49,7 @@ static int copy(struct intel_migrate *migrate,
- 	if (IS_ERR(src))
- 		return 0;
- 
-+	sz = src->base.size;
- 	dst = i915_gem_object_create_internal(i915, sz);
- 	if (IS_ERR(dst))
- 		goto err_free_src;
--- 
-2.31.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+664bf127629d drm/i915: Store backpointer to GT in uncore
+6126245f7f9b drm/i915: Introduce to_gt() helper
+85a64d5e3941 drm/i915/display: Use to_gt() helper
+285ede8ab554 drm/i915/gt: Use to_gt() helper
+-:13: WARNING:BAD_SIGN_OFF: Non-standard signature: 'Singed-off-by:' - perhaps 'Signed-off-by:'?
+#13: 
+Singed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 306 lines checked
+5d66c381c586 drm/i915/gem: Use to_gt() helper
+1bce3ff140dd drm/i915/gvt: Use to_gt() helper
+0ec5ef1f0da2 drm/i915/selftests: Use to_gt() helper
+fe75e5f64d63 drm/i915/pxp: Use to_gt() helper
+7922c316658f drm/i915: Use to_gt() helper
+f8c0e8ff2a32 drm/i915: Use to_gt() helper for GGTT accesses
+-:226: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#226: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:323:
++			      (1 + next_prime_number(to_gt(i915)->ggtt->vm.total >> PAGE_SHIFT)) << PAGE_SHIFT);
+
+-:257: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#257: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:460:
++			      (1 + next_prime_number(to_gt(i915)->ggtt->vm.total >> PAGE_SHIFT)) << PAGE_SHIFT);
+
+total: 0 errors, 2 warnings, 0 checks, 494 lines checked
+fb8677e8f722 drm/i915: Rename i915->gt to i915->gt0
+
 
