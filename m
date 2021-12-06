@@ -2,35 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B207E46AB0D
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Dec 2021 22:52:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 461FB46AB0E
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Dec 2021 22:52:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A10B6733BC;
-	Mon,  6 Dec 2021 21:52:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C8F27377F;
+	Mon,  6 Dec 2021 21:52:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94401733BC
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB1E2733BC
  for <intel-gfx@lists.freedesktop.org>; Mon,  6 Dec 2021 21:52:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10190"; a="261477880"
-X-IronPort-AV: E=Sophos;i="5.87,292,1631602800"; d="scan'208";a="261477880"
+X-IronPort-AV: E=McAfee;i="6200,9189,10190"; a="261477881"
+X-IronPort-AV: E=Sophos;i="5.87,292,1631602800"; d="scan'208";a="261477881"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Dec 2021 13:52:49 -0800
-X-IronPort-AV: E=Sophos;i="5.87,292,1631602800"; d="scan'208";a="514940156"
+X-IronPort-AV: E=Sophos;i="5.87,292,1631602800"; d="scan'208";a="514940163"
 Received: from mdfaisal-mobl.amr.corp.intel.com (HELO mvcheng-desk2.intel.com)
  ([10.212.148.159])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2021 13:52:48 -0800
+ 06 Dec 2021 13:52:49 -0800
 From: Michael Cheng <michael.cheng@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Dec 2021 13:52:44 -0800
-Message-Id: <20211206215245.513677-1-michael.cheng@intel.com>
+Date: Mon,  6 Dec 2021 13:52:45 -0800
+Message-Id: <20211206215245.513677-2-michael.cheng@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211206215245.513677-1-michael.cheng@intel.com>
+References: <20211206215245.513677-1-michael.cheng@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 0/1] Introduce new i915 macros for checking
- PTEs
+Subject: [Intel-gfx] [PATCH v6 1/1] drm/i915: Introduce new macros for i915
+ PTE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,31 +50,130 @@ Cc: michael.cheng@intel.com, wayne.boyer@intel.com, jani.nikula@intel.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This series is to introduce new macros generic to i915 for checking 0 and 1
-bits, instead on relying on whats defined by the mmu, since it could
-be different or non-exisitent between different platforms.
+Certain functions within i915 uses macros that are defined for
+specific architectures by the mmu, such as _PAGE_RW and _PAGE_PRESENT
+(Some architectures don't even have these macros defined, like ARM64).
 
-v2: Corrected sender's email.
+Instead of re-using bits defined for the CPU, we should use bits
+defined for i915. This patch introduces two new 64 bit macros,
+GEN8_PAGE_PRESENT and GEN8_PAGE_RW, to check for bits 0 and 1 and, to
+replace all occurrences of _PAGE_RW and _PAGE_PRESENT within i915.
 
-v3: Corrected spelling error.
+v2(Michael Cheng): Use GEN8_ instead of I915_
 
-v4: Clean up a few other macros that are checking 0 and 1 bits.
-Thanks to Lucas De Marchi for suggesting these cleanups.
-
-v5: Remove changes to GEN6_PTE_VALID/GEN6_PDE_VALID and BYT_PTE_WRITEABLE.
-Those macros checks for 32bit PTEs, and our new macro is checking for 64bit.
-
-v6: Use GEN8_* instead of I915_*
-
-Michael Cheng (1):
-  drm/i915: Introduce new macros for i915 PTE
-
+Signed-off-by: Michael Cheng <michael.cheng@intel.com>
+---
  drivers/gpu/drm/i915/gt/gen8_ppgtt.c |  6 +++---
  drivers/gpu/drm/i915/gt/intel_ggtt.c |  2 +-
  drivers/gpu/drm/i915/gt/intel_gtt.h  |  3 +++
  drivers/gpu/drm/i915/gvt/gtt.c       | 12 ++++++------
  4 files changed, 13 insertions(+), 10 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+index 9966e9dc5218..95c02096a61b 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+@@ -18,7 +18,7 @@
+ static u64 gen8_pde_encode(const dma_addr_t addr,
+ 			   const enum i915_cache_level level)
+ {
+-	u64 pde = addr | _PAGE_PRESENT | _PAGE_RW;
++	u64 pde = addr | GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
+ 
+ 	if (level != I915_CACHE_NONE)
+ 		pde |= PPAT_CACHED_PDE;
+@@ -32,10 +32,10 @@ static u64 gen8_pte_encode(dma_addr_t addr,
+ 			   enum i915_cache_level level,
+ 			   u32 flags)
+ {
+-	gen8_pte_t pte = addr | _PAGE_PRESENT | _PAGE_RW;
++	gen8_pte_t pte = addr | GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
+ 
+ 	if (unlikely(flags & PTE_READ_ONLY))
+-		pte &= ~_PAGE_RW;
++		pte &= ~GEN8_PAGE_RW;
+ 
+ 	if (flags & PTE_LM)
+ 		pte |= GEN12_PPGTT_PTE_LM;
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 110d3944f9a2..cbc6d2b1fd9e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -209,7 +209,7 @@ u64 gen8_ggtt_pte_encode(dma_addr_t addr,
+ 			 enum i915_cache_level level,
+ 			 u32 flags)
+ {
+-	gen8_pte_t pte = addr | _PAGE_PRESENT;
++	gen8_pte_t pte = addr | GEN8_PAGE_PRESENT;
+ 
+ 	if (flags & PTE_LM)
+ 		pte |= GEN12_GGTT_PTE_LM;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+index dfeaef680aac..228fbfe33cb7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+@@ -39,6 +39,9 @@
+ 
+ #define NALLOC 3 /* 1 normal, 1 for concurrent threads, 1 for preallocation */
+ 
++#define GEN8_PAGE_PRESENT BIT_ULL(0)
++#define GEN8_PAGE_RW BIT_ULL(1)
++
+ #define I915_GTT_PAGE_SIZE_4K	BIT_ULL(12)
+ #define I915_GTT_PAGE_SIZE_64K	BIT_ULL(16)
+ #define I915_GTT_PAGE_SIZE_2M	BIT_ULL(21)
+diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
+index 53d0cb327539..99d1781fa5f0 100644
+--- a/drivers/gpu/drm/i915/gvt/gtt.c
++++ b/drivers/gpu/drm/i915/gvt/gtt.c
+@@ -446,17 +446,17 @@ static bool gen8_gtt_test_present(struct intel_gvt_gtt_entry *e)
+ 			|| e->type == GTT_TYPE_PPGTT_ROOT_L4_ENTRY)
+ 		return (e->val64 != 0);
+ 	else
+-		return (e->val64 & _PAGE_PRESENT);
++		return (e->val64 & GEN8_PAGE_PRESENT);
+ }
+ 
+ static void gtt_entry_clear_present(struct intel_gvt_gtt_entry *e)
+ {
+-	e->val64 &= ~_PAGE_PRESENT;
++	e->val64 &= ~GEN8_PAGE_PRESENT;
+ }
+ 
+ static void gtt_entry_set_present(struct intel_gvt_gtt_entry *e)
+ {
+-	e->val64 |= _PAGE_PRESENT;
++	e->val64 |= GEN8_PAGE_PRESENT;
+ }
+ 
+ static bool gen8_gtt_test_64k_splited(struct intel_gvt_gtt_entry *e)
+@@ -2439,7 +2439,7 @@ static int alloc_scratch_pages(struct intel_vgpu *vgpu,
+ 		/* The entry parameters like present/writeable/cache type
+ 		 * set to the same as i915's scratch page tree.
+ 		 */
+-		se.val64 |= _PAGE_PRESENT | _PAGE_RW;
++		se.val64 |= GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
+ 		if (type == GTT_TYPE_PPGTT_PDE_PT)
+ 			se.val64 |= PPAT_CACHED;
+ 
+@@ -2896,7 +2896,7 @@ void intel_gvt_restore_ggtt(struct intel_gvt *gvt)
+ 		offset = vgpu_aperture_gmadr_base(vgpu) >> PAGE_SHIFT;
+ 		for (idx = 0; idx < num_low; idx++) {
+ 			pte = mm->ggtt_mm.host_ggtt_aperture[idx];
+-			if (pte & _PAGE_PRESENT)
++			if (pte & GEN8_PAGE_PRESENT)
+ 				write_pte64(vgpu->gvt->gt->ggtt, offset + idx, pte);
+ 		}
+ 
+@@ -2904,7 +2904,7 @@ void intel_gvt_restore_ggtt(struct intel_gvt *gvt)
+ 		offset = vgpu_hidden_gmadr_base(vgpu) >> PAGE_SHIFT;
+ 		for (idx = 0; idx < num_hi; idx++) {
+ 			pte = mm->ggtt_mm.host_ggtt_hidden[idx];
+-			if (pte & _PAGE_PRESENT)
++			if (pte & GEN8_PAGE_PRESENT)
+ 				write_pte64(vgpu->gvt->gt->ggtt, offset + idx, pte);
+ 		}
+ 	}
 -- 
 2.25.1
 
