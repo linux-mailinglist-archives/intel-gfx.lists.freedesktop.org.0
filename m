@@ -1,43 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F7D74693E6
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Dec 2021 11:29:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C61B2469500
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Dec 2021 12:26:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E107973F41;
-	Mon,  6 Dec 2021 10:22:05 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89B0F6E8F3;
- Mon,  6 Dec 2021 08:49:40 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10189"; a="237216485"
-X-IronPort-AV: E=Sophos;i="5.87,291,1631602800"; d="scan'208";a="237216485"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2021 00:49:39 -0800
-X-IronPort-AV: E=Sophos;i="5.87,291,1631602800"; d="scan'208";a="604765678"
-Received: from akerber-mobl.amr.corp.intel.com (HELO [10.212.86.72])
- ([10.212.86.72])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2021 00:49:38 -0800
-Message-ID: <c9f5c2b9-b560-93f1-47e1-a4771111385d@linux.intel.com>
-Date: Mon, 6 Dec 2021 08:49:36 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A7BD73CC5;
+	Mon,  6 Dec 2021 11:26:23 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6137C73CB8
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Dec 2021 11:26:19 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10189"; a="224548849"
+X-IronPort-AV: E=Sophos;i="5.87,291,1631602800"; d="scan'208";a="224548849"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2021 03:26:12 -0800
+X-IronPort-AV: E=Sophos;i="5.87,291,1631602800"; d="scan'208";a="678957277"
+Received: from bgodonne-mobl1.amr.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.17.226])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2021 03:26:08 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  6 Dec 2021 11:25:36 +0000
+Message-Id: <20211206112539.3149779-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-References: <20211203155456.3954189-1-tvrtko.ursulin@linux.intel.com>
- <87k0glup34.wl-ashutosh.dixit@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <87k0glup34.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t] intel-gpu-top: Add support for per
- client stats
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/migrate: don't check the scratch
+ page
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,26 +44,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+The scratch page might not be allocated in LMEM(like on DG2), so instead
+of using that as the deciding factor for where the paging structures
+live, let's just query the pt before mapping it.
 
-On 04/12/2021 01:38, Dixit, Ashutosh wrote:
-> On Fri, 03 Dec 2021 07:54:56 -0800, Tvrtko Ursulin wrote:
->>
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Use the i915 exported data in /proc/<pid>/fdinfo to show GPU utilization
->> per DRM client.
-> 
-> Didn't we just remove it? Adding it back now? Sorry for the probably dumb
-> question :/
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Ramalingam C <ramalingam.c@intel.com>
+Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_migrate.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-Same feature two implementation flavours. :) Removed the version using 
-API removed from i915 back in April (or so), proposing to add a version 
-using different API (https://patchwork.freedesktop.org/series/92574/).
+diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
+index afb1cce9a352..0f94dedc1599 100644
+--- a/drivers/gpu/drm/i915/gt/intel_migrate.c
++++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+@@ -13,7 +13,6 @@
+ 
+ struct insert_pte_data {
+ 	u64 offset;
+-	bool is_lmem;
+ };
+ 
+ #define CHUNK_SZ SZ_8M /* ~1ms at 8GiB/s preemption delay */
+@@ -40,7 +39,7 @@ static void insert_pte(struct i915_address_space *vm,
+ 	struct insert_pte_data *d = data;
+ 
+ 	vm->insert_page(vm, px_dma(pt), d->offset, I915_CACHE_NONE,
+-			d->is_lmem ? PTE_LM : 0);
++			i915_gem_object_is_lmem(pt->base) ? PTE_LM : 0);
+ 	d->offset += PAGE_SIZE;
+ }
+ 
+@@ -134,7 +133,6 @@ static struct i915_address_space *migrate_vm(struct intel_gt *gt)
+ 			goto err_vm;
+ 
+ 		/* Now allow the GPU to rewrite the PTE via its own ppGTT */
+-		d.is_lmem = i915_gem_object_is_lmem(vm->vm.scratch[0]);
+ 		vm->vm.foreach(&vm->vm, base, base + sz, insert_pte, &d);
+ 	}
+ 
+-- 
+2.31.1
 
-Regards,
-
-Tvrtko
