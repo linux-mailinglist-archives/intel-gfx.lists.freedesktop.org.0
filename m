@@ -2,37 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29D6C46BFE6
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 16:51:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B093046C04A
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 17:05:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9FCFEBD24;
-	Tue,  7 Dec 2021 15:51:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBEF872034;
+	Tue,  7 Dec 2021 16:04:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FB3FEBD21
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 15:51:17 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10190"; a="224471675"
-X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="224471675"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2021 07:51:16 -0800
-X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="515326784"
-Received: from dmason-mobl1.amr.corp.intel.com (HELO intel.com)
- ([10.255.33.26])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2021 07:51:15 -0800
-Date: Tue, 7 Dec 2021 10:51:14 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Message-ID: <Ya+C8qlQt+N9y+KZ@intel.com>
-References: <20211206081026.4024401-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com
+ [IPv6:2607:f8b0:4864:20::832])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 019BB72034
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 16:04:56 +0000 (UTC)
+Received: by mail-qt1-x832.google.com with SMTP id z9so14694881qtj.9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Dec 2021 08:04:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=TiZ5qLe+HuMHs9eASHTkzenZJqScE7WpreVBZuR1vJ4=;
+ b=KhtqE4vgWbzFDPZ2vIGNj4ksgbTAUOfRZ2luSAz8kvS8hARUl8M3riVl7bCNPosy3z
+ 2hpeuA2reTIeQ/JZTfgkT4jKZ9x93+o9/QwqICaL8eWDcb98eDBaYRpACLGk3BCUNdJ7
+ QXMw8NMos8nMYFH+bOvCIj6bd2U6FQSJuL7WOcNqRRdmkNH6Vh+vkBfdWBDxbTiazbyB
+ 6GN4yEMVvEIg3xeXl34yROKPKhK5FuWZOwhdlgu2O+mk7hEfWxysGlIM4MVudQvYl67c
+ qy1WQ2gRLCeX2PgDYqSe1n+yV9b8TNXYL5NSfCSq845KWPfsl7Oi08zZFIUP4rZb8gNF
+ Qggw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=TiZ5qLe+HuMHs9eASHTkzenZJqScE7WpreVBZuR1vJ4=;
+ b=5qibsYGEwr+ISb9YpCa0WR6gkBDCQuI1iqhvrx8cOl8YpdW5Tyn/vNEbRgvNCZCeAK
+ sQNOFtw0syl1PsDcpKCtzZZGJ/48/owGTQ7pdObremwwPlu0HW3cNOPVqjplrvoBmjPJ
+ tPmh/cukcMOaM5z8QQoV7NChykM8+JJBRmou3TZ2z1SXgNbDJGDHlwSlkjC8gudKT/F/
+ 1DRK5gPztU9Q9z2kHb3Wt3jiQ4RN86rxj9cULuelU+F+1I/2X0zdAVlTY4KoGjojb3Dm
+ ESwUG/NKprDO5puR9YsAaLL5OHXY9HVLpTpaCbwbMRpPqCPlVq5/BKkLDU1foJjNdFyf
+ BPSw==
+X-Gm-Message-State: AOAM530/5pI3IfRVbSMaEDuzy7JfCHRGPkoE9K9vHyqojb8m25PfODyb
+ B48Vq5s/mzKQpP0Mn7F1emH0GyNYFLqSPDTWWeGLFbE9i8M=
+X-Google-Smtp-Source: ABdhPJxQs2FXsxOtBaloiAw7NL5/OnUY/6k6k7wk/9RyTPUYDt6EWqy9E42tTeraYyVQ7nNJXzd7cDlGoXFxsw3aTZ0=
+X-Received: by 2002:a05:622a:1990:: with SMTP id
+ u16mr49763001qtc.355.1638893096049; 
+ Tue, 07 Dec 2021 08:04:56 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211206081026.4024401-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: Re: [Intel-gfx] [PATCH V2] drm/i915/gt: Use hw_engine_masks as
- reset_domains
+References: <20211207143336.11381-1-ramalingam.c@intel.com>
+In-Reply-To: <20211207143336.11381-1-ramalingam.c@intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 7 Dec 2021 16:04:28 +0000
+Message-ID: <CAM0jSHMGZYr8fsk0k1BCJk-r5hR6bzoB=T1O4UKCbVkUb9GYug@mail.gmail.com>
+To: Ramalingam C <ramalingam.c@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 0/2] Sanity Check for device memory region
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,158 +62,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, Andi <andi.shyti@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 06, 2021 at 01:40:26PM +0530, Tejas Upadhyay wrote:
-> We need a way to reset engines by their reset domains.
-> This change sets up way to fetch reset domains of each
-> engine globally.
-> 
-> Changes since V1:
-> 	- Use static reset domain array - Ville and Tvrtko
-> 	- Use BUG_ON at appropriate place - Tvrtko
-> 
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 32 ++++++++++++++++++++
->  drivers/gpu/drm/i915/gt/intel_engine_types.h |  1 +
->  drivers/gpu/drm/i915/gt/intel_reset.c        | 29 ++----------------
->  3 files changed, 35 insertions(+), 27 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index f2ccd5b53d42..352254e001b4 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -325,6 +325,38 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id,
->  	engine->id = id;
->  	engine->legacy_idx = INVALID_ENGINE;
->  	engine->mask = BIT(id);
-> +	if (GRAPHICS_VER(gt->i915) >= 11) {
-> +		static const u32 engine_reset_domains[] = {
-> +			[RCS0]  = GEN11_GRDOM_RENDER,
-> +			[BCS0]  = GEN11_GRDOM_BLT,
-> +			[VCS0]  = GEN11_GRDOM_MEDIA,
-> +			[VCS1]  = GEN11_GRDOM_MEDIA2,
-> +			[VCS2]  = GEN11_GRDOM_MEDIA3,
-> +			[VCS3]  = GEN11_GRDOM_MEDIA4,
-> +			[VCS4]  = GEN11_GRDOM_MEDIA5,
-> +			[VCS5]  = GEN11_GRDOM_MEDIA6,
-> +			[VCS6]  = GEN11_GRDOM_MEDIA7,
-> +			[VCS7]  = GEN11_GRDOM_MEDIA8,
-> +			[VECS0] = GEN11_GRDOM_VECS,
-> +			[VECS1] = GEN11_GRDOM_VECS2,
-> +			[VECS2] = GEN11_GRDOM_VECS3,
-> +			[VECS3] = GEN11_GRDOM_VECS4,
-> +		};
-> +		GEM_BUG_ON(id >= ARRAY_SIZE(engine_reset_domains) ||
+On Tue, 7 Dec 2021 at 14:34, Ramalingam C <ramalingam.c@intel.com> wrote:
+>
+> Changes for introducing the quick test on the device memory range and
+> also a test of detailed validation for each addr of the range with read
+> and write.
+>
+> Detailed testing is optionally enabled with a modparam i915.memtest=1
 
-> +			   !engine_reset_domains[id]);
+Series is missing Cc: dri-devel
 
-I was worried about this new addition to the check, but apparently
-it works because no Reset domain is == 0....
-Well, not sure if we won't have any in the future, but you
-are right, probably better to protect the current cases than
-wonder about a theoretical future one.
+Also on DG1, CI is apparently spitting out:
 
-> +		engine->reset_domain = engine_reset_domains[id];
-> +	} else {
-> +		static const u32 engine_reset_domains[] = {
-> +			[RCS0]  = GEN6_GRDOM_RENDER,
-> +			[BCS0]  = GEN6_GRDOM_BLT,
-> +			[VCS0]  = GEN6_GRDOM_MEDIA,
-> +			[VCS1]  = GEN8_GRDOM_MEDIA2,
-> +			[VECS0] = GEN6_GRDOM_VECS,
-> +		};
-> +		GEM_BUG_ON(id >= ARRAY_SIZE(engine_reset_domains) ||
-> +			   !engine_reset_domains[id]);
-> +		engine->reset_domain = engine_reset_domains[id];
-> +	}
+<7> [128.605872] i915 0000:03:00.0: [drm:i915_gem_init_stolen [i915]]
+GEN6_STOLEN_RESERVED = 0x00000000ffc00107
+<7> [128.605978] i915 0000:03:00.0: [drm:i915_gem_init_stolen [i915]]
+Memory reserved for graphics device: 65536K, usable: 61440K
+<3> [128.606145] i915 0000:03:00.0: Failed to read back from memory
+region:[mem 0xfc000000-0xffffffff] at [0x00000040fc000000 +
+0x0000000003fff000] for i915_gem_stolen_lmem_setup [i915]; wrote 0,
+read (ff, ff, ff)
+<3> [128.606297] i915 0000:03:00.0: [drm] *ERROR* Failed to setup
+region(-22) type=3
+<3> [128.623091] i915 0000:03:00.0: Device initialization failed (-22)
 
-probably better if we could have a function for this.
-engine->reset_domain = intel_reset_domain()... or something like that...
+So something is busted with stolen-lmem it seems...wonder if that's
+related to the DG2 issue.
 
-but not blocker... the patch looks good to me:
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
->  	engine->i915 = i915;
->  	engine->gt = gt;
->  	engine->uncore = gt->uncore;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> index 5732e0d71513..36365bdbe1ee 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> @@ -318,6 +318,7 @@ struct intel_engine_cs {
->  	unsigned int guc_id;
->  
->  	intel_engine_mask_t mask;
-> +	u32 reset_domain;
->  	/**
->  	 * @logical_mask: logical mask of engine, reported to user space via
->  	 * query IOCTL and used to communicate with the GuC in logical space.
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index 0fbd6dbadce7..63199f0550e6 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -297,13 +297,6 @@ static int gen6_reset_engines(struct intel_gt *gt,
->  			      intel_engine_mask_t engine_mask,
->  			      unsigned int retry)
->  {
-> -	static const u32 hw_engine_mask[] = {
-> -		[RCS0]  = GEN6_GRDOM_RENDER,
-> -		[BCS0]  = GEN6_GRDOM_BLT,
-> -		[VCS0]  = GEN6_GRDOM_MEDIA,
-> -		[VCS1]  = GEN8_GRDOM_MEDIA2,
-> -		[VECS0] = GEN6_GRDOM_VECS,
-> -	};
->  	struct intel_engine_cs *engine;
->  	u32 hw_mask;
->  
-> @@ -314,8 +307,7 @@ static int gen6_reset_engines(struct intel_gt *gt,
->  
->  		hw_mask = 0;
->  		for_each_engine_masked(engine, gt, engine_mask, tmp) {
-> -			GEM_BUG_ON(engine->id >= ARRAY_SIZE(hw_engine_mask));
-> -			hw_mask |= hw_engine_mask[engine->id];
-> +			hw_mask |= engine->reset_domain;
->  		}
->  	}
->  
-> @@ -492,22 +484,6 @@ static int gen11_reset_engines(struct intel_gt *gt,
->  			       intel_engine_mask_t engine_mask,
->  			       unsigned int retry)
->  {
-> -	static const u32 hw_engine_mask[] = {
-> -		[RCS0]  = GEN11_GRDOM_RENDER,
-> -		[BCS0]  = GEN11_GRDOM_BLT,
-> -		[VCS0]  = GEN11_GRDOM_MEDIA,
-> -		[VCS1]  = GEN11_GRDOM_MEDIA2,
-> -		[VCS2]  = GEN11_GRDOM_MEDIA3,
-> -		[VCS3]  = GEN11_GRDOM_MEDIA4,
-> -		[VCS4]  = GEN11_GRDOM_MEDIA5,
-> -		[VCS5]  = GEN11_GRDOM_MEDIA6,
-> -		[VCS6]  = GEN11_GRDOM_MEDIA7,
-> -		[VCS7]  = GEN11_GRDOM_MEDIA8,
-> -		[VECS0] = GEN11_GRDOM_VECS,
-> -		[VECS1] = GEN11_GRDOM_VECS2,
-> -		[VECS2] = GEN11_GRDOM_VECS3,
-> -		[VECS3] = GEN11_GRDOM_VECS4,
-> -	};
->  	struct intel_engine_cs *engine;
->  	intel_engine_mask_t tmp;
->  	u32 reset_mask, unlock_mask = 0;
-> @@ -518,8 +494,7 @@ static int gen11_reset_engines(struct intel_gt *gt,
->  	} else {
->  		reset_mask = 0;
->  		for_each_engine_masked(engine, gt, engine_mask, tmp) {
-> -			GEM_BUG_ON(engine->id >= ARRAY_SIZE(hw_engine_mask));
-> -			reset_mask |= hw_engine_mask[engine->id];
-> +			reset_mask |= engine->reset_domain;
->  			ret = gen11_lock_sfc(engine, &reset_mask, &unlock_mask);
->  			if (ret)
->  				goto sfc_unlock;
-> -- 
-> 2.31.1
-> 
+>
+> Chris Wilson (2):
+>   drm/i915: Sanitycheck device iomem on probe
+>   drm/i915: Test all device memory on probing
+>
+>  drivers/gpu/drm/i915/i915_params.c         |   3 +
+>  drivers/gpu/drm/i915/i915_params.h         |   1 +
+>  drivers/gpu/drm/i915/intel_memory_region.c | 116 +++++++++++++++++++++
+>  3 files changed, 120 insertions(+)
+>
+> --
+> 2.20.1
+>
