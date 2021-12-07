@@ -1,42 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F8E946C498
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 21:26:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DF5E46C49F
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 21:28:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B25A6FAAC;
-	Tue,  7 Dec 2021 20:26:32 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0F8B6E22B;
+	Tue,  7 Dec 2021 20:28:53 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C67F16EB09
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 20:26:30 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="236418645"
-X-IronPort-AV: E=Sophos;i="5.87,295,1631602800"; d="scan'208";a="236418645"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F6166E1BD;
+ Tue,  7 Dec 2021 20:28:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="236419069"
+X-IronPort-AV: E=Sophos;i="5.87,295,1631602800"; d="scan'208";a="236419069"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2021 12:26:14 -0800
+ 07 Dec 2021 12:28:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,295,1631602800"; d="scan'208";a="502747336"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
- by orsmga007.jf.intel.com with ESMTP; 07 Dec 2021 12:26:13 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1muh2S-000Mw0-Bt; Tue, 07 Dec 2021 20:26:12 +0000
-Date: Wed, 8 Dec 2021 04:25:48 +0800
-From: kernel test robot <lkp@intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202112080429.tD0wmi4B-lkp@intel.com>
-References: <20211207110721.30409-3-stanislav.lisovskiy@intel.com>
+X-IronPort-AV: E=Sophos;i="5.87,295,1631602800"; d="scan'208";a="751514362"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by fmsmga005.fm.intel.com with ESMTP; 07 Dec 2021 12:28:50 -0800
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Tue,  7 Dec 2021 12:28:50 -0800
+Message-Id: <20211207202850.274415-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211207110721.30409-3-stanislav.lisovskiy@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Use wm0 only during async
- flips for DG2
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/guc: Request RP0 before loading
+ firmware
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,57 +44,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Stanislav,
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-Thank you for the patch! Yet something to improve:
+By default, GT (and GuC) run at RPn. Requesting for RP0
+before firmware load can speed up DMA and HuC auth as well.
+In addition to writing to 0xA008, we also need to enable
+swreq in 0xA024 so that Punit will pay heed to our request.
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip v5.16-rc4 next-20211207]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Stanislav-Lisovskiy/drm-i915-Pass-plane-to-watermark-calculation-functions/20211207-190910
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20211208/202112080429.tD0wmi4B-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/0day-ci/linux/commit/8c7a53ddec5435d127040d03a1eb073ec71608dc
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Stanislav-Lisovskiy/drm-i915-Pass-plane-to-watermark-calculation-functions/20211207-190910
-        git checkout 8c7a53ddec5435d127040d03a1eb073ec71608dc
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/intel_pm.c:5500:6: error: no previous prototype for 'dg2_async_flip_optimization' [-Werror=missing-prototypes]
-    5500 | bool dg2_async_flip_optimization(struct drm_i915_private *i915,
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: all warnings being treated as errors
-
-
-vim +/dg2_async_flip_optimization +5500 drivers/gpu/drm/i915/intel_pm.c
-
-  5499	
-> 5500	bool dg2_async_flip_optimization(struct drm_i915_private *i915,
-  5501					 const struct intel_crtc_state *crtc_state,
-  5502					 const struct intel_plane *plane)
-  5503	{
-  5504		return DISPLAY_VER(i915) >= 13 &&
-  5505		       crtc_state->uapi.async_flip &&
-  5506		       plane->async_flip;
-  5507	}
-  5508	
-
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+ drivers/gpu/drm/i915/gt/intel_rps.c   | 59 +++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_rps.h   |  2 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c |  6 +++
+ drivers/gpu/drm/i915/i915_reg.h       |  4 ++
+ 4 files changed, 71 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 07ff7ba7b2b7..4f7fe079ed4a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -2226,6 +2226,65 @@ u32 intel_rps_read_state_cap(struct intel_rps *rps)
+ 		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
+ }
+ 
++static void intel_rps_set_manual(struct intel_rps *rps, bool enable)
++{
++	struct intel_uncore *uncore = rps_to_uncore(rps);
++	u32 state = enable ? GEN9_RPSWCTL_ENABLE : GEN9_RPSWCTL_DISABLE;
++
++	if (enable)
++		intel_rps_clear_timer(rps);
++
++	/* Allow punit to process software requests */
++	intel_uncore_write(uncore, GEN6_RP_CONTROL, state);
++
++	if (!enable)
++		intel_rps_set_timer(rps);
++}
++
++void intel_rps_raise_unslice(struct intel_rps *rps)
++{
++	struct intel_uncore *uncore = rps_to_uncore(rps);
++	u32 rp0_unslice_req;
++
++	intel_rps_set_manual(rps, true);
++
++	/* RP limits have not been read yet */
++	if (!rps->rp0_freq)
++		rp0_unslice_req = ((intel_rps_read_state_cap(rps) >> 0)
++				   & 0xff) * GEN9_FREQ_SCALER;
++	else
++		rp0_unslice_req = rps->rp0_freq;
++
++	intel_uncore_write(uncore, GEN6_RPNSWREQ,
++			   ((rp0_unslice_req <<
++			   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
++			   GEN9_IGNORE_SLICE_RATIO));
++
++	intel_rps_set_manual(rps, false);
++}
++
++void intel_rps_lower_unslice(struct intel_rps *rps)
++{
++	struct intel_uncore *uncore = rps_to_uncore(rps);
++	u32 rpn_unslice_req;
++
++	intel_rps_set_manual(rps, true);
++
++	/* RP limits have not been read yet */
++	if (!rps->min_freq)
++		rpn_unslice_req = ((intel_rps_read_state_cap(rps) >> 16)
++				   & 0xff) * GEN9_FREQ_SCALER;
++	else
++		rpn_unslice_req = rps->min_freq;
++
++	intel_uncore_write(uncore, GEN6_RPNSWREQ,
++			   ((rpn_unslice_req <<
++			   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
++			   GEN9_IGNORE_SLICE_RATIO));
++
++	intel_rps_set_manual(rps, false);
++}
++
+ /* External interface for intel_ips.ko */
+ 
+ static struct drm_i915_private __rcu *ips_mchdev;
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+index aee12f37d38a..c6d76a3d1331 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.h
++++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+@@ -45,6 +45,8 @@ u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
+ u32 intel_rps_read_punit_req(struct intel_rps *rps);
+ u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
+ u32 intel_rps_read_state_cap(struct intel_rps *rps);
++void intel_rps_raise_unslice(struct intel_rps *rps);
++void intel_rps_lower_unslice(struct intel_rps *rps);
+ 
+ void gen5_rps_irq_handler(struct intel_rps *rps);
+ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+index 2fef3b0bbe95..ed7180b79a6f 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+@@ -8,6 +8,7 @@
+ #include "intel_guc.h"
+ #include "intel_guc_ads.h"
+ #include "intel_guc_submission.h"
++#include "gt/intel_rps.h"
+ #include "intel_uc.h"
+ 
+ #include "i915_drv.h"
+@@ -462,6 +463,8 @@ static int __uc_init_hw(struct intel_uc *uc)
+ 	else
+ 		attempts = 1;
+ 
++	intel_rps_raise_unslice(&uc_to_gt(uc)->rps);
++
+ 	while (attempts--) {
+ 		/*
+ 		 * Always reset the GuC just before (re)loading, so
+@@ -529,6 +532,9 @@ static int __uc_init_hw(struct intel_uc *uc)
+ err_log_capture:
+ 	__uc_capture_load_err_log(uc);
+ err_out:
++	/* Return GT back to RPn */
++	intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
++
+ 	__uc_sanitize(uc);
+ 
+ 	if (!ret) {
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 3450818802c2..229d33a65891 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -9415,6 +9415,7 @@ enum {
+ #define   GEN6_OFFSET(x)			((x) << 19)
+ #define   GEN6_AGGRESSIVE_TURBO			(0 << 15)
+ #define   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT	23
++#define   GEN9_IGNORE_SLICE_RATIO		(0 << 0)
+ 
+ #define GEN6_RC_VIDEO_FREQ			_MMIO(0xA00C)
+ #define GEN6_RC_CONTROL				_MMIO(0xA090)
+@@ -9450,6 +9451,9 @@ enum {
+ #define   GEN6_RP_UP_BUSY_CONT			(0x4 << 3)
+ #define   GEN6_RP_DOWN_IDLE_AVG			(0x2 << 0)
+ #define   GEN6_RP_DOWN_IDLE_CONT		(0x1 << 0)
++#define   GEN6_RPSWCTL_SHIFT			9
++#define   GEN9_RPSWCTL_ENABLE			(0x2 << GEN6_RPSWCTL_SHIFT)
++#define   GEN9_RPSWCTL_DISABLE			(0x0 << GEN6_RPSWCTL_SHIFT)
+ #define GEN6_RP_UP_THRESHOLD			_MMIO(0xA02C)
+ #define GEN6_RP_DOWN_THRESHOLD			_MMIO(0xA030)
+ #define GEN6_RP_CUR_UP_EI			_MMIO(0xA050)
+-- 
+2.25.1
+
