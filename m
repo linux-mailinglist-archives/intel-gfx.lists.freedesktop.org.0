@@ -1,34 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A77246B14C
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 04:15:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0D0C46B187
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 04:36:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57EB672C6C;
-	Tue,  7 Dec 2021 03:15:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71150739B3;
+	Tue,  7 Dec 2021 03:36:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1B90272C6C;
- Tue,  7 Dec 2021 03:15:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 05C0AAA01E;
- Tue,  7 Dec 2021 03:15:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7820247256294806172=="
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E52BC739B3
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 03:36:40 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10190"; a="298282624"
+X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="298282624"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2021 19:36:40 -0800
+X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="599940325"
+Received: from gangshe-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.113.238])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2021 19:36:39 -0800
+Date: Mon, 6 Dec 2021 19:36:39 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Michael Cheng <michael.cheng@intel.com>
+Message-ID: <20211207033639.2j5vfetcgy5shjhh@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20211206215245.513677-1-michael.cheng@intel.com>
+ <20211206215245.513677-2-michael.cheng@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Madhumitha Tolakanahalli Pradeep"
- <madhumitha.tolakanahalli.pradeep@intel.com>
-Date: Tue, 07 Dec 2021 03:15:08 -0000
-Message-ID: <163884690898.10819.15701175803191784581@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211207023718.322349-1-madhumitha.tolakanahalli.pradeep@intel.com>
-In-Reply-To: <20211207023718.322349-1-madhumitha.tolakanahalli.pradeep@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dmc=3A_Change_DMC_FW_size_on_ADL-P?=
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20211206215245.513677-2-michael.cheng@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v6 1/1] drm/i915: Introduce new macros for
+ i915 PTE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,249 +47,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, siva.mullati@intel.com,
+ intel-gfx@lists.freedesktop.org, wayne.boyer@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7820247256294806172==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Dec 06, 2021 at 01:52:45PM -0800, Michael Cheng wrote:
+>Certain functions within i915 uses macros that are defined for
+>specific architectures by the mmu, such as _PAGE_RW and _PAGE_PRESENT
+>(Some architectures don't even have these macros defined, like ARM64).
+>
+>Instead of re-using bits defined for the CPU, we should use bits
+>defined for i915. This patch introduces two new 64 bit macros,
+>GEN8_PAGE_PRESENT and GEN8_PAGE_RW, to check for bits 0 and 1 and, to
+>replace all occurrences of _PAGE_RW and _PAGE_PRESENT within i915.
+>
+>v2(Michael Cheng): Use GEN8_ instead of I915_
+>
+>Signed-off-by: Michael Cheng <michael.cheng@intel.com>
+>---
+> drivers/gpu/drm/i915/gt/gen8_ppgtt.c |  6 +++---
+> drivers/gpu/drm/i915/gt/intel_ggtt.c |  2 +-
+> drivers/gpu/drm/i915/gt/intel_gtt.h  |  3 +++
+> drivers/gpu/drm/i915/gvt/gtt.c       | 12 ++++++------
+> 4 files changed, 13 insertions(+), 10 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+>index 9966e9dc5218..95c02096a61b 100644
+>--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+>+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+>@@ -18,7 +18,7 @@
+> static u64 gen8_pde_encode(const dma_addr_t addr,
+> 			   const enum i915_cache_level level)
+> {
+>-	u64 pde = addr | _PAGE_PRESENT | _PAGE_RW;
+>+	u64 pde = addr | GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
+>
+> 	if (level != I915_CACHE_NONE)
+> 		pde |= PPAT_CACHED_PDE;
+>@@ -32,10 +32,10 @@ static u64 gen8_pte_encode(dma_addr_t addr,
+> 			   enum i915_cache_level level,
+> 			   u32 flags)
+> {
+>-	gen8_pte_t pte = addr | _PAGE_PRESENT | _PAGE_RW;
+>+	gen8_pte_t pte = addr | GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
+>
+> 	if (unlikely(flags & PTE_READ_ONLY))
+>-		pte &= ~_PAGE_RW;
+>+		pte &= ~GEN8_PAGE_RW;
+>
+> 	if (flags & PTE_LM)
+> 		pte |= GEN12_PPGTT_PTE_LM;
+>diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>index 110d3944f9a2..cbc6d2b1fd9e 100644
+>--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>@@ -209,7 +209,7 @@ u64 gen8_ggtt_pte_encode(dma_addr_t addr,
+> 			 enum i915_cache_level level,
+> 			 u32 flags)
+> {
+>-	gen8_pte_t pte = addr | _PAGE_PRESENT;
+>+	gen8_pte_t pte = addr | GEN8_PAGE_PRESENT;
+>
+> 	if (flags & PTE_LM)
+> 		pte |= GEN12_GGTT_PTE_LM;
+>diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+>index dfeaef680aac..228fbfe33cb7 100644
+>--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
+>+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+>@@ -39,6 +39,9 @@
+>
+> #define NALLOC 3 /* 1 normal, 1 for concurrent threads, 1 for preallocation */
+>
+>+#define GEN8_PAGE_PRESENT BIT_ULL(0)
+>+#define GEN8_PAGE_RW BIT_ULL(1)
 
-== Series Details ==
+ideally this would be together with other GEN8 defines, but this is
+minor.
 
-Series: drm/i915/dmc: Change DMC FW size on ADL-P
-URL   : https://patchwork.freedesktop.org/series/97638/
-State : success
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10965 -> Patchwork_21770
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/index.html
-
-Participating hosts (43 -> 31)
-------------------------------
-
-  Missing    (12): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-kbl-x1275 fi-bdw-samus bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21770 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-bsw-kefka:       NOTRUN -> [SKIP][1] ([fdo#109271]) +35 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@i915_selftest@live@gt_engines:
-    - fi-rkl-guc:         [PASS][3] -> [INCOMPLETE][4] ([i915#4432])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10965/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-bsw-kefka:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-bsw-kefka/igt@kms_chamelium@hdmi-edid-read.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
-    - fi-cfl-8109u:       [PASS][6] -> [DMESG-WARN][7] ([i915#295]) +12 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10965/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-
-  * igt@runner@aborted:
-    - fi-rkl-guc:         NOTRUN -> [FAIL][8] ([i915#3928] / [i915#4312])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-rkl-guc/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-bsw-kefka:       [INCOMPLETE][9] ([i915#2539]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10965/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [FAIL][11] ([i915#1888]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10965/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bsw-nick:        [DMESG-FAIL][13] ([i915#2927] / [i915#3428]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10965/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][15] ([i915#4269]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10965/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2539]: https://gitlab.freedesktop.org/drm/intel/issues/2539
-  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#3928]: https://gitlab.freedesktop.org/drm/intel/issues/3928
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4432]: https://gitlab.freedesktop.org/drm/intel/issues/4432
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10965 -> Patchwork_21770
-
-  CI-20190529: 20190529
-  CI_DRM_10965: e9dedc5d0907d96371774cacca10160a167c5cd2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6300: f69bd65fa9f72b7d5e5a5a22981f16d034334761 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21770: 4fc1192bcc63db5f3beab609667a7b40ae176e54 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4fc1192bcc63 drm/i915/dmc: Change DMC FW size on ADL-P
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/index.html
-
---===============7820247256294806172==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Change DMC FW size on ADL-P</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97638/">https://patchwork.freedesktop.org/series/97638/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10965 -&gt; Patchwork_21770</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/index.html</p>
-<h2>Participating hosts (43 -&gt; 31)</h2>
-<p>Missing    (12): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-kbl-x1275 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21770 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10965/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4432">i915#4432</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-bsw-kefka/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10965/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +12 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10965/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2539">i915#2539</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10965/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10965/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10965/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21770/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10965 -&gt; Patchwork_21770</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10965: e9dedc5d0907d96371774cacca10160a167c5cd2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6300: f69bd65fa9f72b7d5e5a5a22981f16d034334761 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21770: 4fc1192bcc63db5f3beab609667a7b40ae176e54 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>4fc1192bcc63 drm/i915/dmc: Change DMC FW size on ADL-P</p>
-
-</body>
-</html>
-
---===============7820247256294806172==--
+Lucas De Marchi
