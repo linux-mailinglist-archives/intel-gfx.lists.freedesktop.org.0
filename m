@@ -2,39 +2,154 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F23F46C7FA
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 00:04:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D32746C810
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 00:15:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC85E6E0BF;
-	Tue,  7 Dec 2021 23:04:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE16A6E141;
+	Tue,  7 Dec 2021 23:15:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3719B6E0BF
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 23:04:12 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="261777798"
-X-IronPort-AV: E=Sophos;i="5.87,295,1631602800"; d="scan'208";a="261777798"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2021 15:04:11 -0800
-X-IronPort-AV: E=Sophos;i="5.87,295,1631602800"; d="scan'208";a="515854029"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2021 15:04:11 -0800
-Date: Tue, 7 Dec 2021 14:58:46 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Alan Previn <alan.previn.teres.alexis@intel.com>
-Message-ID: <20211207225845.GA17712@jons-linux-dev-box>
-References: <20211122230402.2023576-1-alan.previn.teres.alexis@intel.com>
- <20211122230402.2023576-7-alan.previn.teres.alexis@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF456E0E6;
+ Tue,  7 Dec 2021 23:15:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="218391634"
+X-IronPort-AV: E=Sophos;i="5.87,295,1631602800"; d="scan'208";a="218391634"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2021 15:15:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,295,1631602800"; d="scan'208";a="657943462"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga001.fm.intel.com with ESMTP; 07 Dec 2021 15:15:31 -0800
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 7 Dec 2021 15:15:31 -0800
+Received: from orsmsx604.amr.corp.intel.com (10.22.229.17) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 7 Dec 2021 15:15:31 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20 via Frontend Transport; Tue, 7 Dec 2021 15:15:31 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.104)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.20; Tue, 7 Dec 2021 15:15:30 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=idAjmJmo9qg1pKPJw6DS5cZB16OLh+MH+9uuQU45S2COxXG/JTEmJEvcHeVmUETyhJ1CiRD1HwkYZ05vUJu/16ZfEtyh11NP8wjRZ4btu4gtpOAoAHSjeX19Ipsj4HZb/iAMbdv2Dz7EP9ZuOgtIJcBeeVneHLeKb+2sGXkq0eT+gn/LpPC2xOkLiescNButEHFXARMQ4fiqODAsMX+QV284CN5ws9fmFT83VbyZ+wY1sjO78N4GEN7jwhwW5OlUcjGwP3kDTX6xqkuUgLIFjKO5zDCiGxvuLYOonPUhQLEIyO9Gif2XoYN6a/dCumdQXfJFbnCMt7f6bpRsLL+OLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TP96hbGA1dua38o23LrFY+a+5RswDPm+QXSIa08UGJs=;
+ b=PAIZpOl2Ia76onKfNVqZeOy7qDwV1NgIUQzpxotHpw7uTM3/4JIyTGIgGUYOaMghdrZRU7eqHAF+NcGm8KUWj4dNyFbcKhTyzzIIVmOaA7xQM6OWk+kRgSiX7IN3mTYxRHicRx6CDV2VJ2VbUFVaDP44TF0Oquea8YXX1NPzwD2pEzlj/Z2ZBdaZ1WucPQwAY4jycL4uOpIOj0yJ87PEdCaRg9jpSHegRpxpezHxmVvyRegQH5I2EaGCkzmFPFbATT+1I0CBhciEHD2u8XtruWqn+mO0eeWJxpOjNOFYRTVltUzzmXoqWRGCAG12kBR+wzHnHKtw5Uv1ffFL9lNAvQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TP96hbGA1dua38o23LrFY+a+5RswDPm+QXSIa08UGJs=;
+ b=bVRzHlqS+SHi31WIF1TNaIHDWWZblzj/i14YY8lm5A+2SyPnA2mz7X9AJVrkpVTXe360ltqF+2WqzJcXbN9+Bp7GeZASCnGPybLfb9f161bII0iG5ASZ+A0kWps6uQIAwlpAeY+mBi7z6AGTkXWkTI1mmgy+twqVNrj9ublXK0A=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH0PR11MB5642.namprd11.prod.outlook.com (2603:10b6:510:e5::13)
+ by PH0PR11MB5643.namprd11.prod.outlook.com (2603:10b6:510:d5::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.16; Tue, 7 Dec
+ 2021 23:15:16 +0000
+Received: from PH0PR11MB5642.namprd11.prod.outlook.com
+ ([fe80::d8b9:b1c1:dd29:82e7]) by PH0PR11MB5642.namprd11.prod.outlook.com
+ ([fe80::d8b9:b1c1:dd29:82e7%8]) with mapi id 15.20.4755.021; Tue, 7 Dec 2021
+ 23:15:16 +0000
+Message-ID: <c91e8065-56a6-d758-5089-2405c5841858@intel.com>
+Date: Tue, 7 Dec 2021 15:15:12 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.3.2
+Content-Language: en-GB
+To: Adrian Larumbe <adrian.larumbe@collabora.com>, <daniel@ffwll.ch>,
+ <ramalingam.c@intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>
+References: <20211207175301.321119-1-adrian.larumbe@collabora.com>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <20211207175301.321119-1-adrian.larumbe@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MWHPR11CA0042.namprd11.prod.outlook.com
+ (2603:10b6:300:115::28) To PH0PR11MB5642.namprd11.prod.outlook.com
+ (2603:10b6:510:e5::13)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211122230402.2023576-7-alan.previn.teres.alexis@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [RFC 6/7] drm/i915/guc: Copy new GuC error capture
- logs upon G2H notification.
+Received: from [192.168.1.106] (73.157.192.58) by
+ MWHPR11CA0042.namprd11.prod.outlook.com (2603:10b6:300:115::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.21 via Frontend
+ Transport; Tue, 7 Dec 2021 23:15:15 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 49883992-c62f-435d-829b-08d9b9d76d96
+X-MS-TrafficTypeDiagnostic: PH0PR11MB5643:EE_
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-Microsoft-Antispam-PRVS: <PH0PR11MB56438C701649A310747B1CC6BD6E9@PH0PR11MB5643.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ySbc2bH50fUnjYiseT0Z03IhiNpSU+t1LHmfqryljvUF2Bf7DLOnsC0mX4VpzTPIidfDIscNniVY8DfoGL2oFtqg8sMjtVlmbUDzUeWKJFEaJ/hq/dcPwn+t4QHsT4q9Qj0i6Y7PcPMZkfku1IX1FhVSyl6qaaJsBteoZQy3oqeTVBwK5BHMKqwzUm04rqC+BNUv0PbVtstxSOEAgdC2KxoG61YNM0PsBFVVzYZvZOaC3KkX35Wknyczz+uxE1AZw7UCDK+DYLJS/K0/ELoi5i5Zd5O7ICzdguNLGu81PvXhtA8FhBNOlbvtUbgPCSFTQENbFtPDPpN2eMliSWadblpsy1mOnkuGrGxOXa3yJXXCUU2kbJt6zl/Xf8bvJlignc7AzGbvA0Q8QoN0gsZNtSniYsfX9LwKQ7XO4eoTx1EpOtRIocdnUGlC2i8QJnZ4FTVKxPRr6SV2d5tlR3wkWf4aLbKB7WKrrg/dgltAYXnAn0m/hbUf6faU5fZXHn4Ql+Oj80EqFMeO8i85tDgBiW2tIccxH9m+/rlVxnHIv1jnClqpx4y5S1SKeajWYPerpQPC7mb63NDgTTW+JxaXO6KNfNj19GcrZ5myxlqFjPKt3ZiKeLCiH8s/lcuVbZvhER/wze59DBHzkpAKJwvZUgw2ilXCVrNfgV8LGHVn4oqFJVgAxIjUZ2nn4XRcPre1wbaNQEDFlnhXyfklbLd4i+oswewp8UF/5qvUK7i0rqh3bOPOQCEg6FDNCbt9d6xU
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR11MB5642.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(366004)(31686004)(83380400001)(26005)(31696002)(66476007)(6666004)(66946007)(186003)(2616005)(8676002)(66556008)(6486002)(36756003)(956004)(316002)(4326008)(82960400001)(53546011)(8936002)(38100700002)(86362001)(508600001)(16576012)(5660300002)(2906002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bVZDVFNMMnkrQnFTOXgwWDNSaHBuRnNtZUZVOFlzSExTTmQ2UW1VRmVtQ1gx?=
+ =?utf-8?B?Q0RRekNEZlB3dis5VWY3KzhKZTVuNzRrTnl5dkNzSWZVWGZka2t1NXVRTHhC?=
+ =?utf-8?B?VUtaUlJlQlRFeG96OGJONTRHZXdxWnRoQVRoQzVETisrcmkrRXhaYVRUZDBz?=
+ =?utf-8?B?Qnh6TE5YVmRENkZxNE5nUHo2M0pnS1F5N0o2ZlMvcVJ6TnFwNWJWbFIycVZQ?=
+ =?utf-8?B?Y1FCb2dXVDg5STgwNUxaNW0yMkpsUEY0Unp5MzZZMW5iNE5Vb29rMUN5SHFO?=
+ =?utf-8?B?TzJTWENJTENHdSthUEFWclJzUjA0bWJITU52MnF6WGxSYXhGVXM3Slo4V1NZ?=
+ =?utf-8?B?TFIrN1dOM0dPcjhzd1M4cjNndlFqZkN6NENOdEZwcjJLckZoNFJTOGcwbW9J?=
+ =?utf-8?B?eGZWcEJmMVZGUWVwMEtkaXMvazIvdUJKS2hyd2FHMmN3SnR6YndjY3pDS0dQ?=
+ =?utf-8?B?aWEvK0RJMXRPZWZldGk3Y0QwaDJGNmo3N1AzTGZtK3lHREptazZJSEZtRjQ0?=
+ =?utf-8?B?MjY1ZU1ZeWdiV3dBdkdhNHExSEhIdXQ0WjNtNDRDOEpkcFgyYWpySDZiWGJp?=
+ =?utf-8?B?VisrbUoyZGFudmwvdmMvY2p2czBFNnpDMVRlanNUSVhMWC9rdjBCZTJ3N0o5?=
+ =?utf-8?B?S3hhTUdzVnRlNktoaUp1TEs1dS9PQ2daaUUrMUlrNFU4d0RUV0FrL2pIRFZQ?=
+ =?utf-8?B?d256bHZwVkY2L2p0TjNIdFRmSzIvbDdPZE04VjVEaFpzcklYV1lpdVBzc09s?=
+ =?utf-8?B?SFIvS0FRMjh3aGdVREwwY2NreGw4QWtIUE9yZXZQWTRLV2hQWGZCaW04NHNR?=
+ =?utf-8?B?MkppMkh0WUZFQlgwT2lpczcrajRPak5IL05PQWNiY0dyT2dEWVZ4Y2dySGh1?=
+ =?utf-8?B?YVJ3dUJMdlV1eGRGMnFKTFJSdThBa2xHRTNDRVpPTVJldUl5eWxZL3hLODlO?=
+ =?utf-8?B?TXlCZTJEaUZGSkVGZDBLMDB1YVprN2Y2YVFESjBWZVpXenBTVzU1aUZ0Ymlx?=
+ =?utf-8?B?L0dibFlTbTRWZ2tmdS9Da1YrazVGTUQxdUFCSExlM1dKUUV3MFVkNTNQMXEr?=
+ =?utf-8?B?YWRXMHRYWDF4dllNZzQ3dnVjZUR3QllPT01qQXh0M1ZSenBwelh4dUhTQjh1?=
+ =?utf-8?B?Zkx4aVN6TDhxcGVpZUxQS2JaOGVISEgvY053eDZoNHFTTjFSZUFGSG5kVW9C?=
+ =?utf-8?B?UGVYbW5ZQkl3eWtvWWtVRnVlVlpFTGozS0ExbkgyOVVKcDBHUC9zaGE2OTMy?=
+ =?utf-8?B?VDNRaGQ4bndEYVNkN2VSelkxbElyYXNnMk9JTEtqV1ZqaThzeFlPM3ozYTRO?=
+ =?utf-8?B?WnB6WnpVb1o2aXl3ZXNIMUFIWDVSTmsvU2lVQkZBR0lMNmJKc3ZtZFRpWGlM?=
+ =?utf-8?B?K0hpUHJuQzZ5TVFTM015SDJYdHkrcDk3T0k2Q095alc5SFU4RW03T2NvK09t?=
+ =?utf-8?B?K2RPMHFOclF2MVIyZHI5Z29GYTVxdUxQSjYrOXFMWm9saC9LVHA1WkJXV3ls?=
+ =?utf-8?B?amtmWkl0RVl6TWJxcEtzL3VEbEF1aW5pTXdPOHJrVjVjdTVYQWdJbmYxa1Rz?=
+ =?utf-8?B?dWIzWlNLeGtJaFVkU1duaXh1anVsR3dSZlNJbjdha21YUkJwSVE5VkdYMzAv?=
+ =?utf-8?B?ckJueWNLT2MxeVFVOEhJK3M2YnlzeGpqRTg1d0IvSmI3cHZ6Y0krdDUzMFVa?=
+ =?utf-8?B?aEFuNHR6S0F1RjhhL1Z3WXZXWmNmT0NLZDI5Mm5EdkFMMW9PWkdwejg4cVIv?=
+ =?utf-8?B?Kzl1bGpyanM4aFBENVZNaks0cGV6WUwxVitUdk55Z1F4N09mUi9pWUlLSEd2?=
+ =?utf-8?B?WDdXcDRpcHNTeFd2TFZyRkFJTEtSZzNmQ0l4QXhjUFpYbUpoUjRYUTNRbUJ6?=
+ =?utf-8?B?Wjd0bEs5MU1zMTZXY0tLYTZkVmJUYmRWVnBxL1g3c0RSM3NsYXU4RjNHMWNt?=
+ =?utf-8?B?THdaRDZiNTRDS0tENWRFRTJrSm42SUJZWmNJS2o2TDhiNEg0Q1ozQnFaREph?=
+ =?utf-8?B?anNSQjl2OUprOUlCdnFaM3BwN1JKY0p4anhaSjAwcVY3MVczay9LWFZycVdW?=
+ =?utf-8?B?Yjh5MkxUdlFkbC9BY3M4WS9TN202SGY0TGV3TzFGclgyQURxZlNRUTZ2Umgz?=
+ =?utf-8?B?aWRyTFpNRmdRREViT3VrVFhQNTdoMWpwOGl3cDkrMzlocUhxZC9ZdlF2cDVw?=
+ =?utf-8?B?YnQrSjlYM2NOb0x0R0FUdlJsRWVzTzRzN0tKS001UngybnkwWmdqYXF1OVFJ?=
+ =?utf-8?Q?AaAHmtTQSnCfBHy70qDuyqI9Vl98moEM5aHpkKFRyA=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49883992-c62f-435d-829b-08d9b9d76d96
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5642.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2021 23:15:16.0240 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Sw0I0BPjt0w6owKIkekpaebgeLFEyTTNuXGyeXDRq7gIYlTwxe7WPimp7RY+LLYc5uq1PLOqzLAzcxPPxvQLH/hsXzONXwEdsUYxyEdL6Ds=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5643
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: make GuC FW a requirement for
+ Gen12 and beyond devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,441 +162,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: daniels@collabora.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 22, 2021 at 03:04:01PM -0800, Alan Previn wrote:
-> Upon the G2H Notify-Err-Capture event, queue a worker to make a
-> snapshot of the error state capture logs from the GuC-log buffer
-> (error capture region) into an bigger interim circular buffer store
-> that can be parsed later during gpu coredump printing.
-> 
-> Also, call that worker function directly for the cases where we
-> are resetting GuC submission and need to flush outstanding logs.
-> 
+On 12/7/2021 09:53, Adrian Larumbe wrote:
+> Beginning with DG2, all successive devices will require GuC FW to be
+> present and loaded at probe() time. This change alters error handling in
+> the FW init and load functions so that the driver's probe() function will
+> fail if GuC could not be loaded.
+We still need to load the i915 driver in fall back mode (display but no 
+engines) if the GuC is missing. Otherwise you may have just bricked the 
+user's device.
 
-A couple nits and perhaps race condition. See below.
+Also, we do want to be able to disable the GuC via the enable_guc module 
+parameter.
 
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+John.
+
+
+> Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
 > ---
->  .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   7 +
->  .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 206 ++++++++++++++++++
->  .../gpu/drm/i915/gt/uc/intel_guc_capture.h    |  16 ++
->  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  16 +-
->  drivers/gpu/drm/i915/gt/uc/intel_guc_log.h    |   5 +
->  .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  10 +-
->  6 files changed, 256 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> index 5af03a486a13..c130f465c19a 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> @@ -178,4 +178,11 @@ enum intel_guc_sleep_state_status {
->  #define GUC_LOG_CONTROL_VERBOSITY_MASK	(0xF << GUC_LOG_CONTROL_VERBOSITY_SHIFT)
->  #define GUC_LOG_CONTROL_DEFAULT_LOGGING	(1 << 8)
->  
-> +enum intel_guc_state_capture_event_status {
-> +	INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_SUCCESS = 0x0,
-> +	INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_NOSPACE = 0x1,
-> +};
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.c | 20 ++++++++++++++++----
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.h |  4 ++--
+>   drivers/gpu/drm/i915/i915_gem.c       |  7 ++++++-
+>   3 files changed, 24 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index 7660eba893fa..8b0778b6d9ab 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -277,14 +277,19 @@ static void guc_disable_communication(struct intel_guc *guc)
+>   	drm_dbg(&i915->drm, "GuC communication disabled\n");
+>   }
+>   
+> -static void __uc_fetch_firmwares(struct intel_uc *uc)
+> +static int __uc_fetch_firmwares(struct intel_uc *uc)
+>   {
+> +	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
+>   	int err;
+>   
+>   	GEM_BUG_ON(!intel_uc_wants_guc(uc));
+>   
+>   	err = intel_uc_fw_fetch(&uc->guc.fw);
+>   	if (err) {
+> +		/* GuC is mandatory on Gen12 and beyond */
+> +		if (GRAPHICS_VER(i915) >= 12)
+> +			return err;
 > +
-> +#define INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_MASK      0x1
-> +
->  #endif /* _ABI_GUC_ACTIONS_ABI_H */
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-> index 0cb358a98605..459fe81c77ae 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-> @@ -11,8 +11,11 @@
->  #include "gt/intel_gt.h"
->  #include "gt/intel_lrc_reg.h"
->  
-> +#include <linux/circ_buf.h>
-> +
->  #include "intel_guc_fwif.h"
->  #include "intel_guc_capture.h"
-> +#include "i915_gpu_error.h"
->  
->  /*
->   * Define all device tables of GuC error capture register lists
-> @@ -390,15 +393,218 @@ int intel_guc_capture_output_min_size_est(struct intel_guc *guc)
->  	return (worst_min_size * 3);
->  }
->  
-> +/*
-> + * KMD Init time flows:
-> + * --------------------
-> + *     --> alloc A: GuC input capture regs lists (registered via ADS)
-> + *                  List acquired via intel_guc_capture_list_count + intel_guc_capture_list_init
-> + *                  Size = global-reg-list + (class-reg-list) + (num-instances x instance-reg-list)
-> + *                  Device tables carry: 1x global, 1x per-class, 1x per-instance)
-> + *                  Caller needs to call per-class and per-instance multiplie times
-> + *
-> + *     --> alloc B: GuC output capture buf (registered via guc_init_params(log_param))
-> + *                  Size = #define CAPTURE_BUFFER_SIZE (warns if on too-small)
-> + *                  Note2: 'x 3' to hold multiple capture groups
-> + *
-> + *     --> alloc C: GuC capture interim circular buffer storage in system mem
-> + *                  Size = 'power_of_two(sizeof(B))' as per kernel circular buffer helper
-> + *
-> + * GUC Runtime notify capture:
-> + * --------------------------
-> + *     --> G2H STATE_CAPTURE_NOTIFICATION
-> + *                   L--> intel_guc_capture_store_snapshot
-> + *                        L--> queue(__guc_capture_store_snapshot_work)
-> + *                             Copies from B (head->tail) into C
-> + */
-> +
-> +static void guc_capture_store_insert(struct intel_guc *guc, struct guc_capture_out_store *store,
-> +				     unsigned char *new_data, size_t bytes)
-> +{
-> +	struct drm_i915_private *dev_priv = (guc_to_gt(guc))->i915;
-
-s/dev_priv/i915/
-
-For the whole file.
-
-> +	unsigned char *dst_data = store->addr;
-> +	unsigned long h, t;
-> +	size_t tmp;
-> +
-> +	h = store->head;
-> +	t = store->tail;
-> +	if (CIRC_SPACE(h, t, store->size) >= bytes) {
-> +		while (bytes) {
-> +			tmp = CIRC_SPACE_TO_END(h, t, store->size);
-> +			if (tmp) {
-> +				tmp = tmp < bytes ? tmp : bytes;
-> +				i915_unaligned_memcpy_from_wc(&dst_data[h], new_data, tmp);
-> +				bytes -= tmp;
-> +				new_data += tmp;
-> +				h = (h + tmp) & (store->size - 1);
-> +			} else {
-> +				drm_err(&dev_priv->drm, "circbuf copy-to ptr-corruption!\n");
-> +				break;
-> +			}
-> +		}
-> +		store->head = h;
-> +	} else {
-> +		drm_err(&dev_priv->drm, "GuC capture interim-store insufficient space!\n");
-> +	}
-> +}
-> +
-> +static void __guc_capture_store_snapshot_work(struct intel_guc *guc)
-> +{
-> +	struct drm_i915_private *dev_priv = (guc_to_gt(guc))->i915;
-> +	unsigned int buffer_size, read_offset, write_offset, bytes_to_copy, full_count;
-> +	struct guc_log_buffer_state *log_buf_state;
-> +	struct guc_log_buffer_state log_buf_state_local;
-> +	void *src_data, *dst_data = NULL;
-> +	bool new_overflow;
-> +
-> +	/* Lock to get the pointer to GuC capture-log-buffer-state */
-> +	mutex_lock(&guc->log_state[GUC_CAPTURE_LOG_BUFFER].lock);
-> +	log_buf_state = guc->log.buf_addr +
-> +			(sizeof(struct guc_log_buffer_state) * GUC_CAPTURE_LOG_BUFFER);
-> +	src_data = guc->log.buf_addr + guc_get_log_buffer_offset(GUC_CAPTURE_LOG_BUFFER);
-> +
-> +	/*
-> +	 * Make a copy of the state structure, inside GuC log buffer
-> +	 * (which is uncached mapped), on the stack to avoid reading
-> +	 * from it multiple times.
-> +	 */
-> +	memcpy(&log_buf_state_local, log_buf_state, sizeof(struct guc_log_buffer_state));
-> +	buffer_size = guc_get_log_buffer_size(GUC_CAPTURE_LOG_BUFFER);
-> +	read_offset = log_buf_state_local.read_ptr;
-> +	write_offset = log_buf_state_local.sampled_write_ptr;
-> +	full_count = log_buf_state_local.buffer_full_cnt;
-> +
-> +	/* Bookkeeping stuff */
-> +	guc->log_state[GUC_CAPTURE_LOG_BUFFER].flush += log_buf_state_local.flush_to_file;
-> +	new_overflow = guc_check_log_buf_overflow(guc, &guc->log_state[GUC_CAPTURE_LOG_BUFFER],
-> +						  full_count);
-> +
-> +	/* Update the state of shared log buffer */
-> +	log_buf_state->read_ptr = write_offset;
-> +	log_buf_state->flush_to_file = 0;
-> +
-> +	mutex_unlock(&guc->log_state[GUC_CAPTURE_LOG_BUFFER].lock);
-> +
-> +	dst_data = guc->capture.out_store.addr;
-> +	if (dst_data) {
-> +		mutex_lock(&guc->capture.out_store.lock);
-> +
-> +		/* Now copy the actual logs. */
-> +		if (unlikely(new_overflow)) {
-> +			/* copy the whole buffer in case of overflow */
-> +			read_offset = 0;
-> +			write_offset = buffer_size;
-> +		} else if (unlikely((read_offset > buffer_size) ||
-> +					(write_offset > buffer_size))) {
-
-Odd alignment.
-
-> +			drm_err(&dev_priv->drm, "invalid GuC log capture buffer state!\n");
-> +			/* copy whole buffer as offsets are unreliable */
-> +			read_offset = 0;
-> +			write_offset = buffer_size;
-> +		}
-> +
-> +		/* first copy from the tail end of the GuC log capture buffer */
-> +		if (read_offset > write_offset) {
-> +			guc_capture_store_insert(guc, &guc->capture.out_store, src_data,
-> +						 write_offset);
-> +			bytes_to_copy = buffer_size - read_offset;
-> +		} else {
-> +			bytes_to_copy = write_offset - read_offset;
-> +		}
-> +		guc_capture_store_insert(guc, &guc->capture.out_store, src_data + read_offset,
-> +					 bytes_to_copy);
-> +
-> +		mutex_unlock(&guc->capture.out_store.lock);
-> +	}
-> +}
-> +
-> +static void guc_capture_store_snapshot_work(struct work_struct *work)
-> +{
-> +	struct intel_guc_state_capture *capture =
-> +		container_of(work, struct intel_guc_state_capture, store_work);
-> +	struct intel_guc *guc =
-> +		container_of(capture, struct intel_guc, capture);
-> +
-> +	__guc_capture_store_snapshot_work(guc);
-> +}
-> +
-> +void  intel_guc_capture_store_snapshot(struct intel_guc *guc)
-> +{
-> +	if (guc->capture.enabled)
-> +		queue_work(system_highpri_wq, &guc->capture.store_work);
-> +}
-> +
-> +void intel_guc_capture_store_snapshot_immediate(struct intel_guc *guc)
-> +{
-> +	if (guc->capture.enabled)
-> +		__guc_capture_store_snapshot_work(guc);
-> +}
-> +
-> +static void guc_capture_store_destroy(struct intel_guc *guc)
-> +{
-> +	mutex_destroy(&guc->capture.out_store.lock);
-> +	mutex_destroy(&guc->capture.out_store.lock);
-
-Duplicate mutex_destroy.
-
-> +	guc->capture.out_store.size = 0;
-> +	kfree(guc->capture.out_store.addr);
-> +	guc->capture.out_store.addr = NULL;
-> +}
-> +
-> +static int guc_capture_store_create(struct intel_guc *guc)
-> +{
-> +	/*
-> +	 * Make this interim buffer 3x the GuC capture output buffer so that we can absorb
-> +	 * a little delay when processing the raw capture dumps into text friendly logs
-> +	 * for the i915_gpu_coredump output
-> +	 */
-> +	size_t max_dump_size;
-> +	struct drm_i915_private *dev_priv = (guc_to_gt(guc))->i915;
-> +
-> +	GEM_BUG_ON(guc->capture.out_store.addr);
-> +
-> +	max_dump_size = PAGE_ALIGN(intel_guc_capture_output_min_size_est(guc));
-> +	max_dump_size = roundup_pow_of_two(max_dump_size);
-> +
-> +	guc->capture.out_store.addr = kzalloc(max_dump_size, GFP_KERNEL);
-> +	if (!guc->capture.out_store.addr) {
-> +		drm_warn(&dev_priv->drm, "GuC-capture interim-store populated at init!\n");
-> +		return -ENOMEM;
-> +	}
-> +	guc->capture.out_store.size = max_dump_size;
-> +	mutex_init(&guc->capture.out_store.lock);
-> +	mutex_init(&guc->capture.out_store.lock);
-
-Duplicate mutex_init.
-
+>   		/* Make sure we transition out of transient "SELECTED" state */
+>   		if (intel_uc_wants_huc(uc)) {
+>   			drm_dbg(&uc_to_gt(uc)->i915->drm,
+> @@ -293,11 +298,13 @@ static void __uc_fetch_firmwares(struct intel_uc *uc)
+>   						  INTEL_UC_FIRMWARE_ERROR);
+>   		}
+>   
+> -		return;
+> +		return 0;
+>   	}
+>   
+>   	if (intel_uc_wants_huc(uc))
+>   		intel_uc_fw_fetch(&uc->huc.fw);
 > +
 > +	return 0;
-> +}
-> +
->  void intel_guc_capture_destroy(struct intel_guc *guc)
->  {
-> +	if (!guc->capture.enabled)
-> +		return;
-> +
-> +	guc->capture.enabled = false;
-> +
-> +	intel_synchronize_irq(guc_to_gt(guc)->i915);
-> +	flush_work(&guc->capture.store_work);
-> +	guc_capture_store_destroy(guc);
->  	guc_capture_clear_ext_regs(guc->capture.reglists);
->  }
->  
->  int intel_guc_capture_init(struct intel_guc *guc)
->  {
->  	struct drm_i915_private *dev_priv = (guc_to_gt(guc))->i915;
-> +	int ret;
->  
->  	guc->capture.reglists = guc_capture_get_device_reglist(dev_priv);
-> +	/*
-> +	 * allocate interim store at init time so we dont require memory
-> +	 * allocation whilst in the midst of the reset + capture
-> +	 */
-> +	ret = guc_capture_store_create(guc);
+>   }
+>   
+>   static void __uc_cleanup_firmwares(struct intel_uc *uc)
+> @@ -308,14 +315,19 @@ static void __uc_cleanup_firmwares(struct intel_uc *uc)
+>   
+>   static int __uc_init(struct intel_uc *uc)
+>   {
+> +	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
+>   	struct intel_guc *guc = &uc->guc;
+>   	struct intel_huc *huc = &uc->huc;
+>   	int ret;
+>   
+>   	GEM_BUG_ON(!intel_uc_wants_guc(uc));
+>   
+> -	if (!intel_uc_uses_guc(uc))
+> -		return 0;
+> +	if (!intel_uc_uses_guc(uc)) {
+> +		if (GRAPHICS_VER(i915) >= 12)
+> +			return -EINVAL;
+> +		else
+> +			return 0;
+> +	}
+>   
+>   	if (i915_inject_probe_failure(uc_to_gt(uc)->i915))
+>   		return -ENOMEM;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> index 866b462821c0..3bcd781447bc 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> @@ -17,7 +17,7 @@ struct intel_uc;
+>   
+>   struct intel_uc_ops {
+>   	int (*sanitize)(struct intel_uc *uc);
+> -	void (*init_fw)(struct intel_uc *uc);
+> +	int (*init_fw)(struct intel_uc *uc);
+>   	void (*fini_fw)(struct intel_uc *uc);
+>   	int (*init)(struct intel_uc *uc);
+>   	void (*fini)(struct intel_uc *uc);
+> @@ -104,7 +104,7 @@ static inline _TYPE intel_uc_##_NAME(struct intel_uc *uc) \
+>   	return _RET; \
+>   }
+>   intel_uc_ops_function(sanitize, sanitize, int, 0);
+> -intel_uc_ops_function(fetch_firmwares, init_fw, void, );
+> +intel_uc_ops_function(fetch_firmwares, init_fw, int, 0);
+>   intel_uc_ops_function(cleanup_firmwares, fini_fw, void, );
+>   intel_uc_ops_function(init, init, int, 0);
+>   intel_uc_ops_function(fini, fini, void, );
+> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+> index 527228d4da7e..7f8204af6826 100644
+> --- a/drivers/gpu/drm/i915/i915_gem.c
+> +++ b/drivers/gpu/drm/i915/i915_gem.c
+> @@ -1049,7 +1049,12 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
+>   	if (ret)
+>   		return ret;
+>   
+> -	intel_uc_fetch_firmwares(&dev_priv->gt.uc);
+> +	ret = intel_uc_fetch_firmwares(&dev_priv->gt.uc);
 > +	if (ret) {
-> +		guc_capture_clear_ext_regs(guc->capture.reglists);
+> +		i915_probe_error(dev_priv, "Failed to fetch firmware\n");
 > +		return ret;
 > +	}
 > +
-> +	INIT_WORK(&guc->capture.store_work, guc_capture_store_snapshot_work);
-> +	guc->capture.enabled = true;
-> +
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
-> index 839b53425e1e..7031de12f3a1 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
-> @@ -64,7 +64,19 @@ struct intel_guc_capture_out_group {
->  	struct intel_guc_capture_out_data group_lists[0];
->  };
->  
-> +struct guc_capture_out_store {
-> +	/* An interim storage to copy the GuC error-capture-output before
-> +	 * parsing and reporting via proper reporting flows with formatting.
-> +	 */
-> +	unsigned char *addr;
-> +	size_t size;
-> +	unsigned long head; /* inject new output capture data */
-> +	unsigned long tail; /* remove output capture data when reporting */
-> +	struct mutex lock; /*lock head or tail when copying capture in or extracting out*/
-> +};
-> +
->  struct intel_guc_state_capture {
-> +	bool enabled;
->  	struct __guc_mmio_reg_descr_group *reglists;
->  	u16 num_instance_regs[GUC_CAPTURE_LIST_INDEX_MAX][GUC_MAX_ENGINE_CLASSES];
->  	u16 num_class_regs[GUC_CAPTURE_LIST_INDEX_MAX][GUC_MAX_ENGINE_CLASSES];
-> @@ -72,14 +84,18 @@ struct intel_guc_state_capture {
->  	int instance_list_size;
->  	int class_list_size;
->  	int global_list_size;
-> +	struct guc_capture_out_store out_store;
-> +	struct work_struct store_work;
->  };
->  
-> +void intel_guc_capture_store_snapshot(struct intel_guc *guc);
->  int intel_guc_capture_list_count(struct intel_guc *guc, u32 owner, u32 type, u32 class,
->  				 u16 *num_entries);
->  int intel_guc_capture_list_init(struct intel_guc *guc, u32 owner, u32 type, u32 class,
->  				struct guc_mmio_reg *ptr, u16 num_entries);
->  int intel_guc_capture_output_min_size_est(struct intel_guc *guc);
->  void intel_guc_capture_destroy(struct intel_guc *guc);
-> +void intel_guc_capture_store_snapshot_immediate(struct intel_guc *guc);
->  int intel_guc_capture_init(struct intel_guc *guc);
->  
->  #endif /* _INTEL_GUC_CAPTURE_H */
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> index dd86530f77a1..1354dbde9994 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> @@ -194,7 +194,7 @@ bool guc_check_log_buf_overflow(struct intel_guc *guc,
->  	return overflow;
->  }
->  
-> -static unsigned int guc_get_log_buffer_size(enum guc_log_buffer_type type)
-> +unsigned int guc_get_log_buffer_size(enum guc_log_buffer_type type)
->  {
->  	switch (type) {
->  	case GUC_DEBUG_LOG_BUFFER:
-> @@ -210,6 +210,20 @@ static unsigned int guc_get_log_buffer_size(enum guc_log_buffer_type type)
->  	return 0;
->  }
->  
-> +size_t guc_get_log_buffer_offset(enum guc_log_buffer_type type)
-> +{
-> +	enum guc_log_buffer_type i;
-> +	size_t offset = PAGE_SIZE;/* for the log_buffer_states */
-> +
-> +	for (i = GUC_DEBUG_LOG_BUFFER; i < GUC_MAX_LOG_BUFFER; i++) {
-> +		if (i == type)
-> +			break;
-> +		offset += guc_get_log_buffer_size(i);
-> +	}
-> +
-> +	return offset;
-> +}
-> +
->  static void _guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log)
->  {
->  	struct intel_guc *guc = log_to_guc(log);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
-> index 2968023f7447..9bf29343df0e 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
-> @@ -64,8 +64,13 @@ struct intel_guc_log {
->  };
->  
->  void intel_guc_log_init_early(struct intel_guc_log *log);
-> +unsigned int guc_get_log_buffer_size(enum guc_log_buffer_type type);
-> +size_t guc_get_log_buffer_offset(enum guc_log_buffer_type type);
+>   	intel_wopcm_init(&dev_priv->wopcm);
+>   
+>   	ret = i915_init_ggtt(dev_priv);
 
-intel_ prefix for exported functions.
-
->  int intel_guc_log_create(struct intel_guc_log *log);
->  void intel_guc_log_destroy(struct intel_guc_log *log);
-> + 
-> +bool guc_check_log_buf_overflow(struct intel_guc *guc, struct intel_guc_log_stats *state,
-> +				unsigned int full_cnt);
->  
->  int intel_guc_log_set_level(struct intel_guc_log *log, u32 level);
->  bool intel_guc_log_relay_created(const struct intel_guc_log *log);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 0bfc92b1b982..0afd9ddd71fc 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -24,6 +24,7 @@
->  
->  #include "intel_guc_ads.h"
->  #include "intel_guc_submission.h"
-> +#include "gt/uc/intel_guc_capture.h"
->  
->  #include "i915_drv.h"
->  #include "i915_trace.h"
-> @@ -1431,6 +1432,8 @@ void intel_guc_submission_reset_prepare(struct intel_guc *guc)
->  	}
->  
->  	scrub_guc_desc_for_outstanding_g2h(guc);
-> +
-> +	intel_guc_capture_store_snapshot_immediate(guc);
->  }
->  
->  static struct intel_engine_cs *
-> @@ -4013,10 +4016,11 @@ int intel_guc_error_capture_process_msg(struct intel_guc *guc,
->  		return -EPROTO;
->  	}
->  
-> -	status = msg[0];
-> -	drm_info(&guc_to_gt(guc)->i915->drm, "Got error capture: status = %d", status);
-> +	status = msg[0] & INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_MASK;
-> +	if (status == INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_NOSPACE)
-> +		drm_warn(&guc_to_gt(guc)->i915->drm, "G2H-Error capture no space\n");
->  
-> -	/* Add extraction of error capture dump */
-> +	intel_guc_capture_store_snapshot(guc);
-
-This is done in different worker, right? How does this not race with an
-engine reset notification that does an error capture (e.g. the error
-capture is done before we read out the info from the GuC)?
-
-As far as I can tell 'intel_guc_capture_store_snapshot' doesn't allocate
-memory so I don't think we need a worker here.
-
-Matt
-
->  
->  	return 0;
->  }
-> -- 
-> 2.25.1
-> 
