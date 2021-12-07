@@ -1,60 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02CDB46B32B
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 07:46:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36A2246B34C
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 07:57:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5395E8B1DC;
-	Tue,  7 Dec 2021 06:46:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73BD78B5C7;
+	Tue,  7 Dec 2021 06:57:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 656F88B1DA
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 06:46:32 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10190"; a="224379824"
-X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="224379824"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2021 22:46:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="515149817"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by orsmga008.jf.intel.com with ESMTP; 06 Dec 2021 22:46:31 -0800
-Received: from bgsmsx601.gar.corp.intel.com (10.109.78.80) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Mon, 6 Dec 2021 22:46:30 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX601.gar.corp.intel.com (10.109.78.80) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 7 Dec 2021 12:16:28 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2308.020;
- Tue, 7 Dec 2021 12:16:28 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [PATCH v2 3/3] drm/i915/xelpd: Add Pipe Color Lut caps to
- platform config
-Thread-Index: AQHX4jrxlCaSNH7lNka/UlHipB4BS6wbgluAgAslP3A=
-Date: Tue, 7 Dec 2021 06:46:28 +0000
-Message-ID: <3f1c7928e868473482fa9aeec4364b8c@intel.com>
-References: <20211125202750.3263848-1-uma.shankar@intel.com>
- <20211125202750.3263848-4-uma.shankar@intel.com> <YaX26zzEFMQZPX7p@intel.com>
-In-Reply-To: <YaX26zzEFMQZPX7p@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 440BE8B5C9
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 06:57:24 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10190"; a="217536914"
+X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="217536914"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2021 22:56:04 -0800
+X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="600019350"
+Received: from gangshe-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.113.238])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2021 22:56:04 -0800
+Date: Mon, 6 Dec 2021 22:56:04 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Michael Cheng <michael.cheng@intel.com>
+Message-ID: <20211207065604.sde7ekqrg5dkqfsr@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20211206215245.513677-1-michael.cheng@intel.com>
+ <20211206215245.513677-2-michael.cheng@intel.com>
+ <20211207033639.2j5vfetcgy5shjhh@ldmartin-desk2>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915/xelpd: Add Pipe Color Lut
- caps to platform config
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20211207033639.2j5vfetcgy5shjhh@ldmartin-desk2>
+Subject: Re: [Intel-gfx] [PATCH v6 1/1] drm/i915: Introduce new macros for
+ i915 PTE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,73 +48,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: jani.nikula@intel.com, siva.mullati@intel.com,
+ intel-gfx@lists.freedesktop.org, wayne.boyer@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Dec 06, 2021 at 07:36:39PM -0800, Lucas De Marchi wrote:
+>On Mon, Dec 06, 2021 at 01:52:45PM -0800, Michael Cheng wrote:
+>>Certain functions within i915 uses macros that are defined for
+>>specific architectures by the mmu, such as _PAGE_RW and _PAGE_PRESENT
+>>(Some architectures don't even have these macros defined, like ARM64).
+>>
+>>Instead of re-using bits defined for the CPU, we should use bits
+>>defined for i915. This patch introduces two new 64 bit macros,
+>>GEN8_PAGE_PRESENT and GEN8_PAGE_RW, to check for bits 0 and 1 and, to
+>>replace all occurrences of _PAGE_RW and _PAGE_PRESENT within i915.
+>>
+>>v2(Michael Cheng): Use GEN8_ instead of I915_
+>>
+>>Signed-off-by: Michael Cheng <michael.cheng@intel.com>
+>>---
+>>drivers/gpu/drm/i915/gt/gen8_ppgtt.c |  6 +++---
+>>drivers/gpu/drm/i915/gt/intel_ggtt.c |  2 +-
+>>drivers/gpu/drm/i915/gt/intel_gtt.h  |  3 +++
+>>drivers/gpu/drm/i915/gvt/gtt.c       | 12 ++++++------
+>>4 files changed, 13 insertions(+), 10 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+>>index 9966e9dc5218..95c02096a61b 100644
+>>--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+>>+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+>>@@ -18,7 +18,7 @@
+>>static u64 gen8_pde_encode(const dma_addr_t addr,
+>>			   const enum i915_cache_level level)
+>>{
+>>-	u64 pde = addr | _PAGE_PRESENT | _PAGE_RW;
+>>+	u64 pde = addr | GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
+>>
+>>	if (level != I915_CACHE_NONE)
+>>		pde |= PPAT_CACHED_PDE;
+>>@@ -32,10 +32,10 @@ static u64 gen8_pte_encode(dma_addr_t addr,
+>>			   enum i915_cache_level level,
+>>			   u32 flags)
+>>{
+>>-	gen8_pte_t pte = addr | _PAGE_PRESENT | _PAGE_RW;
+>>+	gen8_pte_t pte = addr | GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
+>>
+>>	if (unlikely(flags & PTE_READ_ONLY))
+>>-		pte &= ~_PAGE_RW;
+>>+		pte &= ~GEN8_PAGE_RW;
+>>
+>>	if (flags & PTE_LM)
+>>		pte |= GEN12_PPGTT_PTE_LM;
+>>diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>>index 110d3944f9a2..cbc6d2b1fd9e 100644
+>>--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>>+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>>@@ -209,7 +209,7 @@ u64 gen8_ggtt_pte_encode(dma_addr_t addr,
+>>			 enum i915_cache_level level,
+>>			 u32 flags)
+>>{
+>>-	gen8_pte_t pte = addr | _PAGE_PRESENT;
+>>+	gen8_pte_t pte = addr | GEN8_PAGE_PRESENT;
+>>
+>>	if (flags & PTE_LM)
+>>		pte |= GEN12_GGTT_PTE_LM;
+>>diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+>>index dfeaef680aac..228fbfe33cb7 100644
+>>--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
+>>+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+>>@@ -39,6 +39,9 @@
+>>
+>>#define NALLOC 3 /* 1 normal, 1 for concurrent threads, 1 for preallocation */
+>>
+>>+#define GEN8_PAGE_PRESENT BIT_ULL(0)
+>>+#define GEN8_PAGE_RW BIT_ULL(1)
+>
+>ideally this would be together with other GEN8 defines, but this is
+>minor.
+>
+>Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
+and pushed, thanks
 
-> -----Original Message-----
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Tuesday, November 30, 2021 3:33 PM
-> To: Shankar, Uma <uma.shankar@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; Modem, Bhanuprakash
-> <bhanuprakash.modem@intel.com>
-> Subject: Re: [PATCH v2 3/3] drm/i915/xelpd: Add Pipe Color Lut caps to pl=
-atform
-> config
->=20
-> On Fri, Nov 26, 2021 at 01:57:50AM +0530, Uma Shankar wrote:
-> > XE_LPD has 128 Lut entries for Degamma, with additional 3 entries for
-> > extended range. It has 511 entries for gamma with additional 2 entries
-> > for extended range.
-> >
-> > v2: Updated lut size for 10bit gamma, added lut_tests (Ville)
-> >
-> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_pci.c | 6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_pci.c
-> > b/drivers/gpu/drm/i915/i915_pci.c index f01cba4ec283..22eae330f075
-> > 100644
-> > --- a/drivers/gpu/drm/i915/i915_pci.c
-> > +++ b/drivers/gpu/drm/i915/i915_pci.c
-> > @@ -938,7 +938,11 @@ static const struct intel_device_info adl_s_info
-> > =3D {
-> >
-> >  #define XE_LPD_FEATURES \
-> >  	.abox_mask =3D GENMASK(1, 0),						\
-> > -	.color =3D { .degamma_lut_size =3D 0, .gamma_lut_size =3D 0 },		\
-> > +	.color =3D { .degamma_lut_size =3D 128, .gamma_lut_size =3D 1024,		\
-> > +		   .degamma_lut_tests =3D DRM_COLOR_LUT_NON_DECREASING |
-> 	\
-> > +					DRM_COLOR_LUT_EQUAL_CHANNELS,
-> 	\
-> > +		   .gamma_lut_tests =3D DRM_COLOR_LUT_NON_DECREASING,
-> 	\
->=20
-> The 10bit mode doesn't interpolate so it can handle non-decreasing values=
- just fine.
->=20
-> With the gamma_lut_tests part dropped this is
-Will drop this, refloat and merge.
-
-Thanks Ville for the review and all the inputs.
-
-Regards,
-Uma Shankar
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->=20
-> > +	},									\
-> >  	.dbuf.size =3D 4096,							\
-> >  	.dbuf.slice_mask =3D BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |
-> 	\
-> >  		BIT(DBUF_S4),							\
-> > --
-> > 2.25.1
->=20
-> --
-> Ville Syrj=E4l=E4
-> Intel
+Lucas De Marchi
