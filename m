@@ -2,42 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBCAB46B352
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 08:01:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE51F46B371
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 08:11:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB8F38B697;
-	Tue,  7 Dec 2021 07:01:38 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93D248B697;
- Tue,  7 Dec 2021 07:01:37 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10190"; a="237322650"
-X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="237322650"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2021 23:01:36 -0800
-X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="462191277"
-Received: from gangshe-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.209.113.238])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2021 23:01:35 -0800
-Date: Mon, 6 Dec 2021 23:01:35 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <20211207070135.derxjanwwrxos6cw@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20211203000623.3086309-1-John.C.Harrison@Intel.com>
- <20211203000623.3086309-5-John.C.Harrison@Intel.com>
- <20211203003307.ju75hmimn6sfhfmk@ldmartin-desk2>
- <d2ea5d3b-2b53-8aa8-8a6e-dec024f573ac@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC83C8B852;
+	Tue,  7 Dec 2021 07:11:38 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 274908B854
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 07:11:38 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10190"; a="261579636"
+X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="261579636"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2021 23:11:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="679331727"
+Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
+ by orsmga005.jf.intel.com with ESMTP; 06 Dec 2021 23:11:35 -0800
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  7 Dec 2021 12:41:32 +0530
+Message-Id: <20211207071135.3660332-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <d2ea5d3b-2b53-8aa8-8a6e-dec024f573ac@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/guc: Don't go bang in GuC log
- if no GuC
+Subject: [Intel-gfx] [v3 0/3] Enable pipe color support on D13 platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,68 +42,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@lists.freedesktop.org, DRI-Devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 03, 2021 at 12:00:59PM -0800, Daniele Ceraolo Spurio wrote:
->
->
->On 12/2/2021 4:33 PM, Lucas De Marchi wrote:
->>On Thu, Dec 02, 2021 at 04:06:23PM -0800, John.C.Harrison@Intel.com 
->>wrote:
->>>From: John Harrison <John.C.Harrison@Intel.com>
->>>
->>>If the GuC has failed to load for any reason and then the user pokes
->>>the debugfs GuC log interface, a BUG and/or null pointer deref can
->>>occur. Don't let that happen.
->>>
->>>Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>
->>
->>Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>
->>Lucas De Marchi
->>
->
->Do we need a fixes tag? or is it ok to not have it for debugfs bugs?
->
+Enable pipe color support for Display 13 platform. This series
+enables just the 10bit gamma mode. More advanced logarithmic
+gamma mode will be enable with the new enhanced UAPI. It will
+be extended once the UAPI is agreed in community. This series
+just adds the basic support in the interim.
 
-for this file in debugfs, I don't think so, but I will let the
-maintainers to chime in.
+v2: Addressed Ville's review comments.
 
-Lucas De Marchi
+v3: Dropped gamma lut tests field (Ville)
 
->Daniele
->
->>>---
->>>drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c | 4 ++--
->>>1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c 
->>>b/drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c
->>>index 46026c2c1722..8fd068049376 100644
->>>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c
->>>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c
->>>@@ -31,7 +31,7 @@ static int guc_log_level_get(void *data, u64 *val)
->>>{
->>>    struct intel_guc_log *log = data;
->>>
->>>-    if (!intel_guc_is_used(log_to_guc(log)))
->>>+    if (!log->vma)
->>>        return -ENODEV;
->>>
->>>    *val = intel_guc_log_get_level(log);
->>>@@ -43,7 +43,7 @@ static int guc_log_level_set(void *data, u64 val)
->>>{
->>>    struct intel_guc_log *log = data;
->>>
->>>-    if (!intel_guc_is_used(log_to_guc(log)))
->>>+    if (!log->vma)
->>>        return -ENODEV;
->>>
->>>    return intel_guc_log_set_level(log, val);
->>>-- 
->>>2.25.1
->>>
->
+Uma Shankar (3):
+  drm/i915/xelpd: Enable Pipe color support for D13 platform
+  drm/i915/xelpd: Enable Pipe Degamma
+  drm/i915/xelpd: Add Pipe Color Lut caps to platform config
+
+ drivers/gpu/drm/i915/display/intel_color.c | 23 +++++++++++++++++++---
+ drivers/gpu/drm/i915/i915_pci.c            |  5 ++++-
+ 2 files changed, 24 insertions(+), 4 deletions(-)
+
+-- 
+2.25.1
+
