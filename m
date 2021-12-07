@@ -1,33 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D71DD46BF53
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 16:30:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29D6C46BFE6
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 16:51:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1023EEBBB8;
-	Tue,  7 Dec 2021 15:30:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9FCFEBD24;
+	Tue,  7 Dec 2021 15:51:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 79888EAB19;
- Tue,  7 Dec 2021 15:30:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7284EA00CC;
- Tue,  7 Dec 2021 15:30:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2844673749164737417=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FB3FEBD21
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 15:51:17 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10190"; a="224471675"
+X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="224471675"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2021 07:51:16 -0800
+X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="515326784"
+Received: from dmason-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.255.33.26])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2021 07:51:15 -0800
+Date: Tue, 7 Dec 2021 10:51:14 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Message-ID: <Ya+C8qlQt+N9y+KZ@intel.com>
+References: <20211206081026.4024401-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ramalingam C" <ramalingam.c@intel.com>
-Date: Tue, 07 Dec 2021 15:30:17 -0000
-Message-ID: <163889101743.10819.6326477231170133098@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211207143336.11381-1-ramalingam.c@intel.com>
-In-Reply-To: <20211207143336.11381-1-ramalingam.c@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU2Fu?=
- =?utf-8?q?ity_Check_for_device_memory_region?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211206081026.4024401-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: Re: [Intel-gfx] [PATCH V2] drm/i915/gt: Use hw_engine_masks as
+ reset_domains
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,186 +45,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2844673749164737417==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Dec 06, 2021 at 01:40:26PM +0530, Tejas Upadhyay wrote:
+> We need a way to reset engines by their reset domains.
+> This change sets up way to fetch reset domains of each
+> engine globally.
+> 
+> Changes since V1:
+> 	- Use static reset domain array - Ville and Tvrtko
+> 	- Use BUG_ON at appropriate place - Tvrtko
+> 
+> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 32 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_engine_types.h |  1 +
+>  drivers/gpu/drm/i915/gt/intel_reset.c        | 29 ++----------------
+>  3 files changed, 35 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index f2ccd5b53d42..352254e001b4 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -325,6 +325,38 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id,
+>  	engine->id = id;
+>  	engine->legacy_idx = INVALID_ENGINE;
+>  	engine->mask = BIT(id);
+> +	if (GRAPHICS_VER(gt->i915) >= 11) {
+> +		static const u32 engine_reset_domains[] = {
+> +			[RCS0]  = GEN11_GRDOM_RENDER,
+> +			[BCS0]  = GEN11_GRDOM_BLT,
+> +			[VCS0]  = GEN11_GRDOM_MEDIA,
+> +			[VCS1]  = GEN11_GRDOM_MEDIA2,
+> +			[VCS2]  = GEN11_GRDOM_MEDIA3,
+> +			[VCS3]  = GEN11_GRDOM_MEDIA4,
+> +			[VCS4]  = GEN11_GRDOM_MEDIA5,
+> +			[VCS5]  = GEN11_GRDOM_MEDIA6,
+> +			[VCS6]  = GEN11_GRDOM_MEDIA7,
+> +			[VCS7]  = GEN11_GRDOM_MEDIA8,
+> +			[VECS0] = GEN11_GRDOM_VECS,
+> +			[VECS1] = GEN11_GRDOM_VECS2,
+> +			[VECS2] = GEN11_GRDOM_VECS3,
+> +			[VECS3] = GEN11_GRDOM_VECS4,
+> +		};
+> +		GEM_BUG_ON(id >= ARRAY_SIZE(engine_reset_domains) ||
 
-== Series Details ==
+> +			   !engine_reset_domains[id]);
 
-Series: Sanity Check for device memory region
-URL   : https://patchwork.freedesktop.org/series/97658/
-State : success
+I was worried about this new addition to the check, but apparently
+it works because no Reset domain is == 0....
+Well, not sure if we won't have any in the future, but you
+are right, probably better to protect the current cases than
+wonder about a theoretical future one.
 
-== Summary ==
+> +		engine->reset_domain = engine_reset_domains[id];
+> +	} else {
+> +		static const u32 engine_reset_domains[] = {
+> +			[RCS0]  = GEN6_GRDOM_RENDER,
+> +			[BCS0]  = GEN6_GRDOM_BLT,
+> +			[VCS0]  = GEN6_GRDOM_MEDIA,
+> +			[VCS1]  = GEN8_GRDOM_MEDIA2,
+> +			[VECS0] = GEN6_GRDOM_VECS,
+> +		};
+> +		GEM_BUG_ON(id >= ARRAY_SIZE(engine_reset_domains) ||
+> +			   !engine_reset_domains[id]);
+> +		engine->reset_domain = engine_reset_domains[id];
+> +	}
 
-CI Bug Log - changes from CI_DRM_10968 -> Patchwork_21773
-====================================================
+probably better if we could have a function for this.
+engine->reset_domain = intel_reset_domain()... or something like that...
 
-Summary
--------
+but not blocker... the patch looks good to me:
 
-  **SUCCESS**
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/index.html
-
-Participating hosts (43 -> 33)
-------------------------------
-
-  Missing    (10): bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-bdw-samus bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21773 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#4269])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10968/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][3] ([i915#2722] / [i915#3363] / [i915#4312])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/fi-skl-6600u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [FAIL][4] ([i915#1888]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10968/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  
-#### Warnings ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [INCOMPLETE][6] ([i915#198]) -> [INCOMPLETE][7] ([i915#198] / [i915#4547])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10968/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-
-  
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10968 -> Patchwork_21773
-
-  CI-20190529: 20190529
-  CI_DRM_10968: 7be12d9fc88471b17b9c3df25215834928258b65 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6300: f69bd65fa9f72b7d5e5a5a22981f16d034334761 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21773: 09f5557867eea4b1a7131c6bf33728ad83a1792a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-09f5557867ee drm/i915: Test all device memory on probing
-1524de208313 drm/i915: Sanitycheck device iomem on probe
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/index.html
-
---===============2844673749164737417==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Sanity Check for device memory region</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97658/">https://patchwork.freedesktop.org/series/97658/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10968 -&gt; Patchwork_21773</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/index.html</p>
-<h2>Participating hosts (43 -&gt; 33)</h2>
-<p>Missing    (10): bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21773 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10968/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3:<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10968/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@gem_flink_basic@bad-flink:<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10968/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21773/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10968 -&gt; Patchwork_21773</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10968: 7be12d9fc88471b17b9c3df25215834928258b65 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6300: f69bd65fa9f72b7d5e5a5a22981f16d034334761 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21773: 09f5557867eea4b1a7131c6bf33728ad83a1792a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>09f5557867ee drm/i915: Test all device memory on probing<br />
-1524de208313 drm/i915: Sanitycheck device iomem on probe</p>
-
-</body>
-</html>
-
---===============2844673749164737417==--
+>  	engine->i915 = i915;
+>  	engine->gt = gt;
+>  	engine->uncore = gt->uncore;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index 5732e0d71513..36365bdbe1ee 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -318,6 +318,7 @@ struct intel_engine_cs {
+>  	unsigned int guc_id;
+>  
+>  	intel_engine_mask_t mask;
+> +	u32 reset_domain;
+>  	/**
+>  	 * @logical_mask: logical mask of engine, reported to user space via
+>  	 * query IOCTL and used to communicate with the GuC in logical space.
+> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+> index 0fbd6dbadce7..63199f0550e6 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> @@ -297,13 +297,6 @@ static int gen6_reset_engines(struct intel_gt *gt,
+>  			      intel_engine_mask_t engine_mask,
+>  			      unsigned int retry)
+>  {
+> -	static const u32 hw_engine_mask[] = {
+> -		[RCS0]  = GEN6_GRDOM_RENDER,
+> -		[BCS0]  = GEN6_GRDOM_BLT,
+> -		[VCS0]  = GEN6_GRDOM_MEDIA,
+> -		[VCS1]  = GEN8_GRDOM_MEDIA2,
+> -		[VECS0] = GEN6_GRDOM_VECS,
+> -	};
+>  	struct intel_engine_cs *engine;
+>  	u32 hw_mask;
+>  
+> @@ -314,8 +307,7 @@ static int gen6_reset_engines(struct intel_gt *gt,
+>  
+>  		hw_mask = 0;
+>  		for_each_engine_masked(engine, gt, engine_mask, tmp) {
+> -			GEM_BUG_ON(engine->id >= ARRAY_SIZE(hw_engine_mask));
+> -			hw_mask |= hw_engine_mask[engine->id];
+> +			hw_mask |= engine->reset_domain;
+>  		}
+>  	}
+>  
+> @@ -492,22 +484,6 @@ static int gen11_reset_engines(struct intel_gt *gt,
+>  			       intel_engine_mask_t engine_mask,
+>  			       unsigned int retry)
+>  {
+> -	static const u32 hw_engine_mask[] = {
+> -		[RCS0]  = GEN11_GRDOM_RENDER,
+> -		[BCS0]  = GEN11_GRDOM_BLT,
+> -		[VCS0]  = GEN11_GRDOM_MEDIA,
+> -		[VCS1]  = GEN11_GRDOM_MEDIA2,
+> -		[VCS2]  = GEN11_GRDOM_MEDIA3,
+> -		[VCS3]  = GEN11_GRDOM_MEDIA4,
+> -		[VCS4]  = GEN11_GRDOM_MEDIA5,
+> -		[VCS5]  = GEN11_GRDOM_MEDIA6,
+> -		[VCS6]  = GEN11_GRDOM_MEDIA7,
+> -		[VCS7]  = GEN11_GRDOM_MEDIA8,
+> -		[VECS0] = GEN11_GRDOM_VECS,
+> -		[VECS1] = GEN11_GRDOM_VECS2,
+> -		[VECS2] = GEN11_GRDOM_VECS3,
+> -		[VECS3] = GEN11_GRDOM_VECS4,
+> -	};
+>  	struct intel_engine_cs *engine;
+>  	intel_engine_mask_t tmp;
+>  	u32 reset_mask, unlock_mask = 0;
+> @@ -518,8 +494,7 @@ static int gen11_reset_engines(struct intel_gt *gt,
+>  	} else {
+>  		reset_mask = 0;
+>  		for_each_engine_masked(engine, gt, engine_mask, tmp) {
+> -			GEM_BUG_ON(engine->id >= ARRAY_SIZE(hw_engine_mask));
+> -			reset_mask |= hw_engine_mask[engine->id];
+> +			reset_mask |= engine->reset_domain;
+>  			ret = gen11_lock_sfc(engine, &reset_mask, &unlock_mask);
+>  			if (ret)
+>  				goto sfc_unlock;
+> -- 
+> 2.31.1
+> 
