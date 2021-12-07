@@ -2,41 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61FC746C291
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 19:19:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 703CE46C23F
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Dec 2021 19:01:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA3336E4D4;
-	Tue,  7 Dec 2021 18:19:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C6922A69A;
+	Tue,  7 Dec 2021 18:00:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94F986E4D4
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 18:19:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10190"; a="261718321"
-X-IronPort-AV: E=Sophos;i="5.87,295,1631602800"; d="scan'208";a="261718321"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2021 09:52:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; d="scan'208";a="462395356"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
- by orsmga006.jf.intel.com with ESMTP; 07 Dec 2021 09:52:10 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1muedO-000MpR-1J; Tue, 07 Dec 2021 17:52:10 +0000
-Date: Wed, 8 Dec 2021 01:52:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <202112080159.xgdgtsnI-lkp@intel.com>
-References: <20211207110721.30409-3-stanislav.lisovskiy@intel.com>
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
+ [IPv6:2a00:1450:4864:20::42f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E344C2A692
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 18:00:57 +0000 (UTC)
+Received: by mail-wr1-x42f.google.com with SMTP id v11so31150808wrw.10
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Dec 2021 10:00:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=EiqCUuFTOaRo/tgqA8xrWt+e2aBMmPmV9HZAaRZzi4M=;
+ b=kekxCseiQnZE6ia9fYpLM+7iu/W5j8U/WQfwvIVBhJ+42/oP/hEwc9gvf+dE8z40sv
+ P5gGhhPxcX62fMTxjI+sPPLmKasfvD4Ss3RXBtT6n9vaqm5J8w+KmxSXtWe3ulzsAYcB
+ WlF3lK33QmLCmkiKXj7Rtie64WHrWPSPQVFoE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=EiqCUuFTOaRo/tgqA8xrWt+e2aBMmPmV9HZAaRZzi4M=;
+ b=hB70AY0yxTvUy/IILSmEruTSzg1rPN/wcpL/NSbCx+jiz6ge5IW8RshThl0J4VbrfP
+ 1tiTaWGpiifZbZq19jn0nCwQ17EzPmT8dNN49UFg6kJ/7iZip1BeOkZKWuRTLqhFvO7n
+ D+5rUefrVVBnctYhVsNUE7f7PABrEcvfOcbdruXz6GqzS3KXgQprVenz321ex4eRRwPn
+ vVGBukN3cDsxGedUHARW3Y7sXaYHs9wBUjug9pKXSnp/mXsXxLKT6ug1x1h7bjXRrKUF
+ B9ugYI/W+ZEf3VYCHiaalUb3tKZ5wrMvF1ARLiOKxSpWunKaFyDNlWMETT3z6m4aj+eC
+ GGrQ==
+X-Gm-Message-State: AOAM533Rrm1Fr5oHYGePX+DEnAK1+1pfGVA0XNXiKCITDBksbT+I+5Qb
+ FWcIX6FMft79eHiVi+eY+GxEFw==
+X-Google-Smtp-Source: ABdhPJxs13h8PDN0IJpRCM/ovsIzx2QPwiUR5h4o2Srl/9wc0WxW37VcSFAv+1p3EPlTK2OsYY/nrQ==
+X-Received: by 2002:a5d:4901:: with SMTP id x1mr51613404wrq.473.1638900056427; 
+ Tue, 07 Dec 2021 10:00:56 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id u13sm3800483wmq.14.2021.12.07.10.00.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Dec 2021 10:00:56 -0800 (PST)
+Date: Tue, 7 Dec 2021 19:00:54 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Message-ID: <Ya+hVmHuON31uCtG@phenom.ffwll.local>
+References: <20211118165914.pckik75emivsilek@linutronix.de>
+ <YZfK8LDcGzQEchel@phenom.ffwll.local>
+ <20211130163309.kvw6kbuzwurnqlt7@linutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211207110721.30409-3-stanislav.lisovskiy@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Use wm0 only during async
- flips for DG2
+In-Reply-To: <20211130163309.kvw6kbuzwurnqlt7@linutronix.de>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't disable interrupts and
+ pretend a lock as been acquired in __timeline_mark_lock().
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,56 +68,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ Peter Zijlstra <peterz@infradead.org>, dri-devel@lists.freedesktop.org,
+ Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Stanislav,
+On Tue, Nov 30, 2021 at 05:33:09PM +0100, Sebastian Andrzej Siewior wrote:
+> On 2021-11-19 17:04:00 [+0100], Daniel Vetter wrote:
+> > Yeah if we can simplify this with reverts then I'm all for this.
+> > 
+> > Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > 
+> > I've asked drm/i915 maintainers to check&merge.
+> 
+> Thanks. Should I repost my queue (excluding this one) or should wait
+> until this one has been taken care?
 
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on drm-tip/drm-tip v5.16-rc4 next-20211207]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Stanislav-Lisovskiy/drm-i915-Pass-plane-to-watermark-calculation-functions/20211207-190910
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: i386-randconfig-r035-20211207 (https://download.01.org/0day-ci/archive/20211208/202112080159.xgdgtsnI-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/0day-ci/linux/commit/8c7a53ddec5435d127040d03a1eb073ec71608dc
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Stanislav-Lisovskiy/drm-i915-Pass-plane-to-watermark-calculation-functions/20211207-190910
-        git checkout 8c7a53ddec5435d127040d03a1eb073ec71608dc
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/intel_pm.c:5500:6: warning: no previous prototype for 'dg2_async_flip_optimization' [-Wmissing-prototypes]
-    5500 | bool dg2_async_flip_optimization(struct drm_i915_private *i915,
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/dg2_async_flip_optimization +5500 drivers/gpu/drm/i915/intel_pm.c
-
-  5499	
-> 5500	bool dg2_async_flip_optimization(struct drm_i915_private *i915,
-  5501					 const struct intel_crtc_state *crtc_state,
-  5502					 const struct intel_plane *plane)
-  5503	{
-  5504		return DISPLAY_VER(i915) >= 13 &&
-  5505		       crtc_state->uapi.async_flip &&
-  5506		       plane->async_flip;
-  5507	}
-  5508	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+No idea, Tvrtko (check latest MAINTAINERS) and Joonas need to take care of
+this. Holler again if it's falling through the cracks.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
