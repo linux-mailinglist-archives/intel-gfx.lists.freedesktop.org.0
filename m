@@ -2,61 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6E9346D504
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 15:04:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E8EF46D3F4
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 14:04:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EED796F4E6;
-	Wed,  8 Dec 2021 14:04:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC98C7330E;
+	Wed,  8 Dec 2021 13:04:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
- [IPv6:2607:f8b0:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9C726EC2C;
- Wed,  8 Dec 2021 07:49:56 +0000 (UTC)
-Received: by mail-pl1-x62d.google.com with SMTP id p18so982820plf.13;
- Tue, 07 Dec 2021 23:49:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=x+r6igfAf/kslegJBovNbjh0dSnNN1eggHfhBS76iGU=;
- b=Adkx7HRAgXk7B0Yttk5KzozcClXve5ymmcn5bxXZFwjzzOJDKh4xAxa5K3jSkIg8qv
- tS7FsKM38KbcSR4ohgKDwiZ/BQA/2RFvhV4qxN2jHkPuic7V6Ik2cE1WKj9htcFA2Q8f
- mJXtEElhYd6zLpPFYHU9jDjlEupZRerFzNJoApJ+16eW+jy+nCaE7v2tOoD1ErWSWf+H
- sEIW1JRFOtLm09pI+tf3bWIrGYwd8FQcum+DD019nD+B7eBxcSZwTIvNXjvM1qG8rxQ5
- gLBtcJ0Z8TWMLJa6gjhoWaWrAwFJnJfdGgEzfExI6iw6KYQHaaf92NXIlJuLnVWboyg3
- EYBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=x+r6igfAf/kslegJBovNbjh0dSnNN1eggHfhBS76iGU=;
- b=IqPbp2qwXF+ZtunPt6h5o1IGNfx2cTvuUMDo+MfU0YypBbFWjD5mC84+c9P7fqdDCh
- 3dhGOrvSB4lpxEE0FyhNADqfCiAiWge/IRw9/jgbrKHMlvmk605Ut8jNsGi9WEVhd7Gh
- +tA8srJjWPTc3Ridn9/k8nDxQOQU60tlN4ihWXdPrwuwutVqePY/ci4jPsXCbAiNypDm
- WBEei8+90zk9grpp/eTX8SICnLjrM/rYTlo7UfMB8z3bhjp3aTYdvDFmmeWQFcPQ7doG
- Kzl8qG7TGEzbs1RE9VASTnJT0XoifZZbO+SBySwsC+Vne6ZxhInIqcy5EP+83Yae1v7t
- tKIQ==
-X-Gm-Message-State: AOAM532TbmrQErd1txiHimkNGHbPJdIInnG3vAPsAsp2yFW+6wXe/ZPy
- KyALDaShBP3FsWsY9dkiekU=
-X-Google-Smtp-Source: ABdhPJzKB2STTgrXaQBp8/xtEHyw6/KqQ8cSUqipNRApmeAEKFN6GkhRvPSQ4rnENVP/L+q+n8rfOw==
-X-Received: by 2002:a17:90b:1a8b:: with SMTP id
- ng11mr5322731pjb.3.1638949796472; 
- Tue, 07 Dec 2021 23:49:56 -0800 (PST)
-Received: from localhost.localdomain ([193.203.214.57])
- by smtp.gmail.com with ESMTPSA id y12sm2251752pfe.140.2021.12.07.23.49.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Dec 2021 23:49:56 -0800 (PST)
-From: cgel.zte@gmail.com
-X-Google-Original-From: luo.penghao@zte.com.cn
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Date: Wed,  8 Dec 2021 07:49:52 +0000
-Message-Id: <20211208074952.404381-1-luo.penghao@zte.com.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 148A47330A;
+ Wed,  8 Dec 2021 13:04:22 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="261901254"
+X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; d="scan'208";a="261901254"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2021 05:04:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; d="scan'208";a="658278402"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga001.fm.intel.com with SMTP; 08 Dec 2021 05:04:17 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 08 Dec 2021 15:04:17 +0200
+Date: Wed, 8 Dec 2021 15:04:17 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: cgel.zte@gmail.com
+Message-ID: <YbCtUZUSbEpCuDoi@intel.com>
+References: <20211208074619.404138-1-luo.penghao@zte.com.cn>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 08 Dec 2021 14:04:26 +0000
-Subject: [Intel-gfx] [PATCH linux-next] drm/i915/display: Remove the useless
- variable offset and its assignment
+In-Reply-To: <20211208074619.404138-1-luo.penghao@zte.com.cn>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH linux-next] drm/i915/display: Delete
+ redundant post_mask assignment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,52 +55,41 @@ Cc: Stephen Rothwell <sfr@canb.auug.org.au>, David Airlie <airlied@linux.ie>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: luo penghao <luo.penghao@zte.com.cn>
+On Wed, Dec 08, 2021 at 07:46:19AM +0000, cgel.zte@gmail.com wrote:
+> From: luo penghao <luo.penghao@zte.com.cn>
+> 
+> This value will be overwritten by the following if statement, even
+> if the if is not executed, the value will not be used
+> 
+> The clang_analyzer complains as follows:
+> 
+> Value stored to 'port_mask' is never read
+> 
+> Reported-by: Zeal Robot <zealci@zte.com.cn>
+> Signed-off-by: luo penghao <luo.penghao@zte.com.cn>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index bd18432..3aad0c3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -2011,7 +2011,6 @@ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder)
+>  			return;
+>  	}
+>  
+> -	port_mask = BIT(encoder->port);
+>  	ddi_clk_needed = encoder->base.crtc;
+>  
+>  	if (encoder->type == INTEL_OUTPUT_DSI) {
 
-The existence of offset is meaningless, so it should be deleted.
+'port_mask' declaration could now be moved into this block.
 
-The clang_analyzer complains as follows:
+> -- 
+> 2.15.2
+> 
 
-Value stored to 'offset' is never read
-
-Reported-by: Zeal Robot <zealci@zte.com.cn>
-Signed-off-by: luo penghao <luo.penghao@zte.com.cn>
----
- drivers/gpu/drm/i915/display/i9xx_plane.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-index b1439ba..a478b7f 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-@@ -964,7 +964,7 @@ i9xx_get_initial_plane_config(struct intel_crtc *crtc,
- 	struct intel_plane *plane = to_intel_plane(crtc->base.primary);
- 	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
- 	enum pipe pipe;
--	u32 val, base, offset;
-+	u32 val, base;
- 	int fourcc, pixel_format;
- 	unsigned int aligned_height;
- 	struct drm_framebuffer *fb;
-@@ -1006,14 +1006,14 @@ i9xx_get_initial_plane_config(struct intel_crtc *crtc,
- 	fb->format = drm_format_info(fourcc);
- 
- 	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
--		offset = intel_de_read(dev_priv, DSPOFFSET(i9xx_plane));
-+		intel_de_read(dev_priv, DSPOFFSET(i9xx_plane));
- 		base = intel_de_read(dev_priv, DSPSURF(i9xx_plane)) & 0xfffff000;
- 	} else if (DISPLAY_VER(dev_priv) >= 4) {
- 		if (plane_config->tiling)
--			offset = intel_de_read(dev_priv,
-+			intel_de_read(dev_priv,
- 					       DSPTILEOFF(i9xx_plane));
- 		else
--			offset = intel_de_read(dev_priv,
-+			intel_de_read(dev_priv,
- 					       DSPLINOFF(i9xx_plane));
- 		base = intel_de_read(dev_priv, DSPSURF(i9xx_plane)) & 0xfffff000;
- 	} else {
 -- 
-2.15.2
-
-
+Ville Syrjälä
+Intel
