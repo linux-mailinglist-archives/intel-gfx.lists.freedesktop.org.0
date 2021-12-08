@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8447746D428
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 14:13:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA14246D42C
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 14:14:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACDC7731FD;
-	Wed,  8 Dec 2021 13:13:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08F447329A;
+	Wed,  8 Dec 2021 13:14:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9915D73200;
- Wed,  8 Dec 2021 13:13:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4AF727329A;
+ Wed,  8 Dec 2021 13:14:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8FE18A00FD;
- Wed,  8 Dec 2021 13:13:03 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 48154A00FD;
+ Wed,  8 Dec 2021 13:14:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ramalingam C" <ramalingam.c@intel.com>
-Date: Wed, 08 Dec 2021 13:13:03 -0000
-Message-ID: <163896918355.8237.4185732585986572717@emeril.freedesktop.org>
+Date: Wed, 08 Dec 2021 13:14:20 -0000
+Message-ID: <163896926029.8237.15463012023660252383@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20211208102031.4397-1-ramalingam.c@intel.com>
 In-Reply-To: <20211208102031.4397-1-ramalingam.c@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Sanity_Check_for_device_memory_region?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Sanity_Check_for_device_memory_region?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,22 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-a4fb1d110926 drm/i915: Sanitycheck device iomem on probe
--:70: WARNING:VSPRINTF_SPECIFIER_PX: Using vsprintf specifier '%px' potentially exposes the kernel memory layout, if you don't really need the address please consider using '%p'.
-#70: FILE: drivers/gpu/drm/i915/intel_memory_region.c:70:
-+		dev_err(mem->i915->drm.dev,
-+			"Failed to ioremap memory region [%pa + %px] for %ps\n",
-+			&mem->io_start, &offset, caller);
-
-total: 0 errors, 1 warnings, 0 checks, 124 lines checked
-ec4f658f19ef drm/i915: Test all device memory on probing
--:27: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#27: FILE: drivers/gpu/drm/i915/i915_params.c:144:
-+i915_param_named(memtest, bool, 0400,
-+	"Perform a read/write test of all device memory on module load (default: off)");
-
-total: 0 errors, 0 warnings, 1 checks, 74 lines checked
-ab26e68a876d drm/i915: Exclude reserved stolen from driver use
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
