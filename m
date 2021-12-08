@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52AEA46D0C6
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 11:16:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0C2A46D0CB
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 11:17:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DD6E6F4B9;
-	Wed,  8 Dec 2021 10:16:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 437306F4E2;
+	Wed,  8 Dec 2021 10:17:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D4E06F4B9
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Dec 2021 10:16:52 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="217827230"
-X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; d="scan'208";a="217827230"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2021 02:16:51 -0800
-X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; d="scan'208";a="658143406"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 919046F4E2
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Dec 2021 10:17:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="261877778"
+X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; d="scan'208";a="261877778"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2021 02:17:19 -0800
+X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; d="scan'208";a="502998062"
 Received: from cahanley-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.19.1])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2021 02:16:50 -0800
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2021 02:17:13 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <c655648a3ff0ae5d6067f90067a4e1ad6b1700df.camel@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YakpXfVID+sxfbr1@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211203131318.2885969-1-jani.nikula@intel.com>
- <c655648a3ff0ae5d6067f90067a4e1ad6b1700df.camel@intel.com>
-Date: Wed, 08 Dec 2021 12:16:47 +0200
-Message-ID: <87v8zz4d0w.fsf@intel.com>
+References: <20211202144456.2541305-1-jani.nikula@intel.com>
+ <YakpXfVID+sxfbr1@intel.com>
+Date: Wed, 08 Dec 2021 12:17:11 +0200
+Message-ID: <87sfv34d08.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ddi: add use_edp_hobl() and
- use_edp_low_vswing() helpers
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/snps: use div32 version of MPLLB
+ word clock for UHBR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,318 +47,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 03 Dec 2021, "Souza, Jose" <jose.souza@intel.com> wrote:
-> On Fri, 2021-12-03 at 15:13 +0200, Jani Nikula wrote:
->> Localize HOBL and low vswing VBT lookups to a couple of small helpers,
->> and get rid of a bunch of local variables.
+On Thu, 02 Dec 2021, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Dec 02, 2021 at 04:44:56PM +0200, Jani Nikula wrote:
+>> The mode set sequence for 128b/132b requires setting the div32 version
+>> of MPLLB clock.
+>>=20
+>> Bspec: 53880, 54128
 >
-> Reviewed-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
+> Weird place for that information when all the other bits are listed
+> in the clock programming section :/
+>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Thanks, pushed.
 
 >
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >> ---
->>  .../drm/i915/display/intel_ddi_buf_trans.c    | 94 +++++++------------
->>  1 file changed, 36 insertions(+), 58 deletions(-)
+>>  drivers/gpu/drm/i915/display/intel_snps_phy.c | 2 ++
+>>  drivers/gpu/drm/i915/i915_reg.h               | 1 +
+>>  2 files changed, 3 insertions(+)
 >>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/driver=
-s/gpu/drm/i915/display/intel_ddi_buf_trans.c
->> index 78cd8f77b49d..4ecbfa625891 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
->> @@ -1032,6 +1032,21 @@ bool is_hobl_buf_trans(const struct intel_ddi_buf=
-_trans *table)
->>  	return table =3D=3D &tgl_combo_phy_trans_edp_hbr2_hobl;
->>  }
+>> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu=
+/drm/i915/display/intel_snps_phy.c
+>> index c2251218a39e..09f405e4d363 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+>> @@ -186,6 +186,7 @@ static const struct intel_mpllb_state dg2_dp_uhbr10_=
+100 =3D {
+>>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
+>>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
+>>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
+>> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_SHIM_DIV32_CLK_SEL, 1) |
+>>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2),
+>>  	.mpllb_div2 =3D
+>>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 2) |
+>> @@ -369,6 +370,7 @@ static const struct intel_mpllb_state dg2_dp_uhbr10_=
+38_4 =3D {
+>>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
+>>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
+>>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
+>> +		REG_FIELD_PREP(SNPS_PHY_MPLLB_SHIM_DIV32_CLK_SEL, 1) |
+>>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2),
+>>  	.mpllb_div2 =3D
+>>  		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
+>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915=
+_reg.h
+>> index 3450818802c2..1fad1d593e13 100644
+>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> @@ -2265,6 +2265,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t =
+reg)
+>>  #define   SNPS_PHY_MPLLB_DP2_MODE		REG_BIT(9)
+>>  #define   SNPS_PHY_MPLLB_WORD_DIV2_EN		REG_BIT(8)
+>>  #define   SNPS_PHY_MPLLB_TX_CLK_DIV		REG_GENMASK(7, 5)
+>> +#define   SNPS_PHY_MPLLB_SHIM_DIV32_CLK_SEL	REG_BIT(0)
 >>=20=20
->> +static bool use_edp_hobl(struct intel_encoder *encoder)
->> +{
->> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
->> +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->> +
->> +	return i915->vbt.edp.hobl && !intel_dp->hobl_failed;
->> +}
->> +
->> +static bool use_edp_low_vswing(struct intel_encoder *encoder)
->> +{
->> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->> +
->> +	return dev_priv->vbt.edp.low_vswing;
->> +}
->> +
->>  static const struct intel_ddi_buf_trans *
->>  intel_get_buf_trans(const struct intel_ddi_buf_trans *trans, int *num_e=
-ntries)
->>  {
->> @@ -1057,14 +1072,12 @@ bdw_get_buf_trans(struct intel_encoder *encoder,
->>  		  const struct intel_crtc_state *crtc_state,
->>  		  int *n_entries)
->>  {
->> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
->> -
->>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_ANALOG))
->>  		return intel_get_buf_trans(&bdw_trans_fdi, n_entries);
->>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->>  		return intel_get_buf_trans(&bdw_trans_hdmi, n_entries);
->>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
->> -		 i915->vbt.edp.low_vswing)
->> +		 use_edp_low_vswing(encoder))
->>  		return intel_get_buf_trans(&bdw_trans_edp, n_entries);
->>  	else
->>  		return intel_get_buf_trans(&bdw_trans_dp, n_entries);
->> @@ -1094,12 +1107,10 @@ skl_y_get_buf_trans(struct intel_encoder *encode=
-r,
->>  		    const struct intel_crtc_state *crtc_state,
->>  		    int *n_entries)
->>  {
->> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
->> -
->>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->>  		return intel_get_buf_trans(&skl_y_trans_hdmi, n_entries);
->>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
->> -		 i915->vbt.edp.low_vswing)
->> +		 use_edp_low_vswing(encoder))
->>  		return _skl_get_buf_trans_dp(encoder, &skl_y_trans_edp, n_entries);
->>  	else
->>  		return _skl_get_buf_trans_dp(encoder, &skl_y_trans_dp, n_entries);
->> @@ -1110,12 +1121,10 @@ skl_u_get_buf_trans(struct intel_encoder *encode=
-r,
->>  		    const struct intel_crtc_state *crtc_state,
->>  		    int *n_entries)
->>  {
->> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
->> -
->>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->>  		return intel_get_buf_trans(&skl_trans_hdmi, n_entries);
->>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
->> -		 i915->vbt.edp.low_vswing)
->> +		 use_edp_low_vswing(encoder))
->>  		return _skl_get_buf_trans_dp(encoder, &skl_u_trans_edp, n_entries);
->>  	else
->>  		return _skl_get_buf_trans_dp(encoder, &skl_u_trans_dp, n_entries);
->> @@ -1126,12 +1135,10 @@ skl_get_buf_trans(struct intel_encoder *encoder,
->>  		  const struct intel_crtc_state *crtc_state,
->>  		  int *n_entries)
->>  {
->> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
->> -
->>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->>  		return intel_get_buf_trans(&skl_trans_hdmi, n_entries);
->>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
->> -		 i915->vbt.edp.low_vswing)
->> +		 use_edp_low_vswing(encoder))
->>  		return _skl_get_buf_trans_dp(encoder, &skl_trans_edp, n_entries);
->>  	else
->>  		return _skl_get_buf_trans_dp(encoder, &skl_trans_dp, n_entries);
->> @@ -1142,12 +1149,10 @@ kbl_y_get_buf_trans(struct intel_encoder *encode=
-r,
->>  		    const struct intel_crtc_state *crtc_state,
->>  		    int *n_entries)
->>  {
->> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
->> -
->>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->>  		return intel_get_buf_trans(&skl_y_trans_hdmi, n_entries);
->>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
->> -		 i915->vbt.edp.low_vswing)
->> +		 use_edp_low_vswing(encoder))
->>  		return _skl_get_buf_trans_dp(encoder, &skl_y_trans_edp, n_entries);
->>  	else
->>  		return _skl_get_buf_trans_dp(encoder, &kbl_y_trans_dp, n_entries);
->> @@ -1158,12 +1163,10 @@ kbl_u_get_buf_trans(struct intel_encoder *encode=
-r,
->>  		    const struct intel_crtc_state *crtc_state,
->>  		    int *n_entries)
->>  {
->> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
->> -
->>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->>  		return intel_get_buf_trans(&skl_trans_hdmi, n_entries);
->>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
->> -		 i915->vbt.edp.low_vswing)
->> +		 use_edp_low_vswing(encoder))
->>  		return _skl_get_buf_trans_dp(encoder, &skl_u_trans_edp, n_entries);
->>  	else
->>  		return _skl_get_buf_trans_dp(encoder, &kbl_u_trans_dp, n_entries);
->> @@ -1174,12 +1177,10 @@ kbl_get_buf_trans(struct intel_encoder *encoder,
->>  		  const struct intel_crtc_state *crtc_state,
->>  		  int *n_entries)
->>  {
->> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
->> -
->>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->>  		return intel_get_buf_trans(&skl_trans_hdmi, n_entries);
->>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
->> -		 i915->vbt.edp.low_vswing)
->> +		 use_edp_low_vswing(encoder))
->>  		return _skl_get_buf_trans_dp(encoder, &skl_trans_edp, n_entries);
->>  	else
->>  		return _skl_get_buf_trans_dp(encoder, &kbl_trans_dp, n_entries);
->> @@ -1190,12 +1191,10 @@ bxt_get_buf_trans(struct intel_encoder *encoder,
->>  		  const struct intel_crtc_state *crtc_state,
->>  		  int *n_entries)
->>  {
->> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
->> -
->>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->>  		return intel_get_buf_trans(&bxt_trans_hdmi, n_entries);
->>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
->> -		 i915->vbt.edp.low_vswing)
->> +		 use_edp_low_vswing(encoder))
->>  		return intel_get_buf_trans(&bxt_trans_edp, n_entries);
->>  	else
->>  		return intel_get_buf_trans(&bxt_trans_dp, n_entries);
->> @@ -1215,12 +1214,10 @@ icl_get_combo_buf_trans_edp(struct intel_encoder=
- *encoder,
->>  			    const struct intel_crtc_state *crtc_state,
->>  			    int *n_entries)
->>  {
->> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->> -
->>  	if (crtc_state->port_clock > 540000) {
->>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
->>  					   n_entries);
->> -	} else if (dev_priv->vbt.edp.low_vswing) {
->> +	} else if (use_edp_low_vswing(encoder)) {
->>  		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2,
->>  					   n_entries);
->>  	}
->> @@ -1282,12 +1279,10 @@ ehl_get_combo_buf_trans(struct intel_encoder *en=
-coder,
->>  			const struct intel_crtc_state *crtc_state,
->>  			int *n_entries)
->>  {
->> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->> -
->>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->>  		return intel_get_buf_trans(&icl_combo_phy_trans_hdmi, n_entries);
->>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
->> -		 dev_priv->vbt.edp.low_vswing)
->> +		 use_edp_low_vswing(encoder))
->>  		return ehl_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
->>  	else
->>  		return intel_get_buf_trans(&ehl_combo_phy_trans_dp, n_entries);
->> @@ -1309,12 +1304,10 @@ jsl_get_combo_buf_trans(struct intel_encoder *en=
-coder,
->>  			const struct intel_crtc_state *crtc_state,
->>  			int *n_entries)
->>  {
->> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->> -
->>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->>  		return intel_get_buf_trans(&icl_combo_phy_trans_hdmi, n_entries);
->>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
->> -		 dev_priv->vbt.edp.low_vswing)
->> +		 use_edp_low_vswing(encoder))
->>  		return jsl_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
->>  	else
->>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3, n_e=
-ntries);
->> @@ -1346,16 +1339,13 @@ tgl_get_combo_buf_trans_edp(struct intel_encoder=
- *encoder,
->>  			    const struct intel_crtc_state *crtc_state,
->>  			    int *n_entries)
->>  {
->> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->> -
->>  	if (crtc_state->port_clock > 540000) {
->>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
->>  					   n_entries);
->> -	} else if (dev_priv->vbt.edp.hobl && !intel_dp->hobl_failed) {
->> +	} else if (use_edp_hobl(encoder)) {
->>  		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl,
->>  					   n_entries);
->> -	} else if (dev_priv->vbt.edp.low_vswing) {
->> +	} else if (use_edp_low_vswing(encoder)) {
->>  		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2,
->>  					   n_entries);
->>  	}
->> @@ -1394,16 +1384,13 @@ dg1_get_combo_buf_trans_edp(struct intel_encoder=
- *encoder,
->>  			    const struct intel_crtc_state *crtc_state,
->>  			    int *n_entries)
->>  {
->> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->> -
->>  	if (crtc_state->port_clock > 540000)
->>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
->>  					   n_entries);
->> -	else if (dev_priv->vbt.edp.hobl && !intel_dp->hobl_failed)
->> +	else if (use_edp_hobl(encoder))
->>  		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl,
->>  					   n_entries);
->> -	else if (dev_priv->vbt.edp.low_vswing)
->> +	else if (use_edp_low_vswing(encoder))
->>  		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2,
->>  					   n_entries);
->>  	else
->> @@ -1439,16 +1426,13 @@ rkl_get_combo_buf_trans_edp(struct intel_encoder=
- *encoder,
->>  			    const struct intel_crtc_state *crtc_state,
->>  			    int *n_entries)
->>  {
->> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->> -
->>  	if (crtc_state->port_clock > 540000) {
->>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
->>  					   n_entries);
->> -	} else if (dev_priv->vbt.edp.hobl && !intel_dp->hobl_failed) {
->> +	} else if (use_edp_hobl(encoder)) {
->>  		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl,
->>  					   n_entries);
->> -	} else if (dev_priv->vbt.edp.low_vswing) {
->> +	} else if (use_edp_low_vswing(encoder)) {
->>  		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2,
->>  					   n_entries);
->>  	}
->> @@ -1485,14 +1469,11 @@ adls_get_combo_buf_trans_edp(struct intel_encode=
-r *encoder,
->>  			     const struct intel_crtc_state *crtc_state,
->>  			     int *n_entries)
->>  {
->> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
->> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->> -
->>  	if (crtc_state->port_clock > 540000)
->>  		return intel_get_buf_trans(&adls_combo_phy_trans_edp_hbr3, n_entries);
->> -	else if (i915->vbt.edp.hobl && !intel_dp->hobl_failed)
->> +	else if (use_edp_hobl(encoder))
->>  		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl, n_entr=
-ies);
->> -	else if (i915->vbt.edp.low_vswing)
->> +	else if (use_edp_low_vswing(encoder))
->>  		return intel_get_buf_trans(&adls_combo_phy_trans_edp_hbr2, n_entries);
->>  	else
->>  		return adls_get_combo_buf_trans_dp(encoder, crtc_state, n_entries);
->> @@ -1527,16 +1508,13 @@ adlp_get_combo_buf_trans_edp(struct intel_encode=
-r *encoder,
->>  			     const struct intel_crtc_state *crtc_state,
->>  			     int *n_entries)
->>  {
->> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->> -
->>  	if (crtc_state->port_clock > 540000) {
->>  		return intel_get_buf_trans(&adlp_combo_phy_trans_edp_hbr3,
->>  					   n_entries);
->> -	} else if (dev_priv->vbt.edp.hobl && !intel_dp->hobl_failed) {
->> +	} else if (use_edp_hobl(encoder)) {
->>  		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl,
->>  					   n_entries);
->> -	} else if (dev_priv->vbt.edp.low_vswing) {
->> +	} else if (use_edp_low_vswing(encoder)) {
->>  		return intel_get_buf_trans(&adlp_combo_phy_trans_edp_up_to_hbr2,
->>  					   n_entries);
->>  	}
->
+>>  #define SNPS_PHY_MPLLB_FRACN1(phy)		_MMIO_SNPS(phy, 0x168008)
+>>  #define   SNPS_PHY_MPLLB_FRACN_EN		REG_BIT(31)
+>> --=20
+>> 2.30.2
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
