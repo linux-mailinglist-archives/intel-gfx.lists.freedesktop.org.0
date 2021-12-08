@@ -1,41 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E8EF46D3F4
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 14:04:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8447746D428
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 14:13:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC98C7330E;
-	Wed,  8 Dec 2021 13:04:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACDC7731FD;
+	Wed,  8 Dec 2021 13:13:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 148A47330A;
- Wed,  8 Dec 2021 13:04:22 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="261901254"
-X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; d="scan'208";a="261901254"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2021 05:04:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; d="scan'208";a="658278402"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga001.fm.intel.com with SMTP; 08 Dec 2021 05:04:17 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 08 Dec 2021 15:04:17 +0200
-Date: Wed, 8 Dec 2021 15:04:17 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: cgel.zte@gmail.com
-Message-ID: <YbCtUZUSbEpCuDoi@intel.com>
-References: <20211208074619.404138-1-luo.penghao@zte.com.cn>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9915D73200;
+ Wed,  8 Dec 2021 13:13:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8FE18A00FD;
+ Wed,  8 Dec 2021 13:13:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211208074619.404138-1-luo.penghao@zte.com.cn>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH linux-next] drm/i915/display: Delete
- redundant post_mask assignment
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ramalingam C" <ramalingam.c@intel.com>
+Date: Wed, 08 Dec 2021 13:13:03 -0000
+Message-ID: <163896918355.8237.4185732585986572717@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211208102031.4397-1-ramalingam.c@intel.com>
+In-Reply-To: <20211208102031.4397-1-ramalingam.c@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Sanity_Check_for_device_memory_region?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,48 +40,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, luo penghao <luo.penghao@zte.com.cn>,
- Zeal Robot <zealci@zte.com.cn>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 08, 2021 at 07:46:19AM +0000, cgel.zte@gmail.com wrote:
-> From: luo penghao <luo.penghao@zte.com.cn>
-> 
-> This value will be overwritten by the following if statement, even
-> if the if is not executed, the value will not be used
-> 
-> The clang_analyzer complains as follows:
-> 
-> Value stored to 'port_mask' is never read
-> 
-> Reported-by: Zeal Robot <zealci@zte.com.cn>
-> Signed-off-by: luo penghao <luo.penghao@zte.com.cn>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index bd18432..3aad0c3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -2011,7 +2011,6 @@ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder)
->  			return;
->  	}
->  
-> -	port_mask = BIT(encoder->port);
->  	ddi_clk_needed = encoder->base.crtc;
->  
->  	if (encoder->type == INTEL_OUTPUT_DSI) {
+== Series Details ==
 
-'port_mask' declaration could now be moved into this block.
+Series: drm/i915: Sanity Check for device memory region
+URL   : https://patchwork.freedesktop.org/series/97715/
+State : warning
 
-> -- 
-> 2.15.2
-> 
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+$ dim checkpatch origin/drm-tip
+a4fb1d110926 drm/i915: Sanitycheck device iomem on probe
+-:70: WARNING:VSPRINTF_SPECIFIER_PX: Using vsprintf specifier '%px' potentially exposes the kernel memory layout, if you don't really need the address please consider using '%p'.
+#70: FILE: drivers/gpu/drm/i915/intel_memory_region.c:70:
++		dev_err(mem->i915->drm.dev,
++			"Failed to ioremap memory region [%pa + %px] for %ps\n",
++			&mem->io_start, &offset, caller);
+
+total: 0 errors, 1 warnings, 0 checks, 124 lines checked
+ec4f658f19ef drm/i915: Test all device memory on probing
+-:27: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#27: FILE: drivers/gpu/drm/i915/i915_params.c:144:
++i915_param_named(memtest, bool, 0400,
++	"Perform a read/write test of all device memory on module load (default: off)");
+
+total: 0 errors, 0 warnings, 1 checks, 74 lines checked
+ab26e68a876d drm/i915: Exclude reserved stolen from driver use
+
+
