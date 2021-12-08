@@ -2,45 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C86F146DA98
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 18:58:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8874046DAC0
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 19:11:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16AF273092;
-	Wed,  8 Dec 2021 17:58:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0DA86E0A0;
+	Wed,  8 Dec 2021 18:11:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 949D172CF3;
- Wed,  8 Dec 2021 17:58:16 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: bbeckett) with ESMTPSA id D5B6F1F45986
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
- t=1638986295; bh=7junxWaNxauVk2edwYKBsBqQNamq5s2lppgsWHegTX8=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=L8nMLADngE4kDv5fPh+tBMIsLA998RShJKDPJZvYtVY+jkZwhKcRmJAYhV2vuScPH
- sac+1ab/hdGcT86IISeqxt5TvU8fA/Ibxul0a7szAbSSvEbvB6ZVXgZVk0lScdupIx
- DYbjCEV9wbqyvwmaBfBWEg3M7Q4rBLGI4zsiRc+drwd5prp9yDMgoKmmsWdywC8Uqn
- lbRh9YqJFENixvXZVq5POrd7SxVIZZgGxcEWIZ5wkwjTHOoH240HOi5EC/6B7oEsGR
- IpBAxUCAydtA/luJOWm+n7vJlaWxrx7ydQaO+i/soMNrmk5XEfOp7JFO7O7jHCcqo/
- nJOnZMk969qqw==
-Message-ID: <971555a0-6bd8-4c1c-7235-6072aaac1257@collabora.com>
-Date: Wed, 8 Dec 2021 17:58:12 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73B106E0EB
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Dec 2021 18:11:17 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="217920835"
+X-IronPort-AV: E=Sophos;i="5.88,190,1635231600"; d="scan'208";a="217920835"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2021 10:11:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,190,1635231600"; d="scan'208";a="564211850"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga008.fm.intel.com with ESMTP; 08 Dec 2021 10:11:16 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Wed, 8 Dec 2021 10:11:15 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Wed, 8 Dec 2021 10:11:15 -0800
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2308.020;
+ Wed, 8 Dec 2021 10:11:15 -0800
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "Tolakanahalli Pradeep, Madhumitha"
+ <madhumitha.tolakanahalli.pradeep@intel.com>, "Hutchings, Ben"
+ <ben@decadent.org.uk>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "kyle@mcmartin.ca" <kyle@mcmartin.ca>,
+ "jwboyer@kernel.org" <jwboyer@kernel.org>
+Thread-Topic: [Intel-gfx] i915 Updates: ADL-P DMC v2.14
+Thread-Index: AQHX5xph/f6XAKy2GE6V4WspnPfE+qwo74wg
+Date: Wed, 8 Dec 2021 18:11:15 +0000
+Message-ID: <2b6c0de45581430daff7f698e94d94ad@intel.com>
+References: <9d3a16d4327fd6bb0a52cfe8e4bb0857a81494f2.camel@intel.com>
+In-Reply-To: <9d3a16d4327fd6bb0a52cfe8e4bb0857a81494f2.camel@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
- Adrian Larumbe <adrian.larumbe@collabora.com>, daniel@ffwll.ch,
- ramalingam.c@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20211207175301.321119-1-adrian.larumbe@collabora.com>
- <c91e8065-56a6-d758-5089-2405c5841858@intel.com>
-From: Robert Beckett <bob.beckett@collabora.com>
-In-Reply-To: <c91e8065-56a6-d758-5089-2405c5841858@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: make GuC FW a requirement for
- Gen12 and beyond devices
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.200.16
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] i915 Updates: ADL-P DMC v2.14
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,140 +68,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniels@collabora.com
+Cc: "linux-firmware@kernel.org" <linux-firmware@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 07/12/2021 23:15, John Harrison wrote:
-> On 12/7/2021 09:53, Adrian Larumbe wrote:
->> Beginning with DG2, all successive devices will require GuC FW to be
->> present and loaded at probe() time. This change alters error handling in
->> the FW init and load functions so that the driver's probe() function will
->> fail if GuC could not be loaded.
-> We still need to load the i915 driver in fall back mode (display but no 
-> engines) if the GuC is missing. Otherwise you may have just bricked the 
-> user's device.
-
-good point, well made.
-though this still seems like an issue for gen12+ (excluding rkl and adl).
-
-maybe a redesign of toplevel driver probe, with i915_driver_early_probe 
-before i915_driver_create could work. If the GuC fw is not found, it 
-could then register a new kms only version of i915_drm_driver.
-
-or something like like that ...
-
-> 
-> Also, we do want to be able to disable the GuC via the enable_guc module 
-> parameter.
-> 
-> John.
-> 
-> 
->> Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
->> ---
->>   drivers/gpu/drm/i915/gt/uc/intel_uc.c | 20 ++++++++++++++++----
->>   drivers/gpu/drm/i915/gt/uc/intel_uc.h |  4 ++--
->>   drivers/gpu/drm/i915/i915_gem.c       |  7 ++++++-
->>   3 files changed, 24 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c 
->> b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->> index 7660eba893fa..8b0778b6d9ab 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->> @@ -277,14 +277,19 @@ static void guc_disable_communication(struct 
->> intel_guc *guc)
->>       drm_dbg(&i915->drm, "GuC communication disabled\n");
->>   }
->> -static void __uc_fetch_firmwares(struct intel_uc *uc)
->> +static int __uc_fetch_firmwares(struct intel_uc *uc)
->>   {
->> +    struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
->>       int err;
->>       GEM_BUG_ON(!intel_uc_wants_guc(uc));
->>       err = intel_uc_fw_fetch(&uc->guc.fw);
->>       if (err) {
->> +        /* GuC is mandatory on Gen12 and beyond */
->> +        if (GRAPHICS_VER(i915) >= 12)
->> +            return err;
->> +
->>           /* Make sure we transition out of transient "SELECTED" state */
->>           if (intel_uc_wants_huc(uc)) {
->>               drm_dbg(&uc_to_gt(uc)->i915->drm,
->> @@ -293,11 +298,13 @@ static void __uc_fetch_firmwares(struct intel_uc 
->> *uc)
->>                             INTEL_UC_FIRMWARE_ERROR);
->>           }
->> -        return;
->> +        return 0;
->>       }
->>       if (intel_uc_wants_huc(uc))
->>           intel_uc_fw_fetch(&uc->huc.fw);
->> +
->> +    return 0;
->>   }
->>   static void __uc_cleanup_firmwares(struct intel_uc *uc)
->> @@ -308,14 +315,19 @@ static void __uc_cleanup_firmwares(struct 
->> intel_uc *uc)
->>   static int __uc_init(struct intel_uc *uc)
->>   {
->> +    struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
->>       struct intel_guc *guc = &uc->guc;
->>       struct intel_huc *huc = &uc->huc;
->>       int ret;
->>       GEM_BUG_ON(!intel_uc_wants_guc(uc));
->> -    if (!intel_uc_uses_guc(uc))
->> -        return 0;
->> +    if (!intel_uc_uses_guc(uc)) {
->> +        if (GRAPHICS_VER(i915) >= 12)
->> +            return -EINVAL;
->> +        else
->> +            return 0;
->> +    }
->>       if (i915_inject_probe_failure(uc_to_gt(uc)->i915))
->>           return -ENOMEM;
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h 
->> b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
->> index 866b462821c0..3bcd781447bc 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
->> @@ -17,7 +17,7 @@ struct intel_uc;
->>   struct intel_uc_ops {
->>       int (*sanitize)(struct intel_uc *uc);
->> -    void (*init_fw)(struct intel_uc *uc);
->> +    int (*init_fw)(struct intel_uc *uc);
->>       void (*fini_fw)(struct intel_uc *uc);
->>       int (*init)(struct intel_uc *uc);
->>       void (*fini)(struct intel_uc *uc);
->> @@ -104,7 +104,7 @@ static inline _TYPE intel_uc_##_NAME(struct 
->> intel_uc *uc) \
->>       return _RET; \
->>   }
->>   intel_uc_ops_function(sanitize, sanitize, int, 0);
->> -intel_uc_ops_function(fetch_firmwares, init_fw, void, );
->> +intel_uc_ops_function(fetch_firmwares, init_fw, int, 0);
->>   intel_uc_ops_function(cleanup_firmwares, fini_fw, void, );
->>   intel_uc_ops_function(init, init, int, 0);
->>   intel_uc_ops_function(fini, fini, void, );
->> diff --git a/drivers/gpu/drm/i915/i915_gem.c 
->> b/drivers/gpu/drm/i915/i915_gem.c
->> index 527228d4da7e..7f8204af6826 100644
->> --- a/drivers/gpu/drm/i915/i915_gem.c
->> +++ b/drivers/gpu/drm/i915/i915_gem.c
->> @@ -1049,7 +1049,12 @@ int i915_gem_init(struct drm_i915_private 
->> *dev_priv)
->>       if (ret)
->>           return ret;
->> -    intel_uc_fetch_firmwares(&dev_priv->gt.uc);
->> +    ret = intel_uc_fetch_firmwares(&dev_priv->gt.uc);
->> +    if (ret) {
->> +        i915_probe_error(dev_priv, "Failed to fetch firmware\n");
->> +        return ret;
->> +    }
->> +
->>       intel_wopcm_init(&dev_priv->wopcm);
->>       ret = i915_init_ggtt(dev_priv);
-> 
+UGluZyA6KQ0KQ2FuIHRoZXNlIHVwZGF0ZXMgYmUgbWVyZ2VkIHRvIGxpbnV4LWZpcm13YXJlPw0K
+DQoNClRoYW5rcywNCkFudXNoYSANCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBG
+cm9tOiBUb2xha2FuYWhhbGxpIFByYWRlZXAsIE1hZGh1bWl0aGENCj4gPG1hZGh1bWl0aGEudG9s
+YWthbmFoYWxsaS5wcmFkZWVwQGludGVsLmNvbT4NCj4gU2VudDogVGh1cnNkYXksIERlY2VtYmVy
+IDIsIDIwMjEgNjo0OCBBTQ0KPiBUbzogSHV0Y2hpbmdzLCBCZW4gPGJlbkBkZWNhZGVudC5vcmcu
+dWs+OyBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOw0KPiBreWxlQG1jbWFydGluLmNh
+OyBqd2JveWVyQGtlcm5lbC5vcmcNCj4gQ2M6IFNyaXZhdHNhLCBBbnVzaGEgPGFudXNoYS5zcml2
+YXRzYUBpbnRlbC5jb20+OyBsaW51eC0NCj4gZmlybXdhcmVAa2VybmVsLm9yZw0KPiBTdWJqZWN0
+OiBbSW50ZWwtZ2Z4XSBpOTE1IFVwZGF0ZXM6IEFETC1QIERNQyB2Mi4xNA0KPiANCj4gSGkgQmVu
+LCBKb3NoLCBLeWxlLA0KPiANCj4gS2luZGx5IGFkZCB0aGUgYmVsb3cgaTkxNSBjaGFuZ2VzIHRv
+IGxpbnV4LWZpcm13YXJlOg0KPiANCj4gVGhlIGZvbGxvd2luZyBjaGFuZ2VzIHNpbmNlIGNvbW1p
+dA0KPiBiMGU4OThmYmFmMzc3Yzk5YTM2YWFjNmZkZWI3MjUwMDAzNjQ4Y2E0Og0KPiANCj4gICBs
+aW51eC1maXJtd2FyZTogVXBkYXRlIGZpcm13YXJlIGZpbGUgZm9yIEludGVsIEJsdWV0b290aCA5
+NDYyICgyMDIxLQ0KPiAxMS0yMyAxMjozMTo0NSAtMDUwMCkNCj4gDQo+IGFyZSBhdmFpbGFibGUg
+aW4gdGhlIEdpdCByZXBvc2l0b3J5IGF0Og0KPiANCj4gICBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNr
+dG9wLm9yZy9kcm0vZHJtLWZpcm13YXJlIGFkbHBfZG1jX3YyLjE0X3VwZGF0ZQ0KPiANCj4gZm9y
+IHlvdSB0byBmZXRjaCBjaGFuZ2VzIHVwIHRvDQo+IDJhMmFhNDEwYzJlYWViZTU4MDdkMWZkMzIx
+ZTQyYjhmNTMyODhkOTE6DQo+IA0KPiAgIGk5MTU6IEFkZCBETUMgZmlybXdhcmUgdjIuMTQgZm9y
+IEFETC1QICgyMDIxLTEyLTAxIDE2OjUwOjMwIC0wODAwKQ0KPiANCj4gLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiBNYWRo
+dW1pdGhhIFRvbGFrYW5haGFsbGkgUHJhZGVlcCAoMSk6DQo+ICAgICAgIGk5MTU6IEFkZCBETUMg
+ZmlybXdhcmUgdjIuMTQgZm9yIEFETC1QDQo+IA0KPiAgV0hFTkNFICAgICAgICAgICAgICAgICAg
+ICB8ICAgMyArKysNCj4gIGk5MTUvYWRscF9kbWNfdmVyMl8xNC5iaW4gfCBCaW4gMCAtPiA3NzMw
+MCBieXRlcw0KPiAgMiBmaWxlcyBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKykNCj4gIGNyZWF0ZSBt
+b2RlIDEwMDY0NCBpOTE1L2FkbHBfZG1jX3ZlcjJfMTQuYmluDQo+IA0KPiBUaGFua3MhDQo+IC0g
+TWFkaHVtaXRoYQ0KPiANCg0K
