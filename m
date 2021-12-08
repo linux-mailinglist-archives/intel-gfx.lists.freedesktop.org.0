@@ -2,56 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FA6046D2FB
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 13:08:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9270646D385
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 13:43:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37A6E72DE4;
-	Wed,  8 Dec 2021 12:08:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15AF572C8C;
+	Wed,  8 Dec 2021 12:43:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com
- [IPv6:2607:f8b0:4864:20::72d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66B6C72DE5;
- Wed,  8 Dec 2021 12:08:12 +0000 (UTC)
-Received: by mail-qk1-x72d.google.com with SMTP id de30so1799847qkb.0;
- Wed, 08 Dec 2021 04:08:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=DUWyCuH1GjHTizo9OL3sty+WXQ/L+4z/cJ7qo785EO8=;
- b=pd237NZ86Wp5VgcSfQFafztqzdNeKZCnZJqysyV1ntNc2gf0Hyh4tUS9WnatV4ujQ7
- g4Wd3R+3BER26FKzFg89aMBAaT/pC2k8T9tnxOwWOFsh2SPlb2xZjIr6FGSmS4GcW44t
- tZrPrIEVmUx3jd7tUlPZ8jW9DUKdr9Ley5s+VHO1Nl0NNHYHvtC+AsPo85bydLRjOUYX
- 5UFOlF1MyrGq2i5tJo75NbhoimcxuMYqD9NHTkJhZFxoD45iZWyrVFE5ac5UuSRSKqaO
- z6QRXdQVaP7bMVKpR2ZrC9d162BFM0qW11Xbaswmb7AdSHINVd9YgAQ8Z5+k6CoHnD10
- zonw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=DUWyCuH1GjHTizo9OL3sty+WXQ/L+4z/cJ7qo785EO8=;
- b=PgIqDznxRdteFWDc30tjYPeVWR2jpUJnnufLVTD1R5CzaS49k3A75K7MaxYEqIMwNT
- bj3Ej7fyc9cHN5xVmEVGFrzwfM2/JR2nNvnAlXoA/9/YnA8wtOXiSMaIaT3q+bIWeN2M
- tLJWT0n1xnlq4GRD0KJfcWH3bpTgv5Upglvv9DIX+WDMVQXjL4T524CnpaEM+XaLj4pf
- IF8z1m1mQz5YOEngIWb3YKyGRqMUFCW89SrZg8De7BWyH5Xv9ldcjOsJo6FAwAupM5oF
- 4llL4LV8m0hUG4FVzvCZhWcqoJh58iDuaef3MaNw5AM5iAlrC9agclJB1eV95PrbDlhp
- ow2Q==
-X-Gm-Message-State: AOAM532qziZkjPK5uTb2tQvj6bhYb5b0IHS3t6nNguq/Ht8ecVImxSF0
- io8ET8+FE1WQzEuVvDwiiWhwJPp/noo+Xt2EVxv7VFiMB7E=
-X-Google-Smtp-Source: ABdhPJy8LHHkVgx+4+lMSJcULNW/LIL2PwL+ZKo8SQl+ajim2skUh145u3S4SmnEFo41rMJ7UxGQCS8sdqzX7isMInU=
-X-Received: by 2002:a05:620a:2413:: with SMTP id
- d19mr6208161qkn.82.1638965291460; 
- Wed, 08 Dec 2021 04:08:11 -0800 (PST)
+Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
+ [213.80.101.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DAF872C89;
+ Wed,  8 Dec 2021 12:43:52 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 435243F3A3;
+ Wed,  8 Dec 2021 13:43:50 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -3.11
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.11 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-1.011,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: ste-pvt-msa1.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id j_LNOhDnzbrL; Wed,  8 Dec 2021 13:43:49 +0100 (CET)
+Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id ABF6D3F2BA;
+ Wed,  8 Dec 2021 13:43:48 +0100 (CET)
+Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
+ [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 0FE14362AD5;
+ Wed,  8 Dec 2021 13:43:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1638967428; bh=Vnjh/rwjY5pEUQbAi5NHBWfwvB2JgTimbzUPdqEI+OM=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=mv93Du13AcqWKiEHUFAHADV5WiQgV6paT8evVliB9vAh/cj3EWvy813sUZcyeVwvq
+ ckNDmWWOOeftXote2ZZqNNzZgwW5BKxC1k4DV3N+nxGiW5YtXGgnc98SMUbE5YFm1l
+ 7IKlx4HKKG0H8kH+hk/xrE4JGe2hfWdOCQa14EO8=
+Message-ID: <801b9d8b-1b5c-ce2f-dc05-e804cafc3683@shipmail.org>
+Date: Wed, 8 Dec 2021 13:43:47 +0100
 MIME-Version: 1.0
-References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
- <20211129134735.628712-11-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211129134735.628712-11-maarten.lankhorst@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 8 Dec 2021 12:07:45 +0000
-Message-ID: <CAM0jSHPrBmKN+o27ZYvYxHj9BvM3y3tF4ZVh2HCH_AZtPboPbg@mail.gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v2 10/16] drm/i915: Make i915_gem_evict_vm
- work correctly for already locked objects
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Ramalingam C <ramalingam.c@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+References: <20211207165156.31244-1-ramalingam.c@intel.com>
+ <20211207165156.31244-2-ramalingam.c@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <20211207165156.31244-2-ramalingam.c@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Add has_64k_pages flag
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,79 +69,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Hellstrom Thomas <thomas.hellstrom@intel.com>, Andi <andi.shyti@intel.com>,
+ Chris_intel_ID <chris.p.wilson@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 29 Nov 2021 at 13:58, Maarten Lankhorst
-<maarten.lankhorst@linux.intel.com> wrote:
->
-> i915_gem_execbuf will call i915_gem_evict_vm() after failing to pin
-> all objects in the first round. We are about to remove those short-term
-> pins, but even without those the objects are still locked. Add a special
-> case to allow i915_gem_evict_vm to evict locked objects as well.
->
-> This might also allow multiple objects sharing the same resv to be evicted.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Hi,
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-
-Do we need similar treatment for stuff like evict_for_node etc?
-
+On 12/7/21 17:51, Ramalingam C wrote:
+> From: Stuart Summers <stuart.summers@intel.com>
+>
+> Add a new platform flag, has_64k_pages, for platforms supporting
+> base page sizes of 64k.
+>
+> Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_gem_evict.c | 23 ++++++++++++++++++++++-
->  1 file changed, 22 insertions(+), 1 deletion(-)
+>   drivers/gpu/drm/i915/i915_drv.h          | 2 ++
+>   drivers/gpu/drm/i915/i915_pci.c          | 2 ++
+>   drivers/gpu/drm/i915/intel_device_info.h | 1 +
+>   3 files changed, 5 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
-> index 24f5e3345e43..f502a617b35c 100644
-> --- a/drivers/gpu/drm/i915/i915_gem_evict.c
-> +++ b/drivers/gpu/drm/i915/i915_gem_evict.c
-> @@ -410,21 +410,42 @@ int i915_gem_evict_vm(struct i915_address_space *vm, struct i915_gem_ww_ctx *ww)
->         do {
->                 struct i915_vma *vma, *vn;
->                 LIST_HEAD(eviction_list);
-> +               LIST_HEAD(locked_eviction_list);
->
->                 list_for_each_entry(vma, &vm->bound_list, vm_link) {
->                         if (i915_vma_is_pinned(vma))
->                                 continue;
->
-> +                       /*
-> +                        * If we already own the lock, trylock fails. In case the resv
-> +                        * is shared among multiple objects, we still need the object ref.
-> +                        */
-> +                       if (ww && (dma_resv_locking_ctx(vma->obj->base.resv) == &ww->ctx)) {
-> +                               __i915_vma_pin(vma);
-> +                               list_add(&vma->evict_link, &locked_eviction_list);
-> +                               continue;
-> +                       }
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 85bb8d3107f0..6132163e1cb3 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1528,6 +1528,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   #define HAS_MSLICES(dev_priv) \
+>   	(INTEL_INFO(dev_priv)->has_mslices)
+>   
+> +#define HAS_64K_PAGES(dev_priv) (INTEL_INFO(dev_priv)->has_64k_pages)
 > +
->                         if (!i915_gem_object_trylock(vma->obj, ww))
->                                 continue;
->
->                         __i915_vma_pin(vma);
->                         list_add(&vma->evict_link, &eviction_list);
->                 }
-> -               if (list_empty(&eviction_list))
-> +               if (list_empty(&eviction_list) && list_empty(&locked_eviction_list))
->                         break;
->
->                 ret = 0;
-> +               /* Unbind locked objects first, before unlocking the eviction_list */
-> +               list_for_each_entry_safe(vma, vn, &locked_eviction_list, evict_link) {
-> +                       __i915_vma_unpin(vma);
-> +
-> +                       if (ret == 0)
-> +                               ret = __i915_vma_unbind(vma);
-> +                       if (ret != -EINTR) /* "Get me out of here!" */
-> +                               ret = 0;
-> +               }
-> +
->                 list_for_each_entry_safe(vma, vn, &eviction_list, evict_link) {
->                         __i915_vma_unpin(vma);
->                         if (ret == 0)
-> --
-> 2.34.0
->
+
+Could we please have some documentation of the exact meaning of this flag.
+Like, smallest page size of LMEM is 64K. Hardware supports 64k pages etc?
+
+for future reference.
+
+/Thomas
+
+
+
+
+
+>   #define HAS_IPC(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ipc)
+>   
+>   #define HAS_REGION(i915, i) (INTEL_INFO(i915)->memory_regions & (i))
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 6aaa7c644c9b..634282edadb7 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -1029,6 +1029,7 @@ static const struct intel_device_info xehpsdv_info = {
+>   	DGFX_FEATURES,
+>   	PLATFORM(INTEL_XEHPSDV),
+>   	.display = { },
+> +	.has_64k_pages = 1,
+>   	.pipe_mask = 0,
+>   	.platform_engine_mask =
+>   		BIT(RCS0) | BIT(BCS0) |
+> @@ -1047,6 +1048,7 @@ static const struct intel_device_info dg2_info = {
+>   	.graphics.rel = 55,
+>   	.media.rel = 55,
+>   	PLATFORM(INTEL_DG2),
+> +	.has_64k_pages = 1,
+>   	.platform_engine_mask =
+>   		BIT(RCS0) | BIT(BCS0) |
+>   		BIT(VECS0) | BIT(VECS1) |
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index 669f0d26c3c3..f38ac5bd837b 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -123,6 +123,7 @@ enum intel_ppgtt_type {
+>   	func(is_dgfx); \
+>   	/* Keep has_* in alphabetical order */ \
+>   	func(has_64bit_reloc); \
+> +	func(has_64k_pages); \
+>   	func(gpu_reset_clobbers_display); \
+>   	func(has_reset_engine); \
+>   	func(has_global_mocs); \
