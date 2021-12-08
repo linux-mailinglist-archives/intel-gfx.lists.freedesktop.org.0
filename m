@@ -1,34 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00DAE46D63B
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 15:58:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B0D546D656
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 16:01:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3D3273747;
-	Wed,  8 Dec 2021 14:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FCCC6FF2B;
+	Wed,  8 Dec 2021 15:01:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0BE3873747;
- Wed,  8 Dec 2021 14:58:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0414DAA3D8;
- Wed,  8 Dec 2021 14:58:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D9BD6FF2B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Dec 2021 15:01:28 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="238071716"
+X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; d="scan'208";a="238071716"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2021 07:00:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; d="scan'208";a="462789285"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga006.jf.intel.com with SMTP; 08 Dec 2021 07:00:51 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 08 Dec 2021 17:00:50 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  8 Dec 2021 17:00:50 +0200
+Message-Id: <20211208150050.17230-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: cgel.zte@gmail.com
-Date: Wed, 08 Dec 2021 14:58:02 -0000
-Message-ID: <163897548298.8234.1499265370053643751@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211208074952.404381-1-luo.penghao@zte.com.cn>
-In-Reply-To: <20211208074952.404381-1-luo.penghao@zte.com.cn>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/display=3A_Remove_the_useless_variable_offset_and_?=
- =?utf-8?q?its_assignment?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Remove zombie async flip vt-d w/a
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,31 +44,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: drm/i915/display: Remove the useless variable offset and its assignment
-URL   : https://patchwork.freedesktop.org/series/97724/
-State : warning
+This async flip vt-d w/a was moved to a different place in
+commit 7d396cacaea6 ("drm/i195: Make the async flip VT-d workaround
+dynamic") but the drm-intel-fixes cherry-pick commit b2d73debfdc1
+("drm/i915: Extend the async flip VT-d w/a to skl/bxt") resurrected
+the original code as well. So now we have this w/a in two places.
+Remove the resurrected zombie code.
 
-== Summary ==
+Not done as a revert to hopefully prevent any kind of
+automagic stable backport.
 
-$ dim checkpatch origin/drm-tip
-4c9a41e79dcc drm/i915/display: Remove the useless variable offset and its assignment
--:40: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#40: FILE: drivers/gpu/drm/i915/display/i9xx_plane.c:1047:
-+			intel_de_read(dev_priv,
- 					       DSPTILEOFF(i9xx_plane));
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/intel_pm.c | 12 ------------
+ 1 file changed, 12 deletions(-)
 
--:44: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#44: FILE: drivers/gpu/drm/i915/display/i9xx_plane.c:1050:
-+			intel_de_read(dev_priv,
- 					       DSPLINOFF(i9xx_plane));
-
-total: 0 errors, 0 warnings, 2 checks, 25 lines checked
-
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index fe3787425780..31767c583cd0 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -78,8 +78,6 @@ struct intel_wm_config {
+ 
+ static void gen9_init_clock_gating(struct drm_i915_private *dev_priv)
+ {
+-	enum pipe pipe;
+-
+ 	if (HAS_LLC(dev_priv)) {
+ 		/*
+ 		 * WaCompressedResourceDisplayNewHashMode:skl,kbl
+@@ -93,16 +91,6 @@ static void gen9_init_clock_gating(struct drm_i915_private *dev_priv)
+ 			   SKL_DE_COMPRESSED_HASH_MODE);
+ 	}
+ 
+-	for_each_pipe(dev_priv, pipe) {
+-		/*
+-		 * "Plane N strech max must be programmed to 11b (x1)
+-		 *  when Async flips are enabled on that plane."
+-		 */
+-		if (!IS_GEMINILAKE(dev_priv) && intel_vtd_active(dev_priv))
+-			intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
+-					 SKL_PLANE1_STRETCH_MAX_MASK, SKL_PLANE1_STRETCH_MAX_X1);
+-	}
+-
+ 	/* See Bspec note for PSR2_CTL bit 31, Wa#828:skl,bxt,kbl,cfl */
+ 	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
+ 		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) | SKL_EDP_PSR_FIX_RDWRAP);
+-- 
+2.32.0
 
