@@ -2,51 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 211C946D2B7
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 12:50:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAACD46D2DF
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 13:01:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEE4D6F50C;
-	Wed,  8 Dec 2021 11:50:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E253A6F5FC;
+	Wed,  8 Dec 2021 12:01:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
- [IPv6:2607:f8b0:4864:20::829])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7251B6F50B;
- Wed,  8 Dec 2021 11:50:01 +0000 (UTC)
-Received: by mail-qt1-x829.google.com with SMTP id 8so1939420qtx.5;
- Wed, 08 Dec 2021 03:50:01 -0800 (PST)
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com
+ [IPv6:2607:f8b0:4864:20::72e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59C576F5FC;
+ Wed,  8 Dec 2021 12:01:42 +0000 (UTC)
+Received: by mail-qk1-x72e.google.com with SMTP id 193so1698023qkh.10;
+ Wed, 08 Dec 2021 04:01:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=2si1KDpnDvXk+ubJlzHUYkLWexjktnm9IfArHYCIY20=;
- b=FMpLzdZDAwaije8OvqV60lgcdd9zJ7F7vAU6pGP0NNnMxXF7AHfCnxf0nK7ru47E7k
- Pi6aVW7MgLZCfDdopmy4dSUu9CXk3rGf6pvlBhri2vNoeLMg0xl/KrvFkte+oH1Y1GVW
- M0BkcwYA/DdCqKIp4yYxy75vbtEB4tYB86QaLfJpW8A9JAZBUkGY/jbbPOuIq8L16gUh
- vJX1FHoMxCh1WEwMhISfDmme/kmEXX0zBqC38hd9tWkI1rqD+4Hwangl3cW4ItgH0kJe
- SSFbW0xQOXfxYxGCUeDmOgNCQGSSIPQWScib2yyh3aNm9ZR6bZAYU8oThtBVYWth6f2A
- j/mg==
+ :cc; bh=ac47yCDzGbB62pbQWVOPBxd2hhH97T+NHeyW7o92Jvc=;
+ b=B4SUoQYWluH/XIv8f+QSXC+YZwRaYARnwT5DhpHUR2afbyBInXdpgamA5rlxghJL1+
+ w0Vb65fd8D/AOxKLBhy/Iab+h0WoiCy/ttsXw5aJiGMllcbzeTubPczmDid946AXQB5q
+ wHNUpg9gOn6ygZ1gMHy9Gi4kzgc1em0L0++TxoL0xZmEKyVQY4OFxTP6fEd7WW4OToDR
+ Yisjmb2ZN7N9G9QGVEU+GUzyIZO+eErs1YlQqp3eRBkomV7jbCPlXuCfObiSISsHJyNz
+ It4RFnQGeK8BVo4tbonCbepAGM17zkQFgxAbbAgle7RuVZNcuG7cH+SO7vwHG1xHTZGJ
+ X8kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=2si1KDpnDvXk+ubJlzHUYkLWexjktnm9IfArHYCIY20=;
- b=o6nhp8P+l3G7ax4FSe1iNOJxmfThzWXwwzillchYqaxuHhJLMeSMcOgpip5+CdLR51
- 5g7hgu0yPmzsOol+ng2DOZqu9oiqAoyYOmNl90CvCYJmXGbr6hncgJ27X9T1dvXW/XRc
- nVwD5HIX3Dee4M68JNkBBBObiQF5FMTXipHQbNFMeoghofFJJ9PbAzPYENoiON8nyCSh
- PV9CQ8iFrFzd67+9pbAG1mZ2ttAL2ue4s+4moqtbO4t2ZALV65UDQfF7vQbp8sr9FJfU
- 70Ky8scBp5VNL1BCPrDlRA20Lj0yabgJ0kDjGa2QDPctHRBob9jog9gppVnT+S7mulGc
- XQBQ==
-X-Gm-Message-State: AOAM530AVAXyMdiUoXdBPZO10SA9xCkXcz5aiD5iydXNfADLbaQ3FS0V
- uuwEaLSvw9Av/KPlgbUxgJyyNAPP39kOfmHu8LJlUiGcuik=
-X-Google-Smtp-Source: ABdhPJwjYipiY+PO3ReQNDi4HUarMm844S+TyjHSz52TVGZF3w2PFbus2+DICnaU7iJNUgphTxAMtO6DUX5GU3+KMks=
-X-Received: by 2002:ac8:7d07:: with SMTP id g7mr6993990qtb.364.1638964200328; 
- Wed, 08 Dec 2021 03:50:00 -0800 (PST)
+ bh=ac47yCDzGbB62pbQWVOPBxd2hhH97T+NHeyW7o92Jvc=;
+ b=YIBnSVng11GViO9k97p2p6wsFTWnji0Lm7/KH2leJtTLBfEUspwd5HK+iojU94YLqg
+ xGQT0eYVIpZXXh0lC9V945u8ugCdp+1qMeBAzX0Fh8xGsmoD96EoKaTcAjRskblvTO+o
+ CCOF3qO6FpvKUNM4krb8EOLH93TZ+vaqMfHR5qGR2ZS3oROMR+DnXM3dDvhSMuMPBQqk
+ oAPBpr1eg2md9ZoSSV65WRTb/OJVJbkucBLmGwMnhrzBlcKQUt5SV3kj65LtE6QfYzkd
+ nSlpyW/pqaJcr9gqjwABW3WSjmhO/VNyG5RGF7JhLUiKtnWo34uBF47EMlgHZ192DCnj
+ K3hw==
+X-Gm-Message-State: AOAM530aQSkWmBbpyQvopgGoauPj6cmluK+tkso98RQJRrEyyCoqbiDi
+ 7X6qpuKEInPY9guVL1KWYkaj923SWJvzxjRyd4+TwDp0KuM=
+X-Google-Smtp-Source: ABdhPJxuBsn0l7S9ZMLXepjUb+uxQx3fFblNP3NIZm+xBAlFzvEDOtChiJZrbLcW9Gip+mevlKjkXiPLjns8rBR4r54=
+X-Received: by 2002:a05:620a:2413:: with SMTP id
+ d19mr6163514qkn.82.1638964901153; 
+ Wed, 08 Dec 2021 04:01:41 -0800 (PST)
 MIME-Version: 1.0
 References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
  <20211129134735.628712-10-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211129134735.628712-10-maarten.lankhorst@linux.intel.com>
+ <CAM0jSHNwB1Vtcv7owM8rEEXiTJEpuhYAf8j6i9f5xx8LH9kcig@mail.gmail.com>
+In-Reply-To: <CAM0jSHNwB1Vtcv7owM8rEEXiTJEpuhYAf8j6i9f5xx8LH9kcig@mail.gmail.com>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 8 Dec 2021 11:49:33 +0000
-Message-ID: <CAM0jSHNwB1Vtcv7owM8rEEXiTJEpuhYAf8j6i9f5xx8LH9kcig@mail.gmail.com>
+Date: Wed, 8 Dec 2021 12:01:14 +0000
+Message-ID: <CAM0jSHMG1xpUqNZs-JV4yD6G00kGgZoHed=xfR2s-S6UoLvwCQ@mail.gmail.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Subject: Re: [Intel-gfx] [PATCH v2 09/16] drm/i915: Ensure i915_vma tests do
@@ -68,68 +70,76 @@ Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 29 Nov 2021 at 13:58, Maarten Lankhorst
-<maarten.lankhorst@linux.intel.com> wrote:
+On Wed, 8 Dec 2021 at 11:49, Matthew Auld
+<matthew.william.auld@gmail.com> wrote:
 >
-> Now that we require locking to evict, multiple vmas from the same object
-> might not be evicted. This is expected and required, because execbuf will
-> move to short-term pinning by using the lock only. This will cause these
-> tests to fail, because they create a ton of vma's for the same object.
+> On Mon, 29 Nov 2021 at 13:58, Maarten Lankhorst
+> <maarten.lankhorst@linux.intel.com> wrote:
+> >
+> > Now that we require locking to evict, multiple vmas from the same object
+> > might not be evicted. This is expected and required, because execbuf will
+> > move to short-term pinning by using the lock only. This will cause these
+> > tests to fail, because they create a ton of vma's for the same object.
+> >
+> > Unbind manually to prevent spurious -ENOSPC in those mock tests.
+> >
+> > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 >
-> Unbind manually to prevent spurious -ENOSPC in those mock tests.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Hmm, do we need this? It looks like we should be able to handle such
+> scenarios, with already locked objects sharing the same dma-resv? Or
+> is something else going on here?
 
-Hmm, do we need this? It looks like we should be able to handle such
-scenarios, with already locked objects sharing the same dma-resv? Or
-is something else going on here?
+Oh, because trylock still "fails' in such cases? Do the later changes
+to evict_vm, where it is able to handle already locked objects fix
+this? Do we not need similar treatment for things like evict_for_node?
 
-> ---
->  drivers/gpu/drm/i915/selftests/i915_vma.c | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
-> index 1f10fe36619b..5c5809dfe9b2 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
-> @@ -691,7 +691,11 @@ static int igt_vma_rotate_remap(void *arg)
->                                         }
->
->                                         i915_vma_unpin(vma);
-> -
-> +                                       err = i915_vma_unbind(vma);
-> +                                       if (err) {
-> +                                               pr_err("Unbinding returned %i\n", err);
-> +                                               goto out_object;
-> +                                       }
->                                         cond_resched();
->                                 }
->                         }
-> @@ -848,6 +852,11 @@ static int igt_vma_partial(void *arg)
->
->                                 i915_vma_unpin(vma);
->                                 nvma++;
-> +                               err = i915_vma_unbind(vma);
-> +                               if (err) {
-> +                                       pr_err("Unbinding returned %i\n", err);
-> +                                       goto out_object;
-> +                               }
->
->                                 cond_resched();
->                         }
-> @@ -882,6 +891,12 @@ static int igt_vma_partial(void *arg)
->
->                 i915_vma_unpin(vma);
->
-> +               err = i915_vma_unbind(vma);
-> +               if (err) {
-> +                       pr_err("Unbinding returned %i\n", err);
-> +                       goto out_object;
-> +               }
-> +
->                 count = 0;
->                 list_for_each_entry(vma, &obj->vma.list, obj_link)
->                         count++;
-> --
-> 2.34.0
->
+> > ---
+> >  drivers/gpu/drm/i915/selftests/i915_vma.c | 17 ++++++++++++++++-
+> >  1 file changed, 16 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
+> > index 1f10fe36619b..5c5809dfe9b2 100644
+> > --- a/drivers/gpu/drm/i915/selftests/i915_vma.c
+> > +++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
+> > @@ -691,7 +691,11 @@ static int igt_vma_rotate_remap(void *arg)
+> >                                         }
+> >
+> >                                         i915_vma_unpin(vma);
+> > -
+> > +                                       err = i915_vma_unbind(vma);
+> > +                                       if (err) {
+> > +                                               pr_err("Unbinding returned %i\n", err);
+> > +                                               goto out_object;
+> > +                                       }
+> >                                         cond_resched();
+> >                                 }
+> >                         }
+> > @@ -848,6 +852,11 @@ static int igt_vma_partial(void *arg)
+> >
+> >                                 i915_vma_unpin(vma);
+> >                                 nvma++;
+> > +                               err = i915_vma_unbind(vma);
+> > +                               if (err) {
+> > +                                       pr_err("Unbinding returned %i\n", err);
+> > +                                       goto out_object;
+> > +                               }
+> >
+> >                                 cond_resched();
+> >                         }
+> > @@ -882,6 +891,12 @@ static int igt_vma_partial(void *arg)
+> >
+> >                 i915_vma_unpin(vma);
+> >
+> > +               err = i915_vma_unbind(vma);
+> > +               if (err) {
+> > +                       pr_err("Unbinding returned %i\n", err);
+> > +                       goto out_object;
+> > +               }
+> > +
+> >                 count = 0;
+> >                 list_for_each_entry(vma, &obj->vma.list, obj_link)
+> >                         count++;
+> > --
+> > 2.34.0
+> >
