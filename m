@@ -1,44 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65E6346D05A
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 10:52:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 969C846D0A6
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 11:10:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24D186EB3D;
-	Wed,  8 Dec 2021 09:52:06 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B3EC6EB3D;
- Wed,  8 Dec 2021 09:52:05 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="236537656"
-X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; d="scan'208";a="236537656"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2021 01:52:05 -0800
-X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; d="scan'208";a="515695592"
-Received: from amgotede-mobl1.ger.corp.intel.com (HELO [10.213.194.97])
- ([10.213.194.97])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2021 01:52:02 -0800
-Message-ID: <d9f20850-0ba3-9d45-ea6c-0525e20e2442@linux.intel.com>
-Date: Wed, 8 Dec 2021 09:52:00 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1A516F3E2;
+	Wed,  8 Dec 2021 10:10:56 +0000 (UTC)
+X-Original-To: Intel-GFX@Lists.FreeDesktop.Org
+Delivered-To: Intel-GFX@Lists.FreeDesktop.Org
+Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
+ [213.80.101.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA8646F3E2
+ for <Intel-GFX@Lists.FreeDesktop.Org>; Wed,  8 Dec 2021 10:10:54 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 85A833F3E7;
+ Wed,  8 Dec 2021 11:10:52 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -3.464
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.464 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-1.365,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id KdNPl-s2TEkL; Wed,  8 Dec 2021 11:10:51 +0100 (CET)
+Received: by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 12F5E3F2B8;
+ Wed,  8 Dec 2021 11:10:49 +0100 (CET)
+Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b="FgI9i0dD";
+ dkim-atps=neutral
+Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
+ [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 98E24362AD5;
+ Wed,  8 Dec 2021 11:10:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1638958249; bh=2RMj4ud1p6jnTdcIku6e8yTz08+EGCy0pFfSP6VcVcI=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=FgI9i0dD5sMxGkFUyGfrHPskzFefCuXoDnNp4lTQD1istl/2ySUhn/vqEH1+0pDO9
+ MQ6HI+KpkJaWWZRpdu+thTGZA7dqXZC6+j74zbEl/ZWtTFMIUZoWxQkuGkn4zoU/jh
+ zuhav11SyrRAStlVS6Vw6PIkxf9CGJkac2QKH0F4=
+Message-ID: <8486ebdc-05b4-858e-7e00-0d9de1dccdd0@shipmail.org>
+Date: Wed, 8 Dec 2021 11:10:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
+ Thunderbird/91.3.0
 Content-Language: en-US
-To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20211203063545.2254380-1-anusha.srivatsa@intel.com>
- <7576de4a-fbd9-ea5c-2d3d-1c5ada9f30e1@linux.intel.com>
- <72998a361a854e59acdbe1ec2c75a0a2@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <72998a361a854e59acdbe1ec2c75a0a2@intel.com>
+To: Jasmine Newsome <jasmine.newsome@intel.com>,
+ Intel-GFX@Lists.FreeDesktop.Org
+References: <20211203214931.1635863-1-jasmine.newsome@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <20211203214931.1635863-1-jasmine.newsome@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [v3 0/3] Introduce Raptor Lake S
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Use local pointer ttm for
+ __i915_ttm_move
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,55 +71,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Hansen <dave.hansen@linux.intel.com>, "Nikula,
- Jani" <jani.nikula@intel.com>, "x86@kernel.org" <x86@kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>
+Cc: thomas.hellstrom@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi, Jasmine,
 
-On 06/12/2021 04:29, Srivatsa, Anusha wrote:
->> -----Original Message-----
->> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->> Sent: Friday, December 3, 2021 2:57 PM
->> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>; intel-
->> gfx@lists.freedesktop.org
->> Cc: x86@kernel.org; dri-devel@lists.freedesktop.org; Ingo Molnar
->> <mingo@redhat.com>; Borislav Petkov <bp@alien8.de>; Dave Hansen
->> <dave.hansen@linux.intel.com>; Joonas Lahtinen
->> <joonas.lahtinen@linux.intel.com>; Nikula, Jani <jani.nikula@intel.com>
->> Subject: Re: [v3 0/3] Introduce Raptor Lake S
->>
->>
->> On 03/12/2021 06:35, Anusha Srivatsa wrote:
->>> Raptor Lake S(RPL-S) is a version 12
->>> Display, Media and Render. For all i915 purposes it is the same as
->>> Alder Lake S (ADL-S).
->>>
->>> The series introduces it as a subplatform of ADL-S. The one difference
->>> is the GuC submission which is default on RPL-S but was not the case
->>> with ADL-S.
->>
->> As a side note, not a blocker of any kind, I am slightly disheartened but the
->> confusion of ADL_P and ADL_S being separate platforms, but then RPL_S is
->> subplatform of ADL_S. Maybe it is just me not being able to keep track of
->> things.
->>
->>> All patches are reviewed. Jani has acked the series.
->>> Looking for other acks in order to merge these to respective branches.
->>
->> Which branches would that be for this series? First two to drm-intel-next and
->> last one to drm-intel-gt-next? Is that complication needed and/or worth the
->> effort?
-> 
-> Tvrtko,
->   All three have to land to drm-intel-next. The last one has dependency on the first patch and is a trivial change.
+On 12/3/21 22:49, Jasmine Newsome wrote:
+> To avoid confusion with deferencing possible null pointer bo->ttm,
+> replace pointer bo->ttm with local pointer ttm in i915_ttm_move
+> as ttm has checks for null before getting passed to __i915_ttm_move
 
-One more ack for a good measure:
+It's OK to use the local variable ttm here because it has previously 
+been assigned from bo->ttm.
 
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+However, if a static analyzer gets confused by that and the fact that a 
+NULL pointer might be passed to __i915_ttm_move, (which will not 
+dereference it), then that's a static analyzer false positive.
 
-Regards,
+So the commit message needs to be rewritten saying something like the 
+code is getting a bit more readable if the local variable is used since 
+it was previously assigned from bo->ttm, that's ok.
 
-Tvrtko
+Also please add your Signed-off-by: To the patch.
+
+Thanks,
+
+Thomas
+
+
+
+
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> index 80df9f592407..56b6573b5c93 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> @@ -763,7 +763,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
+>   			return PTR_ERR(dep);
+>   		}
+>   
+> -		migration_fence = __i915_ttm_move(bo, clear, dst_mem, bo->ttm,
+> +		migration_fence = __i915_ttm_move(bo, clear, dst_mem, ttm,
+>   						  dst_rsgt, true, dep);
+>   		dma_fence_put(dep);
+>   	}
