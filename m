@@ -2,37 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D8C046CC0D
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 05:12:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D23D46CC93
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 05:33:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 691306E409;
-	Wed,  8 Dec 2021 04:12:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08F2D6E145;
+	Wed,  8 Dec 2021 04:33:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1E9E6E409
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Dec 2021 04:12:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="218435812"
-X-IronPort-AV: E=Sophos;i="5.87,296,1631602800"; d="scan'208";a="218435812"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2021 20:12:30 -0800
-X-IronPort-AV: E=Sophos;i="5.87,296,1631602800"; d="scan'208";a="515606399"
-Received: from pke-mobl.gar.corp.intel.com (HELO
- smullati-desk.gar.corp.intel.com) ([10.215.201.4])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2021 20:12:28 -0800
-From: Mullati Siva <siva.mullati@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	siva.mullati@intel.com
-Date: Wed,  8 Dec 2021 09:42:15 +0530
-Message-Id: <20211208041215.763098-1-siva.mullati@intel.com>
-X-Mailer: git-send-email 2.33.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 12B776E145;
+ Wed,  8 Dec 2021 04:33:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0A360A0099;
+ Wed,  8 Dec 2021 04:33:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Skip remap_io_mapping() for non-x86
- platforms
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mullati Siva" <siva.mullati@intel.com>
+Date: Wed, 08 Dec 2021 04:33:02 -0000
+Message-ID: <163893798201.8237.339645255968523797@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211208041215.763098-1-siva.mullati@intel.com>
+In-Reply-To: <20211208041215.763098-1-siva.mullati@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Skip_remap=5Fio=5Fmapping=28=29_for_non-x86_pla?=
+ =?utf-8?q?tforms_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,175 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, lucas.demarchi@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Siva Mullati <siva.mullati@intel.com>
+== Series Details ==
 
-Only hw that supports mappable aperture would hit this path
-vm_fault_gtt/vm_fault_tmm, So we never hit this function
-remap_io_mapping() in discrete, So skip this code for non-x86
-architectures.
+Series: drm/i915: Skip remap_io_mapping() for non-x86 platforms (rev6)
+URL   : https://patchwork.freedesktop.org/series/96855/
+State : warning
 
-v2: use IS_ENABLED () instead of #if defined
+== Summary ==
 
-v3: move function prototypes from i915_drv.h to i915_mm.h
-
-v4: added kernel error message in stub function
-
-v5: fixed compilation warnings
-
-v6: checkpatch style
-
-Signed-off-by: Siva Mullati <siva.mullati@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c |  1 +
- drivers/gpu/drm/i915/i915_drv.h          |  8 ------
- drivers/gpu/drm/i915/i915_mm.c           | 28 +++++++++++--------
- drivers/gpu/drm/i915/i915_mm.h           | 35 ++++++++++++++++++++++++
- 4 files changed, 52 insertions(+), 20 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_mm.h
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index 65fc6ff5f59d..39bb15eafc07 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -17,6 +17,7 @@
- #include "i915_gem_ioctls.h"
- #include "i915_gem_object.h"
- #include "i915_gem_mman.h"
-+#include "i915_mm.h"
- #include "i915_trace.h"
- #include "i915_user_extensions.h"
- #include "i915_gem_ttm.h"
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 85bb8d3107f0..3949cafa59e2 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1783,14 +1783,6 @@ mkwrite_device_info(struct drm_i915_private *dev_priv)
- int i915_reg_read_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *file);
- 
--/* i915_mm.c */
--int remap_io_mapping(struct vm_area_struct *vma,
--		     unsigned long addr, unsigned long pfn, unsigned long size,
--		     struct io_mapping *iomap);
--int remap_io_sg(struct vm_area_struct *vma,
--		unsigned long addr, unsigned long size,
--		struct scatterlist *sgl, resource_size_t iobase);
--
- static inline int intel_hws_csb_write_index(struct drm_i915_private *i915)
- {
- 	if (GRAPHICS_VER(i915) >= 11)
-diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
-index 666808cb3a32..7998bc74ab49 100644
---- a/drivers/gpu/drm/i915/i915_mm.c
-+++ b/drivers/gpu/drm/i915/i915_mm.c
-@@ -27,6 +27,7 @@
- 
- 
- #include "i915_drv.h"
-+#include "i915_mm.h"
- 
- struct remap_pfn {
- 	struct mm_struct *mm;
-@@ -37,17 +38,6 @@ struct remap_pfn {
- 	resource_size_t iobase;
- };
- 
--static int remap_pfn(pte_t *pte, unsigned long addr, void *data)
--{
--	struct remap_pfn *r = data;
--
--	/* Special PTE are not associated with any struct page */
--	set_pte_at(r->mm, addr, pte, pte_mkspecial(pfn_pte(r->pfn, r->prot)));
--	r->pfn++;
--
--	return 0;
--}
--
- #define use_dma(io) ((io) != -1)
- 
- static inline unsigned long sgt_pfn(const struct remap_pfn *r)
-@@ -77,6 +67,20 @@ static int remap_sg(pte_t *pte, unsigned long addr, void *data)
- 	return 0;
- }
- 
-+#define EXPECTED_FLAGS (VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP)
-+
-+#if IS_ENABLED(CONFIG_X86)
-+static int remap_pfn(pte_t *pte, unsigned long addr, void *data)
-+{
-+	struct remap_pfn *r = data;
-+
-+	/* Special PTE are not associated with any struct page */
-+	set_pte_at(r->mm, addr, pte, pte_mkspecial(pfn_pte(r->pfn, r->prot)));
-+	r->pfn++;
-+
-+	return 0;
-+}
-+
- /**
-  * remap_io_mapping - remap an IO mapping to userspace
-  * @vma: user vma to map to
-@@ -94,7 +98,6 @@ int remap_io_mapping(struct vm_area_struct *vma,
- 	struct remap_pfn r;
- 	int err;
- 
--#define EXPECTED_FLAGS (VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP)
- 	GEM_BUG_ON((vma->vm_flags & EXPECTED_FLAGS) != EXPECTED_FLAGS);
- 
- 	/* We rely on prevalidation of the io-mapping to skip track_pfn(). */
-@@ -111,6 +114,7 @@ int remap_io_mapping(struct vm_area_struct *vma,
- 
- 	return 0;
- }
-+#endif
- 
- /**
-  * remap_io_sg - remap an IO mapping to userspace
-diff --git a/drivers/gpu/drm/i915/i915_mm.h b/drivers/gpu/drm/i915/i915_mm.h
+$ dim checkpatch origin/drm-tip
+553b9bfd0d75 drm/i915: Skip remap_io_mapping() for non-x86 platforms
+-:122: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#122: 
 new file mode 100644
-index 000000000000..76f1d53bdf34
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_mm.h
-@@ -0,0 +1,35 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2021 Intel Corporation
-+ */
-+
-+#ifndef __I915_MM_H__
-+#define __I915_MM_H__
-+
-+#include <linux/types.h>
-+
-+struct vm_area_struct;
-+struct io_mapping;
-+struct scatterlist;
-+
-+#if IS_ENABLED(CONFIG_X86)
-+int remap_io_mapping(struct vm_area_struct *vma,
-+		     unsigned long addr, unsigned long pfn, unsigned long size,
-+		     struct io_mapping *iomap);
-+#else
-+static inline
-+int remap_io_mapping(struct vm_area_struct *vma,
-+		     unsigned long addr, unsigned long pfn, unsigned long size,
-+		     struct io_mapping *iomap)
-+{
-+	pr_err("Architecture has no %s() and shouldn't be calling this function\n", __func__);
-+	WARN_ON_ONCE(1);
-+	return 0;
-+}
-+#endif
-+
-+int remap_io_sg(struct vm_area_struct *vma,
-+		unsigned long addr, unsigned long size,
-+		struct scatterlist *sgl, resource_size_t iobase);
-+
-+#endif /* __I915_MM_H__ */
--- 
-2.33.0
+
+total: 0 errors, 1 warnings, 0 checks, 114 lines checked
+
 
