@@ -1,37 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B0D546D656
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 16:01:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06CB546D67D
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 16:10:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FCCC6FF2B;
-	Wed,  8 Dec 2021 15:01:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAB6572EED;
+	Wed,  8 Dec 2021 15:10:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D9BD6FF2B
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Dec 2021 15:01:28 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="238071716"
-X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; d="scan'208";a="238071716"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FBD372DD9;
+ Wed,  8 Dec 2021 15:10:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="238074238"
+X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; d="scan'208";a="238074238"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2021 07:00:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; d="scan'208";a="462789285"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 08 Dec 2021 07:00:51 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 08 Dec 2021 17:00:50 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Dec 2021 17:00:50 +0200
-Message-Id: <20211208150050.17230-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
+ 08 Dec 2021 07:10:22 -0800
+X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; d="scan'208";a="479929252"
+Received: from sbogar-mobl2.ger.corp.intel.com (HELO [10.249.254.43])
+ ([10.249.254.43])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2021 07:10:20 -0800
+Message-ID: <184922c4-0cc4-4e95-5248-e9c56ef1141d@linux.intel.com>
+Date: Wed, 8 Dec 2021 16:10:18 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Remove zombie async flip vt-d w/a
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Matthew Auld <matthew.william.auld@gmail.com>,
+ Ramalingam C <ramalingam.c@intel.com>
+References: <20211208141613.7251-1-ramalingam.c@intel.com>
+ <20211208141613.7251-3-ramalingam.c@intel.com>
+ <CAM0jSHPQwFvn5exHVB2yShGxiXHQrE6vyQz2d70ySQmTYDis+A@mail.gmail.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <CAM0jSHPQwFvn5exHVB2yShGxiXHQrE6vyQz2d70ySQmTYDis+A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/xehpsdv: set min page-size to
+ 64K
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,56 +51,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Hellstrom Thomas <thomas.hellstrom@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-This async flip vt-d w/a was moved to a different place in
-commit 7d396cacaea6 ("drm/i195: Make the async flip VT-d workaround
-dynamic") but the drm-intel-fixes cherry-pick commit b2d73debfdc1
-("drm/i915: Extend the async flip VT-d w/a to skl/bxt") resurrected
-the original code as well. So now we have this w/a in two places.
-Remove the resurrected zombie code.
+On 12/8/21 15:34, Matthew Auld wrote:
+> On Wed, 8 Dec 2021 at 14:16, Ramalingam C <ramalingam.c@intel.com> wrote:
+>> From: Matthew Auld <matthew.auld@intel.com>
+>>
+>> LMEM should be allocated at 64K granularity, since 4K page support will
+>> eventually be dropped for LMEM when using the PPGTT.
+> s/will eventually be dropped/has been dropped/ as per Thomas' suggestion.
 
-Not done as a revert to hopefully prevent any kind of
-automagic stable backport.
+Or perhaps something along the lines of
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/intel_pm.c | 12 ------------
- 1 file changed, 12 deletions(-)
+Conditionally allocate LMEM with 64K granularity, since 4K page support 
+for LMEM will be dropped on some platforms when using the PPGTT.
 
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index fe3787425780..31767c583cd0 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -78,8 +78,6 @@ struct intel_wm_config {
- 
- static void gen9_init_clock_gating(struct drm_i915_private *dev_priv)
- {
--	enum pipe pipe;
--
- 	if (HAS_LLC(dev_priv)) {
- 		/*
- 		 * WaCompressedResourceDisplayNewHashMode:skl,kbl
-@@ -93,16 +91,6 @@ static void gen9_init_clock_gating(struct drm_i915_private *dev_priv)
- 			   SKL_DE_COMPRESSED_HASH_MODE);
- 	}
- 
--	for_each_pipe(dev_priv, pipe) {
--		/*
--		 * "Plane N strech max must be programmed to 11b (x1)
--		 *  when Async flips are enabled on that plane."
--		 */
--		if (!IS_GEMINILAKE(dev_priv) && intel_vtd_active(dev_priv))
--			intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
--					 SKL_PLANE1_STRETCH_MAX_MASK, SKL_PLANE1_STRETCH_MAX_X1);
--	}
--
- 	/* See Bspec note for PSR2_CTL bit 31, Wa#828:skl,bxt,kbl,cfl */
- 	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
- 		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) | SKL_EDP_PSR_FIX_RDWRAP);
--- 
-2.32.0
+/Thomas
 
+
+
+>
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+>> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Reviewed-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_stolen.c  | 6 +++++-
+>>   drivers/gpu/drm/i915/gt/intel_region_lmem.c | 5 ++++-
+>>   2 files changed, 9 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+>> index bce03d74a0b4..ba90ab47d838 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+>> @@ -780,6 +780,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+>>          struct intel_uncore *uncore = &i915->uncore;
+>>          struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+>>          struct intel_memory_region *mem;
+>> +       resource_size_t min_page_size;
+>>          resource_size_t io_start;
+>>          resource_size_t lmem_size;
+>>          u64 lmem_base;
+>> @@ -791,8 +792,11 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+>>          lmem_size = pci_resource_len(pdev, 2) - lmem_base;
+>>          io_start = pci_resource_start(pdev, 2) + lmem_base;
+>>
+>> +       min_page_size = HAS_64K_PAGES(i915) ? I915_GTT_PAGE_SIZE_64K :
+>> +                                               I915_GTT_PAGE_SIZE_4K;
+>> +
+>>          mem = intel_memory_region_create(i915, lmem_base, lmem_size,
+>> -                                        I915_GTT_PAGE_SIZE_4K, io_start,
+>> +                                        min_page_size, io_start,
+>>                                           type, instance,
+>>                                           &i915_region_stolen_lmem_ops);
+>>          if (IS_ERR(mem))
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+>> index 9ea49e0a27c0..fde2dcb59809 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+>> @@ -197,6 +197,7 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
+>>          struct intel_uncore *uncore = gt->uncore;
+>>          struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+>>          struct intel_memory_region *mem;
+>> +       resource_size_t min_page_size;
+>>          resource_size_t io_start;
+>>          resource_size_t lmem_size;
+>>          int err;
+>> @@ -211,10 +212,12 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
+>>          if (GEM_WARN_ON(lmem_size > pci_resource_len(pdev, 2)))
+>>                  return ERR_PTR(-ENODEV);
+>>
+>> +       min_page_size = HAS_64K_PAGES(i915) ? I915_GTT_PAGE_SIZE_64K :
+>> +                                               I915_GTT_PAGE_SIZE_4K;
+>>          mem = intel_memory_region_create(i915,
+>>                                           0,
+>>                                           lmem_size,
+>> -                                        I915_GTT_PAGE_SIZE_4K,
+>> +                                        min_page_size,
+>>                                           io_start,
+>>                                           INTEL_MEMORY_LOCAL,
+>>                                           0,
+>> --
+>> 2.20.1
+>>
