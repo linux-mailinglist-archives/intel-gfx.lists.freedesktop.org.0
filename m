@@ -2,36 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB1E446D18D
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 12:05:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 738EC46D18E
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 12:05:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1F3A72D4E;
-	Wed,  8 Dec 2021 11:05:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9220672D55;
+	Wed,  8 Dec 2021 11:05:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2035B72D4E
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Dec 2021 11:05:24 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="236547557"
-X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; d="scan'208";a="236547557"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2021 03:05:23 -0800
-X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; d="scan'208";a="462725758"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 565E772D54
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Dec 2021 11:05:28 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="301192120"
+X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; d="scan'208";a="301192120"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2021 03:05:27 -0800
+X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; d="scan'208";a="679852058"
 Received: from cahanley-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.19.1])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2021 03:05:22 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2021 03:05:26 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Dec 2021 13:05:15 +0200
-Message-Id: <cover.1638961423.git.jani.nikula@intel.com>
+Date: Wed,  8 Dec 2021 13:05:16 +0200
+Message-Id: <0d37790ee70fb60be6f6a73d8bde2013510a7ad8.1638961423.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <cover.1638961423.git.jani.nikula@intel.com>
+References: <cover.1638961423.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 0/2] drm/i915: trace display split
+Subject: [Intel-gfx] [PATCH v3 1/2] drm/i915/trace: clean up boilerplate
+ organization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,38 +51,52 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-v3 of https://patchwork.freedesktop.org/series/97106/
+Follow the style that seems to be prevalent in kernel for undef and
+define of TRACE_SYSTEM, TRACE_INCLUDE_PATH, and TRACE_INCLUDE_FILE.
 
-Jani Nikula (2):
-  drm/i915/trace: clean up boilerplate organization
-  drm/i915/trace: split out display trace to a separate file
+There should be no changes to tracepoints.
 
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/g4x_dp.c         |   1 +
- drivers/gpu/drm/i915/display/g4x_hdmi.c       |   1 +
- .../gpu/drm/i915/display/intel_atomic_plane.c |   5 +-
- drivers/gpu/drm/i915/display/intel_audio.c    |   1 +
- drivers/gpu/drm/i915/display/intel_cdclk.c    |   1 +
- drivers/gpu/drm/i915/display/intel_crtc.c     |   4 +-
- .../drm/i915/display/intel_display_trace.c    |   9 +
- .../drm/i915/display/intel_display_trace.h    | 587 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c       |   1 +
- drivers/gpu/drm/i915/display/intel_fbc.c      |   2 +-
- drivers/gpu/drm/i915/display/intel_fdi.c      |   1 +
- .../drm/i915/display/intel_fifo_underrun.c    |   2 +-
- .../gpu/drm/i915/display/intel_frontbuffer.c  |   7 +-
- drivers/gpu/drm/i915/display/intel_sprite.c   |   4 +-
- drivers/gpu/drm/i915/display/intel_tv.c       |   1 +
- drivers/gpu/drm/i915/display/intel_vdsc.c     |   4 +-
- drivers/gpu/drm/i915/i915_debugfs.c           |   1 -
- drivers/gpu/drm/i915/i915_driver.c            |   1 -
- drivers/gpu/drm/i915/i915_irq.c               |   2 +-
- drivers/gpu/drm/i915/i915_trace.h             | 583 +----------------
- drivers/gpu/drm/i915/intel_pm.c               |   2 +-
- 22 files changed, 627 insertions(+), 594 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_trace.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_trace.h
+v2: Keep TRACE_INCLUDE_PATH relative to define_trace.h (Chris)
 
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/i915_trace.h | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
+index 185eaa49f74e..a07bed5333cc 100644
+--- a/drivers/gpu/drm/i915/i915_trace.h
++++ b/drivers/gpu/drm/i915/i915_trace.h
+@@ -1,4 +1,8 @@
+ /* SPDX-License-Identifier: GPL-2.0 */
++
++#undef TRACE_SYSTEM
++#define TRACE_SYSTEM i915
++
+ #if !defined(_I915_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
+ #define _I915_TRACE_H_
+ 
+@@ -15,10 +19,6 @@
+ #include "i915_drv.h"
+ #include "i915_irq.h"
+ 
+-#undef TRACE_SYSTEM
+-#define TRACE_SYSTEM i915
+-#define TRACE_INCLUDE_FILE i915_trace
+-
+ /* watermark/fifo updates */
+ 
+ TRACE_EVENT(intel_pipe_enable,
+@@ -1337,5 +1337,7 @@ DEFINE_EVENT(i915_context, i915_context_free,
+ 
+ /* This part must be outside protection */
+ #undef TRACE_INCLUDE_PATH
++#undef TRACE_INCLUDE_FILE
+ #define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915
++#define TRACE_INCLUDE_FILE i915_trace
+ #include <trace/define_trace.h>
 -- 
 2.30.2
 
