@@ -2,32 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC5246D0BD
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 11:14:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52AEA46D0C6
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 11:16:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B2166F46D;
-	Wed,  8 Dec 2021 10:14:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DD6E6F4B9;
+	Wed,  8 Dec 2021 10:16:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9AB226F46B;
- Wed,  8 Dec 2021 10:14:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 94581A0099;
- Wed,  8 Dec 2021 10:14:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2364465931296487770=="
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D4E06F4B9
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Dec 2021 10:16:52 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="217827230"
+X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; d="scan'208";a="217827230"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2021 02:16:51 -0800
+X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; d="scan'208";a="658143406"
+Received: from cahanley-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.19.1])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2021 02:16:50 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <c655648a3ff0ae5d6067f90067a4e1ad6b1700df.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211203131318.2885969-1-jani.nikula@intel.com>
+ <c655648a3ff0ae5d6067f90067a4e1ad6b1700df.camel@intel.com>
+Date: Wed, 08 Dec 2021 12:16:47 +0200
+Message-ID: <87v8zz4d0w.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 08 Dec 2021 10:14:45 -0000
-Message-ID: <163895848559.8230.2007953059581142127@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211208082245.86933-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20211208082245.86933-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_coredump_of_perma-pinned_vmas?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ddi: add use_edp_hobl() and
+ use_edp_low_vswing() helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,150 +48,318 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2364465931296487770==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 03 Dec 2021, "Souza, Jose" <jose.souza@intel.com> wrote:
+> On Fri, 2021-12-03 at 15:13 +0200, Jani Nikula wrote:
+>> Localize HOBL and low vswing VBT lookups to a couple of small helpers,
+>> and get rid of a bunch of local variables.
+>
+> Reviewed-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
 
-== Series Details ==
+Thanks, pushed.
 
-Series: drm/i915: Fix coredump of perma-pinned vmas
-URL   : https://patchwork.freedesktop.org/series/97709/
-State : success
+>
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  .../drm/i915/display/intel_ddi_buf_trans.c    | 94 +++++++------------
+>>  1 file changed, 36 insertions(+), 58 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/driver=
+s/gpu/drm/i915/display/intel_ddi_buf_trans.c
+>> index 78cd8f77b49d..4ecbfa625891 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+>> @@ -1032,6 +1032,21 @@ bool is_hobl_buf_trans(const struct intel_ddi_buf=
+_trans *table)
+>>  	return table =3D=3D &tgl_combo_phy_trans_edp_hbr2_hobl;
+>>  }
+>>=20=20
+>> +static bool use_edp_hobl(struct intel_encoder *encoder)
+>> +{
+>> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>> +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>> +
+>> +	return i915->vbt.edp.hobl && !intel_dp->hobl_failed;
+>> +}
+>> +
+>> +static bool use_edp_low_vswing(struct intel_encoder *encoder)
+>> +{
+>> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>> +
+>> +	return dev_priv->vbt.edp.low_vswing;
+>> +}
+>> +
+>>  static const struct intel_ddi_buf_trans *
+>>  intel_get_buf_trans(const struct intel_ddi_buf_trans *trans, int *num_e=
+ntries)
+>>  {
+>> @@ -1057,14 +1072,12 @@ bdw_get_buf_trans(struct intel_encoder *encoder,
+>>  		  const struct intel_crtc_state *crtc_state,
+>>  		  int *n_entries)
+>>  {
+>> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>> -
+>>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_ANALOG))
+>>  		return intel_get_buf_trans(&bdw_trans_fdi, n_entries);
+>>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+>>  		return intel_get_buf_trans(&bdw_trans_hdmi, n_entries);
+>>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>> -		 i915->vbt.edp.low_vswing)
+>> +		 use_edp_low_vswing(encoder))
+>>  		return intel_get_buf_trans(&bdw_trans_edp, n_entries);
+>>  	else
+>>  		return intel_get_buf_trans(&bdw_trans_dp, n_entries);
+>> @@ -1094,12 +1107,10 @@ skl_y_get_buf_trans(struct intel_encoder *encode=
+r,
+>>  		    const struct intel_crtc_state *crtc_state,
+>>  		    int *n_entries)
+>>  {
+>> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>> -
+>>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+>>  		return intel_get_buf_trans(&skl_y_trans_hdmi, n_entries);
+>>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>> -		 i915->vbt.edp.low_vswing)
+>> +		 use_edp_low_vswing(encoder))
+>>  		return _skl_get_buf_trans_dp(encoder, &skl_y_trans_edp, n_entries);
+>>  	else
+>>  		return _skl_get_buf_trans_dp(encoder, &skl_y_trans_dp, n_entries);
+>> @@ -1110,12 +1121,10 @@ skl_u_get_buf_trans(struct intel_encoder *encode=
+r,
+>>  		    const struct intel_crtc_state *crtc_state,
+>>  		    int *n_entries)
+>>  {
+>> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>> -
+>>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+>>  		return intel_get_buf_trans(&skl_trans_hdmi, n_entries);
+>>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>> -		 i915->vbt.edp.low_vswing)
+>> +		 use_edp_low_vswing(encoder))
+>>  		return _skl_get_buf_trans_dp(encoder, &skl_u_trans_edp, n_entries);
+>>  	else
+>>  		return _skl_get_buf_trans_dp(encoder, &skl_u_trans_dp, n_entries);
+>> @@ -1126,12 +1135,10 @@ skl_get_buf_trans(struct intel_encoder *encoder,
+>>  		  const struct intel_crtc_state *crtc_state,
+>>  		  int *n_entries)
+>>  {
+>> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>> -
+>>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+>>  		return intel_get_buf_trans(&skl_trans_hdmi, n_entries);
+>>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>> -		 i915->vbt.edp.low_vswing)
+>> +		 use_edp_low_vswing(encoder))
+>>  		return _skl_get_buf_trans_dp(encoder, &skl_trans_edp, n_entries);
+>>  	else
+>>  		return _skl_get_buf_trans_dp(encoder, &skl_trans_dp, n_entries);
+>> @@ -1142,12 +1149,10 @@ kbl_y_get_buf_trans(struct intel_encoder *encode=
+r,
+>>  		    const struct intel_crtc_state *crtc_state,
+>>  		    int *n_entries)
+>>  {
+>> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>> -
+>>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+>>  		return intel_get_buf_trans(&skl_y_trans_hdmi, n_entries);
+>>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>> -		 i915->vbt.edp.low_vswing)
+>> +		 use_edp_low_vswing(encoder))
+>>  		return _skl_get_buf_trans_dp(encoder, &skl_y_trans_edp, n_entries);
+>>  	else
+>>  		return _skl_get_buf_trans_dp(encoder, &kbl_y_trans_dp, n_entries);
+>> @@ -1158,12 +1163,10 @@ kbl_u_get_buf_trans(struct intel_encoder *encode=
+r,
+>>  		    const struct intel_crtc_state *crtc_state,
+>>  		    int *n_entries)
+>>  {
+>> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>> -
+>>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+>>  		return intel_get_buf_trans(&skl_trans_hdmi, n_entries);
+>>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>> -		 i915->vbt.edp.low_vswing)
+>> +		 use_edp_low_vswing(encoder))
+>>  		return _skl_get_buf_trans_dp(encoder, &skl_u_trans_edp, n_entries);
+>>  	else
+>>  		return _skl_get_buf_trans_dp(encoder, &kbl_u_trans_dp, n_entries);
+>> @@ -1174,12 +1177,10 @@ kbl_get_buf_trans(struct intel_encoder *encoder,
+>>  		  const struct intel_crtc_state *crtc_state,
+>>  		  int *n_entries)
+>>  {
+>> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>> -
+>>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+>>  		return intel_get_buf_trans(&skl_trans_hdmi, n_entries);
+>>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>> -		 i915->vbt.edp.low_vswing)
+>> +		 use_edp_low_vswing(encoder))
+>>  		return _skl_get_buf_trans_dp(encoder, &skl_trans_edp, n_entries);
+>>  	else
+>>  		return _skl_get_buf_trans_dp(encoder, &kbl_trans_dp, n_entries);
+>> @@ -1190,12 +1191,10 @@ bxt_get_buf_trans(struct intel_encoder *encoder,
+>>  		  const struct intel_crtc_state *crtc_state,
+>>  		  int *n_entries)
+>>  {
+>> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>> -
+>>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+>>  		return intel_get_buf_trans(&bxt_trans_hdmi, n_entries);
+>>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>> -		 i915->vbt.edp.low_vswing)
+>> +		 use_edp_low_vswing(encoder))
+>>  		return intel_get_buf_trans(&bxt_trans_edp, n_entries);
+>>  	else
+>>  		return intel_get_buf_trans(&bxt_trans_dp, n_entries);
+>> @@ -1215,12 +1214,10 @@ icl_get_combo_buf_trans_edp(struct intel_encoder=
+ *encoder,
+>>  			    const struct intel_crtc_state *crtc_state,
+>>  			    int *n_entries)
+>>  {
+>> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>> -
+>>  	if (crtc_state->port_clock > 540000) {
+>>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+>>  					   n_entries);
+>> -	} else if (dev_priv->vbt.edp.low_vswing) {
+>> +	} else if (use_edp_low_vswing(encoder)) {
+>>  		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2,
+>>  					   n_entries);
+>>  	}
+>> @@ -1282,12 +1279,10 @@ ehl_get_combo_buf_trans(struct intel_encoder *en=
+coder,
+>>  			const struct intel_crtc_state *crtc_state,
+>>  			int *n_entries)
+>>  {
+>> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>> -
+>>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+>>  		return intel_get_buf_trans(&icl_combo_phy_trans_hdmi, n_entries);
+>>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>> -		 dev_priv->vbt.edp.low_vswing)
+>> +		 use_edp_low_vswing(encoder))
+>>  		return ehl_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
+>>  	else
+>>  		return intel_get_buf_trans(&ehl_combo_phy_trans_dp, n_entries);
+>> @@ -1309,12 +1304,10 @@ jsl_get_combo_buf_trans(struct intel_encoder *en=
+coder,
+>>  			const struct intel_crtc_state *crtc_state,
+>>  			int *n_entries)
+>>  {
+>> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>> -
+>>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+>>  		return intel_get_buf_trans(&icl_combo_phy_trans_hdmi, n_entries);
+>>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
+>> -		 dev_priv->vbt.edp.low_vswing)
+>> +		 use_edp_low_vswing(encoder))
+>>  		return jsl_get_combo_buf_trans_edp(encoder, crtc_state, n_entries);
+>>  	else
+>>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3, n_e=
+ntries);
+>> @@ -1346,16 +1339,13 @@ tgl_get_combo_buf_trans_edp(struct intel_encoder=
+ *encoder,
+>>  			    const struct intel_crtc_state *crtc_state,
+>>  			    int *n_entries)
+>>  {
+>> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>> -
+>>  	if (crtc_state->port_clock > 540000) {
+>>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+>>  					   n_entries);
+>> -	} else if (dev_priv->vbt.edp.hobl && !intel_dp->hobl_failed) {
+>> +	} else if (use_edp_hobl(encoder)) {
+>>  		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl,
+>>  					   n_entries);
+>> -	} else if (dev_priv->vbt.edp.low_vswing) {
+>> +	} else if (use_edp_low_vswing(encoder)) {
+>>  		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2,
+>>  					   n_entries);
+>>  	}
+>> @@ -1394,16 +1384,13 @@ dg1_get_combo_buf_trans_edp(struct intel_encoder=
+ *encoder,
+>>  			    const struct intel_crtc_state *crtc_state,
+>>  			    int *n_entries)
+>>  {
+>> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>> -
+>>  	if (crtc_state->port_clock > 540000)
+>>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+>>  					   n_entries);
+>> -	else if (dev_priv->vbt.edp.hobl && !intel_dp->hobl_failed)
+>> +	else if (use_edp_hobl(encoder))
+>>  		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl,
+>>  					   n_entries);
+>> -	else if (dev_priv->vbt.edp.low_vswing)
+>> +	else if (use_edp_low_vswing(encoder))
+>>  		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2,
+>>  					   n_entries);
+>>  	else
+>> @@ -1439,16 +1426,13 @@ rkl_get_combo_buf_trans_edp(struct intel_encoder=
+ *encoder,
+>>  			    const struct intel_crtc_state *crtc_state,
+>>  			    int *n_entries)
+>>  {
+>> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>> -
+>>  	if (crtc_state->port_clock > 540000) {
+>>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+>>  					   n_entries);
+>> -	} else if (dev_priv->vbt.edp.hobl && !intel_dp->hobl_failed) {
+>> +	} else if (use_edp_hobl(encoder)) {
+>>  		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl,
+>>  					   n_entries);
+>> -	} else if (dev_priv->vbt.edp.low_vswing) {
+>> +	} else if (use_edp_low_vswing(encoder)) {
+>>  		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2,
+>>  					   n_entries);
+>>  	}
+>> @@ -1485,14 +1469,11 @@ adls_get_combo_buf_trans_edp(struct intel_encode=
+r *encoder,
+>>  			     const struct intel_crtc_state *crtc_state,
+>>  			     int *n_entries)
+>>  {
+>> -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>> -
+>>  	if (crtc_state->port_clock > 540000)
+>>  		return intel_get_buf_trans(&adls_combo_phy_trans_edp_hbr3, n_entries);
+>> -	else if (i915->vbt.edp.hobl && !intel_dp->hobl_failed)
+>> +	else if (use_edp_hobl(encoder))
+>>  		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl, n_entr=
+ies);
+>> -	else if (i915->vbt.edp.low_vswing)
+>> +	else if (use_edp_low_vswing(encoder))
+>>  		return intel_get_buf_trans(&adls_combo_phy_trans_edp_hbr2, n_entries);
+>>  	else
+>>  		return adls_get_combo_buf_trans_dp(encoder, crtc_state, n_entries);
+>> @@ -1527,16 +1508,13 @@ adlp_get_combo_buf_trans_edp(struct intel_encode=
+r *encoder,
+>>  			     const struct intel_crtc_state *crtc_state,
+>>  			     int *n_entries)
+>>  {
+>> -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>> -
+>>  	if (crtc_state->port_clock > 540000) {
+>>  		return intel_get_buf_trans(&adlp_combo_phy_trans_edp_hbr3,
+>>  					   n_entries);
+>> -	} else if (dev_priv->vbt.edp.hobl && !intel_dp->hobl_failed) {
+>> +	} else if (use_edp_hobl(encoder)) {
+>>  		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl,
+>>  					   n_entries);
+>> -	} else if (dev_priv->vbt.edp.low_vswing) {
+>> +	} else if (use_edp_low_vswing(encoder)) {
+>>  		return intel_get_buf_trans(&adlp_combo_phy_trans_edp_up_to_hbr2,
+>>  					   n_entries);
+>>  	}
+>
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10971 -> Patchwork_21783
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21783/index.html
-
-Participating hosts (44 -> 32)
-------------------------------
-
-  Missing    (12): bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21783 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - fi-rkl-guc:         [PASS][1] -> [INCOMPLETE][2] ([i915#4432])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10971/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21783/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html
-
-  * igt@runner@aborted:
-    - fi-rkl-guc:         NOTRUN -> [FAIL][3] ([i915#3928] / [i915#4312])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21783/fi-rkl-guc/igt@runner@aborted.html
-
-  
-  [i915#3928]: https://gitlab.freedesktop.org/drm/intel/issues/3928
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4432]: https://gitlab.freedesktop.org/drm/intel/issues/4432
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10971 -> Patchwork_21783
-
-  CI-20190529: 20190529
-  CI_DRM_10971: 76da84b837b1d09dd2620c2240211c7890a26180 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6303: 49deb6b505c293a60dd3b3976a63c467bf88442e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21783: e251a0da9441e3f5047627a28650bf10b8ed197c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e251a0da9441 drm/i915: Fix coredump of perma-pinned vmas
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21783/index.html
-
---===============2364465931296487770==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix coredump of perma-pinned vmas</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97709/">https://patchwork.freedesktop.org/series/97709/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21783/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21783/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10971 -&gt; Patchwork_21783</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21783/index.html</p>
-<h2>Participating hosts (44 -&gt; 32)</h2>
-<p>Missing    (12): bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21783 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10971/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21783/fi-rkl-guc/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4432">i915#4432</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21783/fi-rkl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3928">i915#3928</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10971 -&gt; Patchwork_21783</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10971: 76da84b837b1d09dd2620c2240211c7890a26180 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6303: 49deb6b505c293a60dd3b3976a63c467bf88442e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21783: e251a0da9441e3f5047627a28650bf10b8ed197c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e251a0da9441 drm/i915: Fix coredump of perma-pinned vmas</p>
-
-</body>
-</html>
-
---===============2364465931296487770==--
+--=20
+Jani Nikula, Intel Open Source Graphics Center
