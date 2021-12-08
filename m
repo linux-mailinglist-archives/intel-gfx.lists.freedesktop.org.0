@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB22346D4B7
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 14:46:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BA0E46D4C3
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Dec 2021 14:48:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA0596EDC8;
-	Wed,  8 Dec 2021 13:46:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45E026F5AC;
+	Wed,  8 Dec 2021 13:48:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 26D0D6EC0E;
- Wed,  8 Dec 2021 13:46:33 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 891DB6F4D8;
+ Wed,  8 Dec 2021 13:48:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1F1C8A363D;
- Wed,  8 Dec 2021 13:46:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3088555644273403046=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8510EA363D;
+ Wed,  8 Dec 2021 13:48:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ramalingam C" <ramalingam.c@intel.com>
-Date: Wed, 08 Dec 2021 13:46:33 -0000
-Message-ID: <163897119309.8237.18349619942716149562@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Wed, 08 Dec 2021 13:48:11 -0000
+Message-ID: <163897129153.8234.8709418867592013845@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20211208102031.4397-1-ramalingam.c@intel.com>
-In-Reply-To: <20211208102031.4397-1-ramalingam.c@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Sanity_Check_for_device_memory_region?=
+References: <cover.1638961423.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1638961423.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_trace_display_split?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,352 +45,330 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3088555644273403046==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Sanity Check for device memory region
-URL   : https://patchwork.freedesktop.org/series/97715/
-State : failure
+Series: drm/i915: trace display split
+URL   : https://patchwork.freedesktop.org/series/97721/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10973 -> Patchwork_21784
-====================================================
+$ dim checkpatch origin/drm-tip
+25fd3bfdc326 drm/i915/trace: clean up boilerplate organization
+b994ae8af368 drm/i915/trace: split out display trace to a separate file
+-:144: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#144: 
+new file mode 100644
 
-Summary
--------
+-:186: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#186: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:23:
++	    TP_STRUCT__entry(
 
-  **FAILURE**
+-:191: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#191: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:28:
++	    TP_fast_assign(
 
-  Serious unknown changes coming with Patchwork_21784 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_21784, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:192: WARNING:TABSTOP: Statements should start on a tabstop
+#192: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:29:
++			   struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/index.html
+-:193: WARNING:TABSTOP: Statements should start on a tabstop
+#193: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:30:
++			   struct intel_crtc *it__;
 
-Participating hosts (45 -> 36)
-------------------------------
+-:194: WARNING:LINE_SPACING: Missing a blank line after declarations
+#194: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:31:
++			   struct intel_crtc *it__;
++			   for_each_intel_crtc(&dev_priv->drm, it__) {
 
-  Additional (2): fi-kbl-soraka fi-icl-u2 
-  Missing    (11): fi-ilk-m540 bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-pnv-d510 bat-jsl-1 
+-:194: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (27, 35)
+#194: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:31:
++			   for_each_intel_crtc(&dev_priv->drm, it__) {
++				   __entry->frame[it__->pipe] = intel_crtc_get_vblank_counter(it__);
 
-Possible new issues
--------------------
+-:197: WARNING:TABSTOP: Statements should start on a tabstop
+#197: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:34:
++			   }
 
-  Here are the unknown changes that may have been introduced in Patchwork_21784:
+-:212: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#212: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:49:
++	    TP_STRUCT__entry(
 
-### IGT changes ###
+-:218: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#218: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:55:
++	    TP_fast_assign(
 
-#### Possible regressions ####
+-:219: WARNING:TABSTOP: Statements should start on a tabstop
+#219: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:56:
++			   struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
 
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-u2:          NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@i915_selftest@live@execlists.html
+-:220: WARNING:TABSTOP: Statements should start on a tabstop
+#220: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:57:
++			   struct intel_crtc *it__;
 
-  
-Known issues
-------------
+-:221: WARNING:LINE_SPACING: Missing a blank line after declarations
+#221: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:58:
++			   struct intel_crtc *it__;
++			   for_each_intel_crtc(&dev_priv->drm, it__) {
 
-  Here are the changes found in Patchwork_21784 that come from known issues:
+-:221: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (27, 35)
+#221: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:58:
++			   for_each_intel_crtc(&dev_priv->drm, it__) {
++				   __entry->frame[it__->pipe] = intel_crtc_get_vblank_counter(it__);
 
-### IGT changes ###
+-:224: WARNING:TABSTOP: Statements should start on a tabstop
+#224: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:61:
++			   }
 
-#### Issues hit ####
+-:239: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#239: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:76:
++	    TP_STRUCT__entry(
 
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271]) +8 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
+-:246: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#246: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:83:
++	    TP_fast_assign(
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-    - fi-icl-u2:          NOTRUN -> [SKIP][4] ([i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
+-:263: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#263: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:100:
++	    TP_STRUCT__entry(
 
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+-:269: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#269: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:106:
++	    TP_fast_assign(
 
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-icl-u2:          NOTRUN -> [SKIP][6] ([i915#4613]) +3 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
+-:270: WARNING:TABSTOP: Statements should start on a tabstop
+#270: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:107:
++			    struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [PASS][7] -> [INCOMPLETE][8] ([i915#2940])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10973/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-    - fi-bsw-kefka:       [PASS][9] -> [INCOMPLETE][10] ([i915#2940])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10973/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+-:285: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#285: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:122:
++	    TP_STRUCT__entry(
 
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][11] ([i915#1886] / [i915#2291])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+-:291: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#291: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:128:
++	    TP_fast_assign(
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][12] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
+-:292: WARNING:TABSTOP: Statements should start on a tabstop
+#292: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:129:
++			   enum pipe pipe = pch_transcoder;
 
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          NOTRUN -> [SKIP][13] ([fdo#111827]) +8 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+-:293: WARNING:TABSTOP: Statements should start on a tabstop
+#293: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:130:
++			   struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][14] ([fdo#109278]) +2 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+-:294: WARNING:LINE_SPACING: Missing a blank line after declarations
+#294: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:131:
++			   struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
++			   __entry->pipe = pipe;
 
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-u2:          NOTRUN -> [SKIP][15] ([fdo#109285])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
+-:308: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#308: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:145:
++	    TP_STRUCT__entry(
 
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][16] ([fdo#109271] / [i915#533])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+-:315: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#315: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:152:
++	    TP_fast_assign(
 
-  * igt@kms_psr@primary_page_flip:
-    - fi-skl-6600u:       [PASS][17] -> [FAIL][18] ([i915#4547])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10973/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+-:316: WARNING:TABSTOP: Statements should start on a tabstop
+#316: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:153:
++			   struct intel_crtc *crtc;
 
-  * igt@prime_vgem@basic-userptr:
-    - fi-icl-u2:          NOTRUN -> [SKIP][19] ([i915#3301])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@prime_vgem@basic-userptr.html
+-:317: WARNING:LINE_SPACING: Missing a blank line after declarations
+#317: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:154:
++			   struct intel_crtc *crtc;
++			   for_each_intel_crtc(&dev_priv->drm, crtc) {
 
-  * igt@runner@aborted:
-    - fi-bsw-kefka:       NOTRUN -> [FAIL][20] ([fdo#109271] / [i915#1436] / [i915#2722] / [i915#3428] / [i915#4312])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-bsw-kefka/igt@runner@aborted.html
-    - fi-skl-6600u:       NOTRUN -> [FAIL][21] ([i915#3363] / [i915#4312])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-skl-6600u/igt@runner@aborted.html
-    - fi-icl-u2:          NOTRUN -> [FAIL][22] ([i915#2722] / [i915#3363] / [i915#4006] / [i915#4312])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@runner@aborted.html
-    - fi-bsw-nick:        NOTRUN -> [FAIL][23] ([fdo#109271] / [i915#1436] / [i915#3428] / [i915#4312])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-bsw-nick/igt@runner@aborted.html
+-:317: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (27, 35)
+#317: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:154:
++			   for_each_intel_crtc(&dev_priv->drm, crtc) {
++				   __entry->frame[crtc->pipe] = intel_crtc_get_vblank_counter(crtc);
 
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#4006]: https://gitlab.freedesktop.org/drm/intel/issues/4006
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+-:320: WARNING:TABSTOP: Statements should start on a tabstop
+#320: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:157:
++			   }
+
+-:336: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#336: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:173:
++	    TP_STRUCT__entry(
+
+-:354: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#354: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:191:
++	    TP_fast_assign(
+
+-:376: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#376: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:213:
++		      yesno(__entry->hpll), __entry->hpll_plane, __entry->hpll_cursor, __entry->hpll_fbc,
+
+-:384: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#384: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:221:
++	    TP_STRUCT__entry(
+
+-:398: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#398: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:235:
++	    TP_fast_assign(
+
+-:423: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#423: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:260:
++	    TP_STRUCT__entry(
+
+-:432: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#432: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:269:
++	    TP_fast_assign(
+
+-:451: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#451: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:288:
++	    TP_STRUCT__entry(
+
+-:460: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#460: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:297:
++	    TP_fast_assign(
+
+-:469: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#469: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:306:
++	    TP_printk("pipe %c, plane %s, frame=%u, scanline=%u, " DRM_RECT_FP_FMT " -> " DRM_RECT_FMT,
+
+-:480: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#480: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:317:
++	    TP_STRUCT__entry(
+
+-:489: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#489: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:326:
++	    TP_fast_assign(
+
+-:498: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#498: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:335:
++	    TP_printk("pipe %c, plane %s, frame=%u, scanline=%u, " DRM_RECT_FP_FMT " -> " DRM_RECT_FMT,
+
+-:509: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#509: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:346:
++	    TP_STRUCT__entry(
+
+-:516: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#516: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:353:
++	    TP_fast_assign(
+
+-:532: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#532: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:369:
++	    TP_STRUCT__entry(
+
+-:538: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#538: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:375:
++	    TP_fast_assign(
+
+-:539: WARNING:TABSTOP: Statements should start on a tabstop
+#539: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:376:
++			   struct intel_crtc *crtc = intel_crtc_for_pipe(to_i915(plane->base.dev),
+
+-:554: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#554: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:391:
++	    TP_STRUCT__entry(
+
+-:560: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#560: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:397:
++	    TP_fast_assign(
+
+-:561: WARNING:TABSTOP: Statements should start on a tabstop
+#561: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:398:
++			   struct intel_crtc *crtc = intel_crtc_for_pipe(to_i915(plane->base.dev),
+
+-:576: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#576: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:413:
++	    TP_STRUCT__entry(
+
+-:582: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#582: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:419:
++	    TP_fast_assign(
+
+-:583: WARNING:TABSTOP: Statements should start on a tabstop
+#583: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:420:
++			   struct intel_crtc *crtc = intel_crtc_for_pipe(to_i915(plane->base.dev),
+
+-:598: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#598: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:435:
++	    TP_STRUCT__entry(
+
+-:604: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#604: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:441:
++	    TP_fast_assign(
+
+-:619: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#619: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:456:
++	    TP_STRUCT__entry(
+
+-:625: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#625: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:462:
++	    TP_fast_assign(
+
+-:640: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#640: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:477:
++	    TP_STRUCT__entry(
+
+-:648: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#648: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:485:
++	    TP_fast_assign(
+
+-:665: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#665: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:502:
++	    TP_STRUCT__entry(
+
+-:673: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#673: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:510:
++	    TP_fast_assign(
+
+-:690: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#690: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:527:
++	    TP_STRUCT__entry(
+
+-:696: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#696: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:533:
++	    TP_fast_assign(
+
+-:711: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#711: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:548:
++	    TP_STRUCT__entry(
+
+-:716: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#716: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:553:
++	    TP_fast_assign(
+
+-:729: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#729: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:566:
++	    TP_STRUCT__entry(
+
+-:734: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#734: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:571:
++	    TP_fast_assign(
+
+-:748: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#748: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:585:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915/display
+                              ^
+
+-:748: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#748: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:585:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915/display
+                                 ^
+
+-:748: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#748: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:585:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915/display
+                                         ^
+
+-:748: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#748: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:585:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915/display
+                                             ^
+
+-:748: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#748: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:585:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915/display
+                                                 ^
+
+-:748: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#748: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:585:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915/display
+                                                      ^
+
+total: 0 errors, 25 warnings, 50 checks, 1388 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_10973 -> Patchwork_21784
-
-  CI-20190529: 20190529
-  CI_DRM_10973: e540b0c4da51fd576e9b61489899acd074a0e4cd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6303: 49deb6b505c293a60dd3b3976a63c467bf88442e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21784: ab26e68a876dd5f76ce117e04708bf8dda26a1a4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ab26e68a876d drm/i915: Exclude reserved stolen from driver use
-ec4f658f19ef drm/i915: Test all device memory on probing
-a4fb1d110926 drm/i915: Sanitycheck device iomem on probe
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/index.html
-
---===============3088555644273403046==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Sanity Check for device memory region</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97715/">https://patchwork.freedesktop.org/series/97715/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10973 -&gt; Patchwork_21784</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_21784 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_21784, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/index.html</p>
-<h2>Participating hosts (45 -&gt; 36)</h2>
-<p>Additional (2): fi-kbl-soraka fi-icl-u2 <br />
-  Missing    (11): fi-ilk-m540 bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-pnv-d510 bat-jsl-1 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21784:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@execlists:<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@i915_selftest@live@execlists.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21784 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>
-<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10973/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</p>
-</li>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10973/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10973/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4006">i915#4006</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21784/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10973 -&gt; Patchwork_21784</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10973: e540b0c4da51fd576e9b61489899acd074a0e4cd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6303: 49deb6b505c293a60dd3b3976a63c467bf88442e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21784: ab26e68a876dd5f76ce117e04708bf8dda26a1a4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>ab26e68a876d drm/i915: Exclude reserved stolen from driver use<br />
-ec4f658f19ef drm/i915: Test all device memory on probing<br />
-a4fb1d110926 drm/i915: Sanitycheck device iomem on probe</p>
-
-</body>
-</html>
-
---===============3088555644273403046==--
