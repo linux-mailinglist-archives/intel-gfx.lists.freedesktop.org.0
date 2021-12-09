@@ -1,59 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F04646F42B
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 20:42:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87DEC46F44E
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 20:53:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 987AD10E23F;
-	Thu,  9 Dec 2021 19:42:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A692710E240;
+	Thu,  9 Dec 2021 19:53:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com
- [IPv6:2607:f8b0:4864:20::b2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F62210E23E;
- Thu,  9 Dec 2021 19:42:34 +0000 (UTC)
-Received: by mail-yb1-xb2c.google.com with SMTP id d10so16277013ybe.3;
- Thu, 09 Dec 2021 11:42:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=UNgDpoXUl5PbvlFCagcOFS5xmBaoMxzD9DzgTdekBIA=;
- b=FujjdwIhEPxTTwRo0uxVovXeeYdYPC596C8vKtpzjSicoiM1G27DxZGnR9O5uK8Yuq
- Z2smaSgFdOe+Jft1ilFLwcmI37VpJLRWNJGA5vv6bUjgvdUj+5o8KFR6WSWp1b00Dsfy
- TBLxABsouqRQ6ehv6ybh+wnL6vgOXK3mIUOg84wlzGNS1JYzpigH20sEbrU5A5BLcG2d
- XKbI4lUoUtQx++0kZeMYmapLHkW1j7meEaJEGBsvojVr/LeW+XfCVXjvQmemi2pVwrTy
- Hv3bYOAeNCgLTVxCN6lzCqo79SXigfVvFYkYP/k6ei3DdMHHBk+hnjMLkwvyWMEfZ83U
- Y3Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=UNgDpoXUl5PbvlFCagcOFS5xmBaoMxzD9DzgTdekBIA=;
- b=dPYRpjjSYMhpZZ4YzQWILq0zjcoTpOPt4A5v4QdUnJz3RX/Lxwew8lOKw1t6laV1jH
- Q8s06vA48c6bSkOYrsK4deqlC1FMrelooHicq7AMO45L0rUCwsjt3tMIE9oJoisICOoI
- lU85AsY4Rnx0EVmJCb/Cy+iKgsMZM7EhMui9lILXoYCO8nplY3FYXuL6w9lpJN+F+ksk
- 8+K0tVVcVRg9JgKPyRfWUUrsaErjLsEED+xJb64AFHzk2BD2S45HYH5VJHpNB14dLkEM
- BspIp3DxVbj+0YaVKzjvVOJ6eleDgXJ6/EAts+634tnuVtvJLMKR/M6UJgNj0rZe3EFh
- 0YHA==
-X-Gm-Message-State: AOAM533a3d9qTD+vFg/MVAIvRnW6bQOqnt57wa5BLkOe9p14gGMLoDKM
- W5aWa7KcjMsw/YRONzQ/fGlnKoQBFysxI3S9+4M=
-X-Google-Smtp-Source: ABdhPJypkbqcqMYRkgXLeYrr85sBP4nKztEc2JQZg63uKkXgInECePCODndx/GF5knti62lLCtVTePaq60mxvaTEf20=
-X-Received: by 2002:a25:69cc:: with SMTP id e195mr9012360ybc.456.1639078953165; 
- Thu, 09 Dec 2021 11:42:33 -0800 (PST)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED20B10E240
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 19:53:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639079602; x=1670615602;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=f7WHKsrWvc1H++mSjCvb9DA7N5LmC98R/NNYyZJDOG4=;
+ b=n6nvClpVx/YvdjuwYAP1SDwsL3eH4N7GRRztERf+qyKJBk4ShxRLCj8I
+ IAeRCSu4Qsa7kTbT+LhqKf6TqrjV7BawZRJDGar+mbWRSQidWU2DulWuE
+ Tumu+Zmlg8tiVqvju5KAOFd4cUG4O6/dUMAlbEG2h4aXdbqSbb8W+I4nF
+ SI5tFQgFwUQ+v4Fl8vVi3Yxwa7E05/WgPTFup8G8voOYa1NA7+/sE9WfG
+ SYp7eYGaSLoqd7vYiSrSrcg6FLZsyfUtDY7j76sy2Yp3a0K3T+oW1N/qc
+ OyUIN6OTJYgf0sooLXYH26iLfvyMEEbmu14Y+ytczSPM583QzkaFfbdrG A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="238419091"
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="238419091"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 11:53:22 -0800
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="463379767"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 11:53:21 -0800
+Date: Thu, 9 Dec 2021 11:47:57 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <20211209194757.GA21611@jons-linux-dev-box>
+References: <20211209005610.1499729-1-daniele.ceraolospurio@intel.com>
+ <20211209005610.1499729-4-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-References: <20211027212339.29259-1-ramalingam.c@intel.com>
- <20211027212339.29259-14-ramalingam.c@intel.com>
- <CAJDL4uLzxxjw0vp+en3vVpJFBBBrm-g7PwFVBMMmDZEUoiJp3w@mail.gmail.com>
-In-Reply-To: <CAJDL4uLzxxjw0vp+en3vVpJFBBBrm-g7PwFVBMMmDZEUoiJp3w@mail.gmail.com>
-From: Nanley Chery <nanleychery@gmail.com>
-Date: Thu, 9 Dec 2021 14:41:57 -0500
-Message-ID: <CAJDL4uKiQNPm1WMo50m7Q4OPQQF1Ke9Rs8FzSojL_qT7OOaNsw@mail.gmail.com>
-To: Ramalingam C <ramalingam.c@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [Mesa-dev] [PATCH v3 13/17] uapi/drm/dg2: Format
- modifier for DG2 unified compression and clear color
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211209005610.1499729-4-daniele.ceraolospurio@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/guc: support bigger RSA keys
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,309 +58,336 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Simon Ser <contact@emersion.fr>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Kenneth Graunke <kenneth@whitecape.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Slawomir Milczarek <slawomir.milczarek@intel.com>,
- Pekka Paalanen <ppaalanen@gmail.com>,
- Hellstrom Thomas <thomas.hellstrom@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- mesa-dev <mesa-dev@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ping. I see that a v4 has been sent out without these comments being addres=
-sed.
+On Wed, Dec 08, 2021 at 04:56:10PM -0800, Daniele Ceraolo Spurio wrote:
+> Some of the newer HW will use bigger RSA keys to authenticate the GuC
+> binary. On those platforms the HW will read the key from memory instead
+> of the RSA registers, so we need to copy it in a dedicated vma, like we
+> do for the HuC. The address of the key is provided to the HW via the
+> first RSA register.
+> 
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c | 30 ++++++--
+>  drivers/gpu/drm/i915/gt/uc/intel_huc.c    | 73 +------------------
+>  drivers/gpu/drm/i915/gt/uc/intel_huc.h    |  2 -
+>  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c  | 86 ++++++++++++++++++++++-
+>  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h  |  1 +
+>  5 files changed, 113 insertions(+), 79 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
+> index 796483a41353..811f032199eb 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
+> @@ -40,9 +40,8 @@ static void guc_prepare_xfer(struct intel_uncore *uncore)
+>  	}
+>  }
+>  
+> -/* Copy RSA signature from the fw image to HW for verification */
+> -static int guc_xfer_rsa(struct intel_uc_fw *guc_fw,
+> -			struct intel_uncore *uncore)
+> +static int guc_xfer_rsa_mmio(struct intel_uc_fw *guc_fw,
+> +			     struct intel_uncore *uncore)
+>  {
+>  	u32 rsa[UOS_RSA_SCRATCH_COUNT];
+>  	size_t copied;
+> @@ -58,6 +57,27 @@ static int guc_xfer_rsa(struct intel_uc_fw *guc_fw,
+>  	return 0;
+>  }
+>  
+> +static int guc_xfer_rsa_vma(struct intel_uc_fw *guc_fw,
+> +			    struct intel_uncore *uncore)
+> +{
+> +	struct intel_guc *guc = container_of(guc_fw, struct intel_guc, fw);
+> +
+> +	intel_uncore_write(uncore, UOS_RSA_SCRATCH(0),
+> +			   intel_guc_ggtt_offset(guc, guc_fw->rsa_data));
+> +
+> +	return 0;
+> +}
+> +
+> +/* Copy RSA signature from the fw image to HW for verification */
+> +static int guc_xfer_rsa(struct intel_uc_fw *guc_fw,
+> +			struct intel_uncore *uncore)
+> +{
+> +	if (guc_fw->rsa_data)
+> +		return guc_xfer_rsa_vma(guc_fw, uncore);
+> +	else
+> +		return guc_xfer_rsa_mmio(guc_fw, uncore);
+> +}
+> +
+>  /*
+>   * Read the GuC status register (GUC_STATUS) and store it in the
+>   * specified location; then return a boolean indicating whether
+> @@ -142,7 +162,9 @@ int intel_guc_fw_upload(struct intel_guc *guc)
+>  	/*
+>  	 * Note that GuC needs the CSS header plus uKernel code to be copied
+>  	 * by the DMA engine in one operation, whereas the RSA signature is
+> -	 * loaded via MMIO.
+> +	 * loaded separately, either by copying it to the UOS_RSA_SCRATCH
+> +	 * register (if key size <= 256) or through a ggtt-pinned vma (if key
+> +	 * size > 256).
 
--Nanley
+Maybe add comment saying whether the key is in MMIO or memory is hard
+coded in the bootrom.
 
-On Tue, Dec 7, 2021 at 6:51 PM Nanley Chery <nanleychery@gmail.com> wrote:
->
-> Hi Ramalingam,
->
-> On Wed, Oct 27, 2021 at 5:22 PM Ramalingam C <ramalingam.c@intel.com> wro=
-te:
-> >
-> > From: Matt Roper <matthew.d.roper@intel.com>
-> >
-> > DG2 unifies render compression and media compression into a single
-> > format for the first time.  The programming and buffer layout is
-> > supposed to match compression on older gen12 platforms, but the
-> > actual compression algorithm is different from any previous platform; a=
-s
-> > such, we need a new framebuffer modifier to represent buffers in this
-> > format, but otherwise we can re-use the existing gen12 compression driv=
-er
-> > logic.
-> >
-> > DG2 clear color render compression uses Tile4 layout. Therefore, we nee=
-d
-> > to define a new format modifier for uAPI to support clear color renderi=
-ng.
-> >
->
-> I left some feedback on the modifier texts below, but I think it also
-> applies to this commit message.
->
-> > v2: Rebased on new format modifier check [Ram]
-> >
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > Signed-off-by: Mika Kahola <mika.kahola@intel.com> (v2)
-> > Signed-off-by: Juha-Pekka Heikkil=C3=A4 <juha-pekka.heikkila@intel.com>
-> > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> > cc: Simon Ser <contact@emersion.fr>
-> > Cc: Pekka Paalanen <ppaalanen@gmail.com>
-> > Cc: Jordan Justen <jordan.l.justen@intel.com>
-> > Cc: Kenneth Graunke <kenneth@whitecape.org>
-> > Cc: mesa-dev@lists.freedesktop.org
-> > Cc: Tony Ye <tony.ye@intel.com>
-> > Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
-> > Acked-by: Simon Ser <contact@emersion.fr>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_fb.c       | 43 +++++++++++++++++++
-> >  .../drm/i915/display/skl_universal_plane.c    | 29 ++++++++++++-
-> >  include/uapi/drm/drm_fourcc.h                 | 30 +++++++++++++
-> >  3 files changed, 101 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/=
-i915/display/intel_fb.c
-> > index 562d5244688d..484ae1fd0e94 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> > @@ -106,6 +106,21 @@ static const struct drm_format_info gen12_ccs_cc_f=
-ormats[] =3D {
-> >           .hsub =3D 1, .vsub =3D 1, .has_alpha =3D true },
-> >  };
-> >
-> > +static const struct drm_format_info gen12_flat_ccs_cc_formats[] =3D {
-> > +       { .format =3D DRM_FORMAT_XRGB8888, .depth =3D 24, .num_planes =
-=3D 2,
-> > +         .char_per_block =3D { 4, 0 }, .block_w =3D { 1, 2 }, .block_h=
- =3D { 1, 1 },
-> > +         .hsub =3D 1, .vsub =3D 1, },
-> > +       { .format =3D DRM_FORMAT_XBGR8888, .depth =3D 24, .num_planes =
-=3D 2,
-> > +         .char_per_block =3D { 4, 0 }, .block_w =3D { 1, 2 }, .block_h=
- =3D { 1, 1 },
-> > +         .hsub =3D 1, .vsub =3D 1, },
-> > +       { .format =3D DRM_FORMAT_ARGB8888, .depth =3D 32, .num_planes =
-=3D 2,
-> > +         .char_per_block =3D { 4, 0 }, .block_w =3D { 1, 2 }, .block_h=
- =3D { 1, 1 },
-> > +         .hsub =3D 1, .vsub =3D 1, .has_alpha =3D true },
-> > +       { .format =3D DRM_FORMAT_ABGR8888, .depth =3D 32, .num_planes =
-=3D 2,
-> > +         .char_per_block =3D { 4, 0 }, .block_w =3D { 1, 2 }, .block_h=
- =3D { 1, 1 },
-> > +         .hsub =3D 1, .vsub =3D 1, .has_alpha =3D true },
-> > +};
-> > +
-> >  struct intel_modifier_desc {
-> >         u64 modifier;
-> >         struct {
-> > @@ -166,6 +181,27 @@ static const struct intel_modifier_desc intel_modi=
-fiers[] =3D {
-> >                 .ccs.packed_aux_planes =3D BIT(1),
-> >
-> >                 FORMAT_OVERRIDE(gen12_ccs_cc_formats),
-> > +       }, {
-> > +               .modifier =3D I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
-> > +               .display_ver =3D { 12, 13 },
-> > +               .tiling =3D I915_TILING_NONE,
-> > +
-> > +               .ccs.type =3D INTEL_CCS_RC,
-> > +       }, {
-> > +               .modifier =3D I915_FORMAT_MOD_4_TILED_DG2_MC_CCS,
-> > +               .display_ver =3D { 12, 13 },
-> > +               .tiling =3D I915_TILING_NONE,
-> > +
-> > +               .ccs.type =3D INTEL_CCS_MC,
-> > +       }, {
-> > +               .modifier =3D I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC,
-> > +               .display_ver =3D { 12, 13 },
-> > +               .tiling =3D I915_TILING_NONE,
-> > +
-> > +               .ccs.type =3D INTEL_CCS_RC_CC,
-> > +               .ccs.cc_planes =3D BIT(1),
-> > +
-> > +               FORMAT_OVERRIDE(gen12_flat_ccs_cc_formats),
-> >         }, {
-> >                 .modifier =3D I915_FORMAT_MOD_Yf_TILED_CCS,
-> >                 .display_ver =3D { 9, 11 },
-> > @@ -582,6 +618,9 @@ intel_tile_width_bytes(const struct drm_framebuffer=
- *fb, int color_plane)
-> >                         return 128;
-> >                 else
-> >                         return 512;
-> > +       case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
-> > +       case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
-> > +       case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC:
-> >         case I915_FORMAT_MOD_4_TILED:
-> >                 /*
-> >                  * Each 4K tile consists of 64B(8*8) subtiles, with
-> > @@ -759,6 +798,10 @@ unsigned int intel_surf_alignment(const struct drm=
-_framebuffer *fb,
-> >         case I915_FORMAT_MOD_4_TILED:
-> >         case I915_FORMAT_MOD_Yf_TILED:
-> >                 return 1 * 1024 * 1024;
-> > +       case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
-> > +       case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC:
-> > +       case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
-> > +               return 16 * 1024;
-> >         default:
-> >                 MISSING_CASE(fb->modifier);
-> >                 return 0;
-> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drive=
-rs/gpu/drm/i915/display/skl_universal_plane.c
-> > index aeca96925feb..136b3f74a290 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > @@ -753,6 +753,16 @@ static u32 skl_plane_ctl_tiling(u64 fb_modifier)
-> >                 return PLANE_CTL_TILED_Y;
-> >         case I915_FORMAT_MOD_4_TILED:
-> >                 return PLANE_CTL_TILED_4;
-> > +       case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
-> > +               return PLANE_CTL_TILED_4 |
-> > +                       PLANE_CTL_RENDER_DECOMPRESSION_ENABLE |
-> > +                       PLANE_CTL_CLEAR_COLOR_DISABLE;
-> > +       case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
-> > +               return PLANE_CTL_TILED_4 |
-> > +                       PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE |
-> > +                       PLANE_CTL_CLEAR_COLOR_DISABLE;
-> > +       case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC:
-> > +               return PLANE_CTL_TILED_4 | PLANE_CTL_RENDER_DECOMPRESSI=
-ON_ENABLE;
-> >         case I915_FORMAT_MOD_Y_TILED_CCS:
-> >         case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
-> >                 return PLANE_CTL_TILED_Y | PLANE_CTL_RENDER_DECOMPRESSI=
-ON_ENABLE;
-> > @@ -1983,6 +1993,9 @@ skl_plane_disable_flip_done(struct intel_plane *p=
-lane)
-> >  static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
-> >                                  enum pipe pipe, enum plane_id plane_id=
-)
-> >  {
-> > +       if (IS_DG2(i915) && !HAS_4TILE(i915))
-> > +               return false;
-> > +
-> >         /* Wa_22011186057 */
-> >         if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
-> >                 return false;
-> > @@ -2001,6 +2014,10 @@ static bool skl_plane_has_rc_ccs(struct drm_i915=
-_private *i915,
-> >  static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
-> >                                    enum plane_id plane_id)
-> >  {
-> > +       /* Wa_14013215631:dg2[a0,b0] */
-> > +       if (IS_DG2_DISP_STEP(i915, STEP_A0, STEP_C0))
-> > +               return false;
-> > +
-> >         /* Wa_14010477008:tgl[a0..c0],rkl[all],dg1[all] */
-> >         if (IS_DG1(i915) || IS_ROCKETLAKE(i915) ||
-> >             IS_TGL_DISPLAY_STEP(i915, STEP_A0, STEP_D0))
-> > @@ -2243,7 +2260,17 @@ skl_get_initial_plane_config(struct intel_crtc *=
-crtc,
-> >                 break;
-> >         case PLANE_CTL_TILED_YF: /* aka PLANE_CTL_TILED_4 on XE_LPD+ */
-> >                 if (DISPLAY_VER(dev_priv) >=3D 13) {
-> > -                       fb->modifier =3D I915_FORMAT_MOD_4_TILED;
-> > +                       u32 rc_mask =3D PLANE_CTL_RENDER_DECOMPRESSION_=
-ENABLE |
-> > +                                       PLANE_CTL_CLEAR_COLOR_DISABLE;
-> > +
-> > +                       if ((val & rc_mask) =3D=3D rc_mask)
-> > +                               fb->modifier =3D I915_FORMAT_MOD_4_TILE=
-D_DG2_RC_CCS;
-> > +                       else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_EN=
-ABLE)
-> > +                               fb->modifier =3D I915_FORMAT_MOD_4_TILE=
-D_DG2_MC_CCS;
-> > +                       else if (val & PLANE_CTL_RENDER_DECOMPRESSION_E=
-NABLE)
-> > +                               fb->modifier =3D I915_FORMAT_MOD_4_TILE=
-D_DG2_RC_CCS_CC;
-> > +                       else
-> > +                               fb->modifier =3D I915_FORMAT_MOD_4_TILE=
-D;
-> >                 } else {
-> >                         if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE=
-)
-> >                                 fb->modifier =3D I915_FORMAT_MOD_Yf_TIL=
-ED_CCS;
-> > diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourc=
-c.h
-> > index 982b0a9fa78b..719c17847e07 100644
-> > --- a/include/uapi/drm/drm_fourcc.h
-> > +++ b/include/uapi/drm/drm_fourcc.h
-> > @@ -567,6 +567,36 @@ extern "C" {
-> >   */
-> >  #define I915_FORMAT_MOD_4_TILED         fourcc_mod_code(INTEL, 12)
-> >
-> > +/*
-> > + * Intel color control surfaces (CCS) for DG2 render compression.
-> > + *
-> > + * DG2 uses a new compression format for render compression. The gener=
-al
-> > + * layout is the same as I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
-> > + * but a new hashing/compression algorithm is used, so a fresh modifie=
-r must
-> > + * be associated with buffers of this type. Render compression uses 12=
-8 byte
-> > + * compression blocks.
-> > + */
-> > +#define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS fourcc_mod_code(INTEL, 13)
-> > +
-> > +/*
-> > + * Intel color control surfaces (CCS) for DG2 media compression.
-> > + *
-> > + * DG2 uses a new compression format for media compression. The genera=
-l
-> > + * layout is the same as I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
-> > + * but a new hashing/compression algorithm is used, so a fresh modifie=
-r must
-> > + * be associated with buffers of this type. Media compression uses 256=
- byte
-> > + * compression blocks.
-> > + */
->
-> More so than new compression algorithms, these modifiers are needed
-> due to the lack of CCS planes.
->
-> The layout of these surfaces are more like I915_FORMAT_MOD_4_TILED, right=
-?
->
-> > +#define I915_FORMAT_MOD_4_TILED_DG2_MC_CCS fourcc_mod_code(INTEL, 14)
-> > +
-> > +/*
-> > + * Intel color control surfaces (CCS) for DG2 clear color render compr=
-ession.
-> > + *
-> > + * DG2 uses a unified compression format for clear color render compre=
-ssion.
->
-> This seems to imply a different format than RC_CCS (with additional
-> clear color tracking).
->
-> > + * The general layout is a tiled layout using 4Kb tiles i.e. Tile4 lay=
-out.
-> > + */
->
-> It's unclear where the clear color is located from this description
-> (by comparison, the GEN12 modifier states that the clear color can be
-> found at plane index 2).
->
-> Regards,
-> Nanley
->
->
-> > +#define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC fourcc_mod_code(INTEL, 1=
-5)
-> > +
-> >  /*
-> >   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macrobloc=
-ks
-> >   *
-> > --
-> > 2.20.1
-> >
+With an extra comment:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+>  	 */
+>  	ret = guc_xfer_rsa(&guc->fw, uncore);
+>  	if (ret)
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> index c10736dddfb4..d10b227ac4aa 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> @@ -54,65 +54,6 @@ void intel_huc_init_early(struct intel_huc *huc)
+>  	}
+>  }
+>  
+> -static int intel_huc_rsa_data_create(struct intel_huc *huc)
+> -{
+> -	struct intel_gt *gt = huc_to_gt(huc);
+> -	struct intel_guc *guc = &gt->uc.guc;
+> -	struct i915_vma *vma;
+> -	size_t copied;
+> -	void *vaddr;
+> -	int err;
+> -
+> -	err = i915_inject_probe_error(gt->i915, -ENXIO);
+> -	if (err)
+> -		return err;
+> -
+> -	/*
+> -	 * HuC firmware will sit above GUC_GGTT_TOP and will not map
+> -	 * through GTT. Unfortunately, this means GuC cannot perform
+> -	 * the HuC auth. as the rsa offset now falls within the GuC
+> -	 * inaccessible range. We resort to perma-pinning an additional
+> -	 * vma within the accessible range that only contains the rsa
+> -	 * signature. The GuC can use this extra pinning to perform
+> -	 * the authentication since its GGTT offset will be GuC
+> -	 * accessible.
+> -	 */
+> -	GEM_BUG_ON(huc->fw.rsa_size > PAGE_SIZE);
+> -	vma = intel_guc_allocate_vma(guc, PAGE_SIZE);
+> -	if (IS_ERR(vma))
+> -		return PTR_ERR(vma);
+> -
+> -	vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
+> -						 i915_coherent_map_type(gt->i915,
+> -									vma->obj, true));
+> -	if (IS_ERR(vaddr)) {
+> -		i915_vma_unpin_and_release(&vma, 0);
+> -		err = PTR_ERR(vaddr);
+> -		goto unpin_out;
+> -	}
+> -
+> -	copied = intel_uc_fw_copy_rsa(&huc->fw, vaddr, vma->size);
+> -	i915_gem_object_unpin_map(vma->obj);
+> -
+> -	if (copied < huc->fw.rsa_size) {
+> -		err = -ENOMEM;
+> -		goto unpin_out;
+> -	}
+> -
+> -	huc->rsa_data = vma;
+> -
+> -	return 0;
+> -
+> -unpin_out:
+> -	i915_vma_unpin_and_release(&vma, 0);
+> -	return err;
+> -}
+> -
+> -static void intel_huc_rsa_data_destroy(struct intel_huc *huc)
+> -{
+> -	i915_vma_unpin_and_release(&huc->rsa_data, 0);
+> -}
+> -
+>  int intel_huc_init(struct intel_huc *huc)
+>  {
+>  	struct drm_i915_private *i915 = huc_to_gt(huc)->i915;
+> @@ -122,21 +63,10 @@ int intel_huc_init(struct intel_huc *huc)
+>  	if (err)
+>  		goto out;
+>  
+> -	/*
+> -	 * HuC firmware image is outside GuC accessible range.
+> -	 * Copy the RSA signature out of the image into
+> -	 * a perma-pinned region set aside for it
+> -	 */
+> -	err = intel_huc_rsa_data_create(huc);
+> -	if (err)
+> -		goto out_fini;
+> -
+>  	intel_uc_fw_change_status(&huc->fw, INTEL_UC_FIRMWARE_LOADABLE);
+>  
+>  	return 0;
+>  
+> -out_fini:
+> -	intel_uc_fw_fini(&huc->fw);
+>  out:
+>  	i915_probe_error(i915, "failed with %d\n", err);
+>  	return err;
+> @@ -147,7 +77,6 @@ void intel_huc_fini(struct intel_huc *huc)
+>  	if (!intel_uc_fw_is_loadable(&huc->fw))
+>  		return;
+>  
+> -	intel_huc_rsa_data_destroy(huc);
+>  	intel_uc_fw_fini(&huc->fw);
+>  }
+>  
+> @@ -177,7 +106,7 @@ int intel_huc_auth(struct intel_huc *huc)
+>  		goto fail;
+>  
+>  	ret = intel_guc_auth_huc(guc,
+> -				 intel_guc_ggtt_offset(guc, huc->rsa_data));
+> +				 intel_guc_ggtt_offset(guc, huc->fw.rsa_data));
+>  	if (ret) {
+>  		DRM_ERROR("HuC: GuC did not ack Auth request %d\n", ret);
+>  		goto fail;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.h b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> index daee43b661d4..ae8c8a6c8cc8 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> @@ -15,8 +15,6 @@ struct intel_huc {
+>  	struct intel_uc_fw fw;
+>  
+>  	/* HuC-specific additions */
+> -	struct i915_vma *rsa_data;
+> -
+>  	struct {
+>  		i915_reg_t reg;
+>  		u32 mask;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> index 01683f5f95bd..ee1254f3f30b 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> @@ -537,6 +537,75 @@ int intel_uc_fw_upload(struct intel_uc_fw *uc_fw, u32 dst_offset, u32 dma_flags)
+>  	return err;
+>  }
+>  
+> +static inline bool uc_fw_need_rsa_in_memory(struct intel_uc_fw *uc_fw)
+> +{
+> +	/*
+> +	 * The HW reads the GuC RSA from memory if the key size is > 256 bytes,
+> +	 * while it reads it from the 64 RSA registers if it is smaller.
+> +	 * The HuC RSA is always read from memory.
+> +	 */
+> +	return uc_fw->type == INTEL_UC_FW_TYPE_HUC || uc_fw->rsa_size > 256;
+> +}
+> +
+> +static int uc_fw_rsa_data_create(struct intel_uc_fw *uc_fw)
+> +{
+> +	struct intel_gt *gt = __uc_fw_to_gt(uc_fw);
+> +	struct i915_vma *vma;
+> +	size_t copied;
+> +	void *vaddr;
+> +	int err;
+> +
+> +	err = i915_inject_probe_error(gt->i915, -ENXIO);
+> +	if (err)
+> +		return err;
+> +
+> +	if (!uc_fw_need_rsa_in_memory(uc_fw))
+> +		return 0;
+> +
+> +	/*
+> +	 * uC firmwares will sit above GUC_GGTT_TOP and will not map through
+> +	 * GGTT. Unfortunately, this means that the GuC HW cannot perform the uC
+> +	 * authentication from memory, as the RSA offset now falls within the
+> +	 * GuC inaccessible range. We resort to perma-pinning an additional vma
+> +	 * within the accessible range that only contains the RSA signature.
+> +	 * The GuC HW can use this extra pinning to perform the authentication
+> +	 * since its GGTT offset will be GuC accessible.
+> +	 */
+> +	GEM_BUG_ON(uc_fw->rsa_size > PAGE_SIZE);
+> +	vma = intel_guc_allocate_vma(&gt->uc.guc, PAGE_SIZE);
+> +	if (IS_ERR(vma))
+> +		return PTR_ERR(vma);
+> +
+> +	vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
+> +						 i915_coherent_map_type(gt->i915, vma->obj, true));
+> +	if (IS_ERR(vaddr)) {
+> +		i915_vma_unpin_and_release(&vma, 0);
+> +		err = PTR_ERR(vaddr);
+> +		goto unpin_out;
+> +	}
+> +
+> +	copied = intel_uc_fw_copy_rsa(uc_fw, vaddr, vma->size);
+> +	i915_gem_object_unpin_map(vma->obj);
+> +
+> +	if (copied < uc_fw->rsa_size) {
+> +		err = -ENOMEM;
+> +		goto unpin_out;
+> +	}
+> +
+> +	uc_fw->rsa_data = vma;
+> +
+> +	return 0;
+> +
+> +unpin_out:
+> +	i915_vma_unpin_and_release(&vma, 0);
+> +	return err;
+> +}
+> +
+> +static void uc_fw_rsa_data_destroy(struct intel_uc_fw *uc_fw)
+> +{
+> +	i915_vma_unpin_and_release(&uc_fw->rsa_data, 0);
+> +}
+> +
+>  int intel_uc_fw_init(struct intel_uc_fw *uc_fw)
+>  {
+>  	int err;
+> @@ -551,14 +620,29 @@ int intel_uc_fw_init(struct intel_uc_fw *uc_fw)
+>  	if (err) {
+>  		DRM_DEBUG_DRIVER("%s fw pin-pages err=%d\n",
+>  				 intel_uc_fw_type_repr(uc_fw->type), err);
+> -		intel_uc_fw_change_status(uc_fw, INTEL_UC_FIRMWARE_INIT_FAIL);
+> +		goto out;
+>  	}
+>  
+> +	err = uc_fw_rsa_data_create(uc_fw);
+> +	if (err) {
+> +		DRM_DEBUG_DRIVER("%s fw rsa data creation failed, err=%d\n",
+> +				 intel_uc_fw_type_repr(uc_fw->type), err);
+> +		goto out_unpin;
+> +	}
+> +
+> +	return 0;
+> +
+> +out_unpin:
+> +	i915_gem_object_unpin_pages(uc_fw->obj);
+> +out:
+> +	intel_uc_fw_change_status(uc_fw, INTEL_UC_FIRMWARE_INIT_FAIL);
+>  	return err;
+>  }
+>  
+>  void intel_uc_fw_fini(struct intel_uc_fw *uc_fw)
+>  {
+> +	uc_fw_rsa_data_destroy(uc_fw);
+> +
+>  	if (i915_gem_object_has_pinned_pages(uc_fw->obj))
+>  		i915_gem_object_unpin_pages(uc_fw->obj);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
+> index fd17abf2ab02..d9d1dc0b4cbb 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
+> @@ -86,6 +86,7 @@ struct intel_uc_fw {
+>  	 * or during a GT reset (mutex guarantees single threaded).
+>  	 */
+>  	struct i915_vma dummy;
+> +	struct i915_vma *rsa_data;
+>  
+>  	/*
+>  	 * The firmware build process will generate a version header file with major and
+> -- 
+> 2.25.1
+> 
