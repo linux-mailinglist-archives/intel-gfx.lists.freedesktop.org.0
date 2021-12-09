@@ -2,50 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A58C246EEDC
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 17:59:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82CAA46EF35
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:00:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E5C610E9DA;
-	Thu,  9 Dec 2021 16:53:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 629F110E1ED;
+	Thu,  9 Dec 2021 16:54:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86A04891BB;
- Thu,  9 Dec 2021 15:46:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B0A5891DD;
+ Thu,  9 Dec 2021 15:46:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639064796; x=1670600796;
+ t=1639064818; x=1670600818;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+Ms4o8MOBp9yV/IwgCjbnr1MGM81PSz+4/En43u0BfE=;
- b=e9NfwvwZfYC/xF7lpVFL0TaSZW0w2WHzL/Uf2y4NzWhDQ2b+V1b0opk2
- hCVKcGj2zU4OcOlNFc9v/XG7MwfZ/i8Zl1ng1kMqy2i6rslZoUstnUN4u
- 8eNqzgnm/rnXcwJ9qjbpUkipyOwDn84i2I2/gtDbTef7y55IPkhzo9uuY
- YGK0E06/FTbj3zJqKPOMrclDHopYu/1dy9IUlal+3C+J17POWgYTn348U
- Su/ac6e5voKtPFcqnfNaW07ImTqRz9FATFJzsyQ7bbv30gibvy4bV/ddi
- V8pIzMLSKR1RW2438ScBWnf7PLAhoNVK4oHfdep1uBWwjB0ApmS6PsTF6 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="298917074"
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="298917074"
+ bh=L2Hbm0AXNsu1t3eNcZY304Dflr8gpsGAkaCW3gW7Nec=;
+ b=hjkhN77JbzHVRv8r99ifHlyJAxcW9SyBp5AVQif5fy9OUmVDKKqf+ZLW
+ dT3OqnX9diUqH3ftZ/5AwsQ68BTZgIzxgJsRGeG+OkdT+RUpFXMqLUgOu
+ iVYnGr0RSI8G0fFHg+kVAoPRIib5VQTrvtXpHDROBRl7kmAeCVcN2jQXP
+ y6D07oiowg8/TMJ6RGTFvdPbaRHkh1UWT+auZyReSyncYNYcUc1C2H1bc
+ tSmFiECgvnNHIOES6bE6Zj0zDq7HlfpqK9nNZCBMB1Mhd4pBCzifVcZ3P
+ U61wEPcSJDt2QqvPjIwqwzJOl9oSRYYROqHVOvcJUX40W9rcQS+7XxW1j g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="298917239"
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="298917239"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 07:46:22 -0800
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="503535223"
+ 09 Dec 2021 07:46:39 -0800
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="503535285"
 Received: from ramaling-i9x.iind.intel.com ([10.99.66.205])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 07:46:19 -0800
+ 09 Dec 2021 07:46:35 -0800
 From: Ramalingam C <ramalingam.c@intel.com>
 To: dri-devel <dri-devel@lists.freedesktop.org>,
  intel-gfx <intel-gfx@lists.freedesktop.org>
-Date: Thu,  9 Dec 2021 21:15:28 +0530
-Message-Id: <20211209154533.4084-12-ramalingam.c@intel.com>
+Date: Thu,  9 Dec 2021 21:15:33 +0530
+Message-Id: <20211209154533.4084-17-ramalingam.c@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20211209154533.4084-1-ramalingam.c@intel.com>
 References: <20211209154533.4084-1-ramalingam.c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 11/16] drm/i915/dg2: Add DG2 unified
- compression
+Subject: [Intel-gfx] [PATCH v4 16/16] Doc/gpu/rfc/i915: i915 DG2 uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,166 +56,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hellstrom Thomas <thomas.hellstrom@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: Kenneth Graunke <kenneth@whitecape.org>,
+ Slawomir Milczarek <slawomir.milczarek@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Pekka Paalanen <ppaalanen@gmail.com>,
+ Hellstrom Thomas <thomas.hellstrom@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Simon Ser <contact@emersion.fr>,
+ mesa-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+Details of the new features getting added as part of DG2 enabling and their
+implicit impact on the uAPI.
 
-DG2 unifies render compression and media compression into a single
-format for the first time.  The programming and buffer layout is
-supposed to match compression on older gen12 platforms, but the actual
-compression algorithm is different from any previous platform; as such,
-we need a new framebuffer modifier to represent buffers in this format,
-but otherwise we can re-use the existing gen12 compression driver logic.
+v2: improvised the Flat-CCS documentation [Danvet & CQ]
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Signed-off-by: Mika Kahola <mika.kahola@intel.com> (v2)
-cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Signed-off-by: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
 Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+cc: Matthew Auld <matthew.auld@intel.com>
+cc: Simon Ser <contact@emersion.fr>
+cc: Pekka Paalanen <ppaalanen@gmail.com>
+Cc: Jordan Justen <jordan.l.justen@intel.com>
+Cc: Kenneth Graunke <kenneth@whitecape.org>
+Cc: mesa-dev@lists.freedesktop.org
+Cc: Tony Ye <tony.ye@intel.com>
+Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c       | 13 ++++++++
- .../drm/i915/display/skl_universal_plane.c    | 33 +++++++++++++++----
- include/uapi/drm/drm_fourcc.h                 | 22 +++++++++++++
- 3 files changed, 61 insertions(+), 7 deletions(-)
+ Documentation/gpu/rfc/i915_dg2.rst | 32 ++++++++++++++++++++++++++++++
+ Documentation/gpu/rfc/index.rst    |  3 +++
+ 2 files changed, 35 insertions(+)
+ create mode 100644 Documentation/gpu/rfc/i915_dg2.rst
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 46505c69fe72..e15216f1cb82 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -141,6 +141,14 @@ struct intel_modifier_desc {
- 
- static const struct intel_modifier_desc intel_modifiers[] = {
- 	{
-+		.modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS,
-+		.display_ver = { 13, 14 },
-+		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_MC,
-+	}, {
-+		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
-+		.display_ver = { 13, 14 },
-+		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC,
-+	}, {
- 		.modifier = I915_FORMAT_MOD_4_TILED,
- 		.display_ver = { 13, 14 },
- 		.plane_caps = INTEL_PLANE_CAP_TILING_4,
-@@ -550,6 +558,8 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
- 			return 128;
- 		else
- 			return 512;
-+	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
-+	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
- 	case I915_FORMAT_MOD_4_TILED:
- 		/*
- 		 * Each 4K tile consists of 64B(8*8) subtiles, with
-@@ -752,6 +762,9 @@ unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
- 	case I915_FORMAT_MOD_4_TILED:
- 	case I915_FORMAT_MOD_Yf_TILED:
- 		return 1 * 1024 * 1024;
-+	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
-+	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
-+		return 16 * 1024;
- 	default:
- 		MISSING_CASE(fb->modifier);
- 		return 0;
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index f62ba027fcf9..d80424194c75 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -764,6 +764,14 @@ static u32 skl_plane_ctl_tiling(u64 fb_modifier)
- 		return PLANE_CTL_TILED_Y;
- 	case I915_FORMAT_MOD_4_TILED:
- 		return PLANE_CTL_TILED_4;
-+	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
-+		return PLANE_CTL_TILED_4 |
-+			PLANE_CTL_RENDER_DECOMPRESSION_ENABLE |
-+			PLANE_CTL_CLEAR_COLOR_DISABLE;
-+	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
-+		return PLANE_CTL_TILED_4 |
-+			PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE |
-+			PLANE_CTL_CLEAR_COLOR_DISABLE;
- 	case I915_FORMAT_MOD_Y_TILED_CCS:
- 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
- 		return PLANE_CTL_TILED_Y | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
-@@ -2073,6 +2081,10 @@ static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
- 	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
- 		return false;
- 
-+	/* Wa_14013215631 */
-+	if (IS_DG2_DISPLAY_STEP(i915, STEP_A0, STEP_C0))
-+		return false;
+diff --git a/Documentation/gpu/rfc/i915_dg2.rst b/Documentation/gpu/rfc/i915_dg2.rst
+new file mode 100644
+index 000000000000..9d28b1812bc7
+--- /dev/null
++++ b/Documentation/gpu/rfc/i915_dg2.rst
+@@ -0,0 +1,32 @@
++====================
++I915 DG2 RFC Section
++====================
 +
- 	return plane_id < PLANE_SPRITE4;
- }
- 
-@@ -2312,18 +2324,25 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
- 		break;
- 	case PLANE_CTL_TILED_Y:
- 		plane_config->tiling = I915_TILING_Y;
--		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
--			fb->modifier = DISPLAY_VER(dev_priv) >= 12 ?
--				I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS :
--				I915_FORMAT_MOD_Y_TILED_CCS;
--		else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE)
-+		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE) {
-+			if (DISPLAY_VER(dev_priv) >= 12)
-+				fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS;
-+			else
-+				fb->modifier = I915_FORMAT_MOD_Y_TILED_CCS;
-+		} else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE) {
- 			fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS;
--		else
-+		} else {
- 			fb->modifier = I915_FORMAT_MOD_Y_TILED;
-+		}
- 		break;
- 	case PLANE_CTL_TILED_YF: /* aka PLANE_CTL_TILED_4 on XE_LPD+ */
- 		if (HAS_4TILE(dev_priv)) {
--			fb->modifier = I915_FORMAT_MOD_4_TILED;
-+			if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
-+				fb->modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS;
-+			else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE)
-+				fb->modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS;
-+			else
-+				fb->modifier = I915_FORMAT_MOD_4_TILED;
- 		} else {
- 			if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
- 				fb->modifier = I915_FORMAT_MOD_Yf_TILED_CCS;
-diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
-index a146c6df1066..51fdda26844a 100644
---- a/include/uapi/drm/drm_fourcc.h
-+++ b/include/uapi/drm/drm_fourcc.h
-@@ -576,6 +576,28 @@ extern "C" {
-  */
- #define I915_FORMAT_MOD_4_TILED         fourcc_mod_code(INTEL, 9)
- 
-+/*
-+ * Intel color control surfaces (CCS) for DG2 render compression.
-+ *
-+ * DG2 uses a new compression format for render compression. The general
-+ * layout is the same as I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
-+ * but a new hashing/compression algorithm is used, so a fresh modifier must
-+ * be associated with buffers of this type. Render compression uses 128 byte
-+ * compression blocks.
-+ */
-+#define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS fourcc_mod_code(INTEL, 10)
++Upstream plan
++=============
++Plan to upstream the DG2 enabling is:
 +
-+/*
-+ * Intel color control surfaces (CCS) for DG2 media compression.
-+ *
-+ * DG2 uses a new compression format for media compression. The general
-+ * layout is the same as I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
-+ * but a new hashing/compression algorithm is used, so a fresh modifier must
-+ * be associated with buffers of this type. Media compression uses 256 byte
-+ * compression blocks.
-+ */
-+#define I915_FORMAT_MOD_4_TILED_DG2_MC_CCS fourcc_mod_code(INTEL, 11)
++* Merge basic HW enabling for DG2 (Still without pciid)
++* Merge the 64k support for lmem
++* Merge the flat CCS enabling patches
++* Add the pciid for DG2 and enable the DG2 in CI
 +
- /*
-  * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
-  *
++
++64K page support for lmem
++=========================
++On DG2 hw, local-memory supports minimum GTT page size of 64k only. 4k is not
++supported anymore.
++
++DG2 hw doesn't support the 64k (lmem) and 4k (smem) pages in the same ppgtt
++Page table. Refer the struct drm_i915_gem_create_ext for the implication of
++handling the 64k page size.
++
++.. kernel-doc:: include/uapi/drm/i915_drm.h
++        :functions: drm_i915_gem_create_ext
++
++
++Flat CCS support for lmem
++=========================
++
++.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_migrate.c
++        :doc: Flat-CCS - Memory compression for Local memory
+diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
+index 91e93a705230..afb320ed4028 100644
+--- a/Documentation/gpu/rfc/index.rst
++++ b/Documentation/gpu/rfc/index.rst
+@@ -20,6 +20,9 @@ host such documentation:
+ 
+     i915_gem_lmem.rst
+ 
++.. toctree::
++    i915_dg2.rst
++
+ .. toctree::
+ 
+     i915_scheduler.rst
 -- 
 2.20.1
 
