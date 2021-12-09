@@ -2,52 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40C8046F260
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:43:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7227446F26B
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:45:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3EAD10E1D2;
-	Thu,  9 Dec 2021 17:43:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 893AD10E1F0;
+	Thu,  9 Dec 2021 17:45:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BED6810E1D2;
- Thu,  9 Dec 2021 17:43:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639071828; x=1670607828;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ucYSv1TWuUoho10aU7V2UYh07A+xOx1U8tFvFZ/JFg8=;
- b=eQpnpPCoHvt6P1tsCe9DXoYyUsunBLJzwf6ilsskb6E2Io9vzpv75EJw
- 9JuQNZ5guZSm6ZVbVV/3mD9bcShfOVcNpPa/uhtgVOskRUy1OQFcLRy/Q
- lhB9S1aL/TjyOwri4jR5GwR7uIW0CE2GLCtx7+FmbHjzijdrmpG457yhX
- PMzuBFb6bmjCnfSL1GoAKqjjosVByeYSBkSJXhXuBMCufFjoX0reppDOU
- opK5dBC+yQttMO/KlN7A5mDreDZhGk+tDiBMLzXA9SIIScmsQZD9fn73i
- XJuWvOpM3gpkFtN3lYAleg56mA8C1CzlMxoaGjDHKl/j385IfqPvIzROn Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="218188534"
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="218188534"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 09:43:31 -0800
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="480424512"
-Received: from mkeogh1-mobl1.ger.corp.intel.com (HELO [10.252.18.252])
- ([10.252.18.252])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 09:43:29 -0800
-Message-ID: <841f622f-24e3-fcae-e9bd-b2bea148278a@intel.com>
-Date: Thu, 9 Dec 2021 17:43:27 +0000
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E51010E1F0
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 17:45:55 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="236902577"
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="236902577"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 09:45:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="503584439"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 09 Dec 2021 09:45:52 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 09 Dec 2021 19:45:51 +0200
+Date: Thu, 9 Dec 2021 19:45:51 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YbJAzzZF2wYF7b5i@intel.com>
+References: <cover.1639068649.git.jani.nikula@intel.com>
+ <43ad4d437121f43d76c790ac5d4d131743d58988.1639068649.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Content-Language: en-GB
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20211208082245.86933-1-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20211208082245.86933-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix coredump of perma-pinned vmas
+In-Reply-To: <43ad4d437121f43d76c790ac5d4d131743d58988.1639068649.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/cdclk: move
+ intel_atomic_check_cdclk() to intel_cdclk.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,29 +49,194 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 08/12/2021 08:22, Thomas Hellstr√∂m wrote:
-> When updating the error capture code and introducing vma snapshots,
-> we introduced code to hold the vma in memory while capturing it,
-> calling i915_active_acquire_if_busy(). Now that function isn't relevant
-> for perma-pinned vmas and caused important vmas to be dropped from the
-> coredump. Like for example the GuC log.
+On Thu, Dec 09, 2021 at 06:51:22PM +0200, Jani Nikula wrote:
+> Rename to intel_cdclk_atomic_check() and make
+> intel_cdclk_bw_calc_min_cdclk() static.
 > 
-> Fix this by instead requiring those vmas to be pinned while capturing.
-> 
-> Tested by running the initial subtests of the gem_exec_capture igt test
-> with GuC submission enabled and verifying that a GuC log blob appears
-> in the output.
-> 
-> Fixes: ff20afc4cee7 ("drm/i915: Update error capture code to avoid using the current vma state")
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Reported-by: John Harrison <John.C.Harrison@Intel.com>
-> Signed-off-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
+Reviewed-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c   | 55 +++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_cdclk.h   |  3 +-
+>  drivers/gpu/drm/i915/display/intel_display.c | 55 +-------------------
+>  3 files changed, 57 insertions(+), 56 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 639a64733f61..a216a350006d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -24,6 +24,7 @@
+>  #include <linux/time.h>
+>  
+>  #include "intel_atomic.h"
+> +#include "intel_atomic_plane.h"
+>  #include "intel_audio.h"
+>  #include "intel_bw.h"
+>  #include "intel_cdclk.h"
+> @@ -68,7 +69,7 @@ void intel_cdclk_get_cdclk(struct drm_i915_private *dev_priv,
+>  	dev_priv->cdclk_funcs->get_cdclk(dev_priv, cdclk_config);
+>  }
+>  
+> -int intel_cdclk_bw_calc_min_cdclk(struct intel_atomic_state *state)
+> +static int intel_cdclk_bw_calc_min_cdclk(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+>  	return dev_priv->cdclk_funcs->bw_calc_min_cdclk(state);
+> @@ -2629,6 +2630,58 @@ intel_atomic_get_cdclk_state(struct intel_atomic_state *state)
+>  	return to_intel_cdclk_state(cdclk_state);
+>  }
+>  
+> +int intel_cdclk_atomic_check(struct intel_atomic_state *state,
+> +			     bool *need_cdclk_calc)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	const struct intel_cdclk_state *old_cdclk_state;
+> +	const struct intel_cdclk_state *new_cdclk_state;
+> +	struct intel_plane_state *plane_state;
+> +	struct intel_bw_state *new_bw_state;
+> +	struct intel_plane *plane;
+> +	int min_cdclk = 0;
+> +	enum pipe pipe;
+> +	int ret;
+> +	int i;
+> +
+> +	/*
+> +	 * active_planes bitmask has been updated, and potentially affected
+> +	 * planes are part of the state. We can now compute the minimum cdclk
+> +	 * for each plane.
+> +	 */
+> +	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+> +		ret = intel_plane_calc_min_cdclk(state, plane, need_cdclk_calc);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	old_cdclk_state = intel_atomic_get_old_cdclk_state(state);
+> +	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
+> +
+> +	if (new_cdclk_state &&
+> +	    old_cdclk_state->force_min_cdclk != new_cdclk_state->force_min_cdclk)
+> +		*need_cdclk_calc = true;
+> +
+> +	ret = intel_cdclk_bw_calc_min_cdclk(state);
+> +	if (ret)
+> +		return ret;
+> +
+> +	new_bw_state = intel_atomic_get_new_bw_state(state);
+> +
+> +	if (!new_cdclk_state || !new_bw_state)
+> +		return 0;
+> +
+> +	for_each_pipe(i915, pipe) {
+> +		min_cdclk = max(new_cdclk_state->min_cdclk[pipe], min_cdclk);
+> +
+> +		/* Currently do this change only if we need to increase */
+> +		if (new_bw_state->min_cdclk > min_cdclk)
+> +			*need_cdclk_calc = true;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  int intel_cdclk_init(struct drm_i915_private *dev_priv)
+>  {
+>  	struct intel_cdclk_state *cdclk_state;
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> index 89ca59c46102..bb3a778c506b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> @@ -71,7 +71,8 @@ void intel_dump_cdclk_config(const struct intel_cdclk_config *cdclk_config,
+>  int intel_modeset_calc_cdclk(struct intel_atomic_state *state);
+>  void intel_cdclk_get_cdclk(struct drm_i915_private *dev_priv,
+>  			   struct intel_cdclk_config *cdclk_config);
+> -int intel_cdclk_bw_calc_min_cdclk(struct intel_atomic_state *state);
+> +int intel_cdclk_atomic_check(struct intel_atomic_state *state,
+> +			     bool *need_cdclk_calc);
+>  struct intel_cdclk_state *
+>  intel_atomic_get_cdclk_state(struct intel_atomic_state *state);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 576196ff7da1..578f50bd6ab7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7554,59 +7554,6 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
+>  	return 0;
+>  }
+>  
+> -static int intel_atomic_check_cdclk(struct intel_atomic_state *state,
+> -				    bool *need_cdclk_calc)
+> -{
+> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> -	const struct intel_cdclk_state *old_cdclk_state;
+> -	const struct intel_cdclk_state *new_cdclk_state;
+> -	struct intel_plane_state *plane_state;
+> -	struct intel_bw_state *new_bw_state;
+> -	struct intel_plane *plane;
+> -	int min_cdclk = 0;
+> -	enum pipe pipe;
+> -	int ret;
+> -	int i;
+> -	/*
+> -	 * active_planes bitmask has been updated, and potentially
+> -	 * affected planes are part of the state. We can now
+> -	 * compute the minimum cdclk for each plane.
+> -	 */
+> -	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+> -		ret = intel_plane_calc_min_cdclk(state, plane, need_cdclk_calc);
+> -		if (ret)
+> -			return ret;
+> -	}
+> -
+> -	old_cdclk_state = intel_atomic_get_old_cdclk_state(state);
+> -	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
+> -
+> -	if (new_cdclk_state &&
+> -	    old_cdclk_state->force_min_cdclk != new_cdclk_state->force_min_cdclk)
+> -		*need_cdclk_calc = true;
+> -
+> -	ret = intel_cdclk_bw_calc_min_cdclk(state);
+> -	if (ret)
+> -		return ret;
+> -
+> -	new_bw_state = intel_atomic_get_new_bw_state(state);
+> -
+> -	if (!new_cdclk_state || !new_bw_state)
+> -		return 0;
+> -
+> -	for_each_pipe(dev_priv, pipe) {
+> -		min_cdclk = max(new_cdclk_state->min_cdclk[pipe], min_cdclk);
+> -
+> -		/*
+> -		 * Currently do this change only if we need to increase
+> -		 */
+> -		if (new_bw_state->min_cdclk > min_cdclk)
+> -			*need_cdclk_calc = true;
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+>  static int intel_atomic_check_crtcs(struct intel_atomic_state *state)
+>  {
+>  	struct intel_crtc_state *crtc_state;
+> @@ -8055,7 +8002,7 @@ static int intel_atomic_check(struct drm_device *dev,
+>  	if (ret)
+>  		goto fail;
+>  
+> -	ret = intel_atomic_check_cdclk(state, &any_ms);
+> +	ret = intel_cdclk_atomic_check(state, &any_ms);
+>  	if (ret)
+>  		goto fail;
+>  
+> -- 
+> 2.30.2
+
+-- 
+Ville Syrj‰l‰
+Intel
