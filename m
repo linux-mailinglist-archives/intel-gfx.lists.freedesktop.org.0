@@ -2,48 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D0EA46EF7B
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:01:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A58C246EEDC
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 17:59:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A2BF10E609;
-	Thu,  9 Dec 2021 16:54:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E5C610E9DA;
+	Thu,  9 Dec 2021 16:53:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8573410E120;
- Thu,  9 Dec 2021 15:46:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86A04891BB;
+ Thu,  9 Dec 2021 15:46:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639064766; x=1670600766;
+ t=1639064796; x=1670600796;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DrNXqwGgAO+1lUJRT2MqybX+A18nxjM8ixh5l/KKQik=;
- b=grI60tGN7j8/2VPH7PEsvtoKaOIeTEsgqF/jsU3HeqyrO5uiIrNPAcsg
- G2/DQPHn3xHCUzEtdnaLjmCsZUtMct0A+t30488Hzu+QvPqMWyJiGQbkg
- C7tntXJ1WC+cpjOWzXB6Fv/Ow3moaGL3N/qi8yi6j33bXl3UXs15oQ78F
- Ho54NLPITRgZUsl40eolyqifFOeTPwQVuh1VBfnW4C0C/ixt7g24PoGYy
- glAZmcFhEsEsp15eCthz7IStZcIy7ix5IPnXupiBRznZwI9X4YPAvv62N
- RzObdZ15NlKZJAI8YAPFGYVwNFOjg9Tzt/6QHbvNT4I8jMMu4bxUP18X9 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="298916822"
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="298916822"
+ bh=+Ms4o8MOBp9yV/IwgCjbnr1MGM81PSz+4/En43u0BfE=;
+ b=e9NfwvwZfYC/xF7lpVFL0TaSZW0w2WHzL/Uf2y4NzWhDQ2b+V1b0opk2
+ hCVKcGj2zU4OcOlNFc9v/XG7MwfZ/i8Zl1ng1kMqy2i6rslZoUstnUN4u
+ 8eNqzgnm/rnXcwJ9qjbpUkipyOwDn84i2I2/gtDbTef7y55IPkhzo9uuY
+ YGK0E06/FTbj3zJqKPOMrclDHopYu/1dy9IUlal+3C+J17POWgYTn348U
+ Su/ac6e5voKtPFcqnfNaW07ImTqRz9FATFJzsyQ7bbv30gibvy4bV/ddi
+ V8pIzMLSKR1RW2438ScBWnf7PLAhoNVK4oHfdep1uBWwjB0ApmS6PsTF6 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="298917074"
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="298917074"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 07:45:58 -0800
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="503535129"
+ 09 Dec 2021 07:46:22 -0800
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="503535223"
 Received: from ramaling-i9x.iind.intel.com ([10.99.66.205])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 07:45:55 -0800
+ 09 Dec 2021 07:46:19 -0800
 From: Ramalingam C <ramalingam.c@intel.com>
 To: dri-devel <dri-devel@lists.freedesktop.org>,
  intel-gfx <intel-gfx@lists.freedesktop.org>
-Date: Thu,  9 Dec 2021 21:15:19 +0530
-Message-Id: <20211209154533.4084-3-ramalingam.c@intel.com>
+Date: Thu,  9 Dec 2021 21:15:28 +0530
+Message-Id: <20211209154533.4084-12-ramalingam.c@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20211209154533.4084-1-ramalingam.c@intel.com>
 References: <20211209154533.4084-1-ramalingam.c@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 02/16] drm/i915/xehpsdv: support 64K GTT pages
+Subject: [Intel-gfx] [PATCH v4 11/16] drm/i915/dg2: Add DG2 unified
+ compression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,280 +63,161 @@ Cc: Hellstrom Thomas <thomas.hellstrom@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matthew Auld <matthew.auld@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-XEHPSDV optimises 64K GTT pages for local-memory, since everything
-should be allocated at 64K granularity. We say goodbye to sparse
-entries, and instead get a compact 256B page-table for 64K pages,
-which should be more cache friendly. 4K pages for local-memory
-are no longer supported by the HW.
+DG2 unifies render compression and media compression into a single
+format for the first time.  The programming and buffer layout is
+supposed to match compression on older gen12 platforms, but the actual
+compression algorithm is different from any previous platform; as such,
+we need a new framebuffer modifier to represent buffers in this format,
+but otherwise we can re-use the existing gen12 compression driver logic.
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Signed-off-by: Mika Kahola <mika.kahola@intel.com> (v2)
+cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Signed-off-by: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
 Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- .../gpu/drm/i915/gem/selftests/huge_pages.c   |  60 ++++++++++
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c          | 109 +++++++++++++++++-
- drivers/gpu/drm/i915/gt/intel_gtt.h           |   3 +
- drivers/gpu/drm/i915/gt/intel_ppgtt.c         |   1 +
- 4 files changed, 170 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c       | 13 ++++++++
+ .../drm/i915/display/skl_universal_plane.c    | 33 +++++++++++++++----
+ include/uapi/drm/drm_fourcc.h                 | 22 +++++++++++++
+ 3 files changed, 61 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-index c69c7d45aabc..bd8dc1a28022 100644
---- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-@@ -1483,6 +1483,65 @@ static int igt_ppgtt_sanity_check(void *arg)
- 	return err;
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 46505c69fe72..e15216f1cb82 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -141,6 +141,14 @@ struct intel_modifier_desc {
+ 
+ static const struct intel_modifier_desc intel_modifiers[] = {
+ 	{
++		.modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS,
++		.display_ver = { 13, 14 },
++		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_MC,
++	}, {
++		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
++		.display_ver = { 13, 14 },
++		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC,
++	}, {
+ 		.modifier = I915_FORMAT_MOD_4_TILED,
+ 		.display_ver = { 13, 14 },
+ 		.plane_caps = INTEL_PLANE_CAP_TILING_4,
+@@ -550,6 +558,8 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+ 			return 128;
+ 		else
+ 			return 512;
++	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
++	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
+ 	case I915_FORMAT_MOD_4_TILED:
+ 		/*
+ 		 * Each 4K tile consists of 64B(8*8) subtiles, with
+@@ -752,6 +762,9 @@ unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
+ 	case I915_FORMAT_MOD_4_TILED:
+ 	case I915_FORMAT_MOD_Yf_TILED:
+ 		return 1 * 1024 * 1024;
++	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
++	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
++		return 16 * 1024;
+ 	default:
+ 		MISSING_CASE(fb->modifier);
+ 		return 0;
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index f62ba027fcf9..d80424194c75 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -764,6 +764,14 @@ static u32 skl_plane_ctl_tiling(u64 fb_modifier)
+ 		return PLANE_CTL_TILED_Y;
+ 	case I915_FORMAT_MOD_4_TILED:
+ 		return PLANE_CTL_TILED_4;
++	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
++		return PLANE_CTL_TILED_4 |
++			PLANE_CTL_RENDER_DECOMPRESSION_ENABLE |
++			PLANE_CTL_CLEAR_COLOR_DISABLE;
++	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
++		return PLANE_CTL_TILED_4 |
++			PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE |
++			PLANE_CTL_CLEAR_COLOR_DISABLE;
+ 	case I915_FORMAT_MOD_Y_TILED_CCS:
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+ 		return PLANE_CTL_TILED_Y | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
+@@ -2073,6 +2081,10 @@ static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
+ 	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
+ 		return false;
+ 
++	/* Wa_14013215631 */
++	if (IS_DG2_DISPLAY_STEP(i915, STEP_A0, STEP_C0))
++		return false;
++
+ 	return plane_id < PLANE_SPRITE4;
  }
  
-+static int igt_ppgtt_compact(void *arg)
-+{
-+	struct drm_i915_private *i915 = arg;
-+	struct drm_i915_gem_object *obj;
-+	int err;
-+
-+	/*
-+	 * Simple test to catch issues with compact 64K pages -- since the pt is
-+	 * compacted to 256B that gives us 32 entries per pt, however since the
-+	 * backing page for the pt is 4K, any extra entries we might incorrectly
-+	 * write out should be ignored by the HW. If ever hit such a case this
-+	 * test should catch it since some of our writes would land in scratch.
-+	 */
-+
-+	if (!HAS_64K_PAGES(i915)) {
-+		pr_info("device lacks compact 64K page support, skipping\n");
-+		return 0;
-+	}
-+
-+	if (!HAS_LMEM(i915)) {
-+		pr_info("device lacks LMEM support, skipping\n");
-+		return 0;
-+	}
-+
-+	/* We want the range to cover multiple page-table boundaries. */
-+	obj = i915_gem_object_create_lmem(i915, SZ_4M, 0);
-+	if (IS_ERR(obj))
-+		return err;
-+
-+	err = i915_gem_object_pin_pages_unlocked(obj);
-+	if (err)
-+		goto out_put;
-+
-+	if (obj->mm.page_sizes.phys < I915_GTT_PAGE_SIZE_64K) {
-+		pr_info("LMEM compact unable to allocate huge-page(s)\n");
-+		goto out_unpin;
-+	}
-+
-+	/*
-+	 * Disable 2M GTT pages by forcing the page-size to 64K for the GTT
-+	 * insertion.
-+	 */
-+	obj->mm.page_sizes.sg = I915_GTT_PAGE_SIZE_64K;
-+
-+	err = igt_write_huge(i915, obj);
-+	if (err)
-+		pr_err("LMEM compact write-huge failed\n");
-+
-+out_unpin:
-+	i915_gem_object_unpin_pages(obj);
-+out_put:
-+	i915_gem_object_put(obj);
-+
-+	if (err == -ENOMEM)
-+		err = 0;
-+
-+	return err;
-+}
-+
- static int igt_tmpfs_fallback(void *arg)
- {
- 	struct drm_i915_private *i915 = arg;
-@@ -1740,6 +1799,7 @@ int i915_gem_huge_page_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(igt_tmpfs_fallback),
- 		SUBTEST(igt_ppgtt_smoke_huge),
- 		SUBTEST(igt_ppgtt_sanity_check),
-+		SUBTEST(igt_ppgtt_compact),
- 	};
- 
- 	if (!HAS_PPGTT(i915)) {
-diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index b012c50f7ce7..8d081497e87e 100644
---- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -233,6 +233,8 @@ static u64 __gen8_ppgtt_clear(struct i915_address_space * const vm,
- 						   start, end, lvl);
- 		} else {
- 			unsigned int count;
-+			unsigned int pte = gen8_pd_index(start, 0);
-+			unsigned int num_ptes;
- 			u64 *vaddr;
- 
- 			count = gen8_pt_count(start, end);
-@@ -242,10 +244,18 @@ static u64 __gen8_ppgtt_clear(struct i915_address_space * const vm,
- 			    atomic_read(&pt->used));
- 			GEM_BUG_ON(!count || count >= atomic_read(&pt->used));
- 
-+			num_ptes = count;
-+			if (pt->is_compact) {
-+				GEM_BUG_ON(num_ptes % 16);
-+				GEM_BUG_ON(pte % 16);
-+				num_ptes /= 16;
-+				pte /= 16;
-+			}
-+
- 			vaddr = px_vaddr(pt);
--			memset64(vaddr + gen8_pd_index(start, 0),
-+			memset64(vaddr + pte,
- 				 vm->scratch[0]->encode,
--				 count);
-+				 num_ptes);
- 
- 			atomic_sub(count, &pt->used);
- 			start += count;
-@@ -453,6 +463,96 @@ gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
- 	return idx;
- }
- 
-+static void
-+xehpsdv_ppgtt_insert_huge(struct i915_vma *vma,
-+			  struct sgt_dma *iter,
-+			  enum i915_cache_level cache_level,
-+			  u32 flags)
-+{
-+	const gen8_pte_t pte_encode = vma->vm->pte_encode(0, cache_level, flags);
-+	unsigned int rem = sg_dma_len(iter->sg);
-+	u64 start = vma->node.start;
-+
-+	GEM_BUG_ON(!i915_vm_is_4lvl(vma->vm));
-+
-+	do {
-+		struct i915_page_directory * const pdp =
-+			gen8_pdp_for_page_address(vma->vm, start);
-+		struct i915_page_directory * const pd =
-+			i915_pd_entry(pdp, __gen8_pte_index(start, 2));
-+		struct i915_page_table *pt =
-+			i915_pt_entry(pd, __gen8_pte_index(start, 1));
-+		gen8_pte_t encode = pte_encode;
-+		unsigned int page_size;
-+		gen8_pte_t *vaddr;
-+		u16 index, max;
-+
-+		max = I915_PDES;
-+
-+		if (vma->page_sizes.sg & I915_GTT_PAGE_SIZE_2M &&
-+		    IS_ALIGNED(iter->dma, I915_GTT_PAGE_SIZE_2M) &&
-+		    rem >= I915_GTT_PAGE_SIZE_2M &&
-+		    !__gen8_pte_index(start, 0)) {
-+			index = __gen8_pte_index(start, 1);
-+			encode |= GEN8_PDE_PS_2M;
-+			page_size = I915_GTT_PAGE_SIZE_2M;
-+
-+			vaddr = px_vaddr(pd);
+@@ -2312,18 +2324,25 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
+ 		break;
+ 	case PLANE_CTL_TILED_Y:
+ 		plane_config->tiling = I915_TILING_Y;
+-		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
+-			fb->modifier = DISPLAY_VER(dev_priv) >= 12 ?
+-				I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS :
+-				I915_FORMAT_MOD_Y_TILED_CCS;
+-		else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE)
++		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE) {
++			if (DISPLAY_VER(dev_priv) >= 12)
++				fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS;
++			else
++				fb->modifier = I915_FORMAT_MOD_Y_TILED_CCS;
++		} else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE) {
+ 			fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS;
+-		else
 +		} else {
-+			if (encode & GEN12_PPGTT_PTE_LM) {
-+				GEM_BUG_ON(!i915_gem_object_is_lmem(vma->obj));
-+				GEM_BUG_ON(__gen8_pte_index(start, 0) % 16);
-+				GEM_BUG_ON(rem < I915_GTT_PAGE_SIZE_64K);
-+				GEM_BUG_ON(!IS_ALIGNED(iter->dma,
-+						       I915_GTT_PAGE_SIZE_64K));
-+
-+				index = __gen8_pte_index(start, 0) / 16;
-+				page_size = I915_GTT_PAGE_SIZE_64K;
-+
-+				max /= 16;
-+
-+				vaddr = px_vaddr(pd);
-+				vaddr[__gen8_pte_index(start, 1)] |= GEN12_PDE_64K;
-+
-+				pt->is_compact = true;
-+			} else {
-+				GEM_BUG_ON(i915_gem_object_is_lmem(vma->obj));
-+				GEM_BUG_ON(pt->is_compact);
-+				index =  __gen8_pte_index(start, 0);
-+				page_size = I915_GTT_PAGE_SIZE;
-+			}
-+
-+			vaddr = px_vaddr(pt);
+ 			fb->modifier = I915_FORMAT_MOD_Y_TILED;
 +		}
-+
-+		do {
-+			GEM_BUG_ON(rem < page_size);
-+			vaddr[index++] = encode | iter->dma;
-+
-+			start += page_size;
-+			iter->dma += page_size;
-+			rem -= page_size;
-+			if (iter->dma >= iter->max) {
-+				iter->sg = __sg_next(iter->sg);
-+				if (!iter->sg)
-+					break;
-+
-+				rem = sg_dma_len(iter->sg);
-+				if (!rem)
-+					break;
-+
-+				iter->dma = sg_dma_address(iter->sg);
-+				iter->max = iter->dma + rem;
-+
-+				if (unlikely(!IS_ALIGNED(iter->dma, page_size)))
-+					break;
-+			}
-+		} while (rem >= page_size && index < max);
-+
-+		vma->page_sizes.gtt |= page_size;
-+	} while (iter->sg && sg_dma_len(iter->sg));
-+}
-+
- static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
- 				   struct sgt_dma *iter,
- 				   enum i915_cache_level cache_level,
-@@ -585,7 +685,10 @@ static void gen8_ppgtt_insert(struct i915_address_space *vm,
- 	struct sgt_dma iter = sgt_dma(vma);
+ 		break;
+ 	case PLANE_CTL_TILED_YF: /* aka PLANE_CTL_TILED_4 on XE_LPD+ */
+ 		if (HAS_4TILE(dev_priv)) {
+-			fb->modifier = I915_FORMAT_MOD_4_TILED;
++			if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
++				fb->modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS;
++			else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE)
++				fb->modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS;
++			else
++				fb->modifier = I915_FORMAT_MOD_4_TILED;
+ 		} else {
+ 			if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
+ 				fb->modifier = I915_FORMAT_MOD_Yf_TILED_CCS;
+diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+index a146c6df1066..51fdda26844a 100644
+--- a/include/uapi/drm/drm_fourcc.h
++++ b/include/uapi/drm/drm_fourcc.h
+@@ -576,6 +576,28 @@ extern "C" {
+  */
+ #define I915_FORMAT_MOD_4_TILED         fourcc_mod_code(INTEL, 9)
  
- 	if (vma->page_sizes.sg > I915_GTT_PAGE_SIZE) {
--		gen8_ppgtt_insert_huge(vma, &iter, cache_level, flags);
-+		if (HAS_64K_PAGES(vm->i915))
-+			xehpsdv_ppgtt_insert_huge(vma, &iter, cache_level, flags);
-+		else
-+			gen8_ppgtt_insert_huge(vma, &iter, cache_level, flags);
- 	} else  {
- 		u64 idx = vma->node.start >> GEN8_PTE_SHIFT;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index ff3867e69720..85ff11ebcbd5 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -91,6 +91,8 @@ typedef u64 gen8_pte_t;
- 
- #define GEN12_GGTT_PTE_LM	BIT_ULL(1)
- 
-+#define GEN12_PDE_64K BIT(6)
++/*
++ * Intel color control surfaces (CCS) for DG2 render compression.
++ *
++ * DG2 uses a new compression format for render compression. The general
++ * layout is the same as I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
++ * but a new hashing/compression algorithm is used, so a fresh modifier must
++ * be associated with buffers of this type. Render compression uses 128 byte
++ * compression blocks.
++ */
++#define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS fourcc_mod_code(INTEL, 10)
++
++/*
++ * Intel color control surfaces (CCS) for DG2 media compression.
++ *
++ * DG2 uses a new compression format for media compression. The general
++ * layout is the same as I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
++ * but a new hashing/compression algorithm is used, so a fresh modifier must
++ * be associated with buffers of this type. Media compression uses 256 byte
++ * compression blocks.
++ */
++#define I915_FORMAT_MOD_4_TILED_DG2_MC_CCS fourcc_mod_code(INTEL, 11)
 +
  /*
-  * Cacheability Control is a 4-bit value. The low three bits are stored in bits
-  * 3:1 of the PTE, while the fourth bit is stored in bit 11 of the PTE.
-@@ -159,6 +161,7 @@ struct i915_page_table {
- 		atomic_t used;
- 		struct i915_page_table *stash;
- 	};
-+	bool is_compact;
- };
- 
- struct i915_page_directory {
-diff --git a/drivers/gpu/drm/i915/gt/intel_ppgtt.c b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-index 4396bfd630d8..b8238f5bc8b1 100644
---- a/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-@@ -26,6 +26,7 @@ struct i915_page_table *alloc_pt(struct i915_address_space *vm)
- 		return ERR_PTR(-ENOMEM);
- 	}
- 
-+	pt->is_compact = false;
- 	atomic_set(&pt->used, 0);
- 	return pt;
- }
+  * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+  *
 -- 
 2.20.1
 
