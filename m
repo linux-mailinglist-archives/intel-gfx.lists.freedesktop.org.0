@@ -1,49 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C06846F019
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:03:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85C0346F129
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:11:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8752110E86C;
-	Thu,  9 Dec 2021 16:55:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6AA610E143;
+	Thu,  9 Dec 2021 17:11:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76F8B89E63
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 16:51:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639068708; x=1670604708;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5ykY+ZAu2UbYQmYG7LkMW7Nv4tzwIOHQMldlV6f146E=;
- b=idN7bWjQtJ+6gwQv0nb+8lSNf3jC+3I+zKXKcqwkDsNQYTecSa6pl2zC
- mWZynGUNl8buxZy54jJ36B/5cvkrRogv2AYYHAMGZ5b9D9OJaN9qtTuT7
- RLshaQr50u7a3OrdRtKpGLQyQqUsf2PtoyvQ+SwSveaf7JTf4sreSOFap
- l4S8xKfMviX/8uk0b8L93iwHUDBRMua6RBGrmk8/M0nVy9iiVymHrC6Rk
- 6jr5Qw7ZmmfsumYrIv0z/h878tAYHoBQXTB3ygWogtrvJ8fDKV0qDcy8f
- gGOaWtY7m5qTvmWpuMiZ345ZcFaJ5xXFJjQuD7iDW2t+t9M0wpWeCDH7u w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="324411217"
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="324411217"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 08:51:47 -0800
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="612572200"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E514710E141;
+ Thu,  9 Dec 2021 17:11:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="301538010"
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="301538010"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 09:06:11 -0800
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="462212264"
 Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.252.19.112])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 08:51:45 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Dec 2021 18:51:24 +0200
-Message-Id: <f7e7e7fb91eae2b49a0ab5d982a235cec34e3320.1639068649.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1639068649.git.jani.nikula@intel.com>
-References: <cover.1639068649.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 09:06:07 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>, Intel GFX
+ <intel-gfx@lists.freedesktop.org>, DRI Devel
+ <dri-devel@lists.freedesktop.org>
+In-Reply-To: <20211209132512.47241-2-andi.shyti@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/4] drm/i915/cdclk: hide struct intel_cdclk_vals
+References: <20211209132512.47241-1-andi.shyti@linux.intel.com>
+ <20211209132512.47241-2-andi.shyti@linux.intel.com>
+Date: Thu, 09 Dec 2021 19:06:02 +0200
+Message-ID: <87ilvx3dz9.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v6 01/11] drm/i915: Store backpointer to GT
+ in uncore
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,56 +48,201 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The definition is not needed outside of intel_cdclk.c.
+On Thu, 09 Dec 2021, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> From: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+>
+> We now support a per-gt uncore, yet we're not able to infer which GT
+> we're operating upon.  Let's store a backpointer for now.
+>
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt.c               | 11 +++++++----
+>  drivers/gpu/drm/i915/gt/intel_gt.h               |  1 +
+>  drivers/gpu/drm/i915/i915_driver.c               |  5 +++--
+>  drivers/gpu/drm/i915/intel_uncore.c              |  9 +++++----
+>  drivers/gpu/drm/i915/intel_uncore.h              |  3 ++-
+>  drivers/gpu/drm/i915/selftests/mock_gem_device.c |  4 ++--
+>  drivers/gpu/drm/i915/selftests/mock_uncore.c     |  2 +-
+>  7 files changed, 21 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt=
+/intel_gt.c
+> index f2422d48be32..f98f0fb21efb 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -25,11 +25,8 @@
+>  #include "shmem_utils.h"
+>  #include "pxp/intel_pxp.h"
+>=20=20
+> -void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i=
+915)
+> +void __intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private =
+*i915)
+>  {
+> -	gt->i915 =3D i915;
+> -	gt->uncore =3D &i915->uncore;
+> -
+>  	spin_lock_init(&gt->irq_lock);
+>=20=20
+>  	INIT_LIST_HEAD(&gt->closed_vma);
+> @@ -48,6 +45,12 @@ void intel_gt_init_early(struct intel_gt *gt, struct d=
+rm_i915_private *i915)
+>  	intel_rps_init_early(&gt->rps);
+>  }
+>=20=20
+> +void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i=
+915)
+> +{
+> +	gt->i915 =3D i915;
+> +	gt->uncore =3D &i915->uncore;
+> +}
+> +
+>  int intel_gt_probe_lmem(struct intel_gt *gt)
+>  {
+>  	struct drm_i915_private *i915 =3D gt->i915;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt=
+/intel_gt.h
+> index 74e771871a9b..3ace129eb2af 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+> @@ -35,6 +35,7 @@ static inline struct intel_gt *huc_to_gt(struct intel_h=
+uc *huc)
+>  }
+>=20=20
+>  void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i=
+915);
+> +void __intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private =
+*i915);
+>  void intel_gt_init_hw_early(struct intel_gt *gt, struct i915_ggtt *ggtt);
+>  int intel_gt_probe_lmem(struct intel_gt *gt);
+>  int intel_gt_init_mmio(struct intel_gt *gt);
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i9=
+15_driver.c
+> index e9125f14b3d1..42ae5a12040d 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -314,8 +314,9 @@ static int i915_driver_early_probe(struct drm_i915_pr=
+ivate *dev_priv)
+>  	intel_device_info_subplatform_init(dev_priv);
+>  	intel_step_init(dev_priv);
+>=20=20
+> +	intel_gt_init_early(&dev_priv->gt, dev_priv);
+>  	intel_uncore_mmio_debug_init_early(&dev_priv->mmio_debug);
+> -	intel_uncore_init_early(&dev_priv->uncore, dev_priv);
+> +	intel_uncore_init_early(&dev_priv->uncore, &dev_priv->gt);
+>=20=20
+>  	spin_lock_init(&dev_priv->irq_lock);
+>  	spin_lock_init(&dev_priv->gpu_error.lock);
+> @@ -346,7 +347,7 @@ static int i915_driver_early_probe(struct drm_i915_pr=
+ivate *dev_priv)
+>=20=20
+>  	intel_wopcm_init_early(&dev_priv->wopcm);
+>=20=20
+> -	intel_gt_init_early(&dev_priv->gt, dev_priv);
+> +	__intel_gt_init_early(&dev_priv->gt, dev_priv);
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 8 ++++++++
- drivers/gpu/drm/i915/display/intel_cdclk.h | 8 --------
- 2 files changed, 8 insertions(+), 8 deletions(-)
+Why double underscores here? It looks like it's supposed to be internal
+to intel_gt, not to be called by anyone else.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 84674a4f7226..56f40d9430b8 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1219,6 +1219,14 @@ static bool has_cdclk_squasher(struct drm_i915_private *i915)
- 	return IS_DG2(i915);
- }
- 
-+struct intel_cdclk_vals {
-+	u32 cdclk;
-+	u16 refclk;
-+	u16 waveform;
-+	u8 divider;	/* CD2X divider * 2 */
-+	u8 ratio;
-+};
-+
- static const struct intel_cdclk_vals bxt_cdclk_table[] = {
- 	{ .refclk = 19200, .cdclk = 144000, .divider = 8, .ratio = 60 },
- 	{ .refclk = 19200, .cdclk = 288000, .divider = 4, .ratio = 60 },
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-index 77e8c8e1708f..50b93226517e 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-@@ -16,14 +16,6 @@ struct drm_i915_private;
- struct intel_atomic_state;
- struct intel_crtc_state;
- 
--struct intel_cdclk_vals {
--	u32 cdclk;
--	u16 refclk;
--	u16 waveform;
--	u8 divider;	/* CD2X divider * 2 */
--	u8 ratio;
--};
--
- struct intel_cdclk_state {
- 	struct intel_global_state base;
- 
--- 
-2.30.2
+BR,
+Jani.
 
+
+
+>=20=20
+>  	i915_gem_init_early(dev_priv);
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/i=
+ntel_uncore.c
+> index abdac78d3976..fc25ebf1a593 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -2061,12 +2061,13 @@ void intel_uncore_cleanup_mmio(struct intel_uncor=
+e *uncore)
+>  }
+>=20=20
+>  void intel_uncore_init_early(struct intel_uncore *uncore,
+> -			     struct drm_i915_private *i915)
+> +			     struct intel_gt *gt)
+>  {
+>  	spin_lock_init(&uncore->lock);
+> -	uncore->i915 =3D i915;
+> -	uncore->rpm =3D &i915->runtime_pm;
+> -	uncore->debug =3D &i915->mmio_debug;
+> +	uncore->i915 =3D gt->i915;
+> +	uncore->gt =3D gt;
+> +	uncore->rpm =3D &gt->i915->runtime_pm;
+> +	uncore->debug =3D &gt->i915->mmio_debug;
+>  }
+>=20=20
+>  static void uncore_raw_init(struct intel_uncore *uncore)
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/i=
+ntel_uncore.h
+> index d1d17b04e29f..210fe2a71612 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.h
+> +++ b/drivers/gpu/drm/i915/intel_uncore.h
+> @@ -129,6 +129,7 @@ struct intel_uncore {
+>  	void __iomem *regs;
+>=20=20
+>  	struct drm_i915_private *i915;
+> +	struct intel_gt *gt;
+>  	struct intel_runtime_pm *rpm;
+>=20=20
+>  	spinlock_t lock; /** lock is also taken in irq contexts. */
+> @@ -217,7 +218,7 @@ u32 intel_uncore_read_with_mcr_steering(struct intel_=
+uncore *uncore,
+>  void
+>  intel_uncore_mmio_debug_init_early(struct intel_uncore_mmio_debug *mmio_=
+debug);
+>  void intel_uncore_init_early(struct intel_uncore *uncore,
+> -			     struct drm_i915_private *i915);
+> +			     struct intel_gt *gt);
+>  int intel_uncore_setup_mmio(struct intel_uncore *uncore);
+>  int intel_uncore_init_mmio(struct intel_uncore *uncore);
+>  void intel_uncore_prune_engine_fw_domains(struct intel_uncore *uncore,
+> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/g=
+pu/drm/i915/selftests/mock_gem_device.c
+> index d0e2e61de8d4..eeb632aac4a7 100644
+> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> @@ -175,12 +175,12 @@ struct drm_i915_private *mock_gem_device(void)
+>  	mkwrite_device_info(i915)->memory_regions =3D REGION_SMEM;
+>  	intel_memory_regions_hw_probe(i915);
+>=20=20
+> -	mock_uncore_init(&i915->uncore, i915);
+> -
+>  	spin_lock_init(&i915->gpu_error.lock);
+>=20=20
+>  	i915_gem_init__mm(i915);
+>  	intel_gt_init_early(&i915->gt, i915);
+> +	__intel_gt_init_early(&i915->gt, i915);
+> +	mock_uncore_init(&i915->uncore, i915);
+>  	atomic_inc(&i915->gt.wakeref.count); /* disable; no hw support */
+>  	i915->gt.awake =3D -ENODEV;
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/selftests/mock_uncore.c b/drivers/gpu/d=
+rm/i915/selftests/mock_uncore.c
+> index ca57e4008701..b3790ef137e4 100644
+> --- a/drivers/gpu/drm/i915/selftests/mock_uncore.c
+> +++ b/drivers/gpu/drm/i915/selftests/mock_uncore.c
+> @@ -42,7 +42,7 @@ __nop_read(64)
+>  void mock_uncore_init(struct intel_uncore *uncore,
+>  		      struct drm_i915_private *i915)
+>  {
+> -	intel_uncore_init_early(uncore, i915);
+> +	intel_uncore_init_early(uncore, &i915->gt);
+>=20=20
+>  	ASSIGN_RAW_WRITE_MMIO_VFUNCS(uncore, nop);
+>  	ASSIGN_RAW_READ_MMIO_VFUNCS(uncore, nop);
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
