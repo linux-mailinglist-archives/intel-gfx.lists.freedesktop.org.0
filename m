@@ -2,47 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9447846F6A9
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 23:18:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1B9946F723
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 00:00:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C63C10E225;
-	Thu,  9 Dec 2021 22:18:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 698AF10E1AE;
+	Thu,  9 Dec 2021 23:00:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42F1F10E220;
- Thu,  9 Dec 2021 22:18:16 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85BEF10E191;
+ Thu,  9 Dec 2021 23:00:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639088296; x=1670624296;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ExDWmgbFmgQ3T+PD5ZiQaZV/em6QjeWb0HbwidEPOGM=;
- b=GRy73aoot9o0tM9vsjDYrUD0LYMVZNyEUoE4PlLWdBPwlet4zrMtXxdt
- PvEE03ZiIwfeLz+jvfPW3exl3rNE2muTrhYwmj9U5ygq2QvPo36ayf1OV
- hVyFI5vVMlo8ksTsIXeD1qpY5PP5PbrSCJxdD5cZuCSjG4DLa3TbXiPcG
- T2yV2fsHwob4XX3Z4x3w+Q5cSPE03yil0ev+3kDHGF/OW82yzVi+9oGe4
- c01OGGba51xxCnnBVKBictjcRXvfJdvkSg4WYSSZcoB4WB/orEdLGsx8z
- OnzVuH/WUOp/Td9CkvgyAGvZ1gxwJOk2c2gZXjYE60Ob85yzEG0MZjhvy w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="225488593"
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="225488593"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 14:18:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="680507761"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga005.jf.intel.com with ESMTP; 09 Dec 2021 14:18:15 -0800
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu,  9 Dec 2021 14:18:05 -0800
-Message-Id: <20211209221805.26960-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.34.0
+ t=1639090840; x=1670626840;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=GIKVUH/YQncjEMgfRVSzdOfskUv6fqJIdaWTnxVzc+I=;
+ b=h+q06/Ku0xCaZlgp7f1G2VkWkdk2ZyXGGR9ehUJ/voh3VPLyT3oLf3dS
+ yGjXKpy6F4ZGqZzP3TVreH11QQppT8aUA+reRHAQ0nRM9PgPlluC1uFiQ
+ RWfh5PvKNo7NdSyedVQbcPsUFwXzYO6gyEpadU8UWYAnmnbA/44Zt1nEi
+ 5SX6VpfBm5jpC+uWIs2OisZF6PmsPWH0pgjXdJUPu+Tu2UrxBlvZiFRVK
+ Ku39CHGLJ3MUicqj6ZI5TTRaInq5tKplii4ZxkdBUKBy8RSCxq/7waXs1
+ oPALgFCu0Qn1/DACyMYXxnR4sjfMC4bXfC7huZnofmyEfHB0/gqyDII/P Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="262332018"
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="262332018"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 15:00:27 -0800
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="462314136"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 15:00:26 -0800
+Date: Thu, 9 Dec 2021 15:00:25 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Message-ID: <20211209230025.GP2219399@mdroper-desk1.amr.corp.intel.com>
+References: <20211209132512.47241-1-andi.shyti@linux.intel.com>
+ <20211209132512.47241-3-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/guc: Request RP0 before loading
- firmware
+In-Reply-To: <20211209132512.47241-3-andi.shyti@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v6 02/11] drm/i915: Introduce to_gt() helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,171 +58,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-By default, GT (and GuC) run at RPn. Requesting for RP0
-before firmware load can speed up DMA and HuC auth as well.
-In addition to writing to 0xA008, we also need to enable
-swreq in 0xA024 so that Punit will pay heed to our request.
+On Thu, Dec 09, 2021 at 03:25:03PM +0200, Andi Shyti wrote:
+> From: Michał Winiarski <michal.winiarski@intel.com>
+> 
+> To allow further refactoring and abstract away the fact that GT is
+> stored inside i915 private.
+> No functional changes.
+> 
+> Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-SLPC will restore the frequency back to RPn after initialization,
-but we need to manually do that for the non-SLPC path.
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_rps.c   | 59 +++++++++++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_rps.h   |  2 +
- drivers/gpu/drm/i915/gt/uc/intel_uc.c |  9 ++++
- drivers/gpu/drm/i915/i915_reg.h       |  4 ++
- 4 files changed, 74 insertions(+)
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c | 7 +------
+>  drivers/gpu/drm/i915/i915_drv.h                | 5 +++++
+>  2 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+> index acc49c56a9f3..9db3dcbd917f 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+> @@ -9,11 +9,6 @@
+>  #include "intel_engine_pm.h"
+>  #include "intel_gt_buffer_pool.h"
+>  
+> -static struct intel_gt *to_gt(struct intel_gt_buffer_pool *pool)
+> -{
+> -	return container_of(pool, struct intel_gt, buffer_pool);
+> -}
+> -
+>  static struct list_head *
+>  bucket_for_size(struct intel_gt_buffer_pool *pool, size_t sz)
+>  {
+> @@ -141,7 +136,7 @@ static struct intel_gt_buffer_pool_node *
+>  node_create(struct intel_gt_buffer_pool *pool, size_t sz,
+>  	    enum i915_map_type type)
+>  {
+> -	struct intel_gt *gt = to_gt(pool);
+> +	struct intel_gt *gt = container_of(pool, struct intel_gt, buffer_pool);
+>  	struct intel_gt_buffer_pool_node *node;
+>  	struct drm_i915_gem_object *obj;
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index ae7dc7862b5d..c6f34ac353ff 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1080,6 +1080,11 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
+>  	return pci_get_drvdata(pdev);
+>  }
+>  
+> +static inline struct intel_gt *to_gt(struct drm_i915_private *i915)
+> +{
+> +	return &i915->gt;
+> +}
+> +
+>  /* Simple iterator over all initialised engines */
+>  #define for_each_engine(engine__, dev_priv__, id__) \
+>  	for ((id__) = 0; \
+> -- 
+> 2.34.1
+> 
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 07ff7ba7b2b7..4f7fe079ed4a 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -2226,6 +2226,65 @@ u32 intel_rps_read_state_cap(struct intel_rps *rps)
- 		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
- }
- 
-+static void intel_rps_set_manual(struct intel_rps *rps, bool enable)
-+{
-+	struct intel_uncore *uncore = rps_to_uncore(rps);
-+	u32 state = enable ? GEN9_RPSWCTL_ENABLE : GEN9_RPSWCTL_DISABLE;
-+
-+	if (enable)
-+		intel_rps_clear_timer(rps);
-+
-+	/* Allow punit to process software requests */
-+	intel_uncore_write(uncore, GEN6_RP_CONTROL, state);
-+
-+	if (!enable)
-+		intel_rps_set_timer(rps);
-+}
-+
-+void intel_rps_raise_unslice(struct intel_rps *rps)
-+{
-+	struct intel_uncore *uncore = rps_to_uncore(rps);
-+	u32 rp0_unslice_req;
-+
-+	intel_rps_set_manual(rps, true);
-+
-+	/* RP limits have not been read yet */
-+	if (!rps->rp0_freq)
-+		rp0_unslice_req = ((intel_rps_read_state_cap(rps) >> 0)
-+				   & 0xff) * GEN9_FREQ_SCALER;
-+	else
-+		rp0_unslice_req = rps->rp0_freq;
-+
-+	intel_uncore_write(uncore, GEN6_RPNSWREQ,
-+			   ((rp0_unslice_req <<
-+			   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
-+			   GEN9_IGNORE_SLICE_RATIO));
-+
-+	intel_rps_set_manual(rps, false);
-+}
-+
-+void intel_rps_lower_unslice(struct intel_rps *rps)
-+{
-+	struct intel_uncore *uncore = rps_to_uncore(rps);
-+	u32 rpn_unslice_req;
-+
-+	intel_rps_set_manual(rps, true);
-+
-+	/* RP limits have not been read yet */
-+	if (!rps->min_freq)
-+		rpn_unslice_req = ((intel_rps_read_state_cap(rps) >> 16)
-+				   & 0xff) * GEN9_FREQ_SCALER;
-+	else
-+		rpn_unslice_req = rps->min_freq;
-+
-+	intel_uncore_write(uncore, GEN6_RPNSWREQ,
-+			   ((rpn_unslice_req <<
-+			   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
-+			   GEN9_IGNORE_SLICE_RATIO));
-+
-+	intel_rps_set_manual(rps, false);
-+}
-+
- /* External interface for intel_ips.ko */
- 
- static struct drm_i915_private __rcu *ips_mchdev;
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
-index aee12f37d38a..c6d76a3d1331 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.h
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.h
-@@ -45,6 +45,8 @@ u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
- u32 intel_rps_read_punit_req(struct intel_rps *rps);
- u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
- u32 intel_rps_read_state_cap(struct intel_rps *rps);
-+void intel_rps_raise_unslice(struct intel_rps *rps);
-+void intel_rps_lower_unslice(struct intel_rps *rps);
- 
- void gen5_rps_irq_handler(struct intel_rps *rps);
- void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 2fef3b0bbe95..3693c4e7dad0 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -8,6 +8,7 @@
- #include "intel_guc.h"
- #include "intel_guc_ads.h"
- #include "intel_guc_submission.h"
-+#include "gt/intel_rps.h"
- #include "intel_uc.h"
- 
- #include "i915_drv.h"
-@@ -462,6 +463,8 @@ static int __uc_init_hw(struct intel_uc *uc)
- 	else
- 		attempts = 1;
- 
-+	intel_rps_raise_unslice(&uc_to_gt(uc)->rps);
-+
- 	while (attempts--) {
- 		/*
- 		 * Always reset the GuC just before (re)loading, so
-@@ -499,6 +502,9 @@ static int __uc_init_hw(struct intel_uc *uc)
- 		ret = intel_guc_slpc_enable(&guc->slpc);
- 		if (ret)
- 			goto err_submission;
-+	} else {
-+		/* Restore GT back to RPn for non-SLPC path */
-+		intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
- 	}
- 
- 	drm_info(&i915->drm, "%s firmware %s version %u.%u %s:%s\n",
-@@ -529,6 +535,9 @@ static int __uc_init_hw(struct intel_uc *uc)
- err_log_capture:
- 	__uc_capture_load_err_log(uc);
- err_out:
-+	/* Return GT back to RPn */
-+	intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
-+
- 	__uc_sanitize(uc);
- 
- 	if (!ret) {
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 1891e7fac39b..b2a86a26b843 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -9399,6 +9399,7 @@ enum {
- #define   GEN6_OFFSET(x)			((x) << 19)
- #define   GEN6_AGGRESSIVE_TURBO			(0 << 15)
- #define   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT	23
-+#define   GEN9_IGNORE_SLICE_RATIO		(0 << 0)
- 
- #define GEN6_RC_VIDEO_FREQ			_MMIO(0xA00C)
- #define GEN6_RC_CONTROL				_MMIO(0xA090)
-@@ -9434,6 +9435,9 @@ enum {
- #define   GEN6_RP_UP_BUSY_CONT			(0x4 << 3)
- #define   GEN6_RP_DOWN_IDLE_AVG			(0x2 << 0)
- #define   GEN6_RP_DOWN_IDLE_CONT		(0x1 << 0)
-+#define   GEN6_RPSWCTL_SHIFT			9
-+#define   GEN9_RPSWCTL_ENABLE			(0x2 << GEN6_RPSWCTL_SHIFT)
-+#define   GEN9_RPSWCTL_DISABLE			(0x0 << GEN6_RPSWCTL_SHIFT)
- #define GEN6_RP_UP_THRESHOLD			_MMIO(0xA02C)
- #define GEN6_RP_DOWN_THRESHOLD			_MMIO(0xA030)
- #define GEN6_RP_CUR_UP_EI			_MMIO(0xA050)
 -- 
-2.34.0
-
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
