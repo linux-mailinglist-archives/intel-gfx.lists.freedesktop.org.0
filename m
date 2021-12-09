@@ -2,39 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB2546F1CF
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:26:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6988446F1E0
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:28:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE6E910E1DE;
-	Thu,  9 Dec 2021 17:26:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C612810E1FD;
+	Thu,  9 Dec 2021 17:28:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25FD710E1DB;
- Thu,  9 Dec 2021 17:26:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="298950809"
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="298950809"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 09:26:06 -0800
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="516397649"
-Received: from achlenov-mobl2.ccr.corp.intel.com (HELO intel.com)
- ([10.252.52.59])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 09:26:04 -0800
-Date: Thu, 9 Dec 2021 19:26:00 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YbI8KBKFMSjWhEKl@intel.intel>
-References: <20211209132512.47241-1-andi.shyti@linux.intel.com>
- <20211209132512.47241-2-andi.shyti@linux.intel.com>
- <87ilvx3dz9.fsf@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83FBF10E1FD
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 17:28:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639070920; x=1670606920;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=AUJpA60SmvNYcNvN5LWqZ5BQCkQfksaJd/Onc2+YbGw=;
+ b=dzUKe8qyY5xe0fbXw0dutulBvYSDU6iYrLpEGhtnWu+njbkOd6loTtFX
+ mwHLVGgzx+hviJJzUAlhm6W1OHFO1I+M27jq0gwOzGskf1UOCwAf6dQes
+ Tm0gXxXujsPL5tk7fTB0FRTlXZpFjVdbE/iIcH8Js4WgA2PgiaK9mU3W4
+ kOI+z4Auy2qfZT9hqIrpae+lfl/VDtlVU5loCw2rWr9EasiZF0G6nQb7m
+ VIgPInsNEjxtLQQtLwhFpVy8uJ6VlF4CdQeefGjs7Cxb2HIzxwFJkXQ0p
+ bwl7vi+bVLPAvUvANMBP96/gp1H6dwfLkzPga1D8rIcinihvQeQImMLs0 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="237965877"
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="237965877"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 09:28:39 -0800
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="658827919"
+Received: from ayushshr-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.115.39])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 09:28:39 -0800
+Date: Thu, 9 Dec 2021 09:28:38 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20211209172838.zonao36tpktxeblj@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <cover.1638961423.git.jani.nikula@intel.com>
+ <7862ad764fbd0748d903c76bc632d3d277874e5b.1638961423.git.jani.nikula@intel.com>
+ <20211208160321.ihbm6lxz4dijo43l@ldmartin-desk2>
+ <87bl1r3vac.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
 Content-Disposition: inline
-In-Reply-To: <87ilvx3dz9.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v6 01/11] drm/i915: Store backpointer to GT
- in uncore
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87bl1r3vac.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915/trace: split out display
+ trace to a separate file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,42 +62,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+On Wed, Dec 08, 2021 at 06:39:55PM +0200, Jani Nikula wrote:
+>On Wed, 08 Dec 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> On Wed, Dec 08, 2021 at 01:05:17PM +0200, Jani Nikula wrote:
+>>>Add display/intel_display_trace.[ch] for defining display
+>>>tracepoints. The main goal is to reduce cross-includes between gem and
+>>>display. It would be possible split up tracing even further, but that
+>>>would lead to more boilerplate.
+>>>
+>>>We end up having to include intel_crtc.h in a few places because it was
+>>>pulled in implicitly via intel_de.h -> i915_trace.h -> intel_crtc.h, and
+>>>that's no longer the case.
+>>>
+>>>There should be no changes to tracepoints.
+>>>
+>>>v3:
+>>>- Rebase
+>>>
+>>>v2:
+>>>- Define TRACE_INCLUDE_PATH relative to define_trace.h (Chris)
+>>>- Remove useless comments (Ville)
+>>>
+>>>Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>>Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>
+>>
+>> only thing I noticed in the code move is that we lost the comments about
+>> grouping the tracepoints. Was this intentional? Example:
+>
+>Yeah, specifically requested by Ville (see v2 changelog above).
 
-thanks for looking at it.
 
-> > -	intel_gt_init_early(&dev_priv->gt, dev_priv);
-> > +	__intel_gt_init_early(&dev_priv->gt, dev_priv);
-> 
-> Why double underscores here? It looks like it's supposed to be internal
-> to intel_gt, not to be called by anyone else.
+ah, ok. Thanks.
 
-I forgot to write two lines in the commit log about this.
-
-It's a temporary solution that will go away in the next patch
-series[*].
-
-The reason for it is because at this point I need to break the
-early initialization of the gt into two parts. In the specific
-the '__intel_gt_init_early' assigns the i915 private data and the
-uncore.
-
-It's not pretty, but, knowing what's coming next, it's the change
-with the smallest impact.
-
-> >  
-> >  	i915_gem_init_early(dev_priv);
-> >  
-
-Thank you,
-Andi
-
-[*] https://patchwork.freedesktop.org/patch/464475/?series=97352&rev=1
+Lucas De Marchi
