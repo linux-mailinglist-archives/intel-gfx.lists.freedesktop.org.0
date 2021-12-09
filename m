@@ -1,56 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E169B46EECA
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 17:58:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2C7746EED3
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 17:58:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 674AC10E48E;
-	Thu,  9 Dec 2021 16:53:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 148FB10E988;
+	Thu,  9 Dec 2021 16:53:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com
- [IPv6:2607:f8b0:4864:20::f2e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 192C589F8E;
- Thu,  9 Dec 2021 12:17:47 +0000 (UTC)
-Received: by mail-qv1-xf2e.google.com with SMTP id g9so4945180qvd.2;
- Thu, 09 Dec 2021 04:17:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=L/k9GrWcJhYBbsArhqmJxhaaL7EILnJZ2YfN/ur/nf4=;
- b=PtdpzwH78vDhD2gEztbjxqCf9UB3B8B8vlUNyVCxyNiNfwbvWnX6xFtZRCjAM03VVg
- /Ze51a8ZkRm/4nEiFRxbYmU2E646zYpayz/cXWqE2yc8nSDloDxJr77x8nCPcmAcCEC1
- T3uhQwvsBUlTsgXO6GYw5VVUmml+zSB/9oFjouAtp/K5UhZhaZZ85XMi/hJp7I5hRUEL
- CbYQzX2t0NKGJmSGmYigc9ilgJ0NEybUfvM0vC7yklqgaN/bJeA01Xj5OMMAW9PZR0u/
- o9Tr1s7d3naUPCkz5TxjRuRHWIyveT9xjGWfzXLLAK4YXJS4YlngnAU7O6YhexKnJulx
- CskQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=L/k9GrWcJhYBbsArhqmJxhaaL7EILnJZ2YfN/ur/nf4=;
- b=L4IHwXeeGmtNY6ef3PnCmHoZBbXh2zCmg/Nt4gHwPQTgSewrMK5LPebv9zSeEMfbxc
- zwoPIjwoIceb+eAIAxSsieY29YoILsmKU45ybi0eXepzqpWf03azThsmylgrvsHAHFXT
- VECBmtwDc+V/Yfvc4rjd/crZq1SdaPQ1zPTwyXBsosp/ZipYTRwRNXAl+RxIyE2fqSzN
- 2CvS2w6T+o/2+EbpUTb/o8qXbrLq6c1ZSfCx78CWzWYsf39adlaKfetg9QIVdozrOcuJ
- YRgKW4Z5vXrSKtsbbVoN0PmztGl+dM5Q9rqtidIQL3+5pOZugoKSq0Hnp2YVNrkGxuQq
- CYxA==
-X-Gm-Message-State: AOAM533dNqusD5JbsTlXce2haamTjbwcmmQIUXAAU9OiUdsl2wd/bno5
- bJaKFvA13K0nvJQ3IZSbP4I1pEsEVFhbeRVlpdKKijhH5GQ=
-X-Google-Smtp-Source: ABdhPJzrtDos8G2oSo0VYPeqb3mNT2Axpi8umu2/b8zB5beVl4AXjh9e7aOWhOaYPw9UJcP/1sKxEULBzxn0mTF9P6A=
-X-Received: by 2002:ad4:5ce8:: with SMTP id iv8mr15719025qvb.21.1639052265909; 
- Thu, 09 Dec 2021 04:17:45 -0800 (PST)
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
+ [64.147.123.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8982C89FFD;
+ Thu,  9 Dec 2021 12:43:13 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.west.internal (Postfix) with ESMTP id 6D0302B00913;
+ Thu,  9 Dec 2021 07:43:09 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute3.internal (MEProxy); Thu, 09 Dec 2021 07:43:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:mime-version:content-type; s=
+ fm1; bh=884Bb0L2UxeHM7GQ7BHdqVO/TwBmNZDRd897QB2pAEU=; b=jyVe0+rL
+ ziYFsIR+arLGCFvQC1Zd6krTS3t4D7xOLC39iq8Y4QnMa+ISomZ4QB3NRW3fqFfs
+ vMOn++jMx/QJrOeSq2uBn4rrwuDgpJxw8SsWIycGKQB/kghcQ2ImGS0mhpINI8A+
+ HhbLW6Sq9J4nYaIhK44bfCEOq9YtVhYbM4p1MhVimC7BQEbQSfYlOss9WYHqzJ9q
+ GcUvLfbo+yIFXBgWPWZis/ubm2K1vHnx/AiNW2rJn5dz5R8AXOb4Ds4SvUiCKhkY
+ 1w4yHPegviuNTyOAQ/NySOzM2oxT2eDTiSu5rUOrjcVCe8ulYpRIlhJwzlAudtN/
+ NMPZfwtGEzKzgw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:message-id
+ :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+ :x-me-sender:x-sasl-enc; s=fm1; bh=884Bb0L2UxeHM7GQ7BHdqVO/TwBmN
+ ZDRd897QB2pAEU=; b=Ebk5AOXuvK8tfn18mJ39PhzwpI1oUWs1jVfH9ZB0bovaE
+ 5k8fJ7bsZ09kddVjH6c/QUMO28Rd9NuLtc/XoHbz9CF7QwcaQ7rkiL+1H2hZTY1E
+ u4P67zNn7VcAp0L/UlEk+XePydESLgORKXjUsiBJwebHAnqKJ0tZhWIdjr1MiJEZ
+ LIGWTXETKIpmhVaR/E38Kso0gcncG/FwfYSlA5EkIG340GeJ43GYv2fghSXn6jKp
+ rxLgUmOoUNXVP6Sqcxvo2N6cVFFfRGDL04yRcqDmjbsDDUKiuT2qKnriu4OEB9JR
+ iQPR9l49KFXvWCK+dNvr/AQX3BzoUl5mqr7PLj5fg==
+X-ME-Sender: <xms:2_mxYT3KetLJqq0HS5eufOThhkBcYtXaNa0cW1P_NPIBDlng532aSA>
+ <xme:2_mxYSEGLY5gms5PdnjLoU-QcE4MOpKs09xa8LvlZAoTslaQjUI_lCypTQjFg1Zwt
+ U7ce0Sy8VdEvaQA1gc>
+X-ME-Received: <xmr:2_mxYT6aeThr40drLgKOKYx59-8odZrh6Iw271gu-eOL9iS6D5CaYYGHImpQcd6xY5ekq4V2rKTSyyKXetuspjxbBkv3Jz7DATVbQXZVJfZjqw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrkedtgdegfecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvuffkgggtugesghdtreertddtudenucfhrhhomhepofgrgihimhgvucft
+ ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrh
+ hnpefhheetgfegkeetffeuieelkeefgeetteffgffgkeelheekffevvdegtdeitedvuden
+ ucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghrufhiii
+ gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgv
+ tghh
+X-ME-Proxy: <xmx:2_mxYY3MZYazCEHgF-qQ6EPYZr0J-iGJSh9i-i685wL2BJeYPyW3mw>
+ <xmx:2_mxYWGKXsNwCkRci_k6_ri5Bq7M72mprMF3roeQ4trDfAUqQ35QmQ>
+ <xmx:2_mxYZ-t5k9uwv_qov2i3IJivdRl1p2x3QIxUivygy2y3WgntA52DA>
+ <xmx:3PmxYe92cPxxgpkcmz-cs_zMwRYmWF1uOipGhpXwoxrDDsRgO9n1EOSfTVI>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 9 Dec 2021 07:43:07 -0500 (EST)
+Date: Thu, 9 Dec 2021 13:43:05 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20211209124305.gxhid5zwf7m4oasn@houat>
 MIME-Version: 1.0
-References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
- <20211129134735.628712-12-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211129134735.628712-12-maarten.lankhorst@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 9 Dec 2021 12:17:19 +0000
-Message-ID: <CAM0jSHOH4JACquBQc0rTBbNTuo7x6FznZ6FEaEJfr9DDDF1crQ@mail.gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v2 11/16] drm/i915: Call i915_gem_evict_vm
- in vm_fault_gtt to prevent new ENOSPC errors
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="gtauogvx2mu3t3y3"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,65 +77,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 29 Nov 2021 at 13:58, Maarten Lankhorst
-<maarten.lankhorst@linux.intel.com> wrote:
->
-> Now that we cannot unbind kill the currently locked object directly
 
-Can this be reworded slightly? Not sure what is meant by "unbind kill" here.
+--gtauogvx2mu3t3y3
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> because we're removing short term pinning, we may have to unbind the
-> object from gtt manually, using a i915_gem_evict_vm() call.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c | 18 ++++++++++++++++--
->  1 file changed, 16 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index 65fc6ff5f59d..6d557bb9926f 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -357,8 +357,22 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
->                         vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
->                 }
->
-> -               /* The entire mappable GGTT is pinned? Unexpected! */
-> -               GEM_BUG_ON(vma == ERR_PTR(-ENOSPC));
-> +               /*
-> +                * The entire mappable GGTT is pinned? Unexpected!
-> +                * Try to evict the object we locked too, as normally we skip it
-> +                * due to lack of short term pinning inside execbuf.
-> +                */
-> +               if (vma == ERR_PTR(-ENOSPC)) {
-> +                       ret = mutex_lock_interruptible(&ggtt->vm.mutex);
-> +                       if (!ret) {
-> +                               ret = i915_gem_evict_vm(&ggtt->vm, &ww);
+Hi Dave, Daniel,
 
-Would it make sense to pass an extra flag for the above ggtt_pin(maybe
-PIN_EVICT_SHARED)? Such that evict_for_something can handle the
-already locked object and then also any vma sharing the same dma-resv
-object here? Or at least trying to nuke the entire vm, just for the
-mappable portion seems maybe overkill? Or perhaps we never expect to
-hit this in the real world?
+Here's this week drm-misc-fixes PR
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Maxime
 
-> +                               mutex_unlock(&ggtt->vm.mutex);
-> +                       }
-> +                       if (ret)
-> +                               goto err_reset;
-> +                       vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
-> +               }
-> +               GEM_WARN_ON(vma == ERR_PTR(-ENOSPC));
->         }
->         if (IS_ERR(vma)) {
->                 ret = PTR_ERR(vma);
-> --
-> 2.34.0
->
+drm-misc-fixes-2021-12-09:
+A fix in syncobj to handle fence already signalled better, and a fix for
+a ttm_bo_swapout eviction check.
+The following changes since commit 679d94cd7d900871e5bc9cf780bd5b73af35ab42:
+
+  dma-buf: system_heap: Use 'for_each_sgtable_sg' in pages free flow (2021-=
+12-01 15:30:10 +0530)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-12-09
+
+for you to fetch changes up to b19926d4f3a660a8b76e5d989ffd1168e619a5c4:
+
+  drm/syncobj: Deal with signalled fences in drm_syncobj_find_fence. (2021-=
+12-08 17:19:48 +0100)
+
+----------------------------------------------------------------
+A fix in syncobj to handle fence already signalled better, and a fix for
+a ttm_bo_swapout eviction check.
+
+----------------------------------------------------------------
+Bas Nieuwenhuizen (1):
+      drm/syncobj: Deal with signalled fences in drm_syncobj_find_fence.
+
+Christian K=F6nig (1):
+      drm/ttm: fix ttm_bo_swapout
+
+ drivers/gpu/drm/drm_syncobj.c | 11 ++++++++++-
+ drivers/gpu/drm/ttm/ttm_bo.c  |  3 ++-
+ 2 files changed, 12 insertions(+), 2 deletions(-)
+
+--gtauogvx2mu3t3y3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYbH52AAKCRDj7w1vZxhR
+xXNgAP9I8uRsAQqaD/y56P3VwsSg+8CykghZE6lQleUQ7+vhrAD5AU1Mslo00rSM
+6cwXc71zrz/jv/ycEm0GNPfnpqyAoQo=
+=RH6L
+-----END PGP SIGNATURE-----
+
+--gtauogvx2mu3t3y3--
