@@ -2,72 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2BA846EE73
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 17:56:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55A0546EE75
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 17:56:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D3B210E809;
-	Thu,  9 Dec 2021 16:53:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67C2810E7A7;
+	Thu,  9 Dec 2021 16:53:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1BAB10E118;
- Thu,  9 Dec 2021 10:14:56 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 443A489A72;
+ Thu,  9 Dec 2021 10:48:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639044896; x=1670580896;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=6GaGGybuD5jyS89D706n8UyUYB4xc8uQdzORCxu/uVM=;
- b=S6D+tKQ6WDsNhQUye9esxyt36j1ex5CyeYbM4zLAPf59zv4P4499SIi2
- 6+UUtO/RpLW5EPuWttDm93yH3qCGr0ozw7a9I/za5g7iMiBtd90v9b5Dc
- JmgFgO7vsaDMtn1Z0tKhqSnyDxnNwRr+KRXQOhJmnlGqOvjrztqtoXgm/
- V0bnQhlvuNCPmF0SDcXcQcmeyxAKw5YQvMQtn6Lbt9WfpS0dqFI9sqJe8
- 7KqJ9xpO9RW1BRfFPOD8vwRKGkrBmw/O/pjFUjqP0itKgofQTxUPYLaY6
- 11BfGdD+JHXfNV92B63izOJnTv81gcFxFQnG+y0EsziWuhwg3muDP+b6Q Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="218090133"
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="218090133"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 02:14:56 -0800
+ t=1639046895; x=1670582895;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0qwuMU1+ShCnCFqCOhdeQPqaCkYWO3mE3ynbdPPhrB8=;
+ b=fQIIncHkCDaX8XraO2KHcAfOEbNWiQv1StZwNZxLnjMR/EDnGlktJzeS
+ cOQL+rCbjVO0IfgAA1XPKwVGEIIbA3yWcbxlWqKlKgXHbFLxqEBoZ8Xwl
+ dtoI9VSKv96VkkiHMGIPa7CrK7EechNYUTLFOFcLdYGpUQROyGfsQ+lNB
+ MkQP6ZVgCtSEY1IyHJFObg60EpsjxMGLlOF0FeH/8gdb+8t3Fi2r84Ypb
+ pYhBiMcYM7F6PEm3xxXeCUfDPvvffqoJKiPtnPry5vh5k1goqFGh2wHx2
+ gGu78KJnhK845Ouo9f5zfsKo//JpZWxoj7CfYP2tupUCsb5HOYSAL4hGB g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="218761062"
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="218761062"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 02:47:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="752373766"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by fmsmga005.fm.intel.com with ESMTP; 09 Dec 2021 02:14:55 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 9 Dec 2021 02:14:55 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 9 Dec 2021 02:14:55 -0800
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2308.020;
- Thu, 9 Dec 2021 02:14:55 -0800
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "Hansen, Dave" <dave.hansen@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [v3 1/3] drm/i915/rpl-s: Add PCI IDS for Raptor Lake S
-Thread-Index: AQHX6BA8xSVVPz4YL0ScwI7K71mkdawpojGAgABY0IA=
-Date: Thu, 9 Dec 2021 10:14:54 +0000
-Message-ID: <5a222e8a066a4becb06a4a9b004715ae@intel.com>
-References: <20211203063545.2254380-1-anusha.srivatsa@intel.com>
- <20211203063545.2254380-2-anusha.srivatsa@intel.com>
- <659bed84-f675-8f65-8eeb-f91bb5ed905e@intel.com>
-In-Reply-To: <659bed84-f675-8f65-8eeb-f91bb5ed905e@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.200.16
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="680287460"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.167])
+ by orsmga005.jf.intel.com with ESMTP; 09 Dec 2021 02:47:12 -0800
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  9 Dec 2021 12:47:10 +0200
+Message-Id: <20211209104711.14790-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v3 1/3] drm/i915/rpl-s: Add PCI IDS for Raptor
- Lake S
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Introduce new Tile 4 format
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,34 +54,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Hansen <dave.hansen@linux.intel.com>,
- "x86@kernel.org" <x86@kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>
+Cc: nanley.g.chery@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSGFuc2VuLCBEYXZlIDxk
-YXZlLmhhbnNlbkBpbnRlbC5jb20+DQo+IFNlbnQ6IFRodXJzZGF5LCBEZWNlbWJlciA5LCAyMDIx
-IDI6MjcgQU0NCj4gVG86IFNyaXZhdHNhLCBBbnVzaGEgPGFudXNoYS5zcml2YXRzYUBpbnRlbC5j
-b20+OyBpbnRlbC0NCj4gZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogeDg2QGtlcm5l
-bC5vcmc7IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IEluZ28gTW9sbmFyDQo+IDxt
-aW5nb0ByZWRoYXQuY29tPjsgQm9yaXNsYXYgUGV0a292IDxicEBhbGllbjguZGU+OyBEYXZlIEhh
-bnNlbg0KPiA8ZGF2ZS5oYW5zZW5AbGludXguaW50ZWwuY29tPjsgSm9vbmFzIExhaHRpbmVuDQo+
-IDxqb29uYXMubGFodGluZW5AbGludXguaW50ZWwuY29tPjsgVHZydGtvIFVyc3VsaW4NCj4gPHR2
-cnRrby51cnN1bGluQGxpbnV4LmludGVsLmNvbT47IFJvcGVyLCBNYXR0aGV3IEQNCj4gPG1hdHRo
-ZXcuZC5yb3BlckBpbnRlbC5jb20+OyBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAbGludXguaW50
-ZWwuY29tPjsNCj4gU291emEsIEpvc2UgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiBTdWJqZWN0
-OiBSZTogW3YzIDEvM10gZHJtL2k5MTUvcnBsLXM6IEFkZCBQQ0kgSURTIGZvciBSYXB0b3IgTGFr
-ZSBTDQo+IA0KPiBPbiAxMi8yLzIxIDEwOjM1IFBNLCBBbnVzaGEgU3JpdmF0c2Egd3JvdGU6DQo+
-ID4gZGlmZiAtLWdpdCBhL2FyY2gveDg2L2tlcm5lbC9lYXJseS1xdWlya3MuYw0KPiA+IGIvYXJj
-aC94ODYva2VybmVsL2Vhcmx5LXF1aXJrcy5jIGluZGV4IDM5MWE0ZTJiODYwNC4uZmQyZDNhYjM4
-ZWJiDQo+ID4gMTAwNjQ0DQo+ID4gLS0tIGEvYXJjaC94ODYva2VybmVsL2Vhcmx5LXF1aXJrcy5j
-DQo+ID4gKysrIGIvYXJjaC94ODYva2VybmVsL2Vhcmx5LXF1aXJrcy5jDQo+ID4gQEAgLTU1NCw2
-ICs1NTQsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHBjaV9kZXZpY2VfaWQgaW50ZWxfZWFybHlf
-aWRzW10NCj4gX19pbml0Y29uc3QgPSB7DQo+ID4gIAlJTlRFTF9SS0xfSURTKCZnZW4xMV9lYXJs
-eV9vcHMpLA0KPiA+ICAJSU5URUxfQURMU19JRFMoJmdlbjExX2Vhcmx5X29wcyksDQo+ID4gIAlJ
-TlRFTF9BRExQX0lEUygmZ2VuMTFfZWFybHlfb3BzKSwNCj4gPiArCUlOVEVMX1JQTFNfSURTKCZn
-ZW4xMV9lYXJseV9vcHMpLA0KPiA+ICB9Ow0KPiANCj4gRm9yIGFyY2gveDg2IHB1cnBvc2VzOg0K
-PiANCj4gQWNrZWQtYnk6IERhdmUgSGFuc2VuIDxkYXZlLmhhbnNlbkBsaW51eC5pbnRlbC5jb20+
-CQ0KDQpUaGFua3MgZm9yIHRoZSBhY2shDQoNCkFudXNoYQ0K
+This tiling layout uses 4KB tiles in a row-major layout. It has the same
+shape as Tile Y at two granularities: 4KB (128B x 32) and 64B (16B x 4). It
+only differs from Tile Y at the 256B granularity in between. At this
+granularity, Tile Y has a shape of 16B x 32 rows, but this tiling has a shape
+of 64B x 8 rows.
+
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ include/uapi/drm/drm_fourcc.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+index 7f652c96845b..a146c6df1066 100644
+--- a/include/uapi/drm/drm_fourcc.h
++++ b/include/uapi/drm/drm_fourcc.h
+@@ -565,6 +565,17 @@ extern "C" {
+  */
+ #define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC fourcc_mod_code(INTEL, 8)
+ 
++/*
++ * Intel Tile 4 layout
++ *
++ * This is a tiled layout using 4KB tiles in a row-major layout. It has the same
++ * shape as Tile Y at two granularities: 4KB (128B x 32) and 64B (16B x 4). It
++ * only differs from Tile Y at the 256B granularity in between. At this
++ * granularity, Tile Y has a shape of 16B x 32 rows, but this tiling has a shape
++ * of 64B x 8 rows.
++ */
++#define I915_FORMAT_MOD_4_TILED         fourcc_mod_code(INTEL, 9)
++
+ /*
+  * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+  *
+-- 
+2.24.1.485.gad05a3d8e5
+
