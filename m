@@ -2,42 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6497E46EEC3
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 17:58:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B57946EEC9
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 17:58:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50B2810E16D;
-	Thu,  9 Dec 2021 16:53:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E913410E994;
+	Thu,  9 Dec 2021 16:53:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DC7789F45;
- Thu,  9 Dec 2021 13:25:25 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="324355905"
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="324355905"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B965B10E11E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 13:32:28 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="224962881"
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="224962881"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 05:25:24 -0800
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="503486596"
-Received: from shrehore-mobl2.ger.corp.intel.com (HELO [10.252.51.183])
- ([10.252.51.183])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 05:32:28 -0800
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="503489299"
+Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.252.19.112])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 05:25:22 -0800
-Message-ID: <f7bb808e-65c6-5e81-e129-58858a94db79@linux.intel.com>
-Date: Thu, 9 Dec 2021 14:25:19 +0100
+ 09 Dec 2021 05:32:26 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211130110607.3902085-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211130110607.3902085-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Date: Thu, 09 Dec 2021 15:32:22 +0200
+Message-ID: <87tufh3nvd.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.3.2
-Content-Language: en-US
-To: Matthew Auld <matthew.william.auld@gmail.com>
-References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
- <20211129134735.628712-13-maarten.lankhorst@linux.intel.com>
- <CAM0jSHM1P0-UqYC01vpjvogW_5ECwonnnmtmiKi3go4Di4+NKQ@mail.gmail.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <CAM0jSHM1P0-UqYC01vpjvogW_5ECwonnnmtmiKi3go4Di4+NKQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 12/16] drm/i915: Add
- i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/adl-n: Enable ADL-N platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,84 +44,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 09-12-2021 14:05, Matthew Auld wrote:
-> On Mon, 29 Nov 2021 at 13:58, Maarten Lankhorst
-> <maarten.lankhorst@linux.intel.com> wrote:
->> We want to remove more members of i915_vma, which requires the locking to be
->> held more often.
->>
->> Start requiring gem object lock for i915_vma_unbind, as it's one of the
->> callers that may unpin pages.
->>
->> Some special care is needed when evicting, because the last reference to the
->> object may be held by the VMA, so after __i915_vma_unbind, vma may be garbage,
->> and we need to cache vma->obj before unlocking.
->>
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> ---
-> <snip>
+On Tue, 30 Nov 2021, Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com> wrote:
+> Adding PCI device ids and enabling ADL-N platform.
+> ADL-N from i915 point of view is subplatform of ADL-P.
 >
->> @@ -129,22 +129,47 @@ void i915_ggtt_suspend_vm(struct i915_address_space *vm)
->>
->>         drm_WARN_ON(&vm->i915->drm, !vm->is_ggtt && !vm->is_dpt);
->>
->> +retry:
->> +       i915_gem_drain_freed_objects(vm->i915);
->> +
->>         mutex_lock(&vm->mutex);
->>
->>         /* Skip rewriting PTE on VMA unbind. */
->>         open = atomic_xchg(&vm->open, 0);
->>
->>         list_for_each_entry_safe(vma, vn, &vm->bound_list, vm_link) {
->> +               struct drm_i915_gem_object *obj = vma->obj;
->> +
->>                 GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
->> +
->>                 i915_vma_wait_for_bind(vma);
->>
->> -               if (i915_vma_is_pinned(vma))
->> +               if (i915_vma_is_pinned(vma) || !i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND))
->>                         continue;
->>
->> -               if (!i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND)) {
->> -                       __i915_vma_evict(vma);
->> -                       drm_mm_remove_node(&vma->node);
->> +               /* unlikely to race when GPU is idle, so no worry about slowpath.. */
->> +               if (!i915_gem_object_trylock(obj, NULL)) {
->> +                       atomic_set(&vm->open, open);
-> Does this need a comment about barriers?
-Not sure, it's guarded by vm->mutex.
->> +
->> +                       i915_gem_object_get(obj);
-> Should this not be kref_get_unless_zero? Assuming the vm->mutex is the
-> only thing keeping the object alive here, won't this lead to potential
-> uaf/double-free or something? Also should we not plonk this before the
-> trylock? Or maybe I'm missing something here?
+> BSpec: 68397
+>
+> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> ---
+>  arch/x86/kernel/early-quirks.c           | 1 +
+>  drivers/gpu/drm/i915/i915_drv.h          | 2 ++
+>  drivers/gpu/drm/i915/i915_pci.c          | 1 +
+>  drivers/gpu/drm/i915/intel_device_info.c | 7 +++++++
+>  drivers/gpu/drm/i915/intel_device_info.h | 3 +++
+>  include/drm/i915_pciids.h                | 5 +++++
+>  6 files changed, 19 insertions(+)
+>
+> diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+> index 391a4e2b8604..b9800d9f11b0 100644
+> --- a/arch/x86/kernel/early-quirks.c
+> +++ b/arch/x86/kernel/early-quirks.c
+> @@ -554,6 +554,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
+>  	INTEL_RKL_IDS(&gen11_early_ops),
+>  	INTEL_ADLS_IDS(&gen11_early_ops),
+>  	INTEL_ADLP_IDS(&gen11_early_ops),
+> +	INTEL_ADLN_IDS(&gen11_early_ops),
+>  };
+>  
+>  struct resource intel_graphics_stolen_res __ro_after_init = DEFINE_RES_MEM(0, 0);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 1bfadd9127fc..e8fd98064692 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1463,6 +1463,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>  #define IS_DG1(dev_priv)        IS_PLATFORM(dev_priv, INTEL_DG1)
+>  #define IS_ALDERLAKE_S(dev_priv) IS_PLATFORM(dev_priv, INTEL_ALDERLAKE_S)
+>  #define IS_ALDERLAKE_P(dev_priv) IS_PLATFORM(dev_priv, INTEL_ALDERLAKE_P)
+> +#define IS_ALDERLAKE_N(dev_priv) \
+> +	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_N)
 
-Normally you're correct, this is normally the case, but we drain freed objects and this path should only be run during s/r, at which point userspace should be dead, GPU idle, and we just drained all freed objects above.
+Similar to RPL-S enabling, we don't want to have a check that looks like
+a platform check (such as IS_ALDERLAKE_N()) but is in fact a
+sub-platform check.
 
-It would be a bug if we still found a dead object, as nothing should be running.
+This leads to stuff like
 
->> +                       mutex_unlock(&vm->mutex);
->> +
->> +                       i915_gem_object_lock(obj, NULL);
->> +                       open = i915_vma_unbind(vma);
->> +                       i915_gem_object_unlock(obj);
->> +
->> +                       GEM_WARN_ON(open);
->> +
->> +                       i915_gem_object_put(obj);
->> +                       goto retry;
->>                 }
->> +
->> +               i915_vma_wait_for_bind(vma);
-> We also call wait_for_bind above, is that intentional?
+	if (IS_ALDERLAKE_P() && !IS_ALDERLAKE_N())
 
-Should be harmless, but first one should probably be removed. :)
+which is super confusing.
 
+See [1].
+
+
+BR,
+Jani.
+
+
+
+[1] https://lore.kernel.org/r/87czmso6l7.fsf@intel.com
+
+
+>  #define IS_XEHPSDV(dev_priv) IS_PLATFORM(dev_priv, INTEL_XEHPSDV)
+>  #define IS_DG2(dev_priv)	IS_PLATFORM(dev_priv, INTEL_DG2)
+>  #define IS_DG2_G10(dev_priv) \
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index f01cba4ec283..9b816eddbcaf 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -1130,6 +1130,7 @@ static const struct pci_device_id pciidlist[] = {
+>  	INTEL_RKL_IDS(&rkl_info),
+>  	INTEL_ADLS_IDS(&adl_s_info),
+>  	INTEL_ADLP_IDS(&adl_p_info),
+> +	INTEL_ADLN_IDS(&adl_p_info),
+>  	INTEL_DG1_IDS(&dg1_info),
+>  	{0, 0, 0}
+>  };
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+> index 6e6b317bc33c..5d04dea5bd01 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -182,6 +182,10 @@ static const u16 subplatform_portf_ids[] = {
+>  	INTEL_ICL_PORT_F_IDS(0),
+>  };
+>  
+> +static const u16 subplatform_n_ids[] = {
+> +	INTEL_ADLN_IDS(0),
+> +};
+> +
+>  static bool find_devid(u16 id, const u16 *p, unsigned int num)
+>  {
+>  	for (; num; num--, p++) {
+> @@ -218,6 +222,9 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+>  	} else if (find_devid(devid, subplatform_portf_ids,
+>  			      ARRAY_SIZE(subplatform_portf_ids))) {
+>  		mask = BIT(INTEL_SUBPLATFORM_PORTF);
+> +	} else if (find_devid(devid, subplatform_n_ids,
+> +			      ARRAY_SIZE(subplatform_n_ids))) {
+> +		mask = BIT(INTEL_SUBPLATFORM_N);
+>  	}
+>  
+>  	if (IS_TIGERLAKE(i915)) {
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index 669f0d26c3c3..d4d2d230d04a 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -110,6 +110,9 @@ enum intel_platform {
+>  #define INTEL_SUBPLATFORM_G10	0
+>  #define INTEL_SUBPLATFORM_G11	1
+>  
+> +/* ADL */
+> +#define INTEL_SUBPLATFORM_N	0
+> +
+>  enum intel_ppgtt_type {
+>  	INTEL_PPGTT_NONE = I915_GEM_PPGTT_NONE,
+>  	INTEL_PPGTT_ALIASING = I915_GEM_PPGTT_ALIASING,
+> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+> index c00ac54692d7..5de540db8269 100644
+> --- a/include/drm/i915_pciids.h
+> +++ b/include/drm/i915_pciids.h
+> @@ -666,4 +666,9 @@
+>  	INTEL_VGA_DEVICE(0x46C2, info), \
+>  	INTEL_VGA_DEVICE(0x46C3, info)
+>  
+> +/* ADL-N */
+> +#define INTEL_ADLN_IDS(info) \
+> +	INTEL_VGA_DEVICE(0x46D0, info), \
+> +	INTEL_VGA_DEVICE(0x46D1, info), \
+> +	INTEL_VGA_DEVICE(0x46D2, info)
+>  #endif /* _I915_PCIIDS_H */
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
