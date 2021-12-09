@@ -1,57 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FC2C46F01A
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:03:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA45946EFE0
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:02:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96BE910E3E7;
-	Thu,  9 Dec 2021 16:55:40 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com
- [IPv6:2607:f8b0:4864:20::f32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4128410E116;
- Thu,  9 Dec 2021 16:23:05 +0000 (UTC)
-Received: by mail-qv1-xf32.google.com with SMTP id u16so5560042qvk.4;
- Thu, 09 Dec 2021 08:23:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=H5gMk/Ll3lKHidyq5YhvRSlIyK9BJM0aB84Iyd3NPRA=;
- b=fHfqMwJ8P2ySuZkcCMm093Db0SEkQtUsCIJGANCsX7WewIsWR7lAFnc63d8RGtcSMa
- suVJnB64LChfjkmCE/Ntj5a56ePCBbu3XyEzugHT/0mO7Np17bqtwY5m0lq+QyhGE56S
- LezoCti1eKqfOO5bzutWNj30dy+ILf46yifkh/Tu6a7XDWJ724xNNelhVA8XQm4Xy7zP
- MxGM35UDEfjUYj3mj8oUVkW66F/0QgyN4aT6uDC0t3AGRp0jplENY87MWk/IqyfPW5+w
- P4Khsq4nxKee0LtUqsT45RrHy/phBIlutAlFktb8OMdDJEQHTtryDCxWcgJ2sn3HE1+7
- oPOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=H5gMk/Ll3lKHidyq5YhvRSlIyK9BJM0aB84Iyd3NPRA=;
- b=5+j5zeTLwyxhk14xhum7IEfbI8hhPboTELTcOWCvfUNz0DG1ZAicZMUxI45UHPvxuS
- YJl9HdzC8yNoPK+OVM6AZKg6ZwfJP59EZMMudKrjJbYfC0AYQfwfCK3rW+IjI1SjlwNE
- h1Wk/PRXj7VoJqOnXmB3rD0u9QRA1kSQGKyPS1SMylmIk0EJ1rObfUHMaBYatPeO5CE7
- omaDfY0EhHjhFdQQ4OqxPNgum85T4SHixPkJ8AcGAbTujHA4exKOBN/el13ruYXKO5qJ
- +65mWz6OH/Dgg3eFUx8GhWDAvRUDnBJ3A5HkhOWJxfCd7SPyq74Gs2+24I51uoABJleZ
- 7seA==
-X-Gm-Message-State: AOAM530DaaFg1M8i6D7g3c6IZb2cbALNvF7GZ5x4y2Uf0y6T0CXjU5vz
- Z3yHpRhCC2xqd7XA6cB/35jC+bmrhufQ1EHMJVI=
-X-Google-Smtp-Source: ABdhPJxYBIY4X70LxpObOx5KRVG+1Az603IzbMeJDMkmG+1kvPHX6Pd5coYnaDWUU+HK5CTioiLPM23A6BKU0k7/tFk=
-X-Received: by 2002:a05:6214:18c7:: with SMTP id
- cy7mr16521470qvb.0.1639066984303; 
- Thu, 09 Dec 2021 08:23:04 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49E4610F009;
+	Thu,  9 Dec 2021 16:55:14 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D66D89317
+ for <Intel-GFX@lists.freedesktop.org>; Thu,  9 Dec 2021 16:26:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639067192; x=1670603192;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dzfRbsQDS8x2HDH9VEbfO8JMIflO5xZZu6GSPO12huo=;
+ b=iDmxqxNzZXpmfQgpLlgukVbACdM9wXbGQ/QvY/+YkEhLG3r98w8SbYIG
+ pYTQ++m4eUZpZcGuWuEWV5PJQv8+qhkoV1af9pBq8AE2Yyc0E7JcWAkMv
+ SeXTJOP0Odhe0KENyN4sNROU57fgatja+6fbVwicngtI01rCeu2dxhj/f
+ 1B6G0Z97TIJXfjVtVpElxWDNxhXi6Y4ANLbpWU4gdiYZXJOoXhjB0P3We
+ lfg32UCuOXj4ndXZtmHIV/14GtoWrvKREkARYVeaR9MHDW4785jHlvilR
+ ISvz2C8Mk3wHa4XlC+hUGOpBXt/y0DPm3vhiDeVKjKogQkJnkG0AbIm93 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="262246637"
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="262246637"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 08:25:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="601609600"
+Received: from sdutt-nuc10i5fnh.jf.intel.com ([10.165.21.151])
+ by FMSMGA003.fm.intel.com with ESMTP; 09 Dec 2021 08:25:02 -0800
+From: Jasmine Newsome <jasmine.newsome@intel.com>
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Thu,  9 Dec 2021 08:23:19 -0800
+Message-Id: <20211209162319.1674819-1-jasmine.newsome@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
- <20211129134735.628712-17-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211129134735.628712-17-maarten.lankhorst@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 9 Dec 2021 16:22:38 +0000
-Message-ID: <CAM0jSHM2w81HASG2TWKWdQPyJr3=m9WBB5t_V8C6gJPwrF5ouw@mail.gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v2 16/16] drm/i915: Remove short-term pins
- from execbuf, v5.
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Use local pointer ttm for
+ __i915_ttm_move
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,52 +54,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: jasmine.newsome@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 29 Nov 2021 at 13:58, Maarten Lankhorst
-<maarten.lankhorst@linux.intel.com> wrote:
->
-> Add a flag PIN_VALIDATE, to indicate we don't need to pin and only
-> protected by the object lock.
->
-> This removes the need to unpin, which is done by just releasing the
-> lock.
->
-> eb_reserve is slightly reworked for readability, but the same steps
-> are still done:
-> - First pass pins with NONBLOCK.
-> - Second pass unbinds all objects first, then pins.
-> - Third pass is only called when not all objects are softpinned, and
->   unbinds all objects, then calls i915_gem_evict_vm(), then pins.
->
-> When evicting the entire vm in eb_reserve() we do temporarily pin objects
-> that are marked with EXEC_OBJECT_PINNED. This is because they are already
-> at their destination, and i915_gem_evict_vm() would otherwise unbind them.
->
-> However, we reduce the visibility of those pins by limiting the pin
-> to our call to i915_gem_evict_vm() only, and pin with vm->mutex held,
-> instead of the entire duration of the execbuf.
->
-> Not sure the latter matters, one can hope..
-> In theory we could kill the pinning by adding an extra flag to the vma
-> to temporarily prevent unbinding for gtt for i915_gem_evict_vm only, but
-> I think that might be overkill. We're still holding the object lock, and
-> we don't have blocking eviction yet. It's likely sufficient to simply
-> enforce EXEC_OBJECT_PINNED for all objects on >= gen12.
->
-> Changes since v1:
-> - Split out eb_reserve() into separate functions for readability.
-> Changes since v2:
-> - Make batch buffer mappable on platforms where only GGTT is available,
->   to prevent moving the batch buffer during relocations.
-> Changes since v3:
-> - Preserve current behavior for batch buffer, instead be cautious when
->   calling i915_gem_object_ggtt_pin_ww, and re-use the current batch vma
->   if it's inside ggtt and map-and-fenceable.
-> - Remove impossible condition check from eb_reserve. (Matt)
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Using local pointer ttm as argument in  __i915_ttm_move
+instead of bo->ttm, as local pointer was previously assigned
+to bo->ttm in function. This will make code a bit more readable.
+
+Signed-off-by: Jasmine Newsome <jasmine.newsome@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+index 80df9f592407..56b6573b5c93 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+@@ -763,7 +763,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
+ 			return PTR_ERR(dep);
+ 		}
+ 
+-		migration_fence = __i915_ttm_move(bo, clear, dst_mem, bo->ttm,
++		migration_fence = __i915_ttm_move(bo, clear, dst_mem, ttm,
+ 						  dst_rsgt, true, dep);
+ 		dma_fence_put(dep);
+ 	}
+-- 
+2.25.1
+
