@@ -1,50 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0138046EE95
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 17:57:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A9AD46EFC8
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:02:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8E410E895;
-	Thu,  9 Dec 2021 16:53:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0766A10EDDD;
+	Thu,  9 Dec 2021 16:54:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2535310E11E
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 13:51:29 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C63E610E11E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 13:51:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639057889; x=1670593889;
+ t=1639057893; x=1670593893;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=S9UP+I/W8WM8QlKjzdfkw4Cctb9rG1MCSVIYkM8NHUA=;
- b=mscCLlOKn0Z4oYjjfSj1zpAU+5E12YVgojRvJkPFc+ZBAAE9oW0thOC/
- mA89nVUkZD3bJWe2TcxpjfNX0v4tgxCQgbiEuq9oItLMxtTMOx0k4TM9K
- CrkqOopQPST5R2Uqq50B/YnDSoZ3/mG3FCKV5yjkea5XNr96j+yfmLPHP
- P2+L/xKCuuygB0zvTQ3bZtvSGFUbi4ljiAGHwS/8JpfTY1Jb1LDkMPbTM
- U0qIAVTVdjBXN9rccZDa5Dfx6Xue1Bzgay8y+ksoevAolH232gn5UNzgE
- v7wYP5EiOYP5GQ7UuMxHtA3E4rma5/rBsX5MfvHUt34804cefwIHCp0FS w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="238323941"
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="238323941"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 05:51:28 -0800
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="462134784"
+ bh=4G6w4sA7qGaN+EztHvR1KnkiiDqexosGse0CzeWsc3E=;
+ b=fKm6KJwGBQV+frzRL4+sI/hObiBbh1w+8i0HZu5u6O3mm/LXBnGt0vSB
+ WrEJRzZMrzVynFvNQFTjwKck/uFjpz3eZjRlow8Q1taZr682/Mbl8aS5X
+ HQYa6lze8oEipwJwl7gJdXCkj6Pa3QbeDAJVFwj9KeQ6WLmuafiIP/bYF
+ OPdJmXUu+WCgkEaf49SlZOe4uvycz6Imn27o5L6dapofZnRL/5T+aSgWe
+ KGMsP1WAPgyL3wJ3TRBtIHpXSCVBw/ri0eo02/RDFgoC6V2IsFx/WKyh6
+ Qw644N4n7GXxIUqmOkNRPL+aDO61jsCtruvidN/Op/dbf9TGCduSBO/2d A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="324359751"
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="324359751"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 05:51:33 -0800
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="480341392"
 Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.252.19.112])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 05:51:27 -0800
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 05:51:31 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Dec 2021 15:50:59 +0200
-Message-Id: <be0ab67ca2964d11ad9365a5f062a64b8523ee59.1639057801.git.jani.nikula@intel.com>
+Date: Thu,  9 Dec 2021 15:51:00 +0200
+Message-Id: <04f0ac36d56e3c1221c3c171c36d7617bb00c7c2.1639057801.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1639057801.git.jani.nikula@intel.com>
 References: <cover.1639057801.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/7] drm/i915/fbc: avoid intel_frontbuffer.h
- include with declaration
+Subject: [Intel-gfx] [PATCH 5/7] drm/i915/fb: reduce include dependencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,27 +60,26 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reduce include dependencies using forward declarations.
+We actually need i915_active_types.h, not i915_active.h.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.h | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_frontbuffer.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
-index b8d9cda85cfc..07ad0411fcc3 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.h
-@@ -8,8 +8,7 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.h b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+index a88441edc8f9..ff0c37b079aa 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.h
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+@@ -28,7 +28,7 @@
+ #include <linux/kref.h>
  
- #include <linux/types.h>
+ #include "gem/i915_gem_object_types.h"
+-#include "i915_active.h"
++#include "i915_active_types.h"
  
--#include "intel_frontbuffer.h"
--
-+enum fb_op_origin;
  struct drm_i915_private;
- struct intel_atomic_state;
- struct intel_crtc;
+ 
 -- 
 2.30.2
 
