@@ -1,49 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A9AD46EFC8
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:02:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB86E46EF3E
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:00:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0766A10EDDD;
-	Thu,  9 Dec 2021 16:54:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D52C710E594;
+	Thu,  9 Dec 2021 16:54:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C63E610E11E
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 13:51:33 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5A710E11E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 13:51:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639057893; x=1670593893;
+ t=1639057898; x=1670593898;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4G6w4sA7qGaN+EztHvR1KnkiiDqexosGse0CzeWsc3E=;
- b=fKm6KJwGBQV+frzRL4+sI/hObiBbh1w+8i0HZu5u6O3mm/LXBnGt0vSB
- WrEJRzZMrzVynFvNQFTjwKck/uFjpz3eZjRlow8Q1taZr682/Mbl8aS5X
- HQYa6lze8oEipwJwl7gJdXCkj6Pa3QbeDAJVFwj9KeQ6WLmuafiIP/bYF
- OPdJmXUu+WCgkEaf49SlZOe4uvycz6Imn27o5L6dapofZnRL/5T+aSgWe
- KGMsP1WAPgyL3wJ3TRBtIHpXSCVBw/ri0eo02/RDFgoC6V2IsFx/WKyh6
- Qw644N4n7GXxIUqmOkNRPL+aDO61jsCtruvidN/Op/dbf9TGCduSBO/2d A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="324359751"
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="324359751"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 05:51:33 -0800
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="480341392"
+ bh=uIb31tU10Z7ejnMCVZdEQvc+FspX+OKZwgg2SDjiBEg=;
+ b=k/RIjrMtrh2YFI5D2x7sy29vuBb5PQmHbd2Ae2uM8pYizIyD798h+i7Z
+ NfZ/h3HJgLHsALgjQ3Uqakrk8c4kLqqrw32PgQ6srX2BGxVE0Lyx3a5z1
+ dm0JMzjv73y4Nrw6fxBhFGHxJUd/I32RMP2g59Dqr2aomRjYz4K59SpPO
+ fbonAj8m7VTNu0LUYt0MnNSiwlrMWsImw1sLV9rgN8VmULTHPZh2RTBKR
+ XDqXjiYZE7xnRJw9S8Jvfn5B9NTQSHmP/qvU4VXyRWzqWo+L+srva/ogb
+ gTcf9rcSWM6FFN41edkn0gAm2apLhsXy6U3/C9xczpdZcxsmk/atqtNTP Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="224965694"
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="224965694"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 05:51:37 -0800
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="543599125"
 Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.252.19.112])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 05:51:31 -0800
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 05:51:36 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Dec 2021 15:51:00 +0200
-Message-Id: <04f0ac36d56e3c1221c3c171c36d7617bb00c7c2.1639057801.git.jani.nikula@intel.com>
+Date: Thu,  9 Dec 2021 15:51:01 +0200
+Message-Id: <9d063d12963b995a5db90e05317f40907234956f.1639057801.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1639057801.git.jani.nikula@intel.com>
 References: <cover.1639057801.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/7] drm/i915/fb: reduce include dependencies
+Subject: [Intel-gfx] [PATCH 6/7] drm/i915/pxp: un-inline
+ intel_pxp_is_enabled()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,26 +61,68 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We actually need i915_active_types.h, not i915_active.h.
+In the interest of reducing include dependencies, un-inline
+intel_pxp_is_enabled().
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_frontbuffer.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/pxp/intel_pxp.c |  5 +++++
+ drivers/gpu/drm/i915/pxp/intel_pxp.h | 14 ++++++++------
+ 2 files changed, 13 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.h b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
-index a88441edc8f9..ff0c37b079aa 100644
---- a/drivers/gpu/drm/i915/display/intel_frontbuffer.h
-+++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
-@@ -28,7 +28,7 @@
- #include <linux/kref.h>
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+index e2314ad9546d..15311eaed848 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+@@ -44,6 +44,11 @@ struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)
+ 	return container_of(pxp, struct intel_gt, pxp);
+ }
  
- #include "gem/i915_gem_object_types.h"
--#include "i915_active.h"
-+#include "i915_active_types.h"
++bool intel_pxp_is_enabled(const struct intel_pxp *pxp)
++{
++	return pxp->ce;
++}
++
+ bool intel_pxp_is_active(const struct intel_pxp *pxp)
+ {
+ 	return pxp->arb_is_valid;
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+index aa262258d4d4..f9999ca8a6f1 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+@@ -6,17 +6,14 @@
+ #ifndef __INTEL_PXP_H__
+ #define __INTEL_PXP_H__
  
- struct drm_i915_private;
+-#include "intel_pxp_types.h"
++#include <linux/types.h>
  
++struct intel_pxp;
+ struct drm_i915_gem_object;
+ 
+-static inline bool intel_pxp_is_enabled(const struct intel_pxp *pxp)
+-{
+-	return pxp->ce;
+-}
+-
+ #ifdef CONFIG_DRM_I915_PXP
+ struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp);
++bool intel_pxp_is_enabled(const struct intel_pxp *pxp);
+ bool intel_pxp_is_active(const struct intel_pxp *pxp);
+ 
+ void intel_pxp_init(struct intel_pxp *pxp);
+@@ -48,6 +45,11 @@ static inline int intel_pxp_start(struct intel_pxp *pxp)
+ 	return -ENODEV;
+ }
+ 
++static inline bool intel_pxp_is_enabled(const struct intel_pxp *pxp)
++{
++	return false;
++}
++
+ static inline bool intel_pxp_is_active(const struct intel_pxp *pxp)
+ {
+ 	return false;
 -- 
 2.30.2
 
