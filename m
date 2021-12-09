@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FC8646EF01
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 17:59:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FF1146EED4
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 17:58:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A031F10EA94;
-	Thu,  9 Dec 2021 16:54:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE31F10E9F3;
+	Thu,  9 Dec 2021 16:53:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDDB410E11E
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 13:51:18 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D62510E11E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 13:51:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639057878; x=1670593878;
+ t=1639057884; x=1670593884;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LcV+/sZUcFYq9100TY757eo1Z2MXnhlMLNxUIFpVPNM=;
- b=J0qO0LFAN1WV4/qa1dCmrLeZUCLywGEWdJW35FTWiT/eKVhPzhpGO5Q7
- 2eOWzLPEApflAeEqOVWSBm1kI4a8r4okqGeCR2l3GvfzDSL9/R480qyRw
- mK3dGudGE1fAn2ddM/z5don8REOz1vqlsfIYJwmOYELrnatCMeFNl8wer
- 5T4QZaLkr4FheEMo/vxUfIOPbwec0aQta0MPl3HcwMRwCOPaRqVlEhY8e
- FmzjPWxT7e2keK6qfHnYqbnRwpnibi//xMNOvkxMPj8100FaK47vsVQs9
- RMxVPbbL0R8zAcCU4mcbpO4NlRE7ru9QW9DxgF7DtwND59kyPgeZyu+PG w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="224965656"
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="224965656"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 05:51:18 -0800
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="680331744"
+ bh=0Xm3Iu60+gsuOXbEPv2XYI/POJ0csSk32dQojjp8Mw0=;
+ b=PdLZyhKS5aWupqlvvkaNxobOdUEOPQFaDi+dZpU9rdCfV/L8JuN1lVb/
+ Ru6tW0xugVh6NUYkebm549xRtD68LCeRi+9EdA03EfXIjVbjDwI9oi+qU
+ CJzPIJyRqh7AxN8yoV9L05BF9aiP93d+W8zqVmCmuXyhPWqAHa7P63rPc
+ 8XCqjOMBMlDaEeUpGjWxT10IjNrKqKbXvopqan2N0bnS0Pas4T/AO3MV9
+ BlpCCvfjtEPi35AErwh7C7Zt0GOW5wUrzzVmPZ69UyELbScFMMmbhAq87
+ Sabodr00R67bI5XoWZbk/p0gps2kcE6Y70dPZtzcg4JAwSYhlQXAywS9U Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="225365232"
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="225365232"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 05:51:24 -0800
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="612503218"
 Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.252.19.112])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 05:51:16 -0800
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 05:51:22 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Dec 2021 15:50:57 +0200
-Message-Id: <8ffe629646482541d5d30bb0ea6de77f7cf9001d.1639057801.git.jani.nikula@intel.com>
+Date: Thu,  9 Dec 2021 15:50:58 +0200
+Message-Id: <392f82ff54722551063599d06eacb38281748026.1639057801.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1639057801.git.jani.nikula@intel.com>
 References: <cover.1639057801.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/7] drm/i915/active: remove useless
- i915_utils.h include
+Subject: [Intel-gfx] [PATCH 3/7] drm/i915/psr: avoid intel_frontbuffer.h
+ include with declaration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,26 +61,42 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Not needed.
+Reduce include dependencies using forward declarations.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_active_types.h | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.h | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_active_types.h b/drivers/gpu/drm/i915/i915_active_types.h
-index c149f348a972..b02a78ac87db 100644
---- a/drivers/gpu/drm/i915/i915_active_types.h
-+++ b/drivers/gpu/drm/i915/i915_active_types.h
-@@ -15,8 +15,6 @@
- #include <linux/rcupdate.h>
- #include <linux/workqueue.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+index 3d9c0e13c329..f6526d9ccfdc 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.h
++++ b/drivers/gpu/drm/i915/display/intel_psr.h
+@@ -6,18 +6,19 @@
+ #ifndef __INTEL_PSR_H__
+ #define __INTEL_PSR_H__
  
--#include "i915_utils.h"
--
- struct i915_active_fence {
- 	struct dma_fence __rcu *fence;
- 	struct dma_fence_cb cb;
+-#include "intel_frontbuffer.h"
++#include <linux/types.h>
+ 
++enum fb_op_origin;
+ struct drm_connector;
+ struct drm_connector_state;
+ struct drm_i915_private;
++struct intel_atomic_state;
++struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_dp;
+-struct intel_crtc;
+-struct intel_atomic_state;
+-struct intel_plane_state;
+-struct intel_plane;
+ struct intel_encoder;
++struct intel_plane;
++struct intel_plane_state;
+ 
+ void intel_psr_init_dpcd(struct intel_dp *intel_dp);
+ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
 -- 
 2.30.2
 
