@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8515846EFEE
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:02:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B8A846EFE8
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:02:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B350310F28A;
-	Thu,  9 Dec 2021 16:55:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6966010E7B6;
+	Thu,  9 Dec 2021 16:55:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1343891D4;
- Thu,  9 Dec 2021 15:46:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DF8F891D4;
+ Thu,  9 Dec 2021 15:46:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639064803; x=1670600803;
+ t=1639064809; x=1670600809;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9OlL+gZZbnMSDuqtV81u4kMOiLsRp8FFYXagysWNZNo=;
- b=HRIv6+dIwpzsuj9I1CwLxCqWE7dU5Co0Worj0R9N7l24BKULUwfPUwkj
- 6qobDBeLhguBwwZFd/PzzImLXzYEcvLV80Z9e9TiIZQoe7cNHavMDsVNr
- AvoO3CHgTZpvBWgP28vvRFVmDzkx+dMUrthBCXDoEC68qa6E0bNNFCPjC
- XP3hpoNzWSyhc4h3k5PrZd8Ywry12/YMrUSMOw10v9zF4vEAQR8n4l8K1
- oB3bPWZSYF/llcGwmVgwQLHBSvnPmimO1cIIlcSv6vtkT5BEZnHfM+mCR
- 6FzzvqxteXTAc4BUB7+tCeR2MQwrfQQEgUDOdxBKslrYzJeyPLCFXasyt w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="298917123"
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="298917123"
+ bh=86iS98JXZ4kPTyKVOxO/shhOj8RyLDAPgBVvLWijt8c=;
+ b=Hyo3zvS60Zx03EfeozCKmOoEE8PHkAMh/HMGXgRgRNT5N2IFPWgQ5M0S
+ LWHctqnngSQWiYieb5KDlGtkTYuEM0CNI+CYgAOaWb5QL5E5WfNpMfcfH
+ mNfbIiyZ/D8XgcQ5Ho2gfR90v3QEsAnyvCNNHuk3q57rspC77l2NNDRva
+ Vae4mblZcqp1ZLD91VWM3ByKTZfJnSxLkrWZ+RoTG/3faElg+gFTS0ztM
+ +wdKSbUusFDUrbMVJ7gxc5fpc2IyeqjucyIrADkgnm/pXht0maXrO68uG
+ IErjHEY5vr2vA5JyLRg1J/ob5nKQcBQm3TzSeF2s1mTHjEDJlSQttMtIo w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="298917161"
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="298917161"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 07:46:27 -0800
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="503535237"
+ 09 Dec 2021 07:46:31 -0800
+X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="503535247"
 Received: from ramaling-i9x.iind.intel.com ([10.99.66.205])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 07:46:25 -0800
+ 09 Dec 2021 07:46:27 -0800
 From: Ramalingam C <ramalingam.c@intel.com>
 To: dri-devel <dri-devel@lists.freedesktop.org>,
  intel-gfx <intel-gfx@lists.freedesktop.org>
-Date: Thu,  9 Dec 2021 21:15:30 +0530
-Message-Id: <20211209154533.4084-14-ramalingam.c@intel.com>
+Date: Thu,  9 Dec 2021 21:15:31 +0530
+Message-Id: <20211209154533.4084-15-ramalingam.c@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20211209154533.4084-1-ramalingam.c@intel.com>
 References: <20211209154533.4084-1-ramalingam.c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 13/16] drm/i915/dg2: Flat CCS Support
+Subject: [Intel-gfx] [PATCH v4 14/16] drm/i915/uapi: document behaviour for
+ DG2 64K support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,167 +57,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hellstrom Thomas <thomas.hellstrom@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: Kenneth Graunke <kenneth@whitecape.org>,
+ Slawomir Milczarek <slawomir.milczarek@intel.com>,
+ Pekka Paalanen <ppaalanen@gmail.com>,
+ Hellstrom Thomas <thomas.hellstrom@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Simon Ser <contact@emersion.fr>,
+ mesa-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Anshuman Gupta <anshuman.gupta@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
 
-DG2 onwards discrete gfx has support for new flat CCS mapping,
-which brings in display feature in to avoid Aux walk for compressed
-surface. This support build on top of Flat CCS support added in XEHPSDV.
-FLAT CCS surface base address should be 64k aligned,
-Compressed displayable surfaces must use tile4 format.
+On discrete platforms like DG2, we need to support a minimum page size
+of 64K when dealing with device local-memory. This is quite tricky for
+various reasons, so try to document the new implicit uapi for this.
 
-HAS: 1407880786
-B.Spec : 7655
-B.Spec : 53902
+v2: Fixed suggestions on formatting [Daniel]
 
-Cc: Mika Kahola <mika.kahola@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Signed-off-by: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+cc: Simon Ser <contact@emersion.fr>
+cc: Pekka Paalanen <ppaalanen@gmail.com>
+Cc: Jordan Justen <jordan.l.justen@intel.com>
+Cc: Kenneth Graunke <kenneth@whitecape.org>
+Cc: mesa-dev@lists.freedesktop.org
+Cc: Tony Ye <tony.ye@intel.com>
+Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  |  4 ++-
- drivers/gpu/drm/i915/display/intel_fb.c       | 32 +++++++++++++------
- .../drm/i915/display/skl_universal_plane.c    | 14 +++++---
- 3 files changed, 35 insertions(+), 15 deletions(-)
+ include/uapi/drm/i915_drm.h | 67 ++++++++++++++++++++++++++++++++++---
+ 1 file changed, 62 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 83253c62b6d6..fd84ed0da41c 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8628,7 +8628,9 @@ static void intel_atomic_prepare_plane_clear_colors(struct intel_atomic_state *s
- 
- 		/*
- 		 * The layout of the fast clear color value expected by HW
--		 * (the DRM ABI requiring this value to be located in fb at offset 0 of plane#2):
-+		 * (the DRM ABI requiring this value to be located in fb at
-+		 * offset 0 of cc plane, plane #2 previous generations or
-+		 * plane #1 for flat ccs):
- 		 * - 4 x 4 bytes per-channel value
- 		 *   (in surface type specific float/int format provided by the fb user)
- 		 * - 8 bytes native color value used by the display
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index f10e77cb5b4a..72040f580911 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -107,6 +107,21 @@ static const struct drm_format_info gen12_ccs_cc_formats[] = {
- 	  .hsub = 1, .vsub = 1, .has_alpha = true },
- };
- 
-+static const struct drm_format_info gen12_flat_ccs_cc_formats[] = {
-+	{ .format = DRM_FORMAT_XRGB8888, .depth = 24, .num_planes = 2,
-+	  .char_per_block = { 4, 0 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
-+	  .hsub = 1, .vsub = 1, },
-+	{ .format = DRM_FORMAT_XBGR8888, .depth = 24, .num_planes = 2,
-+	  .char_per_block = { 4, 0 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
-+	  .hsub = 1, .vsub = 1, },
-+	{ .format = DRM_FORMAT_ARGB8888, .depth = 32, .num_planes = 2,
-+	  .char_per_block = { 4, 0 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
-+	  .hsub = 1, .vsub = 1, .has_alpha = true },
-+	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 2,
-+	  .char_per_block = { 4, 0 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
-+	  .hsub = 1, .vsub = 1, .has_alpha = true },
-+};
-+
- struct intel_modifier_desc {
- 	u64 modifier;
- 	struct {
-@@ -150,6 +165,8 @@ static const struct intel_modifier_desc intel_modifiers[] = {
- 		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC_CC,
- 
- 		.ccs.cc_planes = BIT(1),
-+
-+		FORMAT_OVERRIDE(gen12_flat_ccs_cc_formats),
- 	}, {
- 		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
- 		.display_ver = { 13, 14 },
-@@ -399,17 +416,13 @@ bool intel_fb_plane_supports_modifier(struct intel_plane *plane, u64 modifier)
- static bool format_is_yuv_semiplanar(const struct intel_modifier_desc *md,
- 				     const struct drm_format_info *info)
- {
--	int yuv_planes;
--
- 	if (!info->is_yuv)
- 		return false;
- 
--	if (plane_caps_contain_any(md->plane_caps, INTEL_PLANE_CAP_CCS_MASK))
--		yuv_planes = 4;
-+	if (hweight8(md->ccs.planar_aux_planes) == 2)
-+		return info->num_planes == 4;
- 	else
--		yuv_planes = 2;
--
--	return info->num_planes == yuv_planes;
-+		return info->num_planes == 2;
- }
- 
- /**
-@@ -534,12 +547,13 @@ static unsigned int gen12_ccs_aux_stride(struct intel_framebuffer *fb, int ccs_p
- 
- int skl_main_to_aux_plane(const struct drm_framebuffer *fb, int main_plane)
- {
-+	const struct intel_modifier_desc *md = lookup_modifier(fb->modifier);
- 	struct drm_i915_private *i915 = to_i915(fb->dev);
- 
--	if (intel_fb_is_ccs_modifier(fb->modifier))
-+	if (md->ccs.packed_aux_planes | md->ccs.planar_aux_planes)
- 		return main_to_ccs_plane(fb, main_plane);
- 	else if (DISPLAY_VER(i915) < 11 &&
--		 intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
-+		 format_is_yuv_semiplanar(md, fb->format))
- 		return 1;
- 	else
- 		return 0;
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 9a89df9c0243..ed2883409e91 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1136,7 +1136,9 @@ skl_program_plane_arm(struct intel_plane *plane,
- 	intel_de_write_fw(dev_priv, PLANE_OFFSET(pipe, plane_id),
- 			  (y << 16) | x);
- 
--	intel_de_write_fw(dev_priv, PLANE_AUX_DIST(pipe, plane_id), aux_dist);
-+	/* FLAT CCS doesn't need to program AUX_DIST */
-+	if (!HAS_FLAT_CCS(dev_priv))
-+		intel_de_write_fw(dev_priv, PLANE_AUX_DIST(pipe, plane_id), aux_dist);
- 
- 	if (DISPLAY_VER(dev_priv) < 11)
- 		intel_de_write_fw(dev_priv, PLANE_AUX_OFFSET(pipe, plane_id),
-@@ -1543,9 +1545,10 @@ static int skl_check_main_surface(struct intel_plane_state *plane_state)
- 
- 	/*
- 	 * CCS AUX surface doesn't have its own x/y offsets, we must make sure
--	 * they match with the main surface x/y offsets.
-+	 * they match with the main surface x/y offsets. On DG2
-+	 * there's no aux plane on fb so skip this checking.
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 5e678917da70..b7441593434c 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -1118,10 +1118,16 @@ struct drm_i915_gem_exec_object2 {
+ 	/**
+ 	 * When the EXEC_OBJECT_PINNED flag is specified this is populated by
+ 	 * the user with the GTT offset at which this object will be pinned.
++	 *
+ 	 * When the I915_EXEC_NO_RELOC flag is specified this must contain the
+ 	 * presumed_offset of the object.
++	 *
+ 	 * During execbuffer2 the kernel populates it with the value of the
+ 	 * current GTT offset of the object, for future presumed_offset writes.
++	 *
++	 * See struct drm_i915_gem_create_ext for the rules when dealing with
++	 * alignment restrictions with I915_MEMORY_CLASS_DEVICE, on devices with
++	 * minimum page sizes, like DG2.
  	 */
--	if (intel_fb_is_ccs_modifier(fb->modifier)) {
-+	if (intel_fb_is_ccs_modifier(fb->modifier) && aux_plane) {
- 		while (!skl_check_main_ccs_coordinates(plane_state, x, y,
- 						       offset, aux_plane)) {
- 			if (offset == 0)
-@@ -1589,6 +1592,8 @@ static int skl_check_nv12_aux_surface(struct intel_plane_state *plane_state)
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
- 	unsigned int rotation = plane_state->hw.rotation;
- 	int uv_plane = 1;
-+	int ccs_plane = intel_fb_is_ccs_modifier(fb->modifier) ?
-+			skl_main_to_aux_plane(fb, uv_plane) : 0;
- 	int max_width = intel_plane_max_width(plane, fb, uv_plane, rotation);
- 	int max_height = intel_plane_max_height(plane, fb, uv_plane, rotation);
- 	int x = plane_state->uapi.src.x1 >> 17;
-@@ -1609,8 +1614,7 @@ static int skl_check_nv12_aux_surface(struct intel_plane_state *plane_state)
- 	offset = intel_plane_compute_aligned_offset(&x, &y,
- 						    plane_state, uv_plane);
+ 	__u64 offset;
  
--	if (intel_fb_is_ccs_modifier(fb->modifier)) {
--		int ccs_plane = main_to_ccs_plane(fb, uv_plane);
-+	if (ccs_plane) {
- 		u32 aux_offset = plane_state->view.color_plane[ccs_plane].offset;
- 		u32 alignment = intel_surf_alignment(fb, uv_plane);
- 
+@@ -3145,11 +3151,62 @@ struct drm_i915_gem_create_ext {
+ 	 *
+ 	 * The (page-aligned) allocated size for the object will be returned.
+ 	 *
+-	 * Note that for some devices we have might have further minimum
+-	 * page-size restrictions(larger than 4K), like for device local-memory.
+-	 * However in general the final size here should always reflect any
+-	 * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
+-	 * extension to place the object in device local-memory.
++	 *
++	 * **DG2 64K min page size implications:**
++	 *
++	 * On discrete platforms, starting from DG2, we have to contend with GTT
++	 * page size restrictions when dealing with I915_MEMORY_CLASS_DEVICE
++	 * objects.  Specifically the hardware only supports 64K or larger GTT
++	 * page sizes for such memory. The kernel will already ensure that all
++	 * I915_MEMORY_CLASS_DEVICE memory is allocated using 64K or larger page
++	 * sizes underneath.
++	 *
++	 * Note that the returned size here will always reflect any required
++	 * rounding up done by the kernel, i.e 4K will now become 64K on devices
++	 * such as DG2.
++	 *
++	 * **Special DG2 GTT address alignment requirement:**
++	 *
++	 * The GTT alignment will also need be at least 64K for  such objects.
++	 *
++	 * Note that due to how the hardware implements 64K GTT page support, we
++	 * have some further complications:
++	 *
++	 *   1) The entire PDE(which covers a 2M virtual address range), must
++	 *   contain only 64K PTEs, i.e mixing 4K and 64K PTEs in the same
++	 *   PDE is forbidden by the hardware.
++	 *
++	 *   2) We still need to support 4K PTEs for I915_MEMORY_CLASS_SYSTEM
++	 *   objects.
++	 *
++	 * To handle the above the kernel implements a memory coloring scheme to
++	 * prevent userspace from mixing I915_MEMORY_CLASS_DEVICE and
++	 * I915_MEMORY_CLASS_SYSTEM objects in the same PDE. If the kernel is
++	 * ever unable to evict the required pages for the given PDE(different
++	 * color) when inserting the object into the GTT then it will simply
++	 * fail the request.
++	 *
++	 * Since userspace needs to manage the GTT address space themselves,
++	 * special care is needed to ensure this doesn't happen. The simplest
++	 * scheme is to simply align and round up all I915_MEMORY_CLASS_DEVICE
++	 * objects to 2M, which avoids any issues here. At the very least this
++	 * is likely needed for objects that can be placed in both
++	 * I915_MEMORY_CLASS_DEVICE and I915_MEMORY_CLASS_SYSTEM, to avoid
++	 * potential issues when the kernel needs to migrate the object behind
++	 * the scenes, since that might also involve evicting other objects.
++	 *
++	 * **To summarise the GTT rules, on platforms like DG2:**
++	 *
++	 *   1) All objects that can be placed in I915_MEMORY_CLASS_DEVICE must
++	 *   have 64K alignment. The kernel will reject this otherwise.
++	 *
++	 *   2) All I915_MEMORY_CLASS_DEVICE objects must never be placed in
++	 *   the same PDE with other I915_MEMORY_CLASS_SYSTEM objects. The
++	 *   kernel will reject this otherwise.
++	 *
++	 *   3) Objects that can be placed in both I915_MEMORY_CLASS_DEVICE and
++	 *   I915_MEMORY_CLASS_SYSTEM should probably be aligned and padded out
++	 *   to 2M.
+ 	 */
+ 	__u64 size;
+ 	/**
 -- 
 2.20.1
 
