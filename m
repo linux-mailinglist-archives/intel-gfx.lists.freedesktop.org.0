@@ -1,64 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7831C46F65A
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 23:01:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9447846F6A9
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 23:18:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A701E10E399;
-	Thu,  9 Dec 2021 22:01:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C63C10E225;
+	Thu,  9 Dec 2021 22:18:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
- [IPv6:2a00:1450:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AB1010E384
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 22:00:59 +0000 (UTC)
-Received: by mail-wr1-x430.google.com with SMTP id c4so12032560wrd.9
- for <intel-gfx@lists.freedesktop.org>; Thu, 09 Dec 2021 14:00:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=astier-eu.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=EBT+Bo+JugjtZ2kT7aaQIcYQDl1vT3SMacbUPRi1MAo=;
- b=lYO2OMLCnPsA34QyK1y707HcmkT7ulqJpki5hB/a9c6SXnfYLwBPMlY8wnCZ2FMqgs
- HKVMRvJpcm7BrKlbUxe1XjG1NfTSMRTW6H/xkret/o4yQcvZk/Q7pI6XR2enfVo8hhxe
- sylBb7DczAwYKO5C9NNDnANBjO0OJv3CoimLQPjD3u6g2zBGxjKuOxOjygrgY69crtnN
- 56hg0lIF81rd79EYkBk7PrBBL6+XY2xl54GP/DvNE4H644brYlCNRnp8s6KcVfdOYh5W
- 26w3tnLG0VPN4D8gz7sXHg3mlBHhpUigOP97Ha9MTjbQT9+wceCKBKDACNJHFy4H9LYm
- aibg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=EBT+Bo+JugjtZ2kT7aaQIcYQDl1vT3SMacbUPRi1MAo=;
- b=4VKL/8F43iXuMOBFvOph3015OXamCEfdHtIjapjwwMaE8HuNnk7o+Tnw5OF2del8BT
- GhjPLC0DXWjTg3VUkLr9TzSpDLHFk3sGF9oHS3znfEEaQoy+piVR59kL7ZK/fnNBK9x0
- jyKc/BGxK37yePs8YgjKzTUKWWE8CsxtTUGDSfdPvl47XTqIigVcC4CObQO94MoueMiV
- rhUv5YOfVlxtE3LeNIiH6iMS5mRrW5mxtPenppGyiXRgHWcRdFZ6roBtkl/Jxo77iY9G
- E1Vcv/wzPD44M3JMAxqrOfwmrHGcZHJdNj/QofdrswiZaNNZkRQtwD/+sT898+UwV69O
- WD3w==
-X-Gm-Message-State: AOAM5331bi5Of/dMaMnvk+AhvjZgWr3W57hiIwz7cJ5VQulqRqUX+QA8
- OLWdF4lvIPCGuk2+gxEpsBXTXtULxspLLQ==
-X-Google-Smtp-Source: ABdhPJzgv9ob3mqrAubTfgc38gMWaKYGzAlPKe67AqpZQk/iwcpEVi9zOicF3mEr4b7xaaSkGugUXg==
-X-Received: by 2002:a05:6000:23a:: with SMTP id
- l26mr9568813wrz.215.1639087257809; 
- Thu, 09 Dec 2021 14:00:57 -0800 (PST)
-Received: from gpdmax.. ([2a01:e0a:28f:75b0:cf6:c90f:f3b1:89c1])
- by smtp.gmail.com with ESMTPSA id f7sm1061524wri.74.2021.12.09.14.00.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Dec 2021 14:00:57 -0800 (PST)
-From: Anisse Astier <anisse@astier.eu>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42F1F10E220;
+ Thu,  9 Dec 2021 22:18:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639088296; x=1670624296;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ExDWmgbFmgQ3T+PD5ZiQaZV/em6QjeWb0HbwidEPOGM=;
+ b=GRy73aoot9o0tM9vsjDYrUD0LYMVZNyEUoE4PlLWdBPwlet4zrMtXxdt
+ PvEE03ZiIwfeLz+jvfPW3exl3rNE2muTrhYwmj9U5ygq2QvPo36ayf1OV
+ hVyFI5vVMlo8ksTsIXeD1qpY5PP5PbrSCJxdD5cZuCSjG4DLa3TbXiPcG
+ T2yV2fsHwob4XX3Z4x3w+Q5cSPE03yil0ev+3kDHGF/OW82yzVi+9oGe4
+ c01OGGba51xxCnnBVKBictjcRXvfJdvkSg4WYSSZcoB4WB/orEdLGsx8z
+ OnzVuH/WUOp/Td9CkvgyAGvZ1gxwJOk2c2gZXjYE60Ob85yzEG0MZjhvy w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="225488593"
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="225488593"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 14:18:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="680507761"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by orsmga005.jf.intel.com with ESMTP; 09 Dec 2021 14:18:15 -0800
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Thu,  9 Dec 2021 23:00:42 +0100
-Message-Id: <20211209220042.310848-3-anisse@astier.eu>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211209220042.310848-1-anisse@astier.eu>
-References: <20211209220042.310848-1-anisse@astier.eu>
+Date: Thu,  9 Dec 2021 14:18:05 -0800
+Message-Id: <20211209221805.26960-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.34.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 RESEND 2/2] drm: Add orientation quirk for
- GPD Win Max
+Subject: [Intel-gfx] [PATCH] drm/i915/guc: Request RP0 before loading
+ firmware
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,35 +55,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Dadap <ddadap@nvidia.com>, Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Panel is 800x1280, but mounted on a laptop form factor, sideways.
+By default, GT (and GuC) run at RPn. Requesting for RP0
+before firmware load can speed up DMA and HuC auth as well.
+In addition to writing to 0xA008, we also need to enable
+swreq in 0xA024 so that Punit will pay heed to our request.
 
-Signed-off-by: Anisse Astier <anisse@astier.eu>
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+SLPC will restore the frequency back to RPn after initialization,
+but we need to manually do that for the non-SLPC path.
+
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 ---
- drivers/gpu/drm/drm_panel_orientation_quirks.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_rps.c   | 59 +++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_rps.h   |  2 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c |  9 ++++
+ drivers/gpu/drm/i915/i915_reg.h       |  4 ++
+ 4 files changed, 74 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_panel_orientation_quirks.c b/drivers/gpu/drm/drm_panel_orientation_quirks.c
-index 042bb80383c9..3dc383b1e2ba 100644
---- a/drivers/gpu/drm/drm_panel_orientation_quirks.c
-+++ b/drivers/gpu/drm/drm_panel_orientation_quirks.c
-@@ -174,6 +174,12 @@ static const struct dmi_system_id orientation_data[] = {
- 		  DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "MicroPC"),
- 		},
- 		.driver_data = (void *)&lcd720x1280_rightside_up,
-+	}, {	/* GPD Win Max */
-+		.matches = {
-+		  DMI_EXACT_MATCH(DMI_SYS_VENDOR, "GPD"),
-+		  DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "G1619-01"),
-+		},
-+		.driver_data = (void *)&lcd800x1280_rightside_up,
- 	}, {	/*
- 		 * GPD Pocket, note that the the DMI data is less generic then
- 		 * it seems, devices with a board-vendor of "AMI Corporation"
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 07ff7ba7b2b7..4f7fe079ed4a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -2226,6 +2226,65 @@ u32 intel_rps_read_state_cap(struct intel_rps *rps)
+ 		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
+ }
+ 
++static void intel_rps_set_manual(struct intel_rps *rps, bool enable)
++{
++	struct intel_uncore *uncore = rps_to_uncore(rps);
++	u32 state = enable ? GEN9_RPSWCTL_ENABLE : GEN9_RPSWCTL_DISABLE;
++
++	if (enable)
++		intel_rps_clear_timer(rps);
++
++	/* Allow punit to process software requests */
++	intel_uncore_write(uncore, GEN6_RP_CONTROL, state);
++
++	if (!enable)
++		intel_rps_set_timer(rps);
++}
++
++void intel_rps_raise_unslice(struct intel_rps *rps)
++{
++	struct intel_uncore *uncore = rps_to_uncore(rps);
++	u32 rp0_unslice_req;
++
++	intel_rps_set_manual(rps, true);
++
++	/* RP limits have not been read yet */
++	if (!rps->rp0_freq)
++		rp0_unslice_req = ((intel_rps_read_state_cap(rps) >> 0)
++				   & 0xff) * GEN9_FREQ_SCALER;
++	else
++		rp0_unslice_req = rps->rp0_freq;
++
++	intel_uncore_write(uncore, GEN6_RPNSWREQ,
++			   ((rp0_unslice_req <<
++			   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
++			   GEN9_IGNORE_SLICE_RATIO));
++
++	intel_rps_set_manual(rps, false);
++}
++
++void intel_rps_lower_unslice(struct intel_rps *rps)
++{
++	struct intel_uncore *uncore = rps_to_uncore(rps);
++	u32 rpn_unslice_req;
++
++	intel_rps_set_manual(rps, true);
++
++	/* RP limits have not been read yet */
++	if (!rps->min_freq)
++		rpn_unslice_req = ((intel_rps_read_state_cap(rps) >> 16)
++				   & 0xff) * GEN9_FREQ_SCALER;
++	else
++		rpn_unslice_req = rps->min_freq;
++
++	intel_uncore_write(uncore, GEN6_RPNSWREQ,
++			   ((rpn_unslice_req <<
++			   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT) |
++			   GEN9_IGNORE_SLICE_RATIO));
++
++	intel_rps_set_manual(rps, false);
++}
++
+ /* External interface for intel_ips.ko */
+ 
+ static struct drm_i915_private __rcu *ips_mchdev;
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+index aee12f37d38a..c6d76a3d1331 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.h
++++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+@@ -45,6 +45,8 @@ u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
+ u32 intel_rps_read_punit_req(struct intel_rps *rps);
+ u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
+ u32 intel_rps_read_state_cap(struct intel_rps *rps);
++void intel_rps_raise_unslice(struct intel_rps *rps);
++void intel_rps_lower_unslice(struct intel_rps *rps);
+ 
+ void gen5_rps_irq_handler(struct intel_rps *rps);
+ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+index 2fef3b0bbe95..3693c4e7dad0 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+@@ -8,6 +8,7 @@
+ #include "intel_guc.h"
+ #include "intel_guc_ads.h"
+ #include "intel_guc_submission.h"
++#include "gt/intel_rps.h"
+ #include "intel_uc.h"
+ 
+ #include "i915_drv.h"
+@@ -462,6 +463,8 @@ static int __uc_init_hw(struct intel_uc *uc)
+ 	else
+ 		attempts = 1;
+ 
++	intel_rps_raise_unslice(&uc_to_gt(uc)->rps);
++
+ 	while (attempts--) {
+ 		/*
+ 		 * Always reset the GuC just before (re)loading, so
+@@ -499,6 +502,9 @@ static int __uc_init_hw(struct intel_uc *uc)
+ 		ret = intel_guc_slpc_enable(&guc->slpc);
+ 		if (ret)
+ 			goto err_submission;
++	} else {
++		/* Restore GT back to RPn for non-SLPC path */
++		intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
+ 	}
+ 
+ 	drm_info(&i915->drm, "%s firmware %s version %u.%u %s:%s\n",
+@@ -529,6 +535,9 @@ static int __uc_init_hw(struct intel_uc *uc)
+ err_log_capture:
+ 	__uc_capture_load_err_log(uc);
+ err_out:
++	/* Return GT back to RPn */
++	intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
++
+ 	__uc_sanitize(uc);
+ 
+ 	if (!ret) {
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 1891e7fac39b..b2a86a26b843 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -9399,6 +9399,7 @@ enum {
+ #define   GEN6_OFFSET(x)			((x) << 19)
+ #define   GEN6_AGGRESSIVE_TURBO			(0 << 15)
+ #define   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT	23
++#define   GEN9_IGNORE_SLICE_RATIO		(0 << 0)
+ 
+ #define GEN6_RC_VIDEO_FREQ			_MMIO(0xA00C)
+ #define GEN6_RC_CONTROL				_MMIO(0xA090)
+@@ -9434,6 +9435,9 @@ enum {
+ #define   GEN6_RP_UP_BUSY_CONT			(0x4 << 3)
+ #define   GEN6_RP_DOWN_IDLE_AVG			(0x2 << 0)
+ #define   GEN6_RP_DOWN_IDLE_CONT		(0x1 << 0)
++#define   GEN6_RPSWCTL_SHIFT			9
++#define   GEN9_RPSWCTL_ENABLE			(0x2 << GEN6_RPSWCTL_SHIFT)
++#define   GEN9_RPSWCTL_DISABLE			(0x0 << GEN6_RPSWCTL_SHIFT)
+ #define GEN6_RP_UP_THRESHOLD			_MMIO(0xA02C)
+ #define GEN6_RP_DOWN_THRESHOLD			_MMIO(0xA030)
+ #define GEN6_RP_CUR_UP_EI			_MMIO(0xA050)
 -- 
-2.31.1
+2.34.0
 
