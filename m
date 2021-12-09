@@ -2,39 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6932746F1F7
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:32:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40C8046F260
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:43:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC6AF10E18E;
-	Thu,  9 Dec 2021 17:32:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3EAD10E1D2;
+	Thu,  9 Dec 2021 17:43:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 872B510E18E
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 17:32:33 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="236899565"
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="236899565"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 09:32:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="516401124"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga008.jf.intel.com with SMTP; 09 Dec 2021 09:32:30 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 09 Dec 2021 19:32:29 +0200
-Date: Thu, 9 Dec 2021 19:32:29 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YbI9rarm1QvakLID@intel.com>
-References: <cover.1639057801.git.jani.nikula@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BED6810E1D2;
+ Thu,  9 Dec 2021 17:43:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639071828; x=1670607828;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ucYSv1TWuUoho10aU7V2UYh07A+xOx1U8tFvFZ/JFg8=;
+ b=eQpnpPCoHvt6P1tsCe9DXoYyUsunBLJzwf6ilsskb6E2Io9vzpv75EJw
+ 9JuQNZ5guZSm6ZVbVV/3mD9bcShfOVcNpPa/uhtgVOskRUy1OQFcLRy/Q
+ lhB9S1aL/TjyOwri4jR5GwR7uIW0CE2GLCtx7+FmbHjzijdrmpG457yhX
+ PMzuBFb6bmjCnfSL1GoAKqjjosVByeYSBkSJXhXuBMCufFjoX0reppDOU
+ opK5dBC+yQttMO/KlN7A5mDreDZhGk+tDiBMLzXA9SIIScmsQZD9fn73i
+ XJuWvOpM3gpkFtN3lYAleg56mA8C1CzlMxoaGjDHKl/j385IfqPvIzROn Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="218188534"
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="218188534"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 09:43:31 -0800
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="480424512"
+Received: from mkeogh1-mobl1.ger.corp.intel.com (HELO [10.252.18.252])
+ ([10.252.18.252])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 09:43:29 -0800
+Message-ID: <841f622f-24e3-fcae-e9bd-b2bea148278a@intel.com>
+Date: Thu, 9 Dec 2021 17:43:27 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Content-Language: en-GB
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20211208082245.86933-1-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20211208082245.86933-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1639057801.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 0/7] drm/i915: include reductions
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix coredump of perma-pinned vmas
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,43 +60,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 09, 2021 at 03:50:55PM +0200, Jani Nikula wrote:
-> Remove some useless includes as well as ones that can be removed with
-> trivial changes.
+On 08/12/2021 08:22, Thomas Hellstr√∂m wrote:
+> When updating the error capture code and introducing vma snapshots,
+> we introduced code to hold the vma in memory while capturing it,
+> calling i915_active_acquire_if_busy(). Now that function isn't relevant
+> for perma-pinned vmas and caused important vmas to be dropped from the
+> coredump. Like for example the GuC log.
 > 
-> Jani Nikula (7):
->   drm/i915/reset: remove useless intel_display_types.h include
->   drm/i915/active: remove useless i915_utils.h include
->   drm/i915/psr: avoid intel_frontbuffer.h include with declaration
->   drm/i915/fbc: avoid intel_frontbuffer.h include with declaration
->   drm/i915/fb: reduce include dependencies
->   drm/i915/pxp: un-inline intel_pxp_is_enabled()
->   drm/i915/pxp: remove useless includes
-
-Apart from the slight display reset stuff oddness this all
-looks good.
-
-Series is
-Reviewed-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-
+> Fix this by instead requiring those vmas to be pinned while capturing.
 > 
->  drivers/gpu/drm/i915/display/intel_fbc.h         |  3 +--
->  drivers/gpu/drm/i915/display/intel_frontbuffer.h |  2 +-
->  drivers/gpu/drm/i915/display/intel_psr.h         | 11 ++++++-----
->  drivers/gpu/drm/i915/gt/intel_reset.c            |  1 -
->  drivers/gpu/drm/i915/i915_active_types.h         |  2 --
->  drivers/gpu/drm/i915/pxp/intel_pxp.c             |  5 +++++
->  drivers/gpu/drm/i915/pxp/intel_pxp.h             | 14 ++++++++------
->  drivers/gpu/drm/i915/pxp/intel_pxp_types.h       |  2 --
->  8 files changed, 21 insertions(+), 19 deletions(-)
+> Tested by running the initial subtests of the gem_exec_capture igt test
+> with GuC submission enabled and verifying that a GuC log blob appears
+> in the output.
 > 
-> -- 
-> 2.30.2
+> Fixes: ff20afc4cee7 ("drm/i915: Update error capture code to avoid using the current vma state")
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Reported-by: John Harrison <John.C.Harrison@Intel.com>
+> Signed-off-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
--- 
-Ville Syrj‰l‰
-Intel
