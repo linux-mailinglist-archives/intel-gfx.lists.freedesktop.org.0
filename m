@@ -2,47 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9EC446EF4E
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:00:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFF6F46EF91
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:01:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA8B10EB1D;
-	Thu,  9 Dec 2021 16:54:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E45610E61F;
+	Thu,  9 Dec 2021 16:54:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D49DA10E120
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 14:18:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639059500; x=1670595500;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6hrcccuoU2vKSKAg776SFKEJcdCVPWBY5nhuuJHafkg=;
- b=EWhqusNGCypYdyp9lveo1YTTQ4BcK6wt4bDGVP7GDWybPTsahRjvw1Nq
- bgKc+Y08wxgBCIZ2/zjYWi1LVII9UDq85dR/zxrnVhbVvk4DZuBtdDpPq
- ZXGXscve0leT7n0MJtLpE/GDMiZfg3e8XVaB0j99nVBmPz+dS+ftdbMeT
- 1Egd0eAYsxlLjp7bg9RgT7P5K1jALm3u/m1JnYVT8edFNEFBJOaVQ7cU/
- Xn1jOpVpsDDGIcKJXOVYmrQqPODIHTok1rTrTUzdeZE9Ob//uaomLEdLR
- NvuDtxNP596J8WdQjhg7Nf7zYOK5lyadyJR0QeahywNCDWIFVeWUPqqBH A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="298894817"
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="298894817"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 06:18:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,192,1635231600"; d="scan'208";a="601565824"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.167])
- by FMSMGA003.fm.intel.com with ESMTP; 09 Dec 2021 06:18:18 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Dec 2021 16:18:17 +0200
-Message-Id: <20211209141817.16038-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com
+ [IPv6:2607:f8b0:4864:20::734])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CABF189E59;
+ Thu,  9 Dec 2021 14:27:48 +0000 (UTC)
+Received: by mail-qk1-x734.google.com with SMTP id de30so5051244qkb.0;
+ Thu, 09 Dec 2021 06:27:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=/0cDy0z+fhEje508h1DeCadhZVBvPccbE1h0Fcx0X3c=;
+ b=YQslUMIUb48xtLcZ4Mhc9SfHtjisQhu4wHGXIe3ldB68qvNt11G0+RZDvZ5OIKb2aP
+ x6dD1VmchxW9JFN/3YrQkjEKV3EwOShE2/fEShnIshllfwAw5PrnuSJEhaK4OxrKA1eB
+ F55HieDnWAg+ugLxV49S3c0zi4AHq2CeX5gi9mpKZNRmi2gZrU/MSVXBVhVYJezsg9h7
+ NwtncvT5W6YnA8JiWcWkcEm2fjYK9pAt7q7v9KazAPGi5fgD8sC8AUsOgWRXqz6kwnE9
+ DuNMuC/0xRPkwfEkR2pe3sFUpUYhSMeIlZocOo1g0I9LF6ELT6P89X86ga+OuZKmiM2Q
+ 239A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=/0cDy0z+fhEje508h1DeCadhZVBvPccbE1h0Fcx0X3c=;
+ b=tCM1ynmj6o6PStGBMATaIklm76HxxpjF/wWXgnl/9QqRoG71LGgglclmpuozjxhlV8
+ sz8Ke6MW++Xpy3Gp0y5zTsBoEusrwxheyWktnoeJcIF5DhnZy3AEE5E0prvId0eHwi+m
+ LraTrjT+rzDe6NtA0DwvYeIrlZDD71jLLCKgW8ajcsUVIXHSZQTiWL8cY+QRk6EBIi9o
+ SC0JeMj/+WErlw5/MoktGDZUGW0lQrcqiu++93GosSIVLeDG5hQMP/Nh0F30LIHnIUDT
+ k7AM2PTx672OAT+YX8KON1pvE9dKMA4xXQc7FdbO38iI9NFA2Pb1ChGYaSoZSuiyxJI7
+ htTA==
+X-Gm-Message-State: AOAM5300j/7aMvretQip7y178vI6XkaI3k2Tav+To2oidpDh5LTADzdP
+ H0I8WV28oFUpEyucjRjmnVfekIXb83KMtlMWjNShZ/xOeuA=
+X-Google-Smtp-Source: ABdhPJx+5cRyaanHtZ3Vk/3q9kxImvBJ87Fnno98rJ8ruMzZWNukQWMpeTn/DlMvSIkV2wEa/cmsOdUQHKS0mdHtKVs=
+X-Received: by 2002:a05:620a:2413:: with SMTP id
+ d19mr14202022qkn.82.1639060067905; 
+ Thu, 09 Dec 2021 06:27:47 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Use I915_BO_ALLOC_CONTIGUOUS flag
- for DPT
+References: <20211129134735.628712-1-maarten.lankhorst@linux.intel.com>
+ <20211129134735.628712-13-maarten.lankhorst@linux.intel.com>
+ <CAM0jSHM1P0-UqYC01vpjvogW_5ECwonnnmtmiKi3go4Di4+NKQ@mail.gmail.com>
+ <f7bb808e-65c6-5e81-e129-58858a94db79@linux.intel.com>
+ <CAM0jSHOZv54mLng+CHCajFq2eberkaRX8RdKWsSDwOQPG2rdGQ@mail.gmail.com>
+ <1188bcc7-9415-adbb-1ec2-7016392d2923@linux.intel.com>
+In-Reply-To: <1188bcc7-9415-adbb-1ec2-7016392d2923@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 9 Dec 2021 14:27:21 +0000
+Message-ID: <CAM0jSHPdWQ3_ee0dO5gwPK4rOzbLiiKJ-yujwXYEcuPc6C1HTw@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v2 12/16] drm/i915: Add
+ i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,30 +68,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Do mapping using CONTIGUOUS flag - otherwise
-i915_gem_object_is_contiguous warn is triggered.
+On Thu, 9 Dec 2021 at 13:46, Maarten Lankhorst
+<maarten.lankhorst@linux.intel.com> wrote:
+>
+> On 09-12-2021 14:40, Matthew Auld wrote:
+> > On Thu, 9 Dec 2021 at 13:25, Maarten Lankhorst
+> > <maarten.lankhorst@linux.intel.com> wrote:
+> >> On 09-12-2021 14:05, Matthew Auld wrote:
+> >>> On Mon, 29 Nov 2021 at 13:58, Maarten Lankhorst
+> >>> <maarten.lankhorst@linux.intel.com> wrote:
+> >>>> We want to remove more members of i915_vma, which requires the locking to be
+> >>>> held more often.
+> >>>>
+> >>>> Start requiring gem object lock for i915_vma_unbind, as it's one of the
+> >>>> callers that may unpin pages.
+> >>>>
+> >>>> Some special care is needed when evicting, because the last reference to the
+> >>>> object may be held by the VMA, so after __i915_vma_unbind, vma may be garbage,
+> >>>> and we need to cache vma->obj before unlocking.
+> >>>>
+> >>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> >>>> ---
+> >>> <snip>
+> >>>
+> >>>> @@ -129,22 +129,47 @@ void i915_ggtt_suspend_vm(struct i915_address_space *vm)
+> >>>>
+> >>>>         drm_WARN_ON(&vm->i915->drm, !vm->is_ggtt && !vm->is_dpt);
+> >>>>
+> >>>> +retry:
+> >>>> +       i915_gem_drain_freed_objects(vm->i915);
+> >>>> +
+> >>>>         mutex_lock(&vm->mutex);
+> >>>>
+> >>>>         /* Skip rewriting PTE on VMA unbind. */
+> >>>>         open = atomic_xchg(&vm->open, 0);
+> >>>>
+> >>>>         list_for_each_entry_safe(vma, vn, &vm->bound_list, vm_link) {
+> >>>> +               struct drm_i915_gem_object *obj = vma->obj;
+> >>>> +
+> >>>>                 GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
+> >>>> +
+> >>>>                 i915_vma_wait_for_bind(vma);
+> >>>>
+> >>>> -               if (i915_vma_is_pinned(vma))
+> >>>> +               if (i915_vma_is_pinned(vma) || !i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND))
+> >>>>                         continue;
+> >>>>
+> >>>> -               if (!i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND)) {
+> >>>> -                       __i915_vma_evict(vma);
+> >>>> -                       drm_mm_remove_node(&vma->node);
+> >>>> +               /* unlikely to race when GPU is idle, so no worry about slowpath.. */
+> >>>> +               if (!i915_gem_object_trylock(obj, NULL)) {
+> >>>> +                       atomic_set(&vm->open, open);
+> >>> Does this need a comment about barriers?
+> >> Not sure, it's guarded by vm->mutex.
+> >>>> +
+> >>>> +                       i915_gem_object_get(obj);
+> >>> Should this not be kref_get_unless_zero? Assuming the vm->mutex is the
+> >>> only thing keeping the object alive here, won't this lead to potential
+> >>> uaf/double-free or something? Also should we not plonk this before the
+> >>> trylock? Or maybe I'm missing something here?
+> >> Normally you're correct, this is normally the case, but we drain freed objects and this path should only be run during s/r, at which point userspace should be dead, GPU idle, and we just drained all freed objects above.
+> >>
+> >> It would be a bug if we still found a dead object, as nothing should be running.
+> > Hmm, Ok. So why do we expect the trylock to ever fail here? Who else
+> > can grab it at this stage?
+> It probably shouldn't, should probably be a WARN if it happens.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dpt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+r-b with that then.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
-index 963ca7155b06..f66346dcf2d8 100644
---- a/drivers/gpu/drm/i915/display/intel_dpt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-@@ -244,7 +244,7 @@ intel_dpt_create(struct intel_framebuffer *fb)
- 	size = round_up(size * sizeof(gen8_pte_t), I915_GTT_PAGE_SIZE);
- 
- 	if (HAS_LMEM(i915))
--		dpt_obj = i915_gem_object_create_lmem(i915, size, 0);
-+		dpt_obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_CONTIGUOUS);
- 	else
- 		dpt_obj = i915_gem_object_create_stolen(i915, size);
- 	if (IS_ERR(dpt_obj))
--- 
-2.24.1.485.gad05a3d8e5
-
+> >>>> +                       mutex_unlock(&vm->mutex);
+> >>>> +
+> >>>> +                       i915_gem_object_lock(obj, NULL);
+> >>>> +                       open = i915_vma_unbind(vma);
+> >>>> +                       i915_gem_object_unlock(obj);
+> >>>> +
+> >>>> +                       GEM_WARN_ON(open);
+> >>>> +
+> >>>> +                       i915_gem_object_put(obj);
+> >>>> +                       goto retry;
+> >>>>                 }
+> >>>> +
+> >>>> +               i915_vma_wait_for_bind(vma);
+> >>> We also call wait_for_bind above, is that intentional?
+> >> Should be harmless, but first one should probably be removed. :)
+> >>
+>
