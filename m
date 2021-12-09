@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 494E146F26D
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:46:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B69246F28B
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Dec 2021 18:54:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D538289C1A;
-	Thu,  9 Dec 2021 17:46:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D97710E1D1;
+	Thu,  9 Dec 2021 17:54:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E108589C1A
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 17:46:36 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="218189471"
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="218189471"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 09:46:36 -0800
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45E9C10E1D7
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 17:54:53 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="236904068"
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="236904068"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 09:54:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="463335690"
+X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; d="scan'208";a="543683236"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 09 Dec 2021 09:46:32 -0800
+ by orsmga001.jf.intel.com with SMTP; 09 Dec 2021 09:54:50 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 09 Dec 2021 19:46:32 +0200
-Date: Thu, 9 Dec 2021 19:46:32 +0200
+ Thu, 09 Dec 2021 19:54:49 +0200
+Date: Thu, 9 Dec 2021 19:54:49 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YbJA+NyOdTHuxBZV@intel.com>
+Message-ID: <YbJC6UHlcyt9s7tt@intel.com>
 References: <cover.1639068649.git.jani.nikula@intel.com>
- <f7e7e7fb91eae2b49a0ab5d982a235cec34e3320.1639068649.git.jani.nikula@intel.com>
+ <66f687db7321846049a6aa524dfafd45cf0cb77f.1639068649.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f7e7e7fb91eae2b49a0ab5d982a235cec34e3320.1639068649.git.jani.nikula@intel.com>
+In-Reply-To: <66f687db7321846049a6aa524dfafd45cf0cb77f.1639068649.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/cdclk: hide struct
- intel_cdclk_vals
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/cdclk: un-inline
+ intel_cdclk_state functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,55 +53,78 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 09, 2021 at 06:51:24PM +0200, Jani Nikula wrote:
-> The definition is not needed outside of intel_cdclk.c.
+On Thu, Dec 09, 2021 at 06:51:23PM +0200, Jani Nikula wrote:
+> Hide the details better.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
 > ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 8 ++++++++
->  drivers/gpu/drm/i915/display/intel_cdclk.h | 8 --------
->  2 files changed, 8 insertions(+), 8 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 18 ++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_cdclk.h | 13 ++++++++-----
+>  2 files changed, 26 insertions(+), 5 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 84674a4f7226..56f40d9430b8 100644
+> index a216a350006d..84674a4f7226 100644
 > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1219,6 +1219,14 @@ static bool has_cdclk_squasher(struct drm_i915_private *i915)
->  	return IS_DG2(i915);
+> @@ -2630,6 +2630,24 @@ intel_atomic_get_cdclk_state(struct intel_atomic_state *state)
+>  	return to_intel_cdclk_state(cdclk_state);
 >  }
 >  
-> +struct intel_cdclk_vals {
-> +	u32 cdclk;
-> +	u16 refclk;
-> +	u16 waveform;
-> +	u8 divider;	/* CD2X divider * 2 */
-> +	u8 ratio;
-> +};
+> +struct intel_cdclk_state *
+> +to_intel_cdclk_state(struct intel_global_state *cdclk_state)
+> +{
+> +	return container_of(cdclk_state, struct intel_cdclk_state, base);
+> +}
 > +
->  static const struct intel_cdclk_vals bxt_cdclk_table[] = {
->  	{ .refclk = 19200, .cdclk = 144000, .divider = 8, .ratio = 60 },
->  	{ .refclk = 19200, .cdclk = 288000, .divider = 4, .ratio = 60 },
+> +struct intel_cdclk_state *
+> +intel_atomic_get_old_cdclk_state(struct intel_atomic_state *state)
+> +{
+> +	return to_intel_cdclk_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->cdclk.obj));
+> +}
+> +
+> +struct intel_cdclk_state *
+> +intel_atomic_get_new_cdclk_state(struct intel_atomic_state *state)
+> +{
+> +	return to_intel_cdclk_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->cdclk.obj));
+> +}
+> +
+
+Not really sure about this one. We don't do this for any other similar
+cases, and I think the macro versions are needed if we have any kind of
+const vs. non-const funny business going on. I guess in this particular
+case we don't, but pretty sure that was a real thing for some other
+atomic states when I was pondering about using functions rather than
+macros for those.
+
+So I'm tempted to say we should stick to a common pattern across the
+board if possible.
+
+>  int intel_cdclk_atomic_check(struct intel_atomic_state *state,
+>  			     bool *need_cdclk_calc)
+>  {
 > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> index 77e8c8e1708f..50b93226517e 100644
+> index bb3a778c506b..77e8c8e1708f 100644
 > --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
 > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-> @@ -16,14 +16,6 @@ struct drm_i915_private;
->  struct intel_atomic_state;
->  struct intel_crtc_state;
+> @@ -76,11 +76,14 @@ int intel_cdclk_atomic_check(struct intel_atomic_state *state,
+>  struct intel_cdclk_state *
+>  intel_atomic_get_cdclk_state(struct intel_atomic_state *state);
 >  
-> -struct intel_cdclk_vals {
-> -	u32 cdclk;
-> -	u16 refclk;
-> -	u16 waveform;
-> -	u8 divider;	/* CD2X divider * 2 */
-> -	u8 ratio;
-> -};
-> -
->  struct intel_cdclk_state {
->  	struct intel_global_state base;
+> -#define to_intel_cdclk_state(x) container_of((x), struct intel_cdclk_state, base)
+> -#define intel_atomic_get_old_cdclk_state(state) \
+> -	to_intel_cdclk_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->cdclk.obj))
+> -#define intel_atomic_get_new_cdclk_state(state) \
+> -	to_intel_cdclk_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->cdclk.obj))
+> +struct intel_cdclk_state *
+> +to_intel_cdclk_state(struct intel_global_state *cdclk_state);
+> +
+> +struct intel_cdclk_state *
+> +intel_atomic_get_old_cdclk_state(struct intel_atomic_state *state);
+> +
+> +struct intel_cdclk_state *
+> +intel_atomic_get_new_cdclk_state(struct intel_atomic_state *state);
+>  
+>  int intel_cdclk_init(struct drm_i915_private *dev_priv);
 >  
 > -- 
 > 2.30.2
