@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4646E470161
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 14:17:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7237E470164
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 14:17:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE0F10E26D;
-	Fri, 10 Dec 2021 13:17:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A28E610E292;
+	Fri, 10 Dec 2021 13:17:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D51E10E2C0
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 13:17:17 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8310110E29B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 13:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639142237; x=1670678237;
+ t=1639142251; x=1670678251;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cK0juDwHRuowEMBuKCCeWf2ZAz/mK/W9RylUKRuB3HE=;
- b=PbSPGKxrpcs15clzziLKT12/bk4bR2nP26zs64VmE/cOycl8f3nnKGgf
- CSLZyFoi/F9hemnrjR+kG0yhoo20bk4epQmQ5x2ZQObtcPoz1ueFNhfaM
- z49zoaPKbd4wmIuHCrRSsudRKFFI2ifhJ+0iF/HtQyzI0E0yT0p9Pcx9f
- 2Z/VC46JNhAQyZPAWwvWbozpHs8EkukgkWC83mHmno31fk9pxGrCmsbdN
- leL5ThOY48pqwRAGq1po6BC8RoMZu+TNb1ePX4VRjcKjBmDF7f3qAaVPp
- jTeoA/oO10WoHvv9+B36P3JQqtPUEFkxJv0+pGT8wUU1NMO2b+57ObgBf A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="235856455"
-X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="235856455"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 05:17:16 -0800
-X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="543976784"
+ bh=OQpdAr6mqas4qaeos4SaJ5MZGMrNGnyJDlFK2Xq/8Y8=;
+ b=eMAdAjJmbnjWh+eFciqApZMQmM74e1nPlAcit9bWFpPukz39aGQRsKuj
+ iSp2ZVHSdKWpsXNHgRRKqIF+Q/rNmH5b47bTvuIWkh0E9K1Sw/QYpHumy
+ 2DLfOpXTHNpo72WmXYk0MfYeFz6cnH0TbRGmx5UIA1x8hFNpSNUG+6xzd
+ JxIGNmTe/V2ZDVqqZTKnpOHTICsnMhZnDbYIjJwi5wXxt461JR5gitzqo
+ xr4mvlMmaYkVGvRZtD50+5d9Ks5VXo0t8dvLuO8mzpMMcxZGKHRZR9M0B
+ rFW290P1/HxNIJ429qRE40t78m+k754i3hyPzufw5B2NjTV5dbLcnDmL7 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="219031389"
+X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="219031389"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2021 05:17:21 -0800
+X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="602108252"
 Received: from mpcorrig-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.4.173])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 05:17:14 -0800
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2021 05:17:19 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Dec 2021 15:16:55 +0200
-Message-Id: <e1e195b8ca1252d1e149c8185d107a5517496973.1639142167.git.jani.nikula@intel.com>
+Date: Fri, 10 Dec 2021 15:16:56 +0200
+Message-Id: <52b1cf56c16bf669a1357ce81d9232c5480914a4.1639142167.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1639142167.git.jani.nikula@intel.com>
 References: <cover.1639142167.git.jani.nikula@intel.com>
@@ -45,8 +45,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/7] drm/i915/reset: include intel_display.h
- instead of intel_display_types.h
+Subject: [Intel-gfx] [PATCH v2 2/7] drm/i915/active: remove useless
+ i915_utils.h include
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,29 +63,27 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the more specific include that's needed.
-
-v2: Include intel_display.h (Ville)
+Not needed.
 
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_reset.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_active_types.h | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 63199f0550e6..7be0002d9d70 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -6,7 +6,7 @@
- #include <linux/sched/mm.h>
- #include <linux/stop_machine.h>
+diff --git a/drivers/gpu/drm/i915/i915_active_types.h b/drivers/gpu/drm/i915/i915_active_types.h
+index c149f348a972..b02a78ac87db 100644
+--- a/drivers/gpu/drm/i915/i915_active_types.h
++++ b/drivers/gpu/drm/i915/i915_active_types.h
+@@ -15,8 +15,6 @@
+ #include <linux/rcupdate.h>
+ #include <linux/workqueue.h>
  
--#include "display/intel_display_types.h"
-+#include "display/intel_display.h"
- #include "display/intel_overlay.h"
- 
- #include "gem/i915_gem_context.h"
+-#include "i915_utils.h"
+-
+ struct i915_active_fence {
+ 	struct dma_fence __rcu *fence;
+ 	struct dma_fence_cb cb;
 -- 
 2.30.2
 
