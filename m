@@ -1,59 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 224C047028E
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 15:17:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA99147028A
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 15:17:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2642510E448;
-	Fri, 10 Dec 2021 14:17:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D6CA10E3D9;
+	Fri, 10 Dec 2021 14:17:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
- [205.220.177.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AFAD10E21D;
- Fri, 10 Dec 2021 04:41:47 +0000 (UTC)
-Received: from pps.filterd (m0246632.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1BA0h8Dn028726; 
- Fri, 10 Dec 2021 04:41:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding;
- s=corp-2021-07-09; bh=BTr88Oid/rA8ygfBnVmWVKCbgb7Rzgjd880g4VQw8xc=;
- b=0Cb93HSotRlqs/3pKAMy64/XRqAB+P2X/Wox3E2lVyAccrJ+Pij4PGXxOy1ckrlAbPTY
- BYg6k6VmsOTHUThtzVvvsJ3tscBBW70lVkTI7BSPwWRHD4AHSI6377StoLvUfa8330MI
- u9oxWp0XPJnRNWSOeggcuFFtelGEooCdXZL/s074JT7xCAZxj90e6RpjRsXr66BYrNCH
- zn6yXgFHX2GZJ2txm96RBwT2oR4Ksj1o0pkc17Q2G0MgoqgeLGqOfcZcoMEcT2iGdelM
- Tur8se8lDpPEsIbi+Z6TO+38PY4/mldfC2pSxPLqZjZkrtj+YV3h9UUHacqiCAn5AH5/ pw== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
- by mx0b-00069f02.pphosted.com with ESMTP id 3ctu96vxgt-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 10 Dec 2021 04:41:38 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
- by userp3030.oracle.com (8.16.1.2/8.16.1.2) with SMTP id 1BA4ZIFj158678;
- Fri, 10 Dec 2021 04:41:37 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
- by userp3030.oracle.com with ESMTP id 3cqwf3cfjh-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 10 Dec 2021 04:41:37 +0000
-Received: from userp3030.oracle.com (userp3030.oracle.com [127.0.0.1])
- by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 1BA4fax2171495;
- Fri, 10 Dec 2021 04:41:36 GMT
-Received: from ca-dev112.us.oracle.com (ca-dev112.us.oracle.com [10.147.25.63])
- by userp3030.oracle.com with ESMTP id 3cqwf3cfj8-1;
- Fri, 10 Dec 2021 04:41:36 +0000
-From: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com
+ [IPv6:2607:f8b0:4864:20::532])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 185EF10E22B;
+ Fri, 10 Dec 2021 06:12:26 +0000 (UTC)
+Received: by mail-pg1-x532.google.com with SMTP id 133so7159612pgc.12;
+ Thu, 09 Dec 2021 22:12:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id;
+ bh=/LgIoqp+9eCFXsSIrUddR1cUnlEA0gr3FDJwt9FwpB4=;
+ b=F/DKMOqCADZ2iys8N9RMtDYqvtaevKIV8kYJyzYWwlm3CrgaNQHO6yt7PgDEiHDMQq
+ uuiWG0jnT8jE5egMgW/BwiUqsf8fHa1DOyj50L26Ty+hWnBNh2a30CWPM3rTp6gRYd46
+ KdJrc+eZY2R8KoU48ukES6FztFrsS7msrqHRYDm66WVXn5xawk+NG5d67Z6ijoaTMSvg
+ kc2U9KVyd/nD427OvpfABNrZ0Nfem/E7jWg9BRMYf8u/6fiCT4wLJHYvlCfVG6yABruU
+ JW6m1F6Z2DnYjQxv4fGHiLBKVcJaZ/eboqnQ7WwNGTWrKAYzAJ1K7oTPdaGuviR6/vqG
+ ttqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=/LgIoqp+9eCFXsSIrUddR1cUnlEA0gr3FDJwt9FwpB4=;
+ b=AjGBJtlYN5n1pOG3ossKYWYtZ9Q8Kimsndw5hD/XLJkdpLCQfpJoAc77kbPTu3yFjo
+ 4VLCtNPbhBFLvULNX5yvVq7bfvHERoUAJRHyBhMndF3XMPNAPqyOuOyo0l96KwPmGEHv
+ rDMGnxaTCXRPSDV7V9SjoaPRAqYEIOcgVWUGkgnkb3pe4RdFLlhWrkB66+AoFENXcoBu
+ ZkSH6MibOf2Fi0w+HC+3bsw5XKPm+YXyn9ow6HQQwHMvNRlRgQlwcJ90dCBxsShcmGvn
+ ecU5NLNys19ZVBhhXQXhttWWhulxJizxHOxmjw5CZsQabeZQUFT/VSQXiTUjpSZH5gSZ
+ Vr/w==
+X-Gm-Message-State: AOAM5326SKzDqb8lU68abp46EEveUGmJbrAuKKA28Ezp2wEE0mCSNGC0
+ 7dda5AE/J479dECt/PTsu9U=
+X-Google-Smtp-Source: ABdhPJwjyoGaZ8qyg+I7MEr/BNnu9mrOaLLSZfkwqNoALutrr6ljVlILgf7r7M9mA00KxdlS0cTOBw==
+X-Received: by 2002:a63:6848:: with SMTP id d69mr36797444pgc.496.1639116745620; 
+ Thu, 09 Dec 2021 22:12:25 -0800 (PST)
+Received: from localhost.localdomain ([159.226.95.43])
+ by smtp.googlemail.com with ESMTPSA id i2sm1792234pfg.90.2021.12.09.22.12.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 09 Dec 2021 22:12:25 -0800 (PST)
+From: Miaoqian Lin <linmq006@gmail.com>
 To: 
-Date: Thu,  9 Dec 2021 20:41:24 -0800
-Message-Id: <20211210044129.12422-1-harshit.m.mogalapalli@oracle.com>
-X-Mailer: git-send-email 2.27.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: Kf_45Qv52Q32v4ly4mCVeyIdjbQTtb1O
-X-Proofpoint-ORIG-GUID: Kf_45Qv52Q32v4ly4mCVeyIdjbQTtb1O
+Date: Fri, 10 Dec 2021 06:11:48 +0000
+Message-Id: <20211210061152.29087-1-linmq006@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Fri, 10 Dec 2021 14:17:02 +0000
-Subject: [Intel-gfx] [PATCH] drm: i915: display: intel_dmc: Fixes an
- unsigned subtraction which can never be negative.
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Fix inconsistent object in
+ IS_ERR and PTR_ERR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,40 +63,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, harshit.m.mogalapalli@oracle.com,
- dan.carpenter@oracle.com
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ linmq006@gmail.com, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Nathan Chancellor <nathan@kernel.org>, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-smatch warning:
-drivers/gpu/drm/i915/display/intel_dmc.c:601 parse_dmc_fw() warn:
-unsigned 'fw->size - offset' is never less than zero
+Fix inconsistent object in IS_ERR and PTR_ERR in
+igt_dmabuf_import_same_driver and igt_dmabuf_import_same_driver_lmem.
+As obj is the return value of __i915_gem_object_create_user,
+the proper object to be passed as argument to PTR_ERR is obj.
 
-Firmware size is size_t and offset is u32. So the subtraction is
-unsigned which can never be less than zero.
-
-Fixes: 3d5928a168a9 ("drm/i915/xelpd: Pipe A DMC plugging")
-Signed-off-by: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+Signed-off-by: Miaoqian Lin <linmq006@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 0cab18f972d1..2f477c298b00 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -598,7 +598,7 @@ static void parse_dmc_fw(struct drm_i915_private *dev_priv,
- 			continue;
- 
- 		offset = readcount + dmc->dmc_info[id].dmc_offset * 4;
--		if (fw->size - offset < 0) {
-+		if (offset > fw->size) {
- 			drm_err(&dev_priv->drm, "Reading beyond the fw_size\n");
- 			continue;
- 		}
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+index 4a6bb64c3a35..3cc74b0fed06 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+@@ -102,7 +102,7 @@ static int igt_dmabuf_import_same_driver_lmem(void *arg)
+ 	obj = __i915_gem_object_create_user(i915, PAGE_SIZE, &lmem, 1);
+ 	if (IS_ERR(obj)) {
+ 		pr_err("__i915_gem_object_create_user failed with err=%ld\n",
+-		       PTR_ERR(dmabuf));
++		       PTR_ERR(obj));
+ 		err = PTR_ERR(obj);
+ 		goto out_ret;
+ 	}
+@@ -158,7 +158,7 @@ static int igt_dmabuf_import_same_driver(struct drm_i915_private *i915,
+ 					    regions, num_regions);
+ 	if (IS_ERR(obj)) {
+ 		pr_err("__i915_gem_object_create_user failed with err=%ld\n",
+-		       PTR_ERR(dmabuf));
++		       PTR_ERR(obj));
+ 		err = PTR_ERR(obj);
+ 		goto out_ret;
+ 	}
 -- 
-2.27.0
+2.17.1
 
