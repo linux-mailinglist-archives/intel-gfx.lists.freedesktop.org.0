@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C023E46FA14
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 06:19:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF7746FA1F
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 06:23:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A41C10E2A4;
-	Fri, 10 Dec 2021 05:19:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C07710E1FD;
+	Fri, 10 Dec 2021 05:23:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65C7A10E2A4
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 05:19:25 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C94910E1FD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 05:23:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639113565; x=1670649565;
+ t=1639113814; x=1670649814;
  h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=ZT0W3imXJkVYjuceoH0t0dbmQ/z7cU4NoA/qH41vp8A=;
- b=fff3H/uokBkriU4pSukMzEiqYc2obc1IH1Z4pagqIx6wB1L3IBfGcNQ2
- DaB1i04Axmedg2azSROFNTxVHcgqgHIM0rCeY7rt4b92deigLhT3+DrXe
- +rXwxzNzQa8BDHo1ylXfgh0HM44aUFprSItJfYRYjE37KAIpWeu4cVws/
- VeR4seko9ngN2jGjDpJdAY1lb4er35ktTrJtJlrgHPlnzLXvLMZ8ayWf/
- Jfa80hATtuX0b8UlXthlem2aB/ditIcbMiE/V/wykIHWPn4pmQrmK9sWW
- EB72J1Y13ZiKcdAs66btgvt+pc/PUt2v4LNvGVWwK2lgnVEnB15bzaWx3 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="218965966"
-X-IronPort-AV: E=Sophos;i="5.88,194,1635231600"; d="scan'208";a="218965966"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 21:19:24 -0800
+ bh=Jaj9SgapddsmX4surMZmjPJQaQPxL0uIDKfMK63XvKY=;
+ b=Qsc47DEDM4+VrLBeaNiq5gUZU8pVERRNKxr1Xp1wX7ER13hM1MCkfsIH
+ Ad//4qUuvBzkgGQc/ExRsCXnMRIuDtOuxNAVxtIAqr7l1Pyg8FkWLlf1o
+ q6wz9QDP96DfSUrrTXr99xue1Ylu1+SzpVs4kPDuCC5YVRAceklnt50A+
+ mItS8k1LdTyfkXmZfYWZfBviDKo4oucPDMbdS3sPvfZOC5UtHOQNnpLMM
+ 6rLucmXnlTpP4L/RDEotAwCG5o+uhkXzhPzM1MV0c3Kg3EoXCkWmDK3H9
+ kVP7djzlJ9W5vMPNJiuMpH3DKlrm5zzQrlBNVlAsyobusNvWJjHEr7+T7 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="262387131"
+X-IronPort-AV: E=Sophos;i="5.88,194,1635231600"; d="scan'208";a="262387131"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2021 21:23:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,194,1635231600"; d="scan'208";a="680622996"
+X-IronPort-AV: E=Sophos;i="5.88,194,1635231600"; d="scan'208";a="463539977"
 Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by orsmga005.jf.intel.com with ESMTP; 09 Dec 2021 21:19:19 -0800
+ by orsmga006.jf.intel.com with ESMTP; 09 Dec 2021 21:23:32 -0800
 From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Dec 2021 10:43:49 +0530
-Message-Id: <20211210051349.4063860-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Date: Fri, 10 Dec 2021 10:48:02 +0530
+Message-Id: <20211210051802.4063958-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH V2] drm/i915/adl-n: Enable ADL-N platform
+Subject: [Intel-gfx] [PATCH V3] drm/i915/adl-n: Enable ADL-N platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,6 +60,11 @@ Adding PCI device ids and enabling ADL-N platform.
 ADL-N from i915 point of view is subplatform of ADL-P.
 
 BSpec: 68397
+
+Changes since V2:
+	- Added version log history
+Changes since V1:
+	- replace IS_ALDERLAKE_N with IS_ADLP_N - Jani Nikula
 
 Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
 ---
