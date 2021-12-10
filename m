@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 140AC46FD83
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 10:15:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53A4A46FD86
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 10:16:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDD7810E289;
-	Fri, 10 Dec 2021 09:15:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84FCA10E2A2;
+	Fri, 10 Dec 2021 09:16:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BEFB710E289;
- Fri, 10 Dec 2021 09:15:07 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D037810E2CC;
+ Fri, 10 Dec 2021 09:16:21 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B60C3A0099;
- Fri, 10 Dec 2021 09:15:07 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CBF57A0099;
+ Fri, 10 Dec 2021 09:16:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Anisse Astier" <anisse@astier.eu>
-Date: Fri, 10 Dec 2021 09:15:07 -0000
-Message-ID: <163912770770.3444.6522706730515009726@emeril.freedesktop.org>
+Date: Fri, 10 Dec 2021 09:16:21 -0000
+Message-ID: <163912778183.3442.6849422737405379124@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20211209220042.310848-1-anisse@astier.eu>
 In-Reply-To: <20211209220042.310848-1-anisse@astier.eu>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_GPD_Win_Max_display_fixes_=28rev6=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?GPD_Win_Max_display_fixes_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,29 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-77130fc0f92b drm/i915/opregion: add support for mailbox #5 EDID
--:20: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#20: 
-https://patchwork.kernel.org/project/intel-gfx/patch/20200828061941.17051-1-jani.nikula@intel.com/
-
--:30: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match 
-#30: 
-Co-developed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Anisse Astier <anisse@astier.eu>
--:46: ERROR:CODE_INDENT: code indent should use tabs where possible
-#46: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4982:
-+^I^I^I            "[CONNECTOR:%d:%s] Using OpRegion EDID\n",$
-
--:47: ERROR:CODE_INDENT: code indent should use tabs where possible
-#47: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4983:
-+^I^I^I            connector->base.id, connector->name);$
-
--:171: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
-#171: FILE: drivers/gpu/drm/i915/display/intel_opregion.h:77:
-+struct edid * intel_opregion_get_edid(struct intel_connector *connector);
-
-total: 3 errors, 2 warnings, 0 checks, 134 lines checked
-373d0f5e01c4 drm: Add orientation quirk for GPD Win Max
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
