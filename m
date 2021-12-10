@@ -1,36 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32FC146FF6B
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 12:06:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5294546FF98
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 12:14:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BE9A10E764;
-	Fri, 10 Dec 2021 11:06:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16EF810E42B;
+	Fri, 10 Dec 2021 11:14:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B316F10E764;
- Fri, 10 Dec 2021 11:06:09 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="225600658"
-X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="225600658"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 03:06:08 -0800
-X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="602081981"
-Received: from kbinis1x-mobl2.gar.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.209.148.127])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 03:06:05 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Dec 2021 11:05:56 +0000
-Message-Id: <20211210110556.883735-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31A8410E427
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 11:14:31 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="238552405"
+X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="238552405"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2021 03:14:30 -0800
+X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="516721300"
+Received: from mpcorrig-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.4.173])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2021 03:14:28 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211209182109.29786-4-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211209182109.29786-1-ville.syrjala@linux.intel.com>
+ <20211209182109.29786-4-ville.syrjala@linux.intel.com>
+Date: Fri, 10 Dec 2021 13:14:22 +0200
+Message-ID: <87r1ak1zld.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Stop doing writeback from the shrinker
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/fbc: Introduce device info
+ fbc_mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,386 +48,350 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Michal Hocko <mhocko@suse.com>, intel-gfx@lists.freedesktop.org,
- Hugh Dickins <hughd@google.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Renato Pereyra <renatopereyra@google.com>,
- Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- stable@vger.kernel.org,
- Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On Thu, 09 Dec 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Declare which FBC instances are present via a fbc_mask
+> in device info. For the moment there is just the one.
+>
+> TODO: Need to figure out how to expose multiple FBC
+> instances in debugs. Just different file names, or move
+> the files under some subdirectory (per-crtc maybe), or
+> something else? This will need igt changes as well.
 
-This effectively removes writeback which was added in 2d6692e642e7
-("drm/i915: Start writeback from the shrinker").
+I think I'd prefer moving under crtc subdirectory. That exposes the pipe
+<-> fbc relationship in a natural way so that the userspace doesn't have
+to know, right?
 
-Digging through the history it seems we went back and forth on the topic
-of whether it would be safe a couple of times. See for instance
-5537252b6b6d ("drm/i915: Invalidate our pages under memory pressure")
-where Hugh Dickins has advised against it. I do not have enough expertise
-in the memory management area so am hoping for expert input here.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbc.c      | 42 +++++++++++--------
+>  .../drm/i915/display/skl_universal_plane.c    | 12 +++---
+>  drivers/gpu/drm/i915/i915_drv.h               |  2 +-
+>  drivers/gpu/drm/i915/i915_pci.c               | 22 +++++-----
+>  drivers/gpu/drm/i915/intel_device_info.c      |  4 +-
+>  drivers/gpu/drm/i915/intel_device_info.h      |  2 +-
+>  6 files changed, 48 insertions(+), 36 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+> index 2f1a72f98c4b..359aa8389e5a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -49,11 +49,12 @@
+>  #include "intel_fbc.h"
+>  #include "intel_frontbuffer.h"
+>=20=20
+> -#define for_each_fbc_id(__fbc_id) \
+> -	for ((__fbc_id) =3D FBC_A; (__fbc_id) < I915_MAX_FBCS; (__fbc_id)++)
+> +#define for_each_fbc_id(__dev_priv, __fbc_id) \
+> +	for ((__fbc_id) =3D FBC_A; (__fbc_id) < I915_MAX_FBCS; (__fbc_id)++) \
+> +		for_each_if(INTEL_INFO(__dev_priv)->fbc_mask & BIT(__fbc_id))
+>=20=20
+>  #define for_each_intel_fbc(__dev_priv, __fbc, __fbc_id) \
+> -	for_each_fbc_id(__fbc_id) \
+> +	for_each_fbc_id((__dev_priv), (__fbc_id)) \
+>  		for_each_if((__fbc) =3D (__dev_priv)->fbc[(__fbc_id)])
+>=20=20
+>  struct intel_fbc_funcs {
+> @@ -1693,32 +1694,35 @@ static struct intel_fbc *intel_fbc_create(struct =
+drm_i915_private *i915,
+>   */
+>  void intel_fbc_init(struct drm_i915_private *i915)
+>  {
+> -	struct intel_fbc *fbc;
+> +	enum fbc_id fbc_id;
+>=20=20
+>  	if (!drm_mm_initialized(&i915->mm.stolen))
+> -		mkwrite_device_info(i915)->display.has_fbc =3D false;
+> +		mkwrite_device_info(i915)->fbc_mask =3D 0;
+>=20=20
+>  	if (need_fbc_vtd_wa(i915))
+> -		mkwrite_device_info(i915)->display.has_fbc =3D false;
+> +		mkwrite_device_info(i915)->fbc_mask =3D 0;
+>=20=20
+>  	i915->params.enable_fbc =3D intel_sanitize_fbc_option(i915);
+>  	drm_dbg_kms(&i915->drm, "Sanitized enable_fbc value: %d\n",
+>  		    i915->params.enable_fbc);
+>=20=20
+> -	if (!HAS_FBC(i915))
+> -		return;
+> +	for_each_fbc_id(i915, fbc_id) {
+> +		struct intel_fbc *fbc;
+>=20=20
+> -	fbc =3D intel_fbc_create(i915, FBC_A);
+> -	if (!fbc)
+> -		return;
+> +		fbc =3D intel_fbc_create(i915, fbc_id);
+> +		if (!fbc)
+> +			continue;
+>=20=20
+> -	/* We still don't have any sort of hardware state readout for FBC, so
+> -	 * deactivate it in case the BIOS activated it to make sure software
+> -	 * matches the hardware state. */
+> -	if (intel_fbc_hw_is_active(fbc))
+> -		intel_fbc_hw_deactivate(fbc);
+> +		/*
+> +		 * We still don't have any sort of hardware state readout
+> +		 * for FBC, so deactivate it in case the BIOS activated it
+> +		 * to make sure software matches the hardware state.
+> +		 */
+> +		if (intel_fbc_hw_is_active(fbc))
+> +			intel_fbc_hw_deactivate(fbc);
+>=20=20
+> -	i915->fbc[fbc->id] =3D fbc;
+> +		i915->fbc[fbc->id] =3D fbc;
+> +	}
+>  }
+>=20=20
+>  static int intel_fbc_debugfs_status_show(struct seq_file *m, void *unuse=
+d)
+> @@ -1814,6 +1818,10 @@ void intel_fbc_debugfs_register(struct drm_i915_pr=
+ivate *i915)
+>  	struct intel_fbc *fbc;
+>  	enum fbc_id fbc_id;
+>=20=20
+> +	/*
+> +	 * FIXME: need to figure out how to name/place
+> +	 * the debugfs files for each FBC instance.
+> +	 */
+>  	for_each_intel_fbc(i915, fbc, fbc_id)
+>  		intel_fbc_debugfs_add(fbc);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
+/gpu/drm/i915/display/skl_universal_plane.c
+> index 9e31eb54b9f4..c8c96accf353 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -1817,19 +1817,21 @@ static int skl_plane_check(struct intel_crtc_stat=
+e *crtc_state,
+>  }
+>=20=20
+>  static bool skl_plane_has_fbc(struct drm_i915_private *dev_priv,
+> -			      enum pipe pipe, enum plane_id plane_id)
+> +			      enum fbc_id fbc_id, enum plane_id plane_id)
+>  {
+> -	if (!HAS_FBC(dev_priv))
+> +	if ((INTEL_INFO(dev_priv)->fbc_mask & BIT(fbc_id)) =3D=3D 0)
+>  		return false;
+>=20=20
+> -	return pipe =3D=3D PIPE_A && plane_id =3D=3D PLANE_PRIMARY;
+> +	return plane_id =3D=3D PLANE_PRIMARY;
+>  }
+>=20=20
+>  static struct intel_fbc *skl_plane_fbc(struct drm_i915_private *dev_priv,
+>  				       enum pipe pipe, enum plane_id plane_id)
+>  {
+> -	if (skl_plane_has_fbc(dev_priv, pipe, plane_id))
+> -		return dev_priv->fbc[FBC_A];
+> +	enum fbc_id fbc_id =3D pipe - PIPE_A + FBC_A;
 
-Reason for proposing removal is that there are reports from the field
-which indicate a sysetm wide deadlock (of a sort) implicating i915 doing
-writeback at shrinking time.
+I think this is magic enough that a small intel_fbc_for_pipe() helper
+would be in order. Maybe just locally here if that's the only place
+where the info is needed.
 
-Signature is a hung task notifier kicking in and task traces such as:
-
- [  247.030274] minijail-init   D    0  1773   1770 0x80004082
- [  247.036419] Call Trace:
- [  247.039167]  __schedule+0x57e/0x10d2
- [  247.043175]  ? __schedule+0x586/0x10d2
- [  247.047381]  ? _raw_spin_unlock+0xe/0x20
- [  247.051779]  ? __queue_work+0x316/0x371
- [   247.056079]  schedule+0x7c/0x9f
- [  247.059602]  rwsem_down_write_slowpath+0x2ae/0x494
- [  247.064971]  unregister_shrinker+0x20/0x65
- [  247.069562]  deactivate_locked_super+0x38/0x88
- [  247.074538]  cleanup_mnt+0xcc/0x10e
- [  247.078447]  task_work_run+0x7d/0xa6
- [  247.082459]  do_exit+0x23d/0x831
- [  247.086079]  ? syscall_trace_enter+0x207/0x20e
- [  247.091055]  do_group_exit+0x8d/0x9d
- [  247.095062]  __x64_sys_exit_group+0x17/0x17
- [  247.099750]  do_syscall_64+0x54/0x7e
- [  247.103758]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-
- [  246.876816] chrome          D    0  1791   1785 0x00004080
- [  246.882965] Call Trace:
- [  246.885713]  __schedule+0x57e/0x10d2
- [  246.889724]  ? pcpu_alloc_area+0x25d/0x273
- [  246.894314]  schedule+0x7c/0x9f
- [  246.897836]  rwsem_down_write_slowpath+0x2ae/0x494
- [  246.903207]  register_shrinker_prepared+0x19/0x48
- [  246.908479]  ? test_single_super+0x10/0x10
- [  246.913071]  sget_fc+0x1fc/0x20e
- [  246.916691]  ? kill_litter_super+0x40/0x40
- [  246.921334]  ? proc_apply_options+0x42/0x42
- [  246.926044]  vfs_get_super+0x3a/0xdf
- [  246.930053]  vfs_get_tree+0x2b/0xc3
- [  246.933965]  fc_mount+0x12/0x39
- [  246.937492]  pid_ns_prepare_proc+0x9d/0xc5
- [  246.942085]  alloc_pid+0x275/0x289
- [  246.945900]  copy_process+0x5e5/0xeea
- [  246.950006]  _do_fork+0x95/0x303
- [  246.953628]  __se_sys_clone+0x65/0x7f
- [  246.957735]  do_syscall_64+0x54/0x7e
- [  246.961743]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-
-And finally the smoking gun in:
-
- [  247.383338] CPU: 3 PID: 88 Comm: kswapd0 Tainted: G     U            5.4.154 #36
- [  247.383338] Hardware name: Google Delbin/Delbin, BIOS Google_Delbin.13672.57.0 02/09/2021
- [  247.383339] RIP: 0010:__rcu_read_lock+0x0/0x1a
- [  247.383339] Code: ff ff 0f 0b e9 61 fe ff ff 0f 0b e9 76 fe ff ff 0f 0b 49 8b 44 24 20 e9 59 ff ff ff 0f 0b e9 67 ff ff ff 0f 0b e9 1b ff ff ff <0f> 1f 44 00 00 55 48 89 e5 65 48 8b 04 25 80 5d 01 00 ff 80 f8 03
- [  247.383340] RSP: 0018:ffffb0aa0031b978 EFLAGS: 00000286
- [  247.383340] RAX: 0000000000000000 RBX: fffff6b944ca8040 RCX: fffff6b944ca8001
- [  247.383341] RDX: 0000000000000028 RSI: 0000000000000001 RDI: ffff8b52bc618c18
- [  247.383341] RBP: ffffb0aa0031b9d0 R08: 0000000000000000 R09: ffff8b52fb5f00d8
- [  247.383341] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
- [  247.383342] R13: 61c8864680b583eb R14: 0000000000000001 R15: ffffb0aa0031b980
- [  247.383342] FS:  0000000000000000(0000) GS:ffff8b52fbf80000(0000) knlGS:0000000000000000
- [  247.383343] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
- [  247.383343] CR2: 00007c78a400d680 CR3: 0000000120f46006 CR4: 0000000000762ee0
- [  247.383344] PKRU: 55555554
- [  247.383344] Call Trace:
- [  247.383345]  find_get_entry+0x4c/0x116
- [  247.383345]  find_lock_entry+0xc8/0xec
- [  247.383346]  shmem_writeback+0x7b/0x163
- [  247.383346]  i915_gem_shrink+0x302/0x40b
- [  247.383347]  ? __intel_runtime_pm_get+0x22/0x82
- [  247.383347]  i915_gem_shrinker_scan+0x86/0xa8
- [  247.383348]  shrink_slab+0x272/0x48b
- [  247.383348]  shrink_node+0x784/0xbea
- [  247.383348]  ? rcu_read_unlock_special+0x66/0x15f
- [  247.383349]  ? update_batch_size+0x78/0x78
- [  247.383349]  kswapd+0x75c/0xa56
- [  247.383350]  kthread+0x147/0x156
- [  247.383350]  ? kswapd_run+0xb6/0xb6
- [  247.383351]  ? kthread_blkcg+0x2e/0x2e
- [  247.383351]  ret_from_fork+0x1f/0x40
-
-You will notice the trace is from an older kernel, the problem being
-reproducing the issue on latest upstream base is proving to be tricky due
-other (unrelated) issues.
-
-It is even tricky to repro on an older kernel, with it seemingly needing a
-very specific game, transparent huge pages enabled and a specific memory
-configuration.
-
-However given the history on the topic I could find, assuming what I found
-is not incomplete, suspicion on writeback being not the right thing to do
-in general is still there. I would therefore like to have input from the
-experts here.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Fixes: 2d6692e642e7 ("drm/i915: Start writeback from the shrinker")
-References: 5537252b6b6d ("drm/i915: Invalidate our pages under memory pressure")
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Michal Hocko <mhocko@suse.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com> #v1
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Hugh Dickins <hughd@google.com>
-Cc: Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
-Cc: Renato Pereyra <renatopereyra@google.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v5.3+
----
- drivers/gpu/drm/i915/gem/i915_gem_object.h    |  2 -
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |  4 +-
- drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 10 ----
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c     | 49 -------------------
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  | 18 +++----
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.h  |  1 -
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  6 +--
- .../gpu/drm/i915/gem/selftests/huge_pages.c   |  3 +-
- 8 files changed, 11 insertions(+), 82 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 66f20b803b01..352c7158a487 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -455,7 +455,6 @@ i915_gem_object_unpin_pages(struct drm_i915_gem_object *obj)
- 
- int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj);
- int i915_gem_object_truncate(struct drm_i915_gem_object *obj);
--void i915_gem_object_writeback(struct drm_i915_gem_object *obj);
- 
- /**
-  * i915_gem_object_pin_map - return a contiguous mapping of the entire object
-@@ -621,7 +620,6 @@ int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
- 			 unsigned int max_segment);
- void shmem_sg_free_table(struct sg_table *st, struct address_space *mapping,
- 			 bool dirty, bool backup);
--void __shmem_writeback(size_t size, struct address_space *mapping);
- 
- #ifdef CONFIG_MMU_NOTIFIER
- static inline bool
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index f9f7e44099fe..e188d6137cc0 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -57,10 +57,8 @@ struct drm_i915_gem_object_ops {
- 	void (*put_pages)(struct drm_i915_gem_object *obj,
- 			  struct sg_table *pages);
- 	int (*truncate)(struct drm_i915_gem_object *obj);
--	void (*writeback)(struct drm_i915_gem_object *obj);
- 	int (*shrinker_release_pages)(struct drm_i915_gem_object *obj,
--				      bool no_gpu_wait,
--				      bool should_writeback);
-+				      bool no_gpu_wait);
- 
- 	int (*pread)(struct drm_i915_gem_object *obj,
- 		     const struct drm_i915_gem_pread *arg);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 49c6e55c68ce..52e975f57956 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -168,16 +168,6 @@ int i915_gem_object_truncate(struct drm_i915_gem_object *obj)
- 	return 0;
- }
- 
--/* Try to discard unwanted pages */
--void i915_gem_object_writeback(struct drm_i915_gem_object *obj)
--{
--	assert_object_held_shared(obj);
--	GEM_BUG_ON(i915_gem_object_has_pages(obj));
--
--	if (obj->ops->writeback)
--		obj->ops->writeback(obj);
--}
--
- static void __i915_gem_object_reset_page_iter(struct drm_i915_gem_object *obj)
+> +
+> +	if (skl_plane_has_fbc(dev_priv, fbc_id, plane_id))
+> +		return dev_priv->fbc[fbc_id];
+>  	else
+>  		return NULL;
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index 7ae62e8e6d02..11bf7f4dc12e 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1495,7 +1495,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>  #define I915_HAS_HOTPLUG(dev_priv)	(INTEL_INFO(dev_priv)->display.has_ho=
+tplug)
+>=20=20
+>  #define HAS_FW_BLC(dev_priv)	(GRAPHICS_VER(dev_priv) > 2)
+> -#define HAS_FBC(dev_priv)	(INTEL_INFO(dev_priv)->display.has_fbc)
+> +#define HAS_FBC(dev_priv)	(INTEL_INFO(dev_priv)->fbc_mask !=3D 0)
+>  #define HAS_CUR_FBC(dev_priv)	(!HAS_GMCH(dev_priv) && GRAPHICS_VER(dev_p=
+riv) >=3D 7)
+>=20=20
+>  #define HAS_IPS(dev_priv)	(IS_HSW_ULT(dev_priv) || IS_BROADWELL(dev_priv=
+))
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
+pci.c
+> index 708a23415e9c..c64cc276f169 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -214,13 +214,13 @@ static const struct intel_device_info i845g_info =
+=3D {
+>  static const struct intel_device_info i85x_info =3D {
+>  	I830_FEATURES,
+>  	PLATFORM(INTEL_I85X),
+> -	.display.has_fbc =3D 1,
+> +	.fbc_mask =3D BIT(FBC_A),
+>  };
+>=20=20
+>  static const struct intel_device_info i865g_info =3D {
+>  	I845_FEATURES,
+>  	PLATFORM(INTEL_I865G),
+> -	.display.has_fbc =3D 1,
+> +	.fbc_mask =3D BIT(FBC_A),
+>  };
+>=20=20
+>  #define GEN3_FEATURES \
+> @@ -258,7 +258,7 @@ static const struct intel_device_info i915gm_info =3D=
  {
- 	struct radix_tree_iter iter;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index cc9fe258fba7..b4b8c921063e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -283,54 +283,6 @@ shmem_truncate(struct drm_i915_gem_object *obj)
- 	return 0;
- }
- 
--void __shmem_writeback(size_t size, struct address_space *mapping)
--{
--	struct writeback_control wbc = {
--		.sync_mode = WB_SYNC_NONE,
--		.nr_to_write = SWAP_CLUSTER_MAX,
--		.range_start = 0,
--		.range_end = LLONG_MAX,
--		.for_reclaim = 1,
--	};
--	unsigned long i;
--
--	/*
--	 * Leave mmapings intact (GTT will have been revoked on unbinding,
--	 * leaving only CPU mmapings around) and add those pages to the LRU
--	 * instead of invoking writeback so they are aged and paged out
--	 * as normal.
--	 */
--
--	/* Begin writeback on each dirty page */
--	for (i = 0; i < size >> PAGE_SHIFT; i++) {
--		struct page *page;
--
--		page = find_lock_page(mapping, i);
--		if (!page)
--			continue;
--
--		if (!page_mapped(page) && clear_page_dirty_for_io(page)) {
--			int ret;
--
--			SetPageReclaim(page);
--			ret = mapping->a_ops->writepage(page, &wbc);
--			if (!PageWriteback(page))
--				ClearPageReclaim(page);
--			if (!ret)
--				goto put;
--		}
--		unlock_page(page);
--put:
--		put_page(page);
--	}
--}
--
--static void
--shmem_writeback(struct drm_i915_gem_object *obj)
--{
--	__shmem_writeback(obj->base.size, obj->base.filp->f_mapping);
--}
--
- void
- __i915_gem_object_release_shmem(struct drm_i915_gem_object *obj,
- 				struct sg_table *pages,
-@@ -503,7 +455,6 @@ const struct drm_i915_gem_object_ops i915_gem_shmem_ops = {
- 	.get_pages = shmem_get_pages,
- 	.put_pages = shmem_put_pages,
- 	.truncate = shmem_truncate,
--	.writeback = shmem_writeback,
- 
- 	.pwrite = shmem_pwrite,
- 	.pread = shmem_pread,
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-index 157a9765f483..99a38e016780 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-@@ -55,12 +55,11 @@ static bool unsafe_drop_pages(struct drm_i915_gem_object *obj,
- 	return false;
- }
- 
--static int try_to_writeback(struct drm_i915_gem_object *obj, unsigned int flags)
-+static int obj_invalidate(struct drm_i915_gem_object *obj, unsigned int flags)
+>  	.display.has_overlay =3D 1,
+>  	.display.overlay_needs_physical =3D 1,
+>  	.display.supports_tv =3D 1,
+> -	.display.has_fbc =3D 1,
+> +	.fbc_mask =3D BIT(FBC_A),
+>  	.hws_needs_physical =3D 1,
+>  	.unfenced_needs_alignment =3D 1,
+>  };
+> @@ -283,7 +283,7 @@ static const struct intel_device_info i945gm_info =3D=
  {
- 	if (obj->ops->shrinker_release_pages)
- 		return obj->ops->shrinker_release_pages(obj,
--							!(flags & I915_SHRINK_ACTIVE),
--							flags & I915_SHRINK_WRITEBACK);
-+							!(flags & I915_SHRINK_ACTIVE));
- 
- 	switch (obj->mm.madv) {
- 	case I915_MADV_DONTNEED:
-@@ -70,8 +69,9 @@ static int try_to_writeback(struct drm_i915_gem_object *obj, unsigned int flags)
- 		return 0;
- 	}
- 
--	if (flags & I915_SHRINK_WRITEBACK)
--		i915_gem_object_writeback(obj);
-+       if (obj->base.filp)
-+		invalidate_mapping_pages(file_inode(obj->base.filp)->i_mapping,
-+					 0, (loff_t)-1);
- 
- 	return 0;
- }
-@@ -227,7 +227,7 @@ i915_gem_shrink(struct i915_gem_ww_ctx *ww,
- 				}
- 
- 				if (!__i915_gem_object_put_pages(obj)) {
--					if (!try_to_writeback(obj, shrink))
-+					if (!obj_invalidate(obj, shrink))
- 						count += obj->base.size >> PAGE_SHIFT;
- 				}
- 				if (!ww)
-@@ -339,8 +339,7 @@ i915_gem_shrinker_scan(struct shrinker *shrinker, struct shrink_control *sc)
- 						 &sc->nr_scanned,
- 						 I915_SHRINK_ACTIVE |
- 						 I915_SHRINK_BOUND |
--						 I915_SHRINK_UNBOUND |
--						 I915_SHRINK_WRITEBACK);
-+						 I915_SHRINK_UNBOUND);
- 		}
- 	}
- 
-@@ -361,8 +360,7 @@ i915_gem_shrinker_oom(struct notifier_block *nb, unsigned long event, void *ptr)
- 	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
- 		freed_pages += i915_gem_shrink(NULL, i915, -1UL, NULL,
- 					       I915_SHRINK_BOUND |
--					       I915_SHRINK_UNBOUND |
--					       I915_SHRINK_WRITEBACK);
-+					       I915_SHRINK_UNBOUND);
- 
- 	/* Because we may be allocating inside our own driver, we cannot
- 	 * assert that there are no objects with pinned pages that are not
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.h b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.h
-index 8512470f6fd6..789d6947f9b9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.h
-@@ -22,7 +22,6 @@ unsigned long i915_gem_shrink(struct i915_gem_ww_ctx *ww,
- #define I915_SHRINK_BOUND	BIT(1)
- #define I915_SHRINK_ACTIVE	BIT(2)
- #define I915_SHRINK_VMAPS	BIT(3)
--#define I915_SHRINK_WRITEBACK	BIT(4)
- 
- unsigned long i915_gem_shrink_all(struct drm_i915_private *i915);
- void i915_gem_driver_register__shrinker(struct drm_i915_private *i915);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 218a9b3037c7..b7ca7b66afe7 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -425,8 +425,7 @@ int i915_ttm_purge(struct drm_i915_gem_object *obj)
- }
- 
- static int i915_ttm_shrinker_release_pages(struct drm_i915_gem_object *obj,
--					   bool no_wait_gpu,
--					   bool should_writeback)
-+					   bool no_wait_gpu)
+>  	.display.has_overlay =3D 1,
+>  	.display.overlay_needs_physical =3D 1,
+>  	.display.supports_tv =3D 1,
+> -	.display.has_fbc =3D 1,
+> +	.fbc_mask =3D BIT(FBC_A),
+>  	.hws_needs_physical =3D 1,
+>  	.unfenced_needs_alignment =3D 1,
+>  };
+> @@ -342,7 +342,7 @@ static const struct intel_device_info i965gm_info =3D=
  {
- 	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
- 	struct i915_ttm_tt *i915_tt =
-@@ -467,9 +466,6 @@ static int i915_ttm_shrinker_release_pages(struct drm_i915_gem_object *obj,
- 		return ret;
- 	}
- 
--	if (should_writeback)
--		__shmem_writeback(obj->base.size, i915_tt->filp->f_mapping);
--
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-index c69c7d45aabc..24bbf4d6a63d 100644
---- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-@@ -1647,8 +1647,7 @@ static int igt_shrink_thp(void *arg)
- 	i915_gem_shrink(NULL, i915, -1UL, NULL,
- 			I915_SHRINK_BOUND |
- 			I915_SHRINK_UNBOUND |
--			I915_SHRINK_ACTIVE |
--			I915_SHRINK_WRITEBACK);
-+			I915_SHRINK_ACTIVE);
- 	if (should_swap == i915_gem_object_has_pages(obj)) {
- 		pr_err("unexpected pages mismatch, should_swap=%s\n",
- 		       yesno(should_swap));
--- 
-2.32.0
+>  	GEN4_FEATURES,
+>  	PLATFORM(INTEL_I965GM),
+>  	.is_mobile =3D 1,
+> -	.display.has_fbc =3D 1,
+> +	.fbc_mask =3D BIT(FBC_A),
+>  	.display.has_overlay =3D 1,
+>  	.display.supports_tv =3D 1,
+>  	.hws_needs_physical =3D 1,
+> @@ -360,7 +360,7 @@ static const struct intel_device_info gm45_info =3D {
+>  	GEN4_FEATURES,
+>  	PLATFORM(INTEL_GM45),
+>  	.is_mobile =3D 1,
+> -	.display.has_fbc =3D 1,
+> +	.fbc_mask =3D BIT(FBC_A),
+>  	.display.supports_tv =3D 1,
+>  	.platform_engine_mask =3D BIT(RCS0) | BIT(VCS0),
+>  	.gpu_reset_clobbers_display =3D false,
+> @@ -393,7 +393,7 @@ static const struct intel_device_info ilk_m_info =3D {
+>  	PLATFORM(INTEL_IRONLAKE),
+>  	.is_mobile =3D 1,
+>  	.has_rps =3D true,
+> -	.display.has_fbc =3D 1,
+> +	.fbc_mask =3D BIT(FBC_A),
+>  };
+>=20=20
+>  #define GEN6_FEATURES \
+> @@ -401,7 +401,7 @@ static const struct intel_device_info ilk_m_info =3D {
+>  	.pipe_mask =3D BIT(PIPE_A) | BIT(PIPE_B), \
+>  	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+>  	.display.has_hotplug =3D 1, \
+> -	.display.has_fbc =3D 1, \
+> +	.fbc_mask =3D BIT(FBC_A), \
+>  	.platform_engine_mask =3D BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
+>  	.has_coherent_ggtt =3D true, \
+>  	.has_llc =3D 1, \
+> @@ -452,7 +452,7 @@ static const struct intel_device_info snb_m_gt2_info =
+=3D {
+>  	.pipe_mask =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
+>  	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TR=
+ANSCODER_C), \
+>  	.display.has_hotplug =3D 1, \
+> -	.display.has_fbc =3D 1, \
+> +	.fbc_mask =3D BIT(FBC_A), \
+>  	.platform_engine_mask =3D BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
+>  	.has_coherent_ggtt =3D true, \
+>  	.has_llc =3D 1, \
+> @@ -693,7 +693,7 @@ static const struct intel_device_info skl_gt4_info =
+=3D {
+>  	.has_64bit_reloc =3D 1, \
+>  	.display.has_ddi =3D 1, \
+>  	.display.has_fpga_dbg =3D 1, \
+> -	.display.has_fbc =3D 1, \
+> +	.fbc_mask =3D BIT(FBC_A), \
+>  	.display.has_hdcp =3D 1, \
+>  	.display.has_psr =3D 1, \
+>  	.display.has_psr_hw_tracking =3D 1, \
+> @@ -948,7 +948,7 @@ static const struct intel_device_info adl_s_info =3D {
+>  	.display.has_dp_mst =3D 1,						\
+>  	.display.has_dsb =3D 1,							\
+>  	.display.has_dsc =3D 1,							\
+> -	.display.has_fbc =3D 1,							\
+> +	.fbc_mask =3D BIT(FBC_A),							\
+>  	.display.has_fpga_dbg =3D 1,						\
+>  	.display.has_hdcp =3D 1,							\
+>  	.display.has_hotplug =3D 1,						\
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
+915/intel_device_info.c
+> index a3446a2abcb2..284a8aac51ed 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -328,6 +328,7 @@ void intel_device_info_runtime_init(struct drm_i915_p=
+rivate *dev_priv)
+>  				 "Display fused off, disabling\n");
+>  			info->pipe_mask =3D 0;
+>  			info->cpu_transcoder_mask =3D 0;
+> +			info->fbc_mask =3D 0;
+>  		} else if (fuse_strap & IVB_PIPE_C_DISABLE) {
+>  			drm_info(&dev_priv->drm, "PipeC fused off\n");
+>  			info->pipe_mask &=3D ~BIT(PIPE_C);
+> @@ -339,6 +340,7 @@ void intel_device_info_runtime_init(struct drm_i915_p=
+rivate *dev_priv)
+>  		if (dfsm & SKL_DFSM_PIPE_A_DISABLE) {
+>  			info->pipe_mask &=3D ~BIT(PIPE_A);
+>  			info->cpu_transcoder_mask &=3D ~BIT(TRANSCODER_A);
+> +			info->fbc_mask &=3D ~BIT(FBC_A);
+>  		}
+>  		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
+>  			info->pipe_mask &=3D ~BIT(PIPE_B);
+> @@ -359,7 +361,7 @@ void intel_device_info_runtime_init(struct drm_i915_p=
+rivate *dev_priv)
+>  			info->display.has_hdcp =3D 0;
+>=20=20
+>  		if (dfsm & SKL_DFSM_DISPLAY_PM_DISABLE)
+> -			info->display.has_fbc =3D 0;
+> +			info->fbc_mask =3D 0;
+>=20=20
+>  		if (DISPLAY_VER(dev_priv) >=3D 11 && (dfsm & ICL_DFSM_DMC_DISABLE))
+>  			info->display.has_dmc =3D 0;
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i=
+915/intel_device_info.h
+> index 213ae2c07126..89712019f073 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -156,7 +156,6 @@ enum intel_ppgtt_type {
+>  	func(has_dp_mst); \
+>  	func(has_dsb); \
+>  	func(has_dsc); \
+> -	func(has_fbc); \
+>  	func(has_fpga_dbg); \
+>  	func(has_gmch); \
+>  	func(has_hdcp); \
+> @@ -198,6 +197,7 @@ struct intel_device_info {
+>=20=20
+>  	u8 pipe_mask;
+>  	u8 cpu_transcoder_mask;
+> +	u8 fbc_mask;
 
+I'd rather we started moving these under the display substruct instead
+of the other way round.
+
+Apart from the nitpicks looks good,
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
+
+BR,
+Jani.
+
+>=20=20
+>  	u8 abox_mask;
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
