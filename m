@@ -2,32 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE57D46FE24
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 10:51:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D38346FE7E
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 11:09:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A3E410E44E;
-	Fri, 10 Dec 2021 09:51:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01BA310E2A1;
+	Fri, 10 Dec 2021 10:09:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0AC1B10E448;
- Fri, 10 Dec 2021 09:51:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0071EAADCF;
- Fri, 10 Dec 2021 09:51:19 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50CD510E294;
+ Fri, 10 Dec 2021 10:09:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639130982; x=1670666982;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=r/sr4p6KVhudsUPlxpfIdMiTVMi/O8LJeu7Hyy3nhm8=;
+ b=RXYU4c6ED/nheqMB4TmtgSGO2BE9xALE2NMVdh1o6KUYGzDCXAt+MVL0
+ FQgtn+dExGIwt5r648kSdGqeYBAPB98vssHtVcj9SYS7DIEirk8GIitl3
+ whv/9CXOWtLqbT7bt69Eh4m+a2/4I4AtjdeLzUfYsOIjCI9OfNLvt6MBY
+ JME4tKpqCqp9TPuLLc3kQyprxmfLRlrzh7Do0dMONVn9ufB2bfe0ojX+l
+ QnlNbV9mkSmEDIrWoHMYizAzjCEmcXBC2+iJJAhjPFqbLQTauXvrhBayO
+ HWhXRnIXnMrmGFCuhmhRKXx1tmR/80yFZ0jVsNHs/r0mUUkdZZuAueSQ0 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="238264002"
+X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="238264002"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2021 02:09:41 -0800
+X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="680697974"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2021 02:09:39 -0800
+Date: Fri, 10 Dec 2021 12:09:35 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Chery, Nanley G" <nanley.g.chery@intel.com>
+Message-ID: <20211210100935.GA1142804@ideak-desk.fi.intel.com>
+References: <20211209104711.14790-1-stanislav.lisovskiy@intel.com>
+ <b4302b4804784f2c9379be244ed4f279@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Date: Fri, 10 Dec 2021 09:51:19 -0000
-Message-ID: <163912987997.3443.10858340986894879263@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211209221805.26960-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20211209221805.26960-1-vinay.belgaumkar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/guc=3A_Request_RP0_before_loading_firmware_=28rev2=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b4302b4804784f2c9379be244ed4f279@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Introduce new Tile 4 format
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +56,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Dec 09, 2021 at 05:14:56PM +0200, Chery, Nanley G wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Lisovskiy, Stanislav <stanislav.lisovskiy@intel.com>
+> > Sent: Thursday, December 9, 2021 5:47 AM
+> > To: intel-gfx@lists.freedesktop.org
+> > Cc: dri-devel@lists.freedesktop.org; Lisovskiy, Stanislav
+> > <stanislav.lisovskiy@intel.com>; Saarinen, Jani <jani.saarinen@intel.com>; C,
+> > Ramalingam <ramalingam.c@intel.com>; ville.syrjala@linux.intel.com; Deak,
+> > Imre <imre.deak@intel.com>; Chery, Nanley G <nanley.g.chery@intel.com>
+> > Subject: [PATCH 1/2] drm/i915: Introduce new Tile 4 format
+> > 
+> 
+> We want this patch to be 2/2, right? That way, we expose public kernel
+> support for the format after the kernel gains internal support for it.
 
-Series: drm/i915/guc: Request RP0 before loading firmware (rev2)
-URL   : https://patchwork.freedesktop.org/series/97682/
-State : warning
+Previously modifiers have been added in a separate patch CC'd to
+dri-devel (and that patch needs to be before the one starting to use
+it) and then merged via the i915 tree only after getting an ACK for this
+from Jani or Danvet.
 
-== Summary ==
+The modifier will be exposed to userspace only after the second
+one, so I don't see a problem with that approach.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Either way the patchset looks ok to me:
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-
+> With that fixed, this patch is:
+> 
+> Acked-by: Nanley Chery <nanley.g.chery@intel.com>
+> 
+> Alternatively, you could apply the ack to the prior combined patch if you'd like.
+> 
+> -Nanley
+> 
+> 
+> 
+> > This tiling layout uses 4KB tiles in a row-major layout. It has the same shape as
+> > Tile Y at two granularities: 4KB (128B x 32) and 64B (16B x 4). It only differs from
+> > Tile Y at the 256B granularity in between. At this granularity, Tile Y has a shape
+> > of 16B x 32 rows, but this tiling has a shape of 64B x 8 rows.
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  include/uapi/drm/drm_fourcc.h | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> > 
+> > diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+> > index 7f652c96845b..a146c6df1066 100644
+> > --- a/include/uapi/drm/drm_fourcc.h
+> > +++ b/include/uapi/drm/drm_fourcc.h
+> > @@ -565,6 +565,17 @@ extern "C" {
+> >   */
+> >  #define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC
+> > fourcc_mod_code(INTEL, 8)
+> > 
+> > +/*
+> > + * Intel Tile 4 layout
+> > + *
+> > + * This is a tiled layout using 4KB tiles in a row-major layout. It has
+> > +the same
+> > + * shape as Tile Y at two granularities: 4KB (128B x 32) and 64B (16B x
+> > +4). It
+> > + * only differs from Tile Y at the 256B granularity in between. At this
+> > + * granularity, Tile Y has a shape of 16B x 32 rows, but this tiling
+> > +has a shape
+> > + * of 64B x 8 rows.
+> > + */
+> > +#define I915_FORMAT_MOD_4_TILED         fourcc_mod_code(INTEL, 9)
+> > +
+> >  /*
+> >   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+> >   *
+> > --
+> > 2.24.1.485.gad05a3d8e5
+> 
