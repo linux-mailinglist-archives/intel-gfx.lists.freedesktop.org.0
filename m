@@ -2,53 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD3C4707E2
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 18:55:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED563470AEC
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 20:50:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8327E10E593;
-	Fri, 10 Dec 2021 17:55:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AEDA10ECAE;
+	Fri, 10 Dec 2021 19:50:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2703C10E54E;
- Fri, 10 Dec 2021 17:55:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639158925; x=1670694925;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=yGQ8dD52UewsyCaU8H+F3rrt+TRzzvYwcwOBm160nnI=;
- b=jWTG0wKNGQz7lw2mINScB0JMfVfezamGwkxlsAkXsEfnBMFMHQrHXk/Q
- 5/98iGiziiAQFUSGgVdDFoyrePg2N1xkt27FflpN4XJmM8GidBgufVWWI
- rKJ1+b/pShhnUaQwyV+C9Y61g0E8p3+JzSgRbUHMHg6E4hDOi8zPSYFl2
- bxcCK79tqZa7y9TNssoi+2isU2C2+9ux1400N9huG19UfUi7/QSefYP/V
- Tgozidg4mpvgXs5PY+Xz0uGxDAd7QHTxs9cVDwE62Z0vUCGVUfuXWJENL
- /q/vwIko7KvYXhLSOqd2JSjWHc+kwKY8MbJG8diG1Ikd3eKIgfPcFhz1K Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10194"; a="301787907"
-X-IronPort-AV: E=Sophos;i="5.88,196,1635231600"; d="scan'208";a="301787907"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 09:55:24 -0800
-X-IronPort-AV: E=Sophos;i="5.88,196,1635231600"; d="scan'208";a="463751625"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 09:55:23 -0800
-Date: Fri, 10 Dec 2021 09:50:00 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20211210175000.GA35534@jons-linux-dev-box>
-References: <20211209184814.21125-1-matthew.brost@intel.com>
- <d1fb9875-4af7-301e-cd83-9aeb7e8a5b52@intel.com>
- <439fb357-cdda-2996-bb63-eaf41a7fe4d1@linux.intel.com>
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A883C10EC9E;
+ Fri, 10 Dec 2021 19:50:21 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: bbeckett) with ESMTPSA id EAE491F47AE9
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+ t=1639165820; bh=+JjpwsA0iv+3XffZuyV/VazyWAtMyRYIaD9EZA5fc6Q=;
+ h=From:To:Cc:Subject:Date:From;
+ b=D/MG1D7XvnvG+d73Yw42hFJJZMy9MXG6wTEX3qYEwpq0s8r/ZJw+4U3huBvcDLKWx
+ o4c1v6430kr96fPsAv5Nkhmhz4SMsGGfqpwBHj/yBK8kGAcbQLZf+Tl9CBoIxysgNT
+ +2ChF7X6DXkcnXoKjm9oSHh393aFZ5fVkHZJlsNTZgCnETR7EESZbPpzCnB7J2o0us
+ zP3oujweUWDZ8n2BctTzOvvku07DIHTiNiUWLRvhtx+7shEN7MuKHMMTjsXG2UTSaU
+ tFHmslLdYcJhVOfF8S1ZOQDnKO9mY7p5tyeFAY2ck0Nx/BY1gRv5Ml8FI+944NnuLD
+ W7lCptV/V8/pQ==
+From: Robert Beckett <bob.beckett@collabora.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oak Zeng <oak.zeng@intel.com>
+Date: Fri, 10 Dec 2021 19:50:05 +0000
+Message-Id: <20211210195005.2582884-1-bob.beckett@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <439fb357-cdda-2996-bb63-eaf41a7fe4d1@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Use correct context lock when
- callig clr_context_registered
+Subject: [Intel-gfx] [PATCH] drm/i915/ttm: fix large buffer population
+ trucation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,88 +52,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 10, 2021 at 08:41:22AM +0000, Tvrtko Ursulin wrote:
-> 
-> On 09/12/2021 19:14, Daniele Ceraolo Spurio wrote:
-> > 
-> > 
-> > On 12/9/2021 10:48 AM, Matthew Brost wrote:
-> > > s/ce/cn/ when grabbing guc_state.lock before calling
-> > > clr_context_registered.
-> > > 
-> > > Fixes: 0f7976506de61 ("drm/i915/guc: Rework and simplify locking")
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > Cc: <stable@vger.kernel.org>
-> 
-> I think Cc: stable is not needed here:
-> 
-> $ git tag --contains 0f7976506de61
-> drm-intel-fixes-2021-11-18
-> drm-intel-gt-next-2021-10-08
-> drm-intel-gt-next-2021-10-21
-> drm-intel-gt-next-2021-11-22
-> drm-intel-next-2021-10-15
-> drm-intel-next-fixes-2021-11-09
-> v5.16-rc1
-> v5.16-rc2
-> v5.16-rc3
-> v5.16-rc4
-> 
-> So still can hit 5.16 via fixes. Rodrigo, did I get this right and you will
-> be able to pick it up next week or so?
-> 
+ttm->num_pages is uint32_t which was causing very large buffers to
+only populate a truncated size.
 
-Will remove.
+This fixes gem_create@create-clear igt test on large memory systems.
 
-> > Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > 
-> > I'm assuming we didn't see any splat from the lockdep assert in
-> > clr_context_registered in our CI runs because we never hit this case as
-> > it requires 64k+ contexts. Maybe we can add a selftest to purposely
-> > exercise this path? Not a blocker for merging this fix.
-> 
-> Was the bug found by inspection or reported?
->
+Fixes: 7ae034590cea ("drm/i915/ttm: add tt shmem backend")
+Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Internal testing.
- 
-> Given the buggy function is called steal_guc_id, so if the implication is
-> there is no testing for guc id stealing, then it indeed please add some
-> coverage ASAP.
->
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index 218a9b3037c7..923cc7ad8d70 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -166,7 +166,7 @@ static int i915_ttm_tt_shmem_populate(struct ttm_device *bdev,
+ 	struct intel_memory_region *mr = i915->mm.regions[INTEL_MEMORY_SYSTEM];
+ 	struct i915_ttm_tt *i915_tt = container_of(ttm, typeof(*i915_tt), ttm);
+ 	const unsigned int max_segment = i915_sg_segment_size();
+-	const size_t size = ttm->num_pages << PAGE_SHIFT;
++	const size_t size = (size_t)ttm->num_pages << PAGE_SHIFT;
+ 	struct file *filp = i915_tt->filp;
+ 	struct sgt_iter sgt_iter;
+ 	struct sg_table *st;
+-- 
+2.25.1
 
-Will do. I'll aim to get something out next week.
-
-Matt
- 
-> Regards,
-> 
-> Tvrtko
-> 
-> > 
-> > Daniele
-> > 
-> > > ---
-> > >   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 4 ++--
-> > >   1 file changed, 2 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > index 1f9d4fde421f..9b7b4f4e0d91 100644
-> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > @@ -1937,9 +1937,9 @@ static int steal_guc_id(struct intel_guc *guc,
-> > > struct intel_context *ce)
-> > >           list_del_init(&cn->guc_id.link);
-> > >           ce->guc_id = cn->guc_id;
-> > > -        spin_lock(&ce->guc_state.lock);
-> > > +        spin_lock(&cn->guc_state.lock);
-> > >           clr_context_registered(cn);
-> > > -        spin_unlock(&ce->guc_state.lock);
-> > > +        spin_unlock(&cn->guc_state.lock);
-> > >           set_context_guc_id_invalid(cn);
-> > 
