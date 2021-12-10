@@ -1,50 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FC4C46F7C4
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 00:59:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79D7B46F7CC
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 01:00:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CBDA10E14E;
-	Thu,  9 Dec 2021 23:59:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3C8910E155;
+	Fri, 10 Dec 2021 00:00:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FAE610E14E;
- Thu,  9 Dec 2021 23:59:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639094348; x=1670630348;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=vYptbddzHFaDHp00yuMgqNlmeV7nu61+gUIwifXiCfQ=;
- b=l2vTm8CxPTARSogLb6OH0ZwqoBbOygKqlHEh95Iqk/dobOfymnqzN7La
- IFviv/s26OUS+6jb0RW8BpFXXU9H7xcXm1Y28QRYMmsvIG7R8kIGzoIKK
- e+4RSXZcnFbrNE1w1XPMTbnBi6QfoZ2e4EZlFl9ArwQ9jfe1vitT80QeD
- 79ZYqAgQ4cV0Y8P+KTRNFLuDHydDMNRorjA+C347tQLenqLRezws8ruhs
- G9OWsYHJD7QJ5Mgt0PGaPHwicH9CzjRmH4jpYZ0Jmufehp6DFTcWzSH2G
- quSbu45GeFTGwJBFDDbhvVtn4JuDOqNzKeWcX5Pi/17lNcc9wyirCboPc w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="262340608"
-X-IronPort-AV: E=Sophos;i="5.88,194,1635231600"; d="scan'208";a="262340608"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 15:59:07 -0800
-X-IronPort-AV: E=Sophos;i="5.88,194,1635231600"; d="scan'208";a="680541308"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 15:59:06 -0800
-Date: Thu, 9 Dec 2021 15:59:04 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <20211209235904.GV2219399@mdroper-desk1.amr.corp.intel.com>
-References: <20211209132512.47241-1-andi.shyti@linux.intel.com>
- <20211209132512.47241-9-andi.shyti@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 53EFA10E14E;
+ Fri, 10 Dec 2021 00:00:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4BC00A9A42;
+ Fri, 10 Dec 2021 00:00:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211209132512.47241-9-andi.shyti@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v6 08/11] drm/i915/pxp: Use to_gt() helper
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Fri, 10 Dec 2021 00:00:16 -0000
+Message-ID: <163909441630.3444.9088818501379015160@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211209104711.14790-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20211209104711.14790-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915=3A_Introduce_new_Ti?=
+ =?utf-8?q?le_4_format?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,56 +41,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 09, 2021 at 03:25:09PM +0200, Andi Shyti wrote:
-> Use to_gt() helper consistently throughout the codebase.
-> Pure mechanical s/i915->gt/to_gt(i915). No functional changes.
-> 
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> index 5d169624ad60..726c2b5a3fa3 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> @@ -14,9 +14,11 @@
->  #include "intel_pxp_tee.h"
->  #include "intel_pxp_tee_interface.h"
->  
-> -static inline struct intel_pxp *i915_dev_to_pxp(struct device *i915_kdev)
-> +static  struct intel_pxp *i915_dev_to_pxp(struct device *i915_kdev)
+== Series Details ==
 
-Was dropping the inline here intentional?  It doesn't seem like there's
-any reason to drop it, and if it was intentional the whitespace isn't
-quite right.
+Series: series starting with [1/2] drm/i915: Introduce new Tile 4 format
+URL   : https://patchwork.freedesktop.org/series/97778/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+59d54448d9b9 drm/i915: Introduce new Tile 4 format
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#9: 
+granularity, Tile Y has a shape of 16B x 32 rows, but this tiling has a shape
+
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+d65b79d94e2e drm/i915/dg2: Tile 4 plane format support
+-:13: WARNING:TYPO_SPELLING: 'assocating' may be misspelled - perhaps 'associating'?
+#13: 
+v2: - Moved Tile4 assocating struct for modifier/display to
+                  ^^^^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 159 lines checked
 
 
-Matt
-
->  {
-> -	return &kdev_to_i915(i915_kdev)->gt.pxp;
-> +	struct drm_i915_private *i915 = kdev_to_i915(i915_kdev);
-> +
-> +	return &to_gt(i915)->pxp;
->  }
->  
->  static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
-> -- 
-> 2.34.1
-> 
-
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
