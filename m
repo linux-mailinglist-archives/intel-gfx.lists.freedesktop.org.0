@@ -2,40 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5294546FF98
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 12:14:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D5846FFBC
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 12:22:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16EF810E42B;
-	Fri, 10 Dec 2021 11:14:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57F0610E1AB;
+	Fri, 10 Dec 2021 11:22:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31A8410E427
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 11:14:31 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="238552405"
-X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="238552405"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 03:14:30 -0800
-X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="516721300"
-Received: from mpcorrig-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.4.173])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 03:14:28 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20211209182109.29786-4-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211209182109.29786-1-ville.syrjala@linux.intel.com>
- <20211209182109.29786-4-ville.syrjala@linux.intel.com>
-Date: Fri, 10 Dec 2021 13:14:22 +0200
-Message-ID: <87r1ak1zld.fsf@intel.com>
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [IPv6:2a01:488:42:1000:50ed:8234::])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4593410E1AB;
+ Fri, 10 Dec 2021 11:22:48 +0000 (UTC)
+Received: from ip4d173d4a.dynamic.kabel-deutschland.de ([77.23.61.74]
+ helo=[192.168.66.200]); authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1mvdyz-0007Cq-Hr; Fri, 10 Dec 2021 12:22:34 +0100
+Message-ID: <b9523f2c-4ea3-986c-0607-deadf6481354@leemhuis.info>
+Date: Fri, 10 Dec 2021 12:22:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/fbc: Introduce device info
- fbc_mask
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: de-DE
+To: Hans de Goede <hdegoede@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rajat Jain <rajatja@google.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Lyude <lyude@redhat.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Mark Gross <markgross@kernel.org>, Andy Shevchenko <andy@infradead.org>
+References: <20211005202322.700909-1-hdegoede@redhat.com>
+ <20211005202322.700909-3-hdegoede@redhat.com>
+ <460220bf-a34d-ba23-4624-e296e9ada6bb@leemhuis.info>
+ <0d66aa18-4ad8-a117-8ec2-bc3aa676a14e@redhat.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+In-Reply-To: <0d66aa18-4ad8-a117-8ec2-bc3aa676a14e@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1639135368;
+ 2798c503; 
+X-HE-SMSGID: 1mvdyz-0007Cq-Hr
+Subject: Re: [Intel-gfx] [PATCH 02/10] drm: Add privacy-screen class (v4)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,350 +56,862 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Marco Trevisan <marco.trevisan@canonical.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Sebastien Bacher <seb128@ubuntu.com>, David Airlie <airlied@linux.ie>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
+ platform-driver-x86@vger.kernel.org, Mark Pearson <markpearson@lenovo.com>,
+ Mario Limonciello <mario.limonciello@outlook.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 09 Dec 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Declare which FBC instances are present via a fbc_mask
-> in device info. For the moment there is just the one.
->
-> TODO: Need to figure out how to expose multiple FBC
-> instances in debugs. Just different file names, or move
-> the files under some subdirectory (per-crtc maybe), or
-> something else? This will need igt changes as well.
+On 10.12.21 11:46, Hans de Goede wrote:
+> On 12/10/21 11:12, Thorsten Leemhuis wrote:
+>> Hi, this is your Linux kernel regression tracker speaking.
+>>
+>> Top-posting for once, to make this easy accessible to everyone.
+>>
+>> Hans, I stumbled upon your blog post about something that afaics is
+>> related to below patch:
+>> https://hansdegoede.livejournal.com/25948.html
+>>
+>> To quote:
+>>
+>>> To avoid any regressions distors should modify their initrd
+>>> generation tools to include privacy screen provider drivers in the
+>>> initrd (at least on systems with a privacy screen), before 5.17
+>>> kernels start showing up in their repos.
+>>>
+>>> If this change is not made, then users using a graphical bootsplash
+>>> (plymouth) will get an extra boot-delay of up to 8 seconds
+>>> (DeviceTimeout in plymouthd.defaults) before plymouth will show and
+>>> when using disk-encryption where the LUKS password is requested from
+>>> the initrd, the system will fallback to text-mode after these 8
+>>> seconds.
+>>
+>> Sorry for intruding, but to me as the kernel's regression tracker that
+>> blog post sounds a whole lot like "by kernel development standards this
+>> is not allowed due to the 'no regression rule', as users should never be
+>> required to update something in userspace when updating the kernel".
+> 
+> I completely understand where you are coming from here, but AFAIK
+> the initrd generation has always been a bit of an exception here.
 
-I think I'd prefer moving under crtc subdirectory. That exposes the pipe
-<-> fbc relationship in a natural way so that the userspace doesn't have
-to know, right?
+Many thx for the clarification. Yeah, kinda, but it afaics also partly
+depends on what kind of breakage users have to endure -- which according
+to the description is not that bad in this case, so I guess in this case
+everything is fine as it is.
 
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c      | 42 +++++++++++--------
->  .../drm/i915/display/skl_universal_plane.c    | 12 +++---
->  drivers/gpu/drm/i915/i915_drv.h               |  2 +-
->  drivers/gpu/drm/i915/i915_pci.c               | 22 +++++-----
->  drivers/gpu/drm/i915/intel_device_info.c      |  4 +-
->  drivers/gpu/drm/i915/intel_device_info.h      |  2 +-
->  6 files changed, 48 insertions(+), 36 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
-> index 2f1a72f98c4b..359aa8389e5a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -49,11 +49,12 @@
->  #include "intel_fbc.h"
->  #include "intel_frontbuffer.h"
->=20=20
-> -#define for_each_fbc_id(__fbc_id) \
-> -	for ((__fbc_id) =3D FBC_A; (__fbc_id) < I915_MAX_FBCS; (__fbc_id)++)
-> +#define for_each_fbc_id(__dev_priv, __fbc_id) \
-> +	for ((__fbc_id) =3D FBC_A; (__fbc_id) < I915_MAX_FBCS; (__fbc_id)++) \
-> +		for_each_if(INTEL_INFO(__dev_priv)->fbc_mask & BIT(__fbc_id))
->=20=20
->  #define for_each_intel_fbc(__dev_priv, __fbc, __fbc_id) \
-> -	for_each_fbc_id(__fbc_id) \
-> +	for_each_fbc_id((__dev_priv), (__fbc_id)) \
->  		for_each_if((__fbc) =3D (__dev_priv)->fbc[(__fbc_id)])
->=20=20
->  struct intel_fbc_funcs {
-> @@ -1693,32 +1694,35 @@ static struct intel_fbc *intel_fbc_create(struct =
-drm_i915_private *i915,
->   */
->  void intel_fbc_init(struct drm_i915_private *i915)
->  {
-> -	struct intel_fbc *fbc;
-> +	enum fbc_id fbc_id;
->=20=20
->  	if (!drm_mm_initialized(&i915->mm.stolen))
-> -		mkwrite_device_info(i915)->display.has_fbc =3D false;
-> +		mkwrite_device_info(i915)->fbc_mask =3D 0;
->=20=20
->  	if (need_fbc_vtd_wa(i915))
-> -		mkwrite_device_info(i915)->display.has_fbc =3D false;
-> +		mkwrite_device_info(i915)->fbc_mask =3D 0;
->=20=20
->  	i915->params.enable_fbc =3D intel_sanitize_fbc_option(i915);
->  	drm_dbg_kms(&i915->drm, "Sanitized enable_fbc value: %d\n",
->  		    i915->params.enable_fbc);
->=20=20
-> -	if (!HAS_FBC(i915))
-> -		return;
-> +	for_each_fbc_id(i915, fbc_id) {
-> +		struct intel_fbc *fbc;
->=20=20
-> -	fbc =3D intel_fbc_create(i915, FBC_A);
-> -	if (!fbc)
-> -		return;
-> +		fbc =3D intel_fbc_create(i915, fbc_id);
-> +		if (!fbc)
-> +			continue;
->=20=20
-> -	/* We still don't have any sort of hardware state readout for FBC, so
-> -	 * deactivate it in case the BIOS activated it to make sure software
-> -	 * matches the hardware state. */
-> -	if (intel_fbc_hw_is_active(fbc))
-> -		intel_fbc_hw_deactivate(fbc);
-> +		/*
-> +		 * We still don't have any sort of hardware state readout
-> +		 * for FBC, so deactivate it in case the BIOS activated it
-> +		 * to make sure software matches the hardware state.
-> +		 */
-> +		if (intel_fbc_hw_is_active(fbc))
-> +			intel_fbc_hw_deactivate(fbc);
->=20=20
-> -	i915->fbc[fbc->id] =3D fbc;
-> +		i915->fbc[fbc->id] =3D fbc;
-> +	}
->  }
->=20=20
->  static int intel_fbc_debugfs_status_show(struct seq_file *m, void *unuse=
-d)
-> @@ -1814,6 +1818,10 @@ void intel_fbc_debugfs_register(struct drm_i915_pr=
-ivate *i915)
->  	struct intel_fbc *fbc;
->  	enum fbc_id fbc_id;
->=20=20
-> +	/*
-> +	 * FIXME: need to figure out how to name/place
-> +	 * the debugfs files for each FBC instance.
-> +	 */
->  	for_each_intel_fbc(i915, fbc, fbc_id)
->  		intel_fbc_debugfs_add(fbc);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
-/gpu/drm/i915/display/skl_universal_plane.c
-> index 9e31eb54b9f4..c8c96accf353 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -1817,19 +1817,21 @@ static int skl_plane_check(struct intel_crtc_stat=
-e *crtc_state,
->  }
->=20=20
->  static bool skl_plane_has_fbc(struct drm_i915_private *dev_priv,
-> -			      enum pipe pipe, enum plane_id plane_id)
-> +			      enum fbc_id fbc_id, enum plane_id plane_id)
->  {
-> -	if (!HAS_FBC(dev_priv))
-> +	if ((INTEL_INFO(dev_priv)->fbc_mask & BIT(fbc_id)) =3D=3D 0)
->  		return false;
->=20=20
-> -	return pipe =3D=3D PIPE_A && plane_id =3D=3D PLANE_PRIMARY;
-> +	return plane_id =3D=3D PLANE_PRIMARY;
->  }
->=20=20
->  static struct intel_fbc *skl_plane_fbc(struct drm_i915_private *dev_priv,
->  				       enum pipe pipe, enum plane_id plane_id)
->  {
-> -	if (skl_plane_has_fbc(dev_priv, pipe, plane_id))
-> -		return dev_priv->fbc[FBC_A];
-> +	enum fbc_id fbc_id =3D pipe - PIPE_A + FBC_A;
+Again, thx for your answer.
 
-I think this is magic enough that a small intel_fbc_for_pipe() helper
-would be in order. Maybe just locally here if that's the only place
-where the info is needed.
+Ciao, Thorsten
 
-> +
-> +	if (skl_plane_has_fbc(dev_priv, fbc_id, plane_id))
-> +		return dev_priv->fbc[fbc_id];
->  	else
->  		return NULL;
->  }
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 7ae62e8e6d02..11bf7f4dc12e 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1495,7 +1495,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  #define I915_HAS_HOTPLUG(dev_priv)	(INTEL_INFO(dev_priv)->display.has_ho=
-tplug)
->=20=20
->  #define HAS_FW_BLC(dev_priv)	(GRAPHICS_VER(dev_priv) > 2)
-> -#define HAS_FBC(dev_priv)	(INTEL_INFO(dev_priv)->display.has_fbc)
-> +#define HAS_FBC(dev_priv)	(INTEL_INFO(dev_priv)->fbc_mask !=3D 0)
->  #define HAS_CUR_FBC(dev_priv)	(!HAS_GMCH(dev_priv) && GRAPHICS_VER(dev_p=
-riv) >=3D 7)
->=20=20
->  #define HAS_IPS(dev_priv)	(IS_HSW_ULT(dev_priv) || IS_BROADWELL(dev_priv=
-))
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
-pci.c
-> index 708a23415e9c..c64cc276f169 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -214,13 +214,13 @@ static const struct intel_device_info i845g_info =
-=3D {
->  static const struct intel_device_info i85x_info =3D {
->  	I830_FEATURES,
->  	PLATFORM(INTEL_I85X),
-> -	.display.has_fbc =3D 1,
-> +	.fbc_mask =3D BIT(FBC_A),
->  };
->=20=20
->  static const struct intel_device_info i865g_info =3D {
->  	I845_FEATURES,
->  	PLATFORM(INTEL_I865G),
-> -	.display.has_fbc =3D 1,
-> +	.fbc_mask =3D BIT(FBC_A),
->  };
->=20=20
->  #define GEN3_FEATURES \
-> @@ -258,7 +258,7 @@ static const struct intel_device_info i915gm_info =3D=
- {
->  	.display.has_overlay =3D 1,
->  	.display.overlay_needs_physical =3D 1,
->  	.display.supports_tv =3D 1,
-> -	.display.has_fbc =3D 1,
-> +	.fbc_mask =3D BIT(FBC_A),
->  	.hws_needs_physical =3D 1,
->  	.unfenced_needs_alignment =3D 1,
->  };
-> @@ -283,7 +283,7 @@ static const struct intel_device_info i945gm_info =3D=
- {
->  	.display.has_overlay =3D 1,
->  	.display.overlay_needs_physical =3D 1,
->  	.display.supports_tv =3D 1,
-> -	.display.has_fbc =3D 1,
-> +	.fbc_mask =3D BIT(FBC_A),
->  	.hws_needs_physical =3D 1,
->  	.unfenced_needs_alignment =3D 1,
->  };
-> @@ -342,7 +342,7 @@ static const struct intel_device_info i965gm_info =3D=
- {
->  	GEN4_FEATURES,
->  	PLATFORM(INTEL_I965GM),
->  	.is_mobile =3D 1,
-> -	.display.has_fbc =3D 1,
-> +	.fbc_mask =3D BIT(FBC_A),
->  	.display.has_overlay =3D 1,
->  	.display.supports_tv =3D 1,
->  	.hws_needs_physical =3D 1,
-> @@ -360,7 +360,7 @@ static const struct intel_device_info gm45_info =3D {
->  	GEN4_FEATURES,
->  	PLATFORM(INTEL_GM45),
->  	.is_mobile =3D 1,
-> -	.display.has_fbc =3D 1,
-> +	.fbc_mask =3D BIT(FBC_A),
->  	.display.supports_tv =3D 1,
->  	.platform_engine_mask =3D BIT(RCS0) | BIT(VCS0),
->  	.gpu_reset_clobbers_display =3D false,
-> @@ -393,7 +393,7 @@ static const struct intel_device_info ilk_m_info =3D {
->  	PLATFORM(INTEL_IRONLAKE),
->  	.is_mobile =3D 1,
->  	.has_rps =3D true,
-> -	.display.has_fbc =3D 1,
-> +	.fbc_mask =3D BIT(FBC_A),
->  };
->=20=20
->  #define GEN6_FEATURES \
-> @@ -401,7 +401,7 @@ static const struct intel_device_info ilk_m_info =3D {
->  	.pipe_mask =3D BIT(PIPE_A) | BIT(PIPE_B), \
->  	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
->  	.display.has_hotplug =3D 1, \
-> -	.display.has_fbc =3D 1, \
-> +	.fbc_mask =3D BIT(FBC_A), \
->  	.platform_engine_mask =3D BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
->  	.has_coherent_ggtt =3D true, \
->  	.has_llc =3D 1, \
-> @@ -452,7 +452,7 @@ static const struct intel_device_info snb_m_gt2_info =
-=3D {
->  	.pipe_mask =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
->  	.cpu_transcoder_mask =3D BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TR=
-ANSCODER_C), \
->  	.display.has_hotplug =3D 1, \
-> -	.display.has_fbc =3D 1, \
-> +	.fbc_mask =3D BIT(FBC_A), \
->  	.platform_engine_mask =3D BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
->  	.has_coherent_ggtt =3D true, \
->  	.has_llc =3D 1, \
-> @@ -693,7 +693,7 @@ static const struct intel_device_info skl_gt4_info =
-=3D {
->  	.has_64bit_reloc =3D 1, \
->  	.display.has_ddi =3D 1, \
->  	.display.has_fpga_dbg =3D 1, \
-> -	.display.has_fbc =3D 1, \
-> +	.fbc_mask =3D BIT(FBC_A), \
->  	.display.has_hdcp =3D 1, \
->  	.display.has_psr =3D 1, \
->  	.display.has_psr_hw_tracking =3D 1, \
-> @@ -948,7 +948,7 @@ static const struct intel_device_info adl_s_info =3D {
->  	.display.has_dp_mst =3D 1,						\
->  	.display.has_dsb =3D 1,							\
->  	.display.has_dsc =3D 1,							\
-> -	.display.has_fbc =3D 1,							\
-> +	.fbc_mask =3D BIT(FBC_A),							\
->  	.display.has_fpga_dbg =3D 1,						\
->  	.display.has_hdcp =3D 1,							\
->  	.display.has_hotplug =3D 1,						\
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
-915/intel_device_info.c
-> index a3446a2abcb2..284a8aac51ed 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -328,6 +328,7 @@ void intel_device_info_runtime_init(struct drm_i915_p=
-rivate *dev_priv)
->  				 "Display fused off, disabling\n");
->  			info->pipe_mask =3D 0;
->  			info->cpu_transcoder_mask =3D 0;
-> +			info->fbc_mask =3D 0;
->  		} else if (fuse_strap & IVB_PIPE_C_DISABLE) {
->  			drm_info(&dev_priv->drm, "PipeC fused off\n");
->  			info->pipe_mask &=3D ~BIT(PIPE_C);
-> @@ -339,6 +340,7 @@ void intel_device_info_runtime_init(struct drm_i915_p=
-rivate *dev_priv)
->  		if (dfsm & SKL_DFSM_PIPE_A_DISABLE) {
->  			info->pipe_mask &=3D ~BIT(PIPE_A);
->  			info->cpu_transcoder_mask &=3D ~BIT(TRANSCODER_A);
-> +			info->fbc_mask &=3D ~BIT(FBC_A);
->  		}
->  		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
->  			info->pipe_mask &=3D ~BIT(PIPE_B);
-> @@ -359,7 +361,7 @@ void intel_device_info_runtime_init(struct drm_i915_p=
-rivate *dev_priv)
->  			info->display.has_hdcp =3D 0;
->=20=20
->  		if (dfsm & SKL_DFSM_DISPLAY_PM_DISABLE)
-> -			info->display.has_fbc =3D 0;
-> +			info->fbc_mask =3D 0;
->=20=20
->  		if (DISPLAY_VER(dev_priv) >=3D 11 && (dfsm & ICL_DFSM_DMC_DISABLE))
->  			info->display.has_dmc =3D 0;
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i=
-915/intel_device_info.h
-> index 213ae2c07126..89712019f073 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -156,7 +156,6 @@ enum intel_ppgtt_type {
->  	func(has_dp_mst); \
->  	func(has_dsb); \
->  	func(has_dsc); \
-> -	func(has_fbc); \
->  	func(has_fpga_dbg); \
->  	func(has_gmch); \
->  	func(has_hdcp); \
-> @@ -198,6 +197,7 @@ struct intel_device_info {
->=20=20
->  	u8 pipe_mask;
->  	u8 cpu_transcoder_mask;
-> +	u8 fbc_mask;
-
-I'd rather we started moving these under the display substruct instead
-of the other way round.
-
-Apart from the nitpicks looks good,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
-
-BR,
-Jani.
-
->=20=20
->  	u8 abox_mask;
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+> For example (IIRC) over time we have seen the radeon module growing
+> a runtime dependency on the amdkfd module which also required updated
+> initrd generation tools.
+> 
+> Another example (which I'm sure of) is the i915 driver gaining a softdep
+> on kvmgt (which is now gone again) which required new enough kmod tools
+> to understand this as well as initrd generation tools updates to also
+> take softdeps into account:
+> https://github.com/dracutdevs/dracut/commit/4cdee66c8ed5f82bbd0638e30d867318343b0e6c
+> 
+> More in general if you look at e.g. dracut's git history, there are
+> various other cases where dracut needed to be updated to adjust
+> to kernel changes. For example dracut decides if a module is a block
+> driver and thus may be necessary to have in the initrd based on a
+> list of kernel-symbols the module links to and sometimes those
+> symbols change due to refactoring of kernel internals, see e.g. :
+> https://github.com/dracutdevs/dracut/commit/b292ce7295f18192124e64e5ec31161d09492160
+> 
+> TL;DR: initrd-generators and the kernel are simply tied together so much
+> that users cannot expect to be able to jump to the latest kernel without
+> either updating the initrd-generator, or adding some modules as modules
+> which must always be added to the initrd in the initrd-generator config
+> file (as a workaround).
+> 
+> Declaring kernel changes which break initrd-generation in some way as
+> being regressions, would mean that e.g. we cannot introduce any
+> kernel changes which causes some drm/block/whatever drivers to use
+> some new register helper functions which are not yet on the list of
+> symbols which dracut uses to identify drm/block/whatever drivers.
+> 
+> The only difference between previous initrd-generator breaking changes
+> and this one, is that I decided that it would be good for everyone
+> to be aware of this before hand; and now I get the feeling that I'm
+> being punished for warning people about this instead of just letting
+> things break silently. I know you don't intend your email this way in
+> any way, but still.
+> 
+> Also AFAIK drivers may also at some point drop support for (much) older
+> firmware versions requiring installing a recent linux-firmware together
+> with a new kernel.
+> 
+> In my reading of the rules the 'users should never be required to update
+> something in userspace when updating the kernel' rule is about keeping
+> people's normal programs working, IOW not breaking userspace ABI and that
+> is not happening here.
+> 
+>> But I'm not totally sure that's the case here. Could you please clarify
+>> what happens when a user doesn't update the initramfs. E.g. what happens
+>> besides the mentioned delay and the text mode (which are bad already,
+>> but might be a accetable compormise here -- but that's up for Linus to
+>> decide)? Does everything start to work normally shortly after the kernel
+>> mounted the rootfs and finally can load the missing module?
+> 
+> Yes everything will work normally once the rootfs gets mounted and the
+> missing module gets loaded.
+> 
+> Regards,
+> 
+> Hans
+> 
+> 
+> 
+>> On 05.10.21 22:23, Hans de Goede wrote:
+>>> On some new laptops the LCD panel has a builtin electronic privacy-screen.
+>>> We want to export this functionality as a property on the drm connector
+>>> object. But often this functionality is not exposed on the GPU but on some
+>>> other (ACPI) device.
+>>>
+>>> This commit adds a privacy-screen class allowing the driver for these
+>>> other devices to register themselves as a privacy-screen provider; and
+>>> allowing the drm/kms code to get a privacy-screen provider associated
+>>> with a specific GPU/connector combo.
+>>>
+>>> Changes in v2:
+>>> - Make CONFIG_DRM_PRIVACY_SCREEN a bool which controls if the drm_privacy
+>>>   code gets built as part of the main drm module rather then making it
+>>>   a tristate which builds its own module.
+>>> - Add a #if IS_ENABLED(CONFIG_DRM_PRIVACY_SCREEN) check to
+>>>   drm_privacy_screen_consumer.h and define stubs when the check fails.
+>>>   Together these 2 changes fix several dependency issues.
+>>> - Remove module related code now that this is part of the main drm.ko
+>>> - Use drm_class as class for the privacy-screen devices instead of
+>>>   adding a separate class for this
+>>>
+>>> Changes in v3:
+>>> - Make the static inline drm_privacy_screen_get_state() stub set sw_state
+>>>   and hw_state to PRIVACY_SCREEN_DISABLED to squelch an uninitialized
+>>>   variable warning when CONFIG_DRM_PRIVICAY_SCREEN is not set
+>>>
+>>> Changes in v4:
+>>> - Make drm_privacy_screen_set_sw_state() skip calling out to the hw if
+>>>   hw_state == new_sw_state
+>>>
+>>> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
+>>> Reviewed-by: Lyude Paul <lyude@redhat.com>
+>>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+>>> ---
+>>>  Documentation/gpu/drm-kms-helpers.rst     |  15 +
+>>>  MAINTAINERS                               |   8 +
+>>>  drivers/gpu/drm/Kconfig                   |   4 +
+>>>  drivers/gpu/drm/Makefile                  |   1 +
+>>>  drivers/gpu/drm/drm_drv.c                 |   4 +
+>>>  drivers/gpu/drm/drm_privacy_screen.c      | 403 ++++++++++++++++++++++
+>>>  include/drm/drm_privacy_screen_consumer.h |  50 +++
+>>>  include/drm/drm_privacy_screen_driver.h   |  80 +++++
+>>>  include/drm/drm_privacy_screen_machine.h  |  41 +++
+>>>  9 files changed, 606 insertions(+)
+>>>  create mode 100644 drivers/gpu/drm/drm_privacy_screen.c
+>>>  create mode 100644 include/drm/drm_privacy_screen_consumer.h
+>>>  create mode 100644 include/drm/drm_privacy_screen_driver.h
+>>>  create mode 100644 include/drm/drm_privacy_screen_machine.h
+>>>
+>>> diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/drm-kms-helpers.rst
+>>> index ec2f65b31930..5bb55ec1b9b5 100644
+>>> --- a/Documentation/gpu/drm-kms-helpers.rst
+>>> +++ b/Documentation/gpu/drm-kms-helpers.rst
+>>> @@ -435,3 +435,18 @@ Legacy CRTC/Modeset Helper Functions Reference
+>>>  
+>>>  .. kernel-doc:: drivers/gpu/drm/drm_crtc_helper.c
+>>>     :export:
+>>> +
+>>> +Privacy-screen class
+>>> +====================
+>>> +
+>>> +.. kernel-doc:: drivers/gpu/drm/drm_privacy_screen.c
+>>> +   :doc: overview
+>>> +
+>>> +.. kernel-doc:: include/drm/drm_privacy_screen_driver.h
+>>> +   :internal:
+>>> +
+>>> +.. kernel-doc:: include/drm/drm_privacy_screen_machine.h
+>>> +   :internal:
+>>> +
+>>> +.. kernel-doc:: drivers/gpu/drm/drm_privacy_screen.c
+>>> +   :export:
+>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>> index 28e5f0ae1009..cb94bb3b8724 100644
+>>> --- a/MAINTAINERS
+>>> +++ b/MAINTAINERS
+>>> @@ -6423,6 +6423,14 @@ F:	drivers/gpu/drm/drm_panel.c
+>>>  F:	drivers/gpu/drm/panel/
+>>>  F:	include/drm/drm_panel.h
+>>>  
+>>> +DRM PRIVACY-SCREEN CLASS
+>>> +M:	Hans de Goede <hdegoede@redhat.com>
+>>> +L:	dri-devel@lists.freedesktop.org
+>>> +S:	Maintained
+>>> +T:	git git://anongit.freedesktop.org/drm/drm-misc
+>>> +F:	drivers/gpu/drm/drm_privacy_screen*
+>>> +F:	include/drm/drm_privacy_screen*
+>>> +
+>>>  DRM TTM SUBSYSTEM
+>>>  M:	Christian Koenig <christian.koenig@amd.com>
+>>>  M:	Huang Rui <ray.huang@amd.com>
+>>> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+>>> index 2a926d0de423..c686c08447ac 100644
+>>> --- a/drivers/gpu/drm/Kconfig
+>>> +++ b/drivers/gpu/drm/Kconfig
+>>> @@ -481,3 +481,7 @@ config DRM_PANEL_ORIENTATION_QUIRKS
+>>>  config DRM_LIB_RANDOM
+>>>  	bool
+>>>  	default n
+>>> +
+>>> +config DRM_PRIVACY_SCREEN
+>>> +	bool
+>>> +	default n
+>>> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+>>> index 0dff40bb863c..788fc37096f6 100644
+>>> --- a/drivers/gpu/drm/Makefile
+>>> +++ b/drivers/gpu/drm/Makefile
+>>> @@ -32,6 +32,7 @@ drm-$(CONFIG_OF) += drm_of.o
+>>>  drm-$(CONFIG_PCI) += drm_pci.o
+>>>  drm-$(CONFIG_DEBUG_FS) += drm_debugfs.o drm_debugfs_crc.o
+>>>  drm-$(CONFIG_DRM_LOAD_EDID_FIRMWARE) += drm_edid_load.o
+>>> +drm-$(CONFIG_DRM_PRIVACY_SCREEN) += drm_privacy_screen.o
+>>>  
+>>>  obj-$(CONFIG_DRM_DP_AUX_BUS) += drm_dp_aux_bus.o
+>>>  
+>>> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+>>> index 7a5097467ba5..dc293b771c3f 100644
+>>> --- a/drivers/gpu/drm/drm_drv.c
+>>> +++ b/drivers/gpu/drm/drm_drv.c
+>>> @@ -43,6 +43,7 @@
+>>>  #include <drm/drm_managed.h>
+>>>  #include <drm/drm_mode_object.h>
+>>>  #include <drm/drm_print.h>
+>>> +#include <drm/drm_privacy_screen_machine.h>
+>>>  
+>>>  #include "drm_crtc_internal.h"
+>>>  #include "drm_internal.h"
+>>> @@ -1029,6 +1030,7 @@ static const struct file_operations drm_stub_fops = {
+>>>  
+>>>  static void drm_core_exit(void)
+>>>  {
+>>> +	drm_privacy_screen_lookup_exit();
+>>>  	unregister_chrdev(DRM_MAJOR, "drm");
+>>>  	debugfs_remove(drm_debugfs_root);
+>>>  	drm_sysfs_destroy();
+>>> @@ -1056,6 +1058,8 @@ static int __init drm_core_init(void)
+>>>  	if (ret < 0)
+>>>  		goto error;
+>>>  
+>>> +	drm_privacy_screen_lookup_init();
+>>> +
+>>>  	drm_core_init_complete = true;
+>>>  
+>>>  	DRM_DEBUG("Initialized\n");
+>>> diff --git a/drivers/gpu/drm/drm_privacy_screen.c b/drivers/gpu/drm/drm_privacy_screen.c
+>>> new file mode 100644
+>>> index 000000000000..183a6011adf0
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/drm/drm_privacy_screen.c
+>>> @@ -0,0 +1,403 @@
+>>> +// SPDX-License-Identifier: MIT
+>>> +/*
+>>> + * Copyright (C) 2020 - 2021 Red Hat, Inc.
+>>> + *
+>>> + * Authors:
+>>> + * Hans de Goede <hdegoede@redhat.com>
+>>> + */
+>>> +
+>>> +#include <linux/device.h>
+>>> +#include <linux/kernel.h>
+>>> +#include <linux/list.h>
+>>> +#include <linux/module.h>
+>>> +#include <linux/mutex.h>
+>>> +#include <linux/slab.h>
+>>> +#include <drm/drm_privacy_screen_machine.h>
+>>> +#include <drm/drm_privacy_screen_consumer.h>
+>>> +#include <drm/drm_privacy_screen_driver.h>
+>>> +#include "drm_internal.h"
+>>> +
+>>> +/**
+>>> + * DOC: overview
+>>> + *
+>>> + * This class allows non KMS drivers, from e.g. drivers/platform/x86 to
+>>> + * register a privacy-screen device, which the KMS drivers can then use
+>>> + * to implement the standard privacy-screen properties, see
+>>> + * :ref:`Standard Connector Properties<standard_connector_properties>`.
+>>> + *
+>>> + * KMS drivers using a privacy-screen class device are advised to use the
+>>> + * drm_connector_attach_privacy_screen_provider() and
+>>> + * drm_connector_update_privacy_screen() helpers for dealing with this.
+>>> + */
+>>> +
+>>> +#define to_drm_privacy_screen(dev) \
+>>> +	container_of(dev, struct drm_privacy_screen, dev)
+>>> +
+>>> +static DEFINE_MUTEX(drm_privacy_screen_lookup_lock);
+>>> +static LIST_HEAD(drm_privacy_screen_lookup_list);
+>>> +
+>>> +static DEFINE_MUTEX(drm_privacy_screen_devs_lock);
+>>> +static LIST_HEAD(drm_privacy_screen_devs);
+>>> +
+>>> +/*** drm_privacy_screen_machine.h functions ***/
+>>> +
+>>> +/**
+>>> + * drm_privacy_screen_lookup_add - add an entry to the static privacy-screen
+>>> + *    lookup list
+>>> + * @lookup: lookup list entry to add
+>>> + *
+>>> + * Add an entry to the static privacy-screen lookup list. Note the
+>>> + * &struct list_head which is part of the &struct drm_privacy_screen_lookup
+>>> + * gets added to a list owned by the privacy-screen core. So the passed in
+>>> + * &struct drm_privacy_screen_lookup must not be free-ed until it is removed
+>>> + * from the lookup list by calling drm_privacy_screen_lookup_remove().
+>>> + */
+>>> +void drm_privacy_screen_lookup_add(struct drm_privacy_screen_lookup *lookup)
+>>> +{
+>>> +	mutex_lock(&drm_privacy_screen_lookup_lock);
+>>> +	list_add(&lookup->list, &drm_privacy_screen_lookup_list);
+>>> +	mutex_unlock(&drm_privacy_screen_lookup_lock);
+>>> +}
+>>> +EXPORT_SYMBOL(drm_privacy_screen_lookup_add);
+>>> +
+>>> +/**
+>>> + * drm_privacy_screen_lookup_remove - remove an entry to the static
+>>> + *    privacy-screen lookup list
+>>> + * @lookup: lookup list entry to remove
+>>> + *
+>>> + * Remove an entry previously added with drm_privacy_screen_lookup_add()
+>>> + * from the static privacy-screen lookup list.
+>>> + */
+>>> +void drm_privacy_screen_lookup_remove(struct drm_privacy_screen_lookup *lookup)
+>>> +{
+>>> +	mutex_lock(&drm_privacy_screen_lookup_lock);
+>>> +	list_del(&lookup->list);
+>>> +	mutex_unlock(&drm_privacy_screen_lookup_lock);
+>>> +}
+>>> +EXPORT_SYMBOL(drm_privacy_screen_lookup_remove);
+>>> +
+>>> +/*** drm_privacy_screen_consumer.h functions ***/
+>>> +
+>>> +static struct drm_privacy_screen *drm_privacy_screen_get_by_name(
+>>> +	const char *name)
+>>> +{
+>>> +	struct drm_privacy_screen *priv;
+>>> +	struct device *dev = NULL;
+>>> +
+>>> +	mutex_lock(&drm_privacy_screen_devs_lock);
+>>> +
+>>> +	list_for_each_entry(priv, &drm_privacy_screen_devs, list) {
+>>> +		if (strcmp(dev_name(&priv->dev), name) == 0) {
+>>> +			dev = get_device(&priv->dev);
+>>> +			break;
+>>> +		}
+>>> +	}
+>>> +
+>>> +	mutex_unlock(&drm_privacy_screen_devs_lock);
+>>> +
+>>> +	return dev ? to_drm_privacy_screen(dev) : NULL;
+>>> +}
+>>> +
+>>> +/**
+>>> + * drm_privacy_screen_get - get a privacy-screen provider
+>>> + * @dev: consumer-device for which to get a privacy-screen provider
+>>> + * @con_id: (video)connector name for which to get a privacy-screen provider
+>>> + *
+>>> + * Get a privacy-screen provider for a privacy-screen attached to the
+>>> + * display described by the @dev and @con_id parameters.
+>>> + *
+>>> + * Return:
+>>> + * * A pointer to a &struct drm_privacy_screen on success.
+>>> + * * ERR_PTR(-ENODEV) if no matching privacy-screen is found
+>>> + * * ERR_PTR(-EPROBE_DEFER) if there is a matching privacy-screen,
+>>> + *                          but it has not been registered yet.
+>>> + */
+>>> +struct drm_privacy_screen *drm_privacy_screen_get(struct device *dev,
+>>> +						  const char *con_id)
+>>> +{
+>>> +	const char *dev_id = dev ? dev_name(dev) : NULL;
+>>> +	struct drm_privacy_screen_lookup *l;
+>>> +	struct drm_privacy_screen *priv;
+>>> +	const char *provider = NULL;
+>>> +	int match, best = -1;
+>>> +
+>>> +	/*
+>>> +	 * For now we only support using a static lookup table, which is
+>>> +	 * populated by the drm_privacy_screen_arch_init() call. This should
+>>> +	 * be extended with device-tree / fw_node lookup when support is added
+>>> +	 * for device-tree using hardware with a privacy-screen.
+>>> +	 *
+>>> +	 * The lookup algorithm was shamelessly taken from the clock
+>>> +	 * framework:
+>>> +	 *
+>>> +	 * We do slightly fuzzy matching here:
+>>> +	 *  An entry with a NULL ID is assumed to be a wildcard.
+>>> +	 *  If an entry has a device ID, it must match
+>>> +	 *  If an entry has a connection ID, it must match
+>>> +	 * Then we take the most specific entry - with the following order
+>>> +	 * of precedence: dev+con > dev only > con only.
+>>> +	 */
+>>> +	mutex_lock(&drm_privacy_screen_lookup_lock);
+>>> +
+>>> +	list_for_each_entry(l, &drm_privacy_screen_lookup_list, list) {
+>>> +		match = 0;
+>>> +
+>>> +		if (l->dev_id) {
+>>> +			if (!dev_id || strcmp(l->dev_id, dev_id))
+>>> +				continue;
+>>> +
+>>> +			match += 2;
+>>> +		}
+>>> +
+>>> +		if (l->con_id) {
+>>> +			if (!con_id || strcmp(l->con_id, con_id))
+>>> +				continue;
+>>> +
+>>> +			match += 1;
+>>> +		}
+>>> +
+>>> +		if (match > best) {
+>>> +			provider = l->provider;
+>>> +			best = match;
+>>> +		}
+>>> +	}
+>>> +
+>>> +	mutex_unlock(&drm_privacy_screen_lookup_lock);
+>>> +
+>>> +	if (!provider)
+>>> +		return ERR_PTR(-ENODEV);
+>>> +
+>>> +	priv = drm_privacy_screen_get_by_name(provider);
+>>> +	if (!priv)
+>>> +		return ERR_PTR(-EPROBE_DEFER);
+>>> +
+>>> +	return priv;
+>>> +}
+>>> +EXPORT_SYMBOL(drm_privacy_screen_get);
+>>> +
+>>> +/**
+>>> + * drm_privacy_screen_put - release a privacy-screen reference
+>>> + * @priv: privacy screen reference to release
+>>> + *
+>>> + * Release a privacy-screen provider reference gotten through
+>>> + * drm_privacy_screen_get(). May be called with a NULL or ERR_PTR,
+>>> + * in which case it is a no-op.
+>>> + */
+>>> +void drm_privacy_screen_put(struct drm_privacy_screen *priv)
+>>> +{
+>>> +	if (IS_ERR_OR_NULL(priv))
+>>> +		return;
+>>> +
+>>> +	put_device(&priv->dev);
+>>> +}
+>>> +EXPORT_SYMBOL(drm_privacy_screen_put);
+>>> +
+>>> +/**
+>>> + * drm_privacy_screen_set_sw_state - set a privacy-screen's sw-state
+>>> + * @priv: privacy screen to set the sw-state for
+>>> + * @sw_state: new sw-state value to set
+>>> + *
+>>> + * Set the sw-state of a privacy screen. If the privacy-screen is not
+>>> + * in a locked hw-state, then the actual and hw-state of the privacy-screen
+>>> + * will be immediately updated to the new value. If the privacy-screen is
+>>> + * in a locked hw-state, then the new sw-state will be remembered as the
+>>> + * requested state to put the privacy-screen in when it becomes unlocked.
+>>> + *
+>>> + * Return: 0 on success, negative error code on failure.
+>>> + */
+>>> +int drm_privacy_screen_set_sw_state(struct drm_privacy_screen *priv,
+>>> +				    enum drm_privacy_screen_status sw_state)
+>>> +{
+>>> +	int ret = 0;
+>>> +
+>>> +	mutex_lock(&priv->lock);
+>>> +
+>>> +	if (!priv->ops) {
+>>> +		ret = -ENODEV;
+>>> +		goto out;
+>>> +	}
+>>> +
+>>> +	/*
+>>> +	 * As per the DRM connector properties documentation, setting the
+>>> +	 * sw_state while the hw_state is locked is allowed. In this case
+>>> +	 * it is a no-op other then storing the new sw_state so that it
+>>> +	 * can be honored when the state gets unlocked.
+>>> +	 * Also skip the set if the hw already is in the desired state.
+>>> +	 */
+>>> +	if (priv->hw_state >= PRIVACY_SCREEN_DISABLED_LOCKED ||
+>>> +	    priv->hw_state == sw_state) {
+>>> +		priv->sw_state = sw_state;
+>>> +		goto out;
+>>> +	}
+>>> +
+>>> +	ret = priv->ops->set_sw_state(priv, sw_state);
+>>> +out:
+>>> +	mutex_unlock(&priv->lock);
+>>> +	return ret;
+>>> +}
+>>> +EXPORT_SYMBOL(drm_privacy_screen_set_sw_state);
+>>> +
+>>> +/**
+>>> + * drm_privacy_screen_get_state - get privacy-screen's current state
+>>> + * @priv: privacy screen to get the state for
+>>> + * @sw_state_ret: address where to store the privacy-screens current sw-state
+>>> + * @hw_state_ret: address where to store the privacy-screens current hw-state
+>>> + *
+>>> + * Get the current state of a privacy-screen, both the sw-state and the
+>>> + * hw-state.
+>>> + */
+>>> +void drm_privacy_screen_get_state(struct drm_privacy_screen *priv,
+>>> +				  enum drm_privacy_screen_status *sw_state_ret,
+>>> +				  enum drm_privacy_screen_status *hw_state_ret)
+>>> +{
+>>> +	mutex_lock(&priv->lock);
+>>> +	*sw_state_ret = priv->sw_state;
+>>> +	*hw_state_ret = priv->hw_state;
+>>> +	mutex_unlock(&priv->lock);
+>>> +}
+>>> +EXPORT_SYMBOL(drm_privacy_screen_get_state);
+>>> +
+>>> +/*** drm_privacy_screen_driver.h functions ***/
+>>> +
+>>> +static ssize_t sw_state_show(struct device *dev,
+>>> +			     struct device_attribute *attr, char *buf)
+>>> +{
+>>> +	struct drm_privacy_screen *priv = to_drm_privacy_screen(dev);
+>>> +	const char * const sw_state_names[] = {
+>>> +		"Disabled",
+>>> +		"Enabled",
+>>> +	};
+>>> +	ssize_t ret;
+>>> +
+>>> +	mutex_lock(&priv->lock);
+>>> +
+>>> +	if (!priv->ops)
+>>> +		ret = -ENODEV;
+>>> +	else if (WARN_ON(priv->sw_state >= ARRAY_SIZE(sw_state_names)))
+>>> +		ret = -ENXIO;
+>>> +	else
+>>> +		ret = sprintf(buf, "%s\n", sw_state_names[priv->sw_state]);
+>>> +
+>>> +	mutex_unlock(&priv->lock);
+>>> +	return ret;
+>>> +}
+>>> +/*
+>>> + * RO: Do not allow setting the sw_state through sysfs, this MUST be done
+>>> + * through the drm_properties on the drm_connector.
+>>> + */
+>>> +static DEVICE_ATTR_RO(sw_state);
+>>> +
+>>> +static ssize_t hw_state_show(struct device *dev,
+>>> +			     struct device_attribute *attr, char *buf)
+>>> +{
+>>> +	struct drm_privacy_screen *priv = to_drm_privacy_screen(dev);
+>>> +	const char * const hw_state_names[] = {
+>>> +		"Disabled",
+>>> +		"Enabled",
+>>> +		"Disabled, locked",
+>>> +		"Enabled, locked",
+>>> +	};
+>>> +	ssize_t ret;
+>>> +
+>>> +	mutex_lock(&priv->lock);
+>>> +
+>>> +	if (!priv->ops)
+>>> +		ret = -ENODEV;
+>>> +	else if (WARN_ON(priv->hw_state >= ARRAY_SIZE(hw_state_names)))
+>>> +		ret = -ENXIO;
+>>> +	else
+>>> +		ret = sprintf(buf, "%s\n", hw_state_names[priv->hw_state]);
+>>> +
+>>> +	mutex_unlock(&priv->lock);
+>>> +	return ret;
+>>> +}
+>>> +static DEVICE_ATTR_RO(hw_state);
+>>> +
+>>> +static struct attribute *drm_privacy_screen_attrs[] = {
+>>> +	&dev_attr_sw_state.attr,
+>>> +	&dev_attr_hw_state.attr,
+>>> +	NULL
+>>> +};
+>>> +ATTRIBUTE_GROUPS(drm_privacy_screen);
+>>> +
+>>> +static struct device_type drm_privacy_screen_type = {
+>>> +	.name = "privacy_screen",
+>>> +	.groups = drm_privacy_screen_groups,
+>>> +};
+>>> +
+>>> +static void drm_privacy_screen_device_release(struct device *dev)
+>>> +{
+>>> +	struct drm_privacy_screen *priv = to_drm_privacy_screen(dev);
+>>> +
+>>> +	kfree(priv);
+>>> +}
+>>> +
+>>> +/**
+>>> + * drm_privacy_screen_register - register a privacy-screen
+>>> + * @parent: parent-device for the privacy-screen
+>>> + * @ops: &struct drm_privacy_screen_ops pointer with ops for the privacy-screen
+>>> + *
+>>> + * Create and register a privacy-screen.
+>>> + *
+>>> + * Return:
+>>> + * * A pointer to the created privacy-screen on success.
+>>> + * * An ERR_PTR(errno) on failure.
+>>> + */
+>>> +struct drm_privacy_screen *drm_privacy_screen_register(
+>>> +	struct device *parent, const struct drm_privacy_screen_ops *ops)
+>>> +{
+>>> +	struct drm_privacy_screen *priv;
+>>> +	int ret;
+>>> +
+>>> +	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
+>>> +	if (!priv)
+>>> +		return ERR_PTR(-ENOMEM);
+>>> +
+>>> +	mutex_init(&priv->lock);
+>>> +
+>>> +	priv->dev.class = drm_class;
+>>> +	priv->dev.type = &drm_privacy_screen_type;
+>>> +	priv->dev.parent = parent;
+>>> +	priv->dev.release = drm_privacy_screen_device_release;
+>>> +	dev_set_name(&priv->dev, "privacy_screen-%s", dev_name(parent));
+>>> +	priv->ops = ops;
+>>> +
+>>> +	priv->ops->get_hw_state(priv);
+>>> +
+>>> +	ret = device_register(&priv->dev);
+>>> +	if (ret) {
+>>> +		put_device(&priv->dev);
+>>> +		return ERR_PTR(ret);
+>>> +	}
+>>> +
+>>> +	mutex_lock(&drm_privacy_screen_devs_lock);
+>>> +	list_add(&priv->list, &drm_privacy_screen_devs);
+>>> +	mutex_unlock(&drm_privacy_screen_devs_lock);
+>>> +
+>>> +	return priv;
+>>> +}
+>>> +EXPORT_SYMBOL(drm_privacy_screen_register);
+>>> +
+>>> +/**
+>>> + * drm_privacy_screen_unregister - unregister privacy-screen
+>>> + * @priv: privacy-screen to unregister
+>>> + *
+>>> + * Unregister a privacy-screen registered with drm_privacy_screen_register().
+>>> + * May be called with a NULL or ERR_PTR, in which case it is a no-op.
+>>> + */
+>>> +void drm_privacy_screen_unregister(struct drm_privacy_screen *priv)
+>>> +{
+>>> +	if (IS_ERR_OR_NULL(priv))
+>>> +		return;
+>>> +
+>>> +	mutex_lock(&drm_privacy_screen_devs_lock);
+>>> +	list_del(&priv->list);
+>>> +	mutex_unlock(&drm_privacy_screen_devs_lock);
+>>> +
+>>> +	mutex_lock(&priv->lock);
+>>> +	priv->ops = NULL;
+>>> +	mutex_unlock(&priv->lock);
+>>> +
+>>> +	device_unregister(&priv->dev);
+>>> +}
+>>> +EXPORT_SYMBOL(drm_privacy_screen_unregister);
+>>> diff --git a/include/drm/drm_privacy_screen_consumer.h b/include/drm/drm_privacy_screen_consumer.h
+>>> new file mode 100644
+>>> index 000000000000..0cbd23b0453d
+>>> --- /dev/null
+>>> +++ b/include/drm/drm_privacy_screen_consumer.h
+>>> @@ -0,0 +1,50 @@
+>>> +/* SPDX-License-Identifier: MIT */
+>>> +/*
+>>> + * Copyright (C) 2020 Red Hat, Inc.
+>>> + *
+>>> + * Authors:
+>>> + * Hans de Goede <hdegoede@redhat.com>
+>>> + */
+>>> +
+>>> +#ifndef __DRM_PRIVACY_SCREEN_CONSUMER_H__
+>>> +#define __DRM_PRIVACY_SCREEN_CONSUMER_H__
+>>> +
+>>> +#include <linux/device.h>
+>>> +#include <drm/drm_connector.h>
+>>> +
+>>> +struct drm_privacy_screen;
+>>> +
+>>> +#if IS_ENABLED(CONFIG_DRM_PRIVACY_SCREEN)
+>>> +struct drm_privacy_screen *drm_privacy_screen_get(struct device *dev,
+>>> +						  const char *con_id);
+>>> +void drm_privacy_screen_put(struct drm_privacy_screen *priv);
+>>> +
+>>> +int drm_privacy_screen_set_sw_state(struct drm_privacy_screen *priv,
+>>> +				    enum drm_privacy_screen_status sw_state);
+>>> +void drm_privacy_screen_get_state(struct drm_privacy_screen *priv,
+>>> +				  enum drm_privacy_screen_status *sw_state_ret,
+>>> +				  enum drm_privacy_screen_status *hw_state_ret);
+>>> +#else
+>>> +static inline struct drm_privacy_screen *drm_privacy_screen_get(struct device *dev,
+>>> +								const char *con_id)
+>>> +{
+>>> +	return ERR_PTR(-ENODEV);
+>>> +}
+>>> +static inline void drm_privacy_screen_put(struct drm_privacy_screen *priv)
+>>> +{
+>>> +}
+>>> +static inline int drm_privacy_screen_set_sw_state(struct drm_privacy_screen *priv,
+>>> +						  enum drm_privacy_screen_status sw_state)
+>>> +{
+>>> +	return -ENODEV;
+>>> +}
+>>> +static inline void drm_privacy_screen_get_state(struct drm_privacy_screen *priv,
+>>> +						enum drm_privacy_screen_status *sw_state_ret,
+>>> +						enum drm_privacy_screen_status *hw_state_ret)
+>>> +{
+>>> +	*sw_state_ret = PRIVACY_SCREEN_DISABLED;
+>>> +	*hw_state_ret = PRIVACY_SCREEN_DISABLED;
+>>> +}
+>>> +#endif
+>>> +
+>>> +#endif
+>>> diff --git a/include/drm/drm_privacy_screen_driver.h b/include/drm/drm_privacy_screen_driver.h
+>>> new file mode 100644
+>>> index 000000000000..5187ae52eb03
+>>> --- /dev/null
+>>> +++ b/include/drm/drm_privacy_screen_driver.h
+>>> @@ -0,0 +1,80 @@
+>>> +/* SPDX-License-Identifier: MIT */
+>>> +/*
+>>> + * Copyright (C) 2020 Red Hat, Inc.
+>>> + *
+>>> + * Authors:
+>>> + * Hans de Goede <hdegoede@redhat.com>
+>>> + */
+>>> +
+>>> +#ifndef __DRM_PRIVACY_SCREEN_DRIVER_H__
+>>> +#define __DRM_PRIVACY_SCREEN_DRIVER_H__
+>>> +
+>>> +#include <linux/device.h>
+>>> +#include <linux/list.h>
+>>> +#include <linux/mutex.h>
+>>> +#include <drm/drm_connector.h>
+>>> +
+>>> +struct drm_privacy_screen;
+>>> +
+>>> +/**
+>>> + * struct drm_privacy_screen_ops - drm_privacy_screen operations
+>>> + *
+>>> + * Defines the operations which the privacy-screen class code may call.
+>>> + * These functions should be implemented by the privacy-screen driver.
+>>> + */
+>>> +struct drm_privacy_screen_ops {
+>>> +	/**
+>>> +	 * @set_sw_state: Called to request a change of the privacy-screen
+>>> +	 * state. The privacy-screen class code contains a check to avoid this
+>>> +	 * getting called when the hw_state reports the state is locked.
+>>> +	 * It is the driver's responsibility to update sw_state and hw_state.
+>>> +	 * This is always called with the drm_privacy_screen's lock held.
+>>> +	 */
+>>> +	int (*set_sw_state)(struct drm_privacy_screen *priv,
+>>> +			    enum drm_privacy_screen_status sw_state);
+>>> +	/**
+>>> +	 * @get_hw_state: Called to request that the driver gets the current
+>>> +	 * privacy-screen state from the hardware and then updates sw_state and
+>>> +	 * hw_state accordingly. This will be called by the core just before
+>>> +	 * the privacy-screen is registered in sysfs.
+>>> +	 */
+>>> +	void (*get_hw_state)(struct drm_privacy_screen *priv);
+>>> +};
+>>> +
+>>> +/**
+>>> + * struct drm_privacy_screen - central privacy-screen structure
+>>> + *
+>>> + * Central privacy-screen structure, this contains the struct device used
+>>> + * to register the screen in sysfs, the screen's state, ops, etc.
+>>> + */
+>>> +struct drm_privacy_screen {
+>>> +	/** @dev: device used to register the privacy-screen in sysfs. */
+>>> +	struct device dev;
+>>> +	/** @lock: mutex protection all fields in this struct. */
+>>> +	struct mutex lock;
+>>> +	/** @list: privacy-screen devices list list-entry. */
+>>> +	struct list_head list;
+>>> +	/**
+>>> +	 * @ops: &struct drm_privacy_screen_ops for this privacy-screen.
+>>> +	 * This is NULL if the driver has unregistered the privacy-screen.
+>>> +	 */
+>>> +	const struct drm_privacy_screen_ops *ops;
+>>> +	/**
+>>> +	 * @sw_state: The privacy-screen's software state, see
+>>> +	 * :ref:`Standard Connector Properties<standard_connector_properties>`
+>>> +	 * for more info.
+>>> +	 */
+>>> +	enum drm_privacy_screen_status sw_state;
+>>> +	/**
+>>> +	 * @hw_state: The privacy-screen's hardware state, see
+>>> +	 * :ref:`Standard Connector Properties<standard_connector_properties>`
+>>> +	 * for more info.
+>>> +	 */
+>>> +	enum drm_privacy_screen_status hw_state;
+>>> +};
+>>> +
+>>> +struct drm_privacy_screen *drm_privacy_screen_register(
+>>> +	struct device *parent, const struct drm_privacy_screen_ops *ops);
+>>> +void drm_privacy_screen_unregister(struct drm_privacy_screen *priv);
+>>> +
+>>> +#endif
+>>> diff --git a/include/drm/drm_privacy_screen_machine.h b/include/drm/drm_privacy_screen_machine.h
+>>> new file mode 100644
+>>> index 000000000000..aaa0d38cce92
+>>> --- /dev/null
+>>> +++ b/include/drm/drm_privacy_screen_machine.h
+>>> @@ -0,0 +1,41 @@
+>>> +/* SPDX-License-Identifier: MIT */
+>>> +/*
+>>> + * Copyright (C) 2020 Red Hat, Inc.
+>>> + *
+>>> + * Authors:
+>>> + * Hans de Goede <hdegoede@redhat.com>
+>>> + */
+>>> +
+>>> +#ifndef __DRM_PRIVACY_SCREEN_MACHINE_H__
+>>> +#define __DRM_PRIVACY_SCREEN_MACHINE_H__
+>>> +
+>>> +#include <linux/list.h>
+>>> +
+>>> +/**
+>>> + * struct drm_privacy_screen_lookup -  static privacy-screen lookup list entry
+>>> + *
+>>> + * Used for the static lookup-list for mapping privacy-screen consumer
+>>> + * dev-connector pairs to a privacy-screen provider.
+>>> + */
+>>> +struct drm_privacy_screen_lookup {
+>>> +	/** @list: Lookup list list-entry. */
+>>> +	struct list_head list;
+>>> +	/** @dev_id: Consumer device name or NULL to match all devices. */
+>>> +	const char *dev_id;
+>>> +	/** @con_id: Consumer connector name or NULL to match all connectors. */
+>>> +	const char *con_id;
+>>> +	/** @provider: dev_name() of the privacy_screen provider. */
+>>> +	const char *provider;
+>>> +};
+>>> +
+>>> +void drm_privacy_screen_lookup_add(struct drm_privacy_screen_lookup *lookup);
+>>> +void drm_privacy_screen_lookup_remove(struct drm_privacy_screen_lookup *lookup);
+>>> +
+>>> +static inline void drm_privacy_screen_lookup_init(void)
+>>> +{
+>>> +}
+>>> +static inline void drm_privacy_screen_lookup_exit(void)
+>>> +{
+>>> +}
+>>> +
+>>> +#endif
+>>>
+>>
+> 
+> 
