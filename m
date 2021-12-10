@@ -1,40 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4559046F8FC
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 03:11:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A71246F901
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 03:15:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A701010E1EE;
-	Fri, 10 Dec 2021 02:11:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6468210E1CE;
+	Fri, 10 Dec 2021 02:15:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFD1E10E1C3;
- Fri, 10 Dec 2021 02:11:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="235764765"
-X-IronPort-AV: E=Sophos;i="5.88,194,1635231600"; d="scan'208";a="235764765"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 18:11:07 -0800
-X-IronPort-AV: E=Sophos;i="5.88,194,1635231600"; d="scan'208";a="516570392"
-Received: from steffens-ivm1.ger.corp.intel.com (HELO intel.com)
- ([10.252.53.116])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2021 18:11:04 -0800
-Date: Fri, 10 Dec 2021 04:11:01 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <YbK3FyffoS8jl+zM@intel.intel>
-References: <20211209132512.47241-1-andi.shyti@linux.intel.com>
- <20211209132512.47241-11-andi.shyti@linux.intel.com>
- <20211210001858.GX2219399@mdroper-desk1.amr.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 96FAC89F71;
+ Fri, 10 Dec 2021 02:15:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 82AC7A00A0;
+ Fri, 10 Dec 2021 02:15:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211210001858.GX2219399@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v6 10/11] drm/i915: Use to_gt() helper for
- GGTT accesses
+Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 10 Dec 2021 02:15:18 -0000
+Message-ID: <163910251850.3444.12839279379507056697@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1639057801.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1639057801.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_include_reductions?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,30 +40,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
+== Series Details ==
 
-> > GGTT is currently available both through i915->ggtt and gt->ggtt, and we
-> > eventually want to get rid of the i915->ggtt one.
-> > Use to_gt() for all i915->ggtt accesses to help with the future
-> > refactoring.
-> 
-> I think we can also convert the two references in i915_drm_suspend() and
-> i915_drm_resume(), right?  With those converted, I think the only
-> remaining use of i915->ggtt will be the call to intel_gt_init_hw_early()
-> during startup that assigns the gt->ggtt pointer.  Maybe we should just
-> make that function assign a drmm_kzalloc() and drop the i915->ggtt
-> completely?
+Series: drm/i915: include reductions
+URL   : https://patchwork.freedesktop.org/series/97789/
+State : failure
 
-I think calling directly drmm_kzalloc() and get rid of i915->ggtt
-is a good idea.
+== Summary ==
 
-Thanks,
-Andi
+CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  DESCEND objtool
+  CHK     include/generated/compile.h
+  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_create.o
+In file included from drivers/gpu/drm/i915/gem/i915_gem_create.c:9:
+./drivers/gpu/drm/i915/pxp/intel_pxp.h: In function ‘intel_pxp_start’:
+./drivers/gpu/drm/i915/pxp/intel_pxp.h:45:10: error: ‘ENODEV’ undeclared (first use in this function)
+  return -ENODEV;
+          ^~~~~~
+./drivers/gpu/drm/i915/pxp/intel_pxp.h:45:10: note: each undeclared identifier is reported only once for each function it appears in
+./drivers/gpu/drm/i915/pxp/intel_pxp.h: In function ‘intel_pxp_key_check’:
+./drivers/gpu/drm/i915/pxp/intel_pxp.h:62:10: error: ‘ENODEV’ undeclared (first use in this function)
+  return -ENODEV;
+          ^~~~~~
+scripts/Makefile.build:287: recipe for target 'drivers/gpu/drm/i915/gem/i915_gem_create.o' failed
+make[4]: *** [drivers/gpu/drm/i915/gem/i915_gem_create.o] Error 1
+scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm/i915' failed
+make[3]: *** [drivers/gpu/drm/i915] Error 2
+scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm' failed
+make[2]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:549: recipe for target 'drivers/gpu' failed
+make[1]: *** [drivers/gpu] Error 2
+Makefile:1846: recipe for target 'drivers' failed
+make: *** [drivers] Error 2
+
+
