@@ -2,32 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D32054703F1
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 16:33:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E0434703F8
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 16:36:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06EA810E76D;
-	Fri, 10 Dec 2021 15:33:41 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2713F10E7B1;
- Fri, 10 Dec 2021 15:33:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 20614AADCF;
- Fri, 10 Dec 2021 15:33:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2836232930006126233=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C74810EA58;
+	Fri, 10 Dec 2021 15:36:25 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE0B010EA41;
+ Fri, 10 Dec 2021 15:36:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="324630337"
+X-IronPort-AV: E=Sophos;i="5.88,196,1635231600"; d="scan'208";a="324630337"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2021 07:36:23 -0800
+X-IronPort-AV: E=Sophos;i="5.88,196,1635231600"; d="scan'208";a="463700570"
+Received: from kbinis1x-mobl2.gar.corp.intel.com (HELO [10.209.148.127])
+ ([10.209.148.127])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2021 07:36:19 -0800
+Message-ID: <931129d0-4e86-48f9-7b2e-bddef93697c6@linux.intel.com>
+Date: Fri, 10 Dec 2021 15:36:17 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Fri, 10 Dec 2021 15:33:40 -0000
-Message-ID: <163915042012.3442.12695286582849805266@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Intel-gfx@lists.freedesktop.org
 References: <20211210110556.883735-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20211210110556.883735-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Stop_doing_writeback_from_the_shrinker?=
+ <a7898ef462a49db825b3fdd4efdba1e546466473.camel@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <a7898ef462a49db825b3fdd4efdba1e546466473.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Stop doing writeback from the
+ shrinker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,215 +51,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Michal Hocko <mhocko@suse.com>, Hugh Dickins <hughd@google.com>,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Renato Pereyra <renatopereyra@google.com>,
+ Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ stable@vger.kernel.org,
+ Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2836232930006126233==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 10/12/2021 14:46, Thomas Hellström wrote:
+> On Fri, 2021-12-10 at 11:05 +0000, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> This effectively removes writeback which was added in 2d6692e642e7
+>> ("drm/i915: Start writeback from the shrinker").
+>>
+>> Digging through the history it seems we went back and forth on the
+>> topic
+>> of whether it would be safe a couple of times. See for instance
+>> 5537252b6b6d ("drm/i915: Invalidate our pages under memory pressure")
+>> where Hugh Dickins has advised against it. I do not have enough
+>> expertise
+>> in the memory management area so am hoping for expert input here.
+>>
+>> Reason for proposing removal is that there are reports from the field
+>> which indicate a sysetm wide deadlock (of a sort) implicating i915
+>> doing
+>> writeback at shrinking time.
+>>
+>> Signature is a hung task notifier kicking in and task traces such as:
+> 
+> It would be interesting to see what exactly the find_get_entry is
+> blocked on. The other two tasks are blocked on the shrinker_rwsem which
+> is held by i915. If it's indeed a deadlock with either of those two,
 
-Series: drm/i915: Stop doing writeback from the shrinker
-URL   : https://patchwork.freedesktop.org/series/97856/
-State : success
+It may indeed be a livelock instead of a deadlock. I have received a 
+newer trace and it indeed shows kswapd in running state. But no progress 
+in 120s and dead machine sounded like too suspicious it could happen 
+with just a gaming workload so I assumed a more serious issue than just 
+severe memory pressure.
 
-== Summary ==
+> then the fix Chris is working on for an unrelated issue we discovered
+> with shrinking would move out the writeback call from the
+> shrinker_rwsem and resolve this, but if i915 is in turn deadlocking
+> with another process and these two are just hanging waiting for the
+> shrinker_rwsem, we would still have other issues.
 
-CI Bug Log - changes from CI_DRM_10988 -> Patchwork_21821
-====================================================
+Presumably this would involve an extra worker and tracking on a list or 
+something?
 
-Summary
--------
+Otherwise my main hope really was to get a verdict from memory 
+management experts on pros & cons of doing writeback from the driver in 
+any flavour.
 
-  **SUCCESS**
+> Do you by any chance have the list of the locks held by the system at
+> this point?
 
-  No regressions found.
+No, but maybe Renato you could also collect "echo d" and "echo m" to 
+sysrq-trigger when things go bad?
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/index.html
+Regards,
 
-Participating hosts (45 -> 34)
-------------------------------
-
-  Missing    (11): fi-ilk-m540 bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-jsl-2 fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21821:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-jsl-1}:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21821 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [PASS][4] -> [FAIL][5] ([i915#4547])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][6] -> [DMESG-WARN][7] ([i915#4269])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][8] ([i915#3921]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#3970]: https://gitlab.freedesktop.org/drm/intel/issues/3970
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10988 -> Patchwork_21821
-
-  CI-20190529: 20190529
-  CI_DRM_10988: 24a4093e85c578905d39ebe14225dbeb5b6f07d5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6305: 136258e86a093fdb50a7a341de1c09ac9a076fea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21821: ea5ef6ccbc4274f0769e96b613b267c4828d151c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ea5ef6ccbc42 drm/i915: Stop doing writeback from the shrinker
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/index.html
-
---===============2836232930006126233==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Stop doing writeback from the shrinker</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97856/">https://patchwork.freedesktop.org/series/97856/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10988 -&gt; Patchwork_21821</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/index.html</p>
-<h2>Participating hosts (45 -&gt; 34)</h2>
-<p>Missing    (11): fi-ilk-m540 bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-jsl-2 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21821:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21821 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21821/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10988 -&gt; Patchwork_21821</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10988: 24a4093e85c578905d39ebe14225dbeb5b6f07d5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6305: 136258e86a093fdb50a7a341de1c09ac9a076fea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21821: ea5ef6ccbc4274f0769e96b613b267c4828d151c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>ea5ef6ccbc42 drm/i915: Stop doing writeback from the shrinker</p>
-
-</body>
-</html>
-
---===============2836232930006126233==--
+Tvrtko
