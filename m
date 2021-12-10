@@ -1,41 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 760B746FF38
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 11:58:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E80046FF45
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 12:00:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FABA10E4AD;
-	Fri, 10 Dec 2021 10:57:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9938010E707;
+	Fri, 10 Dec 2021 11:00:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BEFA10E4AD
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 10:57:58 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="299114253"
-X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="299114253"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 02:57:55 -0800
-X-IronPort-AV: E=Sophos;i="5.88,195,1635231600"; d="scan'208";a="503888358"
-Received: from mpcorrig-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.4.173])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 02:57:53 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20211209182109.29786-2-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211209182109.29786-1-ville.syrjala@linux.intel.com>
- <20211209182109.29786-2-ville.syrjala@linux.intel.com>
-Date: Fri, 10 Dec 2021 12:57:47 +0200
-Message-ID: <87wnkc20d0.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DADC010E707;
+ Fri, 10 Dec 2021 11:00:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D2B30A66C8;
+ Fri, 10 Dec 2021 11:00:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/fbc: Parametrize FBC register
- offsets
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: dong.yang@intel.com
+Date: Fri, 10 Dec 2021 11:00:21 -0000
+Message-ID: <163913402183.3445.2324088709507079923@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211210013147.2256699-1-dong.yang@intel.com>
+In-Reply-To: <20211210013147.2256699-1-dong.yang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gt=3A_Do_not_add_same_i915=5Frequest_to_intel=5Fco?=
+ =?utf-8?q?ntext_twice?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,362 +41,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 09 Dec 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Parametrize ilk+ FBC register offsets based on the FBC instance.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 34 +++++++++++++-----------
->  drivers/gpu/drm/i915/display/intel_fbc.h |  6 +++++
->  drivers/gpu/drm/i915/i915_reg.h          | 34 ++++++++++++------------
->  drivers/gpu/drm/i915/intel_pm.c          | 31 ++++++++++++---------
->  4 files changed, 60 insertions(+), 45 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
-> index 8be01b93015f..8376f819071e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -85,6 +85,8 @@ struct intel_fbc {
->  	struct drm_mm_node compressed_fb;
->  	struct drm_mm_node compressed_llb;
->=20=20
-> +	enum fbc_id id;
-> +
->  	u8 limit;
->=20=20
->  	bool false_color;
-> @@ -454,10 +456,10 @@ static void ilk_fbc_activate(struct intel_fbc *fbc)
->  	struct intel_fbc_state *fbc_state =3D &fbc->state;
->  	struct drm_i915_private *i915 =3D fbc->i915;
->=20=20
-> -	intel_de_write(i915, ILK_DPFC_FENCE_YOFF,
-> +	intel_de_write(i915, ILK_DPFC_FENCE_YOFF(fbc->id),
->  		       fbc_state->fence_y_offset);
->=20=20
-> -	intel_de_write(i915, ILK_DPFC_CONTROL,
-> +	intel_de_write(i915, ILK_DPFC_CONTROL(fbc->id),
->  		       DPFC_CTL_EN | g4x_dpfc_ctl(fbc));
->  }
->=20=20
-> @@ -467,28 +469,28 @@ static void ilk_fbc_deactivate(struct intel_fbc *fb=
-c)
->  	u32 dpfc_ctl;
->=20=20
->  	/* Disable compression */
-> -	dpfc_ctl =3D intel_de_read(i915, ILK_DPFC_CONTROL);
-> +	dpfc_ctl =3D intel_de_read(i915, ILK_DPFC_CONTROL(fbc->id));
->  	if (dpfc_ctl & DPFC_CTL_EN) {
->  		dpfc_ctl &=3D ~DPFC_CTL_EN;
-> -		intel_de_write(i915, ILK_DPFC_CONTROL, dpfc_ctl);
-> +		intel_de_write(i915, ILK_DPFC_CONTROL(fbc->id), dpfc_ctl);
->  	}
->  }
->=20=20
->  static bool ilk_fbc_is_active(struct intel_fbc *fbc)
->  {
-> -	return intel_de_read(fbc->i915, ILK_DPFC_CONTROL) & DPFC_CTL_EN;
-> +	return intel_de_read(fbc->i915, ILK_DPFC_CONTROL(fbc->id)) & DPFC_CTL_E=
-N;
->  }
->=20=20
->  static bool ilk_fbc_is_compressing(struct intel_fbc *fbc)
->  {
-> -	return intel_de_read(fbc->i915, ILK_DPFC_STATUS) & DPFC_COMP_SEG_MASK;
-> +	return intel_de_read(fbc->i915, ILK_DPFC_STATUS(fbc->id)) & DPFC_COMP_S=
-EG_MASK;
->  }
->=20=20
->  static void ilk_fbc_program_cfb(struct intel_fbc *fbc)
->  {
->  	struct drm_i915_private *i915 =3D fbc->i915;
->=20=20
-> -	intel_de_write(i915, ILK_DPFC_CB_BASE, fbc->compressed_fb.start);
-> +	intel_de_write(i915, ILK_DPFC_CB_BASE(fbc->id), fbc->compressed_fb.star=
-t);
->  }
->=20=20
->  static const struct intel_fbc_funcs ilk_fbc_funcs =3D {
-> @@ -524,8 +526,8 @@ static void snb_fbc_nuke(struct intel_fbc *fbc)
->  {
->  	struct drm_i915_private *i915 =3D fbc->i915;
->=20=20
-> -	intel_de_write(i915, MSG_FBC_REND_STATE, FBC_REND_NUKE);
-> -	intel_de_posting_read(i915, MSG_FBC_REND_STATE);
-> +	intel_de_write(i915, MSG_FBC_REND_STATE(fbc->id), FBC_REND_NUKE);
-> +	intel_de_posting_read(i915, MSG_FBC_REND_STATE(fbc->id));
->  }
->=20=20
->  static const struct intel_fbc_funcs snb_fbc_funcs =3D {
-> @@ -547,7 +549,7 @@ static void glk_fbc_program_cfb_stride(struct intel_f=
-bc *fbc)
->  		val |=3D FBC_STRIDE_OVERRIDE |
->  			FBC_STRIDE(fbc_state->override_cfb_stride / fbc->limit);
->=20=20
-> -	intel_de_write(i915, GLK_FBC_STRIDE, val);
-> +	intel_de_write(i915, GLK_FBC_STRIDE(fbc->id), val);
->  }
->=20=20
->  static void skl_fbc_program_cfb_stride(struct intel_fbc *fbc)
-> @@ -598,19 +600,19 @@ static void ivb_fbc_activate(struct intel_fbc *fbc)
->  	if (i915->ggtt.num_fences)
->  		snb_fbc_program_fence(fbc);
->=20=20
-> -	intel_de_write(i915, ILK_DPFC_CONTROL,
-> +	intel_de_write(i915, ILK_DPFC_CONTROL(fbc->id),
->  		       DPFC_CTL_EN | ivb_dpfc_ctl(fbc));
->  }
->=20=20
->  static bool ivb_fbc_is_compressing(struct intel_fbc *fbc)
->  {
-> -	return intel_de_read(fbc->i915, ILK_DPFC_STATUS2) & DPFC_COMP_SEG_MASK_=
-IVB;
-> +	return intel_de_read(fbc->i915, ILK_DPFC_STATUS2(fbc->id)) & DPFC_COMP_=
-SEG_MASK_IVB;
->  }
->=20=20
->  static void ivb_fbc_set_false_color(struct intel_fbc *fbc,
->  				    bool enable)
->  {
-> -	intel_de_rmw(fbc->i915, ILK_DPFC_CONTROL,
-> +	intel_de_rmw(fbc->i915, ILK_DPFC_CONTROL(fbc->id),
->  		     DPFC_CTL_FALSE_COLOR, enable ? DPFC_CTL_FALSE_COLOR : 0);
->  }
->=20=20
-> @@ -1620,7 +1622,8 @@ void intel_fbc_add_plane(struct intel_fbc *fbc, str=
-uct intel_plane *plane)
->  	fbc->possible_framebuffer_bits |=3D plane->frontbuffer_bit;
->  }
->=20=20
-> -static struct intel_fbc *intel_fbc_create(struct drm_i915_private *i915)
-> +static struct intel_fbc *intel_fbc_create(struct drm_i915_private *i915,
-> +					  enum fbc_id fbc_id)
->  {
->  	struct intel_fbc *fbc;
->=20=20
-> @@ -1628,6 +1631,7 @@ static struct intel_fbc *intel_fbc_create(struct dr=
-m_i915_private *i915)
->  	if (!fbc)
->  		return NULL;
->=20=20
-> +	fbc->id =3D fbc_id;
->  	fbc->i915 =3D i915;
->  	INIT_WORK(&fbc->underrun_work, intel_fbc_underrun_work_fn);
->  	mutex_init(&fbc->lock);
-> @@ -1671,7 +1675,7 @@ void intel_fbc_init(struct drm_i915_private *i915)
->  	if (!HAS_FBC(i915))
->  		return;
->=20=20
-> -	fbc =3D intel_fbc_create(i915);
-> +	fbc =3D intel_fbc_create(i915, FBC_A);
->  	if (!fbc)
->  		return;
->=20=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i=
-915/display/intel_fbc.h
-> index b8d9cda85cfc..6ea269866aeb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.h
-> @@ -18,6 +18,12 @@ struct intel_fbc;
->  struct intel_plane;
->  struct intel_plane_state;
->=20=20
-> +enum fbc_id {
+== Series Details ==
 
-enum intel_fbc_id
+Series: drm/i915/gt: Do not add same i915_request to intel_context twice
+URL   : https://patchwork.freedesktop.org/series/97843/
+State : warning
 
-> +	FBC_A,
+== Summary ==
 
-Maybe INTEL_FBC_A?
+$ dim checkpatch origin/drm-tip
+94b2a1bdd53a drm/i915/gt: Do not add same i915_request to intel_context twice
+-:7: WARNING:TYPO_SPELLING: 'unknow' may be misspelled - perhaps 'unknown'?
+#7: 
+With unknow race condition, the i915_request will be added
+     ^^^^^^
 
-Yeah, not in line with e.g. PIPE_A and friends, but perhaps that's a
-historical mistake better not repeated?
+-:10: WARNING:TYPO_SPELLING: 'alreay' may be misspelled - perhaps 'already'?
+#10: 
+If node alreay exist then do not add it again.
+        ^^^^^^
 
-> +
-> +	I915_MAX_FBCS,
-> +};
-> +
->  int intel_fbc_atomic_check(struct intel_atomic_state *state);
->  bool intel_fbc_pre_update(struct intel_atomic_state *state,
->  			  struct intel_crtc *crtc);
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index d27ba273cc68..698a023e70f5 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -3386,10 +3386,10 @@ static inline bool i915_mmio_reg_valid(i915_reg_t=
- reg)
->  #define FBC_LL_SIZE		(1536)
->=20=20
->  /* Framebuffer compression for GM45+ */
-> -#define DPFC_CB_BASE		_MMIO(0x3200)
-> -#define ILK_DPFC_CB_BASE	_MMIO(0x43200)
-> -#define DPFC_CONTROL		_MMIO(0x3208)
-> -#define ILK_DPFC_CONTROL	_MMIO(0x43208)
-> +#define DPFC_CB_BASE			_MMIO(0x3200)
-> +#define ILK_DPFC_CB_BASE(fbc_id)	_MMIO_PIPE((fbc_id), 0x43200, 0x43240)
-> +#define DPFC_CONTROL			_MMIO(0x3208)
-> +#define ILK_DPFC_CONTROL(fbc_id)	_MMIO_PIPE((fbc_id), 0x43208, 0x43248)
->  #define   DPFC_CTL_EN				REG_BIT(31)
->  #define   DPFC_CTL_PLANE_MASK_G4X		REG_BIT(30) /* g4x-snb */
->  #define   DPFC_CTL_PLANE_G4X(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_M=
-ASK_G4X, (i9xx_plane))
-> @@ -3407,28 +3407,28 @@ static inline bool i915_mmio_reg_valid(i915_reg_t=
- reg)
->  #define   DPFC_CTL_LIMIT_4X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 2)
->  #define   DPFC_CTL_FENCENO_MASK			REG_GENMASK(3, 0)
->  #define   DPFC_CTL_FENCENO(fence)		REG_FIELD_PREP(DPFC_CTL_FENCENO_MASK,=
- (fence))
-> -#define DPFC_RECOMP_CTL		_MMIO(0x320c)
-> -#define ILK_DPFC_RECOMP_CTL	_MMIO(0x4320c)
-> +#define DPFC_RECOMP_CTL			_MMIO(0x320c)
-> +#define ILK_DPFC_RECOMP_CTL(fbc_id)	_MMIO_PIPE((fbc_id), 0x4320c, 0x4324=
-c)
->  #define   DPFC_RECOMP_STALL_EN			REG_BIT(27)
->  #define   DPFC_RECOMP_STALL_WM_MASK		REG_GENMASK(26, 16)
->  #define   DPFC_RECOMP_TIMER_COUNT_MASK		REG_GENMASK(5, 0)
-> -#define DPFC_STATUS		_MMIO(0x3210)
-> -#define ILK_DPFC_STATUS		_MMIO(0x43210)
-> +#define DPFC_STATUS			_MMIO(0x3210)
-> +#define ILK_DPFC_STATUS(fbc_id)		_MMIO_PIPE((fbc_id), 0x43210, 0x43250)
->  #define   DPFC_INVAL_SEG_MASK			REG_GENMASK(26, 16)
->  #define   DPFC_COMP_SEG_MASK			REG_GENMASK(10, 0)
-> -#define DPFC_STATUS2		_MMIO(0x3214)
-> -#define ILK_DPFC_STATUS2		_MMIO(0x43214)
-> +#define DPFC_STATUS2			_MMIO(0x3214)
-> +#define ILK_DPFC_STATUS2(fbc_id)	_MMIO_PIPE((fbc_id), 0x43214, 0x43254)
->  #define   DPFC_COMP_SEG_MASK_IVB		REG_GENMASK(11, 0)
-> -#define DPFC_FENCE_YOFF		_MMIO(0x3218)
-> -#define ILK_DPFC_FENCE_YOFF	_MMIO(0x43218)
-> -#define DPFC_CHICKEN		_MMIO(0x3224)
-> -#define ILK_DPFC_CHICKEN	_MMIO(0x43224)
-> +#define DPFC_FENCE_YOFF			_MMIO(0x3218)
-> +#define ILK_DPFC_FENCE_YOFF(fbc_id)	_MMIO_PIPE((fbc_id), 0x43218, 0x4325=
-8)
-> +#define DPFC_CHICKEN			_MMIO(0x3224)
-> +#define ILK_DPFC_CHICKEN(fbc_id)	_MMIO_PIPE((fbc_id), 0x43224, 0x43264)
->  #define   DPFC_HT_MODIFY			REG_BIT(31) /* pre-ivb */
->  #define   DPFC_NUKE_ON_ANY_MODIFICATION		REG_BIT(23) /* bdw+ */
->  #define   DPFC_CHICKEN_COMP_DUMMY_PIXEL		REG_BIT(14) /* glk+ */
->  #define   DPFC_DISABLE_DUMMY0			REG_BIT(8) /* ivb+ */
->=20=20
-> -#define GLK_FBC_STRIDE		_MMIO(0x43228)
-> +#define GLK_FBC_STRIDE(fbc_id)	_MMIO_PIPE((fbc_id), 0x43228, 0x43268)
->  #define   FBC_STRIDE_OVERRIDE	REG_BIT(15)
->  #define   FBC_STRIDE_MASK	REG_GENMASK(14, 0)
->  #define   FBC_STRIDE(x)		REG_FIELD_PREP(FBC_STRIDE_MASK, (x))
-> @@ -3471,9 +3471,9 @@ static inline bool i915_mmio_reg_valid(i915_reg_t r=
-eg)
->  #define IPS_CTL		_MMIO(0x43408)
->  #define   IPS_ENABLE	(1 << 31)
->=20=20
-> -#define MSG_FBC_REND_STATE	_MMIO(0x50380)
-> +#define MSG_FBC_REND_STATE(fbc_id)	_MMIO_PIPE((fbc_id), 0x50380, 0x50384)
->  #define   FBC_REND_NUKE			REG_BIT(2)
-> -#define   FBC_REND_CACHE_CLEAN			REG_BIT(1)
-> +#define   FBC_REND_CACHE_CLEAN		REG_BIT(1)
->=20=20
->  /*
->   * GPIO regs
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index 434b1f8b7fe3..ac285b3e179b 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -160,8 +160,9 @@ static void bxt_init_clock_gating(struct drm_i915_pri=
-vate *dev_priv)
->  	 * WaFbcHighMemBwCorruptionAvoidance:bxt
->  	 * Display WA #0883: bxt
->  	 */
-> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_re=
-ad(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-> -		   DPFC_DISABLE_DUMMY0);
-> +	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(FBC_A),
-> +			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(FBC_A)) |
-> +			   DPFC_DISABLE_DUMMY0);
->  }
->=20=20
->  static void glk_init_clock_gating(struct drm_i915_private *dev_priv)
-> @@ -7451,8 +7452,8 @@ static void gen8_set_l3sqc_credits(struct drm_i915_=
-private *dev_priv,
->  static void icl_init_clock_gating(struct drm_i915_private *dev_priv)
->  {
->  	/* Wa_1409120013:icl,ehl */
-> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN,
-> -		   DPFC_CHICKEN_COMP_DUMMY_PIXEL);
-> +	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(FBC_A),
-> +			   DPFC_CHICKEN_COMP_DUMMY_PIXEL);
->=20=20
->  	/*Wa_14010594013:icl, ehl */
->  	intel_uncore_rmw(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
-> @@ -7464,7 +7465,7 @@ static void gen12lp_init_clock_gating(struct drm_i9=
-15_private *dev_priv)
->  	/* Wa_1409120013:tgl,rkl,adl-s,dg1,dg2 */
->  	if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
->  	    IS_ALDERLAKE_S(dev_priv) || IS_DG1(dev_priv) || IS_DG2(dev_priv))
-> -		intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN,
-> +		intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(FBC_A),
->  				   DPFC_CHICKEN_COMP_DUMMY_PIXEL);
->=20=20
->  	/* Wa_1409825376:tgl (pre-prod)*/
-> @@ -7549,8 +7550,9 @@ static void cfl_init_clock_gating(struct drm_i915_p=
-rivate *dev_priv)
->  	 * WaFbcNukeOnHostModify:cfl
->  	 * Display WA #0873: cfl
->  	 */
-> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_re=
-ad(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-> -		   DPFC_NUKE_ON_ANY_MODIFICATION);
-> +	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(FBC_A),
-> +			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(FBC_A)) |
-> +			   DPFC_NUKE_ON_ANY_MODIFICATION);
->  }
->=20=20
->  static void kbl_init_clock_gating(struct drm_i915_private *dev_priv)
-> @@ -7582,8 +7584,9 @@ static void kbl_init_clock_gating(struct drm_i915_p=
-rivate *dev_priv)
->  	 * WaFbcNukeOnHostModify:kbl
->  	 * Display WA #0873: kbl
->  	 */
-> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_re=
-ad(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-> -		   DPFC_NUKE_ON_ANY_MODIFICATION);
-> +	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(FBC_A),
-> +			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(FBC_A)) |
-> +			   DPFC_NUKE_ON_ANY_MODIFICATION);
->  }
->=20=20
->  static void skl_init_clock_gating(struct drm_i915_private *dev_priv)
-> @@ -7609,15 +7612,17 @@ static void skl_init_clock_gating(struct drm_i915=
-_private *dev_priv)
->  	 * WaFbcNukeOnHostModify:skl
->  	 * Display WA #0873: skl
->  	 */
-> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_re=
-ad(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-> -		   DPFC_NUKE_ON_ANY_MODIFICATION);
-> +	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(FBC_A),
-> +			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(FBC_A)) |
-> +			   DPFC_NUKE_ON_ANY_MODIFICATION);
->=20=20
->  	/*
->  	 * WaFbcHighMemBwCorruptionAvoidance:skl
->  	 * Display WA #0883: skl
->  	 */
-> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_re=
-ad(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-> -		   DPFC_DISABLE_DUMMY0);
-> +	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(FBC_A),
-> +			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(FBC_A)) |
-> +			   DPFC_DISABLE_DUMMY0);
->  }
->=20=20
->  static void bdw_init_clock_gating(struct drm_i915_private *dev_priv)
+total: 0 errors, 2 warnings, 0 checks, 9 lines checked
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+
