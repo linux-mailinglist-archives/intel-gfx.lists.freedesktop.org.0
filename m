@@ -1,45 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED563470AEC
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 20:50:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25865470B9D
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Dec 2021 21:11:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AEDA10ECAE;
-	Fri, 10 Dec 2021 19:50:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 784A810E580;
+	Fri, 10 Dec 2021 20:11:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A883C10EC9E;
- Fri, 10 Dec 2021 19:50:21 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: bbeckett) with ESMTPSA id EAE491F47AE9
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
- t=1639165820; bh=+JjpwsA0iv+3XffZuyV/VazyWAtMyRYIaD9EZA5fc6Q=;
- h=From:To:Cc:Subject:Date:From;
- b=D/MG1D7XvnvG+d73Yw42hFJJZMy9MXG6wTEX3qYEwpq0s8r/ZJw+4U3huBvcDLKWx
- o4c1v6430kr96fPsAv5Nkhmhz4SMsGGfqpwBHj/yBK8kGAcbQLZf+Tl9CBoIxysgNT
- +2ChF7X6DXkcnXoKjm9oSHh393aFZ5fVkHZJlsNTZgCnETR7EESZbPpzCnB7J2o0us
- zP3oujweUWDZ8n2BctTzOvvku07DIHTiNiUWLRvhtx+7shEN7MuKHMMTjsXG2UTSaU
- tFHmslLdYcJhVOfF8S1ZOQDnKO9mY7p5tyeFAY2ck0Nx/BY1gRv5Ml8FI+944NnuLD
- W7lCptV/V8/pQ==
-From: Robert Beckett <bob.beckett@collabora.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com
+ [IPv6:2607:f8b0:4864:20::b49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BAF910E585
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 20:11:49 +0000 (UTC)
+Received: by mail-yb1-xb49.google.com with SMTP id
+ l75-20020a25254e000000b005f763be2fecso18332155ybl.7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 12:11:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=date:message-id:mime-version:subject:from:to:cc;
+ bh=mVZR4NW2NH5z/l+VDAPU353h9uYgJcW0LaZCIEsF1jk=;
+ b=LtVI2zYkXnuBq/kjSog3krMAswj0f4DadCb+rkLJKX2utG6x1szOvIP9QzSDgzBIcm
+ Ch9DMsrH6Rcsw1hhgTJJvkdAQyS5XdQv5yAOYwWWrno57zfqRVhqezFIG0GpapKcv+1e
+ NTyp2pOey8lHPSth8GNQod2Tk228xjt+t/2Q8p9+OXIgFtLmEqL+P1VRGZ30IbGmQed8
+ YeYEjX48RhmGDeB5lE3mpZP7hc9Hlr3SQJpYIuDRVe1C/EKfeY/RhQoCaTi3aqBoE/0B
+ xXxRXxFjGfEDuaQD1EMT6T83miSczCmaNawkxX78nAA6PshO8FdEzPm3Ldj/2vbIxmbJ
+ 5C5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+ bh=mVZR4NW2NH5z/l+VDAPU353h9uYgJcW0LaZCIEsF1jk=;
+ b=cb9JXQGyBt70/zTxYsk15kIrOuLt4rsO6oaWEHbJsJ9DT4kpyDT9VImEVgCp4nWrjF
+ UaKl3CGNxckGqc154WfQ2tgfFO7PYwZCL7ZJ1ilSmSIbl6ttsx6k32DqEFBo3cqby0wh
+ P5LmTp8wjNUO8szHHm2b1nSFFdYmOnhVMTQodg1ahG84vuGbbu6FZYlROCvZDISt/N1a
+ wbpxkry+eSxrAKcSdScfKI9SJhAhHpnIlQIpcZC1Y22vE5YmHE5mxETVKxLi0DzU2PWU
+ Ay9MnfrQ65IaMaeCC0grBXaVCn8wd1OLH7xTRPBF7KhYt0Q9xbtWoBuUmuAaYVWy4aDr
+ aEuA==
+X-Gm-Message-State: AOAM531+BRZ6Y35YhI+43dLvZcQ7p+ejv2Qof8NuREN6kiibYjYhPIbm
+ q9zgm+Aj6NuOwK8TxyaN/hvHr8mbCZBe
+X-Google-Smtp-Source: ABdhPJz1lgeFMYc85C/POqMgxCQmHqxO2zBUc3vvCO1jWDYUoNFx7IkHZAuGeq1O012657U4w+NRPMLP/hbZ
+X-Received: from rajat2.mtv.corp.google.com
+ ([2620:15c:202:201:9ecf:cc67:420b:ba67])
+ (user=rajatja job=sendgmr) by 2002:a05:6902:114a:: with SMTP id
+ p10mr16953372ybu.272.1639167108627; Fri, 10 Dec 2021 12:11:48 -0800 (PST)
+Date: Fri, 10 Dec 2021 12:11:43 -0800
+Message-Id: <20211210201144.1975655-1-rajatja@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.34.1.173.g76aa8bc2d0-goog
+From: Rajat Jain <rajatja@google.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Hans de Goede <hdegoede@redhat.com>, 
  David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oak Zeng <oak.zeng@intel.com>
-Date: Fri, 10 Dec 2021 19:50:05 +0000
-Message-Id: <20211210195005.2582884-1-bob.beckett@collabora.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/ttm: fix large buffer population
- trucation
+ Benson Leung <bleung@chromium.org>, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ gwendal@google.com, seanpaul@google.com, marcheau@google.com, 
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: [Intel-gfx] [PATCH 1/2] drm/privacy_screen_x86: Add entry for
+ ChromeOS privacy-screen
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,35 +70,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Cc: Rajat Jain <rajatja@google.com>, rajatxjain@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-ttm->num_pages is uint32_t which was causing very large buffers to
-only populate a truncated size.
+Add a static entry in the x86 table, to detect and wait for
+privacy-screen on some ChromeOS platforms.
 
-This fixes gem_create@create-clear igt test on large memory systems.
+Please note that this means that if CONFIG_CHROMEOS_PRIVACY_SCREEN is
+enabled, and if "GOOG0010" device is found in ACPI, then the i915 probe
+shall return EPROBE_DEFER until a platform driver actually registers the
+privacy-screen: https://hansdegoede.livejournal.com/25948.html
 
-Fixes: 7ae034590cea ("drm/i915/ttm: add tt shmem backend")
-Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+Signed-off-by: Rajat Jain <rajatja@google.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This patch is rebased on top of linux-next/master
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 218a9b3037c7..923cc7ad8d70 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -166,7 +166,7 @@ static int i915_ttm_tt_shmem_populate(struct ttm_device *bdev,
- 	struct intel_memory_region *mr = i915->mm.regions[INTEL_MEMORY_SYSTEM];
- 	struct i915_ttm_tt *i915_tt = container_of(ttm, typeof(*i915_tt), ttm);
- 	const unsigned int max_segment = i915_sg_segment_size();
--	const size_t size = ttm->num_pages << PAGE_SHIFT;
-+	const size_t size = (size_t)ttm->num_pages << PAGE_SHIFT;
- 	struct file *filp = i915_tt->filp;
- 	struct sgt_iter sgt_iter;
- 	struct sg_table *st;
+ drivers/gpu/drm/drm_privacy_screen_x86.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/drivers/gpu/drm/drm_privacy_screen_x86.c b/drivers/gpu/drm/drm_privacy_screen_x86.c
+index a2cafb294ca6..3728870a98e7 100644
+--- a/drivers/gpu/drm/drm_privacy_screen_x86.c
++++ b/drivers/gpu/drm/drm_privacy_screen_x86.c
+@@ -45,6 +45,17 @@ static bool __init detect_thinkpad_privacy_screen(void)
+ 
+ 	return (output & 0x10000) ? true : false;
+ }
++#elif IS_ENABLED(CONFIG_CHROMEOS_PRIVACY_SCREEN)
++
++static bool __init detect_chromeos_privacy_screen(void)
++{
++	if (!acpi_dev_present("GOOG0010", NULL, -1))
++		return false;
++
++	pr_info("%s: Need to wait for ChromeOS privacy-screen", __func__);
++	return true;
++
++}
+ #endif
+ 
+ static const struct arch_init_data arch_init_data[] __initconst = {
+@@ -57,6 +68,15 @@ static const struct arch_init_data arch_init_data[] __initconst = {
+ 		},
+ 		.detect = detect_thinkpad_privacy_screen,
+ 	},
++#elif IS_ENABLED(CONFIG_CHROMEOS_PRIVACY_SCREEN)
++	{
++		.lookup = {
++			.dev_id = NULL,
++			.con_id = NULL,
++			.provider = "privacy_screen-GOOG0010:00",
++		},
++		.detect = detect_chromeos_privacy_screen,
++	},
+ #endif
+ };
+ 
 -- 
-2.25.1
+2.34.1.173.g76aa8bc2d0-goog
 
