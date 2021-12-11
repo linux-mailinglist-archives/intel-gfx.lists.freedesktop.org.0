@@ -2,46 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D217470FAD
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Dec 2021 02:02:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13F02470FA8
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Dec 2021 02:02:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 112AB10E691;
-	Sat, 11 Dec 2021 01:01:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B73910E690;
+	Sat, 11 Dec 2021 01:01:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E94D10E68D;
- Sat, 11 Dec 2021 01:01:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0351A10E68B;
+ Sat, 11 Dec 2021 01:01:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639184516; x=1670720516;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9GHjpu2JWB/LfIDhmPB1fbJtv8dI+453iXK0DeIytDQ=;
- b=ItIDDB4recCzG7oYSJvhOdN5PpWyFD6dC5G1h7xLnt+UpHZPHA80QhqY
- faK9DfT97QPEEtVbd3ZKReO/PxBlV/+/JReJNO8JzLOgws+Zd8/Vn7ihw
- Y55XzDTqQXzwZvIaa0mlxjOmqHKwQhNm3MFot5AwvAZ26GzL9NIV6ym3P
- D4Wv7mkgE37pQ47QyX1hAiVvGHH/jkud8lg0MrIYOFJj3400ai/P6DGvf
- T04ajhk1PGmBKY1sPeOtAn7cP0xZfa++B27px5tdGZ6ZakwEcHa7/64r8
- Teys1pG9+boaS32Q1WTeHfukNwMoZZFSO7Ocr2tA+2cYdPNDtBxKZ39QM A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10194"; a="238298241"
-X-IronPort-AV: E=Sophos;i="5.88,197,1635231600"; d="scan'208";a="238298241"
+ t=1639184515; x=1670720515;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=RR4OQyl93P6Xjlr+tous2lVRL+UUgd6EMt1s2adyaVM=;
+ b=YxxMVs5IoFGNYGK/wsUmPGHTaVqYyDDpE8k2x6tMwgZOW9Hw311NU0SY
+ eTlfEvvxIO/Jx1txgw99zW+CMSHIBoHZwUcmKPj0brSNmogsMEDlXGDO5
+ kjzscI6a4bNxExRAZ1Q6FR+J5Ml+O3nJZ6PP3LZYXYQ0swVNsbZdLfb+9
+ rEdkP5u9dHwp449g4MLvIPBpCN6Of4X0qADbt90i83bwEH0LCwo8U4iNl
+ KEUbRfk9Ex175vs8o1c0/TLDUxuvRQL3GuXt93awOutgHGaaKX7k/R1eu
+ RAw2CDguV8cdbL/UbpoHSk/cOqBE2a1bDKrPOXvdsrxhLmXLcVJd4HbKv g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10194"; a="238298242"
+X-IronPort-AV: E=Sophos;i="5.88,197,1635231600"; d="scan'208";a="238298242"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Dec 2021 17:01:41 -0800
-X-IronPort-AV: E=Sophos;i="5.88,197,1635231600"; d="scan'208";a="517002944"
+X-IronPort-AV: E=Sophos;i="5.88,197,1635231600"; d="scan'208";a="517002947"
 Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Dec 2021 17:01:41 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-gfx@lists.freedesktop.org>,
 	<dri-devel@lists.freedesktop.org>
-Date: Fri, 10 Dec 2021 16:56:05 -0800
-Message-Id: <20211211005612.8575-1-matthew.brost@intel.com>
+Date: Fri, 10 Dec 2021 16:56:06 -0800
+Message-Id: <20211211005612.8575-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20211211005612.8575-1-matthew.brost@intel.com>
+References: <20211211005612.8575-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/7] Fix stealing guc_ids + test
+Subject: [Intel-gfx] [PATCH 1/7] drm/i915/guc: Use correct context lock when
+ callig clr_context_registered
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,35 +60,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Patches 1 & 2 address bugs in stealing of guc_ids and patch 7 tests this
-path.
+s/ce/cn/ when grabbing guc_state.lock before calling
+clr_context_registered.
 
-Patches 4-6 address some issues with the CTs exposed by the selftest in
-patch 7. Basically if a lot of contexts were all deregistered all at
-once, the CT channel could deadlock.
-
-Patch 3 is a small fix that is already review but just included for CI.
-
+Fixes: 0f7976506de61 ("drm/i915/guc: Rework and simplify locking")
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-John Harrison (1):
-  drm/i915/guc: Don't hog IRQs when destroying contexts
-
-Matthew Brost (6):
-  drm/i915/guc: Use correct context lock when callig
-    clr_context_registered
-  drm/i915/guc: Only assign guc_id.id when stealing guc_id
-  drm/i915/guc: Remove racey GEM_BUG_ON
-  drm/i915/guc: Add extra debug on CT deadlock
-  drm/i915/guc: Kick G2H tasklet if no credits
-  drm/i915/guc: Selftest for stealing of guc ids
-
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  12 ++
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  18 +-
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  68 ++++---
- drivers/gpu/drm/i915/gt/uc/selftest_guc.c     | 171 ++++++++++++++++++
- 4 files changed, 241 insertions(+), 28 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 1f9d4fde421f..9b7b4f4e0d91 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -1937,9 +1937,9 @@ static int steal_guc_id(struct intel_guc *guc, struct intel_context *ce)
+ 		list_del_init(&cn->guc_id.link);
+ 		ce->guc_id = cn->guc_id;
+ 
+-		spin_lock(&ce->guc_state.lock);
++		spin_lock(&cn->guc_state.lock);
+ 		clr_context_registered(cn);
+-		spin_unlock(&ce->guc_state.lock);
++		spin_unlock(&cn->guc_state.lock);
+ 
+ 		set_context_guc_id_invalid(cn);
+ 
 -- 
 2.33.1
 
