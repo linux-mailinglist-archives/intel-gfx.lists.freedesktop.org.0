@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B7424710F6
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Dec 2021 03:29:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A4974710F9
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Dec 2021 03:30:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7F5410E2B5;
-	Sat, 11 Dec 2021 02:28:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 467EC10E30F;
+	Sat, 11 Dec 2021 02:30:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E512A10E30F;
- Sat, 11 Dec 2021 02:28:57 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C0E5C10E2B5;
+ Sat, 11 Dec 2021 02:30:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DD964A0096;
- Sat, 11 Dec 2021 02:28:57 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id BA5A5AADD4;
+ Sat, 11 Dec 2021 02:30:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Sat, 11 Dec 2021 02:28:57 -0000
-Message-ID: <163918973787.10523.932745671404526079@emeril.freedesktop.org>
+Date: Sat, 11 Dec 2021 02:30:05 -0000
+Message-ID: <163918980575.10521.1381697933130898774@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20211211005612.8575-1-matthew.brost@intel.com>
 In-Reply-To: <20211211005612.8575-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Fix_stealing_guc=5Fids_+_test?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Fix_stealing_guc=5Fids_+_test?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,23 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-52305c422f77 drm/i915/guc: Use correct context lock when callig clr_context_registered
-eb4fbbb3657c drm/i915/guc: Only assign guc_id.id when stealing guc_id
-9018d8758c77 drm/i915/guc: Remove racey GEM_BUG_ON
-e111f83640ff drm/i915/guc: Don't hog IRQs when destroying contexts
-1bec569ba9a3 drm/i915/guc: Add extra debug on CT deadlock
-30672810bf14 drm/i915/guc: Kick G2H tasklet if no credits
-df10803955c6 drm/i915/guc: Selftest for stealing of guc ids
--:52: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'guc' may be better as '(guc)' to avoid precedence issues
-#52: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:148:
-+#define NUMBER_MULTI_LRC_GUC_ID(guc)	(guc->submission_state.num_guc_ids / 16)
-
--:158: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
-#158: FILE: drivers/gpu/drm/i915/gt/uc/selftest_guc.c:153:
-+	if (!ce) {
-+		pr_err("Context array allocation failed\n");
-
-total: 0 errors, 1 warnings, 1 checks, 262 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
