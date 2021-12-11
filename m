@@ -1,51 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28B8F4714FA
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Dec 2021 18:38:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E345471542
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Dec 2021 19:02:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7B2510E330;
-	Sat, 11 Dec 2021 17:38:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B4F010E330;
+	Sat, 11 Dec 2021 18:02:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C0A510E2FB;
- Sat, 11 Dec 2021 17:38:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639244330; x=1670780330;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=ykuwn+tdex3+F1J38kt/JVcFBoUWKsuFDil94PvRK+U=;
- b=RRQ159IvTgH78s8uzFHHz3bquxg4yKdr7fglLp2UBsZUOB7O2wDlLT1f
- BvgWVp+JmhiGAdf4FNymHkltvU/oF5mejweFPnUaUmQa3UPQ3TLa28VF+
- q+n+3EH13byhWjxkzvmKyS9uiJ1SHgCT3vTC+wHiMEh3QXPCMHCIO9Co4
- ygDjJge6r2wEg+GxnQPCwZ89rNqacAlmfqwuvVPJiTnLNE273TTo4xXSh
- ehVsvwLTz9xKR3mfGhALV0xXu+GEu00/oXau3bS8z16ur8PMvb1nIkeP/
- VKifqezxMRznw8w45vVUQzx/rEzdx0qOtRHTmdgw5IQ2uss4vgGA4BMt0 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10195"; a="218568905"
-X-IronPort-AV: E=Sophos;i="5.88,198,1635231600"; d="scan'208";a="218568905"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2021 09:38:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,198,1635231600"; d="scan'208";a="660212335"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
- by fmsmga001.fm.intel.com with ESMTP; 11 Dec 2021 09:38:47 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1mw6Kd-0004sa-BJ; Sat, 11 Dec 2021 17:38:47 +0000
-Date: Sun, 12 Dec 2021 01:38:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <202112120048.dsQgEDob-lkp@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A636410E330;
+ Sat, 11 Dec 2021 18:01:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9D5CAA0096;
+ Sat, 11 Dec 2021 18:01:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: [Intel-gfx] [drm-intel:topic/core-for-CI 16/25]
- arch/powerpc/platforms/embedded6xx/Kconfig:2:error: recursive dependency
- detected!
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Sat, 11 Dec 2021 18:01:58 -0000
+Message-ID: <163924571860.10522.13872437764593257138@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211211173545.23536-1-matthew.brost@intel.com>
+In-Reply-To: <20211211173545.23536-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Fix_stealing_guc=5Fids_+_test_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,62 +40,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree:   git://anongit.freedesktop.org/drm-intel topic/core-for-CI
-head:   4c82fd0506b4cc196a375d1200361fb0c5439acd
-commit: b3acf17eafd473e6e8f8f7c5ec7040efaaff22b8 [16/25] Revert "drm/i915: Don't select BROKEN"
-config: powerpc64-randconfig-r015-20211210
-compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 097a1cb1d5ebb3a0ec4bcaed8ba3ff6a8e33c00a)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install powerpc64 cross compiling tool for clang build
-        # apt-get install binutils-powerpc-linux-gnu
-        git remote add drm-intel git://anongit.freedesktop.org/drm-intel
-        git fetch --no-tags drm-intel topic/core-for-CI
-        git checkout b3acf17eafd473e6e8f8f7c5ec7040efaaff22b8
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 ARCH=powerpc  randconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 ARCH=powerpc 
+== Series Details ==
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Series: Fix stealing guc_ids + test (rev2)
+URL   : https://patchwork.freedesktop.org/series/97896/
+State : warning
 
-All errors (new ones prefixed by >>):
+== Summary ==
 
->> arch/powerpc/platforms/embedded6xx/Kconfig:2:error: recursive dependency detected!
-   arch/powerpc/platforms/embedded6xx/Kconfig:2: symbol EMBEDDED6xx depends on BROKEN_ON_SMP
-   init/Kconfig:113: symbol BROKEN_ON_SMP depends on BROKEN
-   init/Kconfig:110: symbol BROKEN is selected by DRM_I915_DEBUG
-   drivers/gpu/drm/i915/Kconfig.debug:19: symbol DRM_I915_DEBUG depends on DRM_I915
-   drivers/gpu/drm/i915/Kconfig:2: symbol DRM_I915 depends on DRM
-   drivers/gpu/drm/Kconfig:8: symbol DRM depends on AGP
-   drivers/char/agp/Kconfig:2: symbol AGP depends on PCI
-   drivers/pci/Kconfig:16: symbol PCI depends on HAVE_PCI
-   drivers/pci/Kconfig:7: symbol HAVE_PCI is selected by FORCE_PCI
-   drivers/pci/Kconfig:11: symbol FORCE_PCI is selected by MVME5100
-   arch/powerpc/platforms/embedded6xx/Kconfig:51: symbol MVME5100 depends on EMBEDDED6xx
-   For a resolution refer to Documentation/kbuild/kconfig-language.rst
-   subsection "Kconfig recursive dependency limitations"
+$ dim checkpatch origin/drm-tip
+93cd046bb4d5 drm/i915/guc: Use correct context lock when callig clr_context_registered
+8827a89b918a drm/i915/guc: Only assign guc_id.id when stealing guc_id
+49b97b5641b7 drm/i915/guc: Remove racey GEM_BUG_ON
+b9a723ec8a6a drm/i915/guc: Don't hog IRQs when destroying contexts
+27e27d3dd0da drm/i915/guc: Add extra debug on CT deadlock
+40d22ca66ddb drm/i915/guc: Kick G2H tasklet if no credits
+24c29c4034df drm/i915/guc: Selftest for stealing of guc ids
+-:178: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#178: FILE: drivers/gpu/drm/i915/gt/uc/selftest_guc.c:153:
++	if (!ce) {
++		pr_err("Context array allocation failed\n");
+
+total: 0 errors, 1 warnings, 0 checks, 265 lines checked
 
 
-vim +2 arch/powerpc/platforms/embedded6xx/Kconfig
-
-a35e370cfd2ddf Arnd Bergmann    2007-08-30 @2  config EMBEDDED6xx
-a35e370cfd2ddf Arnd Bergmann    2007-08-30  3  	bool "Embedded 6xx/7xx/7xxx-based boards"
-be34fff07c3755 Christophe Leroy 2018-11-17  4  	depends on PPC_BOOK3S_32 && BROKEN_ON_SMP
-14cf11af6cf608 Paul Mackerras   2005-09-26  5  
-
-:::::: The code at line 2 was first introduced by commit
-:::::: a35e370cfd2ddfb5d2f0ceae376ffeda273b357c [POWERPC] Move embedded6xx into multiplatform
-
-:::::: TO: Arnd Bergmann <arnd@arndb.de>
-:::::: CC: Paul Mackerras <paulus@samba.org>
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
