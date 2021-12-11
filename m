@@ -1,53 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08FBF470FC6
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Dec 2021 02:16:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6E01470FD0
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Dec 2021 02:22:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3BFD10E2FE;
-	Sat, 11 Dec 2021 01:16:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35B6210E2FE;
+	Sat, 11 Dec 2021 01:22:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEC2210E2FE;
- Sat, 11 Dec 2021 01:16:14 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50F4510E2FE
+ for <intel-gfx@lists.freedesktop.org>; Sat, 11 Dec 2021 01:22:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639185374; x=1670721374;
+ t=1639185777; x=1670721777;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=uU+66Uwp6TQ5eAjMEXLMKl2tBRVC3dOT0EQcYR/FL7E=;
- b=JPxfXWXw5H6yUjyBN02V7N4cfymsFD9X13H3lAUE5m3VZkaDcru5EQOT
- b+ihMRw19dRkEl+Goyk7dCivTq6c1WKzRB2turNBBEPNfqQFrgJE3PCE0
- toJo4B4s7RQLuMw5ZA4XtoA75Q72fiWz5w2qckTYhhW3hbGlhbrXuUhUl
- sODsGPtkbZ4aOcGh8p5sbKudTxiNShE8aBJ9KLSQdBza6PYjr7JhtMY1S
- 3XozFahqp6dB/DEV5r7ajxsbGM0uq30QG6QeMVd8EEAmjrRV6RFVa+8L/
- D4FEPiP3Rpvc6GVDn6Y0LAH5u31Ku+vi96fJFsGfG9ITg9s4hMcIsVrsA w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10194"; a="237228816"
-X-IronPort-AV: E=Sophos;i="5.88,197,1635231600"; d="scan'208";a="237228816"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 17:16:14 -0800
-X-IronPort-AV: E=Sophos;i="5.88,197,1635231600"; d="scan'208";a="517006451"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 17:16:13 -0800
-Date: Fri, 10 Dec 2021 17:10:50 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-Message-ID: <20211211011049.GA8660@jons-linux-dev-box>
-References: <20211211005612.8575-1-matthew.brost@intel.com>
- <20211211005612.8575-5-matthew.brost@intel.com>
- <ec870417-3894-0bb2-6561-722b8345be6f@intel.com>
+ bh=bRaouvV1UX8uoiWhlXmpMg6lIeRuAEwKsQOuH/+MrGA=;
+ b=XCdKD29Nh1rYmNDKe8JG78B+Oe+X+e59V7ZMc3yepihic8+/ZehvE4CN
+ ZqT3jAbaSALKtgHLegNiRAuxM62AN2WBfQyWOq/Z8cAln40+yA5ZevUcp
+ Eb2tzuZMth54zVqAnXzzdaUlBaco3mPjW8UrZeLA2Ev5vPTbmFaSlfjHZ
+ AZpue9Njgiopz/JuDgNHV9EsxB47SfU53VclDkY3BrerABjTSiu5/+D+u
+ //4Jc0Vp/2d+x0Cv3vVb6qh4ZeRd84ZAO5KD0pqExsm5p9xmdKWpc6dBV
+ jwpn3uK6FS3e80xOcEn+YlIZ2k5lVczoeZ2G3l7TRE3L/Tau/s8h/y16v A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10194"; a="225359145"
+X-IronPort-AV: E=Sophos;i="5.88,197,1635231600"; d="scan'208";a="225359145"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2021 17:22:56 -0800
+X-IronPort-AV: E=Sophos;i="5.88,197,1635231600"; d="scan'208";a="463898075"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2021 17:22:55 -0800
+Date: Fri, 10 Dec 2021 17:22:54 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20211211012254.GI2219399@mdroper-desk1.amr.corp.intel.com>
+References: <20211203145603.4006937-1-ravitejax.goud.talla@intel.com>
+ <20211209172139.jze46pphfosafv62@ldmartin-desk2>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ec870417-3894-0bb2-6561-722b8345be6f@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/guc: Don't hog IRQs when
- destroying contexts
+In-Reply-To: <20211209172139.jze46pphfosafv62@ldmartin-desk2>
+Subject: Re: [Intel-gfx] [v2] drm/i915/gen11: Moving WAs to
+ icl_gt_workarounds_init()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,120 +58,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: ravitejax.goud.talla@intel.com, intel-gfx@lists.freedesktop.org,
+ hariom.pandey@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 10, 2021 at 05:07:12PM -0800, John Harrison wrote:
-> On 12/10/2021 16:56, Matthew Brost wrote:
-> > From: John Harrison <John.C.Harrison@Intel.com>
+On Thu, Dec 09, 2021 at 09:21:39AM -0800, Lucas De Marchi wrote:
+> On Fri, Dec 03, 2021 at 08:26:03PM +0530, ravitejax.goud.talla@intel.com wrote:
+> > From: Raviteja Goud Talla <ravitejax.goud.talla@intel.com>
 > > 
-> > While attempting to debug a CT deadlock issue in various CI failures
-> > (most easily reproduced with gem_ctx_create/basic-files), I was seeing
-> > CPU deadlock errors being reported. This were because the context
-> > destroy loop was blocking waiting on H2G space from inside an IRQ
-> > spinlock. There was deadlock as such, it's just that the H2G queue was
-> There was *no* deadlock as such
+> > Bspec page says "Reset: BUS", Accordingly moving w/a's:
+> > Wa_1407352427,Wa_1406680159 to proper function icl_gt_workarounds_init()
+> > Which will resolve guc enabling error
+> > 
+> > v2:
+> >  - Previous patch rev2 was created by email client which caused the
+> >    Build failure, This v2 is to resolve the previous broken series
+> > 
+> > Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+> > Signed-off-by: Raviteja Goud Talla <ravitejax.goud.talla@intel.com>
 > 
-
-Let's fix this up when applying the series.
-
-With that:
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
-> John.
+> It seems like this patch is needed to be able to load GuC in ICL:
+> https://gitlab.freedesktop.org/drm/intel/-/issues/4067#note_1184951
 > 
-> > full of context destroy commands and GuC was taking a long time to
-> > process them. However, the kernel was seeing the large amount of time
-> > spent inside the IRQ lock as a dead CPU. Various Bad Things(tm) would
-> > then happen (heartbeat failures, CT deadlock errors, outstanding H2G
-> > WARNs, etc.).
-> > 
-> > Re-working the loop to only acquire the spinlock around the list
-> > management (which is all it is meant to protect) rather than the
-> > entire destroy operation seems to fix all the above issues.
-> > 
-> > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> And that is failing on Linus' master branch as of
+> 2a987e65025e ("Merge tag 'perf-tools-fixes-for-v5.16-2021-12-07' of git://git.kernel.org/pub/scm/linux/kernel/git/acme/linux")
+> and (at least) 5.15.*. Looking at the appropriate "Fixes" tag I found these commits:
+> 
+>   1) 1cd21a7c5679 ("drm/i915: Add Wa_1407352427:icl,ehl") - original
+>      commit adding the WA
+>   2) 3551ff928744 ("drm/i915/gen11: Moving WAs to rcs_engine_wa_init()")
+>      moving the WA to rcs_engine_wa_init()
+> 
+> However (2) is on v5.7-rc1 and (1) is on v5.6-rc1 and according to the
+> bug report GuC loading was working on 5.13. So I suspect the move
+> to GuC 62.0.0 made the checks more strict, or there is another patch
+
+This is correct.  Having "GT workarounds" on the engine list by accident
+used to be harmless (because i915 [with execlist submission] and the guc
+[with guc submission]) would simply re-apply the register setting more
+often than it really needed to.  However the more recent GuC versions
+have become more picky about the set of registers they're willing to
+save/restore for workarounds and will fail to load if they see a
+register on the save/restore list that isn't something they think is
+appropriate for an engine reset.
+
+GuC submission isn't officially supported on ICL; you can force it via
+module parameter, which taints the kernel and takes you through untested
+codepaths, so you do so at your own risk.  Given that, I don't think
+there's any real need to worry about getting this backported to specific
+stable kernels; having the workaround in the wrong place doesn't
+actually harm anything on the official and default non-GuC mode.
+
+
+Matt
+
+> that paired with that one makes load fail to load.
+> 
+> Anyway, it seems that commit is the one to fix and we probably need to
+> bring both moves to stable (5.15.y and 5.10.y ?), besides propagating
+> it to drm-intel-fixes so it applies to 5.16
+> 
+> Cc'ing some more people.
+> 
+> 
+> Lucas De Marchi
+> 
+> 
+> 
+> 
 > > ---
-> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 45 ++++++++++++-------
-> >   1 file changed, 28 insertions(+), 17 deletions(-)
+> > drivers/gpu/drm/i915/gt/intel_workarounds.c | 18 +++++++++---------
+> > 1 file changed, 9 insertions(+), 9 deletions(-)
 > > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > index 36c2965db49b..96fcf869e3ff 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > @@ -2644,7 +2644,6 @@ static inline void guc_lrc_desc_unpin(struct intel_context *ce)
-> >   	unsigned long flags;
-> >   	bool disabled;
-> > -	lockdep_assert_held(&guc->submission_state.lock);
-> >   	GEM_BUG_ON(!intel_gt_pm_is_awake(gt));
-> >   	GEM_BUG_ON(!lrc_desc_registered(guc, ce->guc_id.id));
-> >   	GEM_BUG_ON(ce != __get_context(guc, ce->guc_id.id));
-> > @@ -2660,7 +2659,7 @@ static inline void guc_lrc_desc_unpin(struct intel_context *ce)
-> >   	}
-> >   	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-> >   	if (unlikely(disabled)) {
-> > -		__release_guc_id(guc, ce);
-> > +		release_guc_id(guc, ce);
-> >   		__guc_context_destroy(ce);
-> >   		return;
-> >   	}
-> > @@ -2694,36 +2693,48 @@ static void __guc_context_destroy(struct intel_context *ce)
-> >   static void guc_flush_destroyed_contexts(struct intel_guc *guc)
-> >   {
-> > -	struct intel_context *ce, *cn;
-> > +	struct intel_context *ce;
-> >   	unsigned long flags;
-> >   	GEM_BUG_ON(!submission_disabled(guc) &&
-> >   		   guc_submission_initialized(guc));
-> > -	spin_lock_irqsave(&guc->submission_state.lock, flags);
-> > -	list_for_each_entry_safe(ce, cn,
-> > -				 &guc->submission_state.destroyed_contexts,
-> > -				 destroyed_link) {
-> > -		list_del_init(&ce->destroyed_link);
-> > -		__release_guc_id(guc, ce);
-> > +	while (!list_empty(&guc->submission_state.destroyed_contexts)) {
-> > +		spin_lock_irqsave(&guc->submission_state.lock, flags);
-> > +		ce = list_first_entry_or_null(&guc->submission_state.destroyed_contexts,
-> > +					      struct intel_context,
-> > +					      destroyed_link);
-> > +		if (ce)
-> > +			list_del_init(&ce->destroyed_link);
-> > +		spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > index c3211325c2d3..3113266c286e 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > @@ -1224,6 +1224,15 @@ icl_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+> > 		    GAMT_CHKN_BIT_REG,
+> > 		    GAMT_CHKN_DISABLE_L3_COH_PIPE);
+> > 
+> > +	/* Wa_1407352427:icl,ehl */
+> > +	wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
+> > +		    PSDUNIT_CLKGATE_DIS);
 > > +
-> > +		if (!ce)
-> > +			break;
+> > +	/* Wa_1406680159:icl,ehl */
+> > +	wa_write_or(wal,
+> > +		    SUBSLICE_UNIT_LEVEL_CLKGATE,
+> > +		    GWUNIT_CLKGATE_DIS);
 > > +
-> > +		release_guc_id(guc, ce);
-> >   		__guc_context_destroy(ce);
-> >   	}
-> > -	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
-> >   }
-> >   static void deregister_destroyed_contexts(struct intel_guc *guc)
-> >   {
-> > -	struct intel_context *ce, *cn;
-> > +	struct intel_context *ce;
-> >   	unsigned long flags;
-> > -	spin_lock_irqsave(&guc->submission_state.lock, flags);
-> > -	list_for_each_entry_safe(ce, cn,
-> > -				 &guc->submission_state.destroyed_contexts,
-> > -				 destroyed_link) {
-> > -		list_del_init(&ce->destroyed_link);
-> > +	while (!list_empty(&guc->submission_state.destroyed_contexts)) {
-> > +		spin_lock_irqsave(&guc->submission_state.lock, flags);
-> > +		ce = list_first_entry_or_null(&guc->submission_state.destroyed_contexts,
-> > +					      struct intel_context,
-> > +					      destroyed_link);
-> > +		if (ce)
-> > +			list_del_init(&ce->destroyed_link);
-> > +		spin_unlock_irqrestore(&guc->submission_state.lock, flags);
-> > +
-> > +		if (!ce)
-> > +			break;
-> > +
-> >   		guc_lrc_desc_unpin(ce);
-> >   	}
-> > -	spin_unlock_irqrestore(&guc->submission_state.lock, flags);
-> >   }
-> >   static void destroyed_worker_func(struct work_struct *w)
-> 
+> > 	/* Wa_1607087056:icl,ehl,jsl */
+> > 	if (IS_ICELAKE(i915) ||
+> > 	    IS_JSL_EHL_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+> > @@ -2269,15 +2278,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+> > 		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE,
+> > 			    VSUNIT_CLKGATE_DIS | HSUNIT_CLKGATE_DIS);
+> > 
+> > -		/* Wa_1407352427:icl,ehl */
+> > -		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
+> > -			    PSDUNIT_CLKGATE_DIS);
+> > -
+> > -		/* Wa_1406680159:icl,ehl */
+> > -		wa_write_or(wal,
+> > -			    SUBSLICE_UNIT_LEVEL_CLKGATE,
+> > -			    GWUNIT_CLKGATE_DIS);
+> > -
+> > 		/*
+> > 		 * Wa_1408767742:icl[a2..forever],ehl[all]
+> > 		 * Wa_1605460711:icl[a0..c0]
+> > -- 
+> > 2.34.1
+> > 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
