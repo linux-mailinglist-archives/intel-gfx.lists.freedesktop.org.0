@@ -1,40 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C53A2472CAC
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 13:59:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9209472EFE
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 15:22:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA0B210E783;
-	Mon, 13 Dec 2021 12:58:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 720D710E76E;
+	Mon, 13 Dec 2021 14:22:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41CE810E772;
- Mon, 13 Dec 2021 12:58:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10196"; a="324995071"
-X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="324995071"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2021 04:58:54 -0800
-X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="481500027"
-Received: from dwaguero-mobl1.amr.corp.intel.com (HELO [10.249.254.147])
- ([10.249.254.147])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2021 04:58:53 -0800
-Message-ID: <4469b0ff-076e-86ee-cb2a-fd9f780fc106@linux.intel.com>
-Date: Mon, 13 Dec 2021 13:58:51 +0100
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com
+ [IPv6:2607:f8b0:4864:20::b2c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD66E10E2D0
+ for <intel-gfx@lists.freedesktop.org>; Sat, 11 Dec 2021 03:15:16 +0000 (UTC)
+Received: by mail-yb1-xb2c.google.com with SMTP id v203so25567368ybe.6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 19:15:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=l3bdCq7anI4Qe4LpjY7De0uPwaZQ3bCtaimkhxYLK0E=;
+ b=nNetR2AzfTLhui2PQ+7hmgjZhFvIGzpwe7aiGSNMmmEgDgUb7g1pzOger4MGu3O31E
+ WE9NByiRX9sy0O1Ih5sYMYYK/AB2lqY9aD443ErRzasd6m4qaetOtQIXgEk0h/viVlZL
+ dCCs7ITh4XiSuZv/AwS/3l82LUBXAR7wsfzGGF/xwndgYnOdEjI+gcgsDzHZrU3zbqNQ
+ QuFtCaclFhpQygETRqCMho7ogWYkq8pOVDAo4Xo8zRGzY2MPAt2rXlxCHLh8tqPBGfer
+ xJQZvHNC/vJjdYvQuT0ENploKS9YstkExZvRzkEQ5/RmVo2uHcVroTFR3g1Pu8rXqoBi
+ K/5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=l3bdCq7anI4Qe4LpjY7De0uPwaZQ3bCtaimkhxYLK0E=;
+ b=jvMzxqSHcftkOMrVDBCD+Sc+e0rK5rcosLBaoHIGxxH8Q2sQ3i7apa5GFiy/oNQAk0
+ xfx67NelTp4TsLqOQ9e6mOtJ3qBumMyzOEML9OmbZlZdFbyvOXEupkXXGqjXfIM5T0Ax
+ EfC2lAB0ZZJ1N5GcXKO/r1PBhdVGzmxpZOtlHOCyBW2kOiTHvFriwGWrwwBjabrm1t1q
+ 2hhkFQLmZLvAXBMfOn+tLyxjw+UAKOTw00ZBcIzZpmU1ZSuRTWDzi0w7OkSUCkbariE+
+ VjnX/4v6o79rONsu2GGrJgYue7qGpmQkrducyV8TFfnIXGGdWnVQrZU9qA5H72ETq5cE
+ T0RQ==
+X-Gm-Message-State: AOAM533cKFIBicd6zKT6OtRSFNwtseLyW4berOG9mtjpCJu9OE4SRt/W
+ lCCOmdRqwyTLV5AwUxVN5PPecKuSVP7vL+USqB5eIGa8EBc4XEhV3ICQw07O
+X-Google-Smtp-Source: ABdhPJx5ktlm7Otb2Aj95+k6jt4bEqTeWZcNH4f/pbAM7QAbu2y0VWQINhpwOvHGJnl8HkHbFeTqNLqOgWxldyl2ylw=
+X-Received: by 2002:a25:8b04:: with SMTP id i4mr20660724ybl.663.1639192515836; 
+ Fri, 10 Dec 2021 19:15:15 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20211213125530.3960007-1-matthew.auld@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20211213125530.3960007-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: add noreclaim annotations
+References: <20211210061152.29087-1-linmq006@gmail.com>
+ <163915440013.3443.3422971101904441012@emeril.freedesktop.org>
+In-Reply-To: <163915440013.3443.3422971101904441012@emeril.freedesktop.org>
+From: =?UTF-8?B?5p6X5aaZ5YCp?= <linmq006@gmail.com>
+Date: Sat, 11 Dec 2021 11:15:04 +0800
+Message-ID: <CAH-r-ZEv0zWZgb1rq6e1q722gy_0tK9hkNiwQfkidO2YJo3FYQ@mail.gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="0000000000009ffd5405d2d63fc3"
+X-Mailman-Approved-At: Mon, 13 Dec 2021 14:22:49 +0000
+Subject: Re: [Intel-gfx] 
+	=?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+	=?utf-8?q?/i915/selftests=3A_Fix_inconsistent_object_in_IS=5FERR_a?=
+	=?utf-8?q?nd_PTR=5FERR?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,121 +66,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--0000000000009ffd5405d2d63fc3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/13/21 13:55, Matthew Auld wrote:
-> We have a debugfs hook to directly call into i915_gem_shrink() with the
-> fs_reclaim acquire annotations to simulate hitting direct reclaim.
-> However we should also annotate this with memalloc_noreclaim, which will
-> set PF_MEMALLOC for us on the current context, to ensure we can't
-> re-enter direct reclaim(just like "real" direct reclaim does). This is
-> an issue now that ttm_bo_validate could potentially be called here,
-> which might try to allocate a tiny amount of memory to hold the new
-> ttm_resource struct, as per the below splat:
->
-> [ 2507.913844] WARNING: possible recursive locking detected
-> [ 2507.913848] 5.16.0-rc4+ #5 Tainted: G U
-> [ 2507.913853] --------------------------------------------
-> [ 2507.913856] gem_exec_captur/1825 is trying to acquire lock:
-> [ 2507.913861] ffffffffb9df2500 (fs_reclaim){..}-{0:0}, at: kmem_cache_alloc_trace+0x30/0x390
-> [ 2507.913875]
-> but task is already holding lock:
-> [ 2507.913879] ffffffffb9df2500 (fs_reclaim){..}-{0:0}, at: i915_drop_caches_set+0x1c9/0x2c0 [i915]
-> [ 2507.913962]
-> other info that might help us debug this:
-> [ 2507.913966] Possible unsafe locking scenario:
->
-> [ 2507.913970] CPU0
-> [ 2507.913973] ----
-> [ 2507.913975] lock(fs_reclaim);
-> [ 2507.913979] lock(fs_reclaim);
-> [ 2507.913983]
->
->              DEADLOCK ***
->
-> [ 2507.913988] May be due to missing lock nesting notation
->
-> [ 2507.913992] 4 locks held by gem_exec_captur/1825:
-> [ 2507.913997] #0: ffff888101f6e460 (sb_writers#17){..}-{0:0}, at: ksys_write+0xe9/0x1b0
-> [ 2507.914009] #1: ffff88812d99e2b8 (&attr->mutex){..}-{3:3}, at: simple_attr_write+0xbb/0x220
-> [ 2507.914019] #2: ffffffffb9df2500 (fs_reclaim){..}-{0:0}, at: i915_drop_caches_set+0x1c9/0x2c0 [i915]
-> [ 2507.914085] #3: ffff8881b4a11b20 (reservation_ww_class_mutex){..}-{3:3}, at: ww_mutex_trylock+0x43f/0xcb0
-> [ 2507.914097]
-> stack backtrace:
-> [ 2507.914102] CPU: 0 PID: 1825 Comm: gem_exec_captur Tainted: G U 5.16.0-rc4+ #5
-> [ 2507.914109] Hardware name: ASUS System Product Name/PRIME B560M-A AC, BIOS 0403 01/26/2021
-> [ 2507.914115] Call Trace:
-> [ 2507.914118] <TASK>
-> [ 2507.914121] dump_stack_lvl+0x59/0x73
-> [ 2507.914128] __lock_acquire.cold+0x227/0x3b0
-> [ 2507.914135] ? lockdep_hardirqs_on_prepare+0x410/0x410
-> [ 2507.914141] ? __lock_acquire+0x23ca/0x5000
-> [ 2507.914147] lock_acquire+0x19c/0x4b0
-> [ 2507.914152] ? kmem_cache_alloc_trace+0x30/0x390
-> [ 2507.914157] ? lock_release+0x690/0x690
-> [ 2507.914163] ? lock_is_held_type+0xe4/0x140
-> [ 2507.914170] ? ttm_sys_man_alloc+0x47/0xb0 [ttm]
-> [ 2507.914178] fs_reclaim_acquire+0x11a/0x160
-> [ 2507.914183] ? kmem_cache_alloc_trace+0x30/0x390
-> [ 2507.914188] kmem_cache_alloc_trace+0x30/0x390
-> [ 2507.914192] ? lock_release+0x37f/0x690
-> [ 2507.914198] ttm_sys_man_alloc+0x47/0xb0 [ttm]
-> [ 2507.914206] ttm_bo_pipeline_gutting+0x70/0x440 [ttm]
-> [ 2507.914214] ? ttm_mem_io_free+0x150/0x150 [ttm]
-> [ 2507.914221] ? lock_is_held_type+0xe4/0x140
-> [ 2507.914227] ttm_bo_validate+0x2fb/0x370 [ttm]
-> [ 2507.914234] ? lock_acquire+0x19c/0x4b0
-> [ 2507.914239] ? ttm_bo_bounce_temp_buffer.constprop.0+0xf0/0xf0 [ttm]
-> [ 2507.914246] ? lock_acquire+0x131/0x4b0
-> [ 2507.914251] ? lock_is_held_type+0xe4/0x140
-> [ 2507.914257] i915_ttm_shrinker_release_pages+0x2bc/0x490 [i915]
-> [ 2507.914339] ? i915_ttm_swap_notify+0x130/0x130 [i915]
-> [ 2507.914429] ? i915_gem_object_release_mmap_offset+0x32/0x250 [i915]
-> [ 2507.914529] i915_gem_shrink+0xb14/0x1290 [i915]
-> [ 2507.914616] ? ___i915_gem_object_make_shrinkable+0x3e0/0x3e0 [i915]
-> [ 2507.914698] ? _raw_spin_unlock_irqrestore+0x2d/0x60
-> [ 2507.914705] ? track_intel_runtime_pm_wakeref+0x180/0x230 [i915]
-> [ 2507.914777] i915_gem_shrink_all+0x4b/0x70 [i915]
-> [ 2507.914857] i915_drop_caches_set+0x227/0x2c0 [i915]
->
-> Reported-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_debugfs.c | 3 +++
->   1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index bafb902269de..359d8ffc6e36 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -666,6 +666,7 @@ static int
->   i915_drop_caches_set(void *data, u64 val)
->   {
->   	struct drm_i915_private *i915 = data;
-> +	unsigned int flags;
->   	int ret;
->   
->   	DRM_DEBUG("Dropping caches: 0x%08llx [0x%08llx]\n",
-> @@ -676,6 +677,7 @@ i915_drop_caches_set(void *data, u64 val)
->   		return ret;
->   
->   	fs_reclaim_acquire(GFP_KERNEL);
-> +	flags = memalloc_noreclaim_save();
->   	if (val & DROP_BOUND)
->   		i915_gem_shrink(NULL, i915, LONG_MAX, NULL, I915_SHRINK_BOUND);
->   
-> @@ -684,6 +686,7 @@ i915_drop_caches_set(void *data, u64 val)
->   
->   	if (val & DROP_SHRINK_ALL)
->   		i915_gem_shrink_all(i915);
-> +	memalloc_noreclaim_restore(flags);
->   	fs_reclaim_release(GFP_KERNEL);
->   
->   	if (val & DROP_RCU)
+I have no idea why it failed without a detailed log, from my humble
+opinion, this bug indeed exists and is easy to understand, I hope someone
+could look into it.
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Patchwork <patchwork@emeril.freedesktop.org> =E4=BA=8E2021=E5=B9=B412=E6=9C=
+=8811=E6=97=A5=E5=91=A8=E5=85=AD 00:40=E5=86=99=E9=81=93=EF=BC=9A
+
+> *Patch Details*
+> *Series:* drm/i915/selftests: Fix inconsistent object in IS_ERR and
+> PTR_ERR
+> *URL:* https://patchwork.freedesktop.org/series/97868/
+> *State:* failure
+>
+> Applying: drm/i915/selftests: Fix inconsistent object in IS_ERR and PTR_E=
+RR
+> Using index info to reconstruct a base tree...
+> M drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+> Falling back to patching base and 3-way merge...
+> No changes -- Patch already applied.
+>
+
+--0000000000009ffd5405d2d63fc3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I have no idea why it failed without a detailed log,=C2=A0=
+from my humble opinion, this bug indeed exists and is easy to understand, I=
+ hope someone could look into it.</div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">Patchwork &lt;<a href=3D"mailto:patchwork@=
+emeril.freedesktop.org">patchwork@emeril.freedesktop.org</a>&gt; =E4=BA=8E2=
+021=E5=B9=B412=E6=9C=8811=E6=97=A5=E5=91=A8=E5=85=AD 00:40=E5=86=99=E9=81=
+=93=EF=BC=9A<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<u></u>
+
+=20
+ =20
+ =20
+ =20
+
+<div>
 
 
+<b>Patch Details</b>
+<table>
+<tbody><tr><td><b>Series:</b></td><td>drm/i915/selftests: Fix inconsistent =
+object in IS_ERR and PTR_ERR</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/97868/" target=3D"_blank">https://patchwork.freedesktop.org/series/978=
+68/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</tbody></table>
+
+
+    <p>Applying: drm/i915/selftests: Fix inconsistent object in IS_ERR and =
+PTR_ERR<br>
+Using index info to reconstruct a base tree...<br>
+M   drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c<br>
+Falling back to patching base and 3-way merge...<br>
+No changes -- Patch already applied.</p>
+
+</div>
+
+</blockquote></div>
+
+--0000000000009ffd5405d2d63fc3--
