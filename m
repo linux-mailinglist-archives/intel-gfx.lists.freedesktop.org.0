@@ -2,50 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AB93470FA6
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Dec 2021 02:01:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EED39470FA2
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Dec 2021 01:58:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8181310E68A;
-	Sat, 11 Dec 2021 01:01:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7957F10E5F5;
+	Sat, 11 Dec 2021 00:58:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2EB210E5F5;
- Sat, 11 Dec 2021 01:01:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639184503; x=1670720503;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=JMIYWQa0tvBZ0+O7d8lMM8MJBsBkDAaUQuKEz7EAS/E=;
- b=P/3XiCPOHAwD6LbnGsK9DzXwpK0cmEo1uBR87d5D/x+1bxMDO2xEykzI
- dHlyC//vZLcHV/iwdsCSscc+36wCdPr65xO+Rg/6sy2AdwxaKAMa1cjHI
- 7zaeUUXH3W1wfN0cfw/kSJyFBaEvmqCIiOfMx0ly8ykvwO725xYUJTlVd
- xbV07VCwOPHk1Wuvhb4Wi+BV1rJXhaAxN/NLHehEaHLVm+HhlMgL61bf6
- Qvj4IGQAn/LpmjiKYx3+7JD190yH+D6h1PaViDqYS6Bd7ccWiLu7iFvcE
- o/ZOB2iDQaB7VOt/DiksIQ1dO733/140edKZlODYWuQyYPArZqz9L5v8n g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10194"; a="238436792"
-X-IronPort-AV: E=Sophos;i="5.88,197,1635231600"; d="scan'208";a="238436792"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 17:01:43 -0800
-X-IronPort-AV: E=Sophos;i="5.88,197,1635231600"; d="scan'208";a="517002978"
-Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2021 17:01:42 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-gfx@lists.freedesktop.org>,
-	<dri-devel@lists.freedesktop.org>
-Date: Fri, 10 Dec 2021 16:56:12 -0800
-Message-Id: <20211211005612.8575-8-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211211005612.8575-1-matthew.brost@intel.com>
-References: <20211211005612.8575-1-matthew.brost@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EF27510E5F5;
+ Sat, 11 Dec 2021 00:58:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E5991A00A0;
+ Sat, 11 Dec 2021 00:58:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4936683502488517418=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 7/7] drm/i915/guc: Selftest for stealing of guc
- ids
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Date: Sat, 11 Dec 2021 00:58:42 -0000
+Message-ID: <163918432290.10520.14885316131326882174@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211211000756.1698923-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20211211000756.1698923-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Support_bigger_GuC_RSA_keys?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,304 +40,240 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Testing the stealing of guc ids is hard from user spaec as we have 64k
-guc_ids. Add a selftest, which artificially reduces the number of guc
-ids, and forces a steal. Details of test has comment in code so will not
-repeat here.
+--===============4936683502488517418==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  12 ++
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  15 +-
- drivers/gpu/drm/i915/gt/uc/selftest_guc.c     | 171 ++++++++++++++++++
- 3 files changed, 193 insertions(+), 5 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 1cb46098030d..307380a2e2ff 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -94,6 +94,11 @@ struct intel_guc {
- 		 * @guc_ids: used to allocate new guc_ids, single-lrc
- 		 */
- 		struct ida guc_ids;
-+		/**
-+		 * @num_guc_ids: Number of guc_ids, selftest feature to be able
-+		 * to reduce this number of test.
-+		 */
-+		int num_guc_ids;
- 		/**
- 		 * @guc_ids_bitmap: used to allocate new guc_ids, multi-lrc
- 		 */
-@@ -202,6 +207,13 @@ struct intel_guc {
- 		 */
- 		struct delayed_work work;
- 	} timestamp;
-+
-+#ifdef CONFIG_DRM_I915_SELFTEST
-+	/**
-+	 * @number_guc_id_stole: The number of guc_ids that have been stole
-+	 */
-+	int number_guc_id_stole;
-+#endif
- };
- 
- static inline struct intel_guc *log_to_guc(struct intel_guc_log *log)
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 96fcf869e3ff..57019b190bfb 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -145,7 +145,7 @@ guc_create_parallel(struct intel_engine_cs **engines,
-  * use should be low and 1/16 should be sufficient. Minimum of 32 guc_ids for
-  * multi-lrc.
-  */
--#define NUMBER_MULTI_LRC_GUC_ID		(GUC_MAX_LRC_DESCRIPTORS / 16)
-+#define NUMBER_MULTI_LRC_GUC_ID(guc)	(guc->submission_state.num_guc_ids / 16)
- 
- /*
-  * Below is a set of functions which control the GuC scheduling state which
-@@ -1775,7 +1775,7 @@ int intel_guc_submission_init(struct intel_guc *guc)
- 		  destroyed_worker_func);
- 
- 	guc->submission_state.guc_ids_bitmap =
--		bitmap_zalloc(NUMBER_MULTI_LRC_GUC_ID, GFP_KERNEL);
-+		bitmap_zalloc(NUMBER_MULTI_LRC_GUC_ID(guc), GFP_KERNEL);
- 	if (!guc->submission_state.guc_ids_bitmap)
- 		return -ENOMEM;
- 
-@@ -1869,13 +1869,13 @@ static int new_guc_id(struct intel_guc *guc, struct intel_context *ce)
- 
- 	if (intel_context_is_parent(ce))
- 		ret = bitmap_find_free_region(guc->submission_state.guc_ids_bitmap,
--					      NUMBER_MULTI_LRC_GUC_ID,
-+					      NUMBER_MULTI_LRC_GUC_ID(guc),
- 					      order_base_2(ce->parallel.number_children
- 							   + 1));
- 	else
- 		ret = ida_simple_get(&guc->submission_state.guc_ids,
--				     NUMBER_MULTI_LRC_GUC_ID,
--				     GUC_MAX_LRC_DESCRIPTORS,
-+				     NUMBER_MULTI_LRC_GUC_ID(guc),
-+				     guc->submission_state.num_guc_ids,
- 				     GFP_KERNEL | __GFP_RETRY_MAYFAIL |
- 				     __GFP_NOWARN);
- 	if (unlikely(ret < 0))
-@@ -1941,6 +1941,10 @@ static int steal_guc_id(struct intel_guc *guc, struct intel_context *ce)
- 
- 		set_context_guc_id_invalid(cn);
- 
-+#ifdef CONFIG_DRM_I915_SELFTEST
-+		guc->number_guc_id_stole++;
-+#endif
-+
- 		return 0;
- 	} else {
- 		return -EAGAIN;
-@@ -3779,6 +3783,7 @@ static bool __guc_submission_selected(struct intel_guc *guc)
- 
- void intel_guc_submission_init_early(struct intel_guc *guc)
- {
-+	guc->submission_state.num_guc_ids = GUC_MAX_LRC_DESCRIPTORS;
- 	guc->submission_supported = __guc_submission_supported(guc);
- 	guc->submission_selected = __guc_submission_selected(guc);
- }
-diff --git a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
-index fb0e4a7bd8ca..9ab355e64b3f 100644
---- a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
-@@ -3,8 +3,21 @@
-  * Copyright �� 2021 Intel Corporation
-  */
- 
-+#include "selftests/igt_spinner.h"
- #include "selftests/intel_scheduler_helpers.h"
- 
-+static int request_add_spin(struct i915_request *rq, struct igt_spinner *spin)
-+{
-+	int err = 0;
-+
-+	i915_request_get(rq);
-+	i915_request_add(rq);
-+	if (spin && !igt_wait_for_spinner(spin, rq))
-+		err = -ETIMEDOUT;
-+
-+	return err;
-+}
-+
- static struct i915_request *nop_user_request(struct intel_context *ce,
- 					     struct i915_request *from)
- {
-@@ -110,10 +123,168 @@ static int intel_guc_scrub_ctbs(void *arg)
- 	return ret;
- }
- 
-+/*
-+ * intel_guc_steal_guc_ids - Test to exhaust all guc_ids and then steal one
-+ *
-+ * This test creates a spinner to which is used as to block all subsequent
-+ * submissions until it completes. Next, a loop creates a context and a NOP
-+ * request each iteration until the guc_ids are exhausted (request creation
-+ * returns -EAGAIN). The spinner is completed unblocking all requests created in
-+ * the loop. At this point all guc_ids are exhausted but are available to steal.
-+ * Try to create another request which should successfully steal a guc_id. Wait
-+ * on last request to complete, idle GPU, verify guc_id was stole via counter,
-+ * and exit test. Test also artificially reduces the number of guc_ids so the
-+ * test runs in a timely manner.
-+ */
-+static int intel_guc_steal_guc_ids(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_guc *guc = &gt->uc.guc;
-+	int ret, sv, i = 0;
-+	intel_wakeref_t wakeref;
-+	struct intel_engine_cs *engine;
-+	struct intel_context **ce;
-+	struct igt_spinner spin;
-+	struct i915_request *spin_rq = NULL, *rq, *last = NULL;
-+	int number_guc_id_stole = guc->number_guc_id_stole;
-+
-+	ce = kzalloc(sizeof(*ce) * GUC_MAX_LRC_DESCRIPTORS, GFP_KERNEL);
-+	if (!ce) {
-+		pr_err("Context array allocation failed\n");
-+		return -ENOMEM;
-+	}
-+
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-+	engine = intel_selftest_find_any_engine(gt);
-+	sv = guc->submission_state.num_guc_ids;
-+	guc->submission_state.num_guc_ids = 4096;
-+
-+	/* Create spinner to block requests in below loop */
-+	ce[i++] = intel_context_create(engine);
-+	if (IS_ERR(ce[i - 1])) {
-+		ce[i - 1] = NULL;
-+		ret = PTR_ERR(ce[i - 1]);
-+		pr_err("Failed to create context: %d\n", ret);
-+		goto err_wakeref;
-+	}
-+	ret = igt_spinner_init(&spin, engine->gt);
-+	if (ret) {
-+		pr_err("Failed to create spinner: %d\n", ret);
-+		goto err_contexts;
-+	}
-+	spin_rq = igt_spinner_create_request(&spin, ce[i - 1], MI_ARB_CHECK);
-+	if (IS_ERR(spin_rq)) {
-+		ret = PTR_ERR(spin_rq);
-+		pr_err("Failed to create spinner request: %d\n", ret);
-+		goto err_contexts;
-+	}
-+	ret = request_add_spin(spin_rq, &spin);
-+	if (ret) {
-+		pr_err("Failed to add Spinner request: %d\n", ret);
-+		goto err_spin_rq;
-+	}
-+
-+	/* Use all guc_ids */
-+	while (ret != -EAGAIN) {
-+		ce[i++] = intel_context_create(engine);
-+		if (IS_ERR(ce[i - 1])) {
-+			ce[i - 1] = NULL;
-+			ret = PTR_ERR(ce[i - 1]);
-+			pr_err("Failed to create context: %d\n", ret);
-+			goto err_spin_rq;
-+		}
-+
-+		rq = nop_user_request(ce[i - 1], spin_rq);
-+		if (IS_ERR(rq)) {
-+			ret = PTR_ERR(rq);
-+			rq = NULL;
-+			if (ret != -EAGAIN) {
-+				pr_err("Failed to create request, %d: %d\n", i,
-+				       ret);
-+				goto err_spin_rq;
-+			}
-+		} else {
-+			if (last)
-+				i915_request_put(last);
-+			last = rq;
-+		}
-+	}
-+
-+	/* Release blocked requests */
-+	igt_spinner_end(&spin);
-+	ret = intel_selftest_wait_for_rq(spin_rq);
-+	if (ret) {
-+		pr_err("Spin request failed to complete: %d\n", ret);
-+		i915_request_put(last);
-+		goto err_spin_rq;
-+	}
-+	i915_request_put(spin_rq);
-+	igt_spinner_fini(&spin);
-+	spin_rq = NULL;
-+
-+	/* Wait for last request */
-+	ret = i915_request_wait(last, 0, HZ * 30);
-+	i915_request_put(last);
-+	if (ret < 0) {
-+		pr_err("Last request failed to complete: %d\n", ret);
-+		goto err_spin_rq;
-+	}
-+
-+	/* Try to steal guc_id */
-+	rq = nop_user_request(ce[i - 1], NULL);
-+	if (IS_ERR(rq)) {
-+		ret = PTR_ERR(rq);
-+		pr_err("Failed to steal guc_id, %d: %d\n", i, ret);
-+		goto err_spin_rq;
-+	}
-+
-+	/* Wait for last request */
-+	ret = i915_request_wait(rq, 0, HZ);
-+	i915_request_put(rq);
-+	if (ret < 0) {
-+		pr_err("Last request failed to complete: %d\n", ret);
-+		goto err_spin_rq;
-+	}
-+
-+	/* Wait for idle */
-+	ret = intel_gt_wait_for_idle(gt, HZ * 30);
-+	if (ret < 0) {
-+		pr_err("GT failed to idle: %d\n", ret);
-+		goto err_spin_rq;
-+	}
-+
-+	/* Verify a guc_id got stole */
-+	if (guc->number_guc_id_stole == number_guc_id_stole) {
-+		pr_err("No guc_ids stolen");
-+		ret = -EINVAL;
-+	} else {
-+		ret = 0;
-+	}
-+
-+err_spin_rq:
-+	if (spin_rq) {
-+		igt_spinner_end(&spin);
-+		intel_selftest_wait_for_rq(spin_rq);
-+		i915_request_put(spin_rq);
-+		igt_spinner_fini(&spin);
-+		intel_gt_wait_for_idle(gt, HZ * 30);
-+	}
-+err_contexts:
-+	while (i && ce[--i])
-+		intel_context_put(ce[i]);
-+err_wakeref:
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-+	kfree(ce);
-+	guc->submission_state.num_guc_ids = sv;
-+
-+	return ret;
-+}
-+
- int intel_guc_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
- 		SUBTEST(intel_guc_scrub_ctbs),
-+		SUBTEST(intel_guc_steal_guc_ids),
- 	};
- 	struct intel_gt *gt = &i915->gt;
- 
--- 
-2.33.1
+Series: drm/i915: Support bigger GuC RSA keys
+URL   : https://patchwork.freedesktop.org/series/97891/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10988 -> Patchwork_21830
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/index.html
+
+Participating hosts (45 -> 35)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (11): fi-ilk-m540 fi-bxt-dsi bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-jsl-2 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21830 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [PASS][2] -> [FAIL][3] ([i915#1888])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [PASS][4] -> [INCOMPLETE][5] ([i915#2940])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][6] ([fdo#109271]) +57 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][7] ([i915#2426] / [i915#4312])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-bdw-5557u/igt@runner@aborted.html
+    - fi-bsw-n3050:       NOTRUN -> [FAIL][8] ([fdo#109271] / [i915#1436] / [i915#3428] / [i915#4312])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-bsw-n3050/igt@runner@aborted.html
+
+  * igt@vgem_basic@dmabuf-fence:
+    - fi-tgl-u2:          [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-tgl-u2/igt@vgem_basic@dmabuf-fence.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-tgl-u2/igt@vgem_basic@dmabuf-fence.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-tgl-u2:          [INCOMPLETE][11] ([i915#4006]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][13] ([i915#3921]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4006]: https://gitlab.freedesktop.org/drm/intel/issues/4006
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10988 -> Patchwork_21830
+
+  CI-20190529: 20190529
+  CI_DRM_10988: 24a4093e85c578905d39ebe14225dbeb5b6f07d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6305: 136258e86a093fdb50a7a341de1c09ac9a076fea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21830: 5646d1ed0b6568de51388c7142b144cfc7f00ced @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+5646d1ed0b65 drm/i915/guc: support bigger RSA keys
+19a686466746 drm/i915/uc: Prepare for different firmware key sizes
+b52e360e45d8 drm/i915/uc: correctly track uc_fw init failure
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/index.html
+
+--===============4936683502488517418==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Support bigger GuC RSA keys</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/97891/">https://patchwork.freedesktop.org/series/97891/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10988 -&gt; Patchwork_21830</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/index.html</p>
+<h2>Participating hosts (45 -&gt; 35)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (11): fi-ilk-m540 fi-bxt-dsi bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 bat-jsl-2 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21830 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@vgem_basic@dmabuf-fence:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-tgl-u2/igt@vgem_basic@dmabuf-fence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-tgl-u2/igt@vgem_basic@dmabuf-fence.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4006">i915#4006</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21830/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10988 -&gt; Patchwork_21830</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10988: 24a4093e85c578905d39ebe14225dbeb5b6f07d5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6305: 136258e86a093fdb50a7a341de1c09ac9a076fea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21830: 5646d1ed0b6568de51388c7142b144cfc7f00ced @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>5646d1ed0b65 drm/i915/guc: support bigger RSA keys<br />
+19a686466746 drm/i915/uc: Prepare for different firmware key sizes<br />
+b52e360e45d8 drm/i915/uc: correctly track uc_fw init failure</p>
+
+</body>
+</html>
+
+--===============4936683502488517418==--
