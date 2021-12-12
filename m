@@ -1,45 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A035D471897
-	for <lists+intel-gfx@lfdr.de>; Sun, 12 Dec 2021 06:42:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2826471B18
+	for <lists+intel-gfx@lfdr.de>; Sun, 12 Dec 2021 16:10:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE8BE10E5A1;
-	Sun, 12 Dec 2021 05:42:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2AEC10E6FB;
+	Sun, 12 Dec 2021 15:10:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 301 seconds by postgrey-1.36 at gabe;
- Sun, 12 Dec 2021 05:42:09 UTC
-Received: from nmtao102.oxsus-vadesecure.net (mta-102b.oxsus-vadesecure.net
- [51.81.61.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 642FF10E5A1
- for <intel-gfx@lists.freedesktop.org>; Sun, 12 Dec 2021 05:42:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; bh=20Tk3beuRmLCI778AOPIwE6rwtO2bN/hxddxXi
- XS7sA=; c=relaxed/relaxed; d=earthlink.net; h=from:reply-to:subject:
- date:to:cc:resent-date:resent-from:resent-to:resent-cc:in-reply-to:
- references:list-id:list-help:list-unsubscribe:list-subscribe:list-post:
- list-owner:list-archive; q=dns/txt; s=dk12062016; t=1639287425;
- x=1639892225; b=KrmK1EYbyb2XajRwJXJ2mgGmChN4p+f1iEujg6rbtI3Z0/z13DXIt9/
- oga0aNO93vM1lGtHr0nIKvssdxHt+cGEwdFsaZQlrZUeeq+KkgsKGvPMhiegp0XA8Mv8vaW
- NGv2v/auIQi2QZB2Hs85O3GycAIa+TiR3k6XNBVLBjnEuMjzlPsPQEW4hq6EHfgWuKs/Thn
- HDryCfbUSzQPd3yJUh9BPiRs1IswCIpDOkEesigBHguT2Q+EJeMBQxIly19wl20plFoj/7A
- xcFs5baVl9bsZ0XnWJa2FO+bn7SUO7ZZTlQXr7seCsnOPjABkTbGv4gQijFSI3Fujfv9z61
- 5mw==
-Received: from [192.168.0.11] ([24.50.25.135])
- by smtp.oxsus-vadesecure.net ESMTP oxsus1nmtao02p with ngmta
- id dfca5451-16bfeb3a48baa935; Sun, 12 Dec 2021 05:37:05 +0000
-To: intel-gfx@lists.freedesktop.org
-From: Felix Miata <mrmazda@earthlink.net>
-Organization: less than infinite
-Message-ID: <e63cb7d2-4d6f-ce11-6ba1-0d44b21cde75@earthlink.net>
-Date: Sun, 12 Dec 2021 00:37:04 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- SeaMonkey/2.49.5
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FBFE10E6FB;
+ Sun, 12 Dec 2021 15:10:42 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10195"; a="324874558"
+X-IronPort-AV: E=Sophos;i="5.88,200,1635231600"; d="scan'208";a="324874558"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2021 07:10:42 -0800
+X-IronPort-AV: E=Sophos;i="5.88,200,1635231600"; d="scan'208";a="517444171"
+Received: from nipunpan-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.53.91])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2021 07:10:38 -0800
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
+Date: Sun, 12 Dec 2021 17:10:19 +0200
+Message-Id: <20211212151019.117931-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: [Intel-gfx] KMS start locks up RocketLake-S GT1
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v7 08/12] drm/i915/pxp: Use to_gt() helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,17 +43,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Is there a command line option needed for RocketLake-S GT1 on i5-11400? Is it
-supposed to use some module other than i915? Tumbleweed kernel 5.15.6 locks up,
-apparently when KMS should be kicking in. I can't get any logs or dmesg except
-when booting with nomodeset.
+Use to_gt() helper consistently throughout the codebase.
+Pure mechanical s/i915->gt/to_gt(i915). No functional changes.
+
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+index 5d169624ad60..195b2323ec00 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+@@ -16,7 +16,9 @@
+ 
+ static inline struct intel_pxp *i915_dev_to_pxp(struct device *i915_kdev)
+ {
+-	return &kdev_to_i915(i915_kdev)->gt.pxp;
++	struct drm_i915_private *i915 = kdev_to_i915(i915_kdev);
++
++	return &to_gt(i915)->pxp;
+ }
+ 
+ static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
 -- 
-Evolution as taught in public schools is, like religion,
-	based on faith, not based on science.
+2.34.1
 
- Team OS/2 ** Reg. Linux User #211409 ** a11y rocks!
-
-Felix Miata
