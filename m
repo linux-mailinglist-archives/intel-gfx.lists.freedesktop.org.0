@@ -1,40 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39164472DB0
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 14:45:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7B03472DDE
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 14:51:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC14910E79C;
-	Mon, 13 Dec 2021 13:45:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 037DC10E7C1;
+	Mon, 13 Dec 2021 13:51:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AA2010E79C
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Dec 2021 13:45:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10196"; a="238955762"
-X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="238955762"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2021 05:45:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="464635132"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 13 Dec 2021 05:45:03 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 13 Dec 2021 15:45:02 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+Received: from nmtao101.oxsus-vadesecure.net (unknown [51.81.61.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DBAE10E7C1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Dec 2021 13:51:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; bh=LnQNouBWvqRgjvbchuw+pBhNmzyP/LTRfCsDwX
+ RJuZU=; c=relaxed/relaxed; d=earthlink.net; h=from:reply-to:subject:
+ date:to:cc:resent-date:resent-from:resent-to:resent-cc:in-reply-to:
+ references:list-id:list-help:list-unsubscribe:list-subscribe:list-post:
+ list-owner:list-archive; q=dns/txt; s=dk12062016; t=1639403458;
+ x=1640008258; b=GkRgBorAYMKBer4wIN04mc8y1elmo3qXydd3Wr5jpckncoHE66achnv
+ Q0fTNMS3JH1TCyoUjKsF+pF87Qi7NnDT+D121upyRoQw9uTtxk9vlq+mbw2wABzd2BXvYzQ
+ lqq+N5eY1g73nxTe8LkJ7J6oHGQF4v5XS1njzD0qIkp9MTI/4MmK9OEAEt0OZSciv44HdYs
+ aYBqWFLxYsS0nxYoUJYQCwPpSbjn4xdgYQMI3XgLlobYl1nDWVq5J0TmMn1l6N2z+tZ+WGb
+ 2/m6CbagrZmapXYTEQL5f1R3nw6BikH0oQoMeuctx5Z1HnDpOKTBbA5AUx6rI8LDvCbGRRg
+ HvQ==
+Received: from [192.168.0.11] ([24.50.25.135])
+ by smtp.oxsus-vadesecure.net ESMTP oxsus1nmtao01p with ngmta
+ id 9ba52335-16c054c28534ee1c; Mon, 13 Dec 2021 13:50:58 +0000
+From: Felix Miata <mrmazda@earthlink.net>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Dec 2021 15:44:50 +0200
-Message-Id: <20211213134450.3082-5-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211213134450.3082-1-ville.syrjala@linux.intel.com>
-References: <20211213134450.3082-1-ville.syrjala@linux.intel.com>
+References: <e63cb7d2-4d6f-ce11-6ba1-0d44b21cde75@earthlink.net>
+Organization: less than infinite
+Message-ID: <a919824d-081c-f149-b12e-17ebeae58714@earthlink.net>
+Date: Mon, 13 Dec 2021 08:50:58 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ SeaMonkey/2.49.5
 MIME-Version: 1.0
+In-Reply-To: <e63cb7d2-4d6f-ce11-6ba1-0d44b21cde75@earthlink.net>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 4/4] drm/i915/fbc: Register per-crtc debugfs
- files
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] KMS start locks up RocketLake-S GT1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,73 +51,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Felix Miata composed on 2021-12-12 00:37 (UTC-0500):
 
-Expose FBC debugfs files for each crtc. These may or may not point
-to the same FBC instance depending on the platform.
-
-We leave the old global debugfs files in place until
-igt catches up to the new per-crtc approach.
-
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 31 +++++++++++++++---------
- 1 file changed, 19 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 53c93387710c..eafd84e7f058 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1798,25 +1798,32 @@ DEFINE_SIMPLE_ATTRIBUTE(intel_fbc_debugfs_false_color_fops,
- 			intel_fbc_debugfs_false_color_set,
- 			"%llu\n");
- 
--static void intel_fbc_debugfs_add(struct intel_fbc *fbc)
-+static void intel_fbc_debugfs_add(struct intel_fbc *fbc,
-+				  struct dentry *parent)
- {
--	struct drm_i915_private *i915 = fbc->i915;
--	struct drm_minor *minor = i915->drm.primary;
--
--	debugfs_create_file("i915_fbc_status", 0444,
--			    minor->debugfs_root, fbc,
--			    &intel_fbc_debugfs_status_fops);
-+	debugfs_create_file("i915_fbc_status", 0444, parent,
-+			    fbc, &intel_fbc_debugfs_status_fops);
- 
- 	if (fbc->funcs->set_false_color)
--		debugfs_create_file("i915_fbc_false_color", 0644,
--				    minor->debugfs_root, fbc,
--				    &intel_fbc_debugfs_false_color_fops);
-+		debugfs_create_file("i915_fbc_false_color", 0644, parent,
-+				    fbc, &intel_fbc_debugfs_false_color_fops);
- }
- 
- void intel_fbc_debugfs_register(struct drm_i915_private *i915)
- {
--	struct intel_fbc *fbc = i915->fbc[INTEL_FBC_A];
-+	struct drm_minor *minor = i915->drm.primary;
-+	struct intel_crtc *crtc;
-+	struct intel_fbc *fbc;
- 
-+	for_each_intel_crtc(&i915->drm, crtc) {
-+		struct intel_plane *plane = to_intel_plane(crtc->base.primary);
-+
-+		if (plane->fbc)
-+			intel_fbc_debugfs_add(plane->fbc, crtc->base.debugfs_entry);
-+	}
-+
-+	/* FIXME: remove this once igt is on board with per-crtc stuff */
-+	fbc = i915->fbc[INTEL_FBC_A];
- 	if (fbc)
--		intel_fbc_debugfs_add(fbc);
-+		intel_fbc_debugfs_add(fbc, minor->debugfs_root);
- }
+> Is there a command line option needed for RocketLake-S GT1 on i5-11400? Is it
+> supposed to use some module other than i915? Tumbleweed kernel 5.15.6 locks up,
+> apparently when KMS should be kicking in. I can't get any logs or dmesg except
+> when booting with nomodeset.
+											
+Reported:
+https://gitlab.freedesktop.org/drm/intel/-/issues/4762
 -- 
-2.32.0
+Evolution as taught in public schools is, like religion,
+	based on faith, not based on science.
 
+ Team OS/2 ** Reg. Linux User #211409 ** a11y rocks!
+
+Felix Miata
