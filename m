@@ -2,42 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D6CD4725F7
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 10:50:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BC3947270A
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 10:59:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF18910E72C;
-	Mon, 13 Dec 2021 09:50:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE49110E6FF;
+	Mon, 13 Dec 2021 09:59:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFAE110E72B
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Dec 2021 09:50:45 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10196"; a="238923493"
-X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; 
- d="scan'208,217";a="238923493"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2021 01:50:45 -0800
-X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; 
- d="scan'208,217";a="481459029"
-Received: from skofoed-mobl.ger.corp.intel.com (HELO [10.249.254.92])
- ([10.249.254.92])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2021 01:50:44 -0800
-Message-ID: <041b4bc60800f4061c3355f3fce76cbcc7705412.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org, Lakshminarayana Vudum
- <lakshminarayana.vudum@intel.com>
-Date: Mon, 13 Dec 2021 10:50:41 +0100
-In-Reply-To: <163921616973.10522.4137847844050413505@emeril.freedesktop.org>
-References: <20211209141304.393479-1-thomas.hellstrom@linux.intel.com>
- <163921616973.10522.4137847844050413505@emeril.freedesktop.org>
-Content-Type: multipart/alternative; boundary="=-G9rjDnRf70DH/7AhniS9"
-User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 680B210E62C;
+ Mon, 13 Dec 2021 09:59:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10196"; a="324970232"
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="324970232"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2021 01:59:25 -0800
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="566495206"
+Received: from ppolasze-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.20.7])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2021 01:59:20 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, airlied@linux.ie, daniel@ffwll.ch
+In-Reply-To: <20211213093650.19598-3-tzimmermann@suse.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211213093650.19598-1-tzimmermann@suse.de>
+ <20211213093650.19598-3-tzimmermann@suse.de>
+Date: Mon, 13 Dec 2021 11:59:18 +0200
+Message-ID: <87v8zs7rm1.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Don=27t_leak_the_capture_list_items_=28rev2=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/dp: Move DP declarations into
+ separate header file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,87 +47,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, linux-arm-msm@vger.kernel.org,
+ linux-tegra@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 13 Dec 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> Split the DP declarations from other helpers before moving the
+> DP functions into a separate module.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>  drivers/gpu/drm/drm_crtc_helper_internal.h | 27 ---------------------
+>  drivers/gpu/drm/drm_dp_aux_dev.c           |  2 +-
+>  drivers/gpu/drm/drm_dp_helper.c            |  2 +-
+>  drivers/gpu/drm/drm_dp_helper_internal.h   | 28 ++++++++++++++++++++++
+>  drivers/gpu/drm/drm_dp_mst_topology.c      |  2 +-
+>  drivers/gpu/drm/drm_kms_helper_common.c    |  1 +
+>  6 files changed, 32 insertions(+), 30 deletions(-)
+>  create mode 100644 drivers/gpu/drm/drm_dp_helper_internal.h
+>
+> diff --git a/drivers/gpu/drm/drm_crtc_helper_internal.h b/drivers/gpu/drm/drm_crtc_helper_internal.h
+> index 61e09f8a8d0f..28e04e750130 100644
+> --- a/drivers/gpu/drm/drm_crtc_helper_internal.h
+> +++ b/drivers/gpu/drm/drm_crtc_helper_internal.h
+> @@ -28,36 +28,9 @@
+>  
+>  #include <drm/drm_connector.h>
+>  #include <drm/drm_crtc.h>
+> -#include <drm/drm_dp_helper.h>
+>  #include <drm/drm_encoder.h>
+>  #include <drm/drm_modes.h>
+>  
+> -/* drm_dp_aux_dev.c */
+> -#ifdef CONFIG_DRM_DP_AUX_CHARDEV
+> -int drm_dp_aux_dev_init(void);
+> -void drm_dp_aux_dev_exit(void);
+> -int drm_dp_aux_register_devnode(struct drm_dp_aux *aux);
+> -void drm_dp_aux_unregister_devnode(struct drm_dp_aux *aux);
+> -#else
+> -static inline int drm_dp_aux_dev_init(void)
+> -{
+> -	return 0;
+> -}
+> -
+> -static inline void drm_dp_aux_dev_exit(void)
+> -{
+> -}
+> -
+> -static inline int drm_dp_aux_register_devnode(struct drm_dp_aux *aux)
+> -{
+> -	return 0;
+> -}
+> -
+> -static inline void drm_dp_aux_unregister_devnode(struct drm_dp_aux *aux)
+> -{
+> -}
+> -#endif
+> -
+>  /* drm_probe_helper.c */
+>  enum drm_mode_status drm_crtc_mode_valid(struct drm_crtc *crtc,
+>  					 const struct drm_display_mode *mode);
+> diff --git a/drivers/gpu/drm/drm_dp_aux_dev.c b/drivers/gpu/drm/drm_dp_aux_dev.c
+> index 06b374cae956..0618dfe16660 100644
+> --- a/drivers/gpu/drm/drm_dp_aux_dev.c
+> +++ b/drivers/gpu/drm/drm_dp_aux_dev.c
+> @@ -40,7 +40,7 @@
+>  #include <drm/drm_dp_mst_helper.h>
+>  #include <drm/drm_print.h>
+>  
+> -#include "drm_crtc_helper_internal.h"
+> +#include "drm_dp_helper_internal.h"
+>  
+>  struct drm_dp_aux_dev {
+>  	unsigned index;
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+> index 23f9073bc473..e995a0262ed7 100644
+> --- a/drivers/gpu/drm/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/drm_dp_helper.c
+> @@ -35,7 +35,7 @@
+>  #include <drm/drm_dp_mst_helper.h>
+>  #include <drm/drm_panel.h>
+>  
+> -#include "drm_crtc_helper_internal.h"
+> +#include "drm_dp_helper_internal.h"
+>  
+>  struct dp_aux_backlight {
+>  	struct backlight_device *base;
+> diff --git a/drivers/gpu/drm/drm_dp_helper_internal.h b/drivers/gpu/drm/drm_dp_helper_internal.h
+> new file mode 100644
+> index 000000000000..5c9f8bb0c99a
+> --- /dev/null
+> +++ b/drivers/gpu/drm/drm_dp_helper_internal.h
+> @@ -0,0 +1,28 @@
+> +/* SPDX-License-Identifier: MIT */
+> +
+> +#include <drm/drm_dp_helper.h>
 
---=-G9rjDnRf70DH/7AhniS9
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Please don't include other headers if you can avoid them by using
+forward declarations.
 
-On Sat, 2021-12-11 at 09:49 +0000, Patchwork wrote:
-> Patch Details
-> Series:drm/i915: Don't leak the capture list items
-> (rev2)URL:https://patchwork.freedesktop.org/series/97804/State:failur
-> e
-> Details:https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21820/index.html
-> CI Bug Log - changes from CI_DRM_10988_full -> Patchwork_21820_fullSummaryFAILURE
-> Serious unknown changes coming with Patchwork_21820_full absolutely
-> need to be
-> verified manually.
-> If you think the reported changes have nothing to do with the changes
-> introduced in Patchwork_21820_full, please notify your bug team to
-> allow them
-> to document this new failure mode, which will reduce false positives
-> in CI.
-> Participating hosts (10 -> 10)No changes in participating hosts
-> Possible new issuesHere are the unknown changes that may have been introduced in
-> Patchwork_21820_full:
-> IGT changesPossible regressions * igt@kms_big_fb@linear-64bpp-rotate-180:shard-iclb: PASS -> FAIL
->  * igt@kms_plane_cursor@pipe-a-viewport-size-64:
->     - shard-glk: PASS -> FAIL
+BR,
+Jani.
 
 
-Lakshmi,
-The above errors are unrelated.
+> +
+> +#ifdef CONFIG_DRM_DP_AUX_CHARDEV
+> +int drm_dp_aux_dev_init(void);
+> +void drm_dp_aux_dev_exit(void);
+> +int drm_dp_aux_register_devnode(struct drm_dp_aux *aux);
+> +void drm_dp_aux_unregister_devnode(struct drm_dp_aux *aux);
+> +#else
+> +static inline int drm_dp_aux_dev_init(void)
+> +{
+> +	return 0;
+> +}
+> +
+> +static inline void drm_dp_aux_dev_exit(void)
+> +{
+> +}
+> +
+> +static inline int drm_dp_aux_register_devnode(struct drm_dp_aux *aux)
+> +{
+> +	return 0;
+> +}
+> +
+> +static inline void drm_dp_aux_unregister_devnode(struct drm_dp_aux *aux)
+> +{
+> +}
+> +#endif
+> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+> index 7f0ff96261cf..9f7b0b606924 100644
+> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+> @@ -45,7 +45,7 @@
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_probe_helper.h>
+>  
+> -#include "drm_crtc_helper_internal.h"
+> +#include "drm_dp_helper_internal.h"
+>  #include "drm_dp_mst_topology_internal.h"
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/drm_kms_helper_common.c b/drivers/gpu/drm/drm_kms_helper_common.c
+> index 47e92400548d..88260d26409c 100644
+> --- a/drivers/gpu/drm/drm_kms_helper_common.c
+> +++ b/drivers/gpu/drm/drm_kms_helper_common.c
+> @@ -29,6 +29,7 @@
+>  
+>  #include <drm/drm_print.h>
+>  
+> +#include "drm_dp_helper_internal.h"
+>  #include "drm_crtc_helper_internal.h"
+>  
+>  MODULE_AUTHOR("David Airlie, Jesse Barnes");
 
-Thanks,
-Thomas
-
-
---=-G9rjDnRf70DH/7AhniS9
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html><head>
- =20
-  <title>Project List - Patchwork</title>
-  <style id=3D"css-table-select" type=3D"text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body><div>On Sat, 2021-12-11 at 09:49 +0000, Patchwork wrote:</div><blockq=
-uote type=3D"cite" style=3D"margin:0 0 0 .8ex; border-left:2px #729fcf soli=
-d;padding-left:1ex"><div><b>Patch Details</b></div><div><table><tbody><tr><=
-td><b>Series:</b></td><td>drm/i915: Don't leak the capture list items (rev2=
-)</td></tr><tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedes=
-ktop.org/series/97804/">https://patchwork.freedesktop.org/series/97804/</a>=
-</td></tr><tr><td><b>State:</b></td><td>failure</td></tr> <tr><td><b>Detail=
-s:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwor=
-k_21820/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_2182=
-0/index.html</a></td></tr></tbody></table> </div><h1>CI Bug Log - changes f=
-rom CI_DRM_10988_full -&gt; Patchwork_21820_full</h1><h2>Summary</h2><p><st=
-rong>FAILURE</strong></p><p>Serious unknown changes coming with Patchwork_2=
-1820_full absolutely need to be<br> verified manually.</p><p>If you think t=
-he reported changes have nothing to do with the changes<br> introduced in P=
-atchwork_21820_full, please notify your bug team to allow them<br> to docum=
-ent this new failure mode, which will reduce false positives in CI.</p><h2>=
-Participating hosts (10 -&gt; 10)</h2><p>No changes in participating hosts<=
-/p><h2>Possible new issues</h2><p>Here are the unknown changes that may hav=
-e been introduced in Patchwork_21820_full:</p><h3>IGT changes</h3><h4>Possi=
-ble regressions</h4><ul><li><p>igt@kms_big_fb@linear-64bpp-rotate-180:</p><=
-ul><li>shard-iclb: <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_D=
-RM_10988/shard-iclb2/igt@kms_big_fb@linear-64bpp-rotate-180.html">PASS</a> =
--&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21820/s=
-hard-iclb6/igt@kms_big_fb@linear-64bpp-rotate-180.html">FAIL</a></li></ul><=
-/li><li><p>igt@kms_plane_cursor@pipe-a-viewport-size-64:</p></li><ul><li>sh=
-ard-glk: <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10988/s=
-hard-glk1/igt@kms_plane_cursor@pipe-a-viewport-size-64.html">PASS</a> -&gt;=
- <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21820/shard-=
-glk3/igt@kms_plane_cursor@pipe-a-viewport-size-64.html">FAIL</a></li></ul><=
-/ul></blockquote><div><br></div><div><br></div><div>Lakshmi,</div><div>The =
-above errors are unrelated.</div><div><br></div><div>Thanks,</div><div>Thom=
-as</div><div><br></div><div><span></span></div></body></html>
-
---=-G9rjDnRf70DH/7AhniS9--
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
