@@ -2,62 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3BF4472EFC
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 15:22:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29D99472CC3
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 14:03:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94E3310E741;
-	Mon, 13 Dec 2021 14:22:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D183510E721;
+	Mon, 13 Dec 2021 13:03:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com
- [IPv6:2a00:1450:4864:20::230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 216DC10EB42;
- Sun, 12 Dec 2021 13:25:39 +0000 (UTC)
-Received: by mail-lj1-x230.google.com with SMTP id u22so20115561lju.7;
- Sun, 12 Dec 2021 05:25:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:date:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=ve598KfcQjMxrN8DF+2cp9+JVJ390WXc4dmmTe7HN5c=;
- b=WSF3+HDisDiQZ8snqo5VYAJMjQ6TsEhaBTf9cGpbPVJEhDcFlIqzko6Y9w4FOpfLPI
- a2IbhnUJP5wdzkMdJ6BuhWMjVf8QJ0dyJS0TpxAqke8i0kH7wqfNqE4scEBhI4ob3ub3
- y51OBOl5gYffizYK2frAmpWuSaSCizO9qv5UtWzLNKp3/YFTtWX1/r/P2UD2LyU6BwjG
- XEeqawPZiJDHhfIfXCeTA8reAJEEML2+TkibGcqqbv40GZiNeQbxP3GiHlsDpjzNE+xh
- 0lAm0kHB9huo8Kw3yb6w6ASRzqamGJl+l+iOsoo7mj++MuyL5rPhzNNBcXONb4eeaMmG
- qkdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:date:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=ve598KfcQjMxrN8DF+2cp9+JVJ390WXc4dmmTe7HN5c=;
- b=HR1gq2N0JM7cRhiBPaku4spd5JVqWvmSVlk2gVv8EFtFM8SW63cefF6hSozvHdZ8D/
- RPQ84wu+yQdbBdA6RtEtMQQ56AJdQ2Z7eBDtNTsSZqx2z9gZ3QhVGlep3RYZTsVRfqJP
- 0//hHqu1CgAkuw3tgzTR1TgvounoBjTNg0gEGaRChqImIgND+TGXZwxBa/RdB4OZq6y2
- NrDemSlKPa2P9jwVQxgognJRHfPWHs80A2u8DkZIZ9Htx3TnPBp9zaAShBg4y5aesKIj
- k7qiq4CuTW6XwkF57aoXg3PyEncQZulLsQ1dKiz3t0l3tE6Q1u4utPLdMOb7sl6hqz2k
- d2aA==
-X-Gm-Message-State: AOAM532Pn9eH2dcvxGDvQDB9w+yzFy1gq7NXBkWumX7vQGdJmt10wDZW
- o0NEQPsqXzoQTagU3sryTu4=
-X-Google-Smtp-Source: ABdhPJxrAW+qcnMprjTjS7C6EU0UJV8c47Plc/QFwingZzCya+B1SR+noXjcPHs6Wxk/7N+p8qZ7cA==
-X-Received: by 2002:a2e:894e:: with SMTP id b14mr23592116ljk.216.1639315537349; 
- Sun, 12 Dec 2021 05:25:37 -0800 (PST)
-Received: from rikard (h-155-4-221-129.NA.cust.bahnhof.se. [155.4.221.129])
- by smtp.gmail.com with ESMTPSA id x23sm1061671ljm.36.2021.12.12.05.25.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 12 Dec 2021 05:25:36 -0800 (PST)
-From: Rikard Falkeborn <rikard.falkeborn@gmail.com>
-X-Google-Original-From: Rikard Falkeborn <rikard.falkeborn>
-Date: Sun, 12 Dec 2021 14:25:33 +0100
-To: "Wang, Zhi A" <zhi.a.wang@intel.com>
-Message-ID: <YbX4TYifpiUJ4txx@rikard>
-References: <20211204105527.15741-1-rikard.falkeborn@gmail.com>
- <d612055c-e433-4bd0-b819-82e866619b23@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CFD810E721;
+ Mon, 13 Dec 2021 13:03:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639400598; x=1670936598;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=+hkuBro1FIArmqCU4DnYmYNozBM1ig92k/dHzqugSr8=;
+ b=jsS/11Lc+tlKoDF1hLnGwklKACOKve/n3NLQmX5gC9a1sgka8zTL3l8w
+ 6ye2nG8ZrRb45LgXEYOaIFVIOcSnoG8CoFp9fYhBX4CVQDRrfnzafa3de
+ KeO0qy4TGtLQue96AakNDgxQS6RgvqRIhVh7wBjHIJZIuSK8SsY1CUOBK
+ G4S9KuyPquN03CLTXwx93dbb1TVMN+LdovkNjLVLs29ox6n1HjQzjg0xg
+ O83/2OCA3N5dZnaWyk8XIxxCzoj/C2QJNAUosVYqfot+NDH4Hn5a1Op3n
+ MKvdW93/XgbOIhQs6Fb6EN+N8tvNIWCJomJCMYWDGRNFGAVlRRWUwgUp1 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10196"; a="324995993"
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="324995993"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2021 05:02:54 -0800
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="463371551"
+Received: from ttbuckle-mobl.ger.corp.intel.com (HELO [10.252.5.128])
+ ([10.252.5.128])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2021 05:02:46 -0800
+Message-ID: <e7cad6ca-d106-c529-6f22-93a7847cd7c0@intel.com>
+Date: Mon, 13 Dec 2021 13:02:44 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d612055c-e433-4bd0-b819-82e866619b23@intel.com>
-X-Mailman-Approved-At: Mon, 13 Dec 2021 14:22:49 +0000
-Subject: Re: [Intel-gfx] [PATCH 0/9] drm/i915/gvt: Constify static structs
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-GB
+To: Robert Beckett <bob.beckett@collabora.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Oak Zeng <oak.zeng@intel.com>
+References: <20211210195005.2582884-1-bob.beckett@collabora.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20211210195005.2582884-1-bob.beckett@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ttm: fix large buffer population
+ trucation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,54 +67,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Rikard Falkeborn <rikard.falkeborn@gmail.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 10, 2021 at 09:00:56AM +0000, Wang, Zhi A wrote:
-> On 12/4/2021 12:55 PM, Rikard Falkeborn wrote:
-> > Constify a number of static structs that are never modified to allow the
-> > compiler to put them in read-only memory. In order to do this, constify a
-> > number of local variables and pointers in structs.
-> >
-> > This is most important for structs that contain function pointers, and
-> > the patches for those structs are placed first in the series.
-> >
-> > Rikard Falkeborn (9):
-> >    drm/i915/gvt: Constify intel_gvt_gtt_pte_ops
-> >    drm/i915/gvt: Constify intel_gvt_gtt_pte_ops
-> >    drm/i915/gvt: Constify intel_gvt_irq_ops
-> >    drm/i915/gvt: Constify intel_gvt_sched_policy_ops
-> >    drm/i915/gvt: Constify gvt_mmio_block
-> >    drm/i915/gvt: Constify cmd_interrupt_events
-> >    drm/i915/gvt: Constify formats
-> >    drm/i915/gvt: Constify gtt_type_table_entry
-> >    drm/i915/gvt: Constify vgpu_types
-> >
-> >   drivers/gpu/drm/i915/gvt/cmd_parser.c   |  2 +-
-> >   drivers/gpu/drm/i915/gvt/fb_decoder.c   | 24 ++++-----
-> >   drivers/gpu/drm/i915/gvt/gtt.c          | 68 ++++++++++++-------------
-> >   drivers/gpu/drm/i915/gvt/gtt.h          |  4 +-
-> >   drivers/gpu/drm/i915/gvt/gvt.h          |  2 +-
-> >   drivers/gpu/drm/i915/gvt/handlers.c     | 12 ++---
-> >   drivers/gpu/drm/i915/gvt/interrupt.c    | 10 ++--
-> >   drivers/gpu/drm/i915/gvt/interrupt.h    |  2 +-
-> >   drivers/gpu/drm/i915/gvt/sched_policy.c |  2 +-
-> >   drivers/gpu/drm/i915/gvt/scheduler.h    |  2 +-
-> >   drivers/gpu/drm/i915/gvt/vgpu.c         |  4 +-
-> >   11 files changed, 66 insertions(+), 66 deletions(-)
-> >
-> Thanks so much for the contribuition. You only need to refine the PATCH 
-> 2 a little bit and re-send it.
+On 10/12/2021 19:50, Robert Beckett wrote:
+> ttm->num_pages is uint32_t which was causing very large buffers to
+> only populate a truncated size.
 > 
+> This fixes gem_create@create-clear igt test on large memory systems.
+> 
+> Fixes: 7ae034590cea ("drm/i915/ttm: add tt shmem backend")
+> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
 
-Thanks for reviewing. Just to clarify, did you mean patch 7 (since
-that's the one you commented on)? And is it enough to send just that
-patch or do you want the entire series resent?
+Nice catch,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-Rikard
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index 218a9b3037c7..923cc7ad8d70 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -166,7 +166,7 @@ static int i915_ttm_tt_shmem_populate(struct ttm_device *bdev,
+>   	struct intel_memory_region *mr = i915->mm.regions[INTEL_MEMORY_SYSTEM];
+>   	struct i915_ttm_tt *i915_tt = container_of(ttm, typeof(*i915_tt), ttm);
+>   	const unsigned int max_segment = i915_sg_segment_size();
+> -	const size_t size = ttm->num_pages << PAGE_SHIFT;
+> +	const size_t size = (size_t)ttm->num_pages << PAGE_SHIFT;
+>   	struct file *filp = i915_tt->filp;
+>   	struct sgt_iter sgt_iter;
+>   	struct sg_table *st;
+> 
