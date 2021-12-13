@@ -2,39 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD946473039
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 16:14:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6D7C473096
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 16:32:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A241110E721;
-	Mon, 13 Dec 2021 15:14:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91A0410E6E8;
+	Mon, 13 Dec 2021 15:32:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3190810E721
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Dec 2021 15:14:44 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10196"; a="218767039"
-X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="218767039"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2021 07:14:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="544807800"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 13 Dec 2021 07:14:36 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 13 Dec 2021 17:14:35 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Dec 2021 17:14:35 +0200
-Message-Id: <20211213151435.9700-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211213134450.3082-5-ville.syrjala@linux.intel.com>
-References: <20211213134450.3082-5-ville.syrjala@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FB5310E6E8;
+ Mon, 13 Dec 2021 15:32:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639409559; x=1670945559;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=4Ua42EQnxA56Z/a2GpfiVQuU8/auKMo51LYtVxZZKsg=;
+ b=Qoo62F/+iPfJeT68uKNjjetNRLsnmbuKw1zxEJSbBN/9xBJLZ+Z5mR/+
+ Gh1t7J565Z7oTr/9Ry/u57gup6Fo9yrSlSIAKJTG5co5fBqcSo6m86Ifs
+ WvoCdq4wgydgwIhjRlNGa7D1OZhwlT9Jq7ED+q4vVXMdJxUgYFsEsip/f
+ EVRtFF7dzuWf2JR0RrbTZ0h3QXiKvK9btKA5yvWE08ag9Jp/fxRoDH5o+
+ MnrQ48dPFqeAaSq7yMu11kEJitt/1EUnfW94K9RsWaYkaNM70lllqwenS
+ kt+iRsqLPy26PDqJsirCktHE45ymeSjQdGJ17+0Fp7WSEepA+RBiYz6KZ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10196"; a="226033189"
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="226033189"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2021 07:32:23 -0800
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="752301302"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
+ by fmsmga006-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2021 07:32:22 -0800
+Date: Mon, 13 Dec 2021 21:02:07 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <20211213153207.GA29559@intel.com>
+References: <20211206133140.3166205-1-matthew.auld@intel.com>
+ <20211206133140.3166205-6-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 4/4] drm/i915/fbc: Register per-crtc debugfs
- files
+In-Reply-To: <20211206133140.3166205-6-matthew.auld@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3 5/8] drm/i915/gtt: allow overriding the
+ pt alignment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,105 +59,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On 2021-12-06 at 13:31:37 +0000, Matthew Auld wrote:
+> On some platforms we have alignment restrictions when accessing LMEM
+> from the GTT. In the next patch few patches we need to be able to modify
+probably extra "patch"
 
-Expose FBC debugfs files for each crtc. These may or may not point
-to the same FBC instance depending on the platform.
+Apart from that looks good to me
 
-We leave the old global debugfs files in place until
-igt catches up to the new per-crtc approach.
+Reviewed-by : Ramalingam C <ramalingam.c@intel.com>
 
-v2: Take a trip via intel_crtc_debugfs_add() (Jani)
-
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- .../drm/i915/display/intel_display_debugfs.c  |  7 +++--
- drivers/gpu/drm/i915/display/intel_fbc.c      | 31 ++++++++++++-------
- drivers/gpu/drm/i915/display/intel_fbc.h      |  1 +
- 3 files changed, 25 insertions(+), 14 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 572445299b04..f4de004d470f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -2402,6 +2402,9 @@ void intel_connector_debugfs_add(struct intel_connector *intel_connector)
-  */
- void intel_crtc_debugfs_add(struct drm_crtc *crtc)
- {
--	if (crtc->debugfs_entry)
--		crtc_updates_add(crtc);
-+	if (!crtc->debugfs_entry)
-+		return;
-+
-+	crtc_updates_add(crtc);
-+	intel_fbc_crtc_debugfs_add(to_intel_crtc(crtc));
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 53c93387710c..987ea4c4b5d0 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1798,25 +1798,32 @@ DEFINE_SIMPLE_ATTRIBUTE(intel_fbc_debugfs_false_color_fops,
- 			intel_fbc_debugfs_false_color_set,
- 			"%llu\n");
- 
--static void intel_fbc_debugfs_add(struct intel_fbc *fbc)
-+static void intel_fbc_debugfs_add(struct intel_fbc *fbc,
-+				  struct dentry *parent)
- {
--	struct drm_i915_private *i915 = fbc->i915;
--	struct drm_minor *minor = i915->drm.primary;
--
--	debugfs_create_file("i915_fbc_status", 0444,
--			    minor->debugfs_root, fbc,
--			    &intel_fbc_debugfs_status_fops);
-+	debugfs_create_file("i915_fbc_status", 0444, parent,
-+			    fbc, &intel_fbc_debugfs_status_fops);
- 
- 	if (fbc->funcs->set_false_color)
--		debugfs_create_file("i915_fbc_false_color", 0644,
--				    minor->debugfs_root, fbc,
--				    &intel_fbc_debugfs_false_color_fops);
-+		debugfs_create_file("i915_fbc_false_color", 0644, parent,
-+				    fbc, &intel_fbc_debugfs_false_color_fops);
- }
- 
-+void intel_fbc_crtc_debugfs_add(struct intel_crtc *crtc)
-+{
-+	struct intel_plane *plane = to_intel_plane(crtc->base.primary);
-+
-+	if (plane->fbc)
-+		intel_fbc_debugfs_add(plane->fbc, crtc->base.debugfs_entry);
-+}
-+
-+/* FIXME: remove this once igt is on board with per-crtc stuff */
- void intel_fbc_debugfs_register(struct drm_i915_private *i915)
- {
--	struct intel_fbc *fbc = i915->fbc[INTEL_FBC_A];
-+	struct drm_minor *minor = i915->drm.primary;
-+	struct intel_fbc *fbc;
- 
-+	fbc = i915->fbc[INTEL_FBC_A];
- 	if (fbc)
--		intel_fbc_debugfs_add(fbc);
-+		intel_fbc_debugfs_add(fbc, minor->debugfs_root);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
-index 7b7631aec527..8c5a7339a27f 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.h
-@@ -42,6 +42,7 @@ void intel_fbc_flush(struct drm_i915_private *dev_priv,
- void intel_fbc_add_plane(struct intel_fbc *fbc, struct intel_plane *plane);
- void intel_fbc_handle_fifo_underrun_irq(struct drm_i915_private *i915);
- void intel_fbc_reset_underrun(struct drm_i915_private *i915);
-+void intel_fbc_crtc_debugfs_add(struct intel_crtc *crtc);
- void intel_fbc_debugfs_register(struct drm_i915_private *i915);
- 
- #endif /* __INTEL_FBC_H__ */
--- 
-2.32.0
-
+> the page-tables directly via the GTT itself.
+> 
+> Suggested-by: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gtt.h   | 10 +++++++++-
+>  drivers/gpu/drm/i915/gt/intel_ppgtt.c | 16 ++++++++++++----
+>  2 files changed, 21 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+> index cbc0b5266cb4..a00d278d8175 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+> @@ -196,6 +196,14 @@ void *__px_vaddr(struct drm_i915_gem_object *p);
+>  struct i915_vm_pt_stash {
+>  	/* preallocated chains of page tables/directories */
+>  	struct i915_page_table *pt[2];
+> +	/*
+> +	 * Optionally override the alignment/size of the physical page that
+> +	 * contains each PT. If not set defaults back to the usual
+> +	 * I915_GTT_PAGE_SIZE_4K. This does not influence the other paging
+> +	 * structures. MUST be a power-of-two. ONLY applicable on discrete
+> +	 * platforms.
+> +	 */
+> +	int pt_sz;
+>  };
+>  
+>  struct i915_vma_ops {
+> @@ -583,7 +591,7 @@ void free_scratch(struct i915_address_space *vm);
+>  
+>  struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz);
+>  struct drm_i915_gem_object *alloc_pt_lmem(struct i915_address_space *vm, int sz);
+> -struct i915_page_table *alloc_pt(struct i915_address_space *vm);
+> +struct i915_page_table *alloc_pt(struct i915_address_space *vm, int sz);
+>  struct i915_page_directory *alloc_pd(struct i915_address_space *vm);
+>  struct i915_page_directory *__alloc_pd(int npde);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ppgtt.c b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
+> index b8238f5bc8b1..3c90aea25072 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
+> @@ -12,7 +12,7 @@
+>  #include "gen6_ppgtt.h"
+>  #include "gen8_ppgtt.h"
+>  
+> -struct i915_page_table *alloc_pt(struct i915_address_space *vm)
+> +struct i915_page_table *alloc_pt(struct i915_address_space *vm, int sz)
+>  {
+>  	struct i915_page_table *pt;
+>  
+> @@ -20,7 +20,7 @@ struct i915_page_table *alloc_pt(struct i915_address_space *vm)
+>  	if (unlikely(!pt))
+>  		return ERR_PTR(-ENOMEM);
+>  
+> -	pt->base = vm->alloc_pt_dma(vm, I915_GTT_PAGE_SIZE_4K);
+> +	pt->base = vm->alloc_pt_dma(vm, sz);
+>  	if (IS_ERR(pt->base)) {
+>  		kfree(pt);
+>  		return ERR_PTR(-ENOMEM);
+> @@ -219,17 +219,25 @@ int i915_vm_alloc_pt_stash(struct i915_address_space *vm,
+>  			   u64 size)
+>  {
+>  	unsigned long count;
+> -	int shift, n;
+> +	int shift, n, pt_sz;
+>  
+>  	shift = vm->pd_shift;
+>  	if (!shift)
+>  		return 0;
+>  
+> +	pt_sz = stash->pt_sz;
+> +	if (!pt_sz)
+> +		pt_sz = I915_GTT_PAGE_SIZE_4K;
+> +	else
+> +		GEM_BUG_ON(!IS_DGFX(vm->i915));
+> +
+> +	GEM_BUG_ON(!is_power_of_2(pt_sz));
+> +
+>  	count = pd_count(size, shift);
+>  	while (count--) {
+>  		struct i915_page_table *pt;
+>  
+> -		pt = alloc_pt(vm);
+> +		pt = alloc_pt(vm, pt_sz);
+>  		if (IS_ERR(pt)) {
+>  			i915_vm_free_pt_stash(vm, stash);
+>  			return PTR_ERR(pt);
+> -- 
+> 2.31.1
+> 
