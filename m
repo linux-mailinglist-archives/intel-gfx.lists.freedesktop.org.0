@@ -1,62 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00E0A472499
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 10:37:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02CAE47249B
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 10:37:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D199710E725;
-	Mon, 13 Dec 2021 09:37:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0658910E71F;
+	Mon, 13 Dec 2021 09:37:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BD6810E710;
- Mon, 13 Dec 2021 09:36:56 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id F3A921F3BB;
- Mon, 13 Dec 2021 09:36:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1639388215; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=u4ifg31zT1syOwQyPrjdHKQcxxTTaZz4yCYACM7Xcms=;
- b=QbowWuDlyMqnTGe30X+/safjmQI2BUFCv8IbwtGKMNa1lpgDWQp6ETlvLRz1DPMUN3SoLr
- QyQRAVpINYPKZ4D8PSyNCSD/1X0T/yeZKp7Y4U+FGD2GJ1dvMcNRybR6NQYi4mvvaKu+83
- Ax+7Cr/r5HZ7lXp3coGzN9tWEYZo6TI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1639388215;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=u4ifg31zT1syOwQyPrjdHKQcxxTTaZz4yCYACM7Xcms=;
- b=ti8xYfK8JwHa5eycTYp+1vngDpHiOkOIcWwGbMrzxl10DBTh1wkXJkLX8xIznISFzUxq87
- 5FFvFJiSMJ+RKcAA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id AF13F13CD4;
- Mon, 13 Dec 2021 09:36:54 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id KGfJKTYUt2E+JwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 13 Dec 2021 09:36:54 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: mripard@kernel.org, maarten.lankhorst@linux.intel.com, airlied@linux.ie,
- daniel@ffwll.ch
-Date: Mon, 13 Dec 2021 10:36:50 +0100
-Message-Id: <20211213093650.19598-4-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211213093650.19598-1-tzimmermann@suse.de>
-References: <20211213093650.19598-1-tzimmermann@suse.de>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13F0510E71F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Dec 2021 09:37:05 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10196"; a="299481172"
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="299481172"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2021 01:36:58 -0800
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="517678936"
+Received: from cflatley-mobl1.ger.corp.intel.com (HELO [10.213.196.3])
+ ([10.213.196.3])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2021 01:36:57 -0800
+Message-ID: <c15f9066-4119-2f97-ed93-1fc5a8d3d0fe@linux.intel.com>
+Date: Mon, 13 Dec 2021 09:36:55 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/dp: Move DisplayPort helpers into
- separate helper module
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: "Yang, Dong" <dong.yang@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20211210013147.2256699-1-dong.yang@intel.com>
+ <d8e9dfad-7665-cc29-9f53-ff350c8a402d@linux.intel.com>
+ <DM6PR11MB3051330D8484CC5EA0290DB0F2749@DM6PR11MB3051.namprd11.prod.outlook.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <DM6PR11MB3051330D8484CC5EA0290DB0F2749@DM6PR11MB3051.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Do not add same i915_request
+ to intel_context twice
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,325 +52,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- Thomas Zimmermann <tzimmermann@suse.de>, nouveau@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move DisplayPort functions into a separate module to reduce the size
-of the KMS helpers. Select DRM_DP_HELPER for all users of the code. To
-avoid naming conflicts, rename drm_dp_helper.c to drm_dp.c
 
-This change can help to reduce the size of the kernel binary. Some
-numbers from a x86-64 test build:
+On 13/12/2021 01:53, Yang, Dong wrote:
+> I am working on a customized kernel based on 5.4.39,  issue can only reproduced when system facing low memory pressure, and system try to reclaim memory, then wrong double insert i915_reqeust coming  from the i915_gem_shrink() path.
 
-Before:
-	drm_kms_helper.ko:	447480 bytes
+5.4 is quite old and there have been fixes to this code since. Any chance that you can repro on drm-tip? What project are you working on?
 
-After:
-	drm_dp_helper.ko:	216632 bytes
-	drm_kms_helper.ko:	239424 bytes
+Is your bug perhaps similar to what c744d50363b7 ("drm/i915/gt: Split the breadcrumb spinlock between global and contexts") fixed? As the commit says:
 
-For early-boot graphics, generic DRM drivers, such as simpledrm,
-require DRM KMS helpers to be built into the kernel. Generic helper
-functions for DisplayPort take up a significant portion of DRM KMS
-helper library. These functions are not used by generic drivers and
-can be loaded as a module.
+"""
+  Furthermore, this closes the race between enabling the signaling context
+  while it is in the process of being signaled and removed:
+"""
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/Kconfig                       |  8 +++++++
- drivers/gpu/drm/Makefile                      | 14 +++++++-----
- drivers/gpu/drm/bridge/Kconfig                |  4 ++++
- drivers/gpu/drm/bridge/analogix/Kconfig       |  2 ++
- drivers/gpu/drm/bridge/cadence/Kconfig        |  1 +
- drivers/gpu/drm/{drm_dp_helper.c => drm_dp.c} |  0
- drivers/gpu/drm/drm_dp_helper_mod.c           | 22 +++++++++++++++++++
- drivers/gpu/drm/drm_kms_helper_common.c       | 15 -------------
- drivers/gpu/drm/i915/Kconfig                  |  1 +
- drivers/gpu/drm/msm/Kconfig                   |  1 +
- drivers/gpu/drm/nouveau/Kconfig               |  1 +
- drivers/gpu/drm/rockchip/Kconfig              |  1 +
- drivers/gpu/drm/tegra/Kconfig                 |  1 +
- drivers/gpu/drm/xlnx/Kconfig                  |  1 +
- 14 files changed, 51 insertions(+), 21 deletions(-)
- rename drivers/gpu/drm/{drm_dp_helper.c => drm_dp.c} (100%)
- create mode 100644 drivers/gpu/drm/drm_dp_helper_mod.c
+> 
+> i915_request_enable_breadcrumb+0x136/0x14a
+> dma_fence_enable_sw_signaling+0x47/0xb0
+> enable_signaling+0x66/0x80
+> i915_active_wait+0xc1/0x150
+> __i915_vma_unbind+0x17/0x1a0
+> i915_vma_unbind+0x47/0xc0
+> i915_gem_object_unbind+0x189/0x290
+> i915_gem_shrink+0x139/0x460
+> ? __pm_runtime_resume+0x53/0x70
+> i915_gem_shrinker_scan+0x9c/0xb0
+> do_shrink_slab+0x14f/0x2b0
+> shrink_slab+0xa7/0x2a0
+> shrink_node+0xd1/0x410
+> balance_pgdat+0x2b7/0x500
+> kswapd+0x1e2/0x3b0
+> 
+> I believe it's not related to the ce->signal_lock,  the lock should works normally.
+> 
+> The i915_request_enable_breadcrumb() can be invoked by several context, like called from ioctl(), from interrupt context, and from memory swap thread, I suggest add a double check before insert i915_request to the list, it's hard to assure valid call from all the paths, but add check&protect can avoid the critical effect,  because add same i915_request twice will trigger a dead loop in signal_irq_work() , and the loop will never break continue the i915_request. hwsp_seqno be changed, and invalid address access error reported followed by system panic.
 
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index b1f22e457fd0..91f54aeb0b7c 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -80,6 +80,12 @@ config DRM_DEBUG_SELFTEST
- 
- 	  If in doubt, say "N".
- 
-+config DRM_DP_HELPER
-+	tristate
-+	depends on DRM
-+	help
-+	  DRM helpers for DisplayPort.
-+
- config DRM_KMS_HELPER
- 	tristate
- 	depends on DRM
-@@ -236,6 +242,7 @@ config DRM_RADEON
- 	depends on DRM && PCI && MMU
- 	depends on AGP || !AGP
- 	select FW_LOADER
-+	select DRM_DP_HELPER
-         select DRM_KMS_HELPER
-         select DRM_TTM
- 	select DRM_TTM_HELPER
-@@ -256,6 +263,7 @@ config DRM_AMDGPU
- 	tristate "AMD GPU"
- 	depends on DRM && PCI && MMU
- 	select FW_LOADER
-+	select DRM_DP_HELPER
- 	select DRM_KMS_HELPER
- 	select DRM_SCHED
- 	select DRM_TTM
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 301a44dc18e3..d17319c835b3 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -48,23 +48,25 @@ obj-$(CONFIG_DRM_VRAM_HELPER) += drm_vram_helper.o
- drm_ttm_helper-y := drm_gem_ttm_helper.o
- obj-$(CONFIG_DRM_TTM_HELPER) += drm_ttm_helper.o
- 
--drm_kms_helper-y := drm_bridge_connector.o drm_crtc_helper.o drm_dp_helper.o \
-+drm_kms_helper-y := drm_bridge_connector.o drm_crtc_helper.o \
- 		drm_dsc.o drm_encoder_slave.o drm_flip_work.o drm_hdcp.o \
- 		drm_probe_helper.o \
--		drm_plane_helper.o drm_dp_mst_topology.o drm_atomic_helper.o \
--		drm_kms_helper_common.o drm_dp_dual_mode_helper.o \
-+		drm_plane_helper.o drm_atomic_helper.o \
-+		drm_kms_helper_common.o \
- 		drm_simple_kms_helper.o drm_modeset_helper.o \
- 		drm_scdc_helper.o drm_gem_atomic_helper.o \
- 		drm_gem_framebuffer_helper.o \
- 		drm_atomic_state_helper.o drm_damage_helper.o \
- 		drm_format_helper.o drm_self_refresh_helper.o drm_rect.o
--
- drm_kms_helper-$(CONFIG_DRM_PANEL_BRIDGE) += bridge/panel.o
- drm_kms_helper-$(CONFIG_DRM_FBDEV_EMULATION) += drm_fb_helper.o
--drm_kms_helper-$(CONFIG_DRM_DP_AUX_CHARDEV) += drm_dp_aux_dev.o
--drm_kms_helper-$(CONFIG_DRM_DP_CEC) += drm_dp_cec.o
-+
-+drm_dp_helper-y := drm_dp.o drm_dp_dual_mode_helper.o drm_dp_helper_mod.o drm_dp_mst_topology.o
-+drm_dp_helper-$(CONFIG_DRM_DP_AUX_CHARDEV) += drm_dp_aux_dev.o
-+drm_dp_helper-$(CONFIG_DRM_DP_CEC) += drm_dp_cec.o
- 
- obj-$(CONFIG_DRM_KMS_HELPER) += drm_kms_helper.o
-+obj-$(CONFIG_DRM_DP_HELPER) += drm_dp_helper.o
- obj-$(CONFIG_DRM_DEBUG_SELFTEST) += selftests/
- 
- obj-$(CONFIG_DRM)	+= drm.o
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index 61db5a66b493..a27435a4c9c4 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -183,6 +183,7 @@ config DRM_PARADE_PS8640
- 	tristate "Parade PS8640 MIPI DSI to eDP Converter"
- 	depends on OF
- 	select DRM_DP_AUX_BUS
-+	select DRM_DP_HELPER
- 	select DRM_KMS_HELPER
- 	select DRM_MIPI_DSI
- 	select DRM_PANEL
-@@ -253,6 +254,7 @@ config DRM_TOSHIBA_TC358764
- config DRM_TOSHIBA_TC358767
- 	tristate "Toshiba TC358767 eDP bridge"
- 	depends on OF
-+	select DRM_DP_HELPER
- 	select DRM_KMS_HELPER
- 	select REGMAP_I2C
- 	select DRM_PANEL
-@@ -272,6 +274,7 @@ config DRM_TOSHIBA_TC358768
- config DRM_TOSHIBA_TC358775
- 	tristate "Toshiba TC358775 DSI/LVDS bridge"
- 	depends on OF
-+	select DRM_DP_HELPER
- 	select DRM_KMS_HELPER
- 	select REGMAP_I2C
- 	select DRM_PANEL
-@@ -299,6 +302,7 @@ config DRM_TI_SN65DSI83
- config DRM_TI_SN65DSI86
- 	tristate "TI SN65DSI86 DSI to eDP bridge"
- 	depends on OF
-+	select DRM_DP_HELPER
- 	select DRM_KMS_HELPER
- 	select REGMAP_I2C
- 	select DRM_PANEL
-diff --git a/drivers/gpu/drm/bridge/analogix/Kconfig b/drivers/gpu/drm/bridge/analogix/Kconfig
-index 2ef6eb2b786c..319ba0df57be 100644
---- a/drivers/gpu/drm/bridge/analogix/Kconfig
-+++ b/drivers/gpu/drm/bridge/analogix/Kconfig
-@@ -3,6 +3,7 @@ config DRM_ANALOGIX_ANX6345
- 	tristate "Analogix ANX6345 bridge"
- 	depends on OF
- 	select DRM_ANALOGIX_DP
-+	select DRM_DP_HELPER
- 	select DRM_KMS_HELPER
- 	select REGMAP_I2C
- 	help
-@@ -14,6 +15,7 @@ config DRM_ANALOGIX_ANX6345
- config DRM_ANALOGIX_ANX78XX
- 	tristate "Analogix ANX78XX bridge"
- 	select DRM_ANALOGIX_DP
-+	select DRM_DP_HELPER
- 	select DRM_KMS_HELPER
- 	select REGMAP_I2C
- 	help
-diff --git a/drivers/gpu/drm/bridge/cadence/Kconfig b/drivers/gpu/drm/bridge/cadence/Kconfig
-index ef8c230e0f62..de697bade05e 100644
---- a/drivers/gpu/drm/bridge/cadence/Kconfig
-+++ b/drivers/gpu/drm/bridge/cadence/Kconfig
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- config DRM_CDNS_MHDP8546
- 	tristate "Cadence DPI/DP bridge"
-+	select DRM_DP_HELPER
- 	select DRM_KMS_HELPER
- 	select DRM_PANEL_BRIDGE
- 	depends on OF
-diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp.c
-similarity index 100%
-rename from drivers/gpu/drm/drm_dp_helper.c
-rename to drivers/gpu/drm/drm_dp.c
-diff --git a/drivers/gpu/drm/drm_dp_helper_mod.c b/drivers/gpu/drm/drm_dp_helper_mod.c
-new file mode 100644
-index 000000000000..db753de24000
---- /dev/null
-+++ b/drivers/gpu/drm/drm_dp_helper_mod.c
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: MIT
-+
-+#include <linux/module.h>
-+
-+#include "drm_dp_helper_internal.h"
-+
-+MODULE_DESCRIPTION("DRM DisplayPort helper");
-+MODULE_LICENSE("GPL and additional rights");
-+
-+static int __init drm_dp_helper_module_init(void)
-+{
-+	return drm_dp_aux_dev_init();
-+}
-+
-+static void __exit drm_dp_helper_module_exit(void)
-+{
-+	/* Call exit functions from specific dp helpers here */
-+	drm_dp_aux_dev_exit();
-+}
-+
-+module_init(drm_dp_helper_module_init);
-+module_exit(drm_dp_helper_module_exit);
-diff --git a/drivers/gpu/drm/drm_kms_helper_common.c b/drivers/gpu/drm/drm_kms_helper_common.c
-index 88260d26409c..8be20080cd8d 100644
---- a/drivers/gpu/drm/drm_kms_helper_common.c
-+++ b/drivers/gpu/drm/drm_kms_helper_common.c
-@@ -29,7 +29,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "drm_dp_helper_internal.h"
- #include "drm_crtc_helper_internal.h"
- 
- MODULE_AUTHOR("David Airlie, Jesse Barnes");
-@@ -62,17 +61,3 @@ MODULE_PARM_DESC(edid_firmware,
- 		 "DEPRECATED. Use drm.edid_firmware module parameter instead.");
- 
- #endif
--
--static int __init drm_kms_helper_init(void)
--{
--	return drm_dp_aux_dev_init();
--}
--
--static void __exit drm_kms_helper_exit(void)
--{
--	/* Call exit functions from specific kms helpers here */
--	drm_dp_aux_dev_exit();
--}
--
--module_init(drm_kms_helper_init);
--module_exit(drm_kms_helper_exit);
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index a4c94dc2e216..b68e8b551b83 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -9,6 +9,7 @@ config DRM_I915
- 	# the shmem_readpage() which depends upon tmpfs
- 	select SHMEM
- 	select TMPFS
-+	select DRM_DP_HELPER
- 	select DRM_KMS_HELPER
- 	select DRM_PANEL
- 	select DRM_MIPI_DSI
-diff --git a/drivers/gpu/drm/msm/Kconfig b/drivers/gpu/drm/msm/Kconfig
-index 39197b4beea7..75015b0e165e 100644
---- a/drivers/gpu/drm/msm/Kconfig
-+++ b/drivers/gpu/drm/msm/Kconfig
-@@ -12,6 +12,7 @@ config DRM_MSM
- 	select IOMMU_IO_PGTABLE
- 	select QCOM_MDT_LOADER if ARCH_QCOM
- 	select REGULATOR
-+	select DRM_DP_HELPER
- 	select DRM_KMS_HELPER
- 	select DRM_PANEL
- 	select DRM_BRIDGE
-diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
-index 9436310d0854..3ec690b6f0b4 100644
---- a/drivers/gpu/drm/nouveau/Kconfig
-+++ b/drivers/gpu/drm/nouveau/Kconfig
-@@ -4,6 +4,7 @@ config DRM_NOUVEAU
- 	depends on DRM && PCI && MMU
- 	select IOMMU_API
- 	select FW_LOADER
-+	select DRM_DP_HELPER
- 	select DRM_KMS_HELPER
- 	select DRM_TTM
- 	select DRM_TTM_HELPER
-diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
-index 9f1ecefc3933..d59dca5efb52 100644
---- a/drivers/gpu/drm/rockchip/Kconfig
-+++ b/drivers/gpu/drm/rockchip/Kconfig
-@@ -2,6 +2,7 @@
- config DRM_ROCKCHIP
- 	tristate "DRM Support for Rockchip"
- 	depends on DRM && ROCKCHIP_IOMMU
-+	select DRM_DP_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select DRM_KMS_HELPER
- 	select DRM_PANEL
-diff --git a/drivers/gpu/drm/tegra/Kconfig b/drivers/gpu/drm/tegra/Kconfig
-index 1650a448eabd..dc88adc7ba40 100644
---- a/drivers/gpu/drm/tegra/Kconfig
-+++ b/drivers/gpu/drm/tegra/Kconfig
-@@ -5,6 +5,7 @@ config DRM_TEGRA
- 	depends on COMMON_CLK
- 	depends on DRM
- 	depends on OF
-+	select DRM_DP_HELPER
- 	select DRM_KMS_HELPER
- 	select DRM_MIPI_DSI
- 	select DRM_PANEL
-diff --git a/drivers/gpu/drm/xlnx/Kconfig b/drivers/gpu/drm/xlnx/Kconfig
-index d8d38d86d5c6..06cf477dbcdd 100644
---- a/drivers/gpu/drm/xlnx/Kconfig
-+++ b/drivers/gpu/drm/xlnx/Kconfig
-@@ -6,6 +6,7 @@ config DRM_ZYNQMP_DPSUB
- 	depends on PHY_XILINX_ZYNQMP
- 	depends on XILINX_ZYNQMP_DPDMA
- 	select DMA_ENGINE
-+	select DRM_DP_HELPER
- 	select DRM_GEM_CMA_HELPER
- 	select DRM_KMS_HELPER
- 	select GENERIC_PHY
--- 
-2.34.1
+Maybe, but I was pointing out double insert_breadcrumb is already protected when called inside i915_request_enable_breadcrumb - by the virtue of the spinlock and I915_FENCE_FLAG_SIGNAL. So maybe a race with remove or something, but it looks unlikely it is simple double add due parallel enablement.
 
+Regards,
+
+Tvrtko
+
+> 
+> Thanks,
+> Dong
+> 
+> -----Original Message-----
+> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Sent: Friday, December 10, 2021 4:51 PM
+> To: Yang, Dong <dong.yang@intel.com>; intel-gfx@lists.freedesktop.org
+> Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Do not add same i915_request to intel_context twice
+> 
+> 
+> On 10/12/2021 01:31, dong.yang@intel.com wrote:
+>> From: "Yang, Dong" <dong.yang@intel.com>
+>>
+>> With unknow race condition, the i915_request will be added
+> 
+> What do you mean with unknown here?
+> 
+>> to intel_context list twice, and result in system panic.
+>>
+>> If node alreay exist then do not add it again.
+> 
+> Note the call chains are under ce->signal_lock and protecting from double add AFAICT:
+> 
+> static void insert_breadcrumb(struct i915_request *rq) { ...
+> 	if (test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags))
+> 		return;
+> ...
+> 	set_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+> 
+> 
+> bool i915_request_enable_breadcrumb(struct i915_request *rq) { ...
+> 	spin_lock(&ce->signal_lock);
+> 	if (test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags))
+> 		insert_breadcrumb(rq);
+> 	spin_unlock(&ce->signal_lock);
+> 
+> 
+> void i915_request_cancel_breadcrumb(struct i915_request *rq) { ...
+> 	spin_lock(&ce->signal_lock);
+> 	if (!test_and_clear_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags)) {
+> 		spin_unlock(&ce->signal_lock);
+> 		return;
+> 	}
+> 
+> void intel_context_remove_breadcrumbs(struct intel_context *ce,
+> 				      struct intel_breadcrumbs *b)
+> {
+> ...
+> 	spin_lock_irqsave(&ce->signal_lock, flags);
+> 
+> 	if (list_empty(&ce->signals))
+> 		goto unlock;
+> 
+> 	list_for_each_entry_safe(rq, rn, &ce->signals, signal_link) {
+> 		GEM_BUG_ON(!__i915_request_is_complete(rq));
+> 		if (!test_and_clear_bit(I915_FENCE_FLAG_SIGNAL,
+> 					&rq->fence.flags))
+> 			continue;
+> 
+> The last one in signal_irq_work is guarded by the __i915_request_is_complete check.
+> 
+> So I think more context is needed on how you found this may be an issue.
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+>>
+>> Signed-off-by: Yang, Dong <dong.yang@intel.com>
+>> ---
+>>    drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 3 +++
+>>    1 file changed, 3 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+>> b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+>> index 209cf265bf74..9c7bc060d2ae 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+>> @@ -387,6 +387,9 @@ static void insert_breadcrumb(struct i915_request *rq)
+>>    		}
+>>    	}
+>>    
+>> +	if (&rq->signal_link == pos)
+>> +		return;
+>> +
+>>    	i915_request_get(rq);
+>>    	list_add_rcu(&rq->signal_link, pos);
+>>    	GEM_BUG_ON(!check_signal_order(ce, rq));
+>>
