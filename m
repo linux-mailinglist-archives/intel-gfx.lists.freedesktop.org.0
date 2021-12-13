@@ -1,33 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10EB0473213
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 17:43:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B66404732AC
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 18:08:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27F6B10E818;
-	Mon, 13 Dec 2021 16:43:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3CEB10E800;
+	Mon, 13 Dec 2021 17:08:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3098810E7FB;
- Mon, 13 Dec 2021 16:43:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 29395A00A0;
- Mon, 13 Dec 2021 16:43:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF53310E7CC;
+ Mon, 13 Dec 2021 17:08:00 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 8463AB8119C;
+ Mon, 13 Dec 2021 17:07:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 362DDC34600;
+ Mon, 13 Dec 2021 17:07:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1639415278;
+ bh=neBt5nn9ZDsOLz1R6GX+iLe1RoxSI+6JFmIJJuJGOM0=;
+ h=From:To:Cc:Subject:Date:From;
+ b=EpaYBxB6RTzEkof55lhj5kJznoCYa8wkYWYDQzAnf74eSSV171ueJdKSnEQ0y0zDC
+ GV24qU2mqxkcRUi3LIudjYfWwgqrbSBNepy3FeloNhbslzbZOQyvED92wJvpVVcWv4
+ +WRxJD+Yr34poOyV5bKbZ6OwqobExRzeR+NJbvG3wGeqqIENvPZ5DS0ZTEZBtho6FV
+ qY+KFlkMiJB8q6Us7ImGI6kfSexlD7VrQ70Qv0bSQL/1tMqFdOaztPF/lg5dxUoBv9
+ ZRKYBdr8RIM9EUNeGoU0FALmnEPXqcLuzSmb/igp1AdkS+XqjssMoBkohrM7lnLvbj
+ /PJJedJuN2mnA==
+From: broonie@kernel.org
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Date: Mon, 13 Dec 2021 17:07:53 +0000
+Message-Id: <20211213170753.3680209-1-broonie@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Date: Mon, 13 Dec 2021 16:43:11 -0000
-Message-ID: <163941379114.29014.1776053124298197911@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211213093650.19598-1-tzimmermann@suse.de>
-In-Reply-To: <20211213093650.19598-1-tzimmermann@suse.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/dp=3A_Move_DisplayPort_helpers_into_own_module?=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1485; h=from:subject;
+ bh=B59CtkeqUpZIIn0KhhMhY3pnZ+yxmQeyEKr7IZrsk8w=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBht3y2JtsKLj2V+9iMEpWfnUWMcbwBrIfWSzUmUbsa
+ bEL5Wo6JATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCYbd8tgAKCRAk1otyXVSH0IY1B/
+ sHYIhA3nx44JRUiss3UuH4hNzVKaeDEzZemZ59oD0ZPum4dkUSYe04dctBsWpFm09LxVO6EogTUx+k
+ Mz2JeTzKayWBOs0DCeopFFBs9UzbGcuBp2Zb99NHKWzkvvGYf5z6lDonbrmHv38xRzPLZZmkOXt9OF
+ bQ0vAZNSWW9vnhsMvQdPqTnAYPjeh6420NmMG6lM8MPwgOBYn4mW+UQCgeCz1W/fv0A6kfusmW22MH
+ dOwaN/2v0/P6LDyoIAjuLzKPPdONk1d92ZUw9vnTmn1QoP5C+vBI3noPy60dINLO7tcx6nM0Rs1Hxv
+ tdVG5Dx5QgKWfT6V4lhocXG5egOMyf
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix implicit use of struct pci_dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,32 +65,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Mark Brown <broonie@kernel.org>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Mark Brown <broonie@kernel.org>
 
-Series: drm/dp: Move DisplayPort helpers into own module
-URL   : https://patchwork.freedesktop.org/series/97961/
-State : warning
+intel_device_info.h references struct pci_dev but does not ensure that
+the struct has been declared, causing build failures if something in
+other headers changes so that the implicit dependency it is relying on
+is no longer satisfied:
 
-== Summary ==
+In file included from /tmp/next/build/drivers/gpu/drm/i915/intel_device_info.h:32,
+                 from /tmp/next/build/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h:11,
+                 from /tmp/next/build/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:11:
+/tmp/next/build/drivers/gpu/drm/i915/display/intel_display.h:643:39: error: 'struct pci_dev' declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
+  643 | bool intel_modeset_probe_defer(struct pci_dev *pdev);
+      |                                       ^~~~~~~
+cc1: all warnings being treated as errors
 
-$ dim checkpatch origin/drm-tip
-b1594004c5f8 drm/dp_mst: Remove trailing whitespace.
-0253bcc87c2b drm/dp: Move DP declarations into separate header file
--:79: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#79: 
-new file mode 100644
+Add a declaration of the struct to fix this.
 
-total: 0 errors, 1 warnings, 0 checks, 95 lines checked
-e2da6e643f4f drm/dp: Move DisplayPort helpers into separate helper module
--:167: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#167: 
-rename from drivers/gpu/drm/drm_dp_helper.c
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ drivers/gpu/drm/i915/display/intel_display.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-total: 0 errors, 1 warnings, 0 checks, 180 lines checked
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 4b688a9727b39..377790393a855 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -57,6 +57,7 @@ struct intel_plane;
+ struct intel_plane_state;
+ struct intel_remapped_info;
+ struct intel_rotation_info;
++struct pci_dev;
+ 
+ enum i915_gpio {
+ 	GPIOA,
+-- 
+2.30.2
 
