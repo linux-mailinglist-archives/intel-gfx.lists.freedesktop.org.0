@@ -2,52 +2,124 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A751B473548
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 20:54:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5FC2473613
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 21:37:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C05410E7AC;
-	Mon, 13 Dec 2021 19:54:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D28010E8C3;
+	Mon, 13 Dec 2021 20:37:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B44010E7AC
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Dec 2021 19:54:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639425249; x=1670961249;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=uUYv92JwUI/mLG5jSOf5XatlkBv76RuFPeZ1WdXfjJM=;
- b=Jj1hzG5bmNvbK5xLsln9seUP959B7+0mHbh11LTwRwebeU3oii33QMTR
- 9Oe0VGGVOsYcH8RiMOHLj2J4g2APxSYvxvHDuPdOpiVQEE9i4iAUgusVM
- PuPCpHvg8rJeBJDUwNf9KyZHL4rChYzDH/Sr5d2SO8KTF8QscmI+Jo2ER
- KskrJSAccKsMNcuu3oNSXjVNiu6YbLMFFu85DrWJJaW6xjjFR/05v587p
- 7Wsi7YO8r6HBETpGGegciUnYrauc4PQcYaZmyRz6VYVZbVEBpKO7F0u01
- y/cOLfKWzCXVJan+fhBv0YappWYq1OMaSxx9sO/UTsu0+OM9n0vAxnH57 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10197"; a="238760902"
-X-IronPort-AV: E=Sophos;i="5.88,203,1635231600"; d="scan'208";a="238760902"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2021 11:54:09 -0800
-X-IronPort-AV: E=Sophos;i="5.88,203,1635231600"; d="scan'208";a="681759194"
-Received: from ppolasze-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.20.7])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2021 11:54:07 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20211213134450.3082-2-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211213134450.3082-1-ville.syrjala@linux.intel.com>
- <20211213134450.3082-2-ville.syrjala@linux.intel.com>
-Date: Mon, 13 Dec 2021 21:54:04 +0200
-Message-ID: <871r2g702r.fsf@intel.com>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2042.outbound.protection.outlook.com [40.107.237.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86F9310E8C3;
+ Mon, 13 Dec 2021 20:37:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CWZ8VDZamLfQq5GcCHOntSW3tkgL5k2jJNxR5K2GAZ1hYWxZevr6hQfhrChk3ErLjL4jKRrLsVXS71E5BLPu6heqvIGyxuvuG9xKgjDGsspsIasrBRz2V3GWbonsbwGv6de4Rpax1RRVlMOBan87Oud5OZOBbxojnXyz+t0s+gjlueXpcY9y0hP5+tIGZUahGrIXk6xjAvL8QcQ2A/JMoX3Kof21FSLN/4PqGYMauiIRyFT7PqUzC/u3PmSvn3OkPY/ZoCGTKJkK6dkRcVBbYFNUl2fxVSaGQOlMw37t6d/io9RkqUnUx+tzhiXQgeTi0uO20bsr3o25iShMLBdS5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YcB/FWWh2jehFSkHHhNZWLhjvScpQOIkNrm9EvqHOfk=;
+ b=BGY94EDj3Y8g/kMHMoy9EI2JTFLnp0DvF4RH08UkCX35Hd1xgA7F8Ei6XL0CnHY2x6eGxHy6IZJ//GIk8wVt0zsdG8VKjrKm9c8xsFP9Qu4zEw0tQdulz8r5R3+wl0rSbkFN2bV6oeFAIHLc4P4gHEZYGSL8f6YPDtPRGogAwRa6MekKB+F9+YMxSXQtAsPVdnugYbY+zFlt2EJJAjacgit2SvyJx+EwMeQQm1laJBR1BBDpJ2b/DbqWfdYynpJHsxiiOW3UX79cCWFuoFb/AHPDggKztebrHlgSIl+xS2vsSgbC7aq5/+NqpE5Jvew8TWDvhVS08O20P/o7lAL2Dw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YcB/FWWh2jehFSkHHhNZWLhjvScpQOIkNrm9EvqHOfk=;
+ b=mArDwuEmi826+g60KdYJ6O63gK+jdIaiTI74yDZ0omMX4QaekREnAqQef4f3MrHotvBDVizBTC50GSUByXBfuDBttAIuyhiilVDlE5s4hM2qMKFT/LMlAmhbEtpAiJ6cFrUUHjxw0acS8EmpKiFAflCg91f3nQmQ6osRPzK1NVU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
+ (2603:10b6:301:5a::14) by MWHPR1201MB0190.namprd12.prod.outlook.com
+ (2603:10b6:301:55::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.12; Mon, 13 Dec
+ 2021 20:37:43 +0000
+Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
+ ([fe80::d16c:a6d5:5d2e:f9d4]) by MWHPR1201MB0192.namprd12.prod.outlook.com
+ ([fe80::d16c:a6d5:5d2e:f9d4%12]) with mapi id 15.20.4778.018; Mon, 13 Dec
+ 2021 20:37:42 +0000
+To: ira.weiny@intel.com, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>
+References: <20211210232404.4098157-1-ira.weiny@intel.com>
+ <20211210232404.4098157-7-ira.weiny@intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <5bbd3c48-1388-9469-8b6f-deed64406d7d@amd.com>
+Date: Mon, 13 Dec 2021 21:37:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+In-Reply-To: <20211210232404.4098157-7-ira.weiny@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-ClientProxiedBy: AS8PR04CA0132.eurprd04.prod.outlook.com
+ (2603:10a6:20b:127::17) To MWHPR1201MB0192.namprd12.prod.outlook.com
+ (2603:10b6:301:5a::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 1/4] drm/i915/fbc: Parametrize FBC
- register offsets
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d2a3f2f1-ee9c-46f1-7244-08d9be78696c
+X-MS-TrafficTypeDiagnostic: MWHPR1201MB0190:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR1201MB0190771CFE94D55A5B66889283749@MWHPR1201MB0190.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: p03LLgmuMMBjkGWsW3ptOqkM3ibFxUbGIIEv+qX42bwW0wjwTXz77a1OUBcqtZuglNTOsXQ/AIxIVj3DwGAu5NhXWtAP3q5dT9vTCUINhDzRwvIzyiUWKAkVDO7fc0M8E8pC5rbUCGZ84YsORdKSydyhx8iF+bv7Ag1N7KspwtGQx+rpyWAP6cxmYmPXs786aA4B/OF94a1JIcX7MnCQOeXg21Th9YwpBIRwSN9UHlazVrNGo7hyyA9o1xvN4/rmg1OWOaweDBiIgx9PqINaBBshSEPz4cTMTasER4SBE9L/kL43+dHyttqeg1kSoHuFJ7/0N3UABnCIqy1hlVdm+L5a+h/R9cu1ttPpViqbFPfEtz4/dsAQlO6dU0w2c+0NDPLGC4X4cfIdEucz3/D2+SIxBhN8k/TOD/xiqdlVKT3A8Mu+CWklcao/JyHqwK6nnWgphOG2kTzzlu1ujqUoGQVUMnXhj7TGK835/WYljDKFrFJT/CtJY0kAd4yV6GY9Y2NieW1wiNUL98QodsEfdsW5vmbo8zHT5LlHi3QgI3CkEdqWXzx8uBNyqqArlJkkxBbYFLv+dZHrPkNCu/mzU4m1s0UlSGJi5wgNwtv6wFJ07k/P2VfdObTy9iSnPVF5bWJzO+dJF/LWVQOww96KSQSamxQRokQzQtXztX/6dF1eT5nmFDLyqfVkuir6k5d8Siup5+TN5G4h+TSCm9Wx+2dXeD32oz71nBE4Kde0bG3u6Dxo9yPXrzuVDzvov7zk
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MWHPR1201MB0192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(66476007)(6666004)(316002)(83380400001)(7416002)(31696002)(4326008)(2906002)(110136005)(2616005)(86362001)(186003)(508600001)(6512007)(6506007)(8676002)(6486002)(36756003)(5660300002)(66556008)(66946007)(31686004)(38100700002)(8936002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UXdGdlVyUUtITGR2Wlk5c0FzZm9FT3J0QlVlL1JhbzNyZWlWb1I2VWs4b2My?=
+ =?utf-8?B?MWdialB0Q3J3RjlGY1haTjBYYXlBelBEVWlIaXN3WTR5eHE1cWZYdWY5cEtC?=
+ =?utf-8?B?QkpjSVVoVkxlTHV3L0ViUEs2RVVlVGVRYXVCdUsxN2tUT05mV1dqaUNySGg5?=
+ =?utf-8?B?bmJEVTI2TmtaZk5tV3h5WkkyU0hZL2dEekZhT2UzUzUyZ0tWaVVMQy94L3Zh?=
+ =?utf-8?B?WmVsYXV5ZS85VlNvdzNpS0l2bkdwZi9uZVdwUTdwYU00cHFtWCtYVkxqdGE0?=
+ =?utf-8?B?eS9EUjlwVDBwelByVHdvMEM2TFphekEreVh5empvMmE5Q203WEpYcytHTm84?=
+ =?utf-8?B?bDExOTFIREFQM21XNld3YUdzNlJqbVpid0ZsYVRmOXdXc2c2U3JLY2VjckxG?=
+ =?utf-8?B?dTQrcldMRWVIRUtaaXh0d29pbCtQT3F2djQ0bytKY2VzZEdVWjBlZ0JrTWZN?=
+ =?utf-8?B?QVFkWC9UK0MvZVVqZVgybUNDUXBBVGNtTHZHRkRMOWR3aXo1NjZieUNtUVZH?=
+ =?utf-8?B?SzcvMXVMUmgvY3ozVmYvSWRqVzF2T2wrVGpXeE5WVW1VaTAvRUFWVVZVY3Vo?=
+ =?utf-8?B?TmcyNWYrcHgycGJEUXcrZWdyb3NVTHdva1ZkeWl3aEE2azEvN3lNeUkxRHI4?=
+ =?utf-8?B?VlBLRFdyeHJBQmFkMDMvbk02eWJzZEwyR2JjNk91ejVsdi9CVHRkNHhIbUdK?=
+ =?utf-8?B?aEpqSWNnWDZPakFxU0Zzd3FBTmNMbVJ1T0FyUU1jdjlOeUFGTzlzV3NDMFA0?=
+ =?utf-8?B?ZHY5TVNRV3hZVEdLYjNYT2FBcU81Y2VyN1U2SE15M05ZN2FwMU9IRTFJejRY?=
+ =?utf-8?B?ZWRSb1U3U3N4TzR6OUE1WmNla2dFZlVqSE4raDFSVW85T3hqYUpjZk5kUGJV?=
+ =?utf-8?B?cTlFb2ZrY2JnYjJYczMyUUQwZUR4WE5yK05sblVabk5nUlE5cFZ0d2hLUndP?=
+ =?utf-8?B?YlhBVWttVjhHRDlQSGJzYS9BenFBdmFmcm9Xa3EwRjFQT0FWd2NPU2ZoSXk0?=
+ =?utf-8?B?TzByWURETHR5Vlhhei9OT2hDalVQZldPZVFueTFYZlA2L3FJbVA3OCtVbkZ2?=
+ =?utf-8?B?eEh6Z25JNlVhNDZIejlwemNTbmpKZlkrdkFRVEYrTmJMODlxTTR0M25mdlFp?=
+ =?utf-8?B?ZmluZUlkN1I3L3BVMkc1cGpGdE1CMXN1VFg3SW5ma3N5ZHNKaG01bmZZZ0Iy?=
+ =?utf-8?B?Q294VXlJOTRRak96UDRnaUxwV1VIN3kyWW0vcXdjU1RRa2JGc3dWd2VyNkRD?=
+ =?utf-8?B?OWZUOG5rcEVUQlVJQ2RZQ1RNMlNUeHROT1p0Q1Z0LzQ0NGpMTTJqZEdSOVIw?=
+ =?utf-8?B?M0FJdnVmc2VZUURtcGQvNjJGRkZKeXZORUlsTEhSMmp0Ly9rVVVHVTlRZHll?=
+ =?utf-8?B?SU9wZ240NDBNQVh0aHVkU2xyVWtLaUpzMUh3L1NLakoyN2VZQytiNW8ycVBy?=
+ =?utf-8?B?RU9sK2ZaVERqOXNLNFp0b3hCSUNPaWtXdzNucGx4TWRBaGpFM1hMQnBhU2ZY?=
+ =?utf-8?B?WG9JMXM1YW02V3dmTVFqd3R2bGRHNGJpYldUWkpMdDl2bGxOOEpEMkcxN3dD?=
+ =?utf-8?B?S2RPdnBiOHNDVC9ySWZPdW03OVc2U0kwbWlzcGR3aVFiTm1meU5DekFURjVn?=
+ =?utf-8?B?WmNnZm9nNHRrZDlqYVRPczcyNTh0L0h6ZFhpVkJJazA0WXNjcUdpSVdoZXo2?=
+ =?utf-8?B?d24xTkErZFBZazVGeTh3QVFYeW16bW5oc0hCZEtTWGpvWVZKMEpYdUtOak05?=
+ =?utf-8?B?T1RvL042MDRmN2Y1WjJpZUlCRkJCdy9YNGUwN1dTQWtrNEhZT1Uwc1JoaGd5?=
+ =?utf-8?B?eUd0VUJQbHBUYm9Rb29SSEhsb3lTZHF2V2JqSlBuRmJkR2NNN1Jzb2I4Smsy?=
+ =?utf-8?B?R0FKdDg0dW5rU0NwN3A1bXBJdzd4ZHZHeDh3SkZhekR4YzhQQWVYdXQzV1hu?=
+ =?utf-8?B?d1NDSkJUeHFXdWorays3eWVsUjY4RzQ5ZXVCOElPYnRLcHBHalRBUEl3WElD?=
+ =?utf-8?B?djRxTTJXZUpsTVR6SklBbmJhZitIakluUGlsMVhmbXU4Ny9wK2N3NnZYNTYx?=
+ =?utf-8?B?NXVyeEdTNytFdllSTi93SFhuZDhubUdmaG0yaFdPZU1ZZ3ZPU3pvc1JmS1RD?=
+ =?utf-8?B?L1dBTkJGOGdjTGwvdVNGc2lMWUh3RW5MZXJ4UVdkTFlGWjNIZ01xaDN2RFRD?=
+ =?utf-8?Q?hVWuBtxwihBks+c90zXlkIA=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d2a3f2f1-ee9c-46f1-7244-08d9be78696c
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1201MB0192.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2021 20:37:42.8181 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xsfo83zXekknniXXeeQly49pQpxTnPeizRom8XBPduC2lM6UqNQtz7rk8yD2mAuH
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0190
+Subject: Re: [Intel-gfx] [PATCH 6/7] drm/amdgpu: Ensure kunmap is called on
+ error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,383 +132,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 13 Dec 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Am 11.12.21 um 00:24 schrieb ira.weiny@intel.com:
+> From: Ira Weiny <ira.weiny@intel.com>
 >
-> Parametrize ilk+ FBC register offsets based on the FBC instance.
+> The default case leaves the buffer object mapped in error.
 >
-> v2: More intel_ namespace (Jani)
+> Add amdgpu_bo_kunmap() to that case to ensure the mapping is cleaned up.
+
+Mhm, good catch. But why do you want to do this in the first place?
+
+Christian.
+
 >
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Some questions below, apart from that,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
+> Signed-off-by: Ira Weiny <ira.weiny@intel.com>
+>
 > ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 34 +++++++++++++-----------
->  drivers/gpu/drm/i915/display/intel_fbc.h |  6 +++++
->  drivers/gpu/drm/i915/i915_reg.h          | 34 ++++++++++++------------
->  drivers/gpu/drm/i915/intel_pm.c          | 31 ++++++++++++---------
->  4 files changed, 60 insertions(+), 45 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
-> index 8be01b93015f..112aafa72253 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -85,6 +85,8 @@ struct intel_fbc {
->  	struct drm_mm_node compressed_fb;
->  	struct drm_mm_node compressed_llb;
->=20=20
-> +	enum intel_fbc_id id;
-> +
->  	u8 limit;
->=20=20
->  	bool false_color;
-> @@ -454,10 +456,10 @@ static void ilk_fbc_activate(struct intel_fbc *fbc)
->  	struct intel_fbc_state *fbc_state =3D &fbc->state;
->  	struct drm_i915_private *i915 =3D fbc->i915;
->=20=20
-> -	intel_de_write(i915, ILK_DPFC_FENCE_YOFF,
-> +	intel_de_write(i915, ILK_DPFC_FENCE_YOFF(fbc->id),
->  		       fbc_state->fence_y_offset);
->=20=20
-> -	intel_de_write(i915, ILK_DPFC_CONTROL,
-> +	intel_de_write(i915, ILK_DPFC_CONTROL(fbc->id),
->  		       DPFC_CTL_EN | g4x_dpfc_ctl(fbc));
->  }
->=20=20
-> @@ -467,28 +469,28 @@ static void ilk_fbc_deactivate(struct intel_fbc *fb=
-c)
->  	u32 dpfc_ctl;
->=20=20
->  	/* Disable compression */
-> -	dpfc_ctl =3D intel_de_read(i915, ILK_DPFC_CONTROL);
-> +	dpfc_ctl =3D intel_de_read(i915, ILK_DPFC_CONTROL(fbc->id));
->  	if (dpfc_ctl & DPFC_CTL_EN) {
->  		dpfc_ctl &=3D ~DPFC_CTL_EN;
-> -		intel_de_write(i915, ILK_DPFC_CONTROL, dpfc_ctl);
-> +		intel_de_write(i915, ILK_DPFC_CONTROL(fbc->id), dpfc_ctl);
->  	}
->  }
->=20=20
->  static bool ilk_fbc_is_active(struct intel_fbc *fbc)
->  {
-> -	return intel_de_read(fbc->i915, ILK_DPFC_CONTROL) & DPFC_CTL_EN;
-> +	return intel_de_read(fbc->i915, ILK_DPFC_CONTROL(fbc->id)) & DPFC_CTL_E=
-N;
->  }
->=20=20
->  static bool ilk_fbc_is_compressing(struct intel_fbc *fbc)
->  {
-> -	return intel_de_read(fbc->i915, ILK_DPFC_STATUS) & DPFC_COMP_SEG_MASK;
-> +	return intel_de_read(fbc->i915, ILK_DPFC_STATUS(fbc->id)) & DPFC_COMP_S=
-EG_MASK;
->  }
->=20=20
->  static void ilk_fbc_program_cfb(struct intel_fbc *fbc)
->  {
->  	struct drm_i915_private *i915 =3D fbc->i915;
->=20=20
-> -	intel_de_write(i915, ILK_DPFC_CB_BASE, fbc->compressed_fb.start);
-> +	intel_de_write(i915, ILK_DPFC_CB_BASE(fbc->id), fbc->compressed_fb.star=
-t);
->  }
->=20=20
->  static const struct intel_fbc_funcs ilk_fbc_funcs =3D {
-> @@ -524,8 +526,8 @@ static void snb_fbc_nuke(struct intel_fbc *fbc)
->  {
->  	struct drm_i915_private *i915 =3D fbc->i915;
->=20=20
-> -	intel_de_write(i915, MSG_FBC_REND_STATE, FBC_REND_NUKE);
-> -	intel_de_posting_read(i915, MSG_FBC_REND_STATE);
-> +	intel_de_write(i915, MSG_FBC_REND_STATE(fbc->id), FBC_REND_NUKE);
-> +	intel_de_posting_read(i915, MSG_FBC_REND_STATE(fbc->id));
->  }
->=20=20
->  static const struct intel_fbc_funcs snb_fbc_funcs =3D {
-> @@ -547,7 +549,7 @@ static void glk_fbc_program_cfb_stride(struct intel_f=
-bc *fbc)
->  		val |=3D FBC_STRIDE_OVERRIDE |
->  			FBC_STRIDE(fbc_state->override_cfb_stride / fbc->limit);
->=20=20
-> -	intel_de_write(i915, GLK_FBC_STRIDE, val);
-> +	intel_de_write(i915, GLK_FBC_STRIDE(fbc->id), val);
->  }
->=20=20
->  static void skl_fbc_program_cfb_stride(struct intel_fbc *fbc)
-> @@ -598,19 +600,19 @@ static void ivb_fbc_activate(struct intel_fbc *fbc)
->  	if (i915->ggtt.num_fences)
->  		snb_fbc_program_fence(fbc);
->=20=20
-> -	intel_de_write(i915, ILK_DPFC_CONTROL,
-> +	intel_de_write(i915, ILK_DPFC_CONTROL(fbc->id),
->  		       DPFC_CTL_EN | ivb_dpfc_ctl(fbc));
->  }
->=20=20
->  static bool ivb_fbc_is_compressing(struct intel_fbc *fbc)
->  {
-> -	return intel_de_read(fbc->i915, ILK_DPFC_STATUS2) & DPFC_COMP_SEG_MASK_=
-IVB;
-> +	return intel_de_read(fbc->i915, ILK_DPFC_STATUS2(fbc->id)) & DPFC_COMP_=
-SEG_MASK_IVB;
->  }
->=20=20
->  static void ivb_fbc_set_false_color(struct intel_fbc *fbc,
->  				    bool enable)
->  {
-> -	intel_de_rmw(fbc->i915, ILK_DPFC_CONTROL,
-> +	intel_de_rmw(fbc->i915, ILK_DPFC_CONTROL(fbc->id),
->  		     DPFC_CTL_FALSE_COLOR, enable ? DPFC_CTL_FALSE_COLOR : 0);
->  }
->=20=20
-> @@ -1620,7 +1622,8 @@ void intel_fbc_add_plane(struct intel_fbc *fbc, str=
-uct intel_plane *plane)
->  	fbc->possible_framebuffer_bits |=3D plane->frontbuffer_bit;
->  }
->=20=20
-> -static struct intel_fbc *intel_fbc_create(struct drm_i915_private *i915)
-> +static struct intel_fbc *intel_fbc_create(struct drm_i915_private *i915,
-> +					  enum intel_fbc_id fbc_id)
->  {
->  	struct intel_fbc *fbc;
->=20=20
-> @@ -1628,6 +1631,7 @@ static struct intel_fbc *intel_fbc_create(struct dr=
-m_i915_private *i915)
->  	if (!fbc)
->  		return NULL;
->=20=20
-> +	fbc->id =3D fbc_id;
->  	fbc->i915 =3D i915;
->  	INIT_WORK(&fbc->underrun_work, intel_fbc_underrun_work_fn);
->  	mutex_init(&fbc->lock);
-> @@ -1671,7 +1675,7 @@ void intel_fbc_init(struct drm_i915_private *i915)
->  	if (!HAS_FBC(i915))
->  		return;
->=20=20
-> -	fbc =3D intel_fbc_create(i915);
-> +	fbc =3D intel_fbc_create(i915, INTEL_FBC_A);
->  	if (!fbc)
->  		return;
->=20=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i=
-915/display/intel_fbc.h
-> index 07ad0411fcc3..7b7631aec527 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.h
-> @@ -17,6 +17,12 @@ struct intel_fbc;
->  struct intel_plane;
->  struct intel_plane_state;
->=20=20
-> +enum intel_fbc_id {
-> +	INTEL_FBC_A,
-> +
-> +	I915_MAX_FBCS,
-> +};
-> +
->  int intel_fbc_atomic_check(struct intel_atomic_state *state);
->  bool intel_fbc_pre_update(struct intel_atomic_state *state,
->  			  struct intel_crtc *crtc);
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index d27ba273cc68..698a023e70f5 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -3386,10 +3386,10 @@ static inline bool i915_mmio_reg_valid(i915_reg_t=
- reg)
->  #define FBC_LL_SIZE		(1536)
->=20=20
->  /* Framebuffer compression for GM45+ */
-> -#define DPFC_CB_BASE		_MMIO(0x3200)
-> -#define ILK_DPFC_CB_BASE	_MMIO(0x43200)
-> -#define DPFC_CONTROL		_MMIO(0x3208)
-> -#define ILK_DPFC_CONTROL	_MMIO(0x43208)
-> +#define DPFC_CB_BASE			_MMIO(0x3200)
-> +#define ILK_DPFC_CB_BASE(fbc_id)	_MMIO_PIPE((fbc_id), 0x43200, 0x43240)
-> +#define DPFC_CONTROL			_MMIO(0x3208)
-> +#define ILK_DPFC_CONTROL(fbc_id)	_MMIO_PIPE((fbc_id), 0x43208, 0x43248)
->  #define   DPFC_CTL_EN				REG_BIT(31)
->  #define   DPFC_CTL_PLANE_MASK_G4X		REG_BIT(30) /* g4x-snb */
->  #define   DPFC_CTL_PLANE_G4X(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_M=
-ASK_G4X, (i9xx_plane))
-> @@ -3407,28 +3407,28 @@ static inline bool i915_mmio_reg_valid(i915_reg_t=
- reg)
->  #define   DPFC_CTL_LIMIT_4X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 2)
->  #define   DPFC_CTL_FENCENO_MASK			REG_GENMASK(3, 0)
->  #define   DPFC_CTL_FENCENO(fence)		REG_FIELD_PREP(DPFC_CTL_FENCENO_MASK,=
- (fence))
-> -#define DPFC_RECOMP_CTL		_MMIO(0x320c)
-> -#define ILK_DPFC_RECOMP_CTL	_MMIO(0x4320c)
-> +#define DPFC_RECOMP_CTL			_MMIO(0x320c)
-> +#define ILK_DPFC_RECOMP_CTL(fbc_id)	_MMIO_PIPE((fbc_id), 0x4320c, 0x4324=
-c)
+> NOTE: It seems like this function could use a fair bit of refactoring
+> but this is the easiest way to fix the actual bug.
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c | 1 +
+>   1 file changed, 1 insertion(+)
+> nice
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
+> index 6f8de11a17f1..b3ffd0f6b35f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
+> @@ -889,6 +889,7 @@ static int amdgpu_uvd_cs_msg(struct amdgpu_uvd_cs_ctx *ctx,
+>   		return 0;
+>   
+>   	default:
+> +		amdgpu_bo_kunmap(bo);
+>   		DRM_ERROR("Illegal UVD message type (%d)!\n", msg_type);
+>   	}
+>   
 
-This is display 5 and 6 only, right? Will there be a register instance
-for fbc_id > INTEL_FBC_A? Or is the parametrization just for
-completeness?
-
-This one is only used in gvt, anyway. And that actually makes me wonder
-if this should be breaking the build. Does CI not have gvt enabled?
-
->  #define   DPFC_RECOMP_STALL_EN			REG_BIT(27)
->  #define   DPFC_RECOMP_STALL_WM_MASK		REG_GENMASK(26, 16)
->  #define   DPFC_RECOMP_TIMER_COUNT_MASK		REG_GENMASK(5, 0)
-> -#define DPFC_STATUS		_MMIO(0x3210)
-> -#define ILK_DPFC_STATUS		_MMIO(0x43210)
-> +#define DPFC_STATUS			_MMIO(0x3210)
-> +#define ILK_DPFC_STATUS(fbc_id)		_MMIO_PIPE((fbc_id), 0x43210, 0x43250)
-
-Ditto, apart from the gvt part.
-
->  #define   DPFC_INVAL_SEG_MASK			REG_GENMASK(26, 16)
->  #define   DPFC_COMP_SEG_MASK			REG_GENMASK(10, 0)
-> -#define DPFC_STATUS2		_MMIO(0x3214)
-> -#define ILK_DPFC_STATUS2		_MMIO(0x43214)
-> +#define DPFC_STATUS2			_MMIO(0x3214)
-> +#define ILK_DPFC_STATUS2(fbc_id)	_MMIO_PIPE((fbc_id), 0x43214, 0x43254)
->  #define   DPFC_COMP_SEG_MASK_IVB		REG_GENMASK(11, 0)
-> -#define DPFC_FENCE_YOFF		_MMIO(0x3218)
-> -#define ILK_DPFC_FENCE_YOFF	_MMIO(0x43218)
-> -#define DPFC_CHICKEN		_MMIO(0x3224)
-> -#define ILK_DPFC_CHICKEN	_MMIO(0x43224)
-> +#define DPFC_FENCE_YOFF			_MMIO(0x3218)
-> +#define ILK_DPFC_FENCE_YOFF(fbc_id)	_MMIO_PIPE((fbc_id), 0x43218, 0x4325=
-8)
-
-Ditto.
-
-BR,
-Jani.
-
-> +#define DPFC_CHICKEN			_MMIO(0x3224)
-> +#define ILK_DPFC_CHICKEN(fbc_id)	_MMIO_PIPE((fbc_id), 0x43224, 0x43264)
->  #define   DPFC_HT_MODIFY			REG_BIT(31) /* pre-ivb */
->  #define   DPFC_NUKE_ON_ANY_MODIFICATION		REG_BIT(23) /* bdw+ */
->  #define   DPFC_CHICKEN_COMP_DUMMY_PIXEL		REG_BIT(14) /* glk+ */
->  #define   DPFC_DISABLE_DUMMY0			REG_BIT(8) /* ivb+ */
->=20=20
-> -#define GLK_FBC_STRIDE		_MMIO(0x43228)
-> +#define GLK_FBC_STRIDE(fbc_id)	_MMIO_PIPE((fbc_id), 0x43228, 0x43268)
->  #define   FBC_STRIDE_OVERRIDE	REG_BIT(15)
->  #define   FBC_STRIDE_MASK	REG_GENMASK(14, 0)
->  #define   FBC_STRIDE(x)		REG_FIELD_PREP(FBC_STRIDE_MASK, (x))
-> @@ -3471,9 +3471,9 @@ static inline bool i915_mmio_reg_valid(i915_reg_t r=
-eg)
->  #define IPS_CTL		_MMIO(0x43408)
->  #define   IPS_ENABLE	(1 << 31)
->=20=20
-> -#define MSG_FBC_REND_STATE	_MMIO(0x50380)
-> +#define MSG_FBC_REND_STATE(fbc_id)	_MMIO_PIPE((fbc_id), 0x50380, 0x50384)
->  #define   FBC_REND_NUKE			REG_BIT(2)
-> -#define   FBC_REND_CACHE_CLEAN			REG_BIT(1)
-> +#define   FBC_REND_CACHE_CLEAN		REG_BIT(1)
->=20=20
->  /*
->   * GPIO regs
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index 434b1f8b7fe3..bdf97a8c9ef3 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -160,8 +160,9 @@ static void bxt_init_clock_gating(struct drm_i915_pri=
-vate *dev_priv)
->  	 * WaFbcHighMemBwCorruptionAvoidance:bxt
->  	 * Display WA #0883: bxt
->  	 */
-> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_re=
-ad(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-> -		   DPFC_DISABLE_DUMMY0);
-> +	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
-> +			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A)=
-) |
-> +			   DPFC_DISABLE_DUMMY0);
->  }
->=20=20
->  static void glk_init_clock_gating(struct drm_i915_private *dev_priv)
-> @@ -7451,8 +7452,8 @@ static void gen8_set_l3sqc_credits(struct drm_i915_=
-private *dev_priv,
->  static void icl_init_clock_gating(struct drm_i915_private *dev_priv)
->  {
->  	/* Wa_1409120013:icl,ehl */
-> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN,
-> -		   DPFC_CHICKEN_COMP_DUMMY_PIXEL);
-> +	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
-> +			   DPFC_CHICKEN_COMP_DUMMY_PIXEL);
->=20=20
->  	/*Wa_14010594013:icl, ehl */
->  	intel_uncore_rmw(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
-> @@ -7464,7 +7465,7 @@ static void gen12lp_init_clock_gating(struct drm_i9=
-15_private *dev_priv)
->  	/* Wa_1409120013:tgl,rkl,adl-s,dg1,dg2 */
->  	if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
->  	    IS_ALDERLAKE_S(dev_priv) || IS_DG1(dev_priv) || IS_DG2(dev_priv))
-> -		intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN,
-> +		intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
->  				   DPFC_CHICKEN_COMP_DUMMY_PIXEL);
->=20=20
->  	/* Wa_1409825376:tgl (pre-prod)*/
-> @@ -7549,8 +7550,9 @@ static void cfl_init_clock_gating(struct drm_i915_p=
-rivate *dev_priv)
->  	 * WaFbcNukeOnHostModify:cfl
->  	 * Display WA #0873: cfl
->  	 */
-> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_re=
-ad(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-> -		   DPFC_NUKE_ON_ANY_MODIFICATION);
-> +	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
-> +			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A)=
-) |
-> +			   DPFC_NUKE_ON_ANY_MODIFICATION);
->  }
->=20=20
->  static void kbl_init_clock_gating(struct drm_i915_private *dev_priv)
-> @@ -7582,8 +7584,9 @@ static void kbl_init_clock_gating(struct drm_i915_p=
-rivate *dev_priv)
->  	 * WaFbcNukeOnHostModify:kbl
->  	 * Display WA #0873: kbl
->  	 */
-> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_re=
-ad(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-> -		   DPFC_NUKE_ON_ANY_MODIFICATION);
-> +	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
-> +			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A)=
-) |
-> +			   DPFC_NUKE_ON_ANY_MODIFICATION);
->  }
->=20=20
->  static void skl_init_clock_gating(struct drm_i915_private *dev_priv)
-> @@ -7609,15 +7612,17 @@ static void skl_init_clock_gating(struct drm_i915=
-_private *dev_priv)
->  	 * WaFbcNukeOnHostModify:skl
->  	 * Display WA #0873: skl
->  	 */
-> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_re=
-ad(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-> -		   DPFC_NUKE_ON_ANY_MODIFICATION);
-> +	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
-> +			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A)=
-) |
-> +			   DPFC_NUKE_ON_ANY_MODIFICATION);
->=20=20
->  	/*
->  	 * WaFbcHighMemBwCorruptionAvoidance:skl
->  	 * Display WA #0883: skl
->  	 */
-> -	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_re=
-ad(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-> -		   DPFC_DISABLE_DUMMY0);
-> +	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A),
-> +			   intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN(INTEL_FBC_A)=
-) |
-> +			   DPFC_DISABLE_DUMMY0);
->  }
->=20=20
->  static void bdw_init_clock_gating(struct drm_i915_private *dev_priv)
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
