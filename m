@@ -1,51 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5FCB4733C0
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 19:16:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E39974733D8
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 19:19:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D68DC10E80F;
-	Mon, 13 Dec 2021 18:16:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CAEA10E843;
+	Mon, 13 Dec 2021 18:19:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B71A10E80F;
- Mon, 13 Dec 2021 18:16:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639419409; x=1670955409;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=lF3eyOacuv6NU3Y/Ctvg/p1Nfy9aDZQOQDk7w8muoHs=;
- b=iNyY43WJWsUBDy/p0wnscgOccqI2L4ptC9IJfTb4JOqbRZW1c2Kw4WJ6
- E+zMghhPMrKCmAsWwqgm8TDC2/SK1rgJk6GuAEyzVrUuj0S8aPmoceStt
- fMUmJVwCjbkt8MpWiLsgDLtOUJj6gVO6CiEJDeizUlvRzAVAYamQ0U4ci
- sLR4yXjyCRXI1zhE1rI0Q3DoRwSACrBygvHlp0IHuLGDvQnxRnuzilLjT
- kQj73mYWS4FI0tG5R3W+xL0OOqgnwtuqRgjDD4ug2jvaMVzxewd7xYWD5
- btZxTdalZJTimtkduYaHxGijcffyY3pj1vyaZ1x+TS9ign9/P/JIJD7BB w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10197"; a="299577138"
-X-IronPort-AV: E=Sophos;i="5.88,203,1635231600"; d="scan'208";a="299577138"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2021 10:16:49 -0800
-X-IronPort-AV: E=Sophos;i="5.88,203,1635231600"; d="scan'208";a="464741168"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2021 10:16:48 -0800
-Date: Mon, 13 Dec 2021 10:16:47 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <20211213181647.GK2219399@mdroper-desk1.amr.corp.intel.com>
-References: <20211212152117.118428-1-andi.shyti@linux.intel.com>
- <20211212152117.118428-13-andi.shyti@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4442310E843;
+ Mon, 13 Dec 2021 18:19:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3D246AADD2;
+ Mon, 13 Dec 2021 18:19:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211212152117.118428-13-andi.shyti@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH RESEND v7 12/12] drm/i915: Move the GGTT
- from i915 private data to the GT
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Mon, 13 Dec 2021 18:19:10 -0000
+Message-ID: <163941955022.29012.8933886893903057977@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211213134450.3082-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20211213134450.3082-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/fbc=3A_More_multi-FBC_refactoring_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,50 +40,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Dec 12, 2021 at 05:21:17PM +0200, Andi Shyti wrote:
-> GGTT was available both through i915->ggtt and gt->ggtt, and we
-> eventually want to get rid of the i915->ggtt one.
-> Move the GGTT from i915 to gt and use to_gt() for accesssing the
-> ggtt.
-> 
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> ---
-...
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> index 14216cc471b1..02fc7641b82e 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> @@ -69,7 +69,7 @@ enum intel_submission_method {
->  struct intel_gt {
->  	struct drm_i915_private *i915;
->  	struct intel_uncore *uncore;
-> -	struct i915_ggtt *ggtt;
-> +	struct i915_ggtt ggtt;
->  
->  	struct intel_uc uc;
->  
+== Series Details ==
 
-I'm not sure this is the direction we want to go.  Although it works for
-the initial multi-tile support, there's some other stuff coming up soon
-that will require two intel_gt's to share the same ggtt rather than
-each having an independent one.
+Series: drm/i915/fbc: More multi-FBC refactoring (rev3)
+URL   : https://patchwork.freedesktop.org/series/97821/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+88faeb3cb9ee drm/i915/fbc: Parametrize FBC register offsets
+ca4050953f1b drm/i915/fbc: Loop through FBC instances in various places
+-:42: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__fbc_id' - possible side-effects?
+#42: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:52:
++#define for_each_fbc_id(__fbc_id) \
++	for ((__fbc_id) = INTEL_FBC_A; (__fbc_id) < I915_MAX_FBCS; (__fbc_id)++)
+
+-:45: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#45: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:55:
++#define for_each_intel_fbc(__dev_priv, __fbc, __fbc_id) \
++	for_each_fbc_id(__fbc_id) \
++		for_each_if((__fbc) = (__dev_priv)->fbc[(__fbc_id)])
+
+-:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__fbc_id' - possible side-effects?
+#45: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:55:
++#define for_each_intel_fbc(__dev_priv, __fbc, __fbc_id) \
++	for_each_fbc_id(__fbc_id) \
++		for_each_if((__fbc) = (__dev_priv)->fbc[(__fbc_id)])
+
+-:115: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#115: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:1344:
++
++}
+
+total: 1 errors, 0 warnings, 3 checks, 253 lines checked
+0bcf7d617272 drm/i915/fbc: Introduce device info fbc_mask
+-:33: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__fbc_id' - possible side-effects?
+#33: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:52:
++#define for_each_fbc_id(__dev_priv, __fbc_id) \
++	for ((__fbc_id) = INTEL_FBC_A; (__fbc_id) < I915_MAX_FBCS; (__fbc_id)++) \
++		for_each_if(INTEL_INFO(__dev_priv)->display.fbc_mask & BIT(__fbc_id))
+
+total: 0 errors, 0 warnings, 1 checks, 227 lines checked
+5ef4aae1e202 drm/i915/fbc: Register per-crtc debugfs files
 
 
-Matt
-
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
