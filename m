@@ -1,40 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC3947270A
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 10:59:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31BBC472BB2
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Dec 2021 12:41:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE49110E6FF;
-	Mon, 13 Dec 2021 09:59:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C325410E86C;
+	Mon, 13 Dec 2021 11:41:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 680B210E62C;
- Mon, 13 Dec 2021 09:59:25 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10196"; a="324970232"
-X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="324970232"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2021 01:59:25 -0800
-X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="566495206"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6ED1A10E86B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Dec 2021 11:41:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639395673; x=1670931673;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=21RQdsO7rC8/hD3MVjXfnUN5gxXm8L6VUmeXPcpS12c=;
+ b=iL91WQalQr7xBSZD58/FVDp0AnmuV70L+oUgSKDlLnmIE5zFFoqsPXqo
+ Kad+7/FjiKkpUq5a6xYLUMU1UtE7cVnZz3Nb07F5O2+nbScOJ3r2/cfbm
+ fXPmFp77DVv+UlWIY/bBABnW0tUPCXyDD/sCO40fyDv8NcsIdJHlnJD4W
+ BcATP6Bl8UlOPnGbEccONx7BHiiP86CAaV1zmG4yEOJjEsmvklxlBwYBg
+ 03D2Ca9Afn5hbrpRpNcb87uuRFYjBK0mEG8/+TH4bjqt/1IfiMEbSHSLt
+ 6QHF6JWgewFjgeJnxmHgrUVgfkPvKAcNjKjrkEPhxrM7EBzO+L6bUpNpl A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10196"; a="238659886"
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="238659886"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2021 03:41:12 -0800
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; d="scan'208";a="504871300"
 Received: from ppolasze-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.20.7])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2021 01:59:20 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, airlied@linux.ie, daniel@ffwll.ch
-In-Reply-To: <20211213093650.19598-3-tzimmermann@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211213093650.19598-1-tzimmermann@suse.de>
- <20211213093650.19598-3-tzimmermann@suse.de>
-Date: Mon, 13 Dec 2021 11:59:18 +0200
-Message-ID: <87v8zs7rm1.fsf@intel.com>
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2021 03:41:11 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 13 Dec 2021 13:41:05 +0200
+Message-Id: <20211213114106.296017-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/dp: Move DP declarations into
- separate header file
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/cdclk: turn around i915_drv.h
+ and intel_cdclk.h dependency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,163 +57,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- Thomas Zimmermann <tzimmermann@suse.de>, linux-arm-msm@vger.kernel.org,
- linux-tegra@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 13 Dec 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> Split the DP declarations from other helpers before moving the
-> DP functions into a separate module.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->  drivers/gpu/drm/drm_crtc_helper_internal.h | 27 ---------------------
->  drivers/gpu/drm/drm_dp_aux_dev.c           |  2 +-
->  drivers/gpu/drm/drm_dp_helper.c            |  2 +-
->  drivers/gpu/drm/drm_dp_helper_internal.h   | 28 ++++++++++++++++++++++
->  drivers/gpu/drm/drm_dp_mst_topology.c      |  2 +-
->  drivers/gpu/drm/drm_kms_helper_common.c    |  1 +
->  6 files changed, 32 insertions(+), 30 deletions(-)
->  create mode 100644 drivers/gpu/drm/drm_dp_helper_internal.h
->
-> diff --git a/drivers/gpu/drm/drm_crtc_helper_internal.h b/drivers/gpu/drm/drm_crtc_helper_internal.h
-> index 61e09f8a8d0f..28e04e750130 100644
-> --- a/drivers/gpu/drm/drm_crtc_helper_internal.h
-> +++ b/drivers/gpu/drm/drm_crtc_helper_internal.h
-> @@ -28,36 +28,9 @@
->  
->  #include <drm/drm_connector.h>
->  #include <drm/drm_crtc.h>
-> -#include <drm/drm_dp_helper.h>
->  #include <drm/drm_encoder.h>
->  #include <drm/drm_modes.h>
->  
-> -/* drm_dp_aux_dev.c */
-> -#ifdef CONFIG_DRM_DP_AUX_CHARDEV
-> -int drm_dp_aux_dev_init(void);
-> -void drm_dp_aux_dev_exit(void);
-> -int drm_dp_aux_register_devnode(struct drm_dp_aux *aux);
-> -void drm_dp_aux_unregister_devnode(struct drm_dp_aux *aux);
-> -#else
-> -static inline int drm_dp_aux_dev_init(void)
-> -{
-> -	return 0;
-> -}
-> -
-> -static inline void drm_dp_aux_dev_exit(void)
-> -{
-> -}
-> -
-> -static inline int drm_dp_aux_register_devnode(struct drm_dp_aux *aux)
-> -{
-> -	return 0;
-> -}
-> -
-> -static inline void drm_dp_aux_unregister_devnode(struct drm_dp_aux *aux)
-> -{
-> -}
-> -#endif
-> -
->  /* drm_probe_helper.c */
->  enum drm_mode_status drm_crtc_mode_valid(struct drm_crtc *crtc,
->  					 const struct drm_display_mode *mode);
-> diff --git a/drivers/gpu/drm/drm_dp_aux_dev.c b/drivers/gpu/drm/drm_dp_aux_dev.c
-> index 06b374cae956..0618dfe16660 100644
-> --- a/drivers/gpu/drm/drm_dp_aux_dev.c
-> +++ b/drivers/gpu/drm/drm_dp_aux_dev.c
-> @@ -40,7 +40,7 @@
->  #include <drm/drm_dp_mst_helper.h>
->  #include <drm/drm_print.h>
->  
-> -#include "drm_crtc_helper_internal.h"
-> +#include "drm_dp_helper_internal.h"
->  
->  struct drm_dp_aux_dev {
->  	unsigned index;
-> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-> index 23f9073bc473..e995a0262ed7 100644
-> --- a/drivers/gpu/drm/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/drm_dp_helper.c
-> @@ -35,7 +35,7 @@
->  #include <drm/drm_dp_mst_helper.h>
->  #include <drm/drm_panel.h>
->  
-> -#include "drm_crtc_helper_internal.h"
-> +#include "drm_dp_helper_internal.h"
->  
->  struct dp_aux_backlight {
->  	struct backlight_device *base;
-> diff --git a/drivers/gpu/drm/drm_dp_helper_internal.h b/drivers/gpu/drm/drm_dp_helper_internal.h
-> new file mode 100644
-> index 000000000000..5c9f8bb0c99a
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_dp_helper_internal.h
-> @@ -0,0 +1,28 @@
-> +/* SPDX-License-Identifier: MIT */
-> +
-> +#include <drm/drm_dp_helper.h>
+intel_cdclk.h only needs i915_drv.h for struct intel_cdclk_config. Move
+the definition to intel_cdclk.h and turn the includes around to avoid
+including i915_drv.h from other headers.
 
-Please don't include other headers if you can avoid them by using
-forward declarations.
+The intel cdclk state macros in intel_cdclk.h still reference struct
+drm_i915_private, but as macros they don't strictly require the
+definition until they are used.
 
-BR,
-Jani.
+v2: Expand on the commit message wrt cdclk state macros
 
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_atomic.c | 1 +
+ drivers/gpu/drm/i915/display/intel_cdclk.h  | 6 +++++-
+ drivers/gpu/drm/i915/i915_drv.h             | 6 +-----
+ 3 files changed, 7 insertions(+), 6 deletions(-)
 
-> +
-> +#ifdef CONFIG_DRM_DP_AUX_CHARDEV
-> +int drm_dp_aux_dev_init(void);
-> +void drm_dp_aux_dev_exit(void);
-> +int drm_dp_aux_register_devnode(struct drm_dp_aux *aux);
-> +void drm_dp_aux_unregister_devnode(struct drm_dp_aux *aux);
-> +#else
-> +static inline int drm_dp_aux_dev_init(void)
-> +{
-> +	return 0;
-> +}
-> +
-> +static inline void drm_dp_aux_dev_exit(void)
-> +{
-> +}
-> +
-> +static inline int drm_dp_aux_register_devnode(struct drm_dp_aux *aux)
-> +{
-> +	return 0;
-> +}
-> +
-> +static inline void drm_dp_aux_unregister_devnode(struct drm_dp_aux *aux)
-> +{
-> +}
-> +#endif
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-> index 7f0ff96261cf..9f7b0b606924 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -45,7 +45,7 @@
->  #include <drm/drm_print.h>
->  #include <drm/drm_probe_helper.h>
->  
-> -#include "drm_crtc_helper_internal.h"
-> +#include "drm_dp_helper_internal.h"
->  #include "drm_dp_mst_topology_internal.h"
->  
->  /**
-> diff --git a/drivers/gpu/drm/drm_kms_helper_common.c b/drivers/gpu/drm/drm_kms_helper_common.c
-> index 47e92400548d..88260d26409c 100644
-> --- a/drivers/gpu/drm/drm_kms_helper_common.c
-> +++ b/drivers/gpu/drm/drm_kms_helper_common.c
-> @@ -29,6 +29,7 @@
->  
->  #include <drm/drm_print.h>
->  
-> +#include "drm_dp_helper_internal.h"
->  #include "drm_crtc_helper_internal.h"
->  
->  MODULE_AUTHOR("David Airlie, Jesse Barnes");
-
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+index a62550711e98..1080741d1561 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+@@ -34,6 +34,7 @@
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_plane_helper.h>
+ 
++#include "i915_drv.h"
+ #include "intel_atomic.h"
+ #include "intel_cdclk.h"
+ #include "intel_display_types.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+index fc638522e445..71dd84740ae3 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+@@ -8,7 +8,6 @@
+ 
+ #include <linux/types.h>
+ 
+-#include "i915_drv.h"
+ #include "intel_display.h"
+ #include "intel_global_state.h"
+ 
+@@ -16,6 +15,11 @@ struct drm_i915_private;
+ struct intel_atomic_state;
+ struct intel_crtc_state;
+ 
++struct intel_cdclk_config {
++	unsigned int cdclk, vco, ref, bypass;
++	u8 voltage_level;
++};
++
+ struct intel_cdclk_state {
+ 	struct intel_global_state base;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index a0f54a69b11d..e2c0d69753b1 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -65,6 +65,7 @@
+ #include "i915_utils.h"
+ 
+ #include "display/intel_bios.h"
++#include "display/intel_cdclk.h"
+ #include "display/intel_display.h"
+ #include "display/intel_display_power.h"
+ #include "display/intel_dmc.h"
+@@ -625,11 +626,6 @@ struct i915_virtual_gpu {
+ 	u32 caps;
+ };
+ 
+-struct intel_cdclk_config {
+-	unsigned int cdclk, vco, ref, bypass;
+-	u8 voltage_level;
+-};
+-
+ struct i915_selftest_stash {
+ 	atomic_t counter;
+ 	struct ida mock_region_instances;
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.30.2
+
