@@ -2,36 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9AE47453F
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 15:36:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D67EE474597
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 15:52:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7464E10E11D;
-	Tue, 14 Dec 2021 14:36:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E917010E11D;
+	Tue, 14 Dec 2021 14:52:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6798910E11D;
- Tue, 14 Dec 2021 14:36:56 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id A751C61524;
- Tue, 14 Dec 2021 14:36:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D813DC34601;
- Tue, 14 Dec 2021 14:36:53 +0000 (UTC)
-Date: Tue, 14 Dec 2021 09:36:52 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Message-ID: <20211214093652.0dfa5b6f@gandalf.local.home>
-In-Reply-To: <20211214140301.520464-8-bigeasy@linutronix.de>
-References: <20211214140301.520464-1-bigeasy@linutronix.de>
- <20211214140301.520464-8-bigeasy@linutronix.de>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com
+ [IPv6:2607:f8b0:4864:20::f29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6F810E11D;
+ Tue, 14 Dec 2021 14:52:35 +0000 (UTC)
+Received: by mail-qv1-xf29.google.com with SMTP id m17so17416119qvx.8;
+ Tue, 14 Dec 2021 06:52:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Xf7q3Jbcz4/LEcmcTeVISoI2B4bGeUUdk0hxUCLs5rs=;
+ b=FHi3n63QOeG6gLzhJVCdkONlfQpsuxOmAKW/cofmDUuTckCd4qt7wzrPBtLFf38Tb+
+ xczhmQro+FHcyY+W6wlhd2Sq+Q344IDjN7C31P+Vs/LqsdG1ym0O/AnPKb36EWvJW8y/
+ /pr28c+ss/0UsW6wYuaNVwi0NwfBGCtzMBbNmDR73IqCHGKJj/ek4Xq8F83t9by2FunU
+ IAFZ435a4UvJ5CbpXMzQ3/gEcwcr2pH08XvUHL//xRzEm2DOW9ur1GyrfFVnyu98v1kI
+ fMMtbJ3zynCSm7ZbK99IzJ36XpRZZ7cd4a8Qr+lFLn//i6QS7Q9xAIgsFhZFdC2LAwr8
+ hEcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Xf7q3Jbcz4/LEcmcTeVISoI2B4bGeUUdk0hxUCLs5rs=;
+ b=pyk+t1odFHMq6ikdnbc+reXfsxNiDC5Yr0hW/SR6iAVWjMOwE6jtKEVRDIu5X14xKX
+ mOXh0EFEslnqk7hj6QX/+mdpi9R1/iCXAIyNh9KXnnFnTJcAX0d97LCH4jb5+Utsbmg+
+ iqrPNQKi5N6oJIRKNRuDeJ/qR80EFiduYefiq8skg1lJrq7huKbazYBb/l10Ph9sGEca
+ +QRREYtw5/QdWSxXcme+hXr4We+KvWS03mKk1HwHTPmsHvwP68EyHjANjeXbF2v4IA0o
+ hBkY5j9Ei4BZI21kQkwOQJlgsMqKpUa44UapAHxbRtmSJMH7XzqSN5u783s7fJ0aW7nD
+ PCnw==
+X-Gm-Message-State: AOAM530vH3Ku0SiCxcHzzbo7DmmNWs4Ws5H+rjWaQmk5LZ5fmyPmgniU
+ FXhgrnSNB4ybQcyFEImsVrLYgIKtb6mLa6nPb1s=
+X-Google-Smtp-Source: ABdhPJwS/wVbUCr/fISQSZfIT4fbHE551R+9VucYnxwH9401gRXCgl3ytnT4zp3UABFRvuUFhflcOEQJnA9jSart4iY=
+X-Received: by 2002:ad4:5ce8:: with SMTP id iv8mr5919659qvb.21.1639493554305; 
+ Tue, 14 Dec 2021 06:52:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915: Disable tracing points on
- PREEMPT_RT
+References: <20211210195005.2582884-1-bob.beckett@collabora.com>
+ <e7cad6ca-d106-c529-6f22-93a7847cd7c0@intel.com>
+In-Reply-To: <e7cad6ca-d106-c529-6f22-93a7847cd7c0@intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 14 Dec 2021 14:52:08 +0000
+Message-ID: <CAM0jSHNn4yq1u_Qwr9v9kUCcEexBmb+=LML2=OF1Rspyf-TDfA@mail.gmail.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ttm: fix large buffer population
+ trucation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,122 +63,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- Luca Abeni <lucabe72@gmail.com>, dri-devel@lists.freedesktop.org,
- Thomas Gleixner <tglx@linutronix.de>
+Cc: ML dri-devel <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ kernel list <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 14 Dec 2021 15:03:00 +0100
-Sebastian Andrzej Siewior <bigeasy@linutronix.de> wrote:
+On Mon, 13 Dec 2021 at 13:03, Matthew Auld <matthew.auld@intel.com> wrote:
+>
+> On 10/12/2021 19:50, Robert Beckett wrote:
+> > ttm->num_pages is uint32_t which was causing very large buffers to
+> > only populate a truncated size.
+> >
+> > This fixes gem_create@create-clear igt test on large memory systems.
+> >
+> > Fixes: 7ae034590cea ("drm/i915/ttm: add tt shmem backend")
+> > Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+>
+> Nice catch,
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-> Luca Abeni reported this:
-> | BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
-> | CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
-> | Call Trace:
-> |  rt_spin_lock+0x3f/0x50
-> |  gen6_read32+0x45/0x1d0 [i915]
-> |  g4x_get_vblank_counter+0x36/0x40 [i915]
-> |  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
-> 
-> The tracing events use trace_i915_pipe_update_start() among other events
-> use functions acquire spinlock_t locks which are transformed into
-> sleeping locks on PREEMPT_RT. A few trace points use
-> intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
-> might acquire a sleeping locks on PREEMPT_RT.
-> At the time the arguments are evaluated within trace point, preemption
-> is disabled and so the locks must not be acquired on PREEMPT_RT.
-> 
-> Based on this I don't see any other way than disable trace points on
-> PREMPT_RT.
+Pushed to drm-intel-gt-next. Thanks again for the fix.
 
-Another way around this that I can see is if the data for the tracepoints
-can fit on the stack and add wrappers around the tracepoints. For example,
-looking at the first tracepoint in i915_trace.h:
-
-TRACE_EVENT(intel_pipe_enable,
-	    TP_PROTO(struct intel_crtc *crtc),
-	    TP_ARGS(crtc),
-
-	    TP_STRUCT__entry(
-			     __array(u32, frame, 3)
-			     __array(u32, scanline, 3)
-			     __field(enum pipe, pipe)
-			     ),
-	    TP_fast_assign(
-			   struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-			   struct intel_crtc *it__;
-			   for_each_intel_crtc(&dev_priv->drm, it__) {
-				   __entry->frame[it__->pipe] = intel_crtc_get_vblank_counter(it__);
-				   __entry->scanline[it__->pipe] = intel_get_crtc_scanline(it__);
-			   }
-			   __entry->pipe = crtc->pipe;
-			   ),
-
-	    TP_printk("pipe %c enable, pipe A: frame=%u, scanline=%u, pipe B: frame=%u, scanline=%u, pipe C: frame=%u, scanline=%u",
-		      pipe_name(__entry->pipe),
-		      __entry->frame[PIPE_A], __entry->scanline[PIPE_A],
-		      __entry->frame[PIPE_B], __entry->scanline[PIPE_B],
-		      __entry->frame[PIPE_C], __entry->scanline[PIPE_C])
-);
-
-We could modify this to be:
-
-TRACE_EVENT(intel_pipe_enable,
-	    TP_PROTO(u32 *frame, u32 *scanline, enum pipe),
-	    TP_ARGS(frame, scanline, pipe),
-
-	    TP_STRUCT__entry(
-			     __array(u32, frame, 3)
-			     __array(u32, scanline, 3)
-			     __field(enum pipe, pipe)
-			     ),
-	    TP_fast_assign(
-			   int i;
-			   for (i = 0; i < 3; i++) {
-			      __entry->frame[i] = frame[i];
-			      __entry->scanline[i] = scanline[i];
-			   }
-			   __entry->pipe = pipe;
-			   ),
-
-	    TP_printk("pipe %c enable, pipe A: frame=%u, scanline=%u, pipe B: frame=%u, scanline=%u, pipe C: frame=%u, scanline=%u",
-		      pipe_name(__entry->pipe),
-		      __entry->frame[PIPE_A], __entry->scanline[PIPE_A],
-		      __entry->frame[PIPE_B], __entry->scanline[PIPE_B],
-		      __entry->frame[PIPE_C], __entry->scanline[PIPE_C])
-);
-
-
-static inline void do_trace_intel_pipe(struct intel_crtc *crtc)
-{
-	u32 frame[3];
-	u32 scanline[3];
-	enum pipe pipe;
-
-	if (!trace_intel_pipe_enable_enabled())
-		return;
-
-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-	struct intel_crtc *it__;
-	for_each_intel_crtc(&dev_priv->drm, it__) {
-		frame[it__->pipe] = intel_crtc_get_vblank_counter(it__);
-		scanline[it__->pipe] = intel_get_crtc_scanline(it__);
-	}
-
-	trace_intel_pipe(frame, scanline, crtc->pipe);
-}
-
-
-The trace_intel_pipe_enable_enabled() is a static_branch that will act the
-same as the nop of a trace event, so this will still not add overhead when
-not enabled.
-
-All the processing will be done outside the trace event allowing it to be
-preempted, and then when the trace event is executed, it will run quickly
-without taking any locks.
-
-Then have the code call do_trace_intel_pipe() instead of trace_intel_pipe()
-and this should fix the issue with preempt rt.
-
--- Steve
+>
+> > ---
+> >   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > index 218a9b3037c7..923cc7ad8d70 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> > @@ -166,7 +166,7 @@ static int i915_ttm_tt_shmem_populate(struct ttm_device *bdev,
+> >       struct intel_memory_region *mr = i915->mm.regions[INTEL_MEMORY_SYSTEM];
+> >       struct i915_ttm_tt *i915_tt = container_of(ttm, typeof(*i915_tt), ttm);
+> >       const unsigned int max_segment = i915_sg_segment_size();
+> > -     const size_t size = ttm->num_pages << PAGE_SHIFT;
+> > +     const size_t size = (size_t)ttm->num_pages << PAGE_SHIFT;
+> >       struct file *filp = i915_tt->filp;
+> >       struct sgt_iter sgt_iter;
+> >       struct sg_table *st;
+> >
