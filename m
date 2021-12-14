@@ -2,49 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF4BE473FC4
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 10:45:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA3C9473FCB
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 10:48:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32DCD10E674;
-	Tue, 14 Dec 2021 09:45:55 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F6A810E674;
- Tue, 14 Dec 2021 09:45:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33B3810E2B3;
+	Tue, 14 Dec 2021 09:48:31 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75F0C10E2B3;
+ Tue, 14 Dec 2021 09:48:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639475154; x=1671011154;
- h=date:from:to:subject:message-id:references:mime-version:
- in-reply-to; bh=k+GztUpnafNBeCM7c+1FQlSIl9D0mH4rFNJCbdHjXZA=;
- b=c4SdffESI9yphEQgefPZzBqmUYwhqorqHhXX3xKXYKIS25jXIOCp6ecv
- Ql7jSsNhSGsOcHPHOv4qZqIy3W9WPZ+5zgpQTRELTqVgbhcIxEmfHV/gD
- G2S4lt3YxbNvpnAL6UvNAy1xgEBO/7ckgGaZGKPTSIxc67xDpyMjF+rsZ
- DpCXdnh5DIyi5fSRa/5oTJ5aD3arvqiO7CB9bgsTCdHlzE+eZBA1DpWKn
- 5tTewJdKHflUCdX0JzEDfDuGvfoeXcyhiRTCfOm7FixXTc5rWXUr4r6fT
- hVrwcQkOb4x0UsnkdtVCnAEjA1+H7eyKdLj9Uye3NLzN/HtxKfFldvI8O Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10197"; a="219627273"
-X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="219627273"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2021 01:45:53 -0800
-X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="604231479"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
- by fmsmga003-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Dec 2021 01:45:52 -0800
-Date: Tue, 14 Dec 2021 15:15:38 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Message-ID: <20211214094538.GB31233@intel.com>
-References: <20211208153404.27546-1-ramalingam.c@intel.com>
+ t=1639475310; x=1671011310;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=s7Lcekp+2iMOIPGqBHa7RcMspEFTaxbTRd1yBTGoPW0=;
+ b=WNa7kOY0UbH2l5taIdlvB+jmOJhI/gC+YTPX7anzOWfP14jgva6Nni3Z
+ LvYFaLKanolHbkGXDHDcQOOAuZyF+ZzbA+3Gais7pyXDAJdkde57eY7se
+ 3KSO6zZm2Z15R/fAIpJOp4QYmSewWv0JokvkleJ+TDNOCaoBI+o30qoDH
+ wZgIrXFJgTU3zwamiB8kuuW3arjSk6wqLBZYJdatCUoug/bR8scJ6Exf3
+ CMTt2Cicgpw4+kxxjs6NiQKgfhi8aDZ/wIInRE3RdP4S4CNSryfB63U0d
+ OpaOSXD15crNat7rOXYLXiy+JeOPJJGntebxm9UFS3neUj3nPq2A9xvBJ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10197"; a="263081404"
+X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="263081404"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2021 01:48:29 -0800
+X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="481854090"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.72.185])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2021 01:48:28 -0800
+Received: from platvala by thrakatuluk with local (Exim 4.94)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1mx4PW-0005Dh-DK; Tue, 14 Dec 2021 11:47:50 +0200
+Date: Tue, 14 Dec 2021 11:47:50 +0200
+From: Petri Latvala <petri.latvala@intel.com>
+To: John.C.Harrison@intel.com
+Message-ID: <YbhoRiHwnkZV3awF@platvala-desk.ger.corp.intel.com>
+References: <20211213232914.2523139-1-John.C.Harrison@Intel.com>
+ <20211213232914.2523139-2-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211208153404.27546-1-ramalingam.c@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 0/3] drm/i915: Sanity Check for device
- memory region
+In-Reply-To: <20211213232914.2523139-2-John.C.Harrison@Intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 01/11]
+ tests/i915/i915_hangman: Add descriptions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,36 +61,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: IGT-Dev@lists.freedesktop.org, Intel-GFX@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-12-08 at 21:04:01 +0530, Ramalingam C wrote:
-> Changes for introducing the quick test on the device memory range and
-> also a test of detailed validation for each addr of the range with read
-> and write.
+On Mon, Dec 13, 2021 at 03:29:04PM -0800, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
 > 
-> Detailed testing is optionally enabled with a modparam i915.memtest=1
+> Added descriptions of the various sub-tests and the test as a whole.
 > 
-> And third patch fixes the driver accessible stolen memory.
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>  tests/i915/i915_hangman.c | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
 > 
-> v2: Adding a wrapper for the memtest [Chris]
-> v3: Handling a bisecting issue.
+> diff --git a/tests/i915/i915_hangman.c b/tests/i915/i915_hangman.c
+> index 4c18c22db..025bb8713 100644
+> --- a/tests/i915/i915_hangman.c
+> +++ b/tests/i915/i915_hangman.c
+> @@ -46,6 +46,8 @@
+>  static int device = -1;
+>  static int sysfs = -1;
+>  
+> +IGT_TEST_DESCRIPTION("Tests for hang detection and recovery");
+> +
+>  static bool has_error_state(int dir)
+>  {
+>  	bool result;
+> @@ -315,9 +317,9 @@ static void hangcheck_unterminated(void)
+>  
+>  	gem_execbuf(device, &execbuf);
+>  	if (gem_wait(device, handle, &timeout_ns) != 0) {
+> -		/* need to manually trigger an hang to clean before failing */
+> +		/* need to manually trigger a hang to clean before failing */
+>  		igt_force_gpu_reset(device);
+> -		igt_assert_f(0, "unterminated batch did not trigger an hang!");
+> +		igt_assert_f(0, "unterminated batch did not trigger a hang!");
 
-Thanks for the review. The changes are merged.
+Ouch, this is a bug that could use a drive-by fix in this same commit:
+Add a newline after that text.
 
-Ram.
-> 
-> Chris Wilson (3):
->   drm/i915: Exclude reserved stolen from driver use
->   drm/i915: Sanitycheck device iomem on probe
->   drm/i915: Test all device memory on probing
-> 
->  drivers/gpu/drm/i915/gem/i915_gem_stolen.c |   3 +
->  drivers/gpu/drm/i915/i915_params.c         |   3 +
->  drivers/gpu/drm/i915/i915_params.h         |   1 +
->  drivers/gpu/drm/i915/intel_memory_region.c | 128 +++++++++++++++++++++
->  4 files changed, 135 insertions(+)
-> 
+With that,
+Reviewed-by: Petri Latvala <petri.latvala@intel.com>
+
+>  	}
+>  }
+>  
+> @@ -341,9 +343,11 @@ igt_main
+>  		igt_require(has_error_state(sysfs));
+>  	}
+>  
+> +	igt_describe("Basic error capture");
+>  	igt_subtest("error-state-basic")
+>  		test_error_state_basic();
+>  
+> +	igt_describe("Per engine error capture");
+>  	igt_subtest_with_dynamic("error-state-capture") {
+>  		for_each_ctx_engine(device, ctx, e) {
+>  			igt_dynamic_f("%s", e->name)
+> @@ -351,6 +355,7 @@ igt_main
+>  		}
+>  	}
+>  
+> +	igt_describe("Per engine hang recovery (spin)");
+>  	igt_subtest_with_dynamic("engine-hang") {
+>                  int has_gpu_reset = 0;
+>  		struct drm_i915_getparam gp = {
+> @@ -369,6 +374,7 @@ igt_main
+>  		}
+>  	}
+>  
+> +	igt_describe("Per engine hang recovery (invalid CS)");
+>  	igt_subtest_with_dynamic("engine-error") {
+>  		int has_gpu_reset = 0;
+>  		struct drm_i915_getparam gp = {
+> @@ -386,6 +392,7 @@ igt_main
+>  		}
+>  	}
+>  
+> +	igt_describe("Check that executing unintialised memory causes a hang");
+>  	igt_subtest("hangcheck-unterminated")
+>  		hangcheck_unterminated();
+>  
 > -- 
-> 2.20.1
+> 2.25.1
 > 
