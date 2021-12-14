@@ -1,56 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D67EE474597
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 15:52:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0088474602
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 16:07:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E917010E11D;
-	Tue, 14 Dec 2021 14:52:35 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com
- [IPv6:2607:f8b0:4864:20::f29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6F810E11D;
- Tue, 14 Dec 2021 14:52:35 +0000 (UTC)
-Received: by mail-qv1-xf29.google.com with SMTP id m17so17416119qvx.8;
- Tue, 14 Dec 2021 06:52:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Xf7q3Jbcz4/LEcmcTeVISoI2B4bGeUUdk0hxUCLs5rs=;
- b=FHi3n63QOeG6gLzhJVCdkONlfQpsuxOmAKW/cofmDUuTckCd4qt7wzrPBtLFf38Tb+
- xczhmQro+FHcyY+W6wlhd2Sq+Q344IDjN7C31P+Vs/LqsdG1ym0O/AnPKb36EWvJW8y/
- /pr28c+ss/0UsW6wYuaNVwi0NwfBGCtzMBbNmDR73IqCHGKJj/ek4Xq8F83t9by2FunU
- IAFZ435a4UvJ5CbpXMzQ3/gEcwcr2pH08XvUHL//xRzEm2DOW9ur1GyrfFVnyu98v1kI
- fMMtbJ3zynCSm7ZbK99IzJ36XpRZZ7cd4a8Qr+lFLn//i6QS7Q9xAIgsFhZFdC2LAwr8
- hEcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Xf7q3Jbcz4/LEcmcTeVISoI2B4bGeUUdk0hxUCLs5rs=;
- b=pyk+t1odFHMq6ikdnbc+reXfsxNiDC5Yr0hW/SR6iAVWjMOwE6jtKEVRDIu5X14xKX
- mOXh0EFEslnqk7hj6QX/+mdpi9R1/iCXAIyNh9KXnnFnTJcAX0d97LCH4jb5+Utsbmg+
- iqrPNQKi5N6oJIRKNRuDeJ/qR80EFiduYefiq8skg1lJrq7huKbazYBb/l10Ph9sGEca
- +QRREYtw5/QdWSxXcme+hXr4We+KvWS03mKk1HwHTPmsHvwP68EyHjANjeXbF2v4IA0o
- hBkY5j9Ei4BZI21kQkwOQJlgsMqKpUa44UapAHxbRtmSJMH7XzqSN5u783s7fJ0aW7nD
- PCnw==
-X-Gm-Message-State: AOAM530vH3Ku0SiCxcHzzbo7DmmNWs4Ws5H+rjWaQmk5LZ5fmyPmgniU
- FXhgrnSNB4ybQcyFEImsVrLYgIKtb6mLa6nPb1s=
-X-Google-Smtp-Source: ABdhPJwS/wVbUCr/fISQSZfIT4fbHE551R+9VucYnxwH9401gRXCgl3ytnT4zp3UABFRvuUFhflcOEQJnA9jSart4iY=
-X-Received: by 2002:ad4:5ce8:: with SMTP id iv8mr5919659qvb.21.1639493554305; 
- Tue, 14 Dec 2021 06:52:34 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85CAA10E55C;
+	Tue, 14 Dec 2021 15:07:15 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2CB310E55C;
+ Tue, 14 Dec 2021 15:07:13 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10197"; a="239217677"
+X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="239217677"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2021 07:07:13 -0800
+X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="463824251"
+Received: from phenderx-mobl1.ger.corp.intel.com (HELO tursulin-mobl2.home)
+ ([10.213.226.89])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2021 07:07:11 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Tue, 14 Dec 2021 15:07:04 +0000
+Message-Id: <20211214150704.984034-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20211210195005.2582884-1-bob.beckett@collabora.com>
- <e7cad6ca-d106-c529-6f22-93a7847cd7c0@intel.com>
-In-Reply-To: <e7cad6ca-d106-c529-6f22-93a7847cd7c0@intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 14 Dec 2021 14:52:08 +0000
-Message-ID: <CAM0jSHNn4yq1u_Qwr9v9kUCcEexBmb+=LML2=OF1Rspyf-TDfA@mail.gmail.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ttm: fix large buffer population
- trucation
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/guc: Log engine resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,46 +42,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ML dri-devel <dri-devel@lists.freedesktop.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- kernel list <linux-kernel@vger.kernel.org>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 13 Dec 2021 at 13:03, Matthew Auld <matthew.auld@intel.com> wrote:
->
-> On 10/12/2021 19:50, Robert Beckett wrote:
-> > ttm->num_pages is uint32_t which was causing very large buffers to
-> > only populate a truncated size.
-> >
-> > This fixes gem_create@create-clear igt test on large memory systems.
-> >
-> > Fixes: 7ae034590cea ("drm/i915/ttm: add tt shmem backend")
-> > Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
->
-> Nice catch,
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Pushed to drm-intel-gt-next. Thanks again for the fix.
+Log engine resets done by the GuC firmware in the similar way it is done
+by the execlists backend.
 
->
-> > ---
-> >   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > index 218a9b3037c7..923cc7ad8d70 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> > @@ -166,7 +166,7 @@ static int i915_ttm_tt_shmem_populate(struct ttm_device *bdev,
-> >       struct intel_memory_region *mr = i915->mm.regions[INTEL_MEMORY_SYSTEM];
-> >       struct i915_ttm_tt *i915_tt = container_of(ttm, typeof(*i915_tt), ttm);
-> >       const unsigned int max_segment = i915_sg_segment_size();
-> > -     const size_t size = ttm->num_pages << PAGE_SHIFT;
-> > +     const size_t size = (size_t)ttm->num_pages << PAGE_SHIFT;
-> >       struct file *filp = i915_tt->filp;
-> >       struct sgt_iter sgt_iter;
-> >       struct sg_table *st;
-> >
+This way we have notion of where the hangs are before the GuC gains
+support for proper error capture.
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 97311119da6f..51512123dc1a 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -11,6 +11,7 @@
+ #include "gt/intel_context.h"
+ #include "gt/intel_engine_pm.h"
+ #include "gt/intel_engine_heartbeat.h"
++#include "gt/intel_engine_user.h"
+ #include "gt/intel_gpu_commands.h"
+ #include "gt/intel_gt.h"
+ #include "gt/intel_gt_clock_utils.h"
+@@ -3934,9 +3935,18 @@ static void capture_error_state(struct intel_guc *guc,
+ {
+ 	struct intel_gt *gt = guc_to_gt(guc);
+ 	struct drm_i915_private *i915 = gt->i915;
+-	struct intel_engine_cs *engine = __context_to_physical_engine(ce);
++	struct intel_engine_cs *engine = ce->engine;
+ 	intel_wakeref_t wakeref;
+ 
++	if (intel_engine_is_virtual(engine)) {
++		drm_notice(&i915->drm, "%s class, engines 0x%x; GuC engine reset\n",
++			   intel_engine_class_repr(engine->class),
++			   engine->mask);
++		engine = guc_virtual_get_sibling(engine, 0);
++	} else {
++		drm_notice(&i915->drm, "%s GuC engine reset\n", engine->name);
++	}
++
+ 	intel_engine_set_hung_context(engine, ce);
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+ 		i915_capture_error_state(gt, engine->mask);
+-- 
+2.32.0
+
