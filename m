@@ -1,47 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93F3A474A7A
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 19:08:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50A84474A85
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 19:12:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD75110E142;
-	Tue, 14 Dec 2021 18:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44D1310E15D;
+	Tue, 14 Dec 2021 18:12:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5357410E137;
- Tue, 14 Dec 2021 18:08:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639505304; x=1671041304;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=OdMvC3u1Hn8FUVRAgp87XZqM7zei6CAb9WA7+Pgm6w0=;
- b=GbDZ2RVtCmsCIsz7NzYJmp/Ii1g42j6s6eGY7K/fuuQA2yFA0OPqD04g
- GyiCQH3Bl83eXsza248tK0CsjeWZP8T+TS8832efqBfZT9J9dPRe99WJ1
- HPZO1YSNukoakpBz8ftCHwV9mN7ExoY/N/G+C/cYAy6aAi1jxWAyzFs0F
- q8s2wOsVkqJPiGgoE1D9I90skQ8nCdyX9a4Mm8XuMVaiVxGCZHX7OcTWd
- tR/8uhGO1K+dj4JpSODrkd+xfHEnV9Lq2RO8/Sf+P1U7QOgRdGImOMemM
- tjmxoDU1D0YrLDCOeYysfewjvO6Uhcw8cUbhcaNfxcJ3AYDt3b3UHUqEJ g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10197"; a="239264583"
-X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="239264583"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2021 10:08:23 -0800
-X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="583705711"
-Received: from vgavinx-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.22.20])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2021 10:08:22 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Dec 2021 18:07:54 +0000
-Message-Id: <20211214180754.4113036-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F125810E15D;
+ Tue, 14 Dec 2021 18:12:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EB008A00A0;
+ Tue, 14 Dec 2021 18:12:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: remove writeback hook
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Tue, 14 Dec 2021 18:12:47 -0000
+Message-ID: <163950556794.24611.7952521366605911387@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211214170500.28569-1-matthew.brost@intel.com>
+In-Reply-To: <20211214170500.28569-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Fix_stealing_guc=5Fids_+_test_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,129 +40,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ditch the writeback hook and drop i915_gem_object_writeback(). We
-already support the shrinker_release_pages hook which can just call
-shmem_writeback directly.
+== Series Details ==
 
-Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_object.h    |  1 -
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |  1 -
- drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 10 ----------
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c     | 19 ++++++++++++++++++-
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  | 12 ------------
- 5 files changed, 18 insertions(+), 25 deletions(-)
+Series: Fix stealing guc_ids + test (rev3)
+URL   : https://patchwork.freedesktop.org/series/97896/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 66f20b803b01..aaf9183e601b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -455,7 +455,6 @@ i915_gem_object_unpin_pages(struct drm_i915_gem_object *obj)
- 
- int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj);
- int i915_gem_object_truncate(struct drm_i915_gem_object *obj);
--void i915_gem_object_writeback(struct drm_i915_gem_object *obj);
- 
- /**
-  * i915_gem_object_pin_map - return a contiguous mapping of the entire object
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index f9f7e44099fe..00c844caeabd 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -57,7 +57,6 @@ struct drm_i915_gem_object_ops {
- 	void (*put_pages)(struct drm_i915_gem_object *obj,
- 			  struct sg_table *pages);
- 	int (*truncate)(struct drm_i915_gem_object *obj);
--	void (*writeback)(struct drm_i915_gem_object *obj);
- 	int (*shrinker_release_pages)(struct drm_i915_gem_object *obj,
- 				      bool no_gpu_wait,
- 				      bool should_writeback);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 49c6e55c68ce..52e975f57956 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -168,16 +168,6 @@ int i915_gem_object_truncate(struct drm_i915_gem_object *obj)
- 	return 0;
- }
- 
--/* Try to discard unwanted pages */
--void i915_gem_object_writeback(struct drm_i915_gem_object *obj)
--{
--	assert_object_held_shared(obj);
--	GEM_BUG_ON(i915_gem_object_has_pages(obj));
--
--	if (obj->ops->writeback)
--		obj->ops->writeback(obj);
--}
--
- static void __i915_gem_object_reset_page_iter(struct drm_i915_gem_object *obj)
- {
- 	struct radix_tree_iter iter;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index cc9fe258fba7..7fdf4fa10b0e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -331,6 +331,23 @@ shmem_writeback(struct drm_i915_gem_object *obj)
- 	__shmem_writeback(obj->base.size, obj->base.filp->f_mapping);
- }
- 
-+static int shmem_shrinker_release_pages(struct drm_i915_gem_object *obj,
-+					bool no_gpu_wait,
-+					bool writeback)
-+{
-+	switch (obj->mm.madv) {
-+	case I915_MADV_DONTNEED:
-+		return i915_gem_object_truncate(obj);
-+	case __I915_MADV_PURGED:
-+		return 0;
-+	}
-+
-+	if (writeback)
-+		shmem_writeback(obj);
-+
-+	return 0;
-+}
-+
- void
- __i915_gem_object_release_shmem(struct drm_i915_gem_object *obj,
- 				struct sg_table *pages,
-@@ -503,7 +520,7 @@ const struct drm_i915_gem_object_ops i915_gem_shmem_ops = {
- 	.get_pages = shmem_get_pages,
- 	.put_pages = shmem_put_pages,
- 	.truncate = shmem_truncate,
--	.writeback = shmem_writeback,
-+	.shrinker_release_pages = shmem_shrinker_release_pages,
- 
- 	.pwrite = shmem_pwrite,
- 	.pread = shmem_pread,
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-index 157a9765f483..fd54e05521f6 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-@@ -61,18 +61,6 @@ static int try_to_writeback(struct drm_i915_gem_object *obj, unsigned int flags)
- 		return obj->ops->shrinker_release_pages(obj,
- 							!(flags & I915_SHRINK_ACTIVE),
- 							flags & I915_SHRINK_WRITEBACK);
--
--	switch (obj->mm.madv) {
--	case I915_MADV_DONTNEED:
--		i915_gem_object_truncate(obj);
--		return 0;
--	case __I915_MADV_PURGED:
--		return 0;
--	}
--
--	if (flags & I915_SHRINK_WRITEBACK)
--		i915_gem_object_writeback(obj);
--
- 	return 0;
- }
- 
--- 
-2.31.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+b855be58ca75 drm/i915/guc: Use correct context lock when callig clr_context_registered
+b2c8358f28bf drm/i915/guc: Only assign guc_id.id when stealing guc_id
+16e7a94892d5 drm/i915/guc: Remove racey GEM_BUG_ON
+4d46938487d5 drm/i915/guc: Don't hog IRQs when destroying contexts
+cbcb8fe154c3 drm/i915/guc: Add extra debug on CT deadlock
+344e5cf583e1 drm/i915/guc: Kick G2H tasklet if no credits
+c07631e2c9df drm/i915/guc: Selftest for stealing of guc ids
+-:183: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#183: FILE: drivers/gpu/drm/i915/gt/uc/selftest_guc.c:153:
++	if (!ce) {
++		pr_err("Context array allocation failed\n");
+
+total: 0 errors, 1 warnings, 0 checks, 265 lines checked
+
 
