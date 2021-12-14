@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BC684746F0
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 16:57:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF6684746FB
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 16:58:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B93110E577;
-	Tue, 14 Dec 2021 15:57:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D1C910E57C;
+	Tue, 14 Dec 2021 15:58:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E884610E56E;
- Tue, 14 Dec 2021 15:56:58 +0000 (UTC)
-Date: Tue, 14 Dec 2021 16:56:55 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1639497417;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=2VPVSl8tOhUZe8/mCtbW+OdOReAF7fBGbeG20fZbmgc=;
- b=aQfQVtvZG9c8YdrzJ7iZM/PpO2D6X01Wt02rrG3cyKf96/zjX4LeNiCgifl2a2dASLiBwY
- KQW48QW8NsfyZjBVPq8OI+G0CoE/Ifi/1pSCLuaIlR8K6CdNa9NbUvNK4gK40dS4KqCmG3
- QusDFMPp/nJXLc46mHF3FO/gqw6abmYXcl5KzIbZf0Dcu1KIVENDT8pRJ1LMKFluS1Snk6
- bo7abo/FnD7fwNfjZZ+++8j6IFDrKhknCuHTKho/a+ddlE0g46/r4S+GsgUdcdyFSUODPw
- jRB1IbmNqpb0P2++vTW0zZPHBBQXqUO9Xh2KTZWTyvvcY/irx1h/aqzXdCvZXQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1639497417;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=2VPVSl8tOhUZe8/mCtbW+OdOReAF7fBGbeG20fZbmgc=;
- b=NQx5vXOrHaPlRpeTWJyhKM8ZrP5EPRbwzWX+bVjWzaY/WvWBSZ+UCQ/WZ02yzn0lYCD4O+
- TE9GLw2ub+G5T6AQ==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Steven Rostedt <rostedt@goodmis.org>
-Message-ID: <Ybi+x8ZmbnTZ3/C0@linutronix.de>
-References: <20211214140301.520464-1-bigeasy@linutronix.de>
- <20211214140301.520464-8-bigeasy@linutronix.de>
- <20211214093652.0dfa5b6f@gandalf.local.home>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 625C610E57A;
+ Tue, 14 Dec 2021 15:58:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5A5FBA9A42;
+ Tue, 14 Dec 2021 15:58:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211214093652.0dfa5b6f@gandalf.local.home>
-Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915: Disable tracing points on
- PREEMPT_RT
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sebastian Andrzej Siewior" <bigeasy@linutronix.de>
+Date: Tue, 14 Dec 2021 15:58:45 -0000
+Message-ID: <163949752535.24608.15755860466354123203@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211214140301.520464-1-bigeasy@linutronix.de>
+In-Reply-To: <20211214140301.520464-1-bigeasy@linutronix.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_PREEMPT=5FRT_related_fixups=2E_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,48 +40,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- Luca Abeni <lucabe72@gmail.com>, dri-devel@lists.freedesktop.org,
- Thomas Gleixner <tglx@linutronix.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-12-14 09:36:52 [-0500], Steven Rostedt wrote:
-> Another way around this that I can see is if the data for the tracepoints
-> can fit on the stack and add wrappers around the tracepoints. For example,
-> looking at the first tracepoint in i915_trace.h:
-=E2=80=A6
+== Series Details ==
 
-Nice.
+Series: drm/i915: PREEMPT_RT related fixups. (rev4)
+URL   : https://patchwork.freedesktop.org/series/95463/
+State : failure
 
-> We could modify this to be:
-=E2=80=A6
-> static inline void do_trace_intel_pipe(struct intel_crtc *crtc)
-> {
-> 	u32 frame[3];
-> 	u32 scanline[3];
-> 	enum pipe pipe;
->=20
-> 	if (!trace_intel_pipe_enable_enabled())
-> 		return;
->=20
-> 	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> 	struct intel_crtc *it__;
-> 	for_each_intel_crtc(&dev_priv->drm, it__) {
-> 		frame[it__->pipe] =3D intel_crtc_get_vblank_counter(it__);
-> 		scanline[it__->pipe] =3D intel_get_crtc_scanline(it__);
-> 	}
->=20
-> 	trace_intel_pipe(frame, scanline, crtc->pipe);
-> }
-=E2=80=A6
+== Summary ==
 
-> Then have the code call do_trace_intel_pipe() instead of trace_intel_pipe=
-()
-> and this should fix the issue with preempt rt.
+Applying: drm/i915: Drop the irqs_disabled() check
+Applying: drm/i915/gt: Queue and wait for the irq_work item.
+Applying: drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() + spin_lock()
+Applying: drm/i915: Use preempt_disable/enable_rt() where recommended
+Applying: drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_crtc.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/display/intel_crtc.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_crtc.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0005 drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-Is this is something, that the i915 devs would accept?
 
-> -- Steve
-
-Sebastian
