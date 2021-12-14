@@ -1,52 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D2CE473FF1
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 10:56:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F48F474011
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 11:05:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9356410E3AB;
-	Tue, 14 Dec 2021 09:56:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E162F10E376;
+	Tue, 14 Dec 2021 10:05:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4217710E3AB
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Dec 2021 09:56:00 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7370310E2D6;
+ Tue, 14 Dec 2021 10:05:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639475760; x=1671011760;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=h9n8//Hhaqt0hk7t4+d0Exu8p0IDs8j4/85dWxoEztw=;
- b=ONCP52ovIWyLXKx5HOoD2WUEeRwGqwBx6yiT15DO/n8BYK377kzHnDmz
- xQOPSvDnz4mxHoITUEeqTGVnMtdsV/CrtLkDF9oIaJIW4fL91KoVZhSGf
- 6jB/PwA7vdqnXMlAG8OQRbX3MXxlvzBE4nTUh3QSP7QoHQGCw2dzNg7d9
- RpecjuF0YzxM+3+Lq8lsVGkQCvI/ib4xwMWZQygnx+SisI64WHHRFraz9
- 80V2ODkVytxhs2jimNlLFGTB1PZYbqxxAqwo9+L+JnnLUf2QGKlO7LM/5
- wfye3zXqHdhSanfpaZaJkHSpyujcw15IMC914JeW3s1oR34JAXyEcJTWJ Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10197"; a="225804134"
-X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="225804134"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2021 01:55:59 -0800
-X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="614202457"
-Received: from abapat-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.227.1])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2021 01:55:59 -0800
-Date: Tue, 14 Dec 2021 01:56:00 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20211214095600.47wfqodk4klpbyis@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20210917234828.1156078-1-lucas.demarchi@intel.com>
- <87sfuv5xpq.fsf@intel.com>
+ t=1639476341; x=1671012341;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=a3nUrhx9FVW/CHy4JCMSQ+3LnDviMv5jeGqSzXx7Kk8=;
+ b=Jl7AONGdFalVWGoUK5XR/O/W19v3TM8+5/Mmk7z4RIkv8VAhefBmzyxo
+ EZCSrqY0AyobLR+/R3/tk8AIt7tisHZ1yyPllL2xkaG97Y6SS7gZT3Owg
+ W6hd6Pwn84sJyfHqp+tm1c5yb7CMIrgSryV/lNpXj31oHdfC0219dT/nP
+ CGmHBpQmBNYURe8FUEtO+dxfxsOYYvHrGVbXy27XHbukewsTrJ5sZhcXQ
+ 1jjkozyJIAkAbsrghE5x643UwXHoB/D1q+EURLmDQ2PdfJ9jxTc5IIwug
+ 5EopZi5DcTsCxUyA46c3/9Lga7vCE+iSuQ2gm7hGcW++ub9I/M5ClBFQp A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10197"; a="302325215"
+X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="302325215"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2021 02:05:40 -0800
+X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="505304983"
+Received: from vgavinx-mobl1.ger.corp.intel.com (HELO [10.252.22.20])
+ ([10.252.22.20])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2021 02:05:39 -0800
+Message-ID: <306c544f-68c8-1077-399f-10a5717d3537@intel.com>
+Date: Tue, 14 Dec 2021 10:05:36 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87sfuv5xpq.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg1: Read OPROM via SPI controller
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-GB
+To: Ramalingam C <ramalingam.c@intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+References: <20211209154533.4084-1-ramalingam.c@intel.com>
+ <20211209154533.4084-5-ramalingam.c@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20211209154533.4084-5-ramalingam.c@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v4 04/16] drm/i915/xehpsdv: Add has_flat_ccs
+ to device info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,176 +63,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Tomas Winkler <tomas.winkler@intel.com>
+Cc: CQ Tang <cq.tang@intel.com>, Hellstrom Thomas <thomas.hellstrom@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 14, 2021 at 11:42:41AM +0200, Jani Nikula wrote:
->On Fri, 17 Sep 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> From: Clint Taylor <clinton.a.taylor@intel.com>
->>
->> Read OPROM SPI through MMIO and find VBT entry since we can't use
->> OpRegion and PCI mapping may not work on some systems due to most BIOSes
->> not leaving the Option ROM mapped.
->
->What happened here, still not merged? :o
+On 09/12/2021 15:45, Ramalingam C wrote:
+> From: CQ Tang <cq.tang@intel.com>
+> 
+> Platforms of XeHP and beyond support 3D surface (buffer) compression and
+> various compression formats. This is accomplished by an additional
+> compression control state (CCS) stored for each surface.
+> 
+> Gen 12 devices(TGL family and DG1) stores compression states in a separate
+> region of memory. It is managed by user-space and has an associated set of
+> user-space managed page tables used by hardware for address translation.
+> 
+> In Xe HP and beyond (XEHPSDV, DG2, etc), there is a new feature introduced
+> i.e Flat CCS. It replaced AUX page tables with a flat indexed region of
+> device memory for storing compression states.
+> 
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: CQ Tang <cq.tang@intel.com>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_drv.h          | 2 ++
+>   drivers/gpu/drm/i915/i915_pci.c          | 1 +
+>   drivers/gpu/drm/i915/intel_device_info.h | 1 +
+>   3 files changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index aeafce112dcd..ad2dd18f7622 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1543,6 +1543,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   #define HAS_REGION(i915, i) (INTEL_INFO(i915)->memory_regions & (i))
+>   #define HAS_LMEM(i915) HAS_REGION(i915, REGION_LMEM)
+>   
+> +#define HAS_FLAT_CCS(dev_priv)   (INTEL_INFO(dev_priv)->has_flat_ccs)
 
-I don't understand neither. I got nacks, because of the other approach
-to get the VBT from opregion. In that case reading via spi
-controller directly would not be needed. However the other approach is
-still not applied and meanwhile DG1 and DG2 have to fallback to our fake
-vbt.
+Could maybe add a comment here to give brief description of the feature?
 
-So I actually think we should go ahead and just merge this.
+Anyway,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-Lucas De Marchi
-
->
->BR,
->Jani.
->
->
->
->>
->> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
->> Cc: Tomas Winkler <tomas.winkler@intel.com>
->> Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_bios.c | 80 +++++++++++++++++++++--
->>  drivers/gpu/drm/i915/i915_reg.h           |  8 +++
->>  2 files changed, 82 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
->> index 3c25926092de..7f179dbdec1b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> @@ -2280,6 +2280,66 @@ bool intel_bios_is_valid_vbt(const void *buf, size_t size)
->>  	return vbt;
->>  }
->>
->> +static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
->> +{
->> +	u32 count, data, found, store = 0;
->> +	u32 static_region, oprom_offset;
->> +	u32 oprom_size = 0x200000;
->> +	u16 vbt_size;
->> +	u32 *vbt;
->> +
->> +	static_region = intel_uncore_read(&i915->uncore, SPI_STATIC_REGIONS);
->> +	static_region &= OPTIONROM_SPI_REGIONID_MASK;
->> +	intel_uncore_write(&i915->uncore, PRIMARY_SPI_REGIONID, static_region);
->> +
->> +	oprom_offset = intel_uncore_read(&i915->uncore, OROM_OFFSET);
->> +	oprom_offset &= OROM_OFFSET_MASK;
->> +
->> +	for (count = 0; count < oprom_size; count += 4) {
->> +		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, oprom_offset + count);
->> +		data = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
->> +
->> +		if (data == *((const u32 *)"$VBT")) {
->> +			found = oprom_offset + count;
->> +			break;
->> +		}
->> +	}
->> +
->> +	if (count >= oprom_size)
->> +		goto err_not_found;
->> +
->> +	/* Get VBT size and allocate space for the VBT */
->> +	intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found +
->> +		   offsetof(struct vbt_header, vbt_size));
->> +	vbt_size = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
->> +	vbt_size &= 0xffff;
->> +
->> +	vbt = kzalloc(vbt_size, GFP_KERNEL);
->> +	if (!vbt) {
->> +		drm_err(&i915->drm, "Unable to allocate %u bytes for VBT storage\n",
->> +			vbt_size);
->> +		goto err_not_found;
->> +	}
->> +
->> +	for (count = 0; count < vbt_size; count += 4) {
->> +		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found + count);
->> +		data = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
->> +		*(vbt + store++) = data;
->> +	}
->> +
->> +	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
->> +		goto err_free_vbt;
->> +
->> +	drm_dbg_kms(&i915->drm, "Found valid VBT in SPI flash\n");
->> +
->> +	return (struct vbt_header *)vbt;
->> +
->> +err_free_vbt:
->> +	kfree(vbt);
->> +err_not_found:
->> +	return NULL;
->> +}
->> +
->>  static struct vbt_header *oprom_get_vbt(struct drm_i915_private *i915)
->>  {
->>  	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
->> @@ -2329,6 +2389,8 @@ static struct vbt_header *oprom_get_vbt(struct drm_i915_private *i915)
->>
->>  	pci_unmap_rom(pdev, oprom);
->>
->> +	drm_dbg_kms(&i915->drm, "Found valid VBT in PCI ROM\n");
->> +
->>  	return vbt;
->>
->>  err_free_vbt:
->> @@ -2363,17 +2425,23 @@ void intel_bios_init(struct drm_i915_private *i915)
->>
->>  	init_vbt_defaults(i915);
->>
->> -	/* If the OpRegion does not have VBT, look in PCI ROM. */
->> +	/*
->> +	 * If the OpRegion does not have VBT, look in SPI flash through MMIO or
->> +	 * PCI mapping
->> +	 */
->> +	if (!vbt && IS_DGFX(i915)) {
->> +		oprom_vbt = spi_oprom_get_vbt(i915);
->> +		vbt = oprom_vbt;
->> +	}
->> +
->>  	if (!vbt) {
->>  		oprom_vbt = oprom_get_vbt(i915);
->> -		if (!oprom_vbt)
->> -			goto out;
->> -
->>  		vbt = oprom_vbt;
->> -
->> -		drm_dbg_kms(&i915->drm, "Found valid VBT in PCI ROM\n");
->>  	}
->>
->> +	if (!vbt)
->> +		goto out;
->> +
->>  	bdb = get_bdb_header(vbt);
->>  	i915->vbt.version = bdb->version;
->>
->> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->> index c3a21f7c003d..fd3fee090412 100644
->> --- a/drivers/gpu/drm/i915/i915_reg.h
->> +++ b/drivers/gpu/drm/i915/i915_reg.h
->> @@ -12771,6 +12771,14 @@ enum skl_power_gate {
->>  #define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_TBT	REG_BIT(1)
->>  #define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_ALT	REG_BIT(0)
->>
->> +#define PRIMARY_SPI_TRIGGER			_MMIO(0x102040)
->> +#define PRIMARY_SPI_ADDRESS			_MMIO(0x102080)
->> +#define PRIMARY_SPI_REGIONID			_MMIO(0x102084)
->> +#define SPI_STATIC_REGIONS			_MMIO(0x102090)
->> +#define   OPTIONROM_SPI_REGIONID_MASK		REG_GENMASK(7, 0)
->> +#define OROM_OFFSET				_MMIO(0x1020c0)
->> +#define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
->> +
->>  /* This register controls the Display State Buffer (DSB) engines. */
->>  #define _DSBSL_INSTANCE_BASE		0x70B00
->>  #define DSBSL_INSTANCE(pipe, id)	(_DSBSL_INSTANCE_BASE + \
->
->-- 
->Jani Nikula, Intel Open Source Graphics Center
+> +
+>   #define HAS_GT_UC(dev_priv)	(INTEL_INFO(dev_priv)->has_gt_uc)
+>   
+>   #define HAS_POOLED_EU(dev_priv)	(INTEL_INFO(dev_priv)->has_pooled_eu)
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index b523eb1ece5d..382e7278058a 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -1005,6 +1005,7 @@ static const struct intel_device_info adl_p_info = {
+>   	XE_HP_PAGE_SIZES, \
+>   	.dma_mask_size = 46, \
+>   	.has_64bit_reloc = 1, \
+> +	.has_flat_ccs = 1, \
+>   	.has_global_mocs = 1, \
+>   	.has_gt_uc = 1, \
+>   	.has_llc = 1, \
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index 213ae2c07126..cbbb40e8451f 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -129,6 +129,7 @@ enum intel_ppgtt_type {
+>   	func(has_64k_pages); \
+>   	func(gpu_reset_clobbers_display); \
+>   	func(has_reset_engine); \
+> +	func(has_flat_ccs); \
+>   	func(has_global_mocs); \
+>   	func(has_gt_uc); \
+>   	func(has_l3_dpf); \
+> 
