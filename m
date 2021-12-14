@@ -2,59 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91CD5473EC2
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 09:53:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 006C8473F4C
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Dec 2021 10:24:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A58FE10EA58;
-	Tue, 14 Dec 2021 08:53:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17BEB10EAA7;
+	Tue, 14 Dec 2021 09:24:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27D4810EA56
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Dec 2021 08:53:31 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id d9so31160348wrw.4
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Dec 2021 00:53:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=6F2v0HGZC8Zz1ENR2EsLemKYP8DvQFPfyP1kJZ4ji5Y=;
- b=ZCJI84OmuiDwr93CN4gmhjaHX3QHTrprHQy6LYGFAsiDTIKu2ImCjo7MrS4yBW4VT5
- jmKrru+kmsi4pueTIxrO8m7C7zTxNiEjANtdVE8kyX9G8hF2PV9mOCMolix0So3z6MAg
- d+clfe9TV3JnPMdurRleagdEkZ8muj2Hzqi1U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=6F2v0HGZC8Zz1ENR2EsLemKYP8DvQFPfyP1kJZ4ji5Y=;
- b=zoDErdnFojKd5m0gyJ9UnbPwBufNLBKMcToDqjDLkqQ3QRF/dSsCfNc+ak/Z4eRCr3
- 1dh5Gqgi/fCHZb1XdZciEojyov+gnfPWP+ycT2kCpvjAfPZN4szz31lMQ99zkWHI/ecj
- gycfDSxe4tyu8dZ7LbBygR5hXpv1yYKl/1EdWzYPtDkfB0g+zkZOM9K43YW4uCQbjtpc
- IQemoL2TxtQW4oAaiiGjzU7ekqZCfhUZ1jr8gDAQxrCts48sfULHei3G9UkXdA5x6gPT
- jBLx+HEVz+v0d5zLF9/uMzptb7rxgvOSjcHnUQH78EITqetYmEf3TvieihrDLwlfDlOG
- Z+/Q==
-X-Gm-Message-State: AOAM531umguBuh7IAkXxSb7oYbpVRqGzLPLe3ZCBz9RYGh8e/wG4Mh82
- oi6iPFkZXDKhxeFcp8CQFgpk5A==
-X-Google-Smtp-Source: ABdhPJzMTUjYfMWjW7uUOJ4oGugcSHeNN11s2/s0tyZjrNM2qsC80Zow9PG/eCcACOB/usFblImNRA==
-X-Received: by 2002:a5d:6a4d:: with SMTP id t13mr4199216wrw.104.1639472009637; 
- Tue, 14 Dec 2021 00:53:29 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id x13sm13236755wrr.47.2021.12.14.00.53.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Dec 2021 00:53:29 -0800 (PST)
-Date: Tue, 14 Dec 2021 09:53:27 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <Ybhbh4wUKnNtB8rJ@phenom.ffwll.local>
-References: <YaSVz15Q7dAlEevU@linux-uq9g.fritz.box>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D730E10EAAB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Dec 2021 09:24:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639473860; x=1671009860;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=fnQMw3fB741KsE2vhgk86qcHr6mHIFYqQDhoTqdS6iM=;
+ b=DIeGFB1KAYoOxdrie7+P3LrW6Xjp/CR3Ernoi7BeNNz4rN2b7NdLZklt
+ CqmqqHpIfA1Pci6mtWYzkLUftKzR/W2SfgbwKuqoxxVv4Xkm/hhftuPeC
+ Rcqm3Hvk9l026oWXwVFJDAMEQ//BGUAqOLaSTag5zK8WaAnt30JK9Z0tw
+ 8HGH7VbNDOzuJVQ+6UTFnsZaPG1Dr3IvRyQntrrhLLo3CRmgM20Jq6b0n
+ N/BPL6RmmuLIm8Kot6HfCCEItq0+dKkfUTajEv8Vl9DsxzbsY95ziTb2j
+ QJUG/vnGFznoIQXd+4EjqC5amyLMf/Ipbc/d79r72Z9BuyxSLv6+jBxcY Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10197"; a="299719031"
+X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="299719031"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2021 01:24:20 -0800
+X-IronPort-AV: E=Sophos;i="5.88,205,1635231600"; d="scan'208";a="505291038"
+Received: from vgavinx-mobl1.ger.corp.intel.com (HELO [10.252.22.20])
+ ([10.252.22.20])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2021 01:24:19 -0800
+Message-ID: <7fd2f30a-95bb-a0ce-9b1d-80e59c3d1d88@intel.com>
+Date: Tue, 14 Dec 2021 09:24:17 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YaSVz15Q7dAlEevU@linux-uq9g.fritz.box>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PULL] drm-misc-next
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-GB
+To: intel-gfx@lists.freedesktop.org,
+ "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
+References: <20211213125530.3960007-1-matthew.auld@intel.com>
+ <163941933001.29011.8261078484229971238@emeril.freedesktop.org>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <163941933001.29011.8261078484229971238@emeril.freedesktop.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/debugfs=3A_add_noreclaim_annotations?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,156 +63,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 29, 2021 at 09:56:47AM +0100, Thomas Zimmermann wrote:
-> Hi Dave and Daniel,
+On 13/12/2021 18:15, Patchwork wrote:
+> *Patch Details*
+> *Series:*	drm/i915/debugfs: add noreclaim annotations
+> *URL:*	https://patchwork.freedesktop.org/series/97966/ 
+> <https://patchwork.freedesktop.org/series/97966/>
+> *State:*	failure
+> *Details:* 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/index.html 
+> <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/index.html>
 > 
-> here's the second PR for drm-misc-next for what will become Linux 5.17.
-> It's a bit late, as I was on vacation last week. The most significant
-> change moves the nomodeset parameter entirely into the DRM subsystem.
 > 
-> Best regards
-> Thomas
+>   CI Bug Log - changes from CI_DRM_10995 -> Patchwork_21838
 > 
-> drm-misc-next-2021-11-29:
-> drm-misc-next for 5.17:
 > 
-> UAPI Changes:
+>     Summary
 > 
-> Cross-subsystem Changes:
+> *FAILURE*
 > 
->  * Move 'nomodeset' kernel boot option into DRM subsystem
+> Serious unknown changes coming with Patchwork_21838 absolutely need to be
+> verified manually.
 > 
-> Core Changes:
+> If you think the reported changes have nothing to do with the changes
+> introduced in Patchwork_21838, please notify your bug team to allow them
+> to document this new failure mode, which will reduce false positives in CI.
 > 
->  * Replace several DRM_*() logging macros with drm_*() equivalents
->  * panel: Add quirk for Lenovo Yoga Book X91F/L
->  * ttm: Documentation fixes
+> External URL: 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/index.html
 > 
-> Driver Changes:
 > 
->  * Cleanup nomodeset handling in drivers
->  * Fixes
->  * bridge/anx7625: Fix reading EDID; Fix error code
->  * bridge/megachips: Probe both bridges before registering
->  * vboxvideo: Fix ERR_PTR usage
-> The following changes since commit a713ca234ea9d946235ac7248995c5fddfd9e523:
+>     Participating hosts (40 -> 33)
 > 
->   Merge drm/drm-next into drm-misc-next (2021-11-18 09:36:39 +0100)
+> Missing (7): bat-dg1-6 fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 
+> fi-pnv-d510 fi-bdw-samus
 > 
-> are available in the Git repository at:
 > 
->   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2021-11-29
+>     Possible new issues
+> 
+> Here are the unknown changes that may have been introduced in 
+> Patchwork_21838:
+> 
+> 
+>       IGT changes
+> 
+> 
+>         Possible regressions
+> 
+>   * igt@i915_selftest@live@gem:
+>       o fi-blb-e6850: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10995/fi-blb-e6850/igt@i915_selftest@live@gem.html>
+>         -> DMESG-FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-blb-e6850/igt@i915_selftest@live@gem.html>
 
-Pulled, thanks.
--Daniel
+
+Unrelated, looks like an object leaked.
 
 > 
-> for you to fetch changes up to 69d846126e1653ca9043c3766c66684132586941:
 > 
->   drm: Fix build error caused by missing drm_nomodeset.o (2021-11-27 21:05:58 +0100)
+>     Known issues
 > 
-> ----------------------------------------------------------------
-> drm-misc-next for 5.17:
+> Here are the changes found in Patchwork_21838 that come from known issues:
 > 
-> UAPI Changes:
 > 
-> Cross-subsystem Changes:
+>       IGT changes
 > 
->  * Move 'nomodeset' kernel boot option into DRM subsystem
 > 
-> Core Changes:
+>         Issues hit
 > 
->  * Replace several DRM_*() logging macros with drm_*() equivalents
->  * panel: Add quirk for Lenovo Yoga Book X91F/L
->  * ttm: Documentation fixes
+>   *
 > 
-> Driver Changes:
+>     igt@amdgpu/amd_basic@cs-gfx:
 > 
->  * Cleanup nomodeset handling in drivers
->  * Fixes
->  * bridge/anx7625: Fix reading EDID; Fix error code
->  * bridge/megachips: Probe both bridges before registering
->  * vboxvideo: Fix ERR_PTR usage
+>       o fi-rkl-guc: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html>
+>         (fdo#109315
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109315>) +17
+>         similar issues
+>   *
 > 
-> ----------------------------------------------------------------
-> Christian König (1):
->       drm/amdgpu: partially revert "svm bo enable_signal call condition"
+>     igt@amdgpu/amd_basic@semaphore:
 > 
-> Claudio Suarez (1):
->       drm: get rid of DRM_DEBUG_* log calls in drm core, files drm_a*.c
+>       o fi-bdw-5557u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271>) +31
+>         similar issues
+>   *
 > 
-> Dan Carpenter (2):
->       drm/vboxvideo: fix a NULL vs IS_ERR() check
->       drm/bridge: anx7625: fix an error code in anx7625_register_audio()
+>     igt@amdgpu/amd_cs_nop@sync-fork-gfx0:
 > 
-> Hans de Goede (1):
->       drm: panel-orientation-quirks: Add quirk for the Lenovo Yoga Book X91F/L
+>       o fi-skl-6600u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271>) +21
+>         similar issues
+>   *
 > 
-> Hsin-Yi Wang (1):
->       drm/bridge: anx7625: Fix edid_read break case in sp_tx_edid_read()
+>     igt@gem_huc_copy@huc-copy:
 > 
-> Javier Martinez Canillas (7):
->       drm: Don't print messages if drivers are disabled due nomodeset
->       drm/vboxvideo: Drop CONFIG_VGA_CONSOLE guard to call vgacon_text_force()
->       drm: Move nomodeset kernel parameter to the DRM subsystem
->       drm: Decouple nomodeset from CONFIG_VGA_CONSOLE
->       Documentation/admin-guide: Document nomodeset kernel parameter
->       drm: Make the nomodeset message less sensational
->       drm: Fix build error caused by missing drm_nomodeset.o
+>       o fi-skl-6600u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271> /
+>         i915#2190 <https://gitlab.freedesktop.org/drm/intel/issues/2190>)
+>   *
 > 
-> Martyn Welch (1):
->       drm/bridge: megachips: Ensure both bridges are probed before registration
+>     igt@gem_lmem_swapping@verify-random:
 > 
-> Randy Dunlap (1):
->       drm: ttm: correct ttm_range_manager kernel-doc notation
+>       o fi-skl-6600u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271> /
+>         i915#4613
+>         <https://gitlab.freedesktop.org/drm/intel/issues/4613>) +3
+>         similar issues
+>   *
 > 
->  Documentation/admin-guide/kernel-parameters.txt    |   7 +
->  drivers/gpu/drm/Kconfig                            |   6 +
->  drivers/gpu/drm/Makefile                           |   2 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c            |   5 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c            |   9 -
->  drivers/gpu/drm/ast/ast_drv.c                      |   3 +-
->  drivers/gpu/drm/bridge/analogix/anx7625.c          |   6 +-
->  .../drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c   |  40 +++-
->  drivers/gpu/drm/drm_atomic.c                       | 180 ++++++++-------
->  drivers/gpu/drm/drm_atomic_helper.c                | 243 ++++++++++++---------
->  drivers/gpu/drm/drm_atomic_uapi.c                  |   2 +-
->  drivers/gpu/drm/drm_auth.c                         |  12 +-
->  drivers/gpu/drm/drm_nomodeset.c                    |  24 ++
->  drivers/gpu/drm/drm_panel_orientation_quirks.c     |   6 +
->  drivers/gpu/drm/i915/i915_module.c                 |   4 +-
->  drivers/gpu/drm/mgag200/mgag200_drv.c              |   3 +-
->  drivers/gpu/drm/nouveau/nouveau_drm.c              |   4 +-
->  drivers/gpu/drm/qxl/qxl_drv.c                      |   3 +-
->  drivers/gpu/drm/radeon/radeon_drv.c                |   9 +-
->  drivers/gpu/drm/tiny/bochs.c                       |   3 +-
->  drivers/gpu/drm/tiny/cirrus.c                      |   4 +-
->  drivers/gpu/drm/ttm/ttm_range_manager.c            |  11 +-
->  drivers/gpu/drm/vboxvideo/vbox_drv.c               |   5 +-
->  drivers/gpu/drm/vboxvideo/vbox_main.c              |   4 +-
->  drivers/gpu/drm/virtio/virtgpu_drv.c               |   3 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c                |   3 +-
->  drivers/video/console/vgacon.c                     |  21 --
->  include/drm/drm_drv.h                              |   1 +
->  include/linux/console.h                            |   6 -
->  29 files changed, 344 insertions(+), 285 deletions(-)
->  create mode 100644 drivers/gpu/drm/drm_nomodeset.c
+>     igt@kms_chamelium@dp-crc-fast:
 > 
-> --
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 Nürnberg, Germany
-> (HRB 36809, AG Nürnberg)
-> Geschäftsführer: Felix Imendörffer
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+>       o fi-bdw-5557u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271> /
+>         fdo#111827
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=111827>) +8
+>         similar issues
+>   *
+> 
+>     igt@kms_chamelium@vga-edid-read:
+> 
+>       o fi-skl-6600u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271> /
+>         fdo#111827
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=111827>) +8
+>         similar issues
+>   *
+> 
+>     igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+> 
+>       o fi-skl-6600u: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271> / i915#533
+>         <https://gitlab.freedesktop.org/drm/intel/issues/533>)
+>   *
+> 
+>     igt@runner@aborted:
+> 
+>       o fi-blb-e6850: NOTRUN -> FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-blb-e6850/igt@runner@aborted.html>
+>         (fdo#109271
+>         <https://bugs.freedesktop.org/show_bug.cgi?id=109271> /
+>         i915#2403 <https://gitlab.freedesktop.org/drm/intel/issues/2403>
+>         / i915#4312 <https://gitlab.freedesktop.org/drm/intel/issues/4312>)
+> 
+> 
+>         Possible fixes
+> 
+>   *
+> 
+>     igt@gem_exec_suspend@basic-s3:
+> 
+>       o fi-bdw-5557u: INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10995/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html>
+>         (i915#146 <https://gitlab.freedesktop.org/drm/intel/issues/146>)
+>         -> PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html>
+>   *
+> 
+>     igt@gem_flink_basic@bad-flink:
+> 
+>       o fi-skl-6600u: INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10995/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html>
+>         (i915#198 <https://gitlab.freedesktop.org/drm/intel/issues/198>)
+>         -> PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html>
+>   *
+> 
+>     igt@i915_selftest@live@workarounds:
+> 
+>       o fi-rkl-guc: INCOMPLETE
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10995/fi-rkl-guc/igt@i915_selftest@live@workarounds.html>
+>         -> PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21838/fi-rkl-guc/igt@i915_selftest@live@workarounds.html>
+> 
+> 
+>     Build changes
+> 
+>   * Linux: CI_DRM_10995 -> Patchwork_21838
+> 
+> CI-20190529: 20190529
+> CI_DRM_10995: 9ed632ca6db2fb2c6ae01f833fd825114bce97d5 @ 
+> git://anongit.freedesktop.org/gfx-ci/linux
+> IGT_6307: be84fe4f151bc092e068cab5cd0cd19c34948b40 @ 
+> https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+> Patchwork_21838: 98e6b86a912b39c6f8d9d748e6f531be585ef1e0 @ 
+> git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> == Linux commits ==
+> 
+> 98e6b86a912b drm/i915/debugfs: add noreclaim annotations
+> 
