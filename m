@@ -2,53 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5348E475C70
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Dec 2021 16:57:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28113475CB9
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Dec 2021 17:06:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDAE210E5C3;
-	Wed, 15 Dec 2021 15:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F10D10E4D6;
+	Wed, 15 Dec 2021 16:06:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1598310E5C3;
- Wed, 15 Dec 2021 15:57:08 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83F4710E609;
+ Wed, 15 Dec 2021 16:06:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639583828; x=1671119828;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=A6szhfY6Suo6BYmthU5AH6lElsFjCSbSH0NgSC8V9KY=;
- b=RWhjq+2N7g+D1plquaNCVkDEsid2st+JgfaJtfZgtI1SifkjPNeQX9Eq
- lmgUjoiBocXMsG1K2C3q7a7r1rpLvZUv8iV16Pjx3l2MFG7FKgd9B770a
- PKRXTeFFV9HtuUal316IhW+E3Zz+jS3aIWiG6GbDHYDlo1Thl6XWLsTs7
- 1dDtRFA9YirlLxCF6KSaou+J+U6tAQviK+Xd/Xs/GskirjN/yAfU9rRTS
- 8QiQs8PAICIN9kYpTGuyk3qQVTcTNPi09N1wnS1Kdl4czBEXHLjeirbK8
- 8JftteLuJExZl89kV6XzwMTgeBU7MChVaqxmCEfE4f2qHwDCj8Lo1xic7 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10198"; a="263410677"
-X-IronPort-AV: E=Sophos;i="5.88,207,1635231600"; d="scan'208";a="263410677"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2021 07:57:07 -0800
+ t=1639584401; x=1671120401;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=W54hTN2mly0nwR3o6HlPrA1e+g/Y/HuMMTx8dSSZOwk=;
+ b=gYdOH/rY03lLwWvsuj3XrRTTj1wAj2J1FC4dqTnSn3Y+vqRaGR9R7T3R
+ VZSpJueOco3Ow80d4V0RnNTbXOaDv4DOOimctkGkKpeGXu4jCUxMfGSLA
+ OEdKXPOz1NZL8Y41aUgrVLLZSOBKEk/xSPd/1TJfQ4mmpQ7MzGbXlM9aZ
+ qzX3yjv8T4XbtK7bt0oNycW6QqGs3BOpqYfzxLCu8CHlX9wFK0TKXfWNm
+ 8J1ghO/sKuEet1g+QPVvK2V5/C4DCejpNoQWddqo7lrt2cq5p79KJPFUq
+ R9cXbEmS8b7anEc+1IAFAirYdgRDya7Zm1n8F9ZzcGcyV3vvKAxvzc2pG A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10198"; a="226540944"
+X-IronPort-AV: E=Sophos;i="5.88,207,1635231600"; d="scan'208";a="226540944"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2021 08:06:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,207,1635231600"; d="scan'208";a="465648261"
-Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
- by orsmga006.jf.intel.com with ESMTP; 15 Dec 2021 07:57:05 -0800
-Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1mxWeP-0001za-51; Wed, 15 Dec 2021 15:57:05 +0000
-Date: Wed, 15 Dec 2021 23:56:19 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <202112152305.rfWVQjLs-lkp@intel.com>
-References: <20211215103611.777665-8-thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.88,207,1635231600"; d="scan'208";a="661967155"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmsmga001.fm.intel.com with ESMTP; 15 Dec 2021 08:06:39 -0800
+Received: from [10.252.36.229] (harrasse-mobl.ger.corp.intel.com
+ [10.252.36.229])
+ by linux.intel.com (Postfix) with ESMTP id 668E0580C24;
+ Wed, 15 Dec 2021 08:06:38 -0800 (PST)
+Message-ID: <3dfd15a5-baa0-9673-60fb-8999f5c9b9e9@intel.com>
+Date: Wed, 15 Dec 2021 18:06:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211215103611.777665-8-thomas.hellstrom@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915: Use struct vma_resource
- instead of struct vma_snapshot
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: Ramalingam C <ramalingam.c@intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+References: <20211209154533.4084-1-ramalingam.c@intel.com>
+ <20211209154533.4084-13-ramalingam.c@intel.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+In-Reply-To: <20211209154533.4084-13-ramalingam.c@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v4 12/16] uapi/drm/dg2: Introduce format
+ modifier for DG2 clear color
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,82 +66,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- kbuild-all@lists.01.org, matthew.auld@intel.com
+Cc: Hellstrom Thomas <thomas.hellstrom@intel.com>,
+ Nanley Chery <nanley.g.chery@intel.com>, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi "Thomas,
+On 09/12/2021 17:45, Ramalingam C wrote:
+> From: Mika Kahola <mika.kahola@intel.com>
+>
+> DG2 clear color render compression uses Tile4 layout. Therefore, we need
+> to define a new format modifier for uAPI to support clear color rendering.
+>
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> cc: Anshuman Gupta <anshuman.gupta@intel.com>
+> Signed-off-by: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_fb.c            | 8 ++++++++
+>   drivers/gpu/drm/i915/display/skl_universal_plane.c | 9 ++++++++-
+>   include/uapi/drm/drm_fourcc.h                      | 8 ++++++++
+>   3 files changed, 24 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index e15216f1cb82..f10e77cb5b4a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -144,6 +144,12 @@ static const struct intel_modifier_desc intel_modifiers[] = {
+>   		.modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS,
+>   		.display_ver = { 13, 14 },
+>   		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_MC,
+> +	}, {
+> +		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC,
+> +		.display_ver = { 13, 14 },
+> +		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC_CC,
+> +
+> +		.ccs.cc_planes = BIT(1),
+>   	}, {
+>   		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
+>   		.display_ver = { 13, 14 },
+> @@ -559,6 +565,7 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+>   		else
+>   			return 512;
+>   	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
+> +	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC:
+>   	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
+>   	case I915_FORMAT_MOD_4_TILED:
+>   		/*
+> @@ -763,6 +770,7 @@ unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
+>   	case I915_FORMAT_MOD_Yf_TILED:
+>   		return 1 * 1024 * 1024;
+>   	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
+> +	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC:
+>   	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
+>   		return 16 * 1024;
+>   	default:
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index d80424194c75..9a89df9c0243 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -772,6 +772,8 @@ static u32 skl_plane_ctl_tiling(u64 fb_modifier)
+>   		return PLANE_CTL_TILED_4 |
+>   			PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE |
+>   			PLANE_CTL_CLEAR_COLOR_DISABLE;
+> +	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC:
+> +		return PLANE_CTL_TILED_4 | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
+>   	case I915_FORMAT_MOD_Y_TILED_CCS:
+>   	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>   		return PLANE_CTL_TILED_Y | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
+> @@ -2337,10 +2339,15 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
+>   		break;
+>   	case PLANE_CTL_TILED_YF: /* aka PLANE_CTL_TILED_4 on XE_LPD+ */
+>   		if (HAS_4TILE(dev_priv)) {
+> -			if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
+> +			u32 rc_mask = PLANE_CTL_RENDER_DECOMPRESSION_ENABLE |
+> +				      PLANE_CTL_CLEAR_COLOR_DISABLE;
+> +
+> +			if ((val & rc_mask) == rc_mask)
+>   				fb->modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS;
+>   			else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE)
+>   				fb->modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS;
+> +			else if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
+> +				fb->modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC;
+>   			else
+>   				fb->modifier = I915_FORMAT_MOD_4_TILED;
+>   		} else {
+> diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+> index 51fdda26844a..b155f69f2344 100644
+> --- a/include/uapi/drm/drm_fourcc.h
+> +++ b/include/uapi/drm/drm_fourcc.h
+> @@ -598,6 +598,14 @@ extern "C" {
+>    */
+>   #define I915_FORMAT_MOD_4_TILED_DG2_MC_CCS fourcc_mod_code(INTEL, 11)
+>   
 
-Thank you for the patch! Yet something to improve:
+My colleague Nanley (Cc) had some requests for clarifications on this 
+new modifier.
 
-[auto build test ERROR on drm-tip/drm-tip]
-[also build test ERROR on next-20211214]
-[cannot apply to drm-exynos/exynos-drm-next drm/drm-next drm-intel/for-linux-next tegra-drm/drm/tegra/for-next airlied/drm-next v5.16-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Thomas-Hellstr-m/drm-i915-Asynchronous-vma-unbinding/20211215-183859
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: x86_64-randconfig-r002-20211214 (https://download.01.org/0day-ci/archive/20211215/202112152305.rfWVQjLs-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/0day-ci/linux/commit/ede025870be746e37b5bcde123cdf741aa685fab
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Thomas-Hellstr-m/drm-i915-Asynchronous-vma-unbinding/20211215-183859
-        git checkout ede025870be746e37b5bcde123cdf741aa685fab
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/i915/i915_request.h:43,
-                    from drivers/gpu/drm/i915/i915_active.h:13,
-                    from drivers/gpu/drm/i915/gem/i915_gem_object_types.h:16,
-                    from drivers/gpu/drm/i915/display/intel_frontbuffer.h:30,
-                    from drivers/gpu/drm/i915/i915_vma.c:28:
-   drivers/gpu/drm/i915/i915_vma_resource.h:176:15: error: 'struct intel_memory_region' declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
-     176 |        struct intel_memory_region *mr,
-         |               ^~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/i915_vma.c: In function 'i915_vma_resource_init_from_vma':
->> drivers/gpu/drm/i915/i915_vma.c:394:48: error: passing argument 8 of 'i915_vma_resource_init' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     394 |           i915_gem_object_is_lmem(obj), obj->mm.region,
-         |                                         ~~~~~~~^~~~~~~
-         |                                                |
-         |                                                struct intel_memory_region *
-   In file included from drivers/gpu/drm/i915/i915_request.h:43,
-                    from drivers/gpu/drm/i915/i915_active.h:13,
-                    from drivers/gpu/drm/i915/gem/i915_gem_object_types.h:16,
-                    from drivers/gpu/drm/i915/display/intel_frontbuffer.h:30,
-                    from drivers/gpu/drm/i915/i915_vma.c:28:
-   drivers/gpu/drm/i915/i915_vma_resource.h:176:36: note: expected 'struct intel_memory_region *' but argument is of type 'struct intel_memory_region *'
-     176 |        struct intel_memory_region *mr,
-         |        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
-   cc1: all warnings being treated as errors
+In particular in which plane is the clear color located.
 
 
-vim +/i915_vma_resource_init +394 drivers/gpu/drm/i915/i915_vma.c
+I guess it wouldn't hurt to also state for each of the new modifiers 
+defined in this series, how many planes and what data they contain.
 
-   385	
-   386	I915_SELFTEST_EXPORT void
-   387	i915_vma_resource_init_from_vma(struct i915_vma_resource *vma_res,
-   388					struct i915_vma *vma)
-   389	{
-   390		struct drm_i915_gem_object *obj = vma->obj;
-   391	
-   392		i915_vma_resource_init(vma_res, vma->vm, vma->pages, &vma->page_sizes,
-   393				       obj->mm.rsgt, i915_gem_object_is_readonly(obj),
- > 394				       i915_gem_object_is_lmem(obj), obj->mm.region,
-   395				       vma->ops, vma->private, vma->node.start,
-   396				       vma->node.size, vma->size);
-   397	}
-   398	
+Thanks,
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+-Lionel
+
+
+> +/*
+> + * Intel color control surfaces (CCS) for DG2 clear color render compression.
+> + *
+> + * DG2 uses a unified compression format for clear color render compression.
+> + * The general layout is a tiled layout using 4Kb tiles i.e. Tile4 layout.
+> + */
+> +#define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC fourcc_mod_code(INTEL, 12)
+> +
+>   /*
+>    * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+>    *
+
+
