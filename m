@@ -1,33 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0400347585C
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Dec 2021 13:05:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65AE347589E
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Dec 2021 13:14:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 549FB10EB8B;
-	Wed, 15 Dec 2021 12:05:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B00C110E253;
+	Wed, 15 Dec 2021 12:14:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8810A10EB8A;
- Wed, 15 Dec 2021 12:05:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2C83710E253;
+ Wed, 15 Dec 2021 12:14:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 83ABFAA01E;
- Wed, 15 Dec 2021 12:05:30 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 24DFFA47EB;
+ Wed, 15 Dec 2021 12:14:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Date: Wed, 15 Dec 2021 12:05:30 -0000
-Message-ID: <163956993053.18076.14483753426315386859@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Wed, 15 Dec 2021 12:14:25 -0000
+Message-ID: <163957046511.18074.14414172972720310086@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20211215104318.18866-1-tzimmermann@suse.de>
-In-Reply-To: <20211215104318.18866-1-tzimmermann@suse.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/dp=3A_Move_DisplayPort_helpers_into_own_module_=28rev2=29?=
+References: <20211215110746.865-1-matthew.auld@intel.com>
+In-Reply-To: <20211215110746.865-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915=3A_remove_writeback_hoo?=
+ =?utf-8?q?k?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,30 +48,14 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/dp: Move DisplayPort helpers into own module (rev2)
-URL   : https://patchwork.freedesktop.org/series/97961/
-State : failure
+Series: series starting with [1/2] drm/i915: remove writeback hook
+URL   : https://patchwork.freedesktop.org/series/98061/
+State : warning
 
 == Summary ==
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND objtool
-  CHK     include/generated/compile.h
-  CC [M]  drivers/gpu/drm/selftests/test-drm_dp_mst_helper.o
-drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c:13:10: fatal error: ../drm_dp_mst_topology_internal.h: No such file or directory
- #include "../drm_dp_mst_topology_internal.h"
-          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-scripts/Makefile.build:287: recipe for target 'drivers/gpu/drm/selftests/test-drm_dp_mst_helper.o' failed
-make[4]: *** [drivers/gpu/drm/selftests/test-drm_dp_mst_helper.o] Error 1
-scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm/selftests' failed
-make[3]: *** [drivers/gpu/drm/selftests] Error 2
-scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:549: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1846: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
