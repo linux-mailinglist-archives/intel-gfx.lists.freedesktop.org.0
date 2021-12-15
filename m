@@ -2,42 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 000A3475C58
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Dec 2021 16:55:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5348E475C70
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Dec 2021 16:57:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6C6410EB3C;
-	Wed, 15 Dec 2021 15:55:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDAE210E5C3;
+	Wed, 15 Dec 2021 15:57:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D9D410EB39;
- Wed, 15 Dec 2021 15:55:11 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10198"; a="302629631"
-X-IronPort-AV: E=Sophos;i="5.88,207,1635231600"; d="scan'208";a="302629631"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2021 07:55:11 -0800
-X-IronPort-AV: E=Sophos;i="5.88,207,1635231600"; d="scan'208";a="682546537"
-Received: from tbarret1-mobl.ger.corp.intel.com (HELO [10.213.212.98])
- ([10.213.212.98])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2021 07:55:10 -0800
-Message-ID: <47715429-7e03-8fc8-4d30-0dae1d38c4b1@linux.intel.com>
-Date: Wed, 15 Dec 2021 15:55:09 +0000
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1598310E5C3;
+ Wed, 15 Dec 2021 15:57:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639583828; x=1671119828;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=A6szhfY6Suo6BYmthU5AH6lElsFjCSbSH0NgSC8V9KY=;
+ b=RWhjq+2N7g+D1plquaNCVkDEsid2st+JgfaJtfZgtI1SifkjPNeQX9Eq
+ lmgUjoiBocXMsG1K2C3q7a7r1rpLvZUv8iV16Pjx3l2MFG7FKgd9B770a
+ PKRXTeFFV9HtuUal316IhW+E3Zz+jS3aIWiG6GbDHYDlo1Thl6XWLsTs7
+ 1dDtRFA9YirlLxCF6KSaou+J+U6tAQviK+Xd/Xs/GskirjN/yAfU9rRTS
+ 8QiQs8PAICIN9kYpTGuyk3qQVTcTNPi09N1wnS1Kdl4czBEXHLjeirbK8
+ 8JftteLuJExZl89kV6XzwMTgeBU7MChVaqxmCEfE4f2qHwDCj8Lo1xic7 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10198"; a="263410677"
+X-IronPort-AV: E=Sophos;i="5.88,207,1635231600"; d="scan'208";a="263410677"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2021 07:57:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,207,1635231600"; d="scan'208";a="465648261"
+Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
+ by orsmga006.jf.intel.com with ESMTP; 15 Dec 2021 07:57:05 -0800
+Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1mxWeP-0001za-51; Wed, 15 Dec 2021 15:57:05 +0000
+Date: Wed, 15 Dec 2021 23:56:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <202112152305.rfWVQjLs-lkp@intel.com>
+References: <20211215103611.777665-8-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20211215110746.865-1-matthew.auld@intel.com>
- <20211215110746.865-2-matthew.auld@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20211215110746.865-2-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: clean up
- shrinker_release_pages
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211215103611.777665-8-thomas.hellstrom@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915: Use struct vma_resource
+ instead of struct vma_snapshot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,166 +61,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ kbuild-all@lists.01.org, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi "Thomas,
 
-On 15/12/2021 11:07, Matthew Auld wrote:
-> Add some proper flags for the different modes, and shorten the name to
-> something more snappy.
+Thank you for the patch! Yet something to improve:
 
-Looks good to me - but since it touches TTM I leave for Thomas to approve.
+[auto build test ERROR on drm-tip/drm-tip]
+[also build test ERROR on next-20211214]
+[cannot apply to drm-exynos/exynos-drm-next drm/drm-next drm-intel/for-linux-next tegra-drm/drm/tegra/for-next airlied/drm-next v5.16-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Regards,
+url:    https://github.com/0day-ci/linux/commits/Thomas-Hellstr-m/drm-i915-Asynchronous-vma-unbinding/20211215-183859
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+config: x86_64-randconfig-r002-20211214 (https://download.01.org/0day-ci/archive/20211215/202112152305.rfWVQjLs-lkp@intel.com/config)
+compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/0day-ci/linux/commit/ede025870be746e37b5bcde123cdf741aa685fab
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Thomas-Hellstr-m/drm-i915-Asynchronous-vma-unbinding/20211215-183859
+        git checkout ede025870be746e37b5bcde123cdf741aa685fab
+        # save the config file to linux build tree
+        mkdir build_dir
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
 
-Tvrtko
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-P.S. I hope writing the patch means you thought it is an improvement as 
-well, rather than feeling I was asking for it to be done.
+All errors (new ones prefixed by >>):
 
-> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> ---
->   .../gpu/drm/i915/gem/i915_gem_object_types.h  | 23 ++++++++++++++++---
->   drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  8 +++----
->   drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  | 16 +++++++++----
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 10 ++++----
->   4 files changed, 39 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> index 00c844caeabd..6f446cca4322 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> @@ -57,9 +57,26 @@ struct drm_i915_gem_object_ops {
->   	void (*put_pages)(struct drm_i915_gem_object *obj,
->   			  struct sg_table *pages);
->   	int (*truncate)(struct drm_i915_gem_object *obj);
-> -	int (*shrinker_release_pages)(struct drm_i915_gem_object *obj,
-> -				      bool no_gpu_wait,
-> -				      bool should_writeback);
-> +	/**
-> +	 * shrink - Perform further backend specific actions to facilate
-> +	 * shrinking.
-> +	 * @obj: The gem object
-> +	 * @flags: Extra flags to control shrinking behaviour in the backend
-> +	 *
-> +	 * Possible values for @flags:
-> +	 *
-> +	 * I915_GEM_OBJECT_SHRINK_WRITEBACK - Try to perform writeback of the
-> +	 * backing pages, if supported.
-> +	 *
-> +	 * I915_GEM_OBJECT_SHRINK_NO_GPU_WAIT - Don't wait for the object to
-> +	 * idle.  Active objects can be considered later. The TTM backend for
-> +	 * example might have aync migrations going on, which don't use any
-> +	 * i915_vma to track the active GTT binding, and hence having an unbound
-> +	 * object might not be enough.
-> +	 */
-> +#define I915_GEM_OBJECT_SHRINK_WRITEBACK   BIT(0)
-> +#define I915_GEM_OBJECT_SHRINK_NO_GPU_WAIT BIT(1)
-> +	int (*shrink)(struct drm_i915_gem_object *obj, unsigned int flags);
->   
->   	int (*pread)(struct drm_i915_gem_object *obj,
->   		     const struct drm_i915_gem_pread *arg);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> index 7fdf4fa10b0e..6c57b0a79c8a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> @@ -331,9 +331,7 @@ shmem_writeback(struct drm_i915_gem_object *obj)
->   	__shmem_writeback(obj->base.size, obj->base.filp->f_mapping);
->   }
->   
-> -static int shmem_shrinker_release_pages(struct drm_i915_gem_object *obj,
-> -					bool no_gpu_wait,
-> -					bool writeback)
-> +static int shmem_shrink(struct drm_i915_gem_object *obj, unsigned int flags)
->   {
->   	switch (obj->mm.madv) {
->   	case I915_MADV_DONTNEED:
-> @@ -342,7 +340,7 @@ static int shmem_shrinker_release_pages(struct drm_i915_gem_object *obj,
->   		return 0;
->   	}
->   
-> -	if (writeback)
-> +	if (flags & I915_GEM_OBJECT_SHRINK_WRITEBACK)
->   		shmem_writeback(obj);
->   
->   	return 0;
-> @@ -520,7 +518,7 @@ const struct drm_i915_gem_object_ops i915_gem_shmem_ops = {
->   	.get_pages = shmem_get_pages,
->   	.put_pages = shmem_put_pages,
->   	.truncate = shmem_truncate,
-> -	.shrinker_release_pages = shmem_shrinker_release_pages,
-> +	.shrink = shmem_shrink,
->   
->   	.pwrite = shmem_pwrite,
->   	.pread = shmem_pread,
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-> index fd54e05521f6..968ca0fdd57b 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-> @@ -57,10 +57,18 @@ static bool unsafe_drop_pages(struct drm_i915_gem_object *obj,
->   
->   static int try_to_writeback(struct drm_i915_gem_object *obj, unsigned int flags)
->   {
-> -	if (obj->ops->shrinker_release_pages)
-> -		return obj->ops->shrinker_release_pages(obj,
-> -							!(flags & I915_SHRINK_ACTIVE),
-> -							flags & I915_SHRINK_WRITEBACK);
-> +	if (obj->ops->shrink) {
-> +		unsigned int shrink_flags = 0;
-> +
-> +		if (!(flags & I915_SHRINK_ACTIVE))
-> +			shrink_flags |= I915_GEM_OBJECT_SHRINK_NO_GPU_WAIT;
-> +
-> +		if (flags & I915_SHRINK_WRITEBACK)
-> +			shrink_flags |= I915_GEM_OBJECT_SHRINK_WRITEBACK;
-> +
-> +		return obj->ops->shrink(obj, shrink_flags);
-> +	}
-> +
->   	return 0;
->   }
->   
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index 923cc7ad8d70..21277f3c64e7 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -424,16 +424,14 @@ int i915_ttm_purge(struct drm_i915_gem_object *obj)
->   	return 0;
->   }
->   
-> -static int i915_ttm_shrinker_release_pages(struct drm_i915_gem_object *obj,
-> -					   bool no_wait_gpu,
-> -					   bool should_writeback)
-> +static int i915_ttm_shrink(struct drm_i915_gem_object *obj, unsigned int flags)
->   {
->   	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
->   	struct i915_ttm_tt *i915_tt =
->   		container_of(bo->ttm, typeof(*i915_tt), ttm);
->   	struct ttm_operation_ctx ctx = {
->   		.interruptible = true,
-> -		.no_wait_gpu = no_wait_gpu,
-> +		.no_wait_gpu = flags & I915_GEM_OBJECT_SHRINK_NO_GPU_WAIT,
->   	};
->   	struct ttm_placement place = {};
->   	int ret;
-> @@ -467,7 +465,7 @@ static int i915_ttm_shrinker_release_pages(struct drm_i915_gem_object *obj,
->   		return ret;
->   	}
->   
-> -	if (should_writeback)
-> +	if (flags & I915_GEM_OBJECT_SHRINK_WRITEBACK)
->   		__shmem_writeback(obj->base.size, i915_tt->filp->f_mapping);
->   
->   	return 0;
-> @@ -953,7 +951,7 @@ static const struct drm_i915_gem_object_ops i915_gem_ttm_obj_ops = {
->   	.get_pages = i915_ttm_get_pages,
->   	.put_pages = i915_ttm_put_pages,
->   	.truncate = i915_ttm_purge,
-> -	.shrinker_release_pages = i915_ttm_shrinker_release_pages,
-> +	.shrink = i915_ttm_shrink,
->   
->   	.adjust_lru = i915_ttm_adjust_lru,
->   	.delayed_free = i915_ttm_delayed_free,
-> 
+   In file included from drivers/gpu/drm/i915/i915_request.h:43,
+                    from drivers/gpu/drm/i915/i915_active.h:13,
+                    from drivers/gpu/drm/i915/gem/i915_gem_object_types.h:16,
+                    from drivers/gpu/drm/i915/display/intel_frontbuffer.h:30,
+                    from drivers/gpu/drm/i915/i915_vma.c:28:
+   drivers/gpu/drm/i915/i915_vma_resource.h:176:15: error: 'struct intel_memory_region' declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
+     176 |        struct intel_memory_region *mr,
+         |               ^~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_vma.c: In function 'i915_vma_resource_init_from_vma':
+>> drivers/gpu/drm/i915/i915_vma.c:394:48: error: passing argument 8 of 'i915_vma_resource_init' from incompatible pointer type [-Werror=incompatible-pointer-types]
+     394 |           i915_gem_object_is_lmem(obj), obj->mm.region,
+         |                                         ~~~~~~~^~~~~~~
+         |                                                |
+         |                                                struct intel_memory_region *
+   In file included from drivers/gpu/drm/i915/i915_request.h:43,
+                    from drivers/gpu/drm/i915/i915_active.h:13,
+                    from drivers/gpu/drm/i915/gem/i915_gem_object_types.h:16,
+                    from drivers/gpu/drm/i915/display/intel_frontbuffer.h:30,
+                    from drivers/gpu/drm/i915/i915_vma.c:28:
+   drivers/gpu/drm/i915/i915_vma_resource.h:176:36: note: expected 'struct intel_memory_region *' but argument is of type 'struct intel_memory_region *'
+     176 |        struct intel_memory_region *mr,
+         |        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+   cc1: all warnings being treated as errors
+
+
+vim +/i915_vma_resource_init +394 drivers/gpu/drm/i915/i915_vma.c
+
+   385	
+   386	I915_SELFTEST_EXPORT void
+   387	i915_vma_resource_init_from_vma(struct i915_vma_resource *vma_res,
+   388					struct i915_vma *vma)
+   389	{
+   390		struct drm_i915_gem_object *obj = vma->obj;
+   391	
+   392		i915_vma_resource_init(vma_res, vma->vm, vma->pages, &vma->page_sizes,
+   393				       obj->mm.rsgt, i915_gem_object_is_readonly(obj),
+ > 394				       i915_gem_object_is_lmem(obj), obj->mm.region,
+   395				       vma->ops, vma->private, vma->node.start,
+   396				       vma->node.size, vma->size);
+   397	}
+   398	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
