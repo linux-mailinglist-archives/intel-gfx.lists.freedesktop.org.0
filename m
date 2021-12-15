@@ -1,55 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7320B476448
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Dec 2021 22:09:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADD314764BF
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Dec 2021 22:43:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A64110FA71;
-	Wed, 15 Dec 2021 21:09:51 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D893A10FA71;
- Wed, 15 Dec 2021 21:09:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D530D10FAD4;
+	Wed, 15 Dec 2021 21:43:04 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97B8710FAD4
+ for <Intel-GFX@lists.freedesktop.org>; Wed, 15 Dec 2021 21:43:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639602589; x=1671138589;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=k0cpiTf2b3sof3q8ZCR+A4XSzZbGc/TK16t1qQbQikc=;
- b=A9jM4vKWTUyowrpMGaKBzBbg5t1PEerqmQFJESx56orsqdPOnFxDRDHm
- jCfo1OrCM5jmpxtaV9YHT9BpgzOQtzwOUftfxKOa5S4VGoLRwQ21WQpgF
- N5aPgFnPyXfnzTrMRb2wJqK7hPJ013VzfVfUQ9RFPJCB8ZD2knGxMceJ3
- piu85S/4ioNAI5UjXO9gGthdgPRPmjgZ4PSz5VWH7MWIvsRqv3fjf1H6U
- 2wq9Gm3YlCX7y6N8naQCuBN8QJB78r3ynoXTwxoAUin5jsPr5AmuJgL4n
- dh3dQ0UeU3P2ZgZVW8Ti94+7134L1jpjGxcZvlq6+q9kHGTC5lHtcw5XZ g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10199"; a="220018099"
-X-IronPort-AV: E=Sophos;i="5.88,209,1635231600"; d="scan'208";a="220018099"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2021 13:09:49 -0800
-X-IronPort-AV: E=Sophos;i="5.88,209,1635231600"; d="scan'208";a="610885273"
-Received: from iweiny-desk2.sc.intel.com (HELO localhost) ([10.3.52.147])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2021 13:09:49 -0800
-Date: Wed, 15 Dec 2021 13:09:49 -0800
-From: Ira Weiny <ira.weiny@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <20211215210949.GW3538886@iweiny-DESK2.sc.intel.com>
-References: <20211210232404.4098157-1-ira.weiny@intel.com>
- <20211210232404.4098157-7-ira.weiny@intel.com>
- <5bbd3c48-1388-9469-8b6f-deed64406d7d@amd.com>
- <20211214033725.GR3538886@iweiny-DESK2.sc.intel.com>
- <c3b173ea-6509-ebbe-b5f9-eeb29f1ce57e@amd.com>
+ t=1639604583; x=1671140583;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cOXjIxF7Slmz5NEstY9F4N+bEs7q4xo/otGtHbKWr8w=;
+ b=Ie2+G14fCzLiHL+CJ+JH3Hog4gbu7kggGOHdJcIyH8Uz1ZG3s19VQIuz
+ 0XmMc5WvqHP0mq6HH3eitS9qOoOeD1BkRu7Rcn0qyv2dB1kUHObrfupc0
+ R8WfcR//1BUIpIGhnms7MjwN70N+9wxUCB5WmkzFPVPNtDOl/pmvg2Spp
+ eo0s+Ja71AgKWBN9qnjEdc3+lx0ADmt8NFIDSrascV0dkh/qgK5nqtghr
+ fr7n5Ea9J3SFsyz11lckYt1IvUI2Yxq12vH3fuMKLaAljCP4HWNwtYbks
+ s+Y4275I/At5dL+BZrKYVMU1y7r6fZsorYOOZe/Al/V4ti3oDwQmjMWr7 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10199"; a="302715866"
+X-IronPort-AV: E=Sophos;i="5.88,209,1635231600"; d="scan'208";a="302715866"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2021 13:43:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,209,1635231600"; d="scan'208";a="605198173"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by FMSMGA003.fm.intel.com with ESMTP; 15 Dec 2021 13:43:02 -0800
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Wed, 15 Dec 2021 13:43:01 -0800
+Message-Id: <20211215214301.3220895-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c3b173ea-6509-ebbe-b5f9-eeb29f1ce57e@amd.com>
-User-Agent: Mutt/1.11.1 (2018-12-01)
-Subject: Re: [Intel-gfx] [PATCH 6/7] drm/amdgpu: Ensure kunmap is called on
- error
+Subject: [Intel-gfx] [CI] PR for new GuC v69.0.3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,79 +53,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 14, 2021 at 08:09:29AM +0100, Christian König wrote:
-> Am 14.12.21 um 04:37 schrieb Ira Weiny:
-> > On Mon, Dec 13, 2021 at 09:37:32PM +0100, Christian König wrote:
-> > > Am 11.12.21 um 00:24 schrieb ira.weiny@intel.com:
-> > > > From: Ira Weiny <ira.weiny@intel.com>
-> > > > 
-> > > > The default case leaves the buffer object mapped in error.
-> > > > 
-> > > > Add amdgpu_bo_kunmap() to that case to ensure the mapping is cleaned up.
-> > > Mhm, good catch. But why do you want to do this in the first place?
-> > I'm not sure I understand the question.
-> > 
-> > Any mapping of memory should be paired with an unmapping when no longer needed.
-> > And this is supported by the call to amdgpu_bo_kunmap() in the other
-> > non-default cases.
-> > 
-> > Do you believe the mapping is not needed?
-> 
-> No, the unmapping is not needed here. See the function amdgpu_bo_kmap(), it
-> either creates the mapping or return the cached pointer.
+The following changes since commit b0e898fbaf377c99a36aac6fdeb7250003648ca4:
 
-Ah I missed that.  Thanks.
+  linux-firmware: Update firmware file for Intel Bluetooth 9462 (2021-11-23 12:31:45 -0500)
 
-> 
-> A call to amdgpu_bo_kunmap() is only done in a few places where we know that
-> the created mapping most likely won't be needed any more. If that's not done
-> the mapping is automatically destroyed when the BO is moved or freed up.
-> 
-> I mean good bug fix, but you seem to see this as some kind of prerequisite
-> to some follow up work converting TTM to use kmap_local() which most likely
-> won't work in the first place.
+are available in the Git repository at:
 
-Sure.  I see now that it is more complicated than I thought but I never thought
-of this as a strict prerequisite.  Just something I found while trying to
-figure out how this works.
+  ssh://git.freedesktop.org/git/drm/drm-firmware guc_v69.0.3
 
-How much of a speed up is it to maintain the ttm_bo_map_kmap map type?  Could
-this all be done with vmap and just remove the kmap stuff?
+for you to fetch changes up to 548b304a35b77cd43c1242e0eae68f775bd0df2a:
 
-Ira
+  i915: Add GuC v69.0.3 for all platforms (2021-12-15 13:28:54 -0800)
 
-> 
-> Regards,
-> Christian.
-> 
-> > 
-> > Ira
-> > 
-> > > Christian.
-> > > 
-> > > > Signed-off-by: Ira Weiny <ira.weiny@intel.com>
-> > > > 
-> > > > ---
-> > > > NOTE: It seems like this function could use a fair bit of refactoring
-> > > > but this is the easiest way to fix the actual bug.
-> > > > ---
-> > > >    drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c | 1 +
-> > > >    1 file changed, 1 insertion(+)
-> > > > nice
-> > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
-> > > > index 6f8de11a17f1..b3ffd0f6b35f 100644
-> > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
-> > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
-> > > > @@ -889,6 +889,7 @@ static int amdgpu_uvd_cs_msg(struct amdgpu_uvd_cs_ctx *ctx,
-> > > >    		return 0;
-> > > >    	default:
-> > > > +		amdgpu_bo_kunmap(bo);
-> > > >    		DRM_ERROR("Illegal UVD message type (%d)!\n", msg_type);
-> > > >    	}
-> 
+----------------------------------------------------------------
+John Harrison (1):
+      i915: Add GuC v69.0.3 for all platforms
+
+ WHENCE                   |  30 ++++++++++++++++++++++++++++++
+ i915/adlp_guc_69.0.3.bin | Bin 0 -> 356416 bytes
+ i915/bxt_guc_69.0.3.bin  | Bin 0 -> 216768 bytes
+ i915/cml_guc_69.0.3.bin  | Bin 0 -> 217664 bytes
+ i915/dg1_guc_69.0.3.bin  | Bin 0 -> 323968 bytes
+ i915/ehl_guc_69.0.3.bin  | Bin 0 -> 343360 bytes
+ i915/glk_guc_69.0.3.bin  | Bin 0 -> 217216 bytes
+ i915/icl_guc_69.0.3.bin  | Bin 0 -> 343360 bytes
+ i915/kbl_guc_69.0.3.bin  | Bin 0 -> 217664 bytes
+ i915/skl_guc_69.0.3.bin  | Bin 0 -> 216704 bytes
+ i915/tgl_guc_69.0.3.bin  | Bin 0 -> 343296 bytes
+ 11 files changed, 30 insertions(+)
+ create mode 100644 i915/adlp_guc_69.0.3.bin
+ create mode 100644 i915/bxt_guc_69.0.3.bin
+ create mode 100644 i915/cml_guc_69.0.3.bin
+ create mode 100644 i915/dg1_guc_69.0.3.bin
+ create mode 100644 i915/ehl_guc_69.0.3.bin
+ create mode 100644 i915/glk_guc_69.0.3.bin
+ create mode 100644 i915/icl_guc_69.0.3.bin
+ create mode 100644 i915/kbl_guc_69.0.3.bin
+ create mode 100644 i915/skl_guc_69.0.3.bin
+ create mode 100644 i915/tgl_guc_69.0.3.bin
