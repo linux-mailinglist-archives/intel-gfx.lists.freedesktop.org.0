@@ -2,32 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EC034758F8
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Dec 2021 13:38:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BFA1475973
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Dec 2021 14:11:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC9DB10E4F7;
-	Wed, 15 Dec 2021 12:38:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF29210EE41;
+	Wed, 15 Dec 2021 13:11:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E8B2610E501;
- Wed, 15 Dec 2021 12:38:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E201DA01BB;
- Wed, 15 Dec 2021 12:38:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7271951634582787245=="
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4446610EE3E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Dec 2021 13:11:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639573874; x=1671109874;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=gsjILUcLX48C3mhzT3T35nS+heum5Z5/+LE4HNDHIkI=;
+ b=Ws+KIILuJyC5Wn2rCAOHGsS93UiVIKA6kHbUPX/E3T5Dha8ASgPUgHPA
+ sweRUnaxNaPkZHsUpFjXy9DD8s+Yu7kBUbdGSbBxtU9PstuEWEBaDyQYK
+ IMmlWcWJNOSFtvAVjpBQKMiF2oR/lBgJrdV6H+LWQL2XagTqesTE9uwEN
+ rUVpEdjA3AandzYijZx85tnroY6HAVHuRRruRdga4ZM4bppW07EzaWSAg
+ XGUC88jkUVBM8Q0B2uperYH4dj7d5ug5VorrE6tpZSN5pYglk28svlokH
+ lKoBlQkAcHqXdA9JyRT+FrN9G31hQPQRqKRUjPsG7X68iFEeOgYnLMD/r g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10198"; a="263372058"
+X-IronPort-AV: E=Sophos;i="5.88,207,1635231600"; d="scan'208";a="263372058"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2021 05:11:13 -0800
+X-IronPort-AV: E=Sophos;i="5.88,207,1635231600"; d="scan'208";a="682485661"
+Received: from adalyx-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.7.70])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2021 05:11:11 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+In-Reply-To: <20211214095600.47wfqodk4klpbyis@ldmartin-desk2>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210917234828.1156078-1-lucas.demarchi@intel.com>
+ <87sfuv5xpq.fsf@intel.com>
+ <20211214095600.47wfqodk4klpbyis@ldmartin-desk2>
+Date: Wed, 15 Dec 2021 15:11:03 +0200
+Message-ID: <87a6h23teg.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Wed, 15 Dec 2021 12:38:07 -0000
-Message-ID: <163957188789.18074.13225498057240281733@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211215110746.865-1-matthew.auld@intel.com>
-In-Reply-To: <20211215110746.865-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_remove_writeback_hook?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg1: Read OPROM via SPI controller
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,244 +58,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Tomas Winkler <tomas.winkler@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7271951634582787245==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 14 Dec 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Tue, Dec 14, 2021 at 11:42:41AM +0200, Jani Nikula wrote:
+>>On Fri, 17 Sep 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>> From: Clint Taylor <clinton.a.taylor@intel.com>
+>>>
+>>> Read OPROM SPI through MMIO and find VBT entry since we can't use
+>>> OpRegion and PCI mapping may not work on some systems due to most BIOSes
+>>> not leaving the Option ROM mapped.
+>>
+>>What happened here, still not merged? :o
+>
+> I don't understand neither. I got nacks, because of the other approach
+> to get the VBT from opregion. In that case reading via spi
+> controller directly would not be needed. However the other approach is
+> still not applied and meanwhile DG1 and DG2 have to fallback to our fake
+> vbt.
+>
+> So I actually think we should go ahead and just merge this.
 
-== Series Details ==
+Agreed.
 
-Series: series starting with [1/2] drm/i915: remove writeback hook
-URL   : https://patchwork.freedesktop.org/series/98061/
-State : success
+This has been posted a few times with an accompanying "drm/i915/oprom:
+Basic sanitization" patch [1]. I don't like the idea of posting a series
+with one patch adding a function and the next one completely rewriting
+the same function. However, cleanup of that combo has not happened, and
+IIUC as a standalone patch this moves things forward and does no harm.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11004 -> Patchwork_21853
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/index.html
-
-Participating hosts (41 -> 33)
-------------------------------
-
-  Missing    (8): bat-dg1-6 bat-dg1-5 fi-skl-guc fi-bsw-cyan bat-adlp-6 fi-pnv-d510 fi-bdw-samus bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21853 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@amdgpu/amd_cs_nop@sync-gfx0:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-bdw-5557u:       [PASS][3] -> [INCOMPLETE][4] ([i915#146])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11004/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html
-    - fi-skl-6600u:       [PASS][5] -> [INCOMPLETE][6] ([i915#4547])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11004/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#4269])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11004/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][9] ([i915#2722] / [i915#4312])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-skl-6600u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - {fi-tgl-dsi}:       [DMESG-WARN][10] ([i915#1982] / [i915#2411]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11004/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [INCOMPLETE][12] ([i915#2940]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11004/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][14] ([i915#4785]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11004/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+This seems to still apply fine. I've hit the retest button to get
+current test results, and I suggest we merge this, and let's iterate
+from there.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11004 -> Patchwork_21853
-
-  CI-20190529: 20190529
-  CI_DRM_11004: 636384ba8470ed9d16693aaff3e6ad13f52226be @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6307: be84fe4f151bc092e068cab5cd0cd19c34948b40 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21853: 8ea115b08d86430bd237f3726763faf87cb1dce9 @ git://anongit.freedesktop.org/gfx-ci/linux
+BR,
+Jani.
 
 
-== Linux commits ==
-
-8ea115b08d86 drm/i915: clean up shrinker_release_pages
-8ce0825fdd81 drm/i915: remove writeback hook
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/index.html
-
---===============7271951634582787245==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+[1] https://lore.kernel.org/all/20210412090526.30547-15-matthew.auld@intel.=
+com/
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+>
+> Lucas De Marchi
+>
+>>
+>>BR,
+>>Jani.
+>>
+>>
+>>
+>>>
+>>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>> Cc: Tomas Winkler <tomas.winkler@intel.com>
+>>> Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+>>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/i915/display/intel_bios.c | 80 +++++++++++++++++++++--
+>>>  drivers/gpu/drm/i915/i915_reg.h           |  8 +++
+>>>  2 files changed, 82 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/dr=
+m/i915/display/intel_bios.c
+>>> index 3c25926092de..7f179dbdec1b 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>>> @@ -2280,6 +2280,66 @@ bool intel_bios_is_valid_vbt(const void *buf, si=
+ze_t size)
+>>>  	return vbt;
+>>>  }
+>>>
+>>> +static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i=
+915)
+>>> +{
+>>> +	u32 count, data, found, store =3D 0;
+>>> +	u32 static_region, oprom_offset;
+>>> +	u32 oprom_size =3D 0x200000;
+>>> +	u16 vbt_size;
+>>> +	u32 *vbt;
+>>> +
+>>> +	static_region =3D intel_uncore_read(&i915->uncore, SPI_STATIC_REGIONS=
+);
+>>> +	static_region &=3D OPTIONROM_SPI_REGIONID_MASK;
+>>> +	intel_uncore_write(&i915->uncore, PRIMARY_SPI_REGIONID, static_region=
+);
+>>> +
+>>> +	oprom_offset =3D intel_uncore_read(&i915->uncore, OROM_OFFSET);
+>>> +	oprom_offset &=3D OROM_OFFSET_MASK;
+>>> +
+>>> +	for (count =3D 0; count < oprom_size; count +=3D 4) {
+>>> +		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, oprom_offset =
++ count);
+>>> +		data =3D intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
+>>> +
+>>> +		if (data =3D=3D *((const u32 *)"$VBT")) {
+>>> +			found =3D oprom_offset + count;
+>>> +			break;
+>>> +		}
+>>> +	}
+>>> +
+>>> +	if (count >=3D oprom_size)
+>>> +		goto err_not_found;
+>>> +
+>>> +	/* Get VBT size and allocate space for the VBT */
+>>> +	intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found +
+>>> +		   offsetof(struct vbt_header, vbt_size));
+>>> +	vbt_size =3D intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
+>>> +	vbt_size &=3D 0xffff;
+>>> +
+>>> +	vbt =3D kzalloc(vbt_size, GFP_KERNEL);
+>>> +	if (!vbt) {
+>>> +		drm_err(&i915->drm, "Unable to allocate %u bytes for VBT storage\n",
+>>> +			vbt_size);
+>>> +		goto err_not_found;
+>>> +	}
+>>> +
+>>> +	for (count =3D 0; count < vbt_size; count +=3D 4) {
+>>> +		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found + count=
+);
+>>> +		data =3D intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
+>>> +		*(vbt + store++) =3D data;
+>>> +	}
+>>> +
+>>> +	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
+>>> +		goto err_free_vbt;
+>>> +
+>>> +	drm_dbg_kms(&i915->drm, "Found valid VBT in SPI flash\n");
+>>> +
+>>> +	return (struct vbt_header *)vbt;
+>>> +
+>>> +err_free_vbt:
+>>> +	kfree(vbt);
+>>> +err_not_found:
+>>> +	return NULL;
+>>> +}
+>>> +
+>>>  static struct vbt_header *oprom_get_vbt(struct drm_i915_private *i915)
+>>>  {
+>>>  	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+>>> @@ -2329,6 +2389,8 @@ static struct vbt_header *oprom_get_vbt(struct dr=
+m_i915_private *i915)
+>>>
+>>>  	pci_unmap_rom(pdev, oprom);
+>>>
+>>> +	drm_dbg_kms(&i915->drm, "Found valid VBT in PCI ROM\n");
+>>> +
+>>>  	return vbt;
+>>>
+>>>  err_free_vbt:
+>>> @@ -2363,17 +2425,23 @@ void intel_bios_init(struct drm_i915_private *i=
+915)
+>>>
+>>>  	init_vbt_defaults(i915);
+>>>
+>>> -	/* If the OpRegion does not have VBT, look in PCI ROM. */
+>>> +	/*
+>>> +	 * If the OpRegion does not have VBT, look in SPI flash through MMIO =
+or
+>>> +	 * PCI mapping
+>>> +	 */
+>>> +	if (!vbt && IS_DGFX(i915)) {
+>>> +		oprom_vbt =3D spi_oprom_get_vbt(i915);
+>>> +		vbt =3D oprom_vbt;
+>>> +	}
+>>> +
+>>>  	if (!vbt) {
+>>>  		oprom_vbt =3D oprom_get_vbt(i915);
+>>> -		if (!oprom_vbt)
+>>> -			goto out;
+>>> -
+>>>  		vbt =3D oprom_vbt;
+>>> -
+>>> -		drm_dbg_kms(&i915->drm, "Found valid VBT in PCI ROM\n");
+>>>  	}
+>>>
+>>> +	if (!vbt)
+>>> +		goto out;
+>>> +
+>>>  	bdb =3D get_bdb_header(vbt);
+>>>  	i915->vbt.version =3D bdb->version;
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i91=
+5_reg.h
+>>> index c3a21f7c003d..fd3fee090412 100644
+>>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>>> @@ -12771,6 +12771,14 @@ enum skl_power_gate {
+>>>  #define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_TBT	REG_BIT(1)
+>>>  #define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_ALT	REG_BIT(0)
+>>>
+>>> +#define PRIMARY_SPI_TRIGGER			_MMIO(0x102040)
+>>> +#define PRIMARY_SPI_ADDRESS			_MMIO(0x102080)
+>>> +#define PRIMARY_SPI_REGIONID			_MMIO(0x102084)
+>>> +#define SPI_STATIC_REGIONS			_MMIO(0x102090)
+>>> +#define   OPTIONROM_SPI_REGIONID_MASK		REG_GENMASK(7, 0)
+>>> +#define OROM_OFFSET				_MMIO(0x1020c0)
+>>> +#define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
+>>> +
+>>>  /* This register controls the Display State Buffer (DSB) engines. */
+>>>  #define _DSBSL_INSTANCE_BASE		0x70B00
+>>>  #define DSBSL_INSTANCE(pipe, id)	(_DSBSL_INSTANCE_BASE + \
+>>
+>>--=20
+>>Jani Nikula, Intel Open Source Graphics Center
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: remove writeback hook</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98061/">https://patchwork.freedesktop.org/series/98061/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11004 -&gt; Patchwork_21853</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/index.html</p>
-<h2>Participating hosts (41 -&gt; 33)</h2>
-<p>Missing    (8): bat-dg1-6 bat-dg1-5 fi-skl-guc fi-bsw-cyan bat-adlp-6 fi-pnv-d510 fi-bdw-samus bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21853 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>
-<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11004/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</p>
-</li>
-<li>
-<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11004/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11004/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11004/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11004/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11004/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21853/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11004 -&gt; Patchwork_21853</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11004: 636384ba8470ed9d16693aaff3e6ad13f52226be @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6307: be84fe4f151bc092e068cab5cd0cd19c34948b40 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21853: 8ea115b08d86430bd237f3726763faf87cb1dce9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8ea115b08d86 drm/i915: clean up shrinker_release_pages<br />
-8ce0825fdd81 drm/i915: remove writeback hook</p>
-
-</body>
-</html>
-
---===============7271951634582787245==--
+--=20
+Jani Nikula, Intel Open Source Graphics Center
