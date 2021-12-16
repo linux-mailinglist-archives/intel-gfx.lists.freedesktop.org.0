@@ -1,38 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D17AD477131
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 12:57:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69BE0477138
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 12:59:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E625710F07C;
-	Thu, 16 Dec 2021 11:57:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F50F10F6CF;
+	Thu, 16 Dec 2021 11:59:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91BCE10F082
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 11:57:49 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10199"; a="325751111"
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; d="scan'208";a="325751111"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2021 03:57:48 -0800
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; d="scan'208";a="584824903"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC3510F6D7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 11:59:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639655961; x=1671191961;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=ObSZUxGYk4RwUw93pJCb/3e5XfZLQHDVz+WD16fycbs=;
+ b=KLUxHFOaoskxBScf3GkRmYVlVDR/ZqqxOj6WUmmlAYfRtXeLV0SUyxYf
+ Af0gj3R1bP2jISqlHiBgJxAPb43NsLfKU97KLi21AwWjHDs/02tjzUC5O
+ VuqiOjvkQ0x6cM1q8+2GvMt5HuTQ/PV6LOxYokVqVMUi/yG/M576uodLa
+ pl9bf/70CCfH4+Htsut85aJ0KlY1nKKCwSdr+qf4r3GPQABJd6ArSA+Oc
+ 61PSmay6wp15Pqs2QNiTwEmgeFWZ56DyRGhleLv33hrCNpG7QbSjdHAYf
+ +Tl4IadHUSOqVI5GmqphlEhC2nSa4qSrUl7rHkkMorpGHHZMFhHZ1DEN5 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10199"; a="219483614"
+X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; d="scan'208";a="219483614"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2021 03:59:20 -0800
+X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; d="scan'208";a="466019018"
 Received: from emnevill-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.20.65])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2021 03:57:47 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20211210051802.4063958-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2021 03:59:18 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211216062645.3477854-1-lucas.demarchi@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211210051802.4063958-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Thu, 16 Dec 2021 13:57:44 +0200
-Message-ID: <877dc44v9j.fsf@intel.com>
+References: <20211216062645.3477854-1-lucas.demarchi@intel.com>
+Date: Thu, 16 Dec 2021 13:59:15 +0200
+Message-ID: <874k784v70.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH V3] drm/i915/adl-n: Enable ADL-N platform
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/dg1: Read OPROM via SPI
+ controller
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,127 +58,165 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Tomas Winkler <tomas.winkler@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 10 Dec 2021, Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com> wrote:
-> Adding PCI device ids and enabling ADL-N platform.
-> ADL-N from i915 point of view is subplatform of ADL-P.
+On Wed, 15 Dec 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> From: Clint Taylor <clinton.a.taylor@intel.com>
 >
-> BSpec: 68397
+> Read OPROM SPI through MMIO and find VBT entry since we can't use
+> OpRegion and PCI mapping may not work on some systems due to most BIOSes
+> not leaving the Option ROM mapped.
 >
-> Changes since V2:
-> 	- Added version log history
-> Changes since V1:
-> 	- replace IS_ALDERLAKE_N with IS_ADLP_N - Jani Nikula
+> v2: Remove message with allocation failure
 >
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Tomas Winkler <tomas.winkler@intel.com>
+> Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-
 > ---
->  arch/x86/kernel/early-quirks.c           | 1 +
->  drivers/gpu/drm/i915/i915_drv.h          | 2 ++
->  drivers/gpu/drm/i915/i915_pci.c          | 1 +
->  drivers/gpu/drm/i915/intel_device_info.c | 7 +++++++
->  drivers/gpu/drm/i915/intel_device_info.h | 3 +++
->  include/drm/i915_pciids.h                | 6 ++++++
->  6 files changed, 20 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_bios.c | 77 +++++++++++++++++++++--
+>  drivers/gpu/drm/i915/i915_reg.h           |  8 +++
+>  2 files changed, 79 insertions(+), 6 deletions(-)
 >
-> diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
-> index fd2d3ab38ebb..1ca3a56fdc2d 100644
-> --- a/arch/x86/kernel/early-quirks.c
-> +++ b/arch/x86/kernel/early-quirks.c
-> @@ -554,6 +554,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
->  	INTEL_RKL_IDS(&gen11_early_ops),
->  	INTEL_ADLS_IDS(&gen11_early_ops),
->  	INTEL_ADLP_IDS(&gen11_early_ops),
-> +	INTEL_ADLN_IDS(&gen11_early_ops),
->  	INTEL_RPLS_IDS(&gen11_early_ops),
->  };
->  
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index a0f54a69b11d..b2ec85a3e40a 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1283,6 +1283,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G11)
->  #define IS_ADLS_RPLS(dev_priv) \
->  	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_S, INTEL_SUBPLATFORM_RPL_S)
-> +#define IS_ADLP_N(dev_priv) \
-> +	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_N)
->  #define IS_HSW_EARLY_SDV(dev_priv) (IS_HASWELL(dev_priv) && \
->  				    (INTEL_DEVID(dev_priv) & 0xFF00) == 0x0C00)
->  #define IS_BDW_ULT(dev_priv) \
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 708a23415e9c..6a19e9da53cc 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -1132,6 +1132,7 @@ static const struct pci_device_id pciidlist[] = {
->  	INTEL_RKL_IDS(&rkl_info),
->  	INTEL_ADLS_IDS(&adl_s_info),
->  	INTEL_ADLP_IDS(&adl_p_info),
-> +	INTEL_ADLN_IDS(&adl_p_info),
->  	INTEL_DG1_IDS(&dg1_info),
->  	INTEL_RPLS_IDS(&adl_s_info),
->  	{0, 0, 0}
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index a3446a2abcb2..54944d87cd3c 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -170,6 +170,10 @@ static const u16 subplatform_portf_ids[] = {
->  	INTEL_ICL_PORT_F_IDS(0),
->  };
->  
-> +static const u16 subplatform_n_ids[] = {
-> +	INTEL_ADLN_IDS(0),
-> +};
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index 9d989c9f5da4..76a8f001f4c4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -2335,6 +2335,63 @@ bool intel_bios_is_valid_vbt(const void *buf, size=
+_t size)
+>  	return vbt;
+>  }
+>=20=20
+> +static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i91=
+5)
+> +{
+> +	u32 count, data, found, store =3D 0;
+> +	u32 static_region, oprom_offset;
+> +	u32 oprom_size =3D 0x200000;
+> +	u16 vbt_size;
+> +	u32 *vbt;
 > +
->  static const u16 subplatform_rpls_ids[] = {
->  	INTEL_RPLS_IDS(0),
->  };
-> @@ -210,6 +214,9 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
->  	} else if (find_devid(devid, subplatform_portf_ids,
->  			      ARRAY_SIZE(subplatform_portf_ids))) {
->  		mask = BIT(INTEL_SUBPLATFORM_PORTF);
-> +	} else if (find_devid(devid, subplatform_n_ids,
-> +				ARRAY_SIZE(subplatform_n_ids))) {
-> +		mask = BIT(INTEL_SUBPLATFORM_N);
->  	} else if (find_devid(devid, subplatform_rpls_ids,
->  			      ARRAY_SIZE(subplatform_rpls_ids))) {
->  		mask = BIT(INTEL_SUBPLATFORM_RPL_S);
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> index 213ae2c07126..e341d90f28a2 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -113,6 +113,9 @@ enum intel_platform {
->  /* ADL-S */
->  #define INTEL_SUBPLATFORM_RPL_S	0
->  
-> +/* ADL-P */
-> +#define INTEL_SUBPLATFORM_N    0
+> +	static_region =3D intel_uncore_read(&i915->uncore, SPI_STATIC_REGIONS);
+> +	static_region &=3D OPTIONROM_SPI_REGIONID_MASK;
+> +	intel_uncore_write(&i915->uncore, PRIMARY_SPI_REGIONID, static_region);
 > +
->  enum intel_ppgtt_type {
->  	INTEL_PPGTT_NONE = I915_GEM_PPGTT_NONE,
->  	INTEL_PPGTT_ALIASING = I915_GEM_PPGTT_ALIASING,
-> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
-> index baf3d1d3d566..533890dc9da1 100644
-> --- a/include/drm/i915_pciids.h
-> +++ b/include/drm/i915_pciids.h
-> @@ -666,6 +666,12 @@
->  	INTEL_VGA_DEVICE(0x46C2, info), \
->  	INTEL_VGA_DEVICE(0x46C3, info)
->  
-> +/* ADL-N */
-> +#define INTEL_ADLN_IDS(info) \
-> +	INTEL_VGA_DEVICE(0x46D0, info), \
-> +	INTEL_VGA_DEVICE(0x46D1, info), \
-> +	INTEL_VGA_DEVICE(0x46D2, info)
+> +	oprom_offset =3D intel_uncore_read(&i915->uncore, OROM_OFFSET);
+> +	oprom_offset &=3D OROM_OFFSET_MASK;
 > +
->  /* RPL-S */
->  #define INTEL_RPLS_IDS(info) \
->  	INTEL_VGA_DEVICE(0xA780, info), \
+> +	for (count =3D 0; count < oprom_size; count +=3D 4) {
+> +		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, oprom_offset + =
+count);
+> +		data =3D intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
+> +
+> +		if (data =3D=3D *((const u32 *)"$VBT")) {
+> +			found =3D oprom_offset + count;
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (count >=3D oprom_size)
+> +		goto err_not_found;
+> +
+> +	/* Get VBT size and allocate space for the VBT */
+> +	intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found +
+> +		   offsetof(struct vbt_header, vbt_size));
+> +	vbt_size =3D intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
+> +	vbt_size &=3D 0xffff;
+> +
+> +	vbt =3D kzalloc(vbt_size, GFP_KERNEL);
+> +	if (!vbt)
+> +		goto err_not_found;
+> +
+> +	for (count =3D 0; count < vbt_size; count +=3D 4) {
+> +		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found + count);
+> +		data =3D intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
+> +		*(vbt + store++) =3D data;
+> +	}
+> +
+> +	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
+> +		goto err_free_vbt;
+> +
+> +	drm_dbg_kms(&i915->drm, "Found valid VBT in SPI flash\n");
+> +
+> +	return (struct vbt_header *)vbt;
+> +
+> +err_free_vbt:
+> +	kfree(vbt);
+> +err_not_found:
+> +	return NULL;
+> +}
+> +
+>  static struct vbt_header *oprom_get_vbt(struct drm_i915_private *i915)
+>  {
+>  	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> @@ -2384,6 +2441,8 @@ static struct vbt_header *oprom_get_vbt(struct drm_=
+i915_private *i915)
+>=20=20
+>  	pci_unmap_rom(pdev, oprom);
+>=20=20
+> +	drm_dbg_kms(&i915->drm, "Found valid VBT in PCI ROM\n");
+> +
+>  	return vbt;
+>=20=20
+>  err_free_vbt:
+> @@ -2418,17 +2477,23 @@ void intel_bios_init(struct drm_i915_private *i91=
+5)
+>=20=20
+>  	init_vbt_defaults(i915);
+>=20=20
+> -	/* If the OpRegion does not have VBT, look in PCI ROM. */
+> +	/*
+> +	 * If the OpRegion does not have VBT, look in SPI flash through MMIO or
+> +	 * PCI mapping
+> +	 */
+> +	if (!vbt && IS_DGFX(i915)) {
+> +		oprom_vbt =3D spi_oprom_get_vbt(i915);
+> +		vbt =3D oprom_vbt;
+> +	}
+> +
+>  	if (!vbt) {
+>  		oprom_vbt =3D oprom_get_vbt(i915);
+> -		if (!oprom_vbt)
+> -			goto out;
+> -
+>  		vbt =3D oprom_vbt;
+> -
+> -		drm_dbg_kms(&i915->drm, "Found valid VBT in PCI ROM\n");
+>  	}
+>=20=20
+> +	if (!vbt)
+> +		goto out;
+> +
+>  	bdb =3D get_bdb_header(vbt);
+>  	i915->vbt.version =3D bdb->version;
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 698a023e70f5..3240b3eb1ddd 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -12974,6 +12974,14 @@ enum skl_power_gate {
+>  #define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_TBT	REG_BIT(1)
+>  #define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_ALT	REG_BIT(0)
+>=20=20
+> +#define PRIMARY_SPI_TRIGGER			_MMIO(0x102040)
+> +#define PRIMARY_SPI_ADDRESS			_MMIO(0x102080)
+> +#define PRIMARY_SPI_REGIONID			_MMIO(0x102084)
+> +#define SPI_STATIC_REGIONS			_MMIO(0x102090)
+> +#define   OPTIONROM_SPI_REGIONID_MASK		REG_GENMASK(7, 0)
+> +#define OROM_OFFSET				_MMIO(0x1020c0)
+> +#define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
+> +
+>  /* This register controls the Display State Buffer (DSB) engines. */
+>  #define _DSBSL_INSTANCE_BASE		0x70B00
+>  #define DSBSL_INSTANCE(pipe, id)	(_DSBSL_INSTANCE_BASE + \
 
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
