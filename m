@@ -1,50 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9DA14773ED
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 15:06:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49EB5477480
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 15:28:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B852112135;
-	Thu, 16 Dec 2021 14:06:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CE6D10FD1C;
+	Thu, 16 Dec 2021 14:28:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EE5B112138
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 14:05:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639663558; x=1671199558;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mPzq1PvyXnIKjZkx7iVRGmDGGwPUfNNtUOSXW3vJIS8=;
- b=V4JJ2AjCKgSZeXLTv604wkR5yp2Yt6Azb1mcX1V/LUSt8KVjC5aS8Fd/
- z7O8rPLtx+kSteQQm11EntEtmyL9suNNmAS+RyJTJ7jwMw7Jx5Jus1zgz
- anFUolm/n4h7dRmRHUd/mYHn4rFlOLhfd2yDI23LyjQs4WjuH+2dZS8Ct
- DK8sC63Fe5PaopzghrfmQXGJz/z/l4Unv5O/R2PfPt1Nt/XgL7SkS4DXs
- ii86LmTShTeaHa4OT//285v9uekrnwFKmwdbQIFBM+yak8VUfDFoMW4nJ
- MszcZs7sShRqk0NuZn5pQTVZoUj9bF3JWnr19TurpJA9+35+1sqaatzUB Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10199"; a="237037250"
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; d="scan'208";a="237037250"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2021 06:05:58 -0800
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; d="scan'208";a="466078575"
-Received: from emnevill-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.20.65])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2021 06:05:55 -0800
-From: Jani Nikula <jani.nikula@intel.com>
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0CD510FD18;
+ Thu, 16 Dec 2021 14:28:05 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Dec 2021 16:05:48 +0200
-Message-Id: <20211216140548.1255782-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
+Date: Thu, 16 Dec 2021 15:27:32 +0100
+Message-Id: <20211216142749.1966107-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/mst: update slot information for
- 128b/132b
+Subject: [Intel-gfx] [PATCH v3 00/17] drm/i915: Remove short term pins from
+ execbuf by requiring lock to unbind.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,103 +33,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-128b/132b supports using 64 slots starting from 0, while 8b/10b reserves
-slot 0 for metadata.
+Previously, short term pinning in execbuf was required because i915_vma was
+effectively independent from objects, and has its own refcount, locking,
+lifetime rules and pinning.
 
-Commit d6c6a76f80a1 ("drm: Update MST First Link Slot Information Based
-on Encoding Format") added support for updating the topology state
-accordingly, and commit 41724ea273cd ("drm/amd/display: Add DP 2.0 MST
-DM Support") started using it in the amd driver.
+This series removes the separate locking, by requiring vma->obj->resv to be
+held when pinning and unbinding. This will also be required for VM_BIND work.
 
-This feels more than a little cumbersome, especially updating the
-information in atomic check. For i915, add the update to MST connector
-.atomic_check hook rather than iterating over all MST managers and
-connectors in global mode config .atomic_check. Fingers crossed.
+With pinning required for pinning and unbinding, the lock is enough to prevent
+unbinding when trying to pin with the lock held, for example in execbuf.
 
-Cc: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+This makes binding/unbinding similar to ttm_bo_validate()'s use, which just
+cares that an object is in a certain place, without pinning it in place.
+
+Having the VMA part of gem bo removes a lot of the vma refcounting, and makes
+i915_vma more a part of the bo, instead of its own floating object that just
+happens to be part of a bo. This is also required to make it more compatible
+with TTM, and migration in general.
+
+For future work, it makes things a lot simpler and clear. We want to end up
+with i915_vma just being a specific mapping of the BO, just like is the
+case in other drivers. i915_vma->active removal is the next step there,
+and makes it when object is destroyed, the bindings are destroyed (after idle),
+instead of object being destroyed when bindings are idle. 
+
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 18 +++++++++++++++---
- 1 file changed, 15 insertions(+), 3 deletions(-)
+This is version 3, I changed the ordering of the patches slightly to be more
+natural, and divided up some commits in different ways.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index b8bc7d397c81..d13c7952a8d6 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -302,6 +302,8 @@ intel_dp_mst_atomic_check(struct drm_connector *connector,
- 	if (!old_conn_state->crtc)
- 		return 0;
- 
-+	mgr = &enc_to_mst(to_intel_encoder(old_conn_state->best_encoder))->primary->dp.mst_mgr;
-+
- 	/* We only want to free VCPI if this state disables the CRTC on this
- 	 * connector
- 	 */
-@@ -309,6 +311,15 @@ intel_dp_mst_atomic_check(struct drm_connector *connector,
- 		struct intel_crtc *crtc = to_intel_crtc(new_crtc);
- 		struct intel_crtc_state *crtc_state =
- 			intel_atomic_get_new_crtc_state(state, crtc);
-+		struct drm_dp_mst_topology_state *topology_state;
-+		u8 link_coding_cap = intel_dp_is_uhbr(crtc_state) ?
-+			DP_CAP_ANSI_128B132B : DP_CAP_ANSI_8B10B;
-+
-+		topology_state = drm_atomic_get_mst_topology_state(&state->base, mgr);
-+		if (IS_ERR(topology_state))
-+			return PTR_ERR(topology_state);
-+
-+		drm_dp_mst_update_slots(topology_state, link_coding_cap);
- 
- 		if (!crtc_state ||
- 		    !drm_atomic_crtc_needs_modeset(&crtc_state->uapi) ||
-@@ -316,7 +327,6 @@ intel_dp_mst_atomic_check(struct drm_connector *connector,
- 			return 0;
- 	}
- 
--	mgr = &enc_to_mst(to_intel_encoder(old_conn_state->best_encoder))->primary->dp.mst_mgr;
- 	ret = drm_dp_atomic_release_vcpi_slots(&state->base, mgr,
- 					       intel_connector->port);
- 
-@@ -357,6 +367,7 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
- 	struct intel_connector *connector =
- 		to_intel_connector(old_conn_state->connector);
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	int start_slot = intel_dp_is_uhbr(old_crtc_state) ? 0 : 1;
- 	int ret;
- 
- 	drm_dbg_kms(&i915->drm, "active links %d\n",
-@@ -366,7 +377,7 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
- 
- 	drm_dp_mst_reset_vcpi_slots(&intel_dp->mst_mgr, connector->port);
- 
--	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr, 1);
-+	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr, start_slot);
- 	if (ret) {
- 		drm_dbg_kms(&i915->drm, "failed to update payload %d\n", ret);
- 	}
-@@ -475,6 +486,7 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
-+	int start_slot = intel_dp_is_uhbr(pipe_config) ? 0 : 1;
- 	int ret;
- 	bool first_mst_stream;
- 
-@@ -509,7 +521,7 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
- 
- 	intel_dp->active_mst_links++;
- 
--	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr, 1);
-+	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr, start_slot);
- 
- 	/*
- 	 * Before Gen 12 this is not done as part of
+In particular, I added the ww ctx to trylock first, then converted
+i915_gem_evict_vm(), the shrinker, and the other eviction functions all
+in separate commits. Functionally the same, but easier to review and bisect.
+
+In theory, it was already reviewed, but leaving those r-b's out as they're
+technically different patches now.
+
+The first patches prepare for vma->obj->resv requirement, by ensuring that we
+unbind as needed, and take the ww lock in some places where they're required,
+including when freeing the object.
+
+After that we convert the shrinker, eviction functions, and then we can start
+requiring the object lock for i915_vma_unbind.
+
+Now that the conversion and requirement is added, we can remove ther special
+case of assert_object_held_shared, which was added because we didn't always
+require the object lock.
+
+As last step we can remove the short term pins from execbuf. We still pin when
+evicting the entire VM, but if it turns out to be an issue, it can be removed,
+and replaced with unpinning the entire VM.
+
+Maarten Lankhorst (17):
+  drm/i915: Remove unused bits of i915_vma/active api
+  drm/i915: Change shrink ordering to use locking around unbinding.
+  drm/i915: Remove pages_mutex and intel_gtt->vma_ops.set/clear_pages
+    members, v3.
+  drm/i915: Take object lock in i915_ggtt_pin if ww is not set
+  drm/i915: Force ww lock for i915_gem_object_ggtt_pin_ww, v2.
+  drm/i915: Ensure gem_contexts selftests work with unbind changes, v2.
+  drm/i915: Ensure i915_vma tests do not get -ENOSPC with the locking
+    changes.
+  drm/i915: Call i915_gem_evict_vm in vm_fault_gtt to prevent new ENOSPC
+    errors
+  drm/i915: Trylock the object when shrinking
+  drm/i915: Require object lock when freeing pages during destruction
+  drm/i915: Add ww ctx to i915_gem_object_trylock
+  drm/i915: Add locking to i915_gem_evict_vm()
+  drm/i915: Add object locking to i915_gem_evict_for_node and
+    i915_gem_evict_something
+  drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for
+    i915_vma_unbind, v2.
+  drm/i915: Remove assert_object_held_shared
+  drm/i915: Remove support for unlocked i915_vma unbind
+  drm/i915: Remove short-term pins from execbuf, v5.
+
+ drivers/gpu/drm/i915/display/intel_dpt.c      |   2 -
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |   2 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 250 ++++----
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  18 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |   9 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  22 +-
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  12 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  44 +-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |   2 +-
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |   2 +-
+ .../i915/gem/selftests/i915_gem_client_blt.c  |   2 +-
+ .../drm/i915/gem/selftests/i915_gem_context.c |  59 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |   6 +
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |  15 -
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c     |   2 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 454 ++------------
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |   1 -
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |  13 -
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |   7 -
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  12 -
+ drivers/gpu/drm/i915/gt/mock_engine.c         |   2 +-
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |   2 +-
+ drivers/gpu/drm/i915/gt/selftest_migrate.c    |   2 +-
+ drivers/gpu/drm/i915/gvt/aperture_gm.c        |   2 +-
+ drivers/gpu/drm/i915/i915_active.c            |  28 +-
+ drivers/gpu/drm/i915/i915_active.h            |  17 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  12 +-
+ drivers/gpu/drm/i915/i915_gem.c               |  32 +-
+ drivers/gpu/drm/i915/i915_gem_evict.c         |  64 +-
+ drivers/gpu/drm/i915/i915_gem_gtt.c           |   8 +-
+ drivers/gpu/drm/i915/i915_gem_gtt.h           |   4 +
+ drivers/gpu/drm/i915/i915_vgpu.c              |   2 +-
+ drivers/gpu/drm/i915/i915_vma.c               | 579 +++++++++++++++---
+ drivers/gpu/drm/i915/i915_vma.h               |   6 +-
+ drivers/gpu/drm/i915/i915_vma_types.h         |   1 -
+ .../gpu/drm/i915/selftests/i915_gem_evict.c   |  27 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  50 +-
+ drivers/gpu/drm/i915/selftests/i915_vma.c     |  19 +-
+ drivers/gpu/drm/i915/selftests/mock_gtt.c     |   4 -
+ 40 files changed, 951 insertions(+), 846 deletions(-)
+
 -- 
-2.30.2
+2.34.1
 
