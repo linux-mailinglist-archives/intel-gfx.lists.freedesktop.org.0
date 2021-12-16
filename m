@@ -1,52 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E33B476B26
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 08:46:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3221476BD8
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 09:26:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF1CF10E96E;
-	Thu, 16 Dec 2021 07:46:20 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 631E110E962;
- Thu, 16 Dec 2021 07:46:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639640779; x=1671176779;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=VDPA9u5rK1hPD6YuqcbhfLzFKRN1OhpS1Dua8+J9dzg=;
- b=XFv2aJp0qJjDNmOATCw0N89hDciLE2CBRhJLpvht3rzUax8rvDxrkcP8
- fFp4qrFznxkiTvdUR/uCbzx58x8ZlUOHVOxHQ3cgadzdWakLmkek9XBpT
- iLXAI6xcMmwTe0H8zeksjDP9B6MXuRydwXl3/M1FxAhJx2w7J4k7vvyjG
- poN1UqXCNHcsVs8Dxl6uYADW+HBK/gAd1ePniHjt6i5Datq5vmsynNfsH
- 3CiBW4kDTiLGOAvN1LJNBpHxO7LKCGPjQsJMR0EZl0sIZHSfxEOlOZZ6U
- PQqY22T6SCdcS5poSPp/i7m1gJ4zw7MCvoEvbTvGVzLf6Sewyn/zYOYDa A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10199"; a="239648990"
-X-IronPort-AV: E=Sophos;i="5.88,210,1635231600"; d="scan'208";a="239648990"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2021 23:46:18 -0800
-X-IronPort-AV: E=Sophos;i="5.88,210,1635231600"; d="scan'208";a="519138751"
-Received: from dmikita-mobl.ger.corp.intel.com (HELO localhost)
- ([10.213.10.23])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2021 23:46:16 -0800
-Date: Thu, 16 Dec 2021 08:46:13 +0100
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: John.C.Harrison@intel.com
-Message-ID: <YbruxWHUL7+Mrkze@zkempczy-mobl2>
-References: <20211213232914.2523139-1-John.C.Harrison@Intel.com>
- <20211213232914.2523139-9-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5AC210E3D8;
+	Thu, 16 Dec 2021 08:26:12 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
+ [64.147.123.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13F8310E1FF;
+ Thu, 16 Dec 2021 08:26:10 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.west.internal (Postfix) with ESMTP id 45B902B000E0;
+ Thu, 16 Dec 2021 03:26:07 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute3.internal (MEProxy); Thu, 16 Dec 2021 03:26:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:mime-version:content-type; s=
+ fm1; bh=khO/rWt3/nnU2RGdMyLCXbB8pMaklieWSXpoJIa4Wwg=; b=AU2XHg6I
+ VFVmJtTJmfGEgIwJ+n1MHeHDW25u2alFm3jwybA80iRjSf0BTY7m+nVaqtWQ7AlS
+ EPLZ6ieoV4rLH4EFr/8KuD0tvCCf4h8EQu7rNDAn+H3yLQKCMXbFm5Bcwo+lETyj
+ 2kaIXXxGskOQHGOdXdUqzfxlHvYn+yDwqGWUJ6hn0WooqXm4ivfGnWWv4W3Znx+4
+ s2TIcL56JVSKvoNTkdFe55e4cUoUbF1zjGep+a1yTIsDYcgYtqfGTqW+58iOdu8B
+ U9752kRRLV/N5uRxjI8k7iW5hiZrqo7BFY2H8uljpFaeV7xX/j4wvQeQERl0bo9R
+ ZiaExPk6s1ki0g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:message-id
+ :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+ :x-me-sender:x-sasl-enc; s=fm1; bh=khO/rWt3/nnU2RGdMyLCXbB8pMakl
+ ieWSXpoJIa4Wwg=; b=jmn4ACFi0Wmmh8UBOEV3zoBTMYmypvLWb4Zur6ZcS42xW
+ 6FeB6BWdgihdAICtlQRR6wsjj/MYZ+1fNgnX9cSray7BjCiBlridZwNaq+aEt43L
+ AeAYdH3sALWO9NwkroIqvjXJUYnJDzMxlY7S2ln/jOwu3832V0dzt0Jzx7+DGcZS
+ w40KXAC/tnw7JUYx84SL5iVDbOVYZHixnhdEVK5pDC+F2ivfom7VIV8FXUJsPu8c
+ Yz6i9qeiVsvCz0wV5WDCLjZ9ssMV61jfWMpqJn7xt8iy75NDF6pElm3+0NfRCjhT
+ NOqnCjCgIiqyEYf7gKIwMnULGxt2f53RVo7iIzcKA==
+X-ME-Sender: <xms:Hvi6YVR7EUk8K1V0EW6mpDXc028FQnibn-6kAZDhjE4QjF3QBdYeNQ>
+ <xme:Hvi6YewWpaLsL70lbLWPrIl68gwixTiKbpY8rMOgQ_PGytqzDcDKE4_AWOiPht_Qa
+ LSmClGBw8DMbVmCuxk>
+X-ME-Received: <xmr:Hvi6Ya0i01Od5mn-Wz_XQ_AFiH_vPHjIV6_nKVZItxeCvzScvjfBfLZQgBQxoytwpAeuUIM9WqN6nF9WhdonOPxldEqmgadGorLEmYg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrleefgdduudejucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
+ tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
+ hrnhepgeeuvddtheeggeehhfeigeetffeufeelveeggfekveegieevudeljeeugedviefg
+ necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuih
+ iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
+ vggthh
+X-ME-Proxy: <xmx:Hvi6YdCdbKQz2BmEQS8U5iItyJOeh2MWKPEnh0ufaJapjT-Eu44p1g>
+ <xmx:Hvi6YejVC7DuVXsQo2gIkvSZWj3r69h3015eeg0AvITzNO0OMto7UA>
+ <xmx:Hvi6YRog_3nf4LhNBkcn51srRzl2TFoBLmJNc620jUmK0ra7tqHMIg>
+ <xmx:Hvi6YZPSJDgI-RQ7tsBnHhtG8S9I9sROVnJE1SfQc2HTZifMuSozCTWSTQk>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 16 Dec 2021 03:26:05 -0500 (EST)
+Date: Thu, 16 Dec 2021 09:26:03 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20211216082603.pm6yzlckmxvwnqyv@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="7uzv5e5skyluybsp"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211213232914.2523139-9-John.C.Harrison@Intel.com>
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 08/11] lib/store: Refactor
- common store code into helper function
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,423 +77,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: IGT-Dev@lists.freedesktop.org, Intel-GFX@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 13, 2021 at 03:29:11PM -0800, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> A lot of tests use almost identical code for creating a batch buffer
-> which does a single write to memory. This patch collects two such
-> instances into a common helper function. Unfortunately, the other
-> instances are all subtly different enough to make it not so trivial to
-> try to use the helper. It could be done but it is unclear if it is
-> worth the effort at this point. This patch proves the concept, if
-> people like it enough then it can be extended.
-> 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> ---
->  lib/igt_store.c             | 114 ++++++++++++++++++++++++++++++++++++
->  lib/igt_store.h             |  30 ++++++++++
->  lib/meson.build             |   1 +
->  tests/i915/gem_exec_fence.c |  77 ++----------------------
->  tests/i915/i915_hangman.c   |  61 +------------------
->  5 files changed, 152 insertions(+), 131 deletions(-)
->  create mode 100644 lib/igt_store.c
->  create mode 100644 lib/igt_store.h
-> 
-> diff --git a/lib/igt_store.c b/lib/igt_store.c
-> new file mode 100644
-> index 000000000..6d9869b58
-> --- /dev/null
-> +++ b/lib/igt_store.c
-> @@ -0,0 +1,114 @@
-> +/*
-> + * Copyright © 2020 Intel Corporation
-> + *
-> + * Permission is hereby granted, free of charge, to any person obtaining a
-> + * copy of this software and associated documentation files (the "Software"),
-> + * to deal in the Software without restriction, including without limitation
-> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-> + * and/or sell copies of the Software, and to permit persons to whom the
-> + * Software is furnished to do so, subject to the following conditions:
-> + *
-> + * The above copyright notice and this permission notice (including the next
-> + * paragraph) shall be included in all copies or substantial portions of the
-> + * Software.
-> + *
-> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-> + * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-> + * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-> + * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-> + * IN THE SOFTWARE.
-> + *
-> + */
 
-Use SPDX. I like idea of extracting this.
+--7uzv5e5skyluybsp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> +
-> +#include "i915/gem_create.h"
-> +#include "igt_core.h"
-> +#include "drmtest.h"
-> +#include "igt_store.h"
-> +#include "intel_chipset.h"
-> +#include "intel_reg.h"
-> +#include "ioctl_wrappers.h"
-> +#include "lib/intel_allocator.h"
-> +
-> +/**
-> + * SECTION:igt_store_word
-> + * @short_description: Library for writing a value to memory
-> + * @title: StoreWord
-> + * @include: igt.h
-> + *
-> + * A lot of igt testcases need some mechanism for writing a value to memory
-> + * as a test that a batch buffer has executed.
-> + *
-> + * NB: Requires master for STORE_DWORD on gen4/5.
-> + */
-> +void igt_store_word(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
-> +		    const struct intel_execution_engine2 *e,
-> +		    int fence, uint32_t target_handle,
-> +		    uint64_t target_offset, uint32_t target_value)
-> +{
-> +	const int SCRATCH = 0;
-> +	const int BATCH = 1;
-> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
-> +	struct drm_i915_gem_exec_object2 obj[2];
-> +	struct drm_i915_gem_relocation_entry reloc;
-> +	struct drm_i915_gem_execbuffer2 execbuf;
-> +	uint32_t batch[16], delta;
-> +	uint64_t bb_offset;
-> +	int i;
-> +
-> +	memset(&execbuf, 0, sizeof(execbuf));
-> +	execbuf.buffers_ptr = to_user_pointer(obj);
-> +	execbuf.buffer_count = ARRAY_SIZE(obj);
-> +	execbuf.flags = e->flags;
-> +	execbuf.rsvd1 = ctx->id;
-> +	if (fence != -1) {
-> +		execbuf.flags |= I915_EXEC_FENCE_IN;
-> +		execbuf.rsvd2 = fence;
-> +	}
-> +	if (gen < 6)
-> +		execbuf.flags |= I915_EXEC_SECURE;
-> +
-> +	memset(obj, 0, sizeof(obj));
-> +	obj[SCRATCH].handle = target_handle;
-> +
-> +	obj[BATCH].handle = gem_create(fd, 4096);
-> +	obj[BATCH].relocs_ptr = to_user_pointer(&reloc);
-> +	obj[BATCH].relocation_count = !ahnd ? 1 : 0;
-> +	bb_offset = get_offset(ahnd, obj[BATCH].handle, 4096, 0);
-> +	memset(&reloc, 0, sizeof(reloc));
-> +
-> +	i = 0;
-> +	delta = sizeof(uint32_t) * target_value;	/* why value not offset??? */
+Hi Dave, Daniel,
 
-I guess I know why there's problem here. target_offset is address in vm
-passed by the caller. This is regarding to some limitations of allocator
-infrastructure - for "reloc" pseudo-allocator you would get new offset 
-(internally it returns offset and then add size for new "allocation").
-With this we don't need to wait for rebind offset for new execbuf. 
-With "simple" allocator put will release offset so new allocation will
-reuse same offset. Ashutosh proposed how to join both functionalities
-(stepping as with reloc, stateful like in simple) but I got no time to
-code this.
+Here's this week drm-misc-fixes PR.
 
-Regarding issue here, target_offset passed from the caller is to avoid 
-rebind if get_offset() would be called for "reloc" allocator.
-So there's not real value offset within bo. I would add separate 
-value_offset (shift) to allow caller to put place where it wants to 
-write the value.
+Note that dim pull-request was stalling when generating the email, so I
+had to send this with git request-pull, hence the odd tag name and the
+format slightly different.
 
+Maxime
 
-> +	if (!ahnd) {
-> +		reloc.target_handle = obj[SCRATCH].handle;
-> +		reloc.presumed_offset = -1;
-> +		reloc.offset = sizeof(uint32_t) * (i + 1);
-> +		reloc.delta = delta;
-> +		reloc.read_domains = I915_GEM_DOMAIN_INSTRUCTION;
-> +		reloc.write_domain = I915_GEM_DOMAIN_INSTRUCTION;
-> +	} else {
-> +		obj[SCRATCH].offset = target_offset;
-> +		obj[SCRATCH].flags |= EXEC_OBJECT_PINNED | EXEC_OBJECT_WRITE;
-> +		obj[BATCH].offset = bb_offset;
-> +		obj[BATCH].flags |= EXEC_OBJECT_PINNED;
-> +	}
-> +	batch[i] = MI_STORE_DWORD_IMM | (gen < 6 ? 1 << 22 : 0);
-> +	if (gen >= 8) {
-> +		batch[++i] = target_offset + delta;
-> +		batch[++i] = target_offset >> 32;
+The following changes since commit b19926d4f3a660a8b76e5d989ffd1168e619a5c4:
 
-Probably I've added this in previous code, for being safe I would
-add (target_offset + delta) >> 32 for avoid risk passing invalid higher
-offset part on 32b boundary.
+  drm/syncobj: Deal with signalled fences in drm_syncobj_find_fence. (2021-12-08 17:19:48 +0100)
 
-> +	} else if (gen >= 4) {
-> +		batch[++i] = 0;
-> +		batch[++i] = delta;
-> +		reloc.offset += sizeof(uint32_t);
-> +	} else {
-> +		batch[i]--;
-> +		batch[++i] = delta;
-> +	}
-> +	batch[++i] = target_value;
-> +	batch[++i] = MI_BATCH_BUFFER_END;
-> +	gem_write(fd, obj[BATCH].handle, 0, batch, sizeof(batch));
-> +	gem_execbuf(fd, &execbuf);
-> +	gem_close(fd, obj[BATCH].handle);
-> +	put_offset(ahnd, obj[BATCH].handle);
-> +}
-> diff --git a/lib/igt_store.h b/lib/igt_store.h
-> new file mode 100644
-> index 000000000..4d5979e07
-> --- /dev/null
-> +++ b/lib/igt_store.h
-> @@ -0,0 +1,30 @@
-> +/*
-> + * Copyright © 2020 Intel Corporation
-> + *
-> + * Permission is hereby granted, free of charge, to any person obtaining a
-> + * copy of this software and associated documentation files (the "Software"),
-> + * to deal in the Software without restriction, including without limitation
-> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-> + * and/or sell copies of the Software, and to permit persons to whom the
-> + * Software is furnished to do so, subject to the following conditions:
-> + *
-> + * The above copyright notice and this permission notice (including the next
-> + * paragraph) shall be included in all copies or substantial portions of the
-> + * Software.
-> + *
-> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-> + * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-> + * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-> + * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-> + * IN THE SOFTWARE.
-> + *
-> + */
+are available in the Git repository at:
 
-Use SPDX and 2021.
+  ssh://git.freedesktop.org/git/drm/drm-misc tags/drm-misc-fixes-2021-12-16-1
 
---
-Zbigniew
+for you to fetch changes up to fea3fdf975dd9f3e5248afaab8fe023db313f005:
 
-> +
-> +#include "igt_gt.h"
-> +
-> +void igt_store_word(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
-> +		    const struct intel_execution_engine2 *e,
-> +		    int fence, uint32_t target_handle,
-> +		    uint64_t target_offset, uint32_t target_value);
-> diff --git a/lib/meson.build b/lib/meson.build
-> index b9568a71b..3e43316d1 100644
-> --- a/lib/meson.build
-> +++ b/lib/meson.build
-> @@ -72,6 +72,7 @@ lib_sources = [
->  	'igt_map.c',
->  	'igt_pm.c',
->  	'igt_dummyload.c',
-> +	'igt_store.c',
->  	'uwildmat/uwildmat.c',
->  	'igt_kmod.c',
->  	'igt_panfrost.c',
-> diff --git a/tests/i915/gem_exec_fence.c b/tests/i915/gem_exec_fence.c
-> index 9a6336ce9..c4091a454 100644
-> --- a/tests/i915/gem_exec_fence.c
-> +++ b/tests/i915/gem_exec_fence.c
-> @@ -28,6 +28,7 @@
->  #include "i915/gem.h"
->  #include "i915/gem_create.h"
->  #include "igt.h"
-> +#include "igt_store.h"
->  #include "igt_syncobj.h"
->  #include "igt_sysfs.h"
->  #include "igt_vgem.h"
-> @@ -57,74 +58,6 @@ struct sync_merge_data {
->  #define   MI_SEMAPHORE_SAD_EQ_SDD       (4 << 12)
->  #define   MI_SEMAPHORE_SAD_NEQ_SDD      (5 << 12)
->  
-> -static void store(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
-> -		  const struct intel_execution_engine2 *e,
-> -		  int fence, uint32_t target, uint64_t target_offset,
-> -		  unsigned offset_value)
-> -{
-> -	const int SCRATCH = 0;
-> -	const int BATCH = 1;
-> -	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
-> -	struct drm_i915_gem_exec_object2 obj[2];
-> -	struct drm_i915_gem_relocation_entry reloc;
-> -	struct drm_i915_gem_execbuffer2 execbuf;
-> -	uint32_t batch[16], delta;
-> -	uint64_t bb_offset;
-> -	int i;
-> -
-> -	memset(&execbuf, 0, sizeof(execbuf));
-> -	execbuf.buffers_ptr = to_user_pointer(obj);
-> -	execbuf.buffer_count = 2;
-> -	execbuf.flags = e->flags | I915_EXEC_FENCE_IN;
-> -	execbuf.rsvd1 = ctx->id;
-> -	execbuf.rsvd2 = fence;
-> -	if (gen < 6)
-> -		execbuf.flags |= I915_EXEC_SECURE;
-> -
-> -	memset(obj, 0, sizeof(obj));
-> -	obj[SCRATCH].handle = target;
-> -
-> -	obj[BATCH].handle = gem_create(fd, 4096);
-> -	obj[BATCH].relocs_ptr = to_user_pointer(&reloc);
-> -	obj[BATCH].relocation_count = !ahnd ? 1 : 0;
-> -	bb_offset = get_offset(ahnd, obj[BATCH].handle, 4096, 0);
-> -	memset(&reloc, 0, sizeof(reloc));
-> -
-> -	i = 0;
-> -	delta = sizeof(uint32_t) * offset_value;
-> -	if (!ahnd) {
-> -		reloc.target_handle = obj[SCRATCH].handle;
-> -		reloc.presumed_offset = -1;
-> -		reloc.offset = sizeof(uint32_t) * (i + 1);
-> -		reloc.delta = delta;
-> -		reloc.read_domains = I915_GEM_DOMAIN_INSTRUCTION;
-> -		reloc.write_domain = I915_GEM_DOMAIN_INSTRUCTION;
-> -	} else {
-> -		obj[SCRATCH].offset = target_offset;
-> -		obj[SCRATCH].flags |= EXEC_OBJECT_PINNED | EXEC_OBJECT_WRITE;
-> -		obj[BATCH].offset = bb_offset;
-> -		obj[BATCH].flags |= EXEC_OBJECT_PINNED;
-> -	}
-> -	batch[i] = MI_STORE_DWORD_IMM | (gen < 6 ? 1 << 22 : 0);
-> -	if (gen >= 8) {
-> -		batch[++i] = target_offset + delta;
-> -		batch[++i] = target_offset >> 32;
-> -	} else if (gen >= 4) {
-> -		batch[++i] = 0;
-> -		batch[++i] = delta;
-> -		reloc.offset += sizeof(uint32_t);
-> -	} else {
-> -		batch[i]--;
-> -		batch[++i] = delta;
-> -	}
-> -	batch[++i] = offset_value;
-> -	batch[++i] = MI_BATCH_BUFFER_END;
-> -	gem_write(fd, obj[BATCH].handle, 0, batch, sizeof(batch));
-> -	gem_execbuf(fd, &execbuf);
-> -	gem_close(fd, obj[BATCH].handle);
-> -	put_offset(ahnd, obj[BATCH].handle);
-> -}
-> -
->  static bool fence_busy(int fence)
->  {
->  	return poll(&(struct pollfd){fence, POLLIN}, 1, 0) == 0;
-> @@ -400,13 +333,13 @@ static void test_fence_await(int fd, const intel_ctx_t *ctx,
->  			continue;
->  
->  		if (flags & NONBLOCK) {
-> -			store(fd, ahnd, ctx, e2, spin->out_fence,
-> -			      scratch, scratch_offset, i);
-> +			igt_store_word(fd, ahnd, ctx, e2, spin->out_fence,
-> +				       scratch, scratch_offset, i);
->  		} else {
->  			igt_fork(child, 1) {
->  				ahnd = get_reloc_ahnd(fd, ctx->id);
-> -				store(fd, ahnd, ctx, e2, spin->out_fence,
-> -				      scratch, scratch_offset, i);
-> +				igt_store_word(fd, ahnd, ctx, e2, spin->out_fence,
-> +					       scratch, scratch_offset, i);
->  				put_ahnd(ahnd);
->  			}
->  		}
-> diff --git a/tests/i915/i915_hangman.c b/tests/i915/i915_hangman.c
-> index 20653b479..4cb9b8b85 100644
-> --- a/tests/i915/i915_hangman.c
-> +++ b/tests/i915/i915_hangman.c
-> @@ -36,6 +36,7 @@
->  #include "i915/gem.h"
->  #include "i915/gem_create.h"
->  #include "igt.h"
-> +#include "igt_store.h"
->  #include "igt_sysfs.h"
->  #include "igt_debugfs.h"
->  #include "sw_sync.h"
-> @@ -51,64 +52,6 @@ static int sysfs = -1;
->  
->  IGT_TEST_DESCRIPTION("Tests for hang detection and recovery");
->  
-> -/* Requires master for STORE_DWORD on gen4/5 */
-> -static void store(int fd, const struct intel_execution_engine2 *e,
-> -		  int fence, uint32_t target, unsigned offset_value)
-> -{
-> -	const int SCRATCH = 0;
-> -	const int BATCH = 1;
-> -	const int gen = intel_gen(intel_get_drm_devid(fd));
-> -	struct drm_i915_gem_exec_object2 obj[2];
-> -	struct drm_i915_gem_relocation_entry reloc;
-> -	struct drm_i915_gem_execbuffer2 execbuf;
-> -	uint32_t batch[16];
-> -	int i;
-> -
-> -	memset(&execbuf, 0, sizeof(execbuf));
-> -	execbuf.buffers_ptr = to_user_pointer(obj);
-> -	execbuf.buffer_count = ARRAY_SIZE(obj);
-> -	execbuf.flags = e->flags;
-> -	if (fence != -1) {
-> -		execbuf.flags |= I915_EXEC_FENCE_IN;
-> -		execbuf.rsvd2 = fence;
-> -	}
-> -	if (gen < 6)
-> -		execbuf.flags |= I915_EXEC_SECURE;
-> -
-> -	memset(obj, 0, sizeof(obj));
-> -	obj[SCRATCH].handle = target;
-> -
-> -	obj[BATCH].handle = gem_create(fd, 4096);
-> -	obj[BATCH].relocs_ptr = to_user_pointer(&reloc);
-> -	obj[BATCH].relocation_count = 1;
-> -	memset(&reloc, 0, sizeof(reloc));
-> -
-> -	i = 0;
-> -	reloc.target_handle = obj[SCRATCH].handle;
-> -	reloc.presumed_offset = -1;
-> -	reloc.offset = sizeof(uint32_t) * (i + 1);
-> -	reloc.delta = sizeof(uint32_t) * offset_value;
-> -	reloc.read_domains = I915_GEM_DOMAIN_INSTRUCTION;
-> -	reloc.write_domain = I915_GEM_DOMAIN_INSTRUCTION;
-> -	batch[i] = MI_STORE_DWORD_IMM | (gen < 6 ? 1 << 22 : 0);
-> -	if (gen >= 8) {
-> -		batch[++i] = reloc.delta;
-> -		batch[++i] = 0;
-> -	} else if (gen >= 4) {
-> -		batch[++i] = 0;
-> -		batch[++i] = reloc.delta;
-> -		reloc.offset += sizeof(uint32_t);
-> -	} else {
-> -		batch[i]--;
-> -		batch[++i] = reloc.delta;
-> -	}
-> -	batch[++i] = offset_value;
-> -	batch[++i] = MI_BATCH_BUFFER_END;
-> -	gem_write(fd, obj[BATCH].handle, 0, batch, sizeof(batch));
-> -	gem_execbuf(fd, &execbuf);
-> -	gem_close(fd, obj[BATCH].handle);
-> -}
-> -
->  static void check_alive(void)
->  {
->  	const struct intel_execution_engine2 *engine;
-> @@ -138,7 +81,7 @@ static void check_alive(void)
->  			continue;
->  
->  		/* +OFFSET_ALIVE to ensure engine zero doesn't get a false negative */
-> -		store(fd, engine, -1, scratch, i + OFFSET_ALIVE);
-> +		igt_store_word(fd, ahnd, ctx, engine, -1, scratch, i + OFFSET_ALIVE, i + OFFSET_ALIVE);
->  		i++;
->  	}
->  
-> -- 
-> 2.25.1
-> 
+  drm/ast: potential dereference of null pointer (2021-12-14 09:18:28 +0100)
+
+----------------------------------------------------------------
+One null pointer dereference fix for ast, a pixel clock unit fix for
+simpledrm and a user-space regression revert for fb-helper
+
+----------------------------------------------------------------
+Alejandro Concepcion-Rodriguez (1):
+      drm: simpledrm: fix wrong unit with pixel clock
+
+Javier Martinez Canillas (1):
+      Revert "drm/fb-helper: improve DRM fbdev emulation device names"
+
+Jiasheng Jiang (1):
+      drm/ast: potential dereference of null pointer
+
+ drivers/gpu/drm/ast/ast_mode.c   | 5 ++++-
+ drivers/gpu/drm/drm_fb_helper.c  | 8 +++++++-
+ drivers/gpu/drm/tiny/simpledrm.c | 2 +-
+ 3 files changed, 12 insertions(+), 3 deletions(-)
+
+--7uzv5e5skyluybsp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYbr4GwAKCRDj7w1vZxhR
+xfhoAQCkdRHgBw5o4McbF4gfFr163KJLmD3RorxTQ4oJSYak7QD8C8q+UCm9V98/
+6aP/ruPk1UMY2ir06nx1StYkIt0oQQw=
+=fdy3
+-----END PGP SIGNATURE-----
+
+--7uzv5e5skyluybsp--
