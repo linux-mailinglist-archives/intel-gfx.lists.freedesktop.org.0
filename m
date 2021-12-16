@@ -1,51 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9A5147761B
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 16:39:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59D9647797E
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 17:42:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC13A10E379;
-	Thu, 16 Dec 2021 15:39:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BB5710E1E3;
+	Thu, 16 Dec 2021 16:42:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D061110E331;
- Thu, 16 Dec 2021 15:39:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639669156; x=1671205156;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/iz+i8h7YI8bkVolT5ohnzu7oIPeJmXLfmXDb431k+g=;
- b=OgXzJeu/u+rRNu2TMKg09Kvsl3brwTAqtmu5pPRO5dOhtfMHsT/EO51u
- bugXeaU/L5ePgPQ/76OCYFEAxZZ0M8n1kyxvAM7KSpoxCRDionCnuZm79
- k9nm2ZdInE5EkCKJQktwxKfBbMZf8NL4h6b3aPiX7z5UnRi8YNkWxBuo+
- 3YWf2WqnUNvj+DHjciErgz6pGYH1M4fp2fkaeNtqUw2hQY72BjS8S2lPT
- FHBsWX3ZvL38UQRXHVQlM7x1ZVnjtMYxI5dPZA/wWDRbrWE9V55kXlctA
- qDT8LWuwFviDxdUsy09KdGoT52Y3MuBcSjm/A7PJLkrniPO881FI15Uh6 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10199"; a="238261420"
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; d="scan'208";a="238261420"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2021 07:39:16 -0800
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; d="scan'208";a="611507338"
-Received: from yshchyok-mobl1.ccr.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.21.121])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2021 07:39:15 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Dec 2021 15:38:47 +0000
-Message-Id: <20211216153847.185820-4-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211216153847.185820-1-matthew.auld@intel.com>
-References: <20211216153847.185820-1-matthew.auld@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B99E110E235;
+ Thu, 16 Dec 2021 16:42:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B1D38A00FD;
+ Thu, 16 Dec 2021 16:42:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4914840515498855608=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 3/3] drm/i915/migrate: add acceleration
- support for DG2
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 16 Dec 2021 16:42:34 -0000
+Message-ID: <163967295469.14058.15089853432570298860@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211216110822.8461-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20211216110822.8461-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/fbc=3A_Remember_to_update_FBC_state_even_when_not_realloc?=
+ =?utf-8?q?ating_CFB?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,452 +41,406 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is all kinds of awkward since we now have to contend with using 64K
-GTT pages when mapping anything in LMEM(including the page-tables
-themselves).
+--===============4914840515498855608==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2(Ram)
-  - Document the ppGTT layout and add a better description for the
-    different windows.
+== Series Details ==
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_migrate.c | 209 +++++++++++++++++++-----
- 1 file changed, 170 insertions(+), 39 deletions(-)
+Series: drm/i915/fbc: Remember to update FBC state even when not reallocating CFB
+URL   : https://patchwork.freedesktop.org/series/98126/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index 64ffaacac1e0..c8f564b976e3 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -33,6 +33,38 @@ static bool engine_supports_migration(struct intel_engine_cs *engine)
- 	return true;
- }
- 
-+static void xehpsdv_toggle_pdes(struct i915_address_space *vm,
-+				struct i915_page_table *pt,
-+				void *data)
-+{
-+	struct insert_pte_data *d = data;
-+
-+	/*
-+	 * Insert a dummy PTE into every PT that will map to LMEM to ensure
-+	 * we have a correctly setup PDE structure for later use.
-+	 */
-+	vm->insert_page(vm, 0, d->offset, I915_CACHE_NONE, PTE_LM);
-+	GEM_BUG_ON(!pt->is_compact);
-+	d->offset += SZ_2M;
-+}
-+
-+static void xehpsdv_insert_pte(struct i915_address_space *vm,
-+			       struct i915_page_table *pt,
-+			       void *data)
-+{
-+	struct insert_pte_data *d = data;
-+
-+	/*
-+	 * We are playing tricks here, since the actual pt, from the hw
-+	 * pov, is only 256bytes with 32 entries, or 4096bytes with 512
-+	 * entries, but we are still guaranteed that the physical
-+	 * alignment is 64K underneath for the pt, and we are careful
-+	 * not to access the space in the void.
-+	 */
-+	vm->insert_page(vm, px_dma(pt), d->offset, I915_CACHE_NONE, PTE_LM);
-+	d->offset += SZ_64K;
-+}
-+
- static void insert_pte(struct i915_address_space *vm,
- 		       struct i915_page_table *pt,
- 		       void *data)
-@@ -75,7 +107,32 @@ static struct i915_address_space *migrate_vm(struct intel_gt *gt)
- 	 * i.e. within the same non-preemptible window so that we do not switch
- 	 * to another migration context that overwrites the PTE.
- 	 *
--	 * TODO: Add support for huge LMEM PTEs
-+	 * This changes quite a bit on platforms with HAS_64K_PAGES support,
-+	 * where we instead have three windows, each CHUNK_SIZE in size. The
-+	 * first is reserved for mapping system-memory, and that just uses the
-+	 * 512 entry layout using 4K GTT pages. The other two windows just map
-+	 * lmem pages and must use the new compact 32 entry layout using 64K GTT
-+	 * pages, which ensures we can address any lmem object that the user
-+	 * throws at us. We then also use the xehpsdv_toggle_pdes as a way of
-+	 * just toggling the PDE bit(GEN12_PDE_64K) for us, to enable the
-+	 * compact layout for each of these page-tables, that fall within the
-+	 * [CHUNK_SIZE, 3 * CHUNK_SIZE) range.
-+	 *
-+	 * We lay the ppGTT out as:
-+	 *
-+	 * [0, CHUNK_SZ) -> first window/object, maps smem
-+	 * [CHUNK_SZ, 2 * CHUNK_SZ) -> second window/object, maps lmem src
-+	 * [2 * CHUNK_SZ, 3 * CHUNK_SZ) -> third window/object, maps lmem dst
-+	 *
-+	 * For the PTE window it's also quite different, since each PTE must
-+	 * point to some 64K page, one for each PT(since it's in lmem), and yet
-+	 * each is only <= 4096bytes, but since the unused space within that PTE
-+	 * range is never touched, this should be fine.
-+	 *
-+	 * So basically each PT now needs 64K of virtual memory, instead of 4K,
-+	 * which looks like:
-+	 *
-+	 * [3 * CHUNK_SZ, 3 * CHUNK_SZ + ((3 * CHUNK_SZ / SZ_2M) * SZ_64K)] -> PTE
- 	 */
- 
- 	vm = i915_ppgtt_create(gt, I915_BO_ALLOC_PM_EARLY);
-@@ -87,6 +144,9 @@ static struct i915_address_space *migrate_vm(struct intel_gt *gt)
- 		goto err_vm;
- 	}
- 
-+	if (HAS_64K_PAGES(gt->i915))
-+		stash.pt_sz = I915_GTT_PAGE_SIZE_64K;
-+
- 	/*
- 	 * Each engine instance is assigned its own chunk in the VM, so
- 	 * that we can run multiple instances concurrently
-@@ -106,14 +166,20 @@ static struct i915_address_space *migrate_vm(struct intel_gt *gt)
- 		 * We copy in 8MiB chunks. Each PDE covers 2MiB, so we need
- 		 * 4x2 page directories for source/destination.
- 		 */
--		sz = 2 * CHUNK_SZ;
-+		if (HAS_64K_PAGES(gt->i915))
-+			sz = 3 * CHUNK_SZ;
-+		else
-+			sz = 2 * CHUNK_SZ;
- 		d.offset = base + sz;
- 
- 		/*
- 		 * We need another page directory setup so that we can write
- 		 * the 8x512 PTE in each chunk.
- 		 */
--		sz += (sz >> 12) * sizeof(u64);
-+		if (HAS_64K_PAGES(gt->i915))
-+			sz += (sz / SZ_2M) * SZ_64K;
-+		else
-+			sz += (sz >> 12) * sizeof(u64);
- 
- 		err = i915_vm_alloc_pt_stash(&vm->vm, &stash, sz);
- 		if (err)
-@@ -134,7 +200,18 @@ static struct i915_address_space *migrate_vm(struct intel_gt *gt)
- 			goto err_vm;
- 
- 		/* Now allow the GPU to rewrite the PTE via its own ppGTT */
--		vm->vm.foreach(&vm->vm, base, d.offset - base, insert_pte, &d);
-+		if (HAS_64K_PAGES(gt->i915)) {
-+			vm->vm.foreach(&vm->vm, base, d.offset - base,
-+				       xehpsdv_insert_pte, &d);
-+			d.offset = base + CHUNK_SZ;
-+			vm->vm.foreach(&vm->vm,
-+				       d.offset,
-+				       2 * CHUNK_SZ,
-+				       xehpsdv_toggle_pdes, &d);
-+		} else {
-+			vm->vm.foreach(&vm->vm, base, d.offset - base,
-+				       insert_pte, &d);
-+		}
- 	}
- 
- 	return &vm->vm;
-@@ -270,19 +347,38 @@ static int emit_pte(struct i915_request *rq,
- 		    u64 offset,
- 		    int length)
- {
-+	bool has_64K_pages = HAS_64K_PAGES(rq->engine->i915);
- 	const u64 encode = rq->context->vm->pte_encode(0, cache_level,
- 						       is_lmem ? PTE_LM : 0);
- 	struct intel_ring *ring = rq->ring;
--	int total = 0;
-+	int pkt, dword_length;
-+	u32 total = 0;
-+	u32 page_size;
- 	u32 *hdr, *cs;
--	int pkt;
- 
- 	GEM_BUG_ON(GRAPHICS_VER(rq->engine->i915) < 8);
- 
-+	page_size = I915_GTT_PAGE_SIZE;
-+	dword_length = 0x400;
-+
- 	/* Compute the page directory offset for the target address range */
--	offset >>= 12;
--	offset *= sizeof(u64);
--	offset += 2 * CHUNK_SZ;
-+	if (has_64K_pages) {
-+		GEM_BUG_ON(!IS_ALIGNED(offset, SZ_2M));
-+
-+		offset /= SZ_2M;
-+		offset *= SZ_64K;
-+		offset += 3 * CHUNK_SZ;
-+
-+		if (is_lmem) {
-+			page_size = I915_GTT_PAGE_SIZE_64K;
-+			dword_length = 0x40;
-+		}
-+	} else {
-+		offset >>= 12;
-+		offset *= sizeof(u64);
-+		offset += 2 * CHUNK_SZ;
-+	}
-+
- 	offset += (u64)rq->engine->instance << 32;
- 
- 	cs = intel_ring_begin(rq, 6);
-@@ -290,7 +386,7 @@ static int emit_pte(struct i915_request *rq,
- 		return PTR_ERR(cs);
- 
- 	/* Pack as many PTE updates as possible into a single MI command */
--	pkt = min_t(int, 0x400, ring->space / sizeof(u32) + 5);
-+	pkt = min_t(int, dword_length, ring->space / sizeof(u32) + 5);
- 	pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
- 
- 	hdr = cs;
-@@ -300,6 +396,8 @@ static int emit_pte(struct i915_request *rq,
- 
- 	do {
- 		if (cs - hdr >= pkt) {
-+			int dword_rem;
-+
- 			*hdr += cs - hdr - 2;
- 			*cs++ = MI_NOOP;
- 
-@@ -311,7 +409,18 @@ static int emit_pte(struct i915_request *rq,
- 			if (IS_ERR(cs))
- 				return PTR_ERR(cs);
- 
--			pkt = min_t(int, 0x400, ring->space / sizeof(u32) + 5);
-+			dword_rem = dword_length;
-+			if (has_64K_pages) {
-+				if (IS_ALIGNED(total, SZ_2M)) {
-+					offset = round_up(offset, SZ_64K);
-+				} else {
-+					dword_rem = SZ_2M - (total & (SZ_2M - 1));
-+					dword_rem /= page_size;
-+					dword_rem *= 2;
-+				}
-+			}
-+
-+			pkt = min_t(int, dword_rem, ring->space / sizeof(u32) + 5);
- 			pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
- 
- 			hdr = cs;
-@@ -320,13 +429,15 @@ static int emit_pte(struct i915_request *rq,
- 			*cs++ = upper_32_bits(offset);
- 		}
- 
-+		GEM_BUG_ON(!IS_ALIGNED(it->dma, page_size));
-+
- 		*cs++ = lower_32_bits(encode | it->dma);
- 		*cs++ = upper_32_bits(encode | it->dma);
- 
- 		offset += 8;
--		total += I915_GTT_PAGE_SIZE;
-+		total += page_size;
- 
--		it->dma += I915_GTT_PAGE_SIZE;
-+		it->dma += page_size;
- 		if (it->dma >= it->max) {
- 			it->sg = __sg_next(it->sg);
- 			if (!it->sg || sg_dma_len(it->sg) == 0)
-@@ -357,7 +468,8 @@ static bool wa_1209644611_applies(int ver, u32 size)
- 	return height % 4 == 3 && height <= 8;
- }
- 
--static int emit_copy(struct i915_request *rq, int size)
-+static int emit_copy(struct i915_request *rq,
-+		     u32 dst_offset, u32 src_offset, int size)
- {
- 	const int ver = GRAPHICS_VER(rq->engine->i915);
- 	u32 instance = rq->engine->instance;
-@@ -372,31 +484,31 @@ static int emit_copy(struct i915_request *rq, int size)
- 		*cs++ = BLT_DEPTH_32 | PAGE_SIZE;
- 		*cs++ = 0;
- 		*cs++ = size >> PAGE_SHIFT << 16 | PAGE_SIZE / 4;
--		*cs++ = CHUNK_SZ; /* dst offset */
-+		*cs++ = dst_offset;
- 		*cs++ = instance;
- 		*cs++ = 0;
- 		*cs++ = PAGE_SIZE;
--		*cs++ = 0; /* src offset */
-+		*cs++ = src_offset;
- 		*cs++ = instance;
- 	} else if (ver >= 8) {
- 		*cs++ = XY_SRC_COPY_BLT_CMD | BLT_WRITE_RGBA | (10 - 2);
- 		*cs++ = BLT_DEPTH_32 | BLT_ROP_SRC_COPY | PAGE_SIZE;
- 		*cs++ = 0;
- 		*cs++ = size >> PAGE_SHIFT << 16 | PAGE_SIZE / 4;
--		*cs++ = CHUNK_SZ; /* dst offset */
-+		*cs++ = dst_offset;
- 		*cs++ = instance;
- 		*cs++ = 0;
- 		*cs++ = PAGE_SIZE;
--		*cs++ = 0; /* src offset */
-+		*cs++ = src_offset;
- 		*cs++ = instance;
- 	} else {
- 		GEM_BUG_ON(instance);
- 		*cs++ = SRC_COPY_BLT_CMD | BLT_WRITE_RGBA | (6 - 2);
- 		*cs++ = BLT_DEPTH_32 | BLT_ROP_SRC_COPY | PAGE_SIZE;
- 		*cs++ = size >> PAGE_SHIFT << 16 | PAGE_SIZE;
--		*cs++ = CHUNK_SZ; /* dst offset */
-+		*cs++ = dst_offset;
- 		*cs++ = PAGE_SIZE;
--		*cs++ = 0; /* src offset */
-+		*cs++ = src_offset;
- 	}
- 
- 	intel_ring_advance(rq, cs);
-@@ -424,6 +536,7 @@ intel_context_migrate_copy(struct intel_context *ce,
- 	GEM_BUG_ON(ce->ring->size < SZ_64K);
- 
- 	do {
-+		u32 src_offset, dst_offset;
- 		int len;
- 
- 		rq = i915_request_create(ce);
-@@ -451,15 +564,28 @@ intel_context_migrate_copy(struct intel_context *ce,
- 		if (err)
- 			goto out_rq;
- 
--		len = emit_pte(rq, &it_src, src_cache_level, src_is_lmem, 0,
--			       CHUNK_SZ);
-+		src_offset = 0;
-+		dst_offset = CHUNK_SZ;
-+		if (HAS_64K_PAGES(ce->engine->i915)) {
-+			GEM_BUG_ON(!src_is_lmem && !dst_is_lmem);
-+
-+			src_offset = 0;
-+			dst_offset = 0;
-+			if (src_is_lmem)
-+				src_offset = CHUNK_SZ;
-+			if (dst_is_lmem)
-+				dst_offset = 2 * CHUNK_SZ;
-+		}
-+
-+		len = emit_pte(rq, &it_src, src_cache_level, src_is_lmem,
-+			       src_offset, CHUNK_SZ);
- 		if (len <= 0) {
- 			err = len;
- 			goto out_rq;
- 		}
- 
- 		err = emit_pte(rq, &it_dst, dst_cache_level, dst_is_lmem,
--			       CHUNK_SZ, len);
-+			       dst_offset, len);
- 		if (err < 0)
- 			goto out_rq;
- 		if (err < len) {
-@@ -471,7 +597,7 @@ intel_context_migrate_copy(struct intel_context *ce,
- 		if (err)
- 			goto out_rq;
- 
--		err = emit_copy(rq, len);
-+		err = emit_copy(rq, dst_offset, src_offset, len);
- 
- 		/* Arbitration is re-enabled between requests. */
- out_rq:
-@@ -569,18 +695,20 @@ static u32 *_i915_ctrl_surf_copy_blt(u32 *cmd, u64 src_addr, u64 dst_addr,
- }
- 
- static int emit_clear(struct i915_request *rq,
-+		      u64 offset,
- 		      int size,
- 		      u32 value,
- 		      bool is_lmem)
- {
--	const int ver = GRAPHICS_VER(rq->engine->i915);
--	u32 instance = rq->engine->instance;
--	u32 *cs;
- 	struct drm_i915_private *i915 = rq->engine->i915;
-+	const int ver = GRAPHICS_VER(rq->engine->i915);
- 	u32 num_ccs_blks, ccs_ring_size;
-+	u32 *cs;
- 
- 	GEM_BUG_ON(size >> PAGE_SHIFT > S16_MAX);
- 
-+	offset += (u64)rq->engine->instance << 32;
-+
- 	/* Clear flat css only when value is 0 */
- 	ccs_ring_size = (is_lmem && !value) ?
- 			 calc_ctrl_surf_instr_size(i915, size)
-@@ -595,17 +723,17 @@ static int emit_clear(struct i915_request *rq,
- 		*cs++ = BLT_DEPTH_32 | BLT_ROP_COLOR_COPY | PAGE_SIZE;
- 		*cs++ = 0;
- 		*cs++ = size >> PAGE_SHIFT << 16 | PAGE_SIZE / 4;
--		*cs++ = 0; /* offset */
--		*cs++ = instance;
-+		*cs++ = lower_32_bits(offset);
-+		*cs++ = upper_32_bits(offset);
- 		*cs++ = value;
- 		*cs++ = MI_NOOP;
- 	} else {
--		GEM_BUG_ON(instance);
-+		GEM_BUG_ON(upper_32_bits(offset));
- 		*cs++ = XY_COLOR_BLT_CMD | BLT_WRITE_RGBA | (6 - 2);
- 		*cs++ = BLT_DEPTH_32 | BLT_ROP_COLOR_COPY | PAGE_SIZE;
- 		*cs++ = 0;
- 		*cs++ = size >> PAGE_SHIFT << 16 | PAGE_SIZE / 4;
--		*cs++ = 0;
-+		*cs++ = lower_32_bits(offset);
- 		*cs++ = value;
- 	}
- 
-@@ -621,17 +749,15 @@ static int emit_clear(struct i915_request *rq,
- 		 * and use it as a source.
- 		 */
- 
--		cs = i915_flush_dw(cs, (u64)instance << 32,
--				   MI_FLUSH_LLC | MI_FLUSH_CCS);
-+		cs = i915_flush_dw(cs, offset, MI_FLUSH_LLC | MI_FLUSH_CCS);
- 		cs = _i915_ctrl_surf_copy_blt(cs,
--					      (u64)instance << 32,
--					      (u64)instance << 32,
-+					      offset,
-+					      offset,
- 					      DIRECT_ACCESS,
- 					      INDIRECT_ACCESS,
- 					      1, 1,
- 					      num_ccs_blks);
--		cs = i915_flush_dw(cs, (u64)instance << 32,
--				   MI_FLUSH_LLC | MI_FLUSH_CCS);
-+		cs = i915_flush_dw(cs, offset, MI_FLUSH_LLC | MI_FLUSH_CCS);
- 	}
- 	intel_ring_advance(rq, cs);
- 	return 0;
-@@ -656,6 +782,7 @@ intel_context_migrate_clear(struct intel_context *ce,
- 	GEM_BUG_ON(ce->ring->size < SZ_64K);
- 
- 	do {
-+		u32 offset;
- 		int len;
- 
- 		rq = i915_request_create(ce);
-@@ -683,7 +810,11 @@ intel_context_migrate_clear(struct intel_context *ce,
- 		if (err)
- 			goto out_rq;
- 
--		len = emit_pte(rq, &it, cache_level, is_lmem, 0, CHUNK_SZ);
-+		offset = 0;
-+		if (HAS_64K_PAGES(ce->engine->i915) && is_lmem)
-+			offset = CHUNK_SZ;
-+
-+		len = emit_pte(rq, &it, cache_level, is_lmem, offset, CHUNK_SZ);
- 		if (len <= 0) {
- 			err = len;
- 			goto out_rq;
-@@ -693,7 +824,7 @@ intel_context_migrate_clear(struct intel_context *ce,
- 		if (err)
- 			goto out_rq;
- 
--		err = emit_clear(rq, len, value, is_lmem);
-+		err = emit_clear(rq, offset, len, value, is_lmem);
- 
- 		/* Arbitration is re-enabled between requests. */
- out_rq:
--- 
-2.31.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_11006 -> Patchwork_21858
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/index.html
+
+Participating hosts (41 -> 34)
+------------------------------
+
+  Additional (2): fi-icl-u2 fi-rkl-guc 
+  Missing    (9): fi-kbl-soraka bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-6 fi-pnv-d510 fi-bdw-samus bat-jsl-2 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21858 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
+
+  * igt@amdgpu/amd_cs_nop@fork-gfx0:
+    - fi-icl-u2:          NOTRUN -> [SKIP][2] ([fdo#109315]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@gem_flink_basic@bad-flink:
+    - fi-skl-6600u:       [PASS][4] -> [FAIL][5] ([i915#4547])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11006/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-icl-u2:          NOTRUN -> [SKIP][6] ([i915#2190])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-icl-u2:          NOTRUN -> [SKIP][7] ([i915#4613]) +3 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_lmem_swapping@verify-random:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][8] ([i915#4613]) +3 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@gem_lmem_swapping@verify-random.html
+
+  * igt@gem_tiled_pread_basic:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][9] ([i915#3282])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][10] ([i915#3012])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][11] -> [INCOMPLETE][12] ([i915#3303])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11006/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][13] ([fdo#111827]) +8 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-icl-u2:          NOTRUN -> [SKIP][14] ([fdo#111827]) +8 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][15] ([i915#4103]) +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-icl-u2:          NOTRUN -> [SKIP][16] ([fdo#109278]) +2 similar issues
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][17] ([fdo#109285])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@kms_force_connector_basic@force-load-detect.html
+    - fi-icl-u2:          NOTRUN -> [SKIP][18] ([fdo#109285])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [PASS][19] -> [DMESG-WARN][20] ([i915#4269])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11006/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][21] ([i915#533])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][22] ([i915#1072]) +3 similar issues
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-icl-u2:          NOTRUN -> [SKIP][23] ([i915#3301])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@prime_vgem@basic-userptr.html
+    - fi-rkl-guc:         NOTRUN -> [SKIP][24] ([i915#3301] / [i915#3708])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@prime_vgem@basic-userptr.html
+
+  * igt@prime_vgem@basic-write:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][25] ([i915#3291] / [i915#3708]) +2 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@prime_vgem@basic-write.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][26] ([fdo#109271] / [i915#1436] / [i915#4312])
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][27] ([i915#3921]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11006/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       [FAIL][29] ([i915#1436] / [i915#4312]) -> [FAIL][30] ([i915#4312])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11006/fi-skl-6600u/igt@runner@aborted.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-skl-6600u/igt@runner@aborted.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11006 -> Patchwork_21858
+
+  CI-20190529: 20190529
+  CI_DRM_11006: c638e6957221626098fab621a4774b77b933dff2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6310: 07dfbd0af8b49c75036f0ccb0a161f6e290a91a3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21858: 60cdde1e899318a5b1ec7dd69b3ffb44f6390f26 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+60cdde1e8993 drm/i915/fbc: Remember to update FBC state even when not reallocating CFB
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/index.html
+
+--===============4914840515498855608==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/fbc: Remember to update FBC state even when not reallocating CFB</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98126/">https://patchwork.freedesktop.org/series/98126/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11006 -&gt; Patchwork_21858</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/index.html</p>
+<h2>Participating hosts (41 -&gt; 34)</h2>
+<p>Additional (2): fi-icl-u2 fi-rkl-guc <br />
+  Missing    (9): fi-kbl-soraka bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-6 fi-pnv-d510 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21858 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-gfx:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_flink_basic@bad-flink:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11006/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11006/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-edid-read:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>
+<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11006/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
+</li>
+<li>
+<p>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-rkl-guc/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11006/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11006/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21858/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11006 -&gt; Patchwork_21858</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11006: c638e6957221626098fab621a4774b77b933dff2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6310: 07dfbd0af8b49c75036f0ccb0a161f6e290a91a3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21858: 60cdde1e899318a5b1ec7dd69b3ffb44f6390f26 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>60cdde1e8993 drm/i915/fbc: Remember to update FBC state even when not reallocating CFB</p>
+
+</body>
+</html>
+
+--===============4914840515498855608==--
