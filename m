@@ -1,57 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 068A04774B9
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 15:34:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52A484774CF
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 15:40:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F412112370;
-	Thu, 16 Dec 2021 14:34:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46FBD1123B6;
+	Thu, 16 Dec 2021 14:40:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8312112365;
- Thu, 16 Dec 2021 14:34:20 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39BC31123B1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 14:40:08 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 871B821135;
- Thu, 16 Dec 2021 14:34:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1639665259; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=W5bqJU+Eglskw2AOoGx5/xZkDodRsTPlcLkJzv6ITaE=;
- b=TnkRIRK25WdTueMxciyjxy+bRS+zX4LrisrdpmyAkD3lPa9HyvmvZLHAMwMCiC6l3l7SjW
- dVUkfn0g7SvRjj5NDYvKIEW+M0UchYR8Qz5lQRtEshRvyRCii4hBmvHBUI/Ls1jZy3TYsR
- DjPUlylNUvHk9twRfjJrdQ6Mqf5puO0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1639665259;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=W5bqJU+Eglskw2AOoGx5/xZkDodRsTPlcLkJzv6ITaE=;
- b=dqZlR0UpT84Mz8BxIHAK0Pyhr1kPQam/4XYj01r7aIXoJmS2vWrqbdADB0tNRTQfovewi2
- rFU6iaHTWYgh/bBQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 4913313E3B;
- Thu, 16 Dec 2021 14:34:19 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id 1UbYEGtOu2GxEgAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 16 Dec 2021 14:34:19 +0000
-Date: Thu, 16 Dec 2021 15:34:17 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YbtOaZLvar+9hBOi@linux-uq9g.fritz.box>
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 6822661E20
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 14:40:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE43CC36AE5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 14:40:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1639665604;
+ bh=OXsh/mWbcdRKUDXiDKjJWf4K8TCYYVEmBoTKCYt7DnI=;
+ h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+ b=PVmGK8BJImUXzpm7evzF9GEu64f2lXmNEZS0usLeKrYaN65BlZPMaJBJFSjJT3Bo4
+ /qc3E6IaiJF5SKQ55V4hPVslLjRLSZRDLb/c5Fhj2x0t8oc1BMWAD4BFdFmok97oba
+ 7CIai1gkhuy2jsjBNouSJt+s2UxJDJw8Sjhfzgw3FkvbC7nGzSq4Nx298ownhaw+w6
+ jdwihxwL6VSm7Ed8DW1FYwf47Yz/7/wciLJbLYHJCPXrKMY0e2CshP0VF1ca0UcshL
+ X7Fbu/ZERbbr/pHV1FborMsolfupKbAFSIlvFHRZJE8Shb0meCwO/29wqEd2y+SOWd
+ 55EBz9ctGfIOQ==
+Received: by mail-io1-f53.google.com with SMTP id p65so35513837iof.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 06:40:04 -0800 (PST)
+X-Gm-Message-State: AOAM532ePLQZ1izZb25GuUQMJ1p2wNID32QmyfUlWjrYGIOMbANkxRzy
+ HQdTI2bEPeME5NI7Bn0YX+hviLeYmhbIiD2ir+I=
+X-Google-Smtp-Source: ABdhPJyzT9FWyrrw36jO6tkuOMsY0wrTDeJVIPeoPn+q3lhxwelvnpPNEmKheiDPgqearB5vjsKsKPgpKewfKv2scx4=
+X-Received: by 2002:a05:6602:1609:: with SMTP id
+ x9mr9554152iow.209.1639665604048; 
+ Thu, 16 Dec 2021 06:40:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-next
+References: <9d3a16d4327fd6bb0a52cfe8e4bb0857a81494f2.camel@intel.com>
+ <2b6c0de45581430daff7f698e94d94ad@intel.com>
+ <edc5973fa662d059d4ffa3d01c5e7823817d5784.camel@intel.com>
+In-Reply-To: <edc5973fa662d059d4ffa3d01c5e7823817d5784.camel@intel.com>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Thu, 16 Dec 2021 09:39:53 -0500
+X-Gmail-Original-Message-ID: <CA+5PVA4mVcs4sejbE=Y4Ofy0Ev-L34qcds2WfZLeOcUXy+Rcyg@mail.gmail.com>
+Message-ID: <CA+5PVA4mVcs4sejbE=Y4Ofy0Ev-L34qcds2WfZLeOcUXy+Rcyg@mail.gmail.com>
+To: "Tolakanahalli Pradeep,
+ Madhumitha" <madhumitha.tolakanahalli.pradeep@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] i915 Updates: ADL-P DMC v2.14
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,266 +62,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: "kyle@mcmartin.ca" <kyle@mcmartin.ca>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Hutchings, Ben" <ben@decadent.org.uk>,
+ "linux-firmware@kernel.org" <linux-firmware@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+Sincere apologies for the delay.  Pulled and pushed out.
 
-here's this week's PR for drm-misc-next for what will become Linux
-5.17.
+josh
 
-Every single patchset in this PR is awesome: vmwgfx now supports
-GL 4.3 userspace and GEM (yeah!), simpledrm added support for Apple M1
-firmware framebuffers, the SPRD drivers finally got merged, vc4 added
-support for 10-bit YUV output. And of course, we have the usual round
-of bug fixes.
-
-Besides the DRM updates, there's a backmerge from drm-next that brings
-drm-misc-next up to v5.16-rc5.
-
-Best regards
-Thomas
-
-drm-misc-next-2021-12-16:
-drm-misc-next for 5.17:
-
-UAPI Changes:
-
- * vmwgfx: Version bump to 2.20
-
-Cross-subsystem Changes:
-
- * of: Create simple-framebuffer devices in of_platform_default_init()
-
-Core Changes:
-
- * Replace include <linux/kernel.h> with more fine-grained includes
- * Document DRM_IOCTL_MODE_GETFB2
- * format-helper: Support XRGB2101010 source buffers
-
-Driver Changes:
-
- * amdgpu: Fix runtime PM on some configs
- * ast: Fix I2C initialization
- * bridge: ti-sn65dsi86: Set regmap max_register
- * panel: Add Team Source Display TST043015CMHX plus DT bindings
- * simpledrm: Add support for Apple M1
- * sprd: Add various drivers plus DT bindings
- * vc4: Support 10-bit YUV 4:2:0 output; Fix clock-rate updates
- * vmwgfx: Implement GEM support; Implement GL 4.3 support
-The following changes since commit 244a36e50da05c33b860d20638ee4628017a5334:
-
-  drm/vc4: kms: Wait for the commit before increasing our clock rate (2021-12-15 12:10:50 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2021-12-16
-
-for you to fetch changes up to 9758ff2fa240173e9a45613b07774b7a78b7653e:
-
-  Merge drm/drm-next into drm-misc-next (2021-12-16 14:48:27 +0100)
-
-----------------------------------------------------------------
-drm-misc-next for 5.17:
-
-UAPI Changes:
-
- * vmwgfx: Version bump to 2.20
-
-Cross-subsystem Changes:
-
- * of: Create simple-framebuffer devices in of_platform_default_init()
-
-Core Changes:
-
- * Replace include <linux/kernel.h> with more fine-grained includes
- * Document DRM_IOCTL_MODE_GETFB2
- * format-helper: Support XRGB2101010 source buffers
-
-Driver Changes:
-
- * amdgpu: Fix runtime PM on some configs
- * ast: Fix I2C initialization
- * bridge: ti-sn65dsi86: Set regmap max_register
- * panel: Add Team Source Display TST043015CMHX plus DT bindings
- * simpledrm: Add support for Apple M1
- * sprd: Add various drivers plus DT bindings
- * vc4: Support 10-bit YUV 4:2:0 output; Fix clock-rate updates
- * vmwgfx: Implement GEM support; Implement GL 4.3 support
-
-----------------------------------------------------------------
-Andy Shevchenko (1):
-      drm: Replace kernel.h with the necessary inclusions
-
-Christian König (1):
-      drm/amdgpu: don't skip runtime pm get on A+A config
-
-Dave Stevenson (3):
-      drm/fourcc: Add packed 10bit YUV 4:2:0 format
-      drm/vc4: plane: Add support for DRM_FORMAT_P030
-      drm/vc4: plane: Add support for YUV color encodings and ranges
-
-Hector Martin (3):
-      of: Move simple-framebuffer device handling from simplefb to of
-      drm/format-helper: Add drm_fb_xrgb8888_to_xrgb2101010_toio()
-      drm/simpledrm: Add [AX]RGB2101010 formats
-
-Kevin Tang (6):
-      dt-bindings: display: add Unisoc's drm master bindings
-      drm/sprd: add Unisoc's drm kms master
-      dt-bindings: display: add Unisoc's dpu bindings
-      drm/sprd: add Unisoc's drm display controller driver
-      dt-bindings: display: add Unisoc's mipi dsi controller bindings
-      drm/sprd: add Unisoc's drm mipi dsi&dphy driver
-
-Marek Vasut (5):
-      dt-bindings: display: bridge: lvds-codec: Document pixel data sampling edge select
-      drm/bridge: lvds-codec: Add support for pixel data sampling edge select
-      dt-bindings: Add Team Source Display Technology vendor prefix
-      dt-bindings: display: simple: Add Team Source Display TST043015CMHX panel
-      drm/panel: simple: Add Team Source Display TST043015CMHX panel
-
-Roland Scheidegger (2):
-      drm/vmwgfx: support SVGA_3D_CMD_DX_DEFINE_RASTERIZER_STATE_V2 command
-      drm/vmwgfx: add support for updating only offsets of constant buffers
-
-Simon Ser (1):
-      drm: document DRM_IOCTL_MODE_GETFB2
-
-Stephen Boyd (1):
-      drm/bridge: ti-sn65dsi86: Set max register for regmap
-
-Thomas Zimmermann (4):
-      drm/ast: Handle failed I2C initialization gracefully
-      drm/ast: Convert I2C code to managed cleanup
-      drm/ast: Move I2C code into separate source file
-      Merge drm/drm-next into drm-misc-next
-
-Zack Rusin (10):
-      drm/vmwgfx: Remove the dedicated memory accounting
-      drm/vmwgfx: Add a debug callback to mobid resource manager
-      drm/vmwgfx: Stop hardcoding the PCI ID
-      drm/vmwgfx: Implement DRIVER_GEM
-      drm/vmwgfx: Implement create_handle on drm_framebuffer_funcs
-      drm/vmwgfx: Update device headers for GL43
-      drm/vmwgfx: support 64 UAVs
-      drm/vmwgfx: Allow checking for gl43 contexts
-      drm/vmwgfx: Remove usage of MOBFMT_RANGE
-      drm/vmwgfx: Bump the minor version
-
- .../bindings/display/bridge/lvds-codec.yaml        |   18 +
- .../bindings/display/panel/panel-simple.yaml       |    2 +
- .../display/sprd/sprd,display-subsystem.yaml       |   64 ++
- .../bindings/display/sprd/sprd,sharkl3-dpu.yaml    |   77 ++
- .../display/sprd/sprd,sharkl3-dsi-host.yaml        |   88 ++
- .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
- drivers/gpu/drm/Kconfig                            |    2 +
- drivers/gpu/drm/Makefile                           |    1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c        |    3 -
- drivers/gpu/drm/ast/Makefile                       |    2 +-
- drivers/gpu/drm/ast/ast_drv.h                      |    3 +
- drivers/gpu/drm/ast/ast_i2c.c                      |  152 +++
- drivers/gpu/drm/ast/ast_mode.c                     |  151 +--
- drivers/gpu/drm/bridge/lvds-codec.c                |   15 +
- drivers/gpu/drm/bridge/ti-sn65dsi86.c              |    1 +
- drivers/gpu/drm/drm_format_helper.c                |   64 ++
- drivers/gpu/drm/drm_fourcc.c                       |    3 +
- drivers/gpu/drm/panel/panel-simple.c               |   30 +
- drivers/gpu/drm/sprd/Kconfig                       |   13 +
- drivers/gpu/drm/sprd/Makefile                      |    8 +
- drivers/gpu/drm/sprd/megacores_pll.c               |  305 ++++++
- drivers/gpu/drm/sprd/sprd_dpu.c                    |  880 ++++++++++++++++
- drivers/gpu/drm/sprd/sprd_dpu.h                    |  109 ++
- drivers/gpu/drm/sprd/sprd_drm.c                    |  205 ++++
- drivers/gpu/drm/sprd/sprd_drm.h                    |   19 +
- drivers/gpu/drm/sprd/sprd_dsi.c                    | 1073 ++++++++++++++++++++
- drivers/gpu/drm/sprd/sprd_dsi.h                    |  126 +++
- drivers/gpu/drm/tiny/simpledrm.c                   |    4 +-
- drivers/gpu/drm/vc4/vc4_bo.c                       |    2 +-
- drivers/gpu/drm/vc4/vc4_plane.c                    |  198 +++-
- drivers/gpu/drm/vc4/vc4_regs.h                     |   19 +-
- drivers/gpu/drm/vmwgfx/Kconfig                     |    1 +
- drivers/gpu/drm/vmwgfx/Makefile                    |    3 +-
- drivers/gpu/drm/vmwgfx/device_include/svga3d_cmd.h |    6 +-
- .../gpu/drm/vmwgfx/device_include/svga3d_devcaps.h |   10 +-
- drivers/gpu/drm/vmwgfx/device_include/svga3d_dx.h  |   12 +-
- .../gpu/drm/vmwgfx/device_include/svga3d_limits.h  |    8 +-
- drivers/gpu/drm/vmwgfx/device_include/svga3d_reg.h |    6 +-
- .../gpu/drm/vmwgfx/device_include/svga3d_types.h   |    7 +-
- .../gpu/drm/vmwgfx/device_include/svga_escape.h    |    6 +-
- .../gpu/drm/vmwgfx/device_include/svga_overlay.h   |    6 +-
- drivers/gpu/drm/vmwgfx/device_include/svga_reg.h   |   14 +-
- drivers/gpu/drm/vmwgfx/ttm_memory.c                |  586 -----------
- drivers/gpu/drm/vmwgfx/ttm_memory.h                |   92 --
- drivers/gpu/drm/vmwgfx/ttm_object.c                |  150 +--
- drivers/gpu/drm/vmwgfx/ttm_object.h                |   56 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_binding.c            |   45 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_binding.h            |    4 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.c                 |  580 +++--------
- drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf_res.c         |   19 -
- drivers/gpu/drm/vmwgfx/vmwgfx_context.c            |   30 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_cotable.c            |   26 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c                |   47 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |  128 +--
- drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c            |   82 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_fb.c                 |   13 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_fence.c              |   43 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_gem.c                |  294 ++++++
- drivers/gpu/drm/vmwgfx/vmwgfx_gmrid_manager.c      |   16 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c              |    3 +
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                |   45 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                |    1 -
- drivers/gpu/drm/vmwgfx/vmwgfx_mob.c                |   13 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_overlay.c            |    2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c         |   20 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_prime.c              |    1 -
- drivers/gpu/drm/vmwgfx/vmwgfx_resource.c           |   17 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c               |   10 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_shader.c             |   91 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_simple_resource.c    |   29 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_so.c                 |   21 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_so.h                 |    6 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c               |    2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_streamoutput.c       |   21 -
- drivers/gpu/drm/vmwgfx/vmwgfx_surface.c            |  158 +--
- drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c         |   77 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c           |   74 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_va.c                 |    2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_validation.c         |   13 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_validation.h         |   46 -
- drivers/of/platform.c                              |    4 +
- drivers/video/fbdev/simplefb.c                     |   21 +-
- include/drm/drm_format_helper.h                    |    3 +
- include/drm/drm_gem_ttm_helper.h                   |    2 +-
- include/drm/drm_gem_vram_helper.h                  |    2 +-
- include/drm/drm_mm.h                               |    4 +-
- include/uapi/drm/drm.h                             |   18 +
- include/uapi/drm/drm_fourcc.h                      |   11 +
- include/uapi/drm/vmwgfx_drm.h                      |    1 +
- 89 files changed, 4314 insertions(+), 2333 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,display-subsystem.yaml
- create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
- create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
- create mode 100644 drivers/gpu/drm/ast/ast_i2c.c
- create mode 100644 drivers/gpu/drm/sprd/Kconfig
- create mode 100644 drivers/gpu/drm/sprd/Makefile
- create mode 100644 drivers/gpu/drm/sprd/megacores_pll.c
- create mode 100644 drivers/gpu/drm/sprd/sprd_dpu.c
- create mode 100644 drivers/gpu/drm/sprd/sprd_dpu.h
- create mode 100644 drivers/gpu/drm/sprd/sprd_drm.c
- create mode 100644 drivers/gpu/drm/sprd/sprd_drm.h
- create mode 100644 drivers/gpu/drm/sprd/sprd_dsi.c
- create mode 100644 drivers/gpu/drm/sprd/sprd_dsi.h
- delete mode 100644 drivers/gpu/drm/vmwgfx/ttm_memory.c
- delete mode 100644 drivers/gpu/drm/vmwgfx/ttm_memory.h
- create mode 100644 drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
+On Wed, Dec 15, 2021 at 6:41 PM Tolakanahalli Pradeep, Madhumitha
+<madhumitha.tolakanahalli.pradeep@intel.com> wrote:
+>
+> Bump! :)
+>
+> Thanks,
+> - Madhumitha
+>
+> On Wed, 2021-12-08 at 18:11 +0000, Srivatsa, Anusha wrote:
+> > Ping :)
+> > Can these updates be merged to linux-firmware?
+> >
+> >
+> > Thanks,
+> > Anusha
+> >
+> > > -----Original Message-----
+> > > From: Tolakanahalli Pradeep, Madhumitha
+> > > <madhumitha.tolakanahalli.pradeep@intel.com>
+> > > Sent: Thursday, December 2, 2021 6:48 AM
+> > > To: Hutchings, Ben <ben@decadent.org.uk>;
+> > > intel-gfx@lists.freedesktop.org;
+> > > kyle@mcmartin.ca; jwboyer@kernel.org
+> > > Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; linux-
+> > > firmware@kernel.org
+> > > Subject: [Intel-gfx] i915 Updates: ADL-P DMC v2.14
+> > >
+> > > Hi Ben, Josh, Kyle,
+> > >
+> > > Kindly add the below i915 changes to linux-firmware:
+> > >
+> > > The following changes since commit
+> > > b0e898fbaf377c99a36aac6fdeb7250003648ca4:
+> > >
+> > >   linux-firmware: Update firmware file for Intel Bluetooth 9462
+> > > (2021-
+> > > 11-23 12:31:45 -0500)
+> > >
+> > > are available in the Git repository at:
+> > >
+> > >   git://anongit.freedesktop.org/drm/drm-firmware
+> > > adlp_dmc_v2.14_update
+> > >
+> > > for you to fetch changes up to
+> > > 2a2aa410c2eaebe5807d1fd321e42b8f53288d91:
+> > >
+> > >   i915: Add DMC firmware v2.14 for ADL-P (2021-12-01 16:50:30 -
+> > > 0800)
+> > >
+> > > ----------------------------------------------------------------
+> > > Madhumitha Tolakanahalli Pradeep (1):
+> > >       i915: Add DMC firmware v2.14 for ADL-P
+> > >
+> > >  WHENCE                    |   3 +++
+> > >  i915/adlp_dmc_ver2_14.bin | Bin 0 -> 77300 bytes
+> > >  2 files changed, 3 insertions(+)
+> > >  create mode 100644 i915/adlp_dmc_ver2_14.bin
+> > >
+> > > Thanks!
+> > > - Madhumitha
+> > >
+> >
+>
