@@ -1,159 +1,157 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9F0E477FA1
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 22:55:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5688747800E
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 23:40:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A983710E8D4;
-	Thu, 16 Dec 2021 21:55:45 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE95A10E8D4
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 21:55:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9541F10EB13;
+	Thu, 16 Dec 2021 22:40:31 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A64310EB12;
+ Thu, 16 Dec 2021 22:40:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639691743; x=1671227743;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=sJayFXrxAPTP19yDf4WSIBBrJcsfHqFgrS5d8fH0O3A=;
- b=akgfTHI32qtpciSLV+S6RY+6L1bhdz/MP+llnf4O5BEfogFlvQg+qV/m
- jIGx17g15QpMCQbnUlEDvkfqHQ0nxAsvYr87x+R78FhtbnBf1mWgqkyA/
- QY1LB9Kzz4g8zehxkwVyFJP2XpcyCfc8213abcrfC1AkN+Fv/vZx9MFZa
- /Uh0VnfkGrM7kALTF1eA8T5VQOyv2km1QvxacCoCehHPpHnsm6dDDSigt
- NqbqzIawoU4bjzZoRKwtHbSZZoWdRXAcjFEGkXRRXgxLgX3f9982bQpR5
- RFx7B2tG2pr8StM0l8weYalXGD2F1st9YSHC4H7wMdIScsduh+ecCmT8M w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="226896865"
-X-IronPort-AV: E=Sophos;i="5.88,212,1635231600"; d="scan'208";a="226896865"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2021 13:55:30 -0800
+ t=1639694430; x=1671230430;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=hrNTThiWbRHxLgfVjEXB1m4FJxvjauLm2K+KzdX29LA=;
+ b=EBkAs7r6zTOdyw7lGlWY+rH+bqQnIc7XsXqlVOKtdmZueYqyY6Swq6uK
+ Fnug0FWBRvVC4kMWRUxfDEVYeoW+eQO0528TRyS/AWgvKzZSEbTg9WcDN
+ DdZYPTBoffCFycGMudK2doVxsXeDAJWNXDswur1e7DQ26UIAghk6UdIW0
+ kgNFJXJXjRTrRjICMHSIYhggMJqlwMtUJ6qu+Knxw3mJ3kas+Y3ol2eHY
+ Hj6fiFQUZIwhtlJCGXIan/RaeSQiKAvkCodCFgz5uVN7lV0vFfxGAJ7lP
+ 8fWiRe1PWUlx4kATRwQ0qIhjIZeBA/fUXfVJVpOVLXZB43S4kQc7ikUp2 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="239843757"
+X-IronPort-AV: E=Sophos;i="5.88,212,1635231600"; d="scan'208";a="239843757"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2021 14:40:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,212,1635231600"; d="scan'208";a="464863221"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga003.jf.intel.com with ESMTP; 16 Dec 2021 13:55:24 -0800
-Received: from fmsmsx606.amr.corp.intel.com (10.18.126.86) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 16 Dec 2021 13:55:24 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+X-IronPort-AV: E=Sophos;i="5.88,212,1635231600"; d="scan'208";a="506522557"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by orsmga007.jf.intel.com with ESMTP; 16 Dec 2021 14:40:29 -0800
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
  fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20 via Frontend Transport; Thu, 16 Dec 2021 13:55:24 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2308.20; Thu, 16 Dec 2021 14:40:27 -0800
+Received: from fmsmsx604.amr.corp.intel.com (10.18.126.84) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 16 Dec 2021 14:40:27 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20 via Frontend Transport; Thu, 16 Dec 2021 14:40:27 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Thu, 16 Dec 2021 13:55:24 -0800
+ 15.1.2308.20; Thu, 16 Dec 2021 14:40:27 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WLSjZrevWdn1UhYm65833QbxDrRWvG1mg3n2M1lb5EESOCNh/hS5zjgWOPUqdg6mUTu5gBFyWpHv/oEG7XXOaAIU4V4+fG9+1ZKPIHycNyJK03x6mdXS7VrSg8BzaIR/wiD3caBENmNmKu8vs3Blxycv3Hnqpjqb7CNDBFpuaCvlB6tPo5fojuf58S3OqUD/+Gadoop1WKNKyR0qHSBHtjcq7cL5CtjoGN8H2OcR0hFLq5w55symik3XEDTch0BECzNHNcEeiZJCxKw6DvZORTCS2gC1py0+7rf0JmXGf8tpxAcvIlgNy0FabdNDqJ+httZSxfhodEwBLZplbLDvuQ==
+ b=Cp53+lE1dAuWMyjxPlQPOWS8Zvkpu65Mta2zpXFC9P0Xu47iLSq6MA4BxaMlS95KW+9/O/jz5Bm+h8gYc5lzGkj9Q/vS6z31c8BUVXIGm41d4Cz4ub+OyMK4wNhuT6LjNInj7OzzRvkH4WgISZ6hyj6+kZuBr8MoSQ3bwHgBoXsXSwvfnGHn4G9yNK5d4mN4ccdX+bj7N7tOtYHTVsy1vQLdZ8/mbWbVFdrGUIbTXB245Vf+aOxKJAoNfXVn5yEU8ijF8MA2/Lt9LJLuCt3DAuczJ7P05bbX71GXPuwU2omTV32JKrXr+HreMfzD4LDpUck0nkRjG4mAZ0RWwa0mdQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sJayFXrxAPTP19yDf4WSIBBrJcsfHqFgrS5d8fH0O3A=;
- b=NBFQar70+pkMSKTtvyWomhEt/rIr+WMcUImck38+hv2Todw39dlHfGiECcWnVULKBuRF3gKVBEeEatvnfjXzei5suHgH+m+2pCkVHCalMaWbRjDtvbXsKgIrkNYG0AMx1R81vJvyL8Fk3Ak/DTX4SIXQLKv4gjYpqkFJ8TquECXVyIGzXOiHt8Xo0+mhVIMDcTi4uwI8xHHOzDmrfRj/ZUs/zoerfS603JH9Fu4/DnUji5r80kofzHWv9u8Ug0FmFDfR6g2TpxbEs7jw0G0lr00v6qP2hEGSC/dNGDgUG6/QjrYIwIS7OqW/zkpYpdp0TfnIH9zsuyEVEiDPtbl10Q==
+ bh=lPPx6fkFoEe51qEW6YHclqD7hYXNJEPY/0XsGN9e8b8=;
+ b=IszF814LI1KBCx0WU+lJx3BqoOMq7uzgS1CrTCn+mKovpu8zV1H6VBrgjS6AnuE8HaYwqNV17wpEJc8DCKNCndv6U2CsLpbDDWReSPM/qgUr45Yl13rA4o+51r8syy+Ya0Q3pxBoWn2RFjzFQPxG/806XCHGuefcUEk9ZhqwPFebhqrfpEVGdy6NKVs5WyrXgtdlnrugZhNiMZOBhbRE2Oiqaau7fIO2vFv+UQZ7GzJZHnPoXA4pWNXp9k5JNE10paUC2gX0i5dZvz9fwUnvA6Z1fPEK52+r6Qh39Knj2uo5vNjUJxzrYbeDTRICPTJsXeSIKV9mpNWEXFocEZxdlw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from CO1PR11MB5169.namprd11.prod.outlook.com (2603:10b6:303:95::19)
- by MWHPR11MB1262.namprd11.prod.outlook.com (2603:10b6:300:29::19)
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by BYAPR11MB2597.namprd11.prod.outlook.com (2603:10b6:a02:c0::17)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.14; Thu, 16 Dec
- 2021 21:55:21 +0000
-Received: from CO1PR11MB5169.namprd11.prod.outlook.com
- ([fe80::e8b9:8f6d:8519:72ca]) by CO1PR11MB5169.namprd11.prod.outlook.com
- ([fe80::e8b9:8f6d:8519:72ca%8]) with mapi id 15.20.4801.015; Thu, 16 Dec 2021
- 21:55:21 +0000
-From: "Tolakanahalli Pradeep, Madhumitha"
- <madhumitha.tolakanahalli.pradeep@intel.com>
-To: "jwboyer@kernel.org" <jwboyer@kernel.org>
-Thread-Topic: [Intel-gfx] i915 Updates: ADL-P DMC v2.14
-Thread-Index: AQHX5xph/f6XAKy2GE6V4WspnPfE+qwo74wggAtcvICAAPsWgIAAeauA
-Date: Thu, 16 Dec 2021 21:55:21 +0000
-Message-ID: <3425b0f40b097a9c8f6942f3ea6f6135d86c755f.camel@intel.com>
-References: <9d3a16d4327fd6bb0a52cfe8e4bb0857a81494f2.camel@intel.com>
- <2b6c0de45581430daff7f698e94d94ad@intel.com>
- <edc5973fa662d059d4ffa3d01c5e7823817d5784.camel@intel.com>
- <CA+5PVA4mVcs4sejbE=Y4Ofy0Ev-L34qcds2WfZLeOcUXy+Rcyg@mail.gmail.com>
-In-Reply-To: <CA+5PVA4mVcs4sejbE=Y4Ofy0Ev-L34qcds2WfZLeOcUXy+Rcyg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.42.2 (3.42.2-1.fc35) 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f114c7bc-6113-4e4b-ef19-08d9c0dec1fb
-x-ms-traffictypediagnostic: MWHPR11MB1262:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <MWHPR11MB12623792F165A959F8D1AC3BC7779@MWHPR11MB1262.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:854;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: PfsErIRTxhZMXXoyu5hcH/CYL53Zi2rMdUzw3PnJ7JvB2Cexst2y+2AL/T6EW3cK/imvl+vnkNyYd0kXv02G0URWDxNc0FpE4aOERe3XLIOaN2fgmmbwl8o6SZiJTkRH3JDmYKt1VqIMzN5/v0ZHTsWhzwgQwYoYehQgygXk9mNaAimMKqcTRoNimyEi9d3vTlGkealbNzDNcAVNwSoJeCLUs9PPFmL46LlsWD2hUfnNGCDF8QOrutZHjaafgGCYGh7LkDh0+URLK+ef2gSDWiPiSD9jlHMbTBBLz/v6jkPNijd0wSZJ2XRuqrQXsnk3a9JlTA8VFMP/U3OgGJCH/9jLlcZxhgZsFiCJH8FFrFURmiX+lRdQdzuQCj/VOzwgwWHA3xmpps0JPUWGRhruJXEHJhIbnk2dkmr09IODsNrwlKl4Q49r69wKzO9BtYIGLydDpzhJMiknNlGK0ztmZMToB0KO2y52NZzm22ymDvMGHA9XVnN8nHe6JZnK9Oc2wPYaqtI5+C6w9pXfzpAiqQ1AS9LaMYzWxWjDARbZhyCXtsjAUgteR64MUNlRBlIKIwQS8ashND/lHBKqug8JJfjGFereg3zoGropDaYJAS4zWijXHcXGbsoU8bvn3lsJG3PM3Z1Gse7YfK294xrevjWqfBHmTvf/UE1MI7Gs+DtPwwcVoYWPMMr6Md5xk1+zMBD+943NyIAbjSaDVPVpSA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5169.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(366004)(54906003)(66556008)(64756008)(66446008)(86362001)(6512007)(15650500001)(186003)(2616005)(6916009)(83380400001)(38070700005)(82960400001)(76116006)(71200400001)(4001150100001)(8936002)(66476007)(66946007)(316002)(5660300002)(4326008)(6486002)(53546011)(38100700002)(8676002)(6506007)(36756003)(2906002)(508600001)(122000001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Z0tvV3crZjdidTVyd0RWTnU5S3RERXZQNjFybFp1TklBS250RlA0cHk1Rzlw?=
- =?utf-8?B?U0pLYURZNkNjVFc1ZndGWjlGNERCKzBFZ3RtRlI3YWJySVQ0QzhhcXoySXF5?=
- =?utf-8?B?Nnd0b1pWaVg2TmIrd1ZNOHV1RUFKZFJmejh0MUgzR0k3QmhuSjFpQm5UOS9l?=
- =?utf-8?B?L0NVVENmRUtqbEVTUTBEV2xkRWRhOE9hNlZaM0ZhTE5ld1BNY2JVWW5RYkpI?=
- =?utf-8?B?RU9URFgzeE96OWptMFJ5Z1FMd3V3ME9KSkFmQ1VSK1dUZGZhSGJNMlpEUmkv?=
- =?utf-8?B?dSsxNzdaNTBZMElManJoMGIxbFFVcmJzSVVFSHFwb3RMZHNVaTRiRngxZ3Bs?=
- =?utf-8?B?RjkranRSc2pnOERUNGNUZVlXYzhWa1NsZ0NFR3Iya1pLQ3NJVkd6ZmxWQk9V?=
- =?utf-8?B?L3h5QWp2V0ZzbTF2ZHpqQkwvUlZvN1JiUkpNdG1rSklNbDBRSjhjaDlMRjdQ?=
- =?utf-8?B?VDhWOWV0ZWFxMkFtRW5LUUgxRVVKZkJ6Q2dGdTRDR1RZU0ZKQ2dBZnhZVWkx?=
- =?utf-8?B?YVYvQVYxK0FxaVJ0Y1J5ak05NlVpWGRWUW5JNmwxNFBidndsazdCR205U2RS?=
- =?utf-8?B?aHVGc20zbmg3alVvcU1LaTRVSGtvUEhIMVN5MUNKMnlFeExMcFEvL3JldWE5?=
- =?utf-8?B?VjU4N3FRcGlEa0V0ckdQTDMwNlpvMDNXMmY3K3ZoNk5QSHVWRTN2RUN4MCt6?=
- =?utf-8?B?eXBubVgyT1FXNjZnNmhPWWtqQnZaK1F1MTR2eTVCSmVoUnVSdEp6NkVianQ3?=
- =?utf-8?B?V1d3N01iaVVNVDhwV0E0dUlhK3h1c3A4WkNjVHg4aWFwV3IvWnQ4RFRFaTh0?=
- =?utf-8?B?YzN2VTJ0VEtiYVQ2dk5CV1g3SHFkWllKMDNYN0RLdmVzYWF4eTdsV3F6emZ1?=
- =?utf-8?B?dGpmUXNkOCthQzJxckF0dnE0SjcrVnE1bUtteTNkSTNIcXNwSmJGL0pyQlpw?=
- =?utf-8?B?cWpxdVUvNGZad3FsUnl2Q1BmOWhGODhTY2dmL0liOGtqbTh1eisvNHNKU05m?=
- =?utf-8?B?QmZyem5SQmIyMlJzc2pxNGhLT0NGbkl5U1k2cWg1dlpncFFMWG4vNk9UZmsv?=
- =?utf-8?B?RHFhajJvckIrd3Z1MTBRNThpcllrNVBiWGJYM3A0dmt5eDBpZjBiMCs1eHZU?=
- =?utf-8?B?KzdKaW0veVdJN0w0M0luWVMyQ2tQNWJwaE9qZjlkdkcrN3dORG9jMnV6aEVG?=
- =?utf-8?B?M3hYb2UrZFdLZGlOZ1Q3a2xveDNPYkk2SFp4YloxQXl0Nnc0TTArRXdEdG1U?=
- =?utf-8?B?a0FWcmZGWWpZWUtWN3piZ0gzWkMvc283akhvaVpKUnlwY2hBdXF5OEt4ZVZ0?=
- =?utf-8?B?VXlXSnlNdStSajIwSWwxZWJTSDAxYU0wbXQrd2dPZWYvQmxXSFNKaTU0TmZa?=
- =?utf-8?B?UUlPOXY4VlJ4dEhMNnFVVTcvTXlsSm5nU2pPcTZ6NFZSaUpwVndsUFhPREQ2?=
- =?utf-8?B?VHpwbDUyWUJiL1J1YkJ5c3luTHVLR1ZFTjBFWFk3aTBkWWhBb2RPSERGMnoy?=
- =?utf-8?B?bXJ4T0ZmaFBPSjVLaTJYRHlHWjBzQnRzZ0FNZmoxZWF2U3hOSHNqcjZzcFJt?=
- =?utf-8?B?UlI3T0swZG5wdE45cDJBZGQvdVl1TUwzYzU2ZktDTWUvOTBXM2tsS2N5OUFK?=
- =?utf-8?B?R1NJRjdySWRvYVJLT2NVeGVQR3RFYStGTlNJaHV5S1JsVGNDbDZRc25Dcksw?=
- =?utf-8?B?aVlTdEduZVpzS2pWV2pmQW9GNXFQTUVwbU1Wa0JmZjZrSm93UTM2V3FONlY4?=
- =?utf-8?B?c2FoUkQvbFlscnJDa3RLTTFIUVQ2cXRINzFkdDZtRVNqL0pBMVFGaEdBNk1w?=
- =?utf-8?B?SGlHeVROWllOK0tkSHk0Vys1d2RzYTY1eWVoMGk4WnFqQWxvTXViZm9WOHVo?=
- =?utf-8?B?M3E0ektka1hQUW9TLy9KZHhsSlI5N1dBR3QrcXF2a3JlYWo3MVZoYTFrcmo3?=
- =?utf-8?B?dVZPa3d0cmZTRnBBSHhLczdXRWdRTDNtb2dWVkxsYzloM0RpdmhCUU9jVW9J?=
- =?utf-8?B?ZTd5a011Z0ErMGZUSk95Q3RhYlJjN3VkZG1DbnBTbG5OVWdqY1pVOGdHR3lG?=
- =?utf-8?B?L0N0Y3ZacHBuVlFDTGdmS2pjbTJBdjRDZ3lFdjRpZlVKZEVVYmk5UDRJVnhi?=
- =?utf-8?B?T3BiSGVSZFB3bXprdjFtN1VRazV0bmpnZTR5VG8zaE9QcmtnUDhiVGg2KzdF?=
- =?utf-8?B?WEs0Mm9nWitadStiWWpsRFRkSXczWHNLemlsaThTbzlaWlJDdXJoU2RyTm55?=
- =?utf-8?B?U3NMbmFXVkh4TmpnMlUzVEpUM0lRcUhOcmtKRVNWUzFPdG9mR0puK0o3ZHky?=
- =?utf-8?B?aVNKUm5LYUNjMVNqdUhOMkNPOHlEa29CWmEvdmZBbG5lMnh5S1lEYU93RXd0?=
- =?utf-8?Q?Zh3oCoYz2BcD6xA2+tXC6JLGGnPLb9a+I/eaxs5GEzGZl?=
-x-ms-exchange-antispam-messagedata-1: b99gH9Xla+9iwwlWDfMzc8izWAUozGDmyqGzkSFAA4XyOSiu2OnMUoKr
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2E89B3E9028E454FB5F5274D0EB652E8@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ 2021 22:40:24 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::8460:d836:4335:641e]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::8460:d836:4335:641e%6]) with mapi id 15.20.4801.014; Thu, 16 Dec 2021
+ 22:40:24 +0000
+Message-ID: <dd455cdc-a667-b4c6-a354-d44aca4a74d9@intel.com>
+Date: Thu, 16 Dec 2021 14:40:21 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.4.0
+Content-Language: en-GB
+To: =?UTF-8?Q?Zbigniew_Kempczy=c5=84ski?= <zbigniew.kempczynski@intel.com>
+References: <20211213232914.2523139-1-John.C.Harrison@Intel.com>
+ <20211213232914.2523139-9-John.C.Harrison@Intel.com>
+ <YbruxWHUL7+Mrkze@zkempczy-mobl2>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <YbruxWHUL7+Mrkze@zkempczy-mobl2>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MW4P222CA0026.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:303:114::31) To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e219dad8-ddf2-4e4c-c93d-08d9c0e50c85
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2597:EE_
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-Microsoft-Antispam-PRVS: <BYAPR11MB2597C187C2099B49CFBC8583BD779@BYAPR11MB2597.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bOF0CaPGFDKPiHDAj6V42Zxpcu1cZY3OO8uPjI0BLAxx1iHqzwSrd62b9VJJZ5gwbgXRJYMGrOdQYvOTuStDO9cK/pfBhvrnCis5u2/Q8RZOYCN1nsPa+xcqrdrg5L7ZGSpZXN8s6K0VSct8WCXDF/bTwDi3zAlBzOeKEQMYRz5Bup2WpTvSDqcr5KoUzy2rez4j44tIzfatuPXjj5WZ9gr8rRY+miLjBYanF3ZtwibDaKf3xyhi2aSoUbkuKynwJcHXU/fXAcYO8AxeocmsTRUF1ToRhBY30BaQ1/jGS02ll7egoW0vXe+KHsiGhsrByNxa5zOLWfKi8JhwJ5UMX/iHt5OIhiBFEEpu04KrspnopamhYwny0FRb9bwHnaBYkQtfjUivjQYzO2S1Diy1+TzL2LbADfPQII9IDC9nPYQ/Bfb2UQTfmLLwi+Yof8TK44VZwIil77i5b7t2AZlyCMBoPwaua9pYdEvWOKEzevw/KS4bpp7QiCnEzkWeX4AOFCY3DaDB1gY9R5ToEGnre88J9OgXIWJMHIXOPi9LXOYgtPSlg12bXAMCmcxhOXSWp3bsL26JNMt8rsOBfizYySVsPWTSurvyIwel6lGz2bCM181PpBQmNEJ7MA9MPlAIOHRq9qDXrouhPxuUMj4BeEw57UDZdlJdbHdNXpryFQf4cBwOLfd66C3yqppO6S5AWW6iWQQaf5WqX2b+47B3H343g3PmPirlzlAlriRjMqq9OevXYZ7f50tMdv7yzuvF
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(366004)(83380400001)(8676002)(26005)(38100700002)(316002)(6862004)(6506007)(186003)(31696002)(37006003)(4326008)(6512007)(6486002)(2616005)(31686004)(508600001)(86362001)(450100002)(8936002)(6636002)(6666004)(53546011)(30864003)(66946007)(5660300002)(66476007)(2906002)(36756003)(82960400001)(66556008)(66574015)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a2F1UmpZejJ5NHNBdk1jd3doRDdiU212NjdDVFd4RlVLTDREbzlnazM5V0E5?=
+ =?utf-8?B?ZjBlWWltNG9aeWpkTjBseml4UEhlR040VGdtcnE1QnNCVzUzcXJmR2V3cXlP?=
+ =?utf-8?B?dy9ZVTNWYk00KzdkSEZoOHcrVVk1bnQxcmlWNmtnTlArV1dFbzJhdjJDNHIv?=
+ =?utf-8?B?WGJDVzBQUk9WbVJjV1R2NDliWUZnbWwrRTFUQ3p0SmV2ZzNlNXRDQlVselZG?=
+ =?utf-8?B?ajFyQnhmNkpxRU5kVW5maXJVY0VpTjZtY3FWOFZMckY1dG9qWXBJNG4xSGhQ?=
+ =?utf-8?B?LzVFaDloK01Hc2FuWUJqYUFNdk1yajVwM1loSzBNK3p5bFFwM2VGVlRpc3dN?=
+ =?utf-8?B?cVhWbEZMclg0Ty8yNVB4dk9qc25KWFMyNFhDZEM0aVRTamw3Y1NBNUpYdm96?=
+ =?utf-8?B?VlBWdXVNWjhza0NXZloyMm1xeDdpLzBUZEhrZUV5L3NaYldoZ2JGbUlLdzZF?=
+ =?utf-8?B?a2ZNWVZiUGYrSE95T1VMRlVqdTZ4OW9xRG9XNTh6VldKelZuZVBVa21ldm9Y?=
+ =?utf-8?B?dkYzd3IrWUNtWmp5alNKV1BwckpTVXU4NmNXQ0Fyd21hRmkzejY1WE1mMEVT?=
+ =?utf-8?B?TENZdng3ZGlSWXJIUStqNTZJYzdCNk5uRGdUa0dUWGFqSERSRkczalpVLzYx?=
+ =?utf-8?B?R1hUdUNhUGNPdVBSTXZCKzQ4Z1JqbWx2SlpUTnowWUlCSStwS3M3cWxFYlRR?=
+ =?utf-8?B?U2o5S0dESXJURTdzWkh2VXI4Zk56SEJKLzJXV3BJbFRMVCtReHdBOWR1NjY1?=
+ =?utf-8?B?N0svcDZMSzNHUVFiclZKY0FQcU1wSExQY21ZUlJUZXNEY3lXZ0E2UzZwZVhC?=
+ =?utf-8?B?UUh1d09wZ0pNc3RaN0tST1JUM1l1YW9RM3RCS0o4WWRvMi9LNFpDVWlCMzhk?=
+ =?utf-8?B?Yk5wVTRoQlNZZ3RRcSswSTVrM0JwOFF3cE1wdG1UQS9QSWg5c3NLUXZSV2x0?=
+ =?utf-8?B?b2J6c1M1MndJVlRzb3ExamVWY0dyOUhIVDNPUWI5ZjBiUytSM2xwRWVaV0Ny?=
+ =?utf-8?B?cXJIMnAydUJadW40Nm14TzBRZTlqTGJ4ZHl2TWFqRC9PalRvRGgrejRVMHRj?=
+ =?utf-8?B?eGRlQmw4Q0ZVazJ3NjFWOUJldHZhTDVnNnRGeFRXY1EwUGsvWFI0SWZCT2tm?=
+ =?utf-8?B?QVhxUlA1akkydGJ4RXdGckhlYUhHNzMxb0poRU4yd0pUclkrRjFLNXA3Um9n?=
+ =?utf-8?B?UzFWcjRBOHJIV1UvRlZnckhJcTE0UjNRV2V4dUJZbEFqVVRzaG5qaXRBMDNx?=
+ =?utf-8?B?WlZzVmIyVWhCa2pUTW5keDF1Qkg5QStsOXY1SzE2R0FuUU1Hc2ZoMXIxYVls?=
+ =?utf-8?B?ZjlJR2pkSzFEQ0dKYlhTQlBmMytvN0IvZlZ3WDVjN2RuM3NsLzV1bGdSdzRS?=
+ =?utf-8?B?bTFwbC9LWkMwcERmMW40cWlTa0xHYkNHMDBJTmpGSHVHWW9RMDlsNjlyUmVN?=
+ =?utf-8?B?bzBBR2NOWmliT3FobFpnQlcyL2haeTV3bG42bUV1NmovcVlJSUxQMytwcTdI?=
+ =?utf-8?B?ZklXWklBeFphNm5KdnJYR3Yzei90MEM2RG9teFVJenBBQXVYNmxvOW9VRGR0?=
+ =?utf-8?B?WWtidFhmRnY5YStoSE9JQjF5SWhiV08yYjlWMFY4RytRd1FTbDNOVjNOYTNX?=
+ =?utf-8?B?cGloRjFuMFR2SHhtVUw1YktpcUdCSmdFQkpoaE42dVFER1VXdWFmWU9zWmVt?=
+ =?utf-8?B?YVFQT09OcmM3NG5TQXdQQkJ3eUVsdzk1RUNBOHVjODE3d096MHByeU1VS2Vz?=
+ =?utf-8?B?SndRMlAyWU9kVzFhNDBobEpDTnFQaXIrL21SZUJZTW96SXdGMm83V29lY21n?=
+ =?utf-8?B?Y0V1akJmcnQxSHJkcjVvclljWlRxNlNBMlB6WXBHRFdlcFRiU3dhY2ZDV2dU?=
+ =?utf-8?B?Y3NOQk1nUnVtVmx4TDhlQzhDWkY3M1Nrc0RWSDlnSy9aa2dmMENYSXE1ODFp?=
+ =?utf-8?B?dTVqYjJmUjJ3Qnk5SkNMTjUvRWc1aWRVNEdzazVMWU8wb1V4bStkSGRjbXJj?=
+ =?utf-8?B?K0dlSGI2aDN0dU13NDVPQk5MWEZVdjlrWXQrOXlhK0VXQzBndmtwZHZmajl0?=
+ =?utf-8?B?M0V5OTFVeFpiRlNzcTF4UVZvWXFWZ01OSzUzdXJpTnBmcUZibzB3N0Vab29L?=
+ =?utf-8?B?a0M3ZVlUMy9nVVMzd3FmSjZnWXF3U2VXSHVuRW03eGJRUmsvODh3eWdWc3lJ?=
+ =?utf-8?B?eTRPeXk5VFlqME1ZVjBQTWw1RjJ0S2twdzRFbFNnelhBenovemFaTFJQbU1x?=
+ =?utf-8?Q?3X+krL5hD33HtwraEyDCRYoehiehfbelCiMgmiTS/k=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e219dad8-ddf2-4e4c-c93d-08d9c0e50c85
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5169.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f114c7bc-6113-4e4b-ef19-08d9c0dec1fb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Dec 2021 21:55:21.7769 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0e3tla6fJs8akVi0hQBk430gZhYvE3Bty1hF5kG6Z0EdrOdiQg7UQBtzUvLbOKWI9joRIqOwcD55qbNhWxKBpHW+osEEJWdhVOq7kkiVWj3TOS7Fazgx9Ow0ZIH+3ZDinSF9M3l30etQ+c8F3Sq71g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1262
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2021 22:40:24.2586 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mP1gEPDhrfAUK3D+uISV1fLsGiN+pzQ2iffJYdQh4qEpX+Q9QUDBLCs9uKdDjw5KgPXOnG7eDJ0gCF4V896HfHMxCXhwMt5BJOGeTY0plJI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB2597
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] i915 Updates: ADL-P DMC v2.14
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 08/11] lib/store: Refactor
+ common store code into helper function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,50 +164,439 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "kyle@mcmartin.ca" <kyle@mcmartin.ca>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Hutchings, Ben" <ben@decadent.org.uk>,
- "linux-firmware@kernel.org" <linux-firmware@kernel.org>
+Cc: IGT-Dev@lists.freedesktop.org, Intel-GFX@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIxLTEyLTE2IGF0IDA5OjM5IC0wNTAwLCBKb3NoIEJveWVyIHdyb3RlOg0KPiBT
-aW5jZXJlIGFwb2xvZ2llcyBmb3IgdGhlIGRlbGF5LsKgIFB1bGxlZCBhbmQgcHVzaGVkIG91dC4N
-Cj4gDQo+IGpvc2gNCg0KVGhhbmsgeW91LCBKb3NoIQ0KDQo+IA0KPiBPbiBXZWQsIERlYyAxNSwg
-MjAyMSBhdCA2OjQxIFBNIFRvbGFrYW5haGFsbGkgUHJhZGVlcCwgTWFkaHVtaXRoYQ0KPiA8bWFk
-aHVtaXRoYS50b2xha2FuYWhhbGxpLnByYWRlZXBAaW50ZWwuY29tPiB3cm90ZToNCj4gPiANCj4g
-PiBCdW1wISA6KQ0KPiA+IA0KPiA+IFRoYW5rcywNCj4gPiAtIE1hZGh1bWl0aGENCj4gPiANCj4g
-PiBPbiBXZWQsIDIwMjEtMTItMDggYXQgMTg6MTEgKzAwMDAsIFNyaXZhdHNhLCBBbnVzaGEgd3Jv
-dGU6DQo+ID4gPiBQaW5nIDopDQo+ID4gPiBDYW4gdGhlc2UgdXBkYXRlcyBiZSBtZXJnZWQgdG8g
-bGludXgtZmlybXdhcmU/DQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gVGhhbmtzLA0KPiA+ID4gQW51
-c2hhDQo+ID4gPiANCj4gPiA+ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiA+ID4g
-RnJvbTogVG9sYWthbmFoYWxsaSBQcmFkZWVwLCBNYWRodW1pdGhhDQo+ID4gPiA+IDxtYWRodW1p
-dGhhLnRvbGFrYW5haGFsbGkucHJhZGVlcEBpbnRlbC5jb20+DQo+ID4gPiA+IFNlbnQ6IFRodXJz
-ZGF5LCBEZWNlbWJlciAyLCAyMDIxIDY6NDggQU0NCj4gPiA+ID4gVG86IEh1dGNoaW5ncywgQmVu
-IDxiZW5AZGVjYWRlbnQub3JnLnVrPjsNCj4gPiA+ID4gaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZzsNCj4gPiA+ID4ga3lsZUBtY21hcnRpbi5jYTsgandib3llckBrZXJuZWwub3JnDQo+
-ID4gPiA+IENjOiBTcml2YXRzYSwgQW51c2hhIDxhbnVzaGEuc3JpdmF0c2FAaW50ZWwuY29tPjsg
-bGludXgtDQo+ID4gPiA+IGZpcm13YXJlQGtlcm5lbC5vcmcNCj4gPiA+ID4gU3ViamVjdDogW0lu
-dGVsLWdmeF0gaTkxNSBVcGRhdGVzOiBBREwtUCBETUMgdjIuMTQNCj4gPiA+ID4gDQo+ID4gPiA+
-IEhpIEJlbiwgSm9zaCwgS3lsZSwNCj4gPiA+ID4gDQo+ID4gPiA+IEtpbmRseSBhZGQgdGhlIGJl
-bG93IGk5MTUgY2hhbmdlcyB0byBsaW51eC1maXJtd2FyZToNCj4gPiA+ID4gDQo+ID4gPiA+IFRo
-ZSBmb2xsb3dpbmcgY2hhbmdlcyBzaW5jZSBjb21taXQNCj4gPiA+ID4gYjBlODk4ZmJhZjM3N2M5
-OWEzNmFhYzZmZGViNzI1MDAwMzY0OGNhNDoNCj4gPiA+ID4gDQo+ID4gPiA+IMKgIGxpbnV4LWZp
-cm13YXJlOiBVcGRhdGUgZmlybXdhcmUgZmlsZSBmb3IgSW50ZWwgQmx1ZXRvb3RoIDk0NjINCj4g
-PiA+ID4gKDIwMjEtDQo+ID4gPiA+IDExLTIzIDEyOjMxOjQ1IC0wNTAwKQ0KPiA+ID4gPiANCj4g
-PiA+ID4gYXJlIGF2YWlsYWJsZSBpbiB0aGUgR2l0IHJlcG9zaXRvcnkgYXQ6DQo+ID4gPiA+IA0K
-PiA+ID4gPiDCoCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9kcm0vZHJtLWZpcm13YXJl
-DQo+ID4gPiA+IGFkbHBfZG1jX3YyLjE0X3VwZGF0ZQ0KPiA+ID4gPiANCj4gPiA+ID4gZm9yIHlv
-dSB0byBmZXRjaCBjaGFuZ2VzIHVwIHRvDQo+ID4gPiA+IDJhMmFhNDEwYzJlYWViZTU4MDdkMWZk
-MzIxZTQyYjhmNTMyODhkOTE6DQo+ID4gPiA+IA0KPiA+ID4gPiDCoCBpOTE1OiBBZGQgRE1DIGZp
-cm13YXJlIHYyLjE0IGZvciBBREwtUCAoMjAyMS0xMi0wMSAxNjo1MDozMCAtDQo+ID4gPiA+IDA4
-MDApDQo+ID4gPiA+IA0KPiA+ID4gPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gPiA+ID4gLQ0KPiA+ID4gPiBNYWRodW1p
-dGhhIFRvbGFrYW5haGFsbGkgUHJhZGVlcCAoMSk6DQo+ID4gPiA+IMKgwqDCoMKgwqAgaTkxNTog
-QWRkIERNQyBmaXJtd2FyZSB2Mi4xNCBmb3IgQURMLVANCj4gPiA+ID4gDQo+ID4gPiA+IMKgV0hF
-TkNFwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqAgMyArKysNCj4g
-PiA+ID4gwqBpOTE1L2FkbHBfZG1jX3ZlcjJfMTQuYmluIHwgQmluIDAgLT4gNzczMDAgYnl0ZXMN
-Cj4gPiA+ID4gwqAyIGZpbGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKQ0KPiA+ID4gPiDCoGNy
-ZWF0ZSBtb2RlIDEwMDY0NCBpOTE1L2FkbHBfZG1jX3ZlcjJfMTQuYmluDQo+ID4gPiA+IA0KPiA+
-ID4gPiBUaGFua3MhDQo+ID4gPiA+IC0gTWFkaHVtaXRoYQ0KPiA+ID4gPiANCj4gPiA+IA0KPiA+
-IA0KDQo=
+On 12/15/2021 23:46, Zbigniew Kempczyński wrote:
+> On Mon, Dec 13, 2021 at 03:29:11PM -0800, John.C.Harrison@Intel.com wrote:
+>> From: John Harrison <John.C.Harrison@Intel.com>
+>>
+>> A lot of tests use almost identical code for creating a batch buffer
+>> which does a single write to memory. This patch collects two such
+>> instances into a common helper function. Unfortunately, the other
+>> instances are all subtly different enough to make it not so trivial to
+>> try to use the helper. It could be done but it is unclear if it is
+>> worth the effort at this point. This patch proves the concept, if
+>> people like it enough then it can be extended.
+>>
+>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>> ---
+>>   lib/igt_store.c             | 114 ++++++++++++++++++++++++++++++++++++
+>>   lib/igt_store.h             |  30 ++++++++++
+>>   lib/meson.build             |   1 +
+>>   tests/i915/gem_exec_fence.c |  77 ++----------------------
+>>   tests/i915/i915_hangman.c   |  61 +------------------
+>>   5 files changed, 152 insertions(+), 131 deletions(-)
+>>   create mode 100644 lib/igt_store.c
+>>   create mode 100644 lib/igt_store.h
+>>
+>> diff --git a/lib/igt_store.c b/lib/igt_store.c
+>> new file mode 100644
+>> index 000000000..6d9869b58
+>> --- /dev/null
+>> +++ b/lib/igt_store.c
+>> @@ -0,0 +1,114 @@
+>> +/*
+>> + * Copyright © 2020 Intel Corporation
+>> + *
+>> + * Permission is hereby granted, free of charge, to any person obtaining a
+>> + * copy of this software and associated documentation files (the "Software"),
+>> + * to deal in the Software without restriction, including without limitation
+>> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+>> + * and/or sell copies of the Software, and to permit persons to whom the
+>> + * Software is furnished to do so, subject to the following conditions:
+>> + *
+>> + * The above copyright notice and this permission notice (including the next
+>> + * paragraph) shall be included in all copies or substantial portions of the
+>> + * Software.
+>> + *
+>> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+>> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+>> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+>> + * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+>> + * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+>> + * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+>> + * IN THE SOFTWARE.
+>> + *
+>> + */
+> Use SPDX. I like idea of extracting this.
+>
+>> +
+>> +#include "i915/gem_create.h"
+>> +#include "igt_core.h"
+>> +#include "drmtest.h"
+>> +#include "igt_store.h"
+>> +#include "intel_chipset.h"
+>> +#include "intel_reg.h"
+>> +#include "ioctl_wrappers.h"
+>> +#include "lib/intel_allocator.h"
+>> +
+>> +/**
+>> + * SECTION:igt_store_word
+>> + * @short_description: Library for writing a value to memory
+>> + * @title: StoreWord
+>> + * @include: igt.h
+>> + *
+>> + * A lot of igt testcases need some mechanism for writing a value to memory
+>> + * as a test that a batch buffer has executed.
+>> + *
+>> + * NB: Requires master for STORE_DWORD on gen4/5.
+>> + */
+>> +void igt_store_word(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+>> +		    const struct intel_execution_engine2 *e,
+>> +		    int fence, uint32_t target_handle,
+>> +		    uint64_t target_offset, uint32_t target_value)
+>> +{
+>> +	const int SCRATCH = 0;
+>> +	const int BATCH = 1;
+>> +	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>> +	struct drm_i915_gem_exec_object2 obj[2];
+>> +	struct drm_i915_gem_relocation_entry reloc;
+>> +	struct drm_i915_gem_execbuffer2 execbuf;
+>> +	uint32_t batch[16], delta;
+>> +	uint64_t bb_offset;
+>> +	int i;
+>> +
+>> +	memset(&execbuf, 0, sizeof(execbuf));
+>> +	execbuf.buffers_ptr = to_user_pointer(obj);
+>> +	execbuf.buffer_count = ARRAY_SIZE(obj);
+>> +	execbuf.flags = e->flags;
+>> +	execbuf.rsvd1 = ctx->id;
+>> +	if (fence != -1) {
+>> +		execbuf.flags |= I915_EXEC_FENCE_IN;
+>> +		execbuf.rsvd2 = fence;
+>> +	}
+>> +	if (gen < 6)
+>> +		execbuf.flags |= I915_EXEC_SECURE;
+>> +
+>> +	memset(obj, 0, sizeof(obj));
+>> +	obj[SCRATCH].handle = target_handle;
+>> +
+>> +	obj[BATCH].handle = gem_create(fd, 4096);
+>> +	obj[BATCH].relocs_ptr = to_user_pointer(&reloc);
+>> +	obj[BATCH].relocation_count = !ahnd ? 1 : 0;
+>> +	bb_offset = get_offset(ahnd, obj[BATCH].handle, 4096, 0);
+>> +	memset(&reloc, 0, sizeof(reloc));
+>> +
+>> +	i = 0;
+>> +	delta = sizeof(uint32_t) * target_value;	/* why value not offset??? */
+> I guess I know why there's problem here. target_offset is address in vm
+> passed by the caller. This is regarding to some limitations of allocator
+> infrastructure - for "reloc" pseudo-allocator you would get new offset
+> (internally it returns offset and then add size for new "allocation").
+> With this we don't need to wait for rebind offset for new execbuf.
+> With "simple" allocator put will release offset so new allocation will
+> reuse same offset. Ashutosh proposed how to join both functionalities
+> (stepping as with reloc, stateful like in simple) but I got no time to
+> code this.
+>
+> Regarding issue here, target_offset passed from the caller is to avoid
+> rebind if get_offset() would be called for "reloc" allocator.
+> So there's not real value offset within bo. I would add separate
+> value_offset (shift) to allow caller to put place where it wants to
+> write the value.
+If you understand what is going on here and how to improve it then feel 
+free to either send me an updated version or post an extra patch after 
+this is merged. I don't get how any of the new reloc (or anti-reloc?) 
+code is meant to work. These patches were all written as part of the GuC 
+support a long time ago - before there was any such thing as an AHND 
+(what does that stand for?) or intel_ctx_t. All I'm doing in this patch 
+is moving the existing code to a helper and trying to make it generic 
+enough to be used by another test. And right now, the two tests are 
+passing on both GuC and execlist platforms for me. So the code can't be 
+all that broken.
+
+
+>
+>
+>> +	if (!ahnd) {
+>> +		reloc.target_handle = obj[SCRATCH].handle;
+>> +		reloc.presumed_offset = -1;
+>> +		reloc.offset = sizeof(uint32_t) * (i + 1);
+>> +		reloc.delta = delta;
+>> +		reloc.read_domains = I915_GEM_DOMAIN_INSTRUCTION;
+>> +		reloc.write_domain = I915_GEM_DOMAIN_INSTRUCTION;
+>> +	} else {
+>> +		obj[SCRATCH].offset = target_offset;
+>> +		obj[SCRATCH].flags |= EXEC_OBJECT_PINNED | EXEC_OBJECT_WRITE;
+>> +		obj[BATCH].offset = bb_offset;
+>> +		obj[BATCH].flags |= EXEC_OBJECT_PINNED;
+>> +	}
+>> +	batch[i] = MI_STORE_DWORD_IMM | (gen < 6 ? 1 << 22 : 0);
+>> +	if (gen >= 8) {
+>> +		batch[++i] = target_offset + delta;
+>> +		batch[++i] = target_offset >> 32;
+> Probably I've added this in previous code, for being safe I would
+> add (target_offset + delta) >> 32 for avoid risk passing invalid higher
+> offset part on 32b boundary.
+Pretty sure we don't have any addresses larger than 32 bits yet, but 
+yes, delta should be added in.
+
+Thanks,
+John.
+
+>
+>> +	} else if (gen >= 4) {
+>> +		batch[++i] = 0;
+>> +		batch[++i] = delta;
+>> +		reloc.offset += sizeof(uint32_t);
+>> +	} else {
+>> +		batch[i]--;
+>> +		batch[++i] = delta;
+>> +	}
+>> +	batch[++i] = target_value;
+>> +	batch[++i] = MI_BATCH_BUFFER_END;
+>> +	gem_write(fd, obj[BATCH].handle, 0, batch, sizeof(batch));
+>> +	gem_execbuf(fd, &execbuf);
+>> +	gem_close(fd, obj[BATCH].handle);
+>> +	put_offset(ahnd, obj[BATCH].handle);
+>> +}
+>> diff --git a/lib/igt_store.h b/lib/igt_store.h
+>> new file mode 100644
+>> index 000000000..4d5979e07
+>> --- /dev/null
+>> +++ b/lib/igt_store.h
+>> @@ -0,0 +1,30 @@
+>> +/*
+>> + * Copyright © 2020 Intel Corporation
+>> + *
+>> + * Permission is hereby granted, free of charge, to any person obtaining a
+>> + * copy of this software and associated documentation files (the "Software"),
+>> + * to deal in the Software without restriction, including without limitation
+>> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+>> + * and/or sell copies of the Software, and to permit persons to whom the
+>> + * Software is furnished to do so, subject to the following conditions:
+>> + *
+>> + * The above copyright notice and this permission notice (including the next
+>> + * paragraph) shall be included in all copies or substantial portions of the
+>> + * Software.
+>> + *
+>> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+>> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+>> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+>> + * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+>> + * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+>> + * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+>> + * IN THE SOFTWARE.
+>> + *
+>> + */
+> Use SPDX and 2021.
+>
+> --
+> Zbigniew
+>
+>> +
+>> +#include "igt_gt.h"
+>> +
+>> +void igt_store_word(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+>> +		    const struct intel_execution_engine2 *e,
+>> +		    int fence, uint32_t target_handle,
+>> +		    uint64_t target_offset, uint32_t target_value);
+>> diff --git a/lib/meson.build b/lib/meson.build
+>> index b9568a71b..3e43316d1 100644
+>> --- a/lib/meson.build
+>> +++ b/lib/meson.build
+>> @@ -72,6 +72,7 @@ lib_sources = [
+>>   	'igt_map.c',
+>>   	'igt_pm.c',
+>>   	'igt_dummyload.c',
+>> +	'igt_store.c',
+>>   	'uwildmat/uwildmat.c',
+>>   	'igt_kmod.c',
+>>   	'igt_panfrost.c',
+>> diff --git a/tests/i915/gem_exec_fence.c b/tests/i915/gem_exec_fence.c
+>> index 9a6336ce9..c4091a454 100644
+>> --- a/tests/i915/gem_exec_fence.c
+>> +++ b/tests/i915/gem_exec_fence.c
+>> @@ -28,6 +28,7 @@
+>>   #include "i915/gem.h"
+>>   #include "i915/gem_create.h"
+>>   #include "igt.h"
+>> +#include "igt_store.h"
+>>   #include "igt_syncobj.h"
+>>   #include "igt_sysfs.h"
+>>   #include "igt_vgem.h"
+>> @@ -57,74 +58,6 @@ struct sync_merge_data {
+>>   #define   MI_SEMAPHORE_SAD_EQ_SDD       (4 << 12)
+>>   #define   MI_SEMAPHORE_SAD_NEQ_SDD      (5 << 12)
+>>   
+>> -static void store(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+>> -		  const struct intel_execution_engine2 *e,
+>> -		  int fence, uint32_t target, uint64_t target_offset,
+>> -		  unsigned offset_value)
+>> -{
+>> -	const int SCRATCH = 0;
+>> -	const int BATCH = 1;
+>> -	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>> -	struct drm_i915_gem_exec_object2 obj[2];
+>> -	struct drm_i915_gem_relocation_entry reloc;
+>> -	struct drm_i915_gem_execbuffer2 execbuf;
+>> -	uint32_t batch[16], delta;
+>> -	uint64_t bb_offset;
+>> -	int i;
+>> -
+>> -	memset(&execbuf, 0, sizeof(execbuf));
+>> -	execbuf.buffers_ptr = to_user_pointer(obj);
+>> -	execbuf.buffer_count = 2;
+>> -	execbuf.flags = e->flags | I915_EXEC_FENCE_IN;
+>> -	execbuf.rsvd1 = ctx->id;
+>> -	execbuf.rsvd2 = fence;
+>> -	if (gen < 6)
+>> -		execbuf.flags |= I915_EXEC_SECURE;
+>> -
+>> -	memset(obj, 0, sizeof(obj));
+>> -	obj[SCRATCH].handle = target;
+>> -
+>> -	obj[BATCH].handle = gem_create(fd, 4096);
+>> -	obj[BATCH].relocs_ptr = to_user_pointer(&reloc);
+>> -	obj[BATCH].relocation_count = !ahnd ? 1 : 0;
+>> -	bb_offset = get_offset(ahnd, obj[BATCH].handle, 4096, 0);
+>> -	memset(&reloc, 0, sizeof(reloc));
+>> -
+>> -	i = 0;
+>> -	delta = sizeof(uint32_t) * offset_value;
+>> -	if (!ahnd) {
+>> -		reloc.target_handle = obj[SCRATCH].handle;
+>> -		reloc.presumed_offset = -1;
+>> -		reloc.offset = sizeof(uint32_t) * (i + 1);
+>> -		reloc.delta = delta;
+>> -		reloc.read_domains = I915_GEM_DOMAIN_INSTRUCTION;
+>> -		reloc.write_domain = I915_GEM_DOMAIN_INSTRUCTION;
+>> -	} else {
+>> -		obj[SCRATCH].offset = target_offset;
+>> -		obj[SCRATCH].flags |= EXEC_OBJECT_PINNED | EXEC_OBJECT_WRITE;
+>> -		obj[BATCH].offset = bb_offset;
+>> -		obj[BATCH].flags |= EXEC_OBJECT_PINNED;
+>> -	}
+>> -	batch[i] = MI_STORE_DWORD_IMM | (gen < 6 ? 1 << 22 : 0);
+>> -	if (gen >= 8) {
+>> -		batch[++i] = target_offset + delta;
+>> -		batch[++i] = target_offset >> 32;
+>> -	} else if (gen >= 4) {
+>> -		batch[++i] = 0;
+>> -		batch[++i] = delta;
+>> -		reloc.offset += sizeof(uint32_t);
+>> -	} else {
+>> -		batch[i]--;
+>> -		batch[++i] = delta;
+>> -	}
+>> -	batch[++i] = offset_value;
+>> -	batch[++i] = MI_BATCH_BUFFER_END;
+>> -	gem_write(fd, obj[BATCH].handle, 0, batch, sizeof(batch));
+>> -	gem_execbuf(fd, &execbuf);
+>> -	gem_close(fd, obj[BATCH].handle);
+>> -	put_offset(ahnd, obj[BATCH].handle);
+>> -}
+>> -
+>>   static bool fence_busy(int fence)
+>>   {
+>>   	return poll(&(struct pollfd){fence, POLLIN}, 1, 0) == 0;
+>> @@ -400,13 +333,13 @@ static void test_fence_await(int fd, const intel_ctx_t *ctx,
+>>   			continue;
+>>   
+>>   		if (flags & NONBLOCK) {
+>> -			store(fd, ahnd, ctx, e2, spin->out_fence,
+>> -			      scratch, scratch_offset, i);
+>> +			igt_store_word(fd, ahnd, ctx, e2, spin->out_fence,
+>> +				       scratch, scratch_offset, i);
+>>   		} else {
+>>   			igt_fork(child, 1) {
+>>   				ahnd = get_reloc_ahnd(fd, ctx->id);
+>> -				store(fd, ahnd, ctx, e2, spin->out_fence,
+>> -				      scratch, scratch_offset, i);
+>> +				igt_store_word(fd, ahnd, ctx, e2, spin->out_fence,
+>> +					       scratch, scratch_offset, i);
+>>   				put_ahnd(ahnd);
+>>   			}
+>>   		}
+>> diff --git a/tests/i915/i915_hangman.c b/tests/i915/i915_hangman.c
+>> index 20653b479..4cb9b8b85 100644
+>> --- a/tests/i915/i915_hangman.c
+>> +++ b/tests/i915/i915_hangman.c
+>> @@ -36,6 +36,7 @@
+>>   #include "i915/gem.h"
+>>   #include "i915/gem_create.h"
+>>   #include "igt.h"
+>> +#include "igt_store.h"
+>>   #include "igt_sysfs.h"
+>>   #include "igt_debugfs.h"
+>>   #include "sw_sync.h"
+>> @@ -51,64 +52,6 @@ static int sysfs = -1;
+>>   
+>>   IGT_TEST_DESCRIPTION("Tests for hang detection and recovery");
+>>   
+>> -/* Requires master for STORE_DWORD on gen4/5 */
+>> -static void store(int fd, const struct intel_execution_engine2 *e,
+>> -		  int fence, uint32_t target, unsigned offset_value)
+>> -{
+>> -	const int SCRATCH = 0;
+>> -	const int BATCH = 1;
+>> -	const int gen = intel_gen(intel_get_drm_devid(fd));
+>> -	struct drm_i915_gem_exec_object2 obj[2];
+>> -	struct drm_i915_gem_relocation_entry reloc;
+>> -	struct drm_i915_gem_execbuffer2 execbuf;
+>> -	uint32_t batch[16];
+>> -	int i;
+>> -
+>> -	memset(&execbuf, 0, sizeof(execbuf));
+>> -	execbuf.buffers_ptr = to_user_pointer(obj);
+>> -	execbuf.buffer_count = ARRAY_SIZE(obj);
+>> -	execbuf.flags = e->flags;
+>> -	if (fence != -1) {
+>> -		execbuf.flags |= I915_EXEC_FENCE_IN;
+>> -		execbuf.rsvd2 = fence;
+>> -	}
+>> -	if (gen < 6)
+>> -		execbuf.flags |= I915_EXEC_SECURE;
+>> -
+>> -	memset(obj, 0, sizeof(obj));
+>> -	obj[SCRATCH].handle = target;
+>> -
+>> -	obj[BATCH].handle = gem_create(fd, 4096);
+>> -	obj[BATCH].relocs_ptr = to_user_pointer(&reloc);
+>> -	obj[BATCH].relocation_count = 1;
+>> -	memset(&reloc, 0, sizeof(reloc));
+>> -
+>> -	i = 0;
+>> -	reloc.target_handle = obj[SCRATCH].handle;
+>> -	reloc.presumed_offset = -1;
+>> -	reloc.offset = sizeof(uint32_t) * (i + 1);
+>> -	reloc.delta = sizeof(uint32_t) * offset_value;
+>> -	reloc.read_domains = I915_GEM_DOMAIN_INSTRUCTION;
+>> -	reloc.write_domain = I915_GEM_DOMAIN_INSTRUCTION;
+>> -	batch[i] = MI_STORE_DWORD_IMM | (gen < 6 ? 1 << 22 : 0);
+>> -	if (gen >= 8) {
+>> -		batch[++i] = reloc.delta;
+>> -		batch[++i] = 0;
+>> -	} else if (gen >= 4) {
+>> -		batch[++i] = 0;
+>> -		batch[++i] = reloc.delta;
+>> -		reloc.offset += sizeof(uint32_t);
+>> -	} else {
+>> -		batch[i]--;
+>> -		batch[++i] = reloc.delta;
+>> -	}
+>> -	batch[++i] = offset_value;
+>> -	batch[++i] = MI_BATCH_BUFFER_END;
+>> -	gem_write(fd, obj[BATCH].handle, 0, batch, sizeof(batch));
+>> -	gem_execbuf(fd, &execbuf);
+>> -	gem_close(fd, obj[BATCH].handle);
+>> -}
+>> -
+>>   static void check_alive(void)
+>>   {
+>>   	const struct intel_execution_engine2 *engine;
+>> @@ -138,7 +81,7 @@ static void check_alive(void)
+>>   			continue;
+>>   
+>>   		/* +OFFSET_ALIVE to ensure engine zero doesn't get a false negative */
+>> -		store(fd, engine, -1, scratch, i + OFFSET_ALIVE);
+>> +		igt_store_word(fd, ahnd, ctx, engine, -1, scratch, i + OFFSET_ALIVE, i + OFFSET_ALIVE);
+>>   		i++;
+>>   	}
+>>   
+>> -- 
+>> 2.25.1
+>>
+
