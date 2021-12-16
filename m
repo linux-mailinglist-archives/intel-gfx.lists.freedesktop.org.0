@@ -1,54 +1,84 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8C31477549
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 16:03:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A89DA47757D
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Dec 2021 16:14:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E257F112475;
-	Thu, 16 Dec 2021 15:03:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A231D10ED68;
+	Thu, 16 Dec 2021 15:14:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0339C112473;
- Thu, 16 Dec 2021 15:03:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639667000; x=1671203000;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=OsOi1CrxElZSmmh+gx+pTB81FXkqppq8jFPanf4wudk=;
- b=F6kMj9DNMRBs/dvlZqSphDq1WstipYaA0ZcUR87x2yMDzvqlGnmS0HEo
- UE+9j7qjmCFA7hAmlRZXZC6tys0QaWX1mRtjbjbdVkIB2BNyV4InYHR27
- 3q+aG8jdidk1/yZHBuzMfzBqD9Fe2Nsicn6tAN1Jxknbd2F7fg27WpBAy
- kz9UK/RALfGWYrI4cS6zTZwArZu+sptYNg5kl8YUWSAtnYfus+8r9wXq4
- Q+MUaWgxGkLGtw5Ks3QncNDn4QtQULXGtvUrj68Lo66woOGUGQRiwEVTS
- OxFkiLbHCyQ95ayctacUNPHZAhGC5efIMyB1ECqbgnW9fJ4bfVd+/fDcV w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10199"; a="325794173"
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; d="scan'208";a="325794173"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2021 07:02:18 -0800
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; d="scan'208";a="466098137"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
- by orsmga006-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2021 07:02:16 -0800
-Date: Thu, 16 Dec 2021 20:31:58 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <20211216150158.GA2058@intel.com>
-References: <20211206133140.3166205-1-matthew.auld@intel.com>
- <20211206133140.3166205-8-matthew.auld@intel.com>
- <20211214105651.GC31233@intel.com>
- <f994b09b-b11c-fcd7-c868-bd55125eecb8@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A18910ED68
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 15:14:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1639667693;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=0IGzeLjajUCnRDE7wINUWUZGpWtmAg9rxOl9NA2Ty7k=;
+ b=DDMvoYp2nFyE7bLNck+4ouK/T1/jGkczqYpAxFiGS0bkPWn0UwF51WLTCLPaGbBFpWu02V
+ 1rg9Rsfbodj1zKeDLGJHH7+i2YyZSL4mCxh/EKULUSexLLC2RqHt537FvUGsQPhnwS7TXE
+ JqRBfiA8vID0u+f6YrU7iKiz3+DlQCQ=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-425-qlbzNbs_NsuoUhmH4i_P2A-1; Thu, 16 Dec 2021 10:14:48 -0500
+X-MC-Unique: qlbzNbs_NsuoUhmH4i_P2A-1
+Received: by mail-ed1-f71.google.com with SMTP id
+ v19-20020a056402349300b003f7eba50675so4805579edc.12
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 07:14:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=0IGzeLjajUCnRDE7wINUWUZGpWtmAg9rxOl9NA2Ty7k=;
+ b=IegdbvBMwKVydFOgcquGhg9jvL3Ca1AUFpoI6c+9i4XDLLJEfHwUbyGthNW7m6hBRw
+ 4gLPfPI3PPxJE41XA+MUUwAcd9eLhuWIPXinGVOrWzTIUIOHaEr7GToaulR/DLMaK6i4
+ nj5qxWDMiYI5P7BZDu/McVX/4Nu+acKMgMbJIjOGkcgsFHsEmbfPVSp9jIHCseNlEEwE
+ TyJPivlz0dG12IVH7SuzIN2rMEPdIkcrnrXUUC16oGq7x3rNuhsT9N4gIMpAerw1NeCI
+ 90/twnMQY7HphYFAJ9v3+pihiUs5NL2l8aP/FC7wDoUnVddA38+RWGkbNh00tiRaqvr0
+ FyzA==
+X-Gm-Message-State: AOAM533z3jbacIZ7WZnCiHrdr3DPWzvfBW/Ni6P7JFGoKSci68dISSLA
+ ceOYqleGT5Kq4s/psb6zRF/m9ygrEXb7bA/tp/hKgkkW1JrDuUX0saT8GGkNYsNGKByl/3yOwi+
+ wxjdqOF4ihTDvsgPcM/f9ZhjqHgkO
+X-Received: by 2002:a17:907:9713:: with SMTP id
+ jg19mr1631594ejc.50.1639667686672; 
+ Thu, 16 Dec 2021 07:14:46 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwIl7HuWWGIjHNlHGHaIdFzzndKDqvuhzPeYprWY+GLu7Rk3se8ETxdr8CxnFg9YWwsapquTQ==
+X-Received: by 2002:a17:907:9713:: with SMTP id
+ jg19mr1631570ejc.50.1639667686403; 
+ Thu, 16 Dec 2021 07:14:46 -0800 (PST)
+Received: from ?IPV6:2001:1c00:c1e:bf00:1db8:22d3:1bc9:8ca1?
+ (2001-1c00-0c1e-bf00-1db8-22d3-1bc9-8ca1.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:1db8:22d3:1bc9:8ca1])
+ by smtp.gmail.com with ESMTPSA id w22sm2662051edc.62.2021.12.16.07.14.45
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 16 Dec 2021 07:14:46 -0800 (PST)
+Message-ID: <55e7e783-62d6-19c5-207a-88318a4452fb@redhat.com>
+Date: Thu, 16 Dec 2021 16:14:45 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f994b09b-b11c-fcd7-c868-bd55125eecb8@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 7/8] drm/i915/migrate: add acceleration
- support for DG2
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+To: Jani Nikula <jani.nikula@linux.intel.com>, Lyude <lyude@redhat.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20211121110032.4720-1-hdegoede@redhat.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20211121110032.4720-1-hdegoede@redhat.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/backlight: Drop duplicate
+ intel_panel_actually_set_backlight()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,445 +91,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-12-14 at 12:32:57 +0000, Matthew Auld wrote:
-> On 14/12/2021 10:56, Ramalingam C wrote:
-> > On 2021-12-06 at 13:31:39 +0000, Matthew Auld wrote:
-> > > This is all kinds of awkward since we now have to contend with using 64K
-> > > GTT pages when mapping anything in LMEM(including the page-tables
-> > > themselves).
-> > > 
-> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > Cc: Ramalingam C <ramalingam.c@intel.com>
-> > > ---
-> > >   drivers/gpu/drm/i915/gt/intel_migrate.c | 189 +++++++++++++++++++-----
-> > >   1 file changed, 150 insertions(+), 39 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > > index 0192b61ab541..fb658ae70a8d 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > > @@ -33,6 +33,38 @@ static bool engine_supports_migration(struct intel_engine_cs *engine)
-> > >   	return true;
-> > >   }
-> > > +static void xehpsdv_toggle_pdes(struct i915_address_space *vm,
-> > > +				struct i915_page_table *pt,
-> > > +				void *data)
-> > > +{
-> > > +	struct insert_pte_data *d = data;
-> > > +
-> > > +	/*
-> > > +	 * Insert a dummy PTE into every PT that will map to LMEM to ensure
-> > > +	 * we have a correctly setup PDE structure for later use.
-> > > +	 */
-> > > +	vm->insert_page(vm, 0, d->offset, I915_CACHE_NONE, PTE_LM);
-> > This part i am not understanding. Why do we need to insert the dummy
-> > PTE here.?
-> 
-> We have three windows, each CHUNK_SIZE in size. The first is reserved for
-> mapping system-memory, and that just uses the 512 entry layout using 4K GTT
-> pages. The other two windows just map lmem pages and must use the new
-> compact 32 entry layout using 64K GTT pages, which ensures we can address
-> any lmem object that the user throws at us. The above is basically just
-> toggling the PDE bit(GEN12_PDE_64K) for us, to enable the compact layout for
-> each of these page-tables, that fall within the 2 * CHUNK_SIZE range
-> starting at CHUNK_SIZE.
+Hi,
 
-If we could summarize this into the comment it will be helpful.
-Apart from this, change looks good to me.
+On 11/21/21 12:00, Hans de Goede wrote:
+> After the recent refactoring of the backlight code the contents of
+> intel_panel_actually_set_backlight() is exactly the same (minus a
+> small wording difference in the drm_dbg_kms() as the contents if the
+> more widely used intel_backlight_set_pwm_level() function.
+> 
+> Drop the duplicate intel_panel_actually_set_backlight() function.
+> 
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+I just realized that I did not push this series to drm-intel-next yet.
 
+Before pushing I double checked my work and I noticed that this patch
+is wrong there is a subtle but important difference between
+intel_panel_actually_set_backlight() and intel_backlight_set_pwm_level()
+
+intel_panel_actually_set_backlight() calls:
+
+	panel->backlight.funcs->set(conn_state, level);
+
+where as intel_backlight_set_pwm_level() calls:
+
+	panel->backlight.pwm_funcs->set(conn_state, level);
+
+I missed the pwm_funcs vs funcs difference, the funcs->set
+function is normally just a wrapper for pwm_funcs->set, but
+the dp_aux and dsi_dsc code my overwrite the functions to
+which backlight.funcs point to so the difference matters.
+
+Tl;DR: self nack for this one.
+
+Patch 2/2 is still valid and I will push that out shortly.
+
+Regards,
+
+Hans
+
+
+
+
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_backlight.c | 16 ++--------------
+>  1 file changed, 2 insertions(+), 14 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+> index 9523411cddd8..03cd730c926a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+> @@ -268,18 +268,6 @@ static void ext_pwm_set_backlight(const struct drm_connector_state *conn_state,
+>  	pwm_apply_state(panel->backlight.pwm, &panel->backlight.pwm_state);
+>  }
+>  
+> -static void
+> -intel_panel_actually_set_backlight(const struct drm_connector_state *conn_state, u32 level)
+> -{
+> -	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> -	struct intel_panel *panel = &connector->panel;
+> -
+> -	drm_dbg_kms(&i915->drm, "set backlight level = %d\n", level);
+> -
+> -	panel->backlight.funcs->set(conn_state, level);
+> -}
+> -
+>  /* set backlight brightness to level in range [0..max], assuming hw min is
+>   * respected.
+>   */
+> @@ -314,7 +302,7 @@ void intel_backlight_set_acpi(const struct drm_connector_state *conn_state,
+>  					 panel->backlight.device->props.max_brightness);
+>  
+>  	if (panel->backlight.enabled)
+> -		intel_panel_actually_set_backlight(conn_state, hw_level);
+> +		intel_backlight_set_pwm_level(conn_state, hw_level);
+>  
+>  	mutex_unlock(&dev_priv->backlight_lock);
+>  }
+> @@ -863,7 +851,7 @@ static void intel_panel_set_backlight(const struct drm_connector_state *conn_sta
+>  	panel->backlight.level = hw_level;
+>  
+>  	if (panel->backlight.enabled)
+> -		intel_panel_actually_set_backlight(conn_state, hw_level);
+> +		intel_backlight_set_pwm_level(conn_state, hw_level);
+>  
+>  	mutex_unlock(&dev_priv->backlight_lock);
+>  }
 > 
-> > > +	GEM_BUG_ON(!pt->is_compact);
-> > > +	d->offset += SZ_2M;
-> > > +}
-> > > +
-> > > +static void xehpsdv_insert_pte(struct i915_address_space *vm,
-> > > +			       struct i915_page_table *pt,
-> > > +			       void *data)
-> > > +{
-> > > +	struct insert_pte_data *d = data;
-> > > +
-> > > +	/*
-> > > +	 * We are playing tricks here, since the actual pt, from the hw
-> > > +	 * pov, is only 256bytes with 32 entries, or 4096bytes with 512
-> > > +	 * entries, but we are still guaranteed that the physical
-> > > +	 * alignment is 64K underneath for the pt, and we are careful
-> > > +	 * not to access the space in the void.
-> > > +	 */
-> > > +	vm->insert_page(vm, px_dma(pt), d->offset, I915_CACHE_NONE, PTE_LM);
-> > > +	d->offset += SZ_64K;
-> > > +}
-> > > +
-> > >   static void insert_pte(struct i915_address_space *vm,
-> > >   		       struct i915_page_table *pt,
-> > >   		       void *data)
-> > > @@ -75,7 +107,12 @@ static struct i915_address_space *migrate_vm(struct intel_gt *gt)
-> > >   	 * i.e. within the same non-preemptible window so that we do not switch
-> > >   	 * to another migration context that overwrites the PTE.
-> > >   	 *
-> > > -	 * TODO: Add support for huge LMEM PTEs
-> > > +	 * On platforms with HAS_64K_PAGES support we have three windows, and
-> > > +	 * dedicate two windows just for mapping lmem pages(smem <-> smem is not
-> > > +	 * a thing), since we are forced to use 64K GTT pages underneath which
-> > > +	 * requires also modifying the PDE. An alternative might be to instead
-> > > +	 * map the PD into the GTT, and then on the fly toggle the 4K/64K mode
-> > > +	 * in the PDE from the same batch that also modifies the PTEs.
-> > Could we also add a layout of the ppGTT, incase of HAS_64K_PAGES?
-> 
-> [0, CHUNK_SZ) -> first window, maps smem
-> [CHUNK_SZ, 2 * CHUNK_SZ) -> second window, maps lmem src
-> [2 * CHUNK_SZ, 3 * CHUNK_SZ) -> third window, maps lmem dst
-> 
-> It starts to get strange here, since each PTE must point to some 64K page,
-> one for each PT(since it's in lmem), and yet each is only <= 4096bytes, but
-> since the unused space within that PTE range is never touched, this should
-> be fine.
-> 
-> So basically each PT now needs 64K of virtual memory, instead of 4K. So
-> something like:
-> 
-> [3 * CHUNK_SZ, 3 * CHUNK_SZ + ((3 * CHUNK_SZ / SZ_2M) * SZ_64K)] -> PTE
-> 
-> And then later when writing out the PTEs we know if the layout within a
-> particular PT is 512 vs 32 depending on if we are mapping lmem or not.
-> 
-> > >   	 */
-> > >   	vm = i915_ppgtt_create(gt, I915_BO_ALLOC_PM_EARLY);
-> > > @@ -87,6 +124,9 @@ static struct i915_address_space *migrate_vm(struct intel_gt *gt)
-> > >   		goto err_vm;
-> > >   	}
-> > > +	if (HAS_64K_PAGES(gt->i915))
-> > > +		stash.pt_sz = I915_GTT_PAGE_SIZE_64K;
-> > > +
-> > >   	/*
-> > >   	 * Each engine instance is assigned its own chunk in the VM, so
-> > >   	 * that we can run multiple instances concurrently
-> > > @@ -106,14 +146,20 @@ static struct i915_address_space *migrate_vm(struct intel_gt *gt)
-> > >   		 * We copy in 8MiB chunks. Each PDE covers 2MiB, so we need
-> > >   		 * 4x2 page directories for source/destination.
-> > >   		 */
-> > > -		sz = 2 * CHUNK_SZ;
-> > > +		if (HAS_64K_PAGES(gt->i915))
-> > > +			sz = 3 * CHUNK_SZ;
-> > > +		else
-> > > +			sz = 2 * CHUNK_SZ;
-> > >   		d.offset = base + sz;
-> > >   		/*
-> > >   		 * We need another page directory setup so that we can write
-> > >   		 * the 8x512 PTE in each chunk.
-> > >   		 */
-> > > -		sz += (sz >> 12) * sizeof(u64);
-> > > +		if (HAS_64K_PAGES(gt->i915))
-> > > +			sz += (sz / SZ_2M) * SZ_64K;
-> > > +		else
-> > > +			sz += (sz >> 12) * sizeof(u64);
-> > Here for 4K page support, per page we assume the u64 as the length required. But
-> > for 64k page support we calculate the no of PDE and per PDE we allocate
-> > the 64k page so that we can map it for edit right?
-> > 
-> > In this case i assume we have the unused space at the end. say after
-> > 32*sizeof(u64)
-> 
-> For every PT(which is 2M va range), we need a 64K va chunk in order to map
-> it. Yes, there is some unused space at the end, but it is already like that
-> for the other PTEs. Also it seems strange to call alloc_va_range without
-> also rounding up the size to the correct page size.
-> 
-> > 
-> > Ram
-> > >   		err = i915_vm_alloc_pt_stash(&vm->vm, &stash, sz);
-> > >   		if (err)
-> > > @@ -134,7 +180,18 @@ static struct i915_address_space *migrate_vm(struct intel_gt *gt)
-> > >   			goto err_vm;
-> > >   		/* Now allow the GPU to rewrite the PTE via its own ppGTT */
-> > > -		vm->vm.foreach(&vm->vm, base, d.offset - base, insert_pte, &d);
-> > > +		if (HAS_64K_PAGES(gt->i915)) {
-> > > +			vm->vm.foreach(&vm->vm, base, d.offset - base,
-> > > +				       xehpsdv_insert_pte, &d);
-> > > +			d.offset = base + CHUNK_SZ;
-> > > +			vm->vm.foreach(&vm->vm,
-> > > +				       d.offset,
-> > > +				       2 * CHUNK_SZ,
-> > > +				       xehpsdv_toggle_pdes, &d);
-> > > +		} else {
-> > > +			vm->vm.foreach(&vm->vm, base, d.offset - base,
-> > > +				       insert_pte, &d);
-> > > +		}
-> > >   	}
-> > >   	return &vm->vm;
-> > > @@ -272,19 +329,38 @@ static int emit_pte(struct i915_request *rq,
-> > >   		    u64 offset,
-> > >   		    int length)
-> > >   {
-> > > +	bool has_64K_pages = HAS_64K_PAGES(rq->engine->i915);
-> > >   	const u64 encode = rq->context->vm->pte_encode(0, cache_level,
-> > >   						       is_lmem ? PTE_LM : 0);
-> > >   	struct intel_ring *ring = rq->ring;
-> > > -	int total = 0;
-> > > +	int pkt, dword_length;
-> > > +	u32 total = 0;
-> > > +	u32 page_size;
-> > >   	u32 *hdr, *cs;
-> > > -	int pkt;
-> > >   	GEM_BUG_ON(GRAPHICS_VER(rq->engine->i915) < 8);
-> > > +	page_size = I915_GTT_PAGE_SIZE;
-> > > +	dword_length = 0x400;
-> > > +
-> > >   	/* Compute the page directory offset for the target address range */
-> > > -	offset >>= 12;
-> > > -	offset *= sizeof(u64);
-> > > -	offset += 2 * CHUNK_SZ;
-> > > +	if (has_64K_pages) {
-> > > +		GEM_BUG_ON(!IS_ALIGNED(offset, SZ_2M));
-> > > +
-> > > +		offset /= SZ_2M;
-> > > +		offset *= SZ_64K;
-> > > +		offset += 3 * CHUNK_SZ;
-> > > +
-> > > +		if (is_lmem) {
-> > > +			page_size = I915_GTT_PAGE_SIZE_64K;
-> > > +			dword_length = 0x40;
-> > > +		}
-> > > +	} else {
-> > > +		offset >>= 12;
-> > > +		offset *= sizeof(u64);
-> > > +		offset += 2 * CHUNK_SZ;
-> > > +	}
-> > > +
-> > >   	offset += (u64)rq->engine->instance << 32;
-> > >   	cs = intel_ring_begin(rq, 6);
-> > > @@ -292,7 +368,7 @@ static int emit_pte(struct i915_request *rq,
-> > >   		return PTR_ERR(cs);
-> > >   	/* Pack as many PTE updates as possible into a single MI command */
-> > > -	pkt = min_t(int, 0x400, ring->space / sizeof(u32) + 5);
-> > > +	pkt = min_t(int, dword_length, ring->space / sizeof(u32) + 5);
-> > >   	pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
-> > >   	hdr = cs;
-> > > @@ -302,6 +378,8 @@ static int emit_pte(struct i915_request *rq,
-> > >   	do {
-> > >   		if (cs - hdr >= pkt) {
-> > > +			int dword_rem;
-> > > +
-> > >   			*hdr += cs - hdr - 2;
-> > >   			*cs++ = MI_NOOP;
-> > > @@ -313,7 +391,18 @@ static int emit_pte(struct i915_request *rq,
-> > >   			if (IS_ERR(cs))
-> > >   				return PTR_ERR(cs);
-> > > -			pkt = min_t(int, 0x400, ring->space / sizeof(u32) + 5);
-> > > +			dword_rem = dword_length;
-> > > +			if (has_64K_pages) {
-> > > +				if (IS_ALIGNED(total, SZ_2M)) {
-> > > +					offset = round_up(offset, SZ_64K);
-> > > +				} else {
-> > > +					dword_rem = SZ_2M - (total & (SZ_2M - 1));
-> > > +					dword_rem /= page_size;
-> > > +					dword_rem *= 2;
-> > > +				}
-> > > +			}
-> > > +
-> > > +			pkt = min_t(int, dword_rem, ring->space / sizeof(u32) + 5);
-> > >   			pkt = min_t(int, pkt, (ring->size - ring->emit) / sizeof(u32) + 5);
-> > >   			hdr = cs;
-> > > @@ -322,13 +411,15 @@ static int emit_pte(struct i915_request *rq,
-> > >   			*cs++ = upper_32_bits(offset);
-> > >   		}
-> > > +		GEM_BUG_ON(!IS_ALIGNED(it->dma, page_size));
-> > > +
-> > >   		*cs++ = lower_32_bits(encode | it->dma);
-> > >   		*cs++ = upper_32_bits(encode | it->dma);
-> > >   		offset += 8;
-> > > -		total += I915_GTT_PAGE_SIZE;
-> > > +		total += page_size;
-> > > -		it->dma += I915_GTT_PAGE_SIZE;
-> > > +		it->dma += page_size;
-> > >   		if (it->dma >= it->max) {
-> > >   			it->sg = __sg_next(it->sg);
-> > >   			if (!it->sg || sg_dma_len(it->sg) == 0)
-> > > @@ -359,7 +450,8 @@ static bool wa_1209644611_applies(int ver, u32 size)
-> > >   	return height % 4 == 3 && height <= 8;
-> > >   }
-> > > -static int emit_copy(struct i915_request *rq, int size)
-> > > +static int emit_copy(struct i915_request *rq,
-> > > +		     u32 dst_offset, u32 src_offset, int size)
-> > >   {
-> > >   	const int ver = GRAPHICS_VER(rq->engine->i915);
-> > >   	u32 instance = rq->engine->instance;
-> > > @@ -374,31 +466,31 @@ static int emit_copy(struct i915_request *rq, int size)
-> > >   		*cs++ = BLT_DEPTH_32 | PAGE_SIZE;
-> > >   		*cs++ = 0;
-> > >   		*cs++ = size >> PAGE_SHIFT << 16 | PAGE_SIZE / 4;
-> > > -		*cs++ = CHUNK_SZ; /* dst offset */
-> > > +		*cs++ = dst_offset;
-> > >   		*cs++ = instance;
-> > >   		*cs++ = 0;
-> > >   		*cs++ = PAGE_SIZE;
-> > > -		*cs++ = 0; /* src offset */
-> > > +		*cs++ = src_offset;
-> > >   		*cs++ = instance;
-> > >   	} else if (ver >= 8) {
-> > >   		*cs++ = XY_SRC_COPY_BLT_CMD | BLT_WRITE_RGBA | (10 - 2);
-> > >   		*cs++ = BLT_DEPTH_32 | BLT_ROP_SRC_COPY | PAGE_SIZE;
-> > >   		*cs++ = 0;
-> > >   		*cs++ = size >> PAGE_SHIFT << 16 | PAGE_SIZE / 4;
-> > > -		*cs++ = CHUNK_SZ; /* dst offset */
-> > > +		*cs++ = dst_offset;
-> > >   		*cs++ = instance;
-> > >   		*cs++ = 0;
-> > >   		*cs++ = PAGE_SIZE;
-> > > -		*cs++ = 0; /* src offset */
-> > > +		*cs++ = src_offset;
-> > >   		*cs++ = instance;
-> > >   	} else {
-> > >   		GEM_BUG_ON(instance);
-> > >   		*cs++ = SRC_COPY_BLT_CMD | BLT_WRITE_RGBA | (6 - 2);
-> > >   		*cs++ = BLT_DEPTH_32 | BLT_ROP_SRC_COPY | PAGE_SIZE;
-> > >   		*cs++ = size >> PAGE_SHIFT << 16 | PAGE_SIZE;
-> > > -		*cs++ = CHUNK_SZ; /* dst offset */
-> > > +		*cs++ = dst_offset;
-> > >   		*cs++ = PAGE_SIZE;
-> > > -		*cs++ = 0; /* src offset */
-> > > +		*cs++ = src_offset;
-> > >   	}
-> > >   	intel_ring_advance(rq, cs);
-> > > @@ -426,6 +518,7 @@ intel_context_migrate_copy(struct intel_context *ce,
-> > >   	GEM_BUG_ON(ce->ring->size < SZ_64K);
-> > >   	do {
-> > > +		u32 src_offset, dst_offset;
-> > >   		int len;
-> > >   		rq = i915_request_create(ce);
-> > > @@ -453,15 +546,28 @@ intel_context_migrate_copy(struct intel_context *ce,
-> > >   		if (err)
-> > >   			goto out_rq;
-> > > -		len = emit_pte(rq, &it_src, src_cache_level, src_is_lmem, 0,
-> > > -			       CHUNK_SZ);
-> > > +		src_offset = 0;
-> > > +		dst_offset = CHUNK_SZ;
-> > > +		if (HAS_64K_PAGES(ce->engine->i915)) {
-> > > +			GEM_BUG_ON(!src_is_lmem && !dst_is_lmem);
-> > > +
-> > > +			src_offset = 0;
-> > > +			dst_offset = 0;
-> > > +			if (src_is_lmem)
-> > > +				src_offset = CHUNK_SZ;
-> > > +			if (dst_is_lmem)
-> > > +				dst_offset = 2 * CHUNK_SZ;
-> > > +		}
-> > > +
-> > > +		len = emit_pte(rq, &it_src, src_cache_level, src_is_lmem,
-> > > +			       src_offset, CHUNK_SZ);
-> > >   		if (len <= 0) {
-> > >   			err = len;
-> > >   			goto out_rq;
-> > >   		}
-> > >   		err = emit_pte(rq, &it_dst, dst_cache_level, dst_is_lmem,
-> > > -			       CHUNK_SZ, len);
-> > > +			       dst_offset, len);
-> > >   		if (err < 0)
-> > >   			goto out_rq;
-> > >   		if (err < len) {
-> > > @@ -473,7 +579,7 @@ intel_context_migrate_copy(struct intel_context *ce,
-> > >   		if (err)
-> > >   			goto out_rq;
-> > > -		err = emit_copy(rq, len);
-> > > +		err = emit_copy(rq, dst_offset, src_offset, len);
-> > >   		/* Arbitration is re-enabled between requests. */
-> > >   out_rq:
-> > > @@ -571,18 +677,20 @@ static u32 *_i915_ctrl_surf_copy_blt(u32 *cmd, u64 src_addr, u64 dst_addr,
-> > >   }
-> > >   static int emit_clear(struct i915_request *rq,
-> > > +		      u64 offset,
-> > >   		      int size,
-> > >   		      u32 value,
-> > >   		      bool is_lmem)
-> > >   {
-> > > -	const int ver = GRAPHICS_VER(rq->engine->i915);
-> > > -	u32 instance = rq->engine->instance;
-> > > -	u32 *cs;
-> > >   	struct drm_i915_private *i915 = rq->engine->i915;
-> > > +	const int ver = GRAPHICS_VER(rq->engine->i915);
-> > >   	u32 num_ccs_blks, ccs_ring_size;
-> > > +	u32 *cs;
-> > >   	GEM_BUG_ON(size >> PAGE_SHIFT > S16_MAX);
-> > > +	offset += (u64)rq->engine->instance << 32;
-> > > +
-> > >   	/* Clear flat css only when value is 0 */
-> > >   	ccs_ring_size = (is_lmem && !value) ?
-> > >   			 calc_ctrl_surf_instr_size(i915, size)
-> > > @@ -597,17 +705,17 @@ static int emit_clear(struct i915_request *rq,
-> > >   		*cs++ = BLT_DEPTH_32 | BLT_ROP_COLOR_COPY | PAGE_SIZE;
-> > >   		*cs++ = 0;
-> > >   		*cs++ = size >> PAGE_SHIFT << 16 | PAGE_SIZE / 4;
-> > > -		*cs++ = 0; /* offset */
-> > > -		*cs++ = instance;
-> > > +		*cs++ = lower_32_bits(offset);
-> > > +		*cs++ = upper_32_bits(offset);
-> > >   		*cs++ = value;
-> > >   		*cs++ = MI_NOOP;
-> > >   	} else {
-> > > -		GEM_BUG_ON(instance);
-> > > +		GEM_BUG_ON(upper_32_bits(offset));
-> > >   		*cs++ = XY_COLOR_BLT_CMD | BLT_WRITE_RGBA | (6 - 2);
-> > >   		*cs++ = BLT_DEPTH_32 | BLT_ROP_COLOR_COPY | PAGE_SIZE;
-> > >   		*cs++ = 0;
-> > >   		*cs++ = size >> PAGE_SHIFT << 16 | PAGE_SIZE / 4;
-> > > -		*cs++ = 0;
-> > > +		*cs++ = lower_32_bits(offset);
-> > >   		*cs++ = value;
-> > >   	}
-> > > @@ -623,17 +731,15 @@ static int emit_clear(struct i915_request *rq,
-> > >   		 * and use it as a source.
-> > >   		 */
-> > > -		cs = i915_flush_dw(cs, (u64)instance << 32,
-> > > -				   MI_FLUSH_LLC | MI_FLUSH_CCS);
-> > > +		cs = i915_flush_dw(cs, offset, MI_FLUSH_LLC | MI_FLUSH_CCS);
-> > >   		cs = _i915_ctrl_surf_copy_blt(cs,
-> > > -					      (u64)instance << 32,
-> > > -					      (u64)instance << 32,
-> > > +					      offset,
-> > > +					      offset,
-> > >   					      DIRECT_ACCESS,
-> > >   					      INDIRECT_ACCESS,
-> > >   					      1, 1,
-> > >   					      num_ccs_blks);
-> > > -		cs = i915_flush_dw(cs, (u64)instance << 32,
-> > > -				   MI_FLUSH_LLC | MI_FLUSH_CCS);
-> > > +		cs = i915_flush_dw(cs, offset, MI_FLUSH_LLC | MI_FLUSH_CCS);
-> > >   	}
-> > >   	intel_ring_advance(rq, cs);
-> > >   	return 0;
-> > > @@ -658,6 +764,7 @@ intel_context_migrate_clear(struct intel_context *ce,
-> > >   	GEM_BUG_ON(ce->ring->size < SZ_64K);
-> > >   	do {
-> > > +		u32 offset;
-> > >   		int len;
-> > >   		rq = i915_request_create(ce);
-> > > @@ -685,7 +792,11 @@ intel_context_migrate_clear(struct intel_context *ce,
-> > >   		if (err)
-> > >   			goto out_rq;
-> > > -		len = emit_pte(rq, &it, cache_level, is_lmem, 0, CHUNK_SZ);
-> > > +		offset = 0;
-> > > +		if (HAS_64K_PAGES(ce->engine->i915) && is_lmem)
-> > > +			offset = CHUNK_SZ;
-> > > +
-> > > +		len = emit_pte(rq, &it, cache_level, is_lmem, offset, CHUNK_SZ);
-> > >   		if (len <= 0) {
-> > >   			err = len;
-> > >   			goto out_rq;
-> > > @@ -695,7 +806,7 @@ intel_context_migrate_clear(struct intel_context *ce,
-> > >   		if (err)
-> > >   			goto out_rq;
-> > > -		err = emit_clear(rq, len, value, is_lmem);
-> > > +		err = emit_clear(rq, offset, len, value, is_lmem);
-> > >   		/* Arbitration is re-enabled between requests. */
-> > >   out_rq:
-> > > -- 
-> > > 2.31.1
-> > > 
+
