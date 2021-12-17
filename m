@@ -1,41 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9855479109
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 17:12:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23CB2479172
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 17:26:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3A4410E36B;
-	Fri, 17 Dec 2021 16:12:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D712410E495;
+	Fri, 17 Dec 2021 16:26:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7481A10E36A
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 16:12:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10201"; a="263956416"
-X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="263956416"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2021 08:08:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="546436415"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 17 Dec 2021 08:08:38 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Dec 2021 18:08:38 +0200
-Date: Fri, 17 Dec 2021 18:08:38 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Harish Chegondi <harish.chegondi@intel.com>
-Message-ID: <Yby2BrDPAE4eUxxX@intel.com>
-References: <20211217160255.1300348-1-harish.chegondi@intel.com>
+X-Greylist: delayed 400 seconds by postgrey-1.36 at gabe;
+ Fri, 17 Dec 2021 16:26:28 UTC
+Received: from netrider.rowland.org (netrider.rowland.org [192.131.102.5])
+ by gabe.freedesktop.org (Postfix) with SMTP id D53C010E481
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 16:26:28 +0000 (UTC)
+Received: (qmail 851237 invoked by uid 1000); 17 Dec 2021 11:19:46 -0500
+Date: Fri, 17 Dec 2021 11:19:46 -0500
+From: Alan Stern <stern@rowland.harvard.edu>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <Yby4ooKl43NRm+5y@rowland.harvard.edu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211217160255.1300348-1-harish.chegondi@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix possible NULL pointer
- dereferences in i9xx_update_wm()
+Subject: [Intel-gfx] How to fix screen resolution detection?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,44 +37,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 17, 2021 at 08:02:55AM -0800, Harish Chegondi wrote:
-> Check return pointer from intel_crtc_for_plane() before dereferencing
-> it, as it can be NULL.
+The screen resolution on my laptop is not reported accurately.  Here's 
+an extract from the output of xdpyinfo:
 
-Can't actually bu NULL. But I guess no real harm in having the
-check if it shuts up some static analysis thing.
+screen #0:
+  dimensions:    3200x1800 pixels (847x476 millimeters)
+  resolution:    96x96 dots per inch
 
-> 
-> v2: Moved the NULL check into intel_crtc_active().
-> 
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Caz Yokoyama <caz.yokoyama@intel.com>
-> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index bdf97a8c9ef3..8b357ec35a4a 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -877,7 +877,7 @@ static bool intel_crtc_active(struct intel_crtc *crtc)
->  	 * crtc->state->active once we have proper CRTC states wired up
->  	 * for atomic.
->  	 */
-> -	return crtc->active && crtc->base.primary->state->fb &&
-> +	return crtc && crtc->active && crtc->base.primary->state->fb &&
->  		crtc->config->hw.adjusted_mode.crtc_clock;
->  }
->  
-> -- 
-> 2.31.1
+The number of pixels is correct, but the size and resolution values 
+smack of a bogus default.  The actual width of the screen (determined 
+with a tape measure) is about 11.5 inches (291 mm), which yields a 
+resolution of 280 dots per inch (11 dots per mm), approximately.  
+Most definitely _not_ 96 dpi.
 
--- 
-Ville Syrjälä
-Intel
+Presumably X gets the size/resolution information from Wayland, which 
+gets it from the kernel, which gets it from the firmware.  So the kernel 
+driver is the logical place to start in figuring where things are going 
+wrong.  The laptop uses i915; here are the relevant lines from the 
+kernel log:
+
+[    0.000000] Linux version 5.14.9-200.fc34.x86_64 (mockbuild@bkernel02.iad2.fedoraproject.org) (gcc (GCC) 11.2.1 20210728 (Red Hat 11.2.1-1), GNU ld version 2.35.2-5.fc34) #1 SMP Thu Sep 30 11:55:35 UTC 2021
+
+[    0.463895] efifb: probing for efifb
+[    0.463913] efifb: framebuffer at 0xe0000000, using 22500k, total 22500k
+[    0.463916] efifb: mode is 3200x1800x32, linelength=12800, pages=1
+[    0.463919] efifb: scrolling: redraw
+[    0.463920] efifb: Truecolor: size=8:8:8:8, shift=24:16:8:0
+[    0.464028] Console: switching to colour frame buffer device 400x112
+[    0.474894] fb0: EFI VGA frame buffer device
+
+[    2.888858] fb0: switching to inteldrmfb from EFI VGA
+[    2.891260] Console: switching to colour dummy device 80x25
+[    2.891318] i915 0000:00:02.0: vgaarb: deactivate vga console
+[    2.902665] i915 0000:00:02.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=io+mem:owns=io+mem
+[    2.904833] i915 0000:00:02.0: [drm] Finished loading DMC firmware i915/skl_dmc_ver1_27.bin (v1.27)
+[    2.947359] [drm] Initialized i915 1.6.0 20201103 for 0000:00:02.0 on minor 0
+[    2.949468] ACPI: video: Video Device [GFX0] (multi-head: yes  rom: no  post: no)
+[    2.949803] input: Video Bus as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input9
+[    2.964371] fbcon: i915 (fb0) is primary device
+[    2.979854] Console: switching to colour frame buffer device 400x112
+[    3.012355] i915 0000:00:02.0: [drm] fb0: i915 frame buffer device
+
+Now, I know nothing about the kernel's graphics subsystems.  How can I 
+find out what size/resolution information i915 is getting and passing to 
+Wayland?  If it's wrong, how can I fix it?
+
+Thanks,
+
+Alan Stern
