@@ -1,30 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23CB2479172
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 17:26:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66269479177
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 17:28:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D712410E495;
-	Fri, 17 Dec 2021 16:26:30 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 400 seconds by postgrey-1.36 at gabe;
- Fri, 17 Dec 2021 16:26:28 UTC
-Received: from netrider.rowland.org (netrider.rowland.org [192.131.102.5])
- by gabe.freedesktop.org (Postfix) with SMTP id D53C010E481
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 16:26:28 +0000 (UTC)
-Received: (qmail 851237 invoked by uid 1000); 17 Dec 2021 11:19:46 -0500
-Date: Fri, 17 Dec 2021 11:19:46 -0500
-From: Alan Stern <stern@rowland.harvard.edu>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <Yby4ooKl43NRm+5y@rowland.harvard.edu>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8567E10E4D5;
+	Fri, 17 Dec 2021 16:28:31 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B670410E4B5;
+ Fri, 17 Dec 2021 16:28:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639758510; x=1671294510;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Fn+RGZ5bRot5NO4rRgzUV8MWFA7RcaRafe5kV2e17Zo=;
+ b=WdWnsTXUdnS/nVGfCdaeDDh25kwyeFsk/43qg9RS+XKvaTdtYewDJnGD
+ LSJmY4y/v0zKodjPlQGtVye8juKWfM75653tvyUfzjiIeJExXxn+DcICG
+ Ciu39zk796XHUGK+H4M3t0FCx43inF99QGcikcImCUjUZpSyaLa/0MfZ2
+ KrRpWwIUA5M0SoXStJXu4+Nr34r6q6NFT+8t2CEk86zpM3Do22/M2eXtV
+ 35xYivVe+GcRZfP5szsEy3N7754BDXinpXjctcx1zSmGE3nrNuEi/3Rpo
+ 4eC4zc7KFntVd2eovwbOykLVSB6/C5b1Pls11vrsUZ7Zfpppu3WNS28/W A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10201"; a="226641572"
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="226641572"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2021 08:28:18 -0800
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="662882571"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2021 08:28:14 -0800
+Date: Fri, 17 Dec 2021 08:22:54 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20211217162254.GA22048@jons-linux-dev-box>
+References: <20211214150704.984034-1-tvrtko.ursulin@linux.intel.com>
+ <597d4ad0-fdae-49a6-b471-3a83d4c25b98@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Subject: [Intel-gfx] How to fix screen resolution detection?
+In-Reply-To: <597d4ad0-fdae-49a6-b471-3a83d4c25b98@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Log engine resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,55 +58,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The screen resolution on my laptop is not reported accurately.  Here's 
-an extract from the output of xdpyinfo:
+On Fri, Dec 17, 2021 at 12:15:53PM +0000, Tvrtko Ursulin wrote:
+> 
+> On 14/12/2021 15:07, Tvrtko Ursulin wrote:
+> > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > 
+> > Log engine resets done by the GuC firmware in the similar way it is done
+> > by the execlists backend.
+> > 
+> > This way we have notion of where the hangs are before the GuC gains
+> > support for proper error capture.
+> 
+> Ping - any interest to log this info?
+> 
+> All there currently is a non-descriptive "[drm] GPU HANG: ecode
+> 12:0:00000000".
+>
 
-screen #0:
-  dimensions:    3200x1800 pixels (847x476 millimeters)
-  resolution:    96x96 dots per inch
+Yea, this could be helpful. One suggestion below.
 
-The number of pixels is correct, but the size and resolution values 
-smack of a bogus default.  The actual width of the screen (determined 
-with a tape measure) is about 11.5 inches (291 mm), which yields a 
-resolution of 280 dots per inch (11 dots per mm), approximately.  
-Most definitely _not_ 96 dpi.
+> Also, will GuC be reporting the reason for the engine reset at any point?
+>
 
-Presumably X gets the size/resolution information from Wayland, which 
-gets it from the kernel, which gets it from the firmware.  So the kernel 
-driver is the logical place to start in figuring where things are going 
-wrong.  The laptop uses i915; here are the relevant lines from the 
-kernel log:
+We are working on the error state capture, presumably the registers will
+give a clue what caused the hang.
 
-[    0.000000] Linux version 5.14.9-200.fc34.x86_64 (mockbuild@bkernel02.iad2.fedoraproject.org) (gcc (GCC) 11.2.1 20210728 (Red Hat 11.2.1-1), GNU ld version 2.35.2-5.fc34) #1 SMP Thu Sep 30 11:55:35 UTC 2021
+As for the GuC providing a reason, that isn't defined in the interface
+but that is decent idea to provide a hint in G2H what the issue was. Let
+me run that by the i915 GuC developers / GuC firmware team and see what
+they think. 
 
-[    0.463895] efifb: probing for efifb
-[    0.463913] efifb: framebuffer at 0xe0000000, using 22500k, total 22500k
-[    0.463916] efifb: mode is 3200x1800x32, linelength=12800, pages=1
-[    0.463919] efifb: scrolling: redraw
-[    0.463920] efifb: Truecolor: size=8:8:8:8, shift=24:16:8:0
-[    0.464028] Console: switching to colour frame buffer device 400x112
-[    0.474894] fb0: EFI VGA frame buffer device
+> Regards,
+> 
+> Tvrtko
+> 
+> > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: John Harrison <John.C.Harrison@Intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 +++++++++++-
+> >   1 file changed, 11 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index 97311119da6f..51512123dc1a 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -11,6 +11,7 @@
+> >   #include "gt/intel_context.h"
+> >   #include "gt/intel_engine_pm.h"
+> >   #include "gt/intel_engine_heartbeat.h"
+> > +#include "gt/intel_engine_user.h"
+> >   #include "gt/intel_gpu_commands.h"
+> >   #include "gt/intel_gt.h"
+> >   #include "gt/intel_gt_clock_utils.h"
+> > @@ -3934,9 +3935,18 @@ static void capture_error_state(struct intel_guc *guc,
+> >   {
+> >   	struct intel_gt *gt = guc_to_gt(guc);
+> >   	struct drm_i915_private *i915 = gt->i915;
+> > -	struct intel_engine_cs *engine = __context_to_physical_engine(ce);
+> > +	struct intel_engine_cs *engine = ce->engine;
+> >   	intel_wakeref_t wakeref;
+> > +	if (intel_engine_is_virtual(engine)) {
+> > +		drm_notice(&i915->drm, "%s class, engines 0x%x; GuC engine reset\n",
+> > +			   intel_engine_class_repr(engine->class),
+> > +			   engine->mask);
+> > +		engine = guc_virtual_get_sibling(engine, 0);
+> > +	} else {
+> > +		drm_notice(&i915->drm, "%s GuC engine reset\n", engine->name);
 
-[    2.888858] fb0: switching to inteldrmfb from EFI VGA
-[    2.891260] Console: switching to colour dummy device 80x25
-[    2.891318] i915 0000:00:02.0: vgaarb: deactivate vga console
-[    2.902665] i915 0000:00:02.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=io+mem:owns=io+mem
-[    2.904833] i915 0000:00:02.0: [drm] Finished loading DMC firmware i915/skl_dmc_ver1_27.bin (v1.27)
-[    2.947359] [drm] Initialized i915 1.6.0 20201103 for 0000:00:02.0 on minor 0
-[    2.949468] ACPI: video: Video Device [GFX0] (multi-head: yes  rom: no  post: no)
-[    2.949803] input: Video Bus as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input9
-[    2.964371] fbcon: i915 (fb0) is primary device
-[    2.979854] Console: switching to colour frame buffer device 400x112
-[    3.012355] i915 0000:00:02.0: [drm] fb0: i915 frame buffer device
+Probably include the guc_id of the context too then?
 
-Now, I know nothing about the kernel's graphics subsystems.  How can I 
-find out what size/resolution information i915 is getting and passing to 
-Wayland?  If it's wrong, how can I fix it?
+Matt
 
-Thanks,
-
-Alan Stern
+> > +	}
+> > +
+> >   	intel_engine_set_hung_context(engine, ce);
+> >   	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+> >   		i915_capture_error_state(gt, engine->mask);
+> > 
