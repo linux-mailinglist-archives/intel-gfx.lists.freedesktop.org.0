@@ -1,39 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC07E478862
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 11:08:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7648047886C
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 11:10:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F23B210FBE2;
-	Fri, 17 Dec 2021 10:08:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 796F410FE24;
+	Fri, 17 Dec 2021 10:10:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B84E10F8F9
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 10:08:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="239675404"
-X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="239675404"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53CA410FDB1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 10:10:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639735814; x=1671271814;
+ h=from:to:cc:subject:date:message-id:in-reply-to: references;
+ bh=4b4J0TrnxTj+dbR2aZEF8Xhtucuh0zRuaLk3Azmcf98=;
+ b=fyd5yN/W7XBLHHkHdjsdIvn1YyAaNB2J2enqdRdh/NvsL0V39oaqgWiD
+ T30T/C50N2gtk5fP3iWicissarqFDtoAxTFsCVKQxNw59TG/F6ej5dzyq
+ N2YKOlCUI9U+lqt4G/KSO6GdZhLvdyRsgaJxB69yYcwHP1gbzUgZy0RRB
+ mLJkTkyLKdtHISKaTd3ohQRZcydS8dYgL10Sw+J7BNzXzwzUiR7vktRJ7
+ Ru6lzXdWpJeQiknuN06mJhy7N1X+bs0j1nauZQSB86NFxfuOBkQYpcPDZ
+ b/hFoMldz5rAUeSExd6c+LDwZfte2h9wCMDJJDM+4iVJUV3sBh8APXYuB w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="239675702"
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="239675702"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2021 02:08:22 -0800
-X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="506710903"
-Received: from kmcgonig-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.8.181])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2021 02:08:20 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20211217071356.12517-2-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211217071356.12517-1-suraj.kandpal@intel.com>
- <20211217071356.12517-2-suraj.kandpal@intel.com>
-Date: Fri, 17 Dec 2021 12:08:15 +0200
-Message-ID: <87czlv35o0.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm: add writeback pointers to
- drm_connector
+ 17 Dec 2021 02:10:13 -0800
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="519690109"
+Received: from tsengwil-desk1.itwn.intel.com (HELO gar) ([10.5.231.22])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2021 02:10:12 -0800
+From: William Tseng <william.tseng@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Dec 2021 18:09:03 +0800
+Message-Id: <20211217100903.32599-1-william.tseng@intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20211115030320.26666-1-william.tseng@intel.com>
+References: <20211115030320.26666-1-william.tseng@intel.com>
+Subject: [Intel-gfx] [PATCH v3] drm/i915/dsi: let HW maintain the HS-TRAIL
+ timing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,177 +53,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: arun.r.murthy@intel.com
+Cc: Cooper Chiou <cooper.chiou@intel.com>,
+ William Tseng <william.tseng@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Dec 2021, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
-> From: suraj kandpal <suraj.kandpal@intel.com>
->
-> Adding drm_writeback_connector to drm_connector so that
-> writeback_connector can be fetched from drm_connector
+This change is to avoid over-specification of the TEOT timing
+parameter, which is derived from software in current design.
 
-This needs some explaining, since drm_connector_to_writeback() does
-exactly that.
+Supposed that THS-TRAIL and THS-EXIT have the minimum values,
+i.e., 60 and 100 in ns. If SW is overriding the HW default,
+the TEOT value becomes 150 ns, approximately calculated by
+the following formula.
 
-> Adding drm_connector and drm_encoder pointers in drm_writeback_connector
+  DIV_ROUND_UP(60/50)*50 + DIV_ROUND_UP(100/50))*50/2, where 50
+  is LP Escape Clock time in ns.
 
-Why?
+The TEOT value 150 ns is larger than the maximum value,
+around 136 ns if UI is 1.8ns, (105 ns + 12*UI, defined by MIPI
+DPHY specification).
 
-We can all read the code, the commit message should mostly be about the
-*why*.
+However, the TEOT value will meet the specification if THS-TRAIL
+is set to the HW default, instead of software overriding.
 
-Also, drm changes should Cc: dri-devel mailing list.
+The timing change is made for both data lane and clock lane.
 
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Cc: Lee Shawn C <shawn.c.lee@intel.com>
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Signed-off-by: William Tseng <william.tseng@intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c | 19 +++----------------
+ 1 file changed, 3 insertions(+), 16 deletions(-)
 
-BR,
-Jani.
-
->
-> Signed-off-by: suraj kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/drm_writeback.c | 19 ++++++++++---------
->  include/drm/drm_connector.h     |  3 +++
->  include/drm/drm_writeback.h     |  6 +++---
->  3 files changed, 16 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_writeback.c b/drivers/gpu/drm/drm_writeback.c
-> index dccf4504f1bb..47238db42363 100644
-> --- a/drivers/gpu/drm/drm_writeback.c
-> +++ b/drivers/gpu/drm/drm_writeback.c
-> @@ -87,7 +87,7 @@ static const char *drm_writeback_fence_get_driver_name(struct dma_fence *fence)
->  	struct drm_writeback_connector *wb_connector =
->  		fence_to_wb_connector(fence);
->  
-> -	return wb_connector->base.dev->driver->name;
-> +	return wb_connector->base->dev->driver->name;
->  }
->  
->  static const char *
-> @@ -177,7 +177,7 @@ int drm_writeback_connector_init(struct drm_device *dev,
->  				 const u32 *formats, int n_formats)
->  {
->  	struct drm_property_blob *blob;
-> -	struct drm_connector *connector = &wb_connector->base;
-> +	struct drm_connector *connector = wb_connector->base;
->  	struct drm_mode_config *config = &dev->mode_config;
->  	int ret = create_writeback_properties(dev);
->  
-> @@ -189,14 +189,15 @@ int drm_writeback_connector_init(struct drm_device *dev,
->  	if (IS_ERR(blob))
->  		return PTR_ERR(blob);
->  
-> -	drm_encoder_helper_add(&wb_connector->encoder, enc_helper_funcs);
-> -	ret = drm_encoder_init(dev, &wb_connector->encoder,
-> +	drm_encoder_helper_add(wb_connector->encoder, enc_helper_funcs);
-> +	ret = drm_encoder_init(dev, wb_connector->encoder,
->  			       &drm_writeback_encoder_funcs,
->  			       DRM_MODE_ENCODER_VIRTUAL, NULL);
->  	if (ret)
->  		goto fail;
->  
->  	connector->interlace_allowed = 0;
-> +	connector->wb_connector = wb_connector;
->  
->  	ret = drm_connector_init(dev, connector, con_funcs,
->  				 DRM_MODE_CONNECTOR_WRITEBACK);
-> @@ -204,7 +205,7 @@ int drm_writeback_connector_init(struct drm_device *dev,
->  		goto connector_fail;
->  
->  	ret = drm_connector_attach_encoder(connector,
-> -						&wb_connector->encoder);
-> +						wb_connector->encoder);
->  	if (ret)
->  		goto attach_fail;
->  
-> @@ -233,7 +234,7 @@ int drm_writeback_connector_init(struct drm_device *dev,
->  attach_fail:
->  	drm_connector_cleanup(connector);
->  connector_fail:
-> -	drm_encoder_cleanup(&wb_connector->encoder);
-> +	drm_encoder_cleanup(wb_connector->encoder);
->  fail:
->  	drm_property_blob_put(blob);
->  	return ret;
-> @@ -263,7 +264,7 @@ int drm_writeback_prepare_job(struct drm_writeback_job *job)
->  {
->  	struct drm_writeback_connector *connector = job->connector;
->  	const struct drm_connector_helper_funcs *funcs =
-> -		connector->base.helper_private;
-> +		connector->base->helper_private;
->  	int ret;
->  
->  	if (funcs->prepare_writeback_job) {
-> @@ -315,7 +316,7 @@ void drm_writeback_cleanup_job(struct drm_writeback_job *job)
->  {
->  	struct drm_writeback_connector *connector = job->connector;
->  	const struct drm_connector_helper_funcs *funcs =
-> -		connector->base.helper_private;
-> +		connector->base->helper_private;
->  
->  	if (job->prepared && funcs->cleanup_writeback_job)
->  		funcs->cleanup_writeback_job(connector, job);
-> @@ -401,7 +402,7 @@ drm_writeback_get_out_fence(struct drm_writeback_connector *wb_connector)
->  {
->  	struct dma_fence *fence;
->  
-> -	if (WARN_ON(wb_connector->base.connector_type !=
-> +	if (WARN_ON(wb_connector->base->connector_type !=
->  		    DRM_MODE_CONNECTOR_WRITEBACK))
->  		return NULL;
->  
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index 379746d3266f..ec049b1bc4bb 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -42,6 +42,7 @@ struct drm_property_blob;
->  struct drm_printer;
->  struct edid;
->  struct i2c_adapter;
-> +struct drm_writeback_connector;
->  
->  enum drm_connector_force {
->  	DRM_FORCE_UNSPECIFIED,
-> @@ -1483,6 +1484,8 @@ struct drm_connector {
->  	 */
->  	struct drm_encoder *encoder;
->  
-> +	struct drm_writeback_connector *wb_connector;
-> +
->  #define MAX_ELD_BYTES	128
->  	/** @eld: EDID-like data, if present */
->  	uint8_t eld[MAX_ELD_BYTES];
-> diff --git a/include/drm/drm_writeback.h b/include/drm/drm_writeback.h
-> index 9697d2714d2a..078c9907219c 100644
-> --- a/include/drm/drm_writeback.h
-> +++ b/include/drm/drm_writeback.h
-> @@ -22,7 +22,7 @@ struct drm_writeback_connector {
->  	/**
->  	 * @base: base drm_connector object
->  	 */
-> -	struct drm_connector base;
-> +	struct drm_connector *base;
->  
->  	/**
->  	 * @encoder: Internal encoder used by the connector to fulfill
-> @@ -31,7 +31,7 @@ struct drm_writeback_connector {
->  	 * by passing the @enc_funcs parameter to drm_writeback_connector_init()
->  	 * function.
->  	 */
-> -	struct drm_encoder encoder;
-> +	struct drm_encoder *encoder;
->  
->  	/**
->  	 * @pixel_formats_blob_ptr:
-> @@ -143,7 +143,7 @@ struct drm_writeback_job {
->  static inline struct drm_writeback_connector *
->  drm_connector_to_writeback(struct drm_connector *connector)
->  {
-> -	return container_of(connector, struct drm_writeback_connector, base);
-> +	return connector->wb_connector;
->  }
->  
->  int drm_writeback_connector_init(struct drm_device *dev,
-
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 168c84a74d30..992e357e3f44 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1863,14 +1863,13 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	struct mipi_config *mipi_config = dev_priv->vbt.dsi.config;
+ 	u32 tlpx_ns;
+-	u32 prepare_cnt, exit_zero_cnt, clk_zero_cnt, trail_cnt;
+-	u32 ths_prepare_ns, tclk_trail_ns;
++	u32 prepare_cnt, exit_zero_cnt, clk_zero_cnt;
++	u32 ths_prepare_ns;
+ 	u32 hs_zero_cnt;
+ 	u32 tclk_pre_cnt, tclk_post_cnt;
+ 
+ 	tlpx_ns = intel_dsi_tlpx_ns(intel_dsi);
+ 
+-	tclk_trail_ns = max(mipi_config->tclk_trail, mipi_config->ths_trail);
+ 	ths_prepare_ns = max(mipi_config->ths_prepare,
+ 			     mipi_config->tclk_prepare);
+ 
+@@ -1897,14 +1896,6 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+ 		clk_zero_cnt = ICL_CLK_ZERO_CNT_MAX;
+ 	}
+ 
+-	/* trail cnt in escape clocks*/
+-	trail_cnt = DIV_ROUND_UP(tclk_trail_ns, tlpx_ns);
+-	if (trail_cnt > ICL_TRAIL_CNT_MAX) {
+-		drm_dbg_kms(&dev_priv->drm, "trail_cnt out of range (%d)\n",
+-			    trail_cnt);
+-		trail_cnt = ICL_TRAIL_CNT_MAX;
+-	}
+-
+ 	/* tclk pre count in escape clocks */
+ 	tclk_pre_cnt = DIV_ROUND_UP(mipi_config->tclk_pre, tlpx_ns);
+ 	if (tclk_pre_cnt > ICL_TCLK_PRE_CNT_MAX) {
+@@ -1948,17 +1939,13 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+ 			       CLK_PRE_OVERRIDE |
+ 			       CLK_PRE(tclk_pre_cnt) |
+ 			       CLK_POST_OVERRIDE |
+-			       CLK_POST(tclk_post_cnt) |
+-			       CLK_TRAIL_OVERRIDE |
+-			       CLK_TRAIL(trail_cnt));
++			       CLK_POST(tclk_post_cnt));
+ 
+ 	/* data lanes dphy timings */
+ 	intel_dsi->dphy_data_lane_reg = (HS_PREPARE_OVERRIDE |
+ 					 HS_PREPARE(prepare_cnt) |
+ 					 HS_ZERO_OVERRIDE |
+ 					 HS_ZERO(hs_zero_cnt) |
+-					 HS_TRAIL_OVERRIDE |
+-					 HS_TRAIL(trail_cnt) |
+ 					 HS_EXIT_OVERRIDE |
+ 					 HS_EXIT(exit_zero_cnt));
+ 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.17.1
+
