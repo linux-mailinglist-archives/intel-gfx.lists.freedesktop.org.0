@@ -1,56 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECB38478C1A
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 14:20:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85097478C21
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 14:22:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC89710FBB8;
-	Fri, 17 Dec 2021 13:19:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8843510E679;
+	Fri, 17 Dec 2021 13:22:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com
- [IPv6:2607:f8b0:4864:20::730])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E870C10FBB1;
- Fri, 17 Dec 2021 13:19:54 +0000 (UTC)
-Received: by mail-qk1-x730.google.com with SMTP id t6so2042861qkg.1;
- Fri, 17 Dec 2021 05:19:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4HpE4CEjIgyhJJ+x0rL1tFgTKFJk1ap47g1VZbGoBCw=;
- b=awWtsrUqggbqaT5ZjGjR4Z6rT+Cg3aR2MqQyOfoVD12c8z+Q8xHrEtzC9Dptw0Hbat
- tmy5zl1PbHZEUKjDXz9dxowjIP8k+YW+9BlbZNtAgRDFt/eQ6R0G1hbtF0wbN483OaXn
- GdqPImBZ96RjFUiixj/MXRA19zJqbCrpvAxANTTW1i6sIklSBhEkHxh5grBCKscX2Cll
- MEO3KsWippCqp3B5Y00giMPpyfq2chKvfYrnLbirh1k90l9l5yfKANY3p+Zc7IIeIWYC
- s5zIGw+2apdvmO3V3n1UOFBXV5JtF4ZoeaCfKrKV8X5r0IvdD0hTmvt/gUO79fyuCiZc
- gRgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=4HpE4CEjIgyhJJ+x0rL1tFgTKFJk1ap47g1VZbGoBCw=;
- b=j1vBUGpjp4VIcCaJAA4T7swur0JDNmxhpZFWlSFl9dW4TZ/G5CpeeW815gTjPuUKIt
- 5aYuSq7xqOM161RNi5VbltwfQfATl2AZ7VZLJ+yks9KEdtVcB9zKKxbTLUtXxvXvZsJg
- 8+cPM/DBhl/D0fEx0oDymG8OttauAZ6TlyanEOb6mEA0PVnBQ0tJWyJHfUgfnIZROHnF
- 6Qya4oLPhFwEoYOI8H3Ke1Sj6JdqAyGmK6B+YOQGaxvg5SaVNA4GJjhbyTfsp+jYy8cn
- jkHsiyXCCwmW55KhdogwoxiUFRDGkzkP0Mjd2DGyq8zyfd/htiVQCJacPG3PmnK+vCvG
- AnKw==
-X-Gm-Message-State: AOAM530eew6dPcVx8F9FdTOFKbKHmFq5mHrhqj2jv3bD85hvxy3CXITf
- gtOR4ltTPqZM2eZxscgvK/G3hUq71pp+FrxGkq7Py7t4cmA=
-X-Google-Smtp-Source: ABdhPJyPZZVyq+WzDCJ6BRHYvDgMjWCl56B7QsAk4cSs0B/SNIPIY1Liq+m/IsZpH4JNxSEvNyk3TdIIpq8hITcTUfE=
-X-Received: by 2002:a37:a353:: with SMTP id m80mr1623904qke.7.1639747193744;
- Fri, 17 Dec 2021 05:19:53 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 975A010EB63;
+ Fri, 17 Dec 2021 13:21:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8D986A9A42;
+ Fri, 17 Dec 2021 13:21:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9036288802885523952=="
 MIME-Version: 1.0
-References: <20211216142749.1966107-1-maarten.lankhorst@linux.intel.com>
- <20211216142749.1966107-13-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211216142749.1966107-13-maarten.lankhorst@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 17 Dec 2021 13:19:27 +0000
-Message-ID: <CAM0jSHMFF7x-FJjSPi3V3WiLuVwjd4QzfG=hWeYfhZEtWddn5w@mail.gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v3 12/17] drm/i915: Add locking to
- i915_gem_evict_vm()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "William Tseng" <william.tseng@intel.com>
+Date: Fri, 17 Dec 2021 13:21:59 -0000
+Message-ID: <163974731954.10412.2072807637841894087@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211110102354.5640-1-william.tseng@intel.com>
+In-Reply-To: <20211110102354.5640-1-william.tseng@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dsi=3A_let_HW_maintain_the_HS-TRAIL_timing_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,200 +40,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 Dec 2021 at 14:28, Maarten Lankhorst
-<maarten.lankhorst@linux.intel.com> wrote:
->
-> i915_gem_evict_vm will need to be able to evict objects that are
-> locked by the current ctx. By testing if the current context already
-> locked the object, we can do this correctly. This allows us to
-> evict the entire vm even if we already hold some objects' locks.
->
-> Previously, this was spread over several commits, but it makes
-> more sense to commit the changes to i915_gem_evict_vm separately
-> from the changes to i915_gem_evict_something() and
-> i915_gem_evict_for_node().
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  2 +-
->  drivers/gpu/drm/i915/i915_drv.h               |  3 +-
->  drivers/gpu/drm/i915/i915_gem_evict.c         | 30 +++++++++++++++++--
->  drivers/gpu/drm/i915/i915_vma.c               |  7 ++++-
->  .../gpu/drm/i915/selftests/i915_gem_evict.c   | 10 +++++--
->  6 files changed, 46 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 2213f7b613da..eb3649e844ff 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -766,7 +766,7 @@ static int eb_reserve(struct i915_execbuffer *eb)
->                 case 1:
->                         /* Too fragmented, unbind everything and retry */
->                         mutex_lock(&eb->context->vm->mutex);
-> -                       err = i915_gem_evict_vm(eb->context->vm);
-> +                       err = i915_gem_evict_vm(eb->context->vm, &eb->ww);
->                         mutex_unlock(&eb->context->vm->mutex);
->                         if (err)
->                                 return err;
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index 00cd9642669a..2856098cb449 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -366,7 +366,7 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
->                 if (vma == ERR_PTR(-ENOSPC)) {
->                         ret = mutex_lock_interruptible(&ggtt->vm.mutex);
->                         if (!ret) {
-> -                               ret = i915_gem_evict_vm(&ggtt->vm);
-> +                               ret = i915_gem_evict_vm(&ggtt->vm, &ww);
->                                 mutex_unlock(&ggtt->vm.mutex);
->                         }
->                         if (ret)
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index d51628d10f9d..c180019c607f 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1725,7 +1725,8 @@ int __must_check i915_gem_evict_something(struct i915_address_space *vm,
->  int __must_check i915_gem_evict_for_node(struct i915_address_space *vm,
->                                          struct drm_mm_node *node,
->                                          unsigned int flags);
-> -int i915_gem_evict_vm(struct i915_address_space *vm);
-> +int i915_gem_evict_vm(struct i915_address_space *vm,
-> +                     struct i915_gem_ww_ctx *ww);
->
->  /* i915_gem_internal.c */
->  struct drm_i915_gem_object *
-> diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
-> index 2b73ddb11c66..bfd66f539fc1 100644
-> --- a/drivers/gpu/drm/i915/i915_gem_evict.c
-> +++ b/drivers/gpu/drm/i915/i915_gem_evict.c
-> @@ -367,7 +367,7 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
->   * To clarify: This is for freeing up virtual address space, not for freeing
->   * memory in e.g. the shrinker.
->   */
-> -int i915_gem_evict_vm(struct i915_address_space *vm)
-> +int i915_gem_evict_vm(struct i915_address_space *vm, struct i915_gem_ww_ctx *ww)
->  {
->         int ret = 0;
->
-> @@ -388,24 +388,50 @@ int i915_gem_evict_vm(struct i915_address_space *vm)
->         do {
->                 struct i915_vma *vma, *vn;
->                 LIST_HEAD(eviction_list);
-> +               LIST_HEAD(locked_eviction_list);
->
->                 list_for_each_entry(vma, &vm->bound_list, vm_link) {
->                         if (i915_vma_is_pinned(vma))
->                                 continue;
->
-> +                       /*
-> +                        * If we already own the lock, trylock fails. In case the resv
-> +                        * is shared among multiple objects, we still need the object ref.
+--===============9036288802885523952==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-What is "object ref" here? I assume it's just leftovers...
+== Series Details ==
 
-Otherwise,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Series: drm/i915/dsi: let HW maintain the HS-TRAIL timing (rev3)
+URL   : https://patchwork.freedesktop.org/series/96750/
+State : success
 
-> +                        */
-> +                       if (ww && (dma_resv_locking_ctx(vma->obj->base.resv) == &ww->ctx)) {
-> +                               __i915_vma_pin(vma);
-> +                               list_add(&vma->evict_link, &locked_eviction_list);
-> +                               continue;
-> +                       }
-> +
-> +                       if (!i915_gem_object_trylock(vma->obj, ww))
-> +                               continue;
-> +
->                         __i915_vma_pin(vma);
->                         list_add(&vma->evict_link, &eviction_list);
->                 }
-> -               if (list_empty(&eviction_list))
-> +               if (list_empty(&eviction_list) && list_empty(&locked_eviction_list))
->                         break;
->
->                 ret = 0;
-> +               /* Unbind locked objects first, before unlocking the eviction_list */
-> +               list_for_each_entry_safe(vma, vn, &locked_eviction_list, evict_link) {
-> +                       __i915_vma_unpin(vma);
-> +
-> +                       if (ret == 0)
-> +                               ret = __i915_vma_unbind(vma);
-> +                       if (ret != -EINTR) /* "Get me out of here!" */
-> +                               ret = 0;
-> +               }
-> +
->                 list_for_each_entry_safe(vma, vn, &eviction_list, evict_link) {
->                         __i915_vma_unpin(vma);
->                         if (ret == 0)
->                                 ret = __i915_vma_unbind(vma);
->                         if (ret != -EINTR) /* "Get me out of here!" */
->                                 ret = 0;
-> +
-> +                       i915_gem_object_unlock(vma->obj);
->                 }
->         } while (ret == 0);
->
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index de24e4b3b19b..d24e90eac948 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -1462,7 +1462,12 @@ static int __i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
->                 /* Unlike i915_vma_pin, we don't take no for an answer! */
->                 flush_idle_contexts(vm->gt);
->                 if (mutex_lock_interruptible(&vm->mutex) == 0) {
-> -                       i915_gem_evict_vm(vm);
-> +                       /*
-> +                        * We pass NULL ww here, as we don't want to unbind
-> +                        * locked objects when called from execbuf when pinning
-> +                        * is removed. This would probably regress badly.
-> +                        */
-> +                       i915_gem_evict_vm(vm, NULL);
->                         mutex_unlock(&vm->mutex);
->                 }
->         } while (1);
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
-> index 7e0658a77659..7178811366af 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
-> @@ -331,6 +331,7 @@ static int igt_evict_vm(void *arg)
->  {
->         struct intel_gt *gt = arg;
->         struct i915_ggtt *ggtt = gt->ggtt;
-> +       struct i915_gem_ww_ctx ww;
->         LIST_HEAD(objects);
->         int err;
->
-> @@ -342,7 +343,7 @@ static int igt_evict_vm(void *arg)
->
->         /* Everything is pinned, nothing should happen */
->         mutex_lock(&ggtt->vm.mutex);
-> -       err = i915_gem_evict_vm(&ggtt->vm);
-> +       err = i915_gem_evict_vm(&ggtt->vm, NULL);
->         mutex_unlock(&ggtt->vm.mutex);
->         if (err) {
->                 pr_err("i915_gem_evict_vm on a full GGTT returned err=%d]\n",
-> @@ -352,9 +353,14 @@ static int igt_evict_vm(void *arg)
->
->         unpin_ggtt(ggtt);
->
-> +       i915_gem_ww_ctx_init(&ww, false);
->         mutex_lock(&ggtt->vm.mutex);
-> -       err = i915_gem_evict_vm(&ggtt->vm);
-> +       err = i915_gem_evict_vm(&ggtt->vm, &ww);
->         mutex_unlock(&ggtt->vm.mutex);
-> +
-> +       /* no -EDEADLK handling; can't happen with vm.mutex in place */
-> +       i915_gem_ww_ctx_fini(&ww);
-> +
->         if (err) {
->                 pr_err("i915_gem_evict_vm on a full GGTT returned err=%d]\n",
->                        err);
-> --
-> 2.34.1
->
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11012 -> Patchwork_21869
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/index.html
+
+Participating hosts (42 -> 37)
+------------------------------
+
+  Missing    (5): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-6 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21869 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_flink_basic@bad-flink:
+    - fi-skl-6600u:       [PASS][1] -> [FAIL][2] ([i915#4547])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11012/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload:
+    - {fi-tgl-dsi}:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11012/fi-tgl-dsi/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/fi-tgl-dsi/igt@i915_module_load@reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11012 -> Patchwork_21869
+
+  CI-20190529: 20190529
+  CI_DRM_11012: 64bab3fe255d1886ef16ef57451df545380fa6be @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6313: 1793ed798cc09966c27bf478781e0c1d6bb23bad @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21869: 7da7b72244aaed598f4964998436169b52735d45 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7da7b72244aa drm/i915/dsi: let HW maintain the HS-TRAIL timing
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/index.html
+
+--===============9036288802885523952==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dsi: let HW maintain the HS-TRAIL timing (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96750/">https://patchwork.freedesktop.org/series/96750/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11012 -&gt; Patchwork_21869</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/index.html</p>
+<h2>Participating hosts (42 -&gt; 37)</h2>
+<p>Missing    (5): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-6 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21869 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_flink_basic@bad-flink:<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11012/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_module_load@reload:<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11012/fi-tgl-dsi/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/fi-tgl-dsi/igt@i915_module_load@reload.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11012 -&gt; Patchwork_21869</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11012: 64bab3fe255d1886ef16ef57451df545380fa6be @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6313: 1793ed798cc09966c27bf478781e0c1d6bb23bad @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21869: 7da7b72244aaed598f4964998436169b52735d45 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>7da7b72244aa drm/i915/dsi: let HW maintain the HS-TRAIL timing</p>
+
+</body>
+</html>
+
+--===============9036288802885523952==--
