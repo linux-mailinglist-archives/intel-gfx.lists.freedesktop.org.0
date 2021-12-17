@@ -1,51 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D33F47889C
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 11:18:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD7CC478904
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 11:34:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1DDA10FEA1;
-	Fri, 17 Dec 2021 10:18:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17AD710F405;
+	Fri, 17 Dec 2021 10:34:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBB6A10FEA1
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 10:18:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639736303; x=1671272303;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=VFvn6gfXxRSpgvVJh5gSHRqHLoXyVDESid8961NHTSo=;
- b=bec/T40KV2o1NODGPtqWpORV5lLpwNEd4zgNRKgQtwwWOKb1Vi67tsbp
- OoYsbP+95ur4yOkczJYRXwmZTAckKM6KttO31X3nD3K9UiJSujNBBXdTK
- BxpBbv5uWsShTLlPImRvBH4AAYlIWkpKJRfBDIewzxACut/3sprm5Qs+3
- QHw2Ol5KRVCooQ2bfxr/vsye7doExDFLAttAloZ8Yioa4UFQcGFph+am4
- vs9M2h7mAhLLBqczegb+mMaksWm5/nFP6YfHaJ1NBsAaBWGplGt1uFzWM
- MdRAAaisIO5o/byFDgKgc03mXSszBWnipwPHlVqvdeRACDTsMuUE8ZESH g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="219740930"
-X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="219740930"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2021 02:18:23 -0800
-X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="519692454"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9128A10F405
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 10:34:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="239952428"
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="239952428"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2021 02:34:32 -0800
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="466459983"
 Received: from kmcgonig-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.8.181])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2021 02:18:20 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Harish Chegondi <harish.chegondi@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20211216232124.1298010-1-harish.chegondi@intel.com>
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2021 02:34:30 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jiri Slaby <jslaby@suse.cz>, Daniel Vetter <daniel.vetter@ffwll.ch>
+In-Reply-To: <163967920689.14059.11070892850072821843@emeril.freedesktop.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211216232124.1298010-1-harish.chegondi@intel.com>
-Date: Fri, 17 Dec 2021 12:18:15 +0200
-Message-ID: <874k77357c.fsf@intel.com>
+References: <20211216115920.15981-1-jslaby@suse.cz>
+ <163967920689.14059.11070892850072821843@emeril.freedesktop.org>
+Date: Fri, 17 Dec 2021 12:34:26 +0200
+Message-ID: <871r2b34gd.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix possible NULL pointer
- dereferences in i9xx_update_wm()
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_remove_circ=5Fbuf=2Eh_includes?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,52 +47,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 Dec 2021, Harish Chegondi <harish.chegondi@intel.com> wrote:
-> Check return pointer from intel_crtc_for_plane() before dereferencing
-> it, as it can be NULL.
+On Thu, 16 Dec 2021, Patchwork <patchwork@emeril.freedesktop.org> wrote:
+> == Series Details ==
+>
+> Series: drm/i915: remove circ_buf.h includes
+> URL   : https://patchwork.freedesktop.org/series/98130/
+> State : warning
+>
+> == Summary ==
+>
+> $ dim checkpatch origin/drm-tip
+> 24a5cb6b532c drm/i915: remove circ_buf.h includes
+> -:44: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jiri Slaby <jirislaby@kernel.org>' != 'Signed-off-by: Jiri Slaby <jslaby@suse.cz>'
+>
+> total: 0 errors, 1 warnings, 0 checks, 14 lines checked
 
-If you're doing this to satisfy some static analyzer, in these cases the
-code would read *much* better if you added the NULL check inside
-intel_crtc_active().
+Now, this is interesting. The patch email has no mention of
+jirislaby@kernel.org.
+
+However, .mailmap in kernel source root has line:
+
+Jiri Slaby <jirislaby@kernel.org> <jslaby@suse.cz>
+
+indicating that you prefer jirislaby@kernel.org. When I apply the patch,
+git am looks that up, and sets:
+
+Author: Jiri Slaby <jirislaby@kernel.org>
+
+With that, we end up with an Author/Signed-off-by mismatch.
+
+If you prefer Jiri Slaby <jirislaby@kernel.org>, I think you should have
+that in git config too.
+
 
 BR,
 Jani.
 
-
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Caz Yokoyama <caz.yokoyama@intel.com>
-> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index bdf97a8c9ef3..c7a4d8d971d7 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -2373,7 +2373,7 @@ static void i9xx_update_wm(struct drm_i915_private *dev_priv)
->  	else
->  		fifo_size = i9xx_get_fifo_size(dev_priv, PLANE_A);
->  	crtc = intel_crtc_for_plane(dev_priv, PLANE_A);
-> -	if (intel_crtc_active(crtc)) {
-> +	if (crtc && intel_crtc_active(crtc)) {
->  		const struct drm_display_mode *pipe_mode =
->  			&crtc->config->hw.pipe_mode;
->  		const struct drm_framebuffer *fb =
-> @@ -2403,7 +2403,7 @@ static void i9xx_update_wm(struct drm_i915_private *dev_priv)
->  	else
->  		fifo_size = i9xx_get_fifo_size(dev_priv, PLANE_B);
->  	crtc = intel_crtc_for_plane(dev_priv, PLANE_B);
-> -	if (intel_crtc_active(crtc)) {
-> +	if (crtc && intel_crtc_active(crtc)) {
->  		const struct drm_display_mode *pipe_mode =
->  			&crtc->config->hw.pipe_mode;
->  		const struct drm_framebuffer *fb =
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
