@@ -2,56 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6EDF478AAA
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 12:58:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3742C478B30
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 13:15:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70B4410E526;
-	Fri, 17 Dec 2021 11:58:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0EC710EB93;
+	Fri, 17 Dec 2021 12:15:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com
- [IPv6:2607:f8b0:4864:20::832])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 290FC10E526;
- Fri, 17 Dec 2021 11:58:55 +0000 (UTC)
-Received: by mail-qt1-x832.google.com with SMTP id m25so2230825qtq.13;
- Fri, 17 Dec 2021 03:58:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=wT8ClecYdhCVdvDuMUr/1pzhtVDKCf9vH9eDundTQ/c=;
- b=SjUYfrn7sNVzlvtAc/g4OFz+BkHSyl0aBs2H7HbMsB4q0bj8aP+uGjhv4LSXL+Dduh
- 5/yX0vhinUzG8Jsmu+c5OG11nPDapfB7z99LOE6DBTjFTmo6fAEB+uNXBzewd3jmOCSv
- 7YSdMqdL4afOEGf+ZxR/OjJk9zVhTf+S8aP+SYU9cQA5RUlglOHArey7hwSln2psOIKM
- 4jC7XwhcEGhCOYpOjgHwZHBnp3hAMtZ4tPt0aftn6dkxxQwrl1FiuIGRG2cYXpo5+/LS
- lN9ATzg/DkSOdPwkmJgz3nMe4l1GFyC2fvBYDyzlqHecemahZPUzzYv4prygX59Uq7cx
- DrTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=wT8ClecYdhCVdvDuMUr/1pzhtVDKCf9vH9eDundTQ/c=;
- b=115sPmbnmozrLS/DCh+ab0LX02r4bu/kVzLEf/h2j0DrWJK9o3zRCqdUb8/Za67+1O
- AiY0p2DaMcP+4e6v+OijeHcOx6i1Kgi5Ahns/z2s6uxssReM8kmwcHDA1gcjEOciN3AR
- 11Xb/3vtLbcTUT72wZIvxJmvnZ9PAg/a1rooYKfW6VrbYfPjq17P2iAQWb6BabHl0n4F
- AJHfnqrzK+DQ4m9W5TsevWVddeuZOLlxFlt+uZpCmpmXorEBC9GUNVkiYpLtbJ2s/Ott
- 7wL2vCWwYggROgAVhW05s39QVIxJ/4Hq0fQM3Y13nhbW53uEXI8tGQWXmVDQkRwKR1Cr
- u4CQ==
-X-Gm-Message-State: AOAM530owfqvuen+CY6iV4NT2f0XJ73l3yc9pG8+bieNPEyfMKCb+TuA
- KswRNxL6lOvVv0tB0J2CrpKNN0a5Kq2qqOaIg7ZpqRwp/yw=
-X-Google-Smtp-Source: ABdhPJxm+dI59V/GnTEd69bM/FbLoMtIjPaqHkRj98AkU9+w35rNd/RkhgwrN9LB9snvOX4NU1gALrk+JcmPfZIRuOs=
-X-Received: by 2002:a05:622a:1990:: with SMTP id
- u16mr1862913qtc.355.1639742334189; 
- Fri, 17 Dec 2021 03:58:54 -0800 (PST)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D6C310EBEB;
+ Fri, 17 Dec 2021 12:15:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639743315; x=1671279315;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=WaZLnIsliWvdIOqFBG7CzikYKTfNgwGDsX9roA6gPyA=;
+ b=bn261p8QEY+QurzUjlC042t4ZguFNDJtlQDm8G1pjdK6d48QbuQpEoeb
+ NdBWCbTe0soon+ezwlEp7/WDaKntUVxOsyjFQw42UXAoavGPXs5yBkHxH
+ nGfP4IbWziqBdO0lQNiTm2FxtVlMU6fmxVS2m00UGv2Hiv/6yYV0To7LR
+ 2Ex0xDevcYTJeVsxPwdunQLH3E3Q+1mpD47mLYP5o+fVEd06ToKfWhzDm
+ fiEbVtWLw40odNb+z7evlVD8SZGpaG/yJvfCX8TnoV2CyTKKS3E9m86pI
+ jmtC3j8ctJkqJ+Eunv9kpscPoC01yxi2opfZcy8MpbCNlhcfVbsOuM6cC g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="227029441"
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="227029441"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2021 04:15:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="506744738"
+Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
+ by orsmga007.jf.intel.com with ESMTP; 17 Dec 2021 04:15:12 -0800
+Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1myC8l-0004iQ-G2; Fri, 17 Dec 2021 12:15:11 +0000
+Date: Fri, 17 Dec 2021 20:14:50 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <202112172015.HCePn2cg-lkp@intel.com>
+References: <20211217091929.105781-7-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-References: <20211216142749.1966107-1-maarten.lankhorst@linux.intel.com>
- <20211216142749.1966107-9-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211216142749.1966107-9-maarten.lankhorst@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 17 Dec 2021 11:58:27 +0000
-Message-ID: <CAM0jSHOL-dxs7v314p=iKDkRLDfR3Q=6bFoejydxTMd7Tbw=vQ@mail.gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v3 08/17] drm/i915: Call i915_gem_evict_vm
- in vm_fault_gtt to prevent new ENOSPC errors
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211217091929.105781-7-thomas.hellstrom@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 6/7] drm/i915: Use vma resources for
+ async unbinding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,66 +61,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ llvm@lists.linux.dev, kbuild-all@lists.01.org, matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 Dec 2021 at 14:28, Maarten Lankhorst
-<maarten.lankhorst@linux.intel.com> wrote:
->
-> Now that we cannot unbind kill the currently locked object directly
+Hi "Thomas,
 
-"unbind kill"
+Thank you for the patch! Perhaps something to improve:
 
-> because we're removing short term pinning, we may have to unbind the
-> object from gtt manually, using a i915_gem_evict_vm() call.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+[auto build test WARNING on drm-tip/drm-tip]
+[also build test WARNING on next-20211216]
+[cannot apply to drm-exynos/exynos-drm-next drm/drm-next drm-intel/for-linux-next tegra-drm/drm/tegra/for-next airlied/drm-next v5.16-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Maybe mention that this only in preparation for some future patches,
-once the actual eviction is trylock and evict_for_vm can also handle
-shared dma-resv? At this point in the series we shouldn't expect to
-hit -ENOSPC, right?
+url:    https://github.com/0day-ci/linux/commits/Thomas-Hellstr-m/drm-i915-Asynchronous-vma-unbinding/20211217-172108
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+config: i386-randconfig-r021-20211216 (https://download.01.org/0day-ci/archive/20211217/202112172015.HCePn2cg-lkp@intel.com/config)
+compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 9043c3d65b11b442226015acfbf8167684586cfa)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/45f1249183a30dea38defee195b33c7f6753d9f9
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Thomas-Hellstr-m/drm-i915-Asynchronous-vma-unbinding/20211217-172108
+        git checkout 45f1249183a30dea38defee195b33c7f6753d9f9
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
 
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c | 18 ++++++++++++++++--
->  1 file changed, 16 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index af81d6c3332a..00cd9642669a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -358,8 +358,22 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
->                         vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
->                 }
->
-> -               /* The entire mappable GGTT is pinned? Unexpected! */
-> -               GEM_BUG_ON(vma == ERR_PTR(-ENOSPC));
-> +               /*
-> +                * The entire mappable GGTT is pinned? Unexpected!
-> +                * Try to evict the object we locked too, as normally we skip it
-> +                * due to lack of short term pinning inside execbuf.
-> +                */
-> +               if (vma == ERR_PTR(-ENOSPC)) {
-> +                       ret = mutex_lock_interruptible(&ggtt->vm.mutex);
-> +                       if (!ret) {
-> +                               ret = i915_gem_evict_vm(&ggtt->vm);
-> +                               mutex_unlock(&ggtt->vm.mutex);
-> +                       }
-> +                       if (ret)
-> +                               goto err_reset;
-> +                       vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
-> +               }
-> +               GEM_WARN_ON(vma == ERR_PTR(-ENOSPC));
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Looks like this is being triggered in CI, I assume because the trylock
-could easily fail, due to contention? Is this expected for now? Do we
-keep the WARN and track it as a known issue?
+All warnings (new ones prefixed by >>):
 
->         }
->         if (IS_ERR(vma)) {
->                 ret = PTR_ERR(vma);
-> --
-> 2.34.1
->
+>> drivers/gpu/drm/i915/i915_vma_resource.c:379:39: warning: format specifies type 'unsigned long' but the argument has type 'unsigned int' [-Wformat]
+           pr_err("vma resource size is %lu\n", sizeof(struct i915_vma_resource));
+                                        ~~~     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                        %u
+   include/linux/printk.h:493:33: note: expanded from macro 'pr_err'
+           printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
+                                  ~~~     ^~~~~~~~~~~
+   include/linux/printk.h:450:60: note: expanded from macro 'printk'
+   #define printk(fmt, ...) printk_index_wrap(_printk, fmt, ##__VA_ARGS__)
+                                                       ~~~    ^~~~~~~~~~~
+   include/linux/printk.h:422:19: note: expanded from macro 'printk_index_wrap'
+                   _p_func(_fmt, ##__VA_ARGS__);                           \
+                           ~~~~    ^~~~~~~~~~~
+   1 warning generated.
+
+
+vim +379 drivers/gpu/drm/i915/i915_vma_resource.c
+
+   376	
+   377	int __init i915_vma_resource_module_init(void)
+   378	{
+ > 379		pr_err("vma resource size is %lu\n", sizeof(struct i915_vma_resource));
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
