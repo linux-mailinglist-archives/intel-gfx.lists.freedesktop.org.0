@@ -2,32 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85097478C21
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 14:22:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 466D6478C50
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 14:28:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8843510E679;
-	Fri, 17 Dec 2021 13:22:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CCF810F9F0;
+	Fri, 17 Dec 2021 13:28:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 975A010EB63;
- Fri, 17 Dec 2021 13:21:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8D986A9A42;
- Fri, 17 Dec 2021 13:21:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9036288802885523952=="
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28F1510F9F0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 13:28:08 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="239976949"
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="239976949"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2021 05:28:07 -0800
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="615561055"
+Received: from kmcgonig-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.8.181])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2021 05:28:02 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211210051802.4063958-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211210051802.4063958-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Date: Fri, 17 Dec 2021 15:27:57 +0200
+Message-ID: <87r1ab1huq.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "William Tseng" <william.tseng@intel.com>
-Date: Fri, 17 Dec 2021 13:21:59 -0000
-Message-ID: <163974731954.10412.2072807637841894087@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211110102354.5640-1-william.tseng@intel.com>
-In-Reply-To: <20211110102354.5640-1-william.tseng@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dsi=3A_let_HW_maintain_the_HS-TRAIL_timing_=28rev3=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH V3] drm/i915/adl-n: Enable ADL-N platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,157 +45,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: x86@kernel.org, linux-pci@vger.kernel.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, Bjorn Helgaas <bhelgaas@google.com>,
+ Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============9036288802885523952==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 10 Dec 2021, Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com> wrote:
+> Adding PCI device ids and enabling ADL-N platform.
+> ADL-N from i915 point of view is subplatform of ADL-P.
+>
+> BSpec: 68397
+>
+> Changes since V2:
+> 	- Added version log history
+> Changes since V1:
+> 	- replace IS_ALDERLAKE_N with IS_ADLP_N - Jani Nikula
+>
+> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
 
-== Series Details ==
+Cc: x86 maintainers & lists
 
-Series: drm/i915/dsi: let HW maintain the HS-TRAIL timing (rev3)
-URL   : https://patchwork.freedesktop.org/series/96750/
-State : success
+Ack for merging the arch/x86/kernel/early-quirks.c PCI ID update via
+drm-intel?
 
-== Summary ==
+I note not all such changes in git log have your acks recorded, though
+most do. Do you want us to be more careful about Cc'ing you for acks on
+PCI ID changes every time going forward?
 
-CI Bug Log - changes from CI_DRM_11012 -> Patchwork_21869
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/index.html
-
-Participating hosts (42 -> 37)
-------------------------------
-
-  Missing    (5): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-6 fi-bdw-samus 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21869 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [PASS][1] -> [FAIL][2] ([i915#4547])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11012/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - {fi-tgl-dsi}:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11012/fi-tgl-dsi/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/fi-tgl-dsi/igt@i915_module_load@reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+BR,
+Jani.
 
 
-Build changes
--------------
+> ---
+>  arch/x86/kernel/early-quirks.c           | 1 +
+>  drivers/gpu/drm/i915/i915_drv.h          | 2 ++
+>  drivers/gpu/drm/i915/i915_pci.c          | 1 +
+>  drivers/gpu/drm/i915/intel_device_info.c | 7 +++++++
+>  drivers/gpu/drm/i915/intel_device_info.h | 3 +++
+>  include/drm/i915_pciids.h                | 6 ++++++
+>  6 files changed, 20 insertions(+)
+>
+> diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+> index fd2d3ab38ebb..1ca3a56fdc2d 100644
+> --- a/arch/x86/kernel/early-quirks.c
+> +++ b/arch/x86/kernel/early-quirks.c
+> @@ -554,6 +554,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
+>  	INTEL_RKL_IDS(&gen11_early_ops),
+>  	INTEL_ADLS_IDS(&gen11_early_ops),
+>  	INTEL_ADLP_IDS(&gen11_early_ops),
+> +	INTEL_ADLN_IDS(&gen11_early_ops),
+>  	INTEL_RPLS_IDS(&gen11_early_ops),
+>  };
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index a0f54a69b11d..b2ec85a3e40a 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1283,6 +1283,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>  	IS_SUBPLATFORM(dev_priv, INTEL_DG2, INTEL_SUBPLATFORM_G11)
+>  #define IS_ADLS_RPLS(dev_priv) \
+>  	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_S, INTEL_SUBPLATFORM_RPL_S)
+> +#define IS_ADLP_N(dev_priv) \
+> +	IS_SUBPLATFORM(dev_priv, INTEL_ALDERLAKE_P, INTEL_SUBPLATFORM_N)
+>  #define IS_HSW_EARLY_SDV(dev_priv) (IS_HASWELL(dev_priv) && \
+>  				    (INTEL_DEVID(dev_priv) & 0xFF00) == 0x0C00)
+>  #define IS_BDW_ULT(dev_priv) \
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 708a23415e9c..6a19e9da53cc 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -1132,6 +1132,7 @@ static const struct pci_device_id pciidlist[] = {
+>  	INTEL_RKL_IDS(&rkl_info),
+>  	INTEL_ADLS_IDS(&adl_s_info),
+>  	INTEL_ADLP_IDS(&adl_p_info),
+> +	INTEL_ADLN_IDS(&adl_p_info),
+>  	INTEL_DG1_IDS(&dg1_info),
+>  	INTEL_RPLS_IDS(&adl_s_info),
+>  	{0, 0, 0}
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+> index a3446a2abcb2..54944d87cd3c 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -170,6 +170,10 @@ static const u16 subplatform_portf_ids[] = {
+>  	INTEL_ICL_PORT_F_IDS(0),
+>  };
+>  
+> +static const u16 subplatform_n_ids[] = {
+> +	INTEL_ADLN_IDS(0),
+> +};
+> +
+>  static const u16 subplatform_rpls_ids[] = {
+>  	INTEL_RPLS_IDS(0),
+>  };
+> @@ -210,6 +214,9 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+>  	} else if (find_devid(devid, subplatform_portf_ids,
+>  			      ARRAY_SIZE(subplatform_portf_ids))) {
+>  		mask = BIT(INTEL_SUBPLATFORM_PORTF);
+> +	} else if (find_devid(devid, subplatform_n_ids,
+> +				ARRAY_SIZE(subplatform_n_ids))) {
+> +		mask = BIT(INTEL_SUBPLATFORM_N);
+>  	} else if (find_devid(devid, subplatform_rpls_ids,
+>  			      ARRAY_SIZE(subplatform_rpls_ids))) {
+>  		mask = BIT(INTEL_SUBPLATFORM_RPL_S);
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index 213ae2c07126..e341d90f28a2 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -113,6 +113,9 @@ enum intel_platform {
+>  /* ADL-S */
+>  #define INTEL_SUBPLATFORM_RPL_S	0
+>  
+> +/* ADL-P */
+> +#define INTEL_SUBPLATFORM_N    0
+> +
+>  enum intel_ppgtt_type {
+>  	INTEL_PPGTT_NONE = I915_GEM_PPGTT_NONE,
+>  	INTEL_PPGTT_ALIASING = I915_GEM_PPGTT_ALIASING,
+> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+> index baf3d1d3d566..533890dc9da1 100644
+> --- a/include/drm/i915_pciids.h
+> +++ b/include/drm/i915_pciids.h
+> @@ -666,6 +666,12 @@
+>  	INTEL_VGA_DEVICE(0x46C2, info), \
+>  	INTEL_VGA_DEVICE(0x46C3, info)
+>  
+> +/* ADL-N */
+> +#define INTEL_ADLN_IDS(info) \
+> +	INTEL_VGA_DEVICE(0x46D0, info), \
+> +	INTEL_VGA_DEVICE(0x46D1, info), \
+> +	INTEL_VGA_DEVICE(0x46D2, info)
+> +
+>  /* RPL-S */
+>  #define INTEL_RPLS_IDS(info) \
+>  	INTEL_VGA_DEVICE(0xA780, info), \
 
-  * Linux: CI_DRM_11012 -> Patchwork_21869
-
-  CI-20190529: 20190529
-  CI_DRM_11012: 64bab3fe255d1886ef16ef57451df545380fa6be @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6313: 1793ed798cc09966c27bf478781e0c1d6bb23bad @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21869: 7da7b72244aaed598f4964998436169b52735d45 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7da7b72244aa drm/i915/dsi: let HW maintain the HS-TRAIL timing
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/index.html
-
---===============9036288802885523952==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dsi: let HW maintain the HS-TRAIL timing (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/96750/">https://patchwork.freedesktop.org/series/96750/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11012 -&gt; Patchwork_21869</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/index.html</p>
-<h2>Participating hosts (42 -&gt; 37)</h2>
-<p>Missing    (5): bat-dg1-6 bat-dg1-5 fi-bsw-cyan bat-adlp-6 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21869 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_flink_basic@bad-flink:<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11012/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11012/fi-tgl-dsi/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21869/fi-tgl-dsi/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11012 -&gt; Patchwork_21869</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11012: 64bab3fe255d1886ef16ef57451df545380fa6be @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6313: 1793ed798cc09966c27bf478781e0c1d6bb23bad @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21869: 7da7b72244aaed598f4964998436169b52735d45 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>7da7b72244aa drm/i915/dsi: let HW maintain the HS-TRAIL timing</p>
-
-</body>
-</html>
-
---===============9036288802885523952==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
