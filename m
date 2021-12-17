@@ -2,32 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC5DA478BC5
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 13:50:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A799B478BD0
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 13:53:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93B7A10FB13;
-	Fri, 17 Dec 2021 12:50:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B35710E3C7;
+	Fri, 17 Dec 2021 12:53:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6F96F10FB13;
- Fri, 17 Dec 2021 12:50:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6C1DCA00A0;
- Fri, 17 Dec 2021 12:50:44 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com
+ [IPv6:2607:f8b0:4864:20::f2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 049B910E69A;
+ Fri, 17 Dec 2021 12:53:28 +0000 (UTC)
+Received: by mail-qv1-xf2f.google.com with SMTP id m6so2191868qvh.10;
+ Fri, 17 Dec 2021 04:53:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=yvPYlJrGmlK6MaQU5Z8KZreyX7GnLF+EIBuo1c8xWHY=;
+ b=lLjwureh0okvqtDKUwnnhZHEy0CwLeydIQSTpfz3NI9aiftp180kyA0J1Y8ZnXcoTo
+ eNDdL8iCZel/GCvKDJVjYTTDM4RrxKSGRGfkzp1JYy7VpZ1Baiy8GeC5v7JX0JzeTzw1
+ NjyoBcY+DMr4fvEfvD8K96W+zlIEcMcwMXjXER2+RZ1Yf8SrTeDZfS7eypug8sMW+aet
+ Hc0lL+z617TR56S5+mRY9XkhiHiyeUoxCtES0ersvWpoe1qigS0a8+2NmWDgM5sFy52P
+ aYscn74rREVTXEG0YnNoQhQjV/vUFuouoMTxOdN/B9/9HuhZHCEz8bAfz/e3k4bnD6Ew
+ mdhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=yvPYlJrGmlK6MaQU5Z8KZreyX7GnLF+EIBuo1c8xWHY=;
+ b=4InKICnStE8Fahfm76orIA8aacgym7MMV9uDm5B3f3ip+cXKiQpmL9Z7UJOVNN/na7
+ wjZEhnezMPDPbXramvlzneV2oumVK8973zhtZuldSr+z5ObpivN8Gu0NDiMAeA+B1Fu8
+ RZfsiyiUe8RuYY9h1QmSQ0yKNsaH9Jh91zztBtg0TBblrecAalCIOfhFHx2xCepIAUub
+ mso8UckFI1Gt1IJSOay6zkBwKTlnsJxFwOCRLTNwYIei8GxiCJRbM0mPtO5xAfq+Y7/U
+ SsCCJo+/1cqTeom21iP9S6efU6ieUim19u15xJHxnH19tKK/4mMFXvII/Tt6hwi8IMas
+ /LEg==
+X-Gm-Message-State: AOAM5302vaSDBGQiEETCi7/tlooNVBuI/g/Lcr8vdivZ3bQpxnfH41DL
+ LuQCvLoUMGkuOpVJrbESpj1OrMMOr6T2h+gn7hHxAgidF8Q=
+X-Google-Smtp-Source: ABdhPJwa1jOeBpoaluddcxc4toM45UN3gj3kxj2n+ajOIkf4O6PwbiKP9WcMk2EqSHir9AzVWjSzOE6uCXog4cbLJEY=
+X-Received: by 2002:ad4:5ce8:: with SMTP id iv8mr2109774qvb.21.1639745607069; 
+ Fri, 17 Dec 2021 04:53:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Fri, 17 Dec 2021 12:50:44 -0000
-Message-ID: <163974544443.10412.9773547038223324001@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211217091929.105781-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20211217091929.105781-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
- =?utf-8?q?rm/i915=3A_Asynchronous_vma_unbinding_=28rev2=29?=
+References: <20211216142749.1966107-1-maarten.lankhorst@linux.intel.com>
+ <20211216142749.1966107-10-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20211216142749.1966107-10-maarten.lankhorst@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 17 Dec 2021 12:53:00 +0000
+Message-ID: <CAM0jSHNBA-sEeV42rnWP=NQFBa6Ft-X0jcXa0mLTcXMfAq0_cA@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v3 09/17] drm/i915: Trylock the object when
+ shrinking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,63 +63,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 16 Dec 2021 at 14:28, Maarten Lankhorst
+<maarten.lankhorst@linux.intel.com> wrote:
+>
+> We're working on requiring the obj->resv lock during unbind, fix
+> the shrinker to take the objectl ock.
 
-Series: drm/i915: Asynchronous vma unbinding (rev2)
-URL   : https://patchwork.freedesktop.org/series/98055/
-State : warning
+lock
 
-== Summary ==
-
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-  CC [M]  drivers/gpu/drm/i915/i915_vma_resource.o
-In file included from ./include/linux/kernel.h:20,
-                 from ./include/linux/rbtree.h:22,
-                 from ./include/linux/rbtree_augmented.h:16,
-                 from ./include/linux/interval_tree_generic.h:10,
-                 from drivers/gpu/drm/i915/i915_vma_resource.c:6:
-drivers/gpu/drm/i915/i915_vma_resource.c: In function ‘i915_vma_resource_module_init’:
-./include/linux/kern_levels.h:5:18: error: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 2 has type ‘unsigned int’ [-Werror=format=]
- #define KERN_SOH "\001"  /* ASCII Start Of Header */
-                  ^~~~~~
-./include/linux/printk.h:422:11: note: in definition of macro ‘printk_index_wrap’
-   _p_func(_fmt, ##__VA_ARGS__);    \
-           ^~~~
-./include/linux/printk.h:493:2: note: in expansion of macro ‘printk’
-  printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
-  ^~~~~~
-./include/linux/kern_levels.h:11:18: note: in expansion of macro ‘KERN_SOH’
- #define KERN_ERR KERN_SOH "3" /* error conditions */
-                  ^~~~~~~~
-./include/linux/printk.h:493:9: note: in expansion of macro ‘KERN_ERR’
-  printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
-         ^~~~~~~~
-drivers/gpu/drm/i915/i915_vma_resource.c:382:2: note: in expansion of macro ‘pr_err’
-  pr_err("vma resource size is %lu\n", sizeof(struct i915_vma_resource));
-  ^~~~~~
-drivers/gpu/drm/i915/i915_vma_resource.c:382:33: note: format string is defined here
-  pr_err("vma resource size is %lu\n", sizeof(struct i915_vma_resource));
-                               ~~^
-                               %u
-cc1: all warnings being treated as errors
-scripts/Makefile.build:287: recipe for target 'drivers/gpu/drm/i915/i915_vma_resource.o' failed
-make[4]: *** [drivers/gpu/drm/i915/i915_vma_resource.o] Error 1
-scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm/i915' failed
-make[3]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:549: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:549: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1846: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21868/build_32bit.log
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
