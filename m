@@ -2,43 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ABD04786C6
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 10:10:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDC914786E6
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Dec 2021 10:19:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C512C10FA5F;
-	Fri, 17 Dec 2021 09:10:33 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C438910FA5E;
- Fri, 17 Dec 2021 09:10:32 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="226575972"
-X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="226575972"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2021 01:10:32 -0800
-X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="605844894"
-Received: from cmccall-mobl2.ger.corp.intel.com (HELO [10.213.248.38])
- ([10.213.248.38])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2021 01:10:31 -0800
-Message-ID: <b340a472-e780-0519-615c-2396bb69c9db@linux.intel.com>
-Date: Fri, 17 Dec 2021 09:10:29 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCBA710FA11;
+	Fri, 17 Dec 2021 09:19:40 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B348110FA0F;
+ Fri, 17 Dec 2021 09:19:39 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="300493325"
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="300493325"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2021 01:19:39 -0800
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; d="scan'208";a="683321499"
+Received: from olindum-mobl1.ger.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.180])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2021 01:19:37 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 17 Dec 2021 10:19:22 +0100
+Message-Id: <20211217091929.105781-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20211215224556.3382217-1-John.C.Harrison@Intel.com>
- <71a04b30-7019-f2df-e18d-f04893860e71@linux.intel.com>
- <7456242f-654a-1109-c91b-4ecb7a0f3a64@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <7456242f-654a-1109-c91b-4ecb7a0f3a64@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Check for wedged before doing
- stuff
+Subject: [Intel-gfx] [PATCH v2 0/7] drm/i915: Asynchronous vma unbinding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,71 +44,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This patch series introduces infrastructure for asynchronous vma
+unbinding. The single enabled use-case is initially at buffer object
+migration where we otherwise sync when unbinding vmas before migration.
+This in theory allows us to pipeline any number of migrations, but in
+practice the number is restricted by a sync wait when filling the
+migration context ring. We might want to look at that moving forward if
+needed.
 
-On 16/12/2021 20:30, John Harrison wrote:
-> On 12/16/2021 00:47, Tvrtko Ursulin wrote:
->> On 15/12/2021 22:45, John.C.Harrison@Intel.com wrote:
->>> From: John Harrison <John.C.Harrison@Intel.com>
->>>
->>> A fault injection probe test hit a BUG_ON in a GuC error path. It
->>> showed that the GuC code could potentially attempt to do many things
->>> when the device is actually wedged. So, add a check in to prevent that.
->>>
->>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 3 ++-
->>>   1 file changed, 2 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> index 97311119da6f..88f002c4d41b 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> @@ -1350,7 +1350,8 @@ submission_disabled(struct intel_guc *guc)
->>>       struct i915_sched_engine * const sched_engine = guc->sched_engine;
->>>         return unlikely(!sched_engine ||
->>> - !__tasklet_is_enabled(&sched_engine->tasklet));
->>> + !__tasklet_is_enabled(&sched_engine->tasklet) ||
->>> +            test_bit(I915_WEDGED, &guc_to_gt(guc)->reset.flags));
->>
->> Or intel_gt_is_wedged ?
-> Hmm. I just copied the test from somewhere else. Is there any particular 
-> reason why other bits of code would be doing the explicit test_bit 
+The other main use-case is to be able to pipeline vma evictions, for
+example with softpinning where a new vma wants to reuse the vm range
+of an already active vma. We can't support this just yet because we
+need dma_resv locking around vma eviction for that, which is under
+implementation.
 
-Lets see:
+Patch 1 and 2 are mainly a fix and a subsequent rearrangement of code,
+Patch 3 is needed for consistent bind locking,
+Patch 4 introduces vma resource first for error capture purposes.
+Patch 5 changes the vm backend interface to take vma resources rather than vmas,
+Patch 6 introduces the async unbinding itself, and finally
+Patch 7 realizes we have duplicated functionality and removes the vma snapshots.
 
-$ grep intel_gt_is_wedged . -r | wc -l
-55
+v2:
+-- Some kernel test robot reports addressed.
+-- kmem cache for vma resources, See patch 6
+-- Various fixes all over the place. See separate commit messages.
 
-$ grep test_bit.*I915_WEDGED, . -r
-./gt/intel_gt.h:                   !test_bit(I915_WEDGED, &gt->reset.flags));
-./gt/intel_gt.h:        return unlikely(test_bit(I915_WEDGED, &gt->reset.flags));
-./gt/intel_reset.c:     if (test_bit(I915_WEDGED, &gt->reset.flags))
-./gt/intel_reset.c:     if (test_bit(I915_WEDGED, &gt->reset.flags))
-./gt/intel_reset.c:     if (!test_bit(I915_WEDGED, &gt->reset.flags))
-./gt/intel_reset.c:     if (!test_bit(I915_WEDGED, &gt->reset.flags))
-./gt/uc/intel_guc_submission.c:              test_bit(I915_WEDGED, &guc_to_gt(guc)->reset.flags))) {
+Thomas Hellström (7):
+  drm/i915: Avoid using the i915_fence_array when collecting
+    dependencies
+  drm/i915: Break out the i915_deps utility
+  drm/i915: Require the vm mutex for i915_vma_bind()
+  drm/i915: Initial introduction of vma resources
+  drm/i915: Use the vma resource as argument for gtt binding / unbinding
+  drm/i915: Use vma resources for async unbinding
+  drm/i915: Use struct vma_resource instead of struct vma_snapshot
 
-So outside the components which own the flag only GuC goes direct therefore you might know better if there is a special reason for that.
+ drivers/gpu/drm/i915/Makefile                 |   3 +-
+ drivers/gpu/drm/i915/display/intel_dpt.c      |  27 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  67 ++-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  27 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  | 304 ++------------
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |  37 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |  19 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  37 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   9 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  72 ++--
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |   4 +
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |  18 +-
+ drivers/gpu/drm/i915/gt/intel_migrate.c       |  24 +-
+ drivers/gpu/drm/i915/gt/intel_migrate.h       |   9 +-
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  22 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  13 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h      |   2 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |   3 +-
+ drivers/gpu/drm/i915/i915_deps.c              | 244 +++++++++++
+ drivers/gpu/drm/i915/i915_deps.h              |  46 +++
+ drivers/gpu/drm/i915/i915_drv.h               |   1 +
+ drivers/gpu/drm/i915/i915_gem.c               |   3 +
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  87 ++--
+ drivers/gpu/drm/i915/i915_module.c            |   3 +
+ drivers/gpu/drm/i915/i915_request.c           |  34 +-
+ drivers/gpu/drm/i915/i915_request.h           |   8 +-
+ drivers/gpu/drm/i915/i915_vma.c               | 213 +++++++++-
+ drivers/gpu/drm/i915/i915_vma.h               |  33 +-
+ drivers/gpu/drm/i915/i915_vma_resource.c      | 388 ++++++++++++++++++
+ drivers/gpu/drm/i915/i915_vma_resource.h      | 232 +++++++++++
+ drivers/gpu/drm/i915/i915_vma_snapshot.c      | 134 ------
+ drivers/gpu/drm/i915/i915_vma_snapshot.h      | 112 -----
+ drivers/gpu/drm/i915/i915_vma_types.h         |   5 +
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 159 ++++---
+ drivers/gpu/drm/i915/selftests/mock_gtt.c     |  12 +-
+ 35 files changed, 1571 insertions(+), 840 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_deps.c
+ create mode 100644 drivers/gpu/drm/i915/i915_deps.h
+ create mode 100644 drivers/gpu/drm/i915/i915_vma_resource.c
+ create mode 100644 drivers/gpu/drm/i915/i915_vma_resource.h
+ delete mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.c
+ delete mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.h
 
-The code there looks like this:
+-- 
+2.31.1
 
-	/* Reset called during driver load or during wedge? */
-	if (unlikely(!guc_submission_initialized(guc) ||
-		     test_bit(I915_WEDGED, &guc_to_gt(guc)->reset.flags)))
-		return;
-
-Perhaps that check and then one you are adding could even be partly the same?
-
-> rather than calling the helper? I see the helper has a BUG_ON. Can that 
-> fire if called at the wrong time in the reset path?
-
-The grep above suggests it should be safe. And looking at the assert it seems to check if someone set the fatal wedge bit without setting the "normal" wedge eg. setting it directly bypassing the helper. So should be fine.
-
-Regards,
-
-Tvrtko
