@@ -1,41 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A32F479B1D
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Dec 2021 15:02:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6841479E8E
+	for <lists+intel-gfx@lfdr.de>; Sun, 19 Dec 2021 01:24:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E666D11394E;
-	Sat, 18 Dec 2021 14:02:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 982421128F8;
+	Sun, 19 Dec 2021 00:24:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 763D211394E
- for <intel-gfx@lists.freedesktop.org>; Sat, 18 Dec 2021 14:02:15 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10201"; a="303301551"
-X-IronPort-AV: E=Sophos;i="5.88,216,1635231600"; d="scan'208";a="303301551"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2021 06:02:14 -0800
-X-IronPort-AV: E=Sophos;i="5.88,216,1635231600"; d="scan'208";a="520156591"
-Received: from aluyckx1-mobl3.ger.corp.intel.com (HELO intel.com)
- ([10.251.213.45])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2021 06:02:12 -0800
-Date: Sat, 18 Dec 2021 16:02:08 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <Yb3p4JoEmqJkb8sV@intel.intel>
-References: <20211214193346.21231-1-andi.shyti@linux.intel.com>
- <163955311757.18076.13164245627457032795@emeril.freedesktop.org>
- <Yb17iflI3R8xFtMW@mdroper-desk1.amr.corp.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E307D1128C4;
+ Sun, 19 Dec 2021 00:24:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1639873474; x=1671409474;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kjOwRStuTJQk0uvje5Z73Zv6ytIByxzsC+2+3AEqydY=;
+ b=cDr2r1YMI0ARrjhwL9ldyxCm0Zc3eGBjHy0rAH+y77Ds1X4N3hk4rKID
+ RyBEWV6PHqaL5RxvG1RaO6eD2EUdGfDx3WFJRR35WbGDs3wDz0ycvVb3l
+ JAQj9wIVjnbgwe3jgdcGubIX6pVZFGf+rAj58cznN+S3y9mTGrMHfytY6
+ HW1TC9J6CkSsGQkgDbACpYiV4FkB/q8KR/Gr3GhuAjml6MXiTmtlXTekg
+ rL/yKWafd4xQ6E1wIPmeLKwWQtWmUlBaylDNF3Cqc/KWlruRA5cw8YdR2
+ GJjPNrEF6FHS6IWWOeqs/EfPuaIBFffUSxAWWbgJ/1hJ1NymMAEWtpkag Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10202"; a="240185615"
+X-IronPort-AV: E=Sophos;i="5.88,217,1635231600"; d="scan'208";a="240185615"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2021 16:24:34 -0800
+X-IronPort-AV: E=Sophos;i="5.88,217,1635231600"; d="scan'208";a="683805943"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2021 16:24:33 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Sat, 18 Dec 2021 16:19:09 -0800
+Message-Id: <20211219001909.24348-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yb17iflI3R8xFtMW@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogIGZhaWx1cmUgZm9yIE1v?=
- =?utf-8?q?re_preparation_for_multi_gt_patches?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix possible uninitialized variable
+ in parallel extension
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,39 +55,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, "Vudum,
- Lakshminarayana" <lakshminarayana.vudum@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
+'prev_engine' was declared inside the output loop and checked in the
+inner after at least 1 pass of either loop. The variable should be
+declared outside both loops as it needs to be persistent across the
+entire loop structure.
 
-> The first 10 patches have gone through several clean CI cycles now, so
-> I've pushed those to drm-intel-gt-next.  There are just a couple minor
-> comments on the ggtt patches, so we can push the rest of those once the
-> comments are addressed.
-> 
-> BTW, there's one i915->gt reference in the display code that has moved
-> from display/intel_display.c to display/skl_universal_plane.c on
-> drm-intel-next, but that movement hasn't made its way to
-> drm-intel-gt-next yet.  This led to a merge conflict while rebuilding
-> drm-tip.  I had to use a 'dim cat-to-fixup' to apply the following diff
-> to the drm-intel-gt-next merge commit:
-> 
->         diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->         index 158d89b8d490..b3162f49f341 100644
->         --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->         +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->         @@ -1737,7 +1737,7 @@ static bool bo_has_valid_encryption(struct drm_i915_gem_object *obj)
->         {
->                 struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> 
->         -       return intel_pxp_key_check(&i915->gt.pxp, obj, false) == 0;
->         +       return intel_pxp_key_check(&to_gt(i915)->pxp, obj, false) == 0;
->         }
-> 
->         static bool pxp_is_borked(struct drm_i915_gem_object *obj)
+Fixes: e5e32171a2cf ("drm/i915/guc: Connect UAPI to GuC multi-lrc interface")
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-thanks for pointing this out.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 347dab952e90..97d2ac22ae55 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -564,6 +564,7 @@ set_proto_ctx_engines_parallel_submit(struct i915_user_extension __user *base,
+ 		container_of_user(base, typeof(*ext), base);
+ 	const struct set_proto_ctx_engines *set = data;
+ 	struct drm_i915_private *i915 = set->i915;
++	struct i915_engine_class_instance prev_engine;
+ 	u64 flags;
+ 	int err = 0, n, i, j;
+ 	u16 slot, width, num_siblings;
+@@ -629,7 +630,6 @@ set_proto_ctx_engines_parallel_submit(struct i915_user_extension __user *base,
+ 	/* Create contexts / engines */
+ 	for (i = 0; i < width; ++i) {
+ 		intel_engine_mask_t current_mask = 0;
+-		struct i915_engine_class_instance prev_engine;
+ 
+ 		for (j = 0; j < num_siblings; ++j) {
+ 			struct i915_engine_class_instance ci;
+-- 
+2.33.1
 
-Andi
