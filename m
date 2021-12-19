@@ -2,47 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6841479E8E
-	for <lists+intel-gfx@lfdr.de>; Sun, 19 Dec 2021 01:24:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F70A479FE9
+	for <lists+intel-gfx@lfdr.de>; Sun, 19 Dec 2021 09:42:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 982421128F8;
-	Sun, 19 Dec 2021 00:24:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 353CD11B669;
+	Sun, 19 Dec 2021 08:42:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E307D1128C4;
- Sun, 19 Dec 2021 00:24:34 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5FFE11B667;
+ Sun, 19 Dec 2021 08:42:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639873474; x=1671409474;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kjOwRStuTJQk0uvje5Z73Zv6ytIByxzsC+2+3AEqydY=;
- b=cDr2r1YMI0ARrjhwL9ldyxCm0Zc3eGBjHy0rAH+y77Ds1X4N3hk4rKID
- RyBEWV6PHqaL5RxvG1RaO6eD2EUdGfDx3WFJRR35WbGDs3wDz0ycvVb3l
- JAQj9wIVjnbgwe3jgdcGubIX6pVZFGf+rAj58cznN+S3y9mTGrMHfytY6
- HW1TC9J6CkSsGQkgDbACpYiV4FkB/q8KR/Gr3GhuAjml6MXiTmtlXTekg
- rL/yKWafd4xQ6E1wIPmeLKwWQtWmUlBaylDNF3Cqc/KWlruRA5cw8YdR2
- GJjPNrEF6FHS6IWWOeqs/EfPuaIBFffUSxAWWbgJ/1hJ1NymMAEWtpkag Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10202"; a="240185615"
-X-IronPort-AV: E=Sophos;i="5.88,217,1635231600"; d="scan'208";a="240185615"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2021 16:24:34 -0800
-X-IronPort-AV: E=Sophos;i="5.88,217,1635231600"; d="scan'208";a="683805943"
-Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2021 16:24:33 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-gfx@lists.freedesktop.org>,
-	<dri-devel@lists.freedesktop.org>
-Date: Sat, 18 Dec 2021 16:19:09 -0800
-Message-Id: <20211219001909.24348-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.33.1
+ t=1639903357; x=1671439357;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=QcniZkywUltwlY2LA+p7cB0CdQbhL86PAAPvLmfXaxU=;
+ b=FLAGCY1/262npYkJI9JJ0+Fo8rsR+hcqj6fhjzxNiKyB6bNy9s5laMHC
+ fqBoYjhYauRxG7W+MoTWcCeSXFbGLCTVdFXIk3W7ucYSBOaJxr5l0fGaG
+ SzOgkQ/BZxrG+GIIK3yCCjsYZZGQCdGMqSql2P6lwYfQ3v3LCAyIjkFrw
+ o59KMrkMrExwdi2DjmCiv0/h1ZElBZL4FpECqTFJH7tVlPQdUOEpHrkkr
+ 5OWAyuX94wEFaUXt4or2AtWZipsrJPeJQ6rdA/q6u04RplzVcMKcMkMhV
+ MNftWDdKurxdm7emuDtAo+HCLC+J1jCEYiPPNWFuSMAqvfvBFLpO5Z5tt w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10202"; a="239945835"
+X-IronPort-AV: E=Sophos;i="5.88,217,1635231600"; d="scan'208";a="239945835"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2021 00:42:36 -0800
+X-IronPort-AV: E=Sophos;i="5.88,217,1635231600"; d="scan'208";a="546870384"
+Received: from prgreen-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.252.135.91])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2021 00:42:36 -0800
+Date: Sun, 19 Dec 2021 00:42:44 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <20211219084244.bzzouy3ud2xjtp5l@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20211219001909.24348-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix possible uninitialized variable
- in parallel extension
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20211219001909.24348-1-matthew.brost@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix possible uninitialized
+ variable in parallel extension
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,40 +58,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-'prev_engine' was declared inside the output loop and checked in the
-inner after at least 1 pass of either loop. The variable should be
-declared outside both loops as it needs to be persistent across the
-entire loop structure.
+On Sat, Dec 18, 2021 at 04:19:09PM -0800, Matthew Brost wrote:
+>'prev_engine' was declared inside the output loop and checked in the
+>inner after at least 1 pass of either loop. The variable should be
+>declared outside both loops as it needs to be persistent across the
+>entire loop structure.
+>
+>Fixes: e5e32171a2cf ("drm/i915/guc: Connect UAPI to GuC multi-lrc interface")
+>Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-Fixes: e5e32171a2cf ("drm/i915/guc: Connect UAPI to GuC multi-lrc interface")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 347dab952e90..97d2ac22ae55 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -564,6 +564,7 @@ set_proto_ctx_engines_parallel_submit(struct i915_user_extension __user *base,
- 		container_of_user(base, typeof(*ext), base);
- 	const struct set_proto_ctx_engines *set = data;
- 	struct drm_i915_private *i915 = set->i915;
-+	struct i915_engine_class_instance prev_engine;
- 	u64 flags;
- 	int err = 0, n, i, j;
- 	u16 slot, width, num_siblings;
-@@ -629,7 +630,6 @@ set_proto_ctx_engines_parallel_submit(struct i915_user_extension __user *base,
- 	/* Create contexts / engines */
- 	for (i = 0; i < width; ++i) {
- 		intel_engine_mask_t current_mask = 0;
--		struct i915_engine_class_instance prev_engine;
- 
- 		for (j = 0; j < num_siblings; ++j) {
- 			struct i915_engine_class_instance ci;
--- 
-2.33.1
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
+thanks
+Lucas De Marchi
