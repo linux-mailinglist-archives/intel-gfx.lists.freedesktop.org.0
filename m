@@ -1,54 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C6947A093
-	for <lists+intel-gfx@lfdr.de>; Sun, 19 Dec 2021 14:09:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 704C047A246
+	for <lists+intel-gfx@lfdr.de>; Sun, 19 Dec 2021 22:25:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D791611A49B;
-	Sun, 19 Dec 2021 13:09:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 274FB11AC0C;
+	Sun, 19 Dec 2021 21:25:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com
- [IPv6:2607:f8b0:4864:20::12c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C42111A49B;
- Sun, 19 Dec 2021 13:09:36 +0000 (UTC)
-Received: by mail-il1-x12c.google.com with SMTP id k14so5541673ils.12;
- Sun, 19 Dec 2021 05:09:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:reply-to:from:date:message-id:subject:to:cc;
- bh=6IOwamf+SMlLVU3j6e67luDialX1rdvlytYo+dmvLYI=;
- b=H8yFzm3VUc4qM2eqyA1rk9RqjvaRV//lkrQJaInDOA3ei5oq5MOhPBQuxwUwSlG3zA
- R1O1qa+wWkAM+vwrSiTEVDf8ekw0Rq7xHOgz8B8qBt86VqIEGItQe4SjSsjsq4zj6/RG
- ZyHpPWsohJVRbmuC8s4b9iXypytvVgtjlC9zn1qQP6otPlJ/WWckYZu9QEX8JGae36we
- kjGW5kczCdH9SkMTYsdZ5t4a6I+Komvj70guqi6rdLFOjaUkN5thgCqPe8mbQJbNepfs
- xgbG+NLYPEJjOHWP+mTp4ZedOIweddEDDHmipRgWOJ/nZRMioyYQjNXa5fIYInEDrIpC
- pfQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:reply-to:from:date:message-id
- :subject:to:cc;
- bh=6IOwamf+SMlLVU3j6e67luDialX1rdvlytYo+dmvLYI=;
- b=DxoIkXe5s51PfF6Qr8OlNhLsWW4XLVTgiDn5TaYALlYIdgqiH23iKOf4GBlwPX6kvA
- Du+Yspp230AAd3PaG6rfo05+E45ST/O7YOPdg7r0B8fl9ToOiuHel3cQ+dJ2HcJjMLsy
- EHEZYV4DU2wm6eI/hippKMtNjxk5Qq4fLOsp/c5rTav18cTt52JVer84lR+xqn9Jx1Hk
- 5zy1cK3OX7aKrChIsix8QlyH51SIRmss64FfNOgRPbVMA8X9RaUgAnboB/a2EGaCyURG
- 24hQPmyLB80iQceTdzwKxUYJNQIviOqEBpQNRUEUzHOHBi7jvn/WSzxgMoFXNmZ61J98
- Cqug==
-X-Gm-Message-State: AOAM5325c/gzpbiCJr+BNkJV8+BzFGKCSuaFwhiiZlRKje2CmlU5hWM8
- 68YZBcZ+RaW7arsdqJyREnch8GotR/0AcKlB1Myh0AkWWoiFEg==
-X-Google-Smtp-Source: ABdhPJztubX3UAtT6YaZkwgRxf2IVSUzNpl0wuqrpYgMWrOh0Emc0L460NjRDMnpBN+ci4ofHN99uW2H/SDyoEHJXhY=
-X-Received: by 2002:a05:6e02:1545:: with SMTP id
- j5mr6223782ilu.20.1639919375330; 
- Sun, 19 Dec 2021 05:09:35 -0800 (PST)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6CB11AC0C;
+ Sun, 19 Dec 2021 21:25:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10203"; a="220734736"
+X-IronPort-AV: E=Sophos;i="5.88,219,1635231600"; d="scan'208";a="220734736"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2021 13:25:22 -0800
+X-IronPort-AV: E=Sophos;i="5.88,219,1635231600"; d="scan'208";a="520549204"
+Received: from stuohenm-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.36.4])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2021 13:25:18 -0800
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
+Date: Sun, 19 Dec 2021 23:24:54 +0200
+Message-Id: <20211219212500.61432-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Sedat Dilek <sedat.dilek@gmail.com>
-Date: Sun, 19 Dec 2021 14:08:59 +0100
-Message-ID: <CA+icZUWx20yPfFAbH-sQrHK-MrCwg0eDWwbCEruFcELW1a+kFg@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Subject: [Intel-gfx] [intel-gfx] How to determine supported HDMI versions of
- an Intel GPU
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v9 0/6] More preparation for multi gt patches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +44,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sedat.dilek@gmail.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[ Please CC me I am not subscribed to any CCed mailing-lists ]
+Hi,
 
-Hi Daniel,
+thanks Matt for merging the first 10 patches from v8. This series
+contains only the last 6 patches from the previous that make use
+of the newly inserted to_gt() to reach the ggtt that at the end
+moves from the i915 structure to the gt.
 
-I hope you are well.
+I have reshuffled a bit the order of the patche (refer to the
+changelog) so that from this series only patch 2 remains
+unreviewed.
 
-While searching for a new monitor I wanted to buy a miniHDMI->HDMI
-adapter or cable to connect it.
+Thanks Matt and Sujaritha for the reviews.
 
-My Samsung laptop has a Intel HD graphics 3000 GPU and a miniHDMI connector.
+Andi
 
-Unfortunately, I have no idea how to get information about supported
-HDMI versions and or supported resolutions when there is *no* external
-monitor connected.
+Changelog:
+==========
+Patchwork: https://patchwork.freedesktop.org/series/97020/
 
-root# xrandr --listmonitors
-Monitors: 1
-0: +XWAYLAND0 1366/293x768/165+0+0  XWAYLAND0
+v8 -> v9:
+ - The patch is down to the last 6 patches.
+ - Reshuffled a bit the order, it's more intuitive to apply the
+   changes starting from i915/gt/, i915/, i915/gem, i915/display,
+   i915/selftests
+ - Addressed Matt's comments in v8.
+ - Added Matt and Sujaritha's r-b tags
 
-root# egrep -i 'hdmi|snb' /var/log/Xorg.0.log
-101:[    81.251] (II) modeset(0): glamor X acceleration enabled on
-Mesa DRI Intel(R) HD Graphics 3000 (SNB GT2)
-105:[    81.255] (II) modeset(0): Output HDMI-1 has no monitor section
-176:[    81.264] (II) modeset(0): EDID for output HDMI-1
-180:[    81.264] (II) modeset(0): Output HDMI-1 disconnected
-337:[    87.548] (II) config/udev: Adding input device HDA Intel PCH
-HDMI/DP,pcm=3 (/dev/input/event11)
+v7 -> v8:
+ - Removed patch 11 from v7 that was allocating statically the
+   ggtt in the gt structure instead of a dynamic allocation. As
+   Matt pointed out, we can have GT's sharing the same GGTT.
+ - The whole i915->ggtt to gt->ggtt patch is split in 5 patches
+   instead of one single to make it easier to review.
+ - The last patch removes i915->ggtt and allocates the gt->ggtt
+   with drmm_kzalloc in the early probe and mock device.
 
-I am here on Linux v5.15.10 and using KDE/Wayland 5.23.4.
+v6 -> v7:
+ - Patch 1: add a note about the double presence of
+   __intel_gt_init_early() and intel_gt_init_early().
+ - Added all Matt's r-b's for patches 2-10.
+ - Added a patch 12 that moves the i915->ggtt into gt->ggtt.
 
-Do you need further information?
+v5 -> v6:
+ - fixed the assignement of i915->gt->ggtt = ggtt in the mock gem
+   device that was making use of it before.
 
-Thanks in advance.
+v4 -> v5:
+ - use to_gt() instead of to_root_gt() and use Michał work done
+   previously.
+ - split the /i915->gt/to_gt()/ patch in smaller chunks in order
+   to make review easier. (Thanks Lucas)
 
-Regards,
-- Sedat -
+v3 -> v4:
+ - the intel_gt_init_early() has been split as it was causing
+   some headaches for the order of the early initialization. The
+   split has been done keeping in mind the coming next patch in
+   the series that wil make this a static function.
+
+v2 -> v3:
+ - sed -i ... took too much freedom and changed more than it was
+   supposed to.
+ - fix a compile error which did not appear in my local build
+
+v1 -> v2:
+ - patch 2: do not use anymore the reference i915->gt but use
+   to_root_gt(), coming from Matt Roper's patch.
+ - fix some comments from Chris.
+
+Andi Shyti (4):
+  drm/i915/selftests: Use to_gt() helper
+  drm/i915/pxp: Use to_gt() helper
+  drm/i915: Rename i915->gt to i915->gt0
+  drm/i915: Move the GGTT from i915 private data to the GT
+
+Andi Shyti (1):
+  drm/i915: Remove unused i915->ggtt
+
+Michał Winiarski (5):
+  drm/i915/gt: Use to_gt() helper for GGTT accesses
+  drm/i915: Use to_gt() helper for GGTT accesses
+  drm/i915/gem: Use to_gt() helper for GGTT accesses
+  drm/i915/display: Use to_gt() helper for GGTT accesses
+  drm/i915/selftests: Use to_gt() helper for GGTT accesses
+
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  2 +-
+ .../drm/i915/display/intel_plane_initial.c    |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |  2 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 19 +++++++-------
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c        |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  6 ++---
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  8 +++---
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c    | 15 ++++++-----
+ .../i915/gem/selftests/i915_gem_client_blt.c  |  2 +-
+ .../drm/i915/gem/selftests/i915_gem_context.c |  2 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    | 19 +++++++-------
+ .../drm/i915/gem/selftests/i915_gem_object.c  |  2 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 14 +++++-----
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |  6 ++---
+ drivers/gpu/drm/i915/gt/intel_gt.c            |  7 +++--
+ drivers/gpu/drm/i915/gt/intel_gt.h            |  2 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c   |  4 +--
+ drivers/gpu/drm/i915/gt/selftest_reset.c      |  2 +-
+ drivers/gpu/drm/i915/gvt/dmabuf.c             |  2 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |  4 +--
+ drivers/gpu/drm/i915/i915_driver.c            | 10 ++++---
+ drivers/gpu/drm/i915/i915_drv.h               |  4 +--
+ drivers/gpu/drm/i915/i915_gem.c               | 23 ++++++++--------
+ drivers/gpu/drm/i915/i915_gem_gtt.c           |  6 ++---
+ drivers/gpu/drm/i915/i915_getparam.c          |  2 +-
+ drivers/gpu/drm/i915/i915_perf.c              |  4 +--
+ drivers/gpu/drm/i915/selftests/i915_gem.c     |  8 +++---
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 26 ++++++++++---------
+ drivers/gpu/drm/i915/selftests/i915_request.c |  2 +-
+ drivers/gpu/drm/i915/selftests/i915_vma.c     | 22 +++++++++-------
+ .../gpu/drm/i915/selftests/mock_gem_device.c  | 11 +++++---
+ drivers/gpu/drm/i915/selftests/mock_gtt.c     |  9 +++----
+ drivers/gpu/drm/i915/selftests/mock_gtt.h     |  3 ++-
+ 35 files changed, 137 insertions(+), 119 deletions(-)
+
+-- 
+2.34.1
+
