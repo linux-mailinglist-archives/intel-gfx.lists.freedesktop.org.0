@@ -1,33 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE67F47A579
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 08:46:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E9E747A739
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 10:37:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E196710E127;
-	Mon, 20 Dec 2021 07:46:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2176310E2F0;
+	Mon, 20 Dec 2021 09:37:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2811910E127;
- Mon, 20 Dec 2021 07:46:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 209F7AA917;
- Mon, 20 Dec 2021 07:46:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1432622186682497689=="
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
+ [IPv6:2a00:1450:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C96B810E2F0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Dec 2021 09:37:24 +0000 (UTC)
+Received: by mail-wr1-x432.google.com with SMTP id t18so18714696wrg.11
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Dec 2021 01:37:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=7tPXF+9eqxH0VrjIFJXikF3YUlncb+6bNDGNk1kLWrs=;
+ b=kfDwp5nMvLzbIXS3wqK1Y2Hr8jbTm1PvVEfEuNPy6qPI5E30FfoeKnB8DIQ7bDoPBE
+ 5LEZUPhpckKGGV9t3LitFylVtnXYi4IiMOHuu+t19qv87ZHVPP/S+9QyXw7lUlUo2RTf
+ H6riIEuXlYoMbtvkS0/DEvYwF3r/sQTuzHq8s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=7tPXF+9eqxH0VrjIFJXikF3YUlncb+6bNDGNk1kLWrs=;
+ b=uxCOg0//YTw+z3yCWQPRD3P6GFs2rcugERK3KjoBqB6gsNxDUUoAQiyRc1tQkBowE8
+ QfiZ9Z4C8HgciuFmRG3ogblZ8ITIQB6ZIRrO7iirnET0aUB1asKGwqSXeW/LUJhMOUMG
+ EqpqUHDt5stnArV7wW+hWkHZ9bOmbF/FkNjfs8/7ICODINiOLnlzF8gwb9jHKf9mmGdp
+ uRFIsaNF1mpOtoPblQjb8E+ATxqhMZt3/rqX9/appJqwgFd4t+ddzq3DMD0gaBeKF2pn
+ Ne0Irs3QqnLxcfL2croFO6gnusdoU5/MkqwmxDfB6cTjWMCakOJ/2OXy4KGXVA7TCt+E
+ 4kug==
+X-Gm-Message-State: AOAM533LAamhBhZjkm4JXhom0Rz8fUS9SmvWMtmf/YowtzwebX3kaQpW
+ rH+pgI5+sU2yBShk3KbPJlSl3g==
+X-Google-Smtp-Source: ABdhPJyHCDu/beGTAhbKS7XRGOoGT8NNBV9wvUisadPjj3r+S79/q0rfIn6NB0tlpT1J6NZkkkLNjQ==
+X-Received: by 2002:a5d:4b0a:: with SMTP id v10mr11845177wrq.294.1639993043246; 
+ Mon, 20 Dec 2021 01:37:23 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id j16sm4537709wmq.3.2021.12.20.01.37.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 20 Dec 2021 01:37:22 -0800 (PST)
+Date: Mon, 20 Dec 2021 10:37:20 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <YcBO0ANh7zh5Drif@phenom.ffwll.local>
+References: <d1ada94c-88d3-d34d-9c51-0d427c3aca06@amd.com>
+ <7ef3db03-8ae2-d886-2c39-36f661cac9a6@shipmail.org>
+ <4805074d-7039-3eaf-eb5d-5797278b7f31@amd.com>
+ <94435e0e-01db-5ae4-e424-64f73a09199f@shipmail.org>
+ <a4df4d5f-ea74-8725-aca9-d0edae986e5c@amd.com>
+ <fb9f50e2-aeba-6138-0cc0-aed252dc876d@shipmail.org>
+ <8a7dbf22-727d-c1ec-1d3f-75e23394fee8@amd.com>
+ <d4a9cb5a554ffc3af3d30ecacad6e57533eb7f3b.camel@linux.intel.com>
+ <Ya+jL+SBTqdwqBeI@phenom.ffwll.local>
+ <ef823120-ecdc-24c7-b9e2-33303c47d171@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Date: Mon, 20 Dec 2021 07:46:48 -0000
-Message-ID: <163998640812.24544.17917762751009670884@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211220063540.19636-1-animesh.manna@intel.com>
-In-Reply-To: <20211220063540.19636-1-animesh.manna@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_pps=5Flock_moved_to_encoder_to_support_dual_EDP?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ef823120-ecdc-24c7-b9e2-33303c47d171@linux.intel.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [RFC PATCH 1/2] dma-fence: Avoid
+ establishing a locking order between fence classes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,425 +77,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ matthew.auld@intel.com, intel-gfx@lists.freedesktop.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1432622186682497689==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Dec 07, 2021 at 09:46:47PM +0100, Thomas Hellström wrote:
+> 
+> On 12/7/21 19:08, Daniel Vetter wrote:
+> > Once more an entire week behind on mails, but this looked interesting
+> > enough.
+> > 
+> > On Fri, Dec 03, 2021 at 03:18:01PM +0100, Thomas Hellström wrote:
+> > > On Fri, 2021-12-03 at 14:08 +0100, Christian König wrote:
+> > > > Am 01.12.21 um 13:16 schrieb Thomas Hellström (Intel):
+> > > > > On 12/1/21 12:25, Christian König wrote:
+> > > > > > And why do you use dma_fence_chain to generate a timeline for
+> > > > > > TTM?
+> > > > > > That should come naturally because all the moves must be ordered.
+> > > > > Oh, in this case because we're looking at adding stuff at the end
+> > > > > of
+> > > > > migration (like coalescing object shared fences and / or async
+> > > > > unbind
+> > > > > fences), which may not complete in order.
+> > > > Well that's ok as well. My question is why does this single dma_fence
+> > > > then shows up in the dma_fence_chain representing the whole
+> > > > migration?
+> > > What we'd like to happen during eviction is that we
+> > > 
+> > > 1) await any exclusive- or moving fences, then schedule the migration
+> > > blit. The blit manages its own GPU ptes. Results in a single fence.
+> > > 2) Schedule unbind of any gpu vmas, resulting possibly in multiple
+> > > fences.
+> > This sounds like over-optimizing for nothing. We only really care about
+> > pipeling moves on dgpu, and on dgpu we only care about modern userspace
+> > (because even gl moves in that direction).
+> Hmm. It's not totally clear what you mean with over-optimizing for nothing,
+> is it the fact that we want to start the blit before all shared fences have
+> signaled or the fact that we're doing async unbinding to avoid a
+> synchronization point that stops us from fully pipelining evictions?
 
-== Series Details ==
+Yup. Least because that breaks vulkan, so you really can't do this
+optimizations :-)
 
-Series: drm/i915: pps_lock moved to encoder to support dual EDP
-URL   : https://patchwork.freedesktop.org/series/98221/
-State : failure
+In general I meant that unless you really, really understand everything
+all the time (which frankly no one does), then trying to be clever just
+isn't worth it. We have access pending in the dma_resv, we wait for it is
+dumb, simple, no surprises.
 
-== Summary ==
+> > And modern means that usually even write access is only setting a read
+> > fence, because in vk/compute we only set write fences for object which
+> > need implicit sync, and _only_ when actually needed.
+> > 
+> > So ignoring read fences for movings "because it's only reads" is actually
+> > busted.
+> 
+> I'm fine with awaiting also shared fences before we start the blit, as
+> mentioned also later in the thread, but that is just a matter of when we
+> coalesce the shared fences. So since difference in complexity is minimal,
+> what's viewed as optimizing for nothing can also be conversely be viewed as
+> unneccesarily waiting for nothing, blocking the migration context timeline
+> from progressing with unrelated blits. (Unless there are correctness issues
+> of course, see below).
+> 
+> But not setting a write fence after write seems to conflict with dma-buf
+> rules as also discussed later in the thread. Perhaps some clarity is needed
+> here. How would a writer or reader that implicitly *wants* to wait for
+> previous writers go about doing that?
+> 
+> Note that what we're doing is not "moving" in the sense that we're giving up
+> or modifying the old storage but rather start a blit assuming that the
+> contents of the old storage is stable, or the writer doesn't care.
 
-CI Bug Log - changes from CI_DRM_11014 -> Patchwork_21877
-====================================================
+Yeah that's not how dma-buf works, and which is what Christian is trying
+to rectify with his huge refactoring/doc series to give a bit clearer
+meaning to what a fence in a dma_resv means.
 
-Summary
--------
+> > I think for buffer moves we should document and enforce (in review) the
+> > rule that you have to wait for all fences, otherwise boom. Same really
+> > like before freeing backing storage. Otherwise there's just too many gaps
+> > and surprises.
+> > 
+> > And yes with Christian's rework of dma_resv this will change, and we'll
+> > allow multiple write fences (because that's what amdgpu encoded into their
+> > uapi). Still means that you cannot move a buffer without waiting for read
+> > fences (or kernel fences or anything really).
+> 
+> Sounds like some agreement is needed here what rules we actually should
+> obey. As mentioned above I'm fine with either.
 
-  **FAILURE**
+I think it would be good to comment on the doc patch in Christian's series
+for that. But essentially read/write don't mean actual read/write to
+memory, but only read/write access in terms of implicit sync. Buffers
+which do not partake in implicit sync (driver internal stuff) or access
+which is not implicitly synced (anything vk does) do _not_ need to set a
+write fence. They will (except amdgpu, until they fix their CS uapi)
+_only_ set a read fence.
 
-  Serious unknown changes coming with Patchwork_21877 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_21877, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Christian and me had a multi-month discussion on this, so it's a bit
+tricky.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/index.html
+> > The other thing is this entire spinlock recursion topic for dma_fence, and
+> > I'm deeply unhappy about the truckload of tricks i915 plays and hence in
+> > favour of avoiding recursion in this area as much as possible.
+> 
+> TBH I think the i915 corresponding container manages to avoid both the deep
+> recursive calls and lock nesting simply by early enable_signaling() and not
+> storing the fence pointers of the array fences, which to me appears to be a
+> simple and clean approach. No tricks there.
+> 
+> > 
+> > If we really can't avoid it then irq_work to get a new clean context gets
+> > the job done. Making this messy and work is imo a feature, lock nesting of
+> > same level locks is just not a good&robust engineering idea.
+> 
+> For the dma-fence-chain and dma-fence-array there are four possibilities
+> moving forward:
+> 
+> 1) Keeping the current same-level locking nesting order of container-first
+> containee later. This is fully annotated, but fragile and blows up if users
+> attempt to nest containers in different orders.
+> 
+> 2) Establishing a reverse-signaling locking order. Not annotatable. blows up
+> on signal-on-any.
+> 
+> 3) Early enable-signaling, no lock nesting, low latency but possibly
+> unnecessary enable_signaling calls.
+> 
+> 4) irq_work in enable_signaling(). High latency.
+> 
+> The tread finally agreed the solution would be to keep 1), add early
+> warnings for the pitfalls and if possible provide helpers to flatten to
+> avoid container recursion.
 
-Participating hosts (41 -> 33)
-------------------------------
+Hm ok seems ok. It's definitely an area where we don't have great
+solutions :-/
+-Daniel
 
-  Additional (3): fi-bxt-dsi fi-bdw-5557u fi-tgl-u2 
-  Missing    (11): fi-kbl-soraka bat-dg1-6 bat-dg1-5 fi-skl-guc fi-icl-u2 fi-bsw-cyan bat-adlp-6 fi-ivb-3770 fi-pnv-d510 bat-jsl-2 fi-bdw-samus 
+> 
+> /Thomas
+> 
+> 
+> > 
+> > /me back to being completely burried
+> > 
+> > I do hope I can find some more time to review a few more of Christian's
+> > patches this week though :-/
+> > 
+> > Cheers, Daniel
+> > 
+> > > 3) Most but not all of the remaining resv shared fences will have been
+> > > finished in 2) We can't easily tell which so we have a couple of shared
+> > > fences left.
+> > > 4) Add all fences resulting from 1) 2) and 3) into the per-memory-type
+> > > dma-fence-chain.
+> > > 5) hand the resulting dma-fence-chain representing the end of migration
+> > > over to ttm's resource manager.
+> > > 
+> > > Now this means we have a dma-fence-chain disguised as a dma-fence out
+> > > in the wild, and it could in theory reappear as a 3) fence for another
+> > > migration unless a very careful audit is done, or as an input to the
+> > > dma-fence-array used for that single dependency.
+> > > 
+> > > > That somehow doesn't seem to make sense because each individual step
+> > > > of
+> > > > the migration needs to wait for those dependencies as well even when
+> > > > it
+> > > > runs in parallel.
+> > > > 
+> > > > > But that's not really the point, the point was that an (at least to
+> > > > > me) seemingly harmless usage pattern, be it real or fictious, ends
+> > > > > up
+> > > > > giving you severe internal- or cross-driver headaches.
+> > > > Yeah, we probably should document that better. But in general I don't
+> > > > see much reason to allow mixing containers. The dma_fence_array and
+> > > > dma_fence_chain objects have some distinct use cases and and using
+> > > > them
+> > > > to build up larger dependency structures sounds really questionable.
+> > > Yes, I tend to agree to some extent here. Perhaps add warnings when
+> > > adding a chain or array as an input to array and when accidently
+> > > joining chains, and provide helpers for flattening if needed.
+> > > 
+> > > /Thomas
+> > > 
+> > > 
+> > > > Christian.
+> > > > 
+> > > > > /Thomas
+> > > > > 
+> > > > > 
+> > > > > > Regards,
+> > > > > > Christian.
+> > > > > > 
+> > > > > > 
+> > > 
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_21877:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@runner@aborted:
-    - fi-bsw-kefka:       NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bsw-kefka/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21877 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +31 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][3] ([i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html
-    - fi-bxt-dsi:         NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bxt-dsi/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][5] ([i915#4613]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-u2/igt@gem_lmem_swapping@verify-random.html
-    - fi-bxt-dsi:         NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bxt-dsi/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [PASS][7] -> [INCOMPLETE][8] ([i915#2940])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [PASS][9] -> [INCOMPLETE][10] ([i915#3303])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-    - fi-snb-2600:        [PASS][11] -> [INCOMPLETE][12] ([i915#3921])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-bxt-dsi:         NOTRUN -> [SKIP][13] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bxt-dsi/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][14] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-    - fi-bsw-nick:        NOTRUN -> [SKIP][15] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_chamelium@dp-hpd-fast:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][16] ([fdo#109284] / [fdo#111827]) +8 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][17] ([i915#4103]) +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-bxt-dsi:         NOTRUN -> [SKIP][18] ([fdo#109271]) +30 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bxt-dsi/igt@kms_force_connector_basic@force-load-detect.html
-    - fi-tgl-u2:          NOTRUN -> [SKIP][19] ([fdo#109285])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-bxt-dsi:         NOTRUN -> [SKIP][20] ([fdo#109271] / [i915#533])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bxt-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-skl-6600u:       [PASS][21] -> [FAIL][22] ([i915#4547])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][23] ([fdo#109271]) +62 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][24] ([i915#3301])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-u2/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][25] ([i915#4312])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-skl-6600u/igt@runner@aborted.html
-    - fi-hsw-4770:        NOTRUN -> [FAIL][26] ([fdo#109271] / [i915#1436] / [i915#4312])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-hsw-4770/igt@runner@aborted.html
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][27] ([fdo#109271] / [i915#1436] / [i915#3428] / [i915#4312])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bsw-n3050/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_exec@basic:
-    - fi-bsw-nick:        [DMESG-WARN][28] ([i915#3428]) -> [PASS][29]
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-bsw-nick/igt@gem_ctx_exec@basic.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bsw-nick/igt@gem_ctx_exec@basic.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - {fi-tgl-dsi}:       [INCOMPLETE][30] ([i915#402]) -> [PASS][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@hugepages:
-    - {fi-tgl-dsi}:       [INCOMPLETE][32] -> [PASS][33]
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-tgl-dsi/igt@i915_selftest@live@hugepages.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-dsi/igt@i915_selftest@live@hugepages.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11014 -> Patchwork_21877
-
-  CI-20190529: 20190529
-  CI_DRM_11014: c4f095f24fcdc6e85ae112052b3034328e24ae66 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6313: 1793ed798cc09966c27bf478781e0c1d6bb23bad @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21877: 1be3eab2eac96a6bd3be6de49f12f134ea0e146c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1be3eab2eac9 drm/i915: pps_lock moved to encoder to support dual EDP
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/index.html
-
---===============1432622186682497689==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: pps_lock moved to encoder to support dual EDP</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98221/">https://patchwork.freedesktop.org/series/98221/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11014 -&gt; Patchwork_21877</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_21877 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_21877, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/index.html</p>
-<h2>Participating hosts (41 -&gt; 33)</h2>
-<p>Additional (3): fi-bxt-dsi fi-bdw-5557u fi-tgl-u2 <br />
-  Missing    (11): fi-kbl-soraka bat-dg1-6 bat-dg1-5 fi-skl-guc fi-icl-u2 fi-bsw-cyan bat-adlp-6 fi-ivb-3770 fi-pnv-d510 bat-jsl-2 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_21877:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21877 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bxt-dsi/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>
-<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-u2/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
-</li>
-<li>
-<p>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bxt-dsi/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</p>
-</li>
-<li>
-<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bxt-dsi/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
-</li>
-<li>
-<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-hpd-fast:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>
-<p>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bxt-dsi/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +30 similar issues</p>
-</li>
-<li>
-<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bxt-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +62 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_exec@basic:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-bsw-nick/igt@gem_ctx_exec@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-bsw-nick/igt@gem_ctx_exec@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11014/fi-tgl-dsi/igt@i915_selftest@live@hugepages.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21877/fi-tgl-dsi/igt@i915_selftest@live@hugepages.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11014 -&gt; Patchwork_21877</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11014: c4f095f24fcdc6e85ae112052b3034328e24ae66 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6313: 1793ed798cc09966c27bf478781e0c1d6bb23bad @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21877: 1be3eab2eac96a6bd3be6de49f12f134ea0e146c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>1be3eab2eac9 drm/i915: pps_lock moved to encoder to support dual EDP</p>
-
-</body>
-</html>
-
---===============1432622186682497689==--
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
