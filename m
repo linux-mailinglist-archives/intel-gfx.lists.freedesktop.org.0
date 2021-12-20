@@ -2,57 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B9BD47B0F5
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 17:14:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89B0947B1B9
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 17:58:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 254EC10F7E9;
-	Mon, 20 Dec 2021 16:13:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB06D10FD2B;
+	Mon, 20 Dec 2021 16:58:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D3FE10F7E3
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Dec 2021 16:13:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1640016835;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=ZN5JEzjz2Tw+pkfbr6lx1bQ/6DLtomfwH5EeUBzdWoI=;
- b=JU6zFMUuze9q+6N7Oo7yTAP+bMcXGBLs5e5eD4W628bAkc1gFT616cqZSlc/gqXgO6IU0R
- jMxzqnputXLEsxxWEniJlz7JbjXvsIgJF6FgEZ92Vls7mcwfSh1GOjivdQCr3gH1ESu2cb
- TYv4A6ThAtJEsbKfWQrustOvyzU38tY=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-564-Sj6IdsCFN8y9kb3II7MCDQ-1; Mon, 20 Dec 2021 11:13:52 -0500
-X-MC-Unique: Sj6IdsCFN8y9kb3II7MCDQ-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
- [10.5.11.23])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 94C0A101796D;
- Mon, 20 Dec 2021 16:13:50 +0000 (UTC)
-Received: from localhost.localdomain (unknown [10.39.192.232])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 2413BE2C9;
- Mon, 20 Dec 2021 16:13:48 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Mon, 20 Dec 2021 17:13:43 +0100
-Message-Id: <20211220161343.21975-1-hdegoede@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AE76A10FD27;
+ Mon, 20 Dec 2021 16:58:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A6C07AADD7;
+ Mon, 20 Dec 2021 16:58:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4579318039915261703=="
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"
-Subject: [Intel-gfx] [PATCH] drm/i915/vlv_dsi: Add DMI quirk for wrong panel
- modeline in BIOS on Asus TF103C
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hans de Goede" <hdegoede@redhat.com>
+Date: Mon, 20 Dec 2021 16:58:56 -0000
+Message-ID: <164001953665.24545.16759295837622828155@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211220161343.21975-1-hdegoede@redhat.com>
+In-Reply-To: <20211220161343.21975-1-hdegoede@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/vlv=5Fdsi=3A_Add_DMI_quirk_for_wrong_panel_modeline_in_BI?=
+ =?utf-8?q?OS_on_Asus_TF103C?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,94 +41,243 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Vtotal is wrong in the BIOS supplied modeline for the DSI panel on
-the Asus TF103C leading to the last line of the display being shown
-as the first line.
+--===============4579318039915261703==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The factory installed Android has a hardcoded modeline in its kernel,
-causing it to not suffer from this BIOS bug;
+== Series Details ==
 
-and the Android boot-splash which uses the EFI FB which does have this bug
-has the last line all black causing the bug to not be visible.
+Series: drm/i915/vlv_dsi: Add DMI quirk for wrong panel modeline in BIOS on Asus TF103C
+URL   : https://patchwork.freedesktop.org/series/98239/
+State : success
 
-This commit introduces a generic DMI based mechanism for doing modeline
-fixups, in case we need similar fixups on other models in the future.
+== Summary ==
 
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/i915/display/vlv_dsi.c | 33 ++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+CI Bug Log - changes from CI_DRM_11016 -> Patchwork_21879
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index fc0dd0c4079e..98d64b6e132e 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -23,6 +23,7 @@
-  * Author: Jani Nikula <jani.nikula@intel.com>
-  */
- 
-+#include <linux/dmi.h>
- #include <linux/slab.h>
- 
- #include <drm/drm_atomic_helper.h>
-@@ -1828,6 +1829,30 @@ static void vlv_dphy_param_init(struct intel_dsi *intel_dsi)
- 	intel_dsi_log_params(intel_dsi);
- }
- 
-+typedef void (*vlv_dsi_mode_fixup_func)(struct drm_display_mode *fixed_mode);
-+
-+/*
-+ * Vtotal is wrong on the Asus TF103C leading to the last line of the display
-+ * being shown as the first line. The factory installed Android has a hardcoded
-+ * modeline, causing it to not suffer from this BIOS bug.
-+ */
-+static void vlv_dsi_asus_tf103c_mode_fixup(struct drm_display_mode *fixed_mode)
-+{
-+	fixed_mode->vtotal = 816;
-+	fixed_mode->crtc_vtotal = 816;
-+}
-+
-+static const struct dmi_system_id dmi_mode_fixup_table[] = {
-+	{
-+		.matches = {
-+			DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
-+			DMI_MATCH(DMI_PRODUCT_NAME, "TF103C"),
-+		},
-+		.driver_data = (void *)vlv_dsi_asus_tf103c_mode_fixup,
-+	},
-+	{ }
-+};
-+
- void vlv_dsi_init(struct drm_i915_private *dev_priv)
- {
- 	struct drm_device *dev = &dev_priv->drm;
-@@ -1837,6 +1862,8 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
- 	struct intel_connector *intel_connector;
- 	struct drm_connector *connector;
- 	struct drm_display_mode *current_mode, *fixed_mode;
-+	const struct dmi_system_id *dmi_id;
-+	vlv_dsi_mode_fixup_func mode_fixup;
- 	enum port port;
- 	enum pipe pipe;
- 
-@@ -1965,6 +1992,12 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
- 		goto err_cleanup_connector;
- 	}
- 
-+	dmi_id = dmi_first_match(dmi_mode_fixup_table);
-+	if (dmi_id) {
-+		mode_fixup = (vlv_dsi_mode_fixup_func)dmi_id->driver_data;
-+		mode_fixup(fixed_mode);
-+	}
-+
- 	intel_panel_init(&intel_connector->panel, fixed_mode, NULL);
- 	intel_backlight_setup(intel_connector, INVALID_PIPE);
- 
--- 
-2.33.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/index.html
+
+Participating hosts (44 -> 35)
+------------------------------
+
+  Missing    (9): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan bat-adlp-6 fi-ctg-p8600 bat-jsl-2 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21879 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][2] -> [INCOMPLETE][3] ([i915#2940])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+    - fi-bsw-n3050:       [PASS][4] -> [INCOMPLETE][5] ([i915#2940])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [PASS][6] -> [DMESG-FAIL][7] ([i915#4528])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@runner@aborted:
+    - fi-bsw-nick:        NOTRUN -> [FAIL][8] ([fdo#109271] / [i915#1436] / [i915#3428] / [i915#4312])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-bsw-nick/igt@runner@aborted.html
+    - fi-bsw-n3050:       NOTRUN -> [FAIL][9] ([fdo#109271] / [i915#1436] / [i915#3428] / [i915#4312])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-bsw-n3050/igt@runner@aborted.html
+    - fi-blb-e6850:       NOTRUN -> [FAIL][10] ([fdo#109271] / [i915#2403] / [i915#4312])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-blb-e6850/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * {igt@gem_exec_suspend@basic-s0@smem}:
+    - fi-tgl-1115g4:      [FAIL][11] ([i915#1888]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][13] ([i915#3303]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][15] ([i915#4269]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11016 -> Patchwork_21879
+
+  CI-20190529: 20190529
+  CI_DRM_11016: ae9547869b01c3441cd15dc9521f42ac9dc6d028 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6314: 1c71ec381282ba26d0a370b52603754599293754 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21879: ce502e001f9cc9f44c287726a95694b12febb83a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ce502e001f9c drm/i915/vlv_dsi: Add DMI quirk for wrong panel modeline in BIOS on Asus TF103C
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/index.html
+
+--===============4579318039915261703==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/vlv_dsi: Add DMI quirk for wrong panel modeline in BIOS on Asus TF103C</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98239/">https://patchwork.freedesktop.org/series/98239/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11016 -&gt; Patchwork_21879</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/index.html</p>
+<h2>Participating hosts (44 -&gt; 35)</h2>
+<p>Missing    (9): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan bat-adlp-6 fi-ctg-p8600 bat-jsl-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21879 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-gfx:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>
+<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</p>
+</li>
+<li>
+<p>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-blb-e6850/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>{igt@gem_exec_suspend@basic-s0@smem}:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21879/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11016 -&gt; Patchwork_21879</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11016: ae9547869b01c3441cd15dc9521f42ac9dc6d028 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6314: 1c71ec381282ba26d0a370b52603754599293754 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21879: ce502e001f9cc9f44c287726a95694b12febb83a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>ce502e001f9c drm/i915/vlv_dsi: Add DMI quirk for wrong panel modeline in BIOS on Asus TF103C</p>
+
+</body>
+</html>
+
+--===============4579318039915261703==--
