@@ -1,33 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5856447B523
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 22:25:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0650B47B524
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 22:26:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1D6D10F38F;
-	Mon, 20 Dec 2021 21:25:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BB3610EDE9;
+	Mon, 20 Dec 2021 21:26:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B55D710EDE9;
- Mon, 20 Dec 2021 21:25:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AE09BAADD3;
- Mon, 20 Dec 2021 21:25:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8210775396362142870=="
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D97D210EDE9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Dec 2021 21:26:03 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10204"; a="237812173"
+X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; d="scan'208";a="237812173"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2021 13:26:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; d="scan'208";a="507833376"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
+ by orsmga007.jf.intel.com with SMTP; 20 Dec 2021 13:26:00 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 20 Dec 2021 23:26:00 +0200
+Date: Mon, 20 Dec 2021 23:26:00 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Animesh Manna <animesh.manna@intel.com>
+Message-ID: <YcD06FNHJbAi37l6@intel.com>
+References: <20211220063540.19636-1-animesh.manna@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juston Li" <juston.li@intel.com>
-Date: Mon, 20 Dec 2021 21:25:53 -0000
-Message-ID: <164003555368.24545.4436349995383303021@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211220204023.8304-1-juston.li@intel.com>
-In-Reply-To: <20211220204023.8304-1-juston.li@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/pxp=3A_Hold_RPM_wakelock_during_PXP_unbind?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211220063540.19636-1-animesh.manna@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: pps_lock moved to encoder to
+ support dual EDP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,308 +48,273 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8210775396362142870==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Dec 20, 2021 at 12:05:40PM +0530, Animesh Manna wrote:
+> Currently dev_priv->pps_lock is used for locking mechanism and one
+> instance of pps registers are used for pps register programming.
+> Second instance enabled as per port number and pps_lock is moved
+> under encoder.
 
-== Series Details ==
+Nak. Please read commit e39b999a6f22 ("drm/i915: Fix edp vdd locking")
 
-Series: drm/i915/pxp: Hold RPM wakelock during PXP unbind
-URL   : https://patchwork.freedesktop.org/series/98245/
-State : success
+> 
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    |  3 ++
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  1 +
+>  drivers/gpu/drm/i915/display/intel_pps.c      | 43 +++++++++----------
+>  drivers/gpu/drm/i915/i915_driver.c            |  1 -
+>  drivers/gpu/drm/i915/i915_drv.h               |  3 --
+>  5 files changed, 24 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index c9c6efadf8b4..a091ad10c213 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1664,6 +1664,9 @@ struct intel_dp {
+>  
+>  	/* When we last wrote the OUI for eDP */
+>  	unsigned long last_oui_write;
+> +
+> +	/* protects panel power sequencer state */
+> +	struct mutex pps_mutex;
+>  };
+>  
+>  enum lspcon_vendor {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index b5e2508db1cf..a1ef497de773 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5089,6 +5089,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+>  	intel_dp->reset_link_params = true;
+>  	intel_dp->pps.pps_pipe = INVALID_PIPE;
+>  	intel_dp->pps.active_pipe = INVALID_PIPE;
+> +	mutex_init(&intel_dp->pps_mutex);
+>  
+>  	/* Preserve the current hw state. */
+>  	intel_dp->DP = intel_de_read(dev_priv, intel_dp->output_reg);
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index e9c679bb1b2e..f6e86a17ea48 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -27,7 +27,7 @@ intel_wakeref_t intel_pps_lock(struct intel_dp *intel_dp)
+>  	 * See intel_pps_reset_all() why we need a power domain reference here.
+>  	 */
+>  	wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_DISPLAY_CORE);
+> -	mutex_lock(&dev_priv->pps_mutex);
+> +	mutex_lock(&intel_dp->pps_mutex);
+>  
+>  	return wakeref;
+>  }
+> @@ -37,7 +37,7 @@ intel_wakeref_t intel_pps_unlock(struct intel_dp *intel_dp,
+>  {
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>  
+> -	mutex_unlock(&dev_priv->pps_mutex);
+> +	mutex_unlock(&intel_dp->pps_mutex);
+>  	intel_display_power_put(dev_priv, POWER_DOMAIN_DISPLAY_CORE, wakeref);
+>  
+>  	return 0;
+> @@ -162,7 +162,7 @@ vlv_power_sequencer_pipe(struct intel_dp *intel_dp)
+>  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+>  	enum pipe pipe;
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	/* We should never land here with regular DP ports */
+>  	drm_WARN_ON(&dev_priv->drm, !intel_dp_is_edp(intel_dp));
+> @@ -210,7 +210,7 @@ bxt_power_sequencer_idx(struct intel_dp *intel_dp)
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>  	int backlight_controller = dev_priv->vbt.backlight.controller;
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	/* We should never land here with regular DP ports */
+>  	drm_WARN_ON(&dev_priv->drm, !intel_dp_is_edp(intel_dp));
+> @@ -280,7 +280,7 @@ vlv_initial_power_sequencer_setup(struct intel_dp *intel_dp)
+>  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+>  	enum port port = dig_port->base.port;
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	/* try to find a pipe with this port selected */
+>  	/* first pick one where the panel is on */
+> @@ -359,7 +359,7 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
+>  				    struct pps_registers *regs)
+>  {
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> -	int pps_idx = 0;
+> +	int pps_idx = dp_to_dig_port(intel_dp)->base.port;
+>  
+>  	memset(regs, 0, sizeof(*regs));
+>  
+> @@ -405,7 +405,7 @@ static bool edp_have_panel_power(struct intel_dp *intel_dp)
+>  {
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
+>  	    intel_dp->pps.pps_pipe == INVALID_PIPE)
+> @@ -418,7 +418,7 @@ static bool edp_have_panel_vdd(struct intel_dp *intel_dp)
+>  {
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
+>  	    intel_dp->pps.pps_pipe == INVALID_PIPE)
+> @@ -461,7 +461,7 @@ static void wait_panel_status(struct intel_dp *intel_dp,
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>  	i915_reg_t pp_stat_reg, pp_ctrl_reg;
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	intel_pps_verify_state(intel_dp);
+>  
+> @@ -554,7 +554,7 @@ static  u32 ilk_get_pp_control(struct intel_dp *intel_dp)
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>  	u32 control;
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	control = intel_de_read(dev_priv, _pp_ctrl_reg(intel_dp));
+>  	if (drm_WARN_ON(&dev_priv->drm, !HAS_DDI(dev_priv) &&
+> @@ -578,7 +578,7 @@ bool intel_pps_vdd_on_unlocked(struct intel_dp *intel_dp)
+>  	i915_reg_t pp_stat_reg, pp_ctrl_reg;
+>  	bool need_to_disable = !intel_dp->pps.want_panel_vdd;
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return false;
+> @@ -655,7 +655,7 @@ static void intel_pps_vdd_off_sync_unlocked(struct intel_dp *intel_dp)
+>  	u32 pp;
+>  	i915_reg_t pp_stat_reg, pp_ctrl_reg;
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	drm_WARN_ON(&dev_priv->drm, intel_dp->pps.want_panel_vdd);
+>  
+> @@ -737,9 +737,7 @@ static void edp_panel_vdd_schedule_off(struct intel_dp *intel_dp)
+>   */
+>  void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync)
+>  {
+> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> -
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> @@ -762,7 +760,7 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
+>  	u32 pp;
+>  	i915_reg_t pp_ctrl_reg;
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> @@ -823,7 +821,7 @@ void intel_pps_off_unlocked(struct intel_dp *intel_dp)
+>  	u32 pp;
+>  	i915_reg_t pp_ctrl_reg;
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+> @@ -982,11 +980,10 @@ static void vlv_steal_power_sequencer(struct drm_i915_private *dev_priv,
+>  {
+>  	struct intel_encoder *encoder;
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> -
+>  	for_each_intel_dp(&dev_priv->drm, encoder) {
+>  		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  
+> +		lockdep_assert_held(&intel_dp->pps_mutex);
+>  		drm_WARN(&dev_priv->drm, intel_dp->pps.active_pipe == pipe,
+>  			 "stealing pipe %c power sequencer from active [ENCODER:%d:%s]\n",
+>  			 pipe_name(pipe), encoder->base.base.id,
+> @@ -1012,7 +1009,7 @@ void vlv_pps_init(struct intel_encoder *encoder,
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	drm_WARN_ON(&dev_priv->drm, intel_dp->pps.active_pipe != INVALID_PIPE);
+>  
+> @@ -1055,7 +1052,7 @@ static void intel_pps_vdd_sanitize(struct intel_dp *intel_dp)
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	if (!edp_have_panel_vdd(intel_dp))
+>  		return;
+> @@ -1160,7 +1157,7 @@ static void pps_init_delays(struct intel_dp *intel_dp)
+>  	struct edp_power_seq cur, vbt, spec,
+>  		*final = &intel_dp->pps.pps_delays;
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	/* already initialized? */
+>  	if (final->t11_t12 != 0)
+> @@ -1258,7 +1255,7 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
+>  	enum port port = dp_to_dig_port(intel_dp)->base.port;
+>  	const struct edp_power_seq *seq = &intel_dp->pps.pps_delays;
+>  
+> -	lockdep_assert_held(&dev_priv->pps_mutex);
+> +	lockdep_assert_held(&intel_dp->pps_mutex);
+>  
+>  	intel_pps_get_registers(intel_dp, &regs);
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 95174938b160..9e337e4216d7 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -327,7 +327,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+>  
+>  	mutex_init(&dev_priv->audio.mutex);
+>  	mutex_init(&dev_priv->wm.wm_mutex);
+> -	mutex_init(&dev_priv->pps_mutex);
+>  	mutex_init(&dev_priv->hdcp_comp_mutex);
+>  
+>  	i915_memcpy_init_early(dev_priv);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 471be2716abe..4680e1c84985 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -749,9 +749,6 @@ struct drm_i915_private {
+>  	/* backlight registers and fields in struct intel_panel */
+>  	struct mutex backlight_lock;
+>  
+> -	/* protects panel power sequencer state */
+> -	struct mutex pps_mutex;
+> -
+>  	unsigned int fsb_freq, mem_freq, is_ddr3;
+>  	unsigned int skl_preferred_vco_freq;
+>  	unsigned int max_cdclk_freq;
+> -- 
+> 2.29.0
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11016 -> Patchwork_21881
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/index.html
-
-Participating hosts (44 -> 36)
-------------------------------
-
-  Additional (1): fi-tgl-u2 
-  Missing    (9): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 fi-ctg-p8600 fi-pnv-d510 bat-jsl-2 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21881 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-gfx0:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +18 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-tgl-u2:          NOTRUN -> [INCOMPLETE][2] ([i915#4006])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][3] ([i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][4] ([i915#4613]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][5] -> [INCOMPLETE][6] ([i915#3921])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@dp-hpd-fast:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][7] ([fdo#109284] / [fdo#111827]) +8 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][8] ([i915#4103]) +1 similar issue
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][9] ([fdo#109285])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-u2:          NOTRUN -> [SKIP][10] ([i915#3301])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-tgl-u2:          NOTRUN -> [FAIL][11] ([i915#2722] / [i915#4312])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-tgl-1115g4:      [FAIL][12] ([i915#1888]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-skl-6600u:       [FAIL][14] ([i915#4547]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [SKIP][16] ([fdo#109271]) -> [FAIL][17] ([i915#579])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][18] ([i915#3303]) -> [INCOMPLETE][19] ([i915#4785])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4006]: https://gitlab.freedesktop.org/drm/intel/issues/4006
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11016 -> Patchwork_21881
-
-  CI-20190529: 20190529
-  CI_DRM_11016: ae9547869b01c3441cd15dc9521f42ac9dc6d028 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6314: 1c71ec381282ba26d0a370b52603754599293754 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21881: 696d2776d9f3b16f59becd7c8040c5fa7557ce00 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-696d2776d9f3 drm/i915/pxp: Hold RPM wakelock during PXP unbind
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/index.html
-
---===============8210775396362142870==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/pxp: Hold RPM wakelock during PXP unbind</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98245/">https://patchwork.freedesktop.org/series/98245/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11016 -&gt; Patchwork_21881</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/index.html</p>
-<h2>Participating hosts (44 -&gt; 36)</h2>
-<p>Additional (1): fi-tgl-u2 <br />
-  Missing    (9): fi-ilk-m540 bat-dg1-6 bat-dg1-5 fi-hsw-4200u fi-bsw-cyan bat-adlp-6 fi-ctg-p8600 fi-pnv-d510 bat-jsl-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21881 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-gfx0:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +18 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4006">i915#4006</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-hpd-fast:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11016/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21881/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11016 -&gt; Patchwork_21881</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11016: ae9547869b01c3441cd15dc9521f42ac9dc6d028 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6314: 1c71ec381282ba26d0a370b52603754599293754 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21881: 696d2776d9f3b16f59becd7c8040c5fa7557ce00 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>696d2776d9f3 drm/i915/pxp: Hold RPM wakelock during PXP unbind</p>
-
-</body>
-</html>
-
---===============8210775396362142870==--
+-- 
+Ville Syrjälä
+Intel
