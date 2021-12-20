@@ -1,41 +1,28 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0650B47B524
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 22:26:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8283847B562
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 22:50:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BB3610EDE9;
-	Mon, 20 Dec 2021 21:26:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5834310FA84;
+	Mon, 20 Dec 2021 21:50:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D97D210EDE9
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Dec 2021 21:26:03 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10204"; a="237812173"
-X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; d="scan'208";a="237812173"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2021 13:26:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; d="scan'208";a="507833376"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by orsmga007.jf.intel.com with SMTP; 20 Dec 2021 13:26:00 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 20 Dec 2021 23:26:00 +0200
-Date: Mon, 20 Dec 2021 23:26:00 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Animesh Manna <animesh.manna@intel.com>
-Message-ID: <YcD06FNHJbAi37l6@intel.com>
-References: <20211220063540.19636-1-animesh.manna@intel.com>
+Received: from netrider.rowland.org (netrider.rowland.org [192.131.102.5])
+ by gabe.freedesktop.org (Postfix) with SMTP id 42C6110FA84
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Dec 2021 21:50:26 +0000 (UTC)
+Received: (qmail 921894 invoked by uid 1000); 20 Dec 2021 16:50:24 -0500
+Date: Mon, 20 Dec 2021 16:50:24 -0500
+From: Alan Stern <stern@rowland.harvard.edu>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YcD6oLGZmei7ipPG@rowland.harvard.edu>
+References: <Yby4ooKl43NRm+5y@rowland.harvard.edu> <87ee671t2f.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211220063540.19636-1-animesh.manna@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: pps_lock moved to encoder to
- support dual EDP
+In-Reply-To: <87ee671t2f.fsf@intel.com>
+Subject: Re: [Intel-gfx] How to fix screen resolution detection?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,273 +35,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 20, 2021 at 12:05:40PM +0530, Animesh Manna wrote:
-> Currently dev_priv->pps_lock is used for locking mechanism and one
-> instance of pps registers are used for pps register programming.
-> Second instance enabled as per port number and pps_lock is moved
-> under encoder.
-
-Nak. Please read commit e39b999a6f22 ("drm/i915: Fix edp vdd locking")
-
+On Mon, Dec 20, 2021 at 12:14:48PM +0200, Jani Nikula wrote:
+> On Fri, 17 Dec 2021, Alan Stern <stern@rowland.harvard.edu> wrote:
+> > The screen resolution on my laptop is not reported accurately.  Here's 
+> > an extract from the output of xdpyinfo:
+> >
+> > screen #0:
+> >   dimensions:    3200x1800 pixels (847x476 millimeters)
+> >   resolution:    96x96 dots per inch
+> >
+> > The number of pixels is correct, but the size and resolution values 
+> > smack of a bogus default.  The actual width of the screen (determined 
+> > with a tape measure) is about 11.5 inches (291 mm), which yields a 
+> > resolution of 280 dots per inch (11 dots per mm), approximately.  
+> > Most definitely _not_ 96 dpi.
+> >
+> > Presumably X gets the size/resolution information from Wayland, which 
+> > gets it from the kernel, which gets it from the firmware.  So the kernel 
+> > driver is the logical place to start in figuring where things are going 
+> > wrong.  The laptop uses i915; here are the relevant lines from the 
+> > kernel log:
+> >
+> > [    0.000000] Linux version 5.14.9-200.fc34.x86_64 (mockbuild@bkernel02.iad2.fedoraproject.org) (gcc (GCC) 11.2.1 20210728 (Red Hat 11.2.1-1), GNU ld version 2.35.2-5.fc34) #1 SMP Thu Sep 30 11:55:35 UTC 2021
+> >
+> > [    0.463895] efifb: probing for efifb
+> > [    0.463913] efifb: framebuffer at 0xe0000000, using 22500k, total 22500k
+> > [    0.463916] efifb: mode is 3200x1800x32, linelength=12800, pages=1
+> > [    0.463919] efifb: scrolling: redraw
+> > [    0.463920] efifb: Truecolor: size=8:8:8:8, shift=24:16:8:0
+> > [    0.464028] Console: switching to colour frame buffer device 400x112
+> > [    0.474894] fb0: EFI VGA frame buffer device
+> >
+> > [    2.888858] fb0: switching to inteldrmfb from EFI VGA
+> > [    2.891260] Console: switching to colour dummy device 80x25
+> > [    2.891318] i915 0000:00:02.0: vgaarb: deactivate vga console
+> > [    2.902665] i915 0000:00:02.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=io+mem:owns=io+mem
+> > [    2.904833] i915 0000:00:02.0: [drm] Finished loading DMC firmware i915/skl_dmc_ver1_27.bin (v1.27)
+> > [    2.947359] [drm] Initialized i915 1.6.0 20201103 for 0000:00:02.0 on minor 0
+> > [    2.949468] ACPI: video: Video Device [GFX0] (multi-head: yes  rom: no  post: no)
+> > [    2.949803] input: Video Bus as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input9
+> > [    2.964371] fbcon: i915 (fb0) is primary device
+> > [    2.979854] Console: switching to colour frame buffer device 400x112
+> > [    3.012355] i915 0000:00:02.0: [drm] fb0: i915 frame buffer device
+> >
+> > Now, I know nothing about the kernel's graphics subsystems.  How can I 
+> > find out what size/resolution information i915 is getting and passing to 
+> > Wayland?  If it's wrong, how can I fix it?
 > 
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  .../drm/i915/display/intel_display_types.h    |  3 ++
->  drivers/gpu/drm/i915/display/intel_dp.c       |  1 +
->  drivers/gpu/drm/i915/display/intel_pps.c      | 43 +++++++++----------
->  drivers/gpu/drm/i915/i915_driver.c            |  1 -
->  drivers/gpu/drm/i915/i915_drv.h               |  3 --
->  5 files changed, 24 insertions(+), 27 deletions(-)
+> I could be wrong, but I think userspace figures the dimensions from the
+> EDID itself, not through a kernel API.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index c9c6efadf8b4..a091ad10c213 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1664,6 +1664,9 @@ struct intel_dp {
->  
->  	/* When we last wrote the OUI for eDP */
->  	unsigned long last_oui_write;
-> +
-> +	/* protects panel power sequencer state */
-> +	struct mutex pps_mutex;
->  };
->  
->  enum lspcon_vendor {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index b5e2508db1cf..a1ef497de773 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5089,6 +5089,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
->  	intel_dp->reset_link_params = true;
->  	intel_dp->pps.pps_pipe = INVALID_PIPE;
->  	intel_dp->pps.active_pipe = INVALID_PIPE;
-> +	mutex_init(&intel_dp->pps_mutex);
->  
->  	/* Preserve the current hw state. */
->  	intel_dp->DP = intel_de_read(dev_priv, intel_dp->output_reg);
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index e9c679bb1b2e..f6e86a17ea48 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -27,7 +27,7 @@ intel_wakeref_t intel_pps_lock(struct intel_dp *intel_dp)
->  	 * See intel_pps_reset_all() why we need a power domain reference here.
->  	 */
->  	wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_DISPLAY_CORE);
-> -	mutex_lock(&dev_priv->pps_mutex);
-> +	mutex_lock(&intel_dp->pps_mutex);
->  
->  	return wakeref;
->  }
-> @@ -37,7 +37,7 @@ intel_wakeref_t intel_pps_unlock(struct intel_dp *intel_dp,
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->  
-> -	mutex_unlock(&dev_priv->pps_mutex);
-> +	mutex_unlock(&intel_dp->pps_mutex);
->  	intel_display_power_put(dev_priv, POWER_DOMAIN_DISPLAY_CORE, wakeref);
->  
->  	return 0;
-> @@ -162,7 +162,7 @@ vlv_power_sequencer_pipe(struct intel_dp *intel_dp)
->  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	enum pipe pipe;
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	/* We should never land here with regular DP ports */
->  	drm_WARN_ON(&dev_priv->drm, !intel_dp_is_edp(intel_dp));
-> @@ -210,7 +210,7 @@ bxt_power_sequencer_idx(struct intel_dp *intel_dp)
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->  	int backlight_controller = dev_priv->vbt.backlight.controller;
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	/* We should never land here with regular DP ports */
->  	drm_WARN_ON(&dev_priv->drm, !intel_dp_is_edp(intel_dp));
-> @@ -280,7 +280,7 @@ vlv_initial_power_sequencer_setup(struct intel_dp *intel_dp)
->  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	enum port port = dig_port->base.port;
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	/* try to find a pipe with this port selected */
->  	/* first pick one where the panel is on */
-> @@ -359,7 +359,7 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
->  				    struct pps_registers *regs)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> -	int pps_idx = 0;
-> +	int pps_idx = dp_to_dig_port(intel_dp)->base.port;
->  
->  	memset(regs, 0, sizeof(*regs));
->  
-> @@ -405,7 +405,7 @@ static bool edp_have_panel_power(struct intel_dp *intel_dp)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
->  	    intel_dp->pps.pps_pipe == INVALID_PIPE)
-> @@ -418,7 +418,7 @@ static bool edp_have_panel_vdd(struct intel_dp *intel_dp)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
->  	    intel_dp->pps.pps_pipe == INVALID_PIPE)
-> @@ -461,7 +461,7 @@ static void wait_panel_status(struct intel_dp *intel_dp,
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->  	i915_reg_t pp_stat_reg, pp_ctrl_reg;
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	intel_pps_verify_state(intel_dp);
->  
-> @@ -554,7 +554,7 @@ static  u32 ilk_get_pp_control(struct intel_dp *intel_dp)
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->  	u32 control;
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	control = intel_de_read(dev_priv, _pp_ctrl_reg(intel_dp));
->  	if (drm_WARN_ON(&dev_priv->drm, !HAS_DDI(dev_priv) &&
-> @@ -578,7 +578,7 @@ bool intel_pps_vdd_on_unlocked(struct intel_dp *intel_dp)
->  	i915_reg_t pp_stat_reg, pp_ctrl_reg;
->  	bool need_to_disable = !intel_dp->pps.want_panel_vdd;
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	if (!intel_dp_is_edp(intel_dp))
->  		return false;
-> @@ -655,7 +655,7 @@ static void intel_pps_vdd_off_sync_unlocked(struct intel_dp *intel_dp)
->  	u32 pp;
->  	i915_reg_t pp_stat_reg, pp_ctrl_reg;
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	drm_WARN_ON(&dev_priv->drm, intel_dp->pps.want_panel_vdd);
->  
-> @@ -737,9 +737,7 @@ static void edp_panel_vdd_schedule_off(struct intel_dp *intel_dp)
->   */
->  void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync)
->  {
-> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> -
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	if (!intel_dp_is_edp(intel_dp))
->  		return;
-> @@ -762,7 +760,7 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
->  	u32 pp;
->  	i915_reg_t pp_ctrl_reg;
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	if (!intel_dp_is_edp(intel_dp))
->  		return;
-> @@ -823,7 +821,7 @@ void intel_pps_off_unlocked(struct intel_dp *intel_dp)
->  	u32 pp;
->  	i915_reg_t pp_ctrl_reg;
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	if (!intel_dp_is_edp(intel_dp))
->  		return;
-> @@ -982,11 +980,10 @@ static void vlv_steal_power_sequencer(struct drm_i915_private *dev_priv,
->  {
->  	struct intel_encoder *encoder;
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> -
->  	for_each_intel_dp(&dev_priv->drm, encoder) {
->  		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  
-> +		lockdep_assert_held(&intel_dp->pps_mutex);
->  		drm_WARN(&dev_priv->drm, intel_dp->pps.active_pipe == pipe,
->  			 "stealing pipe %c power sequencer from active [ENCODER:%d:%s]\n",
->  			 pipe_name(pipe), encoder->base.base.id,
-> @@ -1012,7 +1009,7 @@ void vlv_pps_init(struct intel_encoder *encoder,
->  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	drm_WARN_ON(&dev_priv->drm, intel_dp->pps.active_pipe != INVALID_PIPE);
->  
-> @@ -1055,7 +1052,7 @@ static void intel_pps_vdd_sanitize(struct intel_dp *intel_dp)
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	if (!edp_have_panel_vdd(intel_dp))
->  		return;
-> @@ -1160,7 +1157,7 @@ static void pps_init_delays(struct intel_dp *intel_dp)
->  	struct edp_power_seq cur, vbt, spec,
->  		*final = &intel_dp->pps.pps_delays;
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	/* already initialized? */
->  	if (final->t11_t12 != 0)
-> @@ -1258,7 +1255,7 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
->  	enum port port = dp_to_dig_port(intel_dp)->base.port;
->  	const struct edp_power_seq *seq = &intel_dp->pps.pps_delays;
->  
-> -	lockdep_assert_held(&dev_priv->pps_mutex);
-> +	lockdep_assert_held(&intel_dp->pps_mutex);
->  
->  	intel_pps_get_registers(intel_dp, &regs);
->  
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 95174938b160..9e337e4216d7 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -327,7 +327,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
->  
->  	mutex_init(&dev_priv->audio.mutex);
->  	mutex_init(&dev_priv->wm.wm_mutex);
-> -	mutex_init(&dev_priv->pps_mutex);
->  	mutex_init(&dev_priv->hdcp_comp_mutex);
->  
->  	i915_memcpy_init_early(dev_priv);
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 471be2716abe..4680e1c84985 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -749,9 +749,6 @@ struct drm_i915_private {
->  	/* backlight registers and fields in struct intel_panel */
->  	struct mutex backlight_lock;
->  
-> -	/* protects panel power sequencer state */
-> -	struct mutex pps_mutex;
-> -
->  	unsigned int fsb_freq, mem_freq, is_ddr3;
->  	unsigned int skl_preferred_vco_freq;
->  	unsigned int max_cdclk_freq;
-> -- 
-> 2.29.0
+> I actually get slightly different results from xrandr, xdpyinfo, and
+> edid-decode on the EDID. What does edid-decode tell you for the
+> dimensions? For me it's 'edid-decode /sys/class/drm/card0-DP-3/edid' but
+> replace the subdir with your info.
+> 
+> xdpyinfo also gives me 96x96 dpi, probably bogus.
 
--- 
-Ville Syrjälä
-Intel
+Here's the result:
+
+# edid-decode -s /sys/class/drm/card0-eDP-1/edid
+Block 0, Base EDID:
+  EDID Structure Version & Revision: 1.4
+  Vendor & Product Identification:
+    Manufacturer: SDC
+    Model: 22602
+    Made in: 2015
+  Basic Display Parameters & Features:
+    Digital display
+    Bits per primary color channel: 8
+    DisplayPort interface
+    Maximum image size: 29 cm x 17 cm
+    Gamma: 2.20
+    DPMS levels: Standby Suspend Off
+    Supported color formats: RGB 4:4:4, YCrCb 4:4:4
+    First detailed timing includes the native pixel format and preferred refresh rate
+  Color Characteristics:
+    Red  : 0.6396, 0.3300
+    Green: 0.2998, 0.5996
+    Blue : 0.1503, 0.0595
+    White: 0.3134, 0.3291
+  Established Timings I & II: none
+  Standard Timings: none
+  Detailed Timing Descriptors:
+    DTD 1:  3200x1800   60.000 Hz  16:9   108.960 kHz  361.310 MHz (293 mm x 165 mm)
+                 Hfront   48 Hsync  32 Hback  36 Hpol N
+                 Vfront    2 Vsync   5 Vback   9 Vpol N
+    Manufacturer-Specified Display Descriptor (0x0f): 00 0f 00 00 00 00 00 00 00 00 00 37 82 05 46 00 '...........7..F.'
+    Alphanumeric Data String: 'SAMSUNG'
+    Alphanumeric Data String: '133YL02-C02'
+Checksum: 0x41
+
+The 293 mm x 165 mm values listed on the "DTD 1" line seem right.  
+Maybe a little larger than the actual size but close enough.
+
+So it looks as though the problem must lie in userspace (Wayland or X).  
+Any advice on whom I should ask next?
+
+Alan Stern
