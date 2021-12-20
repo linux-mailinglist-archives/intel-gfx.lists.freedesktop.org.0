@@ -1,46 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 402BB47A8DC
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 12:40:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FCA147A934
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 13:05:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64273113E9A;
-	Mon, 20 Dec 2021 11:40:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48C6711A9E1;
+	Mon, 20 Dec 2021 12:05:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 400 seconds by postgrey-1.36 at gabe;
- Mon, 20 Dec 2021 11:40:09 UTC
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A170113E9A
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Dec 2021 11:40:09 +0000 (UTC)
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de
- [88.67.202.8])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E145C1EC04FB;
- Mon, 20 Dec 2021 12:33:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
- t=1640000003;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
- bh=jv+2cS0MSX4C7Q59qd+/K7GaVEGKkT4ISPl0b+0VegM=;
- b=DCNSfpXDKeCmT3FnkTTPZPy28zudgBGLDmHqkUkYreYcHaEbUXS9DFvafxTvn7LYQDrZd7
- lMjytgDAV+HLGvPLBzdzpiD2KfOdfrTC++p/LalN7L5QXYf/Fs0qrwxR+TYuTKTPTmy0+n
- RY10VAKFcNP89qsY5QjY3BEU/U7YS94=
-Date: Mon, 20 Dec 2021 12:33:26 +0100
-From: Borislav Petkov <bp@alien8.de>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <YcBqBgnRVgyzUqUE@zn.tnic>
-References: <20211210051802.4063958-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <87r1ab1huq.fsf@intel.com>
- <20211219084921.lgd47srpzepspdpv@ldmartin-desk2>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A836811A9E0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Dec 2021 12:05:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1640001950; x=1671537950;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZgXB24NbhAQ6GgPHJvgAuXxwufgADbmSEdryH1NAVSw=;
+ b=mis5fsU+p9ynrA8h17lGWyacpRmLEtwu2Hr+1CzOdlS1oM+2yozFSRzk
+ xHz9dxshh41mma0LaIv7HCF7DESiMcNaBGtZZCJThSEnLyw/cISRD4Ye7
+ yuhQmLSCq9Fm4047fOK1dzwxhsPs3WDqPh/WK3f1vBV8GeIhn6kVQiHcb
+ KMzriGdMPNnnTHcK8jjE7pRcQQbuVnW/VStiJ5TDh9yty+bSvBjnU/S5o
+ 70XJkrjWa15W7zsSxPxZndaWjwyLkJBi2gpJVv/46I0BPYtcxxo3fdnJh
+ 0H6HdQqlzMtj1duGLmbduV5Ydf251L5hVG6FjrWOKQqslrgV25AIZ6ITo Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10203"; a="238895149"
+X-IronPort-AV: E=Sophos;i="5.88,220,1635231600"; d="scan'208";a="238895149"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2021 04:05:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,220,1635231600"; d="scan'208";a="507659125"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by orsmga007.jf.intel.com with ESMTP; 20 Dec 2021 04:05:47 -0800
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 20 Dec 2021 17:30:30 +0530
+Message-Id: <20211220120030.4116079-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211219084921.lgd47srpzepspdpv@ldmartin-desk2>
-Subject: Re: [Intel-gfx] [PATCH V3] drm/i915/adl-n: Enable ADL-N platform
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: reset RING_HEAD during
+ intel_gt_unset_wedged
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,44 +54,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: x86@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Dave Hansen <dave.hansen@linux.intel.com>, Ingo Molnar <mingo@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Dec 19, 2021 at 12:49:21AM -0800, Lucas De Marchi wrote:
-> > I note not all such changes in git log have your acks recorded, though
-> > most do. Do you want us to be more careful about Cc'ing you for acks on
-> > PCI ID changes every time going forward?
-> 
-> That's what Borislav asked in
-> https://lore.kernel.org/all/20200520093025.GD1457@zn.tnic/
+During repeated wedged-unwedged, it is
+found that i915_request_retire zaps the old
+request with 0x6b6b6b6b.
 
-Right, I guess in the interest of not holding you guys up, if the patch
-is only a trivial oneliner like below adding a GPU generation to the
-list of quirks, you can only Cc x86@kernel.org so that we're aware and
-proceed with it further without our ACK.
+On unwedged, we write a new request at RING_TAIL,
+expecting to start executuing from that position,
+but execution resumes from RING_HEAD (preserved
+from an earlier wakeup before wedging) and
+consumes the 0x6b.
 
-More involved stuff would need normal review, ofc.
+Resetting kernel/user context setup enables
+RING_HEAD to use RING_TAIL for submitting new
+requests which resolves issue. Normally this reset
+is applied when unpinning a user context, or for
+kernel_contexts upon waking up the device. But fast
+wedged-unwedged sequence will keep the device awake,
+preserving the RING_HEAD from before.
 
-Thx.
+Testcase: igt@gem_eio@unwedge-stress
 
-> > > diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
-> > > index fd2d3ab38ebb..1ca3a56fdc2d 100644
-> > > --- a/arch/x86/kernel/early-quirks.c
-> > > +++ b/arch/x86/kernel/early-quirks.c
-> > > @@ -554,6 +554,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
-> > >  	INTEL_RKL_IDS(&gen11_early_ops),
-> > >  	INTEL_ADLS_IDS(&gen11_early_ops),
-> > >  	INTEL_ADLP_IDS(&gen11_early_ops),
-> > > +	INTEL_ADLN_IDS(&gen11_early_ops),
-> > >  	INTEL_RPLS_IDS(&gen11_early_ops),
-> > >  };
-> > > 
+Note : Current user impact is assessed to be low, as
+this only affects intel_gt_unset_wedged which is
+currently only used during testing and upon suspend
+resume (where the device was already flushed and will
+reset the kernel_contexts on waking up). In the
+future though, this will present an issue for PCI
+error recovery.
 
+Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 8 ++++++++
+ drivers/gpu/drm/i915/gt/intel_reset.c     | 3 +++
+ 2 files changed, 11 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 352254e001b4..7e1c561bce69 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1455,9 +1455,17 @@ void intel_engines_reset_default_submission(struct intel_gt *gt)
+ 	enum intel_engine_id id;
+ 
+ 	for_each_engine(engine, gt, id) {
++		struct intel_context *ce = engine->kernel_context;
++
+ 		if (engine->sanitize)
+ 			engine->sanitize(engine);
+ 
++		/* Reset RING_HEAD so we don't consume the old
++		 * poisoned request on unwedging
++		 */
++		if (ce)
++			ce->ops->reset(ce);
++
+ 		engine->set_default_submission(engine);
+ 	}
+ }
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index 7be0002d9d70..1c26e936e699 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -961,6 +961,9 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
+ 	}
+ 	spin_unlock(&timelines->lock);
+ 
++	/* Ensure that all non-kernel contexts are unpinned as well */
++	intel_gt_retire_requests(gt);
++
+ 	/* We must reset pending GPU events before restoring our submission */
+ 	ok = !HAS_EXECLISTS(gt->i915); /* XXX better agnosticism desired */
+ 	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
 -- 
-Regards/Gruss,
-    Boris.
+2.31.1
 
-https://people.kernel.org/tglx/notes-about-netiquette
