@@ -1,38 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BFC747A797
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 11:15:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 402BB47A8DC
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 12:40:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFC2A10EEA6;
-	Mon, 20 Dec 2021 10:15:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64273113E9A;
+	Mon, 20 Dec 2021 11:40:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B35D810EEA7
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Dec 2021 10:14:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10203"; a="226993866"
-X-IronPort-AV: E=Sophos;i="5.88,220,1635231600"; d="scan'208";a="226993866"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2021 02:14:59 -0800
-X-IronPort-AV: E=Sophos;i="5.88,220,1635231600"; d="scan'208";a="613016561"
-Received: from ddacost1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.22.217])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2021 02:14:57 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Alan Stern <stern@rowland.harvard.edu>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-In-Reply-To: <Yby4ooKl43NRm+5y@rowland.harvard.edu>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <Yby4ooKl43NRm+5y@rowland.harvard.edu>
-Date: Mon, 20 Dec 2021 12:14:48 +0200
-Message-ID: <87ee671t2f.fsf@intel.com>
+X-Greylist: delayed 400 seconds by postgrey-1.36 at gabe;
+ Mon, 20 Dec 2021 11:40:09 UTC
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A170113E9A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Dec 2021 11:40:09 +0000 (UTC)
+Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de
+ [88.67.202.8])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E145C1EC04FB;
+ Mon, 20 Dec 2021 12:33:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1640000003;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+ bh=jv+2cS0MSX4C7Q59qd+/K7GaVEGKkT4ISPl0b+0VegM=;
+ b=DCNSfpXDKeCmT3FnkTTPZPy28zudgBGLDmHqkUkYreYcHaEbUXS9DFvafxTvn7LYQDrZd7
+ lMjytgDAV+HLGvPLBzdzpiD2KfOdfrTC++p/LalN7L5QXYf/Fs0qrwxR+TYuTKTPTmy0+n
+ RY10VAKFcNP89qsY5QjY3BEU/U7YS94=
+Date: Mon, 20 Dec 2021 12:33:26 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <YcBqBgnRVgyzUqUE@zn.tnic>
+References: <20211210051802.4063958-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ <87r1ab1huq.fsf@intel.com>
+ <20211219084921.lgd47srpzepspdpv@ldmartin-desk2>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] How to fix screen resolution detection?
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211219084921.lgd47srpzepspdpv@ldmartin-desk2>
+Subject: Re: [Intel-gfx] [PATCH V3] drm/i915/adl-n: Enable ADL-N platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,70 +53,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: x86@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, Ingo Molnar <mingo@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Dec 2021, Alan Stern <stern@rowland.harvard.edu> wrote:
-> The screen resolution on my laptop is not reported accurately.  Here's 
-> an extract from the output of xdpyinfo:
->
-> screen #0:
->   dimensions:    3200x1800 pixels (847x476 millimeters)
->   resolution:    96x96 dots per inch
->
-> The number of pixels is correct, but the size and resolution values 
-> smack of a bogus default.  The actual width of the screen (determined 
-> with a tape measure) is about 11.5 inches (291 mm), which yields a 
-> resolution of 280 dots per inch (11 dots per mm), approximately.  
-> Most definitely _not_ 96 dpi.
->
-> Presumably X gets the size/resolution information from Wayland, which 
-> gets it from the kernel, which gets it from the firmware.  So the kernel 
-> driver is the logical place to start in figuring where things are going 
-> wrong.  The laptop uses i915; here are the relevant lines from the 
-> kernel log:
->
-> [    0.000000] Linux version 5.14.9-200.fc34.x86_64 (mockbuild@bkernel02.iad2.fedoraproject.org) (gcc (GCC) 11.2.1 20210728 (Red Hat 11.2.1-1), GNU ld version 2.35.2-5.fc34) #1 SMP Thu Sep 30 11:55:35 UTC 2021
->
-> [    0.463895] efifb: probing for efifb
-> [    0.463913] efifb: framebuffer at 0xe0000000, using 22500k, total 22500k
-> [    0.463916] efifb: mode is 3200x1800x32, linelength=12800, pages=1
-> [    0.463919] efifb: scrolling: redraw
-> [    0.463920] efifb: Truecolor: size=8:8:8:8, shift=24:16:8:0
-> [    0.464028] Console: switching to colour frame buffer device 400x112
-> [    0.474894] fb0: EFI VGA frame buffer device
->
-> [    2.888858] fb0: switching to inteldrmfb from EFI VGA
-> [    2.891260] Console: switching to colour dummy device 80x25
-> [    2.891318] i915 0000:00:02.0: vgaarb: deactivate vga console
-> [    2.902665] i915 0000:00:02.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=io+mem:owns=io+mem
-> [    2.904833] i915 0000:00:02.0: [drm] Finished loading DMC firmware i915/skl_dmc_ver1_27.bin (v1.27)
-> [    2.947359] [drm] Initialized i915 1.6.0 20201103 for 0000:00:02.0 on minor 0
-> [    2.949468] ACPI: video: Video Device [GFX0] (multi-head: yes  rom: no  post: no)
-> [    2.949803] input: Video Bus as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input9
-> [    2.964371] fbcon: i915 (fb0) is primary device
-> [    2.979854] Console: switching to colour frame buffer device 400x112
-> [    3.012355] i915 0000:00:02.0: [drm] fb0: i915 frame buffer device
->
-> Now, I know nothing about the kernel's graphics subsystems.  How can I 
-> find out what size/resolution information i915 is getting and passing to 
-> Wayland?  If it's wrong, how can I fix it?
+On Sun, Dec 19, 2021 at 12:49:21AM -0800, Lucas De Marchi wrote:
+> > I note not all such changes in git log have your acks recorded, though
+> > most do. Do you want us to be more careful about Cc'ing you for acks on
+> > PCI ID changes every time going forward?
+> 
+> That's what Borislav asked in
+> https://lore.kernel.org/all/20200520093025.GD1457@zn.tnic/
 
-I could be wrong, but I think userspace figures the dimensions from the
-EDID itself, not through a kernel API.
+Right, I guess in the interest of not holding you guys up, if the patch
+is only a trivial oneliner like below adding a GPU generation to the
+list of quirks, you can only Cc x86@kernel.org so that we're aware and
+proceed with it further without our ACK.
 
-I actually get slightly different results from xrandr, xdpyinfo, and
-edid-decode on the EDID. What does edid-decode tell you for the
-dimensions? For me it's 'edid-decode /sys/class/drm/card0-DP-3/edid' but
-replace the subdir with your info.
+More involved stuff would need normal review, ofc.
 
-xdpyinfo also gives me 96x96 dpi, probably bogus.
+Thx.
 
-
-BR,
-Jani.
-
+> > > diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+> > > index fd2d3ab38ebb..1ca3a56fdc2d 100644
+> > > --- a/arch/x86/kernel/early-quirks.c
+> > > +++ b/arch/x86/kernel/early-quirks.c
+> > > @@ -554,6 +554,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
+> > >  	INTEL_RKL_IDS(&gen11_early_ops),
+> > >  	INTEL_ADLS_IDS(&gen11_early_ops),
+> > >  	INTEL_ADLP_IDS(&gen11_early_ops),
+> > > +	INTEL_ADLN_IDS(&gen11_early_ops),
+> > >  	INTEL_RPLS_IDS(&gen11_early_ops),
+> > >  };
+> > > 
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
