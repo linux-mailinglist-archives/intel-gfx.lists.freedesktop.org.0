@@ -2,42 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 544A847AE60
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 16:01:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B9BD47B0F5
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Dec 2021 17:14:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DCB312B699;
-	Mon, 20 Dec 2021 15:01:04 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1818C12B691;
- Mon, 20 Dec 2021 15:01:03 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10203"; a="220197227"
-X-IronPort-AV: E=Sophos;i="5.88,220,1635231600"; d="scan'208";a="220197227"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2021 07:01:02 -0800
-X-IronPort-AV: E=Sophos;i="5.88,220,1635231600"; d="scan'208";a="484079304"
-Received: from rochetho-mobl.ger.corp.intel.com (HELO [10.213.247.233])
- ([10.213.247.233])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2021 07:01:01 -0800
-Message-ID: <3d32df02-c02e-9c35-5165-79af1cb10100@linux.intel.com>
-Date: Mon, 20 Dec 2021 15:00:53 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 254EC10F7E9;
+	Mon, 20 Dec 2021 16:13:58 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D3FE10F7E3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Dec 2021 16:13:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1640016835;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=ZN5JEzjz2Tw+pkfbr6lx1bQ/6DLtomfwH5EeUBzdWoI=;
+ b=JU6zFMUuze9q+6N7Oo7yTAP+bMcXGBLs5e5eD4W628bAkc1gFT616cqZSlc/gqXgO6IU0R
+ jMxzqnputXLEsxxWEniJlz7JbjXvsIgJF6FgEZ92Vls7mcwfSh1GOjivdQCr3gH1ESu2cb
+ TYv4A6ThAtJEsbKfWQrustOvyzU38tY=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-564-Sj6IdsCFN8y9kb3II7MCDQ-1; Mon, 20 Dec 2021 11:13:52 -0500
+X-MC-Unique: Sj6IdsCFN8y9kb3II7MCDQ-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
+ [10.5.11.23])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 94C0A101796D;
+ Mon, 20 Dec 2021 16:13:50 +0000 (UTC)
+Received: from localhost.localdomain (unknown [10.39.192.232])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 2413BE2C9;
+ Mon, 20 Dec 2021 16:13:48 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Date: Mon, 20 Dec 2021 17:13:43 +0100
+Message-Id: <20211220161343.21975-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20211214150704.984034-1-tvrtko.ursulin@linux.intel.com>
- <597d4ad0-fdae-49a6-b471-3a83d4c25b98@linux.intel.com>
- <20211217162254.GA22048@jons-linux-dev-box>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20211217162254.GA22048@jons-linux-dev-box>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Log engine resets
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Subject: [Intel-gfx] [PATCH] drm/i915/vlv_dsi: Add DMI quirk for wrong panel
+ modeline in BIOS on Asus TF103C
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,84 +65,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Vtotal is wrong in the BIOS supplied modeline for the DSI panel on
+the Asus TF103C leading to the last line of the display being shown
+as the first line.
 
-On 17/12/2021 16:22, Matthew Brost wrote:
-> On Fri, Dec 17, 2021 at 12:15:53PM +0000, Tvrtko Ursulin wrote:
->>
->> On 14/12/2021 15:07, Tvrtko Ursulin wrote:
->>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>
->>> Log engine resets done by the GuC firmware in the similar way it is done
->>> by the execlists backend.
->>>
->>> This way we have notion of where the hangs are before the GuC gains
->>> support for proper error capture.
->>
->> Ping - any interest to log this info?
->>
->> All there currently is a non-descriptive "[drm] GPU HANG: ecode
->> 12:0:00000000".
->>
-> 
-> Yea, this could be helpful. One suggestion below.
-> 
->> Also, will GuC be reporting the reason for the engine reset at any point?
->>
-> 
-> We are working on the error state capture, presumably the registers will
-> give a clue what caused the hang.
-> 
-> As for the GuC providing a reason, that isn't defined in the interface
-> but that is decent idea to provide a hint in G2H what the issue was. Let
-> me run that by the i915 GuC developers / GuC firmware team and see what
-> they think.
-> 
->> Regards,
->>
->> Tvrtko
->>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: John Harrison <John.C.Harrison@Intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 +++++++++++-
->>>    1 file changed, 11 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> index 97311119da6f..51512123dc1a 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> @@ -11,6 +11,7 @@
->>>    #include "gt/intel_context.h"
->>>    #include "gt/intel_engine_pm.h"
->>>    #include "gt/intel_engine_heartbeat.h"
->>> +#include "gt/intel_engine_user.h"
->>>    #include "gt/intel_gpu_commands.h"
->>>    #include "gt/intel_gt.h"
->>>    #include "gt/intel_gt_clock_utils.h"
->>> @@ -3934,9 +3935,18 @@ static void capture_error_state(struct intel_guc *guc,
->>>    {
->>>    	struct intel_gt *gt = guc_to_gt(guc);
->>>    	struct drm_i915_private *i915 = gt->i915;
->>> -	struct intel_engine_cs *engine = __context_to_physical_engine(ce);
->>> +	struct intel_engine_cs *engine = ce->engine;
->>>    	intel_wakeref_t wakeref;
->>> +	if (intel_engine_is_virtual(engine)) {
->>> +		drm_notice(&i915->drm, "%s class, engines 0x%x; GuC engine reset\n",
->>> +			   intel_engine_class_repr(engine->class),
->>> +			   engine->mask);
->>> +		engine = guc_virtual_get_sibling(engine, 0);
->>> +	} else {
->>> +		drm_notice(&i915->drm, "%s GuC engine reset\n", engine->name);
-> 
-> Probably include the guc_id of the context too then?
+The factory installed Android has a hardcoded modeline in its kernel,
+causing it to not suffer from this BIOS bug;
 
-Is the guc id stable and useful on its own - who would be the user?
+and the Android boot-splash which uses the EFI FB which does have this bug
+has the last line all black causing the bug to not be visible.
 
-Regards,
+This commit introduces a generic DMI based mechanism for doing modeline
+fixups, in case we need similar fixups on other models in the future.
 
-Tvrtko
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ drivers/gpu/drm/i915/display/vlv_dsi.c | 33 ++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index fc0dd0c4079e..98d64b6e132e 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -23,6 +23,7 @@
+  * Author: Jani Nikula <jani.nikula@intel.com>
+  */
+ 
++#include <linux/dmi.h>
+ #include <linux/slab.h>
+ 
+ #include <drm/drm_atomic_helper.h>
+@@ -1828,6 +1829,30 @@ static void vlv_dphy_param_init(struct intel_dsi *intel_dsi)
+ 	intel_dsi_log_params(intel_dsi);
+ }
+ 
++typedef void (*vlv_dsi_mode_fixup_func)(struct drm_display_mode *fixed_mode);
++
++/*
++ * Vtotal is wrong on the Asus TF103C leading to the last line of the display
++ * being shown as the first line. The factory installed Android has a hardcoded
++ * modeline, causing it to not suffer from this BIOS bug.
++ */
++static void vlv_dsi_asus_tf103c_mode_fixup(struct drm_display_mode *fixed_mode)
++{
++	fixed_mode->vtotal = 816;
++	fixed_mode->crtc_vtotal = 816;
++}
++
++static const struct dmi_system_id dmi_mode_fixup_table[] = {
++	{
++		.matches = {
++			DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
++			DMI_MATCH(DMI_PRODUCT_NAME, "TF103C"),
++		},
++		.driver_data = (void *)vlv_dsi_asus_tf103c_mode_fixup,
++	},
++	{ }
++};
++
+ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+ {
+ 	struct drm_device *dev = &dev_priv->drm;
+@@ -1837,6 +1862,8 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+ 	struct intel_connector *intel_connector;
+ 	struct drm_connector *connector;
+ 	struct drm_display_mode *current_mode, *fixed_mode;
++	const struct dmi_system_id *dmi_id;
++	vlv_dsi_mode_fixup_func mode_fixup;
+ 	enum port port;
+ 	enum pipe pipe;
+ 
+@@ -1965,6 +1992,12 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+ 		goto err_cleanup_connector;
+ 	}
+ 
++	dmi_id = dmi_first_match(dmi_mode_fixup_table);
++	if (dmi_id) {
++		mode_fixup = (vlv_dsi_mode_fixup_func)dmi_id->driver_data;
++		mode_fixup(fixed_mode);
++	}
++
+ 	intel_panel_init(&intel_connector->panel, fixed_mode, NULL);
+ 	intel_backlight_setup(intel_connector, INVALID_PIPE);
+ 
+-- 
+2.33.1
+
