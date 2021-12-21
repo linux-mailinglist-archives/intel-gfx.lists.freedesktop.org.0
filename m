@@ -2,57 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98CFD47C0DC
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Dec 2021 14:37:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD53C47C120
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Dec 2021 15:02:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6FAB11318C;
-	Tue, 21 Dec 2021 13:37:28 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47C3F10EE87;
+	Tue, 21 Dec 2021 14:02:39 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 409B21131A6;
- Tue, 21 Dec 2021 13:37:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63D1E10EC34;
+ Tue, 21 Dec 2021 14:02:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640093848; x=1671629848;
+ t=1640095357; x=1671631357;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=/eBdrabl5L9YPAcfOO5siC5oGYE9AjHxPgNWqw58R/U=;
- b=fSxJmV9x4Dm9WcApwu9C2t9GfycCc1jV3xbZNIjMlVspNFSqXjD7O4iX
- EO/wOAdfCVZLa0pmRXrnLOlVp/E/1fP7MovbkDXVbusOFd2rHxYD/5f4n
- xQvMWSO+whWNH+zWCXacP4Bm6a8twCjGIX/INWEHWLf9DSJNc1f2yyYgy
- 7RexcikrbhVxdZ0N9QS9U6gj6OBbXkz/fwsudb8VcLkaqS7iay868fCCr
- DgXa6h/hXi9m5cEQlymQB9vNJ7na/W+TtcRpbpQH5hDTxoJzmnbdhHTe1
- gyQxyWAR9Oi3DrYbS7dlrUmm3EdFTfK+4Of+JS0XXhQxItcNEVOK6/l66 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10204"; a="227243475"
-X-IronPort-AV: E=Sophos;i="5.88,223,1635231600"; d="scan'208";a="227243475"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ bh=lGxCgcaqq0/X41h2j0rex5Tk1fmUh0JHmuplW+VUPpc=;
+ b=N81KfkvXGYxpNocJrU6M8nVit3UuLld7sP8D37DpiiH5fZ1Movg3OIWf
+ CbVSzwEO6BNN46HeAWi2GLP+6ZU00KlweY4+PcZVyLtP9lfSiJcNSSIlc
+ qZMzLxvSDUo7W/qdDqkXqA3V9s2ia+i6w8TcsEMvyRl3coLSPiiZGS3oG
+ LtEns4/ENO1Rr8VXMwkDXeF7U2pPEJAWXgV1iQP6IilqjRLXjL805hvHp
+ u6z1v0HXtmX2dJ0b35iTxmckPWyG1WRbfe4Am+MhMq+/8e0gF5aopUhNp
+ QsGNpLlB3KHB7FhqVHIeu0te/YcWAifKijQKk+p5fDMnn72wfbC+IWur7 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10204"; a="227247684"
+X-IronPort-AV: E=Sophos;i="5.88,223,1635231600"; d="scan'208";a="227247684"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2021 05:37:27 -0800
-X-IronPort-AV: E=Sophos;i="5.88,223,1635231600"; d="scan'208";a="613472407"
-Received: from ecurley-mobl1.ger.corp.intel.com (HELO [10.213.198.217])
- ([10.213.198.217])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2021 05:37:26 -0800
-Message-ID: <01320c8c-a9c9-8c21-7601-75860bf11838@linux.intel.com>
-Date: Tue, 21 Dec 2021 13:37:23 +0000
+ 21 Dec 2021 06:02:36 -0800
+X-IronPort-AV: E=Sophos;i="5.88,223,1635231600"; d="scan'208";a="607066875"
+Received: from pjordan-mobl.ger.corp.intel.com (HELO [10.252.23.37])
+ ([10.252.23.37])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2021 06:02:34 -0800
+Message-ID: <a617dbed-be44-4617-1bab-e3cc298450b6@intel.com>
+Date: Tue, 21 Dec 2021 14:02:31 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20211214150704.984034-1-tvrtko.ursulin@linux.intel.com>
- <597d4ad0-fdae-49a6-b471-3a83d4c25b98@linux.intel.com>
- <20211217162254.GA22048@jons-linux-dev-box>
- <3d32df02-c02e-9c35-5165-79af1cb10100@linux.intel.com>
- <1c3b1b53-0e9e-a89c-1a77-90cbc229c637@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <1c3b1b53-0e9e-a89c-1a77-90cbc229c637@intel.com>
+ Thunderbird/91.3.0
+Content-Language: en-GB
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20211217145228.10987-1-thomas.hellstrom@linux.intel.com>
+ <20211217145228.10987-7-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20211217145228.10987-7-thomas.hellstrom@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Log engine resets
+Subject: Re: [Intel-gfx] [PATCH v3 6/7] drm/i915: Use vma resources for
+ async unbinding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,151 +62,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 20/12/2021 18:34, John Harrison wrote:
-> On 12/20/2021 07:00, Tvrtko Ursulin wrote:
->> On 17/12/2021 16:22, Matthew Brost wrote:
->>> On Fri, Dec 17, 2021 at 12:15:53PM +0000, Tvrtko Ursulin wrote:
->>>>
->>>> On 14/12/2021 15:07, Tvrtko Ursulin wrote:
->>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>>
->>>>> Log engine resets done by the GuC firmware in the similar way it is 
->>>>> done
->>>>> by the execlists backend.
->>>>>
->>>>> This way we have notion of where the hangs are before the GuC gains
->>>>> support for proper error capture.
->>>>
->>>> Ping - any interest to log this info?
->>>>
->>>> All there currently is a non-descriptive "[drm] GPU HANG: ecode
->>>> 12:0:00000000".
->>>>
->>>
->>> Yea, this could be helpful. One suggestion below.
->>>
->>>> Also, will GuC be reporting the reason for the engine reset at any 
->>>> point?
->>>>
->>>
->>> We are working on the error state capture, presumably the registers will
->>> give a clue what caused the hang.
->>>
->>> As for the GuC providing a reason, that isn't defined in the interface
->>> but that is decent idea to provide a hint in G2H what the issue was. Let
->>> me run that by the i915 GuC developers / GuC firmware team and see what
->>> they think.
->>>
-> The GuC does not do any hang analysis. So as far as GuC is concerned, 
-> the reason is pretty much always going to be pre-emption timeout. There 
-> are a few ways the pre-emption itself could be triggered but basically, 
-> if GuC resets an active context then it is because it did not pre-empt 
-> quickly enough when requested.
+On 17/12/2021 14:52, Thomas Hellström wrote:
+> Implement async (non-blocking) unbinding by not syncing the vma before
+> calling unbind on the vma_resource.
+> Add the resulting unbind fence to the object's dma_resv from where it is
+> picked up by the ttm migration code.
+> Ideally these unbind fences should be coalesced with the migration blit
+> fence to avoid stalling the migration blit waiting for unbind, as they
+> can certainly go on in parallel, but since we don't yet have a
+> reasonable data structure to use to coalesce fences and attach the
+> resulting fence to a timeline, we defer that for now.
 > 
+> Note that with async unbinding, even while the unbind waits for the
+> preceding bind to complete before unbinding, the vma itself might have been
+> destroyed in the process, clearing the vma pages. Therefore we can
+> only allow async unbinding if we have a refcounted sg-list and keep a
+> refcount on that for the vma resource pages to stay intact until
+> binding occurs. If this condition is not met, a request for an async
+> unbind is diverted to a sync unbind.
 > 
->>>> Regards,
->>>>
->>>> Tvrtko
->>>>
->>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>>> Cc: John Harrison <John.C.Harrison@Intel.com>
->>>>> ---
->>>>>    drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 +++++++++++-
->>>>>    1 file changed, 11 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>> index 97311119da6f..51512123dc1a 100644
->>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>> @@ -11,6 +11,7 @@
->>>>>    #include "gt/intel_context.h"
->>>>>    #include "gt/intel_engine_pm.h"
->>>>>    #include "gt/intel_engine_heartbeat.h"
->>>>> +#include "gt/intel_engine_user.h"
->>>>>    #include "gt/intel_gpu_commands.h"
->>>>>    #include "gt/intel_gt.h"
->>>>>    #include "gt/intel_gt_clock_utils.h"
->>>>> @@ -3934,9 +3935,18 @@ static void capture_error_state(struct 
->>>>> intel_guc *guc,
->>>>>    {
->>>>>        struct intel_gt *gt = guc_to_gt(guc);
->>>>>        struct drm_i915_private *i915 = gt->i915;
->>>>> -    struct intel_engine_cs *engine = 
->>>>> __context_to_physical_engine(ce);
->>>>> +    struct intel_engine_cs *engine = ce->engine;
->>>>>        intel_wakeref_t wakeref;
->>>>> +    if (intel_engine_is_virtual(engine)) {
->>>>> +        drm_notice(&i915->drm, "%s class, engines 0x%x; GuC engine 
->>>>> reset\n",
->>>>> +               intel_engine_class_repr(engine->class),
->>>>> +               engine->mask);
->>>>> +        engine = guc_virtual_get_sibling(engine, 0);
->>>>> +    } else {
->>>>> +        drm_notice(&i915->drm, "%s GuC engine reset\n", 
->>>>> engine->name);
->>>
->>> Probably include the guc_id of the context too then?
->>
->> Is the guc id stable and useful on its own - who would be the user?
-> The GuC id is the only thing that matters when trying to correlate KMD 
-> activity with a GuC log. So while it might not be of any use or interest 
-> to an end user, it is extremely important and useful to a kernel 
-> developer attempting to debug an issue. And that includes bug reports 
-> from end users that are hard to repro given that the standard error 
-> capture will include the GuC log.
+> v2:
+> - Use a separate kmem_cache for vma resources for now to isolate their
+>    memory allocation and aid debugging.
+> - Move the check for vm closed to the actual unbinding thread. Regardless
+>    of whether the vm is closed, we need the unbind fence to properly wait
+>    for capture.
+> - Clear vma_res::vm on unbind and update its documentation.
+> 
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-On the topic of GuC log - is there a tool in IGT (or will be) which will 
-parse the bit saved in the error capture or how is that supposed to be used?
+<snip>
 
-> Also, note that GuC really resets contexts rather than engines. What it 
-> reports back to i915 on a reset is simply the GuC id of the context. It 
-> is up to i915 to work back from that to determine engine 
-> instances/classes if required. And in the case of a virtual context, it 
-> is impossible to extract the actual instance number. So your above print 
-> about resetting all instances within the virtual engine mask is 
-> incorrect/misleading. The reset would have been applied to one and only 
-> one of those engines. If you really need to know exactly which engine 
-> was poked, you need to look inside the GuC log.
+> @@ -416,6 +420,7 @@ int i915_vma_bind(struct i915_vma *vma,
+>   {
+>   	u32 bind_flags;
+>   	u32 vma_flags;
+> +	int ret;
+>   
+>   	lockdep_assert_held(&vma->vm->mutex);
+>   	GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
+> @@ -424,12 +429,12 @@ int i915_vma_bind(struct i915_vma *vma,
+>   	if (GEM_DEBUG_WARN_ON(range_overflows(vma->node.start,
+>   					      vma->node.size,
+>   					      vma->vm->total))) {
+> -		kfree(vma_res);
+> +		i915_vma_resource_free(vma_res);
+>   		return -ENODEV;
+>   	}
+>   
+>   	if (GEM_DEBUG_WARN_ON(!flags)) {
+> -		kfree(vma_res);
+> +		i915_vma_resource_free(vma_res);
+>   		return -EINVAL;
+>   	}
+>   
+> @@ -441,12 +446,30 @@ int i915_vma_bind(struct i915_vma *vma,
+>   
+>   	bind_flags &= ~vma_flags;
+>   	if (bind_flags == 0) {
+> -		kfree(vma_res);
+> +		i915_vma_resource_free(vma_res);
+>   		return 0;
+>   	}
+>   
+>   	GEM_BUG_ON(!vma->pages);
+>   
+> +	/* Wait for or await async unbinds touching our range */
+> +	if (work && bind_flags & vma->vm->bind_async_flags)
+> +		ret = i915_vma_resource_bind_dep_await(vma->vm,
+> +						       &work->base.chain,
+> +						       vma->node.start,
+> +						       vma->node.size,
+> +						       true,
+> +						       GFP_NOWAIT |
+> +						       __GFP_RETRY_MAYFAIL |
+> +						       __GFP_NOWARN);
+> +	else
+> +		ret = i915_vma_resource_bind_dep_sync(vma->vm, vma->node.start,
+> +						      vma->node.size, true);
 
-I think I understood that part. :) It wasn't my intent to imply in the 
-message multiple engines have been reset, but in the case of veng, log 
-the class and mask and the fact there was an engine reset (singular). 
-Clearer message can probably be written.
+Is there nothing scary here with coloring? Say with cache coloring, to 
+ensure we unbind the neighbouring nodes(if they are conflicting) before 
+doing the bind, or is async unbinding only ever going to be used for the 
+ppGTT?
 
-> However, the follow up point is to ask why you need to report the exact 
-> class/instance? The end user doesn't care about which specific engine 
-> got reset. They only care that their context was reset. Even a KMD 
-> developer doesn't really care unless the concern is about a hardware bug 
-> rather than a software bug.
-
-I was simply aligning both backends to log as similar information as 
-possible. Information is there, just not logged.
-
-Concerning the wider topic, my thinking is end user is mainly interested 
-to know there are any engine resets happening (to tie with the 
-experience of UI/video glitching or whatever). Going for deeper analysis 
-than that is probably beyond the scope of the kernel log and indeed 
-error capture territory.
-
-> My view is that the current message is indeed woefully uninformative. 
-> However, it is more important to be reporting context identification 
-> than engine instances. So sure, add the engine instance description but 
-> also add something specific to the ce as well. Ideally (for me) the GuC 
-> id and maybe something else that uniquely identifies the context in KMD 
-> land for when not using GuC?
-
-Not sure we need to go that far at this level, but even if we do it 
-could be a follow up to add new data to both backends. Not sure yet I 
-care enough to drive this. My patch was simply a reaction to noticing 
-there is zero information currently logged while debugging some DG2 hangs.
-
-Regards,
-
-Tvrtko
+And then I guess there might also be memory coloring where we likely 
+need to ensure that all the unbinds within the overlapping PT(s) have 
+been completed before doing the bind, since the bind will also increment 
+the usage count of the PT, potentially preventing it from being 
+destroyed, which will skip nuking the PDE state, AFAIK. Previously the 
+drm_mm node(s) would still be present, which would trigger the eviction. 
+Although it might be that we just end up aligning everything to 2M, and 
+so drop the memory coloring anyway, so maybe no need to worry about this 
+yet...
