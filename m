@@ -1,49 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 397BD47C88C
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Dec 2021 22:02:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 595DB47C914
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Dec 2021 23:09:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AE3D10E520;
-	Tue, 21 Dec 2021 21:02:40 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57E7010E520;
- Tue, 21 Dec 2021 21:02:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640120559; x=1671656559;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jaZ9dZ6IsKCfyvtQYFFdxKGmm382SWPhJJlR4N8r7Rc=;
- b=lyKs2DvP685SJQtrcCzSOtA6nKNdxGAsXPvnj0uwRKjvhSo927QJpbNE
- F72EVOKNQu8IsLIbv/8yh8NPRLUC4D8CqoyWvzbgj6KweXAOEYnMn+9Wx
- G1TGJUM0xTHqhP37smXy9755pYJiGMERqrDL7b51BObA4A9uzSqchTnF6
- i/iRE7anBUuxF3bxR45BKVWzeoOdpJXW3eDHAd0FZ5XFsfEIqRW+Hiy8J
- LQDCmx7AEUIcirAT9e1baOwDDHziXKDGrCbdkm/0+JWq1EAjxWww6gC7r
- pKBPQJfOmCd830Hr/glNAaNFNFJ31cwVu0/cA5XsOQFEGGOb36O4ivBMN A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="238028301"
-X-IronPort-AV: E=Sophos;i="5.88,224,1635231600"; d="scan'208";a="238028301"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2021 13:02:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,224,1635231600"; d="scan'208";a="613608218"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by fmsmga002.fm.intel.com with ESMTP; 21 Dec 2021 13:02:12 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Tue, 21 Dec 2021 13:02:12 -0800
-Message-Id: <20211221210212.1438670-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8823A10E21D;
+	Tue, 21 Dec 2021 22:09:52 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 099E910E21D;
+ Tue, 21 Dec 2021 22:09:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 033FAAA0ED;
+ Tue, 21 Dec 2021 22:09:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/guc: Check for wedged before doing
- stuff
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Date: Tue, 21 Dec 2021 22:09:52 -0000
+Message-ID: <164012459200.20960.4786510161397536525@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211219212500.61432-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20211219212500.61432-1-andi.shyti@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_More_preparation_for_multi_gt_patches_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,47 +40,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-A fault injection probe test hit a BUG_ON in a GuC error path. It
-showed that the GuC code could potentially attempt to do many things
-when the device is actually wedged. So, add a check in to prevent that.
+Series: More preparation for multi gt patches (rev2)
+URL   : https://patchwork.freedesktop.org/series/98215/
+State : warning
 
-v2: Use intel_gt_is_wedged instead of testing bits directly in the
-GuC submission code (review feedback from Tvrtko).
+== Summary ==
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+$ dim checkpatch origin/drm-tip
+5769c7bdc47d drm/i915/gt: Use to_gt() helper for GGTT accesses
+8678fc77a7bf drm/i915: Use to_gt() helper for GGTT accesses
+32ce44f3d3ac drm/i915/gem: Use to_gt() helper for GGTT accesses
+-:304: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#304: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:323:
++			      (1 + next_prime_number(to_gt(i915)->ggtt->vm.total >> PAGE_SHIFT)) << PAGE_SHIFT);
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index e7517206af82..756b29d8326b 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1349,7 +1349,8 @@ submission_disabled(struct intel_guc *guc)
- 	struct i915_sched_engine * const sched_engine = guc->sched_engine;
- 
- 	return unlikely(!sched_engine ||
--			!__tasklet_is_enabled(&sched_engine->tasklet));
-+			!__tasklet_is_enabled(&sched_engine->tasklet) ||
-+			intel_gt_is_wedged(guc_to_gt(guc)));
- }
- 
- static void disable_submission(struct intel_guc *guc)
-@@ -1725,7 +1726,7 @@ void intel_guc_submission_reset_finish(struct intel_guc *guc)
- {
- 	/* Reset called during driver load or during wedge? */
- 	if (unlikely(!guc_submission_initialized(guc) ||
--		     test_bit(I915_WEDGED, &guc_to_gt(guc)->reset.flags))) {
-+		     intel_gt_is_wedged(guc_to_gt(guc)))) {
- 		return;
- 	}
- 
--- 
-2.25.1
+-:335: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#335: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:460:
++			      (1 + next_prime_number(to_gt(i915)->ggtt->vm.total >> PAGE_SHIFT)) << PAGE_SHIFT);
+
+total: 0 errors, 2 warnings, 0 checks, 287 lines checked
+18c94c42d751 drm/i915/display: Use to_gt() helper for GGTT accesses
+94fe21e353b2 drm/i915/selftests: Use to_gt() helper for GGTT accesses
+4b3d9538659c drm/i915: Remove unused i915->ggtt
+
 
