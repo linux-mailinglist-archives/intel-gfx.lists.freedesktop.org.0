@@ -1,55 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80CE347C374
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Dec 2021 17:06:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C81ED47C383
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Dec 2021 17:08:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2BED11AC65;
-	Tue, 21 Dec 2021 16:05:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9000113B1F;
+	Tue, 21 Dec 2021 16:08:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74D6C11AC65
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Dec 2021 16:05:57 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 629771138AB;
+ Tue, 21 Dec 2021 16:08:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640102757; x=1671638757;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=OVb4fuidJkyR0m2J0hseMJgcfirCoxC4VDS7MyLd1K4=;
- b=NAHLbVn3A99TkYssNtaS3UlrSlVznOiz8HZgJT+jO9TVXickwqRQ9Z0D
- ONfqg90cfe8PdBIRjVBluc06c8WKcxdSacmPyTop5fhNjdDwUhBps1kGu
- UZWi5u8svmwC+DweMfRlM22vkkHrV8l9D2jgOnK95w735JBotvphy5Kgf
- +UcwwuRq+GDFwxIhpEHo8S6e08P3Q9kmkSCxlmxHkBuHr8RMaTGUpls2J
- IrbpaWNhxPVUMdUtuexcYYzIzQmZxH5Iv7SUPDeyu7Z0HcB6KQe0B/1Om
- uqJ6xdhvFwomS0Phwi5+P7Wp2IOJ21HwzOLd5/f/LRKZ7TaZ77sPyisTh Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10204"; a="239168577"
-X-IronPort-AV: E=Sophos;i="5.88,223,1635231600"; d="scan'208";a="239168577"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2021 08:05:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,223,1635231600"; d="scan'208";a="548112443"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by orsmga001.jf.intel.com with SMTP; 21 Dec 2021 08:05:35 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 21 Dec 2021 18:05:34 +0200
-Date: Tue, 21 Dec 2021 18:05:34 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Nathan Chancellor <nathan@kernel.org>
-Message-ID: <YcH7Tn9pOh4N43cL@intel.com>
-References: <20211213134450.3082-5-ville.syrjala@linux.intel.com>
- <20211213151435.9700-1-ville.syrjala@linux.intel.com>
- <Yb6EP13FeEhmvq5c@archlinux-ax161>
+ t=1640102881; x=1671638881;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Eb77f0f+WUx55OONSOq12VMu9yi5Muh63pKJQGfDI0M=;
+ b=ZqBDXEeKBHyzj6JiO+fmdrdPDvaZKV0r7GDwhq4zaH+O3vT1631snvaY
+ J59t7Qc2vOgVvXNq+ph1pp7LDC5zESYA1QdXCo8bVX/spOQjkjmttKlCl
+ qCq13N+wnXydtDLjnosiY671JjeHR6W0yfxqWyh0x4QXDO/8JPhGk/ety
+ gUvAVXpSdbrpbvr3UcDh77bl4LRuykWaAvhvrFTIcyEKVQuJUN8T+2J+3
+ 81q9NYoARH/XJPM75tgmQDV2iGwLXj274QFyOi/o5lz19gxh+AtXmv99z
+ mMum/QjM7eoxSWU+7i0ktES6WFEgayMbphZydd5od6dRS3drb5oBZ7Z2U w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="221096316"
+X-IronPort-AV: E=Sophos;i="5.88,223,1635231600"; d="scan'208";a="221096316"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2021 08:07:07 -0800
+X-IronPort-AV: E=Sophos;i="5.88,223,1635231600"; d="scan'208";a="755852039"
+Received: from arajji-mobl.ger.corp.intel.com (HELO [10.249.254.222])
+ ([10.249.254.222])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2021 08:07:05 -0800
+Message-ID: <6a8a85c1c60ccd865fbd5afe169649cbc6574449.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Date: Tue, 21 Dec 2021 17:07:03 +0100
+In-Reply-To: <a617dbed-be44-4617-1bab-e3cc298450b6@intel.com>
+References: <20211217145228.10987-1-thomas.hellstrom@linux.intel.com>
+ <20211217145228.10987-7-thomas.hellstrom@linux.intel.com>
+ <a617dbed-be44-4617-1bab-e3cc298450b6@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Yb6EP13FeEhmvq5c@archlinux-ax161>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 4/4] drm/i915/fbc: Register per-crtc
- debugfs files
+Subject: Re: [Intel-gfx] [PATCH v3 6/7] drm/i915: Use vma resources for
+ async unbinding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,65 +61,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Dec 18, 2021 at 06:00:47PM -0700, Nathan Chancellor wrote:
-> Hi Ville,
-> 
-> On Mon, Dec 13, 2021 at 05:14:35PM +0200, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, 2021-12-21 at 14:02 +0000, Matthew Auld wrote:
+> On 17/12/2021 14:52, Thomas Hellström wrote:
+> > Implement async (non-blocking) unbinding by not syncing the vma
+> > before
+> > calling unbind on the vma_resource.
+> > Add the resulting unbind fence to the object's dma_resv from where
+> > it is
+> > picked up by the ttm migration code.
+> > Ideally these unbind fences should be coalesced with the migration
+> > blit
+> > fence to avoid stalling the migration blit waiting for unbind, as
+> > they
+> > can certainly go on in parallel, but since we don't yet have a
+> > reasonable data structure to use to coalesce fences and attach the
+> > resulting fence to a timeline, we defer that for now.
 > > 
-> > Expose FBC debugfs files for each crtc. These may or may not point
-> > to the same FBC instance depending on the platform.
+> > Note that with async unbinding, even while the unbind waits for the
+> > preceding bind to complete before unbinding, the vma itself might
+> > have been
+> > destroyed in the process, clearing the vma pages. Therefore we can
+> > only allow async unbinding if we have a refcounted sg-list and keep
+> > a
+> > refcount on that for the vma resource pages to stay intact until
+> > binding occurs. If this condition is not met, a request for an
+> > async
+> > unbind is diverted to a sync unbind.
 > > 
-> > We leave the old global debugfs files in place until
-> > igt catches up to the new per-crtc approach.
+> > v2:
+> > - Use a separate kmem_cache for vma resources for now to isolate
+> > their
+> >    memory allocation and aid debugging.
+> > - Move the check for vm closed to the actual unbinding thread.
+> > Regardless
+> >    of whether the vm is closed, we need the unbind fence to
+> > properly wait
+> >    for capture.
+> > - Clear vma_res::vm on unbind and update its documentation.
 > > 
-> > v2: Take a trip via intel_crtc_debugfs_add() (Jani)
-> > 
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > 
-> Apologies if this has already been reported and fixed, I have not seen
-> anything on lore.kernel.org or drm-intel about it.
+> <snip>
 > 
-> This patch as commit e74c6aa955ca ("drm/i915/fbc: Register per-crtc
-> debugfs files") breaks the build when CONFIG_DEBUG_FS is disabled.
+> > @@ -416,6 +420,7 @@ int i915_vma_bind(struct i915_vma *vma,
+> >   {
+> >         u32 bind_flags;
+> >         u32 vma_flags;
+> > +       int ret;
+> >   
+> >         lockdep_assert_held(&vma->vm->mutex);
+> >         GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
+> > @@ -424,12 +429,12 @@ int i915_vma_bind(struct i915_vma *vma,
+> >         if (GEM_DEBUG_WARN_ON(range_overflows(vma->node.start,
+> >                                               vma->node.size,
+> >                                               vma->vm->total))) {
+> > -               kfree(vma_res);
+> > +               i915_vma_resource_free(vma_res);
+> >                 return -ENODEV;
+> >         }
+> >   
+> >         if (GEM_DEBUG_WARN_ON(!flags)) {
+> > -               kfree(vma_res);
+> > +               i915_vma_resource_free(vma_res);
+> >                 return -EINVAL;
+> >         }
+> >   
+> > @@ -441,12 +446,30 @@ int i915_vma_bind(struct i915_vma *vma,
+> >   
+> >         bind_flags &= ~vma_flags;
+> >         if (bind_flags == 0) {
+> > -               kfree(vma_res);
+> > +               i915_vma_resource_free(vma_res);
+> >                 return 0;
+> >         }
+> >   
+> >         GEM_BUG_ON(!vma->pages);
+> >   
+> > +       /* Wait for or await async unbinds touching our range */
+> > +       if (work && bind_flags & vma->vm->bind_async_flags)
+> > +               ret = i915_vma_resource_bind_dep_await(vma->vm,
+> > +                                                      &work-
+> > >base.chain,
+> > +                                                      vma-
+> > >node.start,
+> > +                                                      vma-
+> > >node.size,
+> > +                                                      true,
+> > +                                                      GFP_NOWAIT |
+> > +                                                     
+> > __GFP_RETRY_MAYFAIL |
+> > +                                                     
+> > __GFP_NOWARN);
+> > +       else
+> > +               ret = i915_vma_resource_bind_dep_sync(vma->vm, vma-
+> > >node.start,
+> > +                                                     vma-
+> > >node.size, true);
 > 
-> drivers/gpu/drm/i915/display/intel_fbc.c: In function ‘intel_fbc_crtc_debugfs_add’:
-> drivers/gpu/drm/i915/display/intel_fbc.c:1817:61: error: ‘struct drm_crtc’ has no member named ‘debugfs_entry’
->  1817 |                 intel_fbc_debugfs_add(plane->fbc, crtc->base.debugfs_entry);
->       |                                                             ^
+> Is there nothing scary here with coloring? Say with cache coloring,
+> to 
+> ensure we unbind the neighbouring nodes(if they are conflicting)
+> before 
+> doing the bind, or is async unbinding only ever going to be used for
+> the 
+> ppGTT?
+> 
+> And then I guess there might also be memory coloring where we likely 
+> need to ensure that all the unbinds within the overlapping PT(s) have
+> been completed before doing the bind, since the bind will also
+> increment 
+> the usage count of the PT, potentially preventing it from being 
+> destroyed, which will skip nuking the PDE state, AFAIK. Previously
+> the 
+> drm_mm node(s) would still be present, which would trigger the
+> eviction. 
+> Although it might be that we just end up aligning everything to 2M,
+> and 
+> so drop the memory coloring anyway, so maybe no need to worry about
+> this 
+> yet...
 
-Doh. I guess I didn't actually build test the final version with
-DEBUGFS=n.
+Hmm. This indeed sounds that there were some important considerations
+left out. I was under the impression that only previously scheduled
+unbinds touching the same range would have need to have finished.
 
-Does this fix it for you?
+Currently there's only ppGTT async unbinding, but I figure moving
+forward we don't want to restrict it.
 
-diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-index 13eeba2a750a..4d01b4d89775 100644
---- a/include/drm/drm_crtc.h
-+++ b/include/drm/drm_crtc.h
-@@ -1135,14 +1135,12 @@ struct drm_crtc {
- 	 */
- 	spinlock_t commit_lock;
- 
--#ifdef CONFIG_DEBUG_FS
- 	/**
- 	 * @debugfs_entry:
- 	 *
- 	 * Debugfs directory for this CRTC.
- 	 */
- 	struct dentry *debugfs_entry;
--#endif
- 
- 	/**
- 	 * @crc:
--- 
-2.32.0
+I wonder whether instead of keeping an interval tree of pending unbinds
+we should keep just a single fence per VM of the last pending unbind,
+and move to the RB tree as a separate optimization step if needed. That
+would AFAICT keep the current semantics of all unbinds that were
+scheduled before the current bind are completed before the bind. Do you
+think that would be sufficient?
 
--- 
-Ville Syrjälä
-Intel
+Thanks,
+Thomas
+
+
+
+
+
