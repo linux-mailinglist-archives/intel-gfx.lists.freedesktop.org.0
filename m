@@ -2,53 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C81ED47C383
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Dec 2021 17:08:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CAAD47C41B
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Dec 2021 17:48:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9000113B1F;
-	Tue, 21 Dec 2021 16:08:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C31110F59A;
+	Tue, 21 Dec 2021 16:47:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 629771138AB;
- Tue, 21 Dec 2021 16:08:00 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15CFE10EE64;
+ Tue, 21 Dec 2021 16:47:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640102881; x=1671638881;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Eb77f0f+WUx55OONSOq12VMu9yi5Muh63pKJQGfDI0M=;
- b=ZqBDXEeKBHyzj6JiO+fmdrdPDvaZKV0r7GDwhq4zaH+O3vT1631snvaY
- J59t7Qc2vOgVvXNq+ph1pp7LDC5zESYA1QdXCo8bVX/spOQjkjmttKlCl
- qCq13N+wnXydtDLjnosiY671JjeHR6W0yfxqWyh0x4QXDO/8JPhGk/ety
- gUvAVXpSdbrpbvr3UcDh77bl4LRuykWaAvhvrFTIcyEKVQuJUN8T+2J+3
- 81q9NYoARH/XJPM75tgmQDV2iGwLXj274QFyOi/o5lz19gxh+AtXmv99z
- mMum/QjM7eoxSWU+7i0ktES6WFEgayMbphZydd5od6dRS3drb5oBZ7Z2U w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="221096316"
-X-IronPort-AV: E=Sophos;i="5.88,223,1635231600"; d="scan'208";a="221096316"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2021 08:07:07 -0800
-X-IronPort-AV: E=Sophos;i="5.88,223,1635231600"; d="scan'208";a="755852039"
-Received: from arajji-mobl.ger.corp.intel.com (HELO [10.249.254.222])
- ([10.249.254.222])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2021 08:07:05 -0800
-Message-ID: <6a8a85c1c60ccd865fbd5afe169649cbc6574449.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Date: Tue, 21 Dec 2021 17:07:03 +0100
-In-Reply-To: <a617dbed-be44-4617-1bab-e3cc298450b6@intel.com>
-References: <20211217145228.10987-1-thomas.hellstrom@linux.intel.com>
- <20211217145228.10987-7-thomas.hellstrom@linux.intel.com>
- <a617dbed-be44-4617-1bab-e3cc298450b6@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
+ t=1640105274; x=1671641274;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=8EjpFkxFbJyAllDuMYfSQf1Z2oXWhaQE+O4Ln3rn49g=;
+ b=cKGcNuU3r5nvi/U1bjVRJoeGHQy/xTT0myCVOuCDFiCR66K0xlNtxk8n
+ OtPco7+MSe23f5xrVwAqioxecmxA7rD69aiTUcT/t3dk0T7aMNCTPiXD5
+ SDex6vQWQeKeZxuHWmGB7SnmV5tcgx11VNhsXzYbrKYB3EEPmrUZ5XdxJ
+ /nAK3C2WK6RZ7GDIytK8bd1lbyVsLpiXm9lS+Wc/v1K+CxMQ3bPeNM54k
+ tJKjcjLH4Tu0P6dNs2T1cvya9ALSoZXFJMIJfZLqaub0jfonCdGm+GQ4v
+ kmBBATa1MbFjilT4d2LmZaOqwEksC+PWKzohMqwEB+ib/fvUNZCeTJvZc w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="240238050"
+X-IronPort-AV: E=Sophos;i="5.88,224,1635231600"; d="scan'208";a="240238050"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2021 08:47:52 -0800
+X-IronPort-AV: E=Sophos;i="5.88,224,1635231600"; d="scan'208";a="548155376"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2021 08:47:51 -0800
+Date: Tue, 21 Dec 2021 08:47:50 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Message-ID: <YcIEwK4jzyyCdsAi@mdroper-desk1.amr.corp.intel.com>
+References: <20211219212500.61432-1-andi.shyti@linux.intel.com>
+ <20211219212500.61432-2-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 6/7] drm/i915: Use vma resources for
- async unbinding
+In-Reply-To: <20211219212500.61432-2-andi.shyti@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v9 1/6] drm/i915/gt: Use to_gt() helper for
+ GGTT accesses
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,147 +59,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2021-12-21 at 14:02 +0000, Matthew Auld wrote:
-> On 17/12/2021 14:52, Thomas Hellström wrote:
-> > Implement async (non-blocking) unbinding by not syncing the vma
-> > before
-> > calling unbind on the vma_resource.
-> > Add the resulting unbind fence to the object's dma_resv from where
-> > it is
-> > picked up by the ttm migration code.
-> > Ideally these unbind fences should be coalesced with the migration
-> > blit
-> > fence to avoid stalling the migration blit waiting for unbind, as
-> > they
-> > can certainly go on in parallel, but since we don't yet have a
-> > reasonable data structure to use to coalesce fences and attach the
-> > resulting fence to a timeline, we defer that for now.
-> > 
-> > Note that with async unbinding, even while the unbind waits for the
-> > preceding bind to complete before unbinding, the vma itself might
-> > have been
-> > destroyed in the process, clearing the vma pages. Therefore we can
-> > only allow async unbinding if we have a refcounted sg-list and keep
-> > a
-> > refcount on that for the vma resource pages to stay intact until
-> > binding occurs. If this condition is not met, a request for an
-> > async
-> > unbind is diverted to a sync unbind.
-> > 
-> > v2:
-> > - Use a separate kmem_cache for vma resources for now to isolate
-> > their
-> >    memory allocation and aid debugging.
-> > - Move the check for vm closed to the actual unbinding thread.
-> > Regardless
-> >    of whether the vm is closed, we need the unbind fence to
-> > properly wait
-> >    for capture.
-> > - Clear vma_res::vm on unbind and update its documentation.
-> > 
-> > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+On Sun, Dec 19, 2021 at 11:24:55PM +0200, Andi Shyti wrote:
+> From: Michał Winiarski <michal.winiarski@intel.com>
 > 
-> <snip>
+> GGTT is currently available both through i915->ggtt and gt->ggtt, and we
+> eventually want to get rid of the i915->ggtt one.
+> Use to_gt() for all i915->ggtt accesses to help with the future
+> refactoring.
 > 
-> > @@ -416,6 +420,7 @@ int i915_vma_bind(struct i915_vma *vma,
-> >   {
-> >         u32 bind_flags;
-> >         u32 vma_flags;
-> > +       int ret;
-> >   
-> >         lockdep_assert_held(&vma->vm->mutex);
-> >         GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
-> > @@ -424,12 +429,12 @@ int i915_vma_bind(struct i915_vma *vma,
-> >         if (GEM_DEBUG_WARN_ON(range_overflows(vma->node.start,
-> >                                               vma->node.size,
-> >                                               vma->vm->total))) {
-> > -               kfree(vma_res);
-> > +               i915_vma_resource_free(vma_res);
-> >                 return -ENODEV;
-> >         }
-> >   
-> >         if (GEM_DEBUG_WARN_ON(!flags)) {
-> > -               kfree(vma_res);
-> > +               i915_vma_resource_free(vma_res);
-> >                 return -EINVAL;
-> >         }
-> >   
-> > @@ -441,12 +446,30 @@ int i915_vma_bind(struct i915_vma *vma,
-> >   
-> >         bind_flags &= ~vma_flags;
-> >         if (bind_flags == 0) {
-> > -               kfree(vma_res);
-> > +               i915_vma_resource_free(vma_res);
-> >                 return 0;
-> >         }
-> >   
-> >         GEM_BUG_ON(!vma->pages);
-> >   
-> > +       /* Wait for or await async unbinds touching our range */
-> > +       if (work && bind_flags & vma->vm->bind_async_flags)
-> > +               ret = i915_vma_resource_bind_dep_await(vma->vm,
-> > +                                                      &work-
-> > >base.chain,
-> > +                                                      vma-
-> > >node.start,
-> > +                                                      vma-
-> > >node.size,
-> > +                                                      true,
-> > +                                                      GFP_NOWAIT |
-> > +                                                     
-> > __GFP_RETRY_MAYFAIL |
-> > +                                                     
-> > __GFP_NOWARN);
-> > +       else
-> > +               ret = i915_vma_resource_bind_dep_sync(vma->vm, vma-
-> > >node.start,
-> > +                                                     vma-
-> > >node.size, true);
+> Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Reviewed-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c         | 14 +++++++-------
+>  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c |  6 +++---
+>  drivers/gpu/drm/i915/gt/intel_region_lmem.c  |  4 ++--
+>  drivers/gpu/drm/i915/gt/selftest_reset.c     |  2 +-
+>  drivers/gpu/drm/i915/i915_driver.c           |  4 ++--
+>  5 files changed, 15 insertions(+), 15 deletions(-)
 > 
-> Is there nothing scary here with coloring? Say with cache coloring,
-> to 
-> ensure we unbind the neighbouring nodes(if they are conflicting)
-> before 
-> doing the bind, or is async unbinding only ever going to be used for
-> the 
-> ppGTT?
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> index 971e737b37b2..ec3b998392ff 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -89,7 +89,7 @@ int i915_ggtt_init_hw(struct drm_i915_private *i915)
+>  	 * beyond the end of the batch buffer, across the page boundary,
+>  	 * and beyond the end of the GTT if we do not provide a guard.
+>  	 */
+> -	ret = ggtt_init_hw(&i915->ggtt);
+> +	ret = ggtt_init_hw(to_gt(i915)->ggtt);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -725,14 +725,14 @@ int i915_init_ggtt(struct drm_i915_private *i915)
+>  {
+>  	int ret;
+>  
+> -	ret = init_ggtt(&i915->ggtt);
+> +	ret = init_ggtt(to_gt(i915)->ggtt);
+>  	if (ret)
+>  		return ret;
+>  
+>  	if (INTEL_PPGTT(i915) == INTEL_PPGTT_ALIASING) {
+> -		ret = init_aliasing_ppgtt(&i915->ggtt);
+> +		ret = init_aliasing_ppgtt(to_gt(i915)->ggtt);
+>  		if (ret)
+> -			cleanup_init_ggtt(&i915->ggtt);
+> +			cleanup_init_ggtt(to_gt(i915)->ggtt);
+>  	}
+>  
+>  	return 0;
+> @@ -775,7 +775,7 @@ static void ggtt_cleanup_hw(struct i915_ggtt *ggtt)
+>   */
+>  void i915_ggtt_driver_release(struct drm_i915_private *i915)
+>  {
+> -	struct i915_ggtt *ggtt = &i915->ggtt;
+> +	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+>  
+>  	fini_aliasing_ppgtt(ggtt);
+>  
+> @@ -790,7 +790,7 @@ void i915_ggtt_driver_release(struct drm_i915_private *i915)
+>   */
+>  void i915_ggtt_driver_late_release(struct drm_i915_private *i915)
+>  {
+> -	struct i915_ggtt *ggtt = &i915->ggtt;
+> +	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+>  
+>  	GEM_WARN_ON(kref_read(&ggtt->vm.resv_ref) != 1);
+>  	dma_resv_fini(&ggtt->vm._resv);
+> @@ -1232,7 +1232,7 @@ int i915_ggtt_probe_hw(struct drm_i915_private *i915)
+>  {
+>  	int ret;
+>  
+> -	ret = ggtt_probe_hw(&i915->ggtt, to_gt(i915));
+> +	ret = ggtt_probe_hw(to_gt(i915)->ggtt, to_gt(i915));
+>  	if (ret)
+>  		return ret;
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+> index f8948de72036..beabf3bc9b75 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+> @@ -728,8 +728,8 @@ static void detect_bit_6_swizzle(struct i915_ggtt *ggtt)
+>  		swizzle_y = I915_BIT_6_SWIZZLE_NONE;
+>  	}
+>  
+> -	i915->ggtt.bit_6_swizzle_x = swizzle_x;
+> -	i915->ggtt.bit_6_swizzle_y = swizzle_y;
+> +	to_gt(i915)->ggtt->bit_6_swizzle_x = swizzle_x;
+> +	to_gt(i915)->ggtt->bit_6_swizzle_y = swizzle_y;
+>  }
+>  
+>  /*
+> @@ -896,7 +896,7 @@ void intel_gt_init_swizzling(struct intel_gt *gt)
+>  	struct intel_uncore *uncore = gt->uncore;
+>  
+>  	if (GRAPHICS_VER(i915) < 5 ||
+> -	    i915->ggtt.bit_6_swizzle_x == I915_BIT_6_SWIZZLE_NONE)
+> +	    to_gt(i915)->ggtt->bit_6_swizzle_x == I915_BIT_6_SWIZZLE_NONE)
+>  		return;
+>  
+>  	intel_uncore_rmw(uncore, DISP_ARB_CTL, 0, DISP_TILE_SURFACE_SWIZZLING);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+> index fde2dcb59809..21215a080088 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+> @@ -15,7 +15,7 @@
+>  static int init_fake_lmem_bar(struct intel_memory_region *mem)
+>  {
+>  	struct drm_i915_private *i915 = mem->i915;
+> -	struct i915_ggtt *ggtt = &i915->ggtt;
+> +	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+>  	unsigned long n;
+>  	int ret;
+>  
+> @@ -131,7 +131,7 @@ intel_gt_setup_fake_lmem(struct intel_gt *gt)
+>  	if (!i915->params.fake_lmem_start)
+>  		return ERR_PTR(-ENODEV);
+>  
+> -	GEM_BUG_ON(i915_ggtt_has_aperture(&i915->ggtt));
+> +	GEM_BUG_ON(i915_ggtt_has_aperture(to_gt(i915)->ggtt));
+>  
+>  	/* Your mappable aperture belongs to me now! */
+>  	mappable_end = pci_resource_len(pdev, 2);
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_reset.c b/drivers/gpu/drm/i915/gt/selftest_reset.c
+> index 8a873f6bda7f..37c38bdd5f47 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_reset.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_reset.c
+> @@ -19,7 +19,7 @@ __igt_reset_stolen(struct intel_gt *gt,
+>  		   intel_engine_mask_t mask,
+>  		   const char *msg)
+>  {
+> -	struct i915_ggtt *ggtt = &gt->i915->ggtt;
+> +	struct i915_ggtt *ggtt = gt->ggtt;
+>  	const struct resource *dsm = &gt->i915->dsm;
+>  	resource_size_t num_pages, page;
+>  	struct intel_engine_cs *engine;
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 95174938b160..60f8cbf24de7 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -571,6 +571,8 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+>  
+>  	i915_perf_init(dev_priv);
+>  
+> +	intel_gt_init_hw_early(to_gt(dev_priv), &dev_priv->ggtt);
+> +
+
+Now that this function call has moved to this patch, you'll probably
+want to mention/explain it in the commit message since it's different
+from the rest of the changes in this patch.
+
+
+Matt
+
+
+>  	ret = i915_ggtt_probe_hw(dev_priv);
+>  	if (ret)
+>  		goto err_perf;
+> @@ -587,8 +589,6 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+>  	if (ret)
+>  		goto err_ggtt;
+>  
+> -	intel_gt_init_hw_early(to_gt(dev_priv), &dev_priv->ggtt);
+> -
+>  	ret = intel_gt_probe_lmem(to_gt(dev_priv));
+>  	if (ret)
+>  		goto err_mem_regions;
+> -- 
+> 2.34.1
 > 
-> And then I guess there might also be memory coloring where we likely 
-> need to ensure that all the unbinds within the overlapping PT(s) have
-> been completed before doing the bind, since the bind will also
-> increment 
-> the usage count of the PT, potentially preventing it from being 
-> destroyed, which will skip nuking the PDE state, AFAIK. Previously
-> the 
-> drm_mm node(s) would still be present, which would trigger the
-> eviction. 
-> Although it might be that we just end up aligning everything to 2M,
-> and 
-> so drop the memory coloring anyway, so maybe no need to worry about
-> this 
-> yet...
 
-Hmm. This indeed sounds that there were some important considerations
-left out. I was under the impression that only previously scheduled
-unbinds touching the same range would have need to have finished.
-
-Currently there's only ppGTT async unbinding, but I figure moving
-forward we don't want to restrict it.
-
-I wonder whether instead of keeping an interval tree of pending unbinds
-we should keep just a single fence per VM of the last pending unbind,
-and move to the RB tree as a separate optimization step if needed. That
-would AFAICT keep the current semantics of all unbinds that were
-scheduled before the current bind are completed before the bind. Do you
-think that would be sufficient?
-
-Thanks,
-Thomas
-
-
-
-
-
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
