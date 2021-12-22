@@ -2,51 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C802D47D500
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 17:17:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 141B947D512
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 17:21:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1BA310E124;
-	Wed, 22 Dec 2021 16:17:43 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 082FD10E124
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Dec 2021 16:17:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8397510E185;
+	Wed, 22 Dec 2021 16:21:45 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E628010E153;
+ Wed, 22 Dec 2021 16:21:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640189862; x=1671725862;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=vcKJEYNaeuQFcbqOi3XUHwiS2K28XTiZ+MoVOP9mDaE=;
- b=b27FmntBkpPqgwys+k57pbPmnNKdRqtN0J6z33U2o7/2f3Ivx08pF0CF
- VZAljyfCNARxlzYNW0PEHzOjJb101o3c8HipGBGQOgFuUOBXjkVbH+XQf
- uAzt4H1qWX983wQSygM+uR6whSOBBZjWpmHdqj7mu4RRrCL6kBh/Dzux8
- E7nYGbZuduBVSUhchVzEnfaUrPPUXV76ZjT/AMu0VWXo+2GVkBTDv6402
- ELz/+iB/sNOhkjBoWwLdmjm8Le0QCoX/uWEHnm3kpbKBPjpM3lC7DSci1
- epvvP2HW1PmE8XGZ0UkVp8h2GUuxurHfqyWBu8TQ/v5Akj0lfAO/A+JR5 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10206"; a="304022258"
-X-IronPort-AV: E=Sophos;i="5.88,227,1635231600"; d="scan'208";a="304022258"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2021 08:17:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,227,1635231600"; d="scan'208";a="508524390"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by orsmga007.jf.intel.com with SMTP; 22 Dec 2021 08:17:38 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 22 Dec 2021 18:17:38 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Dec 2021 18:17:38 +0200
-Message-Id: <20211222161738.12478-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211217155403.31477-7-ville.syrjala@linux.intel.com>
-References: <20211217155403.31477-7-ville.syrjala@linux.intel.com>
+ t=1640190103; x=1671726103;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=lUDKe0WtB+NdKeIZ6iUvfZDu/wkM1tA3TTyOVM5fJdI=;
+ b=F/4Blrd/G7EEoFl+sACkb//ybi5X8n8Ixd2d/Hm6il0wPqsljM/40021
+ AqXUE+NLJcf8zAnlyYg3Owh6lcvy36dVXATsj159Y0geGw0dvRI+lX7fE
+ 1eG/B9qIg9N76vtbl5p+YRYhlHdn3FrDBhOGRqLaGCutto/84Bl6EwfKm
+ LACbOElZsaI9swEp94Lyntpg7VGBct5PBLOj5vrFOmSogitTFUV1uzeeC
+ G7BqEqrycDhPDpS4EDPifHU6PzBJ/Vr4BmubfUotAdPrdq+rpMe/gu9YD
+ d0sSm5yr5papMubC+PYdcmFcMJd3+PEcuJCFn2etioYRkiCpVftnk+lLr g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10206"; a="264852758"
+X-IronPort-AV: E=Sophos;i="5.88,227,1635231600"; d="scan'208";a="264852758"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 08:21:42 -0800
+X-IronPort-AV: E=Sophos;i="5.88,227,1635231600"; d="scan'208";a="468221510"
+Received: from rajvende-mobl1.ger.corp.intel.com (HELO [10.213.198.55])
+ ([10.213.198.55])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 08:21:41 -0800
+Message-ID: <5921ac11-1286-1062-f702-f33bc55e4a0e@linux.intel.com>
+Date: Wed, 22 Dec 2021 16:21:37 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20211214150704.984034-1-tvrtko.ursulin@linux.intel.com>
+ <597d4ad0-fdae-49a6-b471-3a83d4c25b98@linux.intel.com>
+ <20211217162254.GA22048@jons-linux-dev-box>
+ <3d32df02-c02e-9c35-5165-79af1cb10100@linux.intel.com>
+ <1c3b1b53-0e9e-a89c-1a77-90cbc229c637@intel.com>
+ <01320c8c-a9c9-8c21-7601-75860bf11838@linux.intel.com>
+ <1d78552e-8a7c-84c5-a9e6-7c7476a5e2e5@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <1d78552e-8a7c-84c5-a9e6-7c7476a5e2e5@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 6/6] drm/i915/hdmi: Ignore DP++ TMDS clock
- limit for native HDMI ports
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Log engine resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,63 +67,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Lots of machines these days seem to have a crappy type1 DP dual
-mode adaptor chip slapped onto the motherboard. Based on the
-DP dual mode spec we currently limit those to 165MHz max TMDS
-clock.
+On 21/12/2021 22:14, John Harrison wrote:
+> On 12/21/2021 05:37, Tvrtko Ursulin wrote:
+>> On 20/12/2021 18:34, John Harrison wrote:
+>>> On 12/20/2021 07:00, Tvrtko Ursulin wrote:
+>>>> On 17/12/2021 16:22, Matthew Brost wrote:
+>>>>> On Fri, Dec 17, 2021 at 12:15:53PM +0000, Tvrtko Ursulin wrote:
+>>>>>>
+>>>>>> On 14/12/2021 15:07, Tvrtko Ursulin wrote:
+>>>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>>>>
+>>>>>>> Log engine resets done by the GuC firmware in the similar way it 
+>>>>>>> is done
+>>>>>>> by the execlists backend.
+>>>>>>>
+>>>>>>> This way we have notion of where the hangs are before the GuC gains
+>>>>>>> support for proper error capture.
+>>>>>>
+>>>>>> Ping - any interest to log this info?
+>>>>>>
+>>>>>> All there currently is a non-descriptive "[drm] GPU HANG: ecode
+>>>>>> 12:0:00000000".
+>>>>>>
+>>>>>
+>>>>> Yea, this could be helpful. One suggestion below.
+>>>>>
+>>>>>> Also, will GuC be reporting the reason for the engine reset at any 
+>>>>>> point?
+>>>>>>
+>>>>>
+>>>>> We are working on the error state capture, presumably the registers 
+>>>>> will
+>>>>> give a clue what caused the hang.
+>>>>>
+>>>>> As for the GuC providing a reason, that isn't defined in the interface
+>>>>> but that is decent idea to provide a hint in G2H what the issue 
+>>>>> was. Let
+>>>>> me run that by the i915 GuC developers / GuC firmware team and see 
+>>>>> what
+>>>>> they think.
+>>>>>
+>>> The GuC does not do any hang analysis. So as far as GuC is concerned, 
+>>> the reason is pretty much always going to be pre-emption timeout. 
+>>> There are a few ways the pre-emption itself could be triggered but 
+>>> basically, if GuC resets an active context then it is because it did 
+>>> not pre-empt quickly enough when requested.
+>>>
+>>>
+>>>>>> Regards,
+>>>>>>
+>>>>>> Tvrtko
+>>>>>>
+>>>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>>>>>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>>>>>>> ---
+>>>>>>>    drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 
+>>>>>>> +++++++++++-
+>>>>>>>    1 file changed, 11 insertions(+), 1 deletion(-)
+>>>>>>>
+>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>> index 97311119da6f..51512123dc1a 100644
+>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>> @@ -11,6 +11,7 @@
+>>>>>>>    #include "gt/intel_context.h"
+>>>>>>>    #include "gt/intel_engine_pm.h"
+>>>>>>>    #include "gt/intel_engine_heartbeat.h"
+>>>>>>> +#include "gt/intel_engine_user.h"
+>>>>>>>    #include "gt/intel_gpu_commands.h"
+>>>>>>>    #include "gt/intel_gt.h"
+>>>>>>>    #include "gt/intel_gt_clock_utils.h"
+>>>>>>> @@ -3934,9 +3935,18 @@ static void capture_error_state(struct 
+>>>>>>> intel_guc *guc,
+>>>>>>>    {
+>>>>>>>        struct intel_gt *gt = guc_to_gt(guc);
+>>>>>>>        struct drm_i915_private *i915 = gt->i915;
+>>>>>>> -    struct intel_engine_cs *engine = 
+>>>>>>> __context_to_physical_engine(ce);
+>>>>>>> +    struct intel_engine_cs *engine = ce->engine;
+>>>>>>>        intel_wakeref_t wakeref;
+>>>>>>> +    if (intel_engine_is_virtual(engine)) {
+>>>>>>> +        drm_notice(&i915->drm, "%s class, engines 0x%x; GuC 
+>>>>>>> engine reset\n",
+>>>>>>> + intel_engine_class_repr(engine->class),
+>>>>>>> +               engine->mask);
+>>>>>>> +        engine = guc_virtual_get_sibling(engine, 0);
+>>>>>>> +    } else {
+>>>>>>> +        drm_notice(&i915->drm, "%s GuC engine reset\n", 
+>>>>>>> engine->name);
+>>>>>
+>>>>> Probably include the guc_id of the context too then?
+>>>>
+>>>> Is the guc id stable and useful on its own - who would be the user?
+>>> The GuC id is the only thing that matters when trying to correlate 
+>>> KMD activity with a GuC log. So while it might not be of any use or 
+>>> interest to an end user, it is extremely important and useful to a 
+>>> kernel developer attempting to debug an issue. And that includes bug 
+>>> reports from end users that are hard to repro given that the standard 
+>>> error capture will include the GuC log.
+>>
+>> On the topic of GuC log - is there a tool in IGT (or will be) which 
+>> will parse the bit saved in the error capture or how is that supposed 
+>> to be used?
+> Nope.
+> 
+> However, Alan is currently working on supporting the GuC error capture 
+> mechanism. Prior to sending the reset notification to the KMD, the GuC 
+> will save a whole bunch of register state to a memory buffer and send a 
+> notification to the KMD that this is available. When we then get the 
+> actual reset notification, we need to match the two together and include 
+> a parsed, human readable version of the GuC's capture state buffer in 
+> the sysfs error log output.
+> 
+> The GuC log should not be involved in this process. And note that any 
+> register dumps in the GuC log are limited in scope and only enabled at 
+> higher verbosity levels. Whereas, the official state capture is based on 
+> a register list provided by the KMD and is available irrespective of 
+> debug CONFIG settings, verbosity levels, etc.
 
-Windows OTOH ignores DP dual mode adaptors when the VBT
-indicates that the port is not actually DP++, so we can
-perhaps assume that the vendors did intend that the 165MHz
-clock limit doesn't apply here. Though it would be much
-nicer if they actually declared an explicit limit through
-VBT, but that doesn't seem to be happening either.
+Hm why should GuC log not be involved now? I thought earlier you said:
 
-So in order to match Windows behaviour let's ignore the
-DP dual mode adaptor's TMDS clock limit for ports that
-don't look like DP++ in VBT.
+"""
+And that includes bug reports from end users that are hard to repro 
+given that the standard error capture will include the GuC log.
+"""
 
-Unfortunately many older VBTs misdelcare their DP++ ports
-as just HDMI (eg. ILK Dell Latitude E5410) or DP (eg. SNB
-Lenovo ThinkPad X220). So we can't really do this universally
-without risking black screens. I suppose a sensible cutoff
-is HSW+ since that's when 4k became a thing and one might
-assume that the machines have been tested to work with higher
-TMDS clock rates.
+Hence I thought there would be a tool in IGT which would parse the part 
+saved inside the error capture.
 
-v2: s/IS_BROADWELL/IS_HASWELL/
+>>> Also, note that GuC really resets contexts rather than engines. What 
+>>> it reports back to i915 on a reset is simply the GuC id of the 
+>>> context. It is up to i915 to work back from that to determine engine 
+>>> instances/classes if required. And in the case of a virtual context, 
+>>> it is impossible to extract the actual instance number. So your above 
+>>> print about resetting all instances within the virtual engine mask is 
+>>> incorrect/misleading. The reset would have been applied to one and 
+>>> only one of those engines. If you really need to know exactly which 
+>>> engine was poked, you need to look inside the GuC log.
+>>
+>> I think I understood that part. :) It wasn't my intent to imply in the 
+>> message multiple engines have been reset, but in the case of veng, log 
+>> the class and mask and the fact there was an engine reset (singular). 
+>> Clearer message can probably be written.
+>>
+>>> However, the follow up point is to ask why you need to report the 
+>>> exact class/instance? The end user doesn't care about which specific 
+>>> engine got reset. They only care that their context was reset. Even a 
+>>> KMD developer doesn't really care unless the concern is about a 
+>>> hardware bug rather than a software bug.
+>>
+>> I was simply aligning both backends to log as similar information as 
+>> possible. Information is there, just not logged.
+>>
+>> Concerning the wider topic, my thinking is end user is mainly 
+>> interested to know there are any engine resets happening (to tie with 
+>> the experience of UI/video glitching or whatever). Going for deeper 
+>> analysis than that is probably beyond the scope of the kernel log and 
+>> indeed error capture territory.
+> I would still say that the important information is which context was 
+> killed not which engine. Sure, knowing the engine is better than nothing 
+> but if we can report something more useful then why not?
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdmi.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Make it so. :)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 3b5b9e7b05b7..3156dc3591d8 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2359,6 +2359,14 @@ intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector, bool has_edid)
- 		    "DP dual mode adaptor (%s) detected (max TMDS clock: %d kHz)\n",
- 		    drm_dp_get_dual_mode_type_name(type),
- 		    hdmi->dp_dual_mode.max_tmds_clock);
-+
-+	/* Older VBTs are often buggy and can't be trusted :( Play it safe. */
-+	if ((DISPLAY_VER(dev_priv) >= 8 || IS_HASWELL(dev_priv)) &&
-+	    !intel_bios_is_port_dp_dual_mode(dev_priv, port)) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Ignoring DP dual mode adaptor max TMDS clock for native HDMI port\n");
-+		hdmi->dp_dual_mode.max_tmds_clock = 0;
-+	}
- }
- 
- static bool
--- 
-2.32.0
+>>> My view is that the current message is indeed woefully uninformative. 
+>>> However, it is more important to be reporting context identification 
+>>> than engine instances. So sure, add the engine instance description 
+>>> but also add something specific to the ce as well. Ideally (for me) 
+>>> the GuC id and maybe something else that uniquely identifies the 
+>>> context in KMD land for when not using GuC?
+>>
+>> Not sure we need to go that far at this level, but even if we do it 
+>> could be a follow up to add new data to both backends. Not sure yet I 
+>> care enough to drive this. My patch was simply a reaction to noticing 
+>> there is zero information currently logged while debugging some DG2 
+>> hangs.
+> In terms of just reporting that a reset occurred, we already have the 
+> 'GPU HANG: ecode 12:1:fbffffff, in testfw_app [8177]' message. The ecode 
+> is a somewhat bizarre value but it does act as a 'something went wrong, 
+> your system is not happy' type message. Going beyond that, I think 
+> context identification is the next most useful thing to add.
+> 
+> But if you aren't even getting the 'GPU HANG' message then it sounds 
+> like something is broken with what we already have. So we should fix 
+> that as a first priority. If that message isn't appearing then it means 
+> there was no error capture so adding extra info to the capture won't help!
 
+The issue I have is that "GPU HANG ecode" messages are always "all 
+zeros". It thought that was because GuC error capture was not there, but 
+maybe its something else.
+
+Regards,
+
+Tvrtko
