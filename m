@@ -1,54 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A8E47D452
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 16:38:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2B6947D457
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 16:40:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9319710E14C;
-	Wed, 22 Dec 2021 15:38:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A069F10E1A9;
+	Wed, 22 Dec 2021 15:40:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE42C10E14C
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Dec 2021 15:38:42 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D58E10E14C;
+ Wed, 22 Dec 2021 15:40:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640187522; x=1671723522;
- h=date:from:to:subject:message-id:references:mime-version:
- content-transfer-encoding:in-reply-to;
- bh=QLxH46RUV1e+aCttXsX7U9uT0kNXwDo8h1tUo+fVG8o=;
- b=oBSpHmx9xHymvc4mha6x7NmaoHvw1CNzDVwkwy1IadhxtaDGz82bNcp8
- o6IRoIkmjBYdrzY3IoaazyYj2Aovy40F3LAfBwXNxrT8JU3rNAeRhsGx/
- FepW1wCvRRqAdRoGlTNb1Hzga5SA9GqNJ10hxmtETEEaZIkTThThVKgFz
- 1j8P1BNo/9r8vaw0UjXVrGqHyoqVhM1qy6aMmwbKecTqOAaYx7dou5gE6
- 9RBMEn44MOEJ3xI2/7HIO1uR3jzvK9crx9m3nXMwFYbcs87nn8NQnYlfZ
- nm6vxnHOJyGkLVeEGarg8PKCPv5O2+Da44KfiBkPBwxaz0dFyhXbik+Bx A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="220656340"
-X-IronPort-AV: E=Sophos;i="5.88,226,1635231600"; d="scan'208";a="220656340"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2021 07:38:42 -0800
+ t=1640187647; x=1671723647;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pNGGU5exxXmBba17iKeNMkYLms3huHnZB9vDNIxO3O8=;
+ b=D4x0S9x1Grrpc45g/X3Lia6iPG5pUgDaAxFvTUAJV0KEvqLFPKdEjrnh
+ AFvbS7MsCamUa4/3SiJITpRXxjf4udtArdUdgMZESVB0TDCqiJrn7ffOc
+ QcCSc/SiGRlrjPndn4oW0p9UeTvQPforN0y9dxuoYaAetBEE3KXYKFKHk
+ +RjR2K6eZOb8962//XDzVa/2hHAOyILHFPY4UASiVBbEaAAzJwCwqac/i
+ phliwc1fE895SIlpGSUI3FtJu4crI8AB0FHwZBWBfJ4suZVSAsWUQXlzU
+ FrmwOsitRueCoh+Wo0/NjUzlfWr2Gbn83upTEQNAvjO58Vvg4Lh5nP3F3 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="240598530"
+X-IronPort-AV: E=Sophos;i="5.88,226,1635231600"; d="scan'208";a="240598530"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 07:40:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,226,1635231600"; d="scan'208";a="468210850"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by orsmga006.jf.intel.com with SMTP; 22 Dec 2021 07:38:40 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 22 Dec 2021 17:38:39 +0200
-Date: Wed, 22 Dec 2021 17:38:39 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <YcNGf4imh8p4cV8U@intel.com>
-References: <20211217155403.31477-1-ville.syrjala@linux.intel.com>
- <20211217155403.31477-7-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.88,226,1635231600"; d="scan'208";a="484793202"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orsmga002.jf.intel.com with ESMTP; 22 Dec 2021 07:40:32 -0800
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+ id 371AEFE; Wed, 22 Dec 2021 17:40:39 +0200 (EET)
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Date: Wed, 22 Dec 2021 17:40:33 +0200
+Message-Id: <20211222154033.6770-1-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211217155403.31477-7-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/hdmi: Ignore DP++ TMDS clock
- limit for native HDMI ports
+Subject: [Intel-gfx] [PATCH v2 1/1] drm/i915/dsi: Drop double check ACPI
+ companion device for NULL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,67 +58,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 17, 2021 at 05:54:03PM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Lots of machines these days seem to have a crappy type1 DP dual
-> mode adaptor chip slapped onto the motherboard. Based on the
-> DP dual mode spec we currently limit those to 165MHz max TMDS
-> clock.
-> 
-> Windows OTOH ignores DP dual mode adaptors when the VBT
-> indicates that the port is not actually DP++, so we can
-> perhaps assume that the vendors did intend that the 165MHz
-> clock limit doesn't apply here. Though it would be much
-> nicer if they actually declared an explicit limit through
-> VBT, but that doesn't seem to be happening either.
-> 
-> So in order to match Windows behaviour let's ignore the
-> DP dual mode adaptor's TMDS clock limit for ports that
-> don't look like DP++ in VBT.
-> 
-> Unfortunately many older VBTs misdelcare their DP++ ports
-> as just HDMI (eg. ILK Dell Latitude E5410) or DP (eg. SNB
-> Lenovo ThinkPad X220). So we can't really do this universally
-> without risking black screens. I suppose a sensible cutoff
-> is HSW+ since that's when 4k became a thing and one might
-> assume that the machines have been tested to work with higher
-> TMDS clock rates.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 3b5b9e7b05b7..9f0557d9e9a5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -2359,6 +2359,14 @@ intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector, bool has_edid)
->  		    "DP dual mode adaptor (%s) detected (max TMDS clock: %d kHz)\n",
->  		    drm_dp_get_dual_mode_type_name(type),
->  		    hdmi->dp_dual_mode.max_tmds_clock);
-> +
-> +	/* Older VBTs are often buggy and can't be trusted :( Play it safe. */
-> +	if ((DISPLAY_VER(dev_priv) >= 8 || IS_BROADWELL(dev_priv)) &&
+acpi_dev_get_resources() does perform the NULL pointer check against
+ACPI companion device which is given as function parameter. Thus,
+there is no need to duplicate this check in the caller.
 
-As stated in the commit message I actually meant to say IS_HASWELL
-here, not IS_BROADWELL.
+Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+---
+v2: used LIST_HEAD() (Ville), initialized lookup directly on stack (Ville)
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 28 +++++++-------------
+ 1 file changed, 10 insertions(+), 18 deletions(-)
 
-> +	    !intel_bios_is_port_dp_dual_mode(dev_priv, port)) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "Ignoring DP dual mode adaptor max TMDS clock for native HDMI port\n");
-> +		hdmi->dp_dual_mode.max_tmds_clock = 0;
-> +	}
->  }
->  
->  static bool
-> -- 
-> 2.32.0
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+index 0da91849efde..da0bd056f3d3 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
++++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+@@ -426,24 +426,16 @@ static void i2c_acpi_find_adapter(struct intel_dsi *intel_dsi,
+ 				  const u16 slave_addr)
+ {
+ 	struct drm_device *drm_dev = intel_dsi->base.base.dev;
+-	struct device *dev = drm_dev->dev;
+-	struct acpi_device *acpi_dev;
+-	struct list_head resource_list;
+-	struct i2c_adapter_lookup lookup;
+-
+-	acpi_dev = ACPI_COMPANION(dev);
+-	if (acpi_dev) {
+-		memset(&lookup, 0, sizeof(lookup));
+-		lookup.slave_addr = slave_addr;
+-		lookup.intel_dsi = intel_dsi;
+-		lookup.dev_handle = acpi_device_handle(acpi_dev);
+-
+-		INIT_LIST_HEAD(&resource_list);
+-		acpi_dev_get_resources(acpi_dev, &resource_list,
+-				       i2c_adapter_lookup,
+-				       &lookup);
+-		acpi_dev_free_resource_list(&resource_list);
+-	}
++	struct acpi_device *adev = ACPI_COMPANION(drm_dev->dev);
++	struct i2c_adapter_lookup lookup = {
++		.slave_addr = slave_addr,
++		.intel_dsi = intel_dsi,
++		.dev_handle = acpi_device_handle(adev),
++	};
++	LIST_HEAD(resource_list);
++
++	acpi_dev_get_resources(adev, &resource_list, i2c_adapter_lookup, &lookup);
++	acpi_dev_free_resource_list(&resource_list);
+ }
+ #else
+ static inline void i2c_acpi_find_adapter(struct intel_dsi *intel_dsi,
 -- 
-Ville Syrjälä
-Intel
+2.34.1
+
