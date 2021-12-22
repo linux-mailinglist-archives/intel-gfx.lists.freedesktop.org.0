@@ -1,52 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCC5D47CDDD
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 09:12:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEB1747CDE8
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 09:17:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B85A810F5E1;
-	Wed, 22 Dec 2021 08:12:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03E3B10E65B;
+	Wed, 22 Dec 2021 08:17:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0E6610EA9A;
- Wed, 22 Dec 2021 08:12:02 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 054D910E65B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Dec 2021 08:17:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640160723; x=1671696723;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=K9ME9MCuiYoC2fZqVBe+9dqpA2jb7nZNLb88MHVN5Dw=;
- b=GkcGbQk3UhamoMHxjEuBV0lZ6b5mFZMCbNWMVW6BQ20z/y8v5XPA7BVR
- 0A6tLSdSXHlEnkBzwGI0CJlA7tP4u+ucS5+qThJJYLL3oXeAKKgZ6LEbK
- 7F5psADWXteg2xDAk3b2HD/GAd22ieiIJQGyaQaiXJab+vLzSQrKtx8xj
- ccCYINGGkQsTrW6F16IlUk+aDI/x2SdcVvWa7GCRpRUDnNsKDF+8jVU+5
- NDeqo9pLyxfU58gDO1NV6SK1grLdI6sWT4gADccCDWhiLWzLHHuyXRTdM
- 36UGdB1KqI/f+1C+4znYh6AM4aK6eVHaKdUCvq2nVvUC71HqsYRXjfQMf A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="326875521"
-X-IronPort-AV: E=Sophos;i="5.88,225,1635231600"; d="scan'208";a="326875521"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2021 00:11:49 -0800
-X-IronPort-AV: E=Sophos;i="5.88,225,1635231600"; d="scan'208";a="468091077"
+ t=1640161023; x=1671697023;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rPatcYipO6ZXln0Q7Oi/E1bo0QUNfKMmjhJWK8Kwq+M=;
+ b=ZcB+MoVjmAT6zEjIAllAV7FW+KCm4bO2ftvWBsqCFm5ViRgclaQB8ICh
+ VuIRcsR8mvKQDtQnexsmPZE60TwCyVuGevBA1MkygQjVUvU/mEsJAXCOX
+ rv1nhDEXXPT4SxIQv1QGCUito4RjOz11Gn459Q3KL7shmSBuXDHdnNb7b
+ gqqhW/h4wIFixJVGLnioShKK0SDa15BaAjjM7AjkWDYscBmXSi8YO3sje
+ +ZQzO/PAf7/V+X1Wpk63IL/NSTzQuiMrxj9rK67PaVBtRmj9z7MZKnNI4
+ nFzyikF3N34y/Sfmh2uDS8RCOtMkG92BZqWTRdFSo9ZxRw8yg7LeEjWGX A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="221250100"
+X-IronPort-AV: E=Sophos;i="5.88,225,1635231600"; d="scan'208";a="221250100"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 00:17:02 -0800
+X-IronPort-AV: E=Sophos;i="5.88,225,1635231600"; d="scan'208";a="466592887"
 Received: from aravind2-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.9.217])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2021 00:11:39 -0800
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 00:16:59 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20211221193754.12287-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211221193754.12287-1-ville.syrjala@linux.intel.com>
-Date: Wed, 22 Dec 2021 10:11:36 +0200
-Message-ID: <87wnjxys7b.fsf@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 22 Dec 2021 10:16:54 +0200
+Message-Id: <20211222081654.1843211-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm: Always include the debugfs dentry
- in drm_crtc
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/bios: fix slab-out-of-bounds access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,56 +56,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nathan Chancellor <nathan@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 21 Dec 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Remove the counterproductive CONFIG_DEBUG_FS ifdef and just include
-> the debugfs dentry in drm_crtc always. This way we don't need
-> annoying ifdefs in the actual code with DEBUGFS=3Dn. Also we don't
-> have these ifdefs around any of the other debugfs dentries either
-> so can't see why drm_crtc should be special.
->
-> This fixes the i915 DEBUGFS=3Dn build because I assumed the dentry
-> would always be there.
+If VBT size is not a multiple of 4, the last 4-byte store will be out of
+bounds of the allocated buffer. Spotted with KASAN. Round up the
+allocation size.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+v2: Use round_up() intead of roundup() as it's a power of 2 (Thomas)
 
-on both
+Reported-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Fixes: a36e7dc0af1c ("drm/i915/dg1: Read OPROM via SPI controller")
+Cc: Clint Taylor <clinton.a.taylor@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 76a8f001f4c4..c7a8d517ce81 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2369,7 +2369,7 @@ static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
+ 	vbt_size = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
+ 	vbt_size &= 0xffff;
+ 
+-	vbt = kzalloc(vbt_size, GFP_KERNEL);
++	vbt = kzalloc(round_up(vbt_size, 4), GFP_KERNEL);
+ 	if (!vbt)
+ 		goto err_not_found;
+ 
+-- 
+2.30.2
 
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Reported-by: Nathan Chancellor <nathan@kernel.org>
-> Tested-by: Nathan Chancellor <nathan@kernel.org>
-> Fixes: e74c6aa955ca ("drm/i915/fbc: Register per-crtc debugfs files")
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  include/drm/drm_crtc.h | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-> index 13eeba2a750a..4d01b4d89775 100644
-> --- a/include/drm/drm_crtc.h
-> +++ b/include/drm/drm_crtc.h
-> @@ -1135,14 +1135,12 @@ struct drm_crtc {
->  	 */
->  	spinlock_t commit_lock;
->=20=20
-> -#ifdef CONFIG_DEBUG_FS
->  	/**
->  	 * @debugfs_entry:
->  	 *
->  	 * Debugfs directory for this CRTC.
->  	 */
->  	struct dentry *debugfs_entry;
-> -#endif
->=20=20
->  	/**
->  	 * @crc:
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
