@@ -2,59 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 141B947D512
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 17:21:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 427A147D514
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 17:22:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8397510E185;
-	Wed, 22 Dec 2021 16:21:45 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E628010E153;
- Wed, 22 Dec 2021 16:21:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640190103; x=1671726103;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=lUDKe0WtB+NdKeIZ6iUvfZDu/wkM1tA3TTyOVM5fJdI=;
- b=F/4Blrd/G7EEoFl+sACkb//ybi5X8n8Ixd2d/Hm6il0wPqsljM/40021
- AqXUE+NLJcf8zAnlyYg3Owh6lcvy36dVXATsj159Y0geGw0dvRI+lX7fE
- 1eG/B9qIg9N76vtbl5p+YRYhlHdn3FrDBhOGRqLaGCutto/84Bl6EwfKm
- LACbOElZsaI9swEp94Lyntpg7VGBct5PBLOj5vrFOmSogitTFUV1uzeeC
- G7BqEqrycDhPDpS4EDPifHU6PzBJ/Vr4BmubfUotAdPrdq+rpMe/gu9YD
- d0sSm5yr5papMubC+PYdcmFcMJd3+PEcuJCFn2etioYRkiCpVftnk+lLr g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10206"; a="264852758"
-X-IronPort-AV: E=Sophos;i="5.88,227,1635231600"; d="scan'208";a="264852758"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2021 08:21:42 -0800
-X-IronPort-AV: E=Sophos;i="5.88,227,1635231600"; d="scan'208";a="468221510"
-Received: from rajvende-mobl1.ger.corp.intel.com (HELO [10.213.198.55])
- ([10.213.198.55])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2021 08:21:41 -0800
-Message-ID: <5921ac11-1286-1062-f702-f33bc55e4a0e@linux.intel.com>
-Date: Wed, 22 Dec 2021 16:21:37 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72C9210E1E4;
+	Wed, 22 Dec 2021 16:22:54 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EBA9810E153;
+ Wed, 22 Dec 2021 16:22:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E0BEFA0078;
+ Wed, 22 Dec 2021 16:22:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1380718797622092579=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20211214150704.984034-1-tvrtko.ursulin@linux.intel.com>
- <597d4ad0-fdae-49a6-b471-3a83d4c25b98@linux.intel.com>
- <20211217162254.GA22048@jons-linux-dev-box>
- <3d32df02-c02e-9c35-5165-79af1cb10100@linux.intel.com>
- <1c3b1b53-0e9e-a89c-1a77-90cbc229c637@intel.com>
- <01320c8c-a9c9-8c21-7601-75860bf11838@linux.intel.com>
- <1d78552e-8a7c-84c5-a9e6-7c7476a5e2e5@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <1d78552e-8a7c-84c5-a9e6-7c7476a5e2e5@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Log engine resets
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
+Date: Wed, 22 Dec 2021 16:22:52 -0000
+Message-ID: <164019017291.15677.3619371674153991248@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211222154033.6770-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20211222154033.6770-1-andriy.shevchenko@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/1=5D_drm/i915/dsi=3A_Drop_double_ch?=
+ =?utf-8?q?eck_ACPI_companion_device_for_NULL?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,203 +41,266 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1380718797622092579==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 21/12/2021 22:14, John Harrison wrote:
-> On 12/21/2021 05:37, Tvrtko Ursulin wrote:
->> On 20/12/2021 18:34, John Harrison wrote:
->>> On 12/20/2021 07:00, Tvrtko Ursulin wrote:
->>>> On 17/12/2021 16:22, Matthew Brost wrote:
->>>>> On Fri, Dec 17, 2021 at 12:15:53PM +0000, Tvrtko Ursulin wrote:
->>>>>>
->>>>>> On 14/12/2021 15:07, Tvrtko Ursulin wrote:
->>>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>>>>
->>>>>>> Log engine resets done by the GuC firmware in the similar way it 
->>>>>>> is done
->>>>>>> by the execlists backend.
->>>>>>>
->>>>>>> This way we have notion of where the hangs are before the GuC gains
->>>>>>> support for proper error capture.
->>>>>>
->>>>>> Ping - any interest to log this info?
->>>>>>
->>>>>> All there currently is a non-descriptive "[drm] GPU HANG: ecode
->>>>>> 12:0:00000000".
->>>>>>
->>>>>
->>>>> Yea, this could be helpful. One suggestion below.
->>>>>
->>>>>> Also, will GuC be reporting the reason for the engine reset at any 
->>>>>> point?
->>>>>>
->>>>>
->>>>> We are working on the error state capture, presumably the registers 
->>>>> will
->>>>> give a clue what caused the hang.
->>>>>
->>>>> As for the GuC providing a reason, that isn't defined in the interface
->>>>> but that is decent idea to provide a hint in G2H what the issue 
->>>>> was. Let
->>>>> me run that by the i915 GuC developers / GuC firmware team and see 
->>>>> what
->>>>> they think.
->>>>>
->>> The GuC does not do any hang analysis. So as far as GuC is concerned, 
->>> the reason is pretty much always going to be pre-emption timeout. 
->>> There are a few ways the pre-emption itself could be triggered but 
->>> basically, if GuC resets an active context then it is because it did 
->>> not pre-empt quickly enough when requested.
->>>
->>>
->>>>>> Regards,
->>>>>>
->>>>>> Tvrtko
->>>>>>
->>>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>>>>> Cc: John Harrison <John.C.Harrison@Intel.com>
->>>>>>> ---
->>>>>>>    drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 12 
->>>>>>> +++++++++++-
->>>>>>>    1 file changed, 11 insertions(+), 1 deletion(-)
->>>>>>>
->>>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>> index 97311119da6f..51512123dc1a 100644
->>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>> @@ -11,6 +11,7 @@
->>>>>>>    #include "gt/intel_context.h"
->>>>>>>    #include "gt/intel_engine_pm.h"
->>>>>>>    #include "gt/intel_engine_heartbeat.h"
->>>>>>> +#include "gt/intel_engine_user.h"
->>>>>>>    #include "gt/intel_gpu_commands.h"
->>>>>>>    #include "gt/intel_gt.h"
->>>>>>>    #include "gt/intel_gt_clock_utils.h"
->>>>>>> @@ -3934,9 +3935,18 @@ static void capture_error_state(struct 
->>>>>>> intel_guc *guc,
->>>>>>>    {
->>>>>>>        struct intel_gt *gt = guc_to_gt(guc);
->>>>>>>        struct drm_i915_private *i915 = gt->i915;
->>>>>>> -    struct intel_engine_cs *engine = 
->>>>>>> __context_to_physical_engine(ce);
->>>>>>> +    struct intel_engine_cs *engine = ce->engine;
->>>>>>>        intel_wakeref_t wakeref;
->>>>>>> +    if (intel_engine_is_virtual(engine)) {
->>>>>>> +        drm_notice(&i915->drm, "%s class, engines 0x%x; GuC 
->>>>>>> engine reset\n",
->>>>>>> + intel_engine_class_repr(engine->class),
->>>>>>> +               engine->mask);
->>>>>>> +        engine = guc_virtual_get_sibling(engine, 0);
->>>>>>> +    } else {
->>>>>>> +        drm_notice(&i915->drm, "%s GuC engine reset\n", 
->>>>>>> engine->name);
->>>>>
->>>>> Probably include the guc_id of the context too then?
->>>>
->>>> Is the guc id stable and useful on its own - who would be the user?
->>> The GuC id is the only thing that matters when trying to correlate 
->>> KMD activity with a GuC log. So while it might not be of any use or 
->>> interest to an end user, it is extremely important and useful to a 
->>> kernel developer attempting to debug an issue. And that includes bug 
->>> reports from end users that are hard to repro given that the standard 
->>> error capture will include the GuC log.
->>
->> On the topic of GuC log - is there a tool in IGT (or will be) which 
->> will parse the bit saved in the error capture or how is that supposed 
->> to be used?
-> Nope.
-> 
-> However, Alan is currently working on supporting the GuC error capture 
-> mechanism. Prior to sending the reset notification to the KMD, the GuC 
-> will save a whole bunch of register state to a memory buffer and send a 
-> notification to the KMD that this is available. When we then get the 
-> actual reset notification, we need to match the two together and include 
-> a parsed, human readable version of the GuC's capture state buffer in 
-> the sysfs error log output.
-> 
-> The GuC log should not be involved in this process. And note that any 
-> register dumps in the GuC log are limited in scope and only enabled at 
-> higher verbosity levels. Whereas, the official state capture is based on 
-> a register list provided by the KMD and is available irrespective of 
-> debug CONFIG settings, verbosity levels, etc.
+== Series Details ==
 
-Hm why should GuC log not be involved now? I thought earlier you said:
+Series: series starting with [v2,1/1] drm/i915/dsi: Drop double check ACPI companion device for NULL
+URL   : https://patchwork.freedesktop.org/series/98304/
+State : success
 
-"""
-And that includes bug reports from end users that are hard to repro 
-given that the standard error capture will include the GuC log.
-"""
+== Summary ==
 
-Hence I thought there would be a tool in IGT which would parse the part 
-saved inside the error capture.
+CI Bug Log - changes from CI_DRM_11027 -> Patchwork_21895
+====================================================
 
->>> Also, note that GuC really resets contexts rather than engines. What 
->>> it reports back to i915 on a reset is simply the GuC id of the 
->>> context. It is up to i915 to work back from that to determine engine 
->>> instances/classes if required. And in the case of a virtual context, 
->>> it is impossible to extract the actual instance number. So your above 
->>> print about resetting all instances within the virtual engine mask is 
->>> incorrect/misleading. The reset would have been applied to one and 
->>> only one of those engines. If you really need to know exactly which 
->>> engine was poked, you need to look inside the GuC log.
->>
->> I think I understood that part. :) It wasn't my intent to imply in the 
->> message multiple engines have been reset, but in the case of veng, log 
->> the class and mask and the fact there was an engine reset (singular). 
->> Clearer message can probably be written.
->>
->>> However, the follow up point is to ask why you need to report the 
->>> exact class/instance? The end user doesn't care about which specific 
->>> engine got reset. They only care that their context was reset. Even a 
->>> KMD developer doesn't really care unless the concern is about a 
->>> hardware bug rather than a software bug.
->>
->> I was simply aligning both backends to log as similar information as 
->> possible. Information is there, just not logged.
->>
->> Concerning the wider topic, my thinking is end user is mainly 
->> interested to know there are any engine resets happening (to tie with 
->> the experience of UI/video glitching or whatever). Going for deeper 
->> analysis than that is probably beyond the scope of the kernel log and 
->> indeed error capture territory.
-> I would still say that the important information is which context was 
-> killed not which engine. Sure, knowing the engine is better than nothing 
-> but if we can report something more useful then why not?
+Summary
+-------
 
-Make it so. :)
+  **SUCCESS**
 
->>> My view is that the current message is indeed woefully uninformative. 
->>> However, it is more important to be reporting context identification 
->>> than engine instances. So sure, add the engine instance description 
->>> but also add something specific to the ce as well. Ideally (for me) 
->>> the GuC id and maybe something else that uniquely identifies the 
->>> context in KMD land for when not using GuC?
->>
->> Not sure we need to go that far at this level, but even if we do it 
->> could be a follow up to add new data to both backends. Not sure yet I 
->> care enough to drive this. My patch was simply a reaction to noticing 
->> there is zero information currently logged while debugging some DG2 
->> hangs.
-> In terms of just reporting that a reset occurred, we already have the 
-> 'GPU HANG: ecode 12:1:fbffffff, in testfw_app [8177]' message. The ecode 
-> is a somewhat bizarre value but it does act as a 'something went wrong, 
-> your system is not happy' type message. Going beyond that, I think 
-> context identification is the next most useful thing to add.
-> 
-> But if you aren't even getting the 'GPU HANG' message then it sounds 
-> like something is broken with what we already have. So we should fix 
-> that as a first priority. If that message isn't appearing then it means 
-> there was no error capture so adding extra info to the capture won't help!
+  No regressions found.
 
-The issue I have is that "GPU HANG ecode" messages are always "all 
-zeros". It thought that was because GuC error capture was not there, but 
-maybe its something else.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/index.html
 
-Regards,
+Participating hosts (42 -> 37)
+------------------------------
 
-Tvrtko
+  Additional (1): fi-icl-u2 
+  Missing    (6): fi-hsw-4200u bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21895 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html
+
+  * igt@amdgpu/amd_cs_nop@fork-gfx0:
+    - fi-icl-u2:          NOTRUN -> [SKIP][2] ([fdo#109315]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-5557u:       [PASS][3] -> [INCOMPLETE][4] ([i915#146])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+    - fi-tgl-u2:          [PASS][5] -> [FAIL][6] ([i915#1888])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-tgl-u2/igt@gem_exec_suspend@basic-s3@smem.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-tgl-u2/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-icl-u2:          NOTRUN -> [SKIP][7] ([i915#2190])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-icl-u2:          NOTRUN -> [SKIP][8] ([i915#4613]) +3 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-icl-u2:          NOTRUN -> [SKIP][9] ([fdo#111827]) +8 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-icl-u2:          NOTRUN -> [SKIP][10] ([fdo#109278]) +2 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-icl-u2:          NOTRUN -> [SKIP][11] ([fdo#109285])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-icl-u2:          NOTRUN -> [SKIP][12] ([i915#3301])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all@dma_fence:
+    - fi-kbl-soraka:      [FAIL][13] -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-kbl-soraka/igt@dmabuf@all@dma_fence.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-kbl-soraka/igt@dmabuf@all@dma_fence.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][15] ([i915#3303]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11027 -> Patchwork_21895
+
+  CI-20190529: 20190529
+  CI_DRM_11027: b54f1fe480a61abc579a189b77be518d4e7cb5a8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6316: 731e09c15b4fd559ce8aec30065fccde17a9b834 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21895: 1951cc7c55e66de91c986551f9a92edc03989f49 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1951cc7c55e6 drm/i915/dsi: Drop double check ACPI companion device for NULL
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/index.html
+
+--===============1380718797622092579==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/1] drm/i915/dsi: Drop double check ACPI companion device for NULL</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98304/">https://patchwork.freedesktop.org/series/98304/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11027 -&gt; Patchwork_21895</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/index.html</p>
+<h2>Participating hosts (42 -&gt; 37)</h2>
+<p>Additional (1): fi-icl-u2 <br />
+  Missing    (6): fi-hsw-4200u bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21895 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-gfx:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>
+<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</p>
+</li>
+<li>
+<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-tgl-u2/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-tgl-u2/igt@gem_exec_suspend@basic-s3@smem.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all@dma_fence:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-kbl-soraka/igt@dmabuf@all@dma_fence.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-kbl-soraka/igt@dmabuf@all@dma_fence.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11027 -&gt; Patchwork_21895</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11027: b54f1fe480a61abc579a189b77be518d4e7cb5a8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6316: 731e09c15b4fd559ce8aec30065fccde17a9b834 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21895: 1951cc7c55e66de91c986551f9a92edc03989f49 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>1951cc7c55e6 drm/i915/dsi: Drop double check ACPI companion device for NULL</p>
+
+</body>
+</html>
+
+--===============1380718797622092579==--
