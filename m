@@ -1,34 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 427A147D514
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 17:22:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0822347D517
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 17:25:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72C9210E1E4;
-	Wed, 22 Dec 2021 16:22:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94E5F10E21A;
+	Wed, 22 Dec 2021 16:25:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EBA9810E153;
- Wed, 22 Dec 2021 16:22:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E0BEFA0078;
- Wed, 22 Dec 2021 16:22:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1380718797622092579=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42ED510E216;
+ Wed, 22 Dec 2021 16:25:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1640190319; x=1671726319;
+ h=message-id:date:mime-version:subject:from:to:references:
+ cc:in-reply-to:content-transfer-encoding;
+ bh=w04gZYOw/p0MMOohsQT4hgj1PSb8fwyWNI7FhQVNNgU=;
+ b=FtkHbQXsjlkE6ZBarn/jbkndIK3anXKaWXkwZDg4zi9hc3qjRrzIud3O
+ VDXqdKJmol0fa7XIUoiOUrxYZprRau/6nBj/Qwp3+rJZMycShQfXlxCp1
+ 5BntxZdby6AN9HD1D7r9WEBAkC+8lGHD3SUR439BVRX/ElAXIFf7O7+Um
+ avER/yyC0TwKMzqvDBV0EkPiBhwr79pXXCRIzEPOtv2RP+YJt4HmwMxB+
+ qhgkoI/wWpB2Pv/ufaqIJp9M86ypcD+BgNfS/KPfqb1c2pceudKSameL1
+ pVK10/wK0C3tOhe86Z9qaG2DRYGkv9IyIT5UzD78NOWyPeJ1n3edVuWYF g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10206"; a="240459556"
+X-IronPort-AV: E=Sophos;i="5.88,227,1635231600"; d="scan'208";a="240459556"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 08:25:17 -0800
+X-IronPort-AV: E=Sophos;i="5.88,227,1635231600"; d="scan'208";a="468222445"
+Received: from rajvende-mobl1.ger.corp.intel.com (HELO [10.213.198.55])
+ ([10.213.198.55])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 08:25:16 -0800
+Message-ID: <d614aa61-91ed-5e99-64fa-baa147c6d493@linux.intel.com>
+Date: Wed, 22 Dec 2021 16:25:13 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
-Date: Wed, 22 Dec 2021 16:22:52 -0000
-Message-ID: <164019017291.15677.3619371674153991248@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211222154033.6770-1-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20211222154033.6770-1-andriy.shevchenko@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/1=5D_drm/i915/dsi=3A_Drop_double_ch?=
- =?utf-8?q?eck_ACPI_companion_device_for_NULL?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20211214170500.28569-1-matthew.brost@intel.com>
+ <20211214170500.28569-5-matthew.brost@intel.com>
+ <7cc85926-75e8-0368-1684-62ae5f341807@linux.intel.com>
+ <35bc4a2a-9a50-9651-5c17-65f788817f64@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <35bc4a2a-9a50-9651-5c17-65f788817f64@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/guc: Don't hog IRQs when
+ destroying contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,266 +65,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1380718797622092579==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+Ping?
 
-Series: series starting with [v2,1/1] drm/i915/dsi: Drop double check ACPI companion device for NULL
-URL   : https://patchwork.freedesktop.org/series/98304/
-State : success
+Main two points being:
 
-== Summary ==
+1) Commit message seems in contradiction with the change in 
+guc_flush_destroyed_contexts. And the lock drop to immediately 
+re-acquire it looks questionable to start with.
 
-CI Bug Log - changes from CI_DRM_11027 -> Patchwork_21895
-====================================================
+2) And in deregister_destroyed_contexts and in 1) I was therefore asking 
+if you can unlink all at once and process with reduced hammering on the 
+lock.
 
-Summary
--------
+Regards,
 
-  **SUCCESS**
+Tvrtko
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/index.html
-
-Participating hosts (42 -> 37)
-------------------------------
-
-  Additional (1): fi-icl-u2 
-  Missing    (6): fi-hsw-4200u bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21895 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@amdgpu/amd_cs_nop@fork-gfx0:
-    - fi-icl-u2:          NOTRUN -> [SKIP][2] ([fdo#109315]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-bdw-5557u:       [PASS][3] -> [INCOMPLETE][4] ([i915#146])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-    - fi-tgl-u2:          [PASS][5] -> [FAIL][6] ([i915#1888])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-tgl-u2/igt@gem_exec_suspend@basic-s3@smem.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-tgl-u2/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][7] ([i915#2190])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-icl-u2:          NOTRUN -> [SKIP][8] ([i915#4613]) +3 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          NOTRUN -> [SKIP][9] ([fdo#111827]) +8 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][10] ([fdo#109278]) +2 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-u2:          NOTRUN -> [SKIP][11] ([fdo#109285])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-icl-u2:          NOTRUN -> [SKIP][12] ([i915#3301])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all@dma_fence:
-    - fi-kbl-soraka:      [FAIL][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-kbl-soraka/igt@dmabuf@all@dma_fence.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-kbl-soraka/igt@dmabuf@all@dma_fence.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][15] ([i915#3303]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11027 -> Patchwork_21895
-
-  CI-20190529: 20190529
-  CI_DRM_11027: b54f1fe480a61abc579a189b77be518d4e7cb5a8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6316: 731e09c15b4fd559ce8aec30065fccde17a9b834 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21895: 1951cc7c55e66de91c986551f9a92edc03989f49 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1951cc7c55e6 drm/i915/dsi: Drop double check ACPI companion device for NULL
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/index.html
-
---===============1380718797622092579==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/1] drm/i915/dsi: Drop double check ACPI companion device for NULL</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98304/">https://patchwork.freedesktop.org/series/98304/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11027 -&gt; Patchwork_21895</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/index.html</p>
-<h2>Participating hosts (42 -&gt; 37)</h2>
-<p>Additional (1): fi-icl-u2 <br />
-  Missing    (6): fi-hsw-4200u bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21895 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>
-<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</p>
-</li>
-<li>
-<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-tgl-u2/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-tgl-u2/igt@gem_exec_suspend@basic-s3@smem.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all@dma_fence:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-kbl-soraka/igt@dmabuf@all@dma_fence.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-kbl-soraka/igt@dmabuf@all@dma_fence.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21895/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11027 -&gt; Patchwork_21895</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11027: b54f1fe480a61abc579a189b77be518d4e7cb5a8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6316: 731e09c15b4fd559ce8aec30065fccde17a9b834 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21895: 1951cc7c55e66de91c986551f9a92edc03989f49 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>1951cc7c55e6 drm/i915/dsi: Drop double check ACPI companion device for NULL</p>
-
-</body>
-</html>
-
---===============1380718797622092579==--
+On 17/12/2021 11:14, Tvrtko Ursulin wrote:
+> 
+> On 17/12/2021 11:06, Tvrtko Ursulin wrote:
+>> On 14/12/2021 17:04, Matthew Brost wrote:
+>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>
+>>> While attempting to debug a CT deadlock issue in various CI failures
+>>> (most easily reproduced with gem_ctx_create/basic-files), I was seeing
+>>> CPU deadlock errors being reported. This were because the context
+>>> destroy loop was blocking waiting on H2G space from inside an IRQ
+>>> spinlock. There no was deadlock as such, it's just that the H2G queue
+>>> was full of context destroy commands and GuC was taking a long time to
+>>> process them. However, the kernel was seeing the large amount of time
+>>> spent inside the IRQ lock as a dead CPU. Various Bad Things(tm) would
+>>> then happen (heartbeat failures, CT deadlock errors, outstanding H2G
+>>> WARNs, etc.).
+>>>
+>>> Re-working the loop to only acquire the spinlock around the list
+>>> management (which is all it is meant to protect) rather than the
+>>> entire destroy operation seems to fix all the above issues.
+>>>
+>>> v2:
+>>>   (John Harrison)
+>>>    - Fix typo in comment message
+>>>
+>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+>>> ---
+>>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 45 ++++++++++++-------
+>>>   1 file changed, 28 insertions(+), 17 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> index 36c2965db49b..96fcf869e3ff 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> @@ -2644,7 +2644,6 @@ static inline void guc_lrc_desc_unpin(struct 
+>>> intel_context *ce)
+>>>       unsigned long flags;
+>>>       bool disabled;
+>>> -    lockdep_assert_held(&guc->submission_state.lock);
+>>>       GEM_BUG_ON(!intel_gt_pm_is_awake(gt));
+>>>       GEM_BUG_ON(!lrc_desc_registered(guc, ce->guc_id.id));
+>>>       GEM_BUG_ON(ce != __get_context(guc, ce->guc_id.id));
+>>> @@ -2660,7 +2659,7 @@ static inline void guc_lrc_desc_unpin(struct 
+>>> intel_context *ce)
+>>>       }
+>>>       spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>>>       if (unlikely(disabled)) {
+>>> -        __release_guc_id(guc, ce);
+>>> +        release_guc_id(guc, ce);
+>>>           __guc_context_destroy(ce);
+>>>           return;
+>>>       }
+>>> @@ -2694,36 +2693,48 @@ static void __guc_context_destroy(struct 
+>>> intel_context *ce)
+>>>   static void guc_flush_destroyed_contexts(struct intel_guc *guc)
+>>>   {
+>>> -    struct intel_context *ce, *cn;
+>>> +    struct intel_context *ce;
+>>>       unsigned long flags;
+>>>       GEM_BUG_ON(!submission_disabled(guc) &&
+>>>              guc_submission_initialized(guc));
+>>> -    spin_lock_irqsave(&guc->submission_state.lock, flags);
+>>> -    list_for_each_entry_safe(ce, cn,
+>>> -                 &guc->submission_state.destroyed_contexts,
+>>> -                 destroyed_link) {
+>>> -        list_del_init(&ce->destroyed_link);
+>>> -        __release_guc_id(guc, ce);
+>>> +    while (!list_empty(&guc->submission_state.destroyed_contexts)) {
+>>
+>> Are lockless false negatives a concern here - I mean this thread not 
+>> seeing something just got added to the list?
+>>
+>>> +        spin_lock_irqsave(&guc->submission_state.lock, flags);
+>>> +        ce = 
+>>> list_first_entry_or_null(&guc->submission_state.destroyed_contexts,
+>>> +                          struct intel_context,
+>>> +                          destroyed_link);
+>>> +        if (ce)
+>>> +            list_del_init(&ce->destroyed_link);
+>>> +        spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+>>> +
+>>> +        if (!ce)
+>>> +            break;
+>>> +
+>>> +        release_guc_id(guc, ce);
+>>
+>> This looks suboptimal and in conflict with this part of the commit 
+>> message:
+>>
+>> """
+>>   Re-working the loop to only acquire the spinlock around the list
+>>   management (which is all it is meant to protect) rather than the
+>>   entire destroy operation seems to fix all the above issues.
+>> """
+>>
+>> Because you end up doing:
+>>
+>> ... loop ...
+>>    spin_lock_irqsave(&guc->submission_state.lock, flags);
+>>    list_del_init(&ce->destroyed_link);
+>>    spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+>>
+>>    release_guc_id, which calls:
+>>      spin_lock_irqsave(&guc->submission_state.lock, flags);
+>>      __release_guc_id(guc, ce);
+>>      spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+>>
+>> So a) the lock seems to be protecting more than just list management, 
+>> or release_guc_if is wrong, and b) the loop ends up with highly 
+>> questionable hammering on the lock.
+>>
+>> Is there any point to this part of the patch? Or the only business end 
+>> of the patch is below:
+>>
+>>>           __guc_context_destroy(ce);
+>>>       }
+>>> -    spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+>>>   }
+>>>   static void deregister_destroyed_contexts(struct intel_guc *guc)
+>>>   {
+>>> -    struct intel_context *ce, *cn;
+>>> +    struct intel_context *ce;
+>>>       unsigned long flags;
+>>> -    spin_lock_irqsave(&guc->submission_state.lock, flags);
+>>> -    list_for_each_entry_safe(ce, cn,
+>>> -                 &guc->submission_state.destroyed_contexts,
+>>> -                 destroyed_link) {
+>>> -        list_del_init(&ce->destroyed_link);
+>>> +    while (!list_empty(&guc->submission_state.destroyed_contexts)) {
+>>> +        spin_lock_irqsave(&guc->submission_state.lock, flags);
+>>> +        ce = 
+>>> list_first_entry_or_null(&guc->submission_state.destroyed_contexts,
+>>> +                          struct intel_context,
+>>> +                          destroyed_link);
+>>> +        if (ce)
+>>> +            list_del_init(&ce->destroyed_link);
+>>> +        spin_unlock_irqrestore(&guc->submission_state.lock, flags);
+>>> +
+>>> +        if (!ce)
+>>> +            break;
+>>> +
+>>>           guc_lrc_desc_unpin(ce);
+>>
+>> Here?
+>>
+>> Not wanting/needing to nest ce->guc_state.lock under 
+>> guc->submission_state.lock, and call the CPU cycle expensive 
+>> deregister_context?
+>>
+>> 1)
+>> Could you unlink en masse, under the assumption destroyed contexts are 
+>> not reachable from anywhere else at this point, so under a single lock 
+>> hold?
+>>
+>> 2)
+>> But then you also end up with guc_lrc_desc_unpin calling 
+>> __release_guc_id, which when called by release_guc_id does take 
+>> guc->submission_state.lock and here it does not. Is it then clear 
+>> which operations inside __release_guc_id need the lock? Bitmap or IDA?
+> 
+> Ah no, with 2nd point I missed you changed guc_lrc_desc_unpin to call 
+> release_guc_id.
+> 
+> Question on the merit of change in guc_flush_destroyed_contexts remains, 
+> and also whether at both places you could do group unlink (one lock 
+> hold), put on a private list, and then unpin/deregister.
+> 
+> Regards,
+> 
+> Tvrtko
