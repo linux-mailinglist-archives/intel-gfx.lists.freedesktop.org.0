@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E6C047CE32
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 09:27:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1889747CE4D
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 09:30:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9196E10F19C;
-	Wed, 22 Dec 2021 08:27:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 435D7112706;
+	Wed, 22 Dec 2021 08:30:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6513D10F231
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Dec 2021 08:27:49 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86368112706
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Dec 2021 08:30:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640161669; x=1671697669;
+ t=1640161814; x=1671697814;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=AmWUhLyPyzPshC3Nm8lO8UdfZALflwVc9CjdxZyU2gg=;
- b=hhU2IuxEJKkvgG6fdZRe75cavxXgNqR6+5O4KLXQlv57vqvCWbjH3p/D
- Wml72IouI2kExadaEc9DJ+iUYkRS7Md5aXme6MgRF4euM9H4KrHnXzGeI
- 9LvCh5979tNN/vw3BxuQ4lAWxydjGM08SO0A3if9ix+smyAs6wyZVzGEb
- WbtOTXOtVwJE5y7k1paTmOk2rw0SH3p6O65dL6OHtfYNiX2Mj3VzaJ2Wh
- p8ITXcYi+YSlL4jasH085nji2XK4ILwYhM3K3n7FTRn4sl6U2CoAm8bOZ
- 1It4Y4DtrU65lJNgx7ryMjhepWtWkQA+l0FRNh1tQgXghefzjMDZgxPoo Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="238111834"
-X-IronPort-AV: E=Sophos;i="5.88,225,1635231600"; d="scan'208";a="238111834"
+ bh=Jb9a8vM2x8ct3lFhCR4qqPjxhNmXf3wMknkb+5x8dok=;
+ b=VSBEXWebV21fez+R5e3Ax2DBNecWgxGWLdNpRd7JYcIDiyr8A2VoU5Mj
+ ijFenxYaxL+LhNb3iSmnrybQFDMmoStCZ/AWsJrmO1UbLUFbTTFnQI7uz
+ VsBVkReUZjz5BO6HLG8cMxcrWX5noSJ4KswBiidnefTDWyznrnqnW4zN6
+ TJir2+xEwLv5YT0bDudQFOnjpiN4BS01r8Op6qqY6LqSJgUsbA6D6giz8
+ TZ0YQGEVeq6c3SZP7B3zfkPHQ9iJ3p9YqyaW0Y0BChSaiXTAJZRkrZvcS
+ xMUY/osr47fjzb6nnMpLhfi7iIQWG7KOie/YH1OHOxEBjeP24t36IXimU g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="220587105"
+X-IronPort-AV: E=Sophos;i="5.88,225,1635231600"; d="scan'208";a="220587105"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2021 00:27:49 -0800
-X-IronPort-AV: E=Sophos;i="5.88,225,1635231600"; d="scan'208";a="617062069"
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 00:30:14 -0800
+X-IronPort-AV: E=Sophos;i="5.88,225,1635231600"; d="scan'208";a="617062694"
 Received: from aravind2-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.9.217])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2021 00:27:47 -0800
+ 22 Dec 2021 00:30:12 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <8bcb414a-7f18-a29a-3ccc-07f2143d9aeb@linux.intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Harish
+ Chegondi <harish.chegondi@intel.com>
+In-Reply-To: <Yby2BrDPAE4eUxxX@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211221130824.1796242-1-jani.nikula@intel.com>
- <8bcb414a-7f18-a29a-3ccc-07f2143d9aeb@linux.intel.com>
-Date: Wed, 22 Dec 2021 10:27:43 +0200
-Message-ID: <87o859yrgg.fsf@intel.com>
+References: <20211217160255.1300348-1-harish.chegondi@intel.com>
+ <Yby2BrDPAE4eUxxX@intel.com>
+Date: Wed, 22 Dec 2021 10:30:08 +0200
+Message-ID: <87lf0dyrcf.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/bios: fix slab-out-of-bounds access
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix possible NULL pointer
+ dereferences in i9xx_update_wm()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,57 +60,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 21 Dec 2021, Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.co=
-m> wrote:
-> On 12/21/21 14:08, Jani Nikula wrote:
->> If VBT size is not a multiple of 4, the last 4-byte store will be out of
->> bounds of the allocated buffer. Spotted with KASAN. Round up the
->> allocation size.
->>
->> Reported-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
->> Fixes: a36e7dc0af1c ("drm/i915/dg1: Read OPROM via SPI controller")
->> Cc: Clint Taylor <clinton.a.taylor@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Fri, 17 Dec 2021, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Fri, Dec 17, 2021 at 08:02:55AM -0800, Harish Chegondi wrote:
+>> Check return pointer from intel_crtc_for_plane() before dereferencing
+>> it, as it can be NULL.
 >
+> Can't actually bu NULL. But I guess no real harm in having the
+> check if it shuts up some static analysis thing.
+
+That's what I figured too, and better have it here than spread around
+wherever this is called.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
 >
+>>=20
+>> v2: Moved the NULL check into intel_crtc_active().
+>>=20
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Cc: Caz Yokoyama <caz.yokoyama@intel.com>
+>> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+>> Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/display/intel_bios.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm=
-/i915/display/intel_bios.c
->> index 76a8f001f4c4..310609d186cd 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> @@ -2369,7 +2369,7 @@ static struct vbt_header *spi_oprom_get_vbt(struct=
- drm_i915_private *i915)
->>   	vbt_size =3D intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
->>   	vbt_size &=3D 0xffff;
->>=20=20=20
->> -	vbt =3D kzalloc(vbt_size, GFP_KERNEL);
->> +	vbt =3D kzalloc(roundup(vbt_size, 4), GFP_KERNEL);
->
-> Use round_up since a power of 2?
-
-Oh, right, *obviously* the underscored version is for powers of two. :p
-
-v2 sent.
-
-> Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-
-Thanks,
-Jani.
-
-
->
->>   	if (!vbt)
->>   		goto err_not_found;
->>=20=20=20
+>>  drivers/gpu/drm/i915/intel_pm.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/inte=
+l_pm.c
+>> index bdf97a8c9ef3..8b357ec35a4a 100644
+>> --- a/drivers/gpu/drm/i915/intel_pm.c
+>> +++ b/drivers/gpu/drm/i915/intel_pm.c
+>> @@ -877,7 +877,7 @@ static bool intel_crtc_active(struct intel_crtc *crt=
+c)
+>>  	 * crtc->state->active once we have proper CRTC states wired up
+>>  	 * for atomic.
+>>  	 */
+>> -	return crtc->active && crtc->base.primary->state->fb &&
+>> +	return crtc && crtc->active && crtc->base.primary->state->fb &&
+>>  		crtc->config->hw.adjusted_mode.crtc_clock;
+>>  }
+>>=20=20
+>> --=20
+>> 2.31.1
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
