@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D7E47D267
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 13:46:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CE7247D272
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 13:49:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6524410E1B5;
-	Wed, 22 Dec 2021 12:46:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8321710E246;
+	Wed, 22 Dec 2021 12:49:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C964F10E172
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Dec 2021 12:46:37 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8430210E246
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Dec 2021 12:49:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640177197; x=1671713197;
+ t=1640177359; x=1671713359;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=Fw+++bgKKsaC9v4DqmglAe3nWCjUj77ZZEs2ywKJrhQ=;
- b=OwBwaIirex2ZWczM1LYfKbSY4KaeRQ3IPuuIpr+hJrxcX0bdx/imltKg
- GurLxWsYAXCKW67zdptniEbYDV5hqT0KGLIrxnbOtV49+hwHVRY0JUvyc
- JHO2ryrCbF+wMNqDrRUIThb5BObuADZEtj4LMh8AZYHWdXJwOTaH6UrJA
- 0GeV6yKSUk593Bjd0IL3Of4ZPW6w2m34Mff2d3V9CgRaEEh1lmk1LV1r4
- bG7RvnbMIbc746W9sLP1BeP9JZnjIaN1isvsrCKuh/cPSnqyUHqyjY2Ov
- pJwIT4OQpLTPTM+KukRBfa/whzOZ5S9T2iu6+8k0czMDHoltJhRKMweAX g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="220621382"
-X-IronPort-AV: E=Sophos;i="5.88,226,1635231600"; d="scan'208";a="220621382"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2021 04:46:37 -0800
+ bh=PDAABFNP1fiFFYYni8db5zCe28jNTEqCRQ2MKpVdqm0=;
+ b=iRH3erIJwF3zrNRqK48iGUpcUlbQcNbtS3a0VJSSC4J6bU3Wk9dYTtfM
+ UqCHsYpCUfZ/Xf0Nl1uMg/j5b+ysLoERFHmmZXdO/3uEcITmZ3VmVd3Yo
+ FzVGw+lmfzWBs4Dk2KsCGB4KBvwJB5HeIXlGk2ElMOPKmiyhI3G/EmD/6
+ 5Y/RUlIJIvNMcinI2djKhx7QFzS5aIQLnkFzYxvvylFF7s9Avq0pFwVK5
+ rNRDpsEg2OYTSYy6ztI/5fJQCV87vmNRDB+LPWtuus9jBCxWzU9RMYIIZ
+ auAPYFBwWBk9OFT2CS65iwHHF32rfYiuD7FjMroVVc/VmpBh2jKO/RxVX g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="303980948"
+X-IronPort-AV: E=Sophos;i="5.88,226,1635231600"; d="scan'208";a="303980948"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 04:49:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,226,1635231600"; d="scan'208";a="664262037"
+X-IronPort-AV: E=Sophos;i="5.88,226,1635231600"; d="scan'208";a="521667536"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by fmsmga001.fm.intel.com with SMTP; 22 Dec 2021 04:46:35 -0800
+ by orsmga008.jf.intel.com with SMTP; 22 Dec 2021 04:49:16 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 22 Dec 2021 14:46:34 +0200
-Date: Wed, 22 Dec 2021 14:46:34 +0200
+ Wed, 22 Dec 2021 14:49:16 +0200
+Date: Wed, 22 Dec 2021 14:49:16 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YcMeKlgj8izwkgrS@intel.com>
+Message-ID: <YcMezDqj7XrwZ2k1@intel.com>
 References: <20211217155403.31477-1-ville.syrjala@linux.intel.com>
- <20211217155403.31477-7-ville.syrjala@linux.intel.com>
- <87zgotx97s.fsf@intel.com>
+ <20211217155403.31477-3-ville.syrjala@linux.intel.com>
+ <87fsqlypox.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87zgotx97s.fsf@intel.com>
+In-Reply-To: <87fsqlypox.fsf@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/hdmi: Ignore DP++ TMDS clock
- limit for native HDMI ports
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/bios: Use i915->vbt.ports[] on
+ CHV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,79 +66,54 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 22, 2021 at 11:47:03AM +0200, Jani Nikula wrote:
+On Wed, Dec 22, 2021 at 11:05:50AM +0200, Jani Nikula wrote:
 > On Fri, 17 Dec 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > >
-> > Lots of machines these days seem to have a crappy type1 DP dual
-> > mode adaptor chip slapped onto the motherboard. Based on the
-> > DP dual mode spec we currently limit those to 165MHz max TMDS
-> > clock.
-> >
-> > Windows OTOH ignores DP dual mode adaptors when the VBT
-> > indicates that the port is not actually DP++, so we can
-> > perhaps assume that the vendors did intend that the 165MHz
-> > clock limit doesn't apply here. Though it would be much
-> > nicer if they actually declared an explicit limit through
-> > VBT, but that doesn't seem to be happening either.
-> >
-> > So in order to match Windows behaviour let's ignore the
-> > DP dual mode adaptor's TMDS clock limit for ports that
-> > don't look like DP++ in VBT.
-> >
-> > Unfortunately many older VBTs misdelcare their DP++ ports
-> > as just HDMI (eg. ILK Dell Latitude E5410) or DP (eg. SNB
-> > Lenovo ThinkPad X220). So we can't really do this universally
-> > without risking black screens. I suppose a sensible cutoff
-> > is HSW+ since that's when 4k became a thing and one might
-> > assume that the machines have been tested to work with higher
-> > TMDS clock rates.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > CHV is currently straddling the divide by using parse_ddi_ports() stuff
+> > for aux_ch/ddc_pin but going through all old codepaths for the rest
+> > (intel_bios_is_port_present(), intel_bios_is_port_edp(),
+> > intel_bios_is_port_dp_dual_mode()). Let's switch over full and use
+> > i915->vbt.ports[] for the rest of the stuff.
 > 
-> Out of curiousity, on the machines where we are currently too strict on
-> the limitation, do we actually read and get a valid limit from the
-> adaptor in drm_dp_dual_mode_max_tmds_clock(), or is it the fallback 165
-> MHz that's too strict? If the latter, should the fallback policy be
-> moved out of drm_dp_dual_mode_max_tmds_clock() instead?
-
-We've seen two types of cases:
-1) Can't identify a DP dual mode adaptor (ie. can't succesfully read
-   any register from the adaptor), so we use
-   intel_bios_is_port_dp_dual_mode() to check for native HDMI vs.
-   DP++ port. If it looks like DP++ then we assume a type1 DVI adaptor
-   and so we limit to 165MHz.
-2) We actually detect a type1 HDMI adaptor (ie. we manage to read the
-   magic ID string from its registers). Still type1 so we limit to
-   165MHz as well.
-
-The third type of case of detecting a type2 adaptor (which will actually
-report its max TMDS clock limit) on what looks like a native HDMI port
-I don't think we've seen yet.
-
-Anyways, I think with this extra check we more or less match Windows
-behaviour. The only difference is that Windows doesn't even probe the
-DP dual mode adaptor for native HDMI ports. I think I still want to
-do the probe so that the logs will at least show that the chip is there,
-even if we ignore it. Just generally better to have as much information
-about the system in the logs as possible.
-
-Another slight diffrence in behaviour is that Windows seems to
-limit DVI ports (as per VBT) to 165MHz as well. We do not.
-
-To answer the original question, I don't think there's anything we
-can relly do differenrely in drm_dp_dual_mode_max_tmds_clock().
-
+> Whoa, this is far more subtle than what the code looks!
 > 
-> Anyway, seems that currently we're erring too far to lower limits to
-> avoid black screens, so seems okay to relax this a bit. ISTR we've had
-> quite a few bug reports about this.
+> We stop checking for port A for CHV in intel_bios_is_port_present(), but
+> it's a warn and I don't recall any bug reports, so probably fine. We
+> could add a check in parse_ddi_port(), but meh.
+> 
+> Ditto for intel_bios_is_port_dp_dual_mode(), except it doesn't have a
+> warn.
+> 
+> The eDP check in intel_bios_is_port_edp() becomes slightly more
+> relaxed. Both the old and new check require these to be set:
+> 
+>  - DEVICE_TYPE_DISPLAYPORT_OUTPUT
+>  - DEVICE_TYPE_INTERNAL_CONNECTOR.
+> 
+> The old code also required these to be unset:
+> 
+>  - DEVICE_TYPE_MIPI_OUTPUT
+>  - DEVICE_TYPE_COMPOSITE_OUTPUT
+>  - DEVICE_TYPE_DUAL_CHANNEL
+>  - DEVICE_TYPE_LVDS_SIGNALING
+>  - DEVICE_TYPE_TMDS_DVI_SIGNALING
+>  - DEVICE_TYPE_VIDEO_SIGNALING
+>  - DEVICE_TYPE_ANALOG_OUTPUT
+> 
+> It's possible we've added these just as a sanity check for broken VBTs
+> more than anything. I guess I'd see if actual problems arise.
+> 
+> Bottom line, I think the functional changes matter only for VBTs with
+> bogus data.
 
-It's a tough balance. The big problem is that we have no really
-nice way for the user to override any of this safely (apart from
-the manual modeline which isn't so nice). So we try to play
-it a bit safe to avoid the black screens. Unfortunately quite
-a few recent machines don't seem to play well with that idea.
+Yeah, I should probably include a bit more of thse details in this
+commit message as well to make it easier to figure out what actually
+changed if we get a regressoion.
+
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+Thanks.
 
 -- 
 Ville Syrjälä
