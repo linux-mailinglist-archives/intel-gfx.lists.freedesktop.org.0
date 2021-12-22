@@ -1,57 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE4D74899D6
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:24:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 184FD4899CA
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:24:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A42D113B6E;
-	Mon, 10 Jan 2022 13:24:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8528514B433;
+	Mon, 10 Jan 2022 13:24:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com
- [IPv6:2607:f8b0:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3D7511241C;
- Wed, 22 Dec 2021 07:59:36 +0000 (UTC)
-Received: by mail-pg1-x529.google.com with SMTP id m15so1421186pgu.11;
- Tue, 21 Dec 2021 23:59:36 -0800 (PST)
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
+ [IPv6:2a00:1450:4864:20::42c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF7F910FF49;
+ Wed, 22 Dec 2021 09:05:57 +0000 (UTC)
+Received: by mail-wr1-x42c.google.com with SMTP id r17so3502224wrc.3;
+ Wed, 22 Dec 2021 01:05:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id;
- bh=Ep/zKHGWSlzXqkTceOgtZaVXJ4nuNbPBUMHXh8/O+vQ=;
- b=JGP/UeithGjLSStBwiVZ0fRumVJF13RQK7WvN++JsItsaqoQ8mWgq9UK1dQZf6VjCg
- Y6jH8X3RMvc2gy+QXzt1kkOTDIjTeXLwAPHgTDCI9f2eLBNxUVUQABWj046dvLX54w8B
- vyyU+rP0ory9wBtHq+iTsLpsDUh7ndgSIKDlGRp7YY6AIG/Nm4foT+WeerH6sQraXKty
- RWqnYaXzFcfMvlsYzWY3GSz8cmy4j4+oXO/wa/BUVNkj3nJhzDDocuvx7e3zyRwoN9v8
- cth8CGFSqe2LHXjv1ICvXvvMct+yHGrU63JB8nKYszw3wKK2NgqqIa49nYJ2FM3Osbl5
- XjiQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=yFNkjOhkbVUPCPag3+lAuNDHEf6o3ru8j250NbFjPto=;
+ b=PWovdBphqrEK39M+gpDvGqxAdVPJl6QRH08LDrE+POux+PO7tP7Nq3+hmvFGa/a53/
+ XL4qcWwkKXpqepZ9OJ6dRIlDgLiBr3KiSIaAltvzLJG+QFcoIeTRF+DE3+Lq8xaCSkcO
+ DCmqg/yNfXwUSWbixP4Nz4sPf/o+ES/VSQZ8Jq8iUBnnixA7IEI2eepCOHFPVWsyTEre
+ VrauRXaUmPCXzMC+Pnr0GHA4Aj7LOhjmvVG1i0T5IXo8SZiYdj/FkZZ7dJSrSMSN3tbx
+ c+6weXHSCO2prqtwazZPDjQ4pA2nwe5rCz5NLTI4oGG5wPHKr2CBamLoX96GgGiPaFHp
+ cY1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=Ep/zKHGWSlzXqkTceOgtZaVXJ4nuNbPBUMHXh8/O+vQ=;
- b=lm1i+ZB8hFRHiBtrs34K/zVc7hwGVMtEaml5Kvpk2sDqjQpcwkJSjf8crBq0mIFS/9
- 2JOsFyCgmPyXXDb9YVpYNsmKx/uXCt3IeWFUDRpdX8wROg7FT6gZjVbddio/k+KSQ6M+
- ErfEACc7hLiPpJxI8CmxyLQClYwPlSzI/VQAMH+4jzAivvAA9dUjFDsqi9g1M0SiC1wp
- /nD2DnTHGTTc0I1L8M530x2xQNOMxRvYiaI90Dg2ZUoRPmFnx2uiSo1+tPXqMeDxMmcj
- m4/QI2kZbJ//3H79qbd+O0vvFBD+VikWjbd44YaJLNW9MTSAvvPq+TOUvqkM4eqCt0Vv
- +ztw==
-X-Gm-Message-State: AOAM533o0kZnhx66ZIejfk+PwhviH0jKFuP0PXV7LhBCJdcfQKyEAAGw
- Jh2sFH42r6ek4MZpoTYb+AU=
-X-Google-Smtp-Source: ABdhPJzpZFfq6pTnM8d0LAXCEwKKK1z/2Q7hS648SfgIyEPqOmaz6VbHogAP/uLgw50nhX2nZF+jMg==
-X-Received: by 2002:aa7:8891:0:b0:4ba:ee8a:8cdd with SMTP id
- z17-20020aa78891000000b004baee8a8cddmr2073012pfe.79.1640159976549; 
- Tue, 21 Dec 2021 23:59:36 -0800 (PST)
-Received: from localhost.localdomain ([159.226.95.43])
- by smtp.googlemail.com with ESMTPSA id j8sm1265395pgf.21.2021.12.21.23.59.32
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=yFNkjOhkbVUPCPag3+lAuNDHEf6o3ru8j250NbFjPto=;
+ b=6OY7TDEd1dPkif2JwtEySM941cuQrf3zQILdISqN8gsltqNS9POjx8Pg8AhjBNwXi8
+ l9RZ8tRDNz7uHcdrn0Fsb3SY+ONzWkHTa7i1hBC22ylTu5B/ETc5gCWV6GNTcikx4qpX
+ a8870t7XeE0w0sF+JXoEue6n7iwXQr/+B9g7dBtatvUXZ74wCjrnxxmGlOpJkJj5gMUA
+ Y3ylUQG9ZnrHQGF7lq0iCX28SWyBm7KhUx4OH+pQqZsOB++nyDpRGvSgblsJ45oTPGbd
+ jvHfy+Eu+OHGstrHjfTqg6XtVNfHMjRqs9KqAATbj4fD298UKekuvMRDw2+sdlfdnVNR
+ M8kg==
+X-Gm-Message-State: AOAM531XfVGPlo6QJNICQF0TP5vjaBGZwBoZ06Nq9EE4hW0jFflDml4p
+ SCtswp89pRDRneO4xlllbxM=
+X-Google-Smtp-Source: ABdhPJy7flmzMTQMI+3SUiNfM2NPwtetHwfXTX+i112NC6r7WXwuYpXcaDAx0EErcXx/XtP7nmcycA==
+X-Received: by 2002:a5d:64ed:: with SMTP id g13mr1384847wri.197.1640163956459; 
+ Wed, 22 Dec 2021 01:05:56 -0800 (PST)
+Received: from localhost.localdomain ([217.113.240.86])
+ by smtp.gmail.com with ESMTPSA id a22sm1139775wme.19.2021.12.22.01.05.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Dec 2021 23:59:36 -0800 (PST)
-From: Miaoqian Lin <linmq006@gmail.com>
-To: 
-Date: Wed, 22 Dec 2021 07:58:29 +0000
-Message-Id: <20211222075832.1732-1-linmq006@gmail.com>
-X-Mailer: git-send-email 2.17.1
+ Wed, 22 Dec 2021 01:05:56 -0800 (PST)
+From: =?UTF-8?q?Jos=C3=A9=20Exp=C3=B3sito?= <jose.exposito89@gmail.com>
+To: contact@emersion.fr
+Date: Wed, 22 Dec 2021 10:05:46 +0100
+Message-Id: <20211222090552.25972-1-jose.exposito89@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 10 Jan 2022 13:24:14 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Fix NULL vs IS_ERR checking
- for kernel_context
+Subject: [Intel-gfx] [PATCH v2 0/6] Add missing format_mod_supported
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,128 +68,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linmq006@gmail.com, Andi Shyti <andi.shyti@intel.com>,
- David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org
+Cc: airlied@linux.ie, alexandre.torgue@foss.st.com, stefan@agner.ch,
+ benjamin.gaignard@linaro.org, festevam@gmail.com,
+ linux-stm32@st-md-mailman.stormreply.com, marex@denx.de, linux-imx@nxp.com,
+ intel-gfx@lists.freedesktop.org, tzimmermann@suse.de, s.hauer@pengutronix.de,
+ mripard@kernel.org, kernel@pengutronix.de,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ yannick.fertre@foss.st.com, linux-kernel@vger.kernel.org,
+ philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
+ dmitry.baryshkov@linaro.org,
+ =?UTF-8?q?Jos=C3=A9=20Exp=C3=B3sito?= <jose.exposito89@gmail.com>,
+ shawnguo@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since i915_gem_create_context() function return error pointers,
-the kernel_context() function does not return null, It returns error
-pointers too. Using IS_ERR() to check the return value to fix this.
+Hi all,
 
-Signed-off-by: Miaoqian Lin <linmq006@gmail.com>
----
- drivers/gpu/drm/i915/gt/selftest_execlists.c | 41 ++++++++++++++------
- 1 file changed, 29 insertions(+), 12 deletions(-)
+This patchset supersedes [1]. Now the title is a bit misleading, but
+I left it this way to (hopefully) facilitate the maintainers' work.
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-index b367ecfa42de..eacfe920afed 100644
---- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-@@ -1540,13 +1540,16 @@ static int live_busywait_preempt(void *arg)
- 	 */
- 
- 	ctx_hi = kernel_context(gt->i915, NULL);
--	if (!ctx_hi)
--		return -ENOMEM;
-+	if (IS_ERR(ctx_hi))
-+		return IS_ERR(ctx_hi);
-+
- 	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
- 
- 	ctx_lo = kernel_context(gt->i915, NULL);
--	if (!ctx_lo)
-+	if (IS_ERR(ctx_lo)) {
-+		err = PTR_ERR(ctx_lo);
- 		goto err_ctx_hi;
-+	}
- 	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
- 
- 	obj = i915_gem_object_create_internal(gt->i915, PAGE_SIZE);
-@@ -1742,13 +1745,17 @@ static int live_preempt(void *arg)
- 		goto err_spin_hi;
- 
- 	ctx_hi = kernel_context(gt->i915, NULL);
--	if (!ctx_hi)
-+	if (IS_ERR(ctx_hi)) {
-+		err = PTR_ERR(ctx_hi);
- 		goto err_spin_lo;
-+	}
- 	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
- 
- 	ctx_lo = kernel_context(gt->i915, NULL);
--	if (!ctx_lo)
-+	if (IS_ERR(ctx_lo)) {
-+		err = PTR_ERR(ctx_lo);
- 		goto err_ctx_hi;
-+	}
- 	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
- 
- 	for_each_engine(engine, gt, id) {
-@@ -1834,12 +1841,16 @@ static int live_late_preempt(void *arg)
- 		goto err_spin_hi;
- 
- 	ctx_hi = kernel_context(gt->i915, NULL);
--	if (!ctx_hi)
-+	if (IS_ERR(ctx_hi)) {
-+		err = PTR_ERR(ctx_hi);
- 		goto err_spin_lo;
-+	}
- 
- 	ctx_lo = kernel_context(gt->i915, NULL);
--	if (!ctx_lo)
-+	if (IS_ERR(ctx_lo)) {
-+		err = PTR_ERR(ctx_lo);
- 		goto err_ctx_hi;
-+	}
- 
- 	/* Make sure ctx_lo stays before ctx_hi until we trigger preemption. */
- 	ctx_lo->sched.priority = 1;
-@@ -1928,8 +1939,8 @@ struct preempt_client {
- static int preempt_client_init(struct intel_gt *gt, struct preempt_client *c)
- {
- 	c->ctx = kernel_context(gt->i915, NULL);
--	if (!c->ctx)
--		return -ENOMEM;
-+	if (IS_ERR(c->ctx))
-+		return PTR_ERR(c->ctx);
- 
- 	if (igt_spinner_init(&c->spin, gt))
- 		goto err_ctx;
-@@ -3385,13 +3396,17 @@ static int live_preempt_timeout(void *arg)
- 		return -ENOMEM;
- 
- 	ctx_hi = kernel_context(gt->i915, NULL);
--	if (!ctx_hi)
-+	if (IS_ERR(ctx_hi)) {
-+		err = PTR_ERR(ctx_hi);
- 		goto err_spin_lo;
-+	}
- 	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
- 
- 	ctx_lo = kernel_context(gt->i915, NULL);
--	if (!ctx_lo)
-+	if (IS_ERR(ctx_lo)) {
-+		err = PTR_ERR(ctx_lo);
- 		goto err_ctx_hi;
-+	}
- 	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
- 
- 	for_each_engine(engine, gt, id) {
-@@ -3683,8 +3698,10 @@ static int live_preempt_smoke(void *arg)
- 
- 	for (n = 0; n < smoke.ncontext; n++) {
- 		smoke.contexts[n] = kernel_context(smoke.gt->i915, NULL);
--		if (!smoke.contexts[n])
-+		if (IS_ERR(smoke.contexts[n])) {
-+			err = PTR_ERR(smoke.contexts[n]);
- 			goto err_ctx;
-+		}
- 	}
- 
- 	for (n = 0; n < ARRAY_SIZE(phase); n++) {
+A little context: Originally, I sent a patch adding modifiers to the
+VKMS driver and Simon Ser kindly reviewed it and pointed out that
+"format_mod_supported" was missing [2].
+I asked if the docs were incorrect or if it was a bug in
+"create_in_format_blob".
+
+In the first version of this series, Simon Ser and Dmitry Baryshkov
+agreed [1] that the code should behave as documented and
+"create_in_format_blob" should be changed.
+
+This second version implements the required changes and drops the
+"format_mod_supported" in the drivers that can use the default
+implementation.
+
+Jose
+
+[1] https://lore.kernel.org/dri-devel/CAA8EJpqJ-tWmb5Ba6XSK59toCtLb3nRRmVH8da4Ud_rrRYytmw@mail.gmail.com/T/
+[2] https://lore.kernel.org/dri-devel/20211216170532.GA16349@elementary/T/
+
+José Expósito (6):
+  drm/plane: Make format_mod_supported truly optional
+  drm/plane: Fix typo in format_mod_supported documentation
+  drm/simple-kms: Drop format_mod_supported function
+  drm/i915/display: Drop format_mod_supported function
+  drm: mxsfb: Drop format_mod_supported function
+  drm/stm: ltdc: Drop format_mod_supported function
+
+ drivers/gpu/drm/drm_plane.c                 |  8 ++------
+ drivers/gpu/drm/drm_simple_kms_helper.c     |  8 --------
+ drivers/gpu/drm/i915/display/intel_cursor.c |  8 --------
+ drivers/gpu/drm/mxsfb/mxsfb_kms.c           |  8 --------
+ drivers/gpu/drm/stm/ltdc.c                  | 11 -----------
+ include/drm/drm_plane.h                     |  2 +-
+ 6 files changed, 3 insertions(+), 42 deletions(-)
+
 -- 
-2.17.1
+2.25.1
 
