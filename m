@@ -2,33 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E1BD47D589
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 17:58:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F56247D5C0
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 18:20:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE21510E21A;
-	Wed, 22 Dec 2021 16:58:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E65510E1AE;
+	Wed, 22 Dec 2021 17:20:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3C89A10E21E;
- Wed, 22 Dec 2021 16:58:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3481EA00E8;
- Wed, 22 Dec 2021 16:58:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4790265111495950510=="
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8A7D10E1AE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Dec 2021 17:20:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1640193640; x=1671729640;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=5dL73oot1k/+QQ0q/bKmbJFyU8YokyOQ7yIYy2CvGYU=;
+ b=X7MpvHmxboonizPv8g0VTr4N6r+JI9riqCGKVusXgCil9inAlyt7ebBZ
+ 0/s1wnnrTjndYfXLN+c9v8TzA8j/YmhlkNnsVr9npUYblKNsCEb4FlRdC
+ ZB1UKUINjpxpEPN4gRet3mcpELdtnyIP96qFqIUVmYlFQDj6SMBNyNYd5
+ Mdf3blKKRcGOClucmyz0JeS0O/Hu6nrzfZNuHJ5cWXviRpEy2nbdQZAiW
+ nHZjILG/xcNsSNy3nJdOzWAXdIZrj9Do78E72ckqhcOe0OdaKfADQEa6v
+ pIek+IHBrSyDaoNRlkiS/I7x+7+qp4ZK+e54s7N8Tz30dq6P6lu8xg7zB A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10206"; a="304035907"
+X-IronPort-AV: E=Sophos;i="5.88,227,1635231600"; d="scan'208";a="304035907"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 09:05:45 -0800
+X-IronPort-AV: E=Sophos;i="5.88,227,1635231600"; d="scan'208";a="468233654"
+Received: from eliteleevi.tm.intel.com ([10.237.54.20])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 09:05:43 -0800
+Date: Wed, 22 Dec 2021 18:57:43 +0200 (EET)
+From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+X-X-Sender: kvehmane@eliteleevi.tm.intel.com
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+In-Reply-To: <20211222145350.24342-1-ville.syrjala@linux.intel.com>
+Message-ID: <alpine.DEB.2.22.394.2112221851510.1661468@eliteleevi.tm.intel.com>
+References: <20211222145350.24342-1-ville.syrjala@linux.intel.com>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Wed, 22 Dec 2021 16:58:24 -0000
-Message-ID: <164019230417.15676.1188745154908203017@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211222155622.2960379-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20211222155622.2960379-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Use_trylock_instead_of_blocking_lock_for_=5F=5Fi915=5F?=
- =?utf-8?q?gem=5Ffree=5Fobjects=2E?=
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH] ALSA: hda/hdmi: Disable silent stream on GLK
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,197 +57,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: alsa-devel@alsa-project.org, Harsha Priya <harshapriya.n@intel.com>,
+ intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ Emmanuel Jillela <emmanuel.jillela@intel.com>, Takashi Iwai <tiwai@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4790265111495950510==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+On Wed, 22 Dec 2021, Ville Syrjala wrote:
 
-Series: drm/i915: Use trylock instead of blocking lock for __i915_gem_free_objects.
-URL   : https://patchwork.freedesktop.org/series/98306/
-State : success
+> The silent stream stuff recurses back into i915 audio
+> component .get_power() from the .pin_eld_notify() hook.
+> On GLK this will deadlock as i915 may already be holding
+> the relevant modeset locks during .pin_eld_notify() and
+> the GLK audio vs. CDCLK workaround will try to grab the
+> same locks from .get_power().
+>
+> Until someone comes up with a better fix just disable the
+> silent stream support on GLK.
 
-== Summary ==
+decoupling the call to get_power() is a non-trivial change
+(especially as it's done from generic hda_codec.c code),
+so I'd say let's go with this patch for GLK:
 
-CI Bug Log - changes from CI_DRM_11027 -> Patchwork_21896
-====================================================
+Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/index.html
-
-Participating hosts (42 -> 36)
-------------------------------
-
-  Missing    (6): fi-tgl-u2 fi-hsw-4200u bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21896 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][2] ([i915#2426] / [i915#4312])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all@dma_fence:
-    - fi-kbl-soraka:      [FAIL][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-kbl-soraka/igt@dmabuf@all@dma_fence.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/fi-kbl-soraka/igt@dmabuf@all@dma_fence.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][5] ([i915#3303]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][7] ([i915#4269]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3970]: https://gitlab.freedesktop.org/drm/intel/issues/3970
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11027 -> Patchwork_21896
-
-  CI-20190529: 20190529
-  CI_DRM_11027: b54f1fe480a61abc579a189b77be518d4e7cb5a8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6316: 731e09c15b4fd559ce8aec30065fccde17a9b834 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21896: dfcddd530d5ecff978593bcb4ebc5ddc14567a0a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-dfcddd530d5e drm/i915: Use trylock instead of blocking lock for __i915_gem_free_objects.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/index.html
-
---===============4790265111495950510==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Use trylock instead of blocking lock for __i915_gem_free_objects.</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98306/">https://patchwork.freedesktop.org/series/98306/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11027 -&gt; Patchwork_21896</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/index.html</p>
-<h2>Participating hosts (42 -&gt; 36)</h2>
-<p>Missing    (6): fi-tgl-u2 fi-hsw-4200u bat-dg1-5 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21896 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all@dma_fence:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-kbl-soraka/igt@dmabuf@all@dma_fence.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/fi-kbl-soraka/igt@dmabuf@all@dma_fence.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11027/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21896/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11027 -&gt; Patchwork_21896</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11027: b54f1fe480a61abc579a189b77be518d4e7cb5a8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6316: 731e09c15b4fd559ce8aec30065fccde17a9b834 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21896: dfcddd530d5ecff978593bcb4ebc5ddc14567a0a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>dfcddd530d5e drm/i915: Use trylock instead of blocking lock for __i915_gem_free_objects.</p>
-
-</body>
-</html>
-
---===============4790265111495950510==--
+Br, Kai
