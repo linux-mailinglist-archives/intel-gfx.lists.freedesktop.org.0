@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E02DD47CEC0
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 10:06:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AB4847CEEB
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Dec 2021 10:13:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54C3E112744;
-	Wed, 22 Dec 2021 09:05:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B34F110F5D2;
+	Wed, 22 Dec 2021 09:13:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 962AB10F981
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Dec 2021 09:05:56 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A33FD10F699
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Dec 2021 09:13:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640163956; x=1671699956;
+ t=1640164405; x=1671700405;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=8LRxEJAxTr7FCOmPyE1lykhdadh2AMF0Di5qgyef81A=;
- b=SrijaZ4ktV0Z3WGmLExHdbjzs7FqtasN/bTmM4lBCa98yfp8mppb3fz4
- ssZ4ex9eFrsFy8maKdBfrgbu8iClUnfGyKH6pOVbbZt3JcIRNJ8CGCgtp
- KK2Lbrxkq6hoZ1tLRqtJA4IXTPAnd0yR0GLwsViSSUwoLz9/JLBoGBsJ+
- oqITWWyaGDZPw7lwmS83wheQTEKISJdQ6ww5K8w2D4j4RJhbp78Pp/nJk
- rw2SyKyevbPGLcI0zpDr3OXAgHtiiooSFlLMd/Tlbo9VydXORQBTAOcbw
- nLLpaqJjf+bp29Mkdq/UfbnUs4OYOQYw1DGvpArEY3CCSpy6BGSaZok4d g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="326885280"
-X-IronPort-AV: E=Sophos;i="5.88,226,1635231600"; d="scan'208";a="326885280"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2021 01:05:56 -0800
-X-IronPort-AV: E=Sophos;i="5.88,226,1635231600"; d="scan'208";a="521603207"
+ bh=OyB24u7ygLMtqJ/vdRSDz3jNOzMKYbeiifCxihFEaN8=;
+ b=gVx9DzFQypRyRYVRSEwyYOn1nWfjxg6cdlEBVbllUb14TSwZfPMOoSVy
+ NiHpn9P0qwSdv2B4IIADNicX60Jv49aGTYFsYCubGkIBA4rHvWLJ2Qlyw
+ ES3L1lgeLgySXZ4aOre7TMH+SbR9um9M/XjM4UnK3veygOe0QIv873IU4
+ kahgFQl5xis0QwRNZB/mgeFHMUmTkWB91Oi7CxDAX8Kh0CzwHAZOIbtzT
+ K40DYGXZjA61dSkt/Km5hs/+KICSCoOgQFmhZqDoIOCXR8u3bHMdTJnQA
+ UfcU9Grn582GoR3x+TKtmnRqJbPmA+GrQIZG89G2lMdWWu77UQhc2I8kd Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="220594243"
+X-IronPort-AV: E=Sophos;i="5.88,226,1635231600"; d="scan'208";a="220594243"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 01:13:25 -0800
+X-IronPort-AV: E=Sophos;i="5.88,226,1635231600"; d="scan'208";a="468110281"
 Received: from aravind2-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.9.217])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2021 01:05:54 -0800
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2021 01:13:22 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
@@ -41,8 +41,8 @@ In-Reply-To: <20211217155403.31477-3-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20211217155403.31477-1-ville.syrjala@linux.intel.com>
  <20211217155403.31477-3-ville.syrjala@linux.intel.com>
-Date: Wed, 22 Dec 2021 11:05:50 +0200
-Message-ID: <87fsqlypox.fsf@intel.com>
+Date: Wed, 22 Dec 2021 11:13:19 +0200
+Message-ID: <87czlpypcg.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -71,45 +71,15 @@ On Fri, 17 Dec 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > (intel_bios_is_port_present(), intel_bios_is_port_edp(),
 > intel_bios_is_port_dp_dual_mode()). Let's switch over full and use
 > i915->vbt.ports[] for the rest of the stuff.
-
-Whoa, this is far more subtle than what the code looks!
-
-We stop checking for port A for CHV in intel_bios_is_port_present(), but
-it's a warn and I don't recall any bug reports, so probably fine. We
-could add a check in parse_ddi_port(), but meh.
-
-Ditto for intel_bios_is_port_dp_dual_mode(), except it doesn't have a
-warn.
-
-The eDP check in intel_bios_is_port_edp() becomes slightly more
-relaxed. Both the old and new check require these to be set:
-
- - DEVICE_TYPE_DISPLAYPORT_OUTPUT
- - DEVICE_TYPE_INTERNAL_CONNECTOR.
-
-The old code also required these to be unset:
-
- - DEVICE_TYPE_MIPI_OUTPUT
- - DEVICE_TYPE_COMPOSITE_OUTPUT
- - DEVICE_TYPE_DUAL_CHANNEL
- - DEVICE_TYPE_LVDS_SIGNALING
- - DEVICE_TYPE_TMDS_DVI_SIGNALING
- - DEVICE_TYPE_VIDEO_SIGNALING
- - DEVICE_TYPE_ANALOG_OUTPUT
-
-It's possible we've added these just as a sanity check for broken VBTs
-more than anything. I guess I'd see if actual problems arise.
-
-Bottom line, I think the functional changes matter only for VBTs with
-bogus data.
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 >
 > dvo_port_to_port() doesn't know about DSI so we won't get into
 > any kind of "is port B HDMI or DSI or both?" conundrum, which
 > could otherwise happen on VLV/CHV due to DSI ports living in a
 > separate world from the other digital ports.
+
+This is also very subtle! But it does somewhat nicely dodge the whole
+question, and moves things forward.
+
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
