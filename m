@@ -1,63 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3F534899DB
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:25:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 893344899D2
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:24:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80D30113B00;
-	Mon, 10 Jan 2022 13:25:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29352113F6F;
+	Mon, 10 Jan 2022 13:24:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0047D10F8FA;
- Wed, 22 Dec 2021 09:06:06 +0000 (UTC)
-Received: by mail-wr1-x435.google.com with SMTP id v7so3408910wrv.12;
- Wed, 22 Dec 2021 01:06:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=3w0cyRxbnflG1Lzaa+D9LFgBBXj2WLi8B2+0IaB0cco=;
- b=NEDNLzUZDalAufNqiXzyuBQjnHZxUNBoilJQwQfvSmQgK0oXmC8vKCNkZDGX7QCj8f
- xtZzyOs2a4ZO48mM3oad8CfwltMMFIcPiw9yaL8xg/9DpqRIV3FNDYB0GPJABPvceZxx
- kb+Svls2Iyso/lECdtqN+cvpmhawKQYVVZBpiMmFxjnQmU2NcVbyHJ7NupEKBwKFI3ho
- D613SYOBjc53L3M2O+EvZ0JjMLv4xGMQSBGRP/udeR4ro3C7u0wcSuBmhIeGYE9Ll4AG
- aluM0K2Z0cWEqEmiUFyd6NsKVRlaxKgjp7izy4Q/4SvDFUhBRVosqYT/SgjFJ8S7hF33
- 7VHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=3w0cyRxbnflG1Lzaa+D9LFgBBXj2WLi8B2+0IaB0cco=;
- b=HvkD+XxdyNAH94a9S+U3d9LQB7j1iO9Zuwo2NvrvmjHPWtNpiIhLhu7Cu2g8BLbny/
- As4lPe0IbEGWtZ3RXUYVsfvHaI1rcMTRNLImsGcT1FTxEshQM3m/z9mMxwFGwHFKfJ3n
- s5sfG4SF8Wtb62DQF/+afOAXcVcjKckXvtm/K4V3Xj6eS1j09nfIRpMcc58WM7rcTvRm
- aFznAuzgPvhe/OfcTc8whm9c198G0cZ6CqNUQT4WC5yIEcKOYDXTIoNl5E+EF0+z4s4l
- 8awDkeuMoIk1X1bpkAiXRRqBFI7A64wQFoFANbm+qAuxo11RpMsyUIDpuD3veBtzZZEM
- /zjw==
-X-Gm-Message-State: AOAM530XVdo67hPHSWwahZVhBUy7DkBu5jzhDOzHMTw/t7IaMOI63ggu
- 7o1fEj0pgbRdkalELBXdhLE=
-X-Google-Smtp-Source: ABdhPJwXgYqNw9Ycsv3CDZ5xTjRbry7kIK14E/x21CpPObe+VU0LvZpNi+zwa4CuFTHChyhAaxTF8Q==
-X-Received: by 2002:a5d:51c9:: with SMTP id n9mr1419745wrv.694.1640163965465; 
- Wed, 22 Dec 2021 01:06:05 -0800 (PST)
-Received: from localhost.localdomain ([217.113.240.86])
- by smtp.gmail.com with ESMTPSA id a22sm1139775wme.19.2021.12.22.01.06.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 22 Dec 2021 01:06:05 -0800 (PST)
-From: =?UTF-8?q?Jos=C3=A9=20Exp=C3=B3sito?= <jose.exposito89@gmail.com>
-To: contact@emersion.fr
-Date: Wed, 22 Dec 2021 10:05:52 +0100
-Message-Id: <20211222090552.25972-7-jose.exposito89@gmail.com>
+X-Greylist: delayed 403 seconds by postgrey-1.36 at gabe;
+ Thu, 23 Dec 2021 03:49:31 UTC
+Received: from zg8tmty1ljiyny4xntqumjca.icoremail.net
+ (zg8tmty1ljiyny4xntqumjca.icoremail.net [165.227.154.27])
+ by gabe.freedesktop.org (Postfix) with SMTP id AD2ED10E26A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Dec 2021 03:49:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fudan.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
+ Message-Id:MIME-Version:Content-Transfer-Encoding; bh=BMyBRwvhGy
+ luiRrlY86sBHaPYG7tA6Ci8GsbTDeggR0=; b=VqpLZHizDwmZztJ2SuqDojQVfS
+ M9MEieTjUPfnKc6e/0lrLekaEYWztnpjsK7xs0oCFQqht+ORbfQU75G3Zh/iXHNR
+ me9LWNSAO+oQtK6H2+Q+83b6EQCZjhuhZTb2yE/+ygn7nxrBQ7GO65HuLTN9YbmU
+ P23gLXjKj+Kx9Tyco=
+Received: from localhost.localdomain (unknown [10.102.225.147])
+ by app2 (Coremail) with SMTP id XQUFCgDHzob378NhybUSAA--.1652S4;
+ Thu, 23 Dec 2021 11:42:12 +0800 (CST)
+From: Xin Xiong <xiongx18@fudan.edu.cn>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org
+Date: Thu, 23 Dec 2021 11:39:49 +0800
+Message-Id: <20211223033948.5208-1-xiongx18@fudan.edu.cn>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211222090552.25972-1-jose.exposito89@gmail.com>
-References: <20211222090552.25972-1-jose.exposito89@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: XQUFCgDHzob378NhybUSAA--.1652S4
+X-Coremail-Antispam: 1UD129KBjvJXoW7ZryUGF45JFW7Kw1UWw4UArb_yoW8JFykp3
+ y3ZFy8CrZ5tF17ta1xJFnFvasxAay3WFy8G39rGwsxAr1DZF18tFWS9Fy3AryUGryfJa4S
+ yF92kFy5WFy5AF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9K14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4U
+ JVW0owA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+ Cq3wAac4AC62xK8xCEY4vEwIxC4wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+ 0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr
+ 1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IE
+ rcIFxwACI402YVCY1x02628vn2kIc2xKxwCY02Avz4vE-syl42xK82IYc2Ij64vIr41l4I
+ 8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
+ xVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
+ AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
+ cIk0rVWrJr0_WFyUJwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14
+ v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUOrcfUUUUU
+X-CM-SenderInfo: arytiiqsuqiimz6i3vldqovvfxof0/1tbiAQ4EEFKp456+1QAAs2
 X-Mailman-Approved-At: Mon, 10 Jan 2022 13:24:14 +0000
-Subject: [Intel-gfx] [PATCH v2 6/6] drm/stm: ltdc: Drop format_mod_supported
- function
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: fix potential refcnt issue
+ of a dma_buf object
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,57 +72,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, alexandre.torgue@foss.st.com, stefan@agner.ch,
- benjamin.gaignard@linaro.org, festevam@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com, marex@denx.de, linux-imx@nxp.com,
- intel-gfx@lists.freedesktop.org, tzimmermann@suse.de, s.hauer@pengutronix.de,
- mripard@kernel.org, kernel@pengutronix.de,
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- yannick.fertre@foss.st.com, linux-kernel@vger.kernel.org,
- philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
- dmitry.baryshkov@linaro.org,
- =?UTF-8?q?Jos=C3=A9=20Exp=C3=B3sito?= <jose.exposito89@gmail.com>,
- shawnguo@kernel.org
+Cc: Xin Tan <tanxin.ctf@gmail.com>, yuanxzhang@fudan.edu.cn,
+ Xiyu Yang <xiyuyang19@fudan.edu.cn>, Xin Xiong <xiongx18@fudan.edu.cn>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The "drm_plane_funcs.format_mod_supported" can be removed in favor of
-the default implementation.
+This issue happens in an error path of igt_dmabuf_export_vmap(). When
+dma_buf_vmap() succeeds and memchr_inv() returns nonzero, the function
+forgets to decrement `vmapping_counter` of the dma_buf object, which
+may result in refcount leaks.
 
-Signed-off-by: José Expósito <jose.exposito89@gmail.com>
+Fix it by calling dma_buf_vunmap() under label `out_dma_map` in
+certain error path.
+
+Signed-off-by: Xin Xiong <xiongx18@fudan.edu.cn>
+Signed-off-by: Xiyu Yang <xiyuyang19@fudan.edu.cn>
+Signed-off-by: Xin Tan <tanxin.ctf@gmail.com>
 ---
- drivers/gpu/drm/stm/ltdc.c | 11 -----------
- 1 file changed, 11 deletions(-)
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
-index dbdee954692a..ef909e50f0e4 100644
---- a/drivers/gpu/drm/stm/ltdc.c
-+++ b/drivers/gpu/drm/stm/ltdc.c
-@@ -925,16 +925,6 @@ static void ltdc_plane_atomic_print_state(struct drm_printer *p,
- 	fpsi->counter = 0;
- }
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+index 4a6bb64c3..b24bc506f 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+@@ -428,12 +428,14 @@ static int igt_dmabuf_export_vmap(void *arg)
+ 	if (memchr_inv(ptr, 0, dmabuf->size)) {
+ 		pr_err("Exported object not initialiased to zero!\n");
+ 		err = -EINVAL;
+-		goto out;
++		goto out_dma_map;
+ 	}
  
--static bool ltdc_plane_format_mod_supported(struct drm_plane *plane,
--					    u32 format,
--					    u64 modifier)
--{
--	if (modifier == DRM_FORMAT_MOD_LINEAR)
--		return true;
--
--	return false;
--}
--
- static const struct drm_plane_funcs ltdc_plane_funcs = {
- 	.update_plane = drm_atomic_helper_update_plane,
- 	.disable_plane = drm_atomic_helper_disable_plane,
-@@ -943,7 +933,6 @@ static const struct drm_plane_funcs ltdc_plane_funcs = {
- 	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
- 	.atomic_destroy_state = drm_atomic_helper_plane_destroy_state,
- 	.atomic_print_state = ltdc_plane_atomic_print_state,
--	.format_mod_supported = ltdc_plane_format_mod_supported,
- };
+ 	memset(ptr, 0xc5, dmabuf->size);
  
- static const struct drm_plane_helper_funcs ltdc_plane_helper_funcs = {
+ 	err = 0;
++
++out_dma_map:
+ 	dma_buf_vunmap(dmabuf, &map);
+ out:
+ 	dma_buf_put(dmabuf);
 -- 
 2.25.1
 
