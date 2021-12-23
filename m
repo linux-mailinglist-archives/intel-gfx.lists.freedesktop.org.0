@@ -2,56 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7A8C47E0D2
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Dec 2021 10:23:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9122247E0E6
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Dec 2021 10:36:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2869410E2C0;
-	Thu, 23 Dec 2021 09:23:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9C7E10E2B6;
+	Thu, 23 Dec 2021 09:36:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9869710E2BE;
- Thu, 23 Dec 2021 09:23:46 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 0A6F81F389;
- Thu, 23 Dec 2021 09:23:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1640251425; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=rRda4wC7PtKx+OxfU4Jyov9t9b3pClJhNncskJ65VH4=;
- b=CziLYkpMm3rRNbNzKxcMYGxtGsZWkK3pAhF072SiKgj9XL+WZnv6FVbIjaASFrYz/AP6vy
- /HpNpuLb+nkK5MbEh0cz+YlSLbhZzzLhle6by0+iQ8OWXp87DxbW3kDlzXfeasGzI1mI9C
- fmXzO5CmY3x3cYc5KjCUHrX7QQ2Ecyk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1640251425;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=rRda4wC7PtKx+OxfU4Jyov9t9b3pClJhNncskJ65VH4=;
- b=BidGwZ2O8LzGLgDdrkGcgY8g7EwZ7DQuq/thedSoAHDgFEWgjmyNH/+1H0SnCWEK7uPtvx
- K/b9S3tPvD9ShaAA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id AC9B413E5F;
- Thu, 23 Dec 2021 09:23:44 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id 9RD7KCBAxGFfegAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 23 Dec 2021 09:23:44 +0000
-Date: Thu, 23 Dec 2021 10:23:43 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YcRAH8lYbsoSCeY9@linux-uq9g.fritz.box>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 02E3010E2DA;
+ Thu, 23 Dec 2021 09:36:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DBF2EA9A42;
+ Thu, 23 Dec 2021 09:36:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0859116631736235807=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Date: Thu, 23 Dec 2021 09:36:44 -0000
+Message-ID: <164025220459.20442.10158465299642777867@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20211221202902.1395588-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20211221202902.1395588-1-John.C.Harrison@Intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgVXBk?=
+ =?utf-8?q?ate_to_GuC_version_69=2E0=2E3_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,73 +40,226 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+--===============0859116631736235807==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-here's the PR for drm-misc-next-fixes for what will become Linux 5.17.
-There are several fixes for vmwgfx's recent conversion to GEM and a fix
-for bridge DT bindinds. Besides the fixes, a backmerge updated
-drm-misc-next-fixes to the state of drm-next before the feature freeze.
+== Series Details ==
 
-Best regards
-Thomas
+Series: Update to GuC version 69.0.3 (rev3)
+URL   : https://patchwork.freedesktop.org/series/98249/
+State : success
 
-drm-misc-next-fixes-2021-12-23:
-Short summary of fixes pull:
+== Summary ==
 
- * bridge/lvds: Fix DT bindings
- * vmwgfx: Fix several issues with the recent conversion to GEM
-The following changes since commit 1c405ca11bf563de1725e5ecfb4a74ee289d2ee9:
+CI Bug Log - changes from CI_DRM_11032 -> Patchwork_21902
+====================================================
 
-  Merge tag 'mediatek-drm-next-5.17' of https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux into drm-next (2021-12-17 16:16:16 +1000)
+Summary
+-------
 
-are available in the Git repository at:
+  **SUCCESS**
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2021-12-23
+  No regressions found.
 
-for you to fetch changes up to 5da8b49de472c1da8658466d4f63ef8d9251a819:
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/index.html
 
-  dt-bindings: display: bridge: lvds-codec: Fix duplicate key (2021-12-22 14:02:04 -0400)
+Participating hosts (44 -> 36)
+------------------------------
 
-----------------------------------------------------------------
-Short summary of fixes pull:
+  Additional (1): fi-kbl-soraka 
+  Missing    (9): fi-bdw-5557u bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-bsw-cyan bat-adlp-6 bat-adlp-4 bat-jsl-2 fi-bdw-samus 
 
- * bridge/lvds: Fix DT bindings
- * vmwgfx: Fix several issues with the recent conversion to GEM
+Known issues
+------------
 
-----------------------------------------------------------------
-Thierry Reding (1):
-      dt-bindings: display: bridge: lvds-codec: Fix duplicate key
+  Here are the changes found in Patchwork_21902 that come from known issues:
 
-Thomas Zimmermann (1):
-      Merge drm/drm-next into drm-misc-next-fixes
+### CI changes ###
 
-Zack Rusin (4):
-      drm/vmwgfx: Fix a size_t/long int format specifier mismatch
-      drm/vmwgfx: Remove explicit transparent hugepages support
-      drm/vmwgfx: Remove unused compile options
-      drm/vmwgfx: Fix possible usage of an uninitialized variable
+#### Issues hit ####
 
- .../bindings/display/bridge/lvds-codec.yaml        |  43 ++---
- drivers/gpu/drm/vmwgfx/Makefile                    |   1 -
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.c                 |   8 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c                |   8 -
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |   8 -
- drivers/gpu/drm/vmwgfx/vmwgfx_gem.c                |   2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_mob.c                |  12 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c               |   4 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_thp.c                | 184 ---------------------
- 9 files changed, 33 insertions(+), 237 deletions(-)
- delete mode 100644 drivers/gpu/drm/vmwgfx/vmwgfx_thp.c
+  * boot:
+    - fi-kbl-soraka:      NOTRUN -> [FAIL][1] ([i915#4337])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-kbl-soraka/boot.html
 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-skl-6600u:       [PASS][3] -> [FAIL][4] ([i915#4547])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11032/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][5] ([i915#4312])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-skl-6600u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-hsw-4770:        [SKIP][6] ([fdo#109271]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11032/fi-hsw-4770/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-hsw-4770/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][8] ([i915#3921]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11032/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][10] ([i915#4269]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11032/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4337]: https://gitlab.freedesktop.org/drm/intel/issues/4337
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11032 -> Patchwork_21902
+
+  CI-20190529: 20190529
+  CI_DRM_11032: e9aa5feec24dea1306e2cc7cd3f8ff130b750ab2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6317: 704a1a42db2fad72c382e95c9da200b5bde5e5fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21902: 56e3ad6fdb0901e16f190e0d60d664d1a6a59373 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+56e3ad6fdb09 drm/i915/guc: Improve GuC loading status check/error reports
+4c7171575588 drm/i915/guc: Update to GuC version 69.0.3
+7c6acdb75fd4 drm/i915/guc: Temporarily bump the GuC load timeout
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/index.html
+
+--===============0859116631736235807==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Update to GuC version 69.0.3 (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98249/">https://patchwork.freedesktop.org/series/98249/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11032 -&gt; Patchwork_21902</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/index.html</p>
+<h2>Participating hosts (44 -&gt; 36)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (9): fi-bdw-5557u bat-dg1-6 fi-tgl-u2 bat-dg1-5 fi-bsw-cyan bat-adlp-6 bat-adlp-4 bat-jsl-2 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21902 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-kbl-soraka/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4337">i915#4337</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11032/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11032/fi-hsw-4770/igt@i915_pm_rpm@basic-pci-d3-state.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-hsw-4770/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11032/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11032/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21902/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11032 -&gt; Patchwork_21902</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11032: e9aa5feec24dea1306e2cc7cd3f8ff130b750ab2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6317: 704a1a42db2fad72c382e95c9da200b5bde5e5fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21902: 56e3ad6fdb0901e16f190e0d60d664d1a6a59373 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>56e3ad6fdb09 drm/i915/guc: Improve GuC loading status check/error reports<br />
+4c7171575588 drm/i915/guc: Update to GuC version 69.0.3<br />
+7c6acdb75fd4 drm/i915/guc: Temporarily bump the GuC load timeout</p>
+
+</body>
+</html>
+
+--===============0859116631736235807==--
