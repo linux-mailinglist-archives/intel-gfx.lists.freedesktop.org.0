@@ -1,33 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9519F47E0B7
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Dec 2021 10:08:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7A8C47E0D2
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Dec 2021 10:23:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC0F110E2AA;
-	Thu, 23 Dec 2021 09:08:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2869410E2C0;
+	Thu, 23 Dec 2021 09:23:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B8C4E10E2AB;
- Thu, 23 Dec 2021 09:08:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ABB25A00A0;
- Thu, 23 Dec 2021 09:08:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9869710E2BE;
+ Thu, 23 Dec 2021 09:23:46 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 0A6F81F389;
+ Thu, 23 Dec 2021 09:23:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1640251425; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=rRda4wC7PtKx+OxfU4Jyov9t9b3pClJhNncskJ65VH4=;
+ b=CziLYkpMm3rRNbNzKxcMYGxtGsZWkK3pAhF072SiKgj9XL+WZnv6FVbIjaASFrYz/AP6vy
+ /HpNpuLb+nkK5MbEh0cz+YlSLbhZzzLhle6by0+iQ8OWXp87DxbW3kDlzXfeasGzI1mI9C
+ fmXzO5CmY3x3cYc5KjCUHrX7QQ2Ecyk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1640251425;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=rRda4wC7PtKx+OxfU4Jyov9t9b3pClJhNncskJ65VH4=;
+ b=BidGwZ2O8LzGLgDdrkGcgY8g7EwZ7DQuq/thedSoAHDgFEWgjmyNH/+1H0SnCWEK7uPtvx
+ K/b9S3tPvD9ShaAA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id AC9B413E5F;
+ Thu, 23 Dec 2021 09:23:44 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id 9RD7KCBAxGFfegAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 23 Dec 2021 09:23:44 +0000
+Date: Thu, 23 Dec 2021 10:23:43 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YcRAH8lYbsoSCeY9@linux-uq9g.fritz.box>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Date: Thu, 23 Dec 2021 09:08:35 -0000
-Message-ID: <164025051570.20443.2213756481123435628@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211221202902.1395588-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20211221202902.1395588-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Update_to_GuC_version_69=2E0=2E3_=28rev3=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +64,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave and Daniel,
 
-Series: Update to GuC version 69.0.3 (rev3)
-URL   : https://patchwork.freedesktop.org/series/98249/
-State : warning
+here's the PR for drm-misc-next-fixes for what will become Linux 5.17.
+There are several fixes for vmwgfx's recent conversion to GEM and a fix
+for bridge DT bindinds. Besides the fixes, a backmerge updated
+drm-misc-next-fixes to the state of drm-next before the feature freeze.
 
-== Summary ==
+Best regards
+Thomas
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+drm-misc-next-fixes-2021-12-23:
+Short summary of fixes pull:
 
+ * bridge/lvds: Fix DT bindings
+ * vmwgfx: Fix several issues with the recent conversion to GEM
+The following changes since commit 1c405ca11bf563de1725e5ecfb4a74ee289d2ee9:
 
+  Merge tag 'mediatek-drm-next-5.17' of https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux into drm-next (2021-12-17 16:16:16 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2021-12-23
+
+for you to fetch changes up to 5da8b49de472c1da8658466d4f63ef8d9251a819:
+
+  dt-bindings: display: bridge: lvds-codec: Fix duplicate key (2021-12-22 14:02:04 -0400)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+ * bridge/lvds: Fix DT bindings
+ * vmwgfx: Fix several issues with the recent conversion to GEM
+
+----------------------------------------------------------------
+Thierry Reding (1):
+      dt-bindings: display: bridge: lvds-codec: Fix duplicate key
+
+Thomas Zimmermann (1):
+      Merge drm/drm-next into drm-misc-next-fixes
+
+Zack Rusin (4):
+      drm/vmwgfx: Fix a size_t/long int format specifier mismatch
+      drm/vmwgfx: Remove explicit transparent hugepages support
+      drm/vmwgfx: Remove unused compile options
+      drm/vmwgfx: Fix possible usage of an uninitialized variable
+
+ .../bindings/display/bridge/lvds-codec.yaml        |  43 ++---
+ drivers/gpu/drm/vmwgfx/Makefile                    |   1 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_bo.c                 |   8 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c                |   8 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |   8 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_gem.c                |   2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_mob.c                |  12 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c               |   4 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_thp.c                | 184 ---------------------
+ 9 files changed, 33 insertions(+), 237 deletions(-)
+ delete mode 100644 drivers/gpu/drm/vmwgfx/vmwgfx_thp.c
+
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
