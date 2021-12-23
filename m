@@ -2,64 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 893344899D2
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:24:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27ADC4899C7
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:24:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29352113F6F;
-	Mon, 10 Jan 2022 13:24:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3738314B430;
+	Mon, 10 Jan 2022 13:24:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 403 seconds by postgrey-1.36 at gabe;
- Thu, 23 Dec 2021 03:49:31 UTC
-Received: from zg8tmty1ljiyny4xntqumjca.icoremail.net
- (zg8tmty1ljiyny4xntqumjca.icoremail.net [165.227.154.27])
- by gabe.freedesktop.org (Postfix) with SMTP id AD2ED10E26A
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Dec 2021 03:49:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fudan.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
- Message-Id:MIME-Version:Content-Transfer-Encoding; bh=BMyBRwvhGy
- luiRrlY86sBHaPYG7tA6Ci8GsbTDeggR0=; b=VqpLZHizDwmZztJ2SuqDojQVfS
- M9MEieTjUPfnKc6e/0lrLekaEYWztnpjsK7xs0oCFQqht+ORbfQU75G3Zh/iXHNR
- me9LWNSAO+oQtK6H2+Q+83b6EQCZjhuhZTb2yE/+ygn7nxrBQ7GO65HuLTN9YbmU
- P23gLXjKj+Kx9Tyco=
-Received: from localhost.localdomain (unknown [10.102.225.147])
- by app2 (Coremail) with SMTP id XQUFCgDHzob378NhybUSAA--.1652S4;
- Thu, 23 Dec 2021 11:42:12 +0800 (CST)
-From: Xin Xiong <xiongx18@fudan.edu.cn>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org
-Date: Thu, 23 Dec 2021 11:39:49 +0800
-Message-Id: <20211223033948.5208-1-xiongx18@fudan.edu.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
+ [IPv6:2a00:1450:4864:20::32d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1BD910E133;
+ Thu, 23 Dec 2021 16:57:13 +0000 (UTC)
+Received: by mail-wm1-x32d.google.com with SMTP id
+ n10-20020a7bc5ca000000b00345c520d38eso3218547wmk.1; 
+ Thu, 23 Dec 2021 08:57:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=x19kNH14ExPsQ28C6SlBYVGa8akiQhXJZ1zBC3AV6iQ=;
+ b=M227YuJRwIPX/CPb7Lg+WOaaHsKzAMYXB/Da0yMQGvxGa0saRVV+di4RqWZbiRK50Q
+ trtNNAA5U+lBSeLSDkBTYNHzvTkoRut7yqBa7TwaK2JiNuabxmv5BOwtUV4KRi5pR2ah
+ +So40Cr4Iob4Tt6iSivBaTYonKePYDmJoO96G2315qHEemCOzvUnpTMv67mZ828dG624
+ KlLSAQZAPCK0t6oW5/w0P/ratE8Q/gOGGcfxxVQgmWw9mxWxwPnvkTDBy6VlAIJ/qwC5
+ FqwkC9EauN7+/9F2aBN7XWx0UBUkBy4Fy8msCrRtBKZG4HbI823JZ/pJxnGPdlZrGi+r
+ XB+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=x19kNH14ExPsQ28C6SlBYVGa8akiQhXJZ1zBC3AV6iQ=;
+ b=bNT20AVbejhPM5A/f4FGUYLg/C64ITOoZujhpbmJDat7zxQLjS1WIKx++OfKB9nzTQ
+ H81N2UnPTqNUP+Tw7wR/LyrftANRfk+YGgHphJJKTY5XRz6t1PX2nu9l/h/3D6HQiDWn
+ CkbHneOu0BTtDictpN+8c73GD8eOfsjHZVAuvjLkEH8ezAcNQZ7s/+bUnJ83JF2NIC5U
+ bwLguiHD/JamY30OZWEJnG8hHkWeChUrBVLwsfqC1Xwmqg9SNkVCtEO31cjvROtiE3Zu
+ NMhlqqgFx7TkUFJK70IEASCRvsqfYnwmiF8xhJtIx4F/xjKZYWES+G1HI9NmxTGWMY0E
+ bmug==
+X-Gm-Message-State: AOAM533VePLOzssk6Y6JEzINFLO/PU/pyCTjTwTRpWzAcaJ3MadFPG66
+ oeg9BE3vkVf1B5Yqf43R3LA=
+X-Google-Smtp-Source: ABdhPJx0hYSOm4vDZR/gdV0QEOZLF2E0+HdDedp9MlR3fSt42MKgNwt3bY/4NeUgqZTjBr+NJEe+5g==
+X-Received: by 2002:a1c:1d0d:: with SMTP id d13mr2448580wmd.78.1640278632133; 
+ Thu, 23 Dec 2021 08:57:12 -0800 (PST)
+Received: from elementary ([217.113.240.86])
+ by smtp.gmail.com with ESMTPSA id u23sm4893233wmc.7.2021.12.23.08.57.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 23 Dec 2021 08:57:11 -0800 (PST)
+Date: Thu, 23 Dec 2021 17:57:06 +0100
+From: =?iso-8859-1?Q?Jos=E9_Exp=F3sito?= <jose.exposito89@gmail.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20211223165706.GA11019@elementary>
+References: <20211222090552.25972-1-jose.exposito89@gmail.com>
+ <20211222090552.25972-2-jose.exposito89@gmail.com>
+ <YcRkB7uWyt4EbcZm@intel.com>
+ <PIq2EEI7giz2rOuv2cfySbdxwht8AaCye140X5C7NejjXT6kD67E3E28uvg4Ebhob12EJUBtAxGPFNOgZwSWLYEfMtdhRNt3mR8bBGBJmU4=@emersion.fr>
+ <YcSPt+81fuzteeCu@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: XQUFCgDHzob378NhybUSAA--.1652S4
-X-Coremail-Antispam: 1UD129KBjvJXoW7ZryUGF45JFW7Kw1UWw4UArb_yoW8JFykp3
- y3ZFy8CrZ5tF17ta1xJFnFvasxAay3WFy8G39rGwsxAr1DZF18tFWS9Fy3AryUGryfJa4S
- yF92kFy5WFy5AF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9K14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4U
- JVW0owA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
- Cq3wAac4AC62xK8xCEY4vEwIxC4wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
- 0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr
- 1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IE
- rcIFxwACI402YVCY1x02628vn2kIc2xKxwCY02Avz4vE-syl42xK82IYc2Ij64vIr41l4I
- 8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
- xVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
- AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
- cIk0rVWrJr0_WFyUJwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14
- v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUOrcfUUUUU
-X-CM-SenderInfo: arytiiqsuqiimz6i3vldqovvfxof0/1tbiAQ4EEFKp456+1QAAs2
+In-Reply-To: <YcSPt+81fuzteeCu@intel.com>
 X-Mailman-Approved-At: Mon, 10 Jan 2022 13:24:14 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: fix potential refcnt issue
- of a dma_buf object
+Subject: Re: [Intel-gfx] 
+ =?iso-8859-1?q?=5BPATCH_v2_1/6=5D_drm/plane=3A_Make_?=
+ =?iso-8859-1?q?format=5Fmod=5Fsupported_truly=A0optional?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,46 +77,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xin Tan <tanxin.ctf@gmail.com>, yuanxzhang@fudan.edu.cn,
- Xiyu Yang <xiyuyang19@fudan.edu.cn>, Xin Xiong <xiongx18@fudan.edu.cn>
+Cc: marex@denx.de, mcoquelin.stm32@gmail.com, kernel@pengutronix.de,
+ s.hauer@pengutronix.de, tzimmermann@suse.de, airlied@linux.ie,
+ Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
+ alexandre.torgue@foss.st.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, yannick.fertre@foss.st.com, linux-imx@nxp.com,
+ benjamin.gaignard@linaro.org, dmitry.baryshkov@linaro.org, shawnguo@kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org,
+ philippe.cornu@foss.st.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This issue happens in an error path of igt_dmabuf_export_vmap(). When
-dma_buf_vmap() succeeds and memchr_inv() returns nonzero, the function
-forgets to decrement `vmapping_counter` of the dma_buf object, which
-may result in refcount leaks.
+Thanks for your reviews :) I'll wait a couple of days to see
+if somebody else wants to comment and I'll send v3 adding the
+reviewed by tags and fixing the compiler warning.
 
-Fix it by calling dma_buf_vunmap() under label `out_dma_map` in
-certain error path.
+On Thu, Dec 23, 2021 at 05:03:19PM +0200, Ville Syrjälä wrote:
+> Another related thing that might be worth checking is whether
+> drivers generally do anything to validate the modifiers in
+> the addfb2 ioctl. Looks like i915 and amdgpu are the only ones
+> to use drm_any_plane_has_format() for that, so all the other
+> drivers must either be checking it manually (or they're just
+> potentially broken when handed unexpected modifiers by evil
+> userspace).
 
-Signed-off-by: Xin Xiong <xiongx18@fudan.edu.cn>
-Signed-off-by: Xiyu Yang <xiyuyang19@fudan.edu.cn>
-Signed-off-by: Xin Tan <tanxin.ctf@gmail.com>
----
- drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+I'm pretty new to this subsystem, so please correct me if I'm 
+wrong, but after looking into a couple of drivers I think you
+are right, this check is missing in some drivers.
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
-index 4a6bb64c3..b24bc506f 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
-@@ -428,12 +428,14 @@ static int igt_dmabuf_export_vmap(void *arg)
- 	if (memchr_inv(ptr, 0, dmabuf->size)) {
- 		pr_err("Exported object not initialiased to zero!\n");
- 		err = -EINVAL;
--		goto out;
-+		goto out_dma_map;
- 	}
- 
- 	memset(ptr, 0xc5, dmabuf->size);
- 
- 	err = 0;
-+
-+out_dma_map:
- 	dma_buf_vunmap(dmabuf, &map);
- out:
- 	dma_buf_put(dmabuf);
--- 
-2.25.1
+This possible bug reminds me of this ToDo task [1]:
 
+> Many drivers wrap drm_gem_fb_create() only to check for valid formats. For
+> atomic drivers we could check for valid formats by calling
+> drm_plane_check_pixel_format() against all planes, and pass if any plane
+> supports the format. For non-atomic that's not possible since like the format
+> list for the primary plane is fake and we'd therefor reject valid formats.
+
+I had a look to the Raspberry Pi driver (mainly because I'm trying
+to understand it) and it looks like the check is missing. Other
+drivers, for example Mali, are checking the format modifier manually.
+
+I'll try to do some actual testing during Christmas and see
+how it goes.
+
+José Expósito
+
+[1] https://www.kernel.org/doc/html/latest/gpu/todo.html#drm-framebuffer-funcs-and-drm-mode-config-funcs-fb-create-cleanup
