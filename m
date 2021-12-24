@@ -2,154 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DC6547E917
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Dec 2021 22:32:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 241A647EEA8
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Dec 2021 12:57:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80A1010E445;
-	Thu, 23 Dec 2021 21:32:27 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F10E310E444;
- Thu, 23 Dec 2021 21:32:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3366710E39C;
+	Fri, 24 Dec 2021 11:57:11 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E916510E39C;
+ Fri, 24 Dec 2021 11:57:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640295146; x=1671831146;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ssQjsiIWyR/G55QU+HVclI8/9Tw4Jh5seW8v83hYEzI=;
- b=TMHigFbKIrdTRUGuh0wg+U/UNFpAYCikbJmL9FdLID2JeNgDbdUFAzv8
- lYG3UGN+miMwuFNYoXiirE4KoM+VUrIbei/XTbbUBbWx3UlnB4wpkNYVZ
- EgB6FcYFZpjeyuM0KeANIYWJFQaftINq63rg+ghr2ITrBCt5qtN7Infin
- 2+IGcBtb/zvJR4KSLyTQImAnIqTKosFfRC63FehT3It4oipRIF2tlk4o+
- uLSaUSa9TDmiwh7nSKlh6kk6HETh7Hl5HH2e9u2fJ2I+b7aR6Z7i1cb02
- YD0KTSUxHIO+z5pvcpJq/NZVB5WpDRndGxSrHDa7kSYbYXN595QHo+of7 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10207"; a="240842860"
-X-IronPort-AV: E=Sophos;i="5.88,230,1635231600"; d="scan'208";a="240842860"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2021 13:32:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,230,1635231600"; d="scan'208";a="759305332"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by fmsmga005.fm.intel.com with ESMTP; 23 Dec 2021 13:32:25 -0800
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 23 Dec 2021 13:32:24 -0800
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 23 Dec 2021 13:32:23 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20 via Frontend Transport; Thu, 23 Dec 2021 13:32:23 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.104)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Thu, 23 Dec 2021 13:32:23 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SyBrW98qTUrr8dHIItYNTb+3fZc2ibK7MExGQ3PKVvUvHfpMNFXzxI1IEFQI0/HvYBi5HOIpY2IIMWuf10q2N3J1bhQnSwPqz7WsMH4f/QhuewBZj1/aNhIW5QX3qYLWor0u5iuRyHQwO9/wKg3CCs8laoJh2mVTeVJNCX/PT1VbfvjZSwiYn4l2tDdR92vw0RXwUEQOSe/skO6gocxH9mOrKJrouBecfWFTVdyEUBiq/eqUTysrNHyXz06PeYhoV/NeNqkEDrK4+l9pSHN+lE/1SVw/zpVWKGdM9pgVx+R2Ol7HdmMOagNg+VgnHHVprTEM0i++FtbVZkMAOeAaYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UN8u9C1U72z0VvfkXyZZE0bPT54mMupkmhPydJBwQnc=;
- b=FqrFlQnAzsFWulCNREDlJTRkBahc1KP5HHGwuLtElDPo0M7buIul4JW3Be7kdRQnDDGbshgeIcsJwF0EzCJtYtqP/HN9CG8OOePb1l+x0gxArbMeQMDioO1T3fM7bf/g+iHRW0+JOEmCoIED7qBn1rSMPcXlVvVqZiQxdGEuZzSveoqFieomuJIoJ60d1CXXRKkkFt0g+SdxK/zHc01caXA/VfSEOa5jrI0criEmHanlTOP2xSpCQCTDDBNF245T9iSACs1WeO/roJDA0RZJrBYKWQMzBArWELOruwjk4WVFym5nw9aBWotlveOD4ROO8Pxvl1xoeGJuFUI2wOMldw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN6PR11MB3908.namprd11.prod.outlook.com (2603:10b6:405:7d::13)
- by BN7PR11MB2724.namprd11.prod.outlook.com (2603:10b6:406:b3::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4823.18; Thu, 23 Dec
- 2021 21:32:21 +0000
-Received: from BN6PR11MB3908.namprd11.prod.outlook.com
- ([fe80::81a3:50a8:5c1f:f754]) by BN6PR11MB3908.namprd11.prod.outlook.com
- ([fe80::81a3:50a8:5c1f:f754%5]) with mapi id 15.20.4823.019; Thu, 23 Dec 2021
- 21:32:21 +0000
-Message-ID: <12f2247a-61d3-54d8-7018-77a8a906fea9@intel.com>
-Date: Thu, 23 Dec 2021 13:32:17 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.4.0
-Content-Language: en-GB
-To: Matthew Brost <matthew.brost@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
-References: <20211214195913.35735-1-matthew.brost@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20211214195913.35735-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR04CA0200.namprd04.prod.outlook.com
- (2603:10b6:303:86::25) To BN6PR11MB3908.namprd11.prod.outlook.com
- (2603:10b6:405:7d::13)
+ t=1640347029; x=1671883029;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=LxVz7M5AL6EhCB7v4ybLJncnuXrwzGaXS5gRd0wej/k=;
+ b=F+z4POblYOIP0FA0eHVEJPiAATj9QjFv+fuU8f4O8HH4ZCZYPevlgl4b
+ dN4+ykIFNJhC7IEZVqXvZQUYmevoJroutoLiN4EJVFkKLMYlra8G+kNdc
+ gcC27IHeQ72435I77FzlmNkd3ZLQL4cNcZ0qySIlK9JAO4UuVbe3ZdPxw
+ P+zy91T70Ankx4V8SLJniog0Acq2cok5DxuKxfcOv4PuXeMNQL9yLhVMb
+ qlon9NR+7htQ1ajFmEUX1q5w/66rHDmrqiRJPMRp09e2ckG8PMN/mT4SV
+ 6zcJNufnQwkUtSkp1DGm9wV7gew8ZO1ax013wZWZDlKyEzlnynZE+l0Xe g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10207"; a="304337165"
+X-IronPort-AV: E=Sophos;i="5.88,232,1635231600"; d="scan'208";a="304337165"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Dec 2021 03:57:09 -0800
+X-IronPort-AV: E=Sophos;i="5.88,232,1635231600"; d="scan'208";a="468824730"
+Received: from conorgex-mobl.ger.corp.intel.com (HELO [10.213.229.158])
+ ([10.213.229.158])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Dec 2021 03:57:08 -0800
+Message-ID: <d025bad6-da69-e51e-7bc7-3d65968d5d21@linux.intel.com>
+Date: Fri, 24 Dec 2021 11:57:04 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f16aa10c-49ed-43ea-f75e-08d9c65bb3bd
-X-MS-TrafficTypeDiagnostic: BN7PR11MB2724:EE_
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-Microsoft-Antispam-PRVS: <BN7PR11MB27248B82997D1297548BC698BD7E9@BN7PR11MB2724.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FH5rJC69OkRR57B/s1fTBVrAawx1VZr6Bt1xjE1+7dugRzmcN+0heKMxTI5n6VNOSSYPjVhA0y6FRU/2LXmm12IzxxIms1uyMp0HJ2af4bJTkwm9axPfnQwaKrBU0m3T7klvDbzfESTpOkPcGXxS4k3i7nnwPT4nA5xO5hgK1c2NUOH9TsoIjwdeeVwPUYBBVgKsWOcb0wkIDzi4VqciqWuidqG4Zt2PU88TQQ5GWl2xBlxZ7tWPEEs8G4Y9szZ4ZRAeYHlHet8XagZdE2lgAfxCZYt+U2wq9aVvwIhOhmHiG6qVfp8ZKh35tPBcmvmjfs06P654uYMoNt4/4jOZgzdKbN1eq+ZwdiAv2rpwM2Bk0bFvFh+hiTFDurz/kTzjbyxLq4hesl/rKUUy3xU2mrLXhzYM70kdpIrNZL4Yje4cJMj5bwCUX/ePCcjb2EMG/zfp8KXoBhML6LqzWsiUSnl/jF6pZBcou04Bq7S0iU+HuOMdEynl+EjiK8LK75MsQPcolD1sTOA/SApVVUVEjrvnK2tVupEJb9mrXMVoe7AXAgawGge6PF9kuAWcMufPe7mSlK8TNn0Xkio5CIvGk+5vQ1LzvplY++z88e/b3sroP/8oPfVJq9D1LWA9IkRrrigqyHOGL5Ac2P1ajM22W6Auea6IlFaBFPBCwM+BO+PJ5c2OgrL3fSXqZ0aaCfk9Jb0ZX5bpfq8kM/aDGSMuuJHwLxo90vZJ2egKFah8osI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN6PR11MB3908.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(366004)(316002)(31686004)(82960400001)(83380400001)(86362001)(450100002)(5660300002)(2906002)(6512007)(6486002)(6666004)(508600001)(107886003)(26005)(38100700002)(2616005)(8676002)(8936002)(66556008)(6506007)(186003)(4326008)(53546011)(31696002)(66946007)(36756003)(66476007)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?blpxWnlLam0xZHlBRHJWV2VXZVJzQkxSWGZVVmFCYVdVWUhZRVJOb0ZqK0JC?=
- =?utf-8?B?MzlIRnNSYVhyVkRoZmNuTnFFVGpoMDlKUm1rZ1ZYMHBFSm9jeHc0czBIWDNx?=
- =?utf-8?B?UzdZeHRDdXNYaytHV0dYQ2dVci9DSEw3RUZJaW5wTzdrNG1rbFpmM0N6d0RK?=
- =?utf-8?B?OEtMZW11M1Y2eS9SblIxOTNVdVlqa05NWDVlQ29MRUdwZzlPQkJKZ1U5NE9X?=
- =?utf-8?B?SnRuWXcwQkI3dm5maEJESDZjM1o3bDk1aVNncUF4ZVUxNnNHOEZBSzZrTnFD?=
- =?utf-8?B?bFNmLzJIdE54WVJCUDNOQk12MzNVQlFVL0Zqb1Uvc3lFL1Fuek9UZTU0b1pl?=
- =?utf-8?B?TVlhSjNKVVJGdnBGUjRsM2YxcWZ6VTlwaWxHQ2FUSWRFZ3J0cWRpRVVFSVN3?=
- =?utf-8?B?YUl1Qlc4MGRURE05VHhTY01OQXUvSEJFNDlhdlQwazBzN2NRb003UGhWalh0?=
- =?utf-8?B?cm9PclkySEJrT2pybk9jMDhRdk9zSVpTSHFYL2xxLyt1M21yK0ZFOThhT3dT?=
- =?utf-8?B?b3pKR2hwRmVXSXRlckwrdUJKV3IvOVZLZkFQb2FjeGlIdjdSVlprNU9kSGd0?=
- =?utf-8?B?Ly83a2t5VnpWV0RQSTFCcjRXdXQrWTdMRTVua0VrR2xBeHZsbGFNOGg2YVR1?=
- =?utf-8?B?VUtYSE5kVzh5ZEluK0hFRlg3UVhqa2Q4QUVsRmZqUk1SY0F0enZ1MVJneXg5?=
- =?utf-8?B?R3ZSOEYrRGlHL2JTZ05ZWXdoSENuVzNBTlBpWUR2UXljeitNQ2g3VXcrTzlK?=
- =?utf-8?B?bmRhVU56M21BaSt3WllvNnp0eE1TelMzMWQ5bG8ybGJlaVRPbFFyT2tZam02?=
- =?utf-8?B?WUV6RTZyTUNZOGVMWVdkWmRuZ1EzVEsydjNMZ05SY0RQV1VBaks4WG1qcHlo?=
- =?utf-8?B?Wm1ZMmRhVGNxamNWQ1NCSWt6aDRyS2dGOTRFM1lWYXpHNDJlM0dFRU5tMkNK?=
- =?utf-8?B?cjFsUzF3UmpNdXFFaEIrMlhZaTNJU253UnZQdElvTG5RclVaSXRRN1RIc25D?=
- =?utf-8?B?eHEyejV4NjZITElCN21IaDNtMlQ4Sm03RVo1V1MyQnY1UmgyTWhVNFZVTVZa?=
- =?utf-8?B?STFSY21yVkllNmJZK2FMV1dnSWFXZmx2aFhXRzQ4R0x3bXI2R2psb2dvS3lj?=
- =?utf-8?B?MThqTkFEWEZPa1g2d2JaZU9LR3hRb1orb2ZFM3ZSZjFPNTRrcURiNmh5Wld5?=
- =?utf-8?B?TW8rVndqS3EwQkRsM1l3Z1RDb0Qrb0JCbkhEQUFjY3JVY21UMkpvNmJGbVBX?=
- =?utf-8?B?QllaWE9nL0VORVc5ZjhkemlxQnV0UlBzR0ltVndTNnU2TXYwWm5QMXF5Z2ZX?=
- =?utf-8?B?bjR6anhFWG42Z1Zic3hDUzAxTDdUY3crTWNXdXg0SS9YZnJPbFFhVERGVVRz?=
- =?utf-8?B?aW9nM0ozelhGRzJSd1YrZDNsWHRzdEt1Q2VvYXJkUnpudWZkb2VPWkZyT0JS?=
- =?utf-8?B?c3YzTUgyMUF4NTZ0aS9UcTEwek9IVTJkcjdxMmMwVlpjd2Y2dnI0QWtiK3l6?=
- =?utf-8?B?eWtxanMrcWwwekpVTzQ0T1NHR3hXZGxhMGh6V1Jwa1h4OWlRUDFQWWs5bGFK?=
- =?utf-8?B?SFlOdFJKL2RJYmxWN1FZQTE4YUxka3hUMjl6Y0JPM0V1MFUzQUh3d2t6aVc3?=
- =?utf-8?B?bFdER1pzek1BVWo2SXFXTVlQa3R1ZVZDNDdwcVFPNldLUWVxV3l6eUxZcDRq?=
- =?utf-8?B?aGwvZmpaTkMzcFpJaEt6YURjT2VaS3JSRC8wZFRkUHduYUhlMS9nbTAvOHEv?=
- =?utf-8?B?UEp1bitnRmtDcnRDZUl5Z1dXa3d0c1ZVdGRTZk16ZVpFNitGandPSmRqMTRr?=
- =?utf-8?B?ejN2VzRXVjcyZXpHWHd2ODl3Ly9EaC9qV0dNaEtEOXJXVjhERDU2c0xGbER1?=
- =?utf-8?B?ZGxIREdObHY0QWZib0NocWltUnY4TzZrVVc4Z2g5Qk1hUzdGT2t1TUJ1TjVa?=
- =?utf-8?B?cDlmblNRU1hIdksyVEZMVDJPK1VFSFJCU1hkZW5Gc3BiY0hVeS9MeW9vOEl2?=
- =?utf-8?B?Q1BwSUQrVG5hd0kzQ01XOWxPZkJUaFllT0JuQytyTHp0WGRFa3ZITnFKdzFC?=
- =?utf-8?B?akNXKzEvcVh5WHFDMkZCNnpjZjAyRzNDL3AvbHJyVDU1RFlCVDNHYUxFaFlp?=
- =?utf-8?B?d2NoNkZqWm1rcGVsT3FYNWhhOUNtdjJHTHlwN05RVmNnZ3pYaElPa2MxT3JJ?=
- =?utf-8?B?Q1Y3Z0g1ZElVMkM1eUxBKzdYWUZEQ00xanYrMVhtR2pPVUZPVjZHOWtGQ0xN?=
- =?utf-8?B?U0M4ZzBBbTEwYlhzT0F0LzM5Mm1BPT0=?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f16aa10c-49ed-43ea-f75e-08d9c65bb3bd
-X-MS-Exchange-CrossTenant-AuthSource: BN6PR11MB3908.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2021 21:32:21.1405 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eC7HvE773F9A47lK04b1Y/NHYesQ0pIoXT4wmaWRfTblyUVETD4bzN3tBdvvuNgp/dwpU3p7tHselkogVLpPpLNrNf+K44Sg2G4aHceiegM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR11MB2724
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Increment composite fence seqno
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20211214150704.984034-1-tvrtko.ursulin@linux.intel.com>
+ <597d4ad0-fdae-49a6-b471-3a83d4c25b98@linux.intel.com>
+ <20211217162254.GA22048@jons-linux-dev-box>
+ <3d32df02-c02e-9c35-5165-79af1cb10100@linux.intel.com>
+ <1c3b1b53-0e9e-a89c-1a77-90cbc229c637@intel.com>
+ <01320c8c-a9c9-8c21-7601-75860bf11838@linux.intel.com>
+ <1d78552e-8a7c-84c5-a9e6-7c7476a5e2e5@intel.com>
+ <5921ac11-1286-1062-f702-f33bc55e4a0e@linux.intel.com>
+ <a00f0ff4-83ef-e267-1f0a-06e6953083f9@intel.com>
+ <f860344e-2ef4-99f2-c498-9cbe9ea3b1c0@linux.intel.com>
+ <73fa5b6e-d5a7-b988-8bef-4251b7e40027@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <73fa5b6e-d5a7-b988-8bef-4251b7e40027@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Log engine resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,42 +71,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 12/14/2021 11:59, Matthew Brost wrote:
-> Increment composite fence seqno on each fence creation.
->
-> Fixes: 544460c33821 ("drm/i915: Multi-BB execbuf")
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 2213f7b613da..96cf8361b017 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -3113,7 +3113,7 @@ eb_composite_fence_create(struct i915_execbuffer *eb, int out_fence_fd)
->   	fence_array = dma_fence_array_create(eb->num_batches,
->   					     fences,
->   					     eb->context->parallel.fence_context,
-> -					     eb->context->parallel.seqno,
-> +					     eb->context->parallel.seqno++,
-As is, this change looks good. So:
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 
-However, just spotted that dma_fence_array_create() takes the seqno 
-value as an 'unsigned' even though it passes it on to an underlying 
-dma-fence as a u64 (and all other dma-fence code uses u64 seqnos). That 
-should probably be fixed (and our context::parallel::seqno changed from 
-u32 to u64).
+On 23/12/2021 17:35, John Harrison wrote:
 
-John.
+[snip]
 
+>>> On the other hand, the GuC log is useful for debugging certain issues 
+>>> and it is included automatically in the sysfs error capture along 
+>>> with all the other hardware and software state that we save.
+>>>
+>>> There is intended to be a publicly released tool to decode the GuC 
+>>> log into a human readable format. So end users will be able to see 
+>>> what engine scheduling decisions were taken prior to the hang, for 
+>>> example. Unfortunately, that is not yet ready for release for a 
+>>> number of reasons. I don't know whether that would be released as 
+>>> part of the IGT suite or in some other manner.
+>>
+>> Okay, it would be handy if it was part of IGT, maybe even 
+>> intel_error_decode being able to use it to show everything interesting 
+>> to kernel developers in one go. Or at least the log parsing tool being 
+>> able to consume raw error capture.
+> I have some wrapper scripts which can do things like take a raw error 
+> capture, run intel_error_decode, extract the GuC log portion, convert it 
+> to the binary format the decoder tool expects, extract the GuC firmware 
+> version from the capture to give to the decoder tool and finally run the 
+> decoder tool. The intention is that all of the helper scripts will also 
+> be part of the log decoder release.
+> 
+> If you want to try it all out now, see the GuC log decoder wiki page 
+> (internal developers only).
 
+Thanks, I'll see after the holiday break where we are with certain project in terms of are we still hitting hangs.
 
->   					     false);
->   	if (!fence_array) {
->   		kfree(fences);
+[snip]
 
+>>>>>>> My view is that the current message is indeed woefully 
+>>>>>>> uninformative. However, it is more important to be reporting 
+>>>>>>> context identification than engine instances. So sure, add the 
+>>>>>>> engine instance description but also add something specific to 
+>>>>>>> the ce as well. Ideally (for me) the GuC id and maybe something 
+>>>>>>> else that uniquely identifies the context in KMD land for when 
+>>>>>>> not using GuC?
+>>>>>>
+>>>>>> Not sure we need to go that far at this level, but even if we do 
+>>>>>> it could be a follow up to add new data to both backends. Not sure 
+>>>>>> yet I care enough to drive this. My patch was simply a reaction to 
+>>>>>> noticing there is zero information currently logged while 
+>>>>>> debugging some DG2 hangs.
+>>>>> In terms of just reporting that a reset occurred, we already have 
+>>>>> the 'GPU HANG: ecode 12:1:fbffffff, in testfw_app [8177]' message. 
+>>>>> The ecode is a somewhat bizarre value but it does act as a 
+>>>>> 'something went wrong, your system is not happy' type message. 
+>>>>> Going beyond that, I think context identification is the next most 
+>>>>> useful thing to add.
+>>>>>
+>>>>> But if you aren't even getting the 'GPU HANG' message then it 
+>>>>> sounds like something is broken with what we already have. So we 
+>>>>> should fix that as a first priority. If that message isn't 
+>>>>> appearing then it means there was no error capture so adding extra 
+>>>>> info to the capture won't help!
+>>>>
+>>>> The issue I have is that "GPU HANG ecode" messages are always "all 
+>>>> zeros". It thought that was because GuC error capture was not there, 
+>>>> but maybe its something else.
+>>> Hmm. All zeros including the platform and engine class part or just 
+>>> the instdone part?
+>>
+>> Class and instdone - all we were seeing was "[drm] GPU HANG: ecode
+>> 12:0:00000000".
+>>
+>> Even on the CI run for this patch I see in the logs:
+>>
+>> <5>[  157.243472] i915 0000:00:02.0: [drm] rcs0 GuC engine reset
+>> <6>[  157.254568] i915 0000:00:02.0: [drm] GPU HANG: ecode 12:0:00000000
+>>
+>> So there seem circumstances when the GPU HANG line somehow misses to 
+>> figure out the engine class.
+> Class zero is render. So it is correct.
+
+It's a bitmask, so not quite correct, something is missing:
+
+		for (cs = gt->engine; cs; cs = cs->next) {
+			if (cs->hung) {
+				hung_classes |= BIT(cs->engine->uabi_class);
+
+>>> The instdone value is engine register state and will have been 
+>>> cleared before i915 can read it if the reset was handled by GuC. That 
+>>> comes under the heading of state we need the new error capture API 
+>>> for. However, the context should be correctly identified as should 
+>>> the platform/engine class.
+>>>
+>>> Currently, the recommended w/a is to set i915.reset=1 when debugging 
+>>> a hang issue. That will disable GuC based resets and fall back to old 
+>>> school i915 based (but full GT not engine) resets. And that means 
+>>> that i915 will be able to read the engine state prior to the reset 
+>>> happening and thus produce a valid error capture / GPU HANG message.
+>>
+>> Ah.. that's the piece of the puzzle I was missing. Perhaps it should 
+>> even be the default until error capture works.
+> Decision was taken that per engine resets are of real use to end users 
+> but valid register state in an error capture is only of use to i915 
+> developers. Therefore, we can take the hit of less debuggability. Plus, 
+> you do get a lot of that information in the GuC log (as debug prints, 
+> essentially) if you have the verbosity set suitably high. So it is not 
+> impossible to get the information out even with GuC based engine resets. 
+> But the reset=1 fallback is certainly the easiest debug option.
+
+It's tricky, error capture is useful for developers but when debugging issues reported by end users. And DG1 is available on the shelves to buy. You say data is available in GuC logs but there is no upstream tool to read it. Luckily DG1 is behind force probe so we get away with it for now.
+
+Regards,
+
+Tvrtko
