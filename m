@@ -1,64 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 241A647EEA8
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Dec 2021 12:57:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A60547EEBE
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Dec 2021 13:09:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3366710E39C;
-	Fri, 24 Dec 2021 11:57:11 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E916510E39C;
- Fri, 24 Dec 2021 11:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 997AE10E39F;
+	Fri, 24 Dec 2021 12:09:45 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6958B10E39F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Dec 2021 12:09:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1640347029; x=1671883029;
+ t=1640347784; x=1671883784;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=LxVz7M5AL6EhCB7v4ybLJncnuXrwzGaXS5gRd0wej/k=;
- b=F+z4POblYOIP0FA0eHVEJPiAATj9QjFv+fuU8f4O8HH4ZCZYPevlgl4b
- dN4+ykIFNJhC7IEZVqXvZQUYmevoJroutoLiN4EJVFkKLMYlra8G+kNdc
- gcC27IHeQ72435I77FzlmNkd3ZLQL4cNcZ0qySIlK9JAO4UuVbe3ZdPxw
- P+zy91T70Ankx4V8SLJniog0Acq2cok5DxuKxfcOv4PuXeMNQL9yLhVMb
- qlon9NR+7htQ1ajFmEUX1q5w/66rHDmrqiRJPMRp09e2ckG8PMN/mT4SV
- 6zcJNufnQwkUtSkp1DGm9wV7gew8ZO1ax013wZWZDlKyEzlnynZE+l0Xe g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10207"; a="304337165"
-X-IronPort-AV: E=Sophos;i="5.88,232,1635231600"; d="scan'208";a="304337165"
+ bh=Zo6kBTV25A2F0tRHU2SvhHbTatvVXR9v7htMVj5FcBY=;
+ b=Z5B77WtAKfZqqT3VnrtFZ+YG0g0OHx98NBkyhizG3Xr7+dxTWjDcp2Fo
+ 0saDFWqOnNNF7kwTBLltCB2KQlfOqV8z6esGr0mrpzaalMX0mUGU1X6Bq
+ vCKpRNoB3eBIk/aAJraRhQk8027Oi4dbI9DVVnvKnwTK/AEgcTXhfO4HQ
+ YFJV6SEFH0wBbb30fMbw75aoEgmo4ezrloIAyjYnwYpiewKZHR6FXZ/OZ
+ XBsipSNS4bq3FHGWrmtkgJFDHGOX1jYknbM3N5Xut+U5xbyfU2gMs5/gd
+ 9iDmiYsfHnhr5yGruq1gWfYrPVANlLMLZUJPBSp1NiCOWH1DNUjqCdN46 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10207"; a="301730716"
+X-IronPort-AV: E=Sophos;i="5.88,232,1635231600"; d="scan'208";a="301730716"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Dec 2021 03:57:09 -0800
-X-IronPort-AV: E=Sophos;i="5.88,232,1635231600"; d="scan'208";a="468824730"
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Dec 2021 04:09:43 -0800
+X-IronPort-AV: E=Sophos;i="5.88,232,1635231600"; d="scan'208";a="468827399"
 Received: from conorgex-mobl.ger.corp.intel.com (HELO [10.213.229.158])
  ([10.213.229.158])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Dec 2021 03:57:08 -0800
-Message-ID: <d025bad6-da69-e51e-7bc7-3d65968d5d21@linux.intel.com>
-Date: Fri, 24 Dec 2021 11:57:04 +0000
+ 24 Dec 2021 04:09:42 -0800
+Message-ID: <c0fa7466-ecdc-4768-0584-6937e7f0d71a@linux.intel.com>
+Date: Fri, 24 Dec 2021 12:09:38 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.1
 Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20211214150704.984034-1-tvrtko.ursulin@linux.intel.com>
- <597d4ad0-fdae-49a6-b471-3a83d4c25b98@linux.intel.com>
- <20211217162254.GA22048@jons-linux-dev-box>
- <3d32df02-c02e-9c35-5165-79af1cb10100@linux.intel.com>
- <1c3b1b53-0e9e-a89c-1a77-90cbc229c637@intel.com>
- <01320c8c-a9c9-8c21-7601-75860bf11838@linux.intel.com>
- <1d78552e-8a7c-84c5-a9e6-7c7476a5e2e5@intel.com>
- <5921ac11-1286-1062-f702-f33bc55e4a0e@linux.intel.com>
- <a00f0ff4-83ef-e267-1f0a-06e6953083f9@intel.com>
- <f860344e-2ef4-99f2-c498-9cbe9ea3b1c0@linux.intel.com>
- <73fa5b6e-d5a7-b988-8bef-4251b7e40027@intel.com>
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
+ "Brost, Matthew" <matthew.brost@intel.com>
+References: <20211122230402.2023576-1-alan.previn.teres.alexis@intel.com>
+ <20211122230402.2023576-8-alan.previn.teres.alexis@intel.com>
+ <20211208002215.GA17960@jons-linux-dev-box>
+ <bf9b1af14a700959ca58e615d7d15cb9300ab56f.camel@intel.com>
+ <fb0f6eace4bd1c243544a0804ffa9fa5b16159a6.camel@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <73fa5b6e-d5a7-b988-8bef-4251b7e40027@intel.com>
+In-Reply-To: <fb0f6eace4bd1c243544a0804ffa9fa5b16159a6.camel@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Log engine resets
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC 7/7] drm/i915/guc: Print the GuC error capture
+ output register list.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,118 +66,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 23/12/2021 17:35, John Harrison wrote:
+Hi,
 
-[snip]
+Somehow I stumbled on this while browsing through the mailing list.
 
->>> On the other hand, the GuC log is useful for debugging certain issues 
->>> and it is included automatically in the sysfs error capture along 
->>> with all the other hardware and software state that we save.
->>>
->>> There is intended to be a publicly released tool to decode the GuC 
->>> log into a human readable format. So end users will be able to see 
->>> what engine scheduling decisions were taken prior to the hang, for 
->>> example. Unfortunately, that is not yet ready for release for a 
->>> number of reasons. I don't know whether that would be released as 
->>> part of the IGT suite or in some other manner.
->>
->> Okay, it would be handy if it was part of IGT, maybe even 
->> intel_error_decode being able to use it to show everything interesting 
->> to kernel developers in one go. Or at least the log parsing tool being 
->> able to consume raw error capture.
-> I have some wrapper scripts which can do things like take a raw error 
-> capture, run intel_error_decode, extract the GuC log portion, convert it 
-> to the binary format the decoder tool expects, extract the GuC firmware 
-> version from the capture to give to the decoder tool and finally run the 
-> decoder tool. The intention is that all of the helper scripts will also 
-> be part of the log decoder release.
+On 23/12/2021 18:54, Teres Alexis, Alan Previn wrote:
+> Revisiting below hunk of patch-7 comment, as per offline discussion with Matt,
+> there is little benefit to even making that guc-id lookup because:
 > 
-> If you want to try it all out now, see the GuC log decoder wiki page 
-> (internal developers only).
+> 1. the delay between the context reset notification (when the vmas are copied
+>     and when we verify we had received a guc err capture dump) may be subjectively
+>     large enough and not tethered that the guc-id may have already been re-assigned.
+> 
+> 2. I was really looking for some kind of unique context handle to print out that could
+>     be correlated (by user inspecting the dump) back to a unique app or process or
+>     context-id but cant find such a param in struct intel_context.
+> 
+> As part of further reviewing the end to end flows and possible error scenarios, there
+> also may potentially be a mismatch between "which context was reset by guc at time-n"
+> vs "which context's vma buffers is being printed out at time-n+x" if
+> we are experiencing back-to-back resets and the user dumped the debugfs x-time later.
 
-Thanks, I'll see after the holiday break where we are with certain project in terms of are we still hitting hangs.
-
-[snip]
-
->>>>>>> My view is that the current message is indeed woefully 
->>>>>>> uninformative. However, it is more important to be reporting 
->>>>>>> context identification than engine instances. So sure, add the 
->>>>>>> engine instance description but also add something specific to 
->>>>>>> the ce as well. Ideally (for me) the GuC id and maybe something 
->>>>>>> else that uniquely identifies the context in KMD land for when 
->>>>>>> not using GuC?
->>>>>>
->>>>>> Not sure we need to go that far at this level, but even if we do 
->>>>>> it could be a follow up to add new data to both backends. Not sure 
->>>>>> yet I care enough to drive this. My patch was simply a reaction to 
->>>>>> noticing there is zero information currently logged while 
->>>>>> debugging some DG2 hangs.
->>>>> In terms of just reporting that a reset occurred, we already have 
->>>>> the 'GPU HANG: ecode 12:1:fbffffff, in testfw_app [8177]' message. 
->>>>> The ecode is a somewhat bizarre value but it does act as a 
->>>>> 'something went wrong, your system is not happy' type message. 
->>>>> Going beyond that, I think context identification is the next most 
->>>>> useful thing to add.
->>>>>
->>>>> But if you aren't even getting the 'GPU HANG' message then it 
->>>>> sounds like something is broken with what we already have. So we 
->>>>> should fix that as a first priority. If that message isn't 
->>>>> appearing then it means there was no error capture so adding extra 
->>>>> info to the capture won't help!
->>>>
->>>> The issue I have is that "GPU HANG ecode" messages are always "all 
->>>> zeros". It thought that was because GuC error capture was not there, 
->>>> but maybe its something else.
->>> Hmm. All zeros including the platform and engine class part or just 
->>> the instdone part?
->>
->> Class and instdone - all we were seeing was "[drm] GPU HANG: ecode
->> 12:0:00000000".
->>
->> Even on the CI run for this patch I see in the logs:
->>
->> <5>[  157.243472] i915 0000:00:02.0: [drm] rcs0 GuC engine reset
->> <6>[  157.254568] i915 0000:00:02.0: [drm] GPU HANG: ecode 12:0:00000000
->>
->> So there seem circumstances when the GPU HANG line somehow misses to 
->> figure out the engine class.
-> Class zero is render. So it is correct.
-
-It's a bitmask, so not quite correct, something is missing:
-
-		for (cs = gt->engine; cs; cs = cs->next) {
-			if (cs->hung) {
-				hung_classes |= BIT(cs->engine->uabi_class);
-
->>> The instdone value is engine register state and will have been 
->>> cleared before i915 can read it if the reset was handled by GuC. That 
->>> comes under the heading of state we need the new error capture API 
->>> for. However, the context should be correctly identified as should 
->>> the platform/engine class.
->>>
->>> Currently, the recommended w/a is to set i915.reset=1 when debugging 
->>> a hang issue. That will disable GuC based resets and fall back to old 
->>> school i915 based (but full GT not engine) resets. And that means 
->>> that i915 will be able to read the engine state prior to the reset 
->>> happening and thus produce a valid error capture / GPU HANG message.
->>
->> Ah.. that's the piece of the puzzle I was missing. Perhaps it should 
->> even be the default until error capture works.
-> Decision was taken that per engine resets are of real use to end users 
-> but valid register state in an error capture is only of use to i915 
-> developers. Therefore, we can take the hit of less debuggability. Plus, 
-> you do get a lot of that information in the GuC log (as debug prints, 
-> essentially) if you have the verbosity set suitably high. So it is not 
-> impossible to get the information out even with GuC based engine resets. 
-> But the reset=1 fallback is certainly the easiest debug option.
-
-It's tricky, error capture is useful for developers but when debugging issues reported by end users. And DG1 is available on the shelves to buy. You say data is available in GuC logs but there is no upstream tool to read it. Luckily DG1 is behind force probe so we get away with it for now.
+What does this all actually mean, because it sounds rather alarming, 
+that it just won't be possible to know which context, belonging to which 
+process, was reset? And because of guc_id potentially re-assigned even 
+the captured VMAs may not be the correct ones?
 
 Regards,
 
 Tvrtko
+
+> 
+> (Recap: First, guc notifies capture event, second, guc notifies context reset during
+> which we trigger i915_gpu_coredump. In this second step, the vma's are dumped and we
+> verify that the guc capture happened but don't parse the guc-err-capture-logs yet.
+> Third step is when user triggers the debugfs to dump which is when we parse the error
+> capture logs.)
+> 
+> As a fix, what we can do in the guc_error_capture report out is to ensure that
+> we dont re-print the previously dumped vmas if we end up finding multiple
+> guc-error-capture dumps since the i915_gpu_coredump would have only captured the vma's
+> for the very first context that was reset. And with guc-submission, that would always
+> correlate to the "next-yet-to-be-parsed" guc-err-capture dump (since the guc-error-capture
+> logs are large enough to hold data for multiple dumps).
+> 
+> The changes (removal of below-hunk and adding of only-print-the-first-vma") is trivial
+> but i felt it warranted a good explanation. Apologies for the inbox noise.
+> 
+> ...alan
+> 
+> On Tue, 2021-12-07 at 22:32 -0800, Alan Previn Teres Alexis wrote:
+>> Thanks again for the detailed review here.
+>> Will fix all the rest on next rev.
+>> One special response for this one:
+>>
+>>
+>> On Tue, 2021-12-07 at 16:22 -0800, Matthew Brost wrote:
+>>> On Mon, Nov 22, 2021 at 03:04:02PM -0800, Alan Previn wrote:
+>>>> +			if (datatype == GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE) {
+>>>> +				GCAP_PRINT_GUC_INST_INFO(i915, ebuf, data);
+>>>> +				eng_inst = FIELD_GET(GUC_CAPTURE_DATAHDR_SRC_INSTANCE, data.info);
+>>>> +				eng = guc_lookup_engine(guc, engineclass, eng_inst);
+>>>> +				if (eng) {
+>>>> +					GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng);
+>>>> +				} else {
+>>>> +					PRINT(&i915->drm, ebuf, "    i915-Eng-Lookup Fail!\n");
+>>>> +				}
+>>>> +				ce = guc_context_lookup(guc, data.guc_ctx_id);
+>>>
+>>> You are going to need to reference count the 'ce' here. See
+>>> intel_guc_context_reset_process_msg for an example.
+>>>
+>>
+>> Oh crap - i missed this one - which you had explicitly mentioned offline when i was doing the
+>> development. Sorry about that i just totally missed it from my todo-notes.
+>>
+>> ...alan
+> 
