@@ -2,69 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27ADC4899C7
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:24:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F26C04899CB
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:24:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3738314B430;
-	Mon, 10 Jan 2022 13:24:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AF7C14B43A;
+	Mon, 10 Jan 2022 13:24:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
- [IPv6:2a00:1450:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1BD910E133;
- Thu, 23 Dec 2021 16:57:13 +0000 (UTC)
-Received: by mail-wm1-x32d.google.com with SMTP id
- n10-20020a7bc5ca000000b00345c520d38eso3218547wmk.1; 
- Thu, 23 Dec 2021 08:57:13 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
+ [IPv6:2a00:1450:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E28510E94F;
+ Sun, 26 Dec 2021 11:25:13 +0000 (UTC)
+Received: by mail-wm1-x334.google.com with SMTP id
+ b186-20020a1c1bc3000000b00345734afe78so6962410wmb.0; 
+ Sun, 26 Dec 2021 03:25:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=x19kNH14ExPsQ28C6SlBYVGa8akiQhXJZ1zBC3AV6iQ=;
- b=M227YuJRwIPX/CPb7Lg+WOaaHsKzAMYXB/Da0yMQGvxGa0saRVV+di4RqWZbiRK50Q
- trtNNAA5U+lBSeLSDkBTYNHzvTkoRut7yqBa7TwaK2JiNuabxmv5BOwtUV4KRi5pR2ah
- +So40Cr4Iob4Tt6iSivBaTYonKePYDmJoO96G2315qHEemCOzvUnpTMv67mZ828dG624
- KlLSAQZAPCK0t6oW5/w0P/ratE8Q/gOGGcfxxVQgmWw9mxWxwPnvkTDBy6VlAIJ/qwC5
- FqwkC9EauN7+/9F2aBN7XWx0UBUkBy4Fy8msCrRtBKZG4HbI823JZ/pJxnGPdlZrGi+r
- XB+g==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=MfySaQF3GaGT3rKhp9bzdbdDRm7QyTsYlFaa9SIqgGk=;
+ b=qT65bImUN96BSUsorxOakT1Pmg3FQcOtCRO8UOzh45/+T06C3mZuMn0Fw+gQOU2F21
+ soEjAjCbxIVI4iZZnAsvS9VvHfGJKBXRCf6NmwN0G130W+OZaFKnH7EZnkrdHkgwHROP
+ +0KZ6T+OlQgI72s2f6TBshRmysdplrfFcFkDAyzkTGmYZURMW8d1LMFqaaleqd+3rlMQ
+ 0RlSdf0Dcd9KhEK2cf8yjWFGIyXH/znLFv6huY92C7k1icypdPx6UWBCUOSuSZwu6vg6
+ kWmA2y2c1dWmV7bC/lIKDWe6XAQxmMAhNgTLhJ9hRliz+ENdROWuc90jenrwx80PqFzu
+ yx2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=x19kNH14ExPsQ28C6SlBYVGa8akiQhXJZ1zBC3AV6iQ=;
- b=bNT20AVbejhPM5A/f4FGUYLg/C64ITOoZujhpbmJDat7zxQLjS1WIKx++OfKB9nzTQ
- H81N2UnPTqNUP+Tw7wR/LyrftANRfk+YGgHphJJKTY5XRz6t1PX2nu9l/h/3D6HQiDWn
- CkbHneOu0BTtDictpN+8c73GD8eOfsjHZVAuvjLkEH8ezAcNQZ7s/+bUnJ83JF2NIC5U
- bwLguiHD/JamY30OZWEJnG8hHkWeChUrBVLwsfqC1Xwmqg9SNkVCtEO31cjvROtiE3Zu
- NMhlqqgFx7TkUFJK70IEASCRvsqfYnwmiF8xhJtIx4F/xjKZYWES+G1HI9NmxTGWMY0E
- bmug==
-X-Gm-Message-State: AOAM533VePLOzssk6Y6JEzINFLO/PU/pyCTjTwTRpWzAcaJ3MadFPG66
- oeg9BE3vkVf1B5Yqf43R3LA=
-X-Google-Smtp-Source: ABdhPJx0hYSOm4vDZR/gdV0QEOZLF2E0+HdDedp9MlR3fSt42MKgNwt3bY/4NeUgqZTjBr+NJEe+5g==
-X-Received: by 2002:a1c:1d0d:: with SMTP id d13mr2448580wmd.78.1640278632133; 
- Thu, 23 Dec 2021 08:57:12 -0800 (PST)
-Received: from elementary ([217.113.240.86])
- by smtp.gmail.com with ESMTPSA id u23sm4893233wmc.7.2021.12.23.08.57.07
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=MfySaQF3GaGT3rKhp9bzdbdDRm7QyTsYlFaa9SIqgGk=;
+ b=hu+qYmC5euhcKJ2j1J1bdMJ28D+uER95VpG5Wi/301+ofVUyD4O3JYwj4slpSyh6LQ
+ tzEZ8hBntyR443322Jv2w223ox9G5GzeC4n8SRRCnsa7YUAYrIENt3JMlDG8Yp0zF1CQ
+ O33MZWJ2Qtabv4B04CISOKA60r+TZaIgZNsUOKb14T19W0QFz3CmVIBqHnuKSVHdX5Hk
+ dFMeJE9qNB6J51V9xeUYIgviTB6gVCTGmsAeRZssFM9XvRtDZbHCledcL+ZgFAK5zV++
+ mY/l39M50JPvXoTHGs83bFS+DAaKbClxYVx1ysWTb/YsnjhADbOhtNf/xinCtJ8f/9XJ
+ W7Bg==
+X-Gm-Message-State: AOAM533RsUzTfLVGZRIWglnJLzTzLnmUoSppMw5YX57lXcHCOoCnnrtt
+ 8IIlmKss+ZAXWYwmRROAk2M=
+X-Google-Smtp-Source: ABdhPJw59MvLvZ2RZ+XzSNYkTilLCKgdLom4W7pXuZ8fRzh57pIUaKcZzFzTnlj18iy9FRBp2KTB3w==
+X-Received: by 2002:a7b:c08c:: with SMTP id r12mr10128651wmh.161.1640517912047; 
+ Sun, 26 Dec 2021 03:25:12 -0800 (PST)
+Received: from localhost.localdomain ([217.113.240.86])
+ by smtp.gmail.com with ESMTPSA id g12sm13654743wrd.71.2021.12.26.03.25.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Dec 2021 08:57:11 -0800 (PST)
-Date: Thu, 23 Dec 2021 17:57:06 +0100
-From: =?iso-8859-1?Q?Jos=E9_Exp=F3sito?= <jose.exposito89@gmail.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20211223165706.GA11019@elementary>
-References: <20211222090552.25972-1-jose.exposito89@gmail.com>
- <20211222090552.25972-2-jose.exposito89@gmail.com>
- <YcRkB7uWyt4EbcZm@intel.com>
- <PIq2EEI7giz2rOuv2cfySbdxwht8AaCye140X5C7NejjXT6kD67E3E28uvg4Ebhob12EJUBtAxGPFNOgZwSWLYEfMtdhRNt3mR8bBGBJmU4=@emersion.fr>
- <YcSPt+81fuzteeCu@intel.com>
+ Sun, 26 Dec 2021 03:25:11 -0800 (PST)
+From: =?UTF-8?q?Jos=C3=A9=20Exp=C3=B3sito?= <jose.exposito89@gmail.com>
+To: contact@emersion.fr
+Date: Sun, 26 Dec 2021 12:24:57 +0100
+Message-Id: <20211226112503.31771-1-jose.exposito89@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YcSPt+81fuzteeCu@intel.com>
 X-Mailman-Approved-At: Mon, 10 Jan 2022 13:24:14 +0000
-Subject: Re: [Intel-gfx] 
- =?iso-8859-1?q?=5BPATCH_v2_1/6=5D_drm/plane=3A_Make_?=
- =?iso-8859-1?q?format=5Fmod=5Fsupported_truly=A0optional?=
+Subject: [Intel-gfx] [PATCH v3 0/6] Add missing format_mod_supported
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,49 +69,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: marex@denx.de, mcoquelin.stm32@gmail.com, kernel@pengutronix.de,
- s.hauer@pengutronix.de, tzimmermann@suse.de, airlied@linux.ie,
- Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
- alexandre.torgue@foss.st.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, yannick.fertre@foss.st.com, linux-imx@nxp.com,
- benjamin.gaignard@linaro.org, dmitry.baryshkov@linaro.org, shawnguo@kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org,
- philippe.cornu@foss.st.com
+Cc: airlied@linux.ie, alexandre.torgue@foss.st.com, stefan@agner.ch,
+ benjamin.gaignard@linaro.org, festevam@gmail.com,
+ linux-stm32@st-md-mailman.stormreply.com, marex@denx.de, linux-imx@nxp.com,
+ intel-gfx@lists.freedesktop.org, s.hauer@pengutronix.de, mripard@kernel.org,
+ kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, tzimmermann@suse.de,
+ yannick.fertre@foss.st.com, linux-kernel@vger.kernel.org,
+ philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
+ dmitry.baryshkov@linaro.org,
+ =?UTF-8?q?Jos=C3=A9=20Exp=C3=B3sito?= <jose.exposito89@gmail.com>,
+ shawnguo@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Thanks for your reviews :) I'll wait a couple of days to see
-if somebody else wants to comment and I'll send v3 adding the
-reviewed by tags and fixing the compiler warning.
+Hi all,
 
-On Thu, Dec 23, 2021 at 05:03:19PM +0200, Ville Syrj‰l‰ wrote:
-> Another related thing that might be worth checking is whether
-> drivers generally do anything to validate the modifiers in
-> the addfb2 ioctl. Looks like i915 and amdgpu are the only ones
-> to use drm_any_plane_has_format() for that, so all the other
-> drivers must either be checking it manually (or they're just
-> potentially broken when handed unexpected modifiers by evil
-> userspace).
+This patchset supersedes [1]. Now the title is a bit misleading, but
+I left it this way to (hopefully) facilitate the maintainers' work.
 
-I'm pretty new to this subsystem, so please correct me if I'm 
-wrong, but after looking into a couple of drivers I think you
-are right, this check is missing in some drivers.
+A little context: Originally, I sent a patch adding modifiers to the
+VKMS driver and Simon Ser kindly reviewed it and pointed out that
+"format_mod_supported" was missing [2].
+I asked if the docs were incorrect or if it was a bug in
+"create_in_format_blob".
 
-This possible bug reminds me of this ToDo task [1]:
+In the first version of this series, Simon Ser and Dmitry Baryshkov
+agreed [1] that the code should behave as documented and
+"create_in_format_blob" should be changed.
 
-> Many drivers wrap drm_gem_fb_create() only to check for valid formats. For
-> atomic drivers we could check for valid formats by calling
-> drm_plane_check_pixel_format() against all planes, and pass if any plane
-> supports the format. For non-atomic that's not possible since like the format
-> list for the primary plane is fake and we'd therefor reject valid formats.
+The second version implemented the required changes and drops the
+"format_mod_supported" in the drivers that can use the default
+implementation. [3]
 
-I had a look to the Raspberry Pi driver (mainly because I'm trying
-to understand it) and it looks like the check is missing. Other
-drivers, for example Mali, are checking the format modifier manually.
+This third version fixes a compiler warning and adds the reviewed
+by tags.
 
-I'll try to do some actual testing during Christmas and see
-how it goes.
+Thanks,
+Jos√© Exp√≥sito
 
-JosÈ ExpÛsito
+[1] https://lore.kernel.org/dri-devel/CAA8EJpqJ-tWmb5Ba6XSK59toCtLb3nRRmVH8da4Ud_rrRYytmw@mail.gmail.com/T/
+[2] https://lore.kernel.org/dri-devel/20211216170532.GA16349@elementary/T/
+[3] https://lore.kernel.org/dri-devel/20211222090552.25972-1-jose.exposito89@gmail.com/T/
 
-[1] https://www.kernel.org/doc/html/latest/gpu/todo.html#drm-framebuffer-funcs-and-drm-mode-config-funcs-fb-create-cleanup
+Jos√© Exp√≥sito (6):
+  drm/plane: Make format_mod_supported truly¬†optional
+  drm/plane: Fix typo in format_mod_supported documentation
+  drm/simple-kms: Drop format_mod_supported function
+  drm/i915/display: Drop format_mod_supported function
+  drm: mxsfb: Drop format_mod_supported function
+  drm/stm: ltdc: Drop format_mod_supported function
+
+ drivers/gpu/drm/drm_plane.c                 |  9 ++-------
+ drivers/gpu/drm/drm_simple_kms_helper.c     |  8 --------
+ drivers/gpu/drm/i915/display/intel_cursor.c |  8 --------
+ drivers/gpu/drm/mxsfb/mxsfb_kms.c           |  8 --------
+ drivers/gpu/drm/stm/ltdc.c                  | 11 -----------
+ include/drm/drm_plane.h                     |  2 +-
+ 6 files changed, 3 insertions(+), 43 deletions(-)
+
+-- 
+2.25.1
+
