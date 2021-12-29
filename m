@@ -1,33 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 697EF481768
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Dec 2021 23:58:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 664124817B7
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Dec 2021 00:28:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E1D410E182;
-	Wed, 29 Dec 2021 22:58:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98EBE89E5B;
+	Wed, 29 Dec 2021 23:28:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EE76D10E182;
- Wed, 29 Dec 2021 22:58:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EBBE7AA0EB;
- Wed, 29 Dec 2021 22:58:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8990685578140582767=="
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA68C89E5B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Dec 2021 23:27:59 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 02283B81A3F;
+ Wed, 29 Dec 2021 23:27:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CD93C36AE9;
+ Wed, 29 Dec 2021 23:27:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1640820474;
+ bh=x7P2ch0i4etowWpkGZ5rKwTj5AaloLivOslxZTTtxS8=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=JQsMt6J95GbH7RN2TlypeICZ2zOWDDs7GYNNTpMBl9mMcBOAxJrCLRm6X4h9Wxv4V
+ SBHmzgjjgZr9vly5cd4ijfjIQpm9whEMG0H2sSm1AGBJWqOqiopGBysOcahMK+p3pl
+ NzrifbQbF9Z/y5OvPIKU4c9Ahfc6bSruByXIX2KAb7StQWs3cBdRUGs0GaBiiHC1YJ
+ iD67BCOi4jFGKWN0u7jOHvLOHPBK580NClFlro8eHIvmkl2CHNNFZtmnd/IahAz0D/
+ Aw99Gnho4WWpxG0vR6s3m+0AbHJEXSzbAHjpDVD2LLoam24iBhqsfv2WSnDFo4u1Je
+ mQddPfpQjAqcg==
+Date: Wed, 29 Dec 2021 17:27:52 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20211229232752.GA1712676@bhelgaas>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anisse Astier" <anisse@astier.eu>
-Date: Wed, 29 Dec 2021 22:58:48 -0000
-Message-ID: <164081872893.17180.3178585184615941550@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211229222200.53128-1-anisse@astier.eu>
-In-Reply-To: <20211229222200.53128-1-anisse@astier.eu>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgR1BE?=
- =?utf-8?q?_Win_Max_display_fixes_=28rev7=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211218061313.100571-1-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] x86/quirks: Fix logic to apply quirk once
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,184 +51,358 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Dave Hansen <dave.hansen@linux.intel.com>, linux-pci@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, x86@kernel.org,
+ Ingo Molnar <mingo@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8990685578140582767==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Dec 17, 2021 at 10:13:13PM -0800, Lucas De Marchi wrote:
+> When using QFLAG_APPLY_ONCE we make sure the quirk is applied only once.
 
-== Series Details ==
+Maybe "called" only once, since you're about to add a distinction
+between "called" and "applied"?
 
-Series: GPD Win Max display fixes (rev7)
-URL   : https://patchwork.freedesktop.org/series/90483/
-State : success
+I'm not really sure the concept of QFLAG_APPLY_ONCE, QFLAG_APPLIED,
+QFLAG_DONE is general purpose enough to be handled at the level of
+check_dev_quirk().
 
-== Summary ==
+We don't have anything like that for the regular PCI fixups (see
+pci_do_fixups()).  If a regular fixup needed something like that, it
+would use a static local variable.  Maybe that would be simpler
+overall here, too, since the quirk would be *always* called for
+matching devices, and the "one-time" logic would be encapsulated in
+the quirk itself where it's more obvious?
 
-CI Bug Log - changes from CI_DRM_11039 -> Patchwork_21908
-====================================================
+> This is useful when it's enough one device to trigger a certain
+> condition or when the resource in each that applies is global to the
+> system rather than local to the device.
+> 
+> However we call the quirk handler based on vendor, class, and device,
+> allowing the specific handler to do additional filtering. In that case
+> check_dev_quirk() may incorrectly mark the quirk as applied when it's
+> not. This is particularly bad for intel_graphics_quirks() that uses
+> PCI_ANY_ID and then compares with a long list of devices. This hasn't
+> been problematic so far because those devices are integrated GPUs and
+> there can only be one in the system.  However as Intel starts to
+> release discrete cards, this condition is no longer true and we fail to
+> reserve the stolen memory (for the integrated gpu) depending on the bus
+> topology: if the traversal finds the discrete card first, for which
+> there is no system stolen memory, we will fail to reserve it for the
+> integrated card.
 
-Summary
--------
+s/integrated gpu/integrated GPU/ (to match previous use)
 
-  **SUCCESS**
+> This fixes the stolen memory reservation for an Alderlake-P system with
+> one additional DG2. In this system we have:
 
-  No regressions found.
+DG2?
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/index.html
+> 	- 00:01.0 Bridge
+> 	  `- 03:00.0 DG2
+> 	- Alderklake-P's integrated graphics
 
-Participating hosts (42 -> 31)
-------------------------------
+s/Alderklake-P/Alderlake-P/
 
-  Missing    (11): fi-kbl-soraka bat-dg1-6 fi-tgl-u2 fi-tgl-dsi fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-pnv-d510 bat-rpls-1 bat-jsl-2 fi-bdw-samus 
+Might be nice to include the integrated GPU PCI address to be parallel
+with the bridge and DG2.
 
-Known issues
-------------
+> Since we do a depth-first traversal, when we call the handler because of
+> DG2 we were marking it as already being applied and never reserving the
+> stolen memory for Alderlake-P.
+> 
+> Here we change the quirk fucntions to return bool in case it applied a
+> quirk so we only flag it as applied when that really happened. This only
+> makes a difference for quirks using QFLAG_APPLY_ONCE, so all the others
+> simply returns true in order to avoid unnecessary complication.
 
-  Here are the changes found in Patchwork_21908 that come from known issues:
+s/fucntions/functions/
+s/returns true/return true/
 
-### IGT changes ###
+I would consider splitting this into two patches:
 
-#### Issues hit ####
+  1) Change the quirk signature, make them all return "true", and
+  update check_dev_quirk().  This would have no functional impact.
 
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [PASS][1] -> [FAIL][2] ([i915#4547])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11039/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+  2) Update intel_graphics_quirks() to return "false" when it doesn't
+  reserve the stolen memory.
 
-  * igt@runner@aborted:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][3] ([i915#4312])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/fi-skl-6600u/igt@runner@aborted.html
+Then the important change will be in a small patch by itself and will
+be easier to understand and revert if that should be necessary.
 
-  
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][4] ([i915#4269]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11039/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][6] ([i915#3303]) -> [INCOMPLETE][7] ([i915#4785])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11039/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11039 -> Patchwork_21908
-
-  CI-20190529: 20190529
-  CI_DRM_11039: c90264924b9988493890773248bde3173a4866b4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6321: 85a5938090cd3da34e4fba8f541fbe240210b47d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21908: 8b5753e9c404ab1da33b5fe59b9daaa2ef0f4734 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8b5753e9c404 drm: Add orientation quirk for GPD Win Max
-ace525da9b7f drm/i915/opregion: add support for mailbox #5 EDID
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/index.html
-
---===============8990685578140582767==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>GPD Win Max display fixes (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90483/">https://patchwork.freedesktop.org/series/90483/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11039 -&gt; Patchwork_21908</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/index.html</p>
-<h2>Participating hosts (42 -&gt; 31)</h2>
-<p>Missing    (11): fi-kbl-soraka bat-dg1-6 fi-tgl-u2 fi-tgl-dsi fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-pnv-d510 bat-rpls-1 bat-jsl-2 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21908 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11039/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11039/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11039/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21908/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11039 -&gt; Patchwork_21908</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11039: c90264924b9988493890773248bde3173a4866b4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6321: 85a5938090cd3da34e4fba8f541fbe240210b47d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21908: 8b5753e9c404ab1da33b5fe59b9daaa2ef0f4734 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8b5753e9c404 drm: Add orientation quirk for GPD Win Max<br />
-ace525da9b7f drm/i915/opregion: add support for mailbox #5 EDID</p>
-
-</body>
-</html>
-
---===============8990685578140582767==--
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  arch/x86/kernel/early-quirks.c | 75 ++++++++++++++++++++++------------
+>  1 file changed, 49 insertions(+), 26 deletions(-)
+> 
+> diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+> index 391a4e2b8604..5d235fe2a07a 100644
+> --- a/arch/x86/kernel/early-quirks.c
+> +++ b/arch/x86/kernel/early-quirks.c
+> @@ -28,7 +28,7 @@
+>  #include <asm/irq_remapping.h>
+>  #include <asm/early_ioremap.h>
+>  
+> -static void __init fix_hypertransport_config(int num, int slot, int func)
+> +static bool __init fix_hypertransport_config(int num, int slot, int func)
+>  {
+>  	u32 htcfg;
+>  	/*
+> @@ -51,10 +51,10 @@ static void __init fix_hypertransport_config(int num, int slot, int func)
+>  		}
+>  	}
+>  
+> -
+> +	return true;
+>  }
+>  
+> -static void __init via_bugs(int  num, int slot, int func)
+> +static bool __init via_bugs(int  num, int slot, int func)
+>  {
+>  #ifdef CONFIG_GART_IOMMU
+>  	if ((max_pfn > MAX_DMA32_PFN ||  force_iommu) &&
+> @@ -63,8 +63,12 @@ static void __init via_bugs(int  num, int slot, int func)
+>  		       "Looks like a VIA chipset. Disabling IOMMU."
+>  		       " Override with iommu=allowed\n");
+>  		gart_iommu_aperture_disabled = 1;
+> +
+> +		return true;
+>  	}
+>  #endif
+> +
+> +	return false;
+>  }
+>  
+>  #ifdef CONFIG_ACPI
+> @@ -77,7 +81,7 @@ static int __init nvidia_hpet_check(struct acpi_table_header *header)
+>  #endif /* CONFIG_X86_IO_APIC */
+>  #endif /* CONFIG_ACPI */
+>  
+> -static void __init nvidia_bugs(int num, int slot, int func)
+> +static bool __init nvidia_bugs(int num, int slot, int func)
+>  {
+>  #ifdef CONFIG_ACPI
+>  #ifdef CONFIG_X86_IO_APIC
+> @@ -86,7 +90,7 @@ static void __init nvidia_bugs(int num, int slot, int func)
+>  	 * Nvidia graphics cards with PCI ports on secondary buses.
+>  	 */
+>  	if (num)
+> -		return;
+> +		return false;
+>  
+>  	/*
+>  	 * All timer overrides on Nvidia are
+> @@ -96,7 +100,7 @@ static void __init nvidia_bugs(int num, int slot, int func)
+>  	 * at least allow a command line override.
+>  	 */
+>  	if (acpi_use_timer_override)
+> -		return;
+> +		return false;
+>  
+>  	if (acpi_table_parse(ACPI_SIG_HPET, nvidia_hpet_check)) {
+>  		acpi_skip_timer_override = 1;
+> @@ -105,11 +109,14 @@ static void __init nvidia_bugs(int num, int slot, int func)
+>  		       "timer override.\n");
+>  		printk(KERN_INFO "If you got timer trouble "
+>  			"try acpi_use_timer_override\n");
+> +
+> +		return true;
+>  	}
+>  #endif
+>  #endif
+>  	/* RED-PEN skip them on mptables too? */
+>  
+> +	return false;
+>  }
+>  
+>  #if defined(CONFIG_ACPI) && defined(CONFIG_X86_IO_APIC)
+> @@ -131,13 +138,13 @@ static u32 __init ati_ixp4x0_rev(int num, int slot, int func)
+>  	return d;
+>  }
+>  
+> -static void __init ati_bugs(int num, int slot, int func)
+> +static bool __init ati_bugs(int num, int slot, int func)
+>  {
+>  	u32 d;
+>  	u8  b;
+>  
+>  	if (acpi_use_timer_override)
+> -		return;
+> +		return true;
+>  
+>  	d = ati_ixp4x0_rev(num, slot, func);
+>  	if (d  < 0x82)
+> @@ -155,6 +162,8 @@ static void __init ati_bugs(int num, int slot, int func)
+>  		printk(KERN_INFO "If you got timer trouble "
+>  		       "try acpi_use_timer_override\n");
+>  	}
+> +
+> +	return true;
+>  }
+>  
+>  static u32 __init ati_sbx00_rev(int num, int slot, int func)
+> @@ -167,7 +176,7 @@ static u32 __init ati_sbx00_rev(int num, int slot, int func)
+>  	return d;
+>  }
+>  
+> -static void __init ati_bugs_contd(int num, int slot, int func)
+> +static bool __init ati_bugs_contd(int num, int slot, int func)
+>  {
+>  	u32 d, rev;
+>  
+> @@ -181,10 +190,10 @@ static void __init ati_bugs_contd(int num, int slot, int func)
+>  	 * SB800: revisions 0x40, 0x41, ...
+>  	 */
+>  	if (rev >= 0x39)
+> -		return;
+> +		return true;
+>  
+>  	if (acpi_use_timer_override)
+> -		return;
+> +		return true;
+>  
+>  	/* check for IRQ0 interrupt swap */
+>  	d = read_pci_config(num, slot, func, 0x64);
+> @@ -197,18 +206,22 @@ static void __init ati_bugs_contd(int num, int slot, int func)
+>  		printk(KERN_INFO "If you got timer trouble "
+>  		       "try acpi_use_timer_override\n");
+>  	}
+> +
+> +	return true;
+>  }
+>  #else
+> -static void __init ati_bugs(int num, int slot, int func)
+> +static bool __init ati_bugs(int num, int slot, int func)
+>  {
+> +	return true;
+>  }
+>  
+> -static void __init ati_bugs_contd(int num, int slot, int func)
+> +static bool __init ati_bugs_contd(int num, int slot, int func)
+>  {
+> +	return true;
+>  }
+>  #endif
+>  
+> -static void __init intel_remapping_check(int num, int slot, int func)
+> +static bool __init intel_remapping_check(int num, int slot, int func)
+>  {
+>  	u8 revision;
+>  	u16 device;
+> @@ -226,6 +239,8 @@ static void __init intel_remapping_check(int num, int slot, int func)
+>  		set_irq_remapping_broken();
+>  	else if (device == 0x3405 && revision == 0x22)
+>  		set_irq_remapping_broken();
+> +
+> +	return true;
+>  }
+>  
+>  /*
+> @@ -585,7 +600,7 @@ intel_graphics_stolen(int num, int slot, int func,
+>  	e820__update_table(e820_table);
+>  }
+>  
+> -static void __init intel_graphics_quirks(int num, int slot, int func)
+> +static bool __init intel_graphics_quirks(int num, int slot, int func)
+>  {
+>  	const struct intel_early_ops *early_ops;
+>  	u16 device;
+> @@ -603,16 +618,20 @@ static void __init intel_graphics_quirks(int num, int slot, int func)
+>  
+>  		intel_graphics_stolen(num, slot, func, early_ops);
+>  
+> -		return;
+> +		return true;
+>  	}
+> +
+> +	return false;
+>  }
+>  
+> -static void __init force_disable_hpet(int num, int slot, int func)
+> +static bool __init force_disable_hpet(int num, int slot, int func)
+>  {
+>  #ifdef CONFIG_HPET_TIMER
+>  	boot_hpet_disable = true;
+>  	pr_info("x86/hpet: Will disable the HPET for this platform because it's not reliable\n");
+>  #endif
+> +
+> +	return true;
+>  }
+>  
+>  #define BCM4331_MMIO_SIZE	16384
+> @@ -620,7 +639,7 @@ static void __init force_disable_hpet(int num, int slot, int func)
+>  #define bcma_aread32(reg)	ioread32(mmio + 1 * BCMA_CORE_SIZE + reg)
+>  #define bcma_awrite32(reg, val)	iowrite32(val, mmio + 1 * BCMA_CORE_SIZE + reg)
+>  
+> -static void __init apple_airport_reset(int bus, int slot, int func)
+> +static bool __init apple_airport_reset(int bus, int slot, int func)
+>  {
+>  	void __iomem *mmio;
+>  	u16 pmcsr;
+> @@ -628,7 +647,7 @@ static void __init apple_airport_reset(int bus, int slot, int func)
+>  	int i;
+>  
+>  	if (!x86_apple_machine)
+> -		return;
+> +		return true;
+>  
+>  	/* Card may have been put into PCI_D3hot by grub quirk */
+>  	pmcsr = read_pci_config_16(bus, slot, func, BCM4331_PM_CAP + PCI_PM_CTRL);
+> @@ -642,7 +661,7 @@ static void __init apple_airport_reset(int bus, int slot, int func)
+>  		if ((pmcsr & PCI_PM_CTRL_STATE_MASK) != PCI_D0) {
+>  			pr_err("pci 0000:%02x:%02x.%d: Cannot power up Apple AirPort card\n",
+>  			       bus, slot, func);
+> -			return;
+> +			return true;
+>  		}
+>  	}
+>  
+> @@ -654,7 +673,7 @@ static void __init apple_airport_reset(int bus, int slot, int func)
+>  	if (!mmio) {
+>  		pr_err("pci 0000:%02x:%02x.%d: Cannot iomap Apple AirPort card\n",
+>  		       bus, slot, func);
+> -		return;
+> +		return true;
+>  	}
+>  
+>  	pr_info("Resetting Apple AirPort card (left enabled by EFI)\n");
+> @@ -671,6 +690,8 @@ static void __init apple_airport_reset(int bus, int slot, int func)
+>  	udelay(10);
+>  
+>  	early_iounmap(mmio, BCM4331_MMIO_SIZE);
+> +
+> +	return true;
+>  }
+>  
+>  #define QFLAG_APPLY_ONCE 	0x1
+> @@ -682,7 +703,7 @@ struct chipset {
+>  	u32 class;
+>  	u32 class_mask;
+>  	u32 flags;
+> -	void (*f)(int num, int slot, int func);
+> +	bool (*f)(int num, int slot, int func);
+>  };
+>  
+>  static struct chipset early_qrk[] __initdata = {
+> @@ -757,11 +778,13 @@ static int __init check_dev_quirk(int num, int slot, int func)
+>  			(early_qrk[i].device == device)) &&
+>  			(!((early_qrk[i].class ^ class) &
+>  			    early_qrk[i].class_mask))) {
+> -				if ((early_qrk[i].flags &
+> -				     QFLAG_DONE) != QFLAG_DONE)
+> -					early_qrk[i].f(num, slot, func);
+> -				early_qrk[i].flags |= QFLAG_APPLIED;
+> +			if ((early_qrk[i].flags & QFLAG_DONE) != QFLAG_DONE) {
+> +				bool applied = early_qrk[i].f(num, slot, func);
+> +
+> +				if (applied)
+> +					early_qrk[i].flags |= QFLAG_APPLIED;
+>  			}
+> +		}
+>  	}
+>  
+>  	type = read_pci_config_byte(num, slot, func,
+> -- 
+> 2.34.1
+> 
