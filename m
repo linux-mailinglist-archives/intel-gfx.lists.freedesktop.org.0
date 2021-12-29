@@ -1,42 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F05D7480F68
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Dec 2021 04:45:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5A5F48116B
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Dec 2021 10:49:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB0A510E2D4;
-	Wed, 29 Dec 2021 03:45:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 469F410E965;
+	Wed, 29 Dec 2021 09:49:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48FE110E2D4;
- Wed, 29 Dec 2021 03:45:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
- Subject:From:To:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
- Content-Description:In-Reply-To:References;
- bh=ycxvVafRYnZACUV8ihkx1B5r3YZSzqaTzX6pwCgdaSk=; b=GV0YbFWxQta3U0kPqNa08pjJw1
- RQvmdXDIZvzdsLvd0ZxVpWZRFjAwbXxQiYI0S0DG2ofAdAqXkVthtaZT9c+A9rz0GplnyyAfh4ICf
- Xj/estXqyQyYbRmD7ryOzByVi+5hOEoQovsrEdOD7+pJzPobBrpxFB6DVpPaA46qWhLocp8wLEwgP
- s+aAmTKaz64agMjbCBVrafHpikf+W9emrx/gUIwwaER0x20pVXWEXGWVOGG7AFb4VNAVUh4dSZ4a3
- afHiqzCKD7n4GCpJlFMVTWoCnTg4tN6joc60ZLEhfounAZWGjVH+Gdh1Ehy8DCjA2FclT2f2kepRX
- 0HvprqUw==;
-Received: from [2601:1c0:6280:3f0::aa0b]
- by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n2Ptr-008jJp-P3; Wed, 29 Dec 2021 03:45:17 +0000
-Message-ID: <aaee1615-00f7-7be2-3e69-1294ebc1a238@infradead.org>
-Date: Tue, 28 Dec 2021 19:45:13 -0800
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 604C610E95D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Dec 2021 09:49:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1640771383; x=1672307383;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uZ2PsaO3Sow0PzZFGJfGVnUYXAL9VZqS8607njSZy6s=;
+ b=NsHSRS33CNn8T50vfWK1eP4rBhmmNd+QNQvbfYfxOKKC/viLZbUewwhj
+ A/MYJz/9Rz/tasgda0MEK88+hohpLX3sDqvjm7DIX/RVz3YniVNkyUaEg
+ sYq9JDqffObU2ihPayLEDDd5h3ccIgbM4lXZm8C+3aghNtW1YxgANj/oY
+ rAbjDPjS+8B3BJTys5c+eIsl3sXukjX5j80XcZR30mzOTOdAcPN86BbrL
+ lEbSVfWROzFkkQtPsk5vHh1fASmuxLASCrPX7Sfy0PR7OilLUXSnr2ngI
+ bQN7wPvwyYQoFxaDbVhUG/MeMwdHR6katKcRNDDlmL7uDc7/F5A61H3Z2 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10211"; a="222166480"
+X-IronPort-AV: E=Sophos;i="5.88,244,1635231600"; d="scan'208";a="222166480"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Dec 2021 01:49:42 -0800
+X-IronPort-AV: E=Sophos;i="5.88,244,1635231600"; d="scan'208";a="618992361"
+Received: from jcurran1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.10.44])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Dec 2021 01:49:41 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Dec 2021 11:49:37 +0200
+Message-Id: <20211229094937.733941-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Content-Language: en-US
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-From: Randy Dunlap <rdunlap@infradead.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: [Intel-gfx] question about an intel-gfx issue (4447)
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/dp: make intel_dp_pack_aux() static
+ again
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,17 +56,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+The last user of intel_dp_pack_aux() outside intel_dp_aux.c got removed
+in commit ad26451a7902 ("drm/i915/display: Drop PSR support from HSW and
+BDW"). Make the function static again.
 
-For https://gitlab.freedesktop.org/drm/intel/-/issues/4447,
-are people aware of it or do I need to make people aware of it
-somehow?
+Rename the pack/unpack functions to follow the usual naming conventions
+while at it.
 
-Do I need to provide more information? If so, what?
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 8 ++++----
+ drivers/gpu/drm/i915/display/intel_dp_aux.h | 4 ----
+ 2 files changed, 4 insertions(+), 8 deletions(-)
 
-thanks.
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 5fbb767fcd63..2bc119374555 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -10,7 +10,7 @@
+ #include "intel_pps.h"
+ #include "intel_tc.h"
+ 
+-u32 intel_dp_pack_aux(const u8 *src, int src_bytes)
++static u32 intel_dp_aux_pack(const u8 *src, int src_bytes)
+ {
+ 	int i;
+ 	u32 v = 0;
+@@ -22,7 +22,7 @@ u32 intel_dp_pack_aux(const u8 *src, int src_bytes)
+ 	return v;
+ }
+ 
+-static void intel_dp_unpack_aux(u32 src, u8 *dst, int dst_bytes)
++static void intel_dp_aux_unpack(u32 src, u8 *dst, int dst_bytes)
+ {
+ 	int i;
+ 
+@@ -267,7 +267,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 			for (i = 0; i < send_bytes; i += 4)
+ 				intel_uncore_write(uncore,
+ 						   ch_data[i >> 2],
+-						   intel_dp_pack_aux(send + i,
++						   intel_dp_aux_pack(send + i,
+ 								     send_bytes - i));
+ 
+ 			/* Send the command and wait for it to complete */
+@@ -352,7 +352,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 		recv_bytes = recv_size;
+ 
+ 	for (i = 0; i < recv_bytes; i += 4)
+-		intel_dp_unpack_aux(intel_uncore_read(uncore, ch_data[i >> 2]),
++		intel_dp_aux_unpack(intel_uncore_read(uncore, ch_data[i >> 2]),
+ 				    recv + i, recv_bytes - i);
+ 
+ 	ret = recv_bytes;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.h b/drivers/gpu/drm/i915/display/intel_dp_aux.h
+index 4afbe76217b9..738577537bc7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.h
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.h
+@@ -6,12 +6,8 @@
+ #ifndef __INTEL_DP_AUX_H__
+ #define __INTEL_DP_AUX_H__
+ 
+-#include <linux/types.h>
+-
+ struct intel_dp;
+ 
+-u32 intel_dp_pack_aux(const u8 *src, int src_bytes);
+-
+ void intel_dp_aux_fini(struct intel_dp *intel_dp);
+ void intel_dp_aux_init(struct intel_dp *intel_dp);
+ 
 -- 
-~Randy
+2.30.2
+
