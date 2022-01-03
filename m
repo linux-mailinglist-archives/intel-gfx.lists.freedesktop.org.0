@@ -2,56 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16BAD483742
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jan 2022 19:57:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D8E8483842
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jan 2022 22:17:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 257D589C19;
-	Mon,  3 Jan 2022 18:57:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6573D89A20;
+	Mon,  3 Jan 2022 21:17:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC67889870;
- Mon,  3 Jan 2022 18:57:38 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E833F89829;
+ Mon,  3 Jan 2022 21:17:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641236258; x=1672772258;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=nU6vWZWZhKZhv6sqSOiFoNQ0cbmogFp4gZjuVnk1evc=;
- b=bcQLlRWKPwGt+u5dzAgSxtHiPvp9rGvGpNDQdhTxTPzUqHWP7qDrUTHV
- wr1uigIAnzr3XuIZLElv5oLAK/iSXECIN+iMNmyYStqOWat4gXiTCk2ZX
- fnqje5/Anywe4/gr5umMpU4ExOZDUZx/QszkK6JnrAuj72Zmu2CiiLugc
- 1XkadfEvw+S92sZZgwCl1j4rosz1851ymE2F9EON8HJaG5fsTR+s7KYN0
- eH/H7Q0Ad95YYWNpPvWkzjtEJXa95pNXyusVwL2vaQ58tt3rz2dAV3vyT
- i4svZTCUsM5hrmWMJmzpoaD1h0dUTnfeZTY69a3xG5s0UGsB8aY2n5RIP A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10215"; a="242312984"
-X-IronPort-AV: E=Sophos;i="5.88,258,1635231600"; d="scan'208";a="242312984"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2022 10:57:38 -0800
-X-IronPort-AV: E=Sophos;i="5.88,258,1635231600"; d="scan'208";a="487944544"
-Received: from mikaelsk-mobl1.ger.corp.intel.com (HELO [10.249.254.198])
- ([10.249.254.198])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2022 10:57:36 -0800
-Message-ID: <c501276b-58f4-9764-30d2-5da2ae00e7e9@linux.intel.com>
-Date: Mon, 3 Jan 2022 19:57:34 +0100
+ t=1641244631; x=1672780631;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=fhDBcaXP4K8E6Bpazw2yArVwwYQIbX7ELWXGI9asXpQ=;
+ b=YyNkptGAWb41kCI7+gzFCx56T4i40j/54VK5QWXoW/EHpHM5+pubPQgf
+ H/Tc9J3BWaQ17jJf8SC1dgh8xxyLz22yw9uYyPHoUzropI+gu7QskUrBh
+ VFK8Em9eZhdeqXzNWZbV14qEaVEYmMeQRbxAI1WW5/YZwT0DLvH0ic1R6
+ ay8hMRO2fjMsmnbGmTnr9fDtMoqnIv2bojzbr/FAgjiryq0w34/IJk5iL
+ 3N6Dm25Y9uLuN/JGy7fEoMa6qtg34rLIu4ZP92AXth/RIQ2yGG2Hc2YKa
+ rCmxfIDeH3H61Rvsm6BeouQW59ES2vQttLfybx//sryWdO5C7FcidLiTj g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10216"; a="328459634"
+X-IronPort-AV: E=Sophos;i="5.88,258,1635231600"; d="scan'208";a="328459634"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2022 13:17:11 -0800
+X-IronPort-AV: E=Sophos;i="5.88,258,1635231600"; d="scan'208";a="760192188"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2022 13:17:11 -0800
+Date: Mon, 3 Jan 2022 13:17:10 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Message-ID: <YdNn1uOzEwwnm91N@mdroper-desk1.amr.corp.intel.com>
+References: <20211219212500.61432-1-andi.shyti@linux.intel.com>
+ <20211219212500.61432-3-andi.shyti@linux.intel.com>
+ <YcIIf4wmvNdM09ZS@mdroper-desk1.amr.corp.intel.com>
+ <YcIvFYDuY2uM5hCr@intel.intel>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: "Zeng, Oak" <oak.zeng@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-References: <20220103115947.92688-1-thomas.hellstrom@linux.intel.com>
- <20220103115947.92688-3-thomas.hellstrom@linux.intel.com>
- <BN6PR11MB1633E8200E7999D439707F2392499@BN6PR11MB1633.namprd11.prod.outlook.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <BN6PR11MB1633E8200E7999D439707F2392499@BN6PR11MB1633.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v4 2/4] drm/i915: Use the vma resource as
- argument for gtt binding / unbinding
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YcIvFYDuY2uM5hCr@intel.intel>
+Subject: Re: [Intel-gfx] [PATCH v9 2/6] drm/i915: Use to_gt() helper for
+ GGTT accesses
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,32 +60,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Auld, Matthew" <matthew.auld@intel.com>
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Oak.
+On Tue, Dec 21, 2021 at 09:46:29PM +0200, Andi Shyti wrote:
+> Hi Matt,
+> 
+> > > diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> > > index 170bba913c30..128315aec517 100644
+> > > --- a/drivers/gpu/drm/i915/i915_perf.c
+> > > +++ b/drivers/gpu/drm/i915/i915_perf.c
+> > > @@ -1630,7 +1630,7 @@ static int alloc_noa_wait(struct i915_perf_stream *stream)
+> > >  	struct drm_i915_gem_object *bo;
+> > >  	struct i915_vma *vma;
+> > >  	const u64 delay_ticks = 0xffffffffffffffff -
+> > > -		intel_gt_ns_to_clock_interval(stream->perf->i915->ggtt.vm.gt,
+> > > +		intel_gt_ns_to_clock_interval(to_gt(stream->perf->i915)->ggtt->vm.gt,
+> > 
+> > I'm not too familiar with the perf code, but this looks a bit roundabout
+> > since we're ultimately trying to get to a GT...do we even need to go
+> > through the ggtt structure here or can we just pass
+> > "to_gt(stream->perf->i915)" as the first parameter?
+> > 
+> > >  					      atomic64_read(&stream->perf->noa_programming_delay));
+> > >  	const u32 base = stream->engine->mmio_base;
+> > >  #define CS_GPR(x) GEN8_RING_CS_GPR(base, x)
+> > > @@ -3542,7 +3542,7 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
+> > >  
+> > >  static u64 oa_exponent_to_ns(struct i915_perf *perf, int exponent)
+> > >  {
+> > > -	return intel_gt_clock_interval_to_ns(perf->i915->ggtt.vm.gt,
+> > > +	return intel_gt_clock_interval_to_ns(to_gt(perf->i915)->ggtt->vm.gt,
+> > 
+> > Ditto; this looks like "to_gt(perf->i915)" might be all we need?
+> 
+> I think this function is looking for the GT coming from the VM,
+> otherwise originally it could have taken it from &i915->gt. In my
+> first version I proposed a wrapper around this but it was
+> rejected by Lucas.
+> 
+> Besides, as we discussed earlier when I was proposed the static
+> allocation, the ggtt might not always be linked to the same gt,
+> so that I assumed that sometimes:
+> 
+>    to_gt(perf->i915)->ggtt->vm.gt != to_gt(perf->i915)
+> 
+> if two GTs are sharing the same ggtt, what would the ggtt->vm.gt
+> link be?
 
-On 1/3/22 19:17, Zeng, Oak wrote:
->
-> Regards,
-> Oak
->
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Thomas Hellström
->> Sent: January 3, 2022 7:00 AM
->> To: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>; Auld, Matthew <matthew.auld@intel.com>
->> Subject: [Intel-gfx] [PATCH v4 2/4] drm/i915: Use the vma resource as argument for gtt binding / unbinding
->>
->> When introducing asynchronous unbinding, the vma itself may no longer
->> be alive when the actual binding or unbinding takes place.
-> Can we take an extra reference counter of the vma to keep the vma alive, until the actual binding/unbinding takes place?
+From the git history, it doesn't look like this really needs to care
+about the GGTT at all; I think it was just unintentionally written in a
+roundabout manner when intel_gt was first being introduced in the code.
+The reference here first showed up in commit f170523a7b8e ("drm/i915/gt:
+Consolidate the CS timestamp clocks").
 
-The point here is that that's not needed, and should be avoided. If the 
-vma is no longer alive, that means nobody uses it anymore, but the GPU 
-may still have work in the pipe that references the GPU virtual address.
-
-/Thomas.
+Actually the most correct thing to do is probably to use
+'stream->engine->gt' to ensure we grab the GT actually associated with
+the stream's engine.
 
 
+Matt
+
+
+> 
+> Thanks,
+> Andi
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
