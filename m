@@ -2,71 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8019B483BD5
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jan 2022 07:12:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 925E2483E1A
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jan 2022 09:29:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A29A310E1CC;
-	Tue,  4 Jan 2022 06:12:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2CF910E1C8;
+	Tue,  4 Jan 2022 08:29:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67B4D10E1CC
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jan 2022 06:12:03 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEB7F10E1C8;
+ Tue,  4 Jan 2022 08:29:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641276724; x=1672812724;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=UEksdYlrCaQkUBLzJSYU0o9d6UDDvucv4QTk/ib7flY=;
- b=EdaoPLiuNy6A8iUXInttS67lpZ+qzEQjEcFz5SHCX+77m7kAByB5/keg
- XQsnL2qMyVrqf8bCgMST288Qjrdg5/4GuNhtU7nKx37POX2lmMdvTjgeJ
- IgVjXFXjz+VEZ+OTA9m7aqjl+Vm5VKTR0EEOaBMvvuZPf++koJNNnEkWj
- D3U6AzoqFRvEJ9MgRSm1tYnNcO1eeAc+96NzGxOUiTD9VcfjI6c7JGZBo
- fMH8H9Qlvg670l5BkHdtZbSx1NAeeRg1/k3N7Y/XnOKxGeOWAborCJ1X0
- gkw+XGconKEr7cU+53tT0IYzCzoIumWDc8geCHCAtYTOC28WEBkIotkYS g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10216"; a="328507022"
-X-IronPort-AV: E=Sophos;i="5.88,260,1635231600"; d="scan'208";a="328507022"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2022 22:11:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,260,1635231600"; d="scan'208";a="471944971"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga006.jf.intel.com with ESMTP; 03 Jan 2022 22:11:27 -0800
-Received: from bgsmsx605.gar.corp.intel.com (10.67.234.7) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Mon, 3 Jan 2022 22:11:26 -0800
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- BGSMSX605.gar.corp.intel.com (10.67.234.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 4 Jan 2022 11:41:24 +0530
-Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
- BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2308.020;
- Tue, 4 Jan 2022 11:41:24 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "Tseng, William" <william.tseng@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v3] drm/i915/dsi: let HW maintain the HS-TRAIL timing
-Thread-Index: AQHX8y5KmEuP2ZYkxkehr1lZJhMYNaxSe5fA
-Date: Tue, 4 Jan 2022 06:11:24 +0000
-Message-ID: <d2ff4791326a4a1aaab9c2f5234c3ab3@intel.com>
-References: <20211115030320.26666-1-william.tseng@intel.com>
- <20211217100903.32599-1-william.tseng@intel.com>
-In-Reply-To: <20211217100903.32599-1-william.tseng@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ t=1641284973; x=1672820973;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=inp4zl5PxT6m0phrdgKlCcGPK/z9l8nskoQCH79NGm0=;
+ b=NpD/sZK9M6Wxt3/tBymR/4pCjPZyoBMZVkIWd7qOr5Hsw0vdZTNMnLzr
+ d+qTBfLj3oTRscCBcc//x/v0YhO2AwbFOQ0EHLDRzjbyoG461UBtF0mhR
+ FvxsZcJE/rS7iwu8BmjY9+fkgFZt/geixX4JqoaLh6mmG1K0PAv/GLcrF
+ 418oLLSR1SKHARwaAf3+bC+479ouvXbCO6qAsNOIj+Rqu+qmcXCCdGG9s
+ d/L89OoPOCvJXpmLsdndCoSw3Vef+6CsYAaqIXNOyb4Iy6tP/NnadqSpP
+ Dm4BAvmMNeErEFArPBQ2ilMSKmzusP9SZAL/BRliIzumV9hg+asy+26zy A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10216"; a="302935232"
+X-IronPort-AV: E=Sophos;i="5.88,260,1635231600"; d="scan'208";a="302935232"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2022 00:29:32 -0800
+X-IronPort-AV: E=Sophos;i="5.88,260,1635231600"; d="scan'208";a="611002421"
+Received: from cmathias-mobl1.ger.corp.intel.com (HELO [10.249.254.196])
+ ([10.249.254.196])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2022 00:29:31 -0800
+Message-ID: <f31472df-3239-5903-ea3c-60fd58b4e1d8@linux.intel.com>
+Date: Tue, 4 Jan 2022 09:29:29 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/dsi: let HW maintain the
- HS-TRAIL timing
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: "Zeng, Oak" <oak.zeng@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+References: <20220103115947.92688-1-thomas.hellstrom@linux.intel.com>
+ <20220103115947.92688-3-thomas.hellstrom@linux.intel.com>
+ <BN6PR11MB1633E8200E7999D439707F2392499@BN6PR11MB1633.namprd11.prod.outlook.com>
+ <c501276b-58f4-9764-30d2-5da2ae00e7e9@linux.intel.com>
+ <BN6PR11MB1633BB7DDA0486B79F6B6C2492499@BN6PR11MB1633.namprd11.prod.outlook.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <BN6PR11MB1633BB7DDA0486B79F6B6C2492499@BN6PR11MB1633.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v4 2/4] drm/i915: Use the vma resource as
+ argument for gtt binding / unbinding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,125 +66,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>
+Cc: "Auld, Matthew" <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Tseng, William <william.tseng@intel.com>
-> Sent: Friday, December 17, 2021 3:39 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Tseng, William <william.tseng@intel.com>; Ville Syrjala
-> <ville.syrjala@linux.intel.com>; Jani Nikula <jani.nikula@linux.intel.com=
->;
-> Kulkarni, Vandita <vandita.kulkarni@intel.com>; Lee, Shawn C
-> <shawn.c.lee@intel.com>; Chiou, Cooper <cooper.chiou@intel.com>
-> Subject: [PATCH v3] drm/i915/dsi: let HW maintain the HS-TRAIL timing
->=20
-> This change is to avoid over-specification of the TEOT timing parameter,
-> which is derived from software in current design.
->=20
-> Supposed that THS-TRAIL and THS-EXIT have the minimum values, i.e., 60 an=
-d
-> 100 in ns. If SW is overriding the HW default, the TEOT value becomes 150=
- ns,
-> approximately calculated by the following formula.
->=20
->   DIV_ROUND_UP(60/50)*50 + DIV_ROUND_UP(100/50))*50/2, where 50
->   is LP Escape Clock time in ns.
->=20
-> The TEOT value 150 ns is larger than the maximum value, around 136 ns if =
-UI
-> is 1.8ns, (105 ns + 12*UI, defined by MIPI DPHY specification).
->=20
-> However, the TEOT value will meet the specification if THS-TRAIL is set t=
-o the
-> HW default, instead of software overriding.
->=20
-> The timing change is made for both data lane and clock lane.
->=20
+Hi, Oak.
 
-Looks like when we try to convert to esc clocks needed, the value gets roun=
-ded ( due to register limitation) and ends up being higher than expected.
-Leading to TEOT higher than needed, though we are in limits for individual =
-values.
-Right now, in such cases I do not see any option from spec to calculate in =
-a different way like it provided in case of clk_prepare.
-This patch is needed until we have proper way to update the trail_cnt in th=
-e register.
-Until then lets not override the HW defaults.
+On 1/4/22 00:08, Zeng, Oak wrote:
+>
+> Regards,
+> Oak
 
-Acked-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Looks like your emails always start with "Regards, Oak". a misconfiguration?
 
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: Lee Shawn C <shawn.c.lee@intel.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> Signed-off-by: William Tseng <william.tseng@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 19 +++----------------
->  1 file changed, 3 insertions(+), 16 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
-> b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 168c84a74d30..992e357e3f44 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1863,14 +1863,13 @@ static void icl_dphy_param_init(struct intel_dsi
-> *intel_dsi)
->  	struct drm_i915_private *dev_priv =3D to_i915(dev);
->  	struct mipi_config *mipi_config =3D dev_priv->vbt.dsi.config;
->  	u32 tlpx_ns;
-> -	u32 prepare_cnt, exit_zero_cnt, clk_zero_cnt, trail_cnt;
-> -	u32 ths_prepare_ns, tclk_trail_ns;
-> +	u32 prepare_cnt, exit_zero_cnt, clk_zero_cnt;
-> +	u32 ths_prepare_ns;
->  	u32 hs_zero_cnt;
->  	u32 tclk_pre_cnt, tclk_post_cnt;
->=20
->  	tlpx_ns =3D intel_dsi_tlpx_ns(intel_dsi);
->=20
-> -	tclk_trail_ns =3D max(mipi_config->tclk_trail, mipi_config->ths_trail);
->  	ths_prepare_ns =3D max(mipi_config->ths_prepare,
->  			     mipi_config->tclk_prepare);
->=20
-> @@ -1897,14 +1896,6 @@ static void icl_dphy_param_init(struct intel_dsi
-> *intel_dsi)
->  		clk_zero_cnt =3D ICL_CLK_ZERO_CNT_MAX;
->  	}
->=20
-> -	/* trail cnt in escape clocks*/
-> -	trail_cnt =3D DIV_ROUND_UP(tclk_trail_ns, tlpx_ns);
-> -	if (trail_cnt > ICL_TRAIL_CNT_MAX) {
-> -		drm_dbg_kms(&dev_priv->drm, "trail_cnt out of range
-> (%d)\n",
-> -			    trail_cnt);
-> -		trail_cnt =3D ICL_TRAIL_CNT_MAX;
-> -	}
-> -
->  	/* tclk pre count in escape clocks */
->  	tclk_pre_cnt =3D DIV_ROUND_UP(mipi_config->tclk_pre, tlpx_ns);
->  	if (tclk_pre_cnt > ICL_TCLK_PRE_CNT_MAX) { @@ -1948,17 +1939,13
-> @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
->  			       CLK_PRE_OVERRIDE |
->  			       CLK_PRE(tclk_pre_cnt) |
->  			       CLK_POST_OVERRIDE |
-> -			       CLK_POST(tclk_post_cnt) |
-> -			       CLK_TRAIL_OVERRIDE |
-> -			       CLK_TRAIL(trail_cnt));
-> +			       CLK_POST(tclk_post_cnt));
->=20
->  	/* data lanes dphy timings */
->  	intel_dsi->dphy_data_lane_reg =3D (HS_PREPARE_OVERRIDE |
->  					 HS_PREPARE(prepare_cnt) |
->  					 HS_ZERO_OVERRIDE |
->  					 HS_ZERO(hs_zero_cnt) |
-> -					 HS_TRAIL_OVERRIDE |
-> -					 HS_TRAIL(trail_cnt) |
->  					 HS_EXIT_OVERRIDE |
->  					 HS_EXIT(exit_zero_cnt));
->=20
-> --
-> 2.17.1
 
+>> -----Original Message-----
+>> From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Sent: January 3, 2022 1:58 PM
+>> To: Zeng, Oak <oak.zeng@intel.com>; intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+>> Cc: Auld, Matthew <matthew.auld@intel.com>
+>> Subject: Re: [Intel-gfx] [PATCH v4 2/4] drm/i915: Use the vma resource as argument for gtt binding / unbinding
+>>
+>> Hi, Oak.
+>>
+>> On 1/3/22 19:17, Zeng, Oak wrote:
+>>> Regards,
+>>> Oak
+>>>
+>>>> -----Original Message-----
+>>>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Thomas Hellström
+>>>> Sent: January 3, 2022 7:00 AM
+>>>> To: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+>>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>; Auld, Matthew <matthew.auld@intel.com>
+>>>> Subject: [Intel-gfx] [PATCH v4 2/4] drm/i915: Use the vma resource as argument for gtt binding / unbinding
+>>>>
+>>>> When introducing asynchronous unbinding, the vma itself may no longer
+>>>> be alive when the actual binding or unbinding takes place.
+>>> Can we take an extra reference counter of the vma to keep the vma alive, until the actual binding/unbinding takes place?
+>> The point here is that that's not needed, and should be avoided.
+> Can you explain more why "keeping vma alive until unbinding takes place" should be avoided?
+>
+> As I understand it, your series introduce asynchronized unbinding. But since vma might be no longer alive at the time of unbinding. To overcome this difficulty, you introduce a vma resource structure and you guarantee vma resource is alive at bind/unbind time. So you can use vma resource for the bind/unbind operation. My question is, can we achieve the asynchronized unbinding still using vma structure by keeping vma structure alive ( by ref count it). This way the change should be much smaller (compared to this series). Why it is harmful to keep the vma alive? Maybe you have other reasons to introduce vma resource that I don't see.
+
+When we allow asynchronous unbinding, it's allowed to immediately rebind 
+the vma, possibly into the same gpu virtual address, but with different 
+pages. And when doing that we don't want to block waiting for the unbind 
+to execute. In fact, we could allow a large number of outstanding binds 
+and unbinds for a vma, which makes the vma structure unsuitable to track 
+this, since there will no longer be a single mapping between a set of 
+active pages and a vma, or a virtual gpu range and a vma.
+
+Thanks,
+
+/Thomas
+
+>
+> Regards,
+> Oak
+>
+>   If the
+>> vma is no longer alive, that means nobody uses it anymore, but the GPU
+>> may still have work in the pipe that references the GPU virtual address.
+>>
+>> /Thomas.
+>>
