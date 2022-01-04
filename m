@@ -1,48 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC06548470A
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jan 2022 18:36:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01682484710
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jan 2022 18:40:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D1BA89CF6;
-	Tue,  4 Jan 2022 17:36:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A49688EA7;
+	Tue,  4 Jan 2022 17:40:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2342893EB;
- Tue,  4 Jan 2022 17:36:48 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A4AE88EA7
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jan 2022 17:39:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641317808; x=1672853808;
+ t=1641317999; x=1672853999;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=WsakHE0nTQOafH8dnbT4yWnV25q0ZmHKN4d2z5SD3Xg=;
- b=nbVWXVbHdxsnI7fTmqjjdQuXockDWYYgLnZyyly+SDHDEvLUD1HJ+3Ai
- JB/B8nYGKrFm499l4IMo7QvkDJPaqYR2WW3SFmtUgKCpEJZ/DDWYsPTiJ
- n3g4COdfP3XnuMVY+5jn2hW+CRzce176hd6RIaj3w/EGZctJx48E202qG
- RtiII9UCULTB3ondCUyPLz2o2/3qPF9bsL/nwSqDiYlYNHbGyrEnsTupL
- lAZljnkMwutzqT1T4WCSLaiENtV9RMssThHJw7TtK7xodZh+EGe1RzKoH
- rAbxRClnjAc4wtQipfQV6R8U6ySprd1o/lRMP9P+FLo03G9T0cTjRfKQs Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10216"; a="229582068"
-X-IronPort-AV: E=Sophos;i="5.88,261,1635231600"; d="scan'208";a="229582068"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2022 09:36:48 -0800
-X-IronPort-AV: E=Sophos;i="5.88,261,1635231600"; d="scan'208";a="762887310"
-Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2022 09:36:47 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-gfx@lists.freedesktop.org>,
-	<dri-devel@lists.freedesktop.org>
-Date: Tue,  4 Jan 2022 09:31:00 -0800
-Message-Id: <20220104173100.32342-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+ bh=LHo7GVyKFHzGGk3zahdWTaw0yptft0t49E9rhrXh5Os=;
+ b=Yp1RsiWl1cU5oI80s3yi+ftcgBnJnMg1QyMrkZ1l/LGy3dEwaS1CiEDB
+ e188YbOi5dp7dIyjtyXN63IV37YtGk8MaeleCW17n/Pcf1DVpTxzsM5Ss
+ Fo19s0abrEWh1zsrOkFG12Vs8aq9HkaGqB0NOlErQDt1XgIIR1tcEjsnw
+ K5QNNLWuTnLV/jQQkbSAf+W4PP5HNZ4aemGqCKcdLQo7MgjiP6m1oEEak
+ S3wLyehrB3mn/COLTF4kt9O0LPWb8TmYt6NaL7apKekdDVZraSb3hiUXl
+ YLx9A1aa5eneSv0yFcpqAwO97Sq1bXA/rlPtFi4K5Q0BGG/oHRn/oZByo A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10216"; a="328609314"
+X-IronPort-AV: E=Sophos;i="5.88,261,1635231600"; d="scan'208";a="328609314"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2022 09:39:58 -0800
+X-IronPort-AV: E=Sophos;i="5.88,261,1635231600"; d="scan'208";a="688648121"
+Received: from gtobin-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.11.253])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2022 09:39:57 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  4 Jan 2022 19:39:44 +0200
+Message-Id: <cover.1641317930.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Check return
- intel_context_timeline_lock of in eb_pin_timeline
+Subject: [Intel-gfx] [PATCH 0/7] drm/i915/mst: DP MST ESI handling
+ improvements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,33 +56,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-intel_context_timeline_lock can return can error if interrupted by a
-user when trying to lock the timeline mutex. Check the return value of
-intel_context_timeline_lock in eb_pin_timeline (execbuf IOCTL).
+Some improvements around the sink irq handling.
 
-Fixes: 544460c33821 ("drm/i915: Multi-BB execbuf")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 3 +++
- 1 file changed, 3 insertions(+)
+Jani Nikula (7):
+  drm/i915/mst: fix intel_dp_mst_hpd_irq() indentation
+  drm/i915/mst: abstract intel_dp_ack_sink_irq_esi()
+  drm/i915/mst: debug log 4 bytes of ESI right after reading
+  drm/i915/mst: abstract handling of link status in DP MST
+  drm/i915/mst: read link status only when requested by sink in ESI
+  drm/i915/mst: ack sink irq ESI for link status changes
+  drm/i915/mst: only ack the ESI we actually handled
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index e9541244027a..65a078945b00 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2517,6 +2517,9 @@ static int eb_pin_timeline(struct i915_execbuffer *eb, struct intel_context *ce,
- 			i915_request_put(rq);
- 
- 			tl = intel_context_timeline_lock(ce);
-+			if (IS_ERR(tl))
-+				return PTR_ERR(tl);
-+
- 			intel_context_exit(ce);
- 			intel_context_timeline_unlock(tl);
- 
+ drivers/gpu/drm/i915/display/intel_dp.c | 106 ++++++++++++++----------
+ 1 file changed, 62 insertions(+), 44 deletions(-)
+
 -- 
-2.34.1
+2.30.2
 
