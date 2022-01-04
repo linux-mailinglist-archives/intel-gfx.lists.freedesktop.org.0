@@ -1,59 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 925E2483E1A
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jan 2022 09:29:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13255483E82
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jan 2022 09:54:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2CF910E1C8;
-	Tue,  4 Jan 2022 08:29:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1843010E4FF;
+	Tue,  4 Jan 2022 08:54:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEB7F10E1C8;
- Tue,  4 Jan 2022 08:29:33 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65F7110E4F8
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jan 2022 08:54:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641284973; x=1672820973;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=inp4zl5PxT6m0phrdgKlCcGPK/z9l8nskoQCH79NGm0=;
- b=NpD/sZK9M6Wxt3/tBymR/4pCjPZyoBMZVkIWd7qOr5Hsw0vdZTNMnLzr
- d+qTBfLj3oTRscCBcc//x/v0YhO2AwbFOQ0EHLDRzjbyoG461UBtF0mhR
- FvxsZcJE/rS7iwu8BmjY9+fkgFZt/geixX4JqoaLh6mmG1K0PAv/GLcrF
- 418oLLSR1SKHARwaAf3+bC+479ouvXbCO6qAsNOIj+Rqu+qmcXCCdGG9s
- d/L89OoPOCvJXpmLsdndCoSw3Vef+6CsYAaqIXNOyb4Iy6tP/NnadqSpP
- Dm4BAvmMNeErEFArPBQ2ilMSKmzusP9SZAL/BRliIzumV9hg+asy+26zy A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10216"; a="302935232"
-X-IronPort-AV: E=Sophos;i="5.88,260,1635231600"; d="scan'208";a="302935232"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2022 00:29:32 -0800
-X-IronPort-AV: E=Sophos;i="5.88,260,1635231600"; d="scan'208";a="611002421"
-Received: from cmathias-mobl1.ger.corp.intel.com (HELO [10.249.254.196])
- ([10.249.254.196])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2022 00:29:31 -0800
-Message-ID: <f31472df-3239-5903-ea3c-60fd58b4e1d8@linux.intel.com>
-Date: Tue, 4 Jan 2022 09:29:29 +0100
+ t=1641286471; x=1672822471;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mltJvdXsQBeLW7NxXZ2goCi5TsT0qZDIGVnjvhEZRhI=;
+ b=S0SrCrsysgbmwM0eCqruPDhWWApyGTQGvm2mAU1/sqeU3zZNWnqNXN4u
+ 1qwgz7PwGYCrEd48zNnvDyLVMJbJ/BmTSHe+TUXGQDKtZb5bKLu2dHxUX
+ cdipLZIC4XHvEfwXhaozPEgUicYiTjgMGG52fjB0RLCvCNFnMilnWR7ld
+ mR/zxTrEuuU4mqP7yM2nbgrSgucBxD4o5Xh9vTnSI0Oms6KcCRo/X/+Kw
+ fLC+xJvYmTpONW6izX/rbrNmv1eZoIR8hG57QJVywYCZajiUJSLRhCQxl
+ e/9/TA1OE2/qv5Hl0OwNc7JYeoV0kH8Recd2gaVF8nF0RFklA0Qi3la7z A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10216"; a="222177799"
+X-IronPort-AV: E=Sophos;i="5.88,260,1635231600"; d="scan'208";a="222177799"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2022 00:54:30 -0800
+X-IronPort-AV: E=Sophos;i="5.88,260,1635231600"; d="scan'208";a="688499286"
+Received: from gtobin-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.11.253])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2022 00:54:28 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  4 Jan 2022 10:54:21 +0200
+Message-Id: <20220104085421.213793-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: "Zeng, Oak" <oak.zeng@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-References: <20220103115947.92688-1-thomas.hellstrom@linux.intel.com>
- <20220103115947.92688-3-thomas.hellstrom@linux.intel.com>
- <BN6PR11MB1633E8200E7999D439707F2392499@BN6PR11MB1633.namprd11.prod.outlook.com>
- <c501276b-58f4-9764-30d2-5da2ae00e7e9@linux.intel.com>
- <BN6PR11MB1633BB7DDA0486B79F6B6C2492499@BN6PR11MB1633.namprd11.prod.outlook.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <BN6PR11MB1633BB7DDA0486B79F6B6C2492499@BN6PR11MB1633.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v4 2/4] drm/i915: Use the vma resource as
- argument for gtt binding / unbinding
+Subject: [Intel-gfx] [PATCH] drm/i915/psr: remove useless enum
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,67 +56,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Auld, Matthew" <matthew.auld@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Oak.
+VBT has a lot of mappings to save bits. Prefer translating them to the
+actual values while parsing the VBT, keeping the mappings internal to
+intel_bios.c. Use an int with the correct number of lines to wait
+instead of keeping the VBT mapping around.
 
-On 1/4/22 00:08, Zeng, Oak wrote:
->
-> Regards,
-> Oak
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Looks like your emails always start with "Regards, Oak". a misconfiguration?
+---
 
+Actually lines_to_wait isn't used at all. Should we nuke it altogether
+or start using it for something?
+---
+ drivers/gpu/drm/i915/display/intel_bios.c | 8 ++++----
+ drivers/gpu/drm/i915/i915_drv.h           | 9 +--------
+ 2 files changed, 5 insertions(+), 12 deletions(-)
 
->> -----Original Message-----
->> From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Sent: January 3, 2022 1:58 PM
->> To: Zeng, Oak <oak.zeng@intel.com>; intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
->> Cc: Auld, Matthew <matthew.auld@intel.com>
->> Subject: Re: [Intel-gfx] [PATCH v4 2/4] drm/i915: Use the vma resource as argument for gtt binding / unbinding
->>
->> Hi, Oak.
->>
->> On 1/3/22 19:17, Zeng, Oak wrote:
->>> Regards,
->>> Oak
->>>
->>>> -----Original Message-----
->>>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Thomas Hellström
->>>> Sent: January 3, 2022 7:00 AM
->>>> To: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
->>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>; Auld, Matthew <matthew.auld@intel.com>
->>>> Subject: [Intel-gfx] [PATCH v4 2/4] drm/i915: Use the vma resource as argument for gtt binding / unbinding
->>>>
->>>> When introducing asynchronous unbinding, the vma itself may no longer
->>>> be alive when the actual binding or unbinding takes place.
->>> Can we take an extra reference counter of the vma to keep the vma alive, until the actual binding/unbinding takes place?
->> The point here is that that's not needed, and should be avoided.
-> Can you explain more why "keeping vma alive until unbinding takes place" should be avoided?
->
-> As I understand it, your series introduce asynchronized unbinding. But since vma might be no longer alive at the time of unbinding. To overcome this difficulty, you introduce a vma resource structure and you guarantee vma resource is alive at bind/unbind time. So you can use vma resource for the bind/unbind operation. My question is, can we achieve the asynchronized unbinding still using vma structure by keeping vma structure alive ( by ref count it). This way the change should be much smaller (compared to this series). Why it is harmful to keep the vma alive? Maybe you have other reasons to introduce vma resource that I don't see.
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index c7a8d517ce81..8d105f44892e 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -907,16 +907,16 @@ parse_psr(struct drm_i915_private *i915, const struct bdb_header *bdb)
+ 
+ 	switch (psr_table->lines_to_wait) {
+ 	case 0:
+-		i915->vbt.psr.lines_to_wait = PSR_0_LINES_TO_WAIT;
++		i915->vbt.psr.lines_to_wait = 0;
+ 		break;
+ 	case 1:
+-		i915->vbt.psr.lines_to_wait = PSR_1_LINE_TO_WAIT;
++		i915->vbt.psr.lines_to_wait = 1;
+ 		break;
+ 	case 2:
+-		i915->vbt.psr.lines_to_wait = PSR_4_LINES_TO_WAIT;
++		i915->vbt.psr.lines_to_wait = 4;
+ 		break;
+ 	case 3:
+-		i915->vbt.psr.lines_to_wait = PSR_8_LINES_TO_WAIT;
++		i915->vbt.psr.lines_to_wait = 8;
+ 		break;
+ 	default:
+ 		drm_dbg_kms(&i915->drm,
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index beeb42a14aae..4d5b239049bb 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -515,13 +515,6 @@ i915_fence_timeout(const struct drm_i915_private *i915)
+ /* Amount of PSF GV points, BSpec precisely defines this */
+ #define I915_NUM_PSF_GV_POINTS 3
+ 
+-enum psr_lines_to_wait {
+-	PSR_0_LINES_TO_WAIT = 0,
+-	PSR_1_LINE_TO_WAIT,
+-	PSR_4_LINES_TO_WAIT,
+-	PSR_8_LINES_TO_WAIT
+-};
+-
+ struct intel_vbt_data {
+ 	/* bdb version */
+ 	u16 version;
+@@ -561,7 +554,7 @@ struct intel_vbt_data {
+ 		bool full_link;
+ 		bool require_aux_wakeup;
+ 		int idle_frames;
+-		enum psr_lines_to_wait lines_to_wait;
++		int lines_to_wait;
+ 		int tp1_wakeup_time_us;
+ 		int tp2_tp3_wakeup_time_us;
+ 		int psr2_tp2_tp3_wakeup_time_us;
+-- 
+2.30.2
 
-When we allow asynchronous unbinding, it's allowed to immediately rebind 
-the vma, possibly into the same gpu virtual address, but with different 
-pages. And when doing that we don't want to block waiting for the unbind 
-to execute. In fact, we could allow a large number of outstanding binds 
-and unbinds for a vma, which makes the vma structure unsuitable to track 
-this, since there will no longer be a single mapping between a set of 
-active pages and a vma, or a virtual gpu range and a vma.
-
-Thanks,
-
-/Thomas
-
->
-> Regards,
-> Oak
->
->   If the
->> vma is no longer alive, that means nobody uses it anymore, but the GPU
->> may still have work in the pipe that references the GPU virtual address.
->>
->> /Thomas.
->>
