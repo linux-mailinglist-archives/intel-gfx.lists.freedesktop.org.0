@@ -1,52 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01FBF485A06
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jan 2022 21:29:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDA83485CA1
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jan 2022 00:54:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 815E710E5CC;
-	Wed,  5 Jan 2022 20:29:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F363410E188;
+	Wed,  5 Jan 2022 23:54:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C336310E5CC
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jan 2022 20:28:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641414538; x=1672950538;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=OlELdqxnQq7sxZF73SRRHISvYFB1+0j+1vroKCF+PxM=;
- b=D2zPjJYn0WL7JU2YIHQHq9pXw0JW8w513nsHT2LodzQPdPCJs6Ih5dwN
- CLQpa5ic8ZVVlh7fp8uzOQJKtNb4Mka619Rc1fXBiA40fnOhDz+qhKn1q
- 6CcE1a5usXS3DfZ3VfIlIOaLXpVGywut0ZFchfojfEJy2+GkCEtjKbJk8
- lM93WW0nSBoZL9FiwfFfz/NX54RLRRPLgNc0tTHZ0nLWgeNlyNYzEp1oD
- 2y1W1lBKZXTzC56bnRpuonku04jBGrFn21HmKtJUbbsSJ80xWIvYrTQS2
- hT6cwAiL5eWlLTuS+L9LCAOGrxPcUG+fEwU2PQTeUCZuwSJZ5S1WH8Mlr g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="229854839"
-X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; d="scan'208";a="229854839"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2022 12:28:58 -0800
-X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; d="scan'208";a="526689076"
-Received: from menright-mobl1.amr.corp.intel.com (HELO localhost)
- ([10.252.25.244])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2022 12:28:57 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Patchwork <patchwork@emeril.freedesktop.org>
-In-Reply-To: <164141342082.25402.15604951649221430139@emeril.freedesktop.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1641411696.git.jani.nikula@intel.com>
- <164141342082.25402.15604951649221430139@emeril.freedesktop.org>
-Date: Wed, 05 Jan 2022 22:28:54 +0200
-Message-ID: <875yqyj5a1.fsf@intel.com>
+Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D04DD10E427
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jan 2022 23:54:48 +0000 (UTC)
+Date: Wed, 05 Jan 2022 23:54:43 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail; t=1641426886;
+ bh=08qnopJ/DUHN91WheoJBHHaZdklDDu1TthMMx1Fhljg=;
+ h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+ References:From:To:Cc;
+ b=V2pKlZ/4UcNGlRHolp7at7kYgRaAnJ5tazpFkXjni0jqbgNPuewWZXlYyTLLt/c8B
+ zhj9ywkoZl/LhvrRNYEQUBD20+NXTPQR+kwp69uTrvhgbSslG0Rm8LLEl6ARxo1kxd
+ LpRwpY3PT2YcDQB+7wOEFlfkwyRdvGhvzac8IxmgKz+Q9vXxHwafCcf6NeuMNeruit
+ Mbzu5Ubn+U1fXJO97kP95TExgYJN01odNRLjp48zHSAGBIc+8LdFNKTIF9gU9PDaCt
+ e00IqFAlN8qMoXcJ1JhBD3gRw8J4lv+45BSB0AwSSRqSRNvBSVohD78Fmxbf0+S1bl
+ Rawl2cx86GEJg==
+To: =?utf-8?Q?Jos=C3=A9_Exp=C3=B3sito?= <jose.exposito89@gmail.com>
+From: Simon Ser <contact@emersion.fr>
+Message-ID: <3DdB6YPUQr4O063yNreefZcIm6p5Z6HORoVVbk5RTMmjz8qvnxMse42hLvfDmA323KG-TWLc_JUFZEEEIkoINXQuAzjLVe2jRRM01tQgYOU=@emersion.fr>
+In-Reply-To: <20211226112503.31771-3-jose.exposito89@gmail.com>
+References: <20211226112503.31771-1-jose.exposito89@gmail.com>
+ <20211226112503.31771-3-jose.exposito89@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_clean_up_i915=5Fdrv=2Eh?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+ autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+ mailout.protonmail.ch
+Subject: Re: [Intel-gfx] [PATCH v3 2/6] drm/plane: Fix typo in
+ format_mod_supported documentation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,41 +52,17 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: Simon Ser <contact@emersion.fr>
+Cc: airlied@linux.ie, alexandre.torgue@foss.st.com, stefan@agner.ch,
+ benjamin.gaignard@linaro.org, festevam@gmail.com,
+ linux-stm32@st-md-mailman.stormreply.com, marex@denx.de, linux-imx@nxp.com,
+ intel-gfx@lists.freedesktop.org, s.hauer@pengutronix.de, mripard@kernel.org,
+ kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, tzimmermann@suse.de,
+ yannick.fertre@foss.st.com, linux-kernel@vger.kernel.org,
+ philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
+ dmitry.baryshkov@linaro.org, shawnguo@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 05 Jan 2022, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
->
-> Series: drm/i915: clean up i915_drv.h
-> URL   : https://patchwork.freedesktop.org/series/98515/
-> State : failure
->
-> == Summary ==
->
-> Applying: drm/i915: split out i915_getparam.h from i915_drv.h
-> Applying: drm/i915: split out i915_cmd_parser.h from i915_drv.h
-> Applying: drm/i915: split out i915_gem_evict.h from i915_drv.h
-> Applying: drm/i915: split out gem/i915_gem_userptr.h from i915_drv.h
-> Applying: drm/i915: split out gem/i915_gem_tiling.h from i915_drv.h
-> Applying: drm/i915: split out i915_gem.h declarations from i915_drv.h
-> Applying: drm/i915: split out i915_gem_internal.h from i915_drv.h
-> error: sha1 information is lacking or useless (drivers/gpu/drm/i915/i915_drv.h).
-> error: could not build fake ancestor
-> hint: Use 'git am --show-current-patch=diff' to see the failed patch
-> Patch failed at 0007 drm/i915: split out i915_gem_internal.h from i915_drv.h
-> When you have resolved this problem, run "git am --continue".
-> If you prefer to skip this patch, run "git am --skip" instead.
-> To restore the original branch and stop patching, run "git am --abort".
-
-Don't know what gives, the series rebases just fine without conflicts.
-
-I guess let's review first, and I'll split smaller series for CI because
-this is going to be painful.
-
-BR,
-Jani.
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Pushed patches 1 & 2 to drm-misc-next. Thanks for your contribution!
