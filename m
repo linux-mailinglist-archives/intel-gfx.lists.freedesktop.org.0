@@ -1,59 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6064F4854A0
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jan 2022 15:33:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B4948552D
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jan 2022 16:00:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB63710F730;
-	Wed,  5 Jan 2022 14:33:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E13D10FAF5;
+	Wed,  5 Jan 2022 15:00:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D8D310F730
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jan 2022 14:33:54 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4433E10FAEB;
+ Wed,  5 Jan 2022 15:00:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641393234; x=1672929234;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=Af4eeBD1VXr8NH1oteHCCKWYzAasHPTkE3XDYLcK2Gw=;
- b=mfrO84DiKhSnuG41zpsh5qfNWl27TXhri0jD1u5AaGMnRwhvZGUUKsvd
- DlFpZJmBEyqSTo66Kd/nOl2uD6jb+c/e3/MZoYs3/7X9MmlXF1aZWgPI9
- hKFXXo4A77EYutfi1l0yaojnkXo9fXEXN/SGYXyFOEPSzNqE6FZTy+TQd
- DiWYMXbWnlxgNEGlvxU3CsXEJmUpJHe7xcZnBkH86ib0iEKxzM5Lo91lb
- sUX2nLHDnBYn9SowuqDyIbdFrshR+os6rMbSO/23I1ROt9g6NdVKt7QWy
- SxPQjrrYc0Syv0vy5L1lCRmMVJCaGh1eR8aG1IjgDYE/SHE2arx88hz+I g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="303207026"
-X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; d="scan'208";a="303207026"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2022 06:33:25 -0800
-X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; d="scan'208";a="472514618"
-Received: from jwebb-mobl1.ger.corp.intel.com (HELO [10.213.202.78])
- ([10.213.202.78])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2022 06:33:24 -0800
-Message-ID: <0a340da0-ccdc-c90f-b181-1f0ad3d5a440@linux.intel.com>
-Date: Wed, 5 Jan 2022 14:33:22 +0000
+ t=1641394811; x=1672930811;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OSxIJSRSInhFk8kjwPPpiwS/B7Rev7Cucs264chyCVU=;
+ b=iBbbdgpfI/fPuyQhAzyH94oZkioOIcEHR8Mh7z4/1OJIkPAGnCUobnHQ
+ spTWygCUr2kpZqGBYeJt54PZOhRLB3XkcHwKRHLvqYxXhUXia5Y4E0WfH
+ s0+tqzEOqpI2I5r6lpbiC52WQ+YMyyfqSHpFRvfqsdsmiIkUCIslPyjjN
+ /+xHMyMeb3v4HF1l+MIGNhqodCojTsYav1jLYHnY6wK2a+2TmCVngAtaR
+ 3ntWIjSVbm5WdVbqe2vScMkVdKprbFTq/6nGKCI70L4QCF1vD4/7FZi1T
+ tEkudPt2pS324UDuE/Iz8+Xuhc3Mkfrv4pM/sxi1ukbX68dTnivKiTpeU w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="239999783"
+X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; d="scan'208";a="239999783"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2022 07:00:10 -0800
+X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; d="scan'208";a="512979153"
+Received: from unknown (HELO mwauld-desk1.intel.com) ([10.252.26.67])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2022 07:00:09 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  5 Jan 2022 14:58:32 +0000
+Message-Id: <20220105145835.142950-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220105100520.976092-1-jani.nikula@intel.com>
- <20220105100520.976092-2-jani.nikula@intel.com>
- <170a7507-ff7e-204f-eba3-89571ab87842@linux.intel.com>
- <875yqytqv4.fsf@intel.com>
- <bee03d1e-06dd-6243-e711-ab8d7c7081bb@linux.intel.com>
- <87ee5mjp7h.fsf@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <87ee5mjp7h.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/uncore: rename
- i915_reg_read_ioctl intel_uncore_reg_read_ioctl
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: don't call free_mmap_offset when
+ purging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,105 +55,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+The TTM backend is in theory the only user here(also purge should only
+be called once we have dropped the pages), where it is setup at object
+creation and is only removed once the object is destroyed. Also
+resetting the node here might be iffy since the ttm fault handler
+uses the stored fake offset to determine the page offset within the pages
+array.
 
-On 05/01/2022 13:18, Jani Nikula wrote:
-> On Wed, 05 Jan 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->> On 05/01/2022 10:32, Jani Nikula wrote:
->>> On Wed, 05 Jan 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->>>> On 05/01/2022 10:05, Jani Nikula wrote:
->>>>> Follow the usual naming convention.
->>>>
->>>> But intel_uncore_ prefix usually means functions takes intel_uncore as
->>>> the first argument.
->>>>
->>>> Maybe solution here is that i915_reg_read_ioctl does not belong in
->>>> intel_uncore.c, it being the UAPI layer thing? I guess arguments could
->>>> be made for either way.
->>>
->>> My position is that the function and file prefixes go hand in
->>> hand. You'll always know where to place a function, and you'll always
->>> know where the function is to be found.
->>>
->>> If you can *also* make the context argument follow the pattern, it's
->>> obviously better, and indicates the division to files is working out
->>> nicely. However, in a lot of cases you'll need to pass struct
->>> drm_i915_private or similar as the first parameter to e.g. init
->>> functions. It can't be the rigid rule.
->>>
->>> I'm fine with moving the entire function somewhere else, as long as the
->>> declaration is not in i915_drv.h. There's no longer a i915_drv.c, and
->>> i915_drv.h should not have function declarations at all.
->>
->> Yes I agree it cannot be a rigid rule. I just that it feels
->> intel_uncore.[hc] is too low level to me to hold an ioctl
->> implementation, and header actually feels wrong to have the declaration.
->> Not least it is about _one_ of the uncores, while the ioctl is not
->> operating on that level, albeit undefined at the moment how exactly it
->> would work for multi-tile.
->>
->> Would it be too early, or unwarranted at this point, to maybe consider
->> adding i915_ioctls.[hc]?
-> 
-> Then the conversation would be about putting together a ton of unrelated
-> functions where the only thing in common is that they're an ioctl
-> implementation. Arguably many of them would have less in common than the
-> reg read ioctl has with uncore!
+This also blows up in the dontneed-before-mmap test, since the
+expectation is that the vma_node will live on, until the object is
+destroyed:
 
-I imagined it as a place for ioctls which don't fit anywhere else, like 
-it this case it is not a family of ioctls but and odd one out. So yes, 
-first "problem" would be there is only one to put there and no line of 
-sight for others.
+<2> [749.062902] kernel BUG at drivers/gpu/drm/i915/gem/i915_gem_ttm.c:943!
+<4> [749.062923] invalid opcode: 0000 [#1] PREEMPT SMP NOPTI
+<4> [749.062928] CPU: 0 PID: 1643 Comm: gem_madvise Tainted: G     U  W         5.16.0-rc8-CI-CI_DRM_11046+ #1
+<4> [749.062933] Hardware name: Gigabyte Technology Co., Ltd. GB-Z390 Garuda/GB-Z390 Garuda-CF, BIOS IG1c 11/19/2019
+<4> [749.062937] RIP: 0010:i915_ttm_mmap_offset.cold.35+0x5b/0x5d [i915]
+<4> [749.063044] Code: 00 48 c7 c2 a0 23 4e a0 48 c7 c7 26 df 4a a0 e8 95 1d d0 e0 bf 01 00 00 00 e8 8b ec cf e0 31 f6 bf 09 00 00 00 e8 5f 30 c0 e0 <0f> 0b 48 c7 c1 24 4b 56 a0 ba 5b 03 00 00 48 c7 c6 c0 23 4e a0 48
+<4> [749.063052] RSP: 0018:ffffc90002ab7d38 EFLAGS: 00010246
+<4> [749.063056] RAX: 0000000000000240 RBX: ffff88811f2e61c0 RCX: 0000000000000006
+<4> [749.063060] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000009
+<4> [749.063063] RBP: ffffc90002ab7e58 R08: 0000000000000001 R09: 0000000000000001
+<4> [749.063067] R10: 000000000123d0f8 R11: ffffc90002ab7b20 R12: ffff888112a1a000
+<4> [749.063071] R13: 0000000000000004 R14: ffff88811f2e61c0 R15: ffff888112a1a000
+<4> [749.063074] FS:  00007f6e5fcad500(0000) GS:ffff8884ad600000(0000) knlGS:0000000000000000
+<4> [749.063078] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4> [749.063081] CR2: 00007efd264e39f0 CR3: 0000000115fd6005 CR4: 00000000003706f0
+<4> [749.063085] Call Trace:
+<4> [749.063087]  <TASK>
+<4> [749.063089]  __assign_mmap_offset+0x41/0x300 [i915]
+<4> [749.063171]  __assign_mmap_offset_handle+0x159/0x270 [i915]
+<4> [749.063248]  ? i915_gem_dumb_mmap_offset+0x70/0x70 [i915]
+<4> [749.063325]  drm_ioctl_kernel+0xae/0x140
+<4> [749.063330]  drm_ioctl+0x201/0x3d0
+<4> [749.063333]  ? i915_gem_dumb_mmap_offset+0x70/0x70 [i915]
+<4> [749.063409]  ? do_user_addr_fault+0x200/0x670
+<4> [749.063415]  __x64_sys_ioctl+0x6d/0xa0
+<4> [749.063419]  do_syscall_64+0x3a/0xb0
+<4> [749.063423]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+<4> [749.063428] RIP: 0033:0x7f6e5f100317
 
-> And when is it okay to put an ioctl in the i915_ioctls.c file and when
-> is it warranted to put it somewhere else? It's just a different set of
-> problems.
+Testcase: igt@gem_madvise@dontneed-before-mmap
+Fixes: cf3e3e86d779 ("drm/i915: Use ttm mmap handling for ttm bo's.")
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-When it does not fit anywhere else?
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index 89b70f5cde7a..9f429ed6e78a 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -161,7 +161,6 @@ int i915_gem_object_pin_pages_unlocked(struct drm_i915_gem_object *obj)
+ /* Immediately discard the backing storage */
+ int i915_gem_object_truncate(struct drm_i915_gem_object *obj)
+ {
+-	drm_gem_free_mmap_offset(&obj->base);
+ 	if (obj->ops->truncate)
+ 		return obj->ops->truncate(obj);
+ 
+-- 
+2.31.1
 
->> I like the i915_ prefix of ioctls for consistency.. i915_getparam_ioctl,
->> i915_query_ioctl, i915_perf_..., i915_gem_....
-> 
-> The display ioctls have intel_ prefix anyway. It's the _ioctl suffix
-> that we use.
-> 
-> Again, my main driver here is cleaning up i915_drv.h. I can shove the
-> reg read ioctl somewhere other than intel_uncore.[ch] too. But as it
-> stands, the only alternative that seems better than intel_uncore.[ch] at
-> the moment is adding a dedicated file for a 60-line function.
-
-I understand your motivation and I wouldn't nack your efforts, but I 
-also cannot yet make myself ack it. Is 60 lines so bad? Lets see..
-
-$ find . -name "*.c" -print0 | xargs -0 wc -l | sort -nr
-...
-      59 ./selftests/mock_request.c
-      59 ./gt/uc/intel_uc_debugfs.c
-      59 ./gem/i915_gemfs.c
-      52 ./selftests/igt_mmap.c
-      51 ./selftests/igt_reset.c
-      49 ./selftests/mock_uncore.c
-      47 ./selftests/igt_atomic.c
-      36 ./gt/uc/intel_huc_debugfs.c
-      36 ./gt/intel_gt_engines_debugfs.c
-      35 ./selftests/igt_flush_test.c
-      34 ./selftests/librapl.c
-      34 ./gvt/trace_points.c
-      29 ./gt/selftests/mock_timeline.c
-      27 ./gt/selftest_engine.c
-      26 ./gt/uc/intel_huc_fw.c
-      15 ./i915_config.c
-      14 ./i915_trace_points.c
-       9 ./display/intel_display_trace.c
-
-So kind of meh, wouldn't be first. I'd add a dedicated file just for the 
-benefit of being able to legitimately keep the i915_reg_read_ioctl name. 
-Come multi-tile it may get company. Even though at the moment I am not 
-aware anyone is trying to add multi-tile aware reg read, but I expect 
-there will be need as long as need for the existing one exists.
-
-Regards,
-
-Tvrtko
