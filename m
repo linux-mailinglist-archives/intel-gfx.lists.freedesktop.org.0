@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 140DE48557A
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jan 2022 16:10:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0C314855D9
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jan 2022 16:28:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1806210FB04;
-	Wed,  5 Jan 2022 15:10:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9E6410FDDE;
+	Wed,  5 Jan 2022 15:28:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A06DA10FB01;
- Wed,  5 Jan 2022 15:10:01 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C435F10FDDC;
+ Wed,  5 Jan 2022 15:28:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641395401; x=1672931401;
+ t=1641396503; x=1672932503;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mP3/QTHrWgWCgHpSd6goe8Ut5pLrmAk1IoafXslOsJ4=;
- b=iVqVcQ9Cv8y1y2+vXNQ8QfOQXFZzA57kPtStvMtq/79kl7WpJsj5iHwV
- ZbFofejeUeEIXspdc53ItJ/Vn5dlRZzwNaNXJRN63jTwsrwrJj90eEDd0
- V08wMdEZWJWwhVpjZ0rBP6CNFsMMFBftnyhcqWuEvidmaShmHHSlECPMJ
- XvgyZVGthjxnw2h7yXPFvP2zJ+OYvCVtRvGUAFkNxBS72U2NszunnHjVs
- 96kBRbnchMhvYTrDV2xjsE0RSZOpAcFQ5YhFKkH48IuTNIlRMfS62Jn3G
- D+SkOUGPR3L0uJrjwqvMoUraxP4sNeWhYNI/7ykvo6TCABZIffAVeiSW8 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="242669182"
-X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; d="scan'208";a="242669182"
+ bh=1OVXCeRd/IyTu4Q82evCe1+rQxvSLdl+PJ93doBdwgc=;
+ b=ZaKrq5ucqIMH4DbYhQdMSoOYD0VcUBfW9AYoTWTx5xqMl7sN6LxQZAZE
+ ARyXJWyNvap1BMc/BmHKSuRXgXrVOfzkw0kiRMMc+Jwq3mBzVn4VV5tcL
+ UZ8nt3/ypLfhKEwvf5HoWbAxkSa4jHked/drOJSm3tm8nM6/2oZdQ4ZlD
+ iecIlxMpZxgHA+Ex6kXrolPq50urwQug0knzNuHlk7shu5ixIFy3yo7sf
+ xI/emwaiRAhcMcNI80TFye40Wsvyo3vwTCKIfB5nGU68fNGweEt7dV1ZL
+ cuYBfpra4Seghf6v4I2GD7CZXOIcxufwCuga7wv68L7MLbOQSkMawF53F Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="328810320"
+X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; d="scan'208";a="328810320"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2022 07:09:40 -0800
-X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; d="scan'208";a="512982033"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2022 07:28:17 -0800
+X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; d="scan'208";a="512987457"
 Received: from fhoeg-mobl1.ger.corp.intel.com (HELO [10.249.254.213])
  ([10.249.254.213])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2022 07:09:39 -0800
-Message-ID: <f67ddfc050c94d530040d999878320ab1d60c9ff.camel@linux.intel.com>
+ 05 Jan 2022 07:28:16 -0800
+Message-ID: <b882dfb625b00c15ae3a0c60408c35b383f93364.camel@linux.intel.com>
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Wed, 05 Jan 2022 16:09:36 +0100
-In-Reply-To: <20220105145835.142950-2-matthew.auld@intel.com>
+Date: Wed, 05 Jan 2022 16:28:14 +0100
+In-Reply-To: <20220105145835.142950-3-matthew.auld@intel.com>
 References: <20220105145835.142950-1-matthew.auld@intel.com>
- <20220105145835.142950-2-matthew.auld@intel.com>
+ <20220105145835.142950-3-matthew.auld@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/ttm: only fault WILLNEED
- objects
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/ttm: ensure we unmap when
+ purging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,38 +64,46 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, 2022-01-05 at 14:58 +0000, Matthew Auld wrote:
-> Don't attempt to fault and re-populate purged objects. By some fluke
-> this passes the dontneed-after-mmap IGT, but for the wrong reasons.
+> Purging can happen during swapping out, or directly invoked with the
+> madvise ioctl. In such cases this doesn't involve a ttm move, which
+> skips umapping the object.
 > 
 > Fixes: cf3e3e86d779 ("drm/i915: Use ttm mmap handling for ttm bo's.")
 > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 5 +++++
->  1 file changed, 5 insertions(+)
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
 > b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index 923cc7ad8d70..8d61d4538a64 100644
+> index 8d61d4538a64..f148e7e48f86 100644
 > --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
 > +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -883,6 +883,11 @@ static vm_fault_t vm_fault_ttm(struct vm_fault
-> *vmf)
+> @@ -399,6 +399,8 @@ int i915_ttm_purge(struct drm_i915_gem_object
+> *obj)
+>         if (obj->mm.madv == __I915_MADV_PURGED)
+>                 return 0;
+>  
+> +       ttm_bo_unmap_virtual(bo);
+> +
+>         ret = ttm_bo_validate(bo, &place, &ctx);
 >         if (ret)
 >                 return ret;
->  
-> +       if (obj->mm.madv != I915_MADV_WILLNEED) {
-> +               dma_resv_unlock(bo->base.resv);
-> +               return VM_FAULT_SIGBUS;
-> +       }
-> +
->         if (drm_dev_enter(dev, &idx)) {
->                 ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma-
-> >vm_page_prot,
->                                               
-> TTM_BO_VM_NUM_PREFAULT);
+
+The swap notifier and the move code both call i915_ttm_move_notify() to
+achieve this before calling i915_ttm_purge. This ensures both cpu- and
+gpu ptes are torn down, and also when we extend to dynamic dma-buf
+exporting, makes sure dma-buf importers unbind.
+
+So I suggest we make a i915_ttm_truncate wrapper function that calls
+i915_ttm_move_notify() and then ttm_bo_purge(), and use that as the
+truncate callback as well as from those places we call i915_ttm_purge
+without a prior call to i915_ttm_move_notify(), which seems to be the
+ones you've identified in patch 3 and 4,
+
+/Thomas
+
+
 
 
