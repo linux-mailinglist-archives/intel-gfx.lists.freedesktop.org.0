@@ -1,63 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8E244899C3
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:24:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F4B14899DF
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:25:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 630F814B432;
-	Mon, 10 Jan 2022 13:24:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5E6011A3FE;
+	Mon, 10 Jan 2022 13:25:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
- [IPv6:2a00:1450:4864:20::429])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61C4210E954;
- Sun, 26 Dec 2021 11:25:24 +0000 (UTC)
-Received: by mail-wr1-x429.google.com with SMTP id a9so26462465wrr.8;
- Sun, 26 Dec 2021 03:25:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=3w0cyRxbnflG1Lzaa+D9LFgBBXj2WLi8B2+0IaB0cco=;
- b=PwXLZV+6O9zswzpPoQeLANPNLyAa5j9TTefYDsBvxzJHw7hsiT7vgEJO67viIuaBiK
- joS9USvBHQU7W3SIlSlVlgL1mYDZ9GdAj6OOVHGzOLhwrXOtxouH24D1FvTOcNPBx1hu
- cgYJFZ0JNDK45DRlTqL7+hohi4LKCBmpHJMZ7FYsBeaLfb3+QvZpNbnybehWxIYzAW9A
- zIdhrscxtU7zpauASJezylBL9be5Gt7PrhZ4YGNwtTDe/dk3r/8eHOBjzyS88i2wv2vz
- I6dy2YgPWM+zzpAj2FRI6ftDhWK37okU082jWiQr1P8b2ZnvThZubK2qMqrpGqHTwjcb
- AcZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=3w0cyRxbnflG1Lzaa+D9LFgBBXj2WLi8B2+0IaB0cco=;
- b=e5sxsSBV8f/zG2WRSOqjURPEVHCodY3HiF7fP/xCSg9gospQ6J4K+JnUkAn80I0JBe
- mphW1ZSODNA652cDdxCRGP3QHVyprIGOsLixdtG4WmU+fhO5dFODeKDj1hA+pSbPcfh1
- g3H2TvEdVCeNBySGuTgjXjbESpLsHKu0bQgqfnqj6LuztreUHWqKBlTqZ/MRdlhGK8y2
- Slv3L/D9mLt4z0F1lRK7yb8ylO3C6jIZ5fEUeROn7RR8n3My852yM8NDhTvTjgaT+uoR
- peC5xbw/f4/mbSNydF9hBYDpm7lj2qDaNCVqbAHSU00G5+XG8pAu6LKLAwkhIZb2rJdX
- jtgg==
-X-Gm-Message-State: AOAM532D7Z+mebfpcGw671qZc7HMEfj5iBZDkLk1gqbOGlTsVrxJn2UW
- JfNhY0Bsfyx+zpfXdF7ZcUg=
-X-Google-Smtp-Source: ABdhPJyMMwBvN0I/TVcPJvi99lJUbcE0uky0CFSE//bOHq3fI8piG76lCpdID1rhkzRsL/yanK1mSw==
-X-Received: by 2002:a5d:638b:: with SMTP id p11mr9352371wru.241.1640517922894; 
- Sun, 26 Dec 2021 03:25:22 -0800 (PST)
-Received: from localhost.localdomain ([217.113.240.86])
- by smtp.gmail.com with ESMTPSA id g12sm13654743wrd.71.2021.12.26.03.25.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 26 Dec 2021 03:25:22 -0800 (PST)
-From: =?UTF-8?q?Jos=C3=A9=20Exp=C3=B3sito?= <jose.exposito89@gmail.com>
-To: contact@emersion.fr
-Date: Sun, 26 Dec 2021 12:25:03 +0100
-Message-Id: <20211226112503.31771-7-jose.exposito89@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211226112503.31771-1-jose.exposito89@gmail.com>
-References: <20211226112503.31771-1-jose.exposito89@gmail.com>
+Received: from out30-43.freemail.mail.aliyun.com
+ (out30-43.freemail.mail.aliyun.com [115.124.30.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4549210E29C;
+ Wed,  5 Jan 2022 00:39:35 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R271e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04357; MF=yang.lee@linux.alibaba.com;
+ NM=1; PH=DS; RN=11; SR=0; TI=SMTPD_---0V1-MG7U_1641343171; 
+Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
+ fp:SMTPD_---0V1-MG7U_1641343171) by smtp.aliyun-inc.com(127.0.0.1);
+ Wed, 05 Jan 2022 08:39:31 +0800
+From: Yang Li <yang.lee@linux.alibaba.com>
+To: airlied@linux.ie
+Date: Wed,  5 Jan 2022 08:39:29 +0800
+Message-Id: <20220105003929.16971-1-yang.lee@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 10 Jan 2022 13:24:15 +0000
-Subject: [Intel-gfx] [PATCH v3 6/6] drm/stm: ltdc: Drop format_mod_supported
- function
+X-Mailman-Approved-At: Mon, 10 Jan 2022 13:24:14 +0000
+Subject: [Intel-gfx] [PATCH -next] drm/i915/fbc: replace
+ DEFINE_SIMPLE_ATTRIBUTE with DEFINE_DEBUGFS_ATTRIBUTE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,57 +41,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, alexandre.torgue@foss.st.com, stefan@agner.ch,
- benjamin.gaignard@linaro.org, festevam@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com, marex@denx.de, linux-imx@nxp.com,
- intel-gfx@lists.freedesktop.org, s.hauer@pengutronix.de, mripard@kernel.org,
- kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org, tzimmermann@suse.de,
- yannick.fertre@foss.st.com, linux-kernel@vger.kernel.org,
- philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
- dmitry.baryshkov@linaro.org,
- =?UTF-8?q?Jos=C3=A9=20Exp=C3=B3sito?= <jose.exposito89@gmail.com>,
- shawnguo@kernel.org
+Cc: intel-gfx@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
+ linux-kernel@vger.kernel.org, Yang Li <yang.lee@linux.alibaba.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The "drm_plane_funcs.format_mod_supported" can be removed in favor of
-the default implementation.
+Fix the following coccicheck warning:
+./drivers/gpu/drm/i915/display/intel_fbc.c:1757:0-23: WARNING:
+intel_fbc_debugfs_false_color_fops should be defined with
+DEFINE_DEBUGFS_ATTRIBUTE
 
-Signed-off-by: José Expósito <jose.exposito89@gmail.com>
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
 ---
- drivers/gpu/drm/stm/ltdc.c | 11 -----------
- 1 file changed, 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
-index dbdee954692a..ef909e50f0e4 100644
---- a/drivers/gpu/drm/stm/ltdc.c
-+++ b/drivers/gpu/drm/stm/ltdc.c
-@@ -925,16 +925,6 @@ static void ltdc_plane_atomic_print_state(struct drm_printer *p,
- 	fpsi->counter = 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 160fd2bdafe5..a43f5b74d6ac 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1754,7 +1754,7 @@ static int intel_fbc_debugfs_false_color_set(void *data, u64 val)
+ 	return 0;
  }
  
--static bool ltdc_plane_format_mod_supported(struct drm_plane *plane,
--					    u32 format,
--					    u64 modifier)
--{
--	if (modifier == DRM_FORMAT_MOD_LINEAR)
--		return true;
--
--	return false;
--}
--
- static const struct drm_plane_funcs ltdc_plane_funcs = {
- 	.update_plane = drm_atomic_helper_update_plane,
- 	.disable_plane = drm_atomic_helper_disable_plane,
-@@ -943,7 +933,6 @@ static const struct drm_plane_funcs ltdc_plane_funcs = {
- 	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
- 	.atomic_destroy_state = drm_atomic_helper_plane_destroy_state,
- 	.atomic_print_state = ltdc_plane_atomic_print_state,
--	.format_mod_supported = ltdc_plane_format_mod_supported,
- };
- 
- static const struct drm_plane_helper_funcs ltdc_plane_helper_funcs = {
+-DEFINE_SIMPLE_ATTRIBUTE(intel_fbc_debugfs_false_color_fops,
++DEFINE_DEBUGFS_ATTRIBUTE(intel_fbc_debugfs_false_color_fops,
+ 			intel_fbc_debugfs_false_color_get,
+ 			intel_fbc_debugfs_false_color_set,
+ 			"%llu\n");
 -- 
-2.25.1
+2.20.1.7.g153144c
 
