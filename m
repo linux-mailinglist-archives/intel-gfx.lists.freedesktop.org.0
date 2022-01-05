@@ -1,50 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDAF4484F80
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jan 2022 09:45:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD0CC485013
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jan 2022 10:35:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF09210E838;
-	Wed,  5 Jan 2022 08:45:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81AC210E188;
+	Wed,  5 Jan 2022 09:35:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E95310E82E;
- Wed,  5 Jan 2022 08:45:21 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E85E10E188;
+ Wed,  5 Jan 2022 09:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641372321; x=1672908321;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=riHgiHH3txI3gRT2luKsKqbMrT9muPYRCFRqvqUVq0s=;
- b=iMA7yEhTSm/GkdCpQPaPev6+iHmhu5DmpYNhy1VEhw3CgJA6iYuKZnA8
- VG2Pfzi520ZZjqHdeVzeqsp/ta/rCJrremOgsX3RFeuyW4NXGFMfbg3DJ
- Qes95UHqYQXijRMPiQqZuOM6JkGrW0/M5K19z+tM4VgLvfK9U6h5KYAKc
- FtEM6Igzley5muOpokSzmuLm6CMi+EN6orOb10ayl0Yesyr6WygfWhEpA
- SgaRNd3bgHCT6j1OOHyJscrKWM/NBTWPHA0TAcG2Vb59ygbN+JkWNficp
- L7mrcX3ewYIvdfibMwN0i0zY1kR52/1RAOKd2F9d2URmwMdYerhWq+rXi Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="305750606"
-X-IronPort-AV: E=Sophos;i="5.88,262,1635231600"; d="scan'208";a="305750606"
+ t=1641375348; x=1672911348;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=tJmHer9dQcSfb9MdfsFAwnEjtZkClXsZbspIP/rOk1s=;
+ b=ANCXs+Ft2jdcAKAGchMNdfT8Gsg/eK6v909pnReHQx7yWxYxFqlw7HGl
+ oq+0SG7HiSb1lmFJBvximc3lizjZHUrUx/7EOi1b2jLEqGUREbv8Y9YfM
+ 4jsqwmhzz2Gr8CMhMJHn+tI7odDAkBMJPM8onlXw/hMVTqB5NcwXsrh6B
+ ZUIqTZ+ugT4BcKuLMpsV8hEHMNyEx0vl9/3CsFAqHlDQNteLAZ05y4vjM
+ s7vPHOVF1gFH/KAtPNcVEGSxm85n0PZYiOB3+uF0GdRkodwHFouGigBpA
+ /eMCjfsSqNX97bu1Z/oFMB5659Zy7MkeZVRtechTBey0rMELB2t4ejd+6 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="328751784"
+X-IronPort-AV: E=Sophos;i="5.88,263,1635231600"; d="scan'208";a="328751784"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2022 00:45:20 -0800
-X-IronPort-AV: E=Sophos;i="5.88,262,1635231600"; d="scan'208";a="472408073"
-Received: from menright-mobl1.amr.corp.intel.com (HELO localhost)
- ([10.252.25.244])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2022 01:35:47 -0800
+X-IronPort-AV: E=Sophos;i="5.88,263,1635231600"; d="scan'208";a="472427837"
+Received: from jwebb-mobl1.ger.corp.intel.com (HELO [10.213.202.78])
+ ([10.213.202.78])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2022 00:45:17 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Yang Li <yang.lee@linux.alibaba.com>, airlied@linux.ie
-In-Reply-To: <20220105003929.16971-1-yang.lee@linux.alibaba.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220105003929.16971-1-yang.lee@linux.alibaba.com>
-Date: Wed, 05 Jan 2022 10:45:14 +0200
-Message-ID: <87bl0qtvtx.fsf@intel.com>
+ 05 Jan 2022 01:35:46 -0800
+Message-ID: <3ae7e493-4b77-9e87-ca6f-34f85cab4ecb@linux.intel.com>
+Date: Wed, 5 Jan 2022 09:35:44 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH -next] drm/i915/fbc: replace
- DEFINE_SIMPLE_ATTRIBUTE with DEFINE_DEBUGFS_ATTRIBUTE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20220104233056.11245-1-matthew.brost@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220104233056.11245-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Lock timeline mutex directly in
+ error path of eb_pin_timeline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,43 +62,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Yang Li <yang.lee@linux.alibaba.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 05 Jan 2022, Yang Li <yang.lee@linux.alibaba.com> wrote:
-> Fix the following coccicheck warning:
-> ./drivers/gpu/drm/i915/display/intel_fbc.c:1757:0-23: WARNING:
-> intel_fbc_debugfs_false_color_fops should be defined with
-> DEFINE_DEBUGFS_ATTRIBUTE
->
-> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+
+On 04/01/2022 23:30, Matthew Brost wrote:
+> Don't use the interruptable version of the timeline mutex lock in the
+
+interruptible
+
+> error path of eb_pin_timeline as the cleanup must always happen.
+> 
+> v2:
+>   (John Harrison)
+>    - Don't check for interrupt during mutex lock
+> 
+> Fixes: 544460c33821 ("drm/i915: Multi-BB execbuf")
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index 160fd2bdafe5..a43f5b74d6ac 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -1754,7 +1754,7 @@ static int intel_fbc_debugfs_false_color_set(void *data, u64 val)
->  	return 0;
->  }
->  
-> -DEFINE_SIMPLE_ATTRIBUTE(intel_fbc_debugfs_false_color_fops,
-> +DEFINE_DEBUGFS_ATTRIBUTE(intel_fbc_debugfs_false_color_fops,
->  			intel_fbc_debugfs_false_color_get,
->  			intel_fbc_debugfs_false_color_set,
->  			"%llu\n");
+>   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index e9541244027a..e96e133cbb1f 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -2516,9 +2516,9 @@ static int eb_pin_timeline(struct i915_execbuffer *eb, struct intel_context *ce,
+>   				      timeout) < 0) {
+>   			i915_request_put(rq);
+>   
+> -			tl = intel_context_timeline_lock(ce);
+> +			mutex_lock(&ce->timeline->mutex);
 
-Please fix the indentation on the continuation lines.
+On the other hand it is more user friendly to handle signals (which 
+maybe does not matter in this case, not sure any longer how long hold 
+time it can have) but there is also a question of consistency within the 
+very function you are changing.
 
-BR,
-Jani.
+Apart from consistency, what about the parent-child magic 
+intel_context_timeline_lock does and you wouldn't have here?
 
+And what about the very existence of intel_context_timeline_lock as a 
+component boundary separation API, if it is used inconsistently 
+throughout i915_gem_execbuffer.c?
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Regards,
+
+Tvrtko
+
+>   			intel_context_exit(ce);
+> -			intel_context_timeline_unlock(tl);
+> +			mutex_unlock(&ce->timeline->mutex);
+>   
+>   			if (nonblock)
+>   				return -EWOULDBLOCK;
+> 
