@@ -2,33 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D40848511C
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jan 2022 11:26:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45A8F485122
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jan 2022 11:29:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D67A10EAE4;
-	Wed,  5 Jan 2022 10:26:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB691898F3;
+	Wed,  5 Jan 2022 10:29:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EB5A010EAE4;
- Wed,  5 Jan 2022 10:26:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E7671A0099;
- Wed,  5 Jan 2022 10:26:55 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from pio-pvt-msa1.bahnhof.se (pio-pvt-msa1.bahnhof.se [79.136.2.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C27288FA1;
+ Wed,  5 Jan 2022 10:29:29 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 8A1613F475;
+ Wed,  5 Jan 2022 11:29:26 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.273
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.273 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.174,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: pio-pvt-msa1.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from pio-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id GV7YmOrd_RHT; Wed,  5 Jan 2022 11:29:25 +0100 (CET)
+Received: by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 2B4AC3F3DC;
+ Wed,  5 Jan 2022 11:29:24 +0100 (CET)
+Received: from [192.168.0.209] (unknown [192.198.151.51])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 235A536034E;
+ Wed,  5 Jan 2022 11:29:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1641378564; bh=KcVRpkTHWpVYrDqtxDa1HuMcu+PXVjBTzVKo09rNA90=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=GDo+gvhYVmO3dQor8ZLZdf4h4kf1fBVk39oAeX4BH22DkPipRCSiYweuS3+NSLWne
+ DawlUZPh6WAq7/uNjZJ1EldYbPBaJb0+jjht71yGfwlS5EQa4Gag/WUIYPoO3OJM81
+ EN29jfNXjN8wswok0zDP+d1YOGKMx8kWf9x1I9RQ=
+Message-ID: <85892b35-d0c9-9092-c47f-f2b5af8ad80b@shipmail.org>
+Date: Wed, 5 Jan 2022 11:29:22 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 05 Jan 2022 10:26:55 -0000
-Message-ID: <164137841591.25404.7347759698319909520@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220105100520.976092-1-jani.nikula@intel.com>
-In-Reply-To: <20220105100520.976092-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915=3A_move_i915=5Freg=5Fre?=
- =?utf-8?q?ad=5Fioctl_declaration_to_intel=5Funcore=2Eh?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20211215110746.865-1-matthew.auld@intel.com>
+ <20211215110746.865-2-matthew.auld@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <20211215110746.865-2-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: clean up
+ shrinker_release_pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +66,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi, Matthew
 
-Series: series starting with [1/2] drm/i915: move i915_reg_read_ioctl declaration to intel_uncore.h
-URL   : https://patchwork.freedesktop.org/series/98499/
-State : warning
+On 12/15/21 12:07, Matthew Auld wrote:
+> Add some proper flags for the different modes, and shorten the name to
+> something more snappy.
+>
+> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 
-== Summary ==
+LGTM.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
 
