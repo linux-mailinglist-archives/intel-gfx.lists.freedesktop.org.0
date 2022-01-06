@@ -2,51 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CFF0486D59
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jan 2022 23:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6B9B486D88
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 00:08:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA5510E4DB;
-	Thu,  6 Jan 2022 22:45:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE8E310E2CF;
+	Thu,  6 Jan 2022 23:08:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9495510E4DB
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jan 2022 22:45:48 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1A8B10E1A1
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jan 2022 23:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641509148; x=1673045148;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=2yKiysNW48zWRq0SqZnWVCLvA8i0IgkDGR/I+OUaIsk=;
- b=T5nhqUvAMH7l/zOKzc2a8INOep/rIeuKTA7ufpEU+pht+p5Rn48px8n3
- f/mc3x0sRCQ4YRpI/kyVh7r8VMXrtFP3XFIAVgntXxe69R0ExBTksMBdh
- JM+V0Sq9qeVC5AIeHOU/FYNAs5nr0FCgyi9UHcF5u3XfY+OxKp2g7/i8d
- 4F9Q2W0iCH+kErkMKV5pOrjxTz0u6FHO++pSgzltS+UxdggDjJrkSGsRM
- p/iboHoQoAtxLDISezLLozjO190ia6yH0uh+QBArIKHifqHK8mt+d3Vse
- wOiptFNEbHBshJqyW7bsGyIe2wD63Dc981pnRU8XxfyqkoQIIq/a+Wn+9 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="329098098"
-X-IronPort-AV: E=Sophos;i="5.88,268,1635231600"; d="scan'208";a="329098098"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2022 14:45:47 -0800
-X-IronPort-AV: E=Sophos;i="5.88,268,1635231600"; d="scan'208";a="513566624"
-Received: from sumedhrr-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.209.102.95])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2022 14:45:46 -0800
-Date: Thu, 6 Jan 2022 14:45:45 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Message-ID: <20220106224545.hfrxehkztm5eht7s@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220106003654.770316-2-lucas.demarchi@intel.com>
- <20220106222325.GA329826@bhelgaas>
+ t=1641510520; x=1673046520;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Oi+uLTEJxl0JfYKi5FUChYtEdlgyPiVGdACOJKVbPsY=;
+ b=I/CQhQ/0vNnCNz3LC47PSlBPTGIxi4bq71k1FgIhVGhP7rlMOhGhuRKd
+ LzpwXlq+3KtJii9rMEx5XjpttjhVc6JH/qQLcuN7DrksGt3IhgqWXhpsO
+ hT1NQwzz1HlLekhw6uVuTdvX4z0IhlZDuaI5KKZcfwQnF3OFVo4zoYLij
+ DNwZyxovrp7aZ6mlG7oDhMrzxdFAq07wRqOI6c3iMrxGESGwZ/yIPR4rX
+ PdyIT7rWaRWUzel9L2wO2XKNehyRlsMtiM/ULQZJ9aRgf+E/GTratjl5v
+ 8r+7ZuCgHBtzCfkCUXpx9Dk+BBNoZfeUumcJ645YbNcEMGBJD8uVq5CZa A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="230099729"
+X-IronPort-AV: E=Sophos;i="5.88,268,1635231600"; d="scan'208";a="230099729"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2022 15:08:39 -0800
+X-IronPort-AV: E=Sophos;i="5.88,268,1635231600"; d="scan'208";a="591536112"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2022 15:08:39 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  6 Jan 2022 15:08:22 -0800
+Message-Id: <20220106230823.2791203-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220106222325.GA329826@bhelgaas>
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] x86/quirks: better wrap quirk
- conditions
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/1] Start cleaning up register definitions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,46 +54,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Hansen <dave.hansen@linux.intel.com>, linux-pci@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, x86@kernel.org,
- Ingo Molnar <mingo@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Thomas Gleixner <tglx@linutronix.de>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 06, 2022 at 04:23:25PM -0600, Bjorn Helgaas wrote:
->On Wed, Jan 05, 2022 at 04:36:54PM -0800, Lucas De Marchi wrote:
->> Remove extra parenthesis and wrap lines so it's easier to read what are
->> the conditions being checked. The call to the hook also had an extra
->> indentation: remove here to conform to coding style.
->
->It's nice when your subject lines are consistent.  These look like:
->
->  x86/quirks: Fix logic to apply quirk once
->  x86/quirks: better wrap quirk conditions
->
->The second isn't capitalized like the first.  Obviously if you split
+Our i915_reg.h file has become a huge unwieldy mess over the years.  A
+lot of definitions don't follow any logical ordering, there's
+unintentional duplication of registers under different names, the coding
+style is very inconsistent, and there's tons of unused definitions
+(nearly a quarter of i915_reg.h is dead code!).  This makes it a pain to
+work with and also needlessly slows down development since any trivial
+change to i915_reg.h forces us to unnecessarily rebuild the entire i915
+driver instead of just the affected are of the code.
 
-trying to maintain the entropy from
+I'd like to start cleaning up the register definitions in a few steps:
+ (1) Eliminate unnused register and bit definitions.  Some of these may
+     get re-added in the future if/when code starts using them but
+     that's fine; we'd prefer to carefully (re)review the register
+     definitions at that time anyway.
+ (2) Move registers exclusive to the command parser to their own header
+ (3) Move OA registers to their own header
+ (4) Move GT registers to their own header
+ (5) Move display registers to their own header
+ (6) While moving things to new files, take the opportunity to also
+     update to update to a consistent coding style:  consistent
+     indentation, consistent case for hex values, use of
+     REG_BIT/REG_GENMASK, etc.
 
-	git log --oneline --no-merges -- arch/x86/kernel/early-quirks.c
+This will make it easier to find an appropriate place to add new
+registers and should also improve quality of life for developers since
+driver builds will be faster in cases where a register is added/updated
+and only a specific part of the driver needs to be rebuilt.
 
-:). Jokes aside, yeah, my bad.
+This only includes step (1) above; the other steps will come as
+follow-up patches if there's no concern with the general goal.
 
->the first patch, you'll have three subject lines, and one will mention
->Alderlake.
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
-See my reply to the first patch - Alderlake is only the reproducer, but
-it's broken in other platforms as well, as long as it's paired with an
-Intel discrete gpu in the "right" pci slot.
+Matt Roper (1):
+  drm/i915: Drop unused register definitions
 
-It would be weird to send a patch "Fix xyz in Alderlake" and then
-telling people with the same problem in Icelake that they are
-missing that fix. So I went with the approach: 1) what is the generic
-problem; 2) where it was initially reproduced.
+ drivers/gpu/drm/i915/i915_reg.h | 3107 +------------------------------
+ 1 file changed, 9 insertions(+), 3098 deletions(-)
 
-thanks
-Lucas De Marchi
+-- 
+2.34.1
 
->
->Bjorn
