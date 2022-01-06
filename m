@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57895486DDE
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 00:39:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 153E7486DE0
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 00:40:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7EC110E1A1;
-	Thu,  6 Jan 2022 23:39:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50B0610E1D1;
+	Thu,  6 Jan 2022 23:40:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D121010E1A1;
- Thu,  6 Jan 2022 23:39:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0380F10E1A1;
+ Thu,  6 Jan 2022 23:40:13 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CDC94A73C7;
- Thu,  6 Jan 2022 23:39:00 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 036D4A73C9;
+ Thu,  6 Jan 2022 23:40:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 06 Jan 2022 23:39:00 -0000
-Message-ID: <164151234081.20691.10236314542600941598@emeril.freedesktop.org>
+Date: Thu, 06 Jan 2022 23:40:13 -0000
+Message-ID: <164151241301.20691.12242572862532473409@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220106230823.2791203-1-matthew.d.roper@intel.com>
 In-Reply-To: <20220106230823.2791203-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Start_cleaning_up_register_definitions?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Start_cleaning_up_register_definitions?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,12 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-cd93e9e13e3d drm/i915: Drop unused register definitions
--:34: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#34: 
-   for x in $(grep '^#define' drivers/gpu/drm/i915/i915_reg.h | awk '{ print $2 }' | cut -d'(' -f1); do count=$(cscope -d -R -L0 $x | wc -l); if (($count <= 1)); then echo $x; fi; done
-
-total: 0 errors, 1 warnings, 0 checks, 6539 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
