@@ -1,126 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE397486BBC
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jan 2022 22:14:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AC33486CFF
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jan 2022 22:59:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5BF110E3F1;
-	Thu,  6 Jan 2022 21:14:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC4EB10F415;
+	Thu,  6 Jan 2022 21:58:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2071.outbound.protection.outlook.com [40.107.244.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3997110E3F1;
- Thu,  6 Jan 2022 21:14:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JHJWFbp2hOUnp1LxyMqlUbcJEHRIN/gSgvMvWE2TQh39u8IpLzjntvr582z7uuR/0QyiOHY6cBgKVs/6HILokZvPczlBaeCAU0ERPrSvDqJ4QB9M8aIZp73/8J2+wKc0ud5+svBpWjaO7O+I9oPSQkz3LOErEj6Q+oa4vqmlvmvxd0gM/i/3sX4SCKuhxTUOfLBTalFSevmfO36nxDXf2qvqRSggwwr1XOQIC/R1LUKTYTtidOkac7wDt3wgjQN9hmofSUGT4nVT0RlKve12xNOS3B8+BYyo4Z3u0vWqYKXnuMETaj6iNyrOGgybSZ+dr/UPikma5sArM8PwEMIYdA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XdNCnjwPslSvVpXYnLSlWyqIo1bxbEDGdEdVeUWpDjo=;
- b=LpXkHYZ4Gt4lYdkHBLW/viO0USsplEXNgvhT2YZEIeRPp/LE7L+z9jDXbXpbWeHnvX1yXOf9bIvh/O4382yvBkyC6RYfTUHu4tHTNE9ELdrtNgdiHLh8XNKFLHS5vlQ9wd6yVvWCerzGikziVxTTbzxks3KGnncaI+8bGbiZ9hxPjUiEJnCSUZnfh+JfxrnE47eDnrjeVlYEvR+wyo4wWSlkX+mtzTO5UMJXzON59zuWJDWtA3dcbSE8/EbD8l7e6nKiPYCABwY2acMgQydzNwj7lMkLlZb4E/SeKzS5C2XAhHl/x5/9HxDbyRvcC2FtCOcGkj0Kk/fgc1qzjm7JSQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XdNCnjwPslSvVpXYnLSlWyqIo1bxbEDGdEdVeUWpDjo=;
- b=3CoRfdOT4al1shpvNCq1JdiII+0n5IAcVPEzk/Ls8bUFnbZmXMie7IU4/vXSg+0NZIYWYC8colXpUuL2xYBqMMunCvFQxVHtMdet7WlqNbNt8XjpyaJAs4ccZYhQqIfy67NVeN7H9CzndEmg9FR8qloiAmY0wH3eS6S0NYj0610=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
- by BL0PR12MB4930.namprd12.prod.outlook.com (2603:10b6:208:1c8::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4867.7; Thu, 6 Jan
- 2022 21:14:43 +0000
-Received: from MN2PR12MB4342.namprd12.prod.outlook.com
- ([fe80::c411:8d69:9007:aed6]) by MN2PR12MB4342.namprd12.prod.outlook.com
- ([fe80::c411:8d69:9007:aed6%5]) with mapi id 15.20.4867.009; Thu, 6 Jan 2022
- 21:14:43 +0000
-Message-ID: <5a472bca-a80b-0609-600b-d136e9a1baf4@amd.com>
-Date: Fri, 7 Jan 2022 02:53:08 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <20211226222425.544863-1-Arunpravin.PaneerSelvam@amd.com>
- <20211226222425.544863-2-Arunpravin.PaneerSelvam@amd.com>
- <6c48028e-0330-c9f1-23c5-8fe8042564f3@intel.com>
- <MN2PR12MB4342A3191114E4D3F2824441E44C9@MN2PR12MB4342.namprd12.prod.outlook.com>
-From: Arunpravin <arunpravin.paneerselvam@amd.com>
-In-Reply-To: <MN2PR12MB4342A3191114E4D3F2824441E44C9@MN2PR12MB4342.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BMXPR01CA0081.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:54::21) To MN2PR12MB4342.namprd12.prod.outlook.com
- (2603:10b6:208:264::7)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F0A710F415
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jan 2022 21:58:57 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id AFFADB82410;
+ Thu,  6 Jan 2022 21:58:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E666C36AE3;
+ Thu,  6 Jan 2022 21:58:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1641506332;
+ bh=egpD9QpstysMY9DCDYSSX5jsiVwTFFTgE06o3vSK7E4=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=CoenwZe4VIdpUgZd/heHfD9gBPrrmAY+UCbFLgfmZVSxA0j4i/T1bgITBg6Ne8/Dc
+ r7J7Njf+IsPy0ouHMJSxTQXVa2udkPn6XvdsdB8TKUQHWIxxAgpR4phlTKkrImgL2X
+ x+75UuTuvVd/8zdnMkrTV5t02pk0Oc7vAC7rUNIndPPpjvdtwcmT2JPVFeD4zHkUoV
+ Lb8/rkHp/8hMfTgiRrPzdd/r46POzFfg/k6/agMk8edRfCoADaQeS0izQWSDy+tKh7
+ Sf7cpaEuOpfletlDzUWfGt6Ac/Ee3PdwiA6C7lVy+NKEJuHx+yy0NRiyV0gAScSHQ+
+ YmynW+xpqb+Pw==
+Date: Thu, 6 Jan 2022 15:58:50 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20220106215850.GA327560@bhelgaas>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ce548923-05a7-4324-2cc8-08d9d1598ec4
-X-MS-TrafficTypeDiagnostic: BL0PR12MB4930:EE_
-X-Microsoft-Antispam-PRVS: <BL0PR12MB4930CC9DC1F0D533FF11CC3FE44C9@BL0PR12MB4930.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: N4ifBXJdisnUtA4jC/pWQ050ngKuyV5sRX8WhA5p5WSejnnnu8DhvmAUMn/RHm3LQOh2mXizYug1oRtmP95kLqLkx7618U/hsjoKaZQmN1JuJz+Op0QCdaSP7BO92OWJS8zF1k7u2dl0lcCIpj8jtnwTm6kGau1+7ixoYSS21ITAXMZJ09vJgCk7fSe4RDs4zPCXHkSahsftqDKknxA8pb8ZLpiTPQO2KBDHfGBsUpuSZtrTORIZpjPZ47YDxQosjTyae5+HsDKZ9G29adiT++fLvgZgLIbRkjaiB+GzA2dCRGxUjyZFTRyMWlfDusExWZXC01FjPJT8OZJDi7snMMgglgi8jGxQKpFW7I7clrWKXmVPD6noE3vO2EyCxINdUdg6A+2ZnD3uQYGYi8kVtR/gCXGMPa9HlD/3GEx+9p7qTSrA4U+719sIUqxuZXucUFKtGImUOS3FvYod9gulukbaz8gbMdUEvQX3qrqUDx4G3TnEkffFXyZi/rjn+4u+mXUA8pEhegPBEZLkXBUtvavpIn+uUm0ElgSdl9FArQbJU7dTKbI2q1TK8EZAo7ZbGCW0Ab05ELIH6+/1OVl6AaNWZultfZezp/QXouQQ0TYFMhIuKbHK/LPilMSRtAQCkU9xynuFVyflHegbWuifMGfQTsNKuVLTgG3MJMwJdjDpwbDbok1iZ9ThMRd+spkYopb8f77oD/9Tnsv+kPfEHn4HEcnJ/Q/CcWZIHSfZCUHwFBcactA2DeH269PAOqJN2rzNBJYDdVNxUJvVH6SqqSxfLstRghqpVa/1M/4doOqhx5pn3OWaeKm7CnMEN2q4
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(8676002)(36756003)(86362001)(8936002)(316002)(110136005)(966005)(508600001)(6666004)(31696002)(45080400002)(31686004)(2906002)(4326008)(54906003)(186003)(66476007)(66556008)(66946007)(38100700002)(83380400001)(26005)(6506007)(53546011)(2616005)(6486002)(5660300002)(6512007)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RnlnVE1VSWJab1gzaVgzMW0rS2trUTQ1eC8rZmMxQ3F0WUlLQkhuSWN6bHNB?=
- =?utf-8?B?WTE4NTUwMEx3T2JDUzE3b2FTR3dvUHN5aVBSWnpLRUo3SUNlNEpwMUliN3lW?=
- =?utf-8?B?eEdLam1DQ3dreTh5cXlEMHA1dGU2eEVPU0hxZmJrcWEyazVyTG10RFRndEhD?=
- =?utf-8?B?V2ZFZFIreWtMUlBHWXVrU0Yybmh2ek43a044ZGM5MHg4S2UxdVVBYmhXOWMy?=
- =?utf-8?B?a09lczNudmZTNnBqNjlmVzBYOUJrWUxHWHZ5Wmp5SEFPMHRpOEtNaUI2T0lU?=
- =?utf-8?B?T1piRWF0NW5HdUF5K2t0UjIvSkdnMmdHZjRrVUlQWXlSd0dYcXd1cDRSQlpL?=
- =?utf-8?B?ck5yeEtxUFNDemU0MVhzZ0h3bm5teVdpNDlMd1M0d1g4Vy9RZTBrdDMxdEx3?=
- =?utf-8?B?TUhGaW0wbktzampDZ0J2QWZraEQ3RkhUbXkxZjBXc0hwMkNuUVQwYzdTZEkv?=
- =?utf-8?B?MkNFL1lGOHJydnYrYjVGOS9Hd3J5NFkyUE1LK2dmcitlMU45V2dsZlp2UktQ?=
- =?utf-8?B?emhNam5TcEIxajFJS3FCWFB3eFNZby9vU0ZobmNQNnZaUlVqeUlsdXN5ZzE4?=
- =?utf-8?B?QWxXT3FRVitudmpvMDNaMjFpNm4xZktOa0gveUNUT3lXV2dxdlpzZWttS0wr?=
- =?utf-8?B?eUVUT0EyaUlPQ3BBaEhBbTBWZm9XSE9sNDNLSFR1Tk5IQU5heURkZm01a1Yr?=
- =?utf-8?B?K2lPeGl5dDBXL1JTQUxrczFyTExJeWJQQjVlYlBkS243cTV6RVJLL1lHTks5?=
- =?utf-8?B?VGtUSktsUXpVWXdIT2owZjdhbGF1UEovNmZqWGRYWGZoMU5wMHRJcERxZzJY?=
- =?utf-8?B?elpuUDFRU1VENVkvRU9TdmoxUXF5d0FCK3FJc1BZT3hIVFpFdUVkeFdsRnBl?=
- =?utf-8?B?R3RBNWcrSGJzakxjcmliMWVpQ0Y5Nms0Ung2dU9ZeS9mMUh5RUJKem45L0Ur?=
- =?utf-8?B?clMrOXZ2dmw1L2dSc1Flek1pZ0xhYXVmN1dEWExtVlNvbkxGY1Zlc0h0MFJE?=
- =?utf-8?B?Qi9tOWhqRmRRZjNuWitrRXJCenhlSVlJeXZ0WkgxalpocHQ3aENvVGx3d1gv?=
- =?utf-8?B?NkdESTJwanRGOUQzVjYwbHlvSVFYOUFwWG81a20rNFBoa0s2R1lyZGYwcTNv?=
- =?utf-8?B?N1hUN29DMFJnSGRadVdpc2pVSlBoRU4zb1c4aEZ4L2gwSUkvcTRJRjFOOWV2?=
- =?utf-8?B?REpDNW1GaS9aWGxCQVZ5V2VteTkvQUVMUitXaSs0ZHVzdzZPZDhWd2lkWFRS?=
- =?utf-8?B?ODVMR2ErNFQrWSs3VkxuTnloZ2F1dk9ZNkJTY09xYkFCdEVSeDNxc0krYWJs?=
- =?utf-8?B?S0JoSWg4YTlSZG5hWWFPUEYyZE0xSkFCZXNVQWRDbFBPM0h6RU9ZMXFZSUZO?=
- =?utf-8?B?V2JQdGZiSnBweGhBUGthK3JvL0NiTHV0VWpuQWdDdng4Qm1LNExaM0ZtUU9z?=
- =?utf-8?B?aFkraEtTa0dZK3FyTXczL3hMVzR6eHRHNzJ5K0Q3dm5HM000dlQ5Z1E5Vmgy?=
- =?utf-8?B?WWdNc3E5SkFnc3kyRElROHJZc3RHcU5nQkVEUUlpQzRyRUFrSWR4a0xrb2R0?=
- =?utf-8?B?dnY2cW12Q0d2VzMyMlhVSkZKcUN5NDdpUGF5T2xjbkFoT2xkWVNLbTVYQmlQ?=
- =?utf-8?B?YlhiMHFFUlRoQ3MyV2kxWkxWMTNLNG9RU0RwZy8yZytBWlVNR0wxblFMM0VB?=
- =?utf-8?B?T3RkWTMzNXY0cVQrZHh2NTEyVHNudlJKTlg3VklsVitIYlBmNnJwOXFCTUp5?=
- =?utf-8?B?NlJlS3RCWTZIYzJqSUV5eXc2RUw5NmtzM2IrWEdHYW1ac3ozSEE1MklKNUps?=
- =?utf-8?B?Rm4wemV6YzVWK0JYcnBlMFBUaDMrQ2ExL0VwSDJ4aFp3Nno4YXllbHpGa2R4?=
- =?utf-8?B?ejdNL245NzUvZVAxQ0hIc1lVSDFjckxwUUNlWXBwZjNrMmFMVGlIdVRIdmZn?=
- =?utf-8?B?RUtPd0hxMTliTGVNMnlmVlY1NmNRVFg5Y3E3RU5vNklVbjdqWGk5Ly82NnlQ?=
- =?utf-8?B?Sk9mRHMzN29VTzZGdHZZSFIyc3FwTk9WNUlpQUNxZ3QvNk53Z3dqZUR1U1c5?=
- =?utf-8?B?YXV0dTE1N2NvY0NwMkpKL1RsYWQ4RWkweG5idys4ODYyNEp0TE55TlNIN2Fu?=
- =?utf-8?B?Znl3RjEzWUFJcDFnZ1ZLMGNBU0dUa0M1eTA2VE9IN0d0bkRLU3lNL2hkQ0pN?=
- =?utf-8?Q?okCTfx+KhWKQIMYTqzyB89I=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce548923-05a7-4324-2cc8-08d9d1598ec4
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2022 21:14:43.1213 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rC2zkkBnTnbbcgEW9MouI65wmu+6Ou/v8XC2+XDyr0eXUZPDc7eF0VdoKl2G0gQkzwTRlzgfi8S1PskV1/K9QA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4930
-Subject: Re: [Intel-gfx] [PATCH v6 2/6] drm: improve drm_buddy_alloc function
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220106003654.770316-1-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] x86/quirks: Fix logic to apply quirk
+ once
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,202 +51,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: Dave Hansen <dave.hansen@linux.intel.com>, linux-pci@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, x86@kernel.org,
+ Ingo Molnar <mingo@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Jan 05, 2022 at 04:36:53PM -0800, Lucas De Marchi wrote:
+> When using QFLAG_APPLY_ONCE we make sure the quirk is called only once.
+> This is useful when it's enough one device to trigger a certain
+> condition or when the resource in each that applies is global to the
+> system rather than local to the device.
+> 
+> However we call the quirk handler based on vendor, class, and device,
+> allowing the specific handler to do additional filtering. In that case
+> check_dev_quirk() may incorrectly mark the quirk as applied when it's
+> not: the quirk was called, but may not have been applied due to the
+> additional filter.
+> 
+> This is particularly bad for intel_graphics_quirks() that uses
+> PCI_ANY_ID and then compares with a long list of devices. This hasn't
+> been problematic so far because those devices are integrated GPUs and
+> there can only be one in the system.  However as Intel starts to
+> release discrete cards, this condition is no longer true and we fail to
+> reserve the stolen memory (for the integrated GPU) depending on the bus
+> topology: if the traversal finds the discrete card first, for which
+> there is no system stolen memory, we will fail to reserve it for the
+> integrated card.
+> 
+> This fixes the stolen memory reservation for an Alderlake-P system with
+> one additional Intel discrete GPU (DG2 in this case, but applies for
+> any of them). In this system we have:
+> 
+> 	- 00:01.0 Bridge
+> 	  `- 03:00.0 DG2
+> 	- 00:02.0 Alderlake-P's integrated GPU
+> 
+> Since we do a depth-first traversal, when we call the handler because of
+> DG2 we were marking it as already being applied and never reserving the
+> stolen memory for Alderlake-P.
+> 
+> Since there are just a few quirks using the QFLAG_APPLY_ONCE logic and
+> that is even the only flag, just use a static local variable in the
+> quirk function itself. This allows to mark the quirk as applied only
+> when it really is. As pointed out by Bjorn Helgaas, this is also more in
+> line with the PCI fixups as done by pci_do_fixups().
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+> 
+> v2: instead of changing all quirks to return if it was successfully
+> applied, remove the flag infra and use a static local variable to mark
+> quirks already applied (suggested by Bjorn Helgaas).
+> 
+>  arch/x86/kernel/early-quirks.c | 60 ++++++++++++++++++++--------------
+>  1 file changed, 36 insertions(+), 24 deletions(-)
+> 
+> diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+> index 391a4e2b8604..102ecd0a910e 100644
+> --- a/arch/x86/kernel/early-quirks.c
+> +++ b/arch/x86/kernel/early-quirks.c
+> @@ -57,12 +57,18 @@ static void __init fix_hypertransport_config(int num, int slot, int func)
+>  static void __init via_bugs(int  num, int slot, int func)
+>  {
+>  #ifdef CONFIG_GART_IOMMU
+> +	static bool quirk_applied __initdata;
+> +
+> +	if (quirk_applied)
+> +		return;
 
-> -----Original Message-----
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Matthew Auld
-> Sent: Tuesday, January 4, 2022 7:32 PM
-> To: Paneer Selvam, Arunpravin <Arunpravin.PaneerSelvam@amd.com>; dri-devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; amd-gfx@lists.freedesktop.org
-> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; tzimmermann@suse.de; jani.nikula@linux.intel.com; Koenig, Christian <Christian.Koenig@amd.com>; daniel@ffwll.ch
-> Subject: Re: [PATCH v6 2/6] drm: improve drm_buddy_alloc function
-> 
-> On 26/12/2021 22:24, Arunpravin wrote:
->> - Make drm_buddy_alloc a single function to handle
->>    range allocation and non-range allocation demands
->>
->> - Implemented a new function alloc_range() which allocates
->>    the requested power-of-two block comply with range limitations
->>
->> - Moved order computation and memory alignment logic from
->>    i915 driver to drm buddy
->>
->> v2:
->>    merged below changes to keep the build unbroken
->>     - drm_buddy_alloc_range() becomes obsolete and may be removed
->>     - enable ttm range allocation (fpfn / lpfn) support in i915 driver
->>     - apply enhanced drm_buddy_alloc() function to i915 driver
->>
->> v3(Matthew Auld):
->>    - Fix alignment issues and remove unnecessary list_empty check
->>    - add more validation checks for input arguments
->>    - make alloc_range() block allocations as bottom-up
->>    - optimize order computation logic
->>    - replace uint64_t with u64, which is preferred in the kernel
->>
->> v4(Matthew Auld):
->>    - keep drm_buddy_alloc_range() function implementation for generic
->>      actual range allocations
->>    - keep alloc_range() implementation for end bias allocations
->>
->> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
-> 
-> <snip>
-> 
->> @@ -73,34 +83,16 @@ static int i915_ttm_buddy_man_alloc(struct ttm_resource_manager *man,
->>   
->>   	n_pages = size >> ilog2(mm->chunk_size);
->>   
->> -	do {
->> -		struct drm_buddy_block *block;
->> -		unsigned int order;
->> -
->> -		order = fls(n_pages) - 1;
->> -		GEM_BUG_ON(order > mm->max_order);
->> -		GEM_BUG_ON(order < min_order);
->> -
->> -		do {
->> -			mutex_lock(&bman->lock);
->> -			block = drm_buddy_alloc(mm, order);
->> -			mutex_unlock(&bman->lock);
->> -			if (!IS_ERR(block))
->> -				break;
->> -
->> -			if (order-- == min_order) {
->> -				err = -ENOSPC;
->> -				goto err_free_blocks;
->> -			}
->> -		} while (1);
->> -
->> -		n_pages -= BIT(order);
->> -
->> -		list_add_tail(&block->link, &bman_res->blocks);
->> -
->> -		if (!n_pages)
->> -			break;
->> -	} while (1);
->> +	mutex_lock(&bman->lock);
->> +	err = drm_buddy_alloc(mm, (u64)place->fpfn << PAGE_SHIFT,
->> +			(u64)place->lpfn << PAGE_SHIFT,
-> 
-> place->lpfn will currently always be zero for i915, AFAIK. I assume here 
-> we want s/place->lpfn/lpfn/?
+IMO this probably is better than using QFLAG_APPLY_ONCE, etc.
 
-I replaced place->lpfn with lpfn as below
+But this patch has the mechanical changes related to QFLAG_APPLY_ONCE,
+which I think are useful but not very interesting and not a fix for
+something that's broken, mixed together with the *important* change
+that actually fixes a problem on Alderlake.
 
->> +	err = drm_buddy_alloc(mm, (u64)place->fpfn << PAGE_SHIFT,
->> +			(u64)lpfn << PAGE_SHIFT,
+Those two things need to be separate patches.  A patch that fixes a
+problem should be as small as possible so it's easy to understand and
+backport.
 
-AFAIK, we need to change only at above location, hope this
-fixes the firmware allocation issue.
-> 
-> Also something in this series is preventing i915 from loading on 
-> discrete devices, according to CI. Hopefully that is just the lpfn 
-> issue...which might explain seeing -EINVAL here[1] when allocating some 
-> vram for the firmware.
-> 
-> [1] 
-> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fintel-gfx-ci.01.org%2Ftree%2Fdrm-tip%2FPatchwork_21904%2Fbat-dg1-6%2Fboot0.txt&amp;data=04%7C01%7Carunpravin.paneerselvam%40amd.com%7C4e7c1345d6a649a1682608d9cf8ae82e%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637769017786517465%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=FsSHcnvbMhPhWaZ3tVLAswf04p5tBsbSYqKdYzpib88%3D&amp;reserved=0
-> 
-> 
->> +			(u64)n_pages << PAGE_SHIFT,
->> +			 min_page_size,
->> +			 &bman_res->blocks,
->> +			 bman_res->flags);
->> +	mutex_unlock(&bman->lock);
->> +	if (unlikely(err))
->> +		goto err_free_blocks;
->>   
->>   	*res = &bman_res->base;
->>   	return 0;
->> @@ -266,10 +258,17 @@ int i915_ttm_buddy_man_reserve(struct ttm_resource_manager *man,
->>   {
->>   	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
->>   	struct drm_buddy_mm *mm = &bman->mm;
->> +	unsigned long flags = 0;
->>   	int ret;
->>   
->> +	flags |= DRM_BUDDY_RANGE_ALLOCATION;
->> +
->>   	mutex_lock(&bman->lock);
->> -	ret = drm_buddy_alloc_range(mm, &bman->reserved, start, size);
->> +	ret = drm_buddy_alloc(mm, start,
->> +			start + size,
->> +			size, mm->chunk_size,
->> +			&bman->reserved,
->> +			flags);
->>   	mutex_unlock(&bman->lock);
->>   
->>   	return ret;
->> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
->> index fa644b512c2e..5ba490875f66 100644
->> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
->> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
->> @@ -20,6 +20,7 @@ struct drm_buddy_mm;
->>    *
->>    * @base: struct ttm_resource base class we extend
->>    * @blocks: the list of struct i915_buddy_block for this resource/allocation
->> + * @flags: DRM_BUDDY_*_ALLOCATION flags
->>    * @mm: the struct i915_buddy_mm for this resource
->>    *
->>    * Extends the struct ttm_resource to manage an address space allocation with
->> @@ -28,6 +29,7 @@ struct drm_buddy_mm;
->>   struct i915_ttm_buddy_resource {
->>   	struct ttm_resource base;
->>   	struct list_head blocks;
->> +	unsigned long flags;
->>   	struct drm_buddy_mm *mm;
->>   };
->>   
->> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
->> index 09d73328c268..4368acaad222 100644
->> --- a/include/drm/drm_buddy.h
->> +++ b/include/drm/drm_buddy.h
->> @@ -13,15 +13,22 @@
->>   
->>   #include <drm/drm_print.h>
->>   
->> -#define range_overflows(start, size, max) ({ \
->> +#define check_range_overflow(start, end, size, max) ({ \
->>   	typeof(start) start__ = (start); \
->> +	typeof(end) end__ = (end);\
->>   	typeof(size) size__ = (size); \
->>   	typeof(max) max__ = (max); \
->>   	(void)(&start__ == &size__); \
->>   	(void)(&start__ == &max__); \
->> -	start__ >= max__ || size__ > max__ - start__; \
->> +	(void)(&start__ == &end__); \
->> +	(void)(&end__ == &size__); \
->> +	(void)(&end__ == &max__); \
->> +	start__ >= max__ || end__ > max__ || \
->> +	size__ > end__ - start__; \
->>   })
->>   
->> +#define DRM_BUDDY_RANGE_ALLOCATION (1 << 0)
->> +
->>   struct drm_buddy_block {
->>   #define DRM_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
->>   #define DRM_BUDDY_HEADER_STATE  GENMASK_ULL(11, 10)
->> @@ -132,12 +139,11 @@ int drm_buddy_init(struct drm_buddy_mm *mm, u64 size, u64 chunk_size);
->>   
->>   void drm_buddy_fini(struct drm_buddy_mm *mm);
->>   
->> -struct drm_buddy_block *
->> -drm_buddy_alloc(struct drm_buddy_mm *mm, unsigned int order);
->> -
->> -int drm_buddy_alloc_range(struct drm_buddy_mm *mm,
->> -			  struct list_head *blocks,
->> -			  u64 start, u64 size);
->> +int drm_buddy_alloc(struct drm_buddy_mm *mm,
->> +		    u64 start, u64 end, u64 size,
->> +		    u64 min_page_size,
->> +		    struct list_head *blocks,
->> +		    unsigned long flags);
->>   
->>   void drm_buddy_free(struct drm_buddy_mm *mm, struct drm_buddy_block *block);
->>   
->>
+The subject line of this patch doesn't say anything at all about
+Alderlake.  Splitting into two patches will make the subject lines
+more useful.
+
+Bjorn
