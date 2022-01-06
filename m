@@ -1,63 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FF71486234
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jan 2022 10:38:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C2B9486281
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jan 2022 10:56:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8A1810E6EE;
-	Thu,  6 Jan 2022 09:38:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01E5210E9E2;
+	Thu,  6 Jan 2022 09:56:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 897BA10E6EE
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jan 2022 09:38:10 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F68A10E9E2;
+ Thu,  6 Jan 2022 09:56:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641461890; x=1672997890;
+ t=1641462987; x=1672998987;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=8pmHU8sGdu1tUySz1Ige4haSXF+rYU7QAnDnJZcaTN8=;
- b=PO1ea1Y04HNKVqoFyqDMG5/sTeE6pgxy6RssyvPuY8bEs6q6VMQT25ii
- 3qpQxW0rivyfqFXQU7nMV99YmaU0XQMKCaaK4kUxOvzd1Faec58X6KWER
- G8Q9urpfHWbbVCVPreC7V4LGYBe8CDHNUpL1TUZmD8K7FkRUtCRLVVVcU
- 2CFYlTeuBv6jecCyg+c/aFkmQguvAAb0KsK6oTmCQnYF42a5z56T482wi
- 9d7tq2QFLBG9sEXt7LxAFlprtgutEHENqRL32yoKy7oixqI1cfGMUYliG
- /eRF52nXngDOy1y6pB5u9FxxEnMzEgF8Fv4x17IV5HYbFUCBxFVtr8gCj Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="222623490"
-X-IronPort-AV: E=Sophos;i="5.88,266,1635231600"; d="scan'208";a="222623490"
+ bh=P1gix/DAfDhKjaNSCgWqNzXdlOl/b/dN71yoovFuz0o=;
+ b=MBhBg3DkwHG77BPyOUTgA+TQ831vEcW0hNJzvWmzWubJHA1fc+8fYFRf
+ 7KeoGtfsrcrunGL64PCx68ht9guQFsCVdtPDMv0wJyQgXxivyDHelnHyK
+ MZ6F4evzRH8kxVDzYB+qJ8i7DJp2aSKlp8yA4b89TbGlRqcPOLTGYIZtB
+ UW82OaSJ7emEh2yU3GlcwpIkrzwHENEiq5lGxGk9ek+7eH7Ym21ayU/0w
+ QJ9XqHSPmk+g7uCwzYbSoHk7w2RrzO8LtUOCd8yVL9LHT3RXGeboBr/l3
+ ct4Qpncc0pS/O7k3WbGcjaHhfGkKiJp3W1aZpkCtyvGghcW9pIasYo4Mr g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="229957266"
+X-IronPort-AV: E=Sophos;i="5.88,266,1635231600"; d="scan'208";a="229957266"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2022 01:38:09 -0800
-X-IronPort-AV: E=Sophos;i="5.88,266,1635231600"; d="scan'208";a="472828497"
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2022 01:56:06 -0800
+X-IronPort-AV: E=Sophos;i="5.88,266,1635231600"; d="scan'208";a="472832907"
 Received: from leitchrx-mobl.ger.corp.intel.com (HELO [10.213.202.197])
  ([10.213.202.197])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2022 01:38:08 -0800
-Message-ID: <4da5fd63-d74f-2004-082b-a75cbdb024ad@linux.intel.com>
-Date: Thu, 6 Jan 2022 09:38:06 +0000
+ 06 Jan 2022 01:56:05 -0800
+Message-ID: <40920051-1aef-1e14-ec7e-03d158e02c22@linux.intel.com>
+Date: Thu, 6 Jan 2022 09:56:03 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.1
 Content-Language: en-US
-To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
- "Brost, Matthew" <matthew.brost@intel.com>
-References: <20211122230402.2023576-1-alan.previn.teres.alexis@intel.com>
- <20211122230402.2023576-8-alan.previn.teres.alexis@intel.com>
- <20211208002215.GA17960@jons-linux-dev-box>
- <bf9b1af14a700959ca58e615d7d15cb9300ab56f.camel@intel.com>
- <fb0f6eace4bd1c243544a0804ffa9fa5b16159a6.camel@intel.com>
- <c0fa7466-ecdc-4768-0584-6937e7f0d71a@linux.intel.com>
- <baaf6bcf51c487817392142913f31655138b6596.camel@intel.com>
- <8257f42f-7bbd-c033-28f1-f43f21cc81af@linux.intel.com>
- <0267e249fbc650069e4c6d29438ce32289d535cb.camel@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+References: <20220104233056.11245-1-matthew.brost@intel.com>
+ <3ae7e493-4b77-9e87-ca6f-34f85cab4ecb@linux.intel.com>
+ <20220105162402.GA33126@jons-linux-dev-box>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <0267e249fbc650069e4c6d29438ce32289d535cb.camel@intel.com>
+In-Reply-To: <20220105162402.GA33126@jons-linux-dev-box>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RFC 7/7] drm/i915/guc: Print the GuC error capture
- output register list.
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Lock timeline mutex directly in
+ error path of eb_pin_timeline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,53 +63,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 05/01/2022 17:30, Teres Alexis, Alan Previn wrote:
-> 
-> On Tue, 2022-01-04 at 13:56 +0000, Tvrtko Ursulin wrote:
+On 05/01/2022 16:24, Matthew Brost wrote:
+> On Wed, Jan 05, 2022 at 09:35:44AM +0000, Tvrtko Ursulin wrote:
 >>
->>> The flow of events are as below:
+>> On 04/01/2022 23:30, Matthew Brost wrote:
+>>> Don't use the interruptable version of the timeline mutex lock in the
+>>
+>> interruptible
+>>
+>>> error path of eb_pin_timeline as the cleanup must always happen.
 >>>
->>> 1. guc sends notification that an error capture was done and ready to take.
->>> 	- at this point we copy the guc error captured dump into an interim store
->>> 	  (larger buffer that can hold multiple captures).
->>> 2. guc sends notification that a context was reset (after the prior)
->>> 	- this triggers a call to i915_gpu_coredump with the corresponding engine-mask
->>>             from the context that was reset
->>> 	- i915_gpu_coredump proceeds to gather entire gpu state including driver state,
->>>             global gpu state, engine state, context vmas and also engine registers. For the
->>>             engine registers now call into the guc_capture code which merely needs to verify
->>> 	  that GuC had already done a step 1 and we have data ready to be parsed.
+>>> v2:
+>>>    (John Harrison)
+>>>     - Don't check for interrupt during mutex lock
+>>>
+>>> Fixes: 544460c33821 ("drm/i915: Multi-BB execbuf")
+>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 4 ++--
+>>>    1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>>> index e9541244027a..e96e133cbb1f 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>>> @@ -2516,9 +2516,9 @@ static int eb_pin_timeline(struct i915_execbuffer *eb, struct intel_context *ce,
+>>>    				      timeout) < 0) {
+>>>    			i915_request_put(rq);
+>>> -			tl = intel_context_timeline_lock(ce);
+>>> +			mutex_lock(&ce->timeline->mutex);
 >>
->> What about the time between the actual reset and receiving the context
->> reset notification? Latter will contain intel_context->guc_id - can that
->> be re-assigned or "retired" in between the two and so cause problems for
->> matching the correct (or any) vmas?
+>> On the other hand it is more user friendly to handle signals (which maybe
+>> does not matter in this case, not sure any longer how long hold time it can
+>> have) but there is also a question of consistency within the very function
+>> you are changing.
 >>
-> Not it cannot because its only after the context reset notification that i915 starts
-> taking action against that cotnext - and even that happens after the i915_gpu_codedump (engine-mask-of-context) happens.
-> That's what i've observed in the code flow.
+>> Apart from consistency, what about the parent-child magic
+>> intel_context_timeline_lock does and you wouldn't have here?
+>>
+>> And what about the very existence of intel_context_timeline_lock as a
+>> component boundary separation API, if it is used inconsistently throughout
+>> i915_gem_execbuffer.c?
+> 
+> intel_context_timeline_lock does 2 things:
+> 
+> 1. Handles lockdep nesting of timeline locks for parent-child contexts
+> ensuring locks are acquired from parent to last child, then released
+> last child to parent
+> 2. Allows the mutex lock to be interrupted
+> 
+> This helper should be used in setup steps where a user can signal abort
+> (context pinning time + request creation time), by 'should be' I mean
+> this was how it was done before I extended the execbuf IOCTL for
+> multiple BBs. Slightly confusing but this is what was in place so I
+> stuck with it.
+> 
+> This code here is an error path that only hold at most 1 timeline lock
+> (no nesting required) and is a path that must be executed as it is a
+> cleanup step (not allowed to be interrupted by user, intel_context_exit
+> must be called or we have dangling engine PM refs).
+> 
+> Make sense? I probably should update the comment message to explain this
+> a bit better as it did take me a bit to understand how this locking
+> worked.
 
-The fact it is "only after" is exactly why I asked.
+The part which does not make sense is this:
 
-Reset notification is in a CT queue with other stuff, right? So can be 
-some unrelated time after the actual reset. Could have context be 
-retired in the meantime and guc_id released is the question.
+eb_pin_timeline()
+{
+...
+	tl = intel_context_timeline_lock(ce);
+	if (IS_ERR(tl))
+		return PTR_ERR(tl);
 
-Because i915 has no idea there was a reset until this delayed message 
-comes over, but it could see user interrupt signaling end of batch, 
-after the reset has happened, unbeknown to i915, right?
+... do some throttling, and if it fail:
+			mutex_lock(&ce->timeline->mutex);
 
-Perhaps the answer is guc_id cannot be released via the request retire 
-flows. Or GuC signaling release of guc_id is a thing, which is then 
-ordered via the same CT buffer.
+Therefore argument that at most one timeline lock is held and the extra 
+stuff is not needed does not hold for me. Why would the throttling 
+failed path be different than the initial step in this respect?
 
-I don't know, just asking.
+Using two ways to lock the same mutex withing 10 lines of code is confusing.
+
+In my mind we have this question of API usage consistency, and also the 
+unanswered questions of whether reacting to signals during taking this 
+mutex matters (what are the pessimistic lock hold times and what 
+influences them?).
+
+Note that first lock handles signals, throttling also handles signals, 
+so why wouldn't the cleanup path? Just because then you don't have to 
+bother with error unwind is to only reason I can see.
+
+So I suggest you just do proper error unwind and be done with it.
+
+  if (rq) {
+	ret = i915_request_wait()
+	i915_request_put(rq)
+	if (ret)
+		goto err;
+  }
+
+  return 0;
+
+  err:
+
+  tl = intel_context_timeline_lock()
+  intel_context_exit()
+  intel_context_timeline_unlock()
+
+  return nonblock ? ... : ...;
 
 Regards,
 
 Tvrtko
+
+> 
+> Matt
+> 
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>    			intel_context_exit(ce);
+>>> -			intel_context_timeline_unlock(tl);
+>>> +			mutex_unlock(&ce->timeline->mutex);
+>>>    			if (nonblock)
+>>>    				return -EWOULDBLOCK;
+>>>
