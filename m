@@ -1,56 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C2B9486281
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jan 2022 10:56:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C12504863A1
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jan 2022 12:20:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01E5210E9E2;
-	Thu,  6 Jan 2022 09:56:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09F9210E7E7;
+	Thu,  6 Jan 2022 11:20:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F68A10E9E2;
- Thu,  6 Jan 2022 09:56:27 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 400C110E6CD;
+ Thu,  6 Jan 2022 11:20:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641462987; x=1672998987;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=P1gix/DAfDhKjaNSCgWqNzXdlOl/b/dN71yoovFuz0o=;
- b=MBhBg3DkwHG77BPyOUTgA+TQ831vEcW0hNJzvWmzWubJHA1fc+8fYFRf
- 7KeoGtfsrcrunGL64PCx68ht9guQFsCVdtPDMv0wJyQgXxivyDHelnHyK
- MZ6F4evzRH8kxVDzYB+qJ8i7DJp2aSKlp8yA4b89TbGlRqcPOLTGYIZtB
- UW82OaSJ7emEh2yU3GlcwpIkrzwHENEiq5lGxGk9ek+7eH7Ym21ayU/0w
- QJ9XqHSPmk+g7uCwzYbSoHk7w2RrzO8LtUOCd8yVL9LHT3RXGeboBr/l3
- ct4Qpncc0pS/O7k3WbGcjaHhfGkKiJp3W1aZpkCtyvGghcW9pIasYo4Mr g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="229957266"
-X-IronPort-AV: E=Sophos;i="5.88,266,1635231600"; d="scan'208";a="229957266"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2022 01:56:06 -0800
-X-IronPort-AV: E=Sophos;i="5.88,266,1635231600"; d="scan'208";a="472832907"
-Received: from leitchrx-mobl.ger.corp.intel.com (HELO [10.213.202.197])
- ([10.213.202.197])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2022 01:56:05 -0800
-Message-ID: <40920051-1aef-1e14-ec7e-03d158e02c22@linux.intel.com>
-Date: Thu, 6 Jan 2022 09:56:03 +0000
+ t=1641468043; x=1673004043;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9UUfIakJFEIFcVy2zf3eVamvfxFBZePzHHEtcL/2UqE=;
+ b=g2orHznku4X1zofi9B1Bk8V0RheEzhHFytmQC1jsZFX+BbB6MuqWzOiM
+ 9vnUtivZYdjOg7kwOYQbobU9nqjNL5YXM+21iH8SK6xTHvbmITOumD7Ag
+ 54rE9CSNwjPsar1XzXmMmXD3WLWeKrqj1taPqM0gEf4bMcF8od/z/6N+p
+ mLX+pr30GOnjFiP4/hxzubWjzw2EnjKrtI5EoKkZM9ZyKTz6ZzDCX26Oi
+ zHje/4xb6qdUQonVbSVAhrX18EH0dPcgo6Cq3Xx4XV5QhTXFmrFpHXigJ
+ 4zMGG0Go0BLHfwl6YqbHE5uYQFKi2idHQzul3elkbfzjrKwi64KKhqDp6 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="305992102"
+X-IronPort-AV: E=Sophos;i="5.88,266,1635231600"; d="scan'208";a="305992102"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2022 03:20:42 -0800
+X-IronPort-AV: E=Sophos;i="5.88,266,1635231600"; d="scan'208";a="556892130"
+Received: from lsgoh-mobl1.gar.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.249.65.184])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2022 03:20:39 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  6 Jan 2022 11:20:23 +0000
+Message-Id: <20220106112026.247459-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20220104233056.11245-1-matthew.brost@intel.com>
- <3ae7e493-4b77-9e87-ca6f-34f85cab4ecb@linux.intel.com>
- <20220105162402.GA33126@jons-linux-dev-box>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220105162402.GA33126@jons-linux-dev-box>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Lock timeline mutex directly in
- error path of eb_pin_timeline
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 1/4] drm/i915: don't call free_mmap_offset
+ when purging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,136 +56,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+The TTM backend is in theory the only user here(also purge should only
+be called once we have dropped the pages), where it is setup at object
+creation and is only removed once the object is destroyed. Also
+resetting the node here might be iffy since the ttm fault handler
+uses the stored fake offset to determine the page offset within the pages
+array.
 
-On 05/01/2022 16:24, Matthew Brost wrote:
-> On Wed, Jan 05, 2022 at 09:35:44AM +0000, Tvrtko Ursulin wrote:
->>
->> On 04/01/2022 23:30, Matthew Brost wrote:
->>> Don't use the interruptable version of the timeline mutex lock in the
->>
->> interruptible
->>
->>> error path of eb_pin_timeline as the cleanup must always happen.
->>>
->>> v2:
->>>    (John Harrison)
->>>     - Don't check for interrupt during mutex lock
->>>
->>> Fixes: 544460c33821 ("drm/i915: Multi-BB execbuf")
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 4 ++--
->>>    1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->>> index e9541244027a..e96e133cbb1f 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->>> @@ -2516,9 +2516,9 @@ static int eb_pin_timeline(struct i915_execbuffer *eb, struct intel_context *ce,
->>>    				      timeout) < 0) {
->>>    			i915_request_put(rq);
->>> -			tl = intel_context_timeline_lock(ce);
->>> +			mutex_lock(&ce->timeline->mutex);
->>
->> On the other hand it is more user friendly to handle signals (which maybe
->> does not matter in this case, not sure any longer how long hold time it can
->> have) but there is also a question of consistency within the very function
->> you are changing.
->>
->> Apart from consistency, what about the parent-child magic
->> intel_context_timeline_lock does and you wouldn't have here?
->>
->> And what about the very existence of intel_context_timeline_lock as a
->> component boundary separation API, if it is used inconsistently throughout
->> i915_gem_execbuffer.c?
-> 
-> intel_context_timeline_lock does 2 things:
-> 
-> 1. Handles lockdep nesting of timeline locks for parent-child contexts
-> ensuring locks are acquired from parent to last child, then released
-> last child to parent
-> 2. Allows the mutex lock to be interrupted
-> 
-> This helper should be used in setup steps where a user can signal abort
-> (context pinning time + request creation time), by 'should be' I mean
-> this was how it was done before I extended the execbuf IOCTL for
-> multiple BBs. Slightly confusing but this is what was in place so I
-> stuck with it.
-> 
-> This code here is an error path that only hold at most 1 timeline lock
-> (no nesting required) and is a path that must be executed as it is a
-> cleanup step (not allowed to be interrupted by user, intel_context_exit
-> must be called or we have dangling engine PM refs).
-> 
-> Make sense? I probably should update the comment message to explain this
-> a bit better as it did take me a bit to understand how this locking
-> worked.
+This also blows up in the dontneed-before-mmap test, since the
+expectation is that the vma_node will live on, until the object is
+destroyed:
 
-The part which does not make sense is this:
+<2> [749.062902] kernel BUG at drivers/gpu/drm/i915/gem/i915_gem_ttm.c:943!
+<4> [749.062923] invalid opcode: 0000 [#1] PREEMPT SMP NOPTI
+<4> [749.062928] CPU: 0 PID: 1643 Comm: gem_madvise Tainted: G     U  W         5.16.0-rc8-CI-CI_DRM_11046+ #1
+<4> [749.062933] Hardware name: Gigabyte Technology Co., Ltd. GB-Z390 Garuda/GB-Z390 Garuda-CF, BIOS IG1c 11/19/2019
+<4> [749.062937] RIP: 0010:i915_ttm_mmap_offset.cold.35+0x5b/0x5d [i915]
+<4> [749.063044] Code: 00 48 c7 c2 a0 23 4e a0 48 c7 c7 26 df 4a a0 e8 95 1d d0 e0 bf 01 00 00 00 e8 8b ec cf e0 31 f6 bf 09 00 00 00 e8 5f 30 c0 e0 <0f> 0b 48 c7 c1 24 4b 56 a0 ba 5b 03 00 00 48 c7 c6 c0 23 4e a0 48
+<4> [749.063052] RSP: 0018:ffffc90002ab7d38 EFLAGS: 00010246
+<4> [749.063056] RAX: 0000000000000240 RBX: ffff88811f2e61c0 RCX: 0000000000000006
+<4> [749.063060] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000009
+<4> [749.063063] RBP: ffffc90002ab7e58 R08: 0000000000000001 R09: 0000000000000001
+<4> [749.063067] R10: 000000000123d0f8 R11: ffffc90002ab7b20 R12: ffff888112a1a000
+<4> [749.063071] R13: 0000000000000004 R14: ffff88811f2e61c0 R15: ffff888112a1a000
+<4> [749.063074] FS:  00007f6e5fcad500(0000) GS:ffff8884ad600000(0000) knlGS:0000000000000000
+<4> [749.063078] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4> [749.063081] CR2: 00007efd264e39f0 CR3: 0000000115fd6005 CR4: 00000000003706f0
+<4> [749.063085] Call Trace:
+<4> [749.063087]  <TASK>
+<4> [749.063089]  __assign_mmap_offset+0x41/0x300 [i915]
+<4> [749.063171]  __assign_mmap_offset_handle+0x159/0x270 [i915]
+<4> [749.063248]  ? i915_gem_dumb_mmap_offset+0x70/0x70 [i915]
+<4> [749.063325]  drm_ioctl_kernel+0xae/0x140
+<4> [749.063330]  drm_ioctl+0x201/0x3d0
+<4> [749.063333]  ? i915_gem_dumb_mmap_offset+0x70/0x70 [i915]
+<4> [749.063409]  ? do_user_addr_fault+0x200/0x670
+<4> [749.063415]  __x64_sys_ioctl+0x6d/0xa0
+<4> [749.063419]  do_syscall_64+0x3a/0xb0
+<4> [749.063423]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+<4> [749.063428] RIP: 0033:0x7f6e5f100317
 
-eb_pin_timeline()
-{
-...
-	tl = intel_context_timeline_lock(ce);
-	if (IS_ERR(tl))
-		return PTR_ERR(tl);
+Testcase: igt/gem_madvise/dontneed-before-mmap
+Fixes: cf3e3e86d779 ("drm/i915: Use ttm mmap handling for ttm bo's.")
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-... do some throttling, and if it fail:
-			mutex_lock(&ce->timeline->mutex);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index 89b70f5cde7a..9f429ed6e78a 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -161,7 +161,6 @@ int i915_gem_object_pin_pages_unlocked(struct drm_i915_gem_object *obj)
+ /* Immediately discard the backing storage */
+ int i915_gem_object_truncate(struct drm_i915_gem_object *obj)
+ {
+-	drm_gem_free_mmap_offset(&obj->base);
+ 	if (obj->ops->truncate)
+ 		return obj->ops->truncate(obj);
+ 
+-- 
+2.31.1
 
-Therefore argument that at most one timeline lock is held and the extra 
-stuff is not needed does not hold for me. Why would the throttling 
-failed path be different than the initial step in this respect?
-
-Using two ways to lock the same mutex withing 10 lines of code is confusing.
-
-In my mind we have this question of API usage consistency, and also the 
-unanswered questions of whether reacting to signals during taking this 
-mutex matters (what are the pessimistic lock hold times and what 
-influences them?).
-
-Note that first lock handles signals, throttling also handles signals, 
-so why wouldn't the cleanup path? Just because then you don't have to 
-bother with error unwind is to only reason I can see.
-
-So I suggest you just do proper error unwind and be done with it.
-
-  if (rq) {
-	ret = i915_request_wait()
-	i915_request_put(rq)
-	if (ret)
-		goto err;
-  }
-
-  return 0;
-
-  err:
-
-  tl = intel_context_timeline_lock()
-  intel_context_exit()
-  intel_context_timeline_unlock()
-
-  return nonblock ? ... : ...;
-
-Regards,
-
-Tvrtko
-
-> 
-> Matt
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>>    			intel_context_exit(ce);
->>> -			intel_context_timeline_unlock(tl);
->>> +			mutex_unlock(&ce->timeline->mutex);
->>>    			if (nonblock)
->>>    				return -EWOULDBLOCK;
->>>
