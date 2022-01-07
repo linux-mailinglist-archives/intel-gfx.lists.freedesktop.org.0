@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE1C94875A0
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 11:36:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9C844875DD
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 11:46:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBB7310F6B0;
-	Fri,  7 Jan 2022 10:36:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09F8011287C;
+	Fri,  7 Jan 2022 10:46:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B903E10F6B0;
- Fri,  7 Jan 2022 10:36:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B6B7EA0099;
- Fri,  7 Jan 2022 10:36:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1706532175359033314=="
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DDBC112852
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jan 2022 10:46:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1641552416; x=1673088416;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=PqINruenHDf12WgrUOGlfYtME8TR0NRs7hQpsdftWWQ=;
+ b=F0qV0gZW5WSH2MW5IvQygw83GM1fv2DRF9vGwWIZWM/YOlGs3RaPh61j
+ 34Mo9nPW+3tO4xJ7O0oIgQVDiTSw6PoNpQYZInJqxWoPaVnKIrLrK3IJb
+ hEjXizY1dAWevsX4ACSa1J0sRtxJl7EwxW+XXbELOrasCAwrsQPk+e6Vd
+ GaD+WA+Gzy88ncYqz5ENV4zqcPuRwvWnkk8NGUMCe5ar8qYM3568pLGXH
+ eLchTuJTVa9mQxUvXe/uED93GNJw7+M5De2PahDhSSE4qpRp5XUi0vQYe
+ HH8mjShpZH4+Vqgvb4LLteTj/anaPdyl8gDMHB4+WnaLNqGn1plGCp4uP A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10219"; a="267147327"
+X-IronPort-AV: E=Sophos;i="5.88,269,1635231600"; d="scan'208";a="267147327"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2022 02:46:56 -0800
+X-IronPort-AV: E=Sophos;i="5.88,269,1635231600"; d="scan'208";a="489256560"
+Received: from dgreerx-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.24.206])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2022 02:46:53 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220106230823.2791203-2-matthew.d.roper@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220106230823.2791203-1-matthew.d.roper@intel.com>
+ <20220106230823.2791203-2-matthew.d.roper@intel.com>
+Date: Fri, 07 Jan 2022 12:46:48 +0200
+Message-ID: <874k6fn7qf.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 07 Jan 2022 10:36:21 -0000
-Message-ID: <164155178172.24391.10152135793575026727@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220107094951.96181-1-jani.nikula@intel.com>
-In-Reply-To: <20220107094951.96181-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_split_out_PCI_config_sp?=
- =?utf-8?q?ace_registers_from_i915=5Freg=2Eh?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Drop unused register
+ definitions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,296 +59,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1706532175359033314==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 06 Jan 2022, Matt Roper <matthew.d.roper@intel.com> wrote:
+> A large percentage (nearly 25%) of the register and bit definitions in
+> i915_reg.h are not used by the i915 driver and are effectively dead
+> code.  There are a few origins for these unused definitions:
+>
+>  * Registers only accessed by workarounds that were either retracted by
+>    the hardware team or that only applied to pre-production steppings
+>    and have been removed from the driver.
+>
+>  * General refactoring of the codebase (e.g., separate definitions of
+>    REG1, REG2, REG3 being replaced by a parameterized REG(n) macro
+>    without the original definitions being dropped.
+>
+>  * In the early days of i915, all registers in an area of the hardware,
+>    or all bits in a given register got documented in i915_reg.h "just in
+>    case" they needed to be used in the future.  With the exploding
+>    complexity of the hardware and huge number of platforms we now
+>    support, mass-documenting everything as #define's doesn't scale.
+>    We'd also generally prefer *not* to have definitions already in the
+>    driver before they're used since we'd rather review them explicitly
+>    alongside new code that is starting to use them.
 
-== Series Details ==
+I still tell people to 1) split out register definitions to separate
+patches, and 2) add macros for the entire feature and full contents for
+each register, even if they remain unused.
 
-Series: series starting with [1/3] drm/i915: split out PCI config space registers from i915_reg.h
-URL   : https://patchwork.freedesktop.org/series/98597/
-State : success
+One of the main reasons is review economics. It's pretty easy to look at
+a patch adding register contents, review it against the bspec and be
+done with it. And while you have the right bspec page open, it only
+takes a very short time to add and review the entire register, instead
+of having to return to it later. A patch adding just the registers could
+get reviewed and merged at v1. It's one less patch the developer has to
+keep carrying and rebasing, and it's one less portion the reviewer has
+to worry about.
 
-== Summary ==
+Overall it's about getting the easy stuff done and behind you first. And
+that's a huge part of my whole approach to kernel development, and what
+I try to tell others to follow.
 
-CI Bug Log - changes from CI_DRM_11053 -> Patchwork_21939
-====================================================
+I also think the documentation aspect is still valid, and especially so
+for older hardware. It may be fine to remove some of the accumulated
+cruft, *after* the register macros have been split up to smaller files
+by functionality. But I don't think it should be an indiscriminate mass
+removal of macros. For example, I don't think I want any of the sideband
+or VGA or PCI register macros removed.
 
-Summary
--------
+Bottom line, I don't mind adding or having unused register macros at
+all. Heck, I'd be on board for switching to auto-generated register
+macros with absolutely everything.
 
-  **SUCCESS**
+Of course, this is only about register macros that describe the
+hardware, not so much about driver implementation where I'd toss unused
+code to the curb in a heartbeat.
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/index.html
-
-Participating hosts (43 -> 36)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (8): fi-bdw-5557u bat-dg1-6 bat-dg1-5 bat-adlp-6 bat-adlp-4 bat-rpls-1 fi-bdw-samus bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21939 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +13 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-pnv-d510:        NOTRUN -> [FAIL][2] ([i915#3194])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-pnv-d510/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [PASS][5] -> [FAIL][6] ([i915#579])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][7] ([i915#4547])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-skl-6600u/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][8] ([i915#1886] / [i915#2291])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#533])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][11] ([fdo#109271]) +57 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][12] ([i915#1436] / [i915#4312])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-skl-6600u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-kbl-soraka:      [INCOMPLETE][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0@smem.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-skl-6600u:       [FAIL][15] ([i915#3239]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-bxt-dsi:         [DMESG-FAIL][17] ([i915#541]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#3194]: https://gitlab.freedesktop.org/drm/intel/issues/3194
-  [i915#3239]: https://gitlab.freedesktop.org/drm/intel/issues/3239
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+From a purely pragmatic perspective, please proceed with the
+non-controversial splitting up i915_reg.h to individual files, switching
+to REG_* macros for contents, etc, etc, first. Just please don't start
+with this one because it's going to be a long tedious debate that will
+suck the life force right out of us and make you want to stop doing the
+whole thing. (Remember, get the easy stuff done and behind you first. ;)
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11053 -> Patchwork_21939
-
-  CI-20190529: 20190529
-  CI_DRM_11053: f0ad19ec6238528d9ea1ee54c9dcde4e0119f1e5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6325: ac29e097d4ff0f2e269a955ca86c5eb23908467a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21939: 48a43a2e543807f1910d6d009f984c4f99addec5 @ git://anongit.freedesktop.org/gfx-ci/linux
+BR,
+Jani.
 
 
-== Linux commits ==
+>
+> Let's start cleaning up the register definition file by removing a bunch
+> of dead code.  I used a cscope database to track down most of these via
+> searches like:
+>
+>    for x in $(grep '^#define' drivers/gpu/drm/i915/i915_reg.h | awk '{ pr=
+int $2 }' | cut -d'(' -f1); do count=3D$(cscope -d -R -L0 $x | wc -l); if (=
+($count <=3D 1)); then echo $x; fi; done
+>
+> although I had to watch out for cases where register/bit names are never
+> referenced directly, but are constructed elsewhere by macro
+> concatenation (e.g., GEN3_IRQ_INIT()).
+>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
-48a43a2e5438 drm/i915: split out vlv sideband registers from i915_reg.h
-66ca8d122638 drm/i915: move VGA registers to intel_vga.c
-0eec9f19cbae drm/i915: split out PCI config space registers from i915_reg.h
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/index.html
-
---===============1706532175359033314==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915: split out PCI config space registers from i915_reg.h</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98597/">https://patchwork.freedesktop.org/series/98597/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11053 -&gt; Patchwork_21939</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/index.html</p>
-<h2>Participating hosts (43 -&gt; 36)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (8): fi-bdw-5557u bat-dg1-6 bat-dg1-5 bat-adlp-6 bat-adlp-4 bat-rpls-1 fi-bdw-samus bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21939 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-pnv-d510/igt@core_hotunplug@unbind-rebind.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3194">i915#3194</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-skl-6600u/igt@i915_selftest@live.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3239">i915#3239</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21939/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11053 -&gt; Patchwork_21939</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11053: f0ad19ec6238528d9ea1ee54c9dcde4e0119f1e5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6325: ac29e097d4ff0f2e269a955ca86c5eb23908467a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21939: 48a43a2e543807f1910d6d009f984c4f99addec5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>48a43a2e5438 drm/i915: split out vlv sideband registers from i915_reg.h<br />
-66ca8d122638 drm/i915: move VGA registers to intel_vga.c<br />
-0eec9f19cbae drm/i915: split out PCI config space registers from i915_reg.h</p>
-
-</body>
-</html>
-
---===============1706532175359033314==--
+--=20
+Jani Nikula, Intel Open Source Graphics Center
