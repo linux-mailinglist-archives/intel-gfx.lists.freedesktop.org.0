@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8379D4874EE
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 10:50:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2D8C4874EF
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 10:50:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B535911A682;
-	Fri,  7 Jan 2022 09:50:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A61E11AC4C;
+	Fri,  7 Jan 2022 09:50:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02FDB11B18C
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jan 2022 09:50:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89F2311AC5B
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jan 2022 09:50:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641549008; x=1673085008;
+ t=1641549013; x=1673085013;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Uvu577Wd3Ejs7q89Zx4K6mqn/kqsanUfrAmxoRn/cJw=;
- b=Dqs992tmpOpLAzDP/6zHzQ9HZa5sdeJOqZt65NQnZMveNGSPwEwbkE86
- lRuMvuEROt6QkFluRPLYMGH+SxOswcCB1dhIE5vXxbf3BqqHQxhxmxsm6
- u/sr45d+jn1OZtk7zrXOImYrcmvCcpoLHs20/RsMWrSWDSMsP+/IDmbXX
- nvOScREFabL6KGjVcPtXsQ7K7Th2lQy/+DfjXRbQfnVOKcAOKKTnA1KVG
- b8EM3c4K2mV7NKpkuBVh+4m+1AAkj0J/rC4/rT5PLSZONAYdYk1bYLslC
- HuDkcnJx2vJ0wcNp9LbNko9jZ/VADghq4/4qJRSdEgjinsMlkUAvLpW8P Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10219"; a="306210618"
-X-IronPort-AV: E=Sophos;i="5.88,269,1635231600"; d="scan'208";a="306210618"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ bh=4FOjrVwnlN6Mot+qOA6H+JtTI0ca/LeQEowLl6SqXGk=;
+ b=gZw0HQ/DC5FsHVZpM8dkvoHYlbSHfroeMk08oPCueINocmrtcvxAZYxO
+ HJIrO4am7OsPSyW3msfDDvfYjYuwZpKUWi9hEtV2uJx4zPcF2Xz/dHTDC
+ I2GtG6yYAqyd6Mj/VU8i6HMCg/g+OQc/sHn3CgkOcvQfg/ZRmAP4YXg7i
+ A4dBH6Ydudo0O/5UbX3fggqqemGSnZBy6enjEagxvQ17GfbWoNFcqUIef
+ vhHyHOxS/CR6sJvqW6sMyo7azcHWj/vG+QxqtlscQi1dtBvSfjt2b8sas
+ R6cUStb9P/FuZSvPsGgF23zBe0TwKxAROHnrhTP08N6V0m+EcWiCNUzB7 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10219"; a="306210628"
+X-IronPort-AV: E=Sophos;i="5.88,269,1635231600"; d="scan'208";a="306210628"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2022 01:50:07 -0800
-X-IronPort-AV: E=Sophos;i="5.88,269,1635231600"; d="scan'208";a="527321464"
+ 07 Jan 2022 01:50:13 -0800
+X-IronPort-AV: E=Sophos;i="5.88,269,1635231600"; d="scan'208";a="557220381"
 Received: from dgreerx-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.24.206])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2022 01:50:05 -0800
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2022 01:50:10 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  7 Jan 2022 11:49:50 +0200
-Message-Id: <20220107094951.96181-2-jani.nikula@intel.com>
+Date: Fri,  7 Jan 2022 11:49:51 +0200
+Message-Id: <20220107094951.96181-3-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220107094951.96181-1-jani.nikula@intel.com>
 References: <20220107094951.96181-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915: move VGA registers to intel_vga.c
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: split out vlv sideband registers
+ from i915_reg.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,121 +63,400 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The only users of the VGA register macros are in intel_vga.c. Hide the
-macros there.
+Add a dedicated file vlv_sideband_reg.h for the VLV/CHV sideband
+registers. The sideband registers macros are needed by the same files
+that need vlv_sideband.h, so include the definitions from there.
 
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vga.c | 41 ++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h          | 41 ------------------------
- 2 files changed, 41 insertions(+), 41 deletions(-)
+ drivers/gpu/drm/i915/i915_reg.h         | 171 ----------------------
+ drivers/gpu/drm/i915/vlv_sideband.h     |   2 +
+ drivers/gpu/drm/i915/vlv_sideband_reg.h | 180 ++++++++++++++++++++++++
+ 3 files changed, 182 insertions(+), 171 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/vlv_sideband_reg.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-index fa779f7ea415..5801cd41eb72 100644
---- a/drivers/gpu/drm/i915/display/intel_vga.c
-+++ b/drivers/gpu/drm/i915/display/intel_vga.c
-@@ -12,6 +12,47 @@
- #include "intel_de.h"
- #include "intel_vga.h"
- 
-+/* VGA registers */
-+#define VGA_ST01_MDA				0x3ba
-+#define VGA_ST01_CGA				0x3da
-+
-+#define VGA_MSR_WRITE				0x3c2
-+#define VGA_MSR_READ				0x3cc
-+#define   VGA_MSR_MEM_EN			(1 << 1)
-+#define   VGA_MSR_CGA_MODE			(1 << 0)
-+
-+#define VGA_SR_INDEX				0x3c4
-+#define   SR01					1
-+#define VGA_SR_DATA				0x3c5
-+
-+#define VGA_AR_INDEX				0x3c0
-+#define   VGA_AR_VID_EN (1 << 5)
-+#define VGA_AR_DATA_WRITE			0x3c0
-+#define VGA_AR_DATA_READ			0x3c1
-+
-+#define VGA_GR_INDEX				0x3ce
-+#define VGA_GR_DATA				0x3cf
-+/* GR05 */
-+#define   VGA_GR_MEM_READ_MODE_SHIFT		3
-+#define   VGA_GR_MEM_READ_MODE_PLANE		1
-+/* GR06 */
-+#define   VGA_GR_MEM_MODE_MASK			0xc
-+#define   VGA_GR_MEM_MODE_SHIFT			2
-+#define   VGA_GR_MEM_A0000_AFFFF		0
-+#define   VGA_GR_MEM_A0000_BFFFF		1
-+#define   VGA_GR_MEM_B0000_B7FFF		2
-+#define   VGA_GR_MEM_B0000_BFFFF		3
-+
-+#define VGA_DACMASK				0x3c6
-+#define VGA_DACRX				0x3c7
-+#define VGA_DACWX				0x3c8
-+#define VGA_DACDATA				0x3c9
-+
-+#define VGA_CR_INDEX_MDA			0x3b4
-+#define VGA_CR_DATA_MDA				0x3b5
-+#define VGA_CR_INDEX_CGA			0x3d4
-+#define VGA_CR_DATA_CGA				0x3d5
-+
- static i915_reg_t intel_vga_cntrl_reg(struct drm_i915_private *i915)
- {
- 	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index baa0b9e6acb2..7517a2688896 100644
+index 7517a2688896..459105f232d3 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -460,48 +460,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define GEN6_STOLEN_RESERVED_ENABLE	(1 << 0)
- #define GEN11_STOLEN_RESERVED_ADDR_MASK	(0xFFFFFFFFFFFULL << 20)
+@@ -1125,177 +1125,6 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define VLV_IOSF_DATA				_MMIO(VLV_DISPLAY_BASE + 0x2104)
+ #define VLV_IOSF_ADDR				_MMIO(VLV_DISPLAY_BASE + 0x2108)
  
--/* VGA stuff */
+-/* See configdb bunit SB addr map */
+-#define BUNIT_REG_BISOC				0x11
 -
--#define VGA_ST01_MDA 0x3ba
--#define VGA_ST01_CGA 0x3da
+-/* PUNIT_REG_*SSPM0 */
+-#define   _SSPM0_SSC(val)			((val) << 0)
+-#define   SSPM0_SSC_MASK			_SSPM0_SSC(0x3)
+-#define   SSPM0_SSC_PWR_ON			_SSPM0_SSC(0x0)
+-#define   SSPM0_SSC_CLK_GATE			_SSPM0_SSC(0x1)
+-#define   SSPM0_SSC_RESET			_SSPM0_SSC(0x2)
+-#define   SSPM0_SSC_PWR_GATE			_SSPM0_SSC(0x3)
+-#define   _SSPM0_SSS(val)			((val) << 24)
+-#define   SSPM0_SSS_MASK			_SSPM0_SSS(0x3)
+-#define   SSPM0_SSS_PWR_ON			_SSPM0_SSS(0x0)
+-#define   SSPM0_SSS_CLK_GATE			_SSPM0_SSS(0x1)
+-#define   SSPM0_SSS_RESET			_SSPM0_SSS(0x2)
+-#define   SSPM0_SSS_PWR_GATE			_SSPM0_SSS(0x3)
 -
- #define _VGA_MSR_WRITE _MMIO(0x3c2)
--#define VGA_MSR_WRITE 0x3c2
--#define VGA_MSR_READ 0x3cc
--#define   VGA_MSR_MEM_EN (1 << 1)
--#define   VGA_MSR_CGA_MODE (1 << 0)
+-/* PUNIT_REG_*SSPM1 */
+-#define   SSPM1_FREQSTAT_SHIFT			24
+-#define   SSPM1_FREQSTAT_MASK			(0x1f << SSPM1_FREQSTAT_SHIFT)
+-#define   SSPM1_FREQGUAR_SHIFT			8
+-#define   SSPM1_FREQGUAR_MASK			(0x1f << SSPM1_FREQGUAR_SHIFT)
+-#define   SSPM1_FREQ_SHIFT			0
+-#define   SSPM1_FREQ_MASK			(0x1f << SSPM1_FREQ_SHIFT)
 -
--#define VGA_SR_INDEX 0x3c4
--#define SR01			1
--#define VGA_SR_DATA 0x3c5
+-#define PUNIT_REG_VEDSSPM0			0x32
+-#define PUNIT_REG_VEDSSPM1			0x33
 -
--#define VGA_AR_INDEX 0x3c0
--#define   VGA_AR_VID_EN (1 << 5)
--#define VGA_AR_DATA_WRITE 0x3c0
--#define VGA_AR_DATA_READ 0x3c1
+-#define PUNIT_REG_DSPSSPM			0x36
+-#define   DSPFREQSTAT_SHIFT_CHV			24
+-#define   DSPFREQSTAT_MASK_CHV			(0x1f << DSPFREQSTAT_SHIFT_CHV)
+-#define   DSPFREQGUAR_SHIFT_CHV			8
+-#define   DSPFREQGUAR_MASK_CHV			(0x1f << DSPFREQGUAR_SHIFT_CHV)
+-#define   DSPFREQSTAT_SHIFT			30
+-#define   DSPFREQSTAT_MASK			(0x3 << DSPFREQSTAT_SHIFT)
+-#define   DSPFREQGUAR_SHIFT			14
+-#define   DSPFREQGUAR_MASK			(0x3 << DSPFREQGUAR_SHIFT)
+-#define   DSP_MAXFIFO_PM5_STATUS		(1 << 22) /* chv */
+-#define   DSP_AUTO_CDCLK_GATE_DISABLE		(1 << 7) /* chv */
+-#define   DSP_MAXFIFO_PM5_ENABLE		(1 << 6) /* chv */
+-#define   _DP_SSC(val, pipe)			((val) << (2 * (pipe)))
+-#define   DP_SSC_MASK(pipe)			_DP_SSC(0x3, (pipe))
+-#define   DP_SSC_PWR_ON(pipe)			_DP_SSC(0x0, (pipe))
+-#define   DP_SSC_CLK_GATE(pipe)			_DP_SSC(0x1, (pipe))
+-#define   DP_SSC_RESET(pipe)			_DP_SSC(0x2, (pipe))
+-#define   DP_SSC_PWR_GATE(pipe)			_DP_SSC(0x3, (pipe))
+-#define   _DP_SSS(val, pipe)			((val) << (2 * (pipe) + 16))
+-#define   DP_SSS_MASK(pipe)			_DP_SSS(0x3, (pipe))
+-#define   DP_SSS_PWR_ON(pipe)			_DP_SSS(0x0, (pipe))
+-#define   DP_SSS_CLK_GATE(pipe)			_DP_SSS(0x1, (pipe))
+-#define   DP_SSS_RESET(pipe)			_DP_SSS(0x2, (pipe))
+-#define   DP_SSS_PWR_GATE(pipe)			_DP_SSS(0x3, (pipe))
 -
--#define VGA_GR_INDEX 0x3ce
--#define VGA_GR_DATA 0x3cf
--/* GR05 */
--#define   VGA_GR_MEM_READ_MODE_SHIFT 3
--#define     VGA_GR_MEM_READ_MODE_PLANE 1
--/* GR06 */
--#define   VGA_GR_MEM_MODE_MASK 0xc
--#define   VGA_GR_MEM_MODE_SHIFT 2
--#define   VGA_GR_MEM_A0000_AFFFF 0
--#define   VGA_GR_MEM_A0000_BFFFF 1
--#define   VGA_GR_MEM_B0000_B7FFF 2
--#define   VGA_GR_MEM_B0000_BFFFF 3
+-#define PUNIT_REG_ISPSSPM0			0x39
+-#define PUNIT_REG_ISPSSPM1			0x3a
 -
--#define VGA_DACMASK 0x3c6
--#define VGA_DACRX 0x3c7
--#define VGA_DACWX 0x3c8
--#define VGA_DACDATA 0x3c9
+-#define PUNIT_REG_PWRGT_CTRL			0x60
+-#define PUNIT_REG_PWRGT_STATUS			0x61
+-#define   PUNIT_PWRGT_MASK(pw_idx)		(3 << ((pw_idx) * 2))
+-#define   PUNIT_PWRGT_PWR_ON(pw_idx)		(0 << ((pw_idx) * 2))
+-#define   PUNIT_PWRGT_CLK_GATE(pw_idx)		(1 << ((pw_idx) * 2))
+-#define   PUNIT_PWRGT_RESET(pw_idx)		(2 << ((pw_idx) * 2))
+-#define   PUNIT_PWRGT_PWR_GATE(pw_idx)		(3 << ((pw_idx) * 2))
 -
--#define VGA_CR_INDEX_MDA 0x3b4
--#define VGA_CR_DATA_MDA 0x3b5
--#define VGA_CR_INDEX_CGA 0x3d4
--#define VGA_CR_DATA_CGA 0x3d5
+-#define PUNIT_PWGT_IDX_RENDER			0
+-#define PUNIT_PWGT_IDX_MEDIA			1
+-#define PUNIT_PWGT_IDX_DISP2D			3
+-#define PUNIT_PWGT_IDX_DPIO_CMN_BC		5
+-#define PUNIT_PWGT_IDX_DPIO_TX_B_LANES_01	6
+-#define PUNIT_PWGT_IDX_DPIO_TX_B_LANES_23	7
+-#define PUNIT_PWGT_IDX_DPIO_TX_C_LANES_01	8
+-#define PUNIT_PWGT_IDX_DPIO_TX_C_LANES_23	9
+-#define PUNIT_PWGT_IDX_DPIO_RX0			10
+-#define PUNIT_PWGT_IDX_DPIO_RX1			11
+-#define PUNIT_PWGT_IDX_DPIO_CMN_D		12
+-
+-#define PUNIT_REG_GPU_LFM			0xd3
+-#define PUNIT_REG_GPU_FREQ_REQ			0xd4
+-#define PUNIT_REG_GPU_FREQ_STS			0xd8
+-#define   GPLLENABLE				(1 << 4)
+-#define   GENFREQSTATUS				(1 << 0)
+-#define PUNIT_REG_MEDIA_TURBO_FREQ_REQ		0xdc
+-#define PUNIT_REG_CZ_TIMESTAMP			0xce
+-
+-#define PUNIT_FUSE_BUS2				0xf6 /* bits 47:40 */
+-#define PUNIT_FUSE_BUS1				0xf5 /* bits 55:48 */
+-
+-#define FB_GFX_FMAX_AT_VMAX_FUSE		0x136
+-#define FB_GFX_FREQ_FUSE_MASK			0xff
+-#define FB_GFX_FMAX_AT_VMAX_2SS4EU_FUSE_SHIFT	24
+-#define FB_GFX_FMAX_AT_VMAX_2SS6EU_FUSE_SHIFT	16
+-#define FB_GFX_FMAX_AT_VMAX_2SS8EU_FUSE_SHIFT	8
+-
+-#define FB_GFX_FMIN_AT_VMIN_FUSE		0x137
+-#define FB_GFX_FMIN_AT_VMIN_FUSE_SHIFT		8
+-
+-#define PUNIT_REG_DDR_SETUP2			0x139
+-#define   FORCE_DDR_FREQ_REQ_ACK		(1 << 8)
+-#define   FORCE_DDR_LOW_FREQ			(1 << 1)
+-#define   FORCE_DDR_HIGH_FREQ			(1 << 0)
+-
+-#define PUNIT_GPU_STATUS_REG			0xdb
+-#define PUNIT_GPU_STATUS_MAX_FREQ_SHIFT	16
+-#define PUNIT_GPU_STATUS_MAX_FREQ_MASK		0xff
+-#define PUNIT_GPU_STATIS_GFX_MIN_FREQ_SHIFT	8
+-#define PUNIT_GPU_STATUS_GFX_MIN_FREQ_MASK	0xff
+-
+-#define PUNIT_GPU_DUTYCYCLE_REG		0xdf
+-#define PUNIT_GPU_DUTYCYCLE_RPE_FREQ_SHIFT	8
+-#define PUNIT_GPU_DUTYCYCLE_RPE_FREQ_MASK	0xff
+-
+-#define IOSF_NC_FB_GFX_FREQ_FUSE		0x1c
+-#define   FB_GFX_MAX_FREQ_FUSE_SHIFT		3
+-#define   FB_GFX_MAX_FREQ_FUSE_MASK		0x000007f8
+-#define   FB_GFX_FGUARANTEED_FREQ_FUSE_SHIFT	11
+-#define   FB_GFX_FGUARANTEED_FREQ_FUSE_MASK	0x0007f800
+-#define IOSF_NC_FB_GFX_FMAX_FUSE_HI		0x34
+-#define   FB_FMAX_VMIN_FREQ_HI_MASK		0x00000007
+-#define IOSF_NC_FB_GFX_FMAX_FUSE_LO		0x30
+-#define   FB_FMAX_VMIN_FREQ_LO_SHIFT		27
+-#define   FB_FMAX_VMIN_FREQ_LO_MASK		0xf8000000
+-
+-#define VLV_TURBO_SOC_OVERRIDE		0x04
+-#define   VLV_OVERRIDE_EN		1
+-#define   VLV_SOC_TDP_EN		(1 << 1)
+-#define   VLV_BIAS_CPU_125_SOC_875	(6 << 2)
+-#define   CHV_BIAS_CPU_50_SOC_50	(3 << 2)
+-
+-/* vlv2 north clock has */
+-#define CCK_FUSE_REG				0x8
+-#define  CCK_FUSE_HPLL_FREQ_MASK		0x3
+-#define CCK_REG_DSI_PLL_FUSE			0x44
+-#define CCK_REG_DSI_PLL_CONTROL			0x48
+-#define  DSI_PLL_VCO_EN				(1 << 31)
+-#define  DSI_PLL_LDO_GATE			(1 << 30)
+-#define  DSI_PLL_P1_POST_DIV_SHIFT		17
+-#define  DSI_PLL_P1_POST_DIV_MASK		(0x1ff << 17)
+-#define  DSI_PLL_P2_MUX_DSI0_DIV2		(1 << 13)
+-#define  DSI_PLL_P3_MUX_DSI1_DIV2		(1 << 12)
+-#define  DSI_PLL_MUX_MASK			(3 << 9)
+-#define  DSI_PLL_MUX_DSI0_DSIPLL		(0 << 10)
+-#define  DSI_PLL_MUX_DSI0_CCK			(1 << 10)
+-#define  DSI_PLL_MUX_DSI1_DSIPLL		(0 << 9)
+-#define  DSI_PLL_MUX_DSI1_CCK			(1 << 9)
+-#define  DSI_PLL_CLK_GATE_MASK			(0xf << 5)
+-#define  DSI_PLL_CLK_GATE_DSI0_DSIPLL		(1 << 8)
+-#define  DSI_PLL_CLK_GATE_DSI1_DSIPLL		(1 << 7)
+-#define  DSI_PLL_CLK_GATE_DSI0_CCK		(1 << 6)
+-#define  DSI_PLL_CLK_GATE_DSI1_CCK		(1 << 5)
+-#define  DSI_PLL_LOCK				(1 << 0)
+-#define CCK_REG_DSI_PLL_DIVIDER			0x4c
+-#define  DSI_PLL_LFSR				(1 << 31)
+-#define  DSI_PLL_FRACTION_EN			(1 << 30)
+-#define  DSI_PLL_FRAC_COUNTER_SHIFT		27
+-#define  DSI_PLL_FRAC_COUNTER_MASK		(7 << 27)
+-#define  DSI_PLL_USYNC_CNT_SHIFT		18
+-#define  DSI_PLL_USYNC_CNT_MASK			(0x1ff << 18)
+-#define  DSI_PLL_N1_DIV_SHIFT			16
+-#define  DSI_PLL_N1_DIV_MASK			(3 << 16)
+-#define  DSI_PLL_M1_DIV_SHIFT			0
+-#define  DSI_PLL_M1_DIV_MASK			(0x1ff << 0)
+-#define CCK_CZ_CLOCK_CONTROL			0x62
+-#define CCK_GPLL_CLOCK_CONTROL			0x67
+-#define CCK_DISPLAY_CLOCK_CONTROL		0x6b
+-#define CCK_DISPLAY_REF_CLOCK_CONTROL		0x6c
+-#define  CCK_TRUNK_FORCE_ON			(1 << 17)
+-#define  CCK_TRUNK_FORCE_OFF			(1 << 16)
+-#define  CCK_FREQUENCY_STATUS			(0x1f << 8)
+-#define  CCK_FREQUENCY_STATUS_SHIFT		8
+-#define  CCK_FREQUENCY_VALUES			(0x1f << 0)
+-
+ /* DPIO registers */
+ #define DPIO_DEVFN			0
  
- #define MI_PREDICATE_SRC0	_MMIO(0x2400)
- #define MI_PREDICATE_SRC0_UDW	_MMIO(0x2400 + 4)
+diff --git a/drivers/gpu/drm/i915/vlv_sideband.h b/drivers/gpu/drm/i915/vlv_sideband.h
+index d7732f612e7f..9ce283d96b80 100644
+--- a/drivers/gpu/drm/i915/vlv_sideband.h
++++ b/drivers/gpu/drm/i915/vlv_sideband.h
+@@ -9,6 +9,8 @@
+ #include <linux/bitops.h>
+ #include <linux/types.h>
+ 
++#include "vlv_sideband_reg.h"
++
+ enum pipe;
+ struct drm_i915_private;
+ 
+diff --git a/drivers/gpu/drm/i915/vlv_sideband_reg.h b/drivers/gpu/drm/i915/vlv_sideband_reg.h
+new file mode 100644
+index 000000000000..ae163881d9c4
+--- /dev/null
++++ b/drivers/gpu/drm/i915/vlv_sideband_reg.h
+@@ -0,0 +1,180 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2021 Intel Corporation
++ */
++
++#ifndef _VLV_SIDEBAND_REG_H_
++#define _VLV_SIDEBAND_REG_H_
++
++/* See configdb bunit SB addr map */
++#define BUNIT_REG_BISOC				0x11
++
++/* PUNIT_REG_*SSPM0 */
++#define   _SSPM0_SSC(val)			((val) << 0)
++#define   SSPM0_SSC_MASK			_SSPM0_SSC(0x3)
++#define   SSPM0_SSC_PWR_ON			_SSPM0_SSC(0x0)
++#define   SSPM0_SSC_CLK_GATE			_SSPM0_SSC(0x1)
++#define   SSPM0_SSC_RESET			_SSPM0_SSC(0x2)
++#define   SSPM0_SSC_PWR_GATE			_SSPM0_SSC(0x3)
++#define   _SSPM0_SSS(val)			((val) << 24)
++#define   SSPM0_SSS_MASK			_SSPM0_SSS(0x3)
++#define   SSPM0_SSS_PWR_ON			_SSPM0_SSS(0x0)
++#define   SSPM0_SSS_CLK_GATE			_SSPM0_SSS(0x1)
++#define   SSPM0_SSS_RESET			_SSPM0_SSS(0x2)
++#define   SSPM0_SSS_PWR_GATE			_SSPM0_SSS(0x3)
++
++/* PUNIT_REG_*SSPM1 */
++#define   SSPM1_FREQSTAT_SHIFT			24
++#define   SSPM1_FREQSTAT_MASK			(0x1f << SSPM1_FREQSTAT_SHIFT)
++#define   SSPM1_FREQGUAR_SHIFT			8
++#define   SSPM1_FREQGUAR_MASK			(0x1f << SSPM1_FREQGUAR_SHIFT)
++#define   SSPM1_FREQ_SHIFT			0
++#define   SSPM1_FREQ_MASK			(0x1f << SSPM1_FREQ_SHIFT)
++
++#define PUNIT_REG_VEDSSPM0			0x32
++#define PUNIT_REG_VEDSSPM1			0x33
++
++#define PUNIT_REG_DSPSSPM			0x36
++#define   DSPFREQSTAT_SHIFT_CHV			24
++#define   DSPFREQSTAT_MASK_CHV			(0x1f << DSPFREQSTAT_SHIFT_CHV)
++#define   DSPFREQGUAR_SHIFT_CHV			8
++#define   DSPFREQGUAR_MASK_CHV			(0x1f << DSPFREQGUAR_SHIFT_CHV)
++#define   DSPFREQSTAT_SHIFT			30
++#define   DSPFREQSTAT_MASK			(0x3 << DSPFREQSTAT_SHIFT)
++#define   DSPFREQGUAR_SHIFT			14
++#define   DSPFREQGUAR_MASK			(0x3 << DSPFREQGUAR_SHIFT)
++#define   DSP_MAXFIFO_PM5_STATUS		(1 << 22) /* chv */
++#define   DSP_AUTO_CDCLK_GATE_DISABLE		(1 << 7) /* chv */
++#define   DSP_MAXFIFO_PM5_ENABLE		(1 << 6) /* chv */
++#define   _DP_SSC(val, pipe)			((val) << (2 * (pipe)))
++#define   DP_SSC_MASK(pipe)			_DP_SSC(0x3, (pipe))
++#define   DP_SSC_PWR_ON(pipe)			_DP_SSC(0x0, (pipe))
++#define   DP_SSC_CLK_GATE(pipe)			_DP_SSC(0x1, (pipe))
++#define   DP_SSC_RESET(pipe)			_DP_SSC(0x2, (pipe))
++#define   DP_SSC_PWR_GATE(pipe)			_DP_SSC(0x3, (pipe))
++#define   _DP_SSS(val, pipe)			((val) << (2 * (pipe) + 16))
++#define   DP_SSS_MASK(pipe)			_DP_SSS(0x3, (pipe))
++#define   DP_SSS_PWR_ON(pipe)			_DP_SSS(0x0, (pipe))
++#define   DP_SSS_CLK_GATE(pipe)			_DP_SSS(0x1, (pipe))
++#define   DP_SSS_RESET(pipe)			_DP_SSS(0x2, (pipe))
++#define   DP_SSS_PWR_GATE(pipe)			_DP_SSS(0x3, (pipe))
++
++#define PUNIT_REG_ISPSSPM0			0x39
++#define PUNIT_REG_ISPSSPM1			0x3a
++
++#define PUNIT_REG_PWRGT_CTRL			0x60
++#define PUNIT_REG_PWRGT_STATUS			0x61
++#define   PUNIT_PWRGT_MASK(pw_idx)		(3 << ((pw_idx) * 2))
++#define   PUNIT_PWRGT_PWR_ON(pw_idx)		(0 << ((pw_idx) * 2))
++#define   PUNIT_PWRGT_CLK_GATE(pw_idx)		(1 << ((pw_idx) * 2))
++#define   PUNIT_PWRGT_RESET(pw_idx)		(2 << ((pw_idx) * 2))
++#define   PUNIT_PWRGT_PWR_GATE(pw_idx)		(3 << ((pw_idx) * 2))
++
++#define PUNIT_PWGT_IDX_RENDER			0
++#define PUNIT_PWGT_IDX_MEDIA			1
++#define PUNIT_PWGT_IDX_DISP2D			3
++#define PUNIT_PWGT_IDX_DPIO_CMN_BC		5
++#define PUNIT_PWGT_IDX_DPIO_TX_B_LANES_01	6
++#define PUNIT_PWGT_IDX_DPIO_TX_B_LANES_23	7
++#define PUNIT_PWGT_IDX_DPIO_TX_C_LANES_01	8
++#define PUNIT_PWGT_IDX_DPIO_TX_C_LANES_23	9
++#define PUNIT_PWGT_IDX_DPIO_RX0			10
++#define PUNIT_PWGT_IDX_DPIO_RX1			11
++#define PUNIT_PWGT_IDX_DPIO_CMN_D		12
++
++#define PUNIT_REG_GPU_LFM			0xd3
++#define PUNIT_REG_GPU_FREQ_REQ			0xd4
++#define PUNIT_REG_GPU_FREQ_STS			0xd8
++#define   GPLLENABLE				(1 << 4)
++#define   GENFREQSTATUS				(1 << 0)
++#define PUNIT_REG_MEDIA_TURBO_FREQ_REQ		0xdc
++#define PUNIT_REG_CZ_TIMESTAMP			0xce
++
++#define PUNIT_FUSE_BUS2				0xf6 /* bits 47:40 */
++#define PUNIT_FUSE_BUS1				0xf5 /* bits 55:48 */
++
++#define FB_GFX_FMAX_AT_VMAX_FUSE		0x136
++#define FB_GFX_FREQ_FUSE_MASK			0xff
++#define FB_GFX_FMAX_AT_VMAX_2SS4EU_FUSE_SHIFT	24
++#define FB_GFX_FMAX_AT_VMAX_2SS6EU_FUSE_SHIFT	16
++#define FB_GFX_FMAX_AT_VMAX_2SS8EU_FUSE_SHIFT	8
++
++#define FB_GFX_FMIN_AT_VMIN_FUSE		0x137
++#define FB_GFX_FMIN_AT_VMIN_FUSE_SHIFT		8
++
++#define PUNIT_REG_DDR_SETUP2			0x139
++#define   FORCE_DDR_FREQ_REQ_ACK		(1 << 8)
++#define   FORCE_DDR_LOW_FREQ			(1 << 1)
++#define   FORCE_DDR_HIGH_FREQ			(1 << 0)
++
++#define PUNIT_GPU_STATUS_REG			0xdb
++#define PUNIT_GPU_STATUS_MAX_FREQ_SHIFT	16
++#define PUNIT_GPU_STATUS_MAX_FREQ_MASK		0xff
++#define PUNIT_GPU_STATIS_GFX_MIN_FREQ_SHIFT	8
++#define PUNIT_GPU_STATUS_GFX_MIN_FREQ_MASK	0xff
++
++#define PUNIT_GPU_DUTYCYCLE_REG		0xdf
++#define PUNIT_GPU_DUTYCYCLE_RPE_FREQ_SHIFT	8
++#define PUNIT_GPU_DUTYCYCLE_RPE_FREQ_MASK	0xff
++
++#define IOSF_NC_FB_GFX_FREQ_FUSE		0x1c
++#define   FB_GFX_MAX_FREQ_FUSE_SHIFT		3
++#define   FB_GFX_MAX_FREQ_FUSE_MASK		0x000007f8
++#define   FB_GFX_FGUARANTEED_FREQ_FUSE_SHIFT	11
++#define   FB_GFX_FGUARANTEED_FREQ_FUSE_MASK	0x0007f800
++#define IOSF_NC_FB_GFX_FMAX_FUSE_HI		0x34
++#define   FB_FMAX_VMIN_FREQ_HI_MASK		0x00000007
++#define IOSF_NC_FB_GFX_FMAX_FUSE_LO		0x30
++#define   FB_FMAX_VMIN_FREQ_LO_SHIFT		27
++#define   FB_FMAX_VMIN_FREQ_LO_MASK		0xf8000000
++
++#define VLV_TURBO_SOC_OVERRIDE		0x04
++#define   VLV_OVERRIDE_EN		1
++#define   VLV_SOC_TDP_EN		(1 << 1)
++#define   VLV_BIAS_CPU_125_SOC_875	(6 << 2)
++#define   CHV_BIAS_CPU_50_SOC_50	(3 << 2)
++
++/* vlv2 north clock has */
++#define CCK_FUSE_REG				0x8
++#define  CCK_FUSE_HPLL_FREQ_MASK		0x3
++#define CCK_REG_DSI_PLL_FUSE			0x44
++#define CCK_REG_DSI_PLL_CONTROL			0x48
++#define  DSI_PLL_VCO_EN				(1 << 31)
++#define  DSI_PLL_LDO_GATE			(1 << 30)
++#define  DSI_PLL_P1_POST_DIV_SHIFT		17
++#define  DSI_PLL_P1_POST_DIV_MASK		(0x1ff << 17)
++#define  DSI_PLL_P2_MUX_DSI0_DIV2		(1 << 13)
++#define  DSI_PLL_P3_MUX_DSI1_DIV2		(1 << 12)
++#define  DSI_PLL_MUX_MASK			(3 << 9)
++#define  DSI_PLL_MUX_DSI0_DSIPLL		(0 << 10)
++#define  DSI_PLL_MUX_DSI0_CCK			(1 << 10)
++#define  DSI_PLL_MUX_DSI1_DSIPLL		(0 << 9)
++#define  DSI_PLL_MUX_DSI1_CCK			(1 << 9)
++#define  DSI_PLL_CLK_GATE_MASK			(0xf << 5)
++#define  DSI_PLL_CLK_GATE_DSI0_DSIPLL		(1 << 8)
++#define  DSI_PLL_CLK_GATE_DSI1_DSIPLL		(1 << 7)
++#define  DSI_PLL_CLK_GATE_DSI0_CCK		(1 << 6)
++#define  DSI_PLL_CLK_GATE_DSI1_CCK		(1 << 5)
++#define  DSI_PLL_LOCK				(1 << 0)
++#define CCK_REG_DSI_PLL_DIVIDER			0x4c
++#define  DSI_PLL_LFSR				(1 << 31)
++#define  DSI_PLL_FRACTION_EN			(1 << 30)
++#define  DSI_PLL_FRAC_COUNTER_SHIFT		27
++#define  DSI_PLL_FRAC_COUNTER_MASK		(7 << 27)
++#define  DSI_PLL_USYNC_CNT_SHIFT		18
++#define  DSI_PLL_USYNC_CNT_MASK			(0x1ff << 18)
++#define  DSI_PLL_N1_DIV_SHIFT			16
++#define  DSI_PLL_N1_DIV_MASK			(3 << 16)
++#define  DSI_PLL_M1_DIV_SHIFT			0
++#define  DSI_PLL_M1_DIV_MASK			(0x1ff << 0)
++#define CCK_CZ_CLOCK_CONTROL			0x62
++#define CCK_GPLL_CLOCK_CONTROL			0x67
++#define CCK_DISPLAY_CLOCK_CONTROL		0x6b
++#define CCK_DISPLAY_REF_CLOCK_CONTROL		0x6c
++#define  CCK_TRUNK_FORCE_ON			(1 << 17)
++#define  CCK_TRUNK_FORCE_OFF			(1 << 16)
++#define  CCK_FREQUENCY_STATUS			(0x1f << 8)
++#define  CCK_FREQUENCY_STATUS_SHIFT		8
++#define  CCK_FREQUENCY_VALUES			(0x1f << 0)
++
++#endif /* _VLV_SIDEBAND_REG_H_ */
 -- 
 2.30.2
 
