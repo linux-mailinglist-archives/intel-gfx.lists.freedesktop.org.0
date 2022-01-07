@@ -2,32 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 153E7486DE0
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 00:40:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA8F486E4F
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 01:06:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50B0610E1D1;
-	Thu,  6 Jan 2022 23:40:13 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0380F10E1A1;
- Thu,  6 Jan 2022 23:40:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 036D4A73C9;
- Thu,  6 Jan 2022 23:40:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F33E10E4C8;
+	Fri,  7 Jan 2022 00:06:30 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DC2510E4C8;
+ Fri,  7 Jan 2022 00:06:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1641513988; x=1673049988;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3cmYx+ZW2RJ0TeXY5Sh1cQoPCn0eaCgV9+x7Suf0yco=;
+ b=F/ELU2qIGaqIKosOJeg7zhFHpmVcxmbNonwckKoTgL6c76YTNeA7BR/E
+ K1bKjVo2RG53+GP2phxGI01eF+rhYR69kmMj4hNjySGut0D+d18dNBs04
+ lc300xGnBmKd00R2IQV4X+3S4RVVrR8JrKzqI6Df8u45cjGLZya9CKGOI
+ 37ht0VpuDaaF4dhjzRWaZKPzLVNMMUhB8qOn7Tch+q3h2NuO7U1A9pCC9
+ DDCz59Jm6YPExT/Kr+pf8EMtbzVufWZ2RIJp8/wMLmxBXaHLggFu71V8n
+ AEyXlqi8LRehgWDpoYAKXTSlVi/0yfuC7rS9yYgoWJXqoMub2rZzIaneO Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="306132698"
+X-IronPort-AV: E=Sophos;i="5.88,268,1635231600"; d="scan'208";a="306132698"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2022 16:06:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,268,1635231600"; d="scan'208";a="489110646"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by orsmga002.jf.intel.com with ESMTP; 06 Jan 2022 16:06:22 -0800
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Thu,  6 Jan 2022 16:06:19 -0800
+Message-Id: <20220107000622.292081-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 06 Jan 2022 23:40:13 -0000
-Message-ID: <164151241301.20691.12242572862532473409@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220106230823.2791203-1-matthew.d.roper@intel.com>
-In-Reply-To: <20220106230823.2791203-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Start_cleaning_up_register_definitions?=
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/3] Update to GuC version 69.0.3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +55,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Series: Start cleaning up register definitions
-URL   : https://patchwork.freedesktop.org/series/98575/
-State : warning
+Update to the latest GuC version. This includes a suite of interface
+changes and new features with corresponding i915 side changes.
 
-== Summary ==
+v2: Rebased to latest tree.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 
+
+
+John Harrison (3):
+  drm/i915/guc: Temporarily bump the GuC load timeout
+  drm/i915/guc: Update to GuC version 69.0.3
+  drm/i915/guc: Improve GuC loading status check/error reports
+
+ Documentation/gpu/i915.rst                    |   1 +
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |  80 +++++-----
+ .../gpu/drm/i915/gt/uc/abi/guc_errors_abi.h   |  23 +++
+ drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h |  82 ++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        | 126 +++++++++++++---
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   4 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  45 +++++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 141 ++++++++++--------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c     |  30 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |  37 ++++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  31 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.h    |   3 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h    |   4 -
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  18 +++
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c        |   1 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  31 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  30 ++--
+ 17 files changed, 493 insertions(+), 194 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+
+-- 
+2.25.1
 
