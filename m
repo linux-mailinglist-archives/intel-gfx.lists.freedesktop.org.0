@@ -1,54 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4547348779A
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 13:29:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E7B94877AB
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 13:47:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 002EB11A367;
-	Fri,  7 Jan 2022 12:29:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FD59112872;
+	Fri,  7 Jan 2022 12:47:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D38D11A367
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jan 2022 12:29:02 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 397E91131D8
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jan 2022 12:47:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641558542; x=1673094542;
+ t=1641559662; x=1673095662;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=83lKCNPo3Q7AhNnrjmFCPzsw7s6ST89B2BqB36TBklk=;
- b=MPodd+SBaeIwLjMtw7t6l1ctqbjdZfhssYDrQVu8bCuj/352teHc9GZg
- LzL88sUyZf9hQyQTEEjbLoakWO0yPMTaDTKPAmCCw7Tioy/+WG9EI+UG7
- oIi8yvIV+perbvibEq9xZ6bx8apfFpqva6TenN40fEDt+VwJq/KBFLy+1
- X2Ci/FdLXp2RmgJXGSCdXG0k0VP6YmbbWFUg0iL0lp9pTHoC9D+Yf3Ai6
- RKgaHSNPNsnilCvrpwY8963CHht/jPzeMSnd+1eJrFyTGnCTNQ8kyKuyB
- 12TMgHkcF/NN4tBTIINc9i8V33jyuI6SgSwkhuRIiKeSeqby5YL0NHk+G w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10219"; a="242653691"
-X-IronPort-AV: E=Sophos;i="5.88,270,1635231600"; d="scan'208";a="242653691"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2022 04:29:02 -0800
-X-IronPort-AV: E=Sophos;i="5.88,270,1635231600"; d="scan'208";a="621882352"
+ bh=o90fDi1F1obo99hBdAW3oJtGnye3JFsSN73YJUlsJQ4=;
+ b=fQX/y4IDm/XD1MV/U4t+y4lt8SXt6C1V1pFEuXvhhttk4B6SujKA12v9
+ U6Ug45iSCMbBf8oF962KXU0jaeNPL4Am8KiGO6EW3jTzrLJJuyiapMfDe
+ F0HXDRyLSqc0Ph4VFKW9bXgRUEQOSHAMnMgltMl0y2peveC7CmWG5Gu3q
+ cmKGxk+vF8lRkMQf9rDhYQ9/OrR/7JZSKnMpZzMN+iNUSrqdUQQ85RCHi
+ gaGeCdeI6d1VHGtv4AMrpsq/96atYIgsRYC5403OnljaOaLj4F1Ec2vvY
+ xdERuOBP1G1vU3DwwoKk+W3yp442NnAy/No7d+16uWMdiIfHZEDGM5vTd Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10219"; a="243059683"
+X-IronPort-AV: E=Sophos;i="5.88,270,1635231600"; d="scan'208";a="243059683"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2022 04:47:41 -0800
+X-IronPort-AV: E=Sophos;i="5.88,270,1635231600"; d="scan'208";a="689773101"
 Received: from dgreerx-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.24.206])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2022 04:29:00 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2022 04:47:39 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <BN6PR11MB1348DE54A4723E55CFCBF012E34C9@BN6PR11MB1348.namprd11.prod.outlook.com>
+To: Ashish Arora <ashisharora.linux@outlook.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>
+In-Reply-To: <7F167771-2D0A-40AD-8162-645E7EE2B9A0@outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211217071356.12517-1-suraj.kandpal@intel.com>
- <20211217071356.12517-2-suraj.kandpal@intel.com>
- <87czlv35o0.fsf@intel.com>
- <BN6PR11MB1348DE54A4723E55CFCBF012E34C9@BN6PR11MB1348.namprd11.prod.outlook.com>
-Date: Fri, 07 Jan 2022 14:28:55 +0200
-Message-ID: <87v8yvlofs.fsf@intel.com>
+References: <7F167771-2D0A-40AD-8162-645E7EE2B9A0@outlook.com>
+Date: Fri, 07 Jan 2022 14:47:34 +0200
+Message-ID: <87sftzlnkp.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm: add writeback pointers to
- drm_connector
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Discard large BIOS framebuffers
+ causing display corruption.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,57 +59,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 06 Jan 2022, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> > Adding drm_connector and drm_encoder pointers in
->> > drm_writeback_connector
->> 
->> Why?
+On Fri, 07 Jan 2022, Ashish Arora <ashisharora.linux@outlook.com> wrote:
+> From: Ashish Arora <ashisharora.linux@outlook.com>
 >
-> The elements of struct drm_writeback_connector are 
-> struct drm_writeback_connector {
-> 	Struct drm_connector base;
-> 	Struct drm_encoder encoder;
->
-> Similarly the elements of intel_encoder and intel_connector are
->  struct intel_encoder {
-> 	Struct drm_encoder base;
->
-> Struct intel_connector {
-> 	Struct drm_connector base;
->
-> The function drm_writeback_connector_init() will initialize the drm_connector and drm_encoder and attach them as well.
-> Since the drm_connector/encoder are both struct in drm_writeback_connector and intel_connector/encoder, one of them should be a pointer, else both will be pointing to 2 separate instances.
->
-> Usually the struct defined in drm framework pointing to any struct will be pointer and allocating them and initialization will be done with the users.
-> Like struct drm_connector and drm_encoder are part of drm framework and the users of these such as i915 have included them in their struct intel_connector and intel_encoder. 
-> Likewise struct drm_writeback_connector is a special connector and hence is not a user of drm_connector and hence this should be pointers.
+> On certain 4k panels, the BIOS framebuffer is larger than what panel
+> requires causing display corruption. Introduce a check for the same.
 
-Okay, I can see the problem, but the solution you present breaks at
-least komeda, mali, rcard-du, vc4, and vkms drivers. Either you need to
-change all of them, or figure out another way. I don't know off the top
-of my head what the correct answer should be, but you can't break other
-drivers. Again, maybe you'll get better ideas with a bigger audience
-than just intel-gfx.
+This is quite thin on details. Is there a bug report?
 
+Moreover, if this is what we want, this should be combined with the
+conditions that follow resulting in a "!=" check instead of separate "<"
+and ">".
 
 BR,
 Jani.
 
 
 
->> 
->> We can all read the code, the commit message should mostly be about the
->> *why*.
->> 
->> Also, drm changes should Cc: dri-devel mailing list.
-> Sure we will add this in Cc in the next series of patches
 >
-> Thanks,
-> Suraj Kandpal
+> Signed-off-by: Ashish Arora <ashisharora.linux@outlook.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbdev.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index adc3a81be..f9952e1f8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -193,6 +193,17 @@ static int intelfb_create(struct drm_fb_helper *helper,
+>  	struct drm_i915_gem_object *obj;
+>  	int ret;
+>  
+> +	if (intel_fb &&
+> +	    (sizes->fb_width < intel_fb->base.width ||
+> +	     sizes->fb_height < intel_fb->base.height)) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "BIOS fb too large (%dx%d), we require (%dx%d),"
+> +			    " releasing it\n",
+> +			    intel_fb->base.width, intel_fb->base.height,
+> +			    sizes->fb_width, sizes->fb_height);
+> +		drm_framebuffer_put(&intel_fb->base);
+> +		intel_fb = ifbdev->fb = NULL;
+> +	}
+>  	if (intel_fb &&
+>  	    (sizes->fb_width > intel_fb->base.width ||
+>  	     sizes->fb_height > intel_fb->base.height)) {
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
