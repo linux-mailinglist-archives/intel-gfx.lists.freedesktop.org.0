@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8F248781E
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 14:21:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F1848781F
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 14:21:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8753810E8EB;
-	Fri,  7 Jan 2022 13:21:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB1B110E933;
+	Fri,  7 Jan 2022 13:21:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D75C10E8C7
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jan 2022 13:21:17 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6D1210F2D8
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jan 2022 13:21:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641561677; x=1673097677;
+ t=1641561682; x=1673097682;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ryOAzPPPFDf9H/9CyOjpak9WXiRS9pxaIkUqMFGdykM=;
- b=TSfqahEYWtNVd0OWt9FTj7mlFE7m3pWsxp68aaJnqpl65eRdt1FRYCnp
- kxvRnXeh1ru6RHYy+Z+qLSoIdV2hdnIPQ3CkSYmOsZCFpEMejVPQa5lx9
- FXxepi465unL/1Pi+2exftYusTeN7w1Sutwx/AQ1jW/YWJYcUNPlY99M+
- /s8htQwhKFnqnGMB1cibuXiBC5SUj38/FnuOpxC8W+u1ZL8oOPYWAP6qA
- W/X7L4sZnQu80Dq/jrSqJ6SiJdLi927rs2b6Wpd4smMiuYBiywufkgWTr
- kC8p34sZ1gi8YtpNTHI1r32CC7dAlZ2ngqC49SK9C5T/8nbEWxR8EyRoE Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10219"; a="306231702"
-X-IronPort-AV: E=Sophos;i="5.88,270,1635231600"; d="scan'208";a="306231702"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2022 05:21:16 -0800
-X-IronPort-AV: E=Sophos;i="5.88,270,1635231600"; d="scan'208";a="489287938"
+ bh=XIqXxlOT0xPJN7J45Dbl5NAgs0tZF3mc+eko5wEP6GI=;
+ b=RrvWDBXtIITKNsDURJx+aQOqpIF6aPgZlcfyvF1lxcLTisGP481Cwa1H
+ FOT7KQ4JjATcmsjSrXD170JH+lHbe9NTdc/Fb2qBRj8TKkOLJorV24PrD
+ mt63xMY8t49U8wRRO6EALl/Ka0lv0NPg061eUao6OsUNN5Z/8BFdJjorf
+ e6k/ix9PxZwNPF6uLDkDHOcQiDzNDBXcLVdsoreUIVIVfPbZF18KpWmP5
+ y8AurCewkJdf258fLMPSbT2r1vd2zVImoCRFZ2P5nKBRKUPHISBdeDRhH
+ EdNAEf0fmVK+MPUiE/LUGBo1Mx/tgkQjEmP0qJUR9Vyh1ErvyvDHzMPdF A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10219"; a="243064872"
+X-IronPort-AV: E=Sophos;i="5.88,270,1635231600"; d="scan'208";a="243064872"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2022 05:21:22 -0800
+X-IronPort-AV: E=Sophos;i="5.88,270,1635231600"; d="scan'208";a="575095288"
 Received: from dgreerx-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.24.206])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2022 05:21:14 -0800
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2022 05:21:20 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  7 Jan 2022 15:20:45 +0200
-Message-Id: <ec666853171d04daeb21a93083940df36907c343.1641561552.git.jani.nikula@intel.com>
+Date: Fri,  7 Jan 2022 15:20:46 +0200
+Message-Id: <c29f66604ebd973b8eff1cce7d7c53615a26480f.1641561552.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1641561552.git.jani.nikula@intel.com>
 References: <cover.1641561552.git.jani.nikula@intel.com>
@@ -45,8 +45,8 @@ MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/5] drm/i915: split out i915_gem_evict.h from
- i915_drv.h
+Subject: [Intel-gfx] [PATCH 4/5] drm/i915: split out gem/i915_gem_userptr.h
+ from i915_drv.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,135 +63,75 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We already have the i915_gem_evict.c file.
-
-v2: Fixed commit message (Tvrtko)
+We already have the gem/i915_gem_userptr.c file.
 
 Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  1 +
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  1 +
- drivers/gpu/drm/i915/i915_drv.h               | 11 ---------
- drivers/gpu/drm/i915/i915_gem_evict.c         |  1 +
- drivers/gpu/drm/i915/i915_gem_evict.h         | 24 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_gem_gtt.c           |  1 +
- drivers/gpu/drm/i915/i915_vma.c               |  1 +
- 7 files changed, 29 insertions(+), 11 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_gem_evict.h
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c |  1 +
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.h | 14 ++++++++++++++
+ drivers/gpu/drm/i915/i915_drv.h             |  2 --
+ drivers/gpu/drm/i915/i915_gem.c             |  1 +
+ 4 files changed, 16 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_userptr.h
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 40e708ad7b2a..9e221ce42707 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -27,6 +27,7 @@
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+index 3cc01c30dd62..6d1a71d6404c 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+@@ -42,6 +42,7 @@
  #include "i915_drv.h"
- #include "i915_gem_clflush.h"
- #include "i915_gem_context.h"
-+#include "i915_gem_evict.h"
  #include "i915_gem_ioctls.h"
- #include "i915_trace.h"
- #include "i915_user_extensions.h"
-diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-index 15d63435ec4d..4a20ba63446c 100644
---- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-@@ -7,6 +7,7 @@
+ #include "i915_gem_object.h"
++#include "i915_gem_userptr.h"
+ #include "i915_scatterlist.h"
  
- #include "gem/i915_gem_context.h"
- 
-+#include "i915_gem_evict.h"
- #include "intel_gt.h"
- #include "intel_engine_heartbeat.h"
- #include "intel_engine_pm.h"
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index b34547e98977..606027a24fc3 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1716,17 +1716,6 @@ i915_gem_vm_lookup(struct drm_i915_file_private *file_priv, u32 id)
- 	return vm;
- }
- 
--/* i915_gem_evict.c */
--int __must_check i915_gem_evict_something(struct i915_address_space *vm,
--					  u64 min_size, u64 alignment,
--					  unsigned long color,
--					  u64 start, u64 end,
--					  unsigned flags);
--int __must_check i915_gem_evict_for_node(struct i915_address_space *vm,
--					 struct drm_mm_node *node,
--					 unsigned int flags);
--int i915_gem_evict_vm(struct i915_address_space *vm);
--
- /* i915_gem_internal.c */
- struct drm_i915_gem_object *
- i915_gem_object_create_internal(struct drm_i915_private *dev_priv,
-diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
-index 2b73ddb11c66..24eee0c2055f 100644
---- a/drivers/gpu/drm/i915/i915_gem_evict.c
-+++ b/drivers/gpu/drm/i915/i915_gem_evict.c
-@@ -31,6 +31,7 @@
- #include "gt/intel_gt_requests.h"
- 
- #include "i915_drv.h"
-+#include "i915_gem_evict.h"
- #include "i915_trace.h"
- 
- I915_SELFTEST_DECLARE(static struct igt_evict_ctl {
-diff --git a/drivers/gpu/drm/i915/i915_gem_evict.h b/drivers/gpu/drm/i915/i915_gem_evict.h
+ #ifdef CONFIG_MMU_NOTIFIER
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.h b/drivers/gpu/drm/i915/gem/i915_gem_userptr.h
 new file mode 100644
-index 000000000000..d4478b6ad11b
+index 000000000000..8dadb2f8436d
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_gem_evict.h
-@@ -0,0 +1,24 @@
++++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.h
+@@ -0,0 +1,14 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2021 Intel Corporation
 + */
 +
-+#ifndef __I915_GEM_EVICT_H__
-+#define __I915_GEM_EVICT_H__
++#ifndef __I915_GEM_USERPTR_H__
++#define __I915_GEM_USERPTR_H__
 +
-+#include <linux/types.h>
++struct drm_i915_private;
 +
-+struct drm_mm_node;
-+struct i915_address_space;
++int i915_gem_init_userptr(struct drm_i915_private *dev_priv);
++void i915_gem_cleanup_userptr(struct drm_i915_private *dev_priv);
 +
-+int __must_check i915_gem_evict_something(struct i915_address_space *vm,
-+					  u64 min_size, u64 alignment,
-+					  unsigned long color,
-+					  u64 start, u64 end,
-+					  unsigned flags);
-+int __must_check i915_gem_evict_for_node(struct i915_address_space *vm,
-+					 struct drm_mm_node *node,
-+					 unsigned int flags);
-+int i915_gem_evict_vm(struct i915_address_space *vm);
-+
-+#endif /* __I915_GEM_EVICT_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
-index 2f2ba7a2955d..b7094ca48047 100644
---- a/drivers/gpu/drm/i915/i915_gem_gtt.c
-+++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
-@@ -20,6 +20,7 @@
- #include "gt/intel_gt_requests.h"
++#endif /* __I915_GEM_USERPTR_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 606027a24fc3..83f656e116f0 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1603,8 +1603,6 @@ intel_vm_no_concurrent_access_wa(struct drm_i915_private *i915)
+ }
  
- #include "i915_drv.h"
-+#include "i915_gem_evict.h"
- #include "i915_scatterlist.h"
- #include "i915_trace.h"
- #include "i915_vgpu.h"
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index be208a8f1ed0..09d3424c9270 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -34,6 +34,7 @@
- #include "gt/intel_gt_requests.h"
+ /* i915_gem.c */
+-int i915_gem_init_userptr(struct drm_i915_private *dev_priv);
+-void i915_gem_cleanup_userptr(struct drm_i915_private *dev_priv);
+ void i915_gem_init_early(struct drm_i915_private *dev_priv);
+ void i915_gem_cleanup_early(struct drm_i915_private *dev_priv);
  
- #include "i915_drv.h"
-+#include "i915_gem_evict.h"
- #include "i915_sw_fence_work.h"
- #include "i915_trace.h"
- #include "i915_vma.h"
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index e3730096abd9..3729ec01b5bc 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -45,6 +45,7 @@
+ #include "gem/i915_gem_ioctls.h"
+ #include "gem/i915_gem_mman.h"
+ #include "gem/i915_gem_region.h"
++#include "gem/i915_gem_userptr.h"
+ #include "gt/intel_engine_user.h"
+ #include "gt/intel_gt.h"
+ #include "gt/intel_gt_pm.h"
 -- 
 2.30.2
 
