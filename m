@@ -2,50 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57F66486E53
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 01:06:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 622FA486E5D
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 01:13:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 841DB10E58B;
-	Fri,  7 Jan 2022 00:06:31 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C4EF10E4DA;
- Fri,  7 Jan 2022 00:06:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641513989; x=1673049989;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=SN1fBHcaukRTvr7F9dUlvI8IVYxlGyZHyePMr194KqM=;
- b=CC4byngNDRyCRX9GaQFi+VG9dpEROCWJ/EpILUmYqlHMfpA1Z0ljkvkF
- WTgNQIdvOBQQou73rNlPCmX9TBLZotgcoUy5UBnu6vTuzkPxYj1UB2OFq
- OEt4+NpZPidZwmtqRqwlxtTLsL+zAIM0c9FDn55mFDTZtAXJITHvlCDAN
- u3Ftp0hwPwMHasFOksBDIDHdfPazs2wvQXCrw5XYU8nfZG4bkU/slPUvX
- Bei893UlUViG2HSTIU01zzLVPeAbNbmAsAytT/1rmj3HFZ8wQCyLev5ew
- kdcA50xB/KHXVW+MkIzr7ufnupt1YblQA8wFx8LUKmKRwELukbF88LUdF A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="306132703"
-X-IronPort-AV: E=Sophos;i="5.88,268,1635231600"; d="scan'208";a="306132703"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2022 16:06:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,268,1635231600"; d="scan'208";a="489110656"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by orsmga002.jf.intel.com with ESMTP; 06 Jan 2022 16:06:22 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Thu,  6 Jan 2022 16:06:22 -0800
-Message-Id: <20220107000622.292081-4-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220107000622.292081-1-John.C.Harrison@Intel.com>
-References: <20220107000622.292081-1-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 332D910E6CC;
+	Fri,  7 Jan 2022 00:13:06 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3C4E410E6CA;
+ Fri,  7 Jan 2022 00:13:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3576FA47EB;
+ Fri,  7 Jan 2022 00:13:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6637171275875528460=="
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915/guc: Improve GuC loading status
- check/error reports
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Fri, 07 Jan 2022 00:13:04 -0000
+Message-ID: <164151438417.15327.6390613662724380241@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220106230823.2791203-1-matthew.d.roper@intel.com>
+In-Reply-To: <20220106230823.2791203-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU3Rh?=
+ =?utf-8?q?rt_cleaning_up_register_definitions?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,205 +40,251 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+--===============6637171275875528460==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-If the GuC fails to load, it is useful to know what firmware file /
-version was attempted. So move the version info report to before the
-load attempt rather than only after a successful load.
+== Series Details ==
 
-If the GuC does fail to load, then make the error messages visible
-rather than being 'debug' prints that do not appears in dmesg output
-by default.
+Series: Start cleaning up register definitions
+URL   : https://patchwork.freedesktop.org/series/98575/
+State : success
 
-When waiting for the GuC to load, it used to be necessary to check for
-two different states - READY and (LAPIC_DONE | MIA_CORE). Apparently
-the second signified init complete on RC6 exit. However, in more
-recent GuC versions the RC6 exit sequence now finishes with status
-READY as well. So the test can be simplified.
+== Summary ==
 
-Also, add an enum giving all the current status codes that GuC loading
-can report as a reference without having to pull and search through
-the GuC source files.
+CI Bug Log - changes from CI_DRM_11052 -> Patchwork_21935
+====================================================
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- .../gpu/drm/i915/gt/uc/abi/guc_errors_abi.h   | 23 ++++++++++++++
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c     | 17 +++++-----
- drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h    |  4 ---
- drivers/gpu/drm/i915/gt/uc/intel_huc.c        |  1 +
- drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 31 ++++++++++---------
- 5 files changed, 48 insertions(+), 28 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
-index 488b6061ee89..c20658ee85a5 100644
---- a/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
-+++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
-@@ -11,4 +11,27 @@ enum intel_guc_response_status {
- 	INTEL_GUC_RESPONSE_STATUS_GENERIC_FAIL = 0xF000,
- };
- 
-+enum intel_guc_load_status {
-+	INTEL_GUC_LOAD_STATUS_DEFAULT                          = 0x00,
-+	INTEL_GUC_LOAD_STATUS_START                            = 0x01,
-+	INTEL_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH       = 0x02,
-+	INTEL_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH       = 0x03,
-+	INTEL_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE      = 0x04,
-+	INTEL_GUC_LOAD_STATUS_GDT_DONE                         = 0x10,
-+	INTEL_GUC_LOAD_STATUS_IDT_DONE                         = 0x20,
-+	INTEL_GUC_LOAD_STATUS_LAPIC_DONE                       = 0x30,
-+	INTEL_GUC_LOAD_STATUS_GUCINT_DONE                      = 0x40,
-+	INTEL_GUC_LOAD_STATUS_DPC_READY                        = 0x50,
-+	INTEL_GUC_LOAD_STATUS_DPC_ERROR                        = 0x60,
-+	INTEL_GUC_LOAD_STATUS_EXCEPTION                        = 0x70,
-+	INTEL_GUC_LOAD_STATUS_INIT_DATA_INVALID                = 0x71,
-+	INTEL_GUC_LOAD_STATUS_PXP_TEARDOWN_CTRL_ENABLED        = 0x72,
-+	INTEL_GUC_LOAD_STATUS_INVALID_INIT_DATA_RANGE_START,
-+	INTEL_GUC_LOAD_STATUS_MPU_DATA_INVALID                 = 0x73,
-+	INTEL_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID   = 0x74,
-+	INTEL_GUC_LOAD_STATUS_INVALID_INIT_DATA_RANGE_END,
-+
-+	INTEL_GUC_LOAD_STATUS_READY                            = 0xF0,
-+};
-+
- #endif /* _ABI_GUC_ERRORS_ABI_H */
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-index d09c205b2beb..f773e7f35bc1 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-@@ -90,11 +90,10 @@ static int guc_xfer_rsa(struct intel_uc_fw *guc_fw,
- static inline bool guc_ready(struct intel_uncore *uncore, u32 *status)
- {
- 	u32 val = intel_uncore_read(uncore, GUC_STATUS);
--	u32 uk_val = val & GS_UKERNEL_MASK;
-+	u32 uk_val = REG_FIELD_GET(GS_UKERNEL_MASK, val);
- 
- 	*status = val;
--	return (uk_val == GS_UKERNEL_READY) ||
--		((val & GS_MIA_CORE_STATE) && (uk_val == GS_UKERNEL_LAPIC_DONE));
-+	return uk_val == INTEL_GUC_LOAD_STATUS_READY;
- }
- 
- static int guc_wait_ucode(struct intel_uncore *uncore)
-@@ -123,8 +122,8 @@ static int guc_wait_ucode(struct intel_uncore *uncore)
- 	if (ret) {
- 		struct drm_device *drm = &uncore->i915->drm;
- 
--		drm_dbg(drm, "GuC load failed: status = 0x%08X\n", status);
--		drm_dbg(drm, "GuC load failed: status: Reset = %d, "
-+		drm_info(drm, "GuC load failed: status = 0x%08X\n", status);
-+		drm_info(drm, "GuC load failed: status: Reset = %d, "
- 			"BootROM = 0x%02X, UKernel = 0x%02X, "
- 			"MIA = 0x%02X, Auth = 0x%02X\n",
- 			REG_FIELD_GET(GS_MIA_IN_RESET, status),
-@@ -134,13 +133,13 @@ static int guc_wait_ucode(struct intel_uncore *uncore)
- 			REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
- 
- 		if ((status & GS_BOOTROM_MASK) == GS_BOOTROM_RSA_FAILED) {
--			drm_dbg(drm, "GuC firmware signature verification failed\n");
-+			drm_info(drm, "GuC firmware signature verification failed\n");
- 			ret = -ENOEXEC;
- 		}
- 
--		if ((status & GS_UKERNEL_MASK) == GS_UKERNEL_EXCEPTION) {
--			drm_dbg(drm, "GuC firmware exception. EIP: %#x\n",
--				intel_uncore_read(uncore, SOFT_SCRATCH(13)));
-+		if (REG_FIELD_GET(GS_UKERNEL_MASK, status) == INTEL_GUC_LOAD_STATUS_EXCEPTION) {
-+			drm_info(drm, "GuC firmware exception. EIP: %#x\n",
-+				 intel_uncore_read(uncore, SOFT_SCRATCH(13)));
- 			ret = -ENXIO;
- 		}
- 	}
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-index b37fc2ffaef2..e6bd66d6ce5a 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-@@ -22,10 +22,6 @@
- #define   GS_BOOTROM_JUMP_PASSED	  (0x76 << GS_BOOTROM_SHIFT)
- #define   GS_UKERNEL_SHIFT		8
- #define   GS_UKERNEL_MASK		  (0xFF << GS_UKERNEL_SHIFT)
--#define   GS_UKERNEL_LAPIC_DONE		  (0x30 << GS_UKERNEL_SHIFT)
--#define   GS_UKERNEL_DPC_ERROR		  (0x60 << GS_UKERNEL_SHIFT)
--#define   GS_UKERNEL_EXCEPTION		  (0x70 << GS_UKERNEL_SHIFT)
--#define   GS_UKERNEL_READY		  (0xF0 << GS_UKERNEL_SHIFT)
- #define   GS_MIA_SHIFT			16
- #define   GS_MIA_MASK			  (0x07 << GS_MIA_SHIFT)
- #define   GS_MIA_CORE_STATE		  (0x01 << GS_MIA_SHIFT)
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-index d10b227ac4aa..556829de9c17 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-@@ -124,6 +124,7 @@ int intel_huc_auth(struct intel_huc *huc)
- 	}
- 
- 	intel_uc_fw_change_status(&huc->fw, INTEL_UC_FIRMWARE_RUNNING);
-+	drm_info(&gt->i915->drm, "HuC authenticated\n");
- 	return 0;
- 
- fail:
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 09ed29df67bc..da199aa6989f 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -432,6 +432,15 @@ static int __uc_check_hw(struct intel_uc *uc)
- 	return 0;
- }
- 
-+static void print_fw_ver(struct intel_uc *uc, struct intel_uc_fw *fw)
-+{
-+	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
-+
-+	drm_info(&i915->drm, "%s firmware %s version %u.%u\n",
-+		 intel_uc_fw_type_repr(fw->type), fw->path,
-+		 fw->major_ver_found, fw->minor_ver_found);
-+}
-+
- static int __uc_init_hw(struct intel_uc *uc)
- {
- 	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
-@@ -442,6 +451,11 @@ static int __uc_init_hw(struct intel_uc *uc)
- 	GEM_BUG_ON(!intel_uc_supports_guc(uc));
- 	GEM_BUG_ON(!intel_uc_wants_guc(uc));
- 
-+	print_fw_ver(uc, &guc->fw);
-+
-+	if (intel_uc_uses_huc(uc))
-+		print_fw_ver(uc, &huc->fw);
-+
- 	if (!intel_uc_fw_is_loadable(&guc->fw)) {
- 		ret = __uc_check_hw(uc) ||
- 		      intel_uc_fw_is_overridden(&guc->fw) ||
-@@ -507,24 +521,11 @@ static int __uc_init_hw(struct intel_uc *uc)
- 		intel_rps_lower_unslice(&uc_to_gt(uc)->rps);
- 	}
- 
--	drm_info(&i915->drm, "%s firmware %s version %u.%u %s:%s\n",
--		 intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_GUC), guc->fw.path,
--		 guc->fw.major_ver_found, guc->fw.minor_ver_found,
--		 "submission",
-+	drm_info(&i915->drm, "GuC submission %s\n",
- 		 enableddisabled(intel_uc_uses_guc_submission(uc)));
--
--	drm_info(&i915->drm, "GuC SLPC: %s\n",
-+	drm_info(&i915->drm, "GuC SLPC %s\n",
- 		 enableddisabled(intel_uc_uses_guc_slpc(uc)));
- 
--	if (intel_uc_uses_huc(uc)) {
--		drm_info(&i915->drm, "%s firmware %s version %u.%u %s:%s\n",
--			 intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
--			 huc->fw.path,
--			 huc->fw.major_ver_found, huc->fw.minor_ver_found,
--			 "authenticated",
--			 yesno(intel_huc_is_authenticated(huc)));
--	}
--
- 	return 0;
- 
- 	/*
--- 
-2.25.1
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/index.html
+
+Participating hosts (44 -> 37)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (8): bat-dg1-6 bat-dg1-5 fi-icl-u2 fi-bsw-cyan bat-adlp-6 bat-rpls-1 fi-bdw-samus bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_21935 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +31 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271]) +10 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@amdgpu/amd_prime@i915-to-amd:
+    - fi-snb-2520m:       NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-snb-2520m/igt@amdgpu/amd_prime@i915-to-amd.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][4] -> [INCOMPLETE][5] ([i915#3921])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11052/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][7] ([fdo#109271]) +57 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][8] ([i915#4312])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-skl-6600u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_contexts:
+    - fi-snb-2520m:       [DMESG-FAIL][9] ([i915#4610]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11052/fi-snb-2520m/igt@i915_selftest@live@gt_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-snb-2520m/igt@i915_selftest@live@gt_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][11] ([i915#4785]) -> [INCOMPLETE][12] ([i915#3303])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11052/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-skl-6600u:       [INCOMPLETE][13] ([i915#4838]) -> [FAIL][14] ([i915#4547])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11052/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4610]: https://gitlab.freedesktop.org/drm/intel/issues/4610
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4838]: https://gitlab.freedesktop.org/drm/intel/issues/4838
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11052 -> Patchwork_21935
+
+  CI-20190529: 20190529
+  CI_DRM_11052: 5926026a36a658f615b8a5aaa74a90a2a3c5e6c5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6324: 6e009504d5f7cc39866191e4bff813a4512c3e9b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_21935: cd93e9e13e3dd4e94df145881a7bf99c4ba2348a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+cd93e9e13e3d drm/i915: Drop unused register definitions
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/index.html
+
+--===============6637171275875528460==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Start cleaning up register definitions</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98575/">https://patchwork.freedesktop.org/series/98575/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11052 -&gt; Patchwork_21935</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/index.html</p>
+<h2>Participating hosts (44 -&gt; 37)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (8): bat-dg1-6 bat-dg1-5 fi-icl-u2 fi-bsw-cyan bat-adlp-6 bat-rpls-1 fi-bdw-samus bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_21935 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +10 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_prime@i915-to-amd:</p>
+<ul>
+<li>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-snb-2520m/igt@amdgpu/amd_prime@i915-to-amd.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11052/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_contexts:<ul>
+<li>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11052/fi-snb-2520m/igt@i915_selftest@live@gt_contexts.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4610">i915#4610</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-snb-2520m/igt@i915_selftest@live@gt_contexts.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11052/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11052/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4838">i915#4838</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21935/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11052 -&gt; Patchwork_21935</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11052: 5926026a36a658f615b8a5aaa74a90a2a3c5e6c5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6324: 6e009504d5f7cc39866191e4bff813a4512c3e9b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_21935: cd93e9e13e3dd4e94df145881a7bf99c4ba2348a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>cd93e9e13e3d drm/i915: Drop unused register definitions</p>
+
+</body>
+</html>
+
+--===============6637171275875528460==--
