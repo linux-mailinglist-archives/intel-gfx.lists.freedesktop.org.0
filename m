@@ -1,33 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38BD2486FC9
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 02:49:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B34D948724B
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jan 2022 06:29:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 135C210ECA3;
-	Fri,  7 Jan 2022 01:49:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D61DE1131AB;
+	Fri,  7 Jan 2022 05:29:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 955A410ECA1;
- Fri,  7 Jan 2022 01:49:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8FA9EA8836;
- Fri,  7 Jan 2022 01:49:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0539407916064509959=="
+Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com
+ [IPv6:2607:f8b0:4864:20::12f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A50D511318B;
+ Fri,  7 Jan 2022 05:29:50 +0000 (UTC)
+Received: by mail-il1-x12f.google.com with SMTP id r16so2097775ile.8;
+ Thu, 06 Jan 2022 21:29:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=HE6rGl4+lTFmvO6USR2ILfrynKOlclK8dPgu7S7zjx4=;
+ b=a/8NVQILS1Z0rPpJg3vXACkLCnhakIXxZp6n3duXgKfvjT8HZFx/KJHo6Ek2L/rLa0
+ JX4ih/IOGrPScR1hhbs/QJLpS1+2t5vR9CVh+L3v5NvKvXt1TQ03Ei/ra2rAM5WGBgXd
+ EVhHOUWb5ulJlsEcPxZz3ocXR5vCJ1bTVEwXLu1Ut4lxwk/HbTaioO4dzaQyeoY3AUBq
+ s7Z7NwG45L1YnJ4i2aSMO+T8NRoJzhkJVUKBkZKCKCf+mzTDgkDL1ZpwhD4wPWcQdWMF
+ oZ9xXj2J5m45GQnndGsiXcL3Pcxm8Grpgtb+5wfiuAfUAeKyEuc8D/ZOQcxfKnv3BQ+N
+ lR8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=HE6rGl4+lTFmvO6USR2ILfrynKOlclK8dPgu7S7zjx4=;
+ b=AkZ8ExCFruFnbuWCSUiLRuPPvwSKwZe4x1J24jbNlo9JeXjbHm7geknjpimn+VE8v7
+ dlvAo+HVcIoex+a39Tq13tcHaFsY8LLNd7l7kv06KagzKwIhUD9TlJF7aMcDW+Lp4LZi
+ 8PyOIzxzuPzzXOaqLrGRiUJFXAI/UQnlYjVog3GJ9cGNlUfhny22VBi3YMMCssOO2WT9
+ UuLVp34DObeidewvvhOknVIqdL7Vi1s3s/Bt9PMUh1PJ3OeXnXUf6lfql1WzuurOkg3Q
+ rAaw6Vra730RFE2CSrTc2uoZhxu7rWiXXOCLfFnsZPck+Efjjg0EY39fnZ0bV+CEGM36
+ pTIA==
+X-Gm-Message-State: AOAM533SyCreafbWdAI0BTSs+bGUIJMQ0vAmOp2Z4SwJ8DRf93i33jnw
+ eg3tK0bgsRe30UGq31Cj/N2l4GhdqiE=
+X-Google-Smtp-Source: ABdhPJzVRVEb5+ua7spdzukBh9MZssTqGLo4AVH1KFZsovhJMEbVb37fAvB6OQiouVHb83nK2gxmag==
+X-Received: by 2002:a05:6e02:1cae:: with SMTP id
+ x14mr29287416ill.237.1641533389790; 
+ Thu, 06 Jan 2022 21:29:49 -0800 (PST)
+Received: from frodo.. (c-24-9-77-57.hsd1.co.comcast.net. [24.9.77.57])
+ by smtp.googlemail.com with ESMTPSA id c18sm1843446iod.18.2022.01.06.21.29.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 06 Jan 2022 21:29:49 -0800 (PST)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com, gregkh@linuxfoundation.org, linux@rasmusvillemoes.dk,
+ rostedt@goodmis.org, mathieu.desnoyers@efficios.com,
+ daniel.vetter@ffwll.ch, seanpaul@chromium.org, robdclark@gmail.com,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Date: Thu,  6 Jan 2022 22:29:23 -0700
+Message-Id: <20220107052942.1349447-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "John Harrison" <john.c.harrison@intel.com>
-Date: Fri, 07 Jan 2022 01:49:11 -0000
-Message-ID: <164152015156.15327.13057269450433140685@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220107003143.326046-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20220107003143.326046-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/guc=3A_Don=27t_error_on_reset_of_banned_context?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v11 00/19] dyndbg & drm.debug to tracefs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,283 +71,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: quic_saipraka@quicinc.com, arnd@arndb.de, jim.cromie@gmail.com,
+ catalin.marinas@arm.com, linux-arm-msm@vger.kernel.org, mingo@redhat.com,
+ quic_psodagud@quicinc.com, maz@kernel.org, will@kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0539407916064509959==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+hi Jason, Steve, Greg, DRM-folks,
 
-== Series Details ==
+This patchset plumbs debug streams, from dynamic-debug, and from
+drm.debug, into tracefs.  Enabling traffic is done on both source &
+destination:
 
-Series: drm/i915/guc: Don't error on reset of banned context
-URL   : https://patchwork.freedesktop.org/series/98580/
-State : success
+	# enable at source
+	echo module usbcore +T > /proc/dynamic_debug/control
+	# enable events into tracefs
+	echo 1 > /sys/kernel/tracing/events/dyndbg/enable
 
-== Summary ==
+	# enable at source
+	echo 0x03 > /sys/module/drm/parameters/debug
+	# enable events into tracefs
+	echo 1 > /sys/kernel/tracing/events/drm/enable
 
-CI Bug Log - changes from CI_DRM_11053 -> Patchwork_21937
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/index.html
-
-Participating hosts (43 -> 37)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (7): bat-dg1-6 bat-dg1-5 bat-adlp-6 bat-adlp-4 bat-rpls-1 fi-bdw-samus bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21937 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +22 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-bdw-5557u:       [PASS][2] -> [INCOMPLETE][3] ([i915#146])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [PASS][6] -> [INCOMPLETE][7] ([i915#2940])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][8] ([i915#1886] / [i915#2291])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#533])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][11] ([fdo#109271]) +57 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][12] ([fdo#109271] / [i915#1436] / [i915#3428] / [i915#4312])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-bsw-n3050/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-kbl-soraka:      [INCOMPLETE][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0@smem.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-skl-6600u:       [FAIL][15] ([i915#3239]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-bxt-dsi:         [DMESG-FAIL][17] ([i915#541]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3239]: https://gitlab.freedesktop.org/drm/intel/issues/3239
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+This allows selectivity at the sources, and in principle, filtering at
+tracefs (which is unaddressed, except for arg-passthru).
 
 
-Build changes
--------------
+Here is v11, it differs subsantially from v10:
 
-  * Linux: CI_DRM_11053 -> Patchwork_21937
+A: All tracefs action is via 4 new trace-events:
 
-  CI-20190529: 20190529
-  CI_DRM_11053: f0ad19ec6238528d9ea1ee54c9dcde4e0119f1e5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6325: ac29e097d4ff0f2e269a955ca86c5eb23908467a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21937: 682d623fb1494a83af586a456dc422cbbe6cc13a @ git://anongit.freedesktop.org/gfx-ci/linux
+from dyndbg:
+  pr_debug() sends trace_prdbg()
+  dev_dbg()  sends trace_devdbg()
+  both preserve args unchanged
 
+similarly from drm:
+  drm_dev_dbg() -> trace_drm_devdbg()
+  drm_dbg()	-> trace_drm_dbg()
+  again, args are captured unchanged.
+  for some reason 3 other drm_vblank* events showed up, I dont know why.
 
-== Linux commits ==
-
-682d623fb149 drm/i915/guc: Don't error on reset of banned context
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/index.html
-
---===============0539407916064509959==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+These 4 events (not counting vblank) all capture the args unchanged;
+ISTM full exposure of available info is best for filtering/triggering
+purposes.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+B: dynamic-debug gets proper .class_id, and query support (dyndbg:)
+
+so that this is legal input:
+
+   echo module drm class 3 +T > /proc/dynamic_debug/control
+
+v10 used "format drm:core:", which worked, but required addition of
+category string prefixes, and possible user-facing-changes issues.
+
+New field is uint:4, big enough to fit DRMs enum drm_debug_category
+(once it has been condensed). The name is .class_id, distinct from but
+related to DRMs "category".
+
+This also includes _CLS name & arg extensions of the Factory macros
+that implement dyndbgs jump-label/NOOP optimizations.
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: Don&#39;t error on reset of banned context</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98580/">https://patchwork.freedesktop.org/series/98580/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+C: integration of dyndbg into drm.debug (drm_print:)
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/index.html</a></td></tr>
+The purpose here (and originally) is to avoid drm_debug_enabled()
+runtime costs, and to put a more flexible substrate underneath the
+sysfs bitmap api.  Ive made it CONFIG dependent, since each _ddebug is
+56 bytes, and i915 & amdgpu have ~1700 & ~3800 callsites respectively,
+of which 127 & ~2k are plain pr_debugs.
 
-</table>
+1. We shrink enum drm_debug_category to fit in 4 bits, at nominal
+   cost of BIT(category) at runtime, which dyndbg will avoid anyway.
+
+2. Add the trace_drm_*dbg() events
+
+3. insert macro indirection, and use it to wrap drm_*dbg()s in
+   dyndbg's _no_desc_ Factory macro.
+
+4. add __drm_debug_enabled (optimized to true) to use behind jumplabel.
+
+5. use _CLS extension of _no_desc_ Factory macro
+   this makes cls available to initialize _ddebug.class_id
+
+6. alter drm_*dbg, replacing category with struct _ddebug *desc.
+   desc.class_id is category
+   desc.flags allows selection of PRINTK or TRACE or both
+
+7. propagate struct _ddebug *desc thru trace_drm_*dbg()
+   make all of _ddebug available for filtering
+
+8. add sysfs bitmap to dyndbg, use it to implement drm.debug
 
 
-    <h1>CI Bug Log - changes from CI_DRM_11053 -&gt; Patchwork_21937</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/index.html</p>
-<h2>Participating hosts (43 -&gt; 37)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (7): bat-dg1-6 bat-dg1-5 bat-adlp-6 bat-adlp-4 bat-rpls-1 fi-bdw-samus bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21937 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +22 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3239">i915#3239</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-skl-6600u/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11053/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21937/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11053 -&gt; Patchwork_21937</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11053: f0ad19ec6238528d9ea1ee54c9dcde4e0119f1e5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6325: ac29e097d4ff0f2e269a955ca86c5eb23908467a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21937: 682d623fb1494a83af586a456dc422cbbe6cc13a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>682d623fb149 drm/i915/guc: Don't error on reset of banned context</p>
+D: The "flight-recorder" special instance was unneeded, and is gone:
 
-</body>
-</html>
+this handles it generically:
 
---===============0539407916064509959==--
+    mkdir instances/flightrec
+    echo 1 > instances/flightrec/events/drm/enable
+    echo module autopilot +T >/proc/dynamic_debug/control
+
+v10 is here:
+https://lore.kernel.org/lkml/20211105192637.2370737-1-jim.cromie@gmail.com/
+
+patches 1-3 are from:
+  https://lore.kernel.org/lkml/20200721141105.16034-1-vincent.whitchurch@axis.com/
+
+this patchset addresses goals of:
+  https://patchwork.freedesktop.org/series/78133/
+  https://lore.kernel.org/lkml/3706af20bc64a320ff8f3ff8950738b988f4bdf5.1636452784.git.quic_saipraka@quicinc.com/
+
+
+Jim Cromie (19):
+
+1st 3 are basically direct from <vincent.whitchurch@axis.com>
+execpt I dropped his printk:dyndbg event:
+  dyndbg: add _DPRINTK_FLAGS_ENABLED
+  dyndbg: add _DPRINTK_FLAGS_TRACE
+  dyndbg: add write-to-tracefs code
+
+add 2 events, and record args (could be squashed)
+  dyndbg: add trace-events for pr_debug, dev_dbg
+  dyndbg: add desc, dev fields to event record
+
+add field, selection mechanisms, and CLS extensions to Factory macros
+  dyndbg: add class_id to callsites
+
+make category fit in .class_id:
+  drm_print: condense enum drm_debug_category
+
+repeat trace event addition:
+  drm_print: add trace_drm_dbg, trace_drm_devdbg events
+
+kconfig+Make-flag:
+  drm_print: add CONFIG_DRM_USE_DYNDBG
+
+macro indirection:
+  drm_print: interpose drm_dev_dbg, __drm_dbg with forwarding macros
+
+add >control entries for ~4660 drm.debug callsites:
+  drm_print: wrap drm_dev_dbg in _dynamic_func_call_no_desc
+  drm_print: wrap drm_dbg in _dynamic_func_call_no_desc
+
+prep:
+  drm_print: refine drm_debug_enabled for dyndbg+jump-label
+
+drive-by:
+  drm_print: prefer bare printk KERN_DEBUG on generic fn
+
+get .class_id initialized at compile.
+  drm_print: use _dynamic_func_call_no_desc_cls
+
+need this to selectively trace/print:
+  drm_print: add struct _ddebug desc to drm_dbg, drm_dev_dbg
+
+propagate arg upgrade of HEAD~1 into trace-events:
+  drm_print: add struct _ddebug *desc to trace-drm-*() params
+
+add and use sysfs bitmap support:
+  dyndbg: add DEFINE_DYNAMIC_DEBUG_CLASSBITS macro and callbacks
+  drm_print: use DEFINE_DYNAMIC_DEBUG_CLASSBITS for drm.debug
+
+ .../admin-guide/dynamic-debug-howto.rst       |  12 +
+ drivers/gpu/drm/Kconfig                       |  12 +
+ drivers/gpu/drm/drm_print.c                   |  66 +++--
+ include/drm/drm_print.h                       |  80 +++--
+ include/linux/dynamic_debug.h                 | 101 ++++++-
+ include/trace/events/drm.h                    |  68 +++++
+ include/trace/events/dyndbg.h                 |  74 +++++
+ lib/dynamic_debug.c                           | 273 +++++++++++++++---
+ 8 files changed, 601 insertions(+), 85 deletions(-)
+ create mode 100644 include/trace/events/drm.h
+ create mode 100644 include/trace/events/dyndbg.h
+
+-- 
+2.33.1
+
