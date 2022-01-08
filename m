@@ -1,67 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B239E4899C5
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:24:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A73C4899CF
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:24:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E55714B437;
-	Mon, 10 Jan 2022 13:24:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64F1511B2B3;
+	Mon, 10 Jan 2022 13:24:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
- [IPv6:2a00:1450:4864:20::335])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C2C610EBC7;
- Fri,  7 Jan 2022 17:26:09 +0000 (UTC)
-Received: by mail-wm1-x335.google.com with SMTP id
- x18-20020a7bc212000000b00347cc83ec07so1029442wmi.4; 
- Fri, 07 Jan 2022 09:26:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=Ht1OfskK18Tncu8hyQlhD7qZAAQL5kUIMY/RPcI5GWg=;
- b=ovBuHMMnaNmXki6e8ZuoIbwSgvKSbD1rksXRBmgyYUmyP/xeQbqX4CMXw2qDxMN1Vj
- v7Bki5RCHpIU0e56V7Y7EQ3kE2ZXPFmptqvRvDxQZ7chM4UIxRpXdp4o+0LjlKd7pW8q
- cXEGNj0CLps7TCexKvhCcrnl6NC6GUvVbPn8655XITD+oVFX6A77Yf0ibTqVflUqhgVm
- PGjvs5ZFG+72tWQn2lyUd3vH8tp3g1Iw+bUZuz3gxylapUn9yZgbIyZOi1em49vjoi94
- cNXMt0hYVQD9rJAfir0whVAbi7g644rWd6NP5cRkYKgohSf4SMg+HMJ/SIjKzTUI7Shm
- kngw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=Ht1OfskK18Tncu8hyQlhD7qZAAQL5kUIMY/RPcI5GWg=;
- b=i9DBCsOYLDZO37P6QpfMWDWlrh653HsdKCiqXz6W/zPdVLzNiybYnEK7GORpwFpcWa
- QgZ3EvMNBwT7U1dpD1PsBCwB4pW4Y8qZ75REktan+WaRHLROUGvc+WK0BtAObn4YZyfi
- Bqr9ZdY6dW+Ve4M6hBda+YvLexLXKtSJv9WRdVmOFT8nYOe3MmCUHK5SVGKtxFKp0aFi
- NzrTz3LKOWen6+UhrK4+YY145F0HDA7y1cZRcwbOeY98l2tqLuinTZMX0Zu6NdIGIfLY
- m8IOAgM3BZZ6mtjmZNkAGIlubxFJ/3qNSI55Dk9l6yj3+zEFrjIukZXvNsipbpQ5D4kR
- KWvQ==
-X-Gm-Message-State: AOAM533qQtJnhFyKTx9itenkKqkXf3MqfWJI/34WqbGrZkOSC6bOaZMB
- vjIlhuM2Br2u4Xebhj0nTWc=
-X-Google-Smtp-Source: ABdhPJxKyHsrAgQTVgZgLm+52z4ULS2Pqwjxj4lcuAMX76VGeJnjfcycUSa/PS919Hvdw9jf9FQEkg==
-X-Received: by 2002:a1c:5403:: with SMTP id i3mr10241280wmb.66.1641576368115; 
- Fri, 07 Jan 2022 09:26:08 -0800 (PST)
-Received: from elementary ([217.113.240.86])
- by smtp.gmail.com with ESMTPSA id s10sm8325202wmr.30.2022.01.07.09.26.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 07 Jan 2022 09:26:07 -0800 (PST)
-Date: Fri, 7 Jan 2022 18:26:01 +0100
-From: =?iso-8859-1?Q?Jos=E9_Exp=F3sito?= <jose.exposito89@gmail.com>
-To: Simon Ser <contact@emersion.fr>
-Message-ID: <20220107172601.GA122757@elementary>
-References: <20211226112503.31771-1-jose.exposito89@gmail.com>
- <20211226112503.31771-3-jose.exposito89@gmail.com>
- <3DdB6YPUQr4O063yNreefZcIm6p5Z6HORoVVbk5RTMmjz8qvnxMse42hLvfDmA323KG-TWLc_JUFZEEEIkoINXQuAzjLVe2jRRM01tQgYOU=@emersion.fr>
+Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBFAD11A6C2
+ for <intel-gfx@lists.freedesktop.org>; Sat,  8 Jan 2022 05:17:13 +0000 (UTC)
+Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com
+ [188.165.51.139])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits))
+ (No client certificate requested)
+ by mail-4321.protonmail.ch (Postfix) with ESMTPS id 4JW7Vs5qjwz4x0F0
+ for <intel-gfx@lists.freedesktop.org>; Sat,  8 Jan 2022 05:12:05 +0000 (UTC)
+Authentication-Results: mail-4321.protonmail.ch;
+ dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com
+ header.b="QGEtXTxe"
+Date: Sat, 08 Jan 2022 05:11:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail2; t=1641618721;
+ bh=/j2Vx1bVQJXPbpvBXRiaCl4gIC+8JojGiGdJO7cqyB0=;
+ h=Date:To:From:Cc:Reply-To:Subject:Message-ID:From:To:Cc;
+ b=QGEtXTxetiOWU/1q7fkqclnSXkd95iuiWFTPSHAVarKQCDtsBuqp2BRAvStu5HQED
+ w5nW5A6R5alBGRmzKFBef9WImrZ3eehWK8eVdsqOVsshFTpFHixaewrqf+FWH54+UI
+ P1dDg8PZ/NMmfhXfmBTT1O4Z3yvM2HgEkBW+Fo7PmUjW4bkHolRZGTpAToRpwAiaRq
+ 07E41t4DZV10MBPP4kznsdngux7Hppcvhukg2KmH3k1wNuV/iQWzAq6g+2cA6+b2oI
+ p+lJPgd23AUjgnPirTArbYkpiGqMR3nxpt3ldwYYO4ZBAaSOUZJXnajhsqFNz9ZWvW
+ U9VJJpW9HwoQw==
+To: jani.nikula@linux.intel.com
+From: Orlando Chamberlain <redecorating@protonmail.com>
+Message-ID: <20220108050812.6303-1-redecorating@protonmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3DdB6YPUQr4O063yNreefZcIm6p5Z6HORoVVbk5RTMmjz8qvnxMse42hLvfDmA323KG-TWLc_JUFZEEEIkoINXQuAzjLVe2jRRM01tQgYOU=@emersion.fr>
-X-Mailman-Approved-At: Mon, 10 Jan 2022 13:24:15 +0000
-Subject: Re: [Intel-gfx] [PATCH v3 2/6] drm/plane: Fix typo in
- format_mod_supported documentation
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+ autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+ mailout.protonmail.ch
+X-Mailman-Approved-At: Mon, 10 Jan 2022 13:24:14 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Discard large BIOS framebuffers
+ causing display corruption.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,27 +59,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, alexandre.torgue@foss.st.com, stefan@agner.ch,
- benjamin.gaignard@linaro.org, festevam@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com, marex@denx.de, linux-imx@nxp.com,
- intel-gfx@lists.freedesktop.org, s.hauer@pengutronix.de, mripard@kernel.org,
- kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org, tzimmermann@suse.de,
- yannick.fertre@foss.st.com, linux-kernel@vger.kernel.org,
- philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
- dmitry.baryshkov@linaro.org, shawnguo@kernel.org
+Reply-To: Orlando Chamberlain <redecorating@protonmail.com>
+Cc: Aun-Ali Zaidi <admin@kodeit.net>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, ashisharora.linux@outlook.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Simon,
+I haven't observed "display corruption", but on my MacBookPro16,1 the botto=
+m
+and right edges of the TTY are not on the screen, so a few lines of text
+cannot be seen.
 
-On Wed, Jan 05, 2022 at 11:54:43PM +0000, Simon Ser wrote:
-> Pushed patches 1 & 2 to drm-misc-next. Thanks for your contribution!
+This also occurs on the internal displays of all (as far as I know) other
+2018-2020 Intel Macbooks when using the Intel GPU (The 15" and 16" ones
+also have an AMDGPU, but this issue occurs when they have the Intel GPU
+set as the boot gpu).
 
-Thanks a lot for the review and for applying the changes, appreciate it.
+There's a similar patch that hasn't been sent upstream that people with the=
+se
+Macbooks have been using:
+https://github.com/aunali1/linux-mbp-arch/blob/master/7001-drm-i915-fbdev-D=
+iscard-BIOS-framebuffers-exceeding-h.patch
 
-Is there something that needs to improve in the other 4 patches?
-Or just waiting on maintainers input?
+Cc: Aun-Ali Zaidi <admin@kodeit.net>
 
+--
 Thanks,
-José Expósito
+Orlando
+
