@@ -1,92 +1,94 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEE9A4899D9
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:25:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD2394899DE
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:25:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BCB912B5C0;
-	Mon, 10 Jan 2022 13:24:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9956C10F3FC;
+	Mon, 10 Jan 2022 13:25:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com
- (mail-sgaapc01olkn2084.outbound.protection.outlook.com [40.92.53.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98FF010E15F
- for <intel-gfx@lists.freedesktop.org>; Sat,  8 Jan 2022 08:56:03 +0000 (UTC)
+Received: from APC01-HK2-obe.outbound.protection.outlook.com
+ (mail-oln040092255063.outbound.protection.outlook.com [40.92.255.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99E3510FE0B
+ for <intel-gfx@lists.freedesktop.org>; Sat,  8 Jan 2022 09:59:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IIfxmOOXp60lojQVi/+cC/oCFK0mm1yfQBtQDnP5Zeeey7VdNQP2FtFFFCTl3pG1/mUD6QgMEmB+DmjAdtvHZkiDMyQSoGlnWoTnUqrBR/YnolkN2UaxDNzyB4bE5hwT2H2IlEAyBwb0uk3egWKwXuuhQgeK9Hth0MecRS5vXsiTHgW5RE+I3qQFEHSKH0u7NAz3CVGicrhkItcoSMmvgpg1sRT1tWZQwOje9Mxf9PKpA8OopNPVetRzk/MScXq1LcgiADDfsJHvqSPD/sOvY0q5CYsAnFJRzQ+v46db0iDAf7n5TdkqDhHeLJ9zhNf6BBjv1i2/1riqjPG9Y5P6Ww==
+ b=YNrgd4uIsHLb8ZdsMa9itfHAkaE/6lUj7E3w6xUBLng49JbFF2s9e/4h/ZF41iT7PwaXnlXamrFCwU7wm4BaBvRvpyY9HUIO1v/4OB9PhEsyd00AvUxQDFCBsXVaHHWj1GnBIp05U4eVGuejJY7AT2KDYCSWfoL6IP6S+aggtaOzp85ic07hKm7ahDjAiaUH8hxsK6Iwgjq1SibBApVH7ufIqPWWWRB7g+AlASkCkZjsDlslkx2vbOhl/FRv1AAnnzQcV7Mxq3PEM+VAyCONOccSOofcLXBA+m7Dsou4cvOW7VSAyMoV+W2qXJqFNOusG1ZD/tJz5SJ05K+EfCqk1w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XQNHgvY4TvccFvPeo0tEzzXzc5zOmaQ/1Ue2iu3Gu/g=;
- b=mKp1EV/A/L6nCvXY30YnfDUqYXh9tVbQxaBCirGghCPPKW2yVs+w5G1B7pChuNoXleq/GfKbSt5uLfEZYa6+IJEnEHnOczkSfQ3X12BsikE5yuAax6KvEs4MbYXT0MJ6KsreUc+fbRTotUZ27b9rAFGKqTtmPnQq/AHv+28MIM2PcsLGSQpaD0zgfusDSIShDxF7Zd3WmxfjQTYcKLYQM0gbtukjBu98gPrG21fmWKoowTOknlW+y+3gAFD3V+fZUPlaKkQRShNyXx6GXanGP2KxthxDKNYfB9d0v/3akhuhEMXIdSP709LM2is820+LIwD5P0uOynzpBqwRqIczLA==
+ bh=nLAUOuIYeR0DnUKyvbhL5x1v58FU7rpNsQiH9jjajuA=;
+ b=d0Ol9RZjc34U/oZM5Iy5s1HCz6W8SG/7Kw0e6+ivzwZ6tp9t1lBRNtuedwBNAXoqpu0qs9ELrnnLqQ7sNzkErx7UOT66m65TNhPo+JjymX5ZcqfVB2qecMzjs9uNkuoX9CagXc5PhhFf0Pj8iC558CjxAqkRVaXq4Axns+jPNB81SPngT/9F/v+KBUCU6fMBbWiVxueZFF5wnUcTqVbjqOldhRf1dwSlTMck6qr64KCf7mYLk5/iPR1T4ejffQ9BPWaz21VOJvQhWRS8VdcE0V/F06K2HEa9JjWJw984WKWkBmuNrdCLw8Va7eBdK2JW4vthAXyBNpjA3GmscJGrAQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XQNHgvY4TvccFvPeo0tEzzXzc5zOmaQ/1Ue2iu3Gu/g=;
- b=X9dSP/XWXo6bHWxvI01bHJ69zE5na0dReeyM9k9Sy0xn0ZlxA/DeB0YNKnQe/AMkFrNJqZ/G6mS9YUy3oLTB8j4bpND92HRapYSXtpQ4kuuQlqCE45pyccolNqNPQoFzKxwxAXx3ktlEFfJfHnnHbHBG7Ir/3MlkJ6lwT44/v+QkJ90e0YMz924X6BL6FBpxYOdmqT0978AEPI50eueW1Nq+evdNTfJ89RiolxxUxkrxGPb7VaAgCtVUsGQmh0lO5sj/0ddUYhMMQ9PRcOmQUBXU9QzG1ZRfsk/Ez1hxzsjv/QBSA5QdaxECwy4kII8SogFvCej/YonUZH4Pc9q/QA==
+ bh=nLAUOuIYeR0DnUKyvbhL5x1v58FU7rpNsQiH9jjajuA=;
+ b=Z9VL4z+tv8d1BGtfTyuNUr5SFwRltv/QWxmx+N1Iap66BwPFTaQcfzbaF0YSAd5S9r85IA60p3EnuW8kGtdd1IdgA9f5KE3p4X9kAHQIo47ryxGLXh75k0rxWB/f7c8zXFFdrfsfyTx+MykLFnwvzAWfBBo4/y73UkMh4B+U7gDqFkHA3XsAP/ls+xzkELQySeQh1vBG44Kv+FuTf1vAl5+FbyflGtS3oB5DzFMNM/nAVi/xXHNCYIWLce64MRUNwxF7S4ghNIwvALODodEr+RJVcyFf/yGOQ7NOdVhRZHXKgUI1m0BqBoorAp0bns+CeVAy6WfqFs3QYkRUdUjc0g==
 Received: from PS2PR03MB3719.apcprd03.prod.outlook.com (2603:1096:300:38::18)
- by SG2PR03MB3338.apcprd03.prod.outlook.com (2603:1096:4:17::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.7; Sat, 8 Jan
- 2022 08:55:58 +0000
+ by HK0PR03MB3361.apcprd03.prod.outlook.com (2603:1096:203:31::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.5; Sat, 8 Jan
+ 2022 09:59:27 +0000
 Received: from PS2PR03MB3719.apcprd03.prod.outlook.com
  ([fe80::f9e6:8a12:82ba:99ca]) by PS2PR03MB3719.apcprd03.prod.outlook.com
  ([fe80::f9e6:8a12:82ba:99ca%5]) with mapi id 15.20.4867.006; Sat, 8 Jan 2022
- 08:55:57 +0000
+ 09:59:26 +0000
 From: Ashish Arora <ashisharora.linux@outlook.com>
-To: Orlando Chamberlain <redecorating@protonmail.com>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
+To: Orlando Chamberlain <redecorating@protonmail.com>
 Thread-Topic: [PATCH] drm/i915: Discard large BIOS framebuffers causing
  display corruption.
-Thread-Index: AQHYBE5G/QSI5yAchkqDOVM07m5d8qxY0iIw
-Date: Sat, 8 Jan 2022 08:55:57 +0000
-Message-ID: <PS2PR03MB3719596734B3AA83DA6C9ED9F34E9@PS2PR03MB3719.apcprd03.prod.outlook.com>
+Thread-Index: AQHYBE5G/QSI5yAchkqDOVM07m5d8qxY5DiA
+Date: Sat, 8 Jan 2022 09:59:26 +0000
+Message-ID: <AC748346-8777-4107-9E7D-526D5854F11B@outlook.com>
 References: <20220108050812.6303-1-redecorating@protonmail.com>
 In-Reply-To: <20220108050812.6303-1-redecorating@protonmail.com>
 Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach: 
+Content-Language: en-US
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-x-tmn: [k7YC91lhotD9mIcn736PzRErU6CAmHgK]
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [wls3eXB8ABmx6cSxQyL9qlGJW+DQIHeeXO5s6wd1ok5HCCAH1R6RXMhIDtHSvs3t]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a07150d6-1c98-4a88-8902-08d9d284afa9
-x-ms-traffictypediagnostic: SG2PR03MB3338:EE_
+x-ms-office365-filtering-correlation-id: 27d100fc-24c8-4720-d08c-08d9d28d8e34
+x-ms-exchange-slblob-mailprops: Gc2OTa7qnQ8p3C3z9N4moCNsUBQQutmdUvv/vlO5KRJxrdRWjh/OY7lYfp8TY+39twRVf20TAF1OnMtqrwl7Iq+OV4vE+9psbvBoiaA1K5XtNzdhRZyO5bBuxfoTXdw79jrsifrB1EtxyIzA26nD/0GRjQrQJCRptKZ9RdGJBpPfBo24571lkjOBEiAlin2sTsOBTEyg8a4p/fuIDwM28F2Rg0bmqw0+EdQok0K9Y2rfruuZJVdFsuM1ZrETTKAYU5vzArQ6+HIWg9Ho2CTyduPq6E6KLDGxcg4WlLR5jLbaIF5fG4T28VVsM4TZjzlmsXClbFjHtTtQkVJnGn7gjpbsAXQYYvXajqW5BPfoX8bnJa62+/FMMhzuAKnvBfgBTYAr6OgdRxWyWRTTFNqNi91gZoJrbwILLyd+phsdQrC97CsLQCQRQFjxYSfHPnVqtDh4oPdfFAqjih7dq7K5WF40RosSuiLWrWV3IEPR3vEUn89tYV1MEXhK1ARkEY9r020FjND+4RJpF/7GxkTUZK+5GyVZoCrTtVZwTMcIsQH1xAe85sI4rMrdix+1FXlg43Z+zqaueGBr/YtVzZX1UXDncJeotdJf9A2gPDy9SikPqWOAxswp6beWTp4Wpj0kVk1+Sd6BvYaopYBXKlA6Gd2UkTTaseJZG44yo1jGKTaVlkhhhaP9tA==
+x-ms-traffictypediagnostic: HK0PR03MB3361:EE_
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2pG1DeUcfxiLZOlcnPYJxYf4qb3OhQl9QwHchss7mE9pEiivmxaDoWvoab00r/pmlFU4PBWU06UHVchsXzDSMvENxd+KBpavioHm59ft6VbMW3ubNjgEu9I2ZZsVWM5EQVqB9icLS5SPt2XETgcfzLt+Jd/GoelMA7UX4YO4waV+lHQhqK9PPbvcVQiU6YK50+6roBwfpTnLQquS1cHqC6tI9CRyW/YcCN/mzMe3qhX7GQZ0QN86WntApB/JIDc9qjynwq/ifxCnqPX2RZy+cdTC5FlOlBa0PvI2skpcWZSN++FNun1StJ1M9yW7XfjBg/Jg14OyD4SjMVtSvdYYQVmg3LwRryiPSYVEX5oziofLF9kw7YSCp0/OAklwNzPPZjdaE64fA4x+g3MYmxX+4A9elhKquRixMBbTSnxcl3YeHtQrHCOWI9uPr3WX/ZoR4u8DoKpP4K8zXHK2GO8DAVhBUOWSQNDQ2hlP3vw9vtzPBB4fuaxvnMxJM6ubkDY0VhcGweQOmbeZhDLre0bPMTLco+Opu9LQ+FS6lK5sOZMoDOrCFx+B51tT6/0Blt9bc/N+EjBsQ7gWrZCZMYUL6DWpK4ue1/YyHY2KZylCMVBnrHkJxCtdhujWR7Y+P6DJBQ/If8Q1bfpwBudXLtu6Mf+1eAPLSdIsZADjwA3y7II=
+x-microsoft-antispam-message-info: loZsJiCp67CgtyqEUVMyYlS5BxNiXYqAvbTegvpZFRSEdwie3eMUYEJlZjxBPYllrLW63TeZNJPSD0qT5FhLI1UT4PmL1SXgc2rDlYQSyfdoa73Vk6VTZdWaFW8OvCyMEEbsO6QxMhkjY93SaapUkXEMqLrOIs0X0vMj66XXRd6ui/4WUEwX4IsV627MOrnJjkcUHxUgijfNQSABfaHGUBWpW6LevHegihIYYp1SCpvqF2KVza1oPikPWFHbpUgmdevkApfU70b70LuMYpbttYl7cQkzGMeCXLqPrsiH8SbHRlysRFBSloGMcDNDBK3Bai0y/WcfmiYAb97vUDloaIdqxHUIjQW+H+PNCK8nnQfLiEFEgi3qecQcgAxHzMY1ZDjAu/8Skd1NI0a9aEPMWUJenBpwcXTgoTIVcu/ElUpDpl2H5Nw+7ODshaCOCL6HeOeKYeH6Kr/MuvVmMo0RzHQM7Bn2C63L0nttsaPL3pqCVagkGDbDPh5BkGbOIIi1HJaBLbmdQD1WvmgsiJoht95EXS8Dd2vooeP+g7nukSpd9U8Moop5nct8UoXXMOZ/l2ef7Qz7j9J6aO8DNpFKGQ==
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?0uA8FbaAFuWPqfnrzV797RhOqXSEweRGAifKqmpqs3+bPiW5kGua48PxtHC+?=
- =?us-ascii?Q?Qn9I5wRLydvS0qWOYO+4y/o7E8jR6/n3GdSonO1rSevKyNr/S4qkMW0R4zfm?=
- =?us-ascii?Q?jU2GiEuMP19HXg/dLSuTlYT6sfizm7OjFkyvqLj2ETnUFDUvktQKGzdl+OTq?=
- =?us-ascii?Q?6q06BZ/MA8ImPGVZEe6BmWOsg7BznWUL4D5jwL3K5DTs5kAGSs3ti4/yQkip?=
- =?us-ascii?Q?1LGctj8Ktl4z3j007ACcOhwD+SdYwIRyXiu2HDhhgGeUYGX8Onpu2NVEVb+6?=
- =?us-ascii?Q?Lv9BbKePJ9TLU7DF3cS/Pz9mwntLRXlVKiROauEx+YOClABzBelj6dNFtRvc?=
- =?us-ascii?Q?QPRLgPZONTOZnSmRbJc52kPAUJQ6vIg0J6UlDfqQLRekmL4DcaOmvukzh1Rs?=
- =?us-ascii?Q?lQ93qhUvbVvWRbwiFMIfmneDVz64yhgcq9+Ouy+o4yA3nN2IItQ0xQJnxXiJ?=
- =?us-ascii?Q?0oGUUxiCoTLQuERj3Qe7XTWIH21I6c7PxRDiWuU8CcPCQQaZkU9zqP3QsNDn?=
- =?us-ascii?Q?da4u3L6bBG46N7CHGBo2hvjnAlrTslL6UdeE/LabqNd9CL//QRKEoL+BqSV8?=
- =?us-ascii?Q?c7oKxaxLMFnq5ucfBMookl2W8CRXTjvu+CxR+SyYUKePACmeuerrS0Fe8s9t?=
- =?us-ascii?Q?VA3MO4j4PuP5YDspiV9GSjwAgEDJGOn+zhMf/0ODMyUEQUfHCZZZd77UOQyp?=
- =?us-ascii?Q?PrcSJQLlCkqEn8uGP4yuYsdc8DYVJOdWbbS1hci+EogJjZ+vEct8mwIndhVT?=
- =?us-ascii?Q?PA32pTMNEkfRLy+QspbDlu6I8jcuZPZf5hGOwVQR+Pcjb7Ll08aWlmFFKBfQ?=
- =?us-ascii?Q?L76ovsIBzh2cCPrf14Uuf7LWTdvuUASS6H6NENuquae//uKyYhogZEO2Cfmr?=
- =?us-ascii?Q?alNdBnergSvEJTi78nimbeyfMuSkzYwmFT5MT68gRVJcLxMwBVfx9ylhjQu7?=
- =?us-ascii?Q?NkZsikob4TAG3+iAlDE0hd6g49jSBMl3MyR4891ZztQ=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_PS2PR03MB3719596734B3AA83DA6C9ED9F34E9PS2PR03MB3719apcp_"
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?gD2FsWqVyy8dUTFe33JZh0XHC8CMgTO4dcDu75vXh27kam7Xs+DB9m6j3EbJ?=
+ =?us-ascii?Q?xdbpOJ6/75GM7rpU8zBZJ/3dfSxc4MD/2MXFLhjolCFO1IayYa0XmiNhQsC2?=
+ =?us-ascii?Q?ZT7Fb2ksN8WH55DKudLfp5afKBhbHci1SoAIyd6sg7o+6QUMqCbJLfqtHU2W?=
+ =?us-ascii?Q?75vGNZP8P1UdN1ekWfYTmTcDElpXoN6h9F8PHxqg8BDgXKDmW/Jpi9ygiywR?=
+ =?us-ascii?Q?pE9kfli8UCSuaLhyFALmmImTGkDW/EstKgLZ1SLNNeWiQChpJ7q59dlALFCj?=
+ =?us-ascii?Q?nlcCq9a7CM6ev5bK2FEMhF27Yb+qKv8N5weXbSCR9JJK7uu2CC9vJ1l1ldEt?=
+ =?us-ascii?Q?o5cmzFN9Pl8PlBxHKnAR6CB+cvbiqcX0WpprLl2CU82OUw1gYjitb8ux9z5J?=
+ =?us-ascii?Q?VZ8t3ZSGjjTNV3DjRtB4Jost+VHbGZ4rFjt5avmjMMZlEb7MeLSzAHB81LkW?=
+ =?us-ascii?Q?o48p+CqmIkGSsuwaozJPzLJYIGPFydOwzyauEMHXot8JPEpSJHTXFpFwQGIw?=
+ =?us-ascii?Q?7TAws8UOZPyTtOjM+1jIsFuAu27Gtl92injJXOCf63YFSOsHioV7kt1dDETa?=
+ =?us-ascii?Q?6txCx3oDRj9cGrC4crjeNa+yoVT53rbl6X9R+8bMGUDfKVgQDvmbuyV63Wnh?=
+ =?us-ascii?Q?DRL9K0vzwAuX3AbMQ8bjfSpeSqGcnO3Q9yNg+IyHoubRlCyQFeQSymkTjS39?=
+ =?us-ascii?Q?dJEQTcVHEMmZ9PNShr2PDaqO7Kewh8wfqKJ2vBN1xsVwo1OHLePnaYzNIkfC?=
+ =?us-ascii?Q?dya5OYveqpAxoFttyICX2XBeIPbPAA2A3BSwd8kwnTLw4UQIjiWYTN/Z+VaT?=
+ =?us-ascii?Q?edsLd3gBS2Q3SBB2x0O+MANBJP2dWkqeiAJhSQ7agKsssNmhwZ+Bzm6mSXKy?=
+ =?us-ascii?Q?kusZ9Cyw2e6u+mzMRQ8QamjfWngEsMeFlc+TIt5e1DdU+qPLkdOG98p7B4K4?=
+ =?us-ascii?Q?bWe74stUf/YiGUEybVGRc2harfEYE87/5felTXAS564Ycz3ZZIWXemwjtorS?=
+ =?us-ascii?Q?1nYoo0Rse2ENsPB/QL1KKCODBw=3D=3D?=
+Content-Type: multipart/mixed;
+ boundary="_002_AC748346877741079E7D526D5854F11Boutlookcom_"
 MIME-Version: 1.0
 X-OriginatorOrg: outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: PS2PR03MB3719.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: a07150d6-1c98-4a88-8902-08d9d284afa9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jan 2022 08:55:57.3806 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27d100fc-24c8-4720-d08c-08d9d28d8e34
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jan 2022 09:59:26.7058 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
 X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR03MB3338
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR03MB3361
 X-Mailman-Approved-At: Mon, 10 Jan 2022 13:24:14 +0000
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Discard large BIOS framebuffers
  causing display corruption.
@@ -104,132 +106,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Aun-Ali Zaidi <admin@kodeit.net>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Aditya Garg <gargaditya08@live.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---_000_PS2PR03MB3719596734B3AA83DA6C9ED9F34E9PS2PR03MB3719apcp_
+--_002_AC748346877741079E7D526D5854F11Boutlookcom_
 Content-Type: text/plain; charset="us-ascii"
+Content-ID: <17F02EA3DEB7EE478876DB2DB2C801C5@apcprd03.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 
-Hi Orlando
 
-Thanks for informing that the Macs are also affected :). I've sne the v2 of=
- the patch. You may try out if you want to.
+I believe I forgot to add Aditya to the conversation. So, I am sending the =
+patch as an attachment for those who want to test :)=
 
-Get Outlook for Android<https://aka.ms/AAb9ysg>
-________________________________
-From: Orlando Chamberlain <redecorating@protonmail.com>
-Sent: Saturday, January 8, 2022 10:41:50 AM
-To: jani.nikula@linux.intel.com <jani.nikula@linux.intel.com>
-Cc: ashisharora.linux@outlook.com <ashisharora.linux@outlook.com>; intel-gf=
-x@lists.freedesktop.org <intel-gfx@lists.freedesktop.org>; joonas.lahtinen@=
-linux.intel.com <joonas.lahtinen@linux.intel.com>; linux-kernel@vger.kernel=
-.org <linux-kernel@vger.kernel.org>; rodrigo.vivi@intel.com <rodrigo.vivi@i=
-ntel.com>; Aun-Ali Zaidi <admin@kodeit.net>
-Subject: Re: [PATCH] drm/i915: Discard large BIOS framebuffers causing disp=
-lay corruption.
+--_002_AC748346877741079E7D526D5854F11Boutlookcom_
+Content-Type: application/octet-stream; name="0001-drm.patch"
+Content-Description: 0001-drm.patch
+Content-Disposition: attachment; filename="0001-drm.patch"; size=1218;
+	creation-date="Sat, 08 Jan 2022 09:59:25 GMT";
+	modification-date="Sat, 08 Jan 2022 09:59:25 GMT"
+Content-ID: <34F95B4E1D087F4B83FB162DA4FBC392@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-I haven't observed "display corruption", but on my MacBookPro16,1 the botto=
-m
-and right edges of the TTY are not on the screen, so a few lines of text
-cannot be seen.
+RnJvbTogQXNoaXNoIEFyb3JhIDxhc2hpc2hhcm9yYS5saW51eEBvdXRsb29rLmNvbT4NCg0KT24g
+Y2VydGFpbiA0ayBwYW5lbHMsIHRoZSBCSU9TIGZyYW1lYnVmZmVyIGlzIGxhcmdlciB0aGFuIHdo
+YXQgcGFuZWwNCnJlcXVpcmVzIGNhdXNpbmcgZGlzcGxheSBjb3JydXB0aW9uLiBJbnRyb2R1Y2Ug
+YSBjaGVjayBmb3IgdGhlIHNhbWUuDQoNClNpZ25lZC1vZmYtYnk6IEFzaGlzaCBBcm9yYSA8YXNo
+aXNoYXJvcmEubGludXhAb3V0bG9vay5jb20+DQotLS0NCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2ZiZGV2LmMgfCA2ICsrKy0tLQ0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2Vy
+dGlvbnMoKyksIDMgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2ZiZGV2LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2ZiZGV2LmMNCmluZGV4IGFkYzNhODFiZS4uMGE2NDE4NGRmIDEwMDY0NA0KLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmRldi5jDQorKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiZGV2LmMNCkBAIC0xOTQsMTAgKzE5NCwxMCBA
+QCBzdGF0aWMgaW50IGludGVsZmJfY3JlYXRlKHN0cnVjdCBkcm1fZmJfaGVscGVyICpoZWxwZXIs
+DQogCWludCByZXQ7DQogDQogCWlmIChpbnRlbF9mYiAmJg0KLQkgICAgKHNpemVzLT5mYl93aWR0
+aCA+IGludGVsX2ZiLT5iYXNlLndpZHRoIHx8DQotCSAgICAgc2l6ZXMtPmZiX2hlaWdodCA+IGlu
+dGVsX2ZiLT5iYXNlLmhlaWdodCkpIHsNCisJICAgIChzaXplcy0+ZmJfd2lkdGggIT0gaW50ZWxf
+ZmItPmJhc2Uud2lkdGggfHwNCisJICAgICBzaXplcy0+ZmJfaGVpZ2h0ICE9IGludGVsX2ZiLT5i
+YXNlLmhlaWdodCkpIHsNCiAJCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLA0KLQkJCSAgICAi
+QklPUyBmYiB0b28gc21hbGwgKCVkeCVkKSwgd2UgcmVxdWlyZSAoJWR4JWQpLCINCisJCQkgICAg
+IkJJT1MgZmIgbm90IHZhbGlkICglZHglZCksIHdlIHJlcXVpcmUgKCVkeCVkKSwiDQogCQkJICAg
+ICIgcmVsZWFzaW5nIGl0XG4iLA0KIAkJCSAgICBpbnRlbF9mYi0+YmFzZS53aWR0aCwgaW50ZWxf
+ZmItPmJhc2UuaGVpZ2h0LA0KIAkJCSAgICBzaXplcy0+ZmJfd2lkdGgsIHNpemVzLT5mYl9oZWln
+aHQpOw0KLS0gDQoyLjI1LjENCg0K
 
-This also occurs on the internal displays of all (as far as I know) other
-2018-2020 Intel Macbooks when using the Intel GPU (The 15" and 16" ones
-also have an AMDGPU, but this issue occurs when they have the Intel GPU
-set as the boot gpu).
-
-There's a similar patch that hasn't been sent upstream that people with the=
-se
-Macbooks have been using:
-https://github.com/aunali1/linux-mbp-arch/blob/master/7001-drm-i915-fbdev-D=
-iscard-BIOS-framebuffers-exceeding-h.patch
-
-Cc: Aun-Ali Zaidi <admin@kodeit.net>
-
---
-Thanks,
-Orlando
-
-
---_000_PS2PR03MB3719596734B3AA83DA6C9ED9F34E9PS2PR03MB3719apcp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-</head>
-<body>
-<div style=3D"color: rgb(33, 33, 33); background-color: rgb(255, 255, 255);=
-" dir=3D"auto">
-Hi Orlando</div>
-<div style=3D"color: rgb(33, 33, 33); background-color: rgb(255, 255, 255);=
-" dir=3D"auto">
-<br>
-</div>
-<div style=3D"color: rgb(33, 33, 33); background-color: rgb(255, 255, 255);=
-" dir=3D"auto">
-Thanks for informing that the Macs are also affected :). I've sne the v2 of=
- the patch. You may try out if you want to.</div>
-<div style=3D"color: rgb(33, 33, 33); background-color: rgb(255, 255, 255);=
-" dir=3D"auto">
-<br>
-</div>
-<div id=3D"ms-outlook-mobile-signature" dir=3D"auto">Get <a href=3D"https:/=
-/aka.ms/AAb9ysg">
-Outlook for Android</a></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Orlando Chamberlain &=
-lt;redecorating@protonmail.com&gt;<br>
-<b>Sent:</b> Saturday, January 8, 2022 10:41:50 AM<br>
-<b>To:</b> jani.nikula@linux.intel.com &lt;jani.nikula@linux.intel.com&gt;<=
-br>
-<b>Cc:</b> ashisharora.linux@outlook.com &lt;ashisharora.linux@outlook.com&=
-gt;; intel-gfx@lists.freedesktop.org &lt;intel-gfx@lists.freedesktop.org&gt=
-;; joonas.lahtinen@linux.intel.com &lt;joonas.lahtinen@linux.intel.com&gt;;=
- linux-kernel@vger.kernel.org &lt;linux-kernel@vger.kernel.org&gt;;
- rodrigo.vivi@intel.com &lt;rodrigo.vivi@intel.com&gt;; Aun-Ali Zaidi &lt;a=
-dmin@kodeit.net&gt;<br>
-<b>Subject:</b> Re: [PATCH] drm/i915: Discard large BIOS framebuffers causi=
-ng display corruption.</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">I haven't observed &quot;display corruption&quot;,=
- but on my MacBookPro16,1 the bottom<br>
-and right edges of the TTY are not on the screen, so a few lines of text<br=
->
-cannot be seen.<br>
-<br>
-This also occurs on the internal displays of all (as far as I know) other<b=
-r>
-2018-2020 Intel Macbooks when using the Intel GPU (The 15&quot; and 16&quot=
-; ones<br>
-also have an AMDGPU, but this issue occurs when they have the Intel GPU<br>
-set as the boot gpu).<br>
-<br>
-There's a similar patch that hasn't been sent upstream that people with the=
-se<br>
-Macbooks have been using:<br>
-<a href=3D"https://github.com/aunali1/linux-mbp-arch/blob/master/7001-drm-i=
-915-fbdev-Discard-BIOS-framebuffers-exceeding-h.patch">https://github.com/a=
-unali1/linux-mbp-arch/blob/master/7001-drm-i915-fbdev-Discard-BIOS-framebuf=
-fers-exceeding-h.patch</a><br>
-<br>
-Cc: Aun-Ali Zaidi &lt;admin@kodeit.net&gt;<br>
-<br>
---<br>
-Thanks,<br>
-Orlando<br>
-<br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_PS2PR03MB3719596734B3AA83DA6C9ED9F34E9PS2PR03MB3719apcp_--
+--_002_AC748346877741079E7D526D5854F11Boutlookcom_--
