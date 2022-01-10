@@ -1,50 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A449489C7E
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 16:45:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41965489C80
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 16:46:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4889610FE20;
-	Mon, 10 Jan 2022 15:45:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C9CE112860;
+	Mon, 10 Jan 2022 15:46:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22BF8112328
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jan 2022 15:45:55 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12CEF112860
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jan 2022 15:46:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641829555; x=1673365555;
+ t=1641829566; x=1673365566;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2D0G46IIaa0BYh9hpRw8qikag5YciQlRkd/1/AE1P9A=;
- b=DAIZfxUsXA1XPpEqpa+iIyhDxWzOSxgR8nGxykq2OnciQ3luIao5U/xb
- iMnJRmVrjXcOwF1KCs85uWSDwVDepUO/AumH+lBhs6kdAWxXnwiDrjW6V
- sV+FOOicVEg2lUtkEuYg6GVfKrdLdfqcq/60JDWOJITMhSfxZ0N1L/u1Y
- kdvRZMYI5MvLqO+0hx1pLKFt7CyoMcLlOtsjZEbzM/rdA2kSBLyYY0/q5
- 7p0VY+2T3lFbAS/QDKvpkSW431OnP9mod2v+eJB5v8jFivmJul8Rw6CAz
- eGCENzfy1+3CDbaIaUe/267ZECsQP4MIDj+bY11FTHwMOlTx2HIZDtVel g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10222"; a="243450230"
-X-IronPort-AV: E=Sophos;i="5.88,277,1635231600"; d="scan'208";a="243450230"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2022 07:45:54 -0800
-X-IronPort-AV: E=Sophos;i="5.88,277,1635231600"; d="scan'208";a="528318493"
+ bh=XXOLhA8PdKw8zis4tSp9GqiwPgIiu3VMJw8sSXuwWpI=;
+ b=H6HtXDY1S4en2pEp/2wrllhc62A+EXZx7x1MbyI583R3ZNJdeZzNQB/0
+ OmmZMx5l0FgUMgcKiigvv4FSBvpg4f2KHYcO/3B/Q/Uhl/RzDOulxdvJ5
+ h4weUCQ2nmEw37Pgaft0VzpUn58gSu4wCxPHFc5HyIZi6h/XhxfsV9wUJ
+ T/ubQfplD5HktSY3a84OYt8JwhS9hK7ovtLrFJ2HHMMI5dRAF0oLr70TD
+ AYOLhuTyoZw2Cveq6wo68tC3KkSK5N1pgXSRyCNBSPpvMjscS4VxVr6dB
+ zBvv7lJWdU2VZcccLEvNvtVHKusxTFWqR24baD20vOKJI4mFH0OO9OsCQ Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10222"; a="242065242"
+X-IronPort-AV: E=Sophos;i="5.88,277,1635231600"; d="scan'208";a="242065242"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2022 07:46:05 -0800
+X-IronPort-AV: E=Sophos;i="5.88,277,1635231600"; d="scan'208";a="514712108"
 Received: from bdoyle2-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.26.184])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2022 07:45:52 -0800
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2022 07:45:59 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 10 Jan 2022 17:45:37 +0200
-Message-Id: <b76bf596eba67eb8495623551da2b62f961b0ad2.1641829429.git.jani.nikula@intel.com>
+Date: Mon, 10 Jan 2022 17:45:38 +0200
+Message-Id: <9942e52dd46542263273ee0471a25417d75b62b0.1641829429.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1641829428.git.jani.nikula@intel.com>
 References: <cover.1641829428.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/6] drm/i915: split out i915_gem.h declarations
+Subject: [Intel-gfx] [PATCH 2/6] drm/i915: split out i915_gem_internal.h
  from i915_drv.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,140 +63,487 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915_gem.h should be the place for declarations for i915_gem.c, but
-looks like it's filled with all sorts of cruft. Even so, move the
-declarations where they belong.
+We already have the i915_gem_internal.c file.
 
 Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h | 32 -----------------------------
- drivers/gpu/drm/i915/i915_gem.h | 36 +++++++++++++++++++++++++++++++++
- 2 files changed, 36 insertions(+), 32 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c      |  2 ++
+ drivers/gpu/drm/i915/display/intel_overlay.c  |  1 +
+ drivers/gpu/drm/i915/gem/i915_gem_internal.c  |  1 +
+ drivers/gpu/drm/i915/gem/i915_gem_internal.h  | 23 +++++++++++++++++++
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |  3 ++-
+ .../drm/i915/gem/selftests/i915_gem_context.c |  1 +
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |  4 +++-
+ .../drm/i915/gem/selftests/igt_gem_utils.c    |  1 +
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |  2 ++
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  1 +
+ drivers/gpu/drm/i915/gt/intel_gt.c            |  7 +++---
+ .../gpu/drm/i915/gt/intel_gt_buffer_pool.c    |  1 +
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |  1 +
+ drivers/gpu/drm/i915/gt/intel_renderstate.c   |  2 ++
+ drivers/gpu/drm/i915/gt/intel_ring.c          |  1 +
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 ++
+ drivers/gpu/drm/i915/gt/intel_timeline.c      |  3 ++-
+ drivers/gpu/drm/i915/gt/selftest_execlists.c  |  1 +
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  1 +
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |  2 ++
+ drivers/gpu/drm/i915/gt/selftest_migrate.c    |  2 ++
+ drivers/gpu/drm/i915/gt/selftest_rps.c        |  2 ++
+ .../gpu/drm/i915/gt/selftest_workarounds.c    |  1 +
+ drivers/gpu/drm/i915/i915_drv.h               |  9 --------
+ drivers/gpu/drm/i915/i915_perf.c              |  1 +
+ drivers/gpu/drm/i915/selftests/i915_gem.c     |  3 ++-
+ .../gpu/drm/i915/selftests/i915_gem_evict.c   |  1 +
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  1 +
+ drivers/gpu/drm/i915/selftests/i915_request.c |  1 +
+ drivers/gpu/drm/i915/selftests/i915_vma.c     |  1 +
+ drivers/gpu/drm/i915/selftests/igt_spinner.c  |  1 +
+ 31 files changed, 67 insertions(+), 16 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_internal.h
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 83a69a4a4fea..b34a67309976 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -4,6 +4,8 @@
+  *
+  */
+ 
++#include "gem/i915_gem_internal.h"
++
+ #include "i915_drv.h"
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index 991624a1351a..def4a90aec8b 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -28,6 +28,7 @@
+ 
+ #include <drm/drm_fourcc.h>
+ 
++#include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_pm.h"
+ #include "gt/intel_gpu_commands.h"
+ #include "gt/intel_ring.h"
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_internal.c b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
+index c5150a1ee3d2..c698f95af15f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_internal.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
+@@ -10,6 +10,7 @@
+ 
+ #include "i915_drv.h"
+ #include "i915_gem.h"
++#include "i915_gem_internal.h"
+ #include "i915_gem_object.h"
+ #include "i915_scatterlist.h"
+ #include "i915_utils.h"
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_internal.h b/drivers/gpu/drm/i915/gem/i915_gem_internal.h
+new file mode 100644
+index 000000000000..6664e06112fc
+--- /dev/null
++++ b/drivers/gpu/drm/i915/gem/i915_gem_internal.h
+@@ -0,0 +1,23 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#ifndef __I915_GEM_INTERNAL_H__
++#define __I915_GEM_INTERNAL_H__
++
++#include <linux/types.h>
++
++struct drm_i915_gem_object;
++struct drm_i915_gem_object_ops;
++struct drm_i915_private;
++
++struct drm_i915_gem_object *
++i915_gem_object_create_internal(struct drm_i915_private *i915,
++				phys_addr_t size);
++struct drm_i915_gem_object *
++__i915_gem_object_create_internal(struct drm_i915_private *i915,
++				  const struct drm_i915_gem_object_ops *ops,
++				  phys_addr_t size);
++
++#endif /* __I915_GEM_INTERNAL_H__ */
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+index 11f0aa65f8a3..6af237aa1854 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+@@ -8,9 +8,10 @@
+ 
+ #include "i915_selftest.h"
+ 
+-#include "gem/i915_gem_region.h"
++#include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_lmem.h"
+ #include "gem/i915_gem_pm.h"
++#include "gem/i915_gem_region.h"
+ 
+ #include "gt/intel_gt.h"
+ 
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+index 80d99b9c694f..2783c0bedf13 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+@@ -6,6 +6,7 @@
+ 
+ #include <linux/prime_numbers.h>
+ 
++#include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_pm.h"
+ #include "gt/intel_engine_pm.h"
+ #include "gt/intel_gt.h"
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+index f61356b72b1c..dc69de3f2b6d 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+@@ -6,11 +6,13 @@
+ 
+ #include <linux/prime_numbers.h>
+ 
++#include "gem/i915_gem_internal.h"
++#include "gem/i915_gem_region.h"
+ #include "gt/intel_engine_pm.h"
+ #include "gt/intel_gpu_commands.h"
+ #include "gt/intel_gt.h"
+ #include "gt/intel_gt_pm.h"
+-#include "gem/i915_gem_region.h"
++
+ #include "huge_gem_object.h"
+ #include "i915_selftest.h"
+ #include "selftests/i915_random.h"
+diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+index b35c1219c852..3c55e77b0f1b 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
++++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+@@ -7,6 +7,7 @@
+ #include "igt_gem_utils.h"
+ 
+ #include "gem/i915_gem_context.h"
++#include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_pm.h"
+ #include "gt/intel_context.h"
+ #include "gt/intel_gpu_commands.h"
+diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+index 6e9292918bfc..15964c2e8d5c 100644
+--- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+@@ -5,6 +5,8 @@
+ 
+ #include <linux/log2.h>
+ 
++#include "gem/i915_gem_internal.h"
++
+ #include "gen6_ppgtt.h"
+ #include "i915_scatterlist.h"
+ #include "i915_trace.h"
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 548d599c09dc..bc21d30f7abb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -6,6 +6,7 @@
+ #include <drm/drm_print.h>
+ 
+ #include "gem/i915_gem_context.h"
++#include "gem/i915_gem_internal.h"
+ 
+ #include "i915_cmd_parser.h"
+ #include "i915_drv.h"
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 298ff32c8d0c..4596157d8981 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -6,14 +6,16 @@
+ #include <drm/drm_managed.h>
+ #include <drm/intel-gtt.h>
+ 
+-#include "intel_gt_debugfs.h"
+-
++#include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_lmem.h"
++#include "pxp/intel_pxp.h"
++
+ #include "i915_drv.h"
+ #include "intel_context.h"
+ #include "intel_gt.h"
+ #include "intel_gt_buffer_pool.h"
+ #include "intel_gt_clock_utils.h"
++#include "intel_gt_debugfs.h"
+ #include "intel_gt_pm.h"
+ #include "intel_gt_requests.h"
+ #include "intel_migrate.h"
+@@ -24,7 +26,6 @@
+ #include "intel_rps.h"
+ #include "intel_uncore.h"
+ #include "shmem_utils.h"
+-#include "pxp/intel_pxp.h"
+ 
+ void __intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
+ {
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+index 9db3dcbd917f..cadfd85785b1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2014-2018 Intel Corporation
+  */
+ 
++#include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_object.h"
+ 
+ #include "i915_drv.h"
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index a94be0306464..1eac0254bf6f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -10,6 +10,7 @@
+ 
+ #include <drm/drm_cache.h>
+ 
++#include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_lmem.h"
+ #include "i915_trace.h"
+ #include "intel_gt.h"
+diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
+index b575cd6e0b7a..5121e6dc2fa5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
++++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2014 Intel Corporation
+  */
+ 
++#include "gem/i915_gem_internal.h"
++
+ #include "i915_drv.h"
+ #include "intel_renderstate.h"
+ #include "intel_context.h"
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
+index 2fdd52b62092..91c6a1881d18 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2019 Intel Corporation
+  */
+ 
++#include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_lmem.h"
+ #include "gem/i915_gem_object.h"
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 3e6fac0340ef..40a008d71795 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2008-2021 Intel Corporation
+  */
+ 
++#include "gem/i915_gem_internal.h"
++
+ #include "gen2_engine_cs.h"
+ #include "gen6_engine_cs.h"
+ #include "gen6_ppgtt.h"
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 438bbc7b8147..2962be6d4d00 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -3,9 +3,10 @@
+  * Copyright © 2016-2018 Intel Corporation
+  */
+ 
+-#include "i915_drv.h"
++#include "gem/i915_gem_internal.h"
+ 
+ #include "i915_active.h"
++#include "i915_drv.h"
+ #include "i915_syncmap.h"
+ #include "intel_gt.h"
+ #include "intel_ring.h"
+diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+index e10da897e07a..72d5faab8f9a 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
++++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+@@ -5,6 +5,7 @@
+ 
+ #include <linux/prime_numbers.h>
+ 
++#include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_pm.h"
+ #include "gt/intel_engine_heartbeat.h"
+ #include "gt/intel_reset.h"
+diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+index 4a20ba63446c..9e9ccb139ba7 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
++++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+@@ -6,6 +6,7 @@
+ #include <linux/kthread.h>
+ 
+ #include "gem/i915_gem_context.h"
++#include "gem/i915_gem_internal.h"
+ 
+ #include "i915_gem_evict.h"
+ #include "intel_gt.h"
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 618c905daa19..21c29d315cc0 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -5,6 +5,8 @@
+ 
+ #include <linux/prime_numbers.h>
+ 
++#include "gem/i915_gem_internal.h"
++
+ #include "i915_selftest.h"
+ #include "intel_engine_heartbeat.h"
+ #include "intel_engine_pm.h"
+diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/i915/gt/selftest_migrate.c
+index fa4293d2944f..c9c4f391c5cc 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
++++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
+@@ -5,6 +5,8 @@
+ 
+ #include <linux/sort.h>
+ 
++#include "gem/i915_gem_internal.h"
++
+ #include "selftests/i915_random.h"
+ 
+ static const unsigned int sizes[] = {
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index 7ee2513e15f9..a85bda53b767 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -6,6 +6,8 @@
+ #include <linux/pm_qos.h>
+ #include <linux/sort.h>
+ 
++#include "gem/i915_gem_internal.h"
++
+ #include "intel_engine_heartbeat.h"
+ #include "intel_engine_pm.h"
+ #include "intel_gpu_commands.h"
+diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+index 0287c2573c51..67a9aab801dd 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2018 Intel Corporation
+  */
+ 
++#include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_pm.h"
+ #include "gt/intel_engine_user.h"
+ #include "gt/intel_gt.h"
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index a44e0c3298fc..e55a50d255a6 100644
+index e55a50d255a6..bb8d57aafba8 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1603,9 +1603,6 @@ intel_vm_no_concurrent_access_wa(struct drm_i915_private *i915)
+@@ -1682,15 +1682,6 @@ i915_gem_vm_lookup(struct drm_i915_file_private *file_priv, u32 id)
+ 	return vm;
  }
  
- /* i915_gem.c */
--void i915_gem_init_early(struct drm_i915_private *dev_priv);
--void i915_gem_cleanup_early(struct drm_i915_private *dev_priv);
+-/* i915_gem_internal.c */
+-struct drm_i915_gem_object *
+-i915_gem_object_create_internal(struct drm_i915_private *dev_priv,
+-				phys_addr_t size);
+-struct drm_i915_gem_object *
+-__i915_gem_object_create_internal(struct drm_i915_private *dev_priv,
+-				  const struct drm_i915_gem_object_ops *ops,
+-				  phys_addr_t size);
 -
- static inline void i915_gem_drain_freed_objects(struct drm_i915_private *i915)
+ /* i915_gem_tiling.c */
+ static inline bool i915_gem_object_needs_bit17_swizzle(struct drm_i915_gem_object *obj)
  {
- 	/*
-@@ -1644,32 +1641,10 @@ static inline void i915_gem_drain_workqueue(struct drm_i915_private *i915)
- 	drain_workqueue(i915->wq);
- }
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 298857b69180..81b2d01cde50 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -196,6 +196,7 @@
+ #include <linux/uuid.h>
  
--struct i915_vma * __must_check
--i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
--			    struct i915_gem_ww_ctx *ww,
--			    const struct i915_ggtt_view *view,
--			    u64 size, u64 alignment, u64 flags);
--
--struct i915_vma * __must_check
--i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
--			 const struct i915_ggtt_view *view,
--			 u64 size, u64 alignment, u64 flags);
--
--int i915_gem_object_unbind(struct drm_i915_gem_object *obj,
--			   unsigned long flags);
--#define I915_GEM_OBJECT_UNBIND_ACTIVE BIT(0)
--#define I915_GEM_OBJECT_UNBIND_BARRIER BIT(1)
--#define I915_GEM_OBJECT_UNBIND_TEST BIT(2)
--#define I915_GEM_OBJECT_UNBIND_VM_TRYLOCK BIT(3)
--
--void i915_gem_runtime_suspend(struct drm_i915_private *dev_priv);
--
- int i915_gem_dumb_create(struct drm_file *file_priv,
- 			 struct drm_device *dev,
- 			 struct drm_mode_create_dumb *args);
+ #include "gem/i915_gem_context.h"
++#include "gem/i915_gem_internal.h"
+ #include "gt/intel_engine_pm.h"
+ #include "gt/intel_engine_user.h"
+ #include "gt/intel_execlists_submission.h"
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
+index 1628b81d0a35..e5dd82e7e480 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
+@@ -6,9 +6,10 @@
  
--int __must_check i915_gem_set_global_seqno(struct drm_device *dev, u32 seqno);
--
- static inline u32 i915_reset_count(struct i915_gpu_error *error)
- {
- 	return atomic_read(&error->reset_count);
-@@ -1681,17 +1656,10 @@ static inline u32 i915_reset_engine_count(struct i915_gpu_error *error,
- 	return atomic_read(&error->reset_engine_count[engine->uabi_class]);
- }
+ #include <linux/random.h>
  
--int __must_check i915_gem_init(struct drm_i915_private *dev_priv);
--void i915_gem_driver_register(struct drm_i915_private *i915);
--void i915_gem_driver_unregister(struct drm_i915_private *i915);
--void i915_gem_driver_remove(struct drm_i915_private *dev_priv);
--void i915_gem_driver_release(struct drm_i915_private *dev_priv);
- void i915_gem_suspend(struct drm_i915_private *dev_priv);
- void i915_gem_suspend_late(struct drm_i915_private *dev_priv);
- void i915_gem_resume(struct drm_i915_private *dev_priv);
++#include "gem/i915_gem_internal.h"
++#include "gem/i915_gem_pm.h"
+ #include "gem/selftests/igt_gem_utils.h"
+ #include "gem/selftests/mock_context.h"
+-#include "gem/i915_gem_pm.h"
+ #include "gt/intel_gt.h"
+ #include "gt/intel_gt_pm.h"
  
--int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file);
--
- int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
- 				    enum i915_cache_level cache_level);
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
+index 75b709c26dd3..74a1b2ecf48f 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
+@@ -22,6 +22,7 @@
+  *
+  */
  
-diff --git a/drivers/gpu/drm/i915/i915_gem.h b/drivers/gpu/drm/i915/i915_gem.h
-index d0752e5553db..0ebe32dc6e83 100644
---- a/drivers/gpu/drm/i915/i915_gem.h
-+++ b/drivers/gpu/drm/i915/i915_gem.h
-@@ -27,12 +27,18 @@
++#include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_pm.h"
+ #include "gem/selftests/igt_gem_utils.h"
+ #include "gem/selftests/mock_context.h"
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+index 357ced0b88e7..49baa18f27aa 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+@@ -26,6 +26,7 @@
+ #include <linux/prime_numbers.h>
  
- #include <linux/bug.h>
- #include <linux/interrupt.h>
-+#include <linux/types.h>
+ #include "gem/i915_gem_context.h"
++#include "gem/i915_gem_internal.h"
+ #include "gem/selftests/mock_context.h"
+ #include "gt/intel_context.h"
+ #include "gt/intel_gpu_commands.h"
+diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+index 7f66f6d299b2..cae78e301ccb 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_request.c
++++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+@@ -26,6 +26,7 @@
+ #include <linux/pm_qos.h>
+ #include <linux/sort.h>
  
- #include <drm/drm_drv.h>
++#include "gem/i915_gem_internal.h"
+ #include "gem/i915_gem_pm.h"
+ #include "gem/selftests/mock_context.h"
  
- #include "i915_utils.h"
+diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
+index de37cfa4c65f..753b133ee4c6 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_vma.c
++++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
+@@ -25,6 +25,7 @@
+ #include <linux/prime_numbers.h>
  
-+struct drm_file;
-+struct drm_i915_gem_object;
- struct drm_i915_private;
-+struct i915_gem_ww_ctx;
-+struct i915_ggtt_view;
-+struct i915_vma;
+ #include "gem/i915_gem_context.h"
++#include "gem/i915_gem_internal.h"
+ #include "gem/selftests/mock_context.h"
  
- #ifdef CONFIG_DRM_I915_DEBUG_GEM
+ #include "i915_scatterlist.h"
+diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.c b/drivers/gpu/drm/i915/selftests/igt_spinner.c
+index 24d87d0fc747..0c22594ae274 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_spinner.c
++++ b/drivers/gpu/drm/i915/selftests/igt_spinner.c
+@@ -6,6 +6,7 @@
+ #include "gt/intel_gpu_commands.h"
+ #include "gt/intel_gt.h"
  
-@@ -123,4 +129,34 @@ static inline bool __tasklet_is_scheduled(struct tasklet_struct *t)
- 	return test_bit(TASKLET_STATE_SCHED, &t->state);
- }
++#include "gem/i915_gem_internal.h"
+ #include "gem/selftests/igt_gem_utils.h"
  
-+void i915_gem_init_early(struct drm_i915_private *i915);
-+void i915_gem_cleanup_early(struct drm_i915_private *i915);
-+int __must_check i915_gem_init(struct drm_i915_private *i915);
-+void i915_gem_driver_register(struct drm_i915_private *i915);
-+void i915_gem_driver_unregister(struct drm_i915_private *i915);
-+void i915_gem_driver_remove(struct drm_i915_private *i915);
-+void i915_gem_driver_release(struct drm_i915_private *i915);
-+int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file);
-+
-+void i915_gem_runtime_suspend(struct drm_i915_private *i915);
-+
-+struct i915_vma * __must_check
-+i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
-+			    struct i915_gem_ww_ctx *ww,
-+			    const struct i915_ggtt_view *view,
-+			    u64 size, u64 alignment, u64 flags);
-+
-+struct i915_vma * __must_check
-+i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
-+			 const struct i915_ggtt_view *view,
-+			 u64 size, u64 alignment, u64 flags);
-+
-+#define I915_GEM_OBJECT_UNBIND_ACTIVE		BIT(0)
-+#define I915_GEM_OBJECT_UNBIND_BARRIER		BIT(1)
-+#define I915_GEM_OBJECT_UNBIND_TEST		BIT(2)
-+#define I915_GEM_OBJECT_UNBIND_VM_TRYLOCK	BIT(3)
-+
-+int i915_gem_object_unbind(struct drm_i915_gem_object *obj,
-+			   unsigned long flags);
-+
- #endif /* __I915_GEM_H__ */
+ #include "igt_spinner.h"
 -- 
 2.30.2
 
