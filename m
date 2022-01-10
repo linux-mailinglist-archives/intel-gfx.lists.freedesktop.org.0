@@ -1,66 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 950FA48A334
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 23:52:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DEA748A3DB
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 00:45:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A560410E5AF;
-	Mon, 10 Jan 2022 22:52:46 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C41FD10E38A;
- Mon, 10 Jan 2022 22:52:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B2F110E430;
+	Mon, 10 Jan 2022 23:45:35 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 468F710E430
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 10 Jan 2022 23:45:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641855164; x=1673391164;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=m502bKnqDu1MPt2XWEwc/gLG90+OO2iv/9G3Fl0ldOw=;
- b=RM2ssphCnSzibMzHpG3DWBlj3/uCboQnGQJ4kyaKAAjZr7TwyQVmNBN6
- sb+Pe4NGdeQxtFladGGuRRw4Rwl10pH7CcBvBpxEXEjy7MCwEUUIsG97m
- ptq2VWUWR8DPiVqQHBELtkjmWD5QfLxxmC1KIyGiqWiiM5WAIZ13C6xcv
- g9GDxgir+czOBnCMGDcpuhbe0JmujvW5/bMhJ5dmL8RDjqP0TPLko1TAC
- w4DvfeywpCLVLc2de5fMv7JuJfSdtQn6U3QXxXLPQQG7m/kmuOwwup3QM
- kMKrBRzHpVOFwbzBZPkUalh87CTMSxxfcv80/OQy05jEDuyrn531KTjzT g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="223335448"
-X-IronPort-AV: E=Sophos;i="5.88,278,1635231600"; d="scan'208";a="223335448"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2022 14:52:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,278,1635231600"; d="scan'208";a="528473209"
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
- by orsmga008.jf.intel.com with ESMTP; 10 Jan 2022 14:52:42 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Mon, 10 Jan 2022 22:52:40 +0000
-Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
- fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.2308.020;
- Mon, 10 Jan 2022 14:52:39 -0800
-From: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-To: "Wang, Zhi A" <zhi.a.wang@intel.com>, "joonas.lahtinen@linux.intel.com"
- <joonas.lahtinen@linux.intel.com>, "Nikula, Jani" <jani.nikula@intel.com>
-Thread-Topic: [GIT PULL] GVT next changes for drm-intel-next-queued
-Thread-Index: AQHYA9Tuucz5FdQejkegRXcQeTo5nqxdZ/oA
-Date: Mon, 10 Jan 2022 22:52:38 +0000
-Message-ID: <f869fab00a4b5757fd272b3b7e178b4dcd921e6b.camel@intel.com>
-References: <e87298d5-0efb-981c-03d6-8b1bb7ab2cd6@intel.com>
-In-Reply-To: <e87298d5-0efb-981c-03d6-8b1bb7ab2cd6@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.40.4 (3.40.4-2.fc34) 
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FBE140ACAC36B94B9C7C222F3A4E4756@intel.com>
-Content-Transfer-Encoding: base64
+ t=1641858334; x=1673394334;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0LNMlvbDOn6T0JlP+ZrbzgnBB56lanV+zE8rKAb9DJ4=;
+ b=EEp/RvkTE/BO1TlAx5eXnY+d5BTjJToQuzr5tYM6J0YUEx0xubdAE2G8
+ cbzLRMPmtqUO/aBfEjqEtfUbVqq9t5nN68pY5fUMsxLMC7OzFrr4jaLoX
+ Wt7pPcvrnq0sfDfW2v9C4GfgVJ2z6eLQz8Ox86UEQ2MZdGaFJiWQxLVQq
+ SA27cdrXozudIGr2lmmGFQSegovUYk7EysGUQscS5Z+6WuH1fnDYmipi7
+ FgoYK0utcjsbzoVZrM7ns9leDss8g4+/GWQnNdQIoNc1yIsoXNc5Tz9R7
+ 7WNBzdkDx3YLCvdwy053+tuo3OGqgztaqhWgTL5soHHKHwLnRIPMn7XSF w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="304100400"
+X-IronPort-AV: E=Sophos;i="5.88,278,1635231600"; d="scan'208";a="304100400"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2022 15:45:31 -0800
+X-IronPort-AV: E=Sophos;i="5.88,278,1635231600"; d="scan'208";a="690772676"
+Received: from wchew-mobl.amr.corp.intel.com (HELO cataylo2-mobl1.intel.com)
+ ([10.255.78.106])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2022 15:45:29 -0800
+From: clinton.a.taylor@intel.com
+To: Intel-gfx@lists.freedesktop.org
+Date: Mon, 10 Jan 2022 15:45:20 -0800
+Message-Id: <20220110234520.6836-1-clinton.a.taylor@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [GIT PULL] GVT next changes for
- drm-intel-next-queued
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/snps: vswing value refined for SNPS
+ phys
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,52 +56,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIyLTAxLTA3IGF0IDE0OjQzICswMDAwLCBXYW5nLCBaaGkgQSB3cm90ZToNCj4g
-SGkgZm9sa3M6DQo+IA0KPiBIYXBweSBob2xpZGF5cyEgVGhpcyBwdWxsIG1vc3RseSBjb250YWlu
-cyB0aGUgY29kZSByZS1mYWN0b3JzIHBhdGNoZXMNCj4gZnJvbSBHdWVudGVyIFJvZWNrIGFuZCBS
-aWthcmQuIEFsc28gYSBtaW5vciBjaGFuZ2UgZnJvbSBaaGVueXUuDQo+IA0KPiBaaGkNCj4gDQo+
-IFRoZSBmb2xsb3dpbmcgY2hhbmdlcyBzaW5jZSBjb21taXQNCj4gM2JmYTdkNDBjZTczNmZmYmJm
-ZTA3MTI3MDYxZjU0YjM1OWVlMmIxMjoNCj4gDQo+IMKgwqAgZHJtL2k5MTUvZGcyOiBBZGQgc3Vw
-cG9ydCBmb3IgbmV3IERHMi1HMTEgcmV2aWQgMHg1ICgyMDIxLTA4LTA2DQo+IDA5OjAzOjEwIC0w
-NzAwKQ0KPiANCj4gYXJlIGF2YWlsYWJsZSBpbiB0aGUgR2l0IHJlcG9zaXRvcnkgYXQ6DQo+IA0K
-PiDCoMKgIGh0dHBzOi8vZ2l0aHViLmNvbS9pbnRlbC9ndnQtbGludXjCoHRhZ3MvZ3Z0LW5leHQt
-MjAyMi0wMS0wNw0KPiANCj4gZm9yIHlvdSB0byBmZXRjaCBjaGFuZ2VzIHVwIHRvDQo+IGQ3YTg1
-ODU0MzBmMmI2ZGY1OTYwYmJjMzA1ZWRjZWM1YTU1MTgwZjM6DQoNCkknbSBub3Qgc3VyZSB3aGF0
-J3MgZ29pbmcgb24gaGVyZSwgYnV0Og0KDQpkaW06IG5vIHB1bGwgcmVxdWVzdCBmb3VuZA0KDQpk
-aWQgeW91IGRvIGFueXRoaW5nIGRpZmZlcmVudCBvbiB0aGlzIHJvdW5kIGZvciBnZW5lcmF0aW5n
-IGFuZCBzZW5kaW5nDQpvdXQgdGhpcyBwdWxsIHJlcXVlc3QgZW1haWw/DQoNCj4gDQo+IMKgwqAg
-ZHJtL2k5MTUvZ3Z0OiBDb25zdGlmeSB2Z3B1X3R5cGVzICgyMDIxLTEyLTE2IDA5OjEzOjAyIC0w
-NTAwKQ0KPiANCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiBHdWVudGVyIFJvZWNrICgxKToNCj4gwqDCoMKgwqDCoMKg
-IGRybS9pOTE1L2d2dDogVXNlIGxpc3RfZW50cnkgdG8gYWNjZXNzIGxpc3QgbWVtYmVycw0KPiAN
-Cj4gUmlrYXJkIEZhbGtlYm9ybiAoOSk6DQo+IMKgwqDCoMKgwqDCoCBkcm0vaTkxNS9ndnQ6IENv
-bnN0aWZ5IGludGVsX2d2dF9ndHRfZ21hX29wcw0KPiDCoMKgwqDCoMKgwqAgZHJtL2k5MTUvZ3Z0
-OiBDb25zdGlmeSBpbnRlbF9ndnRfZ3R0X3B0ZV9vcHMNCj4gwqDCoMKgwqDCoMKgIGRybS9pOTE1
-L2d2dDogQ29uc3RpZnkgaW50ZWxfZ3Z0X2lycV9vcHMNCj4gwqDCoMKgwqDCoMKgIGRybS9pOTE1
-L2d2dDogQ29uc3RpZnkgaW50ZWxfZ3Z0X3NjaGVkX3BvbGljeV9vcHMNCj4gwqDCoMKgwqDCoMKg
-IGRybS9pOTE1L2d2dDogQ29uc3RpZnkgZ3Z0X21taW9fYmxvY2sNCj4gwqDCoMKgwqDCoMKgIGRy
-bS9pOTE1L2d2dDogQ29uc3RpZnkgY21kX2ludGVycnVwdF9ldmVudHMNCj4gwqDCoMKgwqDCoMKg
-IGRybS9pOTE1L2d2dDogQ29uc3RpZnkgZm9ybWF0cw0KPiDCoMKgwqDCoMKgwqAgZHJtL2k5MTUv
-Z3Z0OiBDb25zdGlmeSBndHRfdHlwZV90YWJsZV9lbnRyeQ0KPiDCoMKgwqDCoMKgwqAgZHJtL2k5
-MTUvZ3Z0OiBDb25zdGlmeSB2Z3B1X3R5cGVzDQo+IA0KPiBaaGVueXUgV2FuZyAoMSk6DQo+IMKg
-wqDCoMKgwqDCoCBkcm0vaTkxNS9ndnQ6IEZpeCBjbWQgcGFyc2VyIGVycm9yIGZvciBQYXNzbWFy
-azkNCj4gDQo+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d2dC9jbWRfcGFyc2VyLmPCoMKgIHzC
-oCAyICstDQo+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d2dC9kbWFidWYuY8KgwqDCoMKgwqDC
-oCB8IDE4ICsrKy0tLS0tLQ0KPiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndnQvZmJfZGVjb2Rl
-ci5jwqDCoCB8IDI0ICsrKysrKy0tLS0tLQ0KPiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndnQv
-Z3R0LmPCoMKgwqDCoMKgwqDCoMKgwqAgfCA2OA0KPiArKysrKysrKysrKysrKysrLS0tLS0tLS0t
-LS0tLS0tLS0NCj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Z0L2d0dC5owqDCoMKgwqDCoMKg
-wqDCoMKgIHzCoCA0ICstDQo+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d2dC9ndnQuaMKgwqDC
-oMKgwqDCoMKgwqDCoCB8wqAgMiArLQ0KPiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndnQvaGFu
-ZGxlcnMuY8KgwqDCoMKgIHwgMTMgKysrKy0tLQ0KPiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dnQvaW50ZXJydXB0LmPCoMKgwqAgfCAxMCArKy0tLQ0KPiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndnQvaW50ZXJydXB0LmjCoMKgwqAgfMKgIDIgKy0NCj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ3Z0L3NjaGVkX3BvbGljeS5jIHzCoCAyICstDQo+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2d2dC9zY2hlZHVsZXIuaMKgwqDCoCB8wqAgMiArLQ0KPiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndnQvdmdwdS5jwqDCoMKgwqDCoMKgwqDCoCB8wqAgNCArLQ0KPiDCoCAxMiBmaWxlcyBjaGFu
-Z2VkLCA3MiBpbnNlcnRpb25zKCspLCA3OSBkZWxldGlvbnMoLSkNCj4gDQoNCg==
+From: Clint Taylor <clinton.a.taylor@intel.com>
+
+Updated new values from BSPEC.
+
+BSPEC: 53920
+
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+---
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 42 +++++++++----------
+ 1 file changed, 21 insertions(+), 21 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index 1e689d573512..09d6ab13536c 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -985,15 +985,15 @@ static const struct intel_ddi_buf_trans adlp_dkl_phy_trans_dp_hbr2_hbr3 = {
+ };
+ 
+ static const union intel_ddi_buf_trans_entry _dg2_snps_trans[] = {
+-	{ .snps = { 26, 0, 0 } },	/* VS 0, pre-emph 0 */
+-	{ .snps = { 33, 0, 6 } },	/* VS 0, pre-emph 1 */
+-	{ .snps = { 38, 0, 12 } },	/* VS 0, pre-emph 2 */
+-	{ .snps = { 43, 0, 19 } },	/* VS 0, pre-emph 3 */
+-	{ .snps = { 39, 0, 0 } },	/* VS 1, pre-emph 0 */
+-	{ .snps = { 44, 0, 8 } },	/* VS 1, pre-emph 1 */
+-	{ .snps = { 47, 0, 15 } },	/* VS 1, pre-emph 2 */
+-	{ .snps = { 52, 0, 0 } },	/* VS 2, pre-emph 0 */
+-	{ .snps = { 51, 0, 10 } },	/* VS 2, pre-emph 1 */
++	{ .snps = { 25, 0, 0 } },	/* VS 0, pre-emph 0 */
++	{ .snps = { 32, 0, 6 } },	/* VS 0, pre-emph 1 */
++	{ .snps = { 35, 0, 10 } },	/* VS 0, pre-emph 2 */
++	{ .snps = { 43, 0, 17 } },	/* VS 0, pre-emph 3 */
++	{ .snps = { 35, 0, 0 } },	/* VS 1, pre-emph 0 */
++	{ .snps = { 45, 0, 8 } },	/* VS 1, pre-emph 1 */
++	{ .snps = { 48, 0, 14 } },	/* VS 1, pre-emph 2 */
++	{ .snps = { 47, 0, 0 } },	/* VS 2, pre-emph 0 */
++	{ .snps = { 55, 0, 7 } },	/* VS 2, pre-emph 1 */
+ 	{ .snps = { 62, 0, 0 } },	/* VS 3, pre-emph 0 */
+ };
+ 
+@@ -1005,21 +1005,21 @@ static const struct intel_ddi_buf_trans dg2_snps_trans = {
+ 
+ static const union intel_ddi_buf_trans_entry _dg2_snps_trans_uhbr[] = {
+ 	{ .snps = { 62, 0, 0 } },	/* preset 0 */
+-	{ .snps = { 56, 0, 6 } },	/* preset 1 */
+-	{ .snps = { 51, 0, 11 } },	/* preset 2 */
+-	{ .snps = { 48, 0, 14 } },	/* preset 3 */
+-	{ .snps = { 43, 0, 19 } },	/* preset 4 */
++	{ .snps = { 55, 0, 7 } },	/* preset 1 */
++	{ .snps = { 50, 0, 12 } },	/* preset 2 */
++	{ .snps = { 44, 0, 18 } },	/* preset 3 */
++	{ .snps = { 35, 0, 21 } },	/* preset 4 */
+ 	{ .snps = { 59, 3, 0 } },	/* preset 5 */
+ 	{ .snps = { 53, 3, 6 } },	/* preset 6 */
+-	{ .snps = { 49, 3, 10 } },	/* preset 7 */
+-	{ .snps = { 45, 3, 14 } },	/* preset 8 */
+-	{ .snps = { 42, 3, 17 } },	/* preset 9 */
++	{ .snps = { 48, 3, 11 } },	/* preset 7 */
++	{ .snps = { 42, 5, 15 } },	/* preset 8 */
++	{ .snps = { 37, 5, 20 } },	/* preset 9 */
+ 	{ .snps = { 56, 6, 0 } },	/* preset 10 */
+-	{ .snps = { 50, 6, 6 } },	/* preset 11 */
+-	{ .snps = { 47, 6, 9 } },	/* preset 12 */
+-	{ .snps = { 42, 6, 14 } },	/* preset 13 */
+-	{ .snps = { 46, 8, 8 } },	/* preset 14 */
+-	{ .snps = { 56, 3, 3 } },	/* preset 15 */
++	{ .snps = { 48, 7, 7 } },	/* preset 11 */
++	{ .snps = { 45, 7, 10 } },	/* preset 12 */
++	{ .snps = { 39, 8, 15 } },	/* preset 13 */
++	{ .snps = { 48, 14, 0 } },	/* preset 14 */
++	{ .snps = { 45, 4, 4 } },	/* preset 15 */
+ };
+ 
+ static const struct intel_ddi_buf_trans dg2_snps_trans_uhbr = {
+-- 
+2.34.1
+
