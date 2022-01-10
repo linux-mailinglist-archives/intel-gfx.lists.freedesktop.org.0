@@ -1,34 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1A8848A001
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 20:16:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ECDC48A00B
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 20:21:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B99FD10EE3F;
-	Mon, 10 Jan 2022 19:16:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5211510F817;
+	Mon, 10 Jan 2022 19:21:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1142B10EE3F;
- Mon, 10 Jan 2022 19:16:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0D548AADD2;
- Mon, 10 Jan 2022 19:16:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8993708551363212176=="
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99B7F10F817
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jan 2022 19:21:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1641842510; x=1673378510;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=HQjIamB1DVVBdAPIsHB6nHaCaU6C+pMd7WClA+OiBw4=;
+ b=T8BYmOXlMag1A6eXPDE7N5G9PpGzu0C5/SMVOuT0Zd5H7VKMmmYkGe9E
+ 08KY57SWqBvamKHuWvc6rB9kHKEMgj32SZctAPaueX2Xa0MrN6BT0t1/X
+ /zJY/8LdIfhNsFK8mmQFDBlsySpQlylphjipnVIHBAV19RxGevjcl9907
+ wwHmTtuGClnZSz9i7H1hXF2Q27AQwR05JxP/MBh3+cnLrq22hnE+J2cfH
+ pIda+CU/r6afRE6UAltWigwGgQqjIItH+NwN2sTNA00BPt7QP81yBCvy+
+ puxiYSy6Ajxvbo3lSFOEl9rk5ne6coge6UVQwv+HMKmDMzsLBDqprM0WG A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="230645045"
+X-IronPort-AV: E=Sophos;i="5.88,277,1635231600"; d="scan'208";a="230645045"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2022 11:21:50 -0800
+X-IronPort-AV: E=Sophos;i="5.88,277,1635231600"; d="scan'208";a="528398639"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2022 11:21:50 -0800
+Date: Mon, 10 Jan 2022 11:36:45 -0800
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
+Message-ID: <20220110193634.GA12500@labuser-Z97X-UD5H>
+References: <9dd78b35e9bf41f8816a0e7dedf75c64@intel.com>
+ <YUBT3ljaDzwtXkwq@intel.com> <20210914085958.GA27514@intel.com>
+ <87k0jj2wjo.fsf@intel.com> <20210914130425.GA27850@intel.com>
+ <20210914133223.GA28709@intel.com> <87bl4v2r2h.fsf@intel.com>
+ <c3813f0b1b18411abfdd9004378f2329@intel.com>
+ <87zgsf19dc.fsf@intel.com>
+ <03b4a5dab8384622b5c9baa2f92a9469@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Miaoqian Lin" <linmq006@gmail.com>
-Date: Mon, 10 Jan 2022 19:16:50 -0000
-Message-ID: <164184221001.28741.13258058067107332255@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211222075832.1732-1-linmq006@gmail.com>
-In-Reply-To: <20211222075832.1732-1-linmq006@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Fix_NULL_vs_IS=5FERR_checking_for_kernel=5Fc?=
- =?utf-8?q?ontext?=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <03b4a5dab8384622b5c9baa2f92a9469@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Enable second VDSC engine
+ for higher moderates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,245 +65,325 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8993708551363212176==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thankf for revisiting this thread. The use of max_cdclk is currently in 2 places in DSC code
+1. . if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq) {
+                if (pipe_config->dsc.slice_count > 1) {
+                        pipe_config->dsc.dsc_split = true;
+2. if (bigjoiner) {
+                u32 max_bpp_bigjoiner =
+                        i915->max_cdclk_freq * 48 /
+                        intel_dp_mode_to_fec_clock(mode_clock);
 
-== Series Details ==
+                DRM_DEBUG_KMS("Max big joiner bpp: %u\n", max_bpp_bigjoiner);
+                bits_per_pixel = min(bits_per_pixel, max_bpp_bigjoiner);
+        }
 
-Series: drm/i915/selftests: Fix NULL vs IS_ERR checking for kernel_context
-URL   : https://patchwork.freedesktop.org/series/98685/
-State : success
+In both these places, using max_cdclk can cause problems, like for compressed bpp it can give a higher bpp based
+on max_cdclk and we might actually end up chosing lower cdclk at what point this will cause underruns.
 
-== Summary ==
+So when I was discussing with Ville on this, my first thought was also to use the cdclk_state->actual_cdclk but like
+Ville mentioned later in the review comments the challenge there was that actual cdclk does get computed
+much later than dsc_compute_config.
 
-CI Bug Log - changes from CI_DRM_11061 -> Patchwork_21952
-====================================================
+So I think as suggested in one of the reviews we just to check if DSC is enabled then we dont allow lowering the cdclk
+which would also prevent underruns caused by possibly setting up higher bpp based on max cdclk.
 
-Summary
--------
+@Ville @Jani does this sound like a good approach. Then @Vandita we can pursue that change.
 
-  **SUCCESS**
+Regards
+Manasi
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/index.html
-
-Participating hosts (46 -> 35)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (12): fi-bdw-samus bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-apl-guc bat-adlp-6 fi-kbl-7500u bat-adlp-4 bat-rpls-1 bat-rpls-2 bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21952 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-bsw-kefka:       NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [PASS][3] -> [FAIL][4] ([i915#4547])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11061/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][5] -> [INCOMPLETE][6] ([i915#3921])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11061/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [PASS][7] -> [DMESG-FAIL][8] ([i915#4528])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11061/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][9] ([fdo#109271]) +57 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][10] ([i915#4312])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-skl-6600u/igt@runner@aborted.html
-    - fi-blb-e6850:       NOTRUN -> [FAIL][11] ([fdo#109271] / [i915#2403] / [i915#4312])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-blb-e6850/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-kefka:       [INCOMPLETE][12] ([i915#2940]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11061/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][14] ([i915#4785]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11061/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11061 -> Patchwork_21952
-
-  CI-20190529: 20190529
-  CI_DRM_11061: 0ee2fe64a0021c173a686de95f9961c35c82cb99 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6326: ec75f64fcbcf4aac58fbf1bf629e8f59b19db4ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21952: 6248b6fb9e50b1ee866224b58605a2537cbb1ef8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6248b6fb9e50 drm/i915/selftests: Fix NULL vs IS_ERR checking for kernel_context
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/index.html
-
---===============8993708551363212176==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftests: Fix NULL vs IS_ERR checking for kernel_context</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98685/">https://patchwork.freedesktop.org/series/98685/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11061 -&gt; Patchwork_21952</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/index.html</p>
-<h2>Participating hosts (46 -&gt; 35)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (12): fi-bdw-samus bat-dg1-6 bat-dg1-5 fi-bsw-cyan fi-apl-guc bat-adlp-6 fi-kbl-7500u bat-adlp-4 bat-rpls-1 bat-rpls-2 bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21952 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11061/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11061/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11061/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-blb-e6850/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11061/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11061/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21952/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11061 -&gt; Patchwork_21952</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11061: 0ee2fe64a0021c173a686de95f9961c35c82cb99 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6326: ec75f64fcbcf4aac58fbf1bf629e8f59b19db4ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21952: 6248b6fb9e50b1ee866224b58605a2537cbb1ef8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>6248b6fb9e50 drm/i915/selftests: Fix NULL vs IS_ERR checking for kernel_context</p>
-
-</body>
-</html>
-
---===============8993708551363212176==--
+On Sun, Jan 09, 2022 at 11:15:04PM -0800, Kulkarni, Vandita wrote:
+> Revisiting this thread after update from the bspec.
+> 
+> > -----Original Message-----
+> > From: Nikula, Jani <jani.nikula@intel.com>
+> > Sent: Tuesday, September 14, 2021 8:40 PM
+> > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; Lisovskiy, Stanislav
+> > <stanislav.lisovskiy@intel.com>
+> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>; intel-
+> > gfx@lists.freedesktop.org; Navare, Manasi D <manasi.d.navare@intel.com>
+> > Subject: RE: [Intel-gfx] [PATCH] drm/i915/display: Enable second VDSC
+> > engine for higher moderates
+> > 
+> > On Tue, 14 Sep 2021, "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
+> > wrote:
+> > >> -----Original Message-----
+> > >> From: Nikula, Jani <jani.nikula@intel.com>
+> > >> Sent: Tuesday, September 14, 2021 7:33 PM
+> > >> To: Lisovskiy, Stanislav <stanislav.lisovskiy@intel.com>
+> > >> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>; Kulkarni, Vandita
+> > >> <vandita.kulkarni@intel.com>; intel-gfx@lists.freedesktop.org;
+> > >> Navare, Manasi D <manasi.d.navare@intel.com>
+> > >> Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Enable second VDSC
+> > >> engine for higher moderates
+> > >>
+> > >> On Tue, 14 Sep 2021, "Lisovskiy, Stanislav"
+> > >> <stanislav.lisovskiy@intel.com>
+> > >> wrote:
+> > >> > On Tue, Sep 14, 2021 at 04:04:25PM +0300, Lisovskiy, Stanislav wrote:
+> > >> >> On Tue, Sep 14, 2021 at 03:04:11PM +0300, Jani Nikula wrote:
+> > >> >> > On Tue, 14 Sep 2021, "Lisovskiy, Stanislav"
+> > >> <stanislav.lisovskiy@intel.com> wrote:
+> > >> >> > > On Tue, Sep 14, 2021 at 10:48:46AM +0300, Ville Syrjälä wrote:
+> > >> >> > >> On Tue, Sep 14, 2021 at 07:31:46AM +0000, Kulkarni, Vandita
+> > wrote:
+> > >> >> > >> > > -----Original Message-----
+> > >> >> > >> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > >> >> > >> > > Sent: Tuesday, September 14, 2021 12:59 PM
+> > >> >> > >> > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> > >> >> > >> > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani
+> > >> >> > >> > > <jani.nikula@intel.com>; Navare, Manasi D
+> > >> >> > >> > > <manasi.d.navare@intel.com>
+> > >> >> > >> > > Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Enable
+> > >> >> > >> > > second VDSC engine for higher moderates
+> > >> >> > >> > >
+> > >> >> > >> > > On Mon, Sep 13, 2021 at 08:09:23PM +0530, Vandita
+> > >> >> > >> > > Kulkarni
+> > >> wrote:
+> > >> >> > >> > > > Each VDSC operates with 1ppc throughput, hence enable
+> > >> >> > >> > > > the second VDSC engine when moderate is higher that the
+> > >> >> > >> > > > current
+> > >> cdclk.
+> > >> >> > >> > > >
+> > >> >> > >> > > > Signed-off-by: Vandita Kulkarni
+> > >> >> > >> > > > <vandita.kulkarni@intel.com>
+> > >> >> > >> > > > ---
+> > >> >> > >> > > >  drivers/gpu/drm/i915/display/intel_dp.c | 12
+> > >> >> > >> > > > ++++++++++--
+> > >> >> > >> > > >  1 file changed, 10 insertions(+), 2 deletions(-)
+> > >> >> > >> > > >
+> > >> >> > >> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > >> >> > >> > > > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > >> >> > >> > > > index 161c33b2c869..55878f65f724 100644
+> > >> >> > >> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > >> >> > >> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > >> >> > >> > > > @@ -70,6 +70,7 @@
+> > >> >> > >> > > >  #include "intel_tc.h"
+> > >> >> > >> > > >  #include "intel_vdsc.h"
+> > >> >> > >> > > >  #include "intel_vrr.h"
+> > >> >> > >> > > > +#include "intel_cdclk.h"
+> > >> >> > >> > > >
+> > >> >> > >> > > >  #define DP_DPRX_ESI_LEN 14
+> > >> >> > >> > > >
+> > >> >> > >> > > > @@ -1291,10 +1292,13 @@ static int
+> > >> >> > >> > > > intel_dp_dsc_compute_config(struct
+> > >> >> > >> > > intel_dp *intel_dp,
+> > >> >> > >> > > >  				       struct
+> > drm_connector_state
+> > >> *conn_state,
+> > >> >> > >> > > >  				       struct link_config_limits
+> > *limits)  {
+> > >> >> > >> > > > +	struct intel_cdclk_state *cdclk_state;
+> > >> >> > >> > > >  	struct intel_digital_port *dig_port =
+> > >> dp_to_dig_port(intel_dp);
+> > >> >> > >> > > >  	struct drm_i915_private *dev_priv =
+> > to_i915(dig_port-
+> > >> >> > >> > > >base.base.dev);
+> > >> >> > >> > > >  	const struct drm_display_mode *adjusted_mode =
+> > >> >> > >> > > >  		&pipe_config->hw.adjusted_mode;
+> > >> >> > >> > > > +	struct intel_atomic_state *state =
+> > >> >> > >> > > > +
+> > 	to_intel_atomic_state(pipe_config-
+> > >> >> > >> > > >uapi.state);
+> > >> >> > >> > > >  	int pipe_bpp;
+> > >> >> > >> > > >  	int ret;
+> > >> >> > >> > > >
+> > >> >> > >> > > > @@ -1373,12 +1377,16 @@ static int
+> > >> >> > >> > > > intel_dp_dsc_compute_config(struct
+> > >> >> > >> > > intel_dp *intel_dp,
+> > >> >> > >> > > >  		}
+> > >> >> > >> > > >  	}
+> > >> >> > >> > > >
+> > >> >> > >> > > > +	cdclk_state = intel_atomic_get_cdclk_state(state);
+> > >> >> > >> > > > +	if (IS_ERR(cdclk_state))
+> > >> >> > >> > > > +		return PTR_ERR(cdclk_state);
+> > >> >> > >> > > > +
+> > >> >> > >> > > >  	/*
+> > >> >> > >> > > >  	 * VDSC engine operates at 1 Pixel per clock, so if
+> > >> >> > >> > > > peak pixel
+> > >> rate
+> > >> >> > >> > > > -	 * is greater than the maximum Cdclock and if slice
+> > count is
+> > >> even
+> > >> >> > >> > > > +	 * is greater than the current Cdclock and if slice
+> > >> >> > >> > > > +count is even
+> > >> >> > >> > > >  	 * then we need to use 2 VDSC instances.
+> > >> >> > >> > > >  	 */
+> > >> >> > >> > > > -	if (adjusted_mode->crtc_clock > dev_priv-
+> > >max_cdclk_freq
+> > >> ||
+> > >> >> > >> > > > +	if (adjusted_mode->crtc_clock >
+> > >> >> > >> > > > +cdclk_state->actual.cdclk ||
+> > >> >> > >> > >
+> > >> >> > >> > > This is wrong. We compute the cdclk based on the
+> > >> >> > >> > > requirements of the mode/etc., not the other way around.
+> > >> >> > >
+> > >> >> > > According to BSpec guideline, we decide whether we enable or
+> > >> >> > > disable second VDSC engine, based on that condition. As I
+> > >> >> > > understand that one is about DSC config calculation, based on
+> > >> >> > > CDCLK
+> > >> which was calculated.
+> > >> >> >
+> > >> >> > Point is, at the time compute_config gets called, what
+> > >> >> > guarantees are there that cdclk_state->actual.cdclk contains
+> > anything useful?
+> > >> >> > This is the design we have.
+> > >> >>
+> > >> >> That is actually good question, was willing to check that as well.
+> > >> >>
+> > >> >> >
+> > >> >> > > If we bump up CDCLK, to avoid this, will we even then use a
+> > >> >> > > second
+> > >> VDSC ever?
+> > >> >> >
+> > >> >> > I think we'll eventually need better logic than unconditionally
+> > >> >> > bumping to max, and it needs to take *both* the cdclk and the
+> > >> >> > number of dsc engines into account. The referenced bspec only
+> > >> >> > has the vdsc clock perspective, not overall perspective.
+> > >> >>
+> > >> >> What we need to clarify here is that how this is supposed to work
+> > >> >> in
+> > >> theory.
+> > >> >> Basically same issue can be fixed by both increasing the CDCLK or
+> > >> >> enabling 2nd VDSC engine.
+> > >> >> There should be some guideline telling us, how to prioritize.
+> > >> >> From overall perspective as I understand, by default, we are able
+> > >> >> to keep CDCLK 2 times less than pixel rate(see
+> > >> >> intel_pixel_rate_to_cdclk), however due to that VDSC limitation
+> > >> >> that it can use only 1 ppc this becomes, not applicable anymore(at
+> > >> >> least as of BSpec 49259), so we have to increase amount of VDSC
+> > >> >> instances
+> > >> then.
+> > >> >>
+> > >> >> So the question is now - what is more optimal here?
+> > >> >> Also if we bump up CDCLK(which we have done many times already in
+> > >> >> fact), we then need to add some logic to intel_compute_min_cdclk
+> > >> >> to check if we are using DSC or not, because otherwise we don't
+> > >> >> really need
+> > >> to do that.
+> > >>
+> > >> intel_compute_min_cdclk() already needs to be dsc aware when slice
+> > >> count is 1 and we can't use two dsc engines anyway. See the recent
+> > >> commit fe01883fdcef ("drm/i915: Get proper min cdclk if vDSC enabled").
+> > >>
+> > >> Looking again, I'm not sure that does the right decision for when
+> > >> dsc.slice_count > 1, but dsc.split == false. It should probably use
+> > >> dsc.split for the decision.
+> > >>
+> > >> >>
+> > >> >> Stan
+> > >> >
+> > >> > Checked and indeed, encoder->compute_config is called way before,
+> > >> > basically CDCLK calculation is called almost in the end of
+> > >> > atomic_check, so in compute_config, there would be an old CDCLK
+> > >> > value copied from previous cdclk state, but not the last one.
+> > >> >
+> > >> > Vandita, this means we actually can't do it that way, if you want
+> > >> > to do anything with VDSC based on CDCLK this has to be done _after_
+> > >> > intel_compute_min_cdclk was called. Which is not very sweet, I guess.
+> > >> >
+> > >> > So as of current architecture, it seems that the easiest way is
+> > >> > indeed to bump the CDCLK or we need to figure the way how to enable
+> > >> > 2nd VDSC somewhere else, after CDCLK was calculated.
+> > >>
+> > >> Alternatively, we could use two dsc engines more aggressively, but
+> > >> that decision currently can't take overall chosen cdclk into account.
+> > >>
+> > >> We'll end up sometimes unnecessarily using a too high cdclk or two
+> > >> dsc engines, just have to pick the poison.
+> > >>
+> > >> I think trying to do dsc decisions after intel_compute_min_cdclk()
+> > >> gets way too complicated.
+> > >
+> > > In this case, can we just use the 2nd VDSC engine if slice_count is 2 or
+> > more?
+> > > Which would mean we always operate in joiner enabled mode(small
+> > > joiner) of all the compression modes of operation mentioned in the
+> > > table bspec: 49259 Because we are still going to hit the max cdclk restriction
+> > for higher resolutions, and many lower resolutions wouldn’t need max cdclk.
+> > > And eventually once we have more details on cd clk vs 2VDSC engine we
+> > > could add the logic to choose one over the other?
+> > >
+> > > I see that in case of DSI we do split = true, for slice_count > 1 but that
+> > would need a different set of checks, thats a TBD.
+> > >
+> > > Or Do you suggest I just do this for now max cdclk when slice_count =1
+> > > (what we are doing now) replace with compression = true and split =
+> > > false
+> > 
+> > I think the check in intel_compute_min_cdclk() should be:
+> > 
+> > 	if (crtc_state->dsc.compression_enable && !crtc_state-
+> > >dsc.dsc_split)
+> > 
+> > That's a separate change.
+> > 
+> > Enabling two dsc engines more aggressively... I don't mind doing it
+> > unconditionally when slice count > 1 for starters. But I think we'll need to
+> > improve this going forward, including fixing the mode valid checks etc. as
+> > we've discussed.
+> 
+> Design recommendation is to use 2 VDSC instances while meeting the following constraint so that cdclk can stay as low as possible.
+> DP/HDMI PPR spec provided slice size < DPCD provided MaxSliceWidth
+> 
+> Thanks,
+> Vandita
+> > 
+> > Ville, any objections?
+> > 
+> > BR,
+> > Jani.
+> > 
+> > 
+> > >
+> > > Thanks,
+> > > Vandita
+> > >>
+> > >> BR,
+> > >> Jani
+> > >>
+> > >>
+> > >>
+> > >>
+> > >> >
+> > >> > Stan
+> > >> >
+> > >> >>
+> > >> >> >
+> > >> >> > BR,
+> > >> >> > Jani.
+> > >> >> >
+> > >> >> > > Another thing is that probably enabling second VDSC is cheaper
+> > >> >> > > in terms of power consumption, than bumping up the CDCLK.
+> > >> >> > >
+> > >> >> > > Stan
+> > >> >> > >
+> > >> >> > >> >
+> > >> >> > >> > Okay , So you suggest that we set the cd clock to max when
+> > >> >> > >> > we
+> > >> have such requirement, than enabling the second engine?
+> > >> >> > >>
+> > >> >> > >> That seems like the easiest solution. Another option might be
+> > >> >> > >> to come up with some lower dotclock limit for the use of the
+> > >> >> > >> second vdsc. But not sure we know where the tipping point is
+> > >> >> > >> wrt. powr
+> > >> consumption.
+> > >> >> > >>
+> > >> >> > >> --
+> > >> >> > >> Ville Syrjälä
+> > >> >> > >> Intel
+> > >> >> >
+> > >> >> > --
+> > >> >> > Jani Nikula, Intel Open Source Graphics Center
+> > >>
+> > >> --
+> > >> Jani Nikula, Intel Open Source Graphics Center
+> > 
+> > --
+> > Jani Nikula, Intel Open Source Graphics Center
