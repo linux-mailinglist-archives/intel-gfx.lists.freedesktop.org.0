@@ -1,58 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAC95489B31
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 15:22:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36E76489B36
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 15:25:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29EBD10E97D;
-	Mon, 10 Jan 2022 14:22:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5559110E713;
+	Mon, 10 Jan 2022 14:25:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com
- [IPv6:2607:f8b0:4864:20::834])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C73010E97D;
- Mon, 10 Jan 2022 14:22:21 +0000 (UTC)
-Received: by mail-qt1-x834.google.com with SMTP id v7so11205964qtw.13;
- Mon, 10 Jan 2022 06:22:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=bhtxXdrNNQLA2wEe4BgKLLDPV6Om3BGGtu6Ntfw+Rq4=;
- b=Y3xtu+3zFCRQ8x31FgrD4xGutAL+HeNk4zYKc5dARlnUrgkcpz5GnCgoP3gnGEa0RC
- mSlUd1k5aWuqs7MO7PlHs2vATVAgkAslidjLUL3fjPDDlm/xDxhf6ID5FfJVSkWHeyqI
- O/nG9vZFo/fH1beSiJi7iPJlyx3i4WQZqSrnzbFRZ0aLSqWHLYpiIK0dQtWKRfE9CcDG
- nbY6HpiMiGO9ddF3G8d7jC+xj3r+uOs2CLPdXc/JXezMc65T46P6vvdYYweuKR9iitCu
- 0t0MOOkMhnyM48NJSlUzeCGqOeXUFbiqual9SCRuE8J1weS4PkJZP4el9osoq1EZ7gyE
- WgyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=bhtxXdrNNQLA2wEe4BgKLLDPV6Om3BGGtu6Ntfw+Rq4=;
- b=TFisKTUdOlpiY8xSorp43jKds1CFMmQGXP3lAPksDnE+quMvD1H4przHsihWWAlzXj
- a2tdEAtvfTC5f7FOWbPQo7k+Ri2hDYRwLTC1VKJvXkMznHAKejLvm0JsWi1OlouJCC5U
- VGLiDsMQKgBpnVe0bJAPgAkXZKktsbjPZHGE7qlcyqLdNzmqEUqIIL/cKZ/QTdKWQ+hK
- PZXMv2fkIBBcqePg61ao8JRnV5AwRb2VfTdhhrWP0MeKbM/S/5LfW9r50zVv4/4C0rhI
- Qx45zkEwbUaThXvDdfdTc2A/jTKFZvJSl6dJLwggKhsSY+W4pjsjBS2SXdHnAutd1/IQ
- 8kUw==
-X-Gm-Message-State: AOAM5330fnnEQ+kLOzP+u20v0rijnpA3gh8tWSsqRPlg0EIx+4kEUTFf
- k+Tsep3/s3qBA544c+VSH9QDGNjOKJTDNTX9MXvflV3Lwh5x3Q==
-X-Google-Smtp-Source: ABdhPJyA1azuSCyAiCf7Je7zRdWuGUt5RNr2jLIkDV8mX5uXiMGi9dNHTUetUDgBRZNAxAykHnp0dMcjtvghqLTL8mQ=
-X-Received: by 2002:ac8:7d07:: with SMTP id g7mr65309102qtb.364.1641824540464; 
- Mon, 10 Jan 2022 06:22:20 -0800 (PST)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A4C610E6B5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jan 2022 14:25:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1641824728; x=1673360728;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=mjD5HYY3dK06oHL0fgEHoKCMq3JygBwPHp7/c9epJ78=;
+ b=JRedzkZ+at5OwFFvZMRpaPmx0LaNq0Q9ociP3EW6EDjK9vXDV+0lRtbo
+ /B/32eDJiAPX0hsB1+QKLykVrLgrQb4oVmeqTsi+sPpnFNuUKP9jnO+fw
+ jcGUyUNtgLHO0ufDDRkxkKkQ6lhLN0CXOERs+Zgc5UJ6MA6hyxIwpOeAl
+ VNmQNR/145hReTsb0muZ0IenbSBDDJrnUmPcQ6/ebaizHY2+hT+4FGOis
+ dBz6fj1cjvplAc844/efbs+kJeOzAs6I7khmQU1UDjnR07br2xcdTFhvf
+ /KzHy9r3XsJ6pduVPjU1Z9G53A5RxaP35a1F9MzchzMBaEXJ/Rm5CqbBL A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10222"; a="242047721"
+X-IronPort-AV: E=Sophos;i="5.88,277,1635231600"; d="scan'208";a="242047721"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2022 06:25:27 -0800
+X-IronPort-AV: E=Sophos;i="5.88,277,1635231600"; d="scan'208";a="514688028"
+Received: from bdoyle2-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.26.184])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2022 06:25:25 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+In-Reply-To: <87k0fbllu7.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1641561552.git.jani.nikula@intel.com>
+ <87k0fbllu7.fsf@intel.com>
+Date: Mon, 10 Jan 2022 16:25:21 +0200
+Message-ID: <877db7acry.fsf@intel.com>
 MIME-Version: 1.0
-References: <20220107142343.56811-1-thomas.hellstrom@linux.intel.com>
- <20220107142343.56811-7-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20220107142343.56811-7-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 10 Jan 2022 14:21:53 +0000
-Message-ID: <CAM0jSHPX83GrMqazs7m6O=+OM0zj_Z35h_PKq1zerc8GuGEQjA@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v6 6/6] drm/i915: Use struct vma_resource
- instead of struct vma_snapshot
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 0/5] drm/i915: clean up i915_drv.h, part 1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,27 +57,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 7 Jan 2022 at 14:24, Thomas Hellstr=C3=B6m
-<thomas.hellstrom@linux.intel.com> wrote:
+On Fri, 07 Jan 2022, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Fri, 07 Jan 2022, Jani Nikula <jani.nikula@intel.com> wrote:
+>> First five patches from [1], chopping it up a bit.
 >
-> There is always a struct vma_resource guaranteed to be alive when we
-> access a corresponding struct vma_snapshot.
+> Aarrgh. Today I learned, the hard way, that you can actually specify
+> both files *and* rev-list to git send-email at the same time, and it'll
+> send all. *facepalm*.
 >
-> So ditch the latter and instead of allocating vma_snapshots, reference
-> the already existning vma_resource.
+> Let's see how badly CI gets confused about this. Maybe I need to send
+> this yet again.
+
+Didn't get confused, series pushed, more to come.
+
+BR,
+Jani.
+
 >
-> This requires a couple of extra members in struct vma_resource but that's
-> a small price to pay for the simplification.
+> BR,
+> Jani.
 >
-> v2:
-> - Fix a missing include and declaration (kernel test robot <lkp@intel.com=
->)
 >
-> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>>
+>> BR,
+>> Jani.
+>>
+>> [1] https://patchwork.freedesktop.org/series/98515/
+>>
+>>
+>> Jani Nikula (5):
+>>   drm/i915: split out i915_getparam.h from i915_drv.h
+>>   drm/i915: split out i915_cmd_parser.h from i915_drv.h
+>>   drm/i915: split out i915_gem_evict.h from i915_drv.h
+>>   drm/i915: split out gem/i915_gem_userptr.h from i915_drv.h
+>>   drm/i915: split out gem/i915_gem_tiling.h from i915_drv.h
+>>
+>>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 ++
+>>  drivers/gpu/drm/i915/gem/i915_gem_tiling.c    |  1 +
+>>  drivers/gpu/drm/i915/gem/i915_gem_tiling.h    | 18 ++++++++++
+>>  drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |  1 +
+>>  drivers/gpu/drm/i915/gem/i915_gem_userptr.h   | 14 ++++++++
+>>  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
+>>  drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  1 +
+>>  drivers/gpu/drm/i915/i915_cmd_parser.c        |  1 +
+>>  drivers/gpu/drm/i915/i915_cmd_parser.h        | 26 ++++++++++++++
+>>  drivers/gpu/drm/i915/i915_driver.c            |  1 +
+>>  drivers/gpu/drm/i915/i915_drv.h               | 34 -------------------
+>>  drivers/gpu/drm/i915/i915_gem.c               |  1 +
+>>  drivers/gpu/drm/i915/i915_gem_evict.c         |  1 +
+>>  drivers/gpu/drm/i915/i915_gem_evict.h         | 24 +++++++++++++
+>>  drivers/gpu/drm/i915/i915_gem_gtt.c           |  1 +
+>>  drivers/gpu/drm/i915/i915_getparam.c          |  2 ++
+>>  drivers/gpu/drm/i915/i915_getparam.h          | 15 ++++++++
+>>  drivers/gpu/drm/i915/i915_ioc32.c             |  1 +
+>>  drivers/gpu/drm/i915/i915_vma.c               |  3 +-
+>>  19 files changed, 113 insertions(+), 36 deletions(-)
+>>  create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_tiling.h
+>>  create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_userptr.h
+>>  create mode 100644 drivers/gpu/drm/i915/i915_cmd_parser.h
+>>  create mode 100644 drivers/gpu/drm/i915/i915_gem_evict.h
+>>  create mode 100644 drivers/gpu/drm/i915/i915_getparam.h
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
