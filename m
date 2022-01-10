@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CA564896D8
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 11:59:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C009F4896E6
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 12:02:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43A2A14A3B0;
-	Mon, 10 Jan 2022 10:59:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C51C614A449;
+	Mon, 10 Jan 2022 11:02:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91CDA14A3AF
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jan 2022 10:59:19 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3684B14A44C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jan 2022 11:02:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641812359; x=1673348359;
+ t=1641812569; x=1673348569;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=c+rEwMdZd5yrmUuehqxq8ukeFFvUmBMt5qGVKLadT40=;
- b=ghe+3RcEHrW/OF5HptaD+99/N+EKkwmo+RPR1F+mTd/khRzr6r+sWZ/0
- K5paQh47imbyIE88E+Hyv+fezVBfryB57B2H+IIaNKxMICdsGPW97x7/O
- TvWTE/V9J4dg1eCkL3djGE7WuH9SJ8HJcCXoeMepXNU4bUwjHNDqYVpd9
- NsQ6GeN4cXIxxcZ24UbxytLabjUlxtXf+ZiY0fGlN1koeeJ22KLWlcBKM
- 5fA9eNuHHMVssDtTWvAGxMpwzLei6UAlRS6jyMDLK3fE+fjN2jlCJRRUb
- 0SbbzJpr48kuF8xmoHgLQk7XSzIDZtPvSrMo9GjgI/6FM1zO6TQUpGMm1 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10222"; a="267528557"
-X-IronPort-AV: E=Sophos;i="5.88,276,1635231600"; d="scan'208";a="267528557"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2022 02:59:18 -0800
-X-IronPort-AV: E=Sophos;i="5.88,276,1635231600"; d="scan'208";a="514635009"
+ message-id:mime-version:content-transfer-encoding;
+ bh=ADjHkEkoAML3pfXIgKGSGpSJ9ddOklEqLtFdmgn47Ms=;
+ b=nmFXlAvo550FVdnlUj/pOloh7qzMt2hJz31eeEhgeokgG1ApH3A2UVmo
+ xJFz9R2twaaHMZovUIw4z7VRs+QP0OgDj4VFXD8GBD4koncGa9BF9JYzV
+ NQGicJg1SnjvB3THYqZzMNfY2PHptBwDBiVjI+t+Ijnage8lAd7wuLNPs
+ OY4M8gD7aoOri/jJp5dCryqFs46cQPdy0hsfohpPfZ7xszB+DEmRpZRVq
+ Kym3Ef/4KSkP4R12cv94JXhYwEMmURDSU/hvfQMzJmW/B/gLUa+SETIOw
+ HVg53QDCUW3BgOkgUDpeFjO2IV1I9i+Duse0u2wuYaZxuuACBwbyCDbDd w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10222"; a="223896685"
+X-IronPort-AV: E=Sophos;i="5.88,276,1635231600"; d="scan'208";a="223896685"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2022 03:02:46 -0800
+X-IronPort-AV: E=Sophos;i="5.88,276,1635231600"; d="scan'208";a="528228892"
 Received: from bdoyle2-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.26.184])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2022 02:59:16 -0800
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2022 03:02:44 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220108044055.3123418-7-matthew.d.roper@intel.com>
+In-Reply-To: <20220108044055.3123418-8-matthew.d.roper@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220108044055.3123418-1-matthew.d.roper@intel.com>
- <20220108044055.3123418-7-matthew.d.roper@intel.com>
-Date: Mon, 10 Jan 2022 12:59:13 +0200
-Message-ID: <87y23nambi.fsf@intel.com>
+ <20220108044055.3123418-8-matthew.d.roper@intel.com>
+Date: Mon, 10 Jan 2022 13:02:41 +0200
+Message-ID: <87v8yram5q.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 6/7] drm/i915/gt: Move engine registers
- to their own header
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 7/7] drm/i915: Move SNPS PHY registers to
+ their own header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,60 +63,198 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Fri, 07 Jan 2022, Matt Roper <matthew.d.roper@intel.com> wrote:
-> Let's start breaking up and cleaning up the massive i915_reg.h file.
-> We'll start by moving all registers that are defined in relation to an
-> engine base to their own header.
->
-> There are probably a bunch of other "engine registers" that we haven't
-> moved yet (especially those that belong to the render engine in the
-> 0x2??? range), but this is a relatively straightforward first step.
+> These registers are only needed in a couple files and on specific
+> platforms; let's keep them separate from the general register pool.
 >
 > Cc: Jani Nikula <jani.nikula@linux.intel.com>
 > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/gen2_engine_cs.c      |   1 +
->  drivers/gpu/drm/i915/gt/gen6_engine_cs.c      |   1 +
->  drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |   1 +
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   1 +
->  drivers/gpu/drm/i915/gt/intel_engine_regs.h   | 197 +++++++++++++
->  .../drm/i915/gt/intel_execlists_submission.c  |   1 +
->  drivers/gpu/drm/i915/gt/intel_gt.c            |   1 +
->  drivers/gpu/drm/i915/gt/intel_lrc.c           |   1 +
->  drivers/gpu/drm/i915/gt/intel_lrc_reg.h       |  15 -
->  drivers/gpu/drm/i915/gt/intel_rc6.c           |   1 +
->  drivers/gpu/drm/i915/gt/intel_reset.c         |   1 +
->  drivers/gpu/drm/i915/gt/intel_ring.c          |   1 +
->  .../gpu/drm/i915/gt/intel_ring_submission.c   |   1 +
->  drivers/gpu/drm/i915/gt/intel_workarounds.c   |   1 +
->  drivers/gpu/drm/i915/gt/selftest_engine_pm.c  |   1 +
->  drivers/gpu/drm/i915/gt/selftest_gt_pm.c      |   1 +
->  drivers/gpu/drm/i915/gt/selftest_rps.c        |   1 +
->  drivers/gpu/drm/i915/gt/selftest_timeline.c   |   1 +
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |   1 +
->  .../gpu/drm/i915/gt/uc/intel_guc_submission.c |   3 +-
->  drivers/gpu/drm/i915/gvt/cmd_parser.c         |   1 +
->  drivers/gpu/drm/i915/gvt/mmio_context.c       |   1 +
->  drivers/gpu/drm/i915/gvt/mmio_context.h       |   1 +
->  drivers/gpu/drm/i915/i915_cmd_parser.c        |   1 +
->  drivers/gpu/drm/i915/i915_gpu_error.c         |   1 +
->  drivers/gpu/drm/i915/i915_perf.c              |   1 +
->  drivers/gpu/drm/i915/i915_pmu.c               |   1 +
->  drivers/gpu/drm/i915/i915_reg.h               | 267 +-----------------
->  drivers/gpu/drm/i915/i915_reg_defs.h          |  98 +++++++
-
-I think I would've liked to see this file split up as a separate prep
-patch.
-
-BR,
-Jani.
-
->  drivers/gpu/drm/i915/i915_request.c           |   1 +
->  drivers/gpu/drm/i915/intel_pm.c               |   1 +
->  drivers/gpu/drm/i915/intel_uncore.c           |   2 +-
->  32 files changed, 327 insertions(+), 281 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/gt/intel_engine_regs.h
->  create mode 100644 drivers/gpu/drm/i915/i915_reg_defs.h
+>  drivers/gpu/drm/i915/display/intel_snps_phy.c |  1 +
+>  .../drm/i915/display/intel_snps_phy_regs.h    | 73 +++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h               | 67 -----------------
+>  3 files changed, 74 insertions(+), 67 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_snps_phy_regs.h
 >
+> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/=
+drm/i915/display/intel_snps_phy.c
+> index 09f405e4d363..718bfdbae9c8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> @@ -10,6 +10,7 @@
+>  #include "intel_de.h"
+>  #include "intel_display_types.h"
+>  #include "intel_snps_phy.h"
+> +#include "intel_snps_phy_regs.h"
+>=20=20
+>  /**
+>   * DOC: Synopsis PHY support
+> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy_regs.h b/drivers=
+/gpu/drm/i915/display/intel_snps_phy_regs.h
+> new file mode 100644
+> index 000000000000..484d3d204012
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy_regs.h
+> @@ -0,0 +1,73 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =C2=A9 2022 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_SNPS_REGS__
+> +#define __INTEL_SNPS_REGS__
 
--- 
+#include "i915_reg_defs.h"
+
+Other than that,
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
+> +
+> +#define _SNPS_PHY_A_BASE			0x168000
+> +#define _SNPS_PHY_B_BASE			0x169000
+> +#define _SNPS_PHY(phy)				_PHY(phy, \
+> +						     _SNPS_PHY_A_BASE, \
+> +						     _SNPS_PHY_B_BASE)
+> +#define _SNPS2(phy, reg)			(_SNPS_PHY(phy) - \
+> +						 _SNPS_PHY_A_BASE + (reg))
+> +#define _MMIO_SNPS(phy, reg)			_MMIO(_SNPS2(phy, reg))
+> +#define _MMIO_SNPS_LN(ln, phy, reg)		_MMIO(_SNPS2(phy, \
+> +							     (reg) + (ln) * 0x10))
+> +
+> +#define SNPS_PHY_MPLLB_CP(phy)			_MMIO_SNPS(phy, 0x168000)
+> +#define   SNPS_PHY_MPLLB_CP_INT			REG_GENMASK(31, 25)
+> +#define   SNPS_PHY_MPLLB_CP_INT_GS		REG_GENMASK(23, 17)
+> +#define   SNPS_PHY_MPLLB_CP_PROP		REG_GENMASK(15, 9)
+> +#define   SNPS_PHY_MPLLB_CP_PROP_GS		REG_GENMASK(7, 1)
+> +
+> +#define SNPS_PHY_MPLLB_DIV(phy)			_MMIO_SNPS(phy, 0x168004)
+> +#define   SNPS_PHY_MPLLB_FORCE_EN		REG_BIT(31)
+> +#define   SNPS_PHY_MPLLB_DIV_CLK_EN		REG_BIT(30)
+> +#define   SNPS_PHY_MPLLB_DIV5_CLK_EN		REG_BIT(29)
+> +#define   SNPS_PHY_MPLLB_V2I			REG_GENMASK(27, 26)
+> +#define   SNPS_PHY_MPLLB_FREQ_VCO		REG_GENMASK(25, 24)
+> +#define   SNPS_PHY_MPLLB_DIV_MULTIPLIER		REG_GENMASK(23, 16)
+> +#define   SNPS_PHY_MPLLB_PMIX_EN		REG_BIT(10)
+> +#define   SNPS_PHY_MPLLB_DP2_MODE		REG_BIT(9)
+> +#define   SNPS_PHY_MPLLB_WORD_DIV2_EN		REG_BIT(8)
+> +#define   SNPS_PHY_MPLLB_TX_CLK_DIV		REG_GENMASK(7, 5)
+> +#define   SNPS_PHY_MPLLB_SHIM_DIV32_CLK_SEL	REG_BIT(0)
+> +
+> +#define SNPS_PHY_MPLLB_FRACN1(phy)		_MMIO_SNPS(phy, 0x168008)
+> +#define   SNPS_PHY_MPLLB_FRACN_EN		REG_BIT(31)
+> +#define   SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN	REG_BIT(30)
+> +#define   SNPS_PHY_MPLLB_FRACN_DEN		REG_GENMASK(15, 0)
+> +
+> +#define SNPS_PHY_MPLLB_FRACN2(phy)		_MMIO_SNPS(phy, 0x16800C)
+> +#define   SNPS_PHY_MPLLB_FRACN_REM		REG_GENMASK(31, 16)
+> +#define   SNPS_PHY_MPLLB_FRACN_QUOT		REG_GENMASK(15, 0)
+> +
+> +#define SNPS_PHY_MPLLB_SSCEN(phy)		_MMIO_SNPS(phy, 0x168014)
+> +#define   SNPS_PHY_MPLLB_SSC_EN			REG_BIT(31)
+> +#define   SNPS_PHY_MPLLB_SSC_UP_SPREAD		REG_BIT(30)
+> +#define   SNPS_PHY_MPLLB_SSC_PEAK		REG_GENMASK(29, 10)
+> +
+> +#define SNPS_PHY_MPLLB_SSCSTEP(phy)		_MMIO_SNPS(phy, 0x168018)
+> +#define   SNPS_PHY_MPLLB_SSC_STEPSIZE		REG_GENMASK(31, 11)
+> +
+> +#define SNPS_PHY_MPLLB_DIV2(phy)		_MMIO_SNPS(phy, 0x16801C)
+> +#define   SNPS_PHY_MPLLB_HDMI_PIXEL_CLK_DIV	REG_GENMASK(19, 18)
+> +#define   SNPS_PHY_MPLLB_HDMI_DIV		REG_GENMASK(17, 15)
+> +#define   SNPS_PHY_MPLLB_REF_CLK_DIV		REG_GENMASK(14, 12)
+> +#define   SNPS_PHY_MPLLB_MULTIPLIER		REG_GENMASK(11, 0)
+> +
+> +#define SNPS_PHY_REF_CONTROL(phy)		_MMIO_SNPS(phy, 0x168188)
+> +#define   SNPS_PHY_REF_CONTROL_REF_RANGE	REG_GENMASK(31, 27)
+> +
+> +#define SNPS_PHY_TX_REQ(phy)			_MMIO_SNPS(phy, 0x168200)
+> +#define   SNPS_PHY_TX_REQ_LN_DIS_PWR_STATE_PSR	REG_GENMASK(31, 30)
+> +
+> +#define SNPS_PHY_TX_EQ(ln, phy)			_MMIO_SNPS_LN(ln, phy, 0x168300)
+> +#define   SNPS_PHY_TX_EQ_MAIN			REG_GENMASK(23, 18)
+> +#define   SNPS_PHY_TX_EQ_POST			REG_GENMASK(15, 10)
+> +#define   SNPS_PHY_TX_EQ_PRE			REG_GENMASK(7, 2)
+> +
+> +#endif /* __INTEL_SNPS_REGS__ */
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 8ead30b47c69..5be5d0c28445 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2132,73 +2132,6 @@
+>  #define   MG_DP_MODE_CFG_DP_X2_MODE			(1 << 7)
+>  #define   MG_DP_MODE_CFG_DP_X1_MODE			(1 << 6)
+>=20=20
+> -/*
+> - * DG2 SNPS PHY registers (TC1 =3D PHY_E)
+> - */
+> -#define _SNPS_PHY_A_BASE			0x168000
+> -#define _SNPS_PHY_B_BASE			0x169000
+> -#define _SNPS_PHY(phy)				_PHY(phy, \
+> -						     _SNPS_PHY_A_BASE, \
+> -						     _SNPS_PHY_B_BASE)
+> -#define _SNPS2(phy, reg)			(_SNPS_PHY(phy) - \
+> -						 _SNPS_PHY_A_BASE + (reg))
+> -#define _MMIO_SNPS(phy, reg)			_MMIO(_SNPS2(phy, reg))
+> -#define _MMIO_SNPS_LN(ln, phy, reg)		_MMIO(_SNPS2(phy, \
+> -							     (reg) + (ln) * 0x10))
+> -
+> -#define SNPS_PHY_MPLLB_CP(phy)			_MMIO_SNPS(phy, 0x168000)
+> -#define   SNPS_PHY_MPLLB_CP_INT			REG_GENMASK(31, 25)
+> -#define   SNPS_PHY_MPLLB_CP_INT_GS		REG_GENMASK(23, 17)
+> -#define   SNPS_PHY_MPLLB_CP_PROP		REG_GENMASK(15, 9)
+> -#define   SNPS_PHY_MPLLB_CP_PROP_GS		REG_GENMASK(7, 1)
+> -
+> -#define SNPS_PHY_MPLLB_DIV(phy)			_MMIO_SNPS(phy, 0x168004)
+> -#define   SNPS_PHY_MPLLB_FORCE_EN		REG_BIT(31)
+> -#define   SNPS_PHY_MPLLB_DIV_CLK_EN		REG_BIT(30)
+> -#define   SNPS_PHY_MPLLB_DIV5_CLK_EN		REG_BIT(29)
+> -#define   SNPS_PHY_MPLLB_V2I			REG_GENMASK(27, 26)
+> -#define   SNPS_PHY_MPLLB_FREQ_VCO		REG_GENMASK(25, 24)
+> -#define   SNPS_PHY_MPLLB_DIV_MULTIPLIER		REG_GENMASK(23, 16)
+> -#define   SNPS_PHY_MPLLB_PMIX_EN		REG_BIT(10)
+> -#define   SNPS_PHY_MPLLB_DP2_MODE		REG_BIT(9)
+> -#define   SNPS_PHY_MPLLB_WORD_DIV2_EN		REG_BIT(8)
+> -#define   SNPS_PHY_MPLLB_TX_CLK_DIV		REG_GENMASK(7, 5)
+> -#define   SNPS_PHY_MPLLB_SHIM_DIV32_CLK_SEL	REG_BIT(0)
+> -
+> -#define SNPS_PHY_MPLLB_FRACN1(phy)		_MMIO_SNPS(phy, 0x168008)
+> -#define   SNPS_PHY_MPLLB_FRACN_EN		REG_BIT(31)
+> -#define   SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN	REG_BIT(30)
+> -#define   SNPS_PHY_MPLLB_FRACN_DEN		REG_GENMASK(15, 0)
+> -
+> -#define SNPS_PHY_MPLLB_FRACN2(phy)		_MMIO_SNPS(phy, 0x16800C)
+> -#define   SNPS_PHY_MPLLB_FRACN_REM		REG_GENMASK(31, 16)
+> -#define   SNPS_PHY_MPLLB_FRACN_QUOT		REG_GENMASK(15, 0)
+> -
+> -#define SNPS_PHY_MPLLB_SSCEN(phy)		_MMIO_SNPS(phy, 0x168014)
+> -#define   SNPS_PHY_MPLLB_SSC_EN			REG_BIT(31)
+> -#define   SNPS_PHY_MPLLB_SSC_UP_SPREAD		REG_BIT(30)
+> -#define   SNPS_PHY_MPLLB_SSC_PEAK		REG_GENMASK(29, 10)
+> -
+> -#define SNPS_PHY_MPLLB_SSCSTEP(phy)		_MMIO_SNPS(phy, 0x168018)
+> -#define   SNPS_PHY_MPLLB_SSC_STEPSIZE		REG_GENMASK(31, 11)
+> -
+> -#define SNPS_PHY_MPLLB_DIV2(phy)		_MMIO_SNPS(phy, 0x16801C)
+> -#define   SNPS_PHY_MPLLB_HDMI_PIXEL_CLK_DIV	REG_GENMASK(19, 18)
+> -#define   SNPS_PHY_MPLLB_HDMI_DIV		REG_GENMASK(17, 15)
+> -#define   SNPS_PHY_MPLLB_REF_CLK_DIV		REG_GENMASK(14, 12)
+> -#define   SNPS_PHY_MPLLB_MULTIPLIER		REG_GENMASK(11, 0)
+> -
+> -#define SNPS_PHY_REF_CONTROL(phy)		_MMIO_SNPS(phy, 0x168188)
+> -#define   SNPS_PHY_REF_CONTROL_REF_RANGE	REG_GENMASK(31, 27)
+> -
+> -#define SNPS_PHY_TX_REQ(phy)			_MMIO_SNPS(phy, 0x168200)
+> -#define   SNPS_PHY_TX_REQ_LN_DIS_PWR_STATE_PSR	REG_GENMASK(31, 30)
+> -
+> -#define SNPS_PHY_TX_EQ(ln, phy)			_MMIO_SNPS_LN(ln, phy, 0x168300)
+> -#define   SNPS_PHY_TX_EQ_MAIN			REG_GENMASK(23, 18)
+> -#define   SNPS_PHY_TX_EQ_POST			REG_GENMASK(15, 10)
+> -#define   SNPS_PHY_TX_EQ_PRE			REG_GENMASK(7, 2)
+> -
+>  /* The spec defines this only for BXT PHY0, but lets assume that this
+>   * would exist for PHY1 too if it had a second channel.
+>   */
+
+--=20
 Jani Nikula, Intel Open Source Graphics Center
