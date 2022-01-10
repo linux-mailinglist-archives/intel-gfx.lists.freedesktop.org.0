@@ -2,64 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADD564899E1
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:25:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3F3148993D
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 14:07:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67DAA12A0CD;
-	Mon, 10 Jan 2022 13:25:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B2C712BE0A;
+	Mon, 10 Jan 2022 13:07:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
- [IPv6:2a00:1450:4864:20::429])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B37310E3AB;
- Sun,  9 Jan 2022 20:31:54 +0000 (UTC)
-Received: by mail-wr1-x429.google.com with SMTP id v6so22930105wra.8;
- Sun, 09 Jan 2022 12:31:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=CVxqdhSmwND7LPC9Ui4ZQJOIVfvWlzvv/90s7w6B5IM=;
- b=c/Zk0NQcXA2SZ9SiVcMCotQhECHHHx7PSWjjvXc3/8beOJuLmOFmaZJ3B0UOrVzQiY
- Rvpt1XGBc0vy0b7vroeODiwR3LaXmdaF/O11MNffAyjvA8a2hSRInyDWEJ1VKGTogXTI
- pvQI30pctZNmdEbD3ly+7Pq9pjmqy4khzpI3vnJ0gHBuTVF0earYnmtKl1lMHPNqnPxL
- 3U99hze3eCkl5+lAkf6yln2HDhbiaVMfypz5PYaNS9G4ALkox/GmA+3kxCkV6ei5dJG/
- 7BRTQVrLytg9ZI/XwcBLhx+KXNvTrae3srdkbf0Ynwlm/I8Ur3PopP7ez7F+j5l05cvJ
- WCYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=CVxqdhSmwND7LPC9Ui4ZQJOIVfvWlzvv/90s7w6B5IM=;
- b=qiaPCK/WbiPqdaHqjmiUJqc91asjIAxUJluOIoFo7oxIKJ3N5stkiI/AmZ5VpAjKb0
- U6hX12IIjpt527hMkkWldovRGhGtp72mjnYZAsAwgh+QNNvp5hA+zchuSzbrMpi6a9we
- TR9Tz7qJwQdkWyUznCitoNsCHz210NkIOn2Q5fuOlCoEeiSL6+sOtILgPgfc6ZzDL0vN
- nwBqwt6Ckoewcm/Ll/+p09H9ZA2X8vx7ng+HJec+npv9py40ttRPGVDn+DoQ6svs6LRZ
- LtbW8pjg0rJzYtZBZR/1JHCfXIckY4faH0aQk2g47eQegl1x4ibpSpswGXDZBg+rH+/H
- MbVg==
-X-Gm-Message-State: AOAM530qQMwIrUww/vlWGahR1E7vhAMNgW34h3tWhek9NlmVUFFQHa0Y
- paCUhrJy8rU2ZbGx+OlzDKc=
-X-Google-Smtp-Source: ABdhPJxVqtlvscb41hOdCYQDVd7o8btAn3V18ZKgh8iUFdh4Qc76jZk6Pjedl6ObHF3sbnrvwkRJrA==
-X-Received: by 2002:a5d:6d85:: with SMTP id l5mr62101570wrs.579.1641760313091; 
- Sun, 09 Jan 2022 12:31:53 -0800 (PST)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
- [80.193.200.194])
- by smtp.gmail.com with ESMTPSA id f8sm5304253wry.16.2022.01.09.12.31.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 09 Jan 2022 12:31:52 -0800 (PST)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Date: Sun,  9 Jan 2022 20:31:52 +0000
-Message-Id: <20220109203152.51414-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.33.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 524EA12BE0B;
+ Mon, 10 Jan 2022 13:07:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4EFDFA7DFB;
+ Mon, 10 Jan 2022 13:07:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 10 Jan 2022 13:24:14 +0000
-Subject: [Intel-gfx] [PATCH] i915: make array flex_regs static const
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Mon, 10 Jan 2022 13:07:40 -0000
+Message-ID: <164182006028.28742.5884542469101166175@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220110115133.1500718-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20220110115133.1500718-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Remove_short_term_pins_from_execbuf_by_requirin?=
+ =?utf-8?q?g_lock_to_unbind=2E_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,31 +41,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Don't populate the read-only array flex_regs on the stack but
-instead it static const. Also makes the object code a little smaller.
+== Series Details ==
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/i915/i915_perf.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/i915: Remove short term pins from execbuf by requiring lock to unbind. (rev2)
+URL   : https://patchwork.freedesktop.org/series/98137/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index e27f3b7cf094..df698960fdc0 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -2114,7 +2114,7 @@ gen8_update_reg_state_unlocked(const struct intel_context *ce,
- 	u32 ctx_oactxctrl = stream->perf->ctx_oactxctrl_offset;
- 	u32 ctx_flexeu0 = stream->perf->ctx_flexeu0_offset;
- 	/* The MMIO offsets for Flex EU registers aren't contiguous */
--	i915_reg_t flex_regs[] = {
-+	static const i915_reg_t flex_regs[] = {
- 		EU_PERF_CNTL0,
- 		EU_PERF_CNTL1,
- 		EU_PERF_CNTL2,
--- 
-2.32.0
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+0a564d5e4bd9 drm/i915: Call i915_gem_evict_vm in vm_fault_gtt to prevent new ENOSPC errors, v2.
+2ffa12202a76 drm/i915: Add locking to i915_gem_evict_vm()
+775c2d0a1bd1 drm/i915: Add object locking to i915_gem_evict_for_node and i915_gem_evict_something
+-:148: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#148: FILE: drivers/gpu/drm/i915/i915_gem_evict.c:252:
+ 
++
+
+total: 0 errors, 0 warnings, 1 checks, 364 lines checked
+ec557f8e7070 drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind, v2.
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#7: 
+We want to remove more members of i915_vma, which requires the locking to be
+
+total: 0 errors, 1 warnings, 0 checks, 317 lines checked
+24fe65e145e6 drm/i915: Remove assert_object_held_shared
+f5cb09503ae0 drm/i915: Remove support for unlocked i915_vma unbind
+953cc81f3a16 drm/i915: Remove short-term pins from execbuf, v6.
+
 
