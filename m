@@ -2,32 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EFCC489FFA
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 20:14:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 391E1489FFB
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jan 2022 20:14:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD9EC10F2D7;
-	Mon, 10 Jan 2022 19:14:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6547210F3D6;
+	Mon, 10 Jan 2022 19:14:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1136D10F3D6;
- Mon, 10 Jan 2022 19:14:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 12EF1A00FD;
- Mon, 10 Jan 2022 19:14:09 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 937F610F3D6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jan 2022 19:14:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1641842057; x=1673378057;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-id:content-transfer-encoding:mime-version;
+ bh=cp1mKWhO9av/r02N7+iXVUm8Sq3xprhdrP3ZZOBkzhM=;
+ b=QN7c+89eEuVtfJnyYaQVi/5KTT1M9bdgdRDWy3Xr01eR8dGRVTNfYqO5
+ G9XEJxTAFqansjaXVd4fuvGMzn+ifz8RWGiccFlC/EKI+opI9t+lGLpy7
+ h0I0iOJNN5NiyM3IultViwo+j5W/qHZW2WGYdhRiZxyvl1E66Xstnjj09
+ yjtvTBX8z/hD4SqrmfhC39BvtNjxq2N8LO9baWRSM4+mf1lZldZQcRrEp
+ 7fW5dU/N1lu0gUsOerK2I4YrKkwzngm/U4f/hy5S+NnCVOBS1ofgFNTtp
+ ChlTDvsF6S2ls8QMDVJxzQgea5ihtSFvvAHaPacKWYhoUuISypGcx9/Xe w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="223997755"
+X-IronPort-AV: E=Sophos;i="5.88,277,1635231600"; d="scan'208";a="223997755"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2022 11:14:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,277,1635231600"; d="scan'208";a="528045650"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga007.fm.intel.com with ESMTP; 10 Jan 2022 11:14:17 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Mon, 10 Jan 2022 11:14:16 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Mon, 10 Jan 2022 11:14:16 -0800
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2308.020;
+ Mon, 10 Jan 2022 11:14:16 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Schweikhardt, Markus" <markus.schweikhardt@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [TGL-U][iGFX] Monitoring the freq of iGFX with
+ kernel 5.10 on TGL-U i5-1145GRE
+Thread-Index: AdgGUxtXZz9tUCvVRJq3zB2nXgiLNAARmy6A
+Date: Mon, 10 Jan 2022 19:14:15 +0000
+Message-ID: <5690be6ea6c58533d955b9d7533bdd8f0625e09b.camel@intel.com>
+References: <SA2PR11MB5116DFF2C3A626027BF6E051F1509@SA2PR11MB5116.namprd11.prod.outlook.com>
+In-Reply-To: <SA2PR11MB5116DFF2C3A626027BF6E051F1509@SA2PR11MB5116.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
 Content-Type: text/plain; charset="utf-8"
+Content-ID: <1BBA27054808DA40BA16643474A001BE@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>
-Date: Mon, 10 Jan 2022 19:14:09 -0000
-Message-ID: <164184204907.28742.11201355311583992959@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20211222090552.25972-1-jose.exposito89@gmail.com>
-In-Reply-To: <20211222090552.25972-1-jose.exposito89@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBB?=
- =?utf-8?q?dd_missing_format=5Fmod=5Fsupported_functions_=28rev2=29?=
+Subject: Re: [Intel-gfx] [TGL-U][iGFX] Monitoring the freq of iGFX with
+ kernel 5.10 on TGL-U i5-1145GRE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,42 +77,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Add missing format_mod_supported functions (rev2)
-URL   : https://patchwork.freedesktop.org/series/98680/
-State : failure
-
-== Summary ==
-
-Applying: drm/plane: Make format_mod_supported truly optional
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/drm_plane.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/drm_plane.c
-No changes -- Patch already applied.
-Applying: drm/plane: Fix typo in format_mod_supported documentation
-Using index info to reconstruct a base tree...
-M	include/drm/drm_plane.h
-Falling back to patching base and 3-way merge...
-No changes -- Patch already applied.
-Applying: drm/simple-kms: Drop format_mod_supported function
-Applying: drm/i915/display: Drop format_mod_supported function
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_cursor.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/display/intel_cursor.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_cursor.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0004 drm/i915/display: Drop format_mod_supported function
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-
-
+T24gTW9uLCAyMDIyLTAxLTEwIGF0IDE4OjU2ICswMDAwLCBTY2h3ZWlraGFyZHQsIE1hcmt1cyB3
+cm90ZToKPiBIaSBhbGwsCj4gwqAKPiBJIHdvdWxkIGxpa2UgdG8gbW9uaXRvciB0aGUgZnJlcXVl
+bmN5IG9mIHRoZSBpR1BVIG9mIG15IFRHTCBwbGF0Zm9ybSB3aGlsZSBydW5uaW5nIGdsbWFyazIg
+aW4gYnVyc3RzIHdoaWNoIG1lYW5zIGdsbWFyazIgaXMgNXNlY3J1bm5pbmcgYW5kIDVzZWMgbm90
+Cj4gcnVubmluZy5JIGRpc2FibGVkIFJDNiBieSBlY2hvIDAgPiAvc3lzL2NsYXNzL2RybS9jYXJk
+MC9ndF9yYzZfZW5hYmxlIGZvciBteSB0ZXN0cy4gRnVydGhlcm1vcmUsIEkgdHJpZWQgdG8gbG9j
+ayB0aGUgaUdQVSBmcmVxdWVuY3kgdG8gbWluLCBSUDAgb3IKPiBSUDEgYnkgc2V0dGluZyBlLmcu
+IAoKTWF5YmUgaXMgYmVjYXVzZSB5b3UgYXJlIHJ1bm5pbmcgYSBvbGQga2VybmUgYnV0IHJlY2Vu
+dCBvbmVzIGhhdmUgL3N5cy9jbGFzcy9kcm0vY2FyZDAvcG93ZXIvcmM2X2VuYWJsZSB0aGF0IGlz
+IHJlYWQtb25seS4KVGhlcmUgaXMgbm8gcGFyYW1ldGVyIHRvIGRpc2FibGUgUkM2IGJ1dCB5b3Ug
+Y2FuIGNoYW5nZSB0aGUgaTkxNSBjb2RlIHRvIG5vdCBlbmFibGVkIGl0IGFuZCBydW4geW91ciB0
+ZXN0cy4KCj4gZWNobyAxMzAwID4gL3N5cy9jbGFzcy9kcm0vY2FyZDAvZ3RfbWluX2ZyZXFfbWh6
+Cj4gZWNobyAxMzAwID4gL3N5cy9jbGFzcy9kcm0vY2FyZDAvZ3RfbWF4X2ZyZXFfbWh6Cj4gZWNo
+byAxMzAwID4gL3N5cy9jbGFzcy9kcm0vY2FyZDAvZ3RfYm9vc3RfZnJlcV9taHouCj4gwqAKPiBG
+b3IgZnJlcXVlbmN5IG1vbml0b3JpbmcgSSBhbSB1c2luZyBpbnRlbF9ncHVfdG9wIGFuZC9zeXMv
+Y2xhc3MvZHJtL2NhcmQwL2d0X2N1cl9mcmVxX21oei4gSSBhbSBhIGJpdCBjb25mdXNlZCBpZiBJ
+IGNvbXBhcmUgdGhlIG91dHB1dAo+IGJlY2F1c2VpbnRlbF9ncHVfdG9wIGFuZC9zeXMvY2xhc3Mv
+ZHJtL2NhcmQwL2d0X2N1cl9mcmVxX21oenNob3cgZGlmZmVyZW50IHJlc3VsdHMuCj4gVGhlc2Ug
+YXJlIG15IHJlc3VsdHMgaWYgSSBsb2NrIGdwdSBGcmVxdWVuY3kgdG8gMTMwME1Iego+IMKgCj4g
+IyMjIC9zeXMvY2xhc3MvZHJtL2NhcmQwL2d0X2N1cl9mcmVxX21oego+IEV2ZXJ5IDAuMXM6IGNh
+dAo+IC9zeXMvY2xhc3MvZHJtL2NhcmQwL2d0X2N1cl9mcmVxX21oesKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgbm9kZTQtCj4gdGdsdS1ydnA6IE1vbiBKYW4gMTAgMjA6MjI6NTkgMjAy
+Mgo+IMKgCj4gMTMwMAo+IMKgCj4gIyMjIGludGVsX2dwdV90b3AKPiByb290QG5vZGU0LXRnbHUt
+cnZwOn4vZkd2UE9DIyBpbnRlbF9ncHVfdG9wIC1sCj4gRnJlcSBNSHrCoMKgwqDCoMKgIElSUSBS
+QzbCoMKgwqDCoMKgwqDCoMKgwqDCoCBSQ1MvMMKgwqDCoMKgwqDCoMKgwqDCoMKgIEJDUy8wwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgVkNTLzDCoMKgwqDCoMKgwqDCoMKgwqDCoCBWQ1MvMcKgwqDCoMKg
+wqDCoMKgwqDCoCBWRUNTLzAKPiByZXHCoCBhY3TCoMKgwqDCoMKgwqAgL3PCoMKgICXCoMKgwqDC
+oMKgwqAgJcKgIHNlwqAgd2HCoMKgwqDCoMKgwqAgJcKgIHNlwqAgd2HCoMKgwqDCoMKgwqAgJcKg
+IHNlwqAgd2HCoMKgwqDCoMKgwqAgJcKgIHNlwqAgd2HCoMKgwqDCoMKgwqAgJcKgIHNlwqAgd2EK
+PiDCoMKgIDDCoMKgwqAgMMKgwqDCoMKgwqDCoCAxNSAxMDDCoMKgwqAgMC4wOMKgwqAgMMKgwqAg
+MMKgwqDCoCAwLjAwwqDCoCAwwqDCoCAwwqAgwqDCoDAuMDDCoMKgIDDCoMKgIDDCoMKgwqAgMC4w
+MMKgwqAgMMKgwqAgMMKgwqDCoCAwLjAwwqDCoCAwwqDCoCAwCj4gwqDCoCAwwqDCoMKgIDDCoMKg
+wqDCoMKgwqAgMTYgMTAwwqDCoMKgIDAuMDjCoMKgIDDCoMKgIDDCoMKgwqAgMC4wMMKgwqAgMMKg
+wqAgMMKgwqDCoCAwLjAwwqDCoCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKgIDDCoMKgwqAg
+MC4wMMKgwqAgMMKgwqAgMAo+IMKgwqAgMMKgwqDCoCAwwqDCoMKgwqDCoMKgIDEwIDEwMMKgwqDC
+oCAwLjA1wqDCoCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKgIDDCoMKgwqAgMC4wMMKgwqAg
+MMKgwqAgMMKgwqDCoCAwLjAwwqDCoCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKgIDAKPiAx
+ODjCoCAxNzLCoMKgwqDCoCA2MDQ1wqAgODbCoMKgIDEzLjIywqDCoCAwwqDCoCAwwqDCoMKgIDAu
+MDDCoMKgIDDCoMKgIDDCoMKgwqAgMC4wMMKgwqAgMMKgwqAgMMKgwqDCoCAwLjAwwqDCoCAwwqDC
+oCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKgIDAKPiAxMzAwIDExODnCoMKgwqAgNDQ5MDfCoMKgIDDC
+oMKgIDk5LjI1wqDCoCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKgIDDCoMKgwqAgMC4wMMKg
+wqAgMMKgwqAgMMKgwqDCoCAwLjAwwqDCoCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKgIDAK
+PiAxMzAwIDEyMDHCoMKgwqAgNDQ3MDLCoMKgIDDCoMKgIDk5LjA1wqDCoCAwwqDCoCAwwqDCoMKg
+IDAuMDDCoMKgIDDCoMKgIDDCoMKgwqAgMC4wMMKgwqAgMMKgwqAgMMKgwqDCoCAwLjAwwqDCoCAw
+wqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKgIDAKPiAxMzAwIDExODLCoMKgwqAgNDQ4NzPCoMKg
+IDDCoMKgIDk5LjIzwqDCoCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKgIDDCoMKgwqAgMC4w
+MMKgwqAgMMKgwqAgMMKgwqDCoCAwLjAwwqDCoCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKg
+IDAKPiAxMzAwIDExOTPCoMKgwqAgNDQ4MzDCoMKgIDDCoMKgIDk5LjA4wqDCoCAwwqDCoCAwwqDC
+oMKgIDAuMDDCoMKgIDDCoMKgIDDCoMKgwqAgMC4wMMKgwqAgMMKgwqAgMMKgwqDCoCAwLjAwwqDC
+oCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoCDCoDAKPiAxMDY2wqAgOTg4wqDCoMKgIDM2MzM2
+wqAgMTnCoMKgIDgwLjI0wqDCoCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKgIDDCoMKgwqAg
+MC4wMMKgwqAgMMKgwqAgMMKgwqDCoCAwLjAwwqDCoCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDC
+oMKgIDAKPiDCoMKgIDbCoMKgwqAgNsKgwqDCoMKgwqDCoCAxMCAxMDDCoMKgwqAgMC4wNcKgwqAg
+MMKgwqAgMMKgwqDCoCAwLjAwwqDCoCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKgIDDCoMKg
+wqAgMC4wMMKgwqAgMMKgwqAgMMKgwqDCoCAwLjAwwqDCoCAwwqDCoCAwCj4gwqAgMTPCoMKgIDEz
+wqDCoMKgwqDCoMKgIDE1IDEwMMKgwqDCoCAwLjA4wqDCoCAwwqDCoCAwwqDCoMKgIDAuMDAgwqDC
+oDDCoMKgIDDCoMKgwqAgMC4wMMKgwqAgMMKgwqAgMMKgwqDCoCAwLjAwwqDCoCAwwqDCoCAwwqDC
+oMKgIDAuMDDCoMKgIDDCoMKgIDAKPiDCoCAxM8KgwqAgMTPCoMKgwqDCoMKgwqAgMTYgMTAwwqDC
+oMKgIDAuMDjCoMKgIDDCoMKgIDDCoMKgwqAgMC4wMMKgwqAgMMKgwqAgMMKgwqDCoCAwLjAwwqDC
+oCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKgIDDCoMKgwqAgMC4wMMKgwqAgMMKgwqAgMAo+
+IMKgwqAgMMKgwqDCoCAwwqDCoMKgwqDCoMKgIDEzIDEwMMKgwqDCoCAwLjA1wqDCoCAwwqDCoCAw
+wqDCoMKgIDAuMDDCoMKgIDDCoMKgIDDCoMKgwqAgMC4wMMKgwqAgMMKgwqAgMMKgwqDCoCAwLjAw
+wqDCoCAwwqDCoCAwwqDCoMKgIDAuMDDCoMKgIDDCoMKgIDAKPiDCoAo+IENhbiBzb21lb25lIGhl
+bHAgbWUgdG8gdW5kZXJzdGFuZCB3aHkgL3N5cy9jbGFzcy9kcm0vY2FyZDAvZ3RfY3VyX2ZyZXFf
+bWh6IGFsd2F5cyBzaG93cyAxMzAwTUh6IGFuZCBpbnRlbF9ncHVfdG9wIChyZXEgYW5kIGFjdClp
+cyBkcm9wcGluZyB0byBhbG1vc3QKPiAwSHogd2hlbiBnbG1hcmsyIGlzIG5vdCBydW5uaW5nPwo+
+IE15IGZpbmFsIGdvYWwgaXMgdG8gZmlndXJlIG91dCBpZiByZW5kZXIgcC1zdGF0ZSB0cmFuc2l0
+aW9ucyBjYW4gaW1wYWN0IHRoZSB0aW1lbGluZXNzIG9mIG15IHJlYWwtdGltZSB3b3JrbG9hZCBy
+dW5uaW5nIG9uIGEgUlQgY29yZS4KPiDCoAo+IEtlcm5lbCBJbmZvOgo+IExpbnV4IG5vZGU0LXRn
+bHUtcnZwIDUuMTAuNDEtcnQ0Mi1pbnRlbC1lc2Utc3RhbmRhcmQtbHRzLXJ0ICMxIFNNUCBQUkVF
+TVBUX1JUIFRodSBTZXAgMjMgMTA6MjE6MzUgVVRDIDIwMjEgeDg2XzY0IHg4Nl82NCB4ODZfNjQg
+R05VL0xpbnV4Cj4gSW50ZWwgWW9jdG8gQktDIE1SMwo+IMKgCj4gVGh4LCBNYXJrdXMKPiBJbnRl
+bCBEZXV0c2NobGFuZCBHbWJICj4gUmVnaXN0ZXJlZCBBZGRyZXNzOiBBbSBDYW1wZW9uIDEwLCA4
+NTU3OSBOZXViaWJlcmcsIEdlcm1hbnkKPiBUZWw6ICs0OSA4OSA5OSA4ODUzLTAsIHd3dy5pbnRl
+bC5kZQo+IE1hbmFnaW5nIERpcmVjdG9yczogQ2hyaXN0aW4gRWlzZW5zY2htaWQsIFNoYXJvbiBI
+ZWNrLCBUaWZmYW55IERvb24gU2lsdmHCoMKgIAo+IENoYWlycGVyc29uIG9mIHRoZSBTdXBlcnZp
+c29yeSBCb2FyZDogTmljb2xlIExhdQo+IFJlZ2lzdGVyZWQgT2ZmaWNlOiBNdW5pY2gKPiBDb21t
+ZXJjaWFsIFJlZ2lzdGVyOiBBbXRzZ2VyaWNodCBNdWVuY2hlbiBIUkIgMTg2OTI4Cgo=
