@@ -1,48 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36BBB48AA84
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 10:28:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A86448AB06
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 11:09:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6262014A23D;
-	Tue, 11 Jan 2022 09:28:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90D2914A3FF;
+	Tue, 11 Jan 2022 10:08:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32CE214A244
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jan 2022 09:28:34 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4193314A3FD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jan 2022 10:08:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641893314; x=1673429314;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=VlmhESCacSQekUCIb3N15Vn1ExKSXMirAIfRWn4jQVQ=;
- b=JmgjVkqBQW0g/rzmgaae2jmow0Q1DD7qc9x5d+czWeo7GQ2OZq7uXiIG
- 6zgNALX22WumhkXFKcjFn4EUpR1oQnyvkfQNzv/z/Ti/QQxI0YvU7UmjN
- /1rwS6xJwdtJ5QLVxADyFs7cnYiCALWTP/3WLOrPBkEuRd0sa7a+ZEe3D
- qqJdlqmpSby3b3E0l/3Kk/bUbO/K87e56jPJvizzMxxNhQU/CZgfQgFpQ
- Dw1SO3cfOc+dwtAIt03VIYiCT0DpBDIZW8V4MIWEJDf7MiNtSd1MkMTG6
- Puj0iTEsTdIvjblqtHuD0oBe3tuLmN/K2+VS4OdDfXf3eJ43ItO3J+apE A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="240996996"
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="240996996"
+ t=1641895737; x=1673431737;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=KtF9L6D5HGjRvIWuGTbuL+XT8kXtDVWcWkDqfCJDEr8=;
+ b=EBUunN0cyG3kehqiyAoquF/kysQoHLsvjU/1F5LV9TAjK7s6a882nTRp
+ gGyuyEQX4xMnAVtqzrMOmJc1jTYkaJthIoMoOFsR+qzCbghYcCrSyJiOk
+ 4Nb5b0yHQM+Aygp9JsPCuSR/0n4DysHG5H8UCiG1jzfAmYVRHaZQJJitU
+ YjMxqEjHVwJpKpnwKcVTHUepnQ4Xt8RMHGjfdBe+qv3uDUP9KMrhUc8JJ
+ NC2fAqZMBZJojVbMFj5z6AJ3hLxI3CYmwf71i5JF8di8widP38V5LR3HZ
+ s2bwXP2EtDtF4rh055AFnImLfPD2yDHUAbjJTVugb59Fr4/Qy3jHcjNhN g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="306802542"
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="306802542"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2022 01:28:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="558305539"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by orsmga001.jf.intel.com with ESMTP; 11 Jan 2022 01:28:32 -0800
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 Jan 2022 01:30:17 -0800
-Message-Id: <20220111093018.610582-8-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220111093018.610582-1-alan.previn.teres.alexis@intel.com>
-References: <20220111093018.610582-1-alan.previn.teres.alexis@intel.com>
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2022 02:08:56 -0800
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="558315253"
+Received: from noblecat-mobl.ger.corp.intel.com (HELO [10.213.217.217])
+ ([10.213.217.217])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2022 02:08:55 -0800
+Message-ID: <73a0758a-f54c-64da-7930-9e650ead82b0@linux.intel.com>
+Date: Tue, 11 Jan 2022 10:08:53 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC v3 7/7] drm/i915/guc: Print the GuC error capture
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
+ "Brost, Matthew" <matthew.brost@intel.com>
+References: <20211122230402.2023576-1-alan.previn.teres.alexis@intel.com>
+ <20211122230402.2023576-8-alan.previn.teres.alexis@intel.com>
+ <20211208002215.GA17960@jons-linux-dev-box>
+ <bf9b1af14a700959ca58e615d7d15cb9300ab56f.camel@intel.com>
+ <fb0f6eace4bd1c243544a0804ffa9fa5b16159a6.camel@intel.com>
+ <c0fa7466-ecdc-4768-0584-6937e7f0d71a@linux.intel.com>
+ <baaf6bcf51c487817392142913f31655138b6596.camel@intel.com>
+ <8257f42f-7bbd-c033-28f1-f43f21cc81af@linux.intel.com>
+ <0267e249fbc650069e4c6d29438ce32289d535cb.camel@intel.com>
+ <4da5fd63-d74f-2004-082b-a75cbdb024ad@linux.intel.com>
+ <798a8740d1692541ee822535dbe880ce17b2bbbc.camel@intel.com>
+ <3bdab0a4-f182-28bb-0206-8d6d4b34c690@linux.intel.com>
+ <d8a7381a0c881dc6ced854aff7468f9b74089b56.camel@intel.com>
+ <642bffb1-7878-38ac-a11b-4db462995374@linux.intel.com>
+ <26d77a54cd3d32f57666e7447cd9fc5029abece6.camel@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <26d77a54cd3d32f57666e7447cd9fc5029abece6.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC 7/7] drm/i915/guc: Print the GuC error capture
  output register list.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,761 +76,216 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Print the GuC captured error state register list (string names
-and values) when gpu_coredump_state printout is invoked via
-the i915 debugfs for flushing the gpu error-state that was
-captured prior.
 
-Since GuC could have reported multiple engine register dumps
-in a single notification event, parse the captured data
-(appearing as a stream of structures) to identify each dump as
-a different 'engine-capture-group-output'.
+On 10/01/2022 18:19, Teres Alexis, Alan Previn wrote:
+> 
+> On Mon, 2022-01-10 at 08:07 +0000, Tvrtko Ursulin wrote:
+>> On 07/01/2022 17:03, Teres Alexis, Alan Previn wrote:
+>>> On Fri, 2022-01-07 at 09:03 +0000, Tvrtko Ursulin wrote:
+>>>> On 06/01/2022 18:33, Teres Alexis, Alan Previn wrote:
+>>>>> On Thu, 2022-01-06 at 09:38 +0000, Tvrtko Ursulin wrote:
+>>>>>> On 05/01/2022 17:30, Teres Alexis, Alan Previn wrote:
+>>>>>>> On Tue, 2022-01-04 at 13:56 +0000, Tvrtko Ursulin wrote:
+>>>>>>>>> The flow of events are as below:
+>>>>>>>>>
+>>>>>>>>> 1. guc sends notification that an error capture was done and ready to take.
+>>>>>>>>> 	- at this point we copy the guc error captured dump into an interim store
+>>>>>>>>> 	  (larger buffer that can hold multiple captures).
+>>>>>>>>> 2. guc sends notification that a context was reset (after the prior)
+>>>>>>>>> 	- this triggers a call to i915_gpu_coredump with the corresponding engine-mask
+>>>>>>>>>                from the context that was reset
+>>>>>>>>> 	- i915_gpu_coredump proceeds to gather entire gpu state including driver state,
+>>>>>>>>>                global gpu state, engine state, context vmas and also engine registers. For the
+>>>>>>>>>                engine registers now call into the guc_capture code which merely needs to verify
+>>>>>>>>> 	  that GuC had already done a step 1 and we have data ready to be parsed.
+>>>>>>>>
+>>>>>>>> What about the time between the actual reset and receiving the context
+>>>>>>>> reset notification? Latter will contain intel_context->guc_id - can that
+>>>>>>>> be re-assigned or "retired" in between the two and so cause problems for
+>>>>>>>> matching the correct (or any) vmas?
+>>>>>>>>
+>>>>>>> Not it cannot because its only after the context reset notification that i915 starts
+>>>>>>> taking action against that cotnext - and even that happens after the i915_gpu_codedump (engine-mask-of-context) happens.
+>>>>>>> That's what i've observed in the code flow.
+>>>>>>
+>>>>>> The fact it is "only after" is exactly why I asked.
+>>>>>>
+>>>>>> Reset notification is in a CT queue with other stuff, right? So can be
+>>>>>> some unrelated time after the actual reset. Could have context be
+>>>>>> retired in the meantime and guc_id released is the question.
+>>>>>>
+>>>>>> Because i915 has no idea there was a reset until this delayed message
+>>>>>> comes over, but it could see user interrupt signaling end of batch,
+>>>>>> after the reset has happened, unbeknown to i915, right?
+>>>>>>
+>>>>>> Perhaps the answer is guc_id cannot be released via the request retire
+>>>>>> flows. Or GuC signaling release of guc_id is a thing, which is then
+>>>>>> ordered via the same CT buffer.
+>>>>>>
+>>>>>> I don't know, just asking.
+>>>>>>
+>>>>> As long as the context is pinned, the guc-id wont be re-assigned. After a bit of offline brain-dump
+>>>>> from John Harrison, there are many factors that can keep the context pinned (recounts) including
+>>>>> new or oustanding requests. So a guc-id can't get re-assigned between a capture-notify and a
+>>>>> context-reset even if that outstanding request is the only refcount left since it would still
+>>>>> be considered outstanding by the driver. I also think we may also be talking past each other
+>>>>> in the sense that the guc-id is something the driver assigns to a context being pinned and only
+>>>>> the driver can un-assign it (both assigning and unasigning is via H2G interactions).
+>>>>> I get the sense you are assuming the GuC can un-assign the guc-id's on its own - which isn't
+>>>>> the case. Apologies if i mis-assumed.
+>>>>
+>>>> I did not think GuC can re-assign ce->guc_id. I asked about request/context complete/retire happening before reset/capture notification is received.
+>>>>
+>>>> That would be the time window between the last intel_context_put, so last i915_request_put from retire, at which point AFAICT GuC code releases the guc_id. Execution timeline like:
+>>>>
+>>>>> ------ rq1 ------|------ rq2 ------|
+>>>>       ^ engine reset		    ^ rq2, rq1 retire, guc id released
+>>>>
+>>>>                                                              		^ GuC reset notify received - guc_id not known any more?
+>>>>     
+>>>> You are saying something is guaranteed to be holding onto the guc_id at the point of receiving the notification? "There are many factors that can keep the context pinned" - what is it in this case? Or the case cannot happen?
+>>>>
+>>>> Regards,
+>>>>
+>>>> Tvrtko
+>>>
+>>> above chart is incorrect: GuC reset notification is sent from GuC to host before it sends the engine reset notification
+>>
+>> Meaning? And how does it relate to actual reset vs retire vs reset
+>> notification (sent or received)?
+>>
+>> Plus, I thought so far we were talking about reset notification and
+>> capture notification, so what you say here now extra confuses me without
+>> providing an answer to my question.
+>>
+>> Regards,
+>>
+>> Tvrtko
+> So i think the confusion at this point of the conversation is because in the prior discussion we have been talking about
+> the focus was on printout of the error capture status (which happens when user triggers the debugfs to dump). In your
+> previous reply, you had provided a timeline that references the engine-reset, request/retire and reset-notification
+> events which are separate from the print-out event.
+> 
+> 
+> So recap of timeline of events that highlights when things occur including the printout:
+> (apologies for a lot of repeated and known info below, i am repeating for my own benefit)
+> 
+> t0
+>     - ContextA makes a request
+>           -> pin ContextA and get a guc-id OR
+>              reuse existing guc-id if context is still pinned.
+>           -> ref count is always incremented when a new request is sent
+>              to keep the context pinned with the same guc-id
+> 
+> t1...t10
+>     1- ContextA continues through multiple request and retirement events
+>     2- no hangs, no resets, ContextA is good
+> 
+> t11
+>     1- ContextA sends a faulty workload
+>     2- as always, its either already pinned with same guc-id
+>        or get a new guc-id and pinned again
+>     3- refcount increases
+> t12
+>     1- lets assume all outstanding ContextA request successfully retire
+>        except the work at t11. So there is one refcount left holding ContextA
+>        pinned with that same guc-id
+> t13
+>     1- GuC decides to reset ContextA (this means KMD had previously setup GuC
+>        scheduler policies, execution-quanta and preemption-timeout that tells
+>        GuC it wants GuC to reset a context that doesnt complete in time and cant
+>        be preempted if a higher priority workload needs to get in).
+> t14
+>     1- GuC does a full error-state captures on its side and sends the
+>        G2H for error-capture-notification to KMD. At this point, refcount
+>        remains untouched and context is still pinned.
 
-Finally, for each 'engine-capture-group-output' that is found,
-verify if the engine register dump corresponds to the
-engine_coredump content that was previously populated by the
-i915_gpu_coredump function. That function would have copied
-the context's vma's including the bacth buffer during the
-G2H-context-reset notification that occurred earlier. Perform
-this verification check by comparing guc_id, lrca and engine-
-instance obtained from the 'engine-capture-group-output' vs a
-copy of that same info taken during i915_gpu_coredump. If
-they match, then print those vma's as well (such as the batch
-buffers).
+All good until this step I think.
 
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   4 +-
- .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 437 ++++++++++++++++++
- .../gpu/drm/i915/gt/uc/intel_guc_capture.h    |  10 +-
- drivers/gpu/drm/i915/i915_gpu_error.c         |  65 ++-
- drivers/gpu/drm/i915/i915_gpu_error.h         |  14 +
- 5 files changed, 507 insertions(+), 23 deletions(-)
+At this point in the timeline my question is this:
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 548d599c09dc..2b8a693ed2d8 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1627,9 +1627,7 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
- 		drm_printf(m, "\tIPEHR: 0x%08x\n", ENGINE_READ(engine, IPEHR));
- 	}
- 
--	if (intel_engine_uses_guc(engine)) {
--		/* nothing to print yet */
--	} else if (HAS_EXECLISTS(dev_priv)) {
-+	if (HAS_EXECLISTS(dev_priv) && !intel_engine_uses_guc(engine)) {
- 		struct i915_request * const *port, *rq;
- 		const u32 *hws =
- 			&engine->status_page.addr[I915_HWS_CSB_BUF0_INDEX];
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-index 048b1b7b9259..04b6d25abd47 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-@@ -660,8 +660,420 @@ int intel_guc_capture_output_min_size_est(struct intel_guc *guc)
-  *     --> G2H STATE_CAPTURE_NOTIFICATION
-  *                   L--> intel_guc_capture_store_snapshot
-  *                           L--> Copies from B (head->tail) into C
-+ *
-+ * GUC --> notify context reset:
-+ * -----------------------------
-+ *     --> G2H CONTEXT RESET
-+ *                   L--> guc_handle_context_reset --> i915_capture_error_state
-+ *                    --> i915_gpu_coredump --> intel_guc_capture_store_ptr
-+ *                        L--> keep a ptr to capture_store in
-+ *                             i915_gpu_coredump struct.
-+ *
-+ * User Sysfs / Debugfs
-+ * --------------------
-+ *      --> i915_gpu_coredump_copy_to_buffer->
-+ *                   L--> err_print_to_sgl --> err_print_gt
-+ *                        L--> error_print_guc_captures
-+ *                             L--> loop: intel_guc_capture_out_print_next_group
-+ *
-  */
- 
-+#if IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR)
-+
-+static const char *
-+guc_capture_register_to_string(const struct intel_guc *guc, u32 owner, u32 type,
-+			       u32 class, u32 id, u32 offset, u32 *is_ext)
-+{
-+	struct __guc_mmio_reg_descr_group *reglists = guc->capture.priv->reglists;
-+	struct __guc_mmio_reg_descr_group *match;
-+	int num_regs, j;
-+
-+	*is_ext = 0;
-+	if (!reglists)
-+		return NULL;
-+
-+	match = guc_capture_get_one_list(reglists, owner, type, id);
-+
-+	if (match) {
-+		for (num_regs = match->num_regs, j = 0; j < num_regs; ++j) {
-+			if (offset == match->list[j].reg.reg)
-+				return match->list[j].regname;
-+		}
-+	}
-+	if (match->ext) {
-+		for (num_regs = match->num_ext, j = 0; j < num_regs; ++j) {
-+			if (offset == match->ext[j].reg.reg) {
-+				*is_ext = 1;
-+				return match->ext[j].regname;
-+			}
-+		}
-+	}
-+
-+	return NULL;
-+}
-+
-+static int
-+guc_capture_store_remove_dw(struct guc_capture_out_store *store, u32 *bytesleft,
-+			    u32 *dw)
-+{
-+	int tries = 2;
-+	int avail = 0;
-+	u32 *src_data;
-+
-+	if (!*bytesleft)
-+		return 0;
-+
-+	while (tries--) {
-+		avail = CIRC_CNT_TO_END(store->head, store->tail, store->size);
-+		if (avail >= sizeof(u32)) {
-+			src_data = (u32 *)(store->addr + store->tail);
-+			*dw = *src_data;
-+			store->tail = (store->tail + 4) & (store->size - 1);
-+			*bytesleft -= 4;
-+			return 4;
-+		}
-+		if (store->tail == (store->size - 1) && store->head > 0)
-+			store->tail = 0;
-+	}
-+
-+	return 0;
-+}
-+
-+static int
-+guc_capture_store_get_group_hdr(const struct intel_guc *guc,
-+				struct guc_capture_out_store *store, u32 *bytesleft,
-+				struct guc_state_capture_group_header_t *ghdr)
-+{
-+	int read = 0;
-+	int fullsize = sizeof(struct guc_state_capture_group_header_t);
-+
-+	if (fullsize > *bytesleft)
-+		return -1;
-+
-+	if (CIRC_CNT_TO_END(store->head, store->tail, store->size) >= fullsize) {
-+		memcpy(ghdr, (store->addr + store->tail), fullsize);
-+		store->tail = (store->tail + fullsize) & (store->size - 1);
-+		*bytesleft -= fullsize;
-+		return 0;
-+	}
-+
-+	read += guc_capture_store_remove_dw(store, bytesleft, &ghdr->reserved1);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &ghdr->info);
-+	if (read != sizeof(*ghdr))
-+		return -1;
-+
-+	return 0;
-+}
-+
-+static int
-+guc_capture_store_get_data_hdr(const struct intel_guc *guc,
-+			       struct guc_capture_out_store *store, u32 *bytesleft,
-+			       struct guc_state_capture_header_t *hdr)
-+{
-+	int read = 0;
-+	int fullsize = sizeof(struct guc_state_capture_header_t);
-+
-+	if (fullsize > *bytesleft)
-+		return -1;
-+
-+	if (CIRC_CNT_TO_END(store->head, store->tail, store->size) >= fullsize) {
-+		memcpy(hdr, (store->addr + store->tail), fullsize);
-+		store->tail = (store->tail + fullsize) & (store->size - 1);
-+		*bytesleft -= fullsize;
-+		return 0;
-+	}
-+
-+	read += guc_capture_store_remove_dw(store, bytesleft, &hdr->reserved1);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &hdr->info);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &hdr->lrca);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &hdr->guc_id);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &hdr->num_mmios);
-+	if (read != sizeof(*hdr))
-+		return -1;
-+
-+	return 0;
-+}
-+
-+static int
-+guc_capture_store_get_register(const struct intel_guc *guc,
-+			       struct guc_capture_out_store *store, u32 *bytesleft,
-+			       struct guc_mmio_reg *reg)
-+{
-+	int read = 0;
-+	int fullsize = sizeof(struct guc_mmio_reg);
-+
-+	if (fullsize > *bytesleft)
-+		return -1;
-+
-+	if (CIRC_CNT_TO_END(store->head, store->tail, store->size) >= fullsize) {
-+		memcpy(reg, (store->addr + store->tail), fullsize);
-+		store->tail = (store->tail + fullsize) & (store->size - 1);
-+		*bytesleft -= fullsize;
-+		return 0;
-+	}
-+
-+	read += guc_capture_store_remove_dw(store, bytesleft, &reg->offset);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &reg->value);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &reg->flags);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &reg->mask);
-+	if (read != sizeof(*reg))
-+		return -1;
-+
-+	return 0;
-+}
-+
-+static void guc_capture_store_drop_data(struct guc_capture_out_store *store,
-+					unsigned long sampled_head)
-+{
-+	if (sampled_head == 0)
-+		store->tail = store->size - 1;
-+	else
-+		store->tail = sampled_head - 1;
-+}
-+
-+#ifdef CONFIG_DRM_I915_DEBUG_GUC
-+#define guc_capt_err_print(a, b, ...) \
-+	do { \
-+		drm_warn(a, __VA_ARGS__); \
-+		if (b) \
-+			i915_error_printf(b, __VA_ARGS__); \
-+	} while (0)
-+#else
-+#define guc_capt_err_print(a, b, ...) \
-+	do { \
-+		if (b) \
-+			i915_error_printf(b, __VA_ARGS__); \
-+	} while (0)
-+#endif
-+
-+static struct intel_engine_cs *
-+guc_capture_lookup_engine(struct intel_guc *guc, u8 guc_class, u8 instance)
-+{
-+	struct intel_gt *gt = guc_to_gt(guc);
-+	u8 engine_class = guc_class_to_engine_class(guc_class);
-+
-+	/* Class index is checked in class converter */
-+	GEM_BUG_ON(instance > MAX_ENGINE_INSTANCE);
-+
-+	return gt->engine_class[engine_class][instance];
-+}
-+
-+#define PRINT guc_capt_err_print
-+#define REGSTR guc_capture_register_to_string
-+
-+#define GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng) \
-+	do { \
-+		PRINT(&i915->drm, (ebuf), "    i915-Eng-Name: %s command stream\n", (eng)->name); \
-+		PRINT(&i915->drm, (ebuf), "    i915-Eng-Inst-Class: 0x%02x\n", (eng)->class); \
-+		PRINT(&i915->drm, (ebuf), "    i915-Eng-Inst-Id: 0x%02x\n", (eng)->instance); \
-+		PRINT(&i915->drm, (ebuf), "    i915-Eng-LogicalMask: 0x%08x\n", \
-+		      (eng)->logical_mask); \
-+	} while (0)
-+
-+#define GCAP_PRINT_GUC_INST_INFO(i915, ebuf, hdr) \
-+	do { \
-+		PRINT(&i915->drm, (ebuf), "    GuC-Engine-Inst-Id: 0x%08x\n", \
-+		      (uint32_t)FIELD_GET(CAP_HDR_ENGINE_INSTANCE, (hdr).info)); \
-+		PRINT(&i915->drm, (ebuf), "    GuC-Context-Id: 0x%08x\n", (hdr).guc_id); \
-+		PRINT(&i915->drm, (ebuf), "    LRCA: 0x%08x\n", (hdr).lrca); \
-+	} while (0)
-+
-+#define GCAP_PRINT_INTEL_CTX_INFO(i915, ebuf, ce) \
-+	do { \
-+		PRINT(&i915->drm, (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
-+		PRINT(&i915->drm, (ebuf), "    i915-Ctx-GuC-Id: 0x%016x\n", (ce)->guc_id.id); \
-+	} while (0)
-+
-+#define GCAP_PRINT_BATCH(i915, ebuf, ee, batch) \
-+	do { \
-+		batch = intel_gpu_error_find_batch(ee); \
-+		if (batch) { \
-+			u64 start = batch->gtt_offset; \
-+			u64 end = start + batch->gtt_size; \
-+			PRINT(&i915->drm, (ebuf), "  batch: [0x%08x_%08x, 0x%08x_%08x]\n", \
-+			   upper_32_bits(start), lower_32_bits(start), \
-+			   upper_32_bits(end), lower_32_bits(end)); \
-+		} \
-+	} while (0)
-+
-+#define GCAP_PRINT_CONTEXT(i915, ebuf, ctx) \
-+	do { \
-+		const u32 period = to_gt(ebuf->i915)->clock_period_ns; \
-+		PRINT(&i915->drm, (ebuf), "  Active context: %s[%d] prio %d, guilty %d " \
-+		      "active %d, runtime total %lluns, avg %lluns\n", \
-+		      ctx->comm, ctx->pid, ctx->sched_attr.priority, \
-+		      ctx->guilty, ctx->active, \
-+		      ctx->total_runtime * period, \
-+		      mul_u32_u32(ctx->avg_runtime, period)); \
-+	} while (0)
-+
-+int intel_guc_capture_out_print_next_group(struct drm_i915_error_state_buf *ebuf,
-+					   struct intel_gt_coredump *gt)
-+{
-+	/* constant qualifier for data-pointers we shouldn't change mid of error dump printing */
-+	struct intel_guc_state_capture *cap = gt->uc->capture;
-+	struct intel_guc *guc = container_of(cap, struct intel_guc, capture);
-+	struct drm_i915_private *i915 = (container_of(guc, struct intel_gt,
-+						   uc.guc))->i915;
-+	struct guc_capture_out_store *store;
-+	struct guc_capture_out_store tmpstore;
-+	struct guc_state_capture_group_header_t ghdr;
-+	struct guc_state_capture_header_t hdr;
-+	struct guc_mmio_reg reg;
-+	const char *grptypestr[GUC_STATE_CAPTURE_GROUP_TYPE_MAX] = {"full-capture",
-+								    "partial-capture"};
-+	const char *datatypestr[GUC_CAPTURE_LIST_TYPE_MAX] = {"Global", "Engine-Class",
-+							      "Engine-Instance"};
-+	enum guc_capture_group_types grptype;
-+	enum guc_capture_type datatype;
-+	int numgrps, numregs, ret = 0;
-+	const char *str;
-+	char noname[16];
-+	u32 numbytes, engineclass, guc_enginst, guc_lrca, guc_gucid, is_ext;
-+	struct intel_engine_cs *eng;
-+	const struct intel_engine_coredump *ee;
-+	const struct i915_gem_context_coredump *ctx;
-+	struct i915_vma_coredump *batch;
-+
-+	if (!cap->priv)
-+		return -ENODEV;
-+
-+	store = &cap->priv->out_store;
-+
-+	mutex_lock(&store->lock);
-+	smp_mb(); /* sync to get the latest head for the moment */
-+	/* NOTE1: make a copy of store so we dont have to deal with a changing lower bound of
-+	 *        occupied-space in this circular buffer.
-+	 * NOTE2: Higher up the stack from here, we keep calling this function in a loop to
-+	 *        reading more capture groups as they appear (as the lower bound of occupied-space
-+	 *        changes) until this circ-buf is empty.
-+	 */
-+	memcpy(&tmpstore, store, sizeof(tmpstore));
-+
-+	PRINT(&i915->drm, ebuf, "global --- GuC Error Capture\n");
-+
-+	numbytes = CIRC_CNT(tmpstore.head, tmpstore.tail, tmpstore.size);
-+	if (!numbytes) {
-+		PRINT(&i915->drm, ebuf, "GuC capture stream empty!\n");
-+		ret = -ENODATA;
-+		goto unlock;
-+	}
-+	/* everything in GuC output structures are dword aligned */
-+	if (numbytes & 0x3) {
-+		PRINT(&i915->drm, ebuf, "GuC capture stream unaligned!\n");
-+		ret = -EIO;
-+		goto unlock;
-+	}
-+
-+	if (guc_capture_store_get_group_hdr(guc, &tmpstore, &numbytes, &ghdr)) {
-+		PRINT(&i915->drm, ebuf, "GuC capture error getting next group-header!\n");
-+		ret = -EIO;
-+		goto unlock;
-+	}
-+
-+	PRINT(&i915->drm, ebuf, "NumCaptures:  0x%08x\n", (uint32_t)
-+	      FIELD_GET(CAP_GRP_HDR_NUM_CAPTURES, ghdr.info));
-+	grptype = FIELD_GET(CAP_GRP_HDR_CAPTURE_TYPE, ghdr.info);
-+	PRINT(&i915->drm, ebuf, "Coverage:  0x%08x = %s\n", grptype,
-+	      grptypestr[grptype % GUC_STATE_CAPTURE_GROUP_TYPE_MAX]);
-+
-+	numgrps = FIELD_GET(CAP_GRP_HDR_NUM_CAPTURES, ghdr.info);
-+	while (numgrps--) {
-+		if (guc_capture_store_get_data_hdr(guc, &tmpstore, &numbytes, &hdr)) {
-+			PRINT(&i915->drm, ebuf, "GuC capture error on next capture-header!\n");
-+			ret = -EIO;
-+			goto unlock;
-+		}
-+		datatype = FIELD_GET(CAP_HDR_CAPTURE_TYPE, hdr.info);
-+		PRINT(&i915->drm, ebuf, "  RegListType: %s\n",
-+		      datatypestr[datatype % GUC_CAPTURE_LIST_TYPE_MAX]);
-+
-+		eng = NULL;
-+		guc_enginst = MAX_ENGINE_INSTANCE + 1;
-+		guc_gucid = guc_lrca = 0;
-+		engineclass = FIELD_GET(CAP_HDR_ENGINE_CLASS, hdr.info);
-+		if (datatype != GUC_CAPTURE_LIST_TYPE_GLOBAL) {
-+			PRINT(&i915->drm, ebuf, "    GuC-Engine-Class: %d\n",
-+			      engineclass);
-+			if (datatype == GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS &&
-+			    engineclass <= GUC_LAST_ENGINE_CLASS)
-+				PRINT(&i915->drm, ebuf, "    i915-Eng-Class: %d\n",
-+				      guc_class_to_engine_class(engineclass));
-+
-+			if (datatype == GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE) {
-+				guc_enginst = FIELD_GET(CAP_HDR_ENGINE_INSTANCE, hdr.info);
-+				eng = guc_capture_lookup_engine(guc, engineclass, guc_enginst);
-+				if (eng)
-+					GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng);
-+				else
-+					PRINT(&i915->drm, ebuf,
-+					      "    i915-Eng-Lookup Fail!\n");
-+				guc_lrca = hdr.lrca;
-+				guc_gucid = hdr.guc_id;
-+				GCAP_PRINT_GUC_INST_INFO(i915, ebuf, hdr);
-+			}
-+		}
-+		numregs = FIELD_GET(CAP_HDR_NUM_MMIOS, hdr.num_mmios);
-+		PRINT(&i915->drm, ebuf, "    NumRegs: %d\n", numregs);
-+
-+		while (numregs--) {
-+			if (guc_capture_store_get_register(guc, &tmpstore, &numbytes, &reg)) {
-+				PRINT(&i915->drm, ebuf, "Error getting next register!\n");
-+				ret = -EIO;
-+				goto unlock;
-+			}
-+			str = REGSTR(guc, GUC_CAPTURE_LIST_INDEX_PF, datatype,
-+				     engineclass, 0, reg.offset, &is_ext);
-+			if (!str) {
-+				snprintf(noname, sizeof(noname), "REG-0x%08x", reg.offset);
-+				PRINT(&i915->drm, ebuf, "      %s", noname);
-+			} else {
-+				PRINT(&i915->drm, ebuf, "      %s", str);
-+			}
-+			if (is_ext)
-+				PRINT(&i915->drm, ebuf, "[%ld][%ld]",
-+				      FIELD_GET(GUC_REGSET_STEERING_GROUP, reg.flags),
-+				      FIELD_GET(GUC_REGSET_STEERING_INSTANCE, reg.flags));
-+			PRINT(&i915->drm, ebuf, ":  0x%08x\n", reg.value);
-+		}
-+		for (ee = gt->engine; ee; ee = ee->next) {
-+			const struct i915_vma_coredump *vma;
-+
-+			if (ee->engine == eng && ee->gucinfo.eng_id == guc_enginst &&
-+			    ee->gucinfo.guc_id == guc_gucid &&
-+			    (ee->gucinfo.lrca & CTX_GTT_ADDRESS_MASK) ==
-+			    (guc_lrca & CTX_GTT_ADDRESS_MASK)) {
-+				PRINT(&i915->drm, ebuf, "i915-Ctx-VMA-Matched:\n");
-+				GCAP_PRINT_BATCH(i915, ebuf, ee, batch);
-+				PRINT(&i915->drm, ebuf, "  engine reset count: %u\n",
-+				      ee->reset_count);
-+				ctx = &ee->context;
-+				GCAP_PRINT_CONTEXT(i915, ebuf, ctx);
-+
-+				for (vma = ee->vma; vma; vma = vma->next)
-+					intel_gpu_error_print_vma(ebuf, ee->engine, vma);
-+			}
-+		}
-+	}
-+
-+	store->tail = tmpstore.tail;
-+unlock:
-+	/* if we have a stream error, just drop everything */
-+	if (ret == -EIO) {
-+		drm_warn(&i915->drm, "Skip GuC capture header print due to stream error\n");
-+		guc_capture_store_drop_data(store, tmpstore.head);
-+	}
-+
-+	mutex_unlock(&store->lock);
-+
-+	return ret;
-+}
-+
-+#undef REGSTR
-+#undef PRINT
-+
-+#endif //CONFIG_DRM_I915_DEBUG_GUC
-+
- static void guc_capture_store_insert(struct intel_guc *guc, struct guc_capture_out_store *store,
- 				     unsigned char *new_data, size_t bytes)
- {
-@@ -812,6 +1224,31 @@ void intel_guc_capture_destroy(struct intel_guc *guc)
- 	guc->capture.priv = NULL;
- }
- 
-+void intel_guc_capture_copy_info(struct intel_engine_coredump *ee, struct intel_context *ce)
-+{
-+	if (!ee || !ce)
-+		return;
-+
-+	/*
-+	 * Store GuC relatable information pertaining to the faulting
-+	 * context into the intel_engine_coredump structure that we can
-+	 * reference later during the debugfs triggered printout function
-+	 * to ensure we print the vma dumps matching that match
-+	 * the GuC register dumps
-+	 */
-+	ee->gucinfo.lrca = ce->lrc.lrca;
-+	ee->gucinfo.guc_id = ce->guc_id.id;
-+	ee->gucinfo.eng_id = ee->engine->guc_id;
-+}
-+
-+struct intel_guc_state_capture *
-+intel_guc_capture_store_ptr(struct intel_guc *guc)
-+{
-+	if (!guc->capture.priv)
-+		return NULL;
-+	return &guc->capture;
-+}
-+
- int intel_guc_capture_init(struct intel_guc *guc)
- {
- 	int ret;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
-index c240a4cc046b..37e29f76cda8 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
-@@ -8,15 +8,23 @@
- 
- #include <linux/types.h>
- 
--struct intel_guc;
-+struct drm_i915_error_state_buf;
- struct guc_ads;
- struct guc_gt_system_info;
-+struct intel_gt_coredump;
-+struct intel_guc;
-+struct intel_engine_coredump;
-+struct intel_context;
- 
- int intel_guc_capture_prep_lists(struct intel_guc *guc, struct guc_ads *blob, u32 blob_ggtt,
- 				 u32 capture_offset, struct guc_gt_system_info *sysinfo);
-+int intel_guc_capture_out_print_next_group(struct drm_i915_error_state_buf *m,
-+					   struct intel_gt_coredump *gt);
-+void intel_guc_capture_copy_info(struct intel_engine_coredump *ee, struct intel_context *ce);
- void intel_guc_capture_store_snapshot(struct intel_guc *guc);
- int intel_guc_capture_output_min_size_est(struct intel_guc *guc);
- void intel_guc_capture_destroy(struct intel_guc *guc);
-+struct intel_guc_state_capture *intel_guc_capture_store_ptr(struct intel_guc *guc);
- int intel_guc_capture_init(struct intel_guc *guc);
- 
- #endif /* _INTEL_GUC_CAPTURE_H */
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 5ae812d60abe..84c47f87eb0d 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -526,8 +526,8 @@ __find_vma(struct i915_vma_coredump *vma, const char *name)
- 	return NULL;
- }
- 
--static struct i915_vma_coredump *
--find_batch(const struct intel_engine_coredump *ee)
-+struct i915_vma_coredump *
-+intel_gpu_error_find_batch(const struct intel_engine_coredump *ee)
- {
- 	return __find_vma(ee->vma, "batch");
- }
-@@ -555,7 +555,7 @@ static void error_print_engine(struct drm_i915_error_state_buf *m,
- 
- 	error_print_instdone(m, ee);
- 
--	batch = find_batch(ee);
-+	batch = intel_gpu_error_find_batch(ee);
- 	if (batch) {
- 		u64 start = batch->gtt_offset;
- 		u64 end = start + batch->gtt_size;
-@@ -601,6 +601,16 @@ static void error_print_engine(struct drm_i915_error_state_buf *m,
- 	error_print_context(m, "  Active context: ", &ee->context);
- }
- 
-+static void error_print_guc_captures(struct drm_i915_error_state_buf *m,
-+				     struct intel_gt_coredump *gt)
-+{
-+	int ret;
-+
-+	do {
-+		ret = intel_guc_capture_out_print_next_group(m, gt);
-+	} while (!ret);
-+}
-+
- void i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...)
- {
- 	va_list args;
-@@ -610,9 +620,9 @@ void i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...)
- 	va_end(args);
- }
- 
--static void print_error_vma(struct drm_i915_error_state_buf *m,
--			    const struct intel_engine_cs *engine,
--			    const struct i915_vma_coredump *vma)
-+void intel_gpu_error_print_vma(struct drm_i915_error_state_buf *m,
-+			       const struct intel_engine_cs *engine,
-+			       const struct i915_vma_coredump *vma)
- {
- 	char out[ASCII85_BUFSZ];
- 	struct page *page;
-@@ -681,7 +691,7 @@ static void err_print_uc(struct drm_i915_error_state_buf *m,
- 
- 	intel_uc_fw_dump(&error_uc->guc_fw, &p);
- 	intel_uc_fw_dump(&error_uc->huc_fw, &p);
--	print_error_vma(m, NULL, error_uc->guc_log);
-+	intel_gpu_error_print_vma(m, NULL, error_uc->guc_log);
- }
- 
- static void err_free_sgl(struct scatterlist *sgl)
-@@ -766,12 +776,17 @@ static void err_print_gt(struct drm_i915_error_state_buf *m,
- 		err_printf(m, "  GAM_DONE: 0x%08x\n", gt->gam_done);
- 	}
- 
--	for (ee = gt->engine; ee; ee = ee->next) {
--		const struct i915_vma_coredump *vma;
-+	if (gt->uc && gt->uc->capture) {
-+		/* error capture was via GuC */
-+		error_print_guc_captures(m, gt);
-+	} else {
-+		for (ee = gt->engine; ee; ee = ee->next) {
-+			const struct i915_vma_coredump *vma;
- 
--		error_print_engine(m, ee);
--		for (vma = ee->vma; vma; vma = vma->next)
--			print_error_vma(m, ee->engine, vma);
-+			error_print_engine(m, ee);
-+			for (vma = ee->vma; vma; vma = vma->next)
-+				intel_gpu_error_print_vma(m, ee->engine, vma);
-+		}
- 	}
- 
- 	if (gt->uc)
-@@ -1144,7 +1159,7 @@ static void gt_record_fences(struct intel_gt_coredump *gt)
- 	gt->nfence = i;
- }
- 
--static void engine_record_registers(struct intel_engine_coredump *ee)
-+static void engine_record_registers_execlist(struct intel_engine_coredump *ee)
- {
- 	const struct intel_engine_cs *engine = ee->engine;
- 	struct drm_i915_private *i915 = engine->i915;
-@@ -1449,8 +1464,10 @@ intel_engine_coredump_alloc(struct intel_engine_cs *engine, gfp_t gfp)
- 
- 	ee->engine = engine;
- 
--	engine_record_registers(ee);
--	engine_record_execlists(ee);
-+	if (!intel_uc_uses_guc_submission(&engine->gt->uc)) {
-+		engine_record_registers_execlist(ee);
-+		engine_record_execlists(ee);
-+	}
- 
- 	return ee;
- }
-@@ -1521,11 +1538,14 @@ capture_engine(struct intel_engine_cs *engine,
- 	struct intel_context *ce;
- 	struct i915_request *rq = NULL;
- 	unsigned long flags;
-+	bool guc_submission = false;
- 
- 	ee = intel_engine_coredump_alloc(engine, GFP_KERNEL);
- 	if (!ee)
- 		return NULL;
- 
-+	guc_submission = intel_uc_uses_guc_submission(&engine->gt->uc);
-+
- 	ce = intel_engine_get_hung_context(engine);
- 	if (ce) {
- 		intel_engine_clear_hung_context(engine);
-@@ -1537,7 +1557,7 @@ capture_engine(struct intel_engine_cs *engine,
- 		 * Getting here with GuC enabled means it is a forced error capture
- 		 * with no actual hang. So, no need to attempt the execlist search.
- 		 */
--		if (!intel_uc_uses_guc_submission(&engine->gt->uc)) {
-+		if (!guc_submission) {
- 			spin_lock_irqsave(&engine->sched_engine->lock, flags);
- 			rq = intel_engine_execlist_find_hung_request(engine);
- 			spin_unlock_irqrestore(&engine->sched_engine->lock,
-@@ -1555,6 +1575,8 @@ capture_engine(struct intel_engine_cs *engine,
- 		i915_request_put(rq);
- 		goto no_request_capture;
- 	}
-+	if (guc_submission)
-+		intel_guc_capture_copy_info(ee, ce);
- 
- 	intel_engine_coredump_add_vma(ee, capture, compress);
- 	i915_request_put(rq);
-@@ -1623,8 +1645,8 @@ gt_record_uc(struct intel_gt_coredump *gt,
- 	return error_uc;
- }
- 
--/* Capture all registers which don't fit into another category. */
--static void gt_record_regs(struct intel_gt_coredump *gt)
-+/* Capture all global registers which don't fit into another category. */
-+static void gt_record_registers_execlist(struct intel_gt_coredump *gt)
- {
- 	struct intel_uncore *uncore = gt->_gt->uncore;
- 	struct drm_i915_private *i915 = uncore->i915;
-@@ -1868,7 +1890,9 @@ intel_gt_coredump_alloc(struct intel_gt *gt, gfp_t gfp)
- 	gc->_gt = gt;
- 	gc->awake = intel_gt_pm_is_awake(gt);
- 
--	gt_record_regs(gc);
-+	if (!intel_uc_uses_guc_submission(&gt->uc))
-+		gt_record_registers_execlist(gc);
-+
- 	gt_record_fences(gc);
- 
- 	return gc;
-@@ -1933,6 +1957,9 @@ __i915_gpu_coredump(struct intel_gt *gt, intel_engine_mask_t engine_mask)
- 		if (INTEL_INFO(i915)->has_gt_uc)
- 			error->gt->uc = gt_record_uc(error->gt, compress);
- 
-+		if (intel_uc_uses_guc_submission(&gt->uc))
-+			error->gt->uc->capture = intel_guc_capture_store_ptr(&gt->uc.guc);
-+
- 		i915_vma_capture_finish(error->gt, compress);
- 
- 		error->simulated |= error->gt->simulated;
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-index 5aedf5129814..576677c2888e 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.h
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-@@ -17,6 +17,7 @@
- #include "gt/intel_engine.h"
- #include "gt/intel_gt_types.h"
- #include "gt/uc/intel_uc_fw.h"
-+#include "gt/uc/intel_guc_capture.h"
- 
- #include "intel_device_info.h"
- 
-@@ -84,6 +85,13 @@ struct intel_engine_coredump {
- 	u32 rc_psmi; /* sleep state */
- 	struct intel_instdone instdone;
- 
-+	/* GuC correlated info */
-+	struct {
-+		u32 lrca;
-+		u16 guc_id;
-+		u32 eng_id;
-+	} gucinfo;
-+
- 	struct i915_gem_context_coredump {
- 		char comm[TASK_COMM_LEN];
- 
-@@ -149,6 +157,7 @@ struct intel_gt_coredump {
- 		struct intel_uc_fw guc_fw;
- 		struct intel_uc_fw huc_fw;
- 		struct i915_vma_coredump *guc_log;
-+		struct intel_guc_state_capture *capture;
- 	} *uc;
- 
- 	struct intel_gt_coredump *next;
-@@ -214,6 +223,11 @@ struct drm_i915_error_state_buf {
- 
- __printf(2, 3)
- void i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...);
-+void intel_gpu_error_print_vma(struct drm_i915_error_state_buf *m,
-+			       const struct intel_engine_cs *engine,
-+			       const struct i915_vma_coredump *vma);
-+struct i915_vma_coredump *
-+intel_gpu_error_find_batch(const struct intel_engine_coredump *ee);
- 
- struct i915_gpu_coredump *i915_gpu_coredump(struct intel_gt *gt,
- 					    intel_engine_mask_t engine_mask);
--- 
-2.25.1
+Once GuC is done it's error capture and engine reset, having sent out 
+the notification (or plural), does it continue to execute ContextA?
 
+If it does not, given what you wrote in t15-3, please skip to that 
+location (t15-3).
+
+If it does continue execution, it then hits the request post-amble 
+containing the seqno write and user interrupt.
+
+Engine/capture notifications are sitting in the CT buffer waiting for 
+the i915 to read them.
+
+In parallel, ahead of the CT work, i915 notices the ContextA request has 
+been completed and proceeds to retire it.
+
+Does this release the final reference on the guc_id associated with 
+ContextA?
+
+>     2- error capture module copies the new error-capture to interim store
+>        but does not parse it yet.
+> t15
+>     1- GuC sends the G2H for engine reset / context reset to KMD. At this
+>        point, KMD calls the i915_gpu_coredump function and will capture a
+>        snapshot of all relevant context information and its faulting request.
+>        This includes the context, LRCA and vmas (such as the batch buffer).
+>        At this point the guc-error capture is not parsed but we already have a
+>        snapshot of the guc-error-capture-dump from t14.
+>     2- i915_gpu_coredump shall chose to keep all of the information collected
+>        if its the first error or will discard everything.
+>     3- i915 may attempt to replay the context or it may not and if not it
+>        could lose the guc-id.
+
+This made me thing guc engine reset notification is a "handshake" 
+operation and not a pure notification? Does it imply GuC will wait for 
+i915 to reply what to do next meaning it won't continue to execute 
+ContextA before i915 replies to engine reset notification?
+
+If so that would resolve my concern.
+
+Regards,
+
+Tvrtko
+
+> tn
+>     1- The end user triggers the debugfs to dump the gpu error state.
+>     2- multiple information is printed and includes the call to
+>        intel_guc_capture_out_print_next_group function. The guc-err-capture module
+>        now finally parses the information and prints everything it finds.
+>     3- based on the sequence of events in t14 and t15 (i.e. guc sends error-capture
+>        notification first, guc sends context-reset notification second and the
+>        i915_cpu_coredump will only keep dump information the first-error of a context-
+>        or-engine rese) the first engine-state-dump that intel_guc_capture_out_print_next_group
+>        finds from the buffer that GuC had sent in t14 is expected to match, but we know
+>        at this point the guc-id could of course be lost.
+>          - NOTE1: in prior replies, i had mentioned something along the lines of "not
+>            able to extract information about the context and process". I didnt do
+>            a good job of explaining that this gap is pertaining to the new
+>            intel_guc_capture_out_print_next_group function being able to get that
+>            on its own. I should have also stated that all that info was already
+>            captured by i915_gpu_coredump in step 15 and the first engine-reset-dump we
+>            find in intel_guc_capture_out_print_next_group should correlate.
+>          - NOTE2: Since the i915_gpu_coredump function only keeps the first error-state
+>            but discards any subsequent ones (if the end user hasn't cleared the 1st one
+>            via the debugfs), I am not having the guc-err-capture module parse all of the
+>            error-capture info at the time of t14 and hold off until now at tn.
+> 
+> An important assumption here is that at the time of tn, the very first engine-dump we parse
+> via the guc-error-capture dump should correlate with the first error-capture that
+> i915_gpu_coredump is parsing at tn (captured at t15). This was what i had summarized
+> on this thread on Dec 23rd morning PST.
+> 
+> However, if we want to add additional check-and-balance (to ensure the dumps are
+> aligned) is to keep a copy of the guc-id and LRCA (not ref-counting and keeping pinned
+> but just making a copy of the values) when i915_gpu_coredump does NOT discard the capture
+> coz that will be the one printed out when triggered by end-user and is expected to match
+> the first entry from the the oustanding guc-err-capture dumps. I can include this in
+> my upcoming rev but will only make that copy if the i915_gpu_coredump does NOT discard
+> the dump.
+> 
+> ...alan
+> 
