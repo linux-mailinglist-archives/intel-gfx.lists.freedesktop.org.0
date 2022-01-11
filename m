@@ -2,50 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CF4948AEE3
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 14:50:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEAD448AF62
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 15:21:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DDFC10E873;
-	Tue, 11 Jan 2022 13:50:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB87410E25A;
+	Tue, 11 Jan 2022 14:21:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8400610E873
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jan 2022 13:50:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641909012; x=1673445012;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=D1YV8mQeV9jSOvwAqylFFUeW3r5W6r98UdHwKsijPUs=;
- b=Nj2aS11CkU/atDx4MShIBrKQIDBhYMlzoQAjaoW9gjGVRw8Em7vRvaUT
- 9D94LxpbjvPQrsBjRlWZ0KuSn5WqfBEbwY3ubaxgUFFDTFnGFoxTI9YNs
- SYMNSsbN7mVJjtPVzR9N0G7v9zBW4MURoefEcnPw0f7TaWRD7eGGZiOjb
- yUunRSS8fu/jEL1ZE0unL//vAk1aLOeGXbPoRge6eZmyRm67ixXgupJya
- y/sv17xDoOQOF6rkyQQWOTgpYhDraNOyiqzaLYcLAw+CCSrsacrFztViw
- Oi3o1KzBb9pNLpBPXMLEV+ekDKslIqCJgCz9BKM/sPXbjgU1Dw8pucijz Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="242297660"
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="242297660"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2022 05:50:12 -0800
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="515097300"
-Received: from sjobrien-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.25.241])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2022 05:50:10 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220111051600.3429104-12-matthew.d.roper@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220111051600.3429104-1-matthew.d.roper@intel.com>
- <20220111051600.3429104-12-matthew.d.roper@intel.com>
-Date: Tue, 11 Jan 2022 15:50:07 +0200
-Message-ID: <87a6g28jqo.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3ED3C10E1CC;
+ Tue, 11 Jan 2022 14:21:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 374A7AA914;
+ Tue, 11 Jan 2022 14:21:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v3 11/11] drm/i915: Drop unused _PORT3 and
- _PORT4 TC phy register offsets
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Tue, 11 Jan 2022 14:21:35 -0000
+Message-ID: <164191089518.24978.9790661818127471249@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220111093018.610582-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20220111093018.610582-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_GuC_Error_Capture_Support_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,239 +40,372 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 10 Jan 2022, Matt Roper <matthew.d.roper@intel.com> wrote:
-> All MG/DKL PHY register regions are evenly spaced offset-wise (0x168000,
-> 0x169000, 0x16A000, 0x16B000) so the _MMIO_PORT() macro we use to access
-> their registers only needs the first two offsets.  We can drop the
-> _PORT3 and _PORT4 offsets which are never directly referenced.
->
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+== Series Details ==
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Series: Add GuC Error Capture Support (rev3)
+URL   : https://patchwork.freedesktop.org/series/97187/
+State : warning
 
-> ---
->  .../gpu/drm/i915/display/intel_tc_phy_regs.h  | 64 -------------------
->  1 file changed, 64 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc_phy_regs.h b/drivers/gpu/drm/i915/display/intel_tc_phy_regs.h
-> index 87b74c3c35a7..5a545086f959 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc_phy_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_tc_phy_regs.h
-> @@ -15,10 +15,6 @@
->  #define MG_TX_LINK_PARAMS_TX1LN1_PORT1		0x16852C
->  #define MG_TX_LINK_PARAMS_TX1LN0_PORT2		0x16912C
->  #define MG_TX_LINK_PARAMS_TX1LN1_PORT2		0x16952C
-> -#define MG_TX_LINK_PARAMS_TX1LN0_PORT3		0x16A12C
-> -#define MG_TX_LINK_PARAMS_TX1LN1_PORT3		0x16A52C
-> -#define MG_TX_LINK_PARAMS_TX1LN0_PORT4		0x16B12C
-> -#define MG_TX_LINK_PARAMS_TX1LN1_PORT4		0x16B52C
->  #define MG_TX1_LINK_PARAMS(ln, tc_port) \
->  	MG_PHY_PORT_LN(ln, tc_port, MG_TX_LINK_PARAMS_TX1LN0_PORT1, \
->  		       MG_TX_LINK_PARAMS_TX1LN0_PORT2, \
-> @@ -28,10 +24,6 @@
->  #define MG_TX_LINK_PARAMS_TX2LN1_PORT1		0x1684AC
->  #define MG_TX_LINK_PARAMS_TX2LN0_PORT2		0x1690AC
->  #define MG_TX_LINK_PARAMS_TX2LN1_PORT2		0x1694AC
-> -#define MG_TX_LINK_PARAMS_TX2LN0_PORT3		0x16A0AC
-> -#define MG_TX_LINK_PARAMS_TX2LN1_PORT3		0x16A4AC
-> -#define MG_TX_LINK_PARAMS_TX2LN0_PORT4		0x16B0AC
-> -#define MG_TX_LINK_PARAMS_TX2LN1_PORT4		0x16B4AC
->  #define MG_TX2_LINK_PARAMS(ln, tc_port) \
->  	MG_PHY_PORT_LN(ln, tc_port, MG_TX_LINK_PARAMS_TX2LN0_PORT1, \
->  		       MG_TX_LINK_PARAMS_TX2LN0_PORT2, \
-> @@ -42,10 +34,6 @@
->  #define MG_TX_PISO_READLOAD_TX1LN1_PORT1		0x16854C
->  #define MG_TX_PISO_READLOAD_TX1LN0_PORT2		0x16914C
->  #define MG_TX_PISO_READLOAD_TX1LN1_PORT2		0x16954C
-> -#define MG_TX_PISO_READLOAD_TX1LN0_PORT3		0x16A14C
-> -#define MG_TX_PISO_READLOAD_TX1LN1_PORT3		0x16A54C
-> -#define MG_TX_PISO_READLOAD_TX1LN0_PORT4		0x16B14C
-> -#define MG_TX_PISO_READLOAD_TX1LN1_PORT4		0x16B54C
->  #define MG_TX1_PISO_READLOAD(ln, tc_port) \
->  	MG_PHY_PORT_LN(ln, tc_port, MG_TX_PISO_READLOAD_TX1LN0_PORT1, \
->  		       MG_TX_PISO_READLOAD_TX1LN0_PORT2, \
-> @@ -55,10 +43,6 @@
->  #define MG_TX_PISO_READLOAD_TX2LN1_PORT1		0x1684CC
->  #define MG_TX_PISO_READLOAD_TX2LN0_PORT2		0x1690CC
->  #define MG_TX_PISO_READLOAD_TX2LN1_PORT2		0x1694CC
-> -#define MG_TX_PISO_READLOAD_TX2LN0_PORT3		0x16A0CC
-> -#define MG_TX_PISO_READLOAD_TX2LN1_PORT3		0x16A4CC
-> -#define MG_TX_PISO_READLOAD_TX2LN0_PORT4		0x16B0CC
-> -#define MG_TX_PISO_READLOAD_TX2LN1_PORT4		0x16B4CC
->  #define MG_TX2_PISO_READLOAD(ln, tc_port) \
->  	MG_PHY_PORT_LN(ln, tc_port, MG_TX_PISO_READLOAD_TX2LN0_PORT1, \
->  		       MG_TX_PISO_READLOAD_TX2LN0_PORT2, \
-> @@ -69,10 +53,6 @@
->  #define MG_TX_SWINGCTRL_TX1LN1_PORT1		0x168548
->  #define MG_TX_SWINGCTRL_TX1LN0_PORT2		0x169148
->  #define MG_TX_SWINGCTRL_TX1LN1_PORT2		0x169548
-> -#define MG_TX_SWINGCTRL_TX1LN0_PORT3		0x16A148
-> -#define MG_TX_SWINGCTRL_TX1LN1_PORT3		0x16A548
-> -#define MG_TX_SWINGCTRL_TX1LN0_PORT4		0x16B148
-> -#define MG_TX_SWINGCTRL_TX1LN1_PORT4		0x16B548
->  #define MG_TX1_SWINGCTRL(ln, tc_port) \
->  	MG_PHY_PORT_LN(ln, tc_port, MG_TX_SWINGCTRL_TX1LN0_PORT1, \
->  		       MG_TX_SWINGCTRL_TX1LN0_PORT2, \
-> @@ -82,10 +62,6 @@
->  #define MG_TX_SWINGCTRL_TX2LN1_PORT1		0x1684C8
->  #define MG_TX_SWINGCTRL_TX2LN0_PORT2		0x1690C8
->  #define MG_TX_SWINGCTRL_TX2LN1_PORT2		0x1694C8
-> -#define MG_TX_SWINGCTRL_TX2LN0_PORT3		0x16A0C8
-> -#define MG_TX_SWINGCTRL_TX2LN1_PORT3		0x16A4C8
-> -#define MG_TX_SWINGCTRL_TX2LN0_PORT4		0x16B0C8
-> -#define MG_TX_SWINGCTRL_TX2LN1_PORT4		0x16B4C8
->  #define MG_TX2_SWINGCTRL(ln, tc_port) \
->  	MG_PHY_PORT_LN(ln, tc_port, MG_TX_SWINGCTRL_TX2LN0_PORT1, \
->  		       MG_TX_SWINGCTRL_TX2LN0_PORT2, \
-> @@ -110,10 +86,6 @@
->  #define MG_TX_DRVCTRL_TX2LN1_PORT1			0x1684C4
->  #define MG_TX_DRVCTRL_TX2LN0_PORT2			0x1690C4
->  #define MG_TX_DRVCTRL_TX2LN1_PORT2			0x1694C4
-> -#define MG_TX_DRVCTRL_TX2LN0_PORT3			0x16A0C4
-> -#define MG_TX_DRVCTRL_TX2LN1_PORT3			0x16A4C4
-> -#define MG_TX_DRVCTRL_TX2LN0_PORT4			0x16B0C4
-> -#define MG_TX_DRVCTRL_TX2LN1_PORT4			0x16B4C4
->  #define MG_TX2_DRVCTRL(ln, tc_port) \
->  	MG_PHY_PORT_LN(ln, tc_port, MG_TX_DRVCTRL_TX2LN0_PORT1, \
->  		       MG_TX_DRVCTRL_TX2LN0_PORT2, \
-> @@ -130,10 +102,6 @@
->  #define MG_CLKHUB_LN1_PORT1			0x16879C
->  #define MG_CLKHUB_LN0_PORT2			0x16939C
->  #define MG_CLKHUB_LN1_PORT2			0x16979C
-> -#define MG_CLKHUB_LN0_PORT3			0x16A39C
-> -#define MG_CLKHUB_LN1_PORT3			0x16A79C
-> -#define MG_CLKHUB_LN0_PORT4			0x16B39C
-> -#define MG_CLKHUB_LN1_PORT4			0x16B79C
->  #define MG_CLKHUB(ln, tc_port) \
->  	MG_PHY_PORT_LN(ln, tc_port, MG_CLKHUB_LN0_PORT1, \
->  		       MG_CLKHUB_LN0_PORT2, \
-> @@ -144,10 +112,6 @@
->  #define MG_TX_DCC_TX1LN1_PORT1			0x168510
->  #define MG_TX_DCC_TX1LN0_PORT2			0x169110
->  #define MG_TX_DCC_TX1LN1_PORT2			0x169510
-> -#define MG_TX_DCC_TX1LN0_PORT3			0x16A110
-> -#define MG_TX_DCC_TX1LN1_PORT3			0x16A510
-> -#define MG_TX_DCC_TX1LN0_PORT4			0x16B110
-> -#define MG_TX_DCC_TX1LN1_PORT4			0x16B510
->  #define MG_TX1_DCC(ln, tc_port) \
->  	MG_PHY_PORT_LN(ln, tc_port, MG_TX_DCC_TX1LN0_PORT1, \
->  		       MG_TX_DCC_TX1LN0_PORT2, \
-> @@ -156,10 +120,6 @@
->  #define MG_TX_DCC_TX2LN1_PORT1			0x168490
->  #define MG_TX_DCC_TX2LN0_PORT2			0x169090
->  #define MG_TX_DCC_TX2LN1_PORT2			0x169490
-> -#define MG_TX_DCC_TX2LN0_PORT3			0x16A090
-> -#define MG_TX_DCC_TX2LN1_PORT3			0x16A490
-> -#define MG_TX_DCC_TX2LN0_PORT4			0x16B090
-> -#define MG_TX_DCC_TX2LN1_PORT4			0x16B490
->  #define MG_TX2_DCC(ln, tc_port) \
->  	MG_PHY_PORT_LN(ln, tc_port, MG_TX_DCC_TX2LN0_PORT1, \
->  		       MG_TX_DCC_TX2LN0_PORT2, \
-> @@ -172,10 +132,6 @@
->  #define MG_DP_MODE_LN1_ACU_PORT1			0x1687A0
->  #define MG_DP_MODE_LN0_ACU_PORT2			0x1693A0
->  #define MG_DP_MODE_LN1_ACU_PORT2			0x1697A0
-> -#define MG_DP_MODE_LN0_ACU_PORT3			0x16A3A0
-> -#define MG_DP_MODE_LN1_ACU_PORT3			0x16A7A0
-> -#define MG_DP_MODE_LN0_ACU_PORT4			0x16B3A0
-> -#define MG_DP_MODE_LN1_ACU_PORT4			0x16B7A0
->  #define MG_DP_MODE(ln, tc_port)	\
->  	MG_PHY_PORT_LN(ln, tc_port, MG_DP_MODE_LN0_ACU_PORT1, \
->  		       MG_DP_MODE_LN0_ACU_PORT2, \
-> @@ -200,8 +156,6 @@
->  
->  #define _MG_REFCLKIN_CTL_PORT1				0x16892C
->  #define _MG_REFCLKIN_CTL_PORT2				0x16992C
-> -#define _MG_REFCLKIN_CTL_PORT3				0x16A92C
-> -#define _MG_REFCLKIN_CTL_PORT4				0x16B92C
->  #define   MG_REFCLKIN_CTL_OD_2_MUX(x)			((x) << 8)
->  #define   MG_REFCLKIN_CTL_OD_2_MUX_MASK			(0x7 << 8)
->  #define MG_REFCLKIN_CTL(tc_port) _MMIO_PORT((tc_port), \
-> @@ -210,8 +164,6 @@
->  
->  #define _MG_CLKTOP2_CORECLKCTL1_PORT1			0x1688D8
->  #define _MG_CLKTOP2_CORECLKCTL1_PORT2			0x1698D8
-> -#define _MG_CLKTOP2_CORECLKCTL1_PORT3			0x16A8D8
-> -#define _MG_CLKTOP2_CORECLKCTL1_PORT4			0x16B8D8
->  #define   MG_CLKTOP2_CORECLKCTL1_B_DIVRATIO(x)		((x) << 16)
->  #define   MG_CLKTOP2_CORECLKCTL1_B_DIVRATIO_MASK	(0xff << 16)
->  #define   MG_CLKTOP2_CORECLKCTL1_A_DIVRATIO(x)		((x) << 8)
-> @@ -222,8 +174,6 @@
->  
->  #define _MG_CLKTOP2_HSCLKCTL_PORT1			0x1688D4
->  #define _MG_CLKTOP2_HSCLKCTL_PORT2			0x1698D4
-> -#define _MG_CLKTOP2_HSCLKCTL_PORT3			0x16A8D4
-> -#define _MG_CLKTOP2_HSCLKCTL_PORT4			0x16B8D4
->  #define   MG_CLKTOP2_HSCLKCTL_CORE_INPUTSEL(x)		((x) << 16)
->  #define   MG_CLKTOP2_HSCLKCTL_CORE_INPUTSEL_MASK	(0x1 << 16)
->  #define   MG_CLKTOP2_HSCLKCTL_TLINEDRV_CLKSEL(x)	((x) << 14)
-> @@ -242,8 +192,6 @@
->  
->  #define _MG_PLL_DIV0_PORT1				0x168A00
->  #define _MG_PLL_DIV0_PORT2				0x169A00
-> -#define _MG_PLL_DIV0_PORT3				0x16AA00
-> -#define _MG_PLL_DIV0_PORT4				0x16BA00
->  #define   MG_PLL_DIV0_FRACNEN_H				(1 << 30)
->  #define   MG_PLL_DIV0_FBDIV_FRAC_MASK			(0x3fffff << 8)
->  #define   MG_PLL_DIV0_FBDIV_FRAC_SHIFT			8
-> @@ -255,8 +203,6 @@
->  
->  #define _MG_PLL_DIV1_PORT1				0x168A04
->  #define _MG_PLL_DIV1_PORT2				0x169A04
-> -#define _MG_PLL_DIV1_PORT3				0x16AA04
-> -#define _MG_PLL_DIV1_PORT4				0x16BA04
->  #define   MG_PLL_DIV1_IREF_NDIVRATIO(x)			((x) << 16)
->  #define   MG_PLL_DIV1_DITHER_DIV_1			(0 << 12)
->  #define   MG_PLL_DIV1_DITHER_DIV_2			(1 << 12)
-> @@ -270,8 +216,6 @@
->  
->  #define _MG_PLL_LF_PORT1				0x168A08
->  #define _MG_PLL_LF_PORT2				0x169A08
-> -#define _MG_PLL_LF_PORT3				0x16AA08
-> -#define _MG_PLL_LF_PORT4				0x16BA08
->  #define   MG_PLL_LF_TDCTARGETCNT(x)			((x) << 24)
->  #define   MG_PLL_LF_AFCCNTSEL_256			(0 << 20)
->  #define   MG_PLL_LF_AFCCNTSEL_512			(1 << 20)
-> @@ -283,8 +227,6 @@
->  
->  #define _MG_PLL_FRAC_LOCK_PORT1				0x168A0C
->  #define _MG_PLL_FRAC_LOCK_PORT2				0x169A0C
-> -#define _MG_PLL_FRAC_LOCK_PORT3				0x16AA0C
-> -#define _MG_PLL_FRAC_LOCK_PORT4				0x16BA0C
->  #define   MG_PLL_FRAC_LOCK_TRUELOCK_CRIT_32		(1 << 18)
->  #define   MG_PLL_FRAC_LOCK_EARLYLOCK_CRIT_32		(1 << 16)
->  #define   MG_PLL_FRAC_LOCK_LOCKTHRESH(x)		((x) << 11)
-> @@ -297,8 +239,6 @@
->  
->  #define _MG_PLL_SSC_PORT1				0x168A10
->  #define _MG_PLL_SSC_PORT2				0x169A10
-> -#define _MG_PLL_SSC_PORT3				0x16AA10
-> -#define _MG_PLL_SSC_PORT4				0x16BA10
->  #define   MG_PLL_SSC_EN					(1 << 28)
->  #define   MG_PLL_SSC_TYPE(x)				((x) << 26)
->  #define   MG_PLL_SSC_STEPLENGTH(x)			((x) << 16)
-> @@ -310,8 +250,6 @@
->  
->  #define _MG_PLL_BIAS_PORT1				0x168A14
->  #define _MG_PLL_BIAS_PORT2				0x169A14
-> -#define _MG_PLL_BIAS_PORT3				0x16AA14
-> -#define _MG_PLL_BIAS_PORT4				0x16BA14
->  #define   MG_PLL_BIAS_BIAS_GB_SEL(x)			((x) << 30)
->  #define   MG_PLL_BIAS_BIAS_GB_SEL_MASK			(0x3 << 30)
->  #define   MG_PLL_BIAS_INIT_DCOAMP(x)			((x) << 24)
-> @@ -330,8 +268,6 @@
->  
->  #define _MG_PLL_TDC_COLDST_BIAS_PORT1			0x168A18
->  #define _MG_PLL_TDC_COLDST_BIAS_PORT2			0x169A18
-> -#define _MG_PLL_TDC_COLDST_BIAS_PORT3			0x16AA18
-> -#define _MG_PLL_TDC_COLDST_BIAS_PORT4			0x16BA18
->  #define   MG_PLL_TDC_COLDST_IREFINT_EN			(1 << 27)
->  #define   MG_PLL_TDC_COLDST_REFBIAS_START_PULSE_W(x)	((x) << 17)
->  #define   MG_PLL_TDC_COLDST_COLDSTART			(1 << 16)
+== Summary ==
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+$ dim checkpatch origin/drm-tip
+c3c2aef23926 drm/i915/guc: Add basic support for error capture lists
+0fe87e1f9ad7 drm/i915/guc: Update GuC ADS size for error capture lists
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
+
+-:304: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'regslist' - possible side-effects?
+#304: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:60:
++#define MAKE_REGLIST(regslist, regsowner, regstype, class) \
++	{ \
++		.list = regslist, \
++		.num_regs = ARRAY_SIZE(regslist), \
++		.owner = TO_GCAP_DEF_OWNER(regsowner), \
++		.type = TO_GCAP_DEF_TYPE(regstype), \
++		.engine = class, \
++	}
+
+-:353: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 16)
+#353: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:109:
++		if (reglists[i].owner == owner && reglists[i].type == type &&
+[...]
++		return &reglists[i];
+
+total: 0 errors, 2 warnings, 1 checks, 678 lines checked
+a322828d8363 drm/i915/guc: Populate XE_LP register lists for GuC error state capture.
+-:37: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#37: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:22:
++#define COMMON_GEN12BASE_GLOBAL() \
++	{GEN12_FAULT_TLB_DATA0,    0,      0, "GEN12_FAULT_TLB_DATA0"}, \
++	{GEN12_FAULT_TLB_DATA1,    0,      0, "GEN12_FAULT_TLB_DATA1"}, \
++	{FORCEWAKE_MT,             0,      0, "FORCEWAKE_MT"}, \
++	{DERRMR,                   0,      0, "DERRMR"}, \
++	{GEN12_AUX_ERR_DBG,        0,      0, "GEN12_AUX_ERR_DBG"}, \
++	{GEN12_GAM_DONE,           0,      0, "GEN12_GAM_DONE"}, \
++	{GEN11_GUC_SG_INTR_ENABLE, 0,      0, "GEN11_GUC_SG_INTR_ENABLE"}, \
++	{GEN11_CRYPTO_RSVD_INTR_ENABLE, 0, 0, "GEN11_CRYPTO_RSVD_INTR_ENABLE"}, \
++	{GEN11_GUNIT_CSME_INTR_ENABLE, 0,  0, "GEN11_GUNIT_CSME_INTR_ENABLE"}, \
++	{GEN11_GPM_WGBOXPERF_INTR_ENABLE, 0, 0, "GEN11_GPM_WGBOXPERF_INTR_ENABLE"}, \
++	{GEN8_DE_MISC_IER,         0,      0, "GEN8_DE_MISC_IER"}, \
++	{GEN12_RING_FAULT_REG,     0,      0, "GEN12_RING_FAULT_REG"}
+
+-:51: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#51: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:36:
++#define COMMON_GEN12BASE_ENGINE_INSTANCE() \
++	{RING_PSMI_CTL(0),         0,      0, "RING_PSMI_CTL"}, \
++	{RING_ESR(0),              0,      0, "RING_ESR"}, \
++	{RING_DMA_FADD(0),         0,      0, "RING_DMA_FADD_LOW32"}, \
++	{RING_DMA_FADD_UDW(0),     0,      0, "RING_DMA_FADD_UP32"}, \
++	{RING_IPEIR(0),            0,      0, "RING_IPEIR"}, \
++	{RING_IPEHR(0),            0,      0, "RING_IPEHR"}, \
++	{RING_INSTPS(0),           0,      0, "RING_INSTPS"}, \
++	{RING_BBADDR(0),           0,      0, "RING_BBADDR_LOW32"}, \
++	{RING_BBADDR_UDW(0),       0,      0, "RING_BBADDR_UP32"}, \
++	{RING_BBSTATE(0),          0,      0, "RING_BBSTATE"}, \
++	{CCID(0),                  0,      0, "CCID"}, \
++	{RING_ACTHD(0),            0,      0, "RING_ACTHD_LOW32"}, \
++	{RING_ACTHD_UDW(0),        0,      0, "RING_ACTHD_UP32"}, \
++	{RING_INSTPM(0),           0,      0, "RING_INSTPM"}, \
++	{RING_NOPID(0),            0,      0, "RING_NOPID"}, \
++	{RING_START(0),            0,      0, "RING_START"}, \
++	{RING_HEAD(0),             0,      0, "RING_HEAD"}, \
++	{RING_TAIL(0),             0,      0, "RING_TAIL"}, \
++	{RING_CTL(0),              0,      0, "RING_CTL"}, \
++	{RING_MI_MODE(0),          0,      0, "RING_MI_MODE"}, \
++	{RING_CONTEXT_CONTROL(0),  0,      0, "RING_CONTEXT_CONTROL"}, \
++	{RING_INSTDONE(0),         0,      0, "RING_INSTDONE"}, \
++	{RING_HWS_PGA(0),          0,      0, "RING_HWS_PGA"}, \
++	{RING_MODE_GEN7(0),        0,      0, "RING_MODE_GEN7"}, \
++	{GEN8_RING_PDP_LDW(0, 0),  0,      0, "GEN8_RING_PDP0_LDW"}, \
++	{GEN8_RING_PDP_UDW(0, 0),  0,      0, "GEN8_RING_PDP0_UDW"}, \
++	{GEN8_RING_PDP_LDW(0, 1),  0,      0, "GEN8_RING_PDP1_LDW"}, \
++	{GEN8_RING_PDP_UDW(0, 1),  0,      0, "GEN8_RING_PDP1_UDW"}, \
++	{GEN8_RING_PDP_LDW(0, 2),  0,      0, "GEN8_RING_PDP2_LDW"}, \
++	{GEN8_RING_PDP_UDW(0, 2),  0,      0, "GEN8_RING_PDP2_UDW"}, \
++	{GEN8_RING_PDP_LDW(0, 3),  0,      0, "GEN8_RING_PDP3_LDW"}, \
++	{GEN8_RING_PDP_UDW(0, 3),  0,      0, "GEN8_RING_PDP3_UDW"}
+
+-:88: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#88: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:73:
++#define COMMON_GEN12BASE_RENDER() \
++	{GEN7_SC_INSTDONE,         0,      0, "GEN7_SC_INSTDONE"}, \
++	{GEN12_SC_INSTDONE_EXTRA,  0,      0, "GEN12_SC_INSTDONE_EXTRA"}, \
++	{GEN12_SC_INSTDONE_EXTRA2, 0,      0, "GEN12_SC_INSTDONE_EXTRA2"}
+
+-:93: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#93: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:78:
++#define COMMON_GEN12BASE_VEC() \
++	{GEN11_VCS_VECS_INTR_ENABLE, 0,    0, "GEN11_VCS_VECS_INTR_ENABLE"}, \
++	{GEN12_SFC_DONE(0),        0,      0, "GEN12_SFC_DONE0"}, \
++	{GEN12_SFC_DONE(1),        0,      0, "GEN12_SFC_DONE1"}, \
++	{GEN12_SFC_DONE(2),        0,      0, "GEN12_SFC_DONE2"}, \
++	{GEN12_SFC_DONE(3),        0,      0, "GEN12_SFC_DONE3"}
+
+-:180: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 16)
+#180: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:166:
++		if (reglists[i].owner == owner && reglists[i].type == type &&
+[...]
++		return &reglists[i];
+
+total: 4 errors, 1 warnings, 0 checks, 309 lines checked
+3a30601021be drm/i915/guc: Add GuC's error state capture output structures.
+d8f6847b9f81 drm/i915/guc: Update GuC's log-buffer-state access for error capture.
+-:191: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#191: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_log.c:232:
++	log_buf_state = src_data = log->buf_addr;
+
+total: 0 errors, 0 warnings, 1 checks, 436 lines checked
+662c1b9d4d6f drm/i915/guc: Copy new GuC error capture logs upon G2H notification.
+06170708edbf drm/i915/guc: Print the GuC error capture output register list.
+-:226: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#226: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:835:
++#define guc_capt_err_print(a, b, ...) \
++	do { \
++		drm_warn(a, __VA_ARGS__); \
++		if (b) \
++			i915_error_printf(b, __VA_ARGS__); \
++	} while (0)
+
+-:233: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#233: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:842:
++#define guc_capt_err_print(a, b, ...) \
++	do { \
++		if (b) \
++			i915_error_printf(b, __VA_ARGS__); \
++	} while (0)
+
+-:255: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#255: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:864:
++#define GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng) \
++	do { \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-Name: %s command stream\n", (eng)->name); \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-Inst-Class: 0x%02x\n", (eng)->class); \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-Inst-Id: 0x%02x\n", (eng)->instance); \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-LogicalMask: 0x%08x\n", \
++		      (eng)->logical_mask); \
++	} while (0)
+
+-:255: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'i915' may be better as '(i915)' to avoid precedence issues
+#255: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:864:
++#define GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng) \
++	do { \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-Name: %s command stream\n", (eng)->name); \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-Inst-Class: 0x%02x\n", (eng)->class); \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-Inst-Id: 0x%02x\n", (eng)->instance); \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-LogicalMask: 0x%08x\n", \
++		      (eng)->logical_mask); \
++	} while (0)
+
+-:255: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ebuf' - possible side-effects?
+#255: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:864:
++#define GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng) \
++	do { \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-Name: %s command stream\n", (eng)->name); \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-Inst-Class: 0x%02x\n", (eng)->class); \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-Inst-Id: 0x%02x\n", (eng)->instance); \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-LogicalMask: 0x%08x\n", \
++		      (eng)->logical_mask); \
++	} while (0)
+
+-:255: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'eng' - possible side-effects?
+#255: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:864:
++#define GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng) \
++	do { \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-Name: %s command stream\n", (eng)->name); \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-Inst-Class: 0x%02x\n", (eng)->class); \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-Inst-Id: 0x%02x\n", (eng)->instance); \
++		PRINT(&i915->drm, (ebuf), "    i915-Eng-LogicalMask: 0x%08x\n", \
++		      (eng)->logical_mask); \
++	} while (0)
+
+-:264: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#264: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:873:
++#define GCAP_PRINT_GUC_INST_INFO(i915, ebuf, hdr) \
++	do { \
++		PRINT(&i915->drm, (ebuf), "    GuC-Engine-Inst-Id: 0x%08x\n", \
++		      (uint32_t)FIELD_GET(CAP_HDR_ENGINE_INSTANCE, (hdr).info)); \
++		PRINT(&i915->drm, (ebuf), "    GuC-Context-Id: 0x%08x\n", (hdr).guc_id); \
++		PRINT(&i915->drm, (ebuf), "    LRCA: 0x%08x\n", (hdr).lrca); \
++	} while (0)
+
+-:264: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'i915' may be better as '(i915)' to avoid precedence issues
+#264: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:873:
++#define GCAP_PRINT_GUC_INST_INFO(i915, ebuf, hdr) \
++	do { \
++		PRINT(&i915->drm, (ebuf), "    GuC-Engine-Inst-Id: 0x%08x\n", \
++		      (uint32_t)FIELD_GET(CAP_HDR_ENGINE_INSTANCE, (hdr).info)); \
++		PRINT(&i915->drm, (ebuf), "    GuC-Context-Id: 0x%08x\n", (hdr).guc_id); \
++		PRINT(&i915->drm, (ebuf), "    LRCA: 0x%08x\n", (hdr).lrca); \
++	} while (0)
+
+-:264: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ebuf' - possible side-effects?
+#264: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:873:
++#define GCAP_PRINT_GUC_INST_INFO(i915, ebuf, hdr) \
++	do { \
++		PRINT(&i915->drm, (ebuf), "    GuC-Engine-Inst-Id: 0x%08x\n", \
++		      (uint32_t)FIELD_GET(CAP_HDR_ENGINE_INSTANCE, (hdr).info)); \
++		PRINT(&i915->drm, (ebuf), "    GuC-Context-Id: 0x%08x\n", (hdr).guc_id); \
++		PRINT(&i915->drm, (ebuf), "    LRCA: 0x%08x\n", (hdr).lrca); \
++	} while (0)
+
+-:264: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'hdr' - possible side-effects?
+#264: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:873:
++#define GCAP_PRINT_GUC_INST_INFO(i915, ebuf, hdr) \
++	do { \
++		PRINT(&i915->drm, (ebuf), "    GuC-Engine-Inst-Id: 0x%08x\n", \
++		      (uint32_t)FIELD_GET(CAP_HDR_ENGINE_INSTANCE, (hdr).info)); \
++		PRINT(&i915->drm, (ebuf), "    GuC-Context-Id: 0x%08x\n", (hdr).guc_id); \
++		PRINT(&i915->drm, (ebuf), "    LRCA: 0x%08x\n", (hdr).lrca); \
++	} while (0)
+
+-:272: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#272: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:881:
++#define GCAP_PRINT_INTEL_CTX_INFO(i915, ebuf, ce) \
++	do { \
++		PRINT(&i915->drm, (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
++		PRINT(&i915->drm, (ebuf), "    i915-Ctx-GuC-Id: 0x%016x\n", (ce)->guc_id.id); \
++	} while (0)
+
+-:272: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'i915' may be better as '(i915)' to avoid precedence issues
+#272: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:881:
++#define GCAP_PRINT_INTEL_CTX_INFO(i915, ebuf, ce) \
++	do { \
++		PRINT(&i915->drm, (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
++		PRINT(&i915->drm, (ebuf), "    i915-Ctx-GuC-Id: 0x%016x\n", (ce)->guc_id.id); \
++	} while (0)
+
+-:272: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ebuf' - possible side-effects?
+#272: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:881:
++#define GCAP_PRINT_INTEL_CTX_INFO(i915, ebuf, ce) \
++	do { \
++		PRINT(&i915->drm, (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
++		PRINT(&i915->drm, (ebuf), "    i915-Ctx-GuC-Id: 0x%016x\n", (ce)->guc_id.id); \
++	} while (0)
+
+-:272: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ce' - possible side-effects?
+#272: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:881:
++#define GCAP_PRINT_INTEL_CTX_INFO(i915, ebuf, ce) \
++	do { \
++		PRINT(&i915->drm, (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
++		PRINT(&i915->drm, (ebuf), "    i915-Ctx-GuC-Id: 0x%016x\n", (ce)->guc_id.id); \
++	} while (0)
+
+-:278: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'i915' may be better as '(i915)' to avoid precedence issues
+#278: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:887:
++#define GCAP_PRINT_BATCH(i915, ebuf, ee, batch) \
++	do { \
++		batch = intel_gpu_error_find_batch(ee); \
++		if (batch) { \
++			u64 start = batch->gtt_offset; \
++			u64 end = start + batch->gtt_size; \
++			PRINT(&i915->drm, (ebuf), "  batch: [0x%08x_%08x, 0x%08x_%08x]\n", \
++			   upper_32_bits(start), lower_32_bits(start), \
++			   upper_32_bits(end), lower_32_bits(end)); \
++		} \
++	} while (0)
+
+-:278: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'batch' - possible side-effects?
+#278: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:887:
++#define GCAP_PRINT_BATCH(i915, ebuf, ee, batch) \
++	do { \
++		batch = intel_gpu_error_find_batch(ee); \
++		if (batch) { \
++			u64 start = batch->gtt_offset; \
++			u64 end = start + batch->gtt_size; \
++			PRINT(&i915->drm, (ebuf), "  batch: [0x%08x_%08x, 0x%08x_%08x]\n", \
++			   upper_32_bits(start), lower_32_bits(start), \
++			   upper_32_bits(end), lower_32_bits(end)); \
++		} \
++	} while (0)
+
+-:290: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#290: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:899:
++#define GCAP_PRINT_CONTEXT(i915, ebuf, ctx) \
++	do { \
++		const u32 period = to_gt(ebuf->i915)->clock_period_ns; \
++		PRINT(&i915->drm, (ebuf), "  Active context: %s[%d] prio %d, guilty %d " \
++		      "active %d, runtime total %lluns, avg %lluns\n", \
++		      ctx->comm, ctx->pid, ctx->sched_attr.priority, \
++		      ctx->guilty, ctx->active, \
++		      ctx->total_runtime * period, \
++		      mul_u32_u32(ctx->avg_runtime, period)); \
++	} while (0)
+
+-:290: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'i915' may be better as '(i915)' to avoid precedence issues
+#290: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:899:
++#define GCAP_PRINT_CONTEXT(i915, ebuf, ctx) \
++	do { \
++		const u32 period = to_gt(ebuf->i915)->clock_period_ns; \
++		PRINT(&i915->drm, (ebuf), "  Active context: %s[%d] prio %d, guilty %d " \
++		      "active %d, runtime total %lluns, avg %lluns\n", \
++		      ctx->comm, ctx->pid, ctx->sched_attr.priority, \
++		      ctx->guilty, ctx->active, \
++		      ctx->total_runtime * period, \
++		      mul_u32_u32(ctx->avg_runtime, period)); \
++	} while (0)
+
+-:290: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ebuf' - possible side-effects?
+#290: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:899:
++#define GCAP_PRINT_CONTEXT(i915, ebuf, ctx) \
++	do { \
++		const u32 period = to_gt(ebuf->i915)->clock_period_ns; \
++		PRINT(&i915->drm, (ebuf), "  Active context: %s[%d] prio %d, guilty %d " \
++		      "active %d, runtime total %lluns, avg %lluns\n", \
++		      ctx->comm, ctx->pid, ctx->sched_attr.priority, \
++		      ctx->guilty, ctx->active, \
++		      ctx->total_runtime * period, \
++		      mul_u32_u32(ctx->avg_runtime, period)); \
++	} while (0)
+
+-:290: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'ebuf' may be better as '(ebuf)' to avoid precedence issues
+#290: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:899:
++#define GCAP_PRINT_CONTEXT(i915, ebuf, ctx) \
++	do { \
++		const u32 period = to_gt(ebuf->i915)->clock_period_ns; \
++		PRINT(&i915->drm, (ebuf), "  Active context: %s[%d] prio %d, guilty %d " \
++		      "active %d, runtime total %lluns, avg %lluns\n", \
++		      ctx->comm, ctx->pid, ctx->sched_attr.priority, \
++		      ctx->guilty, ctx->active, \
++		      ctx->total_runtime * period, \
++		      mul_u32_u32(ctx->avg_runtime, period)); \
++	} while (0)
+
+-:290: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ctx' - possible side-effects?
+#290: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:899:
++#define GCAP_PRINT_CONTEXT(i915, ebuf, ctx) \
++	do { \
++		const u32 period = to_gt(ebuf->i915)->clock_period_ns; \
++		PRINT(&i915->drm, (ebuf), "  Active context: %s[%d] prio %d, guilty %d " \
++		      "active %d, runtime total %lluns, avg %lluns\n", \
++		      ctx->comm, ctx->pid, ctx->sched_attr.priority, \
++		      ctx->guilty, ctx->active, \
++		      ctx->total_runtime * period, \
++		      mul_u32_u32(ctx->avg_runtime, period)); \
++	} while (0)
+
+-:290: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'ctx' may be better as '(ctx)' to avoid precedence issues
+#290: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:899:
++#define GCAP_PRINT_CONTEXT(i915, ebuf, ctx) \
++	do { \
++		const u32 period = to_gt(ebuf->i915)->clock_period_ns; \
++		PRINT(&i915->drm, (ebuf), "  Active context: %s[%d] prio %d, guilty %d " \
++		      "active %d, runtime total %lluns, avg %lluns\n", \
++		      ctx->comm, ctx->pid, ctx->sched_attr.priority, \
++		      ctx->guilty, ctx->active, \
++		      ctx->total_runtime * period, \
++		      mul_u32_u32(ctx->avg_runtime, period)); \
++	} while (0)
+
+-:384: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#384: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c:993:
++		guc_gucid = guc_lrca = 0;
+
+total: 0 errors, 0 warnings, 23 checks, 678 lines checked
+
+
