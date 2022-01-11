@@ -1,58 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7F9048AA3E
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 10:13:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70BAC48AA7F
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 10:28:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 463C910EBE3;
-	Tue, 11 Jan 2022 09:13:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9F3D14A23C;
+	Tue, 11 Jan 2022 09:28:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EE1110EBE3;
- Tue, 11 Jan 2022 09:13:42 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63B0E14A233;
+ Tue, 11 Jan 2022 09:28:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641892422; x=1673428422;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=wxK4JVsCowwIeFcR/jlNkVOqhexiiPM/2Udwn90bZxk=;
- b=kWvLRDWxK6oZud5wR6zDmk+LZN8ulJLBPRA9kXDyd7Tu1lot0TDfQjar
- HD1XeS+gJTNmdWSZ5/9GMXnWMPiF/J0tQjxmajQtRVMcvirnQBb3ivpGZ
- sF4awQFMC36hC4Xm652flP6drxcLktk0VcNA+/dqV7ikXP6yJ4oj2KXhG
- kfMOoH+YklgTDu/3QLWYmftrWcKCqRGxbgLN91oA1zAKp9RhCmEdgdqUM
- tuOZzS2J+d4O/apIWMh603TEZ08pcDdbY8mVgUJXSPTQZ8X9YCLFgdK/T
- 4wKPGULU7aRwvwxgo18Ievy/Z5GFlYDp9F12STRC5H5b/Yy5sX1M+Z6UR Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="306794288"
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="306794288"
+ t=1641893312; x=1673429312;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=onE5YgZRVNaMqa66zxUsKhzqfu3ABTrDrHCYUGai8oA=;
+ b=kp+gaNDLlJpZYhamsuqZpMkjEvHFlte5Co+cBOdur7dmUiSrOtqOoJto
+ aAqYH6gt/fitWh+/otxrbqiAYloUUMehbM/LH/XVtavHDPyTn/8yrbb0e
+ IHoCQYC2X9DUXx+z+E340P1BtKpbdLmSAqL/6cMHrf2b4t7LmHvYUE8tN
+ EDTS5YqcLOq4hqeStYmGc2lES41CUqv9hp7YGF3gTg4gDRx1FkldmX3G6
+ GyRhagU0yTBTaa79jPw0vCr0yhilVlT3MPxBtxpabdpwxYX7nAAjzkSdd
+ 7MRBpQ0jDH66UgO6ckjJlGmeaj0FBDIN03jpwPyz/81FGSdE2f118SEZ6 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="240996987"
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="240996987"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2022 01:13:41 -0800
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="558302531"
-Received: from noblecat-mobl.ger.corp.intel.com (HELO [10.213.217.217])
- ([10.213.217.217])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2022 01:13:39 -0800
-Message-ID: <5da796b5-a19e-e07b-7cb5-7a30726bd2ff@linux.intel.com>
-Date: Tue, 11 Jan 2022 09:13:37 +0000
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2022 01:28:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="558305516"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by orsmga001.jf.intel.com with ESMTP; 11 Jan 2022 01:28:31 -0800
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 11 Jan 2022 01:30:10 -0800
+Message-Id: <20220111093018.610582-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: Colin Ian King <colin.i.king@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20220109203152.51414-1-colin.i.king@gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220109203152.51414-1-colin.i.king@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] i915: make array flex_regs static const
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC v3 0/7] Add GuC Error Capture Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,39 +53,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This series:
+  1. Supports the roll out of an upcoming GuC feature to
+     enable error-state-capture that allows the driver to
+     register lists of MMIO registers that GuC will report
+     during a GuC triggered engine-reset event.
+  2. Updates the ADS blob creation to register lists
+     of global and engine registers with GuC.
+  3. Defines tables of register lists that are global or
+     engine class or engine instance in scope.
+  4. Separates GuC log-buffer access locks for relay logging
+     vs the new region for the error state capture data.
+  5. Allocates an additional interim circular buffer store
+     to copy snapshots of new GuC reported error-state-capture
+     dumps in response to the G2H notification.
+  6. Connects the i915_gpu_coredump reporting function
+     to the GuC error capture module to print all GuC
+     error state capture dumps that is reported.
 
-On 09/01/2022 20:31, Colin Ian King wrote:
-> Don't populate the read-only array flex_regs on the stack but
-> instead it static const. Also makes the object code a little smaller.
-> 
-> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
-> ---
->   drivers/gpu/drm/i915/i915_perf.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index e27f3b7cf094..df698960fdc0 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -2114,7 +2114,7 @@ gen8_update_reg_state_unlocked(const struct intel_context *ce,
->   	u32 ctx_oactxctrl = stream->perf->ctx_oactxctrl_offset;
->   	u32 ctx_flexeu0 = stream->perf->ctx_flexeu0_offset;
->   	/* The MMIO offsets for Flex EU registers aren't contiguous */
-> -	i915_reg_t flex_regs[] = {
-> +	static const i915_reg_t flex_regs[] = {
->   		EU_PERF_CNTL0,
->   		EU_PERF_CNTL1,
->   		EU_PERF_CNTL2,
-> 
+This is the 3rd rev of this series. However, take note
+that this series will not pass CI until the following series
+is merged to upgrade the GuC firmware to a newer version
+which requires Patch #1 of this series is dropped:
+https://patchwork.kernel.org/project/intel-gfx/list/?series=599007
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Prior receipts of rvb's:
+  - Patch #4 has received R-v-b from Matthew Brost
+    <matthew.brost@intel.com>
 
-And will merge shortly, thanks for the patch.
+Changes from prior revs:
+   v3:
+      - Fixed all review comments from rev2 except the following:
+          - Michal Wajdeczko proposed adding a seperate function
+            to lookup register string nameslookup (based on offset)
+            but decided against it because of offset conflicts
+            and the current table layout is easier to maintain.
+          - Last set of checkpatch errors pertaining to "COMPLEX
+            MACROS" should be fixed on next rev.
+      - Abstracted internal-to-guc-capture information into a new
+        __guc_state_capture_priv structure that allows the exclusion
+        of intel_guc.h and intel_guc_fwif.h from intel_guc_capture.h.
+        Now, only the first 2 patches have a wider build time
+        impact because of the changes to intel_guc_fwif.h but
+        subsequent changes to guc-capture internal structures
+        or firmware interfaces used solely by guc-capture module
+        shoudn't impact the rest of the driver build.
+      - Added missing Gen12LP registers and added slice+subslice
+        indices when reporting extended steered registers.
+      - Add additional checks to ensure that the GuC reported
+        error capture information matches the i915_gpu_coredump
+        that is being printed before we print out the corresponding
+        VMA dumps such as the batch buffer.
+   v2:
+      - Ignore - failed CI retest.
 
-Regards,
+Alan Previn (6):
+  drm/i915/guc: Update GuC ADS size for error capture lists
+  drm/i915/guc: Populate XE_LP register lists for GuC error state
+    capture.
+  drm/i915/guc: Add GuC's error state capture output structures.
+  drm/i915/guc: Update GuC's log-buffer-state access for error capture.
+  drm/i915/guc: Copy new GuC error capture logs upon G2H notification.
+  drm/i915/guc: Print the GuC error capture output register list.
 
-Tvrtko
+John Harrison (1):
+  drm/i915/guc: Add basic support for error capture lists
+
+ drivers/gpu/drm/i915/Makefile                 |    1 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |    4 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |    8 +
+ drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h |   85 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   55 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   15 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |   32 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 1274 +++++++++++++++++
+ .../gpu/drm/i915/gt/uc/intel_guc_capture.h    |   30 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |    3 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   43 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  162 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.h    |   23 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |   22 +
+ drivers/gpu/drm/i915/i915_gpu_error.c         |   65 +-
+ drivers/gpu/drm/i915/i915_gpu_error.h         |   14 +
+ 16 files changed, 1731 insertions(+), 105 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
+
+-- 
+2.25.1
+
