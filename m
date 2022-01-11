@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D61A48A95E
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 09:29:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B81648A96A
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 09:35:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD63112BECB;
-	Tue, 11 Jan 2022 08:29:30 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5610F11266C;
+	Tue, 11 Jan 2022 08:34:44 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78A0012BECB
- for <Intel-gfx@lists.freedesktop.org>; Tue, 11 Jan 2022 08:29:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61F5E112E4C;
+ Tue, 11 Jan 2022 08:34:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641889769; x=1673425769;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=EIhpQn6rDPLcNTPzfjP1epVNkd+T4wLJvj/ydqTkvvI=;
- b=CD0kSkfzD7UGHg2oSriZVbkl7Vn1Zz03y7OV176x2sVYslIvnD9+ZPaj
- tNVm1HBx4H0BSzAb7DirbEH9tzLbbMoDkgjkxjJ0hF2WIl03+qS80I8c3
- MLS2WFXly27tn9HiF7YNkkztakjAiS0v/MB0sCi5NkMHf065ExK13yHI3
- wF2g3exQJCrYWOae/cfqythViZXw0m32vgyvjTBeW3p1bI8mPjnoSzsMP
- DwClT7a66uKhwwIe5bGXIfmJzOFbf+8kDcxEEv1iJ0P3KzyAo7xFa7fBj
- 36ZNemjrOB180kI1WQTfk1vzr7/JVpwqkyhrQmsp99Ks4Aa40Vg5iL/ew g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="306786433"
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="306786433"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ t=1641890080; x=1673426080;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=/0aU31xYzg/+MRAggb+53/jr584NfLEiehXMq2Y4qUw=;
+ b=hfYnCvKsktU7JBFP49jte+/G19+B82SbaWjuZ6XnO0YjO+YOElOeNs0i
+ nWJaDqX1e3P4u2ENR5NGIRlL6P+K0BZxFnnR+AEizf/QSYbdIzS+k01Ft
+ QhlST/HgL+RMilpw0NtrgBSqnTVxZCCcuy2dxzSXZ4EBDyFI6wYg5JAID
+ 0W5CKKpVQ3C9+1i1UTEdN1o3GAoBD0zMFjiW2b+LPAy0UIGd2XRzeyVwg
+ lceQsg7qaYT8r7ddQ2fhwXfePP7WbOLQruekKTMjrmojG2U6ogo/xymyq
+ ZQyQit7VuMnC4ci6ysVTOlUpQME2r6ExJPmEhdHR8HvGU0i+lsFxmdXtj g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="306787857"
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="306787857"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2022 00:29:20 -0800
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="472384686"
+ 11 Jan 2022 00:34:39 -0800
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="690920830"
 Received: from sjobrien-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.252.25.241])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2022 00:29:19 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: clinton.a.taylor@intel.com, Intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220110234520.6836-1-clinton.a.taylor@intel.com>
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2022 00:34:37 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YdxYNV9AhlvHxibp@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220110234520.6836-1-clinton.a.taylor@intel.com>
-Date: Tue, 11 Jan 2022 10:29:16 +0200
-Message-ID: <871r1ead5v.fsf@intel.com>
+References: <20170712155102.26276-1-ville.syrjala@linux.intel.com>
+ <20170712155102.26276-3-ville.syrjala@linux.intel.com>
+ <87tueoj4bw.fsf@intel.com> <YdxYNV9AhlvHxibp@intel.com>
+Date: Tue, 11 Jan 2022 10:34:34 +0200
+Message-ID: <87y23m8ycl.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/snps: vswing value refined for
- SNPS phys
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/atomic: Make private objs proper
+ objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,93 +60,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 10 Jan 2022, clinton.a.taylor@intel.com wrote:
-> From: Clint Taylor <clinton.a.taylor@intel.com>
+On Mon, 10 Jan 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Fri, Dec 31, 2021 at 03:23:31PM +0200, Jani Nikula wrote:
+>> On Wed, 12 Jul 2017, ville.syrjala@linux.intel.com wrote:
+>> > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> >
+>> > Make the atomic private object stuff less special by introducing proper
+>> > base classes for the object and its state. Drivers can embed these in
+>> > their own appropriate objects, after which these things will work
+>> > exactly like the plane/crtc/connector states during atomic operations.
+>> >
+>> > v2: Reorder to not depend on drm_dynarray (Daniel)
+>> >
+>> > Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+>> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+>> > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch> #v1
+>> > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>=20
+>> Stumbled upon an old commit
+>>=20
+>> commit a4370c777406c2810e37fafd166ccddecdb2a60c
+>> Author: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Date:   Wed Jul 12 18:51:02 2017 +0300
+>>=20
+>>     drm/atomic: Make private objs proper objects
+>>=20
+>> which is this patch.
+>>=20
+>> > @@ -3050,8 +3043,7 @@ struct drm_dp_mst_topology_state *drm_atomic_get=
+_mst_topology_state(struct drm_a
+>> >  	struct drm_device *dev =3D mgr->dev;
+>> >=20=20
+>> >  	WARN_ON(!drm_modeset_is_locked(&dev->mode_config.connection_mutex));
+>> > -	return drm_atomic_get_private_obj_state(state, mgr,
+>> > -						&mst_state_funcs);
+>> > +	return to_dp_mst_topology_state(drm_atomic_get_private_obj_state(sta=
+te, &mgr->base));
+>> >  }
+>> >  EXPORT_SYMBOL(drm_atomic_get_mst_topology_state);
+>>=20
+>> I don't think this combines well with...
+>>=20
+>> > diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_=
+helper.h
+>> > index 177ab6f86855..d55abb75f29a 100644
+>> > --- a/include/drm/drm_dp_mst_helper.h
+>> > +++ b/include/drm/drm_dp_mst_helper.h
+>> > @@ -404,12 +404,17 @@ struct drm_dp_payload {
+>> >  	int vcpi;
+>> >  };
+>> >=20=20
+>> > +#define to_dp_mst_topology_state(x) container_of(x, struct drm_dp_mst=
+_topology_state, base)
+>>=20
+>> ...this in case of error pointers that
+>> drm_atomic_get_private_obj_state() may return.
 >
-> Updated new values from BSPEC.
->
-> BSPEC: 53920
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+> offsetof(base)=3D=3D0 so should work in practice.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Returning zeros is fine, but error pointers are another matter.
 
-> ---
->  .../drm/i915/display/intel_ddi_buf_trans.c    | 42 +++++++++----------
->  1 file changed, 21 insertions(+), 21 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers=
-/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> index 1e689d573512..09d6ab13536c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> @@ -985,15 +985,15 @@ static const struct intel_ddi_buf_trans adlp_dkl_ph=
-y_trans_dp_hbr2_hbr3 =3D {
->  };
->=20=20
->  static const union intel_ddi_buf_trans_entry _dg2_snps_trans[] =3D {
-> -	{ .snps =3D { 26, 0, 0 } },	/* VS 0, pre-emph 0 */
-> -	{ .snps =3D { 33, 0, 6 } },	/* VS 0, pre-emph 1 */
-> -	{ .snps =3D { 38, 0, 12 } },	/* VS 0, pre-emph 2 */
-> -	{ .snps =3D { 43, 0, 19 } },	/* VS 0, pre-emph 3 */
-> -	{ .snps =3D { 39, 0, 0 } },	/* VS 1, pre-emph 0 */
-> -	{ .snps =3D { 44, 0, 8 } },	/* VS 1, pre-emph 1 */
-> -	{ .snps =3D { 47, 0, 15 } },	/* VS 1, pre-emph 2 */
-> -	{ .snps =3D { 52, 0, 0 } },	/* VS 2, pre-emph 0 */
-> -	{ .snps =3D { 51, 0, 10 } },	/* VS 2, pre-emph 1 */
-> +	{ .snps =3D { 25, 0, 0 } },	/* VS 0, pre-emph 0 */
-> +	{ .snps =3D { 32, 0, 6 } },	/* VS 0, pre-emph 1 */
-> +	{ .snps =3D { 35, 0, 10 } },	/* VS 0, pre-emph 2 */
-> +	{ .snps =3D { 43, 0, 17 } },	/* VS 0, pre-emph 3 */
-> +	{ .snps =3D { 35, 0, 0 } },	/* VS 1, pre-emph 0 */
-> +	{ .snps =3D { 45, 0, 8 } },	/* VS 1, pre-emph 1 */
-> +	{ .snps =3D { 48, 0, 14 } },	/* VS 1, pre-emph 2 */
-> +	{ .snps =3D { 47, 0, 0 } },	/* VS 2, pre-emph 0 */
-> +	{ .snps =3D { 55, 0, 7 } },	/* VS 2, pre-emph 1 */
->  	{ .snps =3D { 62, 0, 0 } },	/* VS 3, pre-emph 0 */
->  };
->=20=20
-> @@ -1005,21 +1005,21 @@ static const struct intel_ddi_buf_trans dg2_snps_=
-trans =3D {
->=20=20
->  static const union intel_ddi_buf_trans_entry _dg2_snps_trans_uhbr[] =3D {
->  	{ .snps =3D { 62, 0, 0 } },	/* preset 0 */
-> -	{ .snps =3D { 56, 0, 6 } },	/* preset 1 */
-> -	{ .snps =3D { 51, 0, 11 } },	/* preset 2 */
-> -	{ .snps =3D { 48, 0, 14 } },	/* preset 3 */
-> -	{ .snps =3D { 43, 0, 19 } },	/* preset 4 */
-> +	{ .snps =3D { 55, 0, 7 } },	/* preset 1 */
-> +	{ .snps =3D { 50, 0, 12 } },	/* preset 2 */
-> +	{ .snps =3D { 44, 0, 18 } },	/* preset 3 */
-> +	{ .snps =3D { 35, 0, 21 } },	/* preset 4 */
->  	{ .snps =3D { 59, 3, 0 } },	/* preset 5 */
->  	{ .snps =3D { 53, 3, 6 } },	/* preset 6 */
-> -	{ .snps =3D { 49, 3, 10 } },	/* preset 7 */
-> -	{ .snps =3D { 45, 3, 14 } },	/* preset 8 */
-> -	{ .snps =3D { 42, 3, 17 } },	/* preset 9 */
-> +	{ .snps =3D { 48, 3, 11 } },	/* preset 7 */
-> +	{ .snps =3D { 42, 5, 15 } },	/* preset 8 */
-> +	{ .snps =3D { 37, 5, 20 } },	/* preset 9 */
->  	{ .snps =3D { 56, 6, 0 } },	/* preset 10 */
-> -	{ .snps =3D { 50, 6, 6 } },	/* preset 11 */
-> -	{ .snps =3D { 47, 6, 9 } },	/* preset 12 */
-> -	{ .snps =3D { 42, 6, 14 } },	/* preset 13 */
-> -	{ .snps =3D { 46, 8, 8 } },	/* preset 14 */
-> -	{ .snps =3D { 56, 3, 3 } },	/* preset 15 */
-> +	{ .snps =3D { 48, 7, 7 } },	/* preset 11 */
-> +	{ .snps =3D { 45, 7, 10 } },	/* preset 12 */
-> +	{ .snps =3D { 39, 8, 15 } },	/* preset 13 */
-> +	{ .snps =3D { 48, 14, 0 } },	/* preset 14 */
-> +	{ .snps =3D { 45, 4, 4 } },	/* preset 15 */
->  };
->=20=20
->  static const struct intel_ddi_buf_trans dg2_snps_trans_uhbr =3D {
+BR,
+Jani.
+
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
