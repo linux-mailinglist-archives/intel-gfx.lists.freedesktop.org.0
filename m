@@ -1,56 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE48948B252
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 17:37:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E089A48B27C
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 17:44:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E156F10E2CE;
-	Tue, 11 Jan 2022 16:37:14 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B9B410E2CE
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jan 2022 16:37:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4363610E57F;
+	Tue, 11 Jan 2022 16:44:01 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE08F10E57F
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 11 Jan 2022 16:43:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641919034; x=1673455034;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Imj3kj8fwGoBOk0oWClngOHxqzyhIxaoEOy7rbrEaG0=;
- b=mUPHO1ulAh/9WvpZSLQG92sZkyLK2XnIdglbFhgDqOYoexXE4O13oY6x
- 4q71QVxidkmUVmimclOhYqZRlcFy4GNPukHaJyp+kCmxj+pTbXpgFzlUD
- LhRji1h6CQu5JdpHO8/u7ZVRmut1HqYdK9/SvB0tuSnurygN4Y9kgr8kX
- nh5Bm6yiXAUzKeTtq+S0RbhnWRPAJvgdCD6D/668UruYcK8yi6ewvyiET
- bC4/ZpdQhWYP1EHooq+3wHjTp3e+Ldsg/3pfnx8Hk0DeoqUd7B81HjCTZ
- eMSIEOMF5CexUXdztpB4rM5UljVJLkJqM/P5vMPN4Vl53ZntiPa9lDWkL w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="230868775"
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="230868775"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2022 08:37:12 -0800
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="576255435"
-Received: from rblair-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.209.75.118])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2022 08:37:12 -0800
-Date: Tue, 11 Jan 2022 08:37:11 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20220111163711.ebnwlltm4spmuuuo@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220110095740.166078-1-jani.nikula@intel.com>
- <20220110095740.166078-3-jani.nikula@intel.com>
- <YdxYvXfkOgTFFg+s@intel.com> <87pmoy8xdb.fsf@intel.com>
- <20220111161405.kpgf2jxvlkdnlk4v@ldmartin-desk2>
- <8735lu8cu9.fsf@intel.com>
+ t=1641919439; x=1673455439;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=FMtQSW8AY/QHe7neFWvZh7pnEBJ2Qcx7RotYY7UbcwU=;
+ b=EFsGaTKRPezdxfgKjuLLaVvTvbzzv4B0FRel2dXfRMp9OCJ/qli6v9M8
+ 4bZM/PIV+cQxQMzC+RtOdYpS8DDm8e6nrRzngZ4ppUX2/AkaRKJs81tlo
+ 7uEyQo7l/6p3QwkIC0CiAZOQAZr47avCXdgUkj6imbmBWdrxCuPYibsAN
+ B6xFDfjhMznG2Sh/3XXAu0dImCfb1pLBNhiMFk0zbrExQ9sEDzkLthUPf
+ mtJ56MmbozRPQYH4IMd83Zcz30JAfWShJTqP4xnMH3AqrO1wtEEg8CMC1
+ kut1taxxyV5PoG+ypNslUOqiDs8D4pXamT0BYPf9ca/HVXKLBJxdVCvt5 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="242344636"
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="242344636"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2022 08:38:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="613273825"
+Received: from irsmsx602.ger.corp.intel.com ([163.33.146.8])
+ by FMSMGA003.fm.intel.com with ESMTP; 11 Jan 2022 08:38:20 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 11 Jan 2022 16:38:18 +0000
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2308.020;
+ Tue, 11 Jan 2022 08:38:17 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
+ "Taylor, Clinton A" <clinton.a.taylor@intel.com>
+Thread-Topic: [PATCH] drm/i915/snps: vswing value refined for SNPS phys
+Thread-Index: AQHYBnwnmdJcG/UPHUmexnZjgiTpOaxejNoA
+Date: Tue, 11 Jan 2022 16:38:17 +0000
+Message-ID: <9fc25061bdf311a470ac916c5abbb421b574d8d8.camel@intel.com>
+References: <20220110234520.6836-1-clinton.a.taylor@intel.com>
+In-Reply-To: <20220110234520.6836-1-clinton.a.taylor@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <025EB2E0109BCD438EFAE11B51816962@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8735lu8cu9.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/vga: switch to use VGA
- definitions from video/vga.h
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/snps: vswing value refined for
+ SNPS phys
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +72,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 11, 2022 at 06:19:10PM +0200, Jani Nikula wrote:
->On Tue, 11 Jan 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> On Tue, Jan 11, 2022 at 10:55:44AM +0200, Jani Nikula wrote:
->>>On Mon, 10 Jan 2022, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
->>>> On Mon, Jan 10, 2022 at 11:57:39AM +0200, Jani Nikula wrote:
->>>>> The video/vga.h has macros for the VGA registers. Switch to use them.
->>>>>
->>>>> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
->>>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>>>> ---
->>>>>  drivers/gpu/drm/i915/display/intel_vga.c | 9 +++++----
->>>>>  1 file changed, 5 insertions(+), 4 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
->>>>> index fa779f7ea415..43c12036c1fa 100644
->>>>> --- a/drivers/gpu/drm/i915/display/intel_vga.c
->>>>> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
->>>>> @@ -7,6 +7,7 @@
->>>>>  #include <linux/vgaarb.h>
->>>>>
->>>>>  #include <drm/i915_drm.h>
->>>>> +#include <video/vga.h>
->>>>>
->>>>>  #include "i915_drv.h"
->>>>>  #include "intel_de.h"
->>>>> @@ -34,9 +35,9 @@ void intel_vga_disable(struct drm_i915_private *dev_priv)
->>>>>
->>>>>  	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
->>>>>  	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
->>>>> -	outb(SR01, VGA_SR_INDEX);
->>>>> -	sr1 = inb(VGA_SR_DATA);
->>>>> -	outb(sr1 | 1 << 5, VGA_SR_DATA);
->>>>> +	outb(VGA_SEQ_CLOCK_MODE, VGA_SEQ_I);
->>>>
->>>> Not a huge fan of some of these defines since now I have
->>>> no idea what register this is selecting.
->>>
->>>It's a bit silly that we have our own macros for this stuff, but I get
->>>the point. Took me a while to figure the changes out because the macros
->>>in video/vga.h aren't even grouped in a helpful way.
->>>
->>>I guess you'd prefer patch [1] over patches 3-4 in this series then? For
->>>me the main goal is to just reduce the size of i915_reg.h.
->>
->> alternatively, to patch video/vga.h to make it pretty?
->
->If it's enough to just rearrange the stuff, maybe. But if it means
->renames, I'm not going to touch a big pile of ancient fb/vga drivers to
->chase this one.
-
-I think it would be ok to add them as aliases to the names used in
-other places. Then the other places can be converted later if at all.
-
-But not a strong opinion... up to you, Ville and Matt.
-
-Lucas De Marchi
+T24gTW9uLCAyMDIyLTAxLTEwIGF0IDE1OjQ1IC0wODAwLCBjbGludG9uLmEudGF5bG9yQGludGVs
+LmNvbSB3cm90ZToNCj4gRnJvbTogQ2xpbnQgVGF5bG9yIDxjbGludG9uLmEudGF5bG9yQGludGVs
+LmNvbT4NCj4gDQo+IFVwZGF0ZWQgbmV3IHZhbHVlcyBmcm9tIEJTUEVDLg0KPiANCj4gQlNQRUM6
+IDUzOTIwDQo+IA0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5z
+b3V6YUBpbnRlbC5jb20+DQoNCj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5j
+b20+DQo+IENjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4N
+Cj4gQ2M6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTog
+Q2xpbnQgVGF5bG9yIDxjbGludG9uLmEudGF5bG9yQGludGVsLmNvbT4NCj4gLS0tDQo+ICAuLi4v
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGlfYnVmX3RyYW5zLmMgICAgfCA0MiArKysrKysrKyst
+LS0tLS0tLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygrKSwgMjEgZGVsZXRp
+b25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kZGlfYnVmX3RyYW5zLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2RkaV9idWZfdHJhbnMuYw0KPiBpbmRleCAxZTY4OWQ1NzM1MTIuLjA5ZDZhYjEzNTM2YyAxMDA2
+NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGlfYnVmX3Ry
+YW5zLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGlfYnVm
+X3RyYW5zLmMNCj4gQEAgLTk4NSwxNSArOTg1LDE1IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50
+ZWxfZGRpX2J1Zl90cmFucyBhZGxwX2RrbF9waHlfdHJhbnNfZHBfaGJyMl9oYnIzID0gew0KPiAg
+fTsNCj4gIA0KPiAgc3RhdGljIGNvbnN0IHVuaW9uIGludGVsX2RkaV9idWZfdHJhbnNfZW50cnkg
+X2RnMl9zbnBzX3RyYW5zW10gPSB7DQo+IC0JeyAuc25wcyA9IHsgMjYsIDAsIDAgfSB9LAkvKiBW
+UyAwLCBwcmUtZW1waCAwICovDQo+IC0JeyAuc25wcyA9IHsgMzMsIDAsIDYgfSB9LAkvKiBWUyAw
+LCBwcmUtZW1waCAxICovDQo+IC0JeyAuc25wcyA9IHsgMzgsIDAsIDEyIH0gfSwJLyogVlMgMCwg
+cHJlLWVtcGggMiAqLw0KPiAtCXsgLnNucHMgPSB7IDQzLCAwLCAxOSB9IH0sCS8qIFZTIDAsIHBy
+ZS1lbXBoIDMgKi8NCj4gLQl7IC5zbnBzID0geyAzOSwgMCwgMCB9IH0sCS8qIFZTIDEsIHByZS1l
+bXBoIDAgKi8NCj4gLQl7IC5zbnBzID0geyA0NCwgMCwgOCB9IH0sCS8qIFZTIDEsIHByZS1lbXBo
+IDEgKi8NCj4gLQl7IC5zbnBzID0geyA0NywgMCwgMTUgfSB9LAkvKiBWUyAxLCBwcmUtZW1waCAy
+ICovDQo+IC0JeyAuc25wcyA9IHsgNTIsIDAsIDAgfSB9LAkvKiBWUyAyLCBwcmUtZW1waCAwICov
+DQo+IC0JeyAuc25wcyA9IHsgNTEsIDAsIDEwIH0gfSwJLyogVlMgMiwgcHJlLWVtcGggMSAqLw0K
+PiArCXsgLnNucHMgPSB7IDI1LCAwLCAwIH0gfSwJLyogVlMgMCwgcHJlLWVtcGggMCAqLw0KPiAr
+CXsgLnNucHMgPSB7IDMyLCAwLCA2IH0gfSwJLyogVlMgMCwgcHJlLWVtcGggMSAqLw0KPiArCXsg
+LnNucHMgPSB7IDM1LCAwLCAxMCB9IH0sCS8qIFZTIDAsIHByZS1lbXBoIDIgKi8NCj4gKwl7IC5z
+bnBzID0geyA0MywgMCwgMTcgfSB9LAkvKiBWUyAwLCBwcmUtZW1waCAzICovDQo+ICsJeyAuc25w
+cyA9IHsgMzUsIDAsIDAgfSB9LAkvKiBWUyAxLCBwcmUtZW1waCAwICovDQo+ICsJeyAuc25wcyA9
+IHsgNDUsIDAsIDggfSB9LAkvKiBWUyAxLCBwcmUtZW1waCAxICovDQo+ICsJeyAuc25wcyA9IHsg
+NDgsIDAsIDE0IH0gfSwJLyogVlMgMSwgcHJlLWVtcGggMiAqLw0KPiArCXsgLnNucHMgPSB7IDQ3
+LCAwLCAwIH0gfSwJLyogVlMgMiwgcHJlLWVtcGggMCAqLw0KPiArCXsgLnNucHMgPSB7IDU1LCAw
+LCA3IH0gfSwJLyogVlMgMiwgcHJlLWVtcGggMSAqLw0KPiAgCXsgLnNucHMgPSB7IDYyLCAwLCAw
+IH0gfSwJLyogVlMgMywgcHJlLWVtcGggMCAqLw0KPiAgfTsNCj4gIA0KPiBAQCAtMTAwNSwyMSAr
+MTAwNSwyMSBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RkaV9idWZfdHJhbnMgZGcyX3Nu
+cHNfdHJhbnMgPSB7DQo+ICANCj4gIHN0YXRpYyBjb25zdCB1bmlvbiBpbnRlbF9kZGlfYnVmX3Ry
+YW5zX2VudHJ5IF9kZzJfc25wc190cmFuc191aGJyW10gPSB7DQo+ICAJeyAuc25wcyA9IHsgNjIs
+IDAsIDAgfSB9LAkvKiBwcmVzZXQgMCAqLw0KPiAtCXsgLnNucHMgPSB7IDU2LCAwLCA2IH0gfSwJ
+LyogcHJlc2V0IDEgKi8NCj4gLQl7IC5zbnBzID0geyA1MSwgMCwgMTEgfSB9LAkvKiBwcmVzZXQg
+MiAqLw0KPiAtCXsgLnNucHMgPSB7IDQ4LCAwLCAxNCB9IH0sCS8qIHByZXNldCAzICovDQo+IC0J
+eyAuc25wcyA9IHsgNDMsIDAsIDE5IH0gfSwJLyogcHJlc2V0IDQgKi8NCj4gKwl7IC5zbnBzID0g
+eyA1NSwgMCwgNyB9IH0sCS8qIHByZXNldCAxICovDQo+ICsJeyAuc25wcyA9IHsgNTAsIDAsIDEy
+IH0gfSwJLyogcHJlc2V0IDIgKi8NCj4gKwl7IC5zbnBzID0geyA0NCwgMCwgMTggfSB9LAkvKiBw
+cmVzZXQgMyAqLw0KPiArCXsgLnNucHMgPSB7IDM1LCAwLCAyMSB9IH0sCS8qIHByZXNldCA0ICov
+DQo+ICAJeyAuc25wcyA9IHsgNTksIDMsIDAgfSB9LAkvKiBwcmVzZXQgNSAqLw0KPiAgCXsgLnNu
+cHMgPSB7IDUzLCAzLCA2IH0gfSwJLyogcHJlc2V0IDYgKi8NCj4gLQl7IC5zbnBzID0geyA0OSwg
+MywgMTAgfSB9LAkvKiBwcmVzZXQgNyAqLw0KPiAtCXsgLnNucHMgPSB7IDQ1LCAzLCAxNCB9IH0s
+CS8qIHByZXNldCA4ICovDQo+IC0JeyAuc25wcyA9IHsgNDIsIDMsIDE3IH0gfSwJLyogcHJlc2V0
+IDkgKi8NCj4gKwl7IC5zbnBzID0geyA0OCwgMywgMTEgfSB9LAkvKiBwcmVzZXQgNyAqLw0KPiAr
+CXsgLnNucHMgPSB7IDQyLCA1LCAxNSB9IH0sCS8qIHByZXNldCA4ICovDQo+ICsJeyAuc25wcyA9
+IHsgMzcsIDUsIDIwIH0gfSwJLyogcHJlc2V0IDkgKi8NCj4gIAl7IC5zbnBzID0geyA1NiwgNiwg
+MCB9IH0sCS8qIHByZXNldCAxMCAqLw0KPiAtCXsgLnNucHMgPSB7IDUwLCA2LCA2IH0gfSwJLyog
+cHJlc2V0IDExICovDQo+IC0JeyAuc25wcyA9IHsgNDcsIDYsIDkgfSB9LAkvKiBwcmVzZXQgMTIg
+Ki8NCj4gLQl7IC5zbnBzID0geyA0MiwgNiwgMTQgfSB9LAkvKiBwcmVzZXQgMTMgKi8NCj4gLQl7
+IC5zbnBzID0geyA0NiwgOCwgOCB9IH0sCS8qIHByZXNldCAxNCAqLw0KPiAtCXsgLnNucHMgPSB7
+IDU2LCAzLCAzIH0gfSwJLyogcHJlc2V0IDE1ICovDQo+ICsJeyAuc25wcyA9IHsgNDgsIDcsIDcg
+fSB9LAkvKiBwcmVzZXQgMTEgKi8NCj4gKwl7IC5zbnBzID0geyA0NSwgNywgMTAgfSB9LAkvKiBw
+cmVzZXQgMTIgKi8NCj4gKwl7IC5zbnBzID0geyAzOSwgOCwgMTUgfSB9LAkvKiBwcmVzZXQgMTMg
+Ki8NCj4gKwl7IC5zbnBzID0geyA0OCwgMTQsIDAgfSB9LAkvKiBwcmVzZXQgMTQgKi8NCj4gKwl7
+IC5zbnBzID0geyA0NSwgNCwgNCB9IH0sCS8qIHByZXNldCAxNSAqLw0KPiAgfTsNCj4gIA0KPiAg
+c3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9kZGlfYnVmX3RyYW5zIGRnMl9zbnBzX3RyYW5zX3Vo
+YnIgPSB7DQoNCg==
