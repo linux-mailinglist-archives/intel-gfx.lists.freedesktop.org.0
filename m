@@ -1,57 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B2B948A786
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 06:57:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F19848A7B4
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 07:26:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6941412A938;
-	Tue, 11 Jan 2022 05:57:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51CF712AF5A;
+	Tue, 11 Jan 2022 06:26:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEF9E12A935
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jan 2022 05:57:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F70412AF5A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jan 2022 06:26:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641880642; x=1673416642;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=q3F5gWQIf8+cnyrESI9oUU85PUvNiqWsMjGhPirZ7J4=;
- b=h8Lo/tib1l7dj0rLDNTNph7bwVQw9YViJhT+Tn/VF8QMXN0d2e6kMpWE
- p7AGwR5axHFC8fm0sXiV3gIhK/6nhIDnlphAn39dnSCjN2/5529tOcaq3
- zAD85n1eVUGnuw42/OHY/XbbbCwW2MaUi8aa30TFDBRYPOiHKgk5mxfaa
- QD3220wpwsy9WYFg6J95+1E+BKwcgjdcy4g8qayf8Mod2+vh2aXPJl2TD
- QrzHXEbNU/63sReCAjeTJ+EmWFMVbtPyCQZQvAFCG5GHkxxTh+DJpjjcM
- blrXaTfRR/FKN5NJ2/JGyiWOeTNyHYA+ZmcHCWnVC9ONcXjbKvzNMp1QR Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="329750974"
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="329750974"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ t=1641882407; x=1673418407;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=sQmjunTAP2+6qD+bp0mviVH7AEAoDomuCcb6hZuiDTQ=;
+ b=SGgEmKXbd3YTyjZ2UJfO7wlyJw0KuA+dd97wcZmH1iK2Wi9H6aJGqk20
+ RQx+P3O8x8Mqdy/EClb8wGgglCA/PDg9YoqM6yC67sgYHLTolKYaD8qK5
+ 4Jkip2uV0tXAMtYi/U+Ji3ta8U7O/JiyuGS+oZ4DV2VSVeprynbxgTSeM
+ q2GPX/vZsSEcsRvZvfoxMxXvNDt/efBs2EWqR+ivnSKNz5FtOTAMM9Qh1
+ Cn2LYd4yo8XtetFPXY6r4QemYidzuWvRUEtZspRjva06TDFnDjUfbTbPa
+ elTBgKp5eHRnmbjv9z90YmHZyECKo6xovT68vHmaiDHz0iYM/DJDDdx7U A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="329755961"
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="329755961"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2022 21:57:22 -0800
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="622949747"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2022 21:57:22 -0800
-Date: Mon, 10 Jan 2022 22:12:18 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-Message-ID: <20220111061217.GA23358@labuser-Z97X-UD5H>
+ 10 Jan 2022 22:26:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="592598015"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga004.fm.intel.com with ESMTP; 10 Jan 2022 22:26:46 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Mon, 10 Jan 2022 22:26:46 -0800
+Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Mon, 10 Jan 2022 22:26:44 -0800
+Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
+ BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2308.020;
+ Tue, 11 Jan 2022 11:56:42 +0530
+From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
+To: "Navare, Manasi D" <manasi.d.navare@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display: Enable second VDSC engine
+ for higher moderates
+Thread-Index: AQHXqK0inD+P6mZa3kyDbF0BuUUoBquixrYAgABcbgD//6kzAIAAE+QAgAAzeICAABDVgIAAB9CAgAAIagCAAF7qcP//s/qAgLlJ2RCAAHPAgIAA6/9w///FkwAACz8K0A==
+Date: Tue, 11 Jan 2022 06:26:42 +0000
+Message-ID: <00348325918e4f47b87305a360688a58@intel.com>
 References: <20210914085958.GA27514@intel.com> <87k0jj2wjo.fsf@intel.com>
- <20210914130425.GA27850@intel.com>
- <20210914133223.GA28709@intel.com> <87bl4v2r2h.fsf@intel.com>
- <c3813f0b1b18411abfdd9004378f2329@intel.com>
- <87zgsf19dc.fsf@intel.com>
- <03b4a5dab8384622b5c9baa2f92a9469@intel.com>
+ <20210914130425.GA27850@intel.com> <20210914133223.GA28709@intel.com>
+ <87bl4v2r2h.fsf@intel.com> <c3813f0b1b18411abfdd9004378f2329@intel.com>
+ <87zgsf19dc.fsf@intel.com> <03b4a5dab8384622b5c9baa2f92a9469@intel.com>
  <20220110193634.GA12500@labuser-Z97X-UD5H>
  <16eadcc44975488696b036cf617b7a59@intel.com>
+ <20220111061217.GA23358@labuser-Z97X-UD5H>
+In-Reply-To: <20220111061217.GA23358@labuser-Z97X-UD5H>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.200.16
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <16eadcc44975488696b036cf617b7a59@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Enable second VDSC engine
  for higher moderates
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -71,376 +89,359 @@ Cc: "Nikula, Jani" <jani.nikula@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 10, 2022 at 08:24:54PM -0800, Kulkarni, Vandita wrote:
-> > -----Original Message-----
-> > From: Navare, Manasi D <manasi.d.navare@intel.com>
-> > Sent: Tuesday, January 11, 2022 1:07 AM
-> > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> > Cc: Nikula, Jani <jani.nikula@intel.com>; Lisovskiy, Stanislav
-> > <stanislav.lisovskiy@intel.com>; Ville Syrjälä <ville.syrjala@linux.intel.com>;
-> > intel-gfx@lists.freedesktop.org
-> > Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Enable second VDSC
-> > engine for higher moderates
-> > 
-> > Thankf for revisiting this thread. The use of max_cdclk is currently in 2 places
-> > in DSC code 1. . if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq)
-> > {
-> >                 if (pipe_config->dsc.slice_count > 1) {
-> >                         pipe_config->dsc.dsc_split = true; 2. if (bigjoiner) {
-> >                 u32 max_bpp_bigjoiner =
-> >                         i915->max_cdclk_freq * 48 /
-> >                         intel_dp_mode_to_fec_clock(mode_clock);
-> > 
-> >                 DRM_DEBUG_KMS("Max big joiner bpp: %u\n",
-> > max_bpp_bigjoiner);
-> >                 bits_per_pixel = min(bits_per_pixel, max_bpp_bigjoiner);
-> >         }
-> > 
-> > In both these places, using max_cdclk can cause problems, like for
-> > compressed bpp it can give a higher bpp based on max_cdclk and we might
-> > actually end up chosing lower cdclk at what point this will cause underruns.
-> > 
-> > So when I was discussing with Ville on this, my first thought was also to use
-> > the cdclk_state->actual_cdclk but like Ville mentioned later in the review
-> > comments the challenge there was that actual cdclk does get computed
-> > much later than dsc_compute_config.
-> > 
-> > So I think as suggested in one of the reviews we just to check if DSC is
-> > enabled then we dont allow lowering the cdclk which would also prevent
-> > underruns caused by possibly setting up higher bpp based on max cdclk.
-> 
-> Thanks for the review.
-> This is taken care now, in case if we cannot split, then we already are using max_cdclk.
-> Regarding the bigjoiner_bpp, you may need to make the change if you need it to be set to max cdclk.
-> As we all of us here agree that we do not have computed cd clk at that time.
->
-
-So the resolution was to keep it at max_cdclock when we set the dsc.split  and decide to use 2 VDSC engines? Is this change merged upstream now?
-For bpp calculation, that was pointed out by Srikanth that they were seeing underruns and was a bug they had found in their code.
-And infact there we dont want to set it to max_cdclk because if we lower the cdclk later then that bpp will cause underuns.
-One of the comments in here was to then check if DSC enabled in function that tries to lower the cdclk and not allow if DSC enabled.
-Are you already working on that change or do I need to follow up on that with Ville/ Jani?
-
-Manasi
- 
-> > 
-> > @Ville @Jani does this sound like a good approach. Then @Vandita we can
-> > pursue that change.
-> > 
-> > Regards
-> > Manasi
-> > 
-> > On Sun, Jan 09, 2022 at 11:15:04PM -0800, Kulkarni, Vandita wrote:
-> > > Revisiting this thread after update from the bspec.
-> > >
-> > > > -----Original Message-----
-> > > > From: Nikula, Jani <jani.nikula@intel.com>
-> > > > Sent: Tuesday, September 14, 2021 8:40 PM
-> > > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; Lisovskiy,
-> > > > Stanislav <stanislav.lisovskiy@intel.com>
-> > > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>; intel-
-> > > > gfx@lists.freedesktop.org; Navare, Manasi D
-> > > > <manasi.d.navare@intel.com>
-> > > > Subject: RE: [Intel-gfx] [PATCH] drm/i915/display: Enable second
-> > > > VDSC engine for higher moderates
-> > > >
-> > > > On Tue, 14 Sep 2021, "Kulkarni, Vandita"
-> > > > <vandita.kulkarni@intel.com>
-> > > > wrote:
-> > > > >> -----Original Message-----
-> > > > >> From: Nikula, Jani <jani.nikula@intel.com>
-> > > > >> Sent: Tuesday, September 14, 2021 7:33 PM
-> > > > >> To: Lisovskiy, Stanislav <stanislav.lisovskiy@intel.com>
-> > > > >> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>; Kulkarni,
-> > > > >> Vandita <vandita.kulkarni@intel.com>;
-> > > > >> intel-gfx@lists.freedesktop.org; Navare, Manasi D
-> > > > >> <manasi.d.navare@intel.com>
-> > > > >> Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Enable second
-> > > > >> VDSC engine for higher moderates
-> > > > >>
-> > > > >> On Tue, 14 Sep 2021, "Lisovskiy, Stanislav"
-> > > > >> <stanislav.lisovskiy@intel.com>
-> > > > >> wrote:
-> > > > >> > On Tue, Sep 14, 2021 at 04:04:25PM +0300, Lisovskiy, Stanislav wrote:
-> > > > >> >> On Tue, Sep 14, 2021 at 03:04:11PM +0300, Jani Nikula wrote:
-> > > > >> >> > On Tue, 14 Sep 2021, "Lisovskiy, Stanislav"
-> > > > >> <stanislav.lisovskiy@intel.com> wrote:
-> > > > >> >> > > On Tue, Sep 14, 2021 at 10:48:46AM +0300, Ville Syrjälä wrote:
-> > > > >> >> > >> On Tue, Sep 14, 2021 at 07:31:46AM +0000, Kulkarni,
-> > > > >> >> > >> Vandita
-> > > > wrote:
-> > > > >> >> > >> > > -----Original Message-----
-> > > > >> >> > >> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > >> >> > >> > > Sent: Tuesday, September 14, 2021 12:59 PM
-> > > > >> >> > >> > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> > > > >> >> > >> > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani
-> > > > >> >> > >> > > <jani.nikula@intel.com>; Navare, Manasi D
-> > > > >> >> > >> > > <manasi.d.navare@intel.com>
-> > > > >> >> > >> > > Subject: Re: [Intel-gfx] [PATCH] drm/i915/display:
-> > > > >> >> > >> > > Enable second VDSC engine for higher moderates
-> > > > >> >> > >> > >
-> > > > >> >> > >> > > On Mon, Sep 13, 2021 at 08:09:23PM +0530, Vandita
-> > > > >> >> > >> > > Kulkarni
-> > > > >> wrote:
-> > > > >> >> > >> > > > Each VDSC operates with 1ppc throughput, hence
-> > > > >> >> > >> > > > enable the second VDSC engine when moderate is
-> > > > >> >> > >> > > > higher that the current
-> > > > >> cdclk.
-> > > > >> >> > >> > > >
-> > > > >> >> > >> > > > Signed-off-by: Vandita Kulkarni
-> > > > >> >> > >> > > > <vandita.kulkarni@intel.com>
-> > > > >> >> > >> > > > ---
-> > > > >> >> > >> > > >  drivers/gpu/drm/i915/display/intel_dp.c | 12
-> > > > >> >> > >> > > > ++++++++++--
-> > > > >> >> > >> > > >  1 file changed, 10 insertions(+), 2 deletions(-)
-> > > > >> >> > >> > > >
-> > > > >> >> > >> > > > diff --git
-> > > > >> >> > >> > > > a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > >> >> > >> > > > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > >> >> > >> > > > index 161c33b2c869..55878f65f724 100644
-> > > > >> >> > >> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > >> >> > >> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > >> >> > >> > > > @@ -70,6 +70,7 @@
-> > > > >> >> > >> > > >  #include "intel_tc.h"
-> > > > >> >> > >> > > >  #include "intel_vdsc.h"
-> > > > >> >> > >> > > >  #include "intel_vrr.h"
-> > > > >> >> > >> > > > +#include "intel_cdclk.h"
-> > > > >> >> > >> > > >
-> > > > >> >> > >> > > >  #define DP_DPRX_ESI_LEN 14
-> > > > >> >> > >> > > >
-> > > > >> >> > >> > > > @@ -1291,10 +1292,13 @@ static int
-> > > > >> >> > >> > > > intel_dp_dsc_compute_config(struct
-> > > > >> >> > >> > > intel_dp *intel_dp,
-> > > > >> >> > >> > > >  				       struct
-> > > > drm_connector_state
-> > > > >> *conn_state,
-> > > > >> >> > >> > > >  				       struct link_config_limits
-> > > > *limits)  {
-> > > > >> >> > >> > > > +	struct intel_cdclk_state *cdclk_state;
-> > > > >> >> > >> > > >  	struct intel_digital_port *dig_port =
-> > > > >> dp_to_dig_port(intel_dp);
-> > > > >> >> > >> > > >  	struct drm_i915_private *dev_priv =
-> > > > to_i915(dig_port-
-> > > > >> >> > >> > > >base.base.dev);
-> > > > >> >> > >> > > >  	const struct drm_display_mode *adjusted_mode =
-> > > > >> >> > >> > > >  		&pipe_config->hw.adjusted_mode;
-> > > > >> >> > >> > > > +	struct intel_atomic_state *state =
-> > > > >> >> > >> > > > +
-> > > > 	to_intel_atomic_state(pipe_config-
-> > > > >> >> > >> > > >uapi.state);
-> > > > >> >> > >> > > >  	int pipe_bpp;
-> > > > >> >> > >> > > >  	int ret;
-> > > > >> >> > >> > > >
-> > > > >> >> > >> > > > @@ -1373,12 +1377,16 @@ static int
-> > > > >> >> > >> > > > intel_dp_dsc_compute_config(struct
-> > > > >> >> > >> > > intel_dp *intel_dp,
-> > > > >> >> > >> > > >  		}
-> > > > >> >> > >> > > >  	}
-> > > > >> >> > >> > > >
-> > > > >> >> > >> > > > +	cdclk_state = intel_atomic_get_cdclk_state(state);
-> > > > >> >> > >> > > > +	if (IS_ERR(cdclk_state))
-> > > > >> >> > >> > > > +		return PTR_ERR(cdclk_state);
-> > > > >> >> > >> > > > +
-> > > > >> >> > >> > > >  	/*
-> > > > >> >> > >> > > >  	 * VDSC engine operates at 1 Pixel per clock, so
-> > > > >> >> > >> > > > if peak pixel
-> > > > >> rate
-> > > > >> >> > >> > > > -	 * is greater than the maximum Cdclock and if slice
-> > > > count is
-> > > > >> even
-> > > > >> >> > >> > > > +	 * is greater than the current Cdclock and if
-> > > > >> >> > >> > > > +slice count is even
-> > > > >> >> > >> > > >  	 * then we need to use 2 VDSC instances.
-> > > > >> >> > >> > > >  	 */
-> > > > >> >> > >> > > > -	if (adjusted_mode->crtc_clock > dev_priv-
-> > > > >max_cdclk_freq
-> > > > >> ||
-> > > > >> >> > >> > > > +	if (adjusted_mode->crtc_clock >
-> > > > >> >> > >> > > > +cdclk_state->actual.cdclk ||
-> > > > >> >> > >> > >
-> > > > >> >> > >> > > This is wrong. We compute the cdclk based on the
-> > > > >> >> > >> > > requirements of the mode/etc., not the other way
-> > around.
-> > > > >> >> > >
-> > > > >> >> > > According to BSpec guideline, we decide whether we enable
-> > > > >> >> > > or disable second VDSC engine, based on that condition. As
-> > > > >> >> > > I understand that one is about DSC config calculation,
-> > > > >> >> > > based on CDCLK
-> > > > >> which was calculated.
-> > > > >> >> >
-> > > > >> >> > Point is, at the time compute_config gets called, what
-> > > > >> >> > guarantees are there that cdclk_state->actual.cdclk contains
-> > > > anything useful?
-> > > > >> >> > This is the design we have.
-> > > > >> >>
-> > > > >> >> That is actually good question, was willing to check that as well.
-> > > > >> >>
-> > > > >> >> >
-> > > > >> >> > > If we bump up CDCLK, to avoid this, will we even then use
-> > > > >> >> > > a second
-> > > > >> VDSC ever?
-> > > > >> >> >
-> > > > >> >> > I think we'll eventually need better logic than
-> > > > >> >> > unconditionally bumping to max, and it needs to take *both*
-> > > > >> >> > the cdclk and the number of dsc engines into account. The
-> > > > >> >> > referenced bspec only has the vdsc clock perspective, not overall
-> > perspective.
-> > > > >> >>
-> > > > >> >> What we need to clarify here is that how this is supposed to
-> > > > >> >> work in
-> > > > >> theory.
-> > > > >> >> Basically same issue can be fixed by both increasing the CDCLK
-> > > > >> >> or enabling 2nd VDSC engine.
-> > > > >> >> There should be some guideline telling us, how to prioritize.
-> > > > >> >> From overall perspective as I understand, by default, we are
-> > > > >> >> able to keep CDCLK 2 times less than pixel rate(see
-> > > > >> >> intel_pixel_rate_to_cdclk), however due to that VDSC
-> > > > >> >> limitation that it can use only 1 ppc this becomes, not
-> > > > >> >> applicable anymore(at least as of BSpec 49259), so we have to
-> > > > >> >> increase amount of VDSC instances
-> > > > >> then.
-> > > > >> >>
-> > > > >> >> So the question is now - what is more optimal here?
-> > > > >> >> Also if we bump up CDCLK(which we have done many times
-> > already
-> > > > >> >> in fact), we then need to add some logic to
-> > > > >> >> intel_compute_min_cdclk to check if we are using DSC or not,
-> > > > >> >> because otherwise we don't really need
-> > > > >> to do that.
-> > > > >>
-> > > > >> intel_compute_min_cdclk() already needs to be dsc aware when
-> > > > >> slice count is 1 and we can't use two dsc engines anyway. See the
-> > > > >> recent commit fe01883fdcef ("drm/i915: Get proper min cdclk if vDSC
-> > enabled").
-> > > > >>
-> > > > >> Looking again, I'm not sure that does the right decision for when
-> > > > >> dsc.slice_count > 1, but dsc.split == false. It should probably
-> > > > >> use dsc.split for the decision.
-> > > > >>
-> > > > >> >>
-> > > > >> >> Stan
-> > > > >> >
-> > > > >> > Checked and indeed, encoder->compute_config is called way
-> > > > >> > before, basically CDCLK calculation is called almost in the end
-> > > > >> > of atomic_check, so in compute_config, there would be an old
-> > > > >> > CDCLK value copied from previous cdclk state, but not the last one.
-> > > > >> >
-> > > > >> > Vandita, this means we actually can't do it that way, if you
-> > > > >> > want to do anything with VDSC based on CDCLK this has to be
-> > > > >> > done _after_ intel_compute_min_cdclk was called. Which is not
-> > very sweet, I guess.
-> > > > >> >
-> > > > >> > So as of current architecture, it seems that the easiest way is
-> > > > >> > indeed to bump the CDCLK or we need to figure the way how to
-> > > > >> > enable 2nd VDSC somewhere else, after CDCLK was calculated.
-> > > > >>
-> > > > >> Alternatively, we could use two dsc engines more aggressively,
-> > > > >> but that decision currently can't take overall chosen cdclk into account.
-> > > > >>
-> > > > >> We'll end up sometimes unnecessarily using a too high cdclk or
-> > > > >> two dsc engines, just have to pick the poison.
-> > > > >>
-> > > > >> I think trying to do dsc decisions after
-> > > > >> intel_compute_min_cdclk() gets way too complicated.
-> > > > >
-> > > > > In this case, can we just use the 2nd VDSC engine if slice_count
-> > > > > is 2 or
-> > > > more?
-> > > > > Which would mean we always operate in joiner enabled mode(small
-> > > > > joiner) of all the compression modes of operation mentioned in the
-> > > > > table bspec: 49259 Because we are still going to hit the max cdclk
-> > > > > restriction
-> > > > for higher resolutions, and many lower resolutions wouldn’t need max
-> > cdclk.
-> > > > > And eventually once we have more details on cd clk vs 2VDSC engine
-> > > > > we could add the logic to choose one over the other?
-> > > > >
-> > > > > I see that in case of DSI we do split = true, for slice_count > 1
-> > > > > but that
-> > > > would need a different set of checks, thats a TBD.
-> > > > >
-> > > > > Or Do you suggest I just do this for now max cdclk when
-> > > > > slice_count =1 (what we are doing now) replace with compression =
-> > > > > true and split = false
-> > > >
-> > > > I think the check in intel_compute_min_cdclk() should be:
-> > > >
-> > > > 	if (crtc_state->dsc.compression_enable && !crtc_state-
-> > > > >dsc.dsc_split)
-> > > >
-> > > > That's a separate change.
-> > > >
-> > > > Enabling two dsc engines more aggressively... I don't mind doing it
-> > > > unconditionally when slice count > 1 for starters. But I think we'll
-> > > > need to improve this going forward, including fixing the mode valid
-> > > > checks etc. as we've discussed.
-> > >
-> > > Design recommendation is to use 2 VDSC instances while meeting the
-> > following constraint so that cdclk can stay as low as possible.
-> > > DP/HDMI PPR spec provided slice size < DPCD provided MaxSliceWidth
-> 
-> Based on the hw recommendation to me it looks like, as @Nikula, Jani suggested
-> We can set split to true based on " DP/HDMI PPR spec provided slice size < DPCD provided MaxSliceWidth"
-> 
-> In such cases we can avoid bumping up to max cdclk for vdsc reasons.
-> Will make this change and float V2.
-> 
-> Thanks,
-> Vandita
-> > >
-> > > Thanks,
-> > > Vandita
-> > > >
-> > > > Ville, any objections?
-> > > >
-> > > > BR,
-> > > > Jani.
-> > > >
-> > > >
-> > > > >
-> > > > > Thanks,
-> > > > > Vandita
-> > > > >>
-> > > > >> BR,
-> > > > >> Jani
-> > > > >>
-> > > > >>
-> > > > >>
-> > > > >>
-> > > > >> >
-> > > > >> > Stan
-> > > > >> >
-> > > > >> >>
-> > > > >> >> >
-> > > > >> >> > BR,
-> > > > >> >> > Jani.
-> > > > >> >> >
-> > > > >> >> > > Another thing is that probably enabling second VDSC is
-> > > > >> >> > > cheaper in terms of power consumption, than bumping up the
-> > CDCLK.
-> > > > >> >> > >
-> > > > >> >> > > Stan
-> > > > >> >> > >
-> > > > >> >> > >> >
-> > > > >> >> > >> > Okay , So you suggest that we set the cd clock to max
-> > > > >> >> > >> > when we
-> > > > >> have such requirement, than enabling the second engine?
-> > > > >> >> > >>
-> > > > >> >> > >> That seems like the easiest solution. Another option
-> > > > >> >> > >> might be to come up with some lower dotclock limit for
-> > > > >> >> > >> the use of the second vdsc. But not sure we know where
-> > > > >> >> > >> the tipping point is wrt. powr
-> > > > >> consumption.
-> > > > >> >> > >>
-> > > > >> >> > >> --
-> > > > >> >> > >> Ville Syrjälä
-> > > > >> >> > >> Intel
-> > > > >> >> >
-> > > > >> >> > --
-> > > > >> >> > Jani Nikula, Intel Open Source Graphics Center
-> > > > >>
-> > > > >> --
-> > > > >> Jani Nikula, Intel Open Source Graphics Center
-> > > >
-> > > > --
-> > > > Jani Nikula, Intel Open Source Graphics Center
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBOYXZhcmUsIE1hbmFzaSBEIDxt
+YW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPg0KPiBTZW50OiBUdWVzZGF5LCBKYW51YXJ5IDExLCAy
+MDIyIDExOjQyIEFNDQo+IFRvOiBLdWxrYXJuaSwgVmFuZGl0YSA8dmFuZGl0YS5rdWxrYXJuaUBp
+bnRlbC5jb20+DQo+IENjOiBOaWt1bGEsIEphbmkgPGphbmkubmlrdWxhQGludGVsLmNvbT47IExp
+c292c2tpeSwgU3RhbmlzbGF2DQo+IDxzdGFuaXNsYXYubGlzb3Zza2l5QGludGVsLmNvbT47IFZp
+bGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Ow0KPiBpbnRlbC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFN1YmplY3Q6IFJlOiBbSW50ZWwtZ2Z4XSBbUEFU
+Q0hdIGRybS9pOTE1L2Rpc3BsYXk6IEVuYWJsZSBzZWNvbmQgVkRTQw0KPiBlbmdpbmUgZm9yIGhp
+Z2hlciBtb2RlcmF0ZXMNCj4gDQo+IE9uIE1vbiwgSmFuIDEwLCAyMDIyIGF0IDA4OjI0OjU0UE0g
+LTA4MDAsIEt1bGthcm5pLCBWYW5kaXRhIHdyb3RlOg0KPiA+ID4gLS0tLS1PcmlnaW5hbCBNZXNz
+YWdlLS0tLS0NCj4gPiA+IEZyb206IE5hdmFyZSwgTWFuYXNpIEQgPG1hbmFzaS5kLm5hdmFyZUBp
+bnRlbC5jb20+DQo+ID4gPiBTZW50OiBUdWVzZGF5LCBKYW51YXJ5IDExLCAyMDIyIDE6MDcgQU0N
+Cj4gPiA+IFRvOiBLdWxrYXJuaSwgVmFuZGl0YSA8dmFuZGl0YS5rdWxrYXJuaUBpbnRlbC5jb20+
+DQo+ID4gPiBDYzogTmlrdWxhLCBKYW5pIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+OyBMaXNvdnNr
+aXksIFN0YW5pc2xhdg0KPiA+ID4gPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPjsgVmls
+bGUgU3lyasOkbMOkDQo+ID4gPiA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+OyBpbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+ID4gPiBTdWJqZWN0OiBSZTogW0ludGVsLWdm
+eF0gW1BBVENIXSBkcm0vaTkxNS9kaXNwbGF5OiBFbmFibGUgc2Vjb25kDQo+ID4gPiBWRFNDIGVu
+Z2luZSBmb3IgaGlnaGVyIG1vZGVyYXRlcw0KPiA+ID4NCj4gPiA+IFRoYW5rZiBmb3IgcmV2aXNp
+dGluZyB0aGlzIHRocmVhZC4gVGhlIHVzZSBvZiBtYXhfY2RjbGsgaXMgY3VycmVudGx5DQo+ID4g
+PiBpbiAyIHBsYWNlcyBpbiBEU0MgY29kZSAxLiAuIGlmIChhZGp1c3RlZF9tb2RlLT5jcnRjX2Ns
+b2NrID4NCj4gPiA+IGRldl9wcml2LT5tYXhfY2RjbGtfZnJlcSkgew0KPiA+ID4gICAgICAgICAg
+ICAgICAgIGlmIChwaXBlX2NvbmZpZy0+ZHNjLnNsaWNlX2NvdW50ID4gMSkgew0KPiA+ID4gICAg
+ICAgICAgICAgICAgICAgICAgICAgcGlwZV9jb25maWctPmRzYy5kc2Nfc3BsaXQgPSB0cnVlOyAy
+LiBpZiAoYmlnam9pbmVyKSB7DQo+ID4gPiAgICAgICAgICAgICAgICAgdTMyIG1heF9icHBfYmln
+am9pbmVyID0NCj4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIGk5MTUtPm1heF9jZGNsa19m
+cmVxICogNDggLw0KPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgaW50ZWxfZHBfbW9kZV90
+b19mZWNfY2xvY2sobW9kZV9jbG9jayk7DQo+ID4gPg0KPiA+ID4gICAgICAgICAgICAgICAgIERS
+TV9ERUJVR19LTVMoIk1heCBiaWcgam9pbmVyIGJwcDogJXVcbiIsDQo+ID4gPiBtYXhfYnBwX2Jp
+Z2pvaW5lcik7DQo+ID4gPiAgICAgICAgICAgICAgICAgYml0c19wZXJfcGl4ZWwgPSBtaW4oYml0
+c19wZXJfcGl4ZWwsIG1heF9icHBfYmlnam9pbmVyKTsNCj4gPiA+ICAgICAgICAgfQ0KPiA+ID4N
+Cj4gPiA+IEluIGJvdGggdGhlc2UgcGxhY2VzLCB1c2luZyBtYXhfY2RjbGsgY2FuIGNhdXNlIHBy
+b2JsZW1zLCBsaWtlIGZvcg0KPiA+ID4gY29tcHJlc3NlZCBicHAgaXQgY2FuIGdpdmUgYSBoaWdo
+ZXIgYnBwIGJhc2VkIG9uIG1heF9jZGNsayBhbmQgd2UNCj4gPiA+IG1pZ2h0IGFjdHVhbGx5IGVu
+ZCB1cCBjaG9zaW5nIGxvd2VyIGNkY2xrIGF0IHdoYXQgcG9pbnQgdGhpcyB3aWxsIGNhdXNlDQo+
+IHVuZGVycnVucy4NCj4gPiA+DQo+ID4gPiBTbyB3aGVuIEkgd2FzIGRpc2N1c3Npbmcgd2l0aCBW
+aWxsZSBvbiB0aGlzLCBteSBmaXJzdCB0aG91Z2h0IHdhcw0KPiA+ID4gYWxzbyB0byB1c2UgdGhl
+IGNkY2xrX3N0YXRlLT5hY3R1YWxfY2RjbGsgYnV0IGxpa2UgVmlsbGUgbWVudGlvbmVkDQo+ID4g
+PiBsYXRlciBpbiB0aGUgcmV2aWV3IGNvbW1lbnRzIHRoZSBjaGFsbGVuZ2UgdGhlcmUgd2FzIHRo
+YXQgYWN0dWFsDQo+ID4gPiBjZGNsayBkb2VzIGdldCBjb21wdXRlZCBtdWNoIGxhdGVyIHRoYW4g
+ZHNjX2NvbXB1dGVfY29uZmlnLg0KPiA+ID4NCj4gPiA+IFNvIEkgdGhpbmsgYXMgc3VnZ2VzdGVk
+IGluIG9uZSBvZiB0aGUgcmV2aWV3cyB3ZSBqdXN0IHRvIGNoZWNrIGlmDQo+ID4gPiBEU0MgaXMg
+ZW5hYmxlZCB0aGVuIHdlIGRvbnQgYWxsb3cgbG93ZXJpbmcgdGhlIGNkY2xrIHdoaWNoIHdvdWxk
+DQo+ID4gPiBhbHNvIHByZXZlbnQgdW5kZXJydW5zIGNhdXNlZCBieSBwb3NzaWJseSBzZXR0aW5n
+IHVwIGhpZ2hlciBicHAgYmFzZWQNCj4gb24gbWF4IGNkY2xrLg0KPiA+DQo+ID4gVGhhbmtzIGZv
+ciB0aGUgcmV2aWV3Lg0KPiA+IFRoaXMgaXMgdGFrZW4gY2FyZSBub3csIGluIGNhc2UgaWYgd2Ug
+Y2Fubm90IHNwbGl0LCB0aGVuIHdlIGFscmVhZHkgYXJlIHVzaW5nDQo+IG1heF9jZGNsay4NCj4g
+PiBSZWdhcmRpbmcgdGhlIGJpZ2pvaW5lcl9icHAsIHlvdSBtYXkgbmVlZCB0byBtYWtlIHRoZSBj
+aGFuZ2UgaWYgeW91DQo+IG5lZWQgaXQgdG8gYmUgc2V0IHRvIG1heCBjZGNsay4NCj4gPiBBcyB3
+ZSBhbGwgb2YgdXMgaGVyZSBhZ3JlZSB0aGF0IHdlIGRvIG5vdCBoYXZlIGNvbXB1dGVkIGNkIGNs
+ayBhdCB0aGF0DQo+IHRpbWUuDQo+ID4NCj4gDQoNCkp1c3QgdG8gY2xhcmlmeSB0aGlzIHBhdGNo
+IGRvZXNu4oCZdCBkbyBhbnl0aGluZyB3cnQgdGhlIGJpZyAgam9pbmVyIGJwcCBjYWxjbHVsYXRp
+b24uDQoNCj4gU28gdGhlIHJlc29sdXRpb24gd2FzIHRvIGtlZXAgaXQgYXQgbWF4X2NkY2xvY2sg
+d2hlbiB3ZSBzZXQgdGhlIGRzYy5zcGxpdA0KPiBhbmQgZGVjaWRlIHRvIHVzZSAyIFZEU0MgZW5n
+aW5lcz8gDQogDQpUaGUgc29sdXRpb24gd2FzIHRvIGtlZXAgaXQgYXQgbWF4X2NkY2xrIHdoZW4g
+d2UgZHNjLnNwbGl0IGlzIGZhbHNlLg0KPklzIHRoaXMgY2hhbmdlIG1lcmdlZCB1cHN0cmVhbSBu
+b3c/DQpZZXMNCj4gRm9yIGJwcCBjYWxjdWxhdGlvbiwgdGhhdCB3YXMgcG9pbnRlZCBvdXQgYnkg
+U3Jpa2FudGggdGhhdCB0aGV5IHdlcmUgc2VlaW5nDQo+IHVuZGVycnVucyBhbmQgd2FzIGEgYnVn
+IHRoZXkgaGFkIGZvdW5kIGluIHRoZWlyIGNvZGUuDQo+IEFuZCBpbmZhY3QgdGhlcmUgd2UgZG9u
+dCB3YW50IHRvIHNldCBpdCB0byBtYXhfY2RjbGsgYmVjYXVzZSBpZiB3ZSBsb3dlciB0aGUNCj4g
+Y2RjbGsgbGF0ZXIgdGhlbiB0aGF0IGJwcCB3aWxsIGNhdXNlIHVuZGVydW5zLg0KDQpJIGFtIGd1
+ZXNzaW5nIHlvdSBhcmUgdGFsa2luZyBhYm91dCBiaWcgam9pbmVyIGNhc2VzLCB0aGlzIHBhdGNo
+IHdhcyBtYWRlIGZvciBhZGRyZXNzaW5nIHB1cmUgZHNjIGNhc2VzDQpXaGVyZSB3ZSB3ZXJlIHNl
+ZWluZyB1bmRlcnJ1bnMuIER1ZSB0byAxIHBwYyBsaW1pdGF0aW9uLg0KPiBPbmUgb2YgdGhlIGNv
+bW1lbnRzIGluIGhlcmUgd2FzIHRvIHRoZW4gY2hlY2sgaWYgRFNDIGVuYWJsZWQgaW4gZnVuY3Rp
+b24NCj4gdGhhdCB0cmllcyB0byBsb3dlciB0aGUgY2RjbGsgYW5kIG5vdCBhbGxvdyBpZiBEU0Mg
+ZW5hYmxlZC4NClRoZSBzdWdnZXN0aW9uIHdhcyB0byBjaGVjayBpZiB3ZSBhcmUgbm90IHVzaW5n
+IHNwbGl0ID0gdHJ1ZSAgKDIgZHNjIGVuZ2luZXMpLCB0aGVuIHVzZSBtYXggY2RjbGsuDQpQUyA6
+IGludGVsX2NydGNfY29tcHV0ZV9taW5fY2RjbGsNCg0KVGhpcyB3aG9sZSBwYXRjaCB3YXMgdG8g
+bWFrZSBzdXJlIHRoYXQgd2hlbiB3ZSBjYW5ub3QgdXNlIDIgZHNjIGVuZ2luZSwgdG8gaW5jcmVh
+c2UgdGhlIGNkY2xrLg0KT3IgdXNlIDIgZW5naW5lcyBiYXNlZCBvbiB0aGUgY3VycmVudCBjZGNs
+aywgd2hpY2ggaXMgbm90IHBvc3NpYmxlLg0KQW5kIHdlIHdlcmUgY2hlY2tpbmcgYWdhaW5zdCBt
+YXggY2RjbGsgdG8gZW5hYmxlIHNlY29uZCBlbmdpbmUuDQoNClRoaXMgZ290IHJlc29sdmVkIHdp
+dGggdGhlIGNoYW5nZSB0aGF0IGlzIG1lcmdlZCBub3csIHNldHMgY2RjbGsgdG8gbWF4IGlmIHdl
+IGNhbm5vdCBlbmFibGUgdGhlIHNlY29uZCB2ZHNjIGVuZ2luZS4NCg0KVGhlIHN1Z2dlc3Rpb24g
+ZnJvbSB0aGUgYnNwZWMgaXMgZGlyZWN0aW5nIHRvIHVzZSAyIHZkc2MgZW5naW5lcyBiYXNlZCBv
+biB0aGUgY29uZGl0aW9uIHRoYXQgSSBoYXZlIG1lbnRpb25lZCBiZWxvdywNCkFuZCB0aGF0IG1l
+YW5zIHdlIHJlYWxseSBkbyBub3QgbmVlZCB0aGUgY2hlY2sgaWYgKGFkanVzdGVkX21vZGUtPmNy
+dGNfY2xvY2sgPiBkZXZfcHJpdi0gbWF4X2NkY2xrX2ZyZXEpIHRvIHNldCBzcGxpdCA9IHRydWUu
+DQoNCj4gQXJlIHlvdSBhbHJlYWR5IHdvcmtpbmcgb24gdGhhdCBjaGFuZ2Ugb3IgZG8gSSBuZWVk
+IHRvIGZvbGxvdyB1cCBvbiB0aGF0DQo+IHdpdGggVmlsbGUvIEphbmk/DQoNCkhlcmUgaW4gdGhp
+cyBwYXRjaCB3ZSBhcmUgbm90IHRhbGtpbmcgYWJvdXQgdGhlIGJwcCBjYWxjdWxhdGlvbiBiYXNl
+ZCBvbiBjZCBjbGsgYXQgYWxsLCB3aGljaCBjb21lcyBpbnRvIHBpY3R1cmUgd2l0aCBiaWcgam9p
+bmVyLg0KSWYgeW91IHdhbnQgdG8gbWFrZSBjaGFuZ2VzIHdydCBiaWdqb2luZXIsIHlvdSBtYXkg
+bmVlZCB0byBtYWtlIGFub3RoZXIgcGF0Y2gsIHdoaWNoIEkgYW0gbm90IHdvcmtpbmcgb24uDQoN
+CkFzIHBlciBteSBwcmV2aW91cyBlbWFpbDogdGhpcyBpcyB3aGF0IEkgd2lsbCBiZSBzZW5kaW5n
+Lg0KIj4gPiBCYXNlZCBvbiB0aGUgaHcgcmVjb21tZW5kYXRpb24gdG8gbWUgaXQgbG9va3MgbGlr
+ZSwgYXMgQE5pa3VsYSwgSmFuaQ0KPiBzdWdnZXN0ZWQNCj4gPiBXZSBjYW4gc2V0IHNwbGl0IHRv
+IHRydWUgYmFzZWQgb24gIiBEUC9IRE1JIFBQUiBzcGVjIHByb3ZpZGVkIHNsaWNlIHNpemUgPA0K
+PiBEUENEIHByb3ZpZGVkIE1heFNsaWNlV2lkdGgiDQo+ID4NCj4gPiBJbiBzdWNoIGNhc2VzIHdl
+IGNhbiBhdm9pZCBidW1waW5nIHVwIHRvIG1heCBjZGNsayBmb3IgdmRzYyByZWFzb25zLg0KPiA+
+IFdpbGwgbWFrZSB0aGlzIGNoYW5nZSBhbmQgZmxvYXQgVjIuDQo+ID4NCj4gPiBUaGFua3MsDQo+
+ID4gVmFuZGl0YQ0KIg0KDQo+IA0KPiBNYW5hc2kNCj4gDQo+ID4gPg0KPiA+ID4gQFZpbGxlIEBK
+YW5pIGRvZXMgdGhpcyBzb3VuZCBsaWtlIGEgZ29vZCBhcHByb2FjaC4gVGhlbiBAVmFuZGl0YSB3
+ZQ0KPiA+ID4gY2FuIHB1cnN1ZSB0aGF0IGNoYW5nZS4NCj4gPiA+DQo+ID4gPiBSZWdhcmRzDQo+
+ID4gPiBNYW5hc2kNCj4gPiA+DQo+ID4gPiBPbiBTdW4sIEphbiAwOSwgMjAyMiBhdCAxMToxNTow
+NFBNIC0wODAwLCBLdWxrYXJuaSwgVmFuZGl0YSB3cm90ZToNCj4gPiA+ID4gUmV2aXNpdGluZyB0
+aGlzIHRocmVhZCBhZnRlciB1cGRhdGUgZnJvbSB0aGUgYnNwZWMuDQo+ID4gPiA+DQo+ID4gPiA+
+ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiA+ID4gPiBGcm9tOiBOaWt1bGEsIEph
+bmkgPGphbmkubmlrdWxhQGludGVsLmNvbT4NCj4gPiA+ID4gPiBTZW50OiBUdWVzZGF5LCBTZXB0
+ZW1iZXIgMTQsIDIwMjEgODo0MCBQTQ0KPiA+ID4gPiA+IFRvOiBLdWxrYXJuaSwgVmFuZGl0YSA8
+dmFuZGl0YS5rdWxrYXJuaUBpbnRlbC5jb20+OyBMaXNvdnNraXksDQo+ID4gPiA+ID4gU3Rhbmlz
+bGF2IDxzdGFuaXNsYXYubGlzb3Zza2l5QGludGVsLmNvbT4NCj4gPiA+ID4gPiBDYzogVmlsbGUg
+U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT47IGludGVsLQ0KPiA+ID4g
+PiA+IGdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IE5hdmFyZSwgTWFuYXNpIEQNCj4gPiA+ID4g
+PiA8bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4NCj4gPiA+ID4gPiBTdWJqZWN0OiBSRTogW0lu
+dGVsLWdmeF0gW1BBVENIXSBkcm0vaTkxNS9kaXNwbGF5OiBFbmFibGUgc2Vjb25kDQo+ID4gPiA+
+ID4gVkRTQyBlbmdpbmUgZm9yIGhpZ2hlciBtb2RlcmF0ZXMNCj4gPiA+ID4gPg0KPiA+ID4gPiA+
+IE9uIFR1ZSwgMTQgU2VwIDIwMjEsICJLdWxrYXJuaSwgVmFuZGl0YSINCj4gPiA+ID4gPiA8dmFu
+ZGl0YS5rdWxrYXJuaUBpbnRlbC5jb20+DQo+ID4gPiA+ID4gd3JvdGU6DQo+ID4gPiA+ID4gPj4g
+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiA+ID4gPiA+PiBGcm9tOiBOaWt1bGEsIEph
+bmkgPGphbmkubmlrdWxhQGludGVsLmNvbT4NCj4gPiA+ID4gPiA+PiBTZW50OiBUdWVzZGF5LCBT
+ZXB0ZW1iZXIgMTQsIDIwMjEgNzozMyBQTQ0KPiA+ID4gPiA+ID4+IFRvOiBMaXNvdnNraXksIFN0
+YW5pc2xhdiA8c3RhbmlzbGF2Lmxpc292c2tpeUBpbnRlbC5jb20+DQo+ID4gPiA+ID4gPj4gQ2M6
+IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+OyBLdWxrYXJu
+aSwNCj4gPiA+ID4gPiA+PiBWYW5kaXRhIDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNvbT47DQo+
+ID4gPiA+ID4gPj4gaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgTmF2YXJlLCBNYW5h
+c2kgRA0KPiA+ID4gPiA+ID4+IDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPg0KPiA+ID4gPiA+
+ID4+IFN1YmplY3Q6IFJlOiBbSW50ZWwtZ2Z4XSBbUEFUQ0hdIGRybS9pOTE1L2Rpc3BsYXk6IEVu
+YWJsZQ0KPiA+ID4gPiA+ID4+IHNlY29uZCBWRFNDIGVuZ2luZSBmb3IgaGlnaGVyIG1vZGVyYXRl
+cw0KPiA+ID4gPiA+ID4+DQo+ID4gPiA+ID4gPj4gT24gVHVlLCAxNCBTZXAgMjAyMSwgIkxpc292
+c2tpeSwgU3RhbmlzbGF2Ig0KPiA+ID4gPiA+ID4+IDxzdGFuaXNsYXYubGlzb3Zza2l5QGludGVs
+LmNvbT4NCj4gPiA+ID4gPiA+PiB3cm90ZToNCj4gPiA+ID4gPiA+PiA+IE9uIFR1ZSwgU2VwIDE0
+LCAyMDIxIGF0IDA0OjA0OjI1UE0gKzAzMDAsIExpc292c2tpeSwgU3RhbmlzbGF2DQo+IHdyb3Rl
+Og0KPiA+ID4gPiA+ID4+ID4+IE9uIFR1ZSwgU2VwIDE0LCAyMDIxIGF0IDAzOjA0OjExUE0gKzAz
+MDAsIEphbmkgTmlrdWxhIHdyb3RlOg0KPiA+ID4gPiA+ID4+ID4+ID4gT24gVHVlLCAxNCBTZXAg
+MjAyMSwgIkxpc292c2tpeSwgU3RhbmlzbGF2Ig0KPiA+ID4gPiA+ID4+IDxzdGFuaXNsYXYubGlz
+b3Zza2l5QGludGVsLmNvbT4gd3JvdGU6DQo+ID4gPiA+ID4gPj4gPj4gPiA+IE9uIFR1ZSwgU2Vw
+IDE0LCAyMDIxIGF0IDEwOjQ4OjQ2QU0gKzAzMDAsIFZpbGxlIFN5cmrDpGzDpA0KPiB3cm90ZToN
+Cj4gPiA+ID4gPiA+PiA+PiA+ID4+IE9uIFR1ZSwgU2VwIDE0LCAyMDIxIGF0IDA3OjMxOjQ2QU0g
+KzAwMDAsIEt1bGthcm5pLA0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gVmFuZGl0YQ0KPiA+ID4gPiA+
+IHdyb3RlOg0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
+LS0tDQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gRnJvbTogVmlsbGUgU3lyasOkbMOkDQo+ID4g
+PiA+ID4gPj4gPj4gPiA+PiA+ID4gPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiA+
+ID4gPiA+ID4+ID4+ID4gPj4gPiA+IFNlbnQ6IFR1ZXNkYXksIFNlcHRlbWJlciAxNCwgMjAyMSAx
+Mjo1OSBQTQ0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+IFRvOiBLdWxrYXJuaSwgVmFuZGl0YQ0K
+PiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+IDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNvbT4NCj4g
+PiA+ID4gPiA+PiA+PiA+ID4+ID4gPiBDYzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZzsgTmlrdWxhLCBKYW5pDQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gPGphbmkubmlrdWxhQGlu
+dGVsLmNvbT47IE5hdmFyZSwgTWFuYXNpIEQNCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiA8bWFu
+YXNpLmQubmF2YXJlQGludGVsLmNvbT4NCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiBTdWJqZWN0
+OiBSZTogW0ludGVsLWdmeF0gW1BBVENIXSBkcm0vaTkxNS9kaXNwbGF5Og0KPiA+ID4gPiA+ID4+
+ID4+ID4gPj4gPiA+IEVuYWJsZSBzZWNvbmQgVkRTQyBlbmdpbmUgZm9yIGhpZ2hlciBtb2RlcmF0
+ZXMNCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPg0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+IE9u
+IE1vbiwgU2VwIDEzLCAyMDIxIGF0IDA4OjA5OjIzUE0gKzA1MzAsIFZhbmRpdGENCj4gPiA+ID4g
+PiA+PiA+PiA+ID4+ID4gPiBLdWxrYXJuaQ0KPiA+ID4gPiA+ID4+IHdyb3RlOg0KPiA+ID4gPiA+
+ID4+ID4+ID4gPj4gPiA+ID4gRWFjaCBWRFNDIG9wZXJhdGVzIHdpdGggMXBwYyB0aHJvdWdocHV0
+LCBoZW5jZQ0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID4gZW5hYmxlIHRoZSBzZWNvbmQgVkRT
+QyBlbmdpbmUgd2hlbiBtb2RlcmF0ZSBpcw0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID4gaGln
+aGVyIHRoYXQgdGhlIGN1cnJlbnQNCj4gPiA+ID4gPiA+PiBjZGNsay4NCj4gPiA+ID4gPiA+PiA+
+PiA+ID4+ID4gPiA+DQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBW
+YW5kaXRhIEt1bGthcm5pDQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gPiA8dmFuZGl0YS5rdWxr
+YXJuaUBpbnRlbC5jb20+DQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gPiAtLS0NCj4gPiA+ID4g
+PiA+PiA+PiA+ID4+ID4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
+LmMgfCAxMg0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID4gKysrKysrKysrKy0tDQo+ID4gPiA+
+ID4gPj4gPj4gPiA+PiA+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKyksIDIN
+Cj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiA+IGRlbGV0aW9ucygtKQ0KPiA+ID4gPiA+ID4+ID4+
+ID4gPj4gPiA+ID4NCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiA+IGRpZmYgLS1naXQNCj4gPiA+
+ID4gPiA+PiA+PiA+ID4+ID4gPiA+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kcC5jDQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID4gaW5kZXggMTYx
+YzMzYjJjODY5Li41NTg3OGY2NWY3MjQgMTAwNjQ0DQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4g
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gPiA+ID4g
+PiA+PiA+PiA+ID4+ID4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZHAuYw0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID4gQEAgLTcwLDYgKzcwLDcgQEAgICNp
+bmNsdWRlICJpbnRlbF90Yy5oIg0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID4gICNpbmNsdWRl
+ICJpbnRlbF92ZHNjLmgiDQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gPiAgI2luY2x1ZGUgImlu
+dGVsX3Zyci5oIg0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID4gKyNpbmNsdWRlICJpbnRlbF9j
+ZGNsay5oIg0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID4NCj4gPiA+ID4gPiA+PiA+PiA+ID4+
+ID4gPiA+ICAjZGVmaW5lIERQX0RQUlhfRVNJX0xFTiAxNA0KPiA+ID4gPiA+ID4+ID4+ID4gPj4g
+PiA+ID4NCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiA+IEBAIC0xMjkxLDEwICsxMjkyLDEzIEBA
+IHN0YXRpYyBpbnQNCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiA+IGludGVsX2RwX2RzY19jb21w
+dXRlX2NvbmZpZyhzdHJ1Y3QNCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiBpbnRlbF9kcCAqaW50
+ZWxfZHAsDQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gPiAgCQkJCSAgICAgICBzdHJ1Y3QNCj4g
+PiA+ID4gPiBkcm1fY29ubmVjdG9yX3N0YXRlDQo+ID4gPiA+ID4gPj4gKmNvbm5fc3RhdGUsDQo+
+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gPiAgCQkJCSAgICAgICBzdHJ1Y3QNCj4gbGlua19jb25m
+aWdfbGltaXRzDQo+ID4gPiA+ID4gKmxpbWl0cykgIHsNCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4g
+PiA+ICsJc3RydWN0IGludGVsX2NkY2xrX3N0YXRlICpjZGNsa19zdGF0ZTsNCj4gPiA+ID4gPiA+
+PiA+PiA+ID4+ID4gPiA+ICAJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQgPQ0K
+PiA+ID4gPiA+ID4+IGRwX3RvX2RpZ19wb3J0KGludGVsX2RwKTsNCj4gPiA+ID4gPiA+PiA+PiA+
+ID4+ID4gPiA+ICAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0NCj4gPiA+ID4g
+PiB0b19pOTE1KGRpZ19wb3J0LQ0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID5iYXNlLmJhc2Uu
+ZGV2KTsNCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiA+ICAJY29uc3Qgc3RydWN0IGRybV9kaXNw
+bGF5X21vZGUNCj4gKmFkanVzdGVkX21vZGUgPQ0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID4g
+IAkJJnBpcGVfY29uZmlnLT5ody5hZGp1c3RlZF9tb2RlOw0KPiA+ID4gPiA+ID4+ID4+ID4gPj4g
+PiA+ID4gKwlzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSA9DQo+ID4gPiA+ID4gPj4g
+Pj4gPiA+PiA+ID4gPiArDQo+ID4gPiA+ID4gCXRvX2ludGVsX2F0b21pY19zdGF0ZShwaXBlX2Nv
+bmZpZy0NCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiA+dWFwaS5zdGF0ZSk7DQo+ID4gPiA+ID4g
+Pj4gPj4gPiA+PiA+ID4gPiAgCWludCBwaXBlX2JwcDsNCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4g
+PiA+ICAJaW50IHJldDsNCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiA+DQo+ID4gPiA+ID4gPj4g
+Pj4gPiA+PiA+ID4gPiBAQCAtMTM3MywxMiArMTM3NywxNiBAQCBzdGF0aWMgaW50DQo+ID4gPiA+
+ID4gPj4gPj4gPiA+PiA+ID4gPiBpbnRlbF9kcF9kc2NfY29tcHV0ZV9jb25maWcoc3RydWN0DQo+
+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gaW50ZWxfZHAgKmludGVsX2RwLA0KPiA+ID4gPiA+ID4+
+ID4+ID4gPj4gPiA+ID4gIAkJfQ0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID4gIAl9DQo+ID4g
+PiA+ID4gPj4gPj4gPiA+PiA+ID4gPg0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID4gKwljZGNs
+a19zdGF0ZSA9DQo+IGludGVsX2F0b21pY19nZXRfY2RjbGtfc3RhdGUoc3RhdGUpOw0KPiA+ID4g
+PiA+ID4+ID4+ID4gPj4gPiA+ID4gKwlpZiAoSVNfRVJSKGNkY2xrX3N0YXRlKSkNCj4gPiA+ID4g
+PiA+PiA+PiA+ID4+ID4gPiA+ICsJCXJldHVybiBQVFJfRVJSKGNkY2xrX3N0YXRlKTsNCj4gPiA+
+ID4gPiA+PiA+PiA+ID4+ID4gPiA+ICsNCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiA+ICAJLyoN
+Cj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiA+ICAJICogVkRTQyBlbmdpbmUgb3BlcmF0ZXMgYXQg
+MSBQaXhlbCBwZXIgY2xvY2ssDQo+IHNvDQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gPiBpZiBw
+ZWFrIHBpeGVsDQo+ID4gPiA+ID4gPj4gcmF0ZQ0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gPiA+ID4g
+LQkgKiBpcyBncmVhdGVyIHRoYW4gdGhlIG1heGltdW0gQ2RjbG9jayBhbmQgaWYNCj4gc2xpY2UN
+Cj4gPiA+ID4gPiBjb3VudCBpcw0KPiA+ID4gPiA+ID4+IGV2ZW4NCj4gPiA+ID4gPiA+PiA+PiA+
+ID4+ID4gPiA+ICsJICogaXMgZ3JlYXRlciB0aGFuIHRoZSBjdXJyZW50IENkY2xvY2sgYW5kIGlm
+DQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gPiArc2xpY2UgY291bnQgaXMgZXZlbg0KPiA+ID4g
+PiA+ID4+ID4+ID4gPj4gPiA+ID4gIAkgKiB0aGVuIHdlIG5lZWQgdG8gdXNlIDIgVkRTQyBpbnN0
+YW5jZXMuDQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+ID4gPiAgCSAqLw0KPiA+ID4gPiA+ID4+ID4+
+ID4gPj4gPiA+ID4gLQlpZiAoYWRqdXN0ZWRfbW9kZS0+Y3J0Y19jbG9jayA+IGRldl9wcml2LQ0K
+PiA+ID4gPiA+ID5tYXhfY2RjbGtfZnJlcQ0KPiA+ID4gPiA+ID4+IHx8DQo+ID4gPiA+ID4gPj4g
+Pj4gPiA+PiA+ID4gPiArCWlmIChhZGp1c3RlZF9tb2RlLT5jcnRjX2Nsb2NrID4NCj4gPiA+ID4g
+PiA+PiA+PiA+ID4+ID4gPiA+ICtjZGNsa19zdGF0ZS0+YWN0dWFsLmNkY2xrIHx8DQo+ID4gPiA+
+ID4gPj4gPj4gPiA+PiA+ID4NCj4gPiA+ID4gPiA+PiA+PiA+ID4+ID4gPiBUaGlzIGlzIHdyb25n
+LiBXZSBjb21wdXRlIHRoZSBjZGNsayBiYXNlZCBvbiB0aGUNCj4gPiA+ID4gPiA+PiA+PiA+ID4+
+ID4gPiByZXF1aXJlbWVudHMgb2YgdGhlIG1vZGUvZXRjLiwgbm90IHRoZSBvdGhlciB3YXkNCj4g
+PiA+IGFyb3VuZC4NCj4gPiA+ID4gPiA+PiA+PiA+ID4NCj4gPiA+ID4gPiA+PiA+PiA+ID4gQWNj
+b3JkaW5nIHRvIEJTcGVjIGd1aWRlbGluZSwgd2UgZGVjaWRlIHdoZXRoZXIgd2UNCj4gZW5hYmxl
+DQo+ID4gPiA+ID4gPj4gPj4gPiA+IG9yIGRpc2FibGUgc2Vjb25kIFZEU0MgZW5naW5lLCBiYXNl
+ZCBvbiB0aGF0IGNvbmRpdGlvbi4gQXMNCj4gPiA+ID4gPiA+PiA+PiA+ID4gSSB1bmRlcnN0YW5k
+IHRoYXQgb25lIGlzIGFib3V0IERTQyBjb25maWcgY2FsY3VsYXRpb24sDQo+ID4gPiA+ID4gPj4g
+Pj4gPiA+IGJhc2VkIG9uIENEQ0xLDQo+ID4gPiA+ID4gPj4gd2hpY2ggd2FzIGNhbGN1bGF0ZWQu
+DQo+ID4gPiA+ID4gPj4gPj4gPg0KPiA+ID4gPiA+ID4+ID4+ID4gUG9pbnQgaXMsIGF0IHRoZSB0
+aW1lIGNvbXB1dGVfY29uZmlnIGdldHMgY2FsbGVkLCB3aGF0DQo+ID4gPiA+ID4gPj4gPj4gPiBn
+dWFyYW50ZWVzIGFyZSB0aGVyZSB0aGF0IGNkY2xrX3N0YXRlLT5hY3R1YWwuY2RjbGsgY29udGFp
+bnMNCj4gPiA+ID4gPiBhbnl0aGluZyB1c2VmdWw/DQo+ID4gPiA+ID4gPj4gPj4gPiBUaGlzIGlz
+IHRoZSBkZXNpZ24gd2UgaGF2ZS4NCj4gPiA+ID4gPiA+PiA+Pg0KPiA+ID4gPiA+ID4+ID4+IFRo
+YXQgaXMgYWN0dWFsbHkgZ29vZCBxdWVzdGlvbiwgd2FzIHdpbGxpbmcgdG8gY2hlY2sgdGhhdCBh
+cyB3ZWxsLg0KPiA+ID4gPiA+ID4+ID4+DQo+ID4gPiA+ID4gPj4gPj4gPg0KPiA+ID4gPiA+ID4+
+ID4+ID4gPiBJZiB3ZSBidW1wIHVwIENEQ0xLLCB0byBhdm9pZCB0aGlzLCB3aWxsIHdlIGV2ZW4g
+dGhlbiB1c2UNCj4gPiA+ID4gPiA+PiA+PiA+ID4gYSBzZWNvbmQNCj4gPiA+ID4gPiA+PiBWRFND
+IGV2ZXI/DQo+ID4gPiA+ID4gPj4gPj4gPg0KPiA+ID4gPiA+ID4+ID4+ID4gSSB0aGluayB3ZSds
+bCBldmVudHVhbGx5IG5lZWQgYmV0dGVyIGxvZ2ljIHRoYW4NCj4gPiA+ID4gPiA+PiA+PiA+IHVu
+Y29uZGl0aW9uYWxseSBidW1waW5nIHRvIG1heCwgYW5kIGl0IG5lZWRzIHRvIHRha2UgKmJvdGgq
+DQo+ID4gPiA+ID4gPj4gPj4gPiB0aGUgY2RjbGsgYW5kIHRoZSBudW1iZXIgb2YgZHNjIGVuZ2lu
+ZXMgaW50byBhY2NvdW50LiBUaGUNCj4gPiA+ID4gPiA+PiA+PiA+IHJlZmVyZW5jZWQgYnNwZWMg
+b25seSBoYXMgdGhlIHZkc2MgY2xvY2sgcGVyc3BlY3RpdmUsIG5vdA0KPiBvdmVyYWxsDQo+ID4g
+PiBwZXJzcGVjdGl2ZS4NCj4gPiA+ID4gPiA+PiA+Pg0KPiA+ID4gPiA+ID4+ID4+IFdoYXQgd2Ug
+bmVlZCB0byBjbGFyaWZ5IGhlcmUgaXMgdGhhdCBob3cgdGhpcyBpcyBzdXBwb3NlZCB0bw0KPiA+
+ID4gPiA+ID4+ID4+IHdvcmsgaW4NCj4gPiA+ID4gPiA+PiB0aGVvcnkuDQo+ID4gPiA+ID4gPj4g
+Pj4gQmFzaWNhbGx5IHNhbWUgaXNzdWUgY2FuIGJlIGZpeGVkIGJ5IGJvdGggaW5jcmVhc2luZyB0
+aGUgQ0RDTEsNCj4gPiA+ID4gPiA+PiA+PiBvciBlbmFibGluZyAybmQgVkRTQyBlbmdpbmUuDQo+
+ID4gPiA+ID4gPj4gPj4gVGhlcmUgc2hvdWxkIGJlIHNvbWUgZ3VpZGVsaW5lIHRlbGxpbmcgdXMs
+IGhvdyB0byBwcmlvcml0aXplLg0KPiA+ID4gPiA+ID4+ID4+IEZyb20gb3ZlcmFsbCBwZXJzcGVj
+dGl2ZSBhcyBJIHVuZGVyc3RhbmQsIGJ5IGRlZmF1bHQsIHdlIGFyZQ0KPiA+ID4gPiA+ID4+ID4+
+IGFibGUgdG8ga2VlcCBDRENMSyAyIHRpbWVzIGxlc3MgdGhhbiBwaXhlbCByYXRlKHNlZQ0KPiA+
+ID4gPiA+ID4+ID4+IGludGVsX3BpeGVsX3JhdGVfdG9fY2RjbGspLCBob3dldmVyIGR1ZSB0byB0
+aGF0IFZEU0MNCj4gPiA+ID4gPiA+PiA+PiBsaW1pdGF0aW9uIHRoYXQgaXQgY2FuIHVzZSBvbmx5
+IDEgcHBjIHRoaXMgYmVjb21lcywgbm90DQo+ID4gPiA+ID4gPj4gPj4gYXBwbGljYWJsZSBhbnlt
+b3JlKGF0IGxlYXN0IGFzIG9mIEJTcGVjIDQ5MjU5KSwgc28gd2UgaGF2ZSB0bw0KPiA+ID4gPiA+
+ID4+ID4+IGluY3JlYXNlIGFtb3VudCBvZiBWRFNDIGluc3RhbmNlcw0KPiA+ID4gPiA+ID4+IHRo
+ZW4uDQo+ID4gPiA+ID4gPj4gPj4NCj4gPiA+ID4gPiA+PiA+PiBTbyB0aGUgcXVlc3Rpb24gaXMg
+bm93IC0gd2hhdCBpcyBtb3JlIG9wdGltYWwgaGVyZT8NCj4gPiA+ID4gPiA+PiA+PiBBbHNvIGlm
+IHdlIGJ1bXAgdXAgQ0RDTEsod2hpY2ggd2UgaGF2ZSBkb25lIG1hbnkgdGltZXMNCj4gPiA+IGFs
+cmVhZHkNCj4gPiA+ID4gPiA+PiA+PiBpbiBmYWN0KSwgd2UgdGhlbiBuZWVkIHRvIGFkZCBzb21l
+IGxvZ2ljIHRvDQo+ID4gPiA+ID4gPj4gPj4gaW50ZWxfY29tcHV0ZV9taW5fY2RjbGsgdG8gY2hl
+Y2sgaWYgd2UgYXJlIHVzaW5nIERTQyBvciBub3QsDQo+ID4gPiA+ID4gPj4gPj4gYmVjYXVzZSBv
+dGhlcndpc2Ugd2UgZG9uJ3QgcmVhbGx5IG5lZWQNCj4gPiA+ID4gPiA+PiB0byBkbyB0aGF0Lg0K
+PiA+ID4gPiA+ID4+DQo+ID4gPiA+ID4gPj4gaW50ZWxfY29tcHV0ZV9taW5fY2RjbGsoKSBhbHJl
+YWR5IG5lZWRzIHRvIGJlIGRzYyBhd2FyZSB3aGVuDQo+ID4gPiA+ID4gPj4gc2xpY2UgY291bnQg
+aXMgMSBhbmQgd2UgY2FuJ3QgdXNlIHR3byBkc2MgZW5naW5lcyBhbnl3YXkuIFNlZSB0aGUNCj4g
+PiA+ID4gPiA+PiByZWNlbnQgY29tbWl0IGZlMDE4ODNmZGNlZiAoImRybS9pOTE1OiBHZXQgcHJv
+cGVyIG1pbiBjZGNsayBpZg0KPiB2RFNDDQo+ID4gPiBlbmFibGVkIikuDQo+ID4gPiA+ID4gPj4N
+Cj4gPiA+ID4gPiA+PiBMb29raW5nIGFnYWluLCBJJ20gbm90IHN1cmUgdGhhdCBkb2VzIHRoZSBy
+aWdodCBkZWNpc2lvbiBmb3Igd2hlbg0KPiA+ID4gPiA+ID4+IGRzYy5zbGljZV9jb3VudCA+IDEs
+IGJ1dCBkc2Muc3BsaXQgPT0gZmFsc2UuIEl0IHNob3VsZCBwcm9iYWJseQ0KPiA+ID4gPiA+ID4+
+IHVzZSBkc2Muc3BsaXQgZm9yIHRoZSBkZWNpc2lvbi4NCj4gPiA+ID4gPiA+Pg0KPiA+ID4gPiA+
+ID4+ID4+DQo+ID4gPiA+ID4gPj4gPj4gU3Rhbg0KPiA+ID4gPiA+ID4+ID4NCj4gPiA+ID4gPiA+
+PiA+IENoZWNrZWQgYW5kIGluZGVlZCwgZW5jb2Rlci0+Y29tcHV0ZV9jb25maWcgaXMgY2FsbGVk
+IHdheQ0KPiA+ID4gPiA+ID4+ID4gYmVmb3JlLCBiYXNpY2FsbHkgQ0RDTEsgY2FsY3VsYXRpb24g
+aXMgY2FsbGVkIGFsbW9zdCBpbiB0aGUgZW5kDQo+ID4gPiA+ID4gPj4gPiBvZiBhdG9taWNfY2hl
+Y2ssIHNvIGluIGNvbXB1dGVfY29uZmlnLCB0aGVyZSB3b3VsZCBiZSBhbiBvbGQNCj4gPiA+ID4g
+PiA+PiA+IENEQ0xLIHZhbHVlIGNvcGllZCBmcm9tIHByZXZpb3VzIGNkY2xrIHN0YXRlLCBidXQg
+bm90IHRoZSBsYXN0DQo+IG9uZS4NCj4gPiA+ID4gPiA+PiA+DQo+ID4gPiA+ID4gPj4gPiBWYW5k
+aXRhLCB0aGlzIG1lYW5zIHdlIGFjdHVhbGx5IGNhbid0IGRvIGl0IHRoYXQgd2F5LCBpZiB5b3UN
+Cj4gPiA+ID4gPiA+PiA+IHdhbnQgdG8gZG8gYW55dGhpbmcgd2l0aCBWRFNDIGJhc2VkIG9uIENE
+Q0xLIHRoaXMgaGFzIHRvIGJlDQo+ID4gPiA+ID4gPj4gPiBkb25lIF9hZnRlcl8gaW50ZWxfY29t
+cHV0ZV9taW5fY2RjbGsgd2FzIGNhbGxlZC4gV2hpY2ggaXMgbm90DQo+ID4gPiB2ZXJ5IHN3ZWV0
+LCBJIGd1ZXNzLg0KPiA+ID4gPiA+ID4+ID4NCj4gPiA+ID4gPiA+PiA+IFNvIGFzIG9mIGN1cnJl
+bnQgYXJjaGl0ZWN0dXJlLCBpdCBzZWVtcyB0aGF0IHRoZSBlYXNpZXN0IHdheSBpcw0KPiA+ID4g
+PiA+ID4+ID4gaW5kZWVkIHRvIGJ1bXAgdGhlIENEQ0xLIG9yIHdlIG5lZWQgdG8gZmlndXJlIHRo
+ZSB3YXkgaG93IHRvDQo+ID4gPiA+ID4gPj4gPiBlbmFibGUgMm5kIFZEU0Mgc29tZXdoZXJlIGVs
+c2UsIGFmdGVyIENEQ0xLIHdhcyBjYWxjdWxhdGVkLg0KPiA+ID4gPiA+ID4+DQo+ID4gPiA+ID4g
+Pj4gQWx0ZXJuYXRpdmVseSwgd2UgY291bGQgdXNlIHR3byBkc2MgZW5naW5lcyBtb3JlIGFnZ3Jl
+c3NpdmVseSwNCj4gPiA+ID4gPiA+PiBidXQgdGhhdCBkZWNpc2lvbiBjdXJyZW50bHkgY2FuJ3Qg
+dGFrZSBvdmVyYWxsIGNob3NlbiBjZGNsayBpbnRvDQo+IGFjY291bnQuDQo+ID4gPiA+ID4gPj4N
+Cj4gPiA+ID4gPiA+PiBXZSdsbCBlbmQgdXAgc29tZXRpbWVzIHVubmVjZXNzYXJpbHkgdXNpbmcg
+YSB0b28gaGlnaCBjZGNsayBvcg0KPiA+ID4gPiA+ID4+IHR3byBkc2MgZW5naW5lcywganVzdCBo
+YXZlIHRvIHBpY2sgdGhlIHBvaXNvbi4NCj4gPiA+ID4gPiA+Pg0KPiA+ID4gPiA+ID4+IEkgdGhp
+bmsgdHJ5aW5nIHRvIGRvIGRzYyBkZWNpc2lvbnMgYWZ0ZXINCj4gPiA+ID4gPiA+PiBpbnRlbF9j
+b21wdXRlX21pbl9jZGNsaygpIGdldHMgd2F5IHRvbyBjb21wbGljYXRlZC4NCj4gPiA+ID4gPiA+
+DQo+ID4gPiA+ID4gPiBJbiB0aGlzIGNhc2UsIGNhbiB3ZSBqdXN0IHVzZSB0aGUgMm5kIFZEU0Mg
+ZW5naW5lIGlmIHNsaWNlX2NvdW50DQo+ID4gPiA+ID4gPiBpcyAyIG9yDQo+ID4gPiA+ID4gbW9y
+ZT8NCj4gPiA+ID4gPiA+IFdoaWNoIHdvdWxkIG1lYW4gd2UgYWx3YXlzIG9wZXJhdGUgaW4gam9p
+bmVyIGVuYWJsZWQNCj4gbW9kZShzbWFsbA0KPiA+ID4gPiA+ID4gam9pbmVyKSBvZiBhbGwgdGhl
+IGNvbXByZXNzaW9uIG1vZGVzIG9mIG9wZXJhdGlvbiBtZW50aW9uZWQgaW4gdGhlDQo+ID4gPiA+
+ID4gPiB0YWJsZSBic3BlYzogNDkyNTkgQmVjYXVzZSB3ZSBhcmUgc3RpbGwgZ29pbmcgdG8gaGl0
+IHRoZSBtYXggY2RjbGsNCj4gPiA+ID4gPiA+IHJlc3RyaWN0aW9uDQo+ID4gPiA+ID4gZm9yIGhp
+Z2hlciByZXNvbHV0aW9ucywgYW5kIG1hbnkgbG93ZXIgcmVzb2x1dGlvbnMgd291bGRu4oCZdCBu
+ZWVkDQo+IG1heA0KPiA+ID4gY2RjbGsuDQo+ID4gPiA+ID4gPiBBbmQgZXZlbnR1YWxseSBvbmNl
+IHdlIGhhdmUgbW9yZSBkZXRhaWxzIG9uIGNkIGNsayB2cyAyVkRTQw0KPiBlbmdpbmUNCj4gPiA+
+ID4gPiA+IHdlIGNvdWxkIGFkZCB0aGUgbG9naWMgdG8gY2hvb3NlIG9uZSBvdmVyIHRoZSBvdGhl
+cj8NCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiBJIHNlZSB0aGF0IGluIGNhc2Ugb2YgRFNJIHdl
+IGRvIHNwbGl0ID0gdHJ1ZSwgZm9yIHNsaWNlX2NvdW50ID4gMQ0KPiA+ID4gPiA+ID4gYnV0IHRo
+YXQNCj4gPiA+ID4gPiB3b3VsZCBuZWVkIGEgZGlmZmVyZW50IHNldCBvZiBjaGVja3MsIHRoYXRz
+IGEgVEJELg0KPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+IE9yIERvIHlvdSBzdWdnZXN0IEkganVz
+dCBkbyB0aGlzIGZvciBub3cgbWF4IGNkY2xrIHdoZW4NCj4gPiA+ID4gPiA+IHNsaWNlX2NvdW50
+ID0xICh3aGF0IHdlIGFyZSBkb2luZyBub3cpIHJlcGxhY2Ugd2l0aCBjb21wcmVzc2lvbiA9DQo+
+ID4gPiA+ID4gPiB0cnVlIGFuZCBzcGxpdCA9IGZhbHNlDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBJ
+IHRoaW5rIHRoZSBjaGVjayBpbiBpbnRlbF9jb21wdXRlX21pbl9jZGNsaygpIHNob3VsZCBiZToN
+Cj4gPiA+ID4gPg0KPiA+ID4gPiA+IAlpZiAoY3J0Y19zdGF0ZS0+ZHNjLmNvbXByZXNzaW9uX2Vu
+YWJsZSAmJiAhY3J0Y19zdGF0ZS0NCj4gPiA+ID4gPiA+ZHNjLmRzY19zcGxpdCkNCj4gPiA+ID4g
+Pg0KPiA+ID4gPiA+IFRoYXQncyBhIHNlcGFyYXRlIGNoYW5nZS4NCj4gPiA+ID4gPg0KPiA+ID4g
+PiA+IEVuYWJsaW5nIHR3byBkc2MgZW5naW5lcyBtb3JlIGFnZ3Jlc3NpdmVseS4uLiBJIGRvbid0
+IG1pbmQgZG9pbmcgaXQNCj4gPiA+ID4gPiB1bmNvbmRpdGlvbmFsbHkgd2hlbiBzbGljZSBjb3Vu
+dCA+IDEgZm9yIHN0YXJ0ZXJzLiBCdXQgSSB0aGluayB3ZSdsbA0KPiA+ID4gPiA+IG5lZWQgdG8g
+aW1wcm92ZSB0aGlzIGdvaW5nIGZvcndhcmQsIGluY2x1ZGluZyBmaXhpbmcgdGhlIG1vZGUgdmFs
+aWQNCj4gPiA+ID4gPiBjaGVja3MgZXRjLiBhcyB3ZSd2ZSBkaXNjdXNzZWQuDQo+ID4gPiA+DQo+
+ID4gPiA+IERlc2lnbiByZWNvbW1lbmRhdGlvbiBpcyB0byB1c2UgMiBWRFNDIGluc3RhbmNlcyB3
+aGlsZSBtZWV0aW5nIHRoZQ0KPiA+ID4gZm9sbG93aW5nIGNvbnN0cmFpbnQgc28gdGhhdCBjZGNs
+ayBjYW4gc3RheSBhcyBsb3cgYXMgcG9zc2libGUuDQo+ID4gPiA+IERQL0hETUkgUFBSIHNwZWMg
+cHJvdmlkZWQgc2xpY2Ugc2l6ZSA8IERQQ0QgcHJvdmlkZWQgTWF4U2xpY2VXaWR0aA0KPiA+DQo+
+ID4gQmFzZWQgb24gdGhlIGh3IHJlY29tbWVuZGF0aW9uIHRvIG1lIGl0IGxvb2tzIGxpa2UsIGFz
+IEBOaWt1bGEsIEphbmkNCj4gc3VnZ2VzdGVkDQo+ID4gV2UgY2FuIHNldCBzcGxpdCB0byB0cnVl
+IGJhc2VkIG9uICIgRFAvSERNSSBQUFIgc3BlYyBwcm92aWRlZCBzbGljZSBzaXplIDwNCj4gRFBD
+RCBwcm92aWRlZCBNYXhTbGljZVdpZHRoIg0KPiA+DQo+ID4gSW4gc3VjaCBjYXNlcyB3ZSBjYW4g
+YXZvaWQgYnVtcGluZyB1cCB0byBtYXggY2RjbGsgZm9yIHZkc2MgcmVhc29ucy4NCj4gPiBXaWxs
+IG1ha2UgdGhpcyBjaGFuZ2UgYW5kIGZsb2F0IFYyLg0KPiA+DQo+ID4gVGhhbmtzLA0KPiA+IFZh
+bmRpdGENCj4gPiA+ID4NCj4gPiA+ID4gVGhhbmtzLA0KPiA+ID4gPiBWYW5kaXRhDQo+ID4gPiA+
+ID4NCj4gPiA+ID4gPiBWaWxsZSwgYW55IG9iamVjdGlvbnM/DQo+ID4gPiA+ID4NCj4gPiA+ID4g
+PiBCUiwNCj4gPiA+ID4gPiBKYW5pLg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4NCj4gPiA+ID4gPiA+
+DQo+ID4gPiA+ID4gPiBUaGFua3MsDQo+ID4gPiA+ID4gPiBWYW5kaXRhDQo+ID4gPiA+ID4gPj4N
+Cj4gPiA+ID4gPiA+PiBCUiwNCj4gPiA+ID4gPiA+PiBKYW5pDQo+ID4gPiA+ID4gPj4NCj4gPiA+
+ID4gPiA+Pg0KPiA+ID4gPiA+ID4+DQo+ID4gPiA+ID4gPj4NCj4gPiA+ID4gPiA+PiA+DQo+ID4g
+PiA+ID4gPj4gPiBTdGFuDQo+ID4gPiA+ID4gPj4gPg0KPiA+ID4gPiA+ID4+ID4+DQo+ID4gPiA+
+ID4gPj4gPj4gPg0KPiA+ID4gPiA+ID4+ID4+ID4gQlIsDQo+ID4gPiA+ID4gPj4gPj4gPiBKYW5p
+Lg0KPiA+ID4gPiA+ID4+ID4+ID4NCj4gPiA+ID4gPiA+PiA+PiA+ID4gQW5vdGhlciB0aGluZyBp
+cyB0aGF0IHByb2JhYmx5IGVuYWJsaW5nIHNlY29uZCBWRFNDIGlzDQo+ID4gPiA+ID4gPj4gPj4g
+PiA+IGNoZWFwZXIgaW4gdGVybXMgb2YgcG93ZXIgY29uc3VtcHRpb24sIHRoYW4gYnVtcGluZyB1
+cA0KPiB0aGUNCj4gPiA+IENEQ0xLLg0KPiA+ID4gPiA+ID4+ID4+ID4gPg0KPiA+ID4gPiA+ID4+
+ID4+ID4gPiBTdGFuDQo+ID4gPiA+ID4gPj4gPj4gPiA+DQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+
+DQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+IE9rYXkgLCBTbyB5b3Ugc3VnZ2VzdCB0aGF0IHdlIHNl
+dCB0aGUgY2QgY2xvY2sgdG8gbWF4DQo+ID4gPiA+ID4gPj4gPj4gPiA+PiA+IHdoZW4gd2UNCj4g
+PiA+ID4gPiA+PiBoYXZlIHN1Y2ggcmVxdWlyZW1lbnQsIHRoYW4gZW5hYmxpbmcgdGhlIHNlY29u
+ZCBlbmdpbmU/DQo+ID4gPiA+ID4gPj4gPj4gPiA+Pg0KPiA+ID4gPiA+ID4+ID4+ID4gPj4gVGhh
+dCBzZWVtcyBsaWtlIHRoZSBlYXNpZXN0IHNvbHV0aW9uLiBBbm90aGVyIG9wdGlvbg0KPiA+ID4g
+PiA+ID4+ID4+ID4gPj4gbWlnaHQgYmUgdG8gY29tZSB1cCB3aXRoIHNvbWUgbG93ZXIgZG90Y2xv
+Y2sgbGltaXQgZm9yDQo+ID4gPiA+ID4gPj4gPj4gPiA+PiB0aGUgdXNlIG9mIHRoZSBzZWNvbmQg
+dmRzYy4gQnV0IG5vdCBzdXJlIHdlIGtub3cgd2hlcmUNCj4gPiA+ID4gPiA+PiA+PiA+ID4+IHRo
+ZSB0aXBwaW5nIHBvaW50IGlzIHdydC4gcG93cg0KPiA+ID4gPiA+ID4+IGNvbnN1bXB0aW9uLg0K
+PiA+ID4gPiA+ID4+ID4+ID4gPj4NCj4gPiA+ID4gPiA+PiA+PiA+ID4+IC0tDQo+ID4gPiA+ID4g
+Pj4gPj4gPiA+PiBWaWxsZSBTeXJqw6Rsw6QNCj4gPiA+ID4gPiA+PiA+PiA+ID4+IEludGVsDQo+
+ID4gPiA+ID4gPj4gPj4gPg0KPiA+ID4gPiA+ID4+ID4+ID4gLS0NCj4gPiA+ID4gPiA+PiA+PiA+
+IEphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXINCj4gPiA+ID4g
+PiA+Pg0KPiA+ID4gPiA+ID4+IC0tDQo+ID4gPiA+ID4gPj4gSmFuaSBOaWt1bGEsIEludGVsIE9w
+ZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gLS0NCj4gPiA+
+ID4gPiBKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyDQo=
