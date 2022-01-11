@@ -2,46 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3CD448B253
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 17:37:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE48948B252
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 17:37:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92BC910E4C7;
-	Tue, 11 Jan 2022 16:37:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E156F10E2CE;
+	Tue, 11 Jan 2022 16:37:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A140910E493;
- Tue, 11 Jan 2022 16:37:17 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B9B410E2CE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jan 2022 16:37:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641919037; x=1673455037;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=UqOiHDLP56nD/P5m6Thf/FxNrZhsnkb+fpb2TWLDnck=;
- b=FgnEjkfakp5tSRZunj2BdVnUwEzCXdbstNm85s6uCL5azTBzHMImsVCU
- izNXN0jaGE2OhA8wNYtXVlewPjJDr7qPxpHsn2r95DyUOsYGBVLBTOohO
- Me04tZmkFg+JMdPsMiGTwGSdzSsKEBgO5T0uJhZsYgYL1qbC+Z681HNrf
- tiX7eEI3lnAZscjtS3dsqErqC6Lf1SgfW/Z9WHxoTo9CUdM/9za7aKLWu
- w8Ff7KqD03CQO156N4luZtSRO2makpHHx17B7CKKQy4iepJ3WXptcUIAO
- RJlns6jagrkeBH32jc4PM/+4WRijkiyq6BNbZCRsGj2fH2hvJSpXtdUAx g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="243327031"
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="243327031"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2022 08:36:13 -0800
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="515149678"
-Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2022 08:36:12 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-gfx@lists.freedesktop.org>,
-	<dri-devel@lists.freedesktop.org>
-Date: Tue, 11 Jan 2022 08:30:19 -0800
-Message-Id: <20220111163019.13694-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+ t=1641919034; x=1673455034;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Imj3kj8fwGoBOk0oWClngOHxqzyhIxaoEOy7rbrEaG0=;
+ b=mUPHO1ulAh/9WvpZSLQG92sZkyLK2XnIdglbFhgDqOYoexXE4O13oY6x
+ 4q71QVxidkmUVmimclOhYqZRlcFy4GNPukHaJyp+kCmxj+pTbXpgFzlUD
+ LhRji1h6CQu5JdpHO8/u7ZVRmut1HqYdK9/SvB0tuSnurygN4Y9kgr8kX
+ nh5Bm6yiXAUzKeTtq+S0RbhnWRPAJvgdCD6D/668UruYcK8yi6ewvyiET
+ bC4/ZpdQhWYP1EHooq+3wHjTp3e+Ldsg/3pfnx8Hk0DeoqUd7B81HjCTZ
+ eMSIEOMF5CexUXdztpB4rM5UljVJLkJqM/P5vMPN4Vl53ZntiPa9lDWkL w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="230868775"
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="230868775"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2022 08:37:12 -0800
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="576255435"
+Received: from rblair-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.75.118])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2022 08:37:12 -0800
+Date: Tue, 11 Jan 2022 08:37:11 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20220111163711.ebnwlltm4spmuuuo@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220110095740.166078-1-jani.nikula@intel.com>
+ <20220110095740.166078-3-jani.nikula@intel.com>
+ <YdxYvXfkOgTFFg+s@intel.com> <87pmoy8xdb.fsf@intel.com>
+ <20220111161405.kpgf2jxvlkdnlk4v@ldmartin-desk2>
+ <8735lu8cu9.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Flip guc_id allocation partition
+In-Reply-To: <8735lu8cu9.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/vga: switch to use VGA
+ definitions from video/vga.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,122 +63,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move the multi-lrc guc_id from the lower allocation partition (0 to
-number of multi-lrc guc_ids) to upper allocation partition (number of
-single-lrc to max guc_ids).
+On Tue, Jan 11, 2022 at 06:19:10PM +0200, Jani Nikula wrote:
+>On Tue, 11 Jan 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> On Tue, Jan 11, 2022 at 10:55:44AM +0200, Jani Nikula wrote:
+>>>On Mon, 10 Jan 2022, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+>>>> On Mon, Jan 10, 2022 at 11:57:39AM +0200, Jani Nikula wrote:
+>>>>> The video/vga.h has macros for the VGA registers. Switch to use them.
+>>>>>
+>>>>> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+>>>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>>>> ---
+>>>>>  drivers/gpu/drm/i915/display/intel_vga.c | 9 +++++----
+>>>>>  1 file changed, 5 insertions(+), 4 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
+>>>>> index fa779f7ea415..43c12036c1fa 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_vga.c
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
+>>>>> @@ -7,6 +7,7 @@
+>>>>>  #include <linux/vgaarb.h>
+>>>>>
+>>>>>  #include <drm/i915_drm.h>
+>>>>> +#include <video/vga.h>
+>>>>>
+>>>>>  #include "i915_drv.h"
+>>>>>  #include "intel_de.h"
+>>>>> @@ -34,9 +35,9 @@ void intel_vga_disable(struct drm_i915_private *dev_priv)
+>>>>>
+>>>>>  	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
+>>>>>  	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
+>>>>> -	outb(SR01, VGA_SR_INDEX);
+>>>>> -	sr1 = inb(VGA_SR_DATA);
+>>>>> -	outb(sr1 | 1 << 5, VGA_SR_DATA);
+>>>>> +	outb(VGA_SEQ_CLOCK_MODE, VGA_SEQ_I);
+>>>>
+>>>> Not a huge fan of some of these defines since now I have
+>>>> no idea what register this is selecting.
+>>>
+>>>It's a bit silly that we have our own macros for this stuff, but I get
+>>>the point. Took me a while to figure the changes out because the macros
+>>>in video/vga.h aren't even grouped in a helpful way.
+>>>
+>>>I guess you'd prefer patch [1] over patches 3-4 in this series then? For
+>>>me the main goal is to just reduce the size of i915_reg.h.
+>>
+>> alternatively, to patch video/vga.h to make it pretty?
+>
+>If it's enough to just rearrange the stuff, maybe. But if it means
+>renames, I'm not going to touch a big pile of ancient fb/vga drivers to
+>chase this one.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 57 ++++++++++++++-----
- 1 file changed, 42 insertions(+), 15 deletions(-)
+I think it would be ok to add them as aliases to the names used in
+other places. Then the other places can be converted later if at all.
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 9989d121127df..1bacc9621cea8 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -147,6 +147,8 @@ guc_create_parallel(struct intel_engine_cs **engines,
-  */
- #define NUMBER_MULTI_LRC_GUC_ID(guc)	\
- 	((guc)->submission_state.num_guc_ids / 16)
-+#define NUMBER_SINGLE_LRC_GUC_ID(guc)	\
-+	((guc)->submission_state.num_guc_ids - NUMBER_MULTI_LRC_GUC_ID(guc))
- 
- /*
-  * Below is a set of functions which control the GuC scheduling state which
-@@ -1776,11 +1778,6 @@ int intel_guc_submission_init(struct intel_guc *guc)
- 	INIT_WORK(&guc->submission_state.destroyed_worker,
- 		  destroyed_worker_func);
- 
--	guc->submission_state.guc_ids_bitmap =
--		bitmap_zalloc(NUMBER_MULTI_LRC_GUC_ID(guc), GFP_KERNEL);
--	if (!guc->submission_state.guc_ids_bitmap)
--		return -ENOMEM;
--
- 	spin_lock_init(&guc->timestamp.lock);
- 	INIT_DELAYED_WORK(&guc->timestamp.work, guc_timestamp_ping);
- 	guc->timestamp.ping_delay = (POLL_TIME_CLKS / gt->clock_frequency + 1) * HZ;
-@@ -1796,7 +1793,8 @@ void intel_guc_submission_fini(struct intel_guc *guc)
- 	guc_flush_destroyed_contexts(guc);
- 	guc_lrc_desc_pool_destroy(guc);
- 	i915_sched_engine_put(guc->sched_engine);
--	bitmap_free(guc->submission_state.guc_ids_bitmap);
-+	if (guc->submission_state.guc_ids_bitmap)
-+		bitmap_free(guc->submission_state.guc_ids_bitmap);
- }
- 
- static inline void queue_request(struct i915_sched_engine *sched_engine,
-@@ -1863,6 +1861,33 @@ static void guc_submit_request(struct i915_request *rq)
- 	spin_unlock_irqrestore(&sched_engine->lock, flags);
- }
- 
-+static int new_mlrc_guc_id(struct intel_guc *guc, struct intel_context *ce)
-+{
-+	int ret;
-+
-+	GEM_BUG_ON(!intel_context_is_parent(ce));
-+	GEM_BUG_ON(!guc->submission_state.guc_ids_bitmap);
-+
-+	ret =  bitmap_find_free_region(guc->submission_state.guc_ids_bitmap,
-+				       NUMBER_MULTI_LRC_GUC_ID(guc),
-+				       order_base_2(ce->parallel.number_children
-+						    + 1));
-+	if (likely(!(ret < 0)))
-+		ret += NUMBER_SINGLE_LRC_GUC_ID(guc);
-+
-+	return ret;
-+}
-+
-+static int new_slrc_guc_id(struct intel_guc *guc, struct intel_context *ce)
-+{
-+	GEM_BUG_ON(intel_context_is_parent(ce));
-+
-+	return ida_simple_get(&guc->submission_state.guc_ids,
-+			      0, NUMBER_SINGLE_LRC_GUC_ID(guc),
-+			      GFP_KERNEL | __GFP_RETRY_MAYFAIL |
-+			      __GFP_NOWARN);
-+}
-+
- static int new_guc_id(struct intel_guc *guc, struct intel_context *ce)
- {
- 	int ret;
-@@ -1870,16 +1895,10 @@ static int new_guc_id(struct intel_guc *guc, struct intel_context *ce)
- 	GEM_BUG_ON(intel_context_is_child(ce));
- 
- 	if (intel_context_is_parent(ce))
--		ret = bitmap_find_free_region(guc->submission_state.guc_ids_bitmap,
--					      NUMBER_MULTI_LRC_GUC_ID(guc),
--					      order_base_2(ce->parallel.number_children
--							   + 1));
-+		ret = new_mlrc_guc_id(guc, ce);
- 	else
--		ret = ida_simple_get(&guc->submission_state.guc_ids,
--				     NUMBER_MULTI_LRC_GUC_ID(guc),
--				     guc->submission_state.num_guc_ids,
--				     GFP_KERNEL | __GFP_RETRY_MAYFAIL |
--				     __GFP_NOWARN);
-+		ret = new_slrc_guc_id(guc, ce);
-+
- 	if (unlikely(ret < 0))
- 		return ret;
- 
-@@ -1989,6 +2008,14 @@ static int pin_guc_id(struct intel_guc *guc, struct intel_context *ce)
- 
- 	GEM_BUG_ON(atomic_read(&ce->guc_id.ref));
- 
-+	if (unlikely(intel_context_is_parent(ce) &&
-+		     !guc->submission_state.guc_ids_bitmap)) {
-+		guc->submission_state.guc_ids_bitmap =
-+			bitmap_zalloc(NUMBER_MULTI_LRC_GUC_ID(guc), GFP_KERNEL);
-+		if (!guc->submission_state.guc_ids_bitmap)
-+			return -ENOMEM;
-+	}
-+
- try_again:
- 	spin_lock_irqsave(&guc->submission_state.lock, flags);
- 
--- 
-2.34.1
+But not a strong opinion... up to you, Ville and Matt.
 
+Lucas De Marchi
