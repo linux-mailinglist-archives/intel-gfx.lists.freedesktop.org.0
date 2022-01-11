@@ -1,33 +1,83 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5659448B631
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 19:55:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BA3248B641
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jan 2022 19:58:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 899FA10E323;
-	Tue, 11 Jan 2022 18:55:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1A8710E347;
+	Tue, 11 Jan 2022 18:58:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 243C010E320;
- Tue, 11 Jan 2022 18:55:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1F3C3A47EB;
- Tue, 11 Jan 2022 18:55:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7696942802823496749=="
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19C1F10E32D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jan 2022 18:58:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1641927523;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=iHCCJzeah0w/vck/Nu/qw79rSV3jT1jN1nj4jAKTZPs=;
+ b=bzyouv825rEOn5aRVyqGkxt3EYhpG/wBhju/frXXEvhsybm+Q0g2Bf3qh79QXnQ1DNSjXX
+ IsM661kS39k1mzBarJjlI39HYT48/my6BAWcuBifijYE3rA3Q+My7xZ2I55+kZJdQpkpH5
+ ZIGvUttTMzpyOgcJkEqvlqykVgvbO3M=
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-356-l_XMaLbEPrOYB_OQYwAWPg-1; Tue, 11 Jan 2022 13:58:41 -0500
+X-MC-Unique: l_XMaLbEPrOYB_OQYwAWPg-1
+Received: by mail-qk1-f198.google.com with SMTP id
+ x189-20020a37aec6000000b004779e432215so8561907qke.15
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jan 2022 10:58:41 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=iHCCJzeah0w/vck/Nu/qw79rSV3jT1jN1nj4jAKTZPs=;
+ b=qmV8BN/z9UVWui6ZiaGeawV0Or9049WcQmU36623H6E3SZExeKOGZNaTgHiuFOC9t/
+ iLLpaZw/pyAPulzRkBPJJZG5An9lVHUEYWFAmtLNybEFjjKRu9VMaN51VVQRQSGF/NbH
+ Qoa3ZigOx9moBslAl2IaA+WO1ZaEwN41X/hmeB+yJlxdmQ2FqYvwtdd9gNx/wFvgtfYz
+ M1Dt5q5zQO1sSe8DSGY9WHNI72P2dJ1yXxQ/mwZrc3PNJ06wTOe1+FLfYd+Zg8N6IUEh
+ mVViiwLV35hEPZ9fSLR8DZXOJszH7sLKWt6uiEilJlhFye3+cAj2HqKvYoecOVNI2VQJ
+ 4pLA==
+X-Gm-Message-State: AOAM530JtKxwFpiT1Mq/UYQLLEUh6NAXZVQ2UC3ZFys2ZwcpByWvVfxI
+ x5xopP4c3uL3CsluRFrzX0wsqDt3xwaSCgXxqUHFUT4OsV/suF2+jgo1DvhqpoRV0/WVtsIhXLx
+ 41Vwugav0bWRQF1PxGUg2MCfHwYgy
+X-Received: by 2002:a05:622a:d5:: with SMTP id
+ p21mr4857308qtw.518.1641927521437; 
+ Tue, 11 Jan 2022 10:58:41 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxELfMJ8r36duQkL4qxGsnpQpkIFw0eUnAJ5WcaVsOlMfn4wSG/TqH00Jgjg++5PwhTrD/yaA==
+X-Received: by 2002:a05:622a:d5:: with SMTP id
+ p21mr4857289qtw.518.1641927520997; 
+ Tue, 11 Jan 2022 10:58:40 -0800 (PST)
+Received: from [192.168.8.138] (pool-98-118-105-43.bstnma.ftas.verizon.net.
+ [98.118.105.43])
+ by smtp.gmail.com with ESMTPSA id s27sm8164313qtc.0.2022.01.11.10.58.39
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 Jan 2022 10:58:40 -0800 (PST)
+Message-ID: <58056ee59acc791c0ef1562fab45e24f9aaa19b4.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org, 
+ maarten.lankhorst@linux.intel.com, airlied@linux.ie, daniel@ffwll.ch, 
+ jani.nikula@linux.intel.com
+Date: Tue, 11 Jan 2022 13:58:39 -0500
+In-Reply-To: <20211215104318.18866-4-tzimmermann@suse.de>
+References: <20211215104318.18866-1-tzimmermann@suse.de>
+ <20211215104318.18866-4-tzimmermann@suse.de>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.42.2 (3.42.2-1.fc35)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Tue, 11 Jan 2022 18:55:45 -0000
-Message-ID: <164192734511.24977.4159695952535135687@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220111160812.21344-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20220111160812.21344-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Recalculate_CDCLK_if_plane_scaling_ratio_changes?=
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [Nouveau] [PATCH v2 3/5] drm/dp: Move DisplayPort
+ helpers into separate helper module
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,329 +90,401 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
+ freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7696942802823496749==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Acked-by: Lyude Paul <lyude@redhat.com>
 
-== Series Details ==
+On Wed, 2021-12-15 at 11:43 +0100, Thomas Zimmermann wrote:
+> Move DisplayPort functions into a separate module to reduce the size
+> of the KMS helpers. Select DRM_DP_HELPER for all users of the code. To
+> avoid naming conflicts, rename drm_dp_helper.c to drm_dp.c
+> 
+> This change can help to reduce the size of the kernel binary. Some
+> numbers from a x86-64 test build:
+> 
+> Before:
+>         drm_kms_helper.ko:      447480 bytes
+> 
+> After:
+>         drm_dp_helper.ko:       216632 bytes
+>         drm_kms_helper.ko:      239424 bytes
+> 
+> For early-boot graphics, generic DRM drivers, such as simpledrm,
+> require DRM KMS helpers to be built into the kernel. Generic helper
+> functions for DisplayPort take up a significant portion of DRM KMS
+> helper library. These functions are not used by generic drivers and
+> can be loaded as a module.
+> 
+> v2:
+>         * move DP helper code into dp/ (Jani)
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>  drivers/gpu/drm/Kconfig                       |  8 +++++++
+>  drivers/gpu/drm/Makefile                      | 10 ++++-----
+>  drivers/gpu/drm/bridge/Kconfig                |  4 ++++
+>  drivers/gpu/drm/bridge/analogix/Kconfig       |  2 ++
+>  drivers/gpu/drm/bridge/cadence/Kconfig        |  1 +
+>  drivers/gpu/drm/dp/Makefile                   |  7 ++++++
+>  .../gpu/drm/{drm_dp_helper.c => dp/drm_dp.c}  |  0
+>  drivers/gpu/drm/{ => dp}/drm_dp_aux_dev.c     |  0
+>  drivers/gpu/drm/{ => dp}/drm_dp_cec.c         |  0
+>  .../drm/{ => dp}/drm_dp_dual_mode_helper.c    |  0
+>  .../gpu/drm/{ => dp}/drm_dp_helper_internal.h |  0
+>  drivers/gpu/drm/dp/drm_dp_helper_mod.c        | 22 +++++++++++++++++++
+>  .../gpu/drm/{ => dp}/drm_dp_mst_topology.c    |  0
+>  .../{ => dp}/drm_dp_mst_topology_internal.h   |  0
+>  drivers/gpu/drm/drm_kms_helper_common.c       | 15 -------------
+>  drivers/gpu/drm/i915/Kconfig                  |  1 +
+>  drivers/gpu/drm/msm/Kconfig                   |  1 +
+>  drivers/gpu/drm/nouveau/Kconfig               |  1 +
+>  drivers/gpu/drm/rockchip/Kconfig              |  1 +
+>  drivers/gpu/drm/tegra/Kconfig                 |  1 +
+>  drivers/gpu/drm/xlnx/Kconfig                  |  1 +
+>  21 files changed, 54 insertions(+), 21 deletions(-)
+>  create mode 100644 drivers/gpu/drm/dp/Makefile
+>  rename drivers/gpu/drm/{drm_dp_helper.c => dp/drm_dp.c} (100%)
+>  rename drivers/gpu/drm/{ => dp}/drm_dp_aux_dev.c (100%)
+>  rename drivers/gpu/drm/{ => dp}/drm_dp_cec.c (100%)
+>  rename drivers/gpu/drm/{ => dp}/drm_dp_dual_mode_helper.c (100%)
+>  rename drivers/gpu/drm/{ => dp}/drm_dp_helper_internal.h (100%)
+>  create mode 100644 drivers/gpu/drm/dp/drm_dp_helper_mod.c
+>  rename drivers/gpu/drm/{ => dp}/drm_dp_mst_topology.c (100%)
+>  rename drivers/gpu/drm/{ => dp}/drm_dp_mst_topology_internal.h (100%)
+> 
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index b1f22e457fd0..91f54aeb0b7c 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -80,6 +80,12 @@ config DRM_DEBUG_SELFTEST
+>  
+>           If in doubt, say "N".
+>  
+> +config DRM_DP_HELPER
+> +       tristate
+> +       depends on DRM
+> +       help
+> +         DRM helpers for DisplayPort.
+> +
+>  config DRM_KMS_HELPER
+>         tristate
+>         depends on DRM
+> @@ -236,6 +242,7 @@ config DRM_RADEON
+>         depends on DRM && PCI && MMU
+>         depends on AGP || !AGP
+>         select FW_LOADER
+> +       select DRM_DP_HELPER
+>          select DRM_KMS_HELPER
+>          select DRM_TTM
+>         select DRM_TTM_HELPER
+> @@ -256,6 +263,7 @@ config DRM_AMDGPU
+>         tristate "AMD GPU"
+>         depends on DRM && PCI && MMU
+>         select FW_LOADER
+> +       select DRM_DP_HELPER
+>         select DRM_KMS_HELPER
+>         select DRM_SCHED
+>         select DRM_TTM
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index 301a44dc18e3..69be80ef1d31 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -48,21 +48,18 @@ obj-$(CONFIG_DRM_VRAM_HELPER) += drm_vram_helper.o
+>  drm_ttm_helper-y := drm_gem_ttm_helper.o
+>  obj-$(CONFIG_DRM_TTM_HELPER) += drm_ttm_helper.o
+>  
+> -drm_kms_helper-y := drm_bridge_connector.o drm_crtc_helper.o
+> drm_dp_helper.o \
+> +drm_kms_helper-y := drm_bridge_connector.o drm_crtc_helper.o \
+>                 drm_dsc.o drm_encoder_slave.o drm_flip_work.o drm_hdcp.o \
+>                 drm_probe_helper.o \
+> -               drm_plane_helper.o drm_dp_mst_topology.o drm_atomic_helper.o
+> \
+> -               drm_kms_helper_common.o drm_dp_dual_mode_helper.o \
+> +               drm_plane_helper.o drm_atomic_helper.o \
+> +               drm_kms_helper_common.o \
+>                 drm_simple_kms_helper.o drm_modeset_helper.o \
+>                 drm_scdc_helper.o drm_gem_atomic_helper.o \
+>                 drm_gem_framebuffer_helper.o \
+>                 drm_atomic_state_helper.o drm_damage_helper.o \
+>                 drm_format_helper.o drm_self_refresh_helper.o drm_rect.o
+> -
+>  drm_kms_helper-$(CONFIG_DRM_PANEL_BRIDGE) += bridge/panel.o
+>  drm_kms_helper-$(CONFIG_DRM_FBDEV_EMULATION) += drm_fb_helper.o
+> -drm_kms_helper-$(CONFIG_DRM_DP_AUX_CHARDEV) += drm_dp_aux_dev.o
+> -drm_kms_helper-$(CONFIG_DRM_DP_CEC) += drm_dp_cec.o
+>  
+>  obj-$(CONFIG_DRM_KMS_HELPER) += drm_kms_helper.o
+>  obj-$(CONFIG_DRM_DEBUG_SELFTEST) += selftests/
+> @@ -72,6 +69,7 @@ obj-$(CONFIG_DRM_MIPI_DBI) += drm_mipi_dbi.o
+>  obj-$(CONFIG_DRM_MIPI_DSI) += drm_mipi_dsi.o
+>  obj-$(CONFIG_DRM_PANEL_ORIENTATION_QUIRKS) +=
+> drm_panel_orientation_quirks.o
+>  obj-y                  += arm/
+> +obj-y                  += dp/
+>  obj-$(CONFIG_DRM_TTM)  += ttm/
+>  obj-$(CONFIG_DRM_SCHED)        += scheduler/
+>  obj-$(CONFIG_DRM_TDFX) += tdfx/
+> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+> index 61db5a66b493..a27435a4c9c4 100644
+> --- a/drivers/gpu/drm/bridge/Kconfig
+> +++ b/drivers/gpu/drm/bridge/Kconfig
+> @@ -183,6 +183,7 @@ config DRM_PARADE_PS8640
+>         tristate "Parade PS8640 MIPI DSI to eDP Converter"
+>         depends on OF
+>         select DRM_DP_AUX_BUS
+> +       select DRM_DP_HELPER
+>         select DRM_KMS_HELPER
+>         select DRM_MIPI_DSI
+>         select DRM_PANEL
+> @@ -253,6 +254,7 @@ config DRM_TOSHIBA_TC358764
+>  config DRM_TOSHIBA_TC358767
+>         tristate "Toshiba TC358767 eDP bridge"
+>         depends on OF
+> +       select DRM_DP_HELPER
+>         select DRM_KMS_HELPER
+>         select REGMAP_I2C
+>         select DRM_PANEL
+> @@ -272,6 +274,7 @@ config DRM_TOSHIBA_TC358768
+>  config DRM_TOSHIBA_TC358775
+>         tristate "Toshiba TC358775 DSI/LVDS bridge"
+>         depends on OF
+> +       select DRM_DP_HELPER
+>         select DRM_KMS_HELPER
+>         select REGMAP_I2C
+>         select DRM_PANEL
+> @@ -299,6 +302,7 @@ config DRM_TI_SN65DSI83
+>  config DRM_TI_SN65DSI86
+>         tristate "TI SN65DSI86 DSI to eDP bridge"
+>         depends on OF
+> +       select DRM_DP_HELPER
+>         select DRM_KMS_HELPER
+>         select REGMAP_I2C
+>         select DRM_PANEL
+> diff --git a/drivers/gpu/drm/bridge/analogix/Kconfig
+> b/drivers/gpu/drm/bridge/analogix/Kconfig
+> index 2ef6eb2b786c..319ba0df57be 100644
+> --- a/drivers/gpu/drm/bridge/analogix/Kconfig
+> +++ b/drivers/gpu/drm/bridge/analogix/Kconfig
+> @@ -3,6 +3,7 @@ config DRM_ANALOGIX_ANX6345
+>         tristate "Analogix ANX6345 bridge"
+>         depends on OF
+>         select DRM_ANALOGIX_DP
+> +       select DRM_DP_HELPER
+>         select DRM_KMS_HELPER
+>         select REGMAP_I2C
+>         help
+> @@ -14,6 +15,7 @@ config DRM_ANALOGIX_ANX6345
+>  config DRM_ANALOGIX_ANX78XX
+>         tristate "Analogix ANX78XX bridge"
+>         select DRM_ANALOGIX_DP
+> +       select DRM_DP_HELPER
+>         select DRM_KMS_HELPER
+>         select REGMAP_I2C
+>         help
+> diff --git a/drivers/gpu/drm/bridge/cadence/Kconfig
+> b/drivers/gpu/drm/bridge/cadence/Kconfig
+> index ef8c230e0f62..de697bade05e 100644
+> --- a/drivers/gpu/drm/bridge/cadence/Kconfig
+> +++ b/drivers/gpu/drm/bridge/cadence/Kconfig
+> @@ -1,6 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  config DRM_CDNS_MHDP8546
+>         tristate "Cadence DPI/DP bridge"
+> +       select DRM_DP_HELPER
+>         select DRM_KMS_HELPER
+>         select DRM_PANEL_BRIDGE
+>         depends on OF
+> diff --git a/drivers/gpu/drm/dp/Makefile b/drivers/gpu/drm/dp/Makefile
+> new file mode 100644
+> index 000000000000..5b892aeff5ab
+> --- /dev/null
+> +++ b/drivers/gpu/drm/dp/Makefile
+> @@ -0,0 +1,7 @@
+> +# SPDX-License-Identifier: MIT
+> +
+> +drm_dp_helper-y := drm_dp.o drm_dp_dual_mode_helper.o drm_dp_helper_mod.o
+> drm_dp_mst_topology.o
+> +drm_dp_helper-$(CONFIG_DRM_DP_AUX_CHARDEV) += drm_dp_aux_dev.o
+> +drm_dp_helper-$(CONFIG_DRM_DP_CEC) += drm_dp_cec.o
+> +
+> +obj-$(CONFIG_DRM_DP_HELPER) += drm_dp_helper.o
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/dp/drm_dp.c
+> similarity index 100%
+> rename from drivers/gpu/drm/drm_dp_helper.c
+> rename to drivers/gpu/drm/dp/drm_dp.c
+> diff --git a/drivers/gpu/drm/drm_dp_aux_dev.c
+> b/drivers/gpu/drm/dp/drm_dp_aux_dev.c
+> similarity index 100%
+> rename from drivers/gpu/drm/drm_dp_aux_dev.c
+> rename to drivers/gpu/drm/dp/drm_dp_aux_dev.c
+> diff --git a/drivers/gpu/drm/drm_dp_cec.c b/drivers/gpu/drm/dp/drm_dp_cec.c
+> similarity index 100%
+> rename from drivers/gpu/drm/drm_dp_cec.c
+> rename to drivers/gpu/drm/dp/drm_dp_cec.c
+> diff --git a/drivers/gpu/drm/drm_dp_dual_mode_helper.c
+> b/drivers/gpu/drm/dp/drm_dp_dual_mode_helper.c
+> similarity index 100%
+> rename from drivers/gpu/drm/drm_dp_dual_mode_helper.c
+> rename to drivers/gpu/drm/dp/drm_dp_dual_mode_helper.c
+> diff --git a/drivers/gpu/drm/drm_dp_helper_internal.h
+> b/drivers/gpu/drm/dp/drm_dp_helper_internal.h
+> similarity index 100%
+> rename from drivers/gpu/drm/drm_dp_helper_internal.h
+> rename to drivers/gpu/drm/dp/drm_dp_helper_internal.h
+> diff --git a/drivers/gpu/drm/dp/drm_dp_helper_mod.c
+> b/drivers/gpu/drm/dp/drm_dp_helper_mod.c
+> new file mode 100644
+> index 000000000000..db753de24000
+> --- /dev/null
+> +++ b/drivers/gpu/drm/dp/drm_dp_helper_mod.c
+> @@ -0,0 +1,22 @@
+> +// SPDX-License-Identifier: MIT
+> +
+> +#include <linux/module.h>
+> +
+> +#include "drm_dp_helper_internal.h"
+> +
+> +MODULE_DESCRIPTION("DRM DisplayPort helper");
+> +MODULE_LICENSE("GPL and additional rights");
+> +
+> +static int __init drm_dp_helper_module_init(void)
+> +{
+> +       return drm_dp_aux_dev_init();
+> +}
+> +
+> +static void __exit drm_dp_helper_module_exit(void)
+> +{
+> +       /* Call exit functions from specific dp helpers here */
+> +       drm_dp_aux_dev_exit();
+> +}
+> +
+> +module_init(drm_dp_helper_module_init);
+> +module_exit(drm_dp_helper_module_exit);
+> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c
+> b/drivers/gpu/drm/dp/drm_dp_mst_topology.c
+> similarity index 100%
+> rename from drivers/gpu/drm/drm_dp_mst_topology.c
+> rename to drivers/gpu/drm/dp/drm_dp_mst_topology.c
+> diff --git a/drivers/gpu/drm/drm_dp_mst_topology_internal.h
+> b/drivers/gpu/drm/dp/drm_dp_mst_topology_internal.h
+> similarity index 100%
+> rename from drivers/gpu/drm/drm_dp_mst_topology_internal.h
+> rename to drivers/gpu/drm/dp/drm_dp_mst_topology_internal.h
+> diff --git a/drivers/gpu/drm/drm_kms_helper_common.c
+> b/drivers/gpu/drm/drm_kms_helper_common.c
+> index 88260d26409c..8be20080cd8d 100644
+> --- a/drivers/gpu/drm/drm_kms_helper_common.c
+> +++ b/drivers/gpu/drm/drm_kms_helper_common.c
+> @@ -29,7 +29,6 @@
+>  
+>  #include <drm/drm_print.h>
+>  
+> -#include "drm_dp_helper_internal.h"
+>  #include "drm_crtc_helper_internal.h"
+>  
+>  MODULE_AUTHOR("David Airlie, Jesse Barnes");
+> @@ -62,17 +61,3 @@ MODULE_PARM_DESC(edid_firmware,
+>                  "DEPRECATED. Use drm.edid_firmware module parameter
+> instead.");
+>  
+>  #endif
+> -
+> -static int __init drm_kms_helper_init(void)
+> -{
+> -       return drm_dp_aux_dev_init();
+> -}
+> -
+> -static void __exit drm_kms_helper_exit(void)
+> -{
+> -       /* Call exit functions from specific kms helpers here */
+> -       drm_dp_aux_dev_exit();
+> -}
+> -
+> -module_init(drm_kms_helper_init);
+> -module_exit(drm_kms_helper_exit);
+> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> index a4c94dc2e216..b68e8b551b83 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -9,6 +9,7 @@ config DRM_I915
+>         # the shmem_readpage() which depends upon tmpfs
+>         select SHMEM
+>         select TMPFS
+> +       select DRM_DP_HELPER
+>         select DRM_KMS_HELPER
+>         select DRM_PANEL
+>         select DRM_MIPI_DSI
+> diff --git a/drivers/gpu/drm/msm/Kconfig b/drivers/gpu/drm/msm/Kconfig
+> index 39197b4beea7..75015b0e165e 100644
+> --- a/drivers/gpu/drm/msm/Kconfig
+> +++ b/drivers/gpu/drm/msm/Kconfig
+> @@ -12,6 +12,7 @@ config DRM_MSM
+>         select IOMMU_IO_PGTABLE
+>         select QCOM_MDT_LOADER if ARCH_QCOM
+>         select REGULATOR
+> +       select DRM_DP_HELPER
+>         select DRM_KMS_HELPER
+>         select DRM_PANEL
+>         select DRM_BRIDGE
+> diff --git a/drivers/gpu/drm/nouveau/Kconfig
+> b/drivers/gpu/drm/nouveau/Kconfig
+> index 9436310d0854..3ec690b6f0b4 100644
+> --- a/drivers/gpu/drm/nouveau/Kconfig
+> +++ b/drivers/gpu/drm/nouveau/Kconfig
+> @@ -4,6 +4,7 @@ config DRM_NOUVEAU
+>         depends on DRM && PCI && MMU
+>         select IOMMU_API
+>         select FW_LOADER
+> +       select DRM_DP_HELPER
+>         select DRM_KMS_HELPER
+>         select DRM_TTM
+>         select DRM_TTM_HELPER
+> diff --git a/drivers/gpu/drm/rockchip/Kconfig
+> b/drivers/gpu/drm/rockchip/Kconfig
+> index 9f1ecefc3933..d59dca5efb52 100644
+> --- a/drivers/gpu/drm/rockchip/Kconfig
+> +++ b/drivers/gpu/drm/rockchip/Kconfig
+> @@ -2,6 +2,7 @@
+>  config DRM_ROCKCHIP
+>         tristate "DRM Support for Rockchip"
+>         depends on DRM && ROCKCHIP_IOMMU
+> +       select DRM_DP_HELPER
+>         select DRM_GEM_CMA_HELPER
+>         select DRM_KMS_HELPER
+>         select DRM_PANEL
+> diff --git a/drivers/gpu/drm/tegra/Kconfig b/drivers/gpu/drm/tegra/Kconfig
+> index 1650a448eabd..dc88adc7ba40 100644
+> --- a/drivers/gpu/drm/tegra/Kconfig
+> +++ b/drivers/gpu/drm/tegra/Kconfig
+> @@ -5,6 +5,7 @@ config DRM_TEGRA
+>         depends on COMMON_CLK
+>         depends on DRM
+>         depends on OF
+> +       select DRM_DP_HELPER
+>         select DRM_KMS_HELPER
+>         select DRM_MIPI_DSI
+>         select DRM_PANEL
+> diff --git a/drivers/gpu/drm/xlnx/Kconfig b/drivers/gpu/drm/xlnx/Kconfig
+> index d8d38d86d5c6..06cf477dbcdd 100644
+> --- a/drivers/gpu/drm/xlnx/Kconfig
+> +++ b/drivers/gpu/drm/xlnx/Kconfig
+> @@ -6,6 +6,7 @@ config DRM_ZYNQMP_DPSUB
+>         depends on PHY_XILINX_ZYNQMP
+>         depends on XILINX_ZYNQMP_DPDMA
+>         select DMA_ENGINE
+> +       select DRM_DP_HELPER
+>         select DRM_GEM_CMA_HELPER
+>         select DRM_KMS_HELPER
+>         select GENERIC_PHY
 
-Series: drm/i915: Recalculate CDCLK if plane scaling ratio changes
-URL   : https://patchwork.freedesktop.org/series/98750/
-State : success
+-- 
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11066 -> Patchwork_21969
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/index.html
-
-Participating hosts (43 -> 42)
-------------------------------
-
-  Additional (3): fi-icl-u2 bat-adlp-4 fi-pnv-d510 
-  Missing    (4): fi-bdw-samus fi-tgl-1115g4 fi-bsw-cyan bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21969 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@fork-gfx0:
-    - fi-icl-u2:          NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-skl-6600u:       NOTRUN -> [INCOMPLETE][2] ([i915#4547])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][3] ([i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - bat-adlp-4:         NOTRUN -> [SKIP][4] ([i915#4613]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-icl-u2:          NOTRUN -> [SKIP][5] ([i915#4613]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-adlp-4:         NOTRUN -> [SKIP][6] ([i915#3282])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][7] -> [INCOMPLETE][8] ([i915#3921])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11066/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - bat-adlp-4:         NOTRUN -> [SKIP][9] ([fdo#111827]) +8 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          NOTRUN -> [SKIP][10] ([fdo#111827]) +8 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][11] ([fdo#109278]) +2 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-    - bat-adlp-4:         NOTRUN -> [SKIP][12] ([i915#4103]) +1 similar issue
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-u2:          NOTRUN -> [SKIP][13] ([fdo#109285])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
-    - bat-adlp-4:         NOTRUN -> [SKIP][14] ([fdo#109285])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@prime_vgem@basic-fence-read:
-    - bat-adlp-4:         NOTRUN -> [SKIP][15] ([i915#3291] / [i915#3708]) +2 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@prime_vgem@basic-fence-read.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][16] ([fdo#109271]) +57 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-    - fi-icl-u2:          NOTRUN -> [SKIP][17] ([i915#3301])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@prime_vgem@basic-userptr.html
-    - bat-adlp-4:         NOTRUN -> [SKIP][18] ([i915#3301] / [i915#3708])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1:
-    - fi-bwr-2160:        [FAIL][19] ([i915#2122]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11066/fi-bwr-2160/igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-bwr-2160/igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][21] ([i915#4269]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11066/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11066 -> Patchwork_21969
-
-  CI-20190529: 20190529
-  CI_DRM_11066: fc076e8fc52ed40fee33f416a4475a57219011a5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6326: ec75f64fcbcf4aac58fbf1bf629e8f59b19db4ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21969: fe1ac4423d86b9ed8469294f4dade7722571cb7c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fe1ac4423d86 drm/i915: Recalculate CDCLK if plane scaling ratio changes
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/index.html
-
---===============7696942802823496749==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Recalculate CDCLK if plane scaling ratio changes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98750/">https://patchwork.freedesktop.org/series/98750/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11066 -&gt; Patchwork_21969</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/index.html</p>
-<h2>Participating hosts (43 -&gt; 42)</h2>
-<p>Additional (3): fi-icl-u2 bat-adlp-4 fi-pnv-d510 <br />
-  Missing    (4): fi-bdw-samus fi-tgl-1115g4 fi-bsw-cyan bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21969 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11066/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</p>
-</li>
-<li>
-<p>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
-</li>
-<li>
-<p>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-read:</p>
-<ul>
-<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>
-<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</p>
-</li>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
-</li>
-<li>
-<p>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/bat-adlp-4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1:</p>
-<ul>
-<li>fi-bwr-2160:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11066/fi-bwr-2160/igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-bwr-2160/igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11066/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21969/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11066 -&gt; Patchwork_21969</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11066: fc076e8fc52ed40fee33f416a4475a57219011a5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6326: ec75f64fcbcf4aac58fbf1bf629e8f59b19db4ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21969: fe1ac4423d86b9ed8469294f4dade7722571cb7c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fe1ac4423d86 drm/i915: Recalculate CDCLK if plane scaling ratio changes</p>
-
-</body>
-</html>
-
---===============7696942802823496749==--
