@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9781548C4CB
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jan 2022 14:28:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E58A48C4D2
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jan 2022 14:29:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93A8A112992;
-	Wed, 12 Jan 2022 13:28:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CBD8112B25;
+	Wed, 12 Jan 2022 13:29:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CAAA51129DB;
- Wed, 12 Jan 2022 13:28:10 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CEB43112AE9;
+ Wed, 12 Jan 2022 13:29:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C7699A8836;
- Wed, 12 Jan 2022 13:28:10 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D0015A8836;
+ Wed, 12 Jan 2022 13:29:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 12 Jan 2022 13:28:10 -0000
-Message-ID: <164199409081.21762.10616813527105216948@emeril.freedesktop.org>
+Date: Wed, 12 Jan 2022 13:29:27 -0000
+Message-ID: <164199416785.21760.4408173677075497302@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220112111438.1197944-1-jani.nikula@intel.com>
 In-Reply-To: <20220112111438.1197944-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv3=2C1/2=5D_drm/i915=3A_split_out_i?=
- =?utf-8?b?bnRlbF92dGQuW2NoXSBmcm9tIGk5MTVfZHJ2Lmg=?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5Bv3=2C1/2=5D_drm/i915=3A_split_out_intel?=
+ =?utf-8?b?X3Z0ZC5bY2hdIGZyb20gaTkxNV9kcnYuaA==?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,13 +54,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-a511b4fe2f78 drm/i915: split out intel_vtd.[ch] from i915_drv.h
--:316: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#316: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 272 lines checked
-5c3cc9f0f246 drm/i915/vtd: rename functions to have the usual prefix
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
