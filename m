@@ -2,52 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB0F048C552
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jan 2022 14:57:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA2C548C568
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jan 2022 15:01:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E168210EE76;
-	Wed, 12 Jan 2022 13:57:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7BCB10F1EF;
+	Wed, 12 Jan 2022 14:01:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2EBD10EE76
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jan 2022 13:57:56 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A12B10E688
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jan 2022 14:01:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641995876; x=1673531876;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=DaF6n6Xkjncw8zG9YZD5YTsyOK42OnGAzY/0uyGUYKA=;
- b=POuHVu+48jQlKmE1JEN+robXVBmTTLKd7q1b84lu3eQCSIZk592d5tUp
- r/a43gMUNnJE4v0I/lkjzkzvexxFMpzdYewUBXMhvpvQCyV+A9ym9ov+S
- sIO7gm/BASiY8JML+a2f5gS0XR5qmToU+X1a/gEWe7Q6D+8CjuZ7Tepwq
- HyoG45CeSd40flVaZvppwU9HvdVkjbvcsPmDCd1N0/ZLo9bNwpkUyn5yi
- G/m4XqVO82BW/m5YHge37nZM8X9OocxRc4n22KFvLobn+As6DIy/kfGal
- ryzoZtyOsbZs2LfsE5aOqoLnMsHJR+jVW1InnWAKjLWHE96h9VTmI2Ys3 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10224"; a="268082125"
-X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="268082125"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2022 05:57:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="558713928"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by orsmga001.jf.intel.com with SMTP; 12 Jan 2022 05:57:53 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 12 Jan 2022 15:57:53 +0200
-Date: Wed, 12 Jan 2022 15:57:53 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Yd7eYRIF92zDERP0@intel.com>
-References: <20220112105703.1151391-1-jani.nikula@intel.com>
+ t=1641996089; x=1673532089;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7D+/8g2IqdGzm+GVApENEBLB6S+DQg6nfw4TazJ1V5Y=;
+ b=OQjYEIoyRJ3h4YAesAdD01uIu55eMZoAG2cQxkn3DcPKV5LSvbEIFU1h
+ gXRs8qw5CSaOXXsRR8tqlDz4up32yodVog8Boy1HiELZDoN1glykmmiKE
+ dEiuhl3yn8fxqRIJohJBNyuSS8+6+zCTegMDwgT7YMFuiueOuSAUm93Mg
+ yhcEoh7liPKzNHBUwfxFp2n8sQmnlxRNfayirfJaGoBSQmmZpywsu5EYK
+ yM6XO75MttH0JB24RvyG/x0yV7ai2bSqVbW254A5fZia/2aUB0Dc0IeIc
+ lFvqPoQAAWzT+0Yae/TqlzoC+pb20SPnRQX32TPyZh/bQStD1PY2Z08Wo A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10224"; a="242555296"
+X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="242555296"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2022 06:01:19 -0800
+X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="474913263"
+Received: from tmsbuild050.tm.intel.com ([10.237.53.154])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2022 06:01:08 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 12 Jan 2022 16:00:29 +0200
+Message-Id: <20220112140031.39823-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220112105703.1151391-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH RESEND] drm/i915/dp: make
- intel_dp_pack_aux() static again
+Subject: [Intel-gfx] [RFC PATCH 0/2] Add has_psr2_sel_fech flag
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,87 +55,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 12, 2022 at 12:57:03PM +0200, Jani Nikula wrote:
-> The last user of intel_dp_pack_aux() outside intel_dp_aux.c got removed
-> in commit ad26451a7902 ("drm/i915/display: Drop PSR support from HSW and
-> BDW"). Make the function static again.
-> 
-> Rename the pack/unpack functions to follow the usual naming conventions
-> while at it.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Currently igt-gpu-tools is not aware of DG2 being not capable to
+perform selective fetch. This is causing PSR2 testcases failing
+on DG2 when PSR2 capable display is attached.
 
-Reviewed-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+This patch set is adding new information into intel_device_info to see
+whether display is psr2 selective fetch capable. Also check for psr2
+sel fetch capability is converted to use this instead of checking
+individual platforms separately.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux.c | 8 ++++----
->  drivers/gpu/drm/i915/display/intel_dp_aux.h | 4 ----
->  2 files changed, 4 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> index 5fbb767fcd63..2bc119374555 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -10,7 +10,7 @@
->  #include "intel_pps.h"
->  #include "intel_tc.h"
->  
-> -u32 intel_dp_pack_aux(const u8 *src, int src_bytes)
-> +static u32 intel_dp_aux_pack(const u8 *src, int src_bytes)
->  {
->  	int i;
->  	u32 v = 0;
-> @@ -22,7 +22,7 @@ u32 intel_dp_pack_aux(const u8 *src, int src_bytes)
->  	return v;
->  }
->  
-> -static void intel_dp_unpack_aux(u32 src, u8 *dst, int dst_bytes)
-> +static void intel_dp_aux_unpack(u32 src, u8 *dst, int dst_bytes)
->  {
->  	int i;
->  
-> @@ -267,7 +267,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  			for (i = 0; i < send_bytes; i += 4)
->  				intel_uncore_write(uncore,
->  						   ch_data[i >> 2],
-> -						   intel_dp_pack_aux(send + i,
-> +						   intel_dp_aux_pack(send + i,
->  								     send_bytes - i));
->  
->  			/* Send the command and wait for it to complete */
-> @@ -352,7 +352,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  		recv_bytes = recv_size;
->  
->  	for (i = 0; i < recv_bytes; i += 4)
-> -		intel_dp_unpack_aux(intel_uncore_read(uncore, ch_data[i >> 2]),
-> +		intel_dp_aux_unpack(intel_uncore_read(uncore, ch_data[i >> 2]),
->  				    recv + i, recv_bytes - i);
->  
->  	ret = recv_bytes;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.h b/drivers/gpu/drm/i915/display/intel_dp_aux.h
-> index 4afbe76217b9..738577537bc7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.h
-> @@ -6,12 +6,8 @@
->  #ifndef __INTEL_DP_AUX_H__
->  #define __INTEL_DP_AUX_H__
->  
-> -#include <linux/types.h>
-> -
->  struct intel_dp;
->  
-> -u32 intel_dp_pack_aux(const u8 *src, int src_bytes);
-> -
->  void intel_dp_aux_fini(struct intel_dp *intel_dp);
->  void intel_dp_aux_init(struct intel_dp *intel_dp);
->  
-> -- 
-> 2.30.2
+This new flag can be utilized by igt-gpu-tools via i915_capabilities
+debugfs interface.
+
+Cc: Jos√© Roberto de Souza <jose.souza@intel.com>
+Cc: Kahola, Mika <mika.kahola@intel.com>
+Cc: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+
+Jouni H√∂gander (2):
+  drm/i915: add new flag has_psr2_sel_fetch
+  drm/i915: Use new has_psr2_sel_fetch flag
+
+ drivers/gpu/drm/i915/display/intel_psr.c | 7 -------
+ drivers/gpu/drm/i915/i915_drv.h          | 2 +-
+ drivers/gpu/drm/i915/i915_pci.c          | 8 ++++++++
+ drivers/gpu/drm/i915/intel_device_info.h | 1 +
+ 4 files changed, 10 insertions(+), 8 deletions(-)
 
 -- 
-Ville Syrj‰l‰
-Intel
+2.34.0
+
