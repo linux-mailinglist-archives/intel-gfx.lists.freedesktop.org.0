@@ -2,67 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2176A48C22D
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jan 2022 11:21:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 480D348C1BC
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jan 2022 10:56:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BDFA113A58;
-	Wed, 12 Jan 2022 10:21:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76BD010E2FA;
+	Wed, 12 Jan 2022 09:56:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2194 seconds by postgrey-1.36 at gabe;
- Wed, 12 Jan 2022 10:21:34 UTC
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com
- [91.207.212.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 340D9113A55
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jan 2022 10:21:34 +0000 (UTC)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
- by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20C7J52B019096;
- Wed, 12 Jan 2022 10:44:32 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=QKXUvjkTnqfyuuJJ/9fLbLqUbNNWBj6UxoTZSD1VgXg=;
- b=0g/MsK1OiOZU3dq3G+D9GapTzmQoW0YuFw/h5Ckk73elOP3+Le70B19CLQZcWzaRyP+A
- CJJBRhXPyMms72FMVYJk3TOCHFDbI5dWJ6SRMK37GhUNW+Xo/92x3ZUQYRTNMetn/plf
- qJcjWFbMshrfUEyUXbAa96a9pb1pTnOQFHy/Va4Cm9oO1XzV1IU5a26vFN/B3CzB+UHH
- zpD3IaZSjYd4SMqVYH1WdlcLmzjSoZLij/SvntyI0C2GCNkF7D3DQ9W2G9qqPfn8IGo9
- LUnkfzMr0E40eeuyzSNluk4L97Pk3TSMlhXoXbFvXqZctksW32DqKb/1XyS2fsZah23f aA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
- by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3dhtg9s0m5-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 12 Jan 2022 10:44:32 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
- by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 81091100034;
- Wed, 12 Jan 2022 10:44:28 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
- by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 72E2D218120;
- Wed, 12 Jan 2022 10:44:28 +0100 (CET)
-Received: from lmecxl0951.lme.st.com (10.75.127.46) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 12 Jan
- 2022 10:44:27 +0100
-To: =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
- <contact@emersion.fr>
-References: <20211222090552.25972-1-jose.exposito89@gmail.com>
- <20211222090552.25972-7-jose.exposito89@gmail.com>
-From: yannick Fertre <yannick.fertre@foss.st.com>
-Message-ID: <c5ffa201-4811-b070-75b5-85064cd78506@foss.st.com>
-Date: Wed, 12 Jan 2022 10:44:26 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7016810E2FA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jan 2022 09:56:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1641981367; x=1673517367;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=XYXTMeeZA79FgVTocpQqxhFsoZxkLSm2GJyGSfiN1Dw=;
+ b=mn0WqHNdkhPu/KegE4q6YOiiEjM4nvsyuY3ZrvjS1qLYSYMsM+eeO0Rr
+ H05ZYRjYSvH9+/uoltIz9WKUAEuXcnVJDBFfd1zlM5I++7pVsmF52zHBt
+ Yz2YEIt0reGxU7A/pRYmu0e52Zj/j6spNHqaKolRSp4kenw/U+uKnr0j3
+ A+If0Yl7GYhewSeCXB8FiSbNP8tsA2uglz3S/gkJlfOE05e89hFw94tWT
+ 2IVpandpqwRGcEEsSr+qjwjhj/wd/UD0FO3qSM+7D3Nz0Sms2TzZMBtGK
+ 6atKm/fvOU2I/kSeCVPzyhh3qpNHYHceOTS11zaN1hH+KCClhgsLE2i6U A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10224"; a="307051538"
+X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="307051538"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2022 01:56:06 -0800
+X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="529107202"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2022 01:56:05 -0800
+Date: Wed, 12 Jan 2022 11:55:59 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20220112095559.GA23873@intel.com>
+References: <20220111160812.21344-1-stanislav.lisovskiy@intel.com>
+ <87wnj66x1w.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20211222090552.25972-7-jose.exposito89@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-01-12_03,2022-01-11_01,2021-12-02_01
-Subject: Re: [Intel-gfx] [PATCH v2 6/6] drm/stm: ltdc: Drop
- format_mod_supported function
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87wnj66x1w.fsf@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Recalculate CDCLK if plane
+ scaling ratio changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,60 +58,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, alexandre.torgue@foss.st.com, stefan@agner.ch,
- benjamin.gaignard@linaro.org, festevam@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com, marex@denx.de, linux-imx@nxp.com,
- intel-gfx@lists.freedesktop.org, tzimmermann@suse.de, s.hauer@pengutronix.de,
- mripard@kernel.org, kernel@pengutronix.de,
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, philippe.cornu@foss.st.com,
- mcoquelin.stm32@gmail.com, dmitry.baryshkov@linaro.org, shawnguo@kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello José,
-thanks for your patch.
-
-Reviewed-by: Yannick Fertre <yannick.fertre@foss.st.com>
-Tested-by: Yannick Fertre <yannick.fertre@foss.st.com>
-
-
-On 12/22/21 10:05 AM, José Expósito wrote:
-> The "drm_plane_funcs.format_mod_supported" can be removed in favor of
-> the default implementation.
+On Tue, Jan 11, 2022 at 06:45:31PM +0200, Jani Nikula wrote:
+> On Tue, 11 Jan 2022, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+> > Currently we only recalculate CDCLK if active plane mask changes
+> > or if we do a full modeset, however according to BSpec
+> > required Dbuf bandwidth calculations also depend on pipe/plane
+> > scaling ratio, which means that CDCLK must be recalculated
+> > everytime plane scaling ratio changes, because it affects
+> > display buffer bandwidth requirements.
+> >
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 63 +++++++++++++++++++-
+> >  1 file changed, 60 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index bf7ce684dd8e..2c616348e993 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -7499,13 +7499,65 @@ static int intel_bigjoiner_add_affected_planes(struct intel_atomic_state *state)
+> >  	return 0;
+> >  }
+> >  
+> > +static bool scaling_affects_cdclk(struct intel_plane_state *old_plane_state,
+> > +				  struct intel_plane_state *new_plane_state)
+> > +{
+> > +	int old_src_w = drm_rect_width(&old_plane_state->uapi.src) >> 16;
+> > +	int old_src_h = drm_rect_height(&old_plane_state->uapi.src) >> 16;
+> > +	int old_dst_w = drm_rect_width(&old_plane_state->uapi.dst);
+> > +	int old_dst_h = drm_rect_height(&old_plane_state->uapi.dst);
+> > +	int new_src_w = drm_rect_width(&new_plane_state->uapi.src) >> 16;
+> > +	int new_src_h = drm_rect_height(&new_plane_state->uapi.src) >> 16;
+> > +	int new_dst_w = drm_rect_width(&new_plane_state->uapi.dst);
+> > +	int new_dst_h = drm_rect_height(&new_plane_state->uapi.dst);
+> > +	int old_hscale_ratio, new_hscale_ratio;
+> > +	int old_vscale_ratio, new_vscale_ratio;
+> > +
+> > +	if (needs_scaling(old_plane_state) != needs_scaling(new_plane_state))
+> > +		return true;
+> > +
+> > +	if (!old_dst_w || !old_dst_h)
+> > +		return true;
+> > +
+> > +	DRM_DEBUG_KMS("old_dst_w %d old_dst_h %d\n", old_dst_w, old_dst_h);
+> > +
+> > +	old_hscale_ratio = DIV_ROUND_UP(old_src_w, old_dst_w);
+> > +	old_vscale_ratio = DIV_ROUND_UP(old_src_h, old_dst_h);
+> > +
+> > +	if (!new_dst_w || !new_dst_h)
+> > +		return true;
+> > +
+> > +	DRM_DEBUG_KMS("new_dst_w %d new_dst_h %d\n", new_dst_w, new_dst_h);
+> > +
+> > +	new_hscale_ratio = DIV_ROUND_UP(new_src_w, new_dst_w);
+> > +	new_vscale_ratio = DIV_ROUND_UP(new_src_h, new_dst_h);
+> > +
+> > +	DRM_DEBUG_KMS("new_hscale_ratio %d new_vscale_ratio %d "
+> > +		      "old_hscale_ratio %d old_vscale_ratio %d\n",
+> > +		      new_hscale_ratio, new_vscale_ratio,
+> > +		      old_hscale_ratio, old_vscale_ratio);
 > 
-> Signed-off-by: José Expósito <jose.exposito89@gmail.com>
-> ---
->   drivers/gpu/drm/stm/ltdc.c | 11 -----------
->   1 file changed, 11 deletions(-)
+> All of the debug logging seem excessive? Also, please use drm_dbg_atomic
+> or drm_dbg_kms instead of DRM_DEBUG_KMS for the ones that need to stay.
+
+Yes, I should probably leave only message repoting that cdclk has to be 
+recalculated. Otherwise indeed seems excessive - was just using it for
+debugging.
+
+Stan
+
 > 
-> diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
-> index dbdee954692a..ef909e50f0e4 100644
-> --- a/drivers/gpu/drm/stm/ltdc.c
-> +++ b/drivers/gpu/drm/stm/ltdc.c
-> @@ -925,16 +925,6 @@ static void ltdc_plane_atomic_print_state(struct drm_printer *p,
->   	fpsi->counter = 0;
->   }
->   
-> -static bool ltdc_plane_format_mod_supported(struct drm_plane *plane,
-> -					    u32 format,
-> -					    u64 modifier)
-> -{
-> -	if (modifier == DRM_FORMAT_MOD_LINEAR)
-> -		return true;
-> -
-> -	return false;
-> -}
-> -
->   static const struct drm_plane_funcs ltdc_plane_funcs = {
->   	.update_plane = drm_atomic_helper_update_plane,
->   	.disable_plane = drm_atomic_helper_disable_plane,
-> @@ -943,7 +933,6 @@ static const struct drm_plane_funcs ltdc_plane_funcs = {
->   	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
->   	.atomic_destroy_state = drm_atomic_helper_plane_destroy_state,
->   	.atomic_print_state = ltdc_plane_atomic_print_state,
-> -	.format_mod_supported = ltdc_plane_format_mod_supported,
->   };
->   
->   static const struct drm_plane_helper_funcs ltdc_plane_helper_funcs = {
+> BR,
+> Jani.
 > 
+> > +
+> > +	if ((old_hscale_ratio != new_hscale_ratio) ||
+> > +	    (old_vscale_ratio != new_vscale_ratio)) {
+> > +		DRM_DEBUG_KMS("Scaling ratios changed from %dx%d"
+> > +			      " to %dx%d - need cdclk recalc\n",
+> > +			      old_hscale_ratio, old_vscale_ratio,
+> > +			      new_hscale_ratio, new_vscale_ratio);
+> > +		return true;
+> > +	}
+> > +
+> > +	return false;
+> > +}
+> > +
+> >  static int intel_atomic_check_planes(struct intel_atomic_state *state)
+> >  {
+> >  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> >  	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
+> >  	struct intel_plane_state *plane_state;
+> > +	struct intel_plane_state *old_plane_state;
+> >  	struct intel_plane *plane;
+> >  	struct intel_crtc *crtc;
+> > +	bool need_cdclk_calc = false;
+> >  	int i, ret;
+> >  
+> >  	ret = icl_add_linked_planes(state);
+> > @@ -7516,7 +7568,7 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > -	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+> > +	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state, plane_state, i) {
+> >  		ret = intel_plane_atomic_check(state, plane);
+> >  		if (ret) {
+> >  			drm_dbg_atomic(&dev_priv->drm,
+> > @@ -7524,6 +7576,9 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
+> >  				       plane->base.base.id, plane->base.name);
+> >  			return ret;
+> >  		}
+> > +
+> > +		if (scaling_affects_cdclk(old_plane_state, plane_state))
+> > +			need_cdclk_calc = true;
+> >  	}
+> >  
+> >  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> > @@ -7539,18 +7594,20 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
+> >  		 * the planes' minimum cdclk calculation. Add such planes
+> >  		 * to the state before we compute the minimum cdclk.
+> >  		 */
+> > -		if (!active_planes_affects_min_cdclk(dev_priv))
+> > +		if (!active_planes_affects_min_cdclk(dev_priv) && !need_cdclk_calc)
+> >  			continue;
+> >  
+> >  		old_active_planes = old_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
+> >  		new_active_planes = new_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
+> >  
+> > -		if (hweight8(old_active_planes) == hweight8(new_active_planes))
+> > +		if ((hweight8(old_active_planes) == hweight8(new_active_planes)) && !need_cdclk_calc)
+> >  			continue;
+> >  
+> >  		ret = intel_crtc_add_planes_to_state(state, crtc, new_active_planes);
+> >  		if (ret)
+> >  			return ret;
+> > +
+> > +
+> >  	}
+> >  
+> >  	return 0;
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
