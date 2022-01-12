@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA59648C2E8
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jan 2022 12:14:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9732948C2F7
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jan 2022 12:17:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D842E10E436;
-	Wed, 12 Jan 2022 11:14:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD55910EC9A;
+	Wed, 12 Jan 2022 11:17:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BEA610E436
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jan 2022 11:14:53 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CEB410E933
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jan 2022 11:17:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641986093; x=1673522093;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/M3uJpSI3vjGyMLLQFVqkDIM4D2xkssP5JLdqea5Ko0=;
- b=hZd8ngJesDukR/+7SPX/2IaHePvSkXcNKLe+pcD7CVNsf14Me56XNPoZ
- MqZIm9L/ur+mPe8EiO62FkoL/b28Ura55NcriqYay+WrL4YMLk7X4TwWN
- VngjlhTJ5hGfVPgMhJJB+TN8G/bHyGvjZ8afqm+lWjtWkUJ4WZW3CnYwu
- oHSK3cJGSdyfjRDImp6Bkr/Wmcx7HeaVKKAEaLCZlkbntiBBHy75hiZsO
- d+HSTntpN6UJbFX48qkfWJQhSoHc80hrCG+EjHDFCGcWLQhJ1XkMexsNL
- B2gcoKebAlMXRm93xMvIRDP2RLPD5NBwTOVi1cLhsgL1pWwEWndEGUoBE w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10224"; a="223693649"
-X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="223693649"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2022 03:14:52 -0800
-X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="472797524"
+ t=1641986266; x=1673522266;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SbDbSaK/InMmSCO5ZCke+4yTf1oNh3fd4kdfqfAkwFA=;
+ b=bGugQko4SPEzTWA7GLfwSjy96B3stXgO7C3UhROmFUDkY9+YTKWcJSSV
+ 5A1a7Fq3z0C/vJsAzgP+SGu9WaROHE8CJd+8pnteAncrbyw2s2XBvSUse
+ VbIDGqRftX0pGVeB9q3oY2H9A6CauxrRSC9yrKYlTHidTqIX6MmNKyLMf
+ QWrzlq/jHtSCYSVjUBr0FnEYrhU4kabB8+yFFVYRcklTPZZBHByqvNc7v
+ Orah0ZxgLP9axyfKX/MzwZe/ALCmuxvbiL0IN0aVoWi4QPkfZjdrd3RbN
+ r+PeMqXfWJmXTPuIDNEDex/exRhLtK+8DF+gXB/cKWgaXKy1TPCcTQCIJ Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10224"; a="243913666"
+X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="243913666"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2022 03:17:45 -0800
+X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="529131540"
 Received: from pmasonx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.13.224])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2022 03:14:51 -0800
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2022 03:17:43 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Jan 2022 13:14:38 +0200
-Message-Id: <20220112111438.1197944-2-jani.nikula@intel.com>
+Date: Wed, 12 Jan 2022 13:17:40 +0200
+Message-Id: <20220112111740.1208374-1-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220112111438.1197944-1-jani.nikula@intel.com>
-References: <20220112111438.1197944-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915/vtd: rename functions to have
- the usual prefix
+Subject: [Intel-gfx] [PATCH RESEND] drm/i915/pcode: rename
+ sandybridge_pcode_* to snb_pcode_*
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,193 +60,498 @@ Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The prefix should tell where the function is to be found and where it
-belongs.
+Prefer acronym-based naming to be in line with the rest of the driver.
 
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb_pin.c  |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.c |  2 +-
- drivers/gpu/drm/i915/gt/intel_ggtt.c         |  6 +++---
- drivers/gpu/drm/i915/gt/intel_gtt.c          |  2 +-
- drivers/gpu/drm/i915/i915_debugfs.c          |  2 +-
- drivers/gpu/drm/i915/i915_driver.c           |  2 +-
- drivers/gpu/drm/i915/intel_pch.c             |  2 +-
- drivers/gpu/drm/i915/intel_vtd.c             |  2 +-
- drivers/gpu/drm/i915/intel_vtd.h             | 14 +++++++-------
- 9 files changed, 17 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c       | 13 +++-----
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 30 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_display.c  |  6 ++--
+ .../drm/i915/display/intel_display_power.c    | 11 +++----
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  3 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  8 ++---
+ drivers/gpu/drm/i915/gt/intel_llc.c           |  9 +++---
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |  5 ++-
+ drivers/gpu/drm/i915/gt/intel_rps.c           |  8 ++---
+ drivers/gpu/drm/i915/gt/selftest_llc.c        |  5 ++-
+ drivers/gpu/drm/i915/gt/selftest_rps.c        |  5 ++-
+ drivers/gpu/drm/i915/intel_dram.c             |  6 ++--
+ drivers/gpu/drm/i915/intel_pcode.c            | 31 +++++++------------
+ drivers/gpu/drm/i915/intel_pcode.h            | 12 +++----
+ drivers/gpu/drm/i915/intel_pm.c               | 20 ++++++------
+ 15 files changed, 70 insertions(+), 102 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index d4196ea1bbca..543cae8d9e53 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -104,7 +104,7 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
- 	 * we should always have valid PTE following the scanout preventing
- 	 * the VT-d warning.
- 	 */
--	if (intel_scanout_needs_vtd_wa(dev_priv) && alignment < 256 * 1024)
-+	if (intel_vtd_scanout_needs_wa(dev_priv) && alignment < 256 * 1024)
- 		alignment = 256 * 1024;
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 2da4aacc956b..c35bad21b657 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -75,10 +75,9 @@ static int icl_pcode_read_qgv_point_info(struct drm_i915_private *dev_priv,
+ 	u16 dclk;
+ 	int ret;
  
- 	/*
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-index 0fb0921c81ab..3ae9d1ae7ba6 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-@@ -123,7 +123,7 @@ i915_gem_shrink(struct i915_gem_ww_ctx *ww,
- 	int err = 0;
+-	ret = sandybridge_pcode_read(dev_priv,
+-				     ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+-				     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point),
+-				     &val, &val2);
++	ret = snb_pcode_read(dev_priv, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
++			     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point),
++			     &val, &val2);
+ 	if (ret)
+ 		return ret;
  
- 	/* CHV + VTD workaround use stop_machine(); need to trylock vm->mutex */
--	bool trylock_vm = !ww && intel_vm_no_concurrent_access_wa(i915);
-+	bool trylock_vm = !ww && intel_vtd_vm_no_concurrent_access_wa(i915);
+@@ -102,10 +101,8 @@ static int adls_pcode_read_psf_gv_point_info(struct drm_i915_private *dev_priv,
+ 	int ret;
+ 	int i;
  
- 	trace_i915_gem_shrink(i915, target, shrink);
+-	ret = sandybridge_pcode_read(dev_priv,
+-				     ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+-				     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO,
+-				     &val, NULL);
++	ret = snb_pcode_read(dev_priv, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
++			     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO, &val, NULL);
+ 	if (ret)
+ 		return ret;
  
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index b4c99460ce45..d7d3a339677d 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -934,7 +934,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- 	ggtt->vm.cleanup = gen6_gmch_remove;
- 	ggtt->vm.insert_page = gen8_ggtt_insert_page;
- 	ggtt->vm.clear_range = nop_clear_range;
--	if (intel_scanout_needs_vtd_wa(i915))
-+	if (intel_vtd_scanout_needs_wa(i915))
- 		ggtt->vm.clear_range = gen8_ggtt_clear_range;
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 1f13398e8ac2..7e20967307df 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -805,8 +805,7 @@ static void bdw_set_cdclk(struct drm_i915_private *dev_priv,
+ 		     "trying to change cdclk frequency with cdclk not enabled\n"))
+ 		return;
  
- 	ggtt->vm.insert_entries = gen8_ggtt_insert_entries;
-@@ -943,7 +943,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- 	 * Serialize GTT updates with aperture access on BXT if VT-d is on,
- 	 * and always on CHV.
- 	 */
--	if (intel_vm_no_concurrent_access_wa(i915)) {
-+	if (intel_vtd_vm_no_concurrent_access_wa(i915)) {
- 		ggtt->vm.insert_entries = bxt_vtd_ggtt_insert_entries__BKL;
- 		ggtt->vm.insert_page    = bxt_vtd_ggtt_insert_page__BKL;
- 		ggtt->vm.bind_async_flags =
-@@ -1082,7 +1082,7 @@ static int gen6_gmch_probe(struct i915_ggtt *ggtt)
- 	ggtt->vm.alloc_scratch_dma = alloc_pt_dma;
+-	ret = sandybridge_pcode_write(dev_priv,
+-				      BDW_PCODE_DISPLAY_FREQ_CHANGE_REQ, 0x0);
++	ret = snb_pcode_write(dev_priv, BDW_PCODE_DISPLAY_FREQ_CHANGE_REQ, 0x0);
+ 	if (ret) {
+ 		drm_err(&dev_priv->drm,
+ 			"failed to inform pcode about cdclk change\n");
+@@ -834,8 +833,8 @@ static void bdw_set_cdclk(struct drm_i915_private *dev_priv,
+ 			 LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
+ 		drm_err(&dev_priv->drm, "Switching back to LCPLL failed\n");
  
- 	ggtt->vm.clear_range = nop_clear_range;
--	if (!HAS_FULL_PPGTT(i915) || intel_scanout_needs_vtd_wa(i915))
-+	if (!HAS_FULL_PPGTT(i915) || intel_vtd_scanout_needs_wa(i915))
- 		ggtt->vm.clear_range = gen6_ggtt_clear_range;
- 	ggtt->vm.insert_page = gen6_ggtt_insert_page;
- 	ggtt->vm.insert_entries = gen6_ggtt_insert_entries;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index bf596c9a2494..ff1d86fa8238 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -205,7 +205,7 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
- 	mutex_init(&vm->mutex);
- 	lockdep_set_subclass(&vm->mutex, subclass);
+-	sandybridge_pcode_write(dev_priv, HSW_PCODE_DE_WRITE_FREQ_REQ,
+-				cdclk_config->voltage_level);
++	snb_pcode_write(dev_priv, HSW_PCODE_DE_WRITE_FREQ_REQ,
++			cdclk_config->voltage_level);
  
--	if (!intel_vm_no_concurrent_access_wa(vm->i915)) {
-+	if (!intel_vtd_vm_no_concurrent_access_wa(vm->i915)) {
- 		i915_gem_shrinker_taints_mutex(vm->i915, &vm->mutex);
+ 	intel_de_write(dev_priv, CDCLK_FREQ,
+ 		       DIV_ROUND_CLOSEST(cdclk, 1000) - 1);
+@@ -1138,8 +1137,8 @@ static void skl_set_cdclk(struct drm_i915_private *dev_priv,
+ 	intel_de_posting_read(dev_priv, CDCLK_CTL);
+ 
+ 	/* inform PCU of the change */
+-	sandybridge_pcode_write(dev_priv, SKL_PCODE_CDCLK_CONTROL,
+-				cdclk_config->voltage_level);
++	snb_pcode_write(dev_priv, SKL_PCODE_CDCLK_CONTROL,
++			cdclk_config->voltage_level);
+ 
+ 	intel_update_cdclk(dev_priv);
+ }
+@@ -1717,10 +1716,9 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 		 * BSpec requires us to wait up to 150usec, but that leads to
+ 		 * timeouts; the 2ms used here is based on experiment.
+ 		 */
+-		ret = sandybridge_pcode_write_timeout(dev_priv,
+-						      HSW_PCODE_DE_WRITE_FREQ_REQ,
+-						      0x80000000, 150, 2);
+-
++		ret = snb_pcode_write_timeout(dev_priv,
++					      HSW_PCODE_DE_WRITE_FREQ_REQ,
++					      0x80000000, 150, 2);
+ 	if (ret) {
+ 		drm_err(&dev_priv->drm,
+ 			"Failed to inform PCU about cdclk change (err %d, freq %d)\n",
+@@ -1781,8 +1779,8 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 		intel_crtc_wait_for_next_vblank(intel_crtc_for_pipe(dev_priv, pipe));
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 11) {
+-		ret = sandybridge_pcode_write(dev_priv, SKL_PCODE_CDCLK_CONTROL,
+-					      cdclk_config->voltage_level);
++		ret = snb_pcode_write(dev_priv, SKL_PCODE_CDCLK_CONTROL,
++				      cdclk_config->voltage_level);
  	} else {
  		/*
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index b944b3b4fca3..7d578b905808 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -65,7 +65,7 @@ static int i915_capabilities(struct seq_file *m, void *data)
- 
- 	intel_device_info_print_static(INTEL_INFO(i915), &p);
- 	intel_device_info_print_runtime(RUNTIME_INFO(i915), &p);
--	i915_print_iommu_status(i915, &p);
-+	intel_vtd_print_iommu_status(i915, &p);
- 	intel_gt_info_print(&to_gt(i915)->info, &p);
- 	intel_driver_caps_print(&i915->caps, &p);
- 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 18063e2d2e28..1de0a5a1320d 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -761,7 +761,7 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
- 
- 		intel_device_info_print_static(INTEL_INFO(dev_priv), &p);
- 		intel_device_info_print_runtime(RUNTIME_INFO(dev_priv), &p);
--		i915_print_iommu_status(dev_priv, &p);
-+		intel_vtd_print_iommu_status(dev_priv, &p);
- 		intel_gt_info_print(&to_gt(dev_priv)->info, &p);
+ 		 * The timeout isn't specified, the 2ms used here is based on
+@@ -1790,10 +1788,10 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 		 * FIXME: Waiting for the request completion could be delayed
+ 		 * until the next PCODE request based on BSpec.
+ 		 */
+-		ret = sandybridge_pcode_write_timeout(dev_priv,
+-						      HSW_PCODE_DE_WRITE_FREQ_REQ,
+-						      cdclk_config->voltage_level,
+-						      150, 2);
++		ret = snb_pcode_write_timeout(dev_priv,
++					      HSW_PCODE_DE_WRITE_FREQ_REQ,
++					      cdclk_config->voltage_level,
++					      150, 2);
  	}
  
-diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
-index 4d8a98dbf465..6c53cef85115 100644
---- a/drivers/gpu/drm/i915/intel_pch.c
-+++ b/drivers/gpu/drm/i915/intel_pch.c
-@@ -256,7 +256,7 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
- 		dev_priv->pch_type = PCH_NOP;
- 		dev_priv->pch_id = 0;
- 	} else if (!pch) {
--		if (run_as_guest() && HAS_DISPLAY(dev_priv)) {
-+		if (intel_vtd_run_as_guest() && HAS_DISPLAY(dev_priv)) {
- 			intel_virt_detect_pch(dev_priv, &id, &pch_type);
- 			dev_priv->pch_type = pch_type;
- 			dev_priv->pch_id = id;
-diff --git a/drivers/gpu/drm/i915/intel_vtd.c b/drivers/gpu/drm/i915/intel_vtd.c
-index e52432141081..8639e785254b 100644
---- a/drivers/gpu/drm/i915/intel_vtd.c
-+++ b/drivers/gpu/drm/i915/intel_vtd.c
-@@ -8,7 +8,7 @@
- #include "intel_vtd.h"
+ 	if (ret) {
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index bf7ce684dd8e..01e9b5baecd2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1118,8 +1118,8 @@ void hsw_enable_ips(const struct intel_crtc_state *crtc_state)
+ 	drm_WARN_ON(dev, !(crtc_state->active_planes & ~BIT(PLANE_CURSOR)));
  
- void
--i915_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p)
-+intel_vtd_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p)
+ 	if (IS_BROADWELL(dev_priv)) {
+-		drm_WARN_ON(dev, sandybridge_pcode_write(dev_priv, DISPLAY_IPS_CONTROL,
+-							 IPS_ENABLE | IPS_PCODE_CONTROL));
++		drm_WARN_ON(dev, snb_pcode_write(dev_priv, DISPLAY_IPS_CONTROL,
++						 IPS_ENABLE | IPS_PCODE_CONTROL));
+ 		/* Quoting Art Runyan: "its not safe to expect any particular
+ 		 * value in IPS_CTL bit 31 after enabling IPS through the
+ 		 * mailbox." Moreover, the mailbox may return a bogus state,
+@@ -1149,7 +1149,7 @@ void hsw_disable_ips(const struct intel_crtc_state *crtc_state)
+ 
+ 	if (IS_BROADWELL(dev_priv)) {
+ 		drm_WARN_ON(dev,
+-			    sandybridge_pcode_write(dev_priv, DISPLAY_IPS_CONTROL, 0));
++			    snb_pcode_write(dev_priv, DISPLAY_IPS_CONTROL, 0));
+ 		/*
+ 		 * Wait for PCODE to finish disabling IPS. The BSpec specified
+ 		 * 42ms timeout value leads to occasional timeouts so use 100ms
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index fba35fb6d2df..ee4617299e64 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -683,9 +683,8 @@ static void icl_tc_cold_exit(struct drm_i915_private *i915)
+ 	int ret, tries = 0;
+ 
+ 	while (1) {
+-		ret = sandybridge_pcode_write_timeout(i915,
+-						      ICL_PCODE_EXIT_TCCOLD,
+-						      0, 250, 1);
++		ret = snb_pcode_write_timeout(i915, ICL_PCODE_EXIT_TCCOLD, 0,
++					      250, 1);
+ 		if (ret != -EAGAIN || ++tries == 3)
+ 			break;
+ 		msleep(1);
+@@ -4053,8 +4052,7 @@ tgl_tc_cold_request(struct drm_i915_private *i915, bool block)
+ 		 * Spec states that we should timeout the request after 200us
+ 		 * but the function below will timeout after 500us
+ 		 */
+-		ret = sandybridge_pcode_read(i915, TGL_PCODE_TCCOLD, &low_val,
+-					     &high_val);
++		ret = snb_pcode_read(i915, TGL_PCODE_TCCOLD, &low_val, &high_val);
+ 		if (ret == 0) {
+ 			if (block &&
+ 			    (low_val & TGL_PCODE_EXIT_TCCOLD_DATA_L_EXIT_FAILED))
+@@ -5469,8 +5467,7 @@ static u32 hsw_read_dcomp(struct drm_i915_private *dev_priv)
+ static void hsw_write_dcomp(struct drm_i915_private *dev_priv, u32 val)
  {
- 	drm_printf(p, "iommu: %s\n", enableddisabled(intel_vtd_active(i915)));
+ 	if (IS_HASWELL(dev_priv)) {
+-		if (sandybridge_pcode_write(dev_priv,
+-					    GEN6_PCODE_WRITE_D_COMP, val))
++		if (snb_pcode_write(dev_priv, GEN6_PCODE_WRITE_D_COMP, val))
+ 			drm_dbg_kms(&dev_priv->drm,
+ 				    "Failed to write to D_COMP\n");
+ 	} else {
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 4509fe7438e8..e1ecf38db0ef 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -297,8 +297,7 @@ static int intel_hdcp_load_keys(struct drm_i915_private *dev_priv)
+ 	 * Mailbox interface.
+ 	 */
+ 	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv)) {
+-		ret = sandybridge_pcode_write(dev_priv,
+-					      SKL_PCODE_LOAD_HDCP_KEYS, 1);
++		ret = snb_pcode_write(dev_priv, SKL_PCODE_LOAD_HDCP_KEYS, 1);
+ 		if (ret) {
+ 			drm_err(&dev_priv->drm,
+ 				"Failed to initiate HDCP key load (%d)\n",
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+index 404dfa7673c6..6c5c1d0363bf 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+@@ -134,8 +134,7 @@ static int gen6_drpc(struct seq_file *m)
+ 	}
+ 
+ 	if (GRAPHICS_VER(i915) <= 7)
+-		sandybridge_pcode_read(i915, GEN6_PCODE_READ_RC6VIDS,
+-				       &rc6vids, NULL);
++		snb_pcode_read(i915, GEN6_PCODE_READ_RC6VIDS, &rc6vids, NULL);
+ 
+ 	seq_printf(m, "RC1e Enabled: %s\n",
+ 		   yesno(rcctl1 & GEN6_RC_CTL_RC1e_ENABLE));
+@@ -557,9 +556,8 @@ static int llc_show(struct seq_file *m, void *data)
+ 	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+ 	for (gpu_freq = min_gpu_freq; gpu_freq <= max_gpu_freq; gpu_freq++) {
+ 		ia_freq = gpu_freq;
+-		sandybridge_pcode_read(i915,
+-				       GEN6_PCODE_READ_MIN_FREQ_TABLE,
+-				       &ia_freq, NULL);
++		snb_pcode_read(i915, GEN6_PCODE_READ_MIN_FREQ_TABLE,
++			       &ia_freq, NULL);
+ 		seq_printf(m, "%d\t\t%d\t\t\t\t%d\n",
+ 			   intel_gpu_freq(rps,
+ 					  (gpu_freq *
+diff --git a/drivers/gpu/drm/i915/gt/intel_llc.c b/drivers/gpu/drm/i915/gt/intel_llc.c
+index 08d7d5ae263a..63f18830c611 100644
+--- a/drivers/gpu/drm/i915/gt/intel_llc.c
++++ b/drivers/gpu/drm/i915/gt/intel_llc.c
+@@ -140,11 +140,10 @@ static void gen6_update_ring_freq(struct intel_llc *llc)
+ 		unsigned int ia_freq, ring_freq;
+ 
+ 		calc_ia_freq(llc, gpu_freq, &consts, &ia_freq, &ring_freq);
+-		sandybridge_pcode_write(i915,
+-					GEN6_PCODE_WRITE_MIN_FREQ_TABLE,
+-					ia_freq << GEN6_PCODE_FREQ_IA_RATIO_SHIFT |
+-					ring_freq << GEN6_PCODE_FREQ_RING_RATIO_SHIFT |
+-					gpu_freq);
++		snb_pcode_write(i915, GEN6_PCODE_WRITE_MIN_FREQ_TABLE,
++				ia_freq << GEN6_PCODE_FREQ_IA_RATIO_SHIFT |
++				ring_freq << GEN6_PCODE_FREQ_RING_RATIO_SHIFT |
++				gpu_freq);
+ 	}
  }
-diff --git a/drivers/gpu/drm/i915/intel_vtd.h b/drivers/gpu/drm/i915/intel_vtd.h
-index 421bf8ca0b36..d20ae8314f8c 100644
---- a/drivers/gpu/drm/i915/intel_vtd.h
-+++ b/drivers/gpu/drm/i915/intel_vtd.h
-@@ -14,7 +14,7 @@
  
- struct drm_printer;
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+index 31ebe3f1765d..bb0d6e363f5d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.c
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+@@ -268,8 +268,7 @@ static void gen6_rc6_enable(struct intel_rc6 *rc6)
+ 	    GEN6_RC_CTL_HW_ENABLE;
  
--static inline bool run_as_guest(void)
-+static inline bool intel_vtd_run_as_guest(void)
+ 	rc6vids = 0;
+-	ret = sandybridge_pcode_read(i915, GEN6_PCODE_READ_RC6VIDS,
+-				     &rc6vids, NULL);
++	ret = snb_pcode_read(i915, GEN6_PCODE_READ_RC6VIDS, &rc6vids, NULL);
+ 	if (GRAPHICS_VER(i915) == 6 && ret) {
+ 		drm_dbg(&i915->drm, "Couldn't check for BIOS workaround\n");
+ 	} else if (GRAPHICS_VER(i915) == 6 &&
+@@ -279,7 +278,7 @@ static void gen6_rc6_enable(struct intel_rc6 *rc6)
+ 			GEN6_DECODE_RC6_VID(rc6vids & 0xff), 450);
+ 		rc6vids &= 0xffff00;
+ 		rc6vids |= GEN6_ENCODE_RC6_VID(450);
+-		ret = sandybridge_pcode_write(i915, GEN6_PCODE_WRITE_RC6VIDS, rc6vids);
++		ret = snb_pcode_write(i915, GEN6_PCODE_WRITE_RC6VIDS, rc6vids);
+ 		if (ret)
+ 			drm_err(&i915->drm,
+ 				"Couldn't fix incorrect rc6 voltage\n");
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index bd35e45d3aaa..8a13bc005b45 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -1091,9 +1091,8 @@ static void gen6_rps_init(struct intel_rps *rps)
+ 	    IS_GEN9_BC(i915) || GRAPHICS_VER(i915) >= 11) {
+ 		u32 ddcc_status = 0;
+ 
+-		if (sandybridge_pcode_read(i915,
+-					   HSW_PCODE_DYNAMIC_DUTY_CYCLE_CONTROL,
+-					   &ddcc_status, NULL) == 0)
++		if (snb_pcode_read(i915, HSW_PCODE_DYNAMIC_DUTY_CYCLE_CONTROL,
++				   &ddcc_status, NULL) == 0)
+ 			rps->efficient_freq =
+ 				clamp_t(u8,
+ 					(ddcc_status >> 8) & 0xff,
+@@ -1941,8 +1940,7 @@ void intel_rps_init(struct intel_rps *rps)
+ 	if (GRAPHICS_VER(i915) == 6 || IS_IVYBRIDGE(i915) || IS_HASWELL(i915)) {
+ 		u32 params = 0;
+ 
+-		sandybridge_pcode_read(i915, GEN6_READ_OC_PARAMS,
+-				       &params, NULL);
++		snb_pcode_read(i915, GEN6_READ_OC_PARAMS, &params, NULL);
+ 		if (params & BIT(31)) { /* OC supported */
+ 			drm_dbg(&i915->drm,
+ 				"Overclocking supported, max: %dMHz, overclock: %dMHz\n",
+diff --git a/drivers/gpu/drm/i915/gt/selftest_llc.c b/drivers/gpu/drm/i915/gt/selftest_llc.c
+index 459b775f163a..2cd184ab32b1 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_llc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_llc.c
+@@ -31,9 +31,8 @@ static int gen6_verify_ring_freq(struct intel_llc *llc)
+ 		calc_ia_freq(llc, gpu_freq, &consts, &ia_freq, &ring_freq);
+ 
+ 		val = gpu_freq;
+-		if (sandybridge_pcode_read(i915,
+-					   GEN6_PCODE_READ_MIN_FREQ_TABLE,
+-					   &val, NULL)) {
++		if (snb_pcode_read(i915, GEN6_PCODE_READ_MIN_FREQ_TABLE,
++				   &val, NULL)) {
+ 			pr_err("Failed to read freq table[%d], range [%d, %d]\n",
+ 			       gpu_freq, consts.min_gpu_freq, consts.max_gpu_freq);
+ 			err = -ENXIO;
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index bd170ba1cf00..e1e5dd5f7638 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -519,9 +519,8 @@ static void show_pcu_config(struct intel_rps *rps)
+ 	for (gpu_freq = min_gpu_freq; gpu_freq <= max_gpu_freq; gpu_freq++) {
+ 		int ia_freq = gpu_freq;
+ 
+-		sandybridge_pcode_read(i915,
+-				       GEN6_PCODE_READ_MIN_FREQ_TABLE,
+-				       &ia_freq, NULL);
++		snb_pcode_read(i915, GEN6_PCODE_READ_MIN_FREQ_TABLE,
++			       &ia_freq, NULL);
+ 
+ 		pr_info("%5d  %5d  %5d\n",
+ 			gpu_freq * 50,
+diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
+index 84bb212bae4b..3e26ccabf7f9 100644
+--- a/drivers/gpu/drm/i915/intel_dram.c
++++ b/drivers/gpu/drm/i915/intel_dram.c
+@@ -389,10 +389,8 @@ static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv)
+ 	u32 val = 0;
+ 	int ret;
+ 
+-	ret = sandybridge_pcode_read(dev_priv,
+-				     ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+-				     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO,
+-				     &val, NULL);
++	ret = snb_pcode_read(dev_priv, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
++			     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO, &val, NULL);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
+index e8c886e4e78d..db4403f63cac 100644
+--- a/drivers/gpu/drm/i915/intel_pcode.c
++++ b/drivers/gpu/drm/i915/intel_pcode.c
+@@ -51,11 +51,10 @@ static int gen7_check_mailbox_status(u32 mbox)
+ 	}
+ }
+ 
+-static int __sandybridge_pcode_rw(struct drm_i915_private *i915,
+-				  u32 mbox, u32 *val, u32 *val1,
+-				  int fast_timeout_us,
+-				  int slow_timeout_ms,
+-				  bool is_read)
++static int __snb_pcode_rw(struct drm_i915_private *i915, u32 mbox,
++			  u32 *val, u32 *val1,
++			  int fast_timeout_us, int slow_timeout_ms,
++			  bool is_read)
  {
- 	return !hypervisor_is_type(X86_HYPER_NATIVE);
- }
-@@ -25,27 +25,27 @@ static inline bool intel_vtd_active(struct drm_i915_private *i915)
- 		return true;
+ 	struct intel_uncore *uncore = &i915->uncore;
  
- 	/* Running as a guest, we assume the host is enforcing VT'd */
--	return run_as_guest();
-+	return intel_vtd_run_as_guest();
+@@ -94,15 +93,12 @@ static int __sandybridge_pcode_rw(struct drm_i915_private *i915,
+ 		return gen6_check_mailbox_status(mbox);
  }
  
--static inline bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915)
-+static inline bool intel_vtd_scanout_needs_wa(struct drm_i915_private *i915)
+-int sandybridge_pcode_read(struct drm_i915_private *i915, u32 mbox,
+-			   u32 *val, u32 *val1)
++int snb_pcode_read(struct drm_i915_private *i915, u32 mbox, u32 *val, u32 *val1)
  {
- 	return GRAPHICS_VER(i915) >= 6 && intel_vtd_active(i915);
+ 	int err;
+ 
+ 	mutex_lock(&i915->sb_lock);
+-	err = __sandybridge_pcode_rw(i915, mbox, val, val1,
+-				     500, 20,
+-				     true);
++	err = __snb_pcode_rw(i915, mbox, val, val1, 500, 20, true);
+ 	mutex_unlock(&i915->sb_lock);
+ 
+ 	if (err) {
+@@ -114,17 +110,14 @@ int sandybridge_pcode_read(struct drm_i915_private *i915, u32 mbox,
+ 	return err;
  }
  
- static inline bool
--intel_ggtt_update_needs_vtd_wa(struct drm_i915_private *i915)
-+intel_vtd_ggtt_update_needs_wa(struct drm_i915_private *i915)
+-int sandybridge_pcode_write_timeout(struct drm_i915_private *i915,
+-				    u32 mbox, u32 val,
+-				    int fast_timeout_us,
+-				    int slow_timeout_ms)
++int snb_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox, u32 val,
++			    int fast_timeout_us, int slow_timeout_ms)
  {
- 	return IS_BROXTON(i915) && intel_vtd_active(i915);
- }
+ 	int err;
  
- static inline bool
--intel_vm_no_concurrent_access_wa(struct drm_i915_private *i915)
-+intel_vtd_vm_no_concurrent_access_wa(struct drm_i915_private *i915)
+ 	mutex_lock(&i915->sb_lock);
+-	err = __sandybridge_pcode_rw(i915, mbox, &val, NULL,
+-				     fast_timeout_us, slow_timeout_ms,
+-				     false);
++	err = __snb_pcode_rw(i915, mbox, &val, NULL,
++			     fast_timeout_us, slow_timeout_ms, false);
+ 	mutex_unlock(&i915->sb_lock);
+ 
+ 	if (err) {
+@@ -140,9 +133,7 @@ static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbox,
+ 				  u32 request, u32 reply_mask, u32 reply,
+ 				  u32 *status)
  {
--	return IS_CHERRYVIEW(i915) || intel_ggtt_update_needs_vtd_wa(i915);
-+	return IS_CHERRYVIEW(i915) || intel_vtd_ggtt_update_needs_wa(i915);
+-	*status = __sandybridge_pcode_rw(i915, mbox, &request, NULL,
+-					 500, 0,
+-					 true);
++	*status = __snb_pcode_rw(i915, mbox, &request, NULL, 500, 0, true);
+ 
+ 	return *status || ((request & reply_mask) == reply);
  }
+diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/intel_pcode.h
+index 50806649d4b6..0962a17fac48 100644
+--- a/drivers/gpu/drm/i915/intel_pcode.h
++++ b/drivers/gpu/drm/i915/intel_pcode.h
+@@ -10,13 +10,11 @@
  
- void
--i915_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p);
-+intel_vtd_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p);
+ struct drm_i915_private;
  
- #endif /* __INTEL_VTD_H__ */
+-int sandybridge_pcode_read(struct drm_i915_private *i915, u32 mbox,
+-			   u32 *val, u32 *val1);
+-int sandybridge_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox,
+-				    u32 val, int fast_timeout_us,
+-				    int slow_timeout_ms);
+-#define sandybridge_pcode_write(i915, mbox, val)	\
+-	sandybridge_pcode_write_timeout(i915, mbox, val, 500, 0)
++int snb_pcode_read(struct drm_i915_private *i915, u32 mbox, u32 *val, u32 *val1);
++int snb_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox, u32 val,
++			    int fast_timeout_us, int slow_timeout_ms);
++#define snb_pcode_write(i915, mbox, val)			\
++	snb_pcode_write_timeout(i915, mbox, val, 500, 0)
+ 
+ int skl_pcode_request(struct drm_i915_private *i915, u32 mbox, u32 request,
+ 		      u32 reply_mask, u32 reply, int timeout_base_ms);
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 4ecd995c5cc7..9eec905545b9 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -2890,9 +2890,8 @@ static void intel_read_wm_latency(struct drm_i915_private *dev_priv,
+ 
+ 		/* read the first set of memory latencies[0:3] */
+ 		val = 0; /* data0 to be programmed to 0 for first set */
+-		ret = sandybridge_pcode_read(dev_priv,
+-					     GEN9_PCODE_READ_MEM_LATENCY,
+-					     &val, NULL);
++		ret = snb_pcode_read(dev_priv, GEN9_PCODE_READ_MEM_LATENCY,
++				     &val, NULL);
+ 
+ 		if (ret) {
+ 			drm_err(&dev_priv->drm,
+@@ -2910,9 +2909,8 @@ static void intel_read_wm_latency(struct drm_i915_private *dev_priv,
+ 
+ 		/* read the second set of memory latencies[4:7] */
+ 		val = 1; /* data0 to be programmed to 1 for second set */
+-		ret = sandybridge_pcode_read(dev_priv,
+-					     GEN9_PCODE_READ_MEM_LATENCY,
+-					     &val, NULL);
++		ret = snb_pcode_read(dev_priv, GEN9_PCODE_READ_MEM_LATENCY,
++				     &val, NULL);
+ 		if (ret) {
+ 			drm_err(&dev_priv->drm,
+ 				"SKL Mailbox read error = %d\n", ret);
+@@ -3702,9 +3700,9 @@ skl_setup_sagv_block_time(struct drm_i915_private *dev_priv)
+ 		u32 val = 0;
+ 		int ret;
+ 
+-		ret = sandybridge_pcode_read(dev_priv,
+-					     GEN12_PCODE_READ_SAGV_BLOCK_TIME_US,
+-					     &val, NULL);
++		ret = snb_pcode_read(dev_priv,
++				     GEN12_PCODE_READ_SAGV_BLOCK_TIME_US,
++				     &val, NULL);
+ 		if (!ret) {
+ 			dev_priv->sagv_block_time_us = val;
+ 			return;
+@@ -3751,8 +3749,8 @@ intel_enable_sagv(struct drm_i915_private *dev_priv)
+ 		return 0;
+ 
+ 	drm_dbg_kms(&dev_priv->drm, "Enabling SAGV\n");
+-	ret = sandybridge_pcode_write(dev_priv, GEN9_PCODE_SAGV_CONTROL,
+-				      GEN9_SAGV_ENABLE);
++	ret = snb_pcode_write(dev_priv, GEN9_PCODE_SAGV_CONTROL,
++			      GEN9_SAGV_ENABLE);
+ 
+ 	/* We don't need to wait for SAGV when enabling */
+ 
 -- 
 2.30.2
 
