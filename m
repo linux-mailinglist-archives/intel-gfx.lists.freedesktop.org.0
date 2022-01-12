@@ -1,51 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D2948CF22
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 00:32:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1695F48CF1D
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 00:30:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 646E210E7C7;
-	Wed, 12 Jan 2022 23:32:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6027C10E5FD;
+	Wed, 12 Jan 2022 23:30:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E1F610E66C;
- Wed, 12 Jan 2022 23:32:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C36F10E5FD
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jan 2022 23:30:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642030342; x=1673566342;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=B5z0Q0gLzwWsjBfeo/HFjoo8ms9MAs9vVXGpTZd7dsc=;
- b=byMyzDHWkC9RdgAE7riS1pUdsjf+BnAgMejqHgDAafUCUkSASQcR3MrA
- 1rQNAlmY7zLY30du8l5ZOgHxLjFFCfkpIc8OYYtC25oq+fI/fLRfSp1aS
- F1XT4qdwMPtkv5qQcxTsradGaE9HWc6/adP01X0XfdsO8LSi5jOVXxZrE
- IDoCiRAov28a2UftrmZZuLlPoPNHi74ruVr/KVxepWGRrF4OlBOLHSXLH
- ATmFZznMgDbvbiUg1pg6VXcwFOucTB3rxbdLUyI4BztdguNgVX3VNYlaG
- KRv7BK9ggMCHtyCyEh/QBlejuLTIrmwJDfkrpcXydmz7NuGL49G1Q4uSZ w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="243830392"
-X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="243830392"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ t=1642030213; x=1673566213;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=sSugffIJEewYL4C4RcIsI+OeZnQGnZ+wySzXjDvRwNg=;
+ b=hGazItonrRWlUVuRDK/Ih0Fg/xlW9D7WAiO9nKWklfGadFYYhLxIuOHc
+ CQO+cA0qa9/etCWbCj1QO45/1Y3jTR/jhi1/PDqc/j97L9+lrfFzLL82q
+ rPrsewxO2o3FjSDkvvWR+plDNql0lFofvAdYYOnmOGB6VLtErhwSNowYY
+ AGuY5dFBI0nfZEFDeXDQHGa01p0vkw+JaT55PW4f8JhIGBSVWUr5p0S82
+ neqEOeRDTDoDKdeMWbEBRaO5VXVDh6oeRpp99zKmJkY56GGWStNIfiRCP
+ EW1i/9uSr94G5sGTF9HhoqtVzCjM3RcyciNENDRIEb836SlXfrPcsX7D+ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="243830090"
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="243830090"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2022 15:32:21 -0800
-X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="490924374"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2022 15:32:21 -0800
-Date: Wed, 12 Jan 2022 15:26:31 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <20220112232629.GA19134@jons-linux-dev-box>
-References: <20220111163019.13694-1-matthew.brost@intel.com>
- <37083d2f-e572-4c78-41ba-a1693e9e84f8@intel.com>
+ 12 Jan 2022 15:30:12 -0800
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="475094956"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2022 15:30:12 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: x86@kernel.org
+Date: Wed, 12 Jan 2022 15:30:43 -0800
+Message-Id: <20220112233043.1865454-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220108025332.GA443266@bhelgaas>
+References: <20220108025332.GA443266@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <37083d2f-e572-4c78-41ba-a1693e9e84f8@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Flip guc_id allocation partition
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4] x86/quirks: Replace QFLAG_APPLY_ONCE with
+ static locals
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,196 +56,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, Ingo Molnar <mingo@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 13, 2022 at 12:21:17AM +0100, Michal Wajdeczko wrote:
-> 
-> 
-> On 11.01.2022 17:30, Matthew Brost wrote:
-> > Move the multi-lrc guc_id from the lower allocation partition (0 to
-> > number of multi-lrc guc_ids) to upper allocation partition (number of
-> > single-lrc to max guc_ids).
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 57 ++++++++++++++-----
-> >  1 file changed, 42 insertions(+), 15 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > index 9989d121127df..1bacc9621cea8 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > @@ -147,6 +147,8 @@ guc_create_parallel(struct intel_engine_cs **engines,
-> >   */
-> >  #define NUMBER_MULTI_LRC_GUC_ID(guc)	\
-> >  	((guc)->submission_state.num_guc_ids / 16)
-> > +#define NUMBER_SINGLE_LRC_GUC_ID(guc)	\
-> > +	((guc)->submission_state.num_guc_ids - NUMBER_MULTI_LRC_GUC_ID(guc))
-> 
-> above two will likely look better if converted into inline functions, or
-> even better if we explicitly store slrc/mlrc upper/lower id limits under
-> guc submission state
-> 
+The flags are only used to mark a quirk to be called once and nothing
+else. Also, that logic may not be appropriate if the quirk wants to
+do additional filtering and set quirk as applied by itself.
 
-Definitely inline functions, or I guess variables work too but that
-might be overkill. Let me play around with this and see how it looks.
+So replace the uses of QFLAG_APPLY_ONCE with static local variables in
+the few quirks that use this logic and remove all the flags logic.
 
-> >  
-> >  /*
-> >   * Below is a set of functions which control the GuC scheduling state which
-> > @@ -1776,11 +1778,6 @@ int intel_guc_submission_init(struct intel_guc *guc)
-> >  	INIT_WORK(&guc->submission_state.destroyed_worker,
-> >  		  destroyed_worker_func);
-> >  
-> > -	guc->submission_state.guc_ids_bitmap =
-> > -		bitmap_zalloc(NUMBER_MULTI_LRC_GUC_ID(guc), GFP_KERNEL);
-> > -	if (!guc->submission_state.guc_ids_bitmap)
-> > -		return -ENOMEM;
-> > -
-> >  	spin_lock_init(&guc->timestamp.lock);
-> >  	INIT_DELAYED_WORK(&guc->timestamp.work, guc_timestamp_ping);
-> >  	guc->timestamp.ping_delay = (POLL_TIME_CLKS / gt->clock_frequency + 1) * HZ;
-> > @@ -1796,7 +1793,8 @@ void intel_guc_submission_fini(struct intel_guc *guc)
-> >  	guc_flush_destroyed_contexts(guc);
-> >  	guc_lrc_desc_pool_destroy(guc);
-> >  	i915_sched_engine_put(guc->sched_engine);
-> > -	bitmap_free(guc->submission_state.guc_ids_bitmap);
-> > +	if (guc->submission_state.guc_ids_bitmap)
-> > +		bitmap_free(guc->submission_state.guc_ids_bitmap);
-> 
-> it should be fine to pass NULL to bitmap_free, no?
->
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Bjorn Helgaas <bhelgaas@google.com>
+---
 
-Probably? I'll double check on this.
+v4: Fix typo in commit message
+
+ arch/x86/kernel/early-quirks.c | 55 +++++++++++++++++++++-------------
+ 1 file changed, 34 insertions(+), 21 deletions(-)
+
+diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+index 1ca3a56fdc2d..bab2a255b701 100644
+--- a/arch/x86/kernel/early-quirks.c
++++ b/arch/x86/kernel/early-quirks.c
+@@ -57,6 +57,13 @@ static void __init fix_hypertransport_config(int num, int slot, int func)
+ static void __init via_bugs(int  num, int slot, int func)
+ {
+ #ifdef CONFIG_GART_IOMMU
++	static bool quirk_applied __initdata;
++
++	if (quirk_applied)
++		return;
++
++	quirk_applied = true;
++
+ 	if ((max_pfn > MAX_DMA32_PFN ||  force_iommu) &&
+ 	    !gart_iommu_aperture_allowed) {
+ 		printk(KERN_INFO
+@@ -81,6 +88,13 @@ static void __init nvidia_bugs(int num, int slot, int func)
+ {
+ #ifdef CONFIG_ACPI
+ #ifdef CONFIG_X86_IO_APIC
++	static bool quirk_applied __initdata;
++
++	if (quirk_applied)
++		return;
++
++	quirk_applied = true;
++
+ 	/*
+ 	 * Only applies to Nvidia root ports (bus 0) and not to
+ 	 * Nvidia graphics cards with PCI ports on secondary buses.
+@@ -589,10 +603,16 @@ intel_graphics_stolen(int num, int slot, int func,
  
-> >  }
-> >  
-> >  static inline void queue_request(struct i915_sched_engine *sched_engine,
-> > @@ -1863,6 +1861,33 @@ static void guc_submit_request(struct i915_request *rq)
-> >  	spin_unlock_irqrestore(&sched_engine->lock, flags);
-> >  }
-> >  
-> > +static int new_mlrc_guc_id(struct intel_guc *guc, struct intel_context *ce)
-> > +{
-> > +	int ret;
-> > +
-> > +	GEM_BUG_ON(!intel_context_is_parent(ce));
-> > +	GEM_BUG_ON(!guc->submission_state.guc_ids_bitmap);
-> > +
-> > +	ret =  bitmap_find_free_region(guc->submission_state.guc_ids_bitmap,
-> > +				       NUMBER_MULTI_LRC_GUC_ID(guc),
-> > +				       order_base_2(ce->parallel.number_children
-> > +						    + 1));
-> 
-> btw, is there any requirement (GuC ABI ?) that allocated ids need
-> to be allocated with power of 2 alignment ? I don't think that we
-> must optimize that hard and in some cases waste extra ids (as we might
-> be limited on some configs)
-> 
-
-No pow2 requirement in GuC ABI, bitmaps only work on pow2 alignment and
-didn't optmize this.
-
-> > +	if (likely(!(ret < 0)))
-> > +		ret += NUMBER_SINGLE_LRC_GUC_ID(guc);
-> 
-> nit: more readable would be
-> 
-> 	if (unlikely(ret < 0))
-> 		return ret;
-> 
-> 	return ret + guc->submission_state.mlrc_base;
-> 
-
-Sure.
-
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int new_slrc_guc_id(struct intel_guc *guc, struct intel_context *ce)
-> > +{
-> > +	GEM_BUG_ON(intel_context_is_parent(ce));
-> 
-> do we really need ce here ?
->
-
-Just for the GEM_BUG_ON... Can remove if it is a big deal.
-
-> > +
-> > +	return ida_simple_get(&guc->submission_state.guc_ids,
-> > +			      0, NUMBER_SINGLE_LRC_GUC_ID(guc),
-> 
-> if we change the logic of NUMBER_SINGLE/MULTI_LRC_GUC_ID macros from
-> static split into more dynamic, then we could likely implement lazy
-> increase of available slrc/mlrc id limits on demand, within available
-> range, without deciding upfront of the hardcoded split 15 : 1
-> 
-> but this can be done next time ;)
->
-
-Yea I guess. Doubt we need anything beyond a static split tho.
+ static void __init intel_graphics_quirks(int num, int slot, int func)
+ {
++	static bool quirk_applied __initdata;
+ 	const struct intel_early_ops *early_ops;
+ 	u16 device;
+ 	int i;
  
-> > +			      GFP_KERNEL | __GFP_RETRY_MAYFAIL |
-> > +			      __GFP_NOWARN);
-> > +}
-> > +
-> >  static int new_guc_id(struct intel_guc *guc, struct intel_context *ce)
-> >  {
-> >  	int ret;
-> > @@ -1870,16 +1895,10 @@ static int new_guc_id(struct intel_guc *guc, struct intel_context *ce)
-> >  	GEM_BUG_ON(intel_context_is_child(ce));
-> >  
-> >  	if (intel_context_is_parent(ce))
-> > -		ret = bitmap_find_free_region(guc->submission_state.guc_ids_bitmap,
-> > -					      NUMBER_MULTI_LRC_GUC_ID(guc),
-> > -					      order_base_2(ce->parallel.number_children
-> > -							   + 1));
-> > +		ret = new_mlrc_guc_id(guc, ce);
-> >  	else
-> > -		ret = ida_simple_get(&guc->submission_state.guc_ids,
-> > -				     NUMBER_MULTI_LRC_GUC_ID(guc),
-> > -				     guc->submission_state.num_guc_ids,
-> > -				     GFP_KERNEL | __GFP_RETRY_MAYFAIL |
-> > -				     __GFP_NOWARN);
-> > +		ret = new_slrc_guc_id(guc, ce);
-> > +
-> 
-> with above helpers introduced, shouldn't we move code from new_guc_id()
-> to assign_guc_id() ?
-> 
++	if (quirk_applied)
++		return;
++
++	quirk_applied = true;
++
+ 	device = read_pci_config_16(num, slot, func, PCI_DEVICE_ID);
+ 
+ 	for (i = 0; i < ARRAY_SIZE(intel_early_ids); i++) {
+@@ -675,37 +695,33 @@ static void __init apple_airport_reset(int bus, int slot, int func)
+ 	early_iounmap(mmio, BCM4331_MMIO_SIZE);
+ }
+ 
+-#define QFLAG_APPLY_ONCE 	0x1
+-#define QFLAG_APPLIED		0x2
+-#define QFLAG_DONE		(QFLAG_APPLY_ONCE|QFLAG_APPLIED)
+ struct chipset {
+ 	u32 vendor;
+ 	u32 device;
+ 	u32 class;
+ 	u32 class_mask;
+-	u32 flags;
+ 	void (*f)(int num, int slot, int func);
+ };
+ 
+ static struct chipset early_qrk[] __initdata = {
+ 	{ PCI_VENDOR_ID_NVIDIA, PCI_ANY_ID,
+-	  PCI_CLASS_BRIDGE_PCI, PCI_ANY_ID, QFLAG_APPLY_ONCE, nvidia_bugs },
++	  PCI_CLASS_BRIDGE_PCI, PCI_ANY_ID, nvidia_bugs },
+ 	{ PCI_VENDOR_ID_VIA, PCI_ANY_ID,
+-	  PCI_CLASS_BRIDGE_PCI, PCI_ANY_ID, QFLAG_APPLY_ONCE, via_bugs },
++	  PCI_CLASS_BRIDGE_PCI, PCI_ANY_ID, via_bugs },
+ 	{ PCI_VENDOR_ID_AMD, PCI_DEVICE_ID_AMD_K8_NB,
+-	  PCI_CLASS_BRIDGE_HOST, PCI_ANY_ID, 0, fix_hypertransport_config },
++	  PCI_CLASS_BRIDGE_HOST, PCI_ANY_ID, fix_hypertransport_config },
+ 	{ PCI_VENDOR_ID_ATI, PCI_DEVICE_ID_ATI_IXP400_SMBUS,
+-	  PCI_CLASS_SERIAL_SMBUS, PCI_ANY_ID, 0, ati_bugs },
++	  PCI_CLASS_SERIAL_SMBUS, PCI_ANY_ID, ati_bugs },
+ 	{ PCI_VENDOR_ID_ATI, PCI_DEVICE_ID_ATI_SBX00_SMBUS,
+-	  PCI_CLASS_SERIAL_SMBUS, PCI_ANY_ID, 0, ati_bugs_contd },
++	  PCI_CLASS_SERIAL_SMBUS, PCI_ANY_ID, ati_bugs_contd },
+ 	{ PCI_VENDOR_ID_INTEL, 0x3403, PCI_CLASS_BRIDGE_HOST,
+-	  PCI_BASE_CLASS_BRIDGE, 0, intel_remapping_check },
++	  PCI_BASE_CLASS_BRIDGE, intel_remapping_check },
+ 	{ PCI_VENDOR_ID_INTEL, 0x3405, PCI_CLASS_BRIDGE_HOST,
+-	  PCI_BASE_CLASS_BRIDGE, 0, intel_remapping_check },
++	  PCI_BASE_CLASS_BRIDGE, intel_remapping_check },
+ 	{ PCI_VENDOR_ID_INTEL, 0x3406, PCI_CLASS_BRIDGE_HOST,
+-	  PCI_BASE_CLASS_BRIDGE, 0, intel_remapping_check },
++	  PCI_BASE_CLASS_BRIDGE, intel_remapping_check },
+ 	{ PCI_VENDOR_ID_INTEL, PCI_ANY_ID, PCI_CLASS_DISPLAY_VGA, PCI_ANY_ID,
+-	  QFLAG_APPLY_ONCE, intel_graphics_quirks },
++	  intel_graphics_quirks },
+ 	/*
+ 	 * HPET on the current version of the Baytrail platform has accuracy
+ 	 * problems: it will halt in deep idle state - so we disable it.
+@@ -715,9 +731,9 @@ static struct chipset early_qrk[] __initdata = {
+ 	 *    http://www.intel.com/content/dam/www/public/us/en/documents/datasheets/atom-z8000-datasheet-vol-1.pdf
+ 	 */
+ 	{ PCI_VENDOR_ID_INTEL, 0x0f00,
+-		PCI_CLASS_BRIDGE_HOST, PCI_ANY_ID, 0, force_disable_hpet},
++	  PCI_CLASS_BRIDGE_HOST, PCI_ANY_ID, force_disable_hpet},
+ 	{ PCI_VENDOR_ID_BROADCOM, 0x4331,
+-	  PCI_CLASS_NETWORK_OTHER, PCI_ANY_ID, 0, apple_airport_reset},
++	  PCI_CLASS_NETWORK_OTHER, PCI_ANY_ID, apple_airport_reset},
+ 	{}
+ };
+ 
+@@ -758,12 +774,9 @@ static int __init check_dev_quirk(int num, int slot, int func)
+ 			((early_qrk[i].device == PCI_ANY_ID) ||
+ 			(early_qrk[i].device == device)) &&
+ 			(!((early_qrk[i].class ^ class) &
+-			    early_qrk[i].class_mask))) {
+-				if ((early_qrk[i].flags &
+-				     QFLAG_DONE) != QFLAG_DONE)
+-					early_qrk[i].f(num, slot, func);
+-				early_qrk[i].flags |= QFLAG_APPLIED;
+-			}
++			    early_qrk[i].class_mask)))
++				early_qrk[i].f(num, slot, func);
++
+ 	}
+ 
+ 	type = read_pci_config_byte(num, slot, func,
+-- 
+2.34.1
 
-Why add inline to code to assign_guc_id?
-
-> >  	if (unlikely(ret < 0))
-> >  		return ret;
-> >  
-> > @@ -1989,6 +2008,14 @@ static int pin_guc_id(struct intel_guc *guc, struct intel_context *ce)
-> >  
-> >  	GEM_BUG_ON(atomic_read(&ce->guc_id.ref));
-> >  
-> > +	if (unlikely(intel_context_is_parent(ce) &&
-> > +		     !guc->submission_state.guc_ids_bitmap)) {
-> > +		guc->submission_state.guc_ids_bitmap =
-> > +			bitmap_zalloc(NUMBER_MULTI_LRC_GUC_ID(guc), GFP_KERNEL);
-> > +		if (!guc->submission_state.guc_ids_bitmap)
-> > +			return -ENOMEM;
-> > +	}
-> 
-> maybe move this chunk to new_mlrc_guc_id() ?
-> or we can't due to the spin_lock below ?
-> but then how do you protect guc_ids_bitmap pointer itself ?
-> 
-
-Can't use GFP_KERNEL inside a spin lock...
-
-Matt
-
-> -Michal
-> 
-> > +
-> >  try_again:
-> >  	spin_lock_irqsave(&guc->submission_state.lock, flags);
-> >  
