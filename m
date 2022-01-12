@@ -2,46 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1EE548CC2A
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jan 2022 20:42:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBAC748CCCD
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jan 2022 21:06:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2B1D10E316;
-	Wed, 12 Jan 2022 19:42:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 199A110F5AF;
+	Wed, 12 Jan 2022 20:06:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FBE810E316
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jan 2022 19:42:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642016552; x=1673552552;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=DnIIBQNTD2yfLdOZuNCSsEIthF5iRtc2KKjVDSxXROE=;
- b=KoANv5/4DIwhQhD+kRQKU0IhK+i2jLjf+5Rrz1y3Uc7vqyhPFuyRNwvD
- Hey/j6gEOsI0LeDpWmYbnxTOniiyCI1uWqTslOAY0WnNJNOiyJL2vQ4gd
- H1X/PIc6UtLq14XmtMr+jCRPKAHGH8q5ByzhP5jhyUK1gKiFh+e0/RHUs
- tUj5JWdnJEiMr5Ee7ddmchicDw8M4sZpw7z4hPanQlOXOXPLH/1f1Qcmm
- Eli7ZI4NCwfIOD5gUjcRDiQB3l0qOwwJZpOmABZmjLnl+R1llT3Z8dY5C
- IXadEwUAmeXvpxHOTHNGw3SCt8RmfQKMwKdjt4uqn+3uXQjziz7LYsy6H A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="242657117"
-X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="242657117"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2022 11:42:31 -0800
-X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; d="scan'208";a="529344625"
-Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 12 Jan 2022 11:42:31 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Jan 2022 11:57:22 -0800
-Message-Id: <20220112195722.16639-1-manasi.d.navare@intel.com>
-X-Mailer: git-send-email 2.19.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7719C10F57B;
+ Wed, 12 Jan 2022 20:06:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 72816AA914;
+ Wed, 12 Jan 2022 20:06:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display/vrr: Reset VRR capable
- property on a long hpd
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Wed, 12 Jan 2022 20:06:19 -0000
+Message-ID: <164201797943.21760.1051551444307474910@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220112195722.16639-1-manasi.d.navare@intel.com>
+In-Reply-To: <20220112195722.16639-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display/vrr=3A_Reset_VRR_capable_property_on_a_lon?=
+ =?utf-8?q?g_hpd?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,52 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915/display/vrr: Reset VRR capable property on a long hpd
+URL   : https://patchwork.freedesktop.org/series/98801/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+519ba5ebf257 drm/i915/display/vrr: Reset VRR capable property on a long hpd
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#7: 
 With some VRR panels, user can turn VRR ON/OFF on the fly from the panel settings.
-When VRR is turned OFF ,sends a long HPD to the driver clearing the Ignore MSA bit
-in the DPCD. Currently the driver parses that onevery HPD but fails to reset
-the corresponding VRR Capable Connector property.
-Hence the userspace still sees this as VRR Capable panel which is incorrect.
 
-Fix this by explicitly resetting the connector property.
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
 
-Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index df2a7d86aef0..4f1418f02b76 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4539,15 +4539,24 @@ static int intel_dp_get_modes(struct drm_connector *connector)
- {
- 	struct intel_connector *intel_connector = to_intel_connector(connector);
- 	struct edid *edid;
-+	struct drm_i915_private *dev_priv = to_i915(connector->dev);
- 	int num_modes = 0;
- 
- 	edid = intel_connector->detect_edid;
- 	if (edid) {
- 		num_modes = intel_connector_update_modes(connector, edid);
- 
--		if (intel_vrr_is_capable(connector))
-+		if (intel_vrr_is_capable(connector)) {
-+			drm_dbg_kms(&dev_priv->drm, "VRR capable  = TRUE for [CONNECTOR:%d:%s]\n",
-+				    connector->base.id, connector->name);
- 			drm_connector_set_vrr_capable_property(connector,
- 							       true);
-+		} else {
-+			drm_dbg_kms(&dev_priv->drm, "VRR capable = false for [CONNECTOR:%d:%s]\n",
-+				    connector->base.id, connector->name);
-+			drm_connector_set_vrr_capable_property(connector,
-+							       false);
-+		}
- 	}
- 
- 	/* Also add fixed mode, which may or may not be present in EDID */
--- 
-2.19.1
 
