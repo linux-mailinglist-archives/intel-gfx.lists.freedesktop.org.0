@@ -2,67 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B34F48D8A8
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 14:17:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01BD648D8CA
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 14:24:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 982061122E7;
-	Thu, 13 Jan 2022 13:17:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 976FF112419;
+	Thu, 13 Jan 2022 13:24:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com
- [91.207.212.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7679F1122DF;
- Thu, 13 Jan 2022 13:17:41 +0000 (UTC)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
- by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20D8S0ZJ016882;
- Thu, 13 Jan 2022 14:17:07 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=vWWHFsuh46D5SfaO0k2X8hLjowrmWXVkxsmKvyUtw8U=;
- b=hX0hu6/JJ425axfDUuOLyU5Q2bDitArl2sA2zP3byEiWLNAuAGFdRudKDa3iSapIWLYb
- b4OREpi6MyUZDlONmJYlwHbMZ6ICffVepyGiaZaH4owWq+7BeFv3aMC1FDPvKwOm7/NE
- kFkV/J7IiaQvH6o17y47gYgbgnqZeba8Vns41Eu6Oyx/UuvPWlCKONNJlpxJlZQT6+QE
- nPZSEFipCOM3dvOx9r+1ywGjLkcyIoX7qqjhad0UqkYkuqn/aLyN5k352eREvP7CVNZ5
- L72ek77bk+iQEUZpWpJx46+JC++VIioplW0hLTxjV7uUbMLhq78Byk7oASPRvrtmEY/L kw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
- by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3djgkksh8y-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 13 Jan 2022 14:17:07 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
- by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9CBCA10002A;
- Thu, 13 Jan 2022 14:17:05 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
- by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8A87220D186;
- Thu, 13 Jan 2022 14:17:05 +0100 (CET)
-Received: from lmecxl0993.lme.st.com (10.75.127.50) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 13 Jan
- 2022 14:17:03 +0100
-To: =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>, Simon Ser
- <contact@emersion.fr>
-References: <20211226112503.31771-1-jose.exposito89@gmail.com>
- <20211226112503.31771-3-jose.exposito89@gmail.com>
- <3DdB6YPUQr4O063yNreefZcIm6p5Z6HORoVVbk5RTMmjz8qvnxMse42hLvfDmA323KG-TWLc_JUFZEEEIkoINXQuAzjLVe2jRRM01tQgYOU=@emersion.fr>
- <20220107172601.GA122757@elementary>
-From: Philippe CORNU <philippe.cornu@foss.st.com>
-Message-ID: <735432ff-d9a7-aff0-e94a-13035e944570@foss.st.com>
-Date: Thu, 13 Jan 2022 14:16:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65D13112419
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jan 2022 13:24:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642080257; x=1673616257;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=wO5rDFq5rT8nLyo1YZntqmezy6dAuA8O5RJsrztqqL4=;
+ b=XPxP4942REaizEIbV6xCO8ZSwp01PMMuvyAjeNYHnqWSvHIELyMrRphi
+ cXHnDFEZ7SROWIAp2rvDxGwF8g9YkJqu65Z0Vmd+ZqNAdK890NtLb3SMU
+ vzvfJ2PPSc4rSp42CgeSettrmArUyQQg4ujBJ84kEYE4Qp4SsvNMMuf6i
+ VyMacfw8+Jh5wQQYpkaKXcVC4cjhiNF+9WPQYxGM4gXuo9EQ5KUb+K4ic
+ QeBuYOMaUPNR5AlP892Ql/qzl6d6yi3Y94P/DR91pIj0jHlUuDwESqFSD
+ PCWEK0fCOhsM0kqEgFhyF6wM6vSefrsFiY7qPYGE7t3AsnjLD2b88XSVQ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="241565776"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="241565776"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 05:24:16 -0800
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="515922317"
+Received: from joneil3-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.0.221])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 05:24:15 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <Yd7eYRIF92zDERP0@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220112105703.1151391-1-jani.nikula@intel.com>
+ <Yd7eYRIF92zDERP0@intel.com>
+Date: Thu, 13 Jan 2022 15:24:12 +0200
+Message-ID: <87ee5b7oqr.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20220107172601.GA122757@elementary>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-01-13_04,2022-01-13_01,2021-12-02_01
-Subject: Re: [Intel-gfx] [PATCH v3 2/6] drm/plane: Fix typo in
- format_mod_supported documentation
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH RESEND] drm/i915/dp: make
+ intel_dp_pack_aux() static again
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,36 +59,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, alexandre.torgue@foss.st.com, stefan@agner.ch,
- benjamin.gaignard@linaro.org, festevam@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com, marex@denx.de, linux-imx@nxp.com,
- intel-gfx@lists.freedesktop.org, s.hauer@pengutronix.de, mripard@kernel.org,
- kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org, tzimmermann@suse.de,
- yannick.fertre@foss.st.com, linux-kernel@vger.kernel.org,
- mcoquelin.stm32@gmail.com, dmitry.baryshkov@linaro.org, shawnguo@kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 12 Jan 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Jan 12, 2022 at 12:57:03PM +0200, Jani Nikula wrote:
+>> The last user of intel_dp_pack_aux() outside intel_dp_aux.c got removed
+>> in commit ad26451a7902 ("drm/i915/display: Drop PSR support from HSW and
+>> BDW"). Make the function static again.
+>>=20
+>> Rename the pack/unpack functions to follow the usual naming conventions
+>> while at it.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
+Pushed, thanks for the review.
 
-On 1/7/22 6:26 PM, José Expósito wrote:
-> Hi Simon,
-> 
-> On Wed, Jan 05, 2022 at 11:54:43PM +0000, Simon Ser wrote:
->> Pushed patches 1 & 2 to drm-misc-next. Thanks for your contribution!
-> 
-> Thanks a lot for the review and for applying the changes, appreciate it.
-> 
-> Is there something that needs to improve in the other 4 patches?
-> Or just waiting on maintainers input?
-> 
-> Thanks,
-> José Expósito
-> 
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 8 ++++----
+>>  drivers/gpu/drm/i915/display/intel_dp_aux.h | 4 ----
+>>  2 files changed, 4 insertions(+), 8 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/d=
+rm/i915/display/intel_dp_aux.c
+>> index 5fbb767fcd63..2bc119374555 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> @@ -10,7 +10,7 @@
+>>  #include "intel_pps.h"
+>>  #include "intel_tc.h"
+>>=20=20
+>> -u32 intel_dp_pack_aux(const u8 *src, int src_bytes)
+>> +static u32 intel_dp_aux_pack(const u8 *src, int src_bytes)
+>>  {
+>>  	int i;
+>>  	u32 v =3D 0;
+>> @@ -22,7 +22,7 @@ u32 intel_dp_pack_aux(const u8 *src, int src_bytes)
+>>  	return v;
+>>  }
+>>=20=20
+>> -static void intel_dp_unpack_aux(u32 src, u8 *dst, int dst_bytes)
+>> +static void intel_dp_aux_unpack(u32 src, u8 *dst, int dst_bytes)
+>>  {
+>>  	int i;
+>>=20=20
+>> @@ -267,7 +267,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>>  			for (i =3D 0; i < send_bytes; i +=3D 4)
+>>  				intel_uncore_write(uncore,
+>>  						   ch_data[i >> 2],
+>> -						   intel_dp_pack_aux(send + i,
+>> +						   intel_dp_aux_pack(send + i,
+>>  								     send_bytes - i));
+>>=20=20
+>>  			/* Send the command and wait for it to complete */
+>> @@ -352,7 +352,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>>  		recv_bytes =3D recv_size;
+>>=20=20
+>>  	for (i =3D 0; i < recv_bytes; i +=3D 4)
+>> -		intel_dp_unpack_aux(intel_uncore_read(uncore, ch_data[i >> 2]),
+>> +		intel_dp_aux_unpack(intel_uncore_read(uncore, ch_data[i >> 2]),
+>>  				    recv + i, recv_bytes - i);
+>>=20=20
+>>  	ret =3D recv_bytes;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.h b/drivers/gpu/d=
+rm/i915/display/intel_dp_aux.h
+>> index 4afbe76217b9..738577537bc7 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.h
+>> @@ -6,12 +6,8 @@
+>>  #ifndef __INTEL_DP_AUX_H__
+>>  #define __INTEL_DP_AUX_H__
+>>=20=20
+>> -#include <linux/types.h>
+>> -
+>>  struct intel_dp;
+>>=20=20
+>> -u32 intel_dp_pack_aux(const u8 *src, int src_bytes);
+>> -
+>>  void intel_dp_aux_fini(struct intel_dp *intel_dp);
+>>  void intel_dp_aux_init(struct intel_dp *intel_dp);
+>>=20=20
+>> --=20
+>> 2.30.2
 
-Hi José,
-for the drm/stm part,
-Applied on drm-misc-next.
-Many thanks for your patches,
-Philippe :-)
+--=20
+Jani Nikula, Intel Open Source Graphics Center
