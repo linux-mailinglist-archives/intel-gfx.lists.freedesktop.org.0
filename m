@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40EC848DE95
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 21:04:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13BE848DE70
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 20:59:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E15710E2B3;
-	Thu, 13 Jan 2022 20:04:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A6BE10E2CA;
+	Thu, 13 Jan 2022 19:59:50 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1B3310E2B3;
- Thu, 13 Jan 2022 20:04:15 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 035B910E2CA;
+ Thu, 13 Jan 2022 19:59:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642104255; x=1673640255;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=houc8fQvm5Lltx/wN2zSHWWUYu/Fb9foJvJKGw394OE=;
- b=ErB/uBHXobVr2wS87h2Gggew+o7Cc7w7ecqH+7oatZ1mW3HqxIyKRHrT
- yo9eRGeVsvQfl2YW+fvw3lPgBfCC+mrkw/+fSmG2D2RDVvtN9deZi8iD7
- Baidysc6LtLXGz9HBWAiOTnmU79t6cL5SGfXFjxdFu65ogH4CHJoDRQzL
- LRjp3Is6QSMgTRxE4hjKMX6f/o2dVM8PJDf/KaIsFCZBUpAgqTxq9uSwW
- AR61uaAxJexfc3l8Mg1HmscOEf6kVsqSTj9/JKh91Qm7GERSvYKuMgtBC
- J2gPjH0jhgAAEoMk51oBc6J/Hw1FEkDbTTUnip2f/k7VKdh/1eV91NkB5 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="244306531"
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="244306531"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 12:04:15 -0800
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="516069454"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 12:04:14 -0800
-Date: Thu, 13 Jan 2022 11:58:24 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: John.C.Harrison@Intel.com
-Message-ID: <20220113195824.GA7322@jons-linux-dev-box>
-References: <20220113195947.1536897-1-John.C.Harrison@Intel.com>
- <20220113195947.1536897-4-John.C.Harrison@Intel.com>
+ t=1642103989; x=1673639989;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=L9Q2+vWRQ5bM0rzJANbAczcHdWkpr58luSmBql9Z29E=;
+ b=ZlmQmFNt1gESdIsO6yo1BiUGzvB0d5nXuAM1ps3GBBdvUwO4VWmKm1YY
+ GJfY9eMU/WnbKjswq+GVhHAGwIygzZ48mBDRMDHxE6YnzOEQH6I5AesEr
+ Df554psI2XTjXYAZPcZ1ijXZqS3xerM1Yz/PpOHZOxR5/IsJrMaKhot4F
+ eyz6DIOSclGY6Bvs5IT0Yr4yb31LnInw5wU/Hu+kJOvNufRiBN63cGAiD
+ dHMpOdEDageJpd1aD2KeF2zybQ+yTvzBiOQ/vTruuaiyAklR0/6xtv0MU
+ MIlkxrpFFcqa5CH6I7spT8gHak50dt+MMm9m1x0ZNFeLB63rFn4WMxKSs w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="241663858"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="241663858"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 11:59:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="475477455"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by orsmga006.jf.intel.com with ESMTP; 13 Jan 2022 11:59:47 -0800
+From: John.C.Harrison@Intel.com
+To: IGT-Dev@Lists.FreeDesktop.Org
+Date: Thu, 13 Jan 2022 11:59:32 -0800
+Message-Id: <20220113195947.1536897-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220113195947.1536897-4-John.C.Harrison@Intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH v3 i-g-t 03/15]
- tests/i915/i915_hangman: Update capture test to use engine structure
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 i-g-t 00/15] Fixes for i915_hangman and
+ gem_exec_capture
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,67 +56,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: IGT-Dev@Lists.FreeDesktop.Org, Intel-GFX@Lists.FreeDesktop.Org
+Cc: Intel-GFX@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 13, 2022 at 11:59:35AM -0800, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> The capture test was still using old style ring_id and ring_name
-> (derived from the engine structure at the higher level). Update it to
-> just take the engine structure directly.
-> 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Fix a bunch of issues with i915_hangman and gem_exec_capture with the
+ultimate aim of making them pass on GuC enabled platforms.
 
-> ---
->  tests/i915/i915_hangman.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/tests/i915/i915_hangman.c b/tests/i915/i915_hangman.c
-> index f64b8819d..280eac197 100644
-> --- a/tests/i915/i915_hangman.c
-> +++ b/tests/i915/i915_hangman.c
-> @@ -207,8 +207,8 @@ static void check_error_state(const char *expected_ring_name,
->  	igt_assert(found);
->  }
->  
-> -static void test_error_state_capture(const intel_ctx_t *ctx, unsigned ring_id,
-> -				     const char *ring_name)
-> +static void test_error_state_capture(const intel_ctx_t *ctx,
-> +				     const struct intel_execution_engine2 *e)
->  {
->  	uint32_t *batch;
->  	igt_hang_t hang;
-> @@ -217,7 +217,7 @@ static void test_error_state_capture(const intel_ctx_t *ctx, unsigned ring_id,
->  
->  	clear_error_state();
->  
-> -	hang = igt_hang_ctx_with_ahnd(device, ahnd, ctx->id, ring_id,
-> +	hang = igt_hang_ctx_with_ahnd(device, ahnd, ctx->id, e->flags,
->  				      HANG_ALLOW_CAPTURE);
->  	offset = hang.spin->obj[IGT_SPIN_BATCH].offset;
->  
-> @@ -226,7 +226,7 @@ static void test_error_state_capture(const intel_ctx_t *ctx, unsigned ring_id,
->  
->  	igt_post_hang_ring(device, hang);
->  
-> -	check_error_state(ring_name, offset, batch);
-> +	check_error_state(e->name, offset, batch);
->  	munmap(batch, 4096);
->  	put_ahnd(ahnd);
->  }
-> @@ -351,7 +351,7 @@ igt_main
->  	igt_subtest_with_dynamic("error-state-capture") {
->  		for_each_ctx_engine(device, ctx, e) {
->  			igt_dynamic_f("%s", e->name)
-> -				test_error_state_capture(ctx, e->flags, e->name);
-> +				test_error_state_capture(ctx, e);
->  		}
->  	}
->  
-> -- 
-> 2.25.1
-> 
+v2: Fixes to the store code. Add engine properties management.
+v3: Fix for platforms without pre-emption.
+
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+
+John Harrison (15):
+  tests/i915/i915_hangman: Add descriptions
+  lib/hang: Fix igt_require_hang_ring to work with all engines
+  tests/i915/i915_hangman: Update capture test to use engine structure
+  tests/i915/i915_hangman: Explicitly test per engine reset vs full GPU
+    reset
+  tests/i915/i915_hangman: Add uevent test & fix detector
+  tests/i915/i915_hangman: Use the correct context in
+    hangcheck_unterminated
+  lib/store: Refactor common store code into helper function
+  tests/i915/i915_hangman: Add alive-ness test after error capture
+  tests/i915/i915_hangman: Remove reliance on context persistance
+  tests/i915/i915_hangman: Run background task on all engines
+  tests/i915/i915_hangman: Don't let background contexts cause a ban
+  tests/i915/gem_exec_fence: Configure correct context
+  lib/i915: Add helper for non-destructive engine property updates
+  tests/i915/i915_hangman: Configure engine properties for quicker hangs
+  tests/i915/gem_exec_capture: Restore engines
+
+ lib/i915/gem_engine_topology.c |  46 ++++++
+ lib/i915/gem_engine_topology.h |   9 ++
+ lib/igt_aux.c                  |   7 +
+ lib/igt_gt.c                   |   6 +-
+ lib/igt_gt.h                   |   2 +-
+ lib/igt_store.c                |  96 +++++++++++++
+ lib/igt_store.h                |  12 ++
+ lib/meson.build                |   1 +
+ tests/i915/gem_exec_capture.c  |  37 +++--
+ tests/i915/gem_exec_fence.c    |  79 +---------
+ tests/i915/i915_hangman.c      | 256 +++++++++++++++++++++++++++------
+ 11 files changed, 423 insertions(+), 128 deletions(-)
+ create mode 100644 lib/igt_store.c
+ create mode 100644 lib/igt_store.h
+
+-- 
+2.25.1
+
