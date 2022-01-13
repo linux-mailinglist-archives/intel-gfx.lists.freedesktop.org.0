@@ -2,45 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9071748D45D
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 10:33:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0524948D693
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 12:18:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC23810F46F;
-	Thu, 13 Jan 2022 09:33:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAA9610E159;
+	Thu, 13 Jan 2022 11:18:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DBD010F2C1;
- Thu, 13 Jan 2022 09:33:12 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFE1310E159
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jan 2022 11:18:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642066392; x=1673602392;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=FIiIIYhzfU+BNjUU8EuUmgFCxrgJ7iTW6xva1YQmpk4=;
- b=BjImeD/EGR7kcRG4oucApwMI9ynzUVuySq2lyY8bOtY4rujbupKcCvuP
- iU37Aw7gWHkmGU8u/Jvspfwm9BjbruPv3+R9Y3ObovGladsqor+IjyTd0
- alvt0OfBfJDQHq6idDiroYElOcbpFlrf9c7KflV/sLcn99vUDqP8hR7F7
- 3dLiDe7o0fs8xlAm5WnWUSiRDvspOgEOa3Q0RG/Wgj5JV7tH3r3O7h693
- omyi/xjEQ0dmXiHqobchZRimFuYPhQ7cg2FvD/zNcEAujYmJ465Btza9d
- ioOhwQDxBEhogHOJL++NSZp5sT51ciokJ1EK0IdO9snpLue2jTPGee4/Z Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="231314579"
-X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="231314579"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 01:33:09 -0800
-X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="691741893"
-Received: from guevarag-mobl.ger.corp.intel.com (HELO localhost)
- ([10.213.242.1])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 01:33:05 -0800
-Date: Thu, 13 Jan 2022 09:33:03 +0000
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <Yd/xzyCM87rfrwQT@tursulin-mobl2>
+ t=1642072695; x=1673608695;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IIVLKIcYkF8QkG+vvOfUa7vsmUratY34zK0V9xY1F7w=;
+ b=UOrqnOWAd/JPPSqVKY2d8WHfAPmPu+6EAKcP+kDjX+ZhX83UFsw74SGA
+ SF+QwAgdvTUYCj/0adxH2d5ZuCUhjCOYjda27nup5DVgi3o6XY1yUSibu
+ 2akXOnVh4AfAm/qf6IDLvDokMCPLdAnN6lwMhfdeIW2p5X3xbbiwUQ+8w
+ 94x9/uScHfbRzIglzLGbtWFhz4jW5JLV+cR5+GWdZWFCN4qECX2jiPD6A
+ dqX+CNgKFum8alagDjstvapkaJ82Zhv7x4n+0Nn+7Xv1JMVcE80gb9qT+
+ lZCbXBSEtQa3vNJgHmBb7O0Rza46+dS6W2JfOWsjiX0gkIVBf0FCkbQxJ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="330336179"
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="330336179"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 03:18:15 -0800
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="515888271"
+Received: from joneil3-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.0.221])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 03:18:13 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 13 Jan 2022 13:18:02 +0200
+Message-Id: <cover.1642072583.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-next-fixes
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/5] drm/i915/opregion: fixes and cleanups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,60 +56,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Fix the UBSAN reported bit shift out of bounds first, as it's stable
+backport material. Clean some stuff up after that.
 
-Hi Dave and Daniel,
+Jani Nikula (5):
+  drm/i915/opregion: check port number bounds for SWSCI display power
+    state
+  drm/i915/opregion: abstract the check for valid swsci function
+  drm/i915/opregion: early exit from encoder notify if SWSCI isn't there
+  drm/i915/opregion: handle SWSCI Mailbox #2 obsoletion
+  drm/i915/opregion: debug log about Mailbox #2 for backlight
 
-A few fixes for the merge window.
+ drivers/gpu/drm/i915/display/intel_opregion.c | 78 +++++++++++++++----
+ 1 file changed, 62 insertions(+), 16 deletions(-)
 
-One dealing with runtime PM handling on the PXP unbind path and a few
-regarding the newly added TTM backend support.
+-- 
+2.30.2
 
-Regards,
-
-Tvrtko
-
----
-
-drm-intel-next-fixes-2022-01-13:
-- Hold runtime PM wakelock during PXP unbind (Juston Li)
-- Three fixes for the TTM backend fault handling (Matthew Auld)
-- Make sure to unmap when purging in the TTM backend (Matthew Auld)
-The following changes since commit c65fe9cbbfd61dbc12868f9ed4940c80fcb249e8:
-
-  drm/i915/fbc: Remember to update FBC state even when not reallocating CFB (2021-12-27 11:46:48 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-2022-01-13
-
-for you to fetch changes up to 6ef295e34297433c78ea02dfcf1c649a769050bb:
-
-  drm/i915/ttm: ensure we unmap when purging (2022-01-10 14:00:47 +0000)
-
-----------------------------------------------------------------
-- Hold runtime PM wakelock during PXP unbind (Juston Li)
-- Three fixes for the TTM backend fault handling (Matthew Auld)
-- Make sure to unmap when purging in the TTM backend (Matthew Auld)
-
-----------------------------------------------------------------
-Juston Li (1):
-      drm/i915/pxp: Hold RPM wakelock during PXP unbind
-
-Matthew Auld (4):
-      drm/i915: don't call free_mmap_offset when purging
-      drm/i915/ttm: only fault WILLNEED objects
-      drm/i915/ttm: add unmap_virtual callback
-      drm/i915/ttm: ensure we unmap when purging
-
- drivers/gpu/drm/i915/gem/i915_gem_mman.c           |  3 +++
- drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |  1 +
- drivers/gpu/drm/i915/gem/i915_gem_pages.c          |  1 -
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c            | 27 +++++++++++++++++++++-
- drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 18 ++++-----------
- drivers/gpu/drm/i915/pxp/intel_pxp_tee.c           |  5 +++-
- 6 files changed, 38 insertions(+), 17 deletions(-)
