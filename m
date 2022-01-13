@@ -2,33 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE83D48D8D5
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 14:27:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F4248D8E9
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 14:31:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42922112446;
-	Thu, 13 Jan 2022 13:27:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2972E11246D;
+	Thu, 13 Jan 2022 13:31:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 90215112444;
- Thu, 13 Jan 2022 13:27:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8E959A47EB;
- Thu, 13 Jan 2022 13:27:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0133430922458502716=="
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFBC911246A;
+ Thu, 13 Jan 2022 13:31:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642080662; x=1673616662;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=CJVM9eyd8wrdFsnCGqIWGgAAhd2S0Y4upFklJt0saYI=;
+ b=hl7bAQpuSaA6kFqSF/bNAIpQXCDnbG4/wXKQH3mPEizEaJz1+89+2DpA
+ qhdh9Xtn1o3LdMrHJcGjmt8fLUWzXPjY4FMgf4cIXyn56FZlBEN/IA2Qg
+ 7Z83ezT/MFwCeuCXSxFRp3XsSeKRWXsgn67RvoxsB4RQw58lpU+QKTGb5
+ rcUAmztx5QGDWPT3gCj17sT9RwT3dmzNAKLXf7zdp81/J5Up7zR1enWio
+ sLpW+Pr+WxePpvxHuDcp9LCsZw4W6HnBJCsi6aB0HOmKz6ZwTMB1h8Itl
+ CjDtuNw4SCxCDa5OlFMCr6H2DJj5w+Epy5Z7fj04q1uLyHMsrFM7AFOI0 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="223988815"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="223988815"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 05:31:02 -0800
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="670514974"
+Received: from inechita-mobl2.ger.corp.intel.com (HELO [10.249.254.193])
+ ([10.249.254.193])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 05:31:01 -0800
+Message-ID: <45f75559-6367-d0ff-bd45-3efca11656a9@linux.intel.com>
+Date: Thu, 13 Jan 2022 14:30:59 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Thu, 13 Jan 2022 13:27:51 -0000
-Message-ID: <164208047156.19000.9797203072857325207@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 References: <20220113114500.2039439-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20220113114500.2039439-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Remove_short_term_pins_from_execbuf_by_requiring_lock_?=
- =?utf-8?q?to_unbind=2E?=
+ <20220113114500.2039439-2-maarten.lankhorst@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20220113114500.2039439-2-maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v5 1/6] drm/i915: Call i915_gem_evict_vm in
+ vm_fault_gtt to prevent new ENOSPC errors, v2.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,243 +62,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0133430922458502716==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 1/13/22 12:44, Maarten Lankhorst wrote:
+> Now that we cannot unbind kill the currently locked object directly
+> because we're removing short term pinning, we may have to unbind the
+> object from gtt manually, using a i915_gem_evict_vm() call.
+>
+> Changes since v1:
+> - Remove -ENOSPC warning, can still happen with concurrent mmaps
+>    where we can't unbind the other mmap because of the lock held.
+>    This  fixes the gem_mmap_gtt@cpuset tests.
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Series: drm/i915: Remove short term pins from execbuf by requiring lock to unbind.
-URL   : https://patchwork.freedesktop.org/series/98837/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11077 -> Patchwork_21993
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/index.html
-
-Participating hosts (45 -> 35)
-------------------------------
-
-  Missing    (10): shard-tglu bat-dg1-6 bat-dg1-5 fi-icl-u2 fi-bsw-cyan bat-adlp-6 bat-rpls-1 shard-rkl bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_21993 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-gfx0:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +21 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-bdw-5557u:       [PASS][2] -> [INCOMPLETE][3] ([i915#146])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11077/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [PASS][6] -> [INCOMPLETE][7] ([i915#3303])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11077/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][9] ([fdo#109271] / [i915#533])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][10] ([fdo#109271] / [i915#1436] / [i915#4312])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-hsw-4770/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-skl-6600u:       [INCOMPLETE][11] ([i915#4547]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11077/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11077 -> Patchwork_21993
-
-  CI-20190529: 20190529
-  CI_DRM_11077: dd14003838c5a80ce141b31f2659a056a40cd894 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6326: ec75f64fcbcf4aac58fbf1bf629e8f59b19db4ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_21993: 517ba11b3ad8b7ac601878c154a88be464c74048 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-517ba11b3ad8 drm/i915: Remove short-term pins from execbuf, v6.
-6def580408d2 drm/i915: Remove support for unlocked i915_vma unbind
-21d14143f7f1 drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind, v2.
-a5a3e0f29127 drm/i915: Add object locking to i915_gem_evict_for_node and i915_gem_evict_something, v2.
-171e3d2259de drm/i915: Add locking to i915_gem_evict_vm()
-6c3515b331fc drm/i915: Call i915_gem_evict_vm in vm_fault_gtt to prevent new ENOSPC errors, v2.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/index.html
-
---===============0133430922458502716==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Remove short term pins from execbuf by requiring lock to unbind.</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98837/">https://patchwork.freedesktop.org/series/98837/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11077 -&gt; Patchwork_21993</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/index.html</p>
-<h2>Participating hosts (45 -&gt; 35)</h2>
-<p>Missing    (10): shard-tglu bat-dg1-6 bat-dg1-5 fi-icl-u2 fi-bsw-cyan bat-adlp-6 bat-rpls-1 shard-rkl bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_21993 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-gfx0:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +21 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11077/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11077/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3@smem:<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11077/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_21993/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11077 -&gt; Patchwork_21993</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11077: dd14003838c5a80ce141b31f2659a056a40cd894 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6326: ec75f64fcbcf4aac58fbf1bf629e8f59b19db4ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_21993: 517ba11b3ad8b7ac601878c154a88be464c74048 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>517ba11b3ad8 drm/i915: Remove short-term pins from execbuf, v6.<br />
-6def580408d2 drm/i915: Remove support for unlocked i915_vma unbind<br />
-21d14143f7f1 drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind, v2.<br />
-a5a3e0f29127 drm/i915: Add object locking to i915_gem_evict_for_node and i915_gem_evict_something, v2.<br />
-171e3d2259de drm/i915: Add locking to i915_gem_evict_vm()<br />
-6c3515b331fc drm/i915: Call i915_gem_evict_vm in vm_fault_gtt to prevent new ENOSPC errors, v2.</p>
-
-</body>
-</html>
-
---===============0133430922458502716==--
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_mman.c | 18 ++++++++++++++++--
+>   1 file changed, 16 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> index 5ac2506f4ee8..fafd158e5313 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> @@ -21,6 +21,7 @@
+>   #include "i915_trace.h"
+>   #include "i915_user_extensions.h"
+>   #include "i915_gem_ttm.h"
+> +#include "i915_gem_evict.h"
+>   #include "i915_vma.h"
+>   
+>   static inline bool
+> @@ -358,8 +359,21 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
+>   			vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
+>   		}
+>   
+> -		/* The entire mappable GGTT is pinned? Unexpected! */
+> -		GEM_BUG_ON(vma == ERR_PTR(-ENOSPC));
+> +		/*
+> +		 * The entire mappable GGTT is pinned? Unexpected!
+> +		 * Try to evict the object we locked too, as normally we skip it
+> +		 * due to lack of short term pinning inside execbuf.
+> +		 */
+> +		if (vma == ERR_PTR(-ENOSPC)) {
+> +			ret = mutex_lock_interruptible(&ggtt->vm.mutex);
+> +			if (!ret) {
+> +				ret = i915_gem_evict_vm(&ggtt->vm);
+> +				mutex_unlock(&ggtt->vm.mutex);
+> +			}
+> +			if (ret)
+> +				goto err_reset;
+> +			vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
+> +		}
+>   	}
+>   	if (IS_ERR(vma)) {
+>   		ret = PTR_ERR(vma);
