@@ -2,42 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D974848CFF9
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 02:06:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B4948D01E
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 02:28:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6F9210E2CC;
-	Thu, 13 Jan 2022 01:06:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B17FB10E3DB;
+	Thu, 13 Jan 2022 01:28:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E173310E2CC
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jan 2022 01:06:48 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 128F361BA0;
- Thu, 13 Jan 2022 01:06:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F1EFC36AE9;
- Thu, 13 Jan 2022 01:06:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642036007;
- bh=mAi7hYRDjTFdqIvG2j8opuszNCwfw5UH++EoHijXB2k=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=ZyWY3DZKb1XU9DkalV8R1SJRMe97HBagDaxsX6pHjL0uxe7PED2vqTI2gzqzPQJdy
- Qt3ZMClwlmZeushiumEmA3NEju9F6SsJtP3+84WYnftYq5acwXaI//S6F4cEfUB/es
- ZuKrp6Se3CRszVrhOf9yIvPHF9Ks79VydC4ScRwJxe65yQotx78srPHclcN7pKNOLb
- nQN+S1Fz+lvhw13g9hFv4FzzFL87kPs9YpZz80FXct3/jqzZW2Bh9H54NK8Db5aAdk
- 6US5KzwkTVnX54SB1qZ42zA1tw/yXV10W1Qqhu9lbU39u0xTSsoi166cAU4hMxHoYn
- G1s+A54MZt0VQ==
-Date: Wed, 12 Jan 2022 19:06:45 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20220113010645.GA301048@bhelgaas>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F402510E3DB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jan 2022 01:28:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642037310; x=1673573310;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=1GQhvpc9h2q+oWT0Bwc9I8ajOa4+I4trncxc6miRVHI=;
+ b=bLJ9y3+8tKZBNLE6f+a3me25SI1BliSgC6rQ8lXk3bjrvClr5KAT5tBz
+ wUKKMYKib3p2jwQ/F6/GDDWOQqmjhk2tbzOYoSyROAcPmGI7Snofvb74U
+ WjlsCQzIS2WWcpsnY0ppT/0BHRQ0vresLd1vkF3MQmZvRkISNzRLvdd+V
+ 9EEvJ5FCuaSjzSmtxqktxDU4XoRROwnVK2UiMfdSXQzmdgifWbPzPNl3t
+ jlsnnu+Kq4BfesSIcbGLpJHr9NiuY+PvzMYcgp9ZlW0wIfQ9OlyGqPgJa
+ aRBFD+q9SHgYU/InXLQLj9cVqy/yEhYWk6jmvv9jTijPvUwBuY92ZXdEm w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="223884791"
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="223884791"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2022 17:28:29 -0800
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="765397423"
+Received: from jsinnott-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.139.158])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2022 17:28:29 -0800
+Date: Wed, 12 Jan 2022 17:28:29 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Message-ID: <20220113012829.pquif5ujboyohzld@ldmartin-desk2>
+References: <20220113002128.7wcji4n5rlpchlyt@ldmartin-desk2>
+ <20220113010645.GA301048@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20220113002128.7wcji4n5rlpchlyt@ldmartin-desk2>
+In-Reply-To: <20220113010645.GA301048@bhelgaas>
 Subject: Re: [Intel-gfx] [PATCH v4] x86/quirks: Replace QFLAG_APPLY_ONCE
  with static locals
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -58,77 +64,59 @@ Cc: x86@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 12, 2022 at 04:21:28PM -0800, Lucas De Marchi wrote:
-> On Wed, Jan 12, 2022 at 06:08:05PM -0600, Bjorn Helgaas wrote:
-> > On Wed, Jan 12, 2022 at 03:30:43PM -0800, Lucas De Marchi wrote:
-> > > The flags are only used to mark a quirk to be called once and nothing
-> > > else. Also, that logic may not be appropriate if the quirk wants to
-> > > do additional filtering and set quirk as applied by itself.
-> > > 
-> > > So replace the uses of QFLAG_APPLY_ONCE with static local variables in
-> > > the few quirks that use this logic and remove all the flags logic.
-> > > 
-> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > Reviewed-by: Bjorn Helgaas <bhelgaas@google.com>
-> > 
-> > Only occurred to me now, but another, less intrusive approach would be
-> > to just remove QFLAG_APPLY_ONCE from intel_graphics_quirks() and do
-> > its bookkeeping internally, e.g.,
-> 
-> that is actually what I suggested after your comment in v2: this would
-> be the first patch with "minimal fix". But then to keep it consistent
-> with the other calls to follow up with additional patches on top
-> converting them as well.  Maybe what I wrote wasn't clear in the
-> direction? Copying it here:
-> 
-> 	1) add the static local only to intel graphics quirk  and remove the
-> 	flag from this item
-> 	2 and 3) add the static local to other functions and remove the flag
-> 	from those items
-> 	4) remove the flag from the table, the defines and its usage.
-> 	5) fix the coding style (to be clear, it's already wrong, not
-> 	something wrong introduced here... maybe could be squashed in (4)?)
+On Wed, Jan 12, 2022 at 07:06:45PM -0600, Bjorn Helgaas wrote:
+>On Wed, Jan 12, 2022 at 04:21:28PM -0800, Lucas De Marchi wrote:
+>> On Wed, Jan 12, 2022 at 06:08:05PM -0600, Bjorn Helgaas wrote:
+>> > On Wed, Jan 12, 2022 at 03:30:43PM -0800, Lucas De Marchi wrote:
+>> > > The flags are only used to mark a quirk to be called once and nothing
+>> > > else. Also, that logic may not be appropriate if the quirk wants to
+>> > > do additional filtering and set quirk as applied by itself.
+>> > >
+>> > > So replace the uses of QFLAG_APPLY_ONCE with static local variables in
+>> > > the few quirks that use this logic and remove all the flags logic.
+>> > >
+>> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> > > Reviewed-by: Bjorn Helgaas <bhelgaas@google.com>
+>> >
+>> > Only occurred to me now, but another, less intrusive approach would be
+>> > to just remove QFLAG_APPLY_ONCE from intel_graphics_quirks() and do
+>> > its bookkeeping internally, e.g.,
+>>
+>> that is actually what I suggested after your comment in v2: this would
+>> be the first patch with "minimal fix". But then to keep it consistent
+>> with the other calls to follow up with additional patches on top
+>> converting them as well.  Maybe what I wrote wasn't clear in the
+>> direction? Copying it here:
+>>
+>> 	1) add the static local only to intel graphics quirk  and remove the
+>> 	flag from this item
+>> 	2 and 3) add the static local to other functions and remove the flag
+>> 	from those items
+>> 	4) remove the flag from the table, the defines and its usage.
+>> 	5) fix the coding style (to be clear, it's already wrong, not
+>> 	something wrong introduced here... maybe could be squashed in (4)?)
+>
+>Oh, sorry, I guess I just skimmed over that without really
+>comprehending it.
+>
+>Although the patch below is basically just 1 from above and doesn't
+>require any changes to the other functions or the flags themselves
+>(2-4 above).
 
-Oh, sorry, I guess I just skimmed over that without really
-comprehending it.
+Yes, but I would do the rest of the conversion anyway. It would be odd
+to be inconsistent with just a few functions. So in the end I think we
+would achieve the same goal.
 
-Although the patch below is basically just 1 from above and doesn't
-require any changes to the other functions or the flags themselves
-(2-4 above).
+I would really prefer this approach, having the bug fix first, if I was
+concerned about having to backport this to linux-stable beyond 5.10.y
+(we have a trivial conflict on 5.10).
 
-> > diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
-> > index 391a4e2b8604..7b655004e5fd 100644
-> > --- a/arch/x86/kernel/early-quirks.c
-> > +++ b/arch/x86/kernel/early-quirks.c
-> > @@ -587,10 +587,14 @@ intel_graphics_stolen(int num, int slot, int func,
-> > 
-> > static void __init intel_graphics_quirks(int num, int slot, int func)
-> > {
-> > +	static bool stolen __initdata = false;
-> > 	const struct intel_early_ops *early_ops;
-> > 	u16 device;
-> > 	int i;
-> > 
-> > +	if (stolen)
-> > +		return;
-> > +
-> > 	device = read_pci_config_16(num, slot, func, PCI_DEVICE_ID);
-> > 
-> > 	for (i = 0; i < ARRAY_SIZE(intel_early_ids); i++) {
-> > @@ -602,6 +606,7 @@ static void __init intel_graphics_quirks(int num, int slot, int func)
-> > 		early_ops = (typeof(early_ops))driver_data;
-> > 
-> > 		intel_graphics_stolen(num, slot, func, early_ops);
-> > +		stolen = true;
-> > 
-> > 		return;
-> > 	}
-> > @@ -703,7 +708,7 @@ static struct chipset early_qrk[] __initdata = {
-> > 	{ PCI_VENDOR_ID_INTEL, 0x3406, PCI_CLASS_BRIDGE_HOST,
-> > 	  PCI_BASE_CLASS_BRIDGE, 0, intel_remapping_check },
-> > 	{ PCI_VENDOR_ID_INTEL, PCI_ANY_ID, PCI_CLASS_DISPLAY_VGA, PCI_ANY_ID,
-> > -	  QFLAG_APPLY_ONCE, intel_graphics_quirks },
-> > +	  0, intel_graphics_quirks },
-> > 	/*
-> > 	 * HPET on the current version of the Baytrail platform has accuracy
-> > 	 * problems: it will halt in deep idle state - so we disable it.
+However given this situation is new (Intel GPU + Intel Discrete GPU)
+rare (it also needs a PCI topology in a certain way to reproduce it),
+I'm not too concerned. Not even sure if it's worth submitting to
+linux-stable.
+
+I'll wait others to chime in on one way vs the other.
+
+thanks
+Lucas De Marchi
