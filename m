@@ -1,57 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15B9548D39B
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 09:29:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 789A648D44A
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 10:07:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0D1F10E713;
-	Thu, 13 Jan 2022 08:29:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1516610E28C;
+	Thu, 13 Jan 2022 09:07:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5A4310E713;
- Thu, 13 Jan 2022 08:29:54 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 2C7371F3A8;
- Thu, 13 Jan 2022 08:29:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1642062593; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=it5g+eNVwHnyAdGM9w/RSUnnpaD6cC1qQg9SBdba3E0=;
- b=Yzv6E0+f9sLnyeE+3iSQ7Ga/pqYBKu/I3dCKMo1/nvcXZJrlONqDHVEBaTJ6K9iFlLqT+p
- y9qxFa3eY32MVvq6dpqo6TNbI/RArsfZFHP23NN4ru6HZq9pFJ3urkFxIK9HQu9Z0j+2w0
- M76Z42EEv6qHz+ZXFZeLp5EV5LKdB10=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1642062593;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=it5g+eNVwHnyAdGM9w/RSUnnpaD6cC1qQg9SBdba3E0=;
- b=cSBEq9p/11/u3FOCuQ+kNF48SQw6m8rxtQb3fdHhqEKh+pMPNT+xx9anXZeI+TNfQJ6aKs
- yI4dm461wJueCLBg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id EA0DE13B83;
- Thu, 13 Jan 2022 08:29:52 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id QroGOADj32GyTwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 13 Jan 2022 08:29:52 +0000
-Date: Thu, 13 Jan 2022 09:29:51 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <Yd/i/zj9vEHisSSB@linux-uq9g>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 569A010E770
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jan 2022 09:06:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642064819; x=1673600819;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=tsWMGJvZiOZwuUKEA9URk1VtWJ5iJ20qXflW8X8U6ks=;
+ b=KuYdSnbvqFfx8gsHuAtNuaqEIfIFE4Roi4GRbKjikXSCtdRaQ9co7FVT
+ 8Mvvxft1XEV7S81ZzW0ZFp1YI1y6uAcktiFfCQIvbhZnu1wmGD4hsEClj
+ wzR4UfbBtypW34zYamXdM7C3w09Op3w2nWThMDA59XBj3KAigOYeG07/M
+ aDAqhT6BBVnc4mqIR5xqlcfDvkPdjyVcXm66bqvrIVIikoA5HBQxmdIVk
+ 019o8XzsJMHdhzC+I4rC3or279B1/r0cvE+NF1QjNx67CGdbikuGzWn6w
+ ccvrmhvTdMsNPcXRyqHe0/oogAjoG7Wna9RD9txJLTulJB3F7CuOnruVE A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="224658542"
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="224658542"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 01:06:57 -0800
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="491067835"
+Received: from joneil3-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.0.221])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 01:06:53 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+In-Reply-To: <Yd+nHsmm9oKzzVDJ@mdroper-desk1.amr.corp.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220111051600.3429104-1-matthew.d.roper@intel.com>
+ <20220111051600.3429104-4-matthew.d.roper@intel.com>
+ <Yd7vQ3uSLisEwnxq@intel.com>
+ <Yd+nHsmm9oKzzVDJ@mdroper-desk1.amr.corp.intel.com>
+Date: Thu, 13 Jan 2022 11:06:51 +0200
+Message-ID: <87k0f46m38.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v3 03/11] drm/i915: Parameterize ECOSKPD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,46 +61,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+On Wed, 12 Jan 2022, Matt Roper <matthew.d.roper@intel.com> wrote:
+> On Wed, Jan 12, 2022 at 05:09:55PM +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
+>> On Mon, Jan 10, 2022 at 09:15:52PM -0800, Matt Roper wrote:
+>> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i9=
+15_reg.h
+>> > index 3ef332833c4c..a4c9d2005c46 100644
+>> > --- a/drivers/gpu/drm/i915/i915_reg.h
+>> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> > @@ -2858,10 +2858,12 @@ static inline bool i915_mmio_reg_valid(i915_re=
+g_t reg)
+>> >  #define GFX_FLSH_CNTL	_MMIO(0x2170) /* 915+ only */
+>> >  #define GFX_FLSH_CNTL_GEN6	_MMIO(0x101008)
+>> >  #define   GFX_FLSH_CNTL_EN	(1 << 0)
+>> > -#define ECOSKPD		_MMIO(0x21d0)
+>> > -#define   ECO_CONSTANT_BUFFER_SR_DISABLE REG_BIT(4)
+>> > -#define   ECO_GATING_CX_ONLY	(1 << 3)
+>> > -#define   ECO_FLIP_DONE		(1 << 0)
+>> > +#define ECOSKPD(base)		_MMIO((base) + 0x1d0)
+>> > +#define   ECO_CONSTANT_BUFFER_SR_DISABLE	REG_BIT(4)
+>> > +#define   ECO_GATING_CX_ONLY			REG_BIT(3)
+>> > +#define   GEN6_BLITTER_FBC_NOTIFY		REG_BIT(3)
+>> > +#define   ECO_FLIP_DONE				REG_BIT(0)
+>> > +#define   GEN6_BLITTER_LOCK_SHIFT		16
+>>=20
+>> This looks messy. The register contents are (mostly?) unique for
+>> each engine, so this is making it rather hard to see which register
+>> takes which bits. I think we should at least group the bits clearly
+>> based on which engine they belong to.
+>
+> Makes sense.  I'll send a follow-up patch tomorrow that reorganizes this
+> a bit.
 
-here's this week's PR for drm-misc-next-fixes.
+For things that you're rearranging in the series, sure, please clean it
+up. But for stuff already in i915_reg.h, let's not let those block this
+work. Split up the file, and IMO the cleanup will be easier in the
+smaller files with follow-up patches.
 
-Best regards
-Thomas
+BR,
+Jani.
 
-drm-misc-next-fixes-2022-01-13:
- * Fix use of CRTC state's active vs enable in atomic helper
-The following changes since commit 5da8b49de472c1da8658466d4f63ef8d9251a819:
 
-  dt-bindings: display: bridge: lvds-codec: Fix duplicate key (2021-12-22 14:02:04 -0400)
 
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2022-01-13
-
-for you to fetch changes up to 69e630016ef4e4a1745310c446f204dc6243e907:
-
-  drm/atomic: Check new_crtc_state->active to determine if CRTC needs disable in self refresh mode (2022-01-11 10:37:15 -0500)
-
-----------------------------------------------------------------
- * Fix use of CRTC state's active vs enable in atomic helper
-
-----------------------------------------------------------------
-Liu Ying (1):
-      drm/atomic: Check new_crtc_state->active to determine if CRTC needs disable in self refresh mode
-
- drivers/gpu/drm/drm_atomic_helper.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
+--=20
+Jani Nikula, Intel Open Source Graphics Center
