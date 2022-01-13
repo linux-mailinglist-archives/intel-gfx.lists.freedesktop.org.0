@@ -2,51 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 298B748D699
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 12:18:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B77E48D6DE
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 12:45:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48F5210E645;
-	Thu, 13 Jan 2022 11:18:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10FC510F471;
+	Thu, 13 Jan 2022 11:45:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8261210E39A
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jan 2022 11:18:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642072717; x=1673608717;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DRRmwfwIHsTiSv74VRxZmR0SHFySaaKXm8ENzejsA54=;
- b=fex2K6XlVhUWJGZZ04ns7IqXjJG3aA/uDPnjTrn7v7TCQHVp6LOIPkgq
- Gahn+uyVXwXA6WWLI/2U2g9OlCuD6rC8n4K4S6V67AUhwjnw/EYTfrBmL
- viJiJZBs+eEBHUTuGJ/tMGthTYQKTKGg2gqrpnKF2BrOfLvsHytMRhRY+
- +GDNfqZrNdJeQK0LoI5rwMnn1awEVVm8sbJVTO6aEHaDlLc2dZ/MYPilZ
- 0DZnw+NIGNYORfja1i9LslgbvQDQLdAM+aKj4rTX4Je0AQ5Hk5sSzd3XB
- yYXEmPGM+kuKO2fRUwOufuzJMUHRF9kSFUCAz8IaZ2MH3uel4iNCc4Kjk w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="242804491"
-X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="242804491"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 03:18:37 -0800
-X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="623817888"
-Received: from joneil3-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.0.221])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 03:18:35 -0800
-From: Jani Nikula <jani.nikula@intel.com>
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF0110E36C;
+ Thu, 13 Jan 2022 11:45:06 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 13 Jan 2022 13:18:07 +0200
-Message-Id: <848a4b751da2dfd90dd7f769320483f8b7b05a22.1642072583.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1642072583.git.jani.nikula@intel.com>
-References: <cover.1642072583.git.jani.nikula@intel.com>
+Date: Thu, 13 Jan 2022 12:44:54 +0100
+Message-Id: <20220113114500.2039439-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915/opregion: debug log about Mailbox
- #2 for backlight
+Subject: [Intel-gfx] [PATCH v5 0/6] drm/i915: Remove short term pins from
+ execbuf by requiring lock to unbind.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,50 +33,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Start debug logging about the presence of the new Mailbox #2 for
-backlight. Actual support is to be added later.
+Previously, short term pinning in execbuf was required because i915_vma was
+effectively independent from objects, and has its own refcount, locking,
+lifetime rules and pinning.
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_opregion.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+This series removes the separate locking, by requiring vma->obj->resv to be
+held when pinning and unbinding. This will also be required for VM_BIND work.
+Some patches have already been merged, but this contains the mremainder of
+the conversion.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index 6e32ed6bbf4e..b1ad11b2ebb3 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -47,10 +47,11 @@
- #define OPREGION_ASLE_EXT_OFFSET	0x1C00
- 
- #define OPREGION_SIGNATURE "IntelGraphicsMem"
--#define MBOX_ACPI      (1<<0)
--#define MBOX_SWSCI     (1<<1)
--#define MBOX_ASLE      (1<<2)
--#define MBOX_ASLE_EXT  (1<<4)
-+#define MBOX_ACPI		BIT(0)	/* Mailbox #1 */
-+#define MBOX_SWSCI		BIT(1)	/* Mailbox #2 (obsolete from v2.x) */
-+#define MBOX_ASLE		BIT(2)	/* Mailbox #3 */
-+#define MBOX_ASLE_EXT		BIT(4)	/* Mailbox #5 */
-+#define MBOX_BACKLIGHT		BIT(5)	/* Mailbox #2 (valid from v3.x) */
- 
- struct opregion_header {
- 	u8 signature[16];
-@@ -957,6 +958,10 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
- 		opregion->asle_ext = base + OPREGION_ASLE_EXT_OFFSET;
- 	}
- 
-+	if (mboxes & MBOX_BACKLIGHT) {
-+		drm_dbg(&dev_priv->drm, "Mailbox #2 for backlight present\n");
-+	}
-+
- 	if (intel_load_vbt_firmware(dev_priv) == 0)
- 		goto out;
- 
+With pinning required for pinning and unbinding, the lock is enough to prevent
+unbinding when trying to pin with the lock held, for example in execbuf.
+
+This makes binding/unbinding similar to ttm_bo_validate()'s use, which just
+cares that an object is in a certain place, without pinning it in place.
+
+Having the VMA part of gem bo removes a lot of the vma refcounting, and makes
+i915_vma more a part of the bo, instead of its own floating object that just
+happens to be part of a bo. This is also required to make it more compatible
+with TTM, and migration in general.
+
+For future work, it makes things a lot simpler and clear. We want to end up
+with i915_vma just being a specific mapping of the BO, just like is the
+case in other drivers. i915_vma->active removal is the next step there,
+and makes it when object is destroyed, the bindings are destroyed (after idle),
+instead of object being destroyed when bindings are idle. 
+
+Changes since previous version:
+* As a special case, we allow unbinding pages when the object is dead.
+  This will allow us to free objects without complications, which is
+  important because many IGT tests free and then immediately put a new
+  object in the same address. This is a shortcoming of softpin, as
+  there is no way to tell when it's safe to re-use the address.
+
+  As a potential performance optimization, i915 should use the random
+  allocator by default, instead of the high to low allocator,
+  which causes the unintentional address re-use.
+
+Maarten Lankhorst (6):
+  drm/i915: Call i915_gem_evict_vm in vm_fault_gtt to prevent new ENOSPC
+    errors, v2.
+  drm/i915: Add locking to i915_gem_evict_vm()
+  drm/i915: Add object locking to i915_gem_evict_for_node and
+    i915_gem_evict_something, v2.
+  drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for
+    i915_vma_unbind, v2.
+  drm/i915: Remove support for unlocked i915_vma unbind
+  drm/i915: Remove short-term pins from execbuf, v6.
+
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |   2 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 220 +++++++++---------
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  18 +-
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |   2 +-
+ .../i915/gem/selftests/i915_gem_client_blt.c  |   2 +-
+ .../drm/i915/gem/selftests/i915_gem_mman.c    |   6 +
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  47 +++-
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |   1 -
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |   2 +-
+ drivers/gpu/drm/i915/gvt/aperture_gm.c        |   2 +-
+ drivers/gpu/drm/i915/i915_gem.c               |   2 +
+ drivers/gpu/drm/i915/i915_gem_evict.c         | 107 ++++++++-
+ drivers/gpu/drm/i915/i915_gem_evict.h         |   6 +-
+ drivers/gpu/drm/i915/i915_gem_gtt.c           |   8 +-
+ drivers/gpu/drm/i915/i915_gem_gtt.h           |   4 +
+ drivers/gpu/drm/i915/i915_vgpu.c              |   2 +-
+ drivers/gpu/drm/i915/i915_vma.c               | 122 +++++-----
+ drivers/gpu/drm/i915/i915_vma.h               |   1 +
+ .../gpu/drm/i915/selftests/i915_gem_evict.c   |  27 ++-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  28 +--
+ drivers/gpu/drm/i915/selftests/i915_vma.c     |   8 +-
+ 21 files changed, 393 insertions(+), 224 deletions(-)
+
 -- 
-2.30.2
+2.34.1
 
