@@ -1,34 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 095CD48DD7F
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 19:13:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01DBE48DD90
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 19:21:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 379F210E536;
-	Thu, 13 Jan 2022 18:13:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 217BD10E536;
+	Thu, 13 Jan 2022 18:21:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0088110E536;
- Thu, 13 Jan 2022 18:13:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 00A55A0099;
- Thu, 13 Jan 2022 18:13:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42B2B10E536;
+ Thu, 13 Jan 2022 18:21:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642098082; x=1673634082;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tWbsgazn/tjQR0KTwVBh6b1CzVRbkjOVZiiYhiwqNOY=;
+ b=elGEyMLrH5a6n4/hxGjcFZE6QH8OcZQ7HBuJDn3wsGkZRzy9OcSR4i5i
+ OUxLGu1VdrYe5DjmffolbZU4IlfzfyyG4Q2V7m1Hcovd/v/x+ZkJ27uWp
+ 8a/mWZpXmMzQavUYrmCh3+bOymC1DdquyeLFuuah4L/Bj4Ok5slJMo8sV
+ +sbpZQnAO2pgmf1qhpzqvEawIuWB+SnHFBBZXunz3bJfiEUKL6KKmrxut
+ LChY9Lrz2E6d5582JRjBCBqDd2qx0xEpzwQfZsOOWAWow8lKZEdEK/4es
+ 9eundifxUEyhzlkomFFF5xHD8Z0FTXl4k0slS3dBchIAIXKFDHmUXngKi A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="268440150"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="268440150"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 10:19:43 -0800
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="765634138"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 10:19:43 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Thu, 13 Jan 2022 10:13:49 -0800
+Message-Id: <20220113181351.21296-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Thu, 13 Jan 2022 18:13:12 -0000
-Message-ID: <164209759299.19002.14949625427503754832@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220113174826.50272-1-jose.souza@intel.com>
-In-Reply-To: <20220113174826.50272-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/display/adlp=3A_Implement_new_step_in_the_TC_volta?=
- =?utf-8?q?ge_swing_prog_sequence?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/2] Remove some hacks required for GuC 62.0.0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,29 +54,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Remove a hack required because schedule disable done G2H was received
+before context reset G2H in GuC firmware 62.0.0. Since we have upgraded
+69.0.3, this is no longer required.
 
-Series: drm/i915/display/adlp: Implement new step in the TC voltage swing prog sequence
-URL   : https://patchwork.freedesktop.org/series/98853/
-State : warning
+Also revive selftest which proves this works before / after change.
 
-== Summary ==
+v2:
+  - Address John Harrion's comments
 
-$ dim checkpatch origin/drm-tip
-79db9538db06 drm/i915/display/adlp: Implement new step in the TC voltage swing prog sequence
--:65: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#65: FILE: drivers/gpu/drm/i915/i915_reg.h:10091:
-+#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1(val)	REG_FIELD_PREP(DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1_MASK, (val))
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
--:67: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#67: FILE: drivers/gpu/drm/i915/i915_reg.h:10093:
-+#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2(val)	REG_FIELD_PREP(DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2_MASK, (val))
+Matthew Brost (2):
+  drm/i915/selftests: Add a cancel request selftest that triggers a
+    reset
+  drm/i915/guc: Remove hacks for reset and schedule disable G2H being
+    received out of order
 
-total: 0 errors, 2 warnings, 0 checks, 42 lines checked
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  30 +----
+ drivers/gpu/drm/i915/selftests/i915_request.c | 117 ++++++++++++++++++
+ 2 files changed, 119 insertions(+), 28 deletions(-)
 
+-- 
+2.34.1
 
