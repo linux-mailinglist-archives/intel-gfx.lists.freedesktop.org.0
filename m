@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E16E348DC68
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 18:00:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ABE748DC5D
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 18:00:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDB3210E564;
-	Thu, 13 Jan 2022 16:59:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 278CE10E554;
+	Thu, 13 Jan 2022 16:59:49 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 314CB10E2C6;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C8E510E233;
  Thu, 13 Jan 2022 16:59:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1642093186; x=1673629186;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xM2SiiZcSGMS8C4FDvXJQ92jA0FhXueWZTBHSAg1SLQ=;
- b=G2K8b7OPZg0bHUrNjxGag7ttRFwJcv2XJFS31VhUfapCNBcD9zSAwC+m
- gZaUOB2NV/W90Eg+eTf10cfupF/OlD2k948iukp26XrK13Sf0gpJzlQ5Z
- 6xhsQysI8C3tFSsxF/9Evi48zfSdhtZTCBlqzOsdSGonJhB8YbFmVzS9E
- ZmQ6sMEp/MES/WQPEfFeJD8Av9/jaAYQxQ8W6+Exno0RQdEpt+B0bNHLD
- +Agc8iy71XswoMqx0ebI80zKUCvf5vxTBliZK5AJxETmz6uknNFkAzW5u
- waaSccQrsK0MMsOexgVRl30Zr37TiPYtRXsNIEgTcFKbjwdn29T4L2cre Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="268409168"
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="268409168"
+ bh=K3jPJpQTeic6zp56inDr1MNH8duJnRRchk+iNPrI0VA=;
+ b=J89RxlD7a3LDwrAnoqbtEG68HzA88BJEiAux+0jmRycfTMQuHtjDtTAH
+ 5cDGGBrWGj2CmupnR9xH76zO4y4RuzLG1U2o8SxlIcbltEAkCLxuUEAAd
+ 7u49Z0jNsBi7E8jj5/Lqs4svoDOVbXRI/wc95XVLAFQsjGZmoni1i80G8
+ Q2D2n6LhpYxg4icYblxJsxbJoppWBwHto6TNaQzpBRU86PI39QwReEzVY
+ 70qlZhto4CUCPNc2RVQec2EATbjHh2gEk/lPzxfIgs8ta0rWaAMYXJZVY
+ DGFrcwkdRPhvaXbeYIvPv0aGzAaroRmu/p0/CWsASW0uRs2BdPjHz0IVg A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="268409170"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="268409170"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2022 08:59:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="515999151"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="515999155"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
  by orsmga007.jf.intel.com with ESMTP; 13 Jan 2022 08:59:44 -0800
 From: John.C.Harrison@Intel.com
 To: IGT-Dev@Lists.FreeDesktop.Org
-Date: Thu, 13 Jan 2022 08:59:32 -0800
-Message-Id: <20220113165944.1414015-4-John.C.Harrison@Intel.com>
+Date: Thu, 13 Jan 2022 08:59:33 -0800
+Message-Id: <20220113165944.1414015-5-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220113165944.1414015-1-John.C.Harrison@Intel.com>
 References: <20220113165944.1414015-1-John.C.Harrison@Intel.com>
@@ -44,8 +44,8 @@ MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 i-g-t 03/15] tests/i915/i915_hangman: Update
- capture test to use engine structure
+Subject: [Intel-gfx] [PATCH v2 i-g-t 04/15] tests/i915/i915_hangman:
+ Explicitly test per engine reset vs full GPU reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,57 +64,131 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-The capture test was still using old style ring_id and ring_name
-(derived from the engine structure at the higher level). Update it to
-just take the engine structure directly.
+Although the hangman test was ensuring that *some* reset functionality
+was enabled, it did not differentiate what kind. The infrastructure
+required to choose between per engine reset or full GT reset was
+recently added. So update this test to use it as well.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- tests/i915/i915_hangman.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ tests/i915/i915_hangman.c | 76 +++++++++++++++++++++++++--------------
+ 1 file changed, 49 insertions(+), 27 deletions(-)
 
 diff --git a/tests/i915/i915_hangman.c b/tests/i915/i915_hangman.c
-index f64b8819d..280eac197 100644
+index 280eac197..7b8390a6c 100644
 --- a/tests/i915/i915_hangman.c
 +++ b/tests/i915/i915_hangman.c
-@@ -207,8 +207,8 @@ static void check_error_state(const char *expected_ring_name,
- 	igt_assert(found);
+@@ -323,40 +323,26 @@ static void hangcheck_unterminated(const intel_ctx_t *ctx)
+ 	}
  }
  
--static void test_error_state_capture(const intel_ctx_t *ctx, unsigned ring_id,
--				     const char *ring_name)
-+static void test_error_state_capture(const intel_ctx_t *ctx,
-+				     const struct intel_execution_engine2 *e)
+-igt_main
++static void do_tests(const char *name, const char *prefix,
++		     const intel_ctx_t *ctx)
  {
- 	uint32_t *batch;
- 	igt_hang_t hang;
-@@ -217,7 +217,7 @@ static void test_error_state_capture(const intel_ctx_t *ctx, unsigned ring_id,
+ 	const struct intel_execution_engine2 *e;
+-	const intel_ctx_t *ctx;
+-	igt_hang_t hang = {};
+-
+-	igt_fixture {
+-		device = drm_open_driver(DRIVER_INTEL);
+-		igt_require_gem(device);
+-
+-		ctx = intel_ctx_create_all_physical(device);
+-
+-		hang = igt_allow_hang(device, ctx->id, HANG_ALLOW_CAPTURE);
+-
+-		sysfs = igt_sysfs_open(device);
+-		igt_assert(sysfs != -1);
+-
+-		igt_require(has_error_state(sysfs));
+-	}
++	char buff[256];
  
- 	clear_error_state();
- 
--	hang = igt_hang_ctx_with_ahnd(device, ahnd, ctx->id, ring_id,
-+	hang = igt_hang_ctx_with_ahnd(device, ahnd, ctx->id, e->flags,
- 				      HANG_ALLOW_CAPTURE);
- 	offset = hang.spin->obj[IGT_SPIN_BATCH].offset;
- 
-@@ -226,7 +226,7 @@ static void test_error_state_capture(const intel_ctx_t *ctx, unsigned ring_id,
- 
- 	igt_post_hang_ring(device, hang);
- 
--	check_error_state(ring_name, offset, batch);
-+	check_error_state(e->name, offset, batch);
- 	munmap(batch, 4096);
- 	put_ahnd(ahnd);
- }
-@@ -351,7 +351,7 @@ igt_main
- 	igt_subtest_with_dynamic("error-state-capture") {
+-	igt_describe("Basic error capture");
+-	igt_subtest("error-state-basic")
+-		test_error_state_basic();
+-
+-	igt_describe("Per engine error capture");
+-	igt_subtest_with_dynamic("error-state-capture") {
++	snprintf(buff, sizeof(buff), "Per engine error capture (%s reset)", name);
++	igt_describe(buff);
++	snprintf(buff, sizeof(buff), "%s-error-state-capture", prefix);
++	igt_subtest_with_dynamic(buff) {
  		for_each_ctx_engine(device, ctx, e) {
  			igt_dynamic_f("%s", e->name)
--				test_error_state_capture(ctx, e->flags, e->name);
-+				test_error_state_capture(ctx, e);
+ 				test_error_state_capture(ctx, e);
  		}
  	}
  
+-	igt_describe("Per engine hang recovery (spin)");
+-	igt_subtest_with_dynamic("engine-hang") {
++	snprintf(buff, sizeof(buff), "Per engine hang recovery (spin, %s reset)", name);
++	igt_describe(buff);
++	snprintf(buff, sizeof(buff), "%s-engine-hang", prefix);
++	igt_subtest_with_dynamic(buff) {
+                 int has_gpu_reset = 0;
+ 		struct drm_i915_getparam gp = {
+ 			.param = I915_PARAM_HAS_GPU_RESET,
+@@ -374,8 +360,10 @@ igt_main
+ 		}
+ 	}
+ 
+-	igt_describe("Per engine hang recovery (invalid CS)");
+-	igt_subtest_with_dynamic("engine-error") {
++	snprintf(buff, sizeof(buff), "Per engine hang recovery (invalid CS, %s reset)", name);
++	igt_describe(buff);
++	snprintf(buff, sizeof(buff), "%s-engine-error", prefix);
++	igt_subtest_with_dynamic(buff) {
+ 		int has_gpu_reset = 0;
+ 		struct drm_i915_getparam gp = {
+ 			.param = I915_PARAM_HAS_GPU_RESET,
+@@ -391,11 +379,45 @@ igt_main
+ 				test_engine_hang(ctx, e, IGT_SPIN_INVALID_CS);
+ 		}
+ 	}
++}
++
++igt_main
++{
++	const intel_ctx_t *ctx;
++	igt_hang_t hang = {};
++
++	igt_fixture {
++		device = drm_open_driver(DRIVER_INTEL);
++		igt_require_gem(device);
++
++		ctx = intel_ctx_create_all_physical(device);
++
++		hang = igt_allow_hang(device, ctx->id, HANG_ALLOW_CAPTURE);
++
++		sysfs = igt_sysfs_open(device);
++		igt_assert(sysfs != -1);
++
++		igt_require(has_error_state(sysfs));
++	}
++
++	igt_describe("Basic error capture");
++	igt_subtest("error-state-basic")
++		test_error_state_basic();
+ 
+ 	igt_describe("Check that executing unintialised memory causes a hang");
+ 	igt_subtest("hangcheck-unterminated")
+ 		hangcheck_unterminated(ctx);
+ 
++	do_tests("GT", "gt", ctx);
++
++	igt_fixture {
++		igt_disallow_hang(device, hang);
++
++		hang = igt_allow_hang(device, ctx->id, HANG_ALLOW_CAPTURE | HANG_WANT_ENGINE_RESET);
++	}
++
++	do_tests("engine", "engine", ctx);
++
+ 	igt_fixture {
+ 		igt_disallow_hang(device, hang);
+ 		intel_ctx_destroy(device, ctx);
 -- 
 2.25.1
 
