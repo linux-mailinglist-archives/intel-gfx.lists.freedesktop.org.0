@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D5AB48E12E
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 00:51:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C87E48E126
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 00:51:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 960E810E830;
-	Thu, 13 Jan 2022 23:51:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A50B10E819;
+	Thu, 13 Jan 2022 23:51:23 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B165110E80D;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 959BA10E809;
  Thu, 13 Jan 2022 23:51:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642117881; x=1673653881;
+ t=1642117880; x=1673653880;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=K3jPJpQTeic6zp56inDr1MNH8duJnRRchk+iNPrI0VA=;
- b=FbXr9TG3Hwi+MA/3aqwllUdwZfR9niQTfMP8WIfAGYUIKpslYBRVBPs8
- gsIVcSAq+r8ec5DDyakilizSx0Pw8Qfc5/L2Mfffj1fX/b//WE4cdLqau
- onAEjpmqRp2W2TSEFjY5kMjJiWgO0F+uisw+EDFknLYnQNU0+ANmU/vhB
- IeL0kDO+lu8KqjCI0/pffrqRt673srPUns5bH1aklUJyEMteYVz/URmUj
- +m8CQTCBvCD9IXoia0k7ART9tYO8oTTDDS/NbiAYrs4LfIljDHeDCC3bx
- WbQeUuXI0E+C0CwZP5OUEEdC5j/qjMI8dMVn1HYFJllVqwvYn4XXCGWqf Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="244096540"
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="244096540"
+ bh=WpdRSm6WO7UAcj3wjIBmOspKWUySCEbT7oQjZSma7oQ=;
+ b=Rtp4UlrQiv2PPKjUfyvUybi2hLeMptRQgiZs6wJPniFv/GNni/9vdq1X
+ hYuc2NfyWeKmmNaw8bmNKe48xchsnzVRDG44BlkfhRyrVE7vzt2wZ/DTQ
+ XN0dCl3ig3hSvzkvbfll3i3sUbkvTiHZN2habwFsP13uKt9TSFD/CyogC
+ QTu2EKtsNaB2F+ohQlZ2jSpzJMToHcnNU6tRY7ImLVfQIvpMAkwHLj4HY
+ EmhLKRP7rO4FCxZavdj4AUYYHdOe1LdVIDvJtlVizuD/YdV1DvLPwFbYt
+ lX15R2lc2L4tBrP/1cJGPAdkswsUzTAm09nFnvGIrpC+OyxuonOCOvem3 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="244096542"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="244096542"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2022 15:51:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="620782992"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="620782997"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
  by fmsmga002.fm.intel.com with ESMTP; 13 Jan 2022 15:51:19 -0800
 From: John.C.Harrison@Intel.com
 To: IGT-Dev@Lists.FreeDesktop.Org
-Date: Thu, 13 Jan 2022 15:51:07 -0800
-Message-Id: <20220113235118.1575410-5-John.C.Harrison@Intel.com>
+Date: Thu, 13 Jan 2022 15:51:08 -0800
+Message-Id: <20220113235118.1575410-6-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220113235118.1575410-1-John.C.Harrison@Intel.com>
 References: <20220113235118.1575410-1-John.C.Harrison@Intel.com>
@@ -44,8 +44,8 @@ MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 i-g-t 04/15] tests/i915/i915_hangman:
- Explicitly test per engine reset vs full GPU reset
+Subject: [Intel-gfx] [PATCH v4 i-g-t 05/15] tests/i915/i915_hangman: Add
+ uevent test & fix detector
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,131 +64,106 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Although the hangman test was ensuring that *some* reset functionality
-was enabled, it did not differentiate what kind. The infrastructure
-required to choose between per engine reset or full GT reset was
-recently added. So update this test to use it as well.
+Some of the IGT framework relies on receving a uevent when a hang
+occurs. So add a test that this actually works.
+
+While testing this, noticed that hangs could sometimes be missed
+because the uevent was (presumably) still in flight by the time the
+handler was de-registered. So add an extra delay during cleanup to
+give the uevent chance to arrive.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- tests/i915/i915_hangman.c | 76 +++++++++++++++++++++++++--------------
- 1 file changed, 49 insertions(+), 27 deletions(-)
+ lib/igt_aux.c             |  7 +++++++
+ tests/i915/i915_hangman.c | 43 +++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 50 insertions(+)
 
-diff --git a/tests/i915/i915_hangman.c b/tests/i915/i915_hangman.c
-index 280eac197..7b8390a6c 100644
---- a/tests/i915/i915_hangman.c
-+++ b/tests/i915/i915_hangman.c
-@@ -323,40 +323,26 @@ static void hangcheck_unterminated(const intel_ctx_t *ctx)
- 	}
+diff --git a/lib/igt_aux.c b/lib/igt_aux.c
+index c247a1aa4..03cc38c93 100644
+--- a/lib/igt_aux.c
++++ b/lib/igt_aux.c
+@@ -523,6 +523,13 @@ void igt_fork_hang_detector(int fd)
+ 
+ void igt_stop_hang_detector(void)
+ {
++	/*
++	 * Give the uevent time to arrive. No sleep at all misses about 20% of
++	 * hangs (at least, in the i915_hangman/detector test). A sleep of 1ms
++	 * seems to miss about 2%, 10ms loses <1%, so 100ms should be safe.
++	 */
++	usleep(100 * 1000);
++
+ 	igt_stop_helper(&hang_detector);
  }
  
--igt_main
-+static void do_tests(const char *name, const char *prefix,
-+		     const intel_ctx_t *ctx)
- {
- 	const struct intel_execution_engine2 *e;
--	const intel_ctx_t *ctx;
--	igt_hang_t hang = {};
--
--	igt_fixture {
--		device = drm_open_driver(DRIVER_INTEL);
--		igt_require_gem(device);
--
--		ctx = intel_ctx_create_all_physical(device);
--
--		hang = igt_allow_hang(device, ctx->id, HANG_ALLOW_CAPTURE);
--
--		sysfs = igt_sysfs_open(device);
--		igt_assert(sysfs != -1);
--
--		igt_require(has_error_state(sysfs));
--	}
-+	char buff[256];
+diff --git a/tests/i915/i915_hangman.c b/tests/i915/i915_hangman.c
+index 7b8390a6c..354769f39 100644
+--- a/tests/i915/i915_hangman.c
++++ b/tests/i915/i915_hangman.c
+@@ -31,6 +31,7 @@
+ #include <sys/stat.h>
+ #include <sys/types.h>
+ #include <fcntl.h>
++#include <signal.h>
  
--	igt_describe("Basic error capture");
--	igt_subtest("error-state-basic")
--		test_error_state_basic();
--
--	igt_describe("Per engine error capture");
--	igt_subtest_with_dynamic("error-state-capture") {
-+	snprintf(buff, sizeof(buff), "Per engine error capture (%s reset)", name);
-+	igt_describe(buff);
-+	snprintf(buff, sizeof(buff), "%s-error-state-capture", prefix);
-+	igt_subtest_with_dynamic(buff) {
- 		for_each_ctx_engine(device, ctx, e) {
- 			igt_dynamic_f("%s", e->name)
- 				test_error_state_capture(ctx, e);
- 		}
- 	}
+ #include "i915/gem.h"
+ #include "i915/gem_create.h"
+@@ -289,6 +290,38 @@ test_engine_hang(const intel_ctx_t *ctx,
+ 	put_ahnd(ahnd);
+ }
  
--	igt_describe("Per engine hang recovery (spin)");
--	igt_subtest_with_dynamic("engine-hang") {
-+	snprintf(buff, sizeof(buff), "Per engine hang recovery (spin, %s reset)", name);
-+	igt_describe(buff);
-+	snprintf(buff, sizeof(buff), "%s-engine-hang", prefix);
-+	igt_subtest_with_dynamic(buff) {
-                 int has_gpu_reset = 0;
- 		struct drm_i915_getparam gp = {
- 			.param = I915_PARAM_HAS_GPU_RESET,
-@@ -374,8 +360,10 @@ igt_main
- 		}
- 	}
- 
--	igt_describe("Per engine hang recovery (invalid CS)");
--	igt_subtest_with_dynamic("engine-error") {
-+	snprintf(buff, sizeof(buff), "Per engine hang recovery (invalid CS, %s reset)", name);
-+	igt_describe(buff);
-+	snprintf(buff, sizeof(buff), "%s-engine-error", prefix);
-+	igt_subtest_with_dynamic(buff) {
- 		int has_gpu_reset = 0;
- 		struct drm_i915_getparam gp = {
- 			.param = I915_PARAM_HAS_GPU_RESET,
-@@ -391,11 +379,45 @@ igt_main
- 				test_engine_hang(ctx, e, IGT_SPIN_INVALID_CS);
- 		}
- 	}
++static int hang_count;
++
++static void sig_io(int sig)
++{
++	hang_count++;
 +}
 +
-+igt_main
++static void test_hang_detector(const intel_ctx_t *ctx,
++			       const struct intel_execution_engine2 *e)
 +{
-+	const intel_ctx_t *ctx;
-+	igt_hang_t hang = {};
++	igt_hang_t hang;
++	uint64_t ahnd = get_reloc_ahnd(device, ctx->id);
 +
-+	igt_fixture {
-+		device = drm_open_driver(DRIVER_INTEL);
-+		igt_require_gem(device);
++	hang_count = 0;
 +
-+		ctx = intel_ctx_create_all_physical(device);
++	igt_fork_hang_detector(device);
 +
-+		hang = igt_allow_hang(device, ctx->id, HANG_ALLOW_CAPTURE);
++	/* Steal the signal handler */
++	signal(SIGIO, sig_io);
 +
-+		sysfs = igt_sysfs_open(device);
-+		igt_assert(sysfs != -1);
++	/* Make a hang... */
++	hang = igt_hang_ctx_with_ahnd(device, ahnd, ctx->id, e->flags, 0);
 +
-+		igt_require(has_error_state(sysfs));
-+	}
++	igt_post_hang_ring(device, hang);
++	put_ahnd(ahnd);
 +
-+	igt_describe("Basic error capture");
-+	igt_subtest("error-state-basic")
-+		test_error_state_basic();
- 
- 	igt_describe("Check that executing unintialised memory causes a hang");
++	igt_stop_hang_detector();
++
++	/* Did it work? */
++	igt_assert(hang_count == 1);
++}
++
+ /* This test covers the case where we end up in an uninitialised area of the
+  * ppgtt and keep executing through it. This is particularly relevant if 48b
+  * ppgtt is enabled because the ppgtt is massively bigger compared to the 32b
+@@ -408,6 +441,16 @@ igt_main
  	igt_subtest("hangcheck-unterminated")
  		hangcheck_unterminated(ctx);
  
-+	do_tests("GT", "gt", ctx);
++	igt_describe("Check that hang detector works");
++	igt_subtest_with_dynamic("detector") {
++		const struct intel_execution_engine2 *e;
 +
-+	igt_fixture {
-+		igt_disallow_hang(device, hang);
-+
-+		hang = igt_allow_hang(device, ctx->id, HANG_ALLOW_CAPTURE | HANG_WANT_ENGINE_RESET);
++		for_each_ctx_engine(device, ctx, e) {
++			igt_dynamic_f("%s", e->name)
++				test_hang_detector(ctx, e);
++		}
 +	}
 +
-+	do_tests("engine", "engine", ctx);
-+
+ 	do_tests("GT", "gt", ctx);
+ 
  	igt_fixture {
- 		igt_disallow_hang(device, hang);
- 		intel_ctx_destroy(device, ctx);
 -- 
 2.25.1
 
