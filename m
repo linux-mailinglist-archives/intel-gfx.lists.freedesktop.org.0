@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F4248D8E9
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 14:31:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AD6248D99B
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 15:18:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2972E11246D;
-	Thu, 13 Jan 2022 13:31:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C25D310E23E;
+	Thu, 13 Jan 2022 14:18:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFBC911246A;
- Thu, 13 Jan 2022 13:31:02 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB04F10E23F;
+ Thu, 13 Jan 2022 14:18:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642080662; x=1673616662;
+ t=1642083498; x=1673619498;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=CJVM9eyd8wrdFsnCGqIWGgAAhd2S0Y4upFklJt0saYI=;
- b=hl7bAQpuSaA6kFqSF/bNAIpQXCDnbG4/wXKQH3mPEizEaJz1+89+2DpA
- qhdh9Xtn1o3LdMrHJcGjmt8fLUWzXPjY4FMgf4cIXyn56FZlBEN/IA2Qg
- 7Z83ezT/MFwCeuCXSxFRp3XsSeKRWXsgn67RvoxsB4RQw58lpU+QKTGb5
- rcUAmztx5QGDWPT3gCj17sT9RwT3dmzNAKLXf7zdp81/J5Up7zR1enWio
- sLpW+Pr+WxePpvxHuDcp9LCsZw4W6HnBJCsi6aB0HOmKz6ZwTMB1h8Itl
- CjDtuNw4SCxCDa5OlFMCr6H2DJj5w+Epy5Z7fj04q1uLyHMsrFM7AFOI0 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="223988815"
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="223988815"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 05:31:02 -0800
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="670514974"
-Received: from inechita-mobl2.ger.corp.intel.com (HELO [10.249.254.193])
- ([10.249.254.193])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 05:31:01 -0800
-Message-ID: <45f75559-6367-d0ff-bd45-3efca11656a9@linux.intel.com>
-Date: Thu, 13 Jan 2022 14:30:59 +0100
+ bh=c5lzrJ1y6v56RTBeUL2+cdshIkvO15Q0j4CA1nmDp6c=;
+ b=huXPHxZp6f7WAJs872keqGNsCwvOYsPdGLQmvX+ryWuuwI35rabK8EL1
+ 7xZ6A9ALYO2qkMlgym+4ELk27U1M8MX6E8XALSO1+4kjePpIYoTz50K77
+ kSwmjHIPIYN9JBqg8X6zaBXxxGRKvWcbEc0cSJv7OyKLQgMVrQhv8UJdR
+ i8ca07p94IYaIebmYlM2pda4MPT3xR9du3ezwaT2ajubTigK551h1Es6K
+ +44P2WRcqw1Klq6uti2iu6NGskDyPMVoQVmooKdRoRob+ER28LcEZr9pV
+ oLE7R3zSx62eBWaiZvGWr06QPx4JNn4wDNbrCaOgnfaWJgd65xCgZAVmZ g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="243968269"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="243968269"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 06:18:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="529006804"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by fmsmga007.fm.intel.com with ESMTP; 13 Jan 2022 06:18:16 -0800
+Received: from [10.249.128.188] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.128.188])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 20DEIFvJ030970; Thu, 13 Jan 2022 14:18:15 GMT
+Message-ID: <2e7b4c82-222c-6ec2-8e58-d2981bb97cb6@intel.com>
+Date: Thu, 13 Jan 2022 15:18:14 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.5.0
 Content-Language: en-US
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220113114500.2039439-1-maarten.lankhorst@linux.intel.com>
- <20220113114500.2039439-2-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20220113114500.2039439-2-maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 1/6] drm/i915: Call i915_gem_evict_vm in
- vm_fault_gtt to prevent new ENOSPC errors, v2.
+To: Matthew Brost <matthew.brost@intel.com>
+References: <20220111163019.13694-1-matthew.brost@intel.com>
+ <37083d2f-e572-4c78-41ba-a1693e9e84f8@intel.com>
+ <20220112232629.GA19134@jons-linux-dev-box>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20220112232629.GA19134@jons-linux-dev-box>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Flip guc_id allocation partition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,63 +64,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 1/13/22 12:44, Maarten Lankhorst wrote:
-> Now that we cannot unbind kill the currently locked object directly
-> because we're removing short term pinning, we may have to unbind the
-> object from gtt manually, using a i915_gem_evict_vm() call.
->
-> Changes since v1:
-> - Remove -ENOSPC warning, can still happen with concurrent mmaps
->    where we can't unbind the other mmap because of the lock held.
->    This  fixes the gem_mmap_gtt@cpuset tests.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+On 13.01.2022 00:26, Matthew Brost wrote:
+> On Thu, Jan 13, 2022 at 12:21:17AM +0100, Michal Wajdeczko wrote:
+>> On 11.01.2022 17:30, Matthew Brost wrote:
 
+...
 
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_mman.c | 18 ++++++++++++++++--
->   1 file changed, 16 insertions(+), 2 deletions(-)
+>>> @@ -1863,6 +1861,33 @@ static void guc_submit_request(struct i915_request *rq)
+>>>  	spin_unlock_irqrestore(&sched_engine->lock, flags);
+>>>  }
+>>>  
+>>> +static int new_mlrc_guc_id(struct intel_guc *guc, struct intel_context *ce)
+>>> +{
+>>> +	int ret;
+>>> +
+>>> +	GEM_BUG_ON(!intel_context_is_parent(ce));
+>>> +	GEM_BUG_ON(!guc->submission_state.guc_ids_bitmap);
+>>> +
+>>> +	ret =  bitmap_find_free_region(guc->submission_state.guc_ids_bitmap,
+>>> +				       NUMBER_MULTI_LRC_GUC_ID(guc),
+>>> +				       order_base_2(ce->parallel.number_children
+>>> +						    + 1));
+>>
+>> btw, is there any requirement (GuC ABI ?) that allocated ids need
+>> to be allocated with power of 2 alignment ? I don't think that we
+>> must optimize that hard and in some cases waste extra ids (as we might
+>> be limited on some configs)
+>>
+> 
+> No pow2 requirement in GuC ABI, bitmaps only work on pow2 alignment and
+> didn't optmize this.
 >
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index 5ac2506f4ee8..fafd158e5313 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -21,6 +21,7 @@
->   #include "i915_trace.h"
->   #include "i915_user_extensions.h"
->   #include "i915_gem_ttm.h"
-> +#include "i915_gem_evict.h"
->   #include "i915_vma.h"
->   
->   static inline bool
-> @@ -358,8 +359,21 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
->   			vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
->   		}
->   
-> -		/* The entire mappable GGTT is pinned? Unexpected! */
-> -		GEM_BUG_ON(vma == ERR_PTR(-ENOSPC));
-> +		/*
-> +		 * The entire mappable GGTT is pinned? Unexpected!
-> +		 * Try to evict the object we locked too, as normally we skip it
-> +		 * due to lack of short term pinning inside execbuf.
-> +		 */
-> +		if (vma == ERR_PTR(-ENOSPC)) {
-> +			ret = mutex_lock_interruptible(&ggtt->vm.mutex);
-> +			if (!ret) {
-> +				ret = i915_gem_evict_vm(&ggtt->vm);
-> +				mutex_unlock(&ggtt->vm.mutex);
-> +			}
-> +			if (ret)
-> +				goto err_reset;
-> +			vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
-> +		}
->   	}
->   	if (IS_ERR(vma)) {
->   		ret = PTR_ERR(vma);
+
+there is a slower variant of "find" function:
+
+bitmap_find_next_zero_area - find a contiguous aligned zero area
+
+that does not have this limitation
+
+..
+
+
+>>> @@ -1989,6 +2008,14 @@ static int pin_guc_id(struct intel_guc *guc, struct intel_context *ce)
+>>>  
+>>>  	GEM_BUG_ON(atomic_read(&ce->guc_id.ref));
+>>>  
+>>> +	if (unlikely(intel_context_is_parent(ce) &&
+>>> +		     !guc->submission_state.guc_ids_bitmap)) {
+>>> +		guc->submission_state.guc_ids_bitmap =
+>>> +			bitmap_zalloc(NUMBER_MULTI_LRC_GUC_ID(guc), GFP_KERNEL);
+>>> +		if (!guc->submission_state.guc_ids_bitmap)
+>>> +			return -ENOMEM;
+>>> +	}
+>>
+>> maybe move this chunk to new_mlrc_guc_id() ?
+>> or we can't due to the spin_lock below ?
+>> but then how do you protect guc_ids_bitmap pointer itself ?
+>>
+> 
+> Can't use GFP_KERNEL inside a spin lock...
+> 
+
+ok, but what if there will be two or more parallel calls to pin_guc_id()
+with all being first parent context? each will see NULL guc_ids_bitmap..
+or there is another layer of synchronization?
+
+-Michal
