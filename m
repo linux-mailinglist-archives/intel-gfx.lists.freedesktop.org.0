@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4042148D694
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 12:18:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CB8A48D695
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 12:18:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1ED010E32E;
-	Thu, 13 Jan 2022 11:18:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2B5C10E370;
+	Thu, 13 Jan 2022 11:18:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA6EF10E32E
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jan 2022 11:18:19 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9B8110E370
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jan 2022 11:18:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642072699; x=1673608699;
+ t=1642072704; x=1673608704;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RuY9306Z2ewEDs2u8dlv4z681hfE8TgqR1Bgfsa9k8Q=;
- b=Dc7xun14oGqChKlVu1JwfHL3MDl1mHkQ1ochwNPwqPfOmKWhRuHeJ06r
- 3xYON/gdSBFUvkks4xEsXP4P06owaBWyNPSQbsMrL/WXHjLBitWre81HA
- re+T8P85Zcu5DffLGT1jeKtz3XF7XgdaFlJ9AfBUoMlfEXiPW1g0BsnVm
- uKgR4JSn36T4UsdL972E/HWUoht+kRQxqUkhywCwT543Ax8vKjmLOKKgT
- OjJ6OyPT6mF/5NVnLAkXbohzAVtsi4qfummbwmokSOVAP1/IkxTPJmjdM
- EzZ3wpONAAZCMdj7NQ8f0QRtmo8g9ktMaIurcp3CbdMmcI5tmTcaZWQKv w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="330336190"
-X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="330336190"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 03:18:19 -0800
-X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="515888291"
+ bh=HnQ0gZCeg5sshb149i6E1B+jek8Ku3I31z77YA2ETcM=;
+ b=Z0hiCFiUr+TdspxPLfZftwT7pvdrPqaa5LIOsszfAKCztNbYK1GTizff
+ yqfT5ujyVcoabvhjDnHXkrI6Gk862hnWV5mzloxICOC7qEvUjsTzzb1r/
+ 4uzvY50scj3WuYGjKP4Nj1zRMx7j53fjpQknyTNfvgSIWp2jn0qKO8zQ0
+ rhIpCv0reNMxDAtLHgkspFngp7IABO2log/omK2u4QSwy6wyFENbsQdcn
+ J47TjpKDb2imDmHKcSSV+SNvkY260K1mqMo7eKMwvSQTfyc/tD9CQDGiW
+ KiiTq5l0MOIhXZxsq4q8O/eni+cx+3nO09aygQ1oShnHsiA+uRtXDFy0H g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="224677494"
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="224677494"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 03:18:24 -0800
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; d="scan'208";a="475275592"
 Received: from joneil3-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.0.221])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 03:18:18 -0800
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 03:18:22 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 13 Jan 2022 13:18:03 +0200
-Message-Id: <2c18d26a7e6ceb025af7e91a56f8694de94fd3ee.1642072583.git.jani.nikula@intel.com>
+Date: Thu, 13 Jan 2022 13:18:04 +0200
+Message-Id: <cba9467d5830d135b176df7083ccb8ed603d0858.1642072583.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1642072583.git.jani.nikula@intel.com>
 References: <cover.1642072583.git.jani.nikula@intel.com>
@@ -45,8 +45,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/5] drm/i915/opregion: check port number bounds
- for SWSCI display power state
+Subject: [Intel-gfx] [PATCH 2/5] drm/i915/opregion: abstract the check for
+ valid swsci function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,56 +59,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, stable@vger.kernel.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The mapping from enum port to whatever port numbering scheme is used by
-the SWSCI Display Power State Notification is odd, and the memory of it
-has faded. In any case, the parameter only has space for ports numbered
-[0..4], and UBSAN reports bit shift beyond it when the platform has port
-F or more.
+Add a reusable function for checking the SWSCI function.
 
-Since the SWSCI functionality is supposed to be obsolete for new
-platforms (i.e. ones that might have port F or more), just bail out
-early if the mapped and mangled port number is beyond what the Display
-Power State Notification can support.
-
-Fixes: 9c4b0a683193 ("drm/i915: add opregion function to notify bios of encoder enable/disable")
-Cc: <stable@vger.kernel.org> # v3.13+
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4800
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_opregion.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ drivers/gpu/drm/i915/display/intel_opregion.c | 30 +++++++++++++------
+ 1 file changed, 21 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index af9d30f56cc1..ad1afe9df6c3 100644
+index ad1afe9df6c3..e540e5b9073b 100644
 --- a/drivers/gpu/drm/i915/display/intel_opregion.c
 +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -363,6 +363,21 @@ int intel_opregion_notify_encoder(struct intel_encoder *intel_encoder,
- 		port++;
+@@ -245,14 +245,10 @@ struct opregion_asle_ext {
+ 
+ #define MAX_DSLP	1500
+ 
+-static int swsci(struct drm_i915_private *dev_priv,
+-		 u32 function, u32 parm, u32 *parm_out)
++static int check_swsci_function(struct drm_i915_private *i915, u32 function)
+ {
+-	struct opregion_swsci *swsci = dev_priv->opregion.swsci;
+-	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+-	u32 main_function, sub_function, scic;
+-	u16 swsci_val;
+-	u32 dslp;
++	struct opregion_swsci *swsci = i915->opregion.swsci;
++	u32 main_function, sub_function;
+ 
+ 	if (!swsci)
+ 		return -ENODEV;
+@@ -264,15 +260,31 @@ static int swsci(struct drm_i915_private *dev_priv,
+ 
+ 	/* Check if we can call the function. See swsci_setup for details. */
+ 	if (main_function == SWSCI_SBCB) {
+-		if ((dev_priv->opregion.swsci_sbcb_sub_functions &
++		if ((i915->opregion.swsci_sbcb_sub_functions &
+ 		     (1 << sub_function)) == 0)
+ 			return -EINVAL;
+ 	} else if (main_function == SWSCI_GBDA) {
+-		if ((dev_priv->opregion.swsci_gbda_sub_functions &
++		if ((i915->opregion.swsci_gbda_sub_functions &
+ 		     (1 << sub_function)) == 0)
+ 			return -EINVAL;
  	}
  
-+	/*
-+	 * The port numbering and mapping here is bizarre. The now-obsolete
-+	 * swsci spec supports ports numbered [0..4]. Port E is handled as a
-+	 * special case, but port F and beyond are not. The functionality is
-+	 * supposed to be obsolete for new platforms. Just bail out if the port
-+	 * number is out of bounds after mapping.
-+	 */
-+	if (port > 4) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "[ENCODER:%d:%s] port %c (index %u) out of bounds for display power state notification\n",
-+			    intel_encoder->base.base.id, intel_encoder->base.name,
-+			    port_name(intel_encoder->port), port);
-+		return -EINVAL;
-+	}
++	return 0;
++}
 +
- 	if (!enable)
- 		parm |= 4 << 8;
- 
++static int swsci(struct drm_i915_private *dev_priv,
++		 u32 function, u32 parm, u32 *parm_out)
++{
++	struct opregion_swsci *swsci = dev_priv->opregion.swsci;
++	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
++	u32 scic, dslp;
++	u16 swsci_val;
++	int ret;
++
++	ret = check_swsci_function(dev_priv, function);
++	if (ret)
++		return ret;
++
+ 	/* Driver sleep timeout in ms. */
+ 	dslp = swsci->dslp;
+ 	if (!dslp) {
 -- 
 2.30.2
 
