@@ -1,48 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF2A48DD19
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 18:47:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79CB348DD57
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 18:58:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04F1310E4E3;
-	Thu, 13 Jan 2022 17:47:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5AA110E536;
+	Thu, 13 Jan 2022 17:58:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6584610E4E3
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jan 2022 17:47:10 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4CDC10E244;
+ Thu, 13 Jan 2022 17:58:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642096030; x=1673632030;
+ t=1642096705; x=1673632705;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=ycShh+m0FdhlSFegjmSDwT8nCfNx8A+fGs9+XEBxjbk=;
- b=DhsQhHEK4/5VNwn3VondK4rvDWex6sarqu1bBimqQfKrSFKKE23n+ex/
- pomUvxB344SA3GwwKBYGOhRFxhGz73clrNHUmJ6nEPh7VouVZgVPH8S2M
- 5rL5kyDuw9gpQwcmgUmcCRfLTIChywPpbsLba6StwMTp229qWKbtznjvn
- c96cefaNUkBQjftRAjWuOMOLey2t7AkHt38eWaJQuC0aG+cbdrccz52ic
- TezFQe7MvccKHvJYOnXkwsKZt8vw7xaZpCk/2M1A8gWCP03OSwOXvjzYt
- U8vBGsjxXqEb4d9TIADqXigNlAT9GsAvFZFxIktRdhG2edoc0CDUPhrPP g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="224761244"
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="224761244"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 09:47:00 -0800
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="623933383"
-Received: from unknown (HELO josouza-mobl2.intel.com) ([10.230.19.131])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 09:46:58 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 13 Jan 2022 09:48:26 -0800
-Message-Id: <20220113174826.50272-1-jose.souza@intel.com>
+ bh=BHhNn4Kxfw6fGkx0QxRX8f/GyYAvCkghaTlwTSagQkA=;
+ b=Om+ffy8wsS8R2hCu8sqXy1CSYUai9b0CCIoVRHWwIndbLm513WBjaIC5
+ nUfmVbq+YqqEVV/CfZEpFe+Dq6vYdg5hdlr/8yI8qndvZuZYaiggnKB/K
+ fZSuv6I6JLUCjFC76KlLxdcStCDLQO0ufBFXoJ76CoGHCVAgVk0UpaAdT
+ RQ2P8hrBjrrw65kWmoDlz2hZN9n4TtS6oUZGYHL5EPpoDdzKEq3HjRrLC
+ Rb67xFgntxKoTuMEdleiYE9KRwztDHsVVX3o19P3KQg+ezPPQQmPEUVln
+ OYrXl76Uj9Lv0mnnuGxjZK2FllSg7Bmksz57wtTCx851u/Eq2Rv8CpKxp Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="244030356"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="244030356"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 09:58:24 -0800
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="516028962"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 09:58:24 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Thu, 13 Jan 2022 09:52:30 -0800
+Message-Id: <20220113175232.20897-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display/adlp: Implement new step in
- the TC voltage swing prog sequence
+Subject: [Intel-gfx] [PATCH 0/2] Flush G2H handler during a GT reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,75 +54,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Cc: thomas.hellstrom@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TC voltage swing programming sequence was updated with a new step.
+After a small fix to error capture code, we now can flush G2H during a
+GT reset which simplifies code and seals some extreme corner case races. 
 
-BSpec: 54956
-Cc: stable@vger.kernel.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Clint Taylor <clinton.a.taylor@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 22 ++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h          |  8 ++++++--
- 2 files changed, 28 insertions(+), 2 deletions(-)
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 6ee0f77b79274..4e93eac926a56 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -1300,6 +1300,28 @@ static void tgl_dkl_phy_set_signal_levels(struct intel_encoder *encoder,
- 
- 		intel_de_rmw(dev_priv, DKL_TX_DPCNTL2(tc_port),
- 			     DKL_TX_DP20BITMODE, 0);
-+
-+		if (IS_ALDERLAKE_P(dev_priv)) {
-+			u32 val;
-+
-+			if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
-+				if (ln == 0) {
-+					val = DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1(0);
-+					val |= DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2(2);
-+				} else {
-+					val = DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1(3);
-+					val |= DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2(3);
-+				}
-+			} else {
-+				val = DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1(0);
-+				val |= DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2(0);
-+			}
-+
-+			intel_de_rmw(dev_priv, DKL_TX_DPCNTL2(tc_port),
-+				     DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1_MASK |
-+				     DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2_MASK,
-+				     val);
-+		}
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 7c4013a0db615..ef6bc81800738 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -10085,8 +10085,12 @@ enum skl_power_gate {
- 						     _DKL_PHY2_BASE) + \
- 						     _DKL_TX_DPCNTL1)
- 
--#define _DKL_TX_DPCNTL2				0x2C8
--#define  DKL_TX_DP20BITMODE				(1 << 2)
-+#define _DKL_TX_DPCNTL2					0x2C8
-+#define  DKL_TX_DP20BITMODE				REG_BIT(2)
-+#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1_MASK	REG_GENMASK(4, 3)
-+#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1(val)	REG_FIELD_PREP(DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX1_MASK, (val))
-+#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2_MASK	REG_GENMASK(6, 5)
-+#define  DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2(val)	REG_FIELD_PREP(DKL_TX_DPCNTL2_CFG_LOADGENSELECT_TX2_MASK, (val))
- #define DKL_TX_DPCNTL2(tc_port) _MMIO(_PORT(tc_port, \
- 						     _DKL_PHY1_BASE, \
- 						     _DKL_PHY2_BASE) + \
+Matthew Brost (2):
+  drm/i915: Allocate intel_engine_coredump_alloc with ALLOW_FAIL
+  drm/i915/guc: Flush G2H handler during a GT reset
+
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c  | 18 +-----------------
+ drivers/gpu/drm/i915/i915_gpu_error.c          |  2 +-
+ 2 files changed, 2 insertions(+), 18 deletions(-)
+
 -- 
 2.34.1
 
