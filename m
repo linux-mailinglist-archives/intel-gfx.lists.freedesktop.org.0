@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5FDD48DC5E
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 18:00:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC2CB48DC6A
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jan 2022 18:00:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85CF610E557;
-	Thu, 13 Jan 2022 16:59:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C7AA10E2C6;
+	Thu, 13 Jan 2022 16:59:52 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 698A810E29F;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80E9910E46D;
  Thu, 13 Jan 2022 16:59:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1642093186; x=1673629186;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WpdRSm6WO7UAcj3wjIBmOspKWUySCEbT7oQjZSma7oQ=;
- b=iFcaTfuiOaVeArGNVd4UOcjxCKUp6ccauFwsYKMHNL4pN1nG4821Jrre
- 8nY2QGXW/41Ep3V7c+lv1icWvU3sFSER6A3h3d/aCQGSiqG8FBITR0Bd7
- 7e6JvkBEHLVZOsU1K0saFWdGL2e0qGesyVlTG3Flf4frQ06t01nYqRbj5
- ZbCq6cILjLbj93j0/m39vd61ML9X9LVN+OpJC/AmOl7YSqEmSIDkYxGOt
- sTKrGL2yZnpzfjEZE4JGzRyHBj3R1+WnDRprG0Chcy04PspZ+9udhbyy9
- K38xfoRzsbnrjNhZPQyuHgcYYI+EKekwGKAoGvXq8BgvLFvxHz/kdf2za g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="268409171"
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="268409171"
+ bh=dCMHhLtuyDAaYuuFapL/srpcfvOcjAyjuPnjrQQYWLo=;
+ b=gQ/68hIQ+c3ZZoeh+Sa7/th02jI3RaR8nxUALcQ2xtsq2paBLH5xS60b
+ 7htL/05rQRBwb5MJDbaYRBdbDLF0YhA5V05tiONxhencRZU8hVhNxH/I8
+ A+ndpX/HKvK2Ge5dhJgym03ZOVRcNdu8ph3Pbka/vrL+/VQqwudhCkU08
+ 5S4GkOPBGx6GNkkzy4Q//Nd62qq6EnJxa/suDlFZCoFzaybBpen3KQCnn
+ XFWzEVqA81QN5V81465nqY3E0SxngH6pWME0vXJOQknihIQbOc23rJSoS
+ 7BEsztbBt07jVsdpnDSwSWpagtECT4lWMFHqLNciGoOFNMfvR3BQcgiDO w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="268409174"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="268409174"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2022 08:59:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="515999159"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="515999161"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
  by orsmga007.jf.intel.com with ESMTP; 13 Jan 2022 08:59:44 -0800
 From: John.C.Harrison@Intel.com
 To: IGT-Dev@Lists.FreeDesktop.Org
-Date: Thu, 13 Jan 2022 08:59:34 -0800
-Message-Id: <20220113165944.1414015-6-John.C.Harrison@Intel.com>
+Date: Thu, 13 Jan 2022 08:59:35 -0800
+Message-Id: <20220113165944.1414015-7-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220113165944.1414015-1-John.C.Harrison@Intel.com>
 References: <20220113165944.1414015-1-John.C.Harrison@Intel.com>
@@ -44,8 +44,8 @@ MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 i-g-t 05/15] tests/i915/i915_hangman: Add
- uevent test & fix detector
+Subject: [Intel-gfx] [PATCH v2 i-g-t 06/15] tests/i915/i915_hangman: Use the
+ correct context in hangcheck_unterminated
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,106 +64,27 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Some of the IGT framework relies on receving a uevent when a hang
-occurs. So add a test that this actually works.
-
-While testing this, noticed that hangs could sometimes be missed
-because the uevent was (presumably) still in flight by the time the
-handler was de-registered. So add an extra delay during cleanup to
-give the uevent chance to arrive.
+The hangman framework sets up a context that is valid for all engines
+and has things like banning disabled. The 'unterminated' test then
+ignores it and uses the default context. Fix that.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- lib/igt_aux.c             |  7 +++++++
- tests/i915/i915_hangman.c | 43 +++++++++++++++++++++++++++++++++++++++
- 2 files changed, 50 insertions(+)
+ tests/i915/i915_hangman.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/lib/igt_aux.c b/lib/igt_aux.c
-index c247a1aa4..03cc38c93 100644
---- a/lib/igt_aux.c
-+++ b/lib/igt_aux.c
-@@ -523,6 +523,13 @@ void igt_fork_hang_detector(int fd)
- 
- void igt_stop_hang_detector(void)
- {
-+	/*
-+	 * Give the uevent time to arrive. No sleep at all misses about 20% of
-+	 * hangs (at least, in the i915_hangman/detector test). A sleep of 1ms
-+	 * seems to miss about 2%, 10ms loses <1%, so 100ms should be safe.
-+	 */
-+	usleep(100 * 1000);
-+
- 	igt_stop_helper(&hang_detector);
- }
- 
 diff --git a/tests/i915/i915_hangman.c b/tests/i915/i915_hangman.c
-index 7b8390a6c..354769f39 100644
+index 354769f39..6656b3fcd 100644
 --- a/tests/i915/i915_hangman.c
 +++ b/tests/i915/i915_hangman.c
-@@ -31,6 +31,7 @@
- #include <sys/stat.h>
- #include <sys/types.h>
- #include <fcntl.h>
-+#include <signal.h>
+@@ -347,6 +347,7 @@ static void hangcheck_unterminated(const intel_ctx_t *ctx)
+ 	memset(&execbuf, 0, sizeof(execbuf));
+ 	execbuf.buffers_ptr = (uintptr_t)&gem_exec;
+ 	execbuf.buffer_count = 1;
++	execbuf.rsvd1 = ctx->id;
  
- #include "i915/gem.h"
- #include "i915/gem_create.h"
-@@ -289,6 +290,38 @@ test_engine_hang(const intel_ctx_t *ctx,
- 	put_ahnd(ahnd);
- }
- 
-+static int hang_count;
-+
-+static void sig_io(int sig)
-+{
-+	hang_count++;
-+}
-+
-+static void test_hang_detector(const intel_ctx_t *ctx,
-+			       const struct intel_execution_engine2 *e)
-+{
-+	igt_hang_t hang;
-+	uint64_t ahnd = get_reloc_ahnd(device, ctx->id);
-+
-+	hang_count = 0;
-+
-+	igt_fork_hang_detector(device);
-+
-+	/* Steal the signal handler */
-+	signal(SIGIO, sig_io);
-+
-+	/* Make a hang... */
-+	hang = igt_hang_ctx_with_ahnd(device, ahnd, ctx->id, e->flags, 0);
-+
-+	igt_post_hang_ring(device, hang);
-+	put_ahnd(ahnd);
-+
-+	igt_stop_hang_detector();
-+
-+	/* Did it work? */
-+	igt_assert(hang_count == 1);
-+}
-+
- /* This test covers the case where we end up in an uninitialised area of the
-  * ppgtt and keep executing through it. This is particularly relevant if 48b
-  * ppgtt is enabled because the ppgtt is massively bigger compared to the 32b
-@@ -408,6 +441,16 @@ igt_main
- 	igt_subtest("hangcheck-unterminated")
- 		hangcheck_unterminated(ctx);
- 
-+	igt_describe("Check that hang detector works");
-+	igt_subtest_with_dynamic("detector") {
-+		const struct intel_execution_engine2 *e;
-+
-+		for_each_ctx_engine(device, ctx, e) {
-+			igt_dynamic_f("%s", e->name)
-+				test_hang_detector(ctx, e);
-+		}
-+	}
-+
- 	do_tests("GT", "gt", ctx);
- 
- 	igt_fixture {
+ 	gem_execbuf(device, &execbuf);
+ 	if (gem_wait(device, handle, &timeout_ns) != 0) {
 -- 
 2.25.1
 
