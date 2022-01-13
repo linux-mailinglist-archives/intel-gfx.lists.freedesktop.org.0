@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A79848E12C
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 00:51:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC4948E131
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 00:51:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20A6110E823;
-	Thu, 13 Jan 2022 23:51:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DE7B10E845;
+	Thu, 13 Jan 2022 23:51:28 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 090CC10E811;
- Thu, 13 Jan 2022 23:51:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37E1810E819;
+ Thu, 13 Jan 2022 23:51:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1642117881; x=1673653881;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EnyT+dq+GuzzwfvvcH4v+mjZUdOE5Al4DQ+ee95tbRA=;
- b=WAqUAYU1Q2LsleDyUFTuHfFU3FR76B6k1qwk/sZrp7VRdFLkrfrZ/oMu
- uI2NkziPd4HyOBriWyuhQUISrnoprI/ZQrhzpg2BAjbCN/XtQUw/OyhUD
- QJSUBkQZ7VtH0RrY/AniApr0/qRUjzOrbCwUsZmG5IEubYMtM+0aA8NP2
- 6O6PfL7umPistR9Uk6xlWi0eiRmgnng/HKh/zI3e0mIAR19CsWvWPvh/P
- iovGZAUxOBw+MHhK30tMAc3pxBsCGyKs2c+vDZfp6L+C5VwnmhqtUa9CJ
- LU1i2PhQrd3FIdsYiC1qh7KmTs0pNisci2AxG92nkTz2cbCi5ei3CRa05 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="268502290"
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="268502290"
+ bh=cs5gQSsP0d/L1sEikswy9RQh+s+74zBLBuqvD98IuGE=;
+ b=YCV71N2x9FDdOXvu4bIg7TpuiEoE+g5kuKxPfct6KHvQR5YBhXn2O4tB
+ ohfGqXiTuux43ycJ3OPf0H3B5UjEYlebI5M5pQwhHngC9HwJicoEpjoGP
+ Gs4k9OqWoaTOEBoPU3zHr+IwdjAOa1rHuV0OnRABHjU9LVeL4HEkt+OrE
+ ZpZdh6ez23lA1RA9+udEvPqhbRJUUxhz3xxVQIBoLwaFl5M18MC0jgmyA
+ hpgljmVoEIlnkrASybDk3kgey6cR/bCsSx51PSoQ34CL4S5kBiqAwFrrc
+ 3hRAHXoFalFQdm1DBwY/gQr2uBEre0cZ/s72tNviSyjy/JZeltTzpikgj w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="268502292"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="268502292"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2022 15:51:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="620783014"
+X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="620783019"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
  by fmsmga002.fm.intel.com with ESMTP; 13 Jan 2022 15:51:20 -0800
 From: John.C.Harrison@Intel.com
 To: IGT-Dev@Lists.FreeDesktop.Org
-Date: Thu, 13 Jan 2022 15:51:11 -0800
-Message-Id: <20220113235118.1575410-9-John.C.Harrison@Intel.com>
+Date: Thu, 13 Jan 2022 15:51:12 -0800
+Message-Id: <20220113235118.1575410-10-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220113235118.1575410-1-John.C.Harrison@Intel.com>
 References: <20220113235118.1575410-1-John.C.Harrison@Intel.com>
@@ -44,8 +44,8 @@ MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 i-g-t 08/15] tests/i915/i915_hangman: Add
- alive-ness test after error capture
+Subject: [Intel-gfx] [PATCH v4 i-g-t 09/15] tests/i915/i915_hangman: Remove
+ reliance on context persistance
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,127 +64,75 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Added a an extra step to the i915_hangman tests to check that the
-system is still alive after the hang and recovery. This submits a
-simple batch to each engine which does a write to memory and checks
-that the write occurred.
+The hang test was relying on context persitence for no particular
+reason. That is, it would set a bunch of background spinners running
+then immediately destroy the active contexts but expect the spinners
+to keep spinning. With the current implementation of context
+persistence in i915, that means that super high priority pings are
+sent to each engine at the start of the test. Depending upon the
+timing and platform, one of those unexpected pings could cause test
+failures.
 
-v2: Use _device_coherent instead of _wc for mapping memory to support
-discrete boards.
+There is no need to require context persitence in this test. So change
+to managing the contexts cleanly and only destroying them when they
+are no longer in use.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- tests/i915/i915_hangman.c | 59 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+ tests/i915/i915_hangman.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
 diff --git a/tests/i915/i915_hangman.c b/tests/i915/i915_hangman.c
-index 5a0c9497c..73a86ec9e 100644
+index 73a86ec9e..24087931c 100644
 --- a/tests/i915/i915_hangman.c
 +++ b/tests/i915/i915_hangman.c
-@@ -48,8 +48,57 @@
- static int device = -1;
- static int sysfs = -1;
- 
-+#define OFFSET_ALIVE	10
-+
- IGT_TEST_DESCRIPTION("Tests for hang detection and recovery");
- 
-+static void check_alive(void)
-+{
-+	const struct intel_execution_engine2 *engine;
-+	const intel_ctx_t *ctx;
-+	uint32_t scratch, *out;
-+	int fd, i = 0;
-+	uint64_t ahnd, scratch_addr;
-+
-+	fd = drm_open_driver(DRIVER_INTEL);
-+	igt_require(gem_class_can_store_dword(fd, 0));
-+
-+	ctx = intel_ctx_create_all_physical(fd);
-+	ahnd = get_reloc_ahnd(fd, ctx->id);
-+	scratch = gem_create(fd, 4096);
-+	scratch_addr = get_offset(ahnd, scratch, 4096, 0);
-+	out = gem_mmap__device_coherent(fd, scratch, 0, 4096, PROT_WRITE | PROT_READ);
-+	gem_set_domain(fd, scratch,
-+			I915_GEM_DOMAIN_GTT, I915_GEM_DOMAIN_GTT);
-+
-+	for_each_physical_engine(fd, engine) {
-+		igt_assert_eq_u32(out[i + OFFSET_ALIVE], 0);
-+		i++;
-+	}
-+
-+	i = 0;
-+	for_each_ctx_engine(fd, ctx, engine) {
-+		if (!gem_class_can_store_dword(fd, engine->class))
-+			continue;
-+
-+		/* +OFFSET_ALIVE to ensure engine zero doesn't get a false negative */
-+		igt_store_word(fd, ahnd, ctx, engine, -1, scratch, scratch_addr,
-+			       i + OFFSET_ALIVE, i + OFFSET_ALIVE);
-+		i++;
-+	}
-+
-+	gem_set_domain(fd, scratch, I915_GEM_DOMAIN_GTT, 0);
-+
-+	while (i--)
-+		igt_assert_eq_u32(out[i + OFFSET_ALIVE], i + OFFSET_ALIVE);
-+
-+	munmap(out, 4096);
-+	gem_close(fd, scratch);
-+	put_ahnd(ahnd);
-+	intel_ctx_destroy(fd, ctx);
-+	close(fd);
-+}
-+
- static bool has_error_state(int dir)
+@@ -289,27 +289,29 @@ test_engine_hang(const intel_ctx_t *ctx,
+ 		 const struct intel_execution_engine2 *e, unsigned int flags)
  {
- 	bool result;
-@@ -231,6 +280,8 @@ static void test_error_state_capture(const intel_ctx_t *ctx,
- 	check_error_state(e->name, offset, batch);
- 	munmap(batch, 4096);
- 	put_ahnd(ahnd);
-+
-+	check_alive();
- }
+ 	const struct intel_execution_engine2 *other;
+-	const intel_ctx_t *tmp_ctx;
++	const intel_ctx_t *local_ctx[GEM_MAX_ENGINES];
+ 	igt_spin_t *spin, *next;
+ 	IGT_LIST_HEAD(list);
+ 	uint64_t ahnd = get_reloc_ahnd(device, ctx->id), ahndN;
++	int num_ctx;
  
- static void
-@@ -289,6 +340,8 @@ test_engine_hang(const intel_ctx_t *ctx,
+ 	igt_skip_on(flags & IGT_SPIN_INVALID_CS &&
+ 		    gem_engine_has_cmdparser(device, &ctx->cfg, e->flags));
+ 
+ 	/* Fill all the other engines with background load */
++	num_ctx = 0;
+ 	for_each_ctx_engine(device, ctx, other) {
+ 		if (other->flags == e->flags)
+ 			continue;
+ 
+-		tmp_ctx = intel_ctx_create(device, &ctx->cfg);
+-		ahndN = get_reloc_ahnd(device, tmp_ctx->id);
++		local_ctx[num_ctx] = intel_ctx_create(device, &ctx->cfg);
++		ahndN = get_reloc_ahnd(device, local_ctx[num_ctx]->id);
+ 		spin = __igt_spin_new(device,
+ 				      .ahnd = ahndN,
+-				      .ctx = tmp_ctx,
++				      .ctx = local_ctx[num_ctx],
+ 				      .engine = other->flags,
+ 				      .flags = IGT_SPIN_FENCE_OUT);
+-		intel_ctx_destroy(device, tmp_ctx);
++		num_ctx++;
+ 
+ 		igt_list_move(&spin->link, &list);
+ 	}
+@@ -339,7 +341,10 @@ test_engine_hang(const intel_ctx_t *ctx,
+ 		igt_spin_free(device, spin);
  		put_ahnd(ahndN);
  	}
++
  	put_ahnd(ahnd);
-+
-+	check_alive();
++	while (num_ctx)
++		intel_ctx_destroy(device, local_ctx[--num_ctx]);
+ 
+ 	check_alive();
  }
- 
- static int hang_count;
-@@ -321,6 +374,8 @@ static void test_hang_detector(const intel_ctx_t *ctx,
- 
- 	/* Did it work? */
- 	igt_assert(hang_count == 1);
-+
-+	check_alive();
- }
- 
- /* This test covers the case where we end up in an uninitialised area of the
-@@ -356,6 +411,8 @@ static void hangcheck_unterminated(const intel_ctx_t *ctx)
- 		igt_force_gpu_reset(device);
- 		igt_assert_f(0, "unterminated batch did not trigger a hang!\n");
- 	}
-+
-+	check_alive();
- }
- 
- static void do_tests(const char *name, const char *prefix,
-@@ -433,6 +490,8 @@ igt_main
- 		igt_assert(sysfs != -1);
- 
- 		igt_require(has_error_state(sysfs));
-+
-+		gem_require_mmap_device_coherent(device);
- 	}
- 
- 	igt_describe("Basic error capture");
 -- 
 2.25.1
 
