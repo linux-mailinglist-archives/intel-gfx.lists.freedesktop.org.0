@@ -1,57 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4C9748EBA0
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 15:25:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CB4B48EC2E
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 16:05:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B983110E4FA;
-	Fri, 14 Jan 2022 14:25:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E79A110E19C;
+	Fri, 14 Jan 2022 15:05:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAE8F10E457;
- Fri, 14 Jan 2022 14:25:02 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 6542A1F38F;
- Fri, 14 Jan 2022 14:25:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1642170301; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=kMa4tcHPdUVoPVHnNH087X7fOo45Y+uaZcfGsJ8XcVA=;
- b=fSxzK0MJPhKjUi7/wOSyyDRs6V04IAzZTdzK9VrCm892aaQGelfeAX5PAtFqBq3cYRScnu
- JIKrMNWYE56Z83oSb0046+8Pl3Acol1UjlFf9PRvK+eiQ0kjP4dqCuwltgT6763qSX87L+
- bjo8YH86eYdlGN2U8GqtsHcUR9vOJ28=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1642170301;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=kMa4tcHPdUVoPVHnNH087X7fOo45Y+uaZcfGsJ8XcVA=;
- b=tMB9h39vA0oVW0cDoPTrWodhyo4PVBcnKQZftp1cxeikizPZLV8g6GSqh+j58gel2TmIy3
- bzd7XFoI0KpLDlAA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 1830813B7F;
- Fri, 14 Jan 2022 14:25:01 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id MeFYBL2H4WEJMAAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Fri, 14 Jan 2022 14:25:01 +0000
-Date: Fri, 14 Jan 2022 15:24:59 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YeGHu7qU92pjuQOn@linux-uq9g>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CB39310E126;
+ Fri, 14 Jan 2022 15:05:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B3E0FA008A;
+ Fri, 14 Jan 2022 15:05:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Fri, 14 Jan 2022 15:05:46 -0000
+Message-ID: <164217274670.15567.17454313108730087139@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220114132320.109030-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20220114132320.109030-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Remove_short_term_pins_from_execbuf_by_requirin?=
+ =?utf-8?q?g_lock_to_unbind=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,56 +41,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+== Series Details ==
 
-here are two more fixes for this week. I cherry-picked both from 
-drm-misc-next.
+Series: drm/i915: Remove short term pins from execbuf by requiring lock to unbind.
+URL   : https://patchwork.freedesktop.org/series/98895/
+State : warning
 
-Best regards
-Thomas
+== Summary ==
 
-drm-misc-next-fixes-2022-01-14:
- * atomic helpers: Fix error messages
- * mipi-dbi: Fix buffer mapping
-The following changes since commit 5da8b49de472c1da8658466d4f63ef8d9251a819:
+$ dim checkpatch origin/drm-tip
+db8c9a3db0b3 drm/i915: Call i915_gem_evict_vm in vm_fault_gtt to prevent new ENOSPC errors, v2.
+d2192b26e81d drm/i915: Add locking to i915_gem_evict_vm(), v2.
+ceef6899f6ef drm/i915: Add object locking to i915_gem_evict_for_node and i915_gem_evict_something, v2.
+-:228: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#228: FILE: drivers/gpu/drm/i915/i915_gem_evict.c:457:
++			if (dying_vma(vma) || (ww &&
++			     (dma_resv_locking_ctx(vma->obj->base.resv) == &ww->ctx))) {
 
-  dt-bindings: display: bridge: lvds-codec: Fix duplicate key (2021-12-22 14:02:04 -0400)
+total: 0 errors, 0 warnings, 1 checks, 376 lines checked
+933249276580 drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind, v2.
+72fcac47dca9 drm/i915: Remove support for unlocked i915_vma unbind
+842cd8d49f5e drm/i915: Remove short-term pins from execbuf, v6.
 
-are available in the Git repository at:
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2022-01-14
-
-for you to fetch changes up to 5d474cc501b90b82c182b5d00439eb6790a82e21:
-
-  drm/mipi-dbi: Fix source-buffer address in mipi_dbi_buf_copy (2022-01-14 14:43:02 +0100)
-
-----------------------------------------------------------------
- * atomic helpers: Fix error messages
- * mipi-dbi: Fix buffer mapping
-
-----------------------------------------------------------------
-Claudio Suarez (1):
-      drm: fix error found in some cases after the patch d1af5cd86997
-
-Liu Ying (1):
-      drm/atomic: Check new_crtc_state->active to determine if CRTC needs disable in self refresh mode
-
-Thomas Zimmermann (1):
-      drm/mipi-dbi: Fix source-buffer address in mipi_dbi_buf_copy
-
- drivers/gpu/drm/drm_atomic_helper.c | 14 +++++++-------
- drivers/gpu/drm/drm_mipi_dbi.c      |  2 +-
- 2 files changed, 8 insertions(+), 8 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
