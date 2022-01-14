@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 387BD48F0BA
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 21:00:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55AD448F0BB
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 21:01:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64C8910E1B3;
-	Fri, 14 Jan 2022 20:00:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A31710E1B5;
+	Fri, 14 Jan 2022 20:01:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EA05910E1B4;
- Fri, 14 Jan 2022 20:00:12 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 91AE010E1DE;
+ Fri, 14 Jan 2022 20:01:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E7ADBA0BCB;
- Fri, 14 Jan 2022 20:00:12 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 90C83A0BCB;
+ Fri, 14 Jan 2022 20:01:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Fri, 14 Jan 2022 20:00:12 -0000
-Message-ID: <164219041292.15568.8587250148409336918@emeril.freedesktop.org>
+Date: Fri, 14 Jan 2022 20:01:24 -0000
+Message-ID: <164219048458.15566.3418886367622002311@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220114193315.3271408-1-daniele.ceraolospurio@intel.com>
 In-Reply-To: <20220114193315.3271408-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/wopcm=3A_Handle_pre-programmed_WOPCM_registers?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/wopcm=3A_Handle_pre-programmed_WOPCM_registers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,17 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-03db6d6cfb02 drm/i915/wopcm: Handle pre-programmed WOPCM registers
--:14: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#14: 
-sometimes using a smaller WOPCM size that the actual HW support (which isn't
-
--:36: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#36: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h:98:
-+#define   GUC_IS_PRIVILEGED		(1<<29)
-                            		  ^
-
-total: 0 errors, 1 warnings, 1 checks, 134 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
