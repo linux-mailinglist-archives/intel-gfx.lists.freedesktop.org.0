@@ -2,71 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94B0548EA40
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 14:00:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 821B448EA89
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 14:23:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB7E010E292;
-	Fri, 14 Jan 2022 13:00:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BCBC10E2E8;
+	Fri, 14 Jan 2022 13:23:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 353 seconds by postgrey-1.36 at gabe;
- Fri, 14 Jan 2022 13:00:54 UTC
-Received: from new1-smtp.messagingengine.com (new1-smtp.messagingengine.com
- [66.111.4.221])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D58D010E182;
- Fri, 14 Jan 2022 13:00:54 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.nyi.internal (Postfix) with ESMTP id B378058052A;
- Fri, 14 Jan 2022 07:54:57 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Fri, 14 Jan 2022 07:54:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:mime-version:content-type; s=
- fm1; bh=4vz8jiRtdgPk0aHROxTUPN4cGx3LbMnExa2UCEEdsQ0=; b=kKBaakPW
- E4LdZJGDk/IWHquEOKN8L20ye6q1SBFLqlZJBb6AL1laaIRPWDrHHfX84xkgz95W
- 2SbYHxaMpmKNcdpGjaUJWTjsBbf2W9z0rYpPs0hs31R8UecGacTajo1DquGfzv44
- gDeXj+LmVEJRy1opIesDXsTTWZHDA3YUwt0HaJiT1hlNgDkxofEUdhabJi8FdcW7
- i8qa69APhktrLbnWDGrvUOFlQ40Bx0q7dVsz3zrsyyEHAYJJl5tpEzA690aam5nM
- rrXR3TVmn5BSwy69KjxtnxAEFsAhJFT1I0Eb5gA5lyRgoAqby+JtblfHElE+iK39
- yH0/RmlYx+0g4g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:message-id
- :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm1; bh=4vz8jiRtdgPk0aHROxTUPN4cGx3Lb
- MnExa2UCEEdsQ0=; b=i48fXHMvBUke0pkrX8g+BOH1y4j8+ab5B6Alcx8fcSVAq
- PSLaBAXzvKB5QyCiTFxXFfJQc9FWxwmy0AUsXDHHViDRMHlbZVnraB/6QSVVvtIf
- pESxjQ8jhJ8ShoV9csrkY8URp60E83btkYe+uNciKrOmB/Xd7EAKBoO++BBP+jF/
- ALTpYz1ltQcX1tMVx527qJZMT1rVLUMgWr7tqSSfpBONxh+v/pjdsGFQST5B16BB
- n2F1CcPRtOgAOAiEvirRBFSFmTSnPiOTn8cDA/UrxkUEIMrJFy1U2i+yZhidoAJa
- 663D3Tyq6a+9eLMbdXeIzGyi6zgSZv3eAbNd2Lpjw==
-X-ME-Sender: <xms:oHLhYQs837A2VM2ylk4wPBXeXvjEnmd9SPEbFKce6C71JeW1bVNLwQ>
- <xme:oHLhYdeOGAuW20tu5Ze8Ba5u4lsguzPN8TRonJSBh_tH-_1Gs0Joret2_O9gocVGf
- fVY6A671cAqKYscjMo>
-X-ME-Received: <xmr:oHLhYbxTXuHWE41SjloRnRFtI-UbFnrIH1geZqOWGnkzex5UgO0aOARH3f7dUOemtcJiazezVCrzVevAMYqPYnr5ERaldc8Rb4d0jYI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrtdehgdegiecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvuffkgggtugesghdtreertddtvdenucfhrhhomhepofgrgihimhgvucft
- ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrh
- hnpeeguedvtdehgeeghefhieegteffueefleevgefgkeevgeeiveduleejueegvdeigfen
- ucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghrufhiii
- gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgv
- tghh
-X-ME-Proxy: <xmx:oXLhYTP7lzJ-mBS5BeB2EOCncuDRNfQnCT1vF6-pFd3rCvJsG2ocOg>
- <xmx:oXLhYQ-LrR_BW7csMjhSF8pMekAuaVwNy3wd8YLYGgNE1Ldi21-qVw>
- <xmx:oXLhYbVLjhxH96PUJ4Dnj8fzRVrJI34IDTRDc17kbUPp1gv9i2U4FQ>
- <xmx:oXLhYR3_WJlMqwb_Z7HiCez3jP289eWkJY8dvhNScEvtEdbtegbuSQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 14 Jan 2022 07:54:56 -0500 (EST)
-Date: Fri, 14 Jan 2022 13:54:54 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20220114125454.zs46ny52lrxk3ljz@houat>
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
+ [IPv6:2a00:1450:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63B6D10E2D8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jan 2022 13:23:05 +0000 (UTC)
+Received: by mail-wr1-x42a.google.com with SMTP id t20so8133160wrb.4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jan 2022 05:23:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=yGm+HoMnmHYq1hZff4imUtmCDuhFjGImOK6d/VwMT8U=;
+ b=JC7r1JvhMle4ohgH2rJv/L6PPPETDeM903H6xJX4DXBu0n6vg8jjoMrKnFnKpOmXgD
+ f5C/0sHKGxlG3LvoKtBo1VuLRldJTHGz1obhec8P9Zj87y4X3VUYhI0jeVteqNAr6G12
+ Ga3OnRiK5anvR2rbDpQzYOqsF4DwEu7VSva/4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=yGm+HoMnmHYq1hZff4imUtmCDuhFjGImOK6d/VwMT8U=;
+ b=UcwdQ4I496MJjlRI7XcYuqu6y5ADXfLegQnJPWJlBTUVQLQgD//2zHOvCU2eG8kH2J
+ p3jvYpnMTrXneFG8QdXKx8EEopjn+WN9si1HmECMwIOS9GAn1xC1hUt4l8maZN6rzuv1
+ mnCyuudYlh43oQFcyqLh4DXuMYtD3aV3ZcS/ipxenA4wNmKPDf5yV53ycdWpU5A+4aYW
+ 5Lr5rT7Nb5bybw3tFrZ0F0lMWmzrS4uZhT7XPD25Nm7UbbYndtsoK1rsp0k3HMcuDu6/
+ rLKUqMAyQSWUEjCcxlBScyK9YTHRQdpT2qbjenciuOilMcBeTUnDDPhgFPjixPWQN2wk
+ DJTg==
+X-Gm-Message-State: AOAM533RXHrb36BijOXKpur0ar7s0bopbzXJOuBj3B6PGj4f1uplG5gK
+ zh4Ctq/uc14d80p08LJ239vxaA==
+X-Google-Smtp-Source: ABdhPJwxg9XgDQbTXk32UaqyyrqXwrYkliEKezS83CKc9ThCMa4OYZ+9K9MgcPWbw6tFIE1wv0xe/w==
+X-Received: by 2002:a05:6000:1786:: with SMTP id
+ e6mr8056858wrg.432.1642166583781; 
+ Fri, 14 Jan 2022 05:23:03 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id t5sm5253375wrw.12.2022.01.14.05.23.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 14 Jan 2022 05:23:03 -0800 (PST)
+Date: Fri, 14 Jan 2022 14:23:01 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YeF5NQUzc4UKO465@phenom.ffwll.local>
+References: <Yd/xzyCM87rfrwQT@tursulin-mobl2>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="ckajgawkwsianjye"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+In-Reply-To: <Yd/xzyCM87rfrwQT@tursulin-mobl2>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PULL] drm-intel-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,77 +66,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Jan 13, 2022 at 09:33:03AM +0000, Tvrtko Ursulin wrote:
+> 
+> Hi Dave and Daniel,
+> 
+> A few fixes for the merge window.
+> 
+> One dealing with runtime PM handling on the PXP unbind path and a few
+> regarding the newly added TTM backend support.
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> ---
+> 
+> drm-intel-next-fixes-2022-01-13:
+> - Hold runtime PM wakelock during PXP unbind (Juston Li)
+> - Three fixes for the TTM backend fault handling (Matthew Auld)
+> - Make sure to unmap when purging in the TTM backend (Matthew Auld)
+> The following changes since commit c65fe9cbbfd61dbc12868f9ed4940c80fcb249e8:
+> 
+>   drm/i915/fbc: Remember to update FBC state even when not reallocating CFB (2021-12-27 11:46:48 +0200)
+> 
+> are available in the Git repository at:
+> 
+>   git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-2022-01-13
 
---ckajgawkwsianjye
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Pulled, thanks.
+-Daniel
 
-Hi Dave, Daniel,
+> 
+> for you to fetch changes up to 6ef295e34297433c78ea02dfcf1c649a769050bb:
+> 
+>   drm/i915/ttm: ensure we unmap when purging (2022-01-10 14:00:47 +0000)
+> 
+> ----------------------------------------------------------------
+> - Hold runtime PM wakelock during PXP unbind (Juston Li)
+> - Three fixes for the TTM backend fault handling (Matthew Auld)
+> - Make sure to unmap when purging in the TTM backend (Matthew Auld)
+> 
+> ----------------------------------------------------------------
+> Juston Li (1):
+>       drm/i915/pxp: Hold RPM wakelock during PXP unbind
+> 
+> Matthew Auld (4):
+>       drm/i915: don't call free_mmap_offset when purging
+>       drm/i915/ttm: only fault WILLNEED objects
+>       drm/i915/ttm: add unmap_virtual callback
+>       drm/i915/ttm: ensure we unmap when purging
+> 
+>  drivers/gpu/drm/i915/gem/i915_gem_mman.c           |  3 +++
+>  drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |  1 +
+>  drivers/gpu/drm/i915/gem/i915_gem_pages.c          |  1 -
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm.c            | 27 +++++++++++++++++++++-
+>  drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 18 ++++-----------
+>  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c           |  5 +++-
+>  6 files changed, 38 insertions(+), 17 deletions(-)
 
-Here's a few patches stuck in drm-misc-fixes for some time.
-
-Maxime
-
-drm-misc-fixes-2022-01-14:
-Two DT bindings fixes for meson, a device refcounting fix for sun4i, a
-probe fix for vga16fb, a locking fix for the CMA dma-buf heap and a
-compilation fix for ttm.
-The following changes since commit 67f74302f45d5d862f22ced3297624e50ac352f0:
-
-  drm/nouveau: wait for the exclusive fence after the shared ones v2 (2021-12-21 09:24:31 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-01-14
-
-for you to fetch changes up to 016017a195b86d9761e91cb052438bf71207a12f:
-
-  drm/ttm: fix compilation on ARCH=um (2022-01-14 13:30:56 +0100)
-
-----------------------------------------------------------------
-Two DT bindings fixes for meson, a device refcounting fix for sun4i, a
-probe fix for vga16fb, a locking fix for the CMA dma-buf heap and a
-compilation fix for ttm.
-
-----------------------------------------------------------------
-Alexander Stein (2):
-      dt-bindings: display: meson-vpu: Add missing amlogic,canvas property
-      dt-bindings: display: meson-dw-hdmi: add missing sound-name-prefix property
-
-Javier Martinez Canillas (1):
-      video: vga16fb: Only probe for EGA and VGA 16 color graphic cards
-
-Johannes Berg (1):
-      drm/ttm: fix compilation on ARCH=um
-
-Miaoqian Lin (1):
-      drm/sun4i: dw-hdmi: Fix missing put_device() call in sun8i_hdmi_phy_get
-
-Weizhao Ouyang (1):
-      dma-buf: cma_heap: Fix mutex locking section
-
- .../bindings/display/amlogic,meson-dw-hdmi.yaml    |  5 +++++
- .../bindings/display/amlogic,meson-vpu.yaml        |  6 ++++++
- drivers/dma-buf/heaps/cma_heap.c                   |  6 ++++--
- drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c             |  4 +++-
- drivers/gpu/drm/ttm/ttm_module.c                   |  4 +++-
- drivers/video/fbdev/vga16fb.c                      | 24 ++++++++++++++++++++++
- 6 files changed, 45 insertions(+), 4 deletions(-)
-
---ckajgawkwsianjye
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYeFyngAKCRDj7w1vZxhR
-xSVgAQDSlTxXJFSNfDTJySFbVuP5u5qdqmxKzJ+CPxzNHnKF5AD/Xb5ThH3SnLU5
-hcnbZ1TnDcLxi5DFJ2IyANeRW602xgk=
-=Vkds
------END PGP SIGNATURE-----
-
---ckajgawkwsianjye--
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
