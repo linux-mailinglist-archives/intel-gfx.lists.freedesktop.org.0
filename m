@@ -2,68 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3DA648EEA1
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 17:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 037B148EEC6
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 17:55:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E66A310EABD;
-	Fri, 14 Jan 2022 16:45:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05BD910EAE2;
+	Fri, 14 Jan 2022 16:55:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BFDA10EABD
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jan 2022 16:45:49 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3DA210EAE2;
+ Fri, 14 Jan 2022 16:55:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642178749; x=1673714749;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=C7NfKJkCzFalEjFAkRedNfqyI5ffYcisViGcDoHt4o8=;
- b=MzSUGYod4vqsIMMt0VlXhf9P00vxtJi+bRGZdAt3r9bdkOz4B/CLscF9
- 3tOGkcpQi99aL4M2dv+0lGFnj/1AI8/JdlCpq9jI7uFkeieapibHPZsOO
- GLBrGF52fintbAOYR4mJhfW6WSyRph8d8XKAqu54n8C53ZQeuBdDHEN5X
- IJjjZY30FoNxDWMxdK9AMYgrSnUWfZFR+XMb2LtgdMcsR0kt+jLPPGW3v
- b9o8kg/jiix4SqBkCcv8HCPN4Jd09yJovQ17H66sMcqVS0Sqq8t1/DjzG
- T8eI2E0JsJffstrOr9TPBYHLNAv/UJZJ03gS5rIrc0+2331hyewQy+muf A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="241843417"
-X-IronPort-AV: E=Sophos;i="5.88,289,1635231600"; d="scan'208";a="241843417"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2022 08:45:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,289,1635231600"; d="scan'208";a="473703799"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
- by orsmga003.jf.intel.com with ESMTP; 14 Jan 2022 08:45:48 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 14 Jan 2022 08:45:47 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 14 Jan 2022 08:45:47 -0800
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2308.020;
- Fri, 14 Jan 2022 08:45:47 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 11/14] drm/i915: Clean up cursor registers
-Thread-Index: AQHX5sfXkNff1KBZ/kmcGbJIzIdp86xjhVwA
-Date: Fri, 14 Jan 2022 16:45:47 +0000
-Message-ID: <e505988be3dd761bd680a79c65b61c1c89320b13.camel@intel.com>
-References: <20211201152552.7821-1-ville.syrjala@linux.intel.com>
- <20211201152552.7821-12-ville.syrjala@linux.intel.com>
-In-Reply-To: <20211201152552.7821-12-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <7656D9C2575AFD46A83C3851A3B33D39@intel.com>
-Content-Transfer-Encoding: base64
+ t=1642179345; x=1673715345;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=79nXjkvn+pWJcl/uHnDEuDanOUtnC5jjXXwGrDMq9ys=;
+ b=esKBKujqvVCLG+CMZpE70Zt0mc+Ge11ssimz3ydt1LRWrTYG+pGVBTxr
+ jzYS2RCK1ZZyk1XlFGHBZLPLZtQOVMreUyCpHWFeFaL4ALD1aR/wZJpce
+ ozuNKLCQtkY9i48+q02z5x41K2/iMcAuFaQUXnCHs8ULQ5AHG5G2d3hmE
+ jga/iLMo8NRGgLSqdOvC/NYNBEpsqaR9CH5t9w8RknpfD5o7m7VsQ9igT
+ HMW1aj6/27WkA6HXqP1ihbbSUcewE0RX6H865Jtk7T8XVc4+opGcL42Ot
+ /cy49Ul7vBUftvK+u8XqKju20og6P2A1V/DnaUy0AFXptWv0HWbfV5J0I A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10227"; a="224970073"
+X-IronPort-AV: E=Sophos;i="5.88,289,1635231600"; d="scan'208";a="224970073"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2022 08:55:26 -0800
+X-IronPort-AV: E=Sophos;i="5.88,289,1635231600"; d="scan'208";a="763654037"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2022 08:55:26 -0800
+Date: Fri, 14 Jan 2022 08:55:25 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Message-ID: <YeGq/b6JjJaxSE0z@mdroper-desk1.amr.corp.intel.com>
+References: <20220112222031.82883-1-andi.shyti@linux.intel.com>
+ <20220112222031.82883-2-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 11/14] drm/i915: Clean up cursor registers
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220112222031.82883-2-andi.shyti@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: Prepare for multiple GTs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,177 +57,577 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIxLTEyLTAxIGF0IDE3OjI1ICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gVXNlIFJFR19CSVQoKSAmIGNvLiB0byBwb2xpc2ggdGhlIGN1cnNvciBwbGFuZSByZWdp
-c3RlcnMuDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXph
-QGludGVsLmNvbT4NCg0KPiANCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
-ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2N1cnNvci5jICB8IDI1ICsrKystLS0NCj4gIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgIDQgKy0NCj4gIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgICAgIHwgNzEgKysrKysrKysrKystLS0tLS0tLS0N
-Cj4gIDMgZmlsZXMgY2hhbmdlZCwgNTMgaW5zZXJ0aW9ucygrKSwgNDcgZGVsZXRpb25zKC0pDQo+
-IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jdXJz
-b3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3Vyc29yLmMNCj4gaW5k
-ZXggMTZkMzQ2ODVkODNmLi4yYWRlOGZkZDliZGQgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3Vyc29yLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9jdXJzb3IuYw0KPiBAQCAtNTEsMTYgKzUxLDE2IEBAIHN0YXRp
-YyB1MzIgaW50ZWxfY3Vyc29yX3Bvc2l0aW9uKGNvbnN0IHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0
-ZSAqcGxhbmVfc3RhdGUpDQo+ICAJdTMyIHBvcyA9IDA7DQo+ICANCj4gIAlpZiAoeCA8IDApIHsN
-Cj4gLQkJcG9zIHw9IENVUlNPUl9QT1NfU0lHTiA8PCBDVVJTT1JfWF9TSElGVDsNCj4gKwkJcG9z
-IHw9IENVUlNPUl9QT1NfWF9TSUdOOw0KPiAgCQl4ID0gLXg7DQo+ICAJfQ0KPiAtCXBvcyB8PSB4
-IDw8IENVUlNPUl9YX1NISUZUOw0KPiArCXBvcyB8PSBDVVJTT1JfUE9TX1goeCk7DQo+ICANCj4g
-IAlpZiAoeSA8IDApIHsNCj4gLQkJcG9zIHw9IENVUlNPUl9QT1NfU0lHTiA8PCBDVVJTT1JfWV9T
-SElGVDsNCj4gKwkJcG9zIHw9IENVUlNPUl9QT1NfWV9TSUdOOw0KPiAgCQl5ID0gLXk7DQo+ICAJ
-fQ0KPiAtCXBvcyB8PSB5IDw8IENVUlNPUl9ZX1NISUZUOw0KPiArCXBvcyB8PSBDVVJTT1JfUE9T
-X1koeSk7DQo+ICANCj4gIAlyZXR1cm4gcG9zOw0KPiAgfQ0KPiBAQCAtMTgwLDcgKzE4MCw3IEBA
-IHN0YXRpYyB1MzIgaTg0NV9jdXJzb3JfY3RsX2NydGMoY29uc3Qgc3RydWN0IGludGVsX2NydGNf
-c3RhdGUgKmNydGNfc3RhdGUpDQo+ICAJdTMyIGNudGwgPSAwOw0KPiAgDQo+ICAJaWYgKGNydGNf
-c3RhdGUtPmdhbW1hX2VuYWJsZSkNCj4gLQkJY250bCB8PSBDVVJTT1JfR0FNTUFfRU5BQkxFOw0K
-PiArCQljbnRsIHw9IENVUlNPUl9QSVBFX0dBTU1BX0VOQUJMRTsNCj4gIA0KPiAgCXJldHVybiBj
-bnRsOw0KPiAgfQ0KPiBAQCAtMjY0LDcgKzI2NCw3IEBAIHN0YXRpYyB2b2lkIGk4NDVfY3Vyc29y
-X3VwZGF0ZV9hcm0oc3RydWN0IGludGVsX3BsYW5lICpwbGFuZSwNCj4gIAkJY250bCA9IHBsYW5l
-X3N0YXRlLT5jdGwgfA0KPiAgCQkJaTg0NV9jdXJzb3JfY3RsX2NydGMoY3J0Y19zdGF0ZSk7DQo+
-ICANCj4gLQkJc2l6ZSA9IChoZWlnaHQgPDwgMTIpIHwgd2lkdGg7DQo+ICsJCXNpemUgPSBDVVJT
-T1JfSEVJR0hUKGhlaWdodCkgfCBDVVJTT1JfV0lEVEgod2lkdGgpOw0KPiAgDQo+ICAJCWJhc2Ug
-PSBpbnRlbF9jdXJzb3JfYmFzZShwbGFuZV9zdGF0ZSk7DQo+ICAJCXBvcyA9IGludGVsX2N1cnNv
-cl9wb3NpdGlvbihwbGFuZV9zdGF0ZSk7DQo+IEBAIC0yODAsNyArMjgwLDcgQEAgc3RhdGljIHZv
-aWQgaTg0NV9jdXJzb3JfdXBkYXRlX2FybShzdHJ1Y3QgaW50ZWxfcGxhbmUgKnBsYW5lLA0KPiAg
-CSAgICBwbGFuZS0+Y3Vyc29yLmNudGwgIT0gY250bCkgew0KPiAgCQlpbnRlbF9kZV93cml0ZV9m
-dyhkZXZfcHJpdiwgQ1VSQ05UUihQSVBFX0EpLCAwKTsNCj4gIAkJaW50ZWxfZGVfd3JpdGVfZnco
-ZGV2X3ByaXYsIENVUkJBU0UoUElQRV9BKSwgYmFzZSk7DQo+IC0JCWludGVsX2RlX3dyaXRlX2Z3
-KGRldl9wcml2LCBDVVJTSVpFLCBzaXplKTsNCj4gKwkJaW50ZWxfZGVfd3JpdGVfZncoZGV2X3By
-aXYsIENVUlNJWkUoUElQRV9BKSwgc2l6ZSk7DQo+ICAJCWludGVsX2RlX3dyaXRlX2Z3KGRldl9w
-cml2LCBDVVJQT1MoUElQRV9BKSwgcG9zKTsNCj4gIAkJaW50ZWxfZGVfd3JpdGVfZncoZGV2X3By
-aXYsIENVUkNOVFIoUElQRV9BKSwgY250bCk7DQo+ICANCj4gQEAgLTM0MCwxMyArMzQwLDEzIEBA
-IHN0YXRpYyB1MzIgaTl4eF9jdXJzb3JfY3RsX2NydGMoY29uc3Qgc3RydWN0IGludGVsX2NydGNf
-c3RhdGUgKmNydGNfc3RhdGUpDQo+ICAJCXJldHVybiBjbnRsOw0KPiAgDQo+ICAJaWYgKGNydGNf
-c3RhdGUtPmdhbW1hX2VuYWJsZSkNCj4gLQkJY250bCA9IE1DVVJTT1JfR0FNTUFfRU5BQkxFOw0K
-PiArCQljbnRsID0gTUNVUlNPUl9QSVBFX0dBTU1BX0VOQUJMRTsNCj4gIA0KPiAgCWlmIChjcnRj
-X3N0YXRlLT5jc2NfZW5hYmxlKQ0KPiAgCQljbnRsIHw9IE1DVVJTT1JfUElQRV9DU0NfRU5BQkxF
-Ow0KPiAgDQo+ICAJaWYgKERJU1BMQVlfVkVSKGRldl9wcml2KSA8IDUgJiYgIUlTX0c0WChkZXZf
-cHJpdikpDQo+IC0JCWNudGwgfD0gTUNVUlNPUl9QSVBFX1NFTEVDVChjcnRjLT5waXBlKTsNCj4g
-KwkJY250bCB8PSBNQ1VSU09SX1BJUEVfU0VMKGNydGMtPnBpcGUpOw0KPiAgDQo+ICAJcmV0dXJu
-IGNudGw7DQo+ICB9DQo+IEBAIC01MDIsNyArNTAyLDcgQEAgc3RhdGljIHZvaWQgaTl4eF9jdXJz
-b3JfdXBkYXRlX2FybShzdHJ1Y3QgaW50ZWxfcGxhbmUgKnBsYW5lLA0KPiAgCQkJaTl4eF9jdXJz
-b3JfY3RsX2NydGMoY3J0Y19zdGF0ZSk7DQo+ICANCj4gIAkJaWYgKHdpZHRoICE9IGhlaWdodCkN
-Cj4gLQkJCWZiY19jdGwgPSBDVVJfRkJDX0NUTF9FTiB8IChoZWlnaHQgLSAxKTsNCj4gKwkJCWZi
-Y19jdGwgPSBDVVJfRkJDX0VOIHwgQ1VSX0ZCQ19IRUlHSFQoaGVpZ2h0IC0gMSk7DQo+ICANCj4g
-IAkJYmFzZSA9IGludGVsX2N1cnNvcl9iYXNlKHBsYW5lX3N0YXRlKTsNCj4gIAkJcG9zID0gaW50
-ZWxfY3Vyc29yX3Bvc2l0aW9uKHBsYW5lX3N0YXRlKTsNCj4gQEAgLTU4NiwxMyArNTg2LDEyIEBA
-IHN0YXRpYyBib29sIGk5eHhfY3Vyc29yX2dldF9od19zdGF0ZShzdHJ1Y3QgaW50ZWxfcGxhbmUg
-KnBsYW5lLA0KPiAgDQo+ICAJdmFsID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwgQ1VSQ05UUihw
-bGFuZS0+cGlwZSkpOw0KPiAgDQo+IC0JcmV0ID0gdmFsICYgTUNVUlNPUl9NT0RFOw0KPiArCXJl
-dCA9IHZhbCAmIE1DVVJTT1JfTU9ERV9NQVNLOw0KPiAgDQo+ICAJaWYgKERJU1BMQVlfVkVSKGRl
-dl9wcml2KSA+PSA1IHx8IElTX0c0WChkZXZfcHJpdikpDQo+ICAJCSpwaXBlID0gcGxhbmUtPnBp
-cGU7DQo+ICAJZWxzZQ0KPiAtCQkqcGlwZSA9ICh2YWwgJiBNQ1VSU09SX1BJUEVfU0VMRUNUX01B
-U0spID4+DQo+IC0JCQlNQ1VSU09SX1BJUEVfU0VMRUNUX1NISUZUOw0KPiArCQkqcGlwZSA9IFJF
-R19GSUVMRF9HRVQoTUNVUlNPUl9QSVBFX1NFTF9NQVNLLCB2YWwpOw0KPiAgDQo+ICAJaW50ZWxf
-ZGlzcGxheV9wb3dlcl9wdXQoZGV2X3ByaXYsIHBvd2VyX2RvbWFpbiwgd2FrZXJlZik7DQo+ICAN
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gaW5k
-ZXggMDBhMmM5OTE1NzgwLi4zNGMxNDYzZTJlZjkgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IEBAIC0xMDA0MSw5ICsxMDA0MSw5IEBA
-IHZvaWQgaTgzMF9kaXNhYmxlX3BpcGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2
-LCBlbnVtIHBpcGUgcGlwZSkNCj4gIAlkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwNCj4gIAkJ
-ICAgIGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIERTUENOVFIoUExBTkVfQykpICYgRFNQX0VOQUJM
-RSk7DQo+ICAJZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sDQo+IC0JCSAgICBpbnRlbF9kZV9y
-ZWFkKGRldl9wcml2LCBDVVJDTlRSKFBJUEVfQSkpICYgTUNVUlNPUl9NT0RFKTsNCj4gKwkJICAg
-IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIENVUkNOVFIoUElQRV9BKSkgJiBNQ1VSU09SX01PREVf
-TUFTSyk7DQo+ICAJZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sDQo+IC0JCSAgICBpbnRlbF9k
-ZV9yZWFkKGRldl9wcml2LCBDVVJDTlRSKFBJUEVfQikpICYgTUNVUlNPUl9NT0RFKTsNCj4gKwkJ
-ICAgIGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIENVUkNOVFIoUElQRV9CKSkgJiBNQ1VSU09SX01P
-REVfTUFTSyk7DQo+ICANCj4gIAlpbnRlbF9kZV93cml0ZShkZXZfcHJpdiwgUElQRUNPTkYocGlw
-ZSksIDApOw0KPiAgCWludGVsX2RlX3Bvc3RpbmdfcmVhZChkZXZfcHJpdiwgUElQRUNPTkYocGlw
-ZSkpOw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gaW5kZXggZDIxNWNhZDk1ZmU4Li5lMDEw
-YWRkNTU3NGEgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgN
-Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaA0KPiBAQCAtNjc2MSw0NCAr
-Njc2MSw1MCBAQCBlbnVtIHsNCj4gIC8qIEN1cnNvciBBICYgQiByZWdzICovDQo+ICAjZGVmaW5l
-IF9DVVJBQ05UUgkJMHg3MDA4MA0KPiAgLyogT2xkIHN0eWxlIENVUipDTlRSIGZsYWdzIChkZXNr
-dG9wIDh4eCkgKi8NCj4gLSNkZWZpbmUgICBDVVJTT1JfRU5BQkxFCQkweDgwMDAwMDAwDQo+IC0j
-ZGVmaW5lICAgQ1VSU09SX0dBTU1BX0VOQUJMRQkweDQwMDAwMDAwDQo+IC0jZGVmaW5lICAgQ1VS
-U09SX1NUUklERV9TSElGVAkyOA0KPiAtI2RlZmluZSAgIENVUlNPUl9TVFJJREUoeCkJKChmZnMo
-eCkgLSA5KSA8PCBDVVJTT1JfU1RSSURFX1NISUZUKSAvKiAyNTYsNTEyLDFrLDJrICovDQo+IC0j
-ZGVmaW5lICAgQ1VSU09SX0ZPUk1BVF9TSElGVAkyNA0KPiAtI2RlZmluZSAgIENVUlNPUl9GT1JN
-QVRfTUFTSwkoMHgwNyA8PCBDVVJTT1JfRk9STUFUX1NISUZUKQ0KPiAtI2RlZmluZSAgIENVUlNP
-Ul9GT1JNQVRfMkMJKDB4MDAgPDwgQ1VSU09SX0ZPUk1BVF9TSElGVCkNCj4gLSNkZWZpbmUgICBD
-VVJTT1JfRk9STUFUXzNDCSgweDAxIDw8IENVUlNPUl9GT1JNQVRfU0hJRlQpDQo+IC0jZGVmaW5l
-ICAgQ1VSU09SX0ZPUk1BVF80QwkoMHgwMiA8PCBDVVJTT1JfRk9STUFUX1NISUZUKQ0KPiAtI2Rl
-ZmluZSAgIENVUlNPUl9GT1JNQVRfQVJHQgkoMHgwNCA8PCBDVVJTT1JfRk9STUFUX1NISUZUKQ0K
-PiAtI2RlZmluZSAgIENVUlNPUl9GT1JNQVRfWFJHQgkoMHgwNSA8PCBDVVJTT1JfRk9STUFUX1NI
-SUZUKQ0KPiArI2RlZmluZSAgIENVUlNPUl9FTkFCTEUJCQlSRUdfQklUKDMxKQ0KPiArI2RlZmlu
-ZSAgIENVUlNPUl9QSVBFX0dBTU1BX0VOQUJMRQlSRUdfQklUKDMwKQ0KPiArI2RlZmluZSAgIENV
-UlNPUl9TVFJJREVfTUFTSwlSRUdfR0VOTUFTSygyOSwgMjgpDQo+ICsjZGVmaW5lICAgQ1VSU09S
-X1NUUklERShzdHJpZGUpCVJFR19GSUVMRF9QUkVQKENVUlNPUl9TVFJJREVfTUFTSywgZmZzKHN0
-cmlkZSkgLSA5KSAvKiAyNTYsNTEyLDFrLDJrICovDQo+ICsjZGVmaW5lICAgQ1VSU09SX0ZPUk1B
-VF9NQVNLCVJFR19HRU5NQVNLKDI2LCAyNCkNCj4gKyNkZWZpbmUgICBDVVJTT1JfRk9STUFUXzJD
-CVJFR19GSUVMRF9QUkVQKENVUlNPUl9GT1JNQVRfTUFTSywgMCkNCj4gKyNkZWZpbmUgICBDVVJT
-T1JfRk9STUFUXzNDCVJFR19GSUVMRF9QUkVQKENVUlNPUl9GT1JNQVRfTUFTSywgMSkNCj4gKyNk
-ZWZpbmUgICBDVVJTT1JfRk9STUFUXzRDCVJFR19GSUVMRF9QUkVQKENVUlNPUl9GT1JNQVRfTUFT
-SywgMikNCj4gKyNkZWZpbmUgICBDVVJTT1JfRk9STUFUX0FSR0IJUkVHX0ZJRUxEX1BSRVAoQ1VS
-U09SX0ZPUk1BVF9NQVNLLCA0KQ0KPiArI2RlZmluZSAgIENVUlNPUl9GT1JNQVRfWFJHQglSRUdf
-RklFTERfUFJFUChDVVJTT1JfRk9STUFUX01BU0ssIDUpDQo+ICAvKiBOZXcgc3R5bGUgQ1VSKkNO
-VFIgZmxhZ3MgKi8NCj4gLSNkZWZpbmUgICBNQ1VSU09SX01PREUJCTB4MjcNCj4gLSNkZWZpbmUg
-ICBNQ1VSU09SX01PREVfRElTQUJMRSAgIDB4MDANCj4gLSNkZWZpbmUgICBNQ1VSU09SX01PREVf
-MTI4XzMyQl9BWCAweDAyDQo+IC0jZGVmaW5lICAgTUNVUlNPUl9NT0RFXzI1Nl8zMkJfQVggMHgw
-Mw0KPiAtI2RlZmluZSAgIE1DVVJTT1JfTU9ERV82NF8zMkJfQVggMHgwNw0KPiAtI2RlZmluZSAg
-IE1DVVJTT1JfTU9ERV8xMjhfQVJHQl9BWCAoKDEgPDwgNSkgfCBNQ1VSU09SX01PREVfMTI4XzMy
-Ql9BWCkNCj4gLSNkZWZpbmUgICBNQ1VSU09SX01PREVfMjU2X0FSR0JfQVggKCgxIDw8IDUpIHwg
-TUNVUlNPUl9NT0RFXzI1Nl8zMkJfQVgpDQo+IC0jZGVmaW5lICAgTUNVUlNPUl9NT0RFXzY0X0FS
-R0JfQVggKCgxIDw8IDUpIHwgTUNVUlNPUl9NT0RFXzY0XzMyQl9BWCkNCj4gICNkZWZpbmUgICBN
-Q1VSU09SX0FSQl9TTE9UU19NQVNLCVJFR19HRU5NQVNLKDMwLCAyOCkgLyogaWNsKyAqLw0KPiAg
-I2RlZmluZSAgIE1DVVJTT1JfQVJCX1NMT1RTKHgpCQlSRUdfRklFTERfUFJFUChNQ1VSU09SX0FS
-Ql9TTE9UU19NQVNLLCAoeCkpIC8qIGljbCsgKi8NCj4gLSNkZWZpbmUgICBNQ1VSU09SX1BJUEVf
-U0VMRUNUX01BU0sJKDB4MyA8PCAyOCkNCj4gLSNkZWZpbmUgICBNQ1VSU09SX1BJUEVfU0VMRUNU
-X1NISUZUCTI4DQo+IC0jZGVmaW5lICAgTUNVUlNPUl9QSVBFX1NFTEVDVChwaXBlKQkoKHBpcGUp
-IDw8IDI4KQ0KPiAtI2RlZmluZSAgIE1DVVJTT1JfR0FNTUFfRU5BQkxFICAoMSA8PCAyNikNCj4g
-LSNkZWZpbmUgICBNQ1VSU09SX1BJUEVfQ1NDX0VOQUJMRSAoMSA8PCAyNCkgLyogaWxrKyAqLw0K
-PiAtI2RlZmluZSAgIE1DVVJTT1JfUk9UQVRFXzE4MAkoMSA8PCAxNSkNCj4gLSNkZWZpbmUgICBN
-Q1VSU09SX1RSSUNLTEVfRkVFRF9ESVNBQkxFCSgxIDw8IDE0KQ0KPiArI2RlZmluZSAgIE1DVVJT
-T1JfUElQRV9TRUxfTUFTSwkJUkVHX0dFTk1BU0soMjksIDI4KQ0KPiArI2RlZmluZSAgIE1DVVJT
-T1JfUElQRV9TRUwocGlwZSkJUkVHX0ZJRUxEX1BSRVAoTUNVUlNPUl9QSVBFX1NFTF9NQVNLLCAo
-cGlwZSkpDQo+ICsjZGVmaW5lICAgTUNVUlNPUl9QSVBFX0dBTU1BX0VOQUJMRQlSRUdfQklUKDI2
-KQ0KPiArI2RlZmluZSAgIE1DVVJTT1JfUElQRV9DU0NfRU5BQkxFCVJFR19CSVQoMjQpIC8qIGls
-aysgKi8NCj4gKyNkZWZpbmUgICBNQ1VSU09SX1JPVEFURV8xODAJCVJFR19CSVQoMTUpDQo+ICsj
-ZGVmaW5lICAgTUNVUlNPUl9UUklDS0xFX0ZFRURfRElTQUJMRQlSRUdfQklUKDE0KQ0KPiArI2Rl
-ZmluZSAgIE1DVVJTT1JfTU9ERV9NQVNLCQkweDI3DQo+ICsjZGVmaW5lICAgTUNVUlNPUl9NT0RF
-X0RJU0FCTEUJCTB4MDANCj4gKyNkZWZpbmUgICBNQ1VSU09SX01PREVfMTI4XzMyQl9BWAkweDAy
-DQo+ICsjZGVmaW5lICAgTUNVUlNPUl9NT0RFXzI1Nl8zMkJfQVgJMHgwMw0KPiArI2RlZmluZSAg
-IE1DVVJTT1JfTU9ERV82NF8zMkJfQVgJMHgwNw0KPiArI2RlZmluZSAgIE1DVVJTT1JfTU9ERV8x
-MjhfQVJHQl9BWAkoMHgyMCB8IE1DVVJTT1JfTU9ERV8xMjhfMzJCX0FYKQ0KPiArI2RlZmluZSAg
-IE1DVVJTT1JfTU9ERV8yNTZfQVJHQl9BWAkoMHgyMCB8IE1DVVJTT1JfTU9ERV8yNTZfMzJCX0FY
-KQ0KPiArI2RlZmluZSAgIE1DVVJTT1JfTU9ERV82NF9BUkdCX0FYCSgweDIwIHwgTUNVUlNPUl9N
-T0RFXzY0XzMyQl9BWCkNCj4gICNkZWZpbmUgX0NVUkFCQVNFCQkweDcwMDg0DQo+ICAjZGVmaW5l
-IF9DVVJBUE9TCQkweDcwMDg4DQo+IC0jZGVmaW5lICAgQ1VSU09SX1BPU19NQVNLICAgICAgIDB4
-MDA3RkYNCj4gLSNkZWZpbmUgICBDVVJTT1JfUE9TX1NJR04gICAgICAgMHg4MDAwDQo+IC0jZGVm
-aW5lICAgQ1VSU09SX1hfU0hJRlQgICAgICAgIDANCj4gLSNkZWZpbmUgICBDVVJTT1JfWV9TSElG
-VCAgICAgICAgMTYNCj4gLSNkZWZpbmUgQ1VSU0laRQkJCV9NTUlPKDB4NzAwYTApIC8qIDg0NS84
-NjUgKi8NCj4gKyNkZWZpbmUgICBDVVJTT1JfUE9TX1lfU0lHTgkJUkVHX0JJVCgzMSkNCj4gKyNk
-ZWZpbmUgICBDVVJTT1JfUE9TX1lfTUFTSwkJUkVHX0dFTk1BU0soMzAsIDE2KQ0KPiArI2RlZmlu
-ZSAgIENVUlNPUl9QT1NfWSh5KQkJUkVHX0ZJRUxEX1BSRVAoQ1VSU09SX1BPU19ZX01BU0ssICh5
-KSkNCj4gKyNkZWZpbmUgICBDVVJTT1JfUE9TX1hfU0lHTgkJUkVHX0JJVCgxNSkNCj4gKyNkZWZp
-bmUgICBDVVJTT1JfUE9TX1hfTUFTSwkJUkVHX0dFTk1BU0soMTQsIDApDQo+ICsjZGVmaW5lICAg
-Q1VSU09SX1BPU19YKHgpCQlSRUdfRklFTERfUFJFUChDVVJTT1JfUE9TX1hfTUFTSywgKHgpKQ0K
-PiArI2RlZmluZSBfQ1VSQVNJWkUJCTB4NzAwYTAgLyogODQ1Lzg2NSAqLw0KPiArI2RlZmluZSAg
-IENVUlNPUl9IRUlHSFRfTUFTSwkJUkVHX0dFTk1BU0soMjEsIDEyKQ0KPiArI2RlZmluZSAgIENV
-UlNPUl9IRUlHSFQoaCkJCVJFR19GSUVMRF9QUkVQKENVUlNPUl9IRUlHSFRfTUFTSywgKGgpKQ0K
-PiArI2RlZmluZSAgIENVUlNPUl9XSURUSF9NQVNLCQlSRUdfR0VOTUFTSyg5LCAwKQ0KPiArI2Rl
-ZmluZSAgIENVUlNPUl9XSURUSCh3KQkJUkVHX0ZJRUxEX1BSRVAoQ1VSU09SX1dJRFRIX01BU0ss
-ICh3KSkNCj4gICNkZWZpbmUgX0NVUl9GQkNfQ1RMX0EJCTB4NzAwYTAgLyogaXZiKyAqLw0KPiAt
-I2RlZmluZSAgIENVUl9GQkNfQ1RMX0VOCSgxIDw8IDMxKQ0KPiArI2RlZmluZSAgIENVUl9GQkNf
-RU4JCQlSRUdfQklUKDMxKQ0KPiArI2RlZmluZSAgIENVUl9GQkNfSEVJR0hUX01BU0sJCVJFR19H
-RU5NQVNLKDcsIDApDQo+ICsjZGVmaW5lICAgQ1VSX0ZCQ19IRUlHSFQoaCkJCVJFR19GSUVMRF9Q
-UkVQKENVUl9GQkNfSEVJR0hUX01BU0ssIChoKSkNCj4gICNkZWZpbmUgX0NVUkFTVVJGTElWRQkJ
-MHg3MDBhYyAvKiBnNHgrICovDQo+ICAjZGVmaW5lIF9DVVJCQ05UUgkJMHg3MDBjMA0KPiAgI2Rl
-ZmluZSBfQ1VSQkJBU0UJCTB4NzAwYzQNCj4gQEAgLTY4MTEsNiArNjgxNyw3IEBAIGVudW0gew0K
-PiAgI2RlZmluZSBDVVJDTlRSKHBpcGUpIF9DVVJTT1IyKHBpcGUsIF9DVVJBQ05UUikNCj4gICNk
-ZWZpbmUgQ1VSQkFTRShwaXBlKSBfQ1VSU09SMihwaXBlLCBfQ1VSQUJBU0UpDQo+ICAjZGVmaW5l
-IENVUlBPUyhwaXBlKSBfQ1VSU09SMihwaXBlLCBfQ1VSQVBPUykNCj4gKyNkZWZpbmUgQ1VSU0la
-RShwaXBlKSBfQ1VSU09SMihwaXBlLCBfQ1VSQVNJWkUpDQo+ICAjZGVmaW5lIENVUl9GQkNfQ1RM
-KHBpcGUpIF9DVVJTT1IyKHBpcGUsIF9DVVJfRkJDX0NUTF9BKQ0KPiAgI2RlZmluZSBDVVJTVVJG
-TElWRShwaXBlKSBfQ1VSU09SMihwaXBlLCBfQ1VSQVNVUkZMSVZFKQ0KPiAgDQoNCg==
+On Thu, Jan 13, 2022 at 12:20:30AM +0200, Andi Shyti wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> On a multi-tile platform, each tile has its own registers + GGTT
+> space, and BAR 0 is extended to cover all of them.
+> 
+> Up to four gts are supported in i915->gt[], with slot zero
+> shadowing the existing i915->gt0 to enable source compatibility
+> with legacy driver paths. A for_each_gt macro is added to iterate
+> over the GTs and will be used by upcoming patches that convert
+> various parts of the driver to be multi-gt aware.
+> 
+> Only the primary/root tile is initialized for now; the other
+> tiles will be detected and plugged in by future patches once the
+> necessary infrastructure is in place to handle them.
+> 
+> Signed-off-by: Abdiel Janulgue <abdiel.janulgue@gmail.com>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt.c            | 139 ++++++++++++++++--
+>  drivers/gpu/drm/i915/gt/intel_gt.h            |  14 +-
+>  drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   9 +-
+>  drivers/gpu/drm/i915/gt/intel_gt_types.h      |   7 +
+>  drivers/gpu/drm/i915/i915_driver.c            |  29 ++--
+>  drivers/gpu/drm/i915/i915_drv.h               |   6 +
+>  drivers/gpu/drm/i915/intel_memory_region.h    |   3 +
+>  drivers/gpu/drm/i915/intel_uncore.c           |  12 +-
+>  drivers/gpu/drm/i915/intel_uncore.h           |   3 +-
+>  .../gpu/drm/i915/selftests/mock_gem_device.c  |   5 +-
+>  10 files changed, 185 insertions(+), 42 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 622cdfed8a8b..17927da9e23e 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -27,7 +27,8 @@
+>  #include "shmem_utils.h"
+>  #include "pxp/intel_pxp.h"
+>  
+> -void __intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
+> +static void
+> +__intel_gt_init_early(struct intel_gt *gt)
+>  {
+>  	spin_lock_init(&gt->irq_lock);
+>  
+> @@ -47,19 +48,27 @@ void __intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
+>  	intel_rps_init_early(&gt->rps);
+>  }
+>  
+> +/* Preliminary initialization of Tile 0 */
+>  void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
+>  {
+>  	gt->i915 = i915;
+>  	gt->uncore = &i915->uncore;
+> +
+> +	__intel_gt_init_early(gt);
+>  }
+>  
+> -int intel_gt_probe_lmem(struct intel_gt *gt)
+> +static int intel_gt_probe_lmem(struct intel_gt *gt)
+>  {
+>  	struct drm_i915_private *i915 = gt->i915;
+> +	unsigned int instance = gt->info.id;
+>  	struct intel_memory_region *mem;
+>  	int id;
+>  	int err;
+>  
+> +	id = INTEL_REGION_LMEM + instance;
+> +	if (drm_WARN_ON(&i915->drm, id >= INTEL_REGION_STOLEN_SMEM))
+> +		return -ENODEV;
+> +
+>  	mem = intel_gt_setup_lmem(gt);
+>  	if (mem == ERR_PTR(-ENODEV))
+>  		mem = intel_gt_setup_fake_lmem(gt);
+> @@ -74,9 +83,8 @@ int intel_gt_probe_lmem(struct intel_gt *gt)
+>  		return err;
+>  	}
+>  
+> -	id = INTEL_REGION_LMEM;
+> -
+>  	mem->id = id;
+> +	mem->instance = instance;
+>  
+>  	intel_memory_region_set_name(mem, "local%u", mem->instance);
+>  
+> @@ -791,16 +799,21 @@ void intel_gt_driver_release(struct intel_gt *gt)
+>  	intel_gt_fini_buffer_pool(gt);
+>  }
+>  
+> -void intel_gt_driver_late_release(struct intel_gt *gt)
+> +void intel_gt_driver_late_release(struct drm_i915_private *i915)
+>  {
+> +	struct intel_gt *gt;
+> +	unsigned int id;
+> +
+>  	/* We need to wait for inflight RCU frees to release their grip */
+>  	rcu_barrier();
+>  
+> -	intel_uc_driver_late_release(&gt->uc);
+> -	intel_gt_fini_requests(gt);
+> -	intel_gt_fini_reset(gt);
+> -	intel_gt_fini_timelines(gt);
+> -	intel_engines_free(gt);
+> +	for_each_gt(gt, i915, id) {
+> +		intel_uc_driver_late_release(&gt->uc);
+> +		intel_gt_fini_requests(gt);
+> +		intel_gt_fini_reset(gt);
+> +		intel_gt_fini_timelines(gt);
+> +		intel_engines_free(gt);
+> +	}
+>  }
+>  
+>  /**
+> @@ -909,6 +922,112 @@ u32 intel_gt_read_register_fw(struct intel_gt *gt, i915_reg_t reg)
+>  	return intel_uncore_read_fw(gt->uncore, reg);
+>  }
+>  
+> +static int
+> +intel_gt_tile_setup(struct intel_gt *gt, phys_addr_t phys_addr)
+> +{
+> +	struct drm_i915_private *i915 = gt->i915;
+> +	unsigned int id = gt->info.id;
+> +	int ret;
+> +
+> +	if (id) {
+> +		struct intel_uncore_mmio_debug *mmio_debug;
+> +		struct intel_uncore *uncore;
+> +
+> +		/* For multi-tile platforms BAR0 must have at least 16MB per tile */
+> +		if (GEM_WARN_ON(pci_resource_len(to_pci_dev(i915->drm.dev), 0) <
+> +				(id + 1) * SZ_16M))
+> +			return -EINVAL;
+> +
+> +		uncore = kzalloc(sizeof(*uncore), GFP_KERNEL);
+> +		if (!gt->uncore)
+> +			return -ENOMEM;
+> +
+> +		mmio_debug = kzalloc(sizeof(*mmio_debug), GFP_KERNEL);
+> +		if (!mmio_debug) {
+> +			kfree(uncore);
+> +			return -ENOMEM;
+> +		}
+> +
+> +		gt->uncore = uncore;
+> +		gt->uncore->debug = mmio_debug;
+> +
+> +		__intel_gt_init_early(gt);
+> +	}
+> +
+> +	intel_uncore_init_early(gt->uncore, gt);
+> +
+> +	ret = intel_uncore_setup_mmio(gt->uncore, phys_addr);
+> +	if (ret)
+> +		return ret;
+> +
+> +	gt->phys_addr = phys_addr;
+> +
+> +	return 0;
+> +}
+> +
+> +static void
+> +intel_gt_tile_cleanup(struct intel_gt *gt)
+> +{
+> +	intel_uncore_cleanup_mmio(gt->uncore);
+> +
+> +	if (gt->info.id) {
+> +		kfree(gt->uncore);
+> +		kfree(gt);
+> +	}
+> +}
+> +
+> +int intel_gt_probe_all(struct drm_i915_private *i915)
+> +{
+> +	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+> +	struct intel_gt *gt = &i915->gt0;
+> +	phys_addr_t phys_addr;
+> +	unsigned int mmio_bar;
+> +	int ret;
+> +
+> +	mmio_bar = GRAPHICS_VER(i915) == 2 ? 1 : 0;
+> +	phys_addr = pci_resource_start(pdev, mmio_bar);
+> +
+> +	/*
+> +	 * We always have at least one primary GT on any device
+> +	 * and it has been already initialized early during probe
+> +	 * in i915_driver_probe()
+> +	 */
+> +	ret = intel_gt_tile_setup(gt, phys_addr);
+> +	if (ret)
+> +		return ret;
+> +
+> +	i915->gt[0] = gt;
+> +
+> +	/* TODO: add more tiles */
+> +	return 0;
+> +}
+> +
+> +int intel_gt_tiles_init(struct drm_i915_private *i915)
+> +{
+> +	struct intel_gt *gt;
+> +	unsigned int id;
+> +	int ret;
+> +
+> +	for_each_gt(gt, i915, id) {
+> +		ret = intel_gt_probe_lmem(gt);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +void intel_gt_release_all(struct drm_i915_private *i915)
+> +{
+> +	struct intel_gt *gt;
+> +	unsigned int id;
+> +
+> +	for_each_gt(gt, i915, id) {
+> +		intel_gt_tile_cleanup(gt);
+> +		i915->gt[id] = NULL;
+> +	}
+> +}
+> +
+>  void intel_gt_info_print(const struct intel_gt_info *info,
+>  			 struct drm_printer *p)
+>  {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+> index 94e1bac8c0cc..fcd10d88612a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+> @@ -35,9 +35,7 @@ static inline struct intel_gt *huc_to_gt(struct intel_huc *huc)
+>  }
+>  
+>  void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915);
+> -void __intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915);
+>  int intel_gt_assign_ggtt(struct intel_gt *gt);
+> -int intel_gt_probe_lmem(struct intel_gt *gt);
+>  int intel_gt_init_mmio(struct intel_gt *gt);
+>  int __must_check intel_gt_init_hw(struct intel_gt *gt);
+>  int intel_gt_init(struct intel_gt *gt);
+> @@ -47,7 +45,7 @@ void intel_gt_driver_unregister(struct intel_gt *gt);
+>  void intel_gt_driver_remove(struct intel_gt *gt);
+>  void intel_gt_driver_release(struct intel_gt *gt);
+>  
+> -void intel_gt_driver_late_release(struct intel_gt *gt);
+> +void intel_gt_driver_late_release(struct drm_i915_private *i915);
+>  
+>  int intel_gt_wait_for_idle(struct intel_gt *gt, long timeout);
+>  
+> @@ -86,6 +84,16 @@ static inline bool intel_gt_needs_read_steering(struct intel_gt *gt,
+>  
+>  u32 intel_gt_read_register_fw(struct intel_gt *gt, i915_reg_t reg);
+>  
+> +int intel_gt_probe_all(struct drm_i915_private *i915);
+> +int intel_gt_tiles_init(struct drm_i915_private *i915);
+> +void intel_gt_release_all(struct drm_i915_private *i915);
+> +
+> +#define for_each_gt(gt__, i915__, id__) \
+> +	for ((id__) = 0; \
+> +	     (id__) < I915_MAX_GT; \
+> +	     (id__)++) \
+> +		for_each_if(((gt__) = (i915__)->gt[(id__)]))
+> +
+>  void intel_gt_info_print(const struct intel_gt_info *info,
+>  			 struct drm_printer *p);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> index c0fa41e4c803..e66479d33bc3 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> @@ -128,7 +128,14 @@ static const struct intel_wakeref_ops wf_ops = {
+>  
+>  void intel_gt_pm_init_early(struct intel_gt *gt)
+>  {
+> -	intel_wakeref_init(&gt->wakeref, gt->uncore->rpm, &wf_ops);
+> +	/*
+> +	 * We access the runtime_pm structure via gt->i915 here rather than
+> +	 * gt->uncore as we do elsewhere in the file because gt->uncore is not
+> +	 * yet initialized for all tiles at this point in the driver startup.
+> +	 * runtime_pm is per-device rather than per-tile, so this is still the
+> +	 * correct structure.
+> +	 */
+> +	intel_wakeref_init(&gt->wakeref, &gt->i915->runtime_pm, &wf_ops);
+>  	seqcount_mutex_init(&gt->stats.lock, &gt->wakeref.mutex);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> index 14216cc471b1..7311e485faae 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> @@ -180,7 +180,14 @@ struct intel_gt {
+>  
+>  	const struct intel_mmio_range *steering_table[NUM_STEERING_TYPES];
+>  
+> +	/*
+> +	 * Base of per-tile GTTMMADR where we can derive the MMIO and the GGTT.
+> +	 */
+> +	phys_addr_t phys_addr;
+> +
+>  	struct intel_gt_info {
+> +		unsigned int id;
+> +
+>  		intel_engine_mask_t engine_mask;
+>  
+>  		u32 l3bank_mask;
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 8bef67cb6c33..aa00965cd36c 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -316,9 +316,8 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+>  	intel_device_info_subplatform_init(dev_priv);
+>  	intel_step_init(dev_priv);
+>  
+> -	intel_gt_init_early(to_gt(dev_priv), dev_priv);
+> +	/* All tiles share a single mmio_debug */
+>  	intel_uncore_mmio_debug_init_early(&dev_priv->mmio_debug);
+> -	intel_uncore_init_early(&dev_priv->uncore, to_gt(dev_priv));
+>  
+>  	spin_lock_init(&dev_priv->irq_lock);
+>  	spin_lock_init(&dev_priv->gpu_error.lock);
+> @@ -349,7 +348,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+>  
+>  	intel_wopcm_init_early(&dev_priv->wopcm);
+>  
+> -	__intel_gt_init_early(to_gt(dev_priv), dev_priv);
+> +	intel_gt_init_early(to_gt(dev_priv), dev_priv);
+>  
+>  	i915_gem_init_early(dev_priv);
+>  
+> @@ -370,7 +369,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+>  
+>  err_gem:
+>  	i915_gem_cleanup_early(dev_priv);
+> -	intel_gt_driver_late_release(to_gt(dev_priv));
+> +	intel_gt_driver_late_release(dev_priv);
+>  	intel_region_ttm_device_fini(dev_priv);
+>  err_ttm:
+>  	vlv_suspend_cleanup(dev_priv);
+> @@ -389,7 +388,7 @@ static void i915_driver_late_release(struct drm_i915_private *dev_priv)
+>  	intel_irq_fini(dev_priv);
+>  	intel_power_domains_cleanup(dev_priv);
+>  	i915_gem_cleanup_early(dev_priv);
+> -	intel_gt_driver_late_release(to_gt(dev_priv));
+> +	intel_gt_driver_late_release(dev_priv);
+>  	intel_region_ttm_device_fini(dev_priv);
+>  	vlv_suspend_cleanup(dev_priv);
+>  	i915_workqueues_cleanup(dev_priv);
+> @@ -420,13 +419,9 @@ static int i915_driver_mmio_probe(struct drm_i915_private *dev_priv)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	ret = intel_uncore_setup_mmio(&dev_priv->uncore);
+> -	if (ret < 0)
+> -		goto err_bridge;
+> -
+>  	ret = intel_uncore_init_mmio(&dev_priv->uncore);
+>  	if (ret)
+> -		goto err_mmio;
+> +		return ret;
+>  
+>  	/* Try to make sure MCHBAR is enabled before poking at it */
+>  	intel_setup_mchbar(dev_priv);
+> @@ -444,9 +439,6 @@ static int i915_driver_mmio_probe(struct drm_i915_private *dev_priv)
+>  err_uncore:
+>  	intel_teardown_mchbar(dev_priv);
+>  	intel_uncore_fini_mmio(&dev_priv->uncore);
+> -err_mmio:
+> -	intel_uncore_cleanup_mmio(&dev_priv->uncore);
+> -err_bridge:
+>  	pci_dev_put(dev_priv->bridge_dev);
+>  
+>  	return ret;
+> @@ -460,7 +452,6 @@ static void i915_driver_mmio_release(struct drm_i915_private *dev_priv)
+>  {
+>  	intel_teardown_mchbar(dev_priv);
+>  	intel_uncore_fini_mmio(&dev_priv->uncore);
+> -	intel_uncore_cleanup_mmio(&dev_priv->uncore);
+>  	pci_dev_put(dev_priv->bridge_dev);
+>  }
+>  
+> @@ -593,7 +584,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+>  	if (ret)
+>  		goto err_ggtt;
+>  
+> -	ret = intel_gt_probe_lmem(to_gt(dev_priv));
+> +	ret = intel_gt_tiles_init(dev_priv);
+>  	if (ret)
+>  		goto err_mem_regions;
+>  
+> @@ -858,10 +849,14 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  
+>  	intel_vgpu_detect(i915);
+>  
+> -	ret = i915_driver_mmio_probe(i915);
+> +	ret = intel_gt_probe_all(i915);
+>  	if (ret < 0)
+>  		goto out_runtime_pm_put;
+>  
+> +	ret = i915_driver_mmio_probe(i915);
+> +	if (ret < 0)
+> +		goto out_tiles_cleanup;
+> +
+>  	ret = i915_driver_hw_probe(i915);
+>  	if (ret < 0)
+>  		goto out_cleanup_mmio;
+> @@ -918,6 +913,8 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  	i915_ggtt_driver_late_release(i915);
+>  out_cleanup_mmio:
+>  	i915_driver_mmio_release(i915);
+> +out_tiles_cleanup:
+> +	intel_gt_release_all(i915);
+>  out_runtime_pm_put:
+>  	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+>  	i915_driver_late_release(i915);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 6caec2eca8cd..14dbbc5ba9e4 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -991,6 +991,12 @@ struct drm_i915_private {
+>  	/* Abstract the submission mechanism (legacy ringbuffer or execlists) away */
+>  	struct intel_gt gt0;
+>  
+> +	/*
+> +	 * i915->gt[0] == &i915->gt0
+> +	 */
+> +#define I915_MAX_GT 4
+> +	struct intel_gt *gt[I915_MAX_GT];
+> +
+>  	struct {
+>  		struct i915_gem_contexts {
+>  			spinlock_t lock; /* locks list */
+> diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
+> index 5625c9c38993..6a6324a08e72 100644
+> --- a/drivers/gpu/drm/i915/intel_memory_region.h
+> +++ b/drivers/gpu/drm/i915/intel_memory_region.h
+> @@ -30,6 +30,9 @@ enum intel_memory_type {
+>  enum intel_region_id {
+>  	INTEL_REGION_SMEM = 0,
+>  	INTEL_REGION_LMEM,
+> +	INTEL_REGION_LMEM1,
+> +	INTEL_REGION_LMEM2,
+> +	INTEL_REGION_LMEM3,
+>  	INTEL_REGION_STOLEN_SMEM,
+>  	INTEL_REGION_STOLEN_LMEM,
+>  	INTEL_REGION_UNKNOWN, /* Should be last */
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 41d082213e81..016639c1275d 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -2020,14 +2020,11 @@ static int i915_pmic_bus_access_notifier(struct notifier_block *nb,
+>  	return NOTIFY_OK;
+>  }
+>  
+> -int intel_uncore_setup_mmio(struct intel_uncore *uncore)
+> +int intel_uncore_setup_mmio(struct intel_uncore *uncore, phys_addr_t phys_addr)
+>  {
+>  	struct drm_i915_private *i915 = uncore->i915;
+> -	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+> -	int mmio_bar;
+>  	int mmio_size;
+>  
+> -	mmio_bar = GRAPHICS_VER(i915) == 2 ? 1 : 0;
+>  	/*
+>  	 * Before gen4, the registers and the GTT are behind different BARs.
+>  	 * However, from gen4 onwards, the registers and the GTT are shared
+> @@ -2044,7 +2041,7 @@ int intel_uncore_setup_mmio(struct intel_uncore *uncore)
+>  	else
+>  		mmio_size = 2 * 1024 * 1024;
+>  
+> -	uncore->regs = pci_iomap(pdev, mmio_bar, mmio_size);
+> +	uncore->regs = ioremap(phys_addr, mmio_size);
+
+Is there a specific reason we switch to ioremap() instead of
+pci_iomap_range()?  I.e., we could pass 'phys_offset' rather than
+'phys_addr' and call
+
+        pci_iomap_range(pdev, mmio_bar, phys_offset, mmio_size);
+
+Not that it really matters too much either way as far as I can see;
+ioremap()/iounmap() should work fine too.
+
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+>  	if (uncore->regs == NULL) {
+>  		drm_err(&i915->drm, "failed to map registers\n");
+>  		return -EIO;
+> @@ -2055,9 +2052,8 @@ int intel_uncore_setup_mmio(struct intel_uncore *uncore)
+>  
+>  void intel_uncore_cleanup_mmio(struct intel_uncore *uncore)
+>  {
+> -	struct pci_dev *pdev = to_pci_dev(uncore->i915->drm.dev);
+> -
+> -	pci_iounmap(pdev, uncore->regs);
+> +	if (uncore->regs)
+> +		iounmap(uncore->regs);
+>  }
+>  
+>  void intel_uncore_init_early(struct intel_uncore *uncore,
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
+> index 210fe2a71612..2989032b580b 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.h
+> +++ b/drivers/gpu/drm/i915/intel_uncore.h
+> @@ -29,6 +29,7 @@
+>  #include <linux/notifier.h>
+>  #include <linux/hrtimer.h>
+>  #include <linux/io-64-nonatomic-lo-hi.h>
+> +#include <linux/types.h>
+>  
+>  #include "i915_reg.h"
+>  
+> @@ -219,7 +220,7 @@ void
+>  intel_uncore_mmio_debug_init_early(struct intel_uncore_mmio_debug *mmio_debug);
+>  void intel_uncore_init_early(struct intel_uncore *uncore,
+>  			     struct intel_gt *gt);
+> -int intel_uncore_setup_mmio(struct intel_uncore *uncore);
+> +int intel_uncore_setup_mmio(struct intel_uncore *uncore, phys_addr_t phys_addr);
+>  int intel_uncore_init_mmio(struct intel_uncore *uncore);
+>  void intel_uncore_prune_engine_fw_domains(struct intel_uncore *uncore,
+>  					  struct intel_gt *gt);
+> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> index 28a0f054009a..79520f217c90 100644
+> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> @@ -73,7 +73,7 @@ static void mock_device_release(struct drm_device *dev)
+>  	destroy_workqueue(i915->wq);
+>  
+>  	intel_region_ttm_device_fini(i915);
+> -	intel_gt_driver_late_release(to_gt(i915));
+> +	intel_gt_driver_late_release(i915);
+>  	intel_memory_regions_driver_release(i915);
+>  
+>  	drm_mode_config_cleanup(&i915->drm);
+> @@ -179,7 +179,6 @@ struct drm_i915_private *mock_gem_device(void)
+>  
+>  	i915_gem_init__mm(i915);
+>  	intel_gt_init_early(to_gt(i915), i915);
+> -	__intel_gt_init_early(to_gt(i915), i915);
+>  	mock_uncore_init(&i915->uncore, i915);
+>  	atomic_inc(&to_gt(i915)->wakeref.count); /* disable; no hw support */
+>  	to_gt(i915)->awake = -ENODEV;
+> @@ -227,7 +226,7 @@ struct drm_i915_private *mock_gem_device(void)
+>  err_drv:
+>  	intel_region_ttm_device_fini(i915);
+>  err_ttm:
+> -	intel_gt_driver_late_release(to_gt(i915));
+> +	intel_gt_driver_late_release(i915);
+>  	intel_memory_regions_driver_release(i915);
+>  	drm_mode_config_cleanup(&i915->drm);
+>  	mock_destroy_device(i915);
+> -- 
+> 2.34.1
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
