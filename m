@@ -1,51 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8938F48E130
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 00:51:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15C5648E17D
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 01:28:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D34E910E84C;
-	Thu, 13 Jan 2022 23:51:26 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C62510E823;
- Thu, 13 Jan 2022 23:51:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8ACD110E86E;
+	Fri, 14 Jan 2022 00:28:14 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC65210E86E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jan 2022 00:28:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642117883; x=1673653883;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GvTeMj4p496eF/cgKeteC+4cJZcBT8YpC6yo0tfo/ds=;
- b=kBoOsfF5fpqZhdXCavDDghMD7SmsPcYtd4X0m6LEAVwKA0Q622BoVlHO
- H90ZvBdG1z8IXw8N77B5xbThcGk0z01XCKVbLk6ueyUVerlwDT7C7xiCU
- 5UdWZwaOtXUBdp8gSELCWxRNLyAfOpogaOk6zh4X1w2+8kLCWJWc4aHTR
- 11hexWjbeq4pGugRAeVW6ZmlfZl049SreYBpKrLFeig4v0fz7vbGne9+C
- XQlWBBmjGPz5Vix/SPHU2SL8J0ZFtNk3LmzkFIsMKZYLVE5qVOufWvnEH
- 1xwqWdlbXar+h9cz5SZk47dvc5BItg1LAJzESFsymTeasq81Z1vM9Lzxn w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="268502308"
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="268502308"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2022 15:51:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,286,1635231600"; d="scan'208";a="620783062"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by fmsmga002.fm.intel.com with ESMTP; 13 Jan 2022 15:51:22 -0800
-From: John.C.Harrison@Intel.com
-To: IGT-Dev@Lists.FreeDesktop.Org
-Date: Thu, 13 Jan 2022 15:51:18 -0800
-Message-Id: <20220113235118.1575410-16-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220113235118.1575410-1-John.C.Harrison@Intel.com>
-References: <20220113235118.1575410-1-John.C.Harrison@Intel.com>
+ t=1642120092; x=1673656092;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RRSc0fCF2gQ58MCLYJ6EBu3GpIJNYU365XBPjiNmmwU=;
+ b=Is5UVV4j5ALLxSvgsaGN1ThpGSaZ7vbmEkcEe2/n2gaXUfItQikjoWFo
+ 0/0JTxA4AkPRYbVycIapwTBFePKTcqjKAtkUImClpe/gMWNmESM+0+5cN
+ 6RHyqbrmHgoTbAmB8yz9ZYJFQVlI6Xr8AhEL4v+x7JaDfcGdsAhfc/8hA
+ oi2/SGSrSiuBebmDjSqF+scmnIvSWTRhZDEOVJnGIiZ/T2OTw0BDuVXz7
+ 5vdyjOL441ZCBDuDugQctSdaINSNGOasp20LHaiTt7waz4+KzSn0ZsK+h
+ 7i/GW9T6Fr3XgCJ7SGL3sXoty9jdh4vAZwtTcgXKMUA/mV/i8y1+/yEoc w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="244103839"
+X-IronPort-AV: E=Sophos;i="5.88,287,1635231600"; d="scan'208";a="244103839"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 16:28:12 -0800
+X-IronPort-AV: E=Sophos;i="5.88,287,1635231600"; d="scan'208";a="491317600"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2022 16:28:12 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: x86@kernel.org
+Date: Thu, 13 Jan 2022 16:28:39 -0800
+Message-Id: <20220114002843.2083382-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 i-g-t 15/15] tests/i915/gem_exec_capture:
- Restore engines
+Subject: [Intel-gfx] [PATCH v5 1/5] x86/quirks: Fix stolen detection with
+ integrated + discrete GPU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,146 +54,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@Lists.FreeDesktop.Org
+Cc: linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, stable@vger.kernel.org,
+ Ingo Molnar <mingo@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+early_pci_scan_bus() does a depth-first traversal, possibly calling
+the quirk functions for each device based on vendor, device and class
+from early_qrk table. intel_graphics_quirks() however uses PCI_ANY_ID
+and does additional filtering in the quirk.
 
-The test was updated some engine properties but not restoring them
-afterwards. That would leave the system in a non-default state which
-could potentially affect subsequent tests. Fix it by using the new
-save/restore engine properties helper functions.
+If there is an Intel integrated + discrete GPU the quirk may be called
+first for the discrete GPU based on the PCI topology. Then we will fail
+to reserve the system stolen memory for the integrated GPU, because we
+will already have marked the quirk as "applied".
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+This was reproduced in a setup with Alderlake-P (integrated) + DG2
+(discrete), with the following PCI topology:
+
+	- 00:01.0 Bridge
+	  `- 03:00.0 DG2
+	- 00:02.0 Integrated GPU
+
+So, stop using the QFLAG_APPLY_ONCE flag, replacing it with a static
+local variable. We can set this variable in the right place, inside
+intel_graphics_quirks(), only when the quirk was actually applied, i.e.
+when we find the integrated GPU based on the intel_early_ids table.
+
+Cc: stable@vger.kernel.org
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- tests/i915/gem_exec_capture.c | 37 ++++++++++++++++++++++++++---------
- 1 file changed, 28 insertions(+), 9 deletions(-)
 
-diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
-index 9beb36fc7..51db07c41 100644
---- a/tests/i915/gem_exec_capture.c
-+++ b/tests/i915/gem_exec_capture.c
-@@ -209,14 +209,21 @@ static int check_error_state(int dir, struct offset *obj_offsets, int obj_count,
- 	return blobs;
- }
+v5: apply fix before the refactor
+
+ arch/x86/kernel/early-quirks.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+index 1ca3a56fdc2d..de9a76eb544e 100644
+--- a/arch/x86/kernel/early-quirks.c
++++ b/arch/x86/kernel/early-quirks.c
+@@ -589,10 +589,14 @@ intel_graphics_stolen(int num, int slot, int func,
  
--static void configure_hangs(int fd, const struct intel_execution_engine2 *e, int ctxt_id)
-+static struct gem_engine_properties
-+configure_hangs(int fd, const struct intel_execution_engine2 *e, int ctxt_id)
+ static void __init intel_graphics_quirks(int num, int slot, int func)
  {
-+	struct gem_engine_properties props;
-+
- 	/* Ensure fast hang detection */
--	gem_engine_property_printf(fd, e->name, "preempt_timeout_ms", "%d", 250);
--	gem_engine_property_printf(fd, e->name, "heartbeat_interval_ms", "%d", 500);
-+	props.engine = e;
-+	props.preempt_timeout = 250;
-+	props.heartbeat_interval = 500;
-+	gem_engine_properties_configure(fd, &props);
++	static bool quirk_applied __initdata;
+ 	const struct intel_early_ops *early_ops;
+ 	u16 device;
+ 	int i;
  
- 	/* Allow engine based resets and disable banning */
- 	igt_allow_hang(fd, ctxt_id, HANG_ALLOW_CAPTURE | HANG_WANT_ENGINE_RESET);
++	if (quirk_applied)
++		return;
 +
-+	return props;
+ 	device = read_pci_config_16(num, slot, func, PCI_DEVICE_ID);
+ 
+ 	for (i = 0; i < ARRAY_SIZE(intel_early_ids); i++) {
+@@ -605,6 +609,8 @@ static void __init intel_graphics_quirks(int num, int slot, int func)
+ 
+ 		intel_graphics_stolen(num, slot, func, early_ops);
+ 
++		quirk_applied = true;
++
+ 		return;
+ 	}
  }
- 
- static bool fence_busy(int fence)
-@@ -256,8 +263,9 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
- 	uint32_t *batch, *seqno;
- 	struct offset offset;
- 	int i, fence_out;
-+	struct gem_engine_properties saved_engine;
- 
--	configure_hangs(fd, e, ctx->id);
-+	saved_engine = configure_hangs(fd, e, ctx->id);
- 
- 	memset(obj, 0, sizeof(obj));
- 	obj[SCRATCH].handle = gem_create_in_memory_regions(fd, 4096, region);
-@@ -371,6 +379,8 @@ static void __capture1(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
- 	gem_close(fd, obj[BATCH].handle);
- 	gem_close(fd, obj[NOCAPTURE].handle);
- 	gem_close(fd, obj[SCRATCH].handle);
-+
-+	gem_engine_properties_restore(fd, &saved_engine);
- }
- 
- static void capture(int fd, int dir, const intel_ctx_t *ctx,
-@@ -417,8 +427,9 @@ __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
- 	uint32_t *batch, *seqno;
- 	struct offset *offsets;
- 	int i, fence_out;
-+	struct gem_engine_properties saved_engine;
- 
--	configure_hangs(fd, e, ctx->id);
-+	saved_engine = configure_hangs(fd, e, ctx->id);
- 
- 	offsets = calloc(count, sizeof(*offsets));
- 	igt_assert(offsets);
-@@ -559,10 +570,12 @@ __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
- 
- 	qsort(offsets, count, sizeof(*offsets), cmp);
- 	igt_assert(offsets[0].addr <= offsets[count-1].addr);
-+
-+	gem_engine_properties_restore(fd, &saved_engine);
- 	return offsets;
- }
- 
--#define find_first_available_engine(fd, ctx, e) \
-+#define find_first_available_engine(fd, ctx, e, saved) \
- 	do { \
- 		ctx = intel_ctx_create_all_physical(fd); \
- 		igt_assert(ctx); \
-@@ -570,7 +583,7 @@ __captureN(int fd, int dir, uint64_t ahnd, const intel_ctx_t *ctx,
- 			for_each_if(gem_class_can_store_dword(fd, e->class)) \
- 				break; \
- 		igt_assert(e); \
--		configure_hangs(fd, e, ctx->id); \
-+		saved = configure_hangs(fd, e, ctx->id); \
- 	} while(0)
- 
- static void many(int fd, int dir, uint64_t size, unsigned int flags)
-@@ -580,8 +593,9 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
- 	uint64_t ram, gtt, ahnd;
- 	unsigned long count, blobs;
- 	struct offset *offsets;
-+	struct gem_engine_properties saved_engine;
- 
--	find_first_available_engine(fd, ctx, e);
-+	find_first_available_engine(fd, ctx, e, saved_engine);
- 
- 	gtt = gem_aperture_size(fd) / size;
- 	ram = (intel_get_avail_ram_mb() << 20) / size;
-@@ -602,6 +616,8 @@ static void many(int fd, int dir, uint64_t size, unsigned int flags)
- 
- 	free(offsets);
- 	put_ahnd(ahnd);
-+
-+	gem_engine_properties_restore(fd, &saved_engine);
- }
- 
- static void prioinv(int fd, int dir, const intel_ctx_t *ctx,
-@@ -697,8 +713,9 @@ static void userptr(int fd, int dir)
- 	void *ptr;
- 	int obj_size = 4096;
- 	uint32_t system_region = INTEL_MEMORY_REGION_ID(I915_SYSTEM_MEMORY, 0);
-+	struct gem_engine_properties saved_engine;
- 
--	find_first_available_engine(fd, ctx, e);
-+	find_first_available_engine(fd, ctx, e, saved_engine);
- 
- 	igt_assert(posix_memalign(&ptr, obj_size, obj_size) == 0);
- 	memset(ptr, 0, obj_size);
-@@ -710,6 +727,8 @@ static void userptr(int fd, int dir)
- 	gem_close(fd, handle);
- 	put_ahnd(ahnd);
- 	free(ptr);
-+
-+	gem_engine_properties_restore(fd, &saved_engine);
- }
- 
- static bool has_capture(int fd)
+@@ -705,7 +711,7 @@ static struct chipset early_qrk[] __initdata = {
+ 	{ PCI_VENDOR_ID_INTEL, 0x3406, PCI_CLASS_BRIDGE_HOST,
+ 	  PCI_BASE_CLASS_BRIDGE, 0, intel_remapping_check },
+ 	{ PCI_VENDOR_ID_INTEL, PCI_ANY_ID, PCI_CLASS_DISPLAY_VGA, PCI_ANY_ID,
+-	  QFLAG_APPLY_ONCE, intel_graphics_quirks },
++	  0, intel_graphics_quirks },
+ 	/*
+ 	 * HPET on the current version of the Baytrail platform has accuracy
+ 	 * problems: it will halt in deep idle state - so we disable it.
 -- 
-2.25.1
+2.34.1
 
