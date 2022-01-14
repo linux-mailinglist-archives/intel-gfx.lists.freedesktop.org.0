@@ -1,71 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3306748EE55
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 17:39:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4D7D48EEAD
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jan 2022 17:50:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 516CB10EA7F;
-	Fri, 14 Jan 2022 16:39:00 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A9EA10EA7F
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jan 2022 16:38:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C59310EB65;
+	Fri, 14 Jan 2022 16:50:17 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93EC510EAE2;
+ Fri, 14 Jan 2022 16:50:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642178338; x=1673714338;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=IzJ6yPEilr0bSRPpJsue6+m4hhOkjJw2E6UxtgyOnHo=;
- b=eGSTs01qZXSZgbH7/LxwaCYCqsXfLWJu4nzzPMuwGl6f7nwcKKnxbt0u
- FUOGmGCK1pLfAGQ/uHPUK7atWhZnDus26nZcN3sYhH05ILrBfPyLoUUlt
- iIIW+q3RHol+gn7x1L433vojYX6fWF4sHg8yfuLSUUiM6l8Xcvyd5u1k1
- qnghJ/OZNbkEAEeM9M6idBeDHL96iGxxBvuZIdIHwPsShUHb0LaExeyVj
- HR6bzEkUTJGKUKJert240qwKnIuSBmdhQYSgLxmPaZpFRHjcN3oO+Ykvr
- jkmJuVzEt0SpmUkZVsc2dYXqVkpCVIrY9pK/hVw+pPmFLOEcbinns1bac w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="231629962"
-X-IronPort-AV: E=Sophos;i="5.88,289,1635231600"; d="scan'208";a="231629962"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2022 08:38:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,289,1635231600"; d="scan'208";a="530320278"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by orsmga008.jf.intel.com with ESMTP; 14 Jan 2022 08:38:57 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 14 Jan 2022 08:38:57 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 14 Jan 2022 08:38:57 -0800
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2308.020;
- Fri, 14 Jan 2022 08:38:57 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 10/14] drm/i915: Clean up g4x+ sprite plane
- registers
-Thread-Index: AQHX5sfY7wk24HAwAE6hSuWsmuwH7Kxjg3MA
-Date: Fri, 14 Jan 2022 16:38:56 +0000
-Message-ID: <d09515b10ede66a1b1519c171082f75e2e4e0370.camel@intel.com>
-References: <20211201152552.7821-1-ville.syrjala@linux.intel.com>
- <20211201152552.7821-11-ville.syrjala@linux.intel.com>
-In-Reply-To: <20211201152552.7821-11-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <5711D717946B60468FD9C00BABE723AF@intel.com>
-Content-Transfer-Encoding: base64
+ t=1642179015; x=1673715015;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=UXpcN3FneI+eitD5ArUvJ7fc/sjpcxS0di92KJUA+3Q=;
+ b=HNg9ODtUdHL7wtvSIHTWFw0qyz8I/NWiSiAVKj1gF/i+R071DeYt+PM9
+ +fRPPha4/uB6FT1yqBlT8E9PC3C+M1Ssy5pbOhCFf70pjKV/5hcqIfi7X
+ pJFVFH3yLYKsBbma5Mz9720bqYObebtoNz0ARV8a36133Rjm7l5eFdJ1X
+ rSZrGew/sBYdpRgYI6aCl00o55CAkVAgjTvrMs2bZyc6PZqQcZasluFY6
+ vOm3/+QcChzye9dW8S4Ba/2q7HtWRT8irtCvNDGDzqhNyN7GlmMHHvvx3
+ r3hShubl7U7CiuixG7xWIIU0Y2CamLXegWyRf7Jpjks/V1UemSIRfSU1Y Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="224266824"
+X-IronPort-AV: E=Sophos;i="5.88,289,1635231600"; d="scan'208";a="224266824"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2022 08:50:15 -0800
+X-IronPort-AV: E=Sophos;i="5.88,289,1635231600"; d="scan'208";a="577329958"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2022 08:50:15 -0800
+Date: Fri, 14 Jan 2022 08:44:25 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: John.C.Harrison@Intel.com
+Message-ID: <20220114164425.GA9684@jons-linux-dev-box>
+References: <20220113235118.1575410-1-John.C.Harrison@Intel.com>
+ <20220113235118.1575410-5-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 10/14] drm/i915: Clean up g4x+ sprite plane
- registers
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220113235118.1575410-5-John.C.Harrison@Intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH v4 i-g-t 04/15]
+ tests/i915/i915_hangman: Explicitly test per engine reset vs full GPU reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,125 +59,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: IGT-Dev@Lists.FreeDesktop.Org, Intel-GFX@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIxLTEyLTAxIGF0IDE3OjI1ICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gVXNlIFJFR19CSVQoKSAmIGNvLiB0byBwb2xpc2ggdGhlIGc0eCsgc3ByaXRlIHBsYW5l
-IHJlZ2lzdGVycy4NCg0KUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uu
-c291emFAaW50ZWwuY29tPg0KDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6Qg
-PHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgfCAxMiArKy0tDQo+ICBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAgIHwgNzMgKysrKysrKysrKysrKy0tLS0tLS0t
-DQo+ICAyIGZpbGVzIGNoYW5nZWQsIDUzIGluc2VydGlvbnMoKyksIDMyIGRlbGV0aW9ucygtKQ0K
-PiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3By
-aXRlLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jDQo+IGlu
-ZGV4IGViOWNlOTZjMDMwZi4uNmYyYTU2MDcwMGNlIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMNCj4gQEAgLTEwNTQsNyArMTA1NCw3IEBAIHN0
-YXRpYyB1MzIgZzR4X3Nwcml0ZV9jdGxfY3J0Yyhjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
-ZSAqY3J0Y19zdGF0ZSkNCj4gIAl1MzIgZHZzY250ciA9IDA7DQo+ICANCj4gIAlpZiAoY3J0Y19z
-dGF0ZS0+Z2FtbWFfZW5hYmxlKQ0KPiAtCQlkdnNjbnRyIHw9IERWU19HQU1NQV9FTkFCTEU7DQo+
-ICsJCWR2c2NudHIgfD0gRFZTX1BJUEVfR0FNTUFfRU5BQkxFOw0KPiAgDQo+ICAJaWYgKGNydGNf
-c3RhdGUtPmNzY19lbmFibGUpDQo+ICAJCWR2c2NudHIgfD0gRFZTX1BJUEVfQ1NDX0VOQUJMRTsN
-Cj4gQEAgLTEyMDYsMTQgKzEyMDYsMTggQEAgZzR4X3Nwcml0ZV91cGRhdGVfbm9hcm0oc3RydWN0
-IGludGVsX3BsYW5lICpwbGFuZSwNCj4gIAl1bnNpZ25lZCBsb25nIGlycWZsYWdzOw0KPiAgDQo+
-ICAJaWYgKGNydGNfdyAhPSBzcmNfdyB8fCBjcnRjX2ggIT0gc3JjX2gpDQo+IC0JCWR2c3NjYWxl
-ID0gRFZTX1NDQUxFX0VOQUJMRSB8ICgoc3JjX3cgLSAxKSA8PCAxNikgfCAoc3JjX2ggLSAxKTsN
-Cj4gKwkJZHZzc2NhbGUgPSBEVlNfU0NBTEVfRU5BQkxFIHwNCj4gKwkJCURWU19TUkNfV0lEVEgo
-c3JjX3cgLSAxKSB8DQo+ICsJCQlEVlNfU1JDX0hFSUdIVChzcmNfaCAtIDEpOw0KPiAgDQo+ICAJ
-c3Bpbl9sb2NrX2lycXNhdmUoJmRldl9wcml2LT51bmNvcmUubG9jaywgaXJxZmxhZ3MpOw0KPiAg
-DQo+ICAJaW50ZWxfZGVfd3JpdGVfZncoZGV2X3ByaXYsIERWU1NUUklERShwaXBlKSwNCj4gIAkJ
-CSAgcGxhbmVfc3RhdGUtPnZpZXcuY29sb3JfcGxhbmVbMF0ubWFwcGluZ19zdHJpZGUpOw0KPiAt
-CWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCBEVlNQT1MocGlwZSksIChjcnRjX3kgPDwgMTYp
-IHwgY3J0Y194KTsNCj4gLQlpbnRlbF9kZV93cml0ZV9mdyhkZXZfcHJpdiwgRFZTU0laRShwaXBl
-KSwgKChjcnRjX2ggLSAxKSA8PCAxNikgfCAoY3J0Y193IC0gMSkpOw0KPiArCWludGVsX2RlX3dy
-aXRlX2Z3KGRldl9wcml2LCBEVlNQT1MocGlwZSksDQo+ICsJCQkgIERWU19QT1NfWShjcnRjX3kp
-IHwgRFZTX1BPU19YKGNydGNfeCkpOw0KPiArCWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCBE
-VlNTSVpFKHBpcGUpLA0KPiArCQkJICBEVlNfSEVJR0hUKGNydGNfaCAtIDEpIHwgRFZTX1dJRFRI
-KGNydGNfdyAtIDEpKTsNCj4gIAlpbnRlbF9kZV93cml0ZV9mdyhkZXZfcHJpdiwgRFZTU0NBTEUo
-cGlwZSksIGR2c3NjYWxlKTsNCj4gIA0KPiAgCXNwaW5fdW5sb2NrX2lycXJlc3RvcmUoJmRldl9w
-cml2LT51bmNvcmUubG9jaywgaXJxZmxhZ3MpOw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4g
-aW5kZXggNGQ2MWU3ZjJlZTdjLi5kMjE1Y2FkOTVmZTggMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
-NV9yZWcuaA0KPiBAQCAtNjk3MCw0NiArNjk3MCw2MyBAQCBlbnVtIHsNCj4gIA0KPiAgLyogU3By
-aXRlIEEgY29udHJvbCAqLw0KPiAgI2RlZmluZSBfRFZTQUNOVFIJCTB4NzIxODANCj4gLSNkZWZp
-bmUgICBEVlNfRU5BQkxFCQkoMSA8PCAzMSkNCj4gLSNkZWZpbmUgICBEVlNfR0FNTUFfRU5BQkxF
-CSgxIDw8IDMwKQ0KPiAtI2RlZmluZSAgIERWU19ZVVZfUkFOR0VfQ09SUkVDVElPTl9ESVNBQkxF
-CSgxIDw8IDI3KQ0KPiAtI2RlZmluZSAgIERWU19QSVhGT1JNQVRfTUFTSwkoMyA8PCAyNSkNCj4g
-LSNkZWZpbmUgICBEVlNfRk9STUFUX1lVVjQyMgkoMCA8PCAyNSkNCj4gLSNkZWZpbmUgICBEVlNf
-Rk9STUFUX1JHQlgxMDEwMTAJKDEgPDwgMjUpDQo+IC0jZGVmaW5lICAgRFZTX0ZPUk1BVF9SR0JY
-ODg4CSgyIDw8IDI1KQ0KPiAtI2RlZmluZSAgIERWU19GT1JNQVRfUkdCWDE2MTYxNgkoMyA8PCAy
-NSkNCj4gLSNkZWZpbmUgICBEVlNfUElQRV9DU0NfRU5BQkxFICAgKDEgPDwgMjQpDQo+IC0jZGVm
-aW5lICAgRFZTX1NPVVJDRV9LRVkJKDEgPDwgMjIpDQo+IC0jZGVmaW5lICAgRFZTX1JHQl9PUkRF
-Ul9YQkdSCSgxIDw8IDIwKQ0KPiAtI2RlZmluZSAgIERWU19ZVVZfRk9STUFUX0JUNzA5CSgxIDw8
-IDE4KQ0KPiAtI2RlZmluZSAgIERWU19ZVVZfT1JERVJfTUFTSwkoMyA8PCAxNikNCj4gLSNkZWZp
-bmUgICBEVlNfWVVWX09SREVSX1lVWVYJKDAgPDwgMTYpDQo+IC0jZGVmaW5lICAgRFZTX1lVVl9P
-UkRFUl9VWVZZCSgxIDw8IDE2KQ0KPiAtI2RlZmluZSAgIERWU19ZVVZfT1JERVJfWVZZVQkoMiA8
-PCAxNikNCj4gLSNkZWZpbmUgICBEVlNfWVVWX09SREVSX1ZZVVkJKDMgPDwgMTYpDQo+IC0jZGVm
-aW5lICAgRFZTX1JPVEFURV8xODAJKDEgPDwgMTUpDQo+IC0jZGVmaW5lICAgRFZTX0RFU1RfS0VZ
-CQkoMSA8PCAyKQ0KPiAtI2RlZmluZSAgIERWU19UUklDS0xFX0ZFRURfRElTQUJMRSAoMSA8PCAx
-NCkNCj4gLSNkZWZpbmUgICBEVlNfVElMRUQJCSgxIDw8IDEwKQ0KPiArI2RlZmluZSAgIERWU19F
-TkFCTEUJCQlSRUdfQklUKDMxKQ0KPiArI2RlZmluZSAgIERWU19QSVBFX0dBTU1BX0VOQUJMRQkJ
-UkVHX0JJVCgzMCkNCj4gKyNkZWZpbmUgICBEVlNfWVVWX1JBTkdFX0NPUlJFQ1RJT05fRElTQUJM
-RQlSRUdfQklUKDI3KQ0KPiArI2RlZmluZSAgIERWU19GT1JNQVRfTUFTSwkJUkVHX0dFTk1BU0so
-MjYsIDI1KQ0KPiArI2RlZmluZSAgIERWU19GT1JNQVRfWVVWNDIyCQlSRUdfRklFTERfUFJFUChE
-VlNfRk9STUFUX01BU0ssIDApDQo+ICsjZGVmaW5lICAgRFZTX0ZPUk1BVF9SR0JYMTAxMDEwCQlS
-RUdfRklFTERfUFJFUChEVlNfRk9STUFUX01BU0ssIDEpDQo+ICsjZGVmaW5lICAgRFZTX0ZPUk1B
-VF9SR0JYODg4CQlSRUdfRklFTERfUFJFUChEVlNfRk9STUFUX01BU0ssIDIpDQo+ICsjZGVmaW5l
-ICAgRFZTX0ZPUk1BVF9SR0JYMTYxNjE2CQlSRUdfRklFTERfUFJFUChEVlNfRk9STUFUX01BU0ss
-IDMpDQo+ICsjZGVmaW5lICAgRFZTX1BJUEVfQ1NDX0VOQUJMRQkJUkVHX0JJVCgyNCkNCj4gKyNk
-ZWZpbmUgICBEVlNfU09VUkNFX0tFWQkJUkVHX0JJVCgyMikNCj4gKyNkZWZpbmUgICBEVlNfUkdC
-X09SREVSX1hCR1IJCVJFR19CSVQoMjApDQo+ICsjZGVmaW5lICAgRFZTX1lVVl9GT1JNQVRfQlQ3
-MDkJCVJFR19CSVQoMTgpDQo+ICsjZGVmaW5lICAgRFZTX1lVVl9PUkRFUl9NQVNLCQlSRUdfR0VO
-TUFTSygxNywgMTYpDQo+ICsjZGVmaW5lICAgRFZTX1lVVl9PUkRFUl9ZVVlWCQlSRUdfRklFTERf
-UFJFUChEVlNfWVVWX09SREVSX01BU0ssIDApDQo+ICsjZGVmaW5lICAgRFZTX1lVVl9PUkRFUl9V
-WVZZCQlSRUdfRklFTERfUFJFUChEVlNfWVVWX09SREVSX01BU0ssIDEpDQo+ICsjZGVmaW5lICAg
-RFZTX1lVVl9PUkRFUl9ZVllVCQlSRUdfRklFTERfUFJFUChEVlNfWVVWX09SREVSX01BU0ssIDIp
-DQo+ICsjZGVmaW5lICAgRFZTX1lVVl9PUkRFUl9WWVVZCQlSRUdfRklFTERfUFJFUChEVlNfWVVW
-X09SREVSX01BU0ssIDMpDQo+ICsjZGVmaW5lICAgRFZTX1JPVEFURV8xODAJCVJFR19CSVQoMTUp
-DQo+ICsjZGVmaW5lICAgRFZTX0RFU1RfS0VZCQkJUkVHX0JJVCgyKQ0KPiArI2RlZmluZSAgIERW
-U19UUklDS0xFX0ZFRURfRElTQUJMRQlSRUdfQklUKDE0KQ0KPiArI2RlZmluZSAgIERWU19USUxF
-RAkJCVJFR19CSVQoMTApDQo+ICAjZGVmaW5lIF9EVlNBTElOT0ZGCQkweDcyMTg0DQo+ICAjZGVm
-aW5lIF9EVlNBU1RSSURFCQkweDcyMTg4DQo+ICAjZGVmaW5lIF9EVlNBUE9TCQkweDcyMThjDQo+
-ICsjZGVmaW5lICAgRFZTX1BPU19ZX01BU0sJCVJFR19HRU5NQVNLKDMxLCAxNikNCj4gKyNkZWZp
-bmUgICBEVlNfUE9TX1koeSkJCQlSRUdfRklFTERfUFJFUChEVlNfUE9TX1lfTUFTSywgKHkpKQ0K
-PiArI2RlZmluZSAgIERWU19QT1NfWF9NQVNLCQlSRUdfR0VOTUFTSygxNSwgMCkNCj4gKyNkZWZp
-bmUgICBEVlNfUE9TX1goeCkJCQlSRUdfRklFTERfUFJFUChEVlNfUE9TX1hfTUFTSywgKHgpKQ0K
-PiAgI2RlZmluZSBfRFZTQVNJWkUJCTB4NzIxOTANCj4gKyNkZWZpbmUgICBEVlNfSEVJR0hUX01B
-U0sJCVJFR19HRU5NQVNLKDMxLCAxNikNCj4gKyNkZWZpbmUgICBEVlNfSEVJR0hUKGgpCQkJUkVH
-X0ZJRUxEX1BSRVAoRFZTX0hFSUdIVF9NQVNLLCAoaCkpDQo+ICsjZGVmaW5lICAgRFZTX1dJRFRI
-X01BU0sJCVJFR19HRU5NQVNLKDE1LCAwKQ0KPiArI2RlZmluZSAgIERWU19XSURUSCh3KQkJCVJF
-R19GSUVMRF9QUkVQKERWU19XSURUSF9NQVNLLCAodykpDQo+ICAjZGVmaW5lIF9EVlNBS0VZVkFM
-CQkweDcyMTk0DQo+ICAjZGVmaW5lIF9EVlNBS0VZTVNLCQkweDcyMTk4DQo+ICAjZGVmaW5lIF9E
-VlNBU1VSRgkJMHg3MjE5Yw0KPiArI2RlZmluZSAgIERWU19BRERSX01BU0sJCQlSRUdfR0VOTUFT
-SygzMSwgMTIpDQo+ICAjZGVmaW5lIF9EVlNBS0VZTUFYVkFMCQkweDcyMWEwDQo+ICAjZGVmaW5l
-IF9EVlNBVElMRU9GRgkJMHg3MjFhNA0KPiArI2RlZmluZSAgIERWU19PRkZTRVRfWV9NQVNLCQlS
-RUdfR0VOTUFTSygzMSwgMTYpDQo+ICsjZGVmaW5lICAgRFZTX09GRlNFVF9ZKHkpCQlSRUdfRklF
-TERfUFJFUChEVlNfT0ZGU0VUX1lfTUFTSywgKHkpKQ0KPiArI2RlZmluZSAgIERWU19PRkZTRVRf
-WF9NQVNLCQlSRUdfR0VOTUFTSygxNSwgMCkNCj4gKyNkZWZpbmUgICBEVlNfT0ZGU0VUX1goeCkJ
-CVJFR19GSUVMRF9QUkVQKERWU19PRkZTRVRfWF9NQVNLLCAoeCkpDQo+ICAjZGVmaW5lIF9EVlNB
-U1VSRkxJVkUJCTB4NzIxYWMNCj4gICNkZWZpbmUgX0RWU0FHQU1DX0c0WAkJMHg3MjFlMCAvKiBn
-NHggKi8NCj4gICNkZWZpbmUgX0RWU0FTQ0FMRQkJMHg3MjIwNA0KPiAtI2RlZmluZSAgIERWU19T
-Q0FMRV9FTkFCTEUJKDEgPDwgMzEpDQo+IC0jZGVmaW5lICAgRFZTX0ZJTFRFUl9NQVNLCSgzIDw8
-IDI5KQ0KPiAtI2RlZmluZSAgIERWU19GSUxURVJfTUVESVVNCSgwIDw8IDI5KQ0KPiAtI2RlZmlu
-ZSAgIERWU19GSUxURVJfRU5IQU5DSU5HCSgxIDw8IDI5KQ0KPiAtI2RlZmluZSAgIERWU19GSUxU
-RVJfU09GVEVOSU5HCSgyIDw8IDI5KQ0KPiAtI2RlZmluZSAgIERWU19WRVJUSUNBTF9PRkZTRVRf
-SEFMRiAoMSA8PCAyOCkgLyogbXVzdCBiZSBlbmFibGVkIGJlbG93ICovDQo+IC0jZGVmaW5lICAg
-RFZTX1ZFUlRJQ0FMX09GRlNFVF9FTkFCTEUgKDEgPDwgMjcpDQo+ICsjZGVmaW5lICAgRFZTX1ND
-QUxFX0VOQUJMRQkJUkVHX0JJVCgzMSkNCj4gKyNkZWZpbmUgICBEVlNfRklMVEVSX01BU0sJCVJF
-R19HRU5NQVNLKDMwLCAyOSkNCj4gKyNkZWZpbmUgICBEVlNfRklMVEVSX01FRElVTQkJUkVHX0ZJ
-RUxEX1BSRVAoRFZTX0ZJTFRFUl9NQVNLLCAwKQ0KPiArI2RlZmluZSAgIERWU19GSUxURVJfRU5I
-QU5DSU5HCQlSRUdfRklFTERfUFJFUChEVlNfRklMVEVSX01BU0ssIDEpDQo+ICsjZGVmaW5lICAg
-RFZTX0ZJTFRFUl9TT0ZURU5JTkcJCVJFR19GSUVMRF9QUkVQKERWU19GSUxURVJfTUFTSywgMikN
-Cj4gKyNkZWZpbmUgICBEVlNfVkVSVElDQUxfT0ZGU0VUX0hBTEYJUkVHX0JJVCgyOCkgLyogbXVz
-dCBiZSBlbmFibGVkIGJlbG93ICovDQo+ICsjZGVmaW5lICAgRFZTX1ZFUlRJQ0FMX09GRlNFVF9F
-TkFCTEUJUkVHX0JJVCgyNykNCj4gKyNkZWZpbmUgICBEVlNfU1JDX1dJRFRIX01BU0sJCVJFR19H
-RU5NQVNLKDI2LCAxNikNCj4gKyNkZWZpbmUgICBEVlNfU1JDX1dJRFRIKHcpCQlSRUdfRklFTERf
-UFJFUChEVlNfU1JDX1dJRFRIX01BU0ssICh3KSkNCj4gKyNkZWZpbmUgICBEVlNfU1JDX0hFSUdI
-VF9NQVNLCQlSRUdfR0VOTUFTSygxMCwgMCkNCj4gKyNkZWZpbmUgICBEVlNfU1JDX0hFSUdIVCho
-KQkJUkVHX0ZJRUxEX1BSRVAoRFZTX1NSQ19IRUlHSFRfTUFTSywgKGgpKQ0KPiAgI2RlZmluZSBf
-RFZTQUdBTUNfSUxLCQkweDcyMzAwIC8qIGlsay9zbmIgKi8NCj4gICNkZWZpbmUgX0RWU0FHQU1D
-TUFYX0lMSwkweDcyMzQwIC8qIGlsay9zbmIgKi8NCj4gIA0KDQo=
+On Thu, Jan 13, 2022 at 03:51:07PM -0800, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+> 
+> Although the hangman test was ensuring that *some* reset functionality
+> was enabled, it did not differentiate what kind. The infrastructure
+> required to choose between per engine reset or full GT reset was
+> recently added. So update this test to use it as well.
+> 
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> ---
+>  tests/i915/i915_hangman.c | 76 +++++++++++++++++++++++++--------------
+>  1 file changed, 49 insertions(+), 27 deletions(-)
+> 
+> diff --git a/tests/i915/i915_hangman.c b/tests/i915/i915_hangman.c
+> index 280eac197..7b8390a6c 100644
+> --- a/tests/i915/i915_hangman.c
+> +++ b/tests/i915/i915_hangman.c
+> @@ -323,40 +323,26 @@ static void hangcheck_unterminated(const intel_ctx_t *ctx)
+>  	}
+>  }
+>  
+> -igt_main
+> +static void do_tests(const char *name, const char *prefix,
+> +		     const intel_ctx_t *ctx)
+>  {
+>  	const struct intel_execution_engine2 *e;
+> -	const intel_ctx_t *ctx;
+> -	igt_hang_t hang = {};
+> -
+> -	igt_fixture {
+> -		device = drm_open_driver(DRIVER_INTEL);
+> -		igt_require_gem(device);
+> -
+> -		ctx = intel_ctx_create_all_physical(device);
+> -
+> -		hang = igt_allow_hang(device, ctx->id, HANG_ALLOW_CAPTURE);
+> -
+> -		sysfs = igt_sysfs_open(device);
+> -		igt_assert(sysfs != -1);
+> -
+> -		igt_require(has_error_state(sysfs));
+> -	}
+> +	char buff[256];
+>  
+> -	igt_describe("Basic error capture");
+> -	igt_subtest("error-state-basic")
+> -		test_error_state_basic();
+> -
+> -	igt_describe("Per engine error capture");
+> -	igt_subtest_with_dynamic("error-state-capture") {
+> +	snprintf(buff, sizeof(buff), "Per engine error capture (%s reset)", name);
+> +	igt_describe(buff);
+> +	snprintf(buff, sizeof(buff), "%s-error-state-capture", prefix);
+> +	igt_subtest_with_dynamic(buff) {
+>  		for_each_ctx_engine(device, ctx, e) {
+>  			igt_dynamic_f("%s", e->name)
+>  				test_error_state_capture(ctx, e);
+>  		}
+>  	}
+>  
+> -	igt_describe("Per engine hang recovery (spin)");
+> -	igt_subtest_with_dynamic("engine-hang") {
+> +	snprintf(buff, sizeof(buff), "Per engine hang recovery (spin, %s reset)", name);
+> +	igt_describe(buff);
+> +	snprintf(buff, sizeof(buff), "%s-engine-hang", prefix);
+> +	igt_subtest_with_dynamic(buff) {
+>                  int has_gpu_reset = 0;
+>  		struct drm_i915_getparam gp = {
+>  			.param = I915_PARAM_HAS_GPU_RESET,
+> @@ -374,8 +360,10 @@ igt_main
+>  		}
+>  	}
+>  
+> -	igt_describe("Per engine hang recovery (invalid CS)");
+> -	igt_subtest_with_dynamic("engine-error") {
+> +	snprintf(buff, sizeof(buff), "Per engine hang recovery (invalid CS, %s reset)", name);
+> +	igt_describe(buff);
+> +	snprintf(buff, sizeof(buff), "%s-engine-error", prefix);
+> +	igt_subtest_with_dynamic(buff) {
+>  		int has_gpu_reset = 0;
+>  		struct drm_i915_getparam gp = {
+>  			.param = I915_PARAM_HAS_GPU_RESET,
+> @@ -391,11 +379,45 @@ igt_main
+>  				test_engine_hang(ctx, e, IGT_SPIN_INVALID_CS);
+>  		}
+>  	}
+> +}
+> +
+> +igt_main
+> +{
+> +	const intel_ctx_t *ctx;
+> +	igt_hang_t hang = {};
+> +
+> +	igt_fixture {
+> +		device = drm_open_driver(DRIVER_INTEL);
+> +		igt_require_gem(device);
+> +
+> +		ctx = intel_ctx_create_all_physical(device);
+> +
+> +		hang = igt_allow_hang(device, ctx->id, HANG_ALLOW_CAPTURE);
+> +
+> +		sysfs = igt_sysfs_open(device);
+> +		igt_assert(sysfs != -1);
+> +
+> +		igt_require(has_error_state(sysfs));
+> +	}
+> +
+> +	igt_describe("Basic error capture");
+> +	igt_subtest("error-state-basic")
+> +		test_error_state_basic();
+>  
+>  	igt_describe("Check that executing unintialised memory causes a hang");
+>  	igt_subtest("hangcheck-unterminated")
+>  		hangcheck_unterminated(ctx);
+>  
+> +	do_tests("GT", "gt", ctx);
+> +
+> +	igt_fixture {
+> +		igt_disallow_hang(device, hang);
+> +
+> +		hang = igt_allow_hang(device, ctx->id, HANG_ALLOW_CAPTURE | HANG_WANT_ENGINE_RESET);
+> +	}
+> +
+> +	do_tests("engine", "engine", ctx);
+> +
+>  	igt_fixture {
+>  		igt_disallow_hang(device, hang);
+>  		intel_ctx_destroy(device, ctx);
+> -- 
+> 2.25.1
+> 
