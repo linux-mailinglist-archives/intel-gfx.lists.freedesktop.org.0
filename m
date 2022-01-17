@@ -2,54 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B48E490A0C
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jan 2022 15:12:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04941490B2A
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jan 2022 16:09:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CDE710E2B2;
-	Mon, 17 Jan 2022 14:12:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ACA510E3A1;
+	Mon, 17 Jan 2022 15:09:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9682510E2B0;
- Mon, 17 Jan 2022 14:12:43 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02EA010E3A5;
+ Mon, 17 Jan 2022 15:09:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642428763; x=1673964763;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=3gjd90KyDW8OtAxIchXgpgTpyf16MjeNJjcM+3d9sGA=;
- b=TTB8ExL7vsVMnMsFQmfFUE34zlnHRwzLKEPoFKpRtrVEnQbCSK8/DJ9r
- r8fuwH0yi5TPMaDDVntWButOvjRdoWtob6xD0/x/7hbOzx9LdkEOfZSb1
- DH1e0wxJZW5s/a0J3o7ppwZ5x6n/YT48V9EODK8VEKLDf1ZKZEEEvy9ja
- uX2wr/e8N8DrHdd6Xm4V1Hui2I2CMj8lOuEuyxyxGkOMh+WYcKP3IkKKG
- ++9bbElo1rKmeCG1OOLQJdOfKEboPVxpvc4eEX+SCulMlSD1m/qzmwD+V
- FCbA8IkRB5P5peSkfjSZ/LOGoJwQmuql7Dl1eFg1pzJNQ+1PXpM+vbVig A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10229"; a="244827782"
-X-IronPort-AV: E=Sophos;i="5.88,295,1635231600"; d="scan'208";a="244827782"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2022 06:08:26 -0800
-X-IronPort-AV: E=Sophos;i="5.88,295,1635231600"; d="scan'208";a="764328869"
-Received: from sfhansen-mobl1.ger.corp.intel.com (HELO [10.249.254.119])
- ([10.249.254.119])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2022 06:08:25 -0800
-Message-ID: <fb8f8150-bdc3-32aa-5352-5f15ae91a592@linux.intel.com>
-Date: Mon, 17 Jan 2022 15:08:23 +0100
+ t=1642432168; x=1673968168;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vtzUIZZWjkSisETv1ver7NNGnY6RZaYsdprVpsFObbk=;
+ b=SodUojhCpRh/zIiSqSBgisxcbu3TQ48AIIVfuEGNic2T5dRB4i3DvLMm
+ /rkfC8xtvGWTEBWHOtyrgXbdm4iXwQ8xGt2MDtaD9idYRmmehX6YPaZsT
+ tKemZX1G7O2VbadXjtycTDUIYknLZW57Uy5uMdIuDg5rvmXTdb3btFnw0
+ 9qvR5RIFlgtSS4fQ4co0Omj5d6gQTtXIaRhaFqtBj+4AvuPNWt9H0+Sch
+ mHfwo/btEQXUJW2hU3Px3TfieYQvRFSS9S1jxbFuCBpITHKvuBRRFtLUZ
+ 8T+H/CUL93CFtqZvz8Tv15PKgx1hqx9MAnvxgfy4/G6PSS3HDHUY/zfQH g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10229"; a="224620408"
+X-IronPort-AV: E=Sophos;i="5.88,295,1635231600"; d="scan'208";a="224620408"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2022 07:09:25 -0800
+X-IronPort-AV: E=Sophos;i="5.88,295,1635231600"; d="scan'208";a="517444299"
+Received: from ashvay-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.49.118])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2022 07:09:20 -0800
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
+Date: Mon, 17 Jan 2022 17:09:08 +0200
+Message-Id: <20220117150910.231889-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <bb70ccb8-043c-bd99-e01e-c2f2a0c48d54@shipmail.org>
- <20220117075604.131477-1-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20220117075604.131477-1-maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add locking to
- i915_gem_evict_vm(), v3.
+Subject: [Intel-gfx] [PATCH v3 0/2] Introduce multitile support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,35 +56,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
-On 1/17/22 08:56, Maarten Lankhorst wrote:
-> i915_gem_evict_vm will need to be able to evict objects that are
-> locked by the current ctx. By testing if the current context already
-> locked the object, we can do this correctly. This allows us to
-> evict the entire vm even if we already hold some objects' locks.
->
-> Previously, this was spread over several commits, but it makes
-> more sense to commit the changes to i915_gem_evict_vm separately
-> from the changes to i915_gem_evict_something() and
-> i915_gem_evict_for_node().
->
-> Changes since v1:
-> - Handle evicting dead objects better.
-> Changes since v2:
-> - Use for_i915_gem_ww in igt_evict_vm. (Thomas)
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+This is the second series that prepares i915 to host multitile
+platforms. It introduces the for_each_gt() macro that loops over
+the tiles to perform per gt actions.
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+This patch is a combination of two patches developed originally
+by Abdiel, who introduced some refactoring during probe, and then
+Tvrtko has added the necessary tools to start using the various
+tiles.
 
-(Please note the series checkpatch- and DOC warnings before commiting!)
+The second patch re-organises the sysfs interface to expose the
+API for each of the GTs. I decided to prioritise this patch
+over others to unblock Sujaritha for further development.
+
+A third series will still follow this.
 
 Thanks,
+Andi
 
-Thomas
+Patchwork: https://patchwork.freedesktop.org/series/98741/
 
+Changelog
+=========
+v2 -> v3
+ - Added Matt and Sujaritha's r-b for patch 1 and 2.
+ - Reworded the commit of patch 2 to underline the fact that the
+   interface is useful also when used manually.
+v1 -> v2
+ - fixed a couple of coding style issues in patch 2.
+
+Andi Shyti (1):
+  drm/i915/gt: make a gt sysfs group and move power management files
+
+Tvrtko Ursulin (1):
+  drm/i915: Prepare for multiple GTs
+
+ drivers/gpu/drm/i915/Makefile                 |   4 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            | 141 ++++++-
+ drivers/gpu/drm/i915/gt/intel_gt.h            |  14 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   9 +-
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   7 +
+ drivers/gpu/drm/i915/gt/sysfs_gt.c            | 126 ++++++
+ drivers/gpu/drm/i915/gt/sysfs_gt.h            |  44 ++
+ drivers/gpu/drm/i915/gt/sysfs_gt_pm.c         | 393 ++++++++++++++++++
+ drivers/gpu/drm/i915/gt/sysfs_gt_pm.h         |  16 +
+ drivers/gpu/drm/i915/i915_driver.c            |  29 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   8 +
+ drivers/gpu/drm/i915/i915_reg.h               |   1 +
+ drivers/gpu/drm/i915/i915_sysfs.c             | 315 +-------------
+ drivers/gpu/drm/i915/i915_sysfs.h             |   3 +
+ drivers/gpu/drm/i915/intel_memory_region.h    |   3 +
+ drivers/gpu/drm/i915/intel_uncore.c           |  12 +-
+ drivers/gpu/drm/i915/intel_uncore.h           |   3 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |   5 +-
+ 18 files changed, 785 insertions(+), 348 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/sysfs_gt.c
+ create mode 100644 drivers/gpu/drm/i915/gt/sysfs_gt.h
+ create mode 100644 drivers/gpu/drm/i915/gt/sysfs_gt_pm.c
+ create mode 100644 drivers/gpu/drm/i915/gt/sysfs_gt_pm.h
+
+-- 
+2.34.1
 
