@@ -1,33 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50BEA490C20
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jan 2022 17:10:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2DE9490F26
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jan 2022 18:16:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 547EA10E88C;
-	Mon, 17 Jan 2022 16:10:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0558010F3D0;
+	Mon, 17 Jan 2022 17:16:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BC02710E88C;
- Mon, 17 Jan 2022 16:09:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B86E4AA01E;
- Mon, 17 Jan 2022 16:09:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0632664743047718313=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Date: Mon, 17 Jan 2022 16:09:58 -0000
-Message-ID: <164243579871.28491.18162835478360954000@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3A7F10F3D0;
+ Mon, 17 Jan 2022 17:16:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642439780; x=1673975780;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=kgMsCR0YF2GiQzst8dCBI9NwCvgvaa45tgvLKfV/kV8=;
+ b=UB0ogMI9kPhlSp3AuWZHggYf60Msuy+QE0ZV1yBswRCBLlisIClALSKS
+ zaDT+l74Ot4CInG36+JCyOQnTZ0RdRIXLeVl6BbuMq/gYJgpuhnA1iejJ
+ gJSmU+Ot051u+rrrnGVugg9gSHF3UptzAj6YxFpFYTVRa7vUDLl8NSNUA
+ SuDurp89trQtRQi/A66cQhKkv0Ywla0gadPeC3O1WAiOAPUdimgjavnfE
+ /+WB1WiSvZk5qUn/FrT4eXy5VLX0NnYAZae94DQRSbHy0Azmb0Xhu0b2e
+ lJ1qno+KGzjN+lPkfl/7t4C0Q1eVNW5/bkwiBoNq52WtXUnM1LgpElOgY A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10229"; a="305398622"
+X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="305398622"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2022 09:16:19 -0800
+X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="531417334"
+Received: from ashvay-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.49.118])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2022 09:16:16 -0800
+Date: Mon, 17 Jan 2022 19:16:13 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YeWkXTbsyEM10c71@intel.intel>
 References: <20220117150910.231889-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20220117150910.231889-1-andi.shyti@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgSW50?=
- =?utf-8?q?roduce_multitile_support?=
+ <20220117150910.231889-3-andi.shyti@linux.intel.com>
+ <ccbd6b7b-49ef-677f-ca3a-0e99c449f35d@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ccbd6b7b-49ef-677f-ca3a-0e99c449f35d@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915/gt: make a gt sysfs group
+ and move power management files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,307 +59,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0632664743047718313==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Tvrtko,
 
-== Series Details ==
+> > The previous power management files are kept in their original
+> > root directory to avoid breaking the ABI. They point to the tile
+> > '0' and a warning message is printed whenever accessed to. The
+> > deprecated interface needs for the CONFIG_SYSFS_DEPRECATED_V2
+> > flag in order to be generated.
+> 
+> CONFIG_SYSFS_DEPRECATED_V2 idea was abandoned, no? This patch at least does
+> not appear to contain it so please update the commit message to reflect
+> current state.
+> 
+> Adding Joonas to help address the question of how strict are userspace
+> requirements for sysfs additions. Personally sysadmin use sounds fine to me,
+> although it needs to be mentioned/documented as Matt requested, but I fear
+> it may not be enough to upstream. Is Level0 at the stage where we can
+> upstream for it I am also not sure.
 
-Series: Introduce multitile support
-URL   : https://patchwork.freedesktop.org/series/98950/
-State : failure
+no need... it's a leftover in the commit message. The deprecated
+was removed a year ago, maybe. Thanks!
 
-== Summary ==
+[...]
 
-CI Bug Log - changes from CI_DRM_11091 -> Patchwork_22007
-====================================================
+> > +		pr_devel_ratelimited(DEPRECATED
+> > +			"%s (pid %d) is trying to access deprecated %s "
+> > +			"sysfs control, please use gt/gt<n>/%s instead\n",
+> 
+> Maybe reword "is trying to access" to "is accesing" to remove any doubt
+> whether something is failing or not?
 
-Summary
--------
+OK
 
-  **FAILURE**
+[...]
 
-  Serious unknown changes coming with Patchwork_22007 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22007, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+> > +	if (sysfs_create_file(dir, &dev_attr_id.attr))
+> > +		drm_err(&gt->i915->drm,
+> > +			"failed to create sysfs %s info files\n", name);
+> 
+> These drm_err could maybe be warn or notice, to reflect the fact driver is
+> most likely completely functional? But only maybe since I haven't checked
+> what we do for other sysfs failures. If rest are drm_err then I guess
+> consistency trumps it.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/index.html
+yes, I agree with you and indeed they whould be treated as
+warnings because the driver probes correctly if sysfs fails.
 
-Participating hosts (47 -> 42)
-------------------------------
+I will change this to drm_warn and fixx all the others. Thanks!
 
-  Additional (1): bat-jsl-2 
-  Missing    (6): shard-tglu fi-bsw-cyan fi-pnv-d510 shard-rkl shard-dg1 fi-bdw-samus 
+[...]
 
-Possible new issues
--------------------
+> > +static inline bool is_object_gt(struct kobject *kobj)
+> > +{
+> > +	bool b = !strncmp(kobj->name, "gt", 2);
+> > +
+> > +	GEM_BUG_ON(b && !isdigit(kobj->name[2]));
+> 
+> 1)
+> Not sure what is the point of this GEM_BUG_ON? Checking strncmp works feels
+> like an overkill.
+> 
+> 2)
+> With the recent trend of "static inline considered harmful" perhaps consider
+> moving it out of line.
 
-  Here are the unknown changes that may have been introduced in Patchwork_22007:
+OK
 
-### IGT changes ###
+[...]
 
-#### Possible regressions ####
+> > +static const struct attribute_group rc6_attr_group[] = {
+> > +	{ .name = power_group_name, .attrs = rc6_attrs },
+> > +	{ .attrs = rc6_attrs }
+> > +};
+> > +
+> > +static const struct attribute_group rc6p_attr_group[] = {
+> > +	{ .name = power_group_name, .attrs = rc6p_attrs },
+> > +	{ .attrs = rc6p_attrs }
+> > +};
+> > +
+> > +static const struct attribute_group media_rc6_attr_group[] = {
+> > +	{ .name = power_group_name, .attrs = media_rc6_attrs },
+> > +	{ .attrs = media_rc6_attrs }
+> > +};
+> > +
+> > +static int __intel_gt_sysfs_create_group(struct kobject *kobj,
+> > +					 const struct attribute_group *grp)
+> > +{
+> > +	int i = is_object_gt(kobj);
+> 
+> Is_object_gt returns a bool so can I be pedantic? :) Maybe just omit the
+> local and solve it like that.
 
-  * igt@i915_selftest@live@gtt:
-    - fi-bdw-5557u:       [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
+'i' is used also as an array index here, and callse merge/create
+depending on what kind of object kobj is.
 
-  
-Known issues
-------------
+Maybe it's a bit of an ugly trick, but perhaps to mark the fact I
+can do it like
 
-  Here are the changes found in Patchwork_22007 that come from known issues:
+	i = !!is_object_gt(kobj);
 
-### IGT changes ###
+> > +
+> > +	return i ? sysfs_create_group(kobj, &grp[i]) :
+> > +		   sysfs_merge_group(kobj, &grp[i]);
+> > +}
+> > +
+> > +static void intel_sysfs_rc6_init(struct intel_gt *gt, struct kobject *kobj)
+> > +{
+> > +	int ret;
+> > +
+> > +	if (!HAS_RC6(gt->i915))
+> > +		return;
+> > +
+> > +	ret = __intel_gt_sysfs_create_group(kobj, rc6_attr_group);
+> > +	if (ret)
+> > +		drm_err(&gt->i915->drm,
+> > +			"failed to create gt%u RC6 sysfs files\n", gt->info.id);
+> > +
+> > +	if (HAS_RC6p(gt->i915)) {
+> > +		ret = __intel_gt_sysfs_create_group(kobj, rc6p_attr_group);
+> > +		if (ret)
+> > +			drm_err(&gt->i915->drm,
+> > +				"failed to create gt%u RC6p sysfs files\n",
+> > +				gt->info.id);
+> > +	}
+> > +
+> > +	if (IS_VALLEYVIEW(gt->i915) || IS_CHERRYVIEW(gt->i915)) {
+> > +		ret = __intel_gt_sysfs_create_group(kobj, media_rc6_attr_group);
+> > +		if (ret)
+> > +			drm_err(&gt->i915->drm,
+> > +				"failed to create media %u RC6 sysfs files\n",
+> > +				gt->info.id);
+> > +	}
+> > +}
 
-#### Issues hit ####
+[...]
 
-  * igt@amdgpu/amd_basic@cs-sdma:
-    - fi-kbl-8809g:       [PASS][3] -> [SKIP][4] ([fdo#109271]) +16 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-kbl-8809g/igt@amdgpu/amd_basic@cs-sdma.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-kbl-8809g/igt@amdgpu/amd_basic@cs-sdma.html
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -8480,6 +8480,7 @@ enum {
+> >   #define   GEN6_AGGRESSIVE_TURBO			(0 << 15)
+> >   #define   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT	23
+> >   #define   GEN9_IGNORE_SLICE_RATIO		(0 << 0)
+> > +#define   GEN12_SW_REQ_UNSLICE_RATIO_SHIFT	23
+> 
+> Stray something?
 
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [PASS][5] -> [INCOMPLETE][6] ([i915#4547])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+I don't know how this ended up here... scary!
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [PASS][7] -> [INCOMPLETE][8] ([i915#2940])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+> Regards,
+> 
+> Tvrtko
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-bdw-5557u:       [PASS][9] -> [DMESG-FAIL][10] ([i915#541])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
+Thanks a lot for looking again into this!
 
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-snb-2600:        NOTRUN -> [SKIP][11] ([fdo#109271]) +37 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-snb-2600:        NOTRUN -> [SKIP][12] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][13] ([i915#2722] / [i915#4312])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-skl-6600u/igt@runner@aborted.html
-    - fi-bsw-nick:        NOTRUN -> [FAIL][14] ([fdo#109271] / [i915#1436] / [i915#2722] / [i915#3428] / [i915#4312])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-bsw-nick/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-soraka:      [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-kbl-soraka/igt@i915_module_load@reload.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-kbl-soraka/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [DMESG-FAIL][17] ([i915#4494]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][19] ([i915#4269]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11091 -> Patchwork_22007
-
-  CI-20190529: 20190529
-  CI_DRM_11091: 11b3d8ac8a78d74ce7559fd2046a89166b0c70b1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6327: 0d559158c2d3b5723abbfc2cb4b04532e28663b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22007: 9028d350f2066f9a4b3de849c7968e36e19367cb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-9028d350f206 drm/i915/gt: make a gt sysfs group and move power management files
-28afa8633a19 drm/i915: Prepare for multiple GTs
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/index.html
-
---===============0632664743047718313==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce multitile support</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98950/">https://patchwork.freedesktop.org/series/98950/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11091 -&gt; Patchwork_22007</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22007 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22007, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/index.html</p>
-<h2>Participating hosts (47 -&gt; 42)</h2>
-<p>Additional (1): bat-jsl-2 <br />
-  Missing    (6): shard-tglu fi-bsw-cyan fi-pnv-d510 shard-rkl shard-dg1 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22007:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@gtt:<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22007 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-sdma:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-kbl-8809g/igt@amdgpu/amd_basic@cs-sdma.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-kbl-8809g/igt@amdgpu/amd_basic@cs-sdma.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +37 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-kbl-soraka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-kbl-soraka/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11091/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22007/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11091 -&gt; Patchwork_22007</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11091: 11b3d8ac8a78d74ce7559fd2046a89166b0c70b1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6327: 0d559158c2d3b5723abbfc2cb4b04532e28663b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22007: 9028d350f2066f9a4b3de849c7968e36e19367cb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>9028d350f206 drm/i915/gt: make a gt sysfs group and move power management files<br />
-28afa8633a19 drm/i915: Prepare for multiple GTs</p>
-
-</body>
-</html>
-
---===============0632664743047718313==--
+Andi
