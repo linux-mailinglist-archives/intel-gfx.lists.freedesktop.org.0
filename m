@@ -2,48 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4774049236F
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 11:02:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AF2F492370
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 11:02:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5673112A14;
-	Tue, 18 Jan 2022 10:02:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AFE41129FC;
+	Tue, 18 Jan 2022 10:02:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58EF210E253
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AE2E10E253
  for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 10:02:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1642500128; x=1674036128;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OiMELhNn9Kb95D51cq52SC5rXDXcaFJp9xc3mXABrQQ=;
- b=DegjqbXFWtCIQo2cUn86s2+6AXD7E/KHuN1TA2VmxClt+VNsqNa/Bl1P
- NZbQ54SHeE1Wj2fPeg1wayeriBw73C4V1wgOofelQoDVuPhSomHcv3i94
- eHSvMYHSZbxkZz/J4mtAzYqF9QGknsKpAgNctK1fby5mzNGbiU+FVDnOG
- aiRQwbJt8JmOxdBtV4bAA3VOB8WnZpd7HOLkqVWm2VEU0pwFjjdxkV0BU
- c9DfXbZ1buhIthMlIZIIL/SOgQ0UUxcjBxGwDRNyALJr3mttAcIXHUHtX
- 1ecwuWhaFoD2J9WxtVrWnpZNiSrKQKq/eaLD+pABznRHR9Bpm1qolopmI g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="243603793"
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="243603793"
+ bh=4viAgEt5edSARdyfa8fviMqgLXR7bbjpX83XfNMZ6qI=;
+ b=VZqRJ6C5p9wUvV2Vg+SCURJ2tY5mZrDe0zLDNmN9edQmYVO2ZDpBq7Up
+ o5pd+6kyeO5ttodPmLB4gDFytrr2Wzvd/Mo5bLI//7zn882x0IwAWLiM4
+ mkijLqsTEW7fCP/KFkVyO1WwzWoJXh1y928znmMSEXNB9yR5X4m+YrQ3H
+ fC6MwHLuJ9S8GEyarxx4gP0yhI4uWEjDMLKzizLSxsqYD2e+s2NZMzY/5
+ f0Ji3KvsxP3FG5LzMIRzGns4fQiEZXkvCuscSdfkWZTGbUJDm/yAP87rZ
+ zNX57DPsw74Y1MGT22bE4o4G4PBuIG2oH2JWoELueGddD7cvwQvsdo+jq w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="243603794"
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="243603794"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Jan 2022 02:02:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="615306445"
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="615306449"
 Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
  by FMSMGA003.fm.intel.com with ESMTP; 18 Jan 2022 02:02:06 -0800
 From: Alan Previn <alan.previn.teres.alexis@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Jan 2022 02:03:56 -0800
-Message-Id: <20220118100358.1329655-6-alan.previn.teres.alexis@intel.com>
+Date: Tue, 18 Jan 2022 02:03:57 -0800
+Message-Id: <20220118100358.1329655-7-alan.previn.teres.alexis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220118100358.1329655-1-alan.previn.teres.alexis@intel.com>
 References: <20220118100358.1329655-1-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/7] drm/i915/guc: Update GuC's log-buffer-state
- access for error capture.
+Subject: [Intel-gfx] [PATCH 6/7] drm/i915/guc: Copy new GuC error capture
+ logs upon G2H notification.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,516 +61,437 @@ Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-GuC log buffer regions for debug-log-events, crash-dumps and
-error-state-capture are all a single bo allocation that includes
-the guc_log_buffer_state structures.
+Upon the G2H Notify-Err-Capture event, make a snapshot of the error
+state capture logs from the GuC-log buffer (error capture region)
+into an bigger interim circular buffer store that can be parsed
+later during gpu coredump printing.
 
-Since the error-capture region is accessed with high priority at non-
-deterministic times (as part of gpu coredump) while the debug-log-event
-region is populated and accessed with different priorities, timings and
-consumers, let's split out separate locks for buffer-state accesses
-of each region.
-
-Also, ensure a global mapping is made up front for the entire bo
-throughout GuC operation so that dynamic mapping and unmapping isn't
-required for error capture log access if relay-logging isn't running.
-
-Additionally, while here, make some readibility improvements:
-1. change previous function names with "capture_logs" to
-   "copy_debug_logs" to help make the distinction clearer.
-2. Update the guc log region mapping comments to order them
-   according to the enum definition as per the GuC interface.
+Also, do the same for where we reset GuC submission and need to
+flush outstanding logs.
 
 Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   2 +
- .../gpu/drm/i915/gt/uc/intel_guc_capture.c    |  47 ++++++
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   7 +
+ drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h |  12 ++
+ .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 186 ++++++++++++++++++
  .../gpu/drm/i915/gt/uc/intel_guc_capture.h    |   1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    | 135 +++++++++++-------
- drivers/gpu/drm/i915/gt/uc/intel_guc_log.h    |  16 ++-
- 5 files changed, 141 insertions(+), 60 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  26 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.h    |   4 +
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  14 +-
+ 7 files changed, 240 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 9542db6fda0d..e4c901a5080f 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -34,6 +34,8 @@ struct intel_guc {
- 	struct intel_uc_fw fw;
- 	/** @log: sub-structure containing GuC log related data and objects */
- 	struct intel_guc_log log;
-+	/** @log_state: states and locks for each subregion of GuC's log buffer */
-+	struct intel_guc_log_stats log_state[GUC_MAX_LOG_BUFFER];
- 	/** @ct: the command transport communication channel */
- 	struct intel_guc_ct ct;
- 	/** @slpc: sub-structure containing SLPC related data and objects */
+diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+index 7afdadc7656f..82a69f54cddb 100644
+--- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+@@ -173,4 +173,11 @@ enum intel_guc_sleep_state_status {
+ #define GUC_LOG_CONTROL_VERBOSITY_MASK	(0xF << GUC_LOG_CONTROL_VERBOSITY_SHIFT)
+ #define GUC_LOG_CONTROL_DEFAULT_LOGGING	(1 << 8)
+ 
++enum intel_guc_state_capture_event_status {
++	INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_SUCCESS = 0x0,
++	INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_NOSPACE = 0x1,
++};
++
++#define INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_MASK      0x1
++
+ #endif /* _ABI_GUC_ACTIONS_ABI_H */
+diff --git a/drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h b/drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
+index 495cdb0228c6..d9ea5df64b06 100644
+--- a/drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
++++ b/drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
+@@ -63,11 +63,23 @@ struct guc_state_capture_group_t {
+ 	struct guc_state_capture_t capture_entries[0];
+ } __packed;
+ 
++struct guc_capture_out_store {
++	/* An interim storage to copy the GuC error-capture-output before
++	 * parsing and reporting via proper reporting flows with formatting.
++	 */
++	unsigned char *addr;
++	size_t size;
++	unsigned long head; /* inject new output capture data */
++	unsigned long tail; /* remove output capture data when reporting */
++	struct mutex lock; /*lock head or tail when copying capture in or extracting out*/
++};
++
+ struct __guc_state_capture_priv {
+ 	struct __guc_mmio_reg_descr_group *reglists;
+ 	u16 num_instance_regs[GUC_CAPTURE_LIST_INDEX_MAX][GUC_MAX_ENGINE_CLASSES];
+ 	u16 num_class_regs[GUC_CAPTURE_LIST_INDEX_MAX][GUC_MAX_ENGINE_CLASSES];
+ 	u16 num_global_regs[GUC_CAPTURE_LIST_INDEX_MAX];
++	struct guc_capture_out_store out_store;
+ };
+ 
+ #endif /* _INTEL_GUC_CAPTURE_FWIF_H */
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-index 3df396c72b4c..b637628905ec 100644
+index b637628905ec..fc80c5f31915 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-@@ -620,6 +620,53 @@ int intel_guc_capture_prep_lists(struct intel_guc *guc, struct guc_ads *blob, u3
- 	return PAGE_ALIGN(alloc_size);
+@@ -3,6 +3,7 @@
+  * Copyright © 2021-2021 Intel Corporation
+  */
+ 
++#include <linux/circ_buf.h>
+ #include <linux/types.h>
+ 
+ #include <drm/drm_print.h>
+@@ -12,6 +13,8 @@
+ #include "guc_capture_fwif.h"
+ #include "intel_guc_fwif.h"
+ #include "i915_drv.h"
++#include "i915_gpu_error.h"
++#include "i915_irq.h"
+ #include "i915_memcpy.h"
+ 
+ /*
+@@ -629,6 +632,9 @@ int intel_guc_capture_output_min_size_est(struct intel_guc *guc)
+ 	int worst_min_size = 0, num_regs = 0;
+ 	u16 tmp = 0;
+ 
++	if (!guc->capture.priv)
++		return -ENODEV;
++
+ 	/*
+ 	 * If every single engine-instance suffered a failure in quick succession but
+ 	 * were all unrelated, then a burst of multiple error-capture events would dump
+@@ -667,8 +673,174 @@ int intel_guc_capture_output_min_size_est(struct intel_guc *guc)
+ 	return (worst_min_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER);
  }
  
-+#define GUC_CAPTURE_OVERBUFFER_MULTIPLIER 3
-+int intel_guc_capture_output_min_size_est(struct intel_guc *guc)
++/*
++ * KMD Init time flows:
++ * --------------------
++ *     --> alloc A: GuC input capture regs lists (registered via ADS)
++ *                  List acquired via intel_guc_capture_list_count + intel_guc_capture_list_init
++ *                  Size = global-reg-list + (class-reg-list) + (num-instances x instance-reg-list)
++ *                  Device tables carry: 1x global, 1x per-class, 1x per-instance)
++ *                  Caller needs to call per-class and per-instance multiplie times
++ *
++ *     --> alloc B: GuC output capture buf (registered via guc_init_params(log_param))
++ *                  Size = #define CAPTURE_BUFFER_SIZE (warns if on too-small)
++ *                  Note2: 'x 3' to hold multiple capture groups
++ *
++ *     --> alloc C: GuC capture interim circular buffer storage in system mem
++ *                  Size = 'power_of_two(sizeof(B))' as per kernel circular buffer helper
++ *
++ * GUC Runtime notify capture:
++ * --------------------------
++ *     --> G2H STATE_CAPTURE_NOTIFICATION
++ *                   L--> intel_guc_capture_store_snapshot
++ *                           L--> Copies from B (head->tail) into C
++ */
++
++static void guc_capture_store_insert(struct intel_guc *guc, struct guc_capture_out_store *store,
++				     unsigned char *new_data, size_t bytes)
 +{
-+	struct intel_gt *gt = guc_to_gt(guc);
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+	int worst_min_size = 0, num_regs = 0;
-+	u16 tmp = 0;
++	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	unsigned char *dst_data = store->addr;
++	unsigned long h, t;
++	size_t tmp;
++
++	h = store->head;
++	t = store->tail;
++	if (CIRC_SPACE(h, t, store->size) >= bytes) {
++		while (bytes) {
++			tmp = CIRC_SPACE_TO_END(h, t, store->size);
++			if (tmp) {
++				tmp = tmp < bytes ? tmp : bytes;
++				i915_unaligned_memcpy_from_wc(&dst_data[h], new_data, tmp);
++				bytes -= tmp;
++				new_data += tmp;
++				h = (h + tmp) & (store->size - 1);
++			} else {
++				drm_err(&i915->drm, "circbuf copy-to ptr-corruption!\n");
++				break;
++			}
++		}
++		store->head = h;
++	} else {
++		drm_err(&i915->drm, "GuC capture interim-store insufficient space!\n");
++	}
++}
++
++static void __guc_capture_store_snapshot_work(struct intel_guc *guc)
++{
++	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
++	unsigned int buffer_size, read_offset, write_offset, bytes_to_copy, full_count;
++	struct guc_log_buffer_state *log_buf_state;
++	struct guc_log_buffer_state log_buf_state_local;
++	void *src_data, *dst_data = NULL;
++	bool new_overflow;
++
++	/* Lock to get the pointer to GuC capture-log-buffer-state */
++	mutex_lock(&guc->log_state[GUC_CAPTURE_LOG_BUFFER].lock);
++	log_buf_state = guc->log.buf_addr +
++			(sizeof(struct guc_log_buffer_state) * GUC_CAPTURE_LOG_BUFFER);
++	src_data = guc->log.buf_addr + intel_guc_get_log_buffer_offset(GUC_CAPTURE_LOG_BUFFER);
 +
 +	/*
-+	 * If every single engine-instance suffered a failure in quick succession but
-+	 * were all unrelated, then a burst of multiple error-capture events would dump
-+	 * registers for every one engine instance, one at a time. In this case, GuC
-+	 * would even dump the global-registers repeatedly.
-+	 *
-+	 * For each engine instance, there would be 1 x guc_state_capture_group_t output
-+	 * followed by 3 x guc_state_capture_t lists. The latter is how the register
-+	 * dumps are split across different register types (where the '3' are global vs class
-+	 * vs instance). Finally, let's multiply the whole thing by 3x (just so we are
-+	 * not limited to just 1 round of data in a worst case full register dump log)
-+	 *
-+	 * NOTE: intel_guc_log that allocates the log buffer would round this size up to
-+	 * a power of two.
++	 * Make a copy of the state structure, inside GuC log buffer
++	 * (which is uncached mapped), on the stack to avoid reading
++	 * from it multiple times.
 +	 */
++	memcpy(&log_buf_state_local, log_buf_state, sizeof(struct guc_log_buffer_state));
++	buffer_size = intel_guc_get_log_buffer_size(GUC_CAPTURE_LOG_BUFFER);
++	read_offset = log_buf_state_local.read_ptr;
++	write_offset = log_buf_state_local.sampled_write_ptr;
++	full_count = log_buf_state_local.buffer_full_cnt;
 +
-+	for_each_engine(engine, gt, id) {
-+		worst_min_size += sizeof(struct guc_state_capture_group_header_t) +
-+				  (3 * sizeof(struct guc_state_capture_header_t));
++	/* Bookkeeping stuff */
++	guc->log_state[GUC_CAPTURE_LOG_BUFFER].flush += log_buf_state_local.flush_to_file;
++	new_overflow = intel_guc_check_log_buf_overflow(guc,
++							&guc->log_state[GUC_CAPTURE_LOG_BUFFER],
++							full_count);
 +
-+		if (!guc_capture_list_count(guc, 0, GUC_CAPTURE_LIST_TYPE_GLOBAL, 0, &tmp))
-+			num_regs += tmp;
++	/* Update the state of shared log buffer */
++	log_buf_state->read_ptr = write_offset;
++	log_buf_state->flush_to_file = 0;
 +
-+		if (!guc_capture_list_count(guc, 0, GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS,
-+					    engine->class, &tmp)) {
-+			num_regs += tmp;
++	mutex_unlock(&guc->log_state[GUC_CAPTURE_LOG_BUFFER].lock);
++
++	dst_data = guc->capture.priv->out_store.addr;
++	if (dst_data) {
++		mutex_lock(&guc->capture.priv->out_store.lock);
++
++		/* Now copy the actual logs. */
++		if (unlikely(new_overflow)) {
++			/* copy the whole buffer in case of overflow */
++			read_offset = 0;
++			write_offset = buffer_size;
++		} else if (unlikely((read_offset > buffer_size) ||
++			   (write_offset > buffer_size))) {
++			drm_err(&i915->drm, "invalid GuC log capture buffer state!\n");
++			/* copy whole buffer as offsets are unreliable */
++			read_offset = 0;
++			write_offset = buffer_size;
 +		}
-+		if (!guc_capture_list_count(guc, 0, GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE,
-+					    engine->class, &tmp)) {
-+			num_regs += tmp;
++
++		/* first copy from the tail end of the GuC log capture buffer */
++		if (read_offset > write_offset) {
++			guc_capture_store_insert(guc, &guc->capture.priv->out_store, src_data,
++						 write_offset);
++			bytes_to_copy = buffer_size - read_offset;
++		} else {
++			bytes_to_copy = write_offset - read_offset;
 +		}
++		guc_capture_store_insert(guc, &guc->capture.priv->out_store, src_data + read_offset,
++					 bytes_to_copy);
++
++		mutex_unlock(&guc->capture.priv->out_store.lock);
 +	}
++}
 +
-+	worst_min_size += (num_regs * sizeof(struct guc_mmio_reg));
++void intel_guc_capture_store_snapshot(struct intel_guc *guc)
++{
++	if (guc->capture.priv)
++		__guc_capture_store_snapshot_work(guc);
++}
 +
-+	return (worst_min_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER);
++static void guc_capture_store_destroy(struct intel_guc *guc)
++{
++	mutex_destroy(&guc->capture.priv->out_store.lock);
++	guc->capture.priv->out_store.size = 0;
++	kfree(guc->capture.priv->out_store.addr);
++	guc->capture.priv->out_store.addr = NULL;
++}
++
++static int guc_capture_store_create(struct intel_guc *guc)
++{
++	/*
++	 * Make this interim buffer larger than GuC capture output buffer so that we can absorb
++	 * a little delay when processing the raw capture dumps into text friendly logs
++	 * for the i915_gpu_coredump output
++	 */
++	size_t max_dump_size;
++
++	GEM_BUG_ON(guc->capture.priv->out_store.addr);
++
++	max_dump_size = PAGE_ALIGN(intel_guc_capture_output_min_size_est(guc));
++	max_dump_size = roundup_pow_of_two(max_dump_size);
++
++	guc->capture.priv->out_store.addr = kzalloc(max_dump_size, GFP_KERNEL);
++	if (!guc->capture.priv->out_store.addr)
++		return -ENOMEM;
++
++	guc->capture.priv->out_store.size = max_dump_size;
++	mutex_init(&guc->capture.priv->out_store.lock);
++
++	return 0;
 +}
 +
  void intel_guc_capture_destroy(struct intel_guc *guc)
  {
++	if (!guc->capture.priv)
++		return;
++
++	intel_synchronize_irq(guc_to_gt(guc)->i915);
++	guc_capture_store_destroy(guc);
  	guc_capture_clear_ext_regs(guc->capture.priv->reglists);
+ 	kfree(guc->capture.priv);
+ 	guc->capture.priv = NULL;
+@@ -676,10 +848,24 @@ void intel_guc_capture_destroy(struct intel_guc *guc)
+ 
+ int intel_guc_capture_init(struct intel_guc *guc)
+ {
++	int ret;
++
+ 	guc->capture.priv = kzalloc(sizeof(*guc->capture.priv), GFP_KERNEL);
+ 	if (!guc->capture.priv)
+ 		return -ENOMEM;
++
+ 	guc->capture.priv->reglists = guc_capture_get_device_reglist(guc);
++	/*
++	 * allocate interim store at init time so we dont require memory
++	 * allocation whilst in the midst of the reset + capture
++	 */
++	ret = guc_capture_store_create(guc);
++	if (ret) {
++		guc_capture_clear_ext_regs(guc->capture.priv->reglists);
++		kfree(guc->capture.priv);
++		guc->capture.priv = NULL;
++		return ret;
++	}
+ 
+ 	return 0;
+ }
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
-index 6b5594ca529d..4d3e5221128c 100644
+index 4d3e5221128c..c240a4cc046b 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
 @@ -14,6 +14,7 @@ struct guc_gt_system_info;
  
  int intel_guc_capture_prep_lists(struct intel_guc *guc, struct guc_ads *blob, u32 blob_ggtt,
  				 u32 capture_offset, struct guc_gt_system_info *sysinfo);
-+int intel_guc_capture_output_min_size_est(struct intel_guc *guc);
++void intel_guc_capture_store_snapshot(struct intel_guc *guc);
+ int intel_guc_capture_output_min_size_est(struct intel_guc *guc);
  void intel_guc_capture_destroy(struct intel_guc *guc);
  int intel_guc_capture_init(struct intel_guc *guc);
- 
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-index b53f61f3101f..d6b1a3c0fb15 100644
+index d6b1a3c0fb15..194b17e8c2ae 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-@@ -6,12 +6,13 @@
- #include <linux/debugfs.h>
- 
- #include "gt/intel_gt.h"
-+#include "intel_guc_capture.h"
-+#include "intel_guc_log.h"
- #include "i915_drv.h"
- #include "i915_irq.h"
- #include "i915_memcpy.h"
--#include "intel_guc_log.h"
- 
--static void guc_log_capture_logs(struct intel_guc_log *log);
-+static void guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log);
- 
- /**
-  * DOC: GuC firmware log
-@@ -136,7 +137,7 @@ static void guc_move_to_next_buf(struct intel_guc_log *log)
- 	smp_wmb();
- 
- 	/* All data has been written, so now move the offset of sub buffer. */
--	relay_reserve(log->relay.channel, log->vma->obj->base.size);
-+	relay_reserve(log->relay.channel, log->vma->obj->base.size - CAPTURE_BUFFER_SIZE);
- 
- 	/* Switch to the next sub buffer */
- 	relay_flush(log->relay.channel);
-@@ -156,25 +157,25 @@ static void *guc_get_write_buffer(struct intel_guc_log *log)
+@@ -157,9 +157,9 @@ static void *guc_get_write_buffer(struct intel_guc_log *log)
  	return relay_reserve(log->relay.channel, 0);
  }
  
--static bool guc_check_log_buf_overflow(struct intel_guc_log *log,
--				       enum guc_log_buffer_type type,
-+static bool guc_check_log_buf_overflow(struct intel_guc *guc,
-+				       struct intel_guc_log_stats *log_state,
- 				       unsigned int full_cnt)
+-static bool guc_check_log_buf_overflow(struct intel_guc *guc,
+-				       struct intel_guc_log_stats *log_state,
+-				       unsigned int full_cnt)
++bool intel_guc_check_log_buf_overflow(struct intel_guc *guc,
++				      struct intel_guc_log_stats *log_state,
++				      unsigned int full_cnt)
  {
--	unsigned int prev_full_cnt = log->stats[type].sampled_overflow;
-+	unsigned int prev_full_cnt = log_state->sampled_overflow;
+ 	unsigned int prev_full_cnt = log_state->sampled_overflow;
  	bool overflow = false;
+@@ -182,7 +182,7 @@ static bool guc_check_log_buf_overflow(struct intel_guc *guc,
+ 	return overflow;
+ }
  
- 	if (full_cnt != prev_full_cnt) {
- 		overflow = true;
- 
--		log->stats[type].overflow = full_cnt;
--		log->stats[type].sampled_overflow += full_cnt - prev_full_cnt;
-+		log_state->overflow = full_cnt;
-+		log_state->sampled_overflow += full_cnt - prev_full_cnt;
- 
- 		if (full_cnt < prev_full_cnt) {
- 			/* buffer_full_cnt is a 4 bit counter */
--			log->stats[type].sampled_overflow += 16;
-+			log_state->sampled_overflow += 16;
- 		}
- 
--		dev_notice_ratelimited(guc_to_gt(log_to_guc(log))->i915->drm.dev,
-+		dev_notice_ratelimited(guc_to_gt(guc)->i915->drm.dev,
- 				       "GuC log buffer overflow\n");
- 	}
- 
-@@ -197,8 +198,10 @@ static unsigned int guc_get_log_buffer_size(enum guc_log_buffer_type type)
+-static unsigned int guc_get_log_buffer_size(enum guc_log_buffer_type type)
++unsigned int intel_guc_get_log_buffer_size(enum guc_log_buffer_type type)
+ {
+ 	switch (type) {
+ 	case GUC_DEBUG_LOG_BUFFER:
+@@ -198,6 +198,20 @@ static unsigned int guc_get_log_buffer_size(enum guc_log_buffer_type type)
  	return 0;
  }
  
--static void guc_read_update_log_buffer(struct intel_guc_log *log)
-+static void _guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log)
++size_t intel_guc_get_log_buffer_offset(enum guc_log_buffer_type type)
++{
++	enum guc_log_buffer_type i;
++	size_t offset = PAGE_SIZE;/* for the log_buffer_states */
++
++	for (i = GUC_DEBUG_LOG_BUFFER; i < GUC_MAX_LOG_BUFFER; i++) {
++		if (i == type)
++			break;
++		offset += intel_guc_get_log_buffer_size(i);
++	}
++
++	return offset;
++}
++
+ static void _guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log)
  {
-+	struct intel_guc *guc = log_to_guc(log);
-+	struct intel_guc_log_stats *logstate;
- 	unsigned int buffer_size, read_offset, write_offset, bytes_to_copy, full_cnt;
- 	struct guc_log_buffer_state *log_buf_state, *log_buf_snapshot_state;
- 	struct guc_log_buffer_state log_buf_state_local;
-@@ -212,7 +215,7 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
- 		goto out_unlock;
- 
- 	/* Get the pointer to shared GuC log buffer */
--	log_buf_state = src_data = log->relay.buf_addr;
-+	log_buf_state = src_data = log->buf_addr;
- 
- 	/* Get the pointer to local buffer to store the logs */
- 	log_buf_snapshot_state = dst_data = guc_get_write_buffer(log);
-@@ -222,7 +225,7 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
- 		 * Used rate limited to avoid deluge of messages, logs might be
- 		 * getting consumed by User at a slow rate.
- 		 */
--		DRM_ERROR_RATELIMITED("no sub-buffer to capture logs\n");
-+		DRM_ERROR_RATELIMITED("no sub-buffer to copy general logs\n");
- 		log->relay.full_count++;
- 
- 		goto out_unlock;
-@@ -232,12 +235,16 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
- 	src_data += PAGE_SIZE;
- 	dst_data += PAGE_SIZE;
- 
--	for (type = GUC_DEBUG_LOG_BUFFER; type < GUC_MAX_LOG_BUFFER; type++) {
-+	/* For relay logging, we exclude error state capture */
-+	for (type = GUC_DEBUG_LOG_BUFFER; type <= GUC_CRASH_DUMP_LOG_BUFFER; type++) {
- 		/*
-+		 * Get a lock to the buffer_state we want to read and update.
- 		 * Make a copy of the state structure, inside GuC log buffer
- 		 * (which is uncached mapped), on the stack to avoid reading
- 		 * from it multiple times.
- 		 */
-+		logstate = &guc->log_state[type];
-+		mutex_lock(&logstate->lock);
+ 	struct intel_guc *guc = log_to_guc(log);
+@@ -247,14 +261,14 @@ static void _guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log)
+ 		mutex_lock(&logstate->lock);
  		memcpy(&log_buf_state_local, log_buf_state,
  		       sizeof(struct guc_log_buffer_state));
- 		buffer_size = guc_get_log_buffer_size(type);
-@@ -246,13 +253,14 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
+-		buffer_size = guc_get_log_buffer_size(type);
++		buffer_size = intel_guc_get_log_buffer_size(type);
+ 		read_offset = log_buf_state_local.read_ptr;
+ 		write_offset = log_buf_state_local.sampled_write_ptr;
  		full_cnt = log_buf_state_local.buffer_full_cnt;
  
  		/* Bookkeeping stuff */
--		log->stats[type].flush += log_buf_state_local.flush_to_file;
--		new_overflow = guc_check_log_buf_overflow(log, type, full_cnt);
-+		logstate->flush += log_buf_state_local.flush_to_file;
-+		new_overflow = guc_check_log_buf_overflow(guc, logstate, full_cnt);
+ 		logstate->flush += log_buf_state_local.flush_to_file;
+-		new_overflow = guc_check_log_buf_overflow(guc, logstate, full_cnt);
++		new_overflow = intel_guc_check_log_buf_overflow(guc, logstate, full_cnt);
  
  		/* Update the state of shared log buffer */
  		log_buf_state->read_ptr = write_offset;
- 		log_buf_state->flush_to_file = 0;
- 		log_buf_state++;
-+		mutex_unlock(&logstate->lock);
- 
- 		/* First copy the state structure in snapshot buffer */
- 		memcpy(log_buf_snapshot_state, &log_buf_state_local,
-@@ -300,49 +308,49 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
- 	mutex_unlock(&log->relay.lock);
- }
- 
--static void capture_logs_work(struct work_struct *work)
-+static void copy_debug_logs_work(struct work_struct *work)
- {
- 	struct intel_guc_log *log =
- 		container_of(work, struct intel_guc_log, relay.flush_work);
- 
--	guc_log_capture_logs(log);
-+	guc_log_copy_debuglogs_for_relay(log);
- }
- 
--static int guc_log_map(struct intel_guc_log *log)
-+static int guc_log_relay_map(struct intel_guc_log *log)
- {
--	void *vaddr;
--
- 	lockdep_assert_held(&log->relay.lock);
- 
--	if (!log->vma)
-+	if (!log->vma || !log->buf_addr)
- 		return -ENODEV;
- 
- 	/*
--	 * Create a WC (Uncached for read) vmalloc mapping of log
--	 * buffer pages, so that we can directly get the data
--	 * (up-to-date) from memory.
-+	 * WC vmalloc mapping of log buffer pages was done at
-+	 * GuC Init time, but lets keep a ref for book-keeping
- 	 */
--	vaddr = i915_gem_object_pin_map_unlocked(log->vma->obj, I915_MAP_WC);
--	if (IS_ERR(vaddr))
--		return PTR_ERR(vaddr);
--
--	log->relay.buf_addr = vaddr;
-+	i915_gem_object_get(log->vma->obj);
-+	log->relay.buf_in_use = true;
- 
- 	return 0;
- }
- 
--static void guc_log_unmap(struct intel_guc_log *log)
-+static void guc_log_relay_unmap(struct intel_guc_log *log)
- {
- 	lockdep_assert_held(&log->relay.lock);
- 
--	i915_gem_object_unpin_map(log->vma->obj);
--	log->relay.buf_addr = NULL;
-+	i915_gem_object_put(log->vma->obj);
-+	log->relay.buf_in_use = false;
- }
- 
- void intel_guc_log_init_early(struct intel_guc_log *log)
- {
-+	struct intel_guc *guc = log_to_guc(log);
-+	int n;
-+
-+	for (n = GUC_DEBUG_LOG_BUFFER; n < GUC_MAX_LOG_BUFFER; n++)
-+		mutex_init(&guc->log_state[n].lock);
-+
- 	mutex_init(&log->relay.lock);
--	INIT_WORK(&log->relay.flush_work, capture_logs_work);
-+	INIT_WORK(&log->relay.flush_work, copy_debug_logs_work);
- 	log->relay.started = false;
- }
- 
-@@ -357,8 +365,11 @@ static int guc_log_relay_create(struct intel_guc_log *log)
- 	lockdep_assert_held(&log->relay.lock);
- 	GEM_BUG_ON(!log->vma);
- 
--	 /* Keep the size of sub buffers same as shared log buffer */
--	subbuf_size = log->vma->size;
-+	 /*
-+	  * Keep the size of sub buffers same as shared log buffer
-+	  * but GuC log-events excludes the error-state-capture logs
-+	  */
-+	subbuf_size = log->vma->size - CAPTURE_BUFFER_SIZE;
- 
- 	/*
- 	 * Store up to 8 snapshots, which is large enough to buffer sufficient
-@@ -393,13 +404,13 @@ static void guc_log_relay_destroy(struct intel_guc_log *log)
- 	log->relay.channel = NULL;
- }
- 
--static void guc_log_capture_logs(struct intel_guc_log *log)
-+static void guc_log_copy_debuglogs_for_relay(struct intel_guc_log *log)
- {
- 	struct intel_guc *guc = log_to_guc(log);
- 	struct drm_i915_private *dev_priv = guc_to_gt(guc)->i915;
- 	intel_wakeref_t wakeref;
- 
--	guc_read_update_log_buffer(log);
-+	_guc_log_copy_debuglogs_for_relay(log);
- 
- 	/*
- 	 * Generally device is expected to be active only at this
-@@ -439,6 +450,7 @@ int intel_guc_log_create(struct intel_guc_log *log)
- {
- 	struct intel_guc *guc = log_to_guc(log);
- 	struct i915_vma *vma;
-+	void *vaddr;
- 	u32 guc_log_size;
- 	int ret;
- 
-@@ -446,25 +458,29 @@ int intel_guc_log_create(struct intel_guc_log *log)
- 
- 	/*
- 	 *  GuC Log buffer Layout
-+	 * (this ordering must follow "enum guc_log_buffer_type" definition)
- 	 *
- 	 *  +===============================+ 00B
--	 *  |    Crash dump state header    |
--	 *  +-------------------------------+ 32B
- 	 *  |      Debug state header       |
-+	 *  +-------------------------------+ 32B
-+	 *  |    Crash dump state header    |
- 	 *  +-------------------------------+ 64B
- 	 *  |     Capture state header      |
- 	 *  +-------------------------------+ 96B
- 	 *  |                               |
- 	 *  +===============================+ PAGE_SIZE (4KB)
--	 *  |        Crash Dump logs        |
--	 *  +===============================+ + CRASH_SIZE
- 	 *  |          Debug logs           |
- 	 *  +===============================+ + DEBUG_SIZE
-+	 *  |        Crash Dump logs        |
-+	 *  +===============================+ + CRASH_SIZE
- 	 *  |         Capture logs          |
- 	 *  +===============================+ + CAPTURE_SIZE
- 	 */
--	guc_log_size = PAGE_SIZE + CRASH_BUFFER_SIZE + DEBUG_BUFFER_SIZE +
--		       CAPTURE_BUFFER_SIZE;
-+	if (intel_guc_capture_output_min_size_est(guc) > CAPTURE_BUFFER_SIZE)
-+		DRM_WARN("GuC log buffer for state_capture maybe too small. %d < %d\n",
-+			 CAPTURE_BUFFER_SIZE, intel_guc_capture_output_min_size_est(guc));
-+
-+	guc_log_size = PAGE_SIZE + CRASH_BUFFER_SIZE + DEBUG_BUFFER_SIZE + CAPTURE_BUFFER_SIZE;
- 
- 	vma = intel_guc_allocate_vma(guc, guc_log_size);
- 	if (IS_ERR(vma)) {
-@@ -473,6 +489,17 @@ int intel_guc_log_create(struct intel_guc_log *log)
- 	}
- 
- 	log->vma = vma;
-+	/*
-+	 * Create a WC (Uncached for read) vmalloc mapping up front immediate access to
-+	 * data from memory during  critical events such as error capture
-+	 */
-+	vaddr = i915_gem_object_pin_map_unlocked(log->vma->obj, I915_MAP_WC);
-+	if (IS_ERR(vaddr)) {
-+		ret = PTR_ERR(vaddr);
-+		i915_vma_unpin_and_release(&log->vma, 0);
-+		goto err;
-+	}
-+	log->buf_addr = vaddr;
- 
- 	log->level = __get_default_log_level(log);
- 	DRM_DEBUG_DRIVER("guc_log_level=%d (%s, verbose:%s, verbosity:%d)\n",
-@@ -483,13 +510,14 @@ int intel_guc_log_create(struct intel_guc_log *log)
- 	return 0;
- 
- err:
--	DRM_ERROR("Failed to allocate GuC log buffer. %d\n", ret);
-+	DRM_ERROR("Failed to allocate or map GuC log buffer. %d\n", ret);
- 	return ret;
- }
- 
- void intel_guc_log_destroy(struct intel_guc_log *log)
- {
--	i915_vma_unpin_and_release(&log->vma, 0);
-+	log->buf_addr = NULL;
-+	i915_vma_unpin_and_release(&log->vma, I915_VMA_RELEASE_MAP);
- }
- 
- int intel_guc_log_set_level(struct intel_guc_log *log, u32 level)
-@@ -534,7 +562,7 @@ int intel_guc_log_set_level(struct intel_guc_log *log, u32 level)
- 
- bool intel_guc_log_relay_created(const struct intel_guc_log *log)
- {
--	return log->relay.buf_addr;
-+	return log->buf_addr;
- }
- 
- int intel_guc_log_relay_open(struct intel_guc_log *log)
-@@ -565,7 +593,7 @@ int intel_guc_log_relay_open(struct intel_guc_log *log)
- 	if (ret)
- 		goto out_unlock;
- 
--	ret = guc_log_map(log);
-+	ret = guc_log_relay_map(log);
- 	if (ret)
- 		goto out_relay;
- 
-@@ -615,8 +643,8 @@ void intel_guc_log_relay_flush(struct intel_guc_log *log)
- 	with_intel_runtime_pm(guc_to_gt(guc)->uncore->rpm, wakeref)
- 		guc_action_flush_log(guc);
- 
--	/* GuC would have updated log buffer by now, so capture it */
--	guc_log_capture_logs(log);
-+	/* GuC would have updated log buffer by now, so copy it */
-+	guc_log_copy_debuglogs_for_relay(log);
- }
- 
- /*
-@@ -645,7 +673,7 @@ void intel_guc_log_relay_close(struct intel_guc_log *log)
- 
- 	mutex_lock(&log->relay.lock);
- 	GEM_BUG_ON(!intel_guc_log_relay_created(log));
--	guc_log_unmap(log);
-+	guc_log_relay_unmap(log);
- 	guc_log_relay_destroy(log);
- 	mutex_unlock(&log->relay.lock);
- }
-@@ -682,6 +710,7 @@ stringify_guc_log_type(enum guc_log_buffer_type type)
-  */
- void intel_guc_log_info(struct intel_guc_log *log, struct drm_printer *p)
- {
-+	struct intel_guc *guc = log_to_guc(log);
- 	enum guc_log_buffer_type type;
- 
- 	if (!intel_guc_log_relay_created(log)) {
-@@ -696,8 +725,8 @@ void intel_guc_log_info(struct intel_guc_log *log, struct drm_printer *p)
- 	for (type = GUC_DEBUG_LOG_BUFFER; type < GUC_MAX_LOG_BUFFER; type++) {
- 		drm_printf(p, "\t%s:\tflush count %10u, overflow count %10u\n",
- 			   stringify_guc_log_type(type),
--			   log->stats[type].flush,
--			   log->stats[type].sampled_overflow);
-+			   guc->log_state[type].flush,
-+			   guc->log_state[type].sampled_overflow);
- 	}
- }
- 
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
-index d7e1b6471fed..b6e8e9ee37b7 100644
+index b6e8e9ee37b7..f16de816447d 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
-@@ -46,23 +46,25 @@ struct intel_guc;
- #define GUC_VERBOSITY_TO_LOG_LEVEL(x)	((x) + 2)
- #define GUC_LOG_LEVEL_MAX GUC_VERBOSITY_TO_LOG_LEVEL(GUC_LOG_VERBOSITY_MAX)
- 
-+struct intel_guc_log_stats {
-+	struct mutex lock; /* protects below and guc_log_buffer_state's read-ptr */
-+	u32 sampled_overflow;
-+	u32 overflow;
-+	u32 flush;
-+};
-+
- struct intel_guc_log {
- 	u32 level;
- 	struct i915_vma *vma;
-+	void *buf_addr;
- 	struct {
--		void *buf_addr;
-+		bool buf_in_use;
- 		bool started;
- 		struct work_struct flush_work;
- 		struct rchan *channel;
- 		struct mutex lock;
- 		u32 full_count;
- 	} relay;
--	/* logging related stats */
--	struct {
--		u32 sampled_overflow;
--		u32 overflow;
--		u32 flush;
--	} stats[GUC_MAX_LOG_BUFFER];
+@@ -68,6 +68,10 @@ struct intel_guc_log {
  };
  
  void intel_guc_log_init_early(struct intel_guc_log *log);
++bool intel_guc_check_log_buf_overflow(struct intel_guc *guc, struct intel_guc_log_stats *state,
++				      unsigned int full_cnt);
++unsigned int intel_guc_get_log_buffer_size(enum guc_log_buffer_type type);
++size_t intel_guc_get_log_buffer_offset(enum guc_log_buffer_type type);
+ int intel_guc_log_create(struct intel_guc_log *log);
+ void intel_guc_log_destroy(struct intel_guc_log *log);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 23a40f10d376..baaa33472a50 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -24,6 +24,7 @@
+ #include "gt/intel_ring.h"
+ 
+ #include "intel_guc_ads.h"
++#include "intel_guc_capture.h"
+ #include "intel_guc_submission.h"
+ 
+ #include "i915_drv.h"
+@@ -1431,6 +1432,8 @@ void intel_guc_submission_reset_prepare(struct intel_guc *guc)
+ 	}
+ 
+ 	scrub_guc_desc_for_outstanding_g2h(guc);
++
++	intel_guc_capture_store_snapshot(guc);
+ }
+ 
+ static struct intel_engine_cs *
+@@ -4025,17 +4028,20 @@ int intel_guc_context_reset_process_msg(struct intel_guc *guc,
+ int intel_guc_error_capture_process_msg(struct intel_guc *guc,
+ 					const u32 *msg, u32 len)
+ {
+-	int status;
++	u32 status;
+ 
+ 	if (unlikely(len != 1)) {
+ 		drm_dbg(&guc_to_gt(guc)->i915->drm, "Invalid length %u", len);
+ 		return -EPROTO;
+ 	}
+ 
+-	status = msg[0];
+-	drm_info(&guc_to_gt(guc)->i915->drm, "Got error capture: status = %d", status);
++	status = msg[0] & INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_MASK;
++	if (status == INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_NOSPACE)
++		drm_warn(&guc_to_gt(guc)->i915->drm, "G2H-Error capture no space");
++	else
++		drm_info(&guc_to_gt(guc)->i915->drm, "G2H-Received error capture");
+ 
+-	/* FIXME: Do something with the capture */
++	intel_guc_capture_store_snapshot(guc);
+ 
+ 	return 0;
+ }
 -- 
 2.25.1
 
