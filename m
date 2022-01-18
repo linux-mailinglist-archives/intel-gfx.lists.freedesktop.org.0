@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2370749229F
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 10:24:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 835BE4922A0
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 10:24:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C4F01129F1;
-	Tue, 18 Jan 2022 09:24:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2B921129F5;
+	Tue, 18 Jan 2022 09:24:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D50D1129F1
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 09:24:18 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B2EA1129F5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 09:24:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642497858; x=1674033858;
+ t=1642497861; x=1674033861;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Q1Pt70aAouyLIW7cTU78Om8kQScUaRqd63XHfTmJFm0=;
- b=O4z6N7Zdvuuy84dswWIth8ZzMfE0dwF8EuD1YPDyvS2wa4uavtRkw/12
- BFvwAsDPXDH/d5ZZGhe3cOqLg9KBaBTRzN5h4ip8KEAZRPbMUma1N8zcF
- sx64g1iTkBigluUE33Kz5fWHUaO3Kt9BO8yz+MOz8B4bktAn63DrgC2nU
- 8txzNZcaPI4YKVi0hhGqUAv/z2WEUNQfDQ9KhJUlevvjUM/ms8DWfFB1o
- /Hayi8vlzYBoxaerEHYi4JzqLRSLu4xajwdgGvaU+ul2ORw97N0D1lm9P
- zMUXzYT/uyf6A9syy/HxemS02QwHxH8PQbpRgyI4nDRXxwt70lRnliO+t g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="225452161"
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="225452161"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2022 01:24:17 -0800
+ bh=mfV3yzQzObch+zlQ1u2q60C1y8LuE1HDFWsg4BF+1x8=;
+ b=JfNhx/Y/gFufLFH6/kC8kRS22c+2ObND2GY/so7J96ba+FVmtfUDacS+
+ gVnstI3NfAii/Ff6ib14G0WG8jaYkNgCyL1RNTtn9jViD9Sax4/9/0V+R
+ YPP4Xz1iwmkEDmP+v3TfgW8iAGveerNnHunzz4dlezkEjYLGXk8mn9h8V
+ JnKQaG8TE5KYqBHtwH3ZlIq2isB1XJMZB2QzrGSE9OpaySzENYD1n7JON
+ ImsiZEfFfUeevUcvrmCHjItJ4gQtxwIZDijdUdioOdydNm+X6Q4Hd2H6D
+ pl8hVgk9/pCd5l+nbkNAbkTRA/2B9VLusE6NmzyeYojXul2mC6LKHNCEP A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="242334079"
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="242334079"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2022 01:24:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="671787753"
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="531707796"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by fmsmga001.fm.intel.com with SMTP; 18 Jan 2022 01:24:15 -0800
+ by orsmga008.jf.intel.com with SMTP; 18 Jan 2022 01:24:18 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 18 Jan 2022 11:24:15 +0200
+ Tue, 18 Jan 2022 11:24:18 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Jan 2022 11:23:46 +0200
-Message-Id: <20220118092354.11631-8-ville.syrjala@linux.intel.com>
+Date: Tue, 18 Jan 2022 11:23:47 +0200
+Message-Id: <20220118092354.11631-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220118092354.11631-1-ville.syrjala@linux.intel.com>
 References: <20220118092354.11631-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 07/15] drm/i915: Tweak plane ddb allocation
- tracking
+Subject: [Intel-gfx] [PATCH 08/15] drm/i915: Split plane data_rate into
+ data_rate+data_rate_y
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,417 +64,209 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Let's store the plane allocation in a manner which more closely
-matches how the hw operates. That is, we store the packed/CbCr
-ddb in one struct, and the Y ddb in another. Currently we're
-storing packed/Y in one struct, CbCr in the other.
-
-This also works pretty well for icl+ where the UV plane is
-the main plane and the Y plane is subservient to it. Although
-in this case we do not even use ddb_y as we do the ddb allocation
-in terms of hw planes.
+Split the currently combined plane data_rate into the proper
+Y vs. CbCr components. This matches how we now track the
+plane dbuf allocations, and thus will make the dbuf bandwidth
+calculations actually produce the correct numbers for each
+dbuf slice.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../gpu/drm/i915/display/intel_atomic_plane.c |  32 +++---
- drivers/gpu/drm/i915/display/intel_bw.c       |   6 +-
- drivers/gpu/drm/i915/display/intel_display.c  |   8 +-
- .../drm/i915/display/intel_display_debugfs.c  |   4 +-
- .../drm/i915/display/intel_display_types.h    |   7 +-
- drivers/gpu/drm/i915/intel_pm.c               | 108 ++++++++----------
- 6 files changed, 74 insertions(+), 91 deletions(-)
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 34 ++++++++----------
+ .../gpu/drm/i915/display/intel_atomic_plane.h |  3 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       | 36 +++++++++----------
+ drivers/gpu/drm/i915/display/intel_display.c  |  4 +++
+ .../drm/i915/display/intel_display_types.h    |  3 ++
+ 5 files changed, 42 insertions(+), 38 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index c2c512cd8ec0..52239351931c 100644
+index 52239351931c..cd18155830d4 100644
 --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
 +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -430,8 +430,8 @@ int intel_plane_atomic_check(struct intel_atomic_state *state,
- static struct intel_plane *
- skl_next_plane_to_commit(struct intel_atomic_state *state,
- 			 struct intel_crtc *crtc,
--			 struct skl_ddb_entry entries_y[I915_MAX_PLANES],
--			 struct skl_ddb_entry entries_uv[I915_MAX_PLANES],
-+			 struct skl_ddb_entry ddb[I915_MAX_PLANES],
-+			 struct skl_ddb_entry ddb_y[I915_MAX_PLANES],
- 			 unsigned int *update_mask)
+@@ -180,29 +180,16 @@ unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
+ }
+ 
+ unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
+-				   const struct intel_plane_state *plane_state)
++				   const struct intel_plane_state *plane_state,
++				   int color_plane)
  {
- 	struct intel_crtc_state *crtc_state =
-@@ -450,17 +450,15 @@ skl_next_plane_to_commit(struct intel_atomic_state *state,
- 		    !(*update_mask & BIT(plane_id)))
- 			continue;
+ 	const struct drm_framebuffer *fb = plane_state->hw.fb;
+-	unsigned int cpp;
+-	unsigned int pixel_rate;
  
--		if (skl_ddb_allocation_overlaps(&crtc_state->wm.skl.plane_ddb_y[plane_id],
--						entries_y,
--						I915_MAX_PLANES, plane_id) ||
--		    skl_ddb_allocation_overlaps(&crtc_state->wm.skl.plane_ddb_uv[plane_id],
--						entries_uv,
--						I915_MAX_PLANES, plane_id))
-+		if (skl_ddb_allocation_overlaps(&crtc_state->wm.skl.plane_ddb[plane_id],
-+						ddb, I915_MAX_PLANES, plane_id) ||
-+		    skl_ddb_allocation_overlaps(&crtc_state->wm.skl.plane_ddb_y[plane_id],
-+						ddb_y, I915_MAX_PLANES, plane_id))
- 			continue;
+ 	if (!plane_state->uapi.visible)
+ 		return 0;
  
- 		*update_mask &= ~BIT(plane_id);
--		entries_y[plane_id] = crtc_state->wm.skl.plane_ddb_y[plane_id];
--		entries_uv[plane_id] = crtc_state->wm.skl.plane_ddb_uv[plane_id];
-+		ddb[plane_id] = crtc_state->wm.skl.plane_ddb[plane_id];
-+		ddb_y[plane_id] = crtc_state->wm.skl.plane_ddb_y[plane_id];
+-	pixel_rate = intel_plane_pixel_rate(crtc_state, plane_state);
+-
+-	cpp = fb->format->cpp[0];
+-
+-	/*
+-	 * Based on HSD#:1408715493
+-	 * NV12 cpp == 4, P010 cpp == 8
+-	 *
+-	 * FIXME what is the logic behind this?
+-	 */
+-	if (fb->format->is_yuv && fb->format->num_planes > 1)
+-		cpp *= 4;
+-
+-	return pixel_rate * cpp;
++	return intel_plane_pixel_rate(crtc_state, plane_state) *
++		fb->format->cpp[color_plane];
+ }
  
- 		return plane;
- 	}
-@@ -542,19 +540,17 @@ void skl_arm_planes_on_crtc(struct intel_atomic_state *state,
- 		intel_atomic_get_old_crtc_state(state, crtc);
- 	struct intel_crtc_state *new_crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
--	struct skl_ddb_entry entries_y[I915_MAX_PLANES];
--	struct skl_ddb_entry entries_uv[I915_MAX_PLANES];
-+	struct skl_ddb_entry ddb[I915_MAX_PLANES];
-+	struct skl_ddb_entry ddb_y[I915_MAX_PLANES];
- 	u32 update_mask = new_crtc_state->update_planes;
- 	struct intel_plane *plane;
+ int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
+@@ -324,6 +311,7 @@ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
+ 	crtc_state->nv12_planes &= ~BIT(plane->id);
+ 	crtc_state->c8_planes &= ~BIT(plane->id);
+ 	crtc_state->data_rate[plane->id] = 0;
++	crtc_state->data_rate_y[plane->id] = 0;
+ 	crtc_state->min_cdclk[plane->id] = 0;
  
--	memcpy(entries_y, old_crtc_state->wm.skl.plane_ddb_y,
-+	memcpy(ddb, old_crtc_state->wm.skl.plane_ddb,
-+	       sizeof(old_crtc_state->wm.skl.plane_ddb));
-+	memcpy(ddb_y, old_crtc_state->wm.skl.plane_ddb_y,
- 	       sizeof(old_crtc_state->wm.skl.plane_ddb_y));
--	memcpy(entries_uv, old_crtc_state->wm.skl.plane_ddb_uv,
--	       sizeof(old_crtc_state->wm.skl.plane_ddb_uv));
+ 	plane_state->uapi.visible = false;
+@@ -366,8 +354,16 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
+ 	if (new_plane_state->uapi.visible || old_plane_state->uapi.visible)
+ 		new_crtc_state->update_planes |= BIT(plane->id);
  
--	while ((plane = skl_next_plane_to_commit(state, crtc,
--						 entries_y, entries_uv,
--						 &update_mask))) {
-+	while ((plane = skl_next_plane_to_commit(state, crtc, ddb, ddb_y, &update_mask))) {
- 		struct intel_plane_state *new_plane_state =
- 			intel_atomic_get_new_plane_state(state, plane);
+-	new_crtc_state->data_rate[plane->id] =
+-		intel_plane_data_rate(new_crtc_state, new_plane_state);
++	if (new_plane_state->uapi.visible &&
++	    intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
++		new_crtc_state->data_rate_y[plane->id] =
++			intel_plane_data_rate(new_crtc_state, new_plane_state, 0);
++		new_crtc_state->data_rate[plane->id] =
++			intel_plane_data_rate(new_crtc_state, new_plane_state, 1);
++	} else if (new_plane_state->uapi.visible) {
++		new_crtc_state->data_rate[plane->id] =
++			intel_plane_data_rate(new_crtc_state, new_plane_state, 0);
++	}
  
+ 	return intel_plane_atomic_calc_changes(old_crtc_state, new_crtc_state,
+ 					       old_plane_state, new_plane_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+index 7907f601598e..aa26ce5fb654 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+@@ -24,7 +24,8 @@ unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
+ 				    const struct intel_plane_state *plane_state);
+ 
+ unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
+-				   const struct intel_plane_state *plane_state);
++				   const struct intel_plane_state *plane_state,
++				   int color_plane);
+ void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
+ 				       const struct intel_plane_state *from_plane_state,
+ 				       struct intel_crtc *crtc);
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index f0d6fad048c7..82f0435bcb6d 100644
+index 82f0435bcb6d..93feab671c29 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -686,16 +686,16 @@ static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
- 		return;
+@@ -576,6 +576,7 @@ static unsigned int intel_bw_crtc_num_active_planes(const struct intel_crtc_stat
+ static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	unsigned int data_rate = 0;
+ 	enum plane_id plane_id;
  
+@@ -588,6 +589,9 @@ static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_
+ 			continue;
+ 
+ 		data_rate += crtc_state->data_rate[plane_id];
++
++		if (DISPLAY_VER(i915) < 11)
++			data_rate += crtc_state->data_rate_y[plane_id];
+ 	}
+ 
+ 	return data_rate;
+@@ -688,28 +692,24 @@ static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
  	for_each_plane_id_on_crtc(crtc, plane_id) {
-+		const struct skl_ddb_entry *ddb =
-+			&crtc_state->wm.skl.plane_ddb[plane_id];
- 		const struct skl_ddb_entry *ddb_y =
- 			&crtc_state->wm.skl.plane_ddb_y[plane_id];
--		const struct skl_ddb_entry *ddb_uv =
--			&crtc_state->wm.skl.plane_ddb_uv[plane_id];
+ 		const struct skl_ddb_entry *ddb =
+ 			&crtc_state->wm.skl.plane_ddb[plane_id];
+-		const struct skl_ddb_entry *ddb_y =
+-			&crtc_state->wm.skl.plane_ddb_y[plane_id];
  		unsigned int data_rate = crtc_state->data_rate[plane_id];
- 		unsigned int dbuf_mask = 0;
+-		unsigned int dbuf_mask = 0;
++		unsigned int dbuf_mask = skl_ddb_dbuf_slice_mask(i915, ddb);
  		enum dbuf_slice slice;
  
-+		dbuf_mask |= skl_ddb_dbuf_slice_mask(i915, ddb);
- 		dbuf_mask |= skl_ddb_dbuf_slice_mask(i915, ddb_y);
--		dbuf_mask |= skl_ddb_dbuf_slice_mask(i915, ddb_uv);
+-		dbuf_mask |= skl_ddb_dbuf_slice_mask(i915, ddb);
+-		dbuf_mask |= skl_ddb_dbuf_slice_mask(i915, ddb_y);
++		for_each_dbuf_slice_in_mask(i915, slice, dbuf_mask)
++			crtc_bw->used_bw[slice] += data_rate;
++	}
++
++	if (DISPLAY_VER(i915) >= 11)
++		return;
++
++	for_each_plane_id_on_crtc(crtc, plane_id) {
++		const struct skl_ddb_entry *ddb =
++			&crtc_state->wm.skl.plane_ddb_y[plane_id];
++		unsigned int data_rate = crtc_state->data_rate_y[plane_id];
++		unsigned int dbuf_mask = skl_ddb_dbuf_slice_mask(i915, ddb);
++		enum dbuf_slice slice;
  
- 		/*
- 		 * FIXME: To calculate that more properly we probably
+-		/*
+-		 * FIXME: To calculate that more properly we probably
+-		 * need to split per plane data_rate into data_rate_y
+-		 * and data_rate_uv for multiplanar formats in order not
+-		 * to get accounted those twice if they happen to reside
+-		 * on different slices.
+-		 * However for pre-icl this would work anyway because
+-		 * we have only single slice and for icl+ uv plane has
+-		 * non-zero data rate.
+-		 * So in worst case those calculation are a bit
+-		 * pessimistic, which shouldn't pose any significant
+-		 * problem anyway.
+-		 */
+ 		for_each_dbuf_slice_in_mask(i915, slice, dbuf_mask)
+ 			crtc_bw->used_bw[slice] += data_rate;
+ 	}
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 0964b2403e2d..af23153f6502 100644
+index af23153f6502..39dd2e7383e0 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6750,8 +6750,8 @@ static void verify_wm_state(struct intel_crtc *crtc,
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	struct skl_hw_state {
-+		struct skl_ddb_entry ddb[I915_MAX_PLANES];
- 		struct skl_ddb_entry ddb_y[I915_MAX_PLANES];
--		struct skl_ddb_entry ddb_uv[I915_MAX_PLANES];
- 		struct skl_pipe_wm wm;
- 	} *hw;
- 	const struct skl_pipe_wm *sw_wm = &new_crtc_state->wm.skl.optimal;
-@@ -6768,7 +6768,7 @@ static void verify_wm_state(struct intel_crtc *crtc,
+@@ -761,6 +761,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+ 	intel_set_plane_visible(crtc_state, plane_state, false);
+ 	fixup_plane_bitmasks(crtc_state);
+ 	crtc_state->data_rate[plane->id] = 0;
++	crtc_state->data_rate_y[plane->id] = 0;
+ 	crtc_state->min_cdclk[plane->id] = 0;
  
- 	skl_pipe_wm_get_hw_state(crtc, &hw->wm);
- 
--	skl_pipe_ddb_get_hw_state(crtc, hw->ddb_y, hw->ddb_uv);
-+	skl_pipe_ddb_get_hw_state(crtc, hw->ddb, hw->ddb_y);
- 
- 	hw_enabled_slices = intel_enabled_dbuf_slices_mask(dev_priv);
- 
-@@ -6850,8 +6850,8 @@ static void verify_wm_state(struct intel_crtc *crtc,
+ 	if (plane->id == PLANE_PRIMARY)
+@@ -5110,6 +5111,7 @@ static int icl_check_nv12_planes(struct intel_crtc_state *crtc_state)
+ 			crtc_state->enabled_planes &= ~BIT(plane->id);
+ 			crtc_state->active_planes &= ~BIT(plane->id);
+ 			crtc_state->update_planes |= BIT(plane->id);
++			crtc_state->data_rate[plane->id] = 0;
  		}
  
- 		/* DDB */
--		hw_ddb_entry = &hw->ddb_y[plane->id];
--		sw_ddb_entry = &new_crtc_state->wm.skl.plane_ddb_y[plane->id];
-+		hw_ddb_entry = &hw->ddb[PLANE_CURSOR];
-+		sw_ddb_entry = &new_crtc_state->wm.skl.plane_ddb[PLANE_CURSOR];
+ 		plane_state->planar_slave = false;
+@@ -5154,6 +5156,8 @@ static int icl_check_nv12_planes(struct intel_crtc_state *crtc_state)
+ 		crtc_state->enabled_planes |= BIT(linked->id);
+ 		crtc_state->active_planes |= BIT(linked->id);
+ 		crtc_state->update_planes |= BIT(linked->id);
++		crtc_state->data_rate[linked->id] =
++			crtc_state->data_rate_y[plane->id];
+ 		drm_dbg_kms(&dev_priv->drm, "Using %s as Y plane for %s\n",
+ 			    linked->base.name, plane->base.name);
  
- 		if (!skl_ddb_entry_equal(hw_ddb_entry, sw_ddb_entry)) {
- 			drm_err(&dev_priv->drm,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index f4de004d470f..5ef4a86ccf66 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1116,13 +1116,13 @@ static int i915_ddb_info(struct seq_file *m, void *unused)
- 		seq_printf(m, "Pipe %c\n", pipe_name(pipe));
- 
- 		for_each_plane_id_on_crtc(crtc, plane_id) {
--			entry = &crtc_state->wm.skl.plane_ddb_y[plane_id];
-+			entry = &crtc_state->wm.skl.plane_ddb[plane_id];
- 			seq_printf(m, "  Plane%-8d%8u%8u%8u\n", plane_id + 1,
- 				   entry->start, entry->end,
- 				   skl_ddb_entry_size(entry));
- 		}
- 
--		entry = &crtc_state->wm.skl.plane_ddb_y[PLANE_CURSOR];
-+		entry = &crtc_state->wm.skl.plane_ddb[PLANE_CURSOR];
- 		seq_printf(m, "  %-13s%8u%8u%8u\n", "Cursor", entry->start,
- 			   entry->end, skl_ddb_entry_size(entry));
- 	}
 diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 41e3dd25a78f..578c6069376b 100644
+index 578c6069376b..7e147e110059 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_types.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -868,8 +868,13 @@ struct intel_crtc_wm_state {
- 			/* gen9+ only needs 1-step wm programming */
- 			struct skl_pipe_wm optimal;
- 			struct skl_ddb_entry ddb;
-+			/*
-+			 * pre-icl: for packed/planar CbCr
-+			 * icl+: for everything
-+			 */
-+			struct skl_ddb_entry plane_ddb[I915_MAX_PLANES];
-+			/* pre-icl: for planar Y */
- 			struct skl_ddb_entry plane_ddb_y[I915_MAX_PLANES];
--			struct skl_ddb_entry plane_ddb_uv[I915_MAX_PLANES];
- 		} skl;
+@@ -1148,7 +1148,10 @@ struct intel_crtc_state {
  
- 		struct {
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 93ff07f6ef26..8a115b4c9e71 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -4312,46 +4312,31 @@ static void
- skl_ddb_get_hw_plane_state(struct drm_i915_private *dev_priv,
- 			   const enum pipe pipe,
- 			   const enum plane_id plane_id,
--			   struct skl_ddb_entry *ddb_y,
--			   struct skl_ddb_entry *ddb_uv)
-+			   struct skl_ddb_entry *ddb,
-+			   struct skl_ddb_entry *ddb_y)
- {
--	u32 val, val2;
--	u32 fourcc = 0;
-+	u32 val;
+ 	int min_cdclk[I915_MAX_PLANES];
  
- 	/* Cursor doesn't support NV12/planar, so no extra calculation needed */
- 	if (plane_id == PLANE_CURSOR) {
- 		val = intel_uncore_read(&dev_priv->uncore, CUR_BUF_CFG(pipe));
--		skl_ddb_entry_init_from_hw(ddb_y, val);
-+		skl_ddb_entry_init_from_hw(ddb, val);
- 		return;
- 	}
++	/* for packed/planar CbCr */
+ 	u32 data_rate[I915_MAX_PLANES];
++	/* for planar Y */
++	u32 data_rate_y[I915_MAX_PLANES];
  
--	val = intel_uncore_read(&dev_priv->uncore, PLANE_CTL(pipe, plane_id));
-+	val = intel_uncore_read(&dev_priv->uncore, PLANE_BUF_CFG(pipe, plane_id));
-+	skl_ddb_entry_init_from_hw(ddb, val);
- 
--	/* No DDB allocated for disabled planes */
--	if (val & PLANE_CTL_ENABLE)
--		fourcc = skl_format_to_fourcc(val & PLANE_CTL_FORMAT_MASK_SKL,
--					      val & PLANE_CTL_ORDER_RGBX,
--					      val & PLANE_CTL_ALPHA_MASK);
--
--	if (DISPLAY_VER(dev_priv) >= 11) {
--		val = intel_uncore_read(&dev_priv->uncore, PLANE_BUF_CFG(pipe, plane_id));
--		skl_ddb_entry_init_from_hw(ddb_y, val);
--	} else {
--		val = intel_uncore_read(&dev_priv->uncore, PLANE_BUF_CFG(pipe, plane_id));
--		val2 = intel_uncore_read(&dev_priv->uncore, PLANE_NV12_BUF_CFG(pipe, plane_id));
--
--		if (fourcc &&
--		    drm_format_info_is_yuv_semiplanar(drm_format_info(fourcc)))
--			swap(val, val2);
-+	if (DISPLAY_VER(dev_priv) >= 11)
-+		return;
- 
--		skl_ddb_entry_init_from_hw(ddb_y, val);
--		skl_ddb_entry_init_from_hw(ddb_uv, val2);
--	}
-+	val = intel_uncore_read(&dev_priv->uncore, PLANE_NV12_BUF_CFG(pipe, plane_id));
-+	skl_ddb_entry_init_from_hw(ddb_y, val);
- }
- 
- void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
--			       struct skl_ddb_entry *ddb_y,
--			       struct skl_ddb_entry *ddb_uv)
-+			       struct skl_ddb_entry *ddb,
-+			       struct skl_ddb_entry *ddb_y)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum intel_display_power_domain power_domain;
-@@ -4367,8 +4352,8 @@ void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
- 	for_each_plane_id_on_crtc(crtc, plane_id)
- 		skl_ddb_get_hw_plane_state(dev_priv, pipe,
- 					   plane_id,
--					   &ddb_y[plane_id],
--					   &ddb_uv[plane_id]);
-+					   &ddb[plane_id],
-+					   &ddb_y[plane_id]);
- 
- 	intel_display_power_put(dev_priv, power_domain, wakeref);
- }
-@@ -5105,8 +5090,8 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
- 	int level;
- 
- 	/* Clear the partitioning for disabled planes. */
-+	memset(crtc_state->wm.skl.plane_ddb, 0, sizeof(crtc_state->wm.skl.plane_ddb));
- 	memset(crtc_state->wm.skl.plane_ddb_y, 0, sizeof(crtc_state->wm.skl.plane_ddb_y));
--	memset(crtc_state->wm.skl.plane_ddb_uv, 0, sizeof(crtc_state->wm.skl.plane_ddb_uv));
- 
- 	if (!crtc_state->hw.active)
- 		return 0;
-@@ -5123,7 +5108,7 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
- 	/* Allocate fixed number of blocks for cursor. */
- 	iter.total[PLANE_CURSOR] = skl_cursor_allocation(crtc_state, num_active);
- 	iter.size -= iter.total[PLANE_CURSOR];
--	skl_ddb_entry_init(&crtc_state->wm.skl.plane_ddb_y[PLANE_CURSOR],
-+	skl_ddb_entry_init(&crtc_state->wm.skl.plane_ddb[PLANE_CURSOR],
- 			   alloc->end - iter.total[PLANE_CURSOR], alloc->end);
- 
- 	if (iter.data_rate == 0)
-@@ -5202,10 +5187,10 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
- 	/* Set the actual DDB start/end points for each plane */
- 	iter.start = alloc->start;
- 	for_each_plane_id_on_crtc(crtc, plane_id) {
--		struct skl_ddb_entry *plane_alloc =
-+		struct skl_ddb_entry *ddb =
-+			&crtc_state->wm.skl.plane_ddb[plane_id];
-+		struct skl_ddb_entry *ddb_y =
- 			&crtc_state->wm.skl.plane_ddb_y[plane_id];
--		struct skl_ddb_entry *uv_plane_alloc =
--			&crtc_state->wm.skl.plane_ddb_uv[plane_id];
- 
- 		if (plane_id == PLANE_CURSOR)
- 			continue;
-@@ -5216,12 +5201,15 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
- 
- 		/* Leave disabled planes at (0,0) */
- 		if (iter.total[plane_id])
--			iter.start = skl_ddb_entry_init(plane_alloc, iter.start,
-+			iter.start = skl_ddb_entry_init(ddb, iter.start,
- 							iter.start + iter.total[plane_id]);
- 
--		if (iter.uv_total[plane_id])
--			iter.start = skl_ddb_entry_init(uv_plane_alloc, iter.start,
-+		if (iter.uv_total[plane_id]) {
-+			/* hardware wants these swapped */
-+			*ddb_y = *ddb;
-+			iter.start = skl_ddb_entry_init(ddb, iter.start,
- 							iter.start + iter.uv_total[plane_id]);
-+		}
- 	}
- 
- 	/*
-@@ -5874,11 +5862,10 @@ void skl_write_plane_wm(struct intel_plane *plane,
- 	enum plane_id plane_id = plane->id;
- 	enum pipe pipe = plane->pipe;
- 	const struct skl_pipe_wm *pipe_wm = &crtc_state->wm.skl.optimal;
--	const struct skl_plane_wm *wm = &pipe_wm->planes[plane_id];
-+	const struct skl_ddb_entry *ddb =
-+		&crtc_state->wm.skl.plane_ddb[plane_id];
- 	const struct skl_ddb_entry *ddb_y =
- 		&crtc_state->wm.skl.plane_ddb_y[plane_id];
--	const struct skl_ddb_entry *ddb_uv =
--		&crtc_state->wm.skl.plane_ddb_uv[plane_id];
- 
- 	for (level = 0; level <= max_level; level++)
- 		skl_write_wm_level(dev_priv, PLANE_WM(pipe, plane_id, level),
-@@ -5888,25 +5875,20 @@ void skl_write_plane_wm(struct intel_plane *plane,
- 			   skl_plane_trans_wm(pipe_wm, plane_id));
- 
- 	if (HAS_HW_SAGV_WM(dev_priv)) {
-+		const struct skl_plane_wm *wm = &pipe_wm->planes[plane_id];
-+
- 		skl_write_wm_level(dev_priv, PLANE_WM_SAGV(pipe, plane_id),
- 				   &wm->sagv.wm0);
- 		skl_write_wm_level(dev_priv, PLANE_WM_SAGV_TRANS(pipe, plane_id),
- 				   &wm->sagv.trans_wm);
- 	}
- 
--	if (DISPLAY_VER(dev_priv) >= 11) {
-+	skl_ddb_entry_write(dev_priv,
-+			    PLANE_BUF_CFG(pipe, plane_id), ddb);
-+
-+	if (DISPLAY_VER(dev_priv) < 11)
- 		skl_ddb_entry_write(dev_priv,
--				    PLANE_BUF_CFG(pipe, plane_id), ddb_y);
--		return;
--	}
--
--	if (wm->is_planar)
--		swap(ddb_y, ddb_uv);
--
--	skl_ddb_entry_write(dev_priv,
--			    PLANE_BUF_CFG(pipe, plane_id), ddb_y);
--	skl_ddb_entry_write(dev_priv,
--			    PLANE_NV12_BUF_CFG(pipe, plane_id), ddb_uv);
-+				    PLANE_NV12_BUF_CFG(pipe, plane_id), ddb_y);
- }
- 
- void skl_write_cursor_wm(struct intel_plane *plane,
-@@ -5918,7 +5900,7 @@ void skl_write_cursor_wm(struct intel_plane *plane,
- 	enum pipe pipe = plane->pipe;
- 	const struct skl_pipe_wm *pipe_wm = &crtc_state->wm.skl.optimal;
- 	const struct skl_ddb_entry *ddb =
--		&crtc_state->wm.skl.plane_ddb_y[plane_id];
-+		&crtc_state->wm.skl.plane_ddb[plane_id];
- 
- 	for (level = 0; level <= max_level; level++)
- 		skl_write_wm_level(dev_priv, CUR_WM(pipe, level),
-@@ -6015,10 +5997,10 @@ skl_ddb_add_affected_planes(const struct intel_crtc_state *old_crtc_state,
- 		struct intel_plane_state *plane_state;
- 		enum plane_id plane_id = plane->id;
- 
--		if (skl_ddb_entry_equal(&old_crtc_state->wm.skl.plane_ddb_y[plane_id],
--					&new_crtc_state->wm.skl.plane_ddb_y[plane_id]) &&
--		    skl_ddb_entry_equal(&old_crtc_state->wm.skl.plane_ddb_uv[plane_id],
--					&new_crtc_state->wm.skl.plane_ddb_uv[plane_id]))
-+		if (skl_ddb_entry_equal(&old_crtc_state->wm.skl.plane_ddb[plane_id],
-+					&new_crtc_state->wm.skl.plane_ddb[plane_id]) &&
-+		    skl_ddb_entry_equal(&old_crtc_state->wm.skl.plane_ddb_y[plane_id],
-+					&new_crtc_state->wm.skl.plane_ddb_y[plane_id]))
- 			continue;
- 
- 		plane_state = intel_atomic_get_plane_state(state, plane);
-@@ -6185,8 +6167,8 @@ skl_print_wm_changes(struct intel_atomic_state *state)
- 			enum plane_id plane_id = plane->id;
- 			const struct skl_ddb_entry *old, *new;
- 
--			old = &old_crtc_state->wm.skl.plane_ddb_y[plane_id];
--			new = &new_crtc_state->wm.skl.plane_ddb_y[plane_id];
-+			old = &old_crtc_state->wm.skl.plane_ddb[plane_id];
-+			new = &new_crtc_state->wm.skl.plane_ddb[plane_id];
- 
- 			if (skl_ddb_entry_equal(old, new))
- 				continue;
-@@ -6587,16 +6569,16 @@ void skl_wm_get_hw_state(struct drm_i915_private *dev_priv)
- 		memset(&dbuf_state->ddb[pipe], 0, sizeof(dbuf_state->ddb[pipe]));
- 
- 		for_each_plane_id_on_crtc(crtc, plane_id) {
-+			struct skl_ddb_entry *ddb =
-+				&crtc_state->wm.skl.plane_ddb[plane_id];
- 			struct skl_ddb_entry *ddb_y =
- 				&crtc_state->wm.skl.plane_ddb_y[plane_id];
--			struct skl_ddb_entry *ddb_uv =
--				&crtc_state->wm.skl.plane_ddb_uv[plane_id];
- 
- 			skl_ddb_get_hw_plane_state(dev_priv, crtc->pipe,
--						   plane_id, ddb_y, ddb_uv);
-+						   plane_id, ddb, ddb_y);
- 
-+			skl_ddb_entry_union(&dbuf_state->ddb[pipe], ddb);
- 			skl_ddb_entry_union(&dbuf_state->ddb[pipe], ddb_y);
--			skl_ddb_entry_union(&dbuf_state->ddb[pipe], ddb_uv);
- 		}
- 
- 		dbuf_state->slices[pipe] =
+ 	/* FIXME unify with data_rate[] */
+ 	u64 plane_data_rate[I915_MAX_PLANES];
 -- 
 2.32.0
 
