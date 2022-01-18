@@ -2,48 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D4B6492371
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 11:02:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E149C49238E
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 11:12:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE98E112A15;
-	Tue, 18 Jan 2022 10:02:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E535F1122C3;
+	Tue, 18 Jan 2022 10:12:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39F0510FC65
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 10:02:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642500128; x=1674036128;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1itJrzZwb+VpjUigsNvqjMh59COmbJp6bwIdz3GgpwE=;
- b=g016UxHssnwBsiMOmD+lPdZwBf9LBzHpjjp0IBrcd50UW2LYoPuOAGyP
- jsKW7QU9lLkpfdtxqpVVOWM/A1bgUYMvkNXoW/LC6VW8agjR93ml4tnmt
- W34o6lnL267lC4rbG99XGPNAzNbZ0gONaOylz4tGsiwexmdTWN9nXDrwD
- pe1yqpxYVJAl/KMCYmr7EhKo1e0JyPVjPUOrWvW7exBMVPa3K7Z2iCoQ7
- VtZFV8DPWT1EhmGnkCtYXCUvIW0hkRK8Af/s0XeYPUY+PsABDqM5ZSNJT
- EDKewlZJSItxAIwnb2nkeK1zWHAWg0rCjGTMSMZomIztWVaU7yVauTfVE A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="243603795"
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="243603795"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2022 02:02:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="615306453"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by FMSMGA003.fm.intel.com with ESMTP; 18 Jan 2022 02:02:06 -0800
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Jan 2022 02:03:58 -0800
-Message-Id: <20220118100358.1329655-8-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220118100358.1329655-1-alan.previn.teres.alexis@intel.com>
-References: <20220118100358.1329655-1-alan.previn.teres.alexis@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 717201122C3;
+ Tue, 18 Jan 2022 10:12:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6DB65A7E03;
+ Tue, 18 Jan 2022 10:12:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6872120473301700739=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 7/7] drm/i915/guc: Print the GuC error capture
- output register list.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 18 Jan 2022 10:12:26 -0000
+Message-ID: <164250074642.25102.508472208090954885@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220118092354.11631-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220118092354.11631-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_bandwith_related_cdclk_calculations?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,763 +40,386 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Print the GuC captured error state register list (string names
-and values) when gpu_coredump_state printout is invoked via
-the i915 debugfs for flushing the gpu error-state that was
-captured prior.
+--===============6872120473301700739==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Since GuC could have reported multiple engine register dumps
-in a single notification event, parse the captured data
-(appearing as a stream of structures) to identify each dump as
-a different 'engine-capture-group-output'.
+== Series Details ==
 
-Finally, for each 'engine-capture-group-output' that is found,
-verify if the engine register dump corresponds to the
-engine_coredump content that was previously populated by the
-i915_gpu_coredump function. That function would have copied
-the context's vma's including the bacth buffer during the
-G2H-context-reset notification that occurred earlier. Perform
-this verification check by comparing guc_id, lrca and engine-
-instance obtained from the 'engine-capture-group-output' vs a
-copy of that same info taken during i915_gpu_coredump. If
-they match, then print those vma's as well (such as the batch
-buffers).
+Series: drm/i915: Fix bandwith related cdclk calculations
+URL   : https://patchwork.freedesktop.org/series/98975/
+State : success
 
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   4 +-
- .../gpu/drm/i915/gt/uc/intel_guc_capture.c    | 439 ++++++++++++++++++
- .../gpu/drm/i915/gt/uc/intel_guc_capture.h    |  10 +-
- drivers/gpu/drm/i915/i915_gpu_error.c         |  65 ++-
- drivers/gpu/drm/i915/i915_gpu_error.h         |  14 +
- 5 files changed, 509 insertions(+), 23 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 4317ae5e525b..47c0c32d9b86 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1628,9 +1628,7 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
- 		drm_printf(m, "\tIPEHR: 0x%08x\n", ENGINE_READ(engine, IPEHR));
- 	}
- 
--	if (intel_engine_uses_guc(engine)) {
--		/* nothing to print yet */
--	} else if (HAS_EXECLISTS(dev_priv)) {
-+	if (HAS_EXECLISTS(dev_priv) && !intel_engine_uses_guc(engine)) {
- 		struct i915_request * const *port, *rq;
- 		const u32 *hws =
- 			&engine->status_page.addr[I915_HWS_CSB_BUF0_INDEX];
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-index fc80c5f31915..1c8ad6a1c2d3 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-@@ -694,8 +694,423 @@ int intel_guc_capture_output_min_size_est(struct intel_guc *guc)
-  *     --> G2H STATE_CAPTURE_NOTIFICATION
-  *                   L--> intel_guc_capture_store_snapshot
-  *                           L--> Copies from B (head->tail) into C
-+ *
-+ * GUC --> notify context reset:
-+ * -----------------------------
-+ *     --> G2H CONTEXT RESET
-+ *                   L--> guc_handle_context_reset --> i915_capture_error_state
-+ *                    --> i915_gpu_coredump --> intel_guc_capture_store_ptr
-+ *                        L--> keep a ptr to capture_store in
-+ *                             i915_gpu_coredump struct.
-+ *
-+ * User Sysfs / Debugfs
-+ * --------------------
-+ *      --> i915_gpu_coredump_copy_to_buffer->
-+ *                   L--> err_print_to_sgl --> err_print_gt
-+ *                        L--> error_print_guc_captures
-+ *                             L--> loop: intel_guc_capture_out_print_next_group
-+ *
-  */
- 
-+#if IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR)
-+
-+static const char *
-+guc_capture_register_to_string(const struct intel_guc *guc, u32 owner, u32 type,
-+			       u32 class, u32 id, u32 offset, u32 *is_ext)
-+{
-+	struct __guc_mmio_reg_descr_group *reglists = guc->capture.priv->reglists;
-+	struct __guc_mmio_reg_descr_group *match;
-+	int num_regs, j;
-+
-+	*is_ext = 0;
-+	if (!reglists)
-+		return NULL;
-+
-+	match = guc_capture_get_one_list(reglists, owner, type, id);
-+
-+	if (match) {
-+		for (num_regs = match->num_regs, j = 0; j < num_regs; ++j) {
-+			if (offset == match->list[j].reg.reg)
-+				return match->list[j].regname;
-+		}
-+	}
-+	if (match->ext) {
-+		for (num_regs = match->num_ext, j = 0; j < num_regs; ++j) {
-+			if (offset == match->ext[j].reg.reg) {
-+				*is_ext = 1;
-+				return match->ext[j].regname;
-+			}
-+		}
-+	}
-+
-+	return NULL;
-+}
-+
-+static int
-+guc_capture_store_remove_dw(struct guc_capture_out_store *store, u32 *bytesleft,
-+			    u32 *dw)
-+{
-+	int tries = 2;
-+	int avail = 0;
-+	u32 *src_data;
-+
-+	if (!*bytesleft)
-+		return 0;
-+
-+	while (tries--) {
-+		avail = CIRC_CNT_TO_END(store->head, store->tail, store->size);
-+		if (avail >= sizeof(u32)) {
-+			src_data = (u32 *)(store->addr + store->tail);
-+			*dw = *src_data;
-+			store->tail = (store->tail + 4) & (store->size - 1);
-+			*bytesleft -= 4;
-+			return 4;
-+		}
-+		if (store->tail == (store->size - 1) && store->head > 0)
-+			store->tail = 0;
-+	}
-+
-+	return 0;
-+}
-+
-+static int
-+guc_capture_store_get_group_hdr(const struct intel_guc *guc,
-+				struct guc_capture_out_store *store, u32 *bytesleft,
-+				struct guc_state_capture_group_header_t *ghdr)
-+{
-+	int read = 0;
-+	int fullsize = sizeof(struct guc_state_capture_group_header_t);
-+
-+	if (fullsize > *bytesleft)
-+		return -1;
-+
-+	if (CIRC_CNT_TO_END(store->head, store->tail, store->size) >= fullsize) {
-+		memcpy(ghdr, (store->addr + store->tail), fullsize);
-+		store->tail = (store->tail + fullsize) & (store->size - 1);
-+		*bytesleft -= fullsize;
-+		return 0;
-+	}
-+
-+	read += guc_capture_store_remove_dw(store, bytesleft, &ghdr->reserved1);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &ghdr->info);
-+	if (read != sizeof(*ghdr))
-+		return -1;
-+
-+	return 0;
-+}
-+
-+static int
-+guc_capture_store_get_data_hdr(const struct intel_guc *guc,
-+			       struct guc_capture_out_store *store, u32 *bytesleft,
-+			       struct guc_state_capture_header_t *hdr)
-+{
-+	int read = 0;
-+	int fullsize = sizeof(struct guc_state_capture_header_t);
-+
-+	if (fullsize > *bytesleft)
-+		return -1;
-+
-+	if (CIRC_CNT_TO_END(store->head, store->tail, store->size) >= fullsize) {
-+		memcpy(hdr, (store->addr + store->tail), fullsize);
-+		store->tail = (store->tail + fullsize) & (store->size - 1);
-+		*bytesleft -= fullsize;
-+		return 0;
-+	}
-+
-+	read += guc_capture_store_remove_dw(store, bytesleft, &hdr->reserved1);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &hdr->info);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &hdr->lrca);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &hdr->guc_id);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &hdr->num_mmios);
-+	if (read != sizeof(*hdr))
-+		return -1;
-+
-+	return 0;
-+}
-+
-+static int
-+guc_capture_store_get_register(const struct intel_guc *guc,
-+			       struct guc_capture_out_store *store, u32 *bytesleft,
-+			       struct guc_mmio_reg *reg)
-+{
-+	int read = 0;
-+	int fullsize = sizeof(struct guc_mmio_reg);
-+
-+	if (fullsize > *bytesleft)
-+		return -1;
-+
-+	if (CIRC_CNT_TO_END(store->head, store->tail, store->size) >= fullsize) {
-+		memcpy(reg, (store->addr + store->tail), fullsize);
-+		store->tail = (store->tail + fullsize) & (store->size - 1);
-+		*bytesleft -= fullsize;
-+		return 0;
-+	}
-+
-+	read += guc_capture_store_remove_dw(store, bytesleft, &reg->offset);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &reg->value);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &reg->flags);
-+	read += guc_capture_store_remove_dw(store, bytesleft, &reg->mask);
-+	if (read != sizeof(*reg))
-+		return -1;
-+
-+	return 0;
-+}
-+
-+static void guc_capture_store_drop_data(struct guc_capture_out_store *store,
-+					unsigned long sampled_head)
-+{
-+	if (sampled_head == 0)
-+		store->tail = store->size - 1;
-+	else
-+		store->tail = sampled_head - 1;
-+}
-+
-+#ifdef CONFIG_DRM_I915_DEBUG_GUC
-+#define guc_capt_err_print(a, b, ...) \
-+	do { \
-+		drm_warn(a, __VA_ARGS__); \
-+		if (b) \
-+			i915_error_printf(b, __VA_ARGS__); \
-+	} while (0)
-+#else
-+#define guc_capt_err_print(a, b, ...) \
-+	do { \
-+		if (b) \
-+			i915_error_printf(b, __VA_ARGS__); \
-+	} while (0)
-+#endif
-+
-+static struct intel_engine_cs *
-+guc_capture_lookup_engine(struct intel_guc *guc, u8 guc_class, u8 instance)
-+{
-+	struct intel_gt *gt = guc_to_gt(guc);
-+	u8 engine_class = guc_class_to_engine_class(guc_class);
-+
-+	/* Class index is checked in class converter */
-+	GEM_BUG_ON(instance > MAX_ENGINE_INSTANCE);
-+
-+	return gt->engine_class[engine_class][instance];
-+}
-+
-+#define PRINT guc_capt_err_print
-+#define REGSTR guc_capture_register_to_string
-+
-+#define GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng) \
-+	do { \
-+		PRINT(&i915->drm, (ebuf), "    i915-Eng-Name: %s command stream\n", (eng)->name); \
-+		PRINT(&i915->drm, (ebuf), "    i915-Eng-Inst-Class: 0x%02x\n", (eng)->class); \
-+		PRINT(&i915->drm, (ebuf), "    i915-Eng-Inst-Id: 0x%02x\n", (eng)->instance); \
-+		PRINT(&i915->drm, (ebuf), "    i915-Eng-LogicalMask: 0x%08x\n", \
-+		      (eng)->logical_mask); \
-+	} while (0)
-+
-+#define GCAP_PRINT_GUC_INST_INFO(i915, ebuf, hdr) \
-+	do { \
-+		PRINT(&i915->drm, (ebuf), "    GuC-Engine-Inst-Id: 0x%08x\n", \
-+		      (uint32_t)FIELD_GET(CAP_HDR_ENGINE_INSTANCE, (hdr).info)); \
-+		PRINT(&i915->drm, (ebuf), "    GuC-Context-Id: 0x%08x\n", (hdr).guc_id); \
-+		PRINT(&i915->drm, (ebuf), "    LRCA: 0x%08x\n", (hdr).lrca); \
-+	} while (0)
-+
-+#define GCAP_PRINT_INTEL_CTX_INFO(i915, ebuf, ce) \
-+	do { \
-+		PRINT(&i915->drm, (ebuf), "    i915-Ctx-Flags: 0x%016lx\n", (ce)->flags); \
-+		PRINT(&i915->drm, (ebuf), "    i915-Ctx-GuC-Id: 0x%016x\n", (ce)->guc_id.id); \
-+	} while (0)
-+
-+#define GCAP_PRINT_BATCH(i915, ebuf, ee, batch) \
-+	do { \
-+		batch = intel_gpu_error_find_batch(ee); \
-+		if (batch) { \
-+			u64 start = batch->gtt_offset; \
-+			u64 end = start + batch->gtt_size; \
-+			PRINT(&i915->drm, (ebuf), "  batch: [0x%08x_%08x, 0x%08x_%08x]\n", \
-+			   upper_32_bits(start), lower_32_bits(start), \
-+			   upper_32_bits(end), lower_32_bits(end)); \
-+		} \
-+	} while (0)
-+
-+#define GCAP_PRINT_CONTEXT(i915, ebuf, ctx) \
-+	do { \
-+		const u32 period = to_gt(ebuf->i915)->clock_period_ns; \
-+		PRINT(&i915->drm, (ebuf), "  Active context: %s[%d] prio %d, guilty %d " \
-+		      "active %d, runtime total %lluns, avg %lluns\n", \
-+		      ctx->comm, ctx->pid, ctx->sched_attr.priority, \
-+		      ctx->guilty, ctx->active, \
-+		      ctx->total_runtime * period, \
-+		      mul_u32_u32(ctx->avg_runtime, period)); \
-+	} while (0)
-+
-+int intel_guc_capture_out_print_next_group(struct drm_i915_error_state_buf *ebuf,
-+					   struct intel_gt_coredump *gt)
-+{
-+	/* constant qualifier for data-pointers we shouldn't change mid of error dump printing */
-+	struct intel_guc_state_capture *cap = gt->uc->capture;
-+	struct intel_guc *guc = container_of(cap, struct intel_guc, capture);
-+	struct drm_i915_private *i915 = (container_of(guc, struct intel_gt,
-+						   uc.guc))->i915;
-+	struct guc_capture_out_store *store;
-+	struct guc_capture_out_store tmpstore;
-+	struct guc_state_capture_group_header_t ghdr;
-+	struct guc_state_capture_header_t hdr;
-+	struct guc_mmio_reg reg;
-+	const char *grptypestr[GUC_STATE_CAPTURE_GROUP_TYPE_MAX] = {"full-capture",
-+								    "partial-capture"};
-+	const char *datatypestr[GUC_CAPTURE_LIST_TYPE_MAX] = {"Global", "Engine-Class",
-+							      "Engine-Instance"};
-+	enum guc_capture_group_types grptype;
-+	enum guc_capture_type datatype;
-+	int numgrps, numregs, ret = 0;
-+	const char *str;
-+	char noname[16];
-+	u32 numbytes, guc_engclss, guc_enginst, guc_lrca, guc_gucid, is_ext;
-+	struct intel_engine_cs *eng;
-+	const struct intel_engine_coredump *ee;
-+	const struct i915_gem_context_coredump *ctx;
-+	struct i915_vma_coredump *batch;
-+
-+	if (!cap->priv)
-+		return -ENODEV;
-+
-+	store = &cap->priv->out_store;
-+
-+	mutex_lock(&store->lock);
-+	smp_mb(); /* sync to get the latest head for the moment */
-+	/* NOTE1: make a copy of store so we dont have to deal with a changing lower bound of
-+	 *        occupied-space in this circular buffer.
-+	 * NOTE2: Higher up the stack from here, we keep calling this function in a loop to
-+	 *        reading more capture groups as they appear (as the lower bound of occupied-space
-+	 *        changes) until this circ-buf is empty.
-+	 */
-+	memcpy(&tmpstore, store, sizeof(tmpstore));
-+
-+	PRINT(&i915->drm, ebuf, "global --- GuC Error Capture\n");
-+
-+	numbytes = CIRC_CNT(tmpstore.head, tmpstore.tail, tmpstore.size);
-+	if (!numbytes) {
-+		PRINT(&i915->drm, ebuf, "GuC err-capture parsing done\n");
-+		ret = -ENODATA;
-+		goto unlock;
-+	}
-+	/* everything in GuC output structures are dword aligned */
-+	if (numbytes & 0x3) {
-+		PRINT(&i915->drm, ebuf, "GuC capture stream unaligned!\n");
-+		ret = -EIO;
-+		goto unlock;
-+	}
-+
-+	if (guc_capture_store_get_group_hdr(guc, &tmpstore, &numbytes, &ghdr)) {
-+		PRINT(&i915->drm, ebuf, "GuC capture error getting next group-header!\n");
-+		ret = -EIO;
-+		goto unlock;
-+	}
-+
-+	PRINT(&i915->drm, ebuf, "NumCaptures:  0x%08x\n", (uint32_t)
-+	      FIELD_GET(CAP_GRP_HDR_NUM_CAPTURES, ghdr.info));
-+	grptype = FIELD_GET(CAP_GRP_HDR_CAPTURE_TYPE, ghdr.info);
-+	PRINT(&i915->drm, ebuf, "Coverage:  0x%08x = %s\n", grptype,
-+	      grptypestr[grptype % GUC_STATE_CAPTURE_GROUP_TYPE_MAX]);
-+
-+	numgrps = FIELD_GET(CAP_GRP_HDR_NUM_CAPTURES, ghdr.info);
-+	while (numgrps--) {
-+		if (guc_capture_store_get_data_hdr(guc, &tmpstore, &numbytes, &hdr)) {
-+			PRINT(&i915->drm, ebuf, "GuC capture error on next capture-header!\n");
-+			ret = -EIO;
-+			goto unlock;
-+		}
-+		datatype = FIELD_GET(CAP_HDR_CAPTURE_TYPE, hdr.info);
-+		PRINT(&i915->drm, ebuf, "  RegListType: %s\n",
-+		      datatypestr[datatype % GUC_CAPTURE_LIST_TYPE_MAX]);
-+
-+		eng = NULL;
-+		guc_engclss = 0xffffffff;
-+		guc_enginst = 0xffffffff;
-+		guc_gucid = guc_lrca = 0;
-+		guc_engclss = FIELD_GET(CAP_HDR_ENGINE_CLASS, hdr.info);
-+		if (datatype != GUC_CAPTURE_LIST_TYPE_GLOBAL) {
-+			PRINT(&i915->drm, ebuf, "    GuC-Engine-Class: %d\n",
-+			      guc_engclss);
-+			if (datatype == GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS &&
-+			    guc_engclss <= GUC_LAST_ENGINE_CLASS)
-+				PRINT(&i915->drm, ebuf, "    i915-Eng-Class: %d\n",
-+				      guc_class_to_engine_class(guc_engclss));
-+
-+			if (datatype == GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE) {
-+				guc_enginst = FIELD_GET(CAP_HDR_ENGINE_INSTANCE, hdr.info);
-+				eng = guc_capture_lookup_engine(guc, guc_engclss, guc_enginst);
-+				if (eng)
-+					GCAP_PRINT_INTEL_ENG_INFO(i915, ebuf, eng);
-+				else
-+					PRINT(&i915->drm, ebuf,
-+					      "    i915-Eng-Lookup Fail!\n");
-+				guc_lrca = hdr.lrca;
-+				guc_gucid = hdr.guc_id;
-+				GCAP_PRINT_GUC_INST_INFO(i915, ebuf, hdr);
-+			}
-+		}
-+		numregs = FIELD_GET(CAP_HDR_NUM_MMIOS, hdr.num_mmios);
-+		PRINT(&i915->drm, ebuf, "    NumRegs: %d\n", numregs);
-+
-+		while (numregs--) {
-+			if (guc_capture_store_get_register(guc, &tmpstore, &numbytes, &reg)) {
-+				PRINT(&i915->drm, ebuf, "Error getting next register!\n");
-+				ret = -EIO;
-+				goto unlock;
-+			}
-+			str = REGSTR(guc, GUC_CAPTURE_LIST_INDEX_PF, datatype,
-+				     guc_engclss, 0, reg.offset, &is_ext);
-+			if (!str) {
-+				snprintf(noname, sizeof(noname), "REG-0x%08x", reg.offset);
-+				PRINT(&i915->drm, ebuf, "      %s", noname);
-+			} else {
-+				PRINT(&i915->drm, ebuf, "      %s", str);
-+			}
-+			if (is_ext)
-+				PRINT(&i915->drm, ebuf, "[%ld][%ld]",
-+				      FIELD_GET(GUC_REGSET_STEERING_GROUP, reg.flags),
-+				      FIELD_GET(GUC_REGSET_STEERING_INSTANCE, reg.flags));
-+			PRINT(&i915->drm, ebuf, ":  0x%08x\n", reg.value);
-+		}
-+		for (ee = gt->engine; ee; ee = ee->next) {
-+			const struct i915_vma_coredump *vma;
-+
-+			if (ee->engine == eng &&
-+			    guc_enginst == GUC_ID_TO_ENGINE_INSTANCE(ee->gucinfo.eng_id) &&
-+			    guc_engclss == GUC_ID_TO_ENGINE_CLASS(ee->gucinfo.eng_id) &&
-+			    ee->gucinfo.guc_id == guc_gucid &&
-+			    (ee->gucinfo.lrca & CTX_GTT_ADDRESS_MASK) ==
-+			    (guc_lrca & CTX_GTT_ADDRESS_MASK)) {
-+				PRINT(&i915->drm, ebuf, "i915-Ctx-VMA-Matched:\n");
-+				GCAP_PRINT_BATCH(i915, ebuf, ee, batch);
-+				PRINT(&i915->drm, ebuf, "  engine reset count: %u\n",
-+				      ee->reset_count);
-+				ctx = &ee->context;
-+				GCAP_PRINT_CONTEXT(i915, ebuf, ctx);
-+
-+				for (vma = ee->vma; vma; vma = vma->next)
-+					intel_gpu_error_print_vma(ebuf, ee->engine, vma);
-+			}
-+		}
-+	}
-+
-+	store->tail = tmpstore.tail;
-+unlock:
-+	/* if we have a stream error, just drop everything */
-+	if (ret == -EIO) {
-+		drm_warn(&i915->drm, "Skip GuC capture header print due to stream error\n");
-+		guc_capture_store_drop_data(store, tmpstore.head);
-+	}
-+
-+	mutex_unlock(&store->lock);
-+
-+	return ret;
-+}
-+
-+#undef REGSTR
-+#undef PRINT
-+
-+#endif //CONFIG_DRM_I915_DEBUG_GUC
-+
- static void guc_capture_store_insert(struct intel_guc *guc, struct guc_capture_out_store *store,
- 				     unsigned char *new_data, size_t bytes)
- {
-@@ -846,6 +1261,30 @@ void intel_guc_capture_destroy(struct intel_guc *guc)
- 	guc->capture.priv = NULL;
- }
- 
-+void intel_guc_capture_copy_info(struct intel_engine_coredump *ee, struct intel_context *ce)
-+{
-+	if (!ee || !ce)
-+		return;
-+	/*
-+	 * Store GuC relatable information pertaining to the faulting
-+	 * context into the intel_engine_coredump structure that we can
-+	 * reference later during the debugfs triggered printout function
-+	 * to ensure we print the vma dumps matching that match
-+	 * the GuC register dumps
-+	 */
-+	ee->gucinfo.lrca = ce->lrc.lrca;
-+	ee->gucinfo.guc_id = ce->guc_id.id;
-+	ee->gucinfo.eng_id = ee->engine->guc_id;
-+}
-+
-+struct intel_guc_state_capture *
-+intel_guc_capture_store_ptr(struct intel_guc *guc)
-+{
-+	if (!guc->capture.priv)
-+		return NULL;
-+	return &guc->capture;
-+}
-+
- int intel_guc_capture_init(struct intel_guc *guc)
- {
- 	int ret;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
-index c240a4cc046b..37e29f76cda8 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
-@@ -8,15 +8,23 @@
- 
- #include <linux/types.h>
- 
--struct intel_guc;
-+struct drm_i915_error_state_buf;
- struct guc_ads;
- struct guc_gt_system_info;
-+struct intel_gt_coredump;
-+struct intel_guc;
-+struct intel_engine_coredump;
-+struct intel_context;
- 
- int intel_guc_capture_prep_lists(struct intel_guc *guc, struct guc_ads *blob, u32 blob_ggtt,
- 				 u32 capture_offset, struct guc_gt_system_info *sysinfo);
-+int intel_guc_capture_out_print_next_group(struct drm_i915_error_state_buf *m,
-+					   struct intel_gt_coredump *gt);
-+void intel_guc_capture_copy_info(struct intel_engine_coredump *ee, struct intel_context *ce);
- void intel_guc_capture_store_snapshot(struct intel_guc *guc);
- int intel_guc_capture_output_min_size_est(struct intel_guc *guc);
- void intel_guc_capture_destroy(struct intel_guc *guc);
-+struct intel_guc_state_capture *intel_guc_capture_store_ptr(struct intel_guc *guc);
- int intel_guc_capture_init(struct intel_guc *guc);
- 
- #endif /* _INTEL_GUC_CAPTURE_H */
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 67f3515f07e7..4eeab55b4314 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -526,8 +526,8 @@ __find_vma(struct i915_vma_coredump *vma, const char *name)
- 	return NULL;
- }
- 
--static struct i915_vma_coredump *
--find_batch(const struct intel_engine_coredump *ee)
-+struct i915_vma_coredump *
-+intel_gpu_error_find_batch(const struct intel_engine_coredump *ee)
- {
- 	return __find_vma(ee->vma, "batch");
- }
-@@ -555,7 +555,7 @@ static void error_print_engine(struct drm_i915_error_state_buf *m,
- 
- 	error_print_instdone(m, ee);
- 
--	batch = find_batch(ee);
-+	batch = intel_gpu_error_find_batch(ee);
- 	if (batch) {
- 		u64 start = batch->gtt_offset;
- 		u64 end = start + batch->gtt_size;
-@@ -601,6 +601,16 @@ static void error_print_engine(struct drm_i915_error_state_buf *m,
- 	error_print_context(m, "  Active context: ", &ee->context);
- }
- 
-+static void error_print_guc_captures(struct drm_i915_error_state_buf *m,
-+				     struct intel_gt_coredump *gt)
-+{
-+	int ret;
-+
-+	do {
-+		ret = intel_guc_capture_out_print_next_group(m, gt);
-+	} while (!ret);
-+}
-+
- void i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...)
- {
- 	va_list args;
-@@ -610,9 +620,9 @@ void i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...)
- 	va_end(args);
- }
- 
--static void print_error_vma(struct drm_i915_error_state_buf *m,
--			    const struct intel_engine_cs *engine,
--			    const struct i915_vma_coredump *vma)
-+void intel_gpu_error_print_vma(struct drm_i915_error_state_buf *m,
-+			       const struct intel_engine_cs *engine,
-+			       const struct i915_vma_coredump *vma)
- {
- 	char out[ASCII85_BUFSZ];
- 	struct page *page;
-@@ -681,7 +691,7 @@ static void err_print_uc(struct drm_i915_error_state_buf *m,
- 
- 	intel_uc_fw_dump(&error_uc->guc_fw, &p);
- 	intel_uc_fw_dump(&error_uc->huc_fw, &p);
--	print_error_vma(m, NULL, error_uc->guc_log);
-+	intel_gpu_error_print_vma(m, NULL, error_uc->guc_log);
- }
- 
- static void err_free_sgl(struct scatterlist *sgl)
-@@ -766,12 +776,17 @@ static void err_print_gt(struct drm_i915_error_state_buf *m,
- 		err_printf(m, "  GAM_DONE: 0x%08x\n", gt->gam_done);
- 	}
- 
--	for (ee = gt->engine; ee; ee = ee->next) {
--		const struct i915_vma_coredump *vma;
-+	if (gt->uc && gt->uc->capture) {
-+		/* error capture was via GuC */
-+		error_print_guc_captures(m, gt);
-+	} else {
-+		for (ee = gt->engine; ee; ee = ee->next) {
-+			const struct i915_vma_coredump *vma;
- 
--		error_print_engine(m, ee);
--		for (vma = ee->vma; vma; vma = vma->next)
--			print_error_vma(m, ee->engine, vma);
-+			error_print_engine(m, ee);
-+			for (vma = ee->vma; vma; vma = vma->next)
-+				intel_gpu_error_print_vma(m, ee->engine, vma);
-+		}
- 	}
- 
- 	if (gt->uc)
-@@ -1146,7 +1161,7 @@ static void gt_record_fences(struct intel_gt_coredump *gt)
- 	gt->nfence = i;
- }
- 
--static void engine_record_registers(struct intel_engine_coredump *ee)
-+static void engine_record_registers_execlist(struct intel_engine_coredump *ee)
- {
- 	const struct intel_engine_cs *engine = ee->engine;
- 	struct drm_i915_private *i915 = engine->i915;
-@@ -1443,8 +1458,10 @@ intel_engine_coredump_alloc(struct intel_engine_cs *engine, gfp_t gfp)
- 
- 	ee->engine = engine;
- 
--	engine_record_registers(ee);
--	engine_record_execlists(ee);
-+	if (!intel_uc_uses_guc_submission(&engine->gt->uc)) {
-+		engine_record_registers_execlist(ee);
-+		engine_record_execlists(ee);
-+	}
- 
- 	return ee;
- }
-@@ -1515,11 +1532,14 @@ capture_engine(struct intel_engine_cs *engine,
- 	struct intel_context *ce;
- 	struct i915_request *rq = NULL;
- 	unsigned long flags;
-+	bool guc_submission = false;
- 
- 	ee = intel_engine_coredump_alloc(engine, GFP_KERNEL);
- 	if (!ee)
- 		return NULL;
- 
-+	guc_submission = intel_uc_uses_guc_submission(&engine->gt->uc);
-+
- 	ce = intel_engine_get_hung_context(engine);
- 	if (ce) {
- 		intel_engine_clear_hung_context(engine);
-@@ -1531,7 +1551,7 @@ capture_engine(struct intel_engine_cs *engine,
- 		 * Getting here with GuC enabled means it is a forced error capture
- 		 * with no actual hang. So, no need to attempt the execlist search.
- 		 */
--		if (!intel_uc_uses_guc_submission(&engine->gt->uc)) {
-+		if (!guc_submission) {
- 			spin_lock_irqsave(&engine->sched_engine->lock, flags);
- 			rq = intel_engine_execlist_find_hung_request(engine);
- 			spin_unlock_irqrestore(&engine->sched_engine->lock,
-@@ -1549,6 +1569,8 @@ capture_engine(struct intel_engine_cs *engine,
- 		i915_request_put(rq);
- 		goto no_request_capture;
- 	}
-+	if (guc_submission)
-+		intel_guc_capture_copy_info(ee, ce);
- 
- 	intel_engine_coredump_add_vma(ee, capture, compress);
- 	i915_request_put(rq);
-@@ -1617,8 +1639,8 @@ gt_record_uc(struct intel_gt_coredump *gt,
- 	return error_uc;
- }
- 
--/* Capture all registers which don't fit into another category. */
--static void gt_record_regs(struct intel_gt_coredump *gt)
-+/* Capture all global registers which don't fit into another category. */
-+static void gt_record_registers_execlist(struct intel_gt_coredump *gt)
- {
- 	struct intel_uncore *uncore = gt->_gt->uncore;
- 	struct drm_i915_private *i915 = uncore->i915;
-@@ -1862,7 +1884,9 @@ intel_gt_coredump_alloc(struct intel_gt *gt, gfp_t gfp)
- 	gc->_gt = gt;
- 	gc->awake = intel_gt_pm_is_awake(gt);
- 
--	gt_record_regs(gc);
-+	if (!intel_uc_uses_guc_submission(&gt->uc))
-+		gt_record_registers_execlist(gc);
-+
- 	gt_record_fences(gc);
- 
- 	return gc;
-@@ -1927,6 +1951,9 @@ __i915_gpu_coredump(struct intel_gt *gt, intel_engine_mask_t engine_mask)
- 		if (INTEL_INFO(i915)->has_gt_uc)
- 			error->gt->uc = gt_record_uc(error->gt, compress);
- 
-+		if (intel_uc_uses_guc_submission(&gt->uc))
-+			error->gt->uc->capture = intel_guc_capture_store_ptr(&gt->uc.guc);
-+
- 		i915_vma_capture_finish(error->gt, compress);
- 
- 		error->simulated |= error->gt->simulated;
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-index 5aedf5129814..576677c2888e 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.h
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-@@ -17,6 +17,7 @@
- #include "gt/intel_engine.h"
- #include "gt/intel_gt_types.h"
- #include "gt/uc/intel_uc_fw.h"
-+#include "gt/uc/intel_guc_capture.h"
- 
- #include "intel_device_info.h"
- 
-@@ -84,6 +85,13 @@ struct intel_engine_coredump {
- 	u32 rc_psmi; /* sleep state */
- 	struct intel_instdone instdone;
- 
-+	/* GuC correlated info */
-+	struct {
-+		u32 lrca;
-+		u16 guc_id;
-+		u32 eng_id;
-+	} gucinfo;
-+
- 	struct i915_gem_context_coredump {
- 		char comm[TASK_COMM_LEN];
- 
-@@ -149,6 +157,7 @@ struct intel_gt_coredump {
- 		struct intel_uc_fw guc_fw;
- 		struct intel_uc_fw huc_fw;
- 		struct i915_vma_coredump *guc_log;
-+		struct intel_guc_state_capture *capture;
- 	} *uc;
- 
- 	struct intel_gt_coredump *next;
-@@ -214,6 +223,11 @@ struct drm_i915_error_state_buf {
- 
- __printf(2, 3)
- void i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...);
-+void intel_gpu_error_print_vma(struct drm_i915_error_state_buf *m,
-+			       const struct intel_engine_cs *engine,
-+			       const struct i915_vma_coredump *vma);
-+struct i915_vma_coredump *
-+intel_gpu_error_find_batch(const struct intel_engine_coredump *ee);
- 
- struct i915_gpu_coredump *i915_gpu_coredump(struct intel_gt *gt,
- 					    intel_engine_mask_t engine_mask);
--- 
-2.25.1
+CI Bug Log - changes from CI_DRM_11094 -> Patchwork_22010
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/index.html
+
+Participating hosts (46 -> 40)
+------------------------------
+
+  Additional (1): fi-icl-u2 
+  Missing    (7): shard-tglu fi-bsw-cyan fi-kbl-7500u shard-rkl shard-dg1 bat-jsl-2 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22010 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +31 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@amdgpu/amd_cs_nop@fork-gfx0:
+    - fi-icl-u2:          NOTRUN -> [SKIP][2] ([fdo#109315]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@gem_flink_basic@bad-flink:
+    - fi-skl-6600u:       [PASS][4] -> [INCOMPLETE][5] ([i915#4547])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-icl-u2:          NOTRUN -> [SKIP][6] ([i915#2190])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-icl-u2:          NOTRUN -> [SKIP][7] ([i915#4613]) +3 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-icl-u2:          NOTRUN -> [SKIP][8] ([fdo#111827]) +8 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-icl-u2:          NOTRUN -> [SKIP][10] ([fdo#109278]) +2 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-icl-u2:          NOTRUN -> [SKIP][11] ([fdo#109285])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [PASS][12] -> [DMESG-FAIL][13] ([i915#295])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-cfl-8109u:       [PASS][14] -> [DMESG-WARN][15] ([i915#295]) +10 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-icl-u2:          NOTRUN -> [SKIP][16] ([i915#3301])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-5557u:       [INCOMPLETE][17] ([i915#146]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - {fi-tgl-dsi}:       [INCOMPLETE][19] -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [DMESG-FAIL][21] ([i915#4494]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+    - fi-snb-2600:        [INCOMPLETE][23] ([i915#3921]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       [FAIL][25] ([i915#4312]) -> [FAIL][26] ([i915#2722] / [i915#4312])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-skl-6600u/igt@runner@aborted.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-skl-6600u/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109308]: https://bugs.freedesktop.org/show_bug.cgi?id=109308
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11094 -> Patchwork_22010
+
+  CI-20190529: 20190529
+  CI_DRM_11094: 6ce31c986ee8beaa0f98fd4e200b7a421fd4adf9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6327: 0d559158c2d3b5723abbfc2cb4b04532e28663b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22010: 7d55ec242dd368a9a7d0a32d4572f81addbb684d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7d55ec242dd3 drm/i915: Add "maximum pipe read bandwidth" checks
+e3a2fec61118 drm/i915: Fix DBUF bandwidth vs. cdclk handling
+08b2d8e87205 drm/i915: Properly write lock bw_state when it changes
+28a02ba19afc drm/i915: Round up when calculating display bandwidth requirements
+2eca9b239d7d drm/i915: Nuke intel_bw_calc_min_cdclk()
+3d9ea614fc38 drm/i915: Remove total[] and uv_total[] from ddb allocation
+f3dc6a126906 drm/i915: Pre-calculate plane relative data rate
+988a18fdccaa drm/i915: Split plane data_rate into data_rate+data_rate_y
+e7ec581a03b3 drm/i915: Tweak plane ddb allocation tracking
+8eb5c0bb1655 drm/i915: Extract skl_crtc_calc_dbuf_bw()
+fbf2a65a754f drm/i915: Extract skl_allocate_plane_ddb()
+73d19f52835a drm/i915: Introduce skl_plane_ddb_iter
+dee30e2a1ae4 drm/i915: Fix plane relative_data_rate calculation
+9668fabd85a5 drm/i915: Extract skl_ddb_entry_init()
+f65f6b681b85 drm/i915: Drop pointless dev_priv argument
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/index.html
+
+--===============6872120473301700739==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Fix bandwith related cdclk calculations</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98975/">https://patchwork.freedesktop.org/series/98975/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11094 -&gt; Patchwork_22010</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/index.html</p>
+<h2>Participating hosts (46 -&gt; 40)</h2>
+<p>Additional (1): fi-icl-u2 <br />
+  Missing    (7): shard-tglu fi-bsw-cyan fi-kbl-7500u shard-rkl shard-dg1 bat-jsl-2 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22010 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_flink_basic@bad-flink:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +10 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+<li>
+<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11094/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22010/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11094 -&gt; Patchwork_22010</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11094: 6ce31c986ee8beaa0f98fd4e200b7a421fd4adf9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6327: 0d559158c2d3b5723abbfc2cb4b04532e28663b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22010: 7d55ec242dd368a9a7d0a32d4572f81addbb684d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>7d55ec242dd3 drm/i915: Add "maximum pipe read bandwidth" checks<br />
+e3a2fec61118 drm/i915: Fix DBUF bandwidth vs. cdclk handling<br />
+08b2d8e87205 drm/i915: Properly write lock bw_state when it changes<br />
+28a02ba19afc drm/i915: Round up when calculating display bandwidth requirements<br />
+2eca9b239d7d drm/i915: Nuke intel_bw_calc_min_cdclk()<br />
+3d9ea614fc38 drm/i915: Remove total[] and uv_total[] from ddb allocation<br />
+f3dc6a126906 drm/i915: Pre-calculate plane relative data rate<br />
+988a18fdccaa drm/i915: Split plane data_rate into data_rate+data_rate_y<br />
+e7ec581a03b3 drm/i915: Tweak plane ddb allocation tracking<br />
+8eb5c0bb1655 drm/i915: Extract skl_crtc_calc_dbuf_bw()<br />
+fbf2a65a754f drm/i915: Extract skl_allocate_plane_ddb()<br />
+73d19f52835a drm/i915: Introduce skl_plane_ddb_iter<br />
+dee30e2a1ae4 drm/i915: Fix plane relative_data_rate calculation<br />
+9668fabd85a5 drm/i915: Extract skl_ddb_entry_init()<br />
+f65f6b681b85 drm/i915: Drop pointless dev_priv argument</p>
+
+</body>
+</html>
+
+--===============6872120473301700739==--
