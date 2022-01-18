@@ -1,53 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2C5B4928AB
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 15:46:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7455F4928B9
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 15:50:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 505E510E156;
-	Tue, 18 Jan 2022 14:46:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBEAC10E18A;
+	Tue, 18 Jan 2022 14:50:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF74410E156
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 14:46:39 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 8A9FAB816C5
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 14:46:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D23EC00446
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 14:46:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642517197;
- bh=5kkrKBsUFQ5KqEZdSRQoGGjkQplGcsNhMAuPb6M2P5c=;
- h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
- b=lUUgd8F7EO723yTMrJxA/RWCysATHCQaSooHrX4Mblss1B3YcL375FQtb2Zvx0/jO
- JF7z2BLd2KXc+5u1pGtgZIJ+b1TlteLFvf1wzq7oiosbqrUATWdoSII1IakKHlwlCR
- Q7YsOXMqFWz0K6ZmU5RHsddy5F/60YW7x+biD0BEPeLp9CXObWMoRC/pg+NBQmbYYi
- U5nNHb+zeyQgLBo6JY8r9zxBwS/7joaJlnI8qOrEtmpgx1Q59/1QWut7bKgQnxPgWj
- eeXm9DDm4vcrACc6JylhPsK4xOtx3HeuzFLiJo3wvuPNw7PY9N+fcl9kb5/dWgah3d
- 6LQ/qTepu+t4g==
-Received: by mail-il1-f177.google.com with SMTP id a2so11868500ilr.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 06:46:37 -0800 (PST)
-X-Gm-Message-State: AOAM530lm4UB11QE8wvTm//qJqmGklX8AuBJ4zvFj+RJSadAsaF2GXqJ
- QIZ3u4tdycNEWV1vXZS8s5hj2yPWLw11FadddRY=
-X-Google-Smtp-Source: ABdhPJx97WVAx/RkAF5HM0hpBC80DikdOuCxM0y+/dfoIZ3jCYW7zOiGfrP1VqxXMDvQgPN7I2SPFOYZMrVfBh03qbA=
-X-Received: by 2002:a05:6e02:1c25:: with SMTP id
- m5mr14028384ilh.251.1642517196463; 
- Tue, 18 Jan 2022 06:46:36 -0800 (PST)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F21710E156;
+ Tue, 18 Jan 2022 14:50:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642517422; x=1674053422;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=AzzRAsgS7TBv6bhnr1PrVcU6g11tMi2v/6siw6c6O8E=;
+ b=WYY9Lp0J7owdsQSHGE3K8l3EM1g5h4+jSyPjtgdYe6syeIiHKiuHz589
+ Ie/8CMXFXu0G1mq9RsehkkZyxHLQMvBaEFfsIKh5W3NORmnyAdJjFQtY3
+ uRX73DwG/DLKVlxPU9c3G8z0vkdy5bgBK6SSGROFmmsiR/pQJ6PE1WGSE
+ l8tAroJTNjdLb4GF4jDcrzVGD2kudEnPGaF+IV0Bx4PM80r558yfsD4Qq
+ tI/fIle1k3aAjrQYh3vNBmnw+pDbJQ+HRpvq/uWXVxgG0JBz5ERDQOctl
+ BMYXJWLxP3AGUaFcZ8LK3xoGMArJj1HRFi7uMP3T+zqK/2tGMxcAFUhv8 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="243652450"
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="243652450"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2022 06:50:21 -0800
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="517790061"
+Received: from lyormanx-mobl.ger.corp.intel.com (HELO [10.252.43.121])
+ ([10.252.43.121])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2022 06:50:20 -0800
+Message-ID: <413c501e-3c31-284c-beb6-cb710c5c197a@linux.intel.com>
+Date: Tue, 18 Jan 2022 15:50:17 +0100
 MIME-Version: 1.0
-References: <20220115000353.1812714-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20220115000353.1812714-1-John.C.Harrison@Intel.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Tue, 18 Jan 2022 09:46:25 -0500
-X-Gmail-Original-Message-ID: <CA+5PVA7J1TU6Q+QptVDp-wMp7URoiYDox+Qp7Di0QDLhJVCxYw@mail.gmail.com>
-Message-ID: <CA+5PVA7J1TU6Q+QptVDp-wMp7URoiYDox+Qp7Di0QDLhJVCxYw@mail.gmail.com>
-To: John Harrison <John.C.Harrison@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [CI] PR for new GuC v69.0.3
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.5.0
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <bb70ccb8-043c-bd99-e01e-c2f2a0c48d54@shipmail.org>
+ <20220117075604.131477-1-maarten.lankhorst@linux.intel.com>
+ <fb8f8150-bdc3-32aa-5352-5f15ae91a592@linux.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <fb8f8150-bdc3-32aa-5352-5f15ae91a592@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add locking to
+ i915_gem_evict_vm(), v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,53 +63,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Kyle McMartin <kyle@kernel.org>, Ben Hutchings <ben@decadent.org.uk>,
- Linux Firmware <linux-firmware@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pulled and pushed out.
+Op 17-01-2022 om 15:08 schreef Thomas Hellström:
+>
+> On 1/17/22 08:56, Maarten Lankhorst wrote:
+>> i915_gem_evict_vm will need to be able to evict objects that are
+>> locked by the current ctx. By testing if the current context already
+>> locked the object, we can do this correctly. This allows us to
+>> evict the entire vm even if we already hold some objects' locks.
+>>
+>> Previously, this was spread over several commits, but it makes
+>> more sense to commit the changes to i915_gem_evict_vm separately
+>> from the changes to i915_gem_evict_something() and
+>> i915_gem_evict_for_node().
+>>
+>> Changes since v1:
+>> - Handle evicting dead objects better.
+>> Changes since v2:
+>> - Use for_i915_gem_ww in igt_evict_vm. (Thomas)
+>>
+>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>
+> (Please note the series checkpatch- and DOC warnings before commiting!)
+>
+> Thanks,
+>
+> Thomas
+>
+>
+Fixed and pushed. :)
 
-josh
+~Maarten
 
-On Fri, Jan 14, 2022 at 7:03 PM <John.C.Harrison@intel.com> wrote:
->
-> The following changes since commit b0e898fbaf377c99a36aac6fdeb7250003648ca4:
->
->   linux-firmware: Update firmware file for Intel Bluetooth 9462 (2021-11-23 12:31:45 -0500)
->
-> are available in the Git repository at:
->
->   git://anongit.freedesktop.org/drm/drm-firmware guc_v69.0.3
->
-> for you to fetch changes up to 548b304a35b77cd43c1242e0eae68f775bd0df2a:
->
->   i915: Add GuC v69.0.3 for all platforms (2021-12-15 13:28:54 -0800)
->
-> ----------------------------------------------------------------
-> John Harrison (1):
->       i915: Add GuC v69.0.3 for all platforms
->
->  WHENCE                   |  30 ++++++++++++++++++++++++++++++
->  i915/adlp_guc_69.0.3.bin | Bin 0 -> 356416 bytes
->  i915/bxt_guc_69.0.3.bin  | Bin 0 -> 216768 bytes
->  i915/cml_guc_69.0.3.bin  | Bin 0 -> 217664 bytes
->  i915/dg1_guc_69.0.3.bin  | Bin 0 -> 323968 bytes
->  i915/ehl_guc_69.0.3.bin  | Bin 0 -> 343360 bytes
->  i915/glk_guc_69.0.3.bin  | Bin 0 -> 217216 bytes
->  i915/icl_guc_69.0.3.bin  | Bin 0 -> 343360 bytes
->  i915/kbl_guc_69.0.3.bin  | Bin 0 -> 217664 bytes
->  i915/skl_guc_69.0.3.bin  | Bin 0 -> 216704 bytes
->  i915/tgl_guc_69.0.3.bin  | Bin 0 -> 343296 bytes
->  11 files changed, 30 insertions(+)
->  create mode 100644 i915/adlp_guc_69.0.3.bin
->  create mode 100644 i915/bxt_guc_69.0.3.bin
->  create mode 100644 i915/cml_guc_69.0.3.bin
->  create mode 100644 i915/dg1_guc_69.0.3.bin
->  create mode 100644 i915/ehl_guc_69.0.3.bin
->  create mode 100644 i915/glk_guc_69.0.3.bin
->  create mode 100644 i915/icl_guc_69.0.3.bin
->  create mode 100644 i915/kbl_guc_69.0.3.bin
->  create mode 100644 i915/skl_guc_69.0.3.bin
->  create mode 100644 i915/tgl_guc_69.0.3.bin
