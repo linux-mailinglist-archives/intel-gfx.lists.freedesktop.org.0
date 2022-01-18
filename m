@@ -2,44 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EED5492CC0
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 18:53:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B583D492CDB
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 18:59:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B0D610E43D;
-	Tue, 18 Jan 2022 17:53:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F20D589FE8;
+	Tue, 18 Jan 2022 17:58:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E24B10E441;
- Tue, 18 Jan 2022 17:53:40 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: bbeckett) with ESMTPSA id E3C891F43F91
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1642528419;
- bh=ZPlwOY+VgFIW9bHeyG/JUeeqGePchWBvBOtEUiWKy3I=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=DyPU9PXksdffKxY7Ta1zW9QlKCUVAuJ4P+lcAriv5Hy0Udy9vRrEsQAjWaGAoWlPO
- NbaBGQ3pLb/MDcBqEQUtkfhnzQnZ3NinU0Je2UG+uUGcTyiWRP0rRCSfmbeBeFVkUO
- Jm2/J3xzCIJuKvI4Ot3+GDKD86+3OCBJ4zPXyuAZ+gBn1jaU7HpnlkICEObwclIGQp
- rRK1J526JtjSdELf2QqOdTyAFWxSZTGg5UlNXfX63xMyxkh0m0OG9ryWlN4hpx62AW
- 8T+cHr8WKoB3nJd466j7xUTRbClW5cYXQZT+eVEBQGmwna17Adp/rwRjh8KtDn2mF8
- bmWcUp5MkRgVg==
-From: Robert Beckett <bob.beckett@collabora.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Date: Tue, 18 Jan 2022 17:50:37 +0000
-Message-Id: <20220118175036.3840934-5-bob.beckett@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220118175036.3840934-1-bob.beckett@collabora.com>
-References: <20220118175036.3840934-1-bob.beckett@collabora.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9170B89FE8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 17:58:57 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 501C261447;
+ Tue, 18 Jan 2022 17:58:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68705C340E0;
+ Tue, 18 Jan 2022 17:58:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1642528734;
+ bh=OSwJ8gD/i/i24wgqvV5ruU3GRdYhopdMAIxlkXZZKkY=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=ESlABa2sQ6fXuugWUBXk73zPTubb9nhmKCUL37WG2BsxB0lVniTrzplnxU7jW4k0Y
+ vR1swa0yn/3J36LCZJINXqMJvs18eKvG884L5k8e6fMkeUUKqIEEtY2ALQy54OEdst
+ c/akZeRsUG9wgxRzcwXuwj4LwHC8tqemC/MOAmzhht3f4/jgkL1dZDEZhJgxlPM8fC
+ adrBtUtDW5lpLwTKb/74wgertcPW/ahmaiaWqgCJDsKW96Rqlfkh0tQxTPkFCyfdKl
+ WyRDvrMJ8Jzkj2I0c76j3nm/7AfMMXO9cRF0rs5AC3IDhwZEmGLsLXCEV4a7YiX3IB
+ uP4AceA1i+Kag==
+Date: Tue, 18 Jan 2022 11:58:53 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Borislav Petkov <bp@alien8.de>
+Message-ID: <20220118175853.GA881852@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 4/4] drm/i915/uapi: document behaviour for
- DG2 64K support
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yeb4WKOFNDNbx6tH@zn.tnic>
+Subject: Re: [Intel-gfx] [PATCH v5 1/5] x86/quirks: Fix stolen detection
+ with integrated + discrete GPU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,102 +51,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
- Kenneth Graunke <kenneth@whitecape.org>, dri-devel@lists.freedesktop.org,
- Slawomir Milczarek <slawomir.milczarek@intel.com>,
- Pekka Paalanen <ppaalanen@gmail.com>, Matthew Auld <matthew.auld@intel.com>,
- mesa-dev@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: x86@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, stable@vger.kernel.org,
+ Ingo Molnar <mingo@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matthew Auld <matthew.auld@intel.com>
+On Tue, Jan 18, 2022 at 06:26:48PM +0100, Borislav Petkov wrote:
+> On Tue, Jan 18, 2022 at 08:36:56AM -0800, Lucas De Marchi wrote:
+> > I had the impression the subject/title should be imperative, with it
+> > more relaxed in the body. It seems we have one more difference among
+> > subsystems and I will adapt on next submissions to x86.
+> 
+> We have written it down properly, in case it explains it better:
+> 
+> "The tip tree maintainers set value on following these rules, especially
+> on the request to write changelogs in imperative mood and not
+> impersonating code or the execution of it. This is not just a whim of
+> the maintainers. Changelogs written in abstract words are more precise
+> and tend to be less confusing than those written in the form of novels."
+> 
+> from Documentation/process/maintainer-tip.rst
 
-On discrete platforms like DG2, we need to support a minimum page size
-of 64K when dealing with device local-memory. This is quite tricky for
-various reasons, so try to document the new implicit uapi for this.
+Thanks for writing this down!  I do the same for PCI.  I suspect this
+is a pretty conservative style that would be acceptable tree-wide even
+if not required everywhere.
 
-v2: Fixed suggestions on formatting [Daniel]
+> > Although in the review Bjorn suggested just splitting the commit, it was
+> > also mentioned that the PCI subsystem has no such logic in its
+> > equivalent pci_do_fixups(): a quirk/fixup needing that should instead
+> > use a static local.
+> 
+> Why?
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-cc: Simon Ser <contact@emersion.fr>
-cc: Pekka Paalanen <ppaalanen@gmail.com>
-Cc: Jordan Justen <jordan.l.justen@intel.com>
-Cc: Kenneth Graunke <kenneth@whitecape.org>
-Cc: mesa-dev@lists.freedesktop.org
-Cc: Tony Ye <tony.ye@intel.com>
-Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
----
- include/uapi/drm/i915_drm.h | 44 ++++++++++++++++++++++++++++++++-----
- 1 file changed, 39 insertions(+), 5 deletions(-)
+I don't really care much one way or the other.  I think the simplest
+approach is to remove QFLAG_APPLY_ONCE from intel_graphics_quirks()
+and do nothing else, as I suggested here:
 
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 5e678917da70..486b7b96291e 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -1118,10 +1118,16 @@ struct drm_i915_gem_exec_object2 {
- 	/**
- 	 * When the EXEC_OBJECT_PINNED flag is specified this is populated by
- 	 * the user with the GTT offset at which this object will be pinned.
-+	 *
- 	 * When the I915_EXEC_NO_RELOC flag is specified this must contain the
- 	 * presumed_offset of the object.
-+	 *
- 	 * During execbuffer2 the kernel populates it with the value of the
- 	 * current GTT offset of the object, for future presumed_offset writes.
-+	 *
-+	 * See struct drm_i915_gem_create_ext for the rules when dealing with
-+	 * alignment restrictions with I915_MEMORY_CLASS_DEVICE, on devices with
-+	 * minimum page sizes, like DG2.
- 	 */
- 	__u64 offset;
- 
-@@ -3145,11 +3151,39 @@ struct drm_i915_gem_create_ext {
- 	 *
- 	 * The (page-aligned) allocated size for the object will be returned.
- 	 *
--	 * Note that for some devices we have might have further minimum
--	 * page-size restrictions(larger than 4K), like for device local-memory.
--	 * However in general the final size here should always reflect any
--	 * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
--	 * extension to place the object in device local-memory.
-+	 *
-+	 * **DG2 64K min page size implications:**
-+	 *
-+	 * On discrete platforms, starting from DG2, we have to contend with GTT
-+	 * page size restrictions when dealing with I915_MEMORY_CLASS_DEVICE
-+	 * objects.  Specifically the hardware only supports 64K or larger GTT
-+	 * page sizes for such memory. The kernel will already ensure that all
-+	 * I915_MEMORY_CLASS_DEVICE memory is allocated using 64K or larger page
-+	 * sizes underneath.
-+	 *
-+	 * Note that the returned size here will always reflect any required
-+	 * rounding up done by the kernel, i.e 4K will now become 64K on devices
-+	 * such as DG2.
-+	 *
-+	 * **Special DG2 GTT address alignment requirement:**
-+	 *
-+	 * The GTT alignment will also need be at least 2M for  such objects.
-+	 *
-+	 * Note that due to how the hardware implements 64K GTT page support, we
-+	 * have some further complications:
-+	 *
-+	 *   1) The entire PDE(which covers a 2MB virtual address range), must
-+	 *   contain only 64K PTEs, i.e mixing 4K and 64K PTEs in the same
-+	 *   PDE is forbidden by the hardware.
-+	 *
-+	 *   2) We still need to support 4K PTEs for I915_MEMORY_CLASS_SYSTEM
-+	 *   objects.
-+	 *
-+	 * To keep things simple for userland, we mandate that any GTT mappings
-+	 * must be aligned to and rounded up to 2MB. As this only wastes virtual
-+	 * address space and avoids userland having to copy any needlessly
-+	 * complicated PDE sharing scheme (coloring) and only affects GD2, this
-+	 * id deemed to be a good compromise.
- 	 */
- 	__u64 size;
- 	/**
--- 
-2.25.1
+  https://lore.kernel.org/r/20220113000805.GA295089@bhelgaas
 
+Unfortunately that didn't occur to me until I'd already suggested more
+complicated things that no longer seem worthwhile to me.
+
+The static variable might be ugly, but it does seem to be what
+intel_graphics_quirks() wants -- a "do this at most once per system
+but we don't know exactly which device" situation.
+
+> There's perfectly nice ->flags there for exactly stuff like that. static
+> vars are ugly and should be avoided if possible.
+
+Bjorn
