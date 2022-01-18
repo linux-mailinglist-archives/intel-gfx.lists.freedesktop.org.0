@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58764492418
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 11:48:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2EC0492419
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 11:48:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA3C3112A4E;
-	Tue, 18 Jan 2022 10:48:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2745112A52;
+	Tue, 18 Jan 2022 10:48:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6BF2112A52
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 10:48:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5DBB112A52
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 10:48:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642502928; x=1674038928;
+ t=1642502930; x=1674038930;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fVEkCewsE7HP3W14yzH6+oW2uNg3BhMdbuCXmI4MpJQ=;
- b=mjEBkT2UlFmsuRt4w355i7b6yBkemTtIVS33/5ROW8j1+nGFxfEpM5x5
- 8aFhX7G+yMPCd+j4TxTDI5g5Z1HLdcV1I0S3WRR9ufLwaKdaAnswJuegy
- em/RMeYK6ZHI/gnJcITGoy+CKOEPVDeTyLqfH8rLqj2BT+K6aaaHXn0EB
- JQKYlrhlrpZ4lurR/IRwPHW/3JjmArIxrbX03VwFaAagL9Yj8klTj30vk
- 5VNNSkwrHKyoES7jAqe9I5DlClE6NXWBI2z44q27R1+40an+H4tNvJfN+
- 0uJUTr9C1VFEWQ37hPtmtgR5Y4rTADBVvLpr9Wkv82LOGTX5vgGs5DSuL Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="244745350"
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="244745350"
+ bh=vYZUxVVmlUM45u/kIQtH+DCvqtwfsB0b+KqC1JCAKrI=;
+ b=X31PlTXnmxHM2j0pG0ro/BxaScnWmKyIivQ7zYjX+npBiCUY8vbtPcQ+
+ HrI3HFbDwFy9GItvNhsK8R/SxtdFJOIt5piaISZUQMeZn326rlJukaFSf
+ cJFEsvlARUMJUe8cZriKZgsVHRytZabsqHmsjoJ1nY80uk0PJr5U4gn//
+ VaPqRsadyXbRPBoaqBu0A32YFGzigofsrRLOh4pIHVZmOJ9nXsCFgV/cb
+ UvaXE4f12Jo9HasvmRlnZW8+P9QKk5r3urXnkyoJfIg6gMM4j+pnNdEl9
+ io5j1oO4+Lk4+WbhrDdMVdGxL6aTr2i09AyGH+RklBRs/Vtp5VijYDlkj Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="244745353"
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="244745353"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2022 02:48:48 -0800
+ 18 Jan 2022 02:48:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="531736730"
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="531736742"
 Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
  ([10.237.72.65])
- by orsmga008.jf.intel.com with ESMTP; 18 Jan 2022 02:48:44 -0800
+ by orsmga008.jf.intel.com with ESMTP; 18 Jan 2022 02:48:48 -0800
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Jan 2022 12:48:38 +0200
-Message-Id: <20220118104839.6654-4-stanislav.lisovskiy@intel.com>
+Date: Tue, 18 Jan 2022 12:48:39 +0200
+Message-Id: <20220118104839.6654-5-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 In-Reply-To: <20220118104839.6654-1-stanislav.lisovskiy@intel.com>
 References: <20220118104839.6654-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/4] drm/i915: Use wm0 only during async flips
- for DG2
+Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Don't allocate extra ddb during
+ async flip for DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,87 +61,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This optimization allows to achieve higher perfomance
-during async flips.
-For the first async flip we have to still temporarily
-switch to sync flip, in order to reprogram plane
-watermarks, so this requires taking into account
-old plane state's do_async_flip flag.
+In terms of async flip optimization we don't to allocate
+extra ddb space, so lets skip it.
 
-v2: - Removed redundant new_plane_state->do_async_flip
-      check from needs_async_flip_wm_override condition
+v2: - Extracted min ddb async flip check to separate function
       (Ville Syrjälä)
-    - Extract dg2_async_flip_optimization to separate
-      function(Ville Syrjälä)
-    - Check for plane->async_flip instead of plane_id
-      (Ville Syrjälä)
+    - Used this function to prevent false positive WARN
+      to be triggered(Ville Syrjälä)
 
 Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++++-
- drivers/gpu/drm/i915/intel_pm.c              | 12 +++++++++++-
- 2 files changed, 22 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/intel_pm.c | 34 ++++++++++++++++++++++++++-------
+ 1 file changed, 27 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f3ce29c42bc3..9a5126310014 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4908,6 +4908,15 @@ static bool needs_scaling(const struct intel_plane_state *state)
- 	return (src_w != dst_w || src_h != dst_h);
- }
- 
-+static bool needs_async_flip_wm_override(struct intel_plane *plane,
-+					 const struct intel_plane_state *new_plane_state,
-+					 const struct intel_plane_state *old_plane_state)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-+
-+	return DISPLAY_VER(dev_priv) >= 13 && !old_plane_state->do_async_flip;
-+}
-+
- int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_crtc_state,
- 				    struct intel_crtc_state *new_crtc_state,
- 				    const struct intel_plane_state *old_plane_state,
-@@ -5027,7 +5036,8 @@ int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_crtc_stat
- 			 needs_scaling(new_plane_state))))
- 		new_crtc_state->disable_lp_wm = true;
- 
--	if (new_crtc_state->uapi.async_flip && plane->async_flip)
-+	if (new_crtc_state->uapi.async_flip &&
-+	    !needs_async_flip_wm_override(plane, new_plane_state, old_plane_state))
- 		new_plane_state->do_async_flip = true;
- 	else
- 		new_plane_state->do_async_flip = false;
 diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index dc1203d21c46..5d350ddc447f 100644
+index 5d350ddc447f..4922c9108f08 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -5510,6 +5510,15 @@ static int skl_wm_max_lines(struct drm_i915_private *dev_priv)
- 		return 31;
+@@ -5118,6 +5118,12 @@ static bool icl_need_wm1_wa(struct drm_i915_private *i915,
+ 	       (IS_DISPLAY_VER(i915, 12, 13) && plane_id == PLANE_CURSOR);
  }
  
-+bool dg2_async_flip_optimization(struct drm_i915_private *i915,
-+				 const struct intel_crtc_state *crtc_state,
-+				 const struct intel_plane *plane)
++static bool dg2_need_min_ddb(struct drm_i915_private *i915,
++			     struct intel_crtc_state *crtc_state)
 +{
-+	return DISPLAY_VER(i915) >= 13 &&
-+	       crtc_state->uapi.async_flip &&
-+	       plane->async_flip;
++	return IS_DG2(i915) && crtc_state->uapi.async_flip;
 +}
 +
- static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
- 				 const struct intel_plane *plane,
- 				 int level,
-@@ -5523,7 +5532,8 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
- 	uint_fixed_16_16_t selected_result;
- 	u32 blocks, lines, min_ddb_alloc = 0;
+ static int
+ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+ 		       struct intel_crtc *crtc)
+@@ -5226,9 +5232,15 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+ 			break;
  
--	if (latency == 0) {
-+	if (latency == 0 ||
-+	    (dg2_async_flip_optimization(dev_priv, crtc_state, plane) && level > 0)) {
- 		/* reject it */
- 		result->min_ddb_alloc = U16_MAX;
- 		return;
+ 		rate = crtc_state->plane_data_rate[plane_id];
+-		extra = min_t(u16, alloc_size,
+-			      DIV64_U64_ROUND_UP(alloc_size * rate,
+-						 total_data_rate));
++
++		if (dg2_need_min_ddb(dev_priv, crtc_state)) {
++			extra = 0;
++		} else {
++			extra = min_t(u16, alloc_size,
++				      DIV64_U64_ROUND_UP(alloc_size * rate,
++							 total_data_rate));
++		}
++
+ 		total[plane_id] = wm->wm[level].min_ddb_alloc + extra;
+ 		alloc_size -= extra;
+ 		total_data_rate -= rate;
+@@ -5237,14 +5249,22 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+ 			break;
+ 
+ 		rate = crtc_state->uv_plane_data_rate[plane_id];
+-		extra = min_t(u16, alloc_size,
+-			      DIV64_U64_ROUND_UP(alloc_size * rate,
+-						 total_data_rate));
++
++		if (dg2_need_min_ddb(dev_priv, crtc_state)) {
++			extra = 0;
++		} else {
++			extra = min_t(u16, alloc_size,
++				      DIV64_U64_ROUND_UP(alloc_size * rate,
++							 total_data_rate));
++		}
++
+ 		uv_total[plane_id] = wm->uv_wm[level].min_ddb_alloc + extra;
+ 		alloc_size -= extra;
+ 		total_data_rate -= rate;
+ 	}
+-	drm_WARN_ON(&dev_priv->drm, alloc_size != 0 || total_data_rate != 0);
++
++	if (!dg2_need_min_ddb(dev_priv, crtc_state))
++		drm_WARN_ON(&dev_priv->drm, alloc_size != 0 || total_data_rate != 0);
+ 
+ 	/* Set the actual DDB start/end points for each plane */
+ 	start = alloc->start;
 -- 
 2.24.1.485.gad05a3d8e5
 
