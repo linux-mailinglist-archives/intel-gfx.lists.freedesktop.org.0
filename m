@@ -2,53 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA08493008
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 22:37:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A269493027
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 22:49:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6943D89E69;
-	Tue, 18 Jan 2022 21:37:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A45810E1FF;
+	Tue, 18 Jan 2022 21:49:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFB4D89E69
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 21:37:19 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8B0A10E194;
+ Tue, 18 Jan 2022 21:49:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642541839; x=1674077839;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=i7fahNjHuMeld7ex970vhDXfjAHjtJRdcm2iUTfH3M4=;
- b=XwsSsho1iUOPPqMEoZXlt2raY4ycRbNcT2Yw7wBA5l9E7vE7mqBTVjn1
- 559ajAsYUVN/is3nV18RJXtVU24iYe0XVRkjIEpcFIbtrSfHzuuIOq0tj
- 9iMExo563kv4tzapBCZ88Y9C6K+YzRDiiZ9FMgftStf9IbeZOxH+ZpilD
- bgQQZ/Dbjb4jXwojGdoZaLxLYLZY07LVS4SImoSSi5aXG/3ThhpjehZCE
- tGtVjPQlgjLYuj7M9f+3bvdBe7bR6XkMmQHqwZMHEYh75NmjgmaGa60Ts
- Vrnc/SyitNLAOFvx3CizVX0wS7Lukc7dS8ZMy7LNyc5pbL8RWtApL+Tme A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="225594964"
-X-IronPort-AV: E=Sophos;i="5.88,298,1635231600"; d="scan'208";a="225594964"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2022 13:37:19 -0800
-X-IronPort-AV: E=Sophos;i="5.88,298,1635231600"; d="scan'208";a="671972002"
-Received: from ftaylor1-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.190.69])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2022 13:37:19 -0800
-Date: Tue, 18 Jan 2022 13:37:18 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Tolakanahalli Pradeep,
- Madhumitha" <madhumitha.tolakanahalli.pradeep@intel.com>
-Message-ID: <20220118213718.kfn557xmupo2y4fr@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20211217034141.198033-1-madhumitha.tolakanahalli.pradeep@intel.com>
- <4c02824ccbb7d40c15fc20ea272013c41e9aa54a.camel@intel.com>
- <2a4cc866a3c24ccfb55dab8bdfc18547957332f1.camel@intel.com>
+ t=1642542589; x=1674078589;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QpAOipgk04ndRGi+OCBuLEhbkroZdHsVe6SNVFsxfAg=;
+ b=iKqbF4hjBwG/ZQlgtuai+vlCwuu3B/395AmQM/CVXsMslvJeoeLCn9TZ
+ kVt2Nc7Nxzv8CPAZhhsT0CXUp6xjDGnTZlqkdbdog5gHU1OoKjVbItRto
+ IMkHI5+Fr0+U+nU5bWWVFN0IS0u5jYQWfJmas/91aEeW63XgQ2S+Tdaan
+ ZtPt0EFXufuMZflFFM9Cv7s6zyoC/N6f4GaAmibOTiJSgJWxlByF5GgI6
+ AO1/6IQ8Cyi4ADMzcKet9qlNt60nnLktgA9QvOkDMe4l2CyKgRJsBZDZy
+ /MpY5bWTLbtxOcg05FGh6myoD24khTLTs789rqV2nHO2l7wn5JR0lspo9 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="244716622"
+X-IronPort-AV: E=Sophos;i="5.88,298,1635231600"; d="scan'208";a="244716622"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2022 13:49:48 -0800
+X-IronPort-AV: E=Sophos;i="5.88,298,1635231600"; d="scan'208";a="531968398"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2022 13:49:48 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Tue, 18 Jan 2022 13:43:54 -0800
+Message-Id: <20220118214357.33740-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <2a4cc866a3c24ccfb55dab8bdfc18547957332f1.camel@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Eliminate remnant GEN<n>
- references
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/3] Flush G2H handler during a GT reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,28 +54,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: thomas.hellstrom@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 23, 2021 at 03:18:57AM +0000, Tolakanahalli Pradeep, Madhumitha wrote:
->On Fri, 2021-12-17 at 21:37 +0000, Yokoyama, Caz wrote:
->> On Thu, 2021-12-16 at 19:41 -0800, Madhumitha Tolakanahalli Pradeep
->> wrote:
->> > Replace GEN<n> with DISPLAY_VER<n>, in line with the naming
->> > convention
->> > followed in the i915 driver code.
->> >
->> > Signed-off-by: Madhumitha Tolakanahalli Pradeep <
->> > madhumitha.tolakanahalli.pradeep@intel.com>
+After a small fix to error capture code, we now can flush G2H during a
+GT reset which simplifies code and seals some extreme corner case races. 
 
-I was checking to apply this today, but BAT is failing on CI and it
-didn't trigger the full run. Error seems unrelated and I don't think
-this would trigger any error in the machines in CI, but I'd prefer to
-merge this with a clean run.
+v2:
+ (CI)
+  - Don't trigger GT reset from G2H handler
 
-Can you re-submit or trigger it again via patchwork if the patch still
-applies?
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-thanks
-Lucas De Marchi
+Matthew Brost (3):
+  drm/i915: Allocate intel_engine_coredump_alloc with ALLOW_FAIL
+  drm/i915/guc: Add work queue to trigger a GT reset
+  drm/i915/guc: Flush G2H handler during a GT reset
+
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  5 +++
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 41 +++++++++----------
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  2 +-
+ 3 files changed, 26 insertions(+), 22 deletions(-)
+
+-- 
+2.34.1
+
