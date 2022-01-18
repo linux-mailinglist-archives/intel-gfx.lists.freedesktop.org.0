@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 669A8492E07
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 20:00:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E1F5492E23
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 20:07:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD9DE10E4B0;
-	Tue, 18 Jan 2022 19:00:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABD1110E1A3;
+	Tue, 18 Jan 2022 19:07:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB88D10E434;
- Tue, 18 Jan 2022 19:00:06 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA7B110E1A3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 19:07:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642532407; x=1674068407;
+ t=1642532831; x=1674068831;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=V64B3M6E4kj0l19YNPCajPr6U6BH7e2Ackf6jpy5OrE=;
- b=CCmgemNazFdnACzgUJNuTERfEL+RFessfGbsRi8xr3ECW/10Uio7vDZl
- 8RsYnT1HKeyqHUaQ46XXh08Rmn6xrFl/2/AekBmn0OnC6+Wysn0dUVXs3
- BB2a+oBT4yT4QIzz004hQYe++BK8jU7WBCRzGPyyL/qPuClPgPhpNvquk
- QDRE6BbO1fEnrtymv+PQEwrZ8CLUpT829YJhnw11tl6/G7kZNKFJ008yL
- awi9NDvCWfqFlbMSqcC82OD5QepikvwEWKlc1S+EmLBuMZ68k3LR2f9rZ
- v/XsHLn1N267AWk8mbw84sfLt1RDDW5tYhaBa3CUtma3m+XafcM9DviMo A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="308229277"
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="308229277"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2022 11:00:06 -0800
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="625605182"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2022 11:00:05 -0800
-Date: Tue, 18 Jan 2022 11:15:14 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20220118191514.GA15750@labuser-Z97X-UD5H>
-References: <20211004115913.23889-1-manasi.d.navare@intel.com>
- <20211022195112.GA1609@labuser-Z97X-UD5H>
- <YebsDDwzBJHm+fKu@intel.com>
+ mime-version:in-reply-to;
+ bh=lylUA7KrDBU6TXS+EOq/kn26y7wWjzEb7smYRb/zZb0=;
+ b=fY3+iV+nvR4E5+XUa/MetB41BiL9Amm818tbrEKUJDTYj8yQJ/u7NHDq
+ WorVk2vzAzPIFJaygRY8ilVUHP7q+KjM7teN+kbR4MD60wHV3TYmu7s0s
+ GObN7v8He++xvFmUQNOT+jfR97dwi+aqP54asMQT7oE9cTF9mhP5efkn0
+ w//pxXAyZujYjX8NspTM/Gpg30j14k2jhPnjyzc7POk8+3vX37pJ2zSYF
+ 04LYcUi5UsrR2wowce4tOAoLbLWEatCzggdDeNjHLjFFH2GNp0IIjxj38
+ D25IuGOPoF7J2B+0Cuj201UmmwC0N/0In3TFb6N8Trv5CK+bCrtAS5Sr8 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="245088151"
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="245088151"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2022 11:05:59 -0800
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="477092391"
+Received: from ftaylor1-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.190.69])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2022 11:05:58 -0800
+Date: Tue, 18 Jan 2022 11:05:58 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Borislav Petkov <bp@alien8.de>
+Message-ID: <20220118190558.2ququ4vdfjuahicm@ldmartin-desk2>
+References: <20220114002843.2083382-1-lucas.demarchi@intel.com>
+ <YeaLIs9t0jhovC28@zn.tnic>
+ <20220118163656.fzzkwubgoe5gz36k@ldmartin-desk2>
+ <Yeb4WKOFNDNbx6tH@zn.tnic>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YebsDDwzBJHm+fKu@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v3] drm/atomic: Add the crtc to affected
- crtc only if uapi.enable = true
+In-Reply-To: <Yeb4WKOFNDNbx6tH@zn.tnic>
+Subject: Re: [Intel-gfx] [PATCH v5 1/5] x86/quirks: Fix stolen detection
+ with integrated + discrete GPU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,101 +60,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Stone <daniels@collabora.com>, Simon Ser <contact@emersion.fr>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Pekka Paalanen <pekka.paalanen@collabora.co.uk>,
- Daniel Vetter <daniel.vetter@intel.com>
+Cc: Dave Hansen <dave.hansen@linux.intel.com>, linux-pci@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, x86@kernel.org, stable@vger.kernel.org,
+ Ingo Molnar <mingo@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 18, 2022 at 06:34:20PM +0200, Ville Syrjälä wrote:
-> On Fri, Oct 22, 2021 at 12:51:12PM -0700, Navare, Manasi wrote:
-> > 
-> > Hi Ville,
-> > 
-> > Could you take a look at this, this addresses teh review comments from prev version
-> 
-> I don't think I ever got an answer to my question as to whether this
-> was tested with all the interesting scenarios:
-> 1) just with the master crtc added by userspace into the commit
-> 2) just with the slave crtc added by userspace into the commit
-> 3) both crtcs added by userspace into the commit
-> 
-> I guess 1) has been tested since that happens all the time, but the other
-> two scanarios would likely need to be done with a synthetic test to make
-> sure we're actually hitting them.
-> 
-> I think it *should* work, but I'd like to have real proof of that.
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, Jan 18, 2022 at 06:26:48PM +0100, Borislav Petkov wrote:
+>On Tue, Jan 18, 2022 at 08:36:56AM -0800, Lucas De Marchi wrote:
+>> I had the impression the subject/title should be imperative, with it
+>> more relaxed in the body. It seems we have one more difference among
+>> subsystems and I will adapt on next submissions to x86.
+>
+>We have written it down properly, in case it explains it better:
+>
+>"The tip tree maintainers set value on following these rules, especially
+>on the request to write changelogs in imperative mood and not
+>impersonating code or the execution of it. This is not just a whim of
+>the maintainers. Changelogs written in abstract words are more precise
+>and tend to be less confusing than those written in the form of novels."
+>
+>from Documentation/process/maintainer-tip.rst
 
-Thank you for your review here Ville.
-I have triggered a separate email thread to understand all the above testing scenarios and get them tested with bigjoiner IGT.
+nice, thanks. I had missed this. It certainly makes it easier to adapt
+the style when crossing subystems
 
-Manasi
+>> > So I wonder: why can't you simply pass in a static struct chipset *
+>> > pointer into the early_qrk[i].f function and in there you can set
+>> > QFLAG_APPLIED or so, so that you can mark that the quirk is applied by
+>> > using the nice, per-quirk flags someone has already added instead of
+>> > this ugly static variable?
+>>
+>> It seems you prefer v1. See 20211218061313.100571-1-lucas.demarchi@intel.com
+>
+>I do?
+>
+>I don't see there:
+>
+>	early_qrk[i].f(&early_qrk[i], num, slot, func)
+>
+>so that the ->f callback can set the flags. Or at least the flags passed
+>in.
 
-> 
-> > 
-> > Manasi
-> > 
-> > On Mon, Oct 04, 2021 at 04:59:13AM -0700, Manasi Navare wrote:
-> > > In case of a modeset where a mode gets split across mutiple CRTCs
-> > > in the driver specific implementation (bigjoiner in i915) we wrongly count
-> > > the affected CRTCs based on the drm_crtc_mask and indicate the stolen CRTC as
-> > > an affected CRTC in atomic_check_only().
-> > > This triggers a warning since affected CRTCs doent match requested CRTC.
-> > > 
-> > > To fix this in such bigjoiner configurations, we should only
-> > > increment affected crtcs if that CRTC is enabled in UAPI not
-> > > if it is just used internally in the driver to split the mode.
-> > > 
-> > > v3: Add the same uapi crtc_state->enable check in requested
-> > > crtc calc (Ville)
-> > > 
-> > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > Cc: Simon Ser <contact@emersion.fr>
-> > > Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-> > > Cc: Daniel Stone <daniels@collabora.com>
-> > > Cc: Daniel Vetter <daniel.vetter@intel.com>
-> > > Cc: dri-devel@lists.freedesktop.org
-> > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_atomic.c | 12 ++++++++----
-> > >  1 file changed, 8 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> > > index ff1416cd609a..a1e4c7905ebb 100644
-> > > --- a/drivers/gpu/drm/drm_atomic.c
-> > > +++ b/drivers/gpu/drm/drm_atomic.c
-> > > @@ -1310,8 +1310,10 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
-> > >  
-> > >  	DRM_DEBUG_ATOMIC("checking %p\n", state);
-> > >  
-> > > -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
-> > > -		requested_crtc |= drm_crtc_mask(crtc);
-> > > +	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
-> > > +		if (new_crtc_state->enable)
-> > > +			requested_crtc |= drm_crtc_mask(crtc);
-> > > +	}
-> > >  
-> > >  	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
-> > >  		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
-> > > @@ -1360,8 +1362,10 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
-> > >  		}
-> > >  	}
-> > >  
-> > > -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
-> > > -		affected_crtc |= drm_crtc_mask(crtc);
-> > > +	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
-> > > +		if (new_crtc_state->enable)
-> > > +			affected_crtc |= drm_crtc_mask(crtc);
-> > > +	}
-> > >  
-> > >  	/*
-> > >  	 * For commits that allow modesets drivers can add other CRTCs to the
-> > > -- 
-> > > 2.19.1
-> > > 
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+Indeed not exactly the same. In v1 we have
+
+	applied = early_qrk[i].f(num, slot, func);
+
+because I was trying to keep the logic that uses and the one that checks
+the value in the same place. With your suggestion the logic to set the
+flag would need to move to the called functions, while checking for the
+flag would continue to be in the caller.
+
+>If it is not clear what I mean, pls say so and I'll try to produce an
+>example diff ontop.
+>
+>> Although in the review Bjorn suggested just splitting the commit, it was
+>> also mentioned that the PCI subsystem has no such logic in its
+>> equivalent pci_do_fixups(): a quirk/fixup needing that should instead
+>> use a static local.
+>
+>Why?
+
+I think to make it similar how the PCI fixups work. Anyway, do you
+prefer that I change the QFLAG_APPLY_ONCE as above (including
+nvidia_bugs() and ati_bugs()) or a very minimal fix like below and
+nothing else?
+
+------8<------
+diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+index 391a4e2b8604..7b2a3230c42a 100644
+--- a/arch/x86/kernel/early-quirks.c
++++ b/arch/x86/kernel/early-quirks.c
+@@ -591,6 +591,13 @@ static void __init intel_graphics_quirks(int num, int slot, int func)
+  	u16 device;
+  	int i;
+  
++	/*
++	 * Already reserved for integrated graphics, nothing to do for other
++	 * (discrete) cards.
++	 */
++	if (resource_size(&intel_graphics_stolen_res))
++		return;
++
+  	device = read_pci_config_16(num, slot, func, PCI_DEVICE_ID);
+  
+  	for (i = 0; i < ARRAY_SIZE(intel_early_ids); i++) {
+@@ -703,7 +710,7 @@ static struct chipset early_qrk[] __initdata = {
+  	{ PCI_VENDOR_ID_INTEL, 0x3406, PCI_CLASS_BRIDGE_HOST,
+  	  PCI_BASE_CLASS_BRIDGE, 0, intel_remapping_check },
+  	{ PCI_VENDOR_ID_INTEL, PCI_ANY_ID, PCI_CLASS_DISPLAY_VGA, PCI_ANY_ID,
+-	  QFLAG_APPLY_ONCE, intel_graphics_quirks },
++	  0, intel_graphics_quirks },
+  	/*
+  	 * HPET on the current version of the Baytrail platform has accuracy
+  	 * problems: it will halt in deep idle state - so we disable it.
+------8<------
+
+
+thanks
+Lucas De Marchi
