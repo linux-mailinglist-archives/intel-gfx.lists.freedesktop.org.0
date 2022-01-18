@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC8C94915BA
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 03:30:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF8B7492148
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 09:36:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EDBE1128B6;
-	Tue, 18 Jan 2022 02:30:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFF0F10E6EC;
+	Tue, 18 Jan 2022 08:36:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC1551128B6;
- Tue, 18 Jan 2022 02:30:06 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFA231122B3;
+ Tue, 18 Jan 2022 08:36:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642473006; x=1674009006;
+ t=1642495011; x=1674031011;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=SQuOeo/FzGUWee8Ve42L+R43aeaHx46I5v4Zjb0B53A=;
- b=C9Y/ptbuhqQ8CvSc+h6GP0/H/q2rxBeXRmxXd+fsk10mxebvP1H0FPs8
- azpDE59kxUMGsfKa0PTbGqChAYSIXDhhXcgAFijjurxbty5O43EH4dP1Q
- 6tBbGduKsd+UHKL/yCHlh2Q0sQQ9wAVIB2wgI/kZ27Z/BzFuokE3AFaiq
- fncHRQQV+q73RH918j5NJWx4WiFZnXZ2u+uuiIM2sNQMaexVP+uh1D4Id
- 1uKFq+ZexL2/oqoedgww/nlCD+trJCr5jd1qz2zX/ytP2GqTQ/mUjJT21
- c+TJ7uwEAaarAkx6aBv7faoAn9CxH4nJhXgfL+Dog1J7avh7dOQCkdILQ A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="244918897"
-X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="244918897"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2022 18:30:06 -0800
-X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="531557714"
-Received: from nkohl-mobl.ger.corp.intel.com (HELO intel.com) ([10.249.41.90])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2022 18:30:03 -0800
-Date: Tue, 18 Jan 2022 04:30:00 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- Lucas Martins De Marchi <lucas.demarchi@intel.com>
-Message-ID: <YeYmKCIi7HRznvo7@intel.intel>
-References: <20211127011715.274205-1-andi.shyti@linux.intel.com>
+ bh=bEHey9QupRjV9zwrkI/FK565olCk7HBpauULY2Z1kUs=;
+ b=FSHn3A/NR9ZaAAMfb6WX98DIlxrbmDGtOGMtEPBHnerHo01/9EAH5+6z
+ kauhIH+IqC+z8QaDb7sbQdyXCK7CQogxhU663RqryNRa+vHvDPeu6B53p
+ CPMquLvTfhRX+60elmCLxRUi+oBsqFWFmDhOTNBOFpozsLPUUyJYTDL91
+ iFBAcUXyzGFVlSO9BeBB2O3ecoRkQaP1+S9FiNIOKw8Aiv33wZsUQJJso
+ LuetV+EP3Qf4u7ZtyeVgOyJ8Zg/VlDGYx/PfM2rjDY4CnPI8d9bKOZWRE
+ 4wm2Ze4WZSYPSDLCpOKft4nw3SjBQPk8SDfu1Mx8n73/9lugfXkGD+ltj w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="225444862"
+X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="225444862"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2022 00:36:50 -0800
+X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="517682356"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
+ by orsmga007-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jan 2022 00:36:45 -0800
+Date: Tue, 18 Jan 2022 14:06:40 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Robert Beckett <bob.beckett@collabora.com>
+Message-ID: <20220118083638.GA2476@intel.com>
+References: <20220111180238.1370631-1-bob.beckett@collabora.com>
+ <20220111180238.1370631-4-bob.beckett@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211127011715.274205-1-andi.shyti@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: Do not return '0' if
- there is nothing to return
+In-Reply-To: <20220111180238.1370631-4-bob.beckett@collabora.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: add gtt misalignment test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,174 +57,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maciej Patelczyk <maciej.patelczyk@inux.intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- DRI Devel <dri-devel@lists.freedesktop.org>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ping... Lucas, do you mind merging this trivial refactoring?
+On 2022-01-11 at 18:02:37 +0000, Robert Beckett wrote:
+> add test to check handling of misaligned offsets and sizes
 
-Thanks,
-Andi
+Bob, This needs the rebase. I have rebased the other three patches of
+the series..
 
-On Sat, Nov 27, 2021 at 03:17:15AM +0200, Andi Shyti wrote:
-> Change functions that always return '0' to be void type.
+Meanwhile i will review the changes.
+
+Ram.
 > 
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_gt_debugfs.c    |  7 ++++---
->  drivers/gpu/drm/i915/gt/intel_gt_debugfs.h    |  2 +-
->  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 16 ++++++++--------
->  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h |  4 ++--
->  drivers/gpu/drm/i915/i915_debugfs.c           | 12 +++++++++---
->  5 files changed, 24 insertions(+), 17 deletions(-)
+>  drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 130 ++++++++++++++++++
+>  1 file changed, 130 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-> index f103664b71d4..53b90b4f73d7 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-> @@ -29,7 +29,7 @@ int intel_gt_debugfs_reset_show(struct intel_gt *gt, u64 *val)
->  	}
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+> index fea031b4ec4f..28de0b333835 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+> @@ -22,10 +22,12 @@
+>   *
+>   */
+>  
+> +#include "gt/intel_gtt.h"
+>  #include <linux/list_sort.h>
+>  #include <linux/prime_numbers.h>
+>  
+>  #include "gem/i915_gem_context.h"
+> +#include "gem/i915_gem_region.h"
+>  #include "gem/selftests/mock_context.h"
+>  #include "gt/intel_context.h"
+>  #include "gt/intel_gpu_commands.h"
+> @@ -1066,6 +1068,120 @@ static int shrink_boom(struct i915_address_space *vm,
+>  	return err;
 >  }
 >  
-> -int intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val)
-> +void intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val)
->  {
->  	/* Flush any previous reset before applying for a new one */
->  	wait_event(gt->reset.queue,
-> @@ -37,7 +37,6 @@ int intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val)
->  
->  	intel_gt_handle_error(gt, val, I915_ERROR_CAPTURE,
->  			      "Manually reset engine mask to %llx", val);
-> -	return 0;
->  }
->  
->  /*
-> @@ -51,7 +50,9 @@ static int __intel_gt_debugfs_reset_show(void *data, u64 *val)
->  
->  static int __intel_gt_debugfs_reset_store(void *data, u64 val)
->  {
-> -	return intel_gt_debugfs_reset_store(data, val);
-> +	intel_gt_debugfs_reset_store(data, val);
+> +static int misaligned_case(struct i915_address_space *vm, struct intel_memory_region *mr,
+> +			   u64 addr, u64 size, unsigned long flags)
+> +{
+> +	struct drm_i915_gem_object *obj;
+> +	struct i915_vma *vma;
+> +	int err = 0;
+> +	u64 expected_vma_size, expected_node_size;
+> +
+> +	obj = i915_gem_object_create_region(mr, size, 0, 0);
+> +	if (IS_ERR(obj))
+> +		return PTR_ERR(obj);
+> +
+> +	vma = i915_vma_instance(obj, vm, NULL);
+> +	if (IS_ERR(vma)) {
+> +		err = PTR_ERR(vma);
+> +		goto err_put;
+> +	}
+> +
+> +	err = i915_vma_pin(vma, 0, 0, addr | flags);
+> +	if (err)
+> +		goto err_put;
+> +	i915_vma_unpin(vma);
+> +
+> +	if (!drm_mm_node_allocated(&vma->node)) {
+> +		err = -EINVAL;
+> +		goto err_put;
+> +	}
+> +
+> +	if (i915_vma_misplaced(vma, 0, 0, addr | flags)) {
+> +		err = -EINVAL;
+> +		goto err_put;
+> +	}
+> +
+> +	expected_vma_size = round_up(size, 1 << (ffs(vma->page_sizes.gtt) - 1));
+> +	expected_node_size = expected_vma_size;
+> +
+> +	if (IS_DG2(vm->i915) && i915_gem_object_is_lmem(obj)) {
+> +		/* dg2 should expand lmem node to 2MB */
+> +		expected_vma_size = round_up(size, I915_GTT_PAGE_SIZE_64K);
+> +		expected_node_size = round_up(size, I915_GTT_PAGE_SIZE_2M);
+> +	}
+> +
+> +	if (vma->size != expected_vma_size || vma->node.size != expected_node_size) {
+> +		err = i915_vma_unbind(vma);
+> +		err = -EBADSLT;
+> +		goto err_put;
+> +	}
+> +
+> +	err = i915_vma_unbind(vma);
+> +	if (err)
+> +		goto err_put;
+> +
+> +	GEM_BUG_ON(drm_mm_node_allocated(&vma->node));
+> +
+> +err_put:
+> +	i915_gem_object_put(obj);
+> +	cleanup_freed_objects(vm->i915);
+> +	return err;
+> +}
+> +
+> +static int misaligned_pin(struct i915_address_space *vm,
+> +			  u64 hole_start, u64 hole_end,
+> +			  unsigned long end_time)
+> +{
+> +	struct intel_memory_region *mr;
+> +	enum intel_region_id id;
+> +	unsigned long flags = PIN_OFFSET_FIXED | PIN_USER;
+> +	int err = 0;
+> +	u64 hole_size = hole_end - hole_start;
+> +
+> +	if (i915_is_ggtt(vm))
+> +		flags |= PIN_GLOBAL;
+> +
+> +	for_each_memory_region(mr, vm->i915, id) {
+> +		u64 min_alignment = i915_vm_min_alignment(vm, id);
+> +		u64 size = min_alignment;
+> +		u64 addr = round_up(hole_start + (hole_size / 2), min_alignment);
+> +
+> +		/* we can't test < 4k alignment due to flags being encoded in lower bits */
+> +		if (min_alignment != I915_GTT_PAGE_SIZE_4K) {
+> +			err = misaligned_case(vm, mr, addr + (min_alignment / 2), size, flags);
+> +			/* misaligned should error with -EINVAL*/
+> +			if (!err)
+> +				err = -EBADSLT;
+> +			if (err != -EINVAL)
+> +				return err;
+> +		}
+> +
+> +		/* test for vma->size expansion to min page size */
+> +		err = misaligned_case(vm, mr, addr, PAGE_SIZE, flags);
+> +		if (min_alignment > hole_size) {
+> +			if (!err)
+> +				err = -EBADSLT;
+> +			else if (err == -ENOSPC)
+> +				err = 0;
+> +		}
+> +		if (err)
+> +			return err;
+> +
+> +		/* test for intermediate size not expanding vma->size for large alignments */
+> +		err = misaligned_case(vm, mr, addr, size / 2, flags);
+> +		if (min_alignment > hole_size) {
+> +			if (!err)
+> +				err = -EBADSLT;
+> +			else if (err == -ENOSPC)
+> +				err = 0;
+> +		}
+> +		if (err)
+> +			return err;
+> +	}
 > +
 > +	return 0;
->  }
->  
->  DEFINE_SIMPLE_ATTRIBUTE(reset_fops, __intel_gt_debugfs_reset_show,
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
-> index e307ceb99031..a4baf8e7f068 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
-> @@ -37,6 +37,6 @@ void intel_gt_debugfs_register_files(struct dentry *root,
->  
->  /* functions that need to be accessed by the upper level non-gt interfaces */
->  int intel_gt_debugfs_reset_show(struct intel_gt *gt, u64 *val);
-> -int intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val);
-> +void intel_gt_debugfs_reset_store(struct intel_gt *gt, u64 val);
->  
->  #endif /* INTEL_GT_DEBUGFS_H */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> index 404dfa7673c6..7a30157aa9d3 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> @@ -20,38 +20,38 @@
->  #include "intel_uncore.h"
->  #include "vlv_sideband.h"
->  
-> -int intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt)
-> +void intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt)
->  {
->  	atomic_inc(&gt->user_wakeref);
->  	intel_gt_pm_get(gt);
->  	if (GRAPHICS_VER(gt->i915) >= 6)
->  		intel_uncore_forcewake_user_get(gt->uncore);
-> -
-> -	return 0;
->  }
->  
-> -int intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt)
-> +void intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt)
->  {
->  	if (GRAPHICS_VER(gt->i915) >= 6)
->  		intel_uncore_forcewake_user_put(gt->uncore);
->  	intel_gt_pm_put(gt);
->  	atomic_dec(&gt->user_wakeref);
-> -
-> -	return 0;
->  }
->  
->  static int forcewake_user_open(struct inode *inode, struct file *file)
->  {
->  	struct intel_gt *gt = inode->i_private;
->  
-> -	return intel_gt_pm_debugfs_forcewake_user_open(gt);
-> +	intel_gt_pm_debugfs_forcewake_user_open(gt);
+> +}
 > +
-> +	return 0;
+>  static int exercise_ppgtt(struct drm_i915_private *dev_priv,
+>  			  int (*func)(struct i915_address_space *vm,
+>  				      u64 hole_start, u64 hole_end,
+> @@ -1135,6 +1251,12 @@ static int igt_ppgtt_shrink_boom(void *arg)
+>  	return exercise_ppgtt(arg, shrink_boom);
 >  }
 >  
->  static int forcewake_user_release(struct inode *inode, struct file *file)
->  {
->  	struct intel_gt *gt = inode->i_private;
->  
-> -	return intel_gt_pm_debugfs_forcewake_user_release(gt);
-> +	intel_gt_pm_debugfs_forcewake_user_release(gt);
+> +static int igt_ppgtt_misaligned_pin(void *arg)
+> +{
+> +	return exercise_ppgtt(arg, misaligned_pin);
+> +}
 > +
-> +	return 0;
->  }
->  
->  static const struct file_operations forcewake_user_fops = {
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
-> index a8457887ec65..0ace8c2da0ac 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
-> @@ -14,7 +14,7 @@ void intel_gt_pm_debugfs_register(struct intel_gt *gt, struct dentry *root);
->  void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *m);
->  
->  /* functions that need to be accessed by the upper level non-gt interfaces */
-> -int intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt);
-> -int intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt);
-> +void intel_gt_pm_debugfs_forcewake_user_open(struct intel_gt *gt);
-> +void intel_gt_pm_debugfs_forcewake_user_release(struct intel_gt *gt);
->  
->  #endif /* INTEL_GT_PM_DEBUGFS_H */
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index fe638b5da7c0..88ef63f05ead 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -565,7 +565,9 @@ static int i915_wedged_set(void *data, u64 val)
->  {
->  	struct drm_i915_private *i915 = data;
->  
-> -	return intel_gt_debugfs_reset_store(&i915->gt, val);
-> +	intel_gt_debugfs_reset_store(&i915->gt, val);
 > +
-> +	return 0;
->  }
->  
->  DEFINE_SIMPLE_ATTRIBUTE(i915_wedged_fops,
-> @@ -711,14 +713,18 @@ static int i915_forcewake_open(struct inode *inode, struct file *file)
+>  static int sort_holes(void *priv, const struct list_head *A,
+>  		      const struct list_head *B)
 >  {
->  	struct drm_i915_private *i915 = inode->i_private;
->  
-> -	return intel_gt_pm_debugfs_forcewake_user_open(&i915->gt);
-> +	intel_gt_pm_debugfs_forcewake_user_open(&i915->gt);
-> +
-> +	return 0;
+> @@ -1207,6 +1329,12 @@ static int igt_ggtt_lowlevel(void *arg)
+>  	return exercise_ggtt(arg, lowlevel_hole);
 >  }
 >  
->  static int i915_forcewake_release(struct inode *inode, struct file *file)
+> +static int igt_ggtt_misaligned_pin(void *arg)
+> +{
+> +	return exercise_ggtt(arg, misaligned_pin);
+> +}
+> +
+> +
+>  static int igt_ggtt_page(void *arg)
 >  {
->  	struct drm_i915_private *i915 = inode->i_private;
+>  	const unsigned int count = PAGE_SIZE/sizeof(u32);
+> @@ -2137,12 +2265,14 @@ int i915_gem_gtt_live_selftests(struct drm_i915_private *i915)
+>  		SUBTEST(igt_ppgtt_fill),
+>  		SUBTEST(igt_ppgtt_shrink),
+>  		SUBTEST(igt_ppgtt_shrink_boom),
+> +		SUBTEST(igt_ppgtt_misaligned_pin),
+>  		SUBTEST(igt_ggtt_lowlevel),
+>  		SUBTEST(igt_ggtt_drunk),
+>  		SUBTEST(igt_ggtt_walk),
+>  		SUBTEST(igt_ggtt_pot),
+>  		SUBTEST(igt_ggtt_fill),
+>  		SUBTEST(igt_ggtt_page),
+> +		SUBTEST(igt_ggtt_misaligned_pin),
+>  		SUBTEST(igt_cs_tlb),
+>  	};
 >  
-> -	return intel_gt_pm_debugfs_forcewake_user_release(&i915->gt);
-> +	intel_gt_pm_debugfs_forcewake_user_release(&i915->gt);
-> +
-> +	return 0;
->  }
->  
->  static const struct file_operations i915_forcewake_fops = {
 > -- 
-> 2.34.0
+> 2.25.1
+> 
