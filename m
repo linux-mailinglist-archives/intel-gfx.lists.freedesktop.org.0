@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21056491235
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 00:12:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77E1749127F
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 01:01:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34BCD11249C;
-	Mon, 17 Jan 2022 23:12:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 960BB1126A3;
+	Tue, 18 Jan 2022 00:01:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F74D11249C;
- Mon, 17 Jan 2022 23:12:39 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDC201126A3;
+ Tue, 18 Jan 2022 00:01:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642461159; x=1673997159;
+ t=1642464064; x=1674000064;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=dlE7j3EUbOf+qh8mJwYhVthA+wm/MBdKq3Zoy19+U5E=;
- b=XMreCzMPXhMSMDXikrDo6IXNojAhMB34aQS/77GtvDcyD/SuNqiVQfNc
- HXLs3yUPV8C3wFKSMzdsK8JVqI37uEvfGJ0vQkyVmY6M6kFgIHV5mcNY+
- j/F+VQr1gq8EMejgoix+CtVXh2CzQV/0o/vkSHHanVUgBv6waNtRYRz3U
- fLxH5S8Sb4AupRuV8AkI4OwQxRgDgQqSga54Ib4S6xgvis4wRAkUF17Zp
- oUafv29lAixLucU5JhA7btk+LhqjLFc6yk5h428Oy26PB8Xj2qTI4ALEK
- Jf42rPnxN1NA568Ge1M1cCkY7vK/4vXqngDg766sh1PuYq+pJSYiOAjXp g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="244900309"
-X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="244900309"
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=5VOGaDC79aqoYDjcQTGORZB39wAz6+QYpSqAjmyCUZo=;
+ b=nEFkvUn67UjTDphOynjdBOpGn8IhBP4VXP60PR3PkewYZgpqOd0amd/j
+ 77DjhZ0hf/H7fWiON6uOyMfTmj7X7f/0XghJODpclvqWTePU8X6JAGFUu
+ GibhyNgie604I1c2b0fnLTLei96rt0TTkp6D/3dNyC1Tcb/sMBO1LmNBT
+ w0+c8RZg/cZpmaCkGDY3/Dgd9oPaFIIeQ9bW8v81BW9uQjxXrs7Q+jS1o
+ 0/qd/mf1FyXwmVHEktPU7ieHdVsTMBXWbgVs6g3n+449OzLCiiSoNSemg
+ mTVEdfM9sE+yW/5i/z3hjPsGgoewdJC0mDe7hMabeQ1HypsdC+/qlDt+6 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="232065796"
+X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="232065796"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2022 15:12:38 -0800
-X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="531505413"
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2022 16:01:02 -0800
+X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="531517223"
 Received: from nkohl-mobl.ger.corp.intel.com (HELO intel.com) ([10.249.41.90])
  by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2022 15:12:34 -0800
-Date: Tue, 18 Jan 2022 01:12:30 +0200
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2022 16:00:58 -0800
+Date: Tue, 18 Jan 2022 02:00:55 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <YeX33lpVBOzOERFK@intel.intel>
+Message-ID: <YeYDN/GG/C3/6mE0@intel.intel>
 References: <20220117193255.236599-1-andi.shyti@linux.intel.com>
- <20220117193255.236599-2-andi.shyti@linux.intel.com>
- <700309d2-7982-a7f4-f5f9-c1d51eafc927@intel.com>
+ <20220117193255.236599-3-andi.shyti@linux.intel.com>
+ <d3eb3ece-3f15-7c2c-dd72-57000835bd65@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <700309d2-7982-a7f4-f5f9-c1d51eafc927@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 1/2] drm/i915: Prepare for multiple GTs
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d3eb3ece-3f15-7c2c-dd72-57000835bd65@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 2/2] drm/i915/gt: make a gt sysfs group
+ and move power management files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,226 +68,170 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Michal,
 
-> please find few late nits below
-
-thanks for the comments!
-
-> > On a multi-tile platform, each tile has its own registers + GGTT
-> > space, and BAR 0 is extended to cover all of them.
-> > 
-> > Up to four gts are supported in i915->gt[], with slot zero
+> > /sys/.../card0
+> >          ├── gt
+> >          │   ├── gt0
+> >          │   │   ├── id
+> >          │   │   ├── rc6_enable
+> >          │   │   ├── rc6_residency_ms
+> >          │   │   ├── rps_act_freq_mhz
+> >          │   │   ├── rps_boost_freq_mhz
+> >          │   │   ├── rps_cur_freq_mhz
+> >          │   │   ├── rps_max_freq_mhz
+> >          │   │   ├── rps_min_freq_mhz
+> >          │   │   ├── rps_RP0_freq_mhz
+> >          │   │   ├── rps_RP1_freq_mhz
+> >          │   │   └── rps_RPn_freq_mhz
+> > 	 .   .
+> > 	 .   .
+> > 	 .   .
+> >          │   └── gt3
 > 
-> s/gts/GTs (to match as below)
+> gtN ?
 
-OK!
+yep!
 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> > index 622cdfed8a8b..17927da9e23e 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> > @@ -27,7 +27,8 @@
-> >  #include "shmem_utils.h"
-> >  #include "pxp/intel_pxp.h"
-> >  
-> > -void __intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
-> > +static void
-> > +__intel_gt_init_early(struct intel_gt *gt)
+> > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> > index aa86ac33effc..5fd203c626fc 100644
+> > --- a/drivers/gpu/drm/i915/Makefile
+> > +++ b/drivers/gpu/drm/i915/Makefile
+> > @@ -121,7 +121,9 @@ gt-y += \
+> >  	gt/intel_timeline.o \
+> >  	gt/intel_workarounds.o \
+> >  	gt/shmem_utils.o \
+> > -	gt/sysfs_engines.o
+> > +	gt/sysfs_engines.o \
+> > +	gt/sysfs_gt.o \
+> > +	gt/sysfs_gt_pm.o
 > 
-> no need to split line
-
-yeah... this was a change I was always very tempted to do but
-decided to leave it as it is because the patch is not mine. Will
-do!
-
-> >  {
-> >  	spin_lock_init(&gt->irq_lock);
-> >  
-> > @@ -47,19 +48,27 @@ void __intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
-> >  	intel_rps_init_early(&gt->rps);
-> >  }
-> >  
-> > +/* Preliminary initialization of Tile 0 */
+> shouldn't these be named as
 > 
-> maybe:
-> 
-> void intel_gts_init_early(struct drm_i915_private *i915)
+> > +	gt/intel_gt_sysfs.o \
+> > +	gt/intel_gt_pm_sysfs.o
 
-We had a discussion about the use of 'gts' vs 'gt' and all the
-previous refactoring patches[*] where coming because the use of
-'gts' brings confusion: what does gts mean? GTS or GTs? So that
-we decided to just use gt in its singular form and if needed,
-perhaps, use 'multi_gt' for plural.
+You are right with wanting a coherent prefix, but I kept the
+trend of starting with sysfs_gt*. We already have sysfs_engine.c.
 
-The function below is indeed used only during probe so that we
-can remove the first parameter and have it as you suggest.
+And, because I wouldn't like to have part of it sysfs_gt* and
+part of it intel_gt_sysfs*, then we either rename all or we leave
+it as it is.
 
+On the other hand if we are under i915/gt/... I don't expect it
+to be the sysfs of another system.
 
-[*] /i915->gt/i915->gt0/ and /i915->gts[]/i915->gt[]/
-
-> {
-> 	struct intel_gt *gt = &i915->gt0;
-> 	...
-> 
-> >  void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
-> >  {
-> >  	gt->i915 = i915;
-> >  	gt->uncore = &i915->uncore;
-> > +
-> > +	__intel_gt_init_early(gt);
-> >  }
+To be honest, I don't have a strong opinion on this. If you do,
+then I will change everything intel_gt_sysfs*.
 
 [...]
 
-> > -void intel_gt_driver_late_release(struct intel_gt *gt)
-> > +void intel_gt_driver_late_release(struct drm_i915_private *i915)
+> > +++ b/drivers/gpu/drm/i915/gt/sysfs_gt.c
+> > @@ -0,0 +1,136 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright © 2020 Intel Corporation
 > 
-> as breaks naming style maybe there should be different helper like:
-> 
-> void intel_gts_driver_late_release(struct drm_i915_private *i915)
-> {
-> 	struct intel_gt *gt;
-> 	unsigned int id;
-> 
-> 	for_each_gt(gt, i915, id)
-> 		intel_gt_driver_late_release(gt);
-> }
-> 
-> then we can use "intel_gts" prefix to indicate that we want to operate
-> on all GTs, not just single "intel_gt"
+> 2022 ?
 
-As I explained earlier, the 'gts' name brings confusion. Perhaps
-we can call it something like
-'intel_gt_all_driver_late_release()', but it looks a bit forced.
+Time flies... huh? :)
 
-Open for suggestions.
-
-> >  {
-> > +	struct intel_gt *gt;
-> > +	unsigned int id;
-> > +
-> >  	/* We need to wait for inflight RCU frees to release their grip */
-> >  	rcu_barrier();
-> >  
-> > -	intel_uc_driver_late_release(&gt->uc);
-> > -	intel_gt_fini_requests(gt);
-> > -	intel_gt_fini_reset(gt);
-> > -	intel_gt_fini_timelines(gt);
-> > -	intel_engines_free(gt);
-> > +	for_each_gt(gt, i915, id) {
-> > +		intel_uc_driver_late_release(&gt->uc);
-> > +		intel_gt_fini_requests(gt);
-> > +		intel_gt_fini_reset(gt);
-> > +		intel_gt_fini_timelines(gt);
-> > +		intel_engines_free(gt);
-> > +	}
-> >  }
-> >  
-> >  /**
-> > @@ -909,6 +922,112 @@ u32 intel_gt_read_register_fw(struct intel_gt *gt, i915_reg_t reg)
-> >  	return intel_uncore_read_fw(gt->uncore, reg);
-> >  }
-> >  
-> > +static int
-> > +intel_gt_tile_setup(struct intel_gt *gt, phys_addr_t phys_addr)
-> 
-> no need to split lines
-
-Yep!
-
+> > +void intel_gt_sysfs_register(struct intel_gt *gt)
 > > +{
-> > +	struct drm_i915_private *i915 = gt->i915;
+> > +	struct kobject *dir;
+> > +	char name[80];
+> > +
+> > +	/*
+> > +	 * We need to make things right with the
+> > +	 * ABI compatibility. The files were originally
+> > +	 * generated under the parent directory.
+> > +	 *
+> > +	 * We generate the files only for gt 0
+> > +	 * to avoid duplicates.
+> > +	 */
+> > +	if (!gt->info.id)
 > 
-> can be moved to "if" below
+> maybe we should have gt_is_root(gt) helper ?
+
+yes, makes sense.
+
+> > +		intel_gt_sysfs_pm_init(gt, gt_get_parent_obj(gt));
+> > +
+> > +	snprintf(name, sizeof(name), "gt%d", gt->info.id);
+> > +
+> > +	dir = intel_gt_create_kobj(gt, gt->i915->sysfs_gt, name);
+> > +	if (!dir) {
+> > +		drm_warn(&gt->i915->drm,
+> > +			 "failed to initialize %s sysfs root\n", name);
+> > +		return;
+> > +	}
+> > +
+> > +	if (sysfs_create_file(dir, &dev_attr_id.attr))
+> > +		drm_warn(&gt->i915->drm,
+> > +			 "failed to create sysfs %s info files\n", name);
+> 
+> can't we use default_groups in kobj_type ?
+
+yeah... I'll try that.
+
+[...]
+
+> > +static ssize_t rc6_enable_show(struct device *dev,
+> > +			       struct device_attribute *attr,
+> > +			       char *buff)
+> > +{
+> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> > +	u8 mask = 0;
+> > +
+> > +	if (HAS_RC6(gt->i915))
+> > +		mask |= BIT(0);
+> > +	if (HAS_RC6p(gt->i915))
+> > +		mask |= BIT(1);
+> > +	if (HAS_RC6pp(gt->i915))
+> > +		mask |= BIT(2);
+> > +
+> > +	return scnprintf(buff, PAGE_SIZE, "%x\n", mask);
+> 
+> sysfs_emit ?
 
 OK
 
-> > +	unsigned int id = gt->info.id;
-> > +	int ret;
+[...]
+
+> > +	ret = __intel_gt_sysfs_create_group(kobj, rc6_attr_group);
+> > +	if (ret)
+> > +		drm_err(&gt->i915->drm,
+> > +			"failed to create gt%u RC6 sysfs files\n", gt->info.id);
 > > +
-> > +	if (id) {
-> > +		struct intel_uncore_mmio_debug *mmio_debug;
-> > +		struct intel_uncore *uncore;
+> > +	if (HAS_RC6p(gt->i915)) {
+> > +		ret = __intel_gt_sysfs_create_group(kobj, rc6p_attr_group);
+> > +		if (ret)
+> > +			drm_err(&gt->i915->drm,
+> > +				"failed to create gt%u RC6p sysfs files\n",
+> > +				gt->info.id);
+> > +	}
 > > +
-> > +		/* For multi-tile platforms BAR0 must have at least 16MB per tile */
-> > +		if (GEM_WARN_ON(pci_resource_len(to_pci_dev(i915->drm.dev), 0) <
-> > +				(id + 1) * SZ_16M))
-> > +			return -EINVAL;
+> > +	if (IS_VALLEYVIEW(gt->i915) || IS_CHERRYVIEW(gt->i915)) {
+> > +		ret = __intel_gt_sysfs_create_group(kobj, media_rc6_attr_group);
+> > +		if (ret)
+> > +			drm_err(&gt->i915->drm,
+> > +				"failed to create media %u RC6 sysfs files\n",
+> > +				gt->info.id);
+> > +	}
 > 
-> we don't use here BAR0 so maybe we can move this check to
-> intel_gt_probe_all() where we look for BAR phys_addr ?
+> did you consider using attribute_group.is_visible instead adding groups
+> manually ?
 
-OK, then I will remove it from this patch and I will add it in
-the next series where we add the first multitile machine support.
+I can try this, as well.
 
-In intel_gt_probe_all(), right now, I don't know yet whether the
-platform is single tile or multitile and consequently check BAR0
-or not.
+[...]
 
-> > +	/*
-> > +	 * i915->gt[0] == &i915->gt0
-> > +	 */
-> > +#define I915_MAX_GT 4
-> > +	struct intel_gt *gt[I915_MAX_GT];
-> > +
-> >  	struct {
-> >  		struct i915_gem_contexts {
-> >  			spinlock_t lock; /* locks list */
-> > diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
-> > index 5625c9c38993..6a6324a08e72 100644
-> > --- a/drivers/gpu/drm/i915/intel_memory_region.h
-> > +++ b/drivers/gpu/drm/i915/intel_memory_region.h
-> > @@ -30,6 +30,9 @@ enum intel_memory_type {
-> >  enum intel_region_id {
-> >  	INTEL_REGION_SMEM = 0,
-> >  	INTEL_REGION_LMEM,
-> 
-> for completeness we should have:
-> 
->   	INTEL_REGION_LMEM_0 = INTEL_REGION_LMEM,
+> maybe this large but simple code movement should be done in a separate
+> patch so we could then apply smaller and easier to review fixes ?
 
-Makes sense, fortunately this is used only 15 times, won't be
-as painful as it was for /i915->gt/i915->gt0/.
-
-> > +	INTEL_REGION_LMEM1,
-> > +	INTEL_REGION_LMEM2,
-> > +	INTEL_REGION_LMEM3,
-> 
-> but likely not needed any of them since all we need is:
-> 
->   	INTEL_REGION_LMEM_n = INTEL_REGION_LMEM + I915_MAX_GT - 1,
-> 
-> but I'm not sure that I915_MAX_GT is available here, maybe it should
-> defined in separate header not in i915_drv.h or we should have
-
-I915_MAX_GT is available here, but to do something like you say
-we need to shift all the id's:
-
-   enum intel_region_id {
-   	INTEL_REGION_SMEM = 0,
-   	INTEL_REGION_LMEM,
-   	INTEL_REGION_STOLEN_SMEM = INTEL_REGION_LMEM + I915_MAX_GT,
-   	...
-   }
-   
-   #define INTEL_REGION_LMEM(n)	(INTEL_REGION_LMEM + I915_MAX_GT - n + 1)
-
-Otherwise we would have some inconsistent ID.
-
-But it doesn't look very pretty to me, though.
-
-> #define I915_MAX_LMEM 4
-> 
-> and then somewhere
-> 	
-> 	BUILD_BUG_ON(I915_MAX_LMEM != I915_MAX_GT);
-
-To be honest I'm not a big fan of I915_MAX_GT and when I will
-find some time I will try to get rid of it, as I think that the
-maximum number of gt's should be calculated during probe and
-stored somewhere in i915->max_gt, but this is a different story.
+I can try to split it, even though most of it is basically a
+copy/paste.
 
 > ~Michal
 
-Thanks a lot for your review!
+Thanks a lot for this review, as well!
 
 Andi
