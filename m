@@ -1,48 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB533492540
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 12:55:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 755CB492541
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 12:55:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0283210E627;
-	Tue, 18 Jan 2022 11:55:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9797810E2ED;
+	Tue, 18 Jan 2022 11:55:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21F8E10E2ED
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 11:55:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 238F410E6EC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 11:55:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642506942; x=1674042942;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=FQOZmEvLme6mlaOYK+iJq2r6/khOCX/MvwlSpLobiME=;
- b=hJmHGhnRikGodFraTUNg4PSLNX2QQx47qHLRGY63bY07NFT9x2N9rymV
- rUS56TCaNjurBNTTd6EdxMxR0o/ljy7IwBc5qaQpMhMqLcS+hogLUeR+M
- wKc8PS3Vu6KpHQKP1ilLyJB39RMfDDyqpN+lMnasyRp+sAa97uPKmkasM
- IivjdYLEQVYYMpMtcjUW5RC+A3Tz4ZMZXK4vPlI69D7yUjAz5Q1weslKS
- PtZ/ismeiiWOnB4g6zw9o0usnM0UcLdLw4dUu88IFm3+VpR2Vhr3whkNo
- tqpMk9uXOtewR7aIVfBU5heyk171szWrNyI19SL9aU41yHGNMOyi/ZQHL Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="232158550"
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="232158550"
+ t=1642506943; x=1674042943;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Ninqfu+0/AfhRGA1p3vUTlp0LxKN/K57Rlpdi3t1vJU=;
+ b=EjhD/3xkkrg4tnHZPQmJ7xcqJpjHSkg0e0uTTwejehUS4/dDP1h0OmiH
+ F8Ei/8oVCS+B32EgpkJqkFi+iATyOt2CZ6Yywf6/KyqlkrfYUpW1sLyC8
+ KGBh1f7i43Yl1hAonPu7V6WmhAPUdI0/YKnD7qI42h4m7tLaLtU2K9rrb
+ RlkPevT13On+uWCdwQrr5xSrzy6/4RkzBxH6j4Cc7fpog6dQ2l/36oUAU
+ zGa/l+nGcd1pg3vuwxFg0M9/AUlaZe3YkKrTDha1+7WrSRACKnFsBbh6g
+ LY6a4Io4bNAKH1sZAp8Oa/gr0CKU5kjxCT4oAO2q8re2iF1zr4qNOKVp7 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="232158553"
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="232158553"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2022 03:55:41 -0800
+ 18 Jan 2022 03:55:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="693365909"
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="693365914"
 Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
  ([10.237.72.65])
- by orsmga005.jf.intel.com with ESMTP; 18 Jan 2022 03:55:39 -0800
+ by orsmga005.jf.intel.com with ESMTP; 18 Jan 2022 03:55:41 -0800
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Jan 2022 13:55:42 +0200
-Message-Id: <20220118115544.15116-1-stanislav.lisovskiy@intel.com>
+Date: Tue, 18 Jan 2022 13:55:43 +0200
+Message-Id: <20220118115544.15116-2-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+In-Reply-To: <20220118115544.15116-1-stanislav.lisovskiy@intel.com>
+References: <20220118115544.15116-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/2] Tile 4 format support
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Introduce new Tile 4 format
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,27 +60,41 @@ Cc: m@freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tile4 in bspec format is 4K tile organized into
-64B subtiles with same basic shape as for legacy TileY.
+This tiling layout uses 4KB tiles in a row-major layout. It has the same
+shape as Tile Y at two granularities: 4KB (128B x 32) and 64B (16B x 4). It
+only differs from Tile Y at the 256B granularity in between. At this
+granularity, Tile Y has a shape of 16B x 32 rows, but this tiling has a shape
+of 64B x 8 rows.
 
-Stanislav Lisovskiy (2):
-  drm/i915: Introduce new Tile 4 format
-  drm/i915/dg2: Tile 4 plane format support
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+Acked-by: Nanley Chery <nanley.g.chery@intel.com>
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ include/uapi/drm/drm_fourcc.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
- drivers/gpu/drm/i915/display/intel_display.c  |  1 +
- drivers/gpu/drm/i915/display/intel_fb.c       | 15 +++++++++++-
- drivers/gpu/drm/i915/display/intel_fb.h       |  1 +
- drivers/gpu/drm/i915/display/intel_fbc.c      |  1 +
- .../drm/i915/display/intel_plane_initial.c    |  1 +
- .../drm/i915/display/skl_universal_plane.c    | 23 ++++++++++++-------
- drivers/gpu/drm/i915/i915_drv.h               |  1 +
- drivers/gpu/drm/i915/i915_pci.c               |  1 +
- drivers/gpu/drm/i915/i915_reg.h               |  1 +
- drivers/gpu/drm/i915/intel_device_info.h      |  1 +
- drivers/gpu/drm/i915/intel_pm.c               |  1 +
- include/uapi/drm/drm_fourcc.h                 | 11 +++++++++
- 12 files changed, 49 insertions(+), 9 deletions(-)
-
+diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+index fc0c1454d275..b73fe6797fc3 100644
+--- a/include/uapi/drm/drm_fourcc.h
++++ b/include/uapi/drm/drm_fourcc.h
+@@ -572,6 +572,17 @@ extern "C" {
+  */
+ #define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC fourcc_mod_code(INTEL, 8)
+ 
++/*
++ * Intel Tile 4 layout
++ *
++ * This is a tiled layout using 4KB tiles in a row-major layout. It has the same
++ * shape as Tile Y at two granularities: 4KB (128B x 32) and 64B (16B x 4). It
++ * only differs from Tile Y at the 256B granularity in between. At this
++ * granularity, Tile Y has a shape of 16B x 32 rows, but this tiling has a shape
++ * of 64B x 8 rows.
++ */
++#define I915_FORMAT_MOD_4_TILED         fourcc_mod_code(INTEL, 9)
++
+ /*
+  * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+  *
 -- 
 2.24.1.485.gad05a3d8e5
 
