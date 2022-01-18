@@ -1,45 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE021492C4C
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 18:26:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4853492CB9
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 18:53:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D14D210E35F;
-	Tue, 18 Jan 2022 17:26:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95D8F10E122;
+	Tue, 18 Jan 2022 17:53:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7367110E35F
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 17:26:52 +0000 (UTC)
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de
- [88.67.202.8])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 347CD1EC018C;
- Tue, 18 Jan 2022 18:26:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
- t=1642526806;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
- bh=CWaM8oIp7o2Aaev/wro+HXQnt9heh/Qc8Sja6PGiC6I=;
- b=Oj2BAifzOwJW2z2oqt8iF5j5YA6Q9zR7oT0UASVq0337uvHudzyu1rba49S7MNCbs3ZE3S
- ah04gGzTqruJ3yc2e/3P+q2BWRYIePZWkaRGtNiH3NhfU7zVeVrShzvFmKrRStPq8/DkLP
- dpQdJ/QpipwyQvGl6KkTvL2GuK0Wa8A=
-Date: Tue, 18 Jan 2022 18:26:48 +0100
-From: Borislav Petkov <bp@alien8.de>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <Yeb4WKOFNDNbx6tH@zn.tnic>
-References: <20220114002843.2083382-1-lucas.demarchi@intel.com>
- <YeaLIs9t0jhovC28@zn.tnic>
- <20220118163656.fzzkwubgoe5gz36k@ldmartin-desk2>
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D76A610E26B;
+ Tue, 18 Jan 2022 17:53:30 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: bbeckett) with ESMTPSA id 589381F43F7D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1642528409;
+ bh=OwV4Zr5QOQbazEPRvJ3FhdrZDC2kTVB0MX3yRi+Lzvs=;
+ h=From:To:Cc:Subject:Date:From;
+ b=ot1zrD5RNoVV++rE5FDdUfDxZLWMIvd6d75It3d4bpJ6J25XirCKK7syOCsVj8As8
+ Eul9QdoTTOUnCzBhfTS1ABJ1DYxn+ojafrcOqwWaC3FGbT7ObwArq7dJWzelCw0ZXI
+ EPCV3x3vAmlNxmTz8t6tkf9jhr4rLib7+52u81BfkS7KP5dzTOaQtKF8aVU84rJhgA
+ YYkmP7As+sfpDJY1Tjn7/9WaHJqHWAAJQvFdeYpxVcghkpb/e03uBSas0qxQfCn8RU
+ TRzFkDAfsoDaR6K3RcASoasO4MFAVHy+B9r0m7NjSKMXyb28+ZB7VVvSogFX2vA3Bi
+ WzogQXgHcRbOA==
+From: Robert Beckett <bob.beckett@collabora.com>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org
+Date: Tue, 18 Jan 2022 17:50:33 +0000
+Message-Id: <20220118175036.3840934-1-bob.beckett@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220118163656.fzzkwubgoe5gz36k@ldmartin-desk2>
-Subject: Re: [Intel-gfx] [PATCH v5 1/5] x86/quirks: Fix stolen detection
- with integrated + discrete GPU
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/4] discsrete card 64K page support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,66 +45,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Hansen <dave.hansen@linux.intel.com>, linux-pci@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, x86@kernel.org, stable@vger.kernel.org,
- Ingo Molnar <mingo@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Thomas Gleixner <tglx@linutronix.de>
+Cc: Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 18, 2022 at 08:36:56AM -0800, Lucas De Marchi wrote:
-> I had the impression the subject/title should be imperative, with it
-> more relaxed in the body. It seems we have one more difference among
-> subsystems and I will adapt on next submissions to x86.
+This series continues support for 64K pages for discrete cards.
+It supersedes the 64K patches from https://patchwork.freedesktop.org/series/95686/#rev4
+Changes since that series:
 
-We have written it down properly, in case it explains it better:
+- set min alignment for DG2 to 2MB in i915_address_space_init
+- replace coloring with simpler 2MB VA alignment for lmem buffers
+	- enforce alignment to 2MB for lmem objects on DG2 in i915_vma_insert
+	- expand vma reservation to round up to 2MB on DG2 in i915_vma_insert
+- add alignment test
 
-"The tip tree maintainers set value on following these rules, especially
-on the request to write changelogs in imperative mood and not
-impersonating code or the execution of it. This is not just a whim of
-the maintainers. Changelogs written in abstract words are more precise
-and tend to be less confusing than those written in the form of novels."
+v2: rebase and fix for async vma that landed
 
-from Documentation/process/maintainer-tip.rst
+Matthew Auld (3):
+  drm/i915: enforce min GTT alignment for discrete cards
+  drm/i915: support 64K GTT pages for discrete cards
+  drm/i915/uapi: document behaviour for DG2 64K support
 
-> > So I wonder: why can't you simply pass in a static struct chipset *
-> > pointer into the early_qrk[i].f function and in there you can set
-> > QFLAG_APPLIED or so, so that you can mark that the quirk is applied by
-> > using the nice, per-quirk flags someone has already added instead of
-> > this ugly static variable?
-> 
-> It seems you prefer v1. See 20211218061313.100571-1-lucas.demarchi@intel.com
+Robert Beckett (1):
+  drm/i915: add gtt misalignment test
 
-I do?
-
-I don't see there:
-
-	early_qrk[i].f(&early_qrk[i], num, slot, func)
-
-so that the ->f callback can set the flags. Or at least the flags passed
-in.
-
-If it is not clear what I mean, pls say so and I'll try to produce an
-example diff ontop.
-
-> Although in the review Bjorn suggested just splitting the commit, it was
-> also mentioned that the PCI subsystem has no such logic in its
-> equivalent pci_do_fixups(): a quirk/fixup needing that should instead
-> use a static local.
-
-Why?
-
-There's perfectly nice ->flags there for exactly stuff like that. static
-vars are ugly and should be avoided if possible.
-
-> What is special about patch 3?
-
-Nothing special. It is just ugly.
-
-Thx.
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |  60 +++++
+ .../i915/gem/selftests/i915_gem_client_blt.c  |  23 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c          | 108 ++++++++-
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |  14 ++
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |  12 +
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |   1 +
+ drivers/gpu/drm/i915/i915_vma.c               |  14 ++
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 226 +++++++++++++++---
+ include/uapi/drm/i915_drm.h                   |  44 +++-
+ 9 files changed, 453 insertions(+), 49 deletions(-)
 
 -- 
-Regards/Gruss,
-    Boris.
+2.25.1
 
-https://people.kernel.org/tglx/notes-about-netiquette
