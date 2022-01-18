@@ -2,56 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B946492B2E
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 17:27:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1814492B50
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 17:34:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A81CE10E20B;
-	Tue, 18 Jan 2022 16:27:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1094910E15E;
+	Tue, 18 Jan 2022 16:34:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63E5D10E20B
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 16:27:35 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0F4110E193;
+ Tue, 18 Jan 2022 16:34:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642523255; x=1674059255;
+ t=1642523670; x=1674059670;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=ZtnK6ux0UTDQpLUGnjBjzeqV6X0qkSkZGkE33pfgHBY=;
- b=dgta6MXU7dUTSaDTttgSfaJuIsKgLz68obsi1q7cj0kjNuU4Yu/6FEhf
- a/63ICqXx8Tz0E9R2Gf9ixfAIVxBDCoC96+m6+vpfZFbg7qD3Dwe8AnGy
- 3I8zvsfrN7ggO9m+CmzFcM58J0+qX9WKBRf1GeO/x1i3FSLWG6JOuUSm2
- UaE2CQ2W/Kjqtc5Rj6mGjDFbLURFI5ourd48O2Mpf363PFh9h/No5H3ge
- zinTOxwPRQdNuklEqwGWKof1+FJ3ewsQKI3AR//tE7Y4GQF8vcYWPkY9G
- zIcG7EzbS9RcW/LtBdVZ3YKtlmPCTAgCGD8sSMek6pj4crCF5FLrwoxFd Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="269236797"
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="269236797"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2022 08:27:08 -0800
+ bh=0C5whETnR1MnAnGV+Kl8KfclpcM8vOpmlvxwftMNJLw=;
+ b=HtreglfkqBnWFReUPCHWOpmjSoIfbULo4NvnefemC4TP9j2ylRTPpP64
+ 4DI2MHcRLw0kH+YFO9i0KHRoHZs/a3pMO6RHBf9VuTLP1Z6ZsBmE9XL9V
+ oK2MfzxLhWzxFRCzxNCsndfIm7OW9piLhrDEZJbzvtBGJWf5pgbDtbdpj
+ sCfzNxWu9iqh9I8CcZnnLIkSntAFg6PQtCjR+iokvxTV7cRv9lEXK2pY5
+ qE3ELg8WZIyzYU7GQk7CSfQ/42j0cRNW4QFdxYtNE4b043AgUJK/0kktY
+ JHYJV77wVELKDnYiFtE+N65DVMGQUBXDIuorZ7hxDeIRte8UxxrsQwyi/ g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="331208591"
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="331208591"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2022 08:34:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="560719074"
+X-IronPort-AV: E=Sophos;i="5.88,297,1635231600"; d="scan'208";a="492720508"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by orsmga001.jf.intel.com with SMTP; 18 Jan 2022 08:27:06 -0800
+ by orsmga002.jf.intel.com with SMTP; 18 Jan 2022 08:34:22 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 18 Jan 2022 18:27:05 +0200
-Date: Tue, 18 Jan 2022 18:27:05 +0200
+ Tue, 18 Jan 2022 18:34:20 +0200
+Date: Tue, 18 Jan 2022 18:34:20 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <YebqWZkvKJiQxnzQ@intel.com>
-References: <20211201152552.7821-1-ville.syrjala@linux.intel.com>
- <20211201152552.7821-8-ville.syrjala@linux.intel.com>
- <500a2ae59268fe4579ffcf1164589bf77791a2ad.camel@intel.com>
- <YeYP5AakqGlkVXsE@intel.com>
- <a48b322c7bc9930348f999a9372205020dbb4f23.camel@intel.com>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Message-ID: <YebsDDwzBJHm+fKu@intel.com>
+References: <20211004115913.23889-1-manasi.d.navare@intel.com>
+ <20211022195112.GA1609@labuser-Z97X-UD5H>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a48b322c7bc9930348f999a9372205020dbb4f23.camel@intel.com>
+In-Reply-To: <20211022195112.GA1609@labuser-Z97X-UD5H>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 07/14] drm/i915: Clean up pre-skl primary
- plane registers
+Subject: Re: [Intel-gfx] [PATCH v3] drm/atomic: Add the crtc to affected
+ crtc only if uapi.enable = true
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,55 +61,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Daniel Stone <daniels@collabora.com>, Simon Ser <contact@emersion.fr>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Pekka Paalanen <pekka.paalanen@collabora.co.uk>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 18, 2022 at 01:40:41PM +0000, Souza, Jose wrote:
-> On Tue, 2022-01-18 at 02:55 +0200, Ville Syrjälä wrote:
-> > On Wed, Jan 12, 2022 at 08:12:31PM +0000, Souza, Jose wrote:
-> > > On Wed, 2021-12-01 at 17:25 +0200, Ville Syrjala wrote:
-> > > > @@ -427,9 +427,9 @@ static void i9xx_plane_update_noarm(struct intel_plane *plane,
-> > > >  		 * program whatever is there.
-> > > >  		 */
-> > > >  		intel_de_write_fw(dev_priv, DSPPOS(i9xx_plane),
-> > > > -				  (crtc_y << 16) | crtc_x);
-> > > > +				  DSP_POS_Y(crtc_y) | DSP_POS_X(crtc_x));
-> > > >  		intel_de_write_fw(dev_priv, DSPSIZE(i9xx_plane),
-> > > > -				  ((crtc_h - 1) << 16) | (crtc_w - 1));
-> > > > +				  DSP_HEIGHT(crtc_h - 1) | DSP_POS_X(crtc_w - 1));
-> > > 
-> > > DSP_HEIGHT(crtc_h - 1) | DSP_WIDTH(crtc_w - 1));
-> > 
-> > Whoops. Thanks for cathcing that.
-> > 
-> > <snip>
-> > > > +#define   DSP_ENABLE			REG_BIT(31)
-> > > 
-> > > I really don't like DSP, it is broadly used acronym to Digital Signal Processors.
-> > > Would prefer to have DISPLAY or DISP.
-> > 
-> > The registers are called DSP<foo>, so the spec makes the case for DSP_.
-> > The problem with DISP_/etc. is that the namespace then makes it a bit
-> > hard to figure out what register the defines belong to.
-> > 
-> > > 
-> > > Anyways, DSP_ENABLE should have also have plane on it.
-> > 
-> > DSP==display plane. Any more would be redundant.
+On Fri, Oct 22, 2021 at 12:51:12PM -0700, Navare, Manasi wrote:
 > 
-> Damn, even worst, thought it was DiSPlay.
+> Hi Ville,
+> 
+> Could you take a look at this, this addresses teh review comments from prev version
 
-Well I guess it might be that too. I think the old docs tend to use
-"display A" vs. "display plane A" etc. interchangeably when talking
-about planes.
+I don't think I ever got an answer to my question as to whether this
+was tested with all the interesting scenarios:
+1) just with the master crtc added by userspace into the commit
+2) just with the slave crtc added by userspace into the commit
+3) both crtcs added by userspace into the commit
 
-> But if this is the BSpec name, go ahead with it. 
+I guess 1) has been tested since that happens all the time, but the other
+two scanarios would likely need to be done with a synthetic test to make
+sure we're actually hitting them.
 
-I guess I could be convinced to use DISP_ just to raise a few less
-eyebrows. Just a bit sad that the namespace won't match the register
-name then. But I suppose we have that sort of thing going on in other
-places too.
+I think it *should* work, but I'd like to have real proof of that.
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+> 
+> Manasi
+> 
+> On Mon, Oct 04, 2021 at 04:59:13AM -0700, Manasi Navare wrote:
+> > In case of a modeset where a mode gets split across mutiple CRTCs
+> > in the driver specific implementation (bigjoiner in i915) we wrongly count
+> > the affected CRTCs based on the drm_crtc_mask and indicate the stolen CRTC as
+> > an affected CRTC in atomic_check_only().
+> > This triggers a warning since affected CRTCs doent match requested CRTC.
+> > 
+> > To fix this in such bigjoiner configurations, we should only
+> > increment affected crtcs if that CRTC is enabled in UAPI not
+> > if it is just used internally in the driver to split the mode.
+> > 
+> > v3: Add the same uapi crtc_state->enable check in requested
+> > crtc calc (Ville)
+> > 
+> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Cc: Simon Ser <contact@emersion.fr>
+> > Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+> > Cc: Daniel Stone <daniels@collabora.com>
+> > Cc: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: dri-devel@lists.freedesktop.org
+> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > ---
+> >  drivers/gpu/drm/drm_atomic.c | 12 ++++++++----
+> >  1 file changed, 8 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> > index ff1416cd609a..a1e4c7905ebb 100644
+> > --- a/drivers/gpu/drm/drm_atomic.c
+> > +++ b/drivers/gpu/drm/drm_atomic.c
+> > @@ -1310,8 +1310,10 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+> >  
+> >  	DRM_DEBUG_ATOMIC("checking %p\n", state);
+> >  
+> > -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
+> > -		requested_crtc |= drm_crtc_mask(crtc);
+> > +	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+> > +		if (new_crtc_state->enable)
+> > +			requested_crtc |= drm_crtc_mask(crtc);
+> > +	}
+> >  
+> >  	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
+> >  		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
+> > @@ -1360,8 +1362,10 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+> >  		}
+> >  	}
+> >  
+> > -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
+> > -		affected_crtc |= drm_crtc_mask(crtc);
+> > +	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+> > +		if (new_crtc_state->enable)
+> > +			affected_crtc |= drm_crtc_mask(crtc);
+> > +	}
+> >  
+> >  	/*
+> >  	 * For commits that allow modesets drivers can add other CRTCs to the
+> > -- 
+> > 2.19.1
+> > 
 
 -- 
 Ville Syrjälä
