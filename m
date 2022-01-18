@@ -1,54 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5608491305
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 01:55:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9DDA491350
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 02:11:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF82211289B;
-	Tue, 18 Jan 2022 00:55:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0857710E2FA;
+	Tue, 18 Jan 2022 01:11:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83B0611289A
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 00:55:03 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE66410E2FA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 01:11:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642467303; x=1674003303;
+ t=1642468283; x=1674004283;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=HbICG2+jhJP/czq2HI1gEvCOnvtCpKV798JGkjPb7E4=;
- b=ElKs5bbVtdN9UZYONm/oK98D6VfAaR9DFGH/RaWW7n9ROy+Llxlqa4VX
- DvhfmmgiPzhdEm2RwG72bZH6ZgAVxFurwM4FXI4E6jKCSXM1rKflKeAiR
- O3rI4Po3MUWJ5oEZFsxSrvdQkEngytp6EVw7WpkwrpqxlepazqtwXWXg9
- G6bcYz8A94yzXsz80+h/gUqtVN7km/NN/TkZj4OO1RjspOZq7o5CiyYym
- hbqplazRgdEwVOHjQy8JFU+Wz/aVOXQCCNRoACkjiCS9qm4VfD9tPFSHL
- d/ErJ8nNh1fWbm6U61UoczXJ9h0/Z/XrojLhWKjU/MyGYlDmZHxUZaXMS A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="331062063"
-X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="331062063"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2022 16:55:03 -0800
+ bh=NMY1fRpHoDTJXpjJSj+o5tPDNek/9tHkjFv+RYqrbjQ=;
+ b=X0EP6R23f+HewDcu98FCOjsOdJikLPdABg9+ecT8lJLvM50ZbQI/6oqU
+ Bd626YR2pF8xwSpQwbQ/Tgtw6cGWRk85nnztO0aYbZ+4IrFhLJc724zdc
+ 4O1qEELyGmKrk3CDRZhTN7sL0ebNiXhK4ajaChvJhM58HXRf878h8CvPK
+ uar2qAD5dpCfoKZBb8ZgNCNUvyBW1mBOsYDFJd5M9lHEZICcKh7W+YgOE
+ UO/txKv88gnCpvaEIb9arLG6XnuoBLcC97uYv0St1sD/3jUSk8+WJZ7js
+ eZv41v2lCIffTg9Lq1wkMZZUxeqZPZf4Uoz9rPvlT2ecefzXPw8/bP4FV g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="308052771"
+X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="308052771"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2022 17:11:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="671686729"
+X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="530157370"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by fmsmga001.fm.intel.com with SMTP; 17 Jan 2022 16:55:00 -0800
+ by fmsmga007.fm.intel.com with SMTP; 17 Jan 2022 17:11:20 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 18 Jan 2022 02:55:00 +0200
-Date: Tue, 18 Jan 2022 02:55:00 +0200
+ Tue, 18 Jan 2022 03:11:20 +0200
+Date: Tue, 18 Jan 2022 03:11:20 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <YeYP5AakqGlkVXsE@intel.com>
+Message-ID: <YeYTuJcZWXanecFf@intel.com>
 References: <20211201152552.7821-1-ville.syrjala@linux.intel.com>
- <20211201152552.7821-8-ville.syrjala@linux.intel.com>
- <500a2ae59268fe4579ffcf1164589bf77791a2ad.camel@intel.com>
+ <20211201152552.7821-10-ville.syrjala@linux.intel.com>
+ <32279e4aa8f858db27c3eac353ec229179965381.camel@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <500a2ae59268fe4579ffcf1164589bf77791a2ad.camel@intel.com>
+In-Reply-To: <32279e4aa8f858db27c3eac353ec229179965381.camel@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 07/14] drm/i915: Clean up pre-skl primary
+Subject: Re: [Intel-gfx] [PATCH 09/14] drm/i915: Clean up vlv/chv sprite
  plane registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,41 +66,34 @@ Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 12, 2022 at 08:12:31PM +0000, Souza, Jose wrote:
+On Fri, Jan 14, 2022 at 04:34:14PM +0000, Souza, Jose wrote:
 > On Wed, 2021-12-01 at 17:25 +0200, Ville Syrjala wrote:
-> > @@ -427,9 +427,9 @@ static void i9xx_plane_update_noarm(struct intel_plane *plane,
-> >  		 * program whatever is there.
-> >  		 */
-> >  		intel_de_write_fw(dev_priv, DSPPOS(i9xx_plane),
-> > -				  (crtc_y << 16) | crtc_x);
-> > +				  DSP_POS_Y(crtc_y) | DSP_POS_X(crtc_x));
-> >  		intel_de_write_fw(dev_priv, DSPSIZE(i9xx_plane),
-> > -				  ((crtc_h - 1) << 16) | (crtc_w - 1));
-> > +				  DSP_HEIGHT(crtc_h - 1) | DSP_POS_X(crtc_w - 1));
+> > @@ -7238,28 +7257,36 @@ enum {
+> >  #define SPCSCYGOFF(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d900)
+> >  #define SPCSCCBOFF(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d904)
+> >  #define SPCSCCROFF(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d908)
+> > -#define  SPCSC_OOFF(x)		(((x) & 0x7ff) << 16) /* s11 */
+> > -#define  SPCSC_IOFF(x)		(((x) & 0x7ff) << 0) /* s11 */
+> > +#define  SPCSC_OOFF_MASK	REG_GENMASK(26, 16)
+> > +#define  SPCSC_OOFF(x)		REG_FIELD_PREP(SPCSC_OOFF_MASK, (x) & 0x7ff) /* s11 */
 > 
-> DSP_HEIGHT(crtc_h - 1) | DSP_WIDTH(crtc_w - 1));
+> With REG_FIELD_PREP you don't need to do (x) & 0x7ff.
 
-Whoops. Thanks for cathcing that.
+Actually we do. These are two's complemnt so if we pass in a wider
+negative value we need to mask off a bunch of the the sign bits.
+Yes, REG_FIELD_PREP() does that in the end but it also BUILD_BUG()s
+if you pass in a constant value that exceeds the bitmask. And for
+these registers we do pass in negative constants.
 
-<snip>
-> > +#define   DSP_ENABLE			REG_BIT(31)
-> 
-> I really don't like DSP, it is broadly used acronym to Digital Signal Processors.
-> Would prefer to have DISPLAY or DISP.
+I'm not entirely sure how much magic we should have in these macros
+tbh, vs. just forcing the caller to handle it. If we had readout for
+these then the caller would anyway have take care to sign extend the
+result. So by that argument maybe these macros shouldn't have anything
+like this. Not sure.
 
-The registers are called DSP<foo>, so the spec makes the case for DSP_.
-The problem with DISP_/etc. is that the namespace then makes it a bit
-hard to figure out what register the defines belong to.
-
-> 
-> Anyways, DSP_ENABLE should have also have plane on it.
-
-DSP==display plane. Any more would be redundant.
-
-> 
-> Other than above and a minor typo reported in general looks good to me but it also broke build because it missed GVT renames.
-
-Always happens to me :/
+I've also occasioanlly pondered about extending that BUILD_BUG_ON()
+behaviour to do runtime checks as well, hidden behind a suitable
+debug kconfig knob. But haven't actually written the patch for it.
 
 -- 
 Ville Syrjälä
