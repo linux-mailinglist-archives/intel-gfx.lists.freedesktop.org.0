@@ -1,52 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E1749127F
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 01:01:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5608491305
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 01:55:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 960BB1126A3;
-	Tue, 18 Jan 2022 00:01:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF82211289B;
+	Tue, 18 Jan 2022 00:55:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDC201126A3;
- Tue, 18 Jan 2022 00:01:03 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83B0611289A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 00:55:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642464064; x=1674000064;
+ t=1642467303; x=1674003303;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=5VOGaDC79aqoYDjcQTGORZB39wAz6+QYpSqAjmyCUZo=;
- b=nEFkvUn67UjTDphOynjdBOpGn8IhBP4VXP60PR3PkewYZgpqOd0amd/j
- 77DjhZ0hf/H7fWiON6uOyMfTmj7X7f/0XghJODpclvqWTePU8X6JAGFUu
- GibhyNgie604I1c2b0fnLTLei96rt0TTkp6D/3dNyC1Tcb/sMBO1LmNBT
- w0+c8RZg/cZpmaCkGDY3/Dgd9oPaFIIeQ9bW8v81BW9uQjxXrs7Q+jS1o
- 0/qd/mf1FyXwmVHEktPU7ieHdVsTMBXWbgVs6g3n+449OzLCiiSoNSemg
- mTVEdfM9sE+yW/5i/z3hjPsGgoewdJC0mDe7hMabeQ1HypsdC+/qlDt+6 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="232065796"
-X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="232065796"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2022 16:01:02 -0800
-X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="531517223"
-Received: from nkohl-mobl.ger.corp.intel.com (HELO intel.com) ([10.249.41.90])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2022 16:00:58 -0800
-Date: Tue, 18 Jan 2022 02:00:55 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <YeYDN/GG/C3/6mE0@intel.intel>
-References: <20220117193255.236599-1-andi.shyti@linux.intel.com>
- <20220117193255.236599-3-andi.shyti@linux.intel.com>
- <d3eb3ece-3f15-7c2c-dd72-57000835bd65@intel.com>
+ bh=HbICG2+jhJP/czq2HI1gEvCOnvtCpKV798JGkjPb7E4=;
+ b=ElKs5bbVtdN9UZYONm/oK98D6VfAaR9DFGH/RaWW7n9ROy+Llxlqa4VX
+ DvhfmmgiPzhdEm2RwG72bZH6ZgAVxFurwM4FXI4E6jKCSXM1rKflKeAiR
+ O3rI4Po3MUWJ5oEZFsxSrvdQkEngytp6EVw7WpkwrpqxlepazqtwXWXg9
+ G6bcYz8A94yzXsz80+h/gUqtVN7km/NN/TkZj4OO1RjspOZq7o5CiyYym
+ hbqplazRgdEwVOHjQy8JFU+Wz/aVOXQCCNRoACkjiCS9qm4VfD9tPFSHL
+ d/ErJ8nNh1fWbm6U61UoczXJ9h0/Z/XrojLhWKjU/MyGYlDmZHxUZaXMS A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10230"; a="331062063"
+X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="331062063"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2022 16:55:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,296,1635231600"; d="scan'208";a="671686729"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
+ by fmsmga001.fm.intel.com with SMTP; 17 Jan 2022 16:55:00 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 18 Jan 2022 02:55:00 +0200
+Date: Tue, 18 Jan 2022 02:55:00 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <YeYP5AakqGlkVXsE@intel.com>
+References: <20211201152552.7821-1-ville.syrjala@linux.intel.com>
+ <20211201152552.7821-8-ville.syrjala@linux.intel.com>
+ <500a2ae59268fe4579ffcf1164589bf77791a2ad.camel@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <d3eb3ece-3f15-7c2c-dd72-57000835bd65@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 2/2] drm/i915/gt: make a gt sysfs group
- and move power management files
+In-Reply-To: <500a2ae59268fe4579ffcf1164589bf77791a2ad.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 07/14] drm/i915: Clean up pre-skl primary
+ plane registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,179 +62,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Michal,
-
-> > /sys/.../card0
-> >          ├── gt
-> >          │   ├── gt0
-> >          │   │   ├── id
-> >          │   │   ├── rc6_enable
-> >          │   │   ├── rc6_residency_ms
-> >          │   │   ├── rps_act_freq_mhz
-> >          │   │   ├── rps_boost_freq_mhz
-> >          │   │   ├── rps_cur_freq_mhz
-> >          │   │   ├── rps_max_freq_mhz
-> >          │   │   ├── rps_min_freq_mhz
-> >          │   │   ├── rps_RP0_freq_mhz
-> >          │   │   ├── rps_RP1_freq_mhz
-> >          │   │   └── rps_RPn_freq_mhz
-> > 	 .   .
-> > 	 .   .
-> > 	 .   .
-> >          │   └── gt3
+On Wed, Jan 12, 2022 at 08:12:31PM +0000, Souza, Jose wrote:
+> On Wed, 2021-12-01 at 17:25 +0200, Ville Syrjala wrote:
+> > @@ -427,9 +427,9 @@ static void i9xx_plane_update_noarm(struct intel_plane *plane,
+> >  		 * program whatever is there.
+> >  		 */
+> >  		intel_de_write_fw(dev_priv, DSPPOS(i9xx_plane),
+> > -				  (crtc_y << 16) | crtc_x);
+> > +				  DSP_POS_Y(crtc_y) | DSP_POS_X(crtc_x));
+> >  		intel_de_write_fw(dev_priv, DSPSIZE(i9xx_plane),
+> > -				  ((crtc_h - 1) << 16) | (crtc_w - 1));
+> > +				  DSP_HEIGHT(crtc_h - 1) | DSP_POS_X(crtc_w - 1));
 > 
-> gtN ?
+> DSP_HEIGHT(crtc_h - 1) | DSP_WIDTH(crtc_w - 1));
 
-yep!
+Whoops. Thanks for cathcing that.
 
-> > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> > index aa86ac33effc..5fd203c626fc 100644
-> > --- a/drivers/gpu/drm/i915/Makefile
-> > +++ b/drivers/gpu/drm/i915/Makefile
-> > @@ -121,7 +121,9 @@ gt-y += \
-> >  	gt/intel_timeline.o \
-> >  	gt/intel_workarounds.o \
-> >  	gt/shmem_utils.o \
-> > -	gt/sysfs_engines.o
-> > +	gt/sysfs_engines.o \
-> > +	gt/sysfs_gt.o \
-> > +	gt/sysfs_gt_pm.o
+<snip>
+> > +#define   DSP_ENABLE			REG_BIT(31)
 > 
-> shouldn't these be named as
+> I really don't like DSP, it is broadly used acronym to Digital Signal Processors.
+> Would prefer to have DISPLAY or DISP.
+
+The registers are called DSP<foo>, so the spec makes the case for DSP_.
+The problem with DISP_/etc. is that the namespace then makes it a bit
+hard to figure out what register the defines belong to.
+
 > 
-> > +	gt/intel_gt_sysfs.o \
-> > +	gt/intel_gt_pm_sysfs.o
+> Anyways, DSP_ENABLE should have also have plane on it.
 
-You are right with wanting a coherent prefix, but I kept the
-trend of starting with sysfs_gt*. We already have sysfs_engine.c.
+DSP==display plane. Any more would be redundant.
 
-And, because I wouldn't like to have part of it sysfs_gt* and
-part of it intel_gt_sysfs*, then we either rename all or we leave
-it as it is.
-
-On the other hand if we are under i915/gt/... I don't expect it
-to be the sysfs of another system.
-
-To be honest, I don't have a strong opinion on this. If you do,
-then I will change everything intel_gt_sysfs*.
-
-[...]
-
-> > +++ b/drivers/gpu/drm/i915/gt/sysfs_gt.c
-> > @@ -0,0 +1,136 @@
-> > +// SPDX-License-Identifier: MIT
-> > +/*
-> > + * Copyright © 2020 Intel Corporation
 > 
-> 2022 ?
+> Other than above and a minor typo reported in general looks good to me but it also broke build because it missed GVT renames.
 
-Time flies... huh? :)
+Always happens to me :/
 
-> > +void intel_gt_sysfs_register(struct intel_gt *gt)
-> > +{
-> > +	struct kobject *dir;
-> > +	char name[80];
-> > +
-> > +	/*
-> > +	 * We need to make things right with the
-> > +	 * ABI compatibility. The files were originally
-> > +	 * generated under the parent directory.
-> > +	 *
-> > +	 * We generate the files only for gt 0
-> > +	 * to avoid duplicates.
-> > +	 */
-> > +	if (!gt->info.id)
-> 
-> maybe we should have gt_is_root(gt) helper ?
-
-yes, makes sense.
-
-> > +		intel_gt_sysfs_pm_init(gt, gt_get_parent_obj(gt));
-> > +
-> > +	snprintf(name, sizeof(name), "gt%d", gt->info.id);
-> > +
-> > +	dir = intel_gt_create_kobj(gt, gt->i915->sysfs_gt, name);
-> > +	if (!dir) {
-> > +		drm_warn(&gt->i915->drm,
-> > +			 "failed to initialize %s sysfs root\n", name);
-> > +		return;
-> > +	}
-> > +
-> > +	if (sysfs_create_file(dir, &dev_attr_id.attr))
-> > +		drm_warn(&gt->i915->drm,
-> > +			 "failed to create sysfs %s info files\n", name);
-> 
-> can't we use default_groups in kobj_type ?
-
-yeah... I'll try that.
-
-[...]
-
-> > +static ssize_t rc6_enable_show(struct device *dev,
-> > +			       struct device_attribute *attr,
-> > +			       char *buff)
-> > +{
-> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> > +	u8 mask = 0;
-> > +
-> > +	if (HAS_RC6(gt->i915))
-> > +		mask |= BIT(0);
-> > +	if (HAS_RC6p(gt->i915))
-> > +		mask |= BIT(1);
-> > +	if (HAS_RC6pp(gt->i915))
-> > +		mask |= BIT(2);
-> > +
-> > +	return scnprintf(buff, PAGE_SIZE, "%x\n", mask);
-> 
-> sysfs_emit ?
-
-OK
-
-[...]
-
-> > +	ret = __intel_gt_sysfs_create_group(kobj, rc6_attr_group);
-> > +	if (ret)
-> > +		drm_err(&gt->i915->drm,
-> > +			"failed to create gt%u RC6 sysfs files\n", gt->info.id);
-> > +
-> > +	if (HAS_RC6p(gt->i915)) {
-> > +		ret = __intel_gt_sysfs_create_group(kobj, rc6p_attr_group);
-> > +		if (ret)
-> > +			drm_err(&gt->i915->drm,
-> > +				"failed to create gt%u RC6p sysfs files\n",
-> > +				gt->info.id);
-> > +	}
-> > +
-> > +	if (IS_VALLEYVIEW(gt->i915) || IS_CHERRYVIEW(gt->i915)) {
-> > +		ret = __intel_gt_sysfs_create_group(kobj, media_rc6_attr_group);
-> > +		if (ret)
-> > +			drm_err(&gt->i915->drm,
-> > +				"failed to create media %u RC6 sysfs files\n",
-> > +				gt->info.id);
-> > +	}
-> 
-> did you consider using attribute_group.is_visible instead adding groups
-> manually ?
-
-I can try this, as well.
-
-[...]
-
-> maybe this large but simple code movement should be done in a separate
-> patch so we could then apply smaller and easier to review fixes ?
-
-I can try to split it, even though most of it is basically a
-copy/paste.
-
-> ~Michal
-
-Thanks a lot for this review, as well!
-
-Andi
+-- 
+Ville Syrj�l�
+Intel
