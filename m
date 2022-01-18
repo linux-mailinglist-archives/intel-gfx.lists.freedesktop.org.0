@@ -1,43 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A40254922F7
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 10:40:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0819E49230C
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jan 2022 10:46:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95EAC10E9E3;
-	Tue, 18 Jan 2022 09:40:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BB4A1129D1;
+	Tue, 18 Jan 2022 09:46:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97B8E10E9E3
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jan 2022 09:40:53 +0000 (UTC)
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de
- [88.67.202.8])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id B641A1EC018C;
- Tue, 18 Jan 2022 10:40:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
- t=1642498847;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
- bh=1krZRAcW2/qQOgGBfGLOIoGvqo818a87chwmI8ChMGc=;
- b=R3Ufj3Pf/CNEgauoGpET//WwMKJG+l61x23bQgi9j9qbI/UOOuP+c//D/a/Y1cg/zM1qNI
- DnrbsJI+HcRo/41FnqORyxRyzSKvdDt2Hkno7oHAJFUFUaFRXtq5xfUPWrizsxq6LSH/5V
- 8cKjJ3CaWuTO+CfsbKRH/JVUGmMWEAs=
-Date: Tue, 18 Jan 2022 10:40:50 +0100
-From: Borislav Petkov <bp@alien8.de>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <YeaLIs9t0jhovC28@zn.tnic>
-References: <20220114002843.2083382-1-lucas.demarchi@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 76EC01129E0;
+ Tue, 18 Jan 2022 09:46:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 739A3A47DF;
+ Tue, 18 Jan 2022 09:46:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220114002843.2083382-1-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 1/5] x86/quirks: Fix stolen detection
- with integrated + discrete GPU
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 18 Jan 2022 09:46:27 -0000
+Message-ID: <164249918747.25100.6705475906782623942@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220118092354.11631-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220118092354.11631-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Fix_bandwith_related_cdclk_calculations?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,92 +40,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Hansen <dave.hansen@linux.intel.com>, linux-pci@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, x86@kernel.org, stable@vger.kernel.org,
- Ingo Molnar <mingo@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Thomas Gleixner <tglx@linutronix.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-n Thu, Jan 13, 2022 at 04:28:39PM -0800, Lucas De Marchi wrote:
-> early_pci_scan_bus() does a depth-first traversal, possibly calling
-> the quirk functions for each device based on vendor, device and class
-> from early_qrk table. intel_graphics_quirks() however uses PCI_ANY_ID
-> and does additional filtering in the quirk.
-> 
-> If there is an Intel integrated + discrete GPU the quirk may be called
-> first for the discrete GPU based on the PCI topology. Then we will fail
-> to reserve the system stolen memory for the integrated GPU, because we
-> will already have marked the quirk as "applied".
+== Series Details ==
 
-Who is "we"?
+Series: drm/i915: Fix bandwith related cdclk calculations
+URL   : https://patchwork.freedesktop.org/series/98975/
+State : warning
 
-Please use passive voice in your commit message: no "we" or "I", etc,
-and describe your changes in imperative mood.
+== Summary ==
 
-Bottom line is: personal pronouns are ambiguous in text, especially with
-so many parties/companies/etc developing the kernel so let's avoid them
-please.
+$ dim checkpatch origin/drm-tip
+f65f6b681b85 drm/i915: Drop pointless dev_priv argument
+9668fabd85a5 drm/i915: Extract skl_ddb_entry_init()
+dee30e2a1ae4 drm/i915: Fix plane relative_data_rate calculation
+73d19f52835a drm/i915: Introduce skl_plane_ddb_iter
+fbf2a65a754f drm/i915: Extract skl_allocate_plane_ddb()
+8eb5c0bb1655 drm/i915: Extract skl_crtc_calc_dbuf_bw()
+e7ec581a03b3 drm/i915: Tweak plane ddb allocation tracking
+988a18fdccaa drm/i915: Split plane data_rate into data_rate+data_rate_y
+f3dc6a126906 drm/i915: Pre-calculate plane relative data rate
+-:345: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#345: FILE: drivers/gpu/drm/i915/intel_pm.c:5107:
++								iter.start + iter.uv_total[plane_id]);
 
-> This was reproduced in a setup with Alderlake-P (integrated) + DG2
-> (discrete), with the following PCI topology:
-> 
-> 	- 00:01.0 Bridge
-> 	  `- 03:00.0 DG2
-> 	- 00:02.0 Integrated GPU
-> 
-> So, stop using the QFLAG_APPLY_ONCE flag, replacing it with a static
-> local variable. We can set this variable in the right place, inside
-> intel_graphics_quirks(), only when the quirk was actually applied, i.e.
-> when we find the integrated GPU based on the intel_early_ids table.
-> 
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
-> 
-> v5: apply fix before the refactor
-> 
->  arch/x86/kernel/early-quirks.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
-> index 1ca3a56fdc2d..de9a76eb544e 100644
-> --- a/arch/x86/kernel/early-quirks.c
-> +++ b/arch/x86/kernel/early-quirks.c
-> @@ -589,10 +589,14 @@ intel_graphics_stolen(int num, int slot, int func,
->  
->  static void __init intel_graphics_quirks(int num, int slot, int func)
->  {
-> +	static bool quirk_applied __initdata;
->  	const struct intel_early_ops *early_ops;
->  	u16 device;
->  	int i;
->  
-> +	if (quirk_applied)
-> +		return;
-> +
->  	device = read_pci_config_16(num, slot, func, PCI_DEVICE_ID);
->  
->  	for (i = 0; i < ARRAY_SIZE(intel_early_ids); i++) {
-> @@ -605,6 +609,8 @@ static void __init intel_graphics_quirks(int num, int slot, int func)
->  
->  		intel_graphics_stolen(num, slot, func, early_ops);
->  
-> +		quirk_applied = true;
-> +
->  		return;
->  	}
+total: 0 errors, 1 warnings, 0 checks, 302 lines checked
+3d9ea614fc38 drm/i915: Remove total[] and uv_total[] from ddb allocation
+2eca9b239d7d drm/i915: Nuke intel_bw_calc_min_cdclk()
+28a02ba19afc drm/i915: Round up when calculating display bandwidth requirements
+08b2d8e87205 drm/i915: Properly write lock bw_state when it changes
+e3a2fec61118 drm/i915: Fix DBUF bandwidth vs. cdclk handling
+7d55ec242dd3 drm/i915: Add "maximum pipe read bandwidth" checks
 
-So I wonder: why can't you simply pass in a static struct chipset *
-pointer into the early_qrk[i].f function and in there you can set
-QFLAG_APPLIED or so, so that you can mark that the quirk is applied by
-using the nice, per-quirk flags someone has already added instead of
-this ugly static variable?
 
-Patch 3 especially makes me go, huh?
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
