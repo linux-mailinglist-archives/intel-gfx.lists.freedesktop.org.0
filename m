@@ -1,33 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE76494039
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 19:56:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AE2C49406D
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 20:11:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5918610EC80;
-	Wed, 19 Jan 2022 18:56:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32B9810ED40;
+	Wed, 19 Jan 2022 19:11:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5F7FF10EC99;
- Wed, 19 Jan 2022 18:56:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5BEB9A0BCB;
- Wed, 19 Jan 2022 18:56:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0844284927398155598=="
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A76610ED3B;
+ Wed, 19 Jan 2022 19:11:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642619486; x=1674155486;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=ehDVQFRTJkDWYbGMwd5bnrsZ2JNon9bvJmDRvBkD0gc=;
+ b=YwJePpC7tQWzY5RLVD3KfACMUweg47Qkyhl8EUy0opY9DJHPGDbjL5Jj
+ hClH2mOhlezeDp7XsB6UWLLJ3iTJvgffm3I0TEfPkKni4SIOVZY82aRBa
+ r+DQF5dlVMlk3LRxttA8xXHNJ2hYcs2aSE2+bQS2EwPk9d/BvUTfaR/Mz
+ PpVsfajNwIVmmmh8wMTkhD+WhHnhSEkuNsPe751iQIm6K1uotVI3/b3N9
+ qQY6B8JgAL24L4C62XL0CFhRiSXQaDcLlPzGoG3jg6nOwiguTKskAhDAq
+ 4aIWR0SPHRv+/xchIlaqqm25dW0cmwZ2RMGubUOhR6hDzzt208BqzoEVO Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="245118653"
+X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="245118653"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 10:36:10 -0800
+X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="615798507"
+Received: from mmansuri-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.209.1.138])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 10:36:08 -0800
+From: Jordan Justen <jordan.l.justen@intel.com>
+To: Robert Beckett <bob.beckett@collabora.com>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
+ <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+In-Reply-To: <20220118175036.3840934-5-bob.beckett@collabora.com>
+References: <20220118175036.3840934-1-bob.beckett@collabora.com>
+ <20220118175036.3840934-5-bob.beckett@collabora.com>
+Date: Wed, 19 Jan 2022 10:36:07 -0800
+Message-ID: <87zgnrefoo.fsf@jljusten-skl>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 19 Jan 2022 18:56:10 -0000
-Message-ID: <164261857033.22605.11523694022466137556@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220119174734.213552-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20220119174734.213552-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_vma_resource_freeing?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/i915/uapi: document behaviour
+ for DG2 64K support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,204 +61,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Kenneth Graunke <kenneth@whitecape.org>,
+ dri-devel@lists.freedesktop.org,
+ Slawomir Milczarek <slawomir.milczarek@intel.com>,
+ Pekka Paalanen <ppaalanen@gmail.com>, Matthew Auld <matthew.auld@intel.com>,
+ Simon Ser <contact@emersion.fr>, mesa-dev@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0844284927398155598==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Robert Beckett <bob.beckett@collabora.com> writes:
 
-== Series Details ==
+> From: Matthew Auld <matthew.auld@intel.com>
+>
+> On discrete platforms like DG2, we need to support a minimum page size
+> of 64K when dealing with device local-memory. This is quite tricky for
+> various reasons, so try to document the new implicit uapi for this.
+>
+> v2: Fixed suggestions on formatting [Daniel]
+>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+> cc: Simon Ser <contact@emersion.fr>
+> cc: Pekka Paalanen <ppaalanen@gmail.com>
+> Cc: Jordan Justen <jordan.l.justen@intel.com>
+> Cc: Kenneth Graunke <kenneth@whitecape.org>
+> Cc: mesa-dev@lists.freedesktop.org
+> Cc: Tony Ye <tony.ye@intel.com>
+> Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
+> ---
+>  include/uapi/drm/i915_drm.h | 44 ++++++++++++++++++++++++++++++++-----
+>  1 file changed, 39 insertions(+), 5 deletions(-)
+>
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 5e678917da70..486b7b96291e 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -1118,10 +1118,16 @@ struct drm_i915_gem_exec_object2 {
+>  	/**
+>  	 * When the EXEC_OBJECT_PINNED flag is specified this is populated by
+>  	 * the user with the GTT offset at which this object will be pinned.
+> +	 *
+>  	 * When the I915_EXEC_NO_RELOC flag is specified this must contain the
+>  	 * presumed_offset of the object.
+> +	 *
+>  	 * During execbuffer2 the kernel populates it with the value of the
+>  	 * current GTT offset of the object, for future presumed_offset writes.
+> +	 *
+> +	 * See struct drm_i915_gem_create_ext for the rules when dealing with
+> +	 * alignment restrictions with I915_MEMORY_CLASS_DEVICE, on devices with
+> +	 * minimum page sizes, like DG2.
+>  	 */
+>  	__u64 offset;
+>  
+> @@ -3145,11 +3151,39 @@ struct drm_i915_gem_create_ext {
+>  	 *
+>  	 * The (page-aligned) allocated size for the object will be returned.
+>  	 *
+> -	 * Note that for some devices we have might have further minimum
+> -	 * page-size restrictions(larger than 4K), like for device local-memory.
+> -	 * However in general the final size here should always reflect any
+> -	 * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
+> -	 * extension to place the object in device local-memory.
+> +	 *
+> +	 * **DG2 64K min page size implications:**
 
-Series: drm/i915: Fix vma resource freeing
-URL   : https://patchwork.freedesktop.org/series/99055/
-State : failure
+Long term, I'm not sure that the "**" (for emphasis) is needed here or
+below. It's interesting at the moment, but will be just another thing
+baked into the kernel/user code in a month from now. :)
 
-== Summary ==
+> +	 *
+> +	 * On discrete platforms, starting from DG2, we have to contend with GTT
+> +	 * page size restrictions when dealing with I915_MEMORY_CLASS_DEVICE
+> +	 * objects.  Specifically the hardware only supports 64K or larger GTT
+> +	 * page sizes for such memory. The kernel will already ensure that all
+> +	 * I915_MEMORY_CLASS_DEVICE memory is allocated using 64K or larger page
+> +	 * sizes underneath.
+> +	 *
+> +	 * Note that the returned size here will always reflect any required
+> +	 * rounding up done by the kernel, i.e 4K will now become 64K on devices
+> +	 * such as DG2.
+> +	 *
+> +	 * **Special DG2 GTT address alignment requirement:**
+> +	 *
+> +	 * The GTT alignment will also need be at least 2M for  such objects.
+> +	 *
+> +	 * Note that due to how the hardware implements 64K GTT page support, we
+> +	 * have some further complications:
+> +	 *
+> +	 *   1) The entire PDE(which covers a 2MB virtual address range), must
+> +	 *   contain only 64K PTEs, i.e mixing 4K and 64K PTEs in the same
+> +	 *   PDE is forbidden by the hardware.
+> +	 *
+> +	 *   2) We still need to support 4K PTEs for I915_MEMORY_CLASS_SYSTEM
+> +	 *   objects.
+> +	 *
+> +	 * To keep things simple for userland, we mandate that any GTT mappings
+> +	 * must be aligned to and rounded up to 2MB. As this only wastes virtual
+> +	 * address space and avoids userland having to copy any needlessly
+> +	 * complicated PDE sharing scheme (coloring) and only affects GD2, this
+> +	 * id deemed to be a good compromise.
 
-CI Bug Log - changes from CI_DRM_11109 -> Patchwork_22025
-====================================================
+typos: GD2, id
 
-Summary
--------
+Isn't much of this more relavent to the vma offset at exec time? Is
+there actually any new restriction on the size field during buffer
+creation?
 
-  **FAILURE**
+I see Matthew references these notes from the offset comments, so if the
+kernel devs prefer it here, then you can add my Acked-by on this patch.
 
-  Serious unknown changes coming with Patchwork_22025 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22025, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-Jordan
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/index.html
-
-Participating hosts (45 -> 42)
-------------------------------
-
-  Missing    (3): fi-bsw-cyan bat-jsl-2 fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22025:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11109/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22025 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][3] ([i915#4547])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - {fi-tgl-dsi}:       [DMESG-FAIL][4] ([i915#541]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11109/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
-    - fi-cfl-8109u:       [DMESG-WARN][6] ([i915#295]) -> [PASS][7] +12 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11109/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11109 -> Patchwork_22025
-
-  CI-20190529: 20190529
-  CI_DRM_11109: 72c0063cb976d8c82d8733fa20ca002b09ace98a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22025: 028b417caa705b6088d403c5d8750227001871b5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-028b417caa70 drm/i915: Fix vma resource freeing
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/index.html
-
---===============0844284927398155598==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix vma resource freeing</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99055/">https://patchwork.freedesktop.org/series/99055/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11109 -&gt; Patchwork_22025</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22025 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22025, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/index.html</p>
-<h2>Participating hosts (45 -&gt; 42)</h2>
-<p>Missing    (3): fi-bsw-cyan bat-jsl-2 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22025:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11109/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22025 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3:<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11109/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11109/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22025/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> +12 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11109 -&gt; Patchwork_22025</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11109: 72c0063cb976d8c82d8733fa20ca002b09ace98a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22025: 028b417caa705b6088d403c5d8750227001871b5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>028b417caa70 drm/i915: Fix vma resource freeing</p>
-
-</body>
-</html>
-
---===============0844284927398155598==--
+>  	 */
+>  	__u64 size;
+>  	/**
+> -- 
+> 2.25.1
