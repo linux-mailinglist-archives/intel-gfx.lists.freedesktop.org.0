@@ -2,55 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C57E54940F1
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 20:35:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E0E04940DF
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 20:30:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F342D10EABD;
-	Wed, 19 Jan 2022 19:35:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3398F10EA2C;
+	Wed, 19 Jan 2022 19:30:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C770210EAB3;
- Wed, 19 Jan 2022 19:34:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642620900; x=1674156900;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Y7zetMO+F9o9TgvTfnNqU31+rhVBHq60hicGgEyx15I=;
- b=ZvUGnuVcbUE+E8v0nIddyIjtghLwsKMkQLFVRbVFcwqVA3/KAVnqESb3
- eMn6QRjPiwl8iLU76WjK8Ox93erxUg4lU18OLqy8TILTwm+BDMG8z4iy2
- bq+uN72Hl3nFi44N+wwobRgyV1ZapxPdi+9cooAcO+5TmD3U0fYLK37uG
- OFXVjQNO0LUeh+ecVP5z0g5OCqIL+GV3SMYugTvA5ZJQC2R0Q2EFw06Vg
- fK8fw/WK/AoPWtuWhutBvaHIq0plb+BeXfIyrNV0GFhs6jK4T1KkQmLA3
- OaCSO0In8Zjn4wkcQIBop6IY8wYH36jj70ar35KtVOqVertn/ThmT2wkd w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="242734441"
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="242734441"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 11:26:27 -0800
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="765057648"
-Received: from smile.fi.intel.com ([10.237.72.61])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 11:26:19 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1nAGZw-00CEZW-RK; Wed, 19 Jan 2022 21:25:08 +0200
-Date: Wed, 19 Jan 2022 21:25:08 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Steven Rostedt <rostedt@goodmis.org>
-Message-ID: <YehllDq7wC3M2PQZ@smile.fi.intel.com>
-References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
- <20220119072450.2890107-2-lucas.demarchi@intel.com>
- <YefXg03hXtrdUj6y@paasikivi.fi.intel.com>
- <20220119100635.6c45372b@gandalf.local.home>
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
+ [IPv6:2607:f8b0:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC3410E9D1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 19:30:02 +0000 (UTC)
+Received: by mail-pf1-x434.google.com with SMTP id i65so3182733pfc.9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 11:30:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=zkE3gBX2/QfYoel4swoSHgs5kA+i+V9qePn15ui3sTI=;
+ b=kRiKuFyW7T5olELOo6g51MwWBpGPH9fTqQJSPb83Tt1J5T2FmicCgTbaXi+VOo0vwf
+ L+lx+mESopsZDWaobfTRNiknO+HJ8PcoOu56aAIOwrmGPIoJf4vCc8knWniqvGUcV9vw
+ NRgqL6ahwta5tLYMr6a3sKCs5TloVR8CYGrxDdeVHAk8gUop6HHmWdmSlXfCatN93r3x
+ xLpuVMHsRlDOwk82hslZcWjM7pK/r72ywSAuI7ZAiE/q+27flMdZC67dAsbAx4rw3//B
+ TPb2xI7BCUfTRYmhaJ+Adci5MCkpr2w6YYRLOm95GoC4cRRnQVDhwFjhlLVLXw2DfiAv
+ MTSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=zkE3gBX2/QfYoel4swoSHgs5kA+i+V9qePn15ui3sTI=;
+ b=mLcts3/410ul0X8gBo7DkEV9eAKtZAD79yB67yJCpoStvjE9ZHcEBIMgd0Q5ND2QNN
+ e42jnnA7OIajaMPc+8J0Jf00PqiCkIuA/8rjg7G5pQ4xOB1Yv5DSLP8ziuUxIOdRDyJX
+ zz7ib6oOml6NJdU5D1YelNXRdR/WT4cdkDM15DEBN6MAnvg5iR9ioRAUDwL03PQIt4Vl
+ xglS056tlKcUTVcr6IlR0UVNzFrcKGSwqlJLkZAHfXpA8wXhdZeWS3aC84N019riILXD
+ EgbLSS44PrzL1qKg4mjpX83gURj64bymnadQj1mraD1NSvMe7vKNNxtHSyHybjJRK96p
+ HGjA==
+X-Gm-Message-State: AOAM531ctI6AL7tMtDsuPQpcekQh4Pecfj2UiMbuUKKU2+PZSaipspXB
+ bHGNwPEqf3ttRutSBir2KoZoZt7m8vQ=
+X-Google-Smtp-Source: ABdhPJz9CP6JlspuzcOubZ5F8ejK31AWikdLqsUBCJpIAdSr0aiQclDXs74h3MfBk2J3yF7h7zhxGQ==
+X-Received: by 2002:a62:75c1:0:b0:4be:9d1:1699 with SMTP id
+ q184-20020a6275c1000000b004be09d11699mr32192623pfc.37.1642620601587; 
+ Wed, 19 Jan 2022 11:30:01 -0800 (PST)
+Received: from gnu-tgl-3.localdomain ([172.58.35.133])
+ by smtp.gmail.com with ESMTPSA id nn1sm7082474pjb.16.2022.01.19.11.30.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 19 Jan 2022 11:30:01 -0800 (PST)
+Received: from gnu-tgl-3.. (localhost [IPv6:::1])
+ by gnu-tgl-3.localdomain (Postfix) with ESMTP id DB36DC0195;
+ Wed, 19 Jan 2022 11:29:59 -0800 (PST)
+From: "H.J. Lu" <hjl.tools@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 19 Jan 2022 11:29:52 -0800
+Message-Id: <20220119192952.3829148-1-hjl.tools@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220119100635.6c45372b@gandalf.local.home>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH 1/3] lib/string_helpers: Consolidate yesno()
- implementation
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/bios: Workaround broken video BIOS
+ in LG Gram 2021
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,68 +70,233 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Vishal Kulkarni <vishal@chelsio.com>,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- Kentaro Takeda <takedakn@nttdata.co.jp>, amd-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Julia Lawall <julia.lawall@lip6.fr>,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Mikita Lipski <mikita.lipski@amd.com>, Eryk Brol <eryk.brol@amd.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- linux-security-module@vger.kernel.org, netdev@vger.kernel.org,
- Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- "David S . Miller" <davem@davemloft.net>
+Cc: "H.J. Lu" <hjl.tools@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 19, 2022 at 10:06:35AM -0500, Steven Rostedt wrote:
-> On Wed, 19 Jan 2022 11:18:59 +0200
-> Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
-> > On Tue, Jan 18, 2022 at 11:24:48PM -0800, Lucas De Marchi wrote:
-> > > @@ -1354,8 +1345,7 @@ static bool tomoyo_print_condition(struct tomoyo_io_buffer *head,
-> > >  	case 3:
-> > >  		if (cond->grant_log != TOMOYO_GRANTLOG_AUTO)
-> > >  			tomoyo_io_printf(head, " grant_log=%s",
-> > > -					 tomoyo_yesno(cond->grant_log ==
-> > > -						      TOMOYO_GRANTLOG_YES));
-> > > +					 yesno(cond->grant_log == TOMOYO_GRANTLOG_YES));  
-> > 
-> > This would be better split on two lines.
-> 
-> Really? Yuck!
-> 
-> I thought the "max line size" guideline was going to grow to a 100, but I
-> still see it as 80. But anyway...
-> 
-> 	cond->grant_log ==
-> 	TOMOYO_GRANTLOG_YES
-> 
-> is not readable at all. Not compared to
-> 
-> 	cond->grant_log == TOMOYO_GRANTLOG_YES
-> 
-> I say keep it one line!
-> 
-> Reviewed-by: Steven Rostedt (Google) <rostedt@goodmis.org>
+LG Gram 2021 laptop 17Z95P-K.ADE9U1 OpRegion has
 
-I believe Sakari strongly follows the 80 rule, which means...
+FW size: 0x2200
+VBT size: 0x2000
+BDB offset: 0x30
+BDB size: 0x216e
 
-> > Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+Add intel_init_opregion_quirks to use FW size as VBT size on LG Gram
+17Z95P-K.ADE9U1 and update intel_bios_is_valid_vbt to use FW size,
+instead of VBT size if the quirk is applied, in range_overflows_t for
+BDB size overflow check.  This fixes:
 
-...chose either of these tags and be happy with :-)
+https://gitlab.freedesktop.org/drm/intel/-/issues/4763
 
+Signed-off-by: H.J. Lu <hjl.tools@gmail.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c     | 15 ++++---
+ drivers/gpu/drm/i915/display/intel_bios.h     |  3 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c |  9 +++--
+ drivers/gpu/drm/i915/display/intel_quirks.c   | 40 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_quirks.h   |  1 +
+ drivers/gpu/drm/i915/i915_drv.h               |  1 +
+ 6 files changed, 59 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 7d04572dd18b..d6442ec2dc70 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2268,12 +2268,14 @@ static const struct bdb_header *get_bdb_header(const struct vbt_header *vbt)
+ 
+ /**
+  * intel_bios_is_valid_vbt - does the given buffer contain a valid VBT
++ * @dev_priv:	i915 device instance
+  * @buf:	pointer to a buffer to validate
+  * @size:	size of the buffer
+  *
+  * Returns true on valid VBT.
+  */
+-bool intel_bios_is_valid_vbt(const void *buf, size_t size)
++bool intel_bios_is_valid_vbt(struct drm_i915_private *dev_priv,
++			     const void *buf, size_t size)
+ {
+ 	const struct vbt_header *vbt = buf;
+ 	const struct bdb_header *bdb;
+@@ -2296,16 +2298,17 @@ bool intel_bios_is_valid_vbt(const void *buf, size_t size)
+ 		return false;
+ 	}
+ 
+-	size = vbt->vbt_size;
+-
+ 	if (range_overflows_t(size_t,
+ 			      vbt->bdb_offset,
+ 			      sizeof(struct bdb_header),
+-			      size)) {
++			      vbt->vbt_size)) {
+ 		DRM_DEBUG_DRIVER("BDB header incomplete\n");
+ 		return false;
+ 	}
+ 
++	if (!(dev_priv->quirks & QUIRK_USE_FW_SIZE_AS_VBT_SIZE))
++		size = vbt->vbt_size;
++
+ 	bdb = get_bdb_header(vbt);
+ 	if (range_overflows_t(size_t, vbt->bdb_offset, bdb->bdb_size, size)) {
+ 		DRM_DEBUG_DRIVER("BDB incomplete\n");
+@@ -2359,7 +2362,7 @@ static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
+ 		*(vbt + store++) = data;
+ 	}
+ 
+-	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
++	if (!intel_bios_is_valid_vbt(i915, vbt, vbt_size))
+ 		goto err_free_vbt;
+ 
+ 	drm_dbg_kms(&i915->drm, "Found valid VBT in SPI flash\n");
+@@ -2416,7 +2419,7 @@ static struct vbt_header *oprom_get_vbt(struct drm_i915_private *i915)
+ 
+ 	memcpy_fromio(vbt, p, vbt_size);
+ 
+-	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
++	if (!intel_bios_is_valid_vbt(i915, vbt, vbt_size))
+ 		goto err_free_vbt;
+ 
+ 	pci_unmap_rom(pdev, oprom);
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+index 4709c4d29805..368ee87390e7 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.h
++++ b/drivers/gpu/drm/i915/display/intel_bios.h
+@@ -231,7 +231,8 @@ struct mipi_pps_data {
+ 
+ void intel_bios_init(struct drm_i915_private *dev_priv);
+ void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
+-bool intel_bios_is_valid_vbt(const void *buf, size_t size);
++bool intel_bios_is_valid_vbt(struct drm_i915_private *dev_priv,
++			     const void *buf, size_t size);
+ bool intel_bios_is_tv_present(struct drm_i915_private *dev_priv);
+ bool intel_bios_is_lvds_present(struct drm_i915_private *dev_priv, u8 *i2c_pin);
+ bool intel_bios_is_port_present(struct drm_i915_private *dev_priv, enum port port);
+diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+index af9d30f56cc1..7a9b4d72d18c 100644
+--- a/drivers/gpu/drm/i915/display/intel_opregion.c
++++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+@@ -36,6 +36,7 @@
+ #include "intel_display_types.h"
+ #include "intel_opregion.h"
+ #include "intel_pci_config.h"
++#include "intel_quirks.h"
+ 
+ #define OPREGION_HEADER_OFFSET 0
+ #define OPREGION_ACPI_OFFSET   0x100
+@@ -817,7 +818,7 @@ static int intel_load_vbt_firmware(struct drm_i915_private *dev_priv)
+ 		return ret;
+ 	}
+ 
+-	if (intel_bios_is_valid_vbt(fw->data, fw->size)) {
++	if (intel_bios_is_valid_vbt(dev_priv, fw->data, fw->size)) {
+ 		opregion->vbt_firmware = kmemdup(fw->data, fw->size, GFP_KERNEL);
+ 		if (opregion->vbt_firmware) {
+ 			drm_dbg_kms(&dev_priv->drm,
+@@ -922,6 +923,8 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+ 	if (dmi_check_system(intel_no_opregion_vbt))
+ 		goto out;
+ 
++	intel_init_opregion_quirks(dev_priv);
++
+ 	if (opregion->header->over.major >= 2 && opregion->asle &&
+ 	    opregion->asle->rvda && opregion->asle->rvds) {
+ 		resource_size_t rvda = opregion->asle->rvda;
+@@ -944,7 +947,7 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+ 
+ 		vbt = opregion->rvda;
+ 		vbt_size = opregion->asle->rvds;
+-		if (intel_bios_is_valid_vbt(vbt, vbt_size)) {
++		if (intel_bios_is_valid_vbt(dev_priv, vbt, vbt_size)) {
+ 			drm_dbg_kms(&dev_priv->drm,
+ 				    "Found valid VBT in ACPI OpRegion (RVDA)\n");
+ 			opregion->vbt = vbt;
+@@ -969,7 +972,7 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+ 	vbt_size = (mboxes & MBOX_ASLE_EXT) ?
+ 		OPREGION_ASLE_EXT_OFFSET : OPREGION_SIZE;
+ 	vbt_size -= OPREGION_VBT_OFFSET;
+-	if (intel_bios_is_valid_vbt(vbt, vbt_size)) {
++	if (intel_bios_is_valid_vbt(dev_priv, vbt, vbt_size)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "Found valid VBT in ACPI OpRegion (Mailbox #4)\n");
+ 		opregion->vbt = vbt;
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index c8488f5ebd04..c2604e8b5353 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -133,6 +133,36 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+ 	},
+ };
+ 
++static void quirk_opregion_use_fw_size_as_vbt_size(struct drm_i915_private *i915)
++{
++	i915->quirks |= QUIRK_USE_FW_SIZE_AS_VBT_SIZE;
++	drm_info(&i915->drm, "Applying FW size as VBT size quirk in OpRegion\n");
++}
++
++static int intel_dmi_opregion_use_fw_size_as_vbt_size(const struct dmi_system_id *id)
++{
++	DRM_INFO("Use FW size as VBT size on %s in OpRegion\n", id->ident);
++	return 1;
++}
++
++static const struct intel_dmi_quirk intel_dmi_opregion_quirks[] = {
++	{
++		.dmi_id_list = &(const struct dmi_system_id[]) {
++			{
++				.callback = intel_dmi_opregion_use_fw_size_as_vbt_size,
++				.ident = "LG Gram 17Z95P-K.ADE9U1",
++				.matches = {DMI_EXACT_MATCH(DMI_SYS_VENDOR, "LG Electronics"),
++					    DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "17Z95P-K.ADE9U1"),
++					    DMI_EXACT_MATCH(DMI_BIOS_VERSION, "T4ZF0040 X64"),
++					    DMI_EXACT_MATCH(DMI_BIOS_DATE, "10/06/2021"),
++				},
++			},
++			{ }
++		},
++		.hook = quirk_opregion_use_fw_size_as_vbt_size,
++	},
++};
++
+ static struct intel_quirk intel_quirks[] = {
+ 	/* Lenovo U160 cannot use SSC on LVDS */
+ 	{ 0x0046, 0x17aa, 0x3920, quirk_ssc_force_disable },
+@@ -213,3 +243,13 @@ void intel_init_quirks(struct drm_i915_private *i915)
+ 			intel_dmi_quirks[i].hook(i915);
+ 	}
+ }
++
++void intel_init_opregion_quirks(struct drm_i915_private *i915)
++{
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(intel_dmi_opregion_quirks); i++) {
++		if (dmi_check_system(*intel_dmi_opregion_quirks[i].dmi_id_list) != 0)
++			intel_dmi_opregion_quirks[i].hook(i915);
++	}
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+index b0fcff142a56..3a6a84e0d502 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.h
++++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+@@ -9,5 +9,6 @@
+ struct drm_i915_private;
+ 
+ void intel_init_quirks(struct drm_i915_private *dev_priv);
++void intel_init_opregion_quirks(struct drm_i915_private *dev_priv);
+ 
+ #endif /* __INTEL_QUIRKS_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 890f1f6fbc49..6bd84964e989 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -403,6 +403,7 @@ struct i915_drrs {
+ #define QUIRK_INCREASE_T12_DELAY (1<<6)
+ #define QUIRK_INCREASE_DDI_DISABLED_TIME (1<<7)
+ #define QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK (1<<8)
++#define QUIRK_USE_FW_SIZE_AS_VBT_SIZE (1 << 9)
+ 
+ struct intel_fbdev;
+ 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
