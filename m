@@ -2,37 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B3D7493C76
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 16:01:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF75B493C8D
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 16:05:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 291F710E4C1;
-	Wed, 19 Jan 2022 15:01:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AE7610E18C;
+	Wed, 19 Jan 2022 15:05:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63D8310E457;
- Wed, 19 Jan 2022 15:01:12 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id DB5CCB81A0C;
- Wed, 19 Jan 2022 15:01:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC12DC004E1;
- Wed, 19 Jan 2022 15:01:03 +0000 (UTC)
-Date: Wed, 19 Jan 2022 10:01:02 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Message-ID: <20220119100102.61f9bfde@gandalf.local.home>
-In-Reply-To: <CAHp75Vf5QOD_UtDK8VbxNApEBuJvzUic0NkzDNmRo3Q7Ud+=qw@mail.gmail.com>
-References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
- <20220119072450.2890107-2-lucas.demarchi@intel.com>
- <CAHp75Vf5QOD_UtDK8VbxNApEBuJvzUic0NkzDNmRo3Q7Ud+=qw@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E99510E1B8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 15:05:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642604726; x=1674140726;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=aBk41UnjoVAUenAqQ5pPXoou2kkXaW9Kt7xq+FUrOTg=;
+ b=Oy5CA1+teG3JNKRheNUh1879YbI0N1GxnxTZD5eGU3DRFbEbYGrAThQ6
+ S3UHj7p1YlS8LpKFc1DuqSv3h3U5kwbwNvEj23CTbRq3UO8M9fBkRnQQt
+ dkNLspCN3J+Ja706yaGhgAeiq5rum1EPihCTqkA5p0oguicLtlNcJLyPc
+ bC52lSX8OCJ1cRtLRdCtO05ezofEP68kzJ8TY6TMdQlHJaRPhLA5UObwE
+ ctbZ4x2petWQ2CCCPOsIcRqFSzCZQ+498JqA2ZdKZwwinhFYNi2fekyp4
+ SSGN2vR8rF4W9wrsfqAMG50w67z411iRpFHXJVQk/S8Zk0Vx6B2R61w+B g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="245282034"
+X-IronPort-AV: E=Sophos;i="5.88,299,1635231600"; d="scan'208";a="245282034"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 07:05:25 -0800
+X-IronPort-AV: E=Sophos;i="5.88,299,1635231600"; d="scan'208";a="532321258"
+Received: from elenadel-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.50.196])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 07:05:23 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211208150050.17230-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211208150050.17230-1-ville.syrjala@linux.intel.com>
+Date: Wed, 19 Jan 2022 17:05:20 +0200
+Message-ID: <87r193bwb3.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/3] lib/string_helpers: Consolidate yesno()
- implementation
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove zombie async flip vt-d w/a
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,55 +58,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Vishal Kulkarni <vishal@chelsio.com>,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- Kentaro Takeda <takedakn@nttdata.co.jp>, Mikita Lipski <mikita.lipski@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Raju Rangoju <rajur@chelsio.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
- Julia Lawall <julia.lawall@lip6.fr>,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Eryk Brol <eryk.brol@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- "David S . Miller" <davem@davemloft.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 19 Jan 2022 11:15:08 +0200
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+On Wed, 08 Dec 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> This async flip vt-d w/a was moved to a different place in
+> commit 7d396cacaea6 ("drm/i195: Make the async flip VT-d workaround
+> dynamic") but the drm-intel-fixes cherry-pick commit b2d73debfdc1
+> ("drm/i915: Extend the async flip VT-d w/a to skl/bxt") resurrected
+> the original code as well. So now we have this w/a in two places.
+> Remove the resurrected zombie code.
+>
+> Not done as a revert to hopefully prevent any kind of
+> automagic stable backport.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-> > +static inline const char *yesno(bool v) { return v ? "yes" : "no"; }  
-> 
-> 
-> 
-> Perhaps keep it on 4 lines? Yes, yes/no is short, but if we add others
-> (enable/disable) it will not be possible to keep on one line. And hence
-> style will be broken among similar functions.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Agreed. Functions should always be of the normal format:
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 12 ------------
+>  1 file changed, 12 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index fe3787425780..31767c583cd0 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -78,8 +78,6 @@ struct intel_wm_config {
+>=20=20
+>  static void gen9_init_clock_gating(struct drm_i915_private *dev_priv)
+>  {
+> -	enum pipe pipe;
+> -
+>  	if (HAS_LLC(dev_priv)) {
+>  		/*
+>  		 * WaCompressedResourceDisplayNewHashMode:skl,kbl
+> @@ -93,16 +91,6 @@ static void gen9_init_clock_gating(struct drm_i915_pri=
+vate *dev_priv)
+>  			   SKL_DE_COMPRESSED_HASH_MODE);
+>  	}
+>=20=20
+> -	for_each_pipe(dev_priv, pipe) {
+> -		/*
+> -		 * "Plane N strech max must be programmed to 11b (x1)
+> -		 *  when Async flips are enabled on that plane."
+> -		 */
+> -		if (!IS_GEMINILAKE(dev_priv) && intel_vtd_active(dev_priv))
+> -			intel_uncore_rmw(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
+> -					 SKL_PLANE1_STRETCH_MAX_MASK, SKL_PLANE1_STRETCH_MAX_X1);
+> -	}
+> -
+>  	/* See Bspec note for PSR2_CTL bit 31, Wa#828:skl,bxt,kbl,cfl */
+>  	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
+>  		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) | SKL_EDP_PSR_=
+FIX_RDWRAP);
 
-type func(params)
-{
-	body;
-}
-
-Unless it is a stub function.
-
-type func(params) { return 0; }
-
--- Steve
+--=20
+Jani Nikula, Intel Open Source Graphics Center
