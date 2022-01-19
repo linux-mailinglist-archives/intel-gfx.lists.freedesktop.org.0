@@ -1,51 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23CFF494136
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 20:49:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D3AE494162
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 21:01:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0532910F1C6;
-	Wed, 19 Jan 2022 19:49:14 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBBB510F1C1;
- Wed, 19 Jan 2022 19:49:12 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: bbeckett) with ESMTPSA id EAFFE1F446F5
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1642621751;
- bh=UIoafffS0/l3S1GB6KgQfq7k8XDj/WzZMnJi03jT+4w=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=NNcsmrQbUywS/Hicnx0DJF53N17Jr42HJKPIKGUJaxLaQTDR+kveaR+cFJf+fyfwu
- GMMAvv48j6+f2ZWTFED+g0ojdxBaXlOW8je2j2TQ1btl2H7c7kOhH7MTPs0+oJUxNe
- VMB8fv4YSY7acGIBIlEsEKeTVu4/kj5E1/QCWENbP/syauBoeVGSh0Bqti9t6vEzoi
- RwdnwaT3pL8jQEP8cZNjJRRVSRX6gVa9O2W2eegsEALXmPVxUyYqL66kgqm+KPE5f/
- QBtS3Nlvh6LqNmT7MNOB93OfVwHlr0lBZBcj49BeEuLuZwcxPu3Do5qhXcfZ/pRawh
- lRJA+NW1EyX0g==
-Message-ID: <accbc66b-08ca-aa2a-92e6-4d65359e9bf4@collabora.com>
-Date: Wed, 19 Jan 2022 19:49:08 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC8E810E147;
+	Wed, 19 Jan 2022 20:01:41 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC7F510E147;
+ Wed, 19 Jan 2022 20:01:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642622500; x=1674158500;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fEwiRA1Sjh0vSatFIuvDK+G/oRL1SVL4KSIy6wHIyvc=;
+ b=QCBzC2VtjvNRb9+QpKnAtEoSnElpp+sl17jLOMxS1DqBaOVB/4Z8ymXA
+ pvdSZegEJ4v/Nsw8eI9VLIMLbG+/+GPfuIXULPsODC7f6LAzlCrseTH+V
+ rBFTNDtCnb+9sjiwvTYSeiCjHiTM2/Td5J4OoqEh6TkQgp7mUZpbARDDN
+ dvaOgWZkUZNlRtU/xwpW8jdq9pwEE3ljJky3PltUqF5m/8rOwH5ij0F3n
+ PxNim5Xw/m22lyGpoj+iXKfwjgvYlIBLHVXdLmKv1Nsyt9MUsIodXcxWn
+ E4M5vZr/PbJvlqkDvlJAs2dNt0rmx3GTAoFMGe27Iv4CbZEa7UJT4yIYq A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="225158773"
+X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="225158773"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 12:01:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="767363799"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by fmsmga005.fm.intel.com with ESMTP; 19 Jan 2022 12:01:37 -0800
+From: John.C.Harrison@Intel.com
+To: IGT-Dev@Lists.FreeDesktop.Org
+Date: Wed, 19 Jan 2022 12:01:36 -0800
+Message-Id: <20220119200137.2364940-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: Jordan Justen <jordan.l.justen@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-References: <20220118175036.3840934-1-bob.beckett@collabora.com>
- <20220118175036.3840934-5-bob.beckett@collabora.com>
- <87zgnrefoo.fsf@jljusten-skl>
-From: Robert Beckett <bob.beckett@collabora.com>
-In-Reply-To: <87zgnrefoo.fsf@jljusten-skl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/i915/uapi: document behaviour
- for DG2 64K support
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 i-g-t 0/1] Add test for new hw info query
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,138 +55,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Kenneth Graunke <kenneth@whitecape.org>,
- dri-devel@lists.freedesktop.org,
- Slawomir Milczarek <slawomir.milczarek@intel.com>,
- Pekka Paalanen <ppaalanen@gmail.com>, Matthew Auld <matthew.auld@intel.com>,
- Simon Ser <contact@emersion.fr>, mesa-dev@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: Intel-GFX@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: John Harrison <John.C.Harrison@Intel.com>
+
+Various UMDs require hardware configuration information about the
+current platform. A new interface has been added to the KMD to return
+this information. So, add a test for the new interface.
+
+v2: Rebased to newer baseline.
+
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
 
-On 19/01/2022 18:36, Jordan Justen wrote:
-> Robert Beckett <bob.beckett@collabora.com> writes:
-> 
->> From: Matthew Auld <matthew.auld@intel.com>
->>
->> On discrete platforms like DG2, we need to support a minimum page size
->> of 64K when dealing with device local-memory. This is quite tricky for
->> various reasons, so try to document the new implicit uapi for this.
->>
->> v2: Fixed suggestions on formatting [Daniel]
->>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
->> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
->> cc: Simon Ser <contact@emersion.fr>
->> cc: Pekka Paalanen <ppaalanen@gmail.com>
->> Cc: Jordan Justen <jordan.l.justen@intel.com>
->> Cc: Kenneth Graunke <kenneth@whitecape.org>
->> Cc: mesa-dev@lists.freedesktop.org
->> Cc: Tony Ye <tony.ye@intel.com>
->> Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
->> ---
->>   include/uapi/drm/i915_drm.h | 44 ++++++++++++++++++++++++++++++++-----
->>   1 file changed, 39 insertions(+), 5 deletions(-)
->>
->> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->> index 5e678917da70..486b7b96291e 100644
->> --- a/include/uapi/drm/i915_drm.h
->> +++ b/include/uapi/drm/i915_drm.h
->> @@ -1118,10 +1118,16 @@ struct drm_i915_gem_exec_object2 {
->>   	/**
->>   	 * When the EXEC_OBJECT_PINNED flag is specified this is populated by
->>   	 * the user with the GTT offset at which this object will be pinned.
->> +	 *
->>   	 * When the I915_EXEC_NO_RELOC flag is specified this must contain the
->>   	 * presumed_offset of the object.
->> +	 *
->>   	 * During execbuffer2 the kernel populates it with the value of the
->>   	 * current GTT offset of the object, for future presumed_offset writes.
->> +	 *
->> +	 * See struct drm_i915_gem_create_ext for the rules when dealing with
->> +	 * alignment restrictions with I915_MEMORY_CLASS_DEVICE, on devices with
->> +	 * minimum page sizes, like DG2.
->>   	 */
->>   	__u64 offset;
->>   
->> @@ -3145,11 +3151,39 @@ struct drm_i915_gem_create_ext {
->>   	 *
->>   	 * The (page-aligned) allocated size for the object will be returned.
->>   	 *
->> -	 * Note that for some devices we have might have further minimum
->> -	 * page-size restrictions(larger than 4K), like for device local-memory.
->> -	 * However in general the final size here should always reflect any
->> -	 * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
->> -	 * extension to place the object in device local-memory.
->> +	 *
->> +	 * **DG2 64K min page size implications:**
-> 
-> Long term, I'm not sure that the "**" (for emphasis) is needed here or
-> below. It's interesting at the moment, but will be just another thing
-> baked into the kernel/user code in a month from now. :)
+Rodrigo Vivi (1):
+  tests/i915/query: Query, parse and validate the hwconfig table
 
-fair point, I'll make it less shouty
+ include/drm-uapi/i915_drm.h |   1 +
+ lib/intel_hwconfig_types.h  | 106 +++++++++++++++++++++++
+ tests/i915/i915_query.c     | 168 ++++++++++++++++++++++++++++++++++++
+ 3 files changed, 275 insertions(+)
+ create mode 100644 lib/intel_hwconfig_types.h
 
-> 
->> +	 *
->> +	 * On discrete platforms, starting from DG2, we have to contend with GTT
->> +	 * page size restrictions when dealing with I915_MEMORY_CLASS_DEVICE
->> +	 * objects.  Specifically the hardware only supports 64K or larger GTT
->> +	 * page sizes for such memory. The kernel will already ensure that all
->> +	 * I915_MEMORY_CLASS_DEVICE memory is allocated using 64K or larger page
->> +	 * sizes underneath.
->> +	 *
->> +	 * Note that the returned size here will always reflect any required
->> +	 * rounding up done by the kernel, i.e 4K will now become 64K on devices
->> +	 * such as DG2.
->> +	 *
->> +	 * **Special DG2 GTT address alignment requirement:**
->> +	 *
->> +	 * The GTT alignment will also need be at least 2M for  such objects.
->> +	 *
->> +	 * Note that due to how the hardware implements 64K GTT page support, we
->> +	 * have some further complications:
->> +	 *
->> +	 *   1) The entire PDE(which covers a 2MB virtual address range), must
->> +	 *   contain only 64K PTEs, i.e mixing 4K and 64K PTEs in the same
->> +	 *   PDE is forbidden by the hardware.
->> +	 *
->> +	 *   2) We still need to support 4K PTEs for I915_MEMORY_CLASS_SYSTEM
->> +	 *   objects.
->> +	 *
->> +	 * To keep things simple for userland, we mandate that any GTT mappings
->> +	 * must be aligned to and rounded up to 2MB. As this only wastes virtual
->> +	 * address space and avoids userland having to copy any needlessly
->> +	 * complicated PDE sharing scheme (coloring) and only affects GD2, this
->> +	 * id deemed to be a good compromise.
-> 
-> typos: GD2, id
+-- 
+2.25.1
 
-thanks
-
-> 
-> Isn't much of this more relavent to the vma offset at exec time? Is
-> there actually any new restriction on the size field during buffer
-> creation?
-
-No new restriction on size, just placement, which mesa is already doing.
-The request for ack was just to get an ack from mesa folks that they are 
-happy with the mandatory 2MB alignment for DG2 vma.
-
-> 
-> I see Matthew references these notes from the offset comments, so if the
-> kernel devs prefer it here, then you can add my Acked-by on this patch.
-
-thanks!
-
-> 
-> -Jordan
-> 
->>   	 */
->>   	__u64 size;
->>   	/**
->> -- 
->> 2.25.1
