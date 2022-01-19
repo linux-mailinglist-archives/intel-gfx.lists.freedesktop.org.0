@@ -1,44 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20F44494237
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 21:58:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBE2949423A
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 21:58:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39E4110E1CB;
-	Wed, 19 Jan 2022 20:58:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3E7110E209;
+	Wed, 19 Jan 2022 20:58:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B14CC10E1CB
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 20:58:14 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4619110E203;
+ Wed, 19 Jan 2022 20:58:28 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 3517A60B57;
- Wed, 19 Jan 2022 20:58:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57B1BC340E1;
- Wed, 19 Jan 2022 20:58:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642625891;
- bh=NqxKG/cRDn784z+dCz2ahDGoEugjHKm62mozm5aXIDM=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=LhYS3WdXJ7AgC3euyvb9woXaRqza3xo/xtEn5n8hIACnSdySRip8aKg+NRwbk89cE
- OcmiTExYYBSJHG3v3nt5DDM+MR0miQG7P3RKimhqxFJLLihYnkttmFeLZu/FIhKLp7
- sIAQHknIEpvW2z5Fk3CO6MV3jA8XptI0Z2JILm3sSkWJakZWS2HJcDstuJtYESOBkj
- avFFCpLRmDuJETbQ+k3DXfM95geS6JWxvDsMiroRs6GJZHAAogZN/W7nMEHEnh5fIt
- SbouggppabdOp3X2ym2B5H5X3DrrXIoZIiPKxdWmIW+DV6wP/Qk5mLYsoRsC4dqVE0
- pYZ3koWfIRT2g==
-Date: Wed, 19 Jan 2022 14:58:10 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20220119205810.GA963074@bhelgaas>
+ by ams.source.kernel.org (Postfix) with ESMTPS id D4040B81BFB;
+ Wed, 19 Jan 2022 20:58:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD93AC340E1;
+ Wed, 19 Jan 2022 20:58:19 +0000 (UTC)
+Date: Wed, 19 Jan 2022 15:58:18 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Message-ID: <20220119155818.7ab45e0e@gandalf.local.home>
+In-Reply-To: <YehlEe1prbwhxZEv@smile.fi.intel.com>
+References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
+ <20220119072450.2890107-2-lucas.demarchi@intel.com>
+ <CAHp75Vf5QOD_UtDK8VbxNApEBuJvzUic0NkzDNmRo3Q7Ud+=qw@mail.gmail.com>
+ <20220119100102.61f9bfde@gandalf.local.home>
+ <06420a70f4434c2b8590cc89cad0dd6a@AcuMS.aculab.com>
+ <9c26ca9bf75d494ea966059d9bcbc2b5@AcuMS.aculab.com>
+ <YehlEe1prbwhxZEv@smile.fi.intel.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220119203004.mnds3vrxtsqkvso3@ldmartin-desk2>
-Subject: Re: [Intel-gfx] [PATCH v5 1/5] x86/quirks: Fix stolen detection
- with integrated + discrete GPU
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/3] lib/string_helpers: Consolidate yesno()
+ implementation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,43 +50,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: x86@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Dave Hansen <dave.hansen@linux.intel.com>, stable@vger.kernel.org,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Bjorn Helgaas <bhelgaas@google.com>, Thomas Gleixner <tglx@linutronix.de>
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Vishal Kulkarni <vishal@chelsio.com>,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ Kentaro Takeda <takedakn@nttdata.co.jp>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Raju Rangoju <rajur@chelsio.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Julia Lawall <julia.lawall@lip6.fr>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Mikita Lipski <mikita.lipski@amd.com>, Eryk Brol <eryk.brol@amd.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>,
+ David Laight <David.Laight@aculab.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "David S . Miller" <davem@davemloft.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 19, 2022 at 12:30:04PM -0800, Lucas De Marchi wrote:
-> On Tue, Jan 18, 2022 at 02:01:45PM -0600, Bjorn Helgaas wrote:
+On Wed, 19 Jan 2022 21:22:57 +0200
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-> > Haha :)  I was hoping not to touch it myself because I think this
-> > whole stolen memory thing is kind of nasty.  It's not clear to me why
-> > we need it at all, or why we have to keep all this device-specific
-> > logic in the kernel, or why it has to be an early quirk as opposed to
-> > a regular PCI quirk.  We had a thread [1] about it a while ago but I
-> > don't think anything got resolved.
+> On Wed, Jan 19, 2022 at 04:38:26PM +0000, David Laight wrote:
+> > > > > > +static inline const char *yesno(bool v) { return v ? "yes" : "no"; }  
+> > > 
+> > > 	return "yes\0no" + v * 4;
+> > > 
+> > > :-)  
+> > 
+> > except '"no\0\0yes" + v * 4' works a bit better.  
 > 
-> I was reading that thread again and thinking what we could do to try to
-> resolve this. I will reply on that thread.
-
-Great!  I hope there's some way around this.
-
-> > But to try to make forward progress, I applied patch 1/5 (actually,
-> > the updated one from [2]) to my pci/misc branch with the updated
-> > commit log and code comments below.
+> Is it a C code obfuscation contest?
 > 
-> thanks. I found the wording in the title odd as when I read "first" it
-> gives me the impression it's saying there could be more, which is not
-> possible.
 
-I said "first integrated GPU" because Linux doesn't control what
-devices are in the system; it just has to deal with whatever it finds.
-All one can tell from the code is that if we find one or more devices
-that appear in intel_early_ids[], we reserve stolen memory for the
-first such device.
+	return '/'/'/';
 
-System-specific knowledge might tell you that there should only be one
-integrated GPU, but there's no constraint like that in Linux.
-
-Bjorn
+-- Steve
