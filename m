@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63E784941B1
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 21:30:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2859C4941B4
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 21:30:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C8F210E134;
-	Wed, 19 Jan 2022 20:30:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47C5B10E1AF;
+	Wed, 19 Jan 2022 20:30:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9806410E134
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 20:30:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642624205; x=1674160205;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=nfdzBYBqQaqq5ju/KIZ0OGlrsNPW5+aw7QS4ZNf9KN4=;
- b=d7XAprLJZdWnRnGkdemlM+5sZeXKOav1Z+mowjjLfo1UpjY5+F8o0Vk/
- s3zDftfdUDGNaZyqnk5mK9ajF1jKX1PbgS9UF2v3hkg6f8gmFfAYx2GGZ
- fOphQfRHo7o8YJ8yuOEttmBQINJbybqWanr3O41BSYvFpze24uswurF8w
- C0xeeenXeHpLhiCKfWf62e0A/c4amAm9fFANO+tawOC5EyPWy1mlrw3bW
- AaJsIWss4p4fn99hMnc1QgxB90qeaPXdJ3P6inwF94KvitjLUPxsdB+GP
- YWMyu8tuBK9XCdPFO84r+iKbfa2ur2YFpj0eWaXGDp5hMis5G/mlZBJgX Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="232550215"
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="232550215"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 12:30:05 -0800
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="693930438"
-Received: from atefehad-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.238.132])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 12:30:04 -0800
-Date: Wed, 19 Jan 2022 12:30:04 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Message-ID: <20220119203004.mnds3vrxtsqkvso3@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <YecI6S9Cx5esqL+H@zn.tnic>
- <20220118200145.GA887728@bhelgaas>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 22AD710E177;
+ Wed, 19 Jan 2022 20:30:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1FAE7AA0ED;
+ Wed, 19 Jan 2022 20:30:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3304415630490165169=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220118200145.GA887728@bhelgaas>
-Subject: Re: [Intel-gfx] [PATCH v5 1/5] x86/quirks: Fix stolen detection
- with integrated + discrete GPU
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "H.J. Lu" <hjl.tools@gmail.com>
+Date: Wed, 19 Jan 2022 20:30:21 -0000
+Message-ID: <164262422112.22603.1957776343479704851@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220119192952.3829148-1-hjl.tools@gmail.com>
+In-Reply-To: <20220119192952.3829148-1-hjl.tools@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/bios=3A_Workaround_broken_video_BIOS_in_LG_Gram_2021_=28r?=
+ =?utf-8?q?ev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,54 +41,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Hansen <dave.hansen@linux.intel.com>, linux-pci@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, x86@kernel.org, stable@vger.kernel.org,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Bjorn Helgaas <bhelgaas@google.com>, Thomas Gleixner <tglx@linutronix.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 18, 2022 at 02:01:45PM -0600, Bjorn Helgaas wrote:
->On Tue, Jan 18, 2022 at 07:37:29PM +0100, Borislav Petkov wrote:
->> On Tue, Jan 18, 2022 at 11:58:53AM -0600, Bjorn Helgaas wrote:
->> > I don't really care much one way or the other.  I think the simplest
->> > approach is to remove QFLAG_APPLY_ONCE from intel_graphics_quirks()
->> > and do nothing else, as I suggested here:
->> >
->> >   https://lore.kernel.org/r/20220113000805.GA295089@bhelgaas
->> >
->> > Unfortunately that didn't occur to me until I'd already suggested more
->> > complicated things that no longer seem worthwhile to me.
->> >
->> > The static variable might be ugly, but it does seem to be what
->> > intel_graphics_quirks() wants -- a "do this at most once per system
->> > but we don't know exactly which device" situation.
->>
->> I see.
->>
->> Yeah, keeping it solely inside intel_graphics_quirks() and maybe with a
->> comment ontop, why it is done, is simple. I guess if more quirks need
->> this once-thing people might have to consider a more sensible scheme - I
->> was just objecting to sprinkling those static vars everywhere.
->>
->> But your call. :)
->
->Haha :)  I was hoping not to touch it myself because I think this
->whole stolen memory thing is kind of nasty.  It's not clear to me why
->we need it at all, or why we have to keep all this device-specific
->logic in the kernel, or why it has to be an early quirk as opposed to
->a regular PCI quirk.  We had a thread [1] about it a while ago but I
->don't think anything got resolved.
+--===============3304415630490165169==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I was reading that thread again and thinking what we could do to try to
-resolve this. I will reply on that thread.
+== Series Details ==
 
->But to try to make forward progress, I applied patch 1/5 (actually,
->the updated one from [2]) to my pci/misc branch with the updated
->commit log and code comments below.
+Series: drm/i915/bios: Workaround broken video BIOS in LG Gram 2021 (rev2)
+URL   : https://patchwork.freedesktop.org/series/99052/
+State : failure
 
-thanks. I found the wording in the title odd as when I read "first" it
-gives me the impression it's saying there could be more, which is not
-possible.  Anyway, not a big thing. Thanks for rewording it.
+== Summary ==
 
-Lucas De Marchi
+CI Bug Log - changes from CI_DRM_11110 -> Patchwork_22026
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_22026 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22026, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/index.html
+
+Participating hosts (45 -> 34)
+------------------------------
+
+  Missing    (11): fi-kbl-soraka bat-dg1-6 bat-dg1-5 fi-icl-u2 fi-bsw-cyan fi-apl-guc bat-adlp-6 bat-rpls-1 fi-bdw-samus bat-jsl-2 bat-jsl-1 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22026:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-blb-e6850:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11110/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22026 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271]) +31 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-skl-6600u:       NOTRUN -> [INCOMPLETE][4] ([i915#4547])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - fi-tgl-1115g4:      [FAIL][6] ([i915#1888]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11110/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11110 -> Patchwork_22026
+
+  CI-20190529: 20190529
+  CI_DRM_11110: 773fc0fe92f90fa7bbbcdccffa7436259bbab22f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22026: 2ee69fab49bcbfe05337fdbfae4d7c4035e9bab0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2ee69fab49bc drm/i915/bios: Workaround broken video BIOS in LG Gram 2021
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/index.html
+
+--===============3304415630490165169==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/bios: Workaround broken video BIOS in LG Gram 2021 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99052/">https://patchwork.freedesktop.org/series/99052/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11110 -&gt; Patchwork_22026</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_22026 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22026, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/index.html</p>
+<h2>Participating hosts (45 -&gt; 34)</h2>
+<p>Missing    (11): fi-kbl-soraka bat-dg1-6 bat-dg1-5 fi-icl-u2 fi-bsw-cyan fi-apl-guc bat-adlp-6 bat-rpls-1 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22026:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11110/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22026 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s0@smem:<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11110/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22026/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11110 -&gt; Patchwork_22026</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11110: 773fc0fe92f90fa7bbbcdccffa7436259bbab22f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22026: 2ee69fab49bcbfe05337fdbfae4d7c4035e9bab0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>2ee69fab49bc drm/i915/bios: Workaround broken video BIOS in LG Gram 2021</p>
+
+</body>
+</html>
+
+--===============3304415630490165169==--
