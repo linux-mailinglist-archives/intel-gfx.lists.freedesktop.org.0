@@ -1,62 +1,96 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60537493DED
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 17:04:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F706493E2D
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 17:15:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C35C089F2A;
-	Wed, 19 Jan 2022 16:04:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94A5A10E334;
+	Wed, 19 Jan 2022 16:15:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com
- [IPv6:2607:f8b0:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA98789EF7
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 16:04:55 +0000 (UTC)
-Received: by mail-pf1-x432.google.com with SMTP id 128so2679598pfe.12
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 08:04:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Cgcs27L5znL3hlyeeWEC5ZmG6ozT7jFZYXfiz/gLhQs=;
- b=IbyHz4/WsqK4V/ZNMdBWcgWdHAE4wJ1j2MKHzR/JP+r4vycNMvlwd4u5aOJZELH0XT
- UOIi9pX9vMlVDtK7cxHuycwaAAKXI7lJogSSWvZIQgPsHGGeJOsVRFCKF/tGIQxIQJb/
- Elhc/WSuVvwcJ5bK8bIifeuq3lHk+JG0AznC9rVkgm48NCjsHYoY+xuwYeKrH045Ib6H
- 727Ws1bMK5xtVB5QvhdjnRB7J/LKnK/Uryw+CzWQma0mAlagUy8hJ2sV/qmLq7EWoxza
- 8EGwl0oEVgfNBaaqxIJw9Nnj02FRDYqc2qFsYe6v0OEJissSEuSfrl6TKP/2P5FzOm6U
- R3+Q==
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
+ [IPv6:2a00:1450:4864:20::32e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B16AE10E399
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 16:15:07 +0000 (UTC)
+Received: by mail-wm1-x32e.google.com with SMTP id
+ i187-20020a1c3bc4000000b0034d2ed1be2aso13794347wma.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 08:15:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to; bh=/740EhzwYoGWwplLvQqVEtpoUmpyOdkwft+pAru/eUg=;
+ b=CLleadD2rlpyVmC2Y6vZSEoLi9LN/RUvstwkUMHlt3h7gHDd+Twhzs8oNKymBLJ71M
+ +mCmZ512cWOY8OIf9l9LSqDn0RzEX5N4nNE80SRlE4EPdjhpbA+VFlLjEUNdd6c7+gmz
+ hc/Es0b3squc/LZ7AtYoKuJMwS6NkmXhvHLNA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Cgcs27L5znL3hlyeeWEC5ZmG6ozT7jFZYXfiz/gLhQs=;
- b=GIJVoIPxCGqPwooEwXuey/+/yJOq1PWAuuBGRLqPky1dSbAL9lAn+7lgiFMpEHwusH
- p/+VbkaPzoZ1ln5FTJa5WjzTbD7Y9jGSZwqFWFP0bOkvDcvH+AhYyAQIward0rvtxMwq
- fymsZilvF3ttCoWZcj3rbAqCXAqBlsJeWVufchzHdY0adanEcKlqXx3BPPT1pZ2sD0Qa
- Xhx82l6jayX09SQuP5aSvpG4ACme4Ne9dNrxkxKYjTPJjWRlUOrdATAmHb5yVuGCGj1y
- 175/mU1Pydh1L9feR6sN3K9zxzoEbSY/G4pvF/8b3SLPRwF3FkWvK7cj1gaY9sqJxxVj
- RDjQ==
-X-Gm-Message-State: AOAM530f+s0LQ4uBkw4PK57Wb24zE4IJQPAcKQeGlq3bIprJE/HGeWvZ
- R3J1TMfiwhsS5uhAuBkYzAW6FVLS2cQ=
-X-Google-Smtp-Source: ABdhPJxnjg9vPP+/8CKXaAhPxTKM2RQ+m+ZCXUH3fVcUVdwvC35VEKbPQLdeFFAZ5kcfRcS8s8J92w==
-X-Received: by 2002:a63:8a4c:: with SMTP id y73mr28039772pgd.249.1642608295144; 
- Wed, 19 Jan 2022 08:04:55 -0800 (PST)
-Received: from gnu-tgl-3.localdomain ([172.58.35.133])
- by smtp.gmail.com with ESMTPSA id b22sm108000pfl.121.2022.01.19.08.04.54
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :content-transfer-encoding:in-reply-to;
+ bh=/740EhzwYoGWwplLvQqVEtpoUmpyOdkwft+pAru/eUg=;
+ b=fBAMO8v/ZzR/DzxSd1FmpK4q0Bp/8EF44MOlLY2qkea8E1SQWVeMhfIJa8PRE8U731
+ SkUdp5pkkDrSg/x2pljn+n2Wd/8DO1EpUaeZQV98AeEhMXSi/nN7mDeM4Y41K5l7GkRW
+ qvXUWsgk4IZKQuJSGoWe8aUDJLt6do2YruDqiUkCGMz1lHIDzzco9rhJ//3dfej1JA/t
+ OuHmC2/38Oj5UanRC5pAF97vzkwsHQP6TkheNf5eWEYodmjvQpG/laDaoCuxtTmbsqDS
+ gn71wqdMrjNBzR3egsL4Mdxg8fH4nCPP8UMeFbDo/laQGdGTgwpS01y3XBOgH3NkCjeX
+ TwiQ==
+X-Gm-Message-State: AOAM533y3my7RetOVqqRn5z7C3r1PGun56k0cZESB6jG4XnPieh93lzX
+ JQY+qBrW/UOv6qrBhuk4El2gIA==
+X-Google-Smtp-Source: ABdhPJwiLLIYLwmxveHTo+l6K6jAbRNMKsadqYtKqTPCn9x60CqA3JeQAqEpCJtSMiU+47LHV4yaMA==
+X-Received: by 2002:adf:fb84:: with SMTP id a4mr30060043wrr.315.1642608906005; 
+ Wed, 19 Jan 2022 08:15:06 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id o13sm298372wrq.37.2022.01.19.08.15.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Jan 2022 08:04:54 -0800 (PST)
-Received: from gnu-tgl-3.. (localhost [IPv6:::1])
- by gnu-tgl-3.localdomain (Postfix) with ESMTP id 36417C051C;
- Wed, 19 Jan 2022 08:04:53 -0800 (PST)
-From: "H.J. Lu" <hjl.tools@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Jan 2022 08:04:45 -0800
-Message-Id: <20220119160445.3609367-1-hjl.tools@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ Wed, 19 Jan 2022 08:15:05 -0800 (PST)
+Date: Wed, 19 Jan 2022 17:15:02 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Yeg5BpV8tknSPdSQ@phenom.ffwll.local>
+Mail-Followup-To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Petr Mladek <pmladek@suse.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-security-module@vger.kernel.org,
+ nouveau@lists.freedesktop.org, netdev@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ David Airlie <airlied@linux.ie>,
+ "David S . Miller" <davem@davemloft.net>,
+ Emma Anholt <emma@anholt.net>, Eryk Brol <eryk.brol@amd.com>,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Jakub Kicinski <kuba@kernel.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Julia Lawall <julia.lawall@lip6.fr>,
+ Kentaro Takeda <takedakn@nttdata.co.jp>,
+ Leo Li <sunpeng.li@amd.com>, Mikita Lipski <mikita.lipski@amd.com>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Raju Rangoju <rajur@chelsio.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Vishal Kulkarni <vishal@chelsio.com>
+References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
+ <YegPiR7LU8aVisMf@alley> <87tudzbykz.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/bios: Workaround broken video BIOS in
- LG Gram 2021
+In-Reply-To: <87tudzbykz.fsf@intel.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH 0/3] lib/string_helpers: Add a few string
+ helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,227 +103,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "H.J. Lu" <hjl.tools@gmail.com>
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Vishal Kulkarni <vishal@chelsio.com>,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ Kentaro Takeda <takedakn@nttdata.co.jp>, Mikita Lipski <mikita.lipski@amd.com>,
+ amd-gfx@lists.freedesktop.org, Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
+ intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Julia Lawall <julia.lawall@lip6.fr>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Eryk Brol <eryk.brol@amd.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+ linux-security-module@vger.kernel.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "David S . Miller" <davem@davemloft.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-LG Gram 2021 laptop 17Z95P-K.ADE9U1 OpRegion has
+On Wed, Jan 19, 2022 at 04:16:12PM +0200, Jani Nikula wrote:
+> On Wed, 19 Jan 2022, Petr Mladek <pmladek@suse.com> wrote:
+> > On Tue 2022-01-18 23:24:47, Lucas De Marchi wrote:
+> >> Add some helpers under lib/string_helpers.h so they can be used
+> >> throughout the kernel. When I started doing this there were 2 other
+> >> previous attempts I know of, not counting the iterations each of them
+> >> had:
+> >> 
+> >> 1) https://lore.kernel.org/all/20191023131308.9420-1-jani.nikula@intel.com/
+> >> 2) https://lore.kernel.org/all/20210215142137.64476-1-andriy.shevchenko@linux.intel.com/#t
+> >> 
+> >> Going through the comments I tried to find some common ground and
+> >> justification for what is in here, addressing some of the concerns
+> >> raised.
+> >> 
+> >> d. This doesn't bring onoff() helper as there are some places in the
+> >>    kernel with onoff as variable - another name is probably needed for
+> >>    this function in order not to shadow the variable, or those variables
+> >>    could be renamed.  Or if people wanting  <someprefix>
+> >>    try to find a short one
+> >
+> > I would call it str_on_off().
+> >
+> > And I would actually suggest to use the same style also for
+> > the other helpers.
+> >
+> > The "str_" prefix would make it clear that it is something with
+> > string. There are other <prefix>_on_off() that affect some
+> > functionality, e.g. mute_led_on_off(), e1000_vlan_filter_on_off().
+> >
+> > The dash '_' would significantly help to parse the name. yesno() and
+> > onoff() are nicely short and kind of acceptable. But "enabledisable()"
+> > is a puzzle.
+> >
+> > IMHO, str_yes_no(), str_on_off(), str_enable_disable() are a good
+> > compromise.
+> >
+> > The main motivation should be code readability. You write the
+> > code once. But many people will read it many times. Open coding
+> > is sometimes better than misleading macro names.
+> >
+> > That said, I do not want to block this patchset. If others like
+> > it... ;-)
+> 
+> I don't mind the names either way. Adding the prefix and dashes is
+> helpful in that it's possible to add the functions first and convert
+> users at leisure, though with a bunch of churn, while using names that
+> collide with existing ones requires the changes to happen in one go.
+> 
+> What I do mind is grinding this series to a halt once again. I sent a
+> handful of versions of this three years ago, with inconclusive
+> bikeshedding back and forth, eventually threw my hands up in disgust,
+> and walked away.
 
-FW size: 0x2200
-VBT size: 0x2000
-BDB offset: 0x30
-BDB size: 0x216e
+Yeah we can sed this anytime later we want to, but we need to get the foot
+in the door. There's also a pile more of these all over.
 
-Add intel_init_opregion_quirks to use FW size as VBT size on LG Gram
-17Z95P-K.ADE9U1 and update intel_bios_is_valid_vbt to use FW size,
-instead of VBT size if the quirk is applied, in range_overflows_t for
-BDB size overflow check.  This fixes:
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-https://gitlab.freedesktop.org/drm/intel/-/issues/4763
+on the series, maybe it helps? And yes let's merge this through drm-misc.
+-Daniel
 
-Signed-off-by: H.J. Lu <hjl.tools@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c     | 14 ++++---
- drivers/gpu/drm/i915/display/intel_bios.h     |  3 +-
- drivers/gpu/drm/i915/display/intel_opregion.c |  9 +++--
- drivers/gpu/drm/i915/display/intel_quirks.c   | 40 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_quirks.h   |  1 +
- drivers/gpu/drm/i915/i915_drv.h               |  1 +
- 6 files changed, 58 insertions(+), 10 deletions(-)
+> 
+> >
+> >
+> >> e. One alternative to all of this suggested by Christian König
+> >>    (43456ba7-c372-84cc-4949-dcb817188e21@amd.com) would be to add a
+> >>    printk format. But besides the comment, he also seemed to like
+> >>    the common function. This brought the argument from others that the
+> >>    simple yesno()/enabledisable() already used in the code is easier to
+> >>    remember and use than e.g. %py[DOY]
+> >
+> > Thanks for not going this way :-)
+> >
+> >> Last patch also has some additional conversion of open coded cases. I
+> >> preferred starting with drm/ since this is "closer to home".
+> >> 
+> >> I hope this is a good summary of the previous attempts and a way we can
+> >> move forward.
+> >> 
+> >> Andrew Morton, Petr Mladek, Andy Shevchenko: if this is accepted, my
+> >> proposal is to take first 2 patches either through mm tree or maybe
+> >> vsprintf. Last patch can be taken later through drm.
+> >
+> > I agree with Andy that it should go via drm tree. It would make it
+> > easier to handle potential conflicts.
+> >
+> > Just in case, you decide to go with str_yes_no() or something similar.
+> > Mass changes are typically done at the end on the merge window.
+> > The best solution is when it can be done by a script.
+> >
+> > Best Regards,
+> > Petr
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 7d04572dd18b..4e960eb45a5a 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2273,7 +2273,8 @@ static const struct bdb_header *get_bdb_header(const struct vbt_header *vbt)
-  *
-  * Returns true on valid VBT.
-  */
--bool intel_bios_is_valid_vbt(const void *buf, size_t size)
-+bool intel_bios_is_valid_vbt(struct drm_i915_private *dev_priv,
-+			     const void *buf, size_t size)
- {
- 	const struct vbt_header *vbt = buf;
- 	const struct bdb_header *bdb;
-@@ -2296,16 +2297,17 @@ bool intel_bios_is_valid_vbt(const void *buf, size_t size)
- 		return false;
- 	}
- 
--	size = vbt->vbt_size;
--
- 	if (range_overflows_t(size_t,
- 			      vbt->bdb_offset,
- 			      sizeof(struct bdb_header),
--			      size)) {
-+			      vbt->vbt_size)) {
- 		DRM_DEBUG_DRIVER("BDB header incomplete\n");
- 		return false;
- 	}
- 
-+	if (!(dev_priv->quirks & QUIRK_USE_FW_SIZE_AS_VBT_SIZE))
-+		size = vbt->vbt_size;
-+
- 	bdb = get_bdb_header(vbt);
- 	if (range_overflows_t(size_t, vbt->bdb_offset, bdb->bdb_size, size)) {
- 		DRM_DEBUG_DRIVER("BDB incomplete\n");
-@@ -2359,7 +2361,7 @@ static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
- 		*(vbt + store++) = data;
- 	}
- 
--	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
-+	if (!intel_bios_is_valid_vbt(i915, vbt, vbt_size))
- 		goto err_free_vbt;
- 
- 	drm_dbg_kms(&i915->drm, "Found valid VBT in SPI flash\n");
-@@ -2416,7 +2418,7 @@ static struct vbt_header *oprom_get_vbt(struct drm_i915_private *i915)
- 
- 	memcpy_fromio(vbt, p, vbt_size);
- 
--	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
-+	if (!intel_bios_is_valid_vbt(i915, vbt, vbt_size))
- 		goto err_free_vbt;
- 
- 	pci_unmap_rom(pdev, oprom);
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index 4709c4d29805..368ee87390e7 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -231,7 +231,8 @@ struct mipi_pps_data {
- 
- void intel_bios_init(struct drm_i915_private *dev_priv);
- void intel_bios_driver_remove(struct drm_i915_private *dev_priv);
--bool intel_bios_is_valid_vbt(const void *buf, size_t size);
-+bool intel_bios_is_valid_vbt(struct drm_i915_private *dev_priv,
-+			     const void *buf, size_t size);
- bool intel_bios_is_tv_present(struct drm_i915_private *dev_priv);
- bool intel_bios_is_lvds_present(struct drm_i915_private *dev_priv, u8 *i2c_pin);
- bool intel_bios_is_port_present(struct drm_i915_private *dev_priv, enum port port);
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index af9d30f56cc1..7a9b4d72d18c 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -36,6 +36,7 @@
- #include "intel_display_types.h"
- #include "intel_opregion.h"
- #include "intel_pci_config.h"
-+#include "intel_quirks.h"
- 
- #define OPREGION_HEADER_OFFSET 0
- #define OPREGION_ACPI_OFFSET   0x100
-@@ -817,7 +818,7 @@ static int intel_load_vbt_firmware(struct drm_i915_private *dev_priv)
- 		return ret;
- 	}
- 
--	if (intel_bios_is_valid_vbt(fw->data, fw->size)) {
-+	if (intel_bios_is_valid_vbt(dev_priv, fw->data, fw->size)) {
- 		opregion->vbt_firmware = kmemdup(fw->data, fw->size, GFP_KERNEL);
- 		if (opregion->vbt_firmware) {
- 			drm_dbg_kms(&dev_priv->drm,
-@@ -922,6 +923,8 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
- 	if (dmi_check_system(intel_no_opregion_vbt))
- 		goto out;
- 
-+	intel_init_opregion_quirks(dev_priv);
-+
- 	if (opregion->header->over.major >= 2 && opregion->asle &&
- 	    opregion->asle->rvda && opregion->asle->rvds) {
- 		resource_size_t rvda = opregion->asle->rvda;
-@@ -944,7 +947,7 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
- 
- 		vbt = opregion->rvda;
- 		vbt_size = opregion->asle->rvds;
--		if (intel_bios_is_valid_vbt(vbt, vbt_size)) {
-+		if (intel_bios_is_valid_vbt(dev_priv, vbt, vbt_size)) {
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "Found valid VBT in ACPI OpRegion (RVDA)\n");
- 			opregion->vbt = vbt;
-@@ -969,7 +972,7 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
- 	vbt_size = (mboxes & MBOX_ASLE_EXT) ?
- 		OPREGION_ASLE_EXT_OFFSET : OPREGION_SIZE;
- 	vbt_size -= OPREGION_VBT_OFFSET;
--	if (intel_bios_is_valid_vbt(vbt, vbt_size)) {
-+	if (intel_bios_is_valid_vbt(dev_priv, vbt, vbt_size)) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Found valid VBT in ACPI OpRegion (Mailbox #4)\n");
- 		opregion->vbt = vbt;
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index c8488f5ebd04..c2604e8b5353 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -133,6 +133,36 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
- 	},
- };
- 
-+static void quirk_opregion_use_fw_size_as_vbt_size(struct drm_i915_private *i915)
-+{
-+	i915->quirks |= QUIRK_USE_FW_SIZE_AS_VBT_SIZE;
-+	drm_info(&i915->drm, "Applying FW size as VBT size quirk in OpRegion\n");
-+}
-+
-+static int intel_dmi_opregion_use_fw_size_as_vbt_size(const struct dmi_system_id *id)
-+{
-+	DRM_INFO("Use FW size as VBT size on %s in OpRegion\n", id->ident);
-+	return 1;
-+}
-+
-+static const struct intel_dmi_quirk intel_dmi_opregion_quirks[] = {
-+	{
-+		.dmi_id_list = &(const struct dmi_system_id[]) {
-+			{
-+				.callback = intel_dmi_opregion_use_fw_size_as_vbt_size,
-+				.ident = "LG Gram 17Z95P-K.ADE9U1",
-+				.matches = {DMI_EXACT_MATCH(DMI_SYS_VENDOR, "LG Electronics"),
-+					    DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "17Z95P-K.ADE9U1"),
-+					    DMI_EXACT_MATCH(DMI_BIOS_VERSION, "T4ZF0040 X64"),
-+					    DMI_EXACT_MATCH(DMI_BIOS_DATE, "10/06/2021"),
-+				},
-+			},
-+			{ }
-+		},
-+		.hook = quirk_opregion_use_fw_size_as_vbt_size,
-+	},
-+};
-+
- static struct intel_quirk intel_quirks[] = {
- 	/* Lenovo U160 cannot use SSC on LVDS */
- 	{ 0x0046, 0x17aa, 0x3920, quirk_ssc_force_disable },
-@@ -213,3 +243,13 @@ void intel_init_quirks(struct drm_i915_private *i915)
- 			intel_dmi_quirks[i].hook(i915);
- 	}
- }
-+
-+void intel_init_opregion_quirks(struct drm_i915_private *i915)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(intel_dmi_opregion_quirks); i++) {
-+		if (dmi_check_system(*intel_dmi_opregion_quirks[i].dmi_id_list) != 0)
-+			intel_dmi_opregion_quirks[i].hook(i915);
-+	}
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-index b0fcff142a56..3a6a84e0d502 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.h
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-@@ -9,5 +9,6 @@
- struct drm_i915_private;
- 
- void intel_init_quirks(struct drm_i915_private *dev_priv);
-+void intel_init_opregion_quirks(struct drm_i915_private *dev_priv);
- 
- #endif /* __INTEL_QUIRKS_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 890f1f6fbc49..08572fae2d97 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -403,6 +403,7 @@ struct i915_drrs {
- #define QUIRK_INCREASE_T12_DELAY (1<<6)
- #define QUIRK_INCREASE_DDI_DISABLED_TIME (1<<7)
- #define QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK (1<<8)
-+#define QUIRK_USE_FW_SIZE_AS_VBT_SIZE (1<<9)
- 
- struct intel_fbdev;
- 
 -- 
-2.34.1
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
