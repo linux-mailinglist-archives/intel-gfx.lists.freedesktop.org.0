@@ -1,53 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2FDD4942F3
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 23:21:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D50044942FB
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 23:25:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 202CE10E4B3;
-	Wed, 19 Jan 2022 22:21:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B34A10E249;
+	Wed, 19 Jan 2022 22:25:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D849710E479
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 22:21:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642630873; x=1674166873;
- h=date:from:to:subject:message-id:references:mime-version:
- content-transfer-encoding:in-reply-to;
- bh=Su4HZYM74bYQLtMYrabYTeBfMOOtLohBZ4njllHxSEo=;
- b=MiZe9Qfau5rT8dLYIe8CEBaCOi/j44qGuZMaBPBLj9Q8S0YT77aEA0rd
- foHFse/X3IP4axOJ+iPInjr5rByOI5K1aYonI8Zr2RgDzmt8wdN9NlOTP
- Xf/4MZzKMHZkoD0GL27Torq6EJIzZZ/jeijFmscCBV0resMiT4GCt/9vk
- PhUXMwQaxgJC4w4YPpXi3l2msro2bi7k/+p3Ks5W2/Hvd6nayoSf0v65j
- nye9KQiorrsTjczblhxd/j24vwOjPxn9JKqTFZnCLGtkwwu7YxCagMfdB
- rNlUKyOB4fpu4hLRPKPLvpIVgvdfj4NIghZ46NvbuvPd8NPzvrrt3SsJc A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="308546680"
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="308546680"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 14:21:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="615869267"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by FMSMGA003.fm.intel.com with SMTP; 19 Jan 2022 14:21:09 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 20 Jan 2022 00:21:07 +0200
-Date: Thu, 20 Jan 2022 00:21:07 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <YeiO005743p9zOeQ@intel.com>
-References: <20211217155403.31477-1-ville.syrjala@linux.intel.com>
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA28D10E694
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 22:25:06 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ uk-mta-3-gc2FjgmsNLmz-uRweWCGWA-1; Wed, 19 Jan 2022 22:25:02 +0000
+X-MC-Unique: gc2FjgmsNLmz-uRweWCGWA-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.28; Wed, 19 Jan 2022 22:25:00 +0000
+Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
+ AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
+ 15.00.1497.028; Wed, 19 Jan 2022 22:25:00 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Andy Shevchenko' <andy.shevchenko@gmail.com>
+Thread-Topic: [PATCH 1/3] lib/string_helpers: Consolidate yesno()
+ implementation
+Thread-Index: AQHYDUVmV8sHy8JfXU2yTPkp1VbmK6xqitzAgAAAVLCAAC4ygIAAMm1Q
+Date: Wed, 19 Jan 2022 22:25:00 +0000
+Message-ID: <2978e422e33f48f0bd07d937cdab13a5@AcuMS.aculab.com>
+References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
+ <20220119072450.2890107-2-lucas.demarchi@intel.com>
+ <CAHp75Vf5QOD_UtDK8VbxNApEBuJvzUic0NkzDNmRo3Q7Ud+=qw@mail.gmail.com>
+ <20220119100102.61f9bfde@gandalf.local.home>
+ <06420a70f4434c2b8590cc89cad0dd6a@AcuMS.aculab.com>
+ <9c26ca9bf75d494ea966059d9bcbc2b5@AcuMS.aculab.com>
+ <YehlEe1prbwhxZEv@smile.fi.intel.com>
+In-Reply-To: <YehlEe1prbwhxZEv@smile.fi.intel.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211217155403.31477-1-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 0/6] drm/i915: Extend parse_ddi_port() to
- all g4x+ platforms
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 1/3] lib/string_helpers: Consolidate yesno()
+ implementation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,46 +66,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Vishal Kulkarni <vishal@chelsio.com>,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ Kentaro Takeda <takedakn@nttdata.co.jp>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Ben Skeggs <bskeggs@redhat.com>, Jakub
+ Kicinski <kuba@kernel.org>, Harry Wentland <harry.wentland@amd.com>,
+ Petr Mladek <pmladek@suse.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Leo Li <sunpeng.li@amd.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, Raju
+ Rangoju <rajur@chelsio.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ 'Steven Rostedt' <rostedt@goodmis.org>, Julia Lawall <julia.lawall@lip6.fr>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Mikita Lipski <mikita.lipski@amd.com>, Eryk Brol <eryk.brol@amd.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ =?iso-8859-1?Q?Christian_K=F6nig?= <christian.koenig@amd.com>,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>, Andrew
+ Morton <akpm@linux-foundation.org>, "David S . Miller" <davem@davemloft.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 17, 2021 at 05:53:57PM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Quick attempt at unifying the VBT DDI parsing to all g4x+
-> platforms.
-> 
-> Note that we'll still use the hardware straps as the primary 
-> source of port presence information on old platforms since the
-> device type bits in VBT tend to be often a bit wrong (for DP++
-> ports at least). Hopefully the rest of the information (mainly
-> aux_ch/ddc_pin) are correct.
-> 
-> Only very slightly smoke tested on SNB so far.
+> > except '"no\0\0yes" + v * 4' works a bit better.
+>=20
+> Is it a C code obfuscation contest?
 
-Smoked this a bit more on a set of ctg,ilk,snb,ivb and all seems
-good so far.
+That would be:
+=09return &(v * 3)["no\0yes"];
 
-Pushed to drm-intel-next with fingers and toes crossed.
-Thanks for the review.
+:-)
 
-> 
-> Ville Syrjälä (6):
->   drm/i915/bios: Introduce has_ddi_port_info()
->   drm/i915/bios: Use i915->vbt.ports[] on CHV
->   drm/i915/bios: Use i915->vbt.ports[] for all g4x+
->   drm/i915/bios: Throw out the !has_ddi_port_info() codepaths
->   drm/i915/bios: Nuke DEVICE_TYPE_DP_DUAL_MODE_BITS
->   drm/i915/hdmi: Ignore DP++ TMDS clock limit for native HDMI ports
-> 
->  drivers/gpu/drm/i915/display/intel_bios.c     | 117 +++---------------
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |   8 ++
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  26 ----
->  3 files changed, 28 insertions(+), 123 deletions(-)
-> 
-> -- 
-> 2.32.0
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1=
+PT, UK
+Registration No: 1397386 (Wales)
 
--- 
-Ville Syrjälä
-Intel
