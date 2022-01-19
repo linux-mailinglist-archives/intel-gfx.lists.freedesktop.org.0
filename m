@@ -1,54 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECFD349410A
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 20:39:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1B34494125
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 20:47:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE0E210F0E9;
-	Wed, 19 Jan 2022 19:39:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8E6E10F163;
+	Wed, 19 Jan 2022 19:47:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DC8010F0E7;
- Wed, 19 Jan 2022 19:39:26 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AD8B10F163
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 19:47:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642621166; x=1674157166;
+ t=1642621657; x=1674157657;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=wjoA2KAzAua/sWhboAdUBsDnQlEM3jScHHUyibF2GDY=;
- b=E6LgJ4O5rqnQTIUVs6sXJ8UPWaAY7I6DLgOlTrTB0Mj93am0sW72WfCD
- dr1qiOMKl7LR4vnA9Q56T3EQ/I2FXBp9bZkxzQdbrUDEIjd9x7XLXr0tC
- jCoiz+iTo5hz8cayfAPBuMcCV1t3Iv77RydBWxi+6SbuAefZ4nxVKelsH
- JgFBiLFcK610wWyqnKKtRj008SVG5blYmkevK/XNwhX3OfFjFr5tvhz77
- yFUnIhvLvpqeOcINRuD/8QS0FzgERfO9uWCFyCCQz6BGHMBSUG1+tEeur
- GWQMB0eI04/yDv5Z56IPAskouU9t/a9SaPipWNlDwMzBxyE3ZG064HOua w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="225846458"
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="225846458"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 11:32:06 -0800
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="672288940"
-Received: from smile.fi.intel.com ([10.237.72.61])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 11:31:58 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1nAGfP-00CEep-7a; Wed, 19 Jan 2022 21:30:47 +0200
-Date: Wed, 19 Jan 2022 21:30:47 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <Yehm5/DJ5Ljo1EWs@smile.fi.intel.com>
-References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
- <20220119072450.2890107-4-lucas.demarchi@intel.com>
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ZcYR0u4Wo15ckDEiRYM2ULQomQG0ObOItlaaRXV8/LE=;
+ b=GvMofJLuUvUCcTU09LmGlNWxqb42ntXFRQjtmJap2sG/F603JqHV4laN
+ BcrpWSxIK/Lq6839f84BcJBm07f0mSJe2crKrolNo0EGCNLn8rURxzOz5
+ wUkokJlf6VvlFACUmhSmOVg098vBzUsVXM4JDPU59aOcF1LCZ88RirbuC
+ TgtutyKU4L84/c1yVt9TnA5IIwsIDvfMVIpNjUZhSPNeFkmk3oN1JqbmE
+ qYtEnZ6rZ1je6AneC/p6+1uSWQ8Zma+eYdKsj/mgt75js8WLfis9pffeh
+ R/PycpC6qaJ1fkzzQCA2mkB+ozbMXd7ePVP8YCfOAQSM9nMnSmXcM0yCw g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="242738388"
+X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="242738388"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 11:47:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="561175545"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
+ by orsmga001.jf.intel.com with SMTP; 19 Jan 2022 11:47:34 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 19 Jan 2022 21:47:33 +0200
+Date: Wed, 19 Jan 2022 21:47:33 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Message-ID: <Yehq1eK+R3kZhO6J@intel.com>
+References: <20220119122150.12941-1-ville.syrjala@linux.intel.com>
+ <87o847bvri.fsf@intel.com>
+ <20220119190942.GA20150@labuser-Z97X-UD5H>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220119072450.2890107-4-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm: Convert open yes/no strings to
- yesno()
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220119190942.GA20150@labuser-Z97X-UD5H>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Nuke dg2_ddi_pre_enable_dp()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,118 +61,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Vishal Kulkarni <vishal@chelsio.com>,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- Kentaro Takeda <takedakn@nttdata.co.jp>, amd-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
- Julia Lawall <julia.lawall@lip6.fr>,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Steven Rostedt <rostedt@goodmis.org>, Mikita Lipski <mikita.lipski@amd.com>,
- Eryk Brol <eryk.brol@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-kernel@vger.kernel.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- linux-security-module@vger.kernel.org, netdev@vger.kernel.org,
- Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- "David S . Miller" <davem@davemloft.net>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 18, 2022 at 11:24:50PM -0800, Lucas De Marchi wrote:
-> linux/string_helpers.h provides a helper to return "yes"/"no"
-> strings. Replace the open coded versions with yesno(). The places were
-> identified with the following semantic patch:
+On Wed, Jan 19, 2022 at 11:09:47AM -0800, Navare, Manasi wrote:
+> On Wed, Jan 19, 2022 at 05:17:05PM +0200, Jani Nikula wrote:
+> > On Wed, 19 Jan 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > >
+> > > dg2_ddi_pre_enable_dp() has outlived its usefulness so eliminate
+> > > it.
+> > >
+> > > The one thing that tgl_ddi_pre_enable_dp() is missing that we
+> > > need is intel_ddi_config_transcoder_dp2(). So we'll bring that
+> > > over.
+> > >
+> > > tgl_ddi_pre_enable_dp() does also have a few things that
+> > > dg2_ddi_pre_enable_dp() didn't have:
+> > > - icl_program_mg_dp_mode() -> nop due to intel_phy_is_tc()==false on DG2
+> > > - intel_ddi_power_up_lanes() -> nop due to intel_phy_is_combo()==false on DG2
+> > > - intel_ddi_mso_configure() -> only matters for MSO panels
+> > >
+> > > Another slight difference is that dg2_ddi_pre_enable_dp() was
+> > > missing a bigjoiner check around intel_dsc_enable(), which
+> > > tgl_ddi_pre_enable_dp() does have.
 > 
-> 	@@
-> 	expression b;
-> 	@@
+> Thanks Ville for this patch, I was just comparing differences between dg2_pre_enable_dp and tgl_pre_enable_dp
+> in regards to a bug and there is totally no need for two functions with the checks you have here.
 > 
-> 	- b ? "yes" : "no"
-> 	+ yesno(b)
-> 
-> Then the includes were added, so we include-what-we-use, and parenthesis
-> adjusted in drivers/gpu/drm/v3d/v3d_debugfs.c. After the conversion we
-> still see the same binary sizes:
-> 
->    text    data     bss     dec     hex filename
-> 1442171   60344     800 1503315  16f053 ./drivers/gpu/drm/radeon/radeon.ko
-> 1442171   60344     800 1503315  16f053 ./drivers/gpu/drm/radeon/radeon.ko.old
-> 5985991  324439   33808 6344238  60ce2e ./drivers/gpu/drm/amd/amdgpu/amdgpu.ko
-> 5985991  324439   33808 6344238  60ce2e ./drivers/gpu/drm/amd/amdgpu/amdgpu.ko.old
->  411986   10490    6176  428652   68a6c ./drivers/gpu/drm/drm.ko
->  411986   10490    6176  428652   68a6c ./drivers/gpu/drm/drm.ko.old
-> 1970292  109515    2352 2082159  1fc56f ./drivers/gpu/drm/nouveau/nouveau.ko
-> 1970292  109515    2352 2082159  1fc56f ./drivers/gpu/drm/nouveau/nouveau.ko.old
+> For the bigjoiner check aroind intel_dsc_enable(), I think the function intel_dsc_dp_pps_write(encoder, crtc_state);
+> also needs to be moved into that check. 
+> And then this functions needs to be called from icl_ddi_bigjoiner_pre_enable() where we call intel_dsc_enable
 
-...
-
->  #include <linux/module.h>
->  #include <linux/sched.h>
->  #include <linux/slab.h>
-> +#include <linux/string_helpers.h>
-
-+ blank line?
-
-> +#include <linux/string_helpers.h>
-
-...
-
->  	seq_printf(m, "\tDP branch device present: %s\n",
-> -		   branch_device ? "yes" : "no");
-> +		   yesno(branch_device));
-
-Now it's possible to keep this on one line.
-
-...
-
->  	drm_printf_indent(p, indent, "imported=%s\n",
-> -			  obj->import_attach ? "yes" : "no");
-> +			  yesno(obj->import_attach));
-
-81 here, but anyway, ditto!
-
-...
-
->   */
-
-+blank line here?
-
-> +#include <linux/string_helpers.h>
-> +
->  #include "aux.h"
->  #include "pad.h"
-
-...
-
->  	seq_printf(m, "MMU:        %s\n",
-> -		   (ident2 & V3D_HUB_IDENT2_WITH_MMU) ? "yes" : "no");
-> +		   yesno(ident2 & V3D_HUB_IDENT2_WITH_MMU));
->  	seq_printf(m, "TFU:        %s\n",
-> -		   (ident1 & V3D_HUB_IDENT1_WITH_TFU) ? "yes" : "no");
-> +		   yesno(ident1 & V3D_HUB_IDENT1_WITH_TFU));
->  	seq_printf(m, "TSY:        %s\n",
-> -		   (ident1 & V3D_HUB_IDENT1_WITH_TSY) ? "yes" : "no");
-> +		   yesno(ident1 & V3D_HUB_IDENT1_WITH_TSY));
->  	seq_printf(m, "MSO:        %s\n",
-> -		   (ident1 & V3D_HUB_IDENT1_WITH_MSO) ? "yes" : "no");
-> +		   yesno(ident1 & V3D_HUB_IDENT1_WITH_MSO));
->  	seq_printf(m, "L3C:        %s (%dkb)\n",
-> -		   (ident1 & V3D_HUB_IDENT1_WITH_L3C) ? "yes" : "no",
-> +		   yesno(ident1 & V3D_HUB_IDENT1_WITH_L3C),
->  		   V3D_GET_FIELD(ident2, V3D_HUB_IDENT2_L3C_NKB));
-
-I believe it's fine to join back to have less LOCs (yes, it will be 83 or so,
-but I believe in these cases it's very much okay).
+The video DIP lives in the transcoder so we don't want to write it
+twice.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Ville Syrjälä
+Intel
