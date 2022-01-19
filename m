@@ -1,54 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65293493973
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 12:27:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6909B49398E
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 12:35:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E9CE10EA86;
-	Wed, 19 Jan 2022 11:27:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B5CE10EA94;
+	Wed, 19 Jan 2022 11:35:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00D6510E71D
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 11:27:05 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF05910EA92
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 11:35:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642591625; x=1674127625;
+ t=1642592134; x=1674128134;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=rg7TMNiQw82fq3n22baqH80LxP0vT01x4R1CtL2l8l4=;
- b=I08d5vyVYr1kB2CcaY5/3wyY9tvltxcyDjhQ3OPnCsd96dGDZ67Yzs1U
- VoI050gejqogVxcSLX6vECwdnlwCK2cwURs9DfB8gZJ53a/0M0+L/6Vka
- pghfEW6FJh1QP+OhRbnCwIJdeCs1l0Y1dxTyr9uClGAmLDWimyP7wnMQw
- oZ779E91zljvcql/2blq1rcgnHfz36qnS8WKxj3lnGymudUmH9BtEhA5V
- 9FOLToDtIcZXkdLe90ZVYilCHPI3l7/2uDXZ/zIOS8uooUJLXecqixDuf
- Vj98TlJO77FfTKmzhG5WLLd2E/hPTy8u2zdomnSv9682gnzDB/8ZCL8o5 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="243866562"
-X-IronPort-AV: E=Sophos;i="5.88,299,1635231600"; d="scan'208";a="243866562"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 03:27:05 -0800
+ bh=gRBI/qaGrsDgpdoFxb3EvIM14rasgy5BpsVLs4zzRfs=;
+ b=cARPnvtGUgil/LpnpyTDhdjy77uShkngjzCXzV5nfhVfGe1laEi43bQa
+ 15C1AjpstvAD+/nAh0YQlKl53h0gxTut3aIQq90z+JyogjjGx1DIIWr3z
+ sLCLNWS1EpjxxaLcvPJSAAhVQ152ihZpv1WE1WBL96lvf6ssWozyM11Ib
+ K/GduvpmR0gnixzo+orBpC2KT244a4C/cxNTTX/j7VMCaZCwFwD6PRgQz
+ GsF+e/mHP8D8V8gqKQ1LlvJ0PvtUHo2dBD11KE9b7CTljxKlRhJ8agkBW
+ 53zuSgnUmNQmtppMJiKT5OtJye9agSrunlKCi+gp4ECYOGs+HeiwedVQt A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="308386308"
+X-IronPort-AV: E=Sophos;i="5.88,299,1635231600"; d="scan'208";a="308386308"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 03:35:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,299,1635231600"; d="scan'208";a="622479888"
+X-IronPort-AV: E=Sophos;i="5.88,299,1635231600"; d="scan'208";a="530602148"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by fmsmga002.fm.intel.com with SMTP; 19 Jan 2022 03:26:55 -0800
+ by fmsmga007.fm.intel.com with SMTP; 19 Jan 2022 03:35:31 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 19 Jan 2022 13:26:53 +0200
-Date: Wed, 19 Jan 2022 13:26:53 +0200
+ Wed, 19 Jan 2022 13:35:31 +0200
+Date: Wed, 19 Jan 2022 13:35:31 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <Yef1fdow2p1fVdbr@intel.com>
+Message-ID: <Yef3gyulE4xx0sxo@intel.com>
 References: <20220118104839.6654-1-stanislav.lisovskiy@intel.com>
- <20220118104839.6654-2-stanislav.lisovskiy@intel.com>
+ <20220118104839.6654-3-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220118104839.6654-2-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20220118104839.6654-3-stanislav.lisovskiy@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Pass plane to watermark
- calculation functions
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Introduce do_async_flip flag
+ to intel_plane_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,194 +65,76 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 18, 2022 at 12:48:36PM +0200, Stanislav Lisovskiy wrote:
-> Sometimes we might need to change the way we calculate
-> watermarks, based on which particular plane it is calculated
-> for. Thus it would be convenient to pass plane struct to those
-> functions.
+On Tue, Jan 18, 2022 at 12:48:37PM +0200, Stanislav Lisovskiy wrote:
+> There might be various logical contructs when we might want
+> to enable async flip, so lets calculate those and set this
+> flag, so that there is no need in long conditions in other
+> places.
 > 
-> v2: Pass plane instead of plane_id
+> v2: - Set do_async_flip flag to False, if no async flip needed.
+>       Lets not rely that it will be 0-initialized, but set
+>       explicitly, so that the logic is clear as well.
 > 
 > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
->  .../gpu/drm/i915/display/intel_atomic_plane.h |  3 +++
->  drivers/gpu/drm/i915/intel_pm.c               | 23 +++++++++++++------
->  3 files changed, 20 insertions(+), 8 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 2 +-
+>  drivers/gpu/drm/i915/display/intel_display.c       | 5 +++++
+>  drivers/gpu/drm/i915/display/intel_display_types.h | 3 +++
+>  3 files changed, 9 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index c2c512cd8ec0..d1344e9c06de 100644
+> index d1344e9c06de..87bad665a2c8 100644
 > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
 > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -373,7 +373,7 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
->  					       old_plane_state, new_plane_state);
->  }
+> @@ -491,7 +491,7 @@ void intel_plane_update_arm(struct intel_plane *plane,
 >  
-> -static struct intel_plane *
-> +struct intel_plane *
->  intel_crtc_get_plane(struct intel_crtc *crtc, enum plane_id plane_id)
->  {
->  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> index 7907f601598e..c1499bb7370e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> @@ -16,10 +16,13 @@ struct intel_crtc;
->  struct intel_crtc_state;
->  struct intel_plane;
->  struct intel_plane_state;
-> +enum plane_id;
+>  	trace_intel_plane_update_arm(&plane->base, crtc);
 >  
->  unsigned int intel_adjusted_rate(const struct drm_rect *src,
->  				 const struct drm_rect *dst,
->  				 unsigned int rate);
-> +struct intel_plane *intel_crtc_get_plane(struct intel_crtc *crtc,
-> +					 enum plane_id plane_id);
->  unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
->  				    const struct intel_plane_state *plane_state);
+> -	if (crtc_state->uapi.async_flip && plane->async_flip)
+> +	if (plane_state->do_async_flip)
+>  		plane->async_flip(plane, crtc_state, plane_state, true);
+>  	else
+>  		plane->update_arm(plane, crtc_state, plane_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 0964b2403e2d..f3ce29c42bc3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5027,6 +5027,11 @@ int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_crtc_stat
+>  			 needs_scaling(new_plane_state))))
+>  		new_crtc_state->disable_lp_wm = true;
 >  
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 62fde21fac39..dc1203d21c46 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -4252,7 +4252,9 @@ static int skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
->  				 u64 modifier, unsigned int rotation,
->  				 u32 plane_pixel_rate, struct skl_wm_params *wp,
->  				 int color_plane);
+> +	if (new_crtc_state->uapi.async_flip && plane->async_flip)
+> +		new_plane_state->do_async_flip = true;
+> +	else
+> +		new_plane_state->do_async_flip = false;
+
+Clearing the flag should probably be in intel_plane_duplicate_state().
+
+The decision to call intel_crtc_{enable,disable}_flip_done() should
+also be based on do_async_flip, otherwise we're going to try to complete
+the flip using two different mechanisms when we decide to do a sync flip
+instead of an async flip.
+
+Otherwise lgtm.
+
 > +
->  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
-> +				 const struct intel_plane *plane,
->  				 int level,
->  				 unsigned int latency,
->  				 const struct skl_wm_params *wp,
-> @@ -4261,6 +4263,7 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
->  
->  static unsigned int
->  skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
-> +		      const struct intel_plane *plane,
-
-I don't see a reason for having the caller pass this in. We can just
-keep it local to this function.
-
-Also we don't usually const these things.
-
->  		      int num_active)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
-> @@ -4279,7 +4282,7 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
->  	for (level = 0; level <= max_level; level++) {
->  		unsigned int latency = dev_priv->wm.skl_latency[level];
->  
-> -		skl_compute_plane_wm(crtc_state, level, latency, &wp, &wm, &wm);
-> +		skl_compute_plane_wm(crtc_state, plane, level, latency, &wp, &wm, &wm);
->  		if (wm.min_ddb_alloc == U16_MAX)
->  			break;
->  
-> @@ -5124,6 +5127,7 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
->  		intel_atomic_get_new_crtc_state(state, crtc);
->  	const struct intel_dbuf_state *dbuf_state =
->  		intel_atomic_get_new_dbuf_state(state);
-> +	const struct intel_plane *cursor_plane = intel_crtc_get_plane(crtc, PLANE_CURSOR);
-
-Could be just to_intel_plane(crtc->base.cursor) 
-
-Apart from that looks OK.
-
->  	const struct skl_ddb_entry *alloc = &dbuf_state->ddb[crtc->pipe];
->  	int num_active = hweight8(dbuf_state->active_pipes);
->  	u16 alloc_size, start = 0;
-> @@ -5153,7 +5157,7 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
->  		return 0;
->  
->  	/* Allocate fixed number of blocks for cursor. */
-> -	total[PLANE_CURSOR] = skl_cursor_allocation(crtc_state, num_active);
-> +	total[PLANE_CURSOR] = skl_cursor_allocation(crtc_state, cursor_plane, num_active);
->  	alloc_size -= total[PLANE_CURSOR];
->  	crtc_state->wm.skl.plane_ddb_y[PLANE_CURSOR].start =
->  		alloc->end - total[PLANE_CURSOR];
-> @@ -5507,6 +5511,7 @@ static int skl_wm_max_lines(struct drm_i915_private *dev_priv)
->  }
->  
->  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
-> +				 const struct intel_plane *plane,
->  				 int level,
->  				 unsigned int latency,
->  				 const struct skl_wm_params *wp,
-> @@ -5634,6 +5639,7 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
->  
->  static void
->  skl_compute_wm_levels(const struct intel_crtc_state *crtc_state,
-> +		      const struct intel_plane *plane,
->  		      const struct skl_wm_params *wm_params,
->  		      struct skl_wm_level *levels)
->  {
-> @@ -5645,7 +5651,7 @@ skl_compute_wm_levels(const struct intel_crtc_state *crtc_state,
->  		struct skl_wm_level *result = &levels[level];
->  		unsigned int latency = dev_priv->wm.skl_latency[level];
->  
-> -		skl_compute_plane_wm(crtc_state, level, latency,
-> +		skl_compute_plane_wm(crtc_state, plane, level, latency,
->  				     wm_params, result_prev, result);
->  
->  		result_prev = result;
-> @@ -5653,6 +5659,7 @@ skl_compute_wm_levels(const struct intel_crtc_state *crtc_state,
->  }
->  
->  static void tgl_compute_sagv_wm(const struct intel_crtc_state *crtc_state,
-> +				const struct intel_plane *plane,
->  				const struct skl_wm_params *wm_params,
->  				struct skl_plane_wm *plane_wm)
->  {
-> @@ -5661,7 +5668,7 @@ static void tgl_compute_sagv_wm(const struct intel_crtc_state *crtc_state,
->  	struct skl_wm_level *levels = plane_wm->wm;
->  	unsigned int latency = dev_priv->wm.skl_latency[0] + dev_priv->sagv_block_time_us;
->  
-> -	skl_compute_plane_wm(crtc_state, 0, latency,
-> +	skl_compute_plane_wm(crtc_state, plane, 0, latency,
->  			     wm_params, &levels[0],
->  			     sagv_wm);
->  }
-> @@ -5736,6 +5743,7 @@ static int skl_build_plane_wm_single(struct intel_crtc_state *crtc_state,
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->  	struct skl_plane_wm *wm = &crtc_state->wm.skl.raw.planes[plane_id];
-> +	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
->  	struct skl_wm_params wm_params;
->  	int ret;
->  
-> @@ -5744,13 +5752,13 @@ static int skl_build_plane_wm_single(struct intel_crtc_state *crtc_state,
->  	if (ret)
->  		return ret;
->  
-> -	skl_compute_wm_levels(crtc_state, &wm_params, wm->wm);
-> +	skl_compute_wm_levels(crtc_state, plane, &wm_params, wm->wm);
->  
->  	skl_compute_transition_wm(dev_priv, &wm->trans_wm,
->  				  &wm->wm[0], &wm_params);
->  
->  	if (DISPLAY_VER(dev_priv) >= 12) {
-> -		tgl_compute_sagv_wm(crtc_state, &wm_params, wm);
-> +		tgl_compute_sagv_wm(crtc_state, plane, &wm_params, wm);
->  
->  		skl_compute_transition_wm(dev_priv, &wm->sagv.trans_wm,
->  					  &wm->sagv.wm0, &wm_params);
-> @@ -5764,6 +5772,7 @@ static int skl_build_plane_wm_uv(struct intel_crtc_state *crtc_state,
->  				 enum plane_id plane_id)
->  {
->  	struct skl_plane_wm *wm = &crtc_state->wm.skl.raw.planes[plane_id];
-> +	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
->  	struct skl_wm_params wm_params;
->  	int ret;
->  
-> @@ -5775,7 +5784,7 @@ static int skl_build_plane_wm_uv(struct intel_crtc_state *crtc_state,
->  	if (ret)
->  		return ret;
->  
-> -	skl_compute_wm_levels(crtc_state, &wm_params, wm->uv_wm);
-> +	skl_compute_wm_levels(crtc_state, plane, &wm_params, wm->uv_wm);
->  
 >  	return 0;
 >  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 41e3dd25a78f..6b107872ad39 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -634,6 +634,9 @@ struct intel_plane_state {
+>  
+>  	struct intel_fb_view view;
+>  
+> +	/* Indicates if async flip is required */
+> +	bool do_async_flip;
+> +
+>  	/* Plane pxp decryption state */
+>  	bool decrypt;
+>  
 > -- 
 > 2.24.1.485.gad05a3d8e5
 
