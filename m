@@ -1,51 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A87B94941E5
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 21:35:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48BB54941FA
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jan 2022 21:44:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02B7410E1C0;
-	Wed, 19 Jan 2022 20:35:48 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B63210E177;
- Wed, 19 Jan 2022 20:35:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64B2610E1DB;
+	Wed, 19 Jan 2022 20:44:00 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC9DE10E177;
+ Wed, 19 Jan 2022 20:43:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642624543; x=1674160543;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lddCU8rFW3YNlxHR3xT7eMCRWM3EKACaWB7e0BadotY=;
- b=gLx7S9o/jMjYSN0uKEPZen1y+7V+F4kgYHB21vU/+/kg90GH7k3sAD8W
- XuFD2Ml2G5j/Dv4jLca0qC/A6LnmYoRPJ9MHqivy50G36idme53hawhm8
- E6eMSC6N5UAfjDs/QlHdDwfw4wM/M794qpzu9adTehsZrq9aSMvxmb6Qx
- bEKXGoxh20f9KMxrKSQnla7e0McfMtxfEe/G/V/LDmE+pHIGU3odMsE09
- q54GIZesxqGHJDwuN/wwIY9KCBAyklSKMDwQcUG4N7HdjKvKTYXLGxGMA
- VqD3P1xe33FF2KRooLeKT29q7KzA2oVqtjtpw5MO99ebN34S5TEz/qCjD Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="245385333"
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="245385333"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 12:35:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="561188548"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by orsmga001.jf.intel.com with ESMTP; 19 Jan 2022 12:35:42 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Wed, 19 Jan 2022 12:35:41 -0800
-Message-Id: <20220119203541.2410082-3-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220119203541.2410082-1-John.C.Harrison@Intel.com>
-References: <20220119203541.2410082-1-John.C.Harrison@Intel.com>
+ t=1642625039; x=1674161039;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ZnpQmdGf3petXh8fwqqd+ss75xCdI43Bzq3MlCXD9oc=;
+ b=OoyopAln8gSZ5+9Z6e8HJRUl/wWCMW040VUuEITz3WZTw/Xm0IIqr94l
+ 0wXf4TNcadfWh+cB8tqVKsAxQQ3z9T3eiLmUM4YH3kw1xoWPvlmq7r0Sa
+ AJmdcmQ/yD1aCJvWl8QOE/nv8FNCkZ9rA030xHGM8w+OeWQyfqQbAyd8y
+ gck7l8Z6iEFib4ir+z29y7aYnOMoAx5usW2E0rYbbea18AOMjZWcSe4sp
+ fzGdg1km9N8Gh8Wmbnwa3FLY2kN4tMR/EzbB4CcPemk4CGE5ykdwmR1XH
+ oriU669wEmrXx8l1jVH62PiebJbIybU/AwK56rx2FpH1S4rynaPTcs9gU g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="244009806"
+X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="244009806"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 12:43:57 -0800
+X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="518333103"
+Received: from atefehad-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.238.132])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 12:43:56 -0800
+Date: Wed, 19 Jan 2022 12:43:56 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Steven Rostedt <rostedt@goodmis.org>
+Message-ID: <20220119204356.vizlstcs6wi6kn4b@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
+ <20220119072450.2890107-2-lucas.demarchi@intel.com>
+ <YefXg03hXtrdUj6y@paasikivi.fi.intel.com>
+ <20220119100635.6c45372b@gandalf.local.home>
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915/uapi: Add query for hwconfig
- table
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20220119100635.6c45372b@gandalf.local.home>
+Subject: Re: [Intel-gfx] [PATCH 1/3] lib/string_helpers: Consolidate yesno()
+ implementation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,126 +61,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kenneth Graunke <kenneth.w.graunke@intel.com>,
- DRI-Devel@Lists.FreeDesktop.Org,
- Slawomir Milczarek <slawomir.milczarek@intel.com>
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Vishal Kulkarni <vishal@chelsio.com>, netdev@vger.kernel.org,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ Kentaro Takeda <takedakn@nttdata.co.jp>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ amd-gfx@lists.freedesktop.org, Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
+ Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
+ Julia Lawall <julia.lawall@lip6.fr>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Mikita Lipski <mikita.lipski@amd.com>, Eryk Brol <eryk.brol@amd.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
+ "David S . Miller" <davem@davemloft.net>,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+ linux-security-module@vger.kernel.org,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Raju Rangoju <rajur@chelsio.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+On Wed, Jan 19, 2022 at 10:06:35AM -0500, Steven Rostedt wrote:
+>On Wed, 19 Jan 2022 11:18:59 +0200
+>Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
+>
+>> On Tue, Jan 18, 2022 at 11:24:48PM -0800, Lucas De Marchi wrote:
+>> > @@ -1354,8 +1345,7 @@ static bool tomoyo_print_condition(struct tomoyo_io_buffer *head,
+>> >  	case 3:
+>> >  		if (cond->grant_log != TOMOYO_GRANTLOG_AUTO)
+>> >  			tomoyo_io_printf(head, " grant_log=%s",
+>> > -					 tomoyo_yesno(cond->grant_log ==
+>> > -						      TOMOYO_GRANTLOG_YES));
+>> > +					 yesno(cond->grant_log == TOMOYO_GRANTLOG_YES));
+>>
+>> This would be better split on two lines.
+>
+>Really? Yuck!
+>
+>I thought the "max line size" guideline was going to grow to a 100, but I
+>still see it as 80. But anyway...
 
-GuC contains a consolidated table with a bunch of information about the
-current device.
+Checking that: docs still say 80, but checkpatch was changed to warn
+only on 100. Commit bdc48fa11e46 ("checkpatch/coding-style: deprecate
+80-column warning") is clear why the discrepancy.
 
-Previously, this information was spread and hardcoded to all the components
-including GuC, i915 and various UMDs. The goal here is to consolidate
-the data into GuC in a way that all interested components can grab the
-very latest and synchronized information using a simple query.
+Lucas De Marchi
 
-As per most of the other queries, this one can be called twice.
-Once with item.length=0 to determine the exact buffer size, then
-allocate the user memory and call it again for to retrieve the
-table data. For example:
-  struct drm_i915_query_item item = {
-    .query_id = DRM_I915_QUERY_HWCONCFIG_TABLE;
-  };
-  query.items_ptr = (int64_t) &item;
-  query.num_items = 1;
-
-  ioctl(fd, DRM_IOCTL_I915_QUERY, query, sizeof(query));
-
-  if (item.length <= 0)
-    return -ENOENT;
-
-  data = malloc(item.length);
-  item.data_ptr = (int64_t) &data;
-  ioctl(fd, DRM_IOCTL_I915_QUERY, query, sizeof(query));
-
-  // Parse the data as appropriate...
-
-The returned array is a simple and flexible KLV (Key/Length/Value)
-formatted table. For example, it could be just:
-  enum device_attr {
-     ATTR_SOME_VALUE = 0,
-     ATTR_SOME_MASK  = 1,
-  };
-
-  static const u32 hwconfig[] = {
-      ATTR_SOME_VALUE,
-      1,             // Value Length in DWords
-      8,             // Value
-
-      ATTR_SOME_MASK,
-      3,
-      0x00FFFFFFFF, 0xFFFFFFFF, 0xFF000000,
-  };
-
-The attribute ids are defined in a hardware spec.
-
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Kenneth Graunke <kenneth.w.graunke@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/i915_query.c | 23 +++++++++++++++++++++++
- include/uapi/drm/i915_drm.h       |  1 +
- 2 files changed, 24 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-index 2dfbc22857a3..609e64d5f395 100644
---- a/drivers/gpu/drm/i915/i915_query.c
-+++ b/drivers/gpu/drm/i915/i915_query.c
-@@ -479,12 +479,35 @@ static int query_memregion_info(struct drm_i915_private *i915,
- 	return total_length;
- }
- 
-+static int query_hwconfig_table(struct drm_i915_private *i915,
-+				struct drm_i915_query_item *query_item)
-+{
-+	struct intel_gt *gt = to_gt(i915);
-+	struct intel_guc_hwconfig *hwconfig = &gt->uc.guc.hwconfig;
-+
-+	if (!hwconfig->size || !hwconfig->ptr)
-+		return -ENODEV;
-+
-+	if (query_item->length == 0)
-+		return hwconfig->size;
-+
-+	if (query_item->length < hwconfig->size)
-+		return -EINVAL;
-+
-+	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
-+			 hwconfig->ptr, hwconfig->size))
-+		return -EFAULT;
-+
-+	return hwconfig->size;
-+}
-+
- static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
- 					struct drm_i915_query_item *query_item) = {
- 	query_topology_info,
- 	query_engine_info,
- 	query_perf_config,
- 	query_memregion_info,
-+	query_hwconfig_table,
- };
- 
- int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 914ebd9290e5..132515199f27 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -2685,6 +2685,7 @@ struct drm_i915_query_item {
- #define DRM_I915_QUERY_ENGINE_INFO	2
- #define DRM_I915_QUERY_PERF_CONFIG      3
- #define DRM_I915_QUERY_MEMORY_REGIONS   4
-+#define DRM_I915_QUERY_HWCONFIG_TABLE   5
- /* Must be kept compact -- no holes and well documented */
- 
- 	/**
--- 
-2.25.1
-
+>
+>	cond->grant_log ==
+>	TOMOYO_GRANTLOG_YES
+>
+>is not readable at all. Not compared to
+>
+>	cond->grant_log == TOMOYO_GRANTLOG_YES
+>
+>I say keep it one line!
+>
+>Reviewed-by: Steven Rostedt (Google) <rostedt@goodmis.org>
+>
+>-- Steve
+>
+>>
+>> Then,
+>>
+>> Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+>
