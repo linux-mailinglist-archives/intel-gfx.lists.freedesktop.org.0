@@ -2,68 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00C18494BF8
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 11:43:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48F5D494C04
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 11:45:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3896210E72B;
-	Thu, 20 Jan 2022 10:43:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1ED2010E663;
+	Thu, 20 Jan 2022 10:45:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F91910E72B
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jan 2022 10:43:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642675404; x=1674211404;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=OdSoYhroXgQDykDVh49rpUnXDUMH3WctvaMHlHOgR2c=;
- b=l736khTynsw6ubx5vEq25uHg6CjhPXap1+Qcymzs/AD+5xOo8D6RZ7Ei
- VL81n8HAw9a+FpdKUcIHKmfVxoIu11VtrD0+8VpcDmbBY9hqVRngbQeDy
- AT0slUrmN+cB4iyv1Ex3VNb8HnoYhAe8AeZuN8680ZVNWwFslWp3gcb6T
- do8tp2yuRk2kh/sBlFL/+U081UioizUyEnmXFTRDd8cF81nJs+/YDNu/I
- 36R/SH96otsUrX6bC+PpXjNi8tjvoDES/h5t/4q0aDntr+MEjrMmvpcgx
- YHPTZcLrNTVAsu/zJ8GIzDq3CwIR023r5Lz4/cPtzYay5Fy/BoqJ1aIXU Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="244144419"
-X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="244144419"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 02:43:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="532720876"
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138])
- by orsmga008.jf.intel.com with ESMTP; 20 Jan 2022 02:43:23 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- IRSMSX605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 20 Jan 2022 10:43:21 +0000
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2308.020;
- Thu, 20 Jan 2022 16:13:19 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH RESEND 7/7] drm/i915/mst: only ack the ESI we
- actually handled
-Thread-Index: AQHYB6QkAssQKIWe+0ankHYUb3YnbKxrxa6Q
-Date: Thu, 20 Jan 2022 10:43:19 +0000
-Message-ID: <2e0b588d721e46a4ad9e94604421135f@intel.com>
-References: <20220112110319.1172110-1-jani.nikula@intel.com>
- <20220112110319.1172110-7-jani.nikula@intel.com>
-In-Reply-To: <20220112110319.1172110-7-jani.nikula@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B26610E49E;
+ Thu, 20 Jan 2022 10:45:39 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out2.suse.de (Postfix) with ESMTP id 971CA1F394;
+ Thu, 20 Jan 2022 10:45:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1642675537; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=lNXsCxk1kmLzWZ3KuMXgc2QP7yNDhqQLgFtjl4LsFGg=;
+ b=s80Eh1CewTbGXaANSfdmhOC8yS7mIDv9FCt/I0hzu7cf9Pu9Si7tpC0AUMlifM6MhpyvNI
+ EdQykNw0T5LfW9CMRgRZQ36TExFEeiyITs3AE72J+aELbU1yWnXuKDUzDzoC1F8NJaMUMu
+ 9y1MB7bqBlsK9YohaVnVWyOxwl7Ul6w=
+Received: from suse.cz (unknown [10.100.224.162])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id 65535A3B81;
+ Thu, 20 Jan 2022 10:45:30 +0000 (UTC)
+Date: Thu, 20 Jan 2022 11:45:36 +0100
+From: Petr Mladek <pmladek@suse.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Yek9UEHpS16/9ajt@alley>
+References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
+ <YegPiR7LU8aVisMf@alley> <87tudzbykz.fsf@intel.com>
+ <YekfbKMjOP9ecc5v@alley> <8735libwjo.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH RESEND 7/7] drm/i915/mst: only ack the ESI
- we actually handled
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8735libwjo.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 0/3] lib/string_helpers: Add a few string
+ helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,91 +53,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Vishal Kulkarni <vishal@chelsio.com>,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ Kentaro Takeda <takedakn@nttdata.co.jp>, Mikita Lipski <mikita.lipski@amd.com>,
+ amd-gfx@lists.freedesktop.org, Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
+ intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Julia Lawall <julia.lawall@lip6.fr>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Eryk Brol <eryk.brol@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ linux-kernel@vger.kernel.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+ linux-security-module@vger.kernel.org, netdev@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "David S . Miller" <davem@davemloft.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu 2022-01-20 11:12:27, Jani Nikula wrote:
+> On Thu, 20 Jan 2022, Petr Mladek <pmladek@suse.com> wrote:
+> > The problem is not that visible with yesno() and onoff(). But as you said,
+> > onoff() confliscts with variable names. And enabledisable() sucks.
+> > As a result, there is a non-trivial risk of two mass changes:
+> 
+> My point is, in the past three years we could have churned through more
+> than two mass renames just fine, if needed, *if* we had just managed to
+> merge something for a start!
 
+Huh, this sound alarming.
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ja=
-ni Nikula
-> Sent: Wednesday, January 12, 2022 4:33 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>
-> Subject: [Intel-gfx] [PATCH RESEND 7/7] drm/i915/mst: only ack the ESI we=
- actually
-> handled
->=20
-> Seems odd that we clear all event status indicators if we've only handled=
- some. Only
-> clear the ones we've handled.
+Cosmetic changes just complicate history. They make "git blame" useless.
+They also complicate backports. I know that it is not problem for
+mainline. But there are supported stable branches, ...
 
-Looks Good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+There should be a good reason for such changes. They should not be
+done light-heartedly.
 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 20 ++++++++++++--------
->  1 file changed, 12 insertions(+), 8 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 95e9f7220ab8..548419a4ead8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3625,13 +3625,17 @@ static void intel_dp_handle_test_request(struct
-> intel_dp *intel_dp)  }
->=20
->  static void
-> -intel_dp_mst_hpd_irq(struct intel_dp *intel_dp, u8 *esi, bool *handled)
-> +intel_dp_mst_hpd_irq(struct intel_dp *intel_dp, u8 *esi, u8 *ack)
->  {
-> -	drm_dp_mst_hpd_irq(&intel_dp->mst_mgr, esi, handled);
-> +	bool handled =3D false;
-> +
-> +	drm_dp_mst_hpd_irq(&intel_dp->mst_mgr, esi, &handled);
-> +	if (handled)
-> +		ack[1] |=3D DP_DOWN_REP_MSG_RDY | DP_UP_REQ_MSG_RDY;
->=20
->  	if (esi[1] & DP_CP_IRQ) {
->  		intel_hdcp_handle_cp_irq(intel_dp->attached_connector);
-> -		*handled =3D true;
-> +		ack[1] |=3D DP_CP_IRQ;
->  	}
->  }
->=20
-> @@ -3683,7 +3687,7 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp=
-)
->=20
->  	for (;;) {
->  		u8 esi[4] =3D {};
-> -		bool handled;
-> +		u8 ack[4] =3D {};
->=20
->  		if (!intel_dp_get_sink_irq_esi(intel_dp, esi)) {
->  			drm_dbg_kms(&i915->drm,
-> @@ -3699,15 +3703,15 @@ intel_dp_check_mst_status(struct intel_dp *intel_=
-dp)
->  		    esi[3] & LINK_STATUS_CHANGED) {
->  			if (!intel_dp_mst_link_status(intel_dp))
->  				link_ok =3D false;
-> -			handled =3D true;
-> +			ack[3] |=3D LINK_STATUS_CHANGED;
->  		}
->=20
-> -		intel_dp_mst_hpd_irq(intel_dp, esi, &handled);
-> +		intel_dp_mst_hpd_irq(intel_dp, esi, ack);
->=20
-> -		if (!handled)
-> +		if (!memchr_inv(ack, 0, sizeof(ack)))
->  			break;
->=20
-> -		if (!intel_dp_ack_sink_irq_esi(intel_dp, esi))
-> +		if (!intel_dp_ack_sink_irq_esi(intel_dp, ack))
->  			drm_dbg_kms(&i915->drm, "Failed to ack ESI\n");
->  	}
->=20
-> --
-> 2.30.2
-
+Best Regards,
+Petr
