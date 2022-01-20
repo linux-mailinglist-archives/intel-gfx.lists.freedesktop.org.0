@@ -1,50 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D984495661
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 23:35:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7140C495654
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 23:24:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C46010E63D;
-	Thu, 20 Jan 2022 22:35:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DB1710E8C3;
+	Thu, 20 Jan 2022 22:24:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66B5610E3DE
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jan 2022 22:34:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642718097; x=1674254097;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=7A4Nqw/jnpD71GICUw07ypYaqxBaTGhpywvkQvht1+A=;
- b=IFX2U/ehE2uqMC9yEA8rHriOILtMzJmTyIheRI31An5h65yZLwSwQ6vQ
- j9OBIOjC4bSq2Dtqz3NSIlzpkIFDfjevA+I8X/wqYd9eYrbzsnzXwhoDx
- yqz3iCJIvaw9Ny4LYFaVh2t/u64hlxN/yJ4x2NC0gzLX+vUGJ7eT6S1g/
- XyzHktOhyNc6AgZuGmU951mNxKoXTtbojK5QxhM+6wFj+K2W85kcspzjU
- N8TTLUawF3MEv6UPw3kRyd/PSYGrZZ3XW8KR7fFQjQIYmamCquwppqxCr
- h4A2Mb1d1t+ZetDtTH2BSpedxvlv7rHUcmmDutdzkB457L9hmtt59pv6f A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="243078570"
-X-IronPort-AV: E=Sophos;i="5.88,303,1635231600"; d="scan'208";a="243078570"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 14:34:14 -0800
-X-IronPort-AV: E=Sophos;i="5.88,303,1635231600"; d="scan'208";a="475712802"
-Received: from cgbowman-desktop.jf.intel.com ([10.7.199.58])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 14:34:14 -0800
-From: Casey Bowman <casey.g.bowman@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Jan 2022 14:16:52 -0800
-Message-Id: <20220120221652.207255-2-casey.g.bowman@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220120221652.207255-1-casey.g.bowman@intel.com>
-References: <20220120221652.207255-1-casey.g.bowman@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5177A10E8DF;
+ Thu, 20 Jan 2022 22:24:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4D7D0A9932;
+ Thu, 20 Jan 2022 22:24:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2117891138028078819=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC PATCH 1/1] i915/drm: Split out x86 and arm64
- functionality
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Thu, 20 Jan 2022 22:24:04 -0000
+Message-ID: <164271744428.22530.14509422492762247889@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220120212947.3440448-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20220120212947.3440448-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/wopcm=3A_Handle_pre-programmed_WOPCM_registers_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,167 +40,252 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ville.syrjala@intel.com, wayne.boyer@intel.com, jani.nikula@intel.com,
- lucas.demarchi@intel.com, daniel.vetter@intel.com, michael.cheng@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some x86 checks are unnecessary on arm64 systems, so they
-are being split out to avoid being used. There may be
-further arm64 implementations created in the future for
-this area, so it's better to split this out now.
+--===============2117891138028078819==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Casey Bowman <casey.g.bowman@intel.com>
----
- drivers/gpu/drm/i915/Makefile              |  4 +++
- drivers/gpu/drm/i915/i915_drv.h            |  6 +---
- drivers/gpu/drm/i915/i915_platform.h       | 16 +++++++++++
- drivers/gpu/drm/i915/i915_platform_arm64.c | 33 ++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_platform_x86.c   | 33 ++++++++++++++++++++++
- 5 files changed, 87 insertions(+), 5 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_platform.h
- create mode 100644 drivers/gpu/drm/i915/i915_platform_arm64.c
- create mode 100644 drivers/gpu/drm/i915/i915_platform_x86.c
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 213c5f9fae32..dd66fe57934d 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -320,6 +320,10 @@ i915-y += intel_gvt.o
- include $(src)/gvt/Makefile
- endif
- 
-+# Architecture-specific calls
-+i915-$(CONFIG_X86)   += i915_platform_x86.o
-+i915-$(CONFIG_ARM64) += i915_platform_arm64.o
-+
- obj-$(CONFIG_DRM_I915) += i915.o
- obj-$(CONFIG_DRM_I915_GVT_KVMGT) += gvt/kvmgt.o
- 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 290dfd40c7b3..e688270c8257 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -107,6 +107,7 @@
- #include "gt/intel_timeline.h"
- #include "i915_vma.h"
- 
-+#include "i915_platform.h"
- 
- /* General customization:
-  */
-@@ -1543,11 +1544,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define INTEL_DISPLAY_ENABLED(dev_priv) \
- 	(drm_WARN_ON(&(dev_priv)->drm, !HAS_DISPLAY(dev_priv)), !(dev_priv)->params.disable_display)
- 
--static inline bool run_as_guest(void)
--{
--	return !hypervisor_is_type(X86_HYPER_NATIVE);
--}
--
- #define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) || \
- 					      IS_ALDERLAKE_S(dev_priv))
- 
-diff --git a/drivers/gpu/drm/i915/i915_platform.h b/drivers/gpu/drm/i915/i915_platform.h
-new file mode 100644
-index 000000000000..300f93d20f58
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_platform.h
-@@ -0,0 +1,16 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#ifndef _I915_PLATFORM_
-+#define _I915_PLATFORM_
-+
-+#include <linux/types.h>
-+#include <linux/bug.h>
-+
-+/* Start of i915_drv functionality */
-+bool run_as_guest(void);
-+/* End of i915_drv functionality */
-+
-+#endif
-diff --git a/drivers/gpu/drm/i915/i915_platform_arm64.c b/drivers/gpu/drm/i915/i915_platform_arm64.c
-new file mode 100644
-index 000000000000..95692c4dc75f
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_platform_arm64.c
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+/*
-+ * Read before adding/removing content!
-+ *
-+ * Ensure that all functions defined here are also defined
-+ * in the i915_platform_x86.c file.
-+ *
-+ * If the function is a dummy function, be sure to add
-+ * a DRM_WARN() call to note that the function is a
-+ * dummy function to users so that we can better track
-+ * any issues that arise due to changes in either file.
-+ *
-+ * Also be sure to label Start/End of sections where
-+ * functions originate from. These files will host
-+ * architecture-specific content from a myriad of files,
-+ * labeling the sections will help devs keep track of
-+ * where the calls interact.
-+ */
-+
-+#include "i915_platform.h"
-+
-+/* Start of i915_drv functionality */
-+/* Intel VT-d is not used on ARM64 systems */
-+bool run_as_guest(void)
-+{
-+	WARN(1, "%s not supported on arm64 platforms.", __func__);
-+	return false;
-+}
-+/* End of i915_drv functionality */
-diff --git a/drivers/gpu/drm/i915/i915_platform_x86.c b/drivers/gpu/drm/i915/i915_platform_x86.c
-new file mode 100644
-index 000000000000..9a7174ad2147
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_platform_x86.c
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+/*
-+ * Read before adding/removing content!
-+ *
-+ * Ensure that all functions defined here are also defined
-+ * in the i915_platform_arm64.c file.
-+ *
-+ * If the function is a dummy function, be sure to add
-+ * a DRM_WARN() call to note that the function is a
-+ * dummy function to users so that we can better track
-+ * any issues that arise due to changes in either file.
-+ *
-+ * Also be sure to label Start/End of sections where
-+ * functions originate from. These files will host
-+ * architecture-specific content from a myriad of files,
-+ * labeling the sections will help devs keep track of
-+ * where the calls interact.
-+ */
-+
-+#include "i915_platform.h"
-+
-+#include <asm/hypervisor.h>
-+
-+/* Start of i915_drv functionality */
-+bool run_as_guest(void)
-+{
-+	return !hypervisor_is_type(X86_HYPER_NATIVE);
-+}
-+/* End of i915_drv functionality */
--- 
-2.25.1
+Series: drm/i915/wopcm: Handle pre-programmed WOPCM registers (rev3)
+URL   : https://patchwork.freedesktop.org/series/98910/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11114 -> Patchwork_22046
+====================================================
+
+Summary
+-------
+
+  **WARNING**
+
+  Minor unknown changes coming with Patchwork_22046 need to be verified
+  manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22046, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Additional (3): bat-rpls-1 bat-jsl-2 fi-ilk-650 
+  Missing    (5): bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-pnv-d510 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22046:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [DMESG-FAIL][1] ([i915#4494]) -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11114/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22046 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@nop-compute0:
+    - fi-ilk-650:         NOTRUN -> [SKIP][3] ([fdo#109271]) +39 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/fi-ilk-650/igt@amdgpu/amd_cs_nop@nop-compute0.html
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-skl-6600u:       [PASS][4] -> [INCOMPLETE][5] ([i915#4547])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11114/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-ilk-650:         NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/fi-ilk-650/igt@kms_chamelium@dp-hpd-fast.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#4269])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11114/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bwr-2160:        [FAIL][9] ([i915#3194]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11114/fi-bwr-2160/igt@core_hotunplug@unbind-rebind.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/fi-bwr-2160/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-tgl-1115g4:      [FAIL][11] ([i915#1888]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11114/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3@smem.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3@smem.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3194]: https://gitlab.freedesktop.org/drm/intel/issues/3194
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11114 -> Patchwork_22046
+
+  CI-20190529: 20190529
+  CI_DRM_11114: 95f7fe1c9f81eff6c3faab2a73ccaca51440f73c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22046: 0abf9917c5c05c77da85bd503a35cf602f99ab0d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0abf9917c5c0 drm/i915/wopcm: Handle pre-programmed WOPCM registers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/index.html
+
+--===============2117891138028078819==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/wopcm: Handle pre-programmed WOPCM registers (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98910/">https://patchwork.freedesktop.org/series/98910/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11114 -&gt; Patchwork_22046</h1>
+<h2>Summary</h2>
+<p><strong>WARNING</strong></p>
+<p>Minor unknown changes coming with Patchwork_22046 need to be verified<br />
+  manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22046, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Additional (3): bat-rpls-1 bat-jsl-2 fi-ilk-650 <br />
+  Missing    (5): bat-dg1-5 fi-bsw-cyan bat-adlp-4 fi-pnv-d510 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22046:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11114/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22046 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@nop-compute0:</p>
+<ul>
+<li>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/fi-ilk-650/igt@amdgpu/amd_cs_nop@nop-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +39 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11114/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-hpd-fast:</p>
+<ul>
+<li>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/fi-ilk-650/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11114/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bwr-2160:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11114/fi-bwr-2160/igt@core_hotunplug@unbind-rebind.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3194">i915#3194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/fi-bwr-2160/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11114/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3@smem.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22046/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11114 -&gt; Patchwork_22046</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11114: 95f7fe1c9f81eff6c3faab2a73ccaca51440f73c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22046: 0abf9917c5c05c77da85bd503a35cf602f99ab0d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>0abf9917c5c0 drm/i915/wopcm: Handle pre-programmed WOPCM registers</p>
+
+</body>
+</html>
+
+--===============2117891138028078819==--
