@@ -2,69 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4414F494BD3
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 11:36:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46730494BD4
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 11:36:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D5D710E4B2;
-	Thu, 20 Jan 2022 10:35:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D4BF10E5E3;
+	Thu, 20 Jan 2022 10:36:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EDB210E3E4
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jan 2022 10:35:56 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 475E810E5D4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jan 2022 10:36:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642674956; x=1674210956;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=EHKAXssdk9Cf+0L5ovnnqhAX9JsbALqfeDunOxLgtDM=;
- b=bGnLIy63Xjp17Z7GhD/Q84G5SWiW1AT0Qc56X+NYdxmsVkKs+ZkNKwqC
- 3OABYUrAIWXCvO90eaB8gF/XNJXP0LRTgPb8p3fEqs4pzJz0BRN9rqgQb
- pWdBeky8hs86hkeeDbkZ+mTSUIXIUb9mzQn8yM26aVJo8LbtQGg54gdFL
- IccQtCtZAOENleC7aEsUgZXLjd9IQphMEgqqT/9JXWRpj+6IyRpvn+lqa
- NneGHsv8kZNA/zb1spq0KYvuvd9d1ebxBbgE0r5rmjoDei6MQuY0oit7k
- mpxynjVfPi0xMzN8PBENRcHXZ9ol0BtAnqTJMi4hqmVttPVROPbFcz57w w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="306053449"
-X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="306053449"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 02:35:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="622851064"
-Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
- by fmsmga002.fm.intel.com with ESMTP; 20 Jan 2022 02:35:55 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 20 Jan 2022 10:35:53 +0000
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2308.020;
- Thu, 20 Jan 2022 16:05:52 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 2/7] drm/i915/mst: abstract
- intel_dp_ack_sink_irq_esi()
-Thread-Index: AQHYAZIkO1JME/AAXUWYD7UudH3QQKxrzXsw//+lHYCAAFy8YA==
-Date: Thu, 20 Jan 2022 10:35:52 +0000
-Message-ID: <4cf9ab91809a4fa4b20ca2786d08a1f1@intel.com>
-References: <cover.1641317930.git.jani.nikula@intel.com>
- <1049e7188a76c421fab7797b5c4a6aa1b709f4c9.1641317930.git.jani.nikula@intel.com>
- <c0a48445d9c84a7cb644f392699c9028@intel.com> <87h79yaeai.fsf@intel.com>
-In-Reply-To: <87h79yaeai.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ t=1642675016; x=1674211016;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=DQkM38f0eWqhIQuzkz5Sqbby6fPDqMkUOyK0uhJfXCI=;
+ b=GNhmsBm8jkn9Z7P8JRvbmmsLMP6vkLZeMxrufe3TtOBRAnmPA6uMZlLC
+ U5SGdPT1CnN0ebsr7Cn5FJETnvMT3/AlivfOsDz6uSmeArQrYjSt+HOyV
+ 0+rF2WPrZtZ3kxbDMEJHZwHiWFu0pKqpwsz6sttMp1Q1FyWE2yXpfUL+p
+ EmcS9snFKRwxqxcwQUw3z3dQASDt/MyQAAAkR49Y5VpDv9aP/WBZthDym
+ /gpgBP3tMq+xBObIlZRO7FTuhjqQ3tpPk+ChFW60VclIgb9yrokJcAN3N
+ p6Qez/PK93yctUmaS5N1oD2/XFcrAS7J0kw9xadKZu/a/97s6ATRNxbaH g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="245520192"
+X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="245520192"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 02:36:55 -0800
+X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="767557043"
+Received: from bmurphy-mobl.ger.corp.intel.com (HELO [10.213.207.182])
+ ([10.213.207.182])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 02:36:55 -0800
+Message-ID: <8f9c064b-76fc-7fd4-afdc-2545ebd7ca57@linux.intel.com>
+Date: Thu, 20 Jan 2022 10:36:53 +0000
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915/mst: abstract
- intel_dp_ack_sink_irq_esi()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220105100520.976092-1-jani.nikula@intel.com>
+ <20220105100520.976092-2-jani.nikula@intel.com>
+ <170a7507-ff7e-204f-eba3-89571ab87842@linux.intel.com>
+ <875yqytqv4.fsf@intel.com>
+ <bee03d1e-06dd-6243-e711-ab8d7c7081bb@linux.intel.com>
+ <87ee5mjp7h.fsf@intel.com>
+ <0a340da0-ccdc-c90f-b181-1f0ad3d5a440@linux.intel.com>
+ <87wniwasil.fsf@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <87wniwasil.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/uncore: rename
+ i915_reg_read_ioctl intel_uncore_reg_read_ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,60 +71,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTmlrdWxhLCBKYW5pIDxq
-YW5pLm5pa3VsYUBpbnRlbC5jb20+DQo+IFNlbnQ6IFRodXJzZGF5LCBKYW51YXJ5IDIwLCAyMDIy
-IDQ6MDIgUE0NCj4gVG86IFNoYW5rYXIsIFVtYSA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPjsgaW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBSRTogW0ludGVsLWdmeF0g
-W1BBVENIIDIvN10gZHJtL2k5MTUvbXN0OiBhYnN0cmFjdA0KPiBpbnRlbF9kcF9hY2tfc2lua19p
-cnFfZXNpKCkNCj4gDQo+IE9uIFRodSwgMjAgSmFuIDIwMjIsICJTaGFua2FyLCBVbWEiIDx1bWEu
-c2hhbmthckBpbnRlbC5jb20+IHdyb3RlOg0KPiA+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0t
-LQ0KPiA+PiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdmeC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZz4gT24gQmVoYWxmIE9mIEphbmkNCj4gTmlrdWxhDQo+ID4+IFNlbnQ6IFR1ZXNkYXks
-IEphbnVhcnkgNCwgMjAyMiAxMToxMCBQTQ0KPiA+PiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZw0KPiA+PiBDYzogTmlrdWxhLCBKYW5pIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+
-DQo+ID4+IFN1YmplY3Q6IFtJbnRlbC1nZnhdIFtQQVRDSCAyLzddIGRybS9pOTE1L21zdDogYWJz
-dHJhY3QNCj4gaW50ZWxfZHBfYWNrX3NpbmtfaXJxX2VzaSgpDQo+ID4+DQo+ID4+IFNtYWxsZXIg
-ZnVuY3Rpb25zIG1ha2UgdGhlIHRoaW5nIGVhc2llciB0byByZWFkLiBEZWJ1ZyBsb2cgZmFpbHVy
-ZXMgdG8gYWNrLg0KPiA+Pg0KPiA+PiBOb3RlOiBMb29rcyBsaWtlIHdlIGhhdmUgdGhlIHJldHJ5
-IGxvb3Agc2ltcGx5IGJlY2F1c2Ugb2YgaHlzdGVyaWNhbCByYWlzaW5zLA0KPiBkYXRpbmcNCj4g
-Pg0KPiA+IE5pdDogVHlwbyBpbiByZWFzb25zLg0KPiANCj4gOykNCj4gDQo+IGh0dHA6Ly93d3cu
-Y2F0Yi5vcmcvamFyZ29uL2h0bWwvSC9oeXN0ZXJpY2FsLXJlYXNvbnMuaHRtbA0KDQpPaCwgZGlk
-bid0IGtuZXcgdGhhdCDwn5iKLiBBIG5ldyBwaHJhc2UgaW4gdm9jYWJ1bGFyeSDwn5idDQoNCj4g
-Pg0KPiA+IFJldmlld2VkLWJ5OiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPg0K
-PiA+DQo+ID4+IGJhY2sgdG8gdGhlIG9yaWdpbmFsIERQIE1TVCBlbmFibGluZy4gS2VlcCBpdCwg
-dGhvdWdoIEkgaGF2ZSBubyBpZGVhIHdoeSB3ZSBoYXZlDQo+IGl0Lg0KPiA+Pg0KPiA+PiBTaWdu
-ZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPg0KPiA+PiAtLS0N
-Cj4gPj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyB8IDI1ICsrKysr
-KysrKysrKysrKy0tLS0tLS0tLS0NCj4gPj4gIDEgZmlsZSBjaGFuZ2VkLCAxNSBpbnNlcnRpb25z
-KCspLCAxMCBkZWxldGlvbnMoLSkNCj4gPj4NCj4gPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiA+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiA+PiBpbmRleCAzNTdjMzllMDliZjYuLmViZjgwYTg3NWE0
-MSAxMDA2NDQNCj4gPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-cC5jDQo+ID4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0K
-PiA+PiBAQCAtMjgyMCw2ICsyODIwLDE5IEBAIGludGVsX2RwX2dldF9zaW5rX2lycV9lc2koc3Ry
-dWN0IGludGVsX2RwICppbnRlbF9kcCwNCj4gdTgNCj4gPj4gKnNpbmtfaXJxX3ZlY3RvcikNCj4g
-Pj4gIAkJRFBfRFBSWF9FU0lfTEVOOw0KPiA+PiAgfQ0KPiA+Pg0KPiA+PiArc3RhdGljIGJvb2wg
-aW50ZWxfZHBfYWNrX3NpbmtfaXJxX2VzaShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLCB1OA0K
-PiA+PiArZXNpWzRdKSB7DQo+ID4+ICsJaW50IHJldHJ5Ow0KPiA+PiArDQo+ID4+ICsJZm9yIChy
-ZXRyeSA9IDA7IHJldHJ5IDwgMzsgcmV0cnkrKykgew0KPiA+PiArCQlpZiAoZHJtX2RwX2RwY2Rf
-d3JpdGUoJmludGVsX2RwLT5hdXgsIERQX1NJTktfQ09VTlRfRVNJICsgMSwNCj4gPj4gKwkJCQkg
-ICAgICAmZXNpWzFdLCAzKSA9PSAzKQ0KPiA+PiArCQkJcmV0dXJuIHRydWU7DQo+ID4+ICsJfQ0K
-PiA+PiArDQo+ID4+ICsJcmV0dXJuIGZhbHNlOw0KPiA+PiArfQ0KPiA+PiArDQo+ID4+ICBib29s
-DQo+ID4+ICBpbnRlbF9kcF9uZWVkc192c2Nfc2RwKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0
-YXRlICpjcnRjX3N0YXRlLA0KPiA+PiAgCQkgICAgICAgY29uc3Qgc3RydWN0IGRybV9jb25uZWN0
-b3Jfc3RhdGUgKmNvbm5fc3RhdGUpIEBAIC0zNjYwLDcNCj4gPj4gKzM2NzMsNiBAQCBpbnRlbF9k
-cF9jaGVja19tc3Rfc3RhdHVzKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApDQo+ID4+ICAJCSAq
-Lw0KPiA+PiAgCQl1OCBlc2lbRFBfRFBSWF9FU0lfTEVOKzJdID0ge307DQo+ID4+ICAJCWJvb2wg
-aGFuZGxlZDsNCj4gPj4gLQkJaW50IHJldHJ5Ow0KPiA+Pg0KPiA+PiAgCQlpZiAoIWludGVsX2Rw
-X2dldF9zaW5rX2lycV9lc2koaW50ZWxfZHAsIGVzaSkpIHsNCj4gPj4gIAkJCWRybV9kYmdfa21z
-KCZpOTE1LT5kcm0sDQo+ID4+IEBAIC0zNjg1LDE1ICszNjk3LDggQEAgaW50ZWxfZHBfY2hlY2tf
-bXN0X3N0YXR1cyhzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQ0KPiA+PiAgCQlpZiAoIWhhbmRs
-ZWQpDQo+ID4+ICAJCQlicmVhazsNCj4gPj4NCj4gPj4gLQkJZm9yIChyZXRyeSA9IDA7IHJldHJ5
-IDwgMzsgcmV0cnkrKykgew0KPiA+PiAtCQkJaW50IHdyZXQ7DQo+ID4+IC0NCj4gPj4gLQkJCXdy
-ZXQgPSBkcm1fZHBfZHBjZF93cml0ZSgmaW50ZWxfZHAtPmF1eCwNCj4gPj4gLQkJCQkJCSBEUF9T
-SU5LX0NPVU5UX0VTSSsxLA0KPiA+PiAtCQkJCQkJICZlc2lbMV0sIDMpOw0KPiA+PiAtCQkJaWYg
-KHdyZXQgPT0gMykNCj4gPj4gLQkJCQlicmVhazsNCj4gPj4gLQkJfQ0KPiA+PiArCQlpZiAoIWlu
-dGVsX2RwX2Fja19zaW5rX2lycV9lc2koaW50ZWxfZHAsIGVzaSkpDQo+ID4+ICsJCQlkcm1fZGJn
-X2ttcygmaTkxNS0+ZHJtLCAiRmFpbGVkIHRvIGFjayBFU0lcbiIpOw0KPiA+PiAgCX0NCj4gPj4N
-Cj4gPj4gIAlyZXR1cm4gbGlua19vazsNCj4gPj4gLS0NCj4gPj4gMi4zMC4yDQo+ID4NCj4gDQo+
-IC0tDQo+IEphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXINCg==
+
+On 19/01/2022 11:12, Jani Nikula wrote:
+> On Wed, 05 Jan 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>> On 05/01/2022 13:18, Jani Nikula wrote:
+>>> On Wed, 05 Jan 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>>>> On 05/01/2022 10:32, Jani Nikula wrote:
+>>>>> On Wed, 05 Jan 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>>>>>> On 05/01/2022 10:05, Jani Nikula wrote:
+>>>>>>> Follow the usual naming convention.
+>>>>>>
+>>>>>> But intel_uncore_ prefix usually means functions takes intel_uncore as
+>>>>>> the first argument.
+>>>>>>
+>>>>>> Maybe solution here is that i915_reg_read_ioctl does not belong in
+>>>>>> intel_uncore.c, it being the UAPI layer thing? I guess arguments could
+>>>>>> be made for either way.
+>>>>>
+>>>>> My position is that the function and file prefixes go hand in
+>>>>> hand. You'll always know where to place a function, and you'll always
+>>>>> know where the function is to be found.
+>>>>>
+>>>>> If you can *also* make the context argument follow the pattern, it's
+>>>>> obviously better, and indicates the division to files is working out
+>>>>> nicely. However, in a lot of cases you'll need to pass struct
+>>>>> drm_i915_private or similar as the first parameter to e.g. init
+>>>>> functions. It can't be the rigid rule.
+>>>>>
+>>>>> I'm fine with moving the entire function somewhere else, as long as the
+>>>>> declaration is not in i915_drv.h. There's no longer a i915_drv.c, and
+>>>>> i915_drv.h should not have function declarations at all.
+>>>>
+>>>> Yes I agree it cannot be a rigid rule. I just that it feels
+>>>> intel_uncore.[hc] is too low level to me to hold an ioctl
+>>>> implementation, and header actually feels wrong to have the declaration.
+>>>> Not least it is about _one_ of the uncores, while the ioctl is not
+>>>> operating on that level, albeit undefined at the moment how exactly it
+>>>> would work for multi-tile.
+>>>>
+>>>> Would it be too early, or unwarranted at this point, to maybe consider
+>>>> adding i915_ioctls.[hc]?
+>>>
+>>> Then the conversation would be about putting together a ton of unrelated
+>>> functions where the only thing in common is that they're an ioctl
+>>> implementation. Arguably many of them would have less in common than the
+>>> reg read ioctl has with uncore!
+>>
+>> I imagined it as a place for ioctls which don't fit anywhere else, like
+>> it this case it is not a family of ioctls but and odd one out. So yes,
+>> first "problem" would be there is only one to put there and no line of
+>> sight for others.
+>>
+>>> And when is it okay to put an ioctl in the i915_ioctls.c file and when
+>>> is it warranted to put it somewhere else? It's just a different set of
+>>> problems.
+>>
+>> When it does not fit anywhere else?
+>>
+>>>> I like the i915_ prefix of ioctls for consistency.. i915_getparam_ioctl,
+>>>> i915_query_ioctl, i915_perf_..., i915_gem_....
+>>>
+>>> The display ioctls have intel_ prefix anyway. It's the _ioctl suffix
+>>> that we use.
+>>>
+>>> Again, my main driver here is cleaning up i915_drv.h. I can shove the
+>>> reg read ioctl somewhere other than intel_uncore.[ch] too. But as it
+>>> stands, the only alternative that seems better than intel_uncore.[ch] at
+>>> the moment is adding a dedicated file for a 60-line function.
+>>
+>> I understand your motivation and I wouldn't nack your efforts, but I
+>> also cannot yet make myself ack it. Is 60 lines so bad? Lets see..
+>>
+>> $ find . -name "*.c" -print0 | xargs -0 wc -l | sort -nr
+>> ...
+>>        59 ./selftests/mock_request.c
+>>        59 ./gt/uc/intel_uc_debugfs.c
+>>        59 ./gem/i915_gemfs.c
+>>        52 ./selftests/igt_mmap.c
+>>        51 ./selftests/igt_reset.c
+>>        49 ./selftests/mock_uncore.c
+>>        47 ./selftests/igt_atomic.c
+>>        36 ./gt/uc/intel_huc_debugfs.c
+>>        36 ./gt/intel_gt_engines_debugfs.c
+>>        35 ./selftests/igt_flush_test.c
+>>        34 ./selftests/librapl.c
+>>        34 ./gvt/trace_points.c
+>>        29 ./gt/selftests/mock_timeline.c
+>>        27 ./gt/selftest_engine.c
+>>        26 ./gt/uc/intel_huc_fw.c
+>>        15 ./i915_config.c
+>>        14 ./i915_trace_points.c
+>>         9 ./display/intel_display_trace.c
+>>
+>> So kind of meh, wouldn't be first. I'd add a dedicated file just for the
+>> benefit of being able to legitimately keep the i915_reg_read_ioctl name.
+>> Come multi-tile it may get company. Even though at the moment I am not
+>> aware anyone is trying to add multi-tile aware reg read, but I expect
+>> there will be need as long as need for the existing one exists.
+> 
+> So this got stalled a bit, and sidestepped from the main goal of just
+> cleaning up i915_drv.h from the clutter that absolutely does not belong
+> there.
+> 
+> Can we just merge patch 1, leave further cleanup to follow-up, and move
+> on?
+
+Sorry but I don't think the ioctl belongs in gt/intel_uncore.h either so 
+I can't make myself ack it. But I am not nacking it either, as said 
+before, if you find someone else to support it.
+
+I would add i915_ioctls.[ch] even if they hold just this one.
+
+Regards,
+
+Tvrtko
