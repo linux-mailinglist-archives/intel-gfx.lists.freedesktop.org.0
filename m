@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF186495148
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 16:20:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6981349514A
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 16:21:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B12F910E49C;
-	Thu, 20 Jan 2022 15:20:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96C8F10E4A5;
+	Thu, 20 Jan 2022 15:21:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A08F910E4A0;
- Thu, 20 Jan 2022 15:20:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4CFA710E4A5;
+ Thu, 20 Jan 2022 15:21:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9CA83A7DFB;
- Thu, 20 Jan 2022 15:20:31 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4C8CEA7DFB;
+ Thu, 20 Jan 2022 15:21:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Alexander Usyskin" <alexander.usyskin@intel.com>
-Date: Thu, 20 Jan 2022 15:20:31 -0000
-Message-ID: <164269203163.22529.6239277665711741769@emeril.freedesktop.org>
+Date: Thu, 20 Jan 2022 15:21:56 -0000
+Message-ID: <164269211630.22529.5597440063300064756@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220120145351.520555-1-alexander.usyskin@intel.com>
 In-Reply-To: <20220120145351.520555-1-alexander.usyskin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Add_driver_for_GSC_controller_=28rev3=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Add_driver_for_GSC_controller_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,30 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-9ad89d8f20ab drm/i915/gsc: add gsc as a mei auxiliary device
--:50: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#50: 
-new file mode 100644
-
--:120: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#120: FILE: drivers/gpu/drm/i915/gt/intel_gsc.c:66:
-+{
-+
-
--:428: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
-#428: FILE: drivers/gpu/drm/i915/i915_drv.h:1511:
-+#define HAS_HECI_GSC(dev_priv) (HAS_HECI_PXP(dev_priv) || HAS_HECI_GSCFI(dev_priv))
-
-total: 0 errors, 1 warnings, 2 checks, 407 lines checked
-39d40de075b3 mei: add support for graphics system controller (gsc) devices
--:56: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#56: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 295 lines checked
-b48bdec85a23 mei: gsc: setup char driver alive in spite of firmware handshake failure
-987f5b75c03e mei: gsc: add runtime pm handlers
-e0818be8eb6f mei: gsc: retrieve the firmware version
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
