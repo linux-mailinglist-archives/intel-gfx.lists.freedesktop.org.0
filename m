@@ -2,60 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46730494BD4
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 11:36:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C598494BD7
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 11:37:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D4BF10E5E3;
-	Thu, 20 Jan 2022 10:36:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B12610E583;
+	Thu, 20 Jan 2022 10:37:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 475E810E5D4
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jan 2022 10:36:56 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD8A710E609
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jan 2022 10:37:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642675016; x=1674211016;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=DQkM38f0eWqhIQuzkz5Sqbby6fPDqMkUOyK0uhJfXCI=;
- b=GNhmsBm8jkn9Z7P8JRvbmmsLMP6vkLZeMxrufe3TtOBRAnmPA6uMZlLC
- U5SGdPT1CnN0ebsr7Cn5FJETnvMT3/AlivfOsDz6uSmeArQrYjSt+HOyV
- 0+rF2WPrZtZ3kxbDMEJHZwHiWFu0pKqpwsz6sttMp1Q1FyWE2yXpfUL+p
- EmcS9snFKRwxqxcwQUw3z3dQASDt/MyQAAAkR49Y5VpDv9aP/WBZthDym
- /gpgBP3tMq+xBObIlZRO7FTuhjqQ3tpPk+ChFW60VclIgb9yrokJcAN3N
- p6Qez/PK93yctUmaS5N1oD2/XFcrAS7J0kw9xadKZu/a/97s6ATRNxbaH g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="245520192"
-X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="245520192"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 02:36:55 -0800
-X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="767557043"
-Received: from bmurphy-mobl.ger.corp.intel.com (HELO [10.213.207.182])
- ([10.213.207.182])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 02:36:55 -0800
-Message-ID: <8f9c064b-76fc-7fd4-afdc-2545ebd7ca57@linux.intel.com>
-Date: Thu, 20 Jan 2022 10:36:53 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
+ t=1642675044; x=1674211044;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=ebOblmNNTLSZ+jw9b0Rs6v/jZ2sRFp5zbqhBBbHrYpA=;
+ b=RBpUB5qjnum75/yXOlREOkpfD5ObBr7q4aVBl5Ku9orv/mnupqvZaVvH
+ kqIleTjf8g5unVz2xENHkVkDWA88fbIRxT6XRxHBl6tXIbAEwkLaitjIn
+ Wnfjs6kRdvSxbrOjoUZOJbB1x4VBhYQJv6eHQSUqKcE/IxFtyYHLmXfM9
+ VtsSEr31uDwGKjd5b20SrQo+WZ7myfjBbdG1KTTEfkgh5b8xnL3VOu1+M
+ WwV0ksXjpSGFh/d6hb0NpbzwxZ2/CRcI39PSLaUoZLTqJ7xt30QmK1olc
+ q6vyv/G7hXly1bcLj2GkWXCksaee+1P8oLSXrdHAO2tC3P8+/MOuKxArV w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="225996607"
+X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="225996607"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 02:37:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="477747088"
+Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
+ by orsmga006.jf.intel.com with ESMTP; 20 Jan 2022 02:37:23 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 20 Jan 2022 10:37:21 +0000
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2308.020;
+ Thu, 20 Jan 2022 16:07:20 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH RESEND 3/7] drm/i915/mst: debug log 4 bytes
+ of ESI right after reading
+Thread-Index: AQHYB6QOgJ4NOCm/dkWebw9VcmOD+Kxrw/vw
+Date: Thu, 20 Jan 2022 10:37:19 +0000
+Message-ID: <618d75b117614d67bd42f8a5e0d6eed0@intel.com>
+References: <20220112110319.1172110-1-jani.nikula@intel.com>
+ <20220112110319.1172110-3-jani.nikula@intel.com>
+In-Reply-To: <20220112110319.1172110-3-jani.nikula@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220105100520.976092-1-jani.nikula@intel.com>
- <20220105100520.976092-2-jani.nikula@intel.com>
- <170a7507-ff7e-204f-eba3-89571ab87842@linux.intel.com>
- <875yqytqv4.fsf@intel.com>
- <bee03d1e-06dd-6243-e711-ab8d7c7081bb@linux.intel.com>
- <87ee5mjp7h.fsf@intel.com>
- <0a340da0-ccdc-c90f-b181-1f0ad3d5a440@linux.intel.com>
- <87wniwasil.fsf@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <87wniwasil.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/uncore: rename
- i915_reg_read_ioctl intel_uncore_reg_read_ioctl
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.200.16
+x-originating-ip: [10.223.10.1]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH RESEND 3/7] drm/i915/mst: debug log 4 bytes
+ of ESI right after reading
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,120 +76,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 19/01/2022 11:12, Jani Nikula wrote:
-> On Wed, 05 Jan 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->> On 05/01/2022 13:18, Jani Nikula wrote:
->>> On Wed, 05 Jan 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->>>> On 05/01/2022 10:32, Jani Nikula wrote:
->>>>> On Wed, 05 Jan 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->>>>>> On 05/01/2022 10:05, Jani Nikula wrote:
->>>>>>> Follow the usual naming convention.
->>>>>>
->>>>>> But intel_uncore_ prefix usually means functions takes intel_uncore as
->>>>>> the first argument.
->>>>>>
->>>>>> Maybe solution here is that i915_reg_read_ioctl does not belong in
->>>>>> intel_uncore.c, it being the UAPI layer thing? I guess arguments could
->>>>>> be made for either way.
->>>>>
->>>>> My position is that the function and file prefixes go hand in
->>>>> hand. You'll always know where to place a function, and you'll always
->>>>> know where the function is to be found.
->>>>>
->>>>> If you can *also* make the context argument follow the pattern, it's
->>>>> obviously better, and indicates the division to files is working out
->>>>> nicely. However, in a lot of cases you'll need to pass struct
->>>>> drm_i915_private or similar as the first parameter to e.g. init
->>>>> functions. It can't be the rigid rule.
->>>>>
->>>>> I'm fine with moving the entire function somewhere else, as long as the
->>>>> declaration is not in i915_drv.h. There's no longer a i915_drv.c, and
->>>>> i915_drv.h should not have function declarations at all.
->>>>
->>>> Yes I agree it cannot be a rigid rule. I just that it feels
->>>> intel_uncore.[hc] is too low level to me to hold an ioctl
->>>> implementation, and header actually feels wrong to have the declaration.
->>>> Not least it is about _one_ of the uncores, while the ioctl is not
->>>> operating on that level, albeit undefined at the moment how exactly it
->>>> would work for multi-tile.
->>>>
->>>> Would it be too early, or unwarranted at this point, to maybe consider
->>>> adding i915_ioctls.[hc]?
->>>
->>> Then the conversation would be about putting together a ton of unrelated
->>> functions where the only thing in common is that they're an ioctl
->>> implementation. Arguably many of them would have less in common than the
->>> reg read ioctl has with uncore!
->>
->> I imagined it as a place for ioctls which don't fit anywhere else, like
->> it this case it is not a family of ioctls but and odd one out. So yes,
->> first "problem" would be there is only one to put there and no line of
->> sight for others.
->>
->>> And when is it okay to put an ioctl in the i915_ioctls.c file and when
->>> is it warranted to put it somewhere else? It's just a different set of
->>> problems.
->>
->> When it does not fit anywhere else?
->>
->>>> I like the i915_ prefix of ioctls for consistency.. i915_getparam_ioctl,
->>>> i915_query_ioctl, i915_perf_..., i915_gem_....
->>>
->>> The display ioctls have intel_ prefix anyway. It's the _ioctl suffix
->>> that we use.
->>>
->>> Again, my main driver here is cleaning up i915_drv.h. I can shove the
->>> reg read ioctl somewhere other than intel_uncore.[ch] too. But as it
->>> stands, the only alternative that seems better than intel_uncore.[ch] at
->>> the moment is adding a dedicated file for a 60-line function.
->>
->> I understand your motivation and I wouldn't nack your efforts, but I
->> also cannot yet make myself ack it. Is 60 lines so bad? Lets see..
->>
->> $ find . -name "*.c" -print0 | xargs -0 wc -l | sort -nr
->> ...
->>        59 ./selftests/mock_request.c
->>        59 ./gt/uc/intel_uc_debugfs.c
->>        59 ./gem/i915_gemfs.c
->>        52 ./selftests/igt_mmap.c
->>        51 ./selftests/igt_reset.c
->>        49 ./selftests/mock_uncore.c
->>        47 ./selftests/igt_atomic.c
->>        36 ./gt/uc/intel_huc_debugfs.c
->>        36 ./gt/intel_gt_engines_debugfs.c
->>        35 ./selftests/igt_flush_test.c
->>        34 ./selftests/librapl.c
->>        34 ./gvt/trace_points.c
->>        29 ./gt/selftests/mock_timeline.c
->>        27 ./gt/selftest_engine.c
->>        26 ./gt/uc/intel_huc_fw.c
->>        15 ./i915_config.c
->>        14 ./i915_trace_points.c
->>         9 ./display/intel_display_trace.c
->>
->> So kind of meh, wouldn't be first. I'd add a dedicated file just for the
->> benefit of being able to legitimately keep the i915_reg_read_ioctl name.
->> Come multi-tile it may get company. Even though at the moment I am not
->> aware anyone is trying to add multi-tile aware reg read, but I expect
->> there will be need as long as need for the existing one exists.
-> 
-> So this got stalled a bit, and sidestepped from the main goal of just
-> cleaning up i915_drv.h from the clutter that absolutely does not belong
-> there.
-> 
-> Can we just merge patch 1, leave further cleanup to follow-up, and move
-> on?
 
-Sorry but I don't think the ioctl belongs in gt/intel_uncore.h either so 
-I can't make myself ack it. But I am not nacking it either, as said 
-before, if you find someone else to support it.
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ja=
+ni Nikula
+> Sent: Wednesday, January 12, 2022 4:33 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Nikula, Jani <jani.nikula@intel.com>
+> Subject: [Intel-gfx] [PATCH RESEND 3/7] drm/i915/mst: debug log 4 bytes o=
+f ESI right
+> after reading
+>=20
+> For whatever reason, the ESI link service irq vector was missing from the=
+ debug
+> output. Add the missing byte, clean up the debug message, and do the logg=
+ing right
+> after reading the data.
 
-I would add i915_ioctls.[ch] even if they hold just this one.
+Looks Good to me.
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 
-Regards,
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> b/drivers/gpu/drm/i915/display/intel_dp.c
+> index a301220ce2ad..6de39056e2f8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3683,6 +3683,8 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp=
+)
+>  			break;
+>  		}
+>=20
+> +		drm_dbg_kms(&i915->drm, "DPRX ESI: %4ph\n", esi);
+> +
+>  		/* check link status - esi[10] =3D 0x200c */
+>  		if (intel_dp->active_mst_links > 0 && link_ok &&
+>  		    !drm_dp_channel_eq_ok(&esi[10], intel_dp->lane_count)) { @@ -
+> 3691,8 +3693,6 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
+>  			link_ok =3D false;
+>  		}
+>=20
+> -		drm_dbg_kms(&i915->drm, "got esi %3ph\n", esi);
+> -
+>  		intel_dp_mst_hpd_irq(intel_dp, esi, &handled);
+>=20
+>  		if (!handled)
+> --
+> 2.30.2
 
-Tvrtko
