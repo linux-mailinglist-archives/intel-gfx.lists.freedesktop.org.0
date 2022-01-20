@@ -1,33 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F3974951D5
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 16:55:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C0FE4951E3
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 16:59:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19F3710E4AA;
-	Thu, 20 Jan 2022 15:54:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C34110E4B4;
+	Thu, 20 Jan 2022 15:58:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AD0C810E4A8;
- Thu, 20 Jan 2022 15:54:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A6CD1A77A5;
- Thu, 20 Jan 2022 15:54:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8847102744633078776=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A86F10E4AF;
+ Thu, 20 Jan 2022 15:58:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642694336; x=1674230336;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=kXlm+3k1T1ckRmYpLXmPJnrdmPZDGAq1nWKO3KEtRwc=;
+ b=YDEo+de+sp/H64ErJ1ox9DdFlvkc+DkCg9djGsRXTDPhC9Gey7z+qKmG
+ ImE07s8D3uA/FHqrCcWBiVPf53+rt83lMzDNalgEY4DSs/q0KYml/ekdr
+ cTB0QA5MidldOqczLRyTGyJCxT8qHl9s0VJJWGe8wZTMuZXGzTKRB+k23
+ 6DzzF/15FJwk8pE50IY3Y9THn9ktalEvqaPDTmvhrSs5a6l3SkpUxtKiJ
+ LtxIAoH21itsMn1iQxTaqYdUOHKXhrCIHq3DGFJekLoVp1NInprvQuD95
+ e59dnyRqrCQQY99ezqMaSCWo6RzUw4q2rmQWtmNj9l8tp2X3cYOKXrroJ g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="245173707"
+X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="245173707"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 07:58:55 -0800
+X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="595782314"
+Received: from kdevey-mobl2.ger.corp.intel.com (HELO [10.252.29.97])
+ ([10.252.29.97])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 07:58:52 -0800
+Message-ID: <18e13424-e008-28d3-ce70-699be8fd6a04@intel.com>
+Date: Thu, 20 Jan 2022 15:58:50 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alexander Usyskin" <alexander.usyskin@intel.com>
-Date: Thu, 20 Jan 2022 15:54:57 -0000
-Message-ID: <164269409764.22536.7564880073720399213@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220120145351.520555-1-alexander.usyskin@intel.com>
-In-Reply-To: <20220120145351.520555-1-alexander.usyskin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
- =?utf-8?q?_driver_for_GSC_controller_=28rev3=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-GB
+To: Robert Beckett <bob.beckett@collabora.com>,
+ Ramalingam C <ramalingam.c@intel.com>
+References: <20220118175036.3840934-1-bob.beckett@collabora.com>
+ <20220118175036.3840934-2-bob.beckett@collabora.com>
+ <20220120114626.GA8264@intel.com>
+ <a8cce1c4-88da-e597-e54c-8c34b685d1eb@collabora.com>
+ <5dbffe0e-7291-6af7-0bd1-bbfcdf7ef5bf@intel.com>
+ <fe7ff711-fc3e-82c5-ece5-158b42ec3c55@collabora.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <fe7ff711-fc3e-82c5-ece5-158b42ec3c55@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 1/4] drm/i915: enforce min GTT alignment
+ for discrete cards
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,259 +66,573 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8847102744633078776==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 20/01/2022 15:44, Robert Beckett wrote:
+> 
+> 
+> On 20/01/2022 14:59, Matthew Auld wrote:
+>> On 20/01/2022 13:15, Robert Beckett wrote:
+>>>
+>>>
+>>> On 20/01/2022 11:46, Ramalingam C wrote:
+>>>> On 2022-01-18 at 17:50:34 +0000, Robert Beckett wrote:
+>>>>> From: Matthew Auld <matthew.auld@intel.com>
+>>>>>
+>>>>> For local-memory objects we need to align the GTT addresses
+>>>>> to 64K, both for the ppgtt and ggtt.
+>>>>>
+>>>>> We need to support vm->min_alignment > 4K, depending
+>>>>> on the vm itself and the type of object we are inserting.
+>>>>> With this in mind update the GTT selftests to take this
+>>>>> into account.
+>>>>>
+>>>>> For DG2 we further align and pad lmem object GTT addresses
+>>>>> to 2MB to ensure PDEs contain consistent page sizes as
+>>>>> required by the HW.
+>>>>>
+>>>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>>>> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+>>>>> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+>>>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>>> ---
+>>>>>   .../i915/gem/selftests/i915_gem_client_blt.c  | 23 +++--
+>>>>>   drivers/gpu/drm/i915/gt/intel_gtt.c           | 14 +++
+>>>>>   drivers/gpu/drm/i915/gt/intel_gtt.h           |  9 ++
+>>>>>   drivers/gpu/drm/i915/i915_vma.c               | 14 +++
+>>>>>   drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 96 
+>>>>> ++++++++++++-------
+>>>>>   5 files changed, 115 insertions(+), 41 deletions(-)
+>>>>>
+>>>>> diff --git 
+>>>>> a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c 
+>>>>> b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+>>>>> index c08f766e6e15..7fee95a65414 100644
+>>>>> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+>>>>> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+>>>>> @@ -39,6 +39,7 @@ struct tiled_blits {
+>>>>>       struct blit_buffer scratch;
+>>>>>       struct i915_vma *batch;
+>>>>>       u64 hole;
+>>>>> +    u64 align;
+>>>>>       u32 width;
+>>>>>       u32 height;
+>>>>>   };
+>>>>> @@ -410,14 +411,21 @@ tiled_blits_create(struct intel_engine_cs 
+>>>>> *engine, struct rnd_state *prng)
+>>>>>           goto err_free;
+>>>>>       }
+>>>>> -    hole_size = 2 * PAGE_ALIGN(WIDTH * HEIGHT * 4);
+>>>>> +    t->align = I915_GTT_PAGE_SIZE_2M; /* XXX worst case, derive 
+>>>>> from vm! */
+>>>>> +    t->align = max(t->align,
+>>>>> +               i915_vm_min_alignment(t->ce->vm, INTEL_MEMORY_LOCAL));
+>>>>> +    t->align = max(t->align,
+>>>>> +               i915_vm_min_alignment(t->ce->vm, 
+>>>>> INTEL_MEMORY_SYSTEM));
+>>>>> +
+>>>>> +    hole_size = 2 * round_up(WIDTH * HEIGHT * 4, t->align);
+>>>>>       hole_size *= 2; /* room to maneuver */
+>>>>> -    hole_size += 2 * I915_GTT_MIN_ALIGNMENT;
+>>>>> +    hole_size += 2 * t->align; /* padding on either side */
+>>>>>       mutex_lock(&t->ce->vm->mutex);
+>>>>>       memset(&hole, 0, sizeof(hole));
+>>>>>       err = drm_mm_insert_node_in_range(&t->ce->vm->mm, &hole,
+>>>>> -                      hole_size, 0, I915_COLOR_UNEVICTABLE,
+>>>>> +                      hole_size, t->align,
+>>>>> +                      I915_COLOR_UNEVICTABLE,
+>>>>>                         0, U64_MAX,
+>>>>>                         DRM_MM_INSERT_BEST);
+>>>>>       if (!err)
+>>>>> @@ -428,7 +436,7 @@ tiled_blits_create(struct intel_engine_cs 
+>>>>> *engine, struct rnd_state *prng)
+>>>>>           goto err_put;
+>>>>>       }
+>>>>> -    t->hole = hole.start + I915_GTT_MIN_ALIGNMENT;
+>>>>> +    t->hole = hole.start + t->align;
+>>>>>       pr_info("Using hole at %llx\n", t->hole);
+>>>>>       err = tiled_blits_create_buffers(t, WIDTH, HEIGHT, prng);
+>>>>> @@ -455,7 +463,7 @@ static void tiled_blits_destroy(struct 
+>>>>> tiled_blits *t)
+>>>>>   static int tiled_blits_prepare(struct tiled_blits *t,
+>>>>>                      struct rnd_state *prng)
+>>>>>   {
+>>>>> -    u64 offset = PAGE_ALIGN(t->width * t->height * 4);
+>>>>> +    u64 offset = round_up(t->width * t->height * 4, t->align);
+>>>>>       u32 *map;
+>>>>>       int err;
+>>>>>       int i;
+>>>>> @@ -486,8 +494,7 @@ static int tiled_blits_prepare(struct 
+>>>>> tiled_blits *t,
+>>>>>   static int tiled_blits_bounce(struct tiled_blits *t, struct 
+>>>>> rnd_state *prng)
+>>>>>   {
+>>>>> -    u64 offset =
+>>>>> -        round_up(t->width * t->height * 4, 2 * 
+>>>>> I915_GTT_MIN_ALIGNMENT);
+>>>>> +    u64 offset = round_up(t->width * t->height * 4, 2 * t->align);
+>>>>>       int err;
+>>>>>       /* We want to check position invariant tiling across GTT 
+>>>>> eviction */
+>>>>> @@ -500,7 +507,7 @@ static int tiled_blits_bounce(struct 
+>>>>> tiled_blits *t, struct rnd_state *prng)
+>>>>>       /* Reposition so that we overlap the old addresses, and 
+>>>>> slightly off */
+>>>>>       err = tiled_blit(t,
+>>>>> -             &t->buffers[2], t->hole + I915_GTT_MIN_ALIGNMENT,
+>>>>> +             &t->buffers[2], t->hole + t->align,
+>>>>>                &t->buffers[1], t->hole + 3 * offset / 2);
+>>>>>       if (err)
+>>>>>           return err;
+>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c 
+>>>>> b/drivers/gpu/drm/i915/gt/intel_gtt.c
+>>>>> index 46be4197b93f..7c92b25c0f26 100644
+>>>>> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
+>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+>>>>> @@ -223,6 +223,20 @@ void i915_address_space_init(struct 
+>>>>> i915_address_space *vm, int subclass)
+>>>>>       GEM_BUG_ON(!vm->total);
+>>>>>       drm_mm_init(&vm->mm, 0, vm->total);
+>>>>> +
+>>>>> +    memset64(vm->min_alignment, I915_GTT_MIN_ALIGNMENT,
+>>>>> +         ARRAY_SIZE(vm->min_alignment));
+>>>>> +
+>>>>> +    if (HAS_64K_PAGES(vm->i915)) {
+>>>>> +        if (IS_DG2(vm->i915)) {
+>>>> I think we need this 2M alignment for all platform with HAS_64K_PAGES.
+>>>> Not only for DG2.
+>>>
+>>> really? can we get confirmation of this?
+>>> this contradicts the documentation in patch 4, which you reviewed, so 
+>>> I am confused now
+>>
+>> Starting from DG2, some platforms will have this new 64K GTT page size 
+>> restriction when dealing with LMEM. The HAS_64K_PAGES() macro is meant 
+>> to cover exactly that, AFAIK.
+> 
+> As I understood it, 64K pages only are a requirement going forward for 
+> discrete cards, but the restriction of nt sharing pdes with 4k and 64k 
+> pages was specific to DG2.
+> 
+> e.g.  xehpsdv is also defined as having 64k pages. And others in future 
+> are likely to, but without the PDE sharing restrictions.
 
-== Series Details ==
+Yeah, pretty much. But there is one other platform lurking.
 
-Series: Add driver for GSC controller (rev3)
-URL   : https://patchwork.freedesktop.org/series/98066/
-State : success
+ From chatting with Ram, it might also make sense to disentangle 
+HAS_64K_PAGES(), since it currently means both that we need min 64K page 
+granularity, and that there is this compact-pt layout thing which 
+doesn't allow mixing 64K and 4K in the same page-table.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11112 -> Patchwork_22041
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/index.html
-
-Participating hosts (46 -> 44)
-------------------------------
-
-  Missing    (2): fi-bsw-cyan fi-bdw-samus 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22041 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2] ([i915#146])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-11600:       [PASS][3] -> [DMESG-FAIL][4] ([i915#2373])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-rkl-11600/igt@i915_selftest@live@gt_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-rkl-11600/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [PASS][5] -> [INCOMPLETE][6] ([i915#3303])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-    - fi-snb-2600:        [PASS][7] -> [INCOMPLETE][8] ([i915#3921])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-skl-6600u:       [PASS][9] -> [FAIL][10] ([i915#4547])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][11] ([fdo#109271] / [i915#1436] / [i915#4312])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-hsw-4770/igt@runner@aborted.html
-    - fi-skl-6600u:       NOTRUN -> [FAIL][12] ([i915#4312])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-skl-6600u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bwr-2160:        [FAIL][13] ([i915#3194]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-bwr-2160/igt@core_hotunplug@unbind-rebind.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-bwr-2160/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [DMESG-FAIL][15] ([i915#4494]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][17] ([i915#4269]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2373]: https://gitlab.freedesktop.org/drm/intel/issues/2373
-  [i915#3194]: https://gitlab.freedesktop.org/drm/intel/issues/3194
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11112 -> Patchwork_22041
-
-  CI-20190529: 20190529
-  CI_DRM_11112: 55b83480a1824372d372852b3b6ceb5f0827caf1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22041: e0818be8eb6f85632283ab0da30cde3b48864536 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e0818be8eb6f mei: gsc: retrieve the firmware version
-987f5b75c03e mei: gsc: add runtime pm handlers
-b48bdec85a23 mei: gsc: setup char driver alive in spite of firmware handshake failure
-39d40de075b3 mei: add support for graphics system controller (gsc) devices
-9ad89d8f20ab drm/i915/gsc: add gsc as a mei auxiliary device
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/index.html
-
---===============8847102744633078776==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add driver for GSC controller (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98066/">https://patchwork.freedesktop.org/series/98066/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11112 -&gt; Patchwork_22041</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/index.html</p>
-<h2>Participating hosts (46 -&gt; 44)</h2>
-<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22041 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-rkl-11600/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-rkl-11600/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2373">i915#2373</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</p>
-</li>
-<li>
-<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bwr-2160:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-bwr-2160/igt@core_hotunplug@unbind-rebind.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3194">i915#3194</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-bwr-2160/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11112/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22041/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11112 -&gt; Patchwork_22041</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11112: 55b83480a1824372d372852b3b6ceb5f0827caf1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22041: e0818be8eb6f85632283ab0da30cde3b48864536 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e0818be8eb6f mei: gsc: retrieve the firmware version<br />
-987f5b75c03e mei: gsc: add runtime pm handlers<br />
-b48bdec85a23 mei: gsc: setup char driver alive in spite of firmware handshake failure<br />
-39d40de075b3 mei: add support for graphics system controller (gsc) devices<br />
-9ad89d8f20ab drm/i915/gsc: add gsc as a mei auxiliary device</p>
-
-</body>
-</html>
-
---===============8847102744633078776==--
+> 
+> If this is not the case, and all 64K page devices will also necessitate 
+> not sharing PDEs, then we can just use the HAS_64K_PAGES and use 2MB 
+> everywhere, but so far this sounds unconfirmed.
+> 
+>>
+>>>
+>>>>> +            vm->min_alignment[INTEL_MEMORY_LOCAL] = 
+>>>>> I915_GTT_PAGE_SIZE_2M;
+>>>>> +            vm->min_alignment[INTEL_MEMORY_STOLEN_LOCAL] = 
+>>>>> I915_GTT_PAGE_SIZE_2M;
+>>>>> +        } else {
+>>>>> +            vm->min_alignment[INTEL_MEMORY_LOCAL] = 
+>>>>> I915_GTT_PAGE_SIZE_64K;
+>>>>> +            vm->min_alignment[INTEL_MEMORY_STOLEN_LOCAL] = 
+>>>>> I915_GTT_PAGE_SIZE_64K;
+>>>>> +        }
+>>>>> +    }
+>>>>> +
+>>>>>       vm->mm.head_node.color = I915_COLOR_UNEVICTABLE;
+>>>>>       INIT_LIST_HEAD(&vm->bound_list);
+>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h 
+>>>>> b/drivers/gpu/drm/i915/gt/intel_gtt.h
+>>>>> index 8073438b67c8..b8da2514d601 100644
+>>>>> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
+>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+>>>>> @@ -29,6 +29,8 @@
+>>>>>   #include "i915_selftest.h"
+>>>>>   #include "i915_vma_resource.h"
+>>>>>   #include "i915_vma_types.h"
+>>>>> +#include "i915_params.h"
+>>>>> +#include "intel_memory_region.h"
+>>>>>   #define I915_GFP_ALLOW_FAIL (GFP_KERNEL | __GFP_RETRY_MAYFAIL | 
+>>>>> __GFP_NOWARN)
+>>>>> @@ -223,6 +225,7 @@ struct i915_address_space {
+>>>>>       struct device *dma;
+>>>>>       u64 total;        /* size addr space maps (ex. 2GB for ggtt) */
+>>>>>       u64 reserved;        /* size addr space reserved */
+>>>>> +    u64 min_alignment[INTEL_MEMORY_STOLEN_LOCAL + 1];
+>>>>>       unsigned int bind_async_flags;
+>>>>> @@ -384,6 +387,12 @@ i915_vm_has_scratch_64K(struct 
+>>>>> i915_address_space *vm)
+>>>>>       return vm->scratch_order == get_order(I915_GTT_PAGE_SIZE_64K);
+>>>>>   }
+>>>>> +static inline u64 i915_vm_min_alignment(struct i915_address_space 
+>>>>> *vm,
+>>>>> +                    enum intel_memory_type type)
+>>>>> +{
+>>>>> +    return vm->min_alignment[type];
+>>>>> +}
+>>>>> +
+>>>>>   static inline bool
+>>>>>   i915_vm_has_cache_coloring(struct i915_address_space *vm)
+>>>>>   {
+>>>>> diff --git a/drivers/gpu/drm/i915/i915_vma.c 
+>>>>> b/drivers/gpu/drm/i915/i915_vma.c
+>>>>> index 1f15c3298112..9ac92e7a3566 100644
+>>>>> --- a/drivers/gpu/drm/i915/i915_vma.c
+>>>>> +++ b/drivers/gpu/drm/i915/i915_vma.c
+>>>>> @@ -756,6 +756,20 @@ i915_vma_insert(struct i915_vma *vma, u64 
+>>>>> size, u64 alignment, u64 flags)
+>>>>>       }
+>>>>>       color = 0;
+>>>>> +
+>>>>> +    if (HAS_64K_PAGES(vma->vm->i915) && 
+>>>>> i915_gem_object_is_lmem(vma->obj)) {
+>>>>> +        alignment = max(alignment, I915_GTT_PAGE_SIZE_64K);
+>>>>> +        /*
+>>>>> +         * DG2 can not have different sized pages in any given PDE 
+>>>>> (2MB range).
+>>>>> +         * Keeping things simple, we force any lmem object to reserve
+>>>>> +         * 2MB chunks, preventing any smaller pages being used 
+>>>>> alongside
+>>>>> +         */
+>>>>> +        if (IS_DG2(vma->vm->i915)) {
+>>>> Similarly here we dont need special case for DG2.
+>>>>
+>>>> Ram
+>>>>> +            alignment = max(alignment, I915_GTT_PAGE_SIZE_2M);
+>>>>> +            size = round_up(size, I915_GTT_PAGE_SIZE_2M);
+>>>>> +        }
+>>>>> +    }
+>>>>> +
+>>>>>       if (i915_vm_has_cache_coloring(vma->vm))
+>>>>>           color = vma->obj->cache_level;
+>>>>> diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c 
+>>>>> b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+>>>>> index 076d860ce01a..2f3f0c01786b 100644
+>>>>> --- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+>>>>> +++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+>>>>> @@ -238,6 +238,8 @@ static int lowlevel_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>                u64 hole_start, u64 hole_end,
+>>>>>                unsigned long end_time)
+>>>>>   {
+>>>>> +    const unsigned int min_alignment =
+>>>>> +        i915_vm_min_alignment(vm, INTEL_MEMORY_SYSTEM);
+>>>>>       I915_RND_STATE(seed_prng);
+>>>>>       struct i915_vma_resource *mock_vma_res;
+>>>>>       unsigned int size;
+>>>>> @@ -251,9 +253,10 @@ static int lowlevel_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>           I915_RND_SUBSTATE(prng, seed_prng);
+>>>>>           struct drm_i915_gem_object *obj;
+>>>>>           unsigned int *order, count, n;
+>>>>> -        u64 hole_size;
+>>>>> +        u64 hole_size, aligned_size;
+>>>>> -        hole_size = (hole_end - hole_start) >> size;
+>>>>> +        aligned_size = max_t(u32, ilog2(min_alignment), size);
+>>>>> +        hole_size = (hole_end - hole_start) >> aligned_size;
+>>>>>           if (hole_size > KMALLOC_MAX_SIZE / sizeof(u32))
+>>>>>               hole_size = KMALLOC_MAX_SIZE / sizeof(u32);
+>>>>>           count = hole_size >> 1;
+>>>>> @@ -274,8 +277,8 @@ static int lowlevel_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>           }
+>>>>>           GEM_BUG_ON(!order);
+>>>>> -        GEM_BUG_ON(count * BIT_ULL(size) > vm->total);
+>>>>> -        GEM_BUG_ON(hole_start + count * BIT_ULL(size) > hole_end);
+>>>>> +        GEM_BUG_ON(count * BIT_ULL(aligned_size) > vm->total);
+>>>>> +        GEM_BUG_ON(hole_start + count * BIT_ULL(aligned_size) > 
+>>>>> hole_end);
+>>>>>           /* Ignore allocation failures (i.e. don't report them as
+>>>>>            * a test failure) as we are purposefully allocating very
+>>>>> @@ -298,10 +301,10 @@ static int lowlevel_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>           }
+>>>>>           for (n = 0; n < count; n++) {
+>>>>> -            u64 addr = hole_start + order[n] * BIT_ULL(size);
+>>>>> +            u64 addr = hole_start + order[n] * BIT_ULL(aligned_size);
+>>>>>               intel_wakeref_t wakeref;
+>>>>> -            GEM_BUG_ON(addr + BIT_ULL(size) > vm->total);
+>>>>> +            GEM_BUG_ON(addr + BIT_ULL(aligned_size) > vm->total);
+>>>>>               if (igt_timeout(end_time,
+>>>>>                       "%s timed out before %d/%d\n",
+>>>>> @@ -344,7 +347,7 @@ static int lowlevel_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>               }
+>>>>>               mock_vma_res->bi.pages = obj->mm.pages;
+>>>>> -            mock_vma_res->node_size = BIT_ULL(size);
+>>>>> +            mock_vma_res->node_size = BIT_ULL(aligned_size);
+>>>>>               mock_vma_res->start = addr;
+>>>>>               with_intel_runtime_pm(vm->gt->uncore->rpm, wakeref)
+>>>>> @@ -355,7 +358,7 @@ static int lowlevel_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>           i915_random_reorder(order, count, &prng);
+>>>>>           for (n = 0; n < count; n++) {
+>>>>> -            u64 addr = hole_start + order[n] * BIT_ULL(size);
+>>>>> +            u64 addr = hole_start + order[n] * BIT_ULL(aligned_size);
+>>>>>               intel_wakeref_t wakeref;
+>>>>>               GEM_BUG_ON(addr + BIT_ULL(size) > vm->total);
+>>>>> @@ -399,8 +402,10 @@ static int fill_hole(struct i915_address_space 
+>>>>> *vm,
+>>>>>   {
+>>>>>       const u64 hole_size = hole_end - hole_start;
+>>>>>       struct drm_i915_gem_object *obj;
+>>>>> +    const unsigned int min_alignment =
+>>>>> +        i915_vm_min_alignment(vm, INTEL_MEMORY_SYSTEM);
+>>>>>       const unsigned long max_pages =
+>>>>> -        min_t(u64, ULONG_MAX - 1, hole_size/2 >> PAGE_SHIFT);
+>>>>> +        min_t(u64, ULONG_MAX - 1, (hole_size / 2) >> 
+>>>>> ilog2(min_alignment));
+>>>>>       const unsigned long max_step = max(int_sqrt(max_pages), 2UL);
+>>>>>       unsigned long npages, prime, flags;
+>>>>>       struct i915_vma *vma;
+>>>>> @@ -441,14 +446,17 @@ static int fill_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>                   offset = p->offset;
+>>>>>                   list_for_each_entry(obj, &objects, st_link) {
+>>>>> +                    u64 aligned_size = round_up(obj->base.size,
+>>>>> +                                    min_alignment);
+>>>>> +
+>>>>>                       vma = i915_vma_instance(obj, vm, NULL);
+>>>>>                       if (IS_ERR(vma))
+>>>>>                           continue;
+>>>>>                       if (p->step < 0) {
+>>>>> -                        if (offset < hole_start + obj->base.size)
+>>>>> +                        if (offset < hole_start + aligned_size)
+>>>>>                               break;
+>>>>> -                        offset -= obj->base.size;
+>>>>> +                        offset -= aligned_size;
+>>>>>                       }
+>>>>>                       err = i915_vma_pin(vma, 0, 0, offset | flags);
+>>>>> @@ -470,22 +478,25 @@ static int fill_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>                       i915_vma_unpin(vma);
+>>>>>                       if (p->step > 0) {
+>>>>> -                        if (offset + obj->base.size > hole_end)
+>>>>> +                        if (offset + aligned_size > hole_end)
+>>>>>                               break;
+>>>>> -                        offset += obj->base.size;
+>>>>> +                        offset += aligned_size;
+>>>>>                       }
+>>>>>                   }
+>>>>>                   offset = p->offset;
+>>>>>                   list_for_each_entry(obj, &objects, st_link) {
+>>>>> +                    u64 aligned_size = round_up(obj->base.size,
+>>>>> +                                    min_alignment);
+>>>>> +
+>>>>>                       vma = i915_vma_instance(obj, vm, NULL);
+>>>>>                       if (IS_ERR(vma))
+>>>>>                           continue;
+>>>>>                       if (p->step < 0) {
+>>>>> -                        if (offset < hole_start + obj->base.size)
+>>>>> +                        if (offset < hole_start + aligned_size)
+>>>>>                               break;
+>>>>> -                        offset -= obj->base.size;
+>>>>> +                        offset -= aligned_size;
+>>>>>                       }
+>>>>>                       if (!drm_mm_node_allocated(&vma->node) ||
+>>>>> @@ -506,22 +517,25 @@ static int fill_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>                       }
+>>>>>                       if (p->step > 0) {
+>>>>> -                        if (offset + obj->base.size > hole_end)
+>>>>> +                        if (offset + aligned_size > hole_end)
+>>>>>                               break;
+>>>>> -                        offset += obj->base.size;
+>>>>> +                        offset += aligned_size;
+>>>>>                       }
+>>>>>                   }
+>>>>>                   offset = p->offset;
+>>>>>                   list_for_each_entry_reverse(obj, &objects, 
+>>>>> st_link) {
+>>>>> +                    u64 aligned_size = round_up(obj->base.size,
+>>>>> +                                    min_alignment);
+>>>>> +
+>>>>>                       vma = i915_vma_instance(obj, vm, NULL);
+>>>>>                       if (IS_ERR(vma))
+>>>>>                           continue;
+>>>>>                       if (p->step < 0) {
+>>>>> -                        if (offset < hole_start + obj->base.size)
+>>>>> +                        if (offset < hole_start + aligned_size)
+>>>>>                               break;
+>>>>> -                        offset -= obj->base.size;
+>>>>> +                        offset -= aligned_size;
+>>>>>                       }
+>>>>>                       err = i915_vma_pin(vma, 0, 0, offset | flags);
+>>>>> @@ -543,22 +557,25 @@ static int fill_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>                       i915_vma_unpin(vma);
+>>>>>                       if (p->step > 0) {
+>>>>> -                        if (offset + obj->base.size > hole_end)
+>>>>> +                        if (offset + aligned_size > hole_end)
+>>>>>                               break;
+>>>>> -                        offset += obj->base.size;
+>>>>> +                        offset += aligned_size;
+>>>>>                       }
+>>>>>                   }
+>>>>>                   offset = p->offset;
+>>>>>                   list_for_each_entry_reverse(obj, &objects, 
+>>>>> st_link) {
+>>>>> +                    u64 aligned_size = round_up(obj->base.size,
+>>>>> +                                    min_alignment);
+>>>>> +
+>>>>>                       vma = i915_vma_instance(obj, vm, NULL);
+>>>>>                       if (IS_ERR(vma))
+>>>>>                           continue;
+>>>>>                       if (p->step < 0) {
+>>>>> -                        if (offset < hole_start + obj->base.size)
+>>>>> +                        if (offset < hole_start + aligned_size)
+>>>>>                               break;
+>>>>> -                        offset -= obj->base.size;
+>>>>> +                        offset -= aligned_size;
+>>>>>                       }
+>>>>>                       if (!drm_mm_node_allocated(&vma->node) ||
+>>>>> @@ -579,9 +596,9 @@ static int fill_hole(struct i915_address_space 
+>>>>> *vm,
+>>>>>                       }
+>>>>>                       if (p->step > 0) {
+>>>>> -                        if (offset + obj->base.size > hole_end)
+>>>>> +                        if (offset + aligned_size > hole_end)
+>>>>>                               break;
+>>>>> -                        offset += obj->base.size;
+>>>>> +                        offset += aligned_size;
+>>>>>                       }
+>>>>>                   }
+>>>>>               }
+>>>>> @@ -611,6 +628,7 @@ static int walk_hole(struct i915_address_space 
+>>>>> *vm,
+>>>>>       const u64 hole_size = hole_end - hole_start;
+>>>>>       const unsigned long max_pages =
+>>>>>           min_t(u64, ULONG_MAX - 1, hole_size >> PAGE_SHIFT);
+>>>>> +    unsigned long min_alignment;
+>>>>>       unsigned long flags;
+>>>>>       u64 size;
+>>>>> @@ -620,6 +638,8 @@ static int walk_hole(struct i915_address_space 
+>>>>> *vm,
+>>>>>       if (i915_is_ggtt(vm))
+>>>>>           flags |= PIN_GLOBAL;
+>>>>> +    min_alignment = i915_vm_min_alignment(vm, INTEL_MEMORY_SYSTEM);
+>>>>> +
+>>>>>       for_each_prime_number_from(size, 1, max_pages) {
+>>>>>           struct drm_i915_gem_object *obj;
+>>>>>           struct i915_vma *vma;
+>>>>> @@ -638,7 +658,7 @@ static int walk_hole(struct i915_address_space 
+>>>>> *vm,
+>>>>>           for (addr = hole_start;
+>>>>>                addr + obj->base.size < hole_end;
+>>>>> -             addr += obj->base.size) {
+>>>>> +             addr += round_up(obj->base.size, min_alignment)) {
+>>>>>               err = i915_vma_pin(vma, 0, 0, addr | flags);
+>>>>>               if (err) {
+>>>>>                   pr_err("%s bind failed at %llx + %llx [hole %llx- 
+>>>>> %llx] with err=%d\n",
+>>>>> @@ -690,6 +710,7 @@ static int pot_hole(struct i915_address_space *vm,
+>>>>>   {
+>>>>>       struct drm_i915_gem_object *obj;
+>>>>>       struct i915_vma *vma;
+>>>>> +    unsigned int min_alignment;
+>>>>>       unsigned long flags;
+>>>>>       unsigned int pot;
+>>>>>       int err = 0;
+>>>>> @@ -698,6 +719,8 @@ static int pot_hole(struct i915_address_space *vm,
+>>>>>       if (i915_is_ggtt(vm))
+>>>>>           flags |= PIN_GLOBAL;
+>>>>> +    min_alignment = i915_vm_min_alignment(vm, INTEL_MEMORY_SYSTEM);
+>>>>> +
+>>>>>       obj = i915_gem_object_create_internal(vm->i915, 2 * 
+>>>>> I915_GTT_PAGE_SIZE);
+>>>>>       if (IS_ERR(obj))
+>>>>>           return PTR_ERR(obj);
+>>>>> @@ -710,13 +733,13 @@ static int pot_hole(struct i915_address_space 
+>>>>> *vm,
+>>>>>       /* Insert a pair of pages across every pot boundary within 
+>>>>> the hole */
+>>>>>       for (pot = fls64(hole_end - 1) - 1;
+>>>>> -         pot > ilog2(2 * I915_GTT_PAGE_SIZE);
+>>>>> +         pot > ilog2(2 * min_alignment);
+>>>>>            pot--) {
+>>>>>           u64 step = BIT_ULL(pot);
+>>>>>           u64 addr;
+>>>>> -        for (addr = round_up(hole_start + I915_GTT_PAGE_SIZE, 
+>>>>> step) - I915_GTT_PAGE_SIZE;
+>>>>> -             addr <= round_down(hole_end - 2*I915_GTT_PAGE_SIZE, 
+>>>>> step) - I915_GTT_PAGE_SIZE;
+>>>>> +        for (addr = round_up(hole_start + min_alignment, step) - 
+>>>>> min_alignment;
+>>>>> +             addr <= round_down(hole_end - (2 * min_alignment), 
+>>>>> step) - min_alignment;
+>>>>>                addr += step) {
+>>>>>               err = i915_vma_pin(vma, 0, 0, addr | flags);
+>>>>>               if (err) {
+>>>>> @@ -761,6 +784,7 @@ static int drunk_hole(struct i915_address_space 
+>>>>> *vm,
+>>>>>                 unsigned long end_time)
+>>>>>   {
+>>>>>       I915_RND_STATE(prng);
+>>>>> +    unsigned int min_alignment;
+>>>>>       unsigned int size;
+>>>>>       unsigned long flags;
+>>>>> @@ -768,15 +792,18 @@ static int drunk_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>       if (i915_is_ggtt(vm))
+>>>>>           flags |= PIN_GLOBAL;
+>>>>> +    min_alignment = i915_vm_min_alignment(vm, INTEL_MEMORY_SYSTEM);
+>>>>> +
+>>>>>       /* Keep creating larger objects until one cannot fit into the 
+>>>>> hole */
+>>>>>       for (size = 12; (hole_end - hole_start) >> size; size++) {
+>>>>>           struct drm_i915_gem_object *obj;
+>>>>>           unsigned int *order, count, n;
+>>>>>           struct i915_vma *vma;
+>>>>> -        u64 hole_size;
+>>>>> +        u64 hole_size, aligned_size;
+>>>>>           int err = -ENODEV;
+>>>>> -        hole_size = (hole_end - hole_start) >> size;
+>>>>> +        aligned_size = max_t(u32, ilog2(min_alignment), size);
+>>>>> +        hole_size = (hole_end - hole_start) >> aligned_size;
+>>>>>           if (hole_size > KMALLOC_MAX_SIZE / sizeof(u32))
+>>>>>               hole_size = KMALLOC_MAX_SIZE / sizeof(u32);
+>>>>>           count = hole_size >> 1;
+>>>>> @@ -816,7 +843,7 @@ static int drunk_hole(struct i915_address_space 
+>>>>> *vm,
+>>>>>           GEM_BUG_ON(vma->size != BIT_ULL(size));
+>>>>>           for (n = 0; n < count; n++) {
+>>>>> -            u64 addr = hole_start + order[n] * BIT_ULL(size);
+>>>>> +            u64 addr = hole_start + order[n] * BIT_ULL(aligned_size);
+>>>>>               err = i915_vma_pin(vma, 0, 0, addr | flags);
+>>>>>               if (err) {
+>>>>> @@ -868,11 +895,14 @@ static int __shrink_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>   {
+>>>>>       struct drm_i915_gem_object *obj;
+>>>>>       unsigned long flags = PIN_OFFSET_FIXED | PIN_USER;
+>>>>> +    unsigned int min_alignment;
+>>>>>       unsigned int order = 12;
+>>>>>       LIST_HEAD(objects);
+>>>>>       int err = 0;
+>>>>>       u64 addr;
+>>>>> +    min_alignment = i915_vm_min_alignment(vm, INTEL_MEMORY_SYSTEM);
+>>>>> +
+>>>>>       /* Keep creating larger objects until one cannot fit into the 
+>>>>> hole */
+>>>>>       for (addr = hole_start; addr < hole_end; ) {
+>>>>>           struct i915_vma *vma;
+>>>>> @@ -913,7 +943,7 @@ static int __shrink_hole(struct 
+>>>>> i915_address_space *vm,
+>>>>>           }
+>>>>>           i915_vma_unpin(vma);
+>>>>> -        addr += size;
+>>>>> +        addr += round_up(size, min_alignment);
+>>>>>           /*
+>>>>>            * Since we are injecting allocation faults at random 
+>>>>> intervals,
+>>>>> -- 
+>>>>> 2.25.1
+>>>>>
