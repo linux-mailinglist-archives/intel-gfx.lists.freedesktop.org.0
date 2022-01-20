@@ -1,46 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48F5D494C04
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 11:45:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F60F494C46
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 11:55:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ED2010E663;
-	Thu, 20 Jan 2022 10:45:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7681B10E332;
+	Thu, 20 Jan 2022 10:55:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B26610E49E;
- Thu, 20 Jan 2022 10:45:39 +0000 (UTC)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out2.suse.de (Postfix) with ESMTP id 971CA1F394;
- Thu, 20 Jan 2022 10:45:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1642675537; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=lNXsCxk1kmLzWZ3KuMXgc2QP7yNDhqQLgFtjl4LsFGg=;
- b=s80Eh1CewTbGXaANSfdmhOC8yS7mIDv9FCt/I0hzu7cf9Pu9Si7tpC0AUMlifM6MhpyvNI
- EdQykNw0T5LfW9CMRgRZQ36TExFEeiyITs3AE72J+aELbU1yWnXuKDUzDzoC1F8NJaMUMu
- 9y1MB7bqBlsK9YohaVnVWyOxwl7Ul6w=
-Received: from suse.cz (unknown [10.100.224.162])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by relay2.suse.de (Postfix) with ESMTPS id 65535A3B81;
- Thu, 20 Jan 2022 10:45:30 +0000 (UTC)
-Date: Thu, 20 Jan 2022 11:45:36 +0100
-From: Petr Mladek <pmladek@suse.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <Yek9UEHpS16/9ajt@alley>
-References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
- <YegPiR7LU8aVisMf@alley> <87tudzbykz.fsf@intel.com>
- <YekfbKMjOP9ecc5v@alley> <8735libwjo.fsf@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D94F10E332
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jan 2022 10:55:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642676105; x=1674212105;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=7f8KQsg1a1jMta4WdJpP8jlPWb16nOjsIXrJ5vJvTVI=;
+ b=Zf82HuYAmiOlp8fSHa4tPGDfPMrvMxEqBtFTjuRyPTjdxhBGgyjeUD6j
+ 5ZE7JIf0oGclLo2kITaFy+ZWmsglz5xm9DdQDIA/ON2U5m4eQ0/chKNIo
+ AxglUVge/oSunUDrvHcC/KzfNcojm4nQYsttOSHhzG5Bdv0NlomENYTAt
+ Ymja1L2vR93NaYpbo4CKx9rIf0vgKhch8PdlD1rTrg2+nKmgr7w/Ht5Hn
+ QeJbbXmG2KulO8Pwhfqb0on4K8Lb6gcTbyfDSCQjdwkTQMjJMq1prXyzK
+ W/y2lj8q7n5yDGQsUSFBarqrJMYEIN8ky8FJuRlhOpB0TQJPeZMhlnjpO A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="308663656"
+X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="308663656"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 02:55:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="477750992"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+ by orsmga006.jf.intel.com with ESMTP; 20 Jan 2022 02:55:01 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1nAV5n-000EDF-Fi; Thu, 20 Jan 2022 10:54:59 +0000
+Date: Thu, 20 Jan 2022 18:54:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <202201201838.YQUqtmJI-lkp@intel.com>
+References: <20220120063809.1020633-6-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8735libwjo.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 0/3] lib/string_helpers: Add a few string
- helpers
+In-Reply-To: <20220120063809.1020633-6-matthew.d.roper@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915: Move GT registers to their
+ own header file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,50 +60,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Vishal Kulkarni <vishal@chelsio.com>,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- Kentaro Takeda <takedakn@nttdata.co.jp>, Mikita Lipski <mikita.lipski@amd.com>,
- amd-gfx@lists.freedesktop.org, Andy Shevchenko <andy.shevchenko@gmail.com>,
- Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Steven Rostedt <rostedt@goodmis.org>, Julia Lawall <julia.lawall@lip6.fr>,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Eryk Brol <eryk.brol@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-kernel@vger.kernel.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- linux-security-module@vger.kernel.org, netdev@vger.kernel.org,
- Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- "David S . Miller" <davem@davemloft.net>
+Cc: Jani Nikula <jani.nikula@intel.com>, llvm@lists.linux.dev,
+ kbuild-all@lists.01.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu 2022-01-20 11:12:27, Jani Nikula wrote:
-> On Thu, 20 Jan 2022, Petr Mladek <pmladek@suse.com> wrote:
-> > The problem is not that visible with yesno() and onoff(). But as you said,
-> > onoff() confliscts with variable names. And enabledisable() sucks.
-> > As a result, there is a non-trivial risk of two mass changes:
-> 
-> My point is, in the past three years we could have churned through more
-> than two mass renames just fine, if needed, *if* we had just managed to
-> merge something for a start!
+Hi Matt,
 
-Huh, this sound alarming.
+Thank you for the patch! Yet something to improve:
 
-Cosmetic changes just complicate history. They make "git blame" useless.
-They also complicate backports. I know that it is not problem for
-mainline. But there are supported stable branches, ...
+[auto build test ERROR on drm-tip/drm-tip]
+[cannot apply to drm-intel/for-linux-next v5.16 next-20220120]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-There should be a good reason for such changes. They should not be
-done light-heartedly.
+url:    https://github.com/0day-ci/linux/commits/Matt-Roper/Second-round-of-i915_reg-h-splitting/20220120-144038
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+config: x86_64-allmodconfig (https://download.01.org/0day-ci/archive/20220120/202201201838.YQUqtmJI-lkp@intel.com/config)
+compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project f7b7138a62648f4019c55e4671682af1f851f295)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/d7a6d230bd959372cab764baec5407256725e48b
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Matt-Roper/Second-round-of-i915_reg-h-splitting/20220120-144038
+        git checkout d7a6d230bd959372cab764baec5407256725e48b
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
 
-Best Regards,
-Petr
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/pxp/intel_pxp_irq.c:51:29: error: use of undeclared identifier 'GEN11_CRYPTO_RSVD_INTR_ENABLE'
+           intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, mask);
+                                      ^
+>> drivers/gpu/drm/i915/pxp/intel_pxp_irq.c:52:29: error: use of undeclared identifier 'GEN11_CRYPTO_RSVD_INTR_MASK'
+           intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~mask);
+                                      ^
+>> drivers/gpu/drm/i915/pxp/intel_pxp_irq.c:58:32: error: use of undeclared identifier 'GEN11_KCR'
+           gen11_gt_reset_one_iir(gt, 0, GEN11_KCR);
+                                         ^
+   drivers/gpu/drm/i915/pxp/intel_pxp_irq.c:69:46: error: use of undeclared identifier 'GEN11_KCR'
+                   WARN_ON_ONCE(gen11_gt_reset_one_iir(gt, 0, GEN11_KCR));
+                                                              ^
+   4 errors generated.
+
+
+vim +/GEN11_CRYPTO_RSVD_INTR_ENABLE +51 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+
+2ae096872a2c61 Huang, Sean Z 2021-09-24  45  
+2ae096872a2c61 Huang, Sean Z 2021-09-24  46  static inline void __pxp_set_interrupts(struct intel_gt *gt, u32 interrupts)
+2ae096872a2c61 Huang, Sean Z 2021-09-24  47  {
+2ae096872a2c61 Huang, Sean Z 2021-09-24  48  	struct intel_uncore *uncore = gt->uncore;
+2ae096872a2c61 Huang, Sean Z 2021-09-24  49  	const u32 mask = interrupts << 16;
+2ae096872a2c61 Huang, Sean Z 2021-09-24  50  
+2ae096872a2c61 Huang, Sean Z 2021-09-24 @51  	intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, mask);
+2ae096872a2c61 Huang, Sean Z 2021-09-24 @52  	intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~mask);
+2ae096872a2c61 Huang, Sean Z 2021-09-24  53  }
+2ae096872a2c61 Huang, Sean Z 2021-09-24  54  
+2ae096872a2c61 Huang, Sean Z 2021-09-24  55  static inline void pxp_irq_reset(struct intel_gt *gt)
+2ae096872a2c61 Huang, Sean Z 2021-09-24  56  {
+2ae096872a2c61 Huang, Sean Z 2021-09-24  57  	spin_lock_irq(&gt->irq_lock);
+2ae096872a2c61 Huang, Sean Z 2021-09-24 @58  	gen11_gt_reset_one_iir(gt, 0, GEN11_KCR);
+2ae096872a2c61 Huang, Sean Z 2021-09-24  59  	spin_unlock_irq(&gt->irq_lock);
+2ae096872a2c61 Huang, Sean Z 2021-09-24  60  }
+2ae096872a2c61 Huang, Sean Z 2021-09-24  61  
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
