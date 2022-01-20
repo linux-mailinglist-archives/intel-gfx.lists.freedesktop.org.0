@@ -1,56 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31DDF494BB8
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 11:30:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38A86494BCA
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 11:33:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDF1610E478;
-	Thu, 20 Jan 2022 10:30:53 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA20710E205;
- Thu, 20 Jan 2022 10:30:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 348E310E886;
+	Thu, 20 Jan 2022 10:33:10 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3222210E8B9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jan 2022 10:33:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642674651; x=1674210651;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=oppbeJLkwcwm/0mBHO2NlCB9IW+11w6O6K2f8KuPxzo=;
- b=b6pnoJ7BUDx7ejKsDQ5NPAsYjJzYQojatd90x0FwftXGaxWbxg4cYoXN
- dYeVFKAuOhFDSMJCv0wViv17cyCT/GHz2o++QJslOJjFh7s7OzjC+kKTR
- 3pvnLgM3bKEugA0SD9zCa9JW61oKGO4aM3zVseFlOCwrNbr267cSCXB4q
- ky30XpHSkO94teDqbQvBVaCAg44jt/Xqi12G3dDDkLXq2IoJhAtCOBBlf
- XKG4x/GOydBkHb8g7ApGhyR4M2dUZT0ofiyQ6eK9wYj0tC8TeGXGpmxcQ
- h+FOiy4RdDGlaFXm1/9KqyHktzOoWX734bZN7ZmeHhPoo2UB0mGQrnLDD w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="269720447"
-X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="269720447"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 02:30:51 -0800
-X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="767555950"
-Received: from bmurphy-mobl.ger.corp.intel.com (HELO [10.213.207.182])
- ([10.213.207.182])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 02:30:49 -0800
-Message-ID: <1cac5ccf-c49b-a584-f802-a89cb5d4bfb5@linux.intel.com>
-Date: Thu, 20 Jan 2022 10:30:47 +0000
+ t=1642674788; x=1674210788;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=ey756TbheAZJz4OQPzKwwMur1q6wtxngDiFIKCH8X0U=;
+ b=Mi8UU8ofXcCz/D2AlU6HZOlbye7tEb2vO+Z6Ugq5y7cc0uEV6l/VNEbC
+ zrxGM36cFbTdkChESEj9JC5CB76+nueqnJBlmDNCfwDEHxKOI2Lt/e6kE
+ DmX6AelMPkPUrCxuTEiuXTiykGTlzv8/dh7LhD/XUq7bZH9bfMaqjcpos
+ yP1y7QkkQyKspEH5UwX1JX83mStKNMqGbMsGSxnmXOik+2Gcrv35GYPqH
+ Vljq8clYQV/NshdznV5VnBoDHrLRSJtBavTzbfoTytsQW8r8DZ0eRl9dn
+ apde0QsuTEuK6Y0kRYCcAb6KVlKOy5Q7SCdiDOLoGkufeh6vqj39VqxGd g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="245276855"
+X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="245276855"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 02:32:11 -0800
+X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="518563515"
+Received: from davidfsc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.52.140])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 02:32:10 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <c0a48445d9c84a7cb644f392699c9028@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1641317930.git.jani.nikula@intel.com>
+ <1049e7188a76c421fab7797b5c4a6aa1b709f4c9.1641317930.git.jani.nikula@intel.com>
+ <c0a48445d9c84a7cb644f392699c9028@intel.com>
+Date: Thu, 20 Jan 2022 12:32:05 +0200
+Message-ID: <87h79yaeai.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <20220106165536.57208-1-tvrtko.ursulin@linux.intel.com>
- <20220106165536.57208-7-tvrtko.ursulin@linux.intel.com>
- <YegpiY3MU15RsEfk@phenom.ffwll.local>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <YegpiY3MU15RsEfk@phenom.ffwll.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 6/7] drm: Document fdinfo format
- specification
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915/mst: abstract
+ intel_dp_ack_sink_irq_esi()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,78 +59,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Daniel Stone <daniel@fooishbar.org>,
- dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Chris Healy <cphealy@gmail.com>, David M Nieto <David.Nieto@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 20 Jan 2022, "Shankar, Uma" <uma.shankar@intel.com> wrote:
+>> -----Original Message-----
+>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani Nikula
+>> Sent: Tuesday, January 4, 2022 11:10 PM
+>> To: intel-gfx@lists.freedesktop.org
+>> Cc: Nikula, Jani <jani.nikula@intel.com>
+>> Subject: [Intel-gfx] [PATCH 2/7] drm/i915/mst: abstract intel_dp_ack_sink_irq_esi()
+>> 
+>> Smaller functions make the thing easier to read. Debug log failures to ack.
+>> 
+>> Note: Looks like we have the retry loop simply because of hysterical raisins, dating
+>
+> Nit: Typo in reasons.
 
-On 19/01/2022 15:08, Daniel Vetter wrote:
-> On Thu, Jan 06, 2022 at 04:55:35PM +0000, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Proposal to standardise the fdinfo text format as optionally output by DRM
->> drivers.
->>
->> Idea is that a simple but, well defined, spec will enable generic
->> userspace tools to be written while at the same time avoiding a more heavy
->> handed approach of adding a mid-layer to DRM.
->>
->> i915 implements a subset of the spec, everything apart from the memory
->> stats currently, and a matching intel_gpu_top tool exists.
->>
->> Open is to see if AMD can migrate to using the proposed GPU utilisation
->> key-value pairs, or if they are not workable to see whether to go
->> vendor specific, or if a standardised  alternative can be found which is
->> workable for both drivers.
->>
->> Same for the memory utilisation key-value pairs proposal.
->>
->> v2:
->>   * Update for removal of name and pid.
->>
->> v3:
->>   * 'Drm-driver' tag will be obtained from struct drm_driver.name. (Daniel)
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: David M Nieto <David.Nieto@amd.com>
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: Daniel Vetter <daniel@ffwll.ch>
->> Cc: Daniel Stone <daniel@fooishbar.org>
->> Cc: Chris Healy <cphealy@gmail.com>
->> Acked-by: Christian König <christian.koenig@amd.com>
-> 
-> I'm assuming this ack here and later on is a "amdgpu plans to use this
-> too" kind of affair. Especially also in the lights of eventually using
-> matching semantics for cgroups and everything else tied to gpu execution
-> resource management.
-> 
-> If not I'm mildly worried that we're creating fake-standard stuff here
-> which cannot actually be used by anything resembling driver-agnostic
-> userspace.
+;)
 
-Hard to say how much adoption there would be.
+http://www.catb.org/jargon/html/H/hysterical-reasons.html
 
-At least on the statement of that the proposed spec cannot be used for 
-driver agnostic userspace, do you have concrete concerns with the spec I 
-proposed, or are just going by the lack of continuous engagement by any 
-third party?
+>
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+>
+>> back to the original DP MST enabling. Keep it, though I have no idea why we have it.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dp.c | 25 +++++++++++++++----------
+>>  1 file changed, 15 insertions(+), 10 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+>> b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 357c39e09bf6..ebf80a875a41 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -2820,6 +2820,19 @@ intel_dp_get_sink_irq_esi(struct intel_dp *intel_dp, u8
+>> *sink_irq_vector)
+>>  		DP_DPRX_ESI_LEN;
+>>  }
+>> 
+>> +static bool intel_dp_ack_sink_irq_esi(struct intel_dp *intel_dp, u8
+>> +esi[4]) {
+>> +	int retry;
+>> +
+>> +	for (retry = 0; retry < 3; retry++) {
+>> +		if (drm_dp_dpcd_write(&intel_dp->aux, DP_SINK_COUNT_ESI + 1,
+>> +				      &esi[1], 3) == 3)
+>> +			return true;
+>> +	}
+>> +
+>> +	return false;
+>> +}
+>> +
+>>  bool
+>>  intel_dp_needs_vsc_sdp(const struct intel_crtc_state *crtc_state,
+>>  		       const struct drm_connector_state *conn_state) @@ -3660,7
+>> +3673,6 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
+>>  		 */
+>>  		u8 esi[DP_DPRX_ESI_LEN+2] = {};
+>>  		bool handled;
+>> -		int retry;
+>> 
+>>  		if (!intel_dp_get_sink_irq_esi(intel_dp, esi)) {
+>>  			drm_dbg_kms(&i915->drm,
+>> @@ -3685,15 +3697,8 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
+>>  		if (!handled)
+>>  			break;
+>> 
+>> -		for (retry = 0; retry < 3; retry++) {
+>> -			int wret;
+>> -
+>> -			wret = drm_dp_dpcd_write(&intel_dp->aux,
+>> -						 DP_SINK_COUNT_ESI+1,
+>> -						 &esi[1], 3);
+>> -			if (wret == 3)
+>> -				break;
+>> -		}
+>> +		if (!intel_dp_ack_sink_irq_esi(intel_dp, esi))
+>> +			drm_dbg_kms(&i915->drm, "Failed to ack ESI\n");
+>>  	}
+>> 
+>>  	return link_ok;
+>> --
+>> 2.30.2
+>
 
-Apart from AMD, during past postings Daniel Stone also had positive 
-feedback (along the lines of "works the driver I am familiar with"). I 
-don't know if I have missed someone else who provided feedback, hope not.
-
-There is of course the option of dropping the idea of trying to document 
-a common spec, or to do anything cross-driver at this point. AFAIR it 
-was your push to try this, and I agreed it would be a good thing if it 
-worked out. But given AMD already exposes stuff in fdinfo, I don't think 
-it would be a blocker for merging the i915 side even if we decided to 
-drop the standardisation effort for now. Given I am maintaining this 
-i915 code from ~2018 and there is a lot of interest from users it would 
-be good to put it in.
-
-Regards,
-
-Tvrtko
+-- 
+Jani Nikula, Intel Open Source Graphics Center
