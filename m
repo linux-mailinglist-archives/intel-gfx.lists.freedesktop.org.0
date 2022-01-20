@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F60F494C46
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 11:55:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DB98494C6C
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 12:01:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7681B10E332;
-	Thu, 20 Jan 2022 10:55:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBAD710E1EE;
+	Thu, 20 Jan 2022 11:01:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D94F10E332
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jan 2022 10:55:05 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A366310E1EE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jan 2022 11:01:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642676105; x=1674212105;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=7f8KQsg1a1jMta4WdJpP8jlPWb16nOjsIXrJ5vJvTVI=;
- b=Zf82HuYAmiOlp8fSHa4tPGDfPMrvMxEqBtFTjuRyPTjdxhBGgyjeUD6j
- 5ZE7JIf0oGclLo2kITaFy+ZWmsglz5xm9DdQDIA/ON2U5m4eQ0/chKNIo
- AxglUVge/oSunUDrvHcC/KzfNcojm4nQYsttOSHhzG5Bdv0NlomENYTAt
- Ymja1L2vR93NaYpbo4CKx9rIf0vgKhch8PdlD1rTrg2+nKmgr7w/Ht5Hn
- QeJbbXmG2KulO8Pwhfqb0on4K8Lb6gcTbyfDSCQjdwkTQMjJMq1prXyzK
- W/y2lj8q7n5yDGQsUSFBarqrJMYEIN8ky8FJuRlhOpB0TQJPeZMhlnjpO A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="308663656"
-X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="308663656"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 02:55:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="477750992"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
- by orsmga006.jf.intel.com with ESMTP; 20 Jan 2022 02:55:01 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nAV5n-000EDF-Fi; Thu, 20 Jan 2022 10:54:59 +0000
-Date: Thu, 20 Jan 2022 18:54:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <202201201838.YQUqtmJI-lkp@intel.com>
-References: <20220120063809.1020633-6-matthew.d.roper@intel.com>
+ t=1642676470; x=1674212470;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=ov8fjPJVa76xer2XckeTdIRyrQ/ixZRNDCTNlEoTnPI=;
+ b=fRSQUXZbwimZpqkIUoDN3gDvZsQOeaW7qP/KyeUb8AuQoBJrv60g95JE
+ g1sqipqJTuoy2jQk30lWBFEwxNATJJboHjOKLUXtcusREjAd2YjLEGqFQ
+ yr6C4Ts+8PMj4MEkL/NDi0/Pdo0SfJGA1WNtW4L9ih+3EpcOI8WBcGurl
+ 7PE1YJIGS48htb19Uxjq6nwCUCb9MB5BQW7miYKYVXVBMT0BlNwc4qnnJ
+ 5bsuudjKYn4Fbn/ufds2XqPrOpNrONQ518kN5xDwuYMuFYe6bwK8Dk/EJ
+ 45Y20a3FxfFIINRFyFN4rbs/OdeU1YiEUSb/CecX35AAPYWF8eyPYPu/t w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="245118609"
+X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="245118609"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 03:01:10 -0800
+X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="532727388"
+Received: from davidfsc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.52.140])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 03:01:08 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>,
+	intel-gfx@lists.freedesktop.org
+Date: Thu, 20 Jan 2022 13:01:02 +0200
+Message-Id: <20220120110102.3116218-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220112110319.1172110-7-jani.nikula@intel.com>
+References: <20220112110319.1172110-7-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220120063809.1020633-6-matthew.d.roper@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915: Move GT registers to their
- own header file
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/mst: only ack the ESI we actually
+ handled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,76 +59,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, llvm@lists.linux.dev,
- kbuild-all@lists.01.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
+Seems odd that we clear all event status indicators if we've only
+handled some. Only clear the ones we've handled.
 
-Thank you for the patch! Yet something to improve:
+v2: ack DOWN_REP and UP_REQ only if they were set in esi (Ville)
 
-[auto build test ERROR on drm-tip/drm-tip]
-[cannot apply to drm-intel/for-linux-next v5.16 next-20220120]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Matt-Roper/Second-round-of-i915_reg-h-splitting/20220120-144038
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: x86_64-allmodconfig (https://download.01.org/0day-ci/archive/20220120/202201201838.YQUqtmJI-lkp@intel.com/config)
-compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project f7b7138a62648f4019c55e4671682af1f851f295)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/d7a6d230bd959372cab764baec5407256725e48b
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Matt-Roper/Second-round-of-i915_reg-h-splitting/20220120-144038
-        git checkout d7a6d230bd959372cab764baec5407256725e48b
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/pxp/intel_pxp_irq.c:51:29: error: use of undeclared identifier 'GEN11_CRYPTO_RSVD_INTR_ENABLE'
-           intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, mask);
-                                      ^
->> drivers/gpu/drm/i915/pxp/intel_pxp_irq.c:52:29: error: use of undeclared identifier 'GEN11_CRYPTO_RSVD_INTR_MASK'
-           intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~mask);
-                                      ^
->> drivers/gpu/drm/i915/pxp/intel_pxp_irq.c:58:32: error: use of undeclared identifier 'GEN11_KCR'
-           gen11_gt_reset_one_iir(gt, 0, GEN11_KCR);
-                                         ^
-   drivers/gpu/drm/i915/pxp/intel_pxp_irq.c:69:46: error: use of undeclared identifier 'GEN11_KCR'
-                   WARN_ON_ONCE(gen11_gt_reset_one_iir(gt, 0, GEN11_KCR));
-                                                              ^
-   4 errors generated.
-
-
-vim +/GEN11_CRYPTO_RSVD_INTR_ENABLE +51 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
-
-2ae096872a2c61 Huang, Sean Z 2021-09-24  45  
-2ae096872a2c61 Huang, Sean Z 2021-09-24  46  static inline void __pxp_set_interrupts(struct intel_gt *gt, u32 interrupts)
-2ae096872a2c61 Huang, Sean Z 2021-09-24  47  {
-2ae096872a2c61 Huang, Sean Z 2021-09-24  48  	struct intel_uncore *uncore = gt->uncore;
-2ae096872a2c61 Huang, Sean Z 2021-09-24  49  	const u32 mask = interrupts << 16;
-2ae096872a2c61 Huang, Sean Z 2021-09-24  50  
-2ae096872a2c61 Huang, Sean Z 2021-09-24 @51  	intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, mask);
-2ae096872a2c61 Huang, Sean Z 2021-09-24 @52  	intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~mask);
-2ae096872a2c61 Huang, Sean Z 2021-09-24  53  }
-2ae096872a2c61 Huang, Sean Z 2021-09-24  54  
-2ae096872a2c61 Huang, Sean Z 2021-09-24  55  static inline void pxp_irq_reset(struct intel_gt *gt)
-2ae096872a2c61 Huang, Sean Z 2021-09-24  56  {
-2ae096872a2c61 Huang, Sean Z 2021-09-24  57  	spin_lock_irq(&gt->irq_lock);
-2ae096872a2c61 Huang, Sean Z 2021-09-24 @58  	gen11_gt_reset_one_iir(gt, 0, GEN11_KCR);
-2ae096872a2c61 Huang, Sean Z 2021-09-24  59  	spin_unlock_irq(&gt->irq_lock);
-2ae096872a2c61 Huang, Sean Z 2021-09-24  60  }
-2ae096872a2c61 Huang, Sean Z 2021-09-24  61  
-
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+ drivers/gpu/drm/i915/display/intel_dp.c | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 0960e6e3be77..cb726cee9e1d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3625,13 +3625,17 @@ static void intel_dp_handle_test_request(struct intel_dp *intel_dp)
+ }
+ 
+ static void
+-intel_dp_mst_hpd_irq(struct intel_dp *intel_dp, u8 *esi, bool *handled)
++intel_dp_mst_hpd_irq(struct intel_dp *intel_dp, u8 *esi, u8 *ack)
+ {
+-	drm_dp_mst_hpd_irq(&intel_dp->mst_mgr, esi, handled);
++	bool handled = false;
++
++	drm_dp_mst_hpd_irq(&intel_dp->mst_mgr, esi, &handled);
++	if (handled)
++		ack[1] |= esi[1] & (DP_DOWN_REP_MSG_RDY | DP_UP_REQ_MSG_RDY);
+ 
+ 	if (esi[1] & DP_CP_IRQ) {
+ 		intel_hdcp_handle_cp_irq(intel_dp->attached_connector);
+-		*handled = true;
++		ack[1] |= DP_CP_IRQ;
+ 	}
+ }
+ 
+@@ -3683,7 +3687,7 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
+ 
+ 	for (;;) {
+ 		u8 esi[4] = {};
+-		bool handled;
++		u8 ack[4] = {};
+ 
+ 		if (!intel_dp_get_sink_irq_esi(intel_dp, esi)) {
+ 			drm_dbg_kms(&i915->drm,
+@@ -3699,15 +3703,15 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
+ 		    esi[3] & LINK_STATUS_CHANGED) {
+ 			if (!intel_dp_mst_link_status(intel_dp))
+ 				link_ok = false;
+-			handled = true;
++			ack[3] |= LINK_STATUS_CHANGED;
+ 		}
+ 
+-		intel_dp_mst_hpd_irq(intel_dp, esi, &handled);
++		intel_dp_mst_hpd_irq(intel_dp, esi, ack);
+ 
+-		if (!handled)
++		if (!memchr_inv(ack, 0, sizeof(ack)))
+ 			break;
+ 
+-		if (!intel_dp_ack_sink_irq_esi(intel_dp, esi))
++		if (!intel_dp_ack_sink_irq_esi(intel_dp, ack))
+ 			drm_dbg_kms(&i915->drm, "Failed to ack ESI\n");
+ 	}
+ 
+-- 
+2.30.2
+
