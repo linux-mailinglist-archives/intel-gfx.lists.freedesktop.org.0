@@ -2,49 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BFEB494D15
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 12:34:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0DB0494D4F
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 12:45:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA70710E6CB;
-	Thu, 20 Jan 2022 11:34:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D56310E176;
+	Thu, 20 Jan 2022 11:45:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 070A610E6D3
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jan 2022 11:33:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642678439; x=1674214439;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GbyBEMqhE2mMhAtfBj7zc0vGufQVV056NROeSYJ8tGk=;
- b=Y5yhlzEGI9Okf+VFJQGhIqIIAfFJ4dyG7SnVhYCQcawsS/LAPuzDe0Hz
- IZbvWvUzBR5LVLc/imotM54UBicpP5UJwoZGwGd8VQGnpl5weDlhcQQSg
- BJnTKT29wiBSuBm2rbvs7BC1j/kLfTBzZz+rd5R6BPEqEuzNrX3dDKbnj
- Y3FYeqfZ7xr0eoTQq+EGUFBEzUm/nkOc1jH1nkT6dcQ3GZyJNi9ptIfgS
- NSYV7nNswPo2AUg1xU3gY3gqusgdHvjgetztuZP0bswFvowE78yYLJ7cC
- Hq+V+v6o7zc/Ckfy4VdD93ZzoMTgsCB3UYLdufyublL1sMBXAhkFIhVkN g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="244152965"
-X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="244152965"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 03:33:55 -0800
-X-IronPort-AV: E=Sophos;i="5.88,302,1635231600"; d="scan'208";a="518580298"
-Received: from davidfsc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.52.140])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 03:33:53 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Jan 2022 13:33:46 +0200
-Message-Id: <20220120113346.3214745-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA0AB10E2FD;
+ Thu, 20 Jan 2022 11:45:14 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Jfgfw6GWfz4xQp;
+ Thu, 20 Jan 2022 22:45:12 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1642679113;
+ bh=vmJ6No4MXJ1y6HZthOfeTVsE329K7/HTKQOxFIg5N/s=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=PgBYlSTiE7i4zenvW6uSPdRqysJd0zLllGOzu3fO0o9qfgHa6Kv7N804+Lkr8RoHY
+ SFm2Av4jdV6tDvu8OeYrcNgXYiYCCNkhazTV3+f+BEJwkO7h051MAPHIIgHjsTTzaC
+ 6TRYLtjyg/2BXf5+l8NMLZqlT8sET9QbvOfOJ23xEAehcnDhgp9TdgpT12khXGOqcm
+ Zvjbb3aEJrtFLEtuDyXH8fx/Setm1PTk1sH3H+40lCaVObCdSFS7TWE4MYD8ipRDLe
+ jhToZWnsGLyrCGpYV5fwv2ISXzmsneI6QJJfSYis01Y84bkbQnGxt2rm2Qx8HKTP8a
+ MD71dNTJwrJ1A==
+Date: Thu, 20 Jan 2022 22:45:11 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20220120224511.4147b57d@canb.auug.org.au>
+In-Reply-To: <20220120094856.3004147-1-jani.nikula@intel.com>
+References: <20220120094856.3004147-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: split out i915_reg_read_ioctl() to
- i915_ioctl.[ch]
+Content-Type: multipart/signed; boundary="Sig_/qySkoQcfoJqATNJL/57J00e";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: Re: [Intel-gfx] [PATCH] drm/locking: fix drm_modeset_acquire_ctx
+ kernel-doc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,270 +51,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add new files i915_ioctl.[ch] to hold small ioctls that are out of place
-everywhere else, and not big enough to warrant a file of their own. For
-starters, it's just for i915_reg_read_ioctl() that's a bit high level
-for a low level implementation that intel_uncore.[ch] is.
+--Sig_/qySkoQcfoJqATNJL/57J00e
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/Makefile       |  3 +-
- drivers/gpu/drm/i915/i915_driver.c  |  1 +
- drivers/gpu/drm/i915/i915_drv.h     |  3 -
- drivers/gpu/drm/i915/i915_ioctl.c   | 94 +++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_ioctl.h   | 14 +++++
- drivers/gpu/drm/i915/intel_uncore.c | 70 ---------------------
- 6 files changed, 111 insertions(+), 74 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_ioctl.c
- create mode 100644 drivers/gpu/drm/i915/i915_ioctl.h
+Hi Jani,
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 451df10e3a36..a26e6736bebb 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -32,8 +32,9 @@ subdir-ccflags-y += -I$(srctree)/$(src)
- # core driver code
- i915-y += i915_driver.o \
- 	  i915_config.o \
--	  i915_irq.o \
- 	  i915_getparam.o \
-+	  i915_ioctl.o \
-+	  i915_irq.o \
- 	  i915_mitigations.o \
- 	  i915_module.o \
- 	  i915_params.o \
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 8bef67cb6c33..3d41f532a5d6 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -76,6 +76,7 @@
- #include "i915_drv.h"
- #include "i915_getparam.h"
- #include "i915_ioc32.h"
-+#include "i915_ioctl.h"
- #include "i915_irq.h"
- #include "i915_memcpy.h"
- #include "i915_perf.h"
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 890f1f6fbc49..44c1f98144b4 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1734,9 +1734,6 @@ mkwrite_device_info(struct drm_i915_private *dev_priv)
- 	return (struct intel_device_info *)INTEL_INFO(dev_priv);
- }
- 
--int i915_reg_read_ioctl(struct drm_device *dev, void *data,
--			struct drm_file *file);
--
- static inline int intel_hws_csb_write_index(struct drm_i915_private *i915)
- {
- 	if (GRAPHICS_VER(i915) >= 11)
-diff --git a/drivers/gpu/drm/i915/i915_ioctl.c b/drivers/gpu/drm/i915/i915_ioctl.c
-new file mode 100644
-index 000000000000..06a10ccea80b
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_ioctl.c
-@@ -0,0 +1,94 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#include "gt/intel_engine_regs.h"
-+
-+#include "i915_drv.h"
-+#include "i915_gem.h"
-+#include "i915_ioctl.h"
-+#include "i915_reg.h"
-+#include "intel_runtime_pm.h"
-+#include "intel_uncore.h"
-+
-+/*
-+ * This file is for small ioctl functions that are out of place everywhere else,
-+ * and not big enough to warrant a file of their own.
-+ *
-+ * This is not the dumping ground for random ioctls.
-+ */
-+
-+struct reg_whitelist {
-+	i915_reg_t offset_ldw;
-+	i915_reg_t offset_udw;
-+	u8 min_graphics_ver;
-+	u8 max_graphics_ver;
-+	u8 size;
-+};
-+
-+static const struct reg_whitelist reg_read_whitelist[] = {
-+	{
-+		.offset_ldw = RING_TIMESTAMP(RENDER_RING_BASE),
-+		.offset_udw = RING_TIMESTAMP_UDW(RENDER_RING_BASE),
-+		.min_graphics_ver = 4,
-+		.max_graphics_ver = 12,
-+		.size = 8
-+	}
-+};
-+
-+int i915_reg_read_ioctl(struct drm_device *dev,
-+			void *data, struct drm_file *unused)
-+{
-+	struct drm_i915_private *i915 = to_i915(dev);
-+	struct intel_uncore *uncore = &i915->uncore;
-+	struct drm_i915_reg_read *reg = data;
-+	struct reg_whitelist const *entry;
-+	intel_wakeref_t wakeref;
-+	unsigned int flags;
-+	int remain;
-+	int ret = 0;
-+
-+	entry = reg_read_whitelist;
-+	remain = ARRAY_SIZE(reg_read_whitelist);
-+	while (remain) {
-+		u32 entry_offset = i915_mmio_reg_offset(entry->offset_ldw);
-+
-+		GEM_BUG_ON(!is_power_of_2(entry->size));
-+		GEM_BUG_ON(entry->size > 8);
-+		GEM_BUG_ON(entry_offset & (entry->size - 1));
-+
-+		if (IS_GRAPHICS_VER(i915, entry->min_graphics_ver, entry->max_graphics_ver) &&
-+		    entry_offset == (reg->offset & -entry->size))
-+			break;
-+		entry++;
-+		remain--;
-+	}
-+
-+	if (!remain)
-+		return -EINVAL;
-+
-+	flags = reg->offset & (entry->size - 1);
-+
-+	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
-+		if (entry->size == 8 && flags == I915_REG_READ_8B_WA)
-+			reg->val = intel_uncore_read64_2x32(uncore,
-+							    entry->offset_ldw,
-+							    entry->offset_udw);
-+		else if (entry->size == 8 && flags == 0)
-+			reg->val = intel_uncore_read64(uncore,
-+						       entry->offset_ldw);
-+		else if (entry->size == 4 && flags == 0)
-+			reg->val = intel_uncore_read(uncore, entry->offset_ldw);
-+		else if (entry->size == 2 && flags == 0)
-+			reg->val = intel_uncore_read16(uncore,
-+						       entry->offset_ldw);
-+		else if (entry->size == 1 && flags == 0)
-+			reg->val = intel_uncore_read8(uncore,
-+						      entry->offset_ldw);
-+		else
-+			ret = -EINVAL;
-+	}
-+
-+	return ret;
-+}
-diff --git a/drivers/gpu/drm/i915/i915_ioctl.h b/drivers/gpu/drm/i915/i915_ioctl.h
-new file mode 100644
-index 000000000000..f16ae87b8b8a
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_ioctl.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#ifndef __I915_IOCTL_H__
-+#define __I915_IOCTL_H__
-+
-+struct drm_device;
-+struct drm_file;
-+
-+int i915_reg_read_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
-+
-+#endif /* __I915_IOCTL_H__ */
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index 41d082213e81..00f9a05d2686 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -2255,76 +2255,6 @@ void intel_uncore_fini_mmio(struct intel_uncore *uncore)
- 	}
- }
- 
--static const struct reg_whitelist {
--	i915_reg_t offset_ldw;
--	i915_reg_t offset_udw;
--	u8 min_graphics_ver;
--	u8 max_graphics_ver;
--	u8 size;
--} reg_read_whitelist[] = { {
--	.offset_ldw = RING_TIMESTAMP(RENDER_RING_BASE),
--	.offset_udw = RING_TIMESTAMP_UDW(RENDER_RING_BASE),
--	.min_graphics_ver = 4,
--	.max_graphics_ver = 12,
--	.size = 8
--} };
--
--int i915_reg_read_ioctl(struct drm_device *dev,
--			void *data, struct drm_file *file)
--{
--	struct drm_i915_private *i915 = to_i915(dev);
--	struct intel_uncore *uncore = &i915->uncore;
--	struct drm_i915_reg_read *reg = data;
--	struct reg_whitelist const *entry;
--	intel_wakeref_t wakeref;
--	unsigned int flags;
--	int remain;
--	int ret = 0;
--
--	entry = reg_read_whitelist;
--	remain = ARRAY_SIZE(reg_read_whitelist);
--	while (remain) {
--		u32 entry_offset = i915_mmio_reg_offset(entry->offset_ldw);
--
--		GEM_BUG_ON(!is_power_of_2(entry->size));
--		GEM_BUG_ON(entry->size > 8);
--		GEM_BUG_ON(entry_offset & (entry->size - 1));
--
--		if (IS_GRAPHICS_VER(i915, entry->min_graphics_ver, entry->max_graphics_ver) &&
--		    entry_offset == (reg->offset & -entry->size))
--			break;
--		entry++;
--		remain--;
--	}
--
--	if (!remain)
--		return -EINVAL;
--
--	flags = reg->offset & (entry->size - 1);
--
--	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
--		if (entry->size == 8 && flags == I915_REG_READ_8B_WA)
--			reg->val = intel_uncore_read64_2x32(uncore,
--							    entry->offset_ldw,
--							    entry->offset_udw);
--		else if (entry->size == 8 && flags == 0)
--			reg->val = intel_uncore_read64(uncore,
--						       entry->offset_ldw);
--		else if (entry->size == 4 && flags == 0)
--			reg->val = intel_uncore_read(uncore, entry->offset_ldw);
--		else if (entry->size == 2 && flags == 0)
--			reg->val = intel_uncore_read16(uncore,
--						       entry->offset_ldw);
--		else if (entry->size == 1 && flags == 0)
--			reg->val = intel_uncore_read8(uncore,
--						      entry->offset_ldw);
--		else
--			ret = -EINVAL;
--	}
--
--	return ret;
--}
--
- /**
-  * __intel_wait_for_register_fw - wait until register matches expected state
-  * @uncore: the struct intel_uncore
--- 
-2.30.2
+On Thu, 20 Jan 2022 11:48:56 +0200 Jani Nikula <jani.nikula@intel.com> wrot=
+e:
+>
+> The stack_depot member was added without kernel-doc, leading to below
+> warning. Fix it.
+>=20
+> ./include/drm/drm_modeset_lock.h:74: warning: Function parameter or
+> member 'stack_depot' not described in 'drm_modeset_acquire_ctx'
+>=20
+> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> Fixes: cd06ab2fd48f ("drm/locking: add backtrace for locking contended lo=
+cks without backoff")
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  include/drm/drm_modeset_lock.h | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/include/drm/drm_modeset_lock.h b/include/drm/drm_modeset_loc=
+k.h
+> index b84693fbd2b5..ec4f543c3d95 100644
+> --- a/include/drm/drm_modeset_lock.h
+> +++ b/include/drm/drm_modeset_lock.h
+> @@ -34,6 +34,7 @@ struct drm_modeset_lock;
+>   * struct drm_modeset_acquire_ctx - locking context (see ww_acquire_ctx)
+>   * @ww_ctx: base acquire ctx
+>   * @contended: used internally for -EDEADLK handling
+> + * @stack_depot: used internally for contention debugging
+>   * @locked: list of held locks
+>   * @trylock_only: trylock mode used in atomic contexts/panic notifiers
+>   * @interruptible: whether interruptible locking should be used.
+> --=20
+> 2.30.2
+>=20
 
+Tested-by: Stephen Rothwell <sfr@canb.auug.org.au>
+
+Thanks.
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/qySkoQcfoJqATNJL/57J00e
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmHpS0cACgkQAVBC80lX
+0Gx6AAf8DiA8eripQYIoKk75GgXoBWkcxW1SKpTH7vYyEy6JJ0SxhU+0kVXyg0wZ
+QUM+gHO1tQEAYmnbmoKg2NytQmB/K5gqqD20h4ux0rF5MIslPN3nqHGXzI43rk6h
+ERxUEaLgAln1pP9S/3gcYcvvBdLwI7rGFRLE6rpntAm+Brnn044+uW2l6QjReytB
+oUl+uz5kHmoGZ6Tf2REodSwDktaV/FLoLUtDS6zJAmomv//hlcUZGsyR53js5TgU
+8j40osBB70aPyH9pCtc4tZh7plXD9pJgC+xHkFJecIEytayKExyM0EDn3jjhW3x3
+E88BjoLxx9+UkaMqSc4oW7dW7GOH2Q==
+=TEFh
+-----END PGP SIGNATURE-----
+
+--Sig_/qySkoQcfoJqATNJL/57J00e--
