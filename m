@@ -2,56 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2548D4943F0
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 00:55:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 844C449443B
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 01:20:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B0F410E2FF;
-	Wed, 19 Jan 2022 23:55:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9A3E10E81A;
+	Thu, 20 Jan 2022 00:20:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BFA410E2D2;
- Wed, 19 Jan 2022 23:55:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642636543; x=1674172543;
- h=date:from:to:subject:message-id:references:mime-version:
- in-reply-to; bh=uCVZjXt17Nfv/G9qw2L3K1mqeAXwrnobzh2GWeu989k=;
- b=Xq7ZTsMM63DynNcsOqCTWO9FYusqG5qQiUuqKR0FPqhtY4icnujnFHyU
- uau5jvNDzfRG5GU0jcUokhVqOJPjGfCVFN8Ow/DgXp4QPoZKN/EZXVi1T
- BPOkrsfGNACQGfrtbbeFZOZiFIEh5pgMSvTygfEkbXrHTHiwswnj8HEju
- 8t4Ps102BqAZ8uKBnuDJCrUwh0ENXwthh4immDu5DUlcvnuFMlIkvHU8T
- XLgKC9jjM38JX6E9nzbzeXOz+10IeXOlZOem5tOYS0gDG9RTq0mdofhI3
- mA4HNrE6UKdytsBONN/zKuq26tSj3gEpIna/IwwfebJSmLSog9aAHI6fl A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="245022785"
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="245022785"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 15:55:42 -0800
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="477585769"
-Received: from iweiny-desk2.sc.intel.com (HELO localhost) ([10.3.52.147])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 15:55:42 -0800
-Date: Wed, 19 Jan 2022 15:55:42 -0800
-From: Ira Weiny <ira.weiny@intel.com>
-To: David Airlie <airlied@linux.ie>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org,
- Christian =?utf-8?B?S++/vW5pZw==?= <christian.koenig@amd.com>
-Message-ID: <20220119235542.GF209936@iweiny-DESK2.sc.intel.com>
-References: <20211210232404.4098157-1-ira.weiny@intel.com>
- <20220119165356.GD209936@iweiny-DESK2.sc.intel.com>
- <YehJRt+JngIsj+Gd@phenom.ffwll.local>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F1D4110E81A;
+ Thu, 20 Jan 2022 00:20:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EBFB7A3C0D;
+ Thu, 20 Jan 2022 00:20:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5672435369720073486=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YehJRt+JngIsj+Gd@phenom.ffwll.local>
-User-Agent: Mutt/1.11.1 (2018-12-01)
-Subject: Re: [Intel-gfx] [PATCH 0/7] DRM kmap() fixes and kmap_local_page()
- conversions
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Thu, 20 Jan 2022 00:20:07 -0000
+Message-ID: <164263800793.22529.8405342192537208653@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220119212419.23068-1-matthew.brost@intel.com>
+In-Reply-To: <20220119212419.23068-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRmx1?=
+ =?utf-8?q?sh_G2H_handler_during_a_GT_reset_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,90 +40,275 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 19, 2022 at 06:24:22PM +0100, Daniel Vetter wrote:
-> On Wed, Jan 19, 2022 at 08:53:56AM -0800, Ira Weiny wrote:
-> > On Fri, Dec 10, 2021 at 03:23:57PM -0800, 'Ira Weiny' wrote:
-> > > From: Ira Weiny <ira.weiny@intel.com>
-> > > 
-> > > This series starts by converting the last easy kmap() uses to
-> > > kmap_local_page().
-> > > 
-> > > There is one more call to kmap() wrapped in ttm_bo_kmap_ttm().  Unfortunately,
-> > > ttm_bo_kmap_ttm() is called in a number of different ways including some which
-> > > are not thread local.  I have a patch to convert that call.  However, it is not
-> > > straight forward so it is not included in this series.
-> > > 
-> > > The final 2 patches fix bugs found while working on the ttm_bo_kmap_ttm()
-> > > conversion.
-> > 
-> > Gentile ping on this series?  Will it make this merge window?
-> 
-> I think this fell through the cracks and so no. Note that generally we
-> feature-freeze drm tree around -rc6 anyway for the upcoming merge window,
-> so you were cutting this all a bit close anyway.
+--===============5672435369720073486==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ok, No problem.  I just had not heard if this was picked up or not.
+== Series Details ==
 
-> Also looks like the ttm
-> kmap caching question didn't get resolved?
+Series: Flush G2H handler during a GT reset (rev3)
+URL   : https://patchwork.freedesktop.org/series/98855/
+State : success
 
-I'm sorry I thought it was resolve for this series.  Christian said the patches
-in this series were "a good bug fix" even if not strictly necessary.[1]  Beyond
-this series I was discussing where to go from here, and is it possible to go
-further with more changes.[2]  At the moment I don't think I will.
+== Summary ==
 
-Christian did I misunderstand?  I can drop patch 6 and 7 if they are not proper
-bug fixes or at least clarifications to the code.
+CI Bug Log - changes from CI_DRM_11111 -> Patchwork_22030
+====================================================
 
-Ira
+Summary
+-------
 
-[1] https://lore.kernel.org/lkml/c3b173ea-6509-ebbe-b5f9-eeb29f1ce57e@amd.com/
-[2] https://lore.kernel.org/lkml/20211215210949.GW3538886@iweiny-DESK2.sc.intel.com/
+  **SUCCESS**
 
-> 
-> Anyway if patches are stuck resend with RESEND and if people still don't
-> pick them up poke me and I'll apply as fallback.
-> 
-> Cheers, Daniel
-> 
-> > 
-> > Thanks,
-> > Ira
-> > 
-> > > 
-> > > 
-> > > Ira Weiny (7):
-> > > drm/i915: Replace kmap() with kmap_local_page()
-> > > drm/amd: Replace kmap() with kmap_local_page()
-> > > drm/gma: Remove calls to kmap()
-> > > drm/radeon: Replace kmap() with kmap_local_page()
-> > > drm/msm: Alter comment to use kmap_local_page()
-> > > drm/amdgpu: Ensure kunmap is called on error
-> > > drm/radeon: Ensure kunmap is called on error
-> > > 
-> > > drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 8 ++++----
-> > > drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c | 1 +
-> > > drivers/gpu/drm/gma500/gma_display.c | 6 ++----
-> > > drivers/gpu/drm/gma500/mmu.c | 8 ++++----
-> > > drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 4 ++--
-> > > drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 8 ++++----
-> > > drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c | 4 ++--
-> > > drivers/gpu/drm/i915/gt/shmem_utils.c | 4 ++--
-> > > drivers/gpu/drm/i915/i915_gem.c | 8 ++++----
-> > > drivers/gpu/drm/i915/i915_gpu_error.c | 4 ++--
-> > > drivers/gpu/drm/msm/msm_gem_submit.c | 4 ++--
-> > > drivers/gpu/drm/radeon/radeon_ttm.c | 4 ++--
-> > > drivers/gpu/drm/radeon/radeon_uvd.c | 1 +
-> > > 13 files changed, 32 insertions(+), 32 deletions(-)
-> > > 
-> > > --
-> > > 2.31.1
-> > > 
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/index.html
+
+Participating hosts (45 -> 42)
+------------------------------
+
+  Additional (1): fi-kbl-soraka 
+  Missing    (4): fi-bsw-cyan fi-icl-u2 fi-bdw-samus fi-pnv-d510 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22030:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_softpin@allocator-basic-reserve:
+    - {bat-jsl-2}:        [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11111/bat-jsl-2/igt@gem_softpin@allocator-basic-reserve.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/bat-jsl-2/igt@gem_softpin@allocator-basic-reserve.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22030 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +8 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@gem_flink_basic@bad-flink:
+    - fi-skl-6600u:       [PASS][4] -> [INCOMPLETE][5] ([i915#4547])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11111/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#2190])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][8] ([i915#1886] / [i915#2291])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-5:          [PASS][9] -> [DMESG-FAIL][10] ([i915#4494])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11111/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][11] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][12] ([fdo#109271] / [i915#533])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       [FAIL][13] ([i915#4312]) -> [FAIL][14] ([i915#2722] / [i915#4312])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11111/fi-skl-6600u/igt@runner@aborted.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-skl-6600u/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11111 -> Patchwork_22030
+
+  CI-20190529: 20190529
+  CI_DRM_11111: fe44f8bdb12374a6168cb561834eb714097f5e5f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22030: dd4a9107b83ca4f990d91aeeb9847229009001b4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+dd4a9107b83c drm/i915/guc: Flush G2H handler during a GT reset
+9296d3ca5cf1 drm/i915/guc: Add work queue to trigger a GT reset
+544ae134b0f1 drm/i915: Allocate intel_engine_coredump_alloc with ALLOW_FAIL
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/index.html
+
+--===============5672435369720073486==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Flush G2H handler during a GT reset (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98855/">https://patchwork.freedesktop.org/series/98855/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11111 -&gt; Patchwork_22030</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/index.html</p>
+<h2>Participating hosts (45 -&gt; 42)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (4): fi-bsw-cyan fi-icl-u2 fi-bdw-samus fi-pnv-d510 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22030:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@gem_softpin@allocator-basic-reserve:<ul>
+<li>{bat-jsl-2}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11111/bat-jsl-2/igt@gem_softpin@allocator-basic-reserve.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/bat-jsl-2/igt@gem_softpin@allocator-basic-reserve.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22030 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_flink_basic@bad-flink:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11111/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11111/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11111/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22030/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11111 -&gt; Patchwork_22030</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11111: fe44f8bdb12374a6168cb561834eb714097f5e5f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22030: dd4a9107b83ca4f990d91aeeb9847229009001b4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>dd4a9107b83c drm/i915/guc: Flush G2H handler during a GT reset<br />
+9296d3ca5cf1 drm/i915/guc: Add work queue to trigger a GT reset<br />
+544ae134b0f1 drm/i915: Allocate intel_engine_coredump_alloc with ALLOW_FAIL</p>
+
+</body>
+</html>
+
+--===============5672435369720073486==--
