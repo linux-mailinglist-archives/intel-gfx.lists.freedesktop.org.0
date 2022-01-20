@@ -1,48 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6404495432
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 19:30:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 847EA495450
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jan 2022 19:42:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3124210EC6C;
-	Thu, 20 Jan 2022 18:30:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81C4F10EC91;
+	Thu, 20 Jan 2022 18:42:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94D2A10EC6C;
- Thu, 20 Jan 2022 18:30:04 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB83F10EC67;
+ Thu, 20 Jan 2022 18:42:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642703404; x=1674239404;
+ t=1642704164; x=1674240164;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=1KvwH9U5LTuME2Q0NDVAi0auEid4oOyAMTMlLZm0+68=;
- b=OGd/U1rKn9Q6FaqnP2VXoK82rPqANouZvppy1xlw0njJRn+rZ0jwaprE
- Za5nwdAU8lBx3+23mzkwQqR0Za3X/E7m0ID5SOsV8Us8FHm5NGnFz168m
- W4zjUJQwfer/krLCEn94J28TmhVbJI3hV3q6Tyj2DajQPgUp++CL5Ukgf
- Qui23kbpik7YDTH2bM01QiufgRTnBH9q6U2XPL1l9cIKjaJSq5wOqo/7f
- 6WljxzL34ykuJn9jhPq0GNBcJraTsIMdKf/TORDZ+P9754FqeGLsBUDcg
- nz7Jp7VxxLGCJYdLXwQ2mtmDkq1cj7zXDdJsFSemjEuRuPEwqfay77Tul w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="225402951"
-X-IronPort-AV: E=Sophos;i="5.88,303,1635231600"; d="scan'208";a="225402951"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 10:30:03 -0800
-X-IronPort-AV: E=Sophos;i="5.88,303,1635231600"; d="scan'208";a="475627641"
+ bh=yjQuO4qTReRDJOqLGvX4UXpCi5SqZcuUsAFvblxtyus=;
+ b=Ux7vgNHYrwrOUyexyuMPmbWIJSrH9QJUdiykjy3pHnmwKiDO3nJKMzZx
+ SFwha+sn2mbdtSo+HEwqHg9b8XDfAf11OTOxSj6MjI9IO51yF5ciH7cRo
+ q84a1whiwp0l/iwwW0ug4gTwQIQkFvIw8y+jzV5LbPVIXQ9iby5VtRbHL
+ Lu/H6StcHfR+jmhY1mBN4kayrecHfpfxN5Yt3P28k2+WTFAdSSwrNudYN
+ kSZGTasIFGoJchPPeB0U7A/3nYxUp1YlRGvj0Pz+hyfc1OhmtIc7UuY8y
+ YYEJihVyi1YzCEwgq9XoFe2I+t1T26bn+PfjuuYVAJr1itYGg5nM/aevG g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="245220042"
+X-IronPort-AV: E=Sophos;i="5.88,303,1635231600"; d="scan'208";a="245220042"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 10:42:44 -0800
+X-IronPort-AV: E=Sophos;i="5.88,303,1635231600"; d="scan'208";a="626416200"
 Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 10:30:03 -0800
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 10:42:43 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-gfx@lists.freedesktop.org>,
 	<dri-devel@lists.freedesktop.org>
-Date: Thu, 20 Jan 2022 10:24:13 -0800
-Message-Id: <20220120182413.8074-1-matthew.brost@intel.com>
+Date: Thu, 20 Jan 2022 10:36:53 -0800
+Message-Id: <20220120183655.3228-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/guc: Don't check CT descriptor status
- before CT write / read
+Subject: [Intel-gfx] [PATCH 0/2] A few CT updates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,45 +57,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Don't check CT descriptor status, unless CONFIG_DRM_I915_DEBUG_GUC is
-set, before CT write / read as this could result in a read across the
-PCIe bus thus adding latency to every CT write / read. On well behavied
-systems this vaue should always read as zero. For some reason it doesn't
-the CT channel is broken and will eventually recover from a GT reset,
-albeit the GT reset will not be triggered immediately by seeing that
-descriptor status is non-zero.
+A couple of minor CT updates. 1 for performance, 1 for extra debug.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index de89d40abd38d..18af99a802f64 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -379,8 +379,10 @@ static int ct_write(struct intel_guc_ct *ct,
- 	u32 *cmds = ctb->cmds;
- 	unsigned int i;
- 
-+#ifdef CONFIG_DRM_I915_DEBUG_GUC
- 	if (unlikely(desc->status))
- 		goto corrupted;
-+#endif
- 
- 	GEM_BUG_ON(tail > size);
- 
-@@ -815,8 +817,10 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
- 	if (unlikely(ctb->broken))
- 		return -EPIPE;
- 
-+#ifdef CONFIG_DRM_I915_DEBUG_GUC
- 	if (unlikely(desc->status))
- 		goto corrupted;
-+#endif
- 
- 	GEM_BUG_ON(head > size);
- 
+Matthew Brost (2):
+  drm/i915/guc: Don't check CT descriptor status before CT write / read
+  drm/i915/guc: Print CT descriptor status in CT debug function
+
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
 -- 
 2.34.1
 
