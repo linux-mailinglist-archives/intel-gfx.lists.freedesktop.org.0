@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998FA49673B
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 22:18:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74FFF496740
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 22:20:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D99F10E265;
-	Fri, 21 Jan 2022 21:18:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C378310E27E;
+	Fri, 21 Jan 2022 21:20:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 80FF310E1BE;
- Fri, 21 Jan 2022 21:18:52 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CD03210E27E;
+ Fri, 21 Jan 2022 21:20:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7F136A00E8;
- Fri, 21 Jan 2022 21:18:52 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id BF0E4A0078;
+ Fri, 21 Jan 2022 21:20:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Robert Beckett" <bob.beckett@collabora.com>
-Date: Fri, 21 Jan 2022 21:18:52 -0000
-Message-ID: <164279993249.19929.11209577122944343285@emeril.freedesktop.org>
+Date: Fri, 21 Jan 2022 21:20:04 -0000
+Message-ID: <164280000478.19938.9976788924378882477@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220121195040.2145227-1-bob.beckett@collabora.com>
 In-Reply-To: <20220121195040.2145227-1-bob.beckett@collabora.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_discrete_card_64K_page_support_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?discrete_card_64K_page_support_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,44 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-9c4bfcca2ca8 drm/i915: add needs_compact_pt flag
-5a250a5f13c2 drm/i915: enforce min GTT alignment for discrete cards
--:288: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#288: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:457:
-+						if (offset < hole_start + aligned_size)
-
--:300: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#300: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:481:
-+						if (offset + aligned_size > hole_end)
-
--:318: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#318: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:497:
-+						if (offset < hole_start + aligned_size)
-
--:330: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#330: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:520:
-+						if (offset + aligned_size > hole_end)
-
--:348: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#348: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:536:
-+						if (offset < hole_start + aligned_size)
-
--:360: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#360: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:560:
-+						if (offset + aligned_size > hole_end)
-
--:378: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#378: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:576:
-+						if (offset < hole_start + aligned_size)
-
--:390: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#390: FILE: drivers/gpu/drm/i915/selftests/i915_gem_gtt.c:599:
-+						if (offset + aligned_size > hole_end)
-
-total: 0 errors, 8 warnings, 0 checks, 433 lines checked
-5e90ba474749 drm/i915: support 64K GTT pages for discrete cards
-5f922bd05cb4 drm/i915: add gtt misalignment test
-678731d7e28a drm/i915/uapi: document behaviour for DG2 64K support
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
