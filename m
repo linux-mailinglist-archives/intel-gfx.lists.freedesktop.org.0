@@ -2,58 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51BA8495D37
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 11:04:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39548495DCE
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 11:35:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 734E210E9C9;
-	Fri, 21 Jan 2022 10:04:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CF5110E9E4;
+	Fri, 21 Jan 2022 10:35:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa1.bahnhof.se (pio-pvt-msa1.bahnhof.se [79.136.2.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E22AE10E9C9
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Jan 2022 10:04:51 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 17E893F595;
- Fri, 21 Jan 2022 11:04:49 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.1
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Authentication-Results: pio-pvt-msa1.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from pio-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id iCew8aSdbk8v; Fri, 21 Jan 2022 11:04:48 +0100 (CET)
-Received: by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 8DCF53F55C;
- Fri, 21 Jan 2022 11:04:46 +0100 (CET)
-Received: from [192.168.0.209] (unknown [192.55.55.53])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 93EEF360347;
- Fri, 21 Jan 2022 11:04:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1642759485; bh=9G06Eiff/Bed2ESoF3p68kikpFWGmIOGKEJmwO/Hg/Y=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=ajNrrUXJsaiv8ZNRDaRMGIaPwMiVS7vTsWRxMjCN28YSptYPaARYy23EK0HhdyYe9
- 5qV2cC+m6S9ZWvvoxbxlr3aPgNkSmS3EPtYkRyaZl4G3saiEiTPbpQnF3EqPKYhrYG
- yS+XIhnevaHn0ACBZwAYzF6JAMGIk2Go6f7Ap9Y0=
-Message-ID: <ea6146a4-db14-1126-c849-db9205d091c9@shipmail.org>
-Date: Fri, 21 Jan 2022 11:04:40 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5C1A710E9E4;
+ Fri, 21 Jan 2022 10:35:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4825DA0BCB;
+ Fri, 21 Jan 2022 10:35:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20211220120030.4116079-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <20211220120030.4116079-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: reset RING_HEAD during
- intel_gt_unset_wedged
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>
+Date: Fri, 21 Jan 2022 10:35:19 -0000
+Message-ID: <164276131926.19929.4859990385687548129@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220120234147.1200574-1-matthew.d.roper@intel.com>
+In-Reply-To: <20220120234147.1200574-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dg2=3A_Add_Wa=5F18018781329_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,93 +40,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 12/20/21 13:00, Tejas Upadhyay wrote:
-> During repeated wedged-unwedged, it is
-> found that i915_request_retire zaps the old
-> request with 0x6b6b6b6b.
->
-> On unwedged, we write a new request at RING_TAIL,
-> expecting to start executuing from that position,
-> but execution resumes from RING_HEAD (preserved
-> from an earlier wakeup before wedging) and
-> consumes the 0x6b.
->
-> Resetting kernel/user context setup enables
-> RING_HEAD to use RING_TAIL for submitting new
-> requests which resolves issue. Normally this reset
-> is applied when unpinning a user context, or for
-> kernel_contexts upon waking up the device. But fast
-> wedged-unwedged sequence will keep the device awake,
-> preserving the RING_HEAD from before.
->
-> Testcase: igt@gem_eio@unwedge-stress
->
-> Note : Current user impact is assessed to be low, as
-> this only affects intel_gt_unset_wedged which is
-> currently only used during testing and upon suspend
-> resume (where the device was already flushed and will
-> reset the kernel_contexts on waking up). In the
-> future though, this will present an issue for PCI
-> error recovery.
->
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_engine_cs.c | 8 ++++++++
->   drivers/gpu/drm/i915/gt/intel_reset.c     | 3 +++
->   2 files changed, 11 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index 352254e001b4..7e1c561bce69 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -1455,9 +1455,17 @@ void intel_engines_reset_default_submission(struct intel_gt *gt)
->   	enum intel_engine_id id;
->   
->   	for_each_engine(engine, gt, id) {
-> +		struct intel_context *ce = engine->kernel_context;
-> +
->   		if (engine->sanitize)
->   			engine->sanitize(engine);
->   
-> +		/* Reset RING_HEAD so we don't consume the old
-> +		 * poisoned request on unwedging
-> +		 */
-> +		if (ce)
-> +			ce->ops->reset(ce);
-> +
+Series: drm/i915/dg2: Add Wa_18018781329 (rev2)
+URL   : https://patchwork.freedesktop.org/series/99128/
+State : warning
 
-Would it make sense to instead stop excluding the kernel context in 
-intel_engine_reset_pinned_contexts, which is called from 
-engine->sanitize(). That would lead to a double kernel context reset in 
-some situations, though, but I figure the above would as well if the 
-engine was parked before unwedging?
+== Summary ==
 
-How is the PCI error recovery affected? Do we have have a plan to 
-address that?
+$ dim checkpatch origin/drm-tip
+c3e09dac1728 drm/i915/dg2: Add Wa_18018781329
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#9: 
+From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt Roper
 
-Thanks,
+-:49: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt Roper'
 
-/Thomas
+total: 1 errors, 1 warnings, 0 checks, 22 lines checked
 
 
->   		engine->set_default_submission(engine);
->   	}
->   }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index 7be0002d9d70..1c26e936e699 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -961,6 +961,9 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
->   	}
->   	spin_unlock(&timelines->lock);
->   
-> +	/* Ensure that all non-kernel contexts are unpinned as well */
-> +	intel_gt_retire_requests(gt);
-> +
->   	/* We must reset pending GPU events before restoring our submission */
->   	ok = !HAS_EXECLISTS(gt->i915); /* XXX better agnosticism desired */
->   	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
