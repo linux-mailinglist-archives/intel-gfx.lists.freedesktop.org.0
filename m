@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53030495FAA
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 14:18:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 505A1495FAE
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 14:19:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DEBE10EA9F;
-	Fri, 21 Jan 2022 13:18:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68AF810E13C;
+	Fri, 21 Jan 2022 13:19:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 70F5110EB09;
- Fri, 21 Jan 2022 13:18:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7F28B10E19E;
+ Fri, 21 Jan 2022 13:19:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 711F9A7E03;
- Fri, 21 Jan 2022 13:18:31 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7FC47A7E03;
+ Fri, 21 Jan 2022 13:19:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 21 Jan 2022 13:18:31 -0000
-Message-ID: <164277111145.19938.9277266427994683448@emeril.freedesktop.org>
+Date: Fri, 21 Jan 2022 13:19:50 -0000
+Message-ID: <164277119051.19941.11329536679096155032@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <cover.1642769982.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1642769982.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/display=3A_drm_device_based_logging_conversions?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/display=3A_drm_device_based_logging_conversions?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,21 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-a43bb8c04dce drm/i915/snps: convert to drm device based logging
-6813c31ef162 drm/i915/pps: convert to drm device based logging
-e6787b198d3f drm/i915/hotplug: convert to drm device based logging
-aea8c9dd191f drm/i915/dp: convert to drm device based logging
-44a70cd142f4 drm/i915/plane: convert to drm device based logging and WARN
-05aea95dab19 drm/i915/sprite: convert to drm device based logging
-4a21e470add5 drm/i915/lspcon: convert to drm device based logging
--:488: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#488: FILE: drivers/gpu/drm/i915/display/intel_lspcon.c:696:
-+			drm_err(&i915->drm, "LSPCON init failed on port %c\n",
- 				  port_name(dig_port->base.port));
-
-total: 0 errors, 0 warnings, 1 checks, 451 lines checked
-f258150a08fa drm/i915/cdclk: update intel_dump_cdclk_config() logging
-2d89bd8afec9 drm/i915/cdclk: convert to drm device based logging
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
