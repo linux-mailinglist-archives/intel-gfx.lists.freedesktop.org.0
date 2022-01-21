@@ -1,46 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B14B49812D
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 14:32:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C33B498122
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 14:32:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B02310EC4E;
-	Mon, 24 Jan 2022 13:32:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E60F510EB13;
+	Mon, 24 Jan 2022 13:32:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F9EB10E527
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D9EA10E53F
  for <intel-gfx@lists.freedesktop.org>; Fri, 21 Jan 2022 22:23:29 +0000 (UTC)
 Received: from sobremesa.fritz.box (unknown
  [IPv6:2a02:8010:65b5:0:bbb0:f8ec:7bc9:dbe4])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: alarumbe)
- by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 0C4E51F465DC;
+ by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 31D451F465DD;
  Fri, 21 Jan 2022 22:23:28 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
  s=mail; t=1642803808;
- bh=O3v0PZrqH6q/uQ8VdahEWhNAIObVOHNGfAOpFmqhzgs=;
+ bh=n+0IEGxkng9ZHqSYt8vH77lbfgL8OX72/a/UvCZz9Hw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Q2ZjTywkqr0POxXvcGJfQRu7nGcxhMD0dWXYd4pj4b13yD5yAH3lMa6KITSs119O2
- 5f3Wyzo1xCqxE6reiDNhVnssq3WNP+4M72nerBFnvwFlqw5lOW4aVXIAvRVMMwPBO/
- Ps9YDw85y/qE7xKi/DM7vWd7A9b6oYgw2FzbCTOnv1T8PVqx1ZPZrTUrHgYmZT112G
- nFhaB2THjyLX71/sFxZOJyaWIOHjEDNICq1KZCQSaCI0fTgiDNl6+euNyHBzu4cqEx
- iO9741v4wCyoIoiaM9thQynZp0FAbHjY6s6Wa11nGeh8TUKoMlsCHrFmh2yyK9DRFB
- uA1xHDus73OlQ==
+ b=YvS0Tt00ofjJ6d9dqEswahPuaWiKg3AyrhgP1WuKUUlJf2i6YPScyr7LvvVK49H0v
+ p3WxfJAiY1ZIAYX8kHjYfuqPfmcuE5W1gcR78aheEeWUz+904TakYHTNOZJMTnqWEJ
+ dan1tL44GadrsGqePzp/+gte/LMci7Vyh3X1JUj8I0pEATXyTYiTUDbR+rZS8Cko2X
+ tEzmYT4i5N0MlCFNbU6BRI8h8g2fRpuwSfddqU7uk7+g0jHHsxnn6rCaSe+6qeHnUc
+ WLQP/ir0fLDVlR42nmpP6C7Z89TnWUFGzHnDY/NZcFZ/cnoFKukYIIiy5pGkqhJtUQ
+ vkBGHlqfqbhNQ==
 From: Adrian Larumbe <adrian.larumbe@collabora.com>
 To: daniel@ffwll.ch, ramalingam.c@intel.com, intel-gfx@lists.freedesktop.org
-Date: Fri, 21 Jan 2022 22:22:48 +0000
-Message-Id: <20220121222252.3296117-2-adrian.larumbe@collabora.com>
+Date: Fri, 21 Jan 2022 22:22:49 +0000
+Message-Id: <20220121222252.3296117-3-adrian.larumbe@collabora.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220121222252.3296117-1-adrian.larumbe@collabora.com>
 References: <20220121222252.3296117-1-adrian.larumbe@collabora.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 24 Jan 2022 13:32:09 +0000
-Subject: [Intel-gfx] [RFC PATCH 1/5] drm/i915/flat-CCS: Add GEM bo structure
- fields for flat-CCS
+Subject: [Intel-gfx] [RFC PATCH 2/5] drm/i915/flat-CCS: Add flat CCS plane
+ capabilities and modifiers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,36 +56,98 @@ Cc: adrian.larumbe@collabora.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When a flat-CCS aware bo is evicted from lmem, its control surface will be
-written out into smem. This will be done in the shape of a kernel-only bo
-attached to the original bo.
+Adds frame buffer support code for flat-CCS devices, like DG2. A flat-CCS
+modifier is attached to a fb object that contains the original bo by means
+of the drmModeAddFB2WithModifiers drm API call.
 
 Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_object_types.h | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/i915/display/intel_fb.c | 36 ++++++++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_fb.h |  1 +
+ 2 files changed, 33 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index 71e778ecaeb8..9f574e149c58 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -628,6 +628,16 @@ struct drm_i915_gem_object {
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 72040f580911..6f998d1956bb 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -158,19 +158,24 @@ static const struct intel_modifier_desc intel_modifiers[] = {
+ 	{
+ 		.modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS,
+ 		.display_ver = { 13, 14 },
+-		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_MC,
++		.plane_caps = INTEL_PLANE_CAP_TILING_4 |
++				INTEL_PLANE_CAP_CCS_MC |
++				INTEL_PLANE_CAP_DG2_CCS,
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC,
+ 		.display_ver = { 13, 14 },
+-		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC_CC,
+-
++		.plane_caps = INTEL_PLANE_CAP_TILING_4 |
++				INTEL_PLANE_CAP_CCS_RC_CC |
++				INTEL_PLANE_CAP_DG2_CCS,
+ 		.ccs.cc_planes = BIT(1),
  
- 		void *gvt_info;
- 	};
+ 		FORMAT_OVERRIDE(gen12_flat_ccs_cc_formats),
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
+ 		.display_ver = { 13, 14 },
+-		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC,
++		.plane_caps = INTEL_PLANE_CAP_TILING_4 |
++				INTEL_PLANE_CAP_CCS_RC |
++				INTEL_PLANE_CAP_DG2_CCS,
+ 	}, {
+ 		.modifier = I915_FORMAT_MOD_4_TILED,
+ 		.display_ver = { 13, 14 },
+@@ -313,6 +318,20 @@ bool intel_fb_is_ccs_modifier(u64 modifier)
+ 				      INTEL_PLANE_CAP_CCS_MASK);
+ }
+ 
++/**
++ * if (intel_fb_is_dg2_ccs_modifier): Check if a modifier is a DG2 CCS modifier type
++ * @modifier: Modifier to check
++ *
++ * Returns:
++ * Returns %true if @modifier is a render, render with color clear or
++ * media compression modifier compatible with DG2 devices.
++ */
++bool intel_fb_is_dg2_ccs_modifier(u64 modifier)
++{
++	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps,
++				      INTEL_PLANE_CAP_DG2_CCS);
++}
 +
-+	/**
-+	 * This is set if the object is lmem-placeable, supports flat
-+	 * CCS and is compressed. In that case, a separate block of
-+	 * stolen lmem memory will contain its compression data.
-+	 */
-+	struct {
-+		struct drm_i915_gem_object *swap;
-+		bool enabled:1;
-+	} flat_css;
- };
+ /**
+  * intel_fb_is_rc_ccs_cc_modifier: Check if a modifier is an RC CCS CC modifier type
+  * @modifier: Modifier to check
+@@ -2000,6 +2019,15 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 		intel_fb->dpt_vm = vm;
+ 	}
  
- static inline struct drm_i915_gem_object *
++	/*
++	 * In devices with flat CCS support, a compressed buffer object
++	 * will need to shuffle its CCS block back and forth between lmem
++	 * and smem at object migration events.
++	 */
++	if (intel_fb_is_dg2_ccs_modifier(fb->modifier) && HAS_FLAT_CCS(dev_priv))
++		if (!i915_gem_object_migratable(obj) && i915_gem_object_is_lmem(obj))
++			obj->flat_css.enabled = true;
++
+ 	ret = drm_framebuffer_init(&dev_priv->drm, fb, &intel_fb_funcs);
+ 	if (ret) {
+ 		drm_err(&dev_priv->drm, "framebuffer init failed %d\n", ret);
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+index 12386f13a4e0..5bd74ff9a449 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.h
++++ b/drivers/gpu/drm/i915/display/intel_fb.h
+@@ -28,6 +28,7 @@ struct intel_plane_state;
+ #define INTEL_PLANE_CAP_TILING_Y	BIT(4)
+ #define INTEL_PLANE_CAP_TILING_Yf	BIT(5)
+ #define INTEL_PLANE_CAP_TILING_4	BIT(6)
++#define INTEL_PLANE_CAP_DG2_CCS		BIT(7)
+ 
+ bool intel_fb_is_ccs_modifier(u64 modifier);
+ bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier);
 -- 
 2.34.1
 
