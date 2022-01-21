@@ -1,33 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40747495BDE
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 09:26:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DED9495BE9
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 09:28:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3930F10E97A;
-	Fri, 21 Jan 2022 08:26:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 958D210E976;
+	Fri, 21 Jan 2022 08:27:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5E9E910E974;
- Fri, 21 Jan 2022 08:26:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5A2BCA47EB;
- Fri, 21 Jan 2022 08:26:00 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D1CE10E974;
+ Fri, 21 Jan 2022 08:27:53 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 28C331F39D;
+ Fri, 21 Jan 2022 08:27:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1642753672; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=IVsNyGDkDZ86Ns2LmmJpLlVX2xtx72RPR3Ptz+iV1bk=;
+ b=M1lIxLm+G9pXf68WnpTpJdAADDOB55W6JU28yRjGGaEzNPWxR0l93+Sn3JD42cW+YgumGE
+ QLPjuXBsNkIfZIhcw6vnP5/jRIYn6CIO5sBTdgksa75u5HOmAvrHaXNOOymydGVg2rXfwT
+ GISdpvVplODTAbZdUQhOGtSMt6ryaDM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1642753672;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=IVsNyGDkDZ86Ns2LmmJpLlVX2xtx72RPR3Ptz+iV1bk=;
+ b=J39HSYdllEMyf7W1R+yyc3No7MteBBQHjKDPIg5uU1TYHer829wzf5XrYnveRLMoK+vjgn
+ W91+RkyAAfkGkvCA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id D57941348D;
+ Fri, 21 Jan 2022 08:27:51 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id yaUoM4du6mGVNgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Fri, 21 Jan 2022 08:27:51 +0000
+Date: Fri, 21 Jan 2022 09:27:50 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <Yepuhj+Ks+IyJ9Dp@linux-uq9g>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Fri, 21 Jan 2022 08:26:00 -0000
-Message-ID: <164275356033.19939.10390786930455357045@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220121080615.9936-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20220121080615.9936-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Async_flip_optimization_for_DG2_=28rev3=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,29 +64,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave and Daniel,
 
-Series: Async flip optimization for DG2 (rev3)
-URL   : https://patchwork.freedesktop.org/series/98981/
-State : warning
+here's this week's PR for drm-misc-next-fixes. Probably the final PR
+before the next -rc1.
 
-== Summary ==
+Best regards
+Thomas
 
-$ dim checkpatch origin/drm-tip
-c096e57d2e26 drm/i915: Pass plane to watermark calculation functions
-5b3c6244957a drm/i915: Introduce do_async_flip flag to intel_plane_state
-673ea1a0d880 drm/i915: Use wm0 only during async flips for DG2
--:9: WARNING:TYPO_SPELLING: 'perfomance' may be misspelled - perhaps 'performance'?
-#9: 
-This optimization allows to achieve higher perfomance
-                                           ^^^^^^^^^^
+drm-misc-next-fixes-2022-01-21:
+ * vc4: Fix potential deadlock in DSI code
+ * panel: Add orientation quirk for 1Netbook OneXPlayer
+The following changes since commit 5d474cc501b90b82c182b5d00439eb6790a82e21:
 
-total: 0 errors, 1 warnings, 0 checks, 60 lines checked
-3bdabf9d5e5b drm/i915: Don't allocate extra ddb during async flip for DG2
+  drm/mipi-dbi: Fix source-buffer address in mipi_dbi_buf_copy (2022-01-14 14:43:02 +0100)
 
+are available in the Git repository at:
 
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2022-01-21
+
+for you to fetch changes up to d3cbc6e323c9299d10c8d2e4127c77c7d05d07b1:
+
+  drm: panel-orientation-quirks: Add quirk for the 1Netbook OneXPlayer (2022-01-19 16:31:29 +0100)
+
+----------------------------------------------------------------
+ * vc4: Fix potential deadlock in DSI code
+ * panel: Add orientation quirk for 1Netbook OneXPlayer
+
+----------------------------------------------------------------
+Padmanabha Srinivasaiah (1):
+      drm/vc4: Fix deadlock on DSI device attach error
+
+Raymond Jay Golo (1):
+      drm: panel-orientation-quirks: Add quirk for the 1Netbook OneXPlayer
+
+ drivers/gpu/drm/drm_panel_orientation_quirks.c | 12 ++++++++++++
+ drivers/gpu/drm/vc4/vc4_dsi.c                  | 14 ++++----------
+ 2 files changed, 16 insertions(+), 10 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
