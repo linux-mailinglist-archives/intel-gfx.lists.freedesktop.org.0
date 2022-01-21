@@ -1,54 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 996924959A1
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 06:56:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB244959DA
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 07:21:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4167310E588;
-	Fri, 21 Jan 2022 05:56:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9A0310E6A9;
+	Fri, 21 Jan 2022 06:21:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A5D010E588;
- Fri, 21 Jan 2022 05:56:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37D2610E6A9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Jan 2022 06:21:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642744596; x=1674280596;
+ t=1642746111; x=1674282111;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=zpNm2Ggem8XpBfHfA1dmrV91N9MOBYjEMGPmDHp5OUc=;
- b=I7AVbg6mBjXjfG9LDaLxvGClz5wTZYRGQxjmgU81FdMhp63nx1ARMocV
- m+WOWI1ThywL2sNC89zUGkwpbrGC5KaHFDwWNFBIAXIP2+mrbGbX9/1pR
- 7QmvVY3YUCr4Vxr5Ty7vOEiRhlTOmezTkSpJs5XSUHkk/s9wBmOD5KtDq
- HO5p8Ny0lxo6PDJ7GNa8Sf+n6meciiSbfZhbitRk/sG/aCIZa4x5ruIL1
- Iqv/bppM0HY/blMK0sA+DWEtBWvcSNSBxlSaUMD8/DGYNJ91C857uvdKx
- sBceOXrQLWTZQ3eb3RaJeDF9Oiiw7aDsUK4aG5cGgp2KsyZcogaW5L3gp Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="225552604"
-X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="225552604"
+ bh=qhdZrGajlUFoCDudZ0ZTCkye3+n6Csnl2002uvQPzw0=;
+ b=ZHoEwp4vcgEc3w3WOgKcZeGE6vMjJU1d5pH+CkTrTXsS5S+kM38qXMpL
+ lCoqPhZH/zT9Bv+I/GrE4p7Mkm/qs1+EKXZTiZFVPeUUndmfGe+BPYtLz
+ 8GXJnWnYEk/CI4M0LoEih0tJ6QC0NSoIO6hanTYcvD4yT/4nEuhJf2XZi
+ yFi2iSW4mKJoO4Q+AOWt9M1ozSO9BSyyz1T0ZjilVp2QJthBH37LzI0uX
+ mZkpjeSaWM6S8z3bsUOWUH292FdnzymA+AaOXpZ//IP49j7zlJ47/Szq7
+ bNsXpVgZq9AGR7CEcg/kGSPPYerF5hSqP8oC5fCA7aa/E7QQKK8SLcMbu w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="225556971"
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="225556971"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 21:56:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="626622213"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
- by orsmga004.jf.intel.com with ESMTP; 20 Jan 2022 21:56:33 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nAmuX-000EyX-5X; Fri, 21 Jan 2022 05:56:33 +0000
-Date: Fri, 21 Jan 2022 13:55:43 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <202201211310.Npkld1YY-lkp@intel.com>
-References: <20220120182413.8074-1-matthew.brost@intel.com>
+ 20 Jan 2022 22:21:49 -0800
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="626628626"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2022 22:21:49 -0800
+Date: Thu, 20 Jan 2022 22:21:47 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <YepQ+4a4jSTio6UG@mdroper-desk1.amr.corp.intel.com>
+References: <20220120234147.1200574-1-matthew.d.roper@intel.com>
+ <164272710761.19939.3183786561777184304@emeril.freedesktop.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220120182413.8074-1-matthew.brost@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Don't check CT descriptor
- status before CT write / read
+In-Reply-To: <164272710761.19939.3183786561777184304@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/dg2=3A_Add_Wa=5F18018781329?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,104 +59,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org
+Cc: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matthew,
+On Fri, Jan 21, 2022 at 01:05:07AM +0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/i915/dg2: Add Wa_18018781329
+> URL   : https://patchwork.freedesktop.org/series/99128/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_11115 -> Patchwork_22049
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_22049 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_22049, please notify your bug team to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22049/index.html
+> 
+> Participating hosts (42 -> 40)
+> ------------------------------
+> 
+>   Missing    (2): fi-bsw-cyan fi-bdw-samus 
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_22049:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@i915_selftest@live@execlists:
+>     - fi-glk-j4005:       [PASS][1] -> [INCOMPLETE][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-glk-j4005/igt@i915_selftest@live@execlists.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22049/fi-glk-j4005/igt@i915_selftest@live@execlists.html
 
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip drm-exynos/exynos-drm-next drm/drm-next tegra-drm/drm/tegra/for-next v5.16 next-20220121]
-[cannot apply to airlied/drm-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Matthew-Brost/drm-i915-guc-Don-t-check-CT-descriptor-status-before-CT-write-read/20220121-023033
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: i386-randconfig-a005-20220117 (https://download.01.org/0day-ci/archive/20220121/202201211310.Npkld1YY-lkp@intel.com/config)
-compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project f7b7138a62648f4019c55e4671682af1f851f295)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/0311a8b0f99c50ab1a666a5cdbe2b1a0a2c3c71d
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Matthew-Brost/drm-i915-guc-Don-t-check-CT-descriptor-status-before-CT-write-read/20220121-023033
-        git checkout 0311a8b0f99c50ab1a666a5cdbe2b1a0a2c3c71d
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:469:1: error: unused label 'corrupted' [-Werror,-Wunused-label]
-   corrupted:
-   ^~~~~~~~~~
-   1 error generated.
+Appears to be the same as
+https://gitlab.freedesktop.org/drm/intel/-/issues/4920
 
 
-vim +/corrupted +469 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
 
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  422  
-1d407096002beca drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2018-03-26  423  	/*
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  424  	 * dw0: CT header (including fence)
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  425  	 * dw1: HXG header (including action code)
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  426  	 * dw2+: action data
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  427  	 */
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  428  	header = FIELD_PREP(GUC_CTB_MSG_0_FORMAT, GUC_CTB_FORMAT_HXG) |
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  429  		 FIELD_PREP(GUC_CTB_MSG_0_NUM_DWORDS, len) |
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  430  		 FIELD_PREP(GUC_CTB_MSG_0_FENCE, fence);
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  431  
-1681924d8bdeb24 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-07-08  432  	type = (flags & INTEL_GUC_CT_SEND_NB) ? GUC_HXG_TYPE_EVENT :
-1681924d8bdeb24 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-07-08  433  		GUC_HXG_TYPE_REQUEST;
-1681924d8bdeb24 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-07-08  434  	hxg = FIELD_PREP(GUC_HXG_MSG_0_TYPE, type) |
-1681924d8bdeb24 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-07-08  435  		FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
-1681924d8bdeb24 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-07-08  436  			   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  437  
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  438  	CT_DEBUG(ct, "writing (tail %u) %*ph %*ph %*ph\n",
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  439  		 tail, 4, &header, 4, &hxg, 4 * (len - 1), &action[1]);
-0a015ff9730c169 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2018-03-26  440  
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  441  	cmds[tail] = header;
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  442  	tail = (tail + 1) % size;
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  443  
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  444  	cmds[tail] = hxg;
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  445  	tail = (tail + 1) % size;
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  446  
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  447  	for (i = 1; i < len; i++) {
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  448  		cmds[tail] = action[i];
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  449  		tail = (tail + 1) % size;
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  450  	}
-4c22abfbcb8456d drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2020-01-20  451  	GEM_BUG_ON(tail > size);
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  452  
-d35ca600873eebc drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-06-02  453  	/*
-d35ca600873eebc drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-06-02  454  	 * make sure H2G buffer update and LRC tail update (if this triggering a
-d35ca600873eebc drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-06-02  455  	 * submission) are visible before updating the descriptor tail
-d35ca600873eebc drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-06-02  456  	 */
-6b540bf6f14362a drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-10-14  457  	intel_guc_write_barrier(ct_to_guc(ct));
-d35ca600873eebc drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-06-02  458  
-75452167a2794c3 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-07-08  459  	/* update local copies */
-75452167a2794c3 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-07-08  460  	ctb->tail = tail;
-f4eb1f3fe94683c drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-07-21  461  	GEM_BUG_ON(atomic_read(&ctb->space) < len + GUC_CTB_HDR_LEN);
-f4eb1f3fe94683c drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-07-21  462  	atomic_sub(len + GUC_CTB_HDR_LEN, &ctb->space);
-75452167a2794c3 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Matthew Brost    2021-07-08  463  
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  464  	/* now update descriptor */
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  465  	WRITE_ONCE(desc->tail, tail);
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  466  
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  467  	return 0;
-4c22abfbcb8456d drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2020-01-20  468  
-4c22abfbcb8456d drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2020-01-20 @469  corrupted:
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  470  	CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  471  		 desc->head, desc->tail, desc->status);
-572f2a5cd9742c5 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2021-06-15  472  	ctb->broken = true;
-4c22abfbcb8456d drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c Michal Wajdeczko 2020-01-20  473  	return -EPIPE;
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  474  }
-f8a58d639dd95b0 drivers/gpu/drm/i915/intel_guc_ct.c       Michal Wajdeczko 2017-05-26  475  
+Matt
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> 
+>   
+> Known issues
+> ------------
+> 
+>   Here are the changes found in Patchwork_22049 that come from known issues:
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@gem_flink_basic@bad-flink:
+>     - fi-skl-6600u:       [PASS][3] -> [INCOMPLETE][4] ([i915#4547])
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22049/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+> 
+>   * igt@runner@aborted:
+>     - fi-skl-6600u:       NOTRUN -> [FAIL][5] ([i915#2722] / [i915#4312])
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22049/fi-skl-6600u/igt@runner@aborted.html
+>     - fi-glk-j4005:       NOTRUN -> [FAIL][6] ([i915#2722] / [i915#4312] / [k.org#202321])
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22049/fi-glk-j4005/igt@runner@aborted.html
+> 
+>   
+> #### Possible fixes ####
+> 
+>   * igt@i915_selftest@live@gtt:
+>     - fi-bdw-5557u:       [DMESG-FAIL][7] -> [PASS][8]
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22049/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
+> 
+>   
+>   {name}: This element is suppressed. This means it is ignored when computing
+>           the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+>   [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+>   [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+>   [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+>   [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+>   [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * Linux: CI_DRM_11115 -> Patchwork_22049
+> 
+>   CI-20190529: 20190529
+>   CI_DRM_11115: 4e12213687264ffccb45d72fe638f94d3ca666bd @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   Patchwork_22049: 3bb57af567ca7c35813b4f945576dbf573308408 @ git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> 
+> == Linux commits ==
+> 
+> 3bb57af567ca drm/i915/dg2: Add Wa_18018781329
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22049/index.html
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
