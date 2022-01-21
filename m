@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD400495E6E
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 12:31:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98EFB495E7E
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 12:41:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C025E10EA98;
-	Fri, 21 Jan 2022 11:31:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9B0910EA39;
+	Fri, 21 Jan 2022 11:41:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D462110EA94
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Jan 2022 11:31:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642764670; x=1674300670;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=aEVaCTMjTURi2qvJ4R9PpgSeqit9/FUV48bT/9cHp54=;
- b=R5j+uRqY0Ef8+eu4EBmBYcm9raU6baTN8esCEII+sBdaBVasFf7ejU28
- PifFA3nSeIZxcIDgmoWAyPJO6A0pz+RmM8sWoAYitC3WZdus8+6vLdEv4
- 394jtObrCzsS9sgTHTKe+bTxlMDLVNYsP/VVbTcCjQ3lScWMzQ/T7LOYb
- hFepA99zz25EGGe4NYmi8L6JsHEO755TttvH6AGLsEl0jJfUI2nRPZIFn
- XSkouZKb4V0UyyiSMXmBDp4F1pIxc1+mvP+FE4d9LXXDzRf2DjRc6qswe
- qG6szL4l0qcJoodx3S+64kRookqUsGm2tG0CRgwESVty/K6ybzH1nkZOI w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="245582978"
-X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="245582978"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2022 03:31:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="579581635"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by fmsmga008.fm.intel.com with SMTP; 21 Jan 2022 03:31:04 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 21 Jan 2022 13:31:03 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 21 Jan 2022 13:30:36 +0200
-Message-Id: <20220121113036.23240-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220121113036.23240-1-ville.syrjala@linux.intel.com>
-References: <20220121113036.23240-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3166710EA1A;
+ Fri, 21 Jan 2022 11:41:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2D0FFA77A5;
+ Fri, 21 Jan 2022 11:41:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6549737274246143846=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915: Make pre-skl sprite plane
- registers unlocked
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Date: Fri, 21 Jan 2022 11:41:28 -0000
+Message-ID: <164276528817.19941.13458468368906304338@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220121080615.9936-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20220121080615.9936-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQXN5?=
+ =?utf-8?q?nc_flip_optimization_for_DG2_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,215 +40,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============6549737274246143846==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Drop the locks around sprite plane register writes. The
-lock isn't needed since each plane's register are neatly
-contained on their own cachelines.
+== Series Details ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_sprite.c | 45 ---------------------
- 1 file changed, 45 deletions(-)
+Series: Async flip optimization for DG2 (rev4)
+URL   : https://patchwork.freedesktop.org/series/98981/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 7ffca5669ab9..0376fc48c011 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -429,9 +429,6 @@ vlv_sprite_update_noarm(struct intel_plane *plane,
- 	int crtc_y = plane_state->uapi.dst.y1;
- 	u32 crtc_w = drm_rect_width(&plane_state->uapi.dst);
- 	u32 crtc_h = drm_rect_height(&plane_state->uapi.dst);
--	unsigned long irqflags;
--
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
- 	intel_de_write_fw(dev_priv, SPSTRIDE(pipe, plane_id),
- 			  plane_state->view.color_plane[0].mapping_stride);
-@@ -439,8 +436,6 @@ vlv_sprite_update_noarm(struct intel_plane *plane,
- 			  SP_POS_Y(crtc_y) | SP_POS_X(crtc_x));
- 	intel_de_write_fw(dev_priv, SPSIZE(pipe, plane_id),
- 			  SP_HEIGHT(crtc_h - 1) | SP_WIDTH(crtc_w - 1));
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static void
-@@ -456,14 +451,11 @@ vlv_sprite_update_arm(struct intel_plane *plane,
- 	u32 x = plane_state->view.color_plane[0].x;
- 	u32 y = plane_state->view.color_plane[0].y;
- 	u32 sprctl, linear_offset;
--	unsigned long irqflags;
- 
- 	sprctl = plane_state->ctl | vlv_sprite_ctl_crtc(crtc_state);
- 
- 	linear_offset = intel_fb_xy_to_linear(x, y, plane_state, 0);
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--
- 	if (IS_CHERRYVIEW(dev_priv) && pipe == PIPE_B)
- 		chv_sprite_update_csc(plane_state);
- 
-@@ -493,8 +485,6 @@ vlv_sprite_update_arm(struct intel_plane *plane,
- 
- 	vlv_sprite_update_clrc(plane_state);
- 	vlv_sprite_update_gamma(plane_state);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static void
-@@ -504,14 +494,9 @@ vlv_sprite_disable_arm(struct intel_plane *plane,
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
- 	enum pipe pipe = plane->pipe;
- 	enum plane_id plane_id = plane->id;
--	unsigned long irqflags;
--
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
- 	intel_de_write_fw(dev_priv, SPCNTR(pipe, plane_id), 0);
- 	intel_de_write_fw(dev_priv, SPSURF(pipe, plane_id), 0);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static bool
-@@ -861,15 +846,12 @@ ivb_sprite_update_noarm(struct intel_plane *plane,
- 	u32 src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
- 	u32 src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
- 	u32 sprscale = 0;
--	unsigned long irqflags;
- 
- 	if (crtc_w != src_w || crtc_h != src_h)
- 		sprscale = SPRITE_SCALE_ENABLE |
- 			SPRITE_SRC_WIDTH(src_w - 1) |
- 			SPRITE_SRC_HEIGHT(src_h - 1);
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--
- 	intel_de_write_fw(dev_priv, SPRSTRIDE(pipe),
- 			  plane_state->view.color_plane[0].mapping_stride);
- 	intel_de_write_fw(dev_priv, SPRPOS(pipe),
-@@ -878,8 +860,6 @@ ivb_sprite_update_noarm(struct intel_plane *plane,
- 			  SPRITE_HEIGHT(crtc_h - 1) | SPRITE_WIDTH(crtc_w - 1));
- 	if (IS_IVYBRIDGE(dev_priv))
- 		intel_de_write_fw(dev_priv, SPRSCALE(pipe), sprscale);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static void
-@@ -894,14 +874,11 @@ ivb_sprite_update_arm(struct intel_plane *plane,
- 	u32 x = plane_state->view.color_plane[0].x;
- 	u32 y = plane_state->view.color_plane[0].y;
- 	u32 sprctl, linear_offset;
--	unsigned long irqflags;
- 
- 	sprctl = plane_state->ctl | ivb_sprite_ctl_crtc(crtc_state);
- 
- 	linear_offset = intel_fb_xy_to_linear(x, y, plane_state, 0);
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--
- 	if (key->flags) {
- 		intel_de_write_fw(dev_priv, SPRKEYVAL(pipe), key->min_value);
- 		intel_de_write_fw(dev_priv, SPRKEYMSK(pipe),
-@@ -930,8 +907,6 @@ ivb_sprite_update_arm(struct intel_plane *plane,
- 			  intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
- 
- 	ivb_sprite_update_gamma(plane_state);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static void
-@@ -940,17 +915,12 @@ ivb_sprite_disable_arm(struct intel_plane *plane,
- {
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
- 	enum pipe pipe = plane->pipe;
--	unsigned long irqflags;
--
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
- 	intel_de_write_fw(dev_priv, SPRCTL(pipe), 0);
- 	/* Disable the scaler */
- 	if (IS_IVYBRIDGE(dev_priv))
- 		intel_de_write_fw(dev_priv, SPRSCALE(pipe), 0);
- 	intel_de_write_fw(dev_priv, SPRSURF(pipe), 0);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static bool
-@@ -1203,15 +1173,12 @@ g4x_sprite_update_noarm(struct intel_plane *plane,
- 	u32 src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
- 	u32 src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
- 	u32 dvsscale = 0;
--	unsigned long irqflags;
- 
- 	if (crtc_w != src_w || crtc_h != src_h)
- 		dvsscale = DVS_SCALE_ENABLE |
- 			DVS_SRC_WIDTH(src_w - 1) |
- 			DVS_SRC_HEIGHT(src_h - 1);
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--
- 	intel_de_write_fw(dev_priv, DVSSTRIDE(pipe),
- 			  plane_state->view.color_plane[0].mapping_stride);
- 	intel_de_write_fw(dev_priv, DVSPOS(pipe),
-@@ -1219,8 +1186,6 @@ g4x_sprite_update_noarm(struct intel_plane *plane,
- 	intel_de_write_fw(dev_priv, DVSSIZE(pipe),
- 			  DVS_HEIGHT(crtc_h - 1) | DVS_WIDTH(crtc_w - 1));
- 	intel_de_write_fw(dev_priv, DVSSCALE(pipe), dvsscale);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static void
-@@ -1235,14 +1200,11 @@ g4x_sprite_update_arm(struct intel_plane *plane,
- 	u32 x = plane_state->view.color_plane[0].x;
- 	u32 y = plane_state->view.color_plane[0].y;
- 	u32 dvscntr, linear_offset;
--	unsigned long irqflags;
- 
- 	dvscntr = plane_state->ctl | g4x_sprite_ctl_crtc(crtc_state);
- 
- 	linear_offset = intel_fb_xy_to_linear(x, y, plane_state, 0);
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--
- 	if (key->flags) {
- 		intel_de_write_fw(dev_priv, DVSKEYVAL(pipe), key->min_value);
- 		intel_de_write_fw(dev_priv, DVSKEYMSK(pipe),
-@@ -1266,8 +1228,6 @@ g4x_sprite_update_arm(struct intel_plane *plane,
- 		g4x_sprite_update_gamma(plane_state);
- 	else
- 		ilk_sprite_update_gamma(plane_state);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static void
-@@ -1276,16 +1236,11 @@ g4x_sprite_disable_arm(struct intel_plane *plane,
- {
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
- 	enum pipe pipe = plane->pipe;
--	unsigned long irqflags;
--
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
- 	intel_de_write_fw(dev_priv, DVSCNTR(pipe), 0);
- 	/* Disable the scaler */
- 	intel_de_write_fw(dev_priv, DVSSCALE(pipe), 0);
- 	intel_de_write_fw(dev_priv, DVSSURF(pipe), 0);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static bool
--- 
-2.32.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_11117 -> Patchwork_22054
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22054/index.html
+
+Participating hosts (46 -> 35)
+------------------------------
+
+  Missing    (11): fi-ilk-m540 bat-dg1-6 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-bdw-samus bat-jsl-2 bat-jsl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22054 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2] ([i915#146])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11117/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22054/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][3] -> [INCOMPLETE][4] ([i915#3303])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11117/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22054/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#1436] / [i915#4312])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22054/fi-hsw-4770/igt@runner@aborted.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11117 -> Patchwork_22054
+
+  CI-20190529: 20190529
+  CI_DRM_11117: 78a44103a76675b9916b8f0c1e9d1da370f2830f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22054: 57d60bca103b41d7c7469748a7c7d5feeb94e9b3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+57d60bca103b drm/i915: Don't allocate extra ddb during async flip for DG2
+8a01e4903796 drm/i915: Use wm0 only during async flips for DG2
+3328aa934fa7 drm/i915: Introduce do_async_flip flag to intel_plane_state
+a21feb89e84d drm/i915: Pass plane to watermark calculation functions
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22054/index.html
+
+--===============6549737274246143846==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Async flip optimization for DG2 (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98981/">https://patchwork.freedesktop.org/series/98981/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22054/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22054/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11117 -&gt; Patchwork_22054</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22054/index.html</p>
+<h2>Participating hosts (46 -&gt; 35)</h2>
+<p>Missing    (11): fi-ilk-m540 bat-dg1-6 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan bat-adlp-6 bat-adlp-4 fi-ctg-p8600 fi-bdw-samus bat-jsl-2 bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22054 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11117/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22054/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11117/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22054/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22054/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11117 -&gt; Patchwork_22054</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11117: 78a44103a76675b9916b8f0c1e9d1da370f2830f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22054: 57d60bca103b41d7c7469748a7c7d5feeb94e9b3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>57d60bca103b drm/i915: Don't allocate extra ddb during async flip for DG2<br />
+8a01e4903796 drm/i915: Use wm0 only during async flips for DG2<br />
+3328aa934fa7 drm/i915: Introduce do_async_flip flag to intel_plane_state<br />
+a21feb89e84d drm/i915: Pass plane to watermark calculation functions</p>
+
+</body>
+</html>
+
+--===============6549737274246143846==--
