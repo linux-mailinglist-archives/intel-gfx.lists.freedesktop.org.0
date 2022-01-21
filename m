@@ -2,54 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 083A1495744
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 01:17:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF8D1495766
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 01:34:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2FF310E17D;
-	Fri, 21 Jan 2022 00:17:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4676110E625;
+	Fri, 21 Jan 2022 00:34:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0D0D10E135;
- Fri, 21 Jan 2022 00:17:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642724246; x=1674260246;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=lrAbD2UBE56ko9dBCfVyCmV2sNMRWfCr9MAKgCa/8qo=;
- b=G22V62XZzJELIaMFPOv3t/YAr9ccMGQxBATXw6uqcA5Pe9Q+RjL4Xa70
- 5Dpym2O8n5ik+TwS5YT/bWO+YnpFTDxtvbtfLN8+ihwmMHyD5NulMZhWQ
- uvKcWIsiF1UJv8TKKP3tFU0DVeJhZNESFjHS0rpn0jpKTZLnhg5CUZ2v+
- KBU52fx+UaBsykMeu6DEMHqgn9pO9UWoX7QNyPuunkYqgkL1ISgcmRZG3
- 2J41gATaiUty2tMLzMfpcLj5FHIrh75MsU6wafC5pQCOCEc6amPcCxCKD
- YJTCYq4GaEhAY1ZzHbWS8PeAXufKoM+NUTBsMzUjkR9aISN7o8Wg3g/C2 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="243111729"
-X-IronPort-AV: E=Sophos;i="5.88,303,1635231600"; d="scan'208";a="243111729"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2022 16:17:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,303,1635231600"; d="scan'208";a="694443790"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
- by orsmga005.jf.intel.com with ESMTP; 20 Jan 2022 16:17:23 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nAhcI-000EjG-V9; Fri, 21 Jan 2022 00:17:22 +0000
-Date: Fri, 21 Jan 2022 08:16:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ramalingam C <ramalingam.c@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Message-ID: <202201210857.CAeUyl4W-lkp@intel.com>
-References: <20220120162102.10652-1-ramalingam.c@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9C7A410E11A;
+ Fri, 21 Jan 2022 00:34:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 96487A7E03;
+ Fri, 21 Jan 2022 00:34:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0016809069908640996=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220120162102.10652-1-ramalingam.c@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add needs_compact_pt flag
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Casey Bowman" <casey.g.bowman@intel.com>
+Date: Fri, 21 Jan 2022 00:34:05 -0000
+Message-ID: <164272524556.19941.15030009041900891979@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220120221652.207255-1-casey.g.bowman@intel.com>
+In-Reply-To: <20220120221652.207255-1-casey.g.bowman@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU3Bs?=
+ =?utf-8?q?itting_up_platform-specific_calls?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,405 +40,257 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org,
- Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ramalingam,
+--===============0016809069908640996==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thank you for the patch! Yet something to improve:
+== Series Details ==
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip drm-exynos/exynos-drm-next drm/drm-next next-20220120]
-[cannot apply to tegra-drm/drm/tegra/for-next airlied/drm-next v5.16]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Series: Splitting up platform-specific calls
+URL   : https://patchwork.freedesktop.org/series/99126/
+State : success
 
-url:    https://github.com/0day-ci/linux/commits/Ramalingam-C/drm-i915-Add-needs_compact_pt-flag/20220121-002256
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: x86_64-randconfig-a005 (https://download.01.org/0day-ci/archive/20220121/202201210857.CAeUyl4W-lkp@intel.com/config)
-compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project f7b7138a62648f4019c55e4671682af1f851f295)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/cf1a6660ac07b3b3618b35dccab57042d592ea2c
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Ramalingam-C/drm-i915-Add-needs_compact_pt-flag/20220121-002256
-        git checkout cf1a6660ac07b3b3618b35dccab57042d592ea2c
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/
+== Summary ==
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+CI Bug Log - changes from CI_DRM_11115 -> Patchwork_22048
+====================================================
 
-All errors (new ones prefixed by >>):
+Summary
+-------
 
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   In file included from drivers/gpu/drm/i915/gt/intel_gt_types.h:18:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_guc.h:19:
->> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h:12:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_gem.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   In file included from drivers/gpu/drm/i915/gt/intel_gt_types.h:18:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_guc.h:19:
-   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h:13:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_vma.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   In file included from drivers/gpu/drm/i915/gt/intel_gt_types.h:18:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9:
->> drivers/gpu/drm/i915/gt/uc/intel_guc.h:20:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_utils.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   In file included from drivers/gpu/drm/i915/gt/intel_gt_types.h:18:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9:
-   drivers/gpu/drm/i915/gt/uc/intel_guc.h:21:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_vma.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   In file included from drivers/gpu/drm/i915/gt/intel_gt_types.h:18:
->> drivers/gpu/drm/i915/gt/uc/intel_uc.h:10:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_guc_rc.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   In file included from drivers/gpu/drm/i915/gt/intel_gt_types.h:18:
-   drivers/gpu/drm/i915/gt/uc/intel_uc.h:11:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_guc_submission.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   In file included from drivers/gpu/drm/i915/gt/intel_gt_types.h:18:
-   drivers/gpu/drm/i915/gt/uc/intel_uc.h:12:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_guc_slpc.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   In file included from drivers/gpu/drm/i915/gt/intel_gt_types.h:18:
-   drivers/gpu/drm/i915/gt/uc/intel_uc.h:13:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_huc.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   In file included from drivers/gpu/drm/i915/gt/intel_gt_types.h:18:
-   drivers/gpu/drm/i915/gt/uc/intel_uc.h:14:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_params.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
->> drivers/gpu/drm/i915/gt/intel_gt_types.h:20:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_vma.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   drivers/gpu/drm/i915/gt/intel_gt_types.h:21:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_engine_types.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   drivers/gpu/drm/i915/gt/intel_gt_types.h:22:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_gt_buffer_pool_types.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   drivers/gpu/drm/i915/gt/intel_gt_types.h:23:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_llc_types.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   drivers/gpu/drm/i915/gt/intel_gt_types.h:24:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_reset_types.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   drivers/gpu/drm/i915/gt/intel_gt_types.h:25:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_rc6_types.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   drivers/gpu/drm/i915/gt/intel_gt_types.h:26:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_rps_types.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   drivers/gpu/drm/i915/gt/intel_gt_types.h:27:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_migrate_types.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   drivers/gpu/drm/i915/gt/intel_gt_types.h:28:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_wakeref.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/i915_config.c:6:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:83:
-   In file included from drivers/gpu/drm/i915/gt/intel_engine.h:18:
-   drivers/gpu/drm/i915/gt/intel_gt_types.h:29:2: error: embedding a #include directive within macro arguments is not supported
-   #include "pxp/intel_pxp_types.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   fatal error: too many errors emitted, stopping now [-ferror-limit=]
-   20 errors generated.
---
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c:12:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_guc.h:19:
->> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h:12:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_gem.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c:12:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_guc.h:19:
-   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h:13:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_vma.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c:12:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9:
->> drivers/gpu/drm/i915/gt/uc/intel_guc.h:20:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_utils.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c:12:
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9:
-   drivers/gpu/drm/i915/gt/uc/intel_guc.h:21:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_vma.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c:12:
->> drivers/gpu/drm/i915/gt/uc/intel_uc.h:10:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_guc_rc.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c:12:
-   drivers/gpu/drm/i915/gt/uc/intel_uc.h:11:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_guc_submission.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c:12:
-   drivers/gpu/drm/i915/gt/uc/intel_uc.h:12:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_guc_slpc.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c:12:
-   drivers/gpu/drm/i915/gt/uc/intel_uc.h:13:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_huc.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c:12:
-   drivers/gpu/drm/i915/gt/uc/intel_uc.h:14:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_params.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
->> drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c:13:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_uc_debugfs.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
->> drivers/gpu/drm/i915/intel_device_info.h:201:25: error: unterminated function-like macro invocation
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   drivers/gpu/drm/i915/intel_device_info.h:200:9: note: macro 'DEFINE_FLAG' defined here
-   #define DEFINE_FLAG(name) u8 name:1
-           ^
->> drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c:59:2: error: expected '}'
-   }
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:179:26: note: to match this '{'
-   struct intel_device_info {
-                            ^
->> drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c:59:2: error: expected ';' after struct
-   }
-    ^
-   13 errors generated.
---
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:11:
->> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h:12:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_gem.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:11:
-   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h:13:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_vma.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
->> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:12:2: error: embedding a #include directive within macro arguments is not supported
-   #include "intel_uc_fw_abi.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:13:2: error: embedding a #include directive within macro arguments is not supported
-   #include "i915_drv.h"
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:201:25: note: expansion of macro 'DEFINE_FLAG' requested here
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
->> drivers/gpu/drm/i915/intel_device_info.h:201:25: error: unterminated function-like macro invocation
-           DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-                                  ^
-   drivers/gpu/drm/i915/intel_device_info.h:200:9: note: macro 'DEFINE_FLAG' defined here
-   #define DEFINE_FLAG(name) u8 name:1
-           ^
->> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:794:2: error: expected '}'
-   }
-    ^
-   drivers/gpu/drm/i915/intel_device_info.h:179:26: note: to match this '{'
-   struct intel_device_info {
-                            ^
->> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:794:2: error: expected ';' after struct
-   }
-    ^
-   7 errors generated.
-..
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/index.html
+
+Participating hosts (42 -> 42)
+------------------------------
+
+  Additional (2): bat-jsl-2 fi-pnv-d510 
+  Missing    (2): fi-bsw-cyan fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22048 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@gem_flink_basic@bad-flink:
+    - fi-skl-6600u:       [PASS][2] -> [INCOMPLETE][3] ([i915#4547])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][4] -> [INCOMPLETE][5] ([i915#4785])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][6] ([fdo#109271]) +57 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][7] ([i915#2722] / [i915#4312])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-skl-6600u/igt@runner@aborted.html
+    - fi-hsw-4770:        NOTRUN -> [FAIL][8] ([fdo#109271] / [i915#1436] / [i915#4312])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - {bat-rpls-1}:       [INCOMPLETE][9] ([i915#4898]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@gtt:
+    - fi-bdw-5557u:       [DMESG-FAIL][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-bdw-5557u/igt@i915_selftest@live@gtt.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][13] ([i915#3921]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109308]: https://bugs.freedesktop.org/show_bug.cgi?id=109308
+  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
 
 
-vim +201 drivers/gpu/drm/i915/intel_device_info.h
+Build changes
+-------------
 
-a5b7ef27da60c90 José Roberto de Souza  2021-10-19  178  
-b978520d1e35b99 Michal Wajdeczko       2017-12-21  179  struct intel_device_info {
-a5b7ef27da60c90 José Roberto de Souza  2021-10-19  180  	struct ip_version graphics;
-a5b7ef27da60c90 José Roberto de Souza  2021-10-19  181  	struct ip_version media;
-93babb061e2ab5e Lucas De Marchi        2021-04-12  182  
-792592e72aba416 Daniele Ceraolo Spurio 2020-07-07  183  	intel_engine_mask_t platform_engine_mask; /* Engines supported by the HW */
-b978520d1e35b99 Michal Wajdeczko       2017-12-21  184  
-b978520d1e35b99 Michal Wajdeczko       2017-12-21  185  	enum intel_platform platform;
-b978520d1e35b99 Michal Wajdeczko       2017-12-21  186  
-31a02eb70b8d9e6 Michael J. Ruhl        2020-04-17  187  	unsigned int dma_mask_size; /* available DMA address bits */
-31a02eb70b8d9e6 Michael J. Ruhl        2020-04-17  188  
-cbecbccaa120fd9 Chris Wilson           2019-03-14  189  	enum intel_ppgtt_type ppgtt_type;
-cbecbccaa120fd9 Chris Wilson           2019-03-14  190  	unsigned int ppgtt_size; /* log2, e.g. 31/32/48 bits */
-cbecbccaa120fd9 Chris Wilson           2019-03-14  191  
-4552f50a439c36f Tvrtko Ursulin         2018-02-22  192  	unsigned int page_sizes; /* page sizes supported by the HW */
-3aae9d08532c8e5 Abdiel Janulgue        2019-10-18  193  
-3aae9d08532c8e5 Abdiel Janulgue        2019-10-18  194  	u32 memory_regions; /* regions supported by the HW */
-4552f50a439c36f Tvrtko Ursulin         2018-02-22  195  
-b978520d1e35b99 Michal Wajdeczko       2017-12-21  196  	u32 display_mmio_offset;
-b978520d1e35b99 Michal Wajdeczko       2017-12-21  197  
-938c778f6a22fa1 John Harrison          2021-07-23  198  	u8 gt; /* GT number, 0 if undefined */
-938c778f6a22fa1 John Harrison          2021-07-23  199  
-b978520d1e35b99 Michal Wajdeczko       2017-12-21  200  #define DEFINE_FLAG(name) u8 name:1
-b978520d1e35b99 Michal Wajdeczko       2017-12-21 @201  	DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
-b978520d1e35b99 Michal Wajdeczko       2017-12-21  202  #undef DEFINE_FLAG
-d53db442db36fdb José Roberto de Souza  2018-11-30  203  
-d53db442db36fdb José Roberto de Souza  2018-11-30  204  	struct {
-4df9c1ae7a4bb93 Lucas De Marchi        2021-04-12  205  		u8 ver;
-a5b7ef27da60c90 José Roberto de Souza  2021-10-19  206  		u8 rel;
-01eb15c9165e416 Matt Roper             2021-03-19  207  
-6678916dfa01251 Ville Syrjälä          2021-12-10  208  		u8 pipe_mask;
-6678916dfa01251 Ville Syrjälä          2021-12-10  209  		u8 cpu_transcoder_mask;
-6678916dfa01251 Ville Syrjälä          2021-12-10  210  		u8 abox_mask;
-6678916dfa01251 Ville Syrjälä          2021-12-10  211  
+  * Linux: CI_DRM_11115 -> Patchwork_22048
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+  CI-20190529: 20190529
+  CI_DRM_11115: 4e12213687264ffccb45d72fe638f94d3ca666bd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22048: cfedaf9b9519ab335e7ccd4bc2e474dcd49f117c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+cfedaf9b9519 i915/drm: Split out x86 and arm64 functionality
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/index.html
+
+--===============0016809069908640996==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Splitting up platform-specific calls</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99126/">https://patchwork.freedesktop.org/series/99126/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11115 -&gt; Patchwork_22048</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/index.html</p>
+<h2>Participating hosts (42 -&gt; 42)</h2>
+<p>Additional (2): bat-jsl-2 fi-pnv-d510 <br />
+  Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22048 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_flink_basic@bad-flink:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>{bat-rpls-1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4898">i915#4898</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gtt:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-bdw-5557u/igt@i915_selftest@live@gtt.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22048/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11115 -&gt; Patchwork_22048</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11115: 4e12213687264ffccb45d72fe638f94d3ca666bd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22048: cfedaf9b9519ab335e7ccd4bc2e474dcd49f117c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>cfedaf9b9519 i915/drm: Split out x86 and arm64 functionality</p>
+
+</body>
+</html>
+
+--===============0016809069908640996==--
