@@ -2,53 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12202495E93
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 12:48:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BA66495E96
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 12:50:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EABA10EB25;
-	Fri, 21 Jan 2022 11:48:55 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0242410EB24
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Jan 2022 11:48:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B10610EABC;
+	Fri, 21 Jan 2022 11:50:57 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31DEE10EABC;
+ Fri, 21 Jan 2022 11:50:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642765733; x=1674301733;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=gU34Vck6/eBtOIqHOHAocbWgfOKbn3AO2rbfEJ5SOpE=;
- b=Kp1hCWMuqRWb2nsolTTNWmuhhanmS7Md+CWPqOJeUHGBYu1fpU9fJZZk
- /QwAE/k7HP9KVUrHzSPunt7wtJ+sh7beiY1hsr9YfC5FMfeGYYD4jOmPx
- 2DB2VXYTSIp0ksDUyoQC5uqA+Yg0UORwxaL0JGmTQvC7pwCApcXm3X/Jw
- EMC+5YXCsRpZO2p+e1jVM/UhORE0pNcN1RhvHZLrXHSg27du9DDY4VXpD
- kzm2bt8qnyunEqJLgHfi6c0DB18uKAz9CVwsE5yIqQDA0yc67PB3tc5m1
- N/71dhc9gOfXepDNuloBHEJPVGja2rwPjzGNHLLNcpJBYkdvzEcJW/XEj Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="245857311"
-X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="245857311"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2022 03:48:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="531369963"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by fmsmga007.fm.intel.com with SMTP; 21 Jan 2022 03:48:51 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 21 Jan 2022 13:48:50 +0200
-Date: Fri, 21 Jan 2022 13:48:50 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <YeqdopfuBthcCxkJ@intel.com>
-References: <20220121080615.9936-1-stanislav.lisovskiy@intel.com>
- <20220121080615.9936-3-stanislav.lisovskiy@intel.com>
+ t=1642765856; x=1674301856;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=RBz1KpHBR7i9NORrhCYsoGcp2r5iPMQs4z1UoIb3jlo=;
+ b=k9XGbGdSobzoUHS7ZF8NGblHkqs4t3Aa+8GVg5KJGs3I9CN1ffuzMv+h
+ zG38kWEEHOQlPdhyg9bQ9aBi9Fr3cDn0G7qsw//rgx3VmDCJPX3V5MbpI
+ pnfJGKJ51fMnFKX5dTBqdIzy8Vz2qmVSmxC5CdKj3s0PuttnQ4JAmVeKa
+ p88yPZc8jcaN4r3d+mmAbH+O3e5sUO/TrSxhPlBQ4kUR8yufxQnlc4cV0
+ FaipYv30fz5dzlfl8f8w2IyImOk9HD06LOR4U71AbE/8/z4ASt85HAfQU
+ lLDxrbmhlPVn1G/Yyr6jXj0+NldBGA5fOi6CL5hL78s8m8ViSEsfuSP8H Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="308965633"
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="308965633"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2022 03:50:55 -0800
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="533245037"
+Received: from pflinter-mobl1.ger.corp.intel.com (HELO [10.213.207.239])
+ ([10.213.207.239])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2022 03:50:53 -0800
+Message-ID: <423c8ff1-3a4b-3e69-8561-3056c7d2d20f@linux.intel.com>
+Date: Fri, 21 Jan 2022 11:50:51 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: Rob Clark <robdclark@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+References: <20220106165536.57208-1-tvrtko.ursulin@linux.intel.com>
+ <20220106165536.57208-7-tvrtko.ursulin@linux.intel.com>
+ <YegpiY3MU15RsEfk@phenom.ffwll.local>
+ <CAF6AEGs58S7U=1nso=0BAURUuobeUam4V0j1W7ZsrK5W7MqRvw@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <CAF6AEGs58S7U=1nso=0BAURUuobeUam4V0j1W7ZsrK5W7MqRvw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220121080615.9936-3-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Introduce do_async_flip flag
- to intel_plane_state
+Subject: Re: [Intel-gfx] [PATCH 6/7] drm: Document fdinfo format
+ specification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,106 +64,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
+ Daniel Stone <daniel@fooishbar.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Chris Healy <cphealy@gmail.com>, David M Nieto <David.Nieto@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 21, 2022 at 10:06:13AM +0200, Stanislav Lisovskiy wrote:
-> There might be various logical contructs when we might want
-> to enable async flip, so lets calculate those and set this
-> flag, so that there is no need in long conditions in other
-> places.
-> 
-> v2: - Set do_async_flip flag to False, if no async flip needed.
->       Lets not rely that it will be 0-initialized, but set
->       explicitly, so that the logic is clear as well.
-> 
-> v3: - Clear do_async_flip in intel_plane_duplicate_state(Ville Syrjälä)
->     - Check with do_async_flip also when calling
->       intel_crtc_{enable,disable}_flip_done(Ville Syrjälä)
-> 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 3 ++-
->  drivers/gpu/drm/i915/display/intel_display.c       | 9 +++++++--
->  drivers/gpu/drm/i915/display/intel_display_types.h | 3 +++
->  3 files changed, 12 insertions(+), 3 deletions(-)
+On 20/01/2022 16:44, Rob Clark wrote:
+> On Wed, Jan 19, 2022 at 7:09 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+>>
+>> On Thu, Jan 06, 2022 at 04:55:35PM +0000, Tvrtko Ursulin wrote:
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> Proposal to standardise the fdinfo text format as optionally output by DRM
+>>> drivers.
+>>>
+>>> Idea is that a simple but, well defined, spec will enable generic
+>>> userspace tools to be written while at the same time avoiding a more heavy
+>>> handed approach of adding a mid-layer to DRM.
+>>>
+>>> i915 implements a subset of the spec, everything apart from the memory
+>>> stats currently, and a matching intel_gpu_top tool exists.
+>>>
+>>> Open is to see if AMD can migrate to using the proposed GPU utilisation
+>>> key-value pairs, or if they are not workable to see whether to go
+>>> vendor specific, or if a standardised  alternative can be found which is
+>>> workable for both drivers.
+>>>
+>>> Same for the memory utilisation key-value pairs proposal.
+>>>
+>>> v2:
+>>>   * Update for removal of name and pid.
+>>>
+>>> v3:
+>>>   * 'Drm-driver' tag will be obtained from struct drm_driver.name. (Daniel)
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> Cc: David M Nieto <David.Nieto@amd.com>
+>>> Cc: Christian KÃ¶nig <christian.koenig@amd.com>
+>>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>>> Cc: Daniel Stone <daniel@fooishbar.org>
+>>> Cc: Chris Healy <cphealy@gmail.com>
+>>> Acked-by: Christian KÃ¶nig <christian.koenig@amd.com>
+>>
+>> I'm assuming this ack here and later on is a "amdgpu plans to use this
+>> too" kind of affair. Especially also in the lights of eventually using
+>> matching semantics for cgroups and everything else tied to gpu execution
+>> resource management.
+>>
+>> If not I'm mildly worried that we're creating fake-standard stuff here
+>> which cannot actually be used by anything resembling driver-agnostic
+>> userspace.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index d1344e9c06de..9d79ab987b2e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -109,6 +109,7 @@ intel_plane_duplicate_state(struct drm_plane *plane)
->  	intel_state->ggtt_vma = NULL;
->  	intel_state->dpt_vma = NULL;
->  	intel_state->flags = 0;
-> +	intel_state->do_async_flip = false;
->  
->  	/* add reference to fb */
->  	if (intel_state->hw.fb)
-> @@ -491,7 +492,7 @@ void intel_plane_update_arm(struct intel_plane *plane,
->  
->  	trace_intel_plane_update_arm(&plane->base, crtc);
->  
-> -	if (crtc_state->uapi.async_flip && plane->async_flip)
-> +	if (plane_state->do_async_flip)
->  		plane->async_flip(plane, crtc_state, plane_state, true);
->  	else
->  		plane->update_arm(plane, crtc_state, plane_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 55cd453c4ce5..9996daa036a0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -1369,7 +1369,8 @@ static void intel_crtc_enable_flip_done(struct intel_atomic_state *state,
->  	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
->  		if (plane->enable_flip_done &&
->  		    plane->pipe == crtc->pipe &&
-> -		    update_planes & BIT(plane->id))
-> +		    update_planes & BIT(plane->id) &&
-> +		    plane_state->do_async_flip)
->  			plane->enable_flip_done(plane);
->  	}
->  }
-> @@ -1387,7 +1388,8 @@ static void intel_crtc_disable_flip_done(struct intel_atomic_state *state,
->  	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
->  		if (plane->disable_flip_done &&
->  		    plane->pipe == crtc->pipe &&
-> -		    update_planes & BIT(plane->id))
-> +		    update_planes & BIT(plane->id) &&
-> +		    plane_state->do_async_flip)
->  			plane->disable_flip_done(plane);
->  	}
->  }
-> @@ -5027,6 +5029,9 @@ int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_crtc_stat
->  			 needs_scaling(new_plane_state))))
->  		new_crtc_state->disable_lp_wm = true;
->  
-> +	if (new_crtc_state->uapi.async_flip && plane->async_flip)
-> +		new_plane_state->do_async_flip = true;
-> +
->  	return 0;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 41e3dd25a78f..6b107872ad39 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -634,6 +634,9 @@ struct intel_plane_state {
->  
->  	struct intel_fb_view view;
->  
-> +	/* Indicates if async flip is required */
-> +	bool do_async_flip;
-> +
->  	/* Plane pxp decryption state */
->  	bool decrypt;
->  
-> -- 
-> 2.24.1.485.gad05a3d8e5
+> I think I could implement something like this for drm/msm.  I am a bit
+> uncertain about the memory stats (ie. how are we intended to account
+> for imported/exported/shared bo's)?  But we already track cycles+time
+> per submit for devfreq, it would be pretty easy to add per drm_file
+> counters to accumulate the per-submit results.  We could even track
+> per-context (submitqueue) for processes that have more than a single
+> context, although not sure if that is useful.
 
--- 
-Ville Syrjälä
-Intel
+Interesting tidbit is that the whole i915 work started from a customer 
+request to expose just that (per context) in a form akin to 
+getrusage(2). I think this kind of introspection capability is 
+interesting but as it is driver specific territory it's only anecdotal 
+for what this thread is concerned.
+
+> And I think there is probably some room for shared helper to print
+> parts other than the per-engine stats (and maybe memory stats,
+> although even that could be a shared implementation for some
+> drivers).. with a driver callback for the non-generic parts, ie.
+> something like:
+> 
+>     drm_driver::show_client_stats(struct drm_file *, struct drm_printer *)
+> 
+> but that can come later.
+> 
+> If there is a tool somewhere that displays this info, that would be
+> useful for testing my implementation.
+
+I have a patch to Intel specific intel_gpu_top (see 
+https://patchwork.freedesktop.org/patch/468491/?series=98555&rev=1). 
+I'll have a look to see how much work would it be to extract common bits 
+into a library and write a quick agnostic tool using it.
+
+Regards,
+
+Tvrtko
