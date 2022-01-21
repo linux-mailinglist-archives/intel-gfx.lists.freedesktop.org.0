@@ -2,32 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19BE4496637
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 21:08:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3E5A496677
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 21:42:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B35F510E426;
-	Fri, 21 Jan 2022 20:08:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F26A10E630;
+	Fri, 21 Jan 2022 20:42:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6AC1C10E1CD;
- Fri, 21 Jan 2022 20:08:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 67622A0003;
- Fri, 21 Jan 2022 20:08:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 201BF10E620;
+ Fri, 21 Jan 2022 20:42:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642797767; x=1674333767;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8L9mcEI7B+vPTe3tv4cFVl5ElCGuxZIDXQh39t4YN7g=;
+ b=FUVLFaupYDp5vseOECO4xM1aOIeFatKT0jYad+4yAkRbNzqYtqSFdz6N
+ oEkSMN+Dwsh2uEZIuMUAT9+v4PdV/W9bIySKQqEJipVLOaTqjLQiiDSfm
+ 0iiklAsMEtIRHXTGE5y7SjL7J5iCCVIJE1MXxAPFTp7e5+4zDjkd/1J++
+ +BdjAUAGSGPPVCreJ+x7TKqIud9aa31yTKYQjxPnoT3jijxhCRKpT3BIa
+ IS2KaKWZTL7LYYqciP/NKMHvgfgqgxcwsGNCzI6OHPN+UQ3fpyK0UiCzf
+ KhF7jW68OWo4WLY71esm1aILWjQmAI6fvoF7b+8fqyvBCkVgdx/bntLE7 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10234"; a="309065945"
+X-IronPort-AV: E=Sophos;i="5.88,306,1635231600"; d="scan'208";a="309065945"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2022 12:42:46 -0800
+X-IronPort-AV: E=Sophos;i="5.88,306,1635231600"; d="scan'208";a="626855409"
+Received: from jons-linux-dev-box.fm.intel.com ([10.1.27.20])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2022 12:42:46 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Fri, 21 Jan 2022 12:36:56 -0800
+Message-Id: <20220121203658.28042-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Fri, 21 Jan 2022 20:08:38 -0000
-Message-ID: <164279571839.19939.1485756629686809636@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220121192450.208535-1-jose.souza@intel.com>
-In-Reply-To: <20220121192450.208535-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Fix_errors_when_there_is_no_free_DSM?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/2] Fix up request cancel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,25 +54,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Fix request cancellation + add request cancel low level trace point.
 
-Series: drm/i915: Fix errors when there is no free DSM
-URL   : https://patchwork.freedesktop.org/series/99161/
-State : warning
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-== Summary ==
+Matthew Brost (2):
+  drm/i915: Add request cancel low level trace point
+  drm/i915/guc: Cancel requests immediately
 
-$ dim checkpatch origin/drm-tip
-a3097f607fae drm/i915: Fix errors when there is no free DSM
--:20: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#20: 
-i915 0000:8c:00.0: [drm:i915_gem_init_stolen [i915]] GEN6_STOLEN_RESERVED = 0x00000003ff800185
+ drivers/gpu/drm/i915/gt/intel_context.h       |  1 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  5 ++
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 46 +++++++++++--------
+ drivers/gpu/drm/i915/i915_trace.h             | 10 ++++
+ 4 files changed, 42 insertions(+), 20 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 28 lines checked
-
+-- 
+2.34.1
 
