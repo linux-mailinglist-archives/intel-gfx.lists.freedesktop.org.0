@@ -1,57 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BA66495E96
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 12:50:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30B02495EB8
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 12:59:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B10610EABC;
-	Fri, 21 Jan 2022 11:50:57 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31DEE10EABC;
- Fri, 21 Jan 2022 11:50:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F06110E3F6;
+	Fri, 21 Jan 2022 11:59:55 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 671EE10E3F6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Jan 2022 11:59:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642765856; x=1674301856;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=RBz1KpHBR7i9NORrhCYsoGcp2r5iPMQs4z1UoIb3jlo=;
- b=k9XGbGdSobzoUHS7ZF8NGblHkqs4t3Aa+8GVg5KJGs3I9CN1ffuzMv+h
- zG38kWEEHOQlPdhyg9bQ9aBi9Fr3cDn0G7qsw//rgx3VmDCJPX3V5MbpI
- pnfJGKJ51fMnFKX5dTBqdIzy8Vz2qmVSmxC5CdKj3s0PuttnQ4JAmVeKa
- p88yPZc8jcaN4r3d+mmAbH+O3e5sUO/TrSxhPlBQ4kUR8yufxQnlc4cV0
- FaipYv30fz5dzlfl8f8w2IyImOk9HD06LOR4U71AbE/8/z4ASt85HAfQU
- lLDxrbmhlPVn1G/Yyr6jXj0+NldBGA5fOi6CL5hL78s8m8ViSEsfuSP8H Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="308965633"
-X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="308965633"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2022 03:50:55 -0800
-X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="533245037"
-Received: from pflinter-mobl1.ger.corp.intel.com (HELO [10.213.207.239])
- ([10.213.207.239])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2022 03:50:53 -0800
-Message-ID: <423c8ff1-3a4b-3e69-8561-3056c7d2d20f@linux.intel.com>
-Date: Fri, 21 Jan 2022 11:50:51 +0000
+ t=1642766394; x=1674302394;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=TMHQnrDMI45RxYSvbodq/+LWdH/fc2Ib7+RBIqbiDoA=;
+ b=TMvOL6oQLRXiy7n97yGV9Clg2uuzk4B/tL9v3r1Vq8FgtZ6ahfIK8kQY
+ zi3Zk/A6H+3yQOtIsuc5bG+gA2g9CVWZa9miH5qyjLgMJEV9LkTN/S9GG
+ aQ7g5jCre1EbzpZj6SLTYQG8t8Dblwqza3iIwn7/8+OOa5X7gykh5WRbg
+ kORVl5BPswdF4Rp+AYmruTLy4+mZPQXsWM0R1JvBFcfLWXFrARLSn1OIw
+ AorelDudSKvl7zzwqM9PKZVz65gbep73/wRsH6qElTlNYGedJ4X5fnj+K
+ bJk0fZ28Nu5bJA4YRw5O2b3tI+NgHP9EfgO+3mjq4UTN44A4ofSrnEws4 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="270058782"
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="270058782"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2022 03:59:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="672923446"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
+ by fmsmga001.fm.intel.com with SMTP; 21 Jan 2022 03:59:51 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 21 Jan 2022 13:59:50 +0200
+Date: Fri, 21 Jan 2022 13:59:50 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <YeqgNrP+6fa+Oi9n@intel.com>
+References: <20220121080615.9936-1-stanislav.lisovskiy@intel.com>
+ <20220121080615.9936-4-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: Rob Clark <robdclark@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-References: <20220106165536.57208-1-tvrtko.ursulin@linux.intel.com>
- <20220106165536.57208-7-tvrtko.ursulin@linux.intel.com>
- <YegpiY3MU15RsEfk@phenom.ffwll.local>
- <CAF6AEGs58S7U=1nso=0BAURUuobeUam4V0j1W7ZsrK5W7MqRvw@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <CAF6AEGs58S7U=1nso=0BAURUuobeUam4V0j1W7ZsrK5W7MqRvw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 6/7] drm: Document fdinfo format
- specification
+In-Reply-To: <20220121080615.9936-4-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Use wm0 only during async
+ flips for DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,93 +61,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
- Daniel Stone <daniel@fooishbar.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Chris Healy <cphealy@gmail.com>, David M Nieto <David.Nieto@amd.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 20/01/2022 16:44, Rob Clark wrote:
-> On Wed, Jan 19, 2022 at 7:09 AM Daniel Vetter <daniel@ffwll.ch> wrote:
->>
->> On Thu, Jan 06, 2022 at 04:55:35PM +0000, Tvrtko Ursulin wrote:
->>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>
->>> Proposal to standardise the fdinfo text format as optionally output by DRM
->>> drivers.
->>>
->>> Idea is that a simple but, well defined, spec will enable generic
->>> userspace tools to be written while at the same time avoiding a more heavy
->>> handed approach of adding a mid-layer to DRM.
->>>
->>> i915 implements a subset of the spec, everything apart from the memory
->>> stats currently, and a matching intel_gpu_top tool exists.
->>>
->>> Open is to see if AMD can migrate to using the proposed GPU utilisation
->>> key-value pairs, or if they are not workable to see whether to go
->>> vendor specific, or if a standardised  alternative can be found which is
->>> workable for both drivers.
->>>
->>> Same for the memory utilisation key-value pairs proposal.
->>>
->>> v2:
->>>   * Update for removal of name and pid.
->>>
->>> v3:
->>>   * 'Drm-driver' tag will be obtained from struct drm_driver.name. (Daniel)
->>>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>> Cc: David M Nieto <David.Nieto@amd.com>
->>> Cc: Christian KÃ¶nig <christian.koenig@amd.com>
->>> Cc: Daniel Vetter <daniel@ffwll.ch>
->>> Cc: Daniel Stone <daniel@fooishbar.org>
->>> Cc: Chris Healy <cphealy@gmail.com>
->>> Acked-by: Christian KÃ¶nig <christian.koenig@amd.com>
->>
->> I'm assuming this ack here and later on is a "amdgpu plans to use this
->> too" kind of affair. Especially also in the lights of eventually using
->> matching semantics for cgroups and everything else tied to gpu execution
->> resource management.
->>
->> If not I'm mildly worried that we're creating fake-standard stuff here
->> which cannot actually be used by anything resembling driver-agnostic
->> userspace.
+On Fri, Jan 21, 2022 at 10:06:14AM +0200, Stanislav Lisovskiy wrote:
+> This optimization allows to achieve higher perfomance
+> during async flips.
+> For the first async flip we have to still temporarily
+> switch to sync flip, in order to reprogram plane
+> watermarks, so this requires taking into account
+> old plane state's do_async_flip flag.
 > 
-> I think I could implement something like this for drm/msm.  I am a bit
-> uncertain about the memory stats (ie. how are we intended to account
-> for imported/exported/shared bo's)?  But we already track cycles+time
-> per submit for devfreq, it would be pretty easy to add per drm_file
-> counters to accumulate the per-submit results.  We could even track
-> per-context (submitqueue) for processes that have more than a single
-> context, although not sure if that is useful.
-
-Interesting tidbit is that the whole i915 work started from a customer 
-request to expose just that (per context) in a form akin to 
-getrusage(2). I think this kind of introspection capability is 
-interesting but as it is driver specific territory it's only anecdotal 
-for what this thread is concerned.
-
-> And I think there is probably some room for shared helper to print
-> parts other than the per-engine stats (and maybe memory stats,
-> although even that could be a shared implementation for some
-> drivers).. with a driver callback for the non-generic parts, ie.
-> something like:
+> v2: - Removed redundant new_plane_state->do_async_flip
+>       check from needs_async_flip_wm_override condition
+>       (Ville Syrjälä)
+>     - Extract dg2_async_flip_optimization to separate
+>       function(Ville Syrjälä)
+>     - Check for plane->async_flip instead of plane_id
+>       (Ville Syrjälä)
 > 
->     drm_driver::show_client_stats(struct drm_file *, struct drm_printer *)
+> v3: - Rename "needs_async_flip_wm_override" to
+>       "intel_plane_do_async_flip" and move all the required
+>       checks there (Ville Syrjälä)
+>     - Rename "dg2_async_flip_optimization" to
+>       "use_minimal_wm0_only" (Ville Syrjälä)
 > 
-> but that can come later.
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 24 +++++++++++++++++++-
+>  drivers/gpu/drm/i915/intel_pm.c              | 12 +++++++++-
+>  2 files changed, 34 insertions(+), 2 deletions(-)
 > 
-> If there is a tool somewhere that displays this info, that would be
-> useful for testing my implementation.
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 9996daa036a0..3b86ede01b57 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4910,6 +4910,28 @@ static bool needs_scaling(const struct intel_plane_state *state)
+>  	return (src_w != dst_w || src_h != dst_h);
+>  }
+>  
+> +static bool intel_plane_do_async_flip(struct intel_plane *plane,
+> +				      const struct intel_crtc_state *new_crtc_state,
+> +				      const struct intel_crtc_state *old_crtc_state)
 
-I have a patch to Intel specific intel_gpu_top (see 
-https://patchwork.freedesktop.org/patch/468491/?series=98555&rev=1). 
-I'll have a look to see how much work would it be to extract common bits 
-into a library and write a quick agnostic tool using it.
+I think typically we put the old state before the new state.
+Sadly the compiler can't help us with these so we should try
+to be consistent to avoid accidental mishaps.
 
-Regards,
+> +{
+> +	struct drm_i915_private *i915 = to_i915(new_crtc_state->uapi.crtc->dev);
 
-Tvrtko
+Would be a bit shorter to grab this from plane->base.dev
+
+> +
+> +	if (!plane->async_flip)
+> +		return false;
+> +
+> +	if (!new_crtc_state->uapi.async_flip)
+> +		return false;
+> +
+> +	/*
+> +	 * In platforms after DISPLAY13, we might need to override
+> +	 * first async flip in order to change watermark levels
+> +	 * as part of optimization.
+> +	 * So for those, we are checking if this is a first async flip.
+> +	 * For platforms earlier than DISPLAY13 we always do async flip.
+> +	 */
+> +	return DISPLAY_VER(i915) < 13 || old_crtc_state->uapi.async_flip;
+> +}
+> +
+>  int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_crtc_state,
+>  				    struct intel_crtc_state *new_crtc_state,
+>  				    const struct intel_plane_state *old_plane_state,
+> @@ -5029,7 +5051,7 @@ int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_crtc_stat
+>  			 needs_scaling(new_plane_state))))
+>  		new_crtc_state->disable_lp_wm = true;
+>  
+> -	if (new_crtc_state->uapi.async_flip && plane->async_flip)
+> +	if (intel_plane_do_async_flip(plane, new_crtc_state, old_crtc_state))
+>  		new_plane_state->do_async_flip = true;
+>  
+>  	return 0;
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> index 35d0bd8c6e57..5fb022a2a4d7 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -5510,6 +5510,15 @@ static int skl_wm_max_lines(struct drm_i915_private *dev_priv)
+>  		return 31;
+>  }
+>  
+> +static bool use_minimal_wm0_only(struct drm_i915_private *i915,
+
+We can dig out 'i915' from eg. the plane, so no need for the
+caller to pass it in.
+
+> +				 const struct intel_crtc_state *crtc_state,
+> +				 const struct intel_plane *plane)
+> +{
+
+Atypical 'const' still on the plane pointer here.
+
+Apart from those lgtm
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+> +	return DISPLAY_VER(i915) >= 13 &&
+> +	       crtc_state->uapi.async_flip &&
+> +	       plane->async_flip;
+> +}
+> +
+>  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+>  				 const struct intel_plane *plane,
+>  				 int level,
+> @@ -5523,7 +5532,8 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+>  	uint_fixed_16_16_t selected_result;
+>  	u32 blocks, lines, min_ddb_alloc = 0;
+>  
+> -	if (latency == 0) {
+> +	if (latency == 0 ||
+> +	    (use_minimal_wm0_only(dev_priv, crtc_state, plane) && level > 0)) {
+>  		/* reject it */
+>  		result->min_ddb_alloc = U16_MAX;
+>  		return;
+> -- 
+> 2.24.1.485.gad05a3d8e5
+
+-- 
+Ville Syrjälä
+Intel
