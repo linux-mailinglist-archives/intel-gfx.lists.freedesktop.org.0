@@ -2,43 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 608F3496600
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 20:52:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1917496610
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 20:54:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5424E10E399;
-	Fri, 21 Jan 2022 19:51:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEAAE10E420;
+	Fri, 21 Jan 2022 19:54:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF5DC10E399;
- Fri, 21 Jan 2022 19:51:50 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: bbeckett) with ESMTPSA id 1ABBB1F465B4
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1642794709;
- bh=mZPnCcNyP7YHjGx5er41lmSPG9xmDAql7AreGVobiw0=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=N3/0J4j/jzXLqfIAHw/jAA2amyjUAFWC9xfhwpgc1d+NiuCuTjc6phYrYk0dV3yU2
- 6r9HV59X17SqUV+gU+9arFcqILfaC1B3KhuoTZKQ68YwdfX0irfoiJPkZ27Ty72dcs
- aJywOL73+G/lsQmxaWPN2TLzrgWKFD/H/Uw5QEGlOmos8TSS3jcOnz2fK1p8ELNizY
- 3WbqHtjgcY94z2g50n+Tgko4c/bB7uNiOLfTcfNKq+YBFpak8kajtyIQMIf0zmn8ih
- ablFHT6TcyrDOQ73DeElFNixic8DyCbFgON8VWahBXESx3N4b1ZVxlyOrGjyifq3pQ
- Wg2vEJlqItekA==
-From: Robert Beckett <bob.beckett@collabora.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Date: Fri, 21 Jan 2022 19:50:39 +0000
-Message-Id: <20220121195040.2145227-6-bob.beckett@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220121195040.2145227-1-bob.beckett@collabora.com>
-References: <20220121195040.2145227-1-bob.beckett@collabora.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BB9C10E420
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Jan 2022 19:54:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642794880; x=1674330880;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=54Z2cmbN5+iJ4f6SMhYS1iOTS1Bdqmq81545kGSGhJ4=;
+ b=ONuV+VOiqtAcwE4YPkPU561QZnnU5AXN6zxgExAp4xvLfj48BmvvHYyL
+ r0uDMh1BhADFONs66nB4EY9gHHSRwQfDf5sAE+v8JbMXRGq834PN42Xx9
+ 1vbLRRiCmozgP2AzEfIhIrJtd6vPMIgBUADujQ9e1zSxGWI5Z5Ht4N5EC
+ sgAQlSDFf0tNmc0g9OeUvSgxqVkGpuDTTkgecaVm3Zp8xFb1gY5o0B12k
+ emIfQOQe4ENWjQugaMuPkBqFoToE+/Q6ZoH8FFsXB3r2ulE6x0eaW/yt5
+ dHNDab1ipQ+qjWZkHSGKqQdhKaskRj/GQSnP3UFaj3hPqlU8APC1e4ol0 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10234"; a="225717229"
+X-IronPort-AV: E=Sophos;i="5.88,306,1635231600"; d="scan'208";a="225717229"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2022 11:53:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,306,1635231600"; d="scan'208";a="519199809"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
+ by orsmga007.jf.intel.com with SMTP; 21 Jan 2022 11:53:37 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 21 Jan 2022 21:53:36 +0200
+Date: Fri, 21 Jan 2022 21:53:36 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <YesPQBga1LbmS3jB@intel.com>
+References: <20220121192450.208535-1-jose.souza@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 5/5] drm/i915/uapi: document behaviour for
- DG2 64K support
+In-Reply-To: <20220121192450.208535-1-jose.souza@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix errors when there is no free
+ DSM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,106 +60,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Kenneth Graunke <kenneth@whitecape.org>,
- dri-devel@lists.freedesktop.org,
- Slawomir Milczarek <slawomir.milczarek@intel.com>,
- Pekka Paalanen <ppaalanen@gmail.com>, Matthew Auld <matthew.auld@intel.com>,
- Simon Ser <contact@emersion.fr>, mesa-dev@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matthew Auld <matthew.auld@intel.com>
+On Fri, Jan 21, 2022 at 11:24:50AM -0800, José Roberto de Souza wrote:
+> Part of DSM(data stolen memory) is reserved for HW functions and GUC
+> and in some platform this reserved block takes the whole DSM leaving
+> no memory to allocated by i915_gem_object_create_stolen() and friends.
+> 
+> In such cases i915_gem_init_stolen() was not calling drm_mm_init()
+> and returning 0, causing errors later when testing memory
+> (intel_memory_region_memtest()) and in intel_memory_regions_hw_probe()
+> saying setup of memory region failed:
 
-On discrete platforms like DG2, we need to support a minimum page size
-of 64K when dealing with device local-memory. This is quite tricky for
-various reasons, so try to document the new implicit uapi for this.
+I think you might that a bit backwards. There are a lot of other cases
+where don't initialize stolen and still return 0 here. But in those cases
+we *don't* call drm_mm_init() and everyone just uses drm_mm_initialized()
+to check whether stolen was actually initialized or not.
 
-v3: fix typos and less emphasis
-v2: Fixed suggestions on formatting [Daniel]
+> 
+> checking generic (91000000 300000) vs hw (23fe7e000000 2000000)
+> checking generic (91000000 300000) vs hw (237800000000 800000000)
+> i915 0000:8c:00.0: [drm:i915_gem_init_stolen [i915]] GEN6_STOLEN_RESERVED = 0x00000003ff800185
+> i915 0000:8c:00.0: [drm:i915_gem_init_stolen [i915]] Memory reserved for graphics device: 8192K, usable: 0K
+> i915 0000:8c:00.0: Failed to read back from memory region:[mem 0x3ff800000-0x3ff7fffff] at [0x0000237bff800000 + 0x0000000000000000] for i915_gem_stolen_lmem_setup [i915]; wrote 0, read (ff, ff, ff)
+> i915 0000:8c:00.0: [drm] *ERROR* Failed to setup region 6 (type=3:0), error -22
+> [drm:intel_gt_setup_lmem [i915]] LMEM: debug trace data region: [0x0-0x2000000]
+> i915 0000:8c:00.0: [drm:intel_gt_setup_lmem [i915]] Local memory: [mem 0x00000000-0x3faffffff]
+> 
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 9 ++++++---
+>  drivers/gpu/drm/i915/intel_memory_region.c | 3 +++
+>  2 files changed, 9 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> index 26975d8577760..6e90357b2d1fd 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> @@ -495,13 +495,16 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
+>  	 * memory, so just consider the start. */
+>  	reserved_total = stolen_top - reserved_base;
+>  
+> +	i915->stolen_usable_size =
+> +		resource_size(&i915->dsm) - reserved_total;
+> +
+>  	drm_dbg(&i915->drm,
+>  		"Memory reserved for graphics device: %lluK, usable: %lluK\n",
+>  		(u64)resource_size(&i915->dsm) >> 10,
+> -		((u64)resource_size(&i915->dsm) - reserved_total) >> 10);
+> +		(u64)i915->stolen_usable_size >> 10);
+>  
+> -	i915->stolen_usable_size =
+> -		resource_size(&i915->dsm) - reserved_total;
+> +	if (i915->stolen_usable_size == 0)
+> +		return -ENOMEM;
+>  
+>  	/* Basic memrange allocator for stolen space. */
+>  	drm_mm_init(&i915->mm.stolen, 0, i915->stolen_usable_size);
+> diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
+> index c70d7e286a512..317d67fa3a36e 100644
+> --- a/drivers/gpu/drm/i915/intel_memory_region.c
+> +++ b/drivers/gpu/drm/i915/intel_memory_region.c
+> @@ -324,6 +324,9 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
+>  
+>  		if (IS_ERR(mem)) {
+>  			err = PTR_ERR(mem);
+> +			if (err == -ENOMEM)
+> +				continue;
+> +
+>  			drm_err(&i915->drm,
+>  				"Failed to setup region(%d) type=%d\n",
+>  				err, type);
+> -- 
+> 2.34.1
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-Acked-by: Jordan Justen <jordan.l.justen@intel.com>
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-cc: Simon Ser <contact@emersion.fr>
-cc: Pekka Paalanen <ppaalanen@gmail.com>
-Cc: Jordan Justen <jordan.l.justen@intel.com>
-Cc: Kenneth Graunke <kenneth@whitecape.org>
-Cc: mesa-dev@lists.freedesktop.org
-Cc: Tony Ye <tony.ye@intel.com>
-Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
----
- include/uapi/drm/i915_drm.h | 44 ++++++++++++++++++++++++++++++++-----
- 1 file changed, 39 insertions(+), 5 deletions(-)
-
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 5e678917da70..77e5e74c32c1 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -1118,10 +1118,16 @@ struct drm_i915_gem_exec_object2 {
- 	/**
- 	 * When the EXEC_OBJECT_PINNED flag is specified this is populated by
- 	 * the user with the GTT offset at which this object will be pinned.
-+	 *
- 	 * When the I915_EXEC_NO_RELOC flag is specified this must contain the
- 	 * presumed_offset of the object.
-+	 *
- 	 * During execbuffer2 the kernel populates it with the value of the
- 	 * current GTT offset of the object, for future presumed_offset writes.
-+	 *
-+	 * See struct drm_i915_gem_create_ext for the rules when dealing with
-+	 * alignment restrictions with I915_MEMORY_CLASS_DEVICE, on devices with
-+	 * minimum page sizes, like DG2.
- 	 */
- 	__u64 offset;
- 
-@@ -3145,11 +3151,39 @@ struct drm_i915_gem_create_ext {
- 	 *
- 	 * The (page-aligned) allocated size for the object will be returned.
- 	 *
--	 * Note that for some devices we have might have further minimum
--	 * page-size restrictions(larger than 4K), like for device local-memory.
--	 * However in general the final size here should always reflect any
--	 * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
--	 * extension to place the object in device local-memory.
-+	 *
-+	 * DG2 64K min page size implications:
-+	 *
-+	 * On discrete platforms, starting from DG2, we have to contend with GTT
-+	 * page size restrictions when dealing with I915_MEMORY_CLASS_DEVICE
-+	 * objects.  Specifically the hardware only supports 64K or larger GTT
-+	 * page sizes for such memory. The kernel will already ensure that all
-+	 * I915_MEMORY_CLASS_DEVICE memory is allocated using 64K or larger page
-+	 * sizes underneath.
-+	 *
-+	 * Note that the returned size here will always reflect any required
-+	 * rounding up done by the kernel, i.e 4K will now become 64K on devices
-+	 * such as DG2.
-+	 *
-+	 * Special DG2 GTT address alignment requirement:
-+	 *
-+	 * The GTT alignment will also need to be at least 2M for such objects.
-+	 *
-+	 * Note that due to how the hardware implements 64K GTT page support, we
-+	 * have some further complications:
-+	 *
-+	 *   1) The entire PDE (which covers a 2MB virtual address range), must
-+	 *   contain only 64K PTEs, i.e mixing 4K and 64K PTEs in the same
-+	 *   PDE is forbidden by the hardware.
-+	 *
-+	 *   2) We still need to support 4K PTEs for I915_MEMORY_CLASS_SYSTEM
-+	 *   objects.
-+	 *
-+	 * To keep things simple for userland, we mandate that any GTT mappings
-+	 * must be aligned to and rounded up to 2MB. As this only wastes virtual
-+	 * address space and avoids userland having to copy any needlessly
-+	 * complicated PDE sharing scheme (coloring) and only affects DG2, this
-+	 * is deemed to be a good compromise.
- 	 */
- 	__u64 size;
- 	/**
 -- 
-2.25.1
-
+Ville Syrjälä
+Intel
