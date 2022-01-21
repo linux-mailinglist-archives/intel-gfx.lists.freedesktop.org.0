@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 102EF495FBB
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 14:25:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3A6D495F6B
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 14:07:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6D8410E6F9;
-	Fri, 21 Jan 2022 13:25:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 664C410EA63;
+	Fri, 21 Jan 2022 13:07:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1153A10E916
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Jan 2022 07:38:15 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 5609DB81F10;
- Fri, 21 Jan 2022 07:38:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 101D1C340E3;
- Fri, 21 Jan 2022 07:38:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642750692;
- bh=zXkb2ok2mgiZpR8XJNcz4+niW6G1cJSkJ5qEilrGpBA=;
- h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
- b=f8Zgttx8hT26mKKl0CR7BZMmDst7ukqWrt88qp5uUhdIzQc2/Sshz9T5bcg1yVGnT
- ChvK43vwM3FbvQ6xU5XOxId4uaKr0J0yF/pV53HoAvt0YYIlokr/PojnoPe/AnSLWs
- eDf5jruxbu0XfwHtPVBVvjJA6fHmkgYCiWDFfL/UYDDZQedc1EaIzQD3NCNmCFEBUL
- 7SUanhjXQzgoRAauorEvG5qMXwpaDc1dvCmh/703toJYJTRq42scfg6jK3mRRkjWHi
- eLTuFjNRglcUoX95dkx3AzTgd8yOQtUR1dyE/7pKz6bj4V4e08xpMFlhFn2DB8SOMP
- lMD/m+vvcKVDA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
- F1635F6079C; Fri, 21 Jan 2022 07:38:11 +0000 (UTC)
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20220120204817.GA1065181@bhelgaas>
-References: <20220120204817.GA1065181@bhelgaas>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20220120204817.GA1065181@bhelgaas>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git
- tags/pci-v5.17-fixes-1
-X-PR-Tracked-Commit-Id: 9c494ca4d3a535f9ca11ad6af1813983c1c6cbdd
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 4141a5e694588897cbec955bc4a646075dc0afd7
-Message-Id: <164275069198.15932.5725510103578792675.pr-tracker-bot@kernel.org>
-Date: Fri, 21 Jan 2022 07:38:11 +0000
-To: Bjorn Helgaas <helgaas@kernel.org>
-X-Mailman-Approved-At: Fri, 21 Jan 2022 13:25:01 +0000
-Subject: Re: [Intel-gfx] [GIT PULL] PCI fixes for v5.17
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A922210EA63
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Jan 2022 13:07:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642770433; x=1674306433;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=m3xoUSrgOa6vGR64BVz7NlN2exwisG8QImZVPZG1lKk=;
+ b=INV5xTid/VBLCLJVPyCqU0y0bIXu7sKX8M8w/l7Y7EcXtlDuxGPN2sAL
+ mWg/hP22KuUMpg76amM3fHAZ0C6DeVHnyVAZWGlJLZ1h8bKwDusp0cXt+
+ S7AeIvAcVJ6I+GO6EKJFoWrNMEIf5y7pKwYEyKRKE2v9N01pIBeothtbS
+ Cj+fJooseUdTttIeRlpiNzCI+7LTKQCTZaZrg2755KRzTHoOFjyB5+A6b
+ S+gnbKH9SKGoL1qFii6scoIQ6dTjk6nIPiHuZXYkOJP5yEfVGQraHwu5x
+ /NM3fYBVbrbq0UvFhqcmKgqt6+o+LEoyHh1AfU36PAJUvT+wRLs+5Bek+ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="245432927"
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="245432927"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2022 05:07:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="561866450"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
+ by orsmga001.jf.intel.com with SMTP; 21 Jan 2022 05:07:11 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 21 Jan 2022 15:07:10 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 21 Jan 2022 15:07:08 +0200
+Message-Id: <20220121130710.10382-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Reject bigjoiner if the pipe
+ doesn't support it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,25 +57,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: x86@kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Thomas Gleixner <tglx@linutronix.de>,
- Linus Torvalds <torvalds@linux-foundation.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The pull request you sent on Thu, 20 Jan 2022 14:48:17 -0600:
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git tags/pci-v5.17-fixes-1
+Check that our crtc can in fact be the bigjoiner master before
+we let the modeset proceed with bigjoiner enabled.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/4141a5e694588897cbec955bc4a646075dc0afd7
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-Thank you!
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 0964b2403e2d..36e547bd0cbe 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4102,6 +4102,14 @@ static u8 bigjoiner_pipes(struct drm_i915_private *i915)
+ 		return 0;
+ }
+ 
++static u8 bigjoiner_master_pipes(struct drm_i915_private *i915)
++{
++	u8 pipes = bigjoiner_pipes(i915);
++
++	/* last pipe can not be master */
++	return pipes & (pipes >> 1);
++}
++
+ static bool transcoder_ddi_func_is_enabled(struct drm_i915_private *dev_priv,
+ 					   enum transcoder cpu_transcoder)
+ {
+@@ -7600,6 +7608,7 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
+ 					struct intel_crtc_state *old_crtc_state,
+ 					struct intel_crtc_state *new_crtc_state)
+ {
++	struct drm_i915_private *i915 = to_i915(state->base.dev);
+ 	struct intel_crtc_state *slave_crtc_state, *master_crtc_state;
+ 	struct intel_crtc *slave_crtc, *master_crtc;
+ 
+@@ -7615,6 +7624,13 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
+ 	if (!new_crtc_state->bigjoiner)
+ 		return 0;
+ 
++	if ((bigjoiner_master_pipes(i915) & BIT(crtc->pipe)) == 0) {
++		drm_dbg_kms(&i915->drm,
++			    "[CRTC:%d:%s] Bigjoiner not available on this pipe\n",
++			    crtc->base.base.id, crtc->base.name);
++		return -EINVAL;
++	}
++
+ 	slave_crtc = intel_dsc_get_bigjoiner_secondary(crtc);
+ 	if (!slave_crtc) {
+ 		DRM_DEBUG_KMS("[CRTC:%d:%s] Big joiner configuration requires "
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+2.32.0
+
