@@ -1,33 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E459495C58
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 09:52:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 699C4495D23
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jan 2022 10:57:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA88B10E990;
-	Fri, 21 Jan 2022 08:52:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F88210E9C2;
+	Fri, 21 Jan 2022 09:57:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F357B10E990;
- Fri, 21 Jan 2022 08:52:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F2763A77A5;
- Fri, 21 Jan 2022 08:52:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4412722370607211618=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A46010E9C2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Jan 2022 09:57:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642759065; x=1674295065;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=HKSw80MpswAhuWo7IXtlWQUWFohJ5ZnXFNCzs+1Qr5M=;
+ b=R4y4Jaf+ikLnPqHB/EYf3v2PXO3O2vAwSz0aDjo6GLLa3tlRLWngf3IQ
+ WDRHHtfgtZX7fE0tfAzDf7qbiAriH3YXp7j0bu/LPugauOw9NnposRm39
+ atO4tQU/pXO5dm9LvinmdI+MXl8EKUkwhOHl5qz3ShHqyfe26+xzTG/C1
+ p/u/fDNUShrgRgPV77fOwxSuwxhgTlaqi51f6WSMP6G7LGdY6boeLO/q3
+ r/xH2FjU0OgzhLO2Mex4mz6YCnAmK/Ww+S16Ne4FzoZRU1lP8mEK0OpP3
+ Rqv4qnevpJ5eJhUAFZO5MMGwR4LsQF77eLvIh5Y0orwuzYUWzi6gXrudV A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="245402338"
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="245402338"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2022 01:57:44 -0800
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; d="scan'208";a="533212099"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2022 01:57:42 -0800
+Date: Fri, 21 Jan 2022 11:57:41 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20220121095741.GA10059@intel.com>
+References: <20211015133921.4609-1-ville.syrjala@linux.intel.com>
+ <20211015133921.4609-7-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Fri, 21 Jan 2022 08:52:19 -0000
-Message-ID: <164275513998.19939.3886795278367547972@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220121080615.9936-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20220121080615.9936-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQXN5?=
- =?utf-8?q?nc_flip_optimization_for_DG2_=28rev3=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211015133921.4609-7-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 06/20] drm/i915/hdmi: Clean up TMDS clock
+ limit exceeding user mode handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,372 +59,280 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4412722370607211618==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Oct 15, 2021 at 04:39:07PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Currently we just use all the hdmi_deep_color_possible() stuff
+> to compute whether deep color is possible, and leave the 8bpc
+> case to do its own thing. That doesn't mesh super well with 4:2:0
+> handling because we might end up going for 8bpc RGB without
+> considering that it's essentially illegal and we could instead
+> go for a legal 4:2:0 config.
+> 
+> So let's run through all the clock checks even for 8bpc first.
+> If we've fully exhausted all options only then do we re-run
+> the computation for 8bpc while ignoring the downstream TMDS
+> clock limits. This will guarantee that if there's a config
+> that respects all limits we will find it, and if there is not
+> we still allow the user to override the mode manually.
+> 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-Series: Async flip optimization for DG2 (rev3)
-URL   : https://patchwork.freedesktop.org/series/98981/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11115 -> Patchwork_22052
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_22052 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22052, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/index.html
-
-Participating hosts (45 -> 42)
-------------------------------
-
-  Additional (3): bat-jsl-2 fi-icl-u2 bat-adlp-4 
-  Missing    (6): fi-kbl-soraka shard-tglu fi-bsw-cyan shard-rkl shard-dg1 fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22052:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling:
-    - bat-adlp-4:         NOTRUN -> [DMESG-WARN][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/bat-adlp-4/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22052 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@fork-gfx0:
-    - fi-icl-u2:          NOTRUN -> [SKIP][2] ([fdo#109315]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][4] ([i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - bat-adlp-4:         NOTRUN -> [SKIP][5] ([i915#4613]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/bat-adlp-4/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-icl-u2:          NOTRUN -> [SKIP][6] ([i915#4613]) +3 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-adlp-4:         NOTRUN -> [SKIP][7] ([i915#3282])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/bat-adlp-4/igt@gem_tiled_pread_basic.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          NOTRUN -> [SKIP][8] ([fdo#111827]) +8 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-u2:          NOTRUN -> [SKIP][9] ([fdo#109278]) +2 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-u2:          NOTRUN -> [SKIP][10] ([fdo#109285])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-skl-6600u:       [PASS][11] -> [FAIL][12] ([i915#4547])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-icl-u2:          NOTRUN -> [SKIP][13] ([i915#3301])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - bat-adlp-4:         NOTRUN -> [FAIL][14] ([i915#4312])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/bat-adlp-4/igt@runner@aborted.html
-    - fi-skl-6600u:       NOTRUN -> [FAIL][15] ([i915#4312])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-skl-6600u/igt@runner@aborted.html
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][16] ([i915#2426] / [i915#4312])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-tgl-1115g4:      [FAIL][17] ([i915#1888]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [DMESG-FAIL][19] ([i915#4494]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-    - fi-snb-2600:        [INCOMPLETE][21] ([i915#3921]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][23] ([i915#4269]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11115 -> Patchwork_22052
-
-  CI-20190529: 20190529
-  CI_DRM_11115: 4e12213687264ffccb45d72fe638f94d3ca666bd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22052: 3bdabf9d5e5bec9430ef526f5e11b170d7401238 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3bdabf9d5e5b drm/i915: Don't allocate extra ddb during async flip for DG2
-673ea1a0d880 drm/i915: Use wm0 only during async flips for DG2
-5b3c6244957a drm/i915: Introduce do_async_flip flag to intel_plane_state
-c096e57d2e26 drm/i915: Pass plane to watermark calculation functions
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/index.html
-
---===============4412722370607211618==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Async flip optimization for DG2 (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98981/">https://patchwork.freedesktop.org/series/98981/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11115 -&gt; Patchwork_22052</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22052 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22052, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/index.html</p>
-<h2>Participating hosts (45 -&gt; 42)</h2>
-<p>Additional (3): bat-jsl-2 fi-icl-u2 bat-adlp-4 <br />
-  Missing    (6): fi-kbl-soraka shard-tglu fi-bsw-cyan shard-rkl shard-dg1 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22052:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling:<ul>
-<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/bat-adlp-4/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22052 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/bat-adlp-4/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/bat-adlp-4/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/bat-adlp-4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11115/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22052/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11115 -&gt; Patchwork_22052</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11115: 4e12213687264ffccb45d72fe638f94d3ca666bd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6329: 38f656fdd61119105ecfa2c4dac157cd7dcad204 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22052: 3bdabf9d5e5bec9430ef526f5e11b170d7401238 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>3bdabf9d5e5b drm/i915: Don't allocate extra ddb during async flip for DG2<br />
-673ea1a0d880 drm/i915: Use wm0 only during async flips for DG2<br />
-5b3c6244957a drm/i915: Introduce do_async_flip flag to intel_plane_state<br />
-c096e57d2e26 drm/i915: Pass plane to watermark calculation functions</p>
-
-</body>
-</html>
-
---===============4412722370607211618==--
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c   | 13 ++--
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 92 +++++++++++++----------
+>  drivers/gpu/drm/i915/display/intel_hdmi.h |  4 +-
+>  3 files changed, 62 insertions(+), 47 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 9d8132dd4cc5..5cc99ffc1841 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1097,14 +1097,13 @@ static bool intel_dp_hdmi_tmds_clock_valid(struct intel_dp *intel_dp,
+>  	return true;
+>  }
+>  
+> -static bool intel_dp_hdmi_deep_color_possible(struct intel_dp *intel_dp,
+> -					      const struct intel_crtc_state *crtc_state,
+> -					      int bpc)
+> +static bool intel_dp_hdmi_bpc_possible(struct intel_dp *intel_dp,
+> +				       const struct intel_crtc_state *crtc_state,
+> +				       int bpc)
+>  {
+>  
+> -	return intel_hdmi_deep_color_possible(crtc_state, bpc,
+> -					      intel_dp->has_hdmi_sink,
+> -					      intel_dp_hdmi_ycbcr420(intel_dp, crtc_state)) &&
+> +	return intel_hdmi_bpc_possible(crtc_state, bpc, intel_dp->has_hdmi_sink,
+> +				       intel_dp_hdmi_ycbcr420(intel_dp, crtc_state)) &&
+>  		intel_dp_hdmi_tmds_clock_valid(intel_dp, crtc_state, bpc);
+>  }
+>  
+> @@ -1122,7 +1121,7 @@ static int intel_dp_max_bpp(struct intel_dp *intel_dp,
+>  
+>  	if (intel_dp->dfp.min_tmds_clock) {
+>  		for (; bpc >= 10; bpc -= 2) {
+> -			if (intel_dp_hdmi_deep_color_possible(intel_dp, crtc_state, bpc))
+> +			if (intel_dp_hdmi_bpc_possible(intel_dp, crtc_state, bpc))
+>  				break;
+>  		}
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 7e6af959bf83..b5af986b2778 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2001,17 +2001,14 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
+>  	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
+>  }
+>  
+> -bool intel_hdmi_deep_color_possible(const struct intel_crtc_state *crtc_state,
+> -				    int bpc, bool has_hdmi_sink, bool ycbcr420_output)
+> +bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
+> +			     int bpc, bool has_hdmi_sink, bool ycbcr420_output)
+>  {
+>  	struct drm_atomic_state *state = crtc_state->uapi.state;
+>  	struct drm_connector_state *connector_state;
+>  	struct drm_connector *connector;
+>  	int i;
+>  
+> -	if (crtc_state->pipe_bpp < bpc * 3)
+> -		return false;
+> -
+>  	for_each_new_connector_in_state(state, connector, connector_state, i) {
+>  		if (connector_state->crtc != crtc_state->uapi.crtc)
+>  			continue;
+> @@ -2023,8 +2020,7 @@ bool intel_hdmi_deep_color_possible(const struct intel_crtc_state *crtc_state,
+>  	return true;
+>  }
+>  
+> -static bool hdmi_deep_color_possible(const struct intel_crtc_state *crtc_state,
+> -				     int bpc)
+> +static bool hdmi_bpc_possible(const struct intel_crtc_state *crtc_state, int bpc)
+>  {
+>  	struct drm_i915_private *dev_priv =
+>  		to_i915(crtc_state->uapi.crtc->dev);
+> @@ -2038,7 +2034,7 @@ static bool hdmi_deep_color_possible(const struct intel_crtc_state *crtc_state,
+>  	 * HDMI deep color affects the clocks, so it's only possible
+>  	 * when not cloning with other encoder types.
+>  	 */
+> -	if (crtc_state->output_types != BIT(INTEL_OUTPUT_HDMI))
+> +	if (bpc > 8 && crtc_state->output_types != BIT(INTEL_OUTPUT_HDMI))
+>  		return false;
+>  
+>  	/* Display Wa_1405510057:icl,ehl */
+> @@ -2048,35 +2044,50 @@ static bool hdmi_deep_color_possible(const struct intel_crtc_state *crtc_state,
+>  	     adjusted_mode->crtc_hblank_start) % 8 == 2)
+>  		return false;
+>  
+> -	return intel_hdmi_deep_color_possible(crtc_state, bpc,
+> -					      crtc_state->has_hdmi_sink,
+> -					      intel_hdmi_is_ycbcr420(crtc_state));
+> +	return intel_hdmi_bpc_possible(crtc_state, bpc, crtc_state->has_hdmi_sink,
+> +				       intel_hdmi_is_ycbcr420(crtc_state));
+>  }
+>  
+>  static int intel_hdmi_compute_bpc(struct intel_encoder *encoder,
+>  				  struct intel_crtc_state *crtc_state,
+> -				  int clock)
+> +				  int clock, bool respect_downstream_limits)
+>  {
+>  	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
+>  	bool ycbcr420_output = intel_hdmi_is_ycbcr420(crtc_state);
+>  	int bpc;
+>  
+> -	for (bpc = 12; bpc >= 10; bpc -= 2) {
+> -		if (hdmi_deep_color_possible(crtc_state, bpc) &&
+> -		    hdmi_port_clock_valid(intel_hdmi,
+> -					  intel_hdmi_tmds_clock(clock, bpc, ycbcr420_output),
+> -					  true, crtc_state->has_hdmi_sink) == MODE_OK)
+> +	/*
+> +	 * pipe_bpp could already be below 8bpc due to FDI
+> +	 * bandwidth constraints. HDMI minimum is 8bpc however.
+> +	 */
+> +	bpc = max(crtc_state->pipe_bpp / 3, 8);
+> +
+> +	/*
+> +	 * We will never exceed downstream TMDS clock limits while
+> +	 * attempting deep color. If the user insists on forcing an
+> +	 * out of spec mode they will have to be satisfied with 8bpc.
+> +	 */
+> +	if (!respect_downstream_limits)
+> +		bpc = 8;
+> +
+> +	for (; bpc >= 8; bpc -= 2) {
+> +		int tmds_clock = intel_hdmi_tmds_clock(clock, bpc, ycbcr420_output);
+> +
+> +		if (hdmi_bpc_possible(crtc_state, bpc) &&
+> +		    hdmi_port_clock_valid(intel_hdmi, tmds_clock,
+> +					  respect_downstream_limits,
+> +					  crtc_state->has_hdmi_sink) == MODE_OK)
+>  			return bpc;
+>  	}
+>  
+> -	return 8;
+> +	return -EINVAL;
+>  }
+>  
+>  static int intel_hdmi_compute_clock(struct intel_encoder *encoder,
+> -				    struct intel_crtc_state *crtc_state)
+> +				    struct intel_crtc_state *crtc_state,
+> +				    bool respect_downstream_limits)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> -	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
+>  	const struct drm_display_mode *adjusted_mode =
+>  		&crtc_state->hw.adjusted_mode;
+>  	int bpc, clock = adjusted_mode->crtc_clock;
+> @@ -2084,31 +2095,25 @@ static int intel_hdmi_compute_clock(struct intel_encoder *encoder,
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLCLK)
+>  		clock *= 2;
+>  
+> -	bpc = intel_hdmi_compute_bpc(encoder, crtc_state, clock);
+> +	bpc = intel_hdmi_compute_bpc(encoder, crtc_state, clock,
+> +				     respect_downstream_limits);
+> +	if (bpc < 0)
+> +		return bpc;
+>  
+> -	crtc_state->port_clock = intel_hdmi_tmds_clock(clock, bpc,
+> -						       intel_hdmi_is_ycbcr420(crtc_state));
+> +	crtc_state->port_clock =
+> +		intel_hdmi_tmds_clock(clock, bpc, intel_hdmi_is_ycbcr420(crtc_state));
+>  
+>  	/*
+>  	 * pipe_bpp could already be below 8bpc due to
+>  	 * FDI bandwidth constraints. We shouldn't bump it
+> -	 * back up to 8bpc in that case.
+> +	 * back up to the HDMI minimum 8bpc in that case.
+>  	 */
+> -	if (crtc_state->pipe_bpp > bpc * 3)
+> -		crtc_state->pipe_bpp = bpc * 3;
+> +	crtc_state->pipe_bpp = min(crtc_state->pipe_bpp, bpc * 3);
+>  
+>  	drm_dbg_kms(&i915->drm,
+>  		    "picking %d bpc for HDMI output (pipe bpp: %d)\n",
+>  		    bpc, crtc_state->pipe_bpp);
+>  
+> -	if (hdmi_port_clock_valid(intel_hdmi, crtc_state->port_clock,
+> -				  false, crtc_state->has_hdmi_sink) != MODE_OK) {
+> -		drm_dbg_kms(&i915->drm,
+> -			    "unsupported HDMI clock (%d kHz), rejecting mode\n",
+> -			    crtc_state->port_clock);
+> -		return -EINVAL;
+> -	}
+> -
+>  	return 0;
+>  }
+>  
+> @@ -2169,7 +2174,8 @@ intel_hdmi_output_format(struct intel_connector *connector,
+>  
+>  static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
+>  					    struct intel_crtc_state *crtc_state,
+> -					    const struct drm_connector_state *conn_state)
+> +					    const struct drm_connector_state *conn_state,
+> +					    bool respect_downstream_limits)
+>  {
+>  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+>  	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> @@ -2186,7 +2192,7 @@ static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
+>  		crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>  	}
+>  
+> -	ret = intel_hdmi_compute_clock(encoder, crtc_state);
+> +	ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
+>  	if (ret) {
+>  		if (intel_hdmi_is_ycbcr420(crtc_state) ||
+>  		    !connector->base.ycbcr_420_allowed ||
+> @@ -2194,7 +2200,7 @@ static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
+>  			return ret;
+>  
+>  		crtc_state->output_format = intel_hdmi_output_format(connector, true);
+> -		ret = intel_hdmi_compute_clock(encoder, crtc_state);
+> +		ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
+>  	}
+>  
+>  	return ret;
+> @@ -2230,9 +2236,19 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+>  	pipe_config->has_audio =
+>  		intel_hdmi_has_audio(encoder, pipe_config, conn_state);
+>  
+> -	ret = intel_hdmi_compute_output_format(encoder, pipe_config, conn_state);
+> +	/*
+> +	 * Try to respect downstream TMDS clock limits first, if
+> +	 * that fails assume the user might know something we don't.
+> +	 */
+> +	ret = intel_hdmi_compute_output_format(encoder, pipe_config, conn_state, true);
+>  	if (ret)
+> +		ret = intel_hdmi_compute_output_format(encoder, pipe_config, conn_state, false);
+> +	if (ret) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "unsupported HDMI clock (%d kHz), rejecting mode\n",
+> +			    pipe_config->hw.adjusted_mode.crtc_clock);
+>  		return ret;
+> +	}
+>  
+>  	if (intel_hdmi_is_ycbcr420(pipe_config)) {
+>  		ret = intel_panel_fitting(pipe_config, conn_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> index b43a180d007e..ee144db67e66 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> @@ -45,8 +45,8 @@ void intel_read_infoframe(struct intel_encoder *encoder,
+>  			  union hdmi_infoframe *frame);
+>  bool intel_hdmi_limited_color_range(const struct intel_crtc_state *crtc_state,
+>  				    const struct drm_connector_state *conn_state);
+> -bool intel_hdmi_deep_color_possible(const struct intel_crtc_state *crtc_state, int bpc,
+> -				    bool has_hdmi_sink, bool ycbcr420_output);
+> +bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
+> +			     int bpc, bool has_hdmi_sink, bool ycbcr420_output);
+>  int intel_hdmi_dsc_get_bpp(int src_fractional_bpp, int slice_width,
+>  			   int num_slices, int output_format, bool hdmi_all_bpp,
+>  			   int hdmi_max_chunk_bytes);
+> -- 
+> 2.32.0
+> 
