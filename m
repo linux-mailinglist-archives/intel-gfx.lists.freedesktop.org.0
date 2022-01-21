@@ -2,24 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6170498044
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 14:02:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2F07498118
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 14:32:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 334F810E430;
-	Mon, 24 Jan 2022 13:02:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C77E10E4B3;
+	Mon, 24 Jan 2022 13:32:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96FF410E430;
- Mon, 24 Jan 2022 13:02:14 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Jan 2022 14:02:05 +0100
-Message-Id: <20220124130205.1040321-1-maarten.lankhorst@linux.intel.com>
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C830010E4E0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Jan 2022 22:23:27 +0000 (UTC)
+Received: from sobremesa.fritz.box (unknown
+ [IPv6:2a02:8010:65b5:0:bbb0:f8ec:7bc9:dbe4])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: alarumbe)
+ by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 4AF801F465DB;
+ Fri, 21 Jan 2022 22:23:26 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1642803806;
+ bh=Ghd051lnC0neneuf8YUtplot8CtjmLxYuRnduSFEU+w=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Gc0wQq0a1KHaJU2YCbj/3zITqqx0Ii7Y+q3GrjkANwtWmW83+6lgCyZYv9TEsNCy2
+ 4U+wx2jr6UPJ5gTfp/1Y9JmSTP+IghZAZrEkBxDG8fSCgVVv+Nx3z55aKBc8AukRob
+ FTEsnw4QRY8uYGLt7q0cd9iK1Yzlvtiy/4p8/zYgaetCEBGzAi1LDOXFbWuB919pgD
+ fm/b+iWzDylL/xh1zfUOQ3JPptUVd+ihpGx1EDBVG8OVxUZjkydN5ibCcN2Bgukyjd
+ 9Vo5d/h+E8iAUapHGOUC6CL4LQ0pX0TSdtt+WPreBRPprerw2zzNReMIe+zJLxaQ7K
+ lxHCQgUUS2+cA==
+From: Adrian Larumbe <adrian.larumbe@collabora.com>
+To: daniel@ffwll.ch, ramalingam.c@intel.com, intel-gfx@lists.freedesktop.org
+Date: Fri, 21 Jan 2022 22:22:47 +0000
+Message-Id: <20220121222252.3296117-1-adrian.larumbe@collabora.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Lock dpt_obj around set_cache_level.
+X-Mailman-Approved-At: Mon, 24 Jan 2022 13:32:09 +0000
+Subject: [Intel-gfx] [RFC PATCH 0/5] Add basic support for flat-CCS bo
+ evictions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -32,87 +50,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: adrian.larumbe@collabora.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-set_cache_level may unbind the object, which will result in the below
-lockdep splat:
-<6> [184.578145] [IGT] kms_addfb_basic: starting subtest addfb25-framebuffer-vs-set-tiling
-<4> [184.578220] ------------[ cut here ]------------
-<4> [184.578221] WARN_ON(debug_locks && !(lock_is_held(&(&((obj)->base.resv)->lock.base)->dep_map) != 0))
-<4> [184.578237] WARNING: CPU: 6 PID: 5544 at drivers/gpu/drm/i915/i915_gem.c:123 i915_gem_object_unbind+0x4a9/0x510 [i915]
-<4> [184.578323] Modules linked in: vgem drm_shmem_helper snd_hda_codec_hdmi i915 mei_hdcp x86_pkg_temp_thermal snd_hda_intel coretemp crct10dif_pclmul snd_intel_dspcfg crc32_pclmul ttm snd_hda_codec ghash_clmulni_intel snd_hwdep drm_kms_helper snd_hda_core e1000e mei_me syscopyarea ptp snd_pcm sysfillrect mei pps_core sysimgblt fb_sys_fops prime_numbers intel_lpss_pci smsc75xx usbnet mii
-<4> [184.578349] CPU: 6 PID: 5544 Comm: kms_addfb_basic Not tainted 5.16.0-CI-Patchwork_22006+ #1
-<4> [184.578351] Hardware name: Intel Corporation Alder Lake Client Platform/AlderLake-P DDR4 RVP, BIOS ADLPFWI1.R00.2422.A00.2110131104 10/13/2021
-<4> [184.578352] RIP: 0010:i915_gem_object_unbind+0x4a9/0x510 [i915]
-<4> [184.578424] Code: 00 be ff ff ff ff 48 8d 78 68 e8 a2 6e 2b e1 85 c0 0f 85 b1 fb ff ff 48 c7 c6 48 37 9e a0 48 c7 c7 d9 fc a1 a0 e8 a3 54 26 e1 <0f> 0b e9 97 fb ff ff 31 ed 48 8b 5c 24 58 65 48 33 1c 25 28 00 00
-<4> [184.578426] RSP: 0018:ffffc900013b3b68 EFLAGS: 00010286
-<4> [184.578428] RAX: 0000000000000000 RBX: ffffc900013b3bb0 RCX: 0000000000000001
-<4> [184.578429] RDX: 0000000080000001 RSI: ffffffff8230b42d RDI: 00000000ffffffff
-<4> [184.578430] RBP: ffff888120e10000 R08: 0000000000000000 R09: c0000000ffff7fff
-<4> [184.578431] R10: 0000000000000001 R11: ffffc900013b3980 R12: ffff8881176ea740
-<4> [184.578432] R13: ffff888120e10000 R14: 0000000000000000 R15: 0000000000000001
-<4> [184.578433] FS:  00007f65074f5e40(0000) GS:ffff88888f300000(0000) knlGS:0000000000000000
-<4> [184.578435] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4> [184.578436] CR2: 00007fff4420ede8 CR3: 000000010c2f2005 CR4: 0000000000770ee0
-<4> [184.578437] PKRU: 55555554
-<4> [184.578438] Call Trace:
-<4> [184.578439]  <TASK>
-<4> [184.578440]  ? dma_resv_iter_first_unlocked+0x78/0xf0
-<4> [184.578447]  intel_dpt_create+0x88/0x220 [i915]
-<4> [184.578530]  intel_framebuffer_init+0x5b8/0x620 [i915]
-<4> [184.578612]  intel_framebuffer_create+0x3d/0x60 [i915]
-<4> [184.578691]  intel_user_framebuffer_create+0x18f/0x2c0 [i915]
-<4> [184.578775]  drm_internal_framebuffer_create+0x36d/0x4c0
-<4> [184.578779]  drm_mode_addfb2+0x2f/0xd0
-<4> [184.578781]  ? drm_mode_addfb_ioctl+0x10/0x10
-<4> [184.578784]  drm_ioctl_kernel+0xac/0x140
-<4> [184.578787]  drm_ioctl+0x201/0x3d0
-<4> [184.578789]  ? drm_mode_addfb_ioctl+0x10/0x10
-<4> [184.578796]  __x64_sys_ioctl+0x6a/0xa0
-<4> [184.578800]  do_syscall_64+0x37/0xb0
-<4> [184.578803]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-<4> [184.578805] RIP: 0033:0x7f6506736317
-<4> [184.578807] Code: b3 66 90 48 8b 05 71 4b 2d 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 41 4b 2d 00 f7 d8 64 89 01 48
-<4> [184.578808] RSP: 002b:00007fff44211a98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-<4> [184.578810] RAX: ffffffffffffffda RBX: 0000000000000006 RCX: 00007f6506736317
-<4> [184.578811] RDX: 00007fff44211b30 RSI: 00000000c06864b8 RDI: 0000000000000006
-<4> [184.578812] RBP: 00007fff44211b30 R08: 00007fff44311170 R09: 0000000000000000
-<4> [184.578813] R10: 0000000000000008 R11: 0000000000000246 R12: 00000000c06864b8
-<4> [184.578813] R13: 0000000000000006 R14: 0000000000000000 R15: 0000000000000000
-<4> [184.578819]  </TASK>
-<4> [184.578820] irq event stamp: 47931
-<4> [184.578821] hardirqs last  enabled at (47937): [<ffffffff81130dd2>] __up_console_sem+0x62/0x70
-<4> [184.578824] hardirqs last disabled at (47942): [<ffffffff81130db7>] __up_console_sem+0x47/0x70
-<4> [184.578826] softirqs last  enabled at (47340): [<ffffffff81e0032d>] __do_softirq+0x32d/0x493
-<4> [184.578828] softirqs last disabled at (47335): [<ffffffff810b9196>] irq_exit_rcu+0xa6/0xe0
-<4> [184.578830] ---[ end trace f17ec219f892c7d4 ]---
+This series is a first attempt at handling the eviction of flat-CCS
+compressed lmem-placed bo's.
 
-Fixes: 0f341974cbc2 ("drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind, v2.")
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Testcase: kms_addfb_basic
----
- drivers/gpu/drm/i915/display/intel_dpt.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+The official specification of flat CCS behaviour dictates that:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
-index 63a83d5f85a1..c2f8f853db90 100644
---- a/drivers/gpu/drm/i915/display/intel_dpt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-@@ -253,7 +253,11 @@ intel_dpt_create(struct intel_framebuffer *fb)
- 	if (IS_ERR(dpt_obj))
- 		return ERR_CAST(dpt_obj);
- 
--	ret = i915_gem_object_set_cache_level(dpt_obj, I915_CACHE_NONE);
-+	ret = i915_gem_object_lock_interruptible(dpt_obj, NULL);
-+	if (!ret) {
-+		ret = i915_gem_object_set_cache_level(dpt_obj, I915_CACHE_NONE);
-+		i915_gem_object_unlock(dpt_obj);
-+	}
- 	if (ret) {
- 		i915_gem_object_put(dpt_obj);
- 		return ERR_PTR(ret);
+"Flat CCS data needs to be cleared when a lmem object is allocated.  And CCS
+data can be copied in and out of CCS region through XY_CTRL_SURF_COPY_BLT. CPU
+can't access the CCS data directly.
+                                                                             
+When we exaust the lmem, if the object's placements support smem, then we can
+directly decompress the compressed lmem object into smem and start using it from
+smem itself.
+                                                                             
+But when we need to swapout the compressed lmem object into a smem region though
+objects' placement doesn't support smem, then we copy the lmem content as it is
+into smem region along with ccs data (using XY_CTRL_SURF_COPY_BLT).  When the
+object is referred, lmem content will be swaped in along with restoration of the
+CCS data (using XY_CTRL_SURF_COPY_BLT) at corresponding location."
+
+Design decisions:
+
+ - A separate GEM bo of type `ttm_bo_type_kernel` is created to hold the
+ contents of the CCS block when an lmem-only object is evicted onto smem. This
+ is because this bo should never be mmap'able onto user space.
+
+ - Whether a bo is meant to contain flat-CCS compressed data is marked by adding
+ specific surface modifiers that describe a FB object which contains the
+ relevant bo. This is done through a specific DRM library call.
+
+ - At an eviction event, the bo's buffer data and its corresponding CCS block
+ have to be moved between smem and lmem in two separate blit operations. Because
+ of my poor knowledge of the blit unit, it's very likely that the way I
+ programmed it is somehow wrong.
+
+ - At the moment, migrating a flat-CCS lmem-only object from smem back onto lmem
+ will fail if its flat-CCS swap bo had not been created. However, a bo lifecycle
+ begins in smem when it's created, even its original placement specifies lmem
+ only. Between the time that a bo is freshly created and an execbuf2 ioctl
+ actually moves it onto lmem and allocates its backing storage, the user might've
+ called mmap on it, a scenario which I haven't yet accounted for.
+
+Part of the blitting engine code was borrowed from Ramalingam C <ramalingam.c@intel.com>,
+who has been working in parallel on the same problem, although in a slightly
+different approach.
+
+For testing, a flat-CCS driver self-test is under preparation.
+
+Adrian Larumbe (5):
+  drm/i915/flat-CCS: Add GEM BO structure fields for flat-CCS
+  drm/i915/flat-CCS: Add flat CCS plane capabilities and modifiers
+  drm/i915/flat-CCS: move GET_CCS_SIZE macro into driver-wide header
+  drm/i915/flat-CCS: handle CCS block blit for bo migrations
+  drm/i915/flat-CCS: handle creation and destruction of flat CCS bo's
+
+ drivers/gpu/drm/i915/display/intel_fb.c       |  36 ++-
+ drivers/gpu/drm/i915/display/intel_fb.h       |   1 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  10 +
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  11 +
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  |  78 ++++-
+ drivers/gpu/drm/i915/gt/intel_migrate.c       | 289 ++++++++++++------
+ drivers/gpu/drm/i915/gt/intel_migrate.h       |   2 +
+ drivers/gpu/drm/i915/gt/selftest_migrate.c    |   3 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   5 +
+ 9 files changed, 342 insertions(+), 93 deletions(-)
+
 -- 
 2.34.1
 
