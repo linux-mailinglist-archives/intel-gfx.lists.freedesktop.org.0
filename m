@@ -1,52 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9739F49811C
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 14:32:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69E6749812E
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 14:32:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7325710E995;
-	Mon, 24 Jan 2022 13:32:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8713310E749;
+	Mon, 24 Jan 2022 13:32:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 330 seconds by postgrey-1.36 at gabe;
- Sun, 23 Jan 2022 19:26:02 UTC
-Received: from forward101o.mail.yandex.net (forward101o.mail.yandex.net
- [IPv6:2a02:6b8:0:1a2d::601])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D49DF10E11C
- for <intel-gfx@lists.freedesktop.org>; Sun, 23 Jan 2022 19:26:02 +0000 (UTC)
-Received: from forward102q.mail.yandex.net (forward102q.mail.yandex.net
- [IPv6:2a02:6b8:c0e:1ba:0:640:516:4e7d])
- by forward101o.mail.yandex.net (Yandex) with ESMTP id 55EAF369C258;
- Sun, 23 Jan 2022 22:20:29 +0300 (MSK)
-Received: from vla1-4e4ee944ff6b.qloud-c.yandex.net
- (vla1-4e4ee944ff6b.qloud-c.yandex.net
- [IPv6:2a02:6b8:c0d:3192:0:640:4e4e:e944])
- by forward102q.mail.yandex.net (Yandex) with ESMTP id 51394BF00002;
- Sun, 23 Jan 2022 22:20:29 +0300 (MSK)
-Received: from vla5-445dc1c4c112.qloud-c.yandex.net
- (vla5-445dc1c4c112.qloud-c.yandex.net [2a02:6b8:c18:3609:0:640:445d:c1c4])
- by vla1-4e4ee944ff6b.qloud-c.yandex.net (mxback/Yandex) with ESMTP id
- N586EWrcrw-KSfaudax; Sun, 23 Jan 2022 22:20:29 +0300
-Authentication-Results: vla1-4e4ee944ff6b.qloud-c.yandex.net; dkim=pass
-Received: by vla5-445dc1c4c112.qloud-c.yandex.net (smtp/Yandex) with ESMTPSA
- id TJMeNIfkIw-KQQKhsVM; Sun, 23 Jan 2022 22:20:27 +0300
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (Client certificate not present)
-X-Yandex-Fwd: 2
-From: Yaroslav Bolyukin <iam@lach.pw>
-To: linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Date: Sun, 23 Jan 2022 22:19:55 +0300
-Message-Id: <20220123191955.57994-1-iam@lach.pw>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220118215956.17229-1-iam@lach.pw>
-References: <20220118215956.17229-1-iam@lach.pw>
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com
+ [IPv6:2a00:1450:4864:20::333])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C08810E4DB;
+ Sun, 23 Jan 2022 22:30:33 +0000 (UTC)
+Received: by mail-wm1-x333.google.com with SMTP id
+ l12-20020a7bc34c000000b003467c58cbdfso32958185wmj.2; 
+ Sun, 23 Jan 2022 14:30:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=05N9uh+4Ak2VGTM8SLSYA5VF5ZUwizJAzi30P4Q0iRw=;
+ b=NPt3mdSMhrv9lsWtnCpYgVJT+P4r6DvFFVhWMEF+qsCMv8p/KM3MY7GzS08yOUteuT
+ LHagLw8sHXlFvgO5E7F0DAzgxBgUTrPXv4yXumLELORCfCMPHjN8lGSSHuPtwArbJ4gO
+ 1jTCF5oZteYXfjGjloKP2mmrwgvDAwkUgZ84SYQSMyAS1HoiT+6+FUNVUwjhz1wjAoLc
+ +Lp5xCdC1CF9p6d0fn0sfbk4L00rrxkJrARp+FqqNrhtdPvhnNDq0jZS4DQfr5STlSVu
+ LjaqfnKEDhI+29JSc07xts8njJhV1vUV5PirqvK/+XRuIqasz7YESbIHXaA7SxlgDQjv
+ MtSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=05N9uh+4Ak2VGTM8SLSYA5VF5ZUwizJAzi30P4Q0iRw=;
+ b=seX3XF1j4SDjyz3TgKZjk/w4EjEU+TSKap2HeDDqKZRdn3mtTcOj+z2BSV/TNkoGcM
+ io0cF1+BkKbxpnxHE7hZCIe1wot68arbm1Xb8UoVkl+sZBk6KLzkZC07WAftC396czQc
+ lvQ2rWYD0rD6gMdOjoI9P38mM8knEbFHYLhId/Y5PKvmBwwlBP1U22CAiCmJ+WK/vInd
+ IRxaPlxKB9kOAXCXCDvXqRVFfRjy1Zv3YwSlnbJAxcZSf5zTdhZ92Xj/TBjKcIBn3jm1
+ iYm9o0D2BUlgOBEYcgttuUWxd9DmNBN67bHtCFHcWGZNBfKAm3j408V3z3qwmscEKjdI
+ 0oqQ==
+X-Gm-Message-State: AOAM531qryMIJ1KI0fAJs6KZDRcafEYGUF3QOJYbomdMtIfOr7HVy2TY
+ sJujA9OlWVp/wjEVxEBCnIo=
+X-Google-Smtp-Source: ABdhPJyMJ8VXx50B3SxP9I2RY6ip0w1a1Kzi1Kf73vVfrPUNQ54IUDnlElLRNFHeZuitW7cwxfi/eA==
+X-Received: by 2002:a1c:7316:: with SMTP id d22mr9132678wmb.5.1642977032008;
+ Sun, 23 Jan 2022 14:30:32 -0800 (PST)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194])
+ by smtp.gmail.com with ESMTPSA id n10sm14436700wrf.96.2022.01.23.14.30.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 23 Jan 2022 14:30:31 -0800 (PST)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Sun, 23 Jan 2022 22:30:30 +0000
+Message-Id: <20220123223030.6005-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 24 Jan 2022 13:32:09 +0000
-Subject: [Intel-gfx] [PATCH v2] drm/edid: Support type 7 timings
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: make static read-only array
+ page_count const
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,74 +75,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Yaroslav Bolyukin <iam@lach.pw>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Per VESA DisplayID Standard v2.0: Type VII Timing – Detailed Timing Data
+The static array page_count is read-only so it make sense to make
+it const.
 
-Definitions were already provided as type I, but not used
-
-Signed-off-by: Yaroslav Bolyukin <iam@lach.pw>
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 ---
- drivers/gpu/drm/drm_edid.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/selftests/scatterlist.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index 12893e7be..5f2ae5bfa 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -5405,7 +5405,8 @@ u32 drm_add_display_info(struct drm_connector *connector, const struct edid *edi
- }
- 
- static struct drm_display_mode *drm_mode_displayid_detailed(struct drm_device *dev,
--							    struct displayid_detailed_timings_1 *timings)
-+							    struct displayid_detailed_timings_1 *timings,
-+							    bool type_7)
+diff --git a/drivers/gpu/drm/i915/selftests/scatterlist.c b/drivers/gpu/drm/i915/selftests/scatterlist.c
+index d599186d5b71..a4f2fbb451e2 100644
+--- a/drivers/gpu/drm/i915/selftests/scatterlist.c
++++ b/drivers/gpu/drm/i915/selftests/scatterlist.c
+@@ -195,7 +195,7 @@ static unsigned int random_page_size_pages(unsigned long n,
+ 					   struct rnd_state *rnd)
  {
- 	struct drm_display_mode *mode;
- 	unsigned pixel_clock = (timings->pixel_clock[0] |
-@@ -5426,7 +5427,8 @@ static struct drm_display_mode *drm_mode_displayid_detailed(struct drm_device *d
- 	if (!mode)
- 		return NULL;
- 
--	mode->clock = pixel_clock * 10;
-+	/* resolution is kHz for type VII, and 10 kHz for type I */
-+	mode->clock = type_7 ? pixel_clock : pixel_clock * 10;
- 	mode->hdisplay = hactive;
- 	mode->hsync_start = mode->hdisplay + hsync;
- 	mode->hsync_end = mode->hsync_start + hsync_width;
-@@ -5457,6 +5459,7 @@ static int add_displayid_detailed_1_modes(struct drm_connector *connector,
- 	int num_timings;
- 	struct drm_display_mode *newmode;
- 	int num_modes = 0;
-+	bool type_7 = block->tag == DATA_BLOCK_2_TYPE_7_DETAILED_TIMING;
- 	/* blocks must be multiple of 20 bytes length */
- 	if (block->num_bytes % 20)
- 		return 0;
-@@ -5465,7 +5468,7 @@ static int add_displayid_detailed_1_modes(struct drm_connector *connector,
- 	for (i = 0; i < num_timings; i++) {
- 		struct displayid_detailed_timings_1 *timings = &det->timings[i];
- 
--		newmode = drm_mode_displayid_detailed(connector->dev, timings);
-+		newmode = drm_mode_displayid_detailed(connector->dev, timings, type_7);
- 		if (!newmode)
- 			continue;
- 
-@@ -5484,7 +5487,8 @@ static int add_displayid_detailed_modes(struct drm_connector *connector,
- 
- 	displayid_iter_edid_begin(edid, &iter);
- 	displayid_iter_for_each(block, &iter) {
--		if (block->tag == DATA_BLOCK_TYPE_1_DETAILED_TIMING)
-+		if (block->tag == DATA_BLOCK_TYPE_1_DETAILED_TIMING ||
-+		    block->tag == DATA_BLOCK_2_TYPE_7_DETAILED_TIMING)
- 			num_modes += add_displayid_detailed_1_modes(connector, block);
- 	}
- 	displayid_iter_end(&iter);
-
-base-commit: 99613159ad749543621da8238acf1a122880144e
+ 	/* 4K, 64K, 2M */
+-	static unsigned int page_count[] = {
++	static const unsigned int page_count[] = {
+ 		BIT(12) >> PAGE_SHIFT,
+ 		BIT(16) >> PAGE_SHIFT,
+ 		BIT(21) >> PAGE_SHIFT,
 -- 
-2.34.1
+2.33.1
 
