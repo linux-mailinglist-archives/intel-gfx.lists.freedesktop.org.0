@@ -1,34 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25D49497539
-	for <lists+intel-gfx@lfdr.de>; Sun, 23 Jan 2022 20:27:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C9AF497582
+	for <lists+intel-gfx@lfdr.de>; Sun, 23 Jan 2022 21:34:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B50B10E11C;
-	Sun, 23 Jan 2022 19:27:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9555110E11D;
+	Sun, 23 Jan 2022 20:34:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A0F7710E11C;
- Sun, 23 Jan 2022 19:27:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9BFA6AA0ED;
- Sun, 23 Jan 2022 19:27:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6094047173678281562=="
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2FA910E11D
+ for <intel-gfx@lists.freedesktop.org>; Sun, 23 Jan 2022 20:34:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642970057; x=1674506057;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QRlpUvMGkW3m/aothrXO1a3q10xz8MjWBUEqfugwPqc=;
+ b=F/u7tFe4VbYS5QS8wuSDKQtzJcTxjboTn+TzojLum67B41U+JAlIFW1T
+ ZNWwOSYcfAomWpaHalycyvY+EAZoWWMqrLy6z12AA64WxZDcS7iVYf5of
+ CqOewgOj6uRICOWyo/wUdT1P3dRakgjQbMe+o0rr1+RlGdJDHv+DSGsbR
+ BMn2ojC3kv6thU5ojV6KI3gkkwlnU+irfDfhriW/5J22/3JAwXa2pp+vi
+ gpKhMJ/+11jVKyVGn498xjNUFk214zdZ+24LR0dohMglRGVUO9tdfO91M
+ JGQ3KJaxbEbUY5RupTq107bOYnXmvndqyy9pY9LDrCeXSOxMK30WHeKO/ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="233281244"
+X-IronPort-AV: E=Sophos;i="5.88,310,1635231600"; d="scan'208";a="233281244"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2022 12:34:17 -0800
+X-IronPort-AV: E=Sophos;i="5.88,310,1635231600"; d="scan'208";a="478827918"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2022 12:34:15 -0800
+Date: Sun, 23 Jan 2022 22:34:17 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20220123203417.GA27532@intel.com>
+References: <20220121080615.9936-1-stanislav.lisovskiy@intel.com>
+ <20220121080615.9936-5-stanislav.lisovskiy@intel.com>
+ <YeqhtJd1nmuFDsPI@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Sun, 23 Jan 2022 19:27:35 -0000
-Message-ID: <164296605559.8376.14369470186149465134@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220122000822.25616-1-matthew.brost@intel.com>
-In-Reply-To: <20220122000822.25616-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Use_less_in_contexts_steal_guc_id_test_=28re?=
- =?utf-8?b?djMp?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YeqhtJd1nmuFDsPI@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Don't allocate extra ddb
+ during async flip for DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,235 +60,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6094047173678281562==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Jan 21, 2022 at 02:06:12PM +0200, Ville Syrjälä wrote:
+> On Fri, Jan 21, 2022 at 10:06:15AM +0200, Stanislav Lisovskiy wrote:
+> > In terms of async flip optimization we don't to allocate
+> > extra ddb space, so lets skip it.
+> > 
+> > v2: - Extracted min ddb async flip check to separate function
+> >       (Ville Syrjälä)
+> >     - Used this function to prevent false positive WARN
+> >       to be triggered(Ville Syrjälä)
+> > 
+> > v3: - Renamed dg2_need_min_ddb to need_min_ddb thus making
+> >       it more universal.
+> >     - Also used DISPLAY_VER instead of IS_DG2(Ville Syrjälä)
+> >     - Use rate = 0 instead of just setting extra = 0, thus
+> >       letting other planes to use extra ddb and avoiding WARN
+> >       (Ville Syrjälä)
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/intel_pm.c | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> > index 5fb022a2a4d7..18fb35c480ef 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -5118,6 +5118,12 @@ static bool icl_need_wm1_wa(struct drm_i915_private *i915,
+> >  	       (IS_DISPLAY_VER(i915, 12, 13) && plane_id == PLANE_CURSOR);
+> >  }
+> >  
+> > +static bool needs_min_ddb(struct drm_i915_private *i915,
+> > +			  struct intel_crtc_state *crtc_state)
+> 
+> s/needs/use/ to match the wm0 counterpart?
+> 
+> Could use a comment as well perhaps, or maybe just put this right
+> next to the wm0 counterpart so the reader can see both together and
+> make the connection.
+> 
+> Hmm. Actually I think this would also need the plane->async_flip
+> check here too or else we'll drop all the planes to min ddb
+> instead of just the plane doing async flips.
+> 
+> Oh, and I think we need this same thing when calculating the
+> total_data_rate or else the numbers won't match.
 
-== Series Details ==
+Yes, there seems to be a problem with that approach, we use ratio
+from data plane_data_rate/total_data_rate to determine how we split
+extra ddb blocks, however if plane data rate can be just set as 0
+here localle, total_data_rate is obtained from crtc_state->plane_data_rate,
+which is being calculated first.
+So if we trick icl_get_total_relative_data_rate function to calculate
+total_data_rate corresponding to rate = 0, we will then have 
+crtc_state->plane_data_rate[plane_id] set to 0, which is probably
+not what we want.
 
-Series: drm/i915/selftests: Use less in contexts steal guc id test (rev3)
-URL   : https://patchwork.freedesktop.org/series/99179/
-State : success
+Or should I just edit icl_get_total_relative_data_rate so that it
+still calculates crtc_state->plane_data_rate properly however, the
+doesn't add those to total_data_rate, if use_min_ddb(plane) is set?
 
-== Summary ==
+Stan
 
-CI Bug Log - changes from CI_DRM_11120 -> Patchwork_22071
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/index.html
-
-Participating hosts (49 -> 41)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (9): fi-ilk-m540 shard-tglu fi-hsw-4200u fi-icl-u2 fi-bsw-cyan fi-ctg-p8600 shard-rkl shard-dg1 fi-bdw-samus 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22071 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
-    - fi-pnv-d510:        NOTRUN -> [SKIP][2] ([fdo#109271]) +57 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-bsw-nick:        [PASS][4] -> [DMESG-FAIL][5] ([i915#541])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11120/fi-bsw-nick/igt@i915_selftest@live@gt_heartbeat.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-bsw-nick/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][7] ([fdo#109271]) +21 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-skl-6600u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#533])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@runner@aborted:
-    - fi-tgl-1115g4:      NOTRUN -> [FAIL][9] ([i915#4312])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-tgl-1115g4/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [INCOMPLETE][10] ([i915#4547]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11120/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11120 -> Patchwork_22071
-
-  CI-20190529: 20190529
-  CI_DRM_11120: d8e524ded1a6cb24bbd2da0785b04f199c03f1b9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6330: f73008bac9a8db0779264b170f630483e9165764 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22071: fd6bd2b443e8f30aeb8f43a944424e53a70a8e65 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fd6bd2b443e8 drm/i915/selftests: Use less in contexts steal guc id test
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/index.html
-
---===============6094047173678281562==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftests: Use less in contexts steal guc id test (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99179/">https://patchwork.freedesktop.org/series/99179/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11120 -&gt; Patchwork_22071</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/index.html</p>
-<h2>Participating hosts (49 -&gt; 41)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (9): fi-ilk-m540 shard-tglu fi-hsw-4200u fi-icl-u2 fi-bsw-cyan fi-ctg-p8600 shard-rkl shard-dg1 fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22071 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11120/fi-bsw-nick/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-bsw-nick/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-skl-6600u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +21 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-tgl-1115g4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_flink_basic@bad-flink:<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11120/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22071/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11120 -&gt; Patchwork_22071</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11120: d8e524ded1a6cb24bbd2da0785b04f199c03f1b9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6330: f73008bac9a8db0779264b170f630483e9165764 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22071: fd6bd2b443e8f30aeb8f43a944424e53a70a8e65 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fd6bd2b443e8 drm/i915/selftests: Use less in contexts steal guc id test</p>
-
-</body>
-</html>
-
---===============6094047173678281562==--
+> 
+> > +{
+> > +	return DISPLAY_VER(i915) >= 13 && crtc_state->uapi.async_flip;
+> > +}
+> > +
+> >  static int
+> >  skl_allocate_plane_ddb(struct intel_atomic_state *state,
+> >  		       struct intel_crtc *crtc)
+> > @@ -5225,9 +5231,14 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+> >  			break;
+> >  
+> >  		rate = crtc_state->plane_data_rate[plane_id];
+> > +
+> > +		if (needs_min_ddb(dev_priv, crtc_state))
+> > +			rate = 0;
+> > +
+> >  		extra = min_t(u16, alloc_size,
+> >  			      DIV64_U64_ROUND_UP(alloc_size * rate,
+> >  						 total_data_rate));
+> > +
+> >  		total[plane_id] = wm->wm[level].min_ddb_alloc + extra;
+> >  		alloc_size -= extra;
+> >  		total_data_rate -= rate;
+> > @@ -5236,13 +5247,19 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+> >  			break;
+> >  
+> >  		rate = crtc_state->uv_plane_data_rate[plane_id];
+> > +
+> > +		if (needs_min_ddb(dev_priv, crtc_state))
+> > +			rate = 0;
+> > +
+> >  		extra = min_t(u16, alloc_size,
+> >  			      DIV64_U64_ROUND_UP(alloc_size * rate,
+> >  						 total_data_rate));
+> > +
+> >  		uv_total[plane_id] = wm->uv_wm[level].min_ddb_alloc + extra;
+> >  		alloc_size -= extra;
+> >  		total_data_rate -= rate;
+> >  	}
+> > +
+> >  	drm_WARN_ON(&dev_priv->drm, alloc_size != 0 || total_data_rate != 0);
+> >  
+> >  	/* Set the actual DDB start/end points for each plane */
+> > -- 
+> > 2.24.1.485.gad05a3d8e5
+> 
+> -- 
+> Ville Syrjälä
+> Intel
