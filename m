@@ -1,40 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 319544986B8
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 18:27:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDE1B49870F
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 18:38:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E40A710E789;
-	Mon, 24 Jan 2022 17:27:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AB5C10E198;
+	Mon, 24 Jan 2022 17:38:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5E51D10E3E7;
- Mon, 24 Jan 2022 17:27:27 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D9541D6E;
- Mon, 24 Jan 2022 09:27:26 -0800 (PST)
-Received: from [192.168.99.12] (unknown [172.31.20.19])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E3F493F766;
- Mon, 24 Jan 2022 09:27:25 -0800 (PST)
-Message-ID: <89905c4f-4d7b-4cd4-cfb8-07c2d5648c50@foss.arm.com>
-Date: Mon, 24 Jan 2022 17:27:16 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 63D6E10E198;
+ Mon, 24 Jan 2022 17:38:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 63B96A77A5;
+ Mon, 24 Jan 2022 17:38:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2781689011520777551=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Content-Language: en-US
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20220111101801.28310-1-suraj.kandpal@intel.com>
- <20220111101801.28310-2-suraj.kandpal@intel.com>
-From: Carsten Haitzler <carsten.haitzler@foss.arm.com>
-Organization: Arm Ltd.
-In-Reply-To: <20220111101801.28310-2-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/arm/komeda : change driver to use
- drm_writeback_connector.base pointer
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Date: Mon, 24 Jan 2022 17:38:14 -0000
+Message-ID: <164304589440.1345.10894211268532252617@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220124094418.2661-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20220124094418.2661-1-andi.shyti@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_fix_header_file_inclusion_for_might=5Falloc=28=29_=28r?=
+ =?utf-8?q?ev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,102 +41,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Kandpal@freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This makes sense given the other patches in your series, but it seems as 
-yet no one has anything to say about this. I don't have anything 
-specific to comment on other than it seems to make the correct changes 
-to komeda given the rest.
+--===============2781689011520777551==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Carsten Haitzler <carsten.haitzler@arm.com>
+== Series Details ==
 
-On 1/11/22 10:18, Kandpal, Suraj wrote:
-> Making changes to komeda driver because we had to change
-> drm_writeback_connector.base into a pointer the reason for which is
-> expained in the Patch (drm: add writeback pointers to drm_connector).
-> 
-> Signed-off-by: Kandpal, Suraj <suraj.kandpal@intel.com>
-> ---
->   drivers/gpu/drm/arm/display/komeda/komeda_crtc.c         | 2 +-
->   drivers/gpu/drm/arm/display/komeda/komeda_kms.h          | 3 ++-
->   drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c | 9 +++++----
->   3 files changed, 8 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c b/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
-> index 59172acb9738..eb37f41c1790 100644
-> --- a/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
-> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
-> @@ -265,7 +265,7 @@ komeda_crtc_do_flush(struct drm_crtc *crtc,
->   	if (slave && has_bit(slave->id, kcrtc_st->affected_pipes))
->   		komeda_pipeline_update(slave, old->state);
->   
-> -	conn_st = wb_conn ? wb_conn->base.base.state : NULL;
-> +	conn_st = wb_conn ? wb_conn->base.base->state : NULL;
->   	if (conn_st && conn_st->writeback_job)
->   		drm_writeback_queue_job(&wb_conn->base, conn_st);
->   
-> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.h b/drivers/gpu/drm/arm/display/komeda/komeda_kms.h
-> index 456f3c435719..8d83883a1d99 100644
-> --- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.h
-> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.h
-> @@ -53,6 +53,7 @@ struct komeda_plane_state {
->    * struct komeda_wb_connector
->    */
->   struct komeda_wb_connector {
-> +	struct drm_connector conn;
->   	/** @base: &drm_writeback_connector */
->   	struct drm_writeback_connector base;
->   
-> @@ -136,7 +137,7 @@ struct komeda_kms_dev {
->   static inline bool is_writeback_only(struct drm_crtc_state *st)
->   {
->   	struct komeda_wb_connector *wb_conn = to_kcrtc(st->crtc)->wb_conn;
-> -	struct drm_connector *conn = wb_conn ? &wb_conn->base.base : NULL;
-> +	struct drm_connector *conn = wb_conn ? wb_conn->base.base : NULL;
->   
->   	return conn && (st->connector_mask == BIT(drm_connector_index(conn)));
->   }
-> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c b/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
-> index e465cc4879c9..0caaf483276d 100644
-> --- a/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
-> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
-> @@ -51,7 +51,7 @@ komeda_wb_encoder_atomic_check(struct drm_encoder *encoder,
->   		return -EINVAL;
->   	}
->   
-> -	wb_layer = to_kconn(to_wb_conn(conn_st->connector))->wb_layer;
-> +	wb_layer = to_kconn(drm_connector_to_writeback(conn_st->connector))->wb_layer;
->   
->   	/*
->   	 * No need for a full modested when the only connector changed is the
-> @@ -123,7 +123,7 @@ komeda_wb_connector_fill_modes(struct drm_connector *connector,
->   static void komeda_wb_connector_destroy(struct drm_connector *connector)
->   {
->   	drm_connector_cleanup(connector);
-> -	kfree(to_kconn(to_wb_conn(connector)));
-> +	kfree(to_kconn(drm_connector_to_writeback(connector)));
->   }
->   
->   static const struct drm_connector_funcs komeda_wb_connector_funcs = {
-> @@ -155,6 +155,7 @@ static int komeda_wb_connector_add(struct komeda_kms_dev *kms,
->   	kwb_conn->wb_layer = kcrtc->master->wb_layer;
->   
->   	wb_conn = &kwb_conn->base;
-> +	wb_conn->base = &kwb_conn->conn;
->   	wb_conn->encoder.possible_crtcs = BIT(drm_crtc_index(&kcrtc->base));
->   
->   	formats = komeda_get_layer_fourcc_list(&mdev->fmt_tbl,
-> @@ -171,9 +172,9 @@ static int komeda_wb_connector_add(struct komeda_kms_dev *kms,
->   		return err;
->   	}
->   
-> -	drm_connector_helper_add(&wb_conn->base, &komeda_wb_conn_helper_funcs);
-> +	drm_connector_helper_add(wb_conn->base, &komeda_wb_conn_helper_funcs);
->   
-> -	info = &kwb_conn->base.base.display_info;
-> +	info = &kwb_conn->base.base->display_info;
->   	info->bpc = __fls(kcrtc->master->improc->supported_color_depths);
->   	info->color_formats = kcrtc->master->improc->supported_color_formats;
->   
+Series: drm/i915: fix header file inclusion for might_alloc() (rev4)
+URL   : https://patchwork.freedesktop.org/series/99215/
+State : failure
+
+== Summary ==
+
+Applying: drm/i915: fix header file inclusion for might_alloc()
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/i915_vma_resource.c
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
+
+
+
+--===============2781689011520777551==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: fix header file inclusion for might_alloc() (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99215/">https://patchwork.freedesktop.org/series/99215/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</table>
+
+
+    <p>Applying: drm/i915: fix header file inclusion for might_alloc()<br />
+Using index info to reconstruct a base tree...<br />
+M   drivers/gpu/drm/i915/i915_vma_resource.c<br />
+Falling back to patching base and 3-way merge...<br />
+No changes -- Patch already applied.</p>
+
+</body>
+</html>
+
+--===============2781689011520777551==--
