@@ -2,34 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF608497C5A
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 10:46:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2D1C497C40
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 10:43:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E17EA10E14B;
-	Mon, 24 Jan 2022 09:46:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAD4810E158;
+	Mon, 24 Jan 2022 09:43:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 349 seconds by postgrey-1.36 at gabe;
- Mon, 24 Jan 2022 09:46:00 UTC
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B07910E14B;
- Mon, 24 Jan 2022 09:46:00 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id EA27D68C4E; Mon, 24 Jan 2022 10:40:05 +0100 (CET)
-Date: Mon, 24 Jan 2022 10:40:04 +0100
-From: Christoph Hellwig <hch@lst.de>
-To: "Wang, Zhi A" <zhi.a.wang@intel.com>
-Message-ID: <20220124094004.GA23537@lst.de>
-References: <20211129123832.105196-1-zhi.a.wang@intel.com>
- <20211130164622.GA15150@lst.de>
- <e183b95f-89d1-3a2f-27e2-82aa2b10e8fc@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95FC110E14B;
+ Mon, 24 Jan 2022 09:43:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643017430; x=1674553430;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uihijiEqKyBj5j8bBRv+t2EXae9PPZWXlfEE9dkQAJw=;
+ b=I8mkWBfCk/BfmhYaIeLAaeMpOd/S4HIWj99X0P7oOPPmqe4MfT5sjCfn
+ IklVlz2rqGqL4oLweK44m7zJS7eY7LaMkMilAL50nCet8xlV8lsEZmtwx
+ wXo1tNOHvp4ZKI9qzKSDE0ccbRtXyBCm1RwBZh1Zajdap6jCbiwrJDSLI
+ T772Oxd/PkurGjk4zjw2ULTVIErb8GIHVJwy7EaCHRsCGivY1yqrVIvhj
+ WttRjj9EuCzg5WXcz3pHtjar8j7rK9egDuY+aySQPMNJ7l2acSl9Ruk/m
+ gGkIeYxkck0qCbpLOyPe/epsAShL1Au2YGOjWeIZDldoP5yKFRi8uA94N w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="332361695"
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="332361695"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 01:43:49 -0800
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="534157493"
+Received: from mtarral-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.51.157])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 01:43:46 -0800
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
+Date: Mon, 24 Jan 2022 11:42:43 +0200
+Message-Id: <20220124094243.2637-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e183b95f-89d1-3a2f-27e2-82aa2b10e8fc@intel.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v4 1/2] i915/gvt: Introduce the
- mmio_info_table.c to support VFIO new mdev API
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915: fix header file inclusion for
+ might_alloc()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,18 +57,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhi Wang <zhi.wang.linux@gmail.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Xu,
- Terrence" <terrence.xu@intel.com>, Jason Gunthorpe <jgg@nvidia.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- Christoph Hellwig <hch@lst.de>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 17, 2021 at 08:52:53AM +0000, Wang, Zhi A wrote:
-> Sorry for the late reply as I am supporting the customers recently. I 
-> will refresh this after the christmas.
+Replace "linux/slab.h" with "linux/sched/mm.h" header inclusion
+as the first is not required, while the second, if not included,
+prdouces the following error:
 
-Did you find some time to look into it?  Do you want some help?
+drivers/gpu/drm/i915/i915_vma_resource.c: In function ‘i915_vma_resource_bind_dep_await’:
+drivers/gpu/drm/i915/i915_vma_resource.c:381:9: error: implicit declaration of function ‘might_alloc’; did you mean ‘might_lock’? [-Werror=implicit-function-declaration]
+  381 |         might_alloc(gfp);
+      |         ^~~~~~~~~~~
+      |         might_lock
+
+Fixes: 2f6b90da9192 ("drm/i915: Use vma resources for async unbinding")
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+Hi,
+
+in V2 I just added the Fixes tag (I think I got the right commit)
+and added Thomas r-b.
+
+Andi
+
+ drivers/gpu/drm/i915/i915_vma_resource.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_vma_resource.c b/drivers/gpu/drm/i915/i915_vma_resource.c
+index 1f41c0c699eb..bbb0ff14272f 100644
+--- a/drivers/gpu/drm/i915/i915_vma_resource.c
++++ b/drivers/gpu/drm/i915/i915_vma_resource.c
+@@ -4,7 +4,7 @@
+  */
+ 
+ #include <linux/interval_tree_generic.h>
+-#include <linux/slab.h>
++#include <linux/sched/mm.h>
+ 
+ #include "i915_sw_fence.h"
+ #include "i915_vma_resource.h"
+-- 
+2.34.1
+
