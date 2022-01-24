@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8259497DDC
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 12:23:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9644497F27
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 13:19:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A3D010ED8A;
-	Mon, 24 Jan 2022 11:23:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0529910E70E;
+	Mon, 24 Jan 2022 12:19:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E11F10ED4D;
- Mon, 24 Jan 2022 11:23:26 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D7B610E7BB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 12:19:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643023406; x=1674559406;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=DmO5o1tSKywvbvIj51hbxGoHlz0HD9Cx4vDMYfINVaI=;
- b=bhq5tctPP6VUBklCFrEky387WLfWP/+YbPgE/wJuPpjit/KAin/d3pG3
- gtxBRR6J8Gu2iBJlosfPtuwIggQlI2vc9OeJoaoDvwnAlHs/FVMprg8o2
- O4RdopbUzNS5Ge6zBjMxM6EIsNMLOKm4WFKDIpbovxNie3sigHvrhTuiV
- Z4eerHyKfrT5xlhFko90IGgERsgBcVQfZXfM8OTq/MEsmGjXNA1z6USK6
- 6vpNstD49RzVZoG2KGtt8XbILqw/AE7jYr7rTNN47LeKlNnd4YL93eiN6
- 9EyBEKVmlrb8sckTNLlGRIS/t7zBsLMZdov1HjZHdWyx6F142OnebIU97 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="306739111"
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="306739111"
+ t=1643026770; x=1674562770;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=8SnZN42xN68Hz3/Mn1eC9lqAUo/WZg8gw+XdEC7Mio0=;
+ b=XY9apzgunrLPLVeFuTJQCaYaqEKxc82NzqhtBhk4oLZ/yD2VX/dkIVtk
+ QQ9MPclkOl8DMIUwJW3RpeyFZk88QzSlKyKpNzviJojhpWhGFmZbbMz9m
+ IJnYE1io367CGNcGdhC0Ny32RP4/9nQ5/lNUilZefsH0yrcYMpnPCasCc
+ kCn7kKLJIvAgrsAmqJ483w9TFlubI8+G2fGZCFGUt9e0PvRWyljpgaA05
+ oeyMG51I//lBApXe93/n/B7fQXwYEC7zu+XkYb/6UhFoHTL0BT1N+eh8g
+ lZE3VgfA1SHxqzSLCQoKQlLrS3XMdXeX3NrGEdH2PRHHLbVQ50hmhoryv Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="226703475"
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="226703475"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 03:23:26 -0800
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="695389755"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 04:19:30 -0800
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="695403662"
 Received: from rvanakke-mobl.ger.corp.intel.com (HELO [10.252.53.157])
  ([10.252.53.157])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 03:23:24 -0800
-Message-ID: <75c84bd3-8060-aed6-dafc-7bd50591ebb1@linux.intel.com>
-Date: Mon, 24 Jan 2022 12:23:22 +0100
+ 24 Jan 2022 04:19:29 -0800
+Message-ID: <8328facd-f10d-01e6-12e8-67179fbf324e@linux.intel.com>
+Date: Mon, 24 Jan 2022 13:19:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Firefox/91.0 Thunderbird/91.5.0
 Content-Language: en-US
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- DRI Devel <dri-devel@lists.freedesktop.org>
-References: <20220124094418.2661-1-andi.shyti@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+References: <cover.1641977368.git.jani.nikula@intel.com>
+ <7c018d4a741ecb98dc1a19a7fdb6b35943790ff9.1641977369.git.jani.nikula@intel.com>
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20220124094418.2661-1-andi.shyti@linux.intel.com>
+In-Reply-To: <7c018d4a741ecb98dc1a19a7fdb6b35943790ff9.1641977369.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: fix header file inclusion for
- might_alloc()
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915: split out
+ gem/i915_gem_domain.h from i915_drv.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,53 +61,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 24-01-2022 om 10:44 schreef Andi Shyti:
-> Replace "linux/slab.h" with "linux/sched/mm.h" header inclusion
-> as the first is not required, while the second, if not included,
-> prodouces the following error:
+Op 12-01-2022 om 09:51 schreef Jani Nikula:
+> We already have the gem/i915_gem_domain.c file.
 >
-> drivers/gpu/drm/i915/i915_vma_resource.c: In function ‘i915_vma_resource_bind_dep_await’:
-> drivers/gpu/drm/i915/i915_vma_resource.c:381:9: error: implicit declaration of function ‘might_alloc’; did you mean ‘might_lock’? [-Werror=implicit-function-declaration]
->   381 |         might_alloc(gfp);
->       |         ^~~~~~~~~~~
->       |         might_lock
->
-> Fixes: 2f6b90da9192 ("drm/i915: Use vma resources for async unbinding")
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
-> Hi,
+>  drivers/gpu/drm/i915/display/intel_dpt.c    |  4 +++-
+>  drivers/gpu/drm/i915/display/intel_fb_pin.c |  1 +
+>  drivers/gpu/drm/i915/gem/i915_gem_domain.c  |  5 +++--
+>  drivers/gpu/drm/i915/gem/i915_gem_domain.h  | 15 +++++++++++++++
+>  drivers/gpu/drm/i915/i915_drv.h             |  3 ---
+>  5 files changed, 22 insertions(+), 6 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_domain.h
 >
-> v3: fixed a typo in the commit log (prduces/produces). (Thanks
->     Thomas Zimmermann)
->
-> v2: added the 'Fixes' tag (I think I got the right commit) and
->     Thomas Hellström r-b.
->
-> Andi
->
->  drivers/gpu/drm/i915/i915_vma_resource.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_vma_resource.c b/drivers/gpu/drm/i915/i915_vma_resource.c
-> index 1f41c0c699eb..bbb0ff14272f 100644
-> --- a/drivers/gpu/drm/i915/i915_vma_resource.c
-> +++ b/drivers/gpu/drm/i915/i915_vma_resource.c
-> @@ -4,7 +4,7 @@
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
+> index 63a83d5f85a1..16b273e19d17 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
+> @@ -3,11 +3,13 @@
+>   * Copyright © 2021 Intel Corporation
 >   */
 >  
->  #include <linux/interval_tree_generic.h>
-> -#include <linux/slab.h>
-> +#include <linux/sched/mm.h>
+> +#include "gem/i915_gem_domain.h"
+> +#include "gt/gen8_ppgtt.h"
+> +
+>  #include "i915_drv.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dpt.h"
+>  #include "intel_fb.h"
+> -#include "gt/gen8_ppgtt.h"
 >  
->  #include "i915_sw_fence.h"
->  #include "i915_vma_resource.h"
+>  struct i915_dpt {
+>  	struct i915_address_space vm;
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> index 31c15e5fca95..e60046d90124 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> @@ -7,6 +7,7 @@
+>   * DOC: display pinning helpers
+>   */
+>  
+> +#include "gem/i915_gem_domain.h"
+>  #include "gem/i915_gem_object.h"
+>  
+>  #include "i915_drv.h"
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+> index 26532c07d467..3e5d6057b3ef 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+> @@ -9,12 +9,13 @@
+>  
+>  #include "i915_drv.h"
+>  #include "i915_gem_clflush.h"
+> +#include "i915_gem_domain.h"
+>  #include "i915_gem_gtt.h"
+>  #include "i915_gem_ioctls.h"
+> -#include "i915_gem_object.h"
+> -#include "i915_vma.h"
+>  #include "i915_gem_lmem.h"
+>  #include "i915_gem_mman.h"
+> +#include "i915_gem_object.h"
+> +#include "i915_vma.h"
+>  
+>  static bool gpu_write_needs_clflush(struct drm_i915_gem_object *obj)
+>  {
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.h b/drivers/gpu/drm/i915/gem/i915_gem_domain.h
+> new file mode 100644
+> index 000000000000..9622df962bfc
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2022 Intel Corporation
+> + */
+> +
+> +#ifndef __I915_GEM_DOMAIN_H__
+> +#define __I915_GEM_DOMAIN_H__
+> +
+> +struct drm_i915_gem_object;
+> +enum i915_cache_level;
+> +
+> +int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
+> +				    enum i915_cache_level cache_level);
+> +
+> +#endif /* __I915_GEM_DOMAIN_H__ */
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 95899661d567..32cd07e144dc 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1686,9 +1686,6 @@ void i915_gem_driver_release(struct drm_i915_private *dev_priv);
+>  
+>  int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file);
+>  
+> -int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
+> -				    enum i915_cache_level cache_level);
+> -
+>  static inline struct i915_address_space *
+>  i915_gem_vm_lookup(struct drm_i915_file_private *file_priv, u32 id)
+>  {
 
-Pushed to drm-intel-gt-next. Should fix drm-tip building, probably needs to be pulled into drm-fixes asap. :)
+All looks sane.
+
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
