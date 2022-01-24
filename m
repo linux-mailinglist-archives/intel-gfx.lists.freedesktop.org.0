@@ -2,58 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAB204983CD
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 16:49:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D45A04983FE
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 17:01:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 933F610E18F;
-	Mon, 24 Jan 2022 15:49:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D36510E18C;
+	Mon, 24 Jan 2022 16:01:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa3.bahnhof.se (pio-pvt-msa3.bahnhof.se [79.136.2.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 368E710E18F;
- Mon, 24 Jan 2022 15:49:51 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTP id BF3613FC99;
- Mon, 24 Jan 2022 16:49:48 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.1
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Authentication-Results: pio-pvt-msa3.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from pio-pvt-msa3.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa3.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Lap0t7BQoWMn; Mon, 24 Jan 2022 16:49:47 +0100 (CET)
-Received: by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTPA id 58D1E3FC8F;
- Mon, 24 Jan 2022 16:49:46 +0100 (CET)
-Received: from [192.168.0.209] (unknown [192.55.54.51])
- by mail1.shipmail.org (Postfix) with ESMTPSA id C0D8A362A9F;
- Mon, 24 Jan 2022 16:49:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1643039386; bh=T6StwgZVk6l54IlNgvNKQSXDTQ4aeCslU6MtGMc4uKQ=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=Yugp62vwKsTZQqGh+dNMQI57L6ttP3q+8Wyb411Cz6GshIIf4d+ZbCWQnJ1SyHzCe
- 7FNs71O3SRrZ+LRG7uY+ERy4nAKHxscgmSoy99HQpCQiT8EltRY7yBq4AfNVV2xS33
- 73Bmdo2eYuVubgltRiuekzleC4rW8Bw4AkK2aWQ4=
-Message-ID: <d89b1388-af94-cbff-598e-c0debe2a1ed7@shipmail.org>
-Date: Mon, 24 Jan 2022 16:49:40 +0100
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 456E810E18C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 16:01:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643040068; x=1674576068;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=OyajA1I/0oXJu+kd/7mvbMCs8teqv8udV0X82TJWNjA=;
+ b=nSXfRVoWO19AmLTo4L/3451DwogCyix4mMfSpFgCHQBoWjxCPw4f++mm
+ scmWz1Pxc/IdrgqO+RsYZKeg/THxXkjfAs2y3jvVM74vNijtsnfPx30Vt
+ LaMxpqDPuxgdeIDad3EeOAVg10Rov2/oL/LTErStPS29O7paKcg0R+25l
+ k7DHM1OuYZMN2fo2hlkazTWbbtfCtJCCYLGD6h5SCrn5E1n310hPGHsHK
+ hUuWb+YoYflFECAglEAVSU0zeXqSVPoewfKSpd2euShudbLu4x5eoVCjZ
+ +ZPWZawiUXtS2QqD8UzfSGCmRr8eZLDsmbf8GPqR9BmHAcXzL43GVdGU0 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="309395314"
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="309395314"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 08:00:55 -0800
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="534285149"
+Received: from epreiss-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.54.23])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 08:00:51 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Adrian Larumbe <adrian.larumbe@collabora.com>, daniel@ffwll.ch,
+ ramalingam.c@intel.com, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220121222252.3296117-4-adrian.larumbe@collabora.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220121222252.3296117-1-adrian.larumbe@collabora.com>
+ <20220121222252.3296117-4-adrian.larumbe@collabora.com>
+Date: Mon, 24 Jan 2022 18:00:37 +0200
+Message-ID: <878rv52key.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220124130205.1040321-1-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <20220124130205.1040321-1-maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Lock dpt_obj around
- set_cache_level.
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RFC PATCH 3/5] drm/i915/flat-CCS: move
+ GET_CCS_SIZE macro into driver-wide header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,90 +59,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: adrian.larumbe@collabora.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, 21 Jan 2022, Adrian Larumbe <adrian.larumbe@collabora.com> wrote:
+> It has to be used by other files other than low-level migration code.
 
-On 1/24/22 14:02, Maarten Lankhorst wrote:
-> set_cache_level may unbind the object, which will result in the below
-> lockdep splat:
-> <6> [184.578145] [IGT] kms_addfb_basic: starting subtest addfb25-framebuffer-vs-set-tiling
-> <4> [184.578220] ------------[ cut here ]------------
-> <4> [184.578221] WARN_ON(debug_locks && !(lock_is_held(&(&((obj)->base.resv)->lock.base)->dep_map) != 0))
-> <4> [184.578237] WARNING: CPU: 6 PID: 5544 at drivers/gpu/drm/i915/i915_gem.c:123 i915_gem_object_unbind+0x4a9/0x510 [i915]
-> <4> [184.578323] Modules linked in: vgem drm_shmem_helper snd_hda_codec_hdmi i915 mei_hdcp x86_pkg_temp_thermal snd_hda_intel coretemp crct10dif_pclmul snd_intel_dspcfg crc32_pclmul ttm snd_hda_codec ghash_clmulni_intel snd_hwdep drm_kms_helper snd_hda_core e1000e mei_me syscopyarea ptp snd_pcm sysfillrect mei pps_core sysimgblt fb_sys_fops prime_numbers intel_lpss_pci smsc75xx usbnet mii
-> <4> [184.578349] CPU: 6 PID: 5544 Comm: kms_addfb_basic Not tainted 5.16.0-CI-Patchwork_22006+ #1
-> <4> [184.578351] Hardware name: Intel Corporation Alder Lake Client Platform/AlderLake-P DDR4 RVP, BIOS ADLPFWI1.R00.2422.A00.2110131104 10/13/2021
-> <4> [184.578352] RIP: 0010:i915_gem_object_unbind+0x4a9/0x510 [i915]
-> <4> [184.578424] Code: 00 be ff ff ff ff 48 8d 78 68 e8 a2 6e 2b e1 85 c0 0f 85 b1 fb ff ff 48 c7 c6 48 37 9e a0 48 c7 c7 d9 fc a1 a0 e8 a3 54 26 e1 <0f> 0b e9 97 fb ff ff 31 ed 48 8b 5c 24 58 65 48 33 1c 25 28 00 00
-> <4> [184.578426] RSP: 0018:ffffc900013b3b68 EFLAGS: 00010286
-> <4> [184.578428] RAX: 0000000000000000 RBX: ffffc900013b3bb0 RCX: 0000000000000001
-> <4> [184.578429] RDX: 0000000080000001 RSI: ffffffff8230b42d RDI: 00000000ffffffff
-> <4> [184.578430] RBP: ffff888120e10000 R08: 0000000000000000 R09: c0000000ffff7fff
-> <4> [184.578431] R10: 0000000000000001 R11: ffffc900013b3980 R12: ffff8881176ea740
-> <4> [184.578432] R13: ffff888120e10000 R14: 0000000000000000 R15: 0000000000000001
-> <4> [184.578433] FS:  00007f65074f5e40(0000) GS:ffff88888f300000(0000) knlGS:0000000000000000
-> <4> [184.578435] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> <4> [184.578436] CR2: 00007fff4420ede8 CR3: 000000010c2f2005 CR4: 0000000000770ee0
-> <4> [184.578437] PKRU: 55555554
-> <4> [184.578438] Call Trace:
-> <4> [184.578439]  <TASK>
-> <4> [184.578440]  ? dma_resv_iter_first_unlocked+0x78/0xf0
-> <4> [184.578447]  intel_dpt_create+0x88/0x220 [i915]
-> <4> [184.578530]  intel_framebuffer_init+0x5b8/0x620 [i915]
-> <4> [184.578612]  intel_framebuffer_create+0x3d/0x60 [i915]
-> <4> [184.578691]  intel_user_framebuffer_create+0x18f/0x2c0 [i915]
-> <4> [184.578775]  drm_internal_framebuffer_create+0x36d/0x4c0
-> <4> [184.578779]  drm_mode_addfb2+0x2f/0xd0
-> <4> [184.578781]  ? drm_mode_addfb_ioctl+0x10/0x10
-> <4> [184.578784]  drm_ioctl_kernel+0xac/0x140
-> <4> [184.578787]  drm_ioctl+0x201/0x3d0
-> <4> [184.578789]  ? drm_mode_addfb_ioctl+0x10/0x10
-> <4> [184.578796]  __x64_sys_ioctl+0x6a/0xa0
-> <4> [184.578800]  do_syscall_64+0x37/0xb0
-> <4> [184.578803]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-> <4> [184.578805] RIP: 0033:0x7f6506736317
-> <4> [184.578807] Code: b3 66 90 48 8b 05 71 4b 2d 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 41 4b 2d 00 f7 d8 64 89 01 48
-> <4> [184.578808] RSP: 002b:00007fff44211a98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-> <4> [184.578810] RAX: ffffffffffffffda RBX: 0000000000000006 RCX: 00007f6506736317
-> <4> [184.578811] RDX: 00007fff44211b30 RSI: 00000000c06864b8 RDI: 0000000000000006
-> <4> [184.578812] RBP: 00007fff44211b30 R08: 00007fff44311170 R09: 0000000000000000
-> <4> [184.578813] R10: 0000000000000008 R11: 0000000000000246 R12: 00000000c06864b8
-> <4> [184.578813] R13: 0000000000000006 R14: 0000000000000000 R15: 0000000000000000
-> <4> [184.578819]  </TASK>
-> <4> [184.578820] irq event stamp: 47931
-> <4> [184.578821] hardirqs last  enabled at (47937): [<ffffffff81130dd2>] __up_console_sem+0x62/0x70
-> <4> [184.578824] hardirqs last disabled at (47942): [<ffffffff81130db7>] __up_console_sem+0x47/0x70
-> <4> [184.578826] softirqs last  enabled at (47340): [<ffffffff81e0032d>] __do_softirq+0x32d/0x493
-> <4> [184.578828] softirqs last disabled at (47335): [<ffffffff810b9196>] irq_exit_rcu+0xa6/0xe0
-> <4> [184.578830] ---[ end trace f17ec219f892c7d4 ]---
+Maybe, but i915_drv.h is not the dumping ground for this
+stuff. Especially you shouldn't add anything in i915_drv.h that requires
+you to pull in other headers. The goal is to go in the completely
+opposite direction.
+
+BR,
+Jani.
+
 >
-> Fixes: 0f341974cbc2 ("drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind, v2.")
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Testcase: kms_addfb_basic
+> Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_dpt.c | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
-
-LGTM. Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-
+>  drivers/gpu/drm/i915/gt/intel_migrate.c | 1 -
+>  drivers/gpu/drm/i915/i915_drv.h         | 5 +++++
+>  2 files changed, 5 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
-> index 63a83d5f85a1..c2f8f853db90 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-> @@ -253,7 +253,11 @@ intel_dpt_create(struct intel_framebuffer *fb)
->   	if (IS_ERR(dpt_obj))
->   		return ERR_CAST(dpt_obj);
->   
-> -	ret = i915_gem_object_set_cache_level(dpt_obj, I915_CACHE_NONE);
-> +	ret = i915_gem_object_lock_interruptible(dpt_obj, NULL);
-> +	if (!ret) {
-> +		ret = i915_gem_object_set_cache_level(dpt_obj, I915_CACHE_NONE);
-> +		i915_gem_object_unlock(dpt_obj);
-> +	}
->   	if (ret) {
->   		i915_gem_object_put(dpt_obj);
->   		return ERR_PTR(ret);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
+> index a210c911905e..716f2f51c7f9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+> @@ -16,7 +16,6 @@ struct insert_pte_data {
+>  };
+>  
+>  #define CHUNK_SZ SZ_8M /* ~1ms at 8GiB/s preemption delay */
+> -#define GET_CCS_SIZE(i915, size)	(HAS_FLAT_CCS(i915) ? (size) >> 8 : 0)
+>  
+>  static bool engine_supports_migration(struct intel_engine_cs *engine)
+>  {
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 5623892ceab9..6b890a6674e4 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -105,6 +105,7 @@
+>  #include "i915_request.h"
+>  #include "i915_scheduler.h"
+>  #include "gt/intel_timeline.h"
+> +#include "gt/intel_gpu_commands.h"
+>  #include "i915_vma.h"
+>  
+>  
+> @@ -1526,6 +1527,10 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>  
+>  #define HAS_FLAT_CCS(dev_priv)   (INTEL_INFO(dev_priv)->has_flat_ccs)
+>  
+> +#define GET_CCS_SIZE(i915, size) (HAS_FLAT_CCS(i915) ? \
+> +				  DIV_ROUND_UP(size, NUM_CCS_BYTES_PER_BLOCK) \
+> +				  0)
+> +
+>  #define HAS_GT_UC(dev_priv)	(INTEL_INFO(dev_priv)->has_gt_uc)
+>  
+>  #define HAS_POOLED_EU(dev_priv)	(INTEL_INFO(dev_priv)->has_pooled_eu)
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
