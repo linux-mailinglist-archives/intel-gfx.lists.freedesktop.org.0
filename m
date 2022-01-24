@@ -2,61 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F257F498119
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 14:32:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5125498120
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 14:32:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B54A10E749;
-	Mon, 24 Jan 2022 13:32:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE0DD10EAE5;
+	Mon, 24 Jan 2022 13:32:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com
- [IPv6:2607:f8b0:4864:20::1035])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 197D210E34D;
- Mon, 24 Jan 2022 12:58:45 +0000 (UTC)
-Received: by mail-pj1-x1035.google.com with SMTP id
- n16-20020a17090a091000b001b46196d572so16791494pjn.5; 
- Mon, 24 Jan 2022 04:58:45 -0800 (PST)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
+ [IPv6:2a00:1450:4864:20::436])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D155D10E430;
+ Mon, 24 Jan 2022 13:03:32 +0000 (UTC)
+Received: by mail-wr1-x436.google.com with SMTP id r14so13456758wrp.2;
+ Mon, 24 Jan 2022 05:03:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=jKkNxr+1cB+XB6YIAl08DtywpPMNPFY1xvETiNerBv4=;
- b=ZTfY83ziPZR4GDz3xQZpQlufTJscwAsvrvRRKBUGWxqDkdA1va0RwigvqsJh8vqQS2
- Cr1CSfGsdyFEDox/gdOe5UN+gfJl/M1PhQGqJzwQ7WkKUKAP0LFzEedI6vKoyqCpdEF9
- 3gSBuybAkNcdAU6be2n77jFlYV6Dl9/KVa8pK++wGo/ARHH4NuZJ22KzHFwt8CBWqGT4
- oeOm3pKjlWSLNYHeBK0FjBJXueBfTunP+wd2pFCeti1eTpXzXT2rppGwLhnnHXUkLTBL
- RY3CsxJneexPIuOsYHKLRG4PaJwytL1K04wvJIgNj4fjM2IKDQ1GN6+0dopPvh4yxYVt
- o8iQ==
+ h=from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=yWI5UY1fcglV1EAWhaeDJljaKs8PQI4isWYaACSxoi4=;
+ b=AY8x1LnFnJZRez598YgjMdvAyQROXLUy/z6GUO0oWBfUy4+onnlsYauTO0OaoQp+GL
+ OmIkmpHQWU7wayN2WlbzQUPXIV47l69i9fA/DRiDGWjKntmUx7bPx75DutO0bmH5olCg
+ 7du8vXgO4/RPJgr5x4s0oiKIcmnDljWfStE7sPCxUQUuam2WB0tOm+kSY+NrdbaM4TlO
+ kDFGprJHWgxOGORrRLgJGzHFUEsv2fb0iqDg/alh+6PE5mfr0N/Lb9xhVp1Z8eZmIyEb
+ m4hC3WSoXNBjbQ/sPH5sFeO4FiLEnL0vKqQSRWT6BDKtRuxH1I7JAFpc/ihdmyCaMQHU
+ Y5Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=jKkNxr+1cB+XB6YIAl08DtywpPMNPFY1xvETiNerBv4=;
- b=d4NtthIIbKrfcXEkl+BJ+A/wSD5dnN1oCN1qPeWW4pPws8E3qw0agROg9izXtaUsRj
- OgLuoeQgHzBFYXxDGqNSeL+jXTEbztykeY3uQESM+v61WmqTEHQcsfMk7TbXr0ZqniVy
- zA1Mdb9cD6I9nL8wX3XZiEq8jrppqDxZlqb1QcnpiGMzyIAvlOj32rIZRYKb+J9CdhNw
- cVHbGeCKs0AyTxug2M4PN0qTzg5xAx37vGnHBIE8VMP1CD+LA0YclBZWA7zOtYgt043v
- +t3q0QL24SWg9s5z95v9Ny4hmWBd5VT/gx2EMDRZqrxXcehGXQ1DYjT0/0955yF5rqE4
- xo7g==
-X-Gm-Message-State: AOAM533yURa9mcUlXsI8vOFqzE5r7lHz6qBNKMmtQAichLRVv8b7VkwZ
- db6m9UDYa3LaI2spHeHweiOZLZz9GGGPh5pE5z0=
-X-Google-Smtp-Source: ABdhPJyYbcsc9C2l2KCNpEBfLe8n7n6WB0ovH6E/D5v67OB9y4UJCJuIP9SuFmcGrvjnGCSW3/k40Q==
-X-Received: by 2002:a17:902:ab82:b0:14a:188a:cd1f with SMTP id
- f2-20020a170902ab8200b0014a188acd1fmr14279622plr.44.1643029124671; 
- Mon, 24 Jan 2022 04:58:44 -0800 (PST)
-Received: from localhost.localdomain ([159.226.95.43])
- by smtp.googlemail.com with ESMTPSA id
- s23sm17794805pfg.144.2022.01.24.04.58.40
+ h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=yWI5UY1fcglV1EAWhaeDJljaKs8PQI4isWYaACSxoi4=;
+ b=OdY+qpyKLuZwTnizqTPcAX4qo+o8KAMzuoQzJl2XLV7+YMGndPgS9et4f1JCMtjA/D
+ nMIX8FRFk70TtDB5fQSJgMU1KECCuFFEhXCs4j6rIPJo/2kRd+T/y+ZzkdvR6uK+abnR
+ fgDHBUPbKcK7Y2RxIbZH5Oi1qedaURhv9+yEIkQNYgM/M/tsxsa1jMnDTYD7IpzRaX3E
+ Ynr4oe8eTzeUlMdzVrOcSEmMwdxbPkIPEJQpLWJC4t3898DuzKk2nEeTxDDgePLVDVXY
+ HHoyYIr4KipNeWhRIidFjJykGHvHflpvIPuUS4QARoFv2ifTBtc1Cwo09lbgSWeSQNvt
+ oWGg==
+X-Gm-Message-State: AOAM530f4ydG1eqZeb18hAbAfoKYacayaydLRey6D8nZMd23GJ5bSmUA
+ 6asXyGJACEnuctkuyWC8Od8=
+X-Google-Smtp-Source: ABdhPJzL+lKK5xkx8OJp5KwHUz8NOmvOUiedYXCIu6JiUO9YErSES2Olp5JeIlKltfni2gdAQOYY8Q==
+X-Received: by 2002:a05:6000:1448:: with SMTP id
+ v8mr4887006wrx.57.1643029411400; 
+ Mon, 24 Jan 2022 05:03:31 -0800 (PST)
+Received: from abel.fritz.box (p57b0bff8.dip0.t-ipconnect.de. [87.176.191.248])
+ by smtp.gmail.com with ESMTPSA id g4sm16543554wrd.12.2022.01.24.05.03.30
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Jan 2022 04:58:44 -0800 (PST)
-From: Miaoqian Lin <linmq006@gmail.com>
-To: matthew.brost@intel.com
-Date: Mon, 24 Jan 2022 12:58:37 +0000
-Message-Id: <20220124125837.10467-1-linmq006@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220112175338.GA12463@jons-linux-dev-box>
-References: <20220112175338.GA12463@jons-linux-dev-box>
+ Mon, 24 Jan 2022 05:03:30 -0800 (PST)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: thomas.hellstrom@linux.intel.com, sumit.semwal@linaro.org,
+ gustavo@padovan.org, daniel.vetter@ffwll.ch, zackr@vmware.com,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Date: Mon, 24 Jan 2022 14:03:17 +0100
+Message-Id: <20220124130328.2376-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 24 Jan 2022 13:32:09 +0000
-Subject: [Intel-gfx] [PATCH v2] drm/i915/selftests: Fix NULL vs IS_ERR
- checking for kernel_context
+Subject: [Intel-gfx] Add WARN_ON nested dma_fence containers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,140 +73,14 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linmq006@gmail.com, andi.shyti@intel.com, airlied@linux.ie,
- intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- chris@chris-wilson.co.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since i915_gem_create_context() function return error pointers,
-the kernel_context() function does not return null, It returns error
-pointers too. Using IS_ERR() to check the return value to fix this.
+Hi guys,
 
-Signed-off-by: Miaoqian Lin <linmq006@gmail.com>
----
-Changes in v2:
-- clean up unneeded initialization of err.
----
- drivers/gpu/drm/i915/gt/selftest_execlists.c | 43 ++++++++++++++------
- 1 file changed, 30 insertions(+), 13 deletions(-)
+as previously discussed only dma_fence_chain with its previous fence is actually made to build up larger dma_fence structures. Everything else should either flatten all fences into a single dma_fence_array or just add each fence separately to the dma_resv object.
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-index b367ecfa42de..0d453ddcede4 100644
---- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-@@ -1531,7 +1531,7 @@ static int live_busywait_preempt(void *arg)
- 	struct drm_i915_gem_object *obj;
- 	struct i915_vma *vma;
- 	enum intel_engine_id id;
--	int err = -ENOMEM;
-+	int err;
- 	u32 *map;
- 
- 	/*
-@@ -1540,13 +1540,16 @@ static int live_busywait_preempt(void *arg)
- 	 */
- 
- 	ctx_hi = kernel_context(gt->i915, NULL);
--	if (!ctx_hi)
--		return -ENOMEM;
-+	if (IS_ERR(ctx_hi))
-+		return IS_ERR(ctx_hi);
-+
- 	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
- 
- 	ctx_lo = kernel_context(gt->i915, NULL);
--	if (!ctx_lo)
-+	if (IS_ERR(ctx_lo)) {
-+		err = PTR_ERR(ctx_lo);
- 		goto err_ctx_hi;
-+	}
- 	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
- 
- 	obj = i915_gem_object_create_internal(gt->i915, PAGE_SIZE);
-@@ -1742,13 +1745,17 @@ static int live_preempt(void *arg)
- 		goto err_spin_hi;
- 
- 	ctx_hi = kernel_context(gt->i915, NULL);
--	if (!ctx_hi)
-+	if (IS_ERR(ctx_hi)) {
-+		err = PTR_ERR(ctx_hi);
- 		goto err_spin_lo;
-+	}
- 	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
- 
- 	ctx_lo = kernel_context(gt->i915, NULL);
--	if (!ctx_lo)
-+	if (IS_ERR(ctx_lo)) {
-+		err = PTR_ERR(ctx_lo);
- 		goto err_ctx_hi;
-+	}
- 	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
- 
- 	for_each_engine(engine, gt, id) {
-@@ -1834,12 +1841,16 @@ static int live_late_preempt(void *arg)
- 		goto err_spin_hi;
- 
- 	ctx_hi = kernel_context(gt->i915, NULL);
--	if (!ctx_hi)
-+	if (IS_ERR(ctx_hi)) {
-+		err = PTR_ERR(ctx_hi);
- 		goto err_spin_lo;
-+	}
- 
- 	ctx_lo = kernel_context(gt->i915, NULL);
--	if (!ctx_lo)
-+	if (IS_ERR(ctx_lo)) {
-+		err = PTR_ERR(ctx_lo);
- 		goto err_ctx_hi;
-+	}
- 
- 	/* Make sure ctx_lo stays before ctx_hi until we trigger preemption. */
- 	ctx_lo->sched.priority = 1;
-@@ -1928,8 +1939,8 @@ struct preempt_client {
- static int preempt_client_init(struct intel_gt *gt, struct preempt_client *c)
- {
- 	c->ctx = kernel_context(gt->i915, NULL);
--	if (!c->ctx)
--		return -ENOMEM;
-+	if (IS_ERR(c->ctx))
-+		return PTR_ERR(c->ctx);
- 
- 	if (igt_spinner_init(&c->spin, gt))
- 		goto err_ctx;
-@@ -3385,13 +3396,17 @@ static int live_preempt_timeout(void *arg)
- 		return -ENOMEM;
- 
- 	ctx_hi = kernel_context(gt->i915, NULL);
--	if (!ctx_hi)
-+	if (IS_ERR(ctx_hi)) {
-+		err = PTR_ERR(ctx_hi);
- 		goto err_spin_lo;
-+	}
- 	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
- 
- 	ctx_lo = kernel_context(gt->i915, NULL);
--	if (!ctx_lo)
-+	if (IS_ERR(ctx_lo)) {
-+		err = PTR_ERR(ctx_lo);
- 		goto err_ctx_hi;
-+	}
- 	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
- 
- 	for_each_engine(engine, gt, id) {
-@@ -3683,8 +3698,10 @@ static int live_preempt_smoke(void *arg)
- 
- 	for (n = 0; n < smoke.ncontext; n++) {
- 		smoke.contexts[n] = kernel_context(smoke.gt->i915, NULL);
--		if (!smoke.contexts[n])
-+		if (IS_ERR(smoke.contexts[n])) {
-+			err = PTR_ERR(smoke.contexts[n]);
- 			goto err_ctx;
-+		}
- 	}
- 
- 	for (n = 0; n < ARRAY_SIZE(phase); n++) {
--- 
-2.17.1
+Please review and/or comment,
+Christian.
+
 
