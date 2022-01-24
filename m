@@ -1,55 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04E3E4979BE
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 08:42:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F0F5497AF0
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 10:04:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36DA010E7F4;
-	Mon, 24 Jan 2022 07:42:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A0AA10EDAC;
+	Mon, 24 Jan 2022 09:04:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48C7210E7E6
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 07:42:25 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 839E210EDA9;
+ Mon, 24 Jan 2022 09:04:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643010145; x=1674546145;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=DFaayIm3edUeTyE2qb/JCWKJSRaXXTgeor8wpG25mVQ=;
- b=CcvRjcSFVE4Wft7Aqg22dGATfOvAZFxGCg270THi4aw69g41RbTgmnPR
- XOFoLYf8hTTnYiF2ml2nhtjWf3CrNXO+YtxNfb5qqsYGtYO9xOX3XFx0+
- hoouRdOXmPcosmLLOpKl0eCCUA/QKyah9pzZMtIPsOX4cXTg5hKpqAudy
- SHiALJG9W9SODUxF497wvrZNUewVB97TAzn6oHSx5DLna4o39V0w5DoQ4
- CASlTYTzhJixacDOjKVJj0L5vtMUEUmzll49cYoQH6FgqyBRWg1EggGCL
- wSooYbL/YTG+oQ3Nxv8nJwGxhIfo6v5p0ZdaO35k/SrOX16O1a1tmk9Cb Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="226660275"
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="226660275"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2022 23:42:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="534112712"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by orsmga008.jf.intel.com with SMTP; 23 Jan 2022 23:42:21 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 24 Jan 2022 09:42:20 +0200
-Date: Mon, 24 Jan 2022 09:42:20 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <Ye5YXNKZjgLSK3dx@intel.com>
-References: <20220121080615.9936-1-stanislav.lisovskiy@intel.com>
- <20220121080615.9936-5-stanislav.lisovskiy@intel.com>
- <YeqhtJd1nmuFDsPI@intel.com> <20220123203417.GA27532@intel.com>
+ t=1643015052; x=1674551052;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uihijiEqKyBj5j8bBRv+t2EXae9PPZWXlfEE9dkQAJw=;
+ b=fNQpjCecsEzGBy790xM+HO5YgBrGemZnaZh3tkUE9gjcwN1wPJZCptql
+ wQ4nSjunIakZjgwL6E4ooEh3Cg8kiPfcr6KR2VUZufJqO7XDpZfrK7uLx
+ C56cq31ypyrTy92b0AwltccrO8fwm28l/CVXbe5+vW4sRMNOFrfTYERku
+ HD3+i1ePFY/LkTij0rdXJyIEAgd8uF9Ume0jyXUYpxppMos+6T0th71ZZ
+ 0y4f238FxlzI9AOStSUisjBn8UORp/fIwm0c7FXUiPLSzxjvURvcvOIf3
+ MYLmDA8exFITrVbXqpV0QGBWJf4LOpuwQiv6l+BKLzZTXIhW0EEHE/weQ Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="245782013"
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="245782013"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 01:04:10 -0800
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="479001891"
+Received: from olegmak-mobl.ccr.corp.intel.com (HELO intel.com)
+ ([10.252.51.85])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 01:04:07 -0800
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
+Date: Mon, 24 Jan 2022 11:03:44 +0200
+Message-Id: <20220124090344.1791-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220123203417.GA27532@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Don't allocate extra ddb
- during async flip for DG2
+Subject: [Intel-gfx] [PATCH v2] drm/i915: fix header file inclusion for
+ might_alloc()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,82 +57,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Jan 23, 2022 at 10:34:17PM +0200, Lisovskiy, Stanislav wrote:
-> On Fri, Jan 21, 2022 at 02:06:12PM +0200, Ville Syrj‰l‰ wrote:
-> > On Fri, Jan 21, 2022 at 10:06:15AM +0200, Stanislav Lisovskiy wrote:
-> > > In terms of async flip optimization we don't to allocate
-> > > extra ddb space, so lets skip it.
-> > > 
-> > > v2: - Extracted min ddb async flip check to separate function
-> > >       (Ville Syrj‰l‰)
-> > >     - Used this function to prevent false positive WARN
-> > >       to be triggered(Ville Syrj‰l‰)
-> > > 
-> > > v3: - Renamed dg2_need_min_ddb to need_min_ddb thus making
-> > >       it more universal.
-> > >     - Also used DISPLAY_VER instead of IS_DG2(Ville Syrj‰l‰)
-> > >     - Use rate = 0 instead of just setting extra = 0, thus
-> > >       letting other planes to use extra ddb and avoiding WARN
-> > >       (Ville Syrj‰l‰)
-> > > 
-> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/intel_pm.c | 17 +++++++++++++++++
-> > >  1 file changed, 17 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> > > index 5fb022a2a4d7..18fb35c480ef 100644
-> > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > @@ -5118,6 +5118,12 @@ static bool icl_need_wm1_wa(struct drm_i915_private *i915,
-> > >  	       (IS_DISPLAY_VER(i915, 12, 13) && plane_id == PLANE_CURSOR);
-> > >  }
-> > >  
-> > > +static bool needs_min_ddb(struct drm_i915_private *i915,
-> > > +			  struct intel_crtc_state *crtc_state)
-> > 
-> > s/needs/use/ to match the wm0 counterpart?
-> > 
-> > Could use a comment as well perhaps, or maybe just put this right
-> > next to the wm0 counterpart so the reader can see both together and
-> > make the connection.
-> > 
-> > Hmm. Actually I think this would also need the plane->async_flip
-> > check here too or else we'll drop all the planes to min ddb
-> > instead of just the plane doing async flips.
-> > 
-> > Oh, and I think we need this same thing when calculating the
-> > total_data_rate or else the numbers won't match.
-> 
-> Yes, there seems to be a problem with that approach, we use ratio
-> from data plane_data_rate/total_data_rate to determine how we split
-> extra ddb blocks, however if plane data rate can be just set as 0
-> here localle, total_data_rate is obtained from crtc_state->plane_data_rate,
-> which is being calculated first.
-> So if we trick icl_get_total_relative_data_rate function to calculate
-> total_data_rate corresponding to rate = 0, we will then have 
-> crtc_state->plane_data_rate[plane_id] set to 0, which is probably
-> not what we want.
+Replace "linux/slab.h" with "linux/sched/mm.h" header inclusion
+as the first is not required, while the second, if not included,
+prdouces the following error:
 
-These are just the relative data rates so they're not actually used for
-anything else. So I guess we could even set them to 0. Though I don't
-even recall if the current code really works or not. I think there
-might have been some problem with calculating these that I perhaps fixed
-with my latest ddb series (or maybe I already fixed it with some earlier
-series, can't remember anymore).
+drivers/gpu/drm/i915/i915_vma_resource.c: In function ‚Äòi915_vma_resource_bind_dep_await‚Äô:
+drivers/gpu/drm/i915/i915_vma_resource.c:381:9: error: implicit declaration of function ‚Äòmight_alloc‚Äô; did you mean ‚Äòmight_lock‚Äô? [-Werror=implicit-function-declaration]
+  381 |         might_alloc(gfp);
+      |         ^~~~~~~~~~~
+      |         might_lock
 
-> 
-> Or should I just edit icl_get_total_relative_data_rate so that it
-> still calculates crtc_state->plane_data_rate properly however, the
-> doesn't add those to total_data_rate, if use_min_ddb(plane) is set?
+Fixes: 2f6b90da9192 ("drm/i915: Use vma resources for async unbinding")
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+---
+Hi,
 
-This should work too. Can't immediately think why one approach would
-be strictly better than the other.
+in V2 I just added the Fixes tag (I think I got the right commit)
+and added Thomas r-b.
 
+Andi
+
+ drivers/gpu/drm/i915/i915_vma_resource.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_vma_resource.c b/drivers/gpu/drm/i915/i915_vma_resource.c
+index 1f41c0c699eb..bbb0ff14272f 100644
+--- a/drivers/gpu/drm/i915/i915_vma_resource.c
++++ b/drivers/gpu/drm/i915/i915_vma_resource.c
+@@ -4,7 +4,7 @@
+  */
+ 
+ #include <linux/interval_tree_generic.h>
+-#include <linux/slab.h>
++#include <linux/sched/mm.h>
+ 
+ #include "i915_sw_fence.h"
+ #include "i915_vma_resource.h"
 -- 
-Ville Syrj‰l‰
-Intel
+2.34.1
+
