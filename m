@@ -2,56 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2A13498549
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 17:52:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 319544986B8
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 18:27:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B32410E344;
-	Mon, 24 Jan 2022 16:52:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E40A710E789;
+	Mon, 24 Jan 2022 17:27:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B025410E344;
- Mon, 24 Jan 2022 16:52:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643043159; x=1674579159;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=fu1nTdM6Ey9Y88os1dkd6NMK6cktB4QUGnnOy1VQzQ4=;
- b=E2Tmz2HzT7BKxc9+G5uFCWVOeQKMVTfyf4KqHKxwuTYzypK2DG9ve2Ns
- JbHkPmvU6uARobOnPdQbYTnweGKT54eQLO1fLkjLvZA5Gbea5y+vJO8Xu
- OqHuMhDlWT7JpgIGmgFqb9hLxsW1xdNhhBFAqTQCTyi63Rf944/veNUqw
- FJfDJTj17KACBqL8dN3jqd9FQr1v67h+tcREYTqFBcPw1t3jl3ehNfQP5
- HJ/EX2gOxEwA3NutBGHKdAZv1CBCaGgxeTskHYVGPoqzH2EA2A1ypLTs2
- kDECQoZh50b5Lb6LVikxj1KnKn8IQabpcN8L1netbDclzGwY4FX3pEbk5 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="233452292"
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="233452292"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 08:52:38 -0800
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="624141222"
-Received: from olindum-mobl1.ger.corp.intel.com (HELO [10.249.254.70])
- ([10.249.254.70])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 08:52:34 -0800
-Message-ID: <b609fb36-b4e0-738c-01d3-b74c760a9e82@linux.intel.com>
-Date: Mon, 24 Jan 2022 17:52:30 +0100
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5E51D10E3E7;
+ Mon, 24 Jan 2022 17:27:27 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D9541D6E;
+ Mon, 24 Jan 2022 09:27:26 -0800 (PST)
+Received: from [192.168.99.12] (unknown [172.31.20.19])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E3F493F766;
+ Mon, 24 Jan 2022 09:27:25 -0800 (PST)
+Message-ID: <89905c4f-4d7b-4cd4-cfb8-07c2d5648c50@foss.arm.com>
+Date: Mon, 24 Jan 2022 17:27:16 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
+ Thunderbird/91.4.0
 Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- sumit.semwal@linaro.org, gustavo@padovan.org, daniel.vetter@ffwll.ch,
- zackr@vmware.com, linux-media@vger.kernel.org,
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20220124130328.2376-1-christian.koenig@amd.com>
- <20220124130328.2376-9-christian.koenig@amd.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20220124130328.2376-9-christian.koenig@amd.com>
+References: <20220111101801.28310-1-suraj.kandpal@intel.com>
+ <20220111101801.28310-2-suraj.kandpal@intel.com>
+From: Carsten Haitzler <carsten.haitzler@foss.arm.com>
+Organization: Arm Ltd.
+In-Reply-To: <20220111101801.28310-2-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 08/11] dma-buf: add
- dma_fence_chain_contained helper
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/arm/komeda : change driver to use
+ drm_writeback_connector.base pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,71 +47,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com, Kandpal@freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This makes sense given the other patches in your series, but it seems as 
+yet no one has anything to say about this. I don't have anything 
+specific to comment on other than it seems to make the correct changes 
+to komeda given the rest.
 
-On 1/24/22 14:03, Christian König wrote:
-> It's a reoccurring pattern that we need to extract the fence
-> from a dma_fence_chain object. Add a helper for this.
->
-> Signed-off-by: Christian König <christian.koenig@amd.com>
+Reviewed-by: Carsten Haitzler <carsten.haitzler@arm.com>
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-
+On 1/11/22 10:18, Kandpal, Suraj wrote:
+> Making changes to komeda driver because we had to change
+> drm_writeback_connector.base into a pointer the reason for which is
+> expained in the Patch (drm: add writeback pointers to drm_connector).
+> 
+> Signed-off-by: Kandpal, Suraj <suraj.kandpal@intel.com>
 > ---
->   drivers/dma-buf/dma-fence-chain.c |  6 ++----
->   include/linux/dma-fence-chain.h   | 15 +++++++++++++++
->   2 files changed, 17 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
-> index 084c6927b735..06f8ef97c6e8 100644
-> --- a/drivers/dma-buf/dma-fence-chain.c
-> +++ b/drivers/dma-buf/dma-fence-chain.c
-> @@ -148,8 +148,7 @@ static bool dma_fence_chain_enable_signaling(struct dma_fence *fence)
+>   drivers/gpu/drm/arm/display/komeda/komeda_crtc.c         | 2 +-
+>   drivers/gpu/drm/arm/display/komeda/komeda_kms.h          | 3 ++-
+>   drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c | 9 +++++----
+>   3 files changed, 8 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c b/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
+> index 59172acb9738..eb37f41c1790 100644
+> --- a/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
+> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_crtc.c
+> @@ -265,7 +265,7 @@ komeda_crtc_do_flush(struct drm_crtc *crtc,
+>   	if (slave && has_bit(slave->id, kcrtc_st->affected_pipes))
+>   		komeda_pipeline_update(slave, old->state);
 >   
->   	dma_fence_get(&head->base);
->   	dma_fence_chain_for_each(fence, &head->base) {
-> -		struct dma_fence_chain *chain = to_dma_fence_chain(fence);
-> -		struct dma_fence *f = chain ? chain->fence : fence;
-> +		struct dma_fence *f = dma_fence_chain_contained(fence);
+> -	conn_st = wb_conn ? wb_conn->base.base.state : NULL;
+> +	conn_st = wb_conn ? wb_conn->base.base->state : NULL;
+>   	if (conn_st && conn_st->writeback_job)
+>   		drm_writeback_queue_job(&wb_conn->base, conn_st);
 >   
->   		dma_fence_get(f);
->   		if (!dma_fence_add_callback(f, &head->cb, dma_fence_chain_cb)) {
-> @@ -165,8 +164,7 @@ static bool dma_fence_chain_enable_signaling(struct dma_fence *fence)
->   static bool dma_fence_chain_signaled(struct dma_fence *fence)
+> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.h b/drivers/gpu/drm/arm/display/komeda/komeda_kms.h
+> index 456f3c435719..8d83883a1d99 100644
+> --- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.h
+> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.h
+> @@ -53,6 +53,7 @@ struct komeda_plane_state {
+>    * struct komeda_wb_connector
+>    */
+>   struct komeda_wb_connector {
+> +	struct drm_connector conn;
+>   	/** @base: &drm_writeback_connector */
+>   	struct drm_writeback_connector base;
+>   
+> @@ -136,7 +137,7 @@ struct komeda_kms_dev {
+>   static inline bool is_writeback_only(struct drm_crtc_state *st)
 >   {
->   	dma_fence_chain_for_each(fence, fence) {
-> -		struct dma_fence_chain *chain = to_dma_fence_chain(fence);
-> -		struct dma_fence *f = chain ? chain->fence : fence;
-> +		struct dma_fence *f = dma_fence_chain_contained(fence);
+>   	struct komeda_wb_connector *wb_conn = to_kcrtc(st->crtc)->wb_conn;
+> -	struct drm_connector *conn = wb_conn ? &wb_conn->base.base : NULL;
+> +	struct drm_connector *conn = wb_conn ? wb_conn->base.base : NULL;
 >   
->   		if (!dma_fence_is_signaled(f)) {
->   			dma_fence_put(fence);
-> diff --git a/include/linux/dma-fence-chain.h b/include/linux/dma-fence-chain.h
-> index ee906b659694..10d51bcdf7b7 100644
-> --- a/include/linux/dma-fence-chain.h
-> +++ b/include/linux/dma-fence-chain.h
-> @@ -66,6 +66,21 @@ to_dma_fence_chain(struct dma_fence *fence)
->   	return container_of(fence, struct dma_fence_chain, base);
+>   	return conn && (st->connector_mask == BIT(drm_connector_index(conn)));
+>   }
+> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c b/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
+> index e465cc4879c9..0caaf483276d 100644
+> --- a/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
+> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
+> @@ -51,7 +51,7 @@ komeda_wb_encoder_atomic_check(struct drm_encoder *encoder,
+>   		return -EINVAL;
+>   	}
+>   
+> -	wb_layer = to_kconn(to_wb_conn(conn_st->connector))->wb_layer;
+> +	wb_layer = to_kconn(drm_connector_to_writeback(conn_st->connector))->wb_layer;
+>   
+>   	/*
+>   	 * No need for a full modested when the only connector changed is the
+> @@ -123,7 +123,7 @@ komeda_wb_connector_fill_modes(struct drm_connector *connector,
+>   static void komeda_wb_connector_destroy(struct drm_connector *connector)
+>   {
+>   	drm_connector_cleanup(connector);
+> -	kfree(to_kconn(to_wb_conn(connector)));
+> +	kfree(to_kconn(drm_connector_to_writeback(connector)));
 >   }
 >   
-> +/**
-> + * dma_fence_chain_contained - return the contained fence
-> + * @fence: the fence to test
-> + *
-> + * If the fence is a dma_fence_chain the function returns the fence contained
-> + * inside the chain object, otherwise it returns the fence itself.
-> + */
-> +static inline struct dma_fence *
-> +dma_fence_chain_contained(struct dma_fence *fence)
-> +{
-> +	struct dma_fence_chain *chain = to_dma_fence_chain(fence);
-> +
-> +	return chain ? chain->fence : fence;
-> +}
-> +
->   /**
->    * dma_fence_chain_alloc
->    *
+>   static const struct drm_connector_funcs komeda_wb_connector_funcs = {
+> @@ -155,6 +155,7 @@ static int komeda_wb_connector_add(struct komeda_kms_dev *kms,
+>   	kwb_conn->wb_layer = kcrtc->master->wb_layer;
+>   
+>   	wb_conn = &kwb_conn->base;
+> +	wb_conn->base = &kwb_conn->conn;
+>   	wb_conn->encoder.possible_crtcs = BIT(drm_crtc_index(&kcrtc->base));
+>   
+>   	formats = komeda_get_layer_fourcc_list(&mdev->fmt_tbl,
+> @@ -171,9 +172,9 @@ static int komeda_wb_connector_add(struct komeda_kms_dev *kms,
+>   		return err;
+>   	}
+>   
+> -	drm_connector_helper_add(&wb_conn->base, &komeda_wb_conn_helper_funcs);
+> +	drm_connector_helper_add(wb_conn->base, &komeda_wb_conn_helper_funcs);
+>   
+> -	info = &kwb_conn->base.base.display_info;
+> +	info = &kwb_conn->base.base->display_info;
+>   	info->bpc = __fls(kcrtc->master->improc->supported_color_depths);
+>   	info->color_formats = kcrtc->master->improc->supported_color_formats;
+>   
