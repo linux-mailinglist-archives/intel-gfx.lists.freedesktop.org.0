@@ -1,55 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EFF3498833
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 19:21:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85A8B498851
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 19:27:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80C8210E758;
-	Mon, 24 Jan 2022 18:21:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D46F10E85F;
+	Mon, 24 Jan 2022 18:27:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85FBE10E758
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 18:21:26 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5083710E7CD;
+ Mon, 24 Jan 2022 18:27:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643048486; x=1674584486;
- h=message-id:subject:from:to:date:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=5DLL9Ycyh6SUpQb4mi4t+SeWBtOaa31vxih3npdoGi8=;
- b=MCUNYE+w30BDM5MQnxh46A9cAorW5XDrTgNtboM/8dNOiiqk+zEw6cxd
- Ct09cXzdVleBBbCvCx6Lc+m64kLUDQR/h5+0NZkL3ddqGwpCwhW8jluZ3
- 91ztLGryVMYlh+OQVcTFohNC7G1Ss6CLNjSDghClo5Yw68o4qt87lO0nU
- kQG2DiDfM8auzocyH1AA6oKpgjtZ3XF3TR4gLtbRLSkoEFRVCfDqiJwgP
- NPR7WfaMTejpe3PdcgIre3I3gnXmWNJzngEn8qnA8gEvuL1vfxG76uBvW
- WYkYzXaIktmuIxlgvArun7wddIxjfwEaFSNiw/9+AfpuEvinD53+jZrzP Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="244947668"
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="244947668"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 10:21:26 -0800
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="596866624"
-Received: from olindum-mobl1.ger.corp.intel.com (HELO [10.249.254.70])
- ([10.249.254.70])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 10:21:24 -0800
-Message-ID: <eb2dd9e49f175788e827adfc7587d9ad24d03ff9.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Adrian Larumbe <adrian.larumbe@collabora.com>, daniel@ffwll.ch, 
- ramalingam.c@intel.com, intel-gfx@lists.freedesktop.org, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Date: Mon, 24 Jan 2022 19:21:22 +0100
-In-Reply-To: <6b34e05e-df19-59a4-2172-211593d005dd@linux.intel.com>
-References: <20220121222252.3296117-1-adrian.larumbe@collabora.com>
- <20220121222252.3296117-6-adrian.larumbe@collabora.com>
- <6b34e05e-df19-59a4-2172-211593d005dd@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
+ t=1643048862; x=1674584862;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QYEAybRwP0jTcU3cihM+fGC4MwyHH67iS4J4O/RWUsE=;
+ b=aTVpXun8YP4g4591uQvIc7RnSiJgpbHpwdTSyjoThbjhq59NUTEpA7/L
+ t8Z8KkVSrDfHHh0XC0e3Foxm8MFrEcBhP5Zm+eg5kBelFGOlDgRsd8AU2
+ j8YwDeEzz+OOgW+iM4cP++ffUPB2JJbrrQVWtfm91LJSNvxUs5NI25A25
+ CCqvrGYNKB5f/hMPvP/DX16u0UWqmghpIuD3QWyazyMeA+IlidFsJ/5Nr
+ tQSL/+eaUfdvXE73t7oN9Ot+UyqeJrDLdUHgUHl39iGN4SM7ok7ZyySJo
+ ICHoKiKq1hbbBlBKL3Z1wkaT+DIppe4clM7IEMnM1JAefX3RZ/wXHLzdd A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="306829355"
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="306829355"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 10:27:41 -0800
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="479182936"
+Received: from iweiny-desk2.sc.intel.com (HELO localhost) ([10.3.52.147])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 10:27:41 -0800
+Date: Mon, 24 Jan 2022 10:27:41 -0800
+From: Ira Weiny <ira.weiny@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <20220124182741.GC785175@iweiny-DESK2.sc.intel.com>
+References: <20220124015409.807587-1-ira.weiny@intel.com>
+ <a56344b6-b1bd-6749-5ed2-5f38bf79dcee@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC PATCH 5/5] drm/i915/flat-CCS: handle creation
- and destruction of flat CCS bo's
+In-Reply-To: <a56344b6-b1bd-6749-5ed2-5f38bf79dcee@gmail.com>
+User-Agent: Mutt/1.11.1 (2018-12-01)
+Subject: Re: [Intel-gfx] [PATCH V2 0/7] DRM kmap() fixes and
+ kmap_local_page() conversions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,45 +59,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2022-01-24 at 17:24 +0100, Thomas HellstrÃ¶m wrote:
-> Hi, Adrian
-> 
-> On 1/21/22 23:22, Adrian Larumbe wrote:
-> > When a flat-CCS lmem-bound BO is evicted onto smem for the first
-> > time, a
-> > separate swap gem object is created to hold the contents of the CCS
-> > block.
-> > It is assumed that, for a flat-CCS bo to be migrated back onto
-> > lmem, it
-> > should've begun its life in lmem.
+On Mon, Jan 24, 2022 at 01:08:26PM +0100, Christian König wrote:
+> Am 24.01.22 um 02:54 schrieb ira.weiny@intel.com:
+> > From: Ira Weiny <ira.weiny@intel.com>
 > > 
-> > It also handles destruction of the swap bo when the original TTM
-> > object
-> > reaches the end of its life.
+> > Changes from V1:
+> > 	Use memcpy_to_page() where appropriate
+> > 	Rebased to latest
 > > 
-> > Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
+> > The kmap() call may cause issues with work being done with persistent memory.
+> > For this and other reasons it is being deprecated.
 > 
+> I'm really wondering how we should be able to implement the kernel mapping
+> without kmap in TTM.
 > 
-> While allocating a separate object for the CCS data is certainly
-> possible, it poses some additional difficulties that have not been
-> addressed here.
+> > This series starts by converting the last easy kmap() uses in the drm tree to
+> > kmap_local_page().
+> > 
+> > The final 2 patches fix bugs found while working on the ttm_bo_kmap_ttm()
+> > conversion.  They are valid fixes but were found via code inspection not
+> > because of any actual bug so don't require a stable tag.[1]
+> > 
+> > There is one more call to kmap() used in ttm_bo_kmap_ttm().  Unfortunately,
+> > fixing this is not straight forward so it is left to future work.[2]
 > 
-> The CCS object needs to share the dma_resv of the original object.
-> That
-> is because the CCS object needs to be locked and validated when we
-> process it, and we
-> can only trylock within the ttm move callback which might therefore
-> fail
-> and isn't sufficient on swapin. We'd need to create some
-> i915_gem_object_create_region_locked() that wraps
-> ttm_bo_init_reserved().
+> Patches #2, #4, #6 and #7 are Reviewed-by: Christian König
+> <christian.koenig@amd.com>
 
-Actually that would be a function to create with a reservation object
-shared from another object.
+Christian,
 
-/Thomas
+Would you prefer I send those 4 to you as a separate series?
 
+> 
+> How to you now want to push those upstream? I can pick them up for the AMD
+> tree like Daniel suggested or you can push them through something else.
 
+You picking them up from this series is ok as well.
+
+Daniel will you take #1, #3, and #5?
+
+Thanks,
+Ira
+
+> 
+> Regards,
+> Christian.
+> 
+> > 
+> > [1] https://lore.kernel.org/lkml/fb71af05-a889-8f6e-031b-426b58a64f00@amd.com/
+> > [2] https://lore.kernel.org/lkml/20211215210949.GW3538886@iweiny-DESK2.sc.intel.com/
+> > 
+> > 
+> > Ira Weiny (7):
+> > drm/i915: Replace kmap() with kmap_local_page()
+> > drm/amd: Replace kmap() with kmap_local_page()
+> > drm/gma: Remove calls to kmap()
+> > drm/radeon: Replace kmap() with kmap_local_page()
+> > drm/msm: Alter comment to use kmap_local_page()
+> > drm/amdgpu: Ensure kunmap is called on error
+> > drm/radeon: Ensure kunmap is called on error
+> > 
+> > drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 8 ++++----
+> > drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c | 1 +
+> > drivers/gpu/drm/gma500/gma_display.c | 6 ++----
+> > drivers/gpu/drm/gma500/mmu.c | 8 ++++----
+> > drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 6 ++----
+> > drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 8 ++++----
+> > drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c | 4 ++--
+> > drivers/gpu/drm/i915/gt/shmem_utils.c | 7 ++-----
+> > drivers/gpu/drm/i915/i915_gem.c | 8 ++++----
+> > drivers/gpu/drm/i915/i915_gpu_error.c | 4 ++--
+> > drivers/gpu/drm/msm/msm_gem_submit.c | 4 ++--
+> > drivers/gpu/drm/radeon/radeon_ttm.c | 4 ++--
+> > drivers/gpu/drm/radeon/radeon_uvd.c | 1 +
+> > 13 files changed, 32 insertions(+), 37 deletions(-)
+> > 
+> > --
+> > 2.31.1
+> > 
+> 
