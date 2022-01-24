@@ -1,51 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 206ED497B05
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 10:07:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3604497B17
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 10:11:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F51110EDAC;
-	Mon, 24 Jan 2022 09:07:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31EF910E7EA;
+	Mon, 24 Jan 2022 09:11:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0799F10EDAC
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 09:06:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643015218; x=1674551218;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qN3EN1Neevy6XTgnCss1skeQV6rF5jkWTrwNJiXabFU=;
- b=HAce13hXcc4uo8AFgkb/2m9rNPV22k1jF6nMtXTtY/bOxRVYjgD75WQD
- 2p/mDmW+7U18XJ0w2gc85JtiMZy2c9id+GY6vAIeOo5EMF8H24GzTzgCE
- jTE0fCFgw5R9Ys2kn4miwCB9WZ6TJnkUwvIBYbcyXDaYlH2V+IoDXHZhN
- oVoEjmB9CdUcdFe997DfMUfRM2Ntwb8rSFpm89ac6fN53rG8uAAH3dqKV
- WmMttZTj9OWIiloy/zczgJv4USq+cjPyVYcOhdzGkibktUOdsC6s4e8/z
- M/zgui31WcKCqfhqTPBuR9NzohErPDK3rRI5jwUawuxxa3j9F2r0Jg5/R w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="245782543"
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="245782543"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 01:06:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="627424723"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by orsmga004.jf.intel.com with ESMTP; 24 Jan 2022 01:06:53 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Jan 2022 11:06:53 +0200
-Message-Id: <20220124090653.14547-5-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
-In-Reply-To: <20220124090653.14547-1-stanislav.lisovskiy@intel.com>
-References: <20220124090653.14547-1-stanislav.lisovskiy@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 461C210E7DE;
+ Mon, 24 Jan 2022 09:11:07 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id C70A11F38B;
+ Mon, 24 Jan 2022 09:11:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1643015465; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=FUts7vQ92wluF1V0YPo5RkzNxvApLVxpQXqmeie6FVA=;
+ b=SCdzbanNZdKT/LN3mP/ZCU86SIsEoAj8SWD3OKY3yvLJksBfySiUS00qiDXlvAXXucGMR0
+ 3vcSTYx8KwT1px3C9XLUNpxjEUo5suvR4VJPVn/EmeRlnl3AQuqYH+Ij+WjOAbbly45SIu
+ jguq3SHJwu90kUuKV/PXQNAkwjf+mSw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1643015465;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=FUts7vQ92wluF1V0YPo5RkzNxvApLVxpQXqmeie6FVA=;
+ b=I/CaaI7FvZew1vkLtLBv/m2N/TznQHHebqNbiUc2kMiSM0ooMKxUIOi2VwTu1mfeTnT0pR
+ w97hz2pv5X3LHtDg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 8E36313A7C;
+ Mon, 24 Jan 2022 09:11:05 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id xSp9ISlt7mG6PQAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 24 Jan 2022 09:11:05 +0000
+Message-ID: <ff4310c7-a663-a2f8-5c08-8c5557f58350@suse.de>
+Date: Mon, 24 Jan 2022 10:11:04 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Don't allocate extra ddb during
- async flip for DG2
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
+References: <20220124010811.1640-1-andi.shyti@linux.intel.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20220124010811.1640-1-andi.shyti@linux.intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------OXWjDP0gZrvQJHO5gl2TUZYr"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix header file inclusion for
+ might_alloc()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,174 +72,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In terms of async flip optimization we don't to allocate
-extra ddb space, so lets skip it.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------OXWjDP0gZrvQJHO5gl2TUZYr
+Content-Type: multipart/mixed; boundary="------------344vYNP0349cIGsZdLARaj0I";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Andi Shyti <andi@etezian.org>
+Message-ID: <ff4310c7-a663-a2f8-5c08-8c5557f58350@suse.de>
+Subject: Re: [PATCH] drm/i915: fix header file inclusion for might_alloc()
+References: <20220124010811.1640-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20220124010811.1640-1-andi.shyti@linux.intel.com>
 
-v2: - Extracted min ddb async flip check to separate function
-      (Ville Syrjälä)
-    - Used this function to prevent false positive WARN
-      to be triggered(Ville Syrjälä)
+--------------344vYNP0349cIGsZdLARaj0I
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-v3: - Renamed dg2_need_min_ddb to need_min_ddb thus making
-      it more universal.
-    - Also used DISPLAY_VER instead of IS_DG2(Ville Syrjälä)
-    - Use rate = 0 instead of just setting extra = 0, thus
-      letting other planes to use extra ddb and avoiding WARN
-      (Ville Syrjälä)
+SGkNCg0KQW0gMjQuMDEuMjIgdW0gMDI6MDggc2NocmllYiBBbmRpIFNoeXRpOg0KPiBSZXBs
+YWNlICJsaW51eC9zbGFiLmgiIHdpdGggImxpbnV4L3NjaGVkL21tLmgiIGhlYWRlciBpbmNs
+dXNpb24NCj4gYXMgdGhlIGZpcnN0IGlzIG5vdCByZXF1aXJlZCwgd2hpbGUgdGhlIHNlY29u
+ZCwgaWYgbm90IGluY2x1ZGVkLA0KPiBwcmRvdWNlcyB0aGUgZm9sbG93aW5nIGVycm9yOg0K
+DQoncHJvZHVjZXMnDQoNCj4gDQo+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdm1hX3Jl
+c291cmNlLmM6IEluIGZ1bmN0aW9uIOKAmGk5MTVfdm1hX3Jlc291cmNlX2JpbmRfZGVwX2F3
+YWl04oCZOg0KPiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3ZtYV9yZXNvdXJjZS5jOjM4
+MTo5OiBlcnJvcjogaW1wbGljaXQgZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24g4oCYbWlnaHRf
+YWxsb2PigJk7IGRpZCB5b3UgbWVhbiDigJhtaWdodF9sb2Nr4oCZPyBbLVdlcnJvcj1pbXBs
+aWNpdC1mdW5jdGlvbi1kZWNsYXJhdGlvbl0NCj4gICAgMzgxIHwgICAgICAgICBtaWdodF9h
+bGxvYyhnZnApOw0KPiAgICAgICAgfCAgICAgICAgIF5+fn5+fn5+fn5+DQo+ICAgICAgICB8
+ICAgICAgICAgbWlnaHRfbG9jaw0KPiANCj4gU2lnbmVkLW9mZi1ieTogQW5kaSBTaHl0aSA8
+YW5kaS5zaHl0aUBsaW51eC5pbnRlbC5jb20+DQo+IENjOiBUaG9tYXMgSGVsbHN0csO2bSA8
+dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+DQo+IC0tLQ0KPiAgIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfdm1hX3Jlc291cmNlLmMgfCAyICstDQo+ICAgMSBmaWxlIGNo
+YW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92bWFfcmVzb3VyY2UuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfdm1hX3Jlc291cmNlLmMNCj4gaW5kZXggMWY0MWMwYzY5OWVi
+Li5iYmIwZmYxNDI3MmYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfdm1hX3Jlc291cmNlLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92
+bWFfcmVzb3VyY2UuYw0KPiBAQCAtNCw3ICs0LDcgQEANCj4gICAgKi8NCj4gICANCj4gICAj
+aW5jbHVkZSA8bGludXgvaW50ZXJ2YWxfdHJlZV9nZW5lcmljLmg+DQo+IC0jaW5jbHVkZSA8
+bGludXgvc2xhYi5oPg0KPiArI2luY2x1ZGUgPGxpbnV4L3NjaGVkL21tLmg+DQo+ICAgDQo+
+ICAgI2luY2x1ZGUgImk5MTVfc3dfZmVuY2UuaCINCj4gICAjaW5jbHVkZSAiaTkxNV92bWFf
+cmVzb3VyY2UuaCINCg0KLS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhpY3MgRHJpdmVy
+IERldmVsb3Blcg0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJIDQpNYXhm
+ZWxkc3RyLiA1LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkNCihIUkIgMzY4MDksIEFHIE7D
+vHJuYmVyZykNCkdlc2Now6RmdHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
 
-v4: - Renamed needs_min_ddb as s/needs/use/ to match
-      the wm0 counterpart(Ville Syrjälä)
-    - Added plane->async_flip check to use_min_ddb(now
-      passing plane as a parameter to do that)(Ville Syrjälä)
-    - Account for use_min_ddb also when calculating total data rate
-      (Ville Syrjälä)
+--------------344vYNP0349cIGsZdLARaj0I--
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
- .../gpu/drm/i915/display/intel_atomic_plane.h |  3 +-
- drivers/gpu/drm/i915/intel_pm.c               | 53 ++++++++++++++-----
- 3 files changed, 44 insertions(+), 14 deletions(-)
+--------------OXWjDP0gZrvQJHO5gl2TUZYr
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index b20cf2c16691..9d79ab987b2e 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -374,7 +374,7 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
- 					       old_plane_state, new_plane_state);
- }
- 
--static struct intel_plane *
-+struct intel_plane *
- intel_crtc_get_plane(struct intel_crtc *crtc, enum plane_id plane_id)
- {
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-index ead789709477..aaddcc636f98 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-@@ -23,7 +23,8 @@ unsigned int intel_adjusted_rate(const struct drm_rect *src,
- 				 unsigned int rate);
- unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
- 				    const struct intel_plane_state *plane_state);
--
-+struct intel_plane *intel_crtc_get_plane(struct intel_crtc *crtc,
-+					  enum plane_id plane_id);
- unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
- 				   const struct intel_plane_state *plane_state);
- void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 8269f1e9c784..fbe6a45801bc 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -4988,6 +4988,25 @@ skl_get_total_relative_data_rate(struct intel_atomic_state *state,
- 	return total_data_rate;
- }
- 
-+static bool use_min_ddb(struct intel_crtc_state *crtc_state,
-+			struct intel_plane *plane)
-+{
-+	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-+
-+	return DISPLAY_VER(i915) >= 13 && crtc_state->uapi.async_flip &&
-+	       plane->async_flip;
-+}
-+
-+static bool use_minimal_wm0_only(const struct intel_crtc_state *crtc_state,
-+				 struct intel_plane *plane)
-+{
-+	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-+
-+	return DISPLAY_VER(i915) >= 13 &&
-+	       crtc_state->uapi.async_flip &&
-+	       plane->async_flip;
-+}
-+
- static u64
- icl_get_total_relative_data_rate(struct intel_atomic_state *state,
- 				 struct intel_crtc *crtc)
-@@ -5033,8 +5052,15 @@ icl_get_total_relative_data_rate(struct intel_atomic_state *state,
- 		}
- 	}
- 
--	for_each_plane_id_on_crtc(crtc, plane_id)
--		total_data_rate += crtc_state->plane_data_rate[plane_id];
-+	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
-+		/*
-+		 * We calculate extra ddb based on ratio plane rate/total data rate
-+		 * in case, in some cases we should not allocate extra ddb for the plane,
-+		 * so do not count its data rate, if this is the case.
-+		 */
-+		if (!use_min_ddb(crtc_state, plane))
-+			total_data_rate += crtc_state->plane_data_rate[plane->id];
-+	}
- 
- 	return total_data_rate;
- }
-@@ -5199,6 +5225,8 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
- 	for_each_plane_id_on_crtc(crtc, plane_id) {
- 		const struct skl_plane_wm *wm =
- 			&crtc_state->wm.skl.optimal.planes[plane_id];
-+		struct intel_plane *plane =
-+			intel_crtc_get_plane(crtc, plane_id);
- 		u64 rate;
- 		u16 extra;
- 
-@@ -5213,9 +5241,14 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
- 			break;
- 
- 		rate = crtc_state->plane_data_rate[plane_id];
-+
-+		if (use_min_ddb(crtc_state, plane))
-+			rate = 0;
-+
- 		extra = min_t(u16, alloc_size,
- 			      DIV64_U64_ROUND_UP(alloc_size * rate,
- 						 total_data_rate));
-+
- 		total[plane_id] = wm->wm[level].min_ddb_alloc + extra;
- 		alloc_size -= extra;
- 		total_data_rate -= rate;
-@@ -5224,13 +5257,19 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
- 			break;
- 
- 		rate = crtc_state->uv_plane_data_rate[plane_id];
-+
-+		if (use_min_ddb(crtc_state, plane))
-+			rate = 0;
-+
- 		extra = min_t(u16, alloc_size,
- 			      DIV64_U64_ROUND_UP(alloc_size * rate,
- 						 total_data_rate));
-+
- 		uv_total[plane_id] = wm->uv_wm[level].min_ddb_alloc + extra;
- 		alloc_size -= extra;
- 		total_data_rate -= rate;
- 	}
-+
- 	drm_WARN_ON(&dev_priv->drm, alloc_size != 0 || total_data_rate != 0);
- 
- 	/* Set the actual DDB start/end points for each plane */
-@@ -5497,16 +5536,6 @@ static int skl_wm_max_lines(struct drm_i915_private *dev_priv)
- 		return 31;
- }
- 
--static bool use_minimal_wm0_only(const struct intel_crtc_state *crtc_state,
--				 struct intel_plane *plane)
--{
--	struct drm_i915_private *i915 = to_i915(plane->base.dev);
--
--	return DISPLAY_VER(i915) >= 13 &&
--	       crtc_state->uapi.async_flip &&
--	       plane->async_flip;
--}
--
- static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
- 				 struct intel_plane *plane,
- 				 int level,
--- 
-2.24.1.485.gad05a3d8e5
+-----BEGIN PGP SIGNATURE-----
 
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmHubSgFAwAAAAAACgkQlh/E3EQov+DX
+fg//dRjQrn86knRzBTkjQ+gLPV48Rw9BV/AnCYzAjtBueG3fpq0pK2kN2Ud0M+tq/mlky4waValC
+bJa9MucWLgQuinvQT2rZbft97XMUPW+YftZu23E2714A7oFPTFS2qZC3P43cNQMgnXVrygEDPgxf
+Ut7AKOX66pDTn139tNfcZUFjMFuVRkJRzmM6JIxwsdvDMld1QETPsOUSzUbqa98/ZqtBKqCC1y/s
+9pujNvQzKgT8FnIyXemYXVgrVeIjz7Uset7DV887izCW14HLPzFK7/d9GSw/1udOZdz1yfc93bKU
+F1a31EuaYU5IMe/ikTQi8rm6JAmLIoIKN1RGVJC/GnsUnvwR3Km95sXgZ7otwwDto6nGUlsqjwuj
+ZVRZIgC76CvGKLKKsD3iOI/PcOCp7acGbgfOhcLcO9Bro8Vwcw3+LT55qcwAfOd6z3XEPd4IdGas
+/WHrxLaQWzmMGO+dMSkOVZarx5COvYhS6AUl332BC/myDfbcgZ583iHVgFXe2zmhu/WLoZl6pqdU
+6jVxMNBy1q0QGcHc2FbyXjWwc0J780+7cUgHG8YEDTJmtM2zsRYEwQpjtY2itCf66em3OmuK4+Ct
+o63rLA2MVaCeV1nV0mQQG4t38bOa+IF0doAYZDGeMklRuINMMT/yAWytOY5rzpftJwT5h9GY17z2
+uac=
+=axx8
+-----END PGP SIGNATURE-----
+
+--------------OXWjDP0gZrvQJHO5gl2TUZYr--
