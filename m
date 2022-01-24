@@ -2,66 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E38A49842E
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 17:03:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E974984A2
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 17:24:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36D0810E2E0;
-	Mon, 24 Jan 2022 16:03:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 133AB10E841;
+	Mon, 24 Jan 2022 16:24:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C57F410E2E0
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 16:03:53 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id j2so22509592ejk.6
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 08:03:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=hHD1I6HBwWXdmu99NOtKXptCdvMp508sRo/7M3HfYGs=;
- b=Z+EuI9Pi5ZDJTsvU0GJbe6u9iQbz09QiMO9lztGoX794vCmEhRU6hlhU9YSGbtQE5j
- NSUsu2eCWgf+isH6LuoPiSSQlDOGV9ZfIbVVkpO+elQEUlHtqHS1E0OFBq7QUfQ0Nz6s
- Qy0ENSro1a5UtnAQAsHkl/PgskYfs0fK29Dis=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=hHD1I6HBwWXdmu99NOtKXptCdvMp508sRo/7M3HfYGs=;
- b=aqVomyQouMXkazznVAfF9GbOv1fuKcuDKxEVhB50nMPeENKQZSYZxXmryqd/tqtH1h
- Ix2GXKPz5EK3UlASqwQbsG4UgsZwGLL4K4+Wrj0Yyzo63KSR12Y7Pt5IXGXQmMzOTSbG
- pLZQRbz9i9BEPWbp8iozHLhXu68tON8x/B7jzas1NQZk3ReedLtrIR2yzsf5d5xQmGae
- zuMScvJbjdcCrDQg5hXLPt3gSHAEX1GDznvvdnu+M7vmL/z7XHqsEKRvGY9QCFgDTBKm
- DyU2hbLaj9lOHRhfQoPAdtVt7bXyhd3Y/QCLyVW21VvYXRpXFIgzA4lGphTbRDg8SuMr
- 1urA==
-X-Gm-Message-State: AOAM533rbHe0U0m+b+p6nbe8aIBWhQIUF/P3AlXNfHvVnQpypWQ4QHY0
- 25TGNIFMB2kfF0yFeBbfB8qlMg==
-X-Google-Smtp-Source: ABdhPJxdVfkKMEYbXujqgWUpyR3+7qh2oP6uKoyQ37sTd705e0vRoEIcpmauPwpBhopTpK2j9FowlQ==
-X-Received: by 2002:a17:906:3089:: with SMTP id
- 9mr12877415ejv.97.1643040232290; 
- Mon, 24 Jan 2022 08:03:52 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id p21sm5051250ejj.156.2022.01.24.08.03.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Jan 2022 08:03:51 -0800 (PST)
-Date: Mon, 24 Jan 2022 17:03:50 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: ira.weiny@intel.com
-Message-ID: <Ye7N5ZrmVjOBo1RG@phenom.ffwll.local>
-Mail-Followup-To: ira.weiny@intel.com, David Airlie <airlied@linux.ie>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org
-References: <20220124015409.807587-1-ira.weiny@intel.com>
- <20220124015409.807587-4-ira.weiny@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B74610E841
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 16:24:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643041474; x=1674577474;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=we4T+sp4ICKbLGIehXZVmjE3GYg21erE+jA/9D7Bh58=;
+ b=ASAcwisztAN3DpZFDMEH8uei33Rx9jo3mPvCJOaCCK1cyp8A4Pfh3ev/
+ KZAK58sRFWfOFYzgvPuNReQMzLvFGhTE7sBX4y5rlNIo4DztynGVbAJQX
+ Xx5jduumCW60thKYu3vZ8yY3Zgj6zw7/zGJ1Wl9K7XYntwOSyR2fSosha
+ mw57FYkgAHukwUgJ7dVFbAn8zjvpoUqBSh1tJrX70ETZEYlEPQvn0ZmPw
+ 2vqeSOB3Kjz+R3Vfoh0zXy1bKTXPWM8a47dbRK0HVVZlROUABeTHtDX/n
+ aLKv1p/jxVvlKCeBm+ea1mOZNqV4rf4KLK8jqwPDhK7jwIrv6oFIQNPnT w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="309404071"
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="309404071"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 08:24:33 -0800
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="624132736"
+Received: from olindum-mobl1.ger.corp.intel.com (HELO [10.249.254.70])
+ ([10.249.254.70])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 08:24:31 -0800
+Message-ID: <6b34e05e-df19-59a4-2172-211593d005dd@linux.intel.com>
+Date: Mon, 24 Jan 2022 17:24:29 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220124015409.807587-4-ira.weiny@intel.com>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH V2 3/7] drm/gma: Remove calls to kmap()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Adrian Larumbe <adrian.larumbe@collabora.com>, daniel@ffwll.ch,
+ ramalingam.c@intel.com, intel-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+References: <20220121222252.3296117-1-adrian.larumbe@collabora.com>
+ <20220121222252.3296117-6-adrian.larumbe@collabora.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20220121222252.3296117-6-adrian.larumbe@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC PATCH 5/5] drm/i915/flat-CCS: handle creation
+ and destruction of flat CCS bo's
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,88 +63,199 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Jan 23, 2022 at 05:54:05PM -0800, ira.weiny@intel.com wrote:
-> From: Ira Weiny <ira.weiny@intel.com>
-> 
-> kmap() is being deprecated and these instances are easy to convert to
-> kmap_local_page().
-> 
-> Furthermore, in gma_crtc_cursor_set() use the memcpy_from_page() helper
-> instead of an open coded use of kmap_local_page().
-> 
-> Signed-off-by: Ira Weiny <ira.weiny@intel.com>
+Hi, Adrian
 
-Applied to drm-misc-next, the others should all have full time maintainers
-to make sure the patches land. Pls holler if not.
+On 1/21/22 23:22, Adrian Larumbe wrote:
+> When a flat-CCS lmem-bound BO is evicted onto smem for the first time, a
+> separate swap gem object is created to hold the contents of the CCS block.
+> It is assumed that, for a flat-CCS bo to be migrated back onto lmem, it
+> should've begun its life in lmem.
+>
+> It also handles destruction of the swap bo when the original TTM object
+> reaches the end of its life.
+>
+> Signed-off-by: Adrian Larumbe <adrian.larumbe@collabora.com>
 
-Thanks, Daniel
+
+While allocating a separate object for the CCS data is certainly
+possible, it poses some additional difficulties that have not been
+addressed here.
+
+The CCS object needs to share the dma_resv of the original object. That
+is because the CCS object needs to be locked and validated when we process it, and we
+can only trylock within the ttm move callback which might therefore fail
+and isn't sufficient on swapin. We'd need to create some
+i915_gem_object_create_region_locked() that wraps ttm_bo_init_reserved().
+
+Furthermore destruction also becomes complicated, as the main object
+owns a refcount on the CCS object, but the CCS object also needs a
+refcount on the dma_resv part of the main object which will create a
+refcount loop requiring an additional dma_resv refcount for objects to
+resolve, similar to how we've solved this for shared dma_resv shared with vms.
+
+Also shouldn't we be destroying the CCS object when data is moved back into lmem?
+
+Anyway, when we've earlier discussed how to handle this, we've discussed a solution where the struct ttm_tt was given an inflated size on creation to accommodate also the CCS data at the end. That would waste some memory if we ever were to migrate such an object to system while decompressing, but otherwise greatly simplify the handling. Basically we'd only look at whether the object is flat-CCS enabled in i915_ttm_tt_create() and inflate the ttm_tt size.
+  
+This requires an additional size parameter to ttm_tt_init(), but I've once discussed this with Christian König, and he didn't seem to object at the time. (+CC Christian König).
+
+Thanks,
+Thomas
+
 
 > ---
->  drivers/gpu/drm/gma500/gma_display.c | 6 ++----
->  drivers/gpu/drm/gma500/mmu.c         | 8 ++++----
->  2 files changed, 6 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/gma500/gma_display.c b/drivers/gpu/drm/gma500/gma_display.c
-> index 99da3118131a..60ba7de59139 100644
-> --- a/drivers/gpu/drm/gma500/gma_display.c
-> +++ b/drivers/gpu/drm/gma500/gma_display.c
-> @@ -335,7 +335,7 @@ int gma_crtc_cursor_set(struct drm_crtc *crtc,
->  	struct psb_gem_object *pobj;
->  	struct psb_gem_object *cursor_pobj = gma_crtc->cursor_pobj;
->  	struct drm_gem_object *obj;
-> -	void *tmp_dst, *tmp_src;
-> +	void *tmp_dst;
->  	int ret = 0, i, cursor_pages;
->  
->  	/* If we didn't get a handle then turn the cursor off */
-> @@ -400,9 +400,7 @@ int gma_crtc_cursor_set(struct drm_crtc *crtc,
->  		/* Copy the cursor to cursor mem */
->  		tmp_dst = dev_priv->vram_addr + cursor_pobj->offset;
->  		for (i = 0; i < cursor_pages; i++) {
-> -			tmp_src = kmap(pobj->pages[i]);
-> -			memcpy(tmp_dst, tmp_src, PAGE_SIZE);
-> -			kunmap(pobj->pages[i]);
-> +			memcpy_from_page(tmp_dst, pobj->pages[i], 0, PAGE_SIZE);
->  			tmp_dst += PAGE_SIZE;
->  		}
->  
-> diff --git a/drivers/gpu/drm/gma500/mmu.c b/drivers/gpu/drm/gma500/mmu.c
-> index fe9ace2a7967..a70b01ccdf70 100644
-> --- a/drivers/gpu/drm/gma500/mmu.c
-> +++ b/drivers/gpu/drm/gma500/mmu.c
-> @@ -184,17 +184,17 @@ struct psb_mmu_pd *psb_mmu_alloc_pd(struct psb_mmu_driver *driver,
->  		pd->invalid_pte = 0;
->  	}
->  
-> -	v = kmap(pd->dummy_pt);
-> +	v = kmap_local_page(pd->dummy_pt);
->  	for (i = 0; i < (PAGE_SIZE / sizeof(uint32_t)); ++i)
->  		v[i] = pd->invalid_pte;
->  
-> -	kunmap(pd->dummy_pt);
-> +	kunmap_local(v);
->  
-> -	v = kmap(pd->p);
-> +	v = kmap_local_page(pd->p);
->  	for (i = 0; i < (PAGE_SIZE / sizeof(uint32_t)); ++i)
->  		v[i] = pd->invalid_pde;
->  
-> -	kunmap(pd->p);
-> +	kunmap_local(v);
->  
->  	clear_page(kmap(pd->dummy_page));
->  	kunmap(pd->dummy_page);
-> -- 
-> 2.31.1
-> 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c      | 11 +++
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 78 +++++++++++++++++++-
+>   2 files changed, 87 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index 84cae740b4a5..24708d6bfd9c 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -474,11 +474,22 @@ static int i915_ttm_shrink(struct drm_i915_gem_object *obj, unsigned int flags)
+>   static void i915_ttm_delete_mem_notify(struct ttm_buffer_object *bo)
+>   {
+>   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+> +	struct drm_i915_private *i915 =
+> +		container_of(bo->bdev, typeof(*i915), bdev);
+>   
+>   	if (likely(obj)) {
+>   		__i915_gem_object_pages_fini(obj);
+>   		i915_ttm_free_cached_io_rsgt(obj);
+>   	}
+> +
+> +	if (HAS_FLAT_CCS(i915) && obj->flat_css.enabled) {
+> +		struct drm_i915_gem_object *swap_obj = obj->flat_css.swap;
+> +
+> +		if (swap_obj) {
+> +			swap_obj->base.funcs->free(&swap_obj->base);
+> +			obj->flat_css.swap = NULL;
+> +		}
+> +	}
+>   }
+>   
+>   static struct i915_refct_sgt *i915_ttm_tt_get_st(struct ttm_tt *ttm)
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> index 1de306c03aaf..3479c4a37bd8 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+> @@ -162,6 +162,56 @@ int i915_ttm_move_notify(struct ttm_buffer_object *bo)
+>   	return 0;
+>   }
+>   
+> +static int
+> +i915_ccs_handle_move(struct drm_i915_gem_object *obj,
+> +		     struct ttm_resource *dst_mem)
+> +{
+> +	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
+> +	struct drm_i915_private *i915 = container_of(bo->bdev, typeof(*i915),
+> +						     bdev);
+> +	struct intel_memory_region *dst_reg;
+> +	size_t ccs_blk_size;
+> +	int ret;
+> +
+> +	dst_reg = i915_ttm_region(bo->bdev, dst_mem->mem_type);
+> +	ccs_blk_size = GET_CCS_SIZE(i915, obj->base.size);
+> +
+> +	if (dst_reg->type != INTEL_MEMORY_LOCAL &&
+> +	    dst_reg->type != INTEL_MEMORY_SYSTEM) {
+> +		DRM_DEBUG_DRIVER("Wrong memory region when using flat CCS.\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (dst_reg->type == INTEL_MEMORY_LOCAL &&
+> +	    (obj->flat_css.swap == NULL || !i915_gem_object_has_pages(obj->flat_css.swap))) {
+> +		/*
+> +		 * All BOs begin their life cycle in smem, even if meant to be
+> +		 * lmem-bound. Then, upon running the execbuf2 ioctl, get moved
+> +		 * onto lmem before first use. Therefore, migrating a flat-CCS
+> +		 * lmem-only buffer into lmem means a CCS swap buffer had already
+> +		 * been allocated when first migrating it onto smem from lmem.
+> +		 */
+> +
+> +		drm_err(&i915->drm, "BO hasn't been evicted into smem yet\n");
+> +		return -EINVAL;
+> +
+> +	} else if (dst_reg->type == INTEL_MEMORY_SYSTEM &&
+> +		   !obj->flat_css.swap) {
+> +		/* First time object is swapped out onto smem */
+> +		obj->flat_css.swap =
+> +			i915_gem_object_create_region(i915->mm.regions[INTEL_REGION_SMEM],
+> +						      ccs_blk_size, 0, 0);
+> +		if (IS_ERR(obj->flat_css.swap))
+> +			return -ENOMEM;
+> +
+> +		ret = __i915_gem_object_get_pages(obj->flat_css.swap);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   static struct dma_fence *i915_ttm_accel_move(struct ttm_buffer_object *bo,
+>   					     bool clear,
+>   					     struct ttm_resource *dst_mem,
+> @@ -172,9 +222,10 @@ static struct dma_fence *i915_ttm_accel_move(struct ttm_buffer_object *bo,
+>   	struct drm_i915_private *i915 = container_of(bo->bdev, typeof(*i915),
+>   						     bdev);
+>   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+> +	struct i915_refct_sgt *ccs_rsgt = NULL;
+>   	struct i915_request *rq;
+>   	struct ttm_tt *src_ttm = bo->ttm;
+> -	enum i915_cache_level src_level, dst_level;
+> +	enum i915_cache_level src_level, dst_level, ccs_level;
+>   	int ret;
+>   
+>   	if (!to_gt(i915)->migrate.context || intel_gt_is_wedged(to_gt(i915)))
+> @@ -196,6 +247,7 @@ static struct dma_fence *i915_ttm_accel_move(struct ttm_buffer_object *bo,
+>   						  i915_ttm_gtt_binds_lmem(dst_mem),
+>   						  0, &rq);
+>   	} else {
+> +		struct ttm_buffer_object *swap_bo;
+>   		struct i915_refct_sgt *src_rsgt =
+>   			i915_ttm_resource_get_st(obj, bo->resource);
+>   
+> @@ -203,6 +255,25 @@ static struct dma_fence *i915_ttm_accel_move(struct ttm_buffer_object *bo,
+>   			return ERR_CAST(src_rsgt);
+>   
+>   		src_level = i915_ttm_cache_level(i915, bo->resource, src_ttm);
+> +		ccs_level = I915_CACHE_NONE;
+> +
+> +		/* Handle CCS block */
+> +		if (HAS_FLAT_CCS(i915) && obj->flat_css.enabled) {
+> +			ret = i915_ccs_handle_move(obj, dst_mem);
+> +			if (ret) {
+> +				drm_err(&i915->drm,
+> +					"CCS block migration failed (%d)\n", ret);
+> +				return ERR_PTR(ret);
+> +			}
+> +
+> +			swap_bo = i915_gem_to_ttm(obj->flat_css.swap);
+> +			ccs_level = i915_ttm_cache_level(i915, swap_bo->resource, swap_bo->ttm);
+> +			ccs_rsgt = i915_ttm_resource_get_st(i915_ttm_to_gem(swap_bo),
+> +							    swap_bo->resource);
+> +			if (IS_ERR(ccs_rsgt))
+> +				return ERR_CAST(ccs_rsgt);
+> +		}
+> +
+>   		intel_engine_pm_get(to_gt(i915)->migrate.context->engine);
+>   		ret = intel_context_migrate_copy(to_gt(i915)->migrate.context,
+>   						 deps, src_rsgt->table.sgl,
+> @@ -210,9 +281,12 @@ static struct dma_fence *i915_ttm_accel_move(struct ttm_buffer_object *bo,
+>   						 i915_ttm_gtt_binds_lmem(bo->resource),
+>   						 dst_st->sgl, dst_level,
+>   						 i915_ttm_gtt_binds_lmem(dst_mem),
+> -						 &rq);
+> +						 ccs_rsgt ? ccs_rsgt->table.sgl : NULL,
+> +						 ccs_level, &rq);
+>   
+>   		i915_refct_sgt_put(src_rsgt);
+> +		if (ccs_rsgt)
+> +			i915_refct_sgt_put(ccs_rsgt);
+>   	}
+>   
+>   	intel_engine_pm_put(to_gt(i915)->migrate.context->engine);
