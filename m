@@ -1,52 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE56498CA9
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 20:26:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08B3C498CB5
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 20:31:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C55310EA4C;
-	Mon, 24 Jan 2022 19:26:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A91A510E969;
+	Mon, 24 Jan 2022 19:31:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E5C610EA4C
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 19:26:54 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F6BD10E969
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 19:31:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643052414; x=1674588414;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=reqt1pYIQrNbVbNlX2T0nqsaiSQtaNsUVCbjqFobgYw=;
- b=fgUWS0R2is6qGYie4fHZ2XoP4o2ezSLw+p4OzxCr8yuAs7Op3pTAL3Y0
- ojJmCGuOjXgKJY3r2EeOoBzGEdg9pXCuhRqyt+CFI+bBKedfZnzfswlUh
- ihyduSiZe2KtTba4nWIXRG3lc4qETQyKoDdFjHNDUpvyu9odWAu/ivh9g
- GLjMKd2DE53xHTJLu3Rsji9r/cTx6rlm/CIaZLDQaUeN8gSi3jOynRHad
- a/UY3CyKQBnSQMd7rhXjIYCOjKvxpSGDkezHLr0qzlurB/76VudQEUKzi
- yfHltuqKu4N2NcLpSD4kRqKaJ4lfj01NEHV3brUR6zTFKbtx9fiNnCQgZ Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="246348059"
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="246348059"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 11:26:53 -0800
+ t=1643052700; x=1674588700;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ng3jL5d1zF/z/DiGkunbOTpNWR14Yh61AJ3pePnjVY4=;
+ b=RCrK/FEtHu2S78Lky/VDrHruSUnW/aGQouE7/9baIl2gT4l4ZnSVC9BV
+ d2JRt8gbxJLKXBdnnX9dfGLTgF0moenuxqNwL0EAL2WZCqT0GTwUN/ahS
+ P8B7iYQ3glQl7EHepnla4ZgZih+BbGn/gymQr/zKFQWxRqVhwIw6N8Tvx
+ djSlIxQQILyn3HO5Ws74hB1pcyTYDT+tXqGwv9ZwA5LhMPiv3WzUhEQhx
+ FzLJceXmJbYLFASxZaTrq3/pspbT0uyWLoNKR3x9+xqhCL8qzcibxcOe+
+ vGzO7b53tFrhgA2yD53ZWEWTYTAs4VfaPLV8XCVr5ZUccJwSRDuJ7bDZS g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="245911561"
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="245911561"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 11:31:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="479202357"
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="562772808"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by orsmga006.jf.intel.com with SMTP; 24 Jan 2022 11:26:51 -0800
+ by orsmga001.jf.intel.com with SMTP; 24 Jan 2022 11:31:37 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 24 Jan 2022 21:26:50 +0200
+ Mon, 24 Jan 2022 21:31:36 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Jan 2022 21:26:38 +0200
-Message-Id: <20220124192638.26262-5-ville.syrjala@linux.intel.com>
+Date: Mon, 24 Jan 2022 21:31:35 +0200
+Message-Id: <20220124193136.2397-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220124192638.26262-1-ville.syrjala@linux.intel.com>
-References: <20220124192638.26262-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915: Move dsc/joiner enable into
- hsw_crtc_enable()
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: s/GRAPHICS_VER/DISPLAY_VER/ where
+ appropriate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,78 +62,86 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Lift the dsc/joiner enable up from the wonky places where it
-currently sits (ddi .pre_enable() or icl_ddi_bigjoiner_pre_enable())
-into hsw_crtc_enable() where we write the other per-pipe stuff
-as well. Makes the transcoder vs. pipe split less confusing.
+Use DISPLAY_VER rather than GRAPHICS_VER to determine
+availability of display hardware features.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c     |  6 ------
- drivers/gpu/drm/i915/display/intel_display.c | 12 +++++-------
- 2 files changed, 5 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/i915_drv.h | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 2f20abc5122d..5d1f7d6218c5 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2425,9 +2425,6 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	intel_ddi_enable_fec(encoder, crtc_state);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 44c1f98144b4..e2b8409f9174 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1463,8 +1463,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define NEEDS_WaRsDisableCoarsePowerGating(dev_priv)			\
+ 	(IS_SKL_GT3(dev_priv) || IS_SKL_GT4(dev_priv))
  
- 	intel_dsc_dp_pps_write(encoder, crtc_state);
--
--	if (!crtc_state->bigjoiner)
--		intel_dsc_enable(crtc_state);
- }
+-#define HAS_GMBUS_IRQ(dev_priv) (GRAPHICS_VER(dev_priv) >= 4)
+-#define HAS_GMBUS_BURST_READ(dev_priv) (GRAPHICS_VER(dev_priv) >= 11 || \
++#define HAS_GMBUS_IRQ(dev_priv) (DISPLAY_VER(dev_priv) >= 4)
++#define HAS_GMBUS_BURST_READ(dev_priv) (DISPLAY_VER(dev_priv) >= 11 || \
+ 					IS_GEMINILAKE(dev_priv) || \
+ 					IS_KABYLAKE(dev_priv))
  
- static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
-@@ -2493,9 +2490,6 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 		intel_ddi_enable_pipe_clock(encoder, crtc_state);
+@@ -1476,9 +1476,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define SUPPORTS_TV(dev_priv)		(INTEL_INFO(dev_priv)->display.supports_tv)
+ #define I915_HAS_HOTPLUG(dev_priv)	(INTEL_INFO(dev_priv)->display.has_hotplug)
  
- 	intel_dsc_dp_pps_write(encoder, crtc_state);
--
--	if (!crtc_state->bigjoiner)
--		intel_dsc_enable(crtc_state);
- }
+-#define HAS_FW_BLC(dev_priv)	(GRAPHICS_VER(dev_priv) > 2)
++#define HAS_FW_BLC(dev_priv)	(DISPLAY_VER(dev_priv) > 2)
+ #define HAS_FBC(dev_priv)	(INTEL_INFO(dev_priv)->display.fbc_mask != 0)
+-#define HAS_CUR_FBC(dev_priv)	(!HAS_GMCH(dev_priv) && GRAPHICS_VER(dev_priv) >= 7)
++#define HAS_CUR_FBC(dev_priv)	(!HAS_GMCH(dev_priv) && DISPLAY_VER(dev_priv) >= 7)
  
- static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index d2906434ab3f..13b1de03640d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1974,7 +1974,6 @@ static void hsw_set_frame_start_delay(const struct intel_crtc_state *crtc_state)
- static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
- 					 const struct intel_crtc_state *crtc_state)
+ #define HAS_IPS(dev_priv)	(IS_HSW_ULT(dev_priv) || IS_BROADWELL(dev_priv))
+ 
+@@ -1491,7 +1491,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
+ #define HAS_PSR_HW_TRACKING(dev_priv) \
+ 	(INTEL_INFO(dev_priv)->display.has_psr_hw_tracking)
+-#define HAS_PSR2_SEL_FETCH(dev_priv)	 (GRAPHICS_VER(dev_priv) >= 12)
++#define HAS_PSR2_SEL_FETCH(dev_priv)	 (DISPLAY_VER(dev_priv) >= 12)
+ #define HAS_TRANSCODER(dev_priv, trans)	 ((INTEL_INFO(dev_priv)->display.cpu_transcoder_mask & BIT(trans)) != 0)
+ 
+ #define HAS_RC6(dev_priv)		 (INTEL_INFO(dev_priv)->has_rc6)
+@@ -1502,7 +1502,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 
+ #define HAS_DMC(dev_priv)	(INTEL_INFO(dev_priv)->display.has_dmc)
+ 
+-#define HAS_MSO(i915)		(GRAPHICS_VER(i915) >= 12)
++#define HAS_MSO(i915)		(DISPLAY_VER(i915) >= 12)
+ 
+ #define HAS_RUNTIME_PM(dev_priv) (INTEL_INFO(dev_priv)->has_runtime_pm)
+ #define HAS_64BIT_RELOC(dev_priv) (INTEL_INFO(dev_priv)->has_64bit_reloc)
+@@ -1535,7 +1535,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 
+ #define HAS_GMCH(dev_priv) (INTEL_INFO(dev_priv)->display.has_gmch)
+ 
+-#define HAS_LSPCON(dev_priv) (IS_GRAPHICS_VER(dev_priv, 9, 10))
++#define HAS_LSPCON(dev_priv) (IS_DISPLAY_VER(dev_priv, 9, 10))
+ 
+ /* DPF == dynamic parity feature */
+ #define HAS_L3_DPF(dev_priv) (INTEL_INFO(dev_priv)->has_l3_dpf)
+@@ -1549,7 +1549,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 
+ #define HAS_DISPLAY(dev_priv) (INTEL_INFO(dev_priv)->display.pipe_mask != 0)
+ 
+-#define HAS_VRR(i915)	(GRAPHICS_VER(i915) >= 11)
++#define HAS_VRR(i915)	(DISPLAY_VER(i915) >= 11)
+ 
+ #define HAS_ASYNC_FLIPS(i915)		(DISPLAY_VER(i915) >= 5)
+ 
+@@ -1579,7 +1579,7 @@ i915_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p);
+ 
+ static inline bool intel_scanout_needs_vtd_wa(struct drm_i915_private *dev_priv)
  {
--	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
- 	struct intel_crtc_state *master_crtc_state;
- 	struct intel_crtc *master_crtc;
- 	struct drm_connector_state *conn_state;
-@@ -2004,12 +2003,6 @@ static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
- 
- 	if (crtc_state->bigjoiner_slave)
- 		intel_encoders_pre_enable(state, master_crtc);
--
--	/* need to enable VDSC, which we skipped in pre-enable */
--	intel_dsc_enable(crtc_state);
--
--	if (DISPLAY_VER(dev_priv) >= 13)
--		intel_uncompressed_joiner_enable(crtc_state);
+-	return GRAPHICS_VER(dev_priv) >= 6 && intel_vtd_active(dev_priv);
++	return DISPLAY_VER(dev_priv) >= 6 && intel_vtd_active(dev_priv);
  }
  
- static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_state)
-@@ -2057,6 +2050,11 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 		icl_ddi_bigjoiner_pre_enable(state, new_crtc_state);
- 	}
- 
-+	intel_dsc_enable(new_crtc_state);
-+
-+	if (DISPLAY_VER(dev_priv) >= 13)
-+		intel_uncompressed_joiner_enable(new_crtc_state);
-+
- 	intel_set_pipe_src_size(new_crtc_state);
- 	if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
- 		bdw_set_pipemisc(new_crtc_state);
+ static inline bool
 -- 
 2.34.1
 
