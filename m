@@ -1,51 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 822A5497714
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 02:54:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97432497723
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 03:03:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAB8610E651;
-	Mon, 24 Jan 2022 01:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE41D10E35A;
+	Mon, 24 Jan 2022 02:03:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F80210E27C;
- Mon, 24 Jan 2022 01:54:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642989256; x=1674525256;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=BBygKGffoL5d5GTpz8jASmHam5hJkymlp1BmAKuyaH0=;
- b=PD4oMlRRxBya31CJ67nZZoXbbELU3HVJQjWbceQvGLHUaFyLNA5lHoLo
- tK4Hh9B7pCs4dGRaVVmN+i3QsbfN4F1rMe+bVqsJQDrxJcN8rLj5p2/X1
- 4iYnPYLv/zhZXGFJ7fhf6OzpaSgvKGwe8A/t1MVt9l+fr3D+AtA3A6hMj
- tfFjpWpxWfAc9rc5100fSjdwnGX65fbB+dO3zTZ6dsbPnlJxbSCSw5b0Z
- coR9aE+6m8k0RVOPvJxHYOZnvZrLRAi+sOBhPR32k0XFAtoMuQ79TuABF
- W6kovrFCD39/5EKHxVbmiAXD+MrsdVR64pQuAmW/WQFj5DBx4hvKCX0U3 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="226616229"
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="226616229"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2022 17:54:15 -0800
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="627320411"
-Received: from iweiny-desk2.sc.intel.com (HELO localhost) ([10.3.52.147])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2022 17:54:15 -0800
-From: ira.weiny@intel.com
-To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>
-Date: Sun, 23 Jan 2022 17:54:09 -0800
-Message-Id: <20220124015409.807587-8-ira.weiny@intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220124015409.807587-1-ira.weiny@intel.com>
-References: <20220124015409.807587-1-ira.weiny@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8ACB110E27C;
+ Mon, 24 Jan 2022 02:03:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 88137A77A5;
+ Mon, 24 Jan 2022 02:03:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH V2 7/7] drm/radeon: Ensure kunmap is called on
- error
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: ira.weiny@intel.com
+Date: Mon, 24 Jan 2022 02:03:48 -0000
+Message-ID: <164298982853.1340.4677344427188439954@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220124015409.807587-1-ira.weiny@intel.com>
+In-Reply-To: <20220124015409.807587-1-ira.weiny@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?DRM_kmap=28=29_fixes_and_kmap=5Flocal=5Fpage=28=29_conversions_?=
+ =?utf-8?b?KHJldjQp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,39 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Ira Weiny <ira.weiny@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ira Weiny <ira.weiny@intel.com>
+== Series Details ==
 
-The default case leaves the buffer object mapped in error.
+Series: DRM kmap() fixes and kmap_local_page() conversions (rev4)
+URL   : https://patchwork.freedesktop.org/series/97889/
+State : warning
 
-Add radeon_bo_kunmap() to that case to ensure the mapping is cleaned up.
+== Summary ==
 
-Signed-off-by: Ira Weiny <ira.weiny@intel.com>
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
----
-NOTE: It seems like this function could use a fair bit of refactoring
-but this is the easiest way to fix the actual bug.
----
- drivers/gpu/drm/radeon/radeon_uvd.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/radeon/radeon_uvd.c b/drivers/gpu/drm/radeon/radeon_uvd.c
-index 377f9cdb5b53..7cca283f6202 100644
---- a/drivers/gpu/drm/radeon/radeon_uvd.c
-+++ b/drivers/gpu/drm/radeon/radeon_uvd.c
-@@ -560,6 +560,7 @@ static int radeon_uvd_cs_msg(struct radeon_cs_parser *p, struct radeon_bo *bo,
- 
- 	default:
- 
-+		radeon_bo_kunmap(bo);
- 		DRM_ERROR("Illegal UVD message type (%d)!\n", msg_type);
- 		return -EINVAL;
- 	}
--- 
-2.31.1
 
