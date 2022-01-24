@@ -2,33 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6FFB499932
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 22:43:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA5C8499C8A
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jan 2022 23:09:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AA9F89BF0;
-	Mon, 24 Jan 2022 21:43:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE49F10E203;
+	Mon, 24 Jan 2022 22:09:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F323810E1C6;
- Mon, 24 Jan 2022 21:43:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id ADD5B10E1F3;
+ Mon, 24 Jan 2022 22:09:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EF3D8AAA91;
- Mon, 24 Jan 2022 21:43:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id ABA00A00A0;
+ Mon, 24 Jan 2022 22:09:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Date: Mon, 24 Jan 2022 21:43:54 -0000
-Message-ID: <164306063495.1342.16356437904353314885@emeril.freedesktop.org>
+To: "Adrian Larumbe" <adrian.larumbe@collabora.com>
+Date: Mon, 24 Jan 2022 22:09:27 -0000
+Message-ID: <164306216769.1344.3934392380792595950@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220124130328.2376-1-christian.koenig@amd.com>
-In-Reply-To: <20220124130328.2376-1-christian.koenig@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B01/11=5D_drm/radeon=3A_use_ttm=5Fresour?=
- =?utf-8?q?ce=5Fmanager=5Fdebug?=
+References: <20220121222252.3296117-1-adrian.larumbe@collabora.com>
+In-Reply-To: <20220121222252.3296117-1-adrian.larumbe@collabora.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBB?=
+ =?utf-8?q?dd_basic_support_for_flat-CCS_bo_evictions?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,14 +47,27 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [01/11] drm/radeon: use ttm_resource_manager_debug
-URL   : https://patchwork.freedesktop.org/series/99249/
-State : warning
+Series: Add basic support for flat-CCS bo evictions
+URL   : https://patchwork.freedesktop.org/series/99248/
+State : failure
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Applying: drm/i915/flat-CCS: Add GEM bo structure fields for flat-CCS
+Applying: drm/i915/flat-CCS: Add flat CCS plane capabilities and modifiers
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_fb.c
+M	drivers/gpu/drm/i915/display/intel_fb.h
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/display/intel_fb.h
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_fb.h
+Auto-merging drivers/gpu/drm/i915/display/intel_fb.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_fb.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0002 drm/i915/flat-CCS: Add flat CCS plane capabilities and modifiers
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
