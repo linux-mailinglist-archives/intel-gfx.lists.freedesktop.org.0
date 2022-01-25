@@ -1,50 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF0E049A2EE
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 03:01:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97FCA49A41A
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 03:08:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36BBB10E8AA;
-	Tue, 25 Jan 2022 02:01:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9CF210E911;
+	Tue, 25 Jan 2022 02:08:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69D3E10E8F5
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jan 2022 02:01:30 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE00410E911
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jan 2022 02:08:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643076090; x=1674612090;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=No5U614KYiMyqYritL4ezj/ggrwch74fodtX1DB4J8k=;
- b=hRNiY1pc5ZAOGssjoLdF5XZlLztb4pwS/SPeJjqPL104j6hH+v+AIqM/
- va7TG3RpIkZddS5lOZYPeRbVmVJiZjVPaWDgCZhfAWoI37aiMvmuLYNkj
- EVdtOGZhRo3JlGInp9aRM9BYygSONwpVZ8h6gGsWH+augXtzMQce6ZQpN
- We14FNWag11ycDkKttztlANs/4soIW1L4voR0iSbQi5cbht0xHE8cSnSL
- +oM/TgC71dBuyQTA8ya62QfdNknkO5qk8ka/WClsey7nRyy/JPb2OL1tP
- mfg6cv0ggoi+1ckCBfIvAJ2h/zqnZLpWJ+CkFzk2jbTJwbQsC8fshW9f9 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="226866829"
-X-IronPort-AV: E=Sophos;i="5.88,313,1635231600"; d="scan'208";a="226866829"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 18:01:29 -0800
-X-IronPort-AV: E=Sophos;i="5.88,313,1635231600"; d="scan'208";a="534514623"
-Received: from unerlige-desk.jf.intel.com ([10.165.21.210])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 18:01:29 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org, John.C.Harrison@Intel.com,
- alan.previn.teres.alexis@intel.com
-Date: Mon, 24 Jan 2022 18:01:24 -0800
-Message-Id: <20220125020124.788679-2-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20220125020124.788679-1-umesh.nerlige.ramappa@intel.com>
-References: <20220125020124.788679-1-umesh.nerlige.ramappa@intel.com>
+ t=1643076515; x=1674612515;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1hAIwfMwv38j/P3fSkwFjXNz0IlJboxSwC9PmdpJQkM=;
+ b=mm3bXFDM/zXgdWGbl6PD4rvTk2d+pzmbVDsgSoqt1tiWOqgNOkiAh0LX
+ vKc9Sx9VDmtHQo1SfW/aJWDFMkpvBN9wOT8aEtL2aXltsv5CP5a4Q+EJ9
+ USfqYLyNKLTKQJgFB4F3ieetJQFjCoiYF+lMaNAfpfNniIRi7Q9bHRplN
+ qg3AyA0CIUYBVS10ZaFD5W/j1F85G5qJDjWIGZ+D/mIMSa2EDW/uvXvYn
+ FAOB15nnV/iSYYWQO9I+WNFaqtUugOAyOk+XmQ8SO3As5ZnSxQQg3SmCT
+ NRt4lmWu84XJ/eVj9gsaws+txIyWpWJNifnLCOwkYwApFUQvyQTxWWqQf w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="246142662"
+X-IronPort-AV: E=Sophos;i="5.88,313,1635231600"; d="scan'208";a="246142662"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 18:08:35 -0800
+X-IronPort-AV: E=Sophos;i="5.88,313,1635231600"; d="scan'208";a="562877867"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2022 18:08:35 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 24 Jan 2022 18:08:20 -0800
+Message-Id: <20220125020826.2693097-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/pmu: Fix KMD and GuC race on
- accessing busyness
+Subject: [Intel-gfx] [PATCH v2 0/6] Second round of i915_reg.h splitting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,133 +53,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-GuC updates shared memory and KMD reads it. Since this is not
-synchronized, we run into a race where the value read is inconsistent.
-Sometimes the inconsistency is in reading the upper MSB bytes of the
-last_switch_in value. 2 types of cases are seen - upper 8 bits are zero
-and upper 24 bits are zero. Since these are non-zero values, it is
-not trivial to determine validity of these values. Instead we read the
-values multiple times until they are consistent. In test runs, 3
-attempts results in consistent values. The upper bound is set to 6
-attempts and may need to be tuned as per any new occurences.
+Let's continue to split our giant i915_reg.h file into more logical
+domain-specific headers.  In addition to a bunch of register definition
+segregation, the final patch of this series ensures that i915_reg.h is
+only #include'd from .c files that truly need its definitions (and
+removes all of the places it was included by other headers).  This
+significantly reduces how much of the driver code gets rebuilt after a
+modifications to i915_reg.h.
 
-Since the duration that gt is parked can vary, the patch also updates
-the gt timestamp on unpark before starting the worker.
+There's still more work to do after this series (especially moving
+display registers to their own header(s)).  We'll also need to do a lot
+of cleanup of the definitions themselves in a future series --- for now
+the definitions have mostly been moved to new locations as-is without
+modification to order, coding-style, etc.
 
 v2:
-- Initialize i
-- Use READ_ONCE to access engine record
+ - Drop 'inline' from reg_in_range_table()
+ - Add missing #include to intel_pxp_irq.c
 
-Fixes: 77cdd054dd2c ("drm/i915/pmu: Connect engine busyness stats from GuC to pmu")
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 58 +++++++++++++++++--
- 1 file changed, 54 insertions(+), 4 deletions(-)
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 66760f5df0c1..75079e17e5b8 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1114,6 +1114,19 @@ __extend_last_switch(struct intel_guc *guc, u64 *prev_start, u32 new_start)
- 	if (new_start == lower_32_bits(*prev_start))
- 		return;
- 
-+	/*
-+	 * When gt is unparked, we update the gt timestamp and start the ping
-+	 * worker that updates the gt_stamp every POLL_TIME_CLKS. As long as gt
-+	 * is unparked, all switched in contexts will have a start time that is
-+	 * within +/- POLL_TIME_CLKS of the most recent gt_stamp.
-+	 *
-+	 * If neither gt_stamp nor new_start has rolled over, then the
-+	 * gt_stamp_hi does not need to be adjusted, however if one of them has
-+	 * rolled over, we need to adjust gt_stamp_hi accordingly.
-+	 *
-+	 * The below conditions address the cases of new_start rollover and
-+	 * gt_stamp_last rollover respectively.
-+	 */
- 	if (new_start < gt_stamp_last &&
- 	    (new_start - gt_stamp_last) <= POLL_TIME_CLKS)
- 		gt_stamp_hi++;
-@@ -1125,17 +1138,45 @@ __extend_last_switch(struct intel_guc *guc, u64 *prev_start, u32 new_start)
- 	*prev_start = ((u64)gt_stamp_hi << 32) | new_start;
- }
- 
--static void guc_update_engine_gt_clks(struct intel_engine_cs *engine)
-+/*
-+ * GuC updates shared memory and KMD reads it. Since this is not synchronized,
-+ * we run into a race where the value read is inconsistent. Sometimes the
-+ * inconsistency is in reading the upper MSB bytes of the last_in value when
-+ * this race occurs. 2 types of cases are seen - upper 8 bits are zero and upper
-+ * 24 bits are zero. Since these are non-zero values, it is non-trivial to
-+ * determine validity of these values. Instead we read the values multiple times
-+ * until they are consistent. In test runs, 3 attempts results in consistent
-+ * values. The upper bound is set to 6 attempts and may need to be tuned as per
-+ * any new occurences.
-+ */
-+static void __get_engine_usage_record(struct intel_engine_cs *engine,
-+				      u32 *last_in, u32 *id, u32 *total)
- {
- 	struct guc_engine_usage_record *rec = intel_guc_engine_usage(engine);
-+	int i = 0;
-+
-+	do {
-+		*last_in = READ_ONCE(rec->last_switch_in_stamp);
-+		*id = READ_ONCE(rec->current_context_index);
-+		*total = READ_ONCE(rec->total_runtime);
-+
-+		if (READ_ONCE(rec->last_switch_in_stamp) == *last_in &&
-+		    READ_ONCE(rec->current_context_index) == *id &&
-+		    READ_ONCE(rec->total_runtime) == *total)
-+			break;
-+	} while (++i < 6);
-+}
-+
-+static void guc_update_engine_gt_clks(struct intel_engine_cs *engine)
-+{
- 	struct intel_engine_guc_stats *stats = &engine->stats.guc;
- 	struct intel_guc *guc = &engine->gt->uc.guc;
--	u32 last_switch = rec->last_switch_in_stamp;
--	u32 ctx_id = rec->current_context_index;
--	u32 total = rec->total_runtime;
-+	u32 last_switch, ctx_id, total;
- 
- 	lockdep_assert_held(&guc->timestamp.lock);
- 
-+	__get_engine_usage_record(engine, &last_switch, &ctx_id, &total);
-+
- 	stats->running = ctx_id != ~0U && last_switch;
- 	if (stats->running)
- 		__extend_last_switch(guc, &stats->start_gt_clk, last_switch);
-@@ -1237,6 +1278,10 @@ static ktime_t guc_engine_busyness(struct intel_engine_cs *engine, ktime_t *now)
- 	if (!in_reset && intel_gt_pm_get_if_awake(gt)) {
- 		stats_saved = *stats;
- 		gt_stamp_saved = guc->timestamp.gt_stamp;
-+		/*
-+		 * Update gt_clks, then gt timestamp to simplify the 'gt_stamp -
-+		 * start_gt_clk' calculation below for active engines.
-+		 */
- 		guc_update_engine_gt_clks(engine);
- 		guc_update_pm_timestamp(guc, now);
- 		intel_gt_pm_put_async(gt);
-@@ -1365,10 +1410,15 @@ void intel_guc_busyness_park(struct intel_gt *gt)
- void intel_guc_busyness_unpark(struct intel_gt *gt)
- {
- 	struct intel_guc *guc = &gt->uc.guc;
-+	unsigned long flags;
-+	ktime_t unused;
- 
- 	if (!guc_submission_initialized(guc))
- 		return;
- 
-+	spin_lock_irqsave(&guc->timestamp.lock, flags);
-+	guc_update_pm_timestamp(guc, &unused);
-+	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
- 	mod_delayed_work(system_highpri_wq, &guc->timestamp.work,
- 			 guc->timestamp.ping_delay);
- }
+Matt Roper (6):
+  drm/i915/perf: Move OA regs to their own header
+  drm/i915/perf: Express OA register ranges with i915_range
+  drm/i915: Parameterize R_PWR_CLK_STATE register definition
+  drm/i915: Parameterize MI_PREDICATE registers
+  drm/i915: Move GT registers to their own header file
+  drm/i915: Only include i915_reg.h from .c files
+
+ drivers/gpu/drm/i915/display/g4x_hdmi.h       |    2 +-
+ drivers/gpu/drm/i915/display/intel_atomic.c   |    1 +
+ drivers/gpu/drm/i915/display/intel_bios.c     |    1 +
+ drivers/gpu/drm/i915/display/intel_bw.c       |    1 +
+ drivers/gpu/drm/i915/display/intel_crt.h      |    2 +-
+ drivers/gpu/drm/i915/display/intel_ddi.h      |    2 +-
+ drivers/gpu/drm/i915/display/intel_de.h       |    1 -
+ .../drm/i915/display/intel_display_power.h    |    1 -
+ drivers/gpu/drm/i915/display/intel_dmc.h      |    2 +-
+ drivers/gpu/drm/i915/display/intel_dp.h       |    2 -
+ drivers/gpu/drm/i915/display/intel_dsb.h      |    2 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |    1 +
+ drivers/gpu/drm/i915/display/intel_dvo_dev.h  |    2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |    2 -
+ drivers/gpu/drm/i915/display/intel_lvds.h     |    2 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.h     |    2 +-
+ drivers/gpu/drm/i915/display/intel_tc.c       |    1 +
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |    1 +
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c    |    1 +
+ .../i915/gem/selftests/i915_gem_client_blt.c  |    3 +-
+ .../drm/i915/gem/selftests/i915_gem_context.c |    3 +-
+ drivers/gpu/drm/i915/gt/gen2_engine_cs.c      |    1 +
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |    1 +
+ drivers/gpu/drm/i915/gt/gen7_renderclear.c    |    1 +
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |    3 +-
+ drivers/gpu/drm/i915/gt/intel_engine.h        |    1 -
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |    1 +
+ drivers/gpu/drm/i915/gt/intel_engine_regs.h   |   26 +
+ .../drm/i915/gt/intel_execlists_submission.c  |    1 +
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |    1 +
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |    2 +
+ drivers/gpu/drm/i915/gt/intel_gt.c            |    3 +-
+ .../gpu/drm/i915/gt/intel_gt_clock_utils.c    |    2 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |    2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |    2 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm_irq.c     |    1 +
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       | 1542 +++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |    1 +
+ drivers/gpu/drm/i915/gt/intel_llc.c           |    1 +
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |    1 +
+ drivers/gpu/drm/i915/gt/intel_mocs.c          |    2 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |    2 +
+ drivers/gpu/drm/i915/gt/intel_rc6.h           |    2 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c   |    1 +
+ drivers/gpu/drm/i915/gt/intel_reset.c         |    2 +
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |    1 +
+ drivers/gpu/drm/i915/gt/intel_rps.c           |    1 +
+ drivers/gpu/drm/i915/gt/intel_sseu.c          |    3 +-
+ drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c  |    1 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |    1 +
+ .../gpu/drm/i915/gt/intel_workarounds_types.h |    2 +-
+ .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h |    1 -
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |    1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |    1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c     |    1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h    |    2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |    2 +
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |    1 +
+ drivers/gpu/drm/i915/gt/uc/intel_huc.h        |    2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |    1 +
+ drivers/gpu/drm/i915/gvt/aperture_gm.c        |    1 +
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         |    1 +
+ drivers/gpu/drm/i915/gvt/display.c            |    1 +
+ drivers/gpu/drm/i915/gvt/dmabuf.c             |    1 +
+ drivers/gpu/drm/i915/gvt/edid.c               |    1 +
+ drivers/gpu/drm/i915/gvt/fb_decoder.c         |    1 +
+ drivers/gpu/drm/i915/gvt/gtt.c                |    2 +
+ drivers/gpu/drm/i915/gvt/handlers.c           |    2 +
+ drivers/gpu/drm/i915/gvt/interrupt.c          |    1 +
+ drivers/gpu/drm/i915/gvt/interrupt.h          |    2 +-
+ drivers/gpu/drm/i915/gvt/mmio.c               |    3 +
+ drivers/gpu/drm/i915/gvt/mmio_context.c       |    1 +
+ drivers/gpu/drm/i915/gvt/mmio_context.h       |    1 -
+ drivers/gpu/drm/i915/gvt/scheduler.c          |    2 +
+ drivers/gpu/drm/i915/i915_cmd_parser.c        |    6 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |    1 +
+ drivers/gpu/drm/i915/i915_drv.h               |    1 -
+ drivers/gpu/drm/i915/i915_gpu_error.c         |    1 +
+ drivers/gpu/drm/i915/i915_irq.c               |    1 +
+ drivers/gpu/drm/i915/i915_pci.c               |    1 +
+ drivers/gpu/drm/i915/i915_perf.c              |  134 +-
+ drivers/gpu/drm/i915/i915_perf_oa_regs.h      |  137 ++
+ drivers/gpu/drm/i915/i915_perf_types.h        |    2 +-
+ drivers/gpu/drm/i915/i915_pmu.c               |    1 +
+ drivers/gpu/drm/i915/i915_reg.h               | 2056 -----------------
+ drivers/gpu/drm/i915/i915_reg_defs.h          |    4 +
+ drivers/gpu/drm/i915/i915_sysfs.c             |    1 +
+ drivers/gpu/drm/i915/intel_dram.c             |    1 +
+ drivers/gpu/drm/i915/intel_pcode.c            |    1 +
+ drivers/gpu/drm/i915/intel_pm.c               |    1 +
+ drivers/gpu/drm/i915/intel_pm.h               |    1 -
+ drivers/gpu/drm/i915/intel_sbi.c              |    1 +
+ drivers/gpu/drm/i915/intel_uncore.c           |    1 +
+ drivers/gpu/drm/i915/intel_uncore.h           |    2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.c      |    1 +
+ drivers/gpu/drm/i915/vlv_sideband.c           |    1 +
+ drivers/gpu/drm/i915/vlv_suspend.c            |    2 +
+ 97 files changed, 1896 insertions(+), 2140 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_regs.h
+ create mode 100644 drivers/gpu/drm/i915/i915_perf_oa_regs.h
+
 -- 
-2.33.1
+2.34.1
 
