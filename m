@@ -2,69 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97CF149AFD4
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 10:30:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7DF849AFD1
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 10:28:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06EFF10E2BA;
-	Tue, 25 Jan 2022 09:30:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCE0B10EDFF;
+	Tue, 25 Jan 2022 09:28:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9657B10EF1B;
- Tue, 25 Jan 2022 09:14:02 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id
- l12-20020a7bc34c000000b003467c58cbdfso1131526wmj.2; 
- Tue, 25 Jan 2022 01:14:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=sRD6qyOpLvPcbfxyrO55uccAQnyiA9egM9CuSrcd7Oc=;
- b=pxDtXbN4xMP3UQSMn75sFL/SaeutiFSKz3kyKW6caQJyCeyRxcWrn7GX9HpWclAX7Z
- dOIbygVko6RUJ/wt6z/a095spH8ZQrmCIPD7+FxqN+rexXZo86O9CQyYthLZ4/37WKN3
- RIEOsH+MByBUUHXUyyl+eVy7OlEWbgjzuOs6QI7e0OXOlacH5EaTneJZHG0gNex2UHOt
- sUaTXry+PvodKcsJNnvv6exMgY6eos/9VZOhdIMFMf2UTnH+coNJ8RoHHjKxCqC886p2
- uy8HF9SmsVkV70U6Vvd81B6fE8yREd+3EaFq6CirH1obIK0hImClV0TNBLZqGnugmzdk
- 7b8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=sRD6qyOpLvPcbfxyrO55uccAQnyiA9egM9CuSrcd7Oc=;
- b=ClNhfxeU9aX7TeVDv4gy8goCuMUdzxIlHRsEEJRxZa963CdJLmYsOcdC9b9ORiRazv
- 7du7/k06vZiHN0JIhvTpPLbkwt+p8bhtqeHezjN7zvGyaysxK5MYt4hSQJKLzhjZyIw2
- LkFJ7a1yZzsPIRSCMOgtqXIxTmVZlwxiSNnnMyx+2H2RxNnJjzOHsiBB9VfoyWhnXtWe
- AVJWKb+qx6GkY5QW6sJ0CZiptwVZxM1GXQ1M0EA7HkV/uS6CKTee3p3NK3TQdXFRRMXb
- VreXZ/wJaU2OQyRtpMJY9KoIALRYkXkJz70bAxgh5lJvy4Tt53IPuYkVeTsYOSBsORnA
- Jnug==
-X-Gm-Message-State: AOAM532ItFQnt2HmFEztrUkZcFKCyLR6UCjKuFpk4uUJEskUB863S4dL
- zXLT9MoBg13CeRnLVncWB8o=
-X-Google-Smtp-Source: ABdhPJxzyKb03iquT0LFx2oqC90sGv/+nQr+qE2QH5pD8+5O0GEBKjf4WlPRN0eo54vLAvnnDr0wuA==
-X-Received: by 2002:a7b:c4c3:: with SMTP id g3mr2038528wmk.125.1643102040934; 
- Tue, 25 Jan 2022 01:14:00 -0800 (PST)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
- [80.193.200.194])
- by smtp.gmail.com with ESMTPSA id l4sm3859839wrs.6.2022.01.25.01.14.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 25 Jan 2022 01:14:00 -0800 (PST)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- John Harrison <John.C.Harrison@Intel.com>,
- Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Date: Tue, 25 Jan 2022 09:13:59 +0000
-Message-Id: <20220125091359.350918-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.33.1
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E135710EDFF;
+ Tue, 25 Jan 2022 09:28:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643102935; x=1674638935;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=/3uEJq4zPTSgXMeNYS74/NJZJxAc2UOZUhqwmZmqIfw=;
+ b=bTNcKjQ4y/ekFOUHKFidqDUGH7863msbDffDaQ7OGxDEy04dAJE2hYpZ
+ /ERIlXHxAPavVjy1UXJ5KxH7vzANtSrLzWxJWwETti1mBgWCBsIN4wi0/
+ 61yKIZ7P3PbNvodgTERY2AXniQLPjTdHnC6Okyvne1Ns5ZpHYwNu+P3If
+ z8DRb4dCV97JGKhyrJ7d5YC5ieW2zjRdM3wf3KMknKUV8B3+zvOazaQ1V
+ xRZT+om0y3fTZKVQ1hxXNOOXSq8W0LFAxNFhme1HZUh8JpEmcLMm3v4na
+ Hy7uYXxUHW+p9zQt607xKg8uPU12+A75TPQe7x3IQ17nci9PGXCSr0kSQ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="246044825"
+X-IronPort-AV: E=Sophos;i="5.88,314,1635231600"; d="scan'208";a="246044825"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2022 01:28:55 -0800
+X-IronPort-AV: E=Sophos;i="5.88,314,1635231600"; d="scan'208";a="532366265"
+Received: from thpham-mobl1.amr.corp.intel.com (HELO [10.213.172.16])
+ ([10.213.172.16])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2022 01:28:51 -0800
+Message-ID: <bab43c36-a3de-f96a-6530-4ab3a55b8ba0@linux.intel.com>
+Date: Tue, 25 Jan 2022 09:28:44 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 25 Jan 2022 09:30:18 +0000
-Subject: [Intel-gfx] [PATCH][next] drm/i915/guc: fix spelling mistake
- "notificaion" -> "notification"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: Yury Norov <yury.norov@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Peter Zijlstra <peterz@infradead.org>, David Laight
+ <David.Laight@aculab.com>, Joe Perches <joe@perches.com>,
+ Dennis Zhou <dennis@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Nicholas Piggin <npiggin@gmail.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Alexey Klimov <aklimov@redhat.com>, linux-kernel@vger.kernel.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20220123183925.1052919-1-yury.norov@gmail.com>
+ <20220123183925.1052919-18-yury.norov@gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220123183925.1052919-18-yury.norov@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 17/54] gpu: drm: replace cpumask_weight with
+ cpumask_empty where appropriate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,30 +78,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is a spelling mistake in a drm_err error message. Fix it.
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 23/01/2022 18:38, Yury Norov wrote:
+> i915_pmu_cpu_online() calls cpumask_weight() to check if any bit of a
+> given cpumask is set. We can do it more efficiently with cpumask_empty()
+> because cpumask_empty() stops traversing the cpumask as soon as it finds
+> first set bit, while cpumask_weight() counts all bits unconditionally.
+> 
+> Signed-off-by: Yury Norov <yury.norov@gmail.com>
+> ---
+>   drivers/gpu/drm/i915/i915_pmu.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index ea655161793e..1894c876b31d 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -1048,7 +1048,7 @@ static int i915_pmu_cpu_online(unsigned int cpu, struct hlist_node *node)
+>   	GEM_BUG_ON(!pmu->base.event_init);
+>   
+>   	/* Select the first online CPU as a designated reader. */
+> -	if (!cpumask_weight(&i915_pmu_cpumask))
+> +	if (cpumask_empty(&i915_pmu_cpumask))
+>   		cpumask_set_cpu(cpu, &i915_pmu_cpumask);
+>   
+>   	return 0;
+> 
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 1331ff91c5b0..1ae3d1f259e3 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -3942,7 +3942,7 @@ static void guc_handle_context_reset(struct intel_guc *guc,
- 		guc_context_replay(ce);
- 	} else {
- 		drm_err(&guc_to_gt(guc)->i915->drm,
--			"Invalid GuC engine reset notificaion for 0x%04X on %s: banned = %d, blocked = %d",
-+			"Invalid GuC engine reset notification for 0x%04X on %s: banned = %d, blocked = %d",
- 			ce->guc_id.id, ce->engine->name, intel_context_is_banned(ce),
- 			context_blocked(ce));
- 	}
--- 
-2.33.1
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
+I see it's a large series which only partially appeared on our mailing 
+lists. So for instance it hasn't got tested by our automated CI. (Not 
+that I expect any problems in this patch.)
+
+What are the plans in terms of which tree will it get merged through?
+
+Regards,
+
+Tvrtko
