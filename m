@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FFD249BA17
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 18:22:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5CAC49BA46
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 18:25:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFD7510E3AF;
-	Tue, 25 Jan 2022 17:22:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E450F10E41A;
+	Tue, 25 Jan 2022 17:25:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0A62710E2CE;
- Tue, 25 Jan 2022 17:22:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0801C10E3B1;
+ Tue, 25 Jan 2022 17:25:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 03CADA00E8;
- Tue, 25 Jan 2022 17:22:17 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0459FA0078;
+ Tue, 25 Jan 2022 17:25:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 25 Jan 2022 17:22:17 -0000
-Message-ID: <164313133798.27367.2162384971574794162@emeril.freedesktop.org>
+Date: Tue, 25 Jan 2022 17:25:15 -0000
+Message-ID: <164313151598.27364.10241967334352814251@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <cover.1643130139.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1643130139.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/dp=2C_drm/i915=3A_128b/132b_updates?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/dp=2C_drm/i915=3A_128b/132b_updates?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,20 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-b47aaf278ffa drm/dp: add drm_dp_128b132b_read_aux_rd_interval()
-e5a3a86f9a2a drm/dp: add 128b/132b link status helpers from DP 2.0 E11
-6a17182df365 drm/dp: add some new DPCD macros from DP 2.0 E11
-359fd2d968fb drm/i915/dp: move intel_dp_prepare_link_train() call
-0b15ba0af330 drm/i915/dp: rewrite DP 2.0 128b/132b link training based on errata
--:46: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#46: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:1105:
- 
-+
-
-total: 0 errors, 0 warnings, 1 checks, 269 lines checked
-ae473fb41e94 drm/i915/dp: add 128b/132b support to link status checks
-d00649fdfc8b drm/i915/dp: give more time for CDS
-70912cc5c3aa drm/i915/mst: update slot information for 128b/132b
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
