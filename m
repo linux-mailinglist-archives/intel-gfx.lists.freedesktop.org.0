@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B10F849A42E
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 03:08:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4567A49A42F
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 03:08:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A67110E966;
-	Tue, 25 Jan 2022 02:08:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D69C10EAEE;
+	Tue, 25 Jan 2022 02:08:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0C8410E966
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E753710EA10
  for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jan 2022 02:08:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1643076516; x=1674612516;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qxpzKMBwdiowwtCIuL1Hic80sck8t+tP4KQXFnOMCjQ=;
- b=YSb7ShKetZqXfeJj+MFa+2p+vOm3XnW4Mc65zDUpujIu2eNPxK/FUT5O
- 7DnsNyQh6xrkUjJUU18gVPVRadyT/75RrsaYchWjHBhxwD0VpfOgDCLj0
- ajm+EMgC0QVToI5VOrKtJCexY/b6zrkCH/3IGpLd0R5iJz1Kt5DKjtjf8
- 21tqxTzAfy678LFiJNstAA7NlPROeLVq/3t99QdjVJ4vG5jhT+1faxhRh
- b8OwE47uQV9QLSy4XRAH+gH/L9ryxftvj44B5+KMeaPMKov+IbWrLcz7+
- hKLMrFKa2Ldq5uN+y2lv6Pw3CWkIB9hTRXme62IL/yk9ZHjWuATqc4/LQ Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="246142665"
-X-IronPort-AV: E=Sophos;i="5.88,313,1635231600"; d="scan'208";a="246142665"
+ bh=dQ53FHcpSEwGXvm1HfNphpoCRZwetx3nt9QQPJbeXcU=;
+ b=oKpvojJ/nmOsJjxm/isc565Cm11bidk5NOfoFhFcYDf1duIRZaSUB816
+ 740cPrcRwGGCDd5xeGPUSHBkvTCxeu5uGZAA56fdfYeZgYKOZn9lpumaU
+ F/Zv/fa/JLx+Jr5pxwhqn86LfpiaJBLJOtHBsVXXMSuEtGLiJvRapw9vO
+ qkUJhZ4IXAIc62cMhpJYzi+e9ovrPeaKy2sLmXBlwkbL4qN2bTLD9ResT
+ h5yk6xQw+uOJi+TVdqF5qJg4zmRH2A7PvaX1QOEwlXtiKQu/aCM5PE1Us
+ 77M95IdlmPLlYk6fCqirJj9KTcJKDY91lEfEya3KdUg6YwjwRXX8J5lix A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="246142667"
+X-IronPort-AV: E=Sophos;i="5.88,313,1635231600"; d="scan'208";a="246142667"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Jan 2022 18:08:36 -0800
-X-IronPort-AV: E=Sophos;i="5.88,313,1635231600"; d="scan'208";a="562877877"
+X-IronPort-AV: E=Sophos;i="5.88,313,1635231600"; d="scan'208";a="562877880"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 18:08:35 -0800
+ 24 Jan 2022 18:08:36 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Jan 2022 18:08:23 -0800
-Message-Id: <20220125020826.2693097-4-matthew.d.roper@intel.com>
+Date: Mon, 24 Jan 2022 18:08:24 -0800
+Message-Id: <20220125020826.2693097-5-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220125020826.2693097-1-matthew.d.roper@intel.com>
 References: <20220125020826.2693097-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 3/6] drm/i915: Parameterize R_PWR_CLK_STATE
- register definition
+Subject: [Intel-gfx] [PATCH v2 4/6] drm/i915: Parameterize MI_PREDICATE
+ registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,129 +60,144 @@ Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-At the moment we only use R_PWR_CLK_STATE in the context of the RCS
-engine, but upcoming support for compute engines will start using
-instances relative to the CCS engine base offsets.  Let's parameterize
-the register and move it to the engine reg header.
+The various MI_PREDICATE registers have per-engine instances.  Today we
+only utilize the RCS0 instance of each, but that will likely change in
+the future; switch to parameterized register definitions to make these
+easier to work with going forward.
+
+Of special note is MI_PREDICATE_RESULT_2; we only use it in one place in
+the driver today in HSW-specific code.  It turns out that the bspec
+(page 94) lists two different offsets for this register on HSW; one is
+in the standard location shared by all other platforms (base + 0x3bc)
+and the other is an unusual location (0x2214).  We're using the second,
+non-standard offset in i915 today; that offset doesn't exist on any
+other platforms (and it's not even 100% clear that it's correct for HSW)
+so I've renamed the current non-standard definition to
+HSW_MI_PREDICATE_RESULT_2; the new cross-platform parameterized macro
+(which is still unused at the moment) uses the standard offset.
 
 Cc: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- .../gpu/drm/i915/gem/selftests/i915_gem_context.c |  3 ++-
- drivers/gpu/drm/i915/gt/intel_engine_regs.h       | 15 +++++++++++++++
- drivers/gpu/drm/i915/gt/intel_sseu.c              |  2 +-
- drivers/gpu/drm/i915/i915_perf.c                  |  4 ++--
- drivers/gpu/drm/i915/i915_reg.h                   | 15 ---------------
- 5 files changed, 20 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_regs.h | 11 +++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt.c          |  2 +-
+ drivers/gpu/drm/i915/i915_cmd_parser.c      |  4 ++--
+ drivers/gpu/drm/i915/i915_perf.c            |  8 ++++----
+ drivers/gpu/drm/i915/i915_reg.h             | 11 +----------
+ 5 files changed, 19 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index 80d99b9c694f..7cc4fa8f8c56 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -8,6 +8,7 @@
- 
- #include "gem/i915_gem_pm.h"
- #include "gt/intel_engine_pm.h"
-+#include "gt/intel_engine_regs.h"
- #include "gt/intel_gt.h"
- #include "gt/intel_gt_requests.h"
- #include "gt/intel_reset.h"
-@@ -894,7 +895,7 @@ static int rpcs_query_batch(struct drm_i915_gem_object *rpcs, struct i915_vma *v
- 		return PTR_ERR(cmd);
- 
- 	*cmd++ = MI_STORE_REGISTER_MEM_GEN8;
--	*cmd++ = i915_mmio_reg_offset(GEN8_R_PWR_CLK_STATE);
-+	*cmd++ = i915_mmio_reg_offset(GEN8_R_PWR_CLK_STATE(RENDER_RING_BASE));
- 	*cmd++ = lower_32_bits(vma->node.start);
- 	*cmd++ = upper_32_bits(vma->node.start);
- 	*cmd = MI_BATCH_BUFFER_END;
 diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-index 60511f310767..daf4a241cf77 100644
+index daf4a241cf77..e9fec6214073 100644
 --- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
 +++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-@@ -77,6 +77,21 @@
- #define RING_INSTPM(base)			_MMIO((base) + 0xc0)
- #define RING_CMD_CCTL(base)			_MMIO((base) + 0xc4)
- #define ACTHD(base)				_MMIO((base) + 0xc8)
-+#define GEN8_R_PWR_CLK_STATE(base)		_MMIO((base) + 0xc8)
-+#define   GEN8_RPCS_ENABLE			(1 << 31)
-+#define   GEN8_RPCS_S_CNT_ENABLE		(1 << 18)
-+#define   GEN8_RPCS_S_CNT_SHIFT			15
-+#define   GEN8_RPCS_S_CNT_MASK			(0x7 << GEN8_RPCS_S_CNT_SHIFT)
-+#define   GEN11_RPCS_S_CNT_SHIFT		12
-+#define   GEN11_RPCS_S_CNT_MASK			(0x3f << GEN11_RPCS_S_CNT_SHIFT)
-+#define   GEN8_RPCS_SS_CNT_ENABLE		(1 << 11)
-+#define   GEN8_RPCS_SS_CNT_SHIFT		8
-+#define   GEN8_RPCS_SS_CNT_MASK			(0x7 << GEN8_RPCS_SS_CNT_SHIFT)
-+#define   GEN8_RPCS_EU_MAX_SHIFT		4
-+#define   GEN8_RPCS_EU_MAX_MASK			(0xf << GEN8_RPCS_EU_MAX_SHIFT)
-+#define   GEN8_RPCS_EU_MIN_SHIFT		0
-+#define   GEN8_RPCS_EU_MIN_MASK			(0xf << GEN8_RPCS_EU_MIN_SHIFT)
+@@ -142,6 +142,17 @@
+ 		(REG_FIELD_PREP(CMD_CCTL_WRITE_OVERRIDE_MASK, (write) << 1) | \
+ 		 REG_FIELD_PREP(CMD_CCTL_READ_OVERRIDE_MASK, (read) << 1))
+ 
++#define MI_PREDICATE_RESULT_2(base)		_MMIO((base) + 0x3bc)
++#define   LOWER_SLICE_ENABLED			(1 << 0)
++#define   LOWER_SLICE_DISABLED			(0 << 0)
++#define MI_PREDICATE_SRC0(base)			_MMIO((base) + 0x400)
++#define MI_PREDICATE_SRC0_UDW(base)		_MMIO((base) + 0x400 + 4)
++#define MI_PREDICATE_SRC1(base)			_MMIO((base) + 0x408)
++#define MI_PREDICATE_SRC1_UDW(base)		_MMIO((base) + 0x408 + 4)
++#define MI_PREDICATE_DATA(base)			_MMIO((base) + 0x410)
++#define MI_PREDICATE_RESULT(base)		_MMIO((base) + 0x418)
++#define MI_PREDICATE_RESULT_1(base)		_MMIO((base) + 0x41c)
 +
- #define RING_RESET_CTL(base)			_MMIO((base) + 0xd0)
- #define   RESET_CTL_CAT_ERROR			REG_BIT(2)
- #define   RESET_CTL_READY_TO_RESET		REG_BIT(1)
-diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
-index bdf09051b8a0..f161087f30d0 100644
---- a/drivers/gpu/drm/i915/gt/intel_sseu.c
-+++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
-@@ -4,7 +4,7 @@
-  */
+ #define RING_PP_DIR_DCLV(base)			_MMIO((base) + 0x220)
+ #define   PP_DIR_DCLV_2G			0xffffffff
+ #define RING_PP_DIR_BASE(base)			_MMIO((base) + 0x228)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 622cdfed8a8b..3889efb3ffa4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -209,7 +209,7 @@ int intel_gt_init_hw(struct intel_gt *gt)
  
- #include "i915_drv.h"
--#include "intel_lrc_reg.h"
-+#include "intel_engine_regs.h"
- #include "intel_sseu.h"
+ 	if (IS_HASWELL(i915))
+ 		intel_uncore_write(uncore,
+-				   MI_PREDICATE_RESULT_2,
++				   HSW_MI_PREDICATE_RESULT_2,
+ 				   IS_HSW_GT3(i915) ?
+ 				   LOWER_SLICE_ENABLED : LOWER_SLICE_DISABLED);
  
- void intel_sseu_set_info(struct sseu_dev_info *sseu, u8 max_slices,
+diff --git a/drivers/gpu/drm/i915/i915_cmd_parser.c b/drivers/gpu/drm/i915/i915_cmd_parser.c
+index 96c398051084..332b8ffb58f8 100644
+--- a/drivers/gpu/drm/i915/i915_cmd_parser.c
++++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
+@@ -611,8 +611,8 @@ static const struct drm_i915_reg_descriptor gen7_render_regs[] = {
+ 	REG64(PS_INVOCATION_COUNT),
+ 	REG64(PS_DEPTH_COUNT),
+ 	REG64_IDX(RING_TIMESTAMP, RENDER_RING_BASE),
+-	REG64(MI_PREDICATE_SRC0),
+-	REG64(MI_PREDICATE_SRC1),
++	REG64_IDX(MI_PREDICATE_SRC0, RENDER_RING_BASE),
++	REG64_IDX(MI_PREDICATE_SRC1, RENDER_RING_BASE),
+ 	REG32(GEN7_3DPRIM_END_OFFSET),
+ 	REG32(GEN7_3DPRIM_START_VERTEX),
+ 	REG32(GEN7_3DPRIM_VERTEX_COUNT),
 diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 804e87b6ed0c..1253e396a911 100644
+index 1253e396a911..547a242c5e49 100644
 --- a/drivers/gpu/drm/i915/i915_perf.c
 +++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -2420,7 +2420,7 @@ gen12_configure_all_contexts(struct i915_perf_stream *stream,
- {
- 	struct flex regs[] = {
- 		{
--			GEN8_R_PWR_CLK_STATE,
-+			GEN8_R_PWR_CLK_STATE(RENDER_RING_BASE),
- 			CTX_R_PWR_CLK_STATE,
- 		},
- 	};
-@@ -2440,7 +2440,7 @@ lrc_configure_all_contexts(struct i915_perf_stream *stream,
- #define ctx_flexeuN(N) (ctx_flexeu0 + 2 * (N) + 1)
- 	struct flex regs[] = {
- 		{
--			GEN8_R_PWR_CLK_STATE,
-+			GEN8_R_PWR_CLK_STATE(RENDER_RING_BASE),
- 			CTX_R_PWR_CLK_STATE,
- 		},
- 		{
+@@ -1684,7 +1684,7 @@ static int alloc_noa_wait(struct i915_perf_stream *stream)
+ 			stream, cs, true /* save */, CS_GPR(i),
+ 			INTEL_GT_SCRATCH_FIELD_PERF_CS_GPR + 8 * i, 2);
+ 	cs = save_restore_register(
+-		stream, cs, true /* save */, MI_PREDICATE_RESULT_1,
++		stream, cs, true /* save */, MI_PREDICATE_RESULT_1(RENDER_RING_BASE),
+ 		INTEL_GT_SCRATCH_FIELD_PERF_PREDICATE_RESULT_1, 1);
+ 
+ 	/* First timestamp snapshot location. */
+@@ -1738,7 +1738,7 @@ static int alloc_noa_wait(struct i915_perf_stream *stream)
+ 	 */
+ 	*cs++ = MI_LOAD_REGISTER_REG | (3 - 2);
+ 	*cs++ = i915_mmio_reg_offset(CS_GPR(JUMP_PREDICATE));
+-	*cs++ = i915_mmio_reg_offset(MI_PREDICATE_RESULT_1);
++	*cs++ = i915_mmio_reg_offset(MI_PREDICATE_RESULT_1(RENDER_RING_BASE));
+ 
+ 	/* Restart from the beginning if we had timestamps roll over. */
+ 	*cs++ = (GRAPHICS_VER(i915) < 8 ?
+@@ -1775,7 +1775,7 @@ static int alloc_noa_wait(struct i915_perf_stream *stream)
+ 	 */
+ 	*cs++ = MI_LOAD_REGISTER_REG | (3 - 2);
+ 	*cs++ = i915_mmio_reg_offset(CS_GPR(JUMP_PREDICATE));
+-	*cs++ = i915_mmio_reg_offset(MI_PREDICATE_RESULT_1);
++	*cs++ = i915_mmio_reg_offset(MI_PREDICATE_RESULT_1(RENDER_RING_BASE));
+ 
+ 	/* Predicate the jump.  */
+ 	*cs++ = (GRAPHICS_VER(i915) < 8 ?
+@@ -1791,7 +1791,7 @@ static int alloc_noa_wait(struct i915_perf_stream *stream)
+ 			stream, cs, false /* restore */, CS_GPR(i),
+ 			INTEL_GT_SCRATCH_FIELD_PERF_CS_GPR + 8 * i, 2);
+ 	cs = save_restore_register(
+-		stream, cs, false /* restore */, MI_PREDICATE_RESULT_1,
++		stream, cs, false /* restore */, MI_PREDICATE_RESULT_1(RENDER_RING_BASE),
+ 		INTEL_GT_SCRATCH_FIELD_PERF_PREDICATE_RESULT_1, 1);
+ 
+ 	/* And return to the ring. */
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 7f8f88904077..573dea4516ef 100644
+index 573dea4516ef..bba9648fe7e8 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -272,21 +272,6 @@
- #define GEN12_SFC_DONE(n)		_MMIO(0x1cc000 + (n) * 0x1000)
- #define GEN12_SFC_DONE_MAX		4
+@@ -398,16 +398,7 @@
+ #define VGA_CR_INDEX_CGA 0x3d4
+ #define VGA_CR_DATA_CGA 0x3d5
  
--#define GEN8_R_PWR_CLK_STATE		_MMIO(0x20C8)
--#define   GEN8_RPCS_ENABLE		(1 << 31)
--#define   GEN8_RPCS_S_CNT_ENABLE	(1 << 18)
--#define   GEN8_RPCS_S_CNT_SHIFT		15
--#define   GEN8_RPCS_S_CNT_MASK		(0x7 << GEN8_RPCS_S_CNT_SHIFT)
--#define   GEN11_RPCS_S_CNT_SHIFT	12
--#define   GEN11_RPCS_S_CNT_MASK		(0x3f << GEN11_RPCS_S_CNT_SHIFT)
--#define   GEN8_RPCS_SS_CNT_ENABLE	(1 << 11)
--#define   GEN8_RPCS_SS_CNT_SHIFT	8
--#define   GEN8_RPCS_SS_CNT_MASK		(0x7 << GEN8_RPCS_SS_CNT_SHIFT)
--#define   GEN8_RPCS_EU_MAX_SHIFT	4
--#define   GEN8_RPCS_EU_MAX_MASK		(0xf << GEN8_RPCS_EU_MAX_SHIFT)
--#define   GEN8_RPCS_EU_MIN_SHIFT	0
--#define   GEN8_RPCS_EU_MIN_MASK		(0xf << GEN8_RPCS_EU_MIN_SHIFT)
--
- #define WAIT_FOR_RC6_EXIT		_MMIO(0x20CC)
- /* HSW only */
- #define   HSW_SELECTIVE_READ_ADDRESSING_SHIFT		2
+-#define MI_PREDICATE_SRC0	_MMIO(0x2400)
+-#define MI_PREDICATE_SRC0_UDW	_MMIO(0x2400 + 4)
+-#define MI_PREDICATE_SRC1	_MMIO(0x2408)
+-#define MI_PREDICATE_SRC1_UDW	_MMIO(0x2408 + 4)
+-#define MI_PREDICATE_DATA       _MMIO(0x2410)
+-#define MI_PREDICATE_RESULT     _MMIO(0x2418)
+-#define MI_PREDICATE_RESULT_1   _MMIO(0x241c)
+-#define MI_PREDICATE_RESULT_2	_MMIO(0x2214)
+-#define  LOWER_SLICE_ENABLED	(1 << 0)
+-#define  LOWER_SLICE_DISABLED	(0 << 0)
++#define HSW_MI_PREDICATE_RESULT_2	_MMIO(0x2214)
+ 
+ /*
+  * Registers used only by the command parser
 -- 
 2.34.1
 
