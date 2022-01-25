@@ -1,54 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C3A49B7E0
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 16:45:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C581E49B8E2
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 17:38:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED36C10E205;
-	Tue, 25 Jan 2022 15:45:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB7710E1A4;
+	Tue, 25 Jan 2022 16:38:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B796910E205
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jan 2022 15:45:54 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22D0F10E1A1;
+ Tue, 25 Jan 2022 16:38:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643125554; x=1674661554;
+ t=1643128709; x=1674664709;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=C26vBs286DsGepHJ7YN0tnfMQQuIyuiD+H9PA468Twc=;
- b=K1WoY+um9+y/gf3q3D037apF1oK6ipydLU5E5W8Do6ApXjdE3Zth30MG
- pMa+0mDqi8GhY3S2m2LTNrZyhZzCETBnBW02GJsABbzbuLrBxDsFbocrv
- aUuTgWqVds5hg91RUJLwgyaMKT3a4bIMMTnp0lI9P7kI8TW+ZLItPH5VD
- IPBtcnThNeosMG0E8v6w2FLIi0XZi2L7bSMmu2q+WvJ3Hjs2X6Cf/g2LQ
- 2h6rTjbfl4I9uPjtdp5GlW25Ku6V+jhDEvQOO01cgd9f1qU21ZDE+xPrd
- ORen6y7uYG64Q7bHTG/ucF6Z6cQgqVy+SdnW+znytH9M24JWT71KKbth3 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="246549687"
-X-IronPort-AV: E=Sophos;i="5.88,315,1635231600"; d="scan'208";a="246549687"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2022 07:45:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,315,1635231600"; d="scan'208";a="580792324"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by fmsmga008.fm.intel.com with SMTP; 25 Jan 2022 07:45:51 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 25 Jan 2022 17:45:51 +0200
-Date: Tue, 25 Jan 2022 17:45:51 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <YfAbL+lP6TyFfV1B@intel.com>
-References: <20220124090653.14547-1-stanislav.lisovskiy@intel.com>
- <20220124090653.14547-2-stanislav.lisovskiy@intel.com>
+ mime-version:in-reply-to;
+ bh=5xPimjzEimU+Vb2DyQWI3IsK6BQ0Pz4+pZTzNY2B4IQ=;
+ b=bhSJb1le8ZIQva4Zjp/jDZi1cOEQWi5TuAyPwy50cMqXA4D1A627GrHF
+ LzK4swFj3X6nMqaWLFaJylxixHOpS7o8GuDBf9E6g7sOlMARaUy6NeoUh
+ AQJg9OGLgqj4JVZ5CC/JOG0+g+FmkyXODrjbYudSqqJg02eVnVY/uhZpP
+ ABGz2+IpvZd6Tp63PsYNW+4WkLeP3QZRxA4d1AhuXiwffs7+e5Yh/iU9g
+ TtFU+9rKGs132/7Q5x4s+EPU/jownXxILsldxghMrq2KHtrSsvDSnJpwt
+ XS7aUy4GhKfFMZelF2rTsBJQFwbt51Cf6h3Fm9b0KN/0pRNwlnlI6e5Ay A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="243944174"
+X-IronPort-AV: E=Sophos;i="5.88,315,1635231600"; d="scan'208";a="243944174"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2022 08:38:28 -0800
+X-IronPort-AV: E=Sophos;i="5.88,315,1635231600"; d="scan'208";a="563096058"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2022 08:38:28 -0800
+Date: Tue, 25 Jan 2022 08:32:44 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20220125163244.GA20036@jons-linux-dev-box>
+References: <20220124150157.15758-1-matthew.brost@intel.com>
+ <20220124150157.15758-4-matthew.brost@intel.com>
+ <2e163060-8ad3-9cec-b325-6e065784d894@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220124090653.14547-2-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Pass plane to watermark
- calculation functions
+In-Reply-To: <2e163060-8ad3-9cec-b325-6e065784d894@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/execlists: Fix execlists
+ request cancellation corner case
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,215 +60,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 24, 2022 at 11:06:50AM +0200, Stanislav Lisovskiy wrote:
-> Sometimes we might need to change the way we calculate
-> watermarks, based on which particular plane it is calculated
-> for. Thus it would be convenient to pass plane struct to those
-> functions.
+On Tue, Jan 25, 2022 at 03:27:31PM +0000, Tvrtko Ursulin wrote:
 > 
-> v2: Pass plane instead of plane_id
-> v3: Do not pass plane to skl_cursor_allocation(Ville Syrjälä)
-> v4: - Make intel_crtc_get_plane static again(Ville Syrjälä)
->     - s/cursor_plane/plane(Ville Syrjälä)
->     - Pass plane to skl_compute_wm_* instead of plane_id(Ville Syrjälä)
+> On 24/01/2022 15:01, Matthew Brost wrote:
+> > More than 1 request can be submitted to a single ELSP at a time if
+> > multiple requests are ready run to on the same context. When a request
+> > is canceled it is marked bad, an idle pulse is triggered to the engine
+> > (high priority kernel request), the execlists scheduler sees that
+> > running request is bad and sets preemption timeout to minimum value (1
+> > ms). This fails to work if multiple requests are combined on the ELSP as
+> > only the most recent request is stored in the execlists schedule (the
+> > request stored in the ELSP isn't marked bad, thus preemption timeout
+> > isn't set to the minimum value). If the preempt timeout is configured to
+> > zero, the engine is permanently hung. This is shown by an upcoming
+> > selftest.
+> > 
+> > To work around this, mark the idle pulse with a flag to force a preempt
+> > with the minimum value.
 > 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-> ---
->  .../gpu/drm/i915/display/intel_atomic_plane.h |  1 +
->  drivers/gpu/drm/i915/intel_pm.c               | 37 +++++++++++--------
->  2 files changed, 22 insertions(+), 16 deletions(-)
+> A couple of quick questions first before I find time to dig deeper.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> index 7907f601598e..ead789709477 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> @@ -16,6 +16,7 @@ struct intel_crtc;
->  struct intel_crtc_state;
->  struct intel_plane;
->  struct intel_plane_state;
-> +enum plane_id;
->  
->  unsigned int intel_adjusted_rate(const struct drm_rect *src,
->  				 const struct drm_rect *dst,
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 2ec8e48806b6..06707d2b5fc5 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -4240,7 +4240,9 @@ static int skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
->  				 u64 modifier, unsigned int rotation,
->  				 u32 plane_pixel_rate, struct skl_wm_params *wp,
->  				 int color_plane);
-> +
->  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
-> +				 struct intel_plane *plane,
->  				 int level,
->  				 unsigned int latency,
->  				 const struct skl_wm_params *wp,
-> @@ -4251,6 +4253,7 @@ static unsigned int
->  skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
->  		      int num_active)
->  {
-> +	struct intel_plane *plane = to_intel_plane(crtc_state->uapi.crtc->cursor);
->  	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
->  	int level, max_level = ilk_wm_max_level(dev_priv);
->  	struct skl_wm_level wm = {};
-> @@ -4267,7 +4270,7 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
->  	for (level = 0; level <= max_level; level++) {
->  		unsigned int latency = dev_priv->wm.skl_latency[level];
->  
-> -		skl_compute_plane_wm(crtc_state, level, latency, &wp, &wm, &wm);
-> +		skl_compute_plane_wm(crtc_state, plane, level, latency, &wp, &wm, &wm);
->  		if (wm.min_ddb_alloc == U16_MAX)
->  			break;
->  
-> @@ -5495,6 +5498,7 @@ static int skl_wm_max_lines(struct drm_i915_private *dev_priv)
->  }
->  
->  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
-> +				 struct intel_plane *plane,
->  				 int level,
->  				 unsigned int latency,
->  				 const struct skl_wm_params *wp,
-> @@ -5622,6 +5626,7 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
->  
->  static void
->  skl_compute_wm_levels(const struct intel_crtc_state *crtc_state,
-> +		      struct intel_plane *plane,
->  		      const struct skl_wm_params *wm_params,
->  		      struct skl_wm_level *levels)
->  {
-> @@ -5633,7 +5638,7 @@ skl_compute_wm_levels(const struct intel_crtc_state *crtc_state,
->  		struct skl_wm_level *result = &levels[level];
->  		unsigned int latency = dev_priv->wm.skl_latency[level];
->  
-> -		skl_compute_plane_wm(crtc_state, level, latency,
-> +		skl_compute_plane_wm(crtc_state, plane, level, latency,
->  				     wm_params, result_prev, result);
->  
->  		result_prev = result;
-> @@ -5641,6 +5646,7 @@ skl_compute_wm_levels(const struct intel_crtc_state *crtc_state,
->  }
->  
->  static void tgl_compute_sagv_wm(const struct intel_crtc_state *crtc_state,
-> +				struct intel_plane *plane,
->  				const struct skl_wm_params *wm_params,
->  				struct skl_plane_wm *plane_wm)
->  {
-> @@ -5649,7 +5655,7 @@ static void tgl_compute_sagv_wm(const struct intel_crtc_state *crtc_state,
->  	struct skl_wm_level *levels = plane_wm->wm;
->  	unsigned int latency = dev_priv->wm.skl_latency[0] + dev_priv->sagv_block_time_us;
->  
-> -	skl_compute_plane_wm(crtc_state, 0, latency,
-> +	skl_compute_plane_wm(crtc_state, plane, 0, latency,
->  			     wm_params, &levels[0],
->  			     sagv_wm);
->  }
-> @@ -5719,11 +5725,11 @@ static void skl_compute_transition_wm(struct drm_i915_private *dev_priv,
->  
->  static int skl_build_plane_wm_single(struct intel_crtc_state *crtc_state,
->  				     const struct intel_plane_state *plane_state,
-> -				     enum plane_id plane_id, int color_plane)
-> +				     struct intel_plane *plane, int color_plane)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> -	struct skl_plane_wm *wm = &crtc_state->wm.skl.raw.planes[plane_id];
-> +	struct skl_plane_wm *wm = &crtc_state->wm.skl.raw.planes[plane->id];
->  	struct skl_wm_params wm_params;
->  	int ret;
->  
-> @@ -5732,13 +5738,13 @@ static int skl_build_plane_wm_single(struct intel_crtc_state *crtc_state,
->  	if (ret)
->  		return ret;
->  
-> -	skl_compute_wm_levels(crtc_state, &wm_params, wm->wm);
-> +	skl_compute_wm_levels(crtc_state, plane, &wm_params, wm->wm);
->  
->  	skl_compute_transition_wm(dev_priv, &wm->trans_wm,
->  				  &wm->wm[0], &wm_params);
->  
->  	if (DISPLAY_VER(dev_priv) >= 12) {
-> -		tgl_compute_sagv_wm(crtc_state, &wm_params, wm);
-> +		tgl_compute_sagv_wm(crtc_state, plane, &wm_params, wm);
->  
->  		skl_compute_transition_wm(dev_priv, &wm->sagv.trans_wm,
->  					  &wm->sagv.wm0, &wm_params);
-> @@ -5749,9 +5755,9 @@ static int skl_build_plane_wm_single(struct intel_crtc_state *crtc_state,
->  
->  static int skl_build_plane_wm_uv(struct intel_crtc_state *crtc_state,
->  				 const struct intel_plane_state *plane_state,
-> -				 enum plane_id plane_id)
-> +				 struct intel_plane *plane)
->  {
-> -	struct skl_plane_wm *wm = &crtc_state->wm.skl.raw.planes[plane_id];
-> +	struct skl_plane_wm *wm = &crtc_state->wm.skl.raw.planes[plane->id];
->  	struct skl_wm_params wm_params;
->  	int ret;
->  
-> @@ -5763,7 +5769,7 @@ static int skl_build_plane_wm_uv(struct intel_crtc_state *crtc_state,
->  	if (ret)
->  		return ret;
->  
-> -	skl_compute_wm_levels(crtc_state, &wm_params, wm->uv_wm);
-> +	skl_compute_wm_levels(crtc_state, plane, &wm_params, wm->uv_wm);
->  
->  	return 0;
->  }
-> @@ -5783,13 +5789,13 @@ static int skl_build_plane_wm(struct intel_crtc_state *crtc_state,
->  		return 0;
->  
->  	ret = skl_build_plane_wm_single(crtc_state, plane_state,
-> -					plane_id, 0);
-> +					plane, 0);
->  	if (ret)
->  		return ret;
->  
->  	if (fb->format->is_yuv && fb->format->num_planes > 1) {
->  		ret = skl_build_plane_wm_uv(crtc_state, plane_state,
-> -					    plane_id);
-> +					    plane);
->  		if (ret)
->  			return ret;
->  	}
-> @@ -5814,7 +5820,6 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
->  
->  	if (plane_state->planar_linked_plane) {
->  		const struct drm_framebuffer *fb = plane_state->hw.fb;
-> -		enum plane_id y_plane_id = plane_state->planar_linked_plane->id;
->  
->  		drm_WARN_ON(&dev_priv->drm,
->  			    !intel_wm_plane_visible(crtc_state, plane_state));
-> @@ -5822,17 +5827,17 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
->  			    fb->format->num_planes == 1);
->  
->  		ret = skl_build_plane_wm_single(crtc_state, plane_state,
-> -						y_plane_id, 0);
-> +						plane_state->planar_linked_plane, 0);
->  		if (ret)
->  			return ret;
->  
->  		ret = skl_build_plane_wm_single(crtc_state, plane_state,
-> -						plane_id, 1);
-> +						plane, 1);
->  		if (ret)
->  			return ret;
->  	} else if (intel_wm_plane_visible(crtc_state, plane_state)) {
->  		ret = skl_build_plane_wm_single(crtc_state, plane_state,
-> -						plane_id, 0);
-> +						plane, 0);
->  		if (ret)
->  			return ret;
->  	}
-> -- 
-> 2.24.1.485.gad05a3d8e5
+> First about the "permanently hung" statement. How permanent? Does the
+> heartbeat eventually resolve it and if not why not? Naive view is that
+> missed heartbeats would identify the stuck non-preemptible request and then
+> engine reset would skip over it.
+> 
 
--- 
-Ville Syrjälä
-Intel
+Yes, if the heartbeat is enabled then the heartbeat would eventually
+recover the engine. It is not always enabled though...
+
+> If it does resolve, then the problem is only that request timeout works less
+> well if someone set preempt timeout to zero? Which may not be as bad, since
+> request timeout was never about any time guarantees.
+>
+
+Yes, if the heartbeat is enabled the problem isn't as bad.
+
+Matt
+
+> Regards,
+> 
+> Tvrtko
+> 
+> > 
+> > Fixes: 38b237eab2bc7 ("drm/i915: Individual request cancellation")
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 23 +++++++++++++++----
+> >   .../gpu/drm/i915/gt/intel_engine_heartbeat.h  |  1 +
+> >   .../drm/i915/gt/intel_execlists_submission.c  | 18 ++++++++++-----
+> >   drivers/gpu/drm/i915/i915_request.h           |  6 +++++
+> >   4 files changed, 38 insertions(+), 10 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> > index a3698f611f457..efd1c719b4072 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> > @@ -243,7 +243,8 @@ void intel_engine_init_heartbeat(struct intel_engine_cs *engine)
+> >   	INIT_DELAYED_WORK(&engine->heartbeat.work, heartbeat);
+> >   }
+> > -static int __intel_engine_pulse(struct intel_engine_cs *engine)
+> > +static int __intel_engine_pulse(struct intel_engine_cs *engine,
+> > +				bool force_preempt)
+> >   {
+> >   	struct i915_sched_attr attr = { .priority = I915_PRIORITY_BARRIER };
+> >   	struct intel_context *ce = engine->kernel_context;
+> > @@ -258,6 +259,8 @@ static int __intel_engine_pulse(struct intel_engine_cs *engine)
+> >   		return PTR_ERR(rq);
+> >   	__set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
+> > +	if (force_preempt)
+> > +		__set_bit(I915_FENCE_FLAG_FORCE_PREEMPT, &rq->fence.flags);
+> >   	heartbeat_commit(rq, &attr);
+> >   	GEM_BUG_ON(rq->sched.attr.priority < I915_PRIORITY_BARRIER);
+> > @@ -299,7 +302,7 @@ int intel_engine_set_heartbeat(struct intel_engine_cs *engine,
+> >   		/* recheck current execution */
+> >   		if (intel_engine_has_preemption(engine)) {
+> > -			err = __intel_engine_pulse(engine);
+> > +			err = __intel_engine_pulse(engine, false);
+> >   			if (err)
+> >   				set_heartbeat(engine, saved);
+> >   		}
+> > @@ -312,7 +315,8 @@ int intel_engine_set_heartbeat(struct intel_engine_cs *engine,
+> >   	return err;
+> >   }
+> > -int intel_engine_pulse(struct intel_engine_cs *engine)
+> > +static int _intel_engine_pulse(struct intel_engine_cs *engine,
+> > +			       bool force_preempt)
+> >   {
+> >   	struct intel_context *ce = engine->kernel_context;
+> >   	int err;
+> > @@ -325,7 +329,7 @@ int intel_engine_pulse(struct intel_engine_cs *engine)
+> >   	err = -EINTR;
+> >   	if (!mutex_lock_interruptible(&ce->timeline->mutex)) {
+> > -		err = __intel_engine_pulse(engine);
+> > +		err = __intel_engine_pulse(engine, force_preempt);
+> >   		mutex_unlock(&ce->timeline->mutex);
+> >   	}
+> > @@ -334,6 +338,17 @@ int intel_engine_pulse(struct intel_engine_cs *engine)
+> >   	return err;
+> >   }
+> > +int intel_engine_pulse(struct intel_engine_cs *engine)
+> > +{
+> > +	return _intel_engine_pulse(engine, false);
+> > +}
+> > +
+> > +
+> > +int intel_engine_pulse_force_preempt(struct intel_engine_cs *engine)
+> > +{
+> > +	return _intel_engine_pulse(engine, true);
+> > +}
+> > +
+> >   int intel_engine_flush_barriers(struct intel_engine_cs *engine)
+> >   {
+> >   	struct i915_sched_attr attr = { .priority = I915_PRIORITY_MIN };
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.h b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.h
+> > index 5da6d809a87a2..d9c8386754cb3 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.h
+> > @@ -21,6 +21,7 @@ void intel_gt_park_heartbeats(struct intel_gt *gt);
+> >   void intel_gt_unpark_heartbeats(struct intel_gt *gt);
+> >   int intel_engine_pulse(struct intel_engine_cs *engine);
+> > +int intel_engine_pulse_force_preempt(struct intel_engine_cs *engine);
+> >   int intel_engine_flush_barriers(struct intel_engine_cs *engine);
+> >   #endif /* INTEL_ENGINE_HEARTBEAT_H */
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > index 960a9aaf4f3a3..f0c2024058731 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > @@ -1222,26 +1222,29 @@ static void record_preemption(struct intel_engine_execlists *execlists)
+> >   }
+> >   static unsigned long active_preempt_timeout(struct intel_engine_cs *engine,
+> > -					    const struct i915_request *rq)
+> > +					    const struct i915_request *rq,
+> > +					    bool force_preempt)
+> >   {
+> >   	if (!rq)
+> >   		return 0;
+> >   	/* Force a fast reset for terminated contexts (ignoring sysfs!) */
+> > -	if (unlikely(intel_context_is_banned(rq->context) || bad_request(rq)))
+> > +	if (unlikely(intel_context_is_banned(rq->context) || bad_request(rq) ||
+> > +		     force_preempt))
+> >   		return 1;
+> >   	return READ_ONCE(engine->props.preempt_timeout_ms);
+> >   }
+> >   static void set_preempt_timeout(struct intel_engine_cs *engine,
+> > -				const struct i915_request *rq)
+> > +				const struct i915_request *rq,
+> > +				bool force_preempt)
+> >   {
+> >   	if (!intel_engine_has_preempt_reset(engine))
+> >   		return;
+> >   	set_timer_ms(&engine->execlists.preempt,
+> > -		     active_preempt_timeout(engine, rq));
+> > +		     active_preempt_timeout(engine, rq, force_preempt));
+> >   }
+> >   static bool completed(const struct i915_request *rq)
+> > @@ -1584,12 +1587,15 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+> >   	    memcmp(active,
+> >   		   execlists->pending,
+> >   		   (port - execlists->pending) * sizeof(*port))) {
+> > +		bool force_preempt = test_bit(I915_FENCE_FLAG_FORCE_PREEMPT,
+> > +					      &last->fence.flags);
+> > +
+> >   		*port = NULL;
+> >   		while (port-- != execlists->pending)
+> >   			execlists_schedule_in(*port, port - execlists->pending);
+> >   		WRITE_ONCE(execlists->yield, -1);
+> > -		set_preempt_timeout(engine, *active);
+> > +		set_preempt_timeout(engine, *active, force_preempt);
+> >   		execlists_submit_ports(engine);
+> >   	} else {
+> >   		ring_set_paused(engine, 0);
+> > @@ -2594,7 +2600,7 @@ static void execlists_context_cancel_request(struct intel_context *ce,
+> >   	i915_request_active_engine(rq, &engine);
+> > -	if (engine && intel_engine_pulse(engine))
+> > +	if (engine && intel_engine_pulse_force_preempt(engine))
+> >   		intel_gt_handle_error(engine->gt, engine->mask, 0,
+> >   				      "request cancellation by %s",
+> >   				      current->comm);
+> > diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> > index 28b1f9db54875..7e6312233d4c7 100644
+> > --- a/drivers/gpu/drm/i915/i915_request.h
+> > +++ b/drivers/gpu/drm/i915/i915_request.h
+> > @@ -170,6 +170,12 @@ enum {
+> >   	 * fence (dma_fence_array) and i915 generated for parallel submission.
+> >   	 */
+> >   	I915_FENCE_FLAG_COMPOSITE,
+> > +
+> > +	/*
+> > +	 * I915_FENCE_FLAG_FORCE_PREEMPT - Force preempt immediately regardless
+> > +	 * of preempt timeout configuration
+> > +	 */
+> > +	I915_FENCE_FLAG_FORCE_PREEMPT,
+> >   };
+> >   /**
+> > 
