@@ -2,70 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7DF849AFD1
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 10:28:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 120BA49B0B7
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 10:46:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCE0B10EDFF;
-	Tue, 25 Jan 2022 09:28:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27E9410F0A7;
+	Tue, 25 Jan 2022 09:46:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E135710EDFF;
- Tue, 25 Jan 2022 09:28:55 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2EB610F0AA;
+ Tue, 25 Jan 2022 09:46:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643102935; x=1674638935;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=/3uEJq4zPTSgXMeNYS74/NJZJxAc2UOZUhqwmZmqIfw=;
- b=bTNcKjQ4y/ekFOUHKFidqDUGH7863msbDffDaQ7OGxDEy04dAJE2hYpZ
- /ERIlXHxAPavVjy1UXJ5KxH7vzANtSrLzWxJWwETti1mBgWCBsIN4wi0/
- 61yKIZ7P3PbNvodgTERY2AXniQLPjTdHnC6Okyvne1Ns5ZpHYwNu+P3If
- z8DRb4dCV97JGKhyrJ7d5YC5ieW2zjRdM3wf3KMknKUV8B3+zvOazaQ1V
- xRZT+om0y3fTZKVQ1hxXNOOXSq8W0LFAxNFhme1HZUh8JpEmcLMm3v4na
- Hy7uYXxUHW+p9zQt607xKg8uPU12+A75TPQe7x3IQ17nci9PGXCSr0kSQ w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="246044825"
-X-IronPort-AV: E=Sophos;i="5.88,314,1635231600"; d="scan'208";a="246044825"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2022 01:28:55 -0800
-X-IronPort-AV: E=Sophos;i="5.88,314,1635231600"; d="scan'208";a="532366265"
-Received: from thpham-mobl1.amr.corp.intel.com (HELO [10.213.172.16])
- ([10.213.172.16])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2022 01:28:51 -0800
-Message-ID: <bab43c36-a3de-f96a-6530-4ab3a55b8ba0@linux.intel.com>
-Date: Tue, 25 Jan 2022 09:28:44 +0000
+ t=1643103976; x=1674639976;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Bews4lBuVZO2mA+qEsZmOq3kp4a5aAW6TcZZtJKsARI=;
+ b=E7V/5sG3H9pilh8S+vPSTRzxtLb9FhiBH7ylEOenp5sXy4EgtZNO0BRZ
+ Q3YHDUpNhXbF2uHw+2MzS19OOLovtLWoNFR8+JHZ8OswPLLn0hD9FOP23
+ sz5N8OKY28+7wGN4xJJzxuqV468FduhTVLq9HkJ8QEcIDNyWW1oXuqERk
+ BJ/vxvofNdfMc2WT+TW9Xdqkm+uJdSIraT5kl0HWo4zMIBYVTrd0uk94e
+ N0CiAVuCWtmu2HIG9e5SfZ3G0v+0a3UZjPwGIbfFCeRmZJOg0I4spiDnX
+ zGUIIRvWDxYZ675XAcatDFQaqD5uMhjXBLTSfAWstIjd3FkZzx5br1pnd w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="229840844"
+X-IronPort-AV: E=Sophos;i="5.88,314,1635231600"; d="scan'208";a="229840844"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2022 01:46:16 -0800
+X-IronPort-AV: E=Sophos;i="5.88,314,1635231600"; d="scan'208";a="534657780"
+Received: from skirillo-mobl1.ccr.corp.intel.com (HELO localhost)
+ ([10.252.32.77])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2022 01:46:12 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20220125085801.1025521-2-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220125085801.1025521-1-ankit.k.nautiyal@intel.com>
+ <20220125085801.1025521-2-ankit.k.nautiyal@intel.com>
+Date: Tue, 25 Jan 2022 11:45:57 +0200
+Message-ID: <87fspc173e.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: Yury Norov <yury.norov@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Andrew Morton <akpm@linux-foundation.org>,
- =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Peter Zijlstra <peterz@infradead.org>, David Laight
- <David.Laight@aculab.com>, Joe Perches <joe@perches.com>,
- Dennis Zhou <dennis@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Nicholas Piggin <npiggin@gmail.com>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Alexey Klimov <aklimov@redhat.com>, linux-kernel@vger.kernel.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20220123183925.1052919-1-yury.norov@gmail.com>
- <20220123183925.1052919-18-yury.norov@gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220123183925.1052919-18-yury.norov@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 17/54] gpu: drm: replace cpumask_weight with
- cpumask_empty where appropriate
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915_hdmi: Fix the definition of
+ intel_hdmi_dsc_get_bpp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,41 +62,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 25 Jan 2022, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> Fix the data-type of the argument output_format to enum, for the
+> function intel_hdmi_dsc_get_bpp.
 
-On 23/01/2022 18:38, Yury Norov wrote:
-> i915_pmu_cpu_online() calls cpumask_weight() to check if any bit of a
-> given cpumask is set. We can do it more efficiently with cpumask_empty()
-> because cpumask_empty() stops traversing the cpumask as soon as it finds
-> first set bit, while cpumask_weight() counts all bits unconditionally.
-> 
-> Signed-off-by: Yury Norov <yury.norov@gmail.com>
+The subject prefix should be "drm/i915/hdmi:".
+
+>
+> Fixes: 6e6cb758e035 ("drm/i915: Add helper functions for calculating DSC
+> parameters for HDMI2.1")
+
+The Fixes: tag should not be wrapped.
+
+>
+
+Superfluous blank line.
+
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: "Ville Syrj_l_" <ville.syrjala@linux.intel.com>
+> Cc: "Jos_ Roberto de Souza" <jose.souza@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Werner Sembach <wse@tuxedocomputers.com>
+> Cc: Aditya Swarup <aditya.swarup@intel.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+Please consider trimming the Cc lines manually, this is quite excessive
+for a patch this simple.
+
+> Cc: <stable@vger.kernel.org> # v5.12+
+
+No, we don't really want to backport this stuff to stable. There's no
+functional impact here.
+
+>
+
+Superfluous blank line.
+
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->   drivers/gpu/drm/i915/i915_pmu.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> index ea655161793e..1894c876b31d 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -1048,7 +1048,7 @@ static int i915_pmu_cpu_online(unsigned int cpu, struct hlist_node *node)
->   	GEM_BUG_ON(!pmu->base.event_init);
->   
->   	/* Select the first online CPU as a designated reader. */
-> -	if (!cpumask_weight(&i915_pmu_cpumask))
-> +	if (cpumask_empty(&i915_pmu_cpumask))
->   		cpumask_set_cpu(cpu, &i915_pmu_cpumask);
->   
->   	return 0;
-> 
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 4 ++--
+>  drivers/gpu/drm/i915/display/intel_hdmi.h | 5 +++--
+>  2 files changed, 5 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 45cf0ab04009..381a9de3a015 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -3126,8 +3126,8 @@ intel_hdmi_dsc_get_num_slices(const struct intel_crtc_state *crtc_state,
+>   */
+>  int
+>  intel_hdmi_dsc_get_bpp(int src_fractional_bpp, int slice_width, int num_slices,
+> -		       int output_format, bool hdmi_all_bpp,
+> -		       int hdmi_max_chunk_bytes)
+> +		       enum intel_output_format output_format,
+> +		       bool hdmi_all_bpp, int hdmi_max_chunk_bytes)
+>  {
+>  	int max_dsc_bpp, min_dsc_bpp;
+>  	int target_bytes;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> index b577c38fa90c..fe40e49d2962 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> @@ -10,6 +10,7 @@
+>  #include <linux/types.h>
+>  
+>  #include "i915_reg.h"
+> +#include "intel_display_types.h"
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Please avoid including headers from other headers if at all possible.
 
-I see it's a large series which only partially appeared on our mailing 
-lists. So for instance it hasn't got tested by our automated CI. (Not 
-that I expect any problems in this patch.)
+Here we can forward declare
 
-What are the plans in terms of which tree will it get merged through?
+enum intel_output_format;
 
-Regards,
+along with the other forward declarations below. Strictly speaking it's
+not standards compliant to forward declare enums but it does work and we
+use it all over the place.
 
-Tvrtko
+BR,
+Jani.
+
+>  
+>  struct drm_connector;
+>  struct drm_encoder;
+> @@ -49,8 +50,8 @@ bool intel_hdmi_limited_color_range(const struct intel_crtc_state *crtc_state,
+>  bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
+>  			     int bpc, bool has_hdmi_sink, bool ycbcr420_output);
+>  int intel_hdmi_dsc_get_bpp(int src_fractional_bpp, int slice_width,
+> -			   int num_slices, int output_format, bool hdmi_all_bpp,
+> -			   int hdmi_max_chunk_bytes);
+> +			   int num_slices, enum intel_output_format output_format,
+> +			   bool hdmi_all_bpp, int hdmi_max_chunk_bytes);
+>  int intel_hdmi_dsc_get_num_slices(const struct intel_crtc_state *crtc_state,
+>  				  int src_max_slices, int src_max_slice_width,
+>  				  int hdmi_max_slices, int hdmi_throughput);
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
