@@ -1,52 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA14B49ACD4
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 08:02:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E6149ACFB
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 08:07:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1357910ECD4;
-	Tue, 25 Jan 2022 07:02:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4566C10EDB4;
+	Tue, 25 Jan 2022 07:07:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E009F10ECCC;
- Tue, 25 Jan 2022 07:02:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8178910ED84
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jan 2022 07:07:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643094140; x=1674630140;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=yGV7YtKAgiBGeCNiwRFnIigFHqGr5li2VVz16Ut0GkA=;
- b=YtmTeL0sd9BQ/kwE/4B0IVEaHauMpwjwi2HmzYJkRJtln1jVil/mT8t+
- YZlrFYpTXLqUBtjA+jqeX6Yo7yZdlwg+5DCOsN8Qtun/QRkRneZ8bBihe
- nFiSMlwXvWYCTPgk8541gKxtJ+1fVZ2YER2zlp5y1Oz7pW4AaFdwqomwU
- v2auTLQnWDpIkKm3d51OjaTbyvEMuS8D/zFfd2zHH3Zu+No7QV8uEpbWI
- qyZcXgLwPCwO7fDybGrSl4baa1SNPy4DEtQTV8lvjIi1QJpJyXaQQLn6j
- 4BpZeoPPmTaM4YU/vTaMO3aCW2a/vIK7Q630p/GPPVsaI3EZHOf8tGEHJ Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="270681078"
-X-IronPort-AV: E=Sophos;i="5.88,314,1635231600"; d="scan'208";a="270681078"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1643094468; x=1674630468;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=4raCPKpEfy+yP4L6RUMFsf2R1A1k2O5+C+1bJqvFXFA=;
+ b=CE5Qk4yzA5zwuL+ym3R8leF4IAlA3/TvS8FbDcC/jraevEM4k82LM2vQ
+ blLOK5iF3JFYn4/l1gLCE27HyY0J4cmtbU7pL3IILiVsh7CKDtZk1+/gB
+ x7no1DC+NN8NHPAvtwllMoRBRcduzzLMw2eTldo8VJqH4daiocnAN0zP0
+ OANSObaIMrvd/E5gBsKWLk4Zz3uqqx0IdX/dBMZnzPOFsf4S436IBWyWd
+ 15Bo9KEVXFUMcuwV2D0vKAsT5D6d70zZKn0H+BN86/bm3MlUqTV/263Gs
+ tlFw+KZSijV0VnuPafBAqChr3EKI4YM0kCBaplOu9QSXv+4L5XHZEsC0Q w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="270681847"
+X-IronPort-AV: E=Sophos;i="5.88,314,1635231600"; d="scan'208";a="270681847"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 23:02:19 -0800
-X-IronPort-AV: E=Sophos;i="5.88,314,1635231600"; d="scan'208";a="534599476"
-Received: from skirillo-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.252.32.77])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2022 23:02:15 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Yaroslav Bolyukin <iam@lach.pw>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20220123191955.57994-1-iam@lach.pw>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220118215956.17229-1-iam@lach.pw>
- <20220123191955.57994-1-iam@lach.pw>
-Date: Tue, 25 Jan 2022 09:02:00 +0200
-Message-ID: <87lez41eon.fsf@intel.com>
+ 24 Jan 2022 23:07:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,314,1635231600"; d="scan'208";a="532334682"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
+ by fmsmga007.fm.intel.com with SMTP; 24 Jan 2022 23:07:45 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 25 Jan 2022 09:07:45 +0200
+Date: Tue, 25 Jan 2022 09:07:45 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <Ye+hwWx4rPJQHZmE@intel.com>
+References: <20220124192638.26262-5-ville.syrjala@linux.intel.com>
+ <20220125063937.7003-1-ville.syrjala@linux.intel.com>
+ <87o8401f7c.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2] drm/edid: Support type 7 timings
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87o8401f7c.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 5/5] drm/i915: Move dsc/joiner enable
+ into hsw_crtc_enable()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,86 +62,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Yaroslav Bolyukin <iam@lach.pw>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 23 Jan 2022, Yaroslav Bolyukin <iam@lach.pw> wrote:
-> Per VESA DisplayID Standard v2.0: Type VII Timing =E2=80=93 Detailed Timi=
-ng Data
->
-> Definitions were already provided as type I, but not used
->
-> Signed-off-by: Yaroslav Bolyukin <iam@lach.pw>
+On Tue, Jan 25, 2022 at 08:50:47AM +0200, Jani Nikula wrote:
+> On Tue, 25 Jan 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Lift the dsc/joiner enable up from the wonky places where it
+> > currently sits (ddi .pre_enable() or icl_ddi_bigjoiner_pre_enable())
+> > into hsw_crtc_enable() where we write the other per-pipe stuff
+> > as well. Makes the transcoder vs. pipe split less confusing.
+> >
+> > For DSI this results in slight reordering between the dsc/joiner
+> > enable vs. transcoder timings setup, but I can't really think
+> > why that should cause any issues since the transcoder isn't yet
+> > enabled at that point.
+> >
+> > v2: Take care of dsi (Jani)
+> >
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> One question inline.
+> 
+> > ---
+> >  drivers/gpu/drm/i915/display/icl_dsi.c       |  2 --
+> >  drivers/gpu/drm/i915/display/intel_ddi.c     |  6 ------
+> >  drivers/gpu/drm/i915/display/intel_display.c | 12 +++++-------
+> >  3 files changed, 5 insertions(+), 15 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > index 95f49535fa6e..16a611f7d659 100644
+> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > @@ -1233,8 +1233,6 @@ static void gen11_dsi_pre_enable(struct intel_atomic_state *state,
+> >  
+> >  	intel_dsc_dsi_pps_write(encoder, pipe_config);
+> >  
+> > -	intel_dsc_enable(pipe_config);
+> > -
+> >  	/* step6c: configure transcoder timings */
+> >  	gen11_dsi_set_transcoder_timings(encoder, pipe_config);
+> >  }
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 2f20abc5122d..5d1f7d6218c5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -2425,9 +2425,6 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> >  	intel_ddi_enable_fec(encoder, crtc_state);
+> >  
+> >  	intel_dsc_dp_pps_write(encoder, crtc_state);
+> > -
+> > -	if (!crtc_state->bigjoiner)
+> > -		intel_dsc_enable(crtc_state);
+> >  }
+> >  
+> >  static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> > @@ -2493,9 +2490,6 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> >  		intel_ddi_enable_pipe_clock(encoder, crtc_state);
+> >  
+> >  	intel_dsc_dp_pps_write(encoder, crtc_state);
+> > -
+> > -	if (!crtc_state->bigjoiner)
+> > -		intel_dsc_enable(crtc_state);
+> >  }
+> >  
+> >  static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index d2906434ab3f..13b1de03640d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -1974,7 +1974,6 @@ static void hsw_set_frame_start_delay(const struct intel_crtc_state *crtc_state)
+> >  static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
+> >  					 const struct intel_crtc_state *crtc_state)
+> >  {
+> > -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> >  	struct intel_crtc_state *master_crtc_state;
+> >  	struct intel_crtc *master_crtc;
+> >  	struct drm_connector_state *conn_state;
+> > @@ -2004,12 +2003,6 @@ static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
+> >  
+> >  	if (crtc_state->bigjoiner_slave)
+> >  		intel_encoders_pre_enable(state, master_crtc);
+> > -
+> > -	/* need to enable VDSC, which we skipped in pre-enable */
+> > -	intel_dsc_enable(crtc_state);
+> > -
+> > -	if (DISPLAY_VER(dev_priv) >= 13)
+> > -		intel_uncompressed_joiner_enable(crtc_state);
+> >  }
+> >  
+> >  static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_state)
+> > @@ -2057,6 +2050,11 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+> >  		icl_ddi_bigjoiner_pre_enable(state, new_crtc_state);
+> >  	}
+> >  
+> > +	intel_dsc_enable(new_crtc_state);
+> > +
+> > +	if (DISPLAY_VER(dev_priv) >= 13)
+> > +		intel_uncompressed_joiner_enable(new_crtc_state);
+> > +
+> 
+> Should this call be moved inside intel_dsc_enable()? I mean it's not
+> compression, but it's the same splitter/joiner/etc. block that handles
+> all of this?
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+We probably want to restructure the code a bit more so that
+it's not all pretending to be about dsc. Dunno if we should just have
+some dss_enable() thing to configure everything about the
+splitter/joiner stuff. Although maybe there are some conflicting
+sequencing requirements for MSO, so maybe not all of it can go into
+the same place? In which case I quess we should just have some kind
+of joiner_enable() thing.
 
-> ---
->  drivers/gpu/drm/drm_edid.c | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 12893e7be..5f2ae5bfa 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -5405,7 +5405,8 @@ u32 drm_add_display_info(struct drm_connector *conn=
-ector, const struct edid *edi
->  }
->=20=20
->  static struct drm_display_mode *drm_mode_displayid_detailed(struct drm_d=
-evice *dev,
-> -							    struct displayid_detailed_timings_1 *timings)
-> +							    struct displayid_detailed_timings_1 *timings,
-> +							    bool type_7)
->  {
->  	struct drm_display_mode *mode;
->  	unsigned pixel_clock =3D (timings->pixel_clock[0] |
-> @@ -5426,7 +5427,8 @@ static struct drm_display_mode *drm_mode_displayid_=
-detailed(struct drm_device *d
->  	if (!mode)
->  		return NULL;
->=20=20
-> -	mode->clock =3D pixel_clock * 10;
-> +	/* resolution is kHz for type VII, and 10 kHz for type I */
-> +	mode->clock =3D type_7 ? pixel_clock : pixel_clock * 10;
->  	mode->hdisplay =3D hactive;
->  	mode->hsync_start =3D mode->hdisplay + hsync;
->  	mode->hsync_end =3D mode->hsync_start + hsync_width;
-> @@ -5457,6 +5459,7 @@ static int add_displayid_detailed_1_modes(struct dr=
-m_connector *connector,
->  	int num_timings;
->  	struct drm_display_mode *newmode;
->  	int num_modes =3D 0;
-> +	bool type_7 =3D block->tag =3D=3D DATA_BLOCK_2_TYPE_7_DETAILED_TIMING;
->  	/* blocks must be multiple of 20 bytes length */
->  	if (block->num_bytes % 20)
->  		return 0;
-> @@ -5465,7 +5468,7 @@ static int add_displayid_detailed_1_modes(struct dr=
-m_connector *connector,
->  	for (i =3D 0; i < num_timings; i++) {
->  		struct displayid_detailed_timings_1 *timings =3D &det->timings[i];
->=20=20
-> -		newmode =3D drm_mode_displayid_detailed(connector->dev, timings);
-> +		newmode =3D drm_mode_displayid_detailed(connector->dev, timings, type_=
-7);
->  		if (!newmode)
->  			continue;
->=20=20
-> @@ -5484,7 +5487,8 @@ static int add_displayid_detailed_modes(struct drm_=
-connector *connector,
->=20=20
->  	displayid_iter_edid_begin(edid, &iter);
->  	displayid_iter_for_each(block, &iter) {
-> -		if (block->tag =3D=3D DATA_BLOCK_TYPE_1_DETAILED_TIMING)
-> +		if (block->tag =3D=3D DATA_BLOCK_TYPE_1_DETAILED_TIMING ||
-> +		    block->tag =3D=3D DATA_BLOCK_2_TYPE_7_DETAILED_TIMING)
->  			num_modes +=3D add_displayid_detailed_1_modes(connector, block);
->  	}
->  	displayid_iter_end(&iter);
->
-> base-commit: 99613159ad749543621da8238acf1a122880144e
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+-- 
+Ville Syrjälä
+Intel
