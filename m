@@ -1,33 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4CB049BB99
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 19:55:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CAD749BBD3
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 20:11:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3346D8932B;
-	Tue, 25 Jan 2022 18:55:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AABD710E395;
+	Tue, 25 Jan 2022 19:11:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3C8338932B;
- Tue, 25 Jan 2022 18:55:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 37C32AAA91;
- Tue, 25 Jan 2022 18:55:43 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0E8510E3DD;
+ Tue, 25 Jan 2022 18:00:41 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 15BC96146E;
+ Tue, 25 Jan 2022 18:00:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 794B6C340E0;
+ Tue, 25 Jan 2022 18:00:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1643133640;
+ bh=thPgkn5bU/soMVjidYH0tOpgluG55pEiEr9+5W6b6MA=;
+ h=Date:From:To:Cc:Subject:From;
+ b=kMOAaP29cN/sKal92kvYcKRpaaVQR4woLTyXvu0H3WnJAXlvnTeku2Y+Qo3SwWvId
+ XooGFP6FJhJV+hIQCAjglcY3x5ZCYD310nmZ/mdKPp4PEtQYUWZ57dLc02OR/s2HS7
+ 7xKD1CgJd1vYll6gbSdTm5TE9WSsjP728fiamu4EkJnB+Vnx0qFnVHVhHnDsf+TqvV
+ cJ/+rlEBk4qB6WGRIHUwOzL7PYHyaXajCEbhww6UQFdrrOmQlqS89B5Kk9P7e4N8Fe
+ DPVQUOyC2HwNoFwO2lKld9FQNmwLirB0m77loI20BSsMdiQyN3RiKibz0c0l5F/uAt
+ XtFWAtYAzqKZg==
+Date: Tue, 25 Jan 2022 12:07:26 -0600
+From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20220125180726.GA68646@embeddedor>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Tue, 25 Jan 2022 18:55:43 -0000
-Message-ID: <164313694319.27371.5485666784259398367@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220125183142.850325-1-lucas.demarchi@intel.com>
-In-Reply-To: <20220125183142.850325-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Fix_header_test_for_!CONFIG=5FX86?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Tue, 25 Jan 2022 19:10:59 +0000
+Subject: [Intel-gfx] [PATCH][next] drm/i915/guc: Use struct_size() helper in
+ kmalloc()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,25 +56,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-hardening@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Make use of the struct_size() helper instead of an open-coded version,
+in order to avoid any potential type mistakes or integer overflows that,
+in the worst scenario, could lead to heap overflows.
 
-Series: drm/i915: Fix header test for !CONFIG_X86
-URL   : https://patchwork.freedesktop.org/series/99331/
-State : warning
+Also, address the following sparse warnings:
+drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:792:23: warning: using sizeof on a flexible structure
 
-== Summary ==
+Link: https://github.com/KSPP/linux/issues/174
+Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-$ dim checkpatch origin/drm-tip
-e5830b0897b4 drm/i915: Fix header test for !CONFIG_X86
--:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#17: 
-   25 |  pr_err("Architecture has no %s() and shouldn't be calling this function\n", __func__);
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+index aa6dd6415202..e352a1aad228 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+@@ -789,7 +789,7 @@ static struct ct_incoming_msg *ct_alloc_msg(u32 num_dwords)
+ {
+ 	struct ct_incoming_msg *msg;
+ 
+-	msg = kmalloc(sizeof(*msg) + sizeof(u32) * num_dwords, GFP_ATOMIC);
++	msg = kmalloc(struct_size(msg, msg, num_dwords), GFP_ATOMIC);
+ 	if (msg)
+ 		msg->size = num_dwords;
+ 	return msg;
+-- 
+2.27.0
 
