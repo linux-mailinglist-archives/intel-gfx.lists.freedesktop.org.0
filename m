@@ -2,48 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CAD749BBD3
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 20:11:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA79849BBD4
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 20:11:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AABD710E395;
-	Tue, 25 Jan 2022 19:11:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0656410E3D6;
+	Tue, 25 Jan 2022 19:11:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0E8510E3DD;
- Tue, 25 Jan 2022 18:00:41 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 15BC96146E;
- Tue, 25 Jan 2022 18:00:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 794B6C340E0;
- Tue, 25 Jan 2022 18:00:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1643133640;
- bh=thPgkn5bU/soMVjidYH0tOpgluG55pEiEr9+5W6b6MA=;
- h=Date:From:To:Cc:Subject:From;
- b=kMOAaP29cN/sKal92kvYcKRpaaVQR4woLTyXvu0H3WnJAXlvnTeku2Y+Qo3SwWvId
- XooGFP6FJhJV+hIQCAjglcY3x5ZCYD310nmZ/mdKPp4PEtQYUWZ57dLc02OR/s2HS7
- 7xKD1CgJd1vYll6gbSdTm5TE9WSsjP728fiamu4EkJnB+Vnx0qFnVHVhHnDsf+TqvV
- cJ/+rlEBk4qB6WGRIHUwOzL7PYHyaXajCEbhww6UQFdrrOmQlqS89B5Kk9P7e4N8Fe
- DPVQUOyC2HwNoFwO2lKld9FQNmwLirB0m77loI20BSsMdiQyN3RiKibz0c0l5F/uAt
- XtFWAtYAzqKZg==
-Date: Tue, 25 Jan 2022 12:07:26 -0600
-From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20220125180726.GA68646@embeddedor>
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
+ [IPv6:2607:f8b0:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85C6B10E3EA;
+ Tue, 25 Jan 2022 18:16:33 +0000 (UTC)
+Received: by mail-pl1-x62a.google.com with SMTP id x11so14347820plg.6;
+ Tue, 25 Jan 2022 10:16:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=qWi/VzmHnEk2/VtWXzNTzI6tNMuksJ3FgOnDItF6gHE=;
+ b=Q3tDZoDFFIbhLfDZzBvZ0S5DOiksvrkBEYh7dQDmQIWbV1Q1uB59IguVOIm01TYQG7
+ lfRZ0/5SSuDtRD51nesMx9/e3kRtXvjYoVyvYVnJqtPFv9+DPa+oIDrmhswNvrNCe52c
+ be+CGWlHDXVoFrFdly3rvZLQsFR6U+jpv1iIrkjPrwWuuc/dDRKZInai4xrwN4qQLyMO
+ eLTSQex6ptCXF3kd4l3D19Ncy30vHzGGaoyI/woU97d96+0xsQLSRwf2TkBaD7XXu8mA
+ IteB04ettGTZ73ulOY7L/1B7MASI8jOsn+RY9CF6uxmQssHB8kJnVg8bWBoHbZeNR1hY
+ NU1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=qWi/VzmHnEk2/VtWXzNTzI6tNMuksJ3FgOnDItF6gHE=;
+ b=Si/Qgxjpeu06v+VmSw3zow6OG0DSky2j3ojbokl0rvnsXxwQjXU3CtL0PusZ6sU6n7
+ Ao3SVy1jTqvr07m91IGQf+K6LlAcCY1mg75/ZrELEBLTp/MtYjO26FVSHtcao4IReFbS
+ 0GKQvUT3Y7+NiuP5ugvOgju6qddVNRj7nKhHysCIwsFqTwJGUuno4CBMfai3CVXWt9em
+ NvmpVZgmBn/312KMrZHD699tviZ4ap/b4VTQJLA/HykyzE/lZR0HYo+/o73mlH9OymNk
+ afWlVqp5ZgO4SQieDZj20gtbdG+pYb+h6wuhQfcWGv/AdtMEkrtuKnkHrvcK5FNLCLxQ
+ 2liw==
+X-Gm-Message-State: AOAM530hZNGT4yCImXqbymFh1Dp0Y2pIPxpeE8KgAlWymlWFsPORVdiU
+ sxUuYR3d7iqCFcfVHqIV5jcHhsPzo/kwEN3C01s=
+X-Google-Smtp-Source: ABdhPJwh+xmHmgWWUczLKE9+twP3Ew4lKECg1cszwMOtqaxD+MmnKLr7vIvmnlfRHcTHMZw0tvD2MM6DM+bWzK5rnMY=
+X-Received: by 2002:a17:90a:141:: with SMTP id z1mr4768164pje.87.1643134592962; 
+ Tue, 25 Jan 2022 10:16:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20220123183925.1052919-1-yury.norov@gmail.com>
+ <20220123183925.1052919-18-yury.norov@gmail.com>
+ <bab43c36-a3de-f96a-6530-4ab3a55b8ba0@linux.intel.com>
+In-Reply-To: <bab43c36-a3de-f96a-6530-4ab3a55b8ba0@linux.intel.com>
+From: Yury Norov <yury.norov@gmail.com>
+Date: Tue, 25 Jan 2022 10:16:21 -0800
+Message-ID: <CAAH8bW8jcNM--D_cUtWNe7cbBjVAENq_SEapDcPjit=BB705JA@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Tue, 25 Jan 2022 19:10:59 +0000
-Subject: [Intel-gfx] [PATCH][next] drm/i915/guc: Use struct_size() helper in
- kmalloc()
+Subject: Re: [Intel-gfx] [PATCH 17/54] gpu: drm: replace cpumask_weight with
+ cpumask_empty where appropriate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,38 +65,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-hardening@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, dri-devel@lists.freedesktop.org,
+ Peter Zijlstra <peterz@infradead.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ David Airlie <airlied@linux.ie>, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ linux-kernel@vger.kernel.org, Nicholas Piggin <npiggin@gmail.com>,
+ =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+ Alexey Klimov <aklimov@redhat.com>, David Laight <David.Laight@aculab.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Joe Perches <joe@perches.com>, Dennis Zhou <dennis@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make use of the struct_size() helper instead of an open-coded version,
-in order to avoid any potential type mistakes or integer overflows that,
-in the worst scenario, could lead to heap overflows.
+On Tue, Jan 25, 2022 at 1:28 AM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+>
+> On 23/01/2022 18:38, Yury Norov wrote:
+> > i915_pmu_cpu_online() calls cpumask_weight() to check if any bit of a
+> > given cpumask is set. We can do it more efficiently with cpumask_empty()
+> > because cpumask_empty() stops traversing the cpumask as soon as it finds
+> > first set bit, while cpumask_weight() counts all bits unconditionally.
+> >
+> > Signed-off-by: Yury Norov <yury.norov@gmail.com>
+> > ---
+> >   drivers/gpu/drm/i915/i915_pmu.c | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> > index ea655161793e..1894c876b31d 100644
+> > --- a/drivers/gpu/drm/i915/i915_pmu.c
+> > +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> > @@ -1048,7 +1048,7 @@ static int i915_pmu_cpu_online(unsigned int cpu, struct hlist_node *node)
+> >       GEM_BUG_ON(!pmu->base.event_init);
+> >
+> >       /* Select the first online CPU as a designated reader. */
+> > -     if (!cpumask_weight(&i915_pmu_cpumask))
+> > +     if (cpumask_empty(&i915_pmu_cpumask))
+> >               cpumask_set_cpu(cpu, &i915_pmu_cpumask);
+> >
+> >       return 0;
+> >
+>
+> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>
+> I see it's a large series which only partially appeared on our mailing
+> lists.
 
-Also, address the following sparse warnings:
-drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:792:23: warning: using sizeof on a flexible structure
+The series is here: https://lkml.org/lkml/2022/1/23/223
+The branch: https://github.com/norov/linux/tree/bitmap-20220123
 
-Link: https://github.com/KSPP/linux/issues/174
-Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> So for instance it hasn't got tested by our automated CI. (Not
+> that I expect any problems in this patch.)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index aa6dd6415202..e352a1aad228 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -789,7 +789,7 @@ static struct ct_incoming_msg *ct_alloc_msg(u32 num_dwords)
- {
- 	struct ct_incoming_msg *msg;
- 
--	msg = kmalloc(sizeof(*msg) + sizeof(u32) * num_dwords, GFP_ATOMIC);
-+	msg = kmalloc(struct_size(msg, msg, num_dwords), GFP_ATOMIC);
- 	if (msg)
- 		msg->size = num_dwords;
- 	return msg;
--- 
-2.27.0
+Would be great if you give a test for the whole series, thanks!
 
+> What are the plans in terms of which tree will it get merged through?
+
+For the patches that will not be merged by maintainers of corresponding
+subsystems, I'll use my bitmap branch and send it to linux-next.
+
+Thanks,
+Yury
