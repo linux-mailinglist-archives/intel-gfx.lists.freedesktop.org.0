@@ -1,52 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3935649B9BB
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 18:09:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FFD249BA17
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 18:22:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B79B10E2CE;
-	Tue, 25 Jan 2022 17:09:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFD7510E3AF;
+	Tue, 25 Jan 2022 17:22:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 285E410E286;
- Tue, 25 Jan 2022 17:09:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643130587; x=1674666587;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=AlQy6Zvz7Zt5nixcEQQySlPDeUeGiyj3TuwcqeEhSq4=;
- b=OwFzGqe6ph2RVQhIEyqaVFkgR2q7ypInD/k8EkIKEmbx+vDkzuU+o2iH
- kmN/IVe5rw7ciaWn6nJxSSRNE0EWcAbqwjIGdEVAw0IZPw2mM/CwAiIKL
- uxPfwyfmXj9BdaL5snvqvqTw9FRb4UtPsFgWkHuuCWo4EBjiiYsLzmfG3
- Wvldw17dgqH16XtV1sPMGRKaazoIQ+boZ+xRxEBXL8vey09oqD+1AZ3B/
- X4nw9aotV4CWXXWlArSb5IX3dRO8q/xM6XCe6nfHqHlpbFzlOj8gEKphz
- +RqVbKNAtkr0kNbCvaq57eJwoiXVrgFhw/w7/KQ9eYCrQl40p9Sm5JKKn A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="246133046"
-X-IronPort-AV: E=Sophos;i="5.88,315,1635231600"; d="scan'208";a="246133046"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2022 09:04:47 -0800
-X-IronPort-AV: E=Sophos;i="5.88,315,1635231600"; d="scan'208";a="695902621"
-Received: from skirillo-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.252.32.77])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2022 09:04:44 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Jan 2022 19:03:46 +0200
-Message-Id: <ccf5ad6358dbce333da2718b72b06e69ffceb552.1643130139.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1643130139.git.jani.nikula@intel.com>
-References: <cover.1643130139.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0A62710E2CE;
+ Tue, 25 Jan 2022 17:22:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 03CADA00E8;
+ Tue, 25 Jan 2022 17:22:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 8/8] drm/i915/mst: update slot information for
- 128b/132b
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 25 Jan 2022 17:22:17 -0000
+Message-ID: <164313133798.27367.2162384971574794162@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1643130139.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1643130139.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/dp=2C_drm/i915=3A_128b/132b_updates?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,111 +40,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, dri-devel@lists.freedesktop.org,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-128b/132b supports using 64 slots starting from 0, while 8b/10b reserves
-slot 0 for metadata.
+== Series Details ==
 
-Commit d6c6a76f80a1 ("drm: Update MST First Link Slot Information Based
-on Encoding Format") added support for updating the topology state
-accordingly, and commit 41724ea273cd ("drm/amd/display: Add DP 2.0 MST
-DM Support") started using it in the amd driver.
+Series: drm/dp, drm/i915: 128b/132b updates
+URL   : https://patchwork.freedesktop.org/series/99324/
+State : warning
 
-This feels more than a little cumbersome, especially updating the
-information in atomic check. For i915, add the update to MST connector
-.compute_config hook rather than iterating over all MST managers and
-connectors in global mode config .atomic_check. Fingers crossed.
+== Summary ==
 
-v2:
-- Update in .compute_config() not .atomic_check (Ville)
-
-Cc: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 29 +++++++++++++++++++--
- 1 file changed, 27 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index b8bc7d397c81..ff75e22bde5c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -99,6 +99,27 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
- 	return 0;
- }
+$ dim checkpatch origin/drm-tip
+b47aaf278ffa drm/dp: add drm_dp_128b132b_read_aux_rd_interval()
+e5a3a86f9a2a drm/dp: add 128b/132b link status helpers from DP 2.0 E11
+6a17182df365 drm/dp: add some new DPCD macros from DP 2.0 E11
+359fd2d968fb drm/i915/dp: move intel_dp_prepare_link_train() call
+0b15ba0af330 drm/i915/dp: rewrite DP 2.0 128b/132b link training based on errata
+-:46: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#46: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:1105:
  
-+static void intel_dp_mst_update_slots(struct intel_encoder *encoder,
-+				      struct intel_crtc_state *crtc_state,
-+				      struct drm_connector_state *conn_state)
-+{
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-+	struct intel_dp *intel_dp = &intel_mst->primary->dp;
-+	struct drm_dp_mst_topology_mgr *mgr = &intel_dp->mst_mgr;
-+	struct drm_dp_mst_topology_state *topology_state;
-+	u8 link_coding_cap = intel_dp_is_uhbr(crtc_state) ?
-+		DP_CAP_ANSI_128B132B : DP_CAP_ANSI_8B10B;
 +
-+	topology_state = drm_atomic_get_mst_topology_state(conn_state->state, mgr);
-+	if (IS_ERR(topology_state)) {
-+		drm_dbg_kms(&i915->drm, "slot update failed\n");
-+		return;
-+	}
-+
-+	drm_dp_mst_update_slots(topology_state, link_coding_cap);
-+}
-+
- static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
- 				       struct intel_crtc_state *pipe_config,
- 				       struct drm_connector_state *conn_state)
-@@ -155,6 +176,8 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
- 	if (ret)
- 		return ret;
- 
-+	intel_dp_mst_update_slots(encoder, pipe_config, conn_state);
-+
- 	pipe_config->limited_color_range =
- 		intel_dp_limited_color_range(pipe_config, conn_state);
- 
-@@ -357,6 +380,7 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
- 	struct intel_connector *connector =
- 		to_intel_connector(old_conn_state->connector);
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	int start_slot = intel_dp_is_uhbr(old_crtc_state) ? 0 : 1;
- 	int ret;
- 
- 	drm_dbg_kms(&i915->drm, "active links %d\n",
-@@ -366,7 +390,7 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
- 
- 	drm_dp_mst_reset_vcpi_slots(&intel_dp->mst_mgr, connector->port);
- 
--	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr, 1);
-+	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr, start_slot);
- 	if (ret) {
- 		drm_dbg_kms(&i915->drm, "failed to update payload %d\n", ret);
- 	}
-@@ -475,6 +499,7 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
-+	int start_slot = intel_dp_is_uhbr(pipe_config) ? 0 : 1;
- 	int ret;
- 	bool first_mst_stream;
- 
-@@ -509,7 +534,7 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
- 
- 	intel_dp->active_mst_links++;
- 
--	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr, 1);
-+	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr, start_slot);
- 
- 	/*
- 	 * Before Gen 12 this is not done as part of
--- 
-2.30.2
+
+total: 0 errors, 0 warnings, 1 checks, 269 lines checked
+ae473fb41e94 drm/i915/dp: add 128b/132b support to link status checks
+d00649fdfc8b drm/i915/dp: give more time for CDS
+70912cc5c3aa drm/i915/mst: update slot information for 128b/132b
+
 
