@@ -1,47 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EED7F49AFD5
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 10:30:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF7349AF73
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jan 2022 10:12:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DA2110E532;
-	Tue, 25 Jan 2022 09:30:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAA3B10EEEB;
+	Tue, 25 Jan 2022 09:12:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1056 seconds by postgrey-1.36 at gabe;
- Tue, 25 Jan 2022 08:57:10 UTC
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB83810EE10;
- Tue, 25 Jan 2022 08:57:10 +0000 (UTC)
-Received: from kwepemi100018.china.huawei.com (unknown [172.30.72.53])
- by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4JjgGr2YR5z9sJ5;
- Tue, 25 Jan 2022 16:38:12 +0800 (CST)
-Received: from kwepemm600013.china.huawei.com (7.193.23.68) by
- kwepemi100018.china.huawei.com (7.221.188.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Tue, 25 Jan 2022 16:39:31 +0800
-Received: from linux-lmwb.huawei.com (10.175.103.112) by
- kwepemm600013.china.huawei.com (7.193.23.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Tue, 25 Jan 2022 16:39:30 +0800
-From: Zou Wei <zou_wei@huawei.com>
-To: <zhenyuw@linux.intel.com>, <zhi.a.wang@intel.com>,
- <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
- <rodrigo.vivi@intel.com>, <tvrtko.ursulin@linux.intel.com>,
- <airlied@linux.ie>, <daniel@ffwll.ch>
-Date: Tue, 25 Jan 2022 16:39:24 +0800
-Message-ID: <1643099964-13905-1-git-send-email-zou_wei@huawei.com>
-X-Mailer: git-send-email 2.6.2
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE28310E93E;
+ Tue, 25 Jan 2022 09:12:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643101935; x=1674637935;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QsEJ9iv1VADz/s5EfrMZIVel7h92de86dHSNLIemKxc=;
+ b=fLoNymrIwgQCR1OMpvXa6aQNVC2xUQNVBCtANtVvupmiDRNnT+Vs4eMK
+ CQfqrEPbPxnY5uXxDIdqOPqhKwjWayqYoT1eiYuTW1vaFswwp0X6PP+T9
+ RazNvO+W3WmUDxbCKR07LWWdnbNRCpsdQX9iLGnC44AQ3rkWMXHFoZ58h
+ WPfPZ2Gd6vdmtjEXgG71SsZj2PI8sHUd6b6WjCXvbCOgAlFjvTOZzIX+2
+ 4/LA1bFVS3Tn/Qb9Vk0+FkGZePhxHxafXc80fuWCqqfOQI3mdOWBfVsrm
+ z8ILzH3q+XSM9gsjogtQWBAJA2sfTGpVNxdadGuVgNceeln1Z6oxXXYW4 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="246042315"
+X-IronPort-AV: E=Sophos;i="5.88,314,1635231600"; d="scan'208";a="246042315"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2022 01:12:15 -0800
+X-IronPort-AV: E=Sophos;i="5.88,314,1635231600"; d="scan'208";a="695768070"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2022 01:12:12 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue, 25 Jan 2022 14:27:58 +0530
+Message-Id: <20220125085801.1025521-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.175.103.112]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- kwepemm600013.china.huawei.com (7.193.23.68)
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Tue, 25 Jan 2022 09:30:18 +0000
-Subject: [Intel-gfx] [PATCH -next] drm/i915/gvt: Convert list_for_each to
- entry variant
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/3] Minor Fixes and Refactoring for HDMI PCON
+ stuff
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,54 +55,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Zou Wei <zou_wei@huawei.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-convert list_for_each() to list_for_each_entry() where
-applicable.
+Misc fixes and refactoring in HDMI2.1 PCON helper functions.
 
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: Zou Wei <zou_wei@huawei.com>
----
- drivers/gpu/drm/i915/gvt/dmabuf.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+Ankit Nautiyal (3):
+  drm/i915_hdmi: Fix the definition of intel_hdmi_dsc_get_bpp
+  drm/drm_edid: Add helper to get max FRL rate for an HDMI sink
+  drm/i915/display: Simplify helpers for getting DSC slices and bpp
 
-diff --git a/drivers/gpu/drm/i915/gvt/dmabuf.c b/drivers/gpu/drm/i915/gvt/dmabuf.c
-index 8882843..1f0721d 100644
---- a/drivers/gpu/drm/i915/gvt/dmabuf.c
-+++ b/drivers/gpu/drm/i915/gvt/dmabuf.c
-@@ -350,13 +350,11 @@ static struct intel_vgpu_dmabuf_obj *
- pick_dmabuf_by_info(struct intel_vgpu *vgpu,
- 		    struct intel_vgpu_fb_info *latest_info)
- {
--	struct list_head *pos;
- 	struct intel_vgpu_fb_info *fb_info;
- 	struct intel_vgpu_dmabuf_obj *dmabuf_obj = NULL;
- 	struct intel_vgpu_dmabuf_obj *ret = NULL;
- 
--	list_for_each(pos, &vgpu->dmabuf_obj_list_head) {
--		dmabuf_obj = list_entry(pos, struct intel_vgpu_dmabuf_obj, list);
-+	list_for_each_entry(dmabuf_obj, &vgpu->dmabuf_obj_list_head, list) {
- 		if (!dmabuf_obj->info)
- 			continue;
- 
-@@ -379,12 +377,10 @@ pick_dmabuf_by_info(struct intel_vgpu *vgpu,
- static struct intel_vgpu_dmabuf_obj *
- pick_dmabuf_by_num(struct intel_vgpu *vgpu, u32 id)
- {
--	struct list_head *pos;
- 	struct intel_vgpu_dmabuf_obj *dmabuf_obj = NULL;
- 	struct intel_vgpu_dmabuf_obj *ret = NULL;
- 
--	list_for_each(pos, &vgpu->dmabuf_obj_list_head) {
--		dmabuf_obj = list_entry(pos, struct intel_vgpu_dmabuf_obj, list);
-+	list_for_each_entry(dmabuf_obj, &vgpu->dmabuf_obj_list_head, list) {
- 		if (dmabuf_obj->dmabuf_id == id) {
- 			ret = dmabuf_obj;
- 			break;
+ drivers/gpu/drm/drm_edid.c                | 38 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.c   | 26 ++++++----------
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 26 +++++++++-------
+ drivers/gpu/drm/i915/display/intel_hdmi.h |  8 +++--
+ include/drm/drm_edid.h                    |  2 ++
+ 5 files changed, 69 insertions(+), 31 deletions(-)
+
 -- 
-2.6.2
+2.25.1
 
