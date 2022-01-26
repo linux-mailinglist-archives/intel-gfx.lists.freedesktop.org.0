@@ -2,64 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A02EF49CAF0
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 14:35:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 407BC49CB50
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 14:49:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F399D10E6E4;
-	Wed, 26 Jan 2022 13:35:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10DD410E711;
+	Wed, 26 Jan 2022 13:49:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F78B10E6E4
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 13:35:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643204155; x=1674740155;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=+PZM1KM/IUF3frVUKPKCem+MNWgsei6zpmLH/f1aIHk=;
- b=JgiXMniYoUs2SB6DZWTlCEX/0rrhoY281fGIbG5Q7oQZjaGTUNyR8pJ7
- 7EulaQuVgLzzgrZ8Wo39+l76zsRqeoEGpDo6SF91Rzv/5Mg5D9HHKUiNv
- uAKso2nnoSU8BQIsL5zMrgBx+akkoGLHr305ggpf8uyIfmmD1JMirxIBb
- 8U8jxPUUjVxef608LYrswZmdOkKHUNYywyT9j/yGrpoZSP3pHme0Ofo/+
- X84noMbENKcXDbGdacb0Y63IztYZi4QuxEOZvi6weOhXC24hS3F2bjlh+
- 5ki/4/puyWsjZcHW+LaUXrhyxzRnFjKv4I5KPBd1tWJZaYbSQeJfCpRwy g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="244147347"
-X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="244147347"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 05:35:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="479882689"
-Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
- by orsmga006.jf.intel.com with ESMTP; 26 Jan 2022 05:35:53 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Wed, 26 Jan 2022 13:35:52 +0000
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2308.020;
- Wed, 26 Jan 2022 05:35:50 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [PATCH] drm/i915/adlp: Fix TypeC PHY-ready status readout
-Thread-Index: AQHYEqGheA21HPJYbUmvZh6yllNy96x11J6A
-Date: Wed, 26 Jan 2022 13:35:50 +0000
-Message-ID: <7208289f7ecfe5328aeffe6d4cd1ee468adfbc97.camel@intel.com>
-References: <20220126104356.2022975-1-imre.deak@intel.com>
-In-Reply-To: <20220126104356.2022975-1-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <AC37F23564368B48B148D3EA0D929ABC@intel.com>
-Content-Transfer-Encoding: base64
+Received: from pio-pvt-msa2.bahnhof.se (pio-pvt-msa2.bahnhof.se [79.136.2.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE52010E691;
+ Wed, 26 Jan 2022 13:49:43 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 6CE733F9BA;
+ Wed, 26 Jan 2022 14:49:41 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: pio-pvt-msa2.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from pio-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id xgQk0su1ptZ1; Wed, 26 Jan 2022 14:49:40 +0100 (CET)
+Received: by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 86CE53F743;
+ Wed, 26 Jan 2022 14:49:36 +0100 (CET)
+Received: from [192.168.0.209] (unknown [192.55.55.54])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 20EF83626AA;
+ Wed, 26 Jan 2022 14:49:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1643204975; bh=U0ae81JStUzv2mZfy6EFlonFGBJryB1hXGKCUVJCOBg=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=AZsNI8QVytHYz1kdPeNT7/oqZRZ0HxvQO2D9fLQarz2yybxXXIQSKi+WzGrJaAPxy
+ yxtheH590Ux0scAltsb9k2SGvpflevo8h6qGhH26yJtrkIWuklL/brYPzedJlGRlzY
+ e7w5OUMUp1ZA9ZOQLoCfRMbssoXsdIyGgeiAHgWc=
+Message-ID: <6d0a57e7-daf7-6436-e806-7cc8794c2d50@shipmail.org>
+Date: Wed, 26 Jan 2022 14:49:26 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/adlp: Fix TypeC PHY-ready status
- readout
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Robert Beckett <bob.beckett@collabora.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+References: <20220125193530.3272386-1-bob.beckett@collabora.com>
+ <20220125193530.3272386-2-bob.beckett@collabora.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <20220125193530.3272386-2-bob.beckett@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v5 1/5] drm/i915: add needs_compact_pt flag
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,41 +70,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "acelan.kao@canonical.com" <acelan.kao@canonical.com>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIyLTAxLTI2IGF0IDEyOjQzICswMjAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IFRo
-ZSBUQ1NTX0RESV9TVEFUVVMgcmVnaXN0ZXIgaXMgaW5kZXhlZCBieSB0Y19wb3J0IG5vdCBieSB0
-aGUgRklBIHBvcnQNCj4gaW5kZXgsIGZpeCB0aGlzIHVwLiBUaGlzIG9ubHkgY2F1c2VkIGFuIGlz
-c3VlIG9uIFRDIzMvNCBwb3J0cyBpbiBsZWdhY3kNCj4gbW9kZSwgYXMgaW4gYWxsIG90aGVyIGNh
-c2VzIHRoZSB0d28gaW5kaWNlcyBlaXRoZXIgbWF0Y2ggKG9uIFRDIzEvMikgb3INCj4gdGhlIFRD
-U1NfRERJX1NUQVRVU19SRUFEWSBmbGFnIGlzIHNldCByZWdhcmRsZXNzIG9mIHNvbWV0aGluZyBi
-ZWluZw0KPiBjb25uZWN0ZWQgb3Igbm90IChvbiBUQyMxLzIvMy80IGluIGRwLWFsdCBhbmQgdGJ0
-LWFsdCBtb2RlcykuDQo+IA0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8
-am9zZS5zb3V6YUBpbnRlbC5jb20+DQoNCj4gUmVwb3J0ZWQtYW5kLXRlc3RlZC1ieTogQ2hpYS1M
-aW4gS2FvIChBY2VMYW4pIDxhY2VsYW4ua2FvQGNhbm9uaWNhbC5jb20+DQo+IEZpeGVzOiA1NWNl
-MzA2YzJhYTEgKCJkcm0vaTkxNS9hZGxfcDogSW1wbGVtZW50IFRDIHNlcXVlbmNlcyIpDQo+IENs
-b3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy80
-Njk4DQo+IENjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4N
-Cj4gQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiAjIHY1LjE0Kw0KPiBTaWduZWQtb2ZmLWJ5
-OiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jIHwgMyArKy0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAy
-IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX3RjLmMNCj4gaW5kZXggNGVlZmU3YjBiYjI2My4uMzI5MTEyNGE5OWU1YSAx
-MDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jDQo+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMuYw0KPiBAQCAtMzQ2
-LDEwICszNDYsMTEgQEAgc3RhdGljIGJvb2wgaWNsX3RjX3BoeV9zdGF0dXNfY29tcGxldGUoc3Ry
-dWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpDQo+ICBzdGF0aWMgYm9vbCBhZGxfdGNf
-cGh5X3N0YXR1c19jb21wbGV0ZShzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCkN
-Cj4gIHsNCj4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUoZGlnX3Bv
-cnQtPmJhc2UuYmFzZS5kZXYpOw0KPiArCWVudW0gdGNfcG9ydCB0Y19wb3J0ID0gaW50ZWxfcG9y
-dF90b190YyhpOTE1LCBkaWdfcG9ydC0+YmFzZS5wb3J0KTsNCj4gIAlzdHJ1Y3QgaW50ZWxfdW5j
-b3JlICp1bmNvcmUgPSAmaTkxNS0+dW5jb3JlOw0KPiAgCXUzMiB2YWw7DQo+ICANCj4gLQl2YWwg
-PSBpbnRlbF91bmNvcmVfcmVhZCh1bmNvcmUsIFRDU1NfRERJX1NUQVRVUyhkaWdfcG9ydC0+dGNf
-cGh5X2ZpYV9pZHgpKTsNCj4gKwl2YWwgPSBpbnRlbF91bmNvcmVfcmVhZCh1bmNvcmUsIFRDU1Nf
-RERJX1NUQVRVUyh0Y19wb3J0KSk7DQo+ICAJaWYgKHZhbCA9PSAweGZmZmZmZmZmKSB7DQo+ICAJ
-CWRybV9kYmdfa21zKCZpOTE1LT5kcm0sDQo+ICAJCQkgICAgIlBvcnQgJXM6IFBIWSBpbiBUQ0NP
-TEQsIGFzc3VtaW5nIG5vdCBjb21wbGV0ZVxuIiwNCg0K
+
+On 1/25/22 20:35, Robert Beckett wrote:
+> From: Ramalingam C <ramalingam.c@intel.com>
+>
+> Add a new platform flag, needs_compact_pt, to mark the requirement of
+> compact pt layout support for the ppGTT when using 64K GTT pages.
+>
+> With this flag has_64k_pages will only indicate requirement of 64K
+> GTT page sizes or larger for device local memory access.
+>
+> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+> ---
+>   drivers/gpu/drm/i915/i915_drv.h          | 10 +++++++---
+>   drivers/gpu/drm/i915/i915_pci.c          |  2 ++
+>   drivers/gpu/drm/i915/intel_device_info.h |  1 +
+>   3 files changed, 10 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 44c1f98144b4..1258b7779705 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1512,12 +1512,16 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   
+>   /*
+>    * Set this flag, when platform requires 64K GTT page sizes or larger for
+> - * device local memory access. Also this flag implies that we require or
+> - * at least support the compact PT layout for the ppGTT when using the 64K
+> - * GTT pages.
+
+Why do we remove these comment lines?
+
+
+> + * device local memory access.
+>    */
+>   #define HAS_64K_PAGES(dev_priv) (INTEL_INFO(dev_priv)->has_64k_pages)
+>   
+> +/* Set this flag when platform doesn't allow both 64k pages and 4k pages in
+
+First line of multi-line comments should be empty.
+
+
+> + * the same PT. this flag means we need to support compact PT layout for the
+> + * ppGTT when using the 64K GTT pages.
+> + */
+> +#define NEEDS_COMPACT_PT(dev_priv) (INTEL_INFO(dev_priv)->needs_compact_pt)
+> +
+>   #define HAS_IPC(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ipc)
+>   
+>   #define HAS_REGION(i915, i) (INTEL_INFO(i915)->memory_regions & (i))
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 4081fd50ba9d..799b56569ef5 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -1028,6 +1028,7 @@ static const struct intel_device_info xehpsdv_info = {
+>   	PLATFORM(INTEL_XEHPSDV),
+>   	.display = { },
+>   	.has_64k_pages = 1,
+> +	.needs_compact_pt = 1,
+>   	.platform_engine_mask =
+>   		BIT(RCS0) | BIT(BCS0) |
+>   		BIT(VECS0) | BIT(VECS1) | BIT(VECS2) | BIT(VECS3) |
+> @@ -1045,6 +1046,7 @@ static const struct intel_device_info dg2_info = {
+>   	.media.rel = 55,
+>   	PLATFORM(INTEL_DG2),
+>   	.has_64k_pages = 1,
+> +	.needs_compact_pt = 1,
+>   	.platform_engine_mask =
+>   		BIT(RCS0) | BIT(BCS0) |
+>   		BIT(VECS0) | BIT(VECS1) |
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index 3699b1c539ea..c8aaf646430c 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -130,6 +130,7 @@ enum intel_ppgtt_type {
+>   	/* Keep has_* in alphabetical order */ \
+>   	func(has_64bit_reloc); \
+>   	func(has_64k_pages); \
+> +	func(needs_compact_pt); \
+>   	func(gpu_reset_clobbers_display); \
+>   	func(has_reset_engine); \
+>   	func(has_global_mocs); \
