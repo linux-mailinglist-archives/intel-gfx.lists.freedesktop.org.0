@@ -1,57 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BC7F49C732
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 11:13:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F41F49C752
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 11:18:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 139BD10E6DB;
-	Wed, 26 Jan 2022 10:13:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6B4C10E332;
+	Wed, 26 Jan 2022 10:18:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
- [IPv6:2a00:1450:4864:20::52f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5232810E6DB;
- Wed, 26 Jan 2022 10:13:28 +0000 (UTC)
-Received: by mail-ed1-x52f.google.com with SMTP id w14so15276646edd.10;
- Wed, 26 Jan 2022 02:13:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=7of4j6tXJsQTj96IqMsKqWsSKbGVqn3ZKiSJTHPl75E=;
- b=QHZGNvAuvGw7dVgE+zNRdndvuugGnChjIbsMvjjz/ITotAgWGyNwZuN48EXCo8az5D
- RWQMdAopz5nv/RRobC4VoRcuLtfo/RrKWSAUysAnG5W/5/9h/OvMXETCBuAkEbn4m9Vh
- ZRKNjulT52tFSx8jl00TJVZCKzHeKwvhagWm2XuDHHRI67mQUHyXyGjJwC3tgnpudBHK
- CUPg3gPeW91RE8SwaJcaX/cvKSHU6keIf7UPLJbzDiBXtJyAMK7gupAvOKDHHEKJh+F3
- 9WpCas3I2OiV7CjbJWwV6SnsGTJS7yhn6+3ULU7z0WtzzLGHTl8R51wyt+Vu1KuStZpj
- M64Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=7of4j6tXJsQTj96IqMsKqWsSKbGVqn3ZKiSJTHPl75E=;
- b=R/wK78AETYs/snqBq93Ozbl3g6lT6n2WSpbcUv/glAD1tdq00tNe2nXPJJhoza2cYP
- 2iPnKBr15q/KL6rUt1uvs75td07s/wYsG4Ybhck+RckrYz73z4O/uw3qYA8we1cQOgwV
- LWubROhJbbyKo7z0aad7psc7/OdlweCwZ5I0lH3lM9j02In/lcR7n4Uaxgk3n4YbOKpC
- mqtz2Dp4Jx/tc6PuWPpTAAeCINYm96h3c1AusQqlbX9s0xduG2wkjBZhJW3WrM7NUt8X
- seA4YL8/ZHa/SWa9ATLJxsUrkba0IY3O2lpoNb92M114eMEf+LNvEl7mv+sTT2xbu1lA
- xwWw==
-X-Gm-Message-State: AOAM533rmhgQ3gIsSLHgjmrqxPwERHIhEe0gfCkhAZRogIvQM+fnpTG2
- /pMmkvhyzqnPgqfGpq9I9nH9CGgHxQH6uRaoQns=
-X-Google-Smtp-Source: ABdhPJynLKvQGv/H0FG+uuXI+OlMGiphzh5iPLeSuydUEWE4P8tlRcmMs/osAZq4tj+XuWR5dY63TLHMcK+DIJhiiao=
-X-Received: by 2002:a05:6402:35d5:: with SMTP id
- z21mr17032960edc.29.1643192006805; 
- Wed, 26 Jan 2022 02:13:26 -0800 (PST)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCAD610E332
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 10:18:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643192318; x=1674728318;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=SBXDKQsEzcNHnvChefAKL1+EHHBtDqMUOlHJYjM0sP8=;
+ b=fqE6cDgtHlg0Ise2fEiC2NJ4chR1vzaiOf/V8QoCZ04FBSNQ0rWxrEMI
+ hU2H04zxDuv8eOp6dx9U+pdgdA81slTd7k7sUUHOFRDVZG6leN7f9d9um
+ ice5Kw/DlMWsmQTVmXRt9tlo9o026i7IyX7dHW8IOPU9FqHxmKWZyJySg
+ La65/TSwhiYzbG8Xl4Oswf6JxR64nf8xEcZ/+jIRm7YW3MZHzHyr6gNVp
+ LGyIQ3SH/wJBTE4otETCTGzcZT92CAQukBSYUasx5+MbNd7vCYBrHP3qf
+ n6AOTDOHCCR2L+2ccu8FC7oGYPllzprXrudzOyv+PNVZIFHxErfwGt6db w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="307235878"
+X-IronPort-AV: E=Sophos;i="5.88,317,1635231600"; d="scan'208";a="307235878"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 02:18:38 -0800
+X-IronPort-AV: E=Sophos;i="5.88,317,1635231600"; d="scan'208";a="581063665"
+Received: from mburchar-mobl.amr.corp.intel.com (HELO [10.212.54.252])
+ ([10.212.54.252])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 02:18:36 -0800
+Message-ID: <6cb121ff-322a-8b1f-5c8d-e05088ed4429@linux.intel.com>
+Date: Wed, 26 Jan 2022 10:18:35 +0000
 MIME-Version: 1.0
-References: <20220126093951.1470898-1-lucas.demarchi@intel.com>
- <20220126093951.1470898-10-lucas.demarchi@intel.com>
-In-Reply-To: <20220126093951.1470898-10-lucas.demarchi@intel.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 26 Jan 2022 12:12:50 +0200
-Message-ID: <CAHp75Vd+TmShx==d_JHZUu0Q-9X7CmZEOFdKnSrcRKs81Gxn3g@mail.gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v2 09/11] drm: Convert open-coded yes/no
- strings to yesno()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org, John.C.Harrison@Intel.com,
+ alan.previn.teres.alexis@intel.com
+References: <20220125020124.788679-1-umesh.nerlige.ramappa@intel.com>
+ <87r18w1i4p.fsf@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <87r18w1i4p.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/pmu: Use PM timestamp instead
+ of RING TIMESTAMP for reference
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,74 +65,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Vishal Kulkarni <vishal@chelsio.com>,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- Kentaro Takeda <takedakn@nttdata.co.jp>, amd-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
- Julia Lawall <julia.lawall@lip6.fr>,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Steven Rostedt <rostedt@goodmis.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- linux-security-module@vger.kernel.org, netdev@vger.kernel.org,
- Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- "David S. Miller" <davem@davemloft.net>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 26, 2022 at 11:39 AM Lucas De Marchi
-<lucas.demarchi@intel.com> wrote:
->
-> linux/string_helpers.h provides a helper to return "yes"/"no" strings.
-> Replace the open coded versions with str_yes_no(). The places were
-> identified with the following semantic patch:
->
->         @@
->         expression b;
->         @@
->
->         - b ? "yes" : "no"
->         + str_yes_no(b)
->
-> Then the includes were added, so we include-what-we-use, and parenthesis
-> adjusted in drivers/gpu/drm/v3d/v3d_debugfs.c. After the conversion we
-> still see the same binary sizes:
->
->    text    data     bss     dec     hex filename
->   51149    3295     212   54656    d580 virtio/virtio-gpu.ko.old
->   51149    3295     212   54656    d580 virtio/virtio-gpu.ko
-> 1441491   60340     800 1502631  16eda7 radeon/radeon.ko.old
-> 1441491   60340     800 1502631  16eda7 radeon/radeon.ko
-> 6125369  328538   34000 6487907  62ff63 amd/amdgpu/amdgpu.ko.old
-> 6125369  328538   34000 6487907  62ff63 amd/amdgpu/amdgpu.ko
->  411986   10490    6176  428652   68a6c drm.ko.old
->  411986   10490    6176  428652   68a6c drm.ko
->   98129    1636     264  100029   186bd dp/drm_dp_helper.ko.old
->   98129    1636     264  100029   186bd dp/drm_dp_helper.ko
-> 1973432  109640    2352 2085424  1fd230 nouveau/nouveau.ko.old
-> 1973432  109640    2352 2085424  1fd230 nouveau/nouveau.ko
 
-This probably won't change for modules, but if you compile in the
-linker may try to optimize it. Would be nice to see the old-new for
-`make allyesconfig` or equivalent.
+On 25/01/2022 05:47, Jani Nikula wrote:
+> On Mon, 24 Jan 2022, Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com> wrote:
+>> All timestamps returned by GuC for GuC PMU busyness are captured from
+>> GUC PM TIMESTAMP. Since this timestamp does not tick when GuC goes idle,
+>> kmd uses RING_TIMESTAMP to measure busyness of an engine with an active
+>> context. In further stress testing, the MMIO read of the RING_TIMESTAMP
+>> is seen to cause a rare hang. Resolve the issue by using gt specific
+>> timestamp from PM which is in sync with the GuC PM timestamp.
+>>
+>> Fixes: 77cdd054dd2c ("drm/i915/pmu: Connect engine busyness stats from GuC to pmu")
+>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  5 ++
+>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 56 ++++++++++++++-----
+>>   drivers/gpu/drm/i915/i915_reg.h               |  3 +-
+>>   3 files changed, 50 insertions(+), 14 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+>> index d59bbf49d1c2..697d9d66acef 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+>> @@ -215,6 +215,11 @@ struct intel_guc {
+>>   		 * context usage for overflows.
+>>   		 */
+>>   		struct delayed_work work;
+>> +
+>> +		/**
+>> +		 * @shift: Right shift value for the gpm timestamp
+>> +		 */
+>> +		u32 shift;
+>>   	} timestamp;
+>>   
+>>   #ifdef CONFIG_DRM_I915_SELFTEST
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>> index 1331ff91c5b0..66760f5df0c1 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>> @@ -1150,23 +1150,51 @@ static void guc_update_engine_gt_clks(struct intel_engine_cs *engine)
+>>   	}
+>>   }
+>>   
+>> -static void guc_update_pm_timestamp(struct intel_guc *guc,
+>> -				    struct intel_engine_cs *engine,
+>> -				    ktime_t *now)
+>> +static u32 gpm_timestamp_shift(struct intel_gt *gt)
+>>   {
+>> -	u32 gt_stamp_now, gt_stamp_hi;
+>> +	intel_wakeref_t wakeref;
+>> +	u32 reg, shift;
+>> +
+>> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+>> +		reg = intel_uncore_read(gt->uncore, RPM_CONFIG0);
+>> +
+>> +	shift = (reg & GEN10_RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK) >>
+>> +		GEN10_RPM_CONFIG0_CTC_SHIFT_PARAMETER_SHIFT;
+>> +
+>> +	return 3 - shift;
+>> +}
+>> +
+>> +static u64 gpm_timestamp(struct intel_gt *gt)
+>> +{
+>> +	u32 lo, hi, old_hi, loop = 0;
+>> +
+>> +	hi = intel_uncore_read(gt->uncore, MISC_STATUS1);
+>> +	do {
+>> +		lo = intel_uncore_read(gt->uncore, MISC_STATUS0);
+>> +		old_hi = hi;
+>> +		hi = intel_uncore_read(gt->uncore, MISC_STATUS1);
+>> +	} while (old_hi != hi && loop++ < 2);
+>> +
+>> +	return ((u64)hi << 32) | lo;
+>> +}
+> 
+> See intel_uncore_read64_2x32().
 
-...
+This was a good suggestion - since the patch was merged regardless I 
+think a follow up cleanup is in order so we don't accumulate duplicated 
+code.
 
->         seq_printf(m, "\tDP branch device present: %s\n",
-> -                  branch_device ? "yes" : "no");
-> +                  str_yes_no(branch_device));
+Regards,
 
-Can it be now on one line? Same Q for all similar cases in the entire series.
+Tvrtko
 
--- 
-With Best Regards,
-Andy Shevchenko
+> 
+>> +
+>> +static void guc_update_pm_timestamp(struct intel_guc *guc, ktime_t *now)
+>> +{
+>> +	struct intel_gt *gt = guc_to_gt(guc);
+>> +	u32 gt_stamp_lo, gt_stamp_hi;
+>> +	u64 gpm_ts;
+>>   
+>>   	lockdep_assert_held(&guc->timestamp.lock);
+>>   
+>>   	gt_stamp_hi = upper_32_bits(guc->timestamp.gt_stamp);
+>> -	gt_stamp_now = intel_uncore_read(engine->uncore,
+>> -					 RING_TIMESTAMP(engine->mmio_base));
+>> +	gpm_ts = gpm_timestamp(gt) >> guc->timestamp.shift;
+>> +	gt_stamp_lo = lower_32_bits(gpm_ts);
+>>   	*now = ktime_get();
+>>   
+>> -	if (gt_stamp_now < lower_32_bits(guc->timestamp.gt_stamp))
+>> +	if (gt_stamp_lo < lower_32_bits(guc->timestamp.gt_stamp))
+>>   		gt_stamp_hi++;
+>>   
+>> -	guc->timestamp.gt_stamp = ((u64)gt_stamp_hi << 32) | gt_stamp_now;
+>> +	guc->timestamp.gt_stamp = ((u64)gt_stamp_hi << 32) | gt_stamp_lo;
+>>   }
+>>   
+>>   /*
+>> @@ -1210,7 +1238,7 @@ static ktime_t guc_engine_busyness(struct intel_engine_cs *engine, ktime_t *now)
+>>   		stats_saved = *stats;
+>>   		gt_stamp_saved = guc->timestamp.gt_stamp;
+>>   		guc_update_engine_gt_clks(engine);
+>> -		guc_update_pm_timestamp(guc, engine, now);
+>> +		guc_update_pm_timestamp(guc, now);
+>>   		intel_gt_pm_put_async(gt);
+>>   		if (i915_reset_count(gpu_error) != reset_count) {
+>>   			*stats = stats_saved;
+>> @@ -1242,8 +1270,8 @@ static void __reset_guc_busyness_stats(struct intel_guc *guc)
+>>   
+>>   	spin_lock_irqsave(&guc->timestamp.lock, flags);
+>>   
+>> +	guc_update_pm_timestamp(guc, &unused);
+>>   	for_each_engine(engine, gt, id) {
+>> -		guc_update_pm_timestamp(guc, engine, &unused);
+>>   		guc_update_engine_gt_clks(engine);
+>>   		engine->stats.guc.prev_total = 0;
+>>   	}
+>> @@ -1260,10 +1288,11 @@ static void __update_guc_busyness_stats(struct intel_guc *guc)
+>>   	ktime_t unused;
+>>   
+>>   	spin_lock_irqsave(&guc->timestamp.lock, flags);
+>> -	for_each_engine(engine, gt, id) {
+>> -		guc_update_pm_timestamp(guc, engine, &unused);
+>> +
+>> +	guc_update_pm_timestamp(guc, &unused);
+>> +	for_each_engine(engine, gt, id)
+>>   		guc_update_engine_gt_clks(engine);
+>> -	}
+>> +
+>>   	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
+>>   }
+>>   
+>> @@ -1757,6 +1786,7 @@ int intel_guc_submission_init(struct intel_guc *guc)
+>>   	spin_lock_init(&guc->timestamp.lock);
+>>   	INIT_DELAYED_WORK(&guc->timestamp.work, guc_timestamp_ping);
+>>   	guc->timestamp.ping_delay = (POLL_TIME_CLKS / gt->clock_frequency + 1) * HZ;
+>> +	guc->timestamp.shift = gpm_timestamp_shift(gt);
+>>   
+>>   	return 0;
+>>   }
+>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+>> index 23b7c6930453..655517eb90ab 100644
+>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> @@ -1848,7 +1848,8 @@
+>>   #define BLT_HWS_PGA_GEN7	_MMIO(0x04280)
+>>   #define VEBOX_HWS_PGA_GEN7	_MMIO(0x04380)
+>>   
+>> -#define GUCPMTIMESTAMP          _MMIO(0xC3E8)
+>> +#define MISC_STATUS0		_MMIO(0xA500)
+>> +#define MISC_STATUS1		_MMIO(0xA504)
+>>   
+>>   #define GEN7_TLB_RD_ADDR	_MMIO(0x4700)
+> 
