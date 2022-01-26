@@ -1,50 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA1D649D3B6
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 21:37:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 995DB49D41D
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 22:07:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF4C910E98D;
-	Wed, 26 Jan 2022 20:36:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EC7610E433;
+	Wed, 26 Jan 2022 21:07:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A904E10E91D;
- Wed, 26 Jan 2022 20:36:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643229388; x=1674765388;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=3jmDiWUEtRCn5pgI7a3cD0afFPjqoS4Yz9KjtGbG6yg=;
- b=UBGbpB3T3caIShLsAgYJQ56P7Gcgf6ttSGLRkDR2qbCcpVBjyTV8Y8JT
- OG2RlxvU1Zk9y/iTJqmopY3AzQkKtz7gwIJZto/2RqWo+AD3Dt3Fd9BCa
- CzJMC8/Lt3omfhzGiCrjZ4cj4rU2DX7s8y29KQci0kS3wlHv+LP6mgx+Y
- 6WWo8k/mbdUR/IoAomljzm/CC2F5HhzQWpXw9P9OJ4IO3gKmZ70Nye4EQ
- 3JHhL109plqMUn7k+PC9UK4rhSD22DdfKlLqi/aNFuZaH3ZnoqM+aQCJX
- tqofjzdJa7XUy64kRGfe44/0ZCVz2jPLk2T2+xtqs5mHBwjTKwL6M/U9w g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="333000523"
-X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; d="scan'208";a="333000523"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 12:36:26 -0800
-X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; d="scan'208";a="581221550"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 12:36:25 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Jan 2022 12:37:02 -0800
-Message-Id: <20220126203702.1784589-20-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.35.0
-In-Reply-To: <20220126203702.1784589-1-lucas.demarchi@intel.com>
-References: <20220126203702.1784589-1-lucas.demarchi@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 58B1410E433;
+ Wed, 26 Jan 2022 21:07:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 56429A0169;
+ Wed, 26 Jan 2022 21:07:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 19/19] drm/i915/guc: Remove plain ads_blob
- pointer
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Wed, 26 Jan 2022 21:07:01 -0000
+Message-ID: <164323122133.25401.2938018411543991320@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220126152155.3070602-1-matthew.auld@intel.com>
+In-Reply-To: <20220126152155.3070602-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Initial_support_for_small_BAR_recovery?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,79 +40,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now we have the access to content of GuC ADS either using dma_buf_map
-API or using a temporary buffer. Remove guc->ads_blob as there shouldn't
-be updates using the bare pointer anymore.
+== Series Details ==
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc.h     | 3 +--
- drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 8 ++++----
- 2 files changed, 5 insertions(+), 6 deletions(-)
+Series: Initial support for small BAR recovery
+URL   : https://patchwork.freedesktop.org/series/99370/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 4c852eee3ad8..7349483d0e35 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -147,8 +147,7 @@ struct intel_guc {
- 
- 	/** @ads_vma: object allocated to hold the GuC ADS */
- 	struct i915_vma *ads_vma;
--	/** @ads_blob: contents of the GuC ADS */
--	struct __guc_ads_blob *ads_blob;
-+	/** @ads_map: contents of the GuC ADS */
- 	struct dma_buf_map ads_map;
- 	/** @ads_regset_size: size of the save/restore regsets in the ADS */
- 	u32 ads_regset_size;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-index 30edac93afbf..b87269081650 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-@@ -661,6 +661,7 @@ static void __guc_ads_init(struct intel_guc *guc)
-  */
- int intel_guc_ads_create(struct intel_guc *guc)
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+8c8317fbf210 drm: improve drm_buddy_alloc function
+-:399: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#399: FILE: drivers/gpu/drm/drm_buddy.c:586:
++		BUG_ON(order > mm->max_order);
+
+-:400: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#400: FILE: drivers/gpu/drm/drm_buddy.c:587:
++		BUG_ON(order < min_order);
+
+-:527: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#527: FILE: drivers/gpu/drm/i915/i915_ttm_buddy_manager.c:88:
++	err = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << PAGE_SHIFT,
++				    (u64)lpfn << PAGE_SHIFT,
+
+total: 0 errors, 2 warnings, 1 checks, 545 lines checked
+06e1414d96cc drm: implement top-down allocation method
+3bd9f95ffd60 drm: implement a method to free unused pages
+106d4bacced1 drm/i915: add io_size plumbing
+-:130: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#130: FILE: drivers/gpu/drm/i915/gt/intel_region_lmem.c:238:
++	drm_info(&i915->drm, "Local memory IO size: %pa\n",
++		&mem->io_size);
+
+total: 0 errors, 0 warnings, 1 checks, 187 lines checked
+ecf0c57686a0 drm/i915/ttm: require mappable by default
+1577ab960e49 drm/i915: add I915_BO_ALLOC_TOPDOWN
+fe790c61b74c drm/i915/buddy: track available visible size
+b8dc57a8a6f5 drm/i915/buddy: adjust res->start
+dfdefb960877 drm/i915/buddy: tweak 2big check
+3a1b1417e181 drm/i915/selftests: mock test io_size
+-:62: WARNING:LINE_SPACING: Missing a blank line after declarations
+#62: FILE: drivers/gpu/drm/i915/selftests/intel_memory_region.c:548:
++	u64 size;
++	I915_RND_STATE(prng);
+
+total: 0 errors, 1 warnings, 0 checks, 161 lines checked
+9937084d5576 drm/i915/ttm: tweak priority hint selection
+bd1c8f577dbe drm/i915/ttm: make eviction mappable aware
+-:9: WARNING:REPEATED_WORD: Possible repeated word: 'some'
+#9: 
+If we need to make room for some some mappable object, then we should
+
+total: 0 errors, 1 warnings, 0 checks, 97 lines checked
+5398c571b14c drm/i915/ttm: mappable migration on fault
+-:38: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#38: FILE: drivers/gpu/drm/i915/gem/i915_gem_ttm.c:651:
  {
-+	void *ads_blob;
- 	u32 size;
- 	int ret;
- 
-@@ -685,14 +686,14 @@ int intel_guc_ads_create(struct intel_guc *guc)
- 	size = guc_ads_blob_size(guc);
- 
- 	ret = intel_guc_allocate_and_map_vma(guc, size, &guc->ads_vma,
--					     (void **)&guc->ads_blob);
-+					     &ads_blob);
- 	if (ret)
- 		return ret;
- 
- 	if (i915_gem_object_is_lmem(guc->ads_vma->obj))
--		dma_buf_map_set_vaddr_iomem(&guc->ads_map, (void __iomem *)guc->ads_blob);
-+		dma_buf_map_set_vaddr_iomem(&guc->ads_map, (void __iomem *)ads_blob);
- 	else
--		dma_buf_map_set_vaddr(&guc->ads_map, guc->ads_blob);
-+		dma_buf_map_set_vaddr(&guc->ads_map, ads_blob);
- 
- 	__guc_ads_init(guc);
- 
-@@ -714,7 +715,6 @@ void intel_guc_ads_init_late(struct intel_guc *guc)
- void intel_guc_ads_destroy(struct intel_guc *guc)
- {
- 	i915_vma_unpin_and_release(&guc->ads_vma, I915_VMA_RELEASE_MAP);
--	guc->ads_blob = NULL;
- 	dma_buf_map_clear(&guc->ads_map);
- 	kfree(guc->ads_regset);
- }
--- 
-2.35.0
++
+
+total: 0 errors, 0 warnings, 1 checks, 104 lines checked
+d96b8b24ddab drm/i915/selftests: exercise mmap migration
+-:119: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#119: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:1091:
++	pr_info("igt_mmap(%s, %d) @ %lx\n",
++		 obj->mm.region->name, I915_MMAP_TYPE_FIXED, addr);
+
+-:182: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#182: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:1154:
++#define IGT_MMAP_MIGRATE_TOPDOWN     (1<<0)
+                                        ^
+
+-:183: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#183: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:1155:
++#define IGT_MMAP_MIGRATE_FILL        (1<<1)
+                                        ^
+
+-:184: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#184: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:1156:
++#define IGT_MMAP_MIGRATE_EVICTABLE   (1<<2)
+                                        ^
+
+-:185: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#185: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:1157:
++#define IGT_MMAP_MIGRATE_UNFAULTABLE (1<<3)
+                                        ^
+
+total: 0 errors, 0 warnings, 5 checks, 324 lines checked
+4de3a89e9ae6 drm/i915/selftests: handle allocation failures
+0187997a140b drm/i915/create: apply ALLOC_TOPDOWN by default
+fc67630543c9 drm/i915/uapi: add NEEDS_CPU_ACCESS hint
+-:118: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#118: FILE: include/uapi/drm/i915_drm.h:3189:
++#define I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS (1<<0)
+                                                     ^
+
+total: 0 errors, 0 warnings, 1 checks, 89 lines checked
+82b5e5021221 drm/i915/uapi: forbid ALLOC_TOPDOWN for error capture
+-:17: WARNING:BAD_SIGN_OFF: Duplicate signature
+#17: 
+Reported-by: kernel test robot <lkp@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 35 lines checked
+2ec2549ba3d3 drm/i915/lmem: don't treat small BAR as an error
+0e4cc9d13568 HAX: DG1 small BAR
+
 
