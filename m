@@ -2,52 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA80349C5C9
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 10:05:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A583649C5F3
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 10:13:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6619D10E7D6;
-	Wed, 26 Jan 2022 09:05:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56FFE10E7CF;
+	Wed, 26 Jan 2022 09:13:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D29810E7CF;
- Wed, 26 Jan 2022 09:05:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643187954; x=1674723954;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ggEHQETAv3lIPyDtUG98X3fyvSWeMQrZEDGtYqjDGro=;
- b=mJqXQYE/FWhnZwBPgwVcfapxr3ImCeiy7fkV+Rczx4vE1J9y2pJL0lB3
- waz50JK+QnKVESILDJJsDOAjI+9npdv/K5YcjAIC4iBpTGF3n+kp6e1hy
- bQVdLn4ejSNg+GsT4+LLhC6+MjWostQDisPmSiWD0M1Cdypar5jTlAt1C
- 7BO/+OMQbe7g0rw/kVwJMkRlX8/Xn4A7I+6U0S9M1KtRR9NDm0XhicDWp
- c5z6x0QJszlMluTVIj2m426iIMa/57T4sDMdbJ7gaotX6w0Nu9lUgk3zZ
- xQrEx90JATlkMC9PghNsmdrgdSzpNUo4VzjG4rYrB4KDmbHDThGtElVvp A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="309826127"
-X-IronPort-AV: E=Sophos;i="5.88,317,1635231600"; d="scan'208";a="309826127"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 01:05:28 -0800
-X-IronPort-AV: E=Sophos;i="5.88,317,1635231600"; d="scan'208";a="628246433"
-Received: from richardt-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.143.219])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 01:05:28 -0800
-Date: Wed, 26 Jan 2022 01:05:27 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Message-ID: <20220126090527.ksuah5m6xctx7jjo@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
- <20220119072450.2890107-4-lucas.demarchi@intel.com>
- <Yehm5/DJ5Ljo1EWs@smile.fi.intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40C4E10E7CF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 09:13:32 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 820E31F393;
+ Wed, 26 Jan 2022 09:13:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1643188410; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=YZ/4KWoebNsl9A4gl5sc7likmLSs3VvOKbroC5xzTVQ=;
+ b=Qqa4HobY7Saj41/e+ToarHJRdE2pakolS2yuXb8trTwkm3yLOgvLmpYT4ehD4oL4GH0oXj
+ v74n/lYBzyoXUtWAJt64rUOn9mgYjHkXUGbXFOOWBHjKp2mksOFsLqyehUkaZOf+zAyD+l
+ 7LmIIJtfqqF0i+HpTvqnO34SHdepdbI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1643188410;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=YZ/4KWoebNsl9A4gl5sc7likmLSs3VvOKbroC5xzTVQ=;
+ b=eg+eSMVMV0HqGLxrveB8igxS7pBy3t/1JnmccXSTs3gcBDNpNLJm/S/aJFzVWVH3dAPeTg
+ 2aUfy2bnEOzbqHDQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 5FE7413B82;
+ Wed, 26 Jan 2022 09:13:30 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id GvGsFroQ8WHTQAAAMHmgww
+ (envelope-from <vbabka@suse.cz>); Wed, 26 Jan 2022 09:13:30 +0000
+Message-ID: <ac4c4da5-817a-0fec-94ad-03fd8b246f80@suse.cz>
+Date: Wed, 26 Jan 2022 10:13:30 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <Yehm5/DJ5Ljo1EWs@smile.fi.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm: Convert open yes/no strings to
- yesno()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20220126081539.23227-1-ville.syrjala@linux.intel.com>
+From: Vlastimil Babka <vbabka@suse.cz>
+In-Reply-To: <20220126081539.23227-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Fix oops due to missing stack
+ depot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,125 +72,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Vishal Kulkarni <vishal@chelsio.com>, netdev@vger.kernel.org,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- Kentaro Takeda <takedakn@nttdata.co.jp>, amd-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Petr Mladek <pmladek@suse.com>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, Steven Rostedt <rostedt@goodmis.org>,
- Julia Lawall <julia.lawall@lip6.fr>,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- "David S . Miller" <davem@davemloft.net>,
- Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- linux-security-module@vger.kernel.org,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Raju Rangoju <rajur@chelsio.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: Marco Elver <elver@google.com>, Dmitry Vyukov <dvyukov@google.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 19, 2022 at 09:30:47PM +0200, Andy Shevchenko wrote:
->On Tue, Jan 18, 2022 at 11:24:50PM -0800, Lucas De Marchi wrote:
->> linux/string_helpers.h provides a helper to return "yes"/"no"
->> strings. Replace the open coded versions with yesno(). The places were
->> identified with the following semantic patch:
->>
->> 	@@
->> 	expression b;
->> 	@@
->>
->> 	- b ? "yes" : "no"
->> 	+ yesno(b)
->>
->> Then the includes were added, so we include-what-we-use, and parenthesis
->> adjusted in drivers/gpu/drm/v3d/v3d_debugfs.c. After the conversion we
->> still see the same binary sizes:
->>
->>    text    data     bss     dec     hex filename
->> 1442171   60344     800 1503315  16f053 ./drivers/gpu/drm/radeon/radeon.ko
->> 1442171   60344     800 1503315  16f053 ./drivers/gpu/drm/radeon/radeon.ko.old
->> 5985991  324439   33808 6344238  60ce2e ./drivers/gpu/drm/amd/amdgpu/amdgpu.ko
->> 5985991  324439   33808 6344238  60ce2e ./drivers/gpu/drm/amd/amdgpu/amdgpu.ko.old
->>  411986   10490    6176  428652   68a6c ./drivers/gpu/drm/drm.ko
->>  411986   10490    6176  428652   68a6c ./drivers/gpu/drm/drm.ko.old
->> 1970292  109515    2352 2082159  1fc56f ./drivers/gpu/drm/nouveau/nouveau.ko
->> 1970292  109515    2352 2082159  1fc56f ./drivers/gpu/drm/nouveau/nouveau.ko.old
->
->...
->
->>  #include <linux/module.h>
->>  #include <linux/sched.h>
->>  #include <linux/slab.h>
->> +#include <linux/string_helpers.h>
->
->+ blank line?
->
->> +#include <linux/string_helpers.h>
->
->...
->
->>  	seq_printf(m, "\tDP branch device present: %s\n",
->> -		   branch_device ? "yes" : "no");
->> +		   yesno(branch_device));
->
->Now it's possible to keep this on one line.
->
->...
->
->>  	drm_printf_indent(p, indent, "imported=%s\n",
->> -			  obj->import_attach ? "yes" : "no");
->> +			  yesno(obj->import_attach));
->
->81 here, but anyway, ditto!
->
->...
->
->>   */
->
->+blank line here?
->
->> +#include <linux/string_helpers.h>
->> +
->>  #include "aux.h"
->>  #include "pad.h"
->
->...
->
->>  	seq_printf(m, "MMU:        %s\n",
->> -		   (ident2 & V3D_HUB_IDENT2_WITH_MMU) ? "yes" : "no");
->> +		   yesno(ident2 & V3D_HUB_IDENT2_WITH_MMU));
->>  	seq_printf(m, "TFU:        %s\n",
->> -		   (ident1 & V3D_HUB_IDENT1_WITH_TFU) ? "yes" : "no");
->> +		   yesno(ident1 & V3D_HUB_IDENT1_WITH_TFU));
->>  	seq_printf(m, "TSY:        %s\n",
->> -		   (ident1 & V3D_HUB_IDENT1_WITH_TSY) ? "yes" : "no");
->> +		   yesno(ident1 & V3D_HUB_IDENT1_WITH_TSY));
->>  	seq_printf(m, "MSO:        %s\n",
->> -		   (ident1 & V3D_HUB_IDENT1_WITH_MSO) ? "yes" : "no");
->> +		   yesno(ident1 & V3D_HUB_IDENT1_WITH_MSO));
->>  	seq_printf(m, "L3C:        %s (%dkb)\n",
->> -		   (ident1 & V3D_HUB_IDENT1_WITH_L3C) ? "yes" : "no",
->> +		   yesno(ident1 & V3D_HUB_IDENT1_WITH_L3C),
->>  		   V3D_GET_FIELD(ident2, V3D_HUB_IDENT2_L3C_NKB));
->
->I believe it's fine to join back to have less LOCs (yes, it will be 83 or so,
->but I believe in these cases it's very much okay).
+On 1/26/22 09:15, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> We call __save_depot_stack() unconditionally so the stack depot
 
-now that we are converting to str_yes_no(), we will have a few more
-chars. Some maintainers may be more strict on the 80 or 100 chars. I
-will assume whatever is in the code base is the preferred form.
+Ah, in __untrack_all_wakerefs()? Looks like I missed it, sorry.
 
-thanks
-Lucas De Marchi
+> must always be initialized or else we'll oops on platforms without
+> runtime pm support.
+> 
+> Presumably we've not seen this in CI due to stack_depot_init()
+> already getting called via drm_mm_init()+CONFIG_DRM_DEBUG_MM.
+> 
+> Cc: Vlastimil Babka <vbabka@suse.cz>
+> Cc: Dmitry Vyukov <dvyukov@google.com>
+> Cc: Marco Elver <elver@google.com> # stackdepot
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Fixes: 2dba5eb1c73b ("lib/stackdepot: allow optional init and stack_table allocation by kvmalloc()")
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
->
->-- 
->With Best Regards,
->Andy Shevchenko
->
->
+Acked-by: Vlastimil Babka <vbabka@suse.cz>
+Thanks!
+
+> ---
+>  drivers/gpu/drm/i915/intel_runtime_pm.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> index 53f1ccb78849..64c2708efc9e 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> @@ -68,9 +68,7 @@ static noinline depot_stack_handle_t __save_depot_stack(void)
+>  static void init_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
+>  {
+>  	spin_lock_init(&rpm->debug.lock);
+> -
+> -	if (rpm->available)
+> -		stack_depot_init();
+> +	stack_depot_init();
+>  }
+>  
+>  static noinline depot_stack_handle_t
+
