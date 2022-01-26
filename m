@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F289649D563
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 23:23:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4878249D570
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 23:31:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ED6710E342;
-	Wed, 26 Jan 2022 22:23:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95B2210E386;
+	Wed, 26 Jan 2022 22:31:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 757FE10E342
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 22:23:11 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A9CE10E386
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 22:31:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643235791; x=1674771791;
+ t=1643236279; x=1674772279;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=jg4CbLDpJrYJ1jRL5L1CkIHxYgcdM6x8+L843NmOaQA=;
- b=dlDP7IMb2oUJ/Cj15yNtPfj+uOY7l4HqeVqdDz0jaGO8hOQbKZOBZSZr
- HvGM45kUj4WQn6BOARkCW0o289QsCIYD5+WCEtZzx/f2fu/1Mb9EFi64L
- bNwD70lzv10q4RGVA0ESVGHBEIwyZ2RqXv0t9roQwGKuUIuVoqwhZ7jI/
- MW8yFQGfdiTmE2ueOaOXaZtzcGYBmjiCSM3GG1qMgzoBuRyvpzVYn5F3K
- Hx4anGoUx5fegYavbzujmK6lP2M6QU4FIHTJYvwH61rQNDWvi95X8EaNI
- +H0Z+n7gEPBp3RY0tymjVwU0RvDHrTLQjS/Dpd9o7OBGRHi1d8QTGE3YA Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="245502834"
-X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; d="scan'208";a="245502834"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 14:23:10 -0800
-X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; d="scan'208";a="563555395"
+ bh=J7KTtklIypeJthQeu+SdKvY6DQ4zPwdwnSj4YtwnDVQ=;
+ b=QJDM8dOqZq5MUrvtD73lTLaQDo4kqHRUxuiQF6KHFtlCGi16VjM9yW4C
+ yu0+/h/d0zqM1hkXnVm9cdx2DfGBTicc6e2B4F8YwV3oDyTMmH6iRQNsn
+ utngeHjWKcyH75ENFJ/yz2Zf/+8HwlfU+AEDWcB5eBxIhhYUlUCJJG69s
+ Ba59xJT3Fhx8lblOWYUv5g6ztps/WMaSWsi+SEEaquottOH8qYMw5K9l4
+ WxL2l5ocKdBE/tYsSEws/uTt488xcysloKsy84+ETYBALyltWFi9LZxdw
+ iJBsS+H1y6hnAGoE9FJs98GOabe7NkuqojAlNzGcPHzLqtB9EeFeorpA6 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="309981022"
+X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; d="scan'208";a="309981022"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 14:31:18 -0800
+X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; d="scan'208";a="477628821"
 Received: from richardt-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
  ([10.212.143.219])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 14:23:10 -0800
-Date: Wed, 26 Jan 2022 14:23:09 -0800
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 14:31:18 -0800
+Date: Wed, 26 Jan 2022 14:31:18 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20220126222309.aeiyj6iyrimbrycu@ldmartin-desk2>
+Message-ID: <20220126223118.pfyqalyg2g4azjnt@ldmartin-desk2>
 X-Patchwork-Hint: comment
 References: <20220125020826.2693097-1-matthew.d.roper@intel.com>
- <20220125020826.2693097-5-matthew.d.roper@intel.com>
+ <20220125020826.2693097-6-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20220125020826.2693097-5-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 4/6] drm/i915: Parameterize MI_PREDICATE
- registers
+In-Reply-To: <20220125020826.2693097-6-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915: Move GT registers to their
+ own header file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,27 +63,53 @@ Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 24, 2022 at 06:08:24PM -0800, Matt Roper wrote:
->The various MI_PREDICATE registers have per-engine instances.  Today we
->only utilize the RCS0 instance of each, but that will likely change in
->the future; switch to parameterized register definitions to make these
->easier to work with going forward.
->
->Of special note is MI_PREDICATE_RESULT_2; we only use it in one place in
->the driver today in HSW-specific code.  It turns out that the bspec
->(page 94) lists two different offsets for this register on HSW; one is
->in the standard location shared by all other platforms (base + 0x3bc)
->and the other is an unusual location (0x2214).  We're using the second,
->non-standard offset in i915 today; that offset doesn't exist on any
->other platforms (and it's not even 100% clear that it's correct for HSW)
->so I've renamed the current non-standard definition to
->HSW_MI_PREDICATE_RESULT_2; the new cross-platform parameterized macro
->(which is still unused at the moment) uses the standard offset.
->
->Cc: Jani Nikula <jani.nikula@intel.com>
->Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+On Mon, Jan 24, 2022 at 06:08:25PM -0800, Matt Roper wrote:
+>+#define MEMSWCTL		_MMIO(0x11170) /* Ironlake only */
+>+#define   MEMCTL_CMD_MASK	0xe000
+>+#define   MEMCTL_CMD_SHIFT	13
+>+#define   MEMCTL_CMD_RCLK_OFF	0
+>+#define   MEMCTL_CMD_RCLK_ON	1
+>+#define   MEMCTL_CMD_CHFREQ	2
+>+#define   MEMCTL_CMD_CHVID	3
+>+#define   MEMCTL_CMD_VMMOFF	4
+>+#define   MEMCTL_CMD_VMMON	5
+>+#define   MEMCTL_CMD_STS	(1 << 12) /* write 1 triggers command, clears
+>+when command complete */
+
+formatting issue here
+
+>+#define GEN9_SLICE_PGCTL_ACK(slice)	_MMIO(0x804c + (slice) * 0x4)
+>+#define GEN10_SLICE_PGCTL_ACK(slice)	_MMIO(0x804c + ((slice) / 3) * 0x34 + \
+>+((slice) % 3) * 0x4)
+
+and here
+
+>+#define   GEN9_PGCTL_SLICE_ACK		(1 << 0)
+>+#define   GEN9_PGCTL_SS_ACK(subslice)	(1 << (2 + (subslice) * 2))
+>+#define   GEN10_PGCTL_VALID_SS_MASK(slice) ((slice) == 0 ? 0x7F : 0x1F)
+>+
+>+#define GEN9_SS01_EU_PGCTL_ACK(slice)	_MMIO(0x805c + (slice) * 0x8)
+>+#define GEN10_SS01_EU_PGCTL_ACK(slice)	_MMIO(0x805c + ((slice) / 3) * 0x30 + \
+>+((slice) % 3) * 0x8)
+
+and here
+
+>+#define GEN9_SS23_EU_PGCTL_ACK(slice)	_MMIO(0x8060 + (slice) * 0x8)
+>+#define GEN10_SS23_EU_PGCTL_ACK(slice)	_MMIO(0x8060 + ((slice) / 3) * 0x30 + \
+>+((slice) % 3) * 0x8)
+
+and here.
+
+
+Rest looks sane. There's already a conflict in this patch, although
+following "this should be just code move",  it's easy to solve.
+
+
+I wonder what is the strategy going to be for merging this because it
+will conflict badly between drm-intel-next and drm-intel-gt-next.
 
 
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Lucas De Marchi
+
