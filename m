@@ -2,63 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A105849CBE8
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 15:11:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4071549CC2E
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 15:21:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C82E710E6B6;
-	Wed, 26 Jan 2022 14:11:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BADD10E583;
+	Wed, 26 Jan 2022 14:21:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa2.bahnhof.se (pio-pvt-msa2.bahnhof.se [79.136.2.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47CFE10E6B6;
- Wed, 26 Jan 2022 14:11:55 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTP id C0FB23F36F;
- Wed, 26 Jan 2022 15:11:53 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.1
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Authentication-Results: pio-pvt-msa2.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from pio-pvt-msa2.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id xl03J6hK3jv6; Wed, 26 Jan 2022 15:11:52 +0100 (CET)
-Received: by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id CF3553F2DE;
- Wed, 26 Jan 2022 15:11:49 +0100 (CET)
-Received: from [192.168.0.209] (unknown [192.55.55.54])
- by mail1.shipmail.org (Postfix) with ESMTPSA id A19CB3626AA;
- Wed, 26 Jan 2022 15:11:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1643206309; bh=LMhkrBdLZkCEhoHLd421DsjJY0iUDjhzCRAXtSuRAVw=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=bhGE/1T/HXW8ty3QjO7s0GAIEecumC7GzazfLWYDD2jQYG02G3lCi6TF9ppxG7z+d
- L8nfU6tWYcT5EHAEj2WlaO+dNC6RtJAjOqTwv4SegMhbcVhC3tAsjrlLS28INKx8vS
- 0aYvFwy3m9W8Crjy6Y22md3wupm4M61QnUs9KDTU=
-Message-ID: <db358c46-a34a-cc8d-e657-5a8d2b888034@shipmail.org>
-Date: Wed, 26 Jan 2022 15:11:38 +0100
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21A8D10E583
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 14:21:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643206868; x=1674742868;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=A5kwY6DbK3xN5Ywm08mVSd+zRj0NZFHwpqZ5Lrt2WOk=;
+ b=A2PNqIXmuc6avAK8rtfs9uzcSjMGY/nlDXqE/uwHo4AlN/cqH+sLipP7
+ FFjo5I++7t2qNFTwptTqRart9SAgFDa97an0LZUn1vmxR02nprOhzaK+B
+ keEOB4uWu+H0LK0+r9hGxdJkmiUQbl5k0Je4t2QCwOjgmrqnpE3eo1UbK
+ TMJDfHQoFlRmE/AFK/33nq9yfIqUFYNaGsnc4eqfH0JQZc1PxNwpx2v0n
+ hRKUPBFFP5+fOHp3Mbet8LNyTTP7ZmjyRy68UUvVyvPNtro6WN2HF6ls4
+ NT/ktxrmFv0JpaiTFIthmefbwgc9F9gUMIDX6DQNtQquEbHxWYJNAWYFM A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="246503468"
+X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="246503468"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 06:21:07 -0800
+X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="520813824"
+Received: from nbasu-mobl.ger.corp.intel.com (HELO localhost) ([10.252.16.197])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 06:21:05 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20211112193813.8224-4-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20211112193813.8224-1-ville.syrjala@linux.intel.com>
+ <20211112193813.8224-4-ville.syrjala@linux.intel.com>
+Date: Wed, 26 Jan 2022 16:21:02 +0200
+Message-ID: <87o83yzigh.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Robert Beckett <bob.beckett@collabora.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-References: <20220125193530.3272386-1-bob.beckett@collabora.com>
- <20220125193530.3272386-6-bob.beckett@collabora.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <20220125193530.3272386-6-bob.beckett@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 5/5] drm/i915/uapi: document behaviour
- for DG2 64K support
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915: Clean up SKL_BOTTOM_COLOR
+ defines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,39 +59,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
- Kenneth Graunke <kenneth@whitecape.org>, dri-devel@lists.freedesktop.org,
- Slawomir Milczarek <slawomir.milczarek@intel.com>,
- Pekka Paalanen <ppaalanen@gmail.com>, Matthew Auld <matthew.auld@intel.com>,
- mesa-dev@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, 12 Nov 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Use REG_BIT() for SKL_BOTTOM_COLOR.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-On 1/25/22 20:35, Robert Beckett wrote:
-> From: Matthew Auld <matthew.auld@intel.com>
->
-> On discrete platforms like DG2, we need to support a minimum page size
-> of 64K when dealing with device local-memory. This is quite tricky for
-> various reasons, so try to document the new implicit uapi for this.
->
-> v3: fix typos and less emphasis
-> v2: Fixed suggestions on formatting [Daniel]
->
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-> Acked-by: Jordan Justen <jordan.l.justen@intel.com>
-> Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-> cc: Simon Ser <contact@emersion.fr>
-> cc: Pekka Paalanen <ppaalanen@gmail.com>
-> Cc: Jordan Justen <jordan.l.justen@intel.com>
-> Cc: Kenneth Graunke <kenneth@whitecape.org>
-> Cc: mesa-dev@lists.freedesktop.org
-> Cc: Tony Ye <tony.ye@intel.com>
-> Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
 > ---
+>  drivers/gpu/drm/i915/i915_reg.h | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index e300a202ce2d..8b227dabb10c 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -6341,8 +6341,8 @@ enum {
+>=20=20
+>  /* Skylake+ pipe bottom (background) color */
+>  #define _SKL_BOTTOM_COLOR_A		0x70034
+> -#define   SKL_BOTTOM_COLOR_GAMMA_ENABLE	(1 << 31)
+> -#define   SKL_BOTTOM_COLOR_CSC_ENABLE	(1 << 30)
+> +#define   SKL_BOTTOM_COLOR_GAMMA_ENABLE		REG_BIT(31)
+> +#define   SKL_BOTTOM_COLOR_CSC_ENABLE		REG_BIT(30)
+>  #define SKL_BOTTOM_COLOR(pipe)		_MMIO_PIPE2(pipe, _SKL_BOTTOM_COLOR_A)
+>=20=20
+>  #define _ICL_PIPE_A_STATUS			0x70058
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-
+--=20
+Jani Nikula, Intel Open Source Graphics Center
