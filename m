@@ -1,49 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C527D49CE16
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 16:23:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D246449CED1
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 16:45:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42B2410E94F;
-	Wed, 26 Jan 2022 15:22:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5A2010E2A2;
+	Wed, 26 Jan 2022 15:45:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 809F710E944;
- Wed, 26 Jan 2022 15:22:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643210550; x=1674746550;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DCBSYzFbTBiM8IPLqIlXiU77MAAwv243tlMlcxh67QY=;
- b=eRRZV4+HQWpu8+Ttj2odd4Omm0UXcWNtfnxT2Pqxao+CSfaI7ADE3VeP
- iHjcPcMPfYjGTGHsfbbY/EbQC88CuhHRnTGeiafXMA98Z33ng9wSiJnj8
- SGYgn8WLOxE9HynC6jX9t9t+Ax037zxmWqzkTTywyWA2pEEDtlfXHmq3H
- sLNxFFhtK+30UtHCmuyhbpTIC1mzMV1iXG8JBXSaAgsud6oHZeOwtKaxv
- oHsNY4phrQs++UkftNQpejBNaSugdHoXOpwPtaZZcWgjH3g1uBfrImcUG
- 1oGOLQF/w4spQTz9RlhRLSV35SCrCRhZNVypNlCvUbtSIrQ/3m0Hi3jS+ g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="309885299"
-X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="309885299"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 07:22:30 -0800
-X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="674386331"
-Received: from jamesstx-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.213.247.182])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 07:22:29 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Jan 2022 15:21:55 +0000
-Message-Id: <20220126152155.3070602-21-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220126152155.3070602-1-matthew.auld@intel.com>
-References: <20220126152155.3070602-1-matthew.auld@intel.com>
+Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
+ [213.80.101.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F79B10E171;
+ Wed, 26 Jan 2022 15:45:37 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 0D4B83F606;
+ Wed, 26 Jan 2022 16:45:35 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: ste-pvt-msa1.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id pkcjr9YNR3c6; Wed, 26 Jan 2022 16:45:33 +0100 (CET)
+Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id B2F6E3F480;
+ Wed, 26 Jan 2022 16:45:31 +0100 (CET)
+Received: from [192.168.0.209] (unknown [192.55.55.54])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 855513626AA;
+ Wed, 26 Jan 2022 16:45:26 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1643211931; bh=OAVs3hYBXF9umhJz4d5fI5nR0JlCGZSrkHnQDPk4XIE=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=Uri7ihhQXMgDT8l7FQq3wMoLcvY8yvVWeSjh7sIYdW5/I5XXmYPXSvdSQklJJgmP+
+ BHRIjKzxohhl/4jMv86ba+YRbmzWzmllpGG0zG3GKmLP10UDBXUyLsC2UFeW2Fm/xI
+ WsOi19IAAFEtUE88Fegq268OdrazKWPfE8EKO34g=
+Message-ID: <9f011e69-2d6d-d6a1-db78-d4a061b4ef2c@shipmail.org>
+Date: Wed, 26 Jan 2022 16:45:22 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 20/20] HAX: DG1 small BAR
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Robert Beckett <bob.beckett@collabora.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+References: <20220125193530.3272386-1-bob.beckett@collabora.com>
+ <20220125193530.3272386-3-bob.beckett@collabora.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <20220125193530.3272386-3-bob.beckett@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v5 2/5] drm/i915: enforce min GTT alignment
+ for discrete cards
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,47 +72,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Just for CI.
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_create.c  | 5 ++---
- drivers/gpu/drm/i915/gt/intel_region_lmem.c | 2 +-
- 2 files changed, 3 insertions(+), 4 deletions(-)
+On 1/25/22 20:35, Robert Beckett wrote:
+> From: Matthew Auld <matthew.auld@intel.com>
+>
+> For local-memory objects we need to align the GTT addresses
+> to 64K, both for the ppgtt and ggtt.
+>
+> We need to support vm->min_alignment > 4K, depending
+> on the vm itself and the type of object we are inserting.
+> With this in mind update the GTT selftests to take this
+> into account.
+>
+> For compact-pt we further align and pad lmem object GTT addresses
+> to 2MB to ensure PDEs contain consistent page sizes as
+> required by the HW.
+>
+> v3:
+> 	* use needs_compact_pt flag to discriminate between
+> 	  64K and 64K with compact-pt
+> 	* add i915_vm_obj_min_alignment
+> 	* use i915_vm_obj_min_alignment to round up vma reservation
+> 	  if compact-pt instead of hard coding
+> v5:
+> 	* fix i915_vm_obj_min_alignment for internal objects which
+> 	  have no memory region
+>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>   .../i915/gem/selftests/i915_gem_client_blt.c  | 23 +++--
+>   drivers/gpu/drm/i915/gt/intel_gtt.c           | 12 +++
+>   drivers/gpu/drm/i915/gt/intel_gtt.h           | 18 ++++
+>   drivers/gpu/drm/i915/i915_vma.c               |  9 ++
+>   drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 96 ++++++++++++-------
+>   5 files changed, 117 insertions(+), 41 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+> index c8ff8bf0986d..f0bfce53258f 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+> @@ -39,6 +39,7 @@ struct tiled_blits {
+>   	struct blit_buffer scratch;
+>   	struct i915_vma *batch;
+>   	u64 hole;
+> +	u64 align;
+>   	u32 width;
+>   	u32 height;
+>   };
+> @@ -410,14 +411,21 @@ tiled_blits_create(struct intel_engine_cs *engine, struct rnd_state *prng)
+>   		goto err_free;
+>   	}
+>   
+> -	hole_size = 2 * PAGE_ALIGN(WIDTH * HEIGHT * 4);
+> +	t->align = I915_GTT_PAGE_SIZE_2M; /* XXX worst case, derive from vm! */
+> +	t->align = max(t->align,
+> +		       i915_vm_min_alignment(t->ce->vm, INTEL_MEMORY_LOCAL));
+> +	t->align = max(t->align,
+> +		       i915_vm_min_alignment(t->ce->vm, INTEL_MEMORY_SYSTEM));
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-index 98d63cb21e94..6e6a3f6685ab 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-@@ -437,9 +437,8 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, void *data,
- 		if (!(ext_data.placement_mask & BIT(INTEL_REGION_SMEM)))
- 			return -EINVAL;
- 	} else {
--		if (!IS_DG1(i915) && (ext_data.n_placements > 1 ||
--				      ext_data.placements[0]->type !=
--				      INTEL_MEMORY_SYSTEM))
-+		if (ext_data.n_placements > 1 ||
-+		    ext_data.placements[0]->type != INTEL_MEMORY_SYSTEM)
- 			ext_data.flags |= I915_BO_ALLOC_TOPDOWN;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index b788fc2b3df8..a99516d2b706 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -211,7 +211,7 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
- 	lmem_size = intel_uncore_read64(uncore, GEN12_GSMBASE);
- 
- 	io_start = pci_resource_start(pdev, 2);
--	io_size = min(pci_resource_len(pdev, 2), lmem_size);
-+	io_size = SZ_256M;
- 	if (!io_size)
- 		return ERR_PTR(-ENODEV);
- 
--- 
-2.34.1
+Don't we always end up with 2M here, regardless of the vm restrictions?
+
 
