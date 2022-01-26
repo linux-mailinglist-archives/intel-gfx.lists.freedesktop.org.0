@@ -2,51 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C54BC49D581
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 23:35:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE6C49D598
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 23:42:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04605891DA;
-	Wed, 26 Jan 2022 22:35:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 555FB10E984;
+	Wed, 26 Jan 2022 22:42:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F40F189259
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 22:35:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643236520; x=1674772520;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=RFgowNIi/5+Vth7Q3TAi6n9yR3FFYVhw1zFDWzT0DS0=;
- b=Js05u0eCB7nu43SogGBR39uzgvyID5MTkS6KaWP5rXEyKxe0cD1h38GS
- L2XYjYJafQ4lKd32xB74+P4O0gNFOv+zqxgpiR/A14oPfOfHPLka0LyrK
- 8rHNZFCh8PBIWDkWm/Mu3/ajiOL11KwdN/vjzGkEa3h1n5b827tcRe1OU
- hYvYbILHa0FPYesDjjqJU2Rs+7x4DKOvKdKaQuFgU3zZIhI9ks0BJctcm
- ra0FhIOibkOi73j5MuBHFoYU1qa99YWrqXPzXeN564zyAgUs8N03wEIaV
- Fi75UQ8ckJZeaLt8HZXxc1gYW0FsEnlqRXGlEqBXnbh8fVvErCd3f0qax w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="309982233"
-X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; d="scan'208";a="309982233"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 14:35:20 -0800
-X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; d="scan'208";a="535363277"
-Received: from richardt-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.143.219])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 14:35:20 -0800
-Date: Wed, 26 Jan 2022 14:35:19 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20220126223519.q4oii4mdvwhpfiue@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220125020826.2693097-1-matthew.d.roper@intel.com>
- <20220125020826.2693097-7-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5647B10E983;
+ Wed, 26 Jan 2022 22:42:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 50F66A73C7;
+ Wed, 26 Jan 2022 22:42:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220125020826.2693097-7-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 6/6] drm/i915: Only include i915_reg.h
- from .c files
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Wed, 26 Jan 2022 22:42:30 -0000
+Message-ID: <164323695029.25407.16901737586900322286@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220126195304.8262-1-manasi.d.navare@intel.com>
+In-Reply-To: <20220126195304.8262-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display/vrr=3A_Reset_VRR_capable_property_on_a_lon?=
+ =?utf-8?q?g_hpd_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,22 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 24, 2022 at 06:08:26PM -0800, Matt Roper wrote:
->Several of our i915 header files, have been including i915_reg.h.  This
->means that any change to i915_reg.h will trigger a full rebuild of
->pretty much every file of the driver, even those that don't have any
->kind of register access.  Let's delete the i915_reg.h include from all
->headers and include an explicit include from the .c files that truly
+== Series Details ==
 
-if you're going to respin this or while applying, it may be good to
-reword this sentence as we have too many "include".
+Series: drm/i915/display/vrr: Reset VRR capable property on a long hpd (rev2)
+URL   : https://patchwork.freedesktop.org/series/98801/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+071c4ebbb036 drm/i915/display/vrr: Reset VRR capable property on a long hpd
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#7: 
+With some VRR panels, user can turn VRR ON/OFF on the fly from the panel settings.
+
+total: 0 errors, 1 warnings, 0 checks, 33 lines checked
 
 
-
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Lucas De Marchi
