@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D7B649C50B
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 09:15:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDC0D49C52D
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 09:23:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 323DA10E36E;
-	Wed, 26 Jan 2022 08:15:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 626D810E36E;
+	Wed, 26 Jan 2022 08:23:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D87C10E36E
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 08:15:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643184948; x=1674720948;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sCpI3kCE30w/criHNQ0sPN3Ets+GuZ0JidTwJZRaM5g=;
- b=hcKf6btjI/o304YCjvvP+6LOVIt24XP3J6h7LQwrCpgv4fxz9CJSDcdL
- 5dSaPFiyyrpj1QBKVcIg4vOpq9e7S8ZACbAXc/AjAJeL2s2tmVyRLqN9T
- xfcuLI4vMIe9ZRwIU15zK7pU6q125G5+Z8uyQryacCMPUunlwSqYnz1NX
- wha8kiQQuIM078d9LHCWHcWXhlmwgOytdBYLSz35s0oUzV9AvJE5NSpq1
- mc0EXsrWfq7zYLmOAP/RHZHj6/XK7rnu1/r2aCDzIjJjI1kEjUWo/3EE8
- k5gFEFrWfveOIbX64wLTvUr/6SfHQZR/Sr9bmN2EfgOoaC/In8KV3yMft w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="270954554"
-X-IronPort-AV: E=Sophos;i="5.88,317,1635231600"; d="scan'208";a="270954554"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 00:15:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,317,1635231600"; d="scan'208";a="674285885"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by fmsmga001.fm.intel.com with SMTP; 26 Jan 2022 00:15:44 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 Jan 2022 10:15:43 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Jan 2022 10:15:39 +0200
-Message-Id: <20220126081539.23227-2-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220126081539.23227-1-ville.syrjala@linux.intel.com>
-References: <20220126081539.23227-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2C35410E36E;
+ Wed, 26 Jan 2022 08:23:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 26058A0169;
+ Wed, 26 Jan 2022 08:23:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Enable rpm wakeref tracking
- whether runtime pm is enabled or not
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Wed, 26 Jan 2022 08:23:43 -0000
+Message-ID: <164318542312.25401.2300541859639722642@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220126073703.1215696-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20220126073703.1215696-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Lock_dpt=5Fobj_around_set=5Fcache=5Flevel=2C_v2?=
+ =?utf-8?q?=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,41 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Marco Elver <elver@google.com>, Dmitry Vyukov <dvyukov@google.com>,
- Vlastimil Babka <vbabka@suse.cz>, Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Don't see why we should skip the wakeref tracking when the
-platform doesn't support runtime pm. We still want all the
-code to be 100% leak free so let's track this unconditionally.
+Series: drm/i915: Lock dpt_obj around set_cache_level, v2.
+URL   : https://patchwork.freedesktop.org/series/99350/
+State : warning
 
-Cc: Vlastimil Babka <vbabka@suse.cz>
-Cc: Dmitry Vyukov <dvyukov@google.com>
-Cc: Marco Elver <elver@google.com> # stackdepot
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/intel_runtime_pm.c | 3 ---
- 1 file changed, 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-index 64c2708efc9e..3293ac71bcf8 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-@@ -77,9 +77,6 @@ track_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
- 	depot_stack_handle_t stack, *stacks;
- 	unsigned long flags;
- 
--	if (!rpm->available)
--		return -1;
--
- 	stack = __save_depot_stack();
- 	if (!stack)
- 		return -1;
--- 
-2.34.1
+$ dim checkpatch origin/drm-tip
+6d1423b45148 drm/i915: Lock dpt_obj around set_cache_level, v2.
+-:8: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#8: 
+<6> [184.578145] [IGT] kms_addfb_basic: starting subtest addfb25-framebuffer-vs-set-tiling
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+
 
