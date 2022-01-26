@@ -1,44 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29B5249C969
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 13:16:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A1CA49C9D9
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 13:37:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D305D10E8FD;
-	Wed, 26 Jan 2022 12:16:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71DD210E54E;
+	Wed, 26 Jan 2022 12:37:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA84E10E8F7;
- Wed, 26 Jan 2022 12:16:26 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="246755646"
-X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="246755646"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 04:16:26 -0800
-X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="674341619"
-Received: from smile.fi.intel.com ([10.237.72.61])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 04:16:19 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
- (envelope-from <andy.shevchenko@gmail.com>) id 1nChCh-00Eaiw-DB;
- Wed, 26 Jan 2022 14:15:11 +0200
-Date: Wed, 26 Jan 2022 14:15:11 +0200
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <YfE7T7gl+0GrlFt/@smile.fi.intel.com>
-References: <20220126093951.1470898-1-lucas.demarchi@intel.com>
- <20220126093951.1470898-10-lucas.demarchi@intel.com>
- <CAHp75Vd+TmShx==d_JHZUu0Q-9X7CmZEOFdKnSrcRKs81Gxn3g@mail.gmail.com>
- <20220126104345.r6libof7z7tqjqxi@ldmartin-desk2>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5781810E54E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 12:37:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643200636; x=1674736636;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=UD6thkSngbBnqsSCaiahfZKLyeIyi2cCh9WPKbT9k0g=;
+ b=h81rg34TJ5MdTwVyIf7lwNu6sXTaMtQNVOag4x7wjVIQmmCAjUpGqalh
+ 9r0bWPpae8tC+P63FVcWarvehIfhj/6jgnhDbYam7pfxVQWjszR8vd01K
+ qTkg2CrdVEganQK9i3fRxDKE+fpD5lCen1EBC93YBeUj51TYanDoOXH/v
+ LKCmiGs1wY+pBvYoLhLmj/Gl3gJd5x8g7Ei9/mmxWdtcjTtXeOmdcXXU1
+ VW4xgSOVKoD2qy5zBQ/LdJpLSZy7YbHxSvBPSecJH+MbhF4kL6FJS9jTq
+ CxEfDZnYrrRL/HexaUHJZgwrXUiepHS+ZMyumarkDKiHARf35/3pnPURF w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="245373288"
+X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="245373288"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 04:37:15 -0800
+X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="617952153"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 04:37:14 -0800
+Date: Wed, 26 Jan 2022 14:37:10 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20220126123710.GB1958725@ideak-desk.fi.intel.com>
+References: <20220126081539.23227-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220126104345.r6libof7z7tqjqxi@ldmartin-desk2>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v2 09/11] drm: Convert open-coded yes/no
- strings to yesno()
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220126081539.23227-1-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Fix oops due to missing stack
+ depot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,55 +57,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Vishal Kulkarni <vishal@chelsio.com>, netdev@vger.kernel.org,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- Kentaro Takeda <takedakn@nttdata.co.jp>, amd-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
- Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
- Steven Rostedt <rostedt@goodmis.org>, Julia Lawall <julia.lawall@lip6.fr>,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>,
- Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- linux-security-module@vger.kernel.org,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Raju Rangoju <rajur@chelsio.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, Marco Elver <elver@google.com>,
+ Dmitry Vyukov <dvyukov@google.com>, Vlastimil Babka <vbabka@suse.cz>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 26, 2022 at 02:43:45AM -0800, Lucas De Marchi wrote:
-> On Wed, Jan 26, 2022 at 12:12:50PM +0200, Andy Shevchenko wrote:
-> > On Wed, Jan 26, 2022 at 11:39 AM Lucas De Marchi
-> > <lucas.demarchi@intel.com> wrote:
-
-...
-
-> > >  411986   10490    6176  428652   68a6c drm.ko.old
-> > >  411986   10490    6176  428652   68a6c drm.ko
-> > >   98129    1636     264  100029   186bd dp/drm_dp_helper.ko.old
-> > >   98129    1636     264  100029   186bd dp/drm_dp_helper.ko
-> > > 1973432  109640    2352 2085424  1fd230 nouveau/nouveau.ko.old
-> > > 1973432  109640    2352 2085424  1fd230 nouveau/nouveau.ko
-> > 
-> > This probably won't change for modules, but if you compile in the
-> > linker may try to optimize it. Would be nice to see the old-new for
-> > `make allyesconfig` or equivalent.
+On Wed, Jan 26, 2022 at 10:15:38AM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> just like it would already do, no? I can try and see what happens, but
-> my feeling is that we won't have any change.
+> We call __save_depot_stack() unconditionally so the stack depot
+> must always be initialized or else we'll oops on platforms without
+> runtime pm support.
+> 
+> Presumably we've not seen this in CI due to stack_depot_init()
+> already getting called via drm_mm_init()+CONFIG_DRM_DEBUG_MM.
+> 
+> Cc: Vlastimil Babka <vbabka@suse.cz>
+> Cc: Dmitry Vyukov <dvyukov@google.com>
+> Cc: Marco Elver <elver@google.com> # stackdepot
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Fixes: 2dba5eb1c73b ("lib/stackdepot: allow optional init and stack_table allocation by kvmalloc()")
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Maybe not or maybe a small win. Depends how compiler puts / linker sees
-that in two cases. (Yeah, likely it should be no differences if all
-instances are already caught by linker)
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> ---
+>  drivers/gpu/drm/i915/intel_runtime_pm.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> index 53f1ccb78849..64c2708efc9e 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> @@ -68,9 +68,7 @@ static noinline depot_stack_handle_t __save_depot_stack(void)
+>  static void init_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
+>  {
+>  	spin_lock_init(&rpm->debug.lock);
+> -
+> -	if (rpm->available)
+> -		stack_depot_init();
+> +	stack_depot_init();
+>  }
+>  
+>  static noinline depot_stack_handle_t
+> -- 
+> 2.34.1
+> 
