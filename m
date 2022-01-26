@@ -2,47 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF0849D1AF
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 19:25:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 956B649D18D
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jan 2022 19:17:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2340E10E38C;
-	Wed, 26 Jan 2022 18:25:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCA3610E4C2;
+	Wed, 26 Jan 2022 18:17:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0937E10E38C
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 18:25:52 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1759410E4C2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 18:17:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643221553; x=1674757553;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=8sWcqwVcTKp7HY5qrmdWNGpjHJBKI89vK3C2T8AI2+Q=;
- b=Cb7qN1XpICMpcslEEvZh4fwAij44Am/TpvZlUuBuleVGx+sFmXd144tu
- z+7Ul+Iamn+jm0PZ4agc5mQlrPMRndii8MdGKbPKver7Y0k8NRQdG8n0C
- QELfrIGZyW3+r6vPw0LzVm/Q/+IPUmqcNd6oRzqH0JO4GG1ssvC1qdh9W
- l/PeIQUeCBexosi/NLxBLhIQR+WHvkZQwmCkkRQscIq3c/K8+DL7jODoL
- USQ84ocFXcGEE84p1gjQiuKUhtVLrCmy3ipMpk9QbQLrqo0GWZuvriuVd
- 8nSjRyoP6YgRzOtRjFsiwePghG3CR32DKuOUP6QlDbn1J9Rmx7TA/FBrl w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="246393422"
-X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="246393422"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 10:25:34 -0800
-X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="477562248"
-Received: from nbasu-mobl.ger.corp.intel.com (HELO localhost) ([10.252.16.197])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 10:25:33 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220125223625.4139326-1-anusha.srivatsa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220125223625.4139326-1-anusha.srivatsa@intel.com>
-Date: Wed, 26 Jan 2022 20:25:30 +0200
-Message-ID: <87bkzyxskl.fsf@intel.com>
+ t=1643221048; x=1674757048;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=5/XBCvmprpQABc0+sKrb83JZbjixsIq9rCllobsmn1Q=;
+ b=J3dppF5Yak/S8ebN5TckyJ6uSwIg2q5cg2/vrXI0Vsk1HGwNTza8r01X
+ ijyw6IW2OkLXveSpM5mpnTMjnXVQehGH/KhO+hoAGl8eI5u4fi37TGMPj
+ QKder1Oa4y7FcOhxH8agDQasZkw5T1SkXpDiJaP4zpEqAk9/UztfOhOFz
+ PQbgJ079EFZMJWDmi5Y/GZirTSqkaYobSEClGAemHxNJkL5/gpz2Ip1r9
+ Lvf626ZF/CWW+JvhY1udJDm6BC+0txoYrNVgCzQ6IbRdy0t3lRPM6lEdo
+ fwFjk8xV98jDwN0knKY729IjOcbPk9lQ099+TRheTIA6zDDDCisrqQr77 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="233990564"
+X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="233990564"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 10:17:27 -0800
+X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="628386980"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 10:17:27 -0800
+Date: Wed, 26 Jan 2022 10:32:51 -0800
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20220126183251.GA8244@labuser-Z97X-UD5H>
+References: <20220112195722.16639-1-manasi.d.navare@intel.com>
+ <87zgny5wfa.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [CI] drm/i915/rpl-s: Add stepping info
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87zgny5wfa.fsf@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/vrr: Reset VRR capable
+ property on a long hpd
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,66 +59,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 25 Jan 2022, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
-> Add stepping-substepping info in
-> accordance to BSpec changes.
-> Though it looks weird, the revision ID
-> for the newer stepping is indeed backwards
-> and is in accordance to the spec.
->
-> v2: Rearrange the platforms in logical order (Matt)
->
-> Bspec: 53655
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_step.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
-> index a4b16b9e2e55..9012e4b76a49 100644
-> --- a/drivers/gpu/drm/i915/intel_step.c
-> +++ b/drivers/gpu/drm/i915/intel_step.c
-> @@ -122,6 +122,11 @@ static const struct intel_step_info dg2_g11_revid_step_tbl[] = {
->  	[0x5] = { COMMON_GT_MEDIA_STEP(B1), .display_step = STEP_C0 },
->  };
->  
-> +static const struct intel_step_info adls_rpls_revids[] = {
-> +	[0x4] = { COMMON_GT_MEDIA_STEP(D0), .display_step = STEP_D0 },
-> +	[0xC] = { COMMON_GT_MEDIA_STEP(D0), .display_step = STEP_C0 },
-> +};
-> +
->  void intel_step_init(struct drm_i915_private *i915)
->  {
->  	const struct intel_step_info *revids = NULL;
-> @@ -129,6 +134,7 @@ void intel_step_init(struct drm_i915_private *i915)
->  	int revid = INTEL_REVID(i915);
->  	struct intel_step_info step = {};
->  
-> +
+On Fri, Jan 14, 2022 at 02:33:29PM +0200, Jani Nikula wrote:
+> On Wed, 12 Jan 2022, Manasi Navare <manasi.d.navare@intel.com> wrote:
+> > With some VRR panels, user can turn VRR ON/OFF on the fly from the panel settings.
+> > When VRR is turned OFF ,sends a long HPD to the driver clearing the Ignore MSA bit
+> > in the DPCD. Currently the driver parses that onevery HPD but fails to reset
+> > the corresponding VRR Capable Connector property.
+> > Hence the userspace still sees this as VRR Capable panel which is incorrect.
+> >
+> > Fix this by explicitly resetting the connector property.
+> >
+> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 11 ++++++++++-
+> >  1 file changed, 10 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index df2a7d86aef0..4f1418f02b76 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -4539,15 +4539,24 @@ static int intel_dp_get_modes(struct drm_connector *connector)
+> >  {
+> >  	struct intel_connector *intel_connector = to_intel_connector(connector);
+> >  	struct edid *edid;
+> > +	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+> 
+> Please call it "i915" for new stuff.
 
-Superfluous newline.
+Okay yes will change this to i915
+> 
+> >  	int num_modes = 0;
+> >  
+> >  	edid = intel_connector->detect_edid;
+> >  	if (edid) {
+> >  		num_modes = intel_connector_update_modes(connector, edid);
+> >  
+> > -		if (intel_vrr_is_capable(connector))
+> > +		if (intel_vrr_is_capable(connector)) {
+> > +			drm_dbg_kms(&dev_priv->drm, "VRR capable  = TRUE for [CONNECTOR:%d:%s]\n",
+> > +				    connector->base.id, connector->name);
+> >  			drm_connector_set_vrr_capable_property(connector,
+> >  							       true);
+> > +		} else {
+> > +			drm_dbg_kms(&dev_priv->drm, "VRR capable = false for [CONNECTOR:%d:%s]\n",
+> > +				    connector->base.id, connector->name);
+> > +			drm_connector_set_vrr_capable_property(connector,
+> > +							       false);
+> > +		}
+> 
+> Please don't repeat yourself! Also, prefer having [CONNECTOR:%d:%s] at
+> the beginning.
+> 
+> 		bool capable = intel_vrr_is_capable(connector);
+> 
+> 		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
+> 			    connector->base.id, connector->name, yesno(capable));
+>                 drm_connector_set_vrr_capable_property(connector, capable);
 
-BR,
-Jani.
+Okay agree, thanks for the suggestion, will change in the v2 and resend
 
->  	if (IS_DG2_G10(i915)) {
->  		revids = dg2_g10_revid_step_tbl;
->  		size = ARRAY_SIZE(dg2_g10_revid_step_tbl);
-> @@ -141,6 +147,9 @@ void intel_step_init(struct drm_i915_private *i915)
->  	} else if (IS_ALDERLAKE_P(i915)) {
->  		revids = adlp_revids;
->  		size = ARRAY_SIZE(adlp_revids);
-> +	} else if (IS_ADLS_RPLS(i915)) {
-> +		revids = adls_rpls_revids;
-> +		size = ARRAY_SIZE(adls_rpls_revids);
->  	} else if (IS_ALDERLAKE_S(i915)) {
->  		revids = adls_revids;
->  		size = ARRAY_SIZE(adls_revids);
+Regards
+Manasi
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> 
+> BR,
+> Jani.
+> 
+> 
+> >  	}
+> >  
+> >  	/* Also add fixed mode, which may or may not be present in EDID */
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
