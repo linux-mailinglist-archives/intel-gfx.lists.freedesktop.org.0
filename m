@@ -2,32 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11E3749E166
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 12:44:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F1C049E1AA
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 12:56:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D84410E1A9;
-	Thu, 27 Jan 2022 11:44:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A81E510E444;
+	Thu, 27 Jan 2022 11:56:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5BB3B10E485;
- Thu, 27 Jan 2022 11:44:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 598E8A66C9;
- Thu, 27 Jan 2022 11:44:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7062396869640687451=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBF2210E444;
+ Thu, 27 Jan 2022 11:56:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643284593; x=1674820593;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lAfO1xUvD/2JnooBgwHet/YfseDienykJcje6rfi16w=;
+ b=CUSCSvTTI147mmG/NTk8grqIVbgkR4y02cOkORHq/1Ge8E0t/tQpYijD
+ 9WQ1RD6V166qPZJ+VqtaRTPXxSAZofUq3HAFeL6zq8vZ+B7XpBecVRqJY
+ HoPpT4TSz6DpG7fMS4N3hz657qxWVqkEiBSh8WwArQ3P5VQEEkfg2dLlM
+ GLV8sybYuCuoBSSfY9s0250VQ4jdJ04s83WuFA3xPnOhtKgW3auQnzj8A
+ 3X99I3NxkYIl0pd43Gsj3TwfTTKUZ9duh2C6MMCVEEjb+zqmWlX4R9QvO
+ Rleu15x1xUSDqnAHa3BJglfAkcMK8c9JsQVKO/OCbI+9DtjicShHWqese Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="333182742"
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="333182742"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2022 03:56:33 -0800
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="533082560"
+Received: from cmathias-mobl1.ger.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.207])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2022 03:56:31 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Thu, 27 Jan 2022 12:56:22 +0100
+Message-Id: <20220127115622.302970-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Thu, 27 Jan 2022 11:44:33 -0000
-Message-ID: <164328387336.23658.17699946457028977305@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220127103520.348015-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-In-Reply-To: <20220127103520.348015-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/adl-n=3A_Add_PCH_Support_for_Alder_Lake_N?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix a race between vma / object
+ destruction and unbinding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,212 +57,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7062396869640687451==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The vma destruction code was using an unlocked advisory check for
+drm_mm_node_allocated() to avoid racing with eviction code unbinding
+the vma.
 
-== Series Details ==
+This is very fragile and prohibits the dereference of non-refcounted
+pointers of dying vmas after a call to __i915_vma_unbind(). It also
+prohibits the dereference of vma->obj of refcounted pointers of
+dying vmas after a call to __i915_vma_unbind(), since even if a
+refcount is held on the vma, that won't guarantee that its backing
+object doesn't get destroyed.
 
-Series: drm/i915/adl-n: Add PCH Support for Alder Lake N
-URL   : https://patchwork.freedesktop.org/series/99413/
-State : success
+So introduce an unbind under the vm mutex at object destroy time,
+removing all weak references of the vma and its object from the
+object vma list and from the vm bound list.
 
-== Summary ==
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-CI Bug Log - changes from CI_DRM_11149 -> Patchwork_22123
-====================================================
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index 1a9e1f940a7d..e03e362d320b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -280,6 +280,12 @@ void __i915_gem_object_pages_fini(struct drm_i915_gem_object *obj)
+ 			GEM_BUG_ON(vma->obj != obj);
+ 			spin_unlock(&obj->vma.lock);
+ 
++			/* Verify that the vma is unbound under the vm mutex. */
++			mutex_lock(&vma->vm->mutex);
++			atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
++			__i915_vma_unbind(vma);
++			mutex_unlock(&vma->vm->mutex);
++
+ 			__i915_vma_put(vma);
+ 
+ 			spin_lock(&obj->vma.lock);
+-- 
+2.34.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/index.html
-
-Participating hosts (45 -> 39)
-------------------------------
-
-  Missing    (6): fi-hsw-4200u fi-bsw-cyan fi-snb-2520m fi-ctg-p8600 fi-cfl-8109u fi-bdw-samus 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22123 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-gfx0:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +18 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [PASS][2] -> [DMESG-FAIL][3] ([i915#4494] / [i915#4957])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-    - fi-snb-2600:        [PASS][4] -> [INCOMPLETE][5] ([i915#3921])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [DMESG-FAIL][6] ([i915#4957]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-skl-6600u:       [FAIL][8] ([i915#4547]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][10] ([i915#4785]) -> [INCOMPLETE][11] ([i915#3303])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11149 -> Patchwork_22123
-
-  CI-20190529: 20190529
-  CI_DRM_11149: 626b06cccf398c25e95dc0534ad018193005ad1b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6336: ae2eb9e18bc58a4c45f28cfd80962938198dec3c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22123: a8a597803de5650612f61da756491a1a15d9718b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a8a597803de5 drm/i915/adl-n: Add PCH Support for Alder Lake N
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/index.html
-
---===============7062396869640687451==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/adl-n: Add PCH Support for Alder Lake N</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99413/">https://patchwork.freedesktop.org/series/99413/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11149 -&gt; Patchwork_22123</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/index.html</p>
-<h2>Participating hosts (45 -&gt; 39)</h2>
-<p>Missing    (6): fi-hsw-4200u fi-bsw-cyan fi-snb-2520m fi-ctg-p8600 fi-cfl-8109u fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22123 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-gfx0:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +18 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
-</li>
-<li>
-<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22123/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11149 -&gt; Patchwork_22123</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11149: 626b06cccf398c25e95dc0534ad018193005ad1b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6336: ae2eb9e18bc58a4c45f28cfd80962938198dec3c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22123: a8a597803de5650612f61da756491a1a15d9718b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>a8a597803de5 drm/i915/adl-n: Add PCH Support for Alder Lake N</p>
-
-</body>
-</html>
-
---===============7062396869640687451==--
