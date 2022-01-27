@@ -2,33 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A88D49DE95
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 10:57:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8378749DE9C
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 11:00:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 050C210EFC2;
-	Thu, 27 Jan 2022 09:57:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6538C10EF62;
+	Thu, 27 Jan 2022 10:00:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E094E10EFBB;
- Thu, 27 Jan 2022 09:57:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DB59DA0096;
- Thu, 27 Jan 2022 09:57:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7804480447552454392=="
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
+ [IPv6:2a00:1450:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA09310EF62
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jan 2022 10:00:19 +0000 (UTC)
+Received: by mail-wr1-x432.google.com with SMTP id l25so3639906wrb.13
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jan 2022 02:00:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to; bh=dj+Wxdz6jJyNZo3oThjdxQEE66JUp4dziKqN/pwvYhw=;
+ b=YpQltIzwqQUIZLwJV9b7TpxpNtLjJFOUUFaDuIY26pQRByLg/xUO0XcNO1hXuzgrtv
+ aXl2Ea2ymMN7sHKA1BKyX7TuvIs+MfmbCx1sApsh3bpKknTlQ9SWaixDSnqHtxqdTSri
+ E4CRr7QEGLltTYA32aqiK2eD9wBeb86J4/dhY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :content-transfer-encoding:in-reply-to;
+ bh=dj+Wxdz6jJyNZo3oThjdxQEE66JUp4dziKqN/pwvYhw=;
+ b=iP+ZoSs33IOHvxFbLEaDip1LkCcf0nVAgovTI1NJr59BV080PDPQpxzCJuuDFPhNHf
+ CPjeTZNaKJL4mNAO3b9vKnMYhvPCLCd1wIkyhDwEnI3907CfTBFgzk5kP9BuJOQKc52x
+ FSyXM77r6ctdbglZWOLS1IBjokIZgGWmjxxMlB4MNp2iCTgqZGifCbXE0mJ87YfL8/nS
+ e70/wu1ZpTtn0DZ1rzpgMXeYBHfwRiIrQ0cD93YY91DT1ZA2/md0LyrJiX20xIObsV9J
+ 8Vy/kFPzaYLF8fZ3S1RYICIFSqjdw2Wo/jLhqw9gCo49cBPj/RmpbkhJWfz7b2B9o4Rf
+ shfQ==
+X-Gm-Message-State: AOAM533MIrRsaPahrObwN2dSNP0SwwN2pNkXjyrU8ZTWi2AfbuOR9lBe
+ LCCYPA7n4O8XYYRzF+wYr26kDA==
+X-Google-Smtp-Source: ABdhPJyZcMRUfkbUyRjJW3Arq9MAqFzUEFnjmUGAvJqKbxi8qGWFKt2XXxgNxptn90NiYH0fbc4aFA==
+X-Received: by 2002:a5d:55c3:: with SMTP id i3mr2307961wrw.537.1643277618288; 
+ Thu, 27 Jan 2022 02:00:18 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id i2sm1843836wmq.23.2022.01.27.02.00.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 27 Jan 2022 02:00:17 -0800 (PST)
+Date: Thu, 27 Jan 2022 11:00:14 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <YfJtLkdkh4yde20f@phenom.ffwll.local>
+Mail-Followup-To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ linaro-mm-sig@lists.linaro.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org
+References: <20220126203702.1784589-1-lucas.demarchi@intel.com>
+ <20220126203702.1784589-3-lucas.demarchi@intel.com>
+ <f0dbdcc0-13b5-c484-0bf3-a1f8c3e48954@amd.com>
+ <20220127075728.ygwgorhnrwaocdqv@ldmartin-desk2>
+ <3066c6a7-fc73-d34d-d209-a3ff6818dfb6@amd.com>
+ <YfJedaoeJjE3grum@phenom.ffwll.local>
+ <20220127093332.wnkd2qy4tvwg5i5l@ldmartin-desk2>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dan Carpenter" <dan.carpenter@oracle.com>
-Date: Thu, 27 Jan 2022 09:57:28 -0000
-Message-ID: <164327744885.23658.4319732580435583365@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220127084915.GC25644@kili>
-In-Reply-To: <20220127084915.GC25644@kili>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_fix_some_error_codes_in_=5F=5Fcancel=5Freset?=
- =?utf-8?b?KCk=?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220127093332.wnkd2qy4tvwg5i5l@ldmartin-desk2>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
+Subject: Re: [Intel-gfx] [PATCH 02/19] dma-buf-map: Add helper to initialize
+ second map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,265 +79,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7804480447552454392==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Jan 27, 2022 at 01:33:32AM -0800, Lucas De Marchi wrote:
+> On Thu, Jan 27, 2022 at 09:57:25AM +0100, Daniel Vetter wrote:
+> > On Thu, Jan 27, 2022 at 09:02:54AM +0100, Christian König wrote:
+> > > Am 27.01.22 um 08:57 schrieb Lucas De Marchi:
+> > > > On Thu, Jan 27, 2022 at 08:27:11AM +0100, Christian König wrote:
+> > > > > Am 26.01.22 um 21:36 schrieb Lucas De Marchi:
+> > > > > > When dma_buf_map struct is passed around, it's useful to be able to
+> > > > > > initialize a second map that takes care of reading/writing to an offset
+> > > > > > of the original map.
+> > > > > >
+> > > > > > Add a helper that copies the struct and add the offset to the proper
+> > > > > > address.
+> > > > >
+> > > > > Well what you propose here can lead to all kind of problems and is
+> > > > > rather bad design as far as I can see.
+> > > > >
+> > > > > The struct dma_buf_map is only to be filled in by the exporter and
+> > > > > should not be modified in this way by the importer.
+> > > >
+> > > > humn... not sure if I was  clear. There is no importer and exporter here.
+> > > 
+> > > Yeah, and exactly that's what I'm pointing out as problem here.
+> > > 
+> > > You are using the inter driver framework for something internal to the
+> > > driver. That is an absolutely clear NAK!
+> > > 
+> > > We could discuss that, but you guys are just sending around patches to do
+> > > this without any consensus that this is a good idea.
+> > 
+> > Uh I suggested this, also we're already using dma_buf_map all over the
+> > place as a convenient abstraction. So imo that's all fine, it should allow
+> > drivers to simplify some code where on igpu it's in normal kernel memory
+> > and on dgpu it's behind some pci bar.
+> > 
+> > Maybe we should have a better name for that struct (and maybe also a
+> > better place), but way back when we discussed that bikeshed I didn't come
+> > up with anything better really.
+> 
+> I suggest iosys_map since it abstracts access to IO and system memory.
+> 
+> > 
+> > > > There is a role delegation on filling out and reading a buffer when
+> > > > that buffer represents a struct layout.
+> > > >
+> > > > struct bla {
+> > > >     int a;
+> > > >     int b;
+> > > >     int c;
+> > > >     struct foo foo;
+> > > >     struct bar bar;
+> > > >     int d;
+> > > > }
+> > > >
+> > > >
+> > > > This implementation allows you to have:
+> > > >
+> > > >     fill_foo(struct dma_buf_map *bla_map) { ... }
+> > > >     fill_bar(struct dma_buf_map *bla_map) { ... }
+> > > >
+> > > > and the first thing these do is to make sure the map it's pointing to
+> > > > is relative to the struct it's supposed to write/read. Otherwise you're
+> > > > suggesting everything to be relative to struct bla, or to do the same
+> > > > I'm doing it, but IMO more prone to error:
+> > > >
+> > > >     struct dma_buf_map map = *bla_map;
+> > > >     dma_buf_map_incr(map, offsetof(...));
+> > 
+> > Wrt the issue at hand I think the above is perfectly fine code. The idea
+> > with dma_buf_map is really that it's just a special pointer, so writing
+> > the code exactly as pointer code feels best. Unfortunately you cannot make
+> > them typesafe (because of C), so the code sometimes looks a bit ugly.
+> > Otherwise we could do stuff like container_of and all that with
+> > typechecking in the macros.
+> 
+> I had exactly this code above, but after writting quite a few patches
+> using it, particularly with functions that have to write to 2 maps (see
+> patch 6 for example), it felt much better to have something to
+> initialize correctly from the start
+> 
+> 	struct dma_buf_map other_map = *bla_map;
+> 	/* poor Lucas forgetting dma_buf_map_incr(map, offsetof(...)); */
+> 
+> is error prone and hard to debug since you will be reading/writting
+> from/to another location rather than exploding
+> 
+> While with the construct below
+> 
+> 	other_map;
+> 	...
+> 	other_map = INITIALIZER()
+> 
+> I can rely on the compiler complaining about uninitialized var. And
+> in most of the cases I can just have this single line in the beggining of the
+> function when the offset is constant:
+> 
+> 	struct dma_buf_map other_map = INITIALIZER(bla_map, offsetof(..));
 
-== Series Details ==
+Hm yeah that's a good point that this allows us to rely on the compiler to
+check for uninitialized variables.
 
-Series: drm/i915/selftests: fix some error codes in __cancel_reset()
-URL   : https://patchwork.freedesktop.org/series/99407/
-State : failure
+Maybe include the above (with editing, but keeping the examples) in the
+kerneldoc to explain why/how to use this? With that the concept at least
+has my
 
-== Summary ==
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-CI Bug Log - changes from CI_DRM_11149 -> Patchwork_22120
-====================================================
+I'll leave it up to you & Christian to find a prettier color choice for
+the naming bikeshed.
+-Daniel
 
-Summary
--------
+> 
+> Lucas De Marchi
+> 
+> > -Daniel
+> > 
+> > > > IMO this construct is worse because at a point in time in the function
+> > > > the map was pointing to the wrong thing the function was supposed to
+> > > > read/write.
+> > > >
+> > > > It's also useful when the function has double duty, updating a global
+> > > > part of the struct and a table inside it (see example in patch 6)
+> > > >
+> > > > thanks
+> > > > Lucas De Marchi
+> > > 
+> > 
+> > -- 
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_22120 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22120, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/index.html
-
-Participating hosts (45 -> 39)
-------------------------------
-
-  Missing    (6): fi-kbl-soraka fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22120:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - fi-snb-2600:        [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-snb-2600/igt@gem_exec_suspend@basic-s0@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-snb-2600/igt@gem_exec_suspend@basic-s0@smem.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22120 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@i915_selftest@live:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][4] ([i915#4547])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-skl-6600u/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [PASS][5] -> [DMESG-FAIL][6] ([i915#4494] / [i915#4957])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][7] ([fdo#109271])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-skl-6600u/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][8] ([i915#4785]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-skl-6600u:       [FAIL][10] ([i915#4547]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [DMESG-FAIL][12] ([i915#4957]) -> [DMESG-FAIL][13] ([i915#4494] / [i915#4957])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       [FAIL][14] ([i915#4312]) -> [FAIL][15] ([i915#1436] / [i915#4312])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-skl-6600u/igt@runner@aborted.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-skl-6600u/igt@runner@aborted.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11149 -> Patchwork_22120
-
-  CI-20190529: 20190529
-  CI_DRM_11149: 626b06cccf398c25e95dc0534ad018193005ad1b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6336: ae2eb9e18bc58a4c45f28cfd80962938198dec3c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22120: c9d418d80bc202415534bf3ff6da904dc6ec109d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c9d418d80bc2 drm/i915/selftests: fix some error codes in __cancel_reset()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/index.html
-
---===============7804480447552454392==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftests: fix some error codes in __cancel_reset()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99407/">https://patchwork.freedesktop.org/series/99407/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11149 -&gt; Patchwork_22120</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22120 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22120, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/index.html</p>
-<h2>Participating hosts (45 -&gt; 39)</h2>
-<p>Missing    (6): fi-kbl-soraka fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22120:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s0@smem:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-snb-2600/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-snb-2600/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22120 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-skl-6600u/igt@i915_selftest@live.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-skl-6600u/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11149/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22120/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11149 -&gt; Patchwork_22120</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11149: 626b06cccf398c25e95dc0534ad018193005ad1b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6336: ae2eb9e18bc58a4c45f28cfd80962938198dec3c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22120: c9d418d80bc202415534bf3ff6da904dc6ec109d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>c9d418d80bc2 drm/i915/selftests: fix some error codes in __cancel_reset()</p>
-
-</body>
-</html>
-
---===============7804480447552454392==--
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
