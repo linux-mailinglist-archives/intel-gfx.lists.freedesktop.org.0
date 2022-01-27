@@ -1,34 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8486549E6AB
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 16:52:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E0E749E6D0
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 16:59:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D119A10EEC8;
-	Thu, 27 Jan 2022 15:52:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D53A910F176;
+	Thu, 27 Jan 2022 15:59:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CB27910EEE4;
- Thu, 27 Jan 2022 15:52:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C6967A73C9;
- Thu, 27 Jan 2022 15:52:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5811210F175;
+ Thu, 27 Jan 2022 15:59:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643299154; x=1674835154;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=H+/eoThfG+75X7A+Op4iugtDZzzkJmdbY8DLaA/CLPA=;
+ b=hPMR2AF4M71ztgJOodVJulUINCv6SqoXg6pARMXe9mGMEVVxMNb3LIOv
+ Ojg7fNIQvEIoOeqbyrsLklXG1uYGkDBu79T4wf8kqQWeAS/OTY+xreS3E
+ Kj2RPjQLPg4cnansBsIbGapss4rYppKaC4TJoNuU2RLVZDigJS1gd2M7d
+ WNId+z6XvNLeT6TZqF/Nsx0CWChjV+YnoYXy1RZ3Z8Q+0XyOqM3uq4JFf
+ Bd7MfiUcIeOXBxLxUT+k2HzotG8GW/qSf0iFUEUWg5EkEgkby3j7amFPK
+ 87urEUyi4eOKj182fcFYoqDc+pJzSXTZp2LvGpMwlmJedodszemFhWkCH g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="226867873"
+X-IronPort-AV: E=Sophos;i="5.88,321,1635231600"; d="scan'208";a="226867873"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2022 07:59:13 -0800
+X-IronPort-AV: E=Sophos;i="5.88,321,1635231600"; d="scan'208";a="480345386"
+Received: from anithaha-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.224.126])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2022 07:59:13 -0800
+Date: Thu, 27 Jan 2022 07:59:13 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20220127155913.vt7a74zmsglghzom@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220126203702.1784589-1-lucas.demarchi@intel.com>
+ <20220126203702.1784589-3-lucas.demarchi@intel.com>
+ <b7a3fe1d-3b85-cb7e-19cf-1611ff4f3c9e@suse.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin" <arunpravin.paneerselvam@amd.com>
-Date: Thu, 27 Jan 2022 15:52:03 -0000
-Message-ID: <164329872378.23659.8774231659790095027@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220127141107.173692-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20220127141107.173692-1-Arunpravin.PaneerSelvam@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv11=2C1/5=5D_drm=3A_improve_drm=5Fb?=
- =?utf-8?q?uddy=5Falloc_function?=
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b7a3fe1d-3b85-cb7e-19cf-1611ff4f3c9e@suse.de>
+Subject: Re: [Intel-gfx] [PATCH 02/19] dma-buf-map: Add helper to initialize
+ second map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,51 +61,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jan 27, 2022 at 03:33:12PM +0100, Thomas Zimmermann wrote:
+>
+>
+>Am 26.01.22 um 21:36 schrieb Lucas De Marchi:
+>>When dma_buf_map struct is passed around, it's useful to be able to
+>>initialize a second map that takes care of reading/writing to an offset
+>>of the original map.
+>>
+>>Add a helper that copies the struct and add the offset to the proper
+>>address.
+>>
+>>Cc: Sumit Semwal <sumit.semwal@linaro.org>
+>>Cc: Christian König <christian.koenig@amd.com>
+>>Cc: linux-media@vger.kernel.org
+>>Cc: dri-devel@lists.freedesktop.org
+>>Cc: linaro-mm-sig@lists.linaro.org
+>>Cc: linux-kernel@vger.kernel.org
+>>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>---
+>>  include/linux/dma-buf-map.h | 29 +++++++++++++++++++++++++++++
+>>  1 file changed, 29 insertions(+)
+>>
+>>diff --git a/include/linux/dma-buf-map.h b/include/linux/dma-buf-map.h
+>>index 65e927d9ce33..3514a859f628 100644
+>>--- a/include/linux/dma-buf-map.h
+>>+++ b/include/linux/dma-buf-map.h
+>>@@ -131,6 +131,35 @@ struct dma_buf_map {
+>>  		.is_iomem = false, \
+>>  	}
+>>+/**
+>>+ * DMA_BUF_MAP_INIT_OFFSET - Initializes struct dma_buf_map from another dma_buf_map
+>>+ * @map_:	The dma-buf mapping structure to copy from
+>>+ * @offset:	Offset to add to the other mapping
+>>+ *
+>>+ * Initializes a new dma_buf_struct based on another. This is the equivalent of doing:
+>>+ *
+>>+ * .. code-block: c
+>>+ *
+>>+ *	dma_buf_map map = other_map;
+>>+ *	dma_buf_map_incr(&map, &offset);
+>>+ *
+>>+ * Example usage:
+>>+ *
+>>+ * .. code-block: c
+>>+ *
+>>+ *	void foo(struct device *dev, struct dma_buf_map *base_map)
+>>+ *	{
+>>+ *		...
+>>+ *		struct dma_buf_map = DMA_BUF_MAP_INIT_OFFSET(base_map, FIELD_OFFSET);
+>>+ *		...
+>>+ *	}
+>>+ */
+>>+#define DMA_BUF_MAP_INIT_OFFSET(map_, offset_)	(struct dma_buf_map)	\
+>>+	{								\
+>>+		.vaddr = (map_)->vaddr + (offset_),			\
+>>+		.is_iomem = (map_)->is_iomem,				\
+>>+	}
+>>+
+>
+>It's illegal to access .vaddr  with raw pointer. Always use a 
+>dma_buf_memcpy_() interface. So why would you need this macro when you 
+>have dma_buf_memcpy_*() with an offset parameter?
 
-Series: series starting with [v11,1/5] drm: improve drm_buddy_alloc function
-URL   : https://patchwork.freedesktop.org/series/99430/
-State : warning
+I did a better job with an example in 20220127093332.wnkd2qy4tvwg5i5l@ldmartin-desk2
 
-== Summary ==
+While doing this series I had code like this when using the API in a function to
+parse/update part of the struct mapped:
 
-$ dim checkpatch origin/drm-tip
-00470383ca08 drm: improve drm_buddy_alloc function
--:386: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#386: FILE: drivers/gpu/drm/drm_buddy.c:585:
-+		BUG_ON(order > mm->max_order);
+	int bla_parse_foo(struct dma_buf_map *bla_map)
+	{
+		struct dma_buf_map foo_map = *bla_map;
+		...
 
--:387: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#387: FILE: drivers/gpu/drm/drm_buddy.c:586:
-+		BUG_ON(order < min_order);
+		dma_buf_map_incr(&foo_map, offsetof(struct bla, foo));
 
-total: 0 errors, 2 warnings, 0 checks, 506 lines checked
-50185f5f7e57 drm: implement top-down allocation method
-957142d57613 drm: implement a method to free unused pages
-f26779496cc3 drm/amdgpu: move vram inline functions into a header
--:12: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#12: 
-new file mode 100644
+		...
+	}
 
-total: 0 errors, 1 warnings, 0 checks, 51 lines checked
-a629aca723cd drm/amdgpu: add drm buddy support to amdgpu
--:60: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#60: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:41:
-+	uint32_t		mem_type;
+Pasting the rest of the reply here:
 
--:417: CHECK:BRACES: Unbalanced braces around else statement
-#417: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:387:
-+	else {
+I had exactly this code above, but after writting quite a few patches
+using it, particularly with functions that have to write to 2 maps (see
+patch 6 for example), it felt much better to have something to
+initialize correctly from the start
 
--:450: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#450: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:416:
-+	BUG_ON(min_page_size < mm->chunk_size);
+         struct dma_buf_map other_map = *bla_map;
+         /* poor Lucas forgetting dma_buf_map_incr(map, offsetof(...)); */
 
-total: 0 errors, 1 warnings, 2 checks, 594 lines checked
+is error prone and hard to debug since you will be reading/writting
+from/to another location rather than exploding
+
+While with the construct below
+
+         other_map;
+         ...
+         other_map = INITIALIZER()
+
+I can rely on the compiler complaining about uninitialized var. And
+in most of the cases I can just have this single line in the beggining of the
+function when the offset is constant:
+
+         struct dma_buf_map other_map = INITIALIZER(bla_map, offsetof(..));
+
+
+This is useful when you have several small functions in charge of
+updating/reading inner struct members.
+
+>
+>I've also been very careful to distinguish between .vaddr and 
+>.vaddr_iomem, even in places where I wouldn't have to. This macro 
+>breaks the assumption.
+
+That's one reason I think if we have this macro, it should be in the
+dma_buf_map.h header (or whatever we rename these APIs to). It's the
+only place where we can safely add code that relies on the implementation
+of the "private" fields in struct dma_buf_map.
+
+Lucas De Marchi
+
+>
+>Best regards
+>Thomas
+>
+>>  /**
+>>   * dma_buf_map_set_vaddr - Sets a dma-buf mapping structure to an address in system memory
+>>   * @map:	The dma-buf mapping structure
+>
+>-- 
+>Thomas Zimmermann
+>Graphics Driver Developer
+>SUSE Software Solutions Germany GmbH
+>Maxfeldstr. 5, 90409 Nürnberg, Germany
+>(HRB 36809, AG Nürnberg)
+>Geschäftsführer: Ivo Totev
+
 
 
