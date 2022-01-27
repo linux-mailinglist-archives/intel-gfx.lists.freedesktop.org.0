@@ -1,61 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A277649EA36
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 19:17:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3537C49EAE1
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 20:09:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58EA810E29C;
-	Thu, 27 Jan 2022 18:17:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C41A710E195;
+	Thu, 27 Jan 2022 19:09:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89CDD10E225;
- Thu, 27 Jan 2022 18:17:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1643307431; x=1674843431;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=LH/dLY3/xP57RI7hIyFyatowVgY9IFKrdHM0BLdG+BU=;
- b=ZdqGA8HPqUKYBKVgar+iVTNg3pxXAz5gvEgS1fxGphd2sl0wWcIg9WYc
- NYdaPwjg5QW9yGJx4sYbyRsyg2tZb1+x/y3NX+n7RX2jeVEvuqhx2STeU
- pcs3ii8ep0bj+RN2LQo0+VcKvZiENGKT3zYaMTV1VmTL7azrMpwh11UZR w=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
- by alexa-out.qualcomm.com with ESMTP; 27 Jan 2022 10:17:10 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2022 10:17:09 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Thu, 27 Jan 2022 10:17:09 -0800
-Received: from [10.111.163.249] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Thu, 27 Jan
- 2022 10:17:07 -0800
-Message-ID: <da26d67f-3212-2434-1b23-c5f9209dce41@quicinc.com>
-Date: Thu, 27 Jan 2022 10:17:05 -0800
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A9D410E195;
+ Thu, 27 Jan 2022 19:09:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643310553; x=1674846553;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=om3QU/Nx/QWSkShOFUdOrzDE6Wl2EDZ0YOIUwwJGKNY=;
+ b=nJdAnemntuiD82opWaZCh3/KzOOwmccCJY4pfDSmRcBOzvWb5+1z2GbP
+ RZe8bnK3R3MHHXTxd9F/vaXNUTRTC/3i3N9VbiLk5bhZMK7nGwSCfk6ZW
+ 7DE+g1WECm9aOD1iWVEvI5yhup07LAVOo/1fLpT5a8Dn4jafFV1Aiw00a
+ G5GNOPtrimkInjJinleftegIleuNQEfHZg+jeI5WBlPmJGb6nd74jNNAn
+ djN7//RDRG9v5ZmB8DelLsRkGAYL56Be8meCQfSmenZhHsHRUvf674J+V
+ Efi5Sh9F6T9WbLEVkNEp0YwNZLlXZvEYPmD7uEGF4sA50cX6LXNj5MGMB A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="247163525"
+X-IronPort-AV: E=Sophos;i="5.88,321,1635231600"; d="scan'208";a="247163525"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2022 11:09:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,321,1635231600"; d="scan'208";a="767616133"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+ by fmsmga006.fm.intel.com with ESMTP; 27 Jan 2022 11:09:10 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1nDA8r-000MwU-B6; Thu, 27 Jan 2022 19:09:09 +0000
+Date: Fri, 28 Jan 2022 03:08:17 +0800
+From: kernel test robot <lkp@intel.com>
+To: Zhi Wang <zhi.wang.linux@gmail.com>, hch@lst.de, jgg@nvidia.com,
+ jani.nikula@linux.intel.com
+Message-ID: <202201280218.aDxaMjx6-lkp@intel.com>
+References: <20220127120508.11330-1-zhi.a.wang@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20220111101801.28310-1-suraj.kandpal@intel.com>
- <c797223b-47cb-3fcd-0a1a-b12fd2c2c0da@quicinc.com>
- <CY4PR11MB1352DAB3BD614093B5154C10E3219@CY4PR11MB1352.namprd11.prod.outlook.com>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <CY4PR11MB1352DAB3BD614093B5154C10E3219@CY4PR11MB1352.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm: add writeback pointers to
- drm_connector
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220127120508.11330-1-zhi.a.wang@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/3] i915/gvt: Introduce the mmio_table.c to
+ support VFIO new mdev API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,115 +61,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "Kandpal@freedesktop.org" <Kandpal@freedesktop.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Dmitry
- Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: kbuild-all@lists.01.org, Zhi Wang <zhi.wang.linux@gmail.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Terrence Xu <terrence.xu@intel.com>,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Suraj
+Hi Zhi,
 
-Thanks for the response.
+I love your patch! Perhaps something to improve:
 
-I was not too worried about the intel driver as I am sure you must have 
-validated this change with that :)
+[auto build test WARNING on drm-tip/drm-tip]
+[also build test WARNING on next-20220127]
+[cannot apply to drm-intel/for-linux-next v5.17-rc1]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-My question was more for the other vendor writeback drivers.
+url:    https://github.com/0day-ci/linux/commits/Zhi-Wang/i915-gvt-Introduce-the-mmio_table-c-to-support-VFIO-new-mdev-API/20220127-200727
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+config: x86_64-rhel-8.3 (https://download.01.org/0day-ci/archive/20220128/202201280218.aDxaMjx6-lkp@intel.com/config)
+compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/0day-ci/linux/commit/533f92651a7a56481a053f1e04dc5a5ec024ffb9
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Zhi-Wang/i915-gvt-Introduce-the-mmio_table-c-to-support-VFIO-new-mdev-API/20220127-200727
+        git checkout 533f92651a7a56481a053f1e04dc5a5ec024ffb9
+        # save the config file to linux build tree
+        mkdir build_dir
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/
 
-Thanks for looking into the others and providing the snippets.
-After looking at those, yes I also think it should work.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-So, if others do not have any concern with this change,
+All warnings (new ones prefixed by >>):
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+>> drivers/gpu/drm/i915/gvt/handlers.c:45:6: warning: no previous prototype for 'intel_gvt_match_device' [-Wmissing-prototypes]
+      45 | bool intel_gvt_match_device(struct intel_gvt *gvt,
+         |      ^~~~~~~~~~~~~~~~~~~~~~
 
-On 1/27/2022 1:33 AM, Kandpal, Suraj wrote:
->>
->> + laurent on this
->>
->> Hi Suraj
->> Jani pointed me to this thread as i had posted something similar here :
->> https://patchwork.freedesktop.org/patch/470296/ but since this thread was
->> posted earlier, we can discuss further here.
->>
->> Overall, its similar to what I had posted in the RFC and your commit text also
->> covers my concerns too.
->>
->> One question I have about your change is since you have changed
->> wb_connector::encoder to be a pointer, i saw the other changes in the series
->> but they do not allocate an encoder. Would this not affect the other drivers
->> which are assuming that the encoder in wb_connector is struct drm_encoder
->> encoder and not struct drm_encoder* encoder.
->>
->> Your changes fix the compilation issue but wouldnt this crash as encoder
->> wasnt allocated for other drivers.
->>
-> 
-> Hi Abhinav,
-> That shouldn't be an issue as normally drivers tend to have their own output
-> structure which has drm_connector and drm_encoder embedded in it depending
-> on the level of binding they have decided to give the connector and encoder in
-> their respective output and the addresses of these are passed to the
-> drm_connector* and drm_encoder* in drm_writeback_connector structure
-> which then gets initialized in drm_writeback_connector_init().
-> 
-> In our i915 code we have intel_connector structure with drm_connector base
-> field and intel_wd with a intel_encoder base which in turn has drm_encoder
-> field and both intel_connector and intel_wd are initialized not requiring explicit
-> alloc and dealloc for drm_encoder
-> intel_wd = kzalloc(sizeof(*intel_wd), GFP_KERNEL);
-> 
-> intel_connector = intel_connector_alloc();
-> wb_conn = &intel_connector->wb_conn;
-> wb_conn->base = &intel_connector->base;
-> wb_conn->encoder = &intel_wd->base.base;
-> 
-> Similary for komeda driver has
-> struct komeda_wb_connector {
->          struct drm_connector conn;
->          /** @base: &drm_writeback_connector */
->          struct drm_writeback_connector base;
-> 
->          /** @wb_layer: represents associated writeback pipeline of komeda */
->          struct komeda_layer *wb_layer;
-> };
-> 
-> static int komeda_wb_connector_add(struct komeda_kms_dev *kms,
->                                     struct komeda_crtc *kcrtc)
-> {
-> 	struct komeda_wb_connector *kwb_conn;
-> 	struct drm_writeback_connector *wb_conn;
-> 	
-> 	kwb_conn = kzalloc(sizeof(*kwb_conn), GFP_KERNEL);
-> 
-> 	wb_conn = &kwb_conn->base;
->          	wb_conn->base = &kwb_conn->conn;
->        
-> and they do not depend on the encoder binding so changes will work for them
-> Also in vkms driver we have the
-> struct vkms_output {
->          struct drm_crtc crtc;
->          struct drm_encoder encoder;
->          struct drm_connector connector;
->          struct drm_writeback_connector wb_connector;
->          struct hrtimer vblank_hrtimer;
->          ktime_t period_ns;
->          struct drm_pending_vblank_event *event;
->          /* ordered wq for composer_work */
->          struct workqueue_struct *composer_workq;
->          /* protects concurrent access to composer */
->          spinlock_t lock;
-> 
->          /* protected by @lock */
->          bool composer_enabled;
->          struct vkms_crtc_state *composer_state;
-> 
->          spinlock_t composer_lock;
-> };
-> 
-> Which gets allocated covering for the drm_encoder alloc and dealloc
-> 
-> Regards,
-> Suraj Kandpal
-> 
+
+vim +/intel_gvt_match_device +45 drivers/gpu/drm/i915/gvt/handlers.c
+
+12d14cc43b3470 Zhi Wang 2016-08-30  44  
+12d14cc43b3470 Zhi Wang 2016-08-30 @45  bool intel_gvt_match_device(struct intel_gvt *gvt,
+12d14cc43b3470 Zhi Wang 2016-08-30  46  		unsigned long device)
+12d14cc43b3470 Zhi Wang 2016-08-30  47  {
+533f92651a7a56 Zhi Wang 2022-01-27  48  	return intel_gvt_get_device_type(gvt->gt->i915) & device;
+12d14cc43b3470 Zhi Wang 2016-08-30  49  }
+12d14cc43b3470 Zhi Wang 2016-08-30  50  
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
