@@ -1,51 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9E7149DE21
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 10:34:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF1BB49DE0B
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 10:33:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAC4710EDA8;
-	Thu, 27 Jan 2022 09:34:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEC0810EFC5;
+	Thu, 27 Jan 2022 09:33:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 813F310EFC7
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jan 2022 09:34:00 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3918210EF7B;
+ Thu, 27 Jan 2022 09:33:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643276040; x=1674812040;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=ZZ+QrcEZqgJ3hzJBS98VnWsOxZFoKHo4SQXeeJnLAQs=;
- b=R6KjGRROPvyCkdXkFAU4hJDqI6DLOnWWAKzhwwARVxZ3xhI3m0UReKlw
- ZcmrqlG585mkVSqAgsKn5tE/vzGTPKezsAYAqz+s3lXLupBCPXOZsm+s3
- u+TkzXDSbPWKwlsT88CdXGSJ9YEQwetKzKwac84hRqF8JTHVsJBVQiXwW
- WUh3P1Mjwl+s4Ce8SqYZoAY2H5LlzF9ZVTvHdptqLunR39SyFqqAeZHBs
- OPGQ5xVhkjlzdujN6K70VW+axRjpCRFoGPH0N+DgT/eYu9m9041yMhMrv
- 3y8t3t36SFgDw8Z6if31y1wVh86K8kHc0BSb5Ze4StYvyb6QmAO6S/sC4 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="230374910"
-X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="230374910"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2022 01:33:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="495669287"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by orsmga002.jf.intel.com with SMTP; 27 Jan 2022 01:33:57 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 27 Jan 2022 11:33:56 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Jan 2022 11:33:03 +0200
-Message-Id: <20220127093303.17309-15-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220127093303.17309-1-ville.syrjala@linux.intel.com>
-References: <20220127093303.17309-1-ville.syrjala@linux.intel.com>
+ t=1643276014; x=1674812014;
+ h=date:from:to:subject:message-id:references:mime-version:
+ content-transfer-encoding:in-reply-to;
+ bh=70bvD9FchQOD0i4lLqg413fUh6fr+M8PLj6aT5wcP/A=;
+ b=Yep//h8gQivjJcqN+rzl0kTulNkCNgpCIwP03DBKLLBCt4UFqArvlAEh
+ TScKWxPNPqq6edUYefSykcZWt7o5cfXOACl0aLyBeN1U3f0sH3lGFWE4Z
+ pf5ZfR8caLdFWCfUHzn0pcQE86ZOIVc7461YMH2uCaDwyx9df9G/FwG0W
+ Ctkahkf4BfxsJ2BC2VyJuC6eMQMtQ7dFwRZ30ySy66TjcE47W/VmWMZ12
+ Obq/OAVu/SXrtCZq7ybqpnPsck8x/HVuiyo2GK3rvoQ+guTvUHSuGlsHa
+ sEHithKnj5SzSNRju28bCy9Xh421RRCmAXjtsatJRdEE3uy+HvebXw1vc w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="244400077"
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="244400077"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2022 01:33:33 -0800
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="480224705"
+Received: from anithaha-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.224.126])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2022 01:33:32 -0800
+Date: Thu, 27 Jan 2022 01:33:32 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ linaro-mm-sig@lists.linaro.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org
+Message-ID: <20220127093332.wnkd2qy4tvwg5i5l@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220126203702.1784589-1-lucas.demarchi@intel.com>
+ <20220126203702.1784589-3-lucas.demarchi@intel.com>
+ <f0dbdcc0-13b5-c484-0bf3-a1f8c3e48954@amd.com>
+ <20220127075728.ygwgorhnrwaocdqv@ldmartin-desk2>
+ <3066c6a7-fc73-d34d-d209-a3ff6818dfb6@amd.com>
+ <YfJedaoeJjE3grum@phenom.ffwll.local>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 14/14] drm/i915: Always check dp_m2_n2 on pre-bdw
+In-Reply-To: <YfJedaoeJjE3grum@phenom.ffwll.local>
+Subject: Re: [Intel-gfx] [PATCH 02/19] dma-buf-map: Add helper to initialize
+ second map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,41 +71,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+On Thu, Jan 27, 2022 at 09:57:25AM +0100, Daniel Vetter wrote:
+>On Thu, Jan 27, 2022 at 09:02:54AM +0100, Christian Kˆnig wrote:
+>> Am 27.01.22 um 08:57 schrieb Lucas De Marchi:
+>> > On Thu, Jan 27, 2022 at 08:27:11AM +0100, Christian Kˆnig wrote:
+>> > > Am 26.01.22 um 21:36 schrieb Lucas De Marchi:
+>> > > > When dma_buf_map struct is passed around, it's useful to be able to
+>> > > > initialize a second map that takes care of reading/writing to an offset
+>> > > > of the original map.
+>> > > >
+>> > > > Add a helper that copies the struct and add the offset to the proper
+>> > > > address.
+>> > >
+>> > > Well what you propose here can lead to all kind of problems and is
+>> > > rather bad design as far as I can see.
+>> > >
+>> > > The struct dma_buf_map is only to be filled in by the exporter and
+>> > > should not be modified in this way by the importer.
+>> >
+>> > humn... not sure if I was† clear. There is no importer and exporter here.
+>>
+>> Yeah, and exactly that's what I'm pointing out as problem here.
+>>
+>> You are using the inter driver framework for something internal to the
+>> driver. That is an absolutely clear NAK!
+>>
+>> We could discuss that, but you guys are just sending around patches to do
+>> this without any consensus that this is a good idea.
+>
+>Uh I suggested this, also we're already using dma_buf_map all over the
+>place as a convenient abstraction. So imo that's all fine, it should allow
+>drivers to simplify some code where on igpu it's in normal kernel memory
+>and on dgpu it's behind some pci bar.
+>
+>Maybe we should have a better name for that struct (and maybe also a
+>better place), but way back when we discussed that bikeshed I didn't come
+>up with anything better really.
 
-No point in special casing the check of dp_m2_n2 on pre-bdw platforms.
-Either the transcoder has M2/N2 in which case the values should be
-set to something sensible, or it doesn't in which case dp_m2_n2 is
-always zeroed.
+I suggest iosys_map since it abstracts access to IO and system memory.
 
-Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+>
+>> > There is a role delegation on filling out and reading a buffer when
+>> > that buffer represents a struct layout.
+>> >
+>> > struct bla {
+>> > ††††int a;
+>> > ††††int b;
+>> > ††††int c;
+>> > ††††struct foo foo;
+>> > ††††struct bar bar;
+>> > ††††int d;
+>> > }
+>> >
+>> >
+>> > This implementation allows you to have:
+>> >
+>> > ††††fill_foo(struct dma_buf_map *bla_map) { ... }
+>> > ††††fill_bar(struct dma_buf_map *bla_map) { ... }
+>> >
+>> > and the first thing these do is to make sure the map it's pointing to
+>> > is relative to the struct it's supposed to write/read. Otherwise you're
+>> > suggesting everything to be relative to struct bla, or to do the same
+>> > I'm doing it, but IMO more prone to error:
+>> >
+>> > ††††struct dma_buf_map map = *bla_map;
+>> > ††††dma_buf_map_incr(map, offsetof(...));
+>
+>Wrt the issue at hand I think the above is perfectly fine code. The idea
+>with dma_buf_map is really that it's just a special pointer, so writing
+>the code exactly as pointer code feels best. Unfortunately you cannot make
+>them typesafe (because of C), so the code sometimes looks a bit ugly.
+>Otherwise we could do stuff like container_of and all that with
+>typechecking in the macros.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 93bb4f577960..4464beb2ce68 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6477,13 +6477,12 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_I(lane_count);
- 	PIPE_CONF_CHECK_X(lane_lat_optim_mask);
- 
--	if (DISPLAY_VER(dev_priv) < 8) {
--		PIPE_CONF_CHECK_M_N(dp_m_n);
--
--		if (current_config->has_drrs)
--			PIPE_CONF_CHECK_M_N(dp_m2_n2);
--	} else
-+	if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv)) {
- 		PIPE_CONF_CHECK_M_N_ALT(dp_m_n, dp_m2_n2);
-+	} else {
-+		PIPE_CONF_CHECK_M_N(dp_m_n);
-+		PIPE_CONF_CHECK_M_N(dp_m2_n2);
-+	}
- 
- 	PIPE_CONF_CHECK_X(output_types);
- 
--- 
-2.34.1
+I had exactly this code above, but after writting quite a few patches
+using it, particularly with functions that have to write to 2 maps (see
+patch 6 for example), it felt much better to have something to
+initialize correctly from the start
 
+	struct dma_buf_map other_map = *bla_map;
+	/* poor Lucas forgetting dma_buf_map_incr(map, offsetof(...)); */
+
+is error prone and hard to debug since you will be reading/writting
+from/to another location rather than exploding
+
+While with the construct below
+
+	other_map;
+	...
+	other_map = INITIALIZER()
+
+I can rely on the compiler complaining about uninitialized var. And
+in most of the cases I can just have this single line in the beggining of the
+function when the offset is constant:
+
+	struct dma_buf_map other_map = INITIALIZER(bla_map, offsetof(..));
+
+Lucas De Marchi
+
+>-Daniel
+>
+>> > IMO this construct is worse because at a point in time in the function
+>> > the map was pointing to the wrong thing the function was supposed to
+>> > read/write.
+>> >
+>> > It's also useful when the function has double duty, updating a global
+>> > part of the struct and a table inside it (see example in patch 6)
+>> >
+>> > thanks
+>> > Lucas De Marchi
+>>
+>
+>-- 
+>Daniel Vetter
+>Software Engineer, Intel Corporation
+>http://blog.ffwll.ch
