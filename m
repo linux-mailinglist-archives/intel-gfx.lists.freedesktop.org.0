@@ -1,52 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B109B49DC6B
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 09:21:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2D949DC74
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 09:22:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC67F10E54F;
-	Thu, 27 Jan 2022 08:21:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 814F310E319;
+	Thu, 27 Jan 2022 08:22:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 250E810E49B
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jan 2022 08:21:01 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01C9E10E319
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jan 2022 08:22:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643271661; x=1674807661;
+ t=1643271773; x=1674807773;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=D7iSzv2WCrXiD2GO4BnohfHNGEsENno2xLeXRGANnWI=;
- b=mmenmMiT+sDyVwZcKoVWvFIWoDhxoxUTMTe3v6bfDL1XB/qYc+hAuFun
- xeD/XOzR/PzAt5koHJqOWpjoh3/jGaT7zuqn6s5sN7SfL04GTbwZw+a+I
- vcWKoBTBfYoklHWfmiRv3NYB7tvh8kgT/7N0wzomWLdxsfmrSQzcINzy2
- t7XFEOUKkEhUYnHiwgAHRaFMbVg3xPvzrsGR0a/s4G2CWAqjuLLUMewDv
- YYBhj0sk7h2yokIxngeHxCXlJyhmwKutVtrjhkixKzfSZJ86gewnEFXQb
- P8koqjVuVyxcpclhYWMBC62502+IZKIAazfLxqrYuBkvYEY6TxY85jT+Y g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="333139833"
-X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="333139833"
+ bh=HNyo5y0pZd7esG/LXYCZgX07q/wyhmxlaPO0G4We1oo=;
+ b=oFjGF86ZE6BP/D5rYId5jadqYJUkbHrnKtlfdBFfr6clRqrzZt/9DKA8
+ AVMBu9sc2XyMz0J3o9VW0JdXkvIh0inTOOvNCi4uIRSsuc5olTdwSp+BW
+ FDXy00HLJ8HGQdWYhxHFM58FxsnUWMSj2hqov8psZaEahESCIm67rgfzA
+ pbt/BD0Zx9uPdMqGVZ1Qmc9//g/3SI5y/rBc0Q7G2k0L2Jl7TE/oQNe2m
+ 66uePppdfB+2NsJiMTrQq0l7jJ5V3J3lQukufQ5QWXt6JfcSyqKqb/i+/
+ Z8RCtuEoZ4O/wHqMy8GHmVptjfdw/gsfgWH51JvAP/yIg24qCprg9RL/7 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="230360217"
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="230360217"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2022 00:21:00 -0800
-X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="477779199"
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2022 00:22:52 -0800
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="477779937"
 Received: from unknown (HELO intel.com) ([10.237.72.65])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2022 00:20:58 -0800
-Date: Thu, 27 Jan 2022 10:21:06 +0200
+ 27 Jan 2022 00:22:50 -0800
+Date: Thu, 27 Jan 2022 10:22:58 +0200
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220127082106.GC31846@intel.com>
+Message-ID: <20220127082258.GD31846@intel.com>
 References: <20220118092354.11631-1-ville.syrjala@linux.intel.com>
- <20220118092354.11631-4-ville.syrjala@linux.intel.com>
+ <20220118092354.11631-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220118092354.11631-4-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220118092354.11631-5-ville.syrjala@linux.intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 03/15] drm/i915: Fix plane
- relative_data_rate calculation
+Subject: Re: [Intel-gfx] [PATCH 04/15] drm/i915: Introduce skl_plane_ddb_iter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,119 +62,216 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 18, 2022 at 11:23:42AM +0200, Ville Syrjala wrote:
+On Tue, Jan 18, 2022 at 11:23:43AM +0200, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> We are currently computing the relative data rates as
-> src_size * scale_factor where scale_factor is src_size / dst_size.
-> Thus relative data rate is src_size * src_size / dst_size,
-> which is just utter nonsense. What we really seem to want is
-> just a reasonable estimate on how much data will be fetched
-> which is just src_size. So let's do that instead.
+> Collect a bit of the stuff used during the plane ddb
+> allocation into a struct we can pass around.
 > 
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-Omg, how could it stay like this all the time?
-
-I actually had similar question, but thought that there just might
-be again some magical/empirical heuristics behind this.
-Need to challenge more anything, which can't be explained with
-BSpec formulas or by common sense...
 
 Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/intel_pm.c | 63 ++-------------------------------
->  1 file changed, 2 insertions(+), 61 deletions(-)
+>  drivers/gpu/drm/i915/intel_pm.c | 97 +++++++++++++++++----------------
+>  1 file changed, 49 insertions(+), 48 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 9a9d4acb2988..e8fb56f288b4 100644
+> index e8fb56f288b4..cd1b5f09f241 100644
 > --- a/drivers/gpu/drm/i915/intel_pm.c
 > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -4373,55 +4373,6 @@ void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
->  	intel_display_power_put(dev_priv, power_domain, wakeref);
+> @@ -5066,6 +5066,13 @@ static bool icl_need_wm1_wa(struct drm_i915_private *i915,
+>  	       (IS_DISPLAY_VER(i915, 12, 13) && plane_id == PLANE_CURSOR);
 >  }
 >  
-> -/*
-> - * Determines the downscale amount of a plane for the purposes of watermark calculations.
-> - * The bspec defines downscale amount as:
-> - *
-> - * """
-> - * Horizontal down scale amount = maximum[1, Horizontal source size /
-> - *                                           Horizontal destination size]
-> - * Vertical down scale amount = maximum[1, Vertical source size /
-> - *                                         Vertical destination size]
-> - * Total down scale amount = Horizontal down scale amount *
-> - *                           Vertical down scale amount
-> - * """
-> - *
-> - * Return value is provided in 16.16 fixed point form to retain fractional part.
-> - * Caller should take care of dividing & rounding off the value.
-> - */
-> -static uint_fixed_16_16_t
-> -skl_plane_downscale_amount(const struct intel_crtc_state *crtc_state,
-> -			   const struct intel_plane_state *plane_state)
-> -{
-> -	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
-> -	u32 src_w, src_h, dst_w, dst_h;
-> -	uint_fixed_16_16_t fp_w_ratio, fp_h_ratio;
-> -	uint_fixed_16_16_t downscale_h, downscale_w;
-> -
-> -	if (drm_WARN_ON(&dev_priv->drm,
-> -			!intel_wm_plane_visible(crtc_state, plane_state)))
-> -		return u32_to_fixed16(0);
-> -
-> -	/*
-> -	 * Src coordinates are already rotated by 270 degrees for
-> -	 * the 90/270 degree plane rotation cases (to match the
-> -	 * GTT mapping), hence no need to account for rotation here.
-> -	 *
-> -	 * n.b., src is 16.16 fixed point, dst is whole integer.
-> -	 */
-> -	src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
-> -	src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
-> -	dst_w = drm_rect_width(&plane_state->uapi.dst);
-> -	dst_h = drm_rect_height(&plane_state->uapi.dst);
-> -
-> -	fp_w_ratio = div_fixed16(src_w, dst_w);
-> -	fp_h_ratio = div_fixed16(src_h, dst_h);
-> -	downscale_w = max_fixed16(fp_w_ratio, u32_to_fixed16(1));
-> -	downscale_h = max_fixed16(fp_h_ratio, u32_to_fixed16(1));
-> -
-> -	return mul_fixed16(downscale_w, downscale_h);
-> -}
-> -
->  struct dbuf_slice_conf_entry {
->  	u8 active_pipes;
->  	u8 dbuf_mask[I915_MAX_PIPES];
-> @@ -4932,10 +4883,7 @@ skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
->  {
->  	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
->  	const struct drm_framebuffer *fb = plane_state->hw.fb;
-> -	u32 data_rate;
-> -	u32 width = 0, height = 0;
-> -	uint_fixed_16_16_t down_scale_amount;
-> -	u64 rate;
-> +	int width, height;
->  
->  	if (!plane_state->uapi.visible)
+> +struct skl_plane_ddb_iter {
+> +	u64 data_rate;
+> +	u16 total[I915_MAX_PLANES];
+> +	u16 uv_total[I915_MAX_PLANES];
+> +	u16 start, size;
+> +};
+> +
+>  static int
+>  skl_allocate_plane_ddb(struct intel_atomic_state *state,
+>  		       struct intel_crtc *crtc)
+> @@ -5077,10 +5084,7 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+>  		intel_atomic_get_new_dbuf_state(state);
+>  	const struct skl_ddb_entry *alloc = &dbuf_state->ddb[crtc->pipe];
+>  	int num_active = hweight8(dbuf_state->active_pipes);
+> -	u16 alloc_size, start = 0;
+> -	u16 total[I915_MAX_PLANES] = {};
+> -	u16 uv_total[I915_MAX_PLANES] = {};
+> -	u64 total_data_rate;
+> +	struct skl_plane_ddb_iter iter = {};
+>  	enum plane_id plane_id;
+>  	u32 blocks;
+>  	int level;
+> @@ -5093,23 +5097,21 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
 >  		return 0;
-> @@ -4961,14 +4909,7 @@ skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
->  		height /= 2;
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 11)
+> -		total_data_rate =
+> -			icl_get_total_relative_data_rate(state, crtc);
+> +		iter.data_rate = icl_get_total_relative_data_rate(state, crtc);
+>  	else
+> -		total_data_rate =
+> -			skl_get_total_relative_data_rate(state, crtc);
+> +		iter.data_rate = skl_get_total_relative_data_rate(state, crtc);
+>  
+> -	alloc_size = skl_ddb_entry_size(alloc);
+> -	if (alloc_size == 0)
+> +	iter.size = skl_ddb_entry_size(alloc);
+> +	if (iter.size == 0)
+>  		return 0;
+>  
+>  	/* Allocate fixed number of blocks for cursor. */
+> -	total[PLANE_CURSOR] = skl_cursor_allocation(crtc_state, num_active);
+> -	alloc_size -= total[PLANE_CURSOR];
+> +	iter.total[PLANE_CURSOR] = skl_cursor_allocation(crtc_state, num_active);
+> +	iter.size -= iter.total[PLANE_CURSOR];
+>  	skl_ddb_entry_init(&crtc_state->wm.skl.plane_ddb_y[PLANE_CURSOR],
+> -			   alloc->end - total[PLANE_CURSOR], alloc->end);
+> +			   alloc->end - iter.total[PLANE_CURSOR], alloc->end);
+>  
+> -	if (total_data_rate == 0)
+> +	if (iter.data_rate == 0)
+>  		return 0;
+>  
+>  	/*
+> @@ -5123,7 +5125,7 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+>  				&crtc_state->wm.skl.optimal.planes[plane_id];
+>  
+>  			if (plane_id == PLANE_CURSOR) {
+> -				if (wm->wm[level].min_ddb_alloc > total[PLANE_CURSOR]) {
+> +				if (wm->wm[level].min_ddb_alloc > iter.total[PLANE_CURSOR]) {
+>  					drm_WARN_ON(&dev_priv->drm,
+>  						    wm->wm[level].min_ddb_alloc != U16_MAX);
+>  					blocks = U32_MAX;
+> @@ -5136,8 +5138,8 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+>  			blocks += wm->uv_wm[level].min_ddb_alloc;
+>  		}
+>  
+> -		if (blocks <= alloc_size) {
+> -			alloc_size -= blocks;
+> +		if (blocks <= iter.size) {
+> +			iter.size -= blocks;
+>  			break;
+>  		}
+>  	}
+> @@ -5146,7 +5148,7 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "Requested display configuration exceeds system DDB limitations");
+>  		drm_dbg_kms(&dev_priv->drm, "minimum required %d/%d\n",
+> -			    blocks, alloc_size);
+> +			    blocks, iter.size);
+>  		return -EINVAL;
 >  	}
 >  
-> -	data_rate = width * height;
-> -
-> -	down_scale_amount = skl_plane_downscale_amount(crtc_state, plane_state);
-> -
-> -	rate = mul_round_up_u32_fixed16(data_rate, down_scale_amount);
-> -
-> -	rate *= fb->format->cpp[color_plane];
-> -	return rate;
-> +	return width * height * fb->format->cpp[color_plane];
->  }
+> @@ -5158,7 +5160,7 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+>  	for_each_plane_id_on_crtc(crtc, plane_id) {
+>  		const struct skl_plane_wm *wm =
+>  			&crtc_state->wm.skl.optimal.planes[plane_id];
+> -		u64 rate;
+> +		u64 data_rate;
+>  		u16 extra;
 >  
->  static u64
+>  		if (plane_id == PLANE_CURSOR)
+> @@ -5168,32 +5170,30 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+>  		 * We've accounted for all active planes; remaining planes are
+>  		 * all disabled.
+>  		 */
+> -		if (total_data_rate == 0)
+> +		if (iter.data_rate == 0)
+>  			break;
+>  
+> -		rate = crtc_state->plane_data_rate[plane_id];
+> -		extra = min_t(u16, alloc_size,
+> -			      DIV64_U64_ROUND_UP(alloc_size * rate,
+> -						 total_data_rate));
+> -		total[plane_id] = wm->wm[level].min_ddb_alloc + extra;
+> -		alloc_size -= extra;
+> -		total_data_rate -= rate;
+> +		data_rate = crtc_state->plane_data_rate[plane_id];
+> +		extra = min_t(u16, iter.size,
+> +			      DIV64_U64_ROUND_UP(iter.size * data_rate, iter.data_rate));
+> +		iter.total[plane_id] = wm->wm[level].min_ddb_alloc + extra;
+> +		iter.size -= extra;
+> +		iter.data_rate -= data_rate;
+>  
+> -		if (total_data_rate == 0)
+> +		if (iter.data_rate == 0)
+>  			break;
+>  
+> -		rate = crtc_state->uv_plane_data_rate[plane_id];
+> -		extra = min_t(u16, alloc_size,
+> -			      DIV64_U64_ROUND_UP(alloc_size * rate,
+> -						 total_data_rate));
+> -		uv_total[plane_id] = wm->uv_wm[level].min_ddb_alloc + extra;
+> -		alloc_size -= extra;
+> -		total_data_rate -= rate;
+> +		data_rate = crtc_state->uv_plane_data_rate[plane_id];
+> +		extra = min_t(u16, iter.size,
+> +			      DIV64_U64_ROUND_UP(iter.size * data_rate, iter.data_rate));
+> +		iter.uv_total[plane_id] = wm->uv_wm[level].min_ddb_alloc + extra;
+> +		iter.size -= extra;
+> +		iter.data_rate -= data_rate;
+>  	}
+> -	drm_WARN_ON(&dev_priv->drm, alloc_size != 0 || total_data_rate != 0);
+> +	drm_WARN_ON(&dev_priv->drm, iter.size != 0 || iter.data_rate != 0);
+>  
+>  	/* Set the actual DDB start/end points for each plane */
+> -	start = alloc->start;
+> +	iter.start = alloc->start;
+>  	for_each_plane_id_on_crtc(crtc, plane_id) {
+>  		struct skl_ddb_entry *plane_alloc =
+>  			&crtc_state->wm.skl.plane_ddb_y[plane_id];
+> @@ -5205,16 +5205,16 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+>  
+>  		/* Gen11+ uses a separate plane for UV watermarks */
+>  		drm_WARN_ON(&dev_priv->drm,
+> -			    DISPLAY_VER(dev_priv) >= 11 && uv_total[plane_id]);
+> +			    DISPLAY_VER(dev_priv) >= 11 && iter.uv_total[plane_id]);
+>  
+>  		/* Leave disabled planes at (0,0) */
+> -		if (total[plane_id])
+> -			start = skl_ddb_entry_init(plane_alloc, start,
+> -						   start + total[plane_id]);
+> +		if (iter.total[plane_id])
+> +			iter.start = skl_ddb_entry_init(plane_alloc, iter.start,
+> +							iter.start + iter.total[plane_id]);
+>  
+> -		if (uv_total[plane_id])
+> -			start = skl_ddb_entry_init(uv_plane_alloc, start,
+> -						   start + uv_total[plane_id]);
+> +		if (iter.uv_total[plane_id])
+> +			iter.start = skl_ddb_entry_init(uv_plane_alloc, iter.start,
+> +							iter.start + iter.uv_total[plane_id]);
+>  	}
+>  
+>  	/*
+> @@ -5229,7 +5229,8 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+>  				&crtc_state->wm.skl.optimal.planes[plane_id];
+>  
+>  			skl_check_nv12_wm_level(&wm->wm[level], &wm->uv_wm[level],
+> -						total[plane_id], uv_total[plane_id]);
+> +						iter.total[plane_id],
+> +						iter.uv_total[plane_id]);
+>  
+>  			if (icl_need_wm1_wa(dev_priv, plane_id) &&
+>  			    level == 1 && wm->wm[0].enable) {
+> @@ -5248,9 +5249,9 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
+>  		struct skl_plane_wm *wm =
+>  			&crtc_state->wm.skl.optimal.planes[plane_id];
+>  
+> -		skl_check_wm_level(&wm->trans_wm, total[plane_id]);
+> -		skl_check_wm_level(&wm->sagv.wm0, total[plane_id]);
+> -		skl_check_wm_level(&wm->sagv.trans_wm, total[plane_id]);
+> +		skl_check_wm_level(&wm->trans_wm, iter.total[plane_id]);
+> +		skl_check_wm_level(&wm->sagv.wm0, iter.total[plane_id]);
+> +		skl_check_wm_level(&wm->sagv.trans_wm, iter.total[plane_id]);
+>  	}
+>  
+>  	return 0;
 > -- 
 > 2.32.0
 > 
