@@ -2,50 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6424249DC5D
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 09:16:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EE1D49DC67
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 09:18:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C78410E319;
-	Thu, 27 Jan 2022 08:16:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0496010E54F;
+	Thu, 27 Jan 2022 08:18:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07CEC10E319
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jan 2022 08:16:41 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B20A10E319;
+ Thu, 27 Jan 2022 08:18:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643271402; x=1674807402;
+ t=1643271501; x=1674807501;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=l68YGeMuHVOtkFyKJ+sH4cXxr+SJP+HbL6KqYQDrUIg=;
- b=AqsBAJ1cQTrqXtHV6O0Ono13NyfH6QrkKC1sxY5h11vPhXnOTGKcI0ua
- oK6ldMHumKHiYed7cQIEq6t+d3WLJ0oD/qDY+mMV1x4VOrTl6Ytf2yvAK
- 3kSBFaVjFEYnOxrTc4YskIzdeS+sYOxHaM8x5Vrg0LKy/IfitgWHR3EFC
- etXChoqtl+TXij/KqHWfhYARVC3l05cVWrlp4xwMih3VvvVan/1KzOfh8
- gOC6hf8lcF+TVDQEKGUD36dKRnILkHb56wlpsiuQBwzTZGfRBj4SKZEy3
- +ObZdj2KRRjhVdWwGw4RweOl/A7xv+UVGpWnIxB49gvEImdVZPFI/fGIb g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="307498982"
-X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="307498982"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2022 00:16:41 -0800
-X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="477777690"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2022 00:16:39 -0800
-Date: Thu, 27 Jan 2022 10:16:47 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220127081647.GB31846@intel.com>
-References: <20220118092354.11631-1-ville.syrjala@linux.intel.com>
- <20220118092354.11631-3-ville.syrjala@linux.intel.com>
+ bh=eXBkGgw60bdFoIyLSIRLyrUbjMrn4EVCKvo0GitUMPk=;
+ b=UEuqe+qCJt/6GADEvM2cdIOTBQuLGVvQxz7tYs4NrZe+ET6ZBgWIpywZ
+ GcbxW9TDrv6YMoZNjI1ufqjsSZoiIMTQYteycd3q/D5qvFuvamXH1yd0D
+ UYzt9UMDeCsEQjeZ9Lur/0AIDSlCjuMX69cYWdK30S4HI952NTWosHapD
+ +KDe/W7a4/O2ucJPc2DDiCg7wZiTO95A8x6hKwkV1YzeWYnPZwmCAJaww
+ aR3iVLMw2J16o0eU5dMf7ZeEqojHStB9HTVApRwIMZKQ1GkV+I7MwBe4L
+ kliDD3yGTpuYWoqalqyIfd/WI+1PdpT3dKEjNwdWG+pfMgxY4iYsO1stL Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="226758640"
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="226758640"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2022 00:18:11 -0800
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="521125802"
+Received: from anithaha-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.224.126])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2022 00:18:10 -0800
+Date: Thu, 27 Jan 2022 00:18:10 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Message-ID: <20220127081810.6zt6cyib4s7kpa6f@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220126203702.1784589-1-lucas.demarchi@intel.com>
+ <20220126203702.1784589-3-lucas.demarchi@intel.com>
+ <f0dbdcc0-13b5-c484-0bf3-a1f8c3e48954@amd.com>
+ <20220127075728.ygwgorhnrwaocdqv@ldmartin-desk2>
+ <3066c6a7-fc73-d34d-d209-a3ff6818dfb6@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220118092354.11631-3-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 02/15] drm/i915: Extract skl_ddb_entry_init()
+In-Reply-To: <3066c6a7-fc73-d34d-d209-a3ff6818dfb6@amd.com>
+Subject: Re: [Intel-gfx] [PATCH 02/19] dma-buf-map: Add helper to initialize
+ second map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,114 +63,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linaro-mm-sig@lists.linaro.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 18, 2022 at 11:23:41AM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Extract a small helper to populate a ddb entry.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Thu, Jan 27, 2022 at 09:02:54AM +0100, Christian König wrote:
+>Am 27.01.22 um 08:57 schrieb Lucas De Marchi:
+>>On Thu, Jan 27, 2022 at 08:27:11AM +0100, Christian König wrote:
+>>>Am 26.01.22 um 21:36 schrieb Lucas De Marchi:
+>>>>When dma_buf_map struct is passed around, it's useful to be able to
+>>>>initialize a second map that takes care of reading/writing to an offset
+>>>>of the original map.
+>>>>
+>>>>Add a helper that copies the struct and add the offset to the proper
+>>>>address.
+>>>
+>>>Well what you propose here can lead to all kind of problems and is 
+>>>rather bad design as far as I can see.
+>>>
+>>>The struct dma_buf_map is only to be filled in by the exporter and 
+>>>should not be modified in this way by the importer.
+>>
+>>humn... not sure if I was  clear. There is no importer and exporter here.
+>
+>Yeah, and exactly that's what I'm pointing out as problem here.
+>
+>You are using the inter driver framework for something internal to the 
+>driver. That is an absolutely clear NAK!
+>
+>We could discuss that, but you guys are just sending around patches to 
+>do this without any consensus that this is a good idea.
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+s/you guys/you/ if you have to blame anyone - I'm the only s-o-b in
+these patches. I'm sending these to _build consensus_ on what may be a good
+use for it showing a real problem it's helping to fix.
 
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 44 +++++++++++++++++++--------------
->  1 file changed, 25 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 7185af0ff205..9a9d4acb2988 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -4058,6 +4058,15 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
->  	return 0;
->  }
->  
-> +static u16 skl_ddb_entry_init(struct skl_ddb_entry *entry,
-> +			      u16 start, u16 end)
-> +{
-> +	entry->start = start;
-> +	entry->end = end;
-> +
-> +	return end;
-> +}
-> +
->  static int intel_dbuf_slice_size(struct drm_i915_private *dev_priv)
->  {
->  	return INTEL_INFO(dev_priv)->dbuf.size /
-> @@ -4196,8 +4205,7 @@ skl_crtc_allocate_ddb(struct intel_atomic_state *state, struct intel_crtc *crtc)
->  	int ret;
->  
->  	if (new_dbuf_state->weight[pipe] == 0) {
-> -		new_dbuf_state->ddb[pipe].start = 0;
-> -		new_dbuf_state->ddb[pipe].end = 0;
-> +		skl_ddb_entry_init(&new_dbuf_state->ddb[pipe], 0, 0);
->  		goto out;
->  	}
->  
-> @@ -4213,8 +4221,10 @@ skl_crtc_allocate_ddb(struct intel_atomic_state *state, struct intel_crtc *crtc)
->  	start = ddb_range_size * weight_start / weight_total;
->  	end = ddb_range_size * weight_end / weight_total;
->  
-> -	new_dbuf_state->ddb[pipe].start = ddb_slices.start - mbus_offset + start;
-> -	new_dbuf_state->ddb[pipe].end = ddb_slices.start - mbus_offset + end;
-> +	skl_ddb_entry_init(&new_dbuf_state->ddb[pipe],
-> +			   ddb_slices.start - mbus_offset + start,
-> +			   ddb_slices.start - mbus_offset + end);
-> +
->  out:
->  	if (old_dbuf_state->slices[pipe] == new_dbuf_state->slices[pipe] &&
->  	    skl_ddb_entry_equal(&old_dbuf_state->ddb[pipe],
-> @@ -4291,8 +4301,9 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
->  
->  static void skl_ddb_entry_init_from_hw(struct skl_ddb_entry *entry, u32 reg)
->  {
-> -	entry->start = REG_FIELD_GET(PLANE_BUF_START_MASK, reg);
-> -	entry->end = REG_FIELD_GET(PLANE_BUF_END_MASK, reg);
-> +	skl_ddb_entry_init(entry,
-> +			   REG_FIELD_GET(PLANE_BUF_START_MASK, reg),
-> +			   REG_FIELD_GET(PLANE_BUF_END_MASK, reg));
->  	if (entry->end)
->  		entry->end++;
->  }
-> @@ -5154,9 +5165,8 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
->  	/* Allocate fixed number of blocks for cursor. */
->  	total[PLANE_CURSOR] = skl_cursor_allocation(crtc_state, num_active);
->  	alloc_size -= total[PLANE_CURSOR];
-> -	crtc_state->wm.skl.plane_ddb_y[PLANE_CURSOR].start =
-> -		alloc->end - total[PLANE_CURSOR];
-> -	crtc_state->wm.skl.plane_ddb_y[PLANE_CURSOR].end = alloc->end;
-> +	skl_ddb_entry_init(&crtc_state->wm.skl.plane_ddb_y[PLANE_CURSOR],
-> +			   alloc->end - total[PLANE_CURSOR], alloc->end);
->  
->  	if (total_data_rate == 0)
->  		return 0;
-> @@ -5257,17 +5267,13 @@ skl_allocate_plane_ddb(struct intel_atomic_state *state,
->  			    DISPLAY_VER(dev_priv) >= 11 && uv_total[plane_id]);
->  
->  		/* Leave disabled planes at (0,0) */
-> -		if (total[plane_id]) {
-> -			plane_alloc->start = start;
-> -			start += total[plane_id];
-> -			plane_alloc->end = start;
-> -		}
-> +		if (total[plane_id])
-> +			start = skl_ddb_entry_init(plane_alloc, start,
-> +						   start + total[plane_id]);
->  
-> -		if (uv_total[plane_id]) {
-> -			uv_plane_alloc->start = start;
-> -			start += uv_total[plane_id];
-> -			uv_plane_alloc->end = start;
-> -		}
-> +		if (uv_total[plane_id])
-> +			start = skl_ddb_entry_init(uv_plane_alloc, start,
-> +						   start + uv_total[plane_id]);
->  	}
->  
->  	/*
-> -- 
-> 2.32.0
-> 
+ From its documentation:
+
+  * The type :c:type:`struct dma_buf_map <dma_buf_map>` and its helpers are
+  * actually independent from the dma-buf infrastructure. When sharing buffers
+  * among devices, drivers have to know the location of the memory to access
+  * the buffers in a safe way. :c:type:`struct dma_buf_map <dma_buf_map>`
+  * solves this problem for dma-buf and its users. If other drivers or
+  * sub-systems require similar functionality, the type could be generalized
+  * and moved to a more prominent header file.
+
+if there is no consensus and a better alternative, I'm perfectly fine in
+throwing it out and using the better approach.
+
+Lucas De Marchi
