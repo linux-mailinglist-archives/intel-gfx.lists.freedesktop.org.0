@@ -1,53 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D88CF49DDF8
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 10:30:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35C9549DE02
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 10:33:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4034A10E64C;
-	Thu, 27 Jan 2022 09:30:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 444FD10EDA8;
+	Thu, 27 Jan 2022 09:33:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC41810EB00
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jan 2022 09:30:43 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E281210E64C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jan 2022 09:33:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643275843; x=1674811843;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=5RRWiAKVfz0B8E8e0r2vBlLwcM0ftU0enU6prAMZA+4=;
- b=ZcW2uSuBOma6bnD8q6J4sOyUUi7DwT4E8Y1NAJp/ry4HrHIJ81klzZRF
- 5W2X1ddASME+1fRlzWxJRo2iY7xKKRTZ1iAdOCX78SDwkEDLBI6N9eAbV
- Y90fi0hGHFb4Z3Mq+vDnzOvQrdl2Bd0dlVHkQPcdlfP1KGuYMyxcsKVXZ
- dnincCTsyyJrWccgzc/K0HGnBhNPNy/Gq1TpaVj55yuMn2MhFNudIW7gl
- bCH7gsOus+6wi2PTgxv0bS4OiqZbWOSB64+CrniICN0Z3HJie8X5vwcTL
- uKVuPWZ1+Jnfges6pYC7Oi4x2OdNCgTw4pmNvhV4HrT0jyUW0FnvjlJU4 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="271254475"
-X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="271254475"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2022 01:30:43 -0800
-X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="767443757"
-Received: from johnlyon-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.16.209])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2022 01:30:42 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <75e98802660a5cdde9339b91f22e3f2cdb6fe343.camel@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220126104822.3653079-1-alan.previn.teres.alexis@intel.com>
- <20220126104822.3653079-3-alan.previn.teres.alexis@intel.com>
- <87k0emxt3v.fsf@intel.com>
- <75e98802660a5cdde9339b91f22e3f2cdb6fe343.camel@intel.com>
-Date: Thu, 27 Jan 2022 11:30:37 +0200
-Message-ID: <875yq5y18i.fsf@intel.com>
+ t=1643275989; x=1674811989;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=c4nIsn9pUUL8MRak0jz63RlFcuaFVpxLHkJ9VpJGO0o=;
+ b=ciLICJjRw1/gZUijUF6OWuOnOHy9u+NZSW5KmBpV47Lfv9lJzR6yeK5P
+ L8qs8paDlgRI0V2Jv9T3hLorRAo/H5S/8IqF71nJlyUdrYLfNhWcEpF/1
+ j3+wokjxHi3L6PNdV7U7/H00QnH4/43osDWcGhzBXVhyIOIEj85Vvfztz
+ WIYtZy6E4J7cDI/rfeOgjA8iO3W4bJfwQggKVw9w8WP9vho9ou41VqLA7
+ jNA8pLk1piJMf446gHJRikkiG8gq5uppvVvMjqVXCJ+GbSTN1TaKQu2jl
+ cjwhXXLXHLkd+TI60EMUeDzQQEQbu0Mt/0w52gCIx8Jo2iZi7GRayBqnn g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="307514724"
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="307514724"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2022 01:33:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="535568785"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
+ by orsmga008.jf.intel.com with SMTP; 27 Jan 2022 01:33:04 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 27 Jan 2022 11:33:03 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Jan 2022 11:32:49 +0200
+Message-Id: <20220127093303.17309-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v5 02/10] drm/i915/guc: Add XE_LP registers
- for GuC error state capture.
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/14] drm/i915: M/N cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,89 +59,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 26 Jan 2022, "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com> wrote:
-> Thanks Jani for taking the time to review... 
->
-> 1. apologies on the const issue, this is my bad, i think it was
-> one of the comments from earlier rev not sure how i missed it.
-> Will fix this on next rev.
->
-> 2. I do have a question below on the const for one of specific types
-> of tables. Need your thoughts
->
-> ...alan
->
->
-> On Wed, 2022-01-26 at 20:13 +0200, Jani Nikula wrote:
->> On Wed, 26 Jan 2022, Alan Previn <alan.previn.teres.alexis@intel.com> wrote:
->> > Add device specific tables and register lists to cover different engines
->> > class types for GuC error state capture for XE_LP products.
->> > 
-> ...
->
->> > +static struct __ext_steer_reg xelpd_extregs[] = {
->> > +	{"GEN7_SAMPLER_INSTDONE", GEN7_SAMPLER_INSTDONE},
->> > +	{"GEN7_ROW_INSTDONE", GEN7_ROW_INSTDONE}
->> > +};
->> 
->> Either this needs to be const or, if it needs to be mutable, moved to
->> device specific data.
->> 
->> Ditto for all such things all over the place.
->> 
->> BR,
->> Jani.
->
->
-> I had a question though... the list of registers like the one above as well
-> as below shall be made const... however, the table-of-lists (see farther down), contains a pointer to "extended_regs"
-> that shall be allocated at startup - is it okay for that list to remain non-const
-> since the others with actual register offsets remain const?
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-A static mutable array like this is module or driver specific. Your
-allocation is device specific.
+Start cleaning up the M/N stuff. Couple of eventual goals:
+- fix/enhance DRRS (it's currently in kind of poor state)
+- move towards eliminating any RMW stuff from the atomic
+  commit so that we can start playing around with using
+  DSB for it, and the DRRS PIPECONF RMWs are a bit in the
+  way so need to think of a way to avoid them, or at least
+  make them not race with the atomic commit.
 
-Sure, you have a check in there with /* already populated */ comment on
-the module specific data to avoid allocating it multiple times.
+Ville Syrjälä (14):
+  drm/i915: Extract intel_{get,set}_m_n()
+  drm/i915: Clean up M/N register defines
+  drm/i915: s/gmch_{m,n}/data_{m,n}/
+  drm/i915: Move drrs hardware bit frobbing to small helpers
+  drm/i915: Make M/N set/get a bit more direct
+  drm/i915: Move PCH transcoder M/N setup into the PCH code
+  drm/i915: Move M/N setup to a more logical place on ddi platforms
+  drm/i915: Extract {i9xx,ilk}_configure_cpu_transcoder()
+  drm/i915: Add fdi_m2_n2
+  drm/i915: Program FDI RX TUSIZE2
+  drm/i915: Dump dp_m2_n2 always
+  drm/i915: Extract can_enable_drrs()
+  drm/i915: Set DP M2/N2 equal to M1/N1 when not doing DRRS
+  drm/i915: Always check dp_m2_n2 on pre-bdw
 
-Now, consider probing two devices with different properties. The latter
-one will use the stuff you allocated for the first device. It will get
-really tricky really quickly.
-
-Pretty much the rule is no static (or global) non-const data for
-anything. We do have to make some exceptions, but every one of them adds
-to the burden of checking if they're going to be a problem, maybe later
-on if not right now. So it's not so much about being const per se, it's
-about ensuring we don't screw up with device specific data.
-
-
-BR,
-Jani.
-
-
->
-> Alan: will add const for this and above tables:
-> 	static struct __guc_mmio_reg_descr xe_lpd_global_regs[] = {
-> 		COMMON_BASE_GLOBAL(),
-> 		COMMON_GEN9BASE_GLOBAL(),
-> 		COMMON_GEN12BASE_GLOBAL(),
-> 	};
->
-> Is this okay to not be const?:
-> 	static struct __guc_mmio_reg_descr_group default_lists[] = {
-> 		MAKE_REGLIST(default_global_regs, PF, GLOBAL, 0),
-> 		MAKE_REGLIST(default_rc_class_regs, PF, ENGINE_CLASS, GUC_RENDER_CLASS),
-> 		MAKE_REGLIST(xe_lpd_rc_inst_regs, PF, ENGINE_INSTANCE, GUC_RENDER_CLASS),
-> 		MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_VIDEO_CLASS),
-> 		MAKE_REGLIST(xe_lpd_vd_inst_regs, PF, ENGINE_INSTANCE, GUC_VIDEO_CLASS),
-> 		MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_VIDEOENHANCE_CLASS),
-> 		MAKE_REGLIST(xe_lpd_vec_inst_regs, PF, ENGINE_INSTANCE, GUC_VIDEOENHANCE_CLASS),
-> 		MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_BLITTER_CLASS),
-> 		MAKE_REGLIST(xe_lpd_blt_inst_regs, PF, ENGINE_INSTANCE, GUC_BLITTER_CLASS),
-> 		{}
-> 	};
->
->
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  20 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  18 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 355 ++++++++----------
+ drivers/gpu/drm/i915/display/intel_display.h  |  35 +-
+ .../drm/i915/display/intel_display_types.h    |  21 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   2 -
+ drivers/gpu/drm/i915/display/intel_drrs.c     | 107 +++---
+ drivers/gpu/drm/i915/display/intel_fdi.c      |   9 +
+ .../gpu/drm/i915/display/intel_pch_display.c  |  56 ++-
+ .../gpu/drm/i915/display/intel_pch_display.h  |   6 +
+ drivers/gpu/drm/i915/i915_reg.h               |  22 +-
+ 12 files changed, 342 insertions(+), 311 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.34.1
+
