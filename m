@@ -1,49 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35C9549DE02
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 10:33:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D46F549DE03
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 10:33:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 444FD10EDA8;
-	Thu, 27 Jan 2022 09:33:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5043A10E64C;
+	Thu, 27 Jan 2022 09:33:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E281210E64C
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jan 2022 09:33:09 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CB2F10EDA8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jan 2022 09:33:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643275989; x=1674811989;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=c4nIsn9pUUL8MRak0jz63RlFcuaFVpxLHkJ9VpJGO0o=;
- b=ciLICJjRw1/gZUijUF6OWuOnOHy9u+NZSW5KmBpV47Lfv9lJzR6yeK5P
- L8qs8paDlgRI0V2Jv9T3hLorRAo/H5S/8IqF71nJlyUdrYLfNhWcEpF/1
- j3+wokjxHi3L6PNdV7U7/H00QnH4/43osDWcGhzBXVhyIOIEj85Vvfztz
- WIYtZy6E4J7cDI/rfeOgjA8iO3W4bJfwQggKVw9w8WP9vho9ou41VqLA7
- jNA8pLk1piJMf446gHJRikkiG8gq5uppvVvMjqVXCJ+GbSTN1TaKQu2jl
- cjwhXXLXHLkd+TI60EMUeDzQQEQbu0Mt/0w52gCIx8Jo2iZi7GRayBqnn g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="307514724"
-X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="307514724"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ t=1643275990; x=1674811990;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=JXOIoNBHXovbb9jLDyhRPpH8omH2PpHIoHHwWuH5qfw=;
+ b=Ayw9kjw6eTrrorLqKQGhcJaL1YLfr6UVLGhno75+C2QlsaQawgBMwI0y
+ oe74iq3WCj0M3rd7rcMGCArBXilh+KIhfeKlhK96pQe0ieTOTVTuwCWlb
+ 21bW8T7v1PHqoFQfOuja6x/9Uk+blErO13xVfW4tljTO4JD6LP6//+mci
+ cYLFsg7rUOgwou1l9vqWXWkDe1F9Z87Nu/5Z+eDYjirCopqI2lgbmf4rY
+ YANcj+CUwfbkZ0erv078Ne7glnhXT7EaHaJEAvf4k2locRq0FdoUBwXvM
+ PfkhHJQsnPId8lMoeH6wur2uHS8jzIUir1+TB2rSzSLW7p8YBi/vgVyqa w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="310113644"
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="310113644"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jan 2022 01:33:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="535568785"
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; d="scan'208";a="521154806"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by orsmga008.jf.intel.com with SMTP; 27 Jan 2022 01:33:04 -0800
+ by orsmga007.jf.intel.com with SMTP; 27 Jan 2022 01:33:07 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 27 Jan 2022 11:33:03 +0200
+ Thu, 27 Jan 2022 11:33:06 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Jan 2022 11:32:49 +0200
-Message-Id: <20220127093303.17309-1-ville.syrjala@linux.intel.com>
+Date: Thu, 27 Jan 2022 11:32:50 +0200
+Message-Id: <20220127093303.17309-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220127093303.17309-1-ville.syrjala@linux.intel.com>
+References: <20220127093303.17309-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 00/14] drm/i915: M/N cleanup
+Subject: [Intel-gfx] [PATCH 01/14] drm/i915: Extract intel_{get,set}_m_n()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +63,181 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Start cleaning up the M/N stuff. Couple of eventual goals:
-- fix/enhance DRRS (it's currently in kind of poor state)
-- move towards eliminating any RMW stuff from the atomic
-  commit so that we can start playing around with using
-  DSB for it, and the DRRS PIPECONF RMWs are a bit in the
-  way so need to think of a way to avoid them, or at least
-  make them not race with the atomic commit.
+Make the M/N setup/readout a bit less repitive by extracting
+a few small helpers.
 
-Ville Syrjälä (14):
-  drm/i915: Extract intel_{get,set}_m_n()
-  drm/i915: Clean up M/N register defines
-  drm/i915: s/gmch_{m,n}/data_{m,n}/
-  drm/i915: Move drrs hardware bit frobbing to small helpers
-  drm/i915: Make M/N set/get a bit more direct
-  drm/i915: Move PCH transcoder M/N setup into the PCH code
-  drm/i915: Move M/N setup to a more logical place on ddi platforms
-  drm/i915: Extract {i9xx,ilk}_configure_cpu_transcoder()
-  drm/i915: Add fdi_m2_n2
-  drm/i915: Program FDI RX TUSIZE2
-  drm/i915: Dump dp_m2_n2 always
-  drm/i915: Extract can_enable_drrs()
-  drm/i915: Set DP M2/N2 equal to M1/N1 when not doing DRRS
-  drm/i915: Always check dp_m2_n2 on pre-bdw
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 109 ++++++++-----------
+ 1 file changed, 47 insertions(+), 62 deletions(-)
 
- drivers/gpu/drm/i915/display/g4x_dp.c         |  20 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  18 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 355 ++++++++----------
- drivers/gpu/drm/i915/display/intel_display.h  |  35 +-
- .../drm/i915/display/intel_display_types.h    |  21 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |   2 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |   2 -
- drivers/gpu/drm/i915/display/intel_drrs.c     | 107 +++---
- drivers/gpu/drm/i915/display/intel_fdi.c      |   9 +
- .../gpu/drm/i915/display/intel_pch_display.c  |  56 ++-
- .../gpu/drm/i915/display/intel_pch_display.h  |   6 +
- drivers/gpu/drm/i915/i915_reg.h               |  22 +-
- 12 files changed, 342 insertions(+), 311 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 91add3d85151..f76faa195cb9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -3113,6 +3113,17 @@ static void intel_panel_sanitize_ssc(struct drm_i915_private *dev_priv)
+ 	}
+ }
+ 
++static void intel_set_m_n(struct drm_i915_private *i915,
++			  const struct intel_link_m_n *m_n,
++			  i915_reg_t data_m_reg, i915_reg_t data_n_reg,
++			  i915_reg_t link_m_reg, i915_reg_t link_n_reg)
++{
++	intel_de_write(i915, data_m_reg, TU_SIZE(m_n->tu) | m_n->gmch_m);
++	intel_de_write(i915, data_n_reg, m_n->gmch_n);
++	intel_de_write(i915, link_m_reg, m_n->link_m);
++	intel_de_write(i915, link_n_reg, m_n->link_n);
++}
++
+ static void intel_pch_transcoder_set_m_n(const struct intel_crtc_state *crtc_state,
+ 					 const struct intel_link_m_n *m_n)
+ {
+@@ -3120,11 +3131,9 @@ static void intel_pch_transcoder_set_m_n(const struct intel_crtc_state *crtc_sta
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum pipe pipe = crtc->pipe;
+ 
+-	intel_de_write(dev_priv, PCH_TRANS_DATA_M1(pipe),
+-		       TU_SIZE(m_n->tu) | m_n->gmch_m);
+-	intel_de_write(dev_priv, PCH_TRANS_DATA_N1(pipe), m_n->gmch_n);
+-	intel_de_write(dev_priv, PCH_TRANS_LINK_M1(pipe), m_n->link_m);
+-	intel_de_write(dev_priv, PCH_TRANS_LINK_N1(pipe), m_n->link_n);
++	intel_set_m_n(dev_priv, m_n,
++		      PCH_TRANS_DATA_M1(pipe), PCH_TRANS_DATA_N1(pipe),
++		      PCH_TRANS_LINK_M1(pipe), PCH_TRANS_LINK_N1(pipe));
+ }
+ 
+ static bool transcoder_has_m2_n2(struct drm_i915_private *dev_priv,
+@@ -3150,35 +3159,23 @@ static void intel_cpu_transcoder_set_m_n(const struct intel_crtc_state *crtc_sta
+ 	enum transcoder transcoder = crtc_state->cpu_transcoder;
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 5) {
+-		intel_de_write(dev_priv, PIPE_DATA_M1(transcoder),
+-			       TU_SIZE(m_n->tu) | m_n->gmch_m);
+-		intel_de_write(dev_priv, PIPE_DATA_N1(transcoder),
+-			       m_n->gmch_n);
+-		intel_de_write(dev_priv, PIPE_LINK_M1(transcoder),
+-			       m_n->link_m);
+-		intel_de_write(dev_priv, PIPE_LINK_N1(transcoder),
+-			       m_n->link_n);
++		intel_set_m_n(dev_priv, m_n,
++			      PIPE_DATA_M1(transcoder), PIPE_DATA_N1(transcoder),
++			      PIPE_LINK_M1(transcoder), PIPE_LINK_N1(transcoder));
+ 		/*
+ 		 *  M2_N2 registers are set only if DRRS is supported
+ 		 * (to make sure the registers are not unnecessarily accessed).
+ 		 */
+ 		if (m2_n2 && crtc_state->has_drrs &&
+ 		    transcoder_has_m2_n2(dev_priv, transcoder)) {
+-			intel_de_write(dev_priv, PIPE_DATA_M2(transcoder),
+-				       TU_SIZE(m2_n2->tu) | m2_n2->gmch_m);
+-			intel_de_write(dev_priv, PIPE_DATA_N2(transcoder),
+-				       m2_n2->gmch_n);
+-			intel_de_write(dev_priv, PIPE_LINK_M2(transcoder),
+-				       m2_n2->link_m);
+-			intel_de_write(dev_priv, PIPE_LINK_N2(transcoder),
+-				       m2_n2->link_n);
++			intel_set_m_n(dev_priv, m2_n2,
++				      PIPE_DATA_M2(transcoder), PIPE_DATA_N2(transcoder),
++				      PIPE_LINK_M2(transcoder), PIPE_LINK_N2(transcoder));
+ 		}
+ 	} else {
+-		intel_de_write(dev_priv, PIPE_DATA_M_G4X(pipe),
+-			       TU_SIZE(m_n->tu) | m_n->gmch_m);
+-		intel_de_write(dev_priv, PIPE_DATA_N_G4X(pipe), m_n->gmch_n);
+-		intel_de_write(dev_priv, PIPE_LINK_M_G4X(pipe), m_n->link_m);
+-		intel_de_write(dev_priv, PIPE_LINK_N_G4X(pipe), m_n->link_n);
++		intel_set_m_n(dev_priv, m_n,
++			      PIPE_DATA_M_G4X(pipe), PIPE_DATA_N_G4X(pipe),
++			      PIPE_LINK_M_G4X(pipe), PIPE_LINK_N_G4X(pipe));
+ 	}
+ }
+ 
+@@ -3863,6 +3860,18 @@ int ilk_get_lanes_required(int target_clock, int link_bw, int bpp)
+ 	return DIV_ROUND_UP(bps, link_bw * 8);
+ }
+ 
++static void intel_get_m_n(struct drm_i915_private *i915,
++			  struct intel_link_m_n *m_n,
++			  i915_reg_t data_m_reg, i915_reg_t data_n_reg,
++			  i915_reg_t link_m_reg, i915_reg_t link_n_reg)
++{
++	m_n->link_m = intel_de_read(i915, link_m_reg);
++	m_n->link_n = intel_de_read(i915, link_n_reg);
++	m_n->gmch_m = intel_de_read(i915, data_m_reg) & ~TU_SIZE_MASK;
++	m_n->gmch_n = intel_de_read(i915, data_n_reg);
++	m_n->tu = ((intel_de_read(i915, data_m_reg) & TU_SIZE_MASK) >> TU_SIZE_SHIFT) + 1;
++}
++
+ static void intel_pch_transcoder_get_m_n(struct intel_crtc *crtc,
+ 					 struct intel_link_m_n *m_n)
+ {
+@@ -3870,13 +3879,9 @@ static void intel_pch_transcoder_get_m_n(struct intel_crtc *crtc,
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	enum pipe pipe = crtc->pipe;
+ 
+-	m_n->link_m = intel_de_read(dev_priv, PCH_TRANS_LINK_M1(pipe));
+-	m_n->link_n = intel_de_read(dev_priv, PCH_TRANS_LINK_N1(pipe));
+-	m_n->gmch_m = intel_de_read(dev_priv, PCH_TRANS_DATA_M1(pipe))
+-		& ~TU_SIZE_MASK;
+-	m_n->gmch_n = intel_de_read(dev_priv, PCH_TRANS_DATA_N1(pipe));
+-	m_n->tu = ((intel_de_read(dev_priv, PCH_TRANS_DATA_M1(pipe))
+-		    & TU_SIZE_MASK) >> TU_SIZE_SHIFT) + 1;
++	intel_get_m_n(dev_priv, m_n,
++		      PCH_TRANS_DATA_M1(pipe), PCH_TRANS_DATA_N1(pipe),
++		      PCH_TRANS_LINK_M1(pipe), PCH_TRANS_LINK_N1(pipe));
+ }
+ 
+ static void intel_cpu_transcoder_get_m_n(struct intel_crtc *crtc,
+@@ -3888,39 +3893,19 @@ static void intel_cpu_transcoder_get_m_n(struct intel_crtc *crtc,
+ 	enum pipe pipe = crtc->pipe;
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 5) {
+-		m_n->link_m = intel_de_read(dev_priv,
+-					    PIPE_LINK_M1(transcoder));
+-		m_n->link_n = intel_de_read(dev_priv,
+-					    PIPE_LINK_N1(transcoder));
+-		m_n->gmch_m = intel_de_read(dev_priv,
+-					    PIPE_DATA_M1(transcoder))
+-			& ~TU_SIZE_MASK;
+-		m_n->gmch_n = intel_de_read(dev_priv,
+-					    PIPE_DATA_N1(transcoder));
+-		m_n->tu = ((intel_de_read(dev_priv, PIPE_DATA_M1(transcoder))
+-			    & TU_SIZE_MASK) >> TU_SIZE_SHIFT) + 1;
++		intel_get_m_n(dev_priv, m_n,
++			      PIPE_DATA_M1(transcoder), PIPE_DATA_N1(transcoder),
++			      PIPE_LINK_M1(transcoder), PIPE_LINK_N1(transcoder));
+ 
+ 		if (m2_n2 && transcoder_has_m2_n2(dev_priv, transcoder)) {
+-			m2_n2->link_m = intel_de_read(dev_priv,
+-						      PIPE_LINK_M2(transcoder));
+-			m2_n2->link_n =	intel_de_read(dev_priv,
+-							     PIPE_LINK_N2(transcoder));
+-			m2_n2->gmch_m =	intel_de_read(dev_priv,
+-							     PIPE_DATA_M2(transcoder))
+-					& ~TU_SIZE_MASK;
+-			m2_n2->gmch_n =	intel_de_read(dev_priv,
+-							     PIPE_DATA_N2(transcoder));
+-			m2_n2->tu = ((intel_de_read(dev_priv, PIPE_DATA_M2(transcoder))
+-					& TU_SIZE_MASK) >> TU_SIZE_SHIFT) + 1;
++			intel_get_m_n(dev_priv, m2_n2,
++				      PIPE_DATA_M2(transcoder), PIPE_DATA_N2(transcoder),
++				      PIPE_LINK_M2(transcoder), PIPE_LINK_N2(transcoder));
+ 		}
+ 	} else {
+-		m_n->link_m = intel_de_read(dev_priv, PIPE_LINK_M_G4X(pipe));
+-		m_n->link_n = intel_de_read(dev_priv, PIPE_LINK_N_G4X(pipe));
+-		m_n->gmch_m = intel_de_read(dev_priv, PIPE_DATA_M_G4X(pipe))
+-			& ~TU_SIZE_MASK;
+-		m_n->gmch_n = intel_de_read(dev_priv, PIPE_DATA_N_G4X(pipe));
+-		m_n->tu = ((intel_de_read(dev_priv, PIPE_DATA_M_G4X(pipe))
+-			    & TU_SIZE_MASK) >> TU_SIZE_SHIFT) + 1;
++		intel_get_m_n(dev_priv, m_n,
++			      PIPE_DATA_M_G4X(pipe), PIPE_DATA_N_G4X(pipe),
++			      PIPE_LINK_M_G4X(pipe), PIPE_LINK_N_G4X(pipe));
+ 	}
+ }
+ 
 -- 
 2.34.1
 
