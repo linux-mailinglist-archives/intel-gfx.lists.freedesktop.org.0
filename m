@@ -1,47 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 999B549D7CB
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 03:01:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D19249D7CA
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jan 2022 03:01:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A4B610E667;
-	Thu, 27 Jan 2022 02:01:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C888310E16E;
+	Thu, 27 Jan 2022 02:01:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A85010E16E
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jan 2022 02:01:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1718010E16E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jan 2022 02:01:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1643248895; x=1674784895;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Oo1k31+7f5OupiqFlJP47kAjJTG4kJxuT9RN7ecoALo=;
- b=dZjS2EZ+taXso73nTZFh03my6uAEqCCGxb7g2uFZe3AJJWDPIrT7YR1t
- 8Xvy/NA9K3rTAZm4XadRVo9vdFJcBsNNwQQ9J9uMxYml5hYsB3D/GxgE7
- X8jeSPaibSqE4vIn94212I4Yg5ayMrCl+iD86C9l+8aeYVJlLVqyyn3zP
- uXLtdFjQwl2hy5bgpw6FJtCgx5h5blK/1yFw0q/O61Ox57OChdqEulR5w
- kVLqh4NpLd4+XkrTW6S2wYMHdFUV/clBR26RXnslYj1DofUZ8z9uHO8S9
- 1x+j7K85Bb3kPFpLuBH8xax2bU2luL2HRGKfG1sQ7L4j9HP5A4X7E07Xk g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="226695300"
-X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; d="scan'208";a="226695300"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Cl58kGY1jR3viTT/MbTOMkYhSA1+qx7EA+vPrYJ14PI=;
+ b=cmPgQ51NK3fAx0szRuwLkllCopRKOiA1hKS1L+gMdri2VUaG7F2L/lmX
+ Sk0rPQK6oRcqIM6BdDz0A2xO+PgRmwHyHb6tbiIf0Iwmsk5gq//9vm4P3
+ 2b1V5YlC2lbCRjfxRf2XDQpxf5wQWKPYlp4CYTMudBeIgguhxTYz3D8RM
+ YtQ/1z2UuQHDBrlz3E8DvpNtH3TOsJAaiDEHs3OQFj247K3RehOynyGHS
+ TIF2sq/GRYv0Jgyn86H4XWgTG0SZzdB3lMI+faaigj5SwN/nH594VV0/c
+ xrRJpEKATiZzDkTaLoG0qiG12p+ApFNypjdcwB4Dh8SNf886+z0DXgbMJ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="226695302"
+X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; d="scan'208";a="226695302"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Jan 2022 18:00:39 -0800
-X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; d="scan'208";a="535434585"
+X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; d="scan'208";a="535434586"
 Received: from unerlige-desk.jf.intel.com ([10.165.21.210])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Jan 2022 18:00:39 -0800
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Jan 2022 18:00:34 -0800
-Message-Id: <20220127020035.985786-1-umesh.nerlige.ramappa@intel.com>
+Date: Wed, 26 Jan 2022 18:00:35 -0800
+Message-Id: <20220127020035.985786-2-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20220127020035.985786-1-umesh.nerlige.ramappa@intel.com>
+References: <20220127020035.985786-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/pmu: Fix KMD and GuC race on
- accessing busyness
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/pmu: Use existing uncore helper to
+ read gpm_timestamp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,131 +59,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-GuC updates shared memory and KMD reads it. Since this is not
-synchronized, we run into a race where the value read is inconsistent.
-Sometimes the inconsistency is in reading the upper MSB bytes of the
-last_switch_in value. 2 types of cases are seen - upper 8 bits are zero
-and upper 24 bits are zero. Since these are non-zero values, it is
-not trivial to determine validity of these values. Instead we read the
-values multiple times until they are consistent. In test runs, 3
-attempts results in consistent values. The upper bound is set to 6
-attempts and may need to be tuned as per any new occurences.
+Use intel_uncore_read64_2x32 to read upper and lower fields of the GPM
+timestamp.
 
-Since the duration that gt is parked can vary, the patch also updates
-the gt timestamp on unpark before starting the worker.
+v2: Fix compile error
 
-v2:
-- Initialize i
-- Use READ_ONCE to access engine record
-
-Fixes: 77cdd054dd2c ("drm/i915/pmu: Connect engine busyness stats from GuC to pmu")
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 ---
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 58 +++++++++++++++++--
- 1 file changed, 54 insertions(+), 4 deletions(-)
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c   | 17 ++---------------
+ 1 file changed, 2 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index db9615dcb0ec..4e9154cacc58 100644
+index 4e9154cacc58..6052148068d7 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1114,6 +1114,19 @@ __extend_last_switch(struct intel_guc *guc, u64 *prev_start, u32 new_start)
- 	if (new_start == lower_32_bits(*prev_start))
- 		return;
- 
-+	/*
-+	 * When gt is unparked, we update the gt timestamp and start the ping
-+	 * worker that updates the gt_stamp every POLL_TIME_CLKS. As long as gt
-+	 * is unparked, all switched in contexts will have a start time that is
-+	 * within +/- POLL_TIME_CLKS of the most recent gt_stamp.
-+	 *
-+	 * If neither gt_stamp nor new_start has rolled over, then the
-+	 * gt_stamp_hi does not need to be adjusted, however if one of them has
-+	 * rolled over, we need to adjust gt_stamp_hi accordingly.
-+	 *
-+	 * The below conditions address the cases of new_start rollover and
-+	 * gt_stamp_last rollover respectively.
-+	 */
- 	if (new_start < gt_stamp_last &&
- 	    (new_start - gt_stamp_last) <= POLL_TIME_CLKS)
- 		gt_stamp_hi++;
-@@ -1125,17 +1138,45 @@ __extend_last_switch(struct intel_guc *guc, u64 *prev_start, u32 new_start)
- 	*prev_start = ((u64)gt_stamp_hi << 32) | new_start;
+@@ -1205,20 +1205,6 @@ static u32 gpm_timestamp_shift(struct intel_gt *gt)
+ 	return 3 - shift;
  }
  
--static void guc_update_engine_gt_clks(struct intel_engine_cs *engine)
-+/*
-+ * GuC updates shared memory and KMD reads it. Since this is not synchronized,
-+ * we run into a race where the value read is inconsistent. Sometimes the
-+ * inconsistency is in reading the upper MSB bytes of the last_in value when
-+ * this race occurs. 2 types of cases are seen - upper 8 bits are zero and upper
-+ * 24 bits are zero. Since these are non-zero values, it is non-trivial to
-+ * determine validity of these values. Instead we read the values multiple times
-+ * until they are consistent. In test runs, 3 attempts results in consistent
-+ * values. The upper bound is set to 6 attempts and may need to be tuned as per
-+ * any new occurences.
-+ */
-+static void __get_engine_usage_record(struct intel_engine_cs *engine,
-+				      u32 *last_in, u32 *id, u32 *total)
+-static u64 gpm_timestamp(struct intel_gt *gt)
+-{
+-	u32 lo, hi, old_hi, loop = 0;
+-
+-	hi = intel_uncore_read(gt->uncore, MISC_STATUS1);
+-	do {
+-		lo = intel_uncore_read(gt->uncore, MISC_STATUS0);
+-		old_hi = hi;
+-		hi = intel_uncore_read(gt->uncore, MISC_STATUS1);
+-	} while (old_hi != hi && loop++ < 2);
+-
+-	return ((u64)hi << 32) | lo;
+-}
+-
+ static void guc_update_pm_timestamp(struct intel_guc *guc, ktime_t *now)
  {
- 	struct guc_engine_usage_record *rec = intel_guc_engine_usage(engine);
-+	int i = 0;
-+
-+	do {
-+		*last_in = READ_ONCE(rec->last_switch_in_stamp);
-+		*id = READ_ONCE(rec->current_context_index);
-+		*total = READ_ONCE(rec->total_runtime);
-+
-+		if (READ_ONCE(rec->last_switch_in_stamp) == *last_in &&
-+		    READ_ONCE(rec->current_context_index) == *id &&
-+		    READ_ONCE(rec->total_runtime) == *total)
-+			break;
-+	} while (++i < 6);
-+}
-+
-+static void guc_update_engine_gt_clks(struct intel_engine_cs *engine)
-+{
- 	struct intel_engine_guc_stats *stats = &engine->stats.guc;
- 	struct intel_guc *guc = &engine->gt->uc.guc;
--	u32 last_switch = rec->last_switch_in_stamp;
--	u32 ctx_id = rec->current_context_index;
--	u32 total = rec->total_runtime;
-+	u32 last_switch, ctx_id, total;
- 
+ 	struct intel_gt *gt = guc_to_gt(guc);
+@@ -1228,7 +1214,8 @@ static void guc_update_pm_timestamp(struct intel_guc *guc, ktime_t *now)
  	lockdep_assert_held(&guc->timestamp.lock);
  
-+	__get_engine_usage_record(engine, &last_switch, &ctx_id, &total);
-+
- 	stats->running = ctx_id != ~0U && last_switch;
- 	if (stats->running)
- 		__extend_last_switch(guc, &stats->start_gt_clk, last_switch);
-@@ -1237,6 +1278,10 @@ static ktime_t guc_engine_busyness(struct intel_engine_cs *engine, ktime_t *now)
- 	if (!in_reset && intel_gt_pm_get_if_awake(gt)) {
- 		stats_saved = *stats;
- 		gt_stamp_saved = guc->timestamp.gt_stamp;
-+		/*
-+		 * Update gt_clks, then gt timestamp to simplify the 'gt_stamp -
-+		 * start_gt_clk' calculation below for active engines.
-+		 */
- 		guc_update_engine_gt_clks(engine);
- 		guc_update_pm_timestamp(guc, now);
- 		intel_gt_pm_put_async(gt);
-@@ -1365,10 +1410,15 @@ void intel_guc_busyness_park(struct intel_gt *gt)
- void intel_guc_busyness_unpark(struct intel_gt *gt)
- {
- 	struct intel_guc *guc = &gt->uc.guc;
-+	unsigned long flags;
-+	ktime_t unused;
+ 	gt_stamp_hi = upper_32_bits(guc->timestamp.gt_stamp);
+-	gpm_ts = gpm_timestamp(gt) >> guc->timestamp.shift;
++	gpm_ts = intel_uncore_read64_2x32(gt->uncore, MISC_STATUS0,
++					  MISC_STATUS1) >> guc->timestamp.shift;
+ 	gt_stamp_lo = lower_32_bits(gpm_ts);
+ 	*now = ktime_get();
  
- 	if (!guc_submission_initialized(guc))
- 		return;
- 
-+	spin_lock_irqsave(&guc->timestamp.lock, flags);
-+	guc_update_pm_timestamp(guc, &unused);
-+	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
- 	mod_delayed_work(system_highpri_wq, &guc->timestamp.work,
- 			 guc->timestamp.ping_delay);
- }
 -- 
 2.33.1
 
