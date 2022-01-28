@@ -1,56 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 068B84A03E5
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 23:46:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 815464A0403
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 23:59:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D52E510E124;
-	Fri, 28 Jan 2022 22:46:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8CBE10E129;
+	Fri, 28 Jan 2022 22:59:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFB0010E124
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 22:46:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643409997; x=1674945997;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=FkLPVNg7YARKo/++u4/1sRP/gO79rdCX3NkaCAENcWU=;
- b=fTzueiJTr+75yyZANgESIY+qDhZlYasqDFCONKBWtTskjvfc/z1223SG
- rRynGi9E1KSxOKCVooORfHZhfNn3rzs3k2D4PETRd06gq5iIkkVj3XXd6
- UGX/5EL7jHJTmLMxmdnhMUgx1CGQU1ig6hnv7N2eGrPiNfgLjEbZghaTM
- qTOirBiNBA5OrGm2hz+ncsKirgd+Ki+ifz0K9ness7USXFL8Ztpsgq9tF
- hQY+debvU5qGg53wzG3DpVIQ/QKnAgNshWs1uF09AGbPxrvl8K9dsnNFG
- D3Y4awbxL/ToKBoAB7eFlhUV5Ia5T/YXmdBwX2YIvSbW7WZI1mTs0uPab w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10241"; a="227879893"
-X-IronPort-AV: E=Sophos;i="5.88,325,1635231600"; d="scan'208";a="227879893"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2022 14:46:37 -0800
-X-IronPort-AV: E=Sophos;i="5.88,325,1635231600"; d="scan'208";a="521878654"
-Received: from mcummins-mobl1.ger.corp.intel.com (HELO [10.213.196.43])
- ([10.213.196.43])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2022 14:46:36 -0800
-Message-ID: <304e4052-70e8-efd7-762e-3a25d36eb565@linux.intel.com>
-Date: Fri, 28 Jan 2022 22:46:34 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4947910E124;
+ Fri, 28 Jan 2022 22:59:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 46624A882E;
+ Fri, 28 Jan 2022 22:59:47 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6220272481771646311=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220127020035.985786-1-umesh.nerlige.ramappa@intel.com>
- <7452de10-b474-1796-967a-219f594a89c5@linux.intel.com>
- <09f257dc-1aba-71d6-5fa3-7e7bfb130eac@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <09f257dc-1aba-71d6-5fa3-7e7bfb130eac@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/pmu: Fix KMD and GuC race on
- accessing busyness
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael Cheng" <michael.cheng@intel.com>
+Date: Fri, 28 Jan 2022 22:59:47 -0000
+Message-ID: <164341078726.27320.11748774502420409591@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220128221020.188253-1-michael.cheng@intel.com>
+In-Reply-To: <20220128221020.188253-1-michael.cheng@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgVXNl?=
+ =?utf-8?q?_drm=5Fclflush*_instead_of_clflush_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,225 +40,264 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============6220272481771646311==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 28/01/2022 21:53, John Harrison wrote:
-> On 1/28/2022 01:34, Tvrtko Ursulin wrote:
->>
->> John,
->>
->> What CI results were used to merge this particular single patch? 
->> Unless I am not seeing it, it was always set in pair with something else.
->>
->> First with "drm/i915/pmu: Use PM timestamp instead of RING TIMESTAMP 
->> for reference", which was merged earlier in the week and it had a 
->> standalone CI results so that is fine.
-> 
-> It seemed plausible to say that it had a green CI run when included with 
-> a dependent patch given that the dependent patch has already been merged.
+== Series Details ==
 
-Given it was later sent in a series with a different patch that was 
-quite confusing.
+Series: Use drm_clflush* instead of clflush (rev2)
+URL   : https://patchwork.freedesktop.org/series/99450/
+State : success
 
-> We don't normally require a brand new CI run any time the tree has moved 
-> on since the previous CI was run. You would never get anything merged if 
-> that was necessary!
+== Summary ==
 
-Not when the tree has moved, but when series gain or lose patches.
+CI Bug Log - changes from CI_DRM_11159 -> Patchwork_22141
+====================================================
 
-Here we had these CI runs:
+Summary
+-------
 
-1. Patch A + Patch B
-2. Patch A
-3. Patch B + Patch C
+  **SUCCESS**
 
-Patch A got merged based on 2 one day. Patch B merged alone, based on 
-what you say, the next day...
+  No regressions found.
 
-> So to me this just counts as pushing a tested patch set to a slightly 
-> newer tree where the rebase happened to mean one patch vanished (because 
-> exactly the same patch was already merged).
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/index.html
 
-.. I say please do a CI run for B standalone. That way the Link: in the 
-merged patch points to a series where maintainer can click on it and see 
-it was green and all is good. These situations are so rare that there 
-are no concerns about CI time.
+Participating hosts (42 -> 40)
+------------------------------
 
-If the link leads me somewhere else, which does not make sense, then it 
-is extra work to untangle the story. I don't want to hunt on the mailing 
-list between multiple postings of the patch with the same name and check 
-whether it is the same patch, or just the same title where someone 
-forgot to add a change log or something. Keeping it simple is the 
-cheapest option here.
+  Missing    (2): fi-bsw-cyan fi-bdw-samus 
 
-Regards,
+Known issues
+------------
 
-Tvrtko
+  Here are the changes found in Patchwork_22141 that come from known issues:
 
-> 
-> John.
-> 
-> 
->>
->> Other postings I can see it was in tandem with "drm/i915/pmu: Use 
->> existing uncore helper to read gpm_timestamp", which wasn't reviewed 
->> or merged.
->>
->> So it looks to me, again unless I am not seeing anything, that it got 
->> merged without ever having a standalone CI results. This is therefore 
->> a reminder that BKM should be to always have CI results for the exact 
->> series/patch being merged.
->>
->> If there is a situation where a subset of a series is conceptually 
->> ready before the rest, in the past what we used to do is send the 
->> reviewed portion as "--subject-prefix=CI" and then "--suppress-cc=all" 
->> and then merge when CI gives all green.
->>
->> Regards,
->>
->> Tvrtko
->>
->> On 27/01/2022 02:00, Umesh Nerlige Ramappa wrote:
->>> GuC updates shared memory and KMD reads it. Since this is not
->>> synchronized, we run into a race where the value read is inconsistent.
->>> Sometimes the inconsistency is in reading the upper MSB bytes of the
->>> last_switch_in value. 2 types of cases are seen - upper 8 bits are zero
->>> and upper 24 bits are zero. Since these are non-zero values, it is
->>> not trivial to determine validity of these values. Instead we read the
->>> values multiple times until they are consistent. In test runs, 3
->>> attempts results in consistent values. The upper bound is set to 6
->>> attempts and may need to be tuned as per any new occurences.
->>>
->>> Since the duration that gt is parked can vary, the patch also updates
->>> the gt timestamp on unpark before starting the worker.
->>>
->>> v2:
->>> - Initialize i
->>> - Use READ_ONCE to access engine record
->>>
->>> Fixes: 77cdd054dd2c ("drm/i915/pmu: Connect engine busyness stats 
->>> from GuC to pmu")
->>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>> Reviewed-by: Alan Previn <alan.previn.teres.alexis@intel.com>
->>> ---
->>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 58 +++++++++++++++++--
->>>   1 file changed, 54 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> index db9615dcb0ec..4e9154cacc58 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> @@ -1114,6 +1114,19 @@ __extend_last_switch(struct intel_guc *guc, 
->>> u64 *prev_start, u32 new_start)
->>>       if (new_start == lower_32_bits(*prev_start))
->>>           return;
->>>   +    /*
->>> +     * When gt is unparked, we update the gt timestamp and start the 
->>> ping
->>> +     * worker that updates the gt_stamp every POLL_TIME_CLKS. As 
->>> long as gt
->>> +     * is unparked, all switched in contexts will have a start time 
->>> that is
->>> +     * within +/- POLL_TIME_CLKS of the most recent gt_stamp.
->>> +     *
->>> +     * If neither gt_stamp nor new_start has rolled over, then the
->>> +     * gt_stamp_hi does not need to be adjusted, however if one of 
->>> them has
->>> +     * rolled over, we need to adjust gt_stamp_hi accordingly.
->>> +     *
->>> +     * The below conditions address the cases of new_start rollover and
->>> +     * gt_stamp_last rollover respectively.
->>> +     */
->>>       if (new_start < gt_stamp_last &&
->>>           (new_start - gt_stamp_last) <= POLL_TIME_CLKS)
->>>           gt_stamp_hi++;
->>> @@ -1125,17 +1138,45 @@ __extend_last_switch(struct intel_guc *guc, 
->>> u64 *prev_start, u32 new_start)
->>>       *prev_start = ((u64)gt_stamp_hi << 32) | new_start;
->>>   }
->>>   -static void guc_update_engine_gt_clks(struct intel_engine_cs *engine)
->>> +/*
->>> + * GuC updates shared memory and KMD reads it. Since this is not 
->>> synchronized,
->>> + * we run into a race where the value read is inconsistent. 
->>> Sometimes the
->>> + * inconsistency is in reading the upper MSB bytes of the last_in 
->>> value when
->>> + * this race occurs. 2 types of cases are seen - upper 8 bits are 
->>> zero and upper
->>> + * 24 bits are zero. Since these are non-zero values, it is 
->>> non-trivial to
->>> + * determine validity of these values. Instead we read the values 
->>> multiple times
->>> + * until they are consistent. In test runs, 3 attempts results in 
->>> consistent
->>> + * values. The upper bound is set to 6 attempts and may need to be 
->>> tuned as per
->>> + * any new occurences.
->>> + */
->>> +static void __get_engine_usage_record(struct intel_engine_cs *engine,
->>> +                      u32 *last_in, u32 *id, u32 *total)
->>>   {
->>>       struct guc_engine_usage_record *rec = 
->>> intel_guc_engine_usage(engine);
->>> +    int i = 0;
->>> +
->>> +    do {
->>> +        *last_in = READ_ONCE(rec->last_switch_in_stamp);
->>> +        *id = READ_ONCE(rec->current_context_index);
->>> +        *total = READ_ONCE(rec->total_runtime);
->>> +
->>> +        if (READ_ONCE(rec->last_switch_in_stamp) == *last_in &&
->>> +            READ_ONCE(rec->current_context_index) == *id &&
->>> +            READ_ONCE(rec->total_runtime) == *total)
->>> +            break;
->>> +    } while (++i < 6);
->>> +}
->>> +
->>> +static void guc_update_engine_gt_clks(struct intel_engine_cs *engine)
->>> +{
->>>       struct intel_engine_guc_stats *stats = &engine->stats.guc;
->>>       struct intel_guc *guc = &engine->gt->uc.guc;
->>> -    u32 last_switch = rec->last_switch_in_stamp;
->>> -    u32 ctx_id = rec->current_context_index;
->>> -    u32 total = rec->total_runtime;
->>> +    u32 last_switch, ctx_id, total;
->>>         lockdep_assert_held(&guc->timestamp.lock);
->>>   +    __get_engine_usage_record(engine, &last_switch, &ctx_id, &total);
->>> +
->>>       stats->running = ctx_id != ~0U && last_switch;
->>>       if (stats->running)
->>>           __extend_last_switch(guc, &stats->start_gt_clk, last_switch);
->>> @@ -1237,6 +1278,10 @@ static ktime_t guc_engine_busyness(struct 
->>> intel_engine_cs *engine, ktime_t *now)
->>>       if (!in_reset && intel_gt_pm_get_if_awake(gt)) {
->>>           stats_saved = *stats;
->>>           gt_stamp_saved = guc->timestamp.gt_stamp;
->>> +        /*
->>> +         * Update gt_clks, then gt timestamp to simplify the 
->>> 'gt_stamp -
->>> +         * start_gt_clk' calculation below for active engines.
->>> +         */
->>>           guc_update_engine_gt_clks(engine);
->>>           guc_update_pm_timestamp(guc, now);
->>>           intel_gt_pm_put_async(gt);
->>> @@ -1365,10 +1410,15 @@ void intel_guc_busyness_park(struct intel_gt 
->>> *gt)
->>>   void intel_guc_busyness_unpark(struct intel_gt *gt)
->>>   {
->>>       struct intel_guc *guc = &gt->uc.guc;
->>> +    unsigned long flags;
->>> +    ktime_t unused;
->>>         if (!guc_submission_initialized(guc))
->>>           return;
->>>   +    spin_lock_irqsave(&guc->timestamp.lock, flags);
->>> +    guc_update_pm_timestamp(guc, &unused);
->>> +    spin_unlock_irqrestore(&guc->timestamp.lock, flags);
->>>       mod_delayed_work(system_highpri_wq, &guc->timestamp.work,
->>>                guc->timestamp.ping_delay);
->>>   }
->>>
-> 
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-skl-6600u:       NOTRUN -> [INCOMPLETE][2] ([i915#4547])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [PASS][3] -> [INCOMPLETE][4] ([i915#2940])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11159/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cfl-8109u:       [PASS][5] -> [DMESG-FAIL][6] ([i915#295])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11159/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-cfl-8109u:       [PASS][7] -> [DMESG-WARN][8] ([i915#295]) +10 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11159/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][9] ([i915#4312])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-skl-6600u/igt@runner@aborted.html
+    - fi-bsw-n3050:       NOTRUN -> [FAIL][10] ([fdo#109271] / [i915#1436] / [i915#3428] / [i915#4312])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-bsw-n3050/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][11] ([i915#3921]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11159/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@hugepages:
+    - {bat-adlp-6}:       [DMESG-WARN][13] ([i915#1888]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11159/bat-adlp-6/igt@i915_selftest@live@hugepages.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/bat-adlp-6/igt@i915_selftest@live@hugepages.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][15] ([i915#4785]) -> [INCOMPLETE][16] ([i915#3303])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11159/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11159 -> Patchwork_22141
+
+  CI-20190529: 20190529
+  CI_DRM_11159: 7b9572e09d0679204bd24288e3d1b82f1fef8357 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6336: ae2eb9e18bc58a4c45f28cfd80962938198dec3c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22141: f9a30ee54be591ed41d245c9bb9bc79d5687b15d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f9a30ee54be5 drm/i915/: Re-work clflush_write32
+1818a889230d drm/i915/gt: Re-work reset_csb
+addcbfa4043f drm/i915/gt: Re-work invalidate_csb_entries
+c57ea525b16d drm/i915/gt: Re-work intel_write_status_page
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/index.html
+
+--===============6220272481771646311==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Use drm_clflush* instead of clflush (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99450/">https://patchwork.freedesktop.org/series/99450/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11159 -&gt; Patchwork_22141</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22141 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11159/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11159/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11159/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +10 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11159/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hugepages:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11159/bat-adlp-6/igt@i915_selftest@live@hugepages.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/bat-adlp-6/igt@i915_selftest@live@hugepages.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11159/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22141/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11159 -&gt; Patchwork_22141</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11159: 7b9572e09d0679204bd24288e3d1b82f1fef8357 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6336: ae2eb9e18bc58a4c45f28cfd80962938198dec3c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22141: f9a30ee54be591ed41d245c9bb9bc79d5687b15d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f9a30ee54be5 drm/i915/: Re-work clflush_write32<br />
+1818a889230d drm/i915/gt: Re-work reset_csb<br />
+addcbfa4043f drm/i915/gt: Re-work invalidate_csb_entries<br />
+c57ea525b16d drm/i915/gt: Re-work intel_write_status_page</p>
+
+</body>
+</html>
+
+--===============6220272481771646311==--
