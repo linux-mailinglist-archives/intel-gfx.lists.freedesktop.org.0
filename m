@@ -1,50 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A6FE49FE7B
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 17:54:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FCEA49FEAA
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 18:08:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B789A10E802;
-	Fri, 28 Jan 2022 16:54:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D3FF10F640;
+	Fri, 28 Jan 2022 17:08:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA77010E6A4
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 16:54:33 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CF6C10F63C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 17:08:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643388873; x=1674924873;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=E67UHPgkGPtR/GBW+MXTs/DsrN2H9n/0diES4IGeZNg=;
- b=R+XugDSw+YZdDZrMAI+AI1EsdG4P7NSw1aN3AVHmAsEolqjKUTniiSNi
- GJHIX6kHcy77AQoJBWQk4DRoVTJcn0UaYR1pmDJevruR+/1SNUwV4ijhJ
- HtJDrfq/zvsPiAcQs/isd7WEp2IZmwJestCH2HXIDf+LCwSGTlzPuKSTK
- qrW34jk/mf+P7lMoEwWSSTJ2nGRgTotudUjjuKJcJ2yuCCtMz0MeaOwLA
- uj+o8oyXqZVZkRSH6UOzOEJ92bD0MAH5WrE23CI90Pr/0aiT34P1lZYB4
- UPA+OvxZS6+ybhCLInEg8PfN7LaWnYsSP07TPvdyT5lDp/5IpvHJ7Fg3+ A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10240"; a="246928610"
-X-IronPort-AV: E=Sophos;i="5.88,324,1635231600"; d="scan'208";a="246928610"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2022 08:54:33 -0800
-X-IronPort-AV: E=Sophos;i="5.88,324,1635231600"; d="scan'208";a="564250321"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2022 08:54:33 -0800
-Date: Fri, 28 Jan 2022 08:54:31 -0800
+ t=1643389729; x=1674925729;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=X26OwvY+2liq4plrg4sFKiDh3k9B4VFqVol1YvCoQT8=;
+ b=lJYxNGggOid30gBYv7fOd02kuBptIkxMU9yJihDD4WgchT8D1lZWm+Rq
+ VBnpjt6GhN7H9l5bUB/+pbUyFlAKGdpwmDKo0+bSHH5/sbcekqbK7Vkf6
+ Sb0bxZsuyBRX25hpFRfSA7bNaFFPNygYTGN7h9TScUUCeSrDYnmzoMUja
+ C1cm6OH4BtadS95+BvFuPFDdzTukg4tyKZsY0qcXjcEwv9juzXZjqvAqq
+ U+luzFbk6yQ4PdJPZu0SG9gpqpWODEFEg6NRjVKtAYpU+Z4js+CM9nDlC
+ +syeuiX4paoadrccI+xpA/LjO5J9LzGSjkT2OjTHD7DpThswsPtkKqT6m w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10240"; a="307885057"
+X-IronPort-AV: E=Sophos;i="5.88,324,1635231600"; d="scan'208";a="307885057"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2022 09:01:38 -0800
+X-IronPort-AV: E=Sophos;i="5.88,324,1635231600"; d="scan'208";a="618776675"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2022 09:01:38 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
-To: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>
-Message-ID: <YfQfxw++pYfC/5Hm@mdroper-desk1.amr.corp.intel.com>
-References: <20220127194855.3963296-1-matthew.d.roper@intel.com>
- <bf725668ee794a309d6c6ebbd88c9388@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 28 Jan 2022 09:01:25 -0800
+Message-Id: <20220128170125.4121819-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bf725668ee794a309d6c6ebbd88c9388@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Add Wa_14015227452
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/dg2: s/engine->i915/i915/ for engine
+ workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,69 +54,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 28, 2022 at 12:32:14AM -0800, Dhanavanthri, Swathi wrote:
-> Reviewed-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+rcs_engine_wa_init() has a local 'i915' variable; we should use that
+rather than 'engine->i915' for consistency with how we handle other
+platforms.
 
-Applied to drm-intel-gt-next.  Thanks for the review.
+Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 30 ++++++++++-----------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
 
-I'll follow up with a patch to make that entire function use the local
-'i915' variable rather than 'engine->i915' consistently throughout that
-function, as suggested by Tvrtko.
-
-
-Matt
-
-> 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt Roper
-> Sent: Thursday, January 27, 2022 11:49 AM
-> To: intel-gfx@lists.freedesktop.org
-> Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Add Wa_14015227452
-> 
-> Note that the bspec doesn't list the bit we're programming here (bit 11) as being present on DG2, but we've confirmed with the hardware team that this is a documentation mistake and the bit does indeed exist on all Xe_HP-based platforms.
-> 
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
->  drivers/gpu/drm/i915/i915_reg.h             | 1 +
->  2 files changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 748b2daf043f..065dc1c2bb71 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -2045,6 +2045,11 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)  {
->  	struct drm_i915_private *i915 = engine->i915;
->  
-> +	if (IS_DG2(engine->i915)) {
-> +		/* Wa_14015227452:dg2 */
-> +		wa_masked_en(wal, GEN9_ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE);
-> +	}
-> +
->  	if (IS_DG2_GRAPHICS_STEP(engine->i915, G11, STEP_A0, STEP_B0)) {
->  		/* Wa_14013392000:dg2_g11 */
->  		wa_masked_en(wal, GEN7_ROW_CHICKEN2, GEN12_ENABLE_LARGE_GRF_MODE); diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h index 2e4dd9db63fe..38c23dd36300 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -8927,6 +8927,7 @@ enum {
->  
->  #define GEN9_ROW_CHICKEN4				_MMIO(0xe48c)
->  #define   GEN12_DISABLE_GRF_CLEAR			REG_BIT(13)
-> +#define   XEHP_DIS_BBL_SYSPIPE				REG_BIT(11)
->  #define   GEN12_DISABLE_TDL_PUSH			REG_BIT(9)
->  #define   GEN11_DIS_PICK_2ND_EU				REG_BIT(7)
->  #define   GEN12_DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX	REG_BIT(4)
-> --
-> 2.34.1
-> 
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 065dc1c2bb71..3edb1ba6b5cf 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -2045,12 +2045,12 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ {
+ 	struct drm_i915_private *i915 = engine->i915;
+ 
+-	if (IS_DG2(engine->i915)) {
++	if (IS_DG2(i915)) {
+ 		/* Wa_14015227452:dg2 */
+ 		wa_masked_en(wal, GEN9_ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE);
+ 	}
+ 
+-	if (IS_DG2_GRAPHICS_STEP(engine->i915, G11, STEP_A0, STEP_B0)) {
++	if (IS_DG2_GRAPHICS_STEP(i915, G11, STEP_A0, STEP_B0)) {
+ 		/* Wa_14013392000:dg2_g11 */
+ 		wa_masked_en(wal, GEN7_ROW_CHICKEN2, GEN12_ENABLE_LARGE_GRF_MODE);
+ 
+@@ -2058,15 +2058,15 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 		wa_write_or(wal, LSC_CHICKEN_BIT_0_UDW, DIS_CHAIN_2XSIMD8);
+ 	}
+ 
+-	if (IS_DG2_GRAPHICS_STEP(engine->i915, G10, STEP_A0, STEP_B0) ||
+-	    IS_DG2_GRAPHICS_STEP(engine->i915, G11, STEP_A0, STEP_B0)) {
++	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_A0, STEP_B0) ||
++	    IS_DG2_GRAPHICS_STEP(i915, G11, STEP_A0, STEP_B0)) {
+ 		/* Wa_14012419201:dg2 */
+ 		wa_masked_en(wal, GEN9_ROW_CHICKEN4,
+ 			     GEN12_DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX);
+ 	}
+ 
+-	if (IS_DG2_GRAPHICS_STEP(engine->i915, G10, STEP_B0, STEP_C0) ||
+-	    IS_DG2_G11(engine->i915)) {
++	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_C0) ||
++	    IS_DG2_G11(i915)) {
+ 		/*
+ 		 * Wa_22012826095:dg2
+ 		 * Wa_22013059131:dg2
+@@ -2081,14 +2081,14 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 	}
+ 
+ 	/* Wa_1308578152:dg2_g10 when first gslice is fused off */
+-	if (IS_DG2_GRAPHICS_STEP(engine->i915, G10, STEP_B0, STEP_C0) &&
++	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_C0) &&
+ 	    needs_wa_1308578152(engine)) {
+ 		wa_masked_dis(wal, GEN12_CS_DEBUG_MODE1_CCCSUNIT_BE_COMMON,
+ 			      GEN12_REPLAY_MODE_GRANULARITY);
+ 	}
+ 
+-	if (IS_DG2_GRAPHICS_STEP(engine->i915, G10, STEP_B0, STEP_FOREVER) ||
+-	    IS_DG2_G11(engine->i915)) {
++	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
++	    IS_DG2_G11(i915)) {
+ 		/* Wa_22013037850:dg2 */
+ 		wa_write_or(wal, LSC_CHICKEN_BIT_0_UDW,
+ 			    DISABLE_128B_EVICTION_COMMAND_UDW);
+@@ -2105,7 +2105,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 			      LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK);
+ 	}
+ 
+-	if (IS_DG2_GRAPHICS_STEP(engine->i915, G10, STEP_A0, STEP_B0)) {
++	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_A0, STEP_B0)) {
+ 		/*
+ 		 * Wa_1608949956:dg2_g10
+ 		 * Wa_14010198302:dg2_g10
+@@ -2124,7 +2124,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 		       0, false);
+ 	}
+ 
+-	if (IS_DG2_GRAPHICS_STEP(engine->i915, G10, STEP_A0, STEP_B0)) {
++	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_A0, STEP_B0)) {
+ 		/* Wa_22010430635:dg2 */
+ 		wa_masked_en(wal,
+ 			     GEN9_ROW_CHICKEN4,
+@@ -2134,8 +2134,8 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 		wa_write_or(wal, XEHP_L3NODEARBCFG, XEHP_LNESPARE);
+ 	}
+ 
+-	if (IS_DG2_GRAPHICS_STEP(engine->i915, G10, STEP_A0, STEP_C0) ||
+-	    IS_DG2_G11(engine->i915)) {
++	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_A0, STEP_C0) ||
++	    IS_DG2_G11(i915)) {
+ 		/* Wa_22012654132:dg2 */
+ 		wa_add(wal, GEN10_CACHE_MODE_SS, 0,
+ 		       _MASKED_BIT_ENABLE(ENABLE_PREFETCH_INTO_IC),
+@@ -2144,8 +2144,8 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 	}
+ 
+ 	/* Wa_14013202645:dg2 */
+-	if (IS_DG2_GRAPHICS_STEP(engine->i915, G10, STEP_B0, STEP_C0) ||
+-	    IS_DG2_GRAPHICS_STEP(engine->i915, G11, STEP_A0, STEP_B0))
++	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_C0) ||
++	    IS_DG2_GRAPHICS_STEP(i915, G11, STEP_A0, STEP_B0))
+ 		wa_write_or(wal, RT_CTRL, DIS_NULL_QUERY);
+ 
+ 	if (IS_DG1_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+2.34.1
+
