@@ -1,33 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6E2049F6CB
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 11:03:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AFF249F766
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 11:38:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B650410F0F7;
-	Fri, 28 Jan 2022 10:03:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A35E10ED34;
+	Fri, 28 Jan 2022 10:38:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9E4AD10F0F7;
- Fri, 28 Jan 2022 10:03:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9A5E7A0096;
- Fri, 28 Jan 2022 10:03:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D950010ED34
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 10:38:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643366280; x=1674902280;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pgmHWlLq5FKJD7lDjyvSEEoUCWjS2+4cNXvcRojjJY4=;
+ b=I6PvwQTdJs0iO5yAuPBLE6Wt5e76mDSLf7wtEQ4GHvp+QlRyk0w6ICDC
+ ZivShForX5h6CuUu/vnNEZXtT4m4NzQkS4jZ3ct3Zm+8gUsXDH7aid5+4
+ 9maYXcJpjk3yS1EG+l5/468eYVQP8xTbADcA3I0auKOxDepoNKtz09JOa
+ s/5A2Z8zq8H16gIEeDJV9R3jDgNQ3kdCUijbQ1zd8JKpk9HCiRG6kQqHY
+ E1Wey/CNQW47ia/Met6Pm38jVEd+DZi9wjYAUKOynVtkJrsF9fHef6xgh
+ FT3upMRg03SPRVAt3FJ0Sv2a7hfjVzGe37hV7U/lAqfzXntaDRXvF7e8x g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10240"; a="245937967"
+X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="245937967"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2022 02:38:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="496097595"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
+ by orsmga002.jf.intel.com with SMTP; 28 Jan 2022 02:37:58 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 28 Jan 2022 12:37:57 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 28 Jan 2022 12:37:40 +0200
+Message-Id: <20220128103757.22461-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>
-Date: Fri, 28 Jan 2022 10:03:18 -0000
-Message-ID: <164336419860.27320.1094575904288447115@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220127194855.3963296-1-matthew.d.roper@intel.com>
-In-Reply-To: <20220127194855.3963296-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/dg2=3A_Add_Wa=5F14015227452_=28rev2=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 00/17] drm/i915: M/N cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,29 +56,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: drm/i915/dg2: Add Wa_14015227452 (rev2)
-URL   : https://patchwork.freedesktop.org/series/99446/
-State : failure
+Rehashed version of the M/N cleanup after Jani (rightly)
+complained about the legibility of some of the patches in
+the v1 series. These are chunked to a finer pulp, some got
+revised a bit, and I left out a few of the FDI related
+things for now. I'll revisit the PCH port/FDI topic later,
+for now I just slapped in an extra patch to make sure we
+don't try to use DRRS on PCH ports.
 
-== Summary ==
+Ville Syrjälä (17):
+  drm/i915: Nuke intel_dp_set_m_n()
+  drm/i915: Nuke intel_dp_get_m_n()
+  drm/i915: Nuke ilk_get_fdi_m_n_config()
+  drm/i915: Split intel_cpu_transcoder_set_m_n() into M1/N1 vs. M2/N2
+    variants
+  drm/i915: Split intel_cpu_transcoder_get_m_n() into M1/N1 vs. M2/N2
+    variants
+  drm/i915: Pass crtc+cpu_transcoder to intel_cpu_transcoder_set_m_n()
+  drm/i915: Move PCH transcoder M/N setup into the PCH code
+  drm/i915: Move M/N setup to a more logical place on ddi platforms
+  drm/i915: Extract {i9xx,ilk}_configure_cpu_transcoder()
+  drm/i915: Disable DRRS on IVB/HSW port != A
+  drm/i915: Extract can_enable_drrs()
+  drm/i915: Fix intel_cpu_transcoder_has_m2_n2()
+  drm/i915: Clear DP M2/N2 when not doing DRRS
+  drm/i915: Program pch transcoder m2/n2
+  drm/i915: Dump dp_m2_n2 always
+  drm/i915: Always check dp_m2_n2 on pre-bdw
+  drm/i915: Document BDW+ DRRS M/N programming requirements
 
-Applying: drm/i915/dg2: Add Wa_14015227452
-error: patch failed: drivers/gpu/drm/i915/gt/intel_workarounds.c:2045
-error: drivers/gpu/drm/i915/gt/intel_workarounds.c: patch does not apply
-error: Did you hand edit your patch?
-It does not apply to blobs recorded in its index.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Using index info to reconstruct a base tree...
-Patch failed at 0001 drm/i915/dg2: Add Wa_14015227452
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  18 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  14 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 266 ++++++++----------
+ drivers/gpu/drm/i915/display/intel_display.h  |  32 ++-
+ .../drm/i915/display/intel_display_types.h    |  19 --
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   2 -
+ drivers/gpu/drm/i915/display/intel_drrs.c     |  50 +++-
+ .../gpu/drm/i915/display/intel_pch_display.c  |  54 +++-
+ .../gpu/drm/i915/display/intel_pch_display.h  |   6 +
+ 9 files changed, 259 insertions(+), 202 deletions(-)
 
+-- 
+2.34.1
 
