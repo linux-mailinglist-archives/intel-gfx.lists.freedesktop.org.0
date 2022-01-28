@@ -1,52 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECAF949F772
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 11:38:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D347A49F773
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 11:38:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 518E610EEAD;
-	Fri, 28 Jan 2022 10:38:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0997D10EF03;
+	Fri, 28 Jan 2022 10:38:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E86E10EF40
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 10:38:30 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D296310EEAD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 10:38:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643366310; x=1674902310;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=udWskcxBD8KE9j2ASe+SCLg1Ex9DIrnidn92gZOSA/w=;
- b=kKagjTw3KuNekDKrQ51DelMa6eS5bnuqNcVHcj9axSmq/kJ7Ll3oZ8bl
- 71PL9LV44OBmruWjseCxqRIrWcQvB6H3eyk2Czys3jcp3ngpbJtZeB2Wf
- Qm60bOzNr78dMyoDawuJ7nFsW0/eQyON+xyVGalQOA/RLv2vDPQxXBK7A
- SeZIxhQs2MBLG0rTRvgQrLEUcqtRZqIVEpW+l7GO1JBlp6HALW/9yxx1R
- 5buTIYkJaknSCwTbanYBYrzYrhWaUuGAYkTTQ3yyFcU7aCM91Ty3gUCNf
- kJjBDyEwR6nObckLHoEaIK1a6iusUbd99Slv6nL+X6HLRasE2vhFH4lMX A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10240"; a="310411646"
-X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="310411646"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2022 02:38:30 -0800
+ t=1643366313; x=1674902313;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=z4hg25GXx1v615ZAMAw6b+BQNHDHJTVmlMkBVdiJqAw=;
+ b=WpLy5JkqNUH1xGegO2rg+UD00ElT4Gsh+LNwPE84GN/adbmckA2lJies
+ WczUmPR5DCI1eroKqL9zuUaZFhwcsDNZnCVYDf+yaOanSnRauYoL36qGj
+ JH4Z/uspga69Fj2YfBxNEUjXN2SHU/b/2dectn8YI/uDJwXdriOZ1UOuW
+ +0PpmLJCfim3tNaWn7Oy+ksoUpu91Wo87a1HKfKzEVaoQpmtX6atz9q5l
+ Yb/rcAXqGJeGPitOzQoIJ4r0VEYYvOqrKZ3ggCwlJ5LN7SEZXW3bEdzu1
+ K+edc0hGfJJfj9AG0VjY2tWkXrVnODoxXyyy0h3rOToLUBxvqSrMFf3kc Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10240"; a="246870706"
+X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="246870706"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2022 02:38:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="496097680"
+X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="618687515"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by orsmga002.jf.intel.com with SMTP; 28 Jan 2022 02:38:28 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 28 Jan 2022 02:38:31 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Jan 2022 12:38:27 +0200
+ Fri, 28 Jan 2022 12:38:30 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 28 Jan 2022 12:37:50 +0200
-Message-Id: <20220128103757.22461-11-ville.syrjala@linux.intel.com>
+Date: Fri, 28 Jan 2022 12:37:51 +0200
+Message-Id: <20220128103757.22461-12-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220128103757.22461-1-ville.syrjala@linux.intel.com>
 References: <20220128103757.22461-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 10/17] drm/i915: Disable DRRS on IVB/HSW port
- != A
+Subject: [Intel-gfx] [PATCH v2 11/17] drm/i915: Extract can_enable_drrs()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,56 +58,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Currently we allow DRRS on IVB PCH ports, but we're missing a
-few programming steps meaning it is guaranteed to not work.
-And on HSW DRRS is not supported on anything but port A ever
-as only transcoder EDP has the M2/N2 registers (though I'm
-not sure if HSW ever has eDP on any other port).
+Pull the "can we do DRRS?" check into helper in order
+to reduce the clutter in intel_drrs_compute_config().
 
-Starting from BDW all transcoders have the dynamically
-reprogrammable M/N registers so DRRS could work on any
-port.
-
-Stop initializing DRRS on ports where it cannot possibly work.
-
-Cc: stable@vger.kernel.org
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_drrs.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/i915/display/intel_drrs.c | 31 ++++++++++++++---------
+ 1 file changed, 19 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-index 53f014b4436b..9f673255578e 100644
+index 9f673255578e..3515f1700838 100644
 --- a/drivers/gpu/drm/i915/display/intel_drrs.c
 +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-@@ -413,6 +413,7 @@ intel_drrs_init(struct intel_connector *connector,
- 		struct drm_display_mode *fixed_mode)
+@@ -47,17 +47,13 @@
+  * requested by userspace.
+  */
+ 
+-void
+-intel_drrs_compute_config(struct intel_dp *intel_dp,
+-			  struct intel_crtc_state *pipe_config,
+-			  int output_bpp, bool constant_n)
++static bool can_enable_drrs(struct intel_connector *connector,
++			    const struct intel_crtc_state *pipe_config)
  {
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-+	struct intel_encoder *encoder = connector->encoder;
- 	struct drm_display_mode *downclock_mode = NULL;
+-	struct intel_connector *intel_connector = intel_dp->attached_connector;
+-	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+-	int pixel_clock;
++	const struct drm_i915_private *i915 = to_i915(connector->base.dev);
  
- 	INIT_DELAYED_WORK(&dev_priv->drrs.work, intel_drrs_downclock_work);
-@@ -424,6 +425,13 @@ intel_drrs_init(struct intel_connector *connector,
- 		return NULL;
- 	}
+ 	if (pipe_config->vrr.enable)
+-		return;
++		return false;
  
-+	if ((DISPLAY_VER(dev_priv) < 8 && !HAS_GMCH(dev_priv)) &&
-+	    encoder->port != PORT_A) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "DRRS only supported on eDP port A\n");
-+		return NULL;
-+	}
+ 	/*
+ 	 * DRRS and PSR can't be enable together, so giving preference to PSR
+@@ -66,15 +62,26 @@ intel_drrs_compute_config(struct intel_dp *intel_dp,
+ 	 * after intel_psr_compute_config().
+ 	 */
+ 	if (pipe_config->has_psr)
+-		return;
++		return false;
+ 
+-	if (!intel_connector->panel.downclock_mode ||
+-	    dev_priv->drrs.type != SEAMLESS_DRRS_SUPPORT)
++	return connector->panel.downclock_mode &&
++		i915->drrs.type == SEAMLESS_DRRS_SUPPORT;
++}
 +
- 	if (dev_priv->vbt.drrs_type != SEAMLESS_DRRS_SUPPORT) {
- 		drm_dbg_kms(&dev_priv->drm, "VBT doesn't support DRRS\n");
- 		return NULL;
++void
++intel_drrs_compute_config(struct intel_dp *intel_dp,
++			  struct intel_crtc_state *pipe_config,
++			  int output_bpp, bool constant_n)
++{
++	struct intel_connector *connector = intel_dp->attached_connector;
++	int pixel_clock;
++
++	if (!can_enable_drrs(connector, pipe_config))
+ 		return;
+ 
+ 	pipe_config->has_drrs = true;
+ 
+-	pixel_clock = intel_connector->panel.downclock_mode->clock;
++	pixel_clock = connector->panel.downclock_mode->clock;
+ 	if (pipe_config->splitter.enable)
+ 		pixel_clock /= pipe_config->splitter.link_count;
+ 
 -- 
 2.34.1
 
