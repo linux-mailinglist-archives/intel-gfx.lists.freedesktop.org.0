@@ -2,32 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D51084A03AF
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 23:32:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41FC04A03B1
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 23:32:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 764A410E124;
-	Fri, 28 Jan 2022 22:31:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A743610E1C9;
+	Fri, 28 Jan 2022 22:32:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2132810E124;
- Fri, 28 Jan 2022 22:31:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1B603AA0ED;
- Fri, 28 Jan 2022 22:31:58 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6DDB10E1BB;
+ Fri, 28 Jan 2022 22:32:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643409147; x=1674945147;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=T3rkzIVMJI5c8OF4SUmtfynsxKFzJhNdjY7pH4Z2aoA=;
+ b=ed/Hmk9o2gDl2tPMSZgX2lDSxiIJxQ8DhFz50JZ+dST2ua70G1kWHPMn
+ 4D9/dphoaz+f4lO9MM8NlQe4nbZYZ1cqGzb0EcesAGOEkLBGo4ifLadEd
+ jfPQHZLK2f/IYU7kP4elHEFP6BJyR1W0BxhJH5IO9U2tjwMnSgkIGSEco
+ KajrMUzjwfeLajqmSZ3FG7sKtQvpgYUhevRqmcEAsPBbuyQlBibsPULZT
+ jHcOXR2P4BqmfDYwVn4ez5I4IT4R5eXh5RI8zTKsKex9OWsLEh7xd0Zs7
+ jaUqv03bpz8XDWPSDiRbcKPNXM0ZbZNMEYa5sAvqoqRq3QOssES8Pl5N9 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10241"; a="227186608"
+X-IronPort-AV: E=Sophos;i="5.88,325,1635231600"; d="scan'208";a="227186608"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2022 14:32:27 -0800
+X-IronPort-AV: E=Sophos;i="5.88,325,1635231600"; d="scan'208";a="521875302"
+Received: from mcummins-mobl1.ger.corp.intel.com (HELO [10.213.196.43])
+ ([10.213.196.43])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2022 14:32:26 -0800
+Message-ID: <8ca7bd99-06a7-3142-c375-1bf93cb23287@linux.intel.com>
+Date: Fri, 28 Jan 2022 22:32:23 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael Cheng" <michael.cheng@intel.com>
-Date: Fri, 28 Jan 2022 22:31:58 -0000
-Message-ID: <164340911808.27321.10613246296165287301@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220128221020.188253-1-michael.cheng@intel.com>
-In-Reply-To: <20220128221020.188253-1-michael.cheng@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Use_drm=5Fclflush*_instead_of_clflush_=28rev2=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20220127115622.302970-1-thomas.hellstrom@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220127115622.302970-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix a race between vma / object
+ destruction and unbinding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,29 +62,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: Use drm_clflush* instead of clflush (rev2)
-URL   : https://patchwork.freedesktop.org/series/99450/
-State : warning
+On 27/01/2022 11:56, Thomas Hellström wrote:
+> The vma destruction code was using an unlocked advisory check for
+> drm_mm_node_allocated() to avoid racing with eviction code unbinding
+> the vma.
+> 
+> This is very fragile and prohibits the dereference of non-refcounted
+> pointers of dying vmas after a call to __i915_vma_unbind(). It also
+> prohibits the dereference of vma->obj of refcounted pointers of
+> dying vmas after a call to __i915_vma_unbind(), since even if a
+> refcount is held on the vma, that won't guarantee that its backing
+> object doesn't get destroyed.
+> 
+> So introduce an unbind under the vm mutex at object destroy time,
+> removing all weak references of the vma and its object from the
+> object vma list and from the vm bound list.
 
-== Summary ==
+Maarten suggested this fixes an oops like seen in 
+https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22133/shard-snb6/igt@gem_softpin@softpin.html. 
+If that is so, what would be the Fixes: tag to put here? Although it is 
+too late now so hopefully bug was introduced in something yet unreleased.
 
-$ dim checkpatch origin/drm-tip
-c57ea525b16d drm/i915/gt: Re-work intel_write_status_page
-addcbfa4043f drm/i915/gt: Re-work invalidate_csb_entries
-1818a889230d drm/i915/gt: Re-work reset_csb
--:20: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#20: FILE: drivers/gpu/drm/i915/gt/intel_execlists_submission.c:2955:
-+	drm_clflush_virt_range(execlists->csb_write,
-+			sizeof(execlists->csb_write));
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_object.c | 6 ++++++
+>   1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> index 1a9e1f940a7d..e03e362d320b 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -280,6 +280,12 @@ void __i915_gem_object_pages_fini(struct drm_i915_gem_object *obj)
+>   			GEM_BUG_ON(vma->obj != obj);
+>   			spin_unlock(&obj->vma.lock);
+>   
+> +			/* Verify that the vma is unbound under the vm mutex. */
+> +			mutex_lock(&vma->vm->mutex);
+> +			atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
+> +			__i915_vma_unbind(vma);
+> +			mutex_unlock(&vma->vm->mutex);
 
-total: 0 errors, 0 warnings, 1 checks, 8 lines checked
-f9a30ee54be5 drm/i915/: Re-work clflush_write32
+Hm I am not up to speed with the latest design, but how does the verb 
+verify and absence of conditionals reconcile here? Does the comment need 
+improving?
 
+Regards,
 
+Tvrtko
+
+> +
+>   			__i915_vma_put(vma);
+>   
+>   			spin_lock(&obj->vma.lock);
+> 
