@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFBD449F76D
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 11:38:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3174449F770
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 11:38:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12AC510EE5B;
-	Fri, 28 Jan 2022 10:38:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A4D910EF3C;
+	Fri, 28 Jan 2022 10:38:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BEA210EDCA
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 10:38:24 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD15810EEAD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 10:38:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643366304; x=1674902304;
+ t=1643366307; x=1674902307;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=4Y+qhfp6MVMKQvfQD1Nq5etNu/5nwLgPGV4gJyT51uM=;
- b=d4eJZA+NAZNGxzJHxpu9Sn6yrtC7Srml/3yCUy9CWqGwcXDAkETgoCvD
- 2dkRvM571uOfM7eEZxW0enn/zZaoMblHe8A38CWjc37Ly1c0YLiBBZtM+
- l3vMdvcHqKBhc6KqH40X6uBWnoh86oLMnpoGBU3wnnDdn6a34+W2jVUNW
- FP/r/6iWV5ofzHJphpcpAQWSlRR2s5OQnO51vkH6EbE1gaztAjGcDTnM3
- FNKuFhQMneo/XmBg2WwsyUojoHBP5Q7NMQtAbg5oldxSmDOb2Kq1mbKAe
- Na6Kt/YACAeQf3CyMpZdBbon2Sa/BjWDphKwXsdZ7WKSgun9kChpAF7E8 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10240"; a="310411636"
-X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="310411636"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2022 02:38:23 -0800
+ bh=75VoPjyhYuXefVxsQjFWNz2uDUA2sDuPke8mhKB+o7w=;
+ b=FjGZZ0ks+lcckyxOONZf1wM8QgJSq0SOqJn3S8TX5N8xw8TiH3hGhVkD
+ eIsGgHiFicgEVnTA8MBvLzoQqaSQnF0NrxwZti1/uzTxqDIE6QRlksgKv
+ 9FnJuH72VQrfCbaZ/LULqTEp1SGCQbtmu8vlPQ1zPYzNjXwa07kignIyr
+ 5SlTGeehhmFnCOGwy8Q19oT+eIwColOXqptZmLaQTj6zv8g4WHspdPygj
+ Xp476qf/qF89ceS8livmN9oO/a6cmZirU32Qibss7O5Jc1xG8iGMjlldr
+ WxYxPyiAYJ2bUVSC1+tDYRqhCwtfCZozs22FVAF2GlzsKkT5BReVz4Ql5 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10240"; a="307811462"
+X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="307811462"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2022 02:38:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="480694149"
+X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="564159765"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.147])
- by orsmga006.jf.intel.com with SMTP; 28 Jan 2022 02:38:21 -0800
+ by orsmga001.jf.intel.com with SMTP; 28 Jan 2022 02:38:24 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Jan 2022 12:38:21 +0200
+ Fri, 28 Jan 2022 12:38:24 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 28 Jan 2022 12:37:48 +0200
-Message-Id: <20220128103757.22461-9-ville.syrjala@linux.intel.com>
+Date: Fri, 28 Jan 2022 12:37:49 +0200
+Message-Id: <20220128103757.22461-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220128103757.22461-1-ville.syrjala@linux.intel.com>
 References: <20220128103757.22461-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 08/17] drm/i915: Move M/N setup to a more
- logical place on ddi platforms
+Subject: [Intel-gfx] [PATCH v2 09/17] drm/i915: Extract {i9xx,
+ ilk}_configure_cpu_transcoder()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,98 +64,150 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Let's do the cpu transcoder M/N setup next to where we program
-most other cpu transcoder timings/etc.
+Follow the path laid out by hsw+ and extract helpers to configure
+the cpu transcoder for earlier platforms as well.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c     | 10 +---------
- drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++++++----
- drivers/gpu/drm/i915/display/intel_dp_mst.c  |  4 ----
- 3 files changed, 11 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 68 ++++++++++----------
+ 1 file changed, 35 insertions(+), 33 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 360f62665b54..354b08d6f81d 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2498,8 +2498,6 @@ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 				    const struct drm_connector_state *conn_state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 
- 	if (DISPLAY_VER(dev_priv) >= 12)
- 		tgl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
-@@ -2509,14 +2507,8 @@ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	/* MST will call a setting of MSA after an allocating of Virtual Channel
- 	 * from MST encoder pre_enable callback.
- 	 */
--	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST)) {
-+	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST))
- 		intel_ddi_set_dp_msa(crtc_state, conn_state);
--
--		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder,
--					       &crtc_state->dp_m_n);
--		intel_cpu_transcoder_set_m2_n2(crtc, cpu_transcoder,
--					       &crtc_state->dp_m2_n2);
--	}
- }
- 
- static void intel_ddi_pre_enable_hdmi(struct intel_atomic_state *state,
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b613272a777a..bd1b5de1d3d4 100644
+index bd1b5de1d3d4..1e97279ba268 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2003,16 +2003,22 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 
-+	if (crtc_state->has_pch_encoder) {
-+		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder,
-+					       &crtc_state->fdi_m_n);
-+	} else if (intel_crtc_has_dp_encoder(crtc_state)) {
-+		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder,
-+					       &crtc_state->dp_m_n);
-+		intel_cpu_transcoder_set_m2_n2(crtc, cpu_transcoder,
-+					       &crtc_state->dp_m2_n2);
-+	}
-+
- 	intel_set_transcoder_timings(crtc_state);
- 
- 	if (cpu_transcoder != TRANSCODER_EDP)
- 		intel_de_write(dev_priv, PIPE_MULT(cpu_transcoder),
- 			       crtc_state->pixel_multiplier - 1);
- 
--	if (crtc_state->has_pch_encoder)
--		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder,
--					       &crtc_state->fdi_m_n);
--
- 	hsw_set_frame_start_delay(crtc_state);
- 
- 	hsw_set_transconf(crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 30edb9117443..6b6eab507d30 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -473,7 +473,6 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
- 	struct intel_digital_port *dig_port = intel_mst->primary;
- 	struct intel_dp *intel_dp = &dig_port->dp;
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
- 	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
- 	int ret;
-@@ -523,9 +522,6 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
- 		intel_ddi_enable_pipe_clock(encoder, pipe_config);
- 
- 	intel_ddi_set_dp_msa(pipe_config, conn_state);
--
--	intel_cpu_transcoder_set_m1_n1(crtc, pipe_config->cpu_transcoder,
--				       &pipe_config->dp_m_n);
+@@ -1808,13 +1808,29 @@ static void intel_disable_primary_plane(const struct intel_crtc_state *crtc_stat
+ 	plane->disable_arm(plane, crtc_state);
  }
  
- static void intel_mst_enable_dp(struct intel_atomic_state *state,
++static void ilk_configure_cpu_transcoder(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++
++	if (crtc_state->has_pch_encoder) {
++		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder, &crtc_state->fdi_m_n);
++	} else if (intel_crtc_has_dp_encoder(crtc_state)) {
++		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder, &crtc_state->dp_m_n);
++		intel_cpu_transcoder_set_m2_n2(crtc, cpu_transcoder, &crtc_state->dp_m2_n2);
++	}
++
++	intel_set_transcoder_timings(crtc_state);
++
++	ilk_set_pipeconf(crtc_state);
++}
++
+ static void ilk_crtc_enable(struct intel_atomic_state *state,
+ 			    struct intel_crtc *crtc)
+ {
+ 	const struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
+ 	enum pipe pipe = crtc->pipe;
+ 
+ 	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
+@@ -1833,21 +1849,10 @@ static void ilk_crtc_enable(struct intel_atomic_state *state,
+ 	intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false);
+ 	intel_set_pch_fifo_underrun_reporting(dev_priv, pipe, false);
+ 
+-	if (new_crtc_state->has_pch_encoder) {
+-		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder,
+-					       &new_crtc_state->fdi_m_n);
+-	} else if (intel_crtc_has_dp_encoder(new_crtc_state)) {
+-		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder,
+-					       &new_crtc_state->dp_m_n);
+-		intel_cpu_transcoder_set_m2_n2(crtc, cpu_transcoder,
+-					       &new_crtc_state->dp_m2_n2);
+-	}
++	ilk_configure_cpu_transcoder(new_crtc_state);
+ 
+-	intel_set_transcoder_timings(new_crtc_state);
+ 	intel_set_pipe_src_size(new_crtc_state);
+ 
+-	ilk_set_pipeconf(new_crtc_state);
+-
+ 	crtc->active = true;
+ 
+ 	intel_encoders_pre_enable(state, crtc);
+@@ -2445,26 +2450,34 @@ static void modeset_put_crtc_power_domains(struct intel_crtc *crtc,
+ 					    domains);
+ }
+ 
++static void i9xx_configure_cpu_transcoder(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++
++	if (intel_crtc_has_dp_encoder(crtc_state)) {
++		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder, &crtc_state->dp_m_n);
++		intel_cpu_transcoder_set_m2_n2(crtc, cpu_transcoder, &crtc_state->dp_m2_n2);
++	}
++
++	intel_set_transcoder_timings(crtc_state);
++
++	i9xx_set_pipeconf(crtc_state);
++}
++
+ static void valleyview_crtc_enable(struct intel_atomic_state *state,
+ 				   struct intel_crtc *crtc)
+ {
+ 	const struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
+ 	enum pipe pipe = crtc->pipe;
+ 
+ 	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
+ 		return;
+ 
+-	if (intel_crtc_has_dp_encoder(new_crtc_state)) {
+-		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder,
+-					       &new_crtc_state->dp_m_n);
+-		intel_cpu_transcoder_set_m2_n2(crtc, cpu_transcoder,
+-					       &new_crtc_state->dp_m2_n2);
+-	}
++	i9xx_configure_cpu_transcoder(new_crtc_state);
+ 
+-	intel_set_transcoder_timings(new_crtc_state);
+ 	intel_set_pipe_src_size(new_crtc_state);
+ 
+ 	if (IS_CHERRYVIEW(dev_priv) && pipe == PIPE_B) {
+@@ -2472,8 +2485,6 @@ static void valleyview_crtc_enable(struct intel_atomic_state *state,
+ 		intel_de_write(dev_priv, CHV_CANVAS(pipe), 0);
+ 	}
+ 
+-	i9xx_set_pipeconf(new_crtc_state);
+-
+ 	crtc->active = true;
+ 
+ 	intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, true);
+@@ -2508,24 +2519,15 @@ static void i9xx_crtc_enable(struct intel_atomic_state *state,
+ 	const struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
+ 	enum pipe pipe = crtc->pipe;
+ 
+ 	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
+ 		return;
+ 
+-	if (intel_crtc_has_dp_encoder(new_crtc_state)) {
+-		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder,
+-					       &new_crtc_state->dp_m_n);
+-		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder,
+-					       &new_crtc_state->dp_m2_n2);
+-	}
++	i9xx_configure_cpu_transcoder(new_crtc_state);
+ 
+-	intel_set_transcoder_timings(new_crtc_state);
+ 	intel_set_pipe_src_size(new_crtc_state);
+ 
+-	i9xx_set_pipeconf(new_crtc_state);
+-
+ 	crtc->active = true;
+ 
+ 	if (DISPLAY_VER(dev_priv) != 2)
 -- 
 2.34.1
 
