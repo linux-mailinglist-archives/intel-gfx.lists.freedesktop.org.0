@@ -1,70 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F19F249F523
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 09:32:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8877B49F529
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 09:34:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32FA51122C4;
-	Fri, 28 Jan 2022 08:32:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D792A112327;
+	Fri, 28 Jan 2022 08:34:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9ACA1122C5
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 08:32:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643358736; x=1674894736;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=YD2c2TA6WIGjWevwVlJ84sLAkmb80SSiKIhXteFOzmc=;
- b=dhK5SiNjMP/qus88VTkpocRth8f1w3NOC9KH+Xet02gxcOMTyOotkC4G
- hls+lp9A7T6y3Ji2Ne/pTiVNyVB/jWw9aafhZtw3zT0SYDdkpJbCcr/Nb
- 1Hrn+SZ0gylxXrDeiYQoL2jPN7irvoSzu3I6zChZL7jxw3aZhTJ7rdzqR
- rbn+prdIPWuZ0C8lDrdNpJoEDp3INYyi8vM8FbPHN+M3yKu5+bkU+tjGl
- OgUGL9NCpubwnIqNGVSVFDkETv/WxN6XZ4sesqMz8+6lBjQYqgSSE45M3
- 2RIdyXDeAVWBpNWk9Q8Xincic6APbSDOqUSLhTAB0/AAMQxklGlaQEFM3 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10240"; a="247299115"
-X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="247299115"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2022 00:32:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="629036285"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga004.jf.intel.com with ESMTP; 28 Jan 2022 00:32:15 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 28 Jan 2022 00:32:15 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 28 Jan 2022 00:32:14 -0800
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14]) by
- ORSMSX601.amr.corp.intel.com ([10.22.229.14]) with mapi id 15.01.2308.020;
- Fri, 28 Jan 2022 00:32:14 -0800
-From: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/dg2: Add Wa_14015227452
-Thread-Index: AQHYE7b/QEdBNHjTyUO8QnD/TvsmB6x4G2og
-Date: Fri, 28 Jan 2022 08:32:14 +0000
-Message-ID: <bf725668ee794a309d6c6ebbd88c9388@intel.com>
-References: <20220127194855.3963296-1-matthew.d.roper@intel.com>
-In-Reply-To: <20220127194855.3963296-1-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.223.10.1]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84A42112330;
+ Fri, 28 Jan 2022 08:34:07 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 2ADF821100;
+ Fri, 28 Jan 2022 08:34:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1643358846; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Mqq6/1K5Z07dZlfumrnft39HapgqP5bCcIjcLq2oulU=;
+ b=SWETHrW/LxhkzVFKP3689p6y9pCGa34HBldSN45JYS4l/YRhAbXV/qLVm8H4/XLEDJx7Nc
+ q+EGZZcMMluzQcSezBVsvF4F6Ql9pfwW43RbLbS2FhkQ8seW4HzWJZkgLfrr25ZdTQb0zC
+ pmj+qhYlkodQG5AaJevt6rUUM48Ynpo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1643358846;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Mqq6/1K5Z07dZlfumrnft39HapgqP5bCcIjcLq2oulU=;
+ b=BI3ihQORjCMHjmpcGopsCZtaH7e7JTg7g31qKovAjVMGgO9vI+5ioFJpJyHuJMap8ZiGhS
+ bczXn03Ko3nfkEBg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id EC40813AF2;
+ Fri, 28 Jan 2022 08:34:05 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id c3k3OH2q82HOXgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Fri, 28 Jan 2022 08:34:05 +0000
+Message-ID: <5cb9453b-c507-4afa-9d48-1efcfb60be46@suse.de>
+Date: Fri, 28 Jan 2022 09:34:05 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Add Wa_14015227452
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20220126203702.1784589-1-lucas.demarchi@intel.com>
+ <20220126203702.1784589-3-lucas.demarchi@intel.com>
+ <b7a3fe1d-3b85-cb7e-19cf-1611ff4f3c9e@suse.de>
+ <20220127155913.vt7a74zmsglghzom@ldmartin-desk2>
+ <f033228e-c914-efb0-534c-41fc3344f272@suse.de>
+In-Reply-To: <f033228e-c914-efb0-534c-41fc3344f272@suse.de>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------wrkStvEPag0Mu6brdyvA0nI1"
+Subject: Re: [Intel-gfx] [PATCH 02/19] dma-buf-map: Add helper to initialize
+ second map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,58 +74,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------wrkStvEPag0Mu6brdyvA0nI1
+Content-Type: multipart/mixed; boundary="------------Rw0on2vsWNVSOyjdXQvrHDck";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
+Message-ID: <5cb9453b-c507-4afa-9d48-1efcfb60be46@suse.de>
+Subject: Re: [Intel-gfx] [PATCH 02/19] dma-buf-map: Add helper to initialize
+ second map
+References: <20220126203702.1784589-1-lucas.demarchi@intel.com>
+ <20220126203702.1784589-3-lucas.demarchi@intel.com>
+ <b7a3fe1d-3b85-cb7e-19cf-1611ff4f3c9e@suse.de>
+ <20220127155913.vt7a74zmsglghzom@ldmartin-desk2>
+ <f033228e-c914-efb0-534c-41fc3344f272@suse.de>
+In-Reply-To: <f033228e-c914-efb0-534c-41fc3344f272@suse.de>
 
------Original Message-----
-From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt=
- Roper
-Sent: Thursday, January 27, 2022 11:49 AM
-To: intel-gfx@lists.freedesktop.org
-Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Add Wa_14015227452
+--------------Rw0on2vsWNVSOyjdXQvrHDck
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Note that the bspec doesn't list the bit we're programming here (bit 11) as=
- being present on DG2, but we've confirmed with the hardware team that this=
- is a documentation mistake and the bit does indeed exist on all Xe_HP-base=
-d platforms.
+SGkNCg0KQW0gMjguMDEuMjIgdW0gMDk6MTUgc2NocmllYiBUaG9tYXMgWmltbWVybWFubjoN
+Ci4uLg0KPiANCj4+DQo+PiBXaGlsZSB3aXRoIHRoZSBjb25zdHJ1Y3QgYmVsb3cNCj4+DQo+
+PiDCoMKgwqDCoMKgwqDCoMKgIG90aGVyX21hcDsNCj4+IMKgwqDCoMKgwqDCoMKgwqAgLi4u
+DQo+PiDCoMKgwqDCoMKgwqDCoMKgIG90aGVyX21hcCA9IElOSVRJQUxJWkVSKCkNCj4+DQo+
+PiBJIGNhbiByZWx5IG9uIHRoZSBjb21waWxlciBjb21wbGFpbmluZyBhYm91dCB1bmluaXRp
+YWxpemVkIHZhci4gQW5kDQo+PiBpbiBtb3N0IG9mIHRoZSBjYXNlcyBJIGNhbiBqdXN0IGhh
+dmUgdGhpcyBzaW5nbGUgbGluZSBpbiB0aGUgYmVnZ2luaW5nIA0KPj4gb2YgdGhlDQo+PiBm
+dW5jdGlvbiB3aGVuIHRoZSBvZmZzZXQgaXMgY29uc3RhbnQ6DQo+Pg0KPj4gwqDCoMKgwqDC
+oMKgwqDCoCBzdHJ1Y3QgZG1hX2J1Zl9tYXAgb3RoZXJfbWFwID0gSU5JVElBTElaRVIoYmxh
+X21hcCwgDQo+PiBvZmZzZXRvZiguLikpOw0KPj4NCj4+DQo+PiBUaGlzIGlzIHVzZWZ1bCB3
+aGVuIHlvdSBoYXZlIHNldmVyYWwgc21hbGwgZnVuY3Rpb25zIGluIGNoYXJnZSBvZg0KPj4g
+dXBkYXRpbmcvcmVhZGluZyBpbm5lciBzdHJ1Y3QgbWVtYmVycy4NCj4gDQo+IFlvdSB3b24n
+dCBuZWVkIGFuIGV4dHJhIHZhcmlhYmxlIG9yIHRoZSBpbml0aWFsaXplciBtYWNybyBpZiB5
+b3UgYWRkIGFuIA0KPiBvZmZzZXQgcGFyYW1ldGVyIHRvIGRtYV9idWZfbWVtY3B5X3tmcm9t
+LHRvfS7CoCBTaW1wbGUgcGFzcyBvZmZzZXRvZiguLikgDQo+IHRvIHRoYXQgcGFyYW1ldGVy
+IGFuZCBpdCB3aWxsIGRvIHRoZSByaWdodCB0aGluZy4NCj4gDQo+IEl0IGF2b2lkcyB0aGUg
+cHJvYmxlbXMgb2YgdGhlIGN1cnJlbnQgbWFjcm8gYW5kIGlzIGV2ZW4gbW9yZSBmbGV4aWJs
+ZS4gDQo+IE9uIHRvcCBvZiB0aGF0LCB5b3UgY2FuIGJ1aWxkIHdoYXRldmVyIGNvbnZlbmll
+bmNlIG1hY3JvcyB5b3UgbmVlZCBmb3IgDQo+IGk5MTUuDQoNCkFuZCBtYXliZSBwdXQgYWxs
+IGNoYW5nZXMgdG8gdGhlIGRtYV9idWZfbWFwIGludGVyZmFjZSBpbnRvIGEgc2luZ2xlIA0K
+cGF0Y2guIEl0IG1ha2VzIGl0IGVhc2llciB0byByZXZpZXcgYW5kIGRpc2N1c3MuDQoNCkJl
+c3QgcmVnYXJkcw0KVGhvbWFzDQoNCj4gDQo+IEJlc3QgcmVnYXJkcw0KPiBUaG9tYXMNCj4g
+DQo+Pg0KPj4+DQo+Pj4gSSd2ZSBhbHNvIGJlZW4gdmVyeSBjYXJlZnVsIHRvIGRpc3Rpbmd1
+aXNoIGJldHdlZW4gLnZhZGRyIGFuZCANCj4+PiAudmFkZHJfaW9tZW0sIGV2ZW4gaW4gcGxh
+Y2VzIHdoZXJlIEkgd291bGRuJ3QgaGF2ZSB0by4gVGhpcyBtYWNybyANCj4+PiBicmVha3Mg
+dGhlIGFzc3VtcHRpb24uDQo+Pg0KPj4gVGhhdCdzIG9uZSByZWFzb24gSSB0aGluayBpZiB3
+ZSBoYXZlIHRoaXMgbWFjcm8sIGl0IHNob3VsZCBiZSBpbiB0aGUNCj4+IGRtYV9idWZfbWFw
+LmggaGVhZGVyIChvciB3aGF0ZXZlciB3ZSByZW5hbWUgdGhlc2UgQVBJcyB0bykuIEl0J3Mg
+dGhlDQo+PiBvbmx5IHBsYWNlIHdoZXJlIHdlIGNhbiBzYWZlbHkgYWRkIGNvZGUgdGhhdCBy
+ZWxpZXMgb24gdGhlIGltcGxlbWVudGF0aW9uDQo+PiBvZiB0aGUgInByaXZhdGUiIGZpZWxk
+cyBpbiBzdHJ1Y3QgZG1hX2J1Zl9tYXAuDQo+Pg0KPj4gTHVjYXMgRGUgTWFyY2hpDQo+Pg0K
+Pj4+DQo+Pj4gQmVzdCByZWdhcmRzDQo+Pj4gVGhvbWFzDQo+Pj4NCj4+Pj4gwqAvKioNCj4+
+Pj4gwqAgKiBkbWFfYnVmX21hcF9zZXRfdmFkZHIgLSBTZXRzIGEgZG1hLWJ1ZiBtYXBwaW5n
+IHN0cnVjdHVyZSB0byBhbiANCj4+Pj4gYWRkcmVzcyBpbiBzeXN0ZW0gbWVtb3J5DQo+Pj4+
+IMKgICogQG1hcDrCoMKgwqAgVGhlIGRtYS1idWYgbWFwcGluZyBzdHJ1Y3R1cmUNCj4+Pg0K
+Pj4+IC0tIA0KPj4+IFRob21hcyBaaW1tZXJtYW5uDQo+Pj4gR3JhcGhpY3MgRHJpdmVyIERl
+dmVsb3Blcg0KPj4+IFNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KPj4+
+IE1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQ0KPj4+IChIUkIgMzY4
+MDksIEFHIE7DvHJuYmVyZykNCj4+PiBHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo+
+Pg0KPj4NCj4+DQo+IA0KDQotLSANClRob21hcyBaaW1tZXJtYW5uDQpHcmFwaGljcyBEcml2
+ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBHZXJtYW55IEdtYkgNCk1h
+eGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQ0KKEhSQiAzNjgwOSwgQUcg
+TsO8cm5iZXJnKQ0KR2VzY2jDpGZ0c2bDvGhyZXI6IEl2byBUb3Rldg0K
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
- drivers/gpu/drm/i915/i915_reg.h             | 1 +
- 2 files changed, 6 insertions(+)
+--------------Rw0on2vsWNVSOyjdXQvrHDck--
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/=
-i915/gt/intel_workarounds.c
-index 748b2daf043f..065dc1c2bb71 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -2045,6 +2045,11 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, s=
-truct i915_wa_list *wal)  {
- 	struct drm_i915_private *i915 =3D engine->i915;
-=20
-+	if (IS_DG2(engine->i915)) {
-+		/* Wa_14015227452:dg2 */
-+		wa_masked_en(wal, GEN9_ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE);
-+	}
-+
- 	if (IS_DG2_GRAPHICS_STEP(engine->i915, G11, STEP_A0, STEP_B0)) {
- 		/* Wa_14013392000:dg2_g11 */
- 		wa_masked_en(wal, GEN7_ROW_CHICKEN2, GEN12_ENABLE_LARGE_GRF_MODE); diff =
---git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h i=
-ndex 2e4dd9db63fe..38c23dd36300 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -8927,6 +8927,7 @@ enum {
-=20
- #define GEN9_ROW_CHICKEN4				_MMIO(0xe48c)
- #define   GEN12_DISABLE_GRF_CLEAR			REG_BIT(13)
-+#define   XEHP_DIS_BBL_SYSPIPE				REG_BIT(11)
- #define   GEN12_DISABLE_TDL_PUSH			REG_BIT(9)
- #define   GEN11_DIS_PICK_2ND_EU				REG_BIT(7)
- #define   GEN12_DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX	REG_BIT(4)
---
-2.34.1
+--------------wrkStvEPag0Mu6brdyvA0nI1
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmHzqn0FAwAAAAAACgkQlh/E3EQov+Ba
+UQ//Y9rvX2ubfy6HXJP+dB719uVMRVzF68mbf9tty43qVNVHMvfMfSgKMDMYJHXyHpD9tm4bgsIg
+gP7fA7gyP+MLgG9qdUtuSizHcE+NNDept6NV4AVYUXTHXWKMtPANhVsW+8UMiyLfGWg2Vg0dOiNN
+ShebkBRlDGRs3I+m3FYGpyIi6LpnVsmLAHMcN3p2/Dg1NALX6xmM8K9kaS2LQwIEGNFponRQ0z5R
+BXd7ZttJHpBk5NJ2KC2WcMygQcE/s3F8WWi41zYq0sH2neRTUDmEjWdpkRL4iHoi342mKB3LM2Uc
+47Bh+I1Fdgdto2k/tVgOtrfiN9Bo05H2GuHKhSPbkBPcZJf6RVzAnqsauHRIsEoeTcCEEHj7JS2L
+6etQ0oBcycIyXpAzhqE49h7IK4bvhj46X4QJMYlsNQ2pcWP/DW4SWfCwIg1uM4jpgUW/VYSQLcah
+/KSHyAjOVGM6VQUn2JvFr2GRMASM/i7ZX0MsvawPz0+jbZRkgRRO/ClDAlUSYJSOESWZX/+VrsED
+tLpuZWgFxFCUzoep5HNcs2KlS6RxpB4wZsywAQfUUKeOBjOkRglmoe7MN/Wped0xOkG8LCV4RKrg
+SRlEJCsUDWyLQYzqxdFVKDCERDjB087q4rTUOXUd4tC2WcdD+OnkAPumNYip+h56aWsZVK4K+MP3
+Cs8=
+=RPZb
+-----END PGP SIGNATURE-----
+
+--------------wrkStvEPag0Mu6brdyvA0nI1--
