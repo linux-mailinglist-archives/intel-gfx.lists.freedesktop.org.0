@@ -2,58 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F15049F7C9
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 12:02:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ED4C49F80B
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 12:18:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 847F610E5F0;
-	Fri, 28 Jan 2022 11:02:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 231F410ED14;
+	Fri, 28 Jan 2022 11:18:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa1.bahnhof.se (pio-pvt-msa1.bahnhof.se [79.136.2.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4397710E532;
- Fri, 28 Jan 2022 11:02:50 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTP id A12873F570;
- Fri, 28 Jan 2022 12:02:47 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.1
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Authentication-Results: pio-pvt-msa1.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from pio-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ICy-_SbHDo1k; Fri, 28 Jan 2022 12:02:46 +0100 (CET)
-Received: by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 29AE33F52E;
- Fri, 28 Jan 2022 12:02:44 +0100 (CET)
-Received: from [192.168.0.209] (unknown [192.55.55.53])
- by mail1.shipmail.org (Postfix) with ESMTPSA id A07DC3626A5;
- Fri, 28 Jan 2022 12:02:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1643367764; bh=VA/Ar+Sk10+sABpZUnxhPdMAutfj6i72idFLdugSLRM=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=nh3uqnWq4NH2lZIPyIyDWt4q9f9Y2LMNPpvQEhVig40w+gA3XhZT+yYYt2d8V+oyy
- 2sMKJomJ+Qd/S+QmHGP2FMq9BEsld7fyncD5BGTXVzw/PRobEbikZ0f2Qq2Cyibr2q
- mt5nlMd6VeSmiJuDgXlM+MTVPNGXK0NMSa0BFkGI=
-Message-ID: <a5ee6bb7-f0ad-b3db-da7f-b912f5242297@shipmail.org>
-Date: Fri, 28 Jan 2022 12:02:38 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5DCDE10ECF4;
+ Fri, 28 Jan 2022 11:18:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 58F7DAA917;
+ Fri, 28 Jan 2022 11:18:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220128085739.1464568-1-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <20220128085739.1464568-1-maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Allow dead vm to unbind vma's
- without lock.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Fri, 28 Jan 2022 11:18:12 -0000
+Message-ID: <164336869232.27320.11782838218887009492@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220128103757.22461-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220128103757.22461-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_M/N_cleanup_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,63 +40,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 1/28/22 09:57, Maarten Lankhorst wrote:
-> i915_gem_vm_close may take the lock, and we currently have no better way
-> of handling this. At least for now, allow a path in which holding vm->mutex
-> is sufficient. This is the case, because the object destroy path will
-> forcefully take vm->mutex now.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Series: drm/i915: M/N cleanup (rev3)
+URL   : https://patchwork.freedesktop.org/series/99409/
+State : warning
 
-Reviewed-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
-> ---
->   drivers/gpu/drm/i915/i915_vma.c | 15 +++++++++++++--
->   1 file changed, 13 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index b959e904c4d3..14a301c4069f 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -40,6 +40,17 @@
->   #include "i915_vma.h"
->   #include "i915_vma_resource.h"
->   
-> +static inline void assert_vma_held_evict(const struct i915_vma *vma)
-> +{
-> +	/*
-> +	 * We may be forced to unbind when the vm is dead, to clean it up.
-> +	 * This is the only exception to the requirement of the object lock
-> +	 * being held.
-> +	 */
-> +	if (atomic_read(&vma->vm->open))
-> +		assert_object_held_shared(vma->obj);
-> +}
-> +
->   static struct kmem_cache *slab_vmas;
->   
->   static struct i915_vma *i915_vma_alloc(void)
-> @@ -1779,7 +1790,7 @@ struct dma_fence *__i915_vma_evict(struct i915_vma *vma, bool async)
->   	struct dma_fence *unbind_fence;
->   
->   	GEM_BUG_ON(i915_vma_is_pinned(vma));
-> -	assert_object_held_shared(vma->obj);
-> +	assert_vma_held_evict(vma);
->   
->   	if (i915_vma_is_map_and_fenceable(vma)) {
->   		/* Force a pagefault for domain tracking on next user access */
-> @@ -1846,7 +1857,7 @@ int __i915_vma_unbind(struct i915_vma *vma)
->   	int ret;
->   
->   	lockdep_assert_held(&vma->vm->mutex);
-> -	assert_object_held_shared(vma->obj);
-> +	assert_vma_held_evict(vma);
->   
->   	if (!drm_mm_node_allocated(&vma->node))
->   		return 0;
