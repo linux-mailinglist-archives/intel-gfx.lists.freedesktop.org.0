@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8659649F0DA
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 03:15:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EF4B49F0DB
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jan 2022 03:16:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9CDD10E6B3;
-	Fri, 28 Jan 2022 02:15:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D155610E811;
+	Fri, 28 Jan 2022 02:15:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 67A3410E6BE;
- Fri, 28 Jan 2022 02:15:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7E49910E7DA;
+ Fri, 28 Jan 2022 02:15:57 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6310FA77A5;
- Fri, 28 Jan 2022 02:15:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1697455663213268772=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7DE6BA77A5;
+ Fri, 28 Jan 2022 02:15:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael Cheng" <michael.cheng@intel.com>
-Date: Fri, 28 Jan 2022 02:15:23 -0000
-Message-ID: <164333612336.27321.5750035520992806@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Fri, 28 Jan 2022 02:15:57 -0000
+Message-ID: <164333615751.27322.3897760323029698029@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220127234118.111015-1-michael.cheng@intel.com>
-In-Reply-To: <20220127234118.111015-1-michael.cheng@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgVXNl?=
- =?utf-8?q?_drm=5Fclflush*_instead_of_clflush?=
+References: <20220127234334.4016964-1-matthew.d.roper@intel.com>
+In-Reply-To: <20220127234334.4016964-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Second_round_of_i915=5Freg=2Eh_splitting_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,253 +45,93 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1697455663213268772==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Use drm_clflush* instead of clflush
-URL   : https://patchwork.freedesktop.org/series/99450/
-State : failure
+Series: Second round of i915_reg.h splitting (rev3)
+URL   : https://patchwork.freedesktop.org/series/99079/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_11154 -> Patchwork_22132
-====================================================
+$ dim checkpatch origin/drm-tip
+4b63057fdde4 drm/i915/perf: Move OA regs to their own header
+-:40: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#40: 
+new file mode 100644
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 1023 lines checked
+5f5be89db2a9 drm/i915/perf: Express OA register ranges with i915_range
+cebea3585011 drm/i915: Parameterize R_PWR_CLK_STATE register definition
+ecb952d200fd drm/i915: Parameterize MI_PREDICATE registers
+e9fb86df5f3e drm/i915: Move GT registers to their own header file
+-:185: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#185: 
+new file mode 100644
 
-  **FAILURE**
+-:298: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#298: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:109:
++#define   GEN8_SELECTIVE_READ_SUBSLICE_SELECT_MASK	(0x3 << GEN8_SELECTIVE_READ_SUBSLICE_SELECT_SHIFT)
 
-  Serious unknown changes coming with Patchwork_22132 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22132, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:300: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#300: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:111:
++#define   GEN8_SELECTIVE_READ_SLICE_SELECT_MASK		(0x3 << GEN8_SELECTIVE_READ_SLICE_SELECT_SHIFT)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/index.html
+-:415: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#415: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:226:
++#define  GEN9_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK	(1 << GEN9_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_SHIFT)
 
-Participating hosts (43 -> 41)
-------------------------------
+-:419: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#419: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:230:
++#define  GEN11_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK	(0x7 << GEN11_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_SHIFT)
 
-  Additional (1): fi-pnv-d510 
-  Missing    (3): fi-bsw-cyan fi-icl-u2 fi-bdw-samus 
+-:425: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#425: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:236:
++#define  GEN10_RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK	(0x3 << GEN10_RPM_CONFIG0_CTC_SHIFT_PARAMETER_SHIFT)
 
-Possible new issues
--------------------
+-:746: WARNING:LONG_LINE_COMMENT: line length of 104 exceeds 100 columns
+#746: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:557:
++#define PXVFREQ(fstart)		_MMIO(0x11110 + (fstart) * 4)  /* P[0-15]VIDFREQ (0x1114c) (Ironlake) */
 
-  Here are the unknown changes that may have been introduced in Patchwork_22132:
+-:785: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#785: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:596:
++#define   MEMCTL_CMD_STS	(1 << 12) /* write 1 triggers command, clears
++					     when command complete */
 
-### IGT changes ###
+-:785: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#785: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:596:
++					     when command complete */
 
-#### Possible regressions ####
+-:898: WARNING:LONG_LINE_COMMENT: line length of 134 exceeds 100 columns
+#898: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:709:
++#define   IMPROMOEN		(1 << 10) /* promo is immediate or delayed until next idle interval (only for timeout method above) */
 
-  * igt@i915_selftest@live@gt_mocs:
-    - bat-dg1-6:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11154/bat-dg1-6/igt@i915_selftest@live@gt_mocs.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/bat-dg1-6/igt@i915_selftest@live@gt_mocs.html
+-:985: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'cxt_reg' - possible side-effects?
+#985: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:796:
++#define GEN6_CXT_TOTAL_SIZE(cxt_reg)	(GEN6_CXT_RING_SIZE(cxt_reg) + \
++					GEN6_CXT_EXTENDED_SIZE(cxt_reg) + \
++					GEN6_CXT_PIPELINE_SIZE(cxt_reg))
 
-  
-Known issues
-------------
+-:995: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ctx_reg' - possible side-effects?
+#995: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:806:
++#define GEN7_CXT_TOTAL_SIZE(ctx_reg)	(GEN7_CXT_EXTENDED_SIZE(ctx_reg) + \
++					 GEN7_CXT_VFSTATE_SIZE(ctx_reg))
 
-  Here are the changes found in Patchwork_22132 that come from known issues:
+-:1565: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'slice' - possible side-effects?
+#1565: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:1376:
++#define GEN10_SLICE_PGCTL_ACK(slice)	_MMIO(0x804c + ((slice) / 3) * 0x34 + \
++					      ((slice) % 3) * 0x4)
 
-### IGT changes ###
+-:1572: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'slice' - possible side-effects?
+#1572: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:1383:
++#define GEN10_SS01_EU_PGCTL_ACK(slice)	_MMIO(0x805c + ((slice) / 3) * 0x30 + \
++					      ((slice) % 3) * 0x8)
 
-#### Issues hit ####
+-:1575: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'slice' - possible side-effects?
+#1575: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:1386:
++#define GEN10_SS23_EU_PGCTL_ACK(slice)	_MMIO(0x8060 + ((slice) / 3) * 0x30 + \
++					      ((slice) % 3) * 0x8)
 
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-gfx0:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][4] ([fdo#109271]) +17 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [PASS][5] -> [DMESG-FAIL][6] ([i915#4494] / [i915#4957])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11154/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-    - fi-hsw-4770:        [PASS][7] -> [INCOMPLETE][8] ([i915#4785])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11154/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][9] ([fdo#109271]) +57 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][10] ([fdo#109271] / [i915#1436] / [i915#4312])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/fi-hsw-4770/igt@runner@aborted.html
-    - bat-dg1-6:          NOTRUN -> [FAIL][11] ([i915#4312])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/bat-dg1-6/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][12] ([i915#3921]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11154/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+total: 0 errors, 10 warnings, 5 checks, 3537 lines checked
+e79aa0dd9ff2 drm/i915: Only include i915_reg.h from .c files
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11154 -> Patchwork_22132
-
-  CI-20190529: 20190529
-  CI_DRM_11154: 401e42aa274384a2660ad4b54af9ef6a86429cb1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6336: ae2eb9e18bc58a4c45f28cfd80962938198dec3c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22132: 83fa55f11e7b79ce579f3f23dbf7c9bf14655bcc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-83fa55f11e7b drm/i915/gt: Re-work invalidate_csb_entries
-926d9e54027d drm/i915/gt: Re-work intel_write_status_page
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/index.html
-
---===============1697455663213268772==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Use drm_clflush* instead of clflush</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99450/">https://patchwork.freedesktop.org/series/99450/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11154 -&gt; Patchwork_22132</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22132 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22132, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/index.html</p>
-<h2>Participating hosts (43 -&gt; 41)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (3): fi-bsw-cyan fi-icl-u2 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22132:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_mocs:<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11154/bat-dg1-6/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/bat-dg1-6/igt@i915_selftest@live@gt_mocs.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22132 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-gfx0:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/fi-skl-6600u/igt@amdgpu/amd_cs_nop@sync-fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11154/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
-</li>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11154/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>bat-dg1-6:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/bat-dg1-6/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11154/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22132/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11154 -&gt; Patchwork_22132</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11154: 401e42aa274384a2660ad4b54af9ef6a86429cb1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6336: ae2eb9e18bc58a4c45f28cfd80962938198dec3c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22132: 83fa55f11e7b79ce579f3f23dbf7c9bf14655bcc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>83fa55f11e7b drm/i915/gt: Re-work invalidate_csb_entries<br />
-926d9e54027d drm/i915/gt: Re-work intel_write_status_page</p>
-
-</body>
-</html>
-
---===============1697455663213268772==--
