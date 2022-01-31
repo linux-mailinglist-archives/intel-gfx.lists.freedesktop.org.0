@@ -2,54 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CC434A4AF3
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jan 2022 16:49:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 296864A4B28
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jan 2022 17:00:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C7CC10E4FF;
-	Mon, 31 Jan 2022 15:49:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79B6C10E589;
+	Mon, 31 Jan 2022 16:00:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55DFC10E4FE;
- Mon, 31 Jan 2022 15:49:47 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CACC10E578
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 Jan 2022 16:00:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643644187; x=1675180187;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ZMrFCrNBpuFF9nsfOLmho9vGHjKR9bi5YfQohF0govM=;
- b=LEQQw/0PEbY9eaEkOaCYr/HYDdh1iaBfoNbZNrBMk+VpyOkwb/iQOikY
- MUBaDarydLx1PAFsVYNWCFryShvsFHhISDXDhrDsQqAy51uAj8tdAZqKl
- lVMslZ2zwh4eDYh/6wQ2mu5v5z0CdJCnDhEN/iRrf8R0Mjn1Zd6+ER6DW
- wga78RQZfsXMcKy0mTIkkQHSwI82ZuiQjAp99A2Smn0f3f9KM6MUnrHPA
- McpGmbUzVQ+YQNsPHeKq5nvCiVqnq4zdsq95ygkrYWnaEg7mSQ4fIQF3c
- oOgTegrV+o2N2X0I7O36pSoxxJcakWS66CyYYIS+ifZgE9ZnIemMFj8X8 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="333840947"
-X-IronPort-AV: E=Sophos;i="5.88,331,1635231600"; d="scan'208";a="333840947"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2022 07:49:46 -0800
-X-IronPort-AV: E=Sophos;i="5.88,331,1635231600"; d="scan'208";a="698039950"
-Received: from bvandelf-mobl1.ger.corp.intel.com (HELO [10.252.5.180])
- ([10.252.5.180])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2022 07:49:45 -0800
-Message-ID: <7d5e1bfd-90be-8f51-b45d-acd11ce89068@intel.com>
-Date: Mon, 31 Jan 2022 15:49:42 +0000
+ t=1643644831; x=1675180831;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=3h+qDHoBxejVIIf3t+E1zLjAODPGcZ4RSW4WAmwqwVM=;
+ b=NLt3u1tBGJwNfkxy3gb4ytoZ9AYzxw02LuQe/ggrOZoKDmD88yystL68
+ NC8UL0uCZdIKqDYsbH8EdIERhADspp+B9DA6ihT1Vb6pq/XNARVrEQNZA
+ yzl+zovW8KV0guCrCMBGCDwhivssDX51LPDbw+hhKxBgEhFfurWLGeLIu
+ Q9srRUpbR/Z46hka9olhtxPp3d0mKdNv7Vze7wzdEbBsCnjJ3KjiG5D8m
+ ptpiQ4VoywQk2Nxq1a2u2jSBS+fiUHE7y2k0h1Gmy/ew0IJwIB9LkfBeY
+ DrSTdTmZoIuj2juz5DhXtqk7WBtekxzu0dInXdlYbTgyNXsN7H1Bi5wli w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="227456411"
+X-IronPort-AV: E=Sophos;i="5.88,331,1635231600"; d="scan'208";a="227456411"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2022 08:00:28 -0800
+X-IronPort-AV: E=Sophos;i="5.88,331,1635231600"; d="scan'208";a="496963750"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2022 08:00:26 -0800
+Date: Mon, 31 Jan 2022 18:00:22 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20220131160022.GA2434344@ideak-desk.fi.intel.com>
+References: <20220128114914.2339526-1-imre.deak@intel.com>
+ <20220128114914.2339526-5-imre.deak@intel.com>
+ <871r0ow17m.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-GB
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220126152155.3070602-1-matthew.auld@intel.com>
- <20220126152155.3070602-7-matthew.auld@intel.com>
- <de1de76a-c2cd-adc2-cfe3-50d40920aa26@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <de1de76a-c2cd-adc2-cfe3-50d40920aa26@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 06/20] drm/i915: add I915_BO_ALLOC_TOPDOWN
+In-Reply-To: <871r0ow17m.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 04/19] drm/i915: Move the power domain->well
+ mappings to intel_display_power_map.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,220 +59,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 31/01/2022 15:28, Thomas Hellström wrote:
-> On 1/26/22 16:21, Matthew Auld wrote:
->> If the user doesn't require CPU access for the buffer, then
->> ALLOC_TOPDOWN should be used, in order to prioritise allocating in the
->> non-mappable portion of LMEM.
->>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+On Mon, Jan 31, 2022 at 02:15:25PM +0200, Jani Nikula wrote:
+> On Fri, 28 Jan 2022, Imre Deak <imre.deak@intel.com> wrote:
+> > Move the list of platform specific power domain -> power well
+> > definitions to intel_display_power_map.c. While at it group the
+> > platforms' power domain macros with the corresponding power well lists
+> > and keep all the power domain lists in the same order (matching the enum
+> > order).
+> >
+> > No functional changes.
+> >
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > 
-> I was wondering how this would work best with user-space not supplying 
-> any hints. Thinking that mappable LMEM buffers would be a minority, 
-> wouldn't it be better to have TOPDOWN behaviour set by default. It would 
-> then be migrated to mappable only if needed. And if the first usage is a 
-> cpu-map it would either be mapped in system or immediately migrated from 
-> pageless to mappable LMEM?
+> The commit message should explain the why.
+> 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+> > index b30e6133c66d0..a0e68ae691021 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> > @@ -197,6 +197,7 @@ struct intel_display_power_domain_set {
+> >  	for ((domain) = 0; (domain) < POWER_DOMAIN_NUM; (domain)++)	\
+> >  		for_each_if(BIT_ULL(domain) & (mask))
+> >  
+> > +/* intel_display_power.c */
+> >  int intel_power_domains_init(struct drm_i915_private *dev_priv);
+> >  void intel_power_domains_cleanup(struct drm_i915_private *dev_priv);
+> >  void intel_power_domains_init_hw(struct drm_i915_private *dev_priv, bool resume);
+> > @@ -316,4 +317,8 @@ void chv_phy_powergate_lanes(struct intel_encoder *encoder,
+> >  bool chv_phy_powergate_ch(struct drm_i915_private *dev_priv, enum dpio_phy phy,
+> >  			  enum dpio_channel ch, bool override);
+> >  
+> > +/* intel_display_power_map.c */
+> > +const char *
+> > +intel_display_power_domain_str(enum intel_display_power_domain domain);
+> > +
+> >  #endif /* __INTEL_DISPLAY_POWER_H__ */
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_internal.h b/drivers/gpu/drm/i915/display/intel_display_power_internal.h
+> > new file mode 100644
+> > index 0000000000000..3fc7c7d0bc9e9
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_internal.h
+> > @@ -0,0 +1,93 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright � 2022 Intel Corporation
+> > + */
+> > +
+> > +#ifndef __INTEL_DISPLAY_POWER_INTERNAL_H__
+> > +#define __INTEL_DISPLAY_POWER_INTERNAL_H__
+> > +
+> > +#include "i915_reg_defs.h"
+> > +
+> > +#include "intel_display.h"
+> > +#include "intel_display_power.h"
+> > +
+> > +struct i915_power_well_regs;
+> > +
+> > +/* Power well structure for haswell */
+> > +struct i915_power_well_desc {
+> > +	const char *name;
+> > +	bool always_on;
+> > +	u64 domains;
+> > +	/* unique identifier for this power well */
+> > +	enum i915_power_well_id id;
+> > +	/*
+> > +	 * Arbitraty data associated with this power well. Platform and power
+> > +	 * well specific.
+> > +	 */
+> > +	union {
+> > +		struct {
+> > +			/*
+> > +			 * request/status flag index in the PUNIT power well
+> > +			 * control/status registers.
+> > +			 */
+> > +			u8 idx;
+> > +		} vlv;
+> > +		struct {
+> > +			enum dpio_phy phy;
+> > +		} bxt;
+> > +		struct {
+> > +			/*
+> > +			 * request/status flag index in the power well
+> > +			 * constrol/status registers.
+> > +			 */
+> > +			u8 idx;
+> > +			/* Mask of pipes whose IRQ logic is backed by the pw */
+> > +			u8 irq_pipe_mask;
+> > +			/*
+> > +			 * Instead of waiting for the status bit to ack enables,
+> > +			 * just wait a specific amount of time and then consider
+> > +			 * the well enabled.
+> > +			 */
+> > +			u16 fixed_enable_delay;
+> > +			/* The pw is backing the VGA functionality */
+> > +			bool has_vga:1;
+> > +			bool has_fuses:1;
+> > +			/*
+> > +			 * The pw is for an ICL+ TypeC PHY port in
+> > +			 * Thunderbolt mode.
+> > +			 */
+> > +			bool is_tc_tbt:1;
+> > +		} hsw;
+> > +	};
+> > +	const struct i915_power_well_ops *ops;
+> > +};
+> > +
+> > +struct i915_power_well {
+> > +	const struct i915_power_well_desc *desc;
+> > +	/* power well enable/disable usage count */
+> > +	int count;
+> > +	/* cached hw enabled state */
+> > +	bool hw_enabled;
+> > +};
+> > +
+> > +/* intel_display_power.c */
+> 
+> I've put a lot of effort into splitting our (display) codebase towards
+> having a 1-to-1 mapping between .c and .h files. This patch adds an odd
+> split between two headers and two compilation units, and I don't think
+> it's pretty.
 
-At this stage of the series I was mostly concerned with kernel internal 
-users(including all of the selftests), for which pretty much all 
-existing users want CPU access, so having that as the default seemed 
-reasonable, and avoids needing to annotate lots of places with 
-NEEDS_CPU_ACCESS. The TOPDOWN behaviour becomes the default for normal 
-userspace objects later in the series, which only requires annotating 
-one place.
+This header includes struct definitions used by intel_display_power.c
+and intel_display_power_map.c. I don't see why this would be a problem,
+there are many other cases where multiple .c files include a header file
+for the same reason.
 
+> > +extern const struct i915_power_well_ops i9xx_always_on_power_well_ops;
+> > +extern const struct i915_power_well_ops chv_pipe_power_well_ops;
+> > +extern const struct i915_power_well_ops chv_dpio_cmn_power_well_ops;
+> > +extern const struct i915_power_well_ops i830_pipes_power_well_ops;
+> > +extern const struct i915_power_well_ops hsw_power_well_ops;
+> > +extern const struct i915_power_well_ops hsw_power_well_ops;
+> > +extern const struct i915_power_well_ops gen9_dc_off_power_well_ops;
+> > +extern const struct i915_power_well_ops bxt_dpio_cmn_power_well_ops;
+> > +extern const struct i915_power_well_ops vlv_display_power_well_ops;
+> > +extern const struct i915_power_well_ops vlv_dpio_cmn_power_well_ops;
+> > +extern const struct i915_power_well_ops vlv_dpio_power_well_ops;
+> > +extern const struct i915_power_well_ops icl_ddi_power_well_ops;
+> > +extern const struct i915_power_well_ops icl_aux_power_well_ops;
+> > +extern const struct i915_power_well_ops tgl_tc_cold_off_ops;
+> 
+> Also not happy about this. Data is not an interface.
+> 
+> We currently have 20 symbols with extern, and this adds 14 more with a
+> clear path to add more for new platforms. I'd rather we were heading in
+> the other direction.
+> 
+> I'm just wondering if the split introduced here is sound. All of the
+> above would make this turn up when I look for stuff that I think needs
+> to be refactored. And the commit message does not even say why...
+
+The reason is to reduce the size of intel_display_power.c, to make it
+more readable/manageable. The implementation of the power well
+enable/disable etc. functionality and the mapping of these power wells
+to power domains are two distinct parts in that file that can be
+separated.
+
+The externs above are power wells that are mapped to domains, and
+besides the symbol name are opaque to the mapping code.
+
+> BR,
+> Jani.
 > 
 > 
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_object_types.h | 15 +++++++++++----
->>   drivers/gpu/drm/i915/gem/i915_gem_pages.c        |  3 +++
->>   drivers/gpu/drm/i915/gem/i915_gem_region.c       |  5 +++++
->>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c          | 13 ++++++++++---
->>   drivers/gpu/drm/i915/gt/intel_gt.c               |  4 +++-
->>   drivers/gpu/drm/i915/i915_vma.c                  |  3 +++
->>   drivers/gpu/drm/i915/intel_region_ttm.c          | 11 ++++++++---
->>   drivers/gpu/drm/i915/selftests/mock_region.c     |  7 +------
->>   8 files changed, 44 insertions(+), 17 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h 
->> b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> index 71e778ecaeb8..29285aaf0477 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> @@ -319,15 +319,22 @@ struct drm_i915_gem_object {
->>   #define I915_BO_ALLOC_PM_VOLATILE BIT(4)
->>   /* Object needs to be restored early using memcpy during resume */
->>   #define I915_BO_ALLOC_PM_EARLY    BIT(5)
->> +/*
->> + * Object is likely never accessed by the CPU. This will prioritise 
->> the BO to be
->> + * allocated in the non-mappable portion of lmem. This is merely a 
->> hint, and if
->> + * dealing with userspace objects the CPU fault handler is free to 
->> ignore this.
->> + */
->> +#define I915_BO_ALLOC_TOPDOWN      BIT(6)
->>   #define I915_BO_ALLOC_FLAGS (I915_BO_ALLOC_CONTIGUOUS | \
->>                    I915_BO_ALLOC_VOLATILE | \
->>                    I915_BO_ALLOC_CPU_CLEAR | \
->>                    I915_BO_ALLOC_USER | \
->>                    I915_BO_ALLOC_PM_VOLATILE | \
->> -                 I915_BO_ALLOC_PM_EARLY)
->> -#define I915_BO_READONLY          BIT(6)
->> -#define I915_TILING_QUIRK_BIT     7 /* unknown swizzling; do not 
->> release! */
->> -#define I915_BO_PROTECTED         BIT(8)
->> +                 I915_BO_ALLOC_PM_EARLY | \
->> +                 I915_BO_ALLOC_TOPDOWN)
->> +#define I915_BO_READONLY          BIT(7)
->> +#define I915_TILING_QUIRK_BIT     8 /* unknown swizzling; do not 
->> release! */
->> +#define I915_BO_PROTECTED         BIT(9)
->>       /**
->>        * @mem_flags - Mutable placement-related flags
->>        *
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
->> index 7d2211fbe548..a95b4d72619f 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
->> @@ -346,6 +346,9 @@ void *i915_gem_object_pin_map(struct 
->> drm_i915_gem_object *obj,
->>           !i915_gem_object_has_iomem(obj))
->>           return ERR_PTR(-ENXIO);
->> +    if (WARN_ON_ONCE(obj->flags & I915_BO_ALLOC_TOPDOWN))
->> +        return ERR_PTR(-EINVAL);
->> +
->>       assert_object_held(obj);
->>       pinned = !(type & I915_MAP_OVERRIDE);
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_region.c
->> index a4350227e9ae..f91e5a9c759d 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
->> @@ -45,6 +45,11 @@ i915_gem_object_create_region(struct 
->> intel_memory_region *mem,
->>       GEM_BUG_ON(flags & ~I915_BO_ALLOC_FLAGS);
->> +    if (WARN_ON_ONCE(flags & I915_BO_ALLOC_TOPDOWN &&
->> +             (flags & I915_BO_ALLOC_CPU_CLEAR ||
->> +              flags & I915_BO_ALLOC_PM_EARLY)))
->> +        return ERR_PTR(-EINVAL);
->> +
->>       if (!mem)
->>           return ERR_PTR(-ENODEV);
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> index d9a04c7d41b1..e60b677ecd54 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->> @@ -127,10 +127,14 @@ i915_ttm_place_from_region(const struct 
->> intel_memory_region *mr,
->>       place->mem_type = intel_region_to_ttm_type(mr);
->>       if (flags & I915_BO_ALLOC_CONTIGUOUS)
->> -        place->flags = TTM_PL_FLAG_CONTIGUOUS;
->> +        place->flags |= TTM_PL_FLAG_CONTIGUOUS;
->>       if (mr->io_size && mr->io_size < mr->total) {
->> -        place->fpfn = 0;
->> -        place->lpfn = mr->io_size >> PAGE_SHIFT;
->> +        if (flags & I915_BO_ALLOC_TOPDOWN) {
->> +            place->flags |= TTM_PL_FLAG_TOPDOWN;
->> +        } else {
->> +            place->fpfn = 0;
->> +            place->lpfn = mr->io_size >> PAGE_SHIFT;
->> +        }
->>       }
->>   }
->> @@ -890,6 +894,9 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
->>       if (!obj)
->>           return VM_FAULT_SIGBUS;
->> +    if (obj->flags & I915_BO_ALLOC_TOPDOWN)
->> +        return -EINVAL;
->> +
->>       /* Sanity check that we allow writing into this object */
->>       if (unlikely(i915_gem_object_is_readonly(obj) &&
->>                area->vm_flags & VM_WRITE))
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c 
->> b/drivers/gpu/drm/i915/gt/intel_gt.c
->> index 622cdfed8a8b..8b83a771a2f7 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
->> @@ -454,7 +454,9 @@ static int intel_gt_init_scratch(struct intel_gt 
->> *gt, unsigned int size)
->>       struct i915_vma *vma;
->>       int ret;
->> -    obj = i915_gem_object_create_lmem(i915, size, 
->> I915_BO_ALLOC_VOLATILE);
->> +    obj = i915_gem_object_create_lmem(i915, size,
->> +                      I915_BO_ALLOC_VOLATILE |
->> +                      I915_BO_ALLOC_TOPDOWN);
->>       if (IS_ERR(obj))
->>           obj = i915_gem_object_create_stolen(i915, size);
->>       if (IS_ERR(obj))
->> diff --git a/drivers/gpu/drm/i915/i915_vma.c 
->> b/drivers/gpu/drm/i915/i915_vma.c
->> index b1816a835abf..b2fdaa74e4b6 100644
->> --- a/drivers/gpu/drm/i915/i915_vma.c
->> +++ b/drivers/gpu/drm/i915/i915_vma.c
->> @@ -528,6 +528,9 @@ void __iomem *i915_vma_pin_iomap(struct i915_vma 
->> *vma)
->>       void __iomem *ptr;
->>       int err;
->> +    if (WARN_ON_ONCE(vma->obj->flags & I915_BO_ALLOC_TOPDOWN))
->> +        return IO_ERR_PTR(-EINVAL);
->> +
->>       if (!i915_gem_object_is_lmem(vma->obj)) {
->>           if (GEM_WARN_ON(!i915_vma_is_map_and_fenceable(vma))) {
->>               err = -ENODEV;
->> diff --git a/drivers/gpu/drm/i915/intel_region_ttm.c 
->> b/drivers/gpu/drm/i915/intel_region_ttm.c
->> index 4689192d5e8d..282802aed174 100644
->> --- a/drivers/gpu/drm/i915/intel_region_ttm.c
->> +++ b/drivers/gpu/drm/i915/intel_region_ttm.c
->> @@ -199,13 +199,18 @@ intel_region_ttm_resource_alloc(struct 
->> intel_memory_region *mem,
->>       struct ttm_resource *res;
->>       int ret;
->> +    if (flags & I915_BO_ALLOC_CONTIGUOUS)
->> +        place.flags |= TTM_PL_FLAG_CONTIGUOUS;
->>       if (mem->io_size && mem->io_size < mem->total) {
->> -        place.fpfn = 0;
->> -        place.lpfn = mem->io_size >> PAGE_SHIFT;
->> +        if (flags & I915_BO_ALLOC_TOPDOWN) {
->> +            place.flags |= TTM_PL_FLAG_TOPDOWN;
->> +        } else {
->> +            place.fpfn = 0;
->> +            place.lpfn = mem->io_size >> PAGE_SHIFT;
->> +        }
->>       }
->>       mock_bo.base.size = size;
->> -    place.flags = flags;
->>       ret = man->func->alloc(man, &mock_bo, &place, &res);
->>       if (ret == -ENOSPC)
->> diff --git a/drivers/gpu/drm/i915/selftests/mock_region.c 
->> b/drivers/gpu/drm/i915/selftests/mock_region.c
->> index 467eeae6d5f0..f64325491f35 100644
->> --- a/drivers/gpu/drm/i915/selftests/mock_region.c
->> +++ b/drivers/gpu/drm/i915/selftests/mock_region.c
->> @@ -22,17 +22,12 @@ static void mock_region_put_pages(struct 
->> drm_i915_gem_object *obj,
->>   static int mock_region_get_pages(struct drm_i915_gem_object *obj)
->>   {
->> -    unsigned int flags;
->>       struct sg_table *pages;
->>       int err;
->> -    flags = 0;
->> -    if (obj->flags & I915_BO_ALLOC_CONTIGUOUS)
->> -        flags |= TTM_PL_FLAG_CONTIGUOUS;
->> -
->>       obj->mm.res = intel_region_ttm_resource_alloc(obj->mm.region,
->>                                 obj->base.size,
->> -                              flags);
->> +                              obj->flags);
->>       if (IS_ERR(obj->mm.res))
->>           return PTR_ERR(obj->mm.res);
+> > +
+> > +/* intel_display_power_map.c */
+> > +int intel_init_power_wells(struct i915_power_domains *power_domains);
+> > +void intel_cleanup_power_wells(struct i915_power_domains *power_domains);
+> > +
+> > +#endif
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
