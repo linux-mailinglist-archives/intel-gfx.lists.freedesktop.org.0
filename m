@@ -1,52 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 296864A4B28
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jan 2022 17:00:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B2504A4B82
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jan 2022 17:12:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79B6C10E589;
-	Mon, 31 Jan 2022 16:00:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98B0C10E1FD;
+	Mon, 31 Jan 2022 16:12:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CACC10E578
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 Jan 2022 16:00:31 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB64210E346;
+ Mon, 31 Jan 2022 16:12:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643644831; x=1675180831;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=3h+qDHoBxejVIIf3t+E1zLjAODPGcZ4RSW4WAmwqwVM=;
- b=NLt3u1tBGJwNfkxy3gb4ytoZ9AYzxw02LuQe/ggrOZoKDmD88yystL68
- NC8UL0uCZdIKqDYsbH8EdIERhADspp+B9DA6ihT1Vb6pq/XNARVrEQNZA
- yzl+zovW8KV0guCrCMBGCDwhivssDX51LPDbw+hhKxBgEhFfurWLGeLIu
- Q9srRUpbR/Z46hka9olhtxPp3d0mKdNv7Vze7wzdEbBsCnjJ3KjiG5D8m
- ptpiQ4VoywQk2Nxq1a2u2jSBS+fiUHE7y2k0h1Gmy/ew0IJwIB9LkfBeY
- DrSTdTmZoIuj2juz5DhXtqk7WBtekxzu0dInXdlYbTgyNXsN7H1Bi5wli w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="227456411"
-X-IronPort-AV: E=Sophos;i="5.88,331,1635231600"; d="scan'208";a="227456411"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2022 08:00:28 -0800
-X-IronPort-AV: E=Sophos;i="5.88,331,1635231600"; d="scan'208";a="496963750"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2022 08:00:26 -0800
-Date: Mon, 31 Jan 2022 18:00:22 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20220131160022.GA2434344@ideak-desk.fi.intel.com>
-References: <20220128114914.2339526-1-imre.deak@intel.com>
- <20220128114914.2339526-5-imre.deak@intel.com>
- <871r0ow17m.fsf@intel.com>
+ t=1643645555; x=1675181555;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=npiV13dYZPOAGDX7I60F+d7oMB8G4c6cSAv7dB0hTYc=;
+ b=PFv71UUFTKg9dpc/cDvlqJD7bwUt2u9K7ZZ9uOtzr5MC0oH3itn6sSJL
+ S9xPH8ZNSgAFYB7kp2XaZTrp7IXTtXwnrnR9YtK5Q8GEI7ja2aCOaACeE
+ Iga7b3VgPnQn0bWYu1rbW5yhilYmxHhh6pRPi6pKpC0qrrHU10Z+HyvCr
+ ltq/9NfzolZQbRLjL/BQWH1h1fNwtGLgaZCtFCy7w8R7djapREqG+8m8f
+ cTcEmnuQhxugnam/uWxyEaX6oHmM0QTEoNoCo4ENcEjfcnva7F4J/MPfy
+ 1cZiQguBZhzPgeCbbLaD3vE1v7sJcUEoHCUlnxeBTxlTGXh1vjGl/h/49 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="308224459"
+X-IronPort-AV: E=Sophos;i="5.88,331,1635231600"; d="scan'208";a="308224459"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2022 08:12:26 -0800
+X-IronPort-AV: E=Sophos;i="5.88,331,1635231600"; d="scan'208";a="626413480"
+Received: from yeidelbe-mobl1.ger.corp.intel.com (HELO [10.249.254.103])
+ ([10.249.254.103])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2022 08:12:25 -0800
+Message-ID: <41c18d90-825c-0db5-b694-7a631ec6f9b2@linux.intel.com>
+Date: Mon, 31 Jan 2022 17:12:22 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220126152155.3070602-1-matthew.auld@intel.com>
+ <20220126152155.3070602-8-matthew.auld@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20220126152155.3070602-8-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <871r0ow17m.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 04/19] drm/i915: Move the power domain->well
- mappings to intel_display_power_map.c
+Subject: Re: [Intel-gfx] [PATCH 07/20] drm/i915/buddy: track available
+ visible size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,179 +61,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 31, 2022 at 02:15:25PM +0200, Jani Nikula wrote:
-> On Fri, 28 Jan 2022, Imre Deak <imre.deak@intel.com> wrote:
-> > Move the list of platform specific power domain -> power well
-> > definitions to intel_display_power_map.c. While at it group the
-> > platforms' power domain macros with the corresponding power well lists
-> > and keep all the power domain lists in the same order (matching the enum
-> > order).
-> >
-> > No functional changes.
-> >
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> 
-> The commit message should explain the why.
-> 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > index b30e6133c66d0..a0e68ae691021 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > @@ -197,6 +197,7 @@ struct intel_display_power_domain_set {
-> >  	for ((domain) = 0; (domain) < POWER_DOMAIN_NUM; (domain)++)	\
-> >  		for_each_if(BIT_ULL(domain) & (mask))
-> >  
-> > +/* intel_display_power.c */
-> >  int intel_power_domains_init(struct drm_i915_private *dev_priv);
-> >  void intel_power_domains_cleanup(struct drm_i915_private *dev_priv);
-> >  void intel_power_domains_init_hw(struct drm_i915_private *dev_priv, bool resume);
-> > @@ -316,4 +317,8 @@ void chv_phy_powergate_lanes(struct intel_encoder *encoder,
-> >  bool chv_phy_powergate_ch(struct drm_i915_private *dev_priv, enum dpio_phy phy,
-> >  			  enum dpio_channel ch, bool override);
-> >  
-> > +/* intel_display_power_map.c */
-> > +const char *
-> > +intel_display_power_domain_str(enum intel_display_power_domain domain);
-> > +
-> >  #endif /* __INTEL_DISPLAY_POWER_H__ */
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_internal.h b/drivers/gpu/drm/i915/display/intel_display_power_internal.h
-> > new file mode 100644
-> > index 0000000000000..3fc7c7d0bc9e9
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_internal.h
-> > @@ -0,0 +1,93 @@
-> > +/* SPDX-License-Identifier: MIT */
-> > +/*
-> > + * Copyright © 2022 Intel Corporation
-> > + */
-> > +
-> > +#ifndef __INTEL_DISPLAY_POWER_INTERNAL_H__
-> > +#define __INTEL_DISPLAY_POWER_INTERNAL_H__
-> > +
-> > +#include "i915_reg_defs.h"
-> > +
-> > +#include "intel_display.h"
-> > +#include "intel_display_power.h"
-> > +
-> > +struct i915_power_well_regs;
-> > +
-> > +/* Power well structure for haswell */
-> > +struct i915_power_well_desc {
-> > +	const char *name;
-> > +	bool always_on;
-> > +	u64 domains;
-> > +	/* unique identifier for this power well */
-> > +	enum i915_power_well_id id;
-> > +	/*
-> > +	 * Arbitraty data associated with this power well. Platform and power
-> > +	 * well specific.
-> > +	 */
-> > +	union {
-> > +		struct {
-> > +			/*
-> > +			 * request/status flag index in the PUNIT power well
-> > +			 * control/status registers.
-> > +			 */
-> > +			u8 idx;
-> > +		} vlv;
-> > +		struct {
-> > +			enum dpio_phy phy;
-> > +		} bxt;
-> > +		struct {
-> > +			/*
-> > +			 * request/status flag index in the power well
-> > +			 * constrol/status registers.
-> > +			 */
-> > +			u8 idx;
-> > +			/* Mask of pipes whose IRQ logic is backed by the pw */
-> > +			u8 irq_pipe_mask;
-> > +			/*
-> > +			 * Instead of waiting for the status bit to ack enables,
-> > +			 * just wait a specific amount of time and then consider
-> > +			 * the well enabled.
-> > +			 */
-> > +			u16 fixed_enable_delay;
-> > +			/* The pw is backing the VGA functionality */
-> > +			bool has_vga:1;
-> > +			bool has_fuses:1;
-> > +			/*
-> > +			 * The pw is for an ICL+ TypeC PHY port in
-> > +			 * Thunderbolt mode.
-> > +			 */
-> > +			bool is_tc_tbt:1;
-> > +		} hsw;
-> > +	};
-> > +	const struct i915_power_well_ops *ops;
-> > +};
-> > +
-> > +struct i915_power_well {
-> > +	const struct i915_power_well_desc *desc;
-> > +	/* power well enable/disable usage count */
-> > +	int count;
-> > +	/* cached hw enabled state */
-> > +	bool hw_enabled;
-> > +};
-> > +
-> > +/* intel_display_power.c */
-> 
-> I've put a lot of effort into splitting our (display) codebase towards
-> having a 1-to-1 mapping between .c and .h files. This patch adds an odd
-> split between two headers and two compilation units, and I don't think
-> it's pretty.
 
-This header includes struct definitions used by intel_display_power.c
-and intel_display_power_map.c. I don't see why this would be a problem,
-there are many other cases where multiple .c files include a header file
-for the same reason.
+On 1/26/22 16:21, Matthew Auld wrote:
+> Track the total amount of available visible memory, and also track
+> per-resource the amount of used visible memory. For now this is useful
+> for our debug output, and deciding if it is even worth calling into the
+> buddy allocator. In the future tracking the per-resource visible usage
+> will be useful for when deciding if we should attempt to evict certain
+> buffers.
+>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 55 ++++++++++++++++++-
+>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.h |  8 ++-
+>   drivers/gpu/drm/i915/intel_region_ttm.c       |  1 +
+>   3 files changed, 62 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> index 53eb100688a6..6e5842155898 100644
+> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> @@ -19,6 +19,8 @@ struct i915_ttm_buddy_manager {
+>   	struct drm_buddy mm;
+>   	struct list_head reserved;
+>   	struct mutex lock;
+> +	unsigned long visible_size;
+> +	unsigned long visible_avail;
+>   	u64 default_page_size;
+>   };
+>   
+> @@ -87,6 +89,13 @@ static int i915_ttm_buddy_man_alloc(struct ttm_resource_manager *man,
+>   	n_pages = size >> ilog2(mm->chunk_size);
+>   
+>   	mutex_lock(&bman->lock);
+> +	if (place->lpfn && place->lpfn <= bman->visible_size &&
+> +	    n_pages > bman->visible_avail) {
+> +		mutex_unlock(&bman->lock);
+> +		err = -ENOSPC;
+> +		goto err_free_res;
+> +	}
+> +
+>   	err = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << PAGE_SHIFT,
+>   				    (u64)lpfn << PAGE_SHIFT,
+>   				    (u64)n_pages << PAGE_SHIFT,
+> @@ -107,6 +116,30 @@ static int i915_ttm_buddy_man_alloc(struct ttm_resource_manager *man,
+>   		mutex_unlock(&bman->lock);
+>   	}
+>   
+> +	if (place->lpfn && place->lpfn <= bman->visible_size) {
+> +		bman_res->used_visible_size = bman_res->base.num_pages;
+> +	} else {
+> +		struct drm_buddy_block *block;
+> +
+> +		list_for_each_entry(block, &bman_res->blocks, link) {
+> +			unsigned long start =
+> +				drm_buddy_block_offset(block) >> PAGE_SHIFT;
+> +			unsigned long end = start +
+> +				(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
+> +
 
-> > +extern const struct i915_power_well_ops i9xx_always_on_power_well_ops;
-> > +extern const struct i915_power_well_ops chv_pipe_power_well_ops;
-> > +extern const struct i915_power_well_ops chv_dpio_cmn_power_well_ops;
-> > +extern const struct i915_power_well_ops i830_pipes_power_well_ops;
-> > +extern const struct i915_power_well_ops hsw_power_well_ops;
-> > +extern const struct i915_power_well_ops hsw_power_well_ops;
-> > +extern const struct i915_power_well_ops gen9_dc_off_power_well_ops;
-> > +extern const struct i915_power_well_ops bxt_dpio_cmn_power_well_ops;
-> > +extern const struct i915_power_well_ops vlv_display_power_well_ops;
-> > +extern const struct i915_power_well_ops vlv_dpio_cmn_power_well_ops;
-> > +extern const struct i915_power_well_ops vlv_dpio_power_well_ops;
-> > +extern const struct i915_power_well_ops icl_ddi_power_well_ops;
-> > +extern const struct i915_power_well_ops icl_aux_power_well_ops;
-> > +extern const struct i915_power_well_ops tgl_tc_cold_off_ops;
-> 
-> Also not happy about this. Data is not an interface.
-> 
-> We currently have 20 symbols with extern, and this adds 14 more with a
-> clear path to add more for new platforms. I'd rather we were heading in
-> the other direction.
-> 
-> I'm just wondering if the split introduced here is sound. All of the
-> above would make this turn up when I look for stuff that I think needs
-> to be refactored. And the commit message does not even say why...
+Move this inside the if statement below? Or perhaps the compiler is 
+smart enough to figure that out.
 
-The reason is to reduce the size of intel_display_power.c, to make it
-more readable/manageable. The implementation of the power well
-enable/disable etc. functionality and the mapping of these power wells
-to power domains are two distinct parts in that file that can be
-separated.
 
-The externs above are power wells that are mapped to domains, and
-besides the symbol name are opaque to the mapping code.
+> +			if (start < bman->visible_size) {
+> +				bman_res->used_visible_size +=
+> +					min(end, bman->visible_size) - start;
+> +			}
+> +		}
+> +	}
 
-> BR,
-> Jani.
-> 
-> 
-> > +
-> > +/* intel_display_power_map.c */
-> > +int intel_init_power_wells(struct i915_power_domains *power_domains);
-> > +void intel_cleanup_power_wells(struct i915_power_domains *power_domains);
-> > +
-> > +#endif
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Reviewed-by: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+
+
