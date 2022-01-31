@@ -2,50 +2,145 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11F804A3AF7
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jan 2022 00:22:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0AC34A3CDB
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jan 2022 05:14:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55DCA10F388;
-	Sun, 30 Jan 2022 23:22:35 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67A3510E408;
+	Mon, 31 Jan 2022 04:14:53 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E22B610F271;
- Sun, 30 Jan 2022 23:22:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A464F10E408;
+ Mon, 31 Jan 2022 04:14:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643584953; x=1675120953;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ikZnnknd5dZuAVrB3mqmuI3dndHOVk8S3irGpQ7mYFs=;
- b=EIiM3ZAnCJ0/49I1knfwHbnsLhEfNUiUrx82RbSsIHeWH9utSkyB9RC2
- hs8V5Yu8AiRosOKApfdXPPivZZcqSjntBHKgjAtAkVQbPzKks7ULilqEI
- VO3y3Agi3pCnuENZMxvlhXuYBzF2aB0ZeOPCDuFcoQ/IIsGgZns0ndnSn
- TDl44ClH4z126BDWHJKk6BXQ4UjclN6gSyWXLiHEPLGnbb8lazP/2/G6p
- vPzGaJ6ZhDCNlM54PLTaVxGRP/MkFZl9FZT6HN0FrqTqKH1kSs+PIJCUe
- PHdF9bVCnUgthA0ZqSBjqocWZ+szMxiCKGU4C534Rq/pK4V1anSp7E7VC w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10243"; a="246215629"
-X-IronPort-AV: E=Sophos;i="5.88,329,1635231600"; d="scan'208";a="246215629"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ t=1643602492; x=1675138492;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=kMEPd9ugunf4HTsKFPUC+hDF2L3yKzlF4BtmupMeOt8=;
+ b=Vop8sWifQTk8Q3toCFMbc9bokqx2f56LMdkFUYk+/j+v70ffVr5YR/Ga
+ JmJ8X7zsA1FYJHlTW7QkjhgVhQjtHt7IZsytAhI7c8Oa5J//S+nyWxJUc
+ PueHwmcYLuvopuOlfoye4lbOP/fvGkKfcVesH86NmW1OmZWpzLoIOTMN+
+ DXfo4uHge+kC1QRT6sxLh9i2JoheUYmLidVeIrFWk+kPCiORBUlYZRW77
+ et/kxnHScpq9OrlSBGUY4R88gw46P5yC1u8lvkBW6v/5K+MY7+W3jB61V
+ Uzvvej+rXaqOuc7yxo553tEmcJr6An8MJJki4kpUseRsSybE46ZXjPf8A Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10243"; a="246233077"
+X-IronPort-AV: E=Sophos;i="5.88,330,1635231600"; d="scan'208";a="246233077"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2022 15:22:33 -0800
-X-IronPort-AV: E=Sophos;i="5.88,329,1635231600"; d="scan'208";a="619231264"
-Received: from usengup-mobl1.amr.corp.intel.com (HELO localhost)
- ([10.212.159.185])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2022 15:22:33 -0800
-From: Jordan Justen <jordan.l.justen@intel.com>
-To: John.C.Harrison@Intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel-GFX@Lists.FreeDesktop.Org
-In-Reply-To: <20220119203541.2410082-3-John.C.Harrison@Intel.com>
-References: <20220119203541.2410082-1-John.C.Harrison@Intel.com>
- <20220119203541.2410082-3-John.C.Harrison@Intel.com>
-Date: Sun, 30 Jan 2022 15:22:32 -0800
-Message-ID: <87r18orepz.fsf@jljusten-skl>
+ 30 Jan 2022 20:14:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,330,1635231600"; d="scan'208";a="564856916"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga001.jf.intel.com with ESMTP; 30 Jan 2022 20:14:51 -0800
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Sun, 30 Jan 2022 20:14:51 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20 via Frontend Transport; Sun, 30 Jan 2022 20:14:51 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.49) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.20; Sun, 30 Jan 2022 20:14:51 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=A+2/z5JC9uyV7xQbAB3SF4V9HdfVDUnrc2+Kv40x2SEdygwmf8AZ44vAQ9Ac0Qlcq6ssfJQ8p5BhI9EljF+0OmPjsYE0ocvfG/udcq4IkxScmKeRW56E4fo6puVInllYxdDPiKPFxczFHj6SBgolLLqT9OBtIPixkV/ZxqZH+me67LmZAzQAJowUKuSulNiFvaNxMano1DAGWLXknU0SzsxUZ1ezqxsF8q3QYs9+CLOx+ZmjAV17gDrCHeoHcZkZu9LlH5GF6f5S0mNjuMQTKnPBZ1wtxbYeIqOJ/rc4+baQGAPjBWxtMOd2sGqilARBuMaq5dYdqb8W+ER6WGlX4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zWE8Y4HFn5BtgJeyoOAKcFssi5Xh688byfqWbpLydMs=;
+ b=V+FjnVIQtxh1qcE9GpVnNGV4/r3z0EW/zeF9SkC/U6Nkz9M80hCjeVXq/twdmp7EkWtv92489daoPl+EBk17ztdfmJwvuE8IDIjyNPbUboFxR6qfHb7T37EnZXQj3RUypbq6d0UCeaC9KNri5VPD8wv3oK8PzmsaF6n7hBndyHs7Fst/8+qjYyUUggx1SlQu6Q7bmMHn22tba5DDYH9Vj2BVYh9OvOejM36xrwpemm1CZpPuf7oIC0gbP1YYLTvFzoOyAAA2DtFqLmYnriojOIXbjjS5InVGl6eN3r/Cslu1zwpTVIY4QjANoHQokWXh+EcUnGph1rntIVigtY2yvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from CY4PR11MB1352.namprd11.prod.outlook.com (2603:10b6:903:2a::23)
+ by DM6PR11MB4076.namprd11.prod.outlook.com (2603:10b6:5:197::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.17; Mon, 31 Jan
+ 2022 04:14:48 +0000
+Received: from CY4PR11MB1352.namprd11.prod.outlook.com
+ ([fe80::fdaf:f5ea:bd3b:21ce]) by CY4PR11MB1352.namprd11.prod.outlook.com
+ ([fe80::fdaf:f5ea:bd3b:21ce%4]) with mapi id 15.20.4930.021; Mon, 31 Jan 2022
+ 04:14:47 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH 3/3] drm/vkms: change vkms driver to use
+ drm_writeback_connector.base pointer
+Thread-Index: AQHYBtNh7dKiDQ0fKEutgzhHtb0faqx8oxDw
+Date: Mon, 31 Jan 2022 04:14:47 +0000
+Message-ID: <CY4PR11MB1352E1CBA1E27C646D8C04B9E3259@CY4PR11MB1352.namprd11.prod.outlook.com>
+References: <20220111101801.28310-1-suraj.kandpal@intel.com>
+ <20220111101801.28310-3-suraj.kandpal@intel.com>
+In-Reply-To: <20220111101801.28310-3-suraj.kandpal@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.200.16
+dlp-reaction: no-action
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5da0e1cc-05b1-4d39-0dc1-08d9e4703826
+x-ms-traffictypediagnostic: DM6PR11MB4076:EE_
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-microsoft-antispam-prvs: <DM6PR11MB4076C5199291FF10283F347FE3259@DM6PR11MB4076.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:510;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: oXFNESgN2Bj81UZ9XHBGc33zQx9adPYaHsLS4tJS5Pf1Ap1jqlb96qW1WoqXpaGhNwPWXX6D5Vgwr+6wEZmcXLbm3Q90B+PqN3bh72cjd4YLx+XnL3+QCkxKTbfnAo7u+a7aGa0ODt+DWJWNwXKLgm0mdGFNjmzQYGVOGOgWsNHh/ZFg0M+QMindtYXngZ3eWgG0PVPmHDGlM3Gw/qOMbuSAUi2pH5aP9AGcLIUA1eQzrGVbQvRUBc2G8d5tJjjKsOKCQqNBnNX3Lw82l4b2a5dsj4FG5J3gI75LEJ4oamVsNx5CVUcd+xxMpX63X3S65yDOsw6ICXD2aYDNbWDAqK0I5GEt+dbKgiwymo3nkdLoMY1iLlhfUEyI4VHQpnS3vQlHongJq0ojQXHsW9i42V2AgQ8TpPYAakDEHUGWrBdk5mRGhEaLS67YNiZmo6gaMhObK5x/ygpX3ppDYHf3vJUAFcTFn7nBAyIm8M7GsuDFni5XkkTZGnKfqBVw9jcVhhDAYQnVlhF5e/618tMZDTphtYiukogNxo+MOaBE75cGnbx1SgxPDBhR2vs7TuVuPRksS3GniO8EpTsKBZem8Jqv0ZgNBoT6PWfKEG8gsbtbjzvv2RAFsXAe/P8NGzrQhJx7NV0T+3IwF3K+xABPsyJu/kEsJ1tVyFcMBy0aZuhP57VhygtV4yiQ2iiVY3l9jwHiIyfLgoWOuYtuSWh5jw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY4PR11MB1352.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(110136005)(83380400001)(54906003)(316002)(450100002)(186003)(26005)(2906002)(107886003)(86362001)(82960400001)(8936002)(66446008)(66476007)(66556008)(38070700005)(55016003)(7696005)(52536014)(55236004)(9686003)(5660300002)(508600001)(6506007)(122000001)(38100700002)(8676002)(71200400001)(4326008)(64756008)(66946007)(33656002)(76116006)(20210929001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?qrR8MXAemjjleRwMKnp6hY6o0COVyGOkVVKn9RGUEFm0M9i0tH96yvxWojSV?=
+ =?us-ascii?Q?I/J46kPBJBw9Tk17XF2tS/Fsj9F1mBGCNYGg/brpZ+LM/FwtnfkgMGsI70rk?=
+ =?us-ascii?Q?oww6UgDgNoL8JQeeCwF3rMGR0Gwa8FBKKYLmPiC61zFu8WxO6pBR9hDDa42r?=
+ =?us-ascii?Q?ybUcLZdpkEyfK9tZ1zdeGDl21wAnQCYtr091XGC3UQoh9ALYB1XMvmmZmAK9?=
+ =?us-ascii?Q?qVZh/4m38PlsDuQcdeVAdtuA+6PHJj1xFJ7sIJxJl5QBH1rPUCsGgp3hlhqI?=
+ =?us-ascii?Q?cojyd1rHjZziTgn0yEJ0mZ8QmG941WSXgZaicGhq6UBjCoCZZYhGqHHTNkc/?=
+ =?us-ascii?Q?Uq3KrbLQQEErzgfIsSPwkUBsVYyhZEDSMJp64MlsiYkNJfHo5cGEFg4oxLFm?=
+ =?us-ascii?Q?CSlKHJcRpQezRWJig74iwd0vyELZbOF3K2tpx4/XGHkzlhfLll+3nTVT9fBG?=
+ =?us-ascii?Q?tOlM/u7tdNhDmSIXEALjgSdLpwqkPylqm6qsIiIsaPuXVrCzcKglK+z29mLl?=
+ =?us-ascii?Q?1qm59DhXug3yAe8NxH83upaLdEs5WXeQxvNmiuk9x9+LgJZcYjfHETvbGqTg?=
+ =?us-ascii?Q?YQ22kt9bS8fq/jsLqpo7wCOUPoG720e18d5bKiF7cmtQDorOvTzV1CYja/es?=
+ =?us-ascii?Q?JPQuu/ThrCOpH4HQUWzykFroMa2McHtpNz8nhLwG0R88f3EPU54mexUvwupn?=
+ =?us-ascii?Q?kGyQzRMUiNdLjeu/7SmveiLEXKsVIyZRQyJ5G5ZqIy2dRWcqF1szrglb2g6/?=
+ =?us-ascii?Q?b6Atl2vodwRmv1ffxDn4R5GmnjsRMZRssKnYpvnXPMDmTTpl02bcGzy2Yx+B?=
+ =?us-ascii?Q?ZhpTZUfjZQXF+kysKRPqM3NyQi2E5xD7oAOXRP54V70szmBfqMZcQrOhSHn2?=
+ =?us-ascii?Q?ZrXyDTzXqhWYiYxvYifQfqr7bk4WSrhiERR75yh+GNQEqMBIorI5AVvDHPZz?=
+ =?us-ascii?Q?2fvGCYZjL2KFlAr2r8p2NqUZ8IfW+yzMPNT3ZOdiso6w4yZ2PX0avFvIWiP+?=
+ =?us-ascii?Q?r8+B1jRiia0GSPSmWXXe6rAaZdA3Fgi/BRIu5Z+FXWcWuYQoPe9+7agZZoC6?=
+ =?us-ascii?Q?yMU4ZUoq4BRHLv/gI5dGZhIGqvmzWWDkM1jC5qpBUkcR73tlGDGE8egqOMvr?=
+ =?us-ascii?Q?jWzInAYzVJJliD2KEaW/naitRLU3b+L6dozS2UEtimz0VtDxUH9X8mdpA3e5?=
+ =?us-ascii?Q?HnaWgyL6o51TzoMQUJOAVXQo7y0X5C+FHDY41q3/PGQ7DHgXDg4cRbA76awO?=
+ =?us-ascii?Q?5VdL84/lKtstyvxxZ+Cw6FGMQ6vp2237UnOZB0mvOeXfCRjV1Eq1tAHxEyPV?=
+ =?us-ascii?Q?CfViZWTIPviLpcGrNEltKj1rf0jHz3NL0st2ro9yW/ME4fF3R/VRUQ2LhhN7?=
+ =?us-ascii?Q?SM+J8qH+tzrEYPikOh5X9KY1/keoRTADoHHEryPWpdYF6wvAu0iAraKRhPot?=
+ =?us-ascii?Q?gKLIyLg6GrU+jZPhZFeSr771Ft79RZiYsw/Ou3gF5MIn53aijtz5ftL4FuuS?=
+ =?us-ascii?Q?0XkYH+YXewR0OsBjvmNHpuB3RCknQRIwMYb7UEZ0MdEDBPEnSvgQD2UbPz5j?=
+ =?us-ascii?Q?1htvHv8O3pPK2+tl6VQwXORcS6/k+/Y2jFaiT121LEBgwjLpsaa3D2vc02+C?=
+ =?us-ascii?Q?OQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915/uapi: Add query for
- hwconfig table
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR11MB1352.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5da0e1cc-05b1-4d39-0dc1-08d9e4703826
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jan 2022 04:14:47.8498 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: vW874jbbA6AbOcZGpvvDjsnjNCVwiAyf7jhe6AfcTjR0ilm4bzkP1nCn+1BQImBdtilomeOM1snhM2KOxL38Qw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4076
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/vkms: change vkms driver to use
+ drm_writeback_connector.base pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,150 +153,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kenneth Graunke <kenneth.w.graunke@intel.com>,
- DRI-Devel@Lists.FreeDesktop.Org,
- Slawomir Milczarek <slawomir.milczarek@intel.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-John, Rodrigo,
+Hi All,
+Gentle Reminder! Any Review comments?
 
-It is now clear to me just how dependent i915 is going to be on the
-closed source guc software, and that's just a fact of life for our
-graphics stack going forward.
-
-In that context, it seems kind of pointless for me to make a big deal
-out of this peripheral "query item" commit message. I still think
-something as simple and to the point as:
-
-"In this interface i915 is returning a blob of data which it receives
-from the guc software. This blob provides some useful data about the
-hardware for drivers. The format of this blob will be documented in the
-Programmer Reference Manuals when released."
-
-... would be better, but obviously this is really just down in the noise
-in terms of concerns about the greater issue. So, feel free (to
-continue) to ignore my suggestion.
-
-Sorry for having wasted your time,
-
--Jordan
-
-John.C.Harrison@Intel.com writes:
-
-> From: Rodrigo Vivi <rodrigo.vivi@intel.com>
->
-> GuC contains a consolidated table with a bunch of information about the
-> current device.
->
-> Previously, this information was spread and hardcoded to all the components
-> including GuC, i915 and various UMDs. The goal here is to consolidate
-> the data into GuC in a way that all interested components can grab the
-> very latest and synchronized information using a simple query.
->
-> As per most of the other queries, this one can be called twice.
-> Once with item.length=0 to determine the exact buffer size, then
-> allocate the user memory and call it again for to retrieve the
-> table data. For example:
->   struct drm_i915_query_item item = {
->     .query_id = DRM_I915_QUERY_HWCONCFIG_TABLE;
->   };
->   query.items_ptr = (int64_t) &item;
->   query.num_items = 1;
->
->   ioctl(fd, DRM_IOCTL_I915_QUERY, query, sizeof(query));
->
->   if (item.length <= 0)
->     return -ENOENT;
->
->   data = malloc(item.length);
->   item.data_ptr = (int64_t) &data;
->   ioctl(fd, DRM_IOCTL_I915_QUERY, query, sizeof(query));
->
->   // Parse the data as appropriate...
->
-> The returned array is a simple and flexible KLV (Key/Length/Value)
-> formatted table. For example, it could be just:
->   enum device_attr {
->      ATTR_SOME_VALUE = 0,
->      ATTR_SOME_MASK  = 1,
->   };
->
->   static const u32 hwconfig[] = {
->       ATTR_SOME_VALUE,
->       1,             // Value Length in DWords
->       8,             // Value
->
->       ATTR_SOME_MASK,
->       3,
->       0x00FFFFFFFF, 0xFFFFFFFF, 0xFF000000,
->   };
->
-> The attribute ids are defined in a hardware spec.
->
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Kenneth Graunke <kenneth.w.graunke@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> Changing vkms driver to accomadate the change of
+> drm_writeback_connector.base to a pointer the reason for which is
+> explained in the Patch(drm: add writeback pointers to drm_connector).
+>=20
+> Signed-off-by: Kandpal, Suraj <suraj.kandpal@intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_query.c | 23 +++++++++++++++++++++++
->  include/uapi/drm/i915_drm.h       |  1 +
->  2 files changed, 24 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-> index 2dfbc22857a3..609e64d5f395 100644
-> --- a/drivers/gpu/drm/i915/i915_query.c
-> +++ b/drivers/gpu/drm/i915/i915_query.c
-> @@ -479,12 +479,35 @@ static int query_memregion_info(struct drm_i915_private *i915,
->  	return total_length;
->  }
->  
-> +static int query_hwconfig_table(struct drm_i915_private *i915,
-> +				struct drm_i915_query_item *query_item)
-> +{
-> +	struct intel_gt *gt = to_gt(i915);
-> +	struct intel_guc_hwconfig *hwconfig = &gt->uc.guc.hwconfig;
-> +
-> +	if (!hwconfig->size || !hwconfig->ptr)
-> +		return -ENODEV;
-> +
-> +	if (query_item->length == 0)
-> +		return hwconfig->size;
-> +
-> +	if (query_item->length < hwconfig->size)
-> +		return -EINVAL;
-> +
-> +	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
-> +			 hwconfig->ptr, hwconfig->size))
-> +		return -EFAULT;
-> +
-> +	return hwconfig->size;
-> +}
-> +
->  static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
->  					struct drm_i915_query_item *query_item) = {
->  	query_topology_info,
->  	query_engine_info,
->  	query_perf_config,
->  	query_memregion_info,
-> +	query_hwconfig_table,
->  };
->  
->  int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 914ebd9290e5..132515199f27 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -2685,6 +2685,7 @@ struct drm_i915_query_item {
->  #define DRM_I915_QUERY_ENGINE_INFO	2
->  #define DRM_I915_QUERY_PERF_CONFIG      3
->  #define DRM_I915_QUERY_MEMORY_REGIONS   4
-> +#define DRM_I915_QUERY_HWCONFIG_TABLE   5
->  /* Must be kept compact -- no holes and well documented */
->  
->  	/**
-> -- 
-> 2.25.1
+>  drivers/gpu/drm/vkms/vkms_writeback.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/vkms/vkms_writeback.c
+> b/drivers/gpu/drm/vkms/vkms_writeback.c
+> index 8694227f555f..6de0c4213425 100644
+> --- a/drivers/gpu/drm/vkms/vkms_writeback.c
+> +++ b/drivers/gpu/drm/vkms/vkms_writeback.c
+> @@ -114,7 +114,7 @@ static void vkms_wb_atomic_commit(struct
+> drm_connector *conn,
+>  	struct vkms_device *vkmsdev =3D drm_device_to_vkms_device(conn-
+> >dev);
+>  	struct vkms_output *output =3D &vkmsdev->output;
+>  	struct drm_writeback_connector *wb_conn =3D &output-
+> >wb_connector;
+> -	struct drm_connector_state *conn_state =3D wb_conn->base.state;
+> +	struct drm_connector_state *conn_state =3D wb_conn->base->state;
+>  	struct vkms_crtc_state *crtc_state =3D output->composer_state;
+>=20
+>  	if (!conn_state)
+> @@ -140,8 +140,8 @@ int vkms_enable_writeback_connector(struct
+> vkms_device *vkmsdev)  {
+>  	struct drm_writeback_connector *wb =3D &vkmsdev-
+> >output.wb_connector;
+>=20
+> -	vkmsdev->output.wb_connector.encoder.possible_crtcs =3D 1;
+> -	drm_connector_helper_add(&wb->base,
+> &vkms_wb_conn_helper_funcs);
+> +	vkmsdev->output.wb_connector.encoder->possible_crtcs =3D 1;
+> +	drm_connector_helper_add(wb->base,
+> &vkms_wb_conn_helper_funcs);
+>=20
+>  	return drm_writeback_connector_init(&vkmsdev->drm, wb,
+>  					    &vkms_wb_connector_funcs,
+Regards,
+Suraj Kandpal
