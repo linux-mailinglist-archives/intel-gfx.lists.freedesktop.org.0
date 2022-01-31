@@ -1,58 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94D524A401C
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jan 2022 11:27:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2748F4A41E2
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jan 2022 12:07:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87A6410E39C;
-	Mon, 31 Jan 2022 10:27:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34FB010E285;
+	Mon, 31 Jan 2022 11:07:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com
- [IPv6:2607:f8b0:4864:20::f2a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 970E910E5AC;
- Mon, 31 Jan 2022 10:27:19 +0000 (UTC)
-Received: by mail-qv1-xf2a.google.com with SMTP id i19so12330025qvx.12;
- Mon, 31 Jan 2022 02:27:19 -0800 (PST)
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com
+ [IPv6:2607:f8b0:4864:20::72a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66A6D10E1A4;
+ Mon, 31 Jan 2022 11:07:12 +0000 (UTC)
+Received: by mail-qk1-x72a.google.com with SMTP id 13so11645267qkd.13;
+ Mon, 31 Jan 2022 03:07:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=efJykIpqBlBe+SEilN08SLbSLBpDW0/pvbbIzOgjxIo=;
- b=JUCIsrem9h9ntq//JaQ872vkFAh2lupNbZOVU1dbah/XwZqfS8UtIADoRJP58YUTop
- KlICSYUSb26/3gRneCm7KcQ/ZcVI/gvLupmK/s9SgIiYCseEgsBROz6xwNdUP4/pCVma
- vETKL/i8tYISPpzWoRUIADw5pCM481YZgaFg00Evkh/qA3ctNhzEboeQ3KDri+rRKd65
- OOZXCQBFl3riZA92vxpY2Y21EFuzWHcoORf49ysz1KNXt2Q/4OonDyjlK+KYwLQprYYJ
- 4XImEZhIQSUM/jvDSQ2ZX4DWJpwErZhx2T74nryyfwucR8ol62nfSVatjvpFxRFvck1N
- Ad3w==
+ :cc; bh=dAoqoC5jLB02Mpd84E+KBi1N/SqcLY9xTKIeDSDuXv8=;
+ b=GhXs2FmzRec6zbc39BLSGTg0wRuZDIn/DjwCMYb6vfpuMzpS7UP9MRjN5cdfSZuXE2
+ c/hs4d2RgC4ftk4ZGxzDJV5T+EEWMgJz4JWjiSPxpieQBBJxAoZYxgdqxueLX5iF42lz
+ HWXc17TGNWGY9HtLzhvErr/dcroXgOgeZ6tG5gUA79/kthH9PJdOLOnDouSgI9zzQPBb
+ DpdK2ekXGnYXb3u1X5yPUXiH4i070q/QMvrizIRnTOmoX6Ae8+anOeSHeSZGQ4BDupD6
+ GiANa7DnGgPEnECWWza75aBKz2WziubxQNEOGa72rhYjDKMpIf5CMUeZYizPEDEYZpwE
+ k21g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=efJykIpqBlBe+SEilN08SLbSLBpDW0/pvbbIzOgjxIo=;
- b=23X73iyXhC8WobbTuHjDJ63kfd0HxEPCiJe9ErvQxR7DqqQ+z6cqipGzZycKLAZTUF
- HeiKQGukt8hJIjpLwRJBxC2RWJvAsoHgZHTBOZf+HEhjSwgb3vEFbLnrd9i9ugl0OniQ
- pmvwcy2xO2KVe8W4y9QC6BIWplrggOKFcZoEZaf/kuwwgByF25qNeIV59XLmcHIb5TCc
- iOBZUEk+PeIXjR4xH6Lsb20guK6apl3+rn1sicyAVq7DjvkxeGdtVSFtIEzlJq5Fd7aE
- bBIpa9W8h2VuGQtIDR01OYI3HXcb4Xbjss6KJDdH7mrh62WYBezKRV3AmGSA5Zb0y+HY
- H1yg==
-X-Gm-Message-State: AOAM531e1xoomBlMQlDVdDWVoFhUUWo6ej1CIiYns7mmiiolzp/dwt22
- NLPTIJv/b01NI+86Aa8IGI7M2OXlCDcZ3FS37Kk=
-X-Google-Smtp-Source: ABdhPJw39xiooDkX7gsx5qmLQ6N8YbksDooGSCo2e/fITzCPq8CXdstDNqY3nWjV4hTlvcnE/s/m5lz1KyXI7jPn0ko=
-X-Received: by 2002:a05:6214:2344:: with SMTP id
- hu4mr3150222qvb.0.1643624838729; 
- Mon, 31 Jan 2022 02:27:18 -0800 (PST)
+ bh=dAoqoC5jLB02Mpd84E+KBi1N/SqcLY9xTKIeDSDuXv8=;
+ b=HWoC2wEc6X0kwEz0RHATPCCwGR/s2BhBwWZtFWMxOwk3Gkj0vFul18yuysQn+dXU+y
+ GOY3BIu5Eg4R2xnP2oxCM4WP2UvupBbb/paKHZb/O2nPRshTI0Uu7xklWGw8wqafhW1y
+ yqCOqNb3NI9NvZpcQNMePFM05fgOpXD397SbNcarzz9c7kcGgAaNPwfSJ1/xJ60fHPAp
+ M5b+q4SNiPWpiNTeu8seMDWG1JI03Ah3Q1zLt3Jx8LuUGgEy5K1nFzvdSsqf+ORFqzU1
+ Y/M+s7oljswcoP0aGstRgEoztrl383R04sCBOOqkyPhrpAnHWejC2XFsUYYzo00mBfzK
+ F4mg==
+X-Gm-Message-State: AOAM531cpdOCLDwrLv82lQDWWKzTM+qGMkQdu2LLSyVrz3GlYWrA3/NJ
+ YsfSijXcYbhPeFfCL01uZ10oA3NCqttZvE8QWk8=
+X-Google-Smtp-Source: ABdhPJxJNfKjOKZLeCFlH1HaZEPHz6emTUD1lLvbqq9a8SGAXA/FGkCBrqoSSyhV9ZJs0ODVFSQVlOiJkBSZpk18oLA=
+X-Received: by 2002:a05:620a:1a8d:: with SMTP id
+ bl13mr12699766qkb.569.1643627231457; 
+ Mon, 31 Jan 2022 03:07:11 -0800 (PST)
 MIME-Version: 1.0
 References: <20220128185209.18077-1-ramalingam.c@intel.com>
- <20220128185209.18077-3-ramalingam.c@intel.com>
- <32da9b50-536e-b999-6eb5-9d658979056b@intel.com>
-In-Reply-To: <32da9b50-536e-b999-6eb5-9d658979056b@intel.com>
+ <20220128185209.18077-5-ramalingam.c@intel.com>
+In-Reply-To: <20220128185209.18077-5-ramalingam.c@intel.com>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 31 Jan 2022 10:26:52 +0000
-Message-ID: <CAM0jSHNt5gicCyNeU7cfgT9_Hm+SQgdSXpT2QuPH3c-d9Xv58Q@mail.gmail.com>
-To: Matthew Auld <matthew.auld@intel.com>
+Date: Mon, 31 Jan 2022 11:06:45 +0000
+Message-ID: <CAM0jSHPiy8-jLoRfV6UfxcZnbZh+UPA0NrwncJqAthbS6-VsFg@mail.gmail.com>
+To: Ramalingam C <ramalingam.c@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915: align the plane_vma to
- min_page_size of stolen mem
+Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915/dg2: Add Wa_22011100796
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,19 +65,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
  Hellstrom Thomas <thomas.hellstrom@intel.com>,
- Chris P Wilson <chris.p.wilson@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
  dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 31 Jan 2022 at 10:18, Matthew Auld <matthew.auld@intel.com> wrote:
+On Fri, 28 Jan 2022 at 18:52, Ramalingam C <ramalingam.c@intel.com> wrote:
 >
-> On 28/01/2022 18:52, Ramalingam C wrote:
-> > Align the plane vma size to the stolem memory regions' min_page_size.
-> >
-> > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> > cc: Matthew Auld <matthew.auld@intel.com>
-> > cc: Chris P Wilson <chris.p.wilson@intel.com>
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-
-Do you know for sure that the initial fb is allocated in stolen-lmem on DG2 btw?
+> From: Bruce Chang <yu.bruce.chang@intel.com>
+>
+> Whenever Full soft reset is required, reset all individual engines
+> first, and then do a full soft reset.
+>
+> Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
+> cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+Acked-by: Matthew Auld <matthew.auld@intel.com>
