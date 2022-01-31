@@ -1,52 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 977FA4A46AD
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jan 2022 13:15:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A42CB4A471D
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jan 2022 13:28:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C435210E36C;
-	Mon, 31 Jan 2022 12:15:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FBE310E3B3;
+	Mon, 31 Jan 2022 12:28:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 101E710E375
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 Jan 2022 12:15:29 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D83610E3B3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 Jan 2022 12:28:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643631330; x=1675167330;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=wGjKcHCiu21vE1w+7qZysh3n8Xd2bhCedA+HUP9Y7C4=;
- b=QsD1KAivgSv99wllZ3XRSjhq3J0CGyc63jwE+5x3rh9zAjUmbWE1vKMl
- Wp71aAgIyXoLqxrIOpVJNB6QRQ6hVjVnfNScfJ81gxP7L7UAucse2zEi5
- g+QSeELrOCcFd90djIzIAIOSQ3+6EX58oDBcWf4DRbedWHh4SsZcQD34+
- A9yQ0MO3pV/8/KdA7JU9+ICll7YBifyiD5kXTrWPFEqMZ/jnQpsPnYeYA
- jFBAPBsmRjkTuOaoZsxp9OoEUlGUdc38GGHJoo5o+0PI8LkG2OyGIZgwM
- 7Ampyd622hXE1KQLrXu4IMjk8aU7bjrBTeLOSiwM+b3n2RcdwTLXxuhNF Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10243"; a="333805005"
-X-IronPort-AV: E=Sophos;i="5.88,330,1635231600"; d="scan'208";a="333805005"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2022 04:15:29 -0800
-X-IronPort-AV: E=Sophos;i="5.88,330,1635231600"; d="scan'208";a="697986462"
+ t=1643632089; x=1675168089;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=xZGJJlELrPHXvhaG2yZIHwFZibCmAau2brpRNEt6QWE=;
+ b=TMsEDJBpCBq5WA62d0VnGIxmRQKhkj1c+SfsJ9typwr+/J78Eet5YftN
+ qdnIaNpxRy3JSPlYvqrbbu+EzKPdu/MaDNPlh4JEslw0+W0alxKMMjd7c
+ D3b5tOn1rYaUMTqNFGMEj1R0jH653n/IyC22Lvbmnc9yN18yRcS3JL/3e
+ JZSBvXwIAK+WC/pnoqQGDdJ79W95pKV0dFt73p0dgAl5oFIK0B5Q17l5/
+ 8M7vh4fMK0X0l1tJ7uit2vUXkWOGVy80+OOmg1BtwzbGaQzWtUr381rpZ
+ S3f06BWeU17UBYlU+U4Hngn6ZmoBRg7NNqpkSMYxxzwtoLmmALy7CdGev A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10243"; a="231021061"
+X-IronPort-AV: E=Sophos;i="5.88,330,1635231600"; d="scan'208";a="231021061"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2022 04:28:08 -0800
+X-IronPort-AV: E=Sophos;i="5.88,331,1635231600"; d="scan'208";a="481734654"
 Received: from ylian16-mobl1.ccr.corp.intel.com (HELO localhost)
  ([10.252.16.100])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2022 04:15:27 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220128114914.2339526-5-imre.deak@intel.com>
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2022 04:28:07 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220126195304.8262-1-manasi.d.navare@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220128114914.2339526-1-imre.deak@intel.com>
- <20220128114914.2339526-5-imre.deak@intel.com>
-Date: Mon, 31 Jan 2022 14:15:25 +0200
-Message-ID: <871r0ow17m.fsf@intel.com>
+References: <20220126195304.8262-1-manasi.d.navare@intel.com>
+Date: Mon, 31 Jan 2022 14:28:04 +0200
+Message-ID: <87wnigum23.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 04/19] drm/i915: Move the power domain->well
- mappings to intel_display_power_map.c
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display/vrr: Reset VRR capable
+ property on a long hpd
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,166 +60,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 28 Jan 2022, Imre Deak <imre.deak@intel.com> wrote:
-> Move the list of platform specific power domain -> power well
-> definitions to intel_display_power_map.c. While at it group the
-> platforms' power domain macros with the corresponding power well lists
-> and keep all the power domain lists in the same order (matching the enum
-> order).
+On Wed, 26 Jan 2022, Manasi Navare <manasi.d.navare@intel.com> wrote:
+> With some VRR panels, user can turn VRR ON/OFF on the fly from the panel settings.
+> When VRR is turned OFF ,sends a long HPD to the driver clearing the Ignore MSA bit
+> in the DPCD. Currently the driver parses that onevery HPD but fails to reset
+> the corresponding VRR Capable Connector property.
+> Hence the userspace still sees this as VRR Capable panel which is incorrect.
 >
-> No functional changes.
+> Fix this by explicitly resetting the connector property.
 >
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> v2: Reset vrr capable if status == connector_disconnected
+> v3: Use i915 and use bool vrr_capable (Jani Nikula)
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 16 ++++++++++++----
+>  1 file changed, 12 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 4d4579a301f6..687cb37bb22a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4446,6 +4446,12 @@ intel_dp_detect(struct drm_connector *connector,
+>  		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
+>  		memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
+>  
+> +		/* Reset VRR Capable property */
+> +		drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s] VRR capable: FALSE\n",
+> +			    connector->base.id, connector->name);
 
-The commit message should explain the why.
+Both the comment and the logging here seem excessive.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers=
-/gpu/drm/i915/display/intel_display_power.h
-> index b30e6133c66d0..a0e68ae691021 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -197,6 +197,7 @@ struct intel_display_power_domain_set {
->  	for ((domain) =3D 0; (domain) < POWER_DOMAIN_NUM; (domain)++)	\
->  		for_each_if(BIT_ULL(domain) & (mask))
->=20=20
-> +/* intel_display_power.c */
->  int intel_power_domains_init(struct drm_i915_private *dev_priv);
->  void intel_power_domains_cleanup(struct drm_i915_private *dev_priv);
->  void intel_power_domains_init_hw(struct drm_i915_private *dev_priv, bool=
- resume);
-> @@ -316,4 +317,8 @@ void chv_phy_powergate_lanes(struct intel_encoder *en=
-coder,
->  bool chv_phy_powergate_ch(struct drm_i915_private *dev_priv, enum dpio_p=
-hy phy,
->  			  enum dpio_channel ch, bool override);
->=20=20
-> +/* intel_display_power_map.c */
-> +const char *
-> +intel_display_power_domain_str(enum intel_display_power_domain domain);
+> +		drm_connector_set_vrr_capable_property(connector,
+> +						       false);
 > +
->  #endif /* __INTEL_DISPLAY_POWER_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_internal.h =
-b/drivers/gpu/drm/i915/display/intel_display_power_internal.h
-> new file mode 100644
-> index 0000000000000..3fc7c7d0bc9e9
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_internal.h
-> @@ -0,0 +1,93 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright =C2=A9 2022 Intel Corporation
-> + */
-> +
-> +#ifndef __INTEL_DISPLAY_POWER_INTERNAL_H__
-> +#define __INTEL_DISPLAY_POWER_INTERNAL_H__
-> +
-> +#include "i915_reg_defs.h"
-> +
-> +#include "intel_display.h"
-> +#include "intel_display_power.h"
-> +
-> +struct i915_power_well_regs;
-> +
-> +/* Power well structure for haswell */
-> +struct i915_power_well_desc {
-> +	const char *name;
-> +	bool always_on;
-> +	u64 domains;
-> +	/* unique identifier for this power well */
-> +	enum i915_power_well_id id;
-> +	/*
-> +	 * Arbitraty data associated with this power well. Platform and power
-> +	 * well specific.
-> +	 */
-> +	union {
-> +		struct {
-> +			/*
-> +			 * request/status flag index in the PUNIT power well
-> +			 * control/status registers.
-> +			 */
-> +			u8 idx;
-> +		} vlv;
-> +		struct {
-> +			enum dpio_phy phy;
-> +		} bxt;
-> +		struct {
-> +			/*
-> +			 * request/status flag index in the power well
-> +			 * constrol/status registers.
-> +			 */
-> +			u8 idx;
-> +			/* Mask of pipes whose IRQ logic is backed by the pw */
-> +			u8 irq_pipe_mask;
-> +			/*
-> +			 * Instead of waiting for the status bit to ack enables,
-> +			 * just wait a specific amount of time and then consider
-> +			 * the well enabled.
-> +			 */
-> +			u16 fixed_enable_delay;
-> +			/* The pw is backing the VGA functionality */
-> +			bool has_vga:1;
-> +			bool has_fuses:1;
-> +			/*
-> +			 * The pw is for an ICL+ TypeC PHY port in
-> +			 * Thunderbolt mode.
-> +			 */
-> +			bool is_tc_tbt:1;
-> +		} hsw;
-> +	};
-> +	const struct i915_power_well_ops *ops;
-> +};
-> +
-> +struct i915_power_well {
-> +	const struct i915_power_well_desc *desc;
-> +	/* power well enable/disable usage count */
-> +	int count;
-> +	/* cached hw enabled state */
-> +	bool hw_enabled;
-> +};
-> +
-> +/* intel_display_power.c */
 
-I've put a lot of effort into splitting our (display) codebase towards
-having a 1-to-1 mapping between .c and .h files. This patch adds an odd
-split between two headers and two compilation units, and I don't think
-it's pretty.
+Fits on one line.
 
-> +extern const struct i915_power_well_ops i9xx_always_on_power_well_ops;
-> +extern const struct i915_power_well_ops chv_pipe_power_well_ops;
-> +extern const struct i915_power_well_ops chv_dpio_cmn_power_well_ops;
-> +extern const struct i915_power_well_ops i830_pipes_power_well_ops;
-> +extern const struct i915_power_well_ops hsw_power_well_ops;
-> +extern const struct i915_power_well_ops hsw_power_well_ops;
-> +extern const struct i915_power_well_ops gen9_dc_off_power_well_ops;
-> +extern const struct i915_power_well_ops bxt_dpio_cmn_power_well_ops;
-> +extern const struct i915_power_well_ops vlv_display_power_well_ops;
-> +extern const struct i915_power_well_ops vlv_dpio_cmn_power_well_ops;
-> +extern const struct i915_power_well_ops vlv_dpio_power_well_ops;
-> +extern const struct i915_power_well_ops icl_ddi_power_well_ops;
-> +extern const struct i915_power_well_ops icl_aux_power_well_ops;
-> +extern const struct i915_power_well_ops tgl_tc_cold_off_ops;
+>  		if (intel_dp->is_mst) {
+>  			drm_dbg_kms(&dev_priv->drm,
+>  				    "MST device may have disappeared %d vs %d\n",
+> @@ -4560,15 +4566,17 @@ static int intel_dp_get_modes(struct drm_connector *connector)
+>  {
+>  	struct intel_connector *intel_connector = to_intel_connector(connector);
+>  	struct edid *edid;
+> +	struct drm_i915_private *i915 = to_i915(connector->dev);
+>  	int num_modes = 0;
+>  
+>  	edid = intel_connector->detect_edid;
+>  	if (edid) {
+> -		num_modes = intel_connector_update_modes(connector, edid);
+> +		bool vrr_capable = intel_vrr_is_capable(connector);
+>  
+> -		if (intel_vrr_is_capable(connector))
+> -			drm_connector_set_vrr_capable_property(connector,
+> -							       true);
+> +		num_modes = intel_connector_update_modes(connector, edid);
 
-Also not happy about this. Data is not an interface.
-
-We currently have 20 symbols with extern, and this adds 14 more with a
-clear path to add more for new platforms. I'd rather we were heading in
-the other direction.
-
-I'm just wondering if the split introduced here is sound. All of the
-above would make this turn up when I look for stuff that I think needs
-to be refactored. And the commit message does not even say why...
-
+intel_vrr_is_capable() probably needs to happen after
+intel_connector_update_modes(), right?
 
 BR,
 Jani.
 
+> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
+> +			    connector->base.id, connector->name, yesno(vrr_capable));
+> +		drm_connector_set_vrr_capable_property(connector, vrr_capable);
+>  	}
+>  
+>  	/* Also add fixed mode, which may or may not be present in EDID */
 
-> +
-> +/* intel_display_power_map.c */
-> +int intel_init_power_wells(struct i915_power_domains *power_domains);
-> +void intel_cleanup_power_wells(struct i915_power_domains *power_domains);
-> +
-> +#endif
-
---=20
+-- 
 Jani Nikula, Intel Open Source Graphics Center
