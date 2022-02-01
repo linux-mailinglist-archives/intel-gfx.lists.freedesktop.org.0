@@ -1,63 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD6614A59DB
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 11:20:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B04744A5A0D
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 11:32:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D42510E6AB;
-	Tue,  1 Feb 2022 10:19:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6F8C10EBCC;
+	Tue,  1 Feb 2022 10:32:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32FF810E6A0;
- Tue,  1 Feb 2022 10:19:57 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id D11D91F383;
- Tue,  1 Feb 2022 10:19:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1643710795; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Hy3OkojdDnZ5Xxw9cCiAGLIoflYtHO4YXtnft55JA4Y=;
- b=vSFVaEheZp+BzO7AkZ/eCB4Hkty5WehDjbDBSqUig2EuGp5jfklnhkix3ucVFxSkm5PejY
- cW3Gd2eRe8pvzJk1xFKPaGYCh0HVNZhUmkE2SKlzC1ebIioGn8mRtKttRWW1tUvheJH0zr
- XSgl/xaYvHeiWqQzdeeZVmG6J6EzaNA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1643710795;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Hy3OkojdDnZ5Xxw9cCiAGLIoflYtHO4YXtnft55JA4Y=;
- b=7zdoXW+R+wtUda9WNHInel+UAuHXeNVnNrpRkFDnLZB9/nes+DwLzBwuTleAL2ZAjKqwlF
- 2M6gMh1gc8MikzBg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 7FC8E13B3D;
- Tue,  1 Feb 2022 10:19:55 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id 4MQoHksJ+WG/CwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Tue, 01 Feb 2022 10:19:55 +0000
-Message-ID: <648ac929-8de9-4ec4-f73d-d1048a419eb9@suse.de>
-Date: Tue, 1 Feb 2022 11:19:54 +0100
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 488AF10EBC8;
+ Tue,  1 Feb 2022 10:32:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1643711530;
+ bh=UL1I6BedOSrZvW04M6UxEwzTxNyQYKOszjsSogxrGPg=;
+ h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=KNB0a8d0/WcQh/COivcOJp9R38T2AuJkCGnRWHlOuWjgBy89LQJtfAm0q2FfdKNkj
+ t0fkLcP6ac9ooDa8uxMcDh0fs0b7dllT4Hf8aTw14C/sCYrJsTBgi6ZmBN39LAuwfc
+ ABQr5PTheNGJBepEQiqzWR+IZS7BgNtGe0angRys=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.20.60] ([92.116.146.124]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MAwbp-1n3b6Z0LBh-00BMez; Tue, 01
+ Feb 2022 11:32:10 +0100
+Message-ID: <cd93926d-79a8-2d89-7587-fde55f5973bd@gmx.de>
+Date: Tue, 1 Feb 2022 11:32:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
+ Thunderbird/91.3.0
 Content-Language: en-US
 To: Daniel Vetter <daniel.vetter@ffwll.ch>,
  DRI Development <dri-devel@lists.freedesktop.org>
 References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
  <20220131210552.482606-2-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
+From: Helge Deller <deller@gmx.de>
 In-Reply-To: <20220131210552.482606-2-daniel.vetter@ffwll.ch>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------8AKLLWg9udfHxkot3p04zoER"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:D/iwpiN/cMRkAmhJk6GTZ6lqXirhByMOTDwuxp31ezrAQFTjZW+
+ oDrUoUTu4NwA+pVVR4/A5EnlGw7QJfOIpipQDN6GA9goXVmrKy+V1KEgB2d8+nKXE6rgqCh
+ 6BQwhO/rA/vonViUoddHAjTcKPiRrc0JOkIBaKk/k2VKHcQ0TGBEbY4n4PL836qg7D/LTwA
+ SxMCu1SgTmRDMVNLUJtag==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ffpo4UgjYgM=:gVKKT31Txl5VSiQKMJlC6E
+ 8smnpgNihWQ94TorQdk8QRfOxYVcllONa75m2Uum/ELwGHgUHvk1ol+MU/eooenx+splAxngA
+ NzwoIJLhLbALSKoX5VxT0ofUotsqQ9Jxs3MksKKPUkM10VqXt9un3aQS3yQlWbEzO2ZSOlrxn
+ jUNrqaSD7Gtjq3O1FE2h/q/DXSMnEWCovnIJUtazBpTdSeeq4Cq//tWZKGn3sdxgLEW9tSjy5
+ SUUXXfQmecJ8QqRMfINb7QCups++BEZXPryP8BpzEi2NxGaHBSJmV3rssBp8S4GTbLQUCNGvA
+ +3PVH+nl7nBPCP+4NtqMcleuHm9yHuOU3WF0BemFsvmbVDv10BDTdvs+tfblhSBh6ShIYajjN
+ Ob0/a5JOhxEq1BWo16BjGi3lr3jOV6rek4RsYO8b5XNgtd/k7LKuaVHb9iIDqNC3cSzTLV1IE
+ UM4+BdW5Iy/lCPf4u3NXl9/dpeZuhMa/g14AoSWRrlHqXyRLB+m/4vBdKONjT2Ly0O8P1Gver
+ kdeltLN61OiYaK4YTSrGWRNq0g3ANUlQjCq0OciFhPlF+QhbA6Scz9ixxVlHDcKD4m+Aig8ER
+ xm/LYHM93G99mL2Fvy40ZMI4zr3D9jIeu2QhFZVRpr06FYD4MwBzxk+z6jkZhnx+DyFcvolxp
+ mj+eofB7b3OQQYf08arqSFgmg/hGekVHPH2mcCgldnfwMOMtrwWHiRgcb1VvRZkhojaMJClDq
+ p6DSjd8+BV3fG/EIQDAIhE0JMswRTnu9esQyGGVyTFMIaTWaZuCDrwop57uEi93SKPyNjLNra
+ cXkjsyryjpr3T5Cmiq5vNNLhHKIQgNUTOxQGrHhreCVFw620HAcfapm/62ySEQMB0ogxuirMN
+ FTuNQhIIHBLrICLyW+Pk3oK/7rdx99dTJzFs4qqEawOWF7J/A3mO7Pm6uO8aRF+NlWVy7BB1I
+ ymupXTJSX1az4Wzo4lz5HTBf6sUQYLQp0s3Vql72zHtFOqTrLp7Wrp+5r3mQ6zUOFPQHOQGtf
+ S/ffOOj6xUQ3WezKzCvzEGkx9Dt8CyOCt1Rf9NJrvYUfCUtCuZzEnOziu9cTyJcF4uvpYSgHt
+ tui5wff10Cyyd0=
 Subject: Re: [Intel-gfx] [PATCH 01/21] MAINTAINERS: Add entry for fbdev core
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,126 +72,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Sven Schnelle <svens@stackframe.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>, LKML <linux-kernel@vger.kernel.org>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Pavel Machek <pavel@ucw.cz>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------8AKLLWg9udfHxkot3p04zoER
-Content-Type: multipart/mixed; boundary="------------pFSOeLpIPImoieDifLoG2h54";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: linux-fbdev@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
+Cc: linux-fbdev@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@intel.com>,
+ Dave Airlie <airlied@gmail.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  LKML <linux-kernel@vger.kernel.org>,
  Javier Martinez Canillas <javierm@redhat.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>, Claudio Suarez <cssk@net-c.es>,
- Gerd Hoffmann <kraxel@redhat.com>, Pavel Machek <pavel@ucw.cz>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Pavel Machek <pavel@ucw.cz>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Geert Uytterhoeven <geert@linux-m68k.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
  Sven Schnelle <svens@stackframe.org>
-Message-ID: <648ac929-8de9-4ec4-f73d-d1048a419eb9@suse.de>
-Subject: Re: [PATCH 01/21] MAINTAINERS: Add entry for fbdev core
-References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
- <20220131210552.482606-2-daniel.vetter@ffwll.ch>
-In-Reply-To: <20220131210552.482606-2-daniel.vetter@ffwll.ch>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---------------pFSOeLpIPImoieDifLoG2h54
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+On 1/31/22 22:05, Daniel Vetter wrote:
+> Ever since Tomi extracted the core code in 2014 it's been defacto me
+> maintaining this, with help from others from dri-devel and sometimes
+> Linus (but those are mostly merge conflicts):
+>
+> $ git shortlog -ns  drivers/video/fbdev/core/ | head -n5
+>     35  Daniel Vetter
+>     23  Linus Torvalds
+>     10  Hans de Goede
+>      9  Dave Airlie
+>      6  Peter Rosin
+>
+> I think ideally we'd also record that the various firmware fb drivers
+> (efifb, vesafb, ...) are also maintained in drm-misc because for the
+> past few years the patches have either been to fix handover issues
+> with drm drivers, or caused handover issues with drm drivers. So any
+> other tree just doesn't make sense. But also, there's plenty of
+> outdated MAINTAINER entries for these with people and git trees that
+> haven't been active in years, so maybe let's just leave them alone.
+> And furthermore distros are now adopting simpledrm as the firmware fb
+> driver, so hopefully the need to care about the fbdev firmware drivers
+> will go down going forward.
+>
+> Note that drm-misc is group maintained, I expect that to continue like
+> we've done before, so no new expectations that patches all go through
+> my hands. That would be silly. This also means I'm happy to put any
+> other volunteer's name in the M: line, but otherwise git log says I'm
+> the one who's stuck with this.
 
-DQoNCkFtIDMxLjAxLjIyIHVtIDIyOjA1IHNjaHJpZWIgRGFuaWVsIFZldHRlcjoNCj4gRXZl
-ciBzaW5jZSBUb21pIGV4dHJhY3RlZCB0aGUgY29yZSBjb2RlIGluIDIwMTQgaXQncyBiZWVu
-IGRlZmFjdG8gbWUNCj4gbWFpbnRhaW5pbmcgdGhpcywgd2l0aCBoZWxwIGZyb20gb3RoZXJz
-IGZyb20gZHJpLWRldmVsIGFuZCBzb21ldGltZXMNCj4gTGludXMgKGJ1dCB0aG9zZSBhcmUg
-bW9zdGx5IG1lcmdlIGNvbmZsaWN0cyk6DQo+IA0KPiAkIGdpdCBzaG9ydGxvZyAtbnMgIGRy
-aXZlcnMvdmlkZW8vZmJkZXYvY29yZS8gfCBoZWFkIC1uNQ0KPiAgICAgIDM1ICBEYW5pZWwg
-VmV0dGVyDQo+ICAgICAgMjMgIExpbnVzIFRvcnZhbGRzDQo+ICAgICAgMTAgIEhhbnMgZGUg
-R29lZGUNCj4gICAgICAgOSAgRGF2ZSBBaXJsaWUNCj4gICAgICAgNiAgUGV0ZXIgUm9zaW4N
-Cj4gDQo+IEkgdGhpbmsgaWRlYWxseSB3ZSdkIGFsc28gcmVjb3JkIHRoYXQgdGhlIHZhcmlv
-dXMgZmlybXdhcmUgZmIgZHJpdmVycw0KPiAoZWZpZmIsIHZlc2FmYiwgLi4uKSBhcmUgYWxz
-byBtYWludGFpbmVkIGluIGRybS1taXNjIGJlY2F1c2UgZm9yIHRoZQ0KPiBwYXN0IGZldyB5
-ZWFycyB0aGUgcGF0Y2hlcyBoYXZlIGVpdGhlciBiZWVuIHRvIGZpeCBoYW5kb3ZlciBpc3N1
-ZXMNCj4gd2l0aCBkcm0gZHJpdmVycywgb3IgY2F1c2VkIGhhbmRvdmVyIGlzc3VlcyB3aXRo
-IGRybSBkcml2ZXJzLiBTbyBhbnkNCj4gb3RoZXIgdHJlZSBqdXN0IGRvZXNuJ3QgbWFrZSBz
-ZW5zZS4gQnV0IGFsc28sIHRoZXJlJ3MgcGxlbnR5IG9mDQo+IG91dGRhdGVkIE1BSU5UQUlO
-RVIgZW50cmllcyBmb3IgdGhlc2Ugd2l0aCBwZW9wbGUgYW5kIGdpdCB0cmVlcyB0aGF0DQo+
-IGhhdmVuJ3QgYmVlbiBhY3RpdmUgaW4geWVhcnMsIHNvIG1heWJlIGxldCdzIGp1c3QgbGVh
-dmUgdGhlbSBhbG9uZS4NCj4gQW5kIGZ1cnRoZXJtb3JlIGRpc3Ryb3MgYXJlIG5vdyBhZG9w
-dGluZyBzaW1wbGVkcm0gYXMgdGhlIGZpcm13YXJlIGZiDQo+IGRyaXZlciwgc28gaG9wZWZ1
-bGx5IHRoZSBuZWVkIHRvIGNhcmUgYWJvdXQgdGhlIGZiZGV2IGZpcm13YXJlIGRyaXZlcnMN
-Cj4gd2lsbCBnbyBkb3duIGdvaW5nIGZvcndhcmQuDQo+IA0KPiBOb3RlIHRoYXQgZHJtLW1p
-c2MgaXMgZ3JvdXAgbWFpbnRhaW5lZCwgSSBleHBlY3QgdGhhdCB0byBjb250aW51ZSBsaWtl
-DQo+IHdlJ3ZlIGRvbmUgYmVmb3JlLCBzbyBubyBuZXcgZXhwZWN0YXRpb25zIHRoYXQgcGF0
-Y2hlcyBhbGwgZ28gdGhyb3VnaA0KPiBteSBoYW5kcy4gVGhhdCB3b3VsZCBiZSBzaWxseS4g
-VGhpcyBhbHNvIG1lYW5zIEknbSBoYXBweSB0byBwdXQgYW55DQo+IG90aGVyIHZvbHVudGVl
-cidzIG5hbWUgaW4gdGhlIE06IGxpbmUsIGJ1dCBvdGhlcndpc2UgZ2l0IGxvZyBzYXlzIEkn
-bQ0KPiB0aGUgb25lIHdobydzIHN0dWNrIHdpdGggdGhpcy4NCj4gDQo+IENjOiBEYXZlIEFp
-cmxpZSA8YWlybGllZEBnbWFpbC5jb20+DQo+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1
-bGFAbGludXguaW50ZWwuY29tPg0KPiBDYzogTGludXMgVG9ydmFsZHMgPHRvcnZhbGRzQGxp
-bnV4LWZvdW5kYXRpb24ub3JnPg0KPiBDYzogTGludXggRmJkZXYgZGV2ZWxvcG1lbnQgbGlz
-dCA8bGludXgtZmJkZXZAdmdlci5rZXJuZWwub3JnPg0KPiBDYzogUGF2ZWwgTWFjaGVrIDxw
-YXZlbEB1Y3cuY3o+DQo+IENjOiBTYW0gUmF2bmJvcmcgPHNhbUByYXZuYm9yZy5vcmc+DQo+
-IENjOiBHcmVnIEtyb2FoLUhhcnRtYW4gPGdyZWdraEBsaW51eGZvdW5kYXRpb24ub3JnPg0K
-PiBDYzogSmF2aWVyIE1hcnRpbmV6IENhbmlsbGFzIDxqYXZpZXJtQHJlZGhhdC5jb20+DQo+
-IENjOiBEUkkgRGV2ZWxvcG1lbnQgPGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+
-DQo+IENjOiBMaW51eCBLZXJuZWwgTWFpbGluZyBMaXN0IDxsaW51eC1rZXJuZWxAdmdlci5r
-ZXJuZWwub3JnPg0KPiBDYzogQ2xhdWRpbyBTdWFyZXogPGNzc2tAbmV0LWMuZXM+DQo+IENj
-OiBUb21pIFZhbGtlaW5lbiA8dG9taS52YWxrZWluZW5AdGkuY29tPg0KPiBDYzogR2VlcnQg
-VXl0dGVyaG9ldmVuIDxnZWVydEBsaW51eC1tNjhrLm9yZz4NCj4gQ2M6IFRob21hcyBaaW1t
-ZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0KPiBDYzogRGFuaWVsIFZldHRlciA8ZGFu
-aWVsLnZldHRlckBpbnRlbC5jb20+DQo+IENjOiBTdmVuIFNjaG5lbGxlIDxzdmVuc0BzdGFj
-a2ZyYW1lLm9yZz4NCj4gQ2M6IEdlcmQgSG9mZm1hbm4gPGtyYXhlbEByZWRoYXQuY29tPg0K
-PiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNv
-bT4NCg0KQWNrZWQtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRl
-Pg0KDQo+IC0tLQ0KPiAgIE1BSU5UQUlORVJTIHwgNiArKysrKysNCj4gICAxIGZpbGUgY2hh
-bmdlZCwgNiBpbnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvTUFJTlRBSU5FUlMg
-Yi9NQUlOVEFJTkVSUw0KPiBpbmRleCBlYTNlNmM5MTQzODQuLjQ5ODA5ZWFhMzA5NiAxMDA2
-NDQNCj4gLS0tIGEvTUFJTlRBSU5FUlMNCj4gKysrIGIvTUFJTlRBSU5FUlMNCj4gQEAgLTc1
-NzMsNiArNzU3MywxMiBAQCBTOglNYWludGFpbmVkDQo+ICAgVzoJaHR0cDovL2Zsb2F0aW5n
-cG9pbnQuc291cmNlZm9yZ2UubmV0L2VtdWxhdG9yL2luZGV4Lmh0bWwNCj4gICBGOglhcmNo
-L3g4Ni9tYXRoLWVtdS8NCj4gICANCj4gK0ZSQU1FQlVGRkVSIENPUkUNCj4gK006CURhbmll
-bCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4NCj4gK0Y6CWRyaXZlcnMvdmlkZW8vZmJkZXYv
-Y29yZS8NCj4gK1M6CU9kZCBGaXhlcw0KPiArVDoJZ2l0IGdpdDovL2Fub25naXQuZnJlZWRl
-c2t0b3Aub3JnL2RybS9kcm0tbWlzYw0KPiArDQo+ICAgRlJBTUVCVUZGRVIgTEFZRVINCj4g
-ICBNOglIZWxnZSBEZWxsZXIgPGRlbGxlckBnbXguZGU+DQo+ICAgTDoJbGludXgtZmJkZXZA
-dmdlci5rZXJuZWwub3JnDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERy
-aXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0K
-TWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQooSFJCIDM2ODA5LCBB
-RyBOw7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo=
+Yes, agreed.
 
---------------pFSOeLpIPImoieDifLoG2h54--
+Acked-by: Helge Deller <deller@gmx.de>
 
---------------8AKLLWg9udfHxkot3p04zoER
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+Since the code is used by drm and existing fbdev drivers,
+please just make sure to not break fbdev...
 
------BEGIN PGP SIGNATURE-----
+Thanks!
+Helge
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmH5CUoFAwAAAAAACgkQlh/E3EQov+Cd
-Tw//d5aZv0Yk1NM6Ke8rHG5R8OOkdhh7eoPXdQNC6o+y6zCAwmT087t69A4x4XS+3AFjMVlPEknC
-ysa4Y80jQ82u4ev5YqLLNAwMgmRRLxQbS4OHRtUs+uRFyUUU8EVsbfhcpQ1lOmfpRgg5duLJ6YU/
-R01NuHP5s/XrhbOgxrDXMvWoTYRz60XwwaP9HZ5bvbcEqdl9x668hK8SCW34OKg88Bm9NPyOIl/h
-oOM8zb/RTgPZph4jkjz8HLRXz5MiDTVZ9NV8Rq6+Uqj9LEi6689wRg0d/5pkL6IjwOqaV6MaoIb4
-2VgU3Po8RgML2WNA/Kc+aXS0bwmLhiWvGI2tKtBKOxpvqwfSIEN5AAGt2gUQzOE7A2/adcoP/kP0
-SnRSmp4F/WGNEFotmdhfjnmkWjrB7J6MVC1KK30W8Ngdt3ybc4rdrhrMcv1SqJC+IgzNsw0Sx5k+
-ffi27WzmwOsOttWwKKJS+sztfpqghQEfWVTG7mXeGoX8LxAY3xaBbqYggehjnA/YsnvHmAHpD9tf
-bWP/Bf1Y0fUBA5lqqdLtTwJierCOFl/1ZF4H98KNG1gWlvFzuGSAHT+Uq1lRRoh4u5rqr/UNgZZ2
-LPiou+z5iru+0UjBfvKwLNTwvbWl7Rp2/o1xXWwjU9kqxQ0fyATUJTmNfmurMJZ8GLEdREpcv7wi
-/AY=
-=mIBb
------END PGP SIGNATURE-----
+>
+> Cc: Dave Airlie <airlied@gmail.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Linus Torvalds <torvalds@linux-foundation.org>
+> Cc: Linux Fbdev development list <linux-fbdev@vger.kernel.org>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Javier Martinez Canillas <javierm@redhat.com>
+> Cc: DRI Development <dri-devel@lists.freedesktop.org>
+> Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+> Cc: Claudio Suarez <cssk@net-c.es>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Sven Schnelle <svens@stackframe.org>
+> Cc: Gerd Hoffmann <kraxel@redhat.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  MAINTAINERS | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ea3e6c914384..49809eaa3096 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -7573,6 +7573,12 @@ S:	Maintained
+>  W:	http://floatingpoint.sourceforge.net/emulator/index.html
+>  F:	arch/x86/math-emu/
+>
+> +FRAMEBUFFER CORE
+> +M:	Daniel Vetter <daniel@ffwll.ch>
+> +F:	drivers/video/fbdev/core/
+> +S:	Odd Fixes
+> +T:	git git://anongit.freedesktop.org/drm/drm-misc
+> +
+>  FRAMEBUFFER LAYER
+>  M:	Helge Deller <deller@gmx.de>
+>  L:	linux-fbdev@vger.kernel.org
+>
 
---------------8AKLLWg9udfHxkot3p04zoER--
