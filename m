@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ABA14A584C
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 09:08:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A2BD4A584F
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 09:11:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77BC310EDCD;
-	Tue,  1 Feb 2022 08:08:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AE0910E571;
+	Tue,  1 Feb 2022 08:11:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A47EF10EDCD
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Feb 2022 08:08:30 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9224C10E571
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Feb 2022 08:11:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643702910; x=1675238910;
+ t=1643703065; x=1675239065;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=RH+n6Hi0eqKe75qIOy7e8EJv7mBO1BHRMGf77bjU5E0=;
- b=XNS4CgPk6PnvZXGjeqSIiY4MVeV+paLYP8qMGBeCkAzhAh3pIITwFu6H
- NYKiotcGJEgGTr74VdGdo74/bG6zU+8iRKglDsOADuCfmLdd3G1viTEOn
- TtFT+CpgXX7r0uqcSDx3S2uXu4ZV9AyEa3fG9aUxvP0h7hcuE9iVw8PpD
- qBQhAhtoKdTFsQoT6gMSjQROwWvJzgkRLaU1BwQAokPotTdk9u4IWU7kl
- 7f5Pro/fFTBm12Fws2QI4uB1pVj9rWy8LIlV7vElbk3JdncfzX7PdDPi0
- 1HUbH6jwqOY/oTmbFLhJ7mzbxqOj2dZs0FVuvxAE/8r2FaFlFVdEqFNlh g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="308373140"
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="308373140"
+ bh=71SiT+Vi44Q9X44hCjYtGOYgRTy6RP5CwipFJ9p9cWU=;
+ b=fmmmA0ynL464l929NxdebsL1AEMwUjZzJF5mPAnTiQC6eUiaOLfCkrLs
+ Z26G5bnfu0Vsc7JFcaCnNSkBKoZGSK5UquqrRAZiLOr+mW6Sg3yP6B4T+
+ iIhVC0SPgPSqVpVVTRsBF9+6L+U92PRcYaTu36ARQ3igq3a8ZHe4Hyo+J
+ 1WVdmckBt7c/1JmTcDr5zt2s978OMn/Sb00taZZBZlkHF9Yt23NDpvCts
+ PF/CAtjOoXOLFfEz3ocVQ3IPn4kUqNydoGNxbMWLj1Aj1SPLvo8KYenMq
+ NahHd0ORrEjq6GAYbsxvh6RDmsx9yC9Q+RBgSkkYLgC4bpA0Scz2KKsjK w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="235034163"
+X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="235034163"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2022 00:08:30 -0800
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="479554315"
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2022 00:11:05 -0800
+X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="479554787"
 Received: from unknown (HELO intel.com) ([10.237.72.65])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2022 00:08:29 -0800
-Date: Tue, 1 Feb 2022 10:08:39 +0200
+ 01 Feb 2022 00:11:03 -0800
+Date: Tue, 1 Feb 2022 10:11:14 +0200
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220201080839.GB9466@intel.com>
+Message-ID: <20220201081114.GC9466@intel.com>
 References: <20220118092354.11631-1-ville.syrjala@linux.intel.com>
- <20220118092354.11631-9-ville.syrjala@linux.intel.com>
+ <20220118092354.11631-10-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220118092354.11631-9-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220118092354.11631-10-ville.syrjala@linux.intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 08/15] drm/i915: Split plane data_rate into
- data_rate+data_rate_y
+Subject: Re: [Intel-gfx] [PATCH 09/15] drm/i915: Pre-calculate plane
+ relative data rate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,215 +63,362 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 18, 2022 at 11:23:47AM +0200, Ville Syrjala wrote:
+On Tue, Jan 18, 2022 at 11:23:48AM +0200, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Split the currently combined plane data_rate into the proper
-> Y vs. CbCr components. This matches how we now track the
-> plane dbuf allocations, and thus will make the dbuf bandwidth
-> calculations actually produce the correct numbers for each
-> dbuf slice.
+> Handle the plane relative data rate in exactly the same
+> way as we already handle the real data rate. Ie. pre-calculate
+> it during intel_plane_atomic_check_with_state(), and assign/clear
+> it for the Y plane as needed. This should guarantee that the
+> tracking is 100% consistent, and makes me have to think less
+> when the same apporach is used by both types of data rate.
+> 
+> We might even want to consider replacing the relative
+> data rate with the real data rate entirely, but it's not
+> clear if that will produce less optimal plane ddb
+> allocations. So for now lets keep using the current approach.
 
 Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
 > 
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c | 34 ++++++++----------
->  .../gpu/drm/i915/display/intel_atomic_plane.h |  3 +-
->  drivers/gpu/drm/i915/display/intel_bw.c       | 36 +++++++++----------
->  drivers/gpu/drm/i915/display/intel_display.c  |  4 +++
->  .../drm/i915/display/intel_display_types.h    |  3 ++
->  5 files changed, 42 insertions(+), 38 deletions(-)
+>  .../gpu/drm/i915/display/intel_atomic_plane.c |  37 ++++
+>  drivers/gpu/drm/i915/display/intel_display.c  |   5 +
+>  .../drm/i915/display/intel_display_types.h    |   6 +-
+>  drivers/gpu/drm/i915/intel_pm.c               | 170 ++++--------------
+>  4 files changed, 80 insertions(+), 138 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index 52239351931c..cd18155830d4 100644
+> index cd18155830d4..a61344dcfb94 100644
 > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
 > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -180,29 +180,16 @@ unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
+> @@ -192,6 +192,33 @@ unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
+>  		fb->format->cpp[color_plane];
 >  }
 >  
->  unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
-> -				   const struct intel_plane_state *plane_state)
-> +				   const struct intel_plane_state *plane_state,
-> +				   int color_plane)
->  {
->  	const struct drm_framebuffer *fb = plane_state->hw.fb;
-> -	unsigned int cpp;
-> -	unsigned int pixel_rate;
->  
->  	if (!plane_state->uapi.visible)
->  		return 0;
->  
-> -	pixel_rate = intel_plane_pixel_rate(crtc_state, plane_state);
-> -
-> -	cpp = fb->format->cpp[0];
-> -
-> -	/*
-> -	 * Based on HSD#:1408715493
-> -	 * NV12 cpp == 4, P010 cpp == 8
-> -	 *
-> -	 * FIXME what is the logic behind this?
-> -	 */
-> -	if (fb->format->is_yuv && fb->format->num_planes > 1)
-> -		cpp *= 4;
-> -
-> -	return pixel_rate * cpp;
-> +	return intel_plane_pixel_rate(crtc_state, plane_state) *
-> +		fb->format->cpp[color_plane];
->  }
->  
+> +static unsigned int
+> +intel_plane_relative_data_rate(const struct intel_plane_state *plane_state,
+> +			       int color_plane)
+> +{
+> +	const struct drm_framebuffer *fb = plane_state->hw.fb;
+> +	int width, height;
+> +
+> +	if (!plane_state->uapi.visible)
+> +		return 0;
+> +
+> +	/*
+> +	 * Src coordinates are already rotated by 270 degrees for
+> +	 * the 90/270 degree plane rotation cases (to match the
+> +	 * GTT mapping), hence no need to account for rotation here.
+> +	 */
+> +	width = drm_rect_width(&plane_state->uapi.src) >> 16;
+> +	height = drm_rect_height(&plane_state->uapi.src) >> 16;
+> +
+> +	/* UV plane does 1/2 pixel sub-sampling */
+> +	if (color_plane == 1) {
+> +		width /= 2;
+> +		height /= 2;
+> +	}
+> +
+> +	return width * height * fb->format->cpp[color_plane];
+> +}
+> +
 >  int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
-> @@ -324,6 +311,7 @@ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
->  	crtc_state->nv12_planes &= ~BIT(plane->id);
+>  			       struct intel_plane *plane,
+>  			       bool *need_cdclk_calc)
+> @@ -312,6 +339,8 @@ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
 >  	crtc_state->c8_planes &= ~BIT(plane->id);
 >  	crtc_state->data_rate[plane->id] = 0;
-> +	crtc_state->data_rate_y[plane->id] = 0;
+>  	crtc_state->data_rate_y[plane->id] = 0;
+> +	crtc_state->rel_data_rate[plane->id] = 0;
+> +	crtc_state->rel_data_rate_y[plane->id] = 0;
 >  	crtc_state->min_cdclk[plane->id] = 0;
 >  
 >  	plane_state->uapi.visible = false;
-> @@ -366,8 +354,16 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
->  	if (new_plane_state->uapi.visible || old_plane_state->uapi.visible)
->  		new_crtc_state->update_planes |= BIT(plane->id);
->  
-> -	new_crtc_state->data_rate[plane->id] =
-> -		intel_plane_data_rate(new_crtc_state, new_plane_state);
-> +	if (new_plane_state->uapi.visible &&
-> +	    intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
-> +		new_crtc_state->data_rate_y[plane->id] =
-> +			intel_plane_data_rate(new_crtc_state, new_plane_state, 0);
-> +		new_crtc_state->data_rate[plane->id] =
-> +			intel_plane_data_rate(new_crtc_state, new_plane_state, 1);
-> +	} else if (new_plane_state->uapi.visible) {
-> +		new_crtc_state->data_rate[plane->id] =
-> +			intel_plane_data_rate(new_crtc_state, new_plane_state, 0);
-> +	}
+> @@ -360,9 +389,17 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
+>  			intel_plane_data_rate(new_crtc_state, new_plane_state, 0);
+>  		new_crtc_state->data_rate[plane->id] =
+>  			intel_plane_data_rate(new_crtc_state, new_plane_state, 1);
+> +
+> +		new_crtc_state->rel_data_rate_y[plane->id] =
+> +			intel_plane_relative_data_rate(new_plane_state, 0);
+> +		new_crtc_state->rel_data_rate[plane->id] =
+> +			intel_plane_relative_data_rate(new_plane_state, 1);
+>  	} else if (new_plane_state->uapi.visible) {
+>  		new_crtc_state->data_rate[plane->id] =
+>  			intel_plane_data_rate(new_crtc_state, new_plane_state, 0);
+> +
+> +		new_crtc_state->rel_data_rate[plane->id] =
+> +			intel_plane_relative_data_rate(new_plane_state, 0);
+>  	}
 >  
 >  	return intel_plane_atomic_calc_changes(old_crtc_state, new_crtc_state,
->  					       old_plane_state, new_plane_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> index 7907f601598e..aa26ce5fb654 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> @@ -24,7 +24,8 @@ unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
->  				    const struct intel_plane_state *plane_state);
->  
->  unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
-> -				   const struct intel_plane_state *plane_state);
-> +				   const struct intel_plane_state *plane_state,
-> +				   int color_plane);
->  void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
->  				       const struct intel_plane_state *from_plane_state,
->  				       struct intel_crtc *crtc);
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 82f0435bcb6d..93feab671c29 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -576,6 +576,7 @@ static unsigned int intel_bw_crtc_num_active_planes(const struct intel_crtc_stat
->  static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
->  	unsigned int data_rate = 0;
->  	enum plane_id plane_id;
->  
-> @@ -588,6 +589,9 @@ static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_
->  			continue;
->  
->  		data_rate += crtc_state->data_rate[plane_id];
-> +
-> +		if (DISPLAY_VER(i915) < 11)
-> +			data_rate += crtc_state->data_rate_y[plane_id];
->  	}
->  
->  	return data_rate;
-> @@ -688,28 +692,24 @@ static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
->  	for_each_plane_id_on_crtc(crtc, plane_id) {
->  		const struct skl_ddb_entry *ddb =
->  			&crtc_state->wm.skl.plane_ddb[plane_id];
-> -		const struct skl_ddb_entry *ddb_y =
-> -			&crtc_state->wm.skl.plane_ddb_y[plane_id];
->  		unsigned int data_rate = crtc_state->data_rate[plane_id];
-> -		unsigned int dbuf_mask = 0;
-> +		unsigned int dbuf_mask = skl_ddb_dbuf_slice_mask(i915, ddb);
->  		enum dbuf_slice slice;
->  
-> -		dbuf_mask |= skl_ddb_dbuf_slice_mask(i915, ddb);
-> -		dbuf_mask |= skl_ddb_dbuf_slice_mask(i915, ddb_y);
-> +		for_each_dbuf_slice_in_mask(i915, slice, dbuf_mask)
-> +			crtc_bw->used_bw[slice] += data_rate;
-> +	}
-> +
-> +	if (DISPLAY_VER(i915) >= 11)
-> +		return;
-> +
-> +	for_each_plane_id_on_crtc(crtc, plane_id) {
-> +		const struct skl_ddb_entry *ddb =
-> +			&crtc_state->wm.skl.plane_ddb_y[plane_id];
-> +		unsigned int data_rate = crtc_state->data_rate_y[plane_id];
-> +		unsigned int dbuf_mask = skl_ddb_dbuf_slice_mask(i915, ddb);
-> +		enum dbuf_slice slice;
->  
-> -		/*
-> -		 * FIXME: To calculate that more properly we probably
-> -		 * need to split per plane data_rate into data_rate_y
-> -		 * and data_rate_uv for multiplanar formats in order not
-> -		 * to get accounted those twice if they happen to reside
-> -		 * on different slices.
-> -		 * However for pre-icl this would work anyway because
-> -		 * we have only single slice and for icl+ uv plane has
-> -		 * non-zero data rate.
-> -		 * So in worst case those calculation are a bit
-> -		 * pessimistic, which shouldn't pose any significant
-> -		 * problem anyway.
-> -		 */
->  		for_each_dbuf_slice_in_mask(i915, slice, dbuf_mask)
->  			crtc_bw->used_bw[slice] += data_rate;
->  	}
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index af23153f6502..39dd2e7383e0 100644
+> index 39dd2e7383e0..8f3034713c56 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -761,6 +761,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
->  	intel_set_plane_visible(crtc_state, plane_state, false);
+> @@ -762,6 +762,8 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
 >  	fixup_plane_bitmasks(crtc_state);
 >  	crtc_state->data_rate[plane->id] = 0;
-> +	crtc_state->data_rate_y[plane->id] = 0;
+>  	crtc_state->data_rate_y[plane->id] = 0;
+> +	crtc_state->rel_data_rate[plane->id] = 0;
+> +	crtc_state->rel_data_rate_y[plane->id] = 0;
 >  	crtc_state->min_cdclk[plane->id] = 0;
 >  
 >  	if (plane->id == PLANE_PRIMARY)
-> @@ -5110,6 +5111,7 @@ static int icl_check_nv12_planes(struct intel_crtc_state *crtc_state)
->  			crtc_state->enabled_planes &= ~BIT(plane->id);
+> @@ -5112,6 +5114,7 @@ static int icl_check_nv12_planes(struct intel_crtc_state *crtc_state)
 >  			crtc_state->active_planes &= ~BIT(plane->id);
 >  			crtc_state->update_planes |= BIT(plane->id);
-> +			crtc_state->data_rate[plane->id] = 0;
+>  			crtc_state->data_rate[plane->id] = 0;
+> +			crtc_state->rel_data_rate[plane->id] = 0;
 >  		}
 >  
 >  		plane_state->planar_slave = false;
-> @@ -5154,6 +5156,8 @@ static int icl_check_nv12_planes(struct intel_crtc_state *crtc_state)
->  		crtc_state->enabled_planes |= BIT(linked->id);
->  		crtc_state->active_planes |= BIT(linked->id);
+> @@ -5158,6 +5161,8 @@ static int icl_check_nv12_planes(struct intel_crtc_state *crtc_state)
 >  		crtc_state->update_planes |= BIT(linked->id);
-> +		crtc_state->data_rate[linked->id] =
-> +			crtc_state->data_rate_y[plane->id];
+>  		crtc_state->data_rate[linked->id] =
+>  			crtc_state->data_rate_y[plane->id];
+> +		crtc_state->rel_data_rate[linked->id] =
+> +			crtc_state->rel_data_rate_y[plane->id];
 >  		drm_dbg_kms(&dev_priv->drm, "Using %s as Y plane for %s\n",
 >  			    linked->base.name, plane->base.name);
 >  
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 578c6069376b..7e147e110059 100644
+> index 7e147e110059..871485af14d4 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1148,7 +1148,10 @@ struct intel_crtc_state {
+> @@ -1153,9 +1153,9 @@ struct intel_crtc_state {
+>  	/* for planar Y */
+>  	u32 data_rate_y[I915_MAX_PLANES];
 >  
->  	int min_cdclk[I915_MAX_PLANES];
+> -	/* FIXME unify with data_rate[] */
+> -	u64 plane_data_rate[I915_MAX_PLANES];
+> -	u64 uv_plane_data_rate[I915_MAX_PLANES];
+> +	/* FIXME unify with data_rate[]? */
+> +	u64 rel_data_rate[I915_MAX_PLANES];
+> +	u64 rel_data_rate_y[I915_MAX_PLANES];
 >  
-> +	/* for packed/planar CbCr */
->  	u32 data_rate[I915_MAX_PLANES];
-> +	/* for planar Y */
-> +	u32 data_rate_y[I915_MAX_PLANES];
+>  	/* Gamma mode programmed on the pipe */
+>  	u32 gamma_mode;
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> index 8a115b4c9e71..134584c77697 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -4862,126 +4862,24 @@ static u8 skl_compute_dbuf_slices(struct intel_crtc *crtc, u8 active_pipes)
+>  }
 >  
->  	/* FIXME unify with data_rate[] */
->  	u64 plane_data_rate[I915_MAX_PLANES];
+>  static u64
+> -skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
+> -			     const struct intel_plane_state *plane_state,
+> -			     int color_plane)
+> +skl_total_relative_data_rate(const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+> -	const struct drm_framebuffer *fb = plane_state->hw.fb;
+> -	int width, height;
+> -
+> -	if (!plane_state->uapi.visible)
+> -		return 0;
+> -
+> -	if (plane->id == PLANE_CURSOR)
+> -		return 0;
+> -
+> -	if (color_plane == 1 &&
+> -	    !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
+> -		return 0;
+> -
+> -	/*
+> -	 * Src coordinates are already rotated by 270 degrees for
+> -	 * the 90/270 degree plane rotation cases (to match the
+> -	 * GTT mapping), hence no need to account for rotation here.
+> -	 */
+> -	width = drm_rect_width(&plane_state->uapi.src) >> 16;
+> -	height = drm_rect_height(&plane_state->uapi.src) >> 16;
+> -
+> -	/* UV plane does 1/2 pixel sub-sampling */
+> -	if (color_plane == 1) {
+> -		width /= 2;
+> -		height /= 2;
+> -	}
+> -
+> -	return width * height * fb->format->cpp[color_plane];
+> -}
+> -
+> -static u64
+> -skl_get_total_relative_data_rate(struct intel_atomic_state *state,
+> -				 struct intel_crtc *crtc)
+> -{
+> -	struct intel_crtc_state *crtc_state =
+> -		intel_atomic_get_new_crtc_state(state, crtc);
+> -	const struct intel_plane_state *plane_state;
+> -	struct intel_plane *plane;
+> -	u64 total_data_rate = 0;
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>  	enum plane_id plane_id;
+> -	int i;
+> -
+> -	/* Calculate and cache data rate for each plane */
+> -	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+> -		if (plane->pipe != crtc->pipe)
+> -			continue;
+> -
+> -		plane_id = plane->id;
+> -
+> -		/* packed/y */
+> -		crtc_state->plane_data_rate[plane_id] =
+> -			skl_plane_relative_data_rate(crtc_state, plane_state, 0);
+> -
+> -		/* uv-plane */
+> -		crtc_state->uv_plane_data_rate[plane_id] =
+> -			skl_plane_relative_data_rate(crtc_state, plane_state, 1);
+> -	}
+> +	u64 data_rate = 0;
+>  
+>  	for_each_plane_id_on_crtc(crtc, plane_id) {
+> -		total_data_rate += crtc_state->plane_data_rate[plane_id];
+> -		total_data_rate += crtc_state->uv_plane_data_rate[plane_id];
+> -	}
+> -
+> -	return total_data_rate;
+> -}
+> -
+> -static u64
+> -icl_get_total_relative_data_rate(struct intel_atomic_state *state,
+> -				 struct intel_crtc *crtc)
+> -{
+> -	struct intel_crtc_state *crtc_state =
+> -		intel_atomic_get_new_crtc_state(state, crtc);
+> -	const struct intel_plane_state *plane_state;
+> -	struct intel_plane *plane;
+> -	u64 total_data_rate = 0;
+> -	enum plane_id plane_id;
+> -	int i;
+> -
+> -	/* Calculate and cache data rate for each plane */
+> -	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+> -		if (plane->pipe != crtc->pipe)
+> +		if (plane_id == PLANE_CURSOR)
+>  			continue;
+>  
+> -		plane_id = plane->id;
+> +		data_rate += crtc_state->rel_data_rate[plane_id];
+>  
+> -		if (!plane_state->planar_linked_plane) {
+> -			crtc_state->plane_data_rate[plane_id] =
+> -				skl_plane_relative_data_rate(crtc_state, plane_state, 0);
+> -		} else {
+> -			enum plane_id y_plane_id;
+> -
+> -			/*
+> -			 * The slave plane might not iterate in
+> -			 * intel_atomic_crtc_state_for_each_plane_state(),
+> -			 * and needs the master plane state which may be
+> -			 * NULL if we try get_new_plane_state(), so we
+> -			 * always calculate from the master.
+> -			 */
+> -			if (plane_state->planar_slave)
+> -				continue;
+> -
+> -			/* Y plane rate is calculated on the slave */
+> -			y_plane_id = plane_state->planar_linked_plane->id;
+> -			crtc_state->plane_data_rate[y_plane_id] =
+> -				skl_plane_relative_data_rate(crtc_state, plane_state, 0);
+> -
+> -			crtc_state->plane_data_rate[plane_id] =
+> -				skl_plane_relative_data_rate(crtc_state, plane_state, 1);
+> -		}
+> +		if (DISPLAY_VER(i915) < 11)
+> +			data_rate += crtc_state->rel_data_rate_y[plane_id];
+>  	}
+>  
+> -	for_each_plane_id_on_crtc(crtc, plane_id)
+> -		total_data_rate += crtc_state->plane_data_rate[plane_id];
+> -
+> -	return total_data_rate;
+> +	return data_rate;
+>  }
+>  
+>  const struct skl_wm_level *
+> @@ -5096,11 +4994,6 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+>  	if (!crtc_state->hw.active)
+>  		return 0;
+>  
+> -	if (DISPLAY_VER(dev_priv) >= 11)
+> -		iter.data_rate = icl_get_total_relative_data_rate(state, crtc);
+> -	else
+> -		iter.data_rate = skl_get_total_relative_data_rate(state, crtc);
+> -
+>  	iter.size = skl_ddb_entry_size(alloc);
+>  	if (iter.size == 0)
+>  		return 0;
+> @@ -5111,6 +5004,7 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+>  	skl_ddb_entry_init(&crtc_state->wm.skl.plane_ddb[PLANE_CURSOR],
+>  			   alloc->end - iter.total[PLANE_CURSOR], alloc->end);
+>  
+> +	iter.data_rate = skl_total_relative_data_rate(crtc_state);
+>  	if (iter.data_rate == 0)
+>  		return 0;
+>  
+> @@ -5171,16 +5065,19 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+>  		if (iter.data_rate == 0)
+>  			break;
+>  
+> -		iter.total[plane_id] =
+> -			skl_allocate_plane_ddb(&iter, &wm->wm[level],
+> -					       crtc_state->plane_data_rate[plane_id]);
+> -
+> -		if (iter.data_rate == 0)
+> -			break;
+> -
+> -		iter.uv_total[plane_id] =
+> -			skl_allocate_plane_ddb(&iter, &wm->uv_wm[level],
+> -					       crtc_state->uv_plane_data_rate[plane_id]);
+> +		if (DISPLAY_VER(dev_priv) < 11 &&
+> +		    crtc_state->nv12_planes & BIT(plane_id)) {
+> +			iter.total[plane_id] =
+> +				skl_allocate_plane_ddb(&iter, &wm->wm[level],
+> +						       crtc_state->rel_data_rate_y[plane_id]);
+> +			iter.uv_total[plane_id] =
+> +				skl_allocate_plane_ddb(&iter, &wm->uv_wm[level],
+> +						       crtc_state->rel_data_rate[plane_id]);
+> +		} else {
+> +			iter.total[plane_id] =
+> +				skl_allocate_plane_ddb(&iter, &wm->wm[level],
+> +						       crtc_state->rel_data_rate[plane_id]);
+> +		}
+>  	}
+>  	drm_WARN_ON(&dev_priv->drm, iter.size != 0 || iter.data_rate != 0);
+>  
+> @@ -5200,15 +5097,18 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+>  			    DISPLAY_VER(dev_priv) >= 11 && iter.uv_total[plane_id]);
+>  
+>  		/* Leave disabled planes at (0,0) */
+> -		if (iter.total[plane_id])
+> -			iter.start = skl_ddb_entry_init(ddb, iter.start,
+> -							iter.start + iter.total[plane_id]);
+> -
+> -		if (iter.uv_total[plane_id]) {
+> -			/* hardware wants these swapped */
+> -			*ddb_y = *ddb;
+> -			iter.start = skl_ddb_entry_init(ddb, iter.start,
+> -							iter.start + iter.uv_total[plane_id]);
+> +		if (DISPLAY_VER(dev_priv) < 11 &&
+> +		    crtc_state->nv12_planes & BIT(plane_id)) {
+> +			if (iter.total[plane_id])
+> +				iter.start = skl_ddb_entry_init(ddb_y, iter.start,
+> +								iter.start + iter.total[plane_id]);
+> +			if (iter.uv_total[plane_id])
+> +				iter.start = skl_ddb_entry_init(ddb, iter.start,
+> +								iter.start + iter.uv_total[plane_id]);
+> +		} else {
+> +			if (iter.total[plane_id])
+> +				iter.start = skl_ddb_entry_init(ddb, iter.start,
+> +								iter.start + iter.total[plane_id]);
+>  		}
+>  	}
+>  
 > -- 
 > 2.32.0
 > 
