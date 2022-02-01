@@ -2,51 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 624824A5AA2
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 11:53:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 393E14A5ACB
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 12:02:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F76310E78B;
-	Tue,  1 Feb 2022 10:53:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69D0B10E497;
+	Tue,  1 Feb 2022 11:02:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C78A10E78B
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Feb 2022 10:53:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643712798; x=1675248798;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Ggdl5r1Sx8CXkanhqE6vyDVDxsGHNKe/JMOeScEFN5U=;
- b=VNbBHc+s3ZRodAmEimgawbnPtqPDAE4Olf0HwQjZVb6jHw9eTWAa8f9W
- D6IhCuMuyAZfqd89WX/jC7e00Bukn/Vzh9gPJnXNRI+AFaalFMdSfdG9r
- j+MI4C3XjfoHkI0KG9r+omXwHN0rlc9jrsgOrnY6bzDUU/k0iby/j/7T9
- 0M91+i4kKn8Xx2fwF+VdUH6tBXlRN/aZ/WH7c8s8grkKq08OlV1O+oVu0
- FKPe2tx6zlWt20p4fRgPoId1gbWo/EcVvb7+OEoJqzAAeCr2EzxMVqIZA
- zyH7wpkD3hSsn0OIKgqrO7qzyJxdNdgX48t2u38Q8dMs1x+N7ckI7KpOz A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="246499441"
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="246499441"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2022 02:53:17 -0800
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="698365018"
-Received: from ehanosko-mobl.ger.corp.intel.com (HELO localhost) ([10.252.6.3])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2022 02:53:16 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-In-Reply-To: <20220131160022.GA2434344@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220128114914.2339526-1-imre.deak@intel.com>
- <20220128114914.2339526-5-imre.deak@intel.com> <871r0ow17m.fsf@intel.com>
- <20220131160022.GA2434344@ideak-desk.fi.intel.com>
-Date: Tue, 01 Feb 2022 12:53:13 +0200
-Message-ID: <87iltyvox2.fsf@intel.com>
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98BFE10E497;
+ Tue,  1 Feb 2022 11:02:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1643713298;
+ bh=Kp5E+5zaimcSjWgRA4B80Sup1tIxJqfJENoYg4VfU6U=;
+ h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=RNKVE4/zfr6slOkQOzhNETrvVgV9+bPJa76AGJwEVNC2Q3UTqrfhyzJ+gQuBcEToE
+ rQhrk3t+TfPQxSP3Q2VmSdXXSo8Vnl2RPYxPG/8DzXxXYQSV3kI7LBtDNhVZ95sNao
+ 7SFFOQnVK4ZKiMJSLZc+YTCsv5BiTWe+9qCKK62U=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.20.60] ([92.116.146.124]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MTzb8-1mp6bQ1BLe-00QyQM; Tue, 01
+ Feb 2022 12:01:38 +0100
+Message-ID: <63018892-68e8-01b6-1e8f-853892e15c97@gmx.de>
+Date: Tue, 1 Feb 2022 12:01:35 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
+ <20220131210552.482606-4-daniel.vetter@ffwll.ch>
+ <9c22b709-cbcf-6a29-a45e-5a57ba0b9c14@gmx.de>
+ <CAKMK7uGvOVe8kkJCTkQBEFw+3i2iAMANsyG9vGqZkcROZ9he4A@mail.gmail.com>
+From: Helge Deller <deller@gmx.de>
+In-Reply-To: <CAKMK7uGvOVe8kkJCTkQBEFw+3i2iAMANsyG9vGqZkcROZ9he4A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 04/19] drm/i915: Move the power domain->well
- mappings to intel_display_power_map.c
+X-Provags-ID: V03:K1:SP0hRz1pWzc7F2C4ZUe6LHY4QjV17NNxG+kMA+dzBcfbm6cEv3f
+ OD7SVmW2xvmsal6nByY8VbSgXzXsSGQ/29cgn3HU30QknR8a/gTpVu+L6o/KYaXCVbOc9Et
+ QtbNJbC4rsJeZC7HMNleVE+TwErGIk2xYG5Q8zybXnU1bt/5RimsjAp/jZvapqQvK2NICq2
+ dpzf31K7qBL4dRnPxjmBg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:4Gmuif59hFM=:FJ5WYWz0nO2pwe/3zyQdBE
+ NvtiK0xhPUwCqrrEhF5/k6MTor8BnhdxmGHmUW03UI8qpCnIEzWefbae3FGEKMNAzXkDy0sRS
+ 8/JY/L+5IXlI6ORjpRvjew2/XVdfoqIU5crukO3+CgQ7E9ACK18Vu4EV2bbK5Su19dob7cYfx
+ 6UoR6Fx4IUk/LLB1Dvt3q6K+C3AAJmWLnBLinn2rMTq2YbsYuFHUUlsd0n4Nbo8qn/mGvybCf
+ xSDpChJWPuE73+rA/WI9J5eHbjo4dhX05drxCF1jLbkgYdp3aKF8Y8Tj5AXBIis6xeHLkgPz4
+ QMm8kWSDQxmoThR5dhH77PNiB44wBIjfk8Fwf4KJS++e6EO0dpIJEpBvTwUpjL59oi2ZUJhsz
+ mlgXAU3zudur0YPJ6YPxA9vXa7Zc30QAfPNbgCcsJpZ5lW2lsg6246cOaKAGxBlSZ9PoIlEHS
+ OnxM0ZPTzBNlI1/Za6iHr9oUxls8FqkfoIOw4SjhbJB/uXwEWQEh7GSGehGrQEhLzWNB09J9V
+ DJPnTLo8hOjUEzRmarAstGCUxwySCpw1lkWW5OLdTXhQhjIuB0fI6f/wUQ5mBYUpBzOccdv9o
+ ZU9wb46d8kml0AWeVdbtbNOuW7Gv8O6tB+VjSxolpP5ErJcW3LRk07jdVRx/EA79XR0+DREtx
+ 0cU4qW50eQkd2kdOK7lSxDL3ia5MLhwLvPfqcAjoaqnyvhSXxtqdj0+Ruj6SetBky/LwTu2dI
+ 6TYlCsAIpSkqvFGaxoDrFoPReEBSXGB01Ao24ErKy+bmH5PqpSvjtZj2yh3u4lllqvJZ5gdh7
+ mcHogBRaN2o4Jz4/arht0lT1UNF6retxR35lZKJtiNYJnd8vVUKhOoaoiQhHMcCWYw1CBZOa3
+ oWsxp/hK30iUAP3Tc345mpZxtmNC3KWXy05IGr3Km99YCre+WxvkYj0BQiucdi/nef9HBP9sc
+ YlCSmmuMFQ0wM9z30RPYxitlCIMFVS3k3WG+0YJmaeHy7ec2qlauB9nPhIUNSf+ufKMMIIslr
+ Rq09cOeqhzxm0V4TfEsYmuGVZF13h8fH2EN64xx1x/h6z83JEM/yynONTa4fdGZ9Dcol/x70C
+ Ubfe6iB6RhBxjg=
+Subject: Re: [Intel-gfx] [PATCH 03/21] fbcon: Restore fbcon scrolling
+ acceleration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,231 +74,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@intel.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>, Pavel Machek <pavel@ucw.cz>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Dave Airlie <airlied@gmail.com>,
+ Sven Schnelle <svens@stackframe.org>, Gerd Hoffmann <kraxel@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 31 Jan 2022, Imre Deak <imre.deak@intel.com> wrote:
-> On Mon, Jan 31, 2022 at 02:15:25PM +0200, Jani Nikula wrote:
->> On Fri, 28 Jan 2022, Imre Deak <imre.deak@intel.com> wrote:
->> > Move the list of platform specific power domain -> power well
->> > definitions to intel_display_power_map.c. While at it group the
->> > platforms' power domain macros with the corresponding power well lists
->> > and keep all the power domain lists in the same order (matching the en=
-um
->> > order).
->> >
->> > No functional changes.
->> >
->> > Signed-off-by: Imre Deak <imre.deak@intel.com>
->>=20
->> The commit message should explain the why.
->>=20
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/driv=
-ers/gpu/drm/i915/display/intel_display_power.h
->> > index b30e6133c66d0..a0e68ae691021 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
->> > @@ -197,6 +197,7 @@ struct intel_display_power_domain_set {
->> >  	for ((domain) =3D 0; (domain) < POWER_DOMAIN_NUM; (domain)++)	\
->> >  		for_each_if(BIT_ULL(domain) & (mask))
->> >=20=20
->> > +/* intel_display_power.c */
->> >  int intel_power_domains_init(struct drm_i915_private *dev_priv);
->> >  void intel_power_domains_cleanup(struct drm_i915_private *dev_priv);
->> >  void intel_power_domains_init_hw(struct drm_i915_private *dev_priv, b=
-ool resume);
->> > @@ -316,4 +317,8 @@ void chv_phy_powergate_lanes(struct intel_encoder =
-*encoder,
->> >  bool chv_phy_powergate_ch(struct drm_i915_private *dev_priv, enum dpi=
-o_phy phy,
->> >  			  enum dpio_channel ch, bool override);
->> >=20=20
->> > +/* intel_display_power_map.c */
->> > +const char *
->> > +intel_display_power_domain_str(enum intel_display_power_domain domain=
-);
->> > +
->> >  #endif /* __INTEL_DISPLAY_POWER_H__ */
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_internal=
-.h b/drivers/gpu/drm/i915/display/intel_display_power_internal.h
->> > new file mode 100644
->> > index 0000000000000..3fc7c7d0bc9e9
->> > --- /dev/null
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_internal.h
->> > @@ -0,0 +1,93 @@
->> > +/* SPDX-License-Identifier: MIT */
->> > +/*
->> > + * Copyright =C2=A9 2022 Intel Corporation
->> > + */
->> > +
->> > +#ifndef __INTEL_DISPLAY_POWER_INTERNAL_H__
->> > +#define __INTEL_DISPLAY_POWER_INTERNAL_H__
->> > +
->> > +#include "i915_reg_defs.h"
->> > +
->> > +#include "intel_display.h"
->> > +#include "intel_display_power.h"
->> > +
->> > +struct i915_power_well_regs;
->> > +
->> > +/* Power well structure for haswell */
->> > +struct i915_power_well_desc {
->> > +	const char *name;
->> > +	bool always_on;
->> > +	u64 domains;
->> > +	/* unique identifier for this power well */
->> > +	enum i915_power_well_id id;
->> > +	/*
->> > +	 * Arbitraty data associated with this power well. Platform and power
->> > +	 * well specific.
->> > +	 */
->> > +	union {
->> > +		struct {
->> > +			/*
->> > +			 * request/status flag index in the PUNIT power well
->> > +			 * control/status registers.
->> > +			 */
->> > +			u8 idx;
->> > +		} vlv;
->> > +		struct {
->> > +			enum dpio_phy phy;
->> > +		} bxt;
->> > +		struct {
->> > +			/*
->> > +			 * request/status flag index in the power well
->> > +			 * constrol/status registers.
->> > +			 */
->> > +			u8 idx;
->> > +			/* Mask of pipes whose IRQ logic is backed by the pw */
->> > +			u8 irq_pipe_mask;
->> > +			/*
->> > +			 * Instead of waiting for the status bit to ack enables,
->> > +			 * just wait a specific amount of time and then consider
->> > +			 * the well enabled.
->> > +			 */
->> > +			u16 fixed_enable_delay;
->> > +			/* The pw is backing the VGA functionality */
->> > +			bool has_vga:1;
->> > +			bool has_fuses:1;
->> > +			/*
->> > +			 * The pw is for an ICL+ TypeC PHY port in
->> > +			 * Thunderbolt mode.
->> > +			 */
->> > +			bool is_tc_tbt:1;
->> > +		} hsw;
->> > +	};
->> > +	const struct i915_power_well_ops *ops;
->> > +};
->> > +
->> > +struct i915_power_well {
->> > +	const struct i915_power_well_desc *desc;
->> > +	/* power well enable/disable usage count */
->> > +	int count;
->> > +	/* cached hw enabled state */
->> > +	bool hw_enabled;
->> > +};
->> > +
->> > +/* intel_display_power.c */
->>=20
->> I've put a lot of effort into splitting our (display) codebase towards
->> having a 1-to-1 mapping between .c and .h files. This patch adds an odd
->> split between two headers and two compilation units, and I don't think
->> it's pretty.
+On 2/1/22 11:36, Daniel Vetter wrote:
+> On Tue, Feb 1, 2022 at 11:16 AM Helge Deller <deller@gmx.de> wrote:
+>>
+>> On 1/31/22 22:05, Daniel Vetter wrote:
+>>> This functionally undoes 39aead8373b3 ("fbcon: Disable accelerated
+>>> scrolling"), but behind the FRAMEBUFFER_CONSOLE_LEGACY_ACCELERATION
+>>> option.
+>>
+>> you have two trivial copy-n-paste errors in this patch which still prev=
+ent the
+>> console acceleration.
 >
-> This header includes struct definitions used by intel_display_power.c
-> and intel_display_power_map.c. I don't see why this would be a problem,
-> there are many other cases where multiple .c files include a header file
-> for the same reason.
-
-Declaring types is one thing, but I'd like to have the symbols defined
-in intel_foo.c be declared in intel_foo.h, and named intel_foo_*. And by
-symbols I mostly mean functions, preferrably nothing else.
-
-IOW, if you have stuff in intel_display_power_map.c, add
-intel_display_power_map.h that describes the interface to that file.
-
+> Duh :-(
 >
->> > +extern const struct i915_power_well_ops i9xx_always_on_power_well_ops;
->> > +extern const struct i915_power_well_ops chv_pipe_power_well_ops;
->> > +extern const struct i915_power_well_ops chv_dpio_cmn_power_well_ops;
->> > +extern const struct i915_power_well_ops i830_pipes_power_well_ops;
->> > +extern const struct i915_power_well_ops hsw_power_well_ops;
->> > +extern const struct i915_power_well_ops hsw_power_well_ops;
->> > +extern const struct i915_power_well_ops gen9_dc_off_power_well_ops;
->> > +extern const struct i915_power_well_ops bxt_dpio_cmn_power_well_ops;
->> > +extern const struct i915_power_well_ops vlv_display_power_well_ops;
->> > +extern const struct i915_power_well_ops vlv_dpio_cmn_power_well_ops;
->> > +extern const struct i915_power_well_ops vlv_dpio_power_well_ops;
->> > +extern const struct i915_power_well_ops icl_ddi_power_well_ops;
->> > +extern const struct i915_power_well_ops icl_aux_power_well_ops;
->> > +extern const struct i915_power_well_ops tgl_tc_cold_off_ops;
->>=20
->> Also not happy about this. Data is not an interface.
->>=20
->> We currently have 20 symbols with extern, and this adds 14 more with a
->> clear path to add more for new platforms. I'd rather we were heading in
->> the other direction.
->>=20
->> I'm just wondering if the split introduced here is sound. All of the
->> above would make this turn up when I look for stuff that I think needs
->> to be refactored. And the commit message does not even say why...
->
-> The reason is to reduce the size of intel_display_power.c, to make it
-> more readable/manageable. The implementation of the power well
-> enable/disable etc. functionality and the mapping of these power wells
-> to power domains are two distinct parts in that file that can be
-> separated.
->
-> The externs above are power wells that are mapped to domains, and
-> besides the symbol name are opaque to the mapping code.
+> But before we dig into details I think the big picture would be
+> better. I honestly don't like the #ifdef pile here that much.
 
-I understand the mapping is a complicated and kind of separate part of
-it all. But if I put that aside for a bit, I think I'd consider putting
-the abstraction boundary at struct i915_power_well_desc and everything
-within.
+Me neither.
+The ifdefs give a better separation, but prevents that the compiler
+checks the various paths when building.
 
-What would the code look like if struct i915_power_well_desc and
-subsequently struct i915_power_well_ops were opaque pointers and split
-out of current intel_display_power.c to a separate file? Add functions
-to access everything in desc and to call the ops.
+> I wonder whether your approach, also with GETVX/YRES adjusted
+> somehow, wouldn't look cleaner?
+I think so.
+You wouldn't even need to touch GETVX/YRES because the compiler
+will optimize/reduce it from
 
-Just splitting out the mapping still leaves high and low level code in
-the same file, and I think intel_display_power.c would be clarified a
-great deal more if the split was between them instead.
+#define GETVYRES(s,i) ({                           \
+        (s =3D=3D SCROLL_REDRAW || s =3D=3D SCROLL_MOVE) ? \
+        (i)->var.yres : (i)->var.yres_virtual; })
 
-Also, intel_display_power_* functions in the file are a kind of separate
-set of functionality from the intel_power_domains_* functions. I think
-that's a clear candidate for a split too. There's also the dbuf stuff
-that probably belongs somewhere else (lots of it in intel_pm.c but
-that's another rabbit hole).
+to just become:
 
-Long story short, I think there are other, IMHO cleaner, splits to be
-made in intel_display_power.c that should have priority. And they don't
-block us from splitting the mapping as follow-up later, but I think that
-should not be the first thing.
+#define GETVYRES(s,i) ((i)->var.yres)
 
+> Like I said in the cover letter I got mostly distracted with fbcon
+> locking last week, not really with this one here at all, so maybe
+> going with your 4 (or 2 if we squash them like I did here) patches is
+> neater?
 
-BR,
-Jani.
+The benefit of my patch series was, that it could be easily backported fir=
+st,
+and then cleaned up afterwards. Even a small additional backport patch to =
+disable
+the fbcon acceleration for DRM in the old releases would be easy.
+But I'm not insisting on backporting the patches, if we find good way forw=
+ard.
 
+So, either with the 4 (or 2) patches would be OK for me (or even your appr=
+oach).
 
-
->
->> BR,
->> Jani.
->>=20
->>=20
->> > +
->> > +/* intel_display_power_map.c */
->> > +int intel_init_power_wells(struct i915_power_domains *power_domains);
->> > +void intel_cleanup_power_wells(struct i915_power_domains *power_domai=
-ns);
->> > +
->> > +#endif
->>=20
->> --=20
->> Jani Nikula, Intel Open Source Graphics Center
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Helge
