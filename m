@@ -2,53 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A244A5A22
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 11:37:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 018E64A5A25
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 11:37:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B10C610ED50;
-	Tue,  1 Feb 2022 10:36:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26E3610ED6F;
+	Tue,  1 Feb 2022 10:37:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com
- [IPv6:2607:f8b0:4864:20::235])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE71010ED4D
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Feb 2022 10:36:56 +0000 (UTC)
-Received: by mail-oi1-x235.google.com with SMTP id x193so32493041oix.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 01 Feb 2022 02:36:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=thQSKAMpg3vonVejk+upRRfxFVRMJlvDC8QT1+vvLTE=;
- b=BjysRH1/UjWKl4SwTWns+a3iySdYESImlXYI7dzIfcW5U3YKan1zfT4PIm9Yg1CO+i
- UeBzRv66NeNKkAxDGEvzfZAO0hDDWZu37G4sPsJ0qidfgez8DuvVdkYwSyJc/ruD4Unm
- v10dtEg3+JZQA08R+oq5qhyMzzEa33iBiE/uo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=thQSKAMpg3vonVejk+upRRfxFVRMJlvDC8QT1+vvLTE=;
- b=BScR6H+FvOTkwqjxAImEobd6EEgkSNJWVCSEucJLY8tN4mI7xV88Wl2x/3NTmIvBCb
- 7GqABUUAs518ZeBexEyR0i6cEZMY09efIhusukIC4cxi3pRvKg/D3LEqNRc4UgNFSqfZ
- J+qxdyAIGW0mBl5LBUqRYDSDmtNUliXDKIFOflYGXKoP5aW9bqjelTaIOF60nFzmqy4g
- vPZTYkhs2kTXd7Et9SFR+sIvIkr1sFeQCtWM2mdbJGwbbwGvB2BXotsDUvGtvY0a2eH0
- LfXBxaFfhQEwTJy3IZZbCxm+AKkMuLOfYWT27l8EFXOYx9ojqR9v5Rx34G8MMYsKJeeA
- ShpA==
-X-Gm-Message-State: AOAM531TtYXAn3at1e+mrt1vh/lePBWOO+sgISzU4FXersxI00EedbES
- sl5Vg2m0B8p+DQL2/+bJeZSGFB+OaFjxqWSQNV280w==
-X-Google-Smtp-Source: ABdhPJyRYjaTjIpRbmzrzjkG0kQCosoH7kxsVtTm5JDqQlhuefr1UAJQF2kq5O9RD6DgxMJ94sRyCMJm8h5u3PghwEM=
-X-Received: by 2002:a54:4803:: with SMTP id j3mr745297oij.279.1643711816234;
- Tue, 01 Feb 2022 02:36:56 -0800 (PST)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3881A10ED6F;
+ Tue,  1 Feb 2022 10:37:40 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id D9D4E210F5;
+ Tue,  1 Feb 2022 10:37:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1643711858; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ucOSE/khhWXaiCP2YLiLU6ZnEjJtK5wnKj89bfNOk8g=;
+ b=yWZp6oNvvYGJV8SYyO2CZ/G9EhOinB0pB/3BINzQZ6tvYWqajIiN0YB0yQj/RpAJWa3wiv
+ Pnnl6TPplVTFoCFpyicOjlJbP2vbg1E/dLZFZqa+0+Ba/kTguop8pkSAQNg9qRBuZHSAF2
+ ZTQt6UddUR6ZEwKUvU/Zt7D1s5GFQOc=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1643711858;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ucOSE/khhWXaiCP2YLiLU6ZnEjJtK5wnKj89bfNOk8g=;
+ b=1m4q5O69lEjqilNVlI1WJ+i+3qiIsClkB5+Qn5a6r6PcYmaaTYJglGlHKOBgaDyF5OfBC8
+ n1xGIHn1+m4DB5CQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id A019313D54;
+ Tue,  1 Feb 2022 10:37:38 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id Qw4aJnIN+WH+FAAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Tue, 01 Feb 2022 10:37:38 +0000
+Message-ID: <723422bf-eb13-095f-66c5-e4011653e21d@suse.de>
+Date: Tue, 1 Feb 2022 11:37:38 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
 References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
- <20220131210552.482606-4-daniel.vetter@ffwll.ch>
- <9c22b709-cbcf-6a29-a45e-5a57ba0b9c14@gmx.de>
-In-Reply-To: <9c22b709-cbcf-6a29-a45e-5a57ba0b9c14@gmx.de>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Tue, 1 Feb 2022 11:36:44 +0100
-Message-ID: <CAKMK7uGvOVe8kkJCTkQBEFw+3i2iAMANsyG9vGqZkcROZ9he4A@mail.gmail.com>
-To: Helge Deller <deller@gmx.de>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 03/21] fbcon: Restore fbcon scrolling
- acceleration
+ <20220131210552.482606-10-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20220131210552.482606-10-daniel.vetter@ffwll.ch>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------p38YX7IZ0Eb4SpD5Fdiu14aQ"
+Subject: Re: [Intel-gfx] [PATCH 09/21] fbcon: Replace FBCON_FLAGS_INIT with
+ a boolean
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,138 +72,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@intel.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org,
- Javier Martinez Canillas <javierm@redhat.com>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>,
- DRI Development <dri-devel@lists.freedesktop.org>, Pavel Machek <pavel@ucw.cz>,
+Cc: linux-fbdev@vger.kernel.org, Du Cheng <ducheng2@gmail.com>,
+ Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Dave Airlie <airlied@gmail.com>,
- Sven Schnelle <svens@stackframe.org>, Gerd Hoffmann <kraxel@redhat.com>
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 1, 2022 at 11:16 AM Helge Deller <deller@gmx.de> wrote:
->
-> On 1/31/22 22:05, Daniel Vetter wrote:
-> > This functionally undoes 39aead8373b3 ("fbcon: Disable accelerated
-> > scrolling"), but behind the FRAMEBUFFER_CONSOLE_LEGACY_ACCELERATION
-> > option.
->
-> you have two trivial copy-n-paste errors in this patch which still prevent the
-> console acceleration.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------p38YX7IZ0Eb4SpD5Fdiu14aQ
+Content-Type: multipart/mixed; boundary="------------ZuqnsJBSz9brMpRJ7r9KWedE";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ linux-fbdev@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Du Cheng <ducheng2@gmail.com>, Claudio Suarez <cssk@net-c.es>
+Message-ID: <723422bf-eb13-095f-66c5-e4011653e21d@suse.de>
+Subject: Re: [PATCH 09/21] fbcon: Replace FBCON_FLAGS_INIT with a boolean
+References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
+ <20220131210552.482606-10-daniel.vetter@ffwll.ch>
+In-Reply-To: <20220131210552.482606-10-daniel.vetter@ffwll.ch>
 
-Duh :-(
+--------------ZuqnsJBSz9brMpRJ7r9KWedE
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-But before we dig into details I think the big picture would be
-better. I honestly don't like the #ifdef pile here that much. I wonder
-whether your approach, also with GETVX/YRES adjusted somehow, wouldn't
-look cleaner? Like I said in the cover letter I got mostly distracted
-with fbcon locking last week, not really with this one here at all, so
-maybe going with your 4 (or 2 if we squash them like I did here)
-patches is neater?
-
-Cheers, Daniel
-
->
-> > diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
-> > index 2ff90061c7f3..39dc18a5de86 100644
-> > --- a/drivers/video/fbdev/core/fbcon.c
-> > +++ b/drivers/video/fbdev/core/fbcon.c
-> > @@ -1125,13 +1125,15 @@ static void fbcon_init(struct vc_data *vc, int init)
-> >
-> >       ops->graphics = 0;
-> >
-> > -     /*
-> > -      * No more hw acceleration for fbcon.
-> > -      *
-> > -      * FIXME: Garbage collect all the now dead code after sufficient time
-> > -      * has passed.
-> > -      */
-> > +#ifdef CONFIG_FRAMEBUFFER_CONSOLE_ROTATION
->
-> should be:
-> #ifdef CONFIG_FRAMEBUFFER_CONSOLE_LEGACY_ACCELERATION
->
->
-> > +     if ((info->flags & FBINFO_HWACCEL_COPYAREA) &&
-> > +         !(info->flags & FBINFO_HWACCEL_DISABLED))
-> > +             p->scrollmode = SCROLL_MOVE;
-> > +     else /* default to something safe */
-> > +             p->scrollmode = SCROLL_REDRAW;
-> > +#else
-> >       p->scrollmode = SCROLL_REDRAW;
-> > +#endif
-> >
-> >       /*
-> >        *  ++guenther: console.c:vc_allocate() relies on initializing
-> > @@ -1971,15 +1973,49 @@ static void updatescrollmode(struct fbcon_display *p,
-> >  {
-> >       struct fbcon_ops *ops = info->fbcon_par;
-> >       int fh = vc->vc_font.height;
-> > +     int cap = info->flags;
-> > +     u16 t = 0;
-> > +     int ypan = FBCON_SWAP(ops->rotate, info->fix.ypanstep,
-> > +                           info->fix.xpanstep);
-> > +     int ywrap = FBCON_SWAP(ops->rotate, info->fix.ywrapstep, t);
-> >       int yres = FBCON_SWAP(ops->rotate, info->var.yres, info->var.xres);
-> >       int vyres = FBCON_SWAP(ops->rotate, info->var.yres_virtual,
-> >                                  info->var.xres_virtual);
-> > +     int good_pan = (cap & FBINFO_HWACCEL_YPAN) &&
-> > +             divides(ypan, vc->vc_font.height) && vyres > yres;
-> > +     int good_wrap = (cap & FBINFO_HWACCEL_YWRAP) &&
-> > +             divides(ywrap, vc->vc_font.height) &&
-> > +             divides(vc->vc_font.height, vyres) &&
-> > +             divides(vc->vc_font.height, yres);
-> > +     int reading_fast = cap & FBINFO_READS_FAST;
-> > +     int fast_copyarea = (cap & FBINFO_HWACCEL_COPYAREA) &&
-> > +             !(cap & FBINFO_HWACCEL_DISABLED);
-> > +     int fast_imageblit = (cap & FBINFO_HWACCEL_IMAGEBLIT) &&
-> > +             !(cap & FBINFO_HWACCEL_DISABLED);
-> >
-> >       p->vrows = vyres/fh;
-> >       if (yres > (fh * (vc->vc_rows + 1)))
-> >               p->vrows -= (yres - (fh * vc->vc_rows)) / fh;
-> >       if ((yres % fh) && (vyres % fh < yres % fh))
-> >               p->vrows--;
-> > +
-> > +     if (good_wrap || good_pan) {
-> > +             if (reading_fast || fast_copyarea)
-> > +                     p->scrollmode = good_wrap ?
-> > +                             SCROLL_WRAP_MOVE : SCROLL_PAN_MOVE;
-> > +             else
-> > +                     p->scrollmode = good_wrap ? SCROLL_REDRAW :
-> > +                             SCROLL_PAN_REDRAW;
-> > +     } else {
-> > +             if (reading_fast || (fast_copyarea && !fast_imageblit))
-> > +                     p->scrollmode = SCROLL_MOVE;
-> > +             else
-> > +                     p->scrollmode = SCROLL_REDRAW;
-> > +     }
-> > +
-> > +#ifndef CONFIG_FRAMEBUFFER_CONSOLE_ROTATION
->
-> same here... it needs to be:
-> #ifdef CONFIG_FRAMEBUFFER_CONSOLE_LEGACY_ACCELERATION
->
->
-> > +     p->scrollmode = SCROLL_REDRAW;
-> > +#endif
-> >  }
-> >
-> >  #define PITCH(w) (((w) + 7) >> 3)
-> >
->
-> still reviewing the other patches...
->
-> Helge
+DQoNCkFtIDMxLjAxLjIyIHVtIDIyOjA1IHNjaHJpZWIgRGFuaWVsIFZldHRlcjoNCj4gSXQn
+cyBvbmx5IG9uZSBmbGFnIGFuZCBzbGlnaHRseSB0aWRpZXIgY29kZS4NCj4gDQo+IFNpZ25l
+ZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPg0KPiBD
+YzogRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPg0KPiBDYzogVGV0c3VvIEhhbmRh
+IDxwZW5ndWluLWtlcm5lbEBJLWxvdmUuU0FLVVJBLm5lLmpwPg0KPiBDYzogR3JlZyBLcm9h
+aC1IYXJ0bWFuIDxncmVna2hAbGludXhmb3VuZGF0aW9uLm9yZz4NCj4gQ2M6IER1IENoZW5n
+IDxkdWNoZW5nMkBnbWFpbC5jb20+DQo+IENjOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1l
+cm1hbm5Ac3VzZS5kZT4NCj4gQ2M6IENsYXVkaW8gU3VhcmV6IDxjc3NrQG5ldC1jLmVzPg0K
+DQpBY2tlZC1ieTogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+DQoN
+Cj4gLS0tDQo+ICAgZHJpdmVycy92aWRlby9mYmRldi9jb3JlL2ZiY29uLmMgfCAxMSArKysr
+Ky0tLS0tLQ0KPiAgIGRyaXZlcnMvdmlkZW8vZmJkZXYvY29yZS9mYmNvbi5oIHwgIDQgKy0t
+LQ0KPiAgIDIgZmlsZXMgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCA5IGRlbGV0aW9ucygt
+KQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvdmlkZW8vZmJkZXYvY29yZS9mYmNvbi5j
+IGIvZHJpdmVycy92aWRlby9mYmRldi9jb3JlL2ZiY29uLmMNCj4gaW5kZXggYWZmYjQwNjU4
+ZmVlLi5mYTMwZTE5MDkxNjQgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvdmlkZW8vZmJkZXYv
+Y29yZS9mYmNvbi5jDQo+ICsrKyBiL2RyaXZlcnMvdmlkZW8vZmJkZXYvY29yZS9mYmNvbi5j
+DQo+IEBAIC03NzMsNyArNzczLDcgQEAgc3RhdGljIHZvaWQgY29uMmZiX2luaXRfZGlzcGxh
+eShzdHJ1Y3QgdmNfZGF0YSAqdmMsIHN0cnVjdCBmYl9pbmZvICppbmZvLA0KPiAgIA0KPiAg
+IAlvcHMtPmN1cnJjb24gPSBmZ19jb25zb2xlOw0KPiAgIA0KPiAtCWlmIChpbmZvLT5mYm9w
+cy0+ZmJfc2V0X3BhciAmJiAhKG9wcy0+ZmxhZ3MgJiBGQkNPTl9GTEFHU19JTklUKSkgew0K
+PiArCWlmIChpbmZvLT5mYm9wcy0+ZmJfc2V0X3BhciAmJiAhb3BzLT5pbml0aWFsaXplZCkg
+ew0KPiAgIAkJcmV0ID0gaW5mby0+ZmJvcHMtPmZiX3NldF9wYXIoaW5mbyk7DQo+ICAgDQo+
+ICAgCQlpZiAocmV0KQ0KPiBAQCAtNzgyLDcgKzc4Miw3IEBAIHN0YXRpYyB2b2lkIGNvbjJm
+Yl9pbml0X2Rpc3BsYXkoc3RydWN0IHZjX2RhdGEgKnZjLCBzdHJ1Y3QgZmJfaW5mbyAqaW5m
+bywNCj4gICAJCQkJImVycm9yIGNvZGUgJWRcbiIsIHJldCk7DQo+ICAgCX0NCj4gICANCj4g
+LQlvcHMtPmZsYWdzIHw9IEZCQ09OX0ZMQUdTX0lOSVQ7DQo+ICsJb3BzLT5pbml0aWFsaXpl
+ZCA9IHRydWU7DQo+ICAgCW9wcy0+Z3JhcGhpY3MgPSAwOw0KPiAgIAlmYmNvbl9zZXRfZGlz
+cChpbmZvLCAmaW5mby0+dmFyLCB1bml0KTsNCj4gICANCj4gQEAgLTExMDEsOCArMTEwMSw3
+IEBAIHN0YXRpYyB2b2lkIGZiY29uX2luaXQoc3RydWN0IHZjX2RhdGEgKnZjLCBpbnQgaW5p
+dCkNCj4gICAJICogV2UgbmVlZCB0byBkbyBpdCBpbiBmYmNvbl9pbml0KCkgdG8gcHJldmVu
+dCBzY3JlZW4gY29ycnVwdGlvbi4NCj4gICAJICovDQo+ICAgCWlmIChjb25faXNfdmlzaWJs
+ZSh2YykgJiYgdmMtPnZjX21vZGUgPT0gS0RfVEVYVCkgew0KPiAtCQlpZiAoaW5mby0+ZmJv
+cHMtPmZiX3NldF9wYXIgJiYNCj4gLQkJICAgICEob3BzLT5mbGFncyAmIEZCQ09OX0ZMQUdT
+X0lOSVQpKSB7DQo+ICsJCWlmIChpbmZvLT5mYm9wcy0+ZmJfc2V0X3BhciAmJiAhb3BzLT5p
+bml0aWFsaXplZCkgew0KPiAgIAkJCXJldCA9IGluZm8tPmZib3BzLT5mYl9zZXRfcGFyKGlu
+Zm8pOw0KPiAgIA0KPiAgIAkJCWlmIChyZXQpDQo+IEBAIC0xMTExLDcgKzExMTAsNyBAQCBz
+dGF0aWMgdm9pZCBmYmNvbl9pbml0KHN0cnVjdCB2Y19kYXRhICp2YywgaW50IGluaXQpDQo+
+ICAgCQkJCQkiZXJyb3IgY29kZSAlZFxuIiwgcmV0KTsNCj4gICAJCX0NCj4gICANCj4gLQkJ
+b3BzLT5mbGFncyB8PSBGQkNPTl9GTEFHU19JTklUOw0KPiArCQlvcHMtPmluaXRpYWxpemVk
+ID0gdHJ1ZTsNCj4gICAJfQ0KPiAgIA0KPiAgIAlvcHMtPmdyYXBoaWNzID0gMDsNCj4gQEAg
+LTExODYsNyArMTE4NSw3IEBAIHN0YXRpYyB2b2lkIGZiY29uX2RlaW5pdChzdHJ1Y3QgdmNf
+ZGF0YSAqdmMpDQo+ICAgCWlmIChjb25faXNfdmlzaWJsZSh2YykpDQo+ICAgCQlmYmNvbl9k
+ZWxfY3Vyc29yX3dvcmsoaW5mbyk7DQo+ICAgDQo+IC0Jb3BzLT5mbGFncyAmPSB+RkJDT05f
+RkxBR1NfSU5JVDsNCj4gKwlvcHMtPmluaXRpYWxpemVkID0gZmFsc2U7DQo+ICAgZmluaXNo
+ZWQ6DQo+ICAgDQo+ICAgCWZiY29uX2ZyZWVfZm9udChwLCBmcmVlX2ZvbnQpOw0KPiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy92aWRlby9mYmRldi9jb3JlL2ZiY29uLmggYi9kcml2ZXJzL3Zp
+ZGVvL2ZiZGV2L2NvcmUvZmJjb24uaA0KPiBpbmRleCBkY2U1Y2U0MTA5M2UuLmIxOGQwY2Jm
+NzNiNiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy92aWRlby9mYmRldi9jb3JlL2ZiY29uLmgN
+Cj4gKysrIGIvZHJpdmVycy92aWRlby9mYmRldi9jb3JlL2ZiY29uLmgNCj4gQEAgLTE4LDgg
+KzE4LDYgQEANCj4gICANCj4gICAjaW5jbHVkZSA8YXNtL2lvLmg+DQo+ICAgDQo+IC0jZGVm
+aW5lIEZCQ09OX0ZMQUdTX0lOSVQgICAgICAgICAxDQo+IC0NCj4gICAgICAvKg0KPiAgICAg
+ICAqICAgIFRoaXMgaXMgdGhlIGludGVyZmFjZSBiZXR3ZWVuIHRoZSBsb3ctbGV2ZWwgY29u
+c29sZSBkcml2ZXIgYW5kIHRoZQ0KPiAgICAgICAqICAgIGxvdy1sZXZlbCBmcmFtZSBidWZm
+ZXIgZGV2aWNlDQo+IEBAIC03Nyw3ICs3NSw3IEBAIHN0cnVjdCBmYmNvbl9vcHMgew0KPiAg
+IAlpbnQgICAgYmxhbmtfc3RhdGU7DQo+ICAgCWludCAgICBncmFwaGljczsNCj4gICAJaW50
+ICAgIHNhdmVfZ3JhcGhpY3M7IC8qIGZvciBkZWJ1ZyBlbnRlci9sZWF2ZSAqLw0KPiAtCWlu
+dCAgICBmbGFnczsNCj4gKwlib29sICAgaW5pdGlhbGl6ZWQ7DQoNClRoaXMgd2lsbCBhZGQg
+MyBieXRlcyBvZiBwYWRkaW5nLiBNYXliZSB5b3UgY2FuIHB1dCB0aGUgYm9vbCBlbHNld2hl
+cmUuDQoNCj4gICAJaW50ICAgIHJvdGF0ZTsNCj4gICAJaW50ICAgIGN1cl9yb3RhdGU7DQo+
+ICAgCWNoYXIgICpjdXJzb3JfZGF0YTsNCg0KLS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3Jh
+cGhpY3MgRHJpdmVyIERldmVsb3Blcg0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFu
+eSBHbWJIDQpNYXhmZWxkc3RyLiA1LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkNCihIUkIg
+MzY4MDksIEFHIE7DvHJuYmVyZykNCkdlc2Now6RmdHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
 
 
+--------------ZuqnsJBSz9brMpRJ7r9KWedE--
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+--------------p38YX7IZ0Eb4SpD5Fdiu14aQ
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmH5DXIFAwAAAAAACgkQlh/E3EQov+DM
+xRAAxH0KevinZZlD+cEaLyw1UbwhP9162A/N4UqiBvmTzhj/xTTk78RzNeltsslkDhdIRiBi2IEF
+DfV0GxGx8CgxRcajZOBDs2a0utAkQf8kLVYRufvmxI6K/nwzaLGyPgFcrFaLWF6gH3PbzfWIf6z/
+AZswoedhr0vPl0cp6f2CedyH4ZXGhslyO7uuJgdB3rYMEQPnLKZeO7KbWuWjy8+Jo7hjHrfkiQsv
+GIuMvlTS7hhvLIhTtTitR4E1IngqfV7anWG6WIS5sNOeWquxvMz/hTxcton1M6k48u/Trfb+eeyN
+FMPzebRfYcOBaTbz1ac/mFMy/8DX+9FBA9zXyINeRfgfGD4hMfUUAkdj7P0coiDMY7SfatJKRiLK
+zruMsGx9kGYsGxdIX3qCFsWIcaiHVpfMDOZc4riqccDhOb29RD0S/TdVdMhECPPTbyv8HfiO0N/0
+K1CrcNULzV9dYiJkA8sEZC7hzBOeEHhYXGzdpPlQblYOnT2hIZnWCGK74sWDNky7rXrTG/7FzCnQ
+/X2HlCM76x1LQ0vh6MfSLz9FkiFx+tvaUAZyjqmrT8ATP3iagWv4a/Yf1d0CULyrKY1D3CYpAMVB
+nU/JETGsBBig35pIhA3V2Sct6X5kg9iEuaU3myrRc05TueL3Fj3OXgApsUgz9KOBkLFFSPL6n69H
+4cI=
+=geDa
+-----END PGP SIGNATURE-----
+
+--------------p38YX7IZ0Eb4SpD5Fdiu14aQ--
