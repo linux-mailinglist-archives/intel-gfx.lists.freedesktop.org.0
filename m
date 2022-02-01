@@ -2,49 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C32AF4A5772
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 08:03:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1FFD4A57CD
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 08:34:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1658B10E488;
-	Tue,  1 Feb 2022 07:03:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C9EA10E5AB;
+	Tue,  1 Feb 2022 07:34:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E69910E488;
- Tue,  1 Feb 2022 07:03:54 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2760810E5AD;
+ Tue,  1 Feb 2022 07:34:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643699034; x=1675235034;
+ t=1643700875; x=1675236875;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=v7fV3WpP1PThe1Q2559PdtswoXfVsdnIjkiioLUEPAk=;
- b=YNq1wpAtIEhMBEzm+SJ/l/OXhlKM3/wzBI+l/6m9yF8FK7JBF9HCqUSa
- RIpJ5e49mSiMIlhyt0lqcVK/nL6T8PuTbXsHSIuY31UPjp8Bug+fIstW+
- hixG2LSCugl1LxQI9aPkCsPIOv8OUNmPZDOm5AjpU5gV+N6jIRhwfDqV6
- xpjCjvFMpDOcB0Wo6flBZ7kczsy71IWjJs8hLSs/zpH86kc+Z/SGdXOiI
- uNxctpP5y+4sB9kV4Pkql2bFzj83xszB8ozr+zlQTQmmjIRlNSZCv12A4
- NmCM33vvuzi2pIIIaCJ3DRp6d7lm8Kmxp1Sc5Aq+/abVn2bnIDefndrMN g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="308366180"
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="308366180"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2022 23:03:53 -0800
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="599149934"
-Received: from djustese-mobl.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.242])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2022 23:03:51 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+ bh=nCKdOQVVEiXMPCYkfif071Y/cq2Z05NxYTaqKiHTtmg=;
+ b=StgFNm7k9Rf0GMHXLs6Kglq4Py9yyhOrzsZRxHUlxp18tlMoDFGC9zuc
+ ro4zLXrSc3kZfQ7N6HsT8HdteRL3D1MFNnxuHnPTpCosIcqWv4lgXVsgE
+ k/yKtX7ePUpiJ7pjZa4CC0fj7MWXHLAY60mJKx2seX7iNEmKI1UEt6+2H
+ DZqbIAqZD9JKtdxFppYLr3jUX2zxsweF+Do5moBv059zXaTUt19Duo9vg
+ A4SNxr6uWGvVZAt5fb0aY+R+LZKELwVeTPedj2H8Sk4Gd0hA2vdtpO+R7
+ L9MZIR2zjYS0mYqj63RX/hHiFLFrrEAHDSeC85q5Ga+corbuiHBweXJCV w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="245227827"
+X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="245227827"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2022 23:34:34 -0800
+X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="698315959"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2022 23:34:25 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Tue,  1 Feb 2022 08:03:40 +0100
-Message-Id: <20220201070340.16457-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
+Date: Tue,  1 Feb 2022 12:50:26 +0530
+Message-Id: <20220201072030.1466446-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/ttm: Return some errors instead of
- trying memcpy move
+Subject: [Intel-gfx] [PATCH v2 0/4] Minor Fixes and Refactoring for HDMI
+ PCON stuff
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,51 +55,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The i915_ttm_accel_move() function may return error codes that should
-be propagated further up the stack rather than consumed assuming that
-the accel move failed and could be replaced with a memcpy move.
+Misc fixes and refactoring in HDMI2.1 PCON helper functions.
+V2:
+Addressed review comments from Jani.
+Splitted the drm_helper addition and usage in separate patches.
 
-For -EINTR, -ERESTARTSYS and -EAGAIN, just propagate those codes, rather
-than retrying with a memcpy move.
+Ankit Nautiyal (4):
+  drm/i915/hdmi: Fix the definition of intel_hdmi_dsc_get_bpp
+  drm/edid: Add helper to get max FRL rate for an HDMI sink
+  drm/i915/dp: Use the drm helpers for getting max FRL rate
+  drm/i915/display: Simplify helpers for getting DSC slices and bpp
 
-Fixes: 2b0a750caf33 ("drm/i915/ttm: Failsafe migration blits")
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/drm_edid.c                | 38 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.c   | 26 ++++++----------
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 26 +++++++++-------
+ drivers/gpu/drm/i915/display/intel_hdmi.h |  9 ++++--
+ include/drm/drm_edid.h                    |  2 ++
+ 5 files changed, 70 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-index 1de306c03aaf..1ebe6e4086a1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
-@@ -436,11 +436,17 @@ __i915_ttm_move(struct ttm_buffer_object *bo,
- 
- 		if (!IS_ERR(fence))
- 			goto out;
--	} else if (move_deps) {
--		int err = i915_deps_sync(move_deps, ctx);
-+	} else {
-+		int err = PTR_ERR(fence);
-+
-+		if (err == -EINTR || err == -ERESTARTSYS || err == -EAGAIN)
-+			return fence;
- 
--		if (err)
--			return ERR_PTR(err);
-+		if (move_deps) {
-+			err = i915_deps_sync(move_deps, ctx);
-+			if (err)
-+				return ERR_PTR(err);
-+		}
- 	}
- 
- 	/* Error intercept failed or no accelerated migration to start with */
 -- 
-2.34.1
+2.25.1
 
