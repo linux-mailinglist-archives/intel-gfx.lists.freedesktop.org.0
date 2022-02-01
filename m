@@ -1,50 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 096734A5B1E
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 12:26:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8559E4A5BA4
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 12:57:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B686B10E89D;
-	Tue,  1 Feb 2022 11:26:46 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76F0110E89A
- for <Intel-gfx@lists.freedesktop.org>; Tue,  1 Feb 2022 11:26:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AACD10E8C3;
+	Tue,  1 Feb 2022 11:57:05 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C79210E8C5
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Feb 2022 11:57:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643714804; x=1675250804;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=oNzzinN8OMtFBTyYL2JFJuaxWLMQjctZneNmrNmT4Aw=;
- b=IgdIM3sl4x28g5vbdQtdjBoJSPk0D3TfLvzwZYdN2jnoeWo8Yy4CEn2s
- CJLvYhRofdRPvJUyvyj/ZmiIJgGLUN7uRl3XrzsvSv+ljTqhQ3OiMKYSX
- 8ZKY57FTaXwAKfJeFDD2xU6hXbA+n5xtewmwQjgR9v9+xmyuizMuMk3Yr
- jONXYj9xshZd1ZfyMMYew125QmhLtCgNKMHvdNsLBcYk3cgpY1vbop9SQ
- feP+tw9vG8Y1cWPvm2ce0RW9KoD7hV1uiGTax5zGzNoWIRuqjygOp0kM+
- +sCDEVS99HG/sC6QonIwkDXoG+qtsE3ROT9Epw6JuX6NjmMscf2u8MTIf Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="247440709"
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="247440709"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2022 03:26:44 -0800
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="523023132"
-Received: from ehanosko-mobl.ger.corp.intel.com (HELO localhost) ([10.252.6.3])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2022 03:26:41 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220201111533.250242-3-tvrtko.ursulin@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220201111533.250242-1-tvrtko.ursulin@linux.intel.com>
- <20220201111533.250242-3-tvrtko.ursulin@linux.intel.com>
-Date: Tue, 01 Feb 2022 13:26:38 +0200
-Message-ID: <877daevndd.fsf@intel.com>
+ t=1643716624; x=1675252624;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to; bh=/zLcLzrtCgdT6yYrTONRpK7Gid07JAvYbt9PFbehqDc=;
+ b=aeTcjsjRYGl73WTUqK0sESm7vkshcZcMQqMhcqoAqCB4NI8qKXLilUxF
+ vubXMOwk31NuIbSKbkkPyjIjqa42Gifa596nXbFDFstM0ffGGwmlUuaKP
+ 4P1DV0nauC/++J8iBYXR5MfA2zwZMa7nxR7zM+/7O5fX+I7/MOixPaln0
+ g7fhrmmntCuBO9PG0U0BAbFOISsI/K7S6mflUABvLD0q6CjkW4I2NWVcs
+ fWJK8c1R/wMJZtr9lC/3Z9/BVKoW13ByaRLS3fJLLOzDYN8KOHYFCvz+C
+ zvLdAgCrT9CFUzWvCnI3lh9TwfangEg8XY0RggzjEvVTAkcFaY0qVwdDT w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="228334146"
+X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; 
+ d="scan'208,217";a="228334146"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2022 03:56:34 -0800
+X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; 
+ d="scan'208,217";a="565570032"
+Received: from djustese-mobl.ger.corp.intel.com (HELO [10.249.254.242])
+ ([10.249.254.242])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2022 03:56:33 -0800
+Content-Type: multipart/alternative;
+ boundary="------------4XojMkVGEF0HAzFRHcU1l06R"
+Message-ID: <17de8da6-4a11-cc64-78dc-6f770076ded4@linux.intel.com>
+Date: Tue, 1 Feb 2022 12:56:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RFC 2/2] jsl/ehl
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: intel-gfx@lists.freedesktop.org
+References: <20220201070340.16457-1-thomas.hellstrom@linux.intel.com>
+ <164370698925.2608.657579910841728715@emeril.freedesktop.org>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <164370698925.2608.657579910841728715@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/ttm=3A_Return_some_errors_instead_of_trying_memcpy_move?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,71 +63,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michael Cheng <michael.cheng@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 01 Feb 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+This is a multi-part message in MIME format.
+--------------4XojMkVGEF0HAzFRHcU1l06R
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Should be split out and posted independently.
 
-Maybe we should consider s/IS_PLATFORM/__IS_PLATFORM/g too.
-
-BR,
-Jani.
-
+On 2/1/22 10:16, Patchwork wrote:
+> Project List - Patchwork *Patch Details*
+> *Series:* 	drm/i915/ttm: Return some errors instead of trying memcpy move
+> *URL:* 	https://patchwork.freedesktop.org/series/99553/
+> *State:* 	failure
+> *Details:* 
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/index.html
 >
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 4 ++--
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c      | 2 +-
->  drivers/gpu/drm/i915/i915_drv.h                    | 2 ++
->  3 files changed, 5 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> index 0c32210bf503..37b48f7ab4fd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> @@ -1621,9 +1621,9 @@ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
->  		else
->  			encoder->get_buf_trans = tgl_get_dkl_buf_trans;
->  	} else if (DISPLAY_VER(i915) == 11) {
-> -		if (IS_PLATFORM(i915, INTEL_JASPERLAKE))
-> +		if (IS_JASPERLAKE(i915))
->  			encoder->get_buf_trans = jsl_get_combo_buf_trans;
-> -		else if (IS_PLATFORM(i915, INTEL_ELKHARTLAKE))
-> +		else if (IS_ELKHARTLAKE(i915))
->  			encoder->get_buf_trans = ehl_get_combo_buf_trans;
->  		else if (intel_phy_is_combo(i915, phy))
->  			encoder->get_buf_trans = icl_get_combo_buf_trans;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 6723c3de5a80..0d9b970c453f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -2443,7 +2443,7 @@ static void icl_wrpll_params_populate(struct skl_wrpll_params *params,
->  static bool
->  ehl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
->  {
-> -	return ((IS_PLATFORM(i915, INTEL_ELKHARTLAKE) &&
-> +	return ((IS_ELKHARTLAKE(i915) &&
->  		 IS_JSL_EHL_DISPLAY_STEP(i915, STEP_B0, STEP_FOREVER)) ||
->  		 IS_TIGERLAKE(i915) || IS_ALDERLAKE_P(i915)) &&
->  		 i915->dpll.ref_clks.nssc == 38400;
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 1d22d72163c1..241acd884135 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1271,6 +1271,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  #define IS_COFFEELAKE(dev_priv)	IS_IGP_PLATFORM(dev_priv, INTEL_COFFEELAKE)
->  #define IS_COMETLAKE(dev_priv)	IS_IGP_PLATFORM(dev_priv, INTEL_COMETLAKE)
->  #define IS_ICELAKE(dev_priv)	IS_IGP_PLATFORM(dev_priv, INTEL_ICELAKE)
-> +#define IS_JASPERLAKE(dev_priv)	IS_IGP_PLATFORM(dev_priv, INTEL_JASPERLAKE)
-> +#define IS_ELKHARTLAKE(dev_priv)	IS_IGP_PLATFORM(dev_priv, INTEL_ELKHARTLAKE)
->  #define IS_JSL_EHL(dev_priv)	(IS_IGP_PLATFORM(dev_priv, INTEL_JASPERLAKE) || \
->  				IS_IGP_PLATFORM(dev_priv, INTEL_ELKHARTLAKE))
->  #define IS_TIGERLAKE(dev_priv)	IS_IGP_PLATFORM(dev_priv, INTEL_TIGERLAKE)
+>   CI Bug Log - changes from CI_DRM_11168_full -> Patchwork_22145_full
+>
+>
+>     Summary
+>
+> *FAILURE*
+>
+> Serious unknown changes coming with Patchwork_22145_full absolutely 
+> need to be
+> verified manually.
+>
+> If you think the reported changes have nothing to do with the changes
+> introduced in Patchwork_22145_full, please notify your bug team to 
+> allow them
+> to document this new failure mode, which will reduce false positives 
+> in CI.
+>
+>
+>     Participating hosts (11 -> 13)
+>
+> Additional (2): shard-rkl shard-dg1
+>
+>
+>     Possible new issues
+>
+> Here are the unknown changes that may have been introduced in 
+> Patchwork_22145_full:
+>
+>
+>       IGT changes
+>
+>
+>         Possible regressions
+>
+>   * igt@gem_ctx_persistence@smoketest:
+>       o shard-apl: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11168/shard-apl6/igt@gem_ctx_persistence@smoketest.html>
+>         -> FAIL
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/shard-apl4/igt@gem_ctx_persistence@smoketest.html>
+>
+>
+>         Suppressed
+>
+> The following results come from untrusted machines, tests, or statuses.
+> They do not affect the overall result.
+>
+>  *
+>
+>     igt@kms_scaling_modes@scaling-mode-full-aspect:
+>
+>       o {shard-rkl}: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/shard-rkl-1/igt@kms_scaling_modes@scaling-mode-full-aspect.html>
+>  *
+>
+>     igt@kms_scaling_modes@scaling-mode-none:
+>
+>       o {shard-dg1}: NOTRUN -> SKIP
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/shard-dg1-15/igt@kms_scaling_modes@scaling-mode-none.html>
+>
+These are unrelated.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+/Thomas
+
+
+--------------4XojMkVGEF0HAzFRHcU1l06R
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 2/1/22 10:16, Patchwork wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:164370698925.2608.657579910841728715@emeril.freedesktop.org">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Project List - Patchwork</title>
+      <style id="css-table-select" type="text/css">td { padding: 2pt; }</style>
+      <b>Patch Details</b>
+      <table>
+        <tbody>
+          <tr>
+            <td><b>Series:</b></td>
+            <td>drm/i915/ttm: Return some errors instead of trying
+              memcpy move</td>
+          </tr>
+          <tr>
+            <td><b>URL:</b></td>
+            <td><a
+                href="https://patchwork.freedesktop.org/series/99553/"
+                moz-do-not-send="true" class="moz-txt-link-freetext">https://patchwork.freedesktop.org/series/99553/</a></td>
+          </tr>
+          <tr>
+            <td><b>State:</b></td>
+            <td>failure</td>
+          </tr>
+          <tr>
+            <td><b>Details:</b></td>
+            <td><a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/index.html"
+                moz-do-not-send="true" class="moz-txt-link-freetext">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/index.html</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <h1>CI Bug Log - changes from CI_DRM_11168_full -&gt;
+        Patchwork_22145_full</h1>
+      <h2>Summary</h2>
+      <p><strong>FAILURE</strong></p>
+      <p>Serious unknown changes coming with Patchwork_22145_full
+        absolutely need to be<br>
+        verified manually.</p>
+      <p>If you think the reported changes have nothing to do with the
+        changes<br>
+        introduced in Patchwork_22145_full, please notify your bug team
+        to allow them<br>
+        to document this new failure mode, which will reduce false
+        positives in CI.</p>
+      <h2>Participating hosts (11 -&gt; 13)</h2>
+      <p>Additional (2): shard-rkl shard-dg1 </p>
+      <h2>Possible new issues</h2>
+      <p>Here are the unknown changes that may have been introduced in
+        Patchwork_22145_full:</p>
+      <h3>IGT changes</h3>
+      <h4>Possible regressions</h4>
+      <ul>
+        <li>igt@gem_ctx_persistence@smoketest:
+          <ul>
+            <li>shard-apl: <a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11168/shard-apl6/igt@gem_ctx_persistence@smoketest.html"
+                moz-do-not-send="true">PASS</a> -&gt; <a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/shard-apl4/igt@gem_ctx_persistence@smoketest.html"
+                moz-do-not-send="true">FAIL</a></li>
+          </ul>
+        </li>
+      </ul>
+      <h4>Suppressed</h4>
+      <p>The following results come from untrusted machines, tests, or
+        statuses.<br>
+        They do not affect the overall result.</p>
+      <ul>
+        <li>
+          <p>igt@kms_scaling_modes@scaling-mode-full-aspect:</p>
+          <ul>
+            <li>{shard-rkl}: NOTRUN -&gt; <a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/shard-rkl-1/igt@kms_scaling_modes@scaling-mode-full-aspect.html"
+                moz-do-not-send="true">SKIP</a></li>
+          </ul>
+        </li>
+        <li>
+          <p>igt@kms_scaling_modes@scaling-mode-none:</p>
+          <ul>
+            <li>{shard-dg1}: NOTRUN -&gt; <a
+href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/shard-dg1-15/igt@kms_scaling_modes@scaling-mode-none.html"
+                moz-do-not-send="true">SKIP</a></li>
+          </ul>
+        </li>
+      </ul>
+    </blockquote>
+    <p>These are unrelated.</p>
+    <p>/Thomas</p>
+    <br>
+  </body>
+</html>
+--------------4XojMkVGEF0HAzFRHcU1l06R--
+
