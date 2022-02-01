@@ -1,52 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34F8D4A5399
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 00:56:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 023B54A54BF
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 02:42:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B31C10E13B;
-	Mon, 31 Jan 2022 23:56:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3124610E4D6;
+	Tue,  1 Feb 2022 01:42:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F40E10E13B
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 Jan 2022 23:56:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643673396; x=1675209396;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=tsFrefq8s9XXc+keyDjZm0Lg1KpPlTJbMUVgAK/UsKY=;
- b=N0R4zhu2mZFaFRJyYRsddm6wfDcz7WNzb1WG2XsRKZUPwUCmuBOOJukA
- v0FfO3j5jE4+GSYDAHsvS4pndHbsE2g8OeRpXOpZVCx0PWD5wZmbVjvny
- ffP1V3Z0PRdCm2ns6MDOTV3VVlGNyWumNSmlwxIzTnf7YUTvN9W8HwsNV
- RtJQ5k4XLRQdY3BU1gUW5V02wBgKxDjs1mBRzPqUsf0moS2WaDaUIhzjz
- YaHKTroLpLVV5K245jmJ9mIQM5HQyS2VC9sDcu7RHShV0sWt4ZNEMdz8F
- qYDCC9NZsPDo0kDWxxJIMRW7ljbezpTvECCIvx0qIwylBbTsZ/+7GKBRw g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="245171519"
-X-IronPort-AV: E=Sophos;i="5.88,332,1635231600"; d="scan'208";a="245171519"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2022 15:56:35 -0800
-X-IronPort-AV: E=Sophos;i="5.88,332,1635231600"; d="scan'208";a="770942667"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2022 15:56:35 -0800
-Date: Mon, 31 Jan 2022 16:12:08 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20220201001159.GA28093@labuser-Z97X-UD5H>
-References: <20220126195304.8262-1-manasi.d.navare@intel.com>
- <87wnigum23.fsf@intel.com>
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com
+ [199.106.114.39])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30A6310E4D6;
+ Tue,  1 Feb 2022 01:42:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1643679764; x=1675215764;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=ARxs6Siaik7Hb0T1RxTOkACw5y3/pq9r1rIyQ1TtUu0=;
+ b=T7mJVALx6uDmKAAYDabInr+vgoAsDbaneb6CGMZd4u74UJ+k3SWThZ5k
+ FwuzpOlLPnmZf1RMAfmVPbVvZILmy+TudeZaycm2Pv1JhvyN4BDsPSFjo
+ v5SQnrJY72qzaqY9D5f4BOW0RrJMOzQy99ibYi41Fm2SmDIm1+IkPXOqI g=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 31 Jan 2022 17:42:42 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2022 17:42:41 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 31 Jan 2022 17:42:40 -0800
+Received: from [10.111.160.150] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Mon, 31 Jan
+ 2022 17:42:38 -0800
+Message-ID: <d944e4f2-9412-1908-6f13-a6e1a7730cfd@quicinc.com>
+Date: Mon, 31 Jan 2022 17:42:36 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87wnigum23.fsf@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display/vrr: Reset VRR capable
- property on a long hpd
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20220111101801.28310-1-suraj.kandpal@intel.com>
+ <c797223b-47cb-3fcd-0a1a-b12fd2c2c0da@quicinc.com>
+ <CY4PR11MB1352DAB3BD614093B5154C10E3219@CY4PR11MB1352.namprd11.prod.outlook.com>
+ <da26d67f-3212-2434-1b23-c5f9209dce41@quicinc.com>
+In-Reply-To: <da26d67f-3212-2434-1b23-c5f9209dce41@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm: add writeback pointers to
+ drm_connector
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,89 +70,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "Kandpal@freedesktop.org" <Kandpal@freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Dmitry
+ Baryshkov <dmitry.baryshkov@linaro.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 31, 2022 at 02:28:04PM +0200, Jani Nikula wrote:
-> On Wed, 26 Jan 2022, Manasi Navare <manasi.d.navare@intel.com> wrote:
-> > With some VRR panels, user can turn VRR ON/OFF on the fly from the panel settings.
-> > When VRR is turned OFF ,sends a long HPD to the driver clearing the Ignore MSA bit
-> > in the DPCD. Currently the driver parses that onevery HPD but fails to reset
-> > the corresponding VRR Capable Connector property.
-> > Hence the userspace still sees this as VRR Capable panel which is incorrect.
-> >
-> > Fix this by explicitly resetting the connector property.
-> >
-> > v2: Reset vrr capable if status == connector_disconnected
-> > v3: Use i915 and use bool vrr_capable (Jani Nikula)
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 16 ++++++++++++----
-> >  1 file changed, 12 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 4d4579a301f6..687cb37bb22a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -4446,6 +4446,12 @@ intel_dp_detect(struct drm_connector *connector,
-> >  		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
-> >  		memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
-> >  
-> > +		/* Reset VRR Capable property */
-> > +		drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s] VRR capable: FALSE\n",
-> > +			    connector->base.id, connector->name);
-> 
-> Both the comment and the logging here seem excessive.
+Hi Suraj
 
-Okay will remove the comment, it is indeed redundant now
-> 
-> > +		drm_connector_set_vrr_capable_property(connector,
-> > +						       false);
-> > +
-> 
-> Fits on one line.
+I think there are more places affected with this change. I can get below 
+compilation issues while trying to compile my branch:
 
-Sure will change that
-> 
-> >  		if (intel_dp->is_mst) {
-> >  			drm_dbg_kms(&dev_priv->drm,
-> >  				    "MST device may have disappeared %d vs %d\n",
-> > @@ -4560,15 +4566,17 @@ static int intel_dp_get_modes(struct drm_connector *connector)
-> >  {
-> >  	struct intel_connector *intel_connector = to_intel_connector(connector);
-> >  	struct edid *edid;
-> > +	struct drm_i915_private *i915 = to_i915(connector->dev);
-> >  	int num_modes = 0;
-> >  
-> >  	edid = intel_connector->detect_edid;
-> >  	if (edid) {
-> > -		num_modes = intel_connector_update_modes(connector, edid);
-> > +		bool vrr_capable = intel_vrr_is_capable(connector);
-> >  
-> > -		if (intel_vrr_is_capable(connector))
-> > -			drm_connector_set_vrr_capable_property(connector,
-> > -							       true);
-> > +		num_modes = intel_connector_update_modes(connector, edid);
-> 
-> intel_vrr_is_capable() probably needs to happen after
-> intel_connector_update_modes(), right?
+drivers/gpu/drm/vc4/vc4_txp.c: In function ‘encoder_to_vc4_txp’:
+./include/linux/build_bug.h:78:41: error: static assertion failed: 
+"pointer type mismatch in container_of()"
+  #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+                                          ^
+./include/linux/build_bug.h:77:34: note: in expansion of macro 
+‘__static_assert’
+  #define static_assert(expr, ...) __static_assert(expr, ##__VA_ARGS__, 
+#expr)
+                                   ^
+./include/linux/container_of.h:19:2: note: in expansion of macro 
+‘static_assert’
+   static_assert(__same_type(*(ptr), ((type *)0)->member) || \
+   ^
+drivers/gpu/drm/vc4/vc4_txp.c:162:9: note: in expansion of macro 
+‘container_of’
+   return container_of(encoder, struct vc4_txp, connector.encoder);
+          ^
+drivers/gpu/drm/vc4/vc4_txp.c: In function ‘connector_to_vc4_txp’:
+./include/linux/build_bug.h:78:41: error: static assertion failed: 
+"pointer type mismatch in container_of()"
+  #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+                                          ^
+./include/linux/build_bug.h:77:34: note: in expansion of macro 
+‘__static_assert’
+  #define static_assert(expr, ...) __static_assert(expr, ##__VA_ARGS__, 
+#expr)
+                                   ^
+./include/linux/container_of.h:19:2: note: in expansion of macro 
+‘static_assert’
+   static_assert(__same_type(*(ptr), ((type *)0)->member) || \
+   ^
+drivers/gpu/drm/vc4/vc4_txp.c:167:9: note: in expansion of macro 
+‘container_of’
+   return container_of(conn, struct vc4_txp, connector.base);
+          ^
+drivers/gpu/drm/vc4/vc4_txp.c: In function ‘vc4_txp_bind’:
+drivers/gpu/drm/vc4/vc4_txp.c:495:27: error: passing argument 1 of 
+‘drm_connector_helper_add’ from incompatible pointer type 
+[-Werror=incompatible-pointer-types]
+   drm_connector_helper_add(&txp->connector.base,
+                            ^
+In file included from ./include/drm/drm_atomic_helper.h:32:0,
+                  from drivers/gpu/drm/vc4/vc4_txp.c:17:
+./include/drm/drm_modeset_helper_vtables.h:1153:20: note: expected 
+‘struct drm_connector *’ but argument is of type ‘struct drm_connector **’
+  static inline void drm_connector_helper_add(struct drm_connector 
+*connector,
+                     ^
+drivers/gpu/drm/vc4/vc4_txp.c:509:10: error: assignment from 
+incompatible pointer type [-Werror=incompatible-pointer-types]
+   encoder = &txp->connector.encoder;
+           ^
+drivers/gpu/drm/vc4/vc4_txp.c: In function ‘vc4_txp_unbind’:
+drivers/gpu/drm/vc4/vc4_txp.c:532:28: error: passing argument 1 of 
+‘vc4_txp_connector_destroy’ from incompatible pointer type 
+[-Werror=incompatible-pointer-types]
+   vc4_txp_connector_destroy(&txp->connector.base);
+                             ^
+drivers/gpu/drm/vc4/vc4_txp.c:333:13: note: expected ‘struct 
+drm_connector *’ but argument is of type ‘struct drm_connector **’
+  static void vc4_txp_connector_destroy(struct drm_connector *connector)
 
-Thanks Jani yes that is correct, will move this after num_modes = intel_connector_update_modes(connector, edid);
 
-Manasi
+Looks like vc4 doesnt have its own encoder so we might have to move it
+to have its own?
 
+struct vc4_txp {
+     struct vc4_crtc base;
+
+     struct platform_device *pdev;
+
+     struct drm_writeback_connector connector;
+
+     void __iomem *regs;
+     struct debugfs_regset32 regset;
+};
+
+static inline struct vc4_txp *encoder_to_vc4_txp(struct drm_encoder 
+*encoder)
+{
+     return container_of(encoder, struct vc4_txp, connector.encoder);
+}
+
+static inline struct vc4_txp *connector_to_vc4_txp(struct drm_connector 
+*conn)
+{
+     return container_of(conn, struct vc4_txp, connector.base);
+}
+
+
+One more thing, it looks like to me, we need to do one more thing.
+
+Like intel does and what MSM will do, the encoder pointer of the wb 
+connector has to point to the encoder struct .
+
+ >> wb_conn = &intel_connector->wb_conn;
+ >> wb_conn->base = &intel_connector->base;
+ >> wb_conn->encoder = &intel_wd->base.base;
+
+Thanks
+
+Abhinav
+On 1/27/2022 10:17 AM, Abhinav Kumar wrote:
+> Hi Suraj
 > 
-> BR,
-> Jani.
+> Thanks for the response.
 > 
-> > +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
-> > +			    connector->base.id, connector->name, yesno(vrr_capable));
-> > +		drm_connector_set_vrr_capable_property(connector, vrr_capable);
-> >  	}
-> >  
-> >  	/* Also add fixed mode, which may or may not be present in EDID */
+> I was not too worried about the intel driver as I am sure you must have 
+> validated this change with that :)
 > 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+> My question was more for the other vendor writeback drivers.
+> 
+> Thanks for looking into the others and providing the snippets.
+> After looking at those, yes I also think it should work.
+> 
+> So, if others do not have any concern with this change,
+> 
+> Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> 
+> On 1/27/2022 1:33 AM, Kandpal, Suraj wrote:
+>>>
+>>> + laurent on this
+>>>
+>>> Hi Suraj
+>>> Jani pointed me to this thread as i had posted something similar here :
+>>> https://patchwork.freedesktop.org/patch/470296/ but since this thread 
+>>> was
+>>> posted earlier, we can discuss further here.
+>>>
+>>> Overall, its similar to what I had posted in the RFC and your commit 
+>>> text also
+>>> covers my concerns too.
+>>>
+>>> One question I have about your change is since you have changed
+>>> wb_connector::encoder to be a pointer, i saw the other changes in the 
+>>> series
+>>> but they do not allocate an encoder. Would this not affect the other 
+>>> drivers
+>>> which are assuming that the encoder in wb_connector is struct 
+>>> drm_encoder
+>>> encoder and not struct drm_encoder* encoder.
+>>>
+>>> Your changes fix the compilation issue but wouldnt this crash as encoder
+>>> wasnt allocated for other drivers.
+>>>
+>>
+>> Hi Abhinav,
+>> That shouldn't be an issue as normally drivers tend to have their own 
+>> output
+>> structure which has drm_connector and drm_encoder embedded in it 
+>> depending
+>> on the level of binding they have decided to give the connector and 
+>> encoder in
+>> their respective output and the addresses of these are passed to the
+>> drm_connector* and drm_encoder* in drm_writeback_connector structure
+>> which then gets initialized in drm_writeback_connector_init().
+>>
+>> In our i915 code we have intel_connector structure with drm_connector 
+>> base
+>> field and intel_wd with a intel_encoder base which in turn has 
+>> drm_encoder
+>> field and both intel_connector and intel_wd are initialized not 
+>> requiring explicit
+>> alloc and dealloc for drm_encoder
+>> intel_wd = kzalloc(sizeof(*intel_wd), GFP_KERNEL);
+>>
+>> intel_connector = intel_connector_alloc();
+>> wb_conn = &intel_connector->wb_conn;
+>> wb_conn->base = &intel_connector->base;
+>> wb_conn->encoder = &intel_wd->base.base;
+>>
+>> Similary for komeda driver has
+>> struct komeda_wb_connector {
+>>          struct drm_connector conn;
+>>          /** @base: &drm_writeback_connector */
+>>          struct drm_writeback_connector base;
+>>
+>>          /** @wb_layer: represents associated writeback pipeline of 
+>> komeda */
+>>          struct komeda_layer *wb_layer;
+>> };
+>>
+>> static int komeda_wb_connector_add(struct komeda_kms_dev *kms,
+>>                                     struct komeda_crtc *kcrtc)
+>> {
+>>     struct komeda_wb_connector *kwb_conn;
+>>     struct drm_writeback_connector *wb_conn;
+>>
+>>     kwb_conn = kzalloc(sizeof(*kwb_conn), GFP_KERNEL);
+>>
+>>     wb_conn = &kwb_conn->base;
+>>              wb_conn->base = &kwb_conn->conn;
+>> and they do not depend on the encoder binding so changes will work for 
+>> them
+>> Also in vkms driver we have the
+>> struct vkms_output {
+>>          struct drm_crtc crtc;
+>>          struct drm_encoder encoder;
+>>          struct drm_connector connector;
+>>          struct drm_writeback_connector wb_connector;
+>>          struct hrtimer vblank_hrtimer;
+>>          ktime_t period_ns;
+>>          struct drm_pending_vblank_event *event;
+>>          /* ordered wq for composer_work */
+>>          struct workqueue_struct *composer_workq;
+>>          /* protects concurrent access to composer */
+>>          spinlock_t lock;
+>>
+>>          /* protected by @lock */
+>>          bool composer_enabled;
+>>          struct vkms_crtc_state *composer_state;
+>>
+>>          spinlock_t composer_lock;
+>> };
+>>
+>> Which gets allocated covering for the drm_encoder alloc and dealloc
+>>
+>> Regards,
+>> Suraj Kandpal
+>>
