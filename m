@@ -1,52 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A2BD4A584F
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 09:11:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 781064A5853
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 09:13:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AE0910E571;
-	Tue,  1 Feb 2022 08:11:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 030DA10EAC9;
+	Tue,  1 Feb 2022 08:13:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9224C10E571
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Feb 2022 08:11:05 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00A0A10EAC9;
+ Tue,  1 Feb 2022 08:13:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643703065; x=1675239065;
+ t=1643703211; x=1675239211;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=71SiT+Vi44Q9X44hCjYtGOYgRTy6RP5CwipFJ9p9cWU=;
- b=fmmmA0ynL464l929NxdebsL1AEMwUjZzJF5mPAnTiQC6eUiaOLfCkrLs
- Z26G5bnfu0Vsc7JFcaCnNSkBKoZGSK5UquqrRAZiLOr+mW6Sg3yP6B4T+
- iIhVC0SPgPSqVpVVTRsBF9+6L+U92PRcYaTu36ARQ3igq3a8ZHe4Hyo+J
- 1WVdmckBt7c/1JmTcDr5zt2s978OMn/Sb00taZZBZlkHF9Yt23NDpvCts
- PF/CAtjOoXOLFfEz3ocVQ3IPn4kUqNydoGNxbMWLj1Aj1SPLvo8KYenMq
- NahHd0ORrEjq6GAYbsxvh6RDmsx9yC9Q+RBgSkkYLgC4bpA0Scz2KKsjK w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="235034163"
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="235034163"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2022 00:11:05 -0800
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="479554787"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2022 00:11:03 -0800
-Date: Tue, 1 Feb 2022 10:11:14 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220201081114.GC9466@intel.com>
-References: <20220118092354.11631-1-ville.syrjala@linux.intel.com>
- <20220118092354.11631-10-ville.syrjala@linux.intel.com>
+ mime-version:in-reply-to;
+ bh=nPSQKuIXYlxkx1AwqzWrUCeAbzqbk2COfYDFVttPyDI=;
+ b=GzhoM2rxh0GpdM3a8vV9THRQXL7+Br2DGGzjzcOjlCpd8Bib3Bjq1ypr
+ zZ+sC/4u0YuNF3zRD41bZFtckRimhBiHq8AY6RvXFr4xXIbB/bWs9/A70
+ XdaqJWVApd3Ld+wn7lMBAL8vBCrpqFKG5FIgX4zSkyPwA/L1ivrLp7AUb
+ 5m48YzCcdnaM5f3ezRzbUk5oTQqoSVVP3yIIYfIPQa5JRxsdkI3hTcTmP
+ znpWkbjoOWHBWtdur+gAgtrsvYWMlaAhz89Q9W9HIpepg/YQBV9/ZgegV
+ bRQIao9JfpbdEbIVtSnWFajxht7S7ij1idpY15BjbFtnKKpa7TmeDaPWR g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="247411512"
+X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="247411512"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2022 00:13:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="537709080"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+ by orsmga008.jf.intel.com with ESMTP; 01 Feb 2022 00:13:27 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1nEoI3-000T0T-0G; Tue, 01 Feb 2022 08:13:27 +0000
+Date: Tue, 1 Feb 2022 16:13:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Message-ID: <202202011603.vczWPod7-lkp@intel.com>
+References: <20220131210552.482606-22-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220118092354.11631-10-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 09/15] drm/i915: Pre-calculate plane
- relative data rate
+In-Reply-To: <20220131210552.482606-22-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 21/21] fbdev: Make registered_fb[] private
+ to fbmem.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,366 +61,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, linux-staging@lists.linux.dev,
+ kbuild-all@lists.01.org, Xiyu Yang <xiyuyang19@fudan.edu.cn>,
+ Jens Frederich <jfrederich@gmail.com>,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Zheyu Ma <zheyuma97@gmail.com>, LKML <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 18, 2022 at 11:23:48AM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Handle the plane relative data rate in exactly the same
-> way as we already handle the real data rate. Ie. pre-calculate
-> it during intel_plane_atomic_check_with_state(), and assign/clear
-> it for the Y plane as needed. This should guarantee that the
-> tracking is 100% consistent, and makes me have to think less
-> when the same apporach is used by both types of data rate.
-> 
-> We might even want to consider replacing the relative
-> data rate with the real data rate entirely, but it's not
-> clear if that will produce less optimal plane ddb
-> allocations. So for now lets keep using the current approach.
+Hi Daniel,
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+I love your patch! Yet something to improve:
 
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c |  37 ++++
->  drivers/gpu/drm/i915/display/intel_display.c  |   5 +
->  .../drm/i915/display/intel_display_types.h    |   6 +-
->  drivers/gpu/drm/i915/intel_pm.c               | 170 ++++--------------
->  4 files changed, 80 insertions(+), 138 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index cd18155830d4..a61344dcfb94 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -192,6 +192,33 @@ unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
->  		fb->format->cpp[color_plane];
->  }
->  
-> +static unsigned int
-> +intel_plane_relative_data_rate(const struct intel_plane_state *plane_state,
-> +			       int color_plane)
-> +{
-> +	const struct drm_framebuffer *fb = plane_state->hw.fb;
-> +	int width, height;
-> +
-> +	if (!plane_state->uapi.visible)
-> +		return 0;
-> +
-> +	/*
-> +	 * Src coordinates are already rotated by 270 degrees for
-> +	 * the 90/270 degree plane rotation cases (to match the
-> +	 * GTT mapping), hence no need to account for rotation here.
-> +	 */
-> +	width = drm_rect_width(&plane_state->uapi.src) >> 16;
-> +	height = drm_rect_height(&plane_state->uapi.src) >> 16;
-> +
-> +	/* UV plane does 1/2 pixel sub-sampling */
-> +	if (color_plane == 1) {
-> +		width /= 2;
-> +		height /= 2;
-> +	}
-> +
-> +	return width * height * fb->format->cpp[color_plane];
-> +}
-> +
->  int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
->  			       struct intel_plane *plane,
->  			       bool *need_cdclk_calc)
-> @@ -312,6 +339,8 @@ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
->  	crtc_state->c8_planes &= ~BIT(plane->id);
->  	crtc_state->data_rate[plane->id] = 0;
->  	crtc_state->data_rate_y[plane->id] = 0;
-> +	crtc_state->rel_data_rate[plane->id] = 0;
-> +	crtc_state->rel_data_rate_y[plane->id] = 0;
->  	crtc_state->min_cdclk[plane->id] = 0;
->  
->  	plane_state->uapi.visible = false;
-> @@ -360,9 +389,17 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
->  			intel_plane_data_rate(new_crtc_state, new_plane_state, 0);
->  		new_crtc_state->data_rate[plane->id] =
->  			intel_plane_data_rate(new_crtc_state, new_plane_state, 1);
-> +
-> +		new_crtc_state->rel_data_rate_y[plane->id] =
-> +			intel_plane_relative_data_rate(new_plane_state, 0);
-> +		new_crtc_state->rel_data_rate[plane->id] =
-> +			intel_plane_relative_data_rate(new_plane_state, 1);
->  	} else if (new_plane_state->uapi.visible) {
->  		new_crtc_state->data_rate[plane->id] =
->  			intel_plane_data_rate(new_crtc_state, new_plane_state, 0);
-> +
-> +		new_crtc_state->rel_data_rate[plane->id] =
-> +			intel_plane_relative_data_rate(new_plane_state, 0);
->  	}
->  
->  	return intel_plane_atomic_calc_changes(old_crtc_state, new_crtc_state,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 39dd2e7383e0..8f3034713c56 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -762,6 +762,8 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
->  	fixup_plane_bitmasks(crtc_state);
->  	crtc_state->data_rate[plane->id] = 0;
->  	crtc_state->data_rate_y[plane->id] = 0;
-> +	crtc_state->rel_data_rate[plane->id] = 0;
-> +	crtc_state->rel_data_rate_y[plane->id] = 0;
->  	crtc_state->min_cdclk[plane->id] = 0;
->  
->  	if (plane->id == PLANE_PRIMARY)
-> @@ -5112,6 +5114,7 @@ static int icl_check_nv12_planes(struct intel_crtc_state *crtc_state)
->  			crtc_state->active_planes &= ~BIT(plane->id);
->  			crtc_state->update_planes |= BIT(plane->id);
->  			crtc_state->data_rate[plane->id] = 0;
-> +			crtc_state->rel_data_rate[plane->id] = 0;
->  		}
->  
->  		plane_state->planar_slave = false;
-> @@ -5158,6 +5161,8 @@ static int icl_check_nv12_planes(struct intel_crtc_state *crtc_state)
->  		crtc_state->update_planes |= BIT(linked->id);
->  		crtc_state->data_rate[linked->id] =
->  			crtc_state->data_rate_y[plane->id];
-> +		crtc_state->rel_data_rate[linked->id] =
-> +			crtc_state->rel_data_rate_y[plane->id];
->  		drm_dbg_kms(&dev_priv->drm, "Using %s as Y plane for %s\n",
->  			    linked->base.name, plane->base.name);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 7e147e110059..871485af14d4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1153,9 +1153,9 @@ struct intel_crtc_state {
->  	/* for planar Y */
->  	u32 data_rate_y[I915_MAX_PLANES];
->  
-> -	/* FIXME unify with data_rate[] */
-> -	u64 plane_data_rate[I915_MAX_PLANES];
-> -	u64 uv_plane_data_rate[I915_MAX_PLANES];
-> +	/* FIXME unify with data_rate[]? */
-> +	u64 rel_data_rate[I915_MAX_PLANES];
-> +	u64 rel_data_rate_y[I915_MAX_PLANES];
->  
->  	/* Gamma mode programmed on the pipe */
->  	u32 gamma_mode;
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 8a115b4c9e71..134584c77697 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -4862,126 +4862,24 @@ static u8 skl_compute_dbuf_slices(struct intel_crtc *crtc, u8 active_pipes)
->  }
->  
->  static u64
-> -skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
-> -			     const struct intel_plane_state *plane_state,
-> -			     int color_plane)
-> +skl_total_relative_data_rate(const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
-> -	const struct drm_framebuffer *fb = plane_state->hw.fb;
-> -	int width, height;
-> -
-> -	if (!plane_state->uapi.visible)
-> -		return 0;
-> -
-> -	if (plane->id == PLANE_CURSOR)
-> -		return 0;
-> -
-> -	if (color_plane == 1 &&
-> -	    !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
-> -		return 0;
-> -
-> -	/*
-> -	 * Src coordinates are already rotated by 270 degrees for
-> -	 * the 90/270 degree plane rotation cases (to match the
-> -	 * GTT mapping), hence no need to account for rotation here.
-> -	 */
-> -	width = drm_rect_width(&plane_state->uapi.src) >> 16;
-> -	height = drm_rect_height(&plane_state->uapi.src) >> 16;
-> -
-> -	/* UV plane does 1/2 pixel sub-sampling */
-> -	if (color_plane == 1) {
-> -		width /= 2;
-> -		height /= 2;
-> -	}
-> -
-> -	return width * height * fb->format->cpp[color_plane];
-> -}
-> -
-> -static u64
-> -skl_get_total_relative_data_rate(struct intel_atomic_state *state,
-> -				 struct intel_crtc *crtc)
-> -{
-> -	struct intel_crtc_state *crtc_state =
-> -		intel_atomic_get_new_crtc_state(state, crtc);
-> -	const struct intel_plane_state *plane_state;
-> -	struct intel_plane *plane;
-> -	u64 total_data_rate = 0;
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
->  	enum plane_id plane_id;
-> -	int i;
-> -
-> -	/* Calculate and cache data rate for each plane */
-> -	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
-> -		if (plane->pipe != crtc->pipe)
-> -			continue;
-> -
-> -		plane_id = plane->id;
-> -
-> -		/* packed/y */
-> -		crtc_state->plane_data_rate[plane_id] =
-> -			skl_plane_relative_data_rate(crtc_state, plane_state, 0);
-> -
-> -		/* uv-plane */
-> -		crtc_state->uv_plane_data_rate[plane_id] =
-> -			skl_plane_relative_data_rate(crtc_state, plane_state, 1);
-> -	}
-> +	u64 data_rate = 0;
->  
->  	for_each_plane_id_on_crtc(crtc, plane_id) {
-> -		total_data_rate += crtc_state->plane_data_rate[plane_id];
-> -		total_data_rate += crtc_state->uv_plane_data_rate[plane_id];
-> -	}
-> -
-> -	return total_data_rate;
-> -}
-> -
-> -static u64
-> -icl_get_total_relative_data_rate(struct intel_atomic_state *state,
-> -				 struct intel_crtc *crtc)
-> -{
-> -	struct intel_crtc_state *crtc_state =
-> -		intel_atomic_get_new_crtc_state(state, crtc);
-> -	const struct intel_plane_state *plane_state;
-> -	struct intel_plane *plane;
-> -	u64 total_data_rate = 0;
-> -	enum plane_id plane_id;
-> -	int i;
-> -
-> -	/* Calculate and cache data rate for each plane */
-> -	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
-> -		if (plane->pipe != crtc->pipe)
-> +		if (plane_id == PLANE_CURSOR)
->  			continue;
->  
-> -		plane_id = plane->id;
-> +		data_rate += crtc_state->rel_data_rate[plane_id];
->  
-> -		if (!plane_state->planar_linked_plane) {
-> -			crtc_state->plane_data_rate[plane_id] =
-> -				skl_plane_relative_data_rate(crtc_state, plane_state, 0);
-> -		} else {
-> -			enum plane_id y_plane_id;
-> -
-> -			/*
-> -			 * The slave plane might not iterate in
-> -			 * intel_atomic_crtc_state_for_each_plane_state(),
-> -			 * and needs the master plane state which may be
-> -			 * NULL if we try get_new_plane_state(), so we
-> -			 * always calculate from the master.
-> -			 */
-> -			if (plane_state->planar_slave)
-> -				continue;
-> -
-> -			/* Y plane rate is calculated on the slave */
-> -			y_plane_id = plane_state->planar_linked_plane->id;
-> -			crtc_state->plane_data_rate[y_plane_id] =
-> -				skl_plane_relative_data_rate(crtc_state, plane_state, 0);
-> -
-> -			crtc_state->plane_data_rate[plane_id] =
-> -				skl_plane_relative_data_rate(crtc_state, plane_state, 1);
-> -		}
-> +		if (DISPLAY_VER(i915) < 11)
-> +			data_rate += crtc_state->rel_data_rate_y[plane_id];
->  	}
->  
-> -	for_each_plane_id_on_crtc(crtc, plane_id)
-> -		total_data_rate += crtc_state->plane_data_rate[plane_id];
-> -
-> -	return total_data_rate;
-> +	return data_rate;
->  }
->  
->  const struct skl_wm_level *
-> @@ -5096,11 +4994,6 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
->  	if (!crtc_state->hw.active)
->  		return 0;
->  
-> -	if (DISPLAY_VER(dev_priv) >= 11)
-> -		iter.data_rate = icl_get_total_relative_data_rate(state, crtc);
-> -	else
-> -		iter.data_rate = skl_get_total_relative_data_rate(state, crtc);
-> -
->  	iter.size = skl_ddb_entry_size(alloc);
->  	if (iter.size == 0)
->  		return 0;
-> @@ -5111,6 +5004,7 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
->  	skl_ddb_entry_init(&crtc_state->wm.skl.plane_ddb[PLANE_CURSOR],
->  			   alloc->end - iter.total[PLANE_CURSOR], alloc->end);
->  
-> +	iter.data_rate = skl_total_relative_data_rate(crtc_state);
->  	if (iter.data_rate == 0)
->  		return 0;
->  
-> @@ -5171,16 +5065,19 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
->  		if (iter.data_rate == 0)
->  			break;
->  
-> -		iter.total[plane_id] =
-> -			skl_allocate_plane_ddb(&iter, &wm->wm[level],
-> -					       crtc_state->plane_data_rate[plane_id]);
-> -
-> -		if (iter.data_rate == 0)
-> -			break;
-> -
-> -		iter.uv_total[plane_id] =
-> -			skl_allocate_plane_ddb(&iter, &wm->uv_wm[level],
-> -					       crtc_state->uv_plane_data_rate[plane_id]);
-> +		if (DISPLAY_VER(dev_priv) < 11 &&
-> +		    crtc_state->nv12_planes & BIT(plane_id)) {
-> +			iter.total[plane_id] =
-> +				skl_allocate_plane_ddb(&iter, &wm->wm[level],
-> +						       crtc_state->rel_data_rate_y[plane_id]);
-> +			iter.uv_total[plane_id] =
-> +				skl_allocate_plane_ddb(&iter, &wm->uv_wm[level],
-> +						       crtc_state->rel_data_rate[plane_id]);
-> +		} else {
-> +			iter.total[plane_id] =
-> +				skl_allocate_plane_ddb(&iter, &wm->wm[level],
-> +						       crtc_state->rel_data_rate[plane_id]);
-> +		}
->  	}
->  	drm_WARN_ON(&dev_priv->drm, iter.size != 0 || iter.data_rate != 0);
->  
-> @@ -5200,15 +5097,18 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
->  			    DISPLAY_VER(dev_priv) >= 11 && iter.uv_total[plane_id]);
->  
->  		/* Leave disabled planes at (0,0) */
-> -		if (iter.total[plane_id])
-> -			iter.start = skl_ddb_entry_init(ddb, iter.start,
-> -							iter.start + iter.total[plane_id]);
-> -
-> -		if (iter.uv_total[plane_id]) {
-> -			/* hardware wants these swapped */
-> -			*ddb_y = *ddb;
-> -			iter.start = skl_ddb_entry_init(ddb, iter.start,
-> -							iter.start + iter.uv_total[plane_id]);
-> +		if (DISPLAY_VER(dev_priv) < 11 &&
-> +		    crtc_state->nv12_planes & BIT(plane_id)) {
-> +			if (iter.total[plane_id])
-> +				iter.start = skl_ddb_entry_init(ddb_y, iter.start,
-> +								iter.start + iter.total[plane_id]);
-> +			if (iter.uv_total[plane_id])
-> +				iter.start = skl_ddb_entry_init(ddb, iter.start,
-> +								iter.start + iter.uv_total[plane_id]);
-> +		} else {
-> +			if (iter.total[plane_id])
-> +				iter.start = skl_ddb_entry_init(ddb, iter.start,
-> +								iter.start + iter.total[plane_id]);
->  		}
->  	}
->  
-> -- 
-> 2.32.0
-> 
+[auto build test ERROR on tegra-drm/drm/tegra/for-next]
+[also build test ERROR on drm/drm-next linus/master v5.17-rc2 next-20220131]
+[cannot apply to airlied/drm-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Daniel-Vetter/some-fbcon-patches-mostly-locking/20220201-050907
+base:   git://anongit.freedesktop.org/tegra/linux.git drm/tegra/for-next
+config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20220201/202202011603.vczWPod7-lkp@intel.com/config)
+compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/0day-ci/linux/commit/245da5ab93b17c0cf1521713d5bde655a72efb65
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Daniel-Vetter/some-fbcon-patches-mostly-locking/20220201-050907
+        git checkout 245da5ab93b17c0cf1521713d5bde655a72efb65
+        # save the config file to linux build tree
+        mkdir build_dir
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   drivers/staging/olpc_dcon/olpc_dcon.c: In function 'dcon_probe':
+>> drivers/staging/olpc_dcon/olpc_dcon.c:605:6: error: 'num_registered_fb' undeclared (first use in this function); did you mean 'WB_registered'?
+     605 |  if (num_registered_fb < 1) {
+         |      ^~~~~~~~~~~~~~~~~
+         |      WB_registered
+   drivers/staging/olpc_dcon/olpc_dcon.c:605:6: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/staging/olpc_dcon/olpc_dcon.c:610:17: error: 'registered_fb' undeclared (first use in this function)
+     610 |  dcon->fbinfo = registered_fb[0];
+         |                 ^~~~~~~~~~~~~
+
+
+vim +605 drivers/staging/olpc_dcon/olpc_dcon.c
+
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  584  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  585  static int dcon_probe(struct i2c_client *client, const struct i2c_device_id *id)
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  586  {
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  587  	struct dcon_priv *dcon;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  588  	int rc, i, j;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  589  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  590  	if (!pdata)
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  591  		return -ENXIO;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  592  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  593  	dcon = kzalloc(sizeof(*dcon), GFP_KERNEL);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  594  	if (!dcon)
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  595  		return -ENOMEM;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  596  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  597  	dcon->client = client;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  598  	init_waitqueue_head(&dcon->waitq);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  599  	INIT_WORK(&dcon->switch_source, dcon_source_switch);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  600  	dcon->reboot_nb.notifier_call = dcon_reboot_notify;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  601  	dcon->reboot_nb.priority = -1;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  602  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  603  	i2c_set_clientdata(client, dcon);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  604  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04 @605  	if (num_registered_fb < 1) {
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  606  		dev_err(&client->dev, "DCON driver requires a registered fb\n");
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  607  		rc = -EIO;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  608  		goto einit;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  609  	}
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04 @610  	dcon->fbinfo = registered_fb[0];
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  611  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  612  	rc = dcon_hw_init(dcon, 1);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  613  	if (rc)
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  614  		goto einit;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  615  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  616  	/* Add the DCON device */
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  617  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  618  	dcon_device = platform_device_alloc("dcon", -1);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  619  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  620  	if (!dcon_device) {
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  621  		pr_err("Unable to create the DCON device\n");
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  622  		rc = -ENOMEM;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  623  		goto eirq;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  624  	}
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  625  	rc = platform_device_add(dcon_device);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  626  	platform_set_drvdata(dcon_device, dcon);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  627  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  628  	if (rc) {
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  629  		pr_err("Unable to add the DCON device\n");
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  630  		goto edev;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  631  	}
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  632  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  633  	for (i = 0; i < ARRAY_SIZE(dcon_device_files); i++) {
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  634  		rc = device_create_file(&dcon_device->dev,
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  635  					&dcon_device_files[i]);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  636  		if (rc) {
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  637  			dev_err(&dcon_device->dev, "Cannot create sysfs file\n");
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  638  			goto ecreate;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  639  		}
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  640  	}
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  641  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  642  	dcon->bl_val = dcon_read(dcon, DCON_REG_BRIGHT) & 0x0F;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  643  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  644  	/* Add the backlight device for the DCON */
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  645  	dcon_bl_props.brightness = dcon->bl_val;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  646  	dcon->bl_dev = backlight_device_register("dcon-bl", &dcon_device->dev,
+848d9eabcaebf21 Zebulon McCorkle   2017-11-21  647  						 dcon, &dcon_bl_ops,
+848d9eabcaebf21 Zebulon McCorkle   2017-11-21  648  						 &dcon_bl_props);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  649  	if (IS_ERR(dcon->bl_dev)) {
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  650  		dev_err(&client->dev, "cannot register backlight dev (%ld)\n",
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  651  			PTR_ERR(dcon->bl_dev));
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  652  		dcon->bl_dev = NULL;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  653  	}
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  654  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  655  	register_reboot_notifier(&dcon->reboot_nb);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  656  	atomic_notifier_chain_register(&panic_notifier_list, &dcon_panic_nb);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  657  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  658  	return 0;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  659  
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  660   ecreate:
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  661  	for (j = 0; j < i; j++)
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  662  		device_remove_file(&dcon_device->dev, &dcon_device_files[j]);
+4996b4610767064 Jing Xiangfeng     2020-11-20  663  	platform_device_del(dcon_device);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  664   edev:
+4996b4610767064 Jing Xiangfeng     2020-11-20  665  	platform_device_put(dcon_device);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  666  	dcon_device = NULL;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  667   eirq:
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  668  	free_irq(DCON_IRQ, dcon);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  669   einit:
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  670  	kfree(dcon);
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  671  	return rc;
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  672  }
+53c43c5ca13328a Greg Kroah-Hartman 2016-04-04  673  
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
