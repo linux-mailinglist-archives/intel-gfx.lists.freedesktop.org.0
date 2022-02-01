@@ -1,53 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 208904A5B03
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 12:18:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E8F14A5B09
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 12:20:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70CAF10E6B8;
-	Tue,  1 Feb 2022 11:18:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB25E10E76D;
+	Tue,  1 Feb 2022 11:20:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8689410E6B8
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Feb 2022 11:18:16 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50C7010E788
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Feb 2022 11:20:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643714296; x=1675250296;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=sTcTnsGNx9rV1TKc1j4mR2C2XL4UkFecmNphaTWnFu0=;
- b=PJRAEGNhIl/7I1gCBh4YJDFQK9+giouVq3ieZnp3JKB+nGhXRbl/Ch0+
- nq6pB6kDL1KRP+Cw0B2kcC2m2SutrazepSi+aXIF9fwpDRMfIk/snaZE3
- GAIAQCAGC0HOU4EHbN26HmvKiRbGlvYUqehqr4MwEA58cMaxBSDU9ccxy
- kUrTroxz5ijeImMF0cYn75mhEcI2k7spvbatXdNIow+iY1WrHemmAGxO9
- EkEIn0LHur6m3YQcJnC+BQy8gEeGrLeXSA3/OplYhWGE0WlMpCI20IeVn
- qtkuItUCPK71NAPfme2iZwGNCtB/JLNwJWKxX2szwi3Je1MaJKyYXU6h5 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="310977864"
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="310977864"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2022 03:18:16 -0800
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="537766650"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2022 03:18:15 -0800
-Date: Tue, 1 Feb 2022 13:18:18 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20220201111818.GA10506@intel.com>
-References: <20220118092354.11631-1-ville.syrjala@linux.intel.com>
- <20220118092354.11631-12-ville.syrjala@linux.intel.com>
- <20220201085239.GA9569@intel.com> <YfkF2VSxF5osAPMe@intel.com>
+ t=1643714455; x=1675250455;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=46/OnQET4tiGQlcYY210tpktB0D60IGZSZnIFknNkrM=;
+ b=RdVXpsjkx/4/SNY6VUQNNNHM6E3UKx93pXPMGmuRnyBCjBn6Sqp2omkf
+ /01WgBuQ5WNcPMXtPJEpSQUIEFJ3lV2DjDR7bvDhooeiBMXKu8ZE0oord
+ JZrIaMFayduPJuaQqH8wClYREOxa47MiZ2jCQVJnMb0S93z390JwKHoY4
+ VZyDvfAu0+eRG7AxVOAeVQgFm6bDZEO4Z9gf8SqpEqT/Wtz3wYcS01Clk
+ 9P0nZDFQUj8iprsXS/BxjtMW+9+EfuBIq7PKUy2ySXjRMxu6IUpn1i2fR
+ 5JmKw2u8o2WkMsZMKruju9zSFu5XIqnyt+iSRDyVonnfoYuDVjIJ+qHF5 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="245262423"
+X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="245262423"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2022 03:20:54 -0800
+X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="523022320"
+Received: from ehanosko-mobl.ger.corp.intel.com (HELO localhost) ([10.252.6.3])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2022 03:20:52 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220128114914.2339526-11-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220128114914.2339526-1-imre.deak@intel.com>
+ <20220128114914.2339526-11-imre.deak@intel.com>
+Date: Tue, 01 Feb 2022 13:20:50 +0200
+Message-ID: <87czk6vnn1.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YfkF2VSxF5osAPMe@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 11/15] drm/i915: Nuke
- intel_bw_calc_min_cdclk()
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 10/19] drm/i915: Convert the u64 power well
+ domains mask to a bitmap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,104 +56,646 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 01, 2022 at 12:05:13PM +0200, Ville Syrjälä wrote:
-> On Tue, Feb 01, 2022 at 10:52:39AM +0200, Lisovskiy, Stanislav wrote:
-> > On Tue, Jan 18, 2022 at 11:23:50AM +0200, Ville Syrjala wrote:
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > 
-> > > intel_bw_calc_min_cdclk() is entirely pointless. All it manages to do is
-> > > somehow conflate the per-pipe min cdclk with dbuf min cdclk. There is no
-> > > (at least documented) dbuf min cdclk limit on pre-skl so let's just get
-> > > rid of all this confusion.
-> > > 
-> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > I think we constantly have a bit contradictional attitude towards such situation.
-> > >From one perspective you can say, that those kind of "leagcy" callbacks are
-> > pointless, from the other hand one might say. that we need to have a unified
-> > approach for all platforms and I think we got, some legacy handlers for old
-> > platforms for similar purpose as well.
-> > I'm fine with both approaches, however for example when I was submitting
-> > that patch, I was asked by reviewer to add this kind of legacy callback, so that we have
-> > a "uniform" approach.
-> > We just then need to have some standard agreement on those, which doesn't
-> > depend on today's cosmic radiation levels :)
-> 
-> Yes in general I prefer a unified approach across all platforms.
-> But in this case there is nothing to do for the old platforms as they
-> don't have any kind of dbuf cdclk limit, or if there is one we don't
-> know what it is since it's not documented.
-> 
-> So the only thing the code was really doing was conflating the
-> per-pipe cdclk limit (which is handled elsewhere for all platforms
-> in a  unified fashion) with something that doesn't even exist.
-> 
-> Also I don't think it was even correct anyway since it was
-> using the per-pipe cdclk_state->min_cdclk[] already during
-> intel_cdclk_atomic_check(), but cdclk_state->min_cdclk[]
-> isn't even computed until intel_modeset_calc_cdclk() which 
-> is called later. So I guess it was basically just computing 
-> the max of the min_cdclk[] for all the pipes for the _old_
-> state, not the new state.
+On Fri, 28 Jan 2022, Imre Deak <imre.deak@intel.com> wrote:
+> To remove the aliasing of the power domain enum values in a follow-up
+> patch in this patchset (requiring a bigger mask) and allow for defining
+> additional power domains in the future (at least some upcoming TypeC
+> changes requires this) convert the u64 i915_power_well_desc::domains
+> mask to a bitmap.
+>
+> For simplicity I changed the for_each_power_domain_well() macros to
+> accept one domain only instead of a mask, as there isn't any current
+> user passing multiple domains.
+>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  |  65 ++++-----
+>  .../drm/i915/display/intel_display_power.c    | 123 +++++++++++-------
+>  .../drm/i915/display/intel_display_power.h    |  16 ++-
+>  .../display/intel_display_power_internal.h    |   2 +-
+>  .../i915/display/intel_display_power_map.c    |   4 +-
+>  5 files changed, 119 insertions(+), 91 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 3094cfc668c81..d0b9618383ce3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2372,66 +2372,71 @@ intel_legacy_aux_to_power_domain(enum aux_ch aux_ch)
+>  	}
+>  }
+>  
+> -static u64 get_crtc_power_domains(struct intel_crtc_state *crtc_state)
+> +static void get_crtc_power_domains(struct intel_crtc_state *crtc_state,
+> +				   intel_power_domain_mask_t *mask)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>  	struct drm_encoder *encoder;
+>  	enum pipe pipe = crtc->pipe;
+> -	u64 mask;
+> +
+> +	bitmap_zero(mask->bits, POWER_DOMAIN_NUM);
+>  
+>  	if (!crtc_state->hw.active)
+> -		return 0;
+> +		return;
+>  
+> -	mask = BIT_ULL(POWER_DOMAIN_PIPE(pipe));
+> -	mask |= BIT_ULL(POWER_DOMAIN_TRANSCODER(cpu_transcoder));
+> +	set_bit(POWER_DOMAIN_PIPE(pipe), mask->bits);
+> +	set_bit(POWER_DOMAIN_TRANSCODER(cpu_transcoder), mask->bits);
+>  	if (crtc_state->pch_pfit.enabled ||
+>  	    crtc_state->pch_pfit.force_thru)
+> -		mask |= BIT_ULL(POWER_DOMAIN_PIPE_PANEL_FITTER(pipe));
+> +		set_bit(POWER_DOMAIN_PIPE_PANEL_FITTER(pipe), mask->bits);
+>  
+>  	drm_for_each_encoder_mask(encoder, &dev_priv->drm,
+>  				  crtc_state->uapi.encoder_mask) {
+>  		struct intel_encoder *intel_encoder = to_intel_encoder(encoder);
+>  
+> -		mask |= BIT_ULL(intel_encoder->power_domain);
+> +		set_bit(intel_encoder->power_domain, mask->bits);
+>  	}
+>  
+>  	if (HAS_DDI(dev_priv) && crtc_state->has_audio)
+> -		mask |= BIT_ULL(POWER_DOMAIN_AUDIO_MMIO);
+> +		set_bit(POWER_DOMAIN_AUDIO_MMIO, mask->bits);
+>  
+>  	if (crtc_state->shared_dpll)
+> -		mask |= BIT_ULL(POWER_DOMAIN_DISPLAY_CORE);
+> +		set_bit(POWER_DOMAIN_DISPLAY_CORE, mask->bits);
+>  
+>  	if (crtc_state->dsc.compression_enable)
+> -		mask |= BIT_ULL(intel_dsc_power_domain(crtc, cpu_transcoder));
+> -
+> -	return mask;
+> +		set_bit(intel_dsc_power_domain(crtc, cpu_transcoder), mask->bits);
+>  }
+>  
+> -static u64
+> -modeset_get_crtc_power_domains(struct intel_crtc_state *crtc_state)
+> +static void
+> +modeset_get_crtc_power_domains(struct intel_crtc_state *crtc_state,
+> +			       intel_power_domain_mask_t *old_domains)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>  	enum intel_display_power_domain domain;
+> -	u64 domains, new_domains, old_domains;
+> +	intel_power_domain_mask_t domains, new_domains;
+>  
+> -	domains = get_crtc_power_domains(crtc_state);
+> +	get_crtc_power_domains(crtc_state, &domains);
+>  
+> -	new_domains = domains & ~crtc->enabled_power_domains.mask;
+> -	old_domains = crtc->enabled_power_domains.mask & ~domains;
+> +	bitmap_andnot(new_domains.bits,
+> +		      domains.bits,
+> +		      crtc->enabled_power_domains.mask.bits,
+> +		      POWER_DOMAIN_NUM);
+> +	bitmap_andnot(old_domains->bits,
+> +		      crtc->enabled_power_domains.mask.bits,
+> +		      domains.bits,
+> +		      POWER_DOMAIN_NUM);
+>  
+> -	for_each_power_domain(domain, new_domains)
+> +	for_each_power_domain(domain, &new_domains)
+>  		intel_display_power_get_in_set(dev_priv,
+>  					       &crtc->enabled_power_domains,
+>  					       domain);
+> -
+> -	return old_domains;
+>  }
+>  
+>  static void modeset_put_crtc_power_domains(struct intel_crtc *crtc,
+> -					   u64 domains)
+> +					   intel_power_domain_mask_t *domains)
+>  {
+>  	intel_display_power_put_mask_in_set(to_i915(crtc->base.dev),
+>  					    &crtc->enabled_power_domains,
+> @@ -8628,7 +8633,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  	struct drm_i915_private *dev_priv = to_i915(dev);
+>  	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+>  	struct intel_crtc *crtc;
+> -	u64 put_domains[I915_MAX_PIPES] = {};
+> +	intel_power_domain_mask_t put_domains[I915_MAX_PIPES] = {};
+>  	intel_wakeref_t wakeref = 0;
+>  	int i;
+>  
+> @@ -8645,9 +8650,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  					    new_crtc_state, i) {
+>  		if (intel_crtc_needs_modeset(new_crtc_state) ||
+>  		    new_crtc_state->update_pipe) {
+> -
+> -			put_domains[crtc->pipe] =
+> -				modeset_get_crtc_power_domains(new_crtc_state);
+> +			modeset_get_crtc_power_domains(new_crtc_state, &put_domains[crtc->pipe]);
+>  		}
+>  	}
+>  
+> @@ -8746,7 +8749,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+>  		intel_post_plane_update(state, crtc);
+>  
+> -		modeset_put_crtc_power_domains(crtc, put_domains[crtc->pipe]);
+> +		modeset_put_crtc_power_domains(crtc, &put_domains[crtc->pipe]);
+>  
+>  		intel_modeset_verify_crtc(crtc, state, old_crtc_state, new_crtc_state);
+>  
+> @@ -10702,11 +10705,11 @@ intel_modeset_setup_hw_state(struct drm_device *dev,
+>  	for_each_intel_crtc(dev, crtc) {
+>  		struct intel_crtc_state *crtc_state =
+>  			to_intel_crtc_state(crtc->base.state);
+> -		u64 put_domains;
+> +		intel_power_domain_mask_t put_domains;
+>  
+> -		put_domains = modeset_get_crtc_power_domains(crtc_state);
+> -		if (drm_WARN_ON(dev, put_domains))
+> -			modeset_put_crtc_power_domains(crtc, put_domains);
+> +		modeset_get_crtc_power_domains(crtc_state, &put_domains);
+> +		if (drm_WARN_ON(dev, !bitmap_empty(put_domains.bits, POWER_DOMAIN_NUM)))
+> +			modeset_put_crtc_power_domains(crtc, &put_domains);
+>  	}
+>  
+>  	intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, wakeref);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index a370ef8376410..cf014d79682ca 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -38,13 +38,13 @@
+>  	     (__power_well) - (__dev_priv)->power_domains.power_wells >= 0;	\
+>  	     (__power_well)--)
+>  
+> -#define for_each_power_domain_well(__dev_priv, __power_well, __domain_mask)	\
+> +#define for_each_power_domain_well(__dev_priv, __power_well, __domain)	\
+>  	for_each_power_well(__dev_priv, __power_well)				\
+> -		for_each_if((__power_well)->domains & (__domain_mask))
+> +		for_each_if(test_bit((__domain), (__power_well)->domains.bits))
+>  
+> -#define for_each_power_domain_well_reverse(__dev_priv, __power_well, __domain_mask) \
+> +#define for_each_power_domain_well_reverse(__dev_priv, __power_well, __domain) \
+>  	for_each_power_well_reverse(__dev_priv, __power_well)		        \
+> -		for_each_if((__power_well)->domains & (__domain_mask))
+> +		for_each_if(test_bit((__domain), (__power_well)->domains.bits))
+>  
+>  struct i915_power_well_regs {
+>  	i915_reg_t bios;
+> @@ -141,7 +141,7 @@ bool __intel_display_power_is_enabled(struct drm_i915_private *dev_priv,
+>  
+>  	is_enabled = true;
+>  
+> -	for_each_power_domain_well_reverse(dev_priv, power_well, BIT_ULL(domain)) {
+> +	for_each_power_domain_well_reverse(dev_priv, power_well, domain) {
+>  		if (power_well->desc->always_on)
+>  			continue;
+>  
+> @@ -460,13 +460,18 @@ icl_combo_phy_aux_power_well_disable(struct drm_i915_private *dev_priv,
+>  
+>  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+>  
+> -static u64 async_put_domains_mask(struct i915_power_domains *power_domains);
+> +static void async_put_domains_mask(struct i915_power_domains *power_domains,
+> +				   intel_power_domain_mask_t *mask);
+>  
+>  static int power_well_async_ref_count(struct drm_i915_private *dev_priv,
+>  				      struct i915_power_well *power_well)
+>  {
+> -	int refs = hweight64(power_well->domains &
+> -			     async_put_domains_mask(&dev_priv->power_domains));
+> +	intel_power_domain_mask_t domain_mask;
+> +	int refs;
+> +
+> +	async_put_domains_mask(&dev_priv->power_domains, &domain_mask);
+> +	bitmap_and(domain_mask.bits, domain_mask.bits, power_well->domains.bits, POWER_DOMAIN_NUM);
+> +	refs = bitmap_weight(domain_mask.bits, POWER_DOMAIN_NUM);
+>  
+>  	drm_WARN_ON(&dev_priv->drm, refs > power_well->count);
+>  
+> @@ -1869,10 +1874,13 @@ static void chv_pipe_power_well_disable(struct drm_i915_private *dev_priv,
+>  	chv_set_pipe_power_well(dev_priv, power_well, false);
+>  }
+>  
+> -static u64 __async_put_domains_mask(struct i915_power_domains *power_domains)
+> +static void __async_put_domains_mask(struct i915_power_domains *power_domains,
+> +				     intel_power_domain_mask_t *mask)
+>  {
+> -	return power_domains->async_put_domains[0] |
+> -	       power_domains->async_put_domains[1];
+> +	bitmap_or(mask->bits,
+> +		  power_domains->async_put_domains[0].bits,
+> +		  power_domains->async_put_domains[1].bits,
+> +		  POWER_DOMAIN_NUM);
+>  }
+>  
+>  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> @@ -1883,8 +1891,11 @@ assert_async_put_domain_masks_disjoint(struct i915_power_domains *power_domains)
+>  	struct drm_i915_private *i915 = container_of(power_domains,
+>  						     struct drm_i915_private,
+>  						     power_domains);
+> -	return !drm_WARN_ON(&i915->drm, power_domains->async_put_domains[0] &
+> -			    power_domains->async_put_domains[1]);
+> +
+> +	return !drm_WARN_ON(&i915->drm,
+> +			    bitmap_intersects(power_domains->async_put_domains[0].bits,
+> +					      power_domains->async_put_domains[1].bits,
+> +					      POWER_DOMAIN_NUM));
+>  }
+>  
+>  static bool
+> @@ -1893,14 +1904,17 @@ __async_put_domains_state_ok(struct i915_power_domains *power_domains)
+>  	struct drm_i915_private *i915 = container_of(power_domains,
+>  						     struct drm_i915_private,
+>  						     power_domains);
+> +	intel_power_domain_mask_t async_put_mask;
+>  	enum intel_display_power_domain domain;
+>  	bool err = false;
+>  
+>  	err |= !assert_async_put_domain_masks_disjoint(power_domains);
+> -	err |= drm_WARN_ON(&i915->drm, !!power_domains->async_put_wakeref !=
+> -			   !!__async_put_domains_mask(power_domains));
+> +	__async_put_domains_mask(power_domains, &async_put_mask);
+> +	err |= drm_WARN_ON(&i915->drm,
+> +			   !!power_domains->async_put_wakeref !=
+> +			   !bitmap_empty(async_put_mask.bits, POWER_DOMAIN_NUM));
+>  
+> -	for_each_power_domain(domain, __async_put_domains_mask(power_domains))
+> +	for_each_power_domain(domain, &async_put_mask)
+>  		err |= drm_WARN_ON(&i915->drm,
+>  				   power_domains->domain_use_count[domain] != 1);
+>  
+> @@ -1908,14 +1922,14 @@ __async_put_domains_state_ok(struct i915_power_domains *power_domains)
+>  }
+>  
+>  static void print_power_domains(struct i915_power_domains *power_domains,
+> -				const char *prefix, u64 mask)
+> +				const char *prefix, intel_power_domain_mask_t *mask)
+>  {
+>  	struct drm_i915_private *i915 = container_of(power_domains,
+>  						     struct drm_i915_private,
+>  						     power_domains);
+>  	enum intel_display_power_domain domain;
+>  
+> -	drm_dbg(&i915->drm, "%s (%lu):\n", prefix, hweight64(mask));
+> +	drm_dbg(&i915->drm, "%s (%d):\n", prefix, bitmap_weight(mask->bits, POWER_DOMAIN_NUM));
+>  	for_each_power_domain(domain, mask)
+>  		drm_dbg(&i915->drm, "%s use_count %d\n",
+>  			intel_display_power_domain_str(domain),
+> @@ -1933,9 +1947,9 @@ print_async_put_domains_state(struct i915_power_domains *power_domains)
+>  		power_domains->async_put_wakeref);
+>  
+>  	print_power_domains(power_domains, "async_put_domains[0]",
+> -			    power_domains->async_put_domains[0]);
+> +			    &power_domains->async_put_domains[0]);
+>  	print_power_domains(power_domains, "async_put_domains[1]",
+> -			    power_domains->async_put_domains[1]);
+> +			    &power_domains->async_put_domains[1]);
+>  }
+>  
+>  static void
+> @@ -1959,11 +1973,13 @@ verify_async_put_domains_state(struct i915_power_domains *power_domains)
+>  
+>  #endif /* CONFIG_DRM_I915_DEBUG_RUNTIME_PM */
+>  
+> -static u64 async_put_domains_mask(struct i915_power_domains *power_domains)
+> +static void async_put_domains_mask(struct i915_power_domains *power_domains,
+> +				   intel_power_domain_mask_t *mask)
+> +
+>  {
+>  	assert_async_put_domain_masks_disjoint(power_domains);
+>  
+> -	return __async_put_domains_mask(power_domains);
+> +	__async_put_domains_mask(power_domains, mask);
+>  }
+>  
+>  static void
+> @@ -1972,8 +1988,8 @@ async_put_domains_clear_domain(struct i915_power_domains *power_domains,
+>  {
+>  	assert_async_put_domain_masks_disjoint(power_domains);
+>  
+> -	power_domains->async_put_domains[0] &= ~BIT_ULL(domain);
+> -	power_domains->async_put_domains[1] &= ~BIT_ULL(domain);
+> +	clear_bit(domain, power_domains->async_put_domains[0].bits);
+> +	clear_bit(domain, power_domains->async_put_domains[1].bits);
+>  }
+>  
+>  static bool
+> @@ -1981,16 +1997,19 @@ intel_display_power_grab_async_put_ref(struct drm_i915_private *dev_priv,
+>  				       enum intel_display_power_domain domain)
+>  {
+>  	struct i915_power_domains *power_domains = &dev_priv->power_domains;
+> +	intel_power_domain_mask_t async_put_mask;
+>  	bool ret = false;
+>  
+> -	if (!(async_put_domains_mask(power_domains) & BIT_ULL(domain)))
+> +	async_put_domains_mask(power_domains, &async_put_mask);
+> +	if (!test_bit(domain, async_put_mask.bits))
+>  		goto out_verify;
+>  
+>  	async_put_domains_clear_domain(power_domains, domain);
+>  
+>  	ret = true;
+>  
+> -	if (async_put_domains_mask(power_domains))
+> +	async_put_domains_mask(power_domains, &async_put_mask);
+> +	if (!bitmap_empty(async_put_mask.bits, POWER_DOMAIN_NUM))
+>  		goto out_verify;
+>  
+>  	cancel_delayed_work(&power_domains->async_put_work);
+> @@ -2012,7 +2031,7 @@ __intel_display_power_get_domain(struct drm_i915_private *dev_priv,
+>  	if (intel_display_power_grab_async_put_ref(dev_priv, domain))
+>  		return;
+>  
+> -	for_each_power_domain_well(dev_priv, power_well, BIT_ULL(domain))
+> +	for_each_power_domain_well(dev_priv, power_well, domain)
+>  		intel_power_well_get(dev_priv, power_well);
+>  
+>  	power_domains->domain_use_count[domain]++;
+> @@ -2093,20 +2112,22 @@ __intel_display_power_put_domain(struct drm_i915_private *dev_priv,
+>  	struct i915_power_domains *power_domains;
+>  	struct i915_power_well *power_well;
+>  	const char *name = intel_display_power_domain_str(domain);
+> +	intel_power_domain_mask_t async_put_mask;
+>  
+>  	power_domains = &dev_priv->power_domains;
+>  
+>  	drm_WARN(&dev_priv->drm, !power_domains->domain_use_count[domain],
+>  		 "Use count on domain %s is already zero\n",
+>  		 name);
+> +	async_put_domains_mask(power_domains, &async_put_mask);
+>  	drm_WARN(&dev_priv->drm,
+> -		 async_put_domains_mask(power_domains) & BIT_ULL(domain),
+> +		 test_bit(domain, async_put_mask.bits),
+>  		 "Async disabling of domain %s is pending\n",
+>  		 name);
+>  
+>  	power_domains->domain_use_count[domain]--;
+>  
+> -	for_each_power_domain_well_reverse(dev_priv, power_well, BIT_ULL(domain))
+> +	for_each_power_domain_well_reverse(dev_priv, power_well, domain)
+>  		intel_power_well_put(dev_priv, power_well);
+>  }
+>  
+> @@ -2135,7 +2156,7 @@ queue_async_put_domains_work(struct i915_power_domains *power_domains,
+>  }
+>  
+>  static void
+> -release_async_put_domains(struct i915_power_domains *power_domains, u64 mask)
+> +release_async_put_domains(struct i915_power_domains *power_domains, intel_power_domain_mask_t *mask)
+>  {
+>  	struct drm_i915_private *dev_priv =
+>  		container_of(power_domains, struct drm_i915_private,
+> @@ -2183,12 +2204,15 @@ intel_display_power_put_async_work(struct work_struct *work)
+>  		goto out_verify;
+>  
+>  	release_async_put_domains(power_domains,
+> -				  power_domains->async_put_domains[0]);
+> +				  &power_domains->async_put_domains[0]);
+>  
+>  	/* Requeue the work if more domains were async put meanwhile. */
+> -	if (power_domains->async_put_domains[1]) {
+> -		power_domains->async_put_domains[0] =
+> -			fetch_and_zero(&power_domains->async_put_domains[1]);
+> +	if (!bitmap_empty(power_domains->async_put_domains[1].bits, POWER_DOMAIN_NUM)) {
+> +		bitmap_copy(power_domains->async_put_domains[0].bits,
+> +			    power_domains->async_put_domains[1].bits,
+> +			    POWER_DOMAIN_NUM);
+> +		bitmap_zero(power_domains->async_put_domains[1].bits,
+> +			    POWER_DOMAIN_NUM);
+>  		queue_async_put_domains_work(power_domains,
+>  					     fetch_and_zero(&new_work_wakeref));
+>  	} else {
+> @@ -2240,9 +2264,9 @@ void __intel_display_power_put_async(struct drm_i915_private *i915,
+>  
+>  	/* Let a pending work requeue itself or queue a new one. */
+>  	if (power_domains->async_put_wakeref) {
+> -		power_domains->async_put_domains[1] |= BIT_ULL(domain);
+> +		set_bit(domain, power_domains->async_put_domains[1].bits);
+>  	} else {
+> -		power_domains->async_put_domains[0] |= BIT_ULL(domain);
+> +		set_bit(domain, power_domains->async_put_domains[0].bits);
+>  		queue_async_put_domains_work(power_domains,
+>  					     fetch_and_zero(&work_wakeref));
+>  	}
+> @@ -2273,6 +2297,7 @@ void __intel_display_power_put_async(struct drm_i915_private *i915,
+>  void intel_display_power_flush_work(struct drm_i915_private *i915)
+>  {
+>  	struct i915_power_domains *power_domains = &i915->power_domains;
+> +	intel_power_domain_mask_t async_put_mask;
+>  	intel_wakeref_t work_wakeref;
+>  
+>  	mutex_lock(&power_domains->lock);
+> @@ -2281,8 +2306,8 @@ void intel_display_power_flush_work(struct drm_i915_private *i915)
+>  	if (!work_wakeref)
+>  		goto out_verify;
+>  
+> -	release_async_put_domains(power_domains,
+> -				  async_put_domains_mask(power_domains));
+> +	async_put_domains_mask(power_domains, &async_put_mask);
+> +	release_async_put_domains(power_domains, &async_put_mask);
+>  	cancel_delayed_work(&power_domains->async_put_work);
+>  
+>  out_verify:
+> @@ -2361,13 +2386,13 @@ intel_display_power_get_in_set(struct drm_i915_private *i915,
+>  {
+>  	intel_wakeref_t __maybe_unused wf;
+>  
+> -	drm_WARN_ON(&i915->drm, power_domain_set->mask & BIT_ULL(domain));
+> +	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
+>  
+>  	wf = intel_display_power_get(i915, domain);
+>  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+>  	power_domain_set->wakerefs[domain] = wf;
+>  #endif
+> -	power_domain_set->mask |= BIT_ULL(domain);
+> +	set_bit(domain, power_domain_set->mask.bits);
+>  }
+>  
+>  bool
+> @@ -2377,7 +2402,7 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
+>  {
+>  	intel_wakeref_t wf;
+>  
+> -	drm_WARN_ON(&i915->drm, power_domain_set->mask & BIT_ULL(domain));
+> +	drm_WARN_ON(&i915->drm, test_bit(domain, power_domain_set->mask.bits));
+>  
+>  	wf = intel_display_power_get_if_enabled(i915, domain);
+>  	if (!wf)
+> @@ -2386,7 +2411,7 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
+>  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+>  	power_domain_set->wakerefs[domain] = wf;
+>  #endif
+> -	power_domain_set->mask |= BIT_ULL(domain);
+> +	set_bit(domain, power_domain_set->mask.bits);
+>  
+>  	return true;
+>  }
+> @@ -2394,11 +2419,11 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
+>  void
+>  intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+>  				    struct intel_display_power_domain_set *power_domain_set,
+> -				    u64 mask)
+> +				    intel_power_domain_mask_t *mask)
+>  {
+>  	enum intel_display_power_domain domain;
+>  
+> -	drm_WARN_ON(&i915->drm, mask & ~power_domain_set->mask);
+> +	drm_WARN_ON(&i915->drm, !bitmap_subset(mask->bits, power_domain_set->mask.bits, POWER_DOMAIN_NUM));
+>  
+>  	for_each_power_domain(domain, mask) {
+>  		intel_wakeref_t __maybe_unused wf = -1;
+> @@ -2407,7 +2432,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+>  		wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
+>  #endif
+>  		intel_display_power_put(i915, domain, wf);
+> -		power_domain_set->mask &= ~BIT_ULL(domain);
+> +		clear_bit(domain, power_domain_set->mask.bits);
+>  	}
+>  }
+>  
+> @@ -2711,8 +2736,6 @@ int intel_power_domains_init(struct drm_i915_private *dev_priv)
+>  	dev_priv->dmc.target_dc_state =
+>  		sanitize_target_dc_state(dev_priv, DC_STATE_EN_UPTO_DC6);
+>  
+> -	BUILD_BUG_ON(POWER_DOMAIN_NUM > 64);
+> -
+>  	mutex_init(&power_domains->lock);
+>  
+>  	INIT_DELAYED_WORK(&power_domains->async_put_work,
+> @@ -3805,7 +3828,7 @@ static void intel_power_domains_dump_info(struct drm_i915_private *i915)
+>  		drm_dbg(&i915->drm, "%-25s %d\n",
+>  			power_well->desc->name, power_well->count);
+>  
+> -		for_each_power_domain(domain, power_well->domains)
+> +		for_each_power_domain(domain, &power_well->domains)
+>  			drm_dbg(&i915->drm, "  %-23s %d\n",
+>  				intel_display_power_domain_str(domain),
+>  				power_domains->domain_use_count[domain]);
+> @@ -3847,7 +3870,7 @@ static void intel_power_domains_verify_state(struct drm_i915_private *i915)
+>  				power_well->count, enabled);
+>  
+>  		domains_count = 0;
+> -		for_each_power_domain(domain, power_well->domains)
+> +		for_each_power_domain(domain, &power_well->domains)
+>  			domains_count += power_domains->domain_use_count[domain];
+>  
+>  		if (power_well->count != domains_count) {
+> @@ -3962,7 +3985,7 @@ void intel_display_power_debug(struct drm_i915_private *i915, struct seq_file *m
+>  		seq_printf(m, "%-25s %d\n", power_well->desc->name,
+>  			   power_well->count);
+>  
+> -		for_each_power_domain(power_domain, power_well->domains)
+> +		for_each_power_domain(power_domain, &power_well->domains)
+>  			seq_printf(m, "  %-23s %d\n",
+>  				   intel_display_power_domain_str(power_domain),
+>  				   power_domains->domain_use_count[power_domain]);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+> index c3232809b95f9..c7155801f9bc6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> @@ -164,6 +164,8 @@ enum i915_power_well_id {
+>  	((tran) == TRANSCODER_EDP ? POWER_DOMAIN_TRANSCODER_EDP : \
+>  	 (tran) + POWER_DOMAIN_TRANSCODER_A)
+>  
+> +typedef struct { DECLARE_BITMAP(bits, POWER_DOMAIN_NUM); } intel_power_domain_mask_t;
 
-No, I think actually the idea was that it was first calculating
-new_bw_state->min_cdclk, based on plane and dbuf bandwidth requirements
-in intel_atomic_check_cdclk, however then the final decision which
-cdclk to choose was is done in intel_cdclk.c, which calculated new_cdclk_state->min_cdclk
-and then we just choose maximum of those.
-And intel_compute_min_cdclk is the final arbiter:
+I think the typedef is overkill here, and they should only be used for
+totally opaque objects anyway per coding style.
 
-static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
-{
-        struct intel_atomic_state *state = cdclk_state->base.state;
-        struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-        struct intel_bw_state *bw_state = NULL;
-        struct intel_crtc *crtc;
-        struct intel_crtc_state *crtc_state;
-        int min_cdclk, i;
-        enum pipe pipe;
+I guess having the struct makes it easier to manage it in parameters and
+declarations, so it would be:
 
-        for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-                int ret;
+struct intel_power_domain_mask {
+	DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
+};
 
-                min_cdclk = intel_crtc_compute_min_cdclk(crtc_state);
-                if (min_cdclk < 0)
-                        return min_cdclk;
 
-                bw_state = intel_atomic_get_bw_state(state);
-                if (IS_ERR(bw_state))
-                        return PTR_ERR(bw_state);
+BR,
+Jani.
 
-                if (cdclk_state->min_cdclk[crtc->pipe] == min_cdclk)
-                        continue;
+> +
+>  struct i915_power_domains {
+>  	/*
+>  	 * Power wells needed for initialization at driver init and suspend
+> @@ -181,21 +183,21 @@ struct i915_power_domains {
+>  
+>  	struct delayed_work async_put_work;
+>  	intel_wakeref_t async_put_wakeref;
+> -	u64 async_put_domains[2];
+> +	intel_power_domain_mask_t async_put_domains[2];
+>  
+>  	struct i915_power_well *power_wells;
+>  };
+>  
+>  struct intel_display_power_domain_set {
+> -	u64 mask;
+> +	intel_power_domain_mask_t mask;
+>  #ifdef CONFIG_DRM_I915_DEBUG_RUNTIME_PM
+>  	intel_wakeref_t wakerefs[POWER_DOMAIN_NUM];
+>  #endif
+>  };
+>  
+> -#define for_each_power_domain(domain, mask)				\
+> -	for ((domain) = 0; (domain) < POWER_DOMAIN_NUM; (domain)++)	\
+> -		for_each_if(BIT_ULL(domain) & (mask))
+> +#define for_each_power_domain(__domain, __mask)				\
+> +	for ((__domain) = 0; (__domain) < POWER_DOMAIN_NUM; (__domain)++)	\
+> +		for_each_if(test_bit((__domain), (__mask)->bits))
+>  
+>  /* intel_display_power.c */
+>  int intel_power_domains_init(struct drm_i915_private *dev_priv);
+> @@ -278,13 +280,13 @@ intel_display_power_get_in_set_if_enabled(struct drm_i915_private *i915,
+>  void
+>  intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+>  				    struct intel_display_power_domain_set *power_domain_set,
+> -				    u64 mask);
+> +				    intel_power_domain_mask_t *mask);
+>  
+>  static inline void
+>  intel_display_power_put_all_in_set(struct drm_i915_private *i915,
+>  				   struct intel_display_power_domain_set *power_domain_set)
+>  {
+> -	intel_display_power_put_mask_in_set(i915, power_domain_set, power_domain_set->mask);
+> +	intel_display_power_put_mask_in_set(i915, power_domain_set, &power_domain_set->mask);
+>  }
+>  
+>  void intel_display_power_debug(struct drm_i915_private *i915, struct seq_file *m);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_internal.h b/drivers/gpu/drm/i915/display/intel_display_power_internal.h
+> index 49f6155e62c47..c4167ac2f21f8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_internal.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_internal.h
+> @@ -68,7 +68,7 @@ struct i915_power_well_desc {
+>  
+>  struct i915_power_well {
+>  	const struct i915_power_well_desc *desc;
+> -	u64 domains;
+> +	intel_power_domain_mask_t domains;
+>  	/* power well enable/disable usage count */
+>  	int count;
+>  	/* cached hw enabled state */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> index 42f5541c5ecc8..7ec4cafec6ba5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> @@ -2220,13 +2220,13 @@ static void init_power_well_domains(const struct i915_power_well_desc *desc,
+>  		return;
+>  
+>  	if (desc->domain_list->count == 0) {
+> -		power_well->domains = GENMASK_ULL(POWER_DOMAIN_NUM - 1, 0);
+> +		bitmap_fill(power_well->domains.bits, POWER_DOMAIN_NUM);
+>  
+>  		return;
+>  	}
+>  
+>  	for (j = 0; j < desc->domain_list->count; j++)
+> -		power_well->domains |= BIT_ULL(desc->domain_list->list[j]);
+> +		set_bit(desc->domain_list->list[j], power_well->domains.bits);
+>  }
+>  
+>  static int
 
-                cdclk_state->min_cdclk[crtc->pipe] = min_cdclk;
-
-                ret = intel_atomic_lock_global_state(&cdclk_state->base);
-                if (ret)
-                        return ret;
-        }
-
-        min_cdclk = cdclk_state->force_min_cdclk;
-        for_each_pipe(dev_priv, pipe) {
-                min_cdclk = max(cdclk_state->min_cdclk[pipe], min_cdclk);
-
-                if (!bw_state)
-                        continue;
-
-                min_cdclk = max(bw_state->min_cdclk, min_cdclk);
-        }
-
-        return min_cdclk;
-}
-
-Stan
-
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+-- 
+Jani Nikula, Intel Open Source Graphics Center
