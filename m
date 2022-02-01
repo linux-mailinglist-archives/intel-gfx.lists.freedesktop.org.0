@@ -2,49 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A91A4A5A5B
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 11:42:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96CC14A5A6D
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 11:45:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD08210EDB4;
-	Tue,  1 Feb 2022 10:42:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B44310E5BA;
+	Tue,  1 Feb 2022 10:45:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34C2F10EDB1;
- Tue,  1 Feb 2022 10:42:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643712151; x=1675248151;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=4o4AkhShDoypOdFHA9D/PFRHnCxTUR734uCtbyBxi7g=;
- b=kxrPfM4TgqhvuBVG10JPDY8xMGbgJ4xu78HXQD2TwjgtTzNb8QzU4xUT
- 6pIAejXO5OUhMiNeMw6aqO8xP7Uz02aGPkGKukweZ4zyJHN60/RwlBWB0
- YISQ3EKOreovD0l87JlaVtsV2tpxQ/u6mgMJ5gkbAzVrQvva3/jSAHJwR
- aEFWt36ZCkfFANfuwTD3vuObJfEFaexs2UUiHtGZQF/5HgNtWQuMZK47c
- p7SnZYMsAlYzlUdQifpbsUzFSaK7zxM03XZTVvEbaQXTV1bvuJzswFH5K
- 0ksR++jtW/KcFIVVRIkTDtTh1bt7RZGj5fEKtdHfAmBzcn6snKMtous0C A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="334020719"
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="334020719"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2022 02:42:30 -0800
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="523011421"
-Received: from ramaling-i9x.iind.intel.com ([10.203.144.108])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2022 02:42:26 -0800
-From: Ramalingam C <ramalingam.c@intel.com>
-To: dri-devel <dri-devel@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
-Date: Tue,  1 Feb 2022 16:11:32 +0530
-Message-Id: <20220201104132.3050-20-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220201104132.3050-1-ramalingam.c@intel.com>
-References: <20220201104132.3050-1-ramalingam.c@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4386F10E75A;
+ Tue,  1 Feb 2022 10:45:27 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 0AA16614B0;
+ Tue,  1 Feb 2022 10:45:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97346C340EB;
+ Tue,  1 Feb 2022 10:45:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1643712317;
+ bh=5Dywqqhvly/4y4o+KsBPpEDImiEUvdk7lfmcjfKc3+w=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=gUtU1BFx1ngOhR1sm/yeKSKNt8mPzGczhsZkROAFtOzR1apGTkCU9q43ppWClX++f
+ TmacYajJQ+3M2fkfLKOnBw/Pw70mOAPM1jBT3dlbbeUP2rphFzdkqitg2A9/41t15f
+ Ms+L0pDQvgRttXCujjQ4Xar8IMXFZc1jWz8vsM9o=
+Date: Tue, 1 Feb 2022 11:45:14 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <YfkPOrQJ9c/DxNcX@kroah.com>
+References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
+ <20220131210552.482606-2-daniel.vetter@ffwll.ch>
+ <648ac929-8de9-4ec4-f73d-d1048a419eb9@suse.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 19/19] Doc/gpu/rfc/i915: i915 DG2 flat-CCS
- uAPI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <648ac929-8de9-4ec4-f73d-d1048a419eb9@suse.de>
+Subject: Re: [Intel-gfx] [PATCH 01/21] MAINTAINERS: Add entry for fbdev core
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,46 +51,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Kenneth Graunke <kenneth@whitecape.org>,
- Slawomir Milczarek <slawomir.milczarek@intel.com>,
- Pekka Paalanen <ppaalanen@gmail.com>, Matthew Auld <matthew.auld@intel.com>,
- Simon Ser <contact@emersion.fr>, mesa-dev@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, Sven Schnelle <svens@stackframe.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Pavel Machek <pavel@ucw.cz>, Daniel Vetter <daniel.vetter@intel.com>,
+ Sam Ravnborg <sam@ravnborg.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Details of the Flat-CCS getting added as part of DG2 enabling and its
-implicit impact on the uAPI.
+On Tue, Feb 01, 2022 at 11:19:54AM +0100, Thomas Zimmermann wrote:
+> 
+> 
+> Am 31.01.22 um 22:05 schrieb Daniel Vetter:
+> > Ever since Tomi extracted the core code in 2014 it's been defacto me
+> > maintaining this, with help from others from dri-devel and sometimes
+> > Linus (but those are mostly merge conflicts):
+> > 
+> > $ git shortlog -ns  drivers/video/fbdev/core/ | head -n5
+> >      35  Daniel Vetter
+> >      23  Linus Torvalds
+> >      10  Hans de Goede
+> >       9  Dave Airlie
+> >       6  Peter Rosin
+> > 
+> > I think ideally we'd also record that the various firmware fb drivers
+> > (efifb, vesafb, ...) are also maintained in drm-misc because for the
+> > past few years the patches have either been to fix handover issues
+> > with drm drivers, or caused handover issues with drm drivers. So any
+> > other tree just doesn't make sense. But also, there's plenty of
+> > outdated MAINTAINER entries for these with people and git trees that
+> > haven't been active in years, so maybe let's just leave them alone.
+> > And furthermore distros are now adopting simpledrm as the firmware fb
+> > driver, so hopefully the need to care about the fbdev firmware drivers
+> > will go down going forward.
+> > 
+> > Note that drm-misc is group maintained, I expect that to continue like
+> > we've done before, so no new expectations that patches all go through
+> > my hands. That would be silly. This also means I'm happy to put any
+> > other volunteer's name in the M: line, but otherwise git log says I'm
+> > the one who's stuck with this.
+> > 
+> > Cc: Dave Airlie <airlied@gmail.com>
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > Cc: Linus Torvalds <torvalds@linux-foundation.org>
+> > Cc: Linux Fbdev development list <linux-fbdev@vger.kernel.org>
+> > Cc: Pavel Machek <pavel@ucw.cz>
+> > Cc: Sam Ravnborg <sam@ravnborg.org>
+> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Cc: Javier Martinez Canillas <javierm@redhat.com>
+> > Cc: DRI Development <dri-devel@lists.freedesktop.org>
+> > Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+> > Cc: Claudio Suarez <cssk@net-c.es>
+> > Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> > Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Sven Schnelle <svens@stackframe.org>
+> > Cc: Gerd Hoffmann <kraxel@redhat.com>
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> 
+> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-cc: Matthew Auld <matthew.auld@intel.com>
-cc: Simon Ser <contact@emersion.fr>
-cc: Pekka Paalanen <ppaalanen@gmail.com>
-Cc: Jordan Justen <jordan.l.justen@intel.com>
-Cc: Kenneth Graunke <kenneth@whitecape.org>
-Cc: mesa-dev@lists.freedesktop.org
-Cc: Tony Ye <tony.ye@intel.com>
-Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
----
- Documentation/gpu/rfc/i915_dg2.rst | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/gpu/rfc/i915_dg2.rst b/Documentation/gpu/rfc/i915_dg2.rst
-index f4eb5a219897..9d28b1812bc7 100644
---- a/Documentation/gpu/rfc/i915_dg2.rst
-+++ b/Documentation/gpu/rfc/i915_dg2.rst
-@@ -23,3 +23,10 @@ handling the 64k page size.
- 
- .. kernel-doc:: include/uapi/drm/i915_drm.h
-         :functions: drm_i915_gem_create_ext
-+
-+
-+Flat CCS support for lmem
-+=========================
-+
-+.. kernel-doc:: drivers/gpu/drm/i915/gt/intel_migrate.c
-+        :doc: Flat-CCS - Memory compression for Local memory
--- 
-2.20.1
-
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
