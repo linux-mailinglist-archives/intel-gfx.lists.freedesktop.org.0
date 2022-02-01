@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D0F14A57D6
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 08:34:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 049E34A5815
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 08:49:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BE4E10E603;
-	Tue,  1 Feb 2022 07:34:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1807F10E558;
+	Tue,  1 Feb 2022 07:48:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB35110E603;
- Tue,  1 Feb 2022 07:34:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643700878; x=1675236878;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=P/mh7T78VayFsQqGGcZxb0LOHZTw0jd3pS596N08/dc=;
- b=fOK4pD3A6CkA2TzNoMu/zVAyYg37Dr/chKXD6HG4LEVlMgsQ0nGXEgfy
- 76kaRbldSorJShNyi5z/EPvBfCpsA6itS0HxPu1UTVWLZSJ6JuToKZlA5
- MKXjtAVUeolKjrBU+tUAvXw/HCs4exRrOKl0Yjg11wY5tmpMbJchvJ4Y9
- 2JwtwtZWX+3eAwtgwEz7DxuPnkSbfsjE/H9cPMS5m1+M7zjjB3Y4jkC/F
- Ho14gWfwvZyeHWxRW1ultsp102Ni2T5irPO7DZT9TgIoWGranJRcQrFGJ
- sfNXnJ9ItG3CCYk3QvSF45Ybk/CLr0J0Db+ehlDEw5TnCUqoe/OlPOo0R A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="245227837"
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="245227837"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2022 23:34:38 -0800
-X-IronPort-AV: E=Sophos;i="5.88,333,1635231600"; d="scan'208";a="698315977"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2022 23:34:36 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue,  1 Feb 2022 12:50:30 +0530
-Message-Id: <20220201072030.1466446-5-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220201072030.1466446-1-ankit.k.nautiyal@intel.com>
-References: <20220201072030.1466446-1-ankit.k.nautiyal@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BFB6210E558;
+ Tue,  1 Feb 2022 07:48:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B9A81A73C9;
+ Tue,  1 Feb 2022 07:48:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3583389506139572574=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 4/4] drm/i915/display: Simplify helpers for
- getting DSC slices and bpp
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Tue, 01 Feb 2022 07:48:56 -0000
+Message-ID: <164370173672.2606.11954633200354739024@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220201070340.16457-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20220201070340.16457-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/ttm=3A_Return_some_errors_instead_of_trying_memcpy_move?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,169 +40,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Genralize the helper for getting DSC slice count and compressed bpp
-for HDMI sink supporting DSC.
-This patch:
--Removes the assumption on the bpc and sends it as an argument for
-calculating compressed bpc.
--Sends the resolution, and output format as parameters for which the
-DSC paremeters are to be calculated instead of crtc_state.
+--===============3583389506139572574==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Added forward declaration for struct drm_display_mode.
+== Series Details ==
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c   |  7 +++++--
- drivers/gpu/drm/i915/display/intel_hdmi.c | 24 ++++++++++++-----------
- drivers/gpu/drm/i915/display/intel_hdmi.h |  6 ++++--
- 3 files changed, 22 insertions(+), 15 deletions(-)
+Series: drm/i915/ttm: Return some errors instead of trying memcpy move
+URL   : https://patchwork.freedesktop.org/series/99553/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f7fe7de7e553..17d08f06499b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2357,7 +2357,9 @@ intel_dp_pcon_dsc_enc_slices(struct intel_dp *intel_dp,
- 	int pcon_max_slices = drm_dp_pcon_dsc_max_slices(intel_dp->pcon_dsc_dpcd);
- 	int pcon_max_slice_width = drm_dp_pcon_dsc_max_slice_width(intel_dp->pcon_dsc_dpcd);
- 
--	return intel_hdmi_dsc_get_num_slices(crtc_state, pcon_max_slices,
-+	return intel_hdmi_dsc_get_num_slices(&crtc_state->hw.adjusted_mode,
-+					     crtc_state->output_format,
-+					     pcon_max_slices,
- 					     pcon_max_slice_width,
- 					     hdmi_max_slices, hdmi_throughput);
- }
-@@ -2374,9 +2376,10 @@ intel_dp_pcon_dsc_enc_bpp(struct intel_dp *intel_dp,
- 	int pcon_fractional_bpp = drm_dp_pcon_dsc_bpp_incr(intel_dp->pcon_dsc_dpcd);
- 	int hdmi_max_chunk_bytes =
- 		connector->display_info.hdmi.dsc_cap.total_chunk_kbytes * 1024;
-+	int bpc = crtc_state->pipe_bpp / 3;
- 
- 	return intel_hdmi_dsc_get_bpp(pcon_fractional_bpp, slice_width,
--				      num_slices, output_format, hdmi_all_bpp,
-+				      num_slices, output_format, bpc, hdmi_all_bpp,
- 				      hdmi_max_chunk_bytes);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 381a9de3a015..f75e2384da63 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -3004,7 +3004,8 @@ int intel_hdmi_dsc_get_slice_height(int vactive)
-  * intel_hdmi_dsc_get_num_slices - get no. of dsc slices based on dsc encoder
-  * and dsc decoder capabilities
-  *
-- * @crtc_state: intel crtc_state
-+ * @mode: drm_display_mode for which num of slices are needed
-+ * @output_format : pipe output format
-  * @src_max_slices: maximum slices supported by the DSC encoder
-  * @src_max_slice_width: maximum slice width supported by DSC encoder
-  * @hdmi_max_slices: maximum slices supported by sink DSC decoder
-@@ -3014,7 +3015,8 @@ int intel_hdmi_dsc_get_slice_height(int vactive)
-  * and decoder.
-  */
- int
--intel_hdmi_dsc_get_num_slices(const struct intel_crtc_state *crtc_state,
-+intel_hdmi_dsc_get_num_slices(const struct drm_display_mode *mode,
-+			      enum intel_output_format output_format,
- 			      int src_max_slices, int src_max_slice_width,
- 			      int hdmi_max_slices, int hdmi_throughput)
- {
-@@ -3036,7 +3038,7 @@ intel_hdmi_dsc_get_num_slices(const struct intel_crtc_state *crtc_state,
- 	int max_throughput; /* max clock freq. in khz per slice */
- 	int max_slice_width;
- 	int slice_width;
--	int pixel_clock = crtc_state->hw.adjusted_mode.crtc_clock;
-+	int pixel_clock = mode->crtc_clock;
- 
- 	if (!hdmi_throughput)
- 		return 0;
-@@ -3047,8 +3049,8 @@ intel_hdmi_dsc_get_num_slices(const struct intel_crtc_state *crtc_state,
- 	 * for 4:4:4 is 1.0. Multiplying these factors by 10 and later
- 	 * dividing adjusted clock value by 10.
- 	 */
--	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR444 ||
--	    crtc_state->output_format == INTEL_OUTPUT_FORMAT_RGB)
-+	if (output_format == INTEL_OUTPUT_FORMAT_YCBCR444 ||
-+	    output_format == INTEL_OUTPUT_FORMAT_RGB)
- 		kslice_adjust = 10;
- 	else
- 		kslice_adjust = 5;
-@@ -3103,7 +3105,7 @@ intel_hdmi_dsc_get_num_slices(const struct intel_crtc_state *crtc_state,
- 		else
- 			return 0;
- 
--		slice_width = DIV_ROUND_UP(crtc_state->hw.adjusted_mode.hdisplay, target_slices);
-+		slice_width = DIV_ROUND_UP(mode->hdisplay, target_slices);
- 		if (slice_width >= max_slice_width)
- 			min_slices = target_slices + 1;
- 	} while (slice_width >= max_slice_width);
-@@ -3119,6 +3121,7 @@ intel_hdmi_dsc_get_num_slices(const struct intel_crtc_state *crtc_state,
-  * @slice_width: dsc slice width supported by the source and sink
-  * @num_slices: num of slices supported by the source and sink
-  * @output_format: video output format
-+ * @bpc: bits per color
-  * @hdmi_all_bpp: sink supports decoding of 1/16th bpp setting
-  * @hdmi_max_chunk_bytes: max bytes in a line of chunks supported by sink
-  *
-@@ -3126,7 +3129,7 @@ intel_hdmi_dsc_get_num_slices(const struct intel_crtc_state *crtc_state,
-  */
- int
- intel_hdmi_dsc_get_bpp(int src_fractional_bpp, int slice_width, int num_slices,
--		       enum intel_output_format output_format,
-+		       enum intel_output_format output_format, int bpc,
- 		       bool hdmi_all_bpp, int hdmi_max_chunk_bytes)
- {
- 	int max_dsc_bpp, min_dsc_bpp;
-@@ -3144,18 +3147,17 @@ intel_hdmi_dsc_get_bpp(int src_fractional_bpp, int slice_width, int num_slices,
- 	 * for each bpp we check if no of bytes can be supported by HDMI sink
- 	 */
- 
--	/* Assuming: bpc as 8*/
- 	if (output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
- 		min_dsc_bpp = 6;
--		max_dsc_bpp = 3 * 4; /* 3*bpc/2 */
-+		max_dsc_bpp = 3 * bpc / 2;
- 	} else if (output_format == INTEL_OUTPUT_FORMAT_YCBCR444 ||
- 		   output_format == INTEL_OUTPUT_FORMAT_RGB) {
- 		min_dsc_bpp = 8;
--		max_dsc_bpp = 3 * 8; /* 3*bpc */
-+		max_dsc_bpp = 3 * bpc;
- 	} else {
- 		/* Assuming 4:2:2 encoding */
- 		min_dsc_bpp = 7;
--		max_dsc_bpp = 2 * 8; /* 2*bpc */
-+		max_dsc_bpp = 2 * bpc;
- 	}
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-index ea2a3456bd4b..8a2941d285de 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-@@ -12,6 +12,7 @@
- #include "i915_reg.h"
- 
- struct drm_connector;
-+struct drm_display_mode;
- struct drm_encoder;
- struct drm_i915_private;
- struct intel_connector;
-@@ -51,8 +52,9 @@ bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
- 			     int bpc, bool has_hdmi_sink, bool ycbcr420_output);
- int intel_hdmi_dsc_get_bpp(int src_fractional_bpp, int slice_width,
- 			   int num_slices, enum intel_output_format output_format,
--			   bool hdmi_all_bpp, int hdmi_max_chunk_bytes);
--int intel_hdmi_dsc_get_num_slices(const struct intel_crtc_state *crtc_state,
-+			   int bpc, bool hdmi_all_bpp, int hdmi_max_chunk_bytes);
-+int intel_hdmi_dsc_get_num_slices(const struct drm_display_mode *mode,
-+				  enum intel_output_format output_format,
- 				  int src_max_slices, int src_max_slice_width,
- 				  int hdmi_max_slices, int hdmi_throughput);
- int intel_hdmi_dsc_get_slice_height(int vactive);
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_11168 -> Patchwork_22145
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/index.html
+
+Participating hosts (48 -> 41)
+------------------------------
+
+  Missing    (7): fi-kbl-soraka fi-bdw-5557u shard-tglu fi-icl-u2 shard-rkl shard-dg1 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22145 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][1] -> [INCOMPLETE][2] ([i915#3303])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11168/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-skl-6600u:       [PASS][3] -> [FAIL][4] ([i915#4547])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11168/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#1436] / [i915#4312])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/fi-hsw-4770/igt@runner@aborted.html
+    - fi-skl-6600u:       NOTRUN -> [FAIL][6] ([i915#4312])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/fi-skl-6600u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - {fi-jsl-1}:         [DMESG-FAIL][7] ([i915#1886]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11168/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [DMESG-FAIL][9] ([i915#4494] / [i915#4957]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11168/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11168 -> Patchwork_22145
+
+  CI-20190529: 20190529
+  CI_DRM_11168: c2bd9b295e337f6a882ac5ec422171502090d33a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6337: 7c9c034619ef9dbfbfe041fbf3973a1cf1ac7a22 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22145: 3d7fd168fedce25408645c7d4e38f19b3c832415 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+3d7fd168fedc drm/i915/ttm: Return some errors instead of trying memcpy move
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/index.html
+
+--===============3583389506139572574==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/ttm: Return some errors instead of trying memcpy move</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99553/">https://patchwork.freedesktop.org/series/99553/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11168 -&gt; Patchwork_22145</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/index.html</p>
+<h2>Participating hosts (48 -&gt; 41)</h2>
+<p>Missing    (7): fi-kbl-soraka fi-bdw-5557u shard-tglu fi-icl-u2 shard-rkl shard-dg1 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22145 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11168/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11168/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11168/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11168/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22145/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11168 -&gt; Patchwork_22145</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11168: c2bd9b295e337f6a882ac5ec422171502090d33a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6337: 7c9c034619ef9dbfbfe041fbf3973a1cf1ac7a22 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22145: 3d7fd168fedce25408645c7d4e38f19b3c832415 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>3d7fd168fedc drm/i915/ttm: Return some errors instead of trying memcpy move</p>
+
+</body>
+</html>
+
+--===============3583389506139572574==--
