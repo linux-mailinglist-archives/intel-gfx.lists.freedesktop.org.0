@@ -1,79 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25C494A5DD6
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 15:01:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F1534A5E72
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Feb 2022 15:40:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E480110E410;
-	Tue,  1 Feb 2022 14:01:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ADF810E242;
+	Tue,  1 Feb 2022 14:40:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EE7910E3F7
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Feb 2022 14:01:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1643724108;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=t0xhLey8NZwZfvq1aWQDBdLCgJjMsiCxuS9yKl0tV4E=;
- b=MkD6nQRY2OZ0VdlKZ2hsjj54s6reAu16xL6TuAK8gtz8ookZ0SzTabDXIbRKLm9yNfzINT
- pqlfhhdLAvX5nYTms64d7xi+oiS4ne052lo5Fjzc254ASmCyP+1/c2ddY+ZYO4Llwyyb6Y
- JRk4XvCcn3oYbiD79Lf81678VdOoxA4=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-536-NElheWoVP7Cskl8fL_Mb2g-1; Tue, 01 Feb 2022 09:01:47 -0500
-X-MC-Unique: NElheWoVP7Cskl8fL_Mb2g-1
-Received: by mail-wm1-f71.google.com with SMTP id
- 7-20020a1c1907000000b003471d9bbe8dso666048wmz.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 01 Feb 2022 06:01:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=t0xhLey8NZwZfvq1aWQDBdLCgJjMsiCxuS9yKl0tV4E=;
- b=bEc8Z89fUsNazzvrkVGgBfjpItvU1YSO1NS8VgysvTrYC86oqdDhc2v2Mnf0SOl5Aw
- sKxz4WY3a4KSsaUbgy3paNGMdQ36brTQ+PKKTKv53UgqBxZNfJ5g8nLoQcCX9Hp0RKUe
- h3p7nj1kV2hegVIDYzAy5UI70ypzRigb36D635o0nLoybskqJZe0sSBCMNZPiZCObI24
- q/iR31gXIa8r8vRPQvti5NcF5Yl8y6S+Q558C990lc7wduwVQCTqsjfR9wUm0y2W6P48
- 45HytDCFpXPZ2xln92XxnXut638BFAWm2eOIT7NqF+PA1aj0YYIsxh98ZdtyTruC6TAf
- Kj8g==
-X-Gm-Message-State: AOAM532Yo8DA4aWKeqltgZn++a0F4iOIXz5fEuyfWTrKFyP0/ouS8Zrq
- HB3AGkLxRxW3ZvoRoKfJ8p6cxR1nNxrb8Mz8cwGMtC3NpdAtH0EUcXlvhJcx2/aTFYjr8TBCHLQ
- 7Q20XaVdxNGEKONZcjj+/sgSQmiP/
-X-Received: by 2002:a1c:6a14:: with SMTP id f20mr1907066wmc.177.1643724106143; 
- Tue, 01 Feb 2022 06:01:46 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxiXh7XT/y9EhbXaaYFMW+Z8FLorkbaMP6N2gEv45FSVWMJcQUX+XJyy9OHO0UQo8Hz5UgkJg==
-X-Received: by 2002:a1c:6a14:: with SMTP id f20mr1906977wmc.177.1643724105240; 
- Tue, 01 Feb 2022 06:01:45 -0800 (PST)
-Received: from [192.168.1.102] ([92.176.231.205])
- by smtp.gmail.com with ESMTPSA id v5sm2032210wmh.19.2022.02.01.06.01.44
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 01 Feb 2022 06:01:44 -0800 (PST)
-Message-ID: <3ebc8a81-a27f-9ab7-d247-5203f286eeb2@redhat.com>
-Date: Tue, 1 Feb 2022 15:01:43 +0100
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF9A910E242
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Feb 2022 14:40:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643726401; x=1675262401;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=z8cahSzVQpFMsyMvpB9mqnM4dCsckN9mpfb7a4d/M9U=;
+ b=Km4J0upfDk1TdMoELin88XFSrDgaZMEClKE6lFAPYhSnf/+aPUBH0kt5
+ 8y69MHqXsT4oCfgGNNIm/vSEM14Tgud5oPyi1CrTx42VCS7ps1BVLHq/b
+ frGpMD+F1CoJN4OPTjDheXfZScjj05PGsk6+MYbrrjKSq9sV7Uoi9GTrp
+ zC1gA+SwN1O3rVytYL7Crrf7B09SGKzmwrt8ca+PiV9W6NZ4MybQxH+79
+ /TyMUnqOojhq3QGLkA25rwLnOlA2JaZXxzEHfbz1wdQ+TsXu+Rm1VpShp
+ 4/gc93OtSBMLYkT/HJtAQpE5UmlHH1tcLsnzT/WdcrOj2ZXBh0+pNOr4N g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10244"; a="246535152"
+X-IronPort-AV: E=Sophos;i="5.88,334,1635231600"; d="scan'208";a="246535152"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2022 06:38:16 -0800
+X-IronPort-AV: E=Sophos;i="5.88,334,1635231600"; d="scan'208";a="523068978"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2022 06:38:14 -0800
+Date: Tue, 1 Feb 2022 16:38:19 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20220201143818.GA10770@intel.com>
+References: <20220118092354.11631-1-ville.syrjala@linux.intel.com>
+ <20220118092354.11631-12-ville.syrjala@linux.intel.com>
+ <20220201085239.GA9569@intel.com> <YfkF2VSxF5osAPMe@intel.com>
+ <20220201111818.GA10506@intel.com> <Yfk5f/gbkZZ9KKS0@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
- <20220131210552.482606-2-daniel.vetter@ffwll.ch>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20220131210552.482606-2-daniel.vetter@ffwll.ch>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 01/21] MAINTAINERS: Add entry for fbdev core
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Yfk5f/gbkZZ9KKS0@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 11/15] drm/i915: Nuke
+ intel_bw_calc_min_cdclk()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,73 +61,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@intel.com>,
- Dave Airlie <airlied@gmail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
- Gerd Hoffmann <kraxel@redhat.com>, Pavel Machek <pavel@ucw.cz>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Sven Schnelle <svens@stackframe.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 1/31/22 22:05, Daniel Vetter wrote:
-> Ever since Tomi extracted the core code in 2014 it's been defacto me
-> maintaining this, with help from others from dri-devel and sometimes
-> Linus (but those are mostly merge conflicts):
+On Tue, Feb 01, 2022 at 03:45:35PM +0200, Ville Syrjälä wrote:
+> On Tue, Feb 01, 2022 at 01:18:18PM +0200, Lisovskiy, Stanislav wrote:
+> > On Tue, Feb 01, 2022 at 12:05:13PM +0200, Ville Syrjälä wrote:
+> > > On Tue, Feb 01, 2022 at 10:52:39AM +0200, Lisovskiy, Stanislav wrote:
+> > > > On Tue, Jan 18, 2022 at 11:23:50AM +0200, Ville Syrjala wrote:
+> > > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > > 
+> > > > > intel_bw_calc_min_cdclk() is entirely pointless. All it manages to do is
+> > > > > somehow conflate the per-pipe min cdclk with dbuf min cdclk. There is no
+> > > > > (at least documented) dbuf min cdclk limit on pre-skl so let's just get
+> > > > > rid of all this confusion.
+> > > > > 
+> > > > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > 
+> > > > I think we constantly have a bit contradictional attitude towards such situation.
+> > > > >From one perspective you can say, that those kind of "leagcy" callbacks are
+> > > > pointless, from the other hand one might say. that we need to have a unified
+> > > > approach for all platforms and I think we got, some legacy handlers for old
+> > > > platforms for similar purpose as well.
+> > > > I'm fine with both approaches, however for example when I was submitting
+> > > > that patch, I was asked by reviewer to add this kind of legacy callback, so that we have
+> > > > a "uniform" approach.
+> > > > We just then need to have some standard agreement on those, which doesn't
+> > > > depend on today's cosmic radiation levels :)
+> > > 
+> > > Yes in general I prefer a unified approach across all platforms.
+> > > But in this case there is nothing to do for the old platforms as they
+> > > don't have any kind of dbuf cdclk limit, or if there is one we don't
+> > > know what it is since it's not documented.
+> > > 
+> > > So the only thing the code was really doing was conflating the
+> > > per-pipe cdclk limit (which is handled elsewhere for all platforms
+> > > in a  unified fashion) with something that doesn't even exist.
+> > > 
+> > > Also I don't think it was even correct anyway since it was
+> > > using the per-pipe cdclk_state->min_cdclk[] already during
+> > > intel_cdclk_atomic_check(), but cdclk_state->min_cdclk[]
+> > > isn't even computed until intel_modeset_calc_cdclk() which 
+> > > is called later. So I guess it was basically just computing 
+> > > the max of the min_cdclk[] for all the pipes for the _old_
+> > > state, not the new state.
+> > 
+> > No, I think actually the idea was that it was first calculating
+> > new_bw_state->min_cdclk, based on plane and dbuf bandwidth requirements
+> > in intel_atomic_check_cdclk,
 > 
-> $ git shortlog -ns  drivers/video/fbdev/core/ | head -n5
->     35  Daniel Vetter
->     23  Linus Torvalds
->     10  Hans de Goede
->      9  Dave Airlie
->      6  Peter Rosin
-> 
-> I think ideally we'd also record that the various firmware fb drivers
-> (efifb, vesafb, ...) are also maintained in drm-misc because for the
-> past few years the patches have either been to fix handover issues
-> with drm drivers, or caused handover issues with drm drivers. So any
-> other tree just doesn't make sense. But also, there's plenty of
-> outdated MAINTAINER entries for these with people and git trees that
-> haven't been active in years, so maybe let's just leave them alone.
-> And furthermore distros are now adopting simpledrm as the firmware fb
-> driver, so hopefully the need to care about the fbdev firmware drivers
-> will go down going forward.
-> 
-> Note that drm-misc is group maintained, I expect that to continue like
-> we've done before, so no new expectations that patches all go through
-> my hands. That would be silly. This also means I'm happy to put any
-> other volunteer's name in the M: line, but otherwise git log says I'm
-> the one who's stuck with this.
-> 
-> Cc: Dave Airlie <airlied@gmail.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Linus Torvalds <torvalds@linux-foundation.org>
-> Cc: Linux Fbdev development list <linux-fbdev@vger.kernel.org>
-> Cc: Pavel Machek <pavel@ucw.cz>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Javier Martinez Canillas <javierm@redhat.com>
-> Cc: DRI Development <dri-devel@lists.freedesktop.org>
-> Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-> Cc: Claudio Suarez <cssk@net-c.es>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Sven Schnelle <svens@stackframe.org>
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> ---
+> Well intel_bw_calc_min_cdclk() did none of that. Like I said it
+> just took the max of the _old_ per-pipe cdclk_state->min_cdclk[]
+> values and stored that as the *new* bw min cdclk, which later
+> would get consulted by intel_compute_min_cdclk().
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+Yeah, because it was a stub basically just for "uniformity".
 
-Best regards,
--- 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
+Stan
 
+
+> 
+> -- 
+> Ville Syrjälä
+> Intel
