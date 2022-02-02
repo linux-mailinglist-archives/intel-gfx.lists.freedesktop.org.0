@@ -2,65 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80C434A71B0
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 14:37:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8E684A71B1
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 14:37:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 190E310E4AE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DFDB10E458;
 	Wed,  2 Feb 2022 13:37:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com
- [IPv6:2a00:1450:4864:20::235])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD51110E639
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Feb 2022 15:33:59 +0000 (UTC)
-Received: by mail-lj1-x235.google.com with SMTP id z7so24697750ljj.4
- for <intel-gfx@lists.freedesktop.org>; Tue, 01 Feb 2022 07:33:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=semihalf-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=KrCDskL9bdL7dUXawhqSh1CFqGiHJuuAt+4hWyOHNWM=;
- b=2QXRGcJEoq7seYUAiTpXwiHEPaDnu1rIiXYP0MLqRGFpZb6yINaN97ZeWQ5Lkj93f8
- vp7B67KSzbvpep9lZnMHU4VKC1y24owssuZwof2EPU1wiqm0C44a+ECw/wjjG+FHi74i
- LY/15RYwoOgGDpXIIEHkPO+H4xp39yyCXclbx72bAcDrmCchl3JHEWkPFV66sFXw0kZb
- JaJ4PPfhmFsYNIOFvmcXUoSGWjGfxvq5RMktrtWHE62dZ9t3PaInNs0Au5ybkfjJK4H1
- eow5oUGdOXfU5hy8lASvQB7dmFTBGJp5ByaKGiGjCKd6OGcC/2iV+ecQrN1SNij/uQ9s
- FzQg==
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com
+ [IPv6:2607:f8b0:4864:20::f31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE2A710E648
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Feb 2022 10:28:37 +0000 (UTC)
+Received: by mail-qv1-xf31.google.com with SMTP id e20so18516664qvu.7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 02 Feb 2022 02:28:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=MtKEV+jU8UJlJY6L2eJ34IuiGgV/AbhYH8R0GtYApWo=;
+ b=tc4MWS6L05txv9/v8sY7Nq2fX4CLLBrLUb/c6kYKjiMc2htSKZP36mSEOmi6ocTaRC
+ HrOwXexKtMnINXUnCsB3n5agOamtYx+KnK/CN+WTV4IbjUjtIBsiixaqkJjLMLQ7hEF1
+ CifRUv6K4XmAlYlIhDAPOvg3mPvdFO94W+ClxHqzOW8EfyYiQR/k4hfQNl1j0jyRYqrE
+ N3D13vZSv2Bi2WgB4ShcXHVeid2fcj1xkQWGxGywRslIrjjbOIWiOHnumdLO8QUDklKe
+ 0qePGdd79ZRRjUmM4sSic4j00xyLgw32rVyttKHOv8c9YzxYYCMPepqMPFyF6q0EPP+U
+ azEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=KrCDskL9bdL7dUXawhqSh1CFqGiHJuuAt+4hWyOHNWM=;
- b=av82muSVScpU9cJSI2WxoOkQ/ZQuZ8pVl2nlg4MOejpAD1WQneraxkFmUkMpV8h47I
- rcaoarm2BggxoM7b9mLUhf+4GF6PMxBF3tTd83AbTKXXbxX2qAsl0wfbYXzsUVXK5i4P
- JMBZkMVQJey/4T5nqr2WRRnma2mFmBX2sFENd9XI4VEm5X/t1a2pGAY+MrPbh1CwlSzx
- 4SSlhLg6dnMGy+aAz1twbE1aaSQ4zSv99lrGQAmdLGR94+v9XA0Z4QpM+G9McgRsOS2/
- gUNiV+MwsBGPGl6Km0i/r+OfzAjBghZb3jETUGcRdpuWbfeld4XRdGLstZMTDxASONwM
- B0vQ==
-X-Gm-Message-State: AOAM532q6c/mtI664PSMauggB1CnYZ2kxd82YweOD4eINciDgz++iUer
- GVsQBmnvxuLoWRYJ1GtJVa1i
-X-Google-Smtp-Source: ABdhPJwS5Wqeu9ITN53NeZ95S+xGUbOpPUKhOGe6UM2hNpov5M11Ei+OurXy4f3DMkCxCgThVC6uqg==
-X-Received: by 2002:a2e:9b42:: with SMTP id o2mr16927538ljj.85.1643729638064; 
- Tue, 01 Feb 2022 07:33:58 -0800 (PST)
-Received: from localhost.localdomain (public-gprs370261.centertel.pl.
- [37.47.77.150])
- by smtp.gmail.com with ESMTPSA id y7sm2153092ljc.65.2022.02.01.07.33.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Feb 2022 07:33:57 -0800 (PST)
-From: Lukasz Bartosik <lb@semihalf.com>
-X-Google-Original-From: Lukasz Bartosik <lukasz.bartosik@semihalf.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Tue,  1 Feb 2022 16:33:54 +0100
-Message-Id: <20220201153354.11971-1-lukasz.bartosik@semihalf.com>
-X-Mailer: git-send-email 2.17.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=MtKEV+jU8UJlJY6L2eJ34IuiGgV/AbhYH8R0GtYApWo=;
+ b=ynJLqK/9EgHAOSk/hnopKEH+plrDFlwF2Hvjpqw9s+lKr7iqN3DcmDs4CXk/YDSaqA
+ AUZxd56BeSRxkv1cWbYtwM1hq/d16wFHSraBnTgWEdTRav6dVY1U2iH4xkQfoxjqqnAY
+ kWxA6RakBSIRmDMPL5flBPXPyctiJ2tGKynRixm0je8KKQXMAgQEhArXh2btRGdbk9A5
+ DLt7tRcEySsIM2RAv/qvqDGa/4D7a16PvhT77Ag54KfITYm2SWmOLQoQJmkEO+NwHzwv
+ NCw+mqoRa/hpcVF6+AqGrQwLvA9aAaAz5c9XKjeAfLnJU3ztz0TfYN5znX4z+oxxR3g1
+ QdFA==
+X-Gm-Message-State: AOAM531nTCdS+v93qrSuEncl2CQ1XFyoLNgCHaieHgplJ4he1HuEhr5y
+ FeF2vKvNPammYrslheX+/9OjcH7V6Dp5mxiJTQIXXg==
+X-Google-Smtp-Source: ABdhPJwwCXUC90u1TfvbkrW/+mxg6UEoUpZCR2eWuHS8/mnMyDOQddLlYvTn6C0xowMERTI2uEmFyw193+RNR9fcFtA=
+X-Received: by 2002:a05:6214:19ca:: with SMTP id
+ j10mr26936391qvc.119.1643797716643; 
+ Wed, 02 Feb 2022 02:28:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20220202085429.22261-1-suraj.kandpal@intel.com>
+ <20220202085429.22261-2-suraj.kandpal@intel.com>
+In-Reply-To: <20220202085429.22261-2-suraj.kandpal@intel.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 2 Feb 2022 13:28:25 +0300
+Message-ID: <CAA8EJppf5XL5+NSD+oksW9Zo1DKboPT5KBZwLmyF44q61wkxQA@mail.gmail.com>
+To: Kandpal Suraj <suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Wed, 02 Feb 2022 13:37:47 +0000
-Subject: [Intel-gfx] [PATCH v1] drm/i915: fix null pointer dereference
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm: add writeback pointers to
+ drm_connector
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,90 +65,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, upstream@semihalf.com
+Cc: carsten.haitzler@arm.com, jani.nikula@intel.com,
+ intel-gfx@lists.freedesktop.org, quic_abhinavk@quicinc.com,
+ dri-devel@lists.freedesktop.org, Laurent.pinchart@ideasonboard.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Łukasz Bartosik <lb@semihalf.com>
+On Wed, 2 Feb 2022 at 11:46, Kandpal Suraj <suraj.kandpal@intel.com> wrote:
+>
+> Changing drm_connector and drm_encoder feilds to pointers in
+> drm_writeback_connector as the elements of struct
+> drm_writeback_connector are:
+> struct drm_writeback_connector {
+>         struct drm_connector base;
+>         struct drm_encoder encoder;
+> Similarly the elements of intel_encoder and intel_connector
+> are:
+> struct intel_encoder {
+>         struct drm_encoder base;
+>
+> struct intel_connector {
+>         struct drm_connector base;
+>
+> The function drm_writeback_connector_init() will initialize the
+> drm_connector and drm_encoder and attach them as well.
+> Since the drm_connector/encoder are both struct in
+> drm_writeback_connector and intel_connector/encoder, we need
+> one of them to be a pointer so we can reference them or else we
+> will be pointing to 2 seprate instances.
 
-Asus chromebook CX550 crashes during boot on v5.17-rc1 kernel.
-The root cause is null pointer defeference of bi_next
-in tgl_get_bw_info() in drivers/gpu/drm/i915/display/intel_bw.c.
+Could you please clarify, why do you want to use intel_connector for
+the writeback connector?
+I can see a usecase for sharing an encoder between the display and
+writback pipelines (and if I'm not mistaken, this is the case for
+Abhinav's case).
+However, sharing the hardware-backed connector and writeback connector
+sounds like a sign of a loose abstraction for me.
 
-BUG: kernel NULL pointer dereference, address: 000000000000002e
-PGD 0 P4D 0
-Oops: 0002 [#1] PREEMPT SMP NOPTI
-CPU: 0 PID: 1 Comm: swapper/0 Tainted: G     U            5.17.0-rc1
-Hardware name: Google Delbin/Delbin, BIOS Google_Delbin.13672.156.3 05/14/2021
-RIP: 0010:tgl_get_bw_info+0x2de/0x510
-...
-[    2.554467] Call Trace:
-[    2.554467]  <TASK>
-[    2.554467]  intel_bw_init_hw+0x14a/0x434
-[    2.554467]  ? _printk+0x59/0x73
-[    2.554467]  ? _dev_err+0x77/0x91
-[    2.554467]  i915_driver_hw_probe+0x329/0x33e
-[    2.554467]  i915_driver_probe+0x4c8/0x638
-[    2.554467]  i915_pci_probe+0xf8/0x14e
-[    2.554467]  ? _raw_spin_unlock_irqrestore+0x12/0x2c
-[    2.554467]  pci_device_probe+0xaa/0x142
-[    2.554467]  really_probe+0x13f/0x2f4
-[    2.554467]  __driver_probe_device+0x9e/0xd3
-[    2.554467]  driver_probe_device+0x24/0x7c
-[    2.554467]  __driver_attach+0xba/0xcf
-[    2.554467]  ? driver_attach+0x1f/0x1f
-[    2.554467]  bus_for_each_dev+0x8c/0xc0
-[    2.554467]  bus_add_driver+0x11b/0x1f7
-[    2.554467]  driver_register+0x60/0xea
-[    2.554467]  ? mipi_dsi_bus_init+0x16/0x16
-[    2.554467]  i915_init+0x2c/0xb9
-[    2.554467]  ? mipi_dsi_bus_init+0x16/0x16
-[    2.554467]  do_one_initcall+0x12e/0x2b3
-[    2.554467]  do_initcall_level+0xd6/0xf3
-[    2.554467]  do_initcalls+0x4e/0x79
-[    2.554467]  kernel_init_freeable+0xed/0x14d
-[    2.554467]  ? rest_init+0xc1/0xc1
-[    2.554467]  kernel_init+0x1a/0x120
-[    2.554467]  ret_from_fork+0x1f/0x30
-[    2.554467]  </TASK>
-...
-Kernel panic - not syncing: Fatal exception
+Please correct me if I'm wrong and Intel driver would really benefit
+from reusing intel_connector as a base for drm_writeback_connector.
 
-Fixes: c64a9a7c05be ("drm/i915: Update memory bandwidth formulae")
-Signed-off-by: Łukasz Bartosik <lb@semihalf.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+> Usually the struct defined in drm framework pointing to any
+> struct will be pointer and allocating them and initialization
+> will be done with the users.
+> Like struct drm_connector and drm_encoder are part of drm
+> framework and the users of these such as i915 have included them
+> in their struct intel_connector and intel_encoder. Likewise
+> struct drm_writeback_connector is a special connector and hence
+> is not a user of drm_connector and hence this should be pointers.
+>
+> Adding drm_writeback_connector to drm_connector so that
+> writeback_connector can be fetched from drm_connector as the previous
+> container_of method won't work due to change in the feilds of
+> drm_connector and drm_encoder in drm_writeback_connector.
+>
+> Note:The corresponding ripple effect due to the above changes namely in
+> two drivers as I can see it komeda and vkms have been dealt with in the
+> upcoming patches of this series.
+>
+> Signed-off-by: Kandpal Suraj <suraj.kandpal@intel.com>
+>
+> Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> ---
+>  drivers/gpu/drm/drm_writeback.c | 19 ++++++++++---------
+>  include/drm/drm_connector.h     |  3 +++
+>  include/drm/drm_writeback.h     |  6 +++---
+>  3 files changed, 16 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_writeback.c b/drivers/gpu/drm/drm_writeback.c
+> index dccf4504f1bb..47238db42363 100644
+> --- a/drivers/gpu/drm/drm_writeback.c
+> +++ b/drivers/gpu/drm/drm_writeback.c
+> @@ -87,7 +87,7 @@ static const char *drm_writeback_fence_get_driver_name(struct dma_fence *fence)
+>         struct drm_writeback_connector *wb_connector =
+>                 fence_to_wb_connector(fence);
+>
+> -       return wb_connector->base.dev->driver->name;
+> +       return wb_connector->base->dev->driver->name;
+>  }
+>
+>  static const char *
+> @@ -177,7 +177,7 @@ int drm_writeback_connector_init(struct drm_device *dev,
+>                                  const u32 *formats, int n_formats)
+>  {
+>         struct drm_property_blob *blob;
+> -       struct drm_connector *connector = &wb_connector->base;
+> +       struct drm_connector *connector = wb_connector->base;
+>         struct drm_mode_config *config = &dev->mode_config;
+>         int ret = create_writeback_properties(dev);
+>
+> @@ -189,14 +189,15 @@ int drm_writeback_connector_init(struct drm_device *dev,
+>         if (IS_ERR(blob))
+>                 return PTR_ERR(blob);
+>
+> -       drm_encoder_helper_add(&wb_connector->encoder, enc_helper_funcs);
+> -       ret = drm_encoder_init(dev, &wb_connector->encoder,
+> +       drm_encoder_helper_add(wb_connector->encoder, enc_helper_funcs);
+> +       ret = drm_encoder_init(dev, wb_connector->encoder,
+>                                &drm_writeback_encoder_funcs,
+>                                DRM_MODE_ENCODER_VIRTUAL, NULL);
+>         if (ret)
+>                 goto fail;
+>
+>         connector->interlace_allowed = 0;
+> +       connector->wb_connector = wb_connector;
+>
+>         ret = drm_connector_init(dev, connector, con_funcs,
+>                                  DRM_MODE_CONNECTOR_WRITEBACK);
+> @@ -204,7 +205,7 @@ int drm_writeback_connector_init(struct drm_device *dev,
+>                 goto connector_fail;
+>
+>         ret = drm_connector_attach_encoder(connector,
+> -                                               &wb_connector->encoder);
+> +                                               wb_connector->encoder);
+>         if (ret)
+>                 goto attach_fail;
+>
+> @@ -233,7 +234,7 @@ int drm_writeback_connector_init(struct drm_device *dev,
+>  attach_fail:
+>         drm_connector_cleanup(connector);
+>  connector_fail:
+> -       drm_encoder_cleanup(&wb_connector->encoder);
+> +       drm_encoder_cleanup(wb_connector->encoder);
+>  fail:
+>         drm_property_blob_put(blob);
+>         return ret;
+> @@ -263,7 +264,7 @@ int drm_writeback_prepare_job(struct drm_writeback_job *job)
+>  {
+>         struct drm_writeback_connector *connector = job->connector;
+>         const struct drm_connector_helper_funcs *funcs =
+> -               connector->base.helper_private;
+> +               connector->base->helper_private;
+>         int ret;
+>
+>         if (funcs->prepare_writeback_job) {
+> @@ -315,7 +316,7 @@ void drm_writeback_cleanup_job(struct drm_writeback_job *job)
+>  {
+>         struct drm_writeback_connector *connector = job->connector;
+>         const struct drm_connector_helper_funcs *funcs =
+> -               connector->base.helper_private;
+> +               connector->base->helper_private;
+>
+>         if (job->prepared && funcs->cleanup_writeback_job)
+>                 funcs->cleanup_writeback_job(connector, job);
+> @@ -401,7 +402,7 @@ drm_writeback_get_out_fence(struct drm_writeback_connector *wb_connector)
+>  {
+>         struct dma_fence *fence;
+>
+> -       if (WARN_ON(wb_connector->base.connector_type !=
+> +       if (WARN_ON(wb_connector->base->connector_type !=
+>                     DRM_MODE_CONNECTOR_WRITEBACK))
+>                 return NULL;
+>
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 64cf5f88c05b..fa06faeb7844 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -44,6 +44,7 @@ struct drm_printer;
+>  struct drm_privacy_screen;
+>  struct edid;
+>  struct i2c_adapter;
+> +struct drm_writeback_connector;
+>
+>  enum drm_connector_force {
+>         DRM_FORCE_UNSPECIFIED,
+> @@ -1539,6 +1540,8 @@ struct drm_connector {
+>          */
+>         struct drm_encoder *encoder;
+>
+> +       struct drm_writeback_connector *wb_connector;
+> +
+>  #define MAX_ELD_BYTES  128
+>         /** @eld: EDID-like data, if present */
+>         uint8_t eld[MAX_ELD_BYTES];
+> diff --git a/include/drm/drm_writeback.h b/include/drm/drm_writeback.h
+> index 9697d2714d2a..078c9907219c 100644
+> --- a/include/drm/drm_writeback.h
+> +++ b/include/drm/drm_writeback.h
+> @@ -22,7 +22,7 @@ struct drm_writeback_connector {
+>         /**
+>          * @base: base drm_connector object
+>          */
+> -       struct drm_connector base;
+> +       struct drm_connector *base;
+>
+>         /**
+>          * @encoder: Internal encoder used by the connector to fulfill
+> @@ -31,7 +31,7 @@ struct drm_writeback_connector {
+>          * by passing the @enc_funcs parameter to drm_writeback_connector_init()
+>          * function.
+>          */
+> -       struct drm_encoder encoder;
+> +       struct drm_encoder *encoder;
+>
+>         /**
+>          * @pixel_formats_blob_ptr:
+> @@ -143,7 +143,7 @@ struct drm_writeback_job {
+>  static inline struct drm_writeback_connector *
+>  drm_connector_to_writeback(struct drm_connector *connector)
+>  {
+> -       return container_of(connector, struct drm_writeback_connector, base);
+> +       return connector->wb_connector;
+>  }
+>
+>  int drm_writeback_connector_init(struct drm_device *dev,
+> --
+> 2.17.1
+>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 2da4aacc956b..bd0ed68b7faa 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -404,15 +404,17 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
- 		int clpchgroup;
- 		int j;
- 
--		if (i < num_groups - 1)
--			bi_next = &dev_priv->max_bw[i + 1];
--
- 		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
- 
--		if (i < num_groups - 1 && clpchgroup < clperchgroup)
--			bi_next->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
--		else
--			bi_next->num_planes = 0;
-+		if (i < num_groups - 1) {
-+			bi_next = &dev_priv->max_bw[i + 1];
-+
-+			if (clpchgroup < clperchgroup)
-+				bi_next->num_planes = (ipqdepth - clpchgroup) /
-+						       clpchgroup + 1;
-+			else
-+				bi_next->num_planes = 0;
-+		}
- 
- 		bi->num_qgv_points = qi.num_points;
- 		bi->num_psf_gv_points = qi.num_psf_points;
+
 -- 
-2.35.0.rc2.247.g8bbb082509-goog
-
+With best wishes
+Dmitry
