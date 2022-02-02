@@ -2,55 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94C7A4A6E97
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 11:22:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 622F64A6E9B
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 11:23:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADAF910E5BC;
-	Wed,  2 Feb 2022 10:22:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 440F510E5B9;
+	Wed,  2 Feb 2022 10:23:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E88E10E5BC
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Feb 2022 10:22:45 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D13410E5D1;
+ Wed,  2 Feb 2022 10:23:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643797365; x=1675333365;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=mRX1p3tSSlmRm8sj+BP0IOY3seYXAHdAdAiQipX0ADk=;
- b=Q28uEJfh2Arn2Ze1WzcmlbWM5QoyXcoEUzuA18tXeQGqYlSw8HVoCETm
- 7o8hkyWa3k4uumKxrx+PyXjSekXqKjJ4TyBZ1FycyM50eiyceTm+nBZYd
- 9YZ4MN0UmKisQYKALS8gBBhE694NpHnOex2LDEglV8fBq7v+EMh5eYkx+
- GTVFNKRlswP0kjDz3b4XZUVR/r6v3WcL/QmSFOT04hZlWhhmBBVnt3iV1
- h4wpDV5wVscdngvgO9zameZgThftj+jmiFJTiK7NtX7J2oZ+px5SXYLPp
- S5QaoHJI6Ipt9pihZh3H97J58qlB8eHtmFxzGJImi2vTPBBcE2vXfe00k g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="228541437"
-X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="228541437"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2022 02:22:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="583381887"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga008.fm.intel.com with SMTP; 02 Feb 2022 02:22:42 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 02 Feb 2022 12:22:41 +0200
-Date: Wed, 2 Feb 2022 12:22:41 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Yfpbceq3zV3qIm3n@intel.com>
-References: <20220110095740.166078-1-jani.nikula@intel.com>
- <20220110095740.166078-3-jani.nikula@intel.com>
- <YdxYvXfkOgTFFg+s@intel.com> <87pmoy8xdb.fsf@intel.com>
- <Yd7WmT4naDadKVoh@intel.com> <87iltxtyp4.fsf@intel.com>
+ t=1643797408; x=1675333408;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=DwShpkMqfnADyZO09QsN+dxveQVMTBFE04oG7QfT3C0=;
+ b=Q7KTc6uAh5/ie3F3qFRMR/8RGuypgyT2ZU+5f/6m3xQSsoy7G9Vd07e2
+ JjLbc9PHeF3XUgCurIIaQ1AeGMwNeMHpqF9T+V906qyre+8T3kiIV3CVO
+ sS7OsJukkKlXN+Nc+5ybYM0yEQl+GpFPGJN1FO0cuEM2LOUngxTueb3Qz
+ yc4bi3kFV82dtXknpl1I2EbYkWOwhTnOPiLeUe5ZQ9nEtMrKqaOvDPDN3
+ PNWMj8LlF562ecoZUiHjNrpftSNjR958ZScAi93qfE8guKMTHCV6JVv6b
+ 0yfW94fy122daU5iiqxiamumRWwc7dKHfk/lMNFAhBeD7FoTwDMahsPNP Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="334245984"
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="334245984"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 02:23:27 -0800
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="480057242"
+Received: from markeyp-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.6.210])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 02:23:25 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YfJOn4RQMAzjaP4i@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1643130139.git.jani.nikula@intel.com>
+ <5c061c1610834b9b1b057e6d32b774e7db5500a8.1643130139.git.jani.nikula@intel.com>
+ <YfJOn4RQMAzjaP4i@intel.com>
+Date: Wed, 02 Feb 2022 12:23:23 +0200
+Message-ID: <87czk5tvms.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87iltxtyp4.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/vga: switch to use VGA
- definitions from video/vga.h
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 5/8] drm/i915/dp: rewrite DP 2.0 128b/132b
+ link training based on errata
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,70 +60,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 02, 2022 at 11:17:11AM +0200, Jani Nikula wrote:
-> On Wed, 12 Jan 2022, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Tue, Jan 11, 2022 at 10:55:44AM +0200, Jani Nikula wrote:
-> >> On Mon, 10 Jan 2022, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >> > On Mon, Jan 10, 2022 at 11:57:39AM +0200, Jani Nikula wrote:
-> >> >> The video/vga.h has macros for the VGA registers. Switch to use them.
-> >> >> 
-> >> >> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-> >> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> >> >> ---
-> >> >>  drivers/gpu/drm/i915/display/intel_vga.c | 9 +++++----
-> >> >>  1 file changed, 5 insertions(+), 4 deletions(-)
-> >> >> 
-> >> >> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-> >> >> index fa779f7ea415..43c12036c1fa 100644
-> >> >> --- a/drivers/gpu/drm/i915/display/intel_vga.c
-> >> >> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
-> >> >> @@ -7,6 +7,7 @@
-> >> >>  #include <linux/vgaarb.h>
-> >> >>  
-> >> >>  #include <drm/i915_drm.h>
-> >> >> +#include <video/vga.h>
-> >> >>  
-> >> >>  #include "i915_drv.h"
-> >> >>  #include "intel_de.h"
-> >> >> @@ -34,9 +35,9 @@ void intel_vga_disable(struct drm_i915_private *dev_priv)
-> >> >>  
-> >> >>  	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
-> >> >>  	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
-> >> >> -	outb(SR01, VGA_SR_INDEX);
-> >> >> -	sr1 = inb(VGA_SR_DATA);
-> >> >> -	outb(sr1 | 1 << 5, VGA_SR_DATA);
-> >> >> +	outb(VGA_SEQ_CLOCK_MODE, VGA_SEQ_I);
-> >> >
-> >> > Not a huge fan of some of these defines since now I have
-> >> > no idea what register this is selecting.
-> >> 
-> >> It's a bit silly that we have our own macros for this stuff, but I get
-> >> the point. Took me a while to figure the changes out because the macros
-> >> in video/vga.h aren't even grouped in a helpful way.
-> >> 
-> >> I guess you'd prefer patch [1] over patches 3-4 in this series then? For
-> >> me the main goal is to just reduce the size of i915_reg.h.
-> >
-> > I guess another option is to go with this and just
-> > s/VGA_SEQ_CLOCK_MODE/0x01/ or something. I think the rest
-> > of the defines are probably clear enough.
-> 
-> I dropped the ball here a bit. If I respin the same patches, but with
-> the above line changed to one of these, is it okay? Which do you prefer?
-> 
-> 1)	outb(VGA_SEQ_CLOCK_MODE, VGA_SEQ_I); /* SR01 */
-> 
-> 2)	#define SR01 VGA_SEQ_CLOCK_MODE
-> 	outb(SR01, VGA_SEQ_I);
-> 
-> 3)	outb(0x01, VGA_SEQ_I);
+On Thu, 27 Jan 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Tue, Jan 25, 2022 at 07:03:43PM +0200, Jani Nikula wrote:
+> <snip>
+>> +static bool
+>> +intel_dp_128b132b_lane_cds(struct intel_dp *intel_dp,
+>> +			   const struct intel_crtc_state *crtc_state,
+>> +			   int lttpr_count)
+>> +{
+>> +	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
+>> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>> +	u8 link_status[DP_LINK_STATUS_SIZE];
+>> +	unsigned long deadline;
+>> +
+>> +	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_TRAINING_PATTERN_SET,
+>> +			       DP_TRAINING_PATTERN_2_CDS) !=3D 1) {
+>> +		drm_err(&i915->drm,
+>> +			"[ENCODER:%d:%s] Failed to start 128b/132b TPS2 CDS\n",
+>> +			encoder->base.base.id, encoder->base.name);
+>> +		return false;
+>> +	}
+>> +
+>> +	deadline =3D jiffies + msecs_to_jiffies((lttpr_count + 1) * 20);
+>> +	for (;;) {
+>> +		usleep_range(2000, 3000);
+>> +
+>> +		if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
+>> +			drm_err(&i915->drm,
+>> +				"[ENCODER:%d:%s] Failed to read link status\n",
+>> +				encoder->base.base.id, encoder->base.name);
+>> +			return false;
+>> +		}
+>> +
+>> +		if (drm_dp_128b132b_cds_interlane_align_done(link_status) &&
+>> +		    drm_dp_128b132b_lane_symbol_locked(link_status, crtc_state->lane_=
+count)) {
+>
+> I'm thinkin we want to check for both eq done and symbol locked here,
+> just like we do with 8b10b.
 
-3 seems like the best option of these.
+I guess so, although I don't think the spec explicitly calls that out.
 
--- 
-Ville Syrjälä
-Intel
+Fixed anyway.
+
+>
+>> +			drm_dbg_kms(&i915->drm,
+>> +				    "[ENCODER:%d:%s] CDS interlane align done\n",
+>> +				    encoder->base.base.id, encoder->base.name);
+>> +			break;
+>> +		}
+>> +
+>> +		if (drm_dp_128b132b_link_training_failed(link_status)) {
+>> +			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
+>> +			drm_err(&i915->drm,
+>> +				"[ENCODER:%d:%s] Downstream link training failure\n",
+>> +				encoder->base.base.id, encoder->base.name);
+>> +			return false;
+>> +		}
+>> +
+>> +		if (time_after(jiffies, deadline)) {
+>> +			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
+>> +			drm_err(&i915->drm,
+>> +				"[ENCODER:%d:%s] CDS timeout\n",
+>> +				encoder->base.base.id, encoder->base.name);
+>> +			return false;
+>> +		}
+>> +	}
+>> +
+>> +	/* FIXME: Should DP_TRAINING_PATTERN_DISABLE be written first? */
+>> +	if (intel_dp->set_idle_link_train)
+>> +		intel_dp->set_idle_link_train(intel_dp, crtc_state);
+>> +
+>> +	return true;
+>> +}
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
