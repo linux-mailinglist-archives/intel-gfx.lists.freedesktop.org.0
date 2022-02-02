@@ -1,58 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E684A71B1
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 14:37:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 919C14A7153
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 14:15:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DFDB10E458;
-	Wed,  2 Feb 2022 13:37:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96B9610E338;
+	Wed,  2 Feb 2022 13:15:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com
- [IPv6:2607:f8b0:4864:20::f31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE2A710E648
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Feb 2022 10:28:37 +0000 (UTC)
-Received: by mail-qv1-xf31.google.com with SMTP id e20so18516664qvu.7
- for <intel-gfx@lists.freedesktop.org>; Wed, 02 Feb 2022 02:28:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=MtKEV+jU8UJlJY6L2eJ34IuiGgV/AbhYH8R0GtYApWo=;
- b=tc4MWS6L05txv9/v8sY7Nq2fX4CLLBrLUb/c6kYKjiMc2htSKZP36mSEOmi6ocTaRC
- HrOwXexKtMnINXUnCsB3n5agOamtYx+KnK/CN+WTV4IbjUjtIBsiixaqkJjLMLQ7hEF1
- CifRUv6K4XmAlYlIhDAPOvg3mPvdFO94W+ClxHqzOW8EfyYiQR/k4hfQNl1j0jyRYqrE
- N3D13vZSv2Bi2WgB4ShcXHVeid2fcj1xkQWGxGywRslIrjjbOIWiOHnumdLO8QUDklKe
- 0qePGdd79ZRRjUmM4sSic4j00xyLgw32rVyttKHOv8c9YzxYYCMPepqMPFyF6q0EPP+U
- azEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=MtKEV+jU8UJlJY6L2eJ34IuiGgV/AbhYH8R0GtYApWo=;
- b=ynJLqK/9EgHAOSk/hnopKEH+plrDFlwF2Hvjpqw9s+lKr7iqN3DcmDs4CXk/YDSaqA
- AUZxd56BeSRxkv1cWbYtwM1hq/d16wFHSraBnTgWEdTRav6dVY1U2iH4xkQfoxjqqnAY
- kWxA6RakBSIRmDMPL5flBPXPyctiJ2tGKynRixm0je8KKQXMAgQEhArXh2btRGdbk9A5
- DLt7tRcEySsIM2RAv/qvqDGa/4D7a16PvhT77Ag54KfITYm2SWmOLQoQJmkEO+NwHzwv
- NCw+mqoRa/hpcVF6+AqGrQwLvA9aAaAz5c9XKjeAfLnJU3ztz0TfYN5znX4z+oxxR3g1
- QdFA==
-X-Gm-Message-State: AOAM531nTCdS+v93qrSuEncl2CQ1XFyoLNgCHaieHgplJ4he1HuEhr5y
- FeF2vKvNPammYrslheX+/9OjcH7V6Dp5mxiJTQIXXg==
-X-Google-Smtp-Source: ABdhPJwwCXUC90u1TfvbkrW/+mxg6UEoUpZCR2eWuHS8/mnMyDOQddLlYvTn6C0xowMERTI2uEmFyw193+RNR9fcFtA=
-X-Received: by 2002:a05:6214:19ca:: with SMTP id
- j10mr26936391qvc.119.1643797716643; 
- Wed, 02 Feb 2022 02:28:36 -0800 (PST)
-MIME-Version: 1.0
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB24E10E161;
+ Wed,  2 Feb 2022 13:15:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643807714; x=1675343714;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=7ImU0bFQQR2LlCRItDZiSaLjRE9eYfLv0W/Kf15V6Q0=;
+ b=cjHS+Z0OSE8jDoaaNBOvFtPVmU9phSMImATz8XC4THjuXpaE/FQsgj2w
+ 6YP6RFQ1DVt+xfG6MFhSDHX+gLK++PQCJ1zttzc39i09gG5jfY9hEJp5I
+ S8FIh2vuFyM7u9UHK8uAaOR6ZpozWaCAt3xsTx9UN9ESXimXw1RFfzpaV
+ I0IQIUTK3bI0U6sDrqgcjg50VsFLJlX/tN8NBwBqhUF20FbTqwJz6YPqW
+ NdxSrrUF9u0JTi6mM/VHn1WPt2mzUvT5/DwoEcFglgul1UAQGqsDNFcGa
+ 4AQdmWjVh9nFjhj4dYw3PjStjGX8pGL/3lxU6KwPj9GjtwidYzPkH8HDB w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="246741362"
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="246741362"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 05:15:14 -0800
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="620143140"
+Received: from markeyp-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.6.210])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 05:15:08 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Kandpal Suraj
+ <suraj.kandpal@intel.com>
+In-Reply-To: <Yfp8Q6OFqTAvESOi@pendragon.ideasonboard.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220202085429.22261-1-suraj.kandpal@intel.com>
- <20220202085429.22261-2-suraj.kandpal@intel.com>
-In-Reply-To: <20220202085429.22261-2-suraj.kandpal@intel.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 2 Feb 2022 13:28:25 +0300
-Message-ID: <CAA8EJppf5XL5+NSD+oksW9Zo1DKboPT5KBZwLmyF44q61wkxQA@mail.gmail.com>
-To: Kandpal Suraj <suraj.kandpal@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Wed, 02 Feb 2022 13:37:47 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm: add writeback pointers to
- drm_connector
+ <20220202085429.22261-6-suraj.kandpal@intel.com>
+ <Yfp8Q6OFqTAvESOi@pendragon.ideasonboard.com>
+Date: Wed, 02 Feb 2022 15:15:03 +0200
+Message-ID: <87y22ts948.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/rcar_du: changes to rcar-du driver
+ resulting from drm_writeback_connector structure changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,215 +60,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: carsten.haitzler@arm.com, jani.nikula@intel.com,
- intel-gfx@lists.freedesktop.org, quic_abhinavk@quicinc.com,
- dri-devel@lists.freedesktop.org, Laurent.pinchart@ideasonboard.com
+Cc: carsten.haitzler@arm.com, intel-gfx@lists.freedesktop.org,
+ quic_abhinavk@quicinc.com, dri-devel@lists.freedesktop.org,
+ dmitry.baryshkov@linaro.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2 Feb 2022 at 11:46, Kandpal Suraj <suraj.kandpal@intel.com> wrote:
+On Wed, 02 Feb 2022, Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
+> Hi Kandpal,
 >
-> Changing drm_connector and drm_encoder feilds to pointers in
-> drm_writeback_connector as the elements of struct
-> drm_writeback_connector are:
-> struct drm_writeback_connector {
->         struct drm_connector base;
->         struct drm_encoder encoder;
-> Similarly the elements of intel_encoder and intel_connector
-> are:
-> struct intel_encoder {
->         struct drm_encoder base;
+> Thank you for the patch.
 >
-> struct intel_connector {
->         struct drm_connector base;
+> On Wed, Feb 02, 2022 at 02:24:28PM +0530, Kandpal Suraj wrote:
+>> Changing rcar_du driver to accomadate the change of
+>> drm_writeback_connector.base and drm_writeback_connector.encoder
+>> to a pointer the reason for which is explained in the
+>> Patch(drm: add writeback pointers to drm_connector).
+>> 
+>> Signed-off-by: Kandpal Suraj <suraj.kandpal@intel.com>
+>> ---
+>>  drivers/gpu/drm/rcar-du/rcar_du_crtc.h      | 2 ++
+>>  drivers/gpu/drm/rcar-du/rcar_du_writeback.c | 8 +++++---
+>>  2 files changed, 7 insertions(+), 3 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+>> index 66e8839db708..68f387a04502 100644
+>> --- a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+>> +++ b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+>> @@ -72,6 +72,8 @@ struct rcar_du_crtc {
+>>  	const char *const *sources;
+>>  	unsigned int sources_count;
+>>  
+>> +	struct drm_connector connector;
+>> +	struct drm_encoder encoder;
 >
-> The function drm_writeback_connector_init() will initialize the
-> drm_connector and drm_encoder and attach them as well.
-> Since the drm_connector/encoder are both struct in
-> drm_writeback_connector and intel_connector/encoder, we need
-> one of them to be a pointer so we can reference them or else we
-> will be pointing to 2 seprate instances.
+> Those fields are, at best, poorly named. Furthermore, there's no need in
+> this driver or in other drivers using drm_writeback_connector to create
+> an encoder or connector manually. Let's not polute all drivers because
+> i915 doesn't have its abstractions right.
 
-Could you please clarify, why do you want to use intel_connector for
-the writeback connector?
-I can see a usecase for sharing an encoder between the display and
-writback pipelines (and if I'm not mistaken, this is the case for
-Abhinav's case).
-However, sharing the hardware-backed connector and writeback connector
-sounds like a sign of a loose abstraction for me.
+i915 uses the quite common model for struct inheritance:
 
-Please correct me if I'm wrong and Intel driver would really benefit
-from reusing intel_connector as a base for drm_writeback_connector.
+	struct intel_connector {
+		struct drm_connector base;
+		/* ... */
+	}
 
-> Usually the struct defined in drm framework pointing to any
-> struct will be pointer and allocating them and initialization
-> will be done with the users.
-> Like struct drm_connector and drm_encoder are part of drm
-> framework and the users of these such as i915 have included them
-> in their struct intel_connector and intel_encoder. Likewise
-> struct drm_writeback_connector is a special connector and hence
-> is not a user of drm_connector and hence this should be pointers.
->
-> Adding drm_writeback_connector to drm_connector so that
-> writeback_connector can be fetched from drm_connector as the previous
-> container_of method won't work due to change in the feilds of
-> drm_connector and drm_encoder in drm_writeback_connector.
->
-> Note:The corresponding ripple effect due to the above changes namely in
-> two drivers as I can see it komeda and vkms have been dealt with in the
-> upcoming patches of this series.
->
-> Signed-off-by: Kandpal Suraj <suraj.kandpal@intel.com>
->
-> Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> ---
->  drivers/gpu/drm/drm_writeback.c | 19 ++++++++++---------
->  include/drm/drm_connector.h     |  3 +++
->  include/drm/drm_writeback.h     |  6 +++---
->  3 files changed, 16 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_writeback.c b/drivers/gpu/drm/drm_writeback.c
-> index dccf4504f1bb..47238db42363 100644
-> --- a/drivers/gpu/drm/drm_writeback.c
-> +++ b/drivers/gpu/drm/drm_writeback.c
-> @@ -87,7 +87,7 @@ static const char *drm_writeback_fence_get_driver_name(struct dma_fence *fence)
->         struct drm_writeback_connector *wb_connector =
->                 fence_to_wb_connector(fence);
->
-> -       return wb_connector->base.dev->driver->name;
-> +       return wb_connector->base->dev->driver->name;
->  }
->
->  static const char *
-> @@ -177,7 +177,7 @@ int drm_writeback_connector_init(struct drm_device *dev,
->                                  const u32 *formats, int n_formats)
->  {
->         struct drm_property_blob *blob;
-> -       struct drm_connector *connector = &wb_connector->base;
-> +       struct drm_connector *connector = wb_connector->base;
->         struct drm_mode_config *config = &dev->mode_config;
->         int ret = create_writeback_properties(dev);
->
-> @@ -189,14 +189,15 @@ int drm_writeback_connector_init(struct drm_device *dev,
->         if (IS_ERR(blob))
->                 return PTR_ERR(blob);
->
-> -       drm_encoder_helper_add(&wb_connector->encoder, enc_helper_funcs);
-> -       ret = drm_encoder_init(dev, &wb_connector->encoder,
-> +       drm_encoder_helper_add(wb_connector->encoder, enc_helper_funcs);
-> +       ret = drm_encoder_init(dev, wb_connector->encoder,
->                                &drm_writeback_encoder_funcs,
->                                DRM_MODE_ENCODER_VIRTUAL, NULL);
->         if (ret)
->                 goto fail;
->
->         connector->interlace_allowed = 0;
-> +       connector->wb_connector = wb_connector;
->
->         ret = drm_connector_init(dev, connector, con_funcs,
->                                  DRM_MODE_CONNECTOR_WRITEBACK);
-> @@ -204,7 +205,7 @@ int drm_writeback_connector_init(struct drm_device *dev,
->                 goto connector_fail;
->
->         ret = drm_connector_attach_encoder(connector,
-> -                                               &wb_connector->encoder);
-> +                                               wb_connector->encoder);
->         if (ret)
->                 goto attach_fail;
->
-> @@ -233,7 +234,7 @@ int drm_writeback_connector_init(struct drm_device *dev,
->  attach_fail:
->         drm_connector_cleanup(connector);
->  connector_fail:
-> -       drm_encoder_cleanup(&wb_connector->encoder);
-> +       drm_encoder_cleanup(wb_connector->encoder);
->  fail:
->         drm_property_blob_put(blob);
->         return ret;
-> @@ -263,7 +264,7 @@ int drm_writeback_prepare_job(struct drm_writeback_job *job)
->  {
->         struct drm_writeback_connector *connector = job->connector;
->         const struct drm_connector_helper_funcs *funcs =
-> -               connector->base.helper_private;
-> +               connector->base->helper_private;
->         int ret;
->
->         if (funcs->prepare_writeback_job) {
-> @@ -315,7 +316,7 @@ void drm_writeback_cleanup_job(struct drm_writeback_job *job)
->  {
->         struct drm_writeback_connector *connector = job->connector;
->         const struct drm_connector_helper_funcs *funcs =
-> -               connector->base.helper_private;
-> +               connector->base->helper_private;
->
->         if (job->prepared && funcs->cleanup_writeback_job)
->                 funcs->cleanup_writeback_job(connector, job);
-> @@ -401,7 +402,7 @@ drm_writeback_get_out_fence(struct drm_writeback_connector *wb_connector)
->  {
->         struct dma_fence *fence;
->
-> -       if (WARN_ON(wb_connector->base.connector_type !=
-> +       if (WARN_ON(wb_connector->base->connector_type !=
->                     DRM_MODE_CONNECTOR_WRITEBACK))
->                 return NULL;
->
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index 64cf5f88c05b..fa06faeb7844 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -44,6 +44,7 @@ struct drm_printer;
->  struct drm_privacy_screen;
->  struct edid;
->  struct i2c_adapter;
-> +struct drm_writeback_connector;
->
->  enum drm_connector_force {
->         DRM_FORCE_UNSPECIFIED,
-> @@ -1539,6 +1540,8 @@ struct drm_connector {
->          */
->         struct drm_encoder *encoder;
->
-> +       struct drm_writeback_connector *wb_connector;
-> +
->  #define MAX_ELD_BYTES  128
->         /** @eld: EDID-like data, if present */
->         uint8_t eld[MAX_ELD_BYTES];
-> diff --git a/include/drm/drm_writeback.h b/include/drm/drm_writeback.h
-> index 9697d2714d2a..078c9907219c 100644
-> --- a/include/drm/drm_writeback.h
-> +++ b/include/drm/drm_writeback.h
-> @@ -22,7 +22,7 @@ struct drm_writeback_connector {
->         /**
->          * @base: base drm_connector object
->          */
-> -       struct drm_connector base;
-> +       struct drm_connector *base;
->
->         /**
->          * @encoder: Internal encoder used by the connector to fulfill
-> @@ -31,7 +31,7 @@ struct drm_writeback_connector {
->          * by passing the @enc_funcs parameter to drm_writeback_connector_init()
->          * function.
->          */
-> -       struct drm_encoder encoder;
-> +       struct drm_encoder *encoder;
->
->         /**
->          * @pixel_formats_blob_ptr:
-> @@ -143,7 +143,7 @@ struct drm_writeback_job {
->  static inline struct drm_writeback_connector *
->  drm_connector_to_writeback(struct drm_connector *connector)
->  {
-> -       return container_of(connector, struct drm_writeback_connector, base);
-> +       return connector->wb_connector;
->  }
->
->  int drm_writeback_connector_init(struct drm_device *dev,
-> --
-> 2.17.1
->
+Same with at least amd, ast, fsl-dcu, hisilicon, mga200, msm, nouveau,
+radeon, tilcdc, and vboxvideo.
 
+We could argue about the relative merits of that abstraction, but I
+think the bottom line is that it's popular and the drivers using it are
+not going to be persuaded to move away from it.
+
+It's no coincidence that the drivers who've implemented writeback so far
+(komeda, mali, rcar-du, vc4, and vkms) do not use the abstraction,
+because the drm_writeback_connector midlayer does, forcing the issue.
+
+So I think drm_writeback_connector should *not* use the inheritance
+abstraction because it's a midlayer that should leave that option to the
+drivers. I think drm_writeback_connector needs to be changed to
+accommodate that, and, unfortunately, it means current writeback users
+need to be changed as well.
+
+I am not sure, however, if the series at hand is the right
+approach. Perhaps writeback can be modified to allocate the stuff for
+you if you prefer it that way, as long as the drm_connector is not
+embedded in struct drm_writeback_connector.
+
+
+BR,
+Jani.
+
+
+>
+> Nack.
+>
+>>  	struct drm_writeback_connector writeback;
+>>  };
+>>  
+>> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
+>> index c79d1259e49b..5b1e83380c47 100644
+>> --- a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
+>> +++ b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
+>> @@ -200,8 +200,10 @@ int rcar_du_writeback_init(struct rcar_du_device *rcdu,
+>>  {
+>>  	struct drm_writeback_connector *wb_conn = &rcrtc->writeback;
+>>  
+>> -	wb_conn->encoder.possible_crtcs = 1 << drm_crtc_index(&rcrtc->crtc);
+>> -	drm_connector_helper_add(&wb_conn->base,
+>> +	wb_conn->base = &rcrtc->connector;
+>> +	wb_conn->encoder = &rcrtc->encoder;
+>> +	wb_conn->encoder->possible_crtcs = 1 << drm_crtc_index(&rcrtc->crtc);
+>> +	drm_connector_helper_add(wb_conn->base,
+>>  				 &rcar_du_wb_conn_helper_funcs);
+>>  
+>>  	return drm_writeback_connector_init(&rcdu->ddev, wb_conn,
+>> @@ -220,7 +222,7 @@ void rcar_du_writeback_setup(struct rcar_du_crtc *rcrtc,
+>>  	struct drm_framebuffer *fb;
+>>  	unsigned int i;
+>>  
+>> -	state = rcrtc->writeback.base.state;
+>> +	state = rcrtc->writeback.base->state;
+>>  	if (!state || !state->writeback_job)
+>>  		return;
+>>  
 
 -- 
-With best wishes
-Dmitry
+Jani Nikula, Intel Open Source Graphics Center
