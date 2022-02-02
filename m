@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C78694A750F
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 16:57:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 221AA4A751D
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 17:00:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03BF710E2C0;
-	Wed,  2 Feb 2022 15:57:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2421D10E28D;
+	Wed,  2 Feb 2022 16:00:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9921A10E28D;
- Wed,  2 Feb 2022 15:57:13 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C07510E28D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Feb 2022 16:00:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643817433; x=1675353433;
+ t=1643817603; x=1675353603;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=jAXhg14qnw81vPdm3O9bsJwxg2CEblQcNAg2SR23+Pk=;
- b=Fl/kCu/RIqYPJx21+kM3aPVKwy5MnKvg9cfI+L0AvC3KETluTFYEB4ST
- NdaXRmu9KMWVU3VdfS4aaiCB60rYb5cIkhLy6F0lZXceyasqxUiwKo+vV
- 2dCufhBINg33zfJntKIG/zo91qWfBOOmSkB9/SOAul6YFmVEzgaD757dv
- rqkH1Ln5/Lxxdu76n327GSrQpnrNY+0PnRKe7UvcTOiG//gG3m8ewmN/A
- gH+Am4HYCMMiAvG5bDlAIc+X1scCDNqLoWiUeYx+ufRGnIpIZ5XGoK+zE
- xuKB9CJ/yJOYnPA2a0K8sUzSVqjwLW9aeNYVU/IsJTne3W9PDYf6WXus7 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="334305865"
-X-IronPort-AV: E=Sophos;i="5.88,337,1635231600"; d="scan'208";a="334305865"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2022 07:57:13 -0800
-X-IronPort-AV: E=Sophos;i="5.88,337,1635231600"; d="scan'208";a="482868426"
+ message-id:mime-version:content-transfer-encoding;
+ bh=Q0zEgGa2ogkAkgX/Vcre6OceD3l1b6/Wmc74ll1uim4=;
+ b=Wx7XMpnDcDyWx9Bz9pKeDwTfv/ECrUlT3d/Uj+qTbvEaUAuUIC0BHy8A
+ msdLoYxXksQSYSN5oAuYfDQFUSef/95sVK5SGOHvmvCo+1f/3uNO4Qs1O
+ 2Wr29jYQfooM/wnUb8gCxwPO3fBHg7X3l2K36cz19TNKk1ULeHy7mlheu
+ Rs8oBiawM3Ucv5Hb1RXqjjOlh9skIUOUT0VBG6MOWNaT2cE05Rn2xNG85
+ YZe3dZuU73qrw6QiFtWkVJ7mGudEJh66p9IVyJweU4AiOsU0KS0QAWlRR
+ aiwuQCBfR8Gbb4phUojDitlfnCWPZKDe78cmrstzOwV6xbFmgCio+W4ll Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="231515955"
+X-IronPort-AV: E=Sophos;i="5.88,337,1635231600"; d="scan'208";a="231515955"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 08:00:03 -0800
+X-IronPort-AV: E=Sophos;i="5.88,337,1635231600"; d="scan'208";a="698937324"
 Received: from markeyp-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.6.210])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2022 07:57:09 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 08:00:01 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <CAA8EJprrhPtDkWRk8+6Wf+OoQi4u8m_t7G5guJQW+SNuttOSgQ@mail.gmail.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YfprpC2XQSs7WbJu@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220202085429.22261-1-suraj.kandpal@intel.com>
- <20220202085429.22261-6-suraj.kandpal@intel.com>
- <Yfp8Q6OFqTAvESOi@pendragon.ideasonboard.com> <87y22ts948.fsf@intel.com>
- <CAA8EJprrhPtDkWRk8+6Wf+OoQi4u8m_t7G5guJQW+SNuttOSgQ@mail.gmail.com>
-Date: Wed, 02 Feb 2022 17:57:06 +0200
-Message-ID: <87sft1s1m5.fsf@intel.com>
+References: <20220202112509.1886660-1-jani.nikula@intel.com>
+ <YfprpC2XQSs7WbJu@intel.com>
+Date: Wed, 02 Feb 2022 17:59:58 +0200
+Message-ID: <87pmo5s1hd.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/rcar_du: changes to rcar-du driver
- resulting from drm_writeback_connector structure changes
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/vga: switch to use VGA
+ definitions from video/vga.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,125 +59,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: carsten.haitzler@arm.com, intel-gfx@lists.freedesktop.org,
- quic_abhinavk@quicinc.com, dri-devel@lists.freedesktop.org,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 02 Feb 2022, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
-> On Wed, 2 Feb 2022 at 16:15, Jani Nikula <jani.nikula@intel.com> wrote:
->>
->> On Wed, 02 Feb 2022, Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
->> > Hi Kandpal,
->> >
->> > Thank you for the patch.
->> >
->> > On Wed, Feb 02, 2022 at 02:24:28PM +0530, Kandpal Suraj wrote:
->> >> Changing rcar_du driver to accomadate the change of
->> >> drm_writeback_connector.base and drm_writeback_connector.encoder
->> >> to a pointer the reason for which is explained in the
->> >> Patch(drm: add writeback pointers to drm_connector).
->> >>
->> >> Signed-off-by: Kandpal Suraj <suraj.kandpal@intel.com>
->> >> ---
->> >>  drivers/gpu/drm/rcar-du/rcar_du_crtc.h      | 2 ++
->> >>  drivers/gpu/drm/rcar-du/rcar_du_writeback.c | 8 +++++---
->> >>  2 files changed, 7 insertions(+), 3 deletions(-)
->> >>
->> >> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
->> >> index 66e8839db708..68f387a04502 100644
->> >> --- a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
->> >> +++ b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
->> >> @@ -72,6 +72,8 @@ struct rcar_du_crtc {
->> >>      const char *const *sources;
->> >>      unsigned int sources_count;
->> >>
->> >> +    struct drm_connector connector;
->> >> +    struct drm_encoder encoder;
->> >
->> > Those fields are, at best, poorly named. Furthermore, there's no need in
->> > this driver or in other drivers using drm_writeback_connector to create
->> > an encoder or connector manually. Let's not polute all drivers because
->> > i915 doesn't have its abstractions right.
->>
->> i915 uses the quite common model for struct inheritance:
->>
->>         struct intel_connector {
->>                 struct drm_connector base;
->>                 /* ... */
->>         }
->>
->> Same with at least amd, ast, fsl-dcu, hisilicon, mga200, msm, nouveau,
->> radeon, tilcdc, and vboxvideo.
+On Wed, 02 Feb 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Feb 02, 2022 at 01:25:08PM +0200, Jani Nikula wrote:
+>> The video/vga.h has macros for the VGA registers. Switch to use them.
+>>=20
+>> v2: Use direct 0x01 instead of the confusing VGA_SEQ_CLOCK_MODE (Ville)
+>>=20
+>> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >
-> For the reference. msm does not wrap drm_connector into any _common_
-> structure, which is used internally.
->
->> We could argue about the relative merits of that abstraction, but I
->> think the bottom line is that it's popular and the drivers using it are
->> not going to be persuaded to move away from it.
->
-> As I wrote earlier, I am not sure if these drivers would try using
-> their drm_connector subclass for writeback.
-> ast: ast_connector = drm_connector + respective i2c adapter for EDID,
-> not needed for WB
-> fsl-dcu: fsl_dcu_drm_connector = drm_connector + drm_encoder pointer +
-> drm_panel. Not needed for WB
-> hisilicon, mgag200: same as ast
-> tilcdc: same as fsl-dcu
-> vboxdrv: the only driver that may possibly benefit from using
-> vbox_connector in the writeback support, as the connector is bare
-> drm_connector + crtc pointer + hints (width, height, disconnected).
->
-> I have left amd, nouveau and radeon out of this list, too complex to
-> analyze in several minutes.
->
-> I'd second the proposal of supporting optional drm_encoder for
-> drm_writeback_connector (as the crtc/encoder split can be vague), but
-> I do not see the benefit for the drivers to use their own
-> drm_connector subclass for drm_writeback.
+> Series is
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-If a driver uses inheritance throughout the driver, and a *different*
-subclass gets introduced into the mix, you need to add a ton of checks
-all over the place when you cast the superclass pointer to the subclass.
-
-The connector/encoder funcs you do have to pass to
-drm_writeback_connector_init() can't use any of the shared driver
-infrastructure that assume a certain inheritance.
-
-See also my reply to Laurent [1].
-
-> It well might be that we all misunderstand your design. Do you have a
-> complete intel drm_writeback implementation based on this patchset? It
-> would be easier to judge if the approach is correct seeing your
-> target.
-
-That would be up to Suraj Kandpal.
+Thanks, pushed.
 
 BR,
 Jani.
 
-
-[1] https://lore.kernel.org/r/87v8xxs2hz.fsf@intel.com
-
-
 >
->>
->> It's no coincidence that the drivers who've implemented writeback so far
->> (komeda, mali, rcar-du, vc4, and vkms) do not use the abstraction,
->> because the drm_writeback_connector midlayer does, forcing the issue.
->>
->> So I think drm_writeback_connector should *not* use the inheritance
->> abstraction because it's a midlayer that should leave that option to the
->> drivers. I think drm_writeback_connector needs to be changed to
->> accommodate that, and, unfortunately, it means current writeback users
->> need to be changed as well.
->>
->> I am not sure, however, if the series at hand is the right
->> approach. Perhaps writeback can be modified to allocate the stuff for
->> you if you prefer it that way, as long as the drm_connector is not
->> embedded in struct drm_writeback_connector.
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_vga.c | 9 +++++----
+>>  1 file changed, 5 insertions(+), 4 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/=
+i915/display/intel_vga.c
+>> index fa779f7ea415..b5d058404c14 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vga.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
+>> @@ -7,6 +7,7 @@
+>>  #include <linux/vgaarb.h>
+>>=20=20
+>>  #include <drm/i915_drm.h>
+>> +#include <video/vga.h>
+>>=20=20
+>>  #include "i915_drv.h"
+>>  #include "intel_de.h"
+>> @@ -34,9 +35,9 @@ void intel_vga_disable(struct drm_i915_private *dev_pr=
+iv)
+>>=20=20
+>>  	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
+>>  	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
+>> -	outb(SR01, VGA_SR_INDEX);
+>> -	sr1 =3D inb(VGA_SR_DATA);
+>> -	outb(sr1 | 1 << 5, VGA_SR_DATA);
+>> +	outb(0x01, VGA_SEQ_I);
+>> +	sr1 =3D inb(VGA_SEQ_D);
+>> +	outb(sr1 | VGA_SR01_SCREEN_OFF, VGA_SEQ_D);
+>>  	vga_put(pdev, VGA_RSRC_LEGACY_IO);
+>>  	udelay(300);
+>>=20=20
+>> @@ -92,7 +93,7 @@ void intel_vga_reset_io_mem(struct drm_i915_private *i=
+915)
+>>  	 * and error messages.
+>>  	 */
+>>  	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
+>> -	outb(inb(VGA_MSR_READ), VGA_MSR_WRITE);
+>> +	outb(inb(VGA_MIS_R), VGA_MIS_W);
+>>  	vga_put(pdev, VGA_RSRC_LEGACY_IO);
+>>  }
+>>=20=20
+>> --=20
+>> 2.30.2
 
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
