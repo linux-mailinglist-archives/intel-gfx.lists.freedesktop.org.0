@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 622F64A6E9B
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 11:23:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B3204A6EA5
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 11:25:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 440F510E5B9;
-	Wed,  2 Feb 2022 10:23:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8573810E492;
+	Wed,  2 Feb 2022 10:25:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D13410E5D1;
- Wed,  2 Feb 2022 10:23:28 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61AA010E492;
+ Wed,  2 Feb 2022 10:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643797408; x=1675333408;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=DwShpkMqfnADyZO09QsN+dxveQVMTBFE04oG7QfT3C0=;
- b=Q7KTc6uAh5/ie3F3qFRMR/8RGuypgyT2ZU+5f/6m3xQSsoy7G9Vd07e2
- JjLbc9PHeF3XUgCurIIaQ1AeGMwNeMHpqF9T+V906qyre+8T3kiIV3CVO
- sS7OsJukkKlXN+Nc+5ybYM0yEQl+GpFPGJN1FO0cuEM2LOUngxTueb3Qz
- yc4bi3kFV82dtXknpl1I2EbYkWOwhTnOPiLeUe5ZQ9nEtMrKqaOvDPDN3
- PNWMj8LlF562ecoZUiHjNrpftSNjR958ZScAi93qfE8guKMTHCV6JVv6b
- 0yfW94fy122daU5iiqxiamumRWwc7dKHfk/lMNFAhBeD7FoTwDMahsPNP Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="334245984"
-X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="334245984"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2022 02:23:27 -0800
-X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="480057242"
-Received: from markeyp-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.6.210])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2022 02:23:25 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <YfJOn4RQMAzjaP4i@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1643130139.git.jani.nikula@intel.com>
- <5c061c1610834b9b1b057e6d32b774e7db5500a8.1643130139.git.jani.nikula@intel.com>
- <YfJOn4RQMAzjaP4i@intel.com>
-Date: Wed, 02 Feb 2022 12:23:23 +0200
-Message-ID: <87czk5tvms.fsf@intel.com>
+ t=1643797508; x=1675333508;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=gavjHAthwOTuBGyUGUwSCdP6+AgNSxhgi2C3gzYq5Ys=;
+ b=NsHOyt5RvmvHBKjthmT0hPVP210bT+QdB9q/kZm9rtmiUWk07BNTnPXK
+ BAxu924zSh1plan7eizBh1vQxCiErf06tjEX0xIPKCNZL46zUjs6Yjlrn
+ dopm87Z+SB6auj5+OPTiyVYYPv0+ON7301nZRKCrC61zt4TaomSTyX3B3
+ LmoooKkoKT72TnzuboOmSz0zx8jmQvhFWJ6yyTGKen8ENKkM4KmXIIbf0
+ BWmHoB/HH5mTFCjFEJepdMzFg8RiCSN1qbc83sB2AZEQKUL0UWLpU4EGU
+ RXrnVNKnVQJv048uVJpFH27IFX8LXSKzbM6yTdzWmtCZ695Dz9DphaPDX A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="272370582"
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="272370582"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 02:25:03 -0800
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="630875338"
+Received: from ntaiyeby-mobl1.ger.corp.intel.com (HELO [10.249.254.235])
+ ([10.249.254.235])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 02:25:02 -0800
+Message-ID: <febe0111-073b-000a-e8b6-3e02cae840ae@linux.intel.com>
+Date: Wed, 2 Feb 2022 11:24:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 5/8] drm/i915/dp: rewrite DP 2.0 128b/132b
- link training based on errata
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220126152155.3070602-1-matthew.auld@intel.com>
+ <20220126152155.3070602-11-matthew.auld@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20220126152155.3070602-11-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 10/20] drm/i915/selftests: mock test io_size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,84 +60,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 27 Jan 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, Jan 25, 2022 at 07:03:43PM +0200, Jani Nikula wrote:
-> <snip>
->> +static bool
->> +intel_dp_128b132b_lane_cds(struct intel_dp *intel_dp,
->> +			   const struct intel_crtc_state *crtc_state,
->> +			   int lttpr_count)
->> +{
->> +	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
->> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
->> +	u8 link_status[DP_LINK_STATUS_SIZE];
->> +	unsigned long deadline;
->> +
->> +	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_TRAINING_PATTERN_SET,
->> +			       DP_TRAINING_PATTERN_2_CDS) !=3D 1) {
->> +		drm_err(&i915->drm,
->> +			"[ENCODER:%d:%s] Failed to start 128b/132b TPS2 CDS\n",
->> +			encoder->base.base.id, encoder->base.name);
->> +		return false;
->> +	}
->> +
->> +	deadline =3D jiffies + msecs_to_jiffies((lttpr_count + 1) * 20);
->> +	for (;;) {
->> +		usleep_range(2000, 3000);
->> +
->> +		if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
->> +			drm_err(&i915->drm,
->> +				"[ENCODER:%d:%s] Failed to read link status\n",
->> +				encoder->base.base.id, encoder->base.name);
->> +			return false;
->> +		}
->> +
->> +		if (drm_dp_128b132b_cds_interlane_align_done(link_status) &&
->> +		    drm_dp_128b132b_lane_symbol_locked(link_status, crtc_state->lane_=
-count)) {
+
+On 1/26/22 16:21, Matthew Auld wrote:
+> Check that mappable vs non-mappable matches our expectations.
 >
-> I'm thinkin we want to check for both eq done and symbol locked here,
-> just like we do with 8b10b.
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-I guess so, although I don't think the spec explicitly calls that out.
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-Fixed anyway.
 
+> ---
+>   .../drm/i915/selftests/intel_memory_region.c  | 143 ++++++++++++++++++
+>   1 file changed, 143 insertions(+)
 >
->> +			drm_dbg_kms(&i915->drm,
->> +				    "[ENCODER:%d:%s] CDS interlane align done\n",
->> +				    encoder->base.base.id, encoder->base.name);
->> +			break;
->> +		}
->> +
->> +		if (drm_dp_128b132b_link_training_failed(link_status)) {
->> +			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
->> +			drm_err(&i915->drm,
->> +				"[ENCODER:%d:%s] Downstream link training failure\n",
->> +				encoder->base.base.id, encoder->base.name);
->> +			return false;
->> +		}
->> +
->> +		if (time_after(jiffies, deadline)) {
->> +			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
->> +			drm_err(&i915->drm,
->> +				"[ENCODER:%d:%s] CDS timeout\n",
->> +				encoder->base.base.id, encoder->base.name);
->> +			return false;
->> +		}
->> +	}
->> +
->> +	/* FIXME: Should DP_TRAINING_PATTERN_DISABLE be written first? */
->> +	if (intel_dp->set_idle_link_train)
->> +		intel_dp->set_idle_link_train(intel_dp, crtc_state);
->> +
->> +	return true;
->> +}
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+> diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+> index 247f65f02bbf..04ae29779206 100644
+> --- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+> +++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+> @@ -17,6 +17,7 @@
+>   #include "gem/i915_gem_context.h"
+>   #include "gem/i915_gem_lmem.h"
+>   #include "gem/i915_gem_region.h"
+> +#include "gem/i915_gem_ttm.h"
+>   #include "gem/selftests/igt_gem_utils.h"
+>   #include "gem/selftests/mock_context.h"
+>   #include "gt/intel_engine_pm.h"
+> @@ -512,6 +513,147 @@ static int igt_mock_max_segment(void *arg)
+>   	return err;
+>   }
+>   
+> +static u64 igt_object_mappable_total(struct drm_i915_gem_object *obj)
+> +{
+> +	struct intel_memory_region *mr = obj->mm.region;
+> +	struct i915_ttm_buddy_resource *bman_res =
+> +		to_ttm_buddy_resource(obj->mm.res);
+> +	struct drm_buddy *mm = bman_res->mm;
+> +	struct drm_buddy_block *block;
+> +	u64 total;
+> +
+> +	total = 0;
+> +	list_for_each_entry(block, &bman_res->blocks, link) {
+> +		u64 start = drm_buddy_block_offset(block);
+> +		u64 end = start + drm_buddy_block_size(mm, block);
+> +
+> +		if (start < mr->io_size)
+> +			total += min_t(u64, end, mr->io_size) - start;
+> +	}
+> +
+> +	return total;
+> +}
+> +
+> +static int igt_mock_io_size(void *arg)
+> +{
+> +	struct intel_memory_region *mr = arg;
+> +	struct drm_i915_private *i915 = mr->i915;
+> +	struct drm_i915_gem_object *obj;
+> +	u64 mappable_theft_total;
+> +	u64 io_size;
+> +	u64 total;
+> +	u64 ps;
+> +	u64 rem;
+> +	u64 size;
+> +	I915_RND_STATE(prng);
+> +	LIST_HEAD(objects);
+> +	int err = 0;
+> +
+> +	ps = SZ_4K;
+> +	if (i915_prandom_u64_state(&prng) & 1)
+> +		ps = SZ_64K; /* For something like DG2 */
+> +
+> +	div64_u64_rem(i915_prandom_u64_state(&prng), SZ_8G, &total);
+> +	total = round_down(total, ps);
+> +	total = max_t(u64, total, SZ_1G);
+> +
+> +	div64_u64_rem(i915_prandom_u64_state(&prng), total - ps, &io_size);
+> +	io_size = round_down(io_size, ps);
+> +	io_size = max_t(u64, io_size, SZ_256M); /* 256M seems to be the common lower limit */
+> +
+> +	pr_info("%s with ps=%llx, io_size=%llx, total=%llx\n",
+> +		__func__, ps, io_size, total);
+> +
+> +	mr = mock_region_create(i915, 0, total, ps, 0, io_size);
+> +	if (IS_ERR(mr)) {
+> +		err = PTR_ERR(mr);
+> +		goto out_err;
+> +	}
+> +
+> +	mappable_theft_total = 0;
+> +	rem = total - io_size;
+> +	do {
+> +		div64_u64_rem(i915_prandom_u64_state(&prng), rem, &size);
+> +		size = round_down(size, ps);
+> +		size = max(size, ps);
+> +
+> +		obj = igt_object_create(mr, &objects, size,
+> +					I915_BO_ALLOC_TOPDOWN);
+> +		if (IS_ERR(obj)) {
+> +			pr_err("%s TOPDOWN failed with rem=%llx, size=%llx\n",
+> +			       __func__, rem, size);
+> +			err = PTR_ERR(obj);
+> +			goto out_close;
+> +		}
+> +
+> +		mappable_theft_total += igt_object_mappable_total(obj);
+> +		rem -= size;
+> +	} while (rem);
+> +
+> +	pr_info("%s mappable theft=(%lluMiB/%lluMiB), total=%lluMiB\n",
+> +		__func__,
+> +		(u64)mappable_theft_total >> 20,
+> +		(u64)io_size >> 20,
+> +		(u64)total >> 20);
+> +
+> +	/*
+> +	 * Even if we allocate all of the non-mappable portion, we should still
+> +	 * be able to dip into the mappable portion.
+> +	 */
+> +	obj = igt_object_create(mr, &objects, io_size,
+> +				I915_BO_ALLOC_TOPDOWN);
+> +	if (IS_ERR(obj)) {
+> +		pr_err("%s allocation unexpectedly failed\n", __func__);
+> +		err = PTR_ERR(obj);
+> +		goto out_close;
+> +	}
+> +
+> +	close_objects(mr, &objects);
+> +
+> +	rem = io_size;
+> +	do {
+> +		div64_u64_rem(i915_prandom_u64_state(&prng), rem, &size);
+> +		size = round_down(size, ps);
+> +		size = max(size, ps);
+> +
+> +		obj = igt_object_create(mr, &objects, size, 0);
+> +		if (IS_ERR(obj)) {
+> +			pr_err("%s MAPPABLE failed with rem=%llx, size=%llx\n",
+> +			       __func__, rem, size);
+> +			err = PTR_ERR(obj);
+> +			goto out_close;
+> +		}
+> +
+> +		if (igt_object_mappable_total(obj) != size) {
+> +			pr_err("%s allocation is not mappable(size=%llx)\n",
+> +			       __func__, size);
+> +			err = -EINVAL;
+> +			goto out_close;
+> +		}
+> +		rem -= size;
+> +	} while (rem);
+> +
+> +	/*
+> +	 * We assume CPU access is required by default, which should result in a
+> +	 * failure here, even though the non-mappable portion is free.
+> +	 */
+> +	obj = igt_object_create(mr, &objects, ps, 0);
+> +	if (!IS_ERR(obj)) {
+> +		pr_err("%s allocation unexpectedly succeeded\n", __func__);
+> +		err = -EINVAL;
+> +		goto out_close;
+> +	}
+> +
+> +out_close:
+> +	close_objects(mr, &objects);
+> +	intel_memory_region_destroy(mr);
+> +out_err:
+> +	if (err == -ENOMEM)
+> +		err = 0;
+> +
+> +	return err;
+> +}
+> +
+>   static int igt_gpu_write_dw(struct intel_context *ce,
+>   			    struct i915_vma *vma,
+>   			    u32 dword,
+> @@ -1179,6 +1321,7 @@ int intel_memory_region_mock_selftests(void)
+>   		SUBTEST(igt_mock_contiguous),
+>   		SUBTEST(igt_mock_splintered_region),
+>   		SUBTEST(igt_mock_max_segment),
+> +		SUBTEST(igt_mock_io_size),
+>   	};
+>   	struct intel_memory_region *mem;
+>   	struct drm_i915_private *i915;
