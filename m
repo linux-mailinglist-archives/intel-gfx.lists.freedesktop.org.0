@@ -2,50 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 179E14A6FE4
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 12:25:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55BE44A6FE7
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 12:25:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5441910E599;
-	Wed,  2 Feb 2022 11:25:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73A6410E67E;
+	Wed,  2 Feb 2022 11:25:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F38B10E68E
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Feb 2022 11:25:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DBD810E5F9
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Feb 2022 11:25:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643801126; x=1675337126;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RIZZCd4F3lFG0jO3UySd4bIpJ+g2/FvAJehLQoFPTW4=;
- b=MiNKdmXHCpgUmm7sQnmR+Czk1cLP17V9cOWQtDXCm7VgP8zpd3nCxPKm
- 0UuKMic8p4cL6Pgosy/SVPiqmQdKPosdmRwTabk0Z3ryVIfpohjOhsJYi
- BrGjt3tftpPkhk00b4E1lBdXEcNls7E06l31kSzD9meDR+ez4pUehsBpv
- bXgjSp50jT/j7UhRM7yQhboByvPierW+uqD1di+FeWshDs83xCD6TtO7r
- c5iRF6U/oQ2oiBBPF+WZOoqHiobhTYoy0rYEQhGGcoL/XniVJ2j7kvRmw
- sfyMwEY72WAxoEmd0kIsZkfrgMRwwB0yZ4SCCw6WRbF/c/k3lKTQzr7sD Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="231465622"
-X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="231465622"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ t=1643801154; x=1675337154;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=bwlIRQ9abnO3iuFHhtuQK0fBSObDtve7TqmWOVyg0js=;
+ b=Sh25fdAqHCFOMs0t1ZrvzzvJAbCiTzPeBiklYwQ1wdXRQWegH+L/v8NF
+ uJBJ8LCtC0lGxmeCq2coZNNq/KxTYymMH3JT4xjr53JDUkgs4zMmRU8ZI
+ SkETFNDtG0D0imQ35RY5UeeZmgnoOceE6jPljbyyUni8Air/Zf0LZi4v7
+ OlDJyzseHSjMW4cuoWLM8DYoERggE89/3AINBUnMkVY9l8x9cDSgIiJGL
+ Ajv6NUV1SR1+vT4sO/FtmAAc3Ah/df/J9Vwdv9j7Hr+6VTA2OGe7Eusiz
+ QAwjvTWJ7PTl5pdO9z1qvBveRJWRwtVMFSSvudO00d2jKPYRkOfR37J0E g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="231465700"
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="231465700"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2022 03:25:25 -0800
-X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="698864222"
+ 02 Feb 2022 03:25:53 -0800
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="630889247"
 Received: from markeyp-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.6.210])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2022 03:25:24 -0800
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 03:25:52 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  2 Feb 2022 13:25:09 +0200
-Message-Id: <20220202112509.1886660-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220202112509.1886660-1-jani.nikula@intel.com>
-References: <20220202112509.1886660-1-jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <Yfpbceq3zV3qIm3n@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915: remove VGA register definitions
+References: <20220110095740.166078-1-jani.nikula@intel.com>
+ <20220110095740.166078-3-jani.nikula@intel.com>
+ <YdxYvXfkOgTFFg+s@intel.com> <87pmoy8xdb.fsf@intel.com>
+ <Yd7WmT4naDadKVoh@intel.com> <87iltxtyp4.fsf@intel.com>
+ <Yfpbceq3zV3qIm3n@intel.com>
+Date: Wed, 02 Feb 2022 13:25:49 +0200
+Message-ID: <877dadtsqq.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/vga: switch to use VGA
+ definitions from video/vga.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,73 +62,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The only user of the VGA registers has switched to using the definitions
-in linux/vga.h, so these have become redundant. Remove them.
+On Wed, 02 Feb 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+>> I dropped the ball here a bit. If I respin the same patches, but with
+>> the above line changed to one of these, is it okay? Which do you prefer?
+>>=20
+>> 1)	outb(VGA_SEQ_CLOCK_MODE, VGA_SEQ_I); /* SR01 */
+>>=20
+>> 2)	#define SR01 VGA_SEQ_CLOCK_MODE
+>> 	outb(SR01, VGA_SEQ_I);
+>>=20
+>> 3)	outb(0x01, VGA_SEQ_I);
+>
+> 3 seems like the best option of these.
 
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_reg.h | 41 ---------------------------------
- 1 file changed, 41 deletions(-)
+Thanks, v2 on the list.
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 0f36af8dc3a1..48645240d3e7 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -370,48 +370,7 @@
- #define GEN6_STOLEN_RESERVED_ENABLE	(1 << 0)
- #define GEN11_STOLEN_RESERVED_ADDR_MASK	(0xFFFFFFFFFFFULL << 20)
- 
--/* VGA stuff */
--
--#define VGA_ST01_MDA 0x3ba
--#define VGA_ST01_CGA 0x3da
--
- #define _VGA_MSR_WRITE _MMIO(0x3c2)
--#define VGA_MSR_WRITE 0x3c2
--#define VGA_MSR_READ 0x3cc
--#define   VGA_MSR_MEM_EN (1 << 1)
--#define   VGA_MSR_CGA_MODE (1 << 0)
--
--#define VGA_SR_INDEX 0x3c4
--#define SR01			1
--#define VGA_SR_DATA 0x3c5
--
--#define VGA_AR_INDEX 0x3c0
--#define   VGA_AR_VID_EN (1 << 5)
--#define VGA_AR_DATA_WRITE 0x3c0
--#define VGA_AR_DATA_READ 0x3c1
--
--#define VGA_GR_INDEX 0x3ce
--#define VGA_GR_DATA 0x3cf
--/* GR05 */
--#define   VGA_GR_MEM_READ_MODE_SHIFT 3
--#define     VGA_GR_MEM_READ_MODE_PLANE 1
--/* GR06 */
--#define   VGA_GR_MEM_MODE_MASK 0xc
--#define   VGA_GR_MEM_MODE_SHIFT 2
--#define   VGA_GR_MEM_A0000_AFFFF 0
--#define   VGA_GR_MEM_A0000_BFFFF 1
--#define   VGA_GR_MEM_B0000_B7FFF 2
--#define   VGA_GR_MEM_B0000_BFFFF 3
--
--#define VGA_DACMASK 0x3c6
--#define VGA_DACRX 0x3c7
--#define VGA_DACWX 0x3c8
--#define VGA_DACDATA 0x3c9
--
--#define VGA_CR_INDEX_MDA 0x3b4
--#define VGA_CR_DATA_MDA 0x3b5
--#define VGA_CR_INDEX_CGA 0x3d4
--#define VGA_CR_DATA_CGA 0x3d5
- 
- #define MI_PREDICATE_SRC0	_MMIO(0x2400)
- #define MI_PREDICATE_SRC0_UDW	_MMIO(0x2400 + 4)
--- 
-2.30.2
+BR,
+Jani.
 
+--=20
+Jani Nikula, Intel Open Source Graphics Center
