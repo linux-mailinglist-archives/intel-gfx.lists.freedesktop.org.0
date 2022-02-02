@@ -1,33 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC71E4A76BA
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 18:21:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 492E64A76E8
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 18:33:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AE2910E3AB;
-	Wed,  2 Feb 2022 17:21:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA3F510E364;
+	Wed,  2 Feb 2022 17:33:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4332310E3AC;
- Wed,  2 Feb 2022 17:21:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3F308A00FD;
- Wed,  2 Feb 2022 17:21:44 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 792FA10E2AD;
+ Wed,  2 Feb 2022 17:33:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643823206; x=1675359206;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1ZLpAxC0iEhZmcJsrxGtVBI9hXu4lZ6HlAiLywFzm+g=;
+ b=bU0pUUrhCAQC36zWTnEWIye0EHN+zm2q3is4JkLmvGN4Je+lfxlVnqx2
+ C95wrWjrw2xvAF1/Jk4fHn/46cVcQkszyWG1Y6XrvVcu6rfC/iFjtoMva
+ sgG8iPn4RAZlZyUfWgSAT33dclEUw/Zdk7y6GkADhkrpOqkF5xfJDmYSw
+ RPz9kFvVGWmEC+I/ZEMtxIxeq6rOWPIy5E3X5wcX2gD4kYtO+vt0YhgBC
+ iRsV2m7zWXtUkBlIdSX9on7ZU285QqrN8U5u5YhntCyRkL1KBhaO/6Ode
+ K/MS6gtjKfE77gySu7w72skBGDg5bvAWNi6ZUBtulWYfQ4enPGed4vAPL Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10246"; a="247748576"
+X-IronPort-AV: E=Sophos;i="5.88,337,1635231600"; d="scan'208";a="247748576"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 09:32:48 -0800
+X-IronPort-AV: E=Sophos;i="5.88,337,1635231600"; d="scan'208";a="769354096"
+Received: from msiebert-mobl2.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.31.225])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 09:32:47 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  2 Feb 2022 17:31:54 +0000
+Message-Id: <20220202173154.3758970-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 02 Feb 2022 17:21:44 -0000
-Message-ID: <164382250422.12660.4010091790007559964@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220202124056.317693-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20220202124056.317693-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915=3A_Fix_vma_lifetime_=28rev2=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: opportunistically apply
+ ALLOC_CONTIGIOUS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +56,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+It looks like this code was accidentally dropped at some point(in a
+slightly different form), so add it back. The gist is that if we know
+the allocation will be one single chunk, then we can just annotate the
+BO with I915_BO_ALLOC_CONTIGUOUS, even if the user doesn't bother. In
+the future this might prove to be potentially useful.
 
-Series: drm/i915: Fix vma lifetime (rev2)
-URL   : https://patchwork.freedesktop.org/series/99618/
-State : warning
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_region.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+index a4350227e9ae..dd414a2bcb06 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+@@ -57,6 +57,9 @@ i915_gem_object_create_region(struct intel_memory_region *mem,
+ 
+ 	size = round_up(size, default_page_size);
+ 
++	if (default_page_size == size)
++		flags |= I915_BO_ALLOC_CONTIGUOUS;
++
+ 	GEM_BUG_ON(!size);
+ 	GEM_BUG_ON(!IS_ALIGNED(size, I915_GTT_MIN_ALIGNMENT));
+ 
+-- 
+2.34.1
 
