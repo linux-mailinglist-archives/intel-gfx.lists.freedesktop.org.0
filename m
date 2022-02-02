@@ -2,55 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ABA44A6FA4
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 12:11:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE77F4A6FBD
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 12:16:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D63110E626;
-	Wed,  2 Feb 2022 11:11:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D92010E831;
+	Wed,  2 Feb 2022 11:16:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com
- [IPv6:2607:f8b0:4864:20::b2d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59F5C10E9D7
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Feb 2022 11:11:01 +0000 (UTC)
-Received: by mail-yb1-xb2d.google.com with SMTP id i10so59769586ybt.10
- for <intel-gfx@lists.freedesktop.org>; Wed, 02 Feb 2022 03:11:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar-org.20210112.gappssmtp.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=5o2JVyWPjvF0CuBYdtH6rf3OCwSu8v5z/m2E3EDxEVQ=;
- b=6JC4qWqQoyur6n49lXlwJ8argU2sfdQwrI+5UZ/cAgJfz/Wny6UxNwpfY4nKvjDOf4
- bC8yqlshTJqy2m9fSfRZx1mHvZHvU9NCnbTm2Hz8QKFGXNmTLuF2q/PQPQcJnF2rdPfI
- 7EQ8tQsgBfjmBUJ7GKHlLlmXRyoppvNp37bOKrZ4l/v573+8dKE7AtQOjDIqDzNUrl5O
- M5dmxC6WklOEBh19YK8riY5u60LO+BbHsdTedAZO8mKbSRT+bkvd5WqWMzTGa0MP8bsy
- i2QRtLbgjqRDiIiagTRyBHl/amtF7ScuFdW7LxgXu1qUFnOZTEOkenxrGPpIREqp5/KT
- gUXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=5o2JVyWPjvF0CuBYdtH6rf3OCwSu8v5z/m2E3EDxEVQ=;
- b=N9Z6CS2cIDi5xs64fw7oU2Q/XGfBOtrbIpif8yCkZDAhIlNrCx8wXj2DDcuqhrLWrT
- eRAMc3BE0dllsvztgU1QRP6+2kH9g8l+KIg9sCM8fJQbnOcEsPp/fbaDPfBajrcExsO1
- d0FxdV98Iw/clWuVDYyC+O+VqeXIVIbz9zB8sfCei/raGAAR93XUTeMTjaFBwL80x+Jh
- aaQAwy0CWD3BQ7TMQNKaoBigOhS5XqAqQRgSTtizfxr1M0eeASqcCfNDWmHRTIOzMLSQ
- QIlqIyqvSwuMYT85wPr3OjcEa5HxxjWEFRFq/Aq+cLheIGq7cOxpjrKTEUsWWlpRmeOU
- 98RA==
-X-Gm-Message-State: AOAM533lUugSO4NZCaOchCoTkHS0ktchF+J7iw4O+IV36Nb1SA3MWlBw
- UGavoOUB82JG5bo9dBPN82VxYLRi85w1U8gFLS1wAA==
-X-Google-Smtp-Source: ABdhPJxXYTqOt/oSe5PrM2Wrpx8vatAUxY/eNAT3jcriiGBCZwZLVaTevoVERbyDMHiO0clxqoChrMTzgZvvtsyVmcE=
-X-Received: by 2002:a25:a206:: with SMTP id b6mr20061500ybi.707.1643800260369; 
- Wed, 02 Feb 2022 03:11:00 -0800 (PST)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77FA510E831
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Feb 2022 11:16:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643800580; x=1675336580;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=J11x25urdNyMt6VbosnWSqYHJYI3aSfL2nvMXO5IWOo=;
+ b=hIGVAS6uIfMWBnTd/h5D0SCKGv2kiXhH4mYVNwqkSDsR/Iu2tITz7Fkg
+ +3qXVUzXWx53fZFBRE1xr2RKKG3OroJRjKfMd0P/R75FyRZZ4s5knH43d
+ 6Sg1yEQtrA7XM+XzRQUzGCYn9JOC5h7qAcLSs9xjhGKJRQcsDTE4MmLAG
+ sAdMm1fsmw7C8PQfitDPtTSfpn40WpXCaD9D025ECylFmZUbZx232yiMm
+ NjJhvWtN4vvTWLE0GsdOekhh5AvozSgyJqr7dFXOB3CHw5VU1OXqnuyYW
+ 6p4hd3P16h3T1X5Ttney+lJYlvsoso9AdIMy4jS1BFVnwmr9JdOAz4pKb A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="248114851"
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="248114851"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 03:16:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="482792527"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga006.jf.intel.com with SMTP; 02 Feb 2022 03:16:17 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 02 Feb 2022 13:16:16 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  2 Feb 2022 13:16:13 +0200
+Message-Id: <20220202111616.1579-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
- <20220131210552.482606-2-daniel.vetter@ffwll.ch>
-In-Reply-To: <20220131210552.482606-2-daniel.vetter@ffwll.ch>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Wed, 2 Feb 2022 11:10:49 +0000
-Message-ID: <CAPj87rMhkdtoUHTB4y4HLR8KM2tPkQCufFcHbvA0_xHycCHmhg@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH 01/21] MAINTAINERS: Add entry for fbdev core
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Move PIPE_CHICKEN RMW out from
+ the vblank evade critical section
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,48 +57,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
- Sven Schnelle <svens@stackframe.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 31 Jan 2022 at 21:06, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> Ever since Tomi extracted the core code in 2014 it's been defacto me
-> maintaining this, with help from others from dri-devel and sometimes
-> Linus (but those are mostly merge conflicts):
->
-> $ git shortlog -ns  drivers/video/fbdev/core/ | head -n5
->     35  Daniel Vetter
->     23  Linus Torvalds
->     10  Hans de Goede
->      9  Dave Airlie
->      6  Peter Rosin
->
-> I think ideally we'd also record that the various firmware fb drivers
-> (efifb, vesafb, ...) are also maintained in drm-misc because for the
-> past few years the patches have either been to fix handover issues
-> with drm drivers, or caused handover issues with drm drivers. So any
-> other tree just doesn't make sense. But also, there's plenty of
-> outdated MAINTAINER entries for these with people and git trees that
-> haven't been active in years, so maybe let's just leave them alone.
-> And furthermore distros are now adopting simpledrm as the firmware fb
-> driver, so hopefully the need to care about the fbdev firmware drivers
-> will go down going forward.
->
-> Note that drm-misc is group maintained, I expect that to continue like
-> we've done before, so no new expectations that patches all go through
-> my hands. That would be silly. This also means I'm happy to put any
-> other volunteer's name in the M: line, but otherwise git log says I'm
-> the one who's stuck with this.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Acked-by: Daniel Stone <daniels@collabora.com>
+We don't want any RMWs in the part of the commit that happens
+under vblank evasion. Eventually we want to use the DSB to
+handle that and it can't read registers at all. Also reads
+are just slowing us down needlessly.
+
+Let's move the whole PIPE_CHICKEN stuff out from the critical
+section since we don't have anything there that needs to be
+syncrhonized with other plane/pipe registers. If we ever need
+to add such things then we have to move it back, but without
+doing any reads.
+
+TODO: should look into eliminating the RMW anyway...
+
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c431076f98a1..05713b64d4bc 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -8121,9 +8121,6 @@ static void intel_pipe_fastset(const struct intel_crtc_state *old_crtc_state,
+ 	if (DISPLAY_VER(dev_priv) >= 9 ||
+ 	    IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+ 		hsw_set_linetime_wm(new_crtc_state);
+-
+-	if (DISPLAY_VER(dev_priv) >= 11)
+-		icl_set_pipe_chicken(new_crtc_state);
+ }
+ 
+ static void commit_pipe_pre_planes(struct intel_atomic_state *state,
+@@ -8215,6 +8212,10 @@ static void intel_update_crtc(struct intel_atomic_state *state,
+ 
+ 		if (new_crtc_state->update_pipe)
+ 			intel_encoders_update_pipe(state, crtc);
++
++		if (DISPLAY_VER(dev_priv) >= 11 &&
++		    new_crtc_state->update_pipe)
++			icl_set_pipe_chicken(new_crtc_state);
+ 	}
+ 
+ 	intel_fbc_update(state, crtc);
+-- 
+2.34.1
+
