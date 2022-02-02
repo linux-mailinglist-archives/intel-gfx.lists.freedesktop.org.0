@@ -2,47 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C4EE4A6CAF
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 09:08:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5C94A6D26
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Feb 2022 09:46:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4787210F9BA;
-	Wed,  2 Feb 2022 08:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2496A10FABB;
+	Wed,  2 Feb 2022 08:46:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C21AB10F9B7;
- Wed,  2 Feb 2022 08:08:45 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0ED9810FAB6;
+ Wed,  2 Feb 2022 08:46:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643789325; x=1675325325;
- h=from:to:cc:subject:date:message-id:in-reply-to: references;
- bh=SfRemAym7QZpOzjfvQoZ2VzDjXns70gzkqH86CgpSqY=;
- b=kCUIsykIAF8nA35peLiVgaRRu44gNdY1eOTX4qkO4O8kMsNhMOM6oHI5
- VTcs2e8vltZu7hgj6o2Gv0H3d3FfxsfHR7ArVmOHoPOYrSK0eJ9CpYye5
- 1sQY2aPFofPX6kuNoeIwIh+l43ezgtZfgBGHCnrMqT3HTlU1uWQJDYpif
- I945jr20Z4uMqNZ4pXys5QD5e0gJvMNO2DhxrLkjNzqsMu8iB1JWxTJjd
- SQ2J2vrRJidmmPMZPPlRoRw9jsTvWzx3jAEj/wOID8wxzGU7560nl2hxN
- NCOZ6rSjspqxihnH5+0v2O8TEvdjj3COIw/Op1nF/IKTpujLKQrJUPcSA Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="247637958"
-X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="247637958"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2022 00:08:45 -0800
+ t=1643791570; x=1675327570;
+ h=from:to:cc:subject:date:message-id;
+ bh=BKAe7KQSH7VwiS6EUKJCmx3cV1mOB34zyEioaB9aJOY=;
+ b=l15YWgL1TE5nxxdMYhF465OWxVovzx3lVR0Tlsom4NWPy0fjRH4h3X24
+ 7flhf9JvE+PuZVsoDi3p792HUakx6kDoWq6yfeCvjr2A+anztg70HUdUO
+ TR4Zhjx+uRZLSMj6HoD/z9dgJPmjfZgVq75vpa1pyvabUVPQQsJGDVg3D
+ Zhv4aD+f+zOIhvMYl03IfpxVNSds0Pc7QJGXZDgFJpzIXOeHUwht4TNaJ
+ Sh6V9fadmnwBa3QjDdwn4qKcOsCEOXsmQ3nU1FUC9W/8zeSuHvOUCcJan
+ MMS+h+mq/hDk0ZNnvkdtNtqJCgfWAXtAAXtAg1bfzU+d6Da0n/YzZ4M1h Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="228528764"
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="228528764"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2022 00:46:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="771368046"
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; d="scan'208";a="497674987"
 Received: from srr4-3-linux-116-skandpal.iind.intel.com ([10.190.238.57])
- by fmsmga005.fm.intel.com with ESMTP; 02 Feb 2022 00:08:42 -0800
+ by orsmga002.jf.intel.com with ESMTP; 02 Feb 2022 00:46:06 -0800
 From: Kandpal Suraj <suraj.kandpal@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Wed,  2 Feb 2022 13:47:02 +0530
-Message-Id: <20220202081702.22119-6-suraj.kandpal@intel.com>
+Date: Wed,  2 Feb 2022 14:24:23 +0530
+Message-Id: <20220202085429.22261-1-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220202081702.22119-1-suraj.kandpal@intel.com>
-References: <20220111101801.28310-1-suraj.kandpal@intel.com>
- <20220202081702.22119-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] [PATCH v2 6/6] drm/arm: changes to malidp driver
- resulting from drm_writeback_connector structure changes
+Subject: [Intel-gfx] [PATCH 0/6] drm writeback connector changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,86 +56,42 @@ Cc: carsten.haitzler@arm.com, jani.nikula@intel.com, quic_abhinavk@quicinc.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Changing malidp driver to accomadate the change of
-drm_writeback_connector.base and drm_writeback_connector.encoder
-to a pointer the reason for which is explained in the
-Patch(drm: add writeback pointers to drm_connector).
+This patch series contains drm_writeback_connector structure change i.e 
+change of drm_connector and drm_encoder fields to a pointer the reason
+for which is explained in patch(1/6) drm: add writeback pointers to
+drm_connector and the accompanying changes to the different drivers that
+were effected by it.
+I had perviously floated a patch series but missed some of the drivers
+that were effected by the change hence refloating the patch series 
 
-Signed-off-by: Kandpal Suraj <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/arm/malidp_crtc.c |  2 +-
- drivers/gpu/drm/arm/malidp_drv.h  |  2 ++
- drivers/gpu/drm/arm/malidp_mw.c   | 12 ++++++++----
- 3 files changed, 11 insertions(+), 5 deletions(-)
+Kandpal Suraj (6):
+  drm: add writeback pointers to drm_connector
+  drm/arm/komeda : change driver to use drm_writeback_connector.base
+    pointer
+  drm/vkms: change vkms driver to use drm_writeback_connector.base
+    pointer
+  drm/vc4: vc4 driver changes to accommodate changes done in
+    drm_writeback_connector structure
+  drm/rcar_du: changes to rcar-du driver resulting from
+    drm_writeback_connector structure changes
+  drm/arm: changes to malidp driver resulting from
+    drm_writeback_connector structure changes
 
-diff --git a/drivers/gpu/drm/arm/malidp_crtc.c b/drivers/gpu/drm/arm/malidp_crtc.c
-index 494075ddbef6..294aacd4beef 100644
---- a/drivers/gpu/drm/arm/malidp_crtc.c
-+++ b/drivers/gpu/drm/arm/malidp_crtc.c
-@@ -424,7 +424,7 @@ static int malidp_crtc_atomic_check(struct drm_crtc *crtc,
- 		u32 new_mask = crtc_state->connector_mask;
- 
- 		if ((old_mask ^ new_mask) ==
--		    (1 << drm_connector_index(&malidp->mw_connector.base)))
-+		    (1 << drm_connector_index(malidp->mw_connector.base)))
- 			crtc_state->connectors_changed = false;
- 	}
- 
-diff --git a/drivers/gpu/drm/arm/malidp_drv.h b/drivers/gpu/drm/arm/malidp_drv.h
-index cdfddfabf2d1..971810a685f1 100644
---- a/drivers/gpu/drm/arm/malidp_drv.h
-+++ b/drivers/gpu/drm/arm/malidp_drv.h
-@@ -31,6 +31,8 @@ struct malidp_error_stats {
- struct malidp_drm {
- 	struct malidp_hw_device *dev;
- 	struct drm_crtc crtc;
-+	struct drm_connector connector;
-+	struct drm_encoder encoder;
- 	struct drm_writeback_connector mw_connector;
- 	wait_queue_head_t wq;
- 	struct drm_pending_vblank_event *event;
-diff --git a/drivers/gpu/drm/arm/malidp_mw.c b/drivers/gpu/drm/arm/malidp_mw.c
-index f5847a79dd7e..9bd2e400cd3d 100644
---- a/drivers/gpu/drm/arm/malidp_mw.c
-+++ b/drivers/gpu/drm/arm/malidp_mw.c
-@@ -206,21 +206,25 @@ static u32 *get_writeback_formats(struct malidp_drm *malidp, int *n_formats)
- int malidp_mw_connector_init(struct drm_device *drm)
- {
- 	struct malidp_drm *malidp = drm->dev_private;
-+	struct drm_writeback_connector *wb_conn;
- 	u32 *formats;
- 	int ret, n_formats;
- 
- 	if (!malidp->dev->hw->enable_memwrite)
- 		return 0;
- 
--	malidp->mw_connector.encoder.possible_crtcs = 1 << drm_crtc_index(&malidp->crtc);
--	drm_connector_helper_add(&malidp->mw_connector.base,
-+	wb_conn = &malidp->mw_connector;
-+	wb_conn->base = &malidp->connector;
-+	wb_conn->encoder = &malidp->encoder;
-+	malidp->mw_connector.encoder->possible_crtcs = 1 << drm_crtc_index(&malidp->crtc);
-+	drm_connector_helper_add(wb_conn->base,
- 				 &malidp_mw_connector_helper_funcs);
- 
- 	formats = get_writeback_formats(malidp, &n_formats);
- 	if (!formats)
- 		return -ENOMEM;
- 
--	ret = drm_writeback_connector_init(drm, &malidp->mw_connector,
-+	ret = drm_writeback_connector_init(drm, wb_conn,
- 					   &malidp_mw_connector_funcs,
- 					   &malidp_mw_encoder_helper_funcs,
- 					   formats, n_formats);
-@@ -236,7 +240,7 @@ void malidp_mw_atomic_commit(struct drm_device *drm,
- {
- 	struct malidp_drm *malidp = drm->dev_private;
- 	struct drm_writeback_connector *mw_conn = &malidp->mw_connector;
--	struct drm_connector_state *conn_state = mw_conn->base.state;
-+	struct drm_connector_state *conn_state = mw_conn->base->state;
- 	struct malidp_hw_device *hwdev = malidp->dev;
- 	struct malidp_mw_connector_state *mw_state;
- 
+ .../gpu/drm/arm/display/komeda/komeda_crtc.c  |  2 +-
+ .../gpu/drm/arm/display/komeda/komeda_kms.h   |  3 ++-
+ .../arm/display/komeda/komeda_wb_connector.c  | 11 +++++-----
+ drivers/gpu/drm/arm/malidp_crtc.c             |  2 +-
+ drivers/gpu/drm/arm/malidp_drv.h              |  2 ++
+ drivers/gpu/drm/arm/malidp_mw.c               | 12 +++++++----
+ drivers/gpu/drm/drm_writeback.c               | 19 +++++++++---------
+ drivers/gpu/drm/rcar-du/rcar_du_crtc.h        |  2 ++
+ drivers/gpu/drm/rcar-du/rcar_du_writeback.c   |  8 +++++---
+ drivers/gpu/drm/vc4/vc4_txp.c                 | 20 +++++++++++++------
+ drivers/gpu/drm/vkms/vkms_writeback.c         |  9 ++++++---
+ include/drm/drm_connector.h                   |  3 +++
+ include/drm/drm_writeback.h                   |  6 +++---
+ 13 files changed, 63 insertions(+), 36 deletions(-)
+
 -- 
 2.17.1
 
