@@ -2,32 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B59C54A84DF
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 14:06:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E3D24A8528
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 14:29:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E65C410F5D5;
-	Thu,  3 Feb 2022 13:06:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70DC310F62E;
+	Thu,  3 Feb 2022 13:29:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4C9D810F5BF;
- Thu,  3 Feb 2022 13:06:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 485E8A7DFC;
- Thu,  3 Feb 2022 13:06:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0361509227146878958=="
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65FF710F08C;
+ Thu,  3 Feb 2022 13:29:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643894988; x=1675430988;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=A/u9HXwZFHV5s+T9RPepJKYBNaTpSuqwleyNCrynCXQ=;
+ b=SMyINBcCqrd8CbS5qREHTz/B2ei+f2f635mMEDTYLSQrck5HkMg7G5Oo
+ ciYPCgI+rZBrH78182rQC+HdDt4vujLBN5zYPlEmUub1e9voHGPco3STg
+ tuUmGgD7DgOotbZzveWYNQjtIstEESo0Bj6Yy1MwYe/kUcooLKKDQWVCs
+ p5SFz7BE4AQj8+luABBek5I/QRiExwv+z13q2WuioksxIMJIdJDWwjhci
+ 1BuxujwHRiagmtgmngy5R0SX/pU+7dMNBQ1DvZL8kNbuxRVk10gQsXayE
+ GzpO9KH0lpN2ldLEKOwsCJ7hD5PzgaxQpGneJjpof5mgx85/o55j/7nYQ Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10246"; a="248357363"
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="248357363"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 05:29:47 -0800
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="676769887"
+Received: from cmathias-mobl1.ger.corp.intel.com (HELO [10.249.254.246])
+ ([10.249.254.246])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 05:29:46 -0800
+Message-ID: <ae383e77d0dc80b7f3a60eec4b4ef004fc3aafc2.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org, 
+ "Bloomfield, Jon" <jon.bloomfield@intel.com>
+Date: Thu, 03 Feb 2022 14:29:43 +0100
+In-Reply-To: <79378fce-e917-f5f7-d133-92b73a0e7b91@intel.com>
+References: <20220126152155.3070602-1-matthew.auld@intel.com>
+ <20220126152155.3070602-18-matthew.auld@intel.com>
+ <e9007965-a122-9f4d-e0fd-cfd2a8e1fb3d@linux.intel.com>
+ <79378fce-e917-f5f7-d133-92b73a0e7b91@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Thu, 03 Feb 2022 13:06:37 -0000
-Message-ID: <164389359725.15869.14106008093904459677@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220203085614.3896538-1-lucas.demarchi@intel.com>
-In-Reply-To: <20220203085614.3896538-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZG1h?=
- =?utf-8?q?-buf-map=3A_Rename_to_iosys-map_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 17/20] drm/i915/uapi: add NEEDS_CPU_ACCESS
+ hint
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,274 +62,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0361509227146878958==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 2022-02-03 at 11:38 +0000, Matthew Auld wrote:
+> On 03/02/2022 09:28, Thomas Hellström wrote:
+> > 
+> > On 1/26/22 16:21, Matthew Auld wrote:
+> > > If set, force the allocation to be placed in the mappable portion
+> > > of
+> > > LMEM. One big restriction here is that system memory must be
+> > > given as a
+> > > potential placement for the object, that way we can always spill
+> > > the
+> > > object into system memory if we can't make space.
+> > > 
+> > > XXX: Still very much WIP and needs IGTs. Including now just for
+> > > the sake
+> > > of having more complete picture.
+> > > 
+> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > ---
+> > >   drivers/gpu/drm/i915/gem/i915_gem_create.c | 28 ++++++++++++---
+> > > ----
+> > >   include/uapi/drm/i915_drm.h                | 31
+> > > +++++++++++++++++++++-
+> > >   2 files changed, 49 insertions(+), 10 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c 
+> > > b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> > > index e7456443f163..98d63cb21e94 100644
+> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> > > @@ -238,6 +238,7 @@ struct create_ext {
+> > >       struct drm_i915_private *i915;
+> > >       struct intel_memory_region
+> > > *placements[INTEL_REGION_UNKNOWN];
+> > >       unsigned int n_placements;
+> > > +    unsigned int placement_mask;
+> > >       unsigned long flags;
+> > >   };
+> > > @@ -334,6 +335,7 @@ static int set_placements(struct 
+> > > drm_i915_gem_create_ext_memory_regions *args,
+> > >       for (i = 0; i < args->num_regions; i++)
+> > >           ext_data->placements[i] = placements[i];
+> > > +    ext_data->placement_mask = mask;
+> > >       return 0;
+> > >   out_dump:
+> > > @@ -408,7 +410,7 @@ i915_gem_create_ext_ioctl(struct drm_device
+> > > *dev, 
+> > > void *data,
+> > >       struct drm_i915_gem_object *obj;
+> > >       int ret;
+> > > -    if (args->flags)
+> > > +    if (args->flags &
+> > > ~I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS)
+> > >           return -EINVAL;
+> > >       ret = i915_user_extensions(u64_to_user_ptr(args-
+> > > >extensions),
+> > > @@ -424,14 +426,22 @@ i915_gem_create_ext_ioctl(struct drm_device
+> > > *dev, void *data,
+> > >           ext_data.n_placements = 1;
+> > >       }
+> > > -    /*
+> > > -     * TODO: add a userspace hint to force CPU_ACCESS for the
+> > > object, 
+> > > which
+> > > -     * can override this.
+> > > -     */
+> > > -    if (!IS_DG1(i915) && (ext_data.n_placements > 1 ||
+> > > -                  ext_data.placements[0]->type !=
+> > > -                  INTEL_MEMORY_SYSTEM))
+> > > -        ext_data.flags |= I915_BO_ALLOC_TOPDOWN;
+> > > +    if (args->flags & I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS)
+> > > {
+> > > +        if (ext_data.n_placements == 1)
+> > > +            return -EINVAL;
+> > > +
+> > > +        /*
+> > > +         * We always need to be able to spill to system memory,
+> > > if we
+> > > +         * can't place in the mappable part of LMEM.
+> > > +         */
+> > > +        if (!(ext_data.placement_mask & BIT(INTEL_REGION_SMEM)))
+> > > +            return -EINVAL;
+> > > +    } else {
+> > > +        if (!IS_DG1(i915) && (ext_data.n_placements > 1 ||
+> > > +                      ext_data.placements[0]->type !=
+> > > +                      INTEL_MEMORY_SYSTEM))
+> > > +            ext_data.flags |= I915_BO_ALLOC_TOPDOWN;
+> > > +    }
+> > >       obj = __i915_gem_object_create_user_ext(i915, args->size,
+> > >                           ext_data.placements,
+> > > diff --git a/include/uapi/drm/i915_drm.h
+> > > b/include/uapi/drm/i915_drm.h
+> > > index 914ebd9290e5..ecfa805549a7 100644
+> > > --- a/include/uapi/drm/i915_drm.h
+> > > +++ b/include/uapi/drm/i915_drm.h
+> > > @@ -3157,7 +3157,36 @@ struct drm_i915_gem_create_ext {
+> > >        * Object handles are nonzero.
+> > >        */
+> > >       __u32 handle;
+> > > -    /** @flags: MBZ */
+> > > +    /**
+> > > +     * @flags: Optional flags.
+> > > +     *
+> > > +     * Supported values:
+> > > +     *
+> > > +     * I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS - Signal to the
+> > > kernel that
+> > > +     * the object will need to be accessed via the CPU.
+> > > +     *
+> > > +     * Only valid when placing objects in
+> > > I915_MEMORY_CLASS_DEVICE, and
+> > > +     * only strictly required on platforms where only some of
+> > > the device
+> > > +     * memory is directly visible or mappable through the CPU,
+> > > like 
+> > > on DG2+.
+> > > +     *
+> > > +     * One of the placements MUST also be
+> > > I915_MEMORY_CLASS_SYSTEM, to
+> > > +     * ensure we can always spill the allocation to system
+> > > memory, if we
+> > > +     * can't place the object in the mappable part of
+> > > +     * I915_MEMORY_CLASS_DEVICE.
+> > > +     *
+> > > +     * Note that buffers that need to be captured with 
+> > > EXEC_OBJECT_CAPTURE,
+> > > +     * will need to enable this hint, if the object can also be 
+> > > placed in
+> > > +     * I915_MEMORY_CLASS_DEVICE, starting from DG2+. The execbuf
+> > > call 
+> > > will
+> > > +     * throw an error otherwise. This also means that such
+> > > objects 
+> > > will need
+> > > +     * I915_MEMORY_CLASS_SYSTEM set as a possible placement.
+> > > +     *
+> > 
+> > I wonder, should we try to migrate capture objects at execbuf time 
+> > instead on an on-demand basis? If migration fails, then we just
+> > skip 
+> > capturing that object, similar to how the capture code handles
+> > errors?
+> 
+> So IIUC if the object has been marked for capture, unmark the TOPDOWN
+> annotation, if it has been set, to force allocating in the mappable 
+> portion, or spill to system memory(if the placements allow it)? I
+> think 
+> that should work.
 
-== Series Details ==
+Yes that would temporarily mean drop the TOPDOWN flag and migrate the
+object if needed (we can do that async from inside execbuf AFAICT).
+We'd need to make the TOPDOWN flag mutable and part of object-
+>mem_flags
 
-Series: dma-buf-map: Rename to iosys-map (rev2)
-URL   : https://patchwork.freedesktop.org/series/99612/
-State : success
+>  Jon any thoughts
 
-== Summary ==
+And on that subject, the TOPDOWN flag name is IMHO a bit misleading. It
+really has a "GPU_ONLY" meaning, which translates to TOPDOWN
+allocations in some memory regions only. For others (no small bar,
+small bar + multi-tile, it might translate to nothing or to tile
+selection)?
 
-CI Bug Log - changes from CI_DRM_11183 -> Patchwork_22164
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/index.html
-
-Participating hosts (47 -> 43)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22164:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@workarounds:
-    - {bat-adlp-6}:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11183/bat-adlp-6/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/bat-adlp-6/igt@i915_selftest@live@workarounds.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22164 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-skl-6600u:       [PASS][4] -> [INCOMPLETE][5] ([i915#4547])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11183/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][6] ([fdo#109271]) +57 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [PASS][7] -> [INCOMPLETE][8] ([i915#3303])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11183/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][9] ([fdo#109271] / [i915#1436] / [i915#4312])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-hsw-4770/igt@runner@aborted.html
-    - fi-skl-6600u:       NOTRUN -> [FAIL][10] ([i915#4312])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-skl-6600u/igt@runner@aborted.html
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][11] ([i915#2426] / [i915#4312])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [DMESG-FAIL][12] ([i915#4494] / [i915#4957]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11183/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-    - fi-snb-2600:        [INCOMPLETE][14] ([i915#3921]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11183/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][16] ([i915#4269]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11183/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+/Thomas
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11183 -> Patchwork_22164
-
-  CI-20190529: 20190529
-  CI_DRM_11183: e7bd52f40090e77f888585a3221ad1811ac3e501 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6339: 9cd99d763440ae75d9981ce4e361d3deb5edb4e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22164: 733bba522f40934ed26ead2d750e5ec0d45ac619 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-733bba522f40 dma-buf-map: Rename to iosys-map
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/index.html
-
---===============0361509227146878958==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>dma-buf-map: Rename to iosys-map (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99612/">https://patchwork.freedesktop.org/series/99612/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11183 -&gt; Patchwork_22164</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/index.html</p>
-<h2>Participating hosts (47 -&gt; 43)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22164:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11183/bat-adlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/bat-adlp-6/igt@i915_selftest@live@workarounds.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22164 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11183/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11183/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11183/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11183/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11183/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22164/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11183 -&gt; Patchwork_22164</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11183: e7bd52f40090e77f888585a3221ad1811ac3e501 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6339: 9cd99d763440ae75d9981ce4e361d3deb5edb4e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22164: 733bba522f40934ed26ead2d750e5ec0d45ac619 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>733bba522f40 dma-buf-map: Rename to iosys-map</p>
-
-</body>
-</html>
-
---===============0361509227146878958==--
