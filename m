@@ -2,50 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 564044A8367
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 12:58:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23DB64A83E6
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 13:34:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40B9E10E697;
-	Thu,  3 Feb 2022 11:58:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70E8710F54B;
+	Thu,  3 Feb 2022 12:34:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3306510E99D;
- Thu,  3 Feb 2022 11:58:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643889487; x=1675425487;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/7HCd5iekWEFE4OAPgzocebARftMy2i/042QDy18eRs=;
- b=PWameJCiOMkKgA5g5CqqPD8y+ngh4qo5E0RjRQPuOr9smgC97aiZcqjH
- 0NbJ2hf7R/fyCMeM9B9LLv/AclL/GQKZJjKRNGkFlKsISf21HUyQjSA74
- v+/ytEuWMGhzh665HO2GRVICxM/LQkB/IAjLk5uOFEiddhPFM2N43muz8
- vVV9bygSH/jGAZQBgqQaYcKxvv6tzf+Uv++NWRVCZKjZwPjGc2FVnutHe
- 0FPYLf1rT1sE3VREQZa6PloLe850wPPvhnzmn9Dvh1PH2lV6vfhfvWWdp
- 2qempiYJfujsi8ZaQ2AJ5yh/2FQSy9R/f0b5wYeUufJIhBDtVO9JykUFb w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10246"; a="228780144"
-X-IronPort-AV: E=Sophos;i="5.88,339,1635231600"; d="scan'208";a="228780144"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 03:58:06 -0800
-X-IronPort-AV: E=Sophos;i="5.88,339,1635231600"; d="scan'208";a="483217378"
-Received: from cbrady-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.6.65])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 03:58:03 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Fangzhi Zuo <Jerry.Zuo@amd.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- harry.wentland@amd.com
-In-Reply-To: <20210927192324.5428-1-Jerry.Zuo@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210927192324.5428-1-Jerry.Zuo@amd.com>
-Date: Thu, 03 Feb 2022 13:58:00 +0200
-Message-ID: <87ee4krwl3.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 75DAA10F54B;
+ Thu,  3 Feb 2022 12:34:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 72BCFAAA91;
+ Thu,  3 Feb 2022 12:34:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: [Intel-gfx] binary constants (was: Re: [PATCH v3] drm/dp: Add
- Additional DP2 Headers)
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Thu, 03 Feb 2022 12:34:49 -0000
+Message-ID: <164389168944.15870.11291819635304975579@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220203085614.3896538-1-lucas.demarchi@intel.com>
+In-Reply-To: <20220203085614.3896538-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_dma-buf-map=3A_Rename_to_iosys-map_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,35 +40,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Fangzhi Zuo <Jerry.Zuo@amd.com>,
- Dave Airlie <airlied@gmail.com>, Nicholas.Kazlauskas@amd.com,
- wayne.lin@amd.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 27 Sep 2021, Fangzhi Zuo <Jerry.Zuo@amd.com> wrote:
-> +/* DSC Extended Capability Branch Total DSC Resources */
-> +#define DP_DSC_SUPPORT_AND_DSC_DECODER_COUNT		0x2260	/* 2.0 */
-> +# define DP_DSC_DECODER_COUNT_MASK			(0b111 << 5)
-> +# define DP_DSC_DECODER_COUNT_SHIFT			5
-> +#define DP_DSC_MAX_SLICE_COUNT_AND_AGGREGATION_0	0x2270	/* 2.0 */
-> +# define DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK	(1 << 0)
-> +# define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK	(0b111 << 1)
-> +# define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT	1
+== Series Details ==
 
-The patch was merged a while back, but only now I noticed the use of
-binary constants, which in C is a GCC and Clang extension [1][2]. There
-are some instances in the kernel, but not a whole lot.
+Series: dma-buf-map: Rename to iosys-map (rev2)
+URL   : https://patchwork.freedesktop.org/series/99612/
+State : warning
 
-Do we want to avoid or embrace them going forward? Or meh?
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+733bba522f40 dma-buf-map: Rename to iosys-map
+-:63: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#63: 
+Then some files had their includes adjusted and some comments were update to
+
+-:234: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#234: FILE: drivers/dma-buf/dma-buf.c:1279:
++		BUG_ON(iosys_map_is_null(&dmabuf->vmap_ptr));
+
+-:240: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#240: FILE: drivers/dma-buf/dma-buf.c:1284:
++	BUG_ON(iosys_map_is_set(&dmabuf->vmap_ptr));
+
+-:255: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#255: FILE: drivers/dma-buf/dma-buf.c:1311:
++	BUG_ON(iosys_map_is_null(&dmabuf->vmap_ptr));
+
+-:258: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#258: FILE: drivers/dma-buf/dma-buf.c:1313:
++	BUG_ON(!iosys_map_is_equal(&dmabuf->vmap_ptr, map));
+
+-:1622: WARNING:OBSOLETE: drivers/gpu/drm/tiny/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
+
+-:1625: WARNING:OBSOLETE: drivers/gpu/drm/tiny/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
+
+-:1825: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1825: FILE: drivers/gpu/drm/ttm/ttm_resource.c:381:
++			iosys_map_set_vaddr_iomem(&iter_io->dmap,
+ 						    ioremap_wc(mem->bus.offset,
+
+-:1830: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1830: FILE: drivers/gpu/drm/ttm/ttm_resource.c:385:
++			iosys_map_set_vaddr(&iter_io->dmap,
+ 					      memremap(mem->bus.offset, bus_size,
+
+-:1840: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1840: FILE: drivers/gpu/drm/ttm/ttm_resource.c:393:
++			iosys_map_set_vaddr_iomem(&iter_io->dmap,
+ 						    ioremap(mem->bus.offset,
+
+-:1874: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1874: FILE: drivers/gpu/drm/ttm/ttm_tt.c:416:
++	iosys_map_set_vaddr(dmap, kmap_local_page_prot(iter_tt->tt->pages[i],
+ 							 iter_tt->prot));
+
+-:2586: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#2586: 
+deleted file mode 100644
+
+total: 0 errors, 8 warnings, 4 checks, 2294 lines checked
 
 
-BR,
-Jani.
-
-
-[1] https://gcc.gnu.org/onlinedocs/gcc/Binary-constants.html
-[2] https://clang.llvm.org/docs/LanguageExtensions.html#c-14-binary-literals
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
