@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A38D24A85A9
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 15:02:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95DB84A85B1
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 15:03:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6618C10F97A;
-	Thu,  3 Feb 2022 14:02:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D466210F97C;
+	Thu,  3 Feb 2022 14:03:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67DFF10F97A
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Feb 2022 14:02:48 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEA6F10F97F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Feb 2022 14:03:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643896968; x=1675432968;
+ t=1643896988; x=1675432988;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pgFENU1SQzD9IX3ntb2zRYra+H281ep/75+v1rO2NwE=;
- b=K1C3hSEFv97mUiJiSyu3sNMnpG4POVY9QvlbbzFFuyzGR+PgjpsjUMqq
- dakayXr/2aOVSRpy7yQwLba7nrtuMX29QFyp/QCiub1axiCoc+V/psMMh
- SnSzHYTTJu8ImEgmmcDF6qrI8RoffsxRk9zu6vOQeFTZQq/hFl0JC37QW
- od4xfUcFj8J5+KAceZOapsaszhU6FGaLMgFpBczfDZ1c81/75mo7N7ZYU
- QhEETg6odl9CixaswRg3qHUzZu/mNtyBGmlXqHOAArGpRqrb2r5K71m8u
- wJ+a9GwCLwX6yYcQApz0P37PAVWp2nMEG9j4LQWFx4Q5XJQ37k6oS5RMW w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10246"; a="311452764"
-X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="311452764"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 06:02:47 -0800
-X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="483246825"
+ bh=z+9yJgq1EiMgrbZVDLHzLuVVUCY1T61/KUTims9Mm6s=;
+ b=TVhAAsdb9SjPJknyWGVt3wD2QJzMxwcv/Gs/ATZ/gP9qCdakgDCG396H
+ WS0Ua1C/f/Vpy9/TUJ9htno6PyqQA5LMYWxH2zRMDtqCdoocJfO6g5NYI
+ VJfFF6l8OO3rSbs0pIwwx/YUOUKHUeE2Tp5VdgEKIImxURTmmTrEg/rNp
+ vDOUVwLpDp0JWMUQRJwEJddtIldQxBbNGpgI9V1IbaOg1GVtNRd4dBITp
+ jW/p4ho/lONhWJcdpatHoIULjI5g+0jO2zH3vRp01yM56MZ2EBMWMjFpI
+ 2IzxPhM/LFTF6imMDvGQBjL4+nffjBktOpG92gPbS9fLOsyqdo1dgY+Ky g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10246"; a="248362766"
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="248362766"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 06:02:52 -0800
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="699321735"
 Received: from cbrady-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.6.65])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 06:02:46 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 06:02:50 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  3 Feb 2022 16:02:28 +0200
-Message-Id: <68cf44fab55c047253c3ed87f8afcf0a86fa157a.1643896905.git.jani.nikula@intel.com>
+Date: Thu,  3 Feb 2022 16:02:29 +0200
+Message-Id: <9a10dbca7ad298dde62b83f76e0df43a67bceeef.1643896905.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1643896905.git.jani.nikula@intel.com>
 References: <cover.1643896905.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/7] drm/i915/color: hide struct
- intel_color_funcs
+Subject: [Intel-gfx] [PATCH 3/7] drm/i915/hpd: hide struct
+ intel_hotplug_funcs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,82 +61,105 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The struct is only needed in intel_color.c, move it there.
+With intel_hpd_irq_setup() in i915_irq.c, struct intel_hotplug_funcs is
+also only needed there.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c | 19 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_drv.h            | 20 +-------------------
- 2 files changed, 20 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hotplug.c |  7 +------
+ drivers/gpu/drm/i915/i915_drv.h              |  5 +----
+ drivers/gpu/drm/i915/i915_irq.c              | 10 ++++++++++
+ drivers/gpu/drm/i915/i915_irq.h              |  1 +
+ 4 files changed, 13 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index de3ded1e327a..8f8b34b60f27 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -28,6 +28,25 @@
- #include "intel_dpll.h"
- #include "vlv_dsi_pll.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+index 912b7003dcfa..8204126d17f9 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+@@ -24,6 +24,7 @@
+ #include <linux/kernel.h>
  
-+struct intel_color_funcs {
-+	int (*color_check)(struct intel_crtc_state *crtc_state);
-+	/*
-+	 * Program double buffered color management registers during
-+	 * vblank evasion. The registers should then latch during the
-+	 * next vblank start, alongside any other double buffered registers
-+	 * involved with the same commit.
-+	 */
-+	void (*color_commit)(const struct intel_crtc_state *crtc_state);
-+	/*
-+	 * Load LUTs (and other single buffered color management
-+	 * registers). Will (hopefully) be called during the vblank
-+	 * following the latching of any double buffered registers
-+	 * involved with the same commit.
-+	 */
-+	void (*load_luts)(const struct intel_crtc_state *crtc_state);
-+	void (*read_luts)(struct intel_crtc_state *crtc_state);
-+};
-+
- #define CTM_COEFF_SIGN	(1ULL << 63)
+ #include "i915_drv.h"
++#include "i915_irq.h"
+ #include "intel_display_types.h"
+ #include "intel_hotplug.h"
  
- #define CTM_COEFF_1_0	(1ULL << 32)
+@@ -213,12 +214,6 @@ intel_hpd_irq_storm_switch_to_polling(struct drm_i915_private *dev_priv)
+ 	}
+ }
+ 
+-static void intel_hpd_irq_setup(struct drm_i915_private *i915)
+-{
+-	if (i915->display_irqs_enabled && i915->hotplug_funcs)
+-		i915->hotplug_funcs->hpd_irq_setup(i915);
+-}
+-
+ static void intel_hpd_irq_storm_reenable_work(struct work_struct *work)
+ {
+ 	struct drm_i915_private *dev_priv =
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 5a1615c02971..cac18b57808e 100644
+index cac18b57808e..e13e0188530e 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -115,6 +115,7 @@ struct intel_cdclk_config;
- struct intel_cdclk_funcs;
- struct intel_cdclk_state;
- struct intel_cdclk_vals;
-+struct intel_color_funcs;
- struct intel_connector;
- struct intel_crtc;
+@@ -121,6 +121,7 @@ struct intel_crtc;
  struct intel_dp;
-@@ -320,25 +321,6 @@ struct drm_i915_wm_disp_funcs {
+ struct intel_encoder;
+ struct intel_fbdev;
++struct intel_hotplug_funcs;
+ struct intel_initial_plane_config;
+ struct intel_limit;
+ struct intel_overlay;
+@@ -321,10 +322,6 @@ struct drm_i915_wm_disp_funcs {
  	int (*compute_global_watermarks)(struct intel_atomic_state *state);
  };
  
--struct intel_color_funcs {
--	int (*color_check)(struct intel_crtc_state *crtc_state);
--	/*
--	 * Program double buffered color management registers during
--	 * vblank evasion. The registers should then latch during the
--	 * next vblank start, alongside any other double buffered registers
--	 * involved with the same commit.
--	 */
--	void (*color_commit)(const struct intel_crtc_state *crtc_state);
--	/*
--	 * Load LUTs (and other single buffered color management
--	 * registers). Will (hopefully) be called during the vblank
--	 * following the latching of any double buffered registers
--	 * involved with the same commit.
--	 */
--	void (*load_luts)(const struct intel_crtc_state *crtc_state);
--	void (*read_luts)(struct intel_crtc_state *crtc_state);
+-struct intel_hotplug_funcs {
+-	void (*hpd_irq_setup)(struct drm_i915_private *dev_priv);
 -};
 -
- struct intel_hotplug_funcs {
- 	void (*hpd_irq_setup)(struct drm_i915_private *dev_priv);
- };
+ struct intel_fdi_funcs {
+ 	void (*fdi_link_train)(struct intel_crtc *crtc,
+ 			       const struct intel_crtc_state *crtc_state);
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index c05eb09d8a66..4e97d22ff081 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -4347,6 +4347,10 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
+ 	return ret;
+ }
+ 
++struct intel_hotplug_funcs {
++	void (*hpd_irq_setup)(struct drm_i915_private *i915);
++};
++
+ #define HPD_FUNCS(platform)					 \
+ static const struct intel_hotplug_funcs platform##_hpd_funcs = { \
+ 	.hpd_irq_setup = platform##_hpd_irq_setup,		 \
+@@ -4361,6 +4365,12 @@ HPD_FUNCS(spt);
+ HPD_FUNCS(ilk);
+ #undef HPD_FUNCS
+ 
++void intel_hpd_irq_setup(struct drm_i915_private *i915)
++{
++	if (i915->display_irqs_enabled && i915->hotplug_funcs)
++		i915->hotplug_funcs->hpd_irq_setup(i915);
++}
++
+ /**
+  * intel_irq_init - initializes irq support
+  * @dev_priv: i915 device instance
+diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i915_irq.h
+index 0eb90d271fa7..82639d9d7e82 100644
+--- a/drivers/gpu/drm/i915/i915_irq.h
++++ b/drivers/gpu/drm/i915/i915_irq.h
+@@ -37,6 +37,7 @@ i915_disable_pipestat(struct drm_i915_private *dev_priv, enum pipe pipe,
+ void valleyview_enable_display_irqs(struct drm_i915_private *dev_priv);
+ void valleyview_disable_display_irqs(struct drm_i915_private *dev_priv);
+ 
++void intel_hpd_irq_setup(struct drm_i915_private *i915);
+ void i915_hotplug_interrupt_update(struct drm_i915_private *dev_priv,
+ 				   u32 mask,
+ 				   u32 bits);
 -- 
 2.30.2
 
