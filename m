@@ -2,120 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 323804A867A
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 15:34:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE12E4A86B7
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 15:39:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADD6510F731;
-	Thu,  3 Feb 2022 14:34:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AE7010FB0C;
+	Thu,  3 Feb 2022 14:39:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2077.outbound.protection.outlook.com [40.107.236.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B74B10F05C;
- Thu,  3 Feb 2022 14:34:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MFx0qGw0v1tmQX0oaVc9fQD+l0WeakroH1+3yhZ3RhANhjlMgGpKB+pjajfUH43PfLA3xxVUUMkPtCdMICJ4DCfW11BkuHwItB8sjpAzkHgdziFXSp9M3bT03EVIhjKuhaGo1GgM0Kcae7zbpHZiL49QokhYqKeFG/sviI+W0toCepeXkQCHdRyK/tQZNy+JKIm5aJ/LjR2moEFKTlDodD4jOtsOZbReQbZA+kR7hmiRSWc50cdylmTc6BzsN36eNxe6g4vaZjodDHJMmh0PWM+spljhYRj17/5otvCrclUohPdxiYlguo6tRVq4bIX2I0vPsiG2TZFMdFdYh+1pnw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vG1zQ6rQLiIJCtN/2VUYWyRq5GOWlRAryXXoxSIZBfM=;
- b=IY51eKpUDGP4ZOu7V/Wc0RCjnnGatIjxQ7+tZxnXycakRKv6Yqf0gQJB+7gU9wRs0WLNW4v8Op1v7JpZzIzRixf+0zszaMA5hpyP6MQfQUs3xHyrJTakdHa9+/XeZSZGBPpO0HvnEBmOnG3iPUzRsBsGpF2AMhhBpe8lWkPwVR1gXf7sDu/6p13Anr2R5tX3HvrzkdFM0n7nw1OrKyToJldmHfbRgOXO9RTq+MamLw1QjSpOYhgpO8f/dDzkoJAESxDHRrssp+Qbs/J836g7Zlw9zdnAPM/6yXTSX9idOZRC8LlULQFO+oIJIRUERytdFU4AJNH2/2Ue7vYqedIygg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vG1zQ6rQLiIJCtN/2VUYWyRq5GOWlRAryXXoxSIZBfM=;
- b=vZkjrm5T6BT5VqwDHMipy+/oKAOs24179Rud3IPX/ATHzSK2SGZ8RkiMJw3l2tfHQgvexYWQBuDSndm4WOjTGTxlZo/gQBkFh1vqPqROYdn80PFI6wGDo9DO8BTE1vUaIQv1sL4hCkFgW5PZZcEkL3TUH74hbbxHA7iBDu6FRwI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by DM5PR1201MB0233.namprd12.prod.outlook.com (2603:10b6:4:55::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Thu, 3 Feb
- 2022 14:33:56 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::d861:5699:8188:7bd3]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::d861:5699:8188:7bd3%3]) with mapi id 15.20.4951.014; Thu, 3 Feb 2022
- 14:33:56 +0000
-Message-ID: <eb2dc20e-0229-64a9-0b73-79e64fe041b2@amd.com>
-Date: Thu, 3 Feb 2022 15:33:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-References: <20220203133234.3350-1-Arunpravin.PaneerSelvam@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20220203133234.3350-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM6PR04CA0036.eurprd04.prod.outlook.com
- (2603:10a6:20b:92::49) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 493BF10FB08
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Feb 2022 14:39:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643899171; x=1675435171;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Q1bJdLni6KWDvLNLcvc3+x9wA3b0vTbXwgB8dXB26xM=;
+ b=DS9UrM1EF0yRy7Nknc4FvO6CIWiatLjcICAA4PhZv30ZLSshnsdYineP
+ OlPZM0rCqrKRTPjNewqQMuX9L2G7Ybnu3QQS+v095fLx3syyChpKAcwBL
+ FYq6NgAHE+0N86nEmKqFX3Rp3+M1sXXEgAl9obl2mUhedxHWl3GdH8vNx
+ k/SHgFIPFfavrAtnBP6+OCxn6tM3nWAAYt4vj1iw6U6/zbYhZZ7Ab+nNR
+ /s5FwP1gJROpMZykX5Qm7oPwfNVqyJfefEESNTGx7TXUUuPDcJeWt5jZT
+ aNyDRzQ6RY50ORTUUu0T2P/pqr3FezFvG0IDfVUJTNlrbuHTv1pIHSsSz Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10246"; a="245748464"
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="245748464"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 06:39:30 -0800
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="631359140"
+Received: from cbrady-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.6.65])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 06:39:29 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  3 Feb 2022 16:39:24 +0200
+Message-Id: <20220203143924.2691635-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 016b0f77-b352-4ac7-357b-08d9e722358f
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0233:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB0233726A27CB5B7FF64BAB4183289@DM5PR1201MB0233.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: w/vfeVuMY4EeMJXx+cA2xTJ2eNFgr30ksG8YH93stTdR/UmkdgifLdlJPUuSnBSHRMhJPsPLAPtIYVyA2c6cyRAwrl8AaV2U3r5ACA/rjxm9SNy6a7OAxrR5GQ63Kia0/kqQZxc+A1glrK+38QWCLO034AiVdsI0m+Y1wt+SWF11eQtBu3HA1SS6hH9zHEKZjLWSXb9zyTrkejOeTp0i26FLMKXBhtValvkoA5yGcmT4N/KCvH9lJ4DvdbBOyWb1QrP3RZ4+H+brDhPGs1NehvSxsigLGVOmAaNV2tkbkVFoGuRy0eMuHjFzMFjc1ScmD19Egz6hmtY7wiV54JG2FDPgtRSR9I2cUs2Iy+eV8T1ZDDDJRppm8E2wmlXqjFIWLLasLcunSQY2SCgCMVcSGnBFZUh2kJZNRRW8FrFdJIovgxmYahKP3MP69ZqBUqYsl8uL7dZWN2TxiSXAEMrDkq66azbpf9DzYZ2Yb9GPXLho6MBySGHmobf/zoqtzonfy9/uFtvk1z9sQGOmMQpIXyZXpkIcguANvozCzU4RIKGHwVqpRQFxq8W4UER9qXiYtbDXzKIYz2OapHlL/1J/igSB/p3vUStY3k+N22fwvqP3whm7Na611P2inno64oCXs/XY8FOrs62y43M62VBoHPD7yL1vpDJiZXALVOtPuvyAlWmy8hUHnMHlwc0NGUsEQUjM+c9/a4c1/6egBfu00VppEBlm1qTpiZ9U8Bs3gsU0fEsl/YUgI9YB8/4zjTtL
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(38100700002)(31686004)(2906002)(36756003)(5660300002)(66574015)(83380400001)(4326008)(2616005)(508600001)(6512007)(186003)(26005)(6486002)(8676002)(6506007)(6666004)(316002)(86362001)(66476007)(31696002)(66946007)(66556008)(8936002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bjJ4ZWNnNFhqalJFK2hrSDgvRjlPVVlJSWI2VFg1Skhzb1dHMTltSTFTMDRI?=
- =?utf-8?B?U0UyZkp6bm9Ka2MwcmF5eWkzcEdUUGlEZXBramRoL1FEZGNIY2xxN29BcWFw?=
- =?utf-8?B?R29BZ284cm5BTGtodU9YaUxPU2FCcUU1RFljbmtXcHV3WGEvL0hIamgwQWsy?=
- =?utf-8?B?aDB3eE8vVUhMcUgrRHFTalZwT1B1T2kxcW1zWTNuY1NQWk5YalV5NllNVkdq?=
- =?utf-8?B?eEdUSFZ0RTBmTWo5Ri9GU3lLNFl0aFdLNFI2cHBmU05hMTJiVjJ4WFAzeDZi?=
- =?utf-8?B?M0Q4c0xkRm92VHRHUlFPWnJMSlRaY2xvR2MyNnhJYklBMVV1QnBJcFB4NHhj?=
- =?utf-8?B?MC9ZRHZWbkpQMzQ2UFhsNFE1akxVaytneDFqanVINC9TZWV4QXk5aklxbG9M?=
- =?utf-8?B?ZjUxSGxGanlOdURPVEVjTCtRMFdvelpSc3dudHA3djRRN0R1b1JqelhDQSs0?=
- =?utf-8?B?Nk9STTVoT1g4ajZmTXQyS0JsRGgxNFNJN2NndHNSV3FQSFRwc2VSUWhIaWJ4?=
- =?utf-8?B?VDYxNXhxWTlxZ0V3V1E1QTNqb3p2bWZsVC9seVFwV3E3NnJjWWdWQldpdC9W?=
- =?utf-8?B?QldDQkpCdC9Bb0JjVXkrczZYSDlNZG1SeHZRb1ZCNmpEdnVTOVdxdHlLZmts?=
- =?utf-8?B?c1JoVUxLNVpnSzRzTHp5YmJpMFVxaSs1SGpIa2UvOTl5QTdSMjdDWXA1Zk80?=
- =?utf-8?B?MU9XMzlqMGxpUlcwUXYvVW91L3FnWkxtVmJ2R3N4aEVwSUhKL2YvcTJMajlP?=
- =?utf-8?B?SEJVbEEwQVNzMk9TdHRTWDVFdmhoc0sxaEpnUms2a0RqaDVWbVgyTXFXK2Ru?=
- =?utf-8?B?eTBGTTBUMmxrWCtIYVVYaDlDL2g2Y200T0J2cU0zckJPSlUrZVg2UityVks5?=
- =?utf-8?B?TnJoVkc3UmM2OGlESDRYbFJuUHR4ZVdNOVVHOHU5N0liMlAzSGN4R3pIaThy?=
- =?utf-8?B?cGRVdHAydHErNktZUU5BYjhobTcrZXZFaTJxMmFyT3VRekUrYm5PekViUm02?=
- =?utf-8?B?MXUrK0dabmhVZGZ0OFovYThsR05PaFdQS0hVaU5yQTNJOWRWWWdpbkYyZmJV?=
- =?utf-8?B?bWp0VTdKOEhlcTlROEpBRWlwVUllWDNVaGsrNkxsTmVPNXlSaCsyWHNhTEU3?=
- =?utf-8?B?YXkrOVVOK3ZoUy9qUGhlTWtyU25MQkJVZE5CNVJvbytGektQeHRaWXYxZFBS?=
- =?utf-8?B?WnlDV0EzMm1iUTVJdUtKamNiUmN4MFhSR3ZwajFCbnM5NmxrNzFvVmhaR0U2?=
- =?utf-8?B?cGtnaXBBbFpMQWhhaEdDVDBmVGdQTm8xTmJYc1ZubmlscENPR09hNTluV3ZJ?=
- =?utf-8?B?YW5VRGVMallpRWlLWUpLbWZsUzFTL3NPMXZlbWVxeWZQYVRwRjNQbmxSRW1l?=
- =?utf-8?B?V2pUQWlRejJwRTBlNTNDK1YyWktTckoveDJiSmFGS2g1YWlFV3NVNFczbXRo?=
- =?utf-8?B?UWJLRENGV0tJOGhsSFNNRm9tcWV4OGpTeThiRDV1VzBTcnNaWkxYTms3WXpv?=
- =?utf-8?B?cWcrOFYzYTd2T2FvZUprM1UxQ2VvQ0QzZDc0b1Y1ck5tUWVEaFh4cnJ6ZjZR?=
- =?utf-8?B?em9ldzhGRU92VWZNS25Zai9BMjdLc3pvVFkzS29SSzY0RVdyS2ZvNVByeTBW?=
- =?utf-8?B?VHM1bEhOOTZkckRkVEFjRXhNcmQrTkJ5TEJmSnlJM3ZtUTBhZ2pid1JOWVpJ?=
- =?utf-8?B?QzZaUTNIRFFPZ01UT2d1eVhqYVBYbGJHc0szT3l6VXZhZmhuZ1ZQM1BDeExa?=
- =?utf-8?B?TnpxQ0hyVmdoNkMrZTNnZWZZSHkvYmZETzROc0ZucGJ5b0dHSEJOQjVTMTRO?=
- =?utf-8?B?VzQ2VFAyZHQ2YWNsQWhWL3NiWkZkOUhMNkdOOVN6WXVjbDUvNmVuUEtkdGs1?=
- =?utf-8?B?RXpqRloxTVJXRGRDT2NVQ0ZtRUc4aUVRVE9kck01RFkrSDFJUDhWeTFTaG44?=
- =?utf-8?B?c1F3SDA1ZFRjeW1PYXRsYlUwaTVpOFNzMWE3Z3U3VFNVMU1aUzFnRU1FZ0Vi?=
- =?utf-8?B?eDJzYlZqS1JPWTIvdUk2Y0x1b0dnZmk1aUN4NTJKUmMrakppamk4Z2liN3Iz?=
- =?utf-8?B?TFFneTdJNzBTM21pK2tzZDA2azlmNXNGbWpiTmd1MDhpRVZ3d2lOZzFJNTZx?=
- =?utf-8?Q?jjzo=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 016b0f77-b352-4ac7-357b-08d9e722358f
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2022 14:33:56.6086 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +WXiZeX4bL53m234kYAzIk5rnm13XUpKwhjH0YjQdq8CqYkTsBCCU2LJw2MgGJ8v
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0233
-Subject: Re: [Intel-gfx] [PATCH 1/7] drm/selftests: Move i915 buddy
- selftests into drm
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: move the DRIVER_* macros to
+ i915_driver.[ch]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,130 +55,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, tzimmermann@suse.de, matthew.auld@intel.com
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 03.02.22 um 14:32 schrieb Arunpravin:
-> - move i915 buddy selftests into drm selftests folder
-> - add Makefile and Kconfig support
-> - add sanitycheck testcase
->
-> Prerequisites
-> - These series of selftests patches are created on top of
->    drm buddy series
-> - Enable kselftests for DRM as a module in .config
->
-> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+The macros are more at home in i915_driver.[ch].
 
-Only skimmed over this, but of hand I haven't seen anything obviously bad.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c        |  1 +
+ drivers/gpu/drm/i915/i915_driver.c            | 15 ++++++++++++
+ drivers/gpu/drm/i915/i915_driver.h            |  5 ++++
+ drivers/gpu/drm/i915/i915_drv.h               | 23 -------------------
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  1 +
+ drivers/gpu/drm/i915/i915_irq.c               |  1 +
+ drivers/gpu/drm/i915/i915_mitigations.c       |  1 +
+ drivers/gpu/drm/i915/i915_module.c            |  1 +
+ drivers/gpu/drm/i915/i915_request.c           |  1 +
+ .../gpu/drm/i915/selftests/i915_selftest.c    |  1 +
+ 10 files changed, 27 insertions(+), 23 deletions(-)
 
-Feel free to add an Acked-by: Christian König <christian.koenig@amd.com> 
-to the series.
-
-Regards,
-Christian.
-
-> ---
->   drivers/gpu/drm/Kconfig                       |  1 +
->   drivers/gpu/drm/selftests/Makefile            |  3 +-
->   .../gpu/drm/selftests/drm_buddy_selftests.h   |  9 ++++
->   drivers/gpu/drm/selftests/test-drm_buddy.c    | 49 +++++++++++++++++++
->   4 files changed, 61 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/gpu/drm/selftests/drm_buddy_selftests.h
->   create mode 100644 drivers/gpu/drm/selftests/test-drm_buddy.c
->
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index eb5a57ae3c5c..ff856df3f97f 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -71,6 +71,7 @@ config DRM_DEBUG_SELFTEST
->   	select DRM_DP_HELPER
->   	select DRM_LIB_RANDOM
->   	select DRM_KMS_HELPER
-> +	select DRM_BUDDY
->   	select DRM_EXPORT_FOR_TESTS if m
->   	default n
->   	help
-> diff --git a/drivers/gpu/drm/selftests/Makefile b/drivers/gpu/drm/selftests/Makefile
-> index 0856e4b12f70..5ba5f9138c95 100644
-> --- a/drivers/gpu/drm/selftests/Makefile
-> +++ b/drivers/gpu/drm/selftests/Makefile
-> @@ -4,4 +4,5 @@ test-drm_modeset-y := test-drm_modeset_common.o test-drm_plane_helper.o \
->   		      test-drm_damage_helper.o test-drm_dp_mst_helper.o \
->   		      test-drm_rect.o
->   
-> -obj-$(CONFIG_DRM_DEBUG_SELFTEST) += test-drm_mm.o test-drm_modeset.o test-drm_cmdline_parser.o
-> +obj-$(CONFIG_DRM_DEBUG_SELFTEST) += test-drm_mm.o test-drm_modeset.o test-drm_cmdline_parser.o \
-> +				    test-drm_buddy.o
-> diff --git a/drivers/gpu/drm/selftests/drm_buddy_selftests.h b/drivers/gpu/drm/selftests/drm_buddy_selftests.h
-> new file mode 100644
-> index 000000000000..a4bcf3a6dfe3
-> --- /dev/null
-> +++ b/drivers/gpu/drm/selftests/drm_buddy_selftests.h
-> @@ -0,0 +1,9 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/* List each unit test as selftest(name, function)
-> + *
-> + * The name is used as both an enum and expanded as igt__name to create
-> + * a module parameter. It must be unique and legal for a C identifier.
-> + *
-> + * Tests are executed in order by igt/drm_buddy
-> + */
-> +selftest(sanitycheck, igt_sanitycheck) /* keep first (selfcheck for igt) */
-> diff --git a/drivers/gpu/drm/selftests/test-drm_buddy.c b/drivers/gpu/drm/selftests/test-drm_buddy.c
-> new file mode 100644
-> index 000000000000..51e4d393d22c
-> --- /dev/null
-> +++ b/drivers/gpu/drm/selftests/test-drm_buddy.c
-> @@ -0,0 +1,49 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2019 Intel Corporation
-> + */
-> +
-> +#define pr_fmt(fmt) "drm_buddy: " fmt
-> +
-> +#include <linux/module.h>
-> +
-> +#include <drm/drm_buddy.h>
-> +
-> +#include "../lib/drm_random.h"
-> +
-> +#define TESTS "drm_buddy_selftests.h"
-> +#include "drm_selftest.h"
-> +
-> +static unsigned int random_seed;
-> +
-> +static int igt_sanitycheck(void *ignored)
-> +{
-> +	pr_info("%s - ok!\n", __func__);
-> +	return 0;
-> +}
-> +
-> +#include "drm_selftest.c"
-> +
-> +static int __init test_drm_buddy_init(void)
-> +{
-> +	int err;
-> +
-> +	while (!random_seed)
-> +		random_seed = get_random_int();
-> +
-> +	pr_info("Testing DRM buddy manager (struct drm_buddy), with random_seed=0x%x\n",
-> +		random_seed);
-> +	err = run_selftests(selftests, ARRAY_SIZE(selftests), NULL);
-> +
-> +	return err > 0 ? 0 : err;
-> +}
-> +
-> +static void __exit test_drm_buddy_exit(void)
-> +{
-> +}
-> +
-> +module_init(test_drm_buddy_init);
-> +module_exit(test_drm_buddy_exit);
-> +
-> +MODULE_AUTHOR("Intel Corporation");
-> +MODULE_LICENSE("GPL");
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+index 6da68b38f00f..00359ec9d58b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+@@ -10,6 +10,7 @@
+ #include "gt/intel_gt_pm.h"
+ #include "gt/intel_gt_requests.h"
+ 
++#include "i915_driver.h"
+ #include "i915_drv.h"
+ 
+ #if defined(CONFIG_X86)
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 3d41f532a5d6..76c84b35884f 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1823,6 +1823,21 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_VM_DESTROY, i915_gem_vm_destroy_ioctl, DRM_RENDER_ALLOW),
+ };
+ 
++/*
++ * Interface history:
++ *
++ * 1.1: Original.
++ * 1.2: Add Power Management
++ * 1.3: Add vblank support
++ * 1.4: Fix cmdbuffer path, add heap destroy
++ * 1.5: Add vblank pipe configuration
++ * 1.6: - New ioctl for scheduling buffer swaps on vertical blank
++ *      - Support vertical blank on secondary display pipe
++ */
++#define DRIVER_MAJOR		1
++#define DRIVER_MINOR		6
++#define DRIVER_PATCHLEVEL	0
++
+ static const struct drm_driver i915_drm_driver = {
+ 	/* Don't use MTRRs here; the Xserver or userspace app should
+ 	 * deal with them for Intel hardware.
+diff --git a/drivers/gpu/drm/i915/i915_driver.h b/drivers/gpu/drm/i915/i915_driver.h
+index 9ef8db4aa0a6..9d11de65daaf 100644
+--- a/drivers/gpu/drm/i915/i915_driver.h
++++ b/drivers/gpu/drm/i915/i915_driver.h
+@@ -12,6 +12,11 @@ struct pci_dev;
+ struct pci_device_id;
+ struct drm_i915_private;
+ 
++#define DRIVER_NAME		"i915"
++#define DRIVER_DESC		"Intel Graphics"
++#define DRIVER_DATE		"20201103"
++#define DRIVER_TIMESTAMP	1604406085
++
+ extern const struct dev_pm_ops i915_pm_ops;
+ 
+ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 8c1706fd81f9..bd444e16ce5e 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -106,15 +106,6 @@
+ #include "gt/intel_timeline.h"
+ #include "i915_vma.h"
+ 
+-
+-/* General customization:
+- */
+-
+-#define DRIVER_NAME		"i915"
+-#define DRIVER_DESC		"Intel Graphics"
+-#define DRIVER_DATE		"20201103"
+-#define DRIVER_TIMESTAMP	1604406085
+-
+ struct drm_i915_gem_object;
+ 
+ /* Threshold == 5 for long IRQs, 50 for short */
+@@ -260,20 +251,6 @@ struct drm_i915_file_private {
+ 	unsigned long hang_timestamp;
+ };
+ 
+-/* Interface history:
+- *
+- * 1.1: Original.
+- * 1.2: Add Power Management
+- * 1.3: Add vblank support
+- * 1.4: Fix cmdbuffer path, add heap destroy
+- * 1.5: Add vblank pipe configuration
+- * 1.6: - New ioctl for scheduling buffer swaps on vertical blank
+- *      - Support vertical blank on secondary display pipe
+- */
+-#define DRIVER_MAJOR		1
+-#define DRIVER_MINOR		6
+-#define DRIVER_PATCHLEVEL	0
+-
+ struct intel_overlay;
+ struct intel_overlay_error_state;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index 127ff56c8ce6..54b2360dfd99 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -46,6 +46,7 @@
+ #include "gt/intel_gt_pm.h"
+ #include "gt/intel_gt_regs.h"
+ 
++#include "i915_driver.h"
+ #include "i915_drv.h"
+ #include "i915_gpu_error.h"
+ #include "i915_memcpy.h"
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index c05eb09d8a66..78871518c67b 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -49,6 +49,7 @@
+ #include "gt/intel_gt_regs.h"
+ #include "gt/intel_rps.h"
+ 
++#include "i915_driver.h"
+ #include "i915_drv.h"
+ #include "i915_irq.h"
+ #include "intel_pm.h"
+diff --git a/drivers/gpu/drm/i915/i915_mitigations.c b/drivers/gpu/drm/i915/i915_mitigations.c
+index 84f12598d145..def7302ef7fe 100644
+--- a/drivers/gpu/drm/i915/i915_mitigations.c
++++ b/drivers/gpu/drm/i915/i915_mitigations.c
+@@ -8,6 +8,7 @@
+ #include <linux/slab.h>
+ #include <linux/string.h>
+ 
++#include "i915_driver.h"
+ #include "i915_drv.h"
+ #include "i915_mitigations.h"
+ 
+diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
+index 4d324638aba5..65acd7bf75d0 100644
+--- a/drivers/gpu/drm/i915/i915_module.c
++++ b/drivers/gpu/drm/i915/i915_module.c
+@@ -9,6 +9,7 @@
+ #include "gem/i915_gem_context.h"
+ #include "gem/i915_gem_object.h"
+ #include "i915_active.h"
++#include "i915_driver.h"
+ #include "i915_params.h"
+ #include "i915_pci.h"
+ #include "i915_perf.h"
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 55beedb2ced1..582770360ad1 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -44,6 +44,7 @@
+ 
+ #include "i915_active.h"
+ #include "i915_deps.h"
++#include "i915_driver.h"
+ #include "i915_drv.h"
+ #include "i915_trace.h"
+ #include "intel_pm.h"
+diff --git a/drivers/gpu/drm/i915/selftests/i915_selftest.c b/drivers/gpu/drm/i915/selftests/i915_selftest.c
+index 2d6d7bd13c3c..c4e932368b37 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_selftest.c
++++ b/drivers/gpu/drm/i915/selftests/i915_selftest.c
+@@ -24,6 +24,7 @@
+ #include <linux/random.h>
+ 
+ #include "gt/intel_gt_pm.h"
++#include "i915_driver.h"
+ #include "i915_drv.h"
+ #include "i915_selftest.h"
+ 
+-- 
+2.30.2
 
