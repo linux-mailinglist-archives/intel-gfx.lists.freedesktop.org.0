@@ -1,49 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CAC14A85AF
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 15:03:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C20314A85B0
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 15:03:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 916DF10F97E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E483810F980;
 	Thu,  3 Feb 2022 14:03:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB81110F97E
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Feb 2022 14:03:03 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACD3410F97E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Feb 2022 14:03:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643896983; x=1675432983;
+ t=1643896984; x=1675432984;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RC2nhPkrYxacQOl8fDQazIuF/59JIccFeyRqIODL9vQ=;
- b=jhEbPVBsuGnjmF9iRnxK93PDkPl2arUZscbGgbaqInAVhDxhscKblRfF
- kndYWSEMb6Ma1/rAPa3pRMy8vNdF9e/LWESCNQe2B1V8IfP1Wi/v6cJ/g
- jIE4k/YvJhyWgWggfcKxgwb4nARK2wECdW9w0EKmKhaj6gu2jr5fufUa7
- EOP3L9gLX/rD52lKO/mhemTiSYo/kMHVndbWeUGZdLQ9gMGesmTvFkGru
- CFoNUGemdOX6vzNsIUkwXTnsGN4CJkDcngLEGj8ozBxQH6qTvl40Ds3Yn
- UZXLiRVfEaHRL/YWPDK7l+3fAn1ZD737WD/fVq7W8rwRvJ/Gl6JvHYa+S g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10246"; a="245742175"
-X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="245742175"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 06:02:56 -0800
-X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="538750190"
+ bh=464gal6UOirYrYmiFh6kegMByEMuJKVdH76D0sj4tIU=;
+ b=jZ12Iq7YyC2vJ7c9QDGFP8oQcWMvZAcNGbmQ/lRViJQmkCaEfj7YcVmK
+ dHt1VHUr7u/RXmcutAGciQbIAHT29RPGBVTtTXf0MA/zuyYb3repHpG1e
+ iehvh4Uz8H+To5M0Zkdkes0+Xjs0RAMZ/Kbu+VG8iD0/TwKMtqcnYvyiS
+ dPBQWi8r0CHr8q+EKw9cG90cavWhTlpU9pmTIlhfYMWoRQ6+M2Di+x/tc
+ mVEytR0Wlb2C/r30nl/Q5E7S8jSdKM3XPTc0zUhU/SCqgV1huEagK5RiB
+ wS+RTu0QDgK70mjFJ5cYZqRrGbXYA5L7aaH3ty4m5JqH1LQgJZx7O98sC Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10246"; a="231717887"
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="231717887"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 06:03:04 -0800
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="523931990"
 Received: from cbrady-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.6.65])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 06:02:54 -0800
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 06:03:02 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  3 Feb 2022 16:02:30 +0200
-Message-Id: <a6c524a9abb74be9b4d6a084de5461404b823a10.1643896905.git.jani.nikula@intel.com>
+Date: Thu,  3 Feb 2022 16:02:31 +0200
+Message-Id: <12ac40c1ef9915fe680c6657b603b08be022626b.1643896905.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1643896905.git.jani.nikula@intel.com>
 References: <cover.1643896905.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/7] drm/i915/fdi: hide struct intel_fdi_funcs
+Subject: [Intel-gfx] [PATCH 5/7] drm/i915/dpll: add
+ intel_dpll_crtc_compute_clock()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,54 +61,60 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The struct is only needed in intel_fdi.c, move it there.
+Avoid referencing the function pointer directly to be able to abstract
+the call better.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fdi.c | 5 +++++
- drivers/gpu/drm/i915/i915_drv.h          | 6 +-----
- 2 files changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c    | 8 ++++++++
+ drivers/gpu/drm/i915/display/intel_dpll.h    | 1 +
+ 3 files changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-index 3d6e22923601..4e4b43669b14 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -10,6 +10,11 @@
- #include "intel_display_types.h"
- #include "intel_fdi.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index df347329d90e..04909088cae6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5266,7 +5266,7 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
  
-+struct intel_fdi_funcs {
-+	void (*fdi_link_train)(struct intel_crtc *crtc,
-+			       const struct intel_crtc_state *crtc_state);
-+};
+ 	if (mode_changed && crtc_state->hw.enable &&
+ 	    !drm_WARN_ON(&dev_priv->drm, crtc_state->shared_dpll)) {
+-		ret = dev_priv->dpll_funcs->crtc_compute_clock(crtc_state);
++		ret = intel_dpll_crtc_compute_clock(crtc_state);
+ 		if (ret)
+ 			return ret;
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index 1ce0c171f4fb..809b2004e5b2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -1400,6 +1400,14 @@ static const struct intel_dpll_funcs i8xx_dpll_funcs = {
+ 	.crtc_compute_clock = i8xx_crtc_compute_clock,
+ };
+ 
++int intel_dpll_crtc_compute_clock(struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
 +
- static void assert_fdi_tx(struct drm_i915_private *dev_priv,
- 			  enum pipe pipe, bool state)
++	return i915->dpll_funcs->crtc_compute_clock(crtc_state);
++}
++
+ void
+ intel_dpll_init_clock_hook(struct drm_i915_private *dev_priv)
  {
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index e13e0188530e..784233ad9f16 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -121,6 +121,7 @@ struct intel_crtc;
- struct intel_dp;
- struct intel_encoder;
- struct intel_fbdev;
-+struct intel_fdi_funcs;
- struct intel_hotplug_funcs;
- struct intel_initial_plane_config;
- struct intel_limit;
-@@ -322,11 +323,6 @@ struct drm_i915_wm_disp_funcs {
- 	int (*compute_global_watermarks)(struct intel_atomic_state *state);
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.h b/drivers/gpu/drm/i915/display/intel_dpll.h
+index 1af0ac43cca4..69b06a9e473e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.h
++++ b/drivers/gpu/drm/i915/display/intel_dpll.h
+@@ -15,6 +15,7 @@ struct intel_crtc_state;
+ enum pipe;
  
--struct intel_fdi_funcs {
--	void (*fdi_link_train)(struct intel_crtc *crtc,
--			       const struct intel_crtc_state *crtc_state);
--};
--
- struct intel_dpll_funcs {
- 	int (*crtc_compute_clock)(struct intel_crtc_state *crtc_state);
- };
+ void intel_dpll_init_clock_hook(struct drm_i915_private *dev_priv);
++int intel_dpll_crtc_compute_clock(struct intel_crtc_state *crtc_state);
+ int vlv_calc_dpll_params(int refclk, struct dpll *clock);
+ int pnv_calc_dpll_params(int refclk, struct dpll *clock);
+ int i9xx_calc_dpll_params(int refclk, struct dpll *clock);
 -- 
 2.30.2
 
