@@ -2,53 +2,148 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E2C94A9146
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 00:44:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E75B34A9157
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 00:58:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21C0F10E16B;
-	Thu,  3 Feb 2022 23:44:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA48F10E750;
+	Thu,  3 Feb 2022 23:58:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7B2610E16B;
- Thu,  3 Feb 2022 23:44:23 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FAE010E750
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Feb 2022 23:58:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643931863; x=1675467863;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=hSso29yQ/d2WIHtzZdaMQ8zQQqJ7T+2eIHQMFuY2k4A=;
- b=U/Gpc3/6K6dVJWx8ux0oS70bPTMtMMZLHOOsACjCYdmU329as2kiIyG/
- 0+J+0GbwZd524WmX3NUQt/F1MzDff/BVgbAUAdcDD64+7myBXoMGj/NxZ
- 7TA2wLMNDp6JYqr+/oqZ43YmJ03O2Db4FMzZTt7iLrB4roYkNrND/4EiW
- iAEFQK8grXF2xkelL+pzJ5IeRoAy565mMXOrLrrO0ESb0C1LxO1yMSqd9
- P3WI/4zct5Ql9GkKGrqWjEGbw9SBJwzg2EHFN/NArVqUE+cp7ujGZdKuf
- nKAtxapXB3e1KrKa+ObLEcJ9yKUOvjXn8UJMcKRCEwpwQf5utXEPkrve/ w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10247"; a="248491853"
-X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="248491853"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 15:44:23 -0800
-X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="524122966"
-Received: from ekabir-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.144.43])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 15:44:22 -0800
-Date: Thu, 3 Feb 2022 15:44:20 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <20220203234420.d3ztz6fyi4k6xvds@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220126203702.1784589-1-lucas.demarchi@intel.com>
- <20220126203702.1784589-17-lucas.demarchi@intel.com>
- <6a5c4a0f-2e71-7dd4-7f15-4e076cbdbe62@intel.com>
+ t=1643932726; x=1675468726;
+ h=message-id:date:subject:to:references:cc:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=bKqYGWIPW81HmivJ4o1hdKlyrKRiZKHTy2O7eX5hHxs=;
+ b=BLAjRDObyrnVBffmrrF8kssUMk9ivEx7HZ5tRZKyyug/PmT74323qk7Q
+ 3G7GFWOw6Td0Ksz0/vkZMdgGTQTcs5EJzAcg3pKOw9NgqeIBW/iNbhx3l
+ EP9juRsItk5LjIMDNch6zvf50M7/WHT9gz0oz4/bxD0xbA3Y4DFq6fw2W
+ VyrcsQ6ryiEupSmaRY6v/GdlwX5eWBRpkAJr060GnTjXbUL0WJHL09TcA
+ //6Za+D6+3MralNLRWObm10Tx3p+QYmmnGqTv0ycwtV/GvjsMEsTV6SYg
+ 7IJ4Afq7mkqYVsws+pCbwDpoJVswLBxjzWvd4PIzWQhpBVaSiUx2r67rj A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10247"; a="309021748"
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="309021748"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 15:58:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="631534430"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga004.jf.intel.com with ESMTP; 03 Feb 2022 15:58:45 -0800
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 3 Feb 2022 15:58:45 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20 via Frontend Transport; Thu, 3 Feb 2022 15:58:45 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.20; Thu, 3 Feb 2022 15:58:44 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KLFnZRKyANvxPD4UapwFEHfgNJgbv2+XavSpToObeIxQ2sy+v8EOLoJ41rORqTVTac3LG1vZPOZ+7KDZF3hCpWLlZ/Y4qUgK8qtfMlmcsdAaSijYPAdrIDgH3TYLpx3puDyVY34Fz9r/lQbv4vFf/vBzauvSMOPEfA97CtnXaqcB1RB7Jbd+SkYi3FsKn6J8GJs6A03YIXL09kz1sOuIj5Sq5Q5FbPlUPO41SQzVWKGj4zMNhyphFUHq59ag2pMa+4DZd4gVZh0T73Mp5iXkG3OJqUGkdAZaHQ6HLsCfizLfiEmOaQXreifihbaZERk9JttIoHTDfYYN/igZ2zZzAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=a5VG9LrBSfnYTXp0qBSuZR/3gvC1qYvqc2wMUkXT9Ws=;
+ b=ivYGomaf+U94jdW3NCPRwlHLJ5H53VeUi5xY5ygSwYHnpp+tfDoqr2IsU5M5pdH1/NZ8w3E+DOUXpEhtj9VBwRFwhWlCQw8HyMDuKM63ZlOB003TDDdNTPV03E8wiVB48EobO7DiiXu6v7C8TbsDwLy+HDgqIwHezJAtMUOpOwG2JMIisxzT0+m4y6ZkefxbGbCKsdOs6QzQ49D6VLVQAPc6YjiA45gXNTr9AfroinGm1WpH6rlQZn2LEWivj+t/6W90Uwq7Faxml+OsnLip+xwcyEeAL071xFgfuopg73ywaBMYJPE7vj8qu4hy94CSm6OoyKtOEeJ0FEqsZASsmg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BYAPR11MB2936.namprd11.prod.outlook.com (2603:10b6:a03:8c::17)
+ by MWHPR1101MB2110.namprd11.prod.outlook.com (2603:10b6:301:4f::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.18; Thu, 3 Feb
+ 2022 23:58:42 +0000
+Received: from BYAPR11MB2936.namprd11.prod.outlook.com
+ ([fe80::b17c:48f8:6fba:4a9]) by BYAPR11MB2936.namprd11.prod.outlook.com
+ ([fe80::b17c:48f8:6fba:4a9%5]) with mapi id 15.20.4951.012; Thu, 3 Feb 2022
+ 23:58:42 +0000
+Message-ID: <8b4a43ef-c2d9-fa9b-a6b5-47bb22457e5b@intel.com>
+Date: Thu, 3 Feb 2022 15:58:39 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: <intel-gfx@lists.freedesktop.org>
+References: <20220120221652.207255-1-casey.g.bowman@intel.com>
+From: Casey Bowman <casey.g.bowman@intel.com>
+In-Reply-To: <20220120221652.207255-1-casey.g.bowman@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BY5PR03CA0010.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::20) To BYAPR11MB2936.namprd11.prod.outlook.com
+ (2603:10b6:a03:8c::17)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6a5c4a0f-2e71-7dd4-7f15-4e076cbdbe62@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 16/19] drm/i915/guc: Use a single pass to
- calculate regset
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6dc47b97-9a5c-4396-6d89-08d9e7711b20
+X-MS-TrafficTypeDiagnostic: MWHPR1101MB2110:EE_
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-Microsoft-Antispam-PRVS: <MWHPR1101MB2110680F699B2B9A45113BA7DD289@MWHPR1101MB2110.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vImoTMFDB8j1mQEGsspxnQsHvq2dftle/A3h1kYRQV4XtJvOVIbwZB4tAGfbPT0Tx7oDaXyMIT0ckVLzNrLQIOeLTY1mpAbII6emfBCrm5pXff9IUS12j37PvxjCTWpjvnqFjxor0M7oQ7BkrmsUAdAbsWG9qskFkdxB5fG31ScJcIIsrrebe7n8OdsP2+mynzzSvy3572fx5ZFEMzucYMxDUTf4pr4UaELsPi0s+Eel0lfET2Cj/+4JUA69WdBYwHpz4PNk+f3Lpy3JXyO9DObjfys1O86TS4BGHz24BBqolCzTNDhMUGjdtjSHF1/CYykfffNxgJBjLmfpvy0hp0YQXerkZmdC8nJ7tB6sp7oX+f+WeLVEVabughccQFai5dUaH+yKkWmiPDCeTxxkuxRm5cnQVhqiOXgYpOWfNH9AYhBROgMl96GG8e/5htfNCoVfaWb5UhhXRbiR2fGho6w/LZNWzmfD/yLiiq54Kb4vmvO5sIBRnxx59Jt8dExyC73L3peOKRbat8CTh7IR/1W5dSjZS7Xi0ul9rbqOmGu71QaiEyibTM0q7VKcCxcXUwygqSl8TL8zO7dsChw2yNPRg0sZSTtXgcnYDmPgxxW5RHWf0avC38f53i7hzsyOpUqHXouwjL2qS/G9FwGBoq2KmCCC89Yd0c24etysli/5SJMrpSYIEphzp5sYJixxQdq3F2JdNQj3inaOMKJr4ViSA5JdfAtsoAJYH51ToYVjpcdaOCCkctf8rH0YjCm5
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2936.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(66476007)(54906003)(26005)(186003)(316002)(6512007)(2906002)(8936002)(66556008)(8676002)(107886003)(2616005)(31686004)(86362001)(83380400001)(36756003)(6916009)(31696002)(53546011)(6506007)(66946007)(6666004)(82960400001)(38100700002)(4326008)(6486002)(5660300002)(508600001)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eXZZN0IzWTlCbGNmTVl3L1l2M0F2emFYd3dTSE9RQmRnQjh3ZU1XK1pDN3Z4?=
+ =?utf-8?B?MHJNemx1VFViTWw4YVVITGM4K2Vqdy9BdzR1QXFuaHpXMEQ4dWRSU1l0T0J0?=
+ =?utf-8?B?UnVZNDRnV2xLRzZ2blMxTi8xbm5EbnhvKzdkbjRXUExmN1BZZ3ViSWN5OStN?=
+ =?utf-8?B?bkVrUTdHY0ZtRXhSZzVxUVF0aElPL3cvaFR5UzRldDFUOEZhQWIyQjhzYWxj?=
+ =?utf-8?B?MXY4ektmckJXNExlUUVBeXVZRjhHTDZZTlpVN3ljQnBEVzhMcUhTUHJ6bm9Y?=
+ =?utf-8?B?L2EybUVrbVVPMEtaYnZpSzZVblNLRUpUTnpIdVRsY1RQTWhhYVB0MnhiSTZr?=
+ =?utf-8?B?b3Z4YnRPWlYvaXBiQWE5cjhOT2ovQTdIQkx0eVE1elpXWVJvRG5vZ3lDMnJO?=
+ =?utf-8?B?OUUzQWdFWUJzYlNnWktPQ01EUzhZRDhudFM5azROWldpWERCVWFxSE9iRjZ0?=
+ =?utf-8?B?R2pqZ21zSWUxQVZrZDhIa285dGx0R1o5REpHdGN3ekZZQ0VqN2VBMlR4T3hx?=
+ =?utf-8?B?blIzai9zRXlZNk5nSzFhNmtVNFlSMHA3T2xrelowTjlnMmd0aG45SnFSWjlY?=
+ =?utf-8?B?L250emZzWWFCV0c4SGR5VlBmUXRwUVVBbkNtTGxORXR0THB1RVpRWEVOUGhW?=
+ =?utf-8?B?YjRQSkRoWW9NZnZ1UEpMR3gwWXE5VHFnL0w3alA1YXRzTllFWFpVamdWQUk4?=
+ =?utf-8?B?ZzVkN1JiMVJLM0JoYjF2VDNPcnpocHdnNXkxM1AvNjI4RVZROFdKMXNhNlZa?=
+ =?utf-8?B?Z212WVBKUXFlMm5oZnZTc2h3MHRYL3pnWVgxS3BwMzlCQlJpKzBIRk5YNm1k?=
+ =?utf-8?B?SlJ6Q1pMSzBGOVQ5NU5rRnN5WHo3bTNYOVJGeStYUFlFVTBBMEQ4c1FLenJT?=
+ =?utf-8?B?ZmhxUXpxSDFqSjNoYVdsZU5VM24rTGJUNGltUGZvV1F4THAzUU0wTjZheCsr?=
+ =?utf-8?B?UWFTbmJDOXJ4emZmTW01SEVwazFuUUxnajBpWUd1NTF4SU9tSk91QmcwdmJV?=
+ =?utf-8?B?UHJiaWdUZEpmcUhpQWdzSHNicGdobHp2azNmQUNnd3IvMFN4UkQzUGtCSllu?=
+ =?utf-8?B?ejVXTVBWZlRVZ2pLdW5rMi9sNERybGxKOG1rZEJUQnVSNTFIMXZ2Qlh4Qmd3?=
+ =?utf-8?B?L3cvdVdSbm04UEpCdUM0R1Y4K3dUNTdEQ0dCYVFwUlIzMCtzZ1FWRTkvZnB5?=
+ =?utf-8?B?T1Y4L0E1dko2eG9reThpOG4xN0NoRnJpeFp0MUJQNjl3TWo1WVFmS1lSMTQ2?=
+ =?utf-8?B?dzhMUk5zQStrdlpWZWVCdzRUMXZEM1g5Y0ErQUhnNExtYzZ1d0tyb2N6b3Vk?=
+ =?utf-8?B?ZllnSjNkSmJ0OXBjdXJ2NHNxOTFyY0ZVeVlHN3FDY29zWHF2L3B2cGVPYkhu?=
+ =?utf-8?B?VGlqOFhHdnppYUgvOS9GdGRpYVVlbUNINXRUYnh3SXdCUTd6cVhqbDc3ci9q?=
+ =?utf-8?B?YmhIMEdsUW0vRmw5NURXeHZVdW5OdTlGTmxKQTZ6UW9HUDMvU3RaNUYrZ0Vq?=
+ =?utf-8?B?VnN1cTE5V3lneUZCRTBXYXAxZy90ZEE4TkRkQ0RkbUhKc0ZRbjNVRzY5NUI5?=
+ =?utf-8?B?c3ZwN2JZQVJMYUIzSU9tZXdLdnhKcmtRcWFQMTZTVTd3azd5MkFkZ1RiRzRm?=
+ =?utf-8?B?UnI5QTlyb3lLMUJDY052YmY0aHlpZ1J4eXNKa1RjSmJOaHc5NnRNVDVWdFNI?=
+ =?utf-8?B?Qy90YWRKTk5wU0dIU2Nvc2wvSERhRXc0OXB0aVR3V3E3VmlqekFtSk5KaG95?=
+ =?utf-8?B?b1RnRGxUZTd5R3pKMS92UDdJVHU3eFVITk5QbWRRejFrbmNhQi8wNEdEcU5Y?=
+ =?utf-8?B?QkRWbUd6Z0JwMkNrTXFSNjNsSWVJQitWNy9Rd1BKbVBTOG02WldVcndLY1BX?=
+ =?utf-8?B?dHoydHpieFdFYXRuMm5zK3ZzalJUM1E1OXA4NGJVK0xWTVN4cldiamxJZ0ps?=
+ =?utf-8?B?L0VFT0ZNcFJHbGVuVFUyV0tOZ2NJNnJpdWNZNnN2QlVER0VKT2JBOWFUQnF5?=
+ =?utf-8?B?VU1xNkdCVGk3Zi9yVyt6QnBTSzRBUFVyOWdaOXd4dmtQS0c4RjBJMHhJWElE?=
+ =?utf-8?B?RDdqOWtkUElQTncwdGc0SzRNa3lOc1ZwdGk4dmVaM2hobWl1Z0hyMnJkTXA0?=
+ =?utf-8?B?cW5VVDVoeWhXTkNkOVU1dm9manNGWExjK3lheTIzRkYwRlowMTlDZUd5ejdK?=
+ =?utf-8?B?cTdsM29mbmZ6Z3ZDT3hDLzhNcjlienlNMG1rSGNDcm8vOWlNNUV2eG5PQ0N5?=
+ =?utf-8?Q?0W/DrL6Y//yDUwIhxKdNSpAyerf7KTJGdJ7EkU+Jow=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6dc47b97-9a5c-4396-6d89-08d9e7711b20
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2936.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2022 23:58:42.3785 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sTViPXDebYP84a8KmThkjt3m4v/jEoExrMD3qlBTcZRM7vecVvD/zJOxMK9CA3RMXHJEFaK5PtnY5R+jxNQYyd+DHsJZIDDVfVpZbDt1Ugc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1101MB2110
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [RFC PATCH 0/1] Splitting up platform-specific calls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,234 +156,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, Daniel
+ Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 01, 2022 at 02:42:20PM -0800, Daniele Ceraolo Spurio wrote:
+CC'ing more reviewers for comments.
+
+On 1/20/22 14:16, Casey Bowman wrote:
+> In this RFC I would like to ask the community their thoughts
+> on how we can best handle splitting architecture-specific
+> calls.
 >
+> I would like to address the following:
 >
->On 1/26/2022 12:36 PM, Lucas De Marchi wrote:
->>The ADS initialitazion was using 2 passes to calculate the regset sent
->>to GuC to initialize each engine: the first pass to just have the final
->>object size and the second to set each register in place in the final
->>gem object.
->>
->>However in order to maintain an ordered set of registers to pass to guc,
->>each register needs to be added and moved in the final array. The second
->>phase may actually happen in IO memory rather than system memory and
->>accessing IO memory by simply dereferencing the pointer doesn't work on
->>all architectures. Other places of the ADS initializaition were
->>converted to use the dma_buf_map API, but here there may be a lot more
->>accesses to IO memory. So, instead of following that same approach,
->>convert the regset initialization to calculate the final array in 1
->>pass and in the second pass that array is just copied to its final
->>location, updating the pointers for each engine written to the ADS blob.
->>
->>One important thing is that struct temp_regset now have
->>different semantics: `registers` continues to track the registers of a
->>single engine, however the other fields are updated together, according
->>to the newly added `storage`, which tracks the memory allocated for
->>all the registers. So rename some of these fields and add a
->>__mmio_reg_add(): this function (possibly) allocates memory and operates
->>on the storage pointer while guc_mmio_reg_add() continues to manage the
->>registers pointer.
->>
->>On a Tiger Lake system using enable_guc=3, the following log message is
->>now seen:
->>
->>	[  187.334310] i915 0000:00:02.0: [drm:intel_guc_ads_create [i915]] Used 4 KB for temporary ADS regset
->>
->>This change has also been tested on an ARM64 host with DG2 and other
->>discrete graphics cards.
->>
->>Cc: Matt Roper <matthew.d.roper@intel.com>
->>Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>Cc: Daniel Vetter <daniel@ffwll.ch>
->>Cc: John Harrison <John.C.Harrison@Intel.com>
->>Cc: Matthew Brost <matthew.brost@intel.com>
->>Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>---
->>  drivers/gpu/drm/i915/gt/uc/intel_guc.h     |   7 ++
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 117 +++++++++++++--------
->>  2 files changed, 79 insertions(+), 45 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
->>index e2e0df1c3d91..4c852eee3ad8 100644
->>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
->>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
->>@@ -152,6 +152,13 @@ struct intel_guc {
->>  	struct dma_buf_map ads_map;
->>  	/** @ads_regset_size: size of the save/restore regsets in the ADS */
->>  	u32 ads_regset_size;
->>+	/**
->>+	 * @ads_regset_count: number of save/restore registers in the ADS for
->>+	 * each engine
->>+	 */
->>+	u32 ads_regset_count[I915_NUM_ENGINES];
->>+	/** @ads_regset: save/restore regsets in the ADS */
->>+	struct guc_mmio_reg *ads_regset;
->>  	/** @ads_golden_ctxt_size: size of the golden contexts in the ADS */
->>  	u32 ads_golden_ctxt_size;
->>  	/** @ads_engine_usage_size: size of engine usage in the ADS */
->>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
->>index 73ca34de44f7..390101ee3661 100644
->>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
->>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
->>@@ -226,14 +226,13 @@ static void guc_mapping_table_init(struct intel_gt *gt,
->>  /*
->>   * The save/restore register list must be pre-calculated to a temporary
->>- * buffer of driver defined size before it can be generated in place
->>- * inside the ADS.
->>+ * buffer before it can be copied inside the ADS.
->>   */
->>-#define MAX_MMIO_REGS	128	/* Arbitrary size, increase as needed */
->>  struct temp_regset {
->>  	struct guc_mmio_reg *registers;
->>-	u32 used;
->>-	u32 size;
->>+	struct guc_mmio_reg *storage;
+> 1. How do we want to split architecture calls? Different object files
+> per platform? Separate function calls within the same object file?
 >
->I think this could use a comment to distinguish between registers and 
->storage. Something like.:
+> 2. How do we address dummy functions? If we have a function call that is
+> used for one or more platforms, but is not used in another, what should
+> we do for this case?
 >
->/* ptr to the base of the allocated storage for all engines */
->struct guc_mmio_reg *storage;
+> I've given an example of splitting an architecture call
+> in my patch with run_as_guest() being split into different
+> implementations for x86 and arm64 in separate object files, sharing
+> a single header.
 >
->/* ptr to the section of the storage for the engine currently being 
->worked on */
->struct guc_mmio_reg *registers;
-
-agreed, I will add that
-
+> Another suggestion from Michael (michael.cheng@intel.com) involved
+> using a single object file, a single header, and splitting various
+> functions calls via ifdefs in the header file.
 >
+> I would appreciate any input on how we can avoid scaling issues when
+> including multiple architectures and multiple functions (as the number
+> of function calls will inevitably increase with more architectures).
 >
->>+	u32 storage_used;
->>+	u32 storage_max;
->>  };
->>  static int guc_mmio_reg_cmp(const void *a, const void *b)
->>@@ -244,18 +243,44 @@ static int guc_mmio_reg_cmp(const void *a, const void *b)
->>  	return (int)ra->offset - (int)rb->offset;
->>  }
->>+static struct guc_mmio_reg * __must_check
->>+__mmio_reg_add(struct temp_regset *regset, struct guc_mmio_reg *reg)
->>+{
->>+	u32 pos = regset->storage_used;
->>+	struct guc_mmio_reg *slot;
->>+
->>+	if (pos >= regset->storage_max) {
->>+		size_t size = ALIGN((pos + 1) * sizeof(*slot), PAGE_SIZE);
->>+		struct guc_mmio_reg *r = krealloc(regset->storage,
->>+						  size, GFP_KERNEL);
->>+		if (!r) {
->>+			WARN_ONCE(1, "Incomplete regset list: can't add register (%d)\n",
->>+				  -ENOMEM);
->>+			return ERR_PTR(-ENOMEM);
->>+		}
->>+
->>+		regset->registers = r + (regset->registers - regset->storage);
->>+		regset->storage = r;
->>+		regset->storage_max = size / sizeof(*slot);
->>+	}
->>+
->>+	slot = &regset->storage[pos];
->>+	regset->storage_used++;
->>+	*slot = *reg;
->>+
->>+	return slot;
->>+}
->>+
->>  static long __must_check guc_mmio_reg_add(struct temp_regset *regset,
->>  					  u32 offset, u32 flags)
->>  {
->>-	u32 count = regset->used;
->>+	u32 count = regset->storage_used - (regset->registers - regset->storage);
->>  	struct guc_mmio_reg reg = {
->>  		.offset = offset,
->>  		.flags = flags,
->>  	};
->>  	struct guc_mmio_reg *slot;
->>-	GEM_BUG_ON(count >= regset->size);
->>-
->>  	/*
->>  	 * The mmio list is built using separate lists within the driver.
->>  	 * It's possible that at some point we may attempt to add the same
->>@@ -266,9 +291,9 @@ static long __must_check guc_mmio_reg_add(struct temp_regset *regset,
->>  		    sizeof(reg), guc_mmio_reg_cmp))
->>  		return 0;
->>-	slot = &regset->registers[count];
->>-	regset->used++;
->>-	*slot = reg;
->>+	slot = __mmio_reg_add(regset, &reg);
->>+	if (IS_ERR(slot))
->>+		return PTR_ERR(slot);
->>  	while (slot-- > regset->registers) {
->>  		GEM_BUG_ON(slot[0].offset == slot[1].offset);
->>@@ -295,7 +320,11 @@ static int guc_mmio_regset_init(struct temp_regset *regset,
->>  	unsigned int i;
->>  	int ret = 0;
->>-	regset->used = 0;
->>+	/*
->>+	 * Each engine's registers point to a new start relative to
->>+	 * storage
->>+	 */
->>+	regset->registers = regset->storage + regset->storage_used;
->>  	ret |= GUC_MMIO_REG_ADD(regset, RING_MODE_GEN7(base), true);
->>  	ret |= GUC_MMIO_REG_ADD(regset, RING_HWS_PGA(base), false);
->>@@ -317,32 +346,28 @@ static int guc_mmio_regset_init(struct temp_regset *regset,
->>  	return ret ? -1 : 0;
->>  }
->>-static int guc_mmio_reg_state_query(struct intel_guc *guc)
->>+static long guc_mmio_reg_state_create(struct intel_guc *guc)
->>  {
->>  	struct intel_gt *gt = guc_to_gt(guc);
->>  	struct intel_engine_cs *engine;
->>  	enum intel_engine_id id;
->>-	struct temp_regset temp_set;
->>-	u32 total;
->>+	struct temp_regset temp_set = {};
->>+	long total = 0;
->>-	/*
->>-	 * Need to actually build the list in order to filter out
->>-	 * duplicates and other such data dependent constructions.
->>-	 */
->>-	temp_set.size = MAX_MMIO_REGS;
->>-	temp_set.registers = kmalloc_array(temp_set.size,
->>-					   sizeof(*temp_set.registers),
->>-					   GFP_KERNEL);
->>-	if (!temp_set.registers)
->>-		return -ENOMEM;
->>-
->>-	total = 0;
->>  	for_each_engine(engine, gt, id) {
->>-		guc_mmio_regset_init(&temp_set, engine);
->>-		total += temp_set.used;
->>+		u32 used = temp_set.storage_used;
->>+
->>+		if (guc_mmio_regset_init(&temp_set, engine) < 0)
->>+			return -1;
+> Casey Bowman (1):
+>    i915/drm: Split out x86 and arm64 functionality
 >
->If you fail here you're leaking temp_set.storage.
-
-thanks for catching this. I fixed it for next version
-
->Also, any reason not to just return the return code from 
->guc_mmio_regset_init?
-
-no
-
-
->Apart from these minor comments, the change LGTM. IMO we could also 
->merge this patch on its own ahead of the rest of the dma_buf code, 
->because not having to recreate the regset on every reset/resume is 
->still helpful.
-
-now the dma_buf_map (renamed to iosys_map) is more settled. I will send
-everything together once more and than probably split on next versions
-if needed.
-
-
-thanks
-Lucas De Marchi
+>   drivers/gpu/drm/i915/Makefile              |  4 +++
+>   drivers/gpu/drm/i915/i915_drv.h            |  6 +---
+>   drivers/gpu/drm/i915/i915_platform.h       | 16 +++++++++++
+>   drivers/gpu/drm/i915/i915_platform_arm64.c | 33 ++++++++++++++++++++++
+>   drivers/gpu/drm/i915/i915_platform_x86.c   | 33 ++++++++++++++++++++++
+>   5 files changed, 87 insertions(+), 5 deletions(-)
+>   create mode 100644 drivers/gpu/drm/i915/i915_platform.h
+>   create mode 100644 drivers/gpu/drm/i915/i915_platform_arm64.c
+>   create mode 100644 drivers/gpu/drm/i915/i915_platform_x86.c
+>
