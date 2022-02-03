@@ -1,41 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD114A8FDD
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 22:27:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CCC34A8FED
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 22:30:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B5C210EC82;
-	Thu,  3 Feb 2022 21:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F17A10EAF2;
+	Thu,  3 Feb 2022 21:30:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mx2.smtp.larsendata.com (mx2.smtp.larsendata.com
  [91.221.196.228])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 634DC10EC89
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Feb 2022 21:27:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75D1510EAF2
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Feb 2022 21:30:20 +0000 (UTC)
 Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
  by mx2.smtp.larsendata.com (Halon) with ESMTPS
- id 3e0f2c91-8538-11ec-ac19-0050568cd888;
- Thu, 03 Feb 2022 21:28:34 +0000 (UTC)
+ id a007edfb-8538-11ec-ac19-0050568cd888;
+ Thu, 03 Feb 2022 21:31:19 +0000 (UTC)
 Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net
  [80.162.45.141])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
  (Authenticated sender: sam@ravnborg.org)
- by mail01.mxhotel.dk (Postfix) with ESMTPSA id 42F4D194B78;
- Thu,  3 Feb 2022 22:27:34 +0100 (CET)
-Date: Thu, 3 Feb 2022 22:27:31 +0100
+ by mail01.mxhotel.dk (Postfix) with ESMTPSA id C808B194B8C;
+ Thu,  3 Feb 2022 22:30:18 +0100 (CET)
+Date: Thu, 3 Feb 2022 22:30:16 +0100
 X-Report-Abuse-To: abuse@mxhotel.dk
 From: Sam Ravnborg <sam@ravnborg.org>
 To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YfxIw83tbU4lrpKj@ravnborg.org>
+Message-ID: <YfxJaN7fG8esihZl@ravnborg.org>
 References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
- <20220131210552.482606-8-daniel.vetter@ffwll.ch>
+ <20220131210552.482606-10-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220131210552.482606-8-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 07/21] fbdev/sysfs: Fix locking
+In-Reply-To: <20220131210552.482606-10-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 09/21] fbcon: Replace FBCON_FLAGS_INIT with
+ a boolean
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,31 +49,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org,
+Cc: linux-fbdev@vger.kernel.org, Du Cheng <ducheng2@gmail.com>,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  LKML <linux-kernel@vger.kernel.org>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- Qing Wang <wangqing@vivo.com>, Daniel Vetter <daniel.vetter@intel.com>,
- Helge Deller <deller@gmx.de>
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 31, 2022 at 10:05:38PM +0100, Daniel Vetter wrote:
-> fb_set_var requires we hold the fb_info lock. Or at least this now
-> matches what the ioctl does ...
-> 
-> Note that ps3fb and sh_mobile_lcdcfb are busted in different ways here,
-> but I will not fix them up.
-> 
-> Also in practice this isn't a big deal, because really variable fbdev
-> state is actually protected by console_lock (because fbcon just
-> doesn't bother with lock_fb_info() at all), and lock_fb_info
-> protecting anything is really just a neat lie. But that's a much
-> bigger fish to fry.
+On Mon, Jan 31, 2022 at 10:05:40PM +0100, Daniel Vetter wrote:
+> It's only one flag and slightly tidier code.
 > 
 > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Helge Deller <deller@gmx.de>
 > Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Qing Wang <wangqing@vivo.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Du Cheng <ducheng2@gmail.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Claudio Suarez <cssk@net-c.es>
 Acked-by: Sam Ravnborg <sam@ravnborg.org>
+
+Next step is to convert some of the int flags to bool - so it is obvious
+this is bool and not an int.
+I do not like bitfields for bools when there is no big win in memory
+usage - so not fan of that suggestion.
+
+	Sam
