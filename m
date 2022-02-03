@@ -2,32 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10EA84A857A
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 14:47:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CCAF4A8596
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 14:56:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 257FD10F917;
-	Thu,  3 Feb 2022 13:47:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1F8410F96B;
+	Thu,  3 Feb 2022 13:56:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2077910F917;
- Thu,  3 Feb 2022 13:47:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1F1DCA00CC;
- Thu,  3 Feb 2022 13:47:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1122C10F96A;
+ Thu,  3 Feb 2022 13:56:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643896579; x=1675432579;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Z32PB9LQlb0G4VQ/++GEN1JNPjs2ptGI2xIXrAOl0aY=;
+ b=hmUQ3/OQMd8GDidscPUFG/ojAPSA3Ohm3VlSJgwUp4lVhB0VCPSEmWym
+ vwB+NJA7uxePn2Oybu9pImKR8G5fQjlNvWyjePEUZf9ijFpvQ19EgoZTo
+ cXbCFbzloj6cTLLbEypT+SeP1nMzAnkFG3KkpoAeyTZfTqRhmqtvvLX2Y
+ hTjasm5kl+FapXB1vlOeAILIht+gpm3BQ4fS3n/iWVkDnESzKFde7wFG7
+ CGxspW0+X1V9prWp3wpPtjdpo6C6lPo1VYb8UsBmdmwrJ5z9tPAW5fivO
+ pruko7/GspxBo5uW7ixvldK/JhqXFt+RiptXGL/Hw75B/8WJx20HeoI+G g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10246"; a="334506068"
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="334506068"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 05:56:18 -0800
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="599913668"
+Received: from cmathias-mobl1.ger.corp.intel.com (HELO [10.249.254.246])
+ ([10.249.254.246])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 05:56:17 -0800
+Message-ID: <170468f918b202f540133e80032290424ff70936.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Thu, 03 Feb 2022 14:56:15 +0100
+In-Reply-To: <addd2b3d-95b1-f824-c7dc-c7b05b4497ba@intel.com>
+References: <20220126152155.3070602-1-matthew.auld@intel.com>
+ <20220126152155.3070602-20-matthew.auld@intel.com>
+ <a537f361-ae72-c62c-062f-4e96a9e48682@linux.intel.com>
+ <addd2b3d-95b1-f824-c7dc-c7b05b4497ba@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 03 Feb 2022 13:47:37 -0000
-Message-ID: <164389605712.15865.6076717644891788068@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1643878928.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1643878928.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/dp=2C_drm/i915=3A_128b/132b_updates_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 19/20] drm/i915/lmem: don't treat small BAR
+ as an error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +61,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 2022-02-03 at 11:18 +0000, Matthew Auld wrote:
+> On 03/02/2022 09:48, Thomas Hellström wrote:
+> > 
+> > On 1/26/22 16:21, Matthew Auld wrote:
+> > > Just pass along the probed io_size. The backend should be able to
+> > > utilize the entire range here, even if some of it is non-
+> > > mappable.
+> > Changes here LGTM.
+> > > 
+> > > It does leave open with what to do with stolen local-memory.
+> > 
+> > Are objects in stolen local required to be mappable?
+> 
+>  From a quick look I don't really see such users on discrete, outside
+> of 
+> maybe intelfb_create(), where I guess the initial fb might be located
+> in 
+> stolen on DG1. But from DG2+ it looks like it will just be located in
+> normal LMEM. For that I was thinking we add something like 
+> i915_gem_object_create_region_at(), and somehow wire that up to the 
+> {fpfn, lpfn}...
 
-Series: drm/dp, drm/i915: 128b/132b updates (rev2)
-URL   : https://patchwork.freedesktop.org/series/99324/
-State : warning
+So we could then skip STOLEN completely on DG2+? Could we then also do
+the same on DG1, at least assuming that creating and pinning an object
+for that initial fb would be done before any other pinning into LMEM?
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+/Thomas
 
 
