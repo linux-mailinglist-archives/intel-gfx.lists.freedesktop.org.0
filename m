@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE4394A9097
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 23:21:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A818E4A9113
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 00:19:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 300C510ED4B;
-	Thu,  3 Feb 2022 22:21:00 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 015D510ED4B
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Feb 2022 22:20:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 272AC10E1E2;
+	Thu,  3 Feb 2022 23:19:20 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42A4A10E1E2;
+ Thu,  3 Feb 2022 23:19:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643926859; x=1675462859;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=JuuW+/IfeOyoo7PEdfGAk5aSdLQXk+m3vFNU7f9A2xE=;
- b=g9Ku+LyoPqiq/l9bplrtdcpq/R4QsKZwa5jEtj0B8O10TB7Djn0Ym4rc
- XFzxQrxpzpQQ9wEhWzx8H+7rvgzyda+3FGe2B4uJTjE+HzgNBsEsYfYAZ
- uM4kFIEAk5JRvzxfbnv3hWR3thLkbb8b+ic6bF0n9JmuBQcBwW7pTRKwV
- oV3WwSMbW/igdLnc/nrauoezqQxzTIYxdutOMQNFNqCBSMvI19GdNT/+n
- kZcH1Ey/zwbENcFlDnNVooTn1wWbaNb1x4sCZ2V0vNc4WPbIil0AZIkZh
- X8FkJgoWIlNTsDb91ntEQwLLVvQX5PVG0C0axm3OlP0rjtcEkk1oVTIyi Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10247"; a="248216009"
-X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="248216009"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 14:20:58 -0800
-X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="480645725"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 14:20:58 -0800
-Date: Thu, 3 Feb 2022 14:20:52 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220203222052.GA18831@labuser-Z97X-UD5H>
-References: <20220203183823.22890-1-ville.syrjala@linux.intel.com>
- <20220203183823.22890-4-ville.syrjala@linux.intel.com>
+ t=1643930359; x=1675466359;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=9BiRDEv+Ni1oIs3Zk0AuSYnV2AQ7SpcI6nCel8eCezg=;
+ b=Cmqz51yduUto6cF7QTeqyhYADDIRLinI4sxxYRamW8ZWkKQMnFIAxeRD
+ emqxod3excXXepnd3Z1wVJNZ9gwiex3/wYYEq5MvLjEebd355/pfWCeSh
+ j55OG/TTY9ZIpoDidMEhY3gvlDN4t9wJjLPIt8IeOp/0sTAPow/DvZbBi
+ aDtIPeDuiXvuiAeckE2D4Zxtc9Y/BBE2Ijfwq8S5e1sD83tskxLjJP6V/
+ UXGHG9A30xv37DDm3clV8rTnZiz2aLD7th/cQjv05d+hkbLVvgg7pPAYZ
+ xsL3Pz4vsZ6tauafOXet4b9pZP22JwggwDvPL2kfWcxTU4r5szh7UrGw7 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10247"; a="245869247"
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="245869247"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 15:19:18 -0800
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="631525254"
+Received: from jmlaforg-mobl2.amr.corp.intel.com (HELO localhost)
+ ([10.212.225.10])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 15:19:18 -0800
+From: Jordan Justen <jordan.l.justen@intel.com>
+To: John.C.Harrison@Intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel-GFX@Lists.FreeDesktop.Org
+In-Reply-To: <87r18orepz.fsf@jljusten-skl>
+References: <20220119203541.2410082-1-John.C.Harrison@Intel.com>
+ <20220119203541.2410082-3-John.C.Harrison@Intel.com>
+ <87r18orepz.fsf@jljusten-skl>
+Date: Thu, 03 Feb 2022 15:19:17 -0800
+Message-ID: <87bkznr11m.fsf@jljusten-skl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220203183823.22890-4-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 03/10] drm/i915: Remove weird code from
- intel_atomic_check_bigjoiner()
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915/uapi: Add query for
+ hwconfig table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,115 +59,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Kenneth Graunke <kenneth.w.graunke@intel.com>,
+ DRI-Devel@Lists.FreeDesktop.Org,
+ Slawomir Milczarek <slawomir.milczarek@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 03, 2022 at 08:38:16PM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> There's some weird junk in intel_atomic_check_bigjoiner()
-> that's trying to look at the old crtc state's bigjoiner
-> usage for some reason. That code is totally unnecessary,
-> and maybe even actively harmful. Not entirely sure which
-> since it's such a mess that I can't actually wrap my brain
-> around what it ends up doing.
-> 
-> Either way, thanks to intel_bigjoiner_add_affected_crtcs()
-> all of the old bigjoiner crtcs are guaranteed to be in the
-> state already if any one of them is in the state. Also if
-> any one of those crtcs got flagged for a modeset, then all
-> of them will have been flagged, and the bigjoiner links
-> will have been detached via kill_bigjoiner_slave().
-> 
-> So there is no need to look examing any old bigjoiner
-> usage in intel_atomic_check_bigjoiner(). All we have to care
-> about is whether bigjoiner is needed for the new state,
-> and whether we can get the slave crtc we need.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Jordan Justen <jordan.l.justen@intel.com> writes:
 
-Completely agree with this cleanup, makes it so much easier to add new future code
+> John, Rodrigo,
+>
+> It is now clear to me just how dependent i915 is going to be on the
+> closed source guc software, and that's just a fact of life for our
+> graphics stack going forward.
+>
+> In that context, it seems kind of pointless for me to make a big deal
+> out of this peripheral "query item" commit message. I still think
+> something as simple and to the point as:
+>
+> "In this interface i915 is returning a blob of data which it receives
+> from the guc software. This blob provides some useful data about the
+> hardware for drivers. The format of this blob will be documented in the
+> Programmer Reference Manuals when released."
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+As I said on the internal email thread, *if you use my commit message
+suggestion*, then, begrudgingly, you can add my:
 
-Manasi
+Acked-by: Jordan Justen <jordan.l.justen@intel.com>
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 33 +++++++-------------
->  1 file changed, 11 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 2006eec6e166..b5701ca57889 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7584,38 +7584,28 @@ static bool intel_cpu_transcoders_need_modeset(struct intel_atomic_state *state,
->  }
->  
->  static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
-> -					struct intel_crtc *crtc,
-> -					struct intel_crtc_state *old_crtc_state,
-> -					struct intel_crtc_state *new_crtc_state)
-> +					struct intel_crtc *master_crtc)
->  {
->  	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> -	struct intel_crtc_state *slave_crtc_state, *master_crtc_state;
-> -	struct intel_crtc *slave_crtc, *master_crtc;
-> +	struct intel_crtc_state *master_crtc_state =
-> +		intel_atomic_get_new_crtc_state(state, master_crtc);
-> +	struct intel_crtc_state *slave_crtc_state;
-> +	struct intel_crtc *slave_crtc;
->  
-> -	/* slave being enabled, is master is still claiming this crtc? */
-> -	if (old_crtc_state->bigjoiner_slave) {
-> -		slave_crtc = crtc;
-> -		master_crtc = old_crtc_state->bigjoiner_linked_crtc;
-> -		master_crtc_state = intel_atomic_get_new_crtc_state(state, master_crtc);
-> -		if (!master_crtc_state || !intel_crtc_needs_modeset(master_crtc_state))
-> -			goto claimed;
-> -	}
-> -
-> -	if (!new_crtc_state->bigjoiner)
-> +	if (!master_crtc_state->bigjoiner)
->  		return 0;
->  
-> -	slave_crtc = intel_dsc_get_bigjoiner_secondary(crtc);
-> +	slave_crtc = intel_dsc_get_bigjoiner_secondary(master_crtc);
->  	if (!slave_crtc) {
->  		drm_dbg_kms(&i915->drm,
->  			    "[CRTC:%d:%s] Big joiner configuration requires "
->  			    "CRTC + 1 to be used, doesn't exist\n",
-> -			    crtc->base.base.id, crtc->base.name);
-> +			    master_crtc->base.base.id, master_crtc->base.name);
->  		return -EINVAL;
->  	}
->  
-> -	new_crtc_state->bigjoiner_linked_crtc = slave_crtc;
-> +	master_crtc_state->bigjoiner_linked_crtc = slave_crtc;
->  	slave_crtc_state = intel_atomic_get_crtc_state(&state->base, slave_crtc);
-> -	master_crtc = crtc;
->  	if (IS_ERR(slave_crtc_state))
->  		return PTR_ERR(slave_crtc_state);
->  
-> @@ -7627,7 +7617,7 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
->  		    "[CRTC:%d:%s] Used as slave for big joiner\n",
->  		    slave_crtc->base.base.id, slave_crtc->base.name);
->  
-> -	return copy_bigjoiner_crtc_state(slave_crtc_state, new_crtc_state);
-> +	return copy_bigjoiner_crtc_state(slave_crtc_state, master_crtc_state);
->  
->  claimed:
->  	drm_dbg_kms(&i915->drm,
-> @@ -7899,8 +7889,7 @@ static int intel_atomic_check(struct drm_device *dev,
->  		if (ret)
->  			goto fail;
->  
-> -		ret = intel_atomic_check_bigjoiner(state, crtc, old_crtc_state,
-> -						   new_crtc_state);
-> +		ret = intel_atomic_check_bigjoiner(state, crtc);
->  		if (ret)
->  			goto fail;
->  	}
-> -- 
-> 2.34.1
-> 
+to the patch.
+
+Regardless of the commit message, I think you can add:
+
+Tested-by: Jordan Justen <jordan.l.justen@intel.com>
+
+In truth, I've only tested this via the "prelim" i915 Linux uapi fork on
+an internal kernel tree, but I think that probably is close enough.
+
+In case you find it helpful, maybe:
+
+Ref: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/14511
+
+-Jordan
+
+>
+> ... would be better, but obviously this is really just down in the noise
+> in terms of concerns about the greater issue. So, feel free (to
+> continue) to ignore my suggestion.
+>
+> Sorry for having wasted your time,
+>
+> -Jordan
+>
+> John.C.Harrison@Intel.com writes:
+>
+>> From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>
+>> GuC contains a consolidated table with a bunch of information about the
+>> current device.
+>>
+>> Previously, this information was spread and hardcoded to all the components
+>> including GuC, i915 and various UMDs. The goal here is to consolidate
+>> the data into GuC in a way that all interested components can grab the
+>> very latest and synchronized information using a simple query.
+>>
+>> As per most of the other queries, this one can be called twice.
+>> Once with item.length=0 to determine the exact buffer size, then
+>> allocate the user memory and call it again for to retrieve the
+>> table data. For example:
+>>   struct drm_i915_query_item item = {
+>>     .query_id = DRM_I915_QUERY_HWCONCFIG_TABLE;
+>>   };
+>>   query.items_ptr = (int64_t) &item;
+>>   query.num_items = 1;
+>>
+>>   ioctl(fd, DRM_IOCTL_I915_QUERY, query, sizeof(query));
+>>
+>>   if (item.length <= 0)
+>>     return -ENOENT;
+>>
+>>   data = malloc(item.length);
+>>   item.data_ptr = (int64_t) &data;
+>>   ioctl(fd, DRM_IOCTL_I915_QUERY, query, sizeof(query));
+>>
+>>   // Parse the data as appropriate...
+>>
+>> The returned array is a simple and flexible KLV (Key/Length/Value)
+>> formatted table. For example, it could be just:
+>>   enum device_attr {
+>>      ATTR_SOME_VALUE = 0,
+>>      ATTR_SOME_MASK  = 1,
+>>   };
+>>
+>>   static const u32 hwconfig[] = {
+>>       ATTR_SOME_VALUE,
+>>       1,             // Value Length in DWords
+>>       8,             // Value
+>>
+>>       ATTR_SOME_MASK,
+>>       3,
+>>       0x00FFFFFFFF, 0xFFFFFFFF, 0xFF000000,
+>>   };
+>>
+>> The attribute ids are defined in a hardware spec.
+>>
+>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Cc: Kenneth Graunke <kenneth.w.graunke@intel.com>
+>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
+>> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_query.c | 23 +++++++++++++++++++++++
+>>  include/uapi/drm/i915_drm.h       |  1 +
+>>  2 files changed, 24 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+>> index 2dfbc22857a3..609e64d5f395 100644
+>> --- a/drivers/gpu/drm/i915/i915_query.c
+>> +++ b/drivers/gpu/drm/i915/i915_query.c
+>> @@ -479,12 +479,35 @@ static int query_memregion_info(struct drm_i915_private *i915,
+>>  	return total_length;
+>>  }
+>>  
+>> +static int query_hwconfig_table(struct drm_i915_private *i915,
+>> +				struct drm_i915_query_item *query_item)
+>> +{
+>> +	struct intel_gt *gt = to_gt(i915);
+>> +	struct intel_guc_hwconfig *hwconfig = &gt->uc.guc.hwconfig;
+>> +
+>> +	if (!hwconfig->size || !hwconfig->ptr)
+>> +		return -ENODEV;
+>> +
+>> +	if (query_item->length == 0)
+>> +		return hwconfig->size;
+>> +
+>> +	if (query_item->length < hwconfig->size)
+>> +		return -EINVAL;
+>> +
+>> +	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
+>> +			 hwconfig->ptr, hwconfig->size))
+>> +		return -EFAULT;
+>> +
+>> +	return hwconfig->size;
+>> +}
+>> +
+>>  static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+>>  					struct drm_i915_query_item *query_item) = {
+>>  	query_topology_info,
+>>  	query_engine_info,
+>>  	query_perf_config,
+>>  	query_memregion_info,
+>> +	query_hwconfig_table,
+>>  };
+>>  
+>>  int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+>> index 914ebd9290e5..132515199f27 100644
+>> --- a/include/uapi/drm/i915_drm.h
+>> +++ b/include/uapi/drm/i915_drm.h
+>> @@ -2685,6 +2685,7 @@ struct drm_i915_query_item {
+>>  #define DRM_I915_QUERY_ENGINE_INFO	2
+>>  #define DRM_I915_QUERY_PERF_CONFIG      3
+>>  #define DRM_I915_QUERY_MEMORY_REGIONS   4
+>> +#define DRM_I915_QUERY_HWCONFIG_TABLE   5
+>>  /* Must be kept compact -- no holes and well documented */
+>>  
+>>  	/**
+>> -- 
+>> 2.25.1
