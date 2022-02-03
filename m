@@ -1,33 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694564A8F6D
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 21:58:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB7E94A8FA5
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 22:15:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DDCF10E155;
-	Thu,  3 Feb 2022 20:58:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDA6710E1D4;
+	Thu,  3 Feb 2022 21:15:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 862E310E155;
- Thu,  3 Feb 2022 20:57:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 836C2A00E8;
- Thu,  3 Feb 2022 20:57:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8304834598404198528=="
+Received: from mx2.smtp.larsendata.com (mx2.smtp.larsendata.com
+ [91.221.196.228])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FE4C10E193
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Feb 2022 21:15:19 +0000 (UTC)
+Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
+ by mx2.smtp.larsendata.com (Halon) with ESMTPS
+ id 8640be1c-8536-11ec-ac19-0050568cd888;
+ Thu, 03 Feb 2022 21:16:16 +0000 (UTC)
+Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net
+ [80.162.45.141])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: sam@ravnborg.org)
+ by mail01.mxhotel.dk (Postfix) with ESMTPSA id 6844B194B5E;
+ Thu,  3 Feb 2022 22:15:16 +0100 (CET)
+Date: Thu, 3 Feb 2022 22:15:14 +0100
+X-Report-Abuse-To: abuse@mxhotel.dk
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YfxF4jq7BLX5rJe5@ravnborg.org>
+References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
+ <20220131210552.482606-12-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael Cheng" <michael.cheng@intel.com>
-Date: Thu, 03 Feb 2022 20:57:58 -0000
-Message-ID: <164392187851.15870.9094695923376829523@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220203200403.378958-1-michael.cheng@intel.com>
-In-Reply-To: <20220203200403.378958-1-michael.cheng@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgVXNl?=
- =?utf-8?q?_drm=5Fclflush*_instead_of_clflush_=28rev3=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220131210552.482606-12-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 11/21] fbcon: Extract fbcon_open/release
+ helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,282 +49,227 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, Du Cheng <ducheng2@gmail.com>,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8304834598404198528==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Daniel,
 
-== Series Details ==
-
-Series: Use drm_clflush* instead of clflush (rev3)
-URL   : https://patchwork.freedesktop.org/series/99450/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11185 -> Patchwork_22172
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/index.html
-
-Participating hosts (50 -> 44)
-------------------------------
-
-  Missing    (6): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 shard-rkl fi-bdw-samus 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22172 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [PASS][2] -> [FAIL][3] ([i915#4547])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [PASS][4] -> [DMESG-FAIL][5] ([i915#4494] / [i915#4957])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-    - fi-hsw-4770:        [PASS][6] -> [INCOMPLETE][7] ([i915#3303])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][8] -> [DMESG-WARN][9] ([i915#4269])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][10] ([fdo#109271] / [i915#1436] / [i915#4312])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-hsw-4770/igt@runner@aborted.html
-    - fi-skl-6600u:       NOTRUN -> [FAIL][11] ([i915#4312])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-skl-6600u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_engines:
-    - bat-dg1-6:          [INCOMPLETE][12] ([i915#4418]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/bat-dg1-6/igt@i915_selftest@live@gt_engines.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-skl-6700k2:      [DMESG-FAIL][14] ([i915#2291] / [i915#541]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-skl-6700k2/igt@i915_selftest@live@gt_heartbeat.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-skl-6700k2/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-tgl-1115g4:      [DMESG-FAIL][16] ([i915#3987]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][18] ([i915#3921]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-cfl-8109u:       [DMESG-WARN][20] ([i915#295]) -> [PASS][21] +12 similar issues
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4418]: https://gitlab.freedesktop.org/drm/intel/issues/4418
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+On Mon, Jan 31, 2022 at 10:05:42PM +0100, Daniel Vetter wrote:
+> There's two minor behaviour changes in here:
+> - in error paths we now consistently call fb_ops->fb_release
+> - fb_release really can't fail (fbmem.c ignores it too) and there's no
+>   reasonable cleanup we can do anyway.
+> 
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Claudio Suarez <cssk@net-c.es>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+> Cc: Du Cheng <ducheng2@gmail.com>
+> ---
+>  drivers/video/fbdev/core/fbcon.c | 107 +++++++++++++++----------------
+>  1 file changed, 53 insertions(+), 54 deletions(-)
+> 
+> diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
+> index fa30e1909164..eea2ee14b64c 100644
+> --- a/drivers/video/fbdev/core/fbcon.c
+> +++ b/drivers/video/fbdev/core/fbcon.c
+> @@ -680,19 +680,37 @@ static int fbcon_invalid_charcount(struct fb_info *info, unsigned charcount)
+>  
+>  #endif /* CONFIG_MISC_TILEBLITTING */
+>  
+> +static int fbcon_open(struct fb_info *info)
+> +{
+> +	if (!try_module_get(info->fbops->owner))
+> +		return -ENODEV;
+> +
+> +	if (info->fbops->fb_open &&
+> +	    info->fbops->fb_open(info, 0)) {
+> +		module_put(info->fbops->owner);
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void fbcon_release(struct fb_info *info)
+> +{
+> +	if (info->fbops->fb_release)
+> +		info->fbops->fb_release(info, 0);
+> +
+> +	module_put(info->fbops->owner);
+> +}
+>  
+>  static int con2fb_acquire_newinfo(struct vc_data *vc, struct fb_info *info,
+>  				  int unit, int oldidx)
+>  {
+>  	struct fbcon_ops *ops = NULL;
+> -	int err = 0;
+> -
+> -	if (!try_module_get(info->fbops->owner))
+> -		err = -ENODEV;
+> +	int err;
+>  
+> -	if (!err && info->fbops->fb_open &&
+> -	    info->fbops->fb_open(info, 0))
+> -		err = -ENODEV;
+> +	err = fbcon_open(info);
+> +	if (err)
+> +		return err;
+>  
+>  	if (!err) {
+>  		ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
+> @@ -713,7 +731,7 @@ static int con2fb_acquire_newinfo(struct vc_data *vc, struct fb_info *info,
+>  
+>  	if (err) {
+>  		con2fb_map[unit] = oldidx;
+> -		module_put(info->fbops->owner);
+> +		fbcon_release(info);
+>  	}
+>  
+>  	return err;
+> @@ -724,45 +742,34 @@ static int con2fb_release_oldinfo(struct vc_data *vc, struct fb_info *oldinfo,
+>  				  int oldidx, int found)
+>  {
+>  	struct fbcon_ops *ops = oldinfo->fbcon_par;
+> -	int err = 0, ret;
+> +	int ret;
+>  
+> -	if (oldinfo->fbops->fb_release &&
+> -	    oldinfo->fbops->fb_release(oldinfo, 0)) {
+> -		con2fb_map[unit] = oldidx;
+The old code assigns con2fb_map[unit] before is calls
+newinfo->fbops->fb_release).
+I wonder if there can be any callback to fbcon where the value
+of con2fb_map[unit] matters?
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11185 -> Patchwork_22172
-
-  CI-20190529: 20190529
-  CI_DRM_11185: 40bd6069e8af4f23b824157534613e92e600226f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6339: 9cd99d763440ae75d9981ce4e361d3deb5edb4e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22172: 0314edfdf5da45782bf679941ba4a5218af12a52 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0314edfdf5da drm/i915/: Re-work clflush_write32
-0e3e2dcb944a drm/i915/gt: Re-work reset_csb
-71ea7ccbe1e3 drm/i915/gt: Drop invalidate_csb_entries
-f5dee7fefc3b drm/i915/gt: Re-work intel_write_status_page
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/index.html
-
---===============8304834598404198528==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> -		if (!found && newinfo->fbops->fb_release)
+> -			newinfo->fbops->fb_release(newinfo, 0);
+> -		if (!found)
+> -			module_put(newinfo->fbops->owner);
+> -		err = -ENODEV;
+> -	}
+> +	fbcon_release(oldinfo);
+>  
+> -	if (!err) {
+> -		fbcon_del_cursor_work(oldinfo);
+> -		kfree(ops->cursor_state.mask);
+> -		kfree(ops->cursor_data);
+> -		kfree(ops->cursor_src);
+> -		kfree(ops->fontbuffer);
+> -		kfree(oldinfo->fbcon_par);
+> -		oldinfo->fbcon_par = NULL;
+> -		module_put(oldinfo->fbops->owner);
+> -		/*
+> -		  If oldinfo and newinfo are driving the same hardware,
+> -		  the fb_release() method of oldinfo may attempt to
+> -		  restore the hardware state.  This will leave the
+> -		  newinfo in an undefined state. Thus, a call to
+> -		  fb_set_par() may be needed for the newinfo.
+> -		*/
+> -		if (newinfo && newinfo->fbops->fb_set_par) {
+> -			ret = newinfo->fbops->fb_set_par(newinfo);
+> +	fbcon_del_cursor_work(oldinfo);
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Use drm_clflush* instead of clflush (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99450/">https://patchwork.freedesktop.org/series/99450/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+> +	kfree(ops->cursor_state.mask);
+> +	kfree(ops->cursor_data);
+> +	kfree(ops->cursor_src);
+> +	kfree(ops->fontbuffer);
+> +	kfree(oldinfo->fbcon_par);
+> +	oldinfo->fbcon_par = NULL;
+These all look like candidates to stuff into fbcon_release()
+That would drop the nice symmetry but make it more consistent.
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/index.html</a></td></tr>
+I think we miss freeing ops->cursor_data in fbcon_exit(),
+but I did not follow all the code.
 
-</table>
+With my ramblings considered the patch is
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
 
+	Sam
 
-    <h1>CI Bug Log - changes from CI_DRM_11185 -&gt; Patchwork_22172</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/index.html</p>
-<h2>Participating hosts (50 -&gt; 44)</h2>
-<p>Missing    (6): shard-tglu fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 shard-rkl fi-bdw-samus </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22172 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
-</li>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4418">i915#4418</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/bat-dg1-6/igt@i915_selftest@live@gt_engines.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-skl-6700k2/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-skl-6700k2/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3987">i915#3987</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11185/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22172/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> +12 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11185 -&gt; Patchwork_22172</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11185: 40bd6069e8af4f23b824157534613e92e600226f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6339: 9cd99d763440ae75d9981ce4e361d3deb5edb4e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22172: 0314edfdf5da45782bf679941ba4a5218af12a52 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0314edfdf5da drm/i915/: Re-work clflush_write32<br />
-0e3e2dcb944a drm/i915/gt: Re-work reset_csb<br />
-71ea7ccbe1e3 drm/i915/gt: Drop invalidate_csb_entries<br />
-f5dee7fefc3b drm/i915/gt: Re-work intel_write_status_page</p>
-
-</body>
-</html>
-
---===============8304834598404198528==--
+> +	/*
+> +	  If oldinfo and newinfo are driving the same hardware,
+> +	  the fb_release() method of oldinfo may attempt to
+> +	  restore the hardware state.  This will leave the
+> +	  newinfo in an undefined state. Thus, a call to
+> +	  fb_set_par() may be needed for the newinfo.
+> +	*/
+> +	if (newinfo && newinfo->fbops->fb_set_par) {
+> +		ret = newinfo->fbops->fb_set_par(newinfo);
+>  
+> -			if (ret)
+> -				printk(KERN_ERR "con2fb_release_oldinfo: "
+> -					"detected unhandled fb_set_par error, "
+> -					"error code %d\n", ret);
+> -		}
+> +		if (ret)
+> +			printk(KERN_ERR "con2fb_release_oldinfo: "
+> +				"detected unhandled fb_set_par error, "
+> +				"error code %d\n", ret);
+>  	}
+>  
+> -	return err;
+> +	return 0;
+>  }
+>  
+>  static void con2fb_init_display(struct vc_data *vc, struct fb_info *info,
+> @@ -917,7 +924,6 @@ static const char *fbcon_startup(void)
+>  	struct fbcon_display *p = &fb_display[fg_console];
+>  	struct vc_data *vc = vc_cons[fg_console].d;
+>  	const struct font_desc *font = NULL;
+> -	struct module *owner;
+>  	struct fb_info *info = NULL;
+>  	struct fbcon_ops *ops;
+>  	int rows, cols;
+> @@ -936,17 +942,12 @@ static const char *fbcon_startup(void)
+>  	if (!info)
+>  		return NULL;
+>  	
+> -	owner = info->fbops->owner;
+> -	if (!try_module_get(owner))
+> +	if (fbcon_open(info))
+>  		return NULL;
+> -	if (info->fbops->fb_open && info->fbops->fb_open(info, 0)) {
+> -		module_put(owner);
+> -		return NULL;
+> -	}
+>  
+>  	ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
+>  	if (!ops) {
+> -		module_put(owner);
+> +		fbcon_release(info);
+>  		return NULL;
+>  	}
+>  
+> @@ -3331,10 +3332,6 @@ static void fbcon_exit(void)
+>  		}
+>  
+>  		if (mapped) {
+> -			if (info->fbops->fb_release)
+> -				info->fbops->fb_release(info, 0);
+> -			module_put(info->fbops->owner);
+> -
+>  			if (info->fbcon_par) {
+>  				struct fbcon_ops *ops = info->fbcon_par;
+>  
+> @@ -3344,6 +3341,8 @@ static void fbcon_exit(void)
+>  				kfree(info->fbcon_par);
+>  				info->fbcon_par = NULL;
+>  			}
+> +
+> +			fbcon_release(info);
+>  		}
+>  	}
+>  }
+> -- 
+> 2.33.0
