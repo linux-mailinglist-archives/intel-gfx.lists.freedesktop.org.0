@@ -1,46 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 386484A818F
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 10:37:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4993D4A81A4
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Feb 2022 10:43:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9EAE10EC44;
-	Thu,  3 Feb 2022 09:37:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FEC210ED28;
+	Thu,  3 Feb 2022 09:43:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A26810EC44;
- Thu,  3 Feb 2022 09:37:17 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33D4110ECE7;
+ Thu,  3 Feb 2022 09:43:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643881037; x=1675417037;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=o+xKxW03elSt4TVYnX8s8SGfjcBFieYuE59P+xsIkTU=;
- b=eaSVJ+yBUlAYrOsmHW8nJWwt7HrW8om2jjvVSua5ZD8TDYpbSmPHP4nT
- iofjqnVRnRJI0DBzpzQCQRZJ85U2nLgARBcaTzQC3A/xRLt/WrmHuis5F
- 8Qfqc7bP3UfGwUtmDKr1Ogl6I7hr9/6hMX1r0fYsh3F35FQMyZQOmgIoc
- LqP4D0gXcXf27ZksLv19IAY4N1vW1/jh7zetNOW3HDKfn4WVuUjgXUTmk
- HKCkJPdHVn9NcCIyzxLsO+vwcy4pXlQzmMl2PkLzT3CQXV/uDU/puxLon
- y/knAWQx+J7n8m2cJkmJwU/1ma+gW3Rp0JvEVbtBbiHe1w5XAwB9LLre5 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10246"; a="311413321"
-X-IronPort-AV: E=Sophos;i="5.88,339,1635231600"; d="scan'208";a="311413321"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 01:37:16 -0800
-X-IronPort-AV: E=Sophos;i="5.88,339,1635231600"; d="scan'208";a="523856552"
-Received: from xiejiach-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.249.254.20])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 01:37:13 -0800
-Date: Thu, 3 Feb 2022 11:37:10 +0200
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YfuiG8SKMKP5V/Dm@jlahtine-mobl.ger.corp.intel.com>
+ t=1643881420; x=1675417420;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=6YuJwQfb0u49m8Kr1JiR+WbWMLDPh5jlzK00+lqNnIU=;
+ b=QRotgzVaAOWH09Jel1zFzX6EwTq3hq5p7qabb8SKfm1an+B6atOysvrQ
+ a1TdOtasQNJ56LY6MNA0AcXkBC/Z5SF87wvJzXhYob5LB4Y8OSueoTBc5
+ cKC+IED5ANCBFl+qzQT8goi6g+P3YLDH4vTakuQBgT3azVaPJo3BRlxYA
+ ISpTfWq8y/83CeZo/Yj7yZ38q7aGv2iQq1qagz+zbFPmkkfzcUAAG8+YB
+ V1UYFtKgaBViYVKChV0skHi+CdrcWjmbPjLpPM/0Oi3UGoxUd/ZqmZNvQ
+ ZSth7L2IrqBDJ/SudQ/d84YONQh2P/dw6hecT47Ws4MigLqrCqJzWRcTr g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10246"; a="248061884"
+X-IronPort-AV: E=Sophos;i="5.88,339,1635231600"; d="scan'208";a="248061884"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 01:43:39 -0800
+X-IronPort-AV: E=Sophos;i="5.88,339,1635231600"; d="scan'208";a="620446588"
+Received: from cmathias-mobl1.ger.corp.intel.com (HELO [10.249.254.246])
+ ([10.249.254.246])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 01:43:38 -0800
+Message-ID: <5862bea3-7384-2ba3-4fe4-31e5e8fe64c9@linux.intel.com>
+Date: Thu, 3 Feb 2022 10:43:35 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220126152155.3070602-1-matthew.auld@intel.com>
+ <20220126152155.3070602-19-matthew.auld@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20220126152155.3070602-19-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 18/20] drm/i915/uapi: forbid ALLOC_TOPDOWN
+ for error capture
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,72 +61,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Daniel,
+On 1/26/22 16:21, Matthew Auld wrote:
+> On platforms where there might be non-mappable LMEM, force userspace to
+> mark the buffers with the correct hint. When dumping the BO contents
+> during capture we need CPU access. Note this only applies to buffers
+> that can be placed in LMEM, and also doesn't impact DG1.
 
-Tvrtko is out today, so sending the -rc3 -fixes PR on behalf of him (picked
-and CI tested by Tvtko).
+Oddly enough this seems to break DG1. We probably need to understand why.
 
-Major items are fix for GitLab #4698 (Dell DA310 Type-C dock issue) and
-engine busyness inconsitent value/timeout fixes when running with GuC.
+/Thomas
 
-Then two fixes for error paths and a smatch detected divide by zero
-fix.
 
-Regards, Joonas
 
-***
-
-drm-intel-fixes-2022-02-03:
-
-Fix GitLab issue #4698: DP monitor through Type-C dock(Dell DA310) doesn't work.
-Fixes for inconsistent engine busyness value and read timeout with GuC.
-Fix to use ALLOW_FAIL for error capture buffer allocation. Don't use
-interruptible lock on error path. Smatch fix to reject zero sized overlays.
-
-The following changes since commit 26291c54e111ff6ba87a164d85d4a4e134b7315c:
-
-  Linux 5.17-rc2 (2022-01-30 15:37:07 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2022-02-03
-
-for you to fetch changes up to 7d73c602154df56802a9e75ac212505fc1e9a2b6:
-
-  drm/i915/pmu: Fix KMD and GuC race on accessing busyness (2022-02-01 08:59:25 +0000)
-
-----------------------------------------------------------------
-Fix GitLab issue #4698: DP monitor through Type-C dock(Dell DA310) doesn't work.
-Fixes for inconsistent engine busyness value and read timeout with GuC.
-Fix to use ALLOW_FAIL for error capture buffer allocation. Don't use
-interruptible lock on error path. Smatch fix to reject zero sized overlays.
-
-----------------------------------------------------------------
-Dan Carpenter (1):
-      drm/i915/overlay: Prevent divide by zero bugs in scaling
-
-Imre Deak (1):
-      drm/i915/adlp: Fix TypeC PHY-ready status readout
-
-Matthew Brost (2):
-      drm/i915: Allocate intel_engine_coredump_alloc with ALLOW_FAIL
-      drm/i915: Lock timeline mutex directly in error path of eb_pin_timeline
-
-Umesh Nerlige Ramappa (2):
-      drm/i915/pmu: Use PM timestamp instead of RING TIMESTAMP for reference
-      drm/i915/pmu: Fix KMD and GuC race on accessing busyness
-
- drivers/gpu/drm/i915/display/intel_overlay.c      |   3 +
- drivers/gpu/drm/i915/display/intel_tc.c           |   3 +-
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c    |   9 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.h            |   5 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 114 ++++++++++++++++++----
- drivers/gpu/drm/i915/i915_gpu_error.c             |   2 +-
- drivers/gpu/drm/i915/i915_reg.h                   |   3 +-
- 7 files changed, 117 insertions(+), 22 deletions(-)
+>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 11 +++++++++--
+>   1 file changed, 9 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 498b458fd784..3c8083852620 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -1965,7 +1965,7 @@ eb_find_first_request_added(struct i915_execbuffer *eb)
+>   #if IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR)
+>   
+>   /* Stage with GFP_KERNEL allocations before we enter the signaling critical path */
+> -static void eb_capture_stage(struct i915_execbuffer *eb)
+> +static int eb_capture_stage(struct i915_execbuffer *eb)
+>   {
+>   	const unsigned int count = eb->buffer_count;
+>   	unsigned int i = count, j;
+> @@ -1978,6 +1978,9 @@ static void eb_capture_stage(struct i915_execbuffer *eb)
+>   		if (!(flags & EXEC_OBJECT_CAPTURE))
+>   			continue;
+>   
+> +		if (vma->obj->flags & I915_BO_ALLOC_TOPDOWN)
+> +			return -EINVAL;
+> +
+>   		for_each_batch_create_order(eb, j) {
+>   			struct i915_capture_list *capture;
+>   
+> @@ -1990,6 +1993,8 @@ static void eb_capture_stage(struct i915_execbuffer *eb)
+>   			eb->capture_lists[j] = capture;
+>   		}
+>   	}
+> +
+> +	return 0;
+>   }
+>   
+>   /* Commit once we're in the critical path */
+> @@ -3418,7 +3423,9 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>   	}
+>   
+>   	ww_acquire_done(&eb.ww.ctx);
+> -	eb_capture_stage(&eb);
+> +	err = eb_capture_stage(&eb);
+> +	if (err)
+> +		goto err_vma;
+>   
+>   	out_fence = eb_requests_create(&eb, in_fence, out_fence_fd);
+>   	if (IS_ERR(out_fence)) {
