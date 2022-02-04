@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCE3F4A9AD5
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 15:18:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88EE14A9AD4
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 15:18:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1F5610E8DC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92C9410E8DA;
 	Fri,  4 Feb 2022 14:18:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7182C10E8DA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 994FA10E8DC
  for <intel-gfx@lists.freedesktop.org>; Fri,  4 Feb 2022 14:18:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1643984311; x=1675520311;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=SDsxXd4E06O8Zcm81lOpba0B+HuOi0Ihk3sPiWJenB8=;
- b=NDJGmg5U4l0DvIGnPuwpHoIKtwftAD3+/mFPjT7t1icPQpmX4w57itbt
- LYw/PcXv54C2KmPBrLKCKWobQ8hc4fEQtrxbwBLQE/t7pgoiEo9bzrUv9
- /i1oFNCxkeXllkF/G3lk2SqLTEnsBMCp6ba+sqkBHFhLHDXp6PuvrkTo7
- rfKjzbSVJqgeifmWhzjl+66w6n6hgLDZlDIN0BY4HconcbnrTWuUzCwVS
- 7o1a5lzbFPPk8fk1hm8wym9yHTj9H9WNoaB585Prt0D5vr/T7GFThIe27
- DI8v7zz7qxQNRwPXCn0eBuZ9h2rIrU5smLsuePOP+reDWRU5PAUiDj4Kk Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10247"; a="228345228"
-X-IronPort-AV: E=Sophos;i="5.88,342,1635231600"; d="scan'208";a="228345228"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=8Ad/3AB6OPVlBzmrW7fAn50/SVwuuksXg5xN8otT4jU=;
+ b=jRT6AFXAeAaJyaiSJrwxwO1GOp+wrmSlJQtTvnzrxvJW4sw5+E2ikoGT
+ PoWK9e08OOpJa7x6c9izkUzZlQR/RcONLA4h8oKZN/iFPp6IUYu0Z5lza
+ f84O7AC346nKTNOdQDe237Da8F64gjItdVxofuoHkyWU9OhHXsUd87SnJ
+ pg5/OIBkcni6tQ4I133KlWrnfZ4wISmX1T8u7iGG2GDA+4Ginhz01Enn2
+ OmoZjFGTunPLFMCDJdO71/64/SDfmora7S0VjIgyl6s7wdQqyBDjxjLzE
+ 1lW6Nc+zBViGYaBGA4+7StKCcyna1x3ocbL1iBOnLncEd5+Rp03kHez4Z A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10247"; a="228345231"
+X-IronPort-AV: E=Sophos;i="5.88,342,1635231600"; d="scan'208";a="228345231"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2022 06:18:21 -0800
+ 04 Feb 2022 06:18:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,342,1635231600"; d="scan'208";a="677109385"
+X-IronPort-AV: E=Sophos;i="5.88,342,1635231600"; d="scan'208";a="539179394"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga001.fm.intel.com with SMTP; 04 Feb 2022 06:18:19 -0800
+ by orsmga008.jf.intel.com with SMTP; 04 Feb 2022 06:18:22 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 04 Feb 2022 16:18:18 +0200
+ Fri, 04 Feb 2022 16:18:21 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  4 Feb 2022 16:18:16 +0200
-Message-Id: <20220204141818.1900-1-ville.syrjala@linux.intel.com>
+Date: Fri,  4 Feb 2022 16:18:17 +0200
+Message-Id: <20220204141818.1900-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220204141818.1900-1-ville.syrjala@linux.intel.com>
+References: <20220204141818.1900-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Allow !join_mbus cases for adlp+
- dbuf configuration
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Populate pipe dbuf slices more
+ accurately during readout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,176 +64,57 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Reintroduce the !join_mbus single pipe cases for adlp+.
-
-Due to the mbus relative dbuf offsets in PLANE_BUF_CFG we
-need to know the actual slices used by the pipe when doing
-readout, even when mbus joining isn't enabled. Accurate
-readout will be needed to properly sanitize invalid BIOS
-dbuf configurations.
-
-This will also make it much easier to play around with the
-!join_mbus configs for testin/workaround purposes
+During readout we cannot assume the planes are actually using the
+slices they are supposed to use. The BIOS may have misprogrammed
+things and put the planes onto the wrong dbuf slices. So let's
+do the readout more carefully to make sure we really know which
+dbuf slices are actually in use by the pipe at the time.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_pm.c | 66 +++++++++++++++++++++++----------
- 1 file changed, 46 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/i915/intel_pm.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 859be750fb22..2eb70ec38f6e 100644
+index 2eb70ec38f6e..79d61a2935ea 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -4695,6 +4695,10 @@ static const struct dbuf_slice_conf_entry dg2_allowed_dbufs[] = {
- };
- 
- static const struct dbuf_slice_conf_entry adlp_allowed_dbufs[] = {
-+	/*
-+	 * Keep the join_mbus cases first so check_mbus_joined()
-+	 * will prefer them over the !join_mbus cases.
-+	 */
- 	{
- 		.active_pipes = BIT(PIPE_A),
- 		.dbuf_mask = {
-@@ -4709,6 +4713,20 @@ static const struct dbuf_slice_conf_entry adlp_allowed_dbufs[] = {
- 		},
- 		.join_mbus = true,
- 	},
-+	{
-+		.active_pipes = BIT(PIPE_A),
-+		.dbuf_mask = {
-+			[PIPE_A] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+		},
-+		.join_mbus = false,
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_B),
-+		.dbuf_mask = {
-+			[PIPE_B] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+		},
-+		.join_mbus = false,
-+	},
- 	{
- 		.active_pipes = BIT(PIPE_A) | BIT(PIPE_B),
- 		.dbuf_mask = {
-@@ -4825,13 +4843,14 @@ static bool adlp_check_mbus_joined(u8 active_pipes)
- 	return check_mbus_joined(active_pipes, adlp_allowed_dbufs);
- }
- 
--static u8 compute_dbuf_slices(enum pipe pipe, u8 active_pipes,
-+static u8 compute_dbuf_slices(enum pipe pipe, u8 active_pipes, bool join_mbus,
- 			      const struct dbuf_slice_conf_entry *dbuf_slices)
- {
- 	int i;
- 
- 	for (i = 0; i < dbuf_slices[i].active_pipes; i++) {
--		if (dbuf_slices[i].active_pipes == active_pipes)
-+		if (dbuf_slices[i].active_pipes == active_pipes &&
-+		    dbuf_slices[i].join_mbus == join_mbus)
- 			return dbuf_slices[i].dbuf_mask[pipe];
- 	}
- 	return 0;
-@@ -4842,7 +4861,7 @@ static u8 compute_dbuf_slices(enum pipe pipe, u8 active_pipes,
-  * returns correspondent DBuf slice mask as stated in BSpec for particular
-  * platform.
-  */
--static u8 icl_compute_dbuf_slices(enum pipe pipe, u8 active_pipes)
-+static u8 icl_compute_dbuf_slices(enum pipe pipe, u8 active_pipes, bool join_mbus)
- {
- 	/*
- 	 * FIXME: For ICL this is still a bit unclear as prev BSpec revision
-@@ -4856,37 +4875,41 @@ static u8 icl_compute_dbuf_slices(enum pipe pipe, u8 active_pipes)
- 	 * still here - we will need it once those additional constraints
- 	 * pop up.
- 	 */
--	return compute_dbuf_slices(pipe, active_pipes, icl_allowed_dbufs);
-+	return compute_dbuf_slices(pipe, active_pipes, join_mbus,
-+				   icl_allowed_dbufs);
- }
- 
--static u8 tgl_compute_dbuf_slices(enum pipe pipe, u8 active_pipes)
-+static u8 tgl_compute_dbuf_slices(enum pipe pipe, u8 active_pipes, bool join_mbus)
- {
--	return compute_dbuf_slices(pipe, active_pipes, tgl_allowed_dbufs);
-+	return compute_dbuf_slices(pipe, active_pipes, join_mbus,
-+				   tgl_allowed_dbufs);
- }
- 
--static u32 adlp_compute_dbuf_slices(enum pipe pipe, u32 active_pipes)
-+static u8 adlp_compute_dbuf_slices(enum pipe pipe, u8 active_pipes, bool join_mbus)
- {
--	return compute_dbuf_slices(pipe, active_pipes, adlp_allowed_dbufs);
-+	return compute_dbuf_slices(pipe, active_pipes, join_mbus,
-+				   adlp_allowed_dbufs);
- }
- 
--static u32 dg2_compute_dbuf_slices(enum pipe pipe, u32 active_pipes)
-+static u8 dg2_compute_dbuf_slices(enum pipe pipe, u8 active_pipes, bool join_mbus)
- {
--	return compute_dbuf_slices(pipe, active_pipes, dg2_allowed_dbufs);
-+	return compute_dbuf_slices(pipe, active_pipes, join_mbus,
-+				   dg2_allowed_dbufs);
- }
- 
--static u8 skl_compute_dbuf_slices(struct intel_crtc *crtc, u8 active_pipes)
-+static u8 skl_compute_dbuf_slices(struct intel_crtc *crtc, u8 active_pipes, bool join_mbus)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
- 
- 	if (IS_DG2(dev_priv))
--		return dg2_compute_dbuf_slices(pipe, active_pipes);
-+		return dg2_compute_dbuf_slices(pipe, active_pipes, join_mbus);
- 	else if (IS_ALDERLAKE_P(dev_priv))
--		return adlp_compute_dbuf_slices(pipe, active_pipes);
-+		return adlp_compute_dbuf_slices(pipe, active_pipes, join_mbus);
- 	else if (DISPLAY_VER(dev_priv) == 12)
--		return tgl_compute_dbuf_slices(pipe, active_pipes);
-+		return tgl_compute_dbuf_slices(pipe, active_pipes, join_mbus);
- 	else if (DISPLAY_VER(dev_priv) == 11)
--		return icl_compute_dbuf_slices(pipe, active_pipes);
-+		return icl_compute_dbuf_slices(pipe, active_pipes, join_mbus);
- 	/*
- 	 * For anything else just return one slice yet.
- 	 * Should be extended for other platforms.
-@@ -6139,11 +6162,16 @@ skl_compute_ddb(struct intel_atomic_state *state)
- 			return ret;
- 	}
- 
-+	if (IS_ALDERLAKE_P(dev_priv))
-+		new_dbuf_state->joined_mbus =
-+			adlp_check_mbus_joined(new_dbuf_state->active_pipes);
-+
- 	for_each_intel_crtc(&dev_priv->drm, crtc) {
+@@ -6663,6 +6663,7 @@ void skl_wm_get_hw_state(struct drm_i915_private *dev_priv)
  		enum pipe pipe = crtc->pipe;
+ 		unsigned int mbus_offset;
+ 		enum plane_id plane_id;
++		u8 slices;
  
- 		new_dbuf_state->slices[pipe] =
--			skl_compute_dbuf_slices(crtc, new_dbuf_state->active_pipes);
-+			skl_compute_dbuf_slices(crtc, new_dbuf_state->active_pipes,
-+						new_dbuf_state->joined_mbus);
- 
- 		if (old_dbuf_state->slices[pipe] == new_dbuf_state->slices[pipe])
- 			continue;
-@@ -6155,9 +6183,6 @@ skl_compute_ddb(struct intel_atomic_state *state)
- 
- 	new_dbuf_state->enabled_slices = intel_dbuf_enabled_slices(new_dbuf_state);
- 
--	if (IS_ALDERLAKE_P(dev_priv))
--		new_dbuf_state->joined_mbus = adlp_check_mbus_joined(new_dbuf_state->active_pipes);
--
- 	if (old_dbuf_state->enabled_slices != new_dbuf_state->enabled_slices ||
- 	    old_dbuf_state->joined_mbus != new_dbuf_state->joined_mbus) {
- 		ret = intel_atomic_serialize_global_state(&new_dbuf_state->base);
-@@ -6658,7 +6683,8 @@ void skl_wm_get_hw_state(struct drm_i915_private *dev_priv)
+ 		skl_pipe_wm_get_hw_state(crtc, &crtc_state->wm.skl.optimal);
+ 		crtc_state->wm.skl.raw = crtc_state->wm.skl.optimal;
+@@ -6682,20 +6683,22 @@ void skl_wm_get_hw_state(struct drm_i915_private *dev_priv)
+ 			skl_ddb_entry_union(&dbuf_state->ddb[pipe], ddb_uv);
  		}
  
- 		dbuf_state->slices[pipe] =
--			skl_compute_dbuf_slices(crtc, dbuf_state->active_pipes);
-+			skl_compute_dbuf_slices(crtc, dbuf_state->active_pipes,
-+						dbuf_state->joined_mbus);
- 
+-		dbuf_state->slices[pipe] =
+-			skl_compute_dbuf_slices(crtc, dbuf_state->active_pipes,
+-						dbuf_state->joined_mbus);
+-
  		dbuf_state->weight[pipe] = intel_crtc_ddb_weight(crtc_state);
  
+ 		/*
+ 		 * Used for checking overlaps, so we need absolute
+ 		 * offsets instead of MBUS relative offsets.
+ 		 */
+-		mbus_offset = mbus_ddb_offset(dev_priv, dbuf_state->slices[pipe]);
++		slices = skl_compute_dbuf_slices(crtc, dbuf_state->active_pipes,
++						 dbuf_state->joined_mbus);
++		mbus_offset = mbus_ddb_offset(dev_priv, slices);
+ 		crtc_state->wm.skl.ddb.start = mbus_offset + dbuf_state->ddb[pipe].start;
+ 		crtc_state->wm.skl.ddb.end = mbus_offset + dbuf_state->ddb[pipe].end;
+ 
++		/* The slices actually used by the planes on the pipe */
++		dbuf_state->slices[pipe] =
++			skl_ddb_dbuf_slice_mask(dev_priv, &crtc_state->wm.skl.ddb);
++
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "[CRTC:%d:%s] dbuf slices 0x%x, ddb (%d - %d), active pipes 0x%x, mbus joined: %s\n",
+ 			    crtc->base.base.id, crtc->base.name,
 -- 
 2.34.1
 
