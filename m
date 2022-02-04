@@ -2,51 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 137D84A9AD3
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 15:18:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5B484A9B97
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 16:06:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E6D510E73B;
-	Fri,  4 Feb 2022 14:18:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB30C10E8D5;
+	Fri,  4 Feb 2022 15:06:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C46AD10E73B
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Feb 2022 14:18:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643984307; x=1675520307;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=UqejQR0Regt5UwwII6BZ5YFPLPu+D75e2i9wdyR8noc=;
- b=lJBq0iI7Ze/153sjOEW1COo1bMBmTUk+b08HzN5D84QH+79n9h+D4DrI
- scaUFuJfZAxnhSu7yVlQdZAZoSNEunE7zjppyH2LPWRYhkvvc3RHUzxJK
- d1+Y5Umsy1DlP9QCxnkkReObwe2H5PfrMCFCYI2a557uzuVfdUnFl3bvI
- S0jge5l8ZQ5KkW5os4XqeD4HHaBjAbSZr72jGGmaEKFjVRmEhUJzOJc3/
- x90WLfCEjvtVF/5jrJdKSVPyRMzN9by5Oh8fOY3xTqrleOvGPec6N37TP
- Wob5s9Lh6fgAOo0aJeIM/t4Upvo3GayvkEx3lIpBJfGvxe2PsJnPQ+reE Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10247"; a="247205025"
-X-IronPort-AV: E=Sophos;i="5.88,342,1635231600"; d="scan'208";a="247205025"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2022 06:18:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,342,1635231600"; d="scan'208";a="524320608"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga007.jf.intel.com with SMTP; 04 Feb 2022 06:18:25 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 04 Feb 2022 16:18:24 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  4 Feb 2022 16:18:18 +0200
-Message-Id: <20220204141818.1900-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220204141818.1900-1-ville.syrjala@linux.intel.com>
-References: <20220204141818.1900-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F147B10E845;
+ Fri,  4 Feb 2022 15:06:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EEA2BA73C9;
+ Fri,  4 Feb 2022 15:06:09 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2441421357961498777=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Workaround broken BIOS DBUF
- configuration on TGL/RKL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Fri, 04 Feb 2022 15:06:09 -0000
+Message-ID: <164398716997.12040.14032790088697609140@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220204141818.1900-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220204141818.1900-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Allow_!join=5Fmbus_case?=
+ =?utf-8?q?s_for_adlp+_dbuf_configuration?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,141 +41,454 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============2441421357961498777==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On TGL/RKL the BIOS likes to use some kind of bogus DBUF layout
-that doesn't match what the spec recommends. With a single active
-pipe that is not going to be a problem, but with multiple pipes
-active skl_commit_modeset_enables() goes into an infinite loop
-since it can't figure out any order in which it can commit the
-pipes without causing DBUF overlaps between the planes.
+== Series Details ==
 
-We'd need some kind of extra DBUF defrag stage in between to
-make the transition possible. But that is clearly way too complex
-a solution, so in the name of simplicity let's just sanitize the
-DBUF state by simply turning off all planes when we detect a
-pipe encroaching on its neighbours' DBUF slices. We only have
-to disable the primary planes as all other planes should have
-already been disabled (if they somehow were enabled) by
-earlier sanitization steps.
+Series: series starting with [1/3] drm/i915: Allow !join_mbus cases for adlp+ dbuf configuration
+URL   : https://patchwork.freedesktop.org/series/99702/
+State : failure
 
-And for good measure let's also sanitize in case the DBUF
-allocations of the pipes already seem to overlap each other.
+== Summary ==
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/4762
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c |  1 +
- drivers/gpu/drm/i915/intel_pm.c              | 68 ++++++++++++++++++++
- drivers/gpu/drm/i915/intel_pm.h              |  1 +
- 3 files changed, 70 insertions(+)
+CI Bug Log - changes from CI_DRM_11189 -> Patchwork_22177
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index df347329d90e..7f512f9e9e5c 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -10649,6 +10649,7 @@ intel_modeset_setup_hw_state(struct drm_device *dev,
- 		vlv_wm_sanitize(dev_priv);
- 	} else if (DISPLAY_VER(dev_priv) >= 9) {
- 		skl_wm_get_hw_state(dev_priv);
-+		skl_wm_sanitize(dev_priv);
- 	} else if (HAS_PCH_SPLIT(dev_priv)) {
- 		ilk_wm_get_hw_state(dev_priv);
- 	}
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 79d61a2935ea..02084652fe3d 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -6710,6 +6710,74 @@ void skl_wm_get_hw_state(struct drm_i915_private *dev_priv)
- 	dbuf_state->enabled_slices = dev_priv->dbuf.enabled_slices;
- }
- 
-+static bool skl_dbuf_is_misconfigured(struct drm_i915_private *i915)
-+{
-+	const struct intel_dbuf_state *dbuf_state =
-+		to_intel_dbuf_state(i915->dbuf.obj.state);
-+	struct skl_ddb_entry entries[I915_MAX_PIPES] = {};
-+	struct intel_crtc *crtc;
-+
-+	for_each_intel_crtc(&i915->drm, crtc) {
-+		const struct intel_crtc_state *crtc_state =
-+			to_intel_crtc_state(crtc->base.state);
-+
-+		entries[crtc->pipe] = crtc_state->wm.skl.ddb;
-+	}
-+
-+	for_each_intel_crtc(&i915->drm, crtc) {
-+		const struct intel_crtc_state *crtc_state =
-+			to_intel_crtc_state(crtc->base.state);
-+		u8 slices;
-+
-+		slices = skl_compute_dbuf_slices(crtc, dbuf_state->active_pipes,
-+						 dbuf_state->joined_mbus);
-+		if (dbuf_state->slices[crtc->pipe] & ~slices)
-+			return true;
-+
-+		if (skl_ddb_allocation_overlaps(&crtc_state->wm.skl.ddb, entries,
-+						I915_MAX_PIPES, crtc->pipe))
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
-+void skl_wm_sanitize(struct drm_i915_private *i915)
-+{
-+	struct intel_crtc *crtc;
-+
-+	/*
-+	 * On TGL/RKL (at least) the BIOS likes to assign the planes
-+	 * to the wrong DBUF slices. This will cause an infinite loop
-+	 * in skl_commit_modeset_enables() as it can't find a way to
-+	 * transition between the old bogus DBUF layout to the new
-+	 * proper DBUF layout without DBUF allocation overlaps between
-+	 * the planes (which cannot be allowed or else the hardware
-+	 * may hang). If we detect a bogus DBUF layout just turn off
-+	 * all the planes so that skl_commit_modeset_enables() can
-+	 * simply ignore them.
-+	 */
-+	if (!skl_dbuf_is_misconfigured(i915))
-+		return;
-+
-+	drm_dbg_kms(&i915->drm, "BIOS has misprogrammed the DBUF, disabling all planes\n");
-+
-+	for_each_intel_crtc(&i915->drm, crtc) {
-+		struct intel_plane *plane = to_intel_plane(crtc->base.primary);
-+		const struct intel_plane_state *plane_state =
-+			to_intel_plane_state(plane->base.state);
-+		struct intel_crtc_state *crtc_state =
-+			to_intel_crtc_state(crtc->base.state);
-+
-+		if (plane_state->uapi.visible)
-+			intel_plane_disable_noatomic(crtc, plane);
-+
-+		drm_WARN_ON(&i915->drm, crtc_state->active_planes != 0);
-+
-+		memset(&crtc_state->wm.skl.ddb, 0, sizeof(crtc_state->wm.skl.ddb));
-+	}
-+}
-+
- static void ilk_pipe_wm_get_hw_state(struct intel_crtc *crtc)
- {
- 	struct drm_device *dev = crtc->base.dev;
-diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
-index ae821e35d5fc..51705151b842 100644
---- a/drivers/gpu/drm/i915/intel_pm.h
-+++ b/drivers/gpu/drm/i915/intel_pm.h
-@@ -46,6 +46,7 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
- 			      struct skl_pipe_wm *out);
- void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
- void vlv_wm_sanitize(struct drm_i915_private *dev_priv);
-+void skl_wm_sanitize(struct drm_i915_private *dev_priv);
- bool intel_can_enable_sagv(struct drm_i915_private *dev_priv,
- 			   const struct intel_bw_state *bw_state);
- void intel_sagv_pre_plane_update(struct intel_atomic_state *state);
--- 
-2.34.1
+Summary
+-------
 
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_22177 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22177, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/index.html
+
+Participating hosts (47 -> 45)
+------------------------------
+
+  Additional (2): fi-kbl-soraka bat-adlp-4 
+  Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22177:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22177 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@nop-compute0:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-pnv-d510/igt@amdgpu/amd_cs_nop@nop-compute0.html
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +8 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-skl-6600u:       [PASS][4] -> [INCOMPLETE][5] ([i915#4547])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#2190])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - bat-adlp-4:         NOTRUN -> [SKIP][7] ([i915#4613]) +3 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_tiled_pread_basic:
+    - bat-adlp-4:         NOTRUN -> [SKIP][9] ([i915#3282])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][10] ([i915#1886] / [i915#2291])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [PASS][11] -> [DMESG-FAIL][12] ([i915#4494] / [i915#4957])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+    - fi-hsw-4770:        [PASS][13] -> [INCOMPLETE][14] ([i915#4785])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][15] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][16] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_chamelium@vga-hpd-fast:
+    - bat-adlp-4:         NOTRUN -> [SKIP][17] ([fdo#111827]) +8 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@kms_chamelium@vga-hpd-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - bat-adlp-4:         NOTRUN -> [SKIP][18] ([i915#4103]) +1 similar issue
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_flip@basic-plain-flip@d-edp1:
+    - bat-adlp-4:         NOTRUN -> [DMESG-WARN][19] ([i915#3576]) +7 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@kms_flip@basic-plain-flip@d-edp1.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-adlp-4:         NOTRUN -> [SKIP][20] ([fdo#109285])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
+    - bat-adlp-4:         NOTRUN -> [DMESG-FAIL][21] ([i915#3576]) +2 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][22] ([fdo#109271] / [i915#533])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][23] ([fdo#109271]) +13 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
+
+  * igt@prime_vgem@basic-fence-read:
+    - bat-adlp-4:         NOTRUN -> [SKIP][24] ([i915#3291] / [i915#3708]) +2 similar issues
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@prime_vgem@basic-fence-read.html
+
+  * igt@prime_vgem@basic-userptr:
+    - bat-adlp-4:         NOTRUN -> [SKIP][25] ([i915#3301] / [i915#3708])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][26] ([fdo#109271] / [i915#1436] / [i915#4312])
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-5557u:       [INCOMPLETE][27] ([i915#146]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-pnv-d510:        [DMESG-FAIL][29] ([i915#2927] / [i915#4528]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-pnv-d510/igt@i915_selftest@live@requests.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-pnv-d510/igt@i915_selftest@live@requests.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][31] ([i915#4269]) -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11189 -> Patchwork_22177
+
+  CI-20190529: 20190529
+  CI_DRM_11189: c0fc917bc92837300b1991d53b835c6876f465a2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6339: 9cd99d763440ae75d9981ce4e361d3deb5edb4e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22177: 8cd2f52644f38b4fb2a860d5446a56690c4224e7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8cd2f52644f3 drm/i915: Workaround broken BIOS DBUF configuration on TGL/RKL
+6adb05c5cca2 drm/i915: Populate pipe dbuf slices more accurately during readout
+1b4f0de4a125 drm/i915: Allow !join_mbus cases for adlp+ dbuf configuration
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/index.html
+
+--===============2441421357961498777==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915: Allow !join_mbus cases for adlp+ dbuf configuration</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99702/">https://patchwork.freedesktop.org/series/99702/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11189 -&gt; Patchwork_22177</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_22177 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22177, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/index.html</p>
+<h2>Participating hosts (47 -&gt; 45)</h2>
+<p>Additional (2): fi-kbl-soraka bat-adlp-4 <br />
+  Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22177:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22177 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@nop-compute0:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-pnv-d510/igt@amdgpu/amd_cs_nop@nop-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
+</li>
+<li>
+<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-edid-read:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-hpd-fast:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@kms_chamelium@vga-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@d-edp1:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-read:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>bat-adlp-4:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/bat-adlp-4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-pnv-d510/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22177/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11189 -&gt; Patchwork_22177</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11189: c0fc917bc92837300b1991d53b835c6876f465a2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6339: 9cd99d763440ae75d9981ce4e361d3deb5edb4e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22177: 8cd2f52644f38b4fb2a860d5446a56690c4224e7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>8cd2f52644f3 drm/i915: Workaround broken BIOS DBUF configuration on TGL/RKL<br />
+6adb05c5cca2 drm/i915: Populate pipe dbuf slices more accurately during readout<br />
+1b4f0de4a125 drm/i915: Allow !join_mbus cases for adlp+ dbuf configuration</p>
+
+</body>
+</html>
+
+--===============2441421357961498777==--
