@@ -1,49 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1CB64A9210
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 02:36:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07FB74A9213
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 02:38:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B0E210ECF4;
-	Fri,  4 Feb 2022 01:36:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E5AA10ED72;
+	Fri,  4 Feb 2022 01:38:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6733310ECBD;
- Fri,  4 Feb 2022 01:36:04 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 372F510ED72
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Feb 2022 01:38:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643938564; x=1675474564;
+ t=1643938723; x=1675474723;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MFGO+LfJ9RbLhjrziphx7JNkg3GkJSLX5Qj4KFXRapE=;
- b=gQ67KxP2iMCZQKZFtYkfLl8PgMKYPgm5VsyC854uRlvxC8B8bH5O2I2E
- bv/3Hbysara0YGoYCrgrl5BOg1foSoysM5udDed4oMB+iL8gAr9FiD648
- +3e6p+ILcLNDXgiX+2Od4JKoHrjLDf9u5jxMUI4n06jvkHH87W7i+1Md8
- AflIiY0A1jdDBlCu6aFKnVD9CMfeuGRwbZ3zxLukRE1VuuIroO7m2lkT/
- aoCCKbnD677n9rLAp+X7Spd0+GSZLU49L8ejHGyoNBA0gSltEj7yf4BFz
- czV0cTBDk8y5UR5sAQl2n5d8o92p3jfm5YrvJFcfz++/OQmiA2PWCqGMq A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10247"; a="334685683"
-X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="334685683"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 17:36:04 -0800
-X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="583995613"
+ bh=mPLvoMsXAtgp0LudwF2h98ylxqjy3EMZemUVAt5w3L8=;
+ b=VQScAlcdwBFJDUY+0T1NWm5BOiI2QKWkv/rS+lwacH7Y32SfGGXxJd82
+ LMIiuN5YZlwVJnJUpnmYAUE4uYOifK5E9wLJVZB7wfhbidYTJNBMudDDi
+ UzGxhCb97GV8DV645XMwbNmnTIb5QfpzafI9Y3lWVsBpAewAKGq2f1Hrj
+ Uejsy4lLsEavTeEz6EtB8x8n+jpvg3qQ0mTCKc3He6enUS3p91LOwpuiL
+ Ede0oWRwTxadavZ/dQo2Z9EdI13jTC9m8cYyWE1GW7fLf+jUAHizl8mBN
+ UR6IbftOmeLcySxoniAFUJkut9LlIf8w+p7j/VUYDXoEymXL5NB49cckr A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10247"; a="235692060"
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="235692060"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 17:38:42 -0800
+X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="771971588"
 Received: from vkasired-desk2.fm.intel.com ([10.105.128.127])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 17:35:58 -0800
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 17:38:42 -0800
 From: Vivek Kasireddy <vivek.kasireddy@intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Thu,  3 Feb 2022 17:19:39 -0800
-Message-Id: <20220204011939.1517070-1-vivek.kasireddy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  3 Feb 2022 17:22:10 -0800
+Message-Id: <20220204012210.1517091-1-vivek.kasireddy@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <ed22efe9-4cd8-cf71-beb7-66af7161c518@linux.intel.com>
-References: <ed22efe9-4cd8-cf71-beb7-66af7161c518@linux.intel.com>
+In-Reply-To: <c8691153-023c-941d-d8b7-831220caa6e6@linux.intel.com>
+References: <c8691153-023c-941d-d8b7-831220caa6e6@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/mm: Add an iterator to optimally walk
- over holes for an allocation (v2)
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Don't try to map and fence
+ large scanout buffers (v6)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,185 +57,240 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This iterator relies on drm_mm_first_hole() and drm_mm_next_hole()
-functions to identify suitable holes for an allocation of a given
-size by efficiently traversing the rbtree associated with the given
-allocator.
+On platforms capable of allowing 8K (7680 x 4320) modes, pinning 2 or
+more framebuffers/scanout buffers results in only one that is mappable/
+fenceable. Therefore, pageflipping between these 2 FBs where only one
+is mappable/fenceable creates latencies large enough to miss alternate
+vblanks thereby producing less optimal framerate.
 
-It replaces the for loop in drm_mm_insert_node_in_range() and can
-also be used by drm drivers to quickly identify holes of a certain
-size within a given range.
+This mainly happens because when i915_gem_object_pin_to_display_plane()
+is called to pin one of the FB objs, the associated vma is identified
+as misplaced and therefore i915_vma_unbind() is called which unbinds and
+evicts it. This misplaced vma gets subseqently pinned only when
+i915_gem_object_ggtt_pin_ww() is called without PIN_MAPPABLE. This
+results in a latency of ~10ms and happens every other vblank/repaint cycle.
+Therefore, to fix this issue, we try to see if there is space to map
+at-least two objects of a given size and return early if there isn't. This
+would ensure that we do not try with PIN_MAPPABLE for any objects that
+are too big to map thereby preventing unncessary unbind.
 
-v2: (Tvrtko)
-- Prepend a double underscore for the newly exported first/next_hole
-- s/each_best_hole/each_suitable_hole/g
-- Mask out DRM_MM_INSERT_ONCE from the mode before calling
-  first/next_hole and elsewhere.
+Testcase:
+Running Weston and weston-simple-egl on an Alderlake_S (ADLS) platform
+with a 8K@60 mode results in only ~40 FPS. Since upstream Weston submits
+a frame ~7ms before the next vblank, the latencies seen between atomic
+commit and flip event are 7, 24 (7 + 16.66), 7, 24..... suggesting that
+it misses the vblank every other frame.
 
-Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Here is the ftrace snippet that shows the source of the ~10ms latency:
+              i915_gem_object_pin_to_display_plane() {
+0.102 us   |    i915_gem_object_set_cache_level();
+                i915_gem_object_ggtt_pin_ww() {
+0.390 us   |      i915_vma_instance();
+0.178 us   |      i915_vma_misplaced();
+                  i915_vma_unbind() {
+                  __i915_active_wait() {
+0.082 us   |        i915_active_acquire_if_busy();
+0.475 us   |      }
+                  intel_runtime_pm_get() {
+0.087 us   |        intel_runtime_pm_acquire();
+0.259 us   |      }
+                  __i915_active_wait() {
+0.085 us   |        i915_active_acquire_if_busy();
+0.240 us   |      }
+                  __i915_vma_evict() {
+                    ggtt_unbind_vma() {
+                      gen8_ggtt_clear_range() {
+10507.255 us |        }
+10507.689 us |      }
+10508.516 us |   }
+
+v2: Instead of using bigjoiner checks, determine whether a scanout
+    buffer is too big by checking to see if it is possible to map
+    two of them into the ggtt.
+
+v3 (Ville):
+- Count how many fb objects can be fit into the available holes
+  instead of checking for a hole twice the object size.
+- Take alignment constraints into account.
+- Limit this large scanout buffer check to >= Gen 11 platforms.
+
+v4:
+- Remove existing heuristic that checks just for size. (Ville)
+- Return early if we find space to map at-least two objects. (Tvrtko)
+- Slightly update the commit message.
+
+v5: (Tvrtko)
+- Rename the function to indicate that the object may be too big to
+  map into the aperture.
+- Account for guard pages while calculating the total size required
+  for the object.
+- Do not subject all objects to the heuristic check and instead
+  consider objects only of a certain size.
+- Do the hole walk using the rbtree.
+- Preserve the existing PIN_NONBLOCK logic.
+- Drop the PIN_MAPPABLE check while pinning the VMA.
+
+v6: (Tvrtko)
+- Return 0 on success and the specific error code on failure to
+  preserve the existing behavior.
+
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Manasi Navare <manasi.d.navare@intel.com>
 Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
 ---
- drivers/gpu/drm/drm_mm.c | 38 ++++++++++++++++++--------------------
- include/drm/drm_mm.h     | 36 ++++++++++++++++++++++++++++++++++++
- 2 files changed, 54 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/i915/i915_gem.c | 120 ++++++++++++++++++++++++--------
+ 1 file changed, 90 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_mm.c b/drivers/gpu/drm/drm_mm.c
-index 8257f9d4f619..b6da1dffcfcb 100644
---- a/drivers/gpu/drm/drm_mm.c
-+++ b/drivers/gpu/drm/drm_mm.c
-@@ -352,10 +352,10 @@ static struct drm_mm_node *find_hole_addr(struct drm_mm *mm, u64 addr, u64 size)
- 	return node;
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index e3a2c2a0e156..39f0d17550c3 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -46,6 +46,7 @@
+ #include "gem/i915_gem_mman.h"
+ #include "gem/i915_gem_region.h"
+ #include "gem/i915_gem_userptr.h"
++#include "gem/i915_gem_tiling.h"
+ #include "gt/intel_engine_user.h"
+ #include "gt/intel_gt.h"
+ #include "gt/intel_gt_pm.h"
+@@ -876,6 +877,92 @@ static void discard_ggtt_vma(struct i915_vma *vma)
+ 	spin_unlock(&obj->vma.lock);
  }
  
--static struct drm_mm_node *
--first_hole(struct drm_mm *mm,
--	   u64 start, u64 end, u64 size,
--	   enum drm_mm_insert_mode mode)
-+struct drm_mm_node *
-+__drm_mm_first_hole(struct drm_mm *mm,
-+		    u64 start, u64 end, u64 size,
-+		    enum drm_mm_insert_mode mode)
- {
- 	switch (mode) {
- 	default:
-@@ -374,6 +374,7 @@ first_hole(struct drm_mm *mm,
- 						hole_stack);
- 	}
- }
-+EXPORT_SYMBOL(__drm_mm_first_hole);
++static int
++i915_gem_object_fits_in_aperture(struct drm_i915_gem_object *obj,
++				 u64 alignment, u64 flags)
++{
++	struct drm_i915_private *i915 = to_i915(obj->base.dev);
++	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
++	struct drm_mm_node *hole;
++	u64 hole_start, hole_end, start, end;
++	u64 fence_size, fence_alignment;
++	unsigned int count = 0;
++
++	/*
++	 * If the required space is larger than the available
++	 * aperture, we will not able to find a slot for the
++	 * object and unbinding the object now will be in
++	 * vain. Worse, doing so may cause us to ping-pong
++	 * the object in and out of the Global GTT and
++	 * waste a lot of cycles under the mutex.
++	 */
++	if (obj->base.size > ggtt->mappable_end)
++		return -E2BIG;
++
++	/*
++	 * If NONBLOCK is set the caller is optimistically
++	 * trying to cache the full object within the mappable
++	 * aperture, and *must* have a fallback in place for
++	 * situations where we cannot bind the object. We
++	 * can be a little more lax here and use the fallback
++	 * more often to avoid costly migrations of ourselves
++	 * and other objects within the aperture.
++	 */
++	if (!(flags & PIN_NONBLOCK))
++		return 0;
++
++	/*
++	 * We only consider objects whose size is at-least a quarter of
++	 * the aperture to be too big and subject them to the new
++	 * heuristic below.
++	 */
++	if (obj->base.size < ggtt->mappable_end / 4)
++		return 0;
++
++	if (HAS_GMCH(i915) || DISPLAY_VER(i915) < 11 ||
++	    !i915_gem_object_is_framebuffer(obj))
++		return 0;
++
++	fence_size = i915_gem_fence_size(i915, obj->base.size,
++					 i915_gem_object_get_tiling(obj),
++					 i915_gem_object_get_stride(obj));
++
++	if (i915_vm_has_cache_coloring(&ggtt->vm))
++		fence_size += 2 * I915_GTT_PAGE_SIZE;
++
++	fence_alignment = i915_gem_fence_alignment(i915, obj->base.size,
++						   i915_gem_object_get_tiling(obj),
++						   i915_gem_object_get_stride(obj));
++	alignment = max_t(u64, alignment, fence_alignment);
++
++	/*
++	 * Assuming this object is a large scanout buffer, we try to find
++	 * out if there is room to map at-least two of them. There could
++	 * be space available to map one but to be consistent, we try to
++	 * avoid mapping/fencing any of them.
++	 */
++	drm_mm_for_each_suitable_hole(hole, &ggtt->vm.mm, 0, ggtt->mappable_end,
++				      fence_size, DRM_MM_INSERT_LOW) {
++		hole_start = drm_mm_hole_node_start(hole);
++		hole_end = hole_start + hole->hole_size;
++
++		do {
++			start = round_up(hole_start, alignment);
++			end = min_t(u64, hole_end, ggtt->mappable_end);
++
++			if (range_overflows(start, fence_size, end))
++				break;
++
++			if (++count >= 2)
++				return 0;
++
++			hole_start = start + fence_size;
++		} while (1);
++	}
++
++	return -ENOSPC;
++}
++
+ struct i915_vma *
+ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
+ 			    struct i915_gem_ww_ctx *ww,
+@@ -891,36 +978,9 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
  
- /**
-  * DECLARE_NEXT_HOLE_ADDR - macro to declare next hole functions
-@@ -410,11 +411,11 @@ static struct drm_mm_node *name(struct drm_mm_node *entry, u64 size)	\
- DECLARE_NEXT_HOLE_ADDR(next_hole_high_addr, rb_left, rb_right)
- DECLARE_NEXT_HOLE_ADDR(next_hole_low_addr, rb_right, rb_left)
- 
--static struct drm_mm_node *
--next_hole(struct drm_mm *mm,
--	  struct drm_mm_node *node,
--	  u64 size,
--	  enum drm_mm_insert_mode mode)
-+struct drm_mm_node *
-+__drm_mm_next_hole(struct drm_mm *mm,
-+		   struct drm_mm_node *node,
-+		   u64 size,
-+		   enum drm_mm_insert_mode mode)
- {
- 	switch (mode) {
- 	default:
-@@ -432,6 +433,7 @@ next_hole(struct drm_mm *mm,
- 		return &node->hole_stack == &mm->hole_stack ? NULL : node;
- 	}
- }
-+EXPORT_SYMBOL(__drm_mm_next_hole);
- 
- /**
-  * drm_mm_reserve_node - insert an pre-initialized node
-@@ -520,7 +522,6 @@ int drm_mm_insert_node_in_range(struct drm_mm * const mm,
- {
- 	struct drm_mm_node *hole;
- 	u64 remainder_mask;
--	bool once;
- 
- 	DRM_MM_BUG_ON(range_start > range_end);
- 
-@@ -533,22 +534,19 @@ int drm_mm_insert_node_in_range(struct drm_mm * const mm,
- 	if (alignment <= 1)
- 		alignment = 0;
- 
--	once = mode & DRM_MM_INSERT_ONCE;
--	mode &= ~DRM_MM_INSERT_ONCE;
+ 	if (flags & PIN_MAPPABLE &&
+ 	    (!view || view->type == I915_GGTT_VIEW_NORMAL)) {
+-		/*
+-		 * If the required space is larger than the available
+-		 * aperture, we will not able to find a slot for the
+-		 * object and unbinding the object now will be in
+-		 * vain. Worse, doing so may cause us to ping-pong
+-		 * the object in and out of the Global GTT and
+-		 * waste a lot of cycles under the mutex.
+-		 */
+-		if (obj->base.size > ggtt->mappable_end)
+-			return ERR_PTR(-E2BIG);
 -
- 	remainder_mask = is_power_of_2(alignment) ? alignment - 1 : 0;
--	for (hole = first_hole(mm, range_start, range_end, size, mode);
--	     hole;
--	     hole = once ? NULL : next_hole(mm, hole, size, mode)) {
-+	drm_mm_for_each_suitable_hole(hole, mm, range_start, range_end,
-+				      size, mode) {
- 		u64 hole_start = __drm_mm_hole_node_start(hole);
- 		u64 hole_end = hole_start + hole->hole_size;
- 		u64 adj_start, adj_end;
- 		u64 col_start, col_end;
-+		enum drm_mm_insert_mode placement = mode & ~DRM_MM_INSERT_ONCE;
+-		/*
+-		 * If NONBLOCK is set the caller is optimistically
+-		 * trying to cache the full object within the mappable
+-		 * aperture, and *must* have a fallback in place for
+-		 * situations where we cannot bind the object. We
+-		 * can be a little more lax here and use the fallback
+-		 * more often to avoid costly migrations of ourselves
+-		 * and other objects within the aperture.
+-		 *
+-		 * Half-the-aperture is used as a simple heuristic.
+-		 * More interesting would to do search for a free
+-		 * block prior to making the commitment to unbind.
+-		 * That caters for the self-harm case, and with a
+-		 * little more heuristics (e.g. NOFAULT, NOEVICT)
+-		 * we could try to minimise harm to others.
+-		 */
+-		if (flags & PIN_NONBLOCK &&
+-		    obj->base.size > ggtt->mappable_end / 2)
+-			return ERR_PTR(-ENOSPC);
++		ret = i915_gem_object_fits_in_aperture(obj, alignment, flags);
++		if (ret)
++			return ERR_PTR(ret);
+ 	}
  
--		if (mode == DRM_MM_INSERT_LOW && hole_start >= range_end)
-+		if (placement == DRM_MM_INSERT_LOW && hole_start >= range_end)
- 			break;
- 
--		if (mode == DRM_MM_INSERT_HIGH && hole_end <= range_start)
-+		if (placement == DRM_MM_INSERT_HIGH && hole_end <= range_start)
- 			break;
- 
- 		col_start = hole_start;
-@@ -562,7 +560,7 @@ int drm_mm_insert_node_in_range(struct drm_mm * const mm,
- 		if (adj_end <= adj_start || adj_end - adj_start < size)
- 			continue;
- 
--		if (mode == DRM_MM_INSERT_HIGH)
-+		if (placement == DRM_MM_INSERT_HIGH)
- 			adj_start = adj_end - size;
- 
- 		if (alignment) {
-@@ -574,7 +572,7 @@ int drm_mm_insert_node_in_range(struct drm_mm * const mm,
- 				div64_u64_rem(adj_start, alignment, &rem);
- 			if (rem) {
- 				adj_start -= rem;
--				if (mode != DRM_MM_INSERT_HIGH)
-+				if (placement != DRM_MM_INSERT_HIGH)
- 					adj_start += alignment;
- 
- 				if (adj_start < max(col_start, range_start) ||
-diff --git a/include/drm/drm_mm.h b/include/drm/drm_mm.h
-index ac33ba1b18bc..777f659f9692 100644
---- a/include/drm/drm_mm.h
-+++ b/include/drm/drm_mm.h
-@@ -400,6 +400,42 @@ static inline u64 drm_mm_hole_node_end(const struct drm_mm_node *hole_node)
- 	     1 : 0; \
- 	     pos = list_next_entry(pos, hole_stack))
- 
-+struct drm_mm_node *
-+__drm_mm_first_hole(struct drm_mm *mm,
-+		    u64 start, u64 end, u64 size,
-+		    enum drm_mm_insert_mode mode);
-+
-+struct drm_mm_node *
-+__drm_mm_next_hole(struct drm_mm *mm,
-+		   struct drm_mm_node *node,
-+		   u64 size,
-+		   enum drm_mm_insert_mode mode);
-+
-+/**
-+ * drm_mm_for_each_suitable_hole - iterator to optimally walk over all
-+ * holes that can fit an allocation of the given @size.
-+ * @pos: &drm_mm_node used internally to track progress
-+ * @mm: &drm_mm allocator to walk
-+ * @range_start: start of the allowed range for the allocation
-+ * @range_end: end of the allowed range for the allocation
-+ * @size: size of the allocation
-+ * @mode: fine-tune the allocation search
-+ *
-+ * This iterator walks over all holes suitable for the allocation of given
-+ * @size in a very efficient manner. It is implemented by calling
-+ * drm_mm_first_hole() and drm_mm_next_hole() which identify the
-+ * appropriate holes within the given range by efficiently traversing the
-+ * rbtree associated with @mm.
-+ */
-+#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
-+				      size, mode) \
-+	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
-+				       mode & ~DRM_MM_INSERT_ONCE); \
-+	     pos; \
-+	     pos = mode & DRM_MM_INSERT_ONCE ? \
-+	     NULL : __drm_mm_next_hole(mm, hole, size, \
-+				       mode & ~DRM_MM_INSERT_ONCE))
-+
- /*
-  * Basic range manager support (drm_mm.c)
-  */
+ new_vma:
 -- 
 2.34.1
 
