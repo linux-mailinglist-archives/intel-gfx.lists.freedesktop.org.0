@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8E2E4A9FCF
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 20:13:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E066E4A9FD0
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 20:13:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A639410E512;
-	Fri,  4 Feb 2022 19:13:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2822610E503;
+	Fri,  4 Feb 2022 19:13:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BF9E010E503;
- Fri,  4 Feb 2022 19:12:59 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C7A9610E520;
+ Fri,  4 Feb 2022 19:13:10 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BC70AA73C7;
- Fri,  4 Feb 2022 19:12:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5157506249821989155=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id C8287A73C7;
+ Fri,  4 Feb 2022 19:13:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Fri, 04 Feb 2022 19:12:59 -0000
-Message-ID: <164400197974.12042.17300827818945006250@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Fri, 04 Feb 2022 19:13:10 -0000
+Message-ID: <164400199081.12042.8911796416077949685@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220204174436.830121-1-lucas.demarchi@intel.com>
-In-Reply-To: <20220204174436.830121-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/guc=3A_Refactor_ADS_access_to_use_iosys=5Fmap?=
+References: <20220204174809.3366967-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20220204174809.3366967-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/helpers=3A_Make_the_suballocation_manager_drm_generic?=
+ =?utf-8?q?=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,456 +46,251 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5157506249821989155==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/guc: Refactor ADS access to use iosys_map
-URL   : https://patchwork.freedesktop.org/series/99711/
-State : failure
+Series: drm/helpers: Make the suballocation manager drm generic.
+URL   : https://patchwork.freedesktop.org/series/99713/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_11189 -> Patchwork_22181
-====================================================
+$ dim checkpatch origin/drm-tip
+aba5c02e4398 drm: Extract amdgpu_sa.c as a generic suballocation helper
+-:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#27: 
+new file mode 100644
 
-Summary
--------
+-:32: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#32: FILE: drivers/gpu/drm/drm_suballoc.c:1:
++/*
 
-  **FAILURE**
+-:104: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#104: FILE: drivers/gpu/drm/drm_suballoc.c:73:
++	BUG_ON(align & (align - 1));
 
-  Serious unknown changes coming with Patchwork_22181 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22181, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:133: WARNING:SUSPECT_COMMA_SEMICOLON: Possible comma where semicolon could be used
+#133: FILE: drivers/gpu/drm/drm_suballoc.c:102:
++		sa_manager->hole = &sa_manager->olist,
++		drm_suballoc_try_free(sa_manager);
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/index.html
+-:149: WARNING:LINE_SPACING: Missing a blank line after declarations
+#149: FILE: drivers/gpu/drm/drm_suballoc.c:118:
++	struct drm_suballoc_manager *sa_manager = sa->manager;
++	if (sa_manager->hole == &sa->olist) {
 
-Participating hosts (47 -> 44)
-------------------------------
+-:149: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#149: FILE: drivers/gpu/drm/drm_suballoc.c:118:
++	if (sa_manager->hole == &sa->olist) {
++		sa_manager->hole = sa->olist.prev;
++	}
 
-  Additional (2): fi-kbl-soraka fi-icl-u2 
-  Missing    (5): fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus 
+-:167: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!sa->fence"
+#167: FILE: drivers/gpu/drm/drm_suballoc.c:136:
++		if (sa->fence == NULL ||
 
-Possible new issues
--------------------
+-:175: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#175: FILE: drivers/gpu/drm/drm_suballoc.c:144:
++static inline unsigned drm_suballoc_hole_soffset(struct drm_suballoc_manager *sa_manager)
 
-  Here are the unknown changes that may have been introduced in Patchwork_22181:
+-:179: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#179: FILE: drivers/gpu/drm/drm_suballoc.c:148:
++	if (hole != &sa_manager->olist) {
++		return list_entry(hole, struct drm_suballoc, olist)->eoffset;
++	}
 
-### IGT changes ###
+-:185: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#185: FILE: drivers/gpu/drm/drm_suballoc.c:154:
++static inline unsigned drm_suballoc_hole_eoffset(struct drm_suballoc_manager *sa_manager)
 
-#### Possible regressions ####
+-:189: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#189: FILE: drivers/gpu/drm/drm_suballoc.c:158:
++	if (hole->next != &sa_manager->olist) {
++		return list_entry(hole->next, struct drm_suballoc, olist)->soffset;
++	}
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+-:197: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#197: FILE: drivers/gpu/drm/drm_suballoc.c:166:
++				   unsigned size)
 
-  
-Known issues
-------------
+-:199: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#199: FILE: drivers/gpu/drm/drm_suballoc.c:168:
++	unsigned soffset, eoffset;
 
-  Here are the changes found in Patchwork_22181 that come from known issues:
+-:229: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#229: FILE: drivers/gpu/drm/drm_suballoc.c:198:
++	unsigned soffset, eoffset, i;
 
-### IGT changes ###
+-:238: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#238: FILE: drivers/gpu/drm/drm_suballoc.c:207:
++	if ((eoffset - soffset) >= size) {
++		return true;
++	}
 
-#### Issues hit ####
+-:247: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int *' to bare use of 'unsigned *'
+#247: FILE: drivers/gpu/drm/drm_suballoc.c:216:
++				   unsigned *tries)
 
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+-:250: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#250: FILE: drivers/gpu/drm/drm_suballoc.c:219:
++	unsigned i, best_idx, soffset, best, tmp;
 
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
+-:274: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#274: FILE: drivers/gpu/drm/drm_suballoc.c:243:
++		sa = list_first_entry(&sa_manager->flist[i],
++					 struct drm_suballoc, flist);
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-    - fi-icl-u2:          NOTRUN -> [SKIP][5] ([i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
+-:282: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#282: FILE: drivers/gpu/drm/drm_suballoc.c:251:
++		if (tries[i] > 2) {
++			continue;
++		}
 
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-icl-u2:          NOTRUN -> [SKIP][6] ([i915#4613]) +3 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html
+-:305: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#305: FILE: drivers/gpu/drm/drm_suballoc.c:274:
++		/* we knew that this one is signaled,
++		   so it's save to remote it */
 
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-icl-u2:          NOTRUN -> [INCOMPLETE][8] ([i915#4994])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@i915_selftest@live@gem_contexts.html
+-:305: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#305: FILE: drivers/gpu/drm/drm_suballoc.c:274:
++		   so it's save to remote it */
 
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][9] ([i915#1886] / [i915#2291])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+-:327: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#327: FILE: drivers/gpu/drm/drm_suballoc.c:296:
++	unsigned tries[DRM_SUBALLOC_MAX_QUEUES];
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [PASS][10] -> [INCOMPLETE][11] ([i915#3303])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+-:328: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#328: FILE: drivers/gpu/drm/drm_suballoc.c:297:
++	unsigned count;
 
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [PASS][12] -> [DMESG-FAIL][13] ([i915#5026])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-blb-e6850/igt@i915_selftest@live@requests.html
+-:336: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kmalloc(sizeof(*sa)...) over kmalloc(sizeof(struct drm_suballoc)...)
+#336: FILE: drivers/gpu/drm/drm_suballoc.c:305:
++	sa = kmalloc(sizeof(struct drm_suballoc), GFP_KERNEL);
 
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][14] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html
+-:379: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#379: FILE: drivers/gpu/drm/drm_suballoc.c:348:
++			r = wait_event_interruptible_locked(
 
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          NOTRUN -> [SKIP][15] ([fdo#111827]) +8 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+-:414: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#414: FILE: drivers/gpu/drm/drm_suballoc.c:383:
++	BUG_ON(queue >= DRM_SUBALLOC_MAX_QUEUES);
 
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][16] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+-:436: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#436: FILE: drivers/gpu/drm/drm_suballoc.c:405:
++		uint64_t soffset = i->soffset;
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-u2:          NOTRUN -> [SKIP][17] ([fdo#109278]) +2 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+-:437: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#437: FILE: drivers/gpu/drm/drm_suballoc.c:406:
++		uint64_t eoffset = i->eoffset;
 
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-u2:          NOTRUN -> [SKIP][18] ([fdo#109285])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
+-:438: WARNING:LINE_SPACING: Missing a blank line after declarations
+#438: FILE: drivers/gpu/drm/drm_suballoc.c:407:
++		uint64_t eoffset = i->eoffset;
++		if (&i->olist == sa_manager->hole) {
 
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][19] ([fdo#109271] / [i915#533])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+-:438: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#438: FILE: drivers/gpu/drm/drm_suballoc.c:407:
++		if (&i->olist == sa_manager->hole) {
+[...]
++		} else {
+[...]
 
-  * igt@kms_psr@cursor_plane_move:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][20] ([fdo#109271]) +13 similar issues
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
+-:439: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#439: FILE: drivers/gpu/drm/drm_suballoc.c:408:
++			seq_printf(m, ">");
 
-  * igt@prime_vgem@basic-userptr:
-    - fi-icl-u2:          NOTRUN -> [SKIP][21] ([i915#3301])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@prime_vgem@basic-userptr.html
+-:441: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#441: FILE: drivers/gpu/drm/drm_suballoc.c:410:
++			seq_printf(m, " ");
 
-  * igt@runner@aborted:
-    - fi-icl-u2:          NOTRUN -> [FAIL][22] ([i915#2722] / [i915#4312])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@runner@aborted.html
-    - fi-hsw-4770:        NOTRUN -> [FAIL][23] ([fdo#109271] / [i915#1436] / [i915#4312])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-hsw-4770/igt@runner@aborted.html
-    - fi-blb-e6850:       NOTRUN -> [FAIL][24] ([fdo#109271] / [i915#2403] / [i915#2426] / [i915#4312])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-blb-e6850/igt@runner@aborted.html
+-:450: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#450: FILE: drivers/gpu/drm/drm_suballoc.c:419:
++		seq_printf(m, "\n");
 
-  
-#### Possible fixes ####
+-:462: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#462: FILE: include/drm/drm_suballoc.h:1:
++/*
 
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-bdw-5557u:       [INCOMPLETE][25] ([i915#146]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+-:463: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
+#463: FILE: include/drm/drm_suballoc.h:2:
++ * SPDX-License-Identifier: MIT
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][27] ([i915#3921]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+total: 0 errors, 29 warnings, 6 checks, 512 lines checked
+583252da6e3d drm/amd: Convert amdgpu to use suballocation helper.
+-:51: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#51: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu.h:424:
++	uint64_t			gpu_addr;
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][29] ([i915#4269]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+-:110: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#110: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:351:
++static inline void * amdgpu_sa_bo_cpu_addr(struct drm_suballoc *sa_bo)
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:124: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#124: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:365:
++		     unsigned size);
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
-  [i915#4994]: https://gitlab.freedesktop.org/drm/intel/issues/4994
-  [i915#5026]: https://gitlab.freedesktop.org/drm/intel/issues/5026
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+-:147: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#147: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c:49:
++			      unsigned size, u32 suballoc_align, u32 domain)
 
+-:165: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#165: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c:56:
++	r = amdgpu_bo_create_kernel(adev, size, AMDGPU_GPU_PAGE_SIZE, domain, &sa_manager->bo,
+ 				&sa_manager->gpu_addr, &sa_manager->cpu_ptr);
 
-Build changes
--------------
+-:218: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#218: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c:82:
++		     unsigned size)
 
-  * Linux: CI_DRM_11189 -> Patchwork_22181
+total: 1 errors, 3 warnings, 2 checks, 475 lines checked
+d5c5dca1308d drm/radeon: Use the drm suballocation manager implementation.
+-:77: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#77: FILE: drivers/gpu/drm/radeon/radeon.h:519:
++	uint64_t			gpu_addr;
 
-  CI-20190529: 20190529
-  CI_DRM_11189: c0fc917bc92837300b1991d53b835c6876f465a2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6339: 9cd99d763440ae75d9981ce4e361d3deb5edb4e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22181: 94fca54f2c7f362543c259ac31c4c0628cdaeac2 @ git://anongit.freedesktop.org/gfx-ci/linux
+-:129: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#129: FILE: drivers/gpu/drm/radeon/radeon_ib.c:204:
++					      RADEON_IB_POOL_SIZE*64*1024, 256,
+ 					                         ^
 
+-:129: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#129: FILE: drivers/gpu/drm/radeon/radeon_ib.c:204:
++					      RADEON_IB_POOL_SIZE*64*1024, 256,
+ 					                            ^
 
-== Linux commits ==
+-:139: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#139: FILE: drivers/gpu/drm/radeon/radeon_ib.c:212:
++					      RADEON_IB_POOL_SIZE*64*1024, 256,
+ 					                         ^
 
-94fca54f2c7f drm/i915/guc: Remove plain ads_blob pointer
-92dd130ad23d drm/i915/guc: Convert __guc_ads_init to iosys_map
-72dc7ff2aa14 drm/i915/guc: Convert guc_mmio_reg_state_init to iosys_map
-70c1a70afe2d drm/i915/guc: Use a single pass to calculate regset
-5f42c3ebfe6d drm/i915/guc: Prepare for error propagation
-faa609546fd7 drm/i915/guc: Convert capture list to iosys_map
-449412edbe79 drm/i915/guc: Convert mapping table to iosys_map
-e7e5c9a3da79 drm/i915/guc: Replace check for golden context size
-0e6432cf1683 drm/i915/guc: Convert golden context prep to iosys_map
-4cb7807205d5 drm/i915/guc: Convert guc_ads_private_data_reset to iosys_map
-e05cdb2d1777 drm/i915/guc: Convert engine record to iosys_map
-0035e0d1e60a drm/i915/guc: Convert policies update to iosys_map
-556507f9816d drm/i915/guc: Convert golden context init to iosys_map
-236fa8217a5b drm/i915/guc: Add read/write helpers for ADS blob
-f0e0c6063903 drm/i915/guc: Keep iosys_map of ads_blob around
-013c71e03eef drm/i915/gt: Add helper for shmem copy to iosys_map
-c756a6ec41f7 iosys-map: Add a few more helpers
-fa8fc0cacc71 iosys-map: Add offset to iosys_map_memcpy_to()
-28297417eba4 dma-buf-map: Rename to iosys-map
+-:139: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#139: FILE: drivers/gpu/drm/radeon/radeon_ib.c:212:
++					      RADEON_IB_POOL_SIZE*64*1024, 256,
+ 					                            ^
 
-== Logs ==
+-:165: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#165: FILE: drivers/gpu/drm/radeon/radeon_object.h:185:
++static inline void * radeon_sa_bo_cpu_addr(struct drm_suballoc *sa_bo)
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/index.html
+-:182: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#182: FILE: drivers/gpu/drm/radeon/radeon_object.h:200:
++extern int radeon_sa_bo_new(struct radeon_sa_manager *sa_manager,
 
---===============5157506249821989155==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-:184: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#184: FILE: drivers/gpu/drm/radeon/radeon_object.h:202:
++			    unsigned size);
 
+-:185: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#185: FILE: drivers/gpu/drm/radeon/radeon_object.h:203:
++extern void radeon_sa_bo_free(struct drm_suballoc **sa_bo,
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+-:203: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#203: FILE: drivers/gpu/drm/radeon/radeon_sa.c:49:
++			      unsigned size, u32 sa_align, u32 domain, u32 flags)
 
+-:262: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#262: FILE: drivers/gpu/drm/radeon/radeon_sa.c:122:
++		     unsigned size)
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: Refactor ADS access to use iosys_map</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99711/">https://patchwork.freedesktop.org/series/99711/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/index.html</a></td></tr>
-
-</table>
+total: 1 errors, 3 warnings, 7 checks, 533 lines checked
 
 
-    <h1>CI Bug Log - changes from CI_DRM_11189 -&gt; Patchwork_22181</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22181 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22181, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/index.html</p>
-<h2>Participating hosts (47 -&gt; 44)</h2>
-<p>Additional (2): fi-kbl-soraka fi-icl-u2 <br />
-  Missing    (5): fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22181:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22181 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4994">i915#4994</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5026">i915#5026</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-edid-read:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-blb-e6850/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22181/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11189 -&gt; Patchwork_22181</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11189: c0fc917bc92837300b1991d53b835c6876f465a2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6339: 9cd99d763440ae75d9981ce4e361d3deb5edb4e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22181: 94fca54f2c7f362543c259ac31c4c0628cdaeac2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>94fca54f2c7f drm/i915/guc: Remove plain ads_blob pointer<br />
-92dd130ad23d drm/i915/guc: Convert __guc_ads_init to iosys_map<br />
-72dc7ff2aa14 drm/i915/guc: Convert guc_mmio_reg_state_init to iosys_map<br />
-70c1a70afe2d drm/i915/guc: Use a single pass to calculate regset<br />
-5f42c3ebfe6d drm/i915/guc: Prepare for error propagation<br />
-faa609546fd7 drm/i915/guc: Convert capture list to iosys_map<br />
-449412edbe79 drm/i915/guc: Convert mapping table to iosys_map<br />
-e7e5c9a3da79 drm/i915/guc: Replace check for golden context size<br />
-0e6432cf1683 drm/i915/guc: Convert golden context prep to iosys_map<br />
-4cb7807205d5 drm/i915/guc: Convert guc_ads_private_data_reset to iosys_map<br />
-e05cdb2d1777 drm/i915/guc: Convert engine record to iosys_map<br />
-0035e0d1e60a drm/i915/guc: Convert policies update to iosys_map<br />
-556507f9816d drm/i915/guc: Convert golden context init to iosys_map<br />
-236fa8217a5b drm/i915/guc: Add read/write helpers for ADS blob<br />
-f0e0c6063903 drm/i915/guc: Keep iosys_map of ads_blob around<br />
-013c71e03eef drm/i915/gt: Add helper for shmem copy to iosys_map<br />
-c756a6ec41f7 iosys-map: Add a few more helpers<br />
-fa8fc0cacc71 iosys-map: Add offset to iosys_map_memcpy_to()<br />
-28297417eba4 dma-buf-map: Rename to iosys-map</p>
-
-</body>
-</html>
-
---===============5157506249821989155==--
