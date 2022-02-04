@@ -2,27 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB7A24A9E4A
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 18:48:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B78AB4A9E79
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 18:59:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A504110EF16;
-	Fri,  4 Feb 2022 17:48:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 034DF10E347;
+	Fri,  4 Feb 2022 17:59:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3099C10EF0A;
- Fri,  4 Feb 2022 17:48:15 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Fri,  4 Feb 2022 18:48:09 +0100
-Message-Id: <20220204174809.3366967-4-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220204174809.3366967-1-maarten.lankhorst@linux.intel.com>
-References: <20220204174809.3366967-1-maarten.lankhorst@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EE0BA10E347;
+ Fri,  4 Feb 2022 17:59:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E86ACA73C9;
+ Fri,  4 Feb 2022 17:59:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4022602311387058901=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC PATCH 3/3] drm/radeon: Use the drm suballocation
- manager implementation.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Fri, 04 Feb 2022 17:59:42 -0000
+Message-ID: <164399758291.12040.10762511365149028880@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220204170541.829227-1-lucas.demarchi@intel.com>
+In-Reply-To: <20220204170541.829227-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZG1h?=
+ =?utf-8?q?-buf-map=3A_Rename_to_iosys-map_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,594 +40,371 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, intel-gfx@lists.freedesktop.org,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the generic suballocation helper lifted from amdgpu.
-Note that the generic suballocator only allows a single alignment,
-so we may waste a few more bytes for radeon_semaphore, shouldn't
-be a big deal, could be re-added if needed.
+--===============4022602311387058901==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/radeon/radeon.h           |  55 +---
- drivers/gpu/drm/radeon/radeon_ib.c        |  10 +-
- drivers/gpu/drm/radeon/radeon_object.h    |  23 +-
- drivers/gpu/drm/radeon/radeon_sa.c        | 314 ++--------------------
- drivers/gpu/drm/radeon/radeon_semaphore.c |   6 +-
- 5 files changed, 51 insertions(+), 357 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
-index 895776c421d4..a6339c9e7c47 100644
---- a/drivers/gpu/drm/radeon/radeon.h
-+++ b/drivers/gpu/drm/radeon/radeon.h
-@@ -79,6 +79,7 @@
- #include <drm/ttm/ttm_execbuf_util.h>
- 
- #include <drm/drm_gem.h>
-+#include <drm/drm_suballoc.h>
- 
- #include "radeon_family.h"
- #include "radeon_mode.h"
-@@ -512,52 +513,12 @@ struct radeon_bo {
- };
- #define gem_to_radeon_bo(gobj) container_of((gobj), struct radeon_bo, tbo.base)
- 
--/* sub-allocation manager, it has to be protected by another lock.
-- * By conception this is an helper for other part of the driver
-- * like the indirect buffer or semaphore, which both have their
-- * locking.
-- *
-- * Principe is simple, we keep a list of sub allocation in offset
-- * order (first entry has offset == 0, last entry has the highest
-- * offset).
-- *
-- * When allocating new object we first check if there is room at
-- * the end total_size - (last_object_offset + last_object_size) >=
-- * alloc_size. If so we allocate new object there.
-- *
-- * When there is not enough room at the end, we start waiting for
-- * each sub object until we reach object_offset+object_size >=
-- * alloc_size, this object then become the sub object we return.
-- *
-- * Alignment can't be bigger than page size.
-- *
-- * Hole are not considered for allocation to keep things simple.
-- * Assumption is that there won't be hole (all object on same
-- * alignment).
-- */
- struct radeon_sa_manager {
--	wait_queue_head_t	wq;
--	struct radeon_bo	*bo;
--	struct list_head	*hole;
--	struct list_head	flist[RADEON_NUM_RINGS];
--	struct list_head	olist;
--	unsigned		size;
--	uint64_t		gpu_addr;
--	void			*cpu_ptr;
--	uint32_t		domain;
--	uint32_t		align;
--};
--
--struct radeon_sa_bo;
--
--/* sub-allocation buffer */
--struct radeon_sa_bo {
--	struct list_head		olist;
--	struct list_head		flist;
--	struct radeon_sa_manager	*manager;
--	unsigned			soffset;
--	unsigned			eoffset;
--	struct radeon_fence		*fence;
-+	struct drm_suballoc_manager	base;
-+	struct radeon_bo		*bo;
-+	uint64_t			gpu_addr;
-+	void				*cpu_ptr;
-+	u32 domain;
- };
- 
- /*
-@@ -588,7 +549,7 @@ int radeon_mode_dumb_mmap(struct drm_file *filp,
-  * Semaphores.
-  */
- struct radeon_semaphore {
--	struct radeon_sa_bo	*sa_bo;
-+	struct drm_suballoc	*sa_bo;
- 	signed			waiters;
- 	uint64_t		gpu_addr;
- };
-@@ -817,7 +778,7 @@ void radeon_irq_kms_disable_hpd(struct radeon_device *rdev, unsigned hpd_mask);
-  */
- 
- struct radeon_ib {
--	struct radeon_sa_bo		*sa_bo;
-+	struct drm_suballoc		*sa_bo;
- 	uint32_t			length_dw;
- 	uint64_t			gpu_addr;
- 	uint32_t			*ptr;
-diff --git a/drivers/gpu/drm/radeon/radeon_ib.c b/drivers/gpu/drm/radeon/radeon_ib.c
-index 62b116727b4f..bca2cbd27abf 100644
---- a/drivers/gpu/drm/radeon/radeon_ib.c
-+++ b/drivers/gpu/drm/radeon/radeon_ib.c
-@@ -61,7 +61,7 @@ int radeon_ib_get(struct radeon_device *rdev, int ring,
- {
- 	int r;
- 
--	r = radeon_sa_bo_new(rdev, &rdev->ring_tmp_bo, &ib->sa_bo, size, 256);
-+	r = radeon_sa_bo_new(&rdev->ring_tmp_bo, &ib->sa_bo, size);
- 	if (r) {
- 		dev_err(rdev->dev, "failed to get a new IB (%d)\n", r);
- 		return r;
-@@ -97,7 +97,7 @@ int radeon_ib_get(struct radeon_device *rdev, int ring,
- void radeon_ib_free(struct radeon_device *rdev, struct radeon_ib *ib)
- {
- 	radeon_sync_free(rdev, &ib->sync, ib->fence);
--	radeon_sa_bo_free(rdev, &ib->sa_bo, ib->fence);
-+	radeon_sa_bo_free(&ib->sa_bo, ib->fence);
- 	radeon_fence_unref(&ib->fence);
- }
- 
-@@ -201,8 +201,7 @@ int radeon_ib_pool_init(struct radeon_device *rdev)
- 
- 	if (rdev->family >= CHIP_BONAIRE) {
- 		r = radeon_sa_bo_manager_init(rdev, &rdev->ring_tmp_bo,
--					      RADEON_IB_POOL_SIZE*64*1024,
--					      RADEON_GPU_PAGE_SIZE,
-+					      RADEON_IB_POOL_SIZE*64*1024, 256,
- 					      RADEON_GEM_DOMAIN_GTT,
- 					      RADEON_GEM_GTT_WC);
- 	} else {
-@@ -210,8 +209,7 @@ int radeon_ib_pool_init(struct radeon_device *rdev)
- 		 * to the command stream checking
- 		 */
- 		r = radeon_sa_bo_manager_init(rdev, &rdev->ring_tmp_bo,
--					      RADEON_IB_POOL_SIZE*64*1024,
--					      RADEON_GPU_PAGE_SIZE,
-+					      RADEON_IB_POOL_SIZE*64*1024, 256,
- 					      RADEON_GEM_DOMAIN_GTT, 0);
- 	}
- 	if (r) {
-diff --git a/drivers/gpu/drm/radeon/radeon_object.h b/drivers/gpu/drm/radeon/radeon_object.h
-index 1afc7992ef91..95189da5c9c5 100644
---- a/drivers/gpu/drm/radeon/radeon_object.h
-+++ b/drivers/gpu/drm/radeon/radeon_object.h
-@@ -171,15 +171,20 @@ extern void radeon_bo_fence(struct radeon_bo *bo, struct radeon_fence *fence,
- /*
-  * sub allocation
-  */
-+static inline struct radeon_sa_manager *
-+to_radeon_sa_manager(struct drm_suballoc_manager *manager)
-+{
-+	return container_of(manager, struct radeon_sa_manager, base);
-+}
- 
--static inline uint64_t radeon_sa_bo_gpu_addr(struct radeon_sa_bo *sa_bo)
-+static inline uint64_t radeon_sa_bo_gpu_addr(struct drm_suballoc *sa_bo)
- {
--	return sa_bo->manager->gpu_addr + sa_bo->soffset;
-+	return to_radeon_sa_manager(sa_bo->manager)->gpu_addr + sa_bo->soffset;
- }
- 
--static inline void * radeon_sa_bo_cpu_addr(struct radeon_sa_bo *sa_bo)
-+static inline void * radeon_sa_bo_cpu_addr(struct drm_suballoc *sa_bo)
- {
--	return sa_bo->manager->cpu_ptr + sa_bo->soffset;
-+	return to_radeon_sa_manager(sa_bo->manager)->cpu_ptr + sa_bo->soffset;
- }
- 
- extern int radeon_sa_bo_manager_init(struct radeon_device *rdev,
-@@ -192,12 +197,10 @@ extern int radeon_sa_bo_manager_start(struct radeon_device *rdev,
- 				      struct radeon_sa_manager *sa_manager);
- extern int radeon_sa_bo_manager_suspend(struct radeon_device *rdev,
- 					struct radeon_sa_manager *sa_manager);
--extern int radeon_sa_bo_new(struct radeon_device *rdev,
--			    struct radeon_sa_manager *sa_manager,
--			    struct radeon_sa_bo **sa_bo,
--			    unsigned size, unsigned align);
--extern void radeon_sa_bo_free(struct radeon_device *rdev,
--			      struct radeon_sa_bo **sa_bo,
-+extern int radeon_sa_bo_new(struct radeon_sa_manager *sa_manager,
-+			    struct drm_suballoc **sa_bo,
-+			    unsigned size);
-+extern void radeon_sa_bo_free(struct drm_suballoc **sa_bo,
- 			      struct radeon_fence *fence);
- #if defined(CONFIG_DEBUG_FS)
- extern void radeon_sa_bo_dump_debug_info(struct radeon_sa_manager *sa_manager,
-diff --git a/drivers/gpu/drm/radeon/radeon_sa.c b/drivers/gpu/drm/radeon/radeon_sa.c
-index 310c322c7112..ec024fa61e92 100644
---- a/drivers/gpu/drm/radeon/radeon_sa.c
-+++ b/drivers/gpu/drm/radeon/radeon_sa.c
-@@ -44,53 +44,31 @@
- 
- #include "radeon.h"
- 
--static void radeon_sa_bo_remove_locked(struct radeon_sa_bo *sa_bo);
--static void radeon_sa_bo_try_free(struct radeon_sa_manager *sa_manager);
--
- int radeon_sa_bo_manager_init(struct radeon_device *rdev,
- 			      struct radeon_sa_manager *sa_manager,
--			      unsigned size, u32 align, u32 domain, u32 flags)
-+			      unsigned size, u32 sa_align, u32 domain, u32 flags)
- {
--	int i, r;
--
--	init_waitqueue_head(&sa_manager->wq);
--	sa_manager->bo = NULL;
--	sa_manager->size = size;
--	sa_manager->domain = domain;
--	sa_manager->align = align;
--	sa_manager->hole = &sa_manager->olist;
--	INIT_LIST_HEAD(&sa_manager->olist);
--	for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--		INIT_LIST_HEAD(&sa_manager->flist[i]);
--	}
-+	int r;
- 
--	r = radeon_bo_create(rdev, size, align, true,
-+	r = radeon_bo_create(rdev, size, RADEON_GPU_PAGE_SIZE, true,
- 			     domain, flags, NULL, NULL, &sa_manager->bo);
- 	if (r) {
- 		dev_err(rdev->dev, "(%d) failed to allocate bo for manager\n", r);
- 		return r;
- 	}
- 
-+	sa_manager->domain = domain;
-+
-+	drm_suballoc_manager_init(&sa_manager->base, size, sa_align);
-+
- 	return r;
- }
- 
- void radeon_sa_bo_manager_fini(struct radeon_device *rdev,
- 			       struct radeon_sa_manager *sa_manager)
- {
--	struct radeon_sa_bo *sa_bo, *tmp;
--
--	if (!list_empty(&sa_manager->olist)) {
--		sa_manager->hole = &sa_manager->olist,
--		radeon_sa_bo_try_free(sa_manager);
--		if (!list_empty(&sa_manager->olist)) {
--			dev_err(rdev->dev, "sa_manager is not empty, clearing anyway\n");
--		}
--	}
--	list_for_each_entry_safe(sa_bo, tmp, &sa_manager->olist, olist) {
--		radeon_sa_bo_remove_locked(sa_bo);
--	}
-+	drm_suballoc_manager_fini(&sa_manager->base);
- 	radeon_bo_unref(&sa_manager->bo);
--	sa_manager->size = 0;
- }
- 
- int radeon_sa_bo_manager_start(struct radeon_device *rdev,
-@@ -139,260 +117,33 @@ int radeon_sa_bo_manager_suspend(struct radeon_device *rdev,
- 	return r;
- }
- 
--static void radeon_sa_bo_remove_locked(struct radeon_sa_bo *sa_bo)
-+int radeon_sa_bo_new(struct radeon_sa_manager *sa_manager,
-+		     struct drm_suballoc **sa_bo,
-+		     unsigned size)
- {
--	struct radeon_sa_manager *sa_manager = sa_bo->manager;
--	if (sa_manager->hole == &sa_bo->olist) {
--		sa_manager->hole = sa_bo->olist.prev;
--	}
--	list_del_init(&sa_bo->olist);
--	list_del_init(&sa_bo->flist);
--	radeon_fence_unref(&sa_bo->fence);
--	kfree(sa_bo);
--}
--
--static void radeon_sa_bo_try_free(struct radeon_sa_manager *sa_manager)
--{
--	struct radeon_sa_bo *sa_bo, *tmp;
--
--	if (sa_manager->hole->next == &sa_manager->olist)
--		return;
-+	struct drm_suballoc *sa = drm_suballoc_new(&sa_manager->base, size);
- 
--	sa_bo = list_entry(sa_manager->hole->next, struct radeon_sa_bo, olist);
--	list_for_each_entry_safe_from(sa_bo, tmp, &sa_manager->olist, olist) {
--		if (sa_bo->fence == NULL || !radeon_fence_signaled(sa_bo->fence)) {
--			return;
--		}
--		radeon_sa_bo_remove_locked(sa_bo);
-+	if (IS_ERR(sa)) {
-+		*sa_bo = NULL;
-+		return PTR_ERR(sa);
- 	}
--}
- 
--static inline unsigned radeon_sa_bo_hole_soffset(struct radeon_sa_manager *sa_manager)
--{
--	struct list_head *hole = sa_manager->hole;
--
--	if (hole != &sa_manager->olist) {
--		return list_entry(hole, struct radeon_sa_bo, olist)->eoffset;
--	}
-+	*sa_bo = sa;
- 	return 0;
- }
- 
--static inline unsigned radeon_sa_bo_hole_eoffset(struct radeon_sa_manager *sa_manager)
--{
--	struct list_head *hole = sa_manager->hole;
--
--	if (hole->next != &sa_manager->olist) {
--		return list_entry(hole->next, struct radeon_sa_bo, olist)->soffset;
--	}
--	return sa_manager->size;
--}
--
--static bool radeon_sa_bo_try_alloc(struct radeon_sa_manager *sa_manager,
--				   struct radeon_sa_bo *sa_bo,
--				   unsigned size, unsigned align)
--{
--	unsigned soffset, eoffset, wasted;
--
--	soffset = radeon_sa_bo_hole_soffset(sa_manager);
--	eoffset = radeon_sa_bo_hole_eoffset(sa_manager);
--	wasted = (align - (soffset % align)) % align;
--
--	if ((eoffset - soffset) >= (size + wasted)) {
--		soffset += wasted;
--
--		sa_bo->manager = sa_manager;
--		sa_bo->soffset = soffset;
--		sa_bo->eoffset = soffset + size;
--		list_add(&sa_bo->olist, sa_manager->hole);
--		INIT_LIST_HEAD(&sa_bo->flist);
--		sa_manager->hole = &sa_bo->olist;
--		return true;
--	}
--	return false;
--}
--
--/**
-- * radeon_sa_event - Check if we can stop waiting
-- *
-- * @sa_manager: pointer to the sa_manager
-- * @size: number of bytes we want to allocate
-- * @align: alignment we need to match
-- *
-- * Check if either there is a fence we can wait for or
-- * enough free memory to satisfy the allocation directly
-- */
--static bool radeon_sa_event(struct radeon_sa_manager *sa_manager,
--			    unsigned size, unsigned align)
--{
--	unsigned soffset, eoffset, wasted;
--	int i;
--
--	for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--		if (!list_empty(&sa_manager->flist[i])) {
--			return true;
--		}
--	}
--
--	soffset = radeon_sa_bo_hole_soffset(sa_manager);
--	eoffset = radeon_sa_bo_hole_eoffset(sa_manager);
--	wasted = (align - (soffset % align)) % align;
--
--	if ((eoffset - soffset) >= (size + wasted)) {
--		return true;
--	}
--
--	return false;
--}
--
--static bool radeon_sa_bo_next_hole(struct radeon_sa_manager *sa_manager,
--				   struct radeon_fence **fences,
--				   unsigned *tries)
--{
--	struct radeon_sa_bo *best_bo = NULL;
--	unsigned i, soffset, best, tmp;
--
--	/* if hole points to the end of the buffer */
--	if (sa_manager->hole->next == &sa_manager->olist) {
--		/* try again with its beginning */
--		sa_manager->hole = &sa_manager->olist;
--		return true;
--	}
--
--	soffset = radeon_sa_bo_hole_soffset(sa_manager);
--	/* to handle wrap around we add sa_manager->size */
--	best = sa_manager->size * 2;
--	/* go over all fence list and try to find the closest sa_bo
--	 * of the current last
--	 */
--	for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--		struct radeon_sa_bo *sa_bo;
--
--		if (list_empty(&sa_manager->flist[i])) {
--			continue;
--		}
--
--		sa_bo = list_first_entry(&sa_manager->flist[i],
--					 struct radeon_sa_bo, flist);
--
--		if (!radeon_fence_signaled(sa_bo->fence)) {
--			fences[i] = sa_bo->fence;
--			continue;
--		}
--
--		/* limit the number of tries each ring gets */
--		if (tries[i] > 2) {
--			continue;
--		}
--
--		tmp = sa_bo->soffset;
--		if (tmp < soffset) {
--			/* wrap around, pretend it's after */
--			tmp += sa_manager->size;
--		}
--		tmp -= soffset;
--		if (tmp < best) {
--			/* this sa bo is the closest one */
--			best = tmp;
--			best_bo = sa_bo;
--		}
--	}
--
--	if (best_bo) {
--		++tries[best_bo->fence->ring];
--		sa_manager->hole = best_bo->olist.prev;
--
--		/* we knew that this one is signaled,
--		   so it's save to remote it */
--		radeon_sa_bo_remove_locked(best_bo);
--		return true;
--	}
--	return false;
--}
--
--int radeon_sa_bo_new(struct radeon_device *rdev,
--		     struct radeon_sa_manager *sa_manager,
--		     struct radeon_sa_bo **sa_bo,
--		     unsigned size, unsigned align)
--{
--	struct radeon_fence *fences[RADEON_NUM_RINGS];
--	unsigned tries[RADEON_NUM_RINGS];
--	int i, r;
--
--	BUG_ON(align > sa_manager->align);
--	BUG_ON(size > sa_manager->size);
--
--	*sa_bo = kmalloc(sizeof(struct radeon_sa_bo), GFP_KERNEL);
--	if ((*sa_bo) == NULL) {
--		return -ENOMEM;
--	}
--	(*sa_bo)->manager = sa_manager;
--	(*sa_bo)->fence = NULL;
--	INIT_LIST_HEAD(&(*sa_bo)->olist);
--	INIT_LIST_HEAD(&(*sa_bo)->flist);
--
--	spin_lock(&sa_manager->wq.lock);
--	do {
--		for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--			fences[i] = NULL;
--			tries[i] = 0;
--		}
--
--		do {
--			radeon_sa_bo_try_free(sa_manager);
--
--			if (radeon_sa_bo_try_alloc(sa_manager, *sa_bo,
--						   size, align)) {
--				spin_unlock(&sa_manager->wq.lock);
--				return 0;
--			}
--
--			/* see if we can skip over some allocations */
--		} while (radeon_sa_bo_next_hole(sa_manager, fences, tries));
--
--		for (i = 0; i < RADEON_NUM_RINGS; ++i)
--			radeon_fence_ref(fences[i]);
--
--		spin_unlock(&sa_manager->wq.lock);
--		r = radeon_fence_wait_any(rdev, fences, false);
--		for (i = 0; i < RADEON_NUM_RINGS; ++i)
--			radeon_fence_unref(&fences[i]);
--		spin_lock(&sa_manager->wq.lock);
--		/* if we have nothing to wait for block */
--		if (r == -ENOENT) {
--			r = wait_event_interruptible_locked(
--				sa_manager->wq, 
--				radeon_sa_event(sa_manager, size, align)
--			);
--		}
--
--	} while (!r);
--
--	spin_unlock(&sa_manager->wq.lock);
--	kfree(*sa_bo);
--	*sa_bo = NULL;
--	return r;
--}
--
--void radeon_sa_bo_free(struct radeon_device *rdev, struct radeon_sa_bo **sa_bo,
-+void radeon_sa_bo_free(struct drm_suballoc **sa_bo,
- 		       struct radeon_fence *fence)
- {
--	struct radeon_sa_manager *sa_manager;
--
- 	if (sa_bo == NULL || *sa_bo == NULL) {
- 		return;
- 	}
- 
--	sa_manager = (*sa_bo)->manager;
--	spin_lock(&sa_manager->wq.lock);
--	if (fence && !radeon_fence_signaled(fence)) {
--		(*sa_bo)->fence = radeon_fence_ref(fence);
--		list_add_tail(&(*sa_bo)->flist,
--			      &sa_manager->flist[fence->ring]);
--	} else {
--		radeon_sa_bo_remove_locked(*sa_bo);
--	}
--	wake_up_all_locked(&sa_manager->wq);
--	spin_unlock(&sa_manager->wq.lock);
-+	if (fence)
-+		drm_suballoc_free(*sa_bo, &fence->base, fence->ring);
-+	else
-+		drm_suballoc_free(*sa_bo, NULL, 0);
-+
- 	*sa_bo = NULL;
- }
- 
-@@ -400,25 +151,6 @@ void radeon_sa_bo_free(struct radeon_device *rdev, struct radeon_sa_bo **sa_bo,
- void radeon_sa_bo_dump_debug_info(struct radeon_sa_manager *sa_manager,
- 				  struct seq_file *m)
- {
--	struct radeon_sa_bo *i;
--
--	spin_lock(&sa_manager->wq.lock);
--	list_for_each_entry(i, &sa_manager->olist, olist) {
--		uint64_t soffset = i->soffset + sa_manager->gpu_addr;
--		uint64_t eoffset = i->eoffset + sa_manager->gpu_addr;
--		if (&i->olist == sa_manager->hole) {
--			seq_printf(m, ">");
--		} else {
--			seq_printf(m, " ");
--		}
--		seq_printf(m, "[0x%010llx 0x%010llx] size %8lld",
--			   soffset, eoffset, eoffset - soffset);
--		if (i->fence) {
--			seq_printf(m, " protected by 0x%016llx on ring %d",
--				   i->fence->seq, i->fence->ring);
--		}
--		seq_printf(m, "\n");
--	}
--	spin_unlock(&sa_manager->wq.lock);
-+	drm_suballoc_dump_debug_info(&sa_manager->base, m, sa_manager->gpu_addr);
- }
- #endif
-diff --git a/drivers/gpu/drm/radeon/radeon_semaphore.c b/drivers/gpu/drm/radeon/radeon_semaphore.c
-index 221e59476f64..3e2b0bf0d55d 100644
---- a/drivers/gpu/drm/radeon/radeon_semaphore.c
-+++ b/drivers/gpu/drm/radeon/radeon_semaphore.c
-@@ -40,8 +40,8 @@ int radeon_semaphore_create(struct radeon_device *rdev,
- 	if (*semaphore == NULL) {
- 		return -ENOMEM;
- 	}
--	r = radeon_sa_bo_new(rdev, &rdev->ring_tmp_bo,
--			     &(*semaphore)->sa_bo, 8, 8);
-+	r = radeon_sa_bo_new(&rdev->ring_tmp_bo,
-+			     &(*semaphore)->sa_bo, 8);
- 	if (r) {
- 		kfree(*semaphore);
- 		*semaphore = NULL;
-@@ -100,7 +100,7 @@ void radeon_semaphore_free(struct radeon_device *rdev,
- 		dev_err(rdev->dev, "semaphore %p has more waiters than signalers,"
- 			" hardware lockup imminent!\n", *semaphore);
- 	}
--	radeon_sa_bo_free(rdev, &(*semaphore)->sa_bo, fence);
-+	radeon_sa_bo_free(&(*semaphore)->sa_bo, fence);
- 	kfree(*semaphore);
- 	*semaphore = NULL;
- }
--- 
-2.34.1
+Series: dma-buf-map: Rename to iosys-map (rev3)
+URL   : https://patchwork.freedesktop.org/series/99612/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11189 -> Patchwork_22179
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_22179 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22179, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/index.html
+
+Participating hosts (47 -> 44)
+------------------------------
+
+  Additional (2): fi-kbl-soraka fi-icl-u2 
+  Missing    (5): fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22179:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22179 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@fork-gfx0:
+    - fi-icl-u2:          NOTRUN -> [SKIP][2] ([fdo#109315]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +8 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+    - fi-icl-u2:          NOTRUN -> [SKIP][5] ([i915#2190])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-icl-u2:          NOTRUN -> [SKIP][6] ([i915#4613]) +3 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-icl-u2:          NOTRUN -> [FAIL][8] ([i915#3049])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][9] ([i915#1886] / [i915#2291])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-u2:          NOTRUN -> [DMESG-WARN][10] ([i915#2867]) +6 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+    - bat-dg1-6:          [PASS][11] -> [DMESG-FAIL][12] ([i915#4494] / [i915#4957])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][13] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-icl-u2:          NOTRUN -> [SKIP][14] ([fdo#111827]) +8 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][15] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-icl-u2:          NOTRUN -> [SKIP][16] ([fdo#109278]) +2 similar issues
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-icl-u2:          NOTRUN -> [SKIP][17] ([fdo#109285])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][18] ([fdo#109271] / [i915#533])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][19] ([fdo#109271]) +13 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-icl-u2:          NOTRUN -> [SKIP][20] ([i915#3301])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-5557u:       [INCOMPLETE][21] ([i915#146]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#3049]: https://gitlab.freedesktop.org/drm/intel/issues/3049
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11189 -> Patchwork_22179
+
+  CI-20190529: 20190529
+  CI_DRM_11189: c0fc917bc92837300b1991d53b835c6876f465a2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6339: 9cd99d763440ae75d9981ce4e361d3deb5edb4e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22179: 22c409c1748c596fdde8414a7ae11bf2e66268a4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+22c409c1748c dma-buf-map: Rename to iosys-map
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/index.html
+
+--===============4022602311387058901==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>dma-buf-map: Rename to iosys-map (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99612/">https://patchwork.freedesktop.org/series/99612/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11189 -&gt; Patchwork_22179</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_22179 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22179, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/index.html</p>
+<h2>Participating hosts (47 -&gt; 44)</h2>
+<p>Additional (2): fi-kbl-soraka fi-icl-u2 <br />
+  Missing    (5): fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-bdw-samus </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22179:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22179 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3049">i915#3049</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) +6 similar issues</p>
+</li>
+<li>
+<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-edid-read:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3@smem:<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11189/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22179/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11189 -&gt; Patchwork_22179</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11189: c0fc917bc92837300b1991d53b835c6876f465a2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6339: 9cd99d763440ae75d9981ce4e361d3deb5edb4e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22179: 22c409c1748c596fdde8414a7ae11bf2e66268a4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>22c409c1748c dma-buf-map: Rename to iosys-map</p>
+
+</body>
+</html>
+
+--===============4022602311387058901==--
