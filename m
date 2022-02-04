@@ -2,53 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59EC84AA00B
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 20:28:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A61094AA02E
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 20:35:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38D3710EA01;
-	Fri,  4 Feb 2022 19:28:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6EE710E7AC;
+	Fri,  4 Feb 2022 19:35:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23C8010E9D0;
- Fri,  4 Feb 2022 19:28:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644002895; x=1675538895;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=/tGio2O+4Nz0M4txcIhkv9RrfgoAhivXZIjNFxQms88=;
- b=ji4Tiah/ebFS9ZxfRaeHfj/kJvQ7V47PXDvNQk334Emm0CGZ38E3tXA5
- jR6WzA5eps5NCDN0exHAWchaDfX8HSneCFJ1m/Zk/a+hAlGXdVCHnjitl
- PiX4/lTbfioHphuu+DvnG73ZXiajcg9UzX0uaZGXjTlXproyJHcS5sf4S
- hASTH7ESzrz2krp+fTj6Y4/8sTNNEWD0KQi2ibL8MPl9Y0wtEc34iae6t
- NiNT7eKNcETMcykvhoPZuL7dgZ/HWLIbplU9gLU7n8otQpmIkJzNwiTKk
- jYvY3CRR6/uVgK908z2wy3Rv3NAZtNmuJzCvmNAFqrhJXA8ytALP7pwtq g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10248"; a="229079665"
-X-IronPort-AV: E=Sophos;i="5.88,343,1635231600"; d="scan'208";a="229079665"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2022 11:28:14 -0800
-X-IronPort-AV: E=Sophos;i="5.88,343,1635231600"; d="scan'208";a="498571774"
-Received: from safernan-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.210.69])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2022 11:28:14 -0800
-Date: Fri, 4 Feb 2022 11:28:08 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20220204192808.dx3wwjfj6sdmj5ze@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220204174436.830121-1-lucas.demarchi@intel.com>
- <20220204174436.830121-3-lucas.demarchi@intel.com>
- <59ec3b5a-6e3f-ed8a-4cc1-c0bedb923bb8@suse.de>
+Received: from mx1.smtp.larsendata.com (mx1.smtp.larsendata.com
+ [91.221.196.215])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C14510EBB6
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Feb 2022 19:35:41 +0000 (UTC)
+Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
+ by mx1.smtp.larsendata.com (Halon) with ESMTPS
+ id c5bc346a-85f1-11ec-b20b-0050568c148b;
+ Fri, 04 Feb 2022 19:36:39 +0000 (UTC)
+Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net
+ [80.162.45.141])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: sam@ravnborg.org)
+ by mail01.mxhotel.dk (Postfix) with ESMTPSA id DD5A1194B91;
+ Fri,  4 Feb 2022 20:35:34 +0100 (CET)
+Date: Fri, 4 Feb 2022 20:35:31 +0100
+X-Report-Abuse-To: abuse@mxhotel.dk
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <Yf2AAx9rlIsh/h8I@ravnborg.org>
+References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
+ <20220131210552.482606-14-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <59ec3b5a-6e3f-ed8a-4cc1-c0bedb923bb8@suse.de>
-Subject: Re: [Intel-gfx] [PATCH 02/19] iosys-map: Add offset to
- iosys_map_memcpy_to()
+In-Reply-To: <20220131210552.482606-14-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 13/21] fbcon: move more common code into
+ fb_open()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,73 +49,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: linux-fbdev@vger.kernel.org, Du Cheng <ducheng2@gmail.com>,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 04, 2022 at 07:48:10PM +0100, Thomas Zimmermann wrote:
->Hi
->
->Am 04.02.22 um 18:44 schrieb Lucas De Marchi:
->>In certain situations it's useful to be able to write to an
->>offset of the mapping. Add a dst_offset to iosys_map_memcpy_to().
->>
->>Cc: Sumit Semwal <sumit.semwal@linaro.org>
->>Cc: Christian König <christian.koenig@amd.com>
->>Cc: Thomas Zimmermann <tzimmermann@suse.de>
->>Cc: dri-devel@lists.freedesktop.org
->>Cc: linux-kernel@vger.kernel.org
->>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>---
->>  drivers/gpu/drm/drm_cache.c     |  2 +-
->>  drivers/gpu/drm/drm_fb_helper.c |  2 +-
->>  include/linux/iosys-map.h       | 17 +++++++++--------
->>  3 files changed, 11 insertions(+), 10 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
->>index 66597e411764..c3e6e615bf09 100644
->>--- a/drivers/gpu/drm/drm_cache.c
->>+++ b/drivers/gpu/drm/drm_cache.c
->>@@ -218,7 +218,7 @@ static void memcpy_fallback(struct iosys_map *dst,
->>  	if (!dst->is_iomem && !src->is_iomem) {
->>  		memcpy(dst->vaddr, src->vaddr, len);
->>  	} else if (!src->is_iomem) {
->>-		iosys_map_memcpy_to(dst, src->vaddr, len);
->>+		iosys_map_memcpy_to(dst, 0, src->vaddr, len);
->>  	} else if (!dst->is_iomem) {
->>  		memcpy_fromio(dst->vaddr, src->vaddr_iomem, len);
->>  	} else {
->>diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
->>index 238f815cb2a0..bf5cc9a42e5a 100644
->>--- a/drivers/gpu/drm/drm_fb_helper.c
->>+++ b/drivers/gpu/drm/drm_fb_helper.c
->>@@ -385,7 +385,7 @@ static void drm_fb_helper_damage_blit_real(struct drm_fb_helper *fb_helper,
->>  	iosys_map_incr(dst, offset); /* go to first pixel within clip rect */
->>  	for (y = clip->y1; y < clip->y2; y++) {
->>-		iosys_map_memcpy_to(dst, src, len);
->>+		iosys_map_memcpy_to(dst, 0, src, len);
->>  		iosys_map_incr(dst, fb->pitches[0]);
->>  		src += fb->pitches[0];
->>  	}
->>diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
->>index f4186f91caa6..edd7fa3be9e9 100644
->>--- a/include/linux/iosys-map.h
->>+++ b/include/linux/iosys-map.h
->>@@ -220,22 +220,23 @@ static inline void iosys_map_clear(struct iosys_map *map)
->>  }
->>  /**
->>- * iosys_map_memcpy_to - Memcpy into iosys mapping
->>+ * iosys_map_memcpy_to_offset - Memcpy into offset of iosys_map
->
->'iosys_map_memcpy_to'
->
->With that fixed:
->
->Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+On Mon, Jan 31, 2022 at 10:05:44PM +0100, Daniel Vetter wrote:
+> No idea why con2fb_acquire_newinfo() initializes much less than
+> fbcon_startup(), but so be it. From a quick look most of the
+> un-initialized stuff should be fairly harmless, but who knows.
+> 
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Claudio Suarez <cssk@net-c.es>
+> Cc: Du Cheng <ducheng2@gmail.com>
+> ---
+>  drivers/video/fbdev/core/fbcon.c | 74 +++++++++++++-------------------
+>  1 file changed, 31 insertions(+), 43 deletions(-)
+> 
+> diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
+> index b83a5a77d8a8..5a3391ff038d 100644
+> --- a/drivers/video/fbdev/core/fbcon.c
+> +++ b/drivers/video/fbdev/core/fbcon.c
+> @@ -680,8 +680,18 @@ static int fbcon_invalid_charcount(struct fb_info *info, unsigned charcount)
+>  
+>  #endif /* CONFIG_MISC_TILEBLITTING */
+>  
+> +static void fbcon_release(struct fb_info *info)
+> +{
+> +	if (info->fbops->fb_release)
+> +		info->fbops->fb_release(info, 0);
+> +
+> +	module_put(info->fbops->owner);
+> +}
+> +
+>  static int fbcon_open(struct fb_info *info)
+>  {
+> +	struct fbcon_ops *ops;
+> +
+>  	if (!try_module_get(info->fbops->owner))
+>  		return -ENODEV;
+>  
+> @@ -691,19 +701,22 @@ static int fbcon_open(struct fb_info *info)
+>  		return -ENODEV;
+>  	}
+>  
+> -	return 0;
+> -}
+> +	ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
+> +	if (!ops) {
+> +		fbcon_release(info);
+> +		return -ENOMEM;
+> +	}
+>  
+> -static void fbcon_release(struct fb_info *info)
+> -{
+> -	if (info->fbops->fb_release)
+> -		info->fbops->fb_release(info, 0);
+> +	INIT_DELAYED_WORK(&ops->cursor_work, fb_flashcursor);
+> +	ops->info = info;
+> +	info->fbcon_par = ops;
+> +	ops->cur_blink_jiffies = HZ / 5;
+>  
+> -	module_put(info->fbops->owner);
+> +	return 0;
+>  }
+>  
+>  static int con2fb_acquire_newinfo(struct vc_data *vc, struct fb_info *info,
+> -				  int unit, int oldidx)
+> +				  int unit)
+>  {
+>  	struct fbcon_ops *ops = NULL;
+>  	int err;
+> @@ -712,27 +725,10 @@ static int con2fb_acquire_newinfo(struct vc_data *vc, struct fb_info *info,
+>  	if (err)
+>  		return err;
+>  
+> -	if (!err) {
+> -		ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
+> -		if (!ops)
+> -			err = -ENOMEM;
+> -
+> -		INIT_DELAYED_WORK(&ops->cursor_work, fb_flashcursor);
+> -	}
+> -
+> -	if (!err) {
+> -		ops->cur_blink_jiffies = HZ / 5;
+> -		ops->info = info;
+> -		info->fbcon_par = ops;
+> -
+> -		if (vc)
+> -			set_blitting_type(vc, info);
+> -	}
+> +	ops = info->fbcon_par;
+>  
+> -	if (err) {
+> -		con2fb_map[unit] = oldidx;
+> -		fbcon_release(info);
+> -	}
+> +	if (vc)
+> +		set_blitting_type(vc, info);
+>  
+>  	return err;
+>  }
+> @@ -840,9 +836,11 @@ static int set_con2fb_map(int unit, int newidx, int user)
+>  
+>  	found = search_fb_in_map(newidx);
+>  
+> -	con2fb_map[unit] = newidx;
+> -	if (!err && !found)
+> -		err = con2fb_acquire_newinfo(vc, info, unit, oldidx);
+> +	if (!err && !found) {
+> +		err = con2fb_acquire_newinfo(vc, info, unit);
+> +		if (!err)
+> +			con2fb_map[unit] = newidx;
+> +	}
+This looks like an unintentional change of functionality as con2fb_map[unit] is
+only assigned when we do a con2fb_acquire_newinfo().
 
-thanks, I noticed that, but looks like I squashed to the wrong patch.
+Staring at the code I could not say it is wrong, but not nice to hide
+the change in this patch.
 
-Lucas De Marchi
+	Sam
+
+
+>  
+>  	/*
+>  	 * If old fb is not mapped to any of the consoles,
+> @@ -939,20 +937,10 @@ static const char *fbcon_startup(void)
+>  	if (fbcon_open(info))
+>  		return NULL;
+>  
+> -	ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
+> -	if (!ops) {
+> -		fbcon_release(info);
+> -		return NULL;
+> -	}
+> -
+> -	INIT_DELAYED_WORK(&ops->cursor_work, fb_flashcursor);
+> -
+> +	ops = info->fbcon_par;
+>  	ops->currcon = -1;
+>  	ops->graphics = 1;
+>  	ops->cur_rotate = -1;
+> -	ops->cur_blink_jiffies = HZ / 5;
+> -	ops->info = info;
+> -	info->fbcon_par = ops;
+>  
+>  	p->con_rotate = initial_rotation;
+>  	if (p->con_rotate == -1)
+> @@ -1022,7 +1010,7 @@ static void fbcon_init(struct vc_data *vc, int init)
+>  		return;
+>  
+>  	if (!info->fbcon_par)
+> -		con2fb_acquire_newinfo(vc, info, vc->vc_num, -1);
+> +		con2fb_acquire_newinfo(vc, info, vc->vc_num);
+>  
+>  	/* If we are not the first console on this
+>  	   fb, copy the font from that console */
+> -- 
+> 2.33.0
