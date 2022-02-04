@@ -1,54 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075934A9203
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 02:30:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D084A921A
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Feb 2022 02:45:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB0B310E1A8;
-	Fri,  4 Feb 2022 01:30:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B39F210E623;
+	Fri,  4 Feb 2022 01:45:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9D6A10EA05;
- Fri,  4 Feb 2022 01:30:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643938247; x=1675474247;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=6UyYeCLGlYNexQxAtpUi4eVnNE/HWxlw3jTpuJtu3pQ=;
- b=dJi+gNDwYtn3GqjT68CMomieM0cxt+ljVbnJtc9Cdl8+kLMjA49VXcnS
- 8WIp9ndIDqzvBfYRB+Z+NF+enFmMl/jvU6d0BB7iozpiaLeH8gsoD5UGf
- q3HQIN/FK6l6wRsig+iQF58fOuU6jLgr6D8kwv50TY2VW2tqQ5TC/3BWf
- zk4L8k2M5vMyTVg21QHJOKVSXoGr/hwhtkZCoeA4ynzUyhIGhE8k5FA5l
- 2OTeqhr1kbTLfTTTeb4rYbHjwrq2kJF2NU8uWryXK5MwN4VRIr2w3GgH7
- QljLOB0mpPs9rQpq99TA7P2ITCCIefFt++pxIbIun3wdQLixbyagKIikM g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10247"; a="231859893"
-X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="231859893"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2022 17:30:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,340,1635231600"; d="scan'208";a="699529534"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
- by orsmga005.jf.intel.com with ESMTP; 03 Feb 2022 17:30:45 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nFnQy-000Wuy-N1; Fri, 04 Feb 2022 01:30:44 +0000
-Date: Fri, 4 Feb 2022 09:30:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <202202040609.oSW2rFIL-lkp@intel.com>
-References: <20220203162703.352447-1-balasubramani.vivekanandan@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9F19410E618;
+ Fri,  4 Feb 2022 01:45:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 95207AA917;
+ Fri,  4 Feb 2022 01:45:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220203162703.352447-1-balasubramani.vivekanandan@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add fallback inside
- memcpy_from_wc functions
+Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vivek Kasireddy" <vivek.kasireddy@intel.com>
+Date: Fri, 04 Feb 2022 01:45:20 -0000
+Message-ID: <164393912057.12040.4398452822283629082@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220202011136.1387951-1-vivek.kasireddy@intel.com>
+In-Reply-To: <20220202011136.1387951-1-vivek.kasireddy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/2=5D_drm/mm=3A_Add_an_iterator_to_opti?=
+ =?utf-8?q?mally_walk_over_holes_for_an_allocation_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,84 +41,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, kbuild-all@lists.01.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Balasubramani,
+== Series Details ==
 
-Thank you for the patch! Perhaps something to improve:
+Series: series starting with [1/2] drm/mm: Add an iterator to optimally walk over holes for an allocation (rev2)
+URL   : https://patchwork.freedesktop.org/series/99597/
+State : failure
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on drm-tip/drm-tip drm-exynos/exynos-drm-next drm/drm-next tegra-drm/drm/tegra/for-next v5.17-rc2 next-20220203]
-[cannot apply to airlied/drm-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+== Summary ==
 
-url:    https://github.com/0day-ci/linux/commits/Balasubramani-Vivekanandan/drm-i915-Add-fallback-inside-memcpy_from_wc-functions/20220204-002704
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: i386-randconfig-s001 (https://download.01.org/0day-ci/archive/20220204/202202040609.oSW2rFIL-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce:
-        # apt-get install sparse
-        # sparse version: v0.6.4-dirty
-        # https://github.com/0day-ci/linux/commit/66de634b392157effc065df388510df67de59f2b
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Balasubramani-Vivekanandan/drm-i915-Add-fallback-inside-memcpy_from_wc-functions/20220204-002704
-        git checkout 66de634b392157effc065df388510df67de59f2b
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/ net/ipv6/
+CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  DESCEND objtool
+  CHK     include/generated/compile.h
+  CC [M]  drivers/gpu/drm/i915/i915_gem.o
+drivers/gpu/drm/i915/i915_gem.c: In function ‘i915_gem_object_fits_in_aperture’:
+drivers/gpu/drm/i915/i915_gem.c:944:2: error: implicit declaration of function ‘drm_mm_for_each_suitable_hole’; did you mean ‘drm_mm_for_each_best_hole’? [-Werror=implicit-function-declaration]
+  drm_mm_for_each_suitable_hole(hole, &ggtt->vm.mm, 0, ggtt->mappable_end,
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  drm_mm_for_each_best_hole
+drivers/gpu/drm/i915/i915_gem.c:945:41: error: expected ‘;’ before ‘{’ token
+           fence_size, DRM_MM_INSERT_LOW) {
+                                         ^~
+                                         ;
+drivers/gpu/drm/i915/i915_gem.c:889:15: error: unused variable ‘count’ [-Werror=unused-variable]
+  unsigned int count = 0;
+               ^~~~~
+drivers/gpu/drm/i915/i915_gem.c:887:35: error: unused variable ‘end’ [-Werror=unused-variable]
+  u64 hole_start, hole_end, start, end;
+                                   ^~~
+drivers/gpu/drm/i915/i915_gem.c:887:28: error: unused variable ‘start’ [-Werror=unused-variable]
+  u64 hole_start, hole_end, start, end;
+                            ^~~~~
+drivers/gpu/drm/i915/i915_gem.c:887:18: error: unused variable ‘hole_end’ [-Werror=unused-variable]
+  u64 hole_start, hole_end, start, end;
+                  ^~~~~~~~
+drivers/gpu/drm/i915/i915_gem.c:887:6: error: unused variable ‘hole_start’ [-Werror=unused-variable]
+  u64 hole_start, hole_end, start, end;
+      ^~~~~~~~~~
+drivers/gpu/drm/i915/i915_gem.c:964:1: error: control reaches end of non-void function [-Werror=return-type]
+ }
+ ^
+cc1: all warnings being treated as errors
+scripts/Makefile.build:288: recipe for target 'drivers/gpu/drm/i915/i915_gem.o' failed
+make[4]: *** [drivers/gpu/drm/i915/i915_gem.o] Error 1
+scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm/i915' failed
+make[3]: *** [drivers/gpu/drm/i915] Error 2
+scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm' failed
+make[2]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:550: recipe for target 'drivers/gpu' failed
+make[1]: *** [drivers/gpu] Error 2
+Makefile:1831: recipe for target 'drivers' failed
+make: *** [drivers] Error 2
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
 
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/i915/i915_memcpy.c:189:42: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void const *src @@     got void const [noderef] __iomem *src @@
-   drivers/gpu/drm/i915/i915_memcpy.c:189:42: sparse:     expected void const *src
-   drivers/gpu/drm/i915/i915_memcpy.c:189:42: sparse:     got void const [noderef] __iomem *src
->> drivers/gpu/drm/i915/i915_memcpy.c:191:45: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void const *[assigned] src @@     got void const [noderef] __iomem *src @@
-   drivers/gpu/drm/i915/i915_memcpy.c:191:45: sparse:     expected void const *[assigned] src
-   drivers/gpu/drm/i915/i915_memcpy.c:191:45: sparse:     got void const [noderef] __iomem *src
-   drivers/gpu/drm/i915/i915_memcpy.c:187:6: sparse: sparse: symbol 'i915_io_memcpy_from_wc' redeclared with different type (incompatible argument 2 (different address spaces)):
->> drivers/gpu/drm/i915/i915_memcpy.c:187:6: sparse:    void extern [addressable] [toplevel] i915_io_memcpy_from_wc( ... )
-   drivers/gpu/drm/i915/i915_memcpy.c: note: in included file:
-   drivers/gpu/drm/i915/i915_memcpy.h:17:6: sparse: note: previously declared as:
->> drivers/gpu/drm/i915/i915_memcpy.h:17:6: sparse:    void extern [addressable] [toplevel] i915_io_memcpy_from_wc( ... )
---
->> drivers/gpu/drm/i915/gem/i915_gem_object.c:449:37: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void const *src @@     got void [noderef] __iomem *[assigned] src_ptr @@
-   drivers/gpu/drm/i915/gem/i915_gem_object.c:449:37: sparse:     expected void const *src
-   drivers/gpu/drm/i915/gem/i915_gem_object.c:449:37: sparse:     got void [noderef] __iomem *[assigned] src_ptr
-
-vim +189 drivers/gpu/drm/i915/i915_memcpy.c
-
-   175	
-   176	/**
-   177	 * i915_io_memcpy_from_wc: perform an accelerated *aligned* read from WC
-   178	 * @dst: destination pointer
-   179	 * @src: source pointer
-   180	 * @len: how many bytes to copy
-   181	 *
-   182	 * To be used when the when copying from io memory.
-   183	 *
-   184	 * memcpy_fromio() is used as fallback otherewise no difference to
-   185	 * i915_memcpy_from_wc()
-   186	 */
- > 187	void i915_io_memcpy_from_wc(void *dst, const void __iomem *src, unsigned long len)
-   188	{
- > 189		if (i915_can_memcpy_from_wc(dst, src, len)) {
-   190			if (likely(len))
- > 191				__memcpy_ntdqa(dst, src, len >> 4);
-   192			return;
-   193		}
-   194	
-   195		/* Fallback */
-   196		memcpy_fromio(dst, src, len);
-   197	}
-   198	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
