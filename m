@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FB1C4AB928
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 11:58:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30EAD4AB932
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 11:59:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A59710F7A3;
-	Mon,  7 Feb 2022 10:58:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FF8A10EE1E;
+	Mon,  7 Feb 2022 10:59:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 986EA10F7A3
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Feb 2022 10:58:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DA1B10ED08
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Feb 2022 10:59:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644231511; x=1675767511;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=/xKpcOc31ZNyZNwIsFwaPWFczqICJfIGWyc5CqTRMPk=;
- b=cFCWqnUI9PqxXYS/cVvcud466q+ITNunRz7h7Z5/g6OiOj3TiYVuHF5d
- REAYZpypKsbPnqqEkEdcyyIaHiReEBOR1bxv9uAQw5cGUBNki77ZEwSPc
- 36hNJ5WXXITa/bA0zymwlkM10t+4fKciDehNQccP8jbhbI7fHJXOTdJB0
- FX2cWmgp9HyJli+yKEZiW8qMxOQkQmL8DUAo2xqVW3L7Q6DxrazBK1HgL
- jWD2pwjRXRUInqLW7Dlg6FP++AOYFlcFRxosZKP4mxOLik5VNUNdbhW+d
- +pf8g0lkKcsPIVQ8v7lm5BQHg56WxPgFMt/g/8rtl3b3+B8/GD++3+rga A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10250"; a="248641765"
-X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="248641765"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ t=1644231584; x=1675767584;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=IXpHYsh4Vlqh3X5F3yk4PNRL9gVAKFAMQI3XegoSp1A=;
+ b=LvJMgIu8BtEvrZ9TiJ3Bz5zyuzwXoLX8ilHSIOyAeBPKXyhkwtdehBLN
+ 5k4Dsz7Ov4o1DsIA2Sd77AeIZ67QVKVU6OtI7fYKacv4RiN2r1rNqSPzl
+ yowacQD/eMJ0DFlBrHC06ZNsDgWO2H5m8OOnNsYw+AQA4/96AU11zGmqt
+ prEGnFM27Gm4plMukLY0xmAeIs2rMNy2uVSwSUarOviaWNZPBs2LSnGif
+ J+/JXcC3UV+qIMVleUfZv7RRXuxVyrPFFinQica68CPF7ZH0mnHteOjTs
+ rotqOgHc0NxKgsaLgoMlE64ZlHHc3QH6xaL+/660J6UmlSttrbUqBGgos w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10250"; a="248641905"
+X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="248641905"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2022 02:58:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="621510261"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by FMSMGA003.fm.intel.com with SMTP; 07 Feb 2022 02:58:27 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 07 Feb 2022 12:58:26 +0200
-Date: Mon, 7 Feb 2022 12:58:26 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Vivek Kasireddy <vivek.kasireddy@intel.com>
-Message-ID: <YgD7UiFEdeWl/dsS@intel.com>
-References: <c8691153-023c-941d-d8b7-831220caa6e6@linux.intel.com>
- <20220204012210.1517091-1-vivek.kasireddy@intel.com>
+ 07 Feb 2022 02:59:43 -0800
+X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="540048251"
+Received: from nbaca1-mobl.ger.corp.intel.com (HELO localhost) ([10.252.18.25])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2022 02:59:41 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220206144311.5053-2-anshuman.gupta@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220206144311.5053-1-anshuman.gupta@intel.com>
+ <20220206144311.5053-2-anshuman.gupta@intel.com>
+Date: Mon, 07 Feb 2022 12:59:35 +0200
+Message-ID: <874k5brlgo.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220204012210.1517091-1-vivek.kasireddy@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Don't try to map and
- fence large scanout buffers (v6)
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/opregion: Abstract opregion
+ function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,253 +57,373 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 03, 2022 at 05:22:10PM -0800, Vivek Kasireddy wrote:
-> On platforms capable of allowing 8K (7680 x 4320) modes, pinning 2 or
-> more framebuffers/scanout buffers results in only one that is mappable/
-> fenceable. Therefore, pageflipping between these 2 FBs where only one
-> is mappable/fenceable creates latencies large enough to miss alternate
-> vblanks thereby producing less optimal framerate.
-> 
-> This mainly happens because when i915_gem_object_pin_to_display_plane()
-> is called to pin one of the FB objs, the associated vma is identified
-> as misplaced and therefore i915_vma_unbind() is called which unbinds and
-> evicts it. This misplaced vma gets subseqently pinned only when
-> i915_gem_object_ggtt_pin_ww() is called without PIN_MAPPABLE. This
-> results in a latency of ~10ms and happens every other vblank/repaint cycle.
-> Therefore, to fix this issue, we try to see if there is space to map
-> at-least two objects of a given size and return early if there isn't. This
-> would ensure that we do not try with PIN_MAPPABLE for any objects that
-> are too big to map thereby preventing unncessary unbind.
-> 
-> Testcase:
-> Running Weston and weston-simple-egl on an Alderlake_S (ADLS) platform
-> with a 8K@60 mode results in only ~40 FPS. Since upstream Weston submits
-> a frame ~7ms before the next vblank, the latencies seen between atomic
-> commit and flip event are 7, 24 (7 + 16.66), 7, 24..... suggesting that
-> it misses the vblank every other frame.
-> 
-> Here is the ftrace snippet that shows the source of the ~10ms latency:
->               i915_gem_object_pin_to_display_plane() {
-> 0.102 us   |    i915_gem_object_set_cache_level();
->                 i915_gem_object_ggtt_pin_ww() {
-> 0.390 us   |      i915_vma_instance();
-> 0.178 us   |      i915_vma_misplaced();
->                   i915_vma_unbind() {
->                   __i915_active_wait() {
-> 0.082 us   |        i915_active_acquire_if_busy();
-> 0.475 us   |      }
->                   intel_runtime_pm_get() {
-> 0.087 us   |        intel_runtime_pm_acquire();
-> 0.259 us   |      }
->                   __i915_active_wait() {
-> 0.085 us   |        i915_active_acquire_if_busy();
-> 0.240 us   |      }
->                   __i915_vma_evict() {
->                     ggtt_unbind_vma() {
->                       gen8_ggtt_clear_range() {
-> 10507.255 us |        }
-> 10507.689 us |      }
-> 10508.516 us |   }
-> 
-> v2: Instead of using bigjoiner checks, determine whether a scanout
->     buffer is too big by checking to see if it is possible to map
->     two of them into the ggtt.
-> 
-> v3 (Ville):
-> - Count how many fb objects can be fit into the available holes
->   instead of checking for a hole twice the object size.
-> - Take alignment constraints into account.
-> - Limit this large scanout buffer check to >= Gen 11 platforms.
-> 
-> v4:
-> - Remove existing heuristic that checks just for size. (Ville)
-> - Return early if we find space to map at-least two objects. (Tvrtko)
-> - Slightly update the commit message.
-> 
-> v5: (Tvrtko)
-> - Rename the function to indicate that the object may be too big to
->   map into the aperture.
-> - Account for guard pages while calculating the total size required
->   for the object.
-> - Do not subject all objects to the heuristic check and instead
->   consider objects only of a certain size.
-> - Do the hole walk using the rbtree.
-> - Preserve the existing PIN_NONBLOCK logic.
-> - Drop the PIN_MAPPABLE check while pinning the VMA.
-> 
-> v6: (Tvrtko)
-> - Return 0 on success and the specific error code on failure to
->   preserve the existing behavior.
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+On Sun, 06 Feb 2022, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
+> Abstract opregion operations like get opregion base, get rvda and
+> opregion cleanup in form of i915_opregion_ops.
+> This will be required to converge igfx and dgfx opregion.
+> This keeps intel_opregion_setup() as static function, and adds
+> a new function intel_opregion_init().
+
+Too many things at once.
+
+If it's a function pointer abstraction, don't make *any* functional
+changes at the same time, i.e. first let the dgfx and igfx paths be the
+same like they are now. Don't add a separate dgfx check.
+
+It's *much* easier to review this if there are no functional changes,
+and it's easier to review the follow-up when that adds the functional
+changes for dgfx.
+
+BR,
+Jani.
+
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_gem.c | 120 ++++++++++++++++++++++++--------
->  1 file changed, 90 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index e3a2c2a0e156..39f0d17550c3 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -46,6 +46,7 @@
->  #include "gem/i915_gem_mman.h"
->  #include "gem/i915_gem_region.h"
->  #include "gem/i915_gem_userptr.h"
-> +#include "gem/i915_gem_tiling.h"
->  #include "gt/intel_engine_user.h"
->  #include "gt/intel_gt.h"
->  #include "gt/intel_gt_pm.h"
-> @@ -876,6 +877,92 @@ static void discard_ggtt_vma(struct i915_vma *vma)
->  	spin_unlock(&obj->vma.lock);
+>  drivers/gpu/drm/i915/display/intel_opregion.c | 215 ++++++++++++++----
+>  drivers/gpu/drm/i915/display/intel_opregion.h |   8 +-
+>  drivers/gpu/drm/i915/i915_driver.c            |   2 +-
+>  3 files changed, 172 insertions(+), 53 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+> index af9d30f56cc1..19f0558c0fbf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
+> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+> @@ -137,6 +137,13 @@ struct opregion_asle_ext {
+>  	u8 rsvd[764];
+>  } __packed;
+>  
+> +struct i915_opregion_func {
+> +	void *(*alloc_opregion)(struct drm_i915_private *i915);
+> +	void *(*alloc_rvda)(struct drm_i915_private *i915);
+> +	void (*free_rvda)(struct drm_i915_private *i915);
+> +	void (*free_opregion)(struct drm_i915_private *i915);
+> +};
+> +
+>  /* Driver readiness indicator */
+>  #define ASLE_ARDY_READY		(1 << 0)
+>  #define ASLE_ARDY_NOT_READY	(0 << 0)
+> @@ -839,13 +846,10 @@ static int intel_load_vbt_firmware(struct drm_i915_private *dev_priv)
+>  	return ret;
 >  }
 >  
-> +static int
-> +i915_gem_object_fits_in_aperture(struct drm_i915_gem_object *obj,
-> +				 u64 alignment, u64 flags)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> +	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
-> +	struct drm_mm_node *hole;
-> +	u64 hole_start, hole_end, start, end;
-> +	u64 fence_size, fence_alignment;
-> +	unsigned int count = 0;
-> +
-> +	/*
-> +	 * If the required space is larger than the available
-> +	 * aperture, we will not able to find a slot for the
-> +	 * object and unbinding the object now will be in
-> +	 * vain. Worse, doing so may cause us to ping-pong
-> +	 * the object in and out of the Global GTT and
-> +	 * waste a lot of cycles under the mutex.
-> +	 */
-> +	if (obj->base.size > ggtt->mappable_end)
-> +		return -E2BIG;
-> +
-> +	/*
-> +	 * If NONBLOCK is set the caller is optimistically
-> +	 * trying to cache the full object within the mappable
-> +	 * aperture, and *must* have a fallback in place for
-> +	 * situations where we cannot bind the object. We
-> +	 * can be a little more lax here and use the fallback
-> +	 * more often to avoid costly migrations of ourselves
-> +	 * and other objects within the aperture.
-> +	 */
-> +	if (!(flags & PIN_NONBLOCK))
-> +		return 0;
-> +
-> +	/*
-> +	 * We only consider objects whose size is at-least a quarter of
-> +	 * the aperture to be too big and subject them to the new
-> +	 * heuristic below.
-> +	 */
-> +	if (obj->base.size < ggtt->mappable_end / 4)
-> +		return 0;
-
-That seems a fairly arbitrary thing to put here. Maybe something the
-caller should check/specify?
-
-> +
-> +	if (HAS_GMCH(i915) || DISPLAY_VER(i915) < 11 ||
-> +	    !i915_gem_object_is_framebuffer(obj))
-> +		return 0;
-
-None of that seems appropriate for a generic gem function
-with this name.
-
-> +
-> +	fence_size = i915_gem_fence_size(i915, obj->base.size,
-> +					 i915_gem_object_get_tiling(obj),
-> +					 i915_gem_object_get_stride(obj));
-> +
-> +	if (i915_vm_has_cache_coloring(&ggtt->vm))
-> +		fence_size += 2 * I915_GTT_PAGE_SIZE;
-> +
-> +	fence_alignment = i915_gem_fence_alignment(i915, obj->base.size,
-> +						   i915_gem_object_get_tiling(obj),
-> +						   i915_gem_object_get_stride(obj));
-> +	alignment = max_t(u64, alignment, fence_alignment);
-> +
-> +	/*
-> +	 * Assuming this object is a large scanout buffer, we try to find
-> +	 * out if there is room to map at-least two of them. There could
-> +	 * be space available to map one but to be consistent, we try to
-> +	 * avoid mapping/fencing any of them.
-> +	 */
-> +	drm_mm_for_each_suitable_hole(hole, &ggtt->vm.mm, 0, ggtt->mappable_end,
-> +				      fence_size, DRM_MM_INSERT_LOW) {
-> +		hole_start = drm_mm_hole_node_start(hole);
-> +		hole_end = hole_start + hole->hole_size;
-> +
-> +		do {
-> +			start = round_up(hole_start, alignment);
-> +			end = min_t(u64, hole_end, ggtt->mappable_end);
-> +
-> +			if (range_overflows(start, fence_size, end))
-> +				break;
-> +
-> +			if (++count >= 2)
-> +				return 0;
-> +
-> +			hole_start = start + fence_size;
-> +		} while (1);
-> +	}
-> +
-> +	return -ENOSPC;
-> +}
-> +
->  struct i915_vma *
->  i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
->  			    struct i915_gem_ww_ctx *ww,
-> @@ -891,36 +978,9 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
+> -int intel_opregion_setup(struct drm_i915_private *dev_priv)
+> +static int intel_opregion_setup(struct drm_i915_private *dev_priv)
+>  {
+>  	struct intel_opregion *opregion = &dev_priv->opregion;
+> -	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+> -	u32 asls, mboxes;
+> -	char buf[sizeof(OPREGION_SIGNATURE)];
+> -	int err = 0;
+> +	u32 mboxes;
+>  	void *base;
+>  	const void *vbt;
+>  	u32 vbt_size;
+> @@ -856,27 +860,12 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+>  	BUILD_BUG_ON(sizeof(struct opregion_asle) != 0x100);
+>  	BUILD_BUG_ON(sizeof(struct opregion_asle_ext) != 0x400);
 >  
->  	if (flags & PIN_MAPPABLE &&
->  	    (!view || view->type == I915_GGTT_VIEW_NORMAL)) {
-> -		/*
-> -		 * If the required space is larger than the available
-> -		 * aperture, we will not able to find a slot for the
-> -		 * object and unbinding the object now will be in
-> -		 * vain. Worse, doing so may cause us to ping-pong
-> -		 * the object in and out of the Global GTT and
-> -		 * waste a lot of cycles under the mutex.
-> -		 */
-> -		if (obj->base.size > ggtt->mappable_end)
-> -			return ERR_PTR(-E2BIG);
+> -	pci_read_config_dword(pdev, ASLS, &asls);
+> -	drm_dbg(&dev_priv->drm, "graphic opregion physical addr: 0x%x\n",
+> -		asls);
+> -	if (asls == 0) {
+> -		drm_dbg(&dev_priv->drm, "ACPI OpRegion not supported!\n");
+> -		return -ENOTSUPP;
+> -	}
+> -
+>  	INIT_WORK(&opregion->asle_work, asle_work);
+>  
+> -	base = memremap(asls, OPREGION_SIZE, MEMREMAP_WB);
+> -	if (!base)
+> -		return -ENOMEM;
+> +	base = opregion->opregion_func->alloc_opregion(dev_priv);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+>  
+> -	memcpy(buf, base, sizeof(buf));
+> -
+> -	if (memcmp(buf, OPREGION_SIGNATURE, 16)) {
+> -		drm_dbg(&dev_priv->drm, "opregion signature mismatch\n");
+> -		err = -EINVAL;
+> -		goto err_out;
+> -	}
+>  	opregion->header = base;
+>  	opregion->lid_state = base + ACPI_CLID;
+>  
+> @@ -924,23 +913,8 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+>  
+>  	if (opregion->header->over.major >= 2 && opregion->asle &&
+>  	    opregion->asle->rvda && opregion->asle->rvds) {
+> -		resource_size_t rvda = opregion->asle->rvda;
 > -
 > -		/*
-> -		 * If NONBLOCK is set the caller is optimistically
-> -		 * trying to cache the full object within the mappable
-> -		 * aperture, and *must* have a fallback in place for
-> -		 * situations where we cannot bind the object. We
-> -		 * can be a little more lax here and use the fallback
-> -		 * more often to avoid costly migrations of ourselves
-> -		 * and other objects within the aperture.
+> -		 * opregion 2.0: rvda is the physical VBT address.
 > -		 *
-> -		 * Half-the-aperture is used as a simple heuristic.
-> -		 * More interesting would to do search for a free
-> -		 * block prior to making the commitment to unbind.
-> -		 * That caters for the self-harm case, and with a
-> -		 * little more heuristics (e.g. NOFAULT, NOEVICT)
-> -		 * we could try to minimise harm to others.
+> -		 * opregion 2.1+: rvda is unsigned, relative offset from
+> -		 * opregion base, and should never point within opregion.
 > -		 */
-> -		if (flags & PIN_NONBLOCK &&
-> -		    obj->base.size > ggtt->mappable_end / 2)
-> -			return ERR_PTR(-ENOSPC);
-> +		ret = i915_gem_object_fits_in_aperture(obj, alignment, flags);
-> +		if (ret)
-> +			return ERR_PTR(ret);
+> -		if (opregion->header->over.major > 2 ||
+> -		    opregion->header->over.minor >= 1) {
+> -			drm_WARN_ON(&dev_priv->drm, rvda < OPREGION_SIZE);
+> -
+> -			rvda += asls;
+> -		}
+>  
+> -		opregion->rvda = memremap(rvda, opregion->asle->rvds,
+> -					  MEMREMAP_WB);
+> +		opregion->rvda = opregion->opregion_func->alloc_rvda(dev_priv);
+>  
+>  		vbt = opregion->rvda;
+>  		vbt_size = opregion->asle->rvds;
+> @@ -953,8 +927,7 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+>  		} else {
+>  			drm_dbg_kms(&dev_priv->drm,
+>  				    "Invalid VBT in ACPI OpRegion (RVDA)\n");
+> -			memunmap(opregion->rvda);
+> -			opregion->rvda = NULL;
+> +			opregion->opregion_func->free_rvda(dev_priv);
+>  		}
 >  	}
 >  
->  new_vma:
-> -- 
-> 2.34.1
+> @@ -982,9 +955,6 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+>  out:
+>  	return 0;
+>  
+> -err_out:
+> -	memunmap(base);
+> -	return err;
+>  }
+>  
+>  static int intel_use_opregion_panel_type_callback(const struct dmi_system_id *id)
+> @@ -1169,11 +1139,9 @@ void intel_opregion_unregister(struct drm_i915_private *i915)
+>  	}
+>  
+>  	/* just clear all opregion memory pointers now */
+> -	memunmap(opregion->header);
+> -	if (opregion->rvda) {
+> -		memunmap(opregion->rvda);
+> -		opregion->rvda = NULL;
+> -	}
+> +	opregion->opregion_func->free_rvda(i915);
+> +	opregion->opregion_func->free_opregion(i915);
+> +
+>  	if (opregion->vbt_firmware) {
+>  		kfree(opregion->vbt_firmware);
+>  		opregion->vbt_firmware = NULL;
+> @@ -1186,3 +1154,152 @@ void intel_opregion_unregister(struct drm_i915_private *i915)
+>  	opregion->vbt = NULL;
+>  	opregion->lid_state = NULL;
+>  }
+> +
+> +static int
+> +intel_opregion_get_asls(struct drm_i915_private *i915)
+> +{
+> +	struct intel_opregion *opregion = &i915->opregion;
+> +	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+> +	u32 asls;
+> +
+> +	pci_read_config_dword(pdev, ASLS, &asls);
+> +	drm_dbg(&i915->drm, "graphic opregion physical addr: 0x%x\n",
+> +		asls);
+> +	if (asls == 0) {
+> +		drm_dbg(&i915->drm, "ACPI OpRegion not supported!\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	opregion->asls = asls;
+> +
+> +	return 0;
+> +}
+> +
+> +static void *intel_igfx_alloc_opregion(struct drm_i915_private *i915)
+> +{
+> +	struct intel_opregion *opregion = &i915->opregion;
+> +	char buf[sizeof(OPREGION_SIGNATURE)];
+> +	int err = 0;
+> +	void *base;
+> +
+> +	err = intel_opregion_get_asls(i915);
+> +	if (err)
+> +		return ERR_PTR(err);
+> +
+> +	base = memremap(opregion->asls, OPREGION_SIZE, MEMREMAP_WB);
+> +	if (!base)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	memcpy(buf, base, sizeof(buf));
+> +
+> +	if (memcmp(buf, OPREGION_SIGNATURE, 16)) {
+> +		drm_dbg(&i915->drm, "opregion signature mismatch\n");
+> +		err = -EINVAL;
+> +		goto err_out;
+> +	}
+> +
+> +	return base;
+> +
+> +err_out:
+> +	memunmap(base);
+> +
+> +	return ERR_PTR(err);
+> +}
+> +
+> +static void *intel_igfx_alloc_rvda(struct drm_i915_private *i915)
+> +{
+> +	struct intel_opregion *opregion = &i915->opregion;
+> +	resource_size_t rvda;
+> +	void *opreg_rvda;
+> +
+> +	drm_WARN_ON(&i915->drm, !opregion->asls || !opregion->header);
+> +
+> +	rvda = opregion->asle->rvda;
+> +
+> +	/*
+> +	 * opregion 2.0: rvda is the physical VBT address.
+> +	 *
+> +	 * opregion 2.1+: rvda is unsigned, relative offset from
+> +	 * opregion base, and should never point within opregion.
+> +	 */
+> +	if (opregion->header->over.major > 2 ||
+> +	    opregion->header->over.minor >= 1) {
+> +		drm_WARN_ON(&i915->drm, rvda < OPREGION_SIZE);
+> +
+> +		rvda += opregion->asls;
+> +	}
+> +
+> +	opreg_rvda = memremap(rvda, opregion->asle->rvds, MEMREMAP_WB);
+> +	if (!opreg_rvda)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	return opreg_rvda;
+> +}
+> +
+> +static void intel_igfx_free_rvda(struct drm_i915_private *i915)
+> +{
+> +	struct intel_opregion *opregion = &i915->opregion;
+> +
+> +	if (opregion->rvda) {
+> +		memunmap(opregion->rvda);
+> +		opregion->rvda = NULL;
+> +	}
+> +}
+> +
+> +static void intel_igfx_free_opregion(struct drm_i915_private *i915)
+> +{
+> +	struct intel_opregion *opregion = &i915->opregion;
+> +
+> +	if (opregion->header)
+> +		memunmap(opregion->header);
+> +}
+> +
+> +static void *intel_dgfx_alloc_opregion(struct drm_i915_private *i915)
+> +{
+> +	return ERR_PTR(-EOPNOTSUPP);
+> +}
+> +
+> +static void *intel_dgfx_alloc_rvda(struct drm_i915_private *i915)
+> +{
+> +	return ERR_PTR(-EOPNOTSUPP);
+> +}
+> +
+> +static void intel_dgfx_free_rvda(struct drm_i915_private *i915)
+> +{
+> +}
+> +
+> +static void intel_dgfx_free_opregion(struct drm_i915_private *i915)
+> +{
+> +}
+> +
+> +static const struct i915_opregion_func igfx_opregion_func = {
+> +	.alloc_opregion = intel_igfx_alloc_opregion,
+> +	.alloc_rvda = intel_igfx_alloc_rvda,
+> +	.free_rvda = intel_igfx_free_rvda,
+> +	.free_opregion = intel_igfx_free_opregion,
+> +};
+> +
+> +static const struct i915_opregion_func dgfx_opregion_func = {
+> +	.alloc_opregion = intel_dgfx_alloc_opregion,
+> +	.alloc_rvda = intel_dgfx_alloc_rvda,
+> +	.free_rvda = intel_dgfx_free_rvda,
+> +	.free_opregion = intel_dgfx_free_opregion,
+> +};
+> +
+> +/**
+> + * intel_opregion_init() - Init ACPI opregion.
+> + * @i915 i915 device priv data.
+> + * It initialize the dgfx/igfx opregion function pointers
+> + * and setup the ACPI opregions.
+> + */
+> +int intel_opregion_init(struct drm_i915_private *i915)
+> +{
+> +	struct intel_opregion *opregion = &i915->opregion;
+> +
+> +	if (IS_DGFX(i915))
+> +		opregion->opregion_func = &dgfx_opregion_func;
+> +	else
+> +		opregion->opregion_func = &igfx_opregion_func;
+> +
+> +	return intel_opregion_setup(i915);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
+> index 82cc0ba34af7..4ff48c445044 100644
+> --- a/drivers/gpu/drm/i915/display/intel_opregion.h
+> +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
+> @@ -37,6 +37,7 @@ struct opregion_acpi;
+>  struct opregion_swsci;
+>  struct opregion_asle;
+>  struct opregion_asle_ext;
+> +struct i915_opregion_func;
+>  
+>  struct intel_opregion {
+>  	struct opregion_header *header;
+> @@ -46,6 +47,8 @@ struct intel_opregion {
+>  	u32 swsci_sbcb_sub_functions;
+>  	struct opregion_asle *asle;
+>  	struct opregion_asle_ext *asle_ext;
+> +	const struct i915_opregion_func *opregion_func;
+> +	resource_size_t asls;
+>  	void *rvda;
+>  	void *vbt_firmware;
+>  	const void *vbt;
+> @@ -59,8 +62,7 @@ struct intel_opregion {
+>  
+>  #ifdef CONFIG_ACPI
+>  
+> -int intel_opregion_setup(struct drm_i915_private *dev_priv);
+> -
+> +int intel_opregion_init(struct drm_i915_private *i915);
+>  void intel_opregion_register(struct drm_i915_private *dev_priv);
+>  void intel_opregion_unregister(struct drm_i915_private *dev_priv);
+>  
+> @@ -78,7 +80,7 @@ struct edid *intel_opregion_get_edid(struct intel_connector *connector);
+>  
+>  #else /* CONFIG_ACPI*/
+>  
+> -static inline int intel_opregion_setup(struct drm_i915_private *dev_priv)
+> +static inline int intel_opregion_init(struct drm_i915_private *i915)
+>  {
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 3d41f532a5d6..f7cb34f5fa4a 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -634,7 +634,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+>  	if (ret)
+>  		goto err_msi;
+>  
+> -	intel_opregion_setup(dev_priv);
+> +	intel_opregion_init(dev_priv);
+>  
+>  	ret = intel_pcode_init(dev_priv);
+>  	if (ret)
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel Open Source Graphics Center
