@@ -1,58 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6914A4AB8D6
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 11:41:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 463664AB8D8
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 11:41:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AF9210F759;
-	Mon,  7 Feb 2022 10:41:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5522710F74E;
+	Mon,  7 Feb 2022 10:41:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa1.bahnhof.se (pio-pvt-msa1.bahnhof.se [79.136.2.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3389010F74E;
- Mon,  7 Feb 2022 10:41:25 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTP id D03193F66D;
- Mon,  7 Feb 2022 11:41:22 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.11
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.11 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- T_SCC_BODY_TEXT_LINE=-0.01, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Authentication-Results: pio-pvt-msa1.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from pio-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id VWFB1NrJFz54; Mon,  7 Feb 2022 11:41:21 +0100 (CET)
-Received: by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id ED1533F447;
- Mon,  7 Feb 2022 11:41:19 +0100 (CET)
-Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
- [155.4.205.35])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 50A6B360103;
- Mon,  7 Feb 2022 11:41:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1644230479; bh=eTHSXoMUC1Q54v1Z/kGwxntV/1MAni9SaS7TnEOSy5s=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=lGH8X6oXgZhf6qVt9JOgXlrm1b+wf/6+bxbyGJXSrqdsBrXKs/St6RHZmpehgZPpa
- pZCOeP0YFHX2p/xNNVCAHYati0LJjljiv68Jq8s2Ub/uF+Z2EWu505QdBn+vfkzYf5
- FxhBCMPh0M7VBDIr5A7DRxIaN7lDiIQ5fSnqIkbA=
-Message-ID: <3c3b355c-43a7-cdde-26ba-fb911cb89783@shipmail.org>
-Date: Mon, 7 Feb 2022 11:41:18 +0100
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BD6910F75B;
+ Mon,  7 Feb 2022 10:41:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644230495; x=1675766495;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ArwuPTxElsiJl5IMoTxOH+10k1P9ZTtUYu/OMQhIIYk=;
+ b=hYA8WV1XYW6SbUYBjWXya+QIaerkhQSRjEIfOgPs5f43Q2Stf7asezX2
+ uSsHbu5u6UdbEWO7/u0bv7XHy8oXHWxTTJwTYmcECWmS6+umpLouZDnq1
+ fgayPJ5p6n3Q5yjHYuwZVOBCQWziyaVvM9zFCggC9qFGzQg/EXxPHfjBc
+ rnOe5khifmirYsZB1iwiAKLsMjI97BNmDqMPQxltT7QjRtmPnjnb5SCq5
+ 6ugXzRUYy4VSH1tTk2rRAzKzZKXXD4w8i1orjLk6OvZWbS3/mCxiQTY7j
+ wKfB1nCWXIz2O2qrvIZhOM3LKBYlWPtWXP/SnSUuBX1hruLyLBch4MBzP Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10250"; a="248453811"
+X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="248453811"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2022 02:41:35 -0800
+X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="540044702"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.209.116])
+ ([10.251.209.116])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2022 02:41:33 -0800
+Message-ID: <bd9e2cf2-4cee-a99a-7550-3eaf32c93e5e@linux.intel.com>
+Date: Mon, 7 Feb 2022 11:41:31 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
 Content-Language: en-US
 To: Ramalingam C <ramalingam.c@intel.com>,
  dri-devel <dri-devel@lists.freedesktop.org>,
  intel-gfx <intel-gfx@lists.freedesktop.org>
 References: <20220207093743.14467-1-ramalingam.c@intel.com>
  <20220207093743.14467-2-ramalingam.c@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
 In-Reply-To: <20220207093743.14467-2-ramalingam.c@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
@@ -75,26 +68,17 @@ Cc: Hellstrom Thomas <thomas.hellstrom@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Ram,
 
-
-On 2/7/22 10:37, Ramalingam C wrote:
+On 07/02/2022 10:37, Ramalingam C wrote:
 > While evicting the local memory data on flat-ccs capable platform we
-> need to evict the ccs data associated to the data.
-
->   For this, we are
+> need to evict the ccs data associated to the data. For this, we are
 > adding extra pages ((size / 256) >> PAGE_SIZE) into the ttm_tt.
 >
 > To achieve this we are adding a new param into the ttm_tt_init as
 > ccs_pages_needed, which will be added into the ttm_tt->num_pages.
-
-Please use imperative form above, Instead of "We are adding..", use "Add"
-
-
 >
 > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
 > Suggested-by: Thomas Hellstorm <thomas.hellstrom@intel.com>
-Hellstorm instead of Hellstrom might scare people off. :)
 > ---
 >   drivers/gpu/drm/drm_gem_vram_helper.c      |  2 +-
 >   drivers/gpu/drm/i915/gem/i915_gem_ttm.c    | 23 +++++++++++++++++++++-
@@ -170,9 +154,13 @@ Hellstorm instead of Hellstrom might scare people off. :)
 > +	ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags,
 > +			  caching, ccs_pages_needed);
 
-I'd suggest a patch that first adds the functionality to TTM, where even 
-i915 passes in 0 here, and a follow-up patch for the i915 functionality 
-where we add the ccs requirement.
+I am wondering if we should do this in the driver itself and pass 
+ttm->num_pages with CCS size included.
+
+
+Regards,
+
+Nirmoy
 
 
 >   	if (ret)
@@ -265,12 +253,6 @@ where we add the ccs requirement.
 >    * @page_flags: Page flags as identified by TTM_TT_FLAG_XX flags.
 >    * @caching: the desired caching state of the pages
 > + * @ccs_pages_needed: Extra pages needed for the ccs data of compression.
-
-The name and use-case ccs is driver specific, and TTM knows nothing 
-about CCS. Hence we should use "additional_pages", "additional_size" or 
-something similar for this. Christian might have some additional 
-guidance here.
-
 >    *
 >    * Create a struct ttm_tt to back data with system memory pages.
 >    * No pages are actually allocated.
@@ -284,9 +266,3 @@ guidance here.
 >   int ttm_sg_tt_init(struct ttm_tt *ttm_dma, struct ttm_buffer_object *bo,
 >   		   uint32_t page_flags, enum ttm_caching caching);
 >   
-
-Thanks,
-
-Thomas
-
-
