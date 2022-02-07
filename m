@@ -2,49 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 214C04AB938
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 12:02:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E85414AB943
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 12:18:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 046C710F812;
-	Mon,  7 Feb 2022 11:02:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7678010F821;
+	Mon,  7 Feb 2022 11:18:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEAB010F812
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Feb 2022 11:02:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 817CC10E83A;
+ Mon,  7 Feb 2022 11:18:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644231729; x=1675767729;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=9lU6l8ERjP64G0LN4dKAoaYjaMThNRSCYkVhIV9EoT4=;
- b=R4BfNqdlYiS59fJ5BaKv3pycBX86JIXtlecZdyFxWnl6zFTaMEeY42z7
- ybcOkp7IabTzex0XXPaBT3GpfABFktdcTxA0GEdFEoyX+q2wxRBsUrI9w
- otaAiBuOYgGxWwAZGhaPiYvrGFBKpUL8EYx4vIpO73K8ih576Zp8iIjIR
- dgw1Bn8Nb80oL8Grg8L62deAKfLmUAae9HA7SWeoWkWDaxoBkET0EtFsr
- 1rLa/YMb0ZPUp9kN1RIdeUkv9/9/kOkwEUxUFqUzw1c78//l+d7eyeWOB
- XbSOABq2yQMxFLfFZq54JvoUdwZvctuleem861DfdB+brIW7wBBgsIMaG A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10250"; a="228662149"
-X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="228662149"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ t=1644232686; x=1675768686;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=sR52J1jfPqZvgylLjYw2JgjotcmVSxg8kDjAwlZsHSc=;
+ b=RLC0AOsaUwC94Rak3dynPu2qnK065vk2tnig9tiMPlD7oxmT5NWgU1VB
+ w6K9WW7jZalWMVdj4SQenoWQ0OWIg34mlIytzM5sNfVRWPENCxC3aGmLx
+ 40uKmrNU8pxd3AETYcEeHyC0WQNXjUhEi4V9APqaSq5bomPFACaLSHwKx
+ d1YmPiplWUQ15aF17YnByOpE3lYwq6qCyf+Bsrl1fKZkWgyT8uVh9pvz7
+ uErWT5PVlfYTXTrW/bd2DXl8CZfRBzJzOfD6CI7I+ODkknpxZR0WxBHf+
+ hcJD+mo474LT6LuemvdyQyG2rrIrCRHfz0/0EE9uiDWaxBKvYAo4JXcYu g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10250"; a="228663913"
+X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="228663913"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2022 03:02:09 -0800
-X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="481549553"
-Received: from nbaca1-mobl.ger.corp.intel.com (HELO localhost) ([10.252.18.25])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2022 03:02:07 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220206144311.5053-3-anshuman.gupta@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220206144311.5053-1-anshuman.gupta@intel.com>
- <20220206144311.5053-3-anshuman.gupta@intel.com>
-Date: Mon, 07 Feb 2022 13:02:01 +0200
-Message-ID: <871r0frlcm.fsf@intel.com>
+ 07 Feb 2022 03:18:06 -0800
+X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="525095070"
+Received: from sparchef-mobl1.ger.corp.intel.com (HELO [10.252.38.221])
+ ([10.252.38.221])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2022 03:18:04 -0800
+Message-ID: <7b33c013-354d-ed46-9c7e-00690ec02bd0@linux.intel.com>
+Date: Mon, 7 Feb 2022 12:18:02 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/opregion: Register opreg func
- only for disp parts
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.5.1
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+References: <20220204174809.3366967-1-maarten.lankhorst@linux.intel.com>
+ <20220204174809.3366967-2-maarten.lankhorst@linux.intel.com>
+ <28be9b4b-dbe1-28fa-e013-570c45a5c705@amd.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <28be9b4b-dbe1-28fa-e013-570c45a5c705@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC PATCH 1/3] drm: Extract amdgpu_sa.c as a
+ generic suballocation helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,56 +64,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com
+Cc: Alex Deucher <alexander.deucher@amd.com>, intel-gfx@lists.freedesktop.org,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 06 Feb 2022, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
-> It need to register opregion_func only for graphics sku
-> which has display. Use HAS_DISPLAY() to register
-> opregion_func.
+Op 04-02-2022 om 19:29 schreef Christian König:
+> Oh, that's on my TODO list for years!
 >
-> Cc: Badal Nilawar <badal.nilawar@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_opregion.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
+> Am 04.02.22 um 18:48 schrieb Maarten Lankhorst:
+>> Suballocating a buffer object is something that is not driver
+>> generic, and is useful for other drivers as well.
+>>
+>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> ---
+>>   drivers/gpu/drm/Makefile       |   4 +-
+>>   drivers/gpu/drm/drm_suballoc.c | 424 +++++++++++++++++++++++++++++++++
+>>   include/drm/drm_suballoc.h     |  78 ++++++
+>>   3 files changed, 505 insertions(+), 1 deletion(-)
+>>   create mode 100644 drivers/gpu/drm/drm_suballoc.c
+>>   create mode 100644 include/drm/drm_suballoc.h
+>>
+>> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+>> index 8675c2af7ae1..b848bcf8790c 100644
+>> --- a/drivers/gpu/drm/Makefile
+>> +++ b/drivers/gpu/drm/Makefile
+>> @@ -57,7 +57,9 @@ drm_kms_helper-y := drm_bridge_connector.o drm_crtc_helper.o \
+>>           drm_scdc_helper.o drm_gem_atomic_helper.o \
+>>           drm_gem_framebuffer_helper.o \
+>>           drm_atomic_state_helper.o drm_damage_helper.o \
+>> -        drm_format_helper.o drm_self_refresh_helper.o drm_rect.o
+>> +        drm_format_helper.o drm_self_refresh_helper.o drm_rect.o \
+>> +        drm_suballoc.o
+>> +
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> index 19f0558c0fbf..c1b558cdb99e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -860,6 +860,9 @@ static int intel_opregion_setup(struct drm_i915_private *dev_priv)
->  	BUILD_BUG_ON(sizeof(struct opregion_asle) != 0x100);
->  	BUILD_BUG_ON(sizeof(struct opregion_asle_ext) != 0x400);
->  
-> +	if (!opregion->opregion_func)
-> +		return 0;
-> +
->  	INIT_WORK(&opregion->asle_work, asle_work);
->  
->  	base = opregion->opregion_func->alloc_opregion(dev_priv);
-> @@ -1296,9 +1299,9 @@ int intel_opregion_init(struct drm_i915_private *i915)
->  {
->  	struct intel_opregion *opregion = &i915->opregion;
->  
-> -	if (IS_DGFX(i915))
-> +	if (IS_DGFX(i915) && HAS_DISPLAY(i915))
->  		opregion->opregion_func = &dgfx_opregion_func;
-> -	else
-> +	else if (!IS_DGFX(i915))
->  		opregion->opregion_func = &igfx_opregion_func;
+> I think we should put that into a separate module like we now do with other helpers as well.
+Can easily be done, it will likely be a very small helper. The code itself is just under a page. I felt the overhead wasn't worth it, but will do so.
+>>   drm_kms_helper-$(CONFIG_DRM_PANEL_BRIDGE) += bridge/panel.o
+>>   drm_kms_helper-$(CONFIG_DRM_FBDEV_EMULATION) += drm_fb_helper.o
+>>   diff --git a/drivers/gpu/drm/drm_suballoc.c b/drivers/gpu/drm/drm_suballoc.c
+>> new file mode 100644
+>> index 000000000000..e0bb35367b71
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/drm_suballoc.c
+>> @@ -0,0 +1,424 @@
+>> +/*
+>> + * Copyright 2011 Red Hat Inc.
+>> + * All Rights Reserved.
+>> + *
+>> + * Permission is hereby granted, free of charge, to any person obtaining a
+>> + * copy of this software and associated documentation files (the
+>> + * "Software"), to deal in the Software without restriction, including
+>> + * without limitation the rights to use, copy, modify, merge, publish,
+>> + * distribute, sub license, and/or sell copies of the Software, and to
+>> + * permit persons to whom the Software is furnished to do so, subject to
+>> + * the following conditions:
+>> + *
+>> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+>> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+>> + * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL
+>> + * THE COPYRIGHT HOLDERS, AUTHORS AND/OR ITS SUPPLIERS BE LIABLE FOR ANY CLAIM,
+>> + * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+>> + * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+>> + * USE OR OTHER DEALINGS IN THE SOFTWARE.
+>> + *
+>> + * The above copyright notice and this permission notice (including the
+>> + * next paragraph) shall be included in all copies or substantial portions
+>> + * of the Software.
+>> + *
+>> + */
+>> +/*
+>> + * Authors:
+>> + *    Jerome Glisse <glisse@freedesktop.org>
+>> + */
+>
+> That is hopelessly outdated. IIRC I completely rewrote that stuff in ~2012.
+If you rewrote it, can you give me an updated copyright header please?
+>
+>> +/* Algorithm:
+>> + *
+>> + * We store the last allocated bo in "hole", we always try to allocate
+>> + * after the last allocated bo. Principle is that in a linear GPU ring
+>> + * progression was is after last is the oldest bo we allocated and thus
+>> + * the first one that should no longer be in use by the GPU.
+>> + *
+>> + * If it's not the case we skip over the bo after last to the closest
+>> + * done bo if such one exist. If none exist and we are not asked to
+>> + * block we report failure to allocate.
+>> + *
+>> + * If we are asked to block we wait on all the oldest fence of all
+>> + * rings. We just wait for any of those fence to complete.
+>> + */
+>> +
+>> +#include <drm/drm_suballoc.h>
+>> +#include <drm/drm_print.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/sched.h>
+>> +#include <linux/wait.h>
+>> +#include <linux/dma-fence.h>
+>> +
+>> +static void drm_suballoc_remove_locked(struct drm_suballoc *sa);
+>> +static void drm_suballoc_try_free(struct drm_suballoc_manager *sa_manager);
+>> +
+>> +/**
+>> + * drm_suballoc_manager_init - Initialise the drm_suballoc_manager
+>> + *
+>> + * @sa_manager: pointer to the sa_manager
+>> + * @size: number of bytes we want to suballocate
+>> + * @align: alignment for each suballocated chunk
+>> + *
+>> + * Prepares the suballocation manager for suballocations.
+>> + */
+>> +void drm_suballoc_manager_init(struct drm_suballoc_manager *sa_manager,
+>> +                   u32 size, u32 align)
+>> +{
+>> +    u32 i;
+>> +
+>> +    if (!align)
+>> +        align = 1;
+>> +
+>> +    /* alignment must be a power of 2 */
+>> +    BUG_ON(align & (align - 1));
+>
+> When we move that I think we should cleanup the code once more, e.g. use is_power_of_2() function here for example.
 
-This does not match the commit message. I don't know whether the code or
-the commit message is right.
+Yeah, I was looking for POW2 or something, I couldn't remember the macro name.
 
-BR,
-Jani.
+> There are also a bunch of places with extra {} and constructs like "if (....) return true; else return false;" which could certainly be simplified.
+>
+> Apart from that really great idea.
+>
+I copied this from the original implementation, I didn't want to do any major cleanups, as I wanted to keep it as identical to the current code as possible.
 
->  
->  	return intel_opregion_setup(i915);
+The only thing I changed is moving the alignment to init, because it removes dealing with differently aligned suballocations as simplification.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+By the way, does this break amd's CI in any way?
+
+Cheers,
+
+Maarten
+
