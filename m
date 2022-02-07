@@ -1,122 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AD7C4ABBCA
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 12:42:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEBEF4ABC6B
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 12:47:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A15D10F90A;
-	Mon,  7 Feb 2022 11:42:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97EAE10F835;
+	Mon,  7 Feb 2022 11:47:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2084.outbound.protection.outlook.com [40.107.92.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D771910F90A;
- Mon,  7 Feb 2022 11:42:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nZznOGzK/B/ikqhRIc5IJOHfz111DMYvIdAmh4YFYKKuWrCr9GvdGvbIQkXpi55dLgnbTFTmiFemfChgnBFdTsM5gh3L7DWUNEq9az3qUeDra2UCUNWScZGnnIx1vWP8b4SSI5DMMwSRpqwlQ5lKS1RvLXhu+h5rgW8jvu4DyFgYnF7A3VM6PBNTHG2MdXu+Ci4g9Kb1JXw95f538C+zWu1JVYVjjksa0cYivIeaob5lp7XTFUEo6xPuM6cni8St/IVepjXet2izVlnY6hYhIJTS4QVeQDx1sdFTXDOHal0JK2v6a1YvD4C/ZZFdrxTsLnG0NJv//z9GA8OuCIVIpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W+G2fIjfz9mmkUPpiJOfLF956EL22/uz3VWnUjpmmPE=;
- b=TPzmUQH0xYFsOkKMMMFayN+/BulY3deM3GKQk05unuBxSuLY9axOT5Ns1lalXMFPmfKdg74Cd97r3chrl5CP+lWLcV5wgMrPGcWEVdUwN4syX5FAI6WRrLdFyZ7dsKLUt+3pc2UaEHHmkRKlSPmXqIFP6olntaqM44J0uooEKOchwRpEGEX8zOHhOVHL3d8iKWjiQ/87pMPVr66mH7GMz3c6gmemhCxSF1Fmh09QdtutIFou2rsqVcGINtpdF2zpafNgGc0GCudwTYNdc1m1LrdPYC0DiwJcJija8AVwuCkPvl0KjLMvjH+004tRBMaXoU1CT97LTHfXsgU9ceegVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W+G2fIjfz9mmkUPpiJOfLF956EL22/uz3VWnUjpmmPE=;
- b=tgGf0kuAW6iehe/mnqXMFUArdnZZYFBfdBHiWeraQHl1p+y+n4iQw8vs7xA6YaSHLxLIAasvPb6mUd7hfLrsw4JtLL636zbSWOEdGfmMzQdTDbuzEFLgDMUZbwS86lNuVhehISZ2llpf5xJQ4W/393TuWojdaMNgi9KrtHE0DYc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by BY5PR12MB5525.namprd12.prod.outlook.com (2603:10b6:a03:1df::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Mon, 7 Feb
- 2022 11:42:05 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::d861:5699:8188:7bd3]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::d861:5699:8188:7bd3%3]) with mapi id 15.20.4951.019; Mon, 7 Feb 2022
- 11:42:05 +0000
-Message-ID: <1a195c03-d2a9-d35e-7b62-a8b70a5c21b3@amd.com>
-Date: Mon, 7 Feb 2022 12:41:59 +0100
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C544B10F834
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Feb 2022 11:47:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644234440; x=1675770440;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=dJGEJPqdxFmyXZqjExQkG1dJnRp/JN/qnL2qRS5p8ck=;
+ b=OW2CLP25UwcfHkxBB80r/sLCQjjx3WKmxWNVbd54yVy/A19lLDU3FK5z
+ WNmBuvPvbVZaw5z4zKh1sOUr/3n9Jll9xHf+52HCuabhUkyUw8F/nmfb7
+ btsVaSXfwXOk8RwXhRqUdS/TbkqjxpAqSee/6yDmB/XuR5XIPHCoatka2
+ jwsw7CF+yvY9H5FBNL3S+BrCTVpDFrWgRVYAxDmMKRkIZUt4tDccnSeo7
+ dsTiZyZ8P0+26HNWY1QwFxwuPlWncIrEq0QR+CKrsqY89yYJAlwdjGAL/
+ elCRD8mpcs+jCUPiI0ayurtWYvf+H31DuJxV7Qzpi0zMtXLaQ9LdAO5HM g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10250"; a="247532624"
+X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="247532624"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2022 03:47:20 -0800
+X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="481561235"
+Received: from conroyco-mobl2.ger.corp.intel.com (HELO [10.213.251.21])
+ ([10.213.251.21])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2022 03:47:18 -0800
+Message-ID: <4475de33-22b3-edbb-2995-f72e9bcc4162@linux.intel.com>
+Date: Mon, 7 Feb 2022 11:47:16 +0000
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 Content-Language: en-US
-To: Ramalingam C <ramalingam.c@intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
-References: <20220207093743.14467-1-ramalingam.c@intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20220207093743.14467-1-ramalingam.c@intel.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>
+References: <c8691153-023c-941d-d8b7-831220caa6e6@linux.intel.com>
+ <20220204012210.1517091-1-vivek.kasireddy@intel.com>
+ <YgD7UiFEdeWl/dsS@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <YgD7UiFEdeWl/dsS@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM6PR04CA0068.eurprd04.prod.outlook.com
- (2603:10a6:20b:f0::45) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 328bd76e-334f-4971-68fe-08d9ea2edd26
-X-MS-TrafficTypeDiagnostic: BY5PR12MB5525:EE_
-X-Microsoft-Antispam-PRVS: <BY5PR12MB5525BC90A3754049361AAD86832C9@BY5PR12MB5525.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kNSs4hF143axoZKYwmS+UiGCT1nZvkCEKcjWTpp7RBZwaHSXSUnRnugFSakvyksUCbiyjgvIyPWAkhI6Kn2UzJrHD32d+PPxK1PN7Lb/kq0INzH/v8Mh0GMptmVD6fcDlLBmbdRDpOcTzSRSDFP4wgkmGxGrDfUk3sb9bdALcg+HCv9HCWms1wLekPeiLVvhX15W5BMb5SrC9CGHiobnrqZ1do8krS/ecJBjQxTxu6rGlm2HiTUCcSOviMOfQ5+H/V0gykdc4wU+Qe6SWQk0EWx7rTfosdVldPTL46RS9ep7xFfrmgjQTdbN+hBZujrZe57HbxgxtEL6tIqThDoULlTEcmX+ZNyNvgpFttof2FUE9mQMIJWx3sIMIPGiPAjptCqCd6O8dHmnHZ8JZJpmF413eWMAC/HsOiNYCorkdQUMfGq8YVEqsMNuygbhXqllfIOQrvionxFUQ2E9tBOhcueSrF8YU0JEjhad22nt5L4n8mJA3KLuSgSZsIS36AW7YwT6zEpbWMxkPIk7i1h9LIIZ5FH0MmtFg2giAIh/2/9ZmmUJVwL0MjEPD1SgnNDC9s+UoTRJ8snEzuOC/N+bhRwcZ10uAMpfKyjfR4IhrIIlhjCrGmD279yW2EINcY63qxBl4O09O7g3s7/Gf+byztDAaEDdKJPVZOYKBovC7kpg/As+hJO3WhumYGZIev2h2HYISBFny7W/scNo5olTbkgvDOO9tioj1+m9zYiFTTt3T7A8esjr5Eu7RP4z0UIr
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(83380400001)(6486002)(966005)(6512007)(186003)(38100700002)(5660300002)(2616005)(31686004)(36756003)(8936002)(4326008)(8676002)(6506007)(2906002)(6666004)(66476007)(66946007)(66556008)(110136005)(508600001)(316002)(31696002)(86362001)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N0VxclhObG9PeTJwbkZGL1ZrbjdUYklkQ3JtbzBaQ3BLTDR6Q2FtSkV0RFhZ?=
- =?utf-8?B?Z2ZMMm1pc0FsRWxjSzRlWjZwK0VtYityaWs4QW8rcHdTUmRvaHg1UURNTE1C?=
- =?utf-8?B?c0RzRnZkbmJFUXlWOFlSM1h5bUI0WTVxZjl3cHE5NnZuTG1PU2t0cnAvNGdi?=
- =?utf-8?B?N25heHU4elZyejJkcFlEYmI3WTEwYnpTYlZFODIzeWpuOVg0TTUrbjRHMkNj?=
- =?utf-8?B?ZVhCS09aQ00zbGhya1JpRjIrWUp0M1k0TFZmL1J6YjM2NVhweGM2WHRlRklq?=
- =?utf-8?B?Mld6WmxZL3dPd0RzTWJGaWxUdWVWV2d2V3BqZTdoL2xaWndLZE93VFVzOXl3?=
- =?utf-8?B?djY5TjFMbTlnSkR2RFk5NmhQSjY3UjFIaUoxdWpZbERQR2FOSTJKMi9SUnFr?=
- =?utf-8?B?a3BOKzVBZElIU3dqdXdOcFhDWmJORVdSOFQvSG1tT0ZYNWIyRk1kcmtjTG9T?=
- =?utf-8?B?d0lzOFNiY3k1MDRaZU1lZ09VS21wdGJ0dUMxeHRQbVZaQlBJK3p5YUF1T1hr?=
- =?utf-8?B?M0dRY2Nrd2FPVk1GdzgyNXhKUmlibzRoWkpzWUltVHBYTTl5NG1LTjFobXl0?=
- =?utf-8?B?Tm9YS1FpTzFPNlJsV3NZbmNpNGNCRkEybWdPek40STdKdVhOemNYT3lKVFI0?=
- =?utf-8?B?VlJCdmV1NDIrVjNzdllzN2hxL3kybmVXbE1OamVEVjM3d2xrd01SSVgvbGwz?=
- =?utf-8?B?aUhmaFBpbW1qTTZjVVBCblFwdm1yUVJGTUxHMktrdGs4R25CK1YrMHZvQnFh?=
- =?utf-8?B?WTJsSEhvR1BIamJXVVpiVmNhMkx1c3VZZTBRTFpLWFNBQ2lYT2Z3OVplWS9E?=
- =?utf-8?B?dzNnZ0tYYlBMaFRXb1hLTlQ1N2Q0emZISzlxeHBkendBY0VlK2ZiN1RrZ09q?=
- =?utf-8?B?VU5aeGlOUDVXMFBJdjBQdW4vT1k4WTR5QWpFV1VlMmlydzlmeHd3cjFCWFZj?=
- =?utf-8?B?TUtJUkM5WWpUbzBEZFlTZTZpYUNZeWdUQy95YnNuWUhEVjg2c0ZGVWxiMkx3?=
- =?utf-8?B?dXJtZFJHYWFPRFBHTlBEbGdOTE5MaUlzVTZkcXdYSFVMWUc2NWNFMzJjbUNt?=
- =?utf-8?B?L1QxOFRBRU9qMDZNam9BRTI5S0JsZnMzN2dRMlRoNkh4TGllQ3p1RXJOMFdU?=
- =?utf-8?B?UysvSGNzZWx0QVd5SGxZcVBYWGUwd2t3cFdIUTJtWnRaQ3NUeG9DQWlESTRp?=
- =?utf-8?B?czE5aGJYNEZrczIzVit3U2tWaFI1RzNoYldLU1BEWHlMQkc4OTl6cmRhZXlB?=
- =?utf-8?B?UXh4d1l1bS8zRmU4YzF6RUI2YWdRanNhN1RkajNuWkRzTDRNSzlYL0xjWGZH?=
- =?utf-8?B?N3IrNUNaNWM1emsrMHJDYnIvVXc5MC9lT2RrNzFJVnZ2ZTN2ZFBrS0VUYUNT?=
- =?utf-8?B?RmRaWTJVbHpDTW5ySHl5MzVINWJreEYyb3JYeWJzUCsreTBkMVVMNGZQZUJh?=
- =?utf-8?B?YS92R1pJdTBXcGlrWWFsRXlCeTJDeGlGeEY4MTdtcnJhcWpVcTZLZWwxOWZB?=
- =?utf-8?B?MVFxMmQwMElBWWMwSzNBNU5nNTlHaGRhc1ROV21GWlF6aEZNaGVHTGJQR0Jt?=
- =?utf-8?B?YkxwdmdCZFVlNGtoUFZsTzQzNUtHcTdiMldWdVBQM0RRRmJrRlB3UmRUMm82?=
- =?utf-8?B?ejlZQUtHSXpQdnVDOTBYa1JMVlZnSVR2MW9lRE4yMXg1eXEvNGJkMFVDMWEx?=
- =?utf-8?B?MUtTbWJkWlpmaUpYSzRUQTFrMzFsUzNWSkVTR2FFYmxaanFEbEp0Snl5dHl6?=
- =?utf-8?B?NGtvWlFrSTZVQlB4UEZGNXc0Rml0c1lmN3gvdmdlRmp4dVMxeEtBZFgrRE02?=
- =?utf-8?B?VGtDQVpwaldRNXVDMVhGRXp6S3M2aDl0RCtpd1lOR2NQZUlEOUhwMG44ZGdt?=
- =?utf-8?B?Qzh3VitSczJyaEI2eFpubFA3dmNLazhNempHdm5kdzBhUTQ0NnAvSWJ3NDdl?=
- =?utf-8?B?c3FZcGlPTjZuMFMxa3lzWlZKS0hGRzVvT0F2c1N3dlRHRXFYYnc3R05yVU1r?=
- =?utf-8?B?SjBjaytsMm01QTU3dnRESHRmTUJBOUd3OHNCN0NiakcwUVluN29UV1M5SzhJ?=
- =?utf-8?B?WjF1R3dUUFk5djJIWUtHb0VyeGdzSHArcEJUSUhLbmg3NENoWngvbHZoR3l6?=
- =?utf-8?B?YkRzZWQyUng5djMwZkJjKzRaRjZ4d1QrWXdzdkhydHdhZjhkaG50UTUyNTZL?=
- =?utf-8?Q?DAjVD0SdfqNK6TFaWfmZ0fo=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 328bd76e-334f-4971-68fe-08d9ea2edd26
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2022 11:42:05.4781 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +Qa9bZIH/ga4jJz1ze4KWg59LxnUwBzLS3SbRALuXM1iwdodlnrzUzlHyxG4CPzk
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB5525
-Subject: Re: [Intel-gfx] [RFC 0/2] drm/i915/ttm: Evict and store of
- compressed object
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Don't try to map and
+ fence large scanout buffers (v6)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,50 +64,268 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hellstrom Thomas <thomas.hellstrom@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 07.02.22 um 10:37 schrieb Ramalingam C:
-> On flat-ccs capable platform we need to evict and resore the ccs data
-> along with the corresponding main memory.
->
-> This ccs data can only be access through BLT engine through a special
-> cmd ( )
->
-> To support above requirement of flat-ccs enabled i915 platforms this
-> series adds new param called ccs_pages_needed to the ttm_tt_init(),
-> to increase the ttm_tt->num_pages of system memory when the obj has the
-> lmem placement possibility.
 
-Well question is why isn't the buffer object allocated with the extra 
-space in the first place?
+On 07/02/2022 10:58, Ville Syrjälä wrote:
+> On Thu, Feb 03, 2022 at 05:22:10PM -0800, Vivek Kasireddy wrote:
+>> On platforms capable of allowing 8K (7680 x 4320) modes, pinning 2 or
+>> more framebuffers/scanout buffers results in only one that is mappable/
+>> fenceable. Therefore, pageflipping between these 2 FBs where only one
+>> is mappable/fenceable creates latencies large enough to miss alternate
+>> vblanks thereby producing less optimal framerate.
+>>
+>> This mainly happens because when i915_gem_object_pin_to_display_plane()
+>> is called to pin one of the FB objs, the associated vma is identified
+>> as misplaced and therefore i915_vma_unbind() is called which unbinds and
+>> evicts it. This misplaced vma gets subseqently pinned only when
+>> i915_gem_object_ggtt_pin_ww() is called without PIN_MAPPABLE. This
+>> results in a latency of ~10ms and happens every other vblank/repaint cycle.
+>> Therefore, to fix this issue, we try to see if there is space to map
+>> at-least two objects of a given size and return early if there isn't. This
+>> would ensure that we do not try with PIN_MAPPABLE for any objects that
+>> are too big to map thereby preventing unncessary unbind.
+>>
+>> Testcase:
+>> Running Weston and weston-simple-egl on an Alderlake_S (ADLS) platform
+>> with a 8K@60 mode results in only ~40 FPS. Since upstream Weston submits
+>> a frame ~7ms before the next vblank, the latencies seen between atomic
+>> commit and flip event are 7, 24 (7 + 16.66), 7, 24..... suggesting that
+>> it misses the vblank every other frame.
+>>
+>> Here is the ftrace snippet that shows the source of the ~10ms latency:
+>>                i915_gem_object_pin_to_display_plane() {
+>> 0.102 us   |    i915_gem_object_set_cache_level();
+>>                  i915_gem_object_ggtt_pin_ww() {
+>> 0.390 us   |      i915_vma_instance();
+>> 0.178 us   |      i915_vma_misplaced();
+>>                    i915_vma_unbind() {
+>>                    __i915_active_wait() {
+>> 0.082 us   |        i915_active_acquire_if_busy();
+>> 0.475 us   |      }
+>>                    intel_runtime_pm_get() {
+>> 0.087 us   |        intel_runtime_pm_acquire();
+>> 0.259 us   |      }
+>>                    __i915_active_wait() {
+>> 0.085 us   |        i915_active_acquire_if_busy();
+>> 0.240 us   |      }
+>>                    __i915_vma_evict() {
+>>                      ggtt_unbind_vma() {
+>>                        gen8_ggtt_clear_range() {
+>> 10507.255 us |        }
+>> 10507.689 us |      }
+>> 10508.516 us |   }
+>>
+>> v2: Instead of using bigjoiner checks, determine whether a scanout
+>>      buffer is too big by checking to see if it is possible to map
+>>      two of them into the ggtt.
+>>
+>> v3 (Ville):
+>> - Count how many fb objects can be fit into the available holes
+>>    instead of checking for a hole twice the object size.
+>> - Take alignment constraints into account.
+>> - Limit this large scanout buffer check to >= Gen 11 platforms.
+>>
+>> v4:
+>> - Remove existing heuristic that checks just for size. (Ville)
+>> - Return early if we find space to map at-least two objects. (Tvrtko)
+>> - Slightly update the commit message.
+>>
+>> v5: (Tvrtko)
+>> - Rename the function to indicate that the object may be too big to
+>>    map into the aperture.
+>> - Account for guard pages while calculating the total size required
+>>    for the object.
+>> - Do not subject all objects to the heuristic check and instead
+>>    consider objects only of a certain size.
+>> - Do the hole walk using the rbtree.
+>> - Preserve the existing PIN_NONBLOCK logic.
+>> - Drop the PIN_MAPPABLE check while pinning the VMA.
+>>
+>> v6: (Tvrtko)
+>> - Return 0 on success and the specific error code on failure to
+>>    preserve the existing behavior.
+>>
+>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Cc: Manasi Navare <manasi.d.navare@intel.com>
+>> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/i915_gem.c | 120 ++++++++++++++++++++++++--------
+>>   1 file changed, 90 insertions(+), 30 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+>> index e3a2c2a0e156..39f0d17550c3 100644
+>> --- a/drivers/gpu/drm/i915/i915_gem.c
+>> +++ b/drivers/gpu/drm/i915/i915_gem.c
+>> @@ -46,6 +46,7 @@
+>>   #include "gem/i915_gem_mman.h"
+>>   #include "gem/i915_gem_region.h"
+>>   #include "gem/i915_gem_userptr.h"
+>> +#include "gem/i915_gem_tiling.h"
+>>   #include "gt/intel_engine_user.h"
+>>   #include "gt/intel_gt.h"
+>>   #include "gt/intel_gt_pm.h"
+>> @@ -876,6 +877,92 @@ static void discard_ggtt_vma(struct i915_vma *vma)
+>>   	spin_unlock(&obj->vma.lock);
+>>   }
+>>   
+>> +static int
+>> +i915_gem_object_fits_in_aperture(struct drm_i915_gem_object *obj,
+>> +				 u64 alignment, u64 flags)
+>> +{
+>> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+>> +	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+>> +	struct drm_mm_node *hole;
+>> +	u64 hole_start, hole_end, start, end;
+>> +	u64 fence_size, fence_alignment;
+>> +	unsigned int count = 0;
+>> +
+>> +	/*
+>> +	 * If the required space is larger than the available
+>> +	 * aperture, we will not able to find a slot for the
+>> +	 * object and unbinding the object now will be in
+>> +	 * vain. Worse, doing so may cause us to ping-pong
+>> +	 * the object in and out of the Global GTT and
+>> +	 * waste a lot of cycles under the mutex.
+>> +	 */
+>> +	if (obj->base.size > ggtt->mappable_end)
+>> +		return -E2BIG;
+>> +
+>> +	/*
+>> +	 * If NONBLOCK is set the caller is optimistically
+>> +	 * trying to cache the full object within the mappable
+>> +	 * aperture, and *must* have a fallback in place for
+>> +	 * situations where we cannot bind the object. We
+>> +	 * can be a little more lax here and use the fallback
+>> +	 * more often to avoid costly migrations of ourselves
+>> +	 * and other objects within the aperture.
+>> +	 */
+>> +	if (!(flags & PIN_NONBLOCK))
+>> +		return 0;
+>> +
+>> +	/*
+>> +	 * We only consider objects whose size is at-least a quarter of
+>> +	 * the aperture to be too big and subject them to the new
+>> +	 * heuristic below.
+>> +	 */
+>> +	if (obj->base.size < ggtt->mappable_end / 4)
+>> +		return 0;
+> 
+> That seems a fairly arbitrary thing to put here. Maybe something the
+> caller should check/specify?
+
+I have no strong opinion on this one. In my mind I categorised it under 
+"is it a large framebuffer" heuristics. Previously it was less than one 
+half of aperture always okay, now one quarter, plus 2x hole check if 
+larger. Both are heuristics. I even mentioned earlier if 2x should be an 
+input parameter as well, but again, given it's not an exported function 
+couldn't really justify it.
+
+> 
+>> +
+>> +	if (HAS_GMCH(i915) || DISPLAY_VER(i915) < 11 ||
+>> +	    !i915_gem_object_is_framebuffer(obj))
+>> +		return 0;
+> 
+> None of that seems appropriate for a generic gem function
+> with this name.
+
+It's not exported though, maybe remove i915_gem prefix to avoid any 
+ideas of it being generic?
 
 Regards,
-Christian.
 
->
-> This will be on top of the flat-ccs enabling series
-> https://patchwork.freedesktop.org/series/95686/
->
-> For more about flat-ccs feature please have a look at
-> https://patchwork.freedesktop.org/patch/471777/?series=95686&rev=5
->
-> Testing of the series is WIP and looking forward for the early review on
-> the amendment to ttm_tt_init and the approach.
->
-> Ramalingam C (2):
->    drm/i915/ttm: Add extra pages for handling ccs data
->    drm/i915/migrate: Evict and restore the ccs data
->
->   drivers/gpu/drm/drm_gem_vram_helper.c      |   2 +-
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.c    |  23 +-
->   drivers/gpu/drm/i915/gt/intel_migrate.c    | 283 +++++++++++----------
->   drivers/gpu/drm/qxl/qxl_ttm.c              |   2 +-
->   drivers/gpu/drm/ttm/ttm_agp_backend.c      |   2 +-
->   drivers/gpu/drm/ttm/ttm_tt.c               |  12 +-
->   drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c |   2 +-
->   include/drm/ttm/ttm_tt.h                   |   4 +-
->   8 files changed, 191 insertions(+), 139 deletions(-)
->
+Tvrtko
 
+> 
+>> +
+>> +	fence_size = i915_gem_fence_size(i915, obj->base.size,
+>> +					 i915_gem_object_get_tiling(obj),
+>> +					 i915_gem_object_get_stride(obj));
+>> +
+>> +	if (i915_vm_has_cache_coloring(&ggtt->vm))
+>> +		fence_size += 2 * I915_GTT_PAGE_SIZE;
+>> +
+>> +	fence_alignment = i915_gem_fence_alignment(i915, obj->base.size,
+>> +						   i915_gem_object_get_tiling(obj),
+>> +						   i915_gem_object_get_stride(obj));
+>> +	alignment = max_t(u64, alignment, fence_alignment);
+>> +
+>> +	/*
+>> +	 * Assuming this object is a large scanout buffer, we try to find
+>> +	 * out if there is room to map at-least two of them. There could
+>> +	 * be space available to map one but to be consistent, we try to
+>> +	 * avoid mapping/fencing any of them.
+>> +	 */
+>> +	drm_mm_for_each_suitable_hole(hole, &ggtt->vm.mm, 0, ggtt->mappable_end,
+>> +				      fence_size, DRM_MM_INSERT_LOW) {
+>> +		hole_start = drm_mm_hole_node_start(hole);
+>> +		hole_end = hole_start + hole->hole_size;
+>> +
+>> +		do {
+>> +			start = round_up(hole_start, alignment);
+>> +			end = min_t(u64, hole_end, ggtt->mappable_end);
+>> +
+>> +			if (range_overflows(start, fence_size, end))
+>> +				break;
+>> +
+>> +			if (++count >= 2)
+>> +				return 0;
+>> +
+>> +			hole_start = start + fence_size;
+>> +		} while (1);
+>> +	}
+>> +
+>> +	return -ENOSPC;
+>> +}
+>> +
+>>   struct i915_vma *
+>>   i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
+>>   			    struct i915_gem_ww_ctx *ww,
+>> @@ -891,36 +978,9 @@ i915_gem_object_ggtt_pin_ww(struct drm_i915_gem_object *obj,
+>>   
+>>   	if (flags & PIN_MAPPABLE &&
+>>   	    (!view || view->type == I915_GGTT_VIEW_NORMAL)) {
+>> -		/*
+>> -		 * If the required space is larger than the available
+>> -		 * aperture, we will not able to find a slot for the
+>> -		 * object and unbinding the object now will be in
+>> -		 * vain. Worse, doing so may cause us to ping-pong
+>> -		 * the object in and out of the Global GTT and
+>> -		 * waste a lot of cycles under the mutex.
+>> -		 */
+>> -		if (obj->base.size > ggtt->mappable_end)
+>> -			return ERR_PTR(-E2BIG);
+>> -
+>> -		/*
+>> -		 * If NONBLOCK is set the caller is optimistically
+>> -		 * trying to cache the full object within the mappable
+>> -		 * aperture, and *must* have a fallback in place for
+>> -		 * situations where we cannot bind the object. We
+>> -		 * can be a little more lax here and use the fallback
+>> -		 * more often to avoid costly migrations of ourselves
+>> -		 * and other objects within the aperture.
+>> -		 *
+>> -		 * Half-the-aperture is used as a simple heuristic.
+>> -		 * More interesting would to do search for a free
+>> -		 * block prior to making the commitment to unbind.
+>> -		 * That caters for the self-harm case, and with a
+>> -		 * little more heuristics (e.g. NOFAULT, NOEVICT)
+>> -		 * we could try to minimise harm to others.
+>> -		 */
+>> -		if (flags & PIN_NONBLOCK &&
+>> -		    obj->base.size > ggtt->mappable_end / 2)
+>> -			return ERR_PTR(-ENOSPC);
+>> +		ret = i915_gem_object_fits_in_aperture(obj, alignment, flags);
+>> +		if (ret)
+>> +			return ERR_PTR(ret);
+>>   	}
+>>   
+>>   new_vma:
+>> -- 
+>> 2.34.1
+> 
