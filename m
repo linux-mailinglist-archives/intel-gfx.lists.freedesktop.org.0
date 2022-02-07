@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 463664AB8D8
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 11:41:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E49764AB8F6
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 11:45:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5522710F74E;
-	Mon,  7 Feb 2022 10:41:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D041210F78D;
+	Mon,  7 Feb 2022 10:45:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BD6910F75B;
- Mon,  7 Feb 2022 10:41:35 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 131F410F78D;
+ Mon,  7 Feb 2022 10:45:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644230495; x=1675766495;
+ t=1644230736; x=1675766736;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=ArwuPTxElsiJl5IMoTxOH+10k1P9ZTtUYu/OMQhIIYk=;
- b=hYA8WV1XYW6SbUYBjWXya+QIaerkhQSRjEIfOgPs5f43Q2Stf7asezX2
- uSsHbu5u6UdbEWO7/u0bv7XHy8oXHWxTTJwTYmcECWmS6+umpLouZDnq1
- fgayPJ5p6n3Q5yjHYuwZVOBCQWziyaVvM9zFCggC9qFGzQg/EXxPHfjBc
- rnOe5khifmirYsZB1iwiAKLsMjI97BNmDqMPQxltT7QjRtmPnjnb5SCq5
- 6ugXzRUYy4VSH1tTk2rRAzKzZKXXD4w8i1orjLk6OvZWbS3/mCxiQTY7j
- wKfB1nCWXIz2O2qrvIZhOM3LKBYlWPtWXP/SnSUuBX1hruLyLBch4MBzP Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10250"; a="248453811"
-X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="248453811"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2022 02:41:35 -0800
-X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="540044702"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.209.116])
- ([10.251.209.116])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2022 02:41:33 -0800
-Message-ID: <bd9e2cf2-4cee-a99a-7550-3eaf32c93e5e@linux.intel.com>
-Date: Mon, 7 Feb 2022 11:41:31 +0100
+ bh=dCjAf4ooCDmGQzc8Fhcove8jD2gfIH5geRF4DiT71xs=;
+ b=cDvJVuSlPZHNPyP3BtFHmlpLgPTXO5pVHi6mz5q3V1/VHrRttgTgtnH9
+ 8LqzVq5kgyDVkRSO4TVuXVWLZaP/WiIjYO+c5E/JS48agg770DPJ3bj3z
+ QZTt/PIjfb8dDUDmM4VrSE+1biOzyNY+SR/huhoXrjG/wYhzTv9sYaLcJ
+ YayqA/Sqr3POt/2HVjY7Dr01KIfCUor1taxBE5zQEfrPSLLhvkeYkrs6g
+ Yo4ThgMvs+7G17UFd5c4oFvpgdqBOJTj1kxAyq0gHgOjwlZWre3ftwCXW
+ 5uJMOqXRuZp7iPd0XkzMIngrrZ4dhBYxJAF+vzaxMa01iatP5tjOE73YR w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10250"; a="273209513"
+X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="273209513"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2022 02:45:35 -0800
+X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="481544441"
+Received: from conroyco-mobl2.ger.corp.intel.com (HELO [10.213.251.21])
+ ([10.213.251.21])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2022 02:45:34 -0800
+Message-ID: <94fd5cd5-ecb5-c26f-84d1-13e22c2dcc1a@linux.intel.com>
+Date: Mon, 7 Feb 2022 10:45:32 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
 Content-Language: en-US
-To: Ramalingam C <ramalingam.c@intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
-References: <20220207093743.14467-1-ramalingam.c@intel.com>
- <20220207093743.14467-2-ramalingam.c@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20220207093743.14467-2-ramalingam.c@intel.com>
+To: Vivek Kasireddy <vivek.kasireddy@intel.com>,
+ dri-devel@lists.freedesktop.org
+References: <ed22efe9-4cd8-cf71-beb7-66af7161c518@linux.intel.com>
+ <20220204011939.1517070-1-vivek.kasireddy@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220204011939.1517070-1-vivek.kasireddy@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RFC 1/2] drm/i915/ttm: Add extra pages for
- handling ccs data
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/mm: Add an iterator to optimally
+ walk over holes for an allocation (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,206 +63,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hellstrom Thomas <thomas.hellstrom@intel.com>,
- Christian Koenig <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 07/02/2022 10:37, Ramalingam C wrote:
-> While evicting the local memory data on flat-ccs capable platform we
-> need to evict the ccs data associated to the data. For this, we are
-> adding extra pages ((size / 256) >> PAGE_SIZE) into the ttm_tt.
->
-> To achieve this we are adding a new param into the ttm_tt_init as
-> ccs_pages_needed, which will be added into the ttm_tt->num_pages.
->
-> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> Suggested-by: Thomas Hellstorm <thomas.hellstrom@intel.com>
+On 04/02/2022 01:19, Vivek Kasireddy wrote:
+> This iterator relies on drm_mm_first_hole() and drm_mm_next_hole()
+> functions to identify suitable holes for an allocation of a given
+> size by efficiently traversing the rbtree associated with the given
+> allocator.
+> 
+> It replaces the for loop in drm_mm_insert_node_in_range() and can
+> also be used by drm drivers to quickly identify holes of a certain
+> size within a given range.
+> 
+> v2: (Tvrtko)
+> - Prepend a double underscore for the newly exported first/next_hole
+> - s/each_best_hole/each_suitable_hole/g
+> - Mask out DRM_MM_INSERT_ONCE from the mode before calling
+>    first/next_hole and elsewhere.
+> 
+> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
 > ---
->   drivers/gpu/drm/drm_gem_vram_helper.c      |  2 +-
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.c    | 23 +++++++++++++++++++++-
->   drivers/gpu/drm/qxl/qxl_ttm.c              |  2 +-
->   drivers/gpu/drm/ttm/ttm_agp_backend.c      |  2 +-
->   drivers/gpu/drm/ttm/ttm_tt.c               | 12 ++++++-----
->   drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c |  2 +-
->   include/drm/ttm/ttm_tt.h                   |  4 +++-
->   7 files changed, 36 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
-> index 3f00192215d1..eef1f4dc7232 100644
-> --- a/drivers/gpu/drm/drm_gem_vram_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_vram_helper.c
-> @@ -864,7 +864,7 @@ static struct ttm_tt *bo_driver_ttm_tt_create(struct ttm_buffer_object *bo,
->   	if (!tt)
->   		return NULL;
+>   drivers/gpu/drm/drm_mm.c | 38 ++++++++++++++++++--------------------
+>   include/drm/drm_mm.h     | 36 ++++++++++++++++++++++++++++++++++++
+>   2 files changed, 54 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_mm.c b/drivers/gpu/drm/drm_mm.c
+> index 8257f9d4f619..b6da1dffcfcb 100644
+> --- a/drivers/gpu/drm/drm_mm.c
+> +++ b/drivers/gpu/drm/drm_mm.c
+> @@ -352,10 +352,10 @@ static struct drm_mm_node *find_hole_addr(struct drm_mm *mm, u64 addr, u64 size)
+>   	return node;
+>   }
 >   
-> -	ret = ttm_tt_init(tt, bo, page_flags, ttm_cached);
-> +	ret = ttm_tt_init(tt, bo, page_flags, ttm_cached, 0);
->   	if (ret < 0)
->   		goto err_ttm_tt_init;
->   
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index 84cae740b4a5..bb71aa6d66c0 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -16,6 +16,7 @@
->   #include "gem/i915_gem_ttm.h"
->   #include "gem/i915_gem_ttm_move.h"
->   #include "gem/i915_gem_ttm_pm.h"
-> +#include "gt/intel_gpu_commands.h"
->   
->   #define I915_TTM_PRIO_PURGE     0
->   #define I915_TTM_PRIO_NO_PAGES  1
-> @@ -242,12 +243,27 @@ static const struct i915_refct_sgt_ops tt_rsgt_ops = {
->   	.release = i915_ttm_tt_release
->   };
->   
-> +static inline bool
-> +i915_gem_object_has_lmem_placement(struct drm_i915_gem_object *obj)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < obj->mm.n_placements; i++)
-> +		if (obj->mm.placements[i]->type == INTEL_MEMORY_LOCAL)
-> +			return true;
-> +
-> +	return false;
-> +}
-> +
->   static struct ttm_tt *i915_ttm_tt_create(struct ttm_buffer_object *bo,
->   					 uint32_t page_flags)
+> -static struct drm_mm_node *
+> -first_hole(struct drm_mm *mm,
+> -	   u64 start, u64 end, u64 size,
+> -	   enum drm_mm_insert_mode mode)
+> +struct drm_mm_node *
+> +__drm_mm_first_hole(struct drm_mm *mm,
+> +		    u64 start, u64 end, u64 size,
+> +		    enum drm_mm_insert_mode mode)
 >   {
-> +	struct drm_i915_private *i915 = container_of(bo->bdev, typeof(*i915),
-> +						     bdev);
->   	struct ttm_resource_manager *man =
->   		ttm_manager_type(bo->bdev, bo->resource->mem_type);
->   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
-> +	unsigned long ccs_pages_needed = 0;
->   	enum ttm_caching caching;
->   	struct i915_ttm_tt *i915_tt;
->   	int ret;
-> @@ -270,7 +286,12 @@ static struct ttm_tt *i915_ttm_tt_create(struct ttm_buffer_object *bo,
->   		i915_tt->is_shmem = true;
+>   	switch (mode) {
+>   	default:
+> @@ -374,6 +374,7 @@ first_hole(struct drm_mm *mm,
+>   						hole_stack);
 >   	}
+>   }
+> +EXPORT_SYMBOL(__drm_mm_first_hole);
 >   
-> -	ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags, caching);
-> +	if (HAS_FLAT_CCS(i915) && i915_gem_object_has_lmem_placement(obj))
-> +		ccs_pages_needed = DIV_ROUND_UP(DIV_ROUND_UP(bo->base.size,
-> +					       NUM_CCS_BYTES_PER_BLOCK), PAGE_SIZE);
+>   /**
+>    * DECLARE_NEXT_HOLE_ADDR - macro to declare next hole functions
+> @@ -410,11 +411,11 @@ static struct drm_mm_node *name(struct drm_mm_node *entry, u64 size)	\
+>   DECLARE_NEXT_HOLE_ADDR(next_hole_high_addr, rb_left, rb_right)
+>   DECLARE_NEXT_HOLE_ADDR(next_hole_low_addr, rb_right, rb_left)
+>   
+> -static struct drm_mm_node *
+> -next_hole(struct drm_mm *mm,
+> -	  struct drm_mm_node *node,
+> -	  u64 size,
+> -	  enum drm_mm_insert_mode mode)
+> +struct drm_mm_node *
+> +__drm_mm_next_hole(struct drm_mm *mm,
+> +		   struct drm_mm_node *node,
+> +		   u64 size,
+> +		   enum drm_mm_insert_mode mode)
+>   {
+>   	switch (mode) {
+>   	default:
+> @@ -432,6 +433,7 @@ next_hole(struct drm_mm *mm,
+>   		return &node->hole_stack == &mm->hole_stack ? NULL : node;
+>   	}
+>   }
+> +EXPORT_SYMBOL(__drm_mm_next_hole);
+>   
+>   /**
+>    * drm_mm_reserve_node - insert an pre-initialized node
+> @@ -520,7 +522,6 @@ int drm_mm_insert_node_in_range(struct drm_mm * const mm,
+>   {
+>   	struct drm_mm_node *hole;
+>   	u64 remainder_mask;
+> -	bool once;
+>   
+>   	DRM_MM_BUG_ON(range_start > range_end);
+>   
+> @@ -533,22 +534,19 @@ int drm_mm_insert_node_in_range(struct drm_mm * const mm,
+>   	if (alignment <= 1)
+>   		alignment = 0;
+>   
+> -	once = mode & DRM_MM_INSERT_ONCE;
+> -	mode &= ~DRM_MM_INSERT_ONCE;
+> -
+>   	remainder_mask = is_power_of_2(alignment) ? alignment - 1 : 0;
+> -	for (hole = first_hole(mm, range_start, range_end, size, mode);
+> -	     hole;
+> -	     hole = once ? NULL : next_hole(mm, hole, size, mode)) {
+> +	drm_mm_for_each_suitable_hole(hole, mm, range_start, range_end,
+> +				      size, mode) {
+>   		u64 hole_start = __drm_mm_hole_node_start(hole);
+>   		u64 hole_end = hole_start + hole->hole_size;
+>   		u64 adj_start, adj_end;
+>   		u64 col_start, col_end;
+> +		enum drm_mm_insert_mode placement = mode & ~DRM_MM_INSERT_ONCE;
+
+Could move outside the loop, but not sure if it matters much.
+
+Could also call the masked out variable mode and the passed in one 
+caller_mode, or something, and that way have a smaller diff. (Four 
+following hunks wouldn't be there.)
+
+>   
+> -		if (mode == DRM_MM_INSERT_LOW && hole_start >= range_end)
+> +		if (placement == DRM_MM_INSERT_LOW && hole_start >= range_end)
+>   			break;
+>   
+> -		if (mode == DRM_MM_INSERT_HIGH && hole_end <= range_start)
+> +		if (placement == DRM_MM_INSERT_HIGH && hole_end <= range_start)
+>   			break;
+>   
+>   		col_start = hole_start;
+> @@ -562,7 +560,7 @@ int drm_mm_insert_node_in_range(struct drm_mm * const mm,
+>   		if (adj_end <= adj_start || adj_end - adj_start < size)
+>   			continue;
+>   
+> -		if (mode == DRM_MM_INSERT_HIGH)
+> +		if (placement == DRM_MM_INSERT_HIGH)
+>   			adj_start = adj_end - size;
+>   
+>   		if (alignment) {
+> @@ -574,7 +572,7 @@ int drm_mm_insert_node_in_range(struct drm_mm * const mm,
+>   				div64_u64_rem(adj_start, alignment, &rem);
+>   			if (rem) {
+>   				adj_start -= rem;
+> -				if (mode != DRM_MM_INSERT_HIGH)
+> +				if (placement != DRM_MM_INSERT_HIGH)
+>   					adj_start += alignment;
+>   
+>   				if (adj_start < max(col_start, range_start) ||
+> diff --git a/include/drm/drm_mm.h b/include/drm/drm_mm.h
+> index ac33ba1b18bc..777f659f9692 100644
+> --- a/include/drm/drm_mm.h
+> +++ b/include/drm/drm_mm.h
+> @@ -400,6 +400,42 @@ static inline u64 drm_mm_hole_node_end(const struct drm_mm_node *hole_node)
+>   	     1 : 0; \
+>   	     pos = list_next_entry(pos, hole_stack))
+>   
+> +struct drm_mm_node *
+> +__drm_mm_first_hole(struct drm_mm *mm,
+> +		    u64 start, u64 end, u64 size,
+> +		    enum drm_mm_insert_mode mode);
 > +
-> +	ret = ttm_tt_init(&i915_tt->ttm, bo, page_flags,
-> +			  caching, ccs_pages_needed);
+> +struct drm_mm_node *
+> +__drm_mm_next_hole(struct drm_mm *mm,
+> +		   struct drm_mm_node *node,
+> +		   u64 size,
+> +		   enum drm_mm_insert_mode mode);
+> +
+> +/**
+> + * drm_mm_for_each_suitable_hole - iterator to optimally walk over all
+> + * holes that can fit an allocation of the given @size.
+> + * @pos: &drm_mm_node used internally to track progress
+> + * @mm: &drm_mm allocator to walk
+> + * @range_start: start of the allowed range for the allocation
+> + * @range_end: end of the allowed range for the allocation
+> + * @size: size of the allocation
+> + * @mode: fine-tune the allocation search
+> + *
+> + * This iterator walks over all holes suitable for the allocation of given
+> + * @size in a very efficient manner. It is implemented by calling
+> + * drm_mm_first_hole() and drm_mm_next_hole() which identify the
+> + * appropriate holes within the given range by efficiently traversing the
+> + * rbtree associated with @mm.
+> + */
+> +#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
+> +				      size, mode) \
+> +	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
+> +				       mode & ~DRM_MM_INSERT_ONCE); \
+> +	     pos; \
+> +	     pos = mode & DRM_MM_INSERT_ONCE ? \
+> +	     NULL : __drm_mm_next_hole(mm, hole, size, \
+> +				       mode & ~DRM_MM_INSERT_ONCE))
+> +
+>   /*
+>    * Basic range manager support (drm_mm.c)
+>    */
 
-I am wondering if we should do this in the driver itself and pass 
-ttm->num_pages with CCS size included.
+Nitpicks/bikesheds or not, patch LGTM.
 
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Adding Christian and Das to Cc, by the virtue of being last people 
+active in the hole area (!). :)
 
 Regards,
 
-Nirmoy
-
-
->   	if (ret)
->   		goto err_free;
->   
-> diff --git a/drivers/gpu/drm/qxl/qxl_ttm.c b/drivers/gpu/drm/qxl/qxl_ttm.c
-> index b2e33d5ba5d0..52156b54498f 100644
-> --- a/drivers/gpu/drm/qxl/qxl_ttm.c
-> +++ b/drivers/gpu/drm/qxl/qxl_ttm.c
-> @@ -113,7 +113,7 @@ static struct ttm_tt *qxl_ttm_tt_create(struct ttm_buffer_object *bo,
->   	ttm = kzalloc(sizeof(struct ttm_tt), GFP_KERNEL);
->   	if (ttm == NULL)
->   		return NULL;
-> -	if (ttm_tt_init(ttm, bo, page_flags, ttm_cached)) {
-> +	if (ttm_tt_init(ttm, bo, page_flags, ttm_cached, 0)) {
->   		kfree(ttm);
->   		return NULL;
->   	}
-> diff --git a/drivers/gpu/drm/ttm/ttm_agp_backend.c b/drivers/gpu/drm/ttm/ttm_agp_backend.c
-> index 6ddc16f0fe2b..d27691f2e451 100644
-> --- a/drivers/gpu/drm/ttm/ttm_agp_backend.c
-> +++ b/drivers/gpu/drm/ttm/ttm_agp_backend.c
-> @@ -134,7 +134,7 @@ struct ttm_tt *ttm_agp_tt_create(struct ttm_buffer_object *bo,
->   	agp_be->mem = NULL;
->   	agp_be->bridge = bridge;
->   
-> -	if (ttm_tt_init(&agp_be->ttm, bo, page_flags, ttm_write_combined)) {
-> +	if (ttm_tt_init(&agp_be->ttm, bo, page_flags, ttm_write_combined, 0)) {
->   		kfree(agp_be);
->   		return NULL;
->   	}
-> diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
-> index 79c870a3bef8..80355465f717 100644
-> --- a/drivers/gpu/drm/ttm/ttm_tt.c
-> +++ b/drivers/gpu/drm/ttm/ttm_tt.c
-> @@ -134,9 +134,10 @@ void ttm_tt_destroy(struct ttm_device *bdev, struct ttm_tt *ttm)
->   static void ttm_tt_init_fields(struct ttm_tt *ttm,
->   			       struct ttm_buffer_object *bo,
->   			       uint32_t page_flags,
-> -			       enum ttm_caching caching)
-> +			       enum ttm_caching caching,
-> +			       unsigned long ccs_pages)
->   {
-> -	ttm->num_pages = PAGE_ALIGN(bo->base.size) >> PAGE_SHIFT;
-> +	ttm->num_pages = (PAGE_ALIGN(bo->base.size) >> PAGE_SHIFT) + ccs_pages;
->   	ttm->caching = ttm_cached;
->   	ttm->page_flags = page_flags;
->   	ttm->dma_address = NULL;
-> @@ -146,9 +147,10 @@ static void ttm_tt_init_fields(struct ttm_tt *ttm,
->   }
->   
->   int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
-> -		uint32_t page_flags, enum ttm_caching caching)
-> +		uint32_t page_flags, enum ttm_caching caching,
-> +		unsigned long ccs_pages)
->   {
-> -	ttm_tt_init_fields(ttm, bo, page_flags, caching);
-> +	ttm_tt_init_fields(ttm, bo, page_flags, caching, ccs_pages);
->   
->   	if (ttm_tt_alloc_page_directory(ttm)) {
->   		pr_err("Failed allocating page table\n");
-> @@ -180,7 +182,7 @@ int ttm_sg_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
->   {
->   	int ret;
->   
-> -	ttm_tt_init_fields(ttm, bo, page_flags, caching);
-> +	ttm_tt_init_fields(ttm, bo, page_flags, caching, 0);
->   
->   	if (page_flags & TTM_TT_FLAG_EXTERNAL)
->   		ret = ttm_sg_tt_alloc_page_directory(ttm);
-> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-> index b84ecc6d6611..4e3938e62c08 100644
-> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-> @@ -517,7 +517,7 @@ static struct ttm_tt *vmw_ttm_tt_create(struct ttm_buffer_object *bo,
->   				     ttm_cached);
->   	else
->   		ret = ttm_tt_init(&vmw_be->dma_ttm, bo, page_flags,
-> -				  ttm_cached);
-> +				  ttm_cached, 0);
->   	if (unlikely(ret != 0))
->   		goto out_no_init;
->   
-> diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
-> index f20832139815..2c4ff08ea354 100644
-> --- a/include/drm/ttm/ttm_tt.h
-> +++ b/include/drm/ttm/ttm_tt.h
-> @@ -140,6 +140,7 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc);
->    * @bo: The buffer object we create the ttm for.
->    * @page_flags: Page flags as identified by TTM_TT_FLAG_XX flags.
->    * @caching: the desired caching state of the pages
-> + * @ccs_pages_needed: Extra pages needed for the ccs data of compression.
->    *
->    * Create a struct ttm_tt to back data with system memory pages.
->    * No pages are actually allocated.
-> @@ -147,7 +148,8 @@ int ttm_tt_create(struct ttm_buffer_object *bo, bool zero_alloc);
->    * NULL: Out of memory.
->    */
->   int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo,
-> -		uint32_t page_flags, enum ttm_caching caching);
-> +		uint32_t page_flags, enum ttm_caching caching,
-> +		unsigned long ccs_pages_needed);
->   int ttm_sg_tt_init(struct ttm_tt *ttm_dma, struct ttm_buffer_object *bo,
->   		   uint32_t page_flags, enum ttm_caching caching);
->   
+Tvrtko
