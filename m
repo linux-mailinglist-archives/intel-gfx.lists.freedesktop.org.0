@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C820C4AC3BA
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 16:33:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2297E4AC3CE
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 16:36:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19655112465;
-	Mon,  7 Feb 2022 15:33:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BD7511245B;
+	Mon,  7 Feb 2022 15:36:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88FC7112465;
- Mon,  7 Feb 2022 15:33:36 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09ECC11245B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Feb 2022 15:36:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644248016; x=1675784016;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=E2ZJyoWnOrNw0CyH9w3cujIWDOeDpZFfTrzxKlYe794=;
- b=Govq2mAgoXN2NJootQ4To49sAAMmQDqOPbFFrgCxTE4pNV5yW+oRThqO
- v+JqBumPpB6YA5ONR3Vlrwm7d9FrJ4esHcRL00XIjtIJXdOfIfj6lP66I
- QR+85kNCmwxM0u2Ixm3pSAvvtan1ycNIv4eSmSRh3u5BCieay25zvfGTy
- V2wG83m7vM21asD+gDexPsAHMtB/o/6kfq75reHDkSzHhpFG+JpM8E9jF
- FX6YwARjN+c6gVgDCFr0k7cY84Tvbh5SQ165tWARU0zgDcZJMvVv3OW7H
- sTfQzwLAdJG63sfy2hDd4unmBFisL8X6IwWV/V8Hb57SKv0Ilehr2NZMg w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10250"; a="236141548"
-X-IronPort-AV: E=Sophos;i="5.88,350,1635231600"; d="scan'208";a="236141548"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2022 07:33:35 -0800
-X-IronPort-AV: E=Sophos;i="5.88,350,1635231600"; d="scan'208";a="525171212"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
- by orsmga007-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2022 07:33:34 -0800
-Date: Mon, 7 Feb 2022 21:03:42 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>
-Message-ID: <20220207153342.GC15175@intel.com>
-References: <20220207093743.14467-1-ramalingam.c@intel.com>
- <20220207093743.14467-3-ramalingam.c@intel.com>
- <99824fde33f84f92679a39eb605d948e12e4ae6b.camel@intel.com>
- <20220207151448.GB15175@intel.com>
- <261dbdf7a49d1d66748da2be81a3b495475b1118.camel@intel.com>
+ t=1644248184; x=1675784184;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=fgMxhQLkLWuNa0/yOd7XrV8m46eS6SZfDNGKPbzAe1g=;
+ b=BMLKDJ8LdldAdF+ptAULXfqxq+bJ0s/x3wdTycuJ3d6uGy8A8fEvO4U5
+ Cmb1cYiF5CYS/1kezOIoywM1yd8fAnnYL6grAYIQnRx0fQI5oLEK3C3kD
+ rCwH2CpadYNQy1qg0Pio3vGvciBrfEpPBhDGuXIwfSpto9eWhVMfIMYD+
+ 6pl3xknT7KSTWDIXcHBmx2yEBswhUL0R+SDb6HtDjwq2VywU0foiKhuZQ
+ Ukn7vR3wxWrMbERnlqpa44sc5h5WbwqE4QVy+AqZzAg6QWgXkAsj7JrcZ
+ FmBS2EOuHIsY41atpSTA4TGrCxVPppckUafqSSeh0jBiefew22ruC9p6l Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10250"; a="248688682"
+X-IronPort-AV: E=Sophos;i="5.88,350,1635231600"; d="scan'208";a="248688682"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2022 07:36:23 -0800
+X-IronPort-AV: E=Sophos;i="5.88,350,1635231600"; d="scan'208";a="481616388"
+Received: from conroyco-mobl2.ger.corp.intel.com (HELO [10.213.251.21])
+ ([10.213.251.21])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2022 07:36:21 -0800
+Message-ID: <e72a6679-2fe6-9390-2e7b-9c59cdd4cda8@linux.intel.com>
+Date: Mon, 7 Feb 2022 15:36:19 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <261dbdf7a49d1d66748da2be81a3b495475b1118.camel@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [RFC 2/2] drm/i915/migrate: Evict and restore the
- ccs data
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Casey Bowman <casey.g.bowman@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220120221652.207255-1-casey.g.bowman@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220120221652.207255-1-casey.g.bowman@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC PATCH 0/1] Splitting up platform-specific calls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,532 +60,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: michael.cheng@intel.com, jani.nikula@intel.com, lucas.demarchi@intel.com,
+ daniel.vetter@intel.com, ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2022-02-07 at 20:52:33 +0530, Hellstrom, Thomas wrote:
-> On Mon, 2022-02-07 at 20:44 +0530, Ramalingam C wrote:
-> > On 2022-02-07 at 20:25:42 +0530, Hellstrom, Thomas wrote:
-> > > Hi, Ram,
-> > >
-> > > A couple of quick questions before starting a more detailed review:
-> > >
-> > > 1) Does this also support migrating of compressed data LMEM->LMEM?
-> > > What-about inter-tile?
-> > Honestly this series mainly facused on eviction of lmem into smem and
-> > restoration of same.
-> >
-> > To cover migration, we need to handle this differently from eviction.
-> > Becasue when we migrate the compressed content we need to be able to
-> > use
-> > that from that new placement. can't keep the ccs data separately.
-> >
-> > Migration of lmem->smem needs decompression incorportated.
-> > Migration of lmem_m->lmem_n needs to maintain the
-> > compressed/decompressed state as it is.
-> >
-> > So we need to pass the information upto emit_copy to differentiate
-> > eviction and migration
-> >
-> > If you dont have objection I would like to take the migration once we
-> > have the eviction of lmem in place.
-> 
-> Sure NP. I was thinking that in the final solution we might also need
-> to think about the possibility that we might evict to another lmem
-> region, although I figure that won't be enabled until we support multi-
-> tile.
 
-Yes we need it for multi tile enablement of XeHPSDV.
+On 20/01/2022 22:16, Casey Bowman wrote:
+> In this RFC I would like to ask the community their thoughts
+> on how we can best handle splitting architecture-specific
+> calls.
 > 
-> >
-> > >
-> > > 2) Do we need to block faulting of compressed data in the fault
-> > > handler
-> > > as a follow-up patch?
-> >
-> > In case of evicted compressed data we dont need to treat it
-> > differently
-> > from the evicted normal data. So I dont think this needs a special
-> > treatment. Sorry if i dont understand your question.
+> I would like to address the following:
 > 
-> My question wasn't directly related to eviction actually, but does
-> user-space need to have mmap access to compressed data? If not, block
-> it?
+> 1. How do we want to split architecture calls? Different object files
+> per platform? Separate function calls within the same object file?
 
-We shouldn't mmap the ccs data. As per my understanding we should be
-mmaping the obj size which doesn't count the ttm_tt inflated size.
+If we are talking about per-platform divergence of significant functions (not necessarily in size but their height position in the i915 stack) I agree with Jani that top-level per platform organisation is not the best choice.
 
-I will verify this part and if needed will prepare a change to exclude
-increased pages from mmap range.
+On the other hand I doubt that there should be many, if any, such functions. In practice I think it should be only low level stuff which diverges.
 
-Ram.
+On a concrete example..
+  
+> 2. How do we address dummy functions? If we have a function call that is
+> used for one or more platforms, but is not used in another, what should
+> we do for this case?
+
+... depends on the situation. Sometimes a flavour of "warn on once" can be okay I guess, but also why not build bug on? Because..
+
 > 
-> Thanks,
-> Thomas
+> I've given an example of splitting an architecture call
+> in my patch with run_as_guest() being split into different
+> implementations for x86 and arm64 in separate object files, sharing
+> a single header.
+
+... run_as_guest may be a very tricky example, given it is called from intel_vtd_active which has a number of callers.
+
+What is correct behaviour on Arm in this example? None of these call sites will run on Arm? Or that you expect the warn on added in this patch to trigger as a demonstration? If so, what is the plan going forward? We can take one example and talk about it hypothetically:
+
+./i915_driver.c:        drm_printf(p, "iommu: %s\n", enableddisabled(intel_vtd_active(i915)));
+
+What is the "fix" (refactor) for Arm here? Looks like a new top-level function is needed which does not carry the intel_vtd_ prefix but something more generic. That one could then legitimately "warn on once", while for intel_vtd_active it would be wrong to do so.
+
+And when I say it is needed.. well perhaps it is not strictly needed in this case, but in some other cases I think we go back to the problem I stated some months ago and that is that I suspect use of intel_vtd_active is overloaded. I think it is currently used to answer all these questions: 1. Is the IOMMU active, just for information.; 2. Is the IOMMU active and we want to counteract the performance hit by say using huge pages, adjusting the display bandwidth calculations or whatever. (In which case we also may want to distinguish between pass-through and translation modes.); 3. Is a potentially buggy IOMMU active and we need to work around it. All these under one kind of worked with one iommu implementation but does it with a different IOMMU?
+
+Which I mean leads to end conclusion that this particular function is a tricky example to answer the questions asked. :)
+
 > 
+> Another suggestion from Michael (michael.cheng@intel.com) involved
+> using a single object file, a single header, and splitting various
+> functions calls via ifdefs in the header file.
+
+In principle, mostly what you have outlined sounds acceptable to me, with the difference that I would not use i915_platform, but for this particular example something like i915_hypervisor prefix.
+
+Then I would prepare i915 with the same scheme kernel uses, not just for source file divergence, but header file as well. That is:
+
+some_source.c:
+
+#include "i915_hypervisor.h"
+
+i915_hypervisor.h:
+
+#include "platform/i915_hypervisor.h"
+
+Then in i915 root you could have:
+
+platforms/x86/include/platform/i915_hypervisor.h
+platforms/arm/include/platform/i915_hypervisor.h
+
+And some kbuild stuff to make that work. Is this doable and does it make sense? Per-platform source files could live in there as well.
+
+Same scheme for i915_clflush would work as well.
+
+Regards,
+
+Tvrtko
+
 > 
+> I would appreciate any input on how we can avoid scaling issues when
+> including multiple architectures and multiple functions (as the number
+> of function calls will inevitably increase with more architectures).
 > 
-> >
-> > Ram
-> > >
-> > > /Thomas
-> > >
-> > >
-> > > On Mon, 2022-02-07 at 15:07 +0530, Ramalingam C wrote:
-> > > > When we are swapping out the local memory obj on flat-ccs capable
-> > > > platform,
-> > > > we need to capture the ccs data too along with main meory and we
-> > > > need
-> > > > to
-> > > > restore it when we are swapping in the content.
-> > > >
-> > > > Extracting and restoring the CCS data is done through a special
-> > > > cmd
-> > > > called
-> > > > XY_CTRL_SURF_COPY_BLT
-> > > >
-> > > > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/gt/intel_migrate.c | 283 +++++++++++++-----
-> > > > ----
-> > > > --
-> > > >  1 file changed, 155 insertions(+), 128 deletions(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > > > b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > > > index 5bdab0b3c735..e60ae6ff1847 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > > > @@ -449,14 +449,146 @@ static bool wa_1209644611_applies(int ver,
-> > > > u32
-> > > > size)
-> > > >         return height % 4 == 3 && height <= 8;
-> > > >  }
-> > > >
-> > > > +/**
-> > > > + * DOC: Flat-CCS - Memory compression for Local memory
-> > > > + *
-> > > > + * On Xe-HP and later devices, we use dedicated compression
-> > > > control
-> > > > state (CCS)
-> > > > + * stored in local memory for each surface, to support the 3D
-> > > > and
-> > > > media
-> > > > + * compression formats.
-> > > > + *
-> > > > + * The memory required for the CCS of the entire local memory is
-> > > > 1/256 of the
-> > > > + * local memory size. So before the kernel boot, the required
-> > > > memory
-> > > > is reserved
-> > > > + * for the CCS data and a secure register will be programmed
-> > > > with
-> > > > the CCS base
-> > > > + * address.
-> > > > + *
-> > > > + * Flat CCS data needs to be cleared when a lmem object is
-> > > > allocated.
-> > > > + * And CCS data can be copied in and out of CCS region through
-> > > > + * XY_CTRL_SURF_COPY_BLT. CPU can't access the CCS data
-> > > > directly.
-> > > > + *
-> > > > + * When we exaust the lmem, if the object's placements support
-> > > > smem,
-> > > > then we can
-> > > > + * directly decompress the compressed lmem object into smem and
-> > > > start using it
-> > > > + * from smem itself.
-> > > > + *
-> > > > + * But when we need to swapout the compressed lmem object into a
-> > > > smem region
-> > > > + * though objects' placement doesn't support smem, then we copy
-> > > > the
-> > > > lmem content
-> > > > + * as it is into smem region along with ccs data (using
-> > > > XY_CTRL_SURF_COPY_BLT).
-> > > > + * When the object is referred, lmem content will be swaped in
-> > > > along
-> > > > with
-> > > > + * restoration of the CCS data (using XY_CTRL_SURF_COPY_BLT) at
-> > > > corresponding
-> > > > + * location.
-> > > > + *
-> > > > + *
-> > > > + * Flat-CCS Modifiers for different compression formats
-> > > > + * ----------------------------------------------------
-> > > > + *
-> > > > + * I915_FORMAT_MOD_F_TILED_DG2_RC_CCS - used to indicate the
-> > > > buffers
-> > > > of Flat CCS
-> > > > + * render compression formats. Though the general layout is same
-> > > > as
-> > > > + * I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS, new hashing/compression
-> > > > algorithm is
-> > > > + * used. Render compression uses 128 byte compression blocks
-> > > > + *
-> > > > + * I915_FORMAT_MOD_F_TILED_DG2_MC_CCS -used to indicate the
-> > > > buffers
-> > > > of Flat CCS
-> > > > + * media compression formats. Though the general layout is same
-> > > > as
-> > > > + * I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS, new hashing/compression
-> > > > algorithm is
-> > > > + * used. Media compression uses 256 byte compression blocks.
-> > > > + *
-> > > > + * I915_FORMAT_MOD_F_TILED_DG2_RC_CCS_CC - used to indicate the
-> > > > buffers of Flat
-> > > > + * CCS clear color render compression formats. Unified
-> > > > compression
-> > > > format for
-> > > > + * clear color render compression. The genral layout is a tiled
-> > > > layout using
-> > > > + * 4Kb tiles i.e Tile4 layout.
-> > > > + */
-> > > > +
-> > > > +static inline u32 *i915_flush_dw(u32 *cmd, u64 dst, u32 flags)
-> > > > +{
-> > > > +       /* Mask the 3 LSB to use the PPGTT address space */
-> > > > +       *cmd++ = MI_FLUSH_DW | flags;
-> > > > +       *cmd++ = lower_32_bits(dst);
-> > > > +       *cmd++ = upper_32_bits(dst);
-> > > > +
-> > > > +       return cmd;
-> > > > +}
-> > > > +
-> > > > +static u32 calc_ctrl_surf_instr_size(struct drm_i915_private
-> > > > *i915,
-> > > > int size)
-> > > > +{
-> > > > +       u32 num_cmds, num_blks, total_size;
-> > > > +
-> > > > +       if (!GET_CCS_SIZE(i915, size))
-> > > > +               return 0;
-> > > > +
-> > > > +       /*
-> > > > +        * XY_CTRL_SURF_COPY_BLT transfers CCS in 256 byte
-> > > > +        * blocks. one XY_CTRL_SURF_COPY_BLT command can
-> > > > +        * trnasfer upto 1024 blocks.
-> > > > +        */
-> > > > +       num_blks = GET_CCS_SIZE(i915, size);
-> > > > +       num_cmds = (num_blks + (NUM_CCS_BLKS_PER_XFER - 1)) >>
-> > > > 10;
-> > > > +       total_size = (XY_CTRL_SURF_INSTR_SIZE) * num_cmds;
-> > > > +
-> > > > +       /*
-> > > > +        * We need to add a flush before and after
-> > > > +        * XY_CTRL_SURF_COPY_BLT
-> > > > +        */
-> > > > +       total_size += 2 * MI_FLUSH_DW_SIZE;
-> > > > +       return total_size;
-> > > > +}
-> > > > +
-> > > > +static u32 *_i915_ctrl_surf_copy_blt(u32 *cmd, u64 src_addr, u64
-> > > > dst_addr,
-> > > > +                                    u8 src_mem_access, u8
-> > > > dst_mem_access,
-> > > > +                                    int src_mocs, int dst_mocs,
-> > > > +                                    u16 num_ccs_blocks)
-> > > > +{
-> > > > +       int i = num_ccs_blocks;
-> > > > +
-> > > > +       /*
-> > > > +        * The XY_CTRL_SURF_COPY_BLT instruction is used to copy
-> > > > the
-> > > > CCS
-> > > > +        * data in and out of the CCS region.
-> > > > +        *
-> > > > +        * We can copy at most 1024 blocks of 256 bytes using one
-> > > > +        * XY_CTRL_SURF_COPY_BLT instruction.
-> > > > +        *
-> > > > +        * In case we need to copy more than 1024 blocks, we need
-> > > > to
-> > > > add
-> > > > +        * another instruction to the same batch buffer.
-> > > > +        *
-> > > > +        * 1024 blocks of 256 bytes of CCS represent a total
-> > > > 256KB of
-> > > > CCS.
-> > > > +        *
-> > > > +        * 256 KB of CCS represents 256 * 256 KB = 64 MB of LMEM.
-> > > > +        */
-> > > > +       do {
-> > > > +               /*
-> > > > +                * We use logical AND with 1023 since the size
-> > > > field
-> > > > +                * takes values which is in the range of 0 - 1023
-> > > > +                */
-> > > > +               *cmd++ = ((XY_CTRL_SURF_COPY_BLT) |
-> > > > +                         (src_mem_access <<
-> > > > SRC_ACCESS_TYPE_SHIFT) |
-> > > > +                         (dst_mem_access <<
-> > > > DST_ACCESS_TYPE_SHIFT) |
-> > > > +                         (((i - 1) & 1023) << CCS_SIZE_SHIFT));
-> > > > +               *cmd++ = lower_32_bits(src_addr);
-> > > > +               *cmd++ = ((upper_32_bits(src_addr) & 0xFFFF) |
-> > > > +                         (src_mocs << XY_CTRL_SURF_MOCS_SHIFT));
-> > > > +               *cmd++ = lower_32_bits(dst_addr);
-> > > > +               *cmd++ = ((upper_32_bits(dst_addr) & 0xFFFF) |
-> > > > +                         (dst_mocs << XY_CTRL_SURF_MOCS_SHIFT));
-> > > > +               src_addr += SZ_64M;
-> > > > +               dst_addr += SZ_64M;
-> > > > +               i -= NUM_CCS_BLKS_PER_XFER;
-> > > > +       } while (i > 0);
-> > > > +
-> > > > +       return cmd;
-> > > > +}
-> > > > +
-> > > >  static int emit_copy(struct i915_request *rq,
-> > > > -                    u32 dst_offset, u32 src_offset, int size)
-> > > > +                    bool dst_is_lmem, u32 dst_offset,
-> > > > +                    bool src_is_lmem, u32 src_offset, int size)
-> > > >  {
-> > > > +       struct drm_i915_private *i915 = rq->engine->i915;
-> > > >         const int ver = GRAPHICS_VER(rq->engine->i915);
-> > > >         u32 instance = rq->engine->instance;
-> > > > +       u32 num_ccs_blks, ccs_ring_size;
-> > > > +       u8 src_access, dst_access;
-> > > >         u32 *cs;
-> > > >
-> > > > -       cs = intel_ring_begin(rq, ver >= 8 ? 10 : 6);
-> > > > +       ccs_ring_size = ((src_is_lmem || dst_is_lmem) &&
-> > > > HAS_FLAT_CCS(i915)) ?
-> > > > +                        calc_ctrl_surf_instr_size(i915, size) :
-> > > > 0;
-> > > > +
-> > > > +       cs = intel_ring_begin(rq, ver >= 8 ? 10 + ccs_ring_size :
-> > > > 6);
-> > > >         if (IS_ERR(cs))
-> > > >                 return PTR_ERR(cs);
-> > > >
-> > > > @@ -492,6 +624,25 @@ static int emit_copy(struct i915_request
-> > > > *rq,
-> > > >                 *cs++ = src_offset;
-> > > >         }
-> > > >
-> > > > +       if (ccs_ring_size) {
-> > > > +               /* TODO: Migration needs to be handled with
-> > > > resolve
-> > > > of compressed data */
-> > > > +               num_ccs_blks = (GET_CCS_SIZE(i915, size) +
-> > > > +                               NUM_CCS_BYTES_PER_BLOCK - 1) >>
-> > > > 8;
-> > > > +
-> > > > +               src_access = !src_is_lmem && dst_is_lmem;
-> > > > +               dst_access = !src_access;
-> > > > +
-> > > > +               if (src_access) /* Swapin of compressed data */
-> > > > +                       src_offset += size;
-> > > > +               else
-> > > > +                       dst_offset += size;
-> > > > +
-> > > > +               cs = _i915_ctrl_surf_copy_blt(cs, src_offset,
-> > > > dst_offset,
-> > > > +                                             src_access,
-> > > > dst_access,
-> > > > +                                             1, 1,
-> > > > num_ccs_blks);
-> > > > +               cs = i915_flush_dw(cs, dst_offset, MI_FLUSH_LLC |
-> > > > MI_FLUSH_CCS);
-> > > > +       }
-> > > > +
-> > > >         intel_ring_advance(rq, cs);
-> > > >         return 0;
-> > > >  }
-> > > > @@ -578,7 +729,8 @@ intel_context_migrate_copy(struct
-> > > > intel_context
-> > > > *ce,
-> > > >                 if (err)
-> > > >                         goto out_rq;
-> > > >
-> > > > -               err = emit_copy(rq, dst_offset, src_offset, len);
-> > > > +               err = emit_copy(rq, dst_is_lmem, dst_offset,
-> > > > +                               src_is_lmem, src_offset, len);
-> > > >
-> > > >                 /* Arbitration is re-enabled between requests. */
-> > > >  out_rq:
-> > > > @@ -596,131 +748,6 @@ intel_context_migrate_copy(struct
-> > > > intel_context
-> > > > *ce,
-> > > >         return err;
-> > > >  }
-> > > >
-> > > > -/**
-> > > > - * DOC: Flat-CCS - Memory compression for Local memory
-> > > > - *
-> > > > - * On Xe-HP and later devices, we use dedicated compression
-> > > > control
-> > > > state (CCS)
-> > > > - * stored in local memory for each surface, to support the 3D
-> > > > and
-> > > > media
-> > > > - * compression formats.
-> > > > - *
-> > > > - * The memory required for the CCS of the entire local memory is
-> > > > 1/256 of the
-> > > > - * local memory size. So before the kernel boot, the required
-> > > > memory
-> > > > is reserved
-> > > > - * for the CCS data and a secure register will be programmed
-> > > > with
-> > > > the CCS base
-> > > > - * address.
-> > > > - *
-> > > > - * Flat CCS data needs to be cleared when a lmem object is
-> > > > allocated.
-> > > > - * And CCS data can be copied in and out of CCS region through
-> > > > - * XY_CTRL_SURF_COPY_BLT. CPU can't access the CCS data
-> > > > directly.
-> > > > - *
-> > > > - * When we exaust the lmem, if the object's placements support
-> > > > smem,
-> > > > then we can
-> > > > - * directly decompress the compressed lmem object into smem and
-> > > > start using it
-> > > > - * from smem itself.
-> > > > - *
-> > > > - * But when we need to swapout the compressed lmem object into a
-> > > > smem region
-> > > > - * though objects' placement doesn't support smem, then we copy
-> > > > the
-> > > > lmem content
-> > > > - * as it is into smem region along with ccs data (using
-> > > > XY_CTRL_SURF_COPY_BLT).
-> > > > - * When the object is referred, lmem content will be swaped in
-> > > > along
-> > > > with
-> > > > - * restoration of the CCS data (using XY_CTRL_SURF_COPY_BLT) at
-> > > > corresponding
-> > > > - * location.
-> > > > - *
-> > > > - *
-> > > > - * Flat-CCS Modifiers for different compression formats
-> > > > - * ----------------------------------------------------
-> > > > - *
-> > > > - * I915_FORMAT_MOD_F_TILED_DG2_RC_CCS - used to indicate the
-> > > > buffers
-> > > > of Flat CCS
-> > > > - * render compression formats. Though the general layout is same
-> > > > as
-> > > > - * I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS, new hashing/compression
-> > > > algorithm is
-> > > > - * used. Render compression uses 128 byte compression blocks
-> > > > - *
-> > > > - * I915_FORMAT_MOD_F_TILED_DG2_MC_CCS -used to indicate the
-> > > > buffers
-> > > > of Flat CCS
-> > > > - * media compression formats. Though the general layout is same
-> > > > as
-> > > > - * I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS, new hashing/compression
-> > > > algorithm is
-> > > > - * used. Media compression uses 256 byte compression blocks.
-> > > > - *
-> > > > - * I915_FORMAT_MOD_F_TILED_DG2_RC_CCS_CC - used to indicate the
-> > > > buffers of Flat
-> > > > - * CCS clear color render compression formats. Unified
-> > > > compression
-> > > > format for
-> > > > - * clear color render compression. The genral layout is a tiled
-> > > > layout using
-> > > > - * 4Kb tiles i.e Tile4 layout.
-> > > > - */
-> > > > -
-> > > > -static inline u32 *i915_flush_dw(u32 *cmd, u64 dst, u32 flags)
-> > > > -{
-> > > > -       /* Mask the 3 LSB to use the PPGTT address space */
-> > > > -       *cmd++ = MI_FLUSH_DW | flags;
-> > > > -       *cmd++ = lower_32_bits(dst);
-> > > > -       *cmd++ = upper_32_bits(dst);
-> > > > -
-> > > > -       return cmd;
-> > > > -}
-> > > > -
-> > > > -static u32 calc_ctrl_surf_instr_size(struct drm_i915_private
-> > > > *i915,
-> > > > int size)
-> > > > -{
-> > > > -       u32 num_cmds, num_blks, total_size;
-> > > > -
-> > > > -       if (!GET_CCS_SIZE(i915, size))
-> > > > -               return 0;
-> > > > -
-> > > > -       /*
-> > > > -        * XY_CTRL_SURF_COPY_BLT transfers CCS in 256 byte
-> > > > -        * blocks. one XY_CTRL_SURF_COPY_BLT command can
-> > > > -        * trnasfer upto 1024 blocks.
-> > > > -        */
-> > > > -       num_blks = GET_CCS_SIZE(i915, size);
-> > > > -       num_cmds = (num_blks + (NUM_CCS_BLKS_PER_XFER - 1)) >>
-> > > > 10;
-> > > > -       total_size = (XY_CTRL_SURF_INSTR_SIZE) * num_cmds;
-> > > > -
-> > > > -       /*
-> > > > -        * We need to add a flush before and after
-> > > > -        * XY_CTRL_SURF_COPY_BLT
-> > > > -        */
-> > > > -       total_size += 2 * MI_FLUSH_DW_SIZE;
-> > > > -       return total_size;
-> > > > -}
-> > > > -
-> > > > -static u32 *_i915_ctrl_surf_copy_blt(u32 *cmd, u64 src_addr, u64
-> > > > dst_addr,
-> > > > -                                    u8 src_mem_access, u8
-> > > > dst_mem_access,
-> > > > -                                    int src_mocs, int dst_mocs,
-> > > > -                                    u16 num_ccs_blocks)
-> > > > -{
-> > > > -       int i = num_ccs_blocks;
-> > > > -
-> > > > -       /*
-> > > > -        * The XY_CTRL_SURF_COPY_BLT instruction is used to copy
-> > > > the
-> > > > CCS
-> > > > -        * data in and out of the CCS region.
-> > > > -        *
-> > > > -        * We can copy at most 1024 blocks of 256 bytes using one
-> > > > -        * XY_CTRL_SURF_COPY_BLT instruction.
-> > > > -        *
-> > > > -        * In case we need to copy more than 1024 blocks, we need
-> > > > to
-> > > > add
-> > > > -        * another instruction to the same batch buffer.
-> > > > -        *
-> > > > -        * 1024 blocks of 256 bytes of CCS represent a total
-> > > > 256KB of
-> > > > CCS.
-> > > > -        *
-> > > > -        * 256 KB of CCS represents 256 * 256 KB = 64 MB of LMEM.
-> > > > -        */
-> > > > -       do {
-> > > > -               /*
-> > > > -                * We use logical AND with 1023 since the size
-> > > > field
-> > > > -                * takes values which is in the range of 0 - 1023
-> > > > -                */
-> > > > -               *cmd++ = ((XY_CTRL_SURF_COPY_BLT) |
-> > > > -                         (src_mem_access <<
-> > > > SRC_ACCESS_TYPE_SHIFT) |
-> > > > -                         (dst_mem_access <<
-> > > > DST_ACCESS_TYPE_SHIFT) |
-> > > > -                         (((i - 1) & 1023) << CCS_SIZE_SHIFT));
-> > > > -               *cmd++ = lower_32_bits(src_addr);
-> > > > -               *cmd++ = ((upper_32_bits(src_addr) & 0xFFFF) |
-> > > > -                         (src_mocs << XY_CTRL_SURF_MOCS_SHIFT));
-> > > > -               *cmd++ = lower_32_bits(dst_addr);
-> > > > -               *cmd++ = ((upper_32_bits(dst_addr) & 0xFFFF) |
-> > > > -                         (dst_mocs << XY_CTRL_SURF_MOCS_SHIFT));
-> > > > -               src_addr += SZ_64M;
-> > > > -               dst_addr += SZ_64M;
-> > > > -               i -= NUM_CCS_BLKS_PER_XFER;
-> > > > -       } while (i > 0);
-> > > > -
-> > > > -       return cmd;
-> > > > -}
-> > > > -
-> > > >  static int emit_clear(struct i915_request *rq,
-> > > >                       u64 offset,
-> > > >                       int size,
-> > >
+> Casey Bowman (1):
+>    i915/drm: Split out x86 and arm64 functionality
+> 
+>   drivers/gpu/drm/i915/Makefile              |  4 +++
+>   drivers/gpu/drm/i915/i915_drv.h            |  6 +---
+>   drivers/gpu/drm/i915/i915_platform.h       | 16 +++++++++++
+>   drivers/gpu/drm/i915/i915_platform_arm64.c | 33 ++++++++++++++++++++++
+>   drivers/gpu/drm/i915/i915_platform_x86.c   | 33 ++++++++++++++++++++++
+>   5 files changed, 87 insertions(+), 5 deletions(-)
+>   create mode 100644 drivers/gpu/drm/i915/i915_platform.h
+>   create mode 100644 drivers/gpu/drm/i915/i915_platform_arm64.c
+>   create mode 100644 drivers/gpu/drm/i915/i915_platform_x86.c
 > 
