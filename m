@@ -2,32 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 463264ACCA5
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 00:43:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA3A4ACCAD
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 00:56:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ECF710E518;
-	Mon,  7 Feb 2022 23:43:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FA4910E518;
+	Mon,  7 Feb 2022 23:56:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3CB5710E62A;
- Mon,  7 Feb 2022 23:43:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 383B6A73C7;
- Mon,  7 Feb 2022 23:43:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3081723427609604798=="
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C62AC10E518
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Feb 2022 23:56:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644278168; x=1675814168;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=DrAJA0o4wpDzBzffrZo67qoeI12zxVtUWqgdtmJ/aHs=;
+ b=irsHF8LyT/cgwBoW2aOHgWpTHDc+Eda1F34V8KpbsLUu1lGnPX9f7ReJ
+ aVQzKqCxdiVWzjkl0gLVZleU6nUgogqOe9TO4F/ae/4leHn2i4eArmfZ5
+ dVMqtf/UwosU5QveCl/FuyVc77jTueO1UYIVxJQ6dy2TUyUFWNLxj1TKb
+ YfRgl42hUhFzrXqExk2vcOd736+lVhAtRLUI9IT2huYndnE9lv+5/gvav
+ GfEslKjZxoxzPU6IOY/dayi05qFOJb2ITedGPBwO49YMxez1RjQ+OIQ/B
+ K4013MialFNDLeH6Jfhv4mtgl+CvpbbzzeUd0q2JOS166iLAXWenuRXEr Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="247668537"
+X-IronPort-AV: E=Sophos;i="5.88,351,1635231600"; d="scan'208";a="247668537"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2022 15:56:08 -0800
+X-IronPort-AV: E=Sophos;i="5.88,351,1635231600"; d="scan'208";a="525325822"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2022 15:56:04 -0800
+Date: Mon, 7 Feb 2022 15:56:06 -0800
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20220207235604.GA8222@labuser-Z97X-UD5H>
+References: <20220203183823.22890-1-ville.syrjala@linux.intel.com>
+ <20220203183823.22890-11-ville.syrjala@linux.intel.com>
+ <20220204235828.GA23624@labuser-Z97X-UD5H>
+ <YgDKx8obYfeLKCAf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lyude Paul" <lyude@redhat.com>
-Date: Mon, 07 Feb 2022 23:43:40 -0000
-Message-ID: <164427742022.23831.10907353106862243108@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220207213923.3605-1-lyude@redhat.com>
-In-Reply-To: <20220207213923.3605-1-lyude@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/psr=3A_Disable_PSR2_selective_fetch_for_all_TGL_steps?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YgDKx8obYfeLKCAf@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 10/10] drm/i915: Change bigjoiner state
+ tracking to use the pipe bitmask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,306 +62,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3081723427609604798==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Feb 07, 2022 at 09:31:19AM +0200, Ville Syrjälä wrote:
+> On Fri, Feb 04, 2022 at 03:58:29PM -0800, Navare, Manasi wrote:
+> > On Thu, Feb 03, 2022 at 08:38:23PM +0200, Ville Syrjala wrote:
+> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > 
+> > > Get rid of the inflexible bigjoiner_linked_crtc pointer thing
+> > > and just track things as a bitmask of pipes instead. We can
+> > > also nuke the bigjoiner_slave boolean as the role of the pipe
+> > > can be determined from its position in the bitmask.
+> > > 
+> > > It might be possible to nuke the bigjoiner boolean as well
+> > > if we make encoder.compute_config() do the bitmask assignment
+> > > directly for the master pipe. But for now I left that alone so
+> > > that encoer.compute_config() will just flag the state as needing
+> > > bigjoiner, and the intel_atomic_check_bigjoiner() is still
+> > > responsible for determining the bitmask. But that may have to change
+> > > as the encoder may be in the best position to determine how
+> > > exactly we should populate the bitmask.
+> > > 
+> > > Most places that just looked at the single bigjoiner_linked_crtc
+> > > now iterate over the whole bitmask, eliminating the singular
+> > > slave pipe assumption.
+> > 
+> > Okay so trying to understand the design here:
+> > For Pipe A + B Bigjoiner and C + D bigjoiner for example,
+> > bitmasks will be as below:
+> > 
+> > A : 0011
+> > B:  0011
+> > 
+> > C: 1100
+> > D: 1100
+> > 
+> > Is this correct understanding? Because we would mark both the master pipe and slave pipe in a bitmask right?
+> 
+> Yes.
+> 
+> > 
+> > > 
+> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > ---
+> > >  .../gpu/drm/i915/display/intel_atomic_plane.c |   5 +-
+> > >  drivers/gpu/drm/i915/display/intel_ddi.c      |  12 +-
+> > >  drivers/gpu/drm/i915/display/intel_display.c  | 305 ++++++++++++------
+> > >  drivers/gpu/drm/i915/display/intel_display.h  |   2 +
+> > >  .../drm/i915/display/intel_display_debugfs.c  |   5 +-
+> > >  .../drm/i915/display/intel_display_types.h    |   7 +-
+> > >  .../drm/i915/display/intel_plane_initial.c    |   7 -
+> > >  drivers/gpu/drm/i915/display/intel_vdsc.c     |  43 ---
+> > >  drivers/gpu/drm/i915/display/intel_vdsc.h     |   1 -
+> > >  9 files changed, 227 insertions(+), 160 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > > index 41d52889dfce..0e15fe908855 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > > @@ -404,9 +404,10 @@ int intel_plane_atomic_check(struct intel_atomic_state *state,
+> > >  		intel_atomic_get_new_crtc_state(state, crtc);
+> > >  
+> > >  	if (new_crtc_state && intel_crtc_is_bigjoiner_slave(new_crtc_state)) {
+> > > +		struct intel_crtc *master_crtc =
+> > > +			intel_master_crtc(new_crtc_state);
+> > >  		struct intel_plane *master_plane =
+> > > -			intel_crtc_get_plane(new_crtc_state->bigjoiner_linked_crtc,
+> > > -					     plane->id);
+> > > +			intel_crtc_get_plane(master_crtc, plane->id);
+> > >  
+> > >  		new_master_plane_state =
+> > >  			intel_atomic_get_new_plane_state(state, master_plane);
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > index 3f0e1e127595..9dee12986991 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > @@ -2703,6 +2703,7 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
+> > >  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+> > >  	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+> > >  	bool is_tc_port = intel_phy_is_tc(dev_priv, phy);
+> > > +	struct intel_crtc *slave_crtc;
+> > >  
+> > >  	if (!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DP_MST)) {
+> > >  		intel_crtc_vblank_off(old_crtc_state);
+> > > @@ -2721,9 +2722,8 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
+> > >  			ilk_pfit_disable(old_crtc_state);
+> > >  	}
+> > >  
+> > > -	if (old_crtc_state->bigjoiner_linked_crtc) {
+> > > -		struct intel_crtc *slave_crtc =
+> > > -			old_crtc_state->bigjoiner_linked_crtc;
+> > > +	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, slave_crtc,
+> > > +					 intel_crtc_bigjoiner_slave_pipes(old_crtc_state)) {
+> > >  		const struct intel_crtc_state *old_slave_crtc_state =
+> > >  			intel_atomic_get_old_crtc_state(state, slave_crtc);
+> > >  
+> > > @@ -3041,6 +3041,7 @@ intel_ddi_update_prepare(struct intel_atomic_state *state,
+> > >  			 struct intel_encoder *encoder,
+> > >  			 struct intel_crtc *crtc)
+> > >  {
+> > > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > >  	struct intel_crtc_state *crtc_state =
+> > >  		crtc ? intel_atomic_get_new_crtc_state(state, crtc) : NULL;
+> > >  	int required_lanes = crtc_state ? crtc_state->lane_count : 1;
+> > > @@ -3050,11 +3051,12 @@ intel_ddi_update_prepare(struct intel_atomic_state *state,
+> > >  	intel_tc_port_get_link(enc_to_dig_port(encoder),
+> > >  		               required_lanes);
+> > >  	if (crtc_state && crtc_state->hw.active) {
+> > > -		struct intel_crtc *slave_crtc = crtc_state->bigjoiner_linked_crtc;
+> > > +		struct intel_crtc *slave_crtc;
+> > >  
+> > >  		intel_update_active_dpll(state, crtc, encoder);
+> > >  
+> > > -		if (slave_crtc)
+> > > +		for_each_intel_crtc_in_pipe_mask(&i915->drm, slave_crtc,
+> > > +						 intel_crtc_bigjoiner_slave_pipes(crtc_state))
+> > >  			intel_update_active_dpll(state, slave_crtc, encoder);
+> > >  	}
+> > >  }
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index 34b6b4ab3a1b..f5fc283f8f73 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -337,20 +337,38 @@ is_trans_port_sync_mode(const struct intel_crtc_state *crtc_state)
+> > >  		is_trans_port_sync_slave(crtc_state);
+> > >  }
+> > >  
+> > > +static enum pipe bigjoiner_master_pipe(const struct intel_crtc_state *crtc_state)
+> > > +{
+> > > +	return ffs(crtc_state->bigjoiner_pipes) - 1;
+> > 
+> > Here we have both master and slave pipe bits set in a bitmask: This would result in ffs(0011) -1 = 2 which wouldnt be correct?
+> 
+> ffs(0b0011) == 1
 
-== Series Details ==
+Okay yes sorry yes ffs finds the position of the first least significant bit so should be 1 , and then master pipe would be 0
+For when its between C & D, then ffs(1100) will be 3 and master pipe would be 2 which is C so yes this makes sense now.
 
-Series: drm/i915/psr: Disable PSR2 selective fetch for all TGL steps
-URL   : https://patchwork.freedesktop.org/series/99796/
-State : success
+> 
+> <snip>
+> > >  static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
+> > >  					struct intel_crtc *master_crtc)
+> > >  {
+> > >  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > >  	struct intel_crtc_state *master_crtc_state =
+> > >  		intel_atomic_get_new_crtc_state(state, master_crtc);
+> > > -	struct intel_crtc_state *slave_crtc_state;
+> > >  	struct intel_crtc *slave_crtc;
+> > > +	u8 slave_pipes;
+> > >  
+> > > -	WARN_ON(master_crtc_state->bigjoiner_linked_crtc);
+> > > -	WARN_ON(intel_crtc_is_bigjoiner_slave(master_crtc_state));
+> > > +	/*
+> > > +	 * TODO: encoder.compute_config() may be the best
+> > > +	 * place to populate the bitmask for the master crtc.
+> > > +	 * For now encoder.compute_config() just flags things
+> > > +	 * as needing bigjoiner and we populate the bitmask
+> > > +	 * here.
+> > > +	 */
+> > > +	WARN_ON(master_crtc_state->bigjoiner_pipes);
+> > >  
+> > >  	if (!master_crtc_state->bigjoiner)
+> > >  		return 0;
+> > >  
+> > > -	slave_crtc = intel_dsc_get_bigjoiner_secondary(master_crtc);
+> > > -	if (!slave_crtc) {
+> > > +	slave_pipes = BIT(master_crtc->pipe + 1);
+> > > +
+> > > +	if (slave_pipes & ~bigjoiner_pipes(i915)) {
+> > >  		drm_dbg_kms(&i915->drm,
+> > > -			    "[CRTC:%d:%s] Big joiner configuration requires "
+> > > -			    "CRTC + 1 to be used, doesn't exist\n",
+> > > +			    "[CRTC:%d:%s] Cannot act as big joiner master "
+> > > +			    "(need 0x%x as slave pipes, only 0x%x possible)\n",
+> > > +			    master_crtc->base.base.id, master_crtc->base.name,
+> > > +			    slave_pipes, bigjoiner_pipes(i915));
+> > > +		return -EINVAL;
+> > 
+> > I dont get how we are checking for the invalid slave pipe here?
+> > slave_pipes = BIT(1) = 0010
+> > bigjoiner_pipes = 0000 (since we havents et anything in compute config)
+> 
+> bigjoiner_pipes() is a bitmask of pipes that support bigjoiner.
+> It is constant for the platform.
+> 
+> > so slave_pipes & ~bigjoiner_pipes = 0010 & 1111 = 0010 so the condition will be true
+> > And then we are flagging it as error why?
+> 
+> If we come here with eg. master == pipe D on TGL then we'd
+> mark the non-existent pipe E as the slave. This check will
+> catch that.
 
-== Summary ==
+Okay yes makes sense, I was mistaking bigjoiner_pipes(i915) with crtc_state->bigjoiner_pipes
 
-CI Bug Log - changes from CI_DRM_11198 -> Patchwork_22194
-====================================================
+Okay with these calrifications,
 
-Summary
--------
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
-  **SUCCESS**
+Manasi
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/index.html
-
-Participating hosts (48 -> 44)
-------------------------------
-
-  Additional (1): fi-icl-u2 
-  Missing    (5): shard-tglu fi-bsw-cyan fi-pnv-d510 shard-dg1 bat-jsl-2 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22194 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@fork-gfx0:
-    - fi-icl-u2:          NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-icl-u2:          NOTRUN -> [SKIP][2] ([i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-icl-u2:          NOTRUN -> [SKIP][3] ([i915#4613]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          NOTRUN -> [SKIP][4] ([fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-u2:          NOTRUN -> [SKIP][5] ([fdo#109278]) +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - fi-cfl-8109u:       [PASS][6] -> [DMESG-WARN][7] ([i915#165]) +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11198/fi-cfl-8109u/igt@kms_force_connector_basic@force-connector-state.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-cfl-8109u/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-u2:          NOTRUN -> [SKIP][8] ([fdo#109285])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-cfl-8109u:       [PASS][9] -> [DMESG-WARN][10] ([i915#165] / [i915#295]) +13 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11198/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-icl-u2:          NOTRUN -> [SKIP][11] ([i915#3301])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][12] ([i915#4312])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-skl-6600u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - {fi-tgl-dsi}:       [DMESG-WARN][13] ([i915#2867]) -> [PASS][14] +17 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11198/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - {fi-jsl-1}:         [DMESG-FAIL][15] ([i915#1886]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11198/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-jsl-1/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][17] ([i915#4269]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11198/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [DMESG-FAIL][19] ([i915#4494] / [i915#4957]) -> [DMESG-FAIL][20] ([i915#4957])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11198/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
-  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11198 -> Patchwork_22194
-
-  CI-20190529: 20190529
-  CI_DRM_11198: 125ad93ed42690fefbc273e4195f8d705d29c8c0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6340: 2401624349fecc8213d7d394a84ad91cf04241f7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22194: f6d38c61577b0f6754bbd4c89eae86b9b70b607d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f6d38c61577b drm/i915/psr: Disable PSR2 selective fetch for all TGL steps
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/index.html
-
---===============3081723427609604798==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/psr: Disable PSR2 selective fetch for all TGL steps</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99796/">https://patchwork.freedesktop.org/series/99796/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11198 -&gt; Patchwork_22194</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/index.html</p>
-<h2>Participating hosts (48 -&gt; 44)</h2>
-<p>Additional (1): fi-icl-u2 <br />
-  Missing    (5): shard-tglu fi-bsw-cyan fi-pnv-d510 shard-dg1 bat-jsl-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22194 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11198/fi-cfl-8109u/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-cfl-8109u/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11198/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +13 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11198/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html">PASS</a> +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11198/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-jsl-1/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11198/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11198/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22194/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11198 -&gt; Patchwork_22194</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11198: 125ad93ed42690fefbc273e4195f8d705d29c8c0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6340: 2401624349fecc8213d7d394a84ad91cf04241f7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22194: f6d38c61577b0f6754bbd4c89eae86b9b70b607d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>f6d38c61577b drm/i915/psr: Disable PSR2 selective fetch for all TGL steps</p>
-
-</body>
-</html>
-
---===============3081723427609604798==--
+> 
+> -- 
+> Ville Syrjälä
+> Intel
