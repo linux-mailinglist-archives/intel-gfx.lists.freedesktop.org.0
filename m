@@ -1,62 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5209E4AB59B
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 08:21:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B75904AB5DE
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 08:29:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 101BA10E574;
-	Mon,  7 Feb 2022 07:20:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F123810E137;
+	Mon,  7 Feb 2022 07:29:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9C2110E4A8;
- Mon,  7 Feb 2022 07:20:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1644218455; x=1675754455;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=pu0BUIY/nfx6gvU0Um7W4uLuEpTKGRQoIWPBtxGl+YI=;
- b=gENzbF8/+dJJojTqy0dTCQYEjMzXdXN3tp4c+JfZAa1HH6AN2BTbrPIi
- G1r7lGj6gYCHtSnxloAcQlm5LVHSGqUHu0q6TURfP7IUykkCmKXiljJRe
- 5cDsF+mCqZNs/14n0nCUcv/SdAN0S/V3F/wycH6Efxru8r84isrV6VpGm 8=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
- by alexa-out.qualcomm.com with ESMTP; 06 Feb 2022 23:20:55 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2022 23:20:54 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 6 Feb 2022 23:20:54 -0800
-Received: from [10.38.243.172] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Sun, 6 Feb 2022
- 23:20:52 -0800
-Message-ID: <d69038d6-a853-d2d9-81de-0ad10c4d6a3a@quicinc.com>
-Date: Sun, 6 Feb 2022 23:20:50 -0800
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B764E10E450
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Feb 2022 07:29:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644218974; x=1675754974;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=zDXn2csewIYK3in74vyVTG4cyMWuetH0wS7yL3BsaOM=;
+ b=XGwbRmwDS5Xg5ODyxDQgg7Vy3yGmjYiUDbYsTpIKS/FrKlstrF7VWBri
+ 6RaB9vCQlkjbkoGHRBDdQ/4KfegfbO7V8tuk1sb3BR4jo2xV0flQTvw9T
+ 6ouuMD8UiZI16v7pZj27foXsZde7cN2QcuGc679TnGPpXyAUOyyA+2lAH
+ shPUXgdEWmwSOclnSSsdqWvyfzcX+oSf4UoaBINawU8yhjSODsUY9BCSd
+ bLfdkVV4ez5q0IQkDGlRxfmn4FoJK+L4RkpeML0n3L2C8rpQGf+InVUir
+ X1jSE4f7Xi9myC/N5WKHqfyqV0a88oPyM1tmCYTZW7yVnPq79BkxZQfzA Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10250"; a="248610450"
+X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="248610450"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2022 23:29:33 -0800
+X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; d="scan'208";a="484322507"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2022 23:29:32 -0800
+Date: Mon, 7 Feb 2022 09:29:40 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20220207072940.GA2471@intel.com>
+References: <20220204141818.1900-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>
-References: <20220202085429.22261-1-suraj.kandpal@intel.com>
- <20220202085429.22261-6-suraj.kandpal@intel.com>
- <Yfp8Q6OFqTAvESOi@pendragon.ideasonboard.com> <87y22ts948.fsf@intel.com>
- <YfqGbqQQz5vrDaLI@pendragon.ideasonboard.com>
- <CAA8EJpqr6MB64EAtLU3nBjgjx1COwn4auenCCw4kHB489VG0CA@mail.gmail.com>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <CAA8EJpqr6MB64EAtLU3nBjgjx1COwn4auenCCw4kHB489VG0CA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/rcar_du: changes to rcar-du driver
- resulting from drm_writeback_connector structure changes
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220204141818.1900-1-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Allow !join_mbus cases for
+ adlp+ dbuf configuration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,159 +58,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: carsten.haitzler@arm.com, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Laurent
-
-On 2/6/2022 3:32 PM, Dmitry Baryshkov wrote:
-> On Wed, 2 Feb 2022 at 16:26, Laurent Pinchart
-> <laurent.pinchart@ideasonboard.com> wrote:
->>
->> Hi Jani,
->>
->> On Wed, Feb 02, 2022 at 03:15:03PM +0200, Jani Nikula wrote:
->>> On Wed, 02 Feb 2022, Laurent Pinchart wrote:
->>>> On Wed, Feb 02, 2022 at 02:24:28PM +0530, Kandpal Suraj wrote:
->>>>> Changing rcar_du driver to accomadate the change of
->>>>> drm_writeback_connector.base and drm_writeback_connector.encoder
->>>>> to a pointer the reason for which is explained in the
->>>>> Patch(drm: add writeback pointers to drm_connector).
->>>>>
->>>>> Signed-off-by: Kandpal Suraj <suraj.kandpal@intel.com>
->>>>> ---
->>>>>   drivers/gpu/drm/rcar-du/rcar_du_crtc.h      | 2 ++
->>>>>   drivers/gpu/drm/rcar-du/rcar_du_writeback.c | 8 +++++---
->>>>>   2 files changed, 7 insertions(+), 3 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
->>>>> index 66e8839db708..68f387a04502 100644
->>>>> --- a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
->>>>> +++ b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
->>>>> @@ -72,6 +72,8 @@ struct rcar_du_crtc {
->>>>>     const char *const *sources;
->>>>>     unsigned int sources_count;
->>>>>
->>>>> +  struct drm_connector connector;
->>>>> +  struct drm_encoder encoder;
->>>>
->>>> Those fields are, at best, poorly named. Furthermore, there's no need in
->>>> this driver or in other drivers using drm_writeback_connector to create
->>>> an encoder or connector manually. Let's not polute all drivers because
->>>> i915 doesn't have its abstractions right.
->>>
->>> i915 uses the quite common model for struct inheritance:
->>>
->>>        struct intel_connector {
->>>                struct drm_connector base;
->>>                /* ... */
->>>        }
->>>
->>> Same with at least amd, ast, fsl-dcu, hisilicon, mga200, msm, nouveau,
->>> radeon, tilcdc, and vboxvideo.
->>>
->>> We could argue about the relative merits of that abstraction, but I
->>> think the bottom line is that it's popular and the drivers using it are
->>> not going to be persuaded to move away from it.
->>
->> Nobody said inheritance is bad.
->>
->>> It's no coincidence that the drivers who've implemented writeback so far
->>> (komeda, mali, rcar-du, vc4, and vkms) do not use the abstraction,
->>> because the drm_writeback_connector midlayer does, forcing the issue.
->>
->> Are you sure it's not a coincidence ? :-)
->>
->> The encoder and especially connector created by drm_writeback_connector
->> are there only because KMS requires a drm_encoder and a drm_connector to
->> be exposed to userspace (and I could argue that using a connector for
->> writeback is a hack, but that won't change). The connector is "virtual",
->> I still fail to see why i915 or any other driver would need to wrap it
->> into something else. The whole point of the drm_writeback_connector
->> abstraction is that drivers do not have to manage the writeback
->> drm_connector manually, they shouldn't touch it at all.
+On Fri, Feb 04, 2022 at 04:18:16PM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Laurent, I wanted to shift a bit from the question of drm_connector to
-> the question of drm_encoder being embedded in the
-> drm_writeback_connector.
-> In case of the msm driver the drm_encoder is not a lightweight entity,
-> but a full-featured driver part. Significant part of it can be shared
-> with the writeback implementation, if we allow using a pointer to the
-> external drm_encoder with the drm_writeback_connector.
-> Does the following patch set stand a chance to receive your ack?
->   - Switch drm_writeback_connector to point to drm_encoder rather than
-> embedding it?
->   - Create drm_encoder for the drm_writeback_connector when one is not
-> specified, so the current drivers can be left unchanged.
+> Reintroduce the !join_mbus single pipe cases for adlp+.
 > 
-
-I second Dmitry's request here. For the reasons he has mentioned along 
-with the possibility of the writeback encoder being shared across 
-display pipelines, strengthens our request of the drm encoder being a 
-pointer inside the drm_writeback_connector instead of embedding it.
-
-Like I had shown in my RFC, in case the other drivers dont specify one,
-we can allocate one:
-
-https://patchwork.kernel.org/project/dri-devel/patch/1642732195-25349-1-git-send-email-quic_abhinavk@quicinc.com/
-
-We think this should be a reasonable accomodation to the existing
-drm_writeback driver.
-
-Thanks
-
-Abhinav
-
->>
->>> So I think drm_writeback_connector should *not* use the inheritance
->>> abstraction because it's a midlayer that should leave that option to the
->>> drivers. I think drm_writeback_connector needs to be changed to
->>> accommodate that, and, unfortunately, it means current writeback users
->>> need to be changed as well.
->>>
->>> I am not sure, however, if the series at hand is the right
->>> approach. Perhaps writeback can be modified to allocate the stuff for
->>> you if you prefer it that way, as long as the drm_connector is not
->>> embedded in struct drm_writeback_connector.
->>>
->>>> Nack.
->>>>
->>>>>     struct drm_writeback_connector writeback;
->>>>>   };
->>>>>
->>>>> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
->>>>> index c79d1259e49b..5b1e83380c47 100644
->>>>> --- a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
->>>>> +++ b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
->>>>> @@ -200,8 +200,10 @@ int rcar_du_writeback_init(struct rcar_du_device *rcdu,
->>>>>   {
->>>>>     struct drm_writeback_connector *wb_conn = &rcrtc->writeback;
->>>>>
->>>>> -  wb_conn->encoder.possible_crtcs = 1 << drm_crtc_index(&rcrtc->crtc);
->>>>> -  drm_connector_helper_add(&wb_conn->base,
->>>>> +  wb_conn->base = &rcrtc->connector;
->>>>> +  wb_conn->encoder = &rcrtc->encoder;
->>>>> +  wb_conn->encoder->possible_crtcs = 1 << drm_crtc_index(&rcrtc->crtc);
->>>>> +  drm_connector_helper_add(wb_conn->base,
->>>>>                              &rcar_du_wb_conn_helper_funcs);
->>>>>
->>>>>     return drm_writeback_connector_init(&rcdu->ddev, wb_conn,
->>>>> @@ -220,7 +222,7 @@ void rcar_du_writeback_setup(struct rcar_du_crtc *rcrtc,
->>>>>     struct drm_framebuffer *fb;
->>>>>     unsigned int i;
->>>>>
->>>>> -  state = rcrtc->writeback.base.state;
->>>>> +  state = rcrtc->writeback.base->state;
->>>>>     if (!state || !state->writeback_job)
->>>>>             return;
->>>>>
->>
->> --
->> Regards,
->>
->> Laurent Pinchart
+> Due to the mbus relative dbuf offsets in PLANE_BUF_CFG we
+> need to know the actual slices used by the pipe when doing
+> readout, even when mbus joining isn't enabled. Accurate
+> readout will be needed to properly sanitize invalid BIOS
+> dbuf configurations.
 > 
+> This will also make it much easier to play around with the
+> !join_mbus configs for testin/workaround purposes
 > 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 66 +++++++++++++++++++++++----------
+>  1 file changed, 46 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> index 859be750fb22..2eb70ec38f6e 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -4695,6 +4695,10 @@ static const struct dbuf_slice_conf_entry dg2_allowed_dbufs[] = {
+>  };
+>  
+>  static const struct dbuf_slice_conf_entry adlp_allowed_dbufs[] = {
+> +	/*
+> +	 * Keep the join_mbus cases first so check_mbus_joined()
+> +	 * will prefer them over the !join_mbus cases.
+> +	 */
+>  	{
+>  		.active_pipes = BIT(PIPE_A),
+>  		.dbuf_mask = {
+> @@ -4709,6 +4713,20 @@ static const struct dbuf_slice_conf_entry adlp_allowed_dbufs[] = {
+>  		},
+>  		.join_mbus = true,
+>  	},
+> +	{
+> +		.active_pipes = BIT(PIPE_A),
+> +		.dbuf_mask = {
+> +			[PIPE_A] = BIT(DBUF_S1) | BIT(DBUF_S2),
+> +		},
+> +		.join_mbus = false,
+> +	},
+> +	{
+> +		.active_pipes = BIT(PIPE_B),
+> +		.dbuf_mask = {
+> +			[PIPE_B] = BIT(DBUF_S3) | BIT(DBUF_S4),
+> +		},
+> +		.join_mbus = false,
+> +	},
+>  	{
+>  		.active_pipes = BIT(PIPE_A) | BIT(PIPE_B),
+>  		.dbuf_mask = {
+> @@ -4825,13 +4843,14 @@ static bool adlp_check_mbus_joined(u8 active_pipes)
+>  	return check_mbus_joined(active_pipes, adlp_allowed_dbufs);
+>  }
+>  
+> -static u8 compute_dbuf_slices(enum pipe pipe, u8 active_pipes,
+> +static u8 compute_dbuf_slices(enum pipe pipe, u8 active_pipes, bool join_mbus,
+>  			      const struct dbuf_slice_conf_entry *dbuf_slices)
+>  {
+>  	int i;
+>  
+>  	for (i = 0; i < dbuf_slices[i].active_pipes; i++) {
+> -		if (dbuf_slices[i].active_pipes == active_pipes)
+> +		if (dbuf_slices[i].active_pipes == active_pipes &&
+> +		    dbuf_slices[i].join_mbus == join_mbus)
+
+We had similar blocker issue in May I remember for ADL, I remember I've sent
+a fix, which was however just about checking also join_mbus state besides, the active pipes. 
+Nice to see we are finally handling this now even more properly
+
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+>  			return dbuf_slices[i].dbuf_mask[pipe];
+>  	}
+>  	return 0;
+> @@ -4842,7 +4861,7 @@ static u8 compute_dbuf_slices(enum pipe pipe, u8 active_pipes,
+>   * returns correspondent DBuf slice mask as stated in BSpec for particular
+>   * platform.
+>   */
+> -static u8 icl_compute_dbuf_slices(enum pipe pipe, u8 active_pipes)
+> +static u8 icl_compute_dbuf_slices(enum pipe pipe, u8 active_pipes, bool join_mbus)
+>  {
+>  	/*
+>  	 * FIXME: For ICL this is still a bit unclear as prev BSpec revision
+> @@ -4856,37 +4875,41 @@ static u8 icl_compute_dbuf_slices(enum pipe pipe, u8 active_pipes)
+>  	 * still here - we will need it once those additional constraints
+>  	 * pop up.
+>  	 */
+> -	return compute_dbuf_slices(pipe, active_pipes, icl_allowed_dbufs);
+> +	return compute_dbuf_slices(pipe, active_pipes, join_mbus,
+> +				   icl_allowed_dbufs);
+>  }
+>  
+> -static u8 tgl_compute_dbuf_slices(enum pipe pipe, u8 active_pipes)
+> +static u8 tgl_compute_dbuf_slices(enum pipe pipe, u8 active_pipes, bool join_mbus)
+>  {
+> -	return compute_dbuf_slices(pipe, active_pipes, tgl_allowed_dbufs);
+> +	return compute_dbuf_slices(pipe, active_pipes, join_mbus,
+> +				   tgl_allowed_dbufs);
+>  }
+>  
+> -static u32 adlp_compute_dbuf_slices(enum pipe pipe, u32 active_pipes)
+> +static u8 adlp_compute_dbuf_slices(enum pipe pipe, u8 active_pipes, bool join_mbus)
+>  {
+> -	return compute_dbuf_slices(pipe, active_pipes, adlp_allowed_dbufs);
+> +	return compute_dbuf_slices(pipe, active_pipes, join_mbus,
+> +				   adlp_allowed_dbufs);
+>  }
+>  
+> -static u32 dg2_compute_dbuf_slices(enum pipe pipe, u32 active_pipes)
+> +static u8 dg2_compute_dbuf_slices(enum pipe pipe, u8 active_pipes, bool join_mbus)
+>  {
+> -	return compute_dbuf_slices(pipe, active_pipes, dg2_allowed_dbufs);
+> +	return compute_dbuf_slices(pipe, active_pipes, join_mbus,
+> +				   dg2_allowed_dbufs);
+>  }
+>  
+> -static u8 skl_compute_dbuf_slices(struct intel_crtc *crtc, u8 active_pipes)
+> +static u8 skl_compute_dbuf_slices(struct intel_crtc *crtc, u8 active_pipes, bool join_mbus)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>  	enum pipe pipe = crtc->pipe;
+>  
+>  	if (IS_DG2(dev_priv))
+> -		return dg2_compute_dbuf_slices(pipe, active_pipes);
+> +		return dg2_compute_dbuf_slices(pipe, active_pipes, join_mbus);
+>  	else if (IS_ALDERLAKE_P(dev_priv))
+> -		return adlp_compute_dbuf_slices(pipe, active_pipes);
+> +		return adlp_compute_dbuf_slices(pipe, active_pipes, join_mbus);
+>  	else if (DISPLAY_VER(dev_priv) == 12)
+> -		return tgl_compute_dbuf_slices(pipe, active_pipes);
+> +		return tgl_compute_dbuf_slices(pipe, active_pipes, join_mbus);
+>  	else if (DISPLAY_VER(dev_priv) == 11)
+> -		return icl_compute_dbuf_slices(pipe, active_pipes);
+> +		return icl_compute_dbuf_slices(pipe, active_pipes, join_mbus);
+>  	/*
+>  	 * For anything else just return one slice yet.
+>  	 * Should be extended for other platforms.
+> @@ -6139,11 +6162,16 @@ skl_compute_ddb(struct intel_atomic_state *state)
+>  			return ret;
+>  	}
+>  
+> +	if (IS_ALDERLAKE_P(dev_priv))
+> +		new_dbuf_state->joined_mbus =
+> +			adlp_check_mbus_joined(new_dbuf_state->active_pipes);
+> +
+>  	for_each_intel_crtc(&dev_priv->drm, crtc) {
+>  		enum pipe pipe = crtc->pipe;
+>  
+>  		new_dbuf_state->slices[pipe] =
+> -			skl_compute_dbuf_slices(crtc, new_dbuf_state->active_pipes);
+> +			skl_compute_dbuf_slices(crtc, new_dbuf_state->active_pipes,
+> +						new_dbuf_state->joined_mbus);
+>  
+>  		if (old_dbuf_state->slices[pipe] == new_dbuf_state->slices[pipe])
+>  			continue;
+> @@ -6155,9 +6183,6 @@ skl_compute_ddb(struct intel_atomic_state *state)
+>  
+>  	new_dbuf_state->enabled_slices = intel_dbuf_enabled_slices(new_dbuf_state);
+>  
+> -	if (IS_ALDERLAKE_P(dev_priv))
+> -		new_dbuf_state->joined_mbus = adlp_check_mbus_joined(new_dbuf_state->active_pipes);
+> -
+>  	if (old_dbuf_state->enabled_slices != new_dbuf_state->enabled_slices ||
+>  	    old_dbuf_state->joined_mbus != new_dbuf_state->joined_mbus) {
+>  		ret = intel_atomic_serialize_global_state(&new_dbuf_state->base);
+> @@ -6658,7 +6683,8 @@ void skl_wm_get_hw_state(struct drm_i915_private *dev_priv)
+>  		}
+>  
+>  		dbuf_state->slices[pipe] =
+> -			skl_compute_dbuf_slices(crtc, dbuf_state->active_pipes);
+> +			skl_compute_dbuf_slices(crtc, dbuf_state->active_pipes,
+> +						dbuf_state->joined_mbus);
+>  
+>  		dbuf_state->weight[pipe] = intel_crtc_ddb_weight(crtc_state);
+>  
+> -- 
+> 2.34.1
 > 
