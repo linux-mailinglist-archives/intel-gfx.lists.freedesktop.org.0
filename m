@@ -1,50 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E17C74AC985
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 20:29:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E86BF4AC9F8
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Feb 2022 20:59:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF6F510F8FB;
-	Mon,  7 Feb 2022 19:29:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CD9E10F8FD;
+	Mon,  7 Feb 2022 19:59:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4926F10F546;
- Mon,  7 Feb 2022 19:29:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644262142; x=1675798142;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZDgo5a2W+IftFE05o3OeNksso7rCdA4fJIqnyCbuQFw=;
- b=c+H8zv841pCA++aaGBhwVmWEImYI3VabdjKHy+zDeWbFmuiJTfgsfUXm
- VDFayPQgsQQS/sUkwQcHxYS6grpcGm06MxfeHy9t+/36QRJ3LJ6cho1/R
- Ho8W2z2PSNkvvyzpb2ymPxR+YJZreD46QvnkzG26xYnJ2CNq6TEUcLX1L
- DnsdryiSc+zmeh3mLcDy8uOZNPs59gQXf76NnIIVlsYCg69Jijtccf+lf
- V4Qfp9KtUjCV/1cPS2fU9ScdIdKywiLf5+jK9k/TDzHPNoyZSo7UGN+G4
- jLYAqYDOzOoKPhIViSYx6TJ9yi38QteYZWKYbvdhxN5AHtaNFzHeHCONq w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="248556263"
-X-IronPort-AV: E=Sophos;i="5.88,350,1635231600"; d="scan'208";a="248556263"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2022 11:29:01 -0800
-X-IronPort-AV: E=Sophos;i="5.88,350,1635231600"; d="scan'208";a="621659702"
-Received: from normanma-mobl.amr.corp.intel.com (HELO localhost)
- ([10.209.85.164])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2022 11:29:00 -0800
-From: Jordan Justen <jordan.l.justen@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>
-Date: Mon,  7 Feb 2022 11:28:54 -0800
-Message-Id: <20220207192854.862959-5-jordan.l.justen@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220207192854.862959-1-jordan.l.justen@intel.com>
-References: <20220207192854.862959-1-jordan.l.justen@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4FA4A10F8B6;
+ Mon,  7 Feb 2022 19:59:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4A1F4AA0EA;
+ Mon,  7 Feb 2022 19:59:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/guc: Verify hwconfig blob matches
- supported format
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jordan Justen" <jordan.l.justen@intel.com>
+Date: Mon, 07 Feb 2022 19:59:42 -0000
+Message-ID: <164426398226.23830.5231981821416866914@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220207192854.862959-1-jordan.l.justen@intel.com>
+In-Reply-To: <20220207192854.862959-1-jordan.l.justen@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBH?=
+ =?utf-8?q?uC_HWCONFIG_with_documentation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,59 +40,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Jordan Justen <jordan.l.justen@intel.com>
----
- .../gpu/drm/i915/gt/uc/intel_guc_hwconfig.c   | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
-index ce6088f112d4..695ef7a8f519 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
-@@ -71,6 +71,26 @@ static int guc_hwconfig_discover_size(struct intel_guc_hwconfig *hwconfig)
- 	return 0;
- }
- 
-+static int verify_hwconfig_blob(const struct intel_guc_hwconfig *hwconfig)
-+{
-+	if (hwconfig->size % 4 != 0 || hwconfig->ptr == NULL)
-+		return -EINVAL;
-+
-+	struct drm_i915_query_hwconfig_blob_item *pos = hwconfig->ptr;
-+	u32 remaining = (hwconfig->size / 4);
-+	while (remaining > 0) {
-+		if (remaining < 2)
-+			return -EINVAL;
-+		if (pos->length > remaining - 2)
-+			return -EINVAL;
-+		remaining -= 2 + pos->length;
-+		pos = (void *)&pos->data[pos->length];
-+	}
-+
-+	DRM_INFO("hwconfig blob format appears valid\n");
-+	return 0;
-+}
-+
- static int guc_hwconfig_fill_buffer(struct intel_guc_hwconfig *hwconfig)
- {
- 	struct intel_guc *guc = hwconfig_to_guc(hwconfig);
-@@ -91,6 +111,12 @@ static int guc_hwconfig_fill_buffer(struct intel_guc_hwconfig *hwconfig)
- 	if (ret >= 0)
- 		memcpy(hwconfig->ptr, vaddr, hwconfig->size);
- 
-+	if (verify_hwconfig_blob(hwconfig)) {
-+		DRM_ERROR("Ignoring invalid hwconfig blob received from "
-+			  "GuC!\n");
-+		return -EINVAL;
-+	}
-+
- 	i915_vma_unpin_and_release(&vma, I915_VMA_RELEASE_MAP);
- 
- 	return ret;
--- 
-2.34.1
+Series: GuC HWCONFIG with documentation
+URL   : https://patchwork.freedesktop.org/series/99787/
+State : failure
+
+== Summary ==
+
+CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  DESCEND objtool
+  CHK     include/generated/compile.h
+  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.o
+drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c: In function ‘verify_hwconfig_blob’:
+drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c:79:2: error: ISO C90 forbids mixed declarations and code [-Werror=declaration-after-statement]
+  struct drm_i915_query_hwconfig_blob_item *pos = hwconfig->ptr;
+  ^~~~~~
+cc1: all warnings being treated as errors
+scripts/Makefile.build:288: recipe for target 'drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.o' failed
+make[4]: *** [drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.o] Error 1
+scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm/i915' failed
+make[3]: *** [drivers/gpu/drm/i915] Error 2
+scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm' failed
+make[2]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:550: recipe for target 'drivers/gpu' failed
+make[1]: *** [drivers/gpu] Error 2
+Makefile:1831: recipe for target 'drivers' failed
+make: *** [drivers] Error 2
+
 
