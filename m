@@ -1,48 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0901F4ACE8D
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 03:07:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 812DF4ACEC5
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 03:19:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E36B110E324;
-	Tue,  8 Feb 2022 02:07:18 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D47110E324;
- Tue,  8 Feb 2022 02:07:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644286038; x=1675822038;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=R3/ys9ohxjEuZnYsD3UyY6kfSP3f1++9NkRvXXutvtE=;
- b=QRznG2XDoPZz4QCHC8ZRdlGTAAU6iayuAddB/xaRgG1rxUXW/9RuPPfa
- gdhUmvuxhlG7S4Li8xA4/SyLdcl5IQj2Z9mvMCPkRjXqgXv41TJ/2dqHS
- a2cLa72cag7DPS999Z8UkoR+nbWejCdvqAIP63kX1qNu5BgzT702JFa7f
- a7xOrimGIL2/8Q6ItjfDybwaZOQaq10dVTGNLYwrlN/ymstWjk4iacA/a
- lEExVhsSfM+SnXMqB8/AaSt/Opmv5vtlFesG8lma7OVIIre6IgUG3CN5S
- wyvnrTZ/yRyN7j7AfcUTc3Ip1deIddBcLBjlzgMyVRktEEta1exHbkHad w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="228821984"
-X-IronPort-AV: E=Sophos;i="5.88,351,1635231600"; d="scan'208";a="228821984"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2022 18:07:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,351,1635231600"; d="scan'208";a="540386498"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by orsmga008.jf.intel.com with ESMTP; 07 Feb 2022 18:07:16 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Mon,  7 Feb 2022 18:07:16 -0800
-Message-Id: <20220208020716.2140157-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id E423410E324;
+	Tue,  8 Feb 2022 02:19:46 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5473310E2EB;
+ Tue,  8 Feb 2022 02:19:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4ADE9A0169;
+ Tue,  8 Feb 2022 02:19:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/guc: Fix flag query to not modify state
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Date: Tue, 08 Feb 2022 02:19:46 -0000
+Message-ID: <164428678627.22536.5862097619929231959@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220208020716.2140157-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20220208020716.2140157-1-John.C.Harrison@Intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/guc=3A_Fix_flag_query_to_not_modify_state?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,40 +40,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-A flag query helper was actually writing to the flags word rather than
-just reading. Fix that. Also update the function's comment as it was
-out of date.
+Series: drm/i915/guc: Fix flag query to not modify state
+URL   : https://patchwork.freedesktop.org/series/99803/
+State : warning
 
-Fixes: 0f7976506de61 ("drm/i915/guc: Rework and simplify locking")
-Signed-off-by: John Harrison <john.c.harrison@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index b3a429a92c0d..d9f4218f5ef4 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -174,11 +174,8 @@ static inline void init_sched_state(struct intel_context *ce)
- __maybe_unused
- static bool sched_state_is_init(struct intel_context *ce)
- {
--	/*
--	 * XXX: Kernel contexts can have SCHED_STATE_NO_LOCK_REGISTERED after
--	 * suspend.
--	 */
--	return !(ce->guc_state.sched_state &=
-+	/* Kernel contexts can have SCHED_STATE_REGISTERED after suspend. */
-+	return !(ce->guc_state.sched_state &
- 		 ~(SCHED_STATE_BLOCKED_MASK | SCHED_STATE_REGISTERED));
- }
- 
--- 
-2.25.1
+$ dim checkpatch origin/drm-tip
+98f0397a8054 drm/i915/guc: Fix flag query to not modify state
+-:30: CHECK:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email comments mismatch: 'From: John Harrison <John.C.Harrison@Intel.com>' != 'Signed-off-by: John Harrison <john.c.harrison@intel.com>'
+
+total: 0 errors, 0 warnings, 1 checks, 13 lines checked
+
 
