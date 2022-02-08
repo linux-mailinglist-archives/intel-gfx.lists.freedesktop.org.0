@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12EA24AE551
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 00:12:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD71D4AE557
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 00:15:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FBE810E3B3;
-	Tue,  8 Feb 2022 23:12:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C12A10E489;
+	Tue,  8 Feb 2022 23:15:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 10D9810E1AD;
- Tue,  8 Feb 2022 23:12:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5F51C10E301;
+ Tue,  8 Feb 2022 23:15:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0C636A7DFB;
- Tue,  8 Feb 2022 23:12:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5594305164299386878=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 59291AADD1;
+ Tue,  8 Feb 2022 23:15:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jordan Justen" <jordan.l.justen@intel.com>
-Date: Tue, 08 Feb 2022 23:12:31 -0000
-Message-ID: <164436195100.22535.6423261829745639219@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Tue, 08 Feb 2022 23:15:56 -0000
+Message-ID: <164436215632.22536.16665584420592063529@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220208210503.869491-1-jordan.l.justen@intel.com>
-In-Reply-To: <20220208210503.869491-1-jordan.l.justen@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgR3VD?=
- =?utf-8?q?_HWCONFIG_with_documentation_=28rev3=29?=
+References: <20220208210824.2238981-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20220208210824.2238981-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_fbcon_patches=2C_take_two?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,296 +45,196 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5594305164299386878==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: GuC HWCONFIG with documentation (rev3)
-URL   : https://patchwork.freedesktop.org/series/99787/
-State : success
+Series: fbcon patches, take two
+URL   : https://patchwork.freedesktop.org/series/99865/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_11205 -> Patchwork_22214
-====================================================
+$ dim checkpatch origin/drm-tip
+2d681145150e fbcon: delete a few unneeded forward decl
+-:65: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 38 lines checked
+19ba8aad9437 fbcon: Move fbcon_bmove(_rec) functions
+-:184: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 157 lines checked
+ffdf84522741 fbcon: Introduce wrapper for console->fb_info lookup
+-:333: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 274 lines checked
+92e96e00ac25 fbcon: delete delayed loading code
+-:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 6104c37094e7 ("fbcon: Make fbcon a built-time depency for fbdev")'
+#8: 
+commit 6104c37094e729f3d4ce65797002112735d49cd1
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/index.html
+-:68: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-Participating hosts (46 -> 42)
-------------------------------
+total: 1 errors, 1 warnings, 0 checks, 25 lines checked
+74265731b7af fbdev/sysfs: Fix locking
+-:40: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  Missing    (4): fi-bsw-cyan bat-jsl-2 shard-tglu fi-kbl-8809g 
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+a592364a0bdb fbcon: Use delayed work for cursor
+-:281: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-Possible new issues
--------------------
+total: 0 errors, 1 warnings, 0 checks, 229 lines checked
+c09c3011a9cf fbcon: Replace FBCON_FLAGS_INIT with a boolean
+-:89: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  Here are the unknown changes that may have been introduced in Patchwork_22214:
+total: 0 errors, 1 warnings, 0 checks, 57 lines checked
+807d95275bfd fb: Delete fb_info->queue
+-:25: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-### IGT changes ###
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+0e6fba249ed1 fbcon: Extract fbcon_open/release helpers
+-:127: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#127: FILE: drivers/video/fbdev/core/fbcon.c:759:
++	/*
++	  If oldinfo and newinfo are driving the same hardware,
 
-#### Suppressed ####
+-:142: WARNING:PREFER_PR_LEVEL: Prefer [subsystem eg: netdev]_err([subsystem]dev, ... then dev_err(dev, ... then pr_err(...  to printk(KERN_ERR ...
+#142: FILE: drivers/video/fbdev/core/fbcon.c:769:
++			printk(KERN_ERR "con2fb_release_oldinfo: "
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+-:142: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'con2fb_release_oldinfo', this function's name, in a string
+#142: FILE: drivers/video/fbdev/core/fbcon.c:769:
++			printk(KERN_ERR "con2fb_release_oldinfo: "
 
-  * igt@i915_hangman@error-state-basic:
-    - {bat-adlp-6}:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/bat-adlp-6/igt@i915_hangman@error-state-basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/bat-adlp-6/igt@i915_hangman@error-state-basic.html
+-:199: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  
-Known issues
-------------
+total: 0 errors, 4 warnings, 0 checks, 164 lines checked
+bd6d6ad767b9 fbcon: Ditch error handling for con2fb_release_oldinfo
+-:101: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  Here are the changes found in Patchwork_22214 that come from known issues:
+total: 0 errors, 1 warnings, 0 checks, 75 lines checked
+47a2d657d082 fbcon: move more common code into fb_open()
+-:61: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops)...) over kzalloc(sizeof(struct fbcon_ops)...)
+#61: FILE: drivers/video/fbdev/core/fbcon.c:706:
++	ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
 
-### IGT changes ###
+-:162: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-#### Issues hit ####
+total: 0 errors, 1 warnings, 1 checks, 122 lines checked
+07a98b03a1c7 fbcon: use lock_fb_info in fbcon_open/release
+-:94: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html
+total: 0 errors, 1 warnings, 0 checks, 42 lines checked
+1aece9d971a7 fbcon: Consistently protect deferred_takeover with console_lock()
+-:43: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-skl-6600u:       [PASS][4] -> [INCOMPLETE][5] ([i915#4547])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+68aaba46c7ef fbcon: Move console_lock for register/unlink/unregister
+-:87: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#87: FILE: drivers/video/fbdev/core/fbcon.c:2903:
++MODULE_PARM_DESC(lockless_register_fb,
++	"Lockless framebuffer registration for debugging [default=off]");
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-u2:          [PASS][6] -> [FAIL][7] ([i915#3049])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
+-:181: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-u2:          [PASS][8] -> [DMESG-WARN][9] ([i915#2867]) +5 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+total: 0 errors, 1 warnings, 1 checks, 135 lines checked
+2c3a29940188 fbcon: Move more code into fbcon_release
+-:81: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-cfl-8109u:       [PASS][10] -> [DMESG-WARN][11] ([i915#295]) +12 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+total: 0 errors, 1 warnings, 0 checks, 56 lines checked
+0536b37b945e fbcon: untangle fbcon_exit
+-:145: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][12] ([i915#2426] / [i915#4312])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-bdw-5557u/igt@runner@aborted.html
+total: 0 errors, 1 warnings, 0 checks, 96 lines checked
+f30790fbd7af fbcon: Maintain a private array of fb_info
+-:49: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#49: FILE: drivers/video/fbdev/core/fbcon.c:109:
++#define fbcon_for_each_registered_fb(i)		\
++	for (i = 0; WARN_CONSOLE_UNLOCKED(), i < FB_MAX; i++)		\
++		if (!fbcon_registered_fb[i]) {} else
 
-  
-#### Possible fixes ####
+-:49: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
+#49: FILE: drivers/video/fbdev/core/fbcon.c:109:
++#define fbcon_for_each_registered_fb(i)		\
++	for (i = 0; WARN_CONSOLE_UNLOCKED(), i < FB_MAX; i++)		\
++		if (!fbcon_registered_fb[i]) {} else
 
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-bdw-5557u:       [INCOMPLETE][13] ([i915#146]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+-:51: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#51: FILE: drivers/video/fbdev/core/fbcon.c:111:
++		if (!fbcon_registered_fb[i]) {} else
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [INCOMPLETE][15] ([i915#4785]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+-:51: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#51: FILE: drivers/video/fbdev/core/fbcon.c:111:
++		if (!fbcon_registered_fb[i]) {} else
+[...]
++		if (!fbcon_registered_fb[i]) {} else
+[...]
 
-  
-#### Warnings ####
+-:211: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#211: FILE: drivers/video/fbdev/core/fbcon.c:3064:
++	if (!fbcon_registered_fb[con2fb.framebuffer]) {
+ 		return -EINVAL;
+ 	}
 
-  * igt@debugfs_test@read_all_entries:
-    - fi-apl-guc:         [DMESG-WARN][17] -> [DMESG-WARN][18] ([i915#1610])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-apl-guc/igt@debugfs_test@read_all_entries.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-apl-guc/igt@debugfs_test@read_all_entries.html
+-:220: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!fbcon_registered_fb[idx]"
+#220: FILE: drivers/video/fbdev/core/fbcon.c:3131:
++	if (idx == -1 || fbcon_registered_fb[idx] == NULL)
 
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [DMESG-FAIL][19] ([i915#4957]) -> [DMESG-FAIL][20] ([i915#4494] / [i915#4957])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+-:233: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!fbcon_registered_fb[idx]"
+#233: FILE: drivers/video/fbdev/core/fbcon.c:3153:
++	if (idx == -1 || fbcon_registered_fb[idx] == NULL)
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:246: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!fbcon_registered_fb[idx]"
+#246: FILE: drivers/video/fbdev/core/fbcon.c:3173:
++	if (idx == -1 || fbcon_registered_fb[idx] == NULL)
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3049]: https://gitlab.freedesktop.org/drm/intel/issues/3049
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+-:259: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!fbcon_registered_fb[idx]"
+#259: FILE: drivers/video/fbdev/core/fbcon.c:3193:
++	if (idx == -1 || fbcon_registered_fb[idx] == NULL)
 
+-:272: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!fbcon_registered_fb[idx]"
+#272: FILE: drivers/video/fbdev/core/fbcon.c:3219:
++	if (idx == -1 || fbcon_registered_fb[idx] == NULL)
 
-Build changes
--------------
+-:290: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  * Linux: CI_DRM_11205 -> Patchwork_22214
+total: 2 errors, 3 warnings, 6 checks, 237 lines checked
+103c665d071a Revert "fbdev: Prevent probing generic drivers if a FB is already registered"
+-:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 27599aacbaef ("fbdev: Hot-unplug firmware fb devices on forced removal")'
+#11: 
+commit 27599aacbaefcbf2af7b06b0029459bbf682000d
 
-  CI-20190529: 20190529
-  CI_DRM_11205: 9999c764a7571bebed03bec481d6fffcb23144fe @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22214: 016c4656556a6cb7a5090ccdce55fde870fc7cfd @ git://anongit.freedesktop.org/gfx-ci/linux
+-:24: WARNING:BAD_SIGN_OFF: Duplicate signature
+#24: 
+Cc: Zack Rusin <zackr@vmware.com>
 
+-:74: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-== Linux commits ==
+total: 1 errors, 2 warnings, 0 checks, 34 lines checked
+93302ed0c9b3 fbdev: Make registered_fb[] private to fbmem.c
+-:46: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#46: FILE: drivers/video/fbdev/core/fbmem.c:57:
++#define for_each_registered_fb(i)		\
++	for (i = 0; i < FB_MAX; i++)		\
++		if (!registered_fb[i]) {} else
 
-016c4656556a drm/i915/guc: Verify hwconfig blob matches supported format
-2acfafee266e drm/i915/uapi: Add struct drm_i915_query_hwconfig_blob_item
-a25a127e8175 drm/i915/uapi: Add query for hwconfig blob
-e77bdf7a8928 drm/i915/guc: Add fetch of hwconfig table
+-:46: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
+#46: FILE: drivers/video/fbdev/core/fbmem.c:57:
++#define for_each_registered_fb(i)		\
++	for (i = 0; i < FB_MAX; i++)		\
++		if (!registered_fb[i]) {} else
 
-== Logs ==
+-:48: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#48: FILE: drivers/video/fbdev/core/fbmem.c:59:
++		if (!registered_fb[i]) {} else
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/index.html
+-:48: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#48: FILE: drivers/video/fbdev/core/fbmem.c:59:
++		if (!registered_fb[i]) {} else
+[...]
++		if (!registered_fb[i]) {} else
+[...]
 
---===============5594305164299386878==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-:75: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>GuC HWCONFIG with documentation (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99787/">https://patchwork.freedesktop.org/series/99787/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/index.html</a></td></tr>
-
-</table>
+total: 2 errors, 2 warnings, 1 checks, 35 lines checked
 
 
-    <h1>CI Bug Log - changes from CI_DRM_11205 -&gt; Patchwork_22214</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/index.html</p>
-<h2>Participating hosts (46 -&gt; 42)</h2>
-<p>Missing    (4): fi-bsw-cyan bat-jsl-2 shard-tglu fi-kbl-8809g </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22214:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_hangman@error-state-basic:<ul>
-<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/bat-adlp-6/igt@i915_hangman@error-state-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/bat-adlp-6/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22214 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-icl-u2/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-icl-u2/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3049">i915#3049</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-icl-u2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-icl-u2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +12 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-apl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/fi-apl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22214/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11205 -&gt; Patchwork_22214</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11205: 9999c764a7571bebed03bec481d6fffcb23144fe @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22214: 016c4656556a6cb7a5090ccdce55fde870fc7cfd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>016c4656556a drm/i915/guc: Verify hwconfig blob matches supported format<br />
-2acfafee266e drm/i915/uapi: Add struct drm_i915_query_hwconfig_blob_item<br />
-a25a127e8175 drm/i915/uapi: Add query for hwconfig blob<br />
-e77bdf7a8928 drm/i915/guc: Add fetch of hwconfig table</p>
-
-</body>
-</html>
-
---===============5594305164299386878==--
