@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D8DF4AE1E9
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 20:10:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8779E4AE1EF
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 20:12:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9169310E18A;
-	Tue,  8 Feb 2022 19:10:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53E7610E3EA;
+	Tue,  8 Feb 2022 19:11:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8407F10E18A;
- Tue,  8 Feb 2022 19:10:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7FCECA7DFC;
- Tue,  8 Feb 2022 19:10:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8508216138891777175=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F026210E3EA;
+ Tue,  8 Feb 2022 19:11:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644347517; x=1675883517;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=s+xe3DzxhqcQ004vDPfF46wIvCa5alI3hdd8i77bSLY=;
+ b=k+rHRoORKmQHvq7d/mpxcePv1Mbm9ZnjRr1PqiHw2yD43CMGt/CLhpZo
+ 0epggUCuBMt4Q2mbiPOejDP/eV0TohAkThtnPpKFiNPTnLz3q9lQvDj54
+ Q+2NJFPWSUYmliaOikqpXIj8il2fqWUYRsfEf/0CmWA8zj+9T5dCRpo/Q
+ qu0ol3Zg4muB8F4E008k5wSzqcdAl+S0fgtqJsWnjIPbesb9ZCmHwuDqL
+ eNvullCh/7QzqMsq7wQQ2Lu9bpAHPrtBSVbztr2X8fK7D0Rrel8pJwprg
+ 0yLjffQLv+OcE9sGSc7e59BhU4hghGHPgjCc95z33H6ShszAQVX68Wc3B g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="232595341"
+X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="232595341"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 11:11:56 -0800
+X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="773225642"
+Received: from ymtarple-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.231.100])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 11:11:55 -0800
+Date: Tue, 8 Feb 2022 11:11:55 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Message-ID: <20220208191155.xrgpbqqounobyesz@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220207161308.447676-1-balasubramani.vivekanandan@intel.com>
+ <20220207161308.447676-2-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 08 Feb 2022 19:10:34 -0000
-Message-ID: <164434743451.22537.7744819335666983283@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220203143924.2691635-1-jani.nikula@intel.com>
-In-Reply-To: <20220203143924.2691635-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_move_the_DRIVER=5F*_macros_to_i915=5Fdriver=2E=5Bch=5D?=
- =?utf-8?q?_=28rev2=29?=
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20220207161308.447676-2-balasubramani.vivekanandan@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 1/1] drm/i915: Add fallback inside
+ memcpy_from_wc functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,208 +59,302 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8508216138891777175==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Feb 07, 2022 at 09:43:08PM +0530, Balasubramani Vivekanandan wrote:
+>memcpy_from_wc functions can fail if SSE4.1 is not supported or the
+>supplied addresses are not 16-byte aligned. It was then upto to the
+>caller to use memcpy as fallback.
+>Now fallback to memcpy is implemented inside memcpy_from_wc functions
+>relieving the user from checking the return value of i915_memcpy_from_wc
+>and doing fallback.
+>
+>When doing copying from io memory address memcpy_fromio should be used
+>as fallback. So a new function is added to the family of memcpy_to_wc
+>functions which should be used while copying from io memory.
+>
+>This change is implemented also with an intention to perpare for porting
+>memcpy_from_wc code to ARM64. Since SSE4.1 is not valid for ARM,
+>accelerated reads will not be supported and the driver should rely on
+>fallback always.
+>So there would be few more places in the code where fallback should be
+>introduced. For e.g. GuC log relay is currently not using fallback since
+>a GPU supporting GuC submission will mostly have SSE4.1 enabled CPU.
+>This is no more valid with Discrete GPU and with enabling support for
+>ARM64.
+>With fallback moved inside memcpy_from_wc function, call sites would
+>look neat and fallback can be implemented in a uniform way.
+>
+>Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+>---
+> drivers/gpu/drm/i915/gem/i915_gem_object.c |  5 +-
+> drivers/gpu/drm/i915/gt/selftest_reset.c   |  8 ++-
+> drivers/gpu/drm/i915/i915_gpu_error.c      |  9 ++-
+> drivers/gpu/drm/i915/i915_memcpy.c         | 78 ++++++++++++++++------
+> drivers/gpu/drm/i915/i915_memcpy.h         | 18 ++---
+> 5 files changed, 78 insertions(+), 40 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+>index e03e362d320b..e187c4bfb7e4 100644
+>--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+>+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+>@@ -444,7 +444,7 @@ static void
+> i915_gem_object_read_from_page_iomap(struct drm_i915_gem_object *obj, u64 offset, void *dst, int size)
+> {
+> 	void __iomem *src_map;
+>-	void __iomem *src_ptr;
+>+	const void __iomem *src_ptr;
+> 	dma_addr_t dma = i915_gem_object_get_dma_address(obj, offset >> PAGE_SHIFT);
+>
+> 	src_map = io_mapping_map_wc(&obj->mm.region->iomap,
+>@@ -452,8 +452,7 @@ i915_gem_object_read_from_page_iomap(struct drm_i915_gem_object *obj, u64 offset
+> 				    PAGE_SIZE);
+>
+> 	src_ptr = src_map + offset_in_page(offset);
+>-	if (!i915_memcpy_from_wc(dst, (void __force *)src_ptr, size))
+>-		memcpy_fromio(dst, src_ptr, size);
+>+	i915_io_memcpy_from_wc(dst, src_ptr, size);
 
-== Series Details ==
+nitpick, but maybe to align with the memcpy_fromio() API this would
+better be named i915_memcpy_fromio_wc()?
 
-Series: drm/i915: move the DRIVER_* macros to i915_driver.[ch] (rev2)
-URL   : https://patchwork.freedesktop.org/series/99671/
-State : success
+>
+> 	io_mapping_unmap(src_map);
+> }
+>diff --git a/drivers/gpu/drm/i915/gt/selftest_reset.c b/drivers/gpu/drm/i915/gt/selftest_reset.c
+>index 37c38bdd5f47..64b8521a8b28 100644
+>--- a/drivers/gpu/drm/i915/gt/selftest_reset.c
+>+++ b/drivers/gpu/drm/i915/gt/selftest_reset.c
+>@@ -99,8 +99,10 @@ __igt_reset_stolen(struct intel_gt *gt,
+> 			memset_io(s, STACK_MAGIC, PAGE_SIZE);
+>
+> 		in = (void __force *)s;
+>-		if (i915_memcpy_from_wc(tmp, in, PAGE_SIZE))
+>+		if (i915_can_memcpy_from_wc(tmp, in, PAGE_SIZE)) {
+>+			i915_io_memcpy_from_wc(tmp, in, PAGE_SIZE);
+> 			in = tmp;
+>+		}
+> 		crc[page] = crc32_le(0, in, PAGE_SIZE);
+>
+> 		io_mapping_unmap(s);
+>@@ -135,8 +137,10 @@ __igt_reset_stolen(struct intel_gt *gt,
+> 				      PAGE_SIZE);
+>
+> 		in = (void __force *)s;
+>-		if (i915_memcpy_from_wc(tmp, in, PAGE_SIZE))
+>+		if (i915_can_memcpy_from_wc(tmp, in, PAGE_SIZE)) {
+>+			i915_io_memcpy_from_wc(tmp, in, PAGE_SIZE);
 
-== Summary ==
+but you removed __iomem above
 
-CI Bug Log - changes from CI_DRM_11203 -> Patchwork_22210
-====================================================
+> 			in = tmp;
+>+		}
+> 		x = crc32_le(0, in, PAGE_SIZE);
+>
+> 		if (x != crc[page] &&
+>diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+>index 127ff56c8ce6..2c14a28cbbbb 100644
+>--- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>@@ -297,8 +297,10 @@ static int compress_page(struct i915_vma_compress *c,
+> 	struct z_stream_s *zstream = &c->zstream;
+>
+> 	zstream->next_in = src;
+>-	if (wc && c->tmp && i915_memcpy_from_wc(c->tmp, src, PAGE_SIZE))
+>+	if (wc && c->tmp && i915_can_memcpy_from_wc(c->tmp, src, PAGE_SIZE)) {
+>+		i915_io_memcpy_from_wc(c->tmp, (const void __iomem *)src, PAGE_SIZE);
+> 		zstream->next_in = c->tmp;
+>+	}
+> 	zstream->avail_in = PAGE_SIZE;
+>
+> 	do {
+>@@ -397,8 +399,11 @@ static int compress_page(struct i915_vma_compress *c,
+> 	if (!ptr)
+> 		return -ENOMEM;
+>
+>-	if (!(wc && i915_memcpy_from_wc(ptr, src, PAGE_SIZE)))
+>+	if (wc)
+>+		i915_io_memcpy_from_wc(ptr, src, PAGE_SIZE);
+>+	else
+> 		memcpy(ptr, src, PAGE_SIZE);
+>+
+> 	list_add_tail(&virt_to_page(ptr)->lru, &dst->page_list);
+> 	cond_resched();
+>
+>diff --git a/drivers/gpu/drm/i915/i915_memcpy.c b/drivers/gpu/drm/i915/i915_memcpy.c
+>index 1b021a4902de..4d9fbf3b2614 100644
+>--- a/drivers/gpu/drm/i915/i915_memcpy.c
+>+++ b/drivers/gpu/drm/i915/i915_memcpy.c
+>@@ -24,15 +24,10 @@
+>
+> #include <linux/kernel.h>
+> #include <asm/fpu/api.h>
+>+#include <linux/io.h>
+>
+> #include "i915_memcpy.h"
+>
+>-#if IS_ENABLED(CONFIG_DRM_I915_DEBUG)
+>-#define CI_BUG_ON(expr) BUG_ON(expr)
+>-#else
+>-#define CI_BUG_ON(expr) BUILD_BUG_ON_INVALID(expr)
+>-#endif
+>-
+> static DEFINE_STATIC_KEY_FALSE(has_movntdqa);
+>
+> static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len)
+>@@ -93,6 +88,26 @@ static void __memcpy_ntdqu(void *dst, const void *src, unsigned long len)
+> 	kernel_fpu_end();
+> }
+>
+>+/* The movntdqa instructions used for memcpy-from-wc require 16-byte alignment,
+>+ * as well as SSE4.1 support. To check beforehand, pass in the parameters to
+>+ * i915_can_memcpy_from_wc() - since we only care about the low 4 bits,
+>+ * you only need to pass in the minor offsets, page-aligned pointers are
+>+ * always valid.
+>+ *
+>+ * For just checking for SSE4.1, in the foreknowledge that the future use
+>+ * will be correctly aligned, just use i915_has_memcpy_from_wc().
+>+ */
+>+bool i915_can_memcpy_from_wc(void *dst, const void *src, unsigned long len)
+>+{
+>+	if (unlikely(((unsigned long)dst | (unsigned long)src | len) & 15))
+>+		return false;
+>+
+>+	if (static_branch_likely(&has_movntdqa))
+>+		return true;
+>+
+>+	return false;
+>+}
+>+
+> /**
+>  * i915_memcpy_from_wc: perform an accelerated *aligned* read from WC
+>  * @dst: destination pointer
+>@@ -104,24 +119,18 @@ static void __memcpy_ntdqu(void *dst, const void *src, unsigned long len)
+>  * (@src, @dst) must be aligned to 16 bytes and @len must be a multiple
+>  * of 16.
+>  *
+>- * To test whether accelerated reads from WC are supported, use
+>- * i915_memcpy_from_wc(NULL, NULL, 0);
+>- *
+>- * Returns true if the copy was successful, false if the preconditions
+>- * are not met.
+>+ * If the acccelerated read from WC is not possible fallback to memcpy
+>  */
+>-bool i915_memcpy_from_wc(void *dst, const void *src, unsigned long len)
+>+void i915_memcpy_from_wc(void *dst, const void *src, unsigned long len)
+> {
+>-	if (unlikely(((unsigned long)dst | (unsigned long)src | len) & 15))
+>-		return false;
+>-
+>-	if (static_branch_likely(&has_movntdqa)) {
+>+	if (i915_can_memcpy_from_wc(dst, src, len)) {
+> 		if (likely(len))
+> 			__memcpy_ntdqa(dst, src, len >> 4);
+>-		return true;
+>+		return;
+> 	}
+>
+>-	return false;
+>+	/* Fallback */
+>+	memcpy(dst, src, len);
+> }
+>
+> /**
+>@@ -134,12 +143,15 @@ bool i915_memcpy_from_wc(void *dst, const void *src, unsigned long len)
+>  * @src to @dst using * non-temporal instructions where available, but
+>  * accepts that its arguments may not be aligned, but are valid for the
+>  * potential 16-byte read past the end.
+>+ *
+>+ * Fallback to memcpy if accelerated read is not supported
+>  */
+> void i915_unaligned_memcpy_from_wc(void *dst, const void *src, unsigned long len)
+> {
+> 	unsigned long addr;
+>
+>-	CI_BUG_ON(!i915_has_memcpy_from_wc());
+>+	if (!i915_has_memcpy_from_wc())
+>+		goto fallback;
+>
+> 	addr = (unsigned long)src;
+> 	if (!IS_ALIGNED(addr, 16)) {
+>@@ -154,6 +166,34 @@ void i915_unaligned_memcpy_from_wc(void *dst, const void *src, unsigned long len
+>
+> 	if (likely(len))
+> 		__memcpy_ntdqu(dst, src, DIV_ROUND_UP(len, 16));
+>+
+>+	return;
+>+
+>+fallback:
+>+	memcpy(dst, src, len);
+>+}
+>+
+>+/**
+>+ * i915_io_memcpy_from_wc: perform an accelerated *aligned* read from WC
+>+ * @dst: destination pointer
+>+ * @src: source pointer
+>+ * @len: how many bytes to copy
+>+ *
+>+ * To be used when the when copying from io memory.
+>+ *
+>+ * memcpy_fromio() is used as fallback otherewise no difference to
+>+ * i915_memcpy_from_wc()
+>+ */
+>+void i915_io_memcpy_from_wc(void *dst, const void __iomem *src, unsigned long len)
+>+{
+>+	if (i915_can_memcpy_from_wc(dst, (const void __force *)src, len)) {
+>+		if (likely(len))
+>+			__memcpy_ntdqa(dst, (const void __force *)src, len >> 4);
+>+		return;
+>+	}
+>+
+>+	/* Fallback */
+>+	memcpy_fromio(dst, src, len);
+> }
+>
+> void i915_memcpy_init_early(struct drm_i915_private *dev_priv)
+>diff --git a/drivers/gpu/drm/i915/i915_memcpy.h b/drivers/gpu/drm/i915/i915_memcpy.h
+>index 3df063a3293b..93ea9295e28c 100644
+>--- a/drivers/gpu/drm/i915/i915_memcpy.h
+>+++ b/drivers/gpu/drm/i915/i915_memcpy.h
+>@@ -12,23 +12,13 @@ struct drm_i915_private;
+>
+> void i915_memcpy_init_early(struct drm_i915_private *i915);
+>
+>-bool i915_memcpy_from_wc(void *dst, const void *src, unsigned long len);
+>+void i915_memcpy_from_wc(void *dst, const void *src, unsigned long len);
+> void i915_unaligned_memcpy_from_wc(void *dst, const void *src, unsigned long len);
+>+void i915_io_memcpy_from_wc(void *dst, const void __iomem *src, unsigned long len);
+>
+>-/* The movntdqa instructions used for memcpy-from-wc require 16-byte alignment,
+>- * as well as SSE4.1 support. i915_memcpy_from_wc() will report if it cannot
+>- * perform the operation. To check beforehand, pass in the parameters to
+>- * to i915_can_memcpy_from_wc() - since we only care about the low 4 bits,
+>- * you only need to pass in the minor offsets, page-aligned pointers are
+>- * always valid.
+>- *
+>- * For just checking for SSE4.1, in the foreknowledge that the future use
+>- * will be correctly aligned, just use i915_has_memcpy_from_wc().
+>- */
+>-#define i915_can_memcpy_from_wc(dst, src, len) \
+>-	i915_memcpy_from_wc((void *)((unsigned long)(dst) | (unsigned long)(src) | (len)), NULL, 0)
+>+bool i915_can_memcpy_from_wc(void *dst, const void *src, unsigned long len);
+>
+> #define i915_has_memcpy_from_wc() \
+>-	i915_memcpy_from_wc(NULL, NULL, 0)
+>+	i915_can_memcpy_from_wc(NULL, NULL, 0)
 
-Summary
--------
+I think the has vs can here is confusing. But a cleanup on that could be
+on top since it would just add noise to this patch.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/index.html
-
-Participating hosts (45 -> 43)
-------------------------------
-
-  Missing    (2): fi-icl-u2 shard-tglu 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22210 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [PASS][1] -> [INCOMPLETE][2] ([i915#3303])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-skl-6600u:       [PASS][3] -> [FAIL][4] ([i915#4547])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-
-  * igt@runner@aborted:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#1436] / [i915#4312])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-hsw-4770/igt@runner@aborted.html
-    - fi-skl-6600u:       NOTRUN -> [FAIL][6] ([i915#4312])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-skl-6600u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-skl-guc:         [DMESG-FAIL][7] ([i915#2291] / [i915#541]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][9] ([i915#4269]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+I or someone else probably need a more careful review, but ack on the
+direction:
 
 
-Build changes
--------------
 
-  * Linux: CI_DRM_11203 -> Patchwork_22210
-
-  CI-20190529: 20190529
-  CI_DRM_11203: e0f14f95759ad65e896868e1f9efd3247d93d28e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22210: 2d61486947f426f7bd84ad50e96bcf75c248568b @ git://anongit.freedesktop.org/gfx-ci/linux
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 
-== Linux commits ==
-
-2d61486947f4 drm/i915: move the DRIVER_* macros to i915_driver.[ch]
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/index.html
-
---===============8508216138891777175==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: move the DRIVER_* macros to i915_driver.[ch] (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99671/">https://patchwork.freedesktop.org/series/99671/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11203 -&gt; Patchwork_22210</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/index.html</p>
-<h2>Participating hosts (45 -&gt; 43)</h2>
-<p>Missing    (2): fi-icl-u2 shard-tglu </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22210 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11203 -&gt; Patchwork_22210</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11203: e0f14f95759ad65e896868e1f9efd3247d93d28e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22210: 2d61486947f426f7bd84ad50e96bcf75c248568b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>2d61486947f4 drm/i915: move the DRIVER_* macros to i915_driver.[ch]</p>
-
-</body>
-</html>
-
---===============8508216138891777175==--
+Lucas De Marchi
