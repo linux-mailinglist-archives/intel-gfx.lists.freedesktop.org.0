@@ -1,54 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D947B4ADB5B
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 15:38:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 584A84ADB65
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 15:41:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57A7010E61C;
-	Tue,  8 Feb 2022 14:38:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DDA210E61C;
+	Tue,  8 Feb 2022 14:41:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0CC310E607;
- Tue,  8 Feb 2022 14:38:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644331122; x=1675867122;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=gA6guodQWyiVPgot2dWXNqcVIT6qKmygJjcTgUAPzwc=;
- b=nqpS1Xl1+jUUFk9zVxrptkvIbhNP9PSFcGGYATW+cA5IYMKGoc9oWyNH
- y70bfOBJrfee7JAE6uLy2d3oqxQXsLcPIo7EIq4hyTW5NBa0hqS77oLJt
- l+x//mqYBaxUQi8hJ9K6Q7NCzZwp/ulvKoXHQwWzprwr3nRHxbl9TFevO
- rdpX6h/zQMSRS8GHeqqagk4gz4Tyf6NEexqOA01LOOAXyTan+jfW+OpSP
- s6kticXtwQ0KPTj6KUstP/9s4W2tq0Fv6i9YlEJM3SH5ttqUR9IQvceJa
- al0fN7cGChW3ScP8Zv5A16DUD2K8kSua9BYn05WqqD9Q3vjWge8kpMGuA A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="248906618"
-X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="248906618"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 06:38:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="700862339"
-Received: from lkp-server01.sh.intel.com (HELO d95dc2dabeb1) ([10.239.97.150])
- by orsmga005.jf.intel.com with ESMTP; 08 Feb 2022 06:38:39 -0800
-Received: from kbuild by d95dc2dabeb1 with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nHRde-0000JQ-VX; Tue, 08 Feb 2022 14:38:38 +0000
-Date: Tue, 8 Feb 2022 22:38:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Zhi Wang <zhi.wang.linux@gmail.com>, hch@lst.de, jgg@nvidia.com,
- jani.nikula@linux.intel.com
-Message-ID: <202202082210.BpzSju31-lkp@intel.com>
-References: <20220127120508.11330-1-zhi.a.wang@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 044EC10E60E;
+ Tue,  8 Feb 2022 14:41:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 01097AADD1;
+ Tue,  8 Feb 2022 14:41:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220127120508.11330-1-zhi.a.wang@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/3] i915/gvt: Introduce the mmio_table.c to
- support VFIO new mdev API
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 08 Feb 2022 14:41:01 -0000
+Message-ID: <164433126197.22535.7649664520897574420@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1643878928.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1643878928.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/dp=2C_drm/i915=3A_128b/132b_updates_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,56 +40,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, Zhi Wang <zhi.wang.linux@gmail.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Terrence Xu <terrence.xu@intel.com>,
- intel-gvt-dev@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Zhi,
+== Series Details ==
 
-I love your patch! Perhaps something to improve:
+Series: drm/dp, drm/i915: 128b/132b updates (rev4)
+URL   : https://patchwork.freedesktop.org/series/99324/
+State : warning
 
-[auto build test WARNING on drm-tip/drm-tip]
-[also build test WARNING on next-20220208]
-[cannot apply to drm-intel/for-linux-next v5.17-rc3]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+== Summary ==
 
-url:    https://github.com/0day-ci/linux/commits/Zhi-Wang/i915-gvt-Introduce-the-mmio_table-c-to-support-VFIO-new-mdev-API/20220127-200727
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: x86_64-rhel-8.3-kselftests (https://download.01.org/0day-ci/archive/20220208/202202082210.BpzSju31-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce:
-        # apt-get install sparse
-        # sparse version: v0.6.4-dirty
-        # https://github.com/0day-ci/linux/commit/533f92651a7a56481a053f1e04dc5a5ec024ffb9
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Zhi-Wang/i915-gvt-Introduce-the-mmio_table-c-to-support-VFIO-new-mdev-API/20220127-200727
-        git checkout 533f92651a7a56481a053f1e04dc5a5ec024ffb9
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/
+$ dim checkpatch origin/drm-tip
+dda5c759f6bc drm/dp: add drm_dp_128b132b_read_aux_rd_interval()
+0053fa9bdcc3 drm/dp: add 128b/132b link status helpers from DP 2.0 E11
+1675a22fa2b7 drm/dp: add some new DPCD macros from DP 2.0 E11
+0285f99c3bdf drm/i915/dp: move intel_dp_prepare_link_train() call
+21d4a0d647e0 drm/i915/dp: rewrite DP 2.0 128b/132b link training based on errata
+-:107: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#107: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:1132:
+ 
++
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+-:332: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#332: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:1357:
++
++	}
+
+total: 0 errors, 0 warnings, 2 checks, 337 lines checked
+e64b9a99d55e drm/i915/dp: add 128b/132b support to link status checks
+682ceb281361 drm/i915/mst: update slot information for 128b/132b
+14b6d1595f4e HACK: drm/i915/dp: give more time for CDS
 
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/i915/gvt/handlers.c:45:6: sparse: sparse: symbol 'intel_gvt_match_device' was not declared. Should it be static?
-
-vim +/intel_gvt_match_device +45 drivers/gpu/drm/i915/gvt/handlers.c
-
-12d14cc43b3470 Zhi Wang 2016-08-30  44  
-12d14cc43b3470 Zhi Wang 2016-08-30 @45  bool intel_gvt_match_device(struct intel_gvt *gvt,
-12d14cc43b3470 Zhi Wang 2016-08-30  46  		unsigned long device)
-12d14cc43b3470 Zhi Wang 2016-08-30  47  {
-533f92651a7a56 Zhi Wang 2022-01-27  48  	return intel_gvt_get_device_type(gvt->gt->i915) & device;
-12d14cc43b3470 Zhi Wang 2016-08-30  49  }
-12d14cc43b3470 Zhi Wang 2016-08-30  50  
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
