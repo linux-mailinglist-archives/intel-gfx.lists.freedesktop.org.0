@@ -1,56 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43B1E4AD520
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 10:40:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB624AD52D
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 10:49:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7383210E4F1;
-	Tue,  8 Feb 2022 09:40:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5923E10E64B;
+	Tue,  8 Feb 2022 09:49:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D55DD10E12F;
- Tue,  8 Feb 2022 09:40:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644313214; x=1675849214;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=UBEa6bnATc1XckSSrH+Ga3bve1upbhNguIC65V8cxtY=;
- b=SHasuJMu4LaBRujQr5mno8sg6B+r6Nef137k5/EpkA7wyDdAHY3c/Lx1
- 0fO4lo8qs1opYZTZR/IXytfaPa+RrvAJxXk2rpS02Z2UfYpAvxpUet3zl
- I00wGq+zMyM3sade87KlROJWNPiAffiS828kDvXSMpmMQCExEypnEJ35x
- Ex/BFT7gYy/bjOL03AE5Ov8vRYIHiIa1iCtn/ElYwZoqsJw+BuTDjBvFZ
- D954yw9Y6I8tuTdOsC0VePfSytD47ktpwJAXZsKaVWozA4smTiwI+XLTV
- X/DKlw3WqPwwj/9JgMhc6MMTSA8vEnJuq2wHWh+RIO4SnEV0mi8LdMFxQ A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="249119116"
-X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="249119116"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 01:40:14 -0800
-X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="585133118"
-Received: from amcgrat2-mobl1.ger.corp.intel.com (HELO [10.252.10.21])
- ([10.252.10.21])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 01:40:12 -0800
-Message-ID: <644ce762-cb6a-0cf1-d1e0-1e799a3405bf@intel.com>
-Date: Tue, 8 Feb 2022 09:40:10 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BD50F10E64B;
+ Tue,  8 Feb 2022 09:49:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BB3C3A73C9;
+ Tue,  8 Feb 2022 09:49:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-GB
-To: Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-References: <20220203133234.3350-1-Arunpravin.PaneerSelvam@amd.com>
- <20220203133234.3350-2-Arunpravin.PaneerSelvam@amd.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20220203133234.3350-2-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/7] drm/selftests: add drm buddy alloc
- limit testcase
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hsin-Yi Wang" <hsinyi@chromium.org>
+Date: Tue, 08 Feb 2022 09:49:07 -0000
+Message-ID: <164431374774.22535.6502284038248225432@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220208084234.1684930-1-hsinyi@chromium.org>
+In-Reply-To: <20220208084234.1684930-1-hsinyi@chromium.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv8=2C1/3=5D_gpu=3A_drm=3A_separate_?=
+ =?utf-8?q?panel_orientation_property_creating_and_value_setting?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,109 +41,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, tzimmermann@suse.de, christian.koenig@amd.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 03/02/2022 13:32, Arunpravin wrote:
-> add a test to check the maximum allocation limit
-> 
-> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
-> ---
->   .../gpu/drm/selftests/drm_buddy_selftests.h   |  1 +
->   drivers/gpu/drm/selftests/test-drm_buddy.c    | 60 +++++++++++++++++++
->   2 files changed, 61 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/selftests/drm_buddy_selftests.h b/drivers/gpu/drm/selftests/drm_buddy_selftests.h
-> index a4bcf3a6dfe3..ebe16162762f 100644
-> --- a/drivers/gpu/drm/selftests/drm_buddy_selftests.h
-> +++ b/drivers/gpu/drm/selftests/drm_buddy_selftests.h
-> @@ -7,3 +7,4 @@
->    * Tests are executed in order by igt/drm_buddy
->    */
->   selftest(sanitycheck, igt_sanitycheck) /* keep first (selfcheck for igt) */
-> +selftest(buddy_alloc_limit, igt_buddy_alloc_limit)
-> diff --git a/drivers/gpu/drm/selftests/test-drm_buddy.c b/drivers/gpu/drm/selftests/test-drm_buddy.c
-> index 51e4d393d22c..fd7d1a112458 100644
-> --- a/drivers/gpu/drm/selftests/test-drm_buddy.c
-> +++ b/drivers/gpu/drm/selftests/test-drm_buddy.c
-> @@ -16,6 +16,66 @@
->   
->   static unsigned int random_seed;
->   
-> +static int igt_buddy_alloc_limit(void *arg)
-> +{
-> +	u64 end, size = U64_MAX, start = 0;
-> +	struct drm_buddy_block *block;
-> +	unsigned long flags = 0;
-> +	LIST_HEAD(allocated);
-> +	struct drm_buddy mm;
-> +	int err;
-> +
-> +	size = end = round_down(size, 4096);
-> +	err = drm_buddy_init(&mm, size, PAGE_SIZE);
-> +	if (err)
-> +		return err;
-> +
-> +	if (mm.max_order != DRM_BUDDY_MAX_ORDER) {
-> +		pr_err("mm.max_order(%d) != %d\n",
-> +		       mm.max_order, DRM_BUDDY_MAX_ORDER);
-> +		err = -EINVAL;
-> +		goto out_fini;
-> +	}
-> +
-> +	err = drm_buddy_alloc_blocks(&mm, start, end, size,
-> +				     PAGE_SIZE, &allocated, flags);
-> +
-> +	if (unlikely(err))
-> +		goto out_free;
-> +
-> +	block = list_first_entry_or_null(&allocated,
-> +					 struct drm_buddy_block,
-> +					 link);
-> +
-> +	if (!block)
+== Series Details ==
 
-err = -EINVAL;
+Series: series starting with [v8,1/3] gpu: drm: separate panel orientation property creating and value setting
+URL   : https://patchwork.freedesktop.org/series/99828/
+State : warning
 
-> +		goto out_fini;
-> +
-> +	if (drm_buddy_block_order(block) != mm.max_order) {
-> +		pr_err("block order(%d) != %d\n",
-> +		       drm_buddy_block_order(block), mm.max_order);
-> +		err = -EINVAL;
-> +		goto out_free;
-> +	}
-> +
-> +	if (drm_buddy_block_size(&mm, block) !=
-> +	    BIT_ULL(mm.max_order) * PAGE_SIZE) {
-> +		pr_err("block size(%llu) != %llu\n",
-> +		       drm_buddy_block_size(&mm, block),
-> +		       BIT_ULL(mm.max_order) * PAGE_SIZE);
-> +		err = -EINVAL;
-> +		goto out_free;
-> +	}
-> +
-> +	if (!err)
+== Summary ==
 
-Always true AFAICT?
+$ dim checkpatch origin/drm-tip
+a832dc08d88f gpu: drm: separate panel orientation property creating and value setting
+-:132: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#132: FILE: drivers/gpu/drm/drm_connector.c:2418:
++ * ^Icreate the connector's panel orientation property$
 
-> +		pr_info("%s - succeeded\n", __func__);
+-:143: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#143: FILE: drivers/gpu/drm/drm_connector.c:2429:
++int drm_connector_init_panel_orientation_property(
 
-I guess this could be made part of the run_selftests()? It looks like it 
-already prints the current test, perhaps that is already enough?
+-:149: ERROR:SPACING: space required before the open parenthesis '('
+#149: FILE: drivers/gpu/drm/drm_connector.c:2435:
++	if(dev->mode_config.panel_orientation_property)
 
-With the err = -EINVAL change, feel free to add,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+-:153: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#153: FILE: drivers/gpu/drm/drm_connector.c:2439:
++	prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
++			"panel orientation",
 
-> +
-> +out_free:
-> +	drm_buddy_free_list(&mm, &allocated);
-> +out_fini:
-> +	drm_buddy_fini(&mm);
-> +	return err;
-> +}
-> +
->   static int igt_sanitycheck(void *ignored)
->   {
->   	pr_info("%s - ok!\n", __func__);
+-:178: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#178: FILE: include/drm/drm_connector.h:1801:
++int drm_connector_init_panel_orientation_property(
+
+total: 1 errors, 1 warnings, 3 checks, 101 lines checked
+73d060c30153 drm/mediatek: init panel orientation property
+d313feab36a3 arm64: dts: mt8183: Add panel rotation
+
+
