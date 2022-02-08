@@ -1,49 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 458584AE314
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 22:34:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 729814AE327
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 22:56:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8AC888052;
-	Tue,  8 Feb 2022 21:33:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08FC710E4BC;
+	Tue,  8 Feb 2022 21:56:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 436FD10E556
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 21:33:56 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9B6110E4BC;
+ Tue,  8 Feb 2022 21:56:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644356036; x=1675892036;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bTSe8QoibPD94TgTv0NIYibRQYLEzTYdvyKQZGUsqGQ=;
- b=ZqoMV5WeAWmbxVIfnGZEhdoMT8sNZqmG/cE2cG4KoqvA9EH/m+2s7Sld
- HFnTz3QTKyj+h39bp0kF5TbwEeHaqTl185OYekbjaEdlnjQWb0753l/uG
- NM1WsbKxjj4fvevJmYEBpv7pYYQdAYGfgQx1MrZOjUeJd0FLnm/Y9bBJm
- xVokqZLdj/Qr0GliXmS2QOCEh+altoeg+PWVtBHSBncKLWPb/SI48WJ9F
- yjQhkpHOuFYdEKQDsLpz+TFi2n4BVMiepKqx51mpz5QLRhn25tx6fuQpU
- N1LxElmAKIaMHof2WzPYsydT6yflnfW/A6TCs9ZNHUa7fhVBSvD5JEAdT w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="249264883"
-X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="249264883"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 13:33:55 -0800
-X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="540794937"
-Received: from deepmpat-mobl1.amr.corp.intel.com (HELO
- josouza-mobl2.amr.corp.intel.com) ([10.255.39.92])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 13:33:54 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  8 Feb 2022 13:35:48 -0800
-Message-Id: <20220208213548.244829-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.35.1
+ t=1644357392; x=1675893392;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=o93+JW+42VjsJzrhTDtRlaN0GSaiAnKqV9w10H22j8s=;
+ b=kNgWzfmgLlJpAJMP/rCmSOpYJiIyWGP/HTm6CSz3CiKNYjcwoDCo1XnA
+ MY/JuUubY3KEanct/cxYlInz7tvHtanS1bL1KnK3lTUA3wTw+Z0K4pa7m
+ dybYRoA8lHNfFPpGOSLM7sZn8YGY5gAljCjSz+2xOpRDhjZidJJ21Sw99
+ PEk1JXSGQD5C/3KLbgIiYdiSsfNipIKiA2N9JUQOFflvgn70L/pbh7BQR
+ WlUzWDJYZNlqsWWevJj+T/U+6P2+uZGePOcIdw42KDSOtjzFjWBu3eO6V
+ WBTBQ+apCahstF7ZzvR8/sZ8YuctnS9p6iASUEiv7JW6u33T+VFFfVnZS g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="247894192"
+X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="247894192"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 13:56:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="525718644"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga007.jf.intel.com with ESMTP; 08 Feb 2022 13:56:30 -0800
+Received: from [10.249.151.37] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.151.37])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 218LuSwn019537; Tue, 8 Feb 2022 21:56:29 GMT
+Message-ID: <c9584d58-9b7e-8f72-a097-70848aea744c@intel.com>
+Date: Tue, 8 Feb 2022 22:56:28 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.5.1
+Content-Language: en-US
+To: Jordan Justen <jordan.l.justen@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+References: <20220208210503.869491-1-jordan.l.justen@intel.com>
+ <20220208210503.869491-2-jordan.l.justen@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20220208210503.869491-2-jordan.l.justen@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display/tgl+: Implement new PLL
- programming step
+Subject: Re: [Intel-gfx] [PATCH v3 1/4] drm/i915/guc: Add fetch of hwconfig
+ table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,232 +65,342 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A new programming step was added to combo and TC PLL sequences.
-If override_AFC_startup is set in VBT, driver should overwrite
-AFC_startup value to 0x7 in PLL's div0 register.
 
-The current understating is that only TGL needs this and all display
-12 and newer platforms will have a older VBT or a newer VBT with
-override_AFC_startup set to 0 but in any case there is a
-drm_warn_on_once() to let us know if this is not true.
 
-BSpec: 49204
-BSpec: 20122 (pending aproval, check working copies)
-BSpec: 49968
-BSpec: 71360
-Cc: Imre Deak <imre.deak@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c     |  4 ++
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 38 +++++++++++++------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  6 ++-
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |  8 ++++
- drivers/gpu/drm/i915/i915_drv.h               |  1 +
- drivers/gpu/drm/i915/i915_reg.h               | 13 +++++++
- 6 files changed, 57 insertions(+), 13 deletions(-)
+On 08.02.2022 22:05, Jordan Justen wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+> 
+> Implement support for fetching the hardware description table from the
+> GuC. The call is made twice - once without a destination buffer to
+> query the size and then a second time to fill in the buffer.
+> 
+> Note that the table is only available on ADL-P and later platforms.
+> 
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |   1 +
+>  .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   1 +
+>  .../gpu/drm/i915/gt/uc/abi/guc_errors_abi.h   |   4 +
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   3 +
+>  .../gpu/drm/i915/gt/uc/intel_guc_hwconfig.c   | 151 ++++++++++++++++++
+>  .../gpu/drm/i915/gt/uc/intel_guc_hwconfig.h   |  19 +++
+>  drivers/gpu/drm/i915/gt/uc/intel_uc.c         |   6 +
+>  7 files changed, 185 insertions(+)
+>  create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
+>  create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.h
+> 
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 6836b020a5be..ba9b6557d59d 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -192,6 +192,7 @@ i915-y += gt/uc/intel_uc.o \
+>  	  gt/uc/intel_guc_rc.o \
+>  	  gt/uc/intel_guc_slpc.o \
+>  	  gt/uc/intel_guc_submission.o \
+> +	  gt/uc/intel_guc_hwconfig.o \
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index aec0efd5350ef..a4134b63f2d49 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -596,6 +596,10 @@ parse_general_features(struct drm_i915_private *i915,
- 	} else {
- 		i915->vbt.orientation = DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
- 	}
-+
-+	if (bdb->version >= 249)
-+		i915->vbt.override_afc_startup_bit = general->override_afc_startup_bit;
-+
- 	drm_dbg_kms(&i915->drm,
- 		    "BDB_GENERAL_FEATURES int_tv_support %d int_crt_support %d lvds_use_ssc %d lvds_ssc_freq %d display_clock_mode %d fdi_rx_polarity_inverted %d\n",
- 		    i915->vbt.int_tv_support,
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 6723c3de5a80c..a60917b926de9 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -2748,6 +2748,9 @@ static void icl_calc_dpll_state(struct drm_i915_private *i915,
- 		pll_state->cfgcr1 |= TGL_DPLL_CFGCR1_CFSELOVRD_NORMAL_XTAL;
- 	else
- 		pll_state->cfgcr1 |= DPLL_CFGCR1_CENTRAL_FREQ_8400;
-+
-+	if (i915->vbt.override_afc_startup_bit)
-+		pll_state->div0 = TGL_DPLL0_DIV0_AFC_STARTUP(TGL_DPLL0_DIV0_AFC_STARTUP_OVERRIDE_VAL);
- }
- 
- static bool icl_mg_pll_find_divisors(int clock_khz, bool is_dp, bool use_ssc,
-@@ -2949,6 +2952,8 @@ static bool icl_calc_mg_pll_state(struct intel_crtc_state *crtc_state,
- 					 DKL_PLL_DIV0_PROP_COEFF(prop_coeff) |
- 					 DKL_PLL_DIV0_FBPREDIV(m1div) |
- 					 DKL_PLL_DIV0_FBDIV_INT(m2div_int);
-+		if (dev_priv->vbt.override_afc_startup_bit)
-+			pll_state->mg_pll_div0 |= DKL_PLL_DIV0_AFC_STARTUP(TGL_DPLL0_DIV0_AFC_STARTUP_OVERRIDE_VAL);
- 
- 		pll_state->mg_pll_div1 = DKL_PLL_DIV1_IREF_TRIM(iref_trim) |
- 					 DKL_PLL_DIV1_TDC_TARGET_CNT(tdc_targetcnt);
-@@ -3448,10 +3453,10 @@ static bool dkl_pll_get_hw_state(struct drm_i915_private *dev_priv,
- 		MG_CLKTOP2_CORECLKCTL1_A_DIVRATIO_MASK;
- 
- 	hw_state->mg_pll_div0 = intel_de_read(dev_priv, DKL_PLL_DIV0(tc_port));
--	hw_state->mg_pll_div0 &= (DKL_PLL_DIV0_INTEG_COEFF_MASK |
--				  DKL_PLL_DIV0_PROP_COEFF_MASK |
--				  DKL_PLL_DIV0_FBPREDIV_MASK |
--				  DKL_PLL_DIV0_FBDIV_INT_MASK);
-+	val = DKL_PLL_DIV0_MASK;
-+	if (dev_priv->vbt.override_afc_startup_bit)
-+		val |= DKL_PLL_DIV0_AFC_STARTUP_MASK;
-+	hw_state->mg_pll_div0 &= val;
- 
- 	hw_state->mg_pll_div1 = intel_de_read(dev_priv, DKL_PLL_DIV1(tc_port));
- 	hw_state->mg_pll_div1 &= (DKL_PLL_DIV1_IREF_TRIM_MASK |
-@@ -3513,6 +3518,10 @@ static bool icl_pll_get_hw_state(struct drm_i915_private *dev_priv,
- 						 TGL_DPLL_CFGCR0(id));
- 		hw_state->cfgcr1 = intel_de_read(dev_priv,
- 						 TGL_DPLL_CFGCR1(id));
-+		if (dev_priv->vbt.override_afc_startup_bit) {
-+			hw_state->div0 = intel_de_read(dev_priv, TGL_DPLL0_DIV0(id));
-+			hw_state->div0 &= TGL_DPLL0_DIV0_AFC_STARTUP_MASK;
-+		}
- 	} else {
- 		if (IS_JSL_EHL(dev_priv) && id == DPLL_ID_EHL_DPLL4) {
- 			hw_state->cfgcr0 = intel_de_read(dev_priv,
-@@ -3554,7 +3563,7 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
- {
- 	struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
- 	const enum intel_dpll_id id = pll->info->id;
--	i915_reg_t cfgcr0_reg, cfgcr1_reg;
-+	i915_reg_t cfgcr0_reg, cfgcr1_reg, div0_reg = INVALID_MMIO_REG;
- 
- 	if (IS_ALDERLAKE_S(dev_priv)) {
- 		cfgcr0_reg = ADLS_DPLL_CFGCR0(id);
-@@ -3568,6 +3577,7 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
- 	} else if (DISPLAY_VER(dev_priv) >= 12) {
- 		cfgcr0_reg = TGL_DPLL_CFGCR0(id);
- 		cfgcr1_reg = TGL_DPLL_CFGCR1(id);
-+		div0_reg = TGL_DPLL0_DIV0(id);
- 	} else {
- 		if (IS_JSL_EHL(dev_priv) && id == DPLL_ID_EHL_DPLL4) {
- 			cfgcr0_reg = ICL_DPLL_CFGCR0(4);
-@@ -3580,6 +3590,12 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
- 
- 	intel_de_write(dev_priv, cfgcr0_reg, hw_state->cfgcr0);
- 	intel_de_write(dev_priv, cfgcr1_reg, hw_state->cfgcr1);
-+	drm_WARN_ON_ONCE(&dev_priv->drm, dev_priv->vbt.override_afc_startup_bit &&
-+			 !i915_mmio_reg_valid(div0_reg));
-+	if (dev_priv->vbt.override_afc_startup_bit &&
-+	    i915_mmio_reg_valid(div0_reg))
-+		intel_de_rmw(dev_priv, div0_reg, TGL_DPLL0_DIV0_AFC_STARTUP_MASK,
-+			     hw_state->div0);
- 	intel_de_posting_read(dev_priv, cfgcr1_reg);
- }
- 
-@@ -3667,13 +3683,11 @@ static void dkl_pll_write(struct drm_i915_private *dev_priv,
- 	val |= hw_state->mg_clktop2_hsclkctl;
- 	intel_de_write(dev_priv, DKL_CLKTOP2_HSCLKCTL(tc_port), val);
- 
--	val = intel_de_read(dev_priv, DKL_PLL_DIV0(tc_port));
--	val &= ~(DKL_PLL_DIV0_INTEG_COEFF_MASK |
--		 DKL_PLL_DIV0_PROP_COEFF_MASK |
--		 DKL_PLL_DIV0_FBPREDIV_MASK |
--		 DKL_PLL_DIV0_FBDIV_INT_MASK);
--	val |= hw_state->mg_pll_div0;
--	intel_de_write(dev_priv, DKL_PLL_DIV0(tc_port), val);
-+	val = DKL_PLL_DIV0_MASK;
-+	if (dev_priv->vbt.override_afc_startup_bit)
-+		val |= DKL_PLL_DIV0_AFC_STARTUP_MASK;
-+	intel_de_rmw(dev_priv, DKL_PLL_DIV0(tc_port), val,
-+		     hw_state->mg_pll_div0);
- 
- 	val = intel_de_read(dev_priv, DKL_PLL_DIV1(tc_port));
- 	val &= ~(DKL_PLL_DIV1_IREF_TRIM_MASK |
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index 91fe181462b2e..4125d7ab54438 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -218,7 +218,11 @@ struct intel_dpll_hw_state {
- 	u32 mg_refclkin_ctl;
- 	u32 mg_clktop2_coreclkctl1;
- 	u32 mg_clktop2_hsclkctl;
--	u32 mg_pll_div0;
-+	/* tgl+ */
-+	union {
-+		u32 div0;
-+		u32 mg_pll_div0;
-+	};
- 	u32 mg_pll_div1;
- 	u32 mg_pll_lf;
- 	u32 mg_pll_frac_lock;
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index a39d6cfea87aa..a813ebedcae81 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -162,6 +162,14 @@ struct bdb_general_features {
- 	u8 dp_ssc_freq:1;	/* SSC freq for PCH attached eDP */
- 	u8 dp_ssc_dongle_supported:1;
- 	u8 rsvd11:2; /* finish byte */
-+
-+	/* byte 6 */
-+	u8 tc_hpd_retry_timeout:7; /* 242 */
-+	u8 rsvd12:1;
-+
-+	/* byte 7 */
-+	u8 override_afc_startup_bit:1;/* 249 */
-+	u8 rsvd13:7;
- } __packed;
- 
- /*
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 8c1706fd81f9e..c04312a8dd520 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -532,6 +532,7 @@ struct intel_vbt_data {
- 	int lvds_ssc_freq;
- 	unsigned int bios_lvds_val; /* initial [PCH_]LVDS reg val in VBIOS */
- 	enum drm_panel_orientation orientation;
-+	bool override_afc_startup_bit;
- 
- 	enum drrs_support_type drrs_type;
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 87c92314ee269..d51bdc1105037 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -7986,6 +7986,13 @@ enum skl_power_gate {
- #define RKL_DPLL_CFGCR0(pll)		_MMIO_PLL(pll, _TGL_DPLL0_CFGCR0, \
- 						  _TGL_DPLL1_CFGCR0)
- 
-+#define _TGL_DPLL0_DIV0					0x164B00
-+#define _TGL_DPLL1_DIV0					0x164C00
-+#define TGL_DPLL0_DIV0(pll)				_MMIO_PLL(pll, _TGL_DPLL0_DIV0, _TGL_DPLL1_DIV0)
-+#define   TGL_DPLL0_DIV0_AFC_STARTUP_MASK		REG_GENMASK(27, 25)
-+#define   TGL_DPLL0_DIV0_AFC_STARTUP(val)		REG_FIELD_PREP(TGL_DPLL0_DIV0_AFC_STARTUP_MASK, (val))
-+#define   TGL_DPLL0_DIV0_AFC_STARTUP_OVERRIDE_VAL	(0x7)
-+
- #define _TGL_DPLL0_CFGCR1		0x164288
- #define _TGL_DPLL1_CFGCR1		0x164290
- #define _TGL_TBTPLL_CFGCR1		0x1642A0
-@@ -8033,6 +8040,8 @@ enum skl_power_gate {
- 
- /* DEKEL PHY MMIO Address = Phy base + (internal address & ~index_mask) */
- #define _DKL_PLL_DIV0			0x200
-+#define   DKL_PLL_DIV0_AFC_STARTUP_MASK	REG_GENMASK(27, 25)
-+#define   DKL_PLL_DIV0_AFC_STARTUP(val)	REG_FIELD_PREP(DKL_PLL_DIV0_AFC_STARTUP_MASK, (val))
- #define   DKL_PLL_DIV0_INTEG_COEFF(x)	((x) << 16)
- #define   DKL_PLL_DIV0_INTEG_COEFF_MASK	(0x1F << 16)
- #define   DKL_PLL_DIV0_PROP_COEFF(x)	((x) << 12)
-@@ -8042,6 +8051,10 @@ enum skl_power_gate {
- #define   DKL_PLL_DIV0_FBPREDIV_MASK	(0xF << DKL_PLL_DIV0_FBPREDIV_SHIFT)
- #define   DKL_PLL_DIV0_FBDIV_INT(x)	((x) << 0)
- #define   DKL_PLL_DIV0_FBDIV_INT_MASK	(0xFF << 0)
-+#define   DKL_PLL_DIV0_MASK		(DKL_PLL_DIV0_INTEG_COEFF_MASK | \
-+					 DKL_PLL_DIV0_PROP_COEFF_MASK | \
-+					 DKL_PLL_DIV0_FBPREDIV_MASK | \
-+					 DKL_PLL_DIV0_FBDIV_INT_MASK)
- #define DKL_PLL_DIV0(tc_port)		_MMIO(_PORT(tc_port, _DKL_PHY1_BASE, \
- 						    _DKL_PHY2_BASE) + \
- 						    _DKL_PLL_DIV0)
--- 
-2.35.1
+nit: I guess ordering of files (by name) is also desired in makefiles
 
+>  	  gt/uc/intel_huc.o \
+>  	  gt/uc/intel_huc_debugfs.o \
+>  	  gt/uc/intel_huc_fw.o
+> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+> index fe5d7d261797..4a61c819f32b 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+> @@ -137,6 +137,7 @@ enum intel_guc_action {
+>  	INTEL_GUC_ACTION_ENGINE_FAILURE_NOTIFICATION = 0x1009,
+>  	INTEL_GUC_ACTION_SETUP_PC_GUCRC = 0x3004,
+>  	INTEL_GUC_ACTION_AUTHENTICATE_HUC = 0x4000,
+> +	INTEL_GUC_ACTION_GET_HWCONFIG = 0x4100,
+>  	INTEL_GUC_ACTION_REGISTER_CONTEXT = 0x4502,
+>  	INTEL_GUC_ACTION_DEREGISTER_CONTEXT = 0x4503,
+>  	INTEL_GUC_ACTION_REGISTER_COMMAND_TRANSPORT_BUFFER = 0x4505,
+> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
+> index 488b6061ee89..f9e2a6aaef4a 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
+> @@ -8,6 +8,10 @@
+>  
+>  enum intel_guc_response_status {
+>  	INTEL_GUC_RESPONSE_STATUS_SUCCESS = 0x0,
+> +	INTEL_GUC_RESPONSE_NOT_SUPPORTED = 0x20,
+> +	INTEL_GUC_RESPONSE_NO_ATTRIBUTE_TABLE = 0x201,
+> +	INTEL_GUC_RESPONSE_NO_DECRYPTION_KEY = 0x202,
+> +	INTEL_GUC_RESPONSE_DECRYPTION_FAILED = 0x204,
+>  	INTEL_GUC_RESPONSE_STATUS_GENERIC_FAIL = 0xF000,
+>  };
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> index f9240d4baa69..ce2ff4bb0fd5 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> @@ -13,6 +13,7 @@
+>  #include "intel_guc_fw.h"
+>  #include "intel_guc_fwif.h"
+>  #include "intel_guc_ct.h"
+> +#include "intel_guc_hwconfig.h"
+>  #include "intel_guc_log.h"
+>  #include "intel_guc_reg.h"
+>  #include "intel_guc_slpc_types.h"
+> @@ -37,6 +38,8 @@ struct intel_guc {
+>  	struct intel_guc_ct ct;
+>  	/** @slpc: sub-structure containing SLPC related data and objects */
+>  	struct intel_guc_slpc slpc;
+> +	/** @hwconfig: hardware configuration KLV table */
+
+nit: "@hwconfig: data related to hardware configuration KLV blob"
+
+> +	struct intel_guc_hwconfig hwconfig;
+>  
+>  	/** @sched_engine: Global engine used to submit requests to GuC */
+>  	struct i915_sched_engine *sched_engine;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
+> new file mode 100644
+> index 000000000000..ce6088f112d4
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
+> @@ -0,0 +1,151 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2021 Intel Corporation
+
+2022 ?
+
+> + */
+> +
+> +#include "gt/intel_gt.h"
+> +#include "i915_drv.h"
+> +#include "i915_memcpy.h"
+> +#include "intel_guc_hwconfig.h"
+> +
+> +static inline struct intel_guc *hwconfig_to_guc(struct intel_guc_hwconfig *hwconfig)
+
+no need for explicit "inline"
+
+> +{
+> +	return container_of(hwconfig, struct intel_guc, hwconfig);
+> +}
+> +
+> +/*
+> + * GuC has a blob containing hardware configuration information (HWConfig).
+> + * This is formatted as a simple and flexible KLV (Key/Length/Value) table.
+> + *
+> + * For example, a minimal version could be:
+> + *   enum device_attr {
+> + *     ATTR_SOME_VALUE = 0,
+> + *     ATTR_SOME_MASK  = 1,
+> + *   };
+> + *
+> + *   static const u32 hwconfig[] = {
+> + *     ATTR_SOME_VALUE,
+> + *     1,		// Value Length in DWords
+> + *     8,		// Value
+> + *
+> + *     ATTR_SOME_MASK,
+> + *     3,
+> + *     0x00FFFFFFFF, 0xFFFFFFFF, 0xFF000000,
+> + *   };
+> + *
+> + * The attribute ids are defined in a hardware spec.
+> + */
+> +
+> +static int __guc_action_get_hwconfig(struct intel_guc_hwconfig *hwconfig,
+
+since this is "guc_action" then you should pass "guc" instead of
+"hwconfig" (as you don't need anything from hwconfig in this helper)
+
+> +				     u32 ggtt_offset, u32 ggtt_size)
+> +{
+> +	struct intel_guc *guc = hwconfig_to_guc(hwconfig);
+> +	u32 action[] = {
+> +		INTEL_GUC_ACTION_GET_HWCONFIG,
+> +		ggtt_offset,
+> +		0, /* upper 32 bits of address */
+> +		ggtt_size,
+> +	};
+> +	int ret;
+> +
+> +	ret = intel_guc_send_mmio(guc, action, ARRAY_SIZE(action), NULL, 0);
+> +	if (ret == -ENXIO)
+> +		return -ENOENT;
+> +
+> +	if (!ggtt_size && !ret)
+> +		ret = -EINVAL;
+
+you have dedicated function for query/discover size, any special error
+handling shall be done there
+
+> +
+> +	return ret;
+> +}
+> +
+> +static int guc_hwconfig_discover_size(struct intel_guc_hwconfig *hwconfig)
+> +{
+> +	int ret;
+> +
+> +	/* Sending a query with too small a table will return the size of the table */
+
+sending too small buffer size should result in error
+only passing zero offset/size is treated as a query
+
+> +	ret = __guc_action_get_hwconfig(hwconfig, 0, 0);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	hwconfig->size = ret;
+> +	return 0;
+> +}
+> +
+> +static int guc_hwconfig_fill_buffer(struct intel_guc_hwconfig *hwconfig)
+> +{
+> +	struct intel_guc *guc = hwconfig_to_guc(hwconfig);
+> +	struct i915_vma *vma;
+> +	u32 ggtt_offset;
+> +	void *vaddr;
+> +	int ret;
+> +
+> +	GEM_BUG_ON(!hwconfig->size);
+> +
+> +	ret = intel_guc_allocate_and_map_vma(guc, hwconfig->size, &vma, &vaddr);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ggtt_offset = intel_guc_ggtt_offset(guc, vma);
+> +
+> +	ret = __guc_action_get_hwconfig(hwconfig, ggtt_offset, hwconfig->size);
+> +	if (ret >= 0)
+> +		memcpy(hwconfig->ptr, vaddr, hwconfig->size);
+> +
+> +	i915_vma_unpin_and_release(&vma, I915_VMA_RELEASE_MAP);
+> +
+> +	return ret;
+> +}
+> +
+> +static bool has_table(struct drm_i915_private *i915)
+> +{
+> +	if (IS_ALDERLAKE_P(i915))
+> +		return true;
+
+shouldn't this be a part of our device_info ?
+
+ 	func(has_gt_uc); \
+ 	func(has_guc_deprivilege); \
++	func(has_guc_hwconfig); \
+
+
+> +
+> +	return false;
+> +}
+> +
+> +/**
+> + * intel_guc_hwconfig_fini - Finalize the HWConfig
+> + *
+> + * Free up the memory allocation holding the table.
+> + */
+> +void intel_guc_hwconfig_fini(struct intel_guc_hwconfig *hwconfig)
+> +{
+> +	kfree(hwconfig->ptr);
+> +	hwconfig->size = 0;
+> +	hwconfig->ptr = NULL;
+> +}
+> +
+> +/**
+> + * intel_guc_hwconfig_init - Initialize the HWConfig
+> + *
+> + * Retrieve the HWConfig table from the GuC and save it away in a local memory
+> + * allocation. It can then be queried on demand by other users later on.
+> + */
+> +int intel_guc_hwconfig_init(struct intel_guc_hwconfig *hwconfig)
+> +{
+> +	struct intel_guc *guc = hwconfig_to_guc(hwconfig);
+> +	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
+> +	int ret;
+> +
+> +	if (!has_table(i915))
+> +		return 0;
+> +
+> +	ret = guc_hwconfig_discover_size(hwconfig);
+> +	if (ret)
+> +		return ret;
+> +
+> +	hwconfig->ptr = kmalloc(hwconfig->size, GFP_KERNEL);
+> +	if (!hwconfig->ptr) {
+> +		hwconfig->size = 0;
+> +		return -ENOMEM;
+> +	}
+> +
+> +	ret = guc_hwconfig_fill_buffer(hwconfig);
+> +	if (ret < 0) {
+> +		intel_guc_hwconfig_fini(hwconfig);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.h
+> new file mode 100644
+> index 000000000000..fdd7f0d6e938
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.h
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2021 Intel Corporation
+
+2022
+
+> + */
+> +
+> +#ifndef _INTEL_GUC_HWCONFIG_H_
+> +#define _INTEL_GUC_HWCONFIG_H_
+> +
+> +#include <linux/types.h>
+> +
+> +struct intel_guc_hwconfig {
+> +	u32 size;
+> +	void *ptr;
+> +};
+> +
+> +int intel_guc_hwconfig_init(struct intel_guc_hwconfig *hwconfig);
+> +void intel_guc_hwconfig_fini(struct intel_guc_hwconfig *hwconfig);
+> +
+> +#endif /* _INTEL_GUC_HWCONFIG_H_ */
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index 09ed29df67bc..d045ff6d4d63 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -489,6 +489,10 @@ static int __uc_init_hw(struct intel_uc *uc)
+>  	if (ret)
+>  		goto err_log_capture;
+>  
+> +	ret = intel_guc_hwconfig_init(&guc->hwconfig);
+> +	if (ret)
+> +		drm_err(&i915->drm, "Failed to retrieve hwconfig table: %d\n", ret);
+
+maybe drm_notice since we continue probe
+
+nit: you may report error as: "%pe", ERR_PTR(ret)
+
+Michal
+
+> +
+>  	ret = guc_enable_communication(guc);
+>  	if (ret)
+>  		goto err_log_capture;
+> @@ -562,6 +566,8 @@ static void __uc_fini_hw(struct intel_uc *uc)
+>  	if (intel_uc_uses_guc_submission(uc))
+>  		intel_guc_submission_disable(guc);
+>  
+> +	intel_guc_hwconfig_fini(&guc->hwconfig);
+> +
+>  	__uc_sanitize(uc);
+>  }
+>  
