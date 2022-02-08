@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAFC14AE2EE
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 22:09:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BB584AE2F7
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 22:09:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D46510E5F6;
-	Tue,  8 Feb 2022 21:08:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 507BC10E5FC;
+	Tue,  8 Feb 2022 21:09:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6A788930B
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 21:08:55 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id k18so529333wrg.11
- for <intel-gfx@lists.freedesktop.org>; Tue, 08 Feb 2022 13:08:55 -0800 (PST)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E58F510E5D2
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 21:08:56 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id s10so591795wra.5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 08 Feb 2022 13:08:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=NR3Vdl26ogLJ+NN6vOMjLgqKjNNnH/ILBJ7SwyK58u4=;
- b=NngozCg3J7yEp5L8pu/P/IyZeg/re7bovaBC5F+6eL8Vv+gBM4lELsCPvoIG1krc8x
- fn3vBTkvV/mGVP7Iviya7yAY4SMFa6v06yL2bpIDEOR57CQmP1GIorMKxvW2TfxkB9Fh
- 5nRE/JTAEFZejtofuDVVxS2+4o5bnY8TkR/2g=
+ bh=PCYS5QyMNkkwqTDkShTEbfPtwnFmBXM7JP7Pazg2YKM=;
+ b=kTDETVVLcYRtMjjA8LySpUTc6zRE3ZqOVKlYdUkFPag87WIkrPWX47b+Rb5Gehv3cR
+ LO/YoTPo1B1XpGaBAzdpwQ20SF/lTTiXX0i09lBUwufoAO3uAsw/1GqRYGbBpFouLnMs
+ kFt72PsgGfZ5DstDIs4E5PvzoMLE0yCbrB9+Y=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=NR3Vdl26ogLJ+NN6vOMjLgqKjNNnH/ILBJ7SwyK58u4=;
- b=SuZo4Y1MeX75pNw6SC/eterdMCsrSiBYhApdJ1I5Wh2OQ5R3J8rhH5BXEGDKipY35l
- A6GRD7JlnA2J9bD8F9bI6D/SMMU+ms9jT6r8AkgFCy4lH7T3Qef3ikn2SJdGIt07NAEi
- w41f/HqIqi+wTRoFmMGnjtQ/8nOStY89h3PTD8QNWyB8X9uk30lOuZetMhESHX4RCq2Y
- OP7LdFjqtsPxvFS1Voovwlfi0eVrcSVbcXSD3EV/OHQdhyH+z6QQbslJGDz2NloWKo4a
- vhOH0TCS41ZAZBagmZ94wAxJyDuw6ixXoL1Cn9qWc0LHxwmazD0ELGSp28drSQs9ZJap
- rQrw==
-X-Gm-Message-State: AOAM532yKelBnX7UNizieHEoUfpL8FlpGhkE0bJwYO7WcwvZ0QMGST4P
- ux3VSfn+aIi/qAqIO1ZzLEtRwQ==
-X-Google-Smtp-Source: ABdhPJyow1dh1qcgGqJFdixNGVvExdy2/GOvui0v1qlnbPgy6uaK5cpmHHHwHze64OPlU3pcDhqIUA==
-X-Received: by 2002:adf:a4c8:: with SMTP id h8mr324157wrb.169.1644354534298;
- Tue, 08 Feb 2022 13:08:54 -0800 (PST)
+ bh=PCYS5QyMNkkwqTDkShTEbfPtwnFmBXM7JP7Pazg2YKM=;
+ b=17PiJ3cyKuASwVseMQgTI509B9wKwOeRheH6limSsnmp/k5LLvw8TwjU00ojs/DDax
+ FmONhKQG0vk/pR3zfmpRpjGNur/aE6ciEMDXnr1g+To/537jWDHBqUPBR9Qsok/SG0n2
+ K+poUzhK0WeaX947cDff2d3C22UqdMlLbpIZ+qxR8JqUPkHkrAqT/0P/38xiw+R+esDP
+ P80U/Mj7VA0tmhQQd8/RNbnTid4Gg4jXW2/HuCeaXUcAUtgJUH0PreSSzZ5P97kLVqKV
+ k2iaFvkFnVi0VCF+4clT6HQLHXBr4HjJ5WKjRs8bUix2SAkZ1VELLr0otCrv64tqHJEB
+ vXYw==
+X-Gm-Message-State: AOAM5328YlGnGvUxCe0J8ywoJxbv9CMpj8rxqAEH8u7pdWMr9E1/Y4J8
+ ls7b/lLfZEJFsRy0g9Hw2q8XKw==
+X-Google-Smtp-Source: ABdhPJzoozBk4sCtvPwFCt7Ns2n0EIlD3c2Oag8W2C4RKf4YDquTma29XshfY3LkS6cE7lgaMjCoTA==
+X-Received: by 2002:adf:fe01:: with SMTP id n1mr5008752wrr.141.1644354535375; 
+ Tue, 08 Feb 2022 13:08:55 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id o14sm3033561wmr.3.2022.02.08.13.08.53
+ by smtp.gmail.com with ESMTPSA id o14sm3033561wmr.3.2022.02.08.13.08.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Feb 2022 13:08:53 -0800 (PST)
+ Tue, 08 Feb 2022 13:08:54 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Tue,  8 Feb 2022 22:08:20 +0100
-Message-Id: <20220208210824.2238981-16-daniel.vetter@ffwll.ch>
+Date: Tue,  8 Feb 2022 22:08:21 +0100
+Message-Id: <20220208210824.2238981-17-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220208210824.2238981-1-daniel.vetter@ffwll.ch>
 References: <20220208210824.2238981-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 15/19] fbcon: Move more code into
- fbcon_release
+Subject: [Intel-gfx] [PATCH v2 16/19] fbcon: untangle fbcon_exit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,85 +74,149 @@ Cc: linux-fbdev@vger.kernel.org, Du Cheng <ducheng2@gmail.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-con2fb_release_oldinfo() has a bunch more kfree() calls than
-fbcon_exit(), but since kfree() on NULL is harmless doing that in both
-places should be ok. This is also a bit more symmetric now again with
-fbcon_open also allocating the fbcon_ops structure.
+There's a bunch of confusions going on here:
+- The deferred fbcon setup notifier should only be cleaned up from
+  fb_console_exit(), to be symmetric with fb_console_init()
+- We also need to make sure we don't race with the work, which means
+  temporarily dropping the console lock (or we can deadlock)
+- That also means no point in clearing deferred_takeover, we are
+  unloading everything anyway.
+- Finally rename fbcon_exit to fbcon_release_all and move it, since
+  that's what's it doing when being called from consw->con_deinit
+  through fbcon_deinit.
+
+To answer a question from Sam just quoting my own reply:
+
+> We loose the call to fbcon_release_all() here [in fb_console_exit()].
+> We have part of the old fbcon_exit() above, but miss the release parts.
+
+Ah yes that's the entire point of this change. The release_all in the
+fbcon exit path was only needed when fbcon was a separate module
+indepedent from core fb.ko. Which means it was possible to unload fbcon
+while having fbdev drivers registered.
+
+But since we've merged them that has become impossible, so by the time the
+fb.ko module can be unloaded, there's guaranteed to be no fbdev drivers
+left. And hence removing them is pointless.
+
+v2: Explain the why better (Sam)
 
 Acked-by: Sam Ravnborg <sam@ravnborg.org>
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Du Cheng <ducheng2@gmail.com>
 Cc: Claudio Suarez <cssk@net-c.es>
+Cc: Du Cheng <ducheng2@gmail.com>
+Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
 ---
- drivers/video/fbdev/core/fbcon.c | 33 +++++++++++++-------------------
- 1 file changed, 13 insertions(+), 20 deletions(-)
+ drivers/video/fbdev/core/fbcon.c | 63 ++++++++++++++++----------------
+ 1 file changed, 32 insertions(+), 31 deletions(-)
 
 diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
-index abb419a091c6..685b4a9e5546 100644
+index 685b4a9e5546..944f514c77ec 100644
 --- a/drivers/video/fbdev/core/fbcon.c
 +++ b/drivers/video/fbdev/core/fbcon.c
-@@ -690,6 +690,18 @@ static void fbcon_release(struct fb_info *info)
- 	unlock_fb_info(info);
+@@ -187,7 +187,6 @@ static void fbcon_redraw_move(struct vc_data *vc, struct fbcon_display *p,
+ 			      int line, int count, int dy);
+ static void fbcon_modechanged(struct fb_info *info);
+ static void fbcon_set_all_vcs(struct fb_info *info);
+-static void fbcon_exit(void);
  
- 	module_put(info->fbops->owner);
+ static struct device *fbcon_device;
+ 
+@@ -1146,6 +1145,27 @@ static void fbcon_free_font(struct fbcon_display *p, bool freefont)
+ 
+ static void set_vc_hi_font(struct vc_data *vc, bool set);
+ 
++static void fbcon_release_all(void)
++{
++	struct fb_info *info;
++	int i, j, mapped;
 +
-+	if (info->fbcon_par) {
-+		struct fbcon_ops *ops = info->fbcon_par;
++	for_each_registered_fb(i) {
++		mapped = 0;
++		info = registered_fb[i];
 +
-+		fbcon_del_cursor_work(info);
-+		kfree(ops->cursor_state.mask);
-+		kfree(ops->cursor_data);
-+		kfree(ops->cursor_src);
-+		kfree(ops->fontbuffer);
-+		kfree(info->fbcon_par);
-+		info->fbcon_par = NULL;
-+	}
- }
- 
- static int fbcon_open(struct fb_info *info)
-@@ -740,18 +752,10 @@ static int con2fb_acquire_newinfo(struct vc_data *vc, struct fb_info *info,
- static void con2fb_release_oldinfo(struct vc_data *vc, struct fb_info *oldinfo,
- 				   struct fb_info *newinfo)
- {
--	struct fbcon_ops *ops = oldinfo->fbcon_par;
- 	int ret;
- 
- 	fbcon_release(oldinfo);
- 
--	fbcon_del_cursor_work(oldinfo);
--	kfree(ops->cursor_state.mask);
--	kfree(ops->cursor_data);
--	kfree(ops->cursor_src);
--	kfree(ops->fontbuffer);
--	kfree(oldinfo->fbcon_par);
--	oldinfo->fbcon_par = NULL;
- 	/*
- 	  If oldinfo and newinfo are driving the same hardware,
- 	  the fb_release() method of oldinfo may attempt to
-@@ -3315,19 +3319,8 @@ static void fbcon_exit(void)
- 			}
- 		}
- 
--		if (mapped) {
--			if (info->fbcon_par) {
--				struct fbcon_ops *ops = info->fbcon_par;
--
--				fbcon_del_cursor_work(info);
--				kfree(ops->cursor_src);
--				kfree(ops->cursor_state.mask);
--				kfree(info->fbcon_par);
--				info->fbcon_par = NULL;
--			}
--
++		for (j = first_fb_vc; j <= last_fb_vc; j++) {
++			if (con2fb_map[j] == i) {
++				mapped = 1;
++				con2fb_map[j] = -1;
++			}
++		}
++
 +		if (mapped)
- 			fbcon_release(info);
--		}
- 	}
++			fbcon_release(info);
++	}
++}
++
+ static void fbcon_deinit(struct vc_data *vc)
+ {
+ 	struct fbcon_display *p = &fb_display[vc->vc_num];
+@@ -1185,7 +1205,7 @@ static void fbcon_deinit(struct vc_data *vc)
+ 		set_vc_hi_font(vc, false);
+ 
+ 	if (!con_is_bound(&fb_con))
+-		fbcon_exit();
++		fbcon_release_all();
+ 
+ 	if (vc->vc_num == logo_shown)
+ 		logo_shown = FBCON_LOGO_CANSHOW;
+@@ -3296,34 +3316,6 @@ static void fbcon_start(void)
+ #endif
  }
  
+-static void fbcon_exit(void)
+-{
+-	struct fb_info *info;
+-	int i, j, mapped;
+-
+-#ifdef CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER
+-	if (deferred_takeover) {
+-		dummycon_unregister_output_notifier(&fbcon_output_nb);
+-		deferred_takeover = false;
+-	}
+-#endif
+-
+-	for_each_registered_fb(i) {
+-		mapped = 0;
+-		info = registered_fb[i];
+-
+-		for (j = first_fb_vc; j <= last_fb_vc; j++) {
+-			if (con2fb_map[j] == i) {
+-				mapped = 1;
+-				con2fb_map[j] = -1;
+-			}
+-		}
+-
+-		if (mapped)
+-			fbcon_release(info);
+-	}
+-}
+-
+ void __init fb_console_init(void)
+ {
+ 	int i;
+@@ -3363,10 +3355,19 @@ static void __exit fbcon_deinit_device(void)
+ 
+ void __exit fb_console_exit(void)
+ {
++#ifdef CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER
++	console_lock();
++	if (deferred_takeover)
++		dummycon_unregister_output_notifier(&fbcon_output_nb);
++	console_unlock();
++
++	cancel_work_sync(&fbcon_deferred_takeover_work);
++#endif
++
+ 	console_lock();
+ 	fbcon_deinit_device();
+ 	device_destroy(fb_class, MKDEV(0, 0));
+-	fbcon_exit();
++
+ 	do_unregister_con_driver(&fb_con);
+ 	console_unlock();
+ }	
 -- 
 2.34.1
 
