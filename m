@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40A8C4AD51E
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 10:39:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43B1E4AD520
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 10:40:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 545C910E487;
-	Tue,  8 Feb 2022 09:39:37 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73F4D10E42F;
- Tue,  8 Feb 2022 09:39:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7383210E4F1;
+	Tue,  8 Feb 2022 09:40:16 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D55DD10E12F;
+ Tue,  8 Feb 2022 09:40:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644313175; x=1675849175;
+ t=1644313214; x=1675849214;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=Df0C/LrFVscjyi5H5SdgDbADUUcMmmwnwJrI6V8QSCw=;
- b=U/Yn5ehK3FMieJ2Wo+HJRwW5ooVsGCPCyi/A2jYqoyUcQshh/3GoHLcz
- Ynl89iEZaqipMyhiDB2a1ABOqWRw2v0hoJdnJk5MEEOybtw39l1x/WiWD
- YLng8LkaVWBNPTSt/45nUPagDPWNEHwecd6Mb4qtxfj4wqOoN7VkeP+5N
- RD+iCB/JR0FlQk456st3LhXdLZJEbO6qpS8o+kNMnmieMeKrkStAnpX37
- tSSWqTWZTdHuv9figjyDw7VIgpCXDwMizhc+vAq7YUvaTnZvW0OgIY/LH
- 3az06QrmtQmHnaPlKLOx/uEykrZg8cSi+dYybdhpmxQaoqE6C3z7u621k g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="236317868"
-X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="236317868"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 01:39:35 -0800
-X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="484753098"
-Received: from kgonza2-mobl2.gar.corp.intel.com (HELO [10.213.198.226])
- ([10.213.198.226])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 01:39:34 -0800
-Message-ID: <ba8ce5c6-ba11-f2af-917c-9e6e14445d43@linux.intel.com>
-Date: Tue, 8 Feb 2022 09:39:32 +0000
+ bh=UBEa6bnATc1XckSSrH+Ga3bve1upbhNguIC65V8cxtY=;
+ b=SHasuJMu4LaBRujQr5mno8sg6B+r6Nef137k5/EpkA7wyDdAHY3c/Lx1
+ 0fO4lo8qs1opYZTZR/IXytfaPa+RrvAJxXk2rpS02Z2UfYpAvxpUet3zl
+ I00wGq+zMyM3sade87KlROJWNPiAffiS828kDvXSMpmMQCExEypnEJ35x
+ Ex/BFT7gYy/bjOL03AE5Ov8vRYIHiIa1iCtn/ElYwZoqsJw+BuTDjBvFZ
+ D954yw9Y6I8tuTdOsC0VePfSytD47ktpwJAXZsKaVWozA4smTiwI+XLTV
+ X/DKlw3WqPwwj/9JgMhc6MMTSA8vEnJuq2wHWh+RIO4SnEV0mi8LdMFxQ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="249119116"
+X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="249119116"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 01:40:14 -0800
+X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="585133118"
+Received: from amcgrat2-mobl1.ger.corp.intel.com (HELO [10.252.10.21])
+ ([10.252.10.21])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 01:40:12 -0800
+Message-ID: <644ce762-cb6a-0cf1-d1e0-1e799a3405bf@intel.com>
+Date: Tue, 8 Feb 2022 09:40:10 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Content-Language: en-US
-To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
-References: <20220208020716.2140157-1-John.C.Harrison@Intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220208020716.2140157-1-John.C.Harrison@Intel.com>
+Content-Language: en-GB
+To: Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+References: <20220203133234.3350-1-Arunpravin.PaneerSelvam@amd.com>
+ <20220203133234.3350-2-Arunpravin.PaneerSelvam@amd.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20220203133234.3350-2-Arunpravin.PaneerSelvam@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Fix flag query to not modify
- state
+Subject: Re: [Intel-gfx] [PATCH 2/7] drm/selftests: add drm buddy alloc
+ limit testcase
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,47 +63,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: alexander.deucher@amd.com, tzimmermann@suse.de, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 08/02/2022 02:07, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
+On 03/02/2022 13:32, Arunpravin wrote:
+> add a test to check the maximum allocation limit
 > 
-> A flag query helper was actually writing to the flags word rather than
-> just reading. Fix that. Also update the function's comment as it was
-> out of date.
-> 
-> Fixes: 0f7976506de61 ("drm/i915/guc: Rework and simplify locking")
-> Signed-off-by: John Harrison <john.c.harrison@intel.com>
+> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
 > ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 7 ++-----
->   1 file changed, 2 insertions(+), 5 deletions(-)
+>   .../gpu/drm/selftests/drm_buddy_selftests.h   |  1 +
+>   drivers/gpu/drm/selftests/test-drm_buddy.c    | 60 +++++++++++++++++++
+>   2 files changed, 61 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index b3a429a92c0d..d9f4218f5ef4 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -174,11 +174,8 @@ static inline void init_sched_state(struct intel_context *ce)
->   __maybe_unused
->   static bool sched_state_is_init(struct intel_context *ce)
->   {
-> -	/*
-> -	 * XXX: Kernel contexts can have SCHED_STATE_NO_LOCK_REGISTERED after
-> -	 * suspend.
-> -	 */
-> -	return !(ce->guc_state.sched_state &=
-> +	/* Kernel contexts can have SCHED_STATE_REGISTERED after suspend. */
-> +	return !(ce->guc_state.sched_state &
->   		 ~(SCHED_STATE_BLOCKED_MASK | SCHED_STATE_REGISTERED));
->   }
+> diff --git a/drivers/gpu/drm/selftests/drm_buddy_selftests.h b/drivers/gpu/drm/selftests/drm_buddy_selftests.h
+> index a4bcf3a6dfe3..ebe16162762f 100644
+> --- a/drivers/gpu/drm/selftests/drm_buddy_selftests.h
+> +++ b/drivers/gpu/drm/selftests/drm_buddy_selftests.h
+> @@ -7,3 +7,4 @@
+>    * Tests are executed in order by igt/drm_buddy
+>    */
+>   selftest(sanitycheck, igt_sanitycheck) /* keep first (selfcheck for igt) */
+> +selftest(buddy_alloc_limit, igt_buddy_alloc_limit)
+> diff --git a/drivers/gpu/drm/selftests/test-drm_buddy.c b/drivers/gpu/drm/selftests/test-drm_buddy.c
+> index 51e4d393d22c..fd7d1a112458 100644
+> --- a/drivers/gpu/drm/selftests/test-drm_buddy.c
+> +++ b/drivers/gpu/drm/selftests/test-drm_buddy.c
+> @@ -16,6 +16,66 @@
 >   
+>   static unsigned int random_seed;
+>   
+> +static int igt_buddy_alloc_limit(void *arg)
+> +{
+> +	u64 end, size = U64_MAX, start = 0;
+> +	struct drm_buddy_block *block;
+> +	unsigned long flags = 0;
+> +	LIST_HEAD(allocated);
+> +	struct drm_buddy mm;
+> +	int err;
+> +
+> +	size = end = round_down(size, 4096);
+> +	err = drm_buddy_init(&mm, size, PAGE_SIZE);
+> +	if (err)
+> +		return err;
+> +
+> +	if (mm.max_order != DRM_BUDDY_MAX_ORDER) {
+> +		pr_err("mm.max_order(%d) != %d\n",
+> +		       mm.max_order, DRM_BUDDY_MAX_ORDER);
+> +		err = -EINVAL;
+> +		goto out_fini;
+> +	}
+> +
+> +	err = drm_buddy_alloc_blocks(&mm, start, end, size,
+> +				     PAGE_SIZE, &allocated, flags);
+> +
+> +	if (unlikely(err))
+> +		goto out_free;
+> +
+> +	block = list_first_entry_or_null(&allocated,
+> +					 struct drm_buddy_block,
+> +					 link);
+> +
+> +	if (!block)
 
-Looks important - what are the consequences?
+err = -EINVAL;
 
-Needs Cc: stable for 5.16?
+> +		goto out_fini;
+> +
+> +	if (drm_buddy_block_order(block) != mm.max_order) {
+> +		pr_err("block order(%d) != %d\n",
+> +		       drm_buddy_block_order(block), mm.max_order);
+> +		err = -EINVAL;
+> +		goto out_free;
+> +	}
+> +
+> +	if (drm_buddy_block_size(&mm, block) !=
+> +	    BIT_ULL(mm.max_order) * PAGE_SIZE) {
+> +		pr_err("block size(%llu) != %llu\n",
+> +		       drm_buddy_block_size(&mm, block),
+> +		       BIT_ULL(mm.max_order) * PAGE_SIZE);
+> +		err = -EINVAL;
+> +		goto out_free;
+> +	}
+> +
+> +	if (!err)
 
-Regards,
+Always true AFAICT?
 
-Tvrtko
+> +		pr_info("%s - succeeded\n", __func__);
+
+I guess this could be made part of the run_selftests()? It looks like it 
+already prints the current test, perhaps that is already enough?
+
+With the err = -EINVAL change, feel free to add,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+> +
+> +out_free:
+> +	drm_buddy_free_list(&mm, &allocated);
+> +out_fini:
+> +	drm_buddy_fini(&mm);
+> +	return err;
+> +}
+> +
+>   static int igt_sanitycheck(void *ignored)
+>   {
+>   	pr_info("%s - ok!\n", __func__);
