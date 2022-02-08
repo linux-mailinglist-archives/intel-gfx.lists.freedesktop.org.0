@@ -1,57 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B8E94AD582
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 11:31:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF3E14AD587
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 11:35:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D96B810E12F;
-	Tue,  8 Feb 2022 10:31:16 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1F1010E20C
- for <Intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 10:31:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8CC10E2C5;
+	Tue,  8 Feb 2022 10:35:26 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FBA810E20C;
+ Tue,  8 Feb 2022 10:35:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644316275; x=1675852275;
+ t=1644316524; x=1675852524;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=a+G+klKFEQt37G9manZU5DRfvNzePm1ff7c56zdlfnc=;
- b=lVbGcxV4oOKaTLZXgeny3kaZt5RoOg8QofO5l55MqM9uTSbnTE8LEQWf
- WJKTSMLIdBc9liIU/1ZXrpe43JBJD8RPiNayE4e7dJ8GbQlxqtye7Tbql
- bfaBNr0hJIOzaqa1IyxbsRe5PKkry9eUdhPEZb5jGRJu1JeP+CrR+mprF
- HZCiqB+rBDmx5IIVbYbDoNMWSUpYRFleUPSp9GmhOnXqLinVQ0MQ9iHiZ
- A9r+LPBsG9y84htc4UqniczoQTVjk1M9IwxlroW22iLbYVlP8a6OtTAJp
- BGn4b/5pdJXOeVvxKjuprh5zoAyASA+/NK++3jffURl/C3vNXnEGqFwWN A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="229570065"
-X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="229570065"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 02:31:14 -0800
-X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="525500898"
-Received: from kgonza2-mobl2.gar.corp.intel.com (HELO [10.213.198.226])
- ([10.213.198.226])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 02:31:12 -0800
-Message-ID: <0558be29-979a-0b86-b4c9-f4fb5a3fe08f@linux.intel.com>
-Date: Tue, 8 Feb 2022 10:31:10 +0000
+ bh=x/Uv1dUJ3xcDqp0s0vto9hCh6YR2R94g1RngWFCibK8=;
+ b=Eu5PBEjCptyYr7I7G3JI5bi58Os4cfCnRrKpH8zS5hZkT036V1SDV7jr
+ wIFYJ74Mt8rus+mqSmfe+NGr7ScGwBn/oLmmluHDDVLdHML1BSIpLWQ+t
+ lAyaH9qgOeN9chXhbdLElb+AarWYKXp+DYzd8WeSlpIdH/jUqD36VZUVR
+ XHOQq9CErsvu0D3e6wrh+Kstt++OJ4S8hO/4eX41E8N2oERsWf77zFa3L
+ Fx6ByPoCbstj9vaOdAZXe4Z56ix26R3a3I6qn77oBg4sILhqlGbY7TO6o
+ EVieX9RLkyJpPhqyWYfet6g50oJyshCKjHOHsb7jfl56ZcgnEf1GYirbP A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="248869617"
+X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="248869617"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 02:35:13 -0800
+X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="585148692"
+Received: from amcgrat2-mobl1.ger.corp.intel.com (HELO [10.252.10.21])
+ ([10.252.10.21])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 02:35:11 -0800
+Message-ID: <4af33e93-12c1-a6e8-4ae6-cc6122117373@intel.com>
+Date: Tue, 8 Feb 2022 10:35:09 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Content-Language: en-US
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20220201111533.250242-1-tvrtko.ursulin@linux.intel.com>
- <20220201165515.xntdympc4n3pdhif@ldmartin-desk2> <87o83qtsxx.fsf@intel.com>
- <20220201172820.ckcxkt5g5xstfi5s@ldmartin-desk2>
- <0ef577a8-578e-22dd-c287-5223c21edcb7@linux.intel.com>
- <20220202162621.f4rr2b4li2zzvnvb@ldmartin-desk2>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220202162621.f4rr2b4li2zzvnvb@ldmartin-desk2>
+Content-Language: en-GB
+To: Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+References: <20220203133234.3350-1-Arunpravin.PaneerSelvam@amd.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20220203133234.3350-1-Arunpravin.PaneerSelvam@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC 0/2] Compile out integrated
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm/selftests: Move i915 buddy
+ selftests into drm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,145 +62,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Intel-gfx@lists.freedesktop.org,
- Michael Cheng <michael.cheng@intel.com>
+Cc: alexander.deucher@amd.com, tzimmermann@suse.de, christian.koenig@amd.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 02/02/2022 16:26, Lucas De Marchi wrote:
-> On Wed, Feb 02, 2022 at 10:26:46AM +0000, Tvrtko Ursulin wrote:
->>
->> On 01/02/2022 17:28, Lucas De Marchi wrote:
->>> On Tue, Feb 01, 2022 at 07:09:14PM +0200, Jani Nikula wrote:
->>>> On Tue, 01 Feb 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>>>> On Tue, Feb 01, 2022 at 11:15:31AM +0000, Tvrtko Ursulin wrote:
->>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>>>
->>>>>> Quicky and dirty hack based on some old ideas. Thought maybe the 
->>>>>> approach might
->>>>>> interest the Arm port guys. But with IS_GEN_RANGE removed easy 
->>>>>> gains are not so
->>>>>> big so meh.. Maybe some more easy wins with IS_DISPLAY_VER but I 
->>>>>> haven't looked
->>>>>> into that side.
->>>>>>
->>>>>> 3884664  449681    6720 4341065  423d49 i915.ko.tip
->>>>>> 3599989  429034    6688 4035711  3d947f i915.ko.noigp
->>>>>
->>>>> By these numbers probably it's hard to justify. Another thing to 
->>>>> consider
->>>>> is that it's very common to have on the same system both
->>>>> integrated and discrete - doing this would remove at compile time any
->>>>> chance of driving the integrated one.
->>>>
->>>> I guess the point was, the arm systems won't have integrated, and it's
->>>> anyway going to be a separate build.
->>>
->>> so probably the focus and argument here should not be about size
->>> reduction. From patch 1 I see:
->>>
->>> +config DRM_I915_INTEGRATED_GPU_SUPPORT
->>> +       bool "Support integrated GPUs"
->>> +       default y
->>> +       depends on DRM_I915
->>> +       help
->>> +         Include support for integrated GPUs.
->>>
->>> If it's something that depends on arch rather than providing an
->>> option in menuconfig, then I think it could be some interesting
->>> investigation. However, I can't see how it would help with removing
->>> some code paths in the driver (e.g. the clflush() calls we were talking
->>> about in another patch series) since the code elimination would all
->>> happen at link time.
->>
->> Clflush class of problems is yet another orthogonal set of problems.
->>
->> Yes, idea was that the Kconfig option would be selected by Arm, or 
->> deselected by x86, whatever. But there is also a case for letting it 
->> be user visible.
->>
->> In general, I thought at least, we should look into not 
->> building/deploying binary code for irrelevant hardware on Arm builds. 
->> If that is clear and agreeable then I think the approach how to get 
->> there is really multi-pronged.
->>
->> 1)
->> What you are partly doing with "clflush" type series. Make Arm 
->> relevant code paths actually compile on Arm.
+On 03/02/2022 13:32, Arunpravin wrote:
+> - move i915 buddy selftests into drm selftests folder
+> - add Makefile and Kconfig support
+> - add sanitycheck testcase
 > 
-> to be clear, the goal is to be more architecture independent
-> and this is being tested with arm64.
+> Prerequisites
+> - These series of selftests patches are created on top of
+>    drm buddy series
+> - Enable kselftests for DRM as a module in .config
 > 
->>
->> 2a)
->> What I sent in this series - it's simple/easy dead code elimination 
->> from a single compilation unit.
->>
->> 2b)
->> *If* we resurrected GRAPHICS_VER check where "ver" is part of the 
->> macro, eg. not doing "if (GRAPHICS_VER <=> N)" but "if 
->> (GRAPHICS_VERN)", or "if IS_GRAPHICS_VER(N, FOREVER)", then the same 
->> approach would be more effective.
->>
->> Because if N or range is the macro parameter, we can make it dead code 
->> based on Kconfig.
+> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+
+At some point I guess we also want some IGT that picks this up? Like we 
+do in tests/drm_mm.c? That way this can get picked up by CI?
+
+Acked-by: Matthew Auld <matthew.auld@intel.com>
+
+> ---
+>   drivers/gpu/drm/Kconfig                       |  1 +
+>   drivers/gpu/drm/selftests/Makefile            |  3 +-
+>   .../gpu/drm/selftests/drm_buddy_selftests.h   |  9 ++++
+>   drivers/gpu/drm/selftests/test-drm_buddy.c    | 49 +++++++++++++++++++
+>   4 files changed, 61 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/gpu/drm/selftests/drm_buddy_selftests.h
+>   create mode 100644 drivers/gpu/drm/selftests/test-drm_buddy.c
 > 
-> yes I remember that. But when it was done the IS_GRAPHICS_VER() was
-> already not much used. I doubt the handful places it was used in would
-> change much of the overall picture we had at that point.
-
-Right, I was referring to the time when N is inside the macro. Like 
-before IS_GEN(p, N) was replaced with GRAPHICS_VER, when N went outside 
-the macro.
-
->> This is what I demonstrated few years ago by being able to compile out 
->> ~3rd of a driver when selecting only execlists platforms, AFAIR.
->>
->> And which is why I was a bit unhappy this was getting removed not so 
->> long ago.
->>
->> 3)
->> Complex step is putting LTO into use to allow dead code elimination 
->> between compilation units. Think:
->>
->> file1.c:
->> RUNTIME_INFO->needs_blah = IS_PLATFORM && blah
->>
->> file2.c
->> if (RUNTIME_INFO->needs_blah)
->>   ..dead code eliminated by LTO only..
->>
->> Few years ago Andi Kleen had a proof of concept of KBuild LTO but I 
->> don't know what is the status of that. If LTO can be enabled then work 
->> from steps 2a&b automatically works much much better.
->>
->> 4)
->> If LTO is not there yet maybe see how to slightly refactor the code so 
->> that we can completely drop compilation units from the Makefile. Drop 
->> files like gt/intel_ring_submission.c, or similar if we have or can 
->> create candidates.
-> 
-> I think this is something we have to do and to go after. I think it's
-> more future-proof to organize the code to have a better separation of
-> platforms, instead of relying on the linker to do the dead code
-> elimination based on user selection.
-
-Yes, definitely high level refactor. I just think it can't be fully done 
-and some dead code elimination is cheap enough to have to handle the 
-remaining parts.
-
-> I'm fine with compiling out stuff on i915 right now because "this can
-> only and will ever (as far as we know) work on x86". I'm more reluctant
-> about adding a build option though. For the same reasons Jani mentioned
-> and that it suddenly may open the doors for a matrix of configuration
-> (e.g.  build with/without display, or rc6, or dsi, or
-> name-the-feature-you-dont-want).
-
-Yeah okay, I was not saying it absolutely needs to be user visible. Just 
-that it could be argued it could be. Think people building custom 
-kernels and selecting AMD CPU and having Intel discrete graphics.
-
-Regards,
-
-Tvrtko
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index eb5a57ae3c5c..ff856df3f97f 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -71,6 +71,7 @@ config DRM_DEBUG_SELFTEST
+>   	select DRM_DP_HELPER
+>   	select DRM_LIB_RANDOM
+>   	select DRM_KMS_HELPER
+> +	select DRM_BUDDY
+>   	select DRM_EXPORT_FOR_TESTS if m
+>   	default n
+>   	help
+> diff --git a/drivers/gpu/drm/selftests/Makefile b/drivers/gpu/drm/selftests/Makefile
+> index 0856e4b12f70..5ba5f9138c95 100644
+> --- a/drivers/gpu/drm/selftests/Makefile
+> +++ b/drivers/gpu/drm/selftests/Makefile
+> @@ -4,4 +4,5 @@ test-drm_modeset-y := test-drm_modeset_common.o test-drm_plane_helper.o \
+>   		      test-drm_damage_helper.o test-drm_dp_mst_helper.o \
+>   		      test-drm_rect.o
+>   
+> -obj-$(CONFIG_DRM_DEBUG_SELFTEST) += test-drm_mm.o test-drm_modeset.o test-drm_cmdline_parser.o
+> +obj-$(CONFIG_DRM_DEBUG_SELFTEST) += test-drm_mm.o test-drm_modeset.o test-drm_cmdline_parser.o \
+> +				    test-drm_buddy.o
+> diff --git a/drivers/gpu/drm/selftests/drm_buddy_selftests.h b/drivers/gpu/drm/selftests/drm_buddy_selftests.h
+> new file mode 100644
+> index 000000000000..a4bcf3a6dfe3
+> --- /dev/null
+> +++ b/drivers/gpu/drm/selftests/drm_buddy_selftests.h
+> @@ -0,0 +1,9 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/* List each unit test as selftest(name, function)
+> + *
+> + * The name is used as both an enum and expanded as igt__name to create
+> + * a module parameter. It must be unique and legal for a C identifier.
+> + *
+> + * Tests are executed in order by igt/drm_buddy
+> + */
+> +selftest(sanitycheck, igt_sanitycheck) /* keep first (selfcheck for igt) */
+> diff --git a/drivers/gpu/drm/selftests/test-drm_buddy.c b/drivers/gpu/drm/selftests/test-drm_buddy.c
+> new file mode 100644
+> index 000000000000..51e4d393d22c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/selftests/test-drm_buddy.c
+> @@ -0,0 +1,49 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2019 Intel Corporation
+> + */
+> +
+> +#define pr_fmt(fmt) "drm_buddy: " fmt
+> +
+> +#include <linux/module.h>
+> +
+> +#include <drm/drm_buddy.h>
+> +
+> +#include "../lib/drm_random.h"
+> +
+> +#define TESTS "drm_buddy_selftests.h"
+> +#include "drm_selftest.h"
+> +
+> +static unsigned int random_seed;
+> +
+> +static int igt_sanitycheck(void *ignored)
+> +{
+> +	pr_info("%s - ok!\n", __func__);
+> +	return 0;
+> +}
+> +
+> +#include "drm_selftest.c"
+> +
+> +static int __init test_drm_buddy_init(void)
+> +{
+> +	int err;
+> +
+> +	while (!random_seed)
+> +		random_seed = get_random_int();
+> +
+> +	pr_info("Testing DRM buddy manager (struct drm_buddy), with random_seed=0x%x\n",
+> +		random_seed);
+> +	err = run_selftests(selftests, ARRAY_SIZE(selftests), NULL);
+> +
+> +	return err > 0 ? 0 : err;
+> +}
+> +
+> +static void __exit test_drm_buddy_exit(void)
+> +{
+> +}
+> +
+> +module_init(test_drm_buddy_init);
+> +module_exit(test_drm_buddy_exit);
+> +
+> +MODULE_AUTHOR("Intel Corporation");
+> +MODULE_LICENSE("GPL");
