@@ -1,56 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E75904AD878
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 13:56:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 632E94AD989
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 14:21:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4CC810E13E;
-	Tue,  8 Feb 2022 12:55:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEF7510E208;
+	Tue,  8 Feb 2022 13:21:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9190110E347;
- Tue,  8 Feb 2022 12:55:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644324957; x=1675860957;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=kleICkGbwhejDj2oVP4S9JBo3krBcFPb2HJSJ1hQSDk=;
- b=NUCw4pAcEoQTF+qlIkin/nSVq0strd78Fm44ICtLwlyBohzR7PuB6gQh
- xjAHdcH8HFxLparvluzDpj9hkw0Ac0YKAVrTSayHstE/JXF78s9pO0Kiu
- 4pAE5GIbz2+knPzcjYCBFm/iF90DaF0v8CJEJWFAv/lxuXhEzSar8Upar
- cN3e0G+fWUqRkHK66GiNddFnxQGtQ3QW0kByKvyvDrObNDaShZfnJSyqz
- MAlOiY2U+s9gHeChhZyuW/dh0m/Jlb8XuRRb9bGf3/j15eKII3vwlBVQD
- DwpMS7wMK0Q5m8T2ImfTaiSzJ2Q9iZkKAA9YRYspudAUVEl7/mLfEwe/x w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="335343176"
-X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="335343176"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 04:55:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="678097543"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga001.fm.intel.com with SMTP; 08 Feb 2022 04:55:54 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 08 Feb 2022 14:55:53 +0200
-Date: Tue, 8 Feb 2022 14:55:53 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YgJoWUYRVjJDQFq4@intel.com>
-References: <cover.1643878928.git.jani.nikula@intel.com>
- <bda92c2540e661c39613167b53b5e5388a57a730.1643878928.git.jani.nikula@intel.com>
- <Yf0P8kLCFcotNVkl@intel.com> <87k0e5ra3h.fsf@intel.com>
- <YgI6Pxspeg2yNr2s@intel.com> <87fsotr1zi.fsf@intel.com>
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A636B10E3A6;
+ Tue,  8 Feb 2022 11:42:40 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 138E5B81A82;
+ Tue,  8 Feb 2022 11:42:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E433CC004E1;
+ Tue,  8 Feb 2022 11:42:34 +0000 (UTC)
+Message-ID: <aa1312fc-197b-c1ab-6a18-369d49c1e8f8@xs4all.nl>
+Date: Tue, 8 Feb 2022 12:42:33 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Content-Language: en-US
+To: Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20220204170541.829227-1-lucas.demarchi@intel.com>
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20220204170541.829227-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87fsotr1zi.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 5/8] drm/i915/dp: rewrite DP 2.0
- 128b/132b link training based on errata
+X-Mailman-Approved-At: Tue, 08 Feb 2022 13:21:01 +0000
+Subject: Re: [Intel-gfx] [PATCH v4] dma-buf-map: Rename to iosys-map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +46,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Jonathan Corbet <corbet@lwn.net>, airlied@linux.ie, daniel.vetter@ffwll.ch,
+ linux-doc@vger.kernel.org, christian.koenig@amd.com,
+ srinivas.kandagatla@linaro.org, tzimmermann@suse.de,
+ gregkh@linuxfoundation.org, nouveau@lists.freedesktop.org,
+ sumit.semwal@linaro.org, linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 08, 2022 at 02:12:33PM +0200, Jani Nikula wrote:
-> On Tue, 08 Feb 2022, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Tue, Feb 08, 2022 at 11:17:22AM +0200, Jani Nikula wrote:
-> >> On Fri, 04 Feb 2022, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >> > On Thu, Feb 03, 2022 at 11:03:54AM +0200, Jani Nikula wrote:
-> >> >> +
-> >> >> +		if (timeout) {
-> >> >> +			intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> >> >> +			drm_err(&i915->drm,
-> >> >> +				"[ENCODER:%d:%s] Lane channel eq timeout\n",
-> >> >> +				encoder->base.base.id, encoder->base.name);
-> >> >> +			return false;
-> >> >> +		}
-> >> >> +
-> >> >> +		if (time_after(jiffies, deadline))
-> >> >> +			timeout = true; /* try one last time after deadline */
-> >> >
-> >> > Is there a reason we can't do this just before drm_dp_dpcd_read_link_status()
-> >> > so we don't have to pass the timeout status from one loop iteration to
-> >> > the next?
-> >> 
-> >> The point is to check one last time after timeout has passed, like you
-> >> suggested in previous review, and I agreed.
-> >
-> > Sure but why can't it be something more like?
-> >
-> > timeout = time_after();
-> > read_status();
-> > if (bad)
-> > 	bail;
-> > if (timeout)
-> > 	bail;
-> >
-> > I think we have it more like that in wait_for()/etc.
+
+
+On 2/4/22 18:05, Lucas De Marchi wrote:
+> Rename struct dma_buf_map to struct iosys_map and corresponding APIs.
+> Over time dma-buf-map grew up to more functionality than the one used by
+> dma-buf: in fact it's just a shim layer to abstract system memory, that
+> can be accessed via regular load and store, from IO memory that needs to
+> be acessed via arch helpers.
 > 
-> I was going to fix this, but then realized the "one more time" really
-> only makes sense if it includes updating the signal levels and training
-> set and then checking the status. I don't think there's point in "one
-> more time" only covering the status read.
-
-Hmm. Yeah, I suppose that is true. We can't really know when the sink
-updated the status so checking for the timeout just before that might
-have the same issue as checking entirely after the status check.
-
+> The idea is to extend this API so it can fulfill other needs, internal
+> to a single driver. Example: in the i915 driver it's desired to share
+> the implementation for integrated graphics, which uses mostly system
+> memory, with discrete graphics, which may need to access IO memory.
 > 
-> I've got the loop set up such that the flow is natural when entering the
-> loop i.e. I'd rather not have the adjust in the beginning with some if
-> (try != 0) check.
+> The conversion was mostly done with the following semantic patch:
 > 
-> Or am I missing something?
+> 	@r1@
+> 	@@
+> 	- struct dma_buf_map
+> 	+ struct iosys_map
+> 
+> 	@r2@
+> 	@@
+> 	(
+> 	- DMA_BUF_MAP_INIT_VADDR
+> 	+ IOSYS_MAP_INIT_VADDR
+> 	|
+> 	- dma_buf_map_set_vaddr
+> 	+ iosys_map_set_vaddr
+> 	|
+> 	- dma_buf_map_set_vaddr_iomem
+> 	+ iosys_map_set_vaddr_iomem
+> 	|
+> 	- dma_buf_map_is_equal
+> 	+ iosys_map_is_equal
+> 	|
+> 	- dma_buf_map_is_null
+> 	+ iosys_map_is_null
+> 	|
+> 	- dma_buf_map_is_set
+> 	+ iosys_map_is_set
+> 	|
+> 	- dma_buf_map_clear
+> 	+ iosys_map_clear
+> 	|
+> 	- dma_buf_map_memcpy_to
+> 	+ iosys_map_memcpy_to
+> 	|
+> 	- dma_buf_map_incr
+> 	+ iosys_map_incr
+> 	)
+> 
+> 	@@
+> 	@@
+> 	- #include <linux/dma-buf-map.h>
+> 	+ #include <linux/iosys-map.h>
+> 
+> Then some files had their includes adjusted and some comments were
+> update to remove mentions to dma-buf-map.
+> 
+> Since this is not specific to dma-buf anymore, move the documentation to
+> the "Bus-Independent Device Accesses" section.
+> 
+> v2:
+>   - Squash patches
+> 
+> v3:
+>   - Fix wrong removal of dma-buf.h from MAINTAINERS
+>   - Move documentation from dma-buf.rst to device-io.rst
+> 
+> v4:
+>   - Change documentation tile and level
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Acked-by: Christian KÃ¶nig <christian.koenig@amd.com>
+> Acked-by: Sumit Semwal <sumit.semwal@linaro.org>
+> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>  Documentation/driver-api/device-io.rst        |   9 +
+>  Documentation/driver-api/dma-buf.rst          |   9 -
+>  Documentation/gpu/todo.rst                    |  20 +-
+>  MAINTAINERS                                   |   9 +-
+>  drivers/dma-buf/dma-buf.c                     |  22 +-
+>  drivers/dma-buf/heaps/cma_heap.c              |  10 +-
+>  drivers/dma-buf/heaps/system_heap.c           |  10 +-
+>  drivers/gpu/drm/ast/ast_drv.h                 |   2 +-
+>  drivers/gpu/drm/ast/ast_mode.c                |   8 +-
+>  drivers/gpu/drm/drm_cache.c                   |  18 +-
+>  drivers/gpu/drm/drm_client.c                  |   9 +-
+>  drivers/gpu/drm/drm_fb_helper.c               |  12 +-
+>  drivers/gpu/drm/drm_gem.c                     |  12 +-
+>  drivers/gpu/drm/drm_gem_cma_helper.c          |   9 +-
+>  drivers/gpu/drm/drm_gem_framebuffer_helper.c  |  16 +-
+>  drivers/gpu/drm/drm_gem_shmem_helper.c        |  15 +-
+>  drivers/gpu/drm/drm_gem_ttm_helper.c          |   4 +-
+>  drivers/gpu/drm/drm_gem_vram_helper.c         |  25 +-
+>  drivers/gpu/drm/drm_internal.h                |   6 +-
+>  drivers/gpu/drm/drm_mipi_dbi.c                |   8 +-
+>  drivers/gpu/drm/drm_prime.c                   |   4 +-
+>  drivers/gpu/drm/etnaviv/etnaviv_drv.h         |   2 +-
+>  drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |   8 +-
+>  drivers/gpu/drm/gud/gud_pipe.c                |   4 +-
+>  drivers/gpu/drm/hyperv/hyperv_drm_modeset.c   |   5 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   8 +-
+>  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |   6 +-
+>  .../gpu/drm/i915/gem/selftests/mock_dmabuf.c  |   6 +-
+>  drivers/gpu/drm/lima/lima_gem.c               |   3 +-
+>  drivers/gpu/drm/lima/lima_sched.c             |   4 +-
+>  drivers/gpu/drm/mediatek/mtk_drm_gem.c        |   7 +-
+>  drivers/gpu/drm/mediatek/mtk_drm_gem.h        |   5 +-
+>  drivers/gpu/drm/mgag200/mgag200_mode.c        |   4 +-
+>  drivers/gpu/drm/msm/msm_drv.h                 |   4 +-
+>  drivers/gpu/drm/msm/msm_gem_prime.c           |   6 +-
+>  drivers/gpu/drm/panfrost/panfrost_perfcnt.c   |  13 +-
+>  drivers/gpu/drm/qxl/qxl_display.c             |   8 +-
+>  drivers/gpu/drm/qxl/qxl_draw.c                |   6 +-
+>  drivers/gpu/drm/qxl/qxl_drv.h                 |  10 +-
+>  drivers/gpu/drm/qxl/qxl_object.c              |   8 +-
+>  drivers/gpu/drm/qxl/qxl_object.h              |   4 +-
+>  drivers/gpu/drm/qxl/qxl_prime.c               |   4 +-
+>  drivers/gpu/drm/radeon/radeon_gem.c           |   1 +
+>  drivers/gpu/drm/rockchip/rockchip_drm_gem.c   |   9 +-
+>  drivers/gpu/drm/rockchip/rockchip_drm_gem.h   |   5 +-
+>  drivers/gpu/drm/tegra/gem.c                   |  10 +-
+>  drivers/gpu/drm/tiny/cirrus.c                 |   8 +-
+>  drivers/gpu/drm/tiny/gm12u320.c               |   7 +-
+>  drivers/gpu/drm/ttm/ttm_bo_util.c             |  16 +-
+>  drivers/gpu/drm/ttm/ttm_resource.c            |  42 +--
+>  drivers/gpu/drm/ttm/ttm_tt.c                  |   8 +-
+>  drivers/gpu/drm/udl/udl_modeset.c             |   3 +-
+>  drivers/gpu/drm/vboxvideo/vbox_mode.c         |   4 +-
+>  drivers/gpu/drm/vkms/vkms_composer.c          |   4 +-
+>  drivers/gpu/drm/vkms/vkms_drv.h               |   6 +-
+>  drivers/gpu/drm/vkms/vkms_plane.c             |   2 +-
+>  drivers/gpu/drm/vkms/vkms_writeback.c         |   2 +-
+>  drivers/gpu/drm/xen/xen_drm_front_gem.c       |   7 +-
+>  drivers/gpu/drm/xen/xen_drm_front_gem.h       |   6 +-
 
-Nah. I guess it's best leave it the way you have it now.
+For these three:
 
--- 
-Ville Syrjälä
-Intel
+>  .../common/videobuf2/videobuf2-dma-contig.c   |   8 +-
+>  .../media/common/videobuf2/videobuf2-dma-sg.c |   9 +-
+>  .../common/videobuf2/videobuf2-vmalloc.c      |  11 +-
+
+Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+
+Regards,
+
+	Hans
