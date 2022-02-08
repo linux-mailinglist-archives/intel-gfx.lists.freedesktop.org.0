@@ -2,65 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57CC74AE265
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 20:43:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 160374AE26C
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 20:47:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B043110E26D;
-	Tue,  8 Feb 2022 19:43:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B624F10E176;
+	Tue,  8 Feb 2022 19:47:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com
- [IPv6:2607:f8b0:4864:20::1032])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B965C10E6EC
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 19:43:46 +0000 (UTC)
-Received: by mail-pj1-x1032.google.com with SMTP id
- c5-20020a17090a1d0500b001b904a7046dso1397126pjd.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 08 Feb 2022 11:43:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=sJjbNLxKnq2MLHtlOHVGr5cmsCqOoxOU5S439s399rs=;
- b=FCaFfDHqOKbbM+LTbZb/y7018/XOb/NmUt5E6W+YnPsqxKsfSDMkWZB/l0fglbgasl
- clQebc8o6nC+U2ONdp4ydBS2u9mOTBEPiyiovDrjfweqhsE4OQLY6vnmZL4LYFkMGbp4
- zx0Ldh7CVLEFZaAg0EkxPR7V58GWFRcK38oNqFb+kXJM/NXJ/LE0zDxE1iwSW9o0UhKv
- 5mYjmoD1oql0ihFJrAlulXXNG0pefXs1oTT0rJ79JaxEBu0b7PhNtIS7oKe589fqyeuz
- iQS0o2k9uDlyVH34IVZDep+1o0VwKMV1j7oN9lcKwBo0mpIgqI5YGnPdeRoXaSL3qxo7
- v8aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
- :in-reply-to:references:mime-version:content-transfer-encoding;
- bh=sJjbNLxKnq2MLHtlOHVGr5cmsCqOoxOU5S439s399rs=;
- b=KX4XutPi49P/DmXN19WmSfbcsIcm1hp76LAsVxrEzljcEQQVbSa2U8udi4Ib127OV0
- lQf3qBMrUYBYlZui51fP0HwaK5bmgogkD5i6ckH3iiCt8Si2zZrijlTh5oy1JhGkiBEs
- vHzrkjcoWFg6sVu9Yb6Gd5DNV3x0BZ3qSf5mXlfL1jmgqpTc3LTQoCytmeYsKvv+Y0dq
- VYnKEnEyLrIq4a1dmU2ApnrzOoVLd7zXpTTRbI6V3F5tJxrsDxE5qDQfxxpACVEq6wpU
- NGQGUG5ZjIvpbxjfh2mlt4m8BqBT38bcLMKVYdjGapmGy07xco8tUnFDq+DyMLRWfWMH
- V+Qw==
-X-Gm-Message-State: AOAM531KSrca6Mmbq1GkZQKteI0K8+SjqyNA4WLGTKjnuvPZ3poqQmym
- cbznpa+wn+n3usJcKYKw/LQ=
-X-Google-Smtp-Source: ABdhPJxcdJhuyvcGJERiilgb8k7uMGXZtduHdT/KN0RWAWmAOJukqmIGccAe7pKgqTm7G6G9cfXrHQ==
-X-Received: by 2002:a17:90b:4c06:: with SMTP id
- na6mr3057583pjb.174.1644349426360; 
- Tue, 08 Feb 2022 11:43:46 -0800 (PST)
-Received: from balhae.hsd1.ca.comcast.net
- ([2601:647:4800:c6f0:347f:e607:176:4358])
- by smtp.gmail.com with ESMTPSA id w11sm16876839pfu.50.2022.02.08.11.43.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Feb 2022 11:43:45 -0800 (PST)
-From: Namhyung Kim <namhyung@kernel.org>
-To: Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@kernel.org>,
- Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>,
- Boqun Feng <boqun.feng@gmail.com>
-Date: Tue,  8 Feb 2022 11:43:17 -0800
-Message-Id: <20220208194324.85333-6-namhyung@kernel.org>
-X-Mailer: git-send-email 2.35.0.263.gb82422642f-goog
-In-Reply-To: <20220208194324.85333-1-namhyung@kernel.org>
-References: <20220208194324.85333-1-namhyung@kernel.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5A5AF10E125;
+ Tue,  8 Feb 2022 19:47:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5456BA66C9;
+ Tue,  8 Feb 2022 19:47:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4411617655728784100=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 05/12] drm/i915: Protect lockdep functions with
- #ifdef
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 08 Feb 2022 19:47:35 -0000
+Message-ID: <164434965531.22537.2790481944461877026@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220208171651.3085901-1-jani.nikula@intel.com>
+In-Reply-To: <20220208171651.3085901-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_move_intel=5Fhws=5Fcsb=5Fwrite=5Findex=28=29_out_of_i9?=
+ =?utf-8?q?15=5Fdrv=2Eh?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,45 +41,242 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Paul E. McKenney" <paulmck@kernel.org>, intel-gfx@lists.freedesktop.org,
- LKML <linux-kernel@vger.kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
- Radoslaw Burny <rburny@google.com>, Byungchul Park <byungchul.park@lge.com>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Thomas Gleixner <tglx@linutronix.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With upcoming lock tracepoints config, it'd define some of lockdep
-functions without enabling CONFIG_LOCKDEP actually.  The existing code
-assumes those functions will be removed by the preprocessor but it's
-not the case anymore.  Let's protect the code with #ifdef's explicitly.
+--===============4411617655728784100==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Signed-off-by: Namhyung Kim <namhyung@kernel.org>
----
- drivers/gpu/drm/i915/intel_wakeref.c | 3 +++
- 1 file changed, 3 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
-index dfd87d082218..6e4b8d036283 100644
---- a/drivers/gpu/drm/i915/intel_wakeref.c
-+++ b/drivers/gpu/drm/i915/intel_wakeref.c
-@@ -106,8 +106,11 @@ void __intel_wakeref_init(struct intel_wakeref *wf,
- 	wf->wakeref = 0;
- 
- 	INIT_DELAYED_WORK(&wf->work, __intel_wakeref_put_work);
-+
-+#ifdef CONFIG_LOCKDEP
- 	lockdep_init_map(&wf->work.work.lockdep_map,
- 			 "wakeref.work", &key->work, 0);
-+#endif
- }
- 
- int intel_wakeref_wait_for_idle(struct intel_wakeref *wf)
--- 
-2.35.0.263.gb82422642f-goog
+Series: drm/i915: move intel_hws_csb_write_index() out of i915_drv.h
+URL   : https://patchwork.freedesktop.org/series/99853/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11203 -> Patchwork_22211
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_22211 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22211, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/index.html
+
+Participating hosts (45 -> 43)
+------------------------------
+
+  Missing    (2): shard-tglu fi-pnv-d510 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22211:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22211 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [PASS][2] -> [DMESG-FAIL][3] ([i915#4528] / [i915#5026])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-cfl-8109u:       [PASS][5] -> [DMESG-WARN][6] ([i915#295]) +12 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][7] ([fdo#109271]) +13 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
+
+  * igt@runner@aborted:
+    - fi-blb-e6850:       NOTRUN -> [FAIL][8] ([fdo#109271] / [i915#2403] / [i915#2426] / [i915#4312])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-blb-e6850/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-skl-guc:         [DMESG-FAIL][9] ([i915#2291] / [i915#541]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+  [i915#5026]: https://gitlab.freedesktop.org/drm/intel/issues/5026
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11203 -> Patchwork_22211
+
+  CI-20190529: 20190529
+  CI_DRM_11203: e0f14f95759ad65e896868e1f9efd3247d93d28e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22211: 8ed7bbe053b56b8ca9dc69705b7c8a719f5fd692 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8ed7bbe053b5 drm/i915: move intel_hws_csb_write_index() out of i915_drv.h
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/index.html
+
+--===============4411617655728784100==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: move intel_hws_csb_write_index() out of i915_drv.h</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99853/">https://patchwork.freedesktop.org/series/99853/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11203 -&gt; Patchwork_22211</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_22211 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22211, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/index.html</p>
+<h2>Participating hosts (45 -&gt; 43)</h2>
+<p>Missing    (2): shard-tglu fi-pnv-d510 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22211:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22211 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5026">i915#5026</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +12 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-blb-e6850/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22211/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11203 -&gt; Patchwork_22211</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11203: e0f14f95759ad65e896868e1f9efd3247d93d28e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22211: 8ed7bbe053b56b8ca9dc69705b7c8a719f5fd692 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>8ed7bbe053b5 drm/i915: move intel_hws_csb_write_index() out of i915_drv.h</p>
+
+</body>
+</html>
+
+--===============4411617655728784100==--
