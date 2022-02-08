@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1134AD498
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 10:19:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ACD14AD514
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 10:36:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEEB410E12F;
-	Tue,  8 Feb 2022 09:19:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61EAD10E42F;
+	Tue,  8 Feb 2022 09:36:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFBE110E12F;
- Tue,  8 Feb 2022 09:19:34 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BD4010E42F;
+ Tue,  8 Feb 2022 09:36:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644311974; x=1675847974;
+ t=1644313007; x=1675849007;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=zV+V76OnRMqAbJSeq2Bn63kdxs5jpubZc22grdtAD9A=;
- b=en5k9kwF3JZbjk4zWbbZdNEG4xMg+RllmRWjI7cO/npAHF4RJVtxgWBv
- i/sf7VXssIA70UOmIZy1pLWdbK/U6uU/801swHxNC/yVlhqyAo7UTJD+I
- 93LKZUsHQvRIlX2KZ/cuGFAEptS0qYuqeERYiSTgUEspKou/q8Q0vLMy0
- gUURcC2OCelsM2Wwb42cVzgeI8Fol/1DZeeiXHLXgMbtqHx1yrje1VJ46
- ptgTXw5tsfRP4V/s9JKz3rZbENhKQJ+83/vGVxixNj4tX17zqSA3LJh2S
- mzmNvqE9Q9oPU1dxVQUf4Crg/Z1NS1+Y0MVbsQVcfK6FDB4v8J8F2Cwre Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="228876838"
-X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="228876838"
+ bh=yMJYV5fPjd+nFrrPCn4pJ9QTO2c+P3sRo9n7hyZF838=;
+ b=Nh0TTf9t49eMBpFD7va7DQfOpZ+cScfTj+aT5tCEJNGJjJ/OLE3Jkcze
+ CvPUuTU8pdGl9/O3zwTw5vyFEAx8tl1xL5z8HhOVa6ucQxDtFBDE/nIrb
+ agJEWOLui+IxSnbhadL3hXEV+J67ar85WXQ2ICbXHfilG7etuvMEpUrT6
+ FxPH3og8f8mAOFo4kEeI+YS+vIP+kmgCTCm7/+V2GeQi3XUHTZSIBHJXW
+ arYEpg6qlroYwsx/6OxQRBvR/LEHKxzY6z4u/NnLaty9FLPyiSIEVAxLU
+ AIPfF07V1lfOEYxUO/4bJzqiHaI3yk/XzR6rO/jPk/hQURoUfzkhR8LhE A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="335313505"
+X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="335313505"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 01:19:27 -0800
-X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="484747335"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 01:36:46 -0800
+X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; d="scan'208";a="484752303"
 Received: from kgonza2-mobl2.gar.corp.intel.com (HELO [10.213.198.226])
  ([10.213.198.226])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 01:19:26 -0800
-Message-ID: <0eeb87ae-a4d8-17f5-8b6b-9a1da8e3de51@linux.intel.com>
-Date: Tue, 8 Feb 2022 09:19:24 +0000
+ 08 Feb 2022 01:36:45 -0800
+Message-ID: <f23cd56f-786f-358a-c363-70417d10fcab@linux.intel.com>
+Date: Tue, 8 Feb 2022 09:36:43 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
@@ -43,14 +43,14 @@ Content-Language: en-US
 To: Jordan Justen <jordan.l.justen@intel.com>,
  intel-gfx <intel-gfx@lists.freedesktop.org>
 References: <20220207192854.862959-1-jordan.l.justen@intel.com>
- <20220207192854.862959-4-jordan.l.justen@intel.com>
+ <20220207192854.862959-5-jordan.l.justen@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20220207192854.862959-4-jordan.l.justen@intel.com>
+In-Reply-To: <20220207192854.862959-5-jordan.l.justen@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/uapi: Add struct
- drm_i915_query_hwconfig_blob_item
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/guc: Verify hwconfig blob
+ matches supported format
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,65 +63,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Cc: dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+Hi,
+
+Commit message please.
+
+Will GuC folks be reviewing this work?
+
+Quick sanity check maybe makes sense, given data is being "sent" to 
+userspace directly, I am just not sure if it is worth having in 
+non-debug builds of i915. Though I will agree not having it in 
+production then largely defeats the purpose so dunno. Effective 
+difference if GuC load fails versus userspace libraries failing to parse 
+hwconfig?
+
 On 07/02/2022 19:28, Jordan Justen wrote:
-> Also, document DRM_I915_QUERY_HWCONFIG_BLOB with this struct.
-> 
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 > Signed-off-by: Jordan Justen <jordan.l.justen@intel.com>
 > ---
->   include/uapi/drm/i915_drm.h | 24 ++++++++++++++++++++++++
->   1 file changed, 24 insertions(+)
+>   .../gpu/drm/i915/gt/uc/intel_guc_hwconfig.c   | 26 +++++++++++++++++++
+>   1 file changed, 26 insertions(+)
 > 
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 069d2fadfbd9..38b8c11e91f0 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -3276,6 +3276,30 @@ struct drm_i915_gem_create_ext_protected_content {
->   	__u32 flags;
->   };
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
+> index ce6088f112d4..695ef7a8f519 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
+> @@ -71,6 +71,26 @@ static int guc_hwconfig_discover_size(struct intel_guc_hwconfig *hwconfig)
+>   	return 0;
+>   }
 >   
-> +/**
-> + * DOC: GuC HWCONFIG blob uAPI
-> + *
-> + * The GuC produces a blob with information about the current device.
-> + * i915 reads this blob from GuC and makes it available via this uAPI.
-> + *
-> + * The returned blob is an array of items described by struct
-> + * drm_i915_query_hwconfig_blob_item. The
-> + * drm_i915_query_hwconfig_blob_item length field gives the length of
-> + * the drm_i915_query_hwconfig_blob_item data[] array for the item.
-> + *
-> + * The length of the query data returned by
-> + * DRM_I915_QUERY_HWCONFIG_BLOB will align with the end at the final
-> + * drm_i915_query_hwconfig_blob_item entry.
+> +static int verify_hwconfig_blob(const struct intel_guc_hwconfig *hwconfig)
+> +{
+> +	if (hwconfig->size % 4 != 0 || hwconfig->ptr == NULL)
+> +		return -EINVAL;
 
-Align _with_ the end maybe? Or "be equal to the size of all items added 
-together"?
+So individual item size is minimum one u32, or zero? Document that in 
+patch 3?
 
-> + *
-> + * The meaning of the key field and the data values are documented in
-> + * the Programmer's Reference Manual.
-> + */
-> +struct drm_i915_query_hwconfig_blob_item {
-> +	u32 key;
-> +	u32 length;
-> +	u32 data[];
+> +
+> +	struct drm_i915_query_hwconfig_blob_item *pos = hwconfig->ptr;
 
-__u32 for uapi headers, just in case you haven't figured out what kernel 
-test robot meant.
+kbuild robot told you about mixing declarations and code already. :)
+
+> +	u32 remaining = (hwconfig->size / 4);
+
+Blank line here and braces not needed.
+
+> +	while (remaining > 0) {
+> +		if (remaining < 2)
+> +			return -EINVAL;
+> +		if (pos->length > remaining - 2)
+> +			return -EINVAL;
+> +		remaining -= 2 + pos->length;
+> +		pos = (void *)&pos->data[pos->length];
+> +	}
+> +
+> +	DRM_INFO("hwconfig blob format appears valid\n");
+
+Probably debug level at most.
+
+> +	return 0;
+> +}
+> +
+>   static int guc_hwconfig_fill_buffer(struct intel_guc_hwconfig *hwconfig)
+>   {
+>   	struct intel_guc *guc = hwconfig_to_guc(hwconfig);
+> @@ -91,6 +111,12 @@ static int guc_hwconfig_fill_buffer(struct intel_guc_hwconfig *hwconfig)
+>   	if (ret >= 0)
+>   		memcpy(hwconfig->ptr, vaddr, hwconfig->size);
+>   
+> +	if (verify_hwconfig_blob(hwconfig)) {
+
+Merge under the "ret >= 0" branch above?
+
+> +		DRM_ERROR("Ignoring invalid hwconfig blob received from "
+> +			  "GuC!\n");
+
+Use drm_dbg/drm_err so the log is tied to a device in multi-gpu systems.
+
+Also keep the string on one line as per kernel coding style guide.
 
 Regards,
 
 Tvrtko
 
-> +};
+> +		return -EINVAL;
+> +	}
 > +
->   /* ID of the protected content session managed by i915 when PXP is active */
->   #define I915_PROTECTED_CONTENT_DEFAULT_SESSION 0xf
+>   	i915_vma_unpin_and_release(&vma, I915_VMA_RELEASE_MAP);
 >   
+>   	return ret;
