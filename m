@@ -1,54 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8DE4ADBF5
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 16:06:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58D884ADC22
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 16:13:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F7A410E189;
-	Tue,  8 Feb 2022 15:06:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7858810E292;
+	Tue,  8 Feb 2022 15:13:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDECA10E189;
- Tue,  8 Feb 2022 15:06:30 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C61A10E1D8;
+ Tue,  8 Feb 2022 15:13:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644332790; x=1675868790;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=kT8JlcLZYWMidyBtcQBlgk+KRM3ByWJPaAZy6Y2Ro1I=;
- b=mbvcaQ+ks2SD9TR65wH91UyUcnfK3rww8Dmqg6bCi1PX8rWjeaCNiTat
- Zogb3DcrzZrO2IyVtI9UUn3T/K20vCVbVYBz+zcvjwt/fNi26RFpMetrE
- yGg85lgWBJNRYJq3foPNuEfNL/Z0+eTaBsGHZzFxeKLGhIeURoijaFFaD
- jMxBkY9iysahFHwdNl17R0ef95XNjGd7h+Gun1hFmnQksTlG+I1zyOkYs
- FMB88BNBBsUGENTVJreZodFZ0G18V0Mu6htS/QEzcsofK9YTrC0dBqHDX
- U2ZY4i0LWGdiIOw2OSEZmnplwWGQ0dOOoWMXoNEhg+574cCaYF9GFHflp Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="229613814"
-X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="229613814"
+ t=1644333184; x=1675869184;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=V/YxQaxEhtmPb7R1Bm6BroNBWC5GJXMuSUzPFRzoc98=;
+ b=SBUuC05vrZW8C5Ygiyq9xVDs48lSW9fyH0TYmL7xhcMz/SHzAEO4on1P
+ X7pu5yr9TuFchf2rRvy4Qyo6roJm02xP2bcxl2pKY03JsH+hMmXkClCKZ
+ pmBFzKzpQkpspc/mU5QbKH18ZQu739oqTDmlFCNVansvOgXb0DuCjewdv
+ E4VKEfwpdT9CKC5Y9RD5poxoXfVdUBPoWfVw6YutXj0V6P/dOehY3HsQW
+ K/Y893nqyF0e/4J9L/6J2b0TWSWQV87gKCkNyTtIVCxJ0W3LBrM53eCcv
+ nYr5A9/w3qC8OAdGkIBkmJmgI8vVl5cPFhYKnsOtVRDEjPwWgH2Bpy1Vh Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="248729104"
+X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="248729104"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 07:06:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="499587448"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga002.jf.intel.com with SMTP; 08 Feb 2022 07:06:27 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 08 Feb 2022 17:06:24 +0200
-Date: Tue, 8 Feb 2022 17:06:24 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YgKG8JFIKC6PRmMG@intel.com>
-References: <cover.1643878928.git.jani.nikula@intel.com>
- <cec395d435679a290a1c35fcbfc54555101bfad1.1643878928.git.jani.nikula@intel.com>
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 07:13:02 -0800
+X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="499589061"
+Received: from amcgrat2-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.10.21])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 07:13:00 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  8 Feb 2022 15:12:28 +0000
+Message-Id: <20220208151228.344997-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <cec395d435679a290a1c35fcbfc54555101bfad1.1643878928.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 6/8] drm/i915/dp: add 128b/132b support
- to link status checks
+Subject: [Intel-gfx] [PATCH] drm/doc: pull in drm_buddy.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,125 +55,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org, Arunpravin <Arunpravin.PaneerSelvam@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 03, 2022 at 11:03:55AM +0200, Jani Nikula wrote:
-> Abstract link status check to a function that takes 128b/132b and 8b/10b
-> into account, and use it. Also dump link status on failures.
-> 
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c       | 39 ++++++++++++++-----
->  .../drm/i915/display/intel_dp_link_training.c |  2 +-
->  .../drm/i915/display/intel_dp_link_training.h |  4 ++
->  3 files changed, 34 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 146b83916005..8c5590f0409a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3628,6 +3628,32 @@ static void intel_dp_handle_test_request(struct intel_dp *intel_dp)
->  			    "Could not write test response to sink\n");
->  }
->  
-> +static bool intel_dp_link_ok(struct intel_dp *intel_dp,
-> +			     u8 link_status[DP_LINK_STATUS_SIZE])
-> +{
-> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> +	bool uhbr = intel_dp->link_rate >= 1000000;
-> +	bool ok;
-> +
-> +	if (uhbr)
-> +		ok = drm_dp_128b132b_lane_channel_eq_done(link_status,
-> +							  intel_dp->lane_count);
+Make sure we pull in the kernel-doc for this.
 
-I was pondering whether we need to check more of the bits here. I guess
-time will tell.
+Reported-by: Daniel Vetter <daniel@ffwll.ch>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+Cc: Christian KÃ¶nig <christian.koenig@amd.com>
+---
+ Documentation/gpu/drm-mm.rst | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Remainder of the series is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-> +	else
-> +		ok = drm_dp_channel_eq_ok(link_status, intel_dp->lane_count);
-> +
-> +	if (ok)
-> +		return true;
-> +
-> +	intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
-> +	drm_dbg_kms(&i915->drm,
-> +		    "[ENCODER:%d:%s] %s link not ok, retraining\n",
-> +		    encoder->base.base.id, encoder->base.name,
-> +		    uhbr ? "128b/132b" : "8b/10b");
-> +
-> +	return false;
-> +}
-> +
->  static void
->  intel_dp_mst_hpd_irq(struct intel_dp *intel_dp, u8 *esi, u8 *ack)
->  {
-> @@ -3658,14 +3684,7 @@ static bool intel_dp_mst_link_status(struct intel_dp *intel_dp)
->  		return false;
->  	}
->  
-> -	if (!drm_dp_channel_eq_ok(link_status, intel_dp->lane_count)) {
-> -		drm_dbg_kms(&i915->drm,
-> -			    "[ENCODER:%d:%s] channel EQ not ok, retraining\n",
-> -			    encoder->base.base.id, encoder->base.name);
-> -		return false;
-> -	}
-> -
-> -	return true;
-> +	return intel_dp_link_ok(intel_dp, link_status);
->  }
->  
->  /**
-> @@ -3779,8 +3798,8 @@ intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
->  					intel_dp->lane_count))
->  		return false;
->  
-> -	/* Retrain if Channel EQ or CR not ok */
-> -	return !drm_dp_channel_eq_ok(link_status, intel_dp->lane_count);
-> +	/* Retrain if link not ok */
-> +	return !intel_dp_link_ok(intel_dp, link_status);
->  }
->  
->  static bool intel_dp_has_connector(struct intel_dp *intel_dp,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index cc2b82d9114c..0686da36c428 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -712,7 +712,7 @@ static bool intel_dp_adjust_request_changed(const struct intel_crtc_state *crtc_
->  	return false;
->  }
->  
-> -static void
-> +void
->  intel_dp_dump_link_status(struct intel_dp *intel_dp, enum drm_dp_phy dp_phy,
->  			  const u8 link_status[DP_LINK_STATUS_SIZE])
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> index dbfb15705aaa..dc1556b46b85 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> @@ -29,6 +29,10 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
->  void intel_dp_stop_link_train(struct intel_dp *intel_dp,
->  			      const struct intel_crtc_state *crtc_state);
->  
-> +void
-> +intel_dp_dump_link_status(struct intel_dp *intel_dp, enum drm_dp_phy dp_phy,
-> +			  const u8 link_status[DP_LINK_STATUS_SIZE]);
-> +
->  /* Get the TPSx symbol type of the value programmed to DP_TRAINING_PATTERN_SET */
->  static inline u8 intel_dp_training_pattern_symbol(u8 pattern)
->  {
-> -- 
-> 2.30.2
-
+diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
+index 198bcc1affa1..f32ccce5722d 100644
+--- a/Documentation/gpu/drm-mm.rst
++++ b/Documentation/gpu/drm-mm.rst
+@@ -466,6 +466,15 @@ DRM MM Range Allocator Function References
+ .. kernel-doc:: drivers/gpu/drm/drm_mm.c
+    :export:
+ 
++DRM Buddy Allocator
++===================
++
++DRM Buddy Function References
++-----------------------------
++
++.. kernel-doc:: drivers/gpu/drm/drm_buddy.c
++   :export:
++
+ DRM Cache Handling and Fast WC memcpy()
+ =======================================
+ 
 -- 
-Ville Syrjälä
-Intel
+2.34.1
+
