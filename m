@@ -1,93 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03F064AE2B6
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 21:59:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0BA04AE2C2
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 22:05:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2912010E1CE;
-	Tue,  8 Feb 2022 20:59:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03E8910E21C;
+	Tue,  8 Feb 2022 21:05:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
- [IPv6:2a00:1450:4864:20::42d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D50B210E1CE
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 20:59:37 +0000 (UTC)
-Received: by mail-wr1-x42d.google.com with SMTP id v12so580839wrv.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 08 Feb 2022 12:59:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=LR/HqP2Q1P8BmgSmBhLwoCgWv4OeRLxaaKVnBHVz380=;
- b=OClWzaHwfnKbU2ivv9C7fQtoAaSQhJdGklXpEzcFffm1SkumsQsTkr8ZOu//Qj3wMX
- gEbDIlvZmGBGIRp32EXuJUt4pdkA+9hSevTsMS5kH+0eK7Qp5AnE8d5EBZDnA9LbvTcn
- umgHa0cvz5UESKxYpoHkM5AGiSPrp+EXDnSms=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
- :references:mime-version:content-disposition:in-reply-to;
- bh=LR/HqP2Q1P8BmgSmBhLwoCgWv4OeRLxaaKVnBHVz380=;
- b=QJg6oCLlqWbirdlsHndF3ejCzjZvJnZEk7S79pmXEzzgnekJXOz3xbshDD07xKuaPY
- Q2MKsLZBrG5Ij5Cr7feFVNLn2cQQ97uEvDTJSnNR8MisOahFXy1ejOhzSmplqSO2XWtC
- AqW6l5Y0h6eIMPAGTDjyqTtHUzwztRi/di8hJpVjAKvsOw9zAuBgu1FLvSZW490IvTMw
- ZgZBi+dGttDNZJsSIUlrbstWmUSWXWFug8PcddD/M7tuJkU/L3dsLJq/rFAjE0h2jMTt
- xYzJhUrRh+Oe+q6ujfwuUIVVqLKoRLLpIIY7QjPJ7JeHS8nWOc6yvVCFMcbf/hnRs2WE
- MLgg==
-X-Gm-Message-State: AOAM531ovDIIsmjLD5wmjSuWmvQ/e9wM102muMtnSijENvlg5+puTMWK
- 8MyjrUaG5tRDVFLrx2h2jUrKoA==
-X-Google-Smtp-Source: ABdhPJyoKyE7ZSiQIZzA82zoDzmj1UBV8TCrGt8kooKo8r1vgxpn3G6jb5XrdBUZcozMC7B14dmZJA==
-X-Received: by 2002:a5d:64c8:: with SMTP id f8mr5121045wri.337.1644353976273; 
- Tue, 08 Feb 2022 12:59:36 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id e3sm7852138wrr.94.2022.02.08.12.59.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Feb 2022 12:59:35 -0800 (PST)
-Date: Tue, 8 Feb 2022 21:59:33 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>, Jens Frederich <jfrederich@gmail.com>,
- Jon Nettleton <jon.nettleton@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-staging@lists.linux.dev, Daniel Vetter <daniel.vetter@intel.com>,
- Helge Deller <deller@gmx.de>, Matthew Wilcox <willy@infradead.org>,
- Sam Ravnborg <sam@ravnborg.org>,
- Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- Zhen Lei <thunder.leizhen@huawei.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Xiyu Yang <xiyuyang19@fudan.edu.cn>, Zheyu Ma <zheyuma97@gmail.com>,
- Guenter Roeck <linux@roeck-us.net>
-Message-ID: <YgLZtbhMGlr/upqA@phenom.ffwll.local>
-Mail-Followup-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>,
- Jens Frederich <jfrederich@gmail.com>,
- Jon Nettleton <jon.nettleton@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-staging@lists.linux.dev,
- Daniel Vetter <daniel.vetter@intel.com>,
- Helge Deller <deller@gmx.de>, Matthew Wilcox <willy@infradead.org>,
- Sam Ravnborg <sam@ravnborg.org>,
- Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- Zhen Lei <thunder.leizhen@huawei.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Xiyu Yang <xiyuyang19@fudan.edu.cn>, Zheyu Ma <zheyuma97@gmail.com>,
- Guenter Roeck <linux@roeck-us.net>
-References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
- <20220131210552.482606-22-daniel.vetter@ffwll.ch>
- <CAMuHMdUm76tT6u+i=A50ffh=k8hX5kgoMqH=t_wfHqH95nVOPA@mail.gmail.com>
- <YgJ4g2BEaeUELmvF@phenom.ffwll.local>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFDD510E201;
+ Tue,  8 Feb 2022 21:05:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644354308; x=1675890308;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3iBhu8H2eNSgz3z29cqFEJ7bY2i1lhSLmCdt61aQPOc=;
+ b=hxHEcJLIANa6cMtll9f6BvaY6xhZ7iq0qo3xaE+3mGySzlHuLLtvYWmj
+ g7F1rkRBA/zzE5a7X082veFTfg9YZcp+lOnHLousjNTmFTNCQrlOdjcjO
+ q5N3OlRUpDcjbOhkxy2uEJO17Zu2WS6w2n9btCh9e/TKhu7tahtJ35UCr
+ yC5zTsiy+hW4N4EgPC0O/PSg+sHmz6VxCsJ+Bc66NQzbKKeVES4zDd4LJ
+ tNpp+ZhKqhxL5Nj9zfhcMizaW9XAyJM3PRjXZGnavT36Mt5gUPgBXzG30
+ 8nd7s7B0xRid8V3UaG0OKcIkqePzyuAB5xZDPs56qMvtkaRxiRYku4Rlv Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="273585606"
+X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="273585606"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 13:05:07 -0800
+X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="540784478"
+Received: from fpaillet-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.209.65.117])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 13:05:07 -0800
+From: Jordan Justen <jordan.l.justen@intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>
+Date: Tue,  8 Feb 2022 13:04:59 -0800
+Message-Id: <20220208210503.869491-1-jordan.l.justen@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YgJ4g2BEaeUELmvF@phenom.ffwll.local>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH 21/21] fbdev: Make registered_fb[] private
- to fbmem.c
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/4] GuC HWCONFIG with documentation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,76 +54,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 08, 2022 at 03:04:51PM +0100, Daniel Vetter wrote:
-> On Fri, Feb 04, 2022 at 09:30:56AM +0100, Geert Uytterhoeven wrote:
-> > Hi Daniel,
-> > 
-> > Thanks for your patch!
-> > 
-> > On Tue, Feb 1, 2022 at 9:50 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> > > Well except when the olpc dcon fbdev driver is enabled, that thing
-> > > digs around in there in rather unfixable ways.
-> > 
-> > Can't the actual frame buffer driver (which one?) used on olpc export
-> > a pointer to its fb_info?
-> 
-> Yeah that might be the right thing to do, I'll add that as a stagin TODO
-> in the next iteration.
+This is John/Rodrigo's 2 patches with some minor changes, and I added
+2 patches.
 
-Well I tried to do that and noticed I've done that already in 2019:
+"drm/i915/uapi: Add query for hwconfig blob" was changed:
 
-commit af1440368837f19ac7d5dec05d929d91308f5a90
-Author: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date:   Tue May 28 11:03:03 2019 +0200
+ * Rename DRM_I915_QUERY_HWCONFIG_TABLE to DRM_I915_QUERY_HWCONFIG_BLOB
+   as requested by Joonas.
 
-    staging/olpc_dcon: Add drm conversion to TODO
+ * Reword commit message
 
-TODO already explains how this should be done correctly in drm. Well maybe
-we should add that stitching the drivers together should be done with
-component.c or something like that.
--Daniel
+ * I added Acked-by to this patch, but this only applies in the
+   context of this version of the patchset. If my changes are
+   rejected, then please *do not* add my Acked-by to the other series.
 
-> 
-> > 
-> > > --- a/drivers/video/fbdev/core/fbmem.c
-> > > +++ b/drivers/video/fbdev/core/fbmem.c
-> > > @@ -48,10 +48,14 @@
-> > >  static DEFINE_MUTEX(registration_lock);
-> > >
-> > >  struct fb_info *registered_fb[FB_MAX] __read_mostly;
-> > > -EXPORT_SYMBOL(registered_fb);
-> > > -
-> > >  int num_registered_fb __read_mostly;
-> > > +#if IS_ENABLED(CONFIG_OLPC_DCON)
-> > 
-> > CONFIG_FB_OLPC_DCON (everywhere), cfr. the build failure reported
-> > by the robot.
-> 
-> Yeah realized that too and fixed it locally.
-> 
-> Cheers, Daniel
-> 
-> > 
-> > Gr{oetje,eeting}s,
-> > 
-> >                         Geert
-> > 
-> > --
-> > Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> > 
-> > In personal conversations with technical people, I call myself a hacker. But
-> > when I'm talking to journalists I just say "programmer" or something like that.
-> >                                 -- Linus Torvalds
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+   In particular, I do not want my Acked-by on the patch if the patch
+   mentions the HWCONFIG format, but is not willing to add that to the
+   actual uAPI.
+
+   I also do not want my Acked-by on it if it mentions "consolidation"
+   of this data. Since we are dealing with open source projects (aside
+   from GuC), this doesn't seem appropriate.
+
+"drm/i915/uapi: Add struct drm_i915_query_hwconfig_blob_item" adds a
+struct to the uAPI and documents the return value for
+DRM_I915_QUERY_HWCONFIG_BLOB. (Except, keys / values are still
+deferred to the PRM.)
+
+"drm/i915/guc: Verify hwconfig blob matches supported format" does the
+simple verification of the blob to make sure it matches what the uAPI
+documents.
+
+v2:
+ * Fix -Werror errors.
+ * Rebase to drm-intel/for-linux-next instead of
+   drm-intel/for-linux-next-gt, as this seems to be what CI wants.
+ * Fix u32 -> __u32. (Sorry, I was first testing in Mesa tree.)
+ * Add commit message for "Verify hwconfig blob" patch as requested by
+   Tvrtko.
+ * Reword text added to i915_drm.h as requested by Tvrtko. (Attempting
+   to indicate the overall blob ends right at the last blob item.)
+
+v3:
+ * Add several changes suggested by Tvrtko in the "Verify hwconfig
+   blob", along with some tweaks to i915_drm.h from the feedback for
+   the same patch.
+
+John Harrison (1):
+  drm/i915/guc: Add fetch of hwconfig table
+
+Jordan Justen (2):
+  drm/i915/uapi: Add struct drm_i915_query_hwconfig_blob_item
+  drm/i915/guc: Verify hwconfig blob matches supported format
+
+Rodrigo Vivi (1):
+  drm/i915/uapi: Add query for hwconfig blob
+
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   1 +
+ .../gpu/drm/i915/gt/uc/abi/guc_errors_abi.h   |   4 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   3 +
+ .../gpu/drm/i915/gt/uc/intel_guc_hwconfig.c   | 201 ++++++++++++++++++
+ .../gpu/drm/i915/gt/uc/intel_guc_hwconfig.h   |  19 ++
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |   6 +
+ drivers/gpu/drm/i915/i915_query.c             |  23 ++
+ include/uapi/drm/i915_drm.h                   |  33 +++
+ 9 files changed, 291 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.h
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.34.1
+
