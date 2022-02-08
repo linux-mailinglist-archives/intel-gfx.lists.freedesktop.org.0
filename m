@@ -2,59 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB16F4AD530
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 10:51:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DFD64AD532
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 10:51:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 637BB10E694;
-	Tue,  8 Feb 2022 09:51:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9169710E6B6;
+	Tue,  8 Feb 2022 09:51:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com
- [IPv6:2607:f8b0:4864:20::734])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E82410F66E
- for <intel-gfx@lists.freedesktop.org>; Sun,  6 Feb 2022 23:32:56 +0000 (UTC)
-Received: by mail-qk1-x734.google.com with SMTP id 71so9671238qkf.4
- for <intel-gfx@lists.freedesktop.org>; Sun, 06 Feb 2022 15:32:56 -0800 (PST)
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com
+ [IPv6:2607:f8b0:4864:20::32a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BD4A10E299
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 04:41:10 +0000 (UTC)
+Received: by mail-ot1-x32a.google.com with SMTP id
+ g19-20020a9d6213000000b005ab7489371aso1516968otj.6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 07 Feb 2022 20:41:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=yKUPrrrZN1zJGy8+P0HeCrjugIvW5eEZadjOMXculXk=;
- b=f+OCM/MTHwkbvDOaLnThnQxElSpJ2eZ0Yf4ZPJbvPshHr0b4lx5hYmh7Kd1fbOIYQc
- jI00PnYCS/wtja0UCPIn6O1fK7yN5undOTaDmJzXHSJgqqmanyZ5nyi0KAMsN+vVU2bm
- +4uK9o9zdc+g4wx3JV6JteK1//6Gnqf3xkhQfw0RbEp5nR+MbXaybFA1HjYqIkV7FmlZ
- vsa+d5Vw7QfOSKVDHo5G6L9HzANgj/mJL/47CT6s6CRrytkpwSt8Jdtk/+3ensokCRPh
- 9xF4COaL0gIP05mDfK35aIpO2WS8n6UFxHcidcuPhSva/ITILFrzJjPO2FY7SY7jI8k4
- YudA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=esjcw5J1950tYULEo1Mi5rlx0creI3trE/Z1yqFmq9U=;
+ b=ip03ry5nqNDMKLD/txk0cpnpGu1BvjmtduHQhiYMDZpn5vJRKhomQqMBgVAUV9p5PV
+ 3xrn4cnCiRNPB/VaCfnqZhPnd6KJm6T6p/Qwoo2K8DYmR59WBKOjBe05u/COnPxqKiJu
+ EqlHzDIxVCoDeopGi4kwr0th6q3BXHzubpSmeCksw9GLws5mb3eY4eRv5Z4+QKWjOS0Y
+ KPeWUeFJFh6xDAyoWwt5pNIypf7EQ2wDAripNLU9/qsxjaW8t6yQrxYqf/j41O4nfDV+
+ Y+mDQYBT/pqa9wJDrE85riLOVO73QXylarUrOvwHg7M7L1Kpu8vh4YtdNTS7uY5knGR9
+ pv/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=yKUPrrrZN1zJGy8+P0HeCrjugIvW5eEZadjOMXculXk=;
- b=3jvGSbK6UwtG9CWIv5/+3uFls8tfwMAgPBOJGt7Z5CYNBEm6L0T6uhobVadKsc2Zo+
- MI0E5KCZP5gi8jxi1ALtJZNr6ahBejTGeqNK0Y5NncTfQLA+Te/YzHGKsecnxBzuOmz0
- E/cnTDXr82QSnuEzec5LnITQbzUbIS/lFLNZS7A2YvfO/5Nci2KlmYrxaSiXVviRzaNx
- rA9UD2w763jENlAbZdMt5WR4qpId4wlNwQyuBFcmIVsXuVQyGkNAxV20pfK1jUte5nE0
- ofwrJDwg/EpAXuoXSsipCFw+hrD4QA0HLiIHzTKYn5cjqnVx9JuYX1pGyyHAj0VAQhRI
- xmaQ==
-X-Gm-Message-State: AOAM532CxbudVAQCpabuuwWMgrvTtxGEhwnmOn0pKD07m4Fl+l6MDwAn
- AXvwUzS+PgZUla6BEZ/ixGeVpcdaltqmbowDRqqJbw==
-X-Google-Smtp-Source: ABdhPJx0/eVAlLlf25TH7z/Yc6Muyko9TQ2X+YOYufAEgyjmPgldn5IH9IeaO9m5UWsTeJmxsYua/048gfUoaNFv5jc=
-X-Received: by 2002:a05:620a:1664:: with SMTP id
- d4mr5091098qko.363.1644190375442; 
- Sun, 06 Feb 2022 15:32:55 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=esjcw5J1950tYULEo1Mi5rlx0creI3trE/Z1yqFmq9U=;
+ b=YyKCm2XniV8tAuEwl7ysNkDcUz0O1fMRm5e1RsFKRTOeKaDg6b6gCURc4wsV4BVaOj
+ HRbAAvfJ2dawbJ4k8dVl/xXTJL0OUON51LRyenPL6w0B2NWDl4zLZxbS9rT19vvIWpR7
+ 1ext9BxGG8Bj2dFBPMVBeFKnzyYN2vwnQ6Fz6eeGn97Yh253p/jrEZzLmS+soWlsP2Bw
+ q0lKofVKNo1fMDGdGo75+G/DkUzafF5vKwR5UHtEfOeEb5xqpM7baFcOF15yLusJSWjC
+ CeZtoLXkLyQxlSmb+bmsN0v5E3XUbbMfuZ7jETKkPC1DAicuyp8b0NAPh5rHiPLn0BgC
+ M6zA==
+X-Gm-Message-State: AOAM532BIabmteUiRNzzuDgiJWFn08zvV44dbzocXsxNam/7uVuAi1r6
+ KXaAvXvuroxUHPA6/y6T9/uvLA==
+X-Google-Smtp-Source: ABdhPJweY3q0vp0/f4DbyZgWE7ZXp0PpJrKT96m0Flrtcs1E/0Ff8vVW1yzoCSR4VtmcCjJaJS6RUQ==
+X-Received: by 2002:a9d:2c28:: with SMTP id f37mr1162716otb.65.1644295269183; 
+ Mon, 07 Feb 2022 20:41:09 -0800 (PST)
+Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+ by smtp.gmail.com with ESMTPSA id l14sm4709367ooq.12.2022.02.07.20.41.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 07 Feb 2022 20:41:08 -0800 (PST)
+From: Bjorn Andersson <bjorn.andersson@linaro.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Rob Clark <robdclark@gmail.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon,  7 Feb 2022 20:43:27 -0800
+Message-Id: <20220208044328.588860-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <20220202085429.22261-1-suraj.kandpal@intel.com>
- <20220202085429.22261-6-suraj.kandpal@intel.com>
- <Yfp8Q6OFqTAvESOi@pendragon.ideasonboard.com>
- <87y22ts948.fsf@intel.com> <YfqGbqQQz5vrDaLI@pendragon.ideasonboard.com>
-In-Reply-To: <YfqGbqQQz5vrDaLI@pendragon.ideasonboard.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 7 Feb 2022 02:32:44 +0300
-Message-ID: <CAA8EJpqr6MB64EAtLU3nBjgjx1COwn4auenCCw4kHB489VG0CA@mail.gmail.com>
-To: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 08 Feb 2022 09:51:09 +0000
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/rcar_du: changes to rcar-du driver
- resulting from drm_writeback_connector structure changes
+Subject: [Intel-gfx] [PATCH 1/2] drm: Add HPD state to
+ drm_connector_oob_hotplug_event()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,142 +73,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: carsten.haitzler@arm.com, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx@lists.freedesktop.org, quic_abhinavk@quicinc.com,
- dri-devel@lists.freedesktop.org
+Cc: freedreno@lists.freedesktop.org,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, linux-usb@vger.kernel.org,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Maxime Ripard <mripard@kernel.org>,
+ Stephen Boyd <swboyd@chromium.org>, dri-devel@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2 Feb 2022 at 16:26, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Jani,
->
-> On Wed, Feb 02, 2022 at 03:15:03PM +0200, Jani Nikula wrote:
-> > On Wed, 02 Feb 2022, Laurent Pinchart wrote:
-> > > On Wed, Feb 02, 2022 at 02:24:28PM +0530, Kandpal Suraj wrote:
-> > >> Changing rcar_du driver to accomadate the change of
-> > >> drm_writeback_connector.base and drm_writeback_connector.encoder
-> > >> to a pointer the reason for which is explained in the
-> > >> Patch(drm: add writeback pointers to drm_connector).
-> > >>
-> > >> Signed-off-by: Kandpal Suraj <suraj.kandpal@intel.com>
-> > >> ---
-> > >>  drivers/gpu/drm/rcar-du/rcar_du_crtc.h      | 2 ++
-> > >>  drivers/gpu/drm/rcar-du/rcar_du_writeback.c | 8 +++++---
-> > >>  2 files changed, 7 insertions(+), 3 deletions(-)
-> > >>
-> > >> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
-> > >> index 66e8839db708..68f387a04502 100644
-> > >> --- a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
-> > >> +++ b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
-> > >> @@ -72,6 +72,8 @@ struct rcar_du_crtc {
-> > >>    const char *const *sources;
-> > >>    unsigned int sources_count;
-> > >>
-> > >> +  struct drm_connector connector;
-> > >> +  struct drm_encoder encoder;
-> > >
-> > > Those fields are, at best, poorly named. Furthermore, there's no need in
-> > > this driver or in other drivers using drm_writeback_connector to create
-> > > an encoder or connector manually. Let's not polute all drivers because
-> > > i915 doesn't have its abstractions right.
-> >
-> > i915 uses the quite common model for struct inheritance:
-> >
-> >       struct intel_connector {
-> >               struct drm_connector base;
-> >               /* ... */
-> >       }
-> >
-> > Same with at least amd, ast, fsl-dcu, hisilicon, mga200, msm, nouveau,
-> > radeon, tilcdc, and vboxvideo.
-> >
-> > We could argue about the relative merits of that abstraction, but I
-> > think the bottom line is that it's popular and the drivers using it are
-> > not going to be persuaded to move away from it.
->
-> Nobody said inheritance is bad.
->
-> > It's no coincidence that the drivers who've implemented writeback so far
-> > (komeda, mali, rcar-du, vc4, and vkms) do not use the abstraction,
-> > because the drm_writeback_connector midlayer does, forcing the issue.
->
-> Are you sure it's not a coincidence ? :-)
->
-> The encoder and especially connector created by drm_writeback_connector
-> are there only because KMS requires a drm_encoder and a drm_connector to
-> be exposed to userspace (and I could argue that using a connector for
-> writeback is a hack, but that won't change). The connector is "virtual",
-> I still fail to see why i915 or any other driver would need to wrap it
-> into something else. The whole point of the drm_writeback_connector
-> abstraction is that drivers do not have to manage the writeback
-> drm_connector manually, they shouldn't touch it at all.
+In some implementations, such as the Qualcomm platforms, the display
+driver has no way to query the current HPD state and as such it's
+impossible to distinguish between disconnect and attention events.
 
-Laurent, I wanted to shift a bit from the question of drm_connector to
-the question of drm_encoder being embedded in the
-drm_writeback_connector.
-In case of the msm driver the drm_encoder is not a lightweight entity,
-but a full-featured driver part. Significant part of it can be shared
-with the writeback implementation, if we allow using a pointer to the
-external drm_encoder with the drm_writeback_connector.
-Does the following patch set stand a chance to receive your ack?
- - Switch drm_writeback_connector to point to drm_encoder rather than
-embedding it?
- - Create drm_encoder for the drm_writeback_connector when one is not
-specified, so the current drivers can be left unchanged.
+Add a parameter to drm_connector_oob_hotplug_event() to pass the HPD
+state.
 
->
-> > So I think drm_writeback_connector should *not* use the inheritance
-> > abstraction because it's a midlayer that should leave that option to the
-> > drivers. I think drm_writeback_connector needs to be changed to
-> > accommodate that, and, unfortunately, it means current writeback users
-> > need to be changed as well.
-> >
-> > I am not sure, however, if the series at hand is the right
-> > approach. Perhaps writeback can be modified to allocate the stuff for
-> > you if you prefer it that way, as long as the drm_connector is not
-> > embedded in struct drm_writeback_connector.
-> >
-> > > Nack.
-> > >
-> > >>    struct drm_writeback_connector writeback;
-> > >>  };
-> > >>
-> > >> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
-> > >> index c79d1259e49b..5b1e83380c47 100644
-> > >> --- a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
-> > >> +++ b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
-> > >> @@ -200,8 +200,10 @@ int rcar_du_writeback_init(struct rcar_du_device *rcdu,
-> > >>  {
-> > >>    struct drm_writeback_connector *wb_conn = &rcrtc->writeback;
-> > >>
-> > >> -  wb_conn->encoder.possible_crtcs = 1 << drm_crtc_index(&rcrtc->crtc);
-> > >> -  drm_connector_helper_add(&wb_conn->base,
-> > >> +  wb_conn->base = &rcrtc->connector;
-> > >> +  wb_conn->encoder = &rcrtc->encoder;
-> > >> +  wb_conn->encoder->possible_crtcs = 1 << drm_crtc_index(&rcrtc->crtc);
-> > >> +  drm_connector_helper_add(wb_conn->base,
-> > >>                             &rcar_du_wb_conn_helper_funcs);
-> > >>
-> > >>    return drm_writeback_connector_init(&rcdu->ddev, wb_conn,
-> > >> @@ -220,7 +222,7 @@ void rcar_du_writeback_setup(struct rcar_du_crtc *rcrtc,
-> > >>    struct drm_framebuffer *fb;
-> > >>    unsigned int i;
-> > >>
-> > >> -  state = rcrtc->writeback.base.state;
-> > >> +  state = rcrtc->writeback.base->state;
-> > >>    if (!state || !state->writeback_job)
-> > >>            return;
-> > >>
->
-> --
-> Regards,
->
-> Laurent Pinchart
+Also push the test for unchanged state in the displayport altmode driver
+into the i915 driver, to allow other drivers to act upon each update.
 
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
 
+Note that the Intel driver has only been compile tested with this patch.
 
+ drivers/gpu/drm/drm_connector.c          |  6 ++++--
+ drivers/gpu/drm/i915/display/intel_dp.c  | 14 +++++++++++---
+ drivers/gpu/drm/i915/i915_drv.h          |  3 +++
+ drivers/usb/typec/altmodes/displayport.c |  9 ++-------
+ include/drm/drm_connector.h              |  5 +++--
+ 5 files changed, 23 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index a50c82bc2b2f..ad7295597c0f 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -2825,6 +2825,7 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+ /**
+  * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
+  * @connector_fwnode: fwnode_handle to report the event on
++ * @hpd_state: number of data lanes available
+  *
+  * On some hardware a hotplug event notification may come from outside the display
+  * driver / device. An example of this is some USB Type-C setups where the hardware
+@@ -2834,7 +2835,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+  * This function can be used to report these out-of-band events after obtaining
+  * a drm_connector reference through calling drm_connector_find_by_fwnode().
+  */
+-void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode)
++void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
++				     bool hpd_state)
+ {
+ 	struct drm_connector *connector;
+ 
+@@ -2843,7 +2845,7 @@ void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode)
+ 		return;
+ 
+ 	if (connector->funcs->oob_hotplug_event)
+-		connector->funcs->oob_hotplug_event(connector);
++		connector->funcs->oob_hotplug_event(connector, hpd_state);
+ 
+ 	drm_connector_put(connector);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 146b83916005..00520867d37b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4816,15 +4816,23 @@ static int intel_dp_connector_atomic_check(struct drm_connector *conn,
+ 	return intel_modeset_synced_crtcs(state, conn);
+ }
+ 
+-static void intel_dp_oob_hotplug_event(struct drm_connector *connector)
++static void intel_dp_oob_hotplug_event(struct drm_connector *connector, bool hpd_state)
+ {
+ 	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
+ 	struct drm_i915_private *i915 = to_i915(connector->dev);
++	bool need_work = false;
+ 
+ 	spin_lock_irq(&i915->irq_lock);
+-	i915->hotplug.event_bits |= BIT(encoder->hpd_pin);
++	if (hpd_state != i915->hotplug.oob_hotplug_state) {
++		i915->hotplug.event_bits |= BIT(encoder->hpd_pin);
++
++		i915->hotplug.oob_hotplug_state = hpd_state;
++		need_work = true;
++	}
+ 	spin_unlock_irq(&i915->irq_lock);
+-	queue_delayed_work(system_wq, &i915->hotplug.hotplug_work, 0);
++
++	if (need_work)
++		queue_delayed_work(system_wq, &i915->hotplug.hotplug_work, 0);
+ }
+ 
+ static const struct drm_connector_funcs intel_dp_connector_funcs = {
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 8c1706fd81f9..543ebf1cfcf4 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -149,6 +149,9 @@ struct i915_hotplug {
+ 	/* Whether or not to count short HPD IRQs in HPD storms */
+ 	u8 hpd_short_storm_enabled;
+ 
++	/* Last state reported by oob_hotplug_event */
++	bool oob_hotplug_state;
++
+ 	/*
+ 	 * if we get a HPD irq from DP and a HPD irq from non-DP
+ 	 * the non-DP HPD could block the workqueue on a mode config
+diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/typec/altmodes/displayport.c
+index c1d8c23baa39..a4596be4d34a 100644
+--- a/drivers/usb/typec/altmodes/displayport.c
++++ b/drivers/usb/typec/altmodes/displayport.c
+@@ -59,7 +59,6 @@ struct dp_altmode {
+ 	struct typec_displayport_data data;
+ 
+ 	enum dp_state state;
+-	bool hpd;
+ 
+ 	struct mutex lock; /* device lock */
+ 	struct work_struct work;
+@@ -143,10 +142,7 @@ static int dp_altmode_status_update(struct dp_altmode *dp)
+ 		if (!ret)
+ 			dp->state = DP_STATE_CONFIGURE;
+ 	} else {
+-		if (dp->hpd != hpd) {
+-			drm_connector_oob_hotplug_event(dp->connector_fwnode);
+-			dp->hpd = hpd;
+-		}
++		drm_connector_oob_hotplug_event(dp->connector_fwnode, hpd);
+ 	}
+ 
+ 	return ret;
+@@ -573,8 +569,7 @@ void dp_altmode_remove(struct typec_altmode *alt)
+ 	cancel_work_sync(&dp->work);
+ 
+ 	if (dp->connector_fwnode) {
+-		if (dp->hpd)
+-			drm_connector_oob_hotplug_event(dp->connector_fwnode);
++		drm_connector_oob_hotplug_event(dp->connector_fwnode, false);
+ 
+ 		fwnode_handle_put(dp->connector_fwnode);
+ 	}
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index 64cf5f88c05b..7c90b8eb2ace 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -1141,7 +1141,7 @@ struct drm_connector_funcs {
+ 	 * This will get called when a hotplug-event for a drm-connector
+ 	 * has been received from a source outside the display driver / device.
+ 	 */
+-	void (*oob_hotplug_event)(struct drm_connector *connector);
++	void (*oob_hotplug_event)(struct drm_connector *connector, bool hpd_state);
+ };
+ 
+ /**
+@@ -1742,7 +1742,8 @@ drm_connector_is_unregistered(struct drm_connector *connector)
+ 		DRM_CONNECTOR_UNREGISTERED;
+ }
+ 
+-void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode);
++void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
++				     bool hpd_state);
+ const char *drm_get_connector_type_name(unsigned int connector_type);
+ const char *drm_get_connector_status_name(enum drm_connector_status status);
+ const char *drm_get_subpixel_order_name(enum subpixel_order order);
 -- 
-With best wishes
-Dmitry
+2.33.1
+
