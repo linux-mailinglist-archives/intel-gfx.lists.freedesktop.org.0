@@ -1,34 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B8BC4AD846
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 13:24:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17DD14AD848
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 13:24:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59E7210E51A;
-	Tue,  8 Feb 2022 12:24:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F4A410E347;
+	Tue,  8 Feb 2022 12:24:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F108010E347;
- Tue,  8 Feb 2022 12:24:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id F0C6210E347;
+ Tue,  8 Feb 2022 12:24:32 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ECB81A0096;
- Tue,  8 Feb 2022 12:24:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id F0C8EA0096;
+ Tue,  8 Feb 2022 12:24:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5214369281223185633=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhi Wang" <zhi.wang.linux@gmail.com>
-Date: Tue, 08 Feb 2022 12:24:03 -0000
-Message-ID: <164432304394.22535.13738106853150627344@emeril.freedesktop.org>
+To: "Jordan Justen" <jordan.l.justen@intel.com>
+Date: Tue, 08 Feb 2022 12:24:32 -0000
+Message-ID: <164432307297.22537.1671947297703542013@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220208111151.13115-1-zhi.a.wang@intel.com>
-In-Reply-To: <20220208111151.13115-1-zhi.a.wang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5Bv6=2C1/3=5D_i915/gvt=3A_Introduce_the_mm?=
- =?utf-8?q?io_table_to_support_VFIO_new_mdev_API?=
+References: <20220208104933.867812-1-jordan.l.justen@intel.com>
+In-Reply-To: <20220208104933.867812-1-jordan.l.justen@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgR3VD?=
+ =?utf-8?q?_HWCONFIG_with_documentation_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,506 +45,578 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============5214369281223185633==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: series starting with [v6,1/3] i915/gvt: Introduce the mmio table to support VFIO new mdev API
-URL   : https://patchwork.freedesktop.org/series/99838/
-State : failure
+Series: GuC HWCONFIG with documentation (rev2)
+URL   : https://patchwork.freedesktop.org/series/99787/
+State : success
 
 == Summary ==
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND objtool
-  CHK     include/generated/compile.h
-  CC [M]  drivers/gpu/drm/i915/intel_gvt_mmio_table.o
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c: In function ‘iterate_generic_mmio’:
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:65:16: error: ‘RENDER_RING_BASE’ undeclared (first use in this function); did you mean ‘IDR_INIT_BASE’?
-  MMIO_F(prefix(RENDER_RING_BASE), s, d); \
-                ^~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-./drivers/gpu/drm/i915/gt/intel_engine_regs.h:73:27: note: in expansion of macro ‘_MMIO’
- #define RING_IMR(base)    _MMIO((base) + 0xa8)
-                           ^~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:65:9: note: in expansion of macro ‘RING_IMR’
-  MMIO_F(prefix(RENDER_RING_BASE), s, d); \
-         ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:74:2: note: in expansion of macro ‘MMIO_RING_F’
-  MMIO_RING_F(prefix, 4, d)
-  ^~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:81:2: note: in expansion of macro ‘MMIO_RING_D’
-  MMIO_RING_D(RING_IMR, D_ALL);
-  ^~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:65:16: note: each undeclared identifier is reported only once for each function it appears in
-  MMIO_F(prefix(RENDER_RING_BASE), s, d); \
-                ^~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-./drivers/gpu/drm/i915/gt/intel_engine_regs.h:73:27: note: in expansion of macro ‘_MMIO’
- #define RING_IMR(base)    _MMIO((base) + 0xa8)
-                           ^~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:65:9: note: in expansion of macro ‘RING_IMR’
-  MMIO_F(prefix(RENDER_RING_BASE), s, d); \
-         ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:74:2: note: in expansion of macro ‘MMIO_RING_F’
-  MMIO_RING_F(prefix, 4, d)
-  ^~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:81:2: note: in expansion of macro ‘MMIO_RING_D’
-  MMIO_RING_D(RING_IMR, D_ALL);
-  ^~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:66:16: error: ‘BLT_RING_BASE’ undeclared (first use in this function); did you mean ‘CTX_RING_TAIL’?
-  MMIO_F(prefix(BLT_RING_BASE), s, d); \
-                ^~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-./drivers/gpu/drm/i915/gt/intel_engine_regs.h:73:27: note: in expansion of macro ‘_MMIO’
- #define RING_IMR(base)    _MMIO((base) + 0xa8)
-                           ^~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:66:9: note: in expansion of macro ‘RING_IMR’
-  MMIO_F(prefix(BLT_RING_BASE), s, d); \
-         ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:74:2: note: in expansion of macro ‘MMIO_RING_F’
-  MMIO_RING_F(prefix, 4, d)
-  ^~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:81:2: note: in expansion of macro ‘MMIO_RING_D’
-  MMIO_RING_D(RING_IMR, D_ALL);
-  ^~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:67:16: error: ‘GEN6_BSD_RING_BASE’ undeclared (first use in this function); did you mean ‘GEN8_CSB_PTR_MASK’?
-  MMIO_F(prefix(GEN6_BSD_RING_BASE), s, d); \
-                ^~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-./drivers/gpu/drm/i915/gt/intel_engine_regs.h:73:27: note: in expansion of macro ‘_MMIO’
- #define RING_IMR(base)    _MMIO((base) + 0xa8)
-                           ^~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:67:9: note: in expansion of macro ‘RING_IMR’
-  MMIO_F(prefix(GEN6_BSD_RING_BASE), s, d); \
-         ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:74:2: note: in expansion of macro ‘MMIO_RING_F’
-  MMIO_RING_F(prefix, 4, d)
-  ^~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:81:2: note: in expansion of macro ‘MMIO_RING_D’
-  MMIO_RING_D(RING_IMR, D_ALL);
-  ^~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:68:16: error: ‘VEBOX_RING_BASE’ undeclared (first use in this function); did you mean ‘CTX_RING_TAIL’?
-  MMIO_F(prefix(VEBOX_RING_BASE), s, d); \
-                ^~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-./drivers/gpu/drm/i915/gt/intel_engine_regs.h:73:27: note: in expansion of macro ‘_MMIO’
- #define RING_IMR(base)    _MMIO((base) + 0xa8)
-                           ^~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:68:9: note: in expansion of macro ‘RING_IMR’
-  MMIO_F(prefix(VEBOX_RING_BASE), s, d); \
-         ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:74:2: note: in expansion of macro ‘MMIO_RING_F’
-  MMIO_RING_F(prefix, 4, d)
-  ^~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:81:2: note: in expansion of macro ‘MMIO_RING_D’
-  MMIO_RING_D(RING_IMR, D_ALL);
-  ^~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:70:17: error: ‘GEN8_BSD2_RING_BASE’ undeclared (first use in this function); did you mean ‘GEN8_CSB_PTR_MASK’?
-   MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, d); \
-                 ^~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-./drivers/gpu/drm/i915/gt/intel_engine_regs.h:73:27: note: in expansion of macro ‘_MMIO’
- #define RING_IMR(base)    _MMIO((base) + 0xa8)
-                           ^~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:70:10: note: in expansion of macro ‘RING_IMR’
-   MMIO_F(prefix(GEN8_BSD2_RING_BASE), s, d); \
-          ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:74:2: note: in expansion of macro ‘MMIO_RING_F’
-  MMIO_RING_F(prefix, 4, d)
-  ^~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:81:2: note: in expansion of macro ‘MMIO_RING_D’
-  MMIO_RING_D(RING_IMR, D_ALL);
-  ^~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:82:9: error: ‘SDEIMR’ undeclared (first use in this function); did you mean ‘IPEIR’?
-  MMIO_D(SDEIMR, D_ALL);
-         ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:82:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(SDEIMR, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:83:9: error: ‘SDEIER’ undeclared (first use in this function); did you mean ‘IPEIR’?
-  MMIO_D(SDEIER, D_ALL);
-         ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:83:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(SDEIER, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:84:9: error: ‘SDEIIR’ undeclared (first use in this function); did you mean ‘IPEIR’?
-  MMIO_D(SDEIIR, D_ALL);
-         ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:84:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(SDEIIR, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:85:9: error: ‘SDEISR’ undeclared (first use in this function); did you mean ‘IPEIR’?
-  MMIO_D(SDEISR, D_ALL);
-         ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:85:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(SDEISR, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:87:9: error: ‘GEN8_GAMW_ECO_DEV_RW_IA’ undeclared (first use in this function)
-  MMIO_D(GEN8_GAMW_ECO_DEV_RW_IA, D_BDW_PLUS);
-         ^~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:87:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(GEN8_GAMW_ECO_DEV_RW_IA, D_BDW_PLUS);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:88:9: error: ‘BSD_HWS_PGA_GEN7’ undeclared (first use in this function); did you mean ‘RING_HWS_PGA_GEN6’?
-  MMIO_D(BSD_HWS_PGA_GEN7, D_ALL);
-         ^~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:88:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(BSD_HWS_PGA_GEN7, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:89:9: error: ‘BLT_HWS_PGA_GEN7’ undeclared (first use in this function); did you mean ‘RING_HWS_PGA_GEN6’?
-  MMIO_D(BLT_HWS_PGA_GEN7, D_ALL);
-         ^~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:89:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(BLT_HWS_PGA_GEN7, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:90:9: error: ‘VEBOX_HWS_PGA_GEN7’ undeclared (first use in this function); did you mean ‘RING_HWS_PGA_GEN6’?
-  MMIO_D(VEBOX_HWS_PGA_GEN7, D_ALL);
-         ^~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:90:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(VEBOX_HWS_PGA_GEN7, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:103:9: error: ‘GEN7_SC_INSTDONE’ undeclared (first use in this function); did you mean ‘RING_INSTDONE’?
-  MMIO_D(GEN7_SC_INSTDONE, D_BDW_PLUS);
-         ^~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:103:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(GEN7_SC_INSTDONE, D_BDW_PLUS);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:107:9: error: ‘GEN7_CXT_SIZE’ undeclared (first use in this function); did you mean ‘GEN6_PD_SIZE’?
-  MMIO_D(GEN7_CXT_SIZE, D_ALL);
-         ^~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:107:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(GEN7_CXT_SIZE, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:123:9: error: ‘GEN7_GT_MODE’ undeclared (first use in this function); did you mean ‘RING_MI_MODE’?
-  MMIO_D(GEN7_GT_MODE, D_ALL);
-         ^~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:123:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(GEN7_GT_MODE, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:124:9: error: ‘CACHE_MODE_0_GEN7’ undeclared (first use in this function); did you mean ‘RING_MODE_GEN7’?
-  MMIO_D(CACHE_MODE_0_GEN7, D_ALL);
-         ^~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:124:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(CACHE_MODE_0_GEN7, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:125:9: error: ‘CACHE_MODE_1’ undeclared (first use in this function); did you mean ‘ACC_MODE’?
-  MMIO_D(CACHE_MODE_1, D_ALL);
-         ^~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:125:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(CACHE_MODE_1, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:126:9: error: ‘CACHE_MODE_0’ undeclared (first use in this function); did you mean ‘ACC_MODE’?
-  MMIO_D(CACHE_MODE_0, D_ALL);
-         ^~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:126:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(CACHE_MODE_0, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:129:9: error: ‘_3D_CHICKEN3’ undeclared (first use in this function)
-  MMIO_D(_3D_CHICKEN3, D_ALL);
-         ^~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:129:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(_3D_CHICKEN3, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:131:9: error: ‘FF_SLICE_CS_CHICKEN2’ undeclared (first use in this function)
-  MMIO_D(FF_SLICE_CS_CHICKEN2, D_ALL);
-         ^~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:131:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(FF_SLICE_CS_CHICKEN2, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:133:9: error: ‘GAM_ECOCHK’ undeclared (first use in this function); did you mean ‘SHM_LOCK’?
-  MMIO_D(GAM_ECOCHK, D_ALL);
-         ^~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:133:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(GAM_ECOCHK, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:134:9: error: ‘GEN7_COMMON_SLICE_CHICKEN1’ undeclared (first use in this function)
-  MMIO_D(GEN7_COMMON_SLICE_CHICKEN1, D_ALL);
-         ^~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:134:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(GEN7_COMMON_SLICE_CHICKEN1, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:135:9: error: ‘COMMON_SLICE_CHICKEN2’ undeclared (first use in this function)
-  MMIO_D(COMMON_SLICE_CHICKEN2, D_ALL);
-         ^~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:135:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(COMMON_SLICE_CHICKEN2, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:144:9: error: ‘HALF_SLICE_CHICKEN3’ undeclared (first use in this function)
-  MMIO_D(HALF_SLICE_CHICKEN3, D_ALL);
-         ^~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:144:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(HALF_SLICE_CHICKEN3, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:145:9: error: ‘GEN7_HALF_SLICE_CHICKEN1’ undeclared (first use in this function)
-  MMIO_D(GEN7_HALF_SLICE_CHICKEN1, D_ALL);
-         ^~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:145:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(GEN7_HALF_SLICE_CHICKEN1, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:152:9: error: ‘DERRMR’ undeclared (first use in this function)
-  MMIO_D(DERRMR, D_ALL);
-         ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:152:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(DERRMR, D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:153:9: error: implicit declaration of function ‘PIPEDSL’ [-Werror=implicit-function-declaration]
-  MMIO_D(PIPEDSL(PIPE_A), D_ALL);
-         ^~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:153:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPEDSL(PIPE_A), D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:153:9: error: incompatible type for argument 1 of ‘i915_mmio_reg_offset’
-  MMIO_D(PIPEDSL(PIPE_A), D_ALL);
-         ^~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:153:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPEDSL(PIPE_A), D_ALL);
-  ^~~~~~
-In file included from drivers/gpu/drm/i915/display/intel_display.h:30,
-                 from drivers/gpu/drm/i915/display/intel_cdclk.h:11,
-                 from drivers/gpu/drm/i915/i915_drv.h:67,
-                 from drivers/gpu/drm/i915/intel_gvt_mmio_table.c:25:
-./drivers/gpu/drm/i915/i915_reg_defs.h:82:60: note: expected ‘i915_reg_t’ {aka ‘struct <anonymous>’} but argument is of type ‘int’
- static __always_inline u32 i915_mmio_reg_offset(i915_reg_t reg)
-                                                 ~~~~~~~~~~~^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:154:9: error: incompatible type for argument 1 of ‘i915_mmio_reg_offset’
-  MMIO_D(PIPEDSL(PIPE_B), D_ALL);
-         ^~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:154:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPEDSL(PIPE_B), D_ALL);
-  ^~~~~~
-In file included from drivers/gpu/drm/i915/display/intel_display.h:30,
-                 from drivers/gpu/drm/i915/display/intel_cdclk.h:11,
-                 from drivers/gpu/drm/i915/i915_drv.h:67,
-                 from drivers/gpu/drm/i915/intel_gvt_mmio_table.c:25:
-./drivers/gpu/drm/i915/i915_reg_defs.h:82:60: note: expected ‘i915_reg_t’ {aka ‘struct <anonymous>’} but argument is of type ‘int’
- static __always_inline u32 i915_mmio_reg_offset(i915_reg_t reg)
-                                                 ~~~~~~~~~~~^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:155:9: error: incompatible type for argument 1 of ‘i915_mmio_reg_offset’
-  MMIO_D(PIPEDSL(PIPE_C), D_ALL);
-         ^~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:155:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPEDSL(PIPE_C), D_ALL);
-  ^~~~~~
-In file included from drivers/gpu/drm/i915/display/intel_display.h:30,
-                 from drivers/gpu/drm/i915/display/intel_cdclk.h:11,
-                 from drivers/gpu/drm/i915/i915_drv.h:67,
-                 from drivers/gpu/drm/i915/intel_gvt_mmio_table.c:25:
-./drivers/gpu/drm/i915/i915_reg_defs.h:82:60: note: expected ‘i915_reg_t’ {aka ‘struct <anonymous>’} but argument is of type ‘int’
- static __always_inline u32 i915_mmio_reg_offset(i915_reg_t reg)
-                                                 ~~~~~~~~~~~^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:156:9: error: incompatible type for argument 1 of ‘i915_mmio_reg_offset’
-  MMIO_D(PIPEDSL(_PIPE_EDP), D_ALL);
-         ^~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:156:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPEDSL(_PIPE_EDP), D_ALL);
-  ^~~~~~
-In file included from drivers/gpu/drm/i915/display/intel_display.h:30,
-                 from drivers/gpu/drm/i915/display/intel_cdclk.h:11,
-                 from drivers/gpu/drm/i915/i915_drv.h:67,
-                 from drivers/gpu/drm/i915/intel_gvt_mmio_table.c:25:
-./drivers/gpu/drm/i915/i915_reg_defs.h:82:60: note: expected ‘i915_reg_t’ {aka ‘struct <anonymous>’} but argument is of type ‘int’
- static __always_inline u32 i915_mmio_reg_offset(i915_reg_t reg)
-                                                 ~~~~~~~~~~~^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:157:9: error: implicit declaration of function ‘PIPECONF’; did you mean ‘PIPE_BUF’? [-Werror=implicit-function-declaration]
-  MMIO_D(PIPECONF(PIPE_A), D_ALL);
-         ^~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:157:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPECONF(PIPE_A), D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:157:9: error: incompatible type for argument 1 of ‘i915_mmio_reg_offset’
-  MMIO_D(PIPECONF(PIPE_A), D_ALL);
-         ^~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:157:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPECONF(PIPE_A), D_ALL);
-  ^~~~~~
-In file included from drivers/gpu/drm/i915/display/intel_display.h:30,
-                 from drivers/gpu/drm/i915/display/intel_cdclk.h:11,
-                 from drivers/gpu/drm/i915/i915_drv.h:67,
-                 from drivers/gpu/drm/i915/intel_gvt_mmio_table.c:25:
-./drivers/gpu/drm/i915/i915_reg_defs.h:82:60: note: expected ‘i915_reg_t’ {aka ‘struct <anonymous>’} but argument is of type ‘int’
- static __always_inline u32 i915_mmio_reg_offset(i915_reg_t reg)
-                                                 ~~~~~~~~~~~^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:158:9: error: incompatible type for argument 1 of ‘i915_mmio_reg_offset’
-  MMIO_D(PIPECONF(PIPE_B), D_ALL);
-         ^~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:158:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPECONF(PIPE_B), D_ALL);
-  ^~~~~~
-In file included from drivers/gpu/drm/i915/display/intel_display.h:30,
-                 from drivers/gpu/drm/i915/display/intel_cdclk.h:11,
-                 from drivers/gpu/drm/i915/i915_drv.h:67,
-                 from drivers/gpu/drm/i915/intel_gvt_mmio_table.c:25:
-./drivers/gpu/drm/i915/i915_reg_defs.h:82:60: note: expected ‘i915_reg_t’ {aka ‘struct <anonymous>’} but argument is of type ‘int’
- static __always_inline u32 i915_mmio_reg_offset(i915_reg_t reg)
-                                                 ~~~~~~~~~~~^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:159:9: error: incompatible type for argument 1 of ‘i915_mmio_reg_offset’
-  MMIO_D(PIPECONF(PIPE_C), D_ALL);
-         ^~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:159:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPECONF(PIPE_C), D_ALL);
-  ^~~~~~
-In file included from drivers/gpu/drm/i915/display/intel_display.h:30,
-                 from drivers/gpu/drm/i915/display/intel_cdclk.h:11,
-                 from drivers/gpu/drm/i915/i915_drv.h:67,
-                 from drivers/gpu/drm/i915/intel_gvt_mmio_table.c:25:
-./drivers/gpu/drm/i915/i915_reg_defs.h:82:60: note: expected ‘i915_reg_t’ {aka ‘struct <anonymous>’} but argument is of type ‘int’
- static __always_inline u32 i915_mmio_reg_offset(i915_reg_t reg)
-                                                 ~~~~~~~~~~~^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:160:9: error: incompatible type for argument 1 of ‘i915_mmio_reg_offset’
-  MMIO_D(PIPECONF(_PIPE_EDP), D_ALL);
-         ^~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:160:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPECONF(_PIPE_EDP), D_ALL);
-  ^~~~~~
-In file included from drivers/gpu/drm/i915/display/intel_display.h:30,
-                 from drivers/gpu/drm/i915/display/intel_cdclk.h:11,
-                 from drivers/gpu/drm/i915/i915_drv.h:67,
-                 from drivers/gpu/drm/i915/intel_gvt_mmio_table.c:25:
-./drivers/gpu/drm/i915/i915_reg_defs.h:82:60: note: expected ‘i915_reg_t’ {aka ‘struct <anonymous>’} but argument is of type ‘int’
- static __always_inline u32 i915_mmio_reg_offset(i915_reg_t reg)
-                                                 ~~~~~~~~~~~^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:161:9: error: implicit declaration of function ‘PIPESTAT’; did you mean ‘IPC_STAT’? [-Werror=implicit-function-declaration]
-  MMIO_D(PIPESTAT(PIPE_A), D_ALL);
-         ^~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:161:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPESTAT(PIPE_A), D_ALL);
-  ^~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:161:9: error: incompatible type for argument 1 of ‘i915_mmio_reg_offset’
-  MMIO_D(PIPESTAT(PIPE_A), D_ALL);
-         ^~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:161:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPESTAT(PIPE_A), D_ALL);
-  ^~~~~~
-In file included from drivers/gpu/drm/i915/display/intel_display.h:30,
-                 from drivers/gpu/drm/i915/display/intel_cdclk.h:11,
-                 from drivers/gpu/drm/i915/i915_drv.h:67,
-                 from drivers/gpu/drm/i915/intel_gvt_mmio_table.c:25:
-./drivers/gpu/drm/i915/i915_reg_defs.h:82:60: note: expected ‘i915_reg_t’ {aka ‘struct <anonymous>’} but argument is of type ‘int’
- static __always_inline u32 i915_mmio_reg_offset(i915_reg_t reg)
-                                                 ~~~~~~~~~~~^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:162:9: error: incompatible type for argument 1 of ‘i915_mmio_reg_offset’
-  MMIO_D(PIPESTAT(PIPE_B), D_ALL);
-         ^~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:54:57: note: in definition of macro ‘MMIO_F’
-   ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), \
-                                                         ^~~
-drivers/gpu/drm/i915/intel_gvt_mmio_table.c:162:2: note: in expansion of macro ‘MMIO_D’
-  MMIO_D(PIPESTAT(PIPE_B), D_ALL);
-  ^~~~~~
-In file included from drivers/gpu/drm/i915/di
+CI Bug Log - changes from CI_DRM_11200 -> Patchwork_22202
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/index.html
+
+Participating hosts (42 -> 45)
+------------------------------
+
+  Additional (5): fi-kbl-soraka bat-dg1-5 fi-icl-u2 fi-pnv-d510 bat-jsl-2 
+  Missing    (2): shard-rkl shard-tglu 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22202:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_hangman@error-state-basic:
+    - {bat-adlp-6}:       [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11200/bat-adlp-6/igt@i915_hangman@error-state-basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-adlp-6/igt@i915_hangman@error-state-basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22202 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@fork-compute0:
+    - fi-blb-e6850:       NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-blb-e6850/igt@amdgpu/amd_cs_nop@fork-compute0.html
+
+  * igt@amdgpu/amd_cs_nop@fork-gfx0:
+    - fi-icl-u2:          NOTRUN -> [SKIP][4] ([fdo#109315]) +17 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@gem_exec_gttfill@basic:
+    - bat-dg1-5:          NOTRUN -> [SKIP][6] ([i915#4086])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#2190])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
+    - fi-pnv-d510:        NOTRUN -> [SKIP][8] ([fdo#109271]) +39 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271] / [i915#2190])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+    - fi-icl-u2:          NOTRUN -> [SKIP][10] ([i915#2190])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-icl-u2:          NOTRUN -> [SKIP][11] ([i915#4613]) +3 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][12] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_lmem_swapping@verify-random:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][13] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html
+
+  * igt@gem_mmap@basic:
+    - bat-dg1-5:          NOTRUN -> [SKIP][14] ([i915#4083])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@gem_mmap@basic.html
+
+  * igt@gem_mmap_gtt@basic:
+    - bat-dg1-5:          NOTRUN -> [SKIP][15] ([i915#4077]) +2 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@gem_mmap_gtt@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - bat-dg1-5:          NOTRUN -> [SKIP][16] ([i915#4079]) +1 similar issue
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - bat-dg1-5:          NOTRUN -> [SKIP][17] ([i915#1155])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][18] ([i915#1886] / [i915#2291])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-5:          NOTRUN -> [DMESG-FAIL][19] ([i915#4494] / [i915#4957])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-pnv-d510:        NOTRUN -> [DMESG-FAIL][20] ([i915#2927])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-pnv-d510/igt@i915_selftest@live@requests.html
+
+  * igt@kms_addfb_basic@basic-y-tiled-legacy:
+    - bat-dg1-5:          NOTRUN -> [SKIP][21] ([i915#4215])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@kms_addfb_basic@basic-y-tiled-legacy.html
+
+  * igt@kms_addfb_basic@tile-pitch-mismatch:
+    - bat-dg1-5:          NOTRUN -> [SKIP][22] ([i915#4212]) +7 similar issues
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@kms_addfb_basic@tile-pitch-mismatch.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][23] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - bat-dg1-5:          NOTRUN -> [SKIP][24] ([fdo#111827]) +8 similar issues
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@kms_chamelium@dp-hpd-fast.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-icl-u2:          NOTRUN -> [SKIP][25] ([fdo#111827]) +8 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][26] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-icl-u2:          NOTRUN -> [SKIP][27] ([fdo#109278]) +2 similar issues
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - bat-dg1-5:          NOTRUN -> [SKIP][28] ([i915#4103] / [i915#4213]) +1 similar issue
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][29] ([fdo#109271]) +21 similar issues
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-skl-6600u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-dg1-5:          NOTRUN -> [SKIP][30] ([fdo#109285])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@kms_force_connector_basic@force-load-detect.html
+    - fi-icl-u2:          NOTRUN -> [SKIP][31] ([fdo#109285])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][32] ([fdo#109271] / [i915#533])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][33] ([fdo#109271] / [i915#533])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-cfl-8109u:       [PASS][34] -> [DMESG-WARN][35] ([i915#295]) +12 similar issues
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11200/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+
+  * igt@kms_psr@primary_page_flip:
+    - bat-dg1-5:          NOTRUN -> [SKIP][36] ([i915#1072] / [i915#4078]) +3 similar issues
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@kms_psr@primary_page_flip.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - bat-dg1-5:          NOTRUN -> [SKIP][37] ([i915#3708]) +3 similar issues
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@prime_vgem@basic-fence-flip.html
+
+  * igt@prime_vgem@basic-fence-mmap:
+    - bat-dg1-5:          NOTRUN -> [SKIP][38] ([i915#3708] / [i915#4077]) +1 similar issue
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@prime_vgem@basic-fence-mmap.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-icl-u2:          NOTRUN -> [SKIP][39] ([i915#3301])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@prime_vgem@basic-userptr.html
+    - bat-dg1-5:          NOTRUN -> [SKIP][40] ([i915#3708] / [i915#4873])
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-pnv-d510:        NOTRUN -> [FAIL][41] ([fdo#109271] / [i915#2403] / [i915#4312])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-pnv-d510/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-skl-6600u:       [INCOMPLETE][42] ([i915#4547]) -> [PASS][43]
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11200/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [DMESG-FAIL][44] ([i915#4528] / [i915#5026]) -> [PASS][45]
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11200/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4086]: https://gitlab.freedesktop.org/drm/intel/issues/4086
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5026]: https://gitlab.freedesktop.org/drm/intel/issues/5026
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_11200 -> Patchwork_22202
+
+  CI-20190529: 20190529
+  CI_DRM_11200: a82048d804ae32de6e00da56d2c74e449d486738 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22202: 106e8c86e1d3349741b6d2c6766d4cd0df6c17c9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+106e8c86e1d3 drm/i915/guc: Verify hwconfig blob matches supported format
+74d623c301f6 drm/i915/uapi: Add struct drm_i915_query_hwconfig_blob_item
+a35c6a38af41 drm/i915/uapi: Add query for hwconfig blob
+0d55eb6c8da5 drm/i915/guc: Add fetch of hwconfig table
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/index.html
+
+--===============5214369281223185633==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>GuC HWCONFIG with documentation (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99787/">https://patchwork.freedesktop.org/series/99787/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11200 -&gt; Patchwork_22202</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/index.html</p>
+<h2>Participating hosts (42 -&gt; 45)</h2>
+<p>Additional (5): fi-kbl-soraka bat-dg1-5 fi-icl-u2 fi-pnv-d510 bat-jsl-2 <br />
+  Missing    (2): shard-rkl shard-tglu </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22202:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_hangman@error-state-basic:<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11200/bat-adlp-6/igt@i915_hangman@error-state-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-adlp-6/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22202 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-compute0:</p>
+<ul>
+<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-blb-e6850/igt@amdgpu/amd_cs_nop@fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4086">i915#4086</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +39 similar issues</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-kbl-soraka/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@basic:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@gem_mmap_gtt@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-pnv-d510/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@tile-pitch-mismatch:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@kms_addfb_basic@tile-pitch-mismatch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-edid-read:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-kbl-soraka/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-hpd-fast:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>) +2 similar issues</p>
+</li>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 similar issue</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-skl-6600u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +21 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11200/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +12 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-mmap:</p>
+<ul>
+<li>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>
+<p>fi-icl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-icl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
+</li>
+<li>
+<p>bat-dg1-5:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/bat-dg1-5/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4873">i915#4873</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11200/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11200/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5026">i915#5026</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22202/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11200 -&gt; Patchwork_22202</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11200: a82048d804ae32de6e00da56d2c74e449d486738 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22202: 106e8c86e1d3349741b6d2c6766d4cd0df6c17c9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>106e8c86e1d3 drm/i915/guc: Verify hwconfig blob matches supported format<br />
+74d623c301f6 drm/i915/uapi: Add struct drm_i915_query_hwconfig_blob_item<br />
+a35c6a38af41 drm/i915/uapi: Add query for hwconfig blob<br />
+0d55eb6c8da5 drm/i915/guc: Add fetch of hwconfig table</p>
+
+</body>
+</html>
+
+--===============5214369281223185633==--
