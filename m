@@ -2,69 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1C594ADA5C
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 14:48:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46F984ADA71
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 14:54:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1B3710E4C6;
-	Tue,  8 Feb 2022 13:48:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89E5E10E587;
+	Tue,  8 Feb 2022 13:54:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9AF810E4E2
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 13:48:33 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id v12so2148329wrv.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 08 Feb 2022 05:48:33 -0800 (PST)
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 665FE10E4C6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 13:54:03 +0000 (UTC)
+Received: by mail-wr1-x430.google.com with SMTP id v12so2178641wrv.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 08 Feb 2022 05:54:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:mail-followup-to:references
  :mime-version:content-disposition:in-reply-to;
- bh=nslAfgWjfqYp0waeOKiDWtWcAv4ct0cP72o0N9rmy7Q=;
- b=RVIn/c29r62kMCw+PwceylGcVE56vaOTYXBMo7yGwFYmI8E/MTom7AJHaMcxowN+sf
- rpC298MEwoj91lA8w//3v+cDFu7X5dyGZYyd3MLAQTNU8RUeQAdbDz8LzlZMp2QrHCFs
- oDG6vKBMITYf8mcdxmktG34fLsh6fvX9XHqVU=
+ bh=4O7t+VO/eUKPV3zCNKFSbvq0Ljp3XWU8Qf/HjmcbkEc=;
+ b=gnx0wctQF0ZOrloVcj5vzxR/MoXGQ5grkToQFc0SpnV2toiN0RcEU0b0Joz5mj4Uz1
+ aoQNEtoZVQWUxi5PJcDDd+IJmgG3zUT40M1A6XASvbF1bwhM1Tyd+B7c5s4K+rgh3g1m
+ H0laAeLoROpuVYCKj2hPvYin3DylTSujPrm5M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id
  :mail-followup-to:references:mime-version:content-disposition
  :in-reply-to;
- bh=nslAfgWjfqYp0waeOKiDWtWcAv4ct0cP72o0N9rmy7Q=;
- b=Z82gGPoD1gzFFEKFVaM+d46wrHO/jPmjztaTqH1jYXbBuZVUKcUtk8FFyhvlRxYjaZ
- wbFva/drlHc7yQCHStz/czzATT3gNCCeZ3Ta+PiqIZsFK13YYExqCIPxWc04wZxwqBtn
- z8+iMlLZDX266R03yGbxHZ+GOcwJkgg0oRxVp6I+DawYN7Rk/evJj5vlD/7BPbDpA2kv
- ZdppvKdVcn+Y0CO+7tGBbo+yftsg9lOWKGa37Eb28jE9j32v8jxJASbchFkpbzg/p9n6
- 67Ky6b9SgxLfCyqyDi2iPWeq2RV2lAbpI/oiVBUtj0ZtX4m1SrkY3gI824ATc3k1v/y0
- mEPA==
-X-Gm-Message-State: AOAM533w74gUjCeEx1ps/TP/ek7vDKcSFJSZnHEZhxWBwBKuw/CmNdYI
- pIilJSah+V3TDfYLjE5kI01Zpg==
-X-Google-Smtp-Source: ABdhPJw7G5oiEdPQQHMsx5o7YqF02G82AktiOMw1OdSWIr3bQc7+i+V4qkXnq0ZbIMa6QMBDktOQiQ==
-X-Received: by 2002:a5d:6d4b:: with SMTP id k11mr3503996wri.623.1644328112201; 
- Tue, 08 Feb 2022 05:48:32 -0800 (PST)
+ bh=4O7t+VO/eUKPV3zCNKFSbvq0Ljp3XWU8Qf/HjmcbkEc=;
+ b=pTFIPxM1RJxLmj2Z48hZAVBlA6HNKH5V6hCl633iGvGPzlsvVEjCrrfysq9ds8yQ74
+ foi9Yj+Q4zZimzMtBglaCiev5gAPY4oe9W3mFXNXpDe2yeYpMfwJkjAUguXG0IFqTWAV
+ yVgjz7HHkyX/JoRb6qGxdmQ0bY0xFSUYRJ6xAx7O0Zjxn04nTM6Uc8QXMBhKjl2uEmGH
+ jxKATuVUIwVv/zE1WeEFr5WSRIsO8Hip3tAE3o5L4Fn3ODGuphTfwB2ftmM7T3XP4TYm
+ 2CQy6jdN8xQtX+26Z1Ie458SuXAFjAbqUUt0Tj75Gvmg/pryszwOAVagvAOM/6MPu2VQ
+ 0NNw==
+X-Gm-Message-State: AOAM531GBI9IxHKADct9tBK+OdP+m+laC8gXLpJtUQgod0bdydhDgQgD
+ GRLKCJBmgkLwChlDxoa+I12Mcw==
+X-Google-Smtp-Source: ABdhPJwtMvoSlZ1zJLr+xk0DKI6HZ/HhJrH76WUKQbFlTNz3OgcD8QA8YxnqOWoVUYW/4bYjDOFLTg==
+X-Received: by 2002:adf:de12:: with SMTP id b18mr3660421wrm.293.1644328441602; 
+ Tue, 08 Feb 2022 05:54:01 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id f25sm2097908wml.16.2022.02.08.05.48.31
+ by smtp.gmail.com with ESMTPSA id bg23sm2829083wmb.5.2022.02.08.05.54.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Feb 2022 05:48:31 -0800 (PST)
-Date: Tue, 8 Feb 2022 14:48:29 +0100
+ Tue, 08 Feb 2022 05:54:00 -0800 (PST)
+Date: Tue, 8 Feb 2022 14:53:59 +0100
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Sam Ravnborg <sam@ravnborg.org>
-Message-ID: <YgJ0relUFpnxRvhg@phenom.ffwll.local>
+Message-ID: <YgJ19zts7nxCjGk5@phenom.ffwll.local>
 Mail-Followup-To: Sam Ravnborg <sam@ravnborg.org>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- linux-fbdev@vger.kernel.org, Du Cheng <ducheng2@gmail.com>,
+ linux-fbdev@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Du Cheng <ducheng2@gmail.com>,
  Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  LKML <linux-kernel@vger.kernel.org>, Claudio Suarez <cssk@net-c.es>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Daniel Vetter <daniel.vetter@intel.com>
 References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
- <20220131210552.482606-12-daniel.vetter@ffwll.ch>
- <YfxF4jq7BLX5rJe5@ravnborg.org>
+ <20220131210552.482606-14-daniel.vetter@ffwll.ch>
+ <Yf2AAx9rlIsh/h8I@ravnborg.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YfxF4jq7BLX5rJe5@ravnborg.org>
+In-Reply-To: <Yf2AAx9rlIsh/h8I@ravnborg.org>
 X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Intel-gfx] [PATCH 11/21] fbcon: Extract fbcon_open/release
- helpers
+Subject: Re: [Intel-gfx] [PATCH 13/21] fbcon: move more common code into
+ fb_open()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,52 +85,37 @@ Cc: linux-fbdev@vger.kernel.org, Du Cheng <ducheng2@gmail.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  LKML <linux-kernel@vger.kernel.org>,
  DRI Development <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Daniel Vetter <daniel.vetter@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 03, 2022 at 10:15:14PM +0100, Sam Ravnborg wrote:
-> Hi Daniel,
-> 
-> On Mon, Jan 31, 2022 at 10:05:42PM +0100, Daniel Vetter wrote:
-> > There's two minor behaviour changes in here:
-> > - in error paths we now consistently call fb_ops->fb_release
-> > - fb_release really can't fail (fbmem.c ignores it too) and there's no
-> >   reasonable cleanup we can do anyway.
+On Fri, Feb 04, 2022 at 08:35:31PM +0100, Sam Ravnborg wrote:
+> On Mon, Jan 31, 2022 at 10:05:44PM +0100, Daniel Vetter wrote:
+> > No idea why con2fb_acquire_newinfo() initializes much less than
+> > fbcon_startup(), but so be it. From a quick look most of the
+> > un-initialized stuff should be fairly harmless, but who knows.
 > > 
 > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 > > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Cc: Claudio Suarez <cssk@net-c.es>
 > > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 > > Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: Claudio Suarez <cssk@net-c.es>
 > > Cc: Du Cheng <ducheng2@gmail.com>
 > > ---
-> >  drivers/video/fbdev/core/fbcon.c | 107 +++++++++++++++----------------
-> >  1 file changed, 53 insertions(+), 54 deletions(-)
+> >  drivers/video/fbdev/core/fbcon.c | 74 +++++++++++++-------------------
+> >  1 file changed, 31 insertions(+), 43 deletions(-)
 > > 
 > > diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
-> > index fa30e1909164..eea2ee14b64c 100644
+> > index b83a5a77d8a8..5a3391ff038d 100644
 > > --- a/drivers/video/fbdev/core/fbcon.c
 > > +++ b/drivers/video/fbdev/core/fbcon.c
-> > @@ -680,19 +680,37 @@ static int fbcon_invalid_charcount(struct fb_info *info, unsigned charcount)
+> > @@ -680,8 +680,18 @@ static int fbcon_invalid_charcount(struct fb_info *info, unsigned charcount)
 > >  
 > >  #endif /* CONFIG_MISC_TILEBLITTING */
 > >  
-> > +static int fbcon_open(struct fb_info *info)
-> > +{
-> > +	if (!try_module_get(info->fbops->owner))
-> > +		return -ENODEV;
-> > +
-> > +	if (info->fbops->fb_open &&
-> > +	    info->fbops->fb_open(info, 0)) {
-> > +		module_put(info->fbops->owner);
-> > +		return -ENODEV;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
 > > +static void fbcon_release(struct fb_info *info)
 > > +{
 > > +	if (info->fbops->fb_release)
@@ -136,181 +123,143 @@ On Thu, Feb 03, 2022 at 10:15:14PM +0100, Sam Ravnborg wrote:
 > > +
 > > +	module_put(info->fbops->owner);
 > > +}
-> >  
-> >  static int con2fb_acquire_newinfo(struct vc_data *vc, struct fb_info *info,
-> >  				  int unit, int oldidx)
+> > +
+> >  static int fbcon_open(struct fb_info *info)
 > >  {
-> >  	struct fbcon_ops *ops = NULL;
-> > -	int err = 0;
-> > -
-> > -	if (!try_module_get(info->fbops->owner))
-> > -		err = -ENODEV;
-> > +	int err;
+> > +	struct fbcon_ops *ops;
+> > +
+> >  	if (!try_module_get(info->fbops->owner))
+> >  		return -ENODEV;
 > >  
-> > -	if (!err && info->fbops->fb_open &&
-> > -	    info->fbops->fb_open(info, 0))
-> > -		err = -ENODEV;
-> > +	err = fbcon_open(info);
-> > +	if (err)
-> > +		return err;
+> > @@ -691,19 +701,22 @@ static int fbcon_open(struct fb_info *info)
+> >  		return -ENODEV;
+> >  	}
 > >  
-> >  	if (!err) {
-> >  		ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
-> > @@ -713,7 +731,7 @@ static int con2fb_acquire_newinfo(struct vc_data *vc, struct fb_info *info,
-> >  
-> >  	if (err) {
-> >  		con2fb_map[unit] = oldidx;
-> > -		module_put(info->fbops->owner);
+> > -	return 0;
+> > -}
+> > +	ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
+> > +	if (!ops) {
 > > +		fbcon_release(info);
-> >  	}
+> > +		return -ENOMEM;
+> > +	}
 > >  
-> >  	return err;
-> > @@ -724,45 +742,34 @@ static int con2fb_release_oldinfo(struct vc_data *vc, struct fb_info *oldinfo,
-> >  				  int oldidx, int found)
-> >  {
-> >  	struct fbcon_ops *ops = oldinfo->fbcon_par;
-> > -	int err = 0, ret;
-> > +	int ret;
+> > -static void fbcon_release(struct fb_info *info)
+> > -{
+> > -	if (info->fbops->fb_release)
+> > -		info->fbops->fb_release(info, 0);
+> > +	INIT_DELAYED_WORK(&ops->cursor_work, fb_flashcursor);
+> > +	ops->info = info;
+> > +	info->fbcon_par = ops;
+> > +	ops->cur_blink_jiffies = HZ / 5;
 > >  
-> > -	if (oldinfo->fbops->fb_release &&
-> > -	    oldinfo->fbops->fb_release(oldinfo, 0)) {
-> > -		con2fb_map[unit] = oldidx;
-> The old code assigns con2fb_map[unit] before is calls
-> newinfo->fbops->fb_release).
-> I wonder if there can be any callback to fbcon where the value
-> of con2fb_map[unit] matters?
-
-It's all protected by console_lock, so other threads cannot see the
-inconsistent state.
-
-Essentially everything in fbcon.c is protected by console_lock().
-
-Do you want me to hammer this in somewhere (maybe in the commit message),
-or good enough for your ack?
--Daniel
-
-> 
-> 
-> > -		if (!found && newinfo->fbops->fb_release)
-> > -			newinfo->fbops->fb_release(newinfo, 0);
-> > -		if (!found)
-> > -			module_put(newinfo->fbops->owner);
-> > -		err = -ENODEV;
-> > -	}
-> > +	fbcon_release(oldinfo);
-> >  
-> > -	if (!err) {
-> > -		fbcon_del_cursor_work(oldinfo);
-> > -		kfree(ops->cursor_state.mask);
-> > -		kfree(ops->cursor_data);
-> > -		kfree(ops->cursor_src);
-> > -		kfree(ops->fontbuffer);
-> > -		kfree(oldinfo->fbcon_par);
-> > -		oldinfo->fbcon_par = NULL;
-> > -		module_put(oldinfo->fbops->owner);
-> > -		/*
-> > -		  If oldinfo and newinfo are driving the same hardware,
-> > -		  the fb_release() method of oldinfo may attempt to
-> > -		  restore the hardware state.  This will leave the
-> > -		  newinfo in an undefined state. Thus, a call to
-> > -		  fb_set_par() may be needed for the newinfo.
-> > -		*/
-> > -		if (newinfo && newinfo->fbops->fb_set_par) {
-> > -			ret = newinfo->fbops->fb_set_par(newinfo);
-> > +	fbcon_del_cursor_work(oldinfo);
-> 
-> 
-> > +	kfree(ops->cursor_state.mask);
-> > +	kfree(ops->cursor_data);
-> > +	kfree(ops->cursor_src);
-> > +	kfree(ops->fontbuffer);
-> > +	kfree(oldinfo->fbcon_par);
-> > +	oldinfo->fbcon_par = NULL;
-> These all look like candidates to stuff into fbcon_release()
-> That would drop the nice symmetry but make it more consistent.
-> 
-> I think we miss freeing ops->cursor_data in fbcon_exit(),
-> but I did not follow all the code.
-> 
-> With my ramblings considered the patch is
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> 
-> 	Sam
-> 
-> > +	/*
-> > +	  If oldinfo and newinfo are driving the same hardware,
-> > +	  the fb_release() method of oldinfo may attempt to
-> > +	  restore the hardware state.  This will leave the
-> > +	  newinfo in an undefined state. Thus, a call to
-> > +	  fb_set_par() may be needed for the newinfo.
-> > +	*/
-> > +	if (newinfo && newinfo->fbops->fb_set_par) {
-> > +		ret = newinfo->fbops->fb_set_par(newinfo);
-> >  
-> > -			if (ret)
-> > -				printk(KERN_ERR "con2fb_release_oldinfo: "
-> > -					"detected unhandled fb_set_par error, "
-> > -					"error code %d\n", ret);
-> > -		}
-> > +		if (ret)
-> > +			printk(KERN_ERR "con2fb_release_oldinfo: "
-> > +				"detected unhandled fb_set_par error, "
-> > +				"error code %d\n", ret);
-> >  	}
-> >  
-> > -	return err;
+> > -	module_put(info->fbops->owner);
 > > +	return 0;
 > >  }
 > >  
-> >  static void con2fb_init_display(struct vc_data *vc, struct fb_info *info,
-> > @@ -917,7 +924,6 @@ static const char *fbcon_startup(void)
-> >  	struct fbcon_display *p = &fb_display[fg_console];
-> >  	struct vc_data *vc = vc_cons[fg_console].d;
-> >  	const struct font_desc *font = NULL;
-> > -	struct module *owner;
-> >  	struct fb_info *info = NULL;
-> >  	struct fbcon_ops *ops;
-> >  	int rows, cols;
-> > @@ -936,17 +942,12 @@ static const char *fbcon_startup(void)
-> >  	if (!info)
+> >  static int con2fb_acquire_newinfo(struct vc_data *vc, struct fb_info *info,
+> > -				  int unit, int oldidx)
+> > +				  int unit)
+> >  {
+> >  	struct fbcon_ops *ops = NULL;
+> >  	int err;
+> > @@ -712,27 +725,10 @@ static int con2fb_acquire_newinfo(struct vc_data *vc, struct fb_info *info,
+> >  	if (err)
+> >  		return err;
+> >  
+> > -	if (!err) {
+> > -		ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
+> > -		if (!ops)
+> > -			err = -ENOMEM;
+> > -
+> > -		INIT_DELAYED_WORK(&ops->cursor_work, fb_flashcursor);
+> > -	}
+> > -
+> > -	if (!err) {
+> > -		ops->cur_blink_jiffies = HZ / 5;
+> > -		ops->info = info;
+> > -		info->fbcon_par = ops;
+> > -
+> > -		if (vc)
+> > -			set_blitting_type(vc, info);
+> > -	}
+> > +	ops = info->fbcon_par;
+> >  
+> > -	if (err) {
+> > -		con2fb_map[unit] = oldidx;
+> > -		fbcon_release(info);
+> > -	}
+> > +	if (vc)
+> > +		set_blitting_type(vc, info);
+> >  
+> >  	return err;
+> >  }
+> > @@ -840,9 +836,11 @@ static int set_con2fb_map(int unit, int newidx, int user)
+> >  
+> >  	found = search_fb_in_map(newidx);
+> >  
+> > -	con2fb_map[unit] = newidx;
+> > -	if (!err && !found)
+> > -		err = con2fb_acquire_newinfo(vc, info, unit, oldidx);
+> > +	if (!err && !found) {
+> > +		err = con2fb_acquire_newinfo(vc, info, unit);
+> > +		if (!err)
+> > +			con2fb_map[unit] = newidx;
+> > +	}
+> This looks like an unintentional change of functionality as con2fb_map[unit] is
+> only assigned when we do a con2fb_acquire_newinfo().
+> 
+> Staring at the code I could not say it is wrong, but not nice to hide
+> the change in this patch.
+
+Nope, it's not an unintentional bugfix. The old con2fb_acquire_newinfo did
+reset con2fb_map to oldidx upon failure, which I've found to be a most
+bizarre calling convention. So this sorts this out.
+
+The reason I smashed this into the same patch is that I had to remove the
+fbcon_release call, and so the error handling in there looked even more
+funny. But I indeed failed to explain this all in the commit message.
+
+Ack with that explainer, or do you want me to split this out properly?
+-Daniel
+
+> 
+> 	Sam
+> 
+> 
+> >  
+> >  	/*
+> >  	 * If old fb is not mapped to any of the consoles,
+> > @@ -939,20 +937,10 @@ static const char *fbcon_startup(void)
+> >  	if (fbcon_open(info))
 > >  		return NULL;
-> >  	
-> > -	owner = info->fbops->owner;
-> > -	if (!try_module_get(owner))
-> > +	if (fbcon_open(info))
-> >  		return NULL;
-> > -	if (info->fbops->fb_open && info->fbops->fb_open(info, 0)) {
-> > -		module_put(owner);
+> >  
+> > -	ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
+> > -	if (!ops) {
+> > -		fbcon_release(info);
 > > -		return NULL;
 > > -	}
-> >  
-> >  	ops = kzalloc(sizeof(struct fbcon_ops), GFP_KERNEL);
-> >  	if (!ops) {
-> > -		module_put(owner);
-> > +		fbcon_release(info);
-> >  		return NULL;
-> >  	}
-> >  
-> > @@ -3331,10 +3332,6 @@ static void fbcon_exit(void)
-> >  		}
-> >  
-> >  		if (mapped) {
-> > -			if (info->fbops->fb_release)
-> > -				info->fbops->fb_release(info, 0);
-> > -			module_put(info->fbops->owner);
 > > -
-> >  			if (info->fbcon_par) {
-> >  				struct fbcon_ops *ops = info->fbcon_par;
+> > -	INIT_DELAYED_WORK(&ops->cursor_work, fb_flashcursor);
+> > -
+> > +	ops = info->fbcon_par;
+> >  	ops->currcon = -1;
+> >  	ops->graphics = 1;
+> >  	ops->cur_rotate = -1;
+> > -	ops->cur_blink_jiffies = HZ / 5;
+> > -	ops->info = info;
+> > -	info->fbcon_par = ops;
 > >  
-> > @@ -3344,6 +3341,8 @@ static void fbcon_exit(void)
-> >  				kfree(info->fbcon_par);
-> >  				info->fbcon_par = NULL;
-> >  			}
-> > +
-> > +			fbcon_release(info);
-> >  		}
-> >  	}
-> >  }
+> >  	p->con_rotate = initial_rotation;
+> >  	if (p->con_rotate == -1)
+> > @@ -1022,7 +1010,7 @@ static void fbcon_init(struct vc_data *vc, int init)
+> >  		return;
+> >  
+> >  	if (!info->fbcon_par)
+> > -		con2fb_acquire_newinfo(vc, info, vc->vc_num, -1);
+> > +		con2fb_acquire_newinfo(vc, info, vc->vc_num);
+> >  
+> >  	/* If we are not the first console on this
+> >  	   fb, copy the font from that console */
 > > -- 
 > > 2.33.0
 
