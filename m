@@ -2,155 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F092B4AE25C
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 20:38:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EAA44AE264
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 20:43:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09C4E10E125;
-	Tue,  8 Feb 2022 19:38:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7E6310E6CC;
+	Tue,  8 Feb 2022 19:43:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBFFB10E125
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 19:38:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644349096; x=1675885096;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=bdJ14HuF6dw0R7cd5aIaEFXOxjgWXV+9o1JWk1ytwL4=;
- b=jCF5oLdX0gCts/WCK5E/4zd9GIIfacwGw+xWKlFa7tlzx+MubkKXyvZU
- z2Z6zUhNAcalagQvV9hKJDS3KwVWFc3pMQy+RZ/85DJtF21U32YJ+wMQE
- 9Bg+oNSgH1FkTybBCN1OpeZD0Xza2k+2JZxDDlmlanZzfIRW1mz2tKpRH
- AQZ+S9RPR5/w7u7rngbTAvt5PHsrgEXNytapwUrVyXv3s3rzVqvlYJwZH
- NpVoRaBXql01N2ZESnp9/rTMqjtXuAPpXjNVPqVDxF5nBq+iXoKFarWcR
- c0iaI84TuEqfHChSoOAq1IU+ME9UdUJbazrAtMmhEhwNhiLSN6/qn2uvj A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="248982477"
-X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="248982477"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 11:38:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; d="scan'208";a="567968384"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by orsmga001.jf.intel.com with ESMTP; 08 Feb 2022 11:38:16 -0800
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 8 Feb 2022 11:38:15 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20 via Frontend Transport; Tue, 8 Feb 2022 11:38:15 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.171)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Tue, 8 Feb 2022 11:38:15 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CZlMQyOodKQwMnzSlP1nrSDuoUBFc4NlxidVpqCMCYJbeIVe39La0FwUSmSq0BbNjN/zoVSc1scYoEbLZLaFBBE76jomUJzsy13PvMJqV0qvvEJQk2I2Z13/kDzOaFB9SK1cE/KmuqoP3ToYOuI794s1qRZMF41M890jRUDvBHM/8s26Uq+31IYKdyuzLysSx6YrlDuxvAml7BlnaFiNksEitltkbuuf96+7VGcD6rkpUNHoIwex+WdxxGWXZouxmWcJ/TtoSm88iuPzLrlZKVt0H96BBTGxB/0KgFx47B9miNaVP9dNxytJY5GmlxGbbc+l5MhNVikDPZ4rCC5vEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bdJ14HuF6dw0R7cd5aIaEFXOxjgWXV+9o1JWk1ytwL4=;
- b=LhEdJVJ82EbWuPL5tL7HPAGasYjcSq14gTqSLKRgczJetziA2tACLC/f5W/HPFBaPZD+ttlVIPynqfJWgIXn5+1oxFsJtKLqWpJOGQKPmeR5w7WPlhIss/Zf6fHc/kw/kzB3AjIA8LRbTGmNEkCVQtLgZKYx7DcxraV3HCqIWPKwkgErmqzhyRPMiUVDWxqEQA4tgZbGPqwsE6p70WMn5a9OQ80+/oDhJ0upBjvirDFY34M20WS4sq/O1A5R2cPZO+edn9/c10ZEi60kPpcVCX4gSNhNGOqW8nfyZW6FfSQ3s5q41eYxB9VndhePx+0aJgcZboqYqWJsxoeQqjiqDw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from BYAPR11MB3784.namprd11.prod.outlook.com (2603:10b6:a03:fe::10)
- by BN0PR11MB5727.namprd11.prod.outlook.com (2603:10b6:408:162::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.11; Tue, 8 Feb
- 2022 19:38:13 +0000
-Received: from BYAPR11MB3784.namprd11.prod.outlook.com
- ([fe80::a048:b2cb:5446:6b13]) by BYAPR11MB3784.namprd11.prod.outlook.com
- ([fe80::a048:b2cb:5446:6b13%7]) with mapi id 15.20.4951.019; Tue, 8 Feb 2022
- 19:38:13 +0000
-From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-To: "Brost, Matthew" <matthew.brost@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v5 06/10] drm/i915/guc: Update GuC's
- log-buffer-state access for error capture.
-Thread-Index: AQHYEqH5/+h2jkBMckGW0JGoCGdjO6yDwjUAgAZf6IA=
-Date: Tue, 8 Feb 2022 19:38:13 +0000
-Message-ID: <86faa4f1dd88a52b0ddf13a1e6804d01732b14ea.camel@intel.com>
-References: <20220126104822.3653079-1-alan.previn.teres.alexis@intel.com>
- <20220126104822.3653079-7-alan.previn.teres.alexis@intel.com>
- <20220204181924.GA18242@jons-linux-dev-box>
-In-Reply-To: <20220204181924.GA18242@jons-linux-dev-box>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.36.5-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8bd1ed49-8d4f-4483-8bbc-08d9eb3a8bcc
-x-ms-traffictypediagnostic: BN0PR11MB5727:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <BN0PR11MB572774DE3F9E16909EB1F0178A2D9@BN0PR11MB5727.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 66YMkeEPn0UazxmabRia8p4qZR51IOP0z3aEvMI/VMFVAmDvLgELeYTJogFU2xMe5MZFaodT9xA/BJ9qzo/oUj5Zf9zOsaQ+ASbb7Kf/ZGhf4BWtDVnxsxCf3qw3izdpE3yWfr30Aiaa/tWBNK8/OwxFNcBKBjR+TcbWgr4Nn3bQg7EtE0VsUKRQ6FPySaLgCCerFK9iDaHLSMCs8Uam7RWX7DzyBFp0tOnTflKgiroYUlYxd5xW8CLb5/bhJwHfS3inqB5rZqmYNgbansguE4VFaTWfA+Jqrn8wUIJXq3WYN5Xh3EHpsf7bcNRf0nmHVKL//Ux4Vd629VSzNGbabT4lVSAvc/Tp5o+NYXlqcL/v8NweOI5MDOwCGjLEAvNpZzRirwiv5lsvcHVFjv6QNvaRpYYh7W2IG5cOKajj2++M0No7pSd4oa648pkKt1MhfSDVwd0XByN8fV2HE0xz9CfBVEz1QJ5sZLd+Teaz5reQLPSJaBZySnT3qHP9vE8GrBrEvUXH3kr3ka8DiJ+Vsd3vpGwfALvbFEMRXVQOh4qRNdpeHA9SCskqsIwZck4jV6n3fF5F/UNVSWuk9+xSj+/KoSctao67LNGghkK2zc3BEFcxa69JMVmxo0umClo/aZYaGQ2Y1qim8mQjArFNTJt1CzRAAqVfRnpMixfQ2fNeRBYdxHMh0vJLxE0cm8ehHnl8wDxII/3/EygpJjgmzQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB3784.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(38070700005)(316002)(36756003)(6636002)(37006003)(86362001)(83380400001)(2906002)(71200400001)(6512007)(15650500001)(6506007)(66476007)(66556008)(6486002)(66446008)(64756008)(8676002)(6862004)(4326008)(8936002)(66946007)(122000001)(76116006)(186003)(26005)(508600001)(2616005)(38100700002)(5660300002)(82960400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VmhhWkhMK1J3QXNVSm1UU1pJZWdFaHNGQVBKYm5RUlhyY2VLTVQ5cDliUURa?=
- =?utf-8?B?NjgwRDNJVTZ6WEZLMnBKS3FRdXFjRy81S0VwWCtrS0JkM08vZVI0VUExNmlB?=
- =?utf-8?B?RWthOG9LMytFaDRtT0tyR2ZnMG5xQWJtbTc3Rlp1ZUY5QW1OMWhRNExmd3Ix?=
- =?utf-8?B?TzQxdCtQV2llbWpuOTRGdklhR3l6VDVVNnJBM1V4M0dKQlBaN05iNnpXNDJm?=
- =?utf-8?B?Nm9CTzBEWlpDdis3L2N4OVFxVlkwZEJZYmdPNzRGcjdRdW43OGpGam91cFNI?=
- =?utf-8?B?OEFiYWtoWVN5WUovSGVOa3BqL0c1MUlZckxPTXNxendiL3FEUEV5WWdqUmlt?=
- =?utf-8?B?NW9wN0dmZVc4L2p1WGswbmo2QTRaZmRhbTZBM0hxTWs4QzFyVEhnYldrMG41?=
- =?utf-8?B?SDMwQ0JwbXpURXVHVXVDYWFpMDc5WmZvQ3VqNENBVmllZG51bi9nZm83ajhN?=
- =?utf-8?B?Y2c1K3ZKazJlWS82Q0dmcGNEMmp0K3JLdnlIcEsvZk1yc21pR0ViS1lzZjhn?=
- =?utf-8?B?MStDaitEVDhYZVd0VmN0ZnJUK2gvRGJubVg0SjkrcDJiZS9PZFlXYnU4ZHBN?=
- =?utf-8?B?d3VWRHF0Qkl5TXhFNTZqRDZCNVJzWEdDTXBUWWV2NEF0TUYxS2Jic2gzWFRk?=
- =?utf-8?B?aTkzc2pyd2hoMTZTcTBwTFN0S1dwNnI5WkR3K0ErZHJkN3JXTGt0TTNESmtn?=
- =?utf-8?B?YitTdGF3bXRqamJNRk9IK0dVaitHUlJnRUZaR1haUVRQSlBiMlgzS0F4T1g5?=
- =?utf-8?B?eCtJRmN6VEZneDVCZGVkQXpiQ2x6Z3Z1QWxWS0ppSXJyNWJMYy93c0JNVjFH?=
- =?utf-8?B?ZGJyVnBtRi9CS05KaFdQL3c3RzZrT25VaDNGYjd5RmtuQU16ZS9YQ2YwcnNS?=
- =?utf-8?B?SGMzRlZ4RGFVOWNHZnRUemx1UHZrUFNYZWFCSGtOU1ByME9FTGx4T0ovWnE2?=
- =?utf-8?B?K0JaRkNWa01yWkxET2l1amFXQmR2T2pRWGNDQUY3TERDRHFQME5uSm5rMjRK?=
- =?utf-8?B?T3Qxd3JlRXJJLytzTVkzYXlkczc2ODdFbllTU0U1VW5OaXNwN0xlVUp3T0F0?=
- =?utf-8?B?UFZOSC9ORzFFdU5mUENyZ213UmlqSFJFTkE3MXFQaWJiOU1rRk0rUFh0Z3h3?=
- =?utf-8?B?QWFEcGF6bXdwb0JyWFJvM2d1cmZBUmhZbjdRMDN6QzAwVGtkZEJ2c1E3Tk5n?=
- =?utf-8?B?dVM2a2xtTDZSZGpYU2VNMUhubmY2M1NSWVVyRFExZlFvVmhMenpMOG8xMytZ?=
- =?utf-8?B?ZS9GREc4UFpaZURLQ1VheHpMeXNaNU1ocXJWMkxKTFVhbGdoTzZQMDk4OWww?=
- =?utf-8?B?MkNydXV6N0U5NVVKVjhhbzdGMktxNTg0WnBiWURQeGlFTVVmZmhLRUpDeHNp?=
- =?utf-8?B?dzFMaThQWGNDVlBSOTdPcG9EbEZRcndhV3FYNTUxYmh0MUhGNkRXdHgzZ3NE?=
- =?utf-8?B?dmpzbmtLWkI4VExBUUVwdWpoUTF0ZjRlVGUrZGM1WHQzR3g2dmJyOVVmeE5X?=
- =?utf-8?B?cDhQYkF1QmRZdmdZS1RxVkpoWG83QmJlUEgrN21JZUZxVWY2OWhHczNGdkR6?=
- =?utf-8?B?amhwc2NHS2lYSzVnNjBYSnk2WXd3RFM0NjRJbWluUlEzN1ZGUG5NbjRBZEtx?=
- =?utf-8?B?WEZ6SmYzaDdEOVY1RUxTTXhWQ0Z1akQwTmZxcFhCSkhTTSs4aVZhc01pMDVY?=
- =?utf-8?B?NG1Pb2ZPeGVoeGtBUThBYmRVNmFRcFJjZUVFZU9aMUNpNm5WVWxNS3dmak5T?=
- =?utf-8?B?aWJOQS9ldUk2UU9JUURpazdGVzVKcmhZUjhiQjNDb1dPTStGMjUyeUVPS1FU?=
- =?utf-8?B?R2dYTHhyblVSZXh4MXJGUklVVUN3d01pWXJuSzBTV1ZJaGE1NzdZUzlmanFK?=
- =?utf-8?B?VTVpYnA0NW9uejNUNXlwSjVQM20xZjhNcVlHSzVTZWx4SWN6OUZqckJoeG41?=
- =?utf-8?B?OU1FTTNaVnM3cEFBQUFuSkMvSjlPdTNVRmR5TjRVQ3BDVUVWdjAzY1AzR09x?=
- =?utf-8?B?YmFsK0xJZVVRYW9LeHdIR29DRWhreG5mK1QzRHpJLzE3Zzltdlh5YjRDN2pv?=
- =?utf-8?B?bHM2MGpDRnlscmo3T1hxZ3lJR0h4NWlRUWttWkhkK3E4THV4ZXdieWhQamlp?=
- =?utf-8?B?V3IrOGN1N2JtSnNvU3RyM095b2h3WWtnbWRHazdISjArcXpMa0F0ZG5HREFX?=
- =?utf-8?B?YUxYcHpPR3pYSW9IVE50a3diVDFjUnNEcGdpcmxBS1BEOHlvWWlxMGEyT1ZR?=
- =?utf-8?B?ZXcveEUvUVlKbisxZlJGTkJIZkNCS2lGd3Q2TWdSM2UzNVJDdU4yTGJXczc4?=
- =?utf-8?B?KzRRLy9kL044NlNuRmRHTmdLbHQxKzEwTGVPWGZiRkxlNWV6N3Q1QT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6524C9A76690AB4AAA567A0A7DB40C02@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com
+ [IPv6:2607:f8b0:4864:20::1030])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D370410E26D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 19:43:36 +0000 (UTC)
+Received: by mail-pj1-x1030.google.com with SMTP id
+ my12-20020a17090b4c8c00b001b528ba1cd7so41914pjb.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 08 Feb 2022 11:43:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=sender:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=k3ImYAmlfRKBZkC/pLF9BVzBCr+7P+OE/oDyEYAOAPQ=;
+ b=RSk9d3qmUd4qYszbyz1ANvzT1zanWxXRFOsL6+7w9bKoGrI/+i5ySpouQXJyrqUIfL
+ oC7RstqRX7MpfHBVJ3qKOPvM2BtsmoKGJi1utEYXQE9ntJNNhnQiBWtnnACiY3fhwHMP
+ lmeaj3JpoNOOzymhWEDUxQTplKUmuNsoEf8dFHpUUT0ewQwsItB2l3YzSjmBq+poSuKX
+ 0l1QzuC7w1xxfSNSGUzUiEkj9zHkCopGQNPAwj1cyjRwiyR2/0BK+UNChrCuKVwKY+nj
+ oY7b69LyjPwbT7tZYcMfDUtEFR3mEVHEuF9uFfS64DN0Glg9zHz/G1ZVKXS0tlAhFdub
+ 5/Pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+ :mime-version:content-transfer-encoding;
+ bh=k3ImYAmlfRKBZkC/pLF9BVzBCr+7P+OE/oDyEYAOAPQ=;
+ b=7eHp8TDJwKUXUT2q+aLkE/4+9ZNq2H2y18urJdamINl8WRk/QjUQ0QZUbh9DRB6Fqw
+ VPWsZS9gYlv3CdOtUl5FmvMlQiNfyXtL+6h/StDf2MIowWwoy5nAJWbpy4uA1WoqWcDU
+ HS5bMW5ay+CS/t0kkPUbzukdH9Ssxx1bxkBSXcwNSJsvdKEmbtVJDGAhlbmUF1IPbLcH
+ wbpHucjULVfWfCjvnf1Wg+o9uT3cqRkqDx8ssN1lvRXSiRhgzSxJqdHFwbWbkRCGC3CV
+ 8fPbbA0SQqOQOXox6iwAM8h7fLL+nZrM8YiQ0R04PYc8NZwt7kaF6Bzblr6xK0WtZ1ku
+ FfbA==
+X-Gm-Message-State: AOAM531faNqm+whRh1ta77EWtSj1n/Pk3yyYL8Oc52Ulye/Ganh7/ko8
+ 9AvM1YBPVtvsSb6nORUuUpg=
+X-Google-Smtp-Source: ABdhPJxdROXUt/+NpwRLoiVRuI5Fkp69z4w5V7oVsLdzS6wbeh4k2qfYnhWIH93Nq9q1XFfnjyp7cQ==
+X-Received: by 2002:a17:902:7489:: with SMTP id h9mr2349321pll.8.1644349415950; 
+ Tue, 08 Feb 2022 11:43:35 -0800 (PST)
+Received: from balhae.hsd1.ca.comcast.net
+ ([2601:647:4800:c6f0:347f:e607:176:4358])
+ by smtp.gmail.com with ESMTPSA id w11sm16876839pfu.50.2022.02.08.11.43.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 08 Feb 2022 11:43:35 -0800 (PST)
+From: Namhyung Kim <namhyung@kernel.org>
+To: Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@kernel.org>,
+ Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>,
+ Boqun Feng <boqun.feng@gmail.com>
+Date: Tue,  8 Feb 2022 11:43:12 -0800
+Message-Id: <20220208194324.85333-1-namhyung@kernel.org>
+X-Mailer: git-send-email 2.35.0.263.gb82422642f-goog
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3784.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8bd1ed49-8d4f-4483-8bbc-08d9eb3a8bcc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Feb 2022 19:38:13.4767 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: FVe3FDXHTY3KDYcXnMSnENfxEmLkxS7q6tGwP+eLvlzXeuUbTiVcgI97PuP4DoQAJIpaU64mBDjymwb7Qt5MVScsuzveNl5PaxJpvhMbcJ+iNOep6xUX9+MAhkEq6IkT
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR11MB5727
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v5 06/10] drm/i915/guc: Update GuC's
- log-buffer-state access for error capture.
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC RESEND 00/12] locking: Separate lock tracepoints
+ from lockdep/lock_stat (v1.1)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,98 +70,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: rcu@vger.kernel.org, "Paul E. McKenney" <paulmck@kernel.org>,
+ intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
+ Steven Rostedt <rostedt@goodmis.org>, Radoslaw Burny <rburny@google.com>,
+ Byungchul Park <byungchul.park@lge.com>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, Tejun Heo <tj@kernel.org>,
+ cgroups@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+ linux-btrfs@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgTWF0dCwgdGhhbmsgeW91IGZvciB0YWtpbmcgdGhlIHRpbWUgdG8gcmV2aWV3IHRoZSBjb2Rl
-cy4NCkFuc3dlcmluZyB5b3VyIHF1ZXN0aW9uIGlubGluZSBiZWxvdy4NCg0KDQpPbiBGcmksIDIw
-MjItMDItMDQgYXQgMTA6MTkgLTA4MDAsIE1hdHRoZXcgQnJvc3Qgd3JvdGU6DQo+IE9uIFdlZCwg
-SmFuIDI2LCAyMDIyIGF0IDAyOjQ4OjE4QU0gLTA4MDAsIEFsYW4gUHJldmluIHdyb3RlOg0KPiA+
-IEd1QyBsb2cgYnVmZmVyIHJlZ2lvbnMgZm9yIGRlYnVnLWxvZy1ldmVudHMsIGNyYXNoLWR1bXBz
-IGFuZA0KPiA+IGVycm9yLXN0YXRlLWNhcHR1cmUgYXJlIGFsbCBhIHNpbmdsZSBibyBhbGxvY2F0
-aW9uIHRoYXQgaW5jbHVkZXMNCj4gPiB0aGUgZ3VjX2xvZ19idWZmZXJfc3RhdGUgc3RydWN0dXJl
-cy4NCj4gPiANCj4gPiBTaW5jZSB0aGUgZXJyb3ItY2FwdHVyZSByZWdpb24gaXMgYWNjZXNzZWQg
-d2l0aCBoaWdoIHByaW9yaXR5IGF0IG5vbi0NCj4gPiBkZXRlcm1pbmlzdGljIHRpbWVzIChhcyBw
-YXJ0IG9mIGdwdSBjb3JlZHVtcCkgd2hpbGUgdGhlIGRlYnVnLWxvZy1ldmVudA0KPiA+IHJlZ2lv
-biBpcyBwb3B1bGF0ZWQgYW5kIGFjY2Vzc2VkIHdpdGggZGlmZmVyZW50IHByaW9yaXRpZXMsIHRp
-bWluZ3MgYW5kDQo+ID4gY29uc3VtZXJzLCBsZXQncyBzcGxpdCBvdXQgc2VwYXJhdGUgbG9ja3Mg
-Zm9yIGJ1ZmZlci1zdGF0ZSBhY2Nlc3Nlcw0KPiA+IG9mIGVhY2ggcmVnaW9uLg0KPiA+IA0KPiA+
-IEFsc28sIGVuc3VyZSBhIGdsb2JhbCBtYXBwaW5nIGlzIG1hZGUgdXAgZnJvbnQgZm9yIHRoZSBl
-bnRpcmUgYm8NCj4gPiB0aHJvdWdob3V0IEd1QyBvcGVyYXRpb24gc28gdGhhdCBkeW5hbWljIG1h
-cHBpbmcgYW5kIHVubWFwcGluZyBpc24ndA0KPiA+IHJlcXVpcmVkIGZvciBlcnJvciBjYXB0dXJl
-IGxvZyBhY2Nlc3MgaWYgcmVsYXktbG9nZ2luZyBpc24ndCBydW5uaW5nLg0KPiA+IA0KPiA+IEFk
-ZGl0aW9uYWxseSwgd2hpbGUgaGVyZSwgbWFrZSBzb21lIHJlYWRpYmlsaXR5IGltcHJvdmVtZW50
-czoNCj4gPiAxLiBjaGFuZ2UgcHJldmlvdXMgZnVuY3Rpb24gbmFtZXMgd2l0aCAiY2FwdHVyZV9s
-b2dzIiB0bw0KPiA+ICAgICJjb3B5X2RlYnVnX2xvZ3MiIHRvIGhlbHAgbWFrZSB0aGUgZGlzdGlu
-Y3Rpb24gY2xlYXJlci4NCj4gPiAyLiBVcGRhdGUgdGhlIGd1YyBsb2cgcmVnaW9uIG1hcHBpbmcg
-Y29tbWVudHMgdG8gb3JkZXIgdGhlbQ0KPiA+ICAgIGFjY29yZGluZyB0byB0aGUgZW51bSBkZWZp
-bml0aW9uIGFzIHBlciB0aGUgR3VDIGludGVyZmFjZS4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5
-OiBBbGFuIFByZXZpbiA8YWxhbi5wcmV2aW4udGVyZXMuYWxleGlzQGludGVsLmNvbT4NCj4gPiAt
-LS0NCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmggICAgICAgIHwg
-ICAyICsNCj4gPiAgLi4uL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfY2FwdHVyZS5jICAg
-IHwgIDQ3ICsrKysrKw0KPiA+ICAuLi4vZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19jYXB0
-dXJlLmggICAgfCAgIDEgKw0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9n
-dWNfbG9nLmMgICAgfCAxMzUgKysrKysrKysrKystLS0tLS0tDQo+ID4gIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2d0L3VjL2ludGVsX2d1Y19sb2cuaCAgICB8ICAxNiArKy0NCj4gPiAgNSBmaWxlcyBj
-aGFuZ2VkLCAxNDEgaW5zZXJ0aW9ucygrKSwgNjAgZGVsZXRpb25zKC0pDQo+ID4gDQo+ID4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Yy5oIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmgNCj4gPiBpbmRleCA0ZTgxOTg1M2VjMmUu
-LmJlMWFkN2ZhMmJmOCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91
-Yy9pbnRlbF9ndWMuaA0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVs
-X2d1Yy5oDQo+ID4gQEAgLTM0LDYgKzM0LDggQEAgc3RydWN0IGludGVsX2d1YyB7DQo+ID4gIAlz
-dHJ1Y3QgaW50ZWxfdWNfZncgZnc7DQo+ID4gIAkvKiogQGxvZzogc3ViLXN0cnVjdHVyZSBjb250
-YWluaW5nIEd1QyBsb2cgcmVsYXRlZCBkYXRhIGFuZCBvYmplY3RzICovDQo+ID4gIAlzdHJ1Y3Qg
-aW50ZWxfZ3VjX2xvZyBsb2c7DQo+ID4gKwkvKiogQGxvZ19zdGF0ZTogc3RhdGVzIGFuZCBsb2Nr
-cyBmb3IgZWFjaCBzdWJyZWdpb24gb2YgR3VDJ3MgbG9nIGJ1ZmZlciAqLw0KPiA+ICsJc3RydWN0
-IGludGVsX2d1Y19sb2dfc3RhdHMgbG9nX3N0YXRlW0dVQ19NQVhfTE9HX0JVRkZFUl07DQo+IA0K
-PiBXaHkgbW92ZSB0aGlzPyBUaGlzIHN0aWxsIHByb2JhYmx5IHNob3VsZCBiZSBzdWItc3RydWN0
-dXJlIG9mDQo+IGludGVsX2d1Y19sb2cuIE1vc3Qgb2YgdGhlIGFjY2VzcyBpcyBmcm9tIGZ1bmN0
-aW9ucyB0aGF0IHBhc3MgaW4NCj4gaW50ZWxfZ3VjX2xvZywgdGhlbiByZXRyaWV2ZSB0aGUgR3VD
-IG9iamVjdCwgb25seSB0byBhY2Nlc3MgdGhpcyBuZXcNCj4gaW50ZWxfZ3VjX2xvZ19zdGF0cyBv
-YmplY3QuIFRoYXQgbGF5ZXJpbmcgc2VlbXMgd3JvbmcsIGlmIHRoZSBhcmd1bWVudA0KPiB0byBh
-IGZ1bmN0aW9uIGlzIGludGVsX2d1Y19sb2cgaXQgc2hvdWxkIHJlYWxseSB0cnkgdG8gYWNjZXNz
-IG1lbWJlcnMNCj4gd2l0aGluIHRoYXQgb2JqZWN0IG9yIGJlbG93LiBPYnYgc29tZSBleGNlcHRp
-b25zIGV4aXN0IGJ1dCBoZXJlIGl0IHNlZW1zDQo+IGNsZWFyIHRvIG1lIHRoaXMgaXMgaW4gdGhl
-IHdyb25nIHBsYWNlLg0KPiANClNvIHRoZSByZWFzb25pbmcgaSBoYWQgd2FzIGJlY2F1c2UgYmVj
-YXVzZSBpbnRlbF9ndWNfbG9nIG1vZHVsZSBvbmx5IG1hbmFnZWQNCmd1Yy1yZWxheS1sb2dnaW5n
-IGFuZCBndWMtbG9nLWR1bXBpbmcgZm9yIGxvZy1ldmVudHMgYnV0IGFsbG9jYXRlcyB0aGUgYnVm
-ZmVyDQpmb3IgMyBzZXBhcmF0ZSBzdWJyZWdpb24vdXNhZ2VzIChpLmUuIGxvZy1ldmVudHMsIGNy
-YXNoLWR1bXAgYW5kIGVycm9yLWNhcHR1cmUpLg0KVGhhdCBzYWlkLCBJIGRpZCBub3Qgd2FudCBp
-bnRlbF9ndWNfY2FwdHVyZSBhbmQgcmVsYXktbG9nZ2luZyAob3IgbG9nLWR1bXBpbmcpDQp0byBo
-YXZlIHRvIGNvbnRlbmQgd2l0aCB0aGUgc2FtZSBsb2NrIGJlY2F1c2UgdGhlc2UgdHdvIHN1YnJl
-Z2lvbnMgYXJlIGNvbXBsZXRlbHkNCmluZGVwZW5kYW50IG9mIGVhY2ggb3RoZXIgaW4gdGVybXMg
-b2Ygd2hlbiB0aGV5IGFyZSBiZWluZyBhY2Nlc3NlZCBhbmQgd2h5Lg0KDQpIb3dldmVyLCBhZnRl
-ciB0aGUgcmVkZXNpZ24gb2YgcmV2NSAodGhpcyByZXYpLCBJIG5vdyBiZWxpZXZlIHRoZSBpbnRl
-bF9ndWNfY2FwdHVyZQ0KbW9kdWxlIGRvZXMgbm90IHJlcXVpcmUgYSBsb2NrIGJlY2F1c2UgaXRz
-IG9ubHkgZXZlciBhY2Nlc3NpbmcgaXRzIGxvZw0Kc3VicmVnaW9uIGluIHJlc3BvbnNlIHRvIHRo
-ZSBjdGIgaGFuZGxlciBmdW5jdGlvbnMgdGhhdCBydW4gb3V0IG9mIHRoZSBzYW1lIHF1ZXVlLg0K
-QXMgd2Uga25vdyBpbnRlbF9ndWNfY2FwdHVyZSByZWFjdHMgdG8gRzJILWVycm9yLWNhcHR1cmUt
-bm90aWZpY2F0aW9uIGFuZCBHMkgtY29udGV4dC1yZXNldA0KKHRoYXQgdHJpY2tsZXMgaW50byBp
-OTE1X2dwdV9jb3JlZHVtcCkuIEF0IHRoZSBwb2ludCBvZiBpOTE1X2Vycm9yX3N0YXRlIGR1bXAs
-DQppbnRlbF9ndWNfY2FwdHVyZSBtb2R1bGUgZG9lcyBub3QgYWNjZXNzIHRoZSBidWZmZXIgLSBp
-dCBtZXJlbHkgZHVtcHMgdGhlIGFscmVhZHktcGFyc2VkDQphbmQgZW5naW5lLWR1bXAtbm9kZSAo
-dGhhdCB3YXMgZGV0YWNoZWQgZnJvbSBlcnJvci1jYXB0dXJlJ3MgaW50ZXJuYWwgbGlua2VkLWxp
-c3QNCmFuZCBhdHRhY2hlZCB0byB0aGUgZ3B1X2NvcmVkdW1wIHN0cnVjdHVyZSBpbiB0aGUgc2Vj
-b25kIEcySCBhYm92ZSkuDQoNCkFuZCBvZiBjb3Vyc2UsIGludGVsX2d1Y19sb2cgb25seSBldmVy
-IGFjY2Vzc2VzIHRoZSBsb2ctZXZlbnRzIHN1YnJlZ2lvbg0KYW5kIG5ldmVyIHRoZSBlcnJvci1j
-YXB0dXJlIHJlZ2lvbnMuDQoNClRoYXQgc2FpZCwgaSBjb3VsZCByZXZlcnQgdGhlIGxvY2sgc3Ry
-dWN0dXJlIHRvIHRoZSBvcmlnaW5hbCBhbmQgbm90IGhhdmUNCmludGVsX2d1Y19jYXB0dXJlIHVz
-aW5nIGxvY2tzLiBXaGF0IGRvIHlvdSB0aGluaz8NCg0KLi4uYWxhbg0KDQo+IEFub3RoZXIgbml0
-LCBJJ2QgcGVyc29uYWxseSBicmVhayB0aGlzIG91dCBpbnRvIG11bHRpcGxlIHBhdGNoZXMuDQo+
-IA0KPiBlLmcuIDEgdG8gcmVuYW1lIHJlbGF5IGxvZyBmdW5jdGlvbnMsIDEgaW50cm9kdWNpbmcg
-aW50ZWxfZ3VjX2xvZ19zdGF0cw0KPiArIGxvY2ssIGFuZCAxIGFkZGluZyBpbnRlbF9ndWNfY2Fw
-dHVyZV9vdXRwdXRfbWluX3NpemVfZXN0LiBNYXliZSBJJ20NCj4gbWlzc2luZyBhbm90aGVyIHBh
-dGNoIG9yIHR3byBpbiB0aGVyZS4NCj4gDQo+IE5vdCBhIGJsb2NrZXIgYnV0IGl0IGRvZXMgbWFr
-ZSByZXZpZXdzIGVhc2llci4NCj4gDQpXaWxsIGRvLg0KDQo+IE1hdHQNCj4gDQo+ID4gIAkvKiog
-QGN0OiB0aGUgY29tbWFuZCB0cmFuc3BvcnQgY29tbXVuaWNhdGlvbiBjaGFubmVsICovDQo+ID4g
-IAlzdHJ1Y3QgaW50ZWxfZ3VjX2N0IGN0Ow0KPiA+ICAJLyoqIEBzbHBjOiBzdWItc3RydWN0dXJl
-IGNvbnRhaW5pbmcgU0xQQyByZWxhdGVkIGRhdGEgYW5kIG9iamVjdHMgKi8NCj4gPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2NhcHR1cmUuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19jYXB0dXJlLmMNCj4gPiBpbmRleCA3
-MGQyZWU4NDEyODkuLmU3Zjk5ZDA1MTYzNiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfY2FwdHVyZS5jDQo+ID4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2NhcHR1cmUuYw0KPiA+IEBAIC02NTEsNiArNjUxLDUz
-IEBAIGludCBpbnRlbF9ndWNfY2FwdHVyZV9wcmVwX2xpc3RzKHN0cnVjdCBpbnRlbF9ndWMgKmd1
-Yywgc3RydWN0IGd1Y19hZHMgKmJsb2IsIHUzDQo+ID4gIAlyZXR1cm4gUEFHRV9BTElHTihhbGxv
-Y19zaXplKTsNCj4gPiAgfQ0KPiA+ICANCj4gPiAyLjI1LjENCj4gPiANCg0K
+Hello,
+
+(Resending with Paul's correct email address, sorry!)
+
+There have been some requests for low-overhead kernel lock contention
+monitoring.  The kernel has CONFIG_LOCK_STAT to provide such an infra
+either via /proc/lock_stat or tracepoints directly.
+
+However it's not light-weight and hard to be used in production.  So
+I'm trying to separate out the tracepoints and using them as a base to
+build a new monitoring system.
+
+* Changes in v1.1
+ - add some Acked-by's
+ - add comments on cgroup rstat cpu lock
+ 
+As the lockdep and lock_stat provide good hooks in the lock functions,
+it'd be natural to reuse them.  Actually I tried to use lockdep as is
+but disables the functionality at runtime (initialize debug_locks = 0,
+lock_stat = 0).  But it still has unacceptable overhead and the
+lockdep data structures also increase memory footprint unnecessarily.
+
+So I'm proposing a separate tracepoint-only configuration and keeping
+lockdep_map only with minimal information needed for tracepoints (for
+now, it's just name).  And then the existing lockdep hooks can be used
+for the tracepoints.
+
+The patch 01-06 are preparation for the work.  In a few places in the
+kernel, they calls lockdep annotation explicitly to deal with
+limitations in the lockdep implementation.  In my understanding, they
+are not needed to analyze lock contention.
+
+To make matters worse, they rely on the compiler optimization (or
+macro magic) so that it can get rid of the annotations and their
+arguments when lockdep is not configured.
+
+But it's not true any more when lock tracepoints are added and it'd
+cause build errors.  So I added #ifdef guards for LOCKDEP in the code
+to prevent such errors.
+
+In the patch 07 I mechanically changed most of code that depend on
+CONFIG_LOCKDEP or CONFIG_DEBUG_LOCK_ALLOC to CONFIG_LOCK_INFO.  It
+paves the way for the codes to be shared for lockdep and tracepoints.
+Mostly, it makes sure that locks are initialized with a proper name,
+like in the patch 08 and 09.
+
+I didn't change some places intentionally - for example, timer and
+workqueue depend on LOCKDEP explicitly since they use some lockdep
+annotations to work around the "held lock freed" warnings.  The ocfs2
+directly accesses lockdep_map.key so I didn't touch the code for now.
+And RCU was because it generates too much overhead thanks to the
+rcu_read_lock().  Maybe I need to revisit some of them later.
+
+I added CONFIG_LOCK_TRACEPOINTS in the patch 10 to make it optional.
+I found that it adds 2~3% of overhead when I ran `perf bench sched
+messaging` even when the tracepoints are disabled.  The benchmark
+creates a lot of processes and make them communicate by socket pairs
+(or pipes).  I measured that around 15% of lock acquisition creates
+contentions and it's mostly for spin locks (alc->lock and u->lock).
+
+I ran perf record + report with the workload and it showed 50% of the
+cpu cycles are in the spin lock slow path.  So it's highly affected by
+the spin lock slow path.  Actually LOCK_CONTENDED() macro transforms
+the spin lock code (and others) to use trylock first and then fall
+back to real lock function if failed.  Thus it'd add more (atomic)
+operations and cache line bouncing for the contended cases:
+
+  #define LOCK_CONTENDED(_lock, try, lock)		\
+  do {							\
+      if (!try(_lock)) {				\
+          lock_contended(&(_lock)->dep_map, _RET_IP_);	\
+          lock(_lock);					\
+      }							\
+      lock_acquired(&(_lock)->dep_map, _RET_IP_);	\
+  } while (0)
+
+If I modify the macro not to use trylock and to call the real lock
+function directly (so the lock_contended tracepoint would be called
+always, if enabled), the overhead goes down to 0.x% when the
+tracepoints are disabled.
+
+I don't have a good solution as long as we use LOCK_CONTENDED() macro
+to separate the contended locking path.  Maybe we can make it call
+some (generic) slow path lock function directly after failing trylock.
+Or move the lockdep annotations into the each lock function bodies and
+get rid of the LOCK_CONTENDED() macro entirely.  Ideas?
+
+Actually the patch 11 handles the same issue on the mutex code.  The
+fast version of mutex trylock was attempted only if LOCKDEP is not
+enabled and it affects the mutex lock performance in the uncontended
+cases too.  So I partially reverted the change in the patch 07 to use
+the fast functions with lock tracepoints too.  Maybe we can use it
+with LOCKDEP as well?
+
+The last patch 12 might be controversial and I'd like to move the
+lock_acquired annotation into the if(!try) block in the LOCK_CONTEDED
+macro so that it can only be called when there's a contention.
+
+Eventually I'm mostly interested in the contended locks only and I
+want to reduce the overhead in the fast path.  By moving that, it'd be
+easy to track contended locks with timing by using two tracepoints.
+
+It'd change lock hold time calculation in lock_stat for the fast path,
+but I assume time difference between lock_acquire and lock_acquired
+would be small when the lock is not contended.  So I think we can use
+the timestamp in lock_acquire.  If it's not acceptable, we might
+consider adding a new tracepoint to track the timing of contended
+locks.
+
+This series base on the current tip/locking/core and you get it from
+'locking/tracepoint-v1' branch in my tree at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/namhyung/linux-perf.git
+
+
+Thanks,
+Namhyung
+
+
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Steven Rostedt <rostedt@goodmis.org>
+Cc: Tejun Heo <tj@kernel.org>
+Cc: Byungchul Park <byungchul.park@lge.com>
+Cc: rcu@vger.kernel.org
+Cc: cgroups@vger.kernel.org
+Cc: linux-btrfs@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
+
+
+Namhyung Kim (12):
+  locking: Pass correct outer wait type info
+  cgroup: rstat: Make cgroup_rstat_cpu_lock name readable
+  timer: Protect lockdep functions with #ifdef
+  workqueue: Protect lockdep functions with #ifdef
+  drm/i915: Protect lockdep functions with #ifdef
+  btrfs: change lockdep class size check using ks->names
+  locking: Introduce CONFIG_LOCK_INFO
+  locking/mutex: Init name properly w/ CONFIG_LOCK_INFO
+  locking: Add more static lockdep init macros
+  locking: Add CONFIG_LOCK_TRACEPOINTS option
+  locking/mutex: Revive fast functions for LOCK_TRACEPOINTS
+  locking: Move lock_acquired() from the fast path
+
+ drivers/gpu/drm/drm_connector.c               |   7 +-
+ drivers/gpu/drm/i915/i915_sw_fence.h          |   2 +-
+ drivers/gpu/drm/i915/intel_wakeref.c          |   3 +
+ drivers/gpu/drm/i915/selftests/lib_sw_fence.h |   2 +-
+ .../net/wireless/intel/iwlwifi/iwl-trans.c    |   4 +-
+ .../net/wireless/intel/iwlwifi/iwl-trans.h    |   2 +-
+ drivers/tty/tty_ldsem.c                       |   2 +-
+ fs/btrfs/disk-io.c                            |   4 +-
+ fs/btrfs/disk-io.h                            |   2 +-
+ fs/cifs/connect.c                             |   2 +-
+ fs/kernfs/file.c                              |   2 +-
+ include/linux/completion.h                    |   2 +-
+ include/linux/jbd2.h                          |   2 +-
+ include/linux/kernfs.h                        |   2 +-
+ include/linux/kthread.h                       |   2 +-
+ include/linux/local_lock_internal.h           |  18 +-
+ include/linux/lockdep.h                       | 170 ++++++++++++++++--
+ include/linux/lockdep_types.h                 |   8 +-
+ include/linux/mmu_notifier.h                  |   2 +-
+ include/linux/mutex.h                         |  12 +-
+ include/linux/percpu-rwsem.h                  |   4 +-
+ include/linux/regmap.h                        |   4 +-
+ include/linux/rtmutex.h                       |  14 +-
+ include/linux/rwlock_api_smp.h                |   4 +-
+ include/linux/rwlock_rt.h                     |   4 +-
+ include/linux/rwlock_types.h                  |  11 +-
+ include/linux/rwsem.h                         |  14 +-
+ include/linux/seqlock.h                       |   4 +-
+ include/linux/spinlock_api_smp.h              |   4 +-
+ include/linux/spinlock_rt.h                   |   4 +-
+ include/linux/spinlock_types.h                |   4 +-
+ include/linux/spinlock_types_raw.h            |  28 ++-
+ include/linux/swait.h                         |   2 +-
+ include/linux/tty_ldisc.h                     |   2 +-
+ include/linux/wait.h                          |   2 +-
+ include/linux/ww_mutex.h                      |   6 +-
+ include/media/v4l2-ctrls.h                    |   2 +-
+ include/net/sock.h                            |   2 +-
+ include/trace/events/lock.h                   |   4 +-
+ kernel/cgroup/rstat.c                         |   7 +-
+ kernel/locking/Makefile                       |   1 +
+ kernel/locking/lockdep.c                      |  40 ++++-
+ kernel/locking/mutex-debug.c                  |   2 +-
+ kernel/locking/mutex.c                        |  22 ++-
+ kernel/locking/mutex.h                        |   7 +
+ kernel/locking/percpu-rwsem.c                 |   2 +-
+ kernel/locking/rtmutex_api.c                  |  10 +-
+ kernel/locking/rwsem.c                        |   4 +-
+ kernel/locking/spinlock.c                     |   2 +-
+ kernel/locking/spinlock_debug.c               |   4 +-
+ kernel/locking/spinlock_rt.c                  |   8 +-
+ kernel/locking/ww_rt_mutex.c                  |   2 +-
+ kernel/printk/printk.c                        |  14 +-
+ kernel/rcu/update.c                           |  27 +--
+ kernel/time/timer.c                           |   8 +-
+ kernel/workqueue.c                            |  13 ++
+ lib/Kconfig.debug                             |  14 ++
+ mm/memcontrol.c                               |   7 +-
+ mm/mmu_notifier.c                             |   2 +-
+ net/core/dev.c                                |   2 +-
+ net/sunrpc/svcsock.c                          |   2 +-
+ net/sunrpc/xprtsock.c                         |   2 +-
+ 62 files changed, 391 insertions(+), 180 deletions(-)
+
+
+base-commit: 1dc01abad6544cb9d884071b626b706e37aa9601
+-- 
+2.35.0.263.gb82422642f-goog
