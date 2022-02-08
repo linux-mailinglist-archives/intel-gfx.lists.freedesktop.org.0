@@ -1,42 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D0684AE1C7
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 20:00:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D8DF4AE1E9
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 20:10:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7684010E135;
-	Tue,  8 Feb 2022 19:00:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9169310E18A;
+	Tue,  8 Feb 2022 19:10:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.smtp.larsendata.com (mx2.smtp.larsendata.com
- [91.221.196.228])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2477910E1FA
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 19:00:45 +0000 (UTC)
-Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
- by mx2.smtp.larsendata.com (Halon) with ESMTPS
- id 90d0ca10-8911-11ec-ac19-0050568cd888;
- Tue, 08 Feb 2022 19:01:47 +0000 (UTC)
-Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net
- [80.162.45.141])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: sam@ravnborg.org)
- by mail01.mxhotel.dk (Postfix) with ESMTPSA id 3DFC3194B5C;
- Tue,  8 Feb 2022 20:00:41 +0100 (CET)
-Date: Tue, 8 Feb 2022 20:00:38 +0100
-X-Report-Abuse-To: abuse@mxhotel.dk
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YgK91i6zHWPBwYOq@ravnborg.org>
-References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
- <20220131210552.482606-22-daniel.vetter@ffwll.ch>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8407F10E18A;
+ Tue,  8 Feb 2022 19:10:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7FCECA7DFC;
+ Tue,  8 Feb 2022 19:10:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8508216138891777175=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220131210552.482606-22-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 21/21] fbdev: Make registered_fb[] private
- to fbmem.c
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 08 Feb 2022 19:10:34 -0000
+Message-ID: <164434743451.22537.7744819335666983283@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220203143924.2691635-1-jani.nikula@intel.com>
+In-Reply-To: <20220203143924.2691635-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_move_the_DRIVER=5F*_macros_to_i915=5Fdriver=2E=5Bch=5D?=
+ =?utf-8?q?_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,105 +41,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, linux-staging@lists.linux.dev,
- Xiyu Yang <xiyuyang19@fudan.edu.cn>, Jens Frederich <jfrederich@gmail.com>,
- Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Zheyu Ma <zheyuma97@gmail.com>, LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Matthew Wilcox <willy@infradead.org>, Helge Deller <deller@gmx.de>,
- Zhen Lei <thunder.leizhen@huawei.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Jon Nettleton <jon.nettleton@gmail.com>, Guenter Roeck <linux@roeck-us.net>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel,
+--===============8508216138891777175==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jan 31, 2022 at 10:05:52PM +0100, Daniel Vetter wrote:
-> Well except when the olpc dcon fbdev driver is enabled, that thing
-> digs around in there in rather unfixable ways.
-> 
-> Cc oldc_dcon maintainers as fyi.
-> 
-> Cc: Jens Frederich <jfrederich@gmail.com>
-> Cc: Jon Nettleton <jon.nettleton@gmail.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: linux-staging@lists.linux.dev
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Helge Deller <deller@gmx.de>
-> Cc: Matthew Wilcox <willy@infradead.org>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>
-> Cc: Zhen Lei <thunder.leizhen@huawei.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Xiyu Yang <xiyuyang19@fudan.edu.cn>
-> Cc: linux-fbdev@vger.kernel.org
-> Cc: Zheyu Ma <zheyuma97@gmail.com>
-> Cc: Guenter Roeck <linux@roeck-us.net>
+== Series Details ==
 
-with the build thingy fixed:
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
+Series: drm/i915: move the DRIVER_* macros to i915_driver.[ch] (rev2)
+URL   : https://patchwork.freedesktop.org/series/99671/
+State : success
 
-I do wonder if there is a more clean way to trigger a blank
-in the main fbdev driver from the olpc driver.
+== Summary ==
 
-The current hack is not nice and it would be good to see it gone.
+CI Bug Log - changes from CI_DRM_11203 -> Patchwork_22210
+====================================================
 
-	Sam
+Summary
+-------
 
-> ---
->  drivers/video/fbdev/core/fbmem.c | 8 ++++++--
->  include/linux/fb.h               | 7 +++----
->  2 files changed, 9 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/video/fbdev/core/fbmem.c b/drivers/video/fbdev/core/fbmem.c
-> index 904ef1250677..dad6572942fa 100644
-> --- a/drivers/video/fbdev/core/fbmem.c
-> +++ b/drivers/video/fbdev/core/fbmem.c
-> @@ -48,10 +48,14 @@
->  static DEFINE_MUTEX(registration_lock);
->  
->  struct fb_info *registered_fb[FB_MAX] __read_mostly;
-> -EXPORT_SYMBOL(registered_fb);
-> -
->  int num_registered_fb __read_mostly;
-> +#if IS_ENABLED(CONFIG_OLPC_DCON)
-> +EXPORT_SYMBOL(registered_fb);
->  EXPORT_SYMBOL(num_registered_fb);
-> +#endif
-> +#define for_each_registered_fb(i)		\
-> +	for (i = 0; i < FB_MAX; i++)		\
-> +		if (!registered_fb[i]) {} else
->  
->  bool fb_center_logo __read_mostly;
->  
-> diff --git a/include/linux/fb.h b/include/linux/fb.h
-> index a8a00d2ba1f3..e236817502c2 100644
-> --- a/include/linux/fb.h
-> +++ b/include/linux/fb.h
-> @@ -622,16 +622,15 @@ extern int fb_get_color_depth(struct fb_var_screeninfo *var,
->  extern int fb_get_options(const char *name, char **option);
->  extern int fb_new_modelist(struct fb_info *info);
->  
-> +#if IS_ENABLED(CONFIG_OLPC_DCON)
->  extern struct fb_info *registered_fb[FB_MAX];
-> +
->  extern int num_registered_fb;
-> +#endif
->  extern bool fb_center_logo;
->  extern int fb_logo_count;
->  extern struct class *fb_class;
->  
-> -#define for_each_registered_fb(i)		\
-> -	for (i = 0; i < FB_MAX; i++)		\
-> -		if (!registered_fb[i]) {} else
-> -
->  static inline void lock_fb_info(struct fb_info *info)
->  {
->  	mutex_lock(&info->lock);
-> -- 
-> 2.33.0
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/index.html
+
+Participating hosts (45 -> 43)
+------------------------------
+
+  Missing    (2): fi-icl-u2 shard-tglu 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22210 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][1] -> [INCOMPLETE][2] ([i915#3303])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-skl-6600u:       [PASS][3] -> [FAIL][4] ([i915#4547])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#1436] / [i915#4312])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-hsw-4770/igt@runner@aborted.html
+    - fi-skl-6600u:       NOTRUN -> [FAIL][6] ([i915#4312])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-skl-6600u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-skl-guc:         [DMESG-FAIL][7] ([i915#2291] / [i915#541]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][9] ([i915#4269]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11203 -> Patchwork_22210
+
+  CI-20190529: 20190529
+  CI_DRM_11203: e0f14f95759ad65e896868e1f9efd3247d93d28e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22210: 2d61486947f426f7bd84ad50e96bcf75c248568b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2d61486947f4 drm/i915: move the DRIVER_* macros to i915_driver.[ch]
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/index.html
+
+--===============8508216138891777175==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: move the DRIVER_* macros to i915_driver.[ch] (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99671/">https://patchwork.freedesktop.org/series/99671/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11203 -&gt; Patchwork_22210</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/index.html</p>
+<h2>Participating hosts (45 -&gt; 43)</h2>
+<p>Missing    (2): fi-icl-u2 shard-tglu </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22210 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22210/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11203 -&gt; Patchwork_22210</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11203: e0f14f95759ad65e896868e1f9efd3247d93d28e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22210: 2d61486947f426f7bd84ad50e96bcf75c248568b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>2d61486947f4 drm/i915: move the DRIVER_* macros to i915_driver.[ch]</p>
+
+</body>
+</html>
+
+--===============8508216138891777175==--
