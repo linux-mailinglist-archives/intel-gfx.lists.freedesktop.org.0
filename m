@@ -1,49 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4878A4AE0C5
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 19:27:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 681F24AE0FF
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 19:39:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 559DA10E9D2;
-	Tue,  8 Feb 2022 18:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EE9A10E6F2;
+	Tue,  8 Feb 2022 18:39:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.smtp.larsendata.com (mx1.smtp.larsendata.com
- [91.221.196.215])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4682D10E9CE
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 18:27:36 +0000 (UTC)
-Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
- by mx1.smtp.larsendata.com (Halon) with ESMTPS
- id eed6468f-890c-11ec-b20b-0050568c148b;
- Tue, 08 Feb 2022 18:28:38 +0000 (UTC)
-Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net
- [80.162.45.141])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: sam@ravnborg.org)
- by mail01.mxhotel.dk (Postfix) with ESMTPSA id 0370B194B43;
- Tue,  8 Feb 2022 19:27:34 +0100 (CET)
-Date: Tue, 8 Feb 2022 19:27:32 +0100
-X-Report-Abuse-To: abuse@mxhotel.dk
-From: Sam Ravnborg <sam@ravnborg.org>
-To: DRI Development <dri-devel@lists.freedesktop.org>,
- linux-fbdev@vger.kernel.org, Du Cheng <ducheng2@gmail.com>,
- Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, Claudio Suarez <cssk@net-c.es>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <YgK2FMXAkOQqQV4h@ravnborg.org>
-References: <20220131210552.482606-1-daniel.vetter@ffwll.ch>
- <20220131210552.482606-19-daniel.vetter@ffwll.ch>
- <Yf2HTungn5DFhAPa@ravnborg.org>
- <YgJ2/f/JkKlyTJdh@phenom.ffwll.local>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8E55510E6F2;
+ Tue,  8 Feb 2022 18:39:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7667EAA0EA;
+ Tue,  8 Feb 2022 18:39:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0563891968926157057=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YgJ2/f/JkKlyTJdh@phenom.ffwll.local>
-Subject: Re: [Intel-gfx] [PATCH 18/21] fbcon: untangle fbcon_exit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 08 Feb 2022 18:39:39 -0000
+Message-ID: <164434557945.22542.6784422513926730280@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1644339170.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1644339170.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_split_out_intel=5Fvtd=2E=5Bch=5D_from_i915=5Fdrv=2Eh?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,153 +40,235 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 08, 2022 at 02:58:21PM +0100, Daniel Vetter wrote:
-> On Fri, Feb 04, 2022 at 09:06:38PM +0100, Sam Ravnborg wrote:
-> > Hi Daniel,
-> > 
-> > On Mon, Jan 31, 2022 at 10:05:49PM +0100, Daniel Vetter wrote:
-> > > There's a bunch of confusions going on here:
-> > > - The deferred fbcon setup notifier should only be cleaned up from
-> > >   fb_console_exit(), to be symmetric with fb_console_init()
-> > > - We also need to make sure we don't race with the work, which means
-> > >   temporarily dropping the console lock (or we can deadlock)
-> > > - That also means no point in clearing deferred_takeover, we are
-> > >   unloading everything anyway.
-> > > - Finally rename fbcon_exit to fbcon_release_all and move it, since
-> > >   that's what's it doing when being called from consw->con_deinit
-> > >   through fbcon_deinit.
-> > > 
-> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > > Cc: Claudio Suarez <cssk@net-c.es>
-> > > Cc: Du Cheng <ducheng2@gmail.com>
-> > > Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-> > > ---
-> > >  drivers/video/fbdev/core/fbcon.c | 63 ++++++++++++++++----------------
-> > >  1 file changed, 32 insertions(+), 31 deletions(-)
-> > > 
-> > > diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
-> > > index 5c14e24d14a1..22581952b4fd 100644
-> > > --- a/drivers/video/fbdev/core/fbcon.c
-> > > +++ b/drivers/video/fbdev/core/fbcon.c
-> > > @@ -185,7 +185,6 @@ static void fbcon_set_disp(struct fb_info *info, struct fb_var_screeninfo *var,
-> > >  			   int unit);
-> > >  static void fbcon_modechanged(struct fb_info *info);
-> > >  static void fbcon_set_all_vcs(struct fb_info *info);
-> > > -static void fbcon_exit(void);
-> > >  
-> > >  static struct device *fbcon_device;
-> > >  
-> > > @@ -1149,6 +1148,27 @@ static void fbcon_free_font(struct fbcon_display *p, bool freefont)
-> > >  
-> > >  static void set_vc_hi_font(struct vc_data *vc, bool set);
-> > >  
-> > > +static void fbcon_release_all(void)
-> > > +{
-> > > +	struct fb_info *info;
-> > > +	int i, j, mapped;
-> > > +
-> > > +	for_each_registered_fb(i) {
-> > > +		mapped = 0;
-> > > +		info = registered_fb[i];
-> > > +
-> > > +		for (j = first_fb_vc; j <= last_fb_vc; j++) {
-> > > +			if (con2fb_map[j] == i) {
-> > > +				mapped = 1;
-> > > +				con2fb_map[j] = -1;
-> > > +			}
-> > > +		}
-> > > +
-> > > +		if (mapped)
-> > > +			fbcon_release(info);
-> > > +	}
-> > > +}
-> > > +
-> > >  static void fbcon_deinit(struct vc_data *vc)
-> > >  {
-> > >  	struct fbcon_display *p = &fb_display[vc->vc_num];
-> > > @@ -1188,7 +1208,7 @@ static void fbcon_deinit(struct vc_data *vc)
-> > >  		set_vc_hi_font(vc, false);
-> > >  
-> > >  	if (!con_is_bound(&fb_con))
-> > > -		fbcon_exit();
-> > > +		fbcon_release_all();
-> > >  
-> > >  	if (vc->vc_num == logo_shown)
-> > >  		logo_shown = FBCON_LOGO_CANSHOW;
-> > > @@ -3316,34 +3336,6 @@ static void fbcon_start(void)
-> > >  #endif
-> > >  }
-> > >  
-> > > -static void fbcon_exit(void)
-> > > -{
-> > > -	struct fb_info *info;
-> > > -	int i, j, mapped;
-> > > -
-> > > -#ifdef CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER
-> > > -	if (deferred_takeover) {
-> > > -		dummycon_unregister_output_notifier(&fbcon_output_nb);
-> > > -		deferred_takeover = false;
-> > > -	}
-> > > -#endif
-> > > -
-> > > -	for_each_registered_fb(i) {
-> > > -		mapped = 0;
-> > > -		info = registered_fb[i];
-> > > -
-> > > -		for (j = first_fb_vc; j <= last_fb_vc; j++) {
-> > > -			if (con2fb_map[j] == i) {
-> > > -				mapped = 1;
-> > > -				con2fb_map[j] = -1;
-> > > -			}
-> > > -		}
-> > > -
-> > > -		if (mapped)
-> > > -			fbcon_release(info);
-> > > -	}
-> > > -}
-> > > -
-> > >  void __init fb_console_init(void)
-> > >  {
-> > >  	int i;
-> > > @@ -3383,10 +3375,19 @@ static void __exit fbcon_deinit_device(void)
-> > >  
-> > >  void __exit fb_console_exit(void)
-> > >  {
-> > > +#ifdef CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER
-> > > +	console_lock();
-> > > +	if (deferred_takeover)
-> > > +		dummycon_unregister_output_notifier(&fbcon_output_nb);
-> > > +	console_unlock();
-> > > +
-> > > +	cancel_work_sync(&fbcon_deferred_takeover_work);
-> > > +#endif
-> > > +
-> > >  	console_lock();
-> > >  	fbcon_deinit_device();
-> > >  	device_destroy(fb_class, MKDEV(0, 0));
-> > > -	fbcon_exit();
-> > > +
-> > We loose the call to fbcon_release_all() here.
-> > We have part of the old fbcon_exit() above, but miss the release parts.
-> > 
-> > Maybe I missed something obvious?
-> 
-> Ah yes that's the entire point of this change. The release_all in the
-> fbcon exit path was only needed when fbcon was a separate module
-> indepedent from core fb.ko. Which means it was possible to unload fbcon
-> while having fbdev drivers registered.
-> 
-> But since we've merged them that has become impossible, so by the time the
-> fb.ko module can be unloaded, there's guaranteed to be no fbdev drivers
-> left. And hence removing them is pointless.
-Makes sense, thanks for the explanation.
+--===============0563891968926157057==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> 
-> Ack with that explainer added to the commit message?
-Yes, then it is
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
+== Series Details ==
+
+Series: drm/i915: split out intel_vtd.[ch] from i915_drv.h
+URL   : https://patchwork.freedesktop.org/series/99852/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11203 -> Patchwork_22209
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_22209 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22209, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/index.html
+
+Participating hosts (45 -> 43)
+------------------------------
+
+  Missing    (2): shard-tglu fi-pnv-d510 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22209:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-rkl-guc:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22209 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271]) +13 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-skl-guc:         [DMESG-FAIL][6] ([i915#2291] / [i915#541]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][8] ([i915#4269]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11203 -> Patchwork_22209
+
+  CI-20190529: 20190529
+  CI_DRM_11203: e0f14f95759ad65e896868e1f9efd3247d93d28e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22209: f6d09243630e3679c1fb7f6780748517fc0cbb19 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f6d09243630e drm/i915/vtd: rename functions to have the usual prefix
+019a148267a5 drm/i915: split out intel_vtd.[ch] from i915_drv.h
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/index.html
+
+--===============0563891968926157057==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: split out intel_vtd.[ch] from i915_drv.h</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99852/">https://patchwork.freedesktop.org/series/99852/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11203 -&gt; Patchwork_22209</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_22209 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22209, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/index.html</p>
+<h2>Participating hosts (45 -&gt; 43)</h2>
+<p>Missing    (2): shard-tglu fi-pnv-d510 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22209:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22209 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/fi-skl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11203/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22209/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11203 -&gt; Patchwork_22209</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11203: e0f14f95759ad65e896868e1f9efd3247d93d28e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22209: f6d09243630e3679c1fb7f6780748517fc0cbb19 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f6d09243630e drm/i915/vtd: rename functions to have the usual prefix<br />
+019a148267a5 drm/i915: split out intel_vtd.[ch] from i915_drv.h</p>
+
+</body>
+</html>
+
+--===============0563891968926157057==--
