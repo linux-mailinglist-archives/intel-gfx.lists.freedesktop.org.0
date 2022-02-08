@@ -1,56 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 924DB4ADFCD
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 18:39:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 594544AE051
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 19:06:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF49C10E207;
-	Tue,  8 Feb 2022 17:39:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30BE510E94F;
+	Tue,  8 Feb 2022 18:06:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 393 seconds by postgrey-1.36 at gabe;
- Tue, 08 Feb 2022 17:39:12 UTC
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 884FF10E207;
- Tue,  8 Feb 2022 17:39:12 +0000 (UTC)
-Date: Tue, 8 Feb 2022 18:32:34 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1644341556;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=FXQEa9tksgp/5gwkciCn7oHgt+TmVIO+rWDMd36D+mM=;
- b=ge/Fq22zD/0XCDjYN6DG6DJ26Dwc6595F4+n7rW3kwFgq/l0TxYuQRrXwPL33XprL6ecHJ
- MLZ1yST7ngO7sKmGq4OP5dp9XugmaC1zDMFYFjr4vtfx8aWQfOc8JkXciOZTcuIIdPniWt
- TN0f2/0xHeTK/HmnsChL+HE9FzbZYPbRVPUBJXAOt3r2Y/r41mB5s/I645lSAo07cYyKUg
- 6CeGoPJEyv49koi9RLNiwJglh+UwWzdsGfnun++Gr3691dZf3Rq4rjecTO5/P1s+A9da60
- yCXe9l6RicrXGoLq3U43gcRk9BgpV8mys7pqWY6f/9u8NEZrrp1PUm8KHVHGbA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1644341556;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=FXQEa9tksgp/5gwkciCn7oHgt+TmVIO+rWDMd36D+mM=;
- b=diehuV6NvVs7iijhB6Lp46ogXwnjNfI3H6dbzbzO6ZAvePnityxJQUV3Y9LIVJo9L8ZL+n
- KYEkR31JKUxgWqDA==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Steven Rostedt <rostedt@goodmis.org>
-Message-ID: <YgKpMufo+dYSLPIl@linutronix.de>
-References: <20211214140301.520464-1-bigeasy@linutronix.de>
- <20211214140301.520464-8-bigeasy@linutronix.de>
- <20211214093652.0dfa5b6f@gandalf.local.home>
- <YbjHqlzqRqhdvLBM@intel.com>
- <20211214115837.6f33a9b2@gandalf.local.home>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E877210E94F;
+ Tue,  8 Feb 2022 18:06:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E4E40A73C7;
+ Tue,  8 Feb 2022 18:06:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211214115837.6f33a9b2@gandalf.local.home>
-Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915: Disable tracing points on
- PREEMPT_RT
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 08 Feb 2022 18:06:34 -0000
+Message-ID: <164434359490.22535.11821753569986109304@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1644339170.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1644339170.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_split_out_intel=5Fvtd=2E=5Bch=5D_from_i915=5Fdr?=
+ =?utf-8?b?di5o?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,31 +41,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Luca Abeni <lucabe72@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-12-14 11:58:37 [-0500], Steven Rostedt wrote:
-> On Tue, 14 Dec 2021 18:34:50 +0200
-> Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com> wrote:
->=20
-> > Looks lightly tedious. Can't we have "slow" (or whatever) versions of
-> > the trace macros so we could just declare these the same was as before
-> > without having to manually write that wrapper for every event?
->=20
-> That would be quite tedious as well ;-)
-=E2=80=A6
-> It may be possible to do, but it will be far from trivial, and I'm not su=
-re
-> I want this to be an easy option. Locks should not be taken from trace
-> events in general, as they are not tested with lockdep when the trace
-> points are not enabled, and could hide deadlocks that may not appear until
-> running on production.
+== Series Details ==
 
-So we disable the tracing points or try what Steven suggested?
+Series: drm/i915: split out intel_vtd.[ch] from i915_drv.h
+URL   : https://patchwork.freedesktop.org/series/99852/
+State : warning
 
-> -- Steve
+== Summary ==
 
-Sebastian
+$ dim checkpatch origin/drm-tip
+019a148267a5 drm/i915: split out intel_vtd.[ch] from i915_drv.h
+-:321: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#321: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 274 lines checked
+f6d09243630e drm/i915/vtd: rename functions to have the usual prefix
+
+
