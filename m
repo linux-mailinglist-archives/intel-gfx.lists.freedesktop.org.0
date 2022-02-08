@@ -2,55 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E85264AD2C1
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 09:07:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 992114AD2F2
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Feb 2022 09:17:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC8DD10E25E;
-	Tue,  8 Feb 2022 08:07:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2A7A10E36A;
+	Tue,  8 Feb 2022 08:17:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com
- [IPv6:2607:f8b0:4864:20::12f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D581B10E284
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 08:07:25 +0000 (UTC)
-Received: by mail-il1-x12f.google.com with SMTP id n5so327842ilk.12
- for <intel-gfx@lists.freedesktop.org>; Tue, 08 Feb 2022 00:07:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=2nn1yw6s4IptKKkqexjsVuYGnZXdnpYECt5wmy4nCLI=;
- b=RbemnSrhXrKKcmiNAQChCDTCfg6l6ls5LgDIaRQkZLTLaWYDjG6MM8osL8JkLF3bCp
- /Kq4sd9uU0NEZm+Wz8RgynFJAbap5ItA1CILACu+hFiwrULXgQ7eCzkQ14TNBanKSWIw
- TjONrz2gQtSvRje+DKUublwrHeFhbhnyVgZ3k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=2nn1yw6s4IptKKkqexjsVuYGnZXdnpYECt5wmy4nCLI=;
- b=FBjERtruESfFviqMx1f4pL4E/FKXyPV46P822hVg18QiSI4h7JKh+AVSyxdVnZzbvj
- cDHdm9NnDlW1WeDt4IMZobW8h8w0PjYWYlCkvzgDLU4zog8yPyCR4k62iWo8T4jNLTTZ
- B9PMZOVfETxSRMqZeCDngR5Pr55Ppz0yK7cm57LnVXgJC9p5ZKBPUU4/UVlv5rrAdLkg
- Fw6v3j9Gs4t6g6iTD75bniaJPA+RVetVPP3N+sXam7qT+TkCY6K4tcqjWLYtYanzC/+P
- +VvCeVLObIpuxE9eI7aXbd7Oj67oRZrK9n01vgDpWogtPLcxweS5fJeGO8WnfGDoFkYO
- VyBQ==
-X-Gm-Message-State: AOAM530j/yGXYNfiNXvxMbSvreJtI+rM5aSg9o0xcVvmQUUH7y5DUt3b
- v9EGcHMLRHBYXls7qEbV7bOrFz6tSoS0TO7Gmou1pw==
-X-Google-Smtp-Source: ABdhPJzX6bk4eNvEnp69aytew5yHADtPJVvGPNtbE4EZRnOFljwbLJwfYxI5lISAClkMzxAfRIq8Gdm85/RAs5cGYNM=
-X-Received: by 2002:a05:6e02:18c6:: with SMTP id
- s6mr1637885ilu.230.1644307645048; 
- Tue, 08 Feb 2022 00:07:25 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A7B2610E36A;
+ Tue,  8 Feb 2022 08:17:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A3B1BA882E;
+ Tue,  8 Feb 2022 08:17:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0712481145974586098=="
 MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hsin-Yi Wang" <hsinyi@chromium.org>
+Date: Tue, 08 Feb 2022 08:17:51 -0000
+Message-ID: <164430827166.22536.2692546317264476966@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20220208073714.1540390-1-hsinyi@chromium.org>
- <YgIhJb3+MckKD4dC@intel.com>
-In-Reply-To: <YgIhJb3+MckKD4dC@intel.com>
-From: Hsin-Yi Wang <hsinyi@chromium.org>
-Date: Tue, 8 Feb 2022 16:06:59 +0800
-Message-ID: <CAJMQK-hzjtZrXC+sdcs39kF6nvUzkNcgNXFXPzTUQHzr8f6ZkA@mail.gmail.com>
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v7 1/3] gpu: drm: separate panel orientation
- property creating and value setting
+In-Reply-To: <20220208073714.1540390-1-hsinyi@chromium.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv7=2C1/3=5D_gpu=3A_drm=3A_separate_panel_o?=
+ =?utf-8?q?rientation_property_creating_and_value_setting?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,47 +41,231 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Simon Ser <contact@emersion.fr>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Matthias Brugger <matthias.bgg@gmail.com>,
- Rob Herring <robh+dt@kernel.org>, linux-mediatek@lists.infradead.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, linux-arm-kernel@lists.infradead.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 8, 2022 at 3:52 PM Ville Syrj=C3=A4l=C3=A4
-<ville.syrjala@linux.intel.com> wrote:
->
-> On Tue, Feb 08, 2022 at 03:37:12PM +0800, Hsin-Yi Wang wrote:
-> > +int drm_connector_init_panel_orientation_property(
-> > +     struct drm_connector *connector)
-> > +{
-> > +     struct drm_device *dev =3D connector->dev;
-> > +     struct drm_property *prop;
-> > +
-> > +     prop =3D drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
-> > +                     "panel orientation",
-> > +                     drm_panel_orientation_enum_list,
-> > +                     ARRAY_SIZE(drm_panel_orientation_enum_list));
-> > +     if (!prop)
-> > +             return -ENOMEM;
-> > +
-> > +     dev->mode_config.panel_orientation_property =3D prop;
->
-> Leak when called multiple times. I guess you could just put
-> this into drm_connector_create_standard_properties() instead
-> and avoid that issue entirely.
->
-I'll add a check for dev->mode_config.panel_orientation_property to
-avoid the leak issue if called multiple times.
-If we add in drm_connector_create_standard_properties(), we still need
-another function to attach the property earlier for bridge/connectors
-that require this property, since not all bridge/connectors need this
-property.
+--===============0712481145974586098==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> --
-> Ville Syrj=C3=A4l=C3=A4
-> Intel
+== Series Details ==
+
+Series: series starting with [v7,1/3] gpu: drm: separate panel orientation property creating and value setting
+URL   : https://patchwork.freedesktop.org/series/99815/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11199 -> Patchwork_22198
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_22198 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22198, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/index.html
+
+Participating hosts (48 -> 42)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (7): fi-kbl-soraka shard-tglu fi-adl-ddr4 fi-bsw-cyan shard-rkl shard-dg1 bat-jsl-2 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22198:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22198 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-skl-6600u:       NOTRUN -> [INCOMPLETE][2] ([i915#4547])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][3] ([fdo#109271]) +57 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271]) +13 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-5557u:       [INCOMPLETE][6] ([i915#146]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11199/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11199 -> Patchwork_22198
+
+  CI-20190529: 20190529
+  CI_DRM_11199: e74a41add451a1ff1e15abe5985a1324e4c328d9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22198: 55c75bd3404f2bd2f74bef1764891da204cafb73 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+55c75bd3404f arm64: dts: mt8183: Add panel rotation
+8fecb3d43d2d drm/mediatek: init panel orientation property
+da6aee85bf29 gpu: drm: separate panel orientation property creating and value setting
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/index.html
+
+--===============0712481145974586098==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v7,1/3] gpu: drm: separate panel orientation property creating and value setting</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99815/">https://patchwork.freedesktop.org/series/99815/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11199 -&gt; Patchwork_22198</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_22198 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22198, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/index.html</p>
+<h2>Participating hosts (48 -&gt; 42)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (7): fi-kbl-soraka shard-tglu fi-adl-ddr4 fi-bsw-cyan shard-rkl shard-dg1 bat-jsl-2 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22198:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22198 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3@smem:<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11199/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22198/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11199 -&gt; Patchwork_22198</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11199: e74a41add451a1ff1e15abe5985a1324e4c328d9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22198: 55c75bd3404f2bd2f74bef1764891da204cafb73 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>55c75bd3404f arm64: dts: mt8183: Add panel rotation<br />
+8fecb3d43d2d drm/mediatek: init panel orientation property<br />
+da6aee85bf29 gpu: drm: separate panel orientation property creating and value setting</p>
+
+</body>
+</html>
+
+--===============0712481145974586098==--
