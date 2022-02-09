@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 934074AEAD5
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 08:15:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 234674AEAF9
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 08:25:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8AB010E340;
-	Wed,  9 Feb 2022 07:14:59 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9371210E340;
- Wed,  9 Feb 2022 07:14:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3010510E1D2;
+	Wed,  9 Feb 2022 07:25:06 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F36710E1D2
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 07:25:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644390898; x=1675926898;
+ t=1644391505; x=1675927505;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=ZXRuCtd0pVY9vho1qcqpnEbUr8RIpQRwT7CoPLWRbYY=;
- b=bRPeREx8b/i87p4WsxbVfY2u20alovpDkGdFP28QeqFD151Ad40jssvJ
- u//hiQ/Vfasv4pmxDLnI7LQmVRwqQ58lF6so6p0y1CvgknFlf4OnOEF6W
- 3KaSl/w9MaQYtR/w/1iAmKXiO7dflw1LIB+Li5Hg327D1JJbAkPpNLKmQ
- nw6wBdleQQ89MCmWNkoo3ulop+JOsqVYJ9Hhj1eSNSoHyXZsEcMDi8o5X
- wYm1dcJ/M+aOJYTqllB83Swnd6nOXJcqm3M9V8nKSkgRkCJ1Hlz/t9mwP
- dFnTacG3Na7kOOJIZ/VaibopBqlIbIotZL/DBDcQP5lNzGg1kEU8w0xC1 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="249348417"
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="249348417"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 23:14:58 -0800
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="701158026"
+ bh=Sm8jM63DxhLBON8ao4+EuiXkY3zJGhzpcoEy32L7a9E=;
+ b=Jp1Zwyqg51JhZ9Cg/qppVsDS5GSlXsL4YXlI8m+OBSiNJRUhWRtIXkkz
+ lLPKdBraKAYYem1k/+FHtGpxZo7VrwrW7kmLsBRoABywwGPjTnDZMeI23
+ TEQkPALoqONQNuruQlocyaCk05Zi0u7pt69JL41eKy/z/5or+CtSbIr1e
+ +fXoOHa2BUyVDq4ShX4uUF8B5gkzhvMF9QlR/861HwDKRv5/Yvlnp1fTF
+ HMsxc9WbfLCshpwcGVy4IXyhkCYq5IQiRpmfdxlYrAiBDUEyauE03eSu9
+ S1pDlsdDW3z91Cw5xDN20EPCqEKBeg3xMmhOvAKXdxxTiFtXZUOWTKBew g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="312439415"
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="312439415"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 23:25:04 -0800
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="585476527"
 Received: from ymtarple-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
  ([10.212.231.100])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 23:14:57 -0800
-Date: Tue, 8 Feb 2022 23:14:57 -0800
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 23:25:03 -0800
+Date: Tue, 8 Feb 2022 23:25:03 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: John.C.Harrison@intel.com
-Message-ID: <20220209071457.unbti4cfab4yqwig@ldmartin-desk2>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <20220209072503.bhls5gk5vn7c7cle@ldmartin-desk2>
 X-Patchwork-Hint: comment
-References: <20220207203642.1875208-1-John.C.Harrison@Intel.com>
+References: <20220208070141.2095177-1-lucas.demarchi@intel.com>
+ <20220208070141.2095177-3-lucas.demarchi@intel.com>
+ <e5ba2842-2677-46c9-cd18-17a70151fc05@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20220207203642.1875208-1-John.C.Harrison@Intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/dg2: Define GuC firmware
- version for DG2
+In-Reply-To: <e5ba2842-2677-46c9-cd18-17a70151fc05@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/guc: Use a single pass to
+ calculate regset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,42 +60,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-GFX@lists.freedesktop.org, Tomasz Mistat <tomasz.mistat@intel.com>,
- DRI-Devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 07, 2022 at 12:36:42PM -0800, John.C.Harrison@Intel.com wrote:
->From: John Harrison <John.C.Harrison@Intel.com>
+On Tue, Feb 08, 2022 at 05:15:02PM -0800, Daniele Ceraolo Spurio wrote:
 >
->First release of GuC for DG2.
 >
->Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->CC: Tomasz Mistat <tomasz.mistat@intel.com>
->CC: Ramalingam C <ramalingam.c@intel.com>
->CC: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>On 2/7/2022 11:01 PM, Lucas De Marchi wrote:
+>>The ADS initialitazion was using 2 passes to calculate the regset sent
+>>to GuC to initialize each engine: the first pass to just have the final
+>>object size and the second to set each register in place in the final
+>>gem object.
+>>
+>>However in order to maintain an ordered set of registers to pass to guc,
+>>each register needs to be added and moved in the final array. The second
+>>phase may actually happen in IO memory rather than system memory and
+>>accessing IO memory by simply dereferencing the pointer doesn't work on
+>>all architectures. Other places of the ADS initializaition were
+>>converted to use the iosys_map API, but here there may be a lot more
+>>accesses to IO memory. So, instead of following that same approach,
+>>convert the regset initialization to calculate the final array in 1
+>>pass and in the second pass that array is just copied to its final
+>>location, updating the pointers for each engine written to the ADS blob.
+>>
+>>One important thing is that struct temp_regset now have
+>>different semantics: `registers` continues to track the registers of a
+>>single engine, however the other fields are updated together, according
+>>to the newly added `storage`, which tracks the memory allocated for
+>>all the registers. So rename some of these fields and add a
+>>__mmio_reg_add(): this function (possibly) allocates memory and operates
+>>on the storage pointer while guc_mmio_reg_add() continues to manage the
+>>registers pointer.
+>>
+>>On a Tiger Lake system using enable_guc=3, the following log message is
+>>now seen:
+>>
+>>	[  187.334310] i915 0000:00:02.0: [drm:intel_guc_ads_create [i915]] Used 4 KB for temporary ADS regset
+>>
+>>This change has also been tested on an ARM64 host with DG2 and other
+>>discrete graphics cards.
+>>
+>>v2 (Daniele):
+>>   - Fix leaking tempset on error path
+>>   - Add comments on struct temp_regset to document the meaning of each
+>>     field
+>>
+>>Cc: Matt Roper <matthew.d.roper@intel.com>
+>>Cc: John Harrison <John.C.Harrison@Intel.com>
+>>Cc: Matthew Brost <matthew.brost@intel.com>
+>>Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Thanks for the review. Applied to drm-intel-gt-next.
 
 Lucas De Marchi
-
->---
-> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 1 +
-> 1 file changed, 1 insertion(+)
->
->diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->index ba4f0970749b..efe0a6dcf9f7 100644
->--- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
->@@ -50,6 +50,7 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
->  * firmware as TGL.
->  */
-> #define INTEL_GUC_FIRMWARE_DEFS(fw_def, guc_def) \
->+	fw_def(DG2,          0, guc_def(dg2,  69, 0, 3)) \
-> 	fw_def(ALDERLAKE_P,  0, guc_def(adlp, 69, 0, 3)) \
-> 	fw_def(ALDERLAKE_S,  0, guc_def(tgl,  69, 0, 3)) \
-> 	fw_def(DG1,          0, guc_def(dg1,  69, 0, 3)) \
->-- 
->2.25.1
->
