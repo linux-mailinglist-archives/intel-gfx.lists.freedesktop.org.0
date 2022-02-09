@@ -2,53 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA194B522A
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 14:52:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B03054B5529
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 16:49:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B58B410E4D6;
-	Mon, 14 Feb 2022 13:52:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A25010E243;
+	Mon, 14 Feb 2022 15:48:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 380BA10E4D6
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Feb 2022 13:52:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644846724; x=1676382724;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=Z6ym3CJYf+KsAOkgqtWzFiw76a1qwXvlOqLr99IgS9s=;
- b=MNp5C2wi8sKpDPX8pqE3YO6LDxgF+FuN+k/C5Q3pcwdBuBP6k2doZMix
- y5nvdo6TTJfR1N7vwrxGjQ/KEH9JlbOPJayf4ctHt1nMazmwHymM0ncXl
- qmxdVSA/HaPK76oLyvES5H7S27Q6rYJqX/ShDn8QJsmu/Ok+XJrUKK2Nh
- 1dPVdYpBCvxHojM/xNm7msY8w5tLczuSx5FC0ABfisvSIlC+g4CiQul8u
- ATfWiTbDGENbLql4Z0nYpNzb22VUrldcsac5Vv8XJYA3o17C0P6ryNs74
- pBaXlLFAW3L4DqF5exE6u5omFDnWIux8DzqYpothENYQdsRZuimoPO0/k Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10257"; a="250037993"
-X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="250037993"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 05:51:50 -0800
-X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="570194964"
-Received: from rajaseka-mobl3.ger.corp.intel.com (HELO [10.213.215.79])
- ([10.213.215.79])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 05:51:49 -0800
-Message-ID: <2840743f-2bfb-8ad5-2717-eaf99cfd5d3f@linux.intel.com>
-Date: Mon, 14 Feb 2022 13:51:45 +0000
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71F1F10E1DC;
+ Wed,  9 Feb 2022 18:26:03 +0000 (UTC)
+Received: by mail-ed1-x52b.google.com with SMTP id cz16so6878240edb.8;
+ Wed, 09 Feb 2022 10:26:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=xy1Wl1YpQUBJ+tc0SQw9hpGSoZpQOiQLuW8DVJw6UJg=;
+ b=kJ0XqzVgo4HWwoxJuhT4lXHGSLvV9GTJXnzzyFRjK3FAl7Ni8TCPYKxXeRWPzdWstV
+ 1xO6FcG0MomNvg3+BpvHpo+RCosTkaIl6THWWqgDTX2OOlaoMYEKf6Q8LfaNqAUA9ps8
+ ZhF5/su5gueN99HLXDMt6GDBSpv3rOJiunonIJdtU5Lr61zXNtgRrQ0aKiYRsM5SkPwM
+ A3qnxYpNOXa2tKc6YcpZomJM4I1x0Q8CWfajqt3wN5z8RpK5RQqOsddHPttPc3wGca09
+ D075bmE/P5gbfZ50HkV9mrfWREfW1ANenqcI04UW/cqbUlF/LBvMaTYzXXVJPnn9BjCr
+ ITrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=xy1Wl1YpQUBJ+tc0SQw9hpGSoZpQOiQLuW8DVJw6UJg=;
+ b=0BqealjQp98bT5mZRtOizxHcQmsw2fpfW1MwFziGuDwptKd2xynI/gd9yPkMZdf4nb
+ gbD7wDFwyOPddj91GuZyCInBjKzY5zpDMrxBGgpAG/Wt8p6iHwWudlmYoCDAORrxbVoo
+ YjwSxmScS/BsxRYTBdA+/zs/hMXOFTWSN90vThs84oO3jhB9e39tA2IwZBYpm1GxvFji
+ RSny7x9yB8nU79ein2A5rLc5Cm0x8stuKsRqAJHcrF66wQ2LpCfdWkztQI3tikolSaDu
+ 5ANqZocFDpnJ7JmIRo1wW++5NQ2xYBmclBV5ROTc9aHAwZcGjKXNfZH6G1Dzn+XMq2Fr
+ fVvw==
+X-Gm-Message-State: AOAM531xYW+oZFvDK5K7+2fWJ1k+t1HscIWk+rclxo1iXA48YB1BllXw
+ 3XekWwQ3uATqxomL9PLt6yg1FrRgglI=
+X-Google-Smtp-Source: ABdhPJzzS7j8gHRMsRxfam2p6eWcjNvR4qSY2heS34HP7/ucko1xgpid3LD+uuBdGqNHo3etUbyGhQ==
+X-Received: by 2002:aa7:c947:: with SMTP id h7mr3894625edt.447.1644431161780; 
+ Wed, 09 Feb 2022 10:26:01 -0800 (PST)
+Received: from able.fritz.box (p57b0bff8.dip0.t-ipconnect.de. [87.176.191.248])
+ by smtp.gmail.com with ESMTPSA id k7sm6190066ejp.182.2022.02.09.10.26.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 09 Feb 2022 10:26:01 -0800 (PST)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: thomas.hellstrom@linux.intel.com, daniel.vetter@ffwll.ch,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Date: Wed,  9 Feb 2022 19:26:00 +0100
+Message-Id: <20220209182600.434803-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220214132452.1854143-1-jani.nikula@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220214132452.1854143-1-jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: move
- i915_gem_object_needs_bit17_swizzle() to intel_ggtt_fencing.[ch]
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 14 Feb 2022 15:48:57 +0000
+Subject: [Intel-gfx] [PATCH] drm/syncobj: flatten dma_fence_chains on
+ transfer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,74 +74,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+It is illegal to add a dma_fence_chain as timeline point. Flatten out
+the fences into a dma_fence_array instead.
 
-On 14/02/2022 13:24, Jani Nikula wrote:
-> Move i915_gem_object_needs_bit17_swizzle() next to the other
-> bit_17_swizzle functions. Also un-inline while at it; does not seem like
-> this is a function needed in hot paths.
-> 
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c | 8 ++++++++
->   drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h | 1 +
->   drivers/gpu/drm/i915/i915_drv.h              | 9 ---------
->   3 files changed, 9 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> index ee4049ee1fc9..55d525c562df 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> @@ -755,6 +755,14 @@ static void swizzle_page(struct page *page)
->   	kunmap(page);
->   }
->   
-> +bool i915_gem_object_needs_bit17_swizzle(struct drm_i915_gem_object *obj)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> +
-> +	return to_gt(i915)->ggtt->bit_6_swizzle_x == I915_BIT_6_SWIZZLE_9_10_17 &&
-> +		i915_gem_object_is_tiled(obj);
-> +}
-> +
->   /**
->    * i915_gem_object_do_bit_17_swizzle - fixup bit 17 swizzling
->    * @obj: i915 GEM buffer object
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
-> index 25340be5ecf0..fa0734fd4749 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
-> @@ -46,6 +46,7 @@ void i915_unreserve_fence(struct i915_fence_reg *fence);
->   
->   void intel_ggtt_restore_fences(struct i915_ggtt *ggtt);
->   
-> +bool i915_gem_object_needs_bit17_swizzle(struct drm_i915_gem_object *obj);
->   void i915_gem_object_do_bit_17_swizzle(struct drm_i915_gem_object *obj,
->   				       struct sg_table *pages);
->   void i915_gem_object_save_bit_17_swizzle(struct drm_i915_gem_object *obj,
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 418091484e02..395c53d4955e 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1495,15 +1495,6 @@ void i915_gem_driver_release(struct drm_i915_private *dev_priv);
->   
->   int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file);
->   
-> -/* i915_gem_tiling.c */
-> -static inline bool i915_gem_object_needs_bit17_swizzle(struct drm_i915_gem_object *obj)
-> -{
-> -	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> -
-> -	return to_gt(i915)->ggtt->bit_6_swizzle_x == I915_BIT_6_SWIZZLE_9_10_17 &&
-> -		i915_gem_object_is_tiled(obj);
-> -}
-> -
->   /* intel_device_info.c */
->   static inline struct intel_device_info *
->   mkwrite_device_info(struct drm_i915_private *dev_priv)
+Signed-off-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/drm_syncobj.c | 61 ++++++++++++++++++++++++++++++++---
+ 1 file changed, 56 insertions(+), 5 deletions(-)
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
+index c313a5b4549c..7e48dcd1bee4 100644
+--- a/drivers/gpu/drm/drm_syncobj.c
++++ b/drivers/gpu/drm/drm_syncobj.c
+@@ -853,12 +853,57 @@ drm_syncobj_fd_to_handle_ioctl(struct drm_device *dev, void *data,
+ 					&args->handle);
+ }
+ 
++
++/*
++ * Try to flatten a dma_fence_chain into a dma_fence_array so that it can be
++ * added as timeline fence to a chain again.
++ */
++static int drm_syncobj_flatten_chain(struct dma_fence **f)
++{
++	struct dma_fence_chain *chain = to_dma_fence_chain(*f);
++	struct dma_fence *tmp, **fences;
++	struct dma_fence_array *array;
++	unsigned int count;
++
++	if (!chain)
++		return 0;
++
++	count = 0;
++	dma_fence_chain_for_each(tmp, &chain->base)
++		++count;
++
++	fences = kmalloc_array(count, sizeof(*fences), GFP_KERNEL);
++	if (!fences)
++		return -ENOMEM;
++
++	count = 0;
++	dma_fence_chain_for_each(tmp, &chain->base)
++		fences[count++] = dma_fence_get(tmp);
++
++	array = dma_fence_array_create(count, fences,
++				       dma_fence_context_alloc(1),
++				       1, false);
++	if (!array)
++		goto free_fences;
++
++	dma_fence_put(*f);
++	*f = &array->base;
++	return 0;
++
++free_fences:
++	while (count--)
++		dma_fence_put(fences[count]);
++
++	kfree(fences);
++	return -ENOMEM;
++}
++
+ static int drm_syncobj_transfer_to_timeline(struct drm_file *file_private,
+ 					    struct drm_syncobj_transfer *args)
+ {
+ 	struct drm_syncobj *timeline_syncobj = NULL;
+-	struct dma_fence *fence;
+ 	struct dma_fence_chain *chain;
++	struct dma_fence *fence;
+ 	int ret;
+ 
+ 	timeline_syncobj = drm_syncobj_find(file_private, args->dst_handle);
+@@ -869,16 +914,22 @@ static int drm_syncobj_transfer_to_timeline(struct drm_file *file_private,
+ 				     args->src_point, args->flags,
+ 				     &fence);
+ 	if (ret)
+-		goto err;
++		goto err_put_timeline;
++
++	ret = drm_syncobj_flatten_chain(&fence);
++	if (ret)
++		goto err_free_fence;
++
+ 	chain = dma_fence_chain_alloc();
+ 	if (!chain) {
+ 		ret = -ENOMEM;
+-		goto err1;
++		goto err_free_fence;
+ 	}
++
+ 	drm_syncobj_add_point(timeline_syncobj, chain, fence, args->dst_point);
+-err1:
++err_free_fence:
+ 	dma_fence_put(fence);
+-err:
++err_put_timeline:
+ 	drm_syncobj_put(timeline_syncobj);
+ 
+ 	return ret;
+-- 
+2.25.1
 
-Regards,
-
-Tvrtko
