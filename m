@@ -2,55 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 572CC4AFD0A
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 20:14:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 841A84AFD3E
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 20:23:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85CED89CD7;
-	Wed,  9 Feb 2022 19:14:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A63FF10E57C;
+	Wed,  9 Feb 2022 19:22:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE93D89CD7
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 19:14:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644434046; x=1675970046;
- h=date:from:to:subject:message-id:references:mime-version:
- content-transfer-encoding:in-reply-to;
- bh=nE4qdktK02ggfj1un4YfyzJtLrURDKur73FZW2puSRk=;
- b=OnJoCsdMg2DppGz2nPy0/bJT30eR/0flfQunL/2e4keVpkzzk4dqL0FJ
- gHg7aOvlZUp9gWQAF+0i+saGr6GnadX3+QWQSw/QhbexIoqXssUDFP9vF
- lttozKvTUzByhj/P7eQ2Wh0bEcMVdAa0xT9DNPn8FWkkSE8H9TdRqy1RZ
- MJGQIeLYxmpgUwFHVY3Ud5+7ydtr2IdhtYfO4HpsRLlI5uzd+vwOP86zu
- 03TCXHQrdSzRi0V37Ws0+YxzzI3XGuJRs+Clq7Rd+bdl6hcEUHUoRPXvD
- A48mcH6rWPhVSozE5XHh4mzimCo9/Xo946JDcwvlxR4VpmiyBoxhiitgV g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="229281077"
-X-IronPort-AV: E=Sophos;i="5.88,356,1635231600"; d="scan'208";a="229281077"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 11:13:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,356,1635231600"; d="scan'208";a="629394861"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga002.fm.intel.com with SMTP; 09 Feb 2022 11:13:46 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 09 Feb 2022 21:13:46 +0200
-Date: Wed, 9 Feb 2022 21:13:46 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <YgQSaszW0KeFSagi@intel.com>
-References: <20220209113526.7595-1-ville.syrjala@linux.intel.com>
- <164442817744.23774.17631809595829344145@emeril.freedesktop.org>
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
+ [209.85.208.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 085FD10E57C
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 19:22:58 +0000 (UTC)
+Received: by mail-lj1-f181.google.com with SMTP id h18so937346lja.13
+ for <intel-gfx@lists.freedesktop.org>; Wed, 09 Feb 2022 11:22:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=TAb9RMF5rdP3oF08yRzn8MffJjQ5kNb8IB5u5y/hypk=;
+ b=iRYeSBTHbemMrN8mpC0VrQO7Yj4IBkpZGy+xPCDIPZ/SIaLatzC200NR8cxDnWJtDc
+ sTA1vjv9WnCtHKyVW6Ztp4F40tvlNN+kkK+uALqs4Q/V2Qnw2eYN1fr+MRoqdYCaojMf
+ KD4eBMPqcbGei93c5Gyn/X2Ixu2+HnMdiXqzh5PP/yG2GIoq3A1NdzJRZePDCDERVTl8
+ SpqGAK3A13H26WgYf2gcSkJAe9ZyBnGE2uBdTJAFcjA1SE/CBcmUOpIxMlN1YyV9vKM1
+ +VogPCzebBhgpjjp+SyTabo07QtGoFE7BtZqfO8rLRm7dVUTff+oRSrejFYqJnNtFilf
+ s88g==
+X-Gm-Message-State: AOAM531xfmBm3dvmMFy4akgr1uSc19jildAum5rgAzvhfBim5T7wRsov
+ iRuJZ1ivBlR3KE9ob7vX7JSXCsxJnaTbSjrAv+8=
+X-Google-Smtp-Source: ABdhPJw08QD4wUSfZkYC8eoOu9YPXO1KD3DoKCorkCNdm3c9GLfZqlvWEz+RohSDhEAzIwcPChf/Tq1QQHAWfxCujNM=
+X-Received: by 2002:a2e:5352:: with SMTP id t18mr2459533ljd.241.1644434575676; 
+ Wed, 09 Feb 2022 11:22:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <164442817744.23774.17631809595829344145@emeril.freedesktop.org>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/7=5D_drm/i915=3A_Move_vblank_waits_out_f?=
- =?utf-8?q?rom_IPS_code?=
+References: <20220208184208.79303-1-namhyung@kernel.org>
+ <20220209090908.GK23216@worktop.programming.kicks-ass.net>
+ <24fe6a08-5931-8e8d-8d77-459388c4654e@redhat.com>
+ <919214156.50301.1644431371345.JavaMail.zimbra@efficios.com>
+ <69e5f778-8715-4acf-c027-58b6ec4a9e77@redhat.com>
+In-Reply-To: <69e5f778-8715-4acf-c027-58b6ec4a9e77@redhat.com>
+From: Namhyung Kim <namhyung@kernel.org>
+Date: Wed, 9 Feb 2022 11:22:44 -0800
+Message-ID: <CAM9d7ci=N2NVj57k=W0ebqBzfW+ThBqYSrx-CZbgwGcbOSrEGA@mail.gmail.com>
+To: Waiman Long <longman@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [RFC 00/12] locking: Separate lock tracepoints from
+ lockdep/lock_stat (v1)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,58 +57,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: rcu <rcu@vger.kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>,
+ linux-kernel <linux-kernel@vger.kernel.org>, rostedt <rostedt@goodmis.org>,
+ Radoslaw Burny <rburny@google.com>, Byungchul Park <byungchul.park@lge.com>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ intel-gfx@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
+ cgroups <cgroups@vger.kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>,
+ linux-btrfs <linux-btrfs@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 09, 2022 at 05:36:17PM -0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: series starting with [1/7] drm/i915: Move vblank waits out from IPS code
-> URL   : https://patchwork.freedesktop.org/series/99898/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_11207_full -> Patchwork_22221_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_22221_full absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_22221_full, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   
-> 
-> Participating hosts (11 -> 12)
-> ------------------------------
-> 
->   Additional (1): shard-rkl 
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_22221_full:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@kms_plane_cursor@pipe-a-viewport-size-64:
->     - shard-snb:          [PASS][1] -> [FAIL][2]
+Hello,
 
-That looks like a real thing due to the ilk+ wm code being a bit
-mouldy atm. I'll need to fix that first before I can push
-that vblank consolidation patch :/ But on the plus side that has
-given me another idea how to refactor the cxsr disable stuff into
-a slightly nicer shape...
+On Wed, Feb 9, 2022 at 11:02 AM Waiman Long <longman@redhat.com> wrote:
+>
+> On 2/9/22 13:29, Mathieu Desnoyers wrote:
+> > ----- On Feb 9, 2022, at 1:19 PM, Waiman Long longman@redhat.com wrote:
+> >
+> >> On 2/9/22 04:09, Peter Zijlstra wrote:
+> >>> On Tue, Feb 08, 2022 at 10:41:56AM -0800, Namhyung Kim wrote:
+> >>>
+> >>>> Eventually I'm mostly interested in the contended locks only and I
+> >>>> want to reduce the overhead in the fast path.  By moving that, it'd be
+> >>>> easy to track contended locks with timing by using two tracepoints.
+> >>> So why not put in two new tracepoints and call it a day?
+> >>>
+> >>> Why muck about with all that lockdep stuff just to preserve the name
+> >>> (and in the process continue to blow up data structures etc..). This
+> >>> leaves distros in a bind, will they enable this config and provide
+> >>> tracepoints while bloating the data structures and destroying things
+> >>> like lockref (which relies on sizeof(spinlock_t)), or not provide this
+> >>> at all.
+> >>>
+> >>> Yes, the name is convenient, but it's just not worth it IMO. It makes
+> >>> the whole proposition too much of a trade-off.
+> >>>
+> >>> Would it not be possible to reconstruct enough useful information from
+> >>> the lock callsite?
+> >>>
+> >> I second that as I don't want to see the size of a spinlock exceeds 4
+> >> bytes in a production system.
+> >>
+> >> Instead of storing additional information (e.g. lock name) directly into
+> >> the lock itself. Maybe we can store it elsewhere and use the lock
+> >> address as the key to locate it in a hash table. We can certainly extend
+> >> the various lock init functions to do that. It will be trickier for
+> >> statically initialized locks, but we can probably find a way to do that too.
+> > If we go down that route, it would be nice if we can support a few different
+> > use-cases for various tracers out there.
+> >
+> > One use-case (a) requires the ability to query the lock name based on its address as key.
+> > For this a hash table is a good fit. This would allow tracers like ftrace to
+> > output lock names in its human-readable output which is formatted within the kernel.
+> >
+> > Another use-case (b) is to be able to "dump" the lock { name, address } tuples
+> > into the trace stream (we call this statedump events in lttng), and do the
+> > translation from address to name at post-processing. This simply requires
+> > that this information is available for iteration for both the core kernel
+> > and module locks, so the tracer can dump this information on trace start
+> > and module load.
+> >
+> > Use-case (b) is very similar to what is done for the kernel tracepoints. Based
+> > on this, implementing the init code that iterates on those sections and populates
+> > a hash table for use-case (a) should be easy enough.
+>
+> Yes, that are good use cases for this type of functionality. I do need
+> to think about how to do it for statically initialized lock first.
 
--- 
-Ville Syrjälä
-Intel
+Thank you all for the review and good suggestions.
+
+I'm also concerning dynamic allocated locks in a data structure.
+If we keep the info in a hash table, we should delete it when the
+lock is gone.  I'm not sure we have a good place to hook it up all.
+
+Thanks,
+Namhyung
