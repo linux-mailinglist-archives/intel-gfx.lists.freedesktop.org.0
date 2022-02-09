@@ -1,54 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 802AC4AEE70
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 10:51:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1029E4AEECC
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 11:00:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4489010E329;
-	Wed,  9 Feb 2022 09:51:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46CBE10E118;
+	Wed,  9 Feb 2022 10:00:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25E8E10E329
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 09:51:38 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63DED10E329
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 10:00:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644400298; x=1675936298;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=FY91HudJepQvEolhmbZkfjPj9baaitrhKNWMpflKJmA=;
- b=MO3eohHkrque5RAEWnt4VSryQYhD0cfESw4CYQrmA08dKIDgE++gTlkA
- oWRwEfpTkde73ViM2Pls+I7kxtNJJ9VMH1kc6SXmKG8LvkLKEs7v6L8+8
- Ez7mWKTNPeZg9D4nyjZZPAG2UNuahGmQRI2lKYjptjUHSYwTn2X7k2b8f
- jyTL5nC3bXNXm+FEaqXssfsnWj+wAcqgtZ5GucZKrar4NaKM/0oXa/Yad
- HxQUqXk6ruWY85tTSAHRsafzQHBSp6f6lyA2KAyeYt9OIgWKkwybZ+O76
- tAirNi/MzBr5JZ8gBRtrkc/ZdSI5iCOWKXg7XA/fKpMGoSh4lhW6wveul A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="312464657"
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="312464657"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 01:51:37 -0800
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="633167505"
+ t=1644400805; x=1675936805;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=QSBqC+Lw21VQzGGpEoJA2BZhSHUi04U/Eow56AUAGFY=;
+ b=RBC6P4pymNzxUPZpM9XF13UV7C1Sw9SYnyunWT4BVx1PCC1Ro/dn24+E
+ 6E1mcsdFoTNsQt+WIJSUe5bm8VIHuRXHuuuUv4zl06py91Trtx1PFRzEY
+ vXSOaUExGaXqloHUpTQJTCqezdkFLYW2LyfLldgwi6ba7m5GPFtJ/xqq/
+ HqKzgjLXcJPEBbuDcmMOKr8GbdYoFlGM5UlFEXpqi+/6RmXqUGcuE1yx7
+ 3bUowZI7Cfb/WOvBNoJYXhpSFkIngT8jzTzrP5OR41/7rbtObN756g4Od
+ 2sddbRD+iRZErxpcPAQ3BuG4KAM7d2KsWjzR9l/9+gwy/N3lU9JKW7IJL w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="249377375"
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="249377375"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 02:00:04 -0800
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="485183899"
 Received: from rcallina-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.252.18.41])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 01:51:35 -0800
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 02:00:03 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <33f30a2b-a104-b066-9b81-a682d547aa7d@linux.intel.com>
+In-Reply-To: <11b50bb3-1183-e9db-29e2-c7f377a8632e@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1644339170.git.jani.nikula@intel.com>
- <28c3c0c0ae47e4bea06ccc90ebc0b7266aa21fde.1644339170.git.jani.nikula@intel.com>
- <33f30a2b-a104-b066-9b81-a682d547aa7d@linux.intel.com>
-Date: Wed, 09 Feb 2022 11:51:33 +0200
-Message-ID: <87mtj0pdui.fsf@intel.com>
+References: <20220208171651.3085901-1-jani.nikula@intel.com>
+ <11b50bb3-1183-e9db-29e2-c7f377a8632e@linux.intel.com>
+Date: Wed, 09 Feb 2022 12:00:00 +0200
+Message-ID: <87k0e4pdgf.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v4 1/2] drm/i915: split out intel_vtd.[ch]
- from i915_drv.h
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: move intel_hws_csb_write_index()
+ out of i915_drv.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,488 +62,124 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, 09 Feb 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> On 08/02/2022 16:54, Jani Nikula wrote:
->> Perhaps a bit contrived, but we need to reduce the size of i915_drv.h
->> from all the accumulated cruft.
->>=20
->> v4: Rebase
->>=20
->> v3: Rebase
->>=20
->> v2: Turns out asm/hypervisor.h is not self-contained
->>=20
->> Cc: Daniel Vetter <daniel@ffwll.ch>
->> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> On 08/02/2022 17:16, Jani Nikula wrote:
+>> Underscore prefix the index macros, and place
+>> INTEL_HWS_CSB_WRITE_INDEX() as a macro next to them, to declutter
+>> i915_drv.h.
+>> 
 >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/Makefile                |  1 +
->>   drivers/gpu/drm/i915/display/intel_bw.c      |  1 +
->>   drivers/gpu/drm/i915/display/intel_display.c |  5 +-
->>   drivers/gpu/drm/i915/display/intel_fb_pin.c  |  1 +
->>   drivers/gpu/drm/i915/display/intel_fbc.c     |  1 +
->>   drivers/gpu/drm/i915/gem/i915_gem_shrinker.c |  1 +
->>   drivers/gpu/drm/i915/gem/i915_gem_stolen.c   |  1 +
->>   drivers/gpu/drm/i915/gem/i915_gemfs.c        |  1 +
->>   drivers/gpu/drm/i915/gt/intel_ggtt.c         |  8 +--
->>   drivers/gpu/drm/i915/gt/intel_gtt.c          |  1 +
->>   drivers/gpu/drm/i915/i915_debugfs.c          |  1 +
->>   drivers/gpu/drm/i915/i915_driver.c           |  7 +--
->>   drivers/gpu/drm/i915/i915_drv.h              | 37 --------------
->>   drivers/gpu/drm/i915/i915_gpu_error.c        |  1 +
->>   drivers/gpu/drm/i915/intel_device_info.c     |  3 +-
->>   drivers/gpu/drm/i915/intel_pch.c             |  1 +
->>   drivers/gpu/drm/i915/intel_pm.c              |  1 +
->>   drivers/gpu/drm/i915/intel_vtd.c             | 14 ++++++
->>   drivers/gpu/drm/i915/intel_vtd.h             | 51 ++++++++++++++++++++
->>   19 files changed, 87 insertions(+), 50 deletions(-)
->>   create mode 100644 drivers/gpu/drm/i915/intel_vtd.c
->>   create mode 100644 drivers/gpu/drm/i915/intel_vtd.h
->>=20
->> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefi=
-le
->> index a26e6736bebb..d79c06b362f1 100644
->> --- a/drivers/gpu/drm/i915/Makefile
->> +++ b/drivers/gpu/drm/i915/Makefile
->> @@ -55,6 +55,7 @@ i915-y +=3D i915_driver.o \
->>   	  intel_sbi.o \
->>   	  intel_step.o \
->>   	  intel_uncore.o \
->> +	  intel_vtd.o \
->>   	  intel_wakeref.o \
->>   	  vlv_sideband.o \
->>   	  vlv_suspend.o
->> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i=
-915/display/intel_bw.c
->> index 5dce3cf0ed12..edcf77d3694d 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bw.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
->> @@ -12,6 +12,7 @@
->>   #include "intel_display_types.h"
->>   #include "intel_pcode.h"
->>   #include "intel_pm.h"
->> +#include "intel_vtd.h"
->>=20=20=20
->>   /* Parameters for Qclk Geyserville (QGV) */
->>   struct intel_qgv_point {
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/=
-drm/i915/display/intel_display.c
->> index 7f512f9e9e5c..2af5eca2fe12 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -75,6 +75,7 @@
->>   #include "g4x_dp.h"
->>   #include "g4x_hdmi.h"
->>   #include "i915_drv.h"
->> +#include "i9xx_plane.h"
->>   #include "icl_dsi.h"
->>   #include "intel_acpi.h"
->>   #include "intel_atomic.h"
->> @@ -109,12 +110,12 @@
->>   #include "intel_sprite.h"
->>   #include "intel_tc.h"
->>   #include "intel_vga.h"
->> -#include "i9xx_plane.h"
->> +#include "intel_vtd.h"
->>   #include "skl_scaler.h"
->>   #include "skl_universal_plane.h"
->> +#include "vlv_dsi.h"
->>   #include "vlv_dsi_pll.h"
->>   #include "vlv_sideband.h"
->> -#include "vlv_dsi.h"
->>=20=20=20
->>   static void intel_set_transcoder_timings(const struct intel_crtc_state=
- *crtc_state);
->>   static void intel_set_pipe_src_size(const struct intel_crtc_state *crt=
-c_state);
->> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/d=
-rm/i915/display/intel_fb_pin.c
->> index c4b3d76341f3..05339b3bc39b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
->> @@ -14,6 +14,7 @@
->>   #include "intel_dpt.h"
->>   #include "intel_fb.h"
->>   #include "intel_fb_pin.h"
->> +#include "intel_vtd.h"
->>=20=20=20
->>   static struct i915_vma *
->>   intel_pin_fb_obj_dpt(struct drm_framebuffer *fb,
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/=
-i915/display/intel_fbc.c
->> index bcdffe62f3cb..4c5a5aed7ca7 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
->> @@ -48,6 +48,7 @@
->>   #include "intel_display_types.h"
->>   #include "intel_fbc.h"
->>   #include "intel_frontbuffer.h"
->> +#include "intel_vtd.h"
->>=20=20=20
->>   #define for_each_fbc_id(__dev_priv, __fbc_id) \
->>   	for ((__fbc_id) =3D INTEL_FBC_A; (__fbc_id) < I915_MAX_FBCS; (__fbc_i=
-d)++) \
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/=
-drm/i915/gem/i915_gem_shrinker.c
->> index 6a6ff98a8746..0fb0921c81ab 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
->> @@ -16,6 +16,7 @@
->>   #include "gt/intel_gt_requests.h"
->>=20=20=20
->>   #include "i915_trace.h"
->> +#include "intel_vtd.h"
->>=20=20=20
->>   static bool swap_available(void)
->>   {
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/dr=
-m/i915/gem/i915_gem_stolen.c
->> index 1de73a644965..361378846127 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
->> @@ -16,6 +16,7 @@
->>   #include "i915_gem_stolen.h"
->>   #include "i915_reg.h"
->>   #include "i915_vgpu.h"
->> +#include "intel_vtd.h"
->>=20=20=20
->>   /*
->>    * The BIOS typically reserves some of the system's memory for the exc=
-lusive
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c b/drivers/gpu/drm/i91=
-5/gem/i915_gemfs.c
->> index 7271fbf813fa..7eb4b5ff9147 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gemfs.c
->> @@ -9,6 +9,7 @@
->>=20=20=20
->>   #include "i915_drv.h"
->>   #include "i915_gemfs.h"
->> +#include "intel_vtd.h"
->>=20=20=20
->>   int i915_gemfs_init(struct drm_i915_private *i915)
->>   {
->> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915=
-/gt/intel_ggtt.c
->> index 8850d4e0f9cc..e49d8d17095a 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
->> @@ -14,14 +14,14 @@
->>=20=20=20
->>   #include "gem/i915_gem_lmem.h"
->>=20=20=20
->> -#include "intel_gt.h"
->> -#include "intel_gt_regs.h"
->> +#include "gen8_ppgtt.h"
->>   #include "i915_drv.h"
->>   #include "i915_scatterlist.h"
->>   #include "i915_vgpu.h"
->> -
->> +#include "intel_gt.h"
->> +#include "intel_gt_regs.h"
->>   #include "intel_gtt.h"
->> -#include "gen8_ppgtt.h"
->> +#include "intel_vtd.h"
->>=20=20=20
->>   static void i915_ggtt_color_adjust(const struct drm_mm_node *node,
->>   				   unsigned long color,
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/=
-gt/intel_gtt.c
->> index 0d6bbc8c57f2..524f3c3eb027 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
->> @@ -15,6 +15,7 @@
->>   #include "intel_gt.h"
->>   #include "intel_gt_regs.h"
->>   #include "intel_gtt.h"
->> +#include "intel_vtd.h"
->>=20=20=20
->>   struct drm_i915_gem_object *alloc_pt_lmem(struct i915_address_space *v=
-m, int sz)
->>   {
->> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/=
-i915_debugfs.c
->> index ca52ee0742ce..001958238cfe 100644
->> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->> @@ -50,6 +50,7 @@
->>   #include "i915_irq.h"
->>   #include "i915_scheduler.h"
->>   #include "intel_pm.h"
->> +#include "intel_vtd.h"
->>=20=20=20
->>   static inline struct drm_i915_private *node_to_i915(struct drm_info_no=
-de *node)
->>   {
->> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i=
-915_driver.c
->> index 3d41f532a5d6..32a3265a177a 100644
->> --- a/drivers/gpu/drm/i915/i915_driver.c
->> +++ b/drivers/gpu/drm/i915/i915_driver.c
->> @@ -92,6 +92,7 @@
->>   #include "intel_pcode.h"
->>   #include "intel_pm.h"
->>   #include "intel_region_ttm.h"
->> +#include "intel_vtd.h"
->>   #include "vlv_suspend.h"
->>=20=20=20
->>   static const struct drm_driver i915_drm_driver;
->> @@ -746,12 +747,6 @@ static void i915_driver_unregister(struct drm_i915_=
-private *dev_priv)
->>   	i915_gem_driver_unregister(dev_priv);
->>   }
->>=20=20=20
->> -void
->> -i915_print_iommu_status(struct drm_i915_private *i915, struct drm_print=
-er *p)
->> -{
->> -	drm_printf(p, "iommu: %s\n", enableddisabled(intel_vtd_active(i915)));
->> -}
->> -
->>   static void i915_welcome_messages(struct drm_i915_private *dev_priv)
->>   {
->>   	if (drm_debug_enabled(DRM_UT_DRIVER)) {
->> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915=
-_drv.h
->> index 8c1706fd81f9..b82528ebe70a 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.h
->> +++ b/drivers/gpu/drm/i915/i915_drv.h
->> @@ -33,14 +33,11 @@
->>   #include <uapi/drm/i915_drm.h>
->>   #include <uapi/drm/drm_fourcc.h>
->>=20=20=20
->> -#include <asm/hypervisor.h>
->> -
->>   #include <linux/io-mapping.h>
->>   #include <linux/i2c.h>
->>   #include <linux/i2c-algo-bit.h>
->>   #include <linux/backlight.h>
->>   #include <linux/hash.h>
->> -#include <linux/intel-iommu.h>
->>   #include <linux/kref.h>
->>   #include <linux/mm_types.h>
->>   #include <linux/perf_event.h>
->> @@ -1562,43 +1559,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i91=
-5,
->>   #define HAS_GUC_DEPRIVILEGE(dev_priv) \
->>   	(INTEL_INFO(dev_priv)->has_guc_deprivilege)
->>=20=20=20
->> -static inline bool run_as_guest(void)
->> -{
->> -	return !hypervisor_is_type(X86_HYPER_NATIVE);
->> -}
->> -
->>   #define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) =
-|| \
->>   					      IS_ALDERLAKE_S(dev_priv))
->>=20=20=20
->> -static inline bool intel_vtd_active(struct drm_i915_private *i915)
->> -{
->> -	if (device_iommu_mapped(i915->drm.dev))
->> -		return true;
->> -
->> -	/* Running as a guest, we assume the host is enforcing VT'd */
->> -	return run_as_guest();
->> -}
->> -
->> -void
->> -i915_print_iommu_status(struct drm_i915_private *i915, struct drm_print=
-er *p);
->> -
->> -static inline bool intel_scanout_needs_vtd_wa(struct drm_i915_private *=
-dev_priv)
->> -{
->> -	return DISPLAY_VER(dev_priv) >=3D 6 && intel_vtd_active(dev_priv);
->> -}
->> -
->> -static inline bool
->> -intel_ggtt_update_needs_vtd_wa(struct drm_i915_private *i915)
->> -{
->> -	return IS_BROXTON(i915) && intel_vtd_active(i915);
->> -}
->> -
->> -static inline bool
->> -intel_vm_no_concurrent_access_wa(struct drm_i915_private *i915)
->> -{
->> -	return IS_CHERRYVIEW(i915) || intel_ggtt_update_needs_vtd_wa(i915);
->> -}
->> -
->>   /* i915_gem.c */
->>   void i915_gem_init_early(struct drm_i915_private *dev_priv);
->>   void i915_gem_cleanup_early(struct drm_i915_private *dev_priv);
->> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i91=
-5/i915_gpu_error.c
->> index 127ff56c8ce6..ccb6d62a51df 100644
->> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
->> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
->> @@ -50,6 +50,7 @@
->>   #include "i915_gpu_error.h"
->>   #include "i915_memcpy.h"
->>   #include "i915_scatterlist.h"
->> +#include "intel_vtd.h"
->>=20=20=20
->>   #define ALLOW_FAIL (__GFP_KSWAPD_RECLAIM | __GFP_RETRY_MAYFAIL | __GFP=
-_NOWARN)
->>   #define ATOMIC_MAYFAIL (GFP_ATOMIC | __GFP_NOWARN)
->> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/=
-i915/intel_device_info.c
->> index 94da5aa37391..13abae12cf10 100644
->> --- a/drivers/gpu/drm/i915/intel_device_info.c
->> +++ b/drivers/gpu/drm/i915/intel_device_info.c
->> @@ -27,8 +27,9 @@
->>=20=20=20
->>   #include "display/intel_cdclk.h"
->>   #include "display/intel_de.h"
->> -#include "intel_device_info.h"
->>   #include "i915_drv.h"
->> +#include "intel_device_info.h"
->> +#include "intel_vtd.h"
->>=20=20=20
->>   #define PLATFORM_NAME(x) [INTEL_##x] =3D #x
->>   static const char * const platform_names[] =3D {
->> diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/int=
-el_pch.c
->> index da8f82c2342f..4d8a98dbf465 100644
->> --- a/drivers/gpu/drm/i915/intel_pch.c
->> +++ b/drivers/gpu/drm/i915/intel_pch.c
->> @@ -5,6 +5,7 @@
->>=20=20=20
->>   #include "i915_drv.h"
->>   #include "intel_pch.h"
->> +#include "intel_vtd.h"
->>=20=20=20
->>   /* Map PCH device id to PCH type, or PCH_NONE if unknown. */
->>   static enum intel_pch
->> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/inte=
-l_pm.c
->> index 23d4bb011fc8..23f0e2473e27 100644
->> --- a/drivers/gpu/drm/i915/intel_pm.c
->> +++ b/drivers/gpu/drm/i915/intel_pm.c
->> @@ -52,6 +52,7 @@
->>   #include "i915_irq.h"
->>   #include "intel_pcode.h"
->>   #include "intel_pm.h"
->> +#include "intel_vtd.h"
->>   #include "vlv_sideband.h"
->>   #include "../../../platform/x86/intel_ips.h"
->>=20=20=20
->> diff --git a/drivers/gpu/drm/i915/intel_vtd.c b/drivers/gpu/drm/i915/int=
-el_vtd.c
->> new file mode 100644
->> index 000000000000..e52432141081
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/intel_vtd.c
->> @@ -0,0 +1,14 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright =C2=A9 2022 Intel Corporation
->> + */
->> +
->> +#include <drm/drm_print.h>
->> +
->> +#include "intel_vtd.h"
->> +
->> +void
->> +i915_print_iommu_status(struct drm_i915_private *i915, struct drm_print=
-er *p)
->> +{
->> +	drm_printf(p, "iommu: %s\n", enableddisabled(intel_vtd_active(i915)));
->> +}
->> diff --git a/drivers/gpu/drm/i915/intel_vtd.h b/drivers/gpu/drm/i915/int=
-el_vtd.h
->> new file mode 100644
->> index 000000000000..421bf8ca0b36
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/intel_vtd.h
->> @@ -0,0 +1,51 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright =C2=A9 2022 Intel Corporation
->> + */
->> +
->> +#ifndef __INTEL_VTD_H__
->> +#define __INTEL_VTD_H__
->> +
->> +#include <linux/device.h>
->> +#include <linux/types.h>
->> +#include <asm/hypervisor.h>
->> +
->> +#include "i915_drv.h"
->> +
->> +struct drm_printer;
->> +
->> +static inline bool run_as_guest(void)
->> +{
->> +	return !hypervisor_is_type(X86_HYPER_NATIVE);
->> +}
->> +
->> +static inline bool intel_vtd_active(struct drm_i915_private *i915)
->> +{
->> +	if (device_iommu_mapped(i915->drm.dev))
->> +		return true;
->> +
->> +	/* Running as a guest, we assume the host is enforcing VT'd */
->> +	return run_as_guest();
->> +}
+>>   drivers/gpu/drm/i915/gt/intel_engine.h               | 6 ++++--
+>>   drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 2 +-
+>>   drivers/gpu/drm/i915/gvt/execlist.c                  | 2 +-
+>>   drivers/gpu/drm/i915/i915_drv.h                      | 8 --------
+>>   4 files changed, 6 insertions(+), 12 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+>> index 0e353d8c2bc8..faf26ed37d01 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+>> @@ -180,8 +180,10 @@ intel_write_status_page(struct intel_engine_cs *engine, int reg, u32 value)
+>>   #define I915_GEM_HWS_SCRATCH		0x80
+>>   
+>>   #define I915_HWS_CSB_BUF0_INDEX		0x10
+>> -#define I915_HWS_CSB_WRITE_INDEX	0x1f
+>> -#define ICL_HWS_CSB_WRITE_INDEX		0x2f
+>> +#define _I915_HWS_CSB_WRITE_INDEX	0x1f
+>> +#define _ICL_HWS_CSB_WRITE_INDEX		0x2f
 >
-> How about make this one take struct device and then intel_vtd.h does not=
-=20
-> have to include i915_drv.h back in? Consider also..
->
->> +
->> +static inline bool intel_scanout_needs_vtd_wa(struct drm_i915_private *=
-i915)
->> +{
->> +	return GRAPHICS_VER(i915) >=3D 6 && intel_vtd_active(i915);
->> +}
->> +
->> +static inline bool
->> +intel_ggtt_update_needs_vtd_wa(struct drm_i915_private *i915)
->> +{
->> +	return IS_BROXTON(i915) && intel_vtd_active(i915);
->> +}
->> +
->> +static inline bool
->> +intel_vm_no_concurrent_access_wa(struct drm_i915_private *i915)
->> +{
->> +	return IS_CHERRYVIEW(i915) || intel_ggtt_update_needs_vtd_wa(i915);
->> +}
->> +
->> +void
->> +i915_print_iommu_status(struct drm_i915_private *i915, struct drm_print=
-er *p);
->
-> .. that I think all the rest feel a bit out of place in intel_vtd.[hc]=20
-> to me. They all take i915 as argument and answer the question on whether=
-=20
-> i915 needs something, depending on the state of the iommu. Especially=20
-> when you add the intel_vtd_ prefix to them in the next patch it gets=20
-> extra weird for me.
->
-> In my mind, in the ideal world, they would live somewhere else and=20
-> include intel_vtd.h so they can legimately answer the question at hand.=20
-> First somewhere in display, 2nd and 3rd probably in intel_gtt.h, last in=
-=20
-> i915_driver. How does that sound to you?
+> I don't quite get why would these two be the only ones which need 
+> underscore prefix?
 
-I'm fine with that. Like I start the commit message, "Perhaps a bit
-contrived". All I want is to axe cruft out of i915_drv.h.
+The others are used directly, these two should only be used via
+INTEL_HWS_CSB_WRITE_INDEX(), like they are. That's the hint with the
+underscores. Matches what's done in i915_reg.h for example for register
+instances and choosing the right register instance.
 
-So we'd still have intel_vtd_run_as_guest() and intel_vtd_active() in
-intel_vtd.h?
+>
+>> +#define INTEL_HWS_CSB_WRITE_INDEX(__i915) \
+>> +	(GRAPHICS_VER(__i915) >= 11 ? _ICL_HWS_CSB_WRITE_INDEX : _I915_HWS_CSB_WRITE_INDEX)
+>
+> Secondly, on the point of the best new home for it, it is better than 
+> i915_drv.h that is for sure. But is it the best I am not sure.
+
+From my POV this one's pretty clear. The index macros are here, and this
+is a wrapper to choose the correct index macro. They should be together.
+
+As to moving all of them somewhere in gt/gem, I think it's for follow-up
+(by someone else).
+
 
 BR,
 Jani.
 
-
-
+>
+> CSB in general seems to have identity crisis with some bits being in 
+> intel_engine.h, but some also in intel_lrc.h. Neither seems completely 
+> right to me. It should all really be in intel_execlists_submission.h. 
+> Unless someone would then make an argument the latter is about the i915 
+> execlists scheduler backend and shouldn't strictly contain execlists 
+> hardware definitions like the CSB layout. Still, at the moment for me it 
+> feels like a better place than either intel_engine.h or intel_lrc.h.
+>
+> And probably all three execlists_ prefix functions from intel_engine.h 
+> should go to intel_execlists_submission.h as well.
+>
+> We can leave the ramblings for later and for now just explain why 
+> underscores please, depending on which r-b or not.
 >
 > Regards,
 >
 > Tvrtko
 >
->> +
->> +#endif /* __INTEL_VTD_H__ */
+>>   
+>>   void intel_engine_stop(struct intel_engine_cs *engine);
+>>   void intel_engine_cleanup(struct intel_engine_cs *engine);
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> index 9bb7c863172f..961d795220a3 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> @@ -3503,7 +3503,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
+>>   		(u64 *)&engine->status_page.addr[I915_HWS_CSB_BUF0_INDEX];
+>>   
+>>   	execlists->csb_write =
+>> -		&engine->status_page.addr[intel_hws_csb_write_index(i915)];
+>> +		&engine->status_page.addr[INTEL_HWS_CSB_WRITE_INDEX(i915)];
+>>   
+>>   	if (GRAPHICS_VER(i915) < 11)
+>>   		execlists->csb_size = GEN8_CSB_ENTRIES;
+>> diff --git a/drivers/gpu/drm/i915/gvt/execlist.c b/drivers/gpu/drm/i915/gvt/execlist.c
+>> index c8dcda6d4f0d..66d354c4195b 100644
+>> --- a/drivers/gpu/drm/i915/gvt/execlist.c
+>> +++ b/drivers/gpu/drm/i915/gvt/execlist.c
+>> @@ -163,7 +163,7 @@ static void emulate_csb_update(struct intel_vgpu_execlist *execlist,
+>>   					       hwsp_gpa + I915_HWS_CSB_BUF0_INDEX * 4 + write_pointer * 8,
+>>   					       status, 8);
+>>   		intel_gvt_hypervisor_write_gpa(vgpu,
+>> -					       hwsp_gpa + intel_hws_csb_write_index(execlist->engine->i915) * 4,
+>> +					       hwsp_gpa + INTEL_HWS_CSB_WRITE_INDEX(execlist->engine->i915) * 4,
+>>   					       &write_pointer, 4);
+>>   	}
+>>   
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>> index 8c1706fd81f9..05656cc738d1 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> @@ -1739,14 +1739,6 @@ mkwrite_device_info(struct drm_i915_private *dev_priv)
+>>   	return (struct intel_device_info *)INTEL_INFO(dev_priv);
+>>   }
+>>   
+>> -static inline int intel_hws_csb_write_index(struct drm_i915_private *i915)
+>> -{
+>> -	if (GRAPHICS_VER(i915) >= 11)
+>> -		return ICL_HWS_CSB_WRITE_INDEX;
+>> -	else
+>> -		return I915_HWS_CSB_WRITE_INDEX;
+>> -}
+>> -
+>>   static inline enum i915_map_type
+>>   i915_coherent_map_type(struct drm_i915_private *i915,
+>>   		       struct drm_i915_gem_object *obj, bool always_coherent)
 
---=20
+-- 
 Jani Nikula, Intel Open Source Graphics Center
