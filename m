@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C12344AF315
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 14:41:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3CF14AF33F
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 14:49:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C5D310E130;
-	Wed,  9 Feb 2022 13:41:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06BEE10E478;
+	Wed,  9 Feb 2022 13:49:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82E0B10E130
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 13:41:08 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 400C010E478
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 13:49:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644414068; x=1675950068;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=Rxkkiv/CrCTboTJ0rD4LJG74Fp/WfQIiRCUqoWpxIxY=;
- b=QrbYb05v2BH71Zn6YeYnldULwNjICVGcnJn+iuafyLshjdmSF4DemzX7
- h3Xb0mURbnYJqTy9xcYsLivZ85avsFEFHmGTpEmxYtYFrIhueIGEcrBc8
- Za8icXfQykEomVosXA1UF2D4CU6/NVsPCy6BL83yjKBbOTUII7wvXoD1s
- 9V34nXBX6TUUU3hqSN5FaMCnSimn+fg8J7zbZCS8Ny+TBKaoWqmpJW1HH
- VYqmWh4R/4/qwrwA1XBL8H+v8zMPEJBqme9KQfhIT1wK68cQQHlI5cL53
- Y/2RatFN0lildYK33Q80MEWpPrHmPq8QoYQnQcas1m6jaNDwF8Z67/7/i g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="273740063"
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="273740063"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 05:41:06 -0800
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="525989104"
+ t=1644414563; x=1675950563;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=xB0C6L4R4DIOk4u7CJIneOR/rhpe5z/8zU+Ja7drdaU=;
+ b=L2U5V4euCTphCC3qg2OpQLkI+D03dV0zdE6NYwKseA/XsIg6gzyu7J6d
+ 6Vd0yRRhyIPE4ETC6WuwK6r54CnCeRslKEO2r6euoOk3Tw/6if2K8GVFx
+ bEkzek5l5otMyU66Id9U23vx1ukjeLiDAD75O6K5CClDg5OE5r3rsJ54O
+ 5StD67Oq3uQDfLWmMTCnP6CcWv/P57alh50huD3irD8ZSFujZI3QwnNye
+ dgCUwT379pme3pOZS9bq3XVtHT/qMtw0UmJfUnowZJ/D2GEvPWOUx+yo3
+ zqUCURvp9+T5+HTT1vnxW9wgBJINrLkceqcQgCujbZtDIvRhv3Mj6SJZ+ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="249154262"
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="249154262"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 05:49:08 -0800
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="629277063"
 Received: from rcallina-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.252.18.41])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 05:41:04 -0800
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 05:49:04 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220209113526.7595-6-ville.syrjala@linux.intel.com>
+To: Namhyung Kim <namhyung@kernel.org>
+In-Reply-To: <CAM9d7ci0By5zioo+52+14RuFrTqZfzbupJuP-908HhYB2Ovc9A@mail.gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220209113526.7595-1-ville.syrjala@linux.intel.com>
- <20220209113526.7595-6-ville.syrjala@linux.intel.com>
-Date: Wed, 09 Feb 2022 15:41:02 +0200
-Message-ID: <87leyknonl.fsf@intel.com>
+References: <20220208184208.79303-1-namhyung@kernel.org>
+ <20220208184208.79303-6-namhyung@kernel.org> <87y22lp4xx.fsf@intel.com>
+ <CAM9d7ci0By5zioo+52+14RuFrTqZfzbupJuP-908HhYB2Ovc9A@mail.gmail.com>
+Date: Wed, 09 Feb 2022 15:49:01 +0200
+Message-ID: <87iltonoaa.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915: Fix IPS disable in
- intel_plane_disable_noatomic()
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 05/12] drm/i915: Protect lockdep functions
+ with #ifdef
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,54 +59,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: paulmck@kernel.org, intel-gfx@lists.freedesktop.org,
+ Peter Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>,
+ LKML <linux-kernel@vger.kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
+ Radoslaw Burny <rburny@google.com>, Byungchul Park <byungchul.park@lge.com>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Waiman Long <longman@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 09 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Tue, 08 Feb 2022, Namhyung Kim <namhyung@kernel.org> wrote:
+> Hello,
 >
-> IPS must be disabled prior to disabling the last plane (excluding
-> the cursor). Make the code do that instead of assuming the primary
-> plane would be the last one. This is probably 100% theoretical
-> as the BIOS should never light up the other planes anyway. But
-> no harm in making the code totally consistent.
+> On Tue, Feb 8, 2022 at 10:51 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>>
+>> On Tue, 08 Feb 2022, Namhyung Kim <namhyung@kernel.org> wrote:
+>> > With upcoming lock tracepoints config, it'd define some of lockdep
+>> > functions without enabling CONFIG_LOCKDEP actually.  The existing code
+>> > assumes those functions will be removed by the preprocessor but it's
+>> > not the case anymore.  Let's protect the code with #ifdef's explicitly.
+>>
+>> I don't understand why you can't keep the no-op stubs for
+>> CONFIG_LOCKDEP=n.
 >
-> Also let's update the ips_enabled flag in the crtc state afterwards
-> so that the first atomic commit has accurate information about
-> the state of IPS.
+> Because I want to use the lockdep annotation for other purposes.
+> But the workqueue lockdep_map was defined under LOCKDEP
+> only.  Please see the description in the cover letter.
 >
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> https://lore.kernel.org/all/20220208184208.79303-1-namhyung@kernel.org/
 
-I admit, didn't have the time to dig into the details here now, so let's
-just say, seems reasonable,
+So lockdep_init_map() might still be there and build just fine for
+CONFIG_LOCKDEP=n, but now we're actually required to wrap all call sites
+in #ifdefs depending on the purpose? I'm not convinced yet.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+BR,
+Jani.
 
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index cdfee4ba1166..401a339973bf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -753,9 +753,11 @@ void intel_plane_disable_noatomic(struct intel_crtc =
-*crtc,
->  	crtc_state->data_rate[plane->id] =3D 0;
->  	crtc_state->min_cdclk[plane->id] =3D 0;
->=20=20
-> -	if (plane->id =3D=3D PLANE_PRIMARY &&
-> -	    hsw_ips_disable(crtc_state))
-> +	if ((crtc_state->active_planes & ~BIT(PLANE_CURSOR)) =3D=3D 0 &&
-> +	    hsw_ips_disable(crtc_state)) {
-> +		crtc_state->ips_enabled =3D false;
->  		intel_crtc_wait_for_next_vblank(crtc);
-> +	}
->=20=20
->  	/*
->  	 * Vblank time updates from the shadow to live plane control register
-
---=20
+-- 
 Jani Nikula, Intel Open Source Graphics Center
