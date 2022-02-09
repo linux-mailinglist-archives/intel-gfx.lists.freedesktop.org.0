@@ -1,51 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D24E4AED8E
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 10:05:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E93074AED9E
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 10:09:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B421E10E679;
-	Wed,  9 Feb 2022 09:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9619910E657;
+	Wed,  9 Feb 2022 09:09:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBCCC10E672;
- Wed,  9 Feb 2022 09:05:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644397504; x=1675933504;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=k4hLpxCP5zG4YqnamMN0O5VXPbh5iT9Em3+ShBxtEzQ=;
- b=SVon6oegi7wCjyaGgsL4YUxyKUPTo9RscT65P3T8K9P8DUaYCN8Z1nA4
- z8xnnCHsM4x7PzbEBuYxlUCyGenyDIB22AMExxHlv4UZNqNEmXCFGXJcW
- eGq6MC16k+JAM6LRMkVgx9DRzLjzPCqRyKx/iB/qWR6LEznxE3s/wXhUl
- Lm6usHKjDSwGSV2AOR9UuVbtvxVy08xH2u9JI9ygjQnj85YyVBQuONLws
- QsrKByz3mlSbt8H3pp5NmHyf2XV3BG0R3X5bg8EMh3Jgn106sOjMWBPkg
- BXuqjlYC6j6lNw3zjGzE58NSX8vYoplcS4guALb0AyH4aXTgWOwEfotMi Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="273695793"
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="273695793"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 01:05:04 -0800
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="485168645"
-Received: from rcallina-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.18.41])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 01:04:59 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Christoph Hellwig <hch@lst.de>
-In-Reply-To: <20220209072805.GA9050@lst.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220208111151.13115-1-zhi.a.wang@intel.com>
- <871r0dqtjf.fsf@intel.com> <20220209072805.GA9050@lst.de>
-Date: Wed, 09 Feb 2022 11:04:57 +0200
-Message-ID: <87v8xopg06.fsf@intel.com>
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A903310E657
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 09:09:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=kNBxEECZ8nYVRQBlRi4s4bPsYk+6wGvc+UHQLe+LfQY=; b=FuT01ILcnQE1hlwV0N6QoRzje7
+ 8leIgTUsGHbhfy7cNPjN8ZrjHcSG0wypOKtgyb8t04GcdHB5bH2yXofjaCs8wpl1CIqqOkec3R9OV
+ nApYAVlzrV8ZfypyHa4mIELkzUQhBcEibVe6rjqueMf/NegoUT6rvZNNsoc4Uw2YqsFP9t1UTNqIf
+ jNC72U1XwX8JGYxfA0nQlHqSjCcVfzkGjPBeAtSDlLt6otVC5r0jjKiMiAMeC9xmjVZ1sMuKSSBys
+ rCFVdCTkXxb8dN7UTtpmiYJWVdWQaduq6Qanmd7JpqkCzBgIpJKnbvw5fQS2u7k6VjPF4p+ScGV/Y
+ cDMFRHqA==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100]
+ helo=worktop.programming.kicks-ass.net)
+ by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nHiyL-007ELN-4I; Wed, 09 Feb 2022 09:09:09 +0000
+Received: by worktop.programming.kicks-ass.net (Postfix, from userid 1000)
+ id B7873986226; Wed,  9 Feb 2022 10:09:08 +0100 (CET)
+Date: Wed, 9 Feb 2022 10:09:08 +0100
+From: Peter Zijlstra <peterz@infradead.org>
+To: Namhyung Kim <namhyung@kernel.org>
+Message-ID: <20220209090908.GK23216@worktop.programming.kicks-ass.net>
+References: <20220208184208.79303-1-namhyung@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v6 1/3] i915/gvt: Introduce the mmio table
- to support VFIO new mdev API
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220208184208.79303-1-namhyung@kernel.org>
+Subject: Re: [Intel-gfx] [RFC 00/12] locking: Separate lock tracepoints from
+ lockdep/lock_stat (v1)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,54 +52,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhi Wang <zhi.wang.linux@gmail.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Terrence Xu <terrence.xu@intel.com>, jgg@nvidia.com,
- intel-gvt-dev@lists.freedesktop.org, hch@lst.de
+Cc: rcu@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Boqun Feng <boqun.feng@gmail.com>, LKML <linux-kernel@vger.kernel.org>,
+ Steven Rostedt <rostedt@goodmis.org>, Radoslaw Burny <rburny@google.com>,
+ Byungchul Park <byungchul.park@lge.com>,
+ "Paul E. McKenney" <paul.mckenney@linaro.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, cgroups@vger.kernel.org,
+ Tejun Heo <tj@kernel.org>, Waiman Long <longman@redhat.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Will Deacon <will@kernel.org>,
+ Ingo Molnar <mingo@kernel.org>, linux-btrfs@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 09 Feb 2022, Christoph Hellwig <hch@lst.de> wrote:
-> On Tue, Feb 08, 2022 at 05:15:00PM +0200, Jani Nikula wrote:
->> >  #ifdef CONFIG_DRM_I915_GVT
->> > +
->> > +#define D_BDW   (1 << 0)
->> > +#define D_SKL	(1 << 1)
->> > +#define D_KBL	(1 << 2)
->> > +#define D_BXT	(1 << 3)
->> > +#define D_CFL	(1 << 4)
->> > +
->> > +#define D_GEN9PLUS	(D_SKL | D_KBL | D_BXT | D_CFL)
->> > +#define D_GEN8PLUS	(D_BDW | D_SKL | D_KBL | D_BXT | D_CFL)
->> > +
->> > +#define D_SKL_PLUS	(D_SKL | D_KBL | D_BXT | D_CFL)
->> > +#define D_BDW_PLUS	(D_BDW | D_SKL | D_KBL | D_BXT | D_CFL)
->> > +
->> > +#define D_PRE_SKL	(D_BDW)
->> > +#define D_ALL		(D_BDW | D_SKL | D_KBL | D_BXT | D_CFL)
->> 
->> If these really need to be in a header in i915/, I think they need to be
->> longer with some namespacing or something. I do wish these could be
->> hidden though.
->
-> I think we could actually kill them off entirely.  They are used as
-> arguments to the macros that setup the mmio table.
->
-> Thefunctions to build these tabls are already organized by families,
-> so we'd need relatively few conditions to just build them the right
-> way.  There also are some runtime checks in the callbacks, but they
-> seem entirely superflous as far as I can tell.
->
-> Only the cmd parser is a bit messy.  So maybe we could keep these
-> constants just for the cmd parser inside of gvt for now (and clean
-> that up later) and remove them entirely from the mmio table.
+On Tue, Feb 08, 2022 at 10:41:56AM -0800, Namhyung Kim wrote:
 
-I'm fine with cleaning this up in follow-up, provided the follow-up
-actually happens! ;)
+> Eventually I'm mostly interested in the contended locks only and I
+> want to reduce the overhead in the fast path.  By moving that, it'd be
+> easy to track contended locks with timing by using two tracepoints.
 
-BR,
-Jani.
+So why not put in two new tracepoints and call it a day?
 
+Why muck about with all that lockdep stuff just to preserve the name
+(and in the process continue to blow up data structures etc..). This
+leaves distros in a bind, will they enable this config and provide
+tracepoints while bloating the data structures and destroying things
+like lockref (which relies on sizeof(spinlock_t)), or not provide this
+at all.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Yes, the name is convenient, but it's just not worth it IMO. It makes
+the whole proposition too much of a trade-off.
+
+Would it not be possible to reconstruct enough useful information from
+the lock callsite?
