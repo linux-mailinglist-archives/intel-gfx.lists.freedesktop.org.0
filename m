@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D7734AF5A8
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 16:46:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBE4F4AF5B4
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 16:47:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80A4410E210;
-	Wed,  9 Feb 2022 15:46:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC7D710E140;
+	Wed,  9 Feb 2022 15:47:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D4B5110E140;
- Wed,  9 Feb 2022 15:46:10 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 47EE210E140;
+ Wed,  9 Feb 2022 15:47:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D04A7AA0EB;
- Wed,  9 Feb 2022 15:46:10 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 47964AA0EB;
+ Wed,  9 Feb 2022 15:47:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 09 Feb 2022 15:46:10 -0000
-Message-ID: <164442157082.23763.13937182660944878891@emeril.freedesktop.org>
+Date: Wed, 09 Feb 2022 15:47:20 -0000
+Message-ID: <164442164028.23774.6737946769636226851@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220209131143.3365230-1-jani.nikula@intel.com>
 In-Reply-To: <20220209131143.3365230-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_move_intel=5Fhws=5Fcsb=5Fwrite=5Findex=28=29_ou?=
- =?utf-8?q?t_of_i915=5Fdrv=2Eh_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_move_intel=5Fhws=5Fcsb=5Fwrite=5Findex=28=29_out_of?=
+ =?utf-8?b?IGk5MTVfZHJ2LmggKHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,12 +54,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-365790a1da63 drm/i915: move intel_hws_csb_write_index() out of i915_drv.h
--:50: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#50: FILE: drivers/gpu/drm/i915/gvt/execlist.c:166:
-+					       hwsp_gpa + INTEL_HWS_CSB_WRITE_INDEX(execlist->engine->i915) * 4,
-
-total: 0 errors, 1 warnings, 0 checks, 38 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
