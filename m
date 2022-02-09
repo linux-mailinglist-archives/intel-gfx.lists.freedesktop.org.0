@@ -1,65 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DD964AFE15
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 21:17:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F7014AFE8E
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 21:36:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FDF710E1B8;
-	Wed,  9 Feb 2022 20:17:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F35710E45F;
+	Wed,  9 Feb 2022 20:36:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A4A510E1B8
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 20:17:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1644437869;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=KHy+FrMszZUXNvq7VkE1Sw+oLSzIRN5aM5gdNpzgAuE=;
- b=QWpkt8Rx7zxPIlCq7TT5uu/V7eU0lUUgZFYhIbk5ieJAUEqQocehCIuitrDtqlzK/rLp7y
- r8/mlmr+NJuVpH9UJIYCwM/b30fq+pXepIjPamun8g20HiI3G7GPNUWAK693qOyZUGDW9O
- Xe64LEpQXJj7QIB+5ZBDrvctGV07reQ=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-62-9Cqsjq2nPzOSvqBNqWFcoA-1; Wed, 09 Feb 2022 15:17:44 -0500
-X-MC-Unique: 9Cqsjq2nPzOSvqBNqWFcoA-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
- [10.5.11.15])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E37D4814243;
- Wed,  9 Feb 2022 20:17:41 +0000 (UTC)
-Received: from [10.22.9.207] (unknown [10.22.9.207])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 12EB55D6D5;
- Wed,  9 Feb 2022 20:17:38 +0000 (UTC)
-Message-ID: <f8b7760f-16a2-6ada-de88-9e21a7e8fef9@redhat.com>
-Date: Wed, 9 Feb 2022 15:17:38 -0500
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 70CC110E45F;
+ Wed,  9 Feb 2022 20:36:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6C498A47DF;
+ Wed,  9 Feb 2022 20:36:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3809872143818928840=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Content-Language: en-US
-To: Namhyung Kim <namhyung@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-References: <20220208184208.79303-1-namhyung@kernel.org>
- <20220209090908.GK23216@worktop.programming.kicks-ass.net>
- <24fe6a08-5931-8e8d-8d77-459388c4654e@redhat.com>
- <919214156.50301.1644431371345.JavaMail.zimbra@efficios.com>
- <69e5f778-8715-4acf-c027-58b6ec4a9e77@redhat.com>
- <CAM9d7ci=N2NVj57k=W0ebqBzfW+ThBqYSrx-CZbgwGcbOSrEGA@mail.gmail.com>
- <718973621.50447.1644434890744.JavaMail.zimbra@efficios.com>
- <CAM9d7cj=tj6pA48q_wkQOGn-2vUc9FRj63bMBOm5R7OukmMbTQ@mail.gmail.com>
-From: Waiman Long <longman@redhat.com>
-In-Reply-To: <CAM9d7cj=tj6pA48q_wkQOGn-2vUc9FRj63bMBOm5R7OukmMbTQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
-Subject: Re: [Intel-gfx] [RFC 00/12] locking: Separate lock tracepoints from
- lockdep/lock_stat (v1)
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Wed, 09 Feb 2022 20:36:12 -0000
+Message-ID: <164443897243.23775.15484724692404618490@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220209195851.404256-1-jose.souza@intel.com>
+In-Reply-To: <20220209195851.404256-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Check_stolen_memory_size_before_calling_drm=5Fmm=5Fini?=
+ =?utf-8?q?t?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,40 +41,324 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcu <rcu@vger.kernel.org>, paulmck <paulmck@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>,
- linux-kernel <linux-kernel@vger.kernel.org>, rostedt <rostedt@goodmis.org>,
- Radoslaw Burny <rburny@google.com>, Byungchul Park <byungchul.park@lge.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Tejun Heo <tj@kernel.org>,
- cgroups <cgroups@vger.kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
- Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>,
- linux-btrfs <linux-btrfs@vger.kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============3809872143818928840==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On 2/9/22 14:45, Namhyung Kim wrote:
-> On Wed, Feb 9, 2022 at 11:28 AM Mathieu Desnoyers
-> <mathieu.desnoyers@efficios.com> wrote:
->> ----- On Feb 9, 2022, at 2:22 PM, Namhyung Kim namhyung@kernel.org wrote:
->>> I'm also concerning dynamic allocated locks in a data structure.
->>> If we keep the info in a hash table, we should delete it when the
->>> lock is gone.  I'm not sure we have a good place to hook it up all.
->> I was wondering about this use case as well. Can we make it mandatory to
->> declare the lock "class" (including the name) statically, even though the
->> lock per-se is allocated dynamically ? Then the initialization of the lock
->> embedded within the data structure would simply refer to the lock class
->> definition.
-> Isn't it still the same if we have static lock classes that the entry needs
-> to be deleted from the hash table when it frees the data structure?
-> I'm more concerned about free than alloc as there seems to be no
-> API to track that in a place.
+== Series Details ==
 
-We may have to invent some new APIs to do that. For example, 
-spin_lock_exit() can be the counterpart of spin_lock_init() and so on. 
-Of course, existing kernel code have to be modified to designate the 
-point after which a lock is no longer being used or is freed.
+Series: drm/i915: Check stolen memory size before calling drm_mm_init
+URL   : https://patchwork.freedesktop.org/series/99917/
+State : success
 
-Cheers,
-Longman
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_11207 -> Patchwork_22226
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/index.html
+
+Participating hosts (45 -> 40)
+------------------------------
+
+  Additional (1): bat-rpls-1 
+  Missing    (6): fi-kbl-soraka shard-tglu fi-icl-u2 fi-cfl-8700k fi-bsw-cyan fi-pnv-d510 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22226 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][1] ([i915#4547])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-skl-6600u/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [PASS][2] -> [INCOMPLETE][3] ([i915#4785])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][4] ([i915#3921])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+    - bat-dg1-6:          [PASS][5] -> [DMESG-FAIL][6] ([i915#4494] / [i915#4957])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [PASS][8] -> [DMESG-WARN][9] ([i915#4269])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][10] ([fdo#109271]) +13 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][11] ([fdo#109271])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-skl-6600u/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][12] ([fdo#109271] / [i915#1436] / [i915#4312])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-hsw-4770/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-skl-6600u:       [FAIL][13] ([i915#4547]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       [FAIL][15] ([i915#4312]) -> [FAIL][16] ([i915#1436] / [i915#4312])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-skl-6600u/igt@runner@aborted.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-skl-6600u/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11207 -> Patchwork_22226
+
+  CI-20190529: 20190529
+  CI_DRM_11207: 0d650d738ee924dc0c367ff1f33c61237a635933 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6342: 1bd167a3af9e8f6168ac89c64c64b929694d9be7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22226: 45c6e8b6db2d79a356b32d7830de0bf1220ce6f5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_22226/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_stolen.o
+In file included from ./include/drm/drm_mm.h:51,
+                 from drivers/gpu/drm/i915/gem/i915_gem_stolen.c:10:
+drivers/gpu/drm/i915/gem/i915_gem_stolen.c: In function ‘i915_gem_init_stolen’:
+drivers/gpu/drm/i915/gem/i915_gem_stolen.c:503:3: error: format ‘%llu’ expects argument of type ‘long long unsigned int’, but argument 5 has type ‘resource_size_t’ {aka ‘unsigned int’} [-Werror=format=]
+   "Memory reserved for graphics device: %lluK, usable: %lluK\n",
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/i915/gem/i915_gem_stolen.c:505:3:
+   i915->stolen_usable_size >> 10);
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/drm/drm_print.h:461:56: note: in definition of macro ‘drm_dbg’
+  drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_DRIVER, fmt, ##__VA_ARGS__)
+                                                        ^~~
+cc1: all warnings being treated as errors
+scripts/Makefile.build:288: recipe for target 'drivers/gpu/drm/i915/gem/i915_gem_stolen.o' failed
+make[4]: *** [drivers/gpu/drm/i915/gem/i915_gem_stolen.o] Error 1
+scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm/i915' failed
+make[3]: *** [drivers/gpu/drm/i915] Error 2
+scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm' failed
+make[2]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:550: recipe for target 'drivers/gpu' failed
+make[1]: *** [drivers/gpu] Error 2
+Makefile:1831: recipe for target 'drivers' failed
+make: *** [drivers] Error 2
+
+
+== Linux commits ==
+
+45c6e8b6db2d drm/i915: Check stolen memory size before calling drm_mm_init
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/index.html
+
+--===============3809872143818928840==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Check stolen memory size before calling drm_mm_init</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99917/">https://patchwork.freedesktop.org/series/99917/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11207 -&gt; Patchwork_22226</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/index.html</p>
+<h2>Participating hosts (45 -&gt; 40)</h2>
+<p>Additional (1): bat-rpls-1 <br />
+  Missing    (6): fi-kbl-soraka shard-tglu fi-icl-u2 fi-cfl-8700k fi-bsw-cyan fi-pnv-d510 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22226 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-skl-6600u/igt@i915_selftest@live.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</p>
+</li>
+<li>
+<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-skl-6600u/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_psr@primary_page_flip:<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11207 -&gt; Patchwork_22226</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11207: 0d650d738ee924dc0c367ff1f33c61237a635933 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6342: 1bd167a3af9e8f6168ac89c64c64b929694d9be7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22226: 45c6e8b6db2d79a356b32d7830de0bf1220ce6f5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Kernel 32bit build ==</p>
+<p>Warning: Kernel 32bit buildtest failed:<br />
+https://intel-gfx-ci.01.org/Patchwork_22226/build_32bit.log</p>
+<p>CALL    scripts/checksyscalls.sh<br />
+  CALL    scripts/atomic/check-atomics.sh<br />
+  CHK     include/generated/compile.h<br />
+  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_stolen.o<br />
+In file included from ./include/drm/drm_mm.h:51,<br />
+                 from drivers/gpu/drm/i915/gem/i915_gem_stolen.c:10:<br />
+drivers/gpu/drm/i915/gem/i915_gem_stolen.c: In function ‘i915_gem_init_stolen’:<br />
+drivers/gpu/drm/i915/gem/i915_gem_stolen.c:503:3: error: format ‘%llu’ expects argument of type ‘long long unsigned int’, but argument 5 has type ‘resource_size_t’ {aka ‘unsigned int’} [-Werror=format=]<br />
+   "Memory reserved for graphics device: %lluK, usable: %lluK\n",<br />
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br />
+drivers/gpu/drm/i915/gem/i915_gem_stolen.c:505:3:<br />
+   i915-&gt;stolen_usable_size &gt;&gt; 10);<br />
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br />
+./include/drm/drm_print.h:461:56: note: in definition of macro ‘drm_dbg’<br />
+  drm_dev_dbg((drm) ? (drm)-&gt;dev : NULL, DRM_UT_DRIVER, fmt, ##<strong>VA_ARGS</strong>)<br />
+                                                        ^~~<br />
+cc1: all warnings being treated as errors<br />
+scripts/Makefile.build:288: recipe for target 'drivers/gpu/drm/i915/gem/i915_gem_stolen.o' failed<br />
+make<a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">4</a>: <strong><em> [drivers/gpu/drm/i915/gem/i915_gem_stolen.o] Error 1<br />
+scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm/i915' failed<br />
+make<a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">3</a>: </em></strong> [drivers/gpu/drm/i915] Error 2<br />
+scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm' failed<br />
+make<a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">2</a>: <strong><em> [drivers/gpu/drm] Error 2<br />
+scripts/Makefile.build:550: recipe for target 'drivers/gpu' failed<br />
+make<a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22226/fi-skl-6600u/igt@i915_selftest@live.html">1</a>: </em></strong> [drivers/gpu] Error 2<br />
+Makefile:1831: recipe for target 'drivers' failed<br />
+make: *** [drivers] Error 2</p>
+<p>== Linux commits ==</p>
+<p>45c6e8b6db2d drm/i915: Check stolen memory size before calling drm_mm_init</p>
+
+</body>
+</html>
+
+--===============3809872143818928840==--
