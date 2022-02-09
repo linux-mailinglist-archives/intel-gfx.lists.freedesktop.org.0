@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52F944AEF7C
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 11:45:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C7D24AEF85
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 11:50:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D01B10E2C9;
-	Wed,  9 Feb 2022 10:45:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 231FF10E159;
+	Wed,  9 Feb 2022 10:50:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 070DB10E2C9
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 10:45:47 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8B5810E31E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 10:50:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644403548; x=1675939548;
+ t=1644403828; x=1675939828;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=47T23gQ375+EbNhJvsdDDtnZV4js1XuUYbFclwKtdBk=;
- b=FPojbTc/YDKjq0hcMwMqomAB+biqQWjeAOD+BneQyNmtumz/teKyqKv1
- rJK+0Saan1BHX/s1FOKJ+Nm5SLB/f8w0QScOzKYwT/34KrJ9wdf2TmtGA
- KCxPydZyKB3HVv7PInXoY7+8zOODuEMp3RuZ6umwna5CRnG5cgwghBCim
- BcelPK3zX356yJN2XvE4DYlRY//7UZoo4VllE1hFF3YYFq5Z0Q8p46BvL
- 7QnmGuiyFMlEK70bzMpLwi4uZAomaAKoUYajzd92dhLZcOn5aWjSIXrWf
- Et2Jvc9hlQne/aT7KJUTgsh3j3hR0TIs4HFm7m+8/7ik8BedrKIHKmRXE Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="229826144"
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="229826144"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 02:45:47 -0800
+ bh=VHeROyAkFu04TQz4py8H4/Cxfi/NiTpSHyw4FvdIl0Q=;
+ b=RZYYFPWpRSa+HdsPnKrToGUAE2mBeHqsc3ZrrWfNsE/fWnLno/7yyGjf
+ SJI4HLvWRnQl2J2Syn93eIeWtodlcuBHOUUQzrQ2R+aWTYa8XPkh+i/Li
+ tN7dGXuul6EpKnEDCBBtMNqFkUgFsb3wqST07PfbO/Cu3uBNJg9qj3aFP
+ 5Bslzo87FgHX4RyBFhj2zfWVIfz73ME4/BQVJChfNsUqD1WR/u5awbHr+
+ msoYbXUg6UpVsE5TBIHNJ243hu/9JFgCU6LPGujzfKAwWuU1yDs2vDpyr
+ dMJ+1BEYVqzQGlbjU1y15u7tYksGAggpNK9oDd304DCPvOVXtpr/YNNKp Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="273713062"
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="273713062"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 02:50:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="485195351"
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="568199126"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga006.jf.intel.com with SMTP; 09 Feb 2022 02:45:45 -0800
+ by orsmga001.jf.intel.com with SMTP; 09 Feb 2022 02:50:25 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 09 Feb 2022 12:45:44 +0200
-Date: Wed, 9 Feb 2022 12:45:44 +0200
+ Wed, 09 Feb 2022 12:50:24 +0200
+Date: Wed, 9 Feb 2022 12:50:24 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YgObWDqQwhh6+aNz@intel.com>
-References: <cover.1643896905.git.jani.nikula@intel.com>
- <63779ac0472895803113180818ecadc22c10369e.1643896905.git.jani.nikula@intel.com>
+Message-ID: <YgOccP5kmUgydUiA@intel.com>
+References: <20220203143924.2691635-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <63779ac0472895803113180818ecadc22c10369e.1643896905.git.jani.nikula@intel.com>
+In-Reply-To: <20220203143924.2691635-1-jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/pm: hide struct
- drm_i915_clock_gating_funcs
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: move the DRIVER_* macros to
+ i915_driver.[ch]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,61 +64,195 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 03, 2022 at 04:02:33PM +0200, Jani Nikula wrote:
-> The struct is only needed in intel_pm.c, move it there.
+On Thu, Feb 03, 2022 at 04:39:24PM +0200, Jani Nikula wrote:
+> The macros are more at home in i915_driver.[ch].
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_pm.c        |  1 +
+>  drivers/gpu/drm/i915/i915_driver.c            | 15 ++++++++++++
+>  drivers/gpu/drm/i915/i915_driver.h            |  5 ++++
+>  drivers/gpu/drm/i915/i915_drv.h               | 23 -------------------
+>  drivers/gpu/drm/i915/i915_gpu_error.c         |  1 +
+>  drivers/gpu/drm/i915/i915_irq.c               |  1 +
+>  drivers/gpu/drm/i915/i915_mitigations.c       |  1 +
+>  drivers/gpu/drm/i915/i915_module.c            |  1 +
+>  drivers/gpu/drm/i915/i915_request.c           |  1 +
+>  .../gpu/drm/i915/selftests/i915_selftest.c    |  1 +
 
-I find these single vfunc structs a bit ridiculous, but since
-we have them might as well hide them.
+A bit surprising these things are so widespread.
 
-For the series is
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-> ---
->  drivers/gpu/drm/i915/i915_drv.h | 6 +-----
->  drivers/gpu/drm/i915/intel_pm.c | 4 ++++
->  2 files changed, 5 insertions(+), 5 deletions(-)
+>  10 files changed, 27 insertions(+), 23 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 078fc50e7eb9..4ac0fcb9a4ca 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -107,6 +107,7 @@
->  #include "i915_vma.h"
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+> index 6da68b38f00f..00359ec9d58b 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+> @@ -10,6 +10,7 @@
+>  #include "gt/intel_gt_pm.h"
+>  #include "gt/intel_gt_requests.h"
 >  
->  struct dpll;
-> +struct drm_i915_clock_gating_funcs;
->  struct drm_i915_gem_object;
->  struct drm_i915_private;
->  struct intel_atomic_state;
-> @@ -302,11 +303,6 @@ struct sdvo_device_mapping {
->  	u8 ddc_pin;
+> +#include "i915_driver.h"
+>  #include "i915_drv.h"
+>  
+>  #if defined(CONFIG_X86)
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 3d41f532a5d6..76c84b35884f 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -1823,6 +1823,21 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
+>  	DRM_IOCTL_DEF_DRV(I915_GEM_VM_DESTROY, i915_gem_vm_destroy_ioctl, DRM_RENDER_ALLOW),
 >  };
 >  
-> -/* functions used internal in intel_pm.c */
-> -struct drm_i915_clock_gating_funcs {
-> -	void (*init_clock_gating)(struct drm_i915_private *dev_priv);
-> -};
-> -
->  /* functions used for watermark calcs for display. */
->  struct drm_i915_wm_disp_funcs {
->  	/* update_wm is for legacy wm management */
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 859be750fb22..2e84d45f9bf0 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -55,6 +55,10 @@
->  #include "vlv_sideband.h"
->  #include "../../../platform/x86/intel_ips.h"
->  
-> +struct drm_i915_clock_gating_funcs {
-> +	void (*init_clock_gating)(struct drm_i915_private *i915);
-> +};
+> +/*
+> + * Interface history:
+> + *
+> + * 1.1: Original.
+> + * 1.2: Add Power Management
+> + * 1.3: Add vblank support
+> + * 1.4: Fix cmdbuffer path, add heap destroy
+> + * 1.5: Add vblank pipe configuration
+> + * 1.6: - New ioctl for scheduling buffer swaps on vertical blank
+> + *      - Support vertical blank on secondary display pipe
+> + */
+> +#define DRIVER_MAJOR		1
+> +#define DRIVER_MINOR		6
+> +#define DRIVER_PATCHLEVEL	0
 > +
->  /* Stores plane specific WM parameters */
->  struct skl_wm_params {
->  	bool x_tiled, y_tiled;
+>  static const struct drm_driver i915_drm_driver = {
+>  	/* Don't use MTRRs here; the Xserver or userspace app should
+>  	 * deal with them for Intel hardware.
+> diff --git a/drivers/gpu/drm/i915/i915_driver.h b/drivers/gpu/drm/i915/i915_driver.h
+> index 9ef8db4aa0a6..9d11de65daaf 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.h
+> +++ b/drivers/gpu/drm/i915/i915_driver.h
+> @@ -12,6 +12,11 @@ struct pci_dev;
+>  struct pci_device_id;
+>  struct drm_i915_private;
+>  
+> +#define DRIVER_NAME		"i915"
+> +#define DRIVER_DESC		"Intel Graphics"
+> +#define DRIVER_DATE		"20201103"
+> +#define DRIVER_TIMESTAMP	1604406085
+> +
+>  extern const struct dev_pm_ops i915_pm_ops;
+>  
+>  int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 8c1706fd81f9..bd444e16ce5e 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -106,15 +106,6 @@
+>  #include "gt/intel_timeline.h"
+>  #include "i915_vma.h"
+>  
+> -
+> -/* General customization:
+> - */
+> -
+> -#define DRIVER_NAME		"i915"
+> -#define DRIVER_DESC		"Intel Graphics"
+> -#define DRIVER_DATE		"20201103"
+> -#define DRIVER_TIMESTAMP	1604406085
+> -
+>  struct drm_i915_gem_object;
+>  
+>  /* Threshold == 5 for long IRQs, 50 for short */
+> @@ -260,20 +251,6 @@ struct drm_i915_file_private {
+>  	unsigned long hang_timestamp;
+>  };
+>  
+> -/* Interface history:
+> - *
+> - * 1.1: Original.
+> - * 1.2: Add Power Management
+> - * 1.3: Add vblank support
+> - * 1.4: Fix cmdbuffer path, add heap destroy
+> - * 1.5: Add vblank pipe configuration
+> - * 1.6: - New ioctl for scheduling buffer swaps on vertical blank
+> - *      - Support vertical blank on secondary display pipe
+> - */
+> -#define DRIVER_MAJOR		1
+> -#define DRIVER_MINOR		6
+> -#define DRIVER_PATCHLEVEL	0
+> -
+>  struct intel_overlay;
+>  struct intel_overlay_error_state;
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 127ff56c8ce6..54b2360dfd99 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -46,6 +46,7 @@
+>  #include "gt/intel_gt_pm.h"
+>  #include "gt/intel_gt_regs.h"
+>  
+> +#include "i915_driver.h"
+>  #include "i915_drv.h"
+>  #include "i915_gpu_error.h"
+>  #include "i915_memcpy.h"
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index c05eb09d8a66..78871518c67b 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -49,6 +49,7 @@
+>  #include "gt/intel_gt_regs.h"
+>  #include "gt/intel_rps.h"
+>  
+> +#include "i915_driver.h"
+>  #include "i915_drv.h"
+>  #include "i915_irq.h"
+>  #include "intel_pm.h"
+> diff --git a/drivers/gpu/drm/i915/i915_mitigations.c b/drivers/gpu/drm/i915/i915_mitigations.c
+> index 84f12598d145..def7302ef7fe 100644
+> --- a/drivers/gpu/drm/i915/i915_mitigations.c
+> +++ b/drivers/gpu/drm/i915/i915_mitigations.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/slab.h>
+>  #include <linux/string.h>
+>  
+> +#include "i915_driver.h"
+>  #include "i915_drv.h"
+>  #include "i915_mitigations.h"
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
+> index 4d324638aba5..65acd7bf75d0 100644
+> --- a/drivers/gpu/drm/i915/i915_module.c
+> +++ b/drivers/gpu/drm/i915/i915_module.c
+> @@ -9,6 +9,7 @@
+>  #include "gem/i915_gem_context.h"
+>  #include "gem/i915_gem_object.h"
+>  #include "i915_active.h"
+> +#include "i915_driver.h"
+>  #include "i915_params.h"
+>  #include "i915_pci.h"
+>  #include "i915_perf.h"
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 55beedb2ced1..582770360ad1 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -44,6 +44,7 @@
+>  
+>  #include "i915_active.h"
+>  #include "i915_deps.h"
+> +#include "i915_driver.h"
+>  #include "i915_drv.h"
+>  #include "i915_trace.h"
+>  #include "intel_pm.h"
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_selftest.c b/drivers/gpu/drm/i915/selftests/i915_selftest.c
+> index 2d6d7bd13c3c..c4e932368b37 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_selftest.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_selftest.c
+> @@ -24,6 +24,7 @@
+>  #include <linux/random.h>
+>  
+>  #include "gt/intel_gt_pm.h"
+> +#include "i915_driver.h"
+>  #include "i915_drv.h"
+>  #include "i915_selftest.h"
+>  
 > -- 
 > 2.30.2
 
