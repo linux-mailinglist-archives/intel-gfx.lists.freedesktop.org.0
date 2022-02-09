@@ -2,48 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D094AFEA3
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 21:41:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ACEF4AFF50
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 22:41:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30AD210E1D4;
-	Wed,  9 Feb 2022 20:41:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F14889DA4;
+	Wed,  9 Feb 2022 21:41:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B108110E1D4
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 20:41:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644439314; x=1675975314;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=G7INV/Zt91iK9+dp/vMH7gRZsIhV9F1bYtoZ99WZxyA=;
- b=bLHteq1v1OMElclh3HioG4+ZTl/u2jk2gWPKjVcFoosgaU9ox1OLbpX7
- O8ykWR2/ae7u0/mPpw8RxjkBS6vIS0I6hZaeXJqudiwnyIUM0FQTk+CZl
- +AMBawkILEhtby1tShaJ7aEJ99w88YPWieB82H6IFih8OOiJq4lwpbqT4
- wGyjlRROpcitSU+yY8rLhgziT1KlXLqiAwq0p802IQ4YCSzTKiESzgrEq
- bALbiwRfqFPBwb6WdflJQoAttAOWBwHIkYXB7AbtPpJejjL/PNGV9jdSX
- Tnj7yqy9Nqam5EbLs9Tnww/0V5e4fnxg40Yfm7b9XlThtkBjKuMeZLc4X Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="229300088"
-X-IronPort-AV: E=Sophos;i="5.88,356,1635231600"; d="scan'208";a="229300088"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 12:41:54 -0800
-X-IronPort-AV: E=Sophos;i="5.88,356,1635231600"; d="scan'208";a="526164333"
-Received: from mfein-mobl3.amr.corp.intel.com (HELO
- josouza-mobl2.amr.corp.intel.com) ([10.212.84.234])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 12:41:52 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  9 Feb 2022 12:43:47 -0800
-Message-Id: <20220209204347.416801-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.35.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CA1A089DA4;
+ Wed,  9 Feb 2022 21:41:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C4B8DAADE4;
+ Wed,  9 Feb 2022 21:41:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7331479618625540563=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Check stolen memory size before
- calling drm_mm_init
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Wed, 09 Feb 2022 21:41:34 -0000
+Message-ID: <164444289476.23774.18199243048627528934@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220209204347.416801-1-jose.souza@intel.com>
+In-Reply-To: <20220209204347.416801-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Check_stolen_memory_size_before_calling_drm=5Fmm=5Fini?=
+ =?utf-8?q?t_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,71 +41,248 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Steve Carbonari <steven.carbonari@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Steve Carbonari <steven.carbonari@intel.com>
+--===============7331479618625540563==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Add check for zero usable stolen memory before calling drm_mm_init
-to support configurations where stolen memory exists but is fully
-reserved.
+== Series Details ==
 
-Also skip memory test in such case.
+Series: drm/i915: Check stolen memory size before calling drm_mm_init (rev2)
+URL   : https://patchwork.freedesktop.org/series/99917/
+State : success
 
-v2:
-- convert stolen_usable_size to u64 so build do not break
-depending on PHYS_ADDR_T_64BIT config.
+== Summary ==
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-Signed-off-by: Steve Carbonari <steven.carbonari@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 9 ++++++---
- drivers/gpu/drm/i915/intel_memory_region.c | 5 +++++
- 2 files changed, 11 insertions(+), 3 deletions(-)
+CI Bug Log - changes from CI_DRM_11207 -> Patchwork_22227
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 1de73a6449652..44972da1d4e95 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -496,13 +496,16 @@ static int i915_gem_init_stolen(struct intel_memory_region *mem)
- 	 * memory, so just consider the start. */
- 	reserved_total = stolen_top - reserved_base;
- 
-+	i915->stolen_usable_size =
-+		resource_size(&i915->dsm) - reserved_total;
-+
- 	drm_dbg(&i915->drm,
- 		"Memory reserved for graphics device: %lluK, usable: %lluK\n",
- 		(u64)resource_size(&i915->dsm) >> 10,
--		((u64)resource_size(&i915->dsm) - reserved_total) >> 10);
-+		(u64)i915->stolen_usable_size >> 10);
- 
--	i915->stolen_usable_size =
--		resource_size(&i915->dsm) - reserved_total;
-+	if (i915->stolen_usable_size == 0)
-+		return 0;
- 
- 	/* Basic memrange allocator for stolen space. */
- 	drm_mm_init(&i915->mm.stolen, 0, i915->stolen_usable_size);
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-index c70d7e286a512..329f46f71cdce 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/intel_memory_region.c
-@@ -205,6 +205,11 @@ static int intel_memory_region_memtest(struct intel_memory_region *mem,
- 	if (!mem->io_start)
- 		return 0;
- 
-+	if ((mem->type == INTEL_MEMORY_STOLEN_LOCAL ||
-+	     mem->type == INTEL_MEMORY_STOLEN_SYSTEM) &&
-+	    !drm_mm_initialized(&i915->mm.stolen))
-+		return 0;
-+
- 	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM) || i915->params.memtest)
- 		err = iomemtest(mem, i915->params.memtest, caller);
- 
--- 
-2.35.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/index.html
+
+Participating hosts (45 -> 42)
+------------------------------
+
+  Additional (1): bat-rpls-1 
+  Missing    (4): fi-bsw-cyan fi-icl-u2 shard-tglu fi-pnv-d510 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22227 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_flink_basic@bad-flink:
+    - fi-skl-6600u:       [PASS][1] -> [INCOMPLETE][2] ([i915#4547])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [PASS][3] -> [DMESG-FAIL][4] ([i915#4494] / [i915#4957])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][5] ([i915#3921])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#4269])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][9] ([fdo#109271]) +13 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-5:          [DMESG-FAIL][10] ([i915#4494] / [i915#4957]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-kbl-soraka:      [INCOMPLETE][12] -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-kbl-soraka/igt@i915_selftest@live@requests.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-kbl-soraka/igt@i915_selftest@live@requests.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       [FAIL][14] ([i915#4312]) -> [FAIL][15] ([i915#2722] / [i915#4312])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-skl-6600u/igt@runner@aborted.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-skl-6600u/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11207 -> Patchwork_22227
+
+  CI-20190529: 20190529
+  CI_DRM_11207: 0d650d738ee924dc0c367ff1f33c61237a635933 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6342: 1bd167a3af9e8f6168ac89c64c64b929694d9be7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22227: 904c12b9680a26432c4372f69e4d1b38a3354767 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+904c12b9680a drm/i915: Check stolen memory size before calling drm_mm_init
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/index.html
+
+--===============7331479618625540563==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Check stolen memory size before calling drm_mm_init (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99917/">https://patchwork.freedesktop.org/series/99917/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11207 -&gt; Patchwork_22227</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/index.html</p>
+<h2>Participating hosts (45 -&gt; 42)</h2>
+<p>Additional (1): bat-rpls-1 <br />
+  Missing    (4): fi-bsw-cyan fi-icl-u2 shard-tglu fi-pnv-d510 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22227 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_flink_basic@bad-flink:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-kbl-soraka/igt@i915_selftest@live@requests.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-kbl-soraka/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22227/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11207 -&gt; Patchwork_22227</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11207: 0d650d738ee924dc0c367ff1f33c61237a635933 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6342: 1bd167a3af9e8f6168ac89c64c64b929694d9be7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22227: 904c12b9680a26432c4372f69e4d1b38a3354767 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>904c12b9680a drm/i915: Check stolen memory size before calling drm_mm_init</p>
+
+</body>
+</html>
+
+--===============7331479618625540563==--
