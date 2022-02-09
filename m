@@ -1,52 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3CF14AF33F
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 14:49:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F9DA4AF381
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 15:02:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06BEE10E478;
-	Wed,  9 Feb 2022 13:49:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 631AE10E50C;
+	Wed,  9 Feb 2022 14:02:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 400C010E478
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 13:49:23 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA30710E4EA;
+ Wed,  9 Feb 2022 14:02:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644414563; x=1675950563;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=xB0C6L4R4DIOk4u7CJIneOR/rhpe5z/8zU+Ja7drdaU=;
- b=L2U5V4euCTphCC3qg2OpQLkI+D03dV0zdE6NYwKseA/XsIg6gzyu7J6d
- 6Vd0yRRhyIPE4ETC6WuwK6r54CnCeRslKEO2r6euoOk3Tw/6if2K8GVFx
- bEkzek5l5otMyU66Id9U23vx1ukjeLiDAD75O6K5CClDg5OE5r3rsJ54O
- 5StD67Oq3uQDfLWmMTCnP6CcWv/P57alh50huD3irD8ZSFujZI3QwnNye
- dgCUwT379pme3pOZS9bq3XVtHT/qMtw0UmJfUnowZJ/D2GEvPWOUx+yo3
- zqUCURvp9+T5+HTT1vnxW9wgBJINrLkceqcQgCujbZtDIvRhv3Mj6SJZ+ A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="249154262"
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="249154262"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 05:49:08 -0800
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="629277063"
-Received: from rcallina-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.18.41])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 05:49:04 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Namhyung Kim <namhyung@kernel.org>
-In-Reply-To: <CAM9d7ci0By5zioo+52+14RuFrTqZfzbupJuP-908HhYB2Ovc9A@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220208184208.79303-1-namhyung@kernel.org>
- <20220208184208.79303-6-namhyung@kernel.org> <87y22lp4xx.fsf@intel.com>
- <CAM9d7ci0By5zioo+52+14RuFrTqZfzbupJuP-908HhYB2Ovc9A@mail.gmail.com>
-Date: Wed, 09 Feb 2022 15:49:01 +0200
-Message-ID: <87iltonoaa.fsf@intel.com>
+ t=1644415336; x=1675951336;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=g06LB+wvvw32xEoQsGOkCJmGKIE3q5aMdFKDmLcj+B8=;
+ b=TR0/hHaA45s7ZYEjRDTUAQ3lpKcB3ieuBvETv/d8GxiQrEXYlQx5kCoo
+ MujzKSBdWa+Ak49mIpeVU9olE8dMLErNduVmsG2OT3ggfLwSFaltHf+1w
+ wezxiNyc4McUIj/g3+9IfP6qi21XsNpdwRAc6U+8Vj5vRnS8khtOq5qGK
+ dPq+AcALhODecv2FtrdscH+4+AuU4IwIzk4OMK7hb4PBvmAzAwG1+wgVs
+ NRhXV388JqCuJXT29dBxuCjxz8lVHo7R0nKk3tCio7ym1p88Zti7EJimQ
+ 64tjOGGDPEfXfxZrDHzBndlh/9kCna6J41qP3la+DCFCdr8MChfQBusk+ g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="246792974"
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="246792974"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 06:02:16 -0800
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="701260468"
+Received: from ksenyako-mobl.ccr.corp.intel.com (HELO [10.249.254.168])
+ ([10.249.254.168])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 06:02:14 -0800
+Message-ID: <b384ad5f76da0009dd49965769bcddbc0395111a.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
+ sumit.semwal@linaro.org, daniel.vetter@ffwll.ch,
+ dri-devel@lists.freedesktop.org,  linux-media@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+Date: Wed, 09 Feb 2022 15:02:11 +0100
+In-Reply-To: <20220204100429.2049-4-christian.koenig@amd.com>
+References: <20220204100429.2049-1-christian.koenig@amd.com>
+ <20220204100429.2049-4-christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 05/12] drm/i915: Protect lockdep functions
- with #ifdef
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 3/6] dma-buf: Warn about dma_fence_chain
+ container rules v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,43 +62,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulmck@kernel.org, intel-gfx@lists.freedesktop.org,
- Peter Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>,
- LKML <linux-kernel@vger.kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
- Radoslaw Burny <rburny@google.com>, Byungchul Park <byungchul.park@lge.com>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Waiman Long <longman@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
- Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 08 Feb 2022, Namhyung Kim <namhyung@kernel.org> wrote:
-> Hello,
->
-> On Tue, Feb 8, 2022 at 10:51 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->>
->> On Tue, 08 Feb 2022, Namhyung Kim <namhyung@kernel.org> wrote:
->> > With upcoming lock tracepoints config, it'd define some of lockdep
->> > functions without enabling CONFIG_LOCKDEP actually.  The existing code
->> > assumes those functions will be removed by the preprocessor but it's
->> > not the case anymore.  Let's protect the code with #ifdef's explicitly.
->>
->> I don't understand why you can't keep the no-op stubs for
->> CONFIG_LOCKDEP=n.
->
-> Because I want to use the lockdep annotation for other purposes.
-> But the workqueue lockdep_map was defined under LOCKDEP
-> only.  Please see the description in the cover letter.
->
-> https://lore.kernel.org/all/20220208184208.79303-1-namhyung@kernel.org/
+On Fri, 2022-02-04 at 11:04 +0100, Christian König wrote:
+> Chaining of dma_fence_chain objects is only allowed through the prev
+> fence and not through the contained fence.
+> 
+> Warn about that when we create a dma_fence_chain.
+> 
+> v2: fix comment style
+> 
+> Signed-off-by: Christian König <christian.koenig@amd.com>
+> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-So lockdep_init_map() might still be there and build just fine for
-CONFIG_LOCKDEP=n, but now we're actually required to wrap all call sites
-in #ifdefs depending on the purpose? I'm not convinced yet.
+It looks like this blows up in generic drm code...
 
-BR,
-Jani.
+https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22201/shard-skl10/igt@syncobj_timeline@transfer-timeline-point.html
+
+/Thomas
 
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
