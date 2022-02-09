@@ -1,60 +1,71 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C03C4AFCC8
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 20:02:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFCCA4AFCE8
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 20:08:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 507D510E57C;
-	Wed,  9 Feb 2022 19:02:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAE9010E4E9;
+	Wed,  9 Feb 2022 19:08:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF47B10E58D
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 19:02:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1644433366;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=UuA86Nyzl5Eui91dzFfwf9ECfs1Xn0BsmmUF+q9vMTM=;
- b=WFN1jVe4x10xJLhthQGCKyFtrPclzt6dPAkBTBStn5zy2Mm9m3tnwAWPvi9UHVf+zvSSbx
- FhwUtfTKhhH0M6oQ+GQN7Kx38t6gdhcpgAlJVT917X+wevUtv6xUFhB3wLbrUuvpjM4T5/
- 2PksfqStlLVlnneUJjuFcYVUWsfjnwE=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-258-3vO76ThsNKa4dxfImmOr4g-1; Wed, 09 Feb 2022 14:02:40 -0500
-X-MC-Unique: 3vO76ThsNKa4dxfImmOr4g-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id B83311966323;
- Wed,  9 Feb 2022 19:02:37 +0000 (UTC)
-Received: from [10.22.9.207] (unknown [10.22.9.207])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 69C2410013C1;
- Wed,  9 Feb 2022 19:02:35 +0000 (UTC)
-Message-ID: <69e5f778-8715-4acf-c027-58b6ec4a9e77@redhat.com>
-Date: Wed, 9 Feb 2022 14:02:34 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5768C10E5A1;
+ Wed,  9 Feb 2022 19:08:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644433717; x=1675969717;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=rmwT6mNxAEosXnOZ/cm0T+NuPb0cpnr/FxDffj7cBF0=;
+ b=m1N0cgUxxAFFvO6hGm5kWU6j5YjosOZCDk+TWFP4kKMIoYtIafd5U/wS
+ KcALmrhanwcebXcksGfOAmS7ZUjilOcf9vOySKl0MYAkIj+g9YT5EP6JV
+ /IC/nL675kH5MK2tt+KKu1QhP8dg6CY++F1ghqkAgVhmmu+UO9YxV4v+f
+ J+JprBNSjC/nr2SFF+6tHKStI60yA4uiSf3ZxE17FgAP3z+FDP1P9xuTw
+ t0Ju71YUBYaVKqBPz7K7XAVc6DcCavY/U9Rvyuj2IBUyv36cDI5LLj+7d
+ xU4SJ39R9+8rg8OMUmNrPH9B02rK0MUWZ14JUz2Ft8iLNPbu5THK4DOTD g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="249518500"
+X-IronPort-AV: E=Sophos;i="5.88,356,1635231600"; d="scan'208";a="249518500"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 11:08:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,356,1635231600"; d="scan'208";a="500091880"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by orsmga002.jf.intel.com with ESMTP; 09 Feb 2022 11:08:36 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Wed, 9 Feb 2022 11:08:36 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Wed, 9 Feb 2022 11:08:35 -0800
+Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
+ fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.2308.020;
+ Wed, 9 Feb 2022 11:08:35 -0800
+From: "Bloomfield, Jon" <jon.bloomfield@intel.com>
+To: "Justen, Jordan L" <jordan.l.justen@intel.com>, intel-gfx
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v3 0/4] GuC HWCONFIG with documentation
+Thread-Index: AQHYHS+aVmlIyLObGUSXDrJRQV1ARqyLlJfg
+Date: Wed, 9 Feb 2022 19:08:08 +0000
+Deferred-Delivery: Wed, 9 Feb 2022 19:07:17 +0000
+Message-ID: <e4b8110bbd2c486ca1fd9bbdd321048b@intel.com>
+References: <20220208210503.869491-1-jordan.l.justen@intel.com>
+In-Reply-To: <20220208210503.869491-1-jordan.l.justen@intel.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-To: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-References: <20220208184208.79303-1-namhyung@kernel.org>
- <20220209090908.GK23216@worktop.programming.kicks-ass.net>
- <24fe6a08-5931-8e8d-8d77-459388c4654e@redhat.com>
- <919214156.50301.1644431371345.JavaMail.zimbra@efficios.com>
-From: Waiman Long <longman@redhat.com>
-In-Reply-To: <919214156.50301.1644431371345.JavaMail.zimbra@efficios.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-Subject: Re: [Intel-gfx] [RFC 00/12] locking: Separate lock tracepoints from
- lockdep/lock_stat (v1)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v3 0/4] GuC HWCONFIG with documentation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,71 +78,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcu <rcu@vger.kernel.org>, intel-gfx@lists.freedesktop.org,
- Peter Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>,
- linux-kernel <linux-kernel@vger.kernel.org>, rostedt <rostedt@goodmis.org>,
- Radoslaw Burny <rburny@google.com>, Byungchul Park <byungchul.park@lge.com>,
- "Paul E. McKenney" <paul.mckenney@linaro.org>,
- cgroups <cgroups@vger.kernel.org>, Tejun Heo <tj@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
- Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>,
- linux-btrfs <linux-btrfs@vger.kernel.org>
+Cc: dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2/9/22 13:29, Mathieu Desnoyers wrote:
-> ----- On Feb 9, 2022, at 1:19 PM, Waiman Long longman@redhat.com wrote:
->
->> On 2/9/22 04:09, Peter Zijlstra wrote:
->>> On Tue, Feb 08, 2022 at 10:41:56AM -0800, Namhyung Kim wrote:
->>>
->>>> Eventually I'm mostly interested in the contended locks only and I
->>>> want to reduce the overhead in the fast path.  By moving that, it'd be
->>>> easy to track contended locks with timing by using two tracepoints.
->>> So why not put in two new tracepoints and call it a day?
->>>
->>> Why muck about with all that lockdep stuff just to preserve the name
->>> (and in the process continue to blow up data structures etc..). This
->>> leaves distros in a bind, will they enable this config and provide
->>> tracepoints while bloating the data structures and destroying things
->>> like lockref (which relies on sizeof(spinlock_t)), or not provide this
->>> at all.
->>>
->>> Yes, the name is convenient, but it's just not worth it IMO. It makes
->>> the whole proposition too much of a trade-off.
->>>
->>> Would it not be possible to reconstruct enough useful information from
->>> the lock callsite?
->>>
->> I second that as I don't want to see the size of a spinlock exceeds 4
->> bytes in a production system.
->>
->> Instead of storing additional information (e.g. lock name) directly into
->> the lock itself. Maybe we can store it elsewhere and use the lock
->> address as the key to locate it in a hash table. We can certainly extend
->> the various lock init functions to do that. It will be trickier for
->> statically initialized locks, but we can probably find a way to do that too.
-> If we go down that route, it would be nice if we can support a few different
-> use-cases for various tracers out there.
->
-> One use-case (a) requires the ability to query the lock name based on its address as key.
-> For this a hash table is a good fit. This would allow tracers like ftrace to
-> output lock names in its human-readable output which is formatted within the kernel.
->
-> Another use-case (b) is to be able to "dump" the lock { name, address } tuples
-> into the trace stream (we call this statedump events in lttng), and do the
-> translation from address to name at post-processing. This simply requires
-> that this information is available for iteration for both the core kernel
-> and module locks, so the tracer can dump this information on trace start
-> and module load.
->
-> Use-case (b) is very similar to what is done for the kernel tracepoints. Based
-> on this, implementing the init code that iterates on those sections and populates
-> a hash table for use-case (a) should be easy enough.
+Acked-by: Jon Bloomfield <jon.bloomfield@intel.com>
 
-Yes, that are good use cases for this type of functionality. I do need 
-to think about how to do it for statically initialized lock first.
-
-Thanks,
-Longman
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> Jordan Justen
+> Sent: Tuesday, February 8, 2022 1:05 PM
+> To: intel-gfx <intel-gfx@lists.freedesktop.org>
+> Cc: dri-devel <dri-devel@lists.freedesktop.org>
+> Subject: [Intel-gfx] [PATCH v3 0/4] GuC HWCONFIG with documentation
+>=20
+> This is John/Rodrigo's 2 patches with some minor changes, and I added
+> 2 patches.
+>=20
+> "drm/i915/uapi: Add query for hwconfig blob" was changed:
+>=20
+>  * Rename DRM_I915_QUERY_HWCONFIG_TABLE to
+> DRM_I915_QUERY_HWCONFIG_BLOB
+>    as requested by Joonas.
+>=20
+>  * Reword commit message
+>=20
+>  * I added Acked-by to this patch, but this only applies in the
+>    context of this version of the patchset. If my changes are
+>    rejected, then please *do not* add my Acked-by to the other series.
+>=20
+>    In particular, I do not want my Acked-by on the patch if the patch
+>    mentions the HWCONFIG format, but is not willing to add that to the
+>    actual uAPI.
+>=20
+>    I also do not want my Acked-by on it if it mentions "consolidation"
+>    of this data. Since we are dealing with open source projects (aside
+>    from GuC), this doesn't seem appropriate.
+>=20
+> "drm/i915/uapi: Add struct drm_i915_query_hwconfig_blob_item" adds a
+> struct to the uAPI and documents the return value for
+> DRM_I915_QUERY_HWCONFIG_BLOB. (Except, keys / values are still
+> deferred to the PRM.)
+>=20
+> "drm/i915/guc: Verify hwconfig blob matches supported format" does the
+> simple verification of the blob to make sure it matches what the uAPI
+> documents.
+>=20
+> v2:
+>  * Fix -Werror errors.
+>  * Rebase to drm-intel/for-linux-next instead of
+>    drm-intel/for-linux-next-gt, as this seems to be what CI wants.
+>  * Fix u32 -> __u32. (Sorry, I was first testing in Mesa tree.)
+>  * Add commit message for "Verify hwconfig blob" patch as requested by
+>    Tvrtko.
+>  * Reword text added to i915_drm.h as requested by Tvrtko. (Attempting
+>    to indicate the overall blob ends right at the last blob item.)
+>=20
+> v3:
+>  * Add several changes suggested by Tvrtko in the "Verify hwconfig
+>    blob", along with some tweaks to i915_drm.h from the feedback for
+>    the same patch.
+>=20
+> John Harrison (1):
+>   drm/i915/guc: Add fetch of hwconfig table
+>=20
+> Jordan Justen (2):
+>   drm/i915/uapi: Add struct drm_i915_query_hwconfig_blob_item
+>   drm/i915/guc: Verify hwconfig blob matches supported format
+>=20
+> Rodrigo Vivi (1):
+>   drm/i915/uapi: Add query for hwconfig blob
+>=20
+>  drivers/gpu/drm/i915/Makefile                 |   1 +
+>  .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   1 +
+>  .../gpu/drm/i915/gt/uc/abi/guc_errors_abi.h   |   4 +
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   3 +
+>  .../gpu/drm/i915/gt/uc/intel_guc_hwconfig.c   | 201 ++++++++++++++++++
+>  .../gpu/drm/i915/gt/uc/intel_guc_hwconfig.h   |  19 ++
+>  drivers/gpu/drm/i915/gt/uc/intel_uc.c         |   6 +
+>  drivers/gpu/drm/i915/i915_query.c             |  23 ++
+>  include/uapi/drm/i915_drm.h                   |  33 +++
+>  9 files changed, 291 insertions(+)
+>  create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
+>  create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.h
+>=20
+> --
+> 2.34.1
 
