@@ -2,33 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1B4E4AF738
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 17:50:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 258A74AF73F
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 17:53:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37B2310E3A7;
-	Wed,  9 Feb 2022 16:50:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4758910E3A7;
+	Wed,  9 Feb 2022 16:53:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EAD8710E3C3;
- Wed,  9 Feb 2022 16:50:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DBC23A73C7;
- Wed,  9 Feb 2022 16:50:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1758746120135440533=="
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A77DB10E3BE;
+ Wed,  9 Feb 2022 16:53:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644425600; x=1675961600;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=6B6ryEspvgZouEmsloXgztSipdYSWlrTX4SjsdehvV8=;
+ b=GFp3GsEHdLnAE0vJVvOvsSGV8CnAKH8H9aVfpx3jxgXk6r3/KGxCgVFl
+ 0OjkLT27f3OxOvu4qwiXw7RsOWMwRrWLfEdWEIg7vpVBnwt1k6lLbtxmc
+ er9EfJfgD+YFg2lrenWIbOtkJJRZtthFK3BNhfDIumLl54teUbb+jKVHF
+ Kq0OLXKVKAq3/KJK239WzZdXmwUZVsLxELCAt9T/dPbEF2aANAurDfE9o
+ wc1UhfZY3Az/wvGjzAkVvD/i2NJkmyHJH0yOFMayVq4Si3FFgnQdDyGuh
+ xVwq9omKMP74dOdcSOuIiaeC20O6mlOSHhBP8zo+FpY1ZeU7VXt9XMlTy g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="309993257"
+X-IronPort-AV: E=Sophos;i="5.88,356,1635231600"; d="scan'208";a="309993257"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 08:52:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,356,1635231600"; d="scan'208";a="585621611"
+Received: from lkp-server01.sh.intel.com (HELO d95dc2dabeb1) ([10.239.97.150])
+ by fmsmga008.fm.intel.com with ESMTP; 09 Feb 2022 08:52:57 -0800
+Received: from kbuild by d95dc2dabeb1 with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1nHqDA-00024R-Cm; Wed, 09 Feb 2022 16:52:56 +0000
+Date: Thu, 10 Feb 2022 00:52:01 +0800
+From: kernel test robot <lkp@intel.com>
+To: Michael Cheng <michael.cheng@intel.com>,
+	intel-gfx@lists.freedesktop.org
+Message-ID: <20220209165201.GA22167@9a302928fedb>
+References: <20220207201127.648624-5-michael.cheng@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Wed, 09 Feb 2022 16:50:18 -0000
-Message-ID: <164442541889.23774.7056514084357902314@emeril.freedesktop.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220207201127.648624-5-michael.cheng@intel.com>
 X-Patchwork-Hint: ignore
-References: <20220208213548.244829-1-jose.souza@intel.com>
-In-Reply-To: <20220208213548.244829-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display/tgl+=3A_Implement_new_PLL_programming_step_=28rev?=
- =?utf-8?q?2=29?=
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: [Intel-gfx] [PATCH] drm/i915/: fix noderef.cocci warnings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,174 +61,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, michael.cheng@intel.com, kbuild-all@lists.01.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1758746120135440533==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: kernel test robot <lkp@intel.com>
 
-== Series Details ==
+drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1310:32-38: ERROR: application of sizeof to pointer
+drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1322:32-38: ERROR: application of sizeof to pointer
 
-Series: drm/i915/display/tgl+: Implement new PLL programming step (rev2)
-URL   : https://patchwork.freedesktop.org/series/99867/
-State : success
+ sizeof when applied to a pointer typed expression gives the size of
+ the pointer
 
-== Summary ==
+Generated by: scripts/coccinelle/misc/noderef.cocci
 
-CI Bug Log - changes from CI_DRM_11207 -> Patchwork_22225
-====================================================
+CC: Michael Cheng <michael.cheng@intel.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: kernel test robot <lkp@intel.com>
+---
 
-Summary
--------
+url:    https://github.com/0day-ci/linux/commits/Michael-Cheng/Use-drm_clflush-instead-of-clflush/20220208-041326
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+:::::: branch date: 2 days ago
+:::::: commit date: 2 days ago
 
-  **SUCCESS**
+ i915_gem_execbuffer.c |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22225/index.html
-
-Participating hosts (45 -> 43)
-------------------------------
-
-  Additional (1): bat-rpls-1 
-  Missing    (3): fi-bsw-cyan shard-tglu fi-pnv-d510 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22225 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2] ([i915#146])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22225/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][3] ([fdo#109271]) +18 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22225/fi-skl-6600u/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-skl-6600u:       [FAIL][4] ([i915#4547]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22225/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11207 -> Patchwork_22225
-
-  CI-20190529: 20190529
-  CI_DRM_11207: 0d650d738ee924dc0c367ff1f33c61237a635933 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6342: 1bd167a3af9e8f6168ac89c64c64b929694d9be7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22225: 1dc3174e835d6804c413bbf18264c2e42c7202c7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1dc3174e835d drm/i915/display/tgl+: Implement new PLL programming step
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22225/index.html
-
---===============1758746120135440533==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display/tgl+: Implement new PLL programming step (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99867/">https://patchwork.freedesktop.org/series/99867/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22225/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22225/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11207 -&gt; Patchwork_22225</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22225/index.html</p>
-<h2>Participating hosts (45 -&gt; 43)</h2>
-<p>Additional (1): bat-rpls-1 <br />
-  Missing    (3): fi-bsw-cyan shard-tglu fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22225 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22225/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22225/fi-skl-6600u/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +18 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_psr@primary_page_flip:<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22225/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11207 -&gt; Patchwork_22225</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11207: 0d650d738ee924dc0c367ff1f33c61237a635933 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6342: 1bd167a3af9e8f6168ac89c64c64b929694d9be7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22225: 1dc3174e835d6804c413bbf18264c2e42c7202c7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>1dc3174e835d drm/i915/display/tgl+: Implement new PLL programming step</p>
-
-</body>
-</html>
-
---===============1758746120135440533==--
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1307,7 +1307,7 @@ static void clflush_write32(u32 *addr, u
+ {
+ 	if (unlikely(flushes & (CLFLUSH_BEFORE | CLFLUSH_AFTER))) {
+ 		if (flushes & CLFLUSH_BEFORE)
+-			drm_clflush_virt_range(addr, sizeof(addr));
++			drm_clflush_virt_range(addr, sizeof(*addr));
+ 
+ 		*addr = value;
+ 
+@@ -1319,7 +1319,7 @@ static void clflush_write32(u32 *addr, u
+ 		 * to ensure ordering of clflush wrt to the system.
+ 		 */
+ 		if (flushes & CLFLUSH_AFTER)
+-			drm_clflush_virt_range(addr, sizeof(addr));
++			drm_clflush_virt_range(addr, sizeof(*addr));
+ 	} else
+ 		*addr = value;
+ }
