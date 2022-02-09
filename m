@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D9624AEBEA
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 09:11:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E5AC4AEC38
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 09:27:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE1410E4D1;
-	Wed,  9 Feb 2022 08:11:28 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14C7B10E4D1
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 08:11:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E123110E4D6;
+	Wed,  9 Feb 2022 08:27:06 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3482410E4D1;
+ Wed,  9 Feb 2022 08:27:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644394287; x=1675930287;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=QszDw/oZEejspg1GBaL5RF9DOw/o1tVg8Ml0rf/0pJw=;
- b=Q3Nkyb7h22BxgNkSpE5uq/GYFC3BfrRdwcaoqlpCCwFp0UigKB6MzCvH
- mKmWk9U8OxokmLxeT47p3A3YxnbUoZddFJfwi9+2woxD52ZHC4/nqXSkY
- XYfia6XdvZz7nOGFItCNrhrCzVb18Yk0+BabOu9gMPe0qaGkKxcrxd9tq
- I72N6IaTCJEHufqXOuwJVgDGYaUEoOHE45QcNsg1uayqKatIzLaoa4mCj
- sVMrpzwaoWN+oYkuIa3WlDJUJwJW7dZFqFaPU7cMm7IpDYJL4CO6tsKGA
- FZY5AUXhM2Jl+AwFUrERv3mT7vz3OqfUrsOm0GL4EG2KaLNWFgjRVuDtd Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="247985662"
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="247985662"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 00:11:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="568160447"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga001.jf.intel.com with SMTP; 09 Feb 2022 00:11:24 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 09 Feb 2022 10:11:23 +0200
-Date: Wed, 9 Feb 2022 10:11:23 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <YgN3Kx+9K9huf+B/@intel.com>
-References: <20220209051140.1599643-1-matthew.d.roper@intel.com>
- <20220209051140.1599643-7-matthew.d.roper@intel.com>
+ t=1644395225; x=1675931225;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Us5xx47RA+BaRpkyZMTNHSDyRRwoIXbbpVJt9c2BiUo=;
+ b=hZrm3kFvh0paK3SVHgrkekE//goIj9vMf7NYsPhwNA4ZfOOz7sT0UMCC
+ SEiUl/R9EKjhJTG/tEcN0F6QiR6LOtDDl3pcG7LhcQWFxhKifT9wD4Oci
+ Q4StzVJkQHtZlwPfX91JT+rOMFHCV+RclloZGLM9hkmpEzY6Y19NWa8+K
+ TibSI0PM8rtAJMcXIDrvLANRfbsSTaJooJvEqObcsqo+IwCof/SpJrn/w
+ 9cwcR1V/Cehc+YD/Va6oDX1XAIg2wlpH2Bql97cfgLFRYHo4cm+7dRtcz
+ LHyk3q4iYMTwg26VnWx8BcMO8Qkc93E1zJaysFEHKfV+C77jEh2JHIEPQ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="229124759"
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="229124759"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 00:27:04 -0800
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="525902823"
+Received: from dhussain-mobl.ger.corp.intel.com (HELO [10.213.227.135])
+ ([10.213.227.135])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 00:27:03 -0800
+Message-ID: <e85c44be-0770-3555-bed4-6fc598cdfb7b@linux.intel.com>
+Date: Wed, 9 Feb 2022 08:27:01 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
+References: <20220208020716.2140157-1-John.C.Harrison@Intel.com>
+ <ba8ce5c6-ba11-f2af-917c-9e6e14445d43@linux.intel.com>
+ <eaf8a239-57c6-69e8-a166-987eb6338acb@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <eaf8a239-57c6-69e8-a166-987eb6338acb@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220209051140.1599643-7-matthew.d.roper@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/gt: Order GT registers by MMIO
- offset
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Fix flag query to not modify
+ state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,38 +63,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 08, 2022 at 09:11:40PM -0800, Matt Roper wrote:
-> The random order of register definitions we have today causes a lot of
-> confusion and unintentional duplication when new registers/bits are
-> added to the driver.  Let's order the GT register file by MMIO offset
-> 
-> A couple duplicated/unused register definitions are dropped while doing
-> this re-order:  GEN11_GT_INTR_DW{0,1}, GEN11_IIR_REG{0,1}_SELECTOR, and
-> GEN11_INTR_IDENTITY_REG{0,1} aren't used anywhere in the driver because
-> we have other parameterized macros referencing those registers.
-> 
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_regs.h | 2289 ++++++++++++-----------
->  1 file changed, 1147 insertions(+), 1142 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> index 3b1cae766741..e48a2ffed4fd 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> @@ -8,67 +8,95 @@
->  
->  #include "i915_reg_defs.h"
->  
-> -#define ILK_GDSR				_MMIO(MCHBAR_MIRROR_BASE + 0x2ca4)
 
-Drive by comment: This seems a bit misplaced in intel_gt_regs.h.
-I'm thinking we  probably want a intel_mchbar_regs.h for these.
 
--- 
-Ville Syrj�l�
-Intel
+On 08/02/2022 18:53, John Harrison wrote:
+> On 2/8/2022 01:39, Tvrtko Ursulin wrote:
+>> On 08/02/2022 02:07, John.C.Harrison@Intel.com wrote:
+>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>
+>>> A flag query helper was actually writing to the flags word rather than
+>>> just reading. Fix that. Also update the function's comment as it was
+>>> out of date.
+>>>
+>>> Fixes: 0f7976506de61 ("drm/i915/guc: Rework and simplify locking")
+>>> Signed-off-by: John Harrison <john.c.harrison@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 7 ++-----
+>>>   1 file changed, 2 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> index b3a429a92c0d..d9f4218f5ef4 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> @@ -174,11 +174,8 @@ static inline void init_sched_state(struct 
+>>> intel_context *ce)
+>>>   __maybe_unused
+>>>   static bool sched_state_is_init(struct intel_context *ce)
+>>>   {
+>>> -    /*
+>>> -     * XXX: Kernel contexts can have SCHED_STATE_NO_LOCK_REGISTERED 
+>>> after
+>>> -     * suspend.
+>>> -     */
+>>> -    return !(ce->guc_state.sched_state &=
+>>> +    /* Kernel contexts can have SCHED_STATE_REGISTERED after 
+>>> suspend. */
+>>> +    return !(ce->guc_state.sched_state &
+>>>            ~(SCHED_STATE_BLOCKED_MASK | SCHED_STATE_REGISTERED));
+>>>   }
+>>
+>> Looks important - what are the consequences?
+> Supposedly nothing.
+> 
+> The test was only ever used inside a BUG_ON during context registration. 
+> Rather than asserting that the condition was true, it was making the 
+> condition true. So, in theory, there was no consequence because we 
+> should never have hit a BUG_ON anyway. Which means the write should 
+> always have been a no-op.
+> 
+>>
+>> Needs Cc: stable for 5.16?
+> Meaning "Cc: <stable@vger.kernel.org>"? Or is there anything required to 
+> specify 5.16?
+
+It would have been:
+
+Cc: <stable@vger.kernel.org> # v5.16+
+
+You can use "dim fixes <sha>" and it will output you the suggested tags.
+
+But given what you say about it having no impact even in debug builds 
+then it's not needed. Just note that explaining the impact in the commit 
+message when Fixes: tag is present is very desirable in general. Without 
+it maintainers have a hard time assessing and highlighting important 
+stuff in pull requests. So I would at least ask for respin with updated 
+commit message explaining there is no consequence and why cc stable is 
+not needed.
+
+Regards,
+
+Tvrtko
