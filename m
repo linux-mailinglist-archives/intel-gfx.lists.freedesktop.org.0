@@ -2,42 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DA714AE7E8
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 04:47:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 068694AE7E9
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 04:51:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E35310E2BF;
-	Wed,  9 Feb 2022 03:47:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F64D10E1C7;
+	Wed,  9 Feb 2022 03:51:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5D9810E1C7
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 03:46:59 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE5EB10E1C7
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 03:51:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644378419; x=1675914419;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=MSAVWzGSD06VdDJBfjMXQ16pYE2dZuxtJJE5XSB+HJg=;
- b=T9J/lRxlN5VW+FSwadxMrMmO2O96GAJzrJqzkVbFbWtaqBk8gJHXJMNJ
- 3HDd72goDmNYKEZ12uEuPkd4eMeN3lF8ENin+S5KMw2nIsQRACYyOWdzi
- yXR4NUZUs1xIZcZ/LUdpcNgs+lUjlqF9RYPRPrGtOGC3M3VDO++HYJKE6
- kwIxRxhepZmLyT9Cu6EGH1Ik2HVxjR0hkW8uAOyB6t6oEfUG3oiNWpUFn
- aPbqRHE2MRqvkkWOE+v9kPWD8qw/uj5bKJUOmsC+klt43XCThRdvZu+4t
- zndnwCxUox0XnsCE+3qaP9zndS5cM+roSwSaEkm3cVvHHz9SBIN0rEkAW w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="246697251"
-X-IronPort-AV: E=Sophos;i="5.88,354,1635231600"; d="scan'208";a="246697251"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 19:46:59 -0800
-X-IronPort-AV: E=Sophos;i="5.88,354,1635231600"; d="scan'208";a="629129969"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 19:46:59 -0800
-Date: Tue, 8 Feb 2022 19:41:03 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-Message-ID: <20220209034103.GA25307@jons-linux-dev-box>
+ t=1644378676; x=1675914676;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=nd/DJA1+xhedjX81X06RYoPUqpBfXO+C+K1uNkwq8os=;
+ b=ITTH7Fi+nxXmkiqdqAnKWQLOPgc/wRnO9y7GPJTtEAF/+y5onu5QQCjE
+ Vh6YHQRKQ9W5dNfySwBtcDY6b3rjYhdon53WhvOgSOSTdy+cpf4bfYNnO
+ XarYFHRvKLgVw/MHNIDE8ybe6MB0DmfA1sGHwLM9wjnWoUJjVsYsrW85u
+ 2gsCDBIAWS0cWd+gSLD0knfaP0y1PrwSyzwqxaciuJdc2Q+BTFFqiUm75
+ 8jcX6gDGO4JCLiLAqXjWz5rtnBsFleUxH9XPhvO1oetVU+PWcL7m+YJMO
+ XABMppN2KF/D2QKGBNm1EiUAO6OFmDNBCWaRZIqU+fOWTgf3zyrQkcUpU g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="229761760"
+X-IronPort-AV: E=Sophos;i="5.88,354,1635231600"; d="scan'208";a="229761760"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2022 19:51:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,354,1635231600"; d="scan'208";a="585424543"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga008.fm.intel.com with ESMTP; 08 Feb 2022 19:51:16 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 8 Feb 2022 19:51:15 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20 via Frontend Transport; Tue, 8 Feb 2022 19:51:15 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.177)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.20; Tue, 8 Feb 2022 19:51:15 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e8kk9Vp7Vtu4gct2STpQIoM6Stj0Vo6XKOssOHjaMP/cUsHMH0m9TKf7aaFhe23SZRLWYtcW+ORlEEIM2zIKEAqX7Fz4AmxXRfIUIgujuV2VgBPiQ01x5/LJu/GnfWmjSTMfC0RNGh/o5QP/fiuZe1FtNr3acEzqNshxqN13FLwzVhvyA5s0w/RrOqmYulGXzXBABcQrLC9cqEACXXvtHXV0KMrzdfE6XgCn/8YVld/Pb4EL2I9ptOFPxkCn3ozCts7tQY7jwoMGKFKq4bUNjFzvPm11d/CGZBjfLhLTYOc9ZY2twjaOwA3Sm2G33dZnSc1L/iOC5u1yPy4e3PoZ+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nd/DJA1+xhedjX81X06RYoPUqpBfXO+C+K1uNkwq8os=;
+ b=J6wsUOujlOY/B7Ce15OWSQxGBSUrfI/1tQt2/hdr/6FX4SlvmvxtQJna7WOueL8thInHmcnSd8l5jQxwuadQEiS4gsOW78AHEGJjsqHf/bGcU4Jlp3ATz9cyOB3kkA3RXm+t9N9we7aF3BoN7xtqFE5Yrp57SWxgVOl+tN2ELzyVDOovBSDs/5UNWN8gYwHElzfYbTQxi2g7m4P+x8ZAVA9EuthJyneSUu1t4KFuHlZqrLbg2QCH89wZExB+9BA2CY88r7SAs0Dsryr7BmyYOGrEfASIjmghHS78tjNhzdDXV9CLyQjnxK9YnDzLBLnTh1J2yjzdhyCy0kHfSyb1ww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from BYAPR11MB3784.namprd11.prod.outlook.com (2603:10b6:a03:fe::10)
+ by BN6PR11MB1747.namprd11.prod.outlook.com (2603:10b6:404:102::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.11; Wed, 9 Feb
+ 2022 03:51:13 +0000
+Received: from BYAPR11MB3784.namprd11.prod.outlook.com
+ ([fe80::a048:b2cb:5446:6b13]) by BYAPR11MB3784.namprd11.prod.outlook.com
+ ([fe80::a048:b2cb:5446:6b13%7]) with mapi id 15.20.4951.019; Wed, 9 Feb 2022
+ 03:51:13 +0000
+From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+To: "Brost, Matthew" <matthew.brost@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v5 06/10] drm/i915/guc: Update GuC's
+ log-buffer-state access for error capture.
+Thread-Index: AQHYEqH5/+h2jkBMckGW0JGoCGdjO6yDwjUAgAZf6ICAACwmAIAACt4AgABNh4CAAAUzgA==
+Date: Wed, 9 Feb 2022 03:51:13 +0000
+Message-ID: <bad2d5ae25604173682960a95d81d2d0debac585.camel@intel.com>
 References: <20220126104822.3653079-1-alan.previn.teres.alexis@intel.com>
  <20220126104822.3653079-7-alan.previn.teres.alexis@intel.com>
  <20220204181924.GA18242@jons-linux-dev-box>
@@ -45,11 +77,82 @@ References: <20220126104822.3653079-1-alan.previn.teres.alexis@intel.com>
  <20220208221814.GA24152@jons-linux-dev-box>
  <f3cdc0a3a56eb452216b74bf0a12b112896b47f7.camel@intel.com>
  <20220209033436.GA25278@jons-linux-dev-box>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 In-Reply-To: <20220209033436.GA25278@jons-linux-dev-box>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.36.5-0ubuntu1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 75e5dd96-7c03-4191-fb2a-08d9eb7f6aa9
+x-ms-traffictypediagnostic: BN6PR11MB1747:EE_
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-microsoft-antispam-prvs: <BN6PR11MB17479343A9370D8D784ADFF98A2E9@BN6PR11MB1747.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: FeyKXzlmvXo8hvDNdSpFyyBA+Qw75pt6C8b44sK6xqPb9UfwpZg2uTZIjCkRRJB1KSw90FIJSkpwFsAppr+1NVniNgucWDbT0wGy3hdBM+A8VihXof42Hgy73vF0mNJEYQ1xuGJxFfhKHf55kT7wwPmNDkvHcJ0Nj8D694Ny3YaJ/owy0VZFkPfySLe2MlAFv8GRE+ZerNaFdV5oYOtfEDnLH33QAAYGHrE9E6V45SuMSoMuCjADpepHliunTLsduHcGd8awrIH1PZw4Wnl6D+HE2i0GxhzSI0YYsf+PQAg0xIDxpl2vwjo3fp3zrK5SnB4asZz4ckotQXS6nmqmcKvD2c8nXlZfut6oe1aeeRO0cDPBmdFjM8AKdJEQlP1tworTHO7idrgde2VTLRp21YGXTYf8Hz3UJewAZma7fnyPHLOX7sVZVcXlYJ0tlx5XqrO9gEvG1A0KhcwePaZTfcqUn9XgmWYs2uTLksXYDtuMXaWfgwAbKJX2Vs+iJV6HGeDCktrn8Nwi6D40JKJipkloJwqo255OIq/rKBHy6xhZmHCsZKEEOSvCObbgc6tkddnowCwqHGChuZXZyVr8AGYufJyTZOgrAnWBrACKADjjiht/YvW0LrcmGAcStR2rvC7HwQR3psMYCxb+sJUdGFSUNzgVR3BLPLCo1gJgiZBGeP1YVNn4HT6CV89RsEHHCnA5SqWhc1SgUPXHWjpvxw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB3784.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(8936002)(36756003)(71200400001)(37006003)(2616005)(6512007)(316002)(38070700005)(6506007)(6486002)(6636002)(508600001)(8676002)(5660300002)(83380400001)(86362001)(64756008)(66446008)(66476007)(66556008)(66946007)(186003)(26005)(4326008)(6862004)(76116006)(15650500001)(82960400001)(122000001)(2906002)(38100700002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cWNQMUk5ZW85WFBJQ1FPRllXWUwvQXprWmFxNUFhR1p6MUdaaG5Yei9sQUFk?=
+ =?utf-8?B?SXEycWdMcjhKcmFHUlZQSnNFVXljUHEvRm9xZHJTcWIyMnd3U1V0bnY2bHdI?=
+ =?utf-8?B?ZjFXa2xQaERBM3dNS2l5RkNsYU9saEd6U1lxME92TUh2SVZOQ3BDR3ZtTU1X?=
+ =?utf-8?B?TW8wSXo4cEwxUGNHMkZjbEZvYjduSzJkY1g3QjVWdlNLUlFPdWpmSGZZaE1J?=
+ =?utf-8?B?L3N3bUtsZElNVnRVYWpNVUNjcGUweWd6bGRiS2FrZ3d2T0FNMlZ0VFZXRnpZ?=
+ =?utf-8?B?OFZDN0NJakN1YjRkeW5QanJHNzlDbFJFWTFKOVlkMWVvRGQzNWE5SFhmekhB?=
+ =?utf-8?B?ZVZjMXJtTXZnSDlFOXNqTGdtZndKOWhQZDdoN3p4OG1TMkJCUU81U3JYUWZn?=
+ =?utf-8?B?czlVbUc1dlNSUVhEd0JmV290V0xKR2dleHpoK2dVbE55T3JwNk1nNlRrR29l?=
+ =?utf-8?B?bTJMb0NreGlxVjh2M1dIRm1GVGZQUTBaazc0YUpXVHI5c3NObjNEVFdJVzV2?=
+ =?utf-8?B?NWt6UU1zM3VwbXlLSjU1M1dWbjQvL2VkdEp5VzNaeDNIbmV3b29WTnVBdENF?=
+ =?utf-8?B?K3R3NEpMYWJWMEN5NXlpMlhwQ1JGUzZPQlBidW1LWlFvY2E0VzE3bFNxMEZr?=
+ =?utf-8?B?L2FQcWwzTmhaQ1QrYUcrNll1Z3M5QXVMWnJiV0hFb2EyWDdBSmZoZ1cwMjFv?=
+ =?utf-8?B?dVpLcmkzVjBxYytCYmVJY1NOS3pveTd2TUFpUFh4MjJ3czhETVhiZitxTkEy?=
+ =?utf-8?B?SkRTY1BqTGZDMXBzZVRydkFTY201dGdvWFpqVG5qcTJwbitCKy9rd0NqdW9m?=
+ =?utf-8?B?czR6RFBqOUV5eG56aWJtM0tvd0tUd3gyNjhqWW96cjhnZWt4emVRN3pERE5w?=
+ =?utf-8?B?L0lPMDNYRDVtUGxNMlNlL3dYVGpnWUt3SnhlWDhKL0hXaFVjZ3cwUmdTTDBK?=
+ =?utf-8?B?LzBMdEZqaUxPbERkOHVZVnB1NlBXZ1JWK0N5WUQ0eHFvNnVsb3NraW90NE1a?=
+ =?utf-8?B?QitiZTlFL2o2WmU5L1pmYit5VGN4WlNVTkQ0L3ZrU1J4RHI4Tk11YlpGRmNs?=
+ =?utf-8?B?K2x3aHMzemZQQ253M3BpSStHbzhLVEpLYjNkYzN4R1ZpdVE1eWxGUHRWQnBp?=
+ =?utf-8?B?c2FVOVkvMEJGOEdBUVJwQ2NLVy9vRjgwN3NVUSs4Vy85SWIxZ3p2ZkFBUlIx?=
+ =?utf-8?B?ZFhhTG9kQTcwdWlhUjdpT3lZVHBuTTNJY0I3UlFkVlBSUlJrOG15M0hIdmhj?=
+ =?utf-8?B?OEhSWlptMURHeG5Cajk5enNYajI4dTBqbG1GSlQzbzMrcEN5QzQ2TzAzaEQv?=
+ =?utf-8?B?dXJ5Wjh0YzJ1NEpNdzg2OHJsUllIN1cwUlFUL0YzVUpMTHVTQkt3SCtST2lG?=
+ =?utf-8?B?cFJrUFJDRzdPWkw4NzYyZmxzWHpwL01vRXdKdGJZdm4vVTZQMFBFdHVrNXVu?=
+ =?utf-8?B?NnBvdnJwWUtqTmJGRmMwRk13U0hKWFR2TEhHK2hORHU2cWpzSkRhR2FGanM3?=
+ =?utf-8?B?ZHN3RHd6Qkd1azBzNm11elpUaWxXYzg1cHI5UFd6N2pTZEFPSElibEFHMCtL?=
+ =?utf-8?B?eENuQjE3RVYzSWtUTVFzQWZ0OVorbzBZaHVzcUdGbnRJZjlvanBMazN1Q3VY?=
+ =?utf-8?B?OEFDQzQ0UVFCNEVWVHc2U0F0YmZvMGxNVXFseGM3ZXFzWHRCRTJHQnkrYnV5?=
+ =?utf-8?B?NjZ4UFdhUk9Cd3BKSjg5TXUxNFJPUGQ1Tjl2c05URTJlMnBzMVJGSE84TC9C?=
+ =?utf-8?B?Ujd4WlVXNVpFUnJ4TU00QTlMVkF2UWxqa2d5NkZ2M0toWEpRVWp6cWR1Z0NT?=
+ =?utf-8?B?NldqV2NaTjhkNGprQktwV2krUEVJeUt0dGF2UHJFOTYzcjRJMW4rQmVCcEZG?=
+ =?utf-8?B?aWlnMjgvbzVHNU15M1pIRGs0WTArQjBBd3pTdkpaKzRTNEdTblp1WUZGU25Q?=
+ =?utf-8?B?UnJ0T2k2TStuNmo2N043WlhyeGxpREFld0loVFpsUmJ4dUNVMWxOdk5rcmto?=
+ =?utf-8?B?bzZ5cEdlMGxSbE96Q2srdmhpdmFybjhWQTBFZ2l2U1RnTGNKZUxPQkdNYXAw?=
+ =?utf-8?B?WmwyWm1WVkM1MFI1ZSt4dGhlUFh2OFhjUVhzVnZxZFFFYWNYWkhaSCtrbS95?=
+ =?utf-8?B?UGE2UERBOVQ0S3BmWVBUTDFCL2lSMmtUejVOZWlsdzEvaktWRkJESS8vdW04?=
+ =?utf-8?B?WDFNcEpUd1g5RW4zTXZzU2llNTl2VWFqM2JIVERpZnhVakttcnFSajNZcytp?=
+ =?utf-8?B?Q0Z3alQ0NDdRdjZwV1dHa2Rrc211blR4QkhqdXZrUVl5b0phTTBXeENTTzBD?=
+ =?utf-8?B?UWJjdmMyTjdDekVDc3NYa3FkWFptMFhkY29LbC91OU55bEV4ZkxtZz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <157515036F2C7A43B66EF8624AD7DBF7@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3784.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75e5dd96-7c03-4191-fb2a-08d9eb7f6aa9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Feb 2022 03:51:13.0972 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 66IXpGKRoi/bVa9afuaPLyogCu/iDDDYB7ndGi4E4rIaSnfy9cQ5ecBmW2bLVVYT0a/9C+4XVxKKlxmI+69Q8rfPfTXbIfEgx6JYCLtP2e/ql0KISCqAN1yRgENrs9c/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1747
+X-OriginatorOrg: intel.com
 Subject: Re: [Intel-gfx] [PATCH v5 06/10] drm/i915/guc: Update GuC's
  log-buffer-state access for error capture.
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,170 +171,159 @@ Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 08, 2022 at 07:34:37PM -0800, Matthew Brost wrote:
-> On Tue, Feb 08, 2022 at 02:55:07PM -0800, Teres Alexis, Alan Previn wrote:
-> > 
-> > On Tue, 2022-02-08 at 14:18 -0800, Matthew Brost wrote:
-> > > On Tue, Feb 08, 2022 at 11:38:13AM -0800, Teres Alexis, Alan Previn wrote:
-> > > > Hi Matt, thank you for taking the time to review the codes.
-> > > > Answering your question inline below.
-> > > >
-> > > >
-> > > > On Fri, 2022-02-04 at 10:19 -0800, Matthew Brost wrote:
-> > > > > On Wed, Jan 26, 2022 at 02:48:18AM -0800, Alan Previn wrote:
-> > > > > > GuC log buffer regions for debug-log-events, crash-dumps and
-> > > > > > error-state-capture are all a single bo allocation that includes
-> > > > > > the guc_log_buffer_state structures.
-> > > > > >
-> > > > > > Since the error-capture region is accessed with high priority at non-
-> > > > > > deterministic times (as part of gpu coredump) while the debug-log-event
-> > > > > > region is populated and accessed with different priorities, timings and
-> > > > > > consumers, let's split out separate locks for buffer-state accesses
-> > > > > > of each region.
-> > > > > >
-> > > > > > Also, ensure a global mapping is made up front for the entire bo
-> > > > > > throughout GuC operation so that dynamic mapping and unmapping isn't
-> > > > > > required for error capture log access if relay-logging isn't running.
-> > > > > >
-> > > > > > Additionally, while here, make some readibility improvements:
-> > > > > > 1. change previous function names with "capture_logs" to
-> > > > > >    "copy_debug_logs" to help make the distinction clearer.
-> > > > > > 2. Update the guc log region mapping comments to order them
-> > > > > >    according to the enum definition as per the GuC interface.
-> > > > > >
-> > > > > > Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   2 +
-> > > > > >  .../gpu/drm/i915/gt/uc/intel_guc_capture.c    |  47 ++++++
-> > > > > >  .../gpu/drm/i915/gt/uc/intel_guc_capture.h    |   1 +
-> > > > > >  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    | 135 +++++++++++-------
-> > > > > >  drivers/gpu/drm/i915/gt/uc/intel_guc_log.h    |  16 ++-
-> > > > > >  5 files changed, 141 insertions(+), 60 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> > > > > > index 4e819853ec2e..be1ad7fa2bf8 100644
-> > > > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> > > > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> > > > > > @@ -34,6 +34,8 @@ struct intel_guc {
-> > > > > >     struct intel_uc_fw fw;
-> > > > > >     /** @log: sub-structure containing GuC log related data and objects */
-> > > > > >     struct intel_guc_log log;
-> > > > > > +   /** @log_state: states and locks for each subregion of GuC's log buffer */
-> > > > > > +   struct intel_guc_log_stats log_state[GUC_MAX_LOG_BUFFER];
-> > > > >
-> > > > > Why move this? This still probably should be sub-structure of
-> > > > > intel_guc_log. Most of the access is from functions that pass in
-> > > > > intel_guc_log, then retrieve the GuC object, only to access this new
-> > > > > intel_guc_log_stats object. That layering seems wrong, if the argument
-> > > > > to a function is intel_guc_log it should really try to access members
-> > > > > within that object or below. Obv some exceptions exist but here it seems
-> > > > > clear to me this is in the wrong place.
-> > > > >
-> > > > So the reasoning i had was because because intel_guc_log module only managed
-> > > > guc-relay-logging and guc-log-dumping for log-events but allocates the buffer
-> > > > for 3 separate subregion/usages (i.e. log-events, crash-dump and error-capture).
-> > > > That said, I did not want intel_guc_capture and relay-logging (or log-dumping)
-> > > > to have to contend with the same lock because these two subregions are completely
-> > > > independant of each other in terms of when they are being accessed and why.
-> > > >
-> > >
-> > > All that is fine, I just think the 'struct intel_guc_log_stats' should
-> > > be sub-substure of struct intel_guc_log.
-> > >
-> > > > However, after the redesign of rev5 (this rev), I now believe the intel_guc_capture
-> > > > module does not require a lock because its only ever accessing its log
-> > > > subregion in response to the ctb handler functions that run out of the same queue.
-> > > > As we know intel_guc_capture reacts to G2H-error-capture-notification and G2H-context-reset
-> > > > (that trickles into i915_gpu_coredump). At the point of i915_error_state dump,
-> > > > intel_guc_capture module does not access the buffer - it merely dumps the already-parsed
-> > > > and engine-dump-node (that was detached from error-capture's internal linked-list
-> > > > and attached to the gpu_coredump structure in the second G2H above).
-> > > >
-> > > > And of course, intel_guc_log only ever accesses the log-events subregion
-> > > > and never the error-capture regions.
-> > > >
-> > > > That said, i could revert the lock structure to the original and not have
-> > > > intel_guc_capture using locks. What do you think?
-> > > >
-> > >
-> > > Again my comment has nothing to do with locking, it is where the
-> > > structure lives.
-> > >
-> > >
-> > IMHO, based on my understanding of the codes and the GuC interface,
-> > i see intel_guc_log and intel_guc_capture as 2 subsystems at equal level
-> > under the intel_guc framework. Both these subsystems have completely independent
-> > functions with completely separate input streams with completely separate
-> > content and usage. They do happen to share the same bo but have independent
-> > regions. That said, I believe the stats array-structure and even the vma
-> > ptr should go into the parent - i.e. intel_guc, the parent of both intel_guc_log and
-> > intel_guc_capture. Alernatively, each subsystem that has its own stats structure.
-> > 
-> > However, without the need for the locks, i guess i dont need to change anything
-> > other than have intel_guc_log skip over the capture region and let intel_guc_capture
-> > deal with its region independantly without sharing any member variable
-> > from intel_guc_log.
-> > 
-> > I am admittedly new to the GuC infrastructure so please do let me know if I am mistaken
-> > and if intel_guc_capture is supposed to be a subsystem of intel_guc_log.
-> > 
-> 
-> If the object lives at the GuC level, operate on it at the GuC level.
-> 
-> e.g.
-> intel_guc_log_init_early calls mutex init on guc->log_state - that is
-> wrong and breaks the layering. intel_guc_log_init_early should only
-> operate on guc_log or below objects, not above it.
-> 
-> The key here is consisteny, if the GuC level owns the object it should
-> be initialized there + passed into the lower levels if possible. The
-> lower levels should avoid reaching back to GuC level for objects
-> whenever possible.
-> 
-
-Let me clarifiy this even more, reaching back to get an object to pass
-to another fucntion - ok, reaching back to read something - meh,
-reaching back to modify something - no.
-
-Matt 
-
-> You could have 2 intel_guc_log_stats objects below the guc_log object
-> and 1 intel_guc_log_stats object for capture at the GuC level. That's
-> likely the right approach here.
-> 
-> I know this is kinda a nit but actually important to have a well
-> structured / layered driver. The i915 isn't a great example of this but
-> we should avoid making this worse.
-> 
-> Matt
-> 
-> > > Matt
-> > >
-> > > > ...alan
-> > > >
-> > > > > Another nit, I'd personally break this out into multiple patches.
-> > > > >
-> > > > > e.g. 1 to rename relay log functions, 1 introducing intel_guc_log_stats
-> > > > > + lock, and 1 adding intel_guc_capture_output_min_size_est. Maybe I'm
-> > > > > missing another patch or two in there.
-> > > > >
-> > > > > Not a blocker but it does make reviews easier.
-> > > > >
-> > > > Will do.
-> > > >
-> > > > > Matt
-> > > > >
-> > > > > >     /** @ct: the command transport communication channel */
-> > > > > >     struct intel_guc_ct ct;
-> > > > > >     /** @slpc: sub-structure containing SLPC related data and objects */
-> > > > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-> > > > > > index 70d2ee841289..e7f99d051636 100644
-> > > > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-> > > > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
-> > > > > > @@ -651,6 +651,53 @@ int intel_guc_capture_prep_lists(struct intel_guc *guc, struct guc_ads *blob, u3
-> > > > > >     return PAGE_ALIGN(alloc_size);
-> > > > > >  }
-> > > > > >
-> > > > > > 2.25.1
-> > > > > >
-> > 
+DQpPbiBUdWUsIDIwMjItMDItMDggYXQgMTk6MzQgLTA4MDAsIE1hdHRoZXcgQnJvc3Qgd3JvdGU6
+DQo+IE9uIFR1ZSwgRmViIDA4LCAyMDIyIGF0IDAyOjU1OjA3UE0gLTA4MDAsIFRlcmVzIEFsZXhp
+cywgQWxhbiBQcmV2aW4gd3JvdGU6DQo+ID4gT24gVHVlLCAyMDIyLTAyLTA4IGF0IDE0OjE4IC0w
+ODAwLCBNYXR0aGV3IEJyb3N0IHdyb3RlOg0KPiA+ID4gT24gVHVlLCBGZWIgMDgsIDIwMjIgYXQg
+MTE6Mzg6MTNBTSAtMDgwMCwgVGVyZXMgQWxleGlzLCBBbGFuIFByZXZpbiB3cm90ZToNCj4gPiA+
+ID4gSGkgTWF0dCwgdGhhbmsgeW91IGZvciB0YWtpbmcgdGhlIHRpbWUgdG8gcmV2aWV3IHRoZSBj
+b2Rlcy4NCj4gPiA+ID4gQW5zd2VyaW5nIHlvdXIgcXVlc3Rpb24gaW5saW5lIGJlbG93Lg0KPiA+
+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IE9uIEZyaSwgMjAyMi0wMi0wNCBhdCAxMDoxOSAtMDgw
+MCwgTWF0dGhldyBCcm9zdCB3cm90ZToNCj4gPiA+ID4gPiBPbiBXZWQsIEphbiAyNiwgMjAyMiBh
+dCAwMjo0ODoxOEFNIC0wODAwLCBBbGFuIFByZXZpbiB3cm90ZToNCj4gPiA+ID4gPiA+IEd1QyBs
+b2cgYnVmZmVyIHJlZ2lvbnMgZm9yIGRlYnVnLWxvZy1ldmVudHMsIGNyYXNoLWR1bXBzIGFuZA0K
+PiA+ID4gPiA+ID4gZXJyb3Itc3RhdGUtY2FwdHVyZSBhcmUgYWxsIGEgc2luZ2xlIGJvIGFsbG9j
+YXRpb24gdGhhdCBpbmNsdWRlcw0KPiA+ID4gPiA+ID4gdGhlIGd1Y19sb2dfYnVmZmVyX3N0YXRl
+IHN0cnVjdHVyZXMuDQo+ID4gPiA+ID4gPiANCj4gPiA+ID4gPiA+IFNpbmNlIHRoZSBlcnJvci1j
+YXB0dXJlIHJlZ2lvbiBpcyBhY2Nlc3NlZCB3aXRoIGhpZ2ggcHJpb3JpdHkgYXQgbm9uLQ0KPiA+
+ID4gPiA+ID4gZGV0ZXJtaW5pc3RpYyB0aW1lcyAoYXMgcGFydCBvZiBncHUgY29yZWR1bXApIHdo
+aWxlIHRoZSBkZWJ1Zy1sb2ctZXZlbnQNCj4gPiA+ID4gPiA+IHJlZ2lvbiBpcyBwb3B1bGF0ZWQg
+YW5kIGFjY2Vzc2VkIHdpdGggZGlmZmVyZW50IHByaW9yaXRpZXMsIHRpbWluZ3MgYW5kDQo+ID4g
+PiA+ID4gPiBjb25zdW1lcnMsIGxldCdzIHNwbGl0IG91dCBzZXBhcmF0ZSBsb2NrcyBmb3IgYnVm
+ZmVyLXN0YXRlIGFjY2Vzc2VzDQo+ID4gPiA+ID4gPiBvZiBlYWNoIHJlZ2lvbi4NCj4gPiA+ID4g
+PiA+IA0KPiA+ID4gPiA+ID4gQWxzbywgZW5zdXJlIGEgZ2xvYmFsIG1hcHBpbmcgaXMgbWFkZSB1
+cCBmcm9udCBmb3IgdGhlIGVudGlyZSBibw0KPiA+ID4gPiA+ID4gdGhyb3VnaG91dCBHdUMgb3Bl
+cmF0aW9uIHNvIHRoYXQgZHluYW1pYyBtYXBwaW5nIGFuZCB1bm1hcHBpbmcgaXNuJ3QNCj4gPiA+
+ID4gPiA+IHJlcXVpcmVkIGZvciBlcnJvciBjYXB0dXJlIGxvZyBhY2Nlc3MgaWYgcmVsYXktbG9n
+Z2luZyBpc24ndCBydW5uaW5nLg0KPiA+ID4gPiA+ID4gDQo+ID4gPiA+ID4gPiBBZGRpdGlvbmFs
+bHksIHdoaWxlIGhlcmUsIG1ha2Ugc29tZSByZWFkaWJpbGl0eSBpbXByb3ZlbWVudHM6DQo+ID4g
+PiA+ID4gPiAxLiBjaGFuZ2UgcHJldmlvdXMgZnVuY3Rpb24gbmFtZXMgd2l0aCAiY2FwdHVyZV9s
+b2dzIiB0bw0KPiA+ID4gPiA+ID4gICAgImNvcHlfZGVidWdfbG9ncyIgdG8gaGVscCBtYWtlIHRo
+ZSBkaXN0aW5jdGlvbiBjbGVhcmVyLg0KPiA+ID4gPiA+ID4gMi4gVXBkYXRlIHRoZSBndWMgbG9n
+IHJlZ2lvbiBtYXBwaW5nIGNvbW1lbnRzIHRvIG9yZGVyIHRoZW0NCj4gPiA+ID4gPiA+ICAgIGFj
+Y29yZGluZyB0byB0aGUgZW51bSBkZWZpbml0aW9uIGFzIHBlciB0aGUgR3VDIGludGVyZmFjZS4N
+Cj4gPiA+ID4gPiA+IA0KPiA+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTogQWxhbiBQcmV2aW4gPGFs
+YW4ucHJldmluLnRlcmVzLmFsZXhpc0BpbnRlbC5jb20+DQo+ID4gPiA+ID4gPiAtLS0NCj4gPiA+
+ID4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaCAgICAgICAgfCAg
+IDIgKw0KPiA+ID4gPiA+ID4gIC4uLi9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2NhcHR1
+cmUuYyAgICB8ICA0NyArKysrKysNCj4gPiA+ID4gPiA+ICAuLi4vZ3B1L2RybS9pOTE1L2d0L3Vj
+L2ludGVsX2d1Y19jYXB0dXJlLmggICAgfCAgIDEgKw0KPiA+ID4gPiA+ID4gIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19sb2cuYyAgICB8IDEzNSArKysrKysrKysrKy0tLS0t
+LS0NCj4gPiA+ID4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfbG9n
+LmggICAgfCAgMTYgKystDQo+ID4gPiA+ID4gPiAgNSBmaWxlcyBjaGFuZ2VkLCAxNDEgaW5zZXJ0
+aW9ucygrKSwgNjAgZGVsZXRpb25zKC0pDQo+ID4gPiA+ID4gPiANCj4gPiA+ID4gPiA+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaCBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Yy5oDQo+ID4gPiA+ID4gPiBpbmRleCA0ZTgxOTg1
+M2VjMmUuLmJlMWFkN2ZhMmJmOCAxMDA2NDQNCj4gPiA+ID4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Yy5oDQo+ID4gPiA+ID4gPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaA0KPiA+ID4gPiA+ID4gQEAgLTM0LDYgKzM0LDgg
+QEAgc3RydWN0IGludGVsX2d1YyB7DQo+ID4gPiA+ID4gPiAgICAgc3RydWN0IGludGVsX3VjX2Z3
+IGZ3Ow0KPiA+ID4gPiA+ID4gICAgIC8qKiBAbG9nOiBzdWItc3RydWN0dXJlIGNvbnRhaW5pbmcg
+R3VDIGxvZyByZWxhdGVkIGRhdGEgYW5kIG9iamVjdHMgKi8NCj4gPiA+ID4gPiA+ICAgICBzdHJ1
+Y3QgaW50ZWxfZ3VjX2xvZyBsb2c7DQo+ID4gPiA+ID4gPiArICAgLyoqIEBsb2dfc3RhdGU6IHN0
+YXRlcyBhbmQgbG9ja3MgZm9yIGVhY2ggc3VicmVnaW9uIG9mIEd1QydzIGxvZyBidWZmZXIgKi8N
+Cj4gPiA+ID4gPiA+ICsgICBzdHJ1Y3QgaW50ZWxfZ3VjX2xvZ19zdGF0cyBsb2dfc3RhdGVbR1VD
+X01BWF9MT0dfQlVGRkVSXTsNCj4gPiA+ID4gPiANCj4gPiA+ID4gPiBXaHkgbW92ZSB0aGlzPyBU
+aGlzIHN0aWxsIHByb2JhYmx5IHNob3VsZCBiZSBzdWItc3RydWN0dXJlIG9mDQo+ID4gPiA+ID4g
+aW50ZWxfZ3VjX2xvZy4gTW9zdCBvZiB0aGUgYWNjZXNzIGlzIGZyb20gZnVuY3Rpb25zIHRoYXQg
+cGFzcyBpbg0KPiA+ID4gPiA+IGludGVsX2d1Y19sb2csIHRoZW4gcmV0cmlldmUgdGhlIEd1QyBv
+YmplY3QsIG9ubHkgdG8gYWNjZXNzIHRoaXMgbmV3DQo+ID4gPiA+ID4gaW50ZWxfZ3VjX2xvZ19z
+dGF0cyBvYmplY3QuIFRoYXQgbGF5ZXJpbmcgc2VlbXMgd3JvbmcsIGlmIHRoZSBhcmd1bWVudA0K
+PiA+ID4gPiA+IHRvIGEgZnVuY3Rpb24gaXMgaW50ZWxfZ3VjX2xvZyBpdCBzaG91bGQgcmVhbGx5
+IHRyeSB0byBhY2Nlc3MgbWVtYmVycw0KPiA+ID4gPiA+IHdpdGhpbiB0aGF0IG9iamVjdCBvciBi
+ZWxvdy4gT2J2IHNvbWUgZXhjZXB0aW9ucyBleGlzdCBidXQgaGVyZSBpdCBzZWVtcw0KPiA+ID4g
+PiA+IGNsZWFyIHRvIG1lIHRoaXMgaXMgaW4gdGhlIHdyb25nIHBsYWNlLg0KPiA+ID4gPiA+IA0K
+PiA+ID4gPiBTbyB0aGUgcmVhc29uaW5nIGkgaGFkIHdhcyBiZWNhdXNlIGJlY2F1c2UgaW50ZWxf
+Z3VjX2xvZyBtb2R1bGUgb25seSBtYW5hZ2VkDQo+ID4gPiA+IGd1Yy1yZWxheS1sb2dnaW5nIGFu
+ZCBndWMtbG9nLWR1bXBpbmcgZm9yIGxvZy1ldmVudHMgYnV0IGFsbG9jYXRlcyB0aGUgYnVmZmVy
+DQo+ID4gPiA+IGZvciAzIHNlcGFyYXRlIHN1YnJlZ2lvbi91c2FnZXMgKGkuZS4gbG9nLWV2ZW50
+cywgY3Jhc2gtZHVtcCBhbmQgZXJyb3ItY2FwdHVyZSkuDQo+ID4gPiA+IFRoYXQgc2FpZCwgSSBk
+aWQgbm90IHdhbnQgaW50ZWxfZ3VjX2NhcHR1cmUgYW5kIHJlbGF5LWxvZ2dpbmcgKG9yIGxvZy1k
+dW1waW5nKQ0KPiA+ID4gPiB0byBoYXZlIHRvIGNvbnRlbmQgd2l0aCB0aGUgc2FtZSBsb2NrIGJl
+Y2F1c2UgdGhlc2UgdHdvIHN1YnJlZ2lvbnMgYXJlIGNvbXBsZXRlbHkNCj4gPiA+ID4gaW5kZXBl
+bmRhbnQgb2YgZWFjaCBvdGhlciBpbiB0ZXJtcyBvZiB3aGVuIHRoZXkgYXJlIGJlaW5nIGFjY2Vz
+c2VkIGFuZCB3aHkuDQo+ID4gPiA+IA0KPiA+ID4gDQo+ID4gPiBBbGwgdGhhdCBpcyBmaW5lLCBJ
+IGp1c3QgdGhpbmsgdGhlICdzdHJ1Y3QgaW50ZWxfZ3VjX2xvZ19zdGF0cycgc2hvdWxkDQo+ID4g
+PiBiZSBzdWItc3Vic3R1cmUgb2Ygc3RydWN0IGludGVsX2d1Y19sb2cuDQo+ID4gPiANCj4gPiA+
+ID4gSG93ZXZlciwgYWZ0ZXIgdGhlIHJlZGVzaWduIG9mIHJldjUgKHRoaXMgcmV2KSwgSSBub3cg
+YmVsaWV2ZSB0aGUgaW50ZWxfZ3VjX2NhcHR1cmUNCj4gPiA+ID4gbW9kdWxlIGRvZXMgbm90IHJl
+cXVpcmUgYSBsb2NrIGJlY2F1c2UgaXRzIG9ubHkgZXZlciBhY2Nlc3NpbmcgaXRzIGxvZw0KPiA+
+ID4gPiBzdWJyZWdpb24gaW4gcmVzcG9uc2UgdG8gdGhlIGN0YiBoYW5kbGVyIGZ1bmN0aW9ucyB0
+aGF0IHJ1biBvdXQgb2YgdGhlIHNhbWUgcXVldWUuDQo+ID4gPiA+IEFzIHdlIGtub3cgaW50ZWxf
+Z3VjX2NhcHR1cmUgcmVhY3RzIHRvIEcySC1lcnJvci1jYXB0dXJlLW5vdGlmaWNhdGlvbiBhbmQg
+RzJILWNvbnRleHQtcmVzZXQNCj4gPiA+ID4gKHRoYXQgdHJpY2tsZXMgaW50byBpOTE1X2dwdV9j
+b3JlZHVtcCkuIEF0IHRoZSBwb2ludCBvZiBpOTE1X2Vycm9yX3N0YXRlIGR1bXAsDQo+ID4gPiA+
+IGludGVsX2d1Y19jYXB0dXJlIG1vZHVsZSBkb2VzIG5vdCBhY2Nlc3MgdGhlIGJ1ZmZlciAtIGl0
+IG1lcmVseSBkdW1wcyB0aGUgYWxyZWFkeS1wYXJzZWQNCj4gPiA+ID4gYW5kIGVuZ2luZS1kdW1w
+LW5vZGUgKHRoYXQgd2FzIGRldGFjaGVkIGZyb20gZXJyb3ItY2FwdHVyZSdzIGludGVybmFsIGxp
+bmtlZC1saXN0DQo+ID4gPiA+IGFuZCBhdHRhY2hlZCB0byB0aGUgZ3B1X2NvcmVkdW1wIHN0cnVj
+dHVyZSBpbiB0aGUgc2Vjb25kIEcySCBhYm92ZSkuDQo+ID4gPiA+IA0KPiA+ID4gPiBBbmQgb2Yg
+Y291cnNlLCBpbnRlbF9ndWNfbG9nIG9ubHkgZXZlciBhY2Nlc3NlcyB0aGUgbG9nLWV2ZW50cyBz
+dWJyZWdpb24NCj4gPiA+ID4gYW5kIG5ldmVyIHRoZSBlcnJvci1jYXB0dXJlIHJlZ2lvbnMuDQo+
+ID4gPiA+IA0KPiA+ID4gPiBUaGF0IHNhaWQsIGkgY291bGQgcmV2ZXJ0IHRoZSBsb2NrIHN0cnVj
+dHVyZSB0byB0aGUgb3JpZ2luYWwgYW5kIG5vdCBoYXZlDQo+ID4gPiA+IGludGVsX2d1Y19jYXB0
+dXJlIHVzaW5nIGxvY2tzLiBXaGF0IGRvIHlvdSB0aGluaz8NCj4gPiA+ID4gDQo+ID4gPiANCj4g
+PiA+IEFnYWluIG15IGNvbW1lbnQgaGFzIG5vdGhpbmcgdG8gZG8gd2l0aCBsb2NraW5nLCBpdCBp
+cyB3aGVyZSB0aGUNCj4gPiA+IHN0cnVjdHVyZSBsaXZlcy4NCj4gPiA+IA0KPiA+ID4gDQo+ID4g
+SU1ITywgYmFzZWQgb24gbXkgdW5kZXJzdGFuZGluZyBvZiB0aGUgY29kZXMgYW5kIHRoZSBHdUMg
+aW50ZXJmYWNlLA0KPiA+IGkgc2VlIGludGVsX2d1Y19sb2cgYW5kIGludGVsX2d1Y19jYXB0dXJl
+IGFzIDIgc3Vic3lzdGVtcyBhdCBlcXVhbCBsZXZlbA0KPiA+IHVuZGVyIHRoZSBpbnRlbF9ndWMg
+ZnJhbWV3b3JrLiBCb3RoIHRoZXNlIHN1YnN5c3RlbXMgaGF2ZSBjb21wbGV0ZWx5IGluZGVwZW5k
+ZW50DQo+ID4gZnVuY3Rpb25zIHdpdGggY29tcGxldGVseSBzZXBhcmF0ZSBpbnB1dCBzdHJlYW1z
+IHdpdGggY29tcGxldGVseSBzZXBhcmF0ZQ0KPiA+IGNvbnRlbnQgYW5kIHVzYWdlLiBUaGV5IGRv
+IGhhcHBlbiB0byBzaGFyZSB0aGUgc2FtZSBibyBidXQgaGF2ZSBpbmRlcGVuZGVudA0KPiA+IHJl
+Z2lvbnMuIFRoYXQgc2FpZCwgSSBiZWxpZXZlIHRoZSBzdGF0cyBhcnJheS1zdHJ1Y3R1cmUgYW5k
+IGV2ZW4gdGhlIHZtYQ0KPiA+IHB0ciBzaG91bGQgZ28gaW50byB0aGUgcGFyZW50IC0gaS5lLiBp
+bnRlbF9ndWMsIHRoZSBwYXJlbnQgb2YgYm90aCBpbnRlbF9ndWNfbG9nIGFuZA0KPiA+IGludGVs
+X2d1Y19jYXB0dXJlLiBBbGVybmF0aXZlbHksIGVhY2ggc3Vic3lzdGVtIHRoYXQgaGFzIGl0cyBv
+d24gc3RhdHMgc3RydWN0dXJlLg0KPiA+IA0KPiA+IEhvd2V2ZXIsIHdpdGhvdXQgdGhlIG5lZWQg
+Zm9yIHRoZSBsb2NrcywgaSBndWVzcyBpIGRvbnQgbmVlZCB0byBjaGFuZ2UgYW55dGhpbmcNCj4g
+PiBvdGhlciB0aGFuIGhhdmUgaW50ZWxfZ3VjX2xvZyBza2lwIG92ZXIgdGhlIGNhcHR1cmUgcmVn
+aW9uIGFuZCBsZXQgaW50ZWxfZ3VjX2NhcHR1cmUNCj4gPiBkZWFsIHdpdGggaXRzIHJlZ2lvbiBp
+bmRlcGVuZGFudGx5IHdpdGhvdXQgc2hhcmluZyBhbnkgbWVtYmVyIHZhcmlhYmxlDQo+ID4gZnJv
+bSBpbnRlbF9ndWNfbG9nLg0KPiA+IA0KPiA+IEkgYW0gYWRtaXR0ZWRseSBuZXcgdG8gdGhlIEd1
+QyBpbmZyYXN0cnVjdHVyZSBzbyBwbGVhc2UgZG8gbGV0IG1lIGtub3cgaWYgSSBhbSBtaXN0YWtl
+bg0KPiA+IGFuZCBpZiBpbnRlbF9ndWNfY2FwdHVyZSBpcyBzdXBwb3NlZCB0byBiZSBhIHN1YnN5
+c3RlbSBvZiBpbnRlbF9ndWNfbG9nLg0KPiA+IA0KPiANCj4gSWYgdGhlIG9iamVjdCBsaXZlcyBh
+dCB0aGUgR3VDIGxldmVsLCBvcGVyYXRlIG9uIGl0IGF0IHRoZSBHdUMgbGV2ZWwuDQo+IA0KPiBl
+LmcuDQo+IGludGVsX2d1Y19sb2dfaW5pdF9lYXJseSBjYWxscyBtdXRleCBpbml0IG9uIGd1Yy0+
+bG9nX3N0YXRlIC0gdGhhdCBpcw0KPiB3cm9uZyBhbmQgYnJlYWtzIHRoZSBsYXllcmluZy4gaW50
+ZWxfZ3VjX2xvZ19pbml0X2Vhcmx5IHNob3VsZCBvbmx5DQo+IG9wZXJhdGUgb24gZ3VjX2xvZyBv
+ciBiZWxvdyBvYmplY3RzLCBub3QgYWJvdmUgaXQuDQo+IA0KPiBUaGUga2V5IGhlcmUgaXMgY29u
+c2lzdGVueSwgaWYgdGhlIEd1QyBsZXZlbCBvd25zIHRoZSBvYmplY3QgaXQgc2hvdWxkDQo+IGJl
+IGluaXRpYWxpemVkIHRoZXJlICsgcGFzc2VkIGludG8gdGhlIGxvd2VyIGxldmVscyBpZiBwb3Nz
+aWJsZS4gVGhlDQo+IGxvd2VyIGxldmVscyBzaG91bGQgYXZvaWQgcmVhY2hpbmcgYmFjayB0byBH
+dUMgbGV2ZWwgZm9yIG9iamVjdHMNCj4gd2hlbmV2ZXIgcG9zc2libGUuDQo+IA0KPiBZb3UgY291
+bGQgaGF2ZSAyIGludGVsX2d1Y19sb2dfc3RhdHMgb2JqZWN0cyBiZWxvdyB0aGUgZ3VjX2xvZyBv
+YmplY3QNCj4gYW5kIDEgaW50ZWxfZ3VjX2xvZ19zdGF0cyBvYmplY3QgZm9yIGNhcHR1cmUgYXQg
+dGhlIEd1QyBsZXZlbC4gVGhhdCdzDQo+IGxpa2VseSB0aGUgcmlnaHQgYXBwcm9hY2ggaGVyZS4N
+Cg0KVGhhbmtzIE1hdHQgLSBJJ20gaW4gYWdyZWVtZW50Li4uIEkgd2FzIGNvbmNlcm5lZCBhYm91
+dCB0b28gbXVjaCBvZg0KY2hhbmdlIC0gYnV0IHlvdSdyZSByaWdodCwgSSBzaG91bGQgYmUgZm9j
+dXNpbmcgb24gdGhlIGRlc2lnbiBjb25zaXN0ZW5jeS4NCkFib3ZlIHNvdW5kcyBsaWtlIHRoZSBj
+b3JyZWN0IGRlc2lnbiAodGhlc2Ugc3RhdHMgYW5kIGxvY2tzIHNob3VsZCBiZWxvbmcNCnRvIHRo
+ZWlyIHNvbGUgdXNlcikuDQoNCi4uLmFsYW4NCg0KPiANCj4gSSBrbm93IHRoaXMgaXMga2luZGEg
+YSBuaXQgYnV0IGFjdHVhbGx5IGltcG9ydGFudCB0byBoYXZlIGEgd2VsbA0KPiBzdHJ1Y3R1cmVk
+IC8gbGF5ZXJlZCBkcml2ZXIuIFRoZSBpOTE1IGlzbid0IGEgZ3JlYXQgZXhhbXBsZSBvZiB0aGlz
+IGJ1dA0KPiB3ZSBzaG91bGQgYXZvaWQgbWFraW5nIHRoaXMgd29yc2UuDQo+IA0KPiBNYXR0DQo+
+IA0KPiA+ID4gTWF0dA0KPiA+ID4gDQo+ID4gPiA+IC4uLmFsYW4NCj4gPiA+ID4gDQo+ID4gPiA+
+ID4gQW5vdGhlciBuaXQsIEknZCBwZXJzb25hbGx5IGJyZWFrIHRoaXMgb3V0IGludG8gbXVsdGlw
+bGUgcGF0Y2hlcy4NCj4gPiA+ID4gPiANCj4gPiA+ID4gPiBlLmcuIDEgdG8gcmVuYW1lIHJlbGF5
+IGxvZyBmdW5jdGlvbnMsIDEgaW50cm9kdWNpbmcgaW50ZWxfZ3VjX2xvZ19zdGF0cw0KPiA+ID4g
+PiA+ICsgbG9jaywgYW5kIDEgYWRkaW5nIGludGVsX2d1Y19jYXB0dXJlX291dHB1dF9taW5fc2l6
+ZV9lc3QuIE1heWJlIEknbQ0KPiA+ID4gPiA+IG1pc3NpbmcgYW5vdGhlciBwYXRjaCBvciB0d28g
+aW4gdGhlcmUuDQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gTm90IGEgYmxvY2tlciBidXQgaXQgZG9l
+cyBtYWtlIHJldmlld3MgZWFzaWVyLg0KPiA+ID4gPiA+IA0KPiA+ID4gPiBXaWxsIGRvLg0KPiA+
+ID4gPiANCj4gPiA+ID4gPiBNYXR0DQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gPiAgICAgLyoqIEBj
+dDogdGhlIGNvbW1hbmQgdHJhbnNwb3J0IGNvbW11bmljYXRpb24gY2hhbm5lbCAqLw0KPiA+ID4g
+PiA+ID4gICAgIHN0cnVjdCBpbnRlbF9ndWNfY3QgY3Q7DQo+ID4gPiA+ID4gPiAgICAgLyoqIEBz
+bHBjOiBzdWItc3RydWN0dXJlIGNvbnRhaW5pbmcgU0xQQyByZWxhdGVkIGRhdGEgYW5kIG9iamVj
+dHMgKi8NCj4gPiA+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91
+Yy9pbnRlbF9ndWNfY2FwdHVyZS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxf
+Z3VjX2NhcHR1cmUuYw0KPiA+ID4gPiA+ID4gaW5kZXggNzBkMmVlODQxMjg5Li5lN2Y5OWQwNTE2
+MzYgMTAwNjQ0DQo+ID4gPiA+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9p
+bnRlbF9ndWNfY2FwdHVyZS5jDQo+ID4gPiA+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC91Yy9pbnRlbF9ndWNfY2FwdHVyZS5jDQo+ID4gPiA+ID4gPiBAQCAtNjUxLDYgKzY1MSw1
+MyBAQCBpbnQgaW50ZWxfZ3VjX2NhcHR1cmVfcHJlcF9saXN0cyhzdHJ1Y3QgaW50ZWxfZ3VjICpn
+dWMsIHN0cnVjdCBndWNfYWRzICpibG9iLCB1Mw0KPiA+ID4gPiA+ID4gICAgIHJldHVybiBQQUdF
+X0FMSUdOKGFsbG9jX3NpemUpOw0KPiA+ID4gPiA+ID4gIH0NCj4gPiA+ID4gPiA+IA0KPiA+ID4g
+PiA+ID4gMi4yNS4xDQo+ID4gPiA+ID4gPiANCg0K
