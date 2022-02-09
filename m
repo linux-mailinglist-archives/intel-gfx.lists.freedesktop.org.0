@@ -2,49 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 014A04AF45B
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 15:46:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADDE84AF556
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 16:34:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D4FB10E288;
-	Wed,  9 Feb 2022 14:46:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC6AC8997A;
+	Wed,  9 Feb 2022 15:34:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D14A10E288
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 14:46:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644418004; x=1675954004;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=h+CkBbwJE56ZzhTNSMhejoFHg69rr+YQby+69ub/MOs=;
- b=NwNWmxinH+vjo9umny+VKmxscsTwQU55LXu3ENe8fqTFp3athDtw/7+2
- 9x/O+JcW3tvOE7Mj+gk8tr/oiNdvS7suC/+gP1zBcV+abAZ806TFom93n
- G1VadFx3TMQ15xm/y6xCaj3OhoSEdMTn0D+RlniufuVcx9Sq/KRwKfGLy
- /E/t7MhY3fKu8GNqYzBnqyGSeP8jGCWl9Xcin3AavvU9qYRmqVNmSP4uk
- EsHsvetiDP+x6dvBN+rpSyo02CH5hejpxTe73S7/GPxStJkitXYzRbC5v
- 9J6S9Kv8ybQdhIw4NSuTMTgcOSH1t3kM512JIWQ0XtSYPOiKV+uPUQqw8 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="273754869"
-X-IronPort-AV: E=Sophos;i="5.88,356,1635231600"; d="scan'208";a="273754869"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 06:46:43 -0800
-X-IronPort-AV: E=Sophos;i="5.88,356,1635231600"; d="scan'208";a="541123790"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 06:46:42 -0800
-Date: Wed, 9 Feb 2022 16:46:38 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20220209144638.GA424945@ideak-desk.fi.intel.com>
-References: <20220208213548.244829-1-jose.souza@intel.com>
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
+ [IPv6:2a00:1450:4864:20::532])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E017010E4A7;
+ Wed,  9 Feb 2022 14:42:50 +0000 (UTC)
+Received: by mail-ed1-x532.google.com with SMTP id ch26so5444171edb.12;
+ Wed, 09 Feb 2022 06:42:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :references:from:in-reply-to:content-transfer-encoding;
+ bh=LQZSYMviOXU46IrK/WW3TYqqEQdPNThwvuJaW7Mm9Nc=;
+ b=VSO0NVVWJlw32DWMYNVjoy8yhHXWr2O2kXDw+INIS3xZ6yOUFSQexAXcjb5QY689vl
+ QGluNByx9hJEioPOvvovKESE+1sFve9DQ1DrNp4zlq55Uq82+0C90vrFws0clXbe4ft8
+ 0BfDxrw/nS3YP6fxu94lr9FREDTUsJ5VeKalnC3tyc+MEw0L7v+G5RxZH+CbstCEtR5g
+ 5qMWWrzsQE4UrLDWnPTz2+dLJVebCEf/3rX8f06MSzP64QmnxY3zFjufttf4owmvQAro
+ Rlr/KZcFPb3mlbcyDd9sNo2EsCpSAx1GeEvxVABW5z/SuJUS6loQuT1au5UhehWQ5J1t
+ +TCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=LQZSYMviOXU46IrK/WW3TYqqEQdPNThwvuJaW7Mm9Nc=;
+ b=UuQpyQvxpFW/oF1C3Q89sogrRcjrvDgJPExsAe4htPTkWbDSzIO7u3vE+ewWCwP7J2
+ N2zOUfAwBNHVc/zGz29p705T9cBpfFGHySZYZrKD+WFakpARZo2lRiXUa5IG/2pXZ51q
+ QLvR6ak0o4wz5mk7ogyuh0FJOmqBdo4kxN/2k+bA7+69l3PFwaoQl2uz2NNUvelsgtH7
+ iFpzT8rOnvQx2CwFJXS6k7nccOQCgF8LYnW+YJD0sOt1rbcU3s4soyBpDbRFjSQI74rd
+ NAPsTSqwfUa/iq4rUyKtIVG18SjPKj6T09c7/EpFI6ZvVeH4NpcvDQA1vxNNISBWtHd+
+ ZteA==
+X-Gm-Message-State: AOAM533QiSq4jqHIH1MlsjrDE5MfVe05SrBFfc2kFOe8YjEjaMfljkYJ
+ szQxdmQTxKmGznPJ4Ax3XU4=
+X-Google-Smtp-Source: ABdhPJyizq11JRyFdw+580WCuNoex9CCHlTUfmQPX0ns6bRJjIP7UVCkVtsFpM6wRyUYfhDQqOneNA==
+X-Received: by 2002:a05:6402:60f:: with SMTP id
+ n15mr2779654edv.316.1644417769244; 
+ Wed, 09 Feb 2022 06:42:49 -0800 (PST)
+Received: from ?IPV6:2a02:908:1252:fb60:575:1502:6989:b456?
+ ([2a02:908:1252:fb60:575:1502:6989:b456])
+ by smtp.gmail.com with ESMTPSA id ee23sm6369953edb.19.2022.02.09.06.42.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 09 Feb 2022 06:42:48 -0800 (PST)
+Message-ID: <97918c8e-6b88-ade5-0dd5-6de01f4f41c3@gmail.com>
+Date: Wed, 9 Feb 2022 15:42:47 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ sumit.semwal@linaro.org, daniel.vetter@ffwll.ch,
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+References: <20220204100429.2049-1-christian.koenig@amd.com>
+ <20220204100429.2049-4-christian.koenig@amd.com>
+ <b384ad5f76da0009dd49965769bcddbc0395111a.camel@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <b384ad5f76da0009dd49965769bcddbc0395111a.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220208213548.244829-1-jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/tgl+: Implement new PLL
- programming step
+X-Mailman-Approved-At: Wed, 09 Feb 2022 15:34:20 +0000
+Subject: Re: [Intel-gfx] [PATCH 3/6] dma-buf: Warn about dma_fence_chain
+ container rules v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,252 +80,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 08, 2022 at 01:35:48PM -0800, Jos� Roberto de Souza wrote:
-> A new programming step was added to combo and TC PLL sequences.
-> If override_AFC_startup is set in VBT, driver should overwrite
-> AFC_startup value to 0x7 in PLL's div0 register.
-> 
-> The current understating is that only TGL needs this and all display
-> 12 and newer platforms will have a older VBT or a newer VBT with
-> override_AFC_startup set to 0 but in any case there is a
-> drm_warn_on_once() to let us know if this is not true.
-> 
-> BSpec: 49204
-> BSpec: 20122 (pending aproval, check working copies)
-> BSpec: 49968
-> BSpec: 71360
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Jos� Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c     |  4 ++
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 38 +++++++++++++------
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  6 ++-
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  8 ++++
->  drivers/gpu/drm/i915/i915_drv.h               |  1 +
->  drivers/gpu/drm/i915/i915_reg.h               | 13 +++++++
->  6 files changed, 57 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index aec0efd5350ef..a4134b63f2d49 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -596,6 +596,10 @@ parse_general_features(struct drm_i915_private *i915,
->  	} else {
->  		i915->vbt.orientation = DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
->  	}
-> +
-> +	if (bdb->version >= 249)
-> +		i915->vbt.override_afc_startup_bit = general->override_afc_startup_bit;
-> +
->  	drm_dbg_kms(&i915->drm,
->  		    "BDB_GENERAL_FEATURES int_tv_support %d int_crt_support %d lvds_use_ssc %d lvds_ssc_freq %d display_clock_mode %d fdi_rx_polarity_inverted %d\n",
->  		    i915->vbt.int_tv_support,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 6723c3de5a80c..a60917b926de9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -2748,6 +2748,9 @@ static void icl_calc_dpll_state(struct drm_i915_private *i915,
->  		pll_state->cfgcr1 |= TGL_DPLL_CFGCR1_CFSELOVRD_NORMAL_XTAL;
->  	else
->  		pll_state->cfgcr1 |= DPLL_CFGCR1_CENTRAL_FREQ_8400;
-> +
-> +	if (i915->vbt.override_afc_startup_bit)
-> +		pll_state->div0 = TGL_DPLL0_DIV0_AFC_STARTUP(TGL_DPLL0_DIV0_AFC_STARTUP_OVERRIDE_VAL);
->  }
->  
->  static bool icl_mg_pll_find_divisors(int clock_khz, bool is_dp, bool use_ssc,
-> @@ -2949,6 +2952,8 @@ static bool icl_calc_mg_pll_state(struct intel_crtc_state *crtc_state,
->  					 DKL_PLL_DIV0_PROP_COEFF(prop_coeff) |
->  					 DKL_PLL_DIV0_FBPREDIV(m1div) |
->  					 DKL_PLL_DIV0_FBDIV_INT(m2div_int);
-> +		if (dev_priv->vbt.override_afc_startup_bit)
-> +			pll_state->mg_pll_div0 |= DKL_PLL_DIV0_AFC_STARTUP(TGL_DPLL0_DIV0_AFC_STARTUP_OVERRIDE_VAL);
->  
->  		pll_state->mg_pll_div1 = DKL_PLL_DIV1_IREF_TRIM(iref_trim) |
->  					 DKL_PLL_DIV1_TDC_TARGET_CNT(tdc_targetcnt);
-> @@ -3448,10 +3453,10 @@ static bool dkl_pll_get_hw_state(struct drm_i915_private *dev_priv,
->  		MG_CLKTOP2_CORECLKCTL1_A_DIVRATIO_MASK;
->  
->  	hw_state->mg_pll_div0 = intel_de_read(dev_priv, DKL_PLL_DIV0(tc_port));
-> -	hw_state->mg_pll_div0 &= (DKL_PLL_DIV0_INTEG_COEFF_MASK |
-> -				  DKL_PLL_DIV0_PROP_COEFF_MASK |
-> -				  DKL_PLL_DIV0_FBPREDIV_MASK |
-> -				  DKL_PLL_DIV0_FBDIV_INT_MASK);
-> +	val = DKL_PLL_DIV0_MASK;
-> +	if (dev_priv->vbt.override_afc_startup_bit)
-> +		val |= DKL_PLL_DIV0_AFC_STARTUP_MASK;
-> +	hw_state->mg_pll_div0 &= val;
->  
->  	hw_state->mg_pll_div1 = intel_de_read(dev_priv, DKL_PLL_DIV1(tc_port));
->  	hw_state->mg_pll_div1 &= (DKL_PLL_DIV1_IREF_TRIM_MASK |
-> @@ -3513,6 +3518,10 @@ static bool icl_pll_get_hw_state(struct drm_i915_private *dev_priv,
->  						 TGL_DPLL_CFGCR0(id));
->  		hw_state->cfgcr1 = intel_de_read(dev_priv,
->  						 TGL_DPLL_CFGCR1(id));
-> +		if (dev_priv->vbt.override_afc_startup_bit) {
-> +			hw_state->div0 = intel_de_read(dev_priv, TGL_DPLL0_DIV0(id));
-> +			hw_state->div0 &= TGL_DPLL0_DIV0_AFC_STARTUP_MASK;
-> +		}
->  	} else {
->  		if (IS_JSL_EHL(dev_priv) && id == DPLL_ID_EHL_DPLL4) {
->  			hw_state->cfgcr0 = intel_de_read(dev_priv,
-> @@ -3554,7 +3563,7 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
->  {
->  	struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
->  	const enum intel_dpll_id id = pll->info->id;
-> -	i915_reg_t cfgcr0_reg, cfgcr1_reg;
-> +	i915_reg_t cfgcr0_reg, cfgcr1_reg, div0_reg = INVALID_MMIO_REG;
->  
->  	if (IS_ALDERLAKE_S(dev_priv)) {
->  		cfgcr0_reg = ADLS_DPLL_CFGCR0(id);
-> @@ -3568,6 +3577,7 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
->  	} else if (DISPLAY_VER(dev_priv) >= 12) {
->  		cfgcr0_reg = TGL_DPLL_CFGCR0(id);
->  		cfgcr1_reg = TGL_DPLL_CFGCR1(id);
-> +		div0_reg = TGL_DPLL0_DIV0(id);
->  	} else {
->  		if (IS_JSL_EHL(dev_priv) && id == DPLL_ID_EHL_DPLL4) {
->  			cfgcr0_reg = ICL_DPLL_CFGCR0(4);
-> @@ -3580,6 +3590,12 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
->  
->  	intel_de_write(dev_priv, cfgcr0_reg, hw_state->cfgcr0);
->  	intel_de_write(dev_priv, cfgcr1_reg, hw_state->cfgcr1);
-> +	drm_WARN_ON_ONCE(&dev_priv->drm, dev_priv->vbt.override_afc_startup_bit &&
-> +			 !i915_mmio_reg_valid(div0_reg));
-> +	if (dev_priv->vbt.override_afc_startup_bit &&
-> +	    i915_mmio_reg_valid(div0_reg))
+Am 09.02.22 um 15:02 schrieb Thomas Hellström:
+> On Fri, 2022-02-04 at 11:04 +0100, Christian König wrote:
+>> Chaining of dma_fence_chain objects is only allowed through the prev
+>> fence and not through the contained fence.
+>>
+>> Warn about that when we create a dma_fence_chain.
+>>
+>> v2: fix comment style
+>>
+>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> It looks like this blows up in generic drm code...
+>
+> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22201/shard-skl10/igt@syncobj_timeline@transfer-timeline-point.html
 
-Could be simplified to if (override_bit && !warn(!reg_valid))
+Thanks for the notice.  Going to take a look.
 
-> +		intel_de_rmw(dev_priv, div0_reg, TGL_DPLL0_DIV0_AFC_STARTUP_MASK,
-> +			     hw_state->div0);
->  	intel_de_posting_read(dev_priv, cfgcr1_reg);
->  }
->  
-> @@ -3667,13 +3683,11 @@ static void dkl_pll_write(struct drm_i915_private *dev_priv,
->  	val |= hw_state->mg_clktop2_hsclkctl;
->  	intel_de_write(dev_priv, DKL_CLKTOP2_HSCLKCTL(tc_port), val);
->  
-> -	val = intel_de_read(dev_priv, DKL_PLL_DIV0(tc_port));
-> -	val &= ~(DKL_PLL_DIV0_INTEG_COEFF_MASK |
-> -		 DKL_PLL_DIV0_PROP_COEFF_MASK |
-> -		 DKL_PLL_DIV0_FBPREDIV_MASK |
-> -		 DKL_PLL_DIV0_FBDIV_INT_MASK);
-> -	val |= hw_state->mg_pll_div0;
-> -	intel_de_write(dev_priv, DKL_PLL_DIV0(tc_port), val);
-> +	val = DKL_PLL_DIV0_MASK;
-> +	if (dev_priv->vbt.override_afc_startup_bit)
-> +		val |= DKL_PLL_DIV0_AFC_STARTUP_MASK;
-> +	intel_de_rmw(dev_priv, DKL_PLL_DIV0(tc_port), val,
-> +		     hw_state->mg_pll_div0);
->  
->  	val = intel_de_read(dev_priv, DKL_PLL_DIV1(tc_port));
->  	val &= ~(DKL_PLL_DIV1_IREF_TRIM_MASK |
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> index 91fe181462b2e..4125d7ab54438 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> @@ -218,7 +218,11 @@ struct intel_dpll_hw_state {
->  	u32 mg_refclkin_ctl;
->  	u32 mg_clktop2_coreclkctl1;
->  	u32 mg_clktop2_hsclkctl;
-> -	u32 mg_pll_div0;
-> +	/* tgl+ */
-> +	union {
-> +		u32 div0;
-> +		u32 mg_pll_div0;
-> +	};
+I'm wondering why the last CI report I've got didn't showed that.
 
-Imo, all the different overlapping pll states should be in some union;
-for now I'd just add div0 for tgl (intel_pipe_config_compare() would
-also need to be updated then).
+Christian.
 
->  	u32 mg_pll_div1;
->  	u32 mg_pll_lf;
->  	u32 mg_pll_frac_lock;
-> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> index a39d6cfea87aa..a813ebedcae81 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -162,6 +162,14 @@ struct bdb_general_features {
->  	u8 dp_ssc_freq:1;	/* SSC freq for PCH attached eDP */
->  	u8 dp_ssc_dongle_supported:1;
->  	u8 rsvd11:2; /* finish byte */
-> +
-> +	/* byte 6 */
+>
+> /Thomas
+>
+>
 
-Following the above comments this would be called "bits 6".
-
-> +	u8 tc_hpd_retry_timeout:7; /* 242 */
-> +	u8 rsvd12:1;
-> +
-> +	/* byte 7 */
-> +	u8 override_afc_startup_bit:1;/* 249 */
-> +	u8 rsvd13:7;
->  } __packed;
->  
->  /*
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 8c1706fd81f9e..c04312a8dd520 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -532,6 +532,7 @@ struct intel_vbt_data {
->  	int lvds_ssc_freq;
->  	unsigned int bios_lvds_val; /* initial [PCH_]LVDS reg val in VBIOS */
->  	enum drm_panel_orientation orientation;
-> +	bool override_afc_startup_bit;
->  
->  	enum drrs_support_type drrs_type;
->  
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 87c92314ee269..d51bdc1105037 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -7986,6 +7986,13 @@ enum skl_power_gate {
->  #define RKL_DPLL_CFGCR0(pll)		_MMIO_PLL(pll, _TGL_DPLL0_CFGCR0, \
->  						  _TGL_DPLL1_CFGCR0)
->  
-> +#define _TGL_DPLL0_DIV0					0x164B00
-> +#define _TGL_DPLL1_DIV0					0x164C00
-> +#define TGL_DPLL0_DIV0(pll)				_MMIO_PLL(pll, _TGL_DPLL0_DIV0, _TGL_DPLL1_DIV0)
-> +#define   TGL_DPLL0_DIV0_AFC_STARTUP_MASK		REG_GENMASK(27, 25)
-> +#define   TGL_DPLL0_DIV0_AFC_STARTUP(val)		REG_FIELD_PREP(TGL_DPLL0_DIV0_AFC_STARTUP_MASK, (val))
-> +#define   TGL_DPLL0_DIV0_AFC_STARTUP_OVERRIDE_VAL	(0x7)
-
-The parens are not needed and the flag could be named after the value
-it encodes, so AFC_STARTUP_383.
-
-Regardless of the above nits, the patch looks ok:
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-
-> +
->  #define _TGL_DPLL0_CFGCR1		0x164288
->  #define _TGL_DPLL1_CFGCR1		0x164290
->  #define _TGL_TBTPLL_CFGCR1		0x1642A0
-> @@ -8033,6 +8040,8 @@ enum skl_power_gate {
->  
->  /* DEKEL PHY MMIO Address = Phy base + (internal address & ~index_mask) */
->  #define _DKL_PLL_DIV0			0x200
-> +#define   DKL_PLL_DIV0_AFC_STARTUP_MASK	REG_GENMASK(27, 25)
-> +#define   DKL_PLL_DIV0_AFC_STARTUP(val)	REG_FIELD_PREP(DKL_PLL_DIV0_AFC_STARTUP_MASK, (val))
->  #define   DKL_PLL_DIV0_INTEG_COEFF(x)	((x) << 16)
->  #define   DKL_PLL_DIV0_INTEG_COEFF_MASK	(0x1F << 16)
->  #define   DKL_PLL_DIV0_PROP_COEFF(x)	((x) << 12)
-> @@ -8042,6 +8051,10 @@ enum skl_power_gate {
->  #define   DKL_PLL_DIV0_FBPREDIV_MASK	(0xF << DKL_PLL_DIV0_FBPREDIV_SHIFT)
->  #define   DKL_PLL_DIV0_FBDIV_INT(x)	((x) << 0)
->  #define   DKL_PLL_DIV0_FBDIV_INT_MASK	(0xFF << 0)
-> +#define   DKL_PLL_DIV0_MASK		(DKL_PLL_DIV0_INTEG_COEFF_MASK | \
-> +					 DKL_PLL_DIV0_PROP_COEFF_MASK | \
-> +					 DKL_PLL_DIV0_FBPREDIV_MASK | \
-> +					 DKL_PLL_DIV0_FBDIV_INT_MASK)
->  #define DKL_PLL_DIV0(tc_port)		_MMIO(_PORT(tc_port, _DKL_PHY1_BASE, \
->  						    _DKL_PHY2_BASE) + \
->  						    _DKL_PLL_DIV0)
-> -- 
-> 2.35.1
-> 
