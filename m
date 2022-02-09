@@ -1,51 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1029E4AEECC
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 11:00:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 113704AEECD
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 11:00:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46CBE10E118;
-	Wed,  9 Feb 2022 10:00:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87B6810E6EB;
+	Wed,  9 Feb 2022 10:00:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63DED10E329
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 10:00:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644400805; x=1675936805;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=QSBqC+Lw21VQzGGpEoJA2BZhSHUi04U/Eow56AUAGFY=;
- b=RBC6P4pymNzxUPZpM9XF13UV7C1Sw9SYnyunWT4BVx1PCC1Ro/dn24+E
- 6E1mcsdFoTNsQt+WIJSUe5bm8VIHuRXHuuuUv4zl06py91Trtx1PFRzEY
- vXSOaUExGaXqloHUpTQJTCqezdkFLYW2LyfLldgwi6ba7m5GPFtJ/xqq/
- HqKzgjLXcJPEBbuDcmMOKr8GbdYoFlGM5UlFEXpqi+/6RmXqUGcuE1yx7
- 3bUowZI7Cfb/WOvBNoJYXhpSFkIngT8jzTzrP5OR41/7rbtObN756g4Od
- 2sddbRD+iRZErxpcPAQ3BuG4KAM7d2KsWjzR9l/9+gwy/N3lU9JKW7IJL w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="249377375"
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="249377375"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 02:00:04 -0800
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; d="scan'208";a="485183899"
-Received: from rcallina-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.18.41])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 02:00:03 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <11b50bb3-1183-e9db-29e2-c7f377a8632e@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220208171651.3085901-1-jani.nikula@intel.com>
- <11b50bb3-1183-e9db-29e2-c7f377a8632e@linux.intel.com>
-Date: Wed, 09 Feb 2022 12:00:00 +0200
-Message-ID: <87k0e4pdgf.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A163810E329;
+ Wed,  9 Feb 2022 10:00:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5FED9A66C9;
+ Wed,  9 Feb 2022 10:00:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1601854529948776051=="
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: move intel_hws_csb_write_index()
- out of i915_drv.h
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 09 Feb 2022 10:00:07 -0000
+Message-ID: <164440080734.23775.6488925014143913940@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220209091928.14766-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220209091928.14766-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/atomic=3A_Don=27t_pollute_crtc?=
+ =?utf-8?q?=5Fstate-=3Emode=5Fblob_with_error_pointers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,128 +41,199 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 09 Feb 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> On 08/02/2022 17:16, Jani Nikula wrote:
->> Underscore prefix the index macros, and place
->> INTEL_HWS_CSB_WRITE_INDEX() as a macro next to them, to declutter
->> i915_drv.h.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/intel_engine.h               | 6 ++++--
->>   drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 2 +-
->>   drivers/gpu/drm/i915/gvt/execlist.c                  | 2 +-
->>   drivers/gpu/drm/i915/i915_drv.h                      | 8 --------
->>   4 files changed, 6 insertions(+), 12 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
->> index 0e353d8c2bc8..faf26ed37d01 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
->> @@ -180,8 +180,10 @@ intel_write_status_page(struct intel_engine_cs *engine, int reg, u32 value)
->>   #define I915_GEM_HWS_SCRATCH		0x80
->>   
->>   #define I915_HWS_CSB_BUF0_INDEX		0x10
->> -#define I915_HWS_CSB_WRITE_INDEX	0x1f
->> -#define ICL_HWS_CSB_WRITE_INDEX		0x2f
->> +#define _I915_HWS_CSB_WRITE_INDEX	0x1f
->> +#define _ICL_HWS_CSB_WRITE_INDEX		0x2f
->
-> I don't quite get why would these two be the only ones which need 
-> underscore prefix?
+--===============1601854529948776051==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The others are used directly, these two should only be used via
-INTEL_HWS_CSB_WRITE_INDEX(), like they are. That's the hint with the
-underscores. Matches what's done in i915_reg.h for example for register
-instances and choosing the right register instance.
+== Series Details ==
 
->
->> +#define INTEL_HWS_CSB_WRITE_INDEX(__i915) \
->> +	(GRAPHICS_VER(__i915) >= 11 ? _ICL_HWS_CSB_WRITE_INDEX : _I915_HWS_CSB_WRITE_INDEX)
->
-> Secondly, on the point of the best new home for it, it is better than 
-> i915_drv.h that is for sure. But is it the best I am not sure.
+Series: series starting with [1/2] drm/atomic: Don't pollute crtc_state->mode_blob with error pointers
+URL   : https://patchwork.freedesktop.org/series/99891/
+State : success
 
-From my POV this one's pretty clear. The index macros are here, and this
-is a wrapper to choose the correct index macro. They should be together.
+== Summary ==
 
-As to moving all of them somewhere in gt/gem, I think it's for follow-up
-(by someone else).
+CI Bug Log - changes from CI_DRM_11206 -> Patchwork_22219
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/index.html
+
+Participating hosts (45 -> 43)
+------------------------------
+
+  Missing    (2): fi-bsw-cyan shard-tglu 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22219 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][1] ([i915#4547])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/fi-skl-6600u/igt@i915_selftest@live.html
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][2] ([i915#1436] / [i915#4312])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/fi-skl-6600u/igt@runner@aborted.html
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][3] ([i915#2426] / [i915#4312])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/fi-bdw-5557u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-kbl-soraka:      [DMESG-WARN][4] ([i915#4391]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11206/fi-kbl-soraka/igt@i915_selftest@live@gem_contexts.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/fi-kbl-soraka/igt@i915_selftest@live@gem_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [DMESG-FAIL][6] ([i915#4494] / [i915#4957]) -> [DMESG-FAIL][7] ([i915#4957])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11206/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
 
 
-BR,
-Jani.
+Build changes
+-------------
 
->
-> CSB in general seems to have identity crisis with some bits being in 
-> intel_engine.h, but some also in intel_lrc.h. Neither seems completely 
-> right to me. It should all really be in intel_execlists_submission.h. 
-> Unless someone would then make an argument the latter is about the i915 
-> execlists scheduler backend and shouldn't strictly contain execlists 
-> hardware definitions like the CSB layout. Still, at the moment for me it 
-> feels like a better place than either intel_engine.h or intel_lrc.h.
->
-> And probably all three execlists_ prefix functions from intel_engine.h 
-> should go to intel_execlists_submission.h as well.
->
-> We can leave the ramblings for later and for now just explain why 
-> underscores please, depending on which r-b or not.
->
-> Regards,
->
-> Tvrtko
->
->>   
->>   void intel_engine_stop(struct intel_engine_cs *engine);
->>   void intel_engine_cleanup(struct intel_engine_cs *engine);
->> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> index 9bb7c863172f..961d795220a3 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> @@ -3503,7 +3503,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
->>   		(u64 *)&engine->status_page.addr[I915_HWS_CSB_BUF0_INDEX];
->>   
->>   	execlists->csb_write =
->> -		&engine->status_page.addr[intel_hws_csb_write_index(i915)];
->> +		&engine->status_page.addr[INTEL_HWS_CSB_WRITE_INDEX(i915)];
->>   
->>   	if (GRAPHICS_VER(i915) < 11)
->>   		execlists->csb_size = GEN8_CSB_ENTRIES;
->> diff --git a/drivers/gpu/drm/i915/gvt/execlist.c b/drivers/gpu/drm/i915/gvt/execlist.c
->> index c8dcda6d4f0d..66d354c4195b 100644
->> --- a/drivers/gpu/drm/i915/gvt/execlist.c
->> +++ b/drivers/gpu/drm/i915/gvt/execlist.c
->> @@ -163,7 +163,7 @@ static void emulate_csb_update(struct intel_vgpu_execlist *execlist,
->>   					       hwsp_gpa + I915_HWS_CSB_BUF0_INDEX * 4 + write_pointer * 8,
->>   					       status, 8);
->>   		intel_gvt_hypervisor_write_gpa(vgpu,
->> -					       hwsp_gpa + intel_hws_csb_write_index(execlist->engine->i915) * 4,
->> +					       hwsp_gpa + INTEL_HWS_CSB_WRITE_INDEX(execlist->engine->i915) * 4,
->>   					       &write_pointer, 4);
->>   	}
->>   
->> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->> index 8c1706fd81f9..05656cc738d1 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.h
->> +++ b/drivers/gpu/drm/i915/i915_drv.h
->> @@ -1739,14 +1739,6 @@ mkwrite_device_info(struct drm_i915_private *dev_priv)
->>   	return (struct intel_device_info *)INTEL_INFO(dev_priv);
->>   }
->>   
->> -static inline int intel_hws_csb_write_index(struct drm_i915_private *i915)
->> -{
->> -	if (GRAPHICS_VER(i915) >= 11)
->> -		return ICL_HWS_CSB_WRITE_INDEX;
->> -	else
->> -		return I915_HWS_CSB_WRITE_INDEX;
->> -}
->> -
->>   static inline enum i915_map_type
->>   i915_coherent_map_type(struct drm_i915_private *i915,
->>   		       struct drm_i915_gem_object *obj, bool always_coherent)
+  * Linux: CI_DRM_11206 -> Patchwork_22219
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+  CI-20190529: 20190529
+  CI_DRM_11206: c506a5dedeb5dd0a7a6cdce55cc4a09beb9c39ce @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22219: a49cdac0dbbf94c53051b3341ceff5c3468adf89 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a49cdac0dbbf drm/modes: Fix drm_mode_copy() docs
+96608b660f2b drm/atomic: Don't pollute crtc_state->mode_blob with error pointers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/index.html
+
+--===============1601854529948776051==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/atomic: Don&#39;t pollute crtc_state-&gt;mode_blob with error pointers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99891/">https://patchwork.freedesktop.org/series/99891/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11206 -&gt; Patchwork_22219</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/index.html</p>
+<h2>Participating hosts (45 -&gt; 43)</h2>
+<p>Missing    (2): fi-bsw-cyan shard-tglu </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22219 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/fi-skl-6600u/igt@i915_selftest@live.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gem_contexts:<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11206/fi-kbl-soraka/igt@i915_selftest@live@gem_contexts.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4391">i915#4391</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/fi-kbl-soraka/igt@i915_selftest@live@gem_contexts.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11206/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22219/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11206 -&gt; Patchwork_22219</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11206: c506a5dedeb5dd0a7a6cdce55cc4a09beb9c39ce @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22219: a49cdac0dbbf94c53051b3341ceff5c3468adf89 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>a49cdac0dbbf drm/modes: Fix drm_mode_copy() docs<br />
+96608b660f2b drm/atomic: Don't pollute crtc_state-&gt;mode_blob with error pointers</p>
+
+</body>
+</html>
+
+--===============1601854529948776051==--
