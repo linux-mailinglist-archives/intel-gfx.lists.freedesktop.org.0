@@ -2,32 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF0094AE98A
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 06:53:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA3EF4AEA17
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Feb 2022 07:15:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E6DC10E17E;
-	Wed,  9 Feb 2022 05:53:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F55610E2A3;
+	Wed,  9 Feb 2022 06:15:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D834510E17E;
- Wed,  9 Feb 2022 05:53:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D36D2AA0EB;
- Wed,  9 Feb 2022 05:53:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4271720631167454602=="
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9FEE10E29E;
+ Wed,  9 Feb 2022 06:15:06 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id D6BE161562;
+ Wed,  9 Feb 2022 06:15:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B753DC340E7;
+ Wed,  9 Feb 2022 06:15:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1644387305;
+ bh=OUPNHBAJBd42EIpzpVtb9lp5kMJbQTw7jGC1FYPoiXk=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=IGD42/2Jb0d5SZJjI471MYihxC7OM3utb9RbC8h+OjELkaeknbfHc2Ni209paihrU
+ kqLccFEAqqlInc/AHGaZB/ji+CAJKW5R1AfYYfulxbhW0EB1UgHvQNyRJvvoSnOMnt
+ FF0XeD7dfALhqVs7dxTAdJxRU5kFYzW4egFmXBx2hb2/ic6CPPBXF8l7Ts2LsiJAC8
+ tHoWBA2YbqM1HgTkiFhXUbP3apbqStVE8AXtdfqiCcd0nlNwK2qlvLY8d0w5RGcBs3
+ i2KavDo3xNE2NIqWrQT4OVzbfw4Oohgri5kHjPuMGfAWYgQtmpTyqDq0kcLRxeWBSA
+ EDIhrgIdTK8mw==
+Date: Wed, 9 Feb 2022 07:14:59 +0100
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20220209071459.06d4d397@coco.lan>
+In-Reply-To: <20220208104524.2516209-3-lucas.demarchi@intel.com>
+References: <20220208104524.2516209-1-lucas.demarchi@intel.com>
+ <20220208104524.2516209-3-lucas.demarchi@intel.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Wed, 09 Feb 2022 05:53:43 -0000
-Message-ID: <164438602383.23774.7137960864028817042@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220209051140.1599643-1-matthew.d.roper@intel.com>
-In-Reply-To: <20220209051140.1599643-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTW9y?=
- =?utf-8?q?e_GT_register_cleanup?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 02/18] iosys-map: Add a few more helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,302 +54,343 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Sumit Semwal <sumit.semwal@linaro.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4271720631167454602==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Em Tue,  8 Feb 2022 02:45:08 -0800
+Lucas De Marchi <lucas.demarchi@intel.com> escreveu:
 
-== Series Details ==
+> First the simplest ones:
+>=20
+> 	- iosys_map_memset(): when abstracting system and I/O memory,
+> 	  just like the memcpy() use case, memset() also has dedicated
+> 	  functions to be called for using IO memory.
+> 	- iosys_map_memcpy_from(): we may need to copy data from I/O
+> 	  memory, not only to.
+>=20
+> In certain situations it's useful to be able to read or write to an
+> offset that is calculated by having the memory layout given by a struct
+> declaration. Usually we are going to read/write a u8, u16, u32 or u64.
+>=20
+> As a pre-requisite for the implementation, add iosys_map_memcpy_from()
+> to be the equivalent of iosys_map_memcpy_to(), but in the other
+> direction. Then add 2 pairs of macros:
+>=20
+> 	- iosys_map_rd() / iosys_map_wr()
+> 	- iosys_map_rd_field() / iosys_map_wr_field()
+>=20
+> The first pair takes the C-type and offset to read/write. The second
+> pair uses a struct describing the layout of the mapping in order to
+> calculate the offset and size being read/written.
+>=20
+> We could use readb, readw, readl, readq and the write* counterparts,
+> however due to alignment issues this may not work on all architectures.
+> If alignment needs to be checked to call the right function, it's not
+> possible to decide at compile-time which function to call: so just leave
+> the decision to the memcpy function that will do exactly that.
+>=20
+> Finally, in order to use the above macros with a map derived from
+> another, add another initializer: IOSYS_MAP_INIT_OFFSET().
+>=20
+> v2:
+>   - Rework IOSYS_MAP_INIT_OFFSET() so it doesn't rely on aliasing rules
+>     within the union
+>   - Add offset to both iosys_map_rd_field() and iosys_map_wr_field() to
+>     allow the struct itself to be at an offset from the mapping
+>   - Add documentation to iosys_map_rd_field() with example and expected
+>     memory layout
+>=20
+> Cc: Sumit Semwal <sumit.semwal@linaro.org>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Series: More GT register cleanup
-URL   : https://patchwork.freedesktop.org/series/99872/
-State : success
+LGTM.
 
-== Summary ==
+Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 
-CI Bug Log - changes from CI_DRM_11205 -> Patchwork_22217
-====================================================
+Regards,
+Mauro
 
-Summary
--------
+> ---
+>  include/linux/iosys-map.h | 202 ++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 202 insertions(+)
+>=20
+> diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
+> index edd730b1e899..c6b223534b21 100644
+> --- a/include/linux/iosys-map.h
+> +++ b/include/linux/iosys-map.h
+> @@ -6,6 +6,7 @@
+>  #ifndef __IOSYS_MAP_H__
+>  #define __IOSYS_MAP_H__
+> =20
+> +#include <linux/kernel.h>
+>  #include <linux/io.h>
+>  #include <linux/string.h>
+> =20
+> @@ -120,6 +121,45 @@ struct iosys_map {
+>  		.is_iomem =3D false,	\
+>  	}
+> =20
+> +/**
+> + * IOSYS_MAP_INIT_OFFSET - Initializes struct iosys_map from another ios=
+ys_map
+> + * @map_:	The dma-buf mapping structure to copy from
+> + * @offset_:	Offset to add to the other mapping
+> + *
+> + * Initializes a new iosys_map struct based on another passed as argumen=
+t. It
+> + * does a shallow copy of the struct so it's possible to update the back=
+ storage
+> + * without changing where the original map points to. It is the equivale=
+nt of
+> + * doing:
+> + *
+> + * .. code-block:: c
+> + *
+> + *	iosys_map map =3D other_map;
+> + *	iosys_map_incr(&map, &offset);
+> + *
+> + * Example usage:
+> + *
+> + * .. code-block:: c
+> + *
+> + *	void foo(struct device *dev, struct iosys_map *base_map)
+> + *	{
+> + *		...
+> + *		struct iosys_map map =3D IOSYS_MAP_INIT_OFFSET(base_map, FIELD_OFFSE=
+T);
+> + *		...
+> + *	}
+> + *
+> + * The advantage of using the initializer over just increasing the offse=
+t with
+> + * iosys_map_incr() like above is that the new map will always point to =
+the
+> + * right place of the buffer during its scope. It reduces the risk of up=
+dating
+> + * the wrong part of the buffer and having no compiler warning about tha=
+t. If
+> + * the assignment to IOSYS_MAP_INIT_OFFSET() is forgotten, the compiler =
+can warn
+> + * about the use of uninitialized variable.
+> + */
+> +#define IOSYS_MAP_INIT_OFFSET(map_, offset_) ({				\
+> +	struct iosys_map copy =3D *map_;					\
+> +	iosys_map_incr(&copy, offset_);					\
+> +	copy;								\
+> +})
+> +
+>  /**
+>   * iosys_map_set_vaddr - Sets a iosys mapping structure to an address in=
+ system memory
+>   * @map:	The iosys_map structure
+> @@ -239,6 +279,26 @@ static inline void iosys_map_memcpy_to(struct iosys_=
+map *dst, size_t dst_offset,
+>  		memcpy(dst->vaddr + dst_offset, src, len);
+>  }
+> =20
+> +/**
+> + * iosys_map_memcpy_from - Memcpy from iosys_map into system memory
+> + * @dst:	Destination in system memory
+> + * @src:	The iosys_map structure
+> + * @src_offset:	The offset from which to copy
+> + * @len:	The number of byte in src
+> + *
+> + * Copies data from a iosys_map with an offset. The dest buffer is in
+> + * system memory. Depending on the mapping location, the helper picks the
+> + * correct method of accessing the memory.
+> + */
+> +static inline void iosys_map_memcpy_from(void *dst, const struct iosys_m=
+ap *src,
+> +					 size_t src_offset, size_t len)
+> +{
+> +	if (src->is_iomem)
+> +		memcpy_fromio(dst, src->vaddr_iomem + src_offset, len);
+> +	else
+> +		memcpy(dst, src->vaddr + src_offset, len);
+> +}
+> +
+>  /**
+>   * iosys_map_incr - Increments the address stored in a iosys mapping
+>   * @map:	The iosys_map structure
+> @@ -255,4 +315,146 @@ static inline void iosys_map_incr(struct iosys_map =
+*map, size_t incr)
+>  		map->vaddr +=3D incr;
+>  }
+> =20
+> +/**
+> + * iosys_map_memset - Memset iosys_map
+> + * @dst:	The iosys_map structure
+> + * @offset:	Offset from dst where to start setting value
+> + * @value:	The value to set
+> + * @len:	The number of bytes to set in dst
+> + *
+> + * Set value in iosys_map. Depending on the buffer's location, the helper
+> + * picks the correct method of accessing the memory.
+> + */
+> +static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
+> +				    int value, size_t len)
+> +{
+> +	if (dst->is_iomem)
+> +		memset_io(dst->vaddr_iomem + offset, value, len);
+> +	else
+> +		memset(dst->vaddr + offset, value, len);
+> +}
+> +
+> +/**
+> + * iosys_map_rd - Read a C-type value from the iosys_map
+> + *
+> + * @map__:	The iosys_map structure
+> + * @offset__:	The offset from which to read
+> + * @type__:	Type of the value being read
+> + *
+> + * Read a C type value from iosys_map, handling possible un-aligned acce=
+sses to
+> + * the mapping.
+> + *
+> + * Returns:
+> + * The value read from the mapping.
+> + */
+> +#define iosys_map_rd(map__, offset__, type__) ({			\
+> +	type__ val;							\
+> +	iosys_map_memcpy_from(&val, map__, offset__, sizeof(val));	\
+> +	val;								\
+> +})
+> +
+> +/**
+> + * iosys_map_wr - Write a C-type value to the iosys_map
+> + *
+> + * @map__:	The iosys_map structure
+> + * @offset__:	The offset from the mapping to write to
+> + * @type__:	Type of the value being written
+> + * @val__:	Value to write
+> + *
+> + * Write a C-type value to the iosys_map, handling possible un-aligned a=
+ccesses
+> + * to the mapping.
+> + */
+> +#define iosys_map_wr(map__, offset__, type__, val__) ({			\
+> +	type__ val =3D (val__);						\
+> +	iosys_map_memcpy_to(map__, offset__, &val, sizeof(val));	\
+> +})
+> +
+> +/**
+> + * iosys_map_rd_field - Read a member from a struct in the iosys_map
+> + *
+> + * @map__:		The iosys_map structure
+> + * @struct_offset__:	Offset from the beggining of the map, where the str=
+uct
+> + *			is located
+> + * @struct_type__:	The struct describing the layout of the mapping
+> + * @field__:		Member of the struct to read
+> + *
+> + * Read a value from iosys_map considering its layout is described by a =
+C struct
+> + * starting at @struct_offset__. The field offset and size is calculated=
+ and its
+> + * value read handling possible un-aligned memory accesses. For example:=
+ suppose
+> + * there is a @struct foo defined as below and the value ``foo.field2.in=
+ner2``
+> + * needs to be read from the iosys_map:
+> + *
+> + * .. code-block:: c
+> + *
+> + *	struct foo {
+> + *		int field1;
+> + *		struct {
+> + *			int inner1;
+> + *			int inner2;
+> + *		} field2;
+> + *		int field3;
+> + *	} __packed;
+> + *
+> + * This is the expected memory layout of a buffer using iosys_map_rd_fie=
+ld():
+> + *
+> + * +------------------------------+--------------------------+
+> + * | Address                      | Content                  |
+> + * +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D+
+> + * | buffer + 0000                | start of mmapped buffer  |
+> + * |                              | pointed by iosys_map     |
+> + * +------------------------------+--------------------------+
+> + * | ...                          | ...                      |
+> + * +------------------------------+--------------------------+
+> + * | buffer + ``struct_offset__`` | start of ``struct foo``  |
+> + * +------------------------------+--------------------------+
+> + * | ...                          | ...                      |
+> + * +------------------------------+--------------------------+
+> + * | buffer + wwww                | ``foo.field2.inner2``    |
+> + * +------------------------------+--------------------------+
+> + * | ...                          | ...                      |
+> + * +------------------------------+--------------------------+
+> + * | buffer + yyyy                | end of ``struct foo``    |
+> + * +------------------------------+--------------------------+
+> + * | ...                          | ...                      |
+> + * +------------------------------+--------------------------+
+> + * | buffer + zzzz                | end of mmaped buffer     |
+> + * +------------------------------+--------------------------+
+> + *
+> + * Values automatically calculated by this macro or not needed are denot=
+ed by
+> + * wwww, yyyy and zzzz. This is the code to read that value:
+> + *
+> + * .. code-block:: c
+> + *
+> + *	x =3D iosys_map_rd_field(&map, offset, struct foo, field2.inner2);
+> + *
+> + * Returns:
+> + * The value read from the mapping.
+> + */
+> +#define iosys_map_rd_field(map__, struct_offset__, struct_type__, field_=
+_) ({	\
+> +	struct_type__ *s;							\
+> +	iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__),=
+	\
+> +		     typeof(s->field__));					\
+> +})
+> +
+> +/**
+> + * iosys_map_wr_field - Write to a member of a struct in the iosys_map
+> + *
+> + * @map__:		The iosys_map structure
+> + * @struct_offset__:	Offset from the beggining of the map, where the str=
+uct
+> + *			is located
+> + * @struct_type__:	The struct describing the layout of the mapping
+> + * @field__:		Member of the struct to read
+> + * @val__:		Value to write
+> + *
+> + * Write a value to the iosys_map considering its layout is described by=
+ a C struct
+> + * starting at @struct_offset__. The field offset and size is calculated=
+ and the
+> + * @val__ is written handling possible un-aligned memory accesses. Refer=
+ to
+> + * iosys_map_rd_field() for expected usage and memory layout.
+> + */
+> +#define iosys_map_wr_field(map__, struct_offset__, struct_type__, field_=
+_, val__) ({	\
+> +	struct_type__ *s;								\
+> +	iosys_map_wr(map__, struct_offset__ + offsetof(struct_type__, field__),=
+		\
+> +		     typeof(s->field__), val__);					\
+> +})
+> +
+>  #endif /* __IOSYS_MAP_H__ */
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/index.html
-
-Participating hosts (46 -> 42)
-------------------------------
-
-  Missing    (4): fi-bsw-cyan fi-icl-u2 shard-tglu fi-pnv-d510 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22217 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [PASS][4] -> [INCOMPLETE][5] ([i915#2940])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][7] ([fdo#109271]) +21 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-skl-6600u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#533])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@runner@aborted:
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][9] ([fdo#109271] / [i915#1436] / [i915#3428] / [i915#4312])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-bsw-n3050/igt@runner@aborted.html
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][10] ([i915#2426] / [i915#4312])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-bdw-5557u:       [INCOMPLETE][11] ([i915#146]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       [FAIL][13] ([i915#4547]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [DMESG-FAIL][15] ([i915#4957]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-    - fi-hsw-4770:        [INCOMPLETE][17] ([i915#4785]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Warnings ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-apl-guc:         [DMESG-WARN][19] -> [DMESG-WARN][20] ([i915#1610])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-apl-guc/igt@debugfs_test@read_all_entries.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-apl-guc/igt@debugfs_test@read_all_entries.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11205 -> Patchwork_22217
-
-  CI-20190529: 20190529
-  CI_DRM_11205: 9999c764a7571bebed03bec481d6fffcb23144fe @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22217: 1048c366fb86f43e4eccc2064225902eaf1ada36 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1048c366fb86 drm/i915/gt: Order GT registers by MMIO offset
-e69f259c44a8 drm/i915/gt: Use consistent offset notation in intel_gt_regs.h
-da6b61418421 drm/i915/gt: Cleanup spacing of intel_gt_regs.h
-c2ad90281821 drm/i915/gt: Use parameterized RING_MI_MODE
-827feabcfa0f drm/i915/gt: Move SFC lock bits to intel_engine_regs.h
-9a3768557554 drm/i915/gt: Drop duplicate register definition for VDBOX_CGCTL3F18
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/index.html
-
---===============4271720631167454602==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>More GT register cleanup</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99872/">https://patchwork.freedesktop.org/series/99872/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11205 -&gt; Patchwork_22217</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/index.html</p>
-<h2>Participating hosts (46 -&gt; 42)</h2>
-<p>Missing    (4): fi-bsw-cyan fi-icl-u2 shard-tglu fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22217 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-skl-6600u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +21 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@debugfs_test@read_all_entries:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11205/fi-apl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22217/fi-apl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11205 -&gt; Patchwork_22217</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11205: 9999c764a7571bebed03bec481d6fffcb23144fe @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6341: a96674e747ea2f2431bbf8813156adc44ec3162a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22217: 1048c366fb86f43e4eccc2064225902eaf1ada36 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>1048c366fb86 drm/i915/gt: Order GT registers by MMIO offset<br />
-e69f259c44a8 drm/i915/gt: Use consistent offset notation in intel_gt_regs.h<br />
-da6b61418421 drm/i915/gt: Cleanup spacing of intel_gt_regs.h<br />
-c2ad90281821 drm/i915/gt: Use parameterized RING_MI_MODE<br />
-827feabcfa0f drm/i915/gt: Move SFC lock bits to intel_engine_regs.h<br />
-9a3768557554 drm/i915/gt: Drop duplicate register definition for VDBOX_CGCTL3F18</p>
-
-</body>
-</html>
-
---===============4271720631167454602==--
+Thanks,
+Mauro
