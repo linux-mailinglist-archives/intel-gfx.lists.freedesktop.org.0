@@ -1,49 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CCC54B17D0
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 22:47:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CB684B17EF
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 23:10:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 086F810E969;
-	Thu, 10 Feb 2022 21:47:11 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D10110E969;
- Thu, 10 Feb 2022 21:47:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644529629; x=1676065629;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ulUI2rQ0jVtBvKRy7Yd3tKvcPQE+Xcd0GjiqTWQyO5s=;
- b=Vmvi2YDYn/LwaEbwobsw6pRWRN7OaiHCsPpsaVopWi25z576MBEhh+Rm
- XYOrUNj4uwF8ZGi0ZPWydZnTu/pjGEWQfNllZKpjOiSpmrhwPYtCPRQvz
- x5rIikymOURG/alffnUwH5Lw5+r3gOFjafIiJkPXdMWZ2/FZbQkBjljww
- xhkZYT8n/SDCYzZPeByuBTcRypciRXFywqOEwCgGsefNTzT5cw4ehGbd4
- iGiSf1X9CqdaW5aTmz3SwLS0YzxKIs0sHkNx/kPn42qtT2TDh/mg12KeU
- JnLEm74JRf4pcVpkshiL6L8FhnXPa8w/kYBqFY5Qzdld2AlCNmnG3TbUF g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="230243659"
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="230243659"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 13:47:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="537447466"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by fmsmga007.fm.intel.com with ESMTP; 10 Feb 2022 13:47:08 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Thu, 10 Feb 2022 13:47:08 -0800
-Message-Id: <20220210214708.2911301-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE9C10E19E;
+	Thu, 10 Feb 2022 22:10:28 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A212910E19E;
+ Thu, 10 Feb 2022 22:10:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9DDD8AA917;
+ Thu, 10 Feb 2022 22:10:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/guc: Do not complain about stale reset
- notifications
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael Cheng" <michael.cheng@intel.com>
+Date: Thu, 10 Feb 2022 22:10:26 -0000
+Message-ID: <164453102660.24641.15944593779136618551@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220210214216.1227694-1-michael.cheng@intel.com>
+In-Reply-To: <20220210214216.1227694-1-michael.cheng@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Move_=23define_wbvind=5Fon=5Fall=5Fcpus?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,41 +40,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-It is possible for reset notifications to arrive for a context that is
-in the process of being banned. So don't flag these as an error, just
-report it as informational (because it is still useful to know that
-resets are happening even if they are being ignored).
+Series: Move #define wbvind_on_all_cpus
+URL   : https://patchwork.freedesktop.org/series/99991/
+State : warning
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index b3a429a92c0d..3a4a87d1c89c 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -4022,10 +4022,10 @@ static void guc_handle_context_reset(struct intel_guc *guc,
- 		capture_error_state(guc, ce);
- 		guc_context_replay(ce);
- 	} else {
--		drm_err(&guc_to_gt(guc)->i915->drm,
--			"Invalid GuC engine reset notificaion for 0x%04X on %s: banned = %d, blocked = %d",
--			ce->guc_id.id, ce->engine->name, intel_context_is_banned(ce),
--			context_blocked(ce));
-+		drm_info(&guc_to_gt(guc)->i915->drm,
-+			 "Invalid GuC engine reset notification for 0x%04X on %s: banned = %d, blocked = %d",
-+			 ce->guc_id.id, ce->engine->name, intel_context_is_banned(ce),
-+			 context_blocked(ce));
- 	}
- }
- 
--- 
-2.25.1
+$ dim checkpatch origin/drm-tip
+8fdf2f52d823 drm/i915/gt: Move wbvind_on_all_cpus #define
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
+Move wbvind_on_all_cpus to intel_gt.h. This will allow other wbind_on_all_cpus
+
+-:39: WARNING:INCLUDE_LINUX: Use #include <linux/smp.h> instead of <asm/smp.h>
+#39: FILE: drivers/gpu/drm/i915/gt/intel_gt.h:14:
++#include <asm/smp.h>
+
+-:42: ERROR:CODE_INDENT: code indent should use tabs where possible
+#42: FILE: drivers/gpu/drm/i915/gt/intel_gt.h:17:
++         pr_warn(DRIVER_NAME ": Missing cache flush in %s\n", __func__)$
+
+-:42: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#42: FILE: drivers/gpu/drm/i915/gt/intel_gt.h:17:
++         pr_warn(DRIVER_NAME ": Missing cache flush in %s\n", __func__)$
+
+total: 1 errors, 3 warnings, 0 checks, 26 lines checked
+
 
