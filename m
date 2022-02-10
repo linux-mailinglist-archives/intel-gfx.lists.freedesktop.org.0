@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29E044B158C
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 19:51:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 757774B158A
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 19:50:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 571E410E952;
-	Thu, 10 Feb 2022 18:51:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAFDF10E951;
+	Thu, 10 Feb 2022 18:50:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E80E410E954
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 18:51:07 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B311810E951
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 18:50:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644519067; x=1676055067;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=NQUojKSqYIo0gC/3v2i9UJxQPwwd1hQElyCRsLayPRo=;
- b=SwXixkRa5V8EOhvQYAAqnqvpheQnxD5Oz6myetKTH69UBoWrsnb6M52r
- t4vFXmW4kHftJveHLQPufU47/J7qRBsi2PMC4/op6s+15NCnaK0Udno6U
- PlXG2P9AE2TaVQP943ZxZmGTlfBJOK+17ae4iwU0agvYF5LqcQoJ3qa72
- CzwgoFU0DC4RQth1zXQkvuyxqguhQkYnpgm/USke/NJvNcG+A8r/H0lsd
- e1l3RibplahZvqfKeCYm3glTG91hffDs5IZZp5YjfQ1GA+pw3FaPsPW+3
- 5+CgrWCxM2iksrbbD3qf3QhLILXHtep93TjJTAtNoSvRVVT/B1gUYttdC w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="249514244"
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="249514244"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 10:51:07 -0800
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="485844603"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 10:51:07 -0800
-Date: Thu, 10 Feb 2022 10:51:05 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Message-ID: <YgVemUgixMuqZEMU@mdroper-desk1.amr.corp.intel.com>
-References: <20220210164430.299456-1-anusha.srivatsa@intel.com>
+ t=1644519029; x=1676055029;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VTVuxJM3jBmw7TltORjeLjsnCjJ21b2fdnVFfcx+2dM=;
+ b=XL3+JZyM5l9zXLO2mH4wvLQtAdqCQxjVFIsp6hDMPPmt9FlzkOxqwrek
+ vQZHhE8oxlfXTGkg9u2RsLTunL/jcFeLj6WlbmXyrY8Nt1OH16uXCx8gr
+ 08BN0rBqgVDTOwQ2hPl1i3BfKbJHsPR4g9+q91H0/S/9hCEgI0uTeTzFz
+ uVUTBKLyzY6rgEeSK1mTBo9LconiXuGg2UdKNaDQe497vdIjuZsBFq2da
+ a5z80KeZaxkC5oclHjNk38QvILeBcIab9EfneNkVKEx14M4bHN8BGTx/w
+ KxSjesmaIlOj8K4pMHLzFm51m8uj3cDL5/9vnh4gXql1Pe1JZLoY//Hoa Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="335985772"
+X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="335985772"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 10:50:29 -0800
+X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="701793237"
+Received: from afdelosa-mobl1.amr.corp.intel.com (HELO
+ josouza-mobl2.amr.corp.intel.com) ([10.209.167.175])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 10:50:27 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 10 Feb 2022 10:52:22 -0800
+Message-Id: <20220210185223.95399-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220210164430.299456-1-anusha.srivatsa@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg1: Update DMC_DEBUG3 register
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/display: Group PSR2 prog sequences
+ and workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,64 +56,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 10, 2022 at 08:44:30AM -0800, Anusha Srivatsa wrote:
-> DMC_DEBUGU3 changes from DG1+
+Grouping inside of the same if all the programing sequences and
+workarounds of PSR2.
+The order of programing changed in intel_psr_enable_source() but
+it will not affect PSR2 as at this point PSR2_ENABLE is still disabled.
 
-This looks to be the same thing as the patch that Chuansheng Liu sent:
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 77 ++++++++++++------------
+ 1 file changed, 37 insertions(+), 40 deletions(-)
 
-https://patchwork.freedesktop.org/patch/473272/?series=99942&rev=1
-
-
-Matt
-
-> 
-> Bspec: 49788
-> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 6 ++++--
->  drivers/gpu/drm/i915/i915_reg.h                      | 1 +
->  2 files changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index f4de004d470f..87fc4b9b7b93 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -474,8 +474,10 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
->  		 * reg for DC3CO debugging and validation,
->  		 * but TGL DMC f/w is using DMC_DEBUG3 reg for DC3CO counter.
->  		 */
-> -		seq_printf(m, "DC3CO count: %d\n",
-> -			   intel_de_read(dev_priv, DMC_DEBUG3));
-> +		if (IS_DGFX(dev_priv))
-> +			seq_printf(m, "DC3CO count: %d\n", intel_de_read(dev_priv, DG1_DMC_DEBUG3));
-> +		else
-> +			seq_printf(m, "DC3CO count: %d\n", intel_de_read(dev_priv, DMC_DEBUG3));
->  	} else {
->  		dc5_reg = IS_BROXTON(dev_priv) ? BXT_DMC_DC3_DC5_COUNT :
->  						 SKL_DMC_DC3_DC5_COUNT;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 87c92314ee26..802962e3977c 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -5633,6 +5633,7 @@
->  #define DG1_DMC_DEBUG_DC5_COUNT	_MMIO(0x134154)
->  
->  #define DMC_DEBUG3		_MMIO(0x101090)
-> +#define DG1_DMC_DEBUG3		_MMIO(0x13415C)
->  
->  /* Display Internal Timeout Register */
->  #define RM_TIMEOUT		_MMIO(0x42060)
-> -- 
-> 2.25.1
-> 
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index a1a663f362e7d..72bd8d3261e0c 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1069,25 +1069,6 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp)
+ 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+ 	u32 mask;
+ 
+-	if (intel_dp->psr.psr2_enabled && DISPLAY_VER(dev_priv) == 9) {
+-		i915_reg_t reg = CHICKEN_TRANS(cpu_transcoder);
+-		u32 chicken = intel_de_read(dev_priv, reg);
+-
+-		chicken |= PSR2_VSC_ENABLE_PROG_HEADER |
+-			   PSR2_ADD_VERTICAL_LINE_COUNT;
+-		intel_de_write(dev_priv, reg, chicken);
+-	}
+-
+-	/*
+-	 * Wa_16014451276:adlp
+-	 * All supported adlp panels have 1-based X granularity, this may
+-	 * cause issues if non-supported panels are used.
+-	 */
+-	if (IS_ALDERLAKE_P(dev_priv) &&
+-	    intel_dp->psr.psr2_enabled)
+-		intel_de_rmw(dev_priv, CHICKEN_TRANS(cpu_transcoder), 0,
+-			     ADLP_1_BASED_X_GRANULARITY);
+-
+ 	/*
+ 	 * Per Spec: Avoid continuous PSR exit by masking MEMUP and HPD also
+ 	 * mask LPSP to avoid dependency on other drivers that might block
+@@ -1126,18 +1107,33 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp)
+ 			     intel_dp->psr.psr2_sel_fetch_enabled ?
+ 			     IGNORE_PSR2_HW_TRACKING : 0);
+ 
+-	/* Wa_16011168373:adl-p */
+-	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) &&
+-	    intel_dp->psr.psr2_enabled)
+-		intel_de_rmw(dev_priv,
+-			     TRANS_SET_CONTEXT_LATENCY(intel_dp->psr.transcoder),
+-			     TRANS_SET_CONTEXT_LATENCY_MASK,
+-			     TRANS_SET_CONTEXT_LATENCY_VALUE(1));
++	if (intel_dp->psr.psr2_enabled) {
++		if (DISPLAY_VER(dev_priv) == 9)
++			intel_de_rmw(dev_priv, CHICKEN_TRANS(cpu_transcoder), 0,
++				     PSR2_VSC_ENABLE_PROG_HEADER |
++				     PSR2_ADD_VERTICAL_LINE_COUNT);
+ 
+-	/* Wa_16012604467:adlp */
+-	if (IS_ALDERLAKE_P(dev_priv) && intel_dp->psr.psr2_enabled)
+-		intel_de_rmw(dev_priv, CLKGATE_DIS_MISC, 0,
+-			     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
++		/*
++		 * Wa_16014451276:adlp
++		 * All supported adlp panels have 1-based X granularity, this may
++		 * cause issues if non-supported panels are used.
++		 */
++		if (IS_ALDERLAKE_P(dev_priv))
++			intel_de_rmw(dev_priv, CHICKEN_TRANS(cpu_transcoder), 0,
++				     ADLP_1_BASED_X_GRANULARITY);
++
++		/* Wa_16011168373:adl-p */
++		if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
++			intel_de_rmw(dev_priv,
++				     TRANS_SET_CONTEXT_LATENCY(intel_dp->psr.transcoder),
++				     TRANS_SET_CONTEXT_LATENCY_MASK,
++				     TRANS_SET_CONTEXT_LATENCY_VALUE(1));
++
++		/* Wa_16012604467:adlp */
++		if (IS_ALDERLAKE_P(dev_priv))
++			intel_de_rmw(dev_priv, CLKGATE_DIS_MISC, 0,
++				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
++	}
+ }
+ 
+ static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
+@@ -1290,17 +1286,18 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
+ 			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
+ 
+-	/* Wa_16011168373:adl-p */
+-	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) &&
+-	    intel_dp->psr.psr2_enabled)
+-		intel_de_rmw(dev_priv,
+-			     TRANS_SET_CONTEXT_LATENCY(intel_dp->psr.transcoder),
+-			     TRANS_SET_CONTEXT_LATENCY_MASK, 0);
++	if (intel_dp->psr.psr2_enabled) {
++		/* Wa_16011168373:adl-p */
++		if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
++			intel_de_rmw(dev_priv,
++				     TRANS_SET_CONTEXT_LATENCY(intel_dp->psr.transcoder),
++				     TRANS_SET_CONTEXT_LATENCY_MASK, 0);
+ 
+-	/* Wa_16012604467:adlp */
+-	if (IS_ALDERLAKE_P(dev_priv) && intel_dp->psr.psr2_enabled)
+-		intel_de_rmw(dev_priv, CLKGATE_DIS_MISC,
+-			     CLKGATE_DIS_MISC_DMASC_GATING_DIS, 0);
++		/* Wa_16012604467:adlp */
++		if (IS_ALDERLAKE_P(dev_priv))
++			intel_de_rmw(dev_priv, CLKGATE_DIS_MISC,
++				     CLKGATE_DIS_MISC_DMASC_GATING_DIS, 0);
++	}
+ 
+ 	intel_snps_phy_update_psr_power_state(dev_priv, phy, false);
+ 
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+2.35.1
+
