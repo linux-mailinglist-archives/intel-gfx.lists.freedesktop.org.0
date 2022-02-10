@@ -2,47 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C37A4B04B0
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 05:59:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84F234B04CC
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 06:18:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0231A10E712;
-	Thu, 10 Feb 2022 04:59:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B974A10E712;
+	Thu, 10 Feb 2022 05:18:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32ED110E712;
- Thu, 10 Feb 2022 04:59:05 +0000 (UTC)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi
- [62.78.145.57])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2EBAA93;
- Thu, 10 Feb 2022 05:59:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1644469143;
- bh=iJpCupvq00OIRDE5Z4aCNPcYtnqopVnHnV3lxenbOnA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=aViTl5Kl0ZjPHaDIIZnM+t0qQF+Pwep5EdLPPr4DjtSinSk28OGQHkBlgDRp0kct8
- 9Xmn2SLUU6CIY1ZgZWRDCMjIVpE8YV+hmIBLBt28jS399Y2e15dcn1SBN09nKPVRqf
- OnxjRn76lJZDCubo4gLMYNjMmfnHzrR7NwThySWk=
-Date: Thu, 10 Feb 2022 06:58:59 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Message-ID: <YgSbk11nQ6bd4SWK@pendragon.ideasonboard.com>
-References: <20220202085429.22261-1-suraj.kandpal@intel.com>
- <20220202085429.22261-6-suraj.kandpal@intel.com>
- <Yfp8Q6OFqTAvESOi@pendragon.ideasonboard.com>
- <87y22ts948.fsf@intel.com>
- <YfqGbqQQz5vrDaLI@pendragon.ideasonboard.com>
- <CAA8EJpqr6MB64EAtLU3nBjgjx1COwn4auenCCw4kHB489VG0CA@mail.gmail.com>
- <d69038d6-a853-d2d9-81de-0ad10c4d6a3a@quicinc.com>
- <54fc4268-6418-817b-7cec-28a9dc9ba7b5@quicinc.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95C6610E712
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 05:18:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644470291; x=1676006291;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qqI2EPxLYk796dNfq3wjsei00h8zGm9gDr2ANJi9LxY=;
+ b=PB+f7juIOsMaxgukcn1KMitsERcbfOwUX6fZ7y8SqsetNxUEO8GOF8WO
+ rfdnvSsTvrR/w8sosdWFxIGgA64OdKtxpHYcUV+sjeKAnl2zDRdeDjr1v
+ uBp3ws4v1b0QDfIDfsDLOBDdvQPHB4UHrnA6eXTs4C4t2apSVsEIFtEaE
+ E4igZrgj4X2ddjZJ3olipnmoART5gRkyLbO5/Zxs8+3SCKsVrSekXsPPn
+ d3MAz4n8+pVY9hUDqE4iehDl/a2nIh8oU6Kf7SGUoisEuWgrJAXA8thD4
+ RJMdaV3ho8sBKEeZb5pepIBRNftjvZw1COSUektfQmS/xvTwlJ6KIua3D w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="230061111"
+X-IronPort-AV: E=Sophos;i="5.88,357,1635231600"; d="scan'208";a="230061111"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 21:18:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,357,1635231600"; d="scan'208";a="679027331"
+Received: from cliu38-mobl3.sh.intel.com ([10.239.147.47])
+ by fmsmga001.fm.intel.com with ESMTP; 09 Feb 2022 21:18:09 -0800
+From: Chuansheng Liu <chuansheng.liu@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 10 Feb 2022 13:05:01 +0800
+Message-Id: <20220210050501.87795-1-chuansheng.liu@intel.com>
+X-Mailer: git-send-email 2.25.0.rc2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <54fc4268-6418-817b-7cec-28a9dc9ba7b5@quicinc.com>
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/rcar_du: changes to rcar-du driver
- resulting from drm_writeback_connector structure changes
+Subject: [Intel-gfx] [PATCH] drm/i915/dg1: Update DMC_DEBUG3 register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,178 +53,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: carsten.haitzler@arm.com, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: lucas.demarchi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Abhinav,
+Current DMC_DEBUG3(_MMIO(0x101090)) address is for TGL,
+it is not wrong for DG1. Just like commit 5bcc95ca382e
+("drm/i915/dg1: Update DMC_DEBUG register"), correct
+this issue for DG1 platform to avoid wrong register
+being read.
 
-On Wed, Feb 09, 2022 at 05:40:29PM -0800, Abhinav Kumar wrote:
-> Hi Laurent
-> 
-> Gentle reminder on this.
+BSpec: 49788
 
-I won't have time before next week I'm afraid.
+Signed-off-by: Chuansheng Liu <chuansheng.liu@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 4 ++--
+ drivers/gpu/drm/i915/i915_reg.h                      | 3 ++-
+ 2 files changed, 4 insertions(+), 3 deletions(-)
 
-> On 2/6/2022 11:20 PM, Abhinav Kumar wrote:
-> > Hi Laurent
-> > 
-> > On 2/6/2022 3:32 PM, Dmitry Baryshkov wrote:
-> >> On Wed, 2 Feb 2022 at 16:26, Laurent Pinchart
-> >> <laurent.pinchart@ideasonboard.com> wrote:
-> >>>
-> >>> Hi Jani,
-> >>>
-> >>> On Wed, Feb 02, 2022 at 03:15:03PM +0200, Jani Nikula wrote:
-> >>>> On Wed, 02 Feb 2022, Laurent Pinchart wrote:
-> >>>>> On Wed, Feb 02, 2022 at 02:24:28PM +0530, Kandpal Suraj wrote:
-> >>>>>> Changing rcar_du driver to accomadate the change of
-> >>>>>> drm_writeback_connector.base and drm_writeback_connector.encoder
-> >>>>>> to a pointer the reason for which is explained in the
-> >>>>>> Patch(drm: add writeback pointers to drm_connector).
-> >>>>>>
-> >>>>>> Signed-off-by: Kandpal Suraj <suraj.kandpal@intel.com>
-> >>>>>> ---
-> >>>>>>   drivers/gpu/drm/rcar-du/rcar_du_crtc.h      | 2 ++
-> >>>>>>   drivers/gpu/drm/rcar-du/rcar_du_writeback.c | 8 +++++---
-> >>>>>>   2 files changed, 7 insertions(+), 3 deletions(-)
-> >>>>>>
-> >>>>>> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h 
-> >>>>>> b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
-> >>>>>> index 66e8839db708..68f387a04502 100644
-> >>>>>> --- a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
-> >>>>>> +++ b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
-> >>>>>> @@ -72,6 +72,8 @@ struct rcar_du_crtc {
-> >>>>>>     const char *const *sources;
-> >>>>>>     unsigned int sources_count;
-> >>>>>>
-> >>>>>> +  struct drm_connector connector;
-> >>>>>> +  struct drm_encoder encoder;
-> >>>>>
-> >>>>> Those fields are, at best, poorly named. Furthermore, there's no 
-> >>>>> need in
-> >>>>> this driver or in other drivers using drm_writeback_connector to 
-> >>>>> create
-> >>>>> an encoder or connector manually. Let's not polute all drivers because
-> >>>>> i915 doesn't have its abstractions right.
-> >>>>
-> >>>> i915 uses the quite common model for struct inheritance:
-> >>>>
-> >>>>        struct intel_connector {
-> >>>>                struct drm_connector base;
-> >>>>                /* ... */
-> >>>>        }
-> >>>>
-> >>>> Same with at least amd, ast, fsl-dcu, hisilicon, mga200, msm, nouveau,
-> >>>> radeon, tilcdc, and vboxvideo.
-> >>>>
-> >>>> We could argue about the relative merits of that abstraction, but I
-> >>>> think the bottom line is that it's popular and the drivers using it are
-> >>>> not going to be persuaded to move away from it.
-> >>>
-> >>> Nobody said inheritance is bad.
-> >>>
-> >>>> It's no coincidence that the drivers who've implemented writeback so 
-> >>>> far
-> >>>> (komeda, mali, rcar-du, vc4, and vkms) do not use the abstraction,
-> >>>> because the drm_writeback_connector midlayer does, forcing the issue.
-> >>>
-> >>> Are you sure it's not a coincidence ? :-)
-> >>>
-> >>> The encoder and especially connector created by drm_writeback_connector
-> >>> are there only because KMS requires a drm_encoder and a drm_connector to
-> >>> be exposed to userspace (and I could argue that using a connector for
-> >>> writeback is a hack, but that won't change). The connector is "virtual",
-> >>> I still fail to see why i915 or any other driver would need to wrap it
-> >>> into something else. The whole point of the drm_writeback_connector
-> >>> abstraction is that drivers do not have to manage the writeback
-> >>> drm_connector manually, they shouldn't touch it at all.
-> >>
-> >> Laurent, I wanted to shift a bit from the question of drm_connector to
-> >> the question of drm_encoder being embedded in the
-> >> drm_writeback_connector.
-> >> In case of the msm driver the drm_encoder is not a lightweight entity,
-> >> but a full-featured driver part. Significant part of it can be shared
-> >> with the writeback implementation, if we allow using a pointer to the
-> >> external drm_encoder with the drm_writeback_connector.
-> >> Does the following patch set stand a chance to receive your ack?
-> >>   - Switch drm_writeback_connector to point to drm_encoder rather than
-> >> embedding it?
-> >>   - Create drm_encoder for the drm_writeback_connector when one is not
-> >> specified, so the current drivers can be left unchanged.
-> >>
-> > 
-> > I second Dmitry's request here. For the reasons he has mentioned along 
-> > with the possibility of the writeback encoder being shared across 
-> > display pipelines, strengthens our request of the drm encoder being a 
-> > pointer inside the drm_writeback_connector instead of embedding it.
-> > 
-> > Like I had shown in my RFC, in case the other drivers dont specify one,
-> > we can allocate one:
-> > 
-> > https://patchwork.kernel.org/project/dri-devel/patch/1642732195-25349-1-git-send-email-quic_abhinavk@quicinc.com/ 
-> > 
-> > 
-> > We think this should be a reasonable accomodation to the existing
-> > drm_writeback driver.
-> > 
-> > Thanks
-> > 
-> > Abhinav
-> > 
-> >>>
-> >>>> So I think drm_writeback_connector should *not* use the inheritance
-> >>>> abstraction because it's a midlayer that should leave that option to 
-> >>>> the
-> >>>> drivers. I think drm_writeback_connector needs to be changed to
-> >>>> accommodate that, and, unfortunately, it means current writeback users
-> >>>> need to be changed as well.
-> >>>>
-> >>>> I am not sure, however, if the series at hand is the right
-> >>>> approach. Perhaps writeback can be modified to allocate the stuff for
-> >>>> you if you prefer it that way, as long as the drm_connector is not
-> >>>> embedded in struct drm_writeback_connector.
-> >>>>
-> >>>>> Nack.
-> >>>>>
-> >>>>>>     struct drm_writeback_connector writeback;
-> >>>>>>   };
-> >>>>>>
-> >>>>>> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c 
-> >>>>>> b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
-> >>>>>> index c79d1259e49b..5b1e83380c47 100644
-> >>>>>> --- a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
-> >>>>>> +++ b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
-> >>>>>> @@ -200,8 +200,10 @@ int rcar_du_writeback_init(struct 
-> >>>>>> rcar_du_device *rcdu,
-> >>>>>>   {
-> >>>>>>     struct drm_writeback_connector *wb_conn = &rcrtc->writeback;
-> >>>>>>
-> >>>>>> -  wb_conn->encoder.possible_crtcs = 1 << 
-> >>>>>> drm_crtc_index(&rcrtc->crtc);
-> >>>>>> -  drm_connector_helper_add(&wb_conn->base,
-> >>>>>> +  wb_conn->base = &rcrtc->connector;
-> >>>>>> +  wb_conn->encoder = &rcrtc->encoder;
-> >>>>>> +  wb_conn->encoder->possible_crtcs = 1 << 
-> >>>>>> drm_crtc_index(&rcrtc->crtc);
-> >>>>>> +  drm_connector_helper_add(wb_conn->base,
-> >>>>>>                              &rcar_du_wb_conn_helper_funcs);
-> >>>>>>
-> >>>>>>     return drm_writeback_connector_init(&rcdu->ddev, wb_conn,
-> >>>>>> @@ -220,7 +222,7 @@ void rcar_du_writeback_setup(struct 
-> >>>>>> rcar_du_crtc *rcrtc,
-> >>>>>>     struct drm_framebuffer *fb;
-> >>>>>>     unsigned int i;
-> >>>>>>
-> >>>>>> -  state = rcrtc->writeback.base.state;
-> >>>>>> +  state = rcrtc->writeback.base->state;
-> >>>>>>     if (!state || !state->writeback_job)
-> >>>>>>             return;
-> >>>>>>
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index f4de004d470f..f6c4ad8fce19 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -474,8 +474,8 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
+ 		 * reg for DC3CO debugging and validation,
+ 		 * but TGL DMC f/w is using DMC_DEBUG3 reg for DC3CO counter.
+ 		 */
+-		seq_printf(m, "DC3CO count: %d\n",
+-			   intel_de_read(dev_priv, DMC_DEBUG3));
++		seq_printf(m, "DC3CO count: %d\n", intel_de_read(dev_priv, IS_DGFX(dev_priv) ?
++					DG1_DMC_DEBUG3 : TGL_DMC_DEBUG3));
+ 	} else {
+ 		dc5_reg = IS_BROXTON(dev_priv) ? BXT_DMC_DC3_DC5_COUNT :
+ 						 SKL_DMC_DC3_DC5_COUNT;
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 87c92314ee26..9c215a6df659 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -5632,7 +5632,8 @@
+ #define TGL_DMC_DEBUG_DC6_COUNT	_MMIO(0x101088)
+ #define DG1_DMC_DEBUG_DC5_COUNT	_MMIO(0x134154)
+ 
+-#define DMC_DEBUG3		_MMIO(0x101090)
++#define TGL_DMC_DEBUG3		_MMIO(0x101090)
++#define DG1_DMC_DEBUG3		_MMIO(0x13415c)
+ 
+ /* Display Internal Timeout Register */
+ #define RM_TIMEOUT		_MMIO(0x42060)
 -- 
-Regards,
+2.25.0.rc2
 
-Laurent Pinchart
