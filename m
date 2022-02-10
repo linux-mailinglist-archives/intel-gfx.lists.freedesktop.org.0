@@ -2,51 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 118A44B0640
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 07:24:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04B434B06C5
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 08:01:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ED8689F92;
-	Thu, 10 Feb 2022 06:24:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6854F10E71E;
+	Thu, 10 Feb 2022 07:01:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4558689F92
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 06:24:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644474261; x=1676010261;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=PDeVSaJ+RA8LLqvtC2tH5SSSrNUtIe2gUqoRaLRxGII=;
- b=QdrGd+xMbLUlcKyfiq1uJt0JqKV5rYI/mdeHr5WVJ9MN0LOpEwsKTUOL
- AmXJOds7i/VGh+ujlNI3xUOMxbU5v6Ajyxy9vSf14wz/rj2f/ehzuglEe
- Xch/Wkb5DlMWK2OUjb94Pd75l0CcdQ8UV91LMn/Zf5RAfTpfOLG2oaQ+a
- KYtXYLeEZLc+eEkCEx7g4e82tz51U/coHWoER7JxqnMH9XY7tERsR8ygB
- jtcwG52NRFK/p07SbFb9mFVgtGQMLDCpnNgSL8WjYlfmi5ETSZYGnDM1G
- o1cIVyxASrCWLKIPPLet0jTTye3MyqPBX76EPvfVascMoPsRiPRj1A0iO A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="248254029"
-X-IronPort-AV: E=Sophos;i="5.88,357,1635231600"; d="scan'208";a="248254029"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 22:24:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,357,1635231600"; d="scan'208";a="485567527"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga006.jf.intel.com with SMTP; 09 Feb 2022 22:24:18 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Feb 2022 08:24:17 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Feb 2022 08:24:03 +0200
-Message-Id: <20220210062403.18690-6-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220210062403.18690-1-ville.syrjala@linux.intel.com>
-References: <20220210062403.18690-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 361B410E71E;
+ Thu, 10 Feb 2022 07:01:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3187FAADD2;
+ Thu, 10 Feb 2022 07:01:36 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7101991159941139197=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 5/5] drm/i915: Make pre-skl sprite plane
- registers unlocked
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 10 Feb 2022 07:01:36 -0000
+Message-ID: <164447649616.24636.1947504183622652828@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220210062403.18690-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220210062403.18690-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Futher_optimize_plane_updates_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,215 +40,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============7101991159941139197==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Drop the locks around sprite plane register writes. The
-lock isn't needed since each plane's register are neatly
-contained on their own cachelines.
+== Series Details ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_sprite.c | 45 ---------------------
- 1 file changed, 45 deletions(-)
+Series: drm/i915: Futher optimize plane updates (rev3)
+URL   : https://patchwork.freedesktop.org/series/99149/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 2d71294aaceb..f6875a49b8cb 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -430,9 +430,6 @@ vlv_sprite_update_noarm(struct intel_plane *plane,
- 	int crtc_y = plane_state->uapi.dst.y1;
- 	u32 crtc_w = drm_rect_width(&plane_state->uapi.dst);
- 	u32 crtc_h = drm_rect_height(&plane_state->uapi.dst);
--	unsigned long irqflags;
--
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
- 	intel_de_write_fw(dev_priv, SPSTRIDE(pipe, plane_id),
- 			  plane_state->view.color_plane[0].mapping_stride);
-@@ -440,8 +437,6 @@ vlv_sprite_update_noarm(struct intel_plane *plane,
- 			  SP_POS_Y(crtc_y) | SP_POS_X(crtc_x));
- 	intel_de_write_fw(dev_priv, SPSIZE(pipe, plane_id),
- 			  SP_HEIGHT(crtc_h - 1) | SP_WIDTH(crtc_w - 1));
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static void
-@@ -457,14 +452,11 @@ vlv_sprite_update_arm(struct intel_plane *plane,
- 	u32 x = plane_state->view.color_plane[0].x;
- 	u32 y = plane_state->view.color_plane[0].y;
- 	u32 sprctl, linear_offset;
--	unsigned long irqflags;
- 
- 	sprctl = plane_state->ctl | vlv_sprite_ctl_crtc(crtc_state);
- 
- 	linear_offset = intel_fb_xy_to_linear(x, y, plane_state, 0);
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--
- 	if (IS_CHERRYVIEW(dev_priv) && pipe == PIPE_B)
- 		chv_sprite_update_csc(plane_state);
- 
-@@ -494,8 +486,6 @@ vlv_sprite_update_arm(struct intel_plane *plane,
- 
- 	vlv_sprite_update_clrc(plane_state);
- 	vlv_sprite_update_gamma(plane_state);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static void
-@@ -505,14 +495,9 @@ vlv_sprite_disable_arm(struct intel_plane *plane,
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
- 	enum pipe pipe = plane->pipe;
- 	enum plane_id plane_id = plane->id;
--	unsigned long irqflags;
--
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
- 	intel_de_write_fw(dev_priv, SPCNTR(pipe, plane_id), 0);
- 	intel_de_write_fw(dev_priv, SPSURF(pipe, plane_id), 0);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static bool
-@@ -862,15 +847,12 @@ ivb_sprite_update_noarm(struct intel_plane *plane,
- 	u32 src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
- 	u32 src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
- 	u32 sprscale = 0;
--	unsigned long irqflags;
- 
- 	if (crtc_w != src_w || crtc_h != src_h)
- 		sprscale = SPRITE_SCALE_ENABLE |
- 			SPRITE_SRC_WIDTH(src_w - 1) |
- 			SPRITE_SRC_HEIGHT(src_h - 1);
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--
- 	intel_de_write_fw(dev_priv, SPRSTRIDE(pipe),
- 			  plane_state->view.color_plane[0].mapping_stride);
- 	intel_de_write_fw(dev_priv, SPRPOS(pipe),
-@@ -879,8 +861,6 @@ ivb_sprite_update_noarm(struct intel_plane *plane,
- 			  SPRITE_HEIGHT(crtc_h - 1) | SPRITE_WIDTH(crtc_w - 1));
- 	if (IS_IVYBRIDGE(dev_priv))
- 		intel_de_write_fw(dev_priv, SPRSCALE(pipe), sprscale);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static void
-@@ -895,14 +875,11 @@ ivb_sprite_update_arm(struct intel_plane *plane,
- 	u32 x = plane_state->view.color_plane[0].x;
- 	u32 y = plane_state->view.color_plane[0].y;
- 	u32 sprctl, linear_offset;
--	unsigned long irqflags;
- 
- 	sprctl = plane_state->ctl | ivb_sprite_ctl_crtc(crtc_state);
- 
- 	linear_offset = intel_fb_xy_to_linear(x, y, plane_state, 0);
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--
- 	if (key->flags) {
- 		intel_de_write_fw(dev_priv, SPRKEYVAL(pipe), key->min_value);
- 		intel_de_write_fw(dev_priv, SPRKEYMSK(pipe),
-@@ -931,8 +908,6 @@ ivb_sprite_update_arm(struct intel_plane *plane,
- 			  intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
- 
- 	ivb_sprite_update_gamma(plane_state);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static void
-@@ -941,17 +916,12 @@ ivb_sprite_disable_arm(struct intel_plane *plane,
- {
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
- 	enum pipe pipe = plane->pipe;
--	unsigned long irqflags;
--
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
- 	intel_de_write_fw(dev_priv, SPRCTL(pipe), 0);
- 	/* Disable the scaler */
- 	if (IS_IVYBRIDGE(dev_priv))
- 		intel_de_write_fw(dev_priv, SPRSCALE(pipe), 0);
- 	intel_de_write_fw(dev_priv, SPRSURF(pipe), 0);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static bool
-@@ -1204,15 +1174,12 @@ g4x_sprite_update_noarm(struct intel_plane *plane,
- 	u32 src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
- 	u32 src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
- 	u32 dvsscale = 0;
--	unsigned long irqflags;
- 
- 	if (crtc_w != src_w || crtc_h != src_h)
- 		dvsscale = DVS_SCALE_ENABLE |
- 			DVS_SRC_WIDTH(src_w - 1) |
- 			DVS_SRC_HEIGHT(src_h - 1);
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--
- 	intel_de_write_fw(dev_priv, DVSSTRIDE(pipe),
- 			  plane_state->view.color_plane[0].mapping_stride);
- 	intel_de_write_fw(dev_priv, DVSPOS(pipe),
-@@ -1220,8 +1187,6 @@ g4x_sprite_update_noarm(struct intel_plane *plane,
- 	intel_de_write_fw(dev_priv, DVSSIZE(pipe),
- 			  DVS_HEIGHT(crtc_h - 1) | DVS_WIDTH(crtc_w - 1));
- 	intel_de_write_fw(dev_priv, DVSSCALE(pipe), dvsscale);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static void
-@@ -1236,14 +1201,11 @@ g4x_sprite_update_arm(struct intel_plane *plane,
- 	u32 x = plane_state->view.color_plane[0].x;
- 	u32 y = plane_state->view.color_plane[0].y;
- 	u32 dvscntr, linear_offset;
--	unsigned long irqflags;
- 
- 	dvscntr = plane_state->ctl | g4x_sprite_ctl_crtc(crtc_state);
- 
- 	linear_offset = intel_fb_xy_to_linear(x, y, plane_state, 0);
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--
- 	if (key->flags) {
- 		intel_de_write_fw(dev_priv, DVSKEYVAL(pipe), key->min_value);
- 		intel_de_write_fw(dev_priv, DVSKEYMSK(pipe),
-@@ -1267,8 +1229,6 @@ g4x_sprite_update_arm(struct intel_plane *plane,
- 		g4x_sprite_update_gamma(plane_state);
- 	else
- 		ilk_sprite_update_gamma(plane_state);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static void
-@@ -1277,16 +1237,11 @@ g4x_sprite_disable_arm(struct intel_plane *plane,
- {
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
- 	enum pipe pipe = plane->pipe;
--	unsigned long irqflags;
--
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
- 	intel_de_write_fw(dev_priv, DVSCNTR(pipe), 0);
- 	/* Disable the scaler */
- 	intel_de_write_fw(dev_priv, DVSSCALE(pipe), 0);
- 	intel_de_write_fw(dev_priv, DVSSURF(pipe), 0);
--
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
- 
- static bool
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_11207 -> Patchwork_22234
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/index.html
+
+Participating hosts (45 -> 43)
+------------------------------
+
+  Additional (1): bat-rpls-1 
+  Missing    (3): fi-bsw-cyan fi-icl-u2 shard-tglu 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22234 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_flink_basic@bad-flink:
+    - fi-skl-6600u:       [PASS][1] -> [FAIL][2] ([i915#4547])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [PASS][3] -> [DMESG-FAIL][4] ([i915#4494] / [i915#4957])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
+    - fi-cfl-8109u:       [PASS][5] -> [DMESG-WARN][6] ([i915#295]) +12 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [SKIP][7] ([fdo#109271]) -> [FAIL][8] ([i915#3049])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
+  [i915#3049]: https://gitlab.freedesktop.org/drm/intel/issues/3049
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11207 -> Patchwork_22234
+
+  CI-20190529: 20190529
+  CI_DRM_11207: 0d650d738ee924dc0c367ff1f33c61237a635933 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6342: 1bd167a3af9e8f6168ac89c64c64b929694d9be7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22234: ebef7e80786343e2bdf985da2212692864327cfc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ebef7e807863 drm/i915: Make pre-skl sprite plane registers unlocked
+2afcc45526b7 drm/i915: Make most pre-skl primary plane registers unlocked
+a94acb7297ed drm/i915: Make cursor plane registers unlocked
+70612125272d drm/i915: Make skl+ universal plane registers unlocked
+e88416e136a5 drm/i915: Optimize icl+ universal plane programming
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/index.html
+
+--===============7101991159941139197==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Futher optimize plane updates (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99149/">https://patchwork.freedesktop.org/series/99149/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11207 -&gt; Patchwork_22234</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/index.html</p>
+<h2>Participating hosts (45 -&gt; 43)</h2>
+<p>Additional (1): bat-rpls-1 <br />
+  Missing    (3): fi-bsw-cyan fi-icl-u2 shard-tglu </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22234 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_flink_basic@bad-flink:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +12 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_pm_rpm@basic-rte:<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11207/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22234/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3049">i915#3049</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11207 -&gt; Patchwork_22234</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11207: 0d650d738ee924dc0c367ff1f33c61237a635933 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6342: 1bd167a3af9e8f6168ac89c64c64b929694d9be7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22234: ebef7e80786343e2bdf985da2212692864327cfc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>ebef7e807863 drm/i915: Make pre-skl sprite plane registers unlocked<br />
+2afcc45526b7 drm/i915: Make most pre-skl primary plane registers unlocked<br />
+a94acb7297ed drm/i915: Make cursor plane registers unlocked<br />
+70612125272d drm/i915: Make skl+ universal plane registers unlocked<br />
+e88416e136a5 drm/i915: Optimize icl+ universal plane programming</p>
+
+</body>
+</html>
+
+--===============7101991159941139197==--
