@@ -2,48 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EA184B0B5F
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 11:50:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C590C4B0B6C
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 11:52:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9009110E7F5;
-	Thu, 10 Feb 2022 10:50:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A29E10E7FA;
+	Thu, 10 Feb 2022 10:52:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1389710E7F5
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 10:50:14 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB7A110E7F5;
+ Thu, 10 Feb 2022 10:52:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644490214; x=1676026214;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=F0zZ9FXJT/e5xqD2e9FywvyCi1xqXIlCFFMcHsyA2eQ=;
- b=kxuuD+nzSU96bfKa+xE5OlRvcwKC7ldlt2gAfq+cfhnUect1+WX/oRf3
- Ak0msfglGuIq++FMaKPJyyMzZ22M0UcEXS+pSsjheMaGI+PxfEPzWtrrL
- NKguou0TYWu9j93HQFMUCyN9P7KqlC+9Zpr+OxvCQjdsz2cuhqY9oHpj8
- VuVfqx6q6vZldd7viknsXS6GFHGw7+Hzx+vRde1tSoWqu899Xx822Cx0R
- UvQ5bUIwqD+e8/9leTNFwAq2hVpktP9wgFvOcemer0NmqfzM+muBFmetK
- Tw4KHZ9UrhsN0n3w81JnlgzBjVl6MW3H78AnojRsswI8a18VemHtlUZOD A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="229432215"
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="229432215"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 02:50:13 -0800
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="526432452"
-Received: from dhogarty-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.10.221])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 02:50:11 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chuansheng Liu <chuansheng.liu@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220210050501.87795-1-chuansheng.liu@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220210050501.87795-1-chuansheng.liu@intel.com>
-Date: Thu, 10 Feb 2022 12:50:08 +0200
-Message-ID: <87k0e3807z.fsf@intel.com>
+ t=1644490341; x=1676026341;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=91Gm4lPnHxNYO8WbSSgS1z/Ls7KKSSVUZFiiOc1Vd4g=;
+ b=mghNsOiS5tB4OMFuw+Z2XWCsTSwRwRMCUmB3cGmjn2xS7f70d9E4fADd
+ NS2cMFYxJrUjt8IBgePOULDbgGyX2/iLWBgSKL4I2jsipm+E2YkCT+a4g
+ Ssw2RqkNRv8/8ulSl3jf1KgXmstwIaB11/dHSx+Fux1xSDMYeUrTyt3rK
+ JjZMszeUeozt/PbQeerynkPCE2fkt+4fHAaHYmRR0eopN6o8k4vBxXr0C
+ tuEA/xkzEgOSywKDuY4fPExOBFaSKENqJRgElHBi/8MUa1PremkiRQ2hD
+ oCd4f2UwAXZD4DX71ExxsRox40GmlU0jhxq3mpx2bbW9uCVfUFZxqbJJp Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="310202471"
+X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="310202471"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 02:52:21 -0800
+X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="485640727"
+Received: from scurtin-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.213.201.86])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 02:52:18 -0800
+Date: Thu, 10 Feb 2022 10:52:16 +0000
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YgTuYAtpaV3XAGmx@tursulin-mobl2>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg1: Update DMC_DEBUG3 register
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,60 +55,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 10 Feb 2022, Chuansheng Liu <chuansheng.liu@intel.com> wrote:
-> Current DMC_DEBUG3(_MMIO(0x101090)) address is for TGL,
-> it is not wrong for DG1. Just like commit 5bcc95ca382e
 
-wrong, not "not wrong".
+Hi Dave,  Daniel,
 
-BR,
-Jani.
+An assortment of fixes for -rc4, mostly display, one TTM migration fixup,
+one fix for platforms without runtime PM and one !x86 build fix.
 
-> ("drm/i915/dg1: Update DMC_DEBUG register"), correct
-> this issue for DG1 platform to avoid wrong register
-> being read.
->
-> BSpec: 49788
->
-> Signed-off-by: Chuansheng Liu <chuansheng.liu@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 4 ++--
->  drivers/gpu/drm/i915/i915_reg.h                      | 3 ++-
->  2 files changed, 4 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index f4de004d470f..f6c4ad8fce19 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -474,8 +474,8 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
->  		 * reg for DC3CO debugging and validation,
->  		 * but TGL DMC f/w is using DMC_DEBUG3 reg for DC3CO counter.
->  		 */
-> -		seq_printf(m, "DC3CO count: %d\n",
-> -			   intel_de_read(dev_priv, DMC_DEBUG3));
-> +		seq_printf(m, "DC3CO count: %d\n", intel_de_read(dev_priv, IS_DGFX(dev_priv) ?
-> +					DG1_DMC_DEBUG3 : TGL_DMC_DEBUG3));
->  	} else {
->  		dc5_reg = IS_BROXTON(dev_priv) ? BXT_DMC_DC3_DC5_COUNT :
->  						 SKL_DMC_DC3_DC5_COUNT;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 87c92314ee26..9c215a6df659 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -5632,7 +5632,8 @@
->  #define TGL_DMC_DEBUG_DC6_COUNT	_MMIO(0x101088)
->  #define DG1_DMC_DEBUG_DC5_COUNT	_MMIO(0x134154)
->  
-> -#define DMC_DEBUG3		_MMIO(0x101090)
-> +#define TGL_DMC_DEBUG3		_MMIO(0x101090)
-> +#define DG1_DMC_DEBUG3		_MMIO(0x13415c)
->  
->  /* Display Internal Timeout Register */
->  #define RM_TIMEOUT		_MMIO(0x42060)
+Regards,
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Tvrtko
+
+drm-intel-fixes-2022-02-10:
+- Build fix for non-x86 platforms after remap_io_mmapping changes. (Lucas De Marchi)
+- Correctly propagate errors during object migration blits. (Thomas Hellström)
+- Disable DRRS support on HSW/IVB where it is not implemented yet. (Ville Syrjälä)
+- Correct pipe dbuf BIOS configuration during readout. (Ville Syrjälä)
+- Properly sanitise BIOS buf configuration on ADL-P+ for !join_mbus cases. (Ville Syrjälä)
+- Fix oops due to missing stack depot. (Ville Syrjälä)
+- Workaround broken BIOS DBUF configuration on TGL/RKL. (Ville Syrjälä)
+The following changes since commit dfd42facf1e4ada021b939b4e19c935dcdd55566:
+
+  Linux 5.17-rc3 (2022-02-06 12:20:50 -0800)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2022-02-10
+
+for you to fetch changes up to 4e6f55120c7eccf6f9323bb681632e23cbcb3f3c:
+
+  drm/i915: Workaround broken BIOS DBUF configuration on TGL/RKL (2022-02-07 12:56:50 +0000)
+
+----------------------------------------------------------------
+- Build fix for non-x86 platforms after remap_io_mmapping changes. (Lucas De Marchi)
+- Correctly propagate errors during object migration blits. (Thomas Hellström)
+- Disable DRRS support on HSW/IVB where it is not implemented yet. (Ville Syrjälä)
+- Correct pipe dbuf BIOS configuration during readout. (Ville Syrjälä)
+- Properly sanitise BIOS buf configuration on ADL-P+ for !join_mbus cases. (Ville Syrjälä)
+- Fix oops due to missing stack depot. (Ville Syrjälä)
+- Workaround broken BIOS DBUF configuration on TGL/RKL. (Ville Syrjälä)
+
+----------------------------------------------------------------
+Lucas De Marchi (1):
+      drm/i915: Fix header test for !CONFIG_X86
+
+Thomas Hellström (1):
+      drm/i915/ttm: Return some errors instead of trying memcpy move
+
+Ville Syrjälä (5):
+      drm/i915: Fix oops due to missing stack depot
+      drm/i915: Disable DRRS on IVB/HSW port != A
+      drm/i915: Allow !join_mbus cases for adlp+ dbuf configuration
+      drm/i915: Populate pipe dbuf slices more accurately during readout
+      drm/i915: Workaround broken BIOS DBUF configuration on TGL/RKL
+
+ drivers/gpu/drm/i915/display/intel_display.c |   1 +
+ drivers/gpu/drm/i915/display/intel_drrs.c    |   8 ++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c |  14 ++-
+ drivers/gpu/drm/i915/i915_mm.h               |   1 +
+ drivers/gpu/drm/i915/intel_pm.c              | 143 ++++++++++++++++++++++-----
+ drivers/gpu/drm/i915/intel_pm.h              |   1 +
+ drivers/gpu/drm/i915/intel_runtime_pm.c      |   4 +-
+ 7 files changed, 142 insertions(+), 30 deletions(-)
