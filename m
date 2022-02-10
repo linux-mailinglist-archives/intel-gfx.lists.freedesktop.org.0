@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 725774B11F8
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 16:46:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8E324B11F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 16:46:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6B8A10E8A0;
-	Thu, 10 Feb 2022 15:46:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBC3A10E8A1;
+	Thu, 10 Feb 2022 15:46:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 382AB10E8A1
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 15:46:26 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A04310E8A1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 15:46:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644507986; x=1676043986;
+ t=1644507993; x=1676043993;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+QfipabCZF4o7iXC+XmW+xYjIn3ptasK4s+e0EySuwU=;
- b=P+lhyquPKCOxrRBIFlXTKDQjN5Z1iKcipGeYlHyd4umrFTCtIuQ+67pJ
- hnzLZY7lX296KjP4pWjvxYrIudTJAn64FAap/Ovj22dN+Xyhf3Ines52H
- uLuT9MyhqkUThk0oNvCSYITVmS6zKa9wsyCUEh4Mqkiam7omLprjfD9DD
- ucie5IBZTvqTPHwoazwleML+SgM6viLpWJyoMfIeRiRdgq9EN/mb32yyc
- m9SFkRwI7f+nHityncHbsAQYACRwY5A5xq+h5xKMXoCtqHc59A4a5akDU
- uEf//pQUhOzBBCpbJDGM04Uz2oD7pGaDiXT5w85/QZBE97o63rljCofPh Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="230162209"
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="230162209"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 07:46:25 -0800
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="482800511"
+ bh=Kgsu8t70TxBVUMPGMeI6ZM4E+uNjexhw/UKHTxbmi6w=;
+ b=jVQCRd3ICGleToWF7cybUAssypJ/0PW0ZpxnjaNTEaSAWwsqgpu9MkzC
+ 3JBPc0Jba98t3UMASQEbSCgu8sW3PdCXSAv3jGIyn/T8vnWUYskwNhqRQ
+ vE9RTqoRS3Ecuk+v0Bu8wzflMRkyFmulHJDlB/nocXvtgtv8mQTsH6NfE
+ kDJFyj0FfSQ7Hr/D6whIPNS2r9SWMplOE+G1MBtcrETIkjQmjz2l6MRhL
+ /7mp2hzuBqpxnK3VrrZdIjvf65BrnnLQB0nUNg+ZjQhjQ2UHMxXOSqNLS
+ QNLJJL+qN/j/D5qChPFyf+RMT76a1VjDVVJUbn/Pfedf1MurP20zxIK3L g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="236920738"
+X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="236920738"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 07:46:32 -0800
+X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="526535590"
 Received: from dhogarty-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.10.221])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 07:46:23 -0800
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 07:46:28 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Feb 2022 17:45:43 +0200
-Message-Id: <8208321ad09f1fb0d1a61dc0f2449cce8b23a9b9.1644507885.git.jani.nikula@intel.com>
+Date: Thu, 10 Feb 2022 17:45:44 +0200
+Message-Id: <dc0901dbe424c21b3e03b875bf5b944b214d1af4.1644507885.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1644507885.git.jani.nikula@intel.com>
 References: <cover.1644507885.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 05/14] drm/i915: split out
- gem/i915_gem_domain.h from i915_drv.h
+Subject: [Intel-gfx] [PATCH v4 06/14] drm/i915: move i915_cache_level_str()
+ static in i915_debugfs.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,106 +62,74 @@ Cc: jani.nikula@intel.com, Daniel Vetter <daniel.vetter@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We already have the gem/i915_gem_domain.c file.
+Move the function next to the only user.
 
 Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpt.c    |  4 +++-
- drivers/gpu/drm/i915/display/intel_fb_pin.c |  1 +
- drivers/gpu/drm/i915/gem/i915_gem_domain.c  |  5 +++--
- drivers/gpu/drm/i915/gem/i915_gem_domain.h  | 15 +++++++++++++++
- drivers/gpu/drm/i915/i915_drv.h             |  3 ---
- 5 files changed, 22 insertions(+), 6 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_domain.h
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 11 -----------
+ drivers/gpu/drm/i915/i915_debugfs.c       | 11 +++++++++++
+ drivers/gpu/drm/i915/i915_drv.h           |  2 --
+ 3 files changed, 11 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
-index c2f8f853db90..05dd7dba3a5c 100644
---- a/drivers/gpu/drm/i915/display/intel_dpt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-@@ -3,11 +3,13 @@
-  * Copyright © 2021 Intel Corporation
-  */
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 85f86d71603d..e53008b4dd05 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1230,17 +1230,6 @@ void intel_engine_cancel_stop_cs(struct intel_engine_cs *engine)
+ 	ENGINE_WRITE_FW(engine, RING_MI_MODE, _MASKED_BIT_DISABLE(STOP_RING));
+ }
  
-+#include "gem/i915_gem_domain.h"
-+#include "gt/gen8_ppgtt.h"
+-const char *i915_cache_level_str(struct drm_i915_private *i915, int type)
+-{
+-	switch (type) {
+-	case I915_CACHE_NONE: return " uncached";
+-	case I915_CACHE_LLC: return HAS_LLC(i915) ? " LLC" : " snooped";
+-	case I915_CACHE_L3_LLC: return " L3+LLC";
+-	case I915_CACHE_WT: return " WT";
+-	default: return "";
+-	}
+-}
+-
+ static u32
+ read_subslice_reg(const struct intel_engine_cs *engine,
+ 		  int slice, int subslice, i915_reg_t reg)
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index ca52ee0742ce..5ddd1929254a 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -137,6 +137,17 @@ static const char *stringify_vma_type(const struct i915_vma *vma)
+ 	return "ppgtt";
+ }
+ 
++static const char *i915_cache_level_str(struct drm_i915_private *i915, int type)
++{
++	switch (type) {
++	case I915_CACHE_NONE: return " uncached";
++	case I915_CACHE_LLC: return HAS_LLC(i915) ? " LLC" : " snooped";
++	case I915_CACHE_L3_LLC: return " L3+LLC";
++	case I915_CACHE_WT: return " WT";
++	default: return "";
++	}
++}
 +
- #include "i915_drv.h"
- #include "intel_display_types.h"
- #include "intel_dpt.h"
- #include "intel_fb.h"
--#include "gt/gen8_ppgtt.h"
- 
- struct i915_dpt {
- 	struct i915_address_space vm;
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index c4b3d76341f3..a307b4993bcf 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -7,6 +7,7 @@
-  * DOC: display pinning helpers
-  */
- 
-+#include "gem/i915_gem_domain.h"
- #include "gem/i915_gem_object.h"
- 
- #include "i915_drv.h"
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-index 26532c07d467..3e5d6057b3ef 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-@@ -9,12 +9,13 @@
- 
- #include "i915_drv.h"
- #include "i915_gem_clflush.h"
-+#include "i915_gem_domain.h"
- #include "i915_gem_gtt.h"
- #include "i915_gem_ioctls.h"
--#include "i915_gem_object.h"
--#include "i915_vma.h"
- #include "i915_gem_lmem.h"
- #include "i915_gem_mman.h"
-+#include "i915_gem_object.h"
-+#include "i915_vma.h"
- 
- static bool gpu_write_needs_clflush(struct drm_i915_gem_object *obj)
+ void
+ i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj)
  {
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.h b/drivers/gpu/drm/i915/gem/i915_gem_domain.h
-new file mode 100644
-index 000000000000..9622df962bfc
---- /dev/null
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.h
-@@ -0,0 +1,15 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#ifndef __I915_GEM_DOMAIN_H__
-+#define __I915_GEM_DOMAIN_H__
-+
-+struct drm_i915_gem_object;
-+enum i915_cache_level;
-+
-+int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
-+				    enum i915_cache_level cache_level);
-+
-+#endif /* __I915_GEM_DOMAIN_H__ */
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 4f057a45654a..4dbab34045e8 100644
+index 4dbab34045e8..306bc87dadcc 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1623,9 +1623,6 @@ void i915_gem_driver_release(struct drm_i915_private *dev_priv);
+@@ -1646,8 +1646,6 @@ static inline bool i915_gem_object_needs_bit17_swizzle(struct drm_i915_gem_objec
+ 		i915_gem_object_is_tiled(obj);
+ }
  
- int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file);
- 
--int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
--				    enum i915_cache_level cache_level);
+-const char *i915_cache_level_str(struct drm_i915_private *i915, int type);
 -
- static inline struct i915_address_space *
- i915_gem_vm_lookup(struct drm_i915_file_private *file_priv, u32 id)
- {
+ /* intel_device_info.c */
+ static inline struct intel_device_info *
+ mkwrite_device_info(struct drm_i915_private *dev_priv)
 -- 
 2.30.2
 
