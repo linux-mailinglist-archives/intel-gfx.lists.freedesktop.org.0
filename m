@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8BDF4B0AF8
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 11:37:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29EF34B0AF9
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 11:37:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33A0A10E7EB;
-	Thu, 10 Feb 2022 10:37:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7811410E7EC;
+	Thu, 10 Feb 2022 10:37:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52D0510E7EB
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 10:37:16 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B53610E7EC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 10:37:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644489436; x=1676025436;
+ t=1644489437; x=1676025437;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XEPgE9A42s8ZM8cCVp+frZqoLKC7e2fa+Bbppp2cOfw=;
- b=UINaZ7qZM164uClRs9Je7rBY9571L1PIsbcl9BWfQi+BzwaUocBtqqop
- cjtL4o5/HZU98JsYVKRQedhBS6S0AuRPsLiW6TcYtJmOj8/hklVh/RUax
- XPgumwY655YMnq4y2Pm5a2sP5p+qP86CtaYMpsYV8Xe+rKGc590ayQxwC
- sjljLkIJwZQw1S3vTB1Ry94HzDpSxAKDjXJYOr766QmjkWyWsbUgmVYp0
- uQ0OIFDk58TTA5/SrxBwldea7MBH3djdL2xM15dMCIjP2CLMsuzt+K1XR
- RJCNsg8n/i8NP3OO0DhFuMuYhMm8wAOPl2OYm/u9Oa0QymDgLVggvbjQA A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="236865324"
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="236865324"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 02:37:08 -0800
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="701644976"
+ bh=axu/kqisqtVKCFJQDMK/7RDIVnIVT+Sqh9LCksVGx9k=;
+ b=XLhssOqwrkWM2Lr4fFyLDxBQE63kZ8f1KL1oRuPQCccOnbx2gB6fll3b
+ ZYWojWFqIAZEyygZGRwCMifzLGLr+P7hLQ1ayI20kL4A1hKsuLpPrInCb
+ DE9bP3++s8KHhVjWAef6GHsM9M9LYFmdBuBvN3PRMxqdQlSZjOa2zDvQN
+ YM4L9MPfJmRaVRsMePXpFILl9H8OL219RVGA123XzYHRfV5/npzSrvT1h
+ 15KFCbl3JwJzULTcNrVmu8w3m862W30GstYr7PEVIC+S8wh8Uxlop7zsU
+ h0gEcwyp2jRBd6FL7dYN0jOSnfGzslpoEOaJ/UI6J0V09e2GA9WJTL/bF A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="310200532"
+X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="310200532"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 02:37:17 -0800
+X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="633619410"
 Received: from dhogarty-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.10.221])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 02:37:07 -0800
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 02:37:15 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Feb 2022 12:36:44 +0200
-Message-Id: <82f63313057ed2d96856b3f8d76536826a897bc7.1644489329.git.jani.nikula@intel.com>
+Date: Thu, 10 Feb 2022 12:36:45 +0200
+Message-Id: <7b61b8d9fa091f6d015e110006991cfd54690f36.1644489329.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1644489329.git.jani.nikula@intel.com>
 References: <cover.1644489329.git.jani.nikula@intel.com>
@@ -45,8 +45,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/5] drm/i915/opregion: early exit from encoder
- notify if SWSCI isn't there
+Subject: [Intel-gfx] [PATCH 4/5] drm/i915/opregion: handle SWSCI Mailbox #2
+ obsoletion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,38 +63,41 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Newer platforms aren't supposed to have mailbox #2 or SWSCI
-support. Bail out early from encoder notify if that is the case,
-skipping the out-of-bounds checks and debug messages.
+Opregion Mailbox #2 is obsolete for SWSCI usage in opregion v2.x, and
+repurposed in opregion v3.x. Warn about obsole mailbox presence in v2.x,
+and ignore with an error for v3.x.
 
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_opregion.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/intel_opregion.c | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index e540e5b9073b..ce3d44cc2461 100644
+index ce3d44cc2461..6e32ed6bbf4e 100644
 --- a/drivers/gpu/drm/i915/display/intel_opregion.c
 +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -358,11 +358,17 @@ int intel_opregion_notify_encoder(struct intel_encoder *intel_encoder,
- 	u32 parm = 0;
- 	u32 type = 0;
- 	u32 port;
-+	int ret;
+@@ -932,9 +932,17 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+ 	}
  
- 	/* don't care about old stuff for now */
- 	if (!HAS_DDI(dev_priv))
- 		return 0;
- 
-+	/* Avoid port out of bounds checks if SWSCI isn't there. */
-+	ret = check_swsci_function(dev_priv, SWSCI_SBCB_DISPLAY_POWER_STATE);
-+	if (ret)
-+		return ret;
+ 	if (mboxes & MBOX_SWSCI) {
+-		drm_dbg(&dev_priv->drm, "SWSCI supported\n");
+-		opregion->swsci = base + OPREGION_SWSCI_OFFSET;
+-		swsci_setup(dev_priv);
++		u8 major = opregion->header->over.major;
 +
- 	if (intel_encoder->type == INTEL_OUTPUT_DSI)
- 		port = 0;
- 	else
++		if (major >= 3) {
++			drm_err(&dev_priv->drm, "SWSCI Mailbox #2 present for opregion v3.x, ignoring\n");
++		} else {
++			if (major >= 2)
++				drm_warn(&dev_priv->drm, "SWSCI Mailbox #2 present for opregion v2.x\n");
++			drm_dbg(&dev_priv->drm, "SWSCI supported\n");
++			opregion->swsci = base + OPREGION_SWSCI_OFFSET;
++			swsci_setup(dev_priv);
++		}
+ 	}
+ 
+ 	if (mboxes & MBOX_ASLE) {
 -- 
 2.30.2
 
