@@ -2,59 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D3464B0BA5
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 12:01:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3590A4B0BC7
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 12:05:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 696B310E7EE;
-	Thu, 10 Feb 2022 11:01:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D68C10E7F2;
+	Thu, 10 Feb 2022 11:05:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE3DE10E7EE;
- Thu, 10 Feb 2022 11:01:29 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3756510E7F2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 11:05:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644490889; x=1676026889;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=nl0LtoOGGAs+Flmr7TqeTAvqS6rDGDMsUx4Fr/FurO0=;
- b=TK2Ny9nxut8NjSeVGylhLFlaDOpg0w2dRBlidkUZ8oAofr4UxBUV3NAv
- bNZrdoVu/Q7ay7hBL3OSxt4CU3W23SFHA/wQDh0GJ279p3n25wd3utBrq
- cV33JjN3yhX3TdarNbY4b2HG8jHdkYGxGHAIkZKD9F6C/GXoWju1uzRK6
- /Ua69EMe8NQBFwD+rA91Q1ccW/b67vrGzGSr1k3pU8gb431kgxEoVodsU
- 7051LRkvK4EY4mWKLurPuE7WoIEpfs3SZFOfuQsZBKJR7YyLdPVD0sz+P
- fkMRBi1AfEyNFpz0AAuiFaCyuswQRPTQuZZSnwg1LLi3hODMrlUhn4h8E w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="247048542"
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="247048542"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 03:01:29 -0800
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="485642767"
-Received: from scurtin-mobl1.ger.corp.intel.com (HELO [10.213.201.86])
- ([10.213.201.86])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 03:01:27 -0800
-Message-ID: <251ca664-c88f-4a6b-4ae8-d05f7816e034@linux.intel.com>
-Date: Thu, 10 Feb 2022 11:01:25 +0000
+ t=1644491113; x=1676027113;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=+TQyLvbwehh+4btsbLIilbeJqa3loo927VS+go91Yxo=;
+ b=WJjm9mYsuwkX7NQ+ZmYAu8zVrJWRsQhVzdplhJcfZA3KTPVOKXcaTjG6
+ npq9OLxwMLk4pavkXPlr4JHojogPUN1gRbo+TcoC2sIWkYP3/+nVpGrUC
+ cTNKkKeRwWSUE5OASKqr4BZYNqiVxe4jlZx++VGS547+D5j3YzPey81Z8
+ 6ilhbDUohULz+3rsFB5t3nd0yi0za4FMnlcH/1MqMiqtkRfRZjhOQtZvV
+ aCyvTp54AlCif9gT8qRcxPNwIaaCOk4dpjUrh5LBlbwKrAAmO028GoH6V
+ yTIccDABPtFJFL2CQMvSrQBHRADznPS+6gx0EdqjFy+3v4dub0nscRWKs A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="335882829"
+X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="335882829"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 03:05:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="526436381"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga007.jf.intel.com with SMTP; 10 Feb 2022 03:05:10 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 10 Feb 2022 13:05:07 +0200
+Date: Thu, 10 Feb 2022 13:05:07 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YgTxYxPJ9LHjTS2v@intel.com>
+References: <cover.1644489329.git.jani.nikula@intel.com>
+ <42fd9cd777c5cc9a8d48db9dd8306924c735918e.1644489329.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: "Wang, Zhi A" <zhi.a.wang@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Zhi Wang <zhi.wang.linux@gmail.com>, "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "Ursulin, Tvrtko" <tvrtko.ursulin@intel.com>
-References: <1f619581-e3da-3899-09ac-f714d954a580@gmail.com>
- <DM4PR11MB5549FFC6FF4AA53549199770CA2E9@DM4PR11MB5549.namprd11.prod.outlook.com>
- <87mtiz85pa.fsf@intel.com> <2aab060f-a7a5-04c1-03c4-2c401f4088d1@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <2aab060f-a7a5-04c1-03c4-2c401f4088d1@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [GVT PULL] gvt-fixes for drm-intel-fixes
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <42fd9cd777c5cc9a8d48db9dd8306924c735918e.1644489329.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/opregion: debug log about
+ Mailbox #2 for backlight
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,82 +61,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 10/02/2022 10:14, Wang, Zhi A wrote:
-> Feel free to let me know if I need to re-base on the newest tag since it has been quite some time.
-
-Sorry I did not see this. I will pull it next Monday. If you can extra 
-remind me it would be appreciated.
-
-Current base for fixes is 5.17-rc3 but given how little you have in 
-there I don't think there should be a problem with your base.
-
-Regards,
-
-Tvrtko
-
-> On 2/10/22 8:51 AM, Jani Nikula wrote:
->>
->> +Tvrtko
->>
->> On Wed, 09 Feb 2022, "Wang, Zhi A" <zhi.a.wang@intel.com> wrote:
->>> Hi folks:
->>>
->>> Ping. This pull seems not got merged.
->>>
->>> Thanks,
->>> Zhi.
->>>
->>> -----Original Message-----
->>> From: Zhi Wang <zhi.wang.linux@gmail.com>
->>> Sent: Saturday, January 15, 2022 12:46 PM
->>> To: Vivi, Rodrigo <rodrigo.vivi@intel.com>; jani.nikula@linux.intel.com; joonas.lahtinen@linux.intel.com
->>> Cc: intel-gvt-dev@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; Wang, Zhi A <zhi.a.wang@intel.com>
->>> Subject: [GVT PULL] gvt-fixes for drm-intel-fixes
->>>
->>> Hi folks:
->>>
->>> Here is the gvt-fixes pull for drm-intel-fixes. It contains:
->>>
->>> - Make DRM_I915_GVT depend on X86 (Siva Mullati)
->>> - Clean kernel doc in gtt.c (Randy Dunlap)
->>>
->>> This pull has been tested by: dim apply-pull drm-intel-fixes < this_email.eml
->>>
->>> Zhi.
->>>
->>> The following changes since commit d46f329a3f6048e04736e86cb13c880645048792:
->>>
->>>    drm/i915: Increment composite fence seqno (2021-12-27 11:33:40 +0200)
->>>
->>> are available in the Git repository at:
->>>
->>>    https://github.com/intel/gvt-linux.git tags/gvt-fixes-2022-01-13
->>>
->>> for you to fetch changes up to d72d69abfdb6e0375981cfdda8eb45143f12c77d:
->>>
->>>    drm/i915/gvt: Make DRM_I915_GVT depend on X86 (2022-01-13 18:13:12 +0000)
->>>
->>> ----------------------------------------------------------------
->>> gvt-fixes-2022-01-13
->>>
->>> - Make DRM_I915_GVT depend on X86 (Siva Mullati)
->>> - Clean kernel doc in gtt.c (Randy Dunlap)
->>>
->>> ----------------------------------------------------------------
->>> Randy Dunlap (1):
->>>        drm/i915/gvt: clean up kernel-doc in gtt.c
->>>
->>> Siva Mullati (1):
->>>        drm/i915/gvt: Make DRM_I915_GVT depend on X86
->>>
->>>   drivers/gpu/drm/i915/Kconfig   | 1 +
->>>   drivers/gpu/drm/i915/gvt/gtt.c | 4 ++--
->>>   2 files changed, 3 insertions(+), 2 deletions(-)
->>
+On Thu, Feb 10, 2022 at 12:36:46PM +0200, Jani Nikula wrote:
+> Start debug logging about the presence of the new Mailbox #2 for
+> backlight. Actual support is to be added later.
 > 
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_opregion.c | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+> index 6e32ed6bbf4e..b1ad11b2ebb3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
+> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+> @@ -47,10 +47,11 @@
+>  #define OPREGION_ASLE_EXT_OFFSET	0x1C00
+>  
+>  #define OPREGION_SIGNATURE "IntelGraphicsMem"
+> -#define MBOX_ACPI      (1<<0)
+> -#define MBOX_SWSCI     (1<<1)
+> -#define MBOX_ASLE      (1<<2)
+> -#define MBOX_ASLE_EXT  (1<<4)
+> +#define MBOX_ACPI		BIT(0)	/* Mailbox #1 */
+> +#define MBOX_SWSCI		BIT(1)	/* Mailbox #2 (obsolete from v2.x) */
+> +#define MBOX_ASLE		BIT(2)	/* Mailbox #3 */
+> +#define MBOX_ASLE_EXT		BIT(4)	/* Mailbox #5 */
+> +#define MBOX_BACKLIGHT		BIT(5)	/* Mailbox #2 (valid from v3.x) */
+
+Opregion is such a lovely turd.
+
+Series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>  
+>  struct opregion_header {
+>  	u8 signature[16];
+> @@ -957,6 +958,10 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
+>  		opregion->asle_ext = base + OPREGION_ASLE_EXT_OFFSET;
+>  	}
+>  
+> +	if (mboxes & MBOX_BACKLIGHT) {
+> +		drm_dbg(&dev_priv->drm, "Mailbox #2 for backlight present\n");
+> +	}
+> +
+>  	if (intel_load_vbt_firmware(dev_priv) == 0)
+>  		goto out;
+>  
+> -- 
+> 2.30.2
+
+-- 
+Ville Syrjälä
+Intel
