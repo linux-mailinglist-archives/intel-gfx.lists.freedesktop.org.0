@@ -2,48 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813E24B0A93
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 11:31:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 419EF4B0AA2
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 11:32:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97E4310E7CB;
-	Thu, 10 Feb 2022 10:31:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BB5310E7CB;
+	Thu, 10 Feb 2022 10:32:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B81E610E7CB
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 10:31:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2748210E7CB;
+ Thu, 10 Feb 2022 10:32:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644489071; x=1676025071;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=u6EN7iiy7ZzE9yJ2ceEVClcmYg9QiE+S0wICCF9Jwa4=;
- b=VxDl+Jve9MzbUsXUr56aE0dTUsAqZebK2CnlwzLfv1k3k2kv9E7B/A9z
- 6v4xBjg+ZHbykjJvEvpSY0bh9Kxw98KwM+mCv07ZrGXkxhgAwzBtgyBmo
- 5HgwlZgzbyYSirtzeHKB1CafoTrJYZDRs44lUrez79Za64g1HUC2ga9Eu
- cWGVcTiGMCt7Kg69N0n8hK5Y5yV9kuQsVSN5yaI5a+pSx7mFIRuIM6SjU
- Fgag6q1/2i2Pei5M8GDlHUK+W0weQOiolyyi/yuLNhslMp8IWqwiq8Uh2
- scDzP5NrJiNq8GIO0h6H13W1PNLZZvgMQO5c6c3n5CdjwyWuwDsRnNW/8 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="233023529"
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="233023529"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ t=1644489122; x=1676025122;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=aUoUIvaP0mKqGQFmuLEycrw4C0O3v4YsV66X2+0pIe8=;
+ b=h35QXIFWEreuRHj23y9YZlst2k4d1h9wsxNspuuDIXVgrdX//2PWbMhB
+ A6E26guMKuTKEePkNJh1p7nfGFqzWuOnbVF6QSpxHDgOqIfTqBjn9//oN
+ F0OZOtqmRqo+oB0Nsnex4BpUVNgZlYbhh3G5l3SivBhMjFacGYBemnHFy
+ 3FvQx/y2g/JhawHbdZH/LPtG8ldeabyYafQ2KkLLdOpBnGroImgFzvlsx
+ JhkImOiGjFvYVy1MKr4OGiIxrfHrCFMbC2CUxtdNlF8Ug8ChuDljsV3qn
+ 5sXmha5h0sHTlO2Q0pFQI0rRB+fI/KRryg+t9XBjzzUBIn/+/lReR1eDs g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="233023666"
+X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="233023666"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 02:31:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="679101664"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga001.fm.intel.com with SMTP; 10 Feb 2022 02:31:08 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Feb 2022 12:31:07 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Feb 2022 12:31:07 +0200
-Message-Id: <20220210103107.24492-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
+ 10 Feb 2022 02:32:01 -0800
+X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="485636297"
+Received: from scurtin-mobl1.ger.corp.intel.com (HELO [10.213.201.86])
+ ([10.213.201.86])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 02:31:59 -0800
+Message-ID: <1e4fec89-7314-cc7a-db0b-37a1afddec83@linux.intel.com>
+Date: Thu, 10 Feb 2022 10:31:57 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Michael Cheng <michael.cheng@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220210012617.1061641-1-michael.cheng@intel.com>
+ <20220210012617.1061641-2-michael.cheng@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220210012617.1061641-2-michael.cheng@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/fbc: Fix the plane end Y offset check
+Subject: Re: [Intel-gfx] [PATCH v9 1/6] drm: Add arch arm64 for
+ drm_clflush_virt_range
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,35 +62,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: lucas.demarchi@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We lost the required >>16 when I refactored the FBC plane state
-checks. Bring it back so the check does what it's supposed to.
+On 10/02/2022 01:26, Michael Cheng wrote:
+> Add arm64 support for drm_clflush_virt_range. dcache_clean_inval_poc
+> performs a flush by first performing a clean, follow by an invalidation
+> operation.
+> 
+> v2 (Michael Cheng): Use correct macro for cleaning and invalidation the
+> 		    dcache.
+> 
+> v3 (Michael Cheng): Remove ifdef for asm/cacheflush.h
+> 
+> v4 (Michael Cheng): Rebase
+> 
+> Signed-off-by: Michael Cheng <michael.cheng@intel.com>
+> ---
+>   drivers/gpu/drm/drm_cache.c | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
+> index 66597e411764..ec8d91b088ff 100644
+> --- a/drivers/gpu/drm/drm_cache.c
+> +++ b/drivers/gpu/drm/drm_cache.c
+> @@ -28,6 +28,7 @@
+>    * Authors: Thomas Hellström <thomas-at-tungstengraphics-dot-com>
+>    */
+>   
+> +#include <asm/cacheflush.h>
 
-Cc: Mika Kahola <mika.kahola@intel.com>
-Fixes: 2e6c99f88679 ("drm/i915/fbc: Nuke lots of crap from intel_fbc_state_cache")
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+I thought linux/cacheflush.h would be correct.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index bcdffe62f3cb..87f4af3fd523 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1125,7 +1125,8 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 
- 	/* Wa_22010751166: icl, ehl, tgl, dg1, rkl */
- 	if (DISPLAY_VER(i915) >= 11 &&
--	    (plane_state->view.color_plane[0].y + drm_rect_height(&plane_state->uapi.src)) & 3) {
-+	    (plane_state->view.color_plane[0].y +
-+	     (drm_rect_height(&plane_state->uapi.src) >> 16)) & 3) {
- 		plane_state->no_fbc_reason = "plane end Y offset misaligned";
- 		return false;
- 	}
--- 
-2.34.1
+Regards,
 
+Tvrtko
+
+>   #include <linux/cc_platform.h>
+>   #include <linux/export.h>
+>   #include <linux/highmem.h>
+> @@ -174,6 +175,10 @@ drm_clflush_virt_range(void *addr, unsigned long length)
+>   
+>   	if (wbinvd_on_all_cpus())
+>   		pr_err("Timed out waiting for cache flush\n");
+> +
+> +#elif defined(CONFIG_ARM64)
+> +	void *end = addr + length;
+> +	dcache_clean_inval_poc((unsigned long)addr, (unsigned long)end);
+>   #else
+>   	WARN_ONCE(1, "Architecture has no drm_cache.c support\n");
+>   #endif
