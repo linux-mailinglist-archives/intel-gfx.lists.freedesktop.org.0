@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B6684B127B
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 17:16:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 825604B1283
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 17:17:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EC5C10E8A8;
-	Thu, 10 Feb 2022 16:16:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC5BE10E8A8;
+	Thu, 10 Feb 2022 16:17:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CB3910E8A8
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 16:16:22 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32DFD10E8A8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 16:17:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644509782; x=1676045782;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wQbdN16TwSytsjscXMu7Rydetui1qZ0IYx47ThMA+NE=;
- b=KelkyW90gt/il0gXQnoEZtm7SyCvFCo+uvzRu15Z6+9+sfMZ3mGwR+SJ
- rfqgsmSvn9M+qu0aUuG+GmNzSPWtIom3sNgxDmJ6bzR5heW4Eiufc9cFy
- taircy9iDCctaHvfV/tFLihGCYBjfxZ41Cnw+uck4H94bdn1sySXYXZbQ
- GV9Xg4XNn2rLfbWUKJ4a4XVqgxPk5/H6KpWsABqooacBDBPmXFVlAVpTp
- f9W0O8ADP/NGCIIm8MMxKyVbRdJRfrCcpxGVYJF9DcRLfBPiaAJgWhhT2
- 9WTKDbvNDzK+w5gUAcrl2OSmq0JUOXarEGM4Y9h0fUetBKsbBwh6qhq1W g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="247111671"
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="247111671"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 08:16:13 -0800
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="537353044"
+ t=1644509856; x=1676045856;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=9tk0ot1SxjI3p1+uAzpR0PmfHopudRcZQufroeGa2iY=;
+ b=l+WTreqvNvtHuimRtjNmqKLN55RsNMnLufsZ9s70jF+uYvj21WIiW+Iw
+ DDWxtlehW13dphLyh5vfa+bKJfvLRm532/ucAUHhICJ8thwVJ2dN/giqU
+ bDuQPE1qtue1Dl6bTHy7E7vYL57THHUXvu6/yr/fhpkkTCK6olK97711r
+ MQcAGWYwO+7y7aiyxwElxjP5pxih8zY4HmEaoaotIlc2EDXs3yGCKgWRr
+ 4AsByKjXIOe/f5rPT4FG4cUSHTWzbHtI9gUBrLsKz3MQpXtjY8t7PLTIe
+ 5qRjsSK5smugczGsZePIVdZ3ND0dsWZL7Ux8O0XLGd13ojqARX1Kt4mIW w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="249476799"
+X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="249476799"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 08:17:35 -0800
+X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="526550893"
 Received: from dhogarty-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.10.221])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 08:16:11 -0800
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 08:17:34 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>,
-	intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Feb 2022 18:16:03 +0200
-Message-Id: <20220210161603.647254-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <7b61b8d9fa091f6d015e110006991cfd54690f36.1644489329.git.jani.nikula@intel.com>
-References: <7b61b8d9fa091f6d015e110006991cfd54690f36.1644489329.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YgTxYxPJ9LHjTS2v@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/opregion: handle SWSCI Mailbox #2
- obsoletion
+References: <cover.1644489329.git.jani.nikula@intel.com>
+ <42fd9cd777c5cc9a8d48db9dd8306924c735918e.1644489329.git.jani.nikula@intel.com>
+ <YgTxYxPJ9LHjTS2v@intel.com>
+Date: Thu, 10 Feb 2022 18:17:30 +0200
+Message-ID: <8735kq8zmt.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/opregion: debug log about
+ Mailbox #2 for backlight
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,46 +60,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Opregion Mailbox #2 is obsolete for SWSCI usage in opregion v2.x, and
-repurposed in opregion v3.x. Warn about obsole mailbox presence in v2.x,
-and ignore with an error for v3.x.
+On Thu, 10 Feb 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Feb 10, 2022 at 12:36:46PM +0200, Jani Nikula wrote:
+>> Start debug logging about the presence of the new Mailbox #2 for
+>> backlight. Actual support is to be added later.
+>>=20
+>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_opregion.c | 13 +++++++++----
+>>  1 file changed, 9 insertions(+), 4 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu=
+/drm/i915/display/intel_opregion.c
+>> index 6e32ed6bbf4e..b1ad11b2ebb3 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+>> @@ -47,10 +47,11 @@
+>>  #define OPREGION_ASLE_EXT_OFFSET	0x1C00
+>>=20=20
+>>  #define OPREGION_SIGNATURE "IntelGraphicsMem"
+>> -#define MBOX_ACPI      (1<<0)
+>> -#define MBOX_SWSCI     (1<<1)
+>> -#define MBOX_ASLE      (1<<2)
+>> -#define MBOX_ASLE_EXT  (1<<4)
+>> +#define MBOX_ACPI		BIT(0)	/* Mailbox #1 */
+>> +#define MBOX_SWSCI		BIT(1)	/* Mailbox #2 (obsolete from v2.x) */
+>> +#define MBOX_ASLE		BIT(2)	/* Mailbox #3 */
+>> +#define MBOX_ASLE_EXT		BIT(4)	/* Mailbox #5 */
+>> +#define MBOX_BACKLIGHT		BIT(5)	/* Mailbox #2 (valid from v3.x) */
+>
+> Opregion is such a lovely turd.
 
-v2: Demote drm_warn() to drm_dbg() on opregion v2.x
+Tell me about it. I had to send v2 of patch 4/5 demoting the warn to dbg
+because CI apparently has swsci mbox & version combos that supposedly
+shouldn't exist. *sigh*.
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_opregion.c | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+> Series is
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index ce3d44cc2461..11de19da0948 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -932,9 +932,17 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
- 	}
- 
- 	if (mboxes & MBOX_SWSCI) {
--		drm_dbg(&dev_priv->drm, "SWSCI supported\n");
--		opregion->swsci = base + OPREGION_SWSCI_OFFSET;
--		swsci_setup(dev_priv);
-+		u8 major = opregion->header->over.major;
-+
-+		if (major >= 3) {
-+			drm_err(&dev_priv->drm, "SWSCI Mailbox #2 present for opregion v3.x, ignoring\n");
-+		} else {
-+			if (major >= 2)
-+				drm_dbg(&dev_priv->drm, "SWSCI Mailbox #2 present for opregion v2.x\n");
-+			drm_dbg(&dev_priv->drm, "SWSCI supported\n");
-+			opregion->swsci = base + OPREGION_SWSCI_OFFSET;
-+			swsci_setup(dev_priv);
-+		}
- 	}
- 
- 	if (mboxes & MBOX_ASLE) {
--- 
-2.30.2
+Thanks,
+Jani.
 
+>
+>>=20=20
+>>  struct opregion_header {
+>>  	u8 signature[16];
+>> @@ -957,6 +958,10 @@ int intel_opregion_setup(struct drm_i915_private *d=
+ev_priv)
+>>  		opregion->asle_ext =3D base + OPREGION_ASLE_EXT_OFFSET;
+>>  	}
+>>=20=20
+>> +	if (mboxes & MBOX_BACKLIGHT) {
+>> +		drm_dbg(&dev_priv->drm, "Mailbox #2 for backlight present\n");
+>> +	}
+>> +
+>>  	if (intel_load_vbt_firmware(dev_priv) =3D=3D 0)
+>>  		goto out;
+>>=20=20
+>> --=20
+>> 2.30.2
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
