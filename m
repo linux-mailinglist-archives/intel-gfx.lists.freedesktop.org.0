@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FE094B110E
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 15:56:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 312C34B119F
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 16:24:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7223610E882;
-	Thu, 10 Feb 2022 14:56:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B76310E893;
+	Thu, 10 Feb 2022 15:24:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0196C10E882;
- Thu, 10 Feb 2022 14:56:50 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 40C8E10E87F;
+ Thu, 10 Feb 2022 15:24:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E3EC2AADD1;
- Thu, 10 Feb 2022 14:56:49 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3CE98A00FD;
+ Thu, 10 Feb 2022 15:24:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 10 Feb 2022 14:56:49 -0000
-Message-ID: <164450500989.24641.445006985258575169@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 10 Feb 2022 15:24:53 -0000
+Message-ID: <164450669324.24640.3662672518330170450@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <cover.1644489329.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1644489329.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/opregion=3A_fixes_and_cleanups=2C_RESEND?=
+References: <20220210121313.701004-1-matthew.auld@intel.com>
+In-Reply-To: <20220210121313.701004-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBJ?=
+ =?utf-8?q?nitial_support_for_small_BAR_recovery_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,24 +47,29 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/opregion: fixes and cleanups, RESEND
-URL   : https://patchwork.freedesktop.org/series/99961/
-State : warning
+Series: Initial support for small BAR recovery (rev3)
+URL   : https://patchwork.freedesktop.org/series/99370/
+State : failure
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-c30930dcbba4 drm/i915/opregion: check port number bounds for SWSCI display power state
-e7b41b2e3f18 drm/i915/opregion: abstract the check for valid swsci function
-a0ed59d6871b drm/i915/opregion: early exit from encoder notify if SWSCI isn't there
-3d8fdd12c465 drm/i915/opregion: handle SWSCI Mailbox #2 obsoletion
-32a509a8f08f drm/i915/opregion: debug log about Mailbox #2 for backlight
--:40: WARNING:BRACES: braces {} are not necessary for single statement blocks
-#40: FILE: drivers/gpu/drm/i915/display/intel_opregion.c:961:
-+	if (mboxes & MBOX_BACKLIGHT) {
-+		drm_dbg(&dev_priv->drm, "Mailbox #2 for backlight present\n");
-+	}
-
-total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+Applying: drm/i915: add io_size plumbing
+Applying: drm/i915/ttm: require mappable by default
+Applying: drm/i915: add I915_BO_ALLOC_GPU_ONLY
+Applying: drm/i915/buddy: track available visible size
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+M	drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
+Auto-merging drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0004 drm/i915/buddy: track available visible size
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
