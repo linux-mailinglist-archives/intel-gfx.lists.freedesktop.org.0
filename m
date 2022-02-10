@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E88554B1096
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 15:40:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE094B110E
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 15:56:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46D2F10E28B;
-	Thu, 10 Feb 2022 14:40:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7223610E882;
+	Thu, 10 Feb 2022 14:56:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAE0D10E28B;
- Thu, 10 Feb 2022 14:40:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644504045; x=1676040045;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=nS+4j/D/u5fLTYX09fvI9s5Nyw6vjMl7g7+7UKFYvKc=;
- b=a1xMDF2kOOywwSeazGEHnWnmCLepNQ+gOrcwLGh/RokdnMy+af+xVhg6
- HhyAYAjsUoZ7ifymiSBeCnlBtOE6Cpppkn83A3+wnSYiwZFDgIUo/Cfuh
- zILa4ds3bT60yf43zbDJBawc4zcvCMjq3XiodsuLD5yGc9F6Hex/3Ibup
- ddiVdYPY0XDWFAKCZFWwcS8j7jNJGQkQZyOOaTWkxeCQLtvf1leEP3D9G
- 8utYrIenL/HVvpPBqgPN2Hvv/4sS89N2UOYepvl+hYe1KH6SLlV9BBKvg
- 0oROGEXTjS9i6XNa41z8QvAh1ssmFo9ERTGTd+dDb4dnf+Woav1sg2oYz w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="249254477"
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="249254477"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 06:40:45 -0800
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="541630751"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.210.125])
- ([10.251.210.125])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 06:40:44 -0800
-Message-ID: <1a7ae735-56eb-b95e-c50a-2d9b36bcdf29@linux.intel.com>
-Date: Thu, 10 Feb 2022 15:40:40 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0196C10E882;
+ Thu, 10 Feb 2022 14:56:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E3EC2AADD1;
+ Thu, 10 Feb 2022 14:56:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220210121313.701004-1-matthew.auld@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20220210121313.701004-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 00/15] Initial support for small BAR
- recovery
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 10 Feb 2022 14:56:49 -0000
+Message-ID: <164450500989.24641.445006985258575169@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1644489329.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1644489329.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/opregion=3A_fixes_and_cleanups=2C_RESEND?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,34 +40,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Patches: 1, 2, 3, 5, 6, 11 are Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+== Series Details ==
 
-Patches: 5,6 are Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+Series: drm/i915/opregion: fixes and cleanups, RESEND
+URL   : https://patchwork.freedesktop.org/series/99961/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+c30930dcbba4 drm/i915/opregion: check port number bounds for SWSCI display power state
+e7b41b2e3f18 drm/i915/opregion: abstract the check for valid swsci function
+a0ed59d6871b drm/i915/opregion: early exit from encoder notify if SWSCI isn't there
+3d8fdd12c465 drm/i915/opregion: handle SWSCI Mailbox #2 obsoletion
+32a509a8f08f drm/i915/opregion: debug log about Mailbox #2 for backlight
+-:40: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#40: FILE: drivers/gpu/drm/i915/display/intel_opregion.c:961:
++	if (mboxes & MBOX_BACKLIGHT) {
++		drm_dbg(&dev_priv->drm, "Mailbox #2 for backlight present\n");
++	}
+
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
 
 
-Sorry for partial reviews, I still need to go through more i915 code.
-
-
-Regards,
-
-Nirmoy
-
-On 10/02/2022 13:12, Matthew Auld wrote:
-> Starting from DG2 we will have resizable BAR support for device local-memory,
-> but in some cases the final BAR size might still be smaller than the total
-> local-memory size. In such cases only part of local-memory will be CPU
-> accessible, while the remainder is only accessible via the GPU. This series adds
-> the basic enablers needed to ensure that the entire local-memory range is
-> usable.
->
-> Needs to be applied on top of Arun' in-progress series[1].
->
-> [1] https://patchwork.freedesktop.org/series/99430/
->
-> v2:
->    - Various improvements and fixes as suggested by Thomas.
->
