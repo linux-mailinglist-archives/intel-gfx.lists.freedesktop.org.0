@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3320A4B11FA
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 16:46:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F5BB4B11FB
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 16:46:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54FB310E8A3;
-	Thu, 10 Feb 2022 15:46:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0F1910E8A5;
+	Thu, 10 Feb 2022 15:46:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE3CE10E8A3
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 15:46:36 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9573E10E8A4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 15:46:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644507996; x=1676043996;
+ t=1644508001; x=1676044001;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dsfoKgnNA/zUev3tzq33Jcj0KOb3QQhXuGin2g0VU1c=;
- b=YKx/D2K1LZqj+7VRUZRBcXPljPCmvR3ZBBBm86G5epS0y4MVCiNT/z0R
- NIQZppAWlpHtrV6UXxZtPFfR6C/5GcLGJL+khYUBaSwiGT7TaK4O36nS2
- gasBIZVgKHM0MpnFKgI6GCF+3AiENVzcjwR+ccV2U/I9Zk3p2NvWipn6K
- PMzJYTnW//v3zJUj6a7pW27oG+/CXtvuYFVGCL8IM/Lxh9/qnBVP5/OhK
- yXoksGdhvHLSA6204rU1Lu2kBBqHsKGRVpxIEtqBCzeQ36S/C/camIVxn
- 76NTgBzsxSlAGKMBW4Jx04inoSO+agJUq91YcLZdA5Nk+gAuQOh76gJsP A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="247101903"
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="247101903"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 07:46:36 -0800
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="500435349"
+ bh=xQXkrqs5Amq812YXaDQLfwKE07r+h3tEbQEb+ynQJP4=;
+ b=IBM74eTau36VWjLPM7L4VuqmFkXMQhguToTufW4835MYpF/F/Mlw3iGy
+ tonNoPlNgzx5rQsRQ5+AWSXm4zrNyX3YOi3lFUrXV+w8hFu1AOvJDIKIF
+ 1XunpPiW3d+qd20QVrzuIr0fcLsGfaEJfu3OOMNGm0QWD+kwkfShvuQUC
+ T8OftcSVq9SJKySwfXpQhNOiJB0CCuV8cen/zRq9mIWggR2Vuz/2Rm2jP
+ JKlvbr+lmr/4aWieEie2OuoEizKOy2A8BC551RlAI1V1a5XUPKJiy2WX6
+ h+CO1zZc34NlHXX9Vn1muDK2jMvqayJkYaZT3PQJBQXWPZ6uN2vL0eKL5 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="236920778"
+X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="236920778"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 07:46:41 -0800
+X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="568690069"
 Received: from dhogarty-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.10.221])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 07:46:34 -0800
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 07:46:39 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Feb 2022 17:45:45 +0200
-Message-Id: <a080e401840a8b9d45946ff33fd63c7939a623ae.1644507885.git.jani.nikula@intel.com>
+Date: Thu, 10 Feb 2022 17:45:46 +0200
+Message-Id: <7af2f698a320c1efb0563f56a432c6d122d40b94.1644507885.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1644507885.git.jani.nikula@intel.com>
 References: <cover.1644507885.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 07/14] drm/i915: move i915_gem_vm_lookup()
- where it's used
+Subject: [Intel-gfx] [PATCH v4 08/14] drm/i915: move
+ i915_reset_count()/i915_reset_engine_count() out of i915_drv.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,69 +62,61 @@ Cc: jani.nikula@intel.com, Daniel Vetter <daniel.vetter@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move the function next to the only user. Arguably it's perhaps not the
-best place, but it's much better than having a static inline in a
-header.
+It doesn't help much, as i915_drv.h includes i915_gpu_error.h, but it's
+a step in the right direction.
 
 Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 15 +++++++++++++++
- drivers/gpu/drm/i915/i915_drv.h             | 14 --------------
- 2 files changed, 15 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/i915_drv.h       | 11 -----------
+ drivers/gpu/drm/i915/i915_gpu_error.h | 11 +++++++++++
+ 2 files changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index ebbac2ea0833..fff09df0009e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -343,6 +343,21 @@ static int proto_context_register(struct drm_i915_file_private *fpriv,
- 	return ret;
- }
- 
-+
-+static struct i915_address_space *
-+i915_gem_vm_lookup(struct drm_i915_file_private *file_priv, u32 id)
-+{
-+	struct i915_address_space *vm;
-+
-+	xa_lock(&file_priv->vm_xa);
-+	vm = xa_load(&file_priv->vm_xa, id);
-+	if (vm)
-+		kref_get(&vm->ref);
-+	xa_unlock(&file_priv->vm_xa);
-+
-+	return vm;
-+}
-+
- static int set_proto_ctx_vm(struct drm_i915_file_private *fpriv,
- 			    struct i915_gem_proto_context *pc,
- 			    const struct drm_i915_gem_context_param *args)
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 306bc87dadcc..bc51b2336e05 100644
+index bc51b2336e05..95091ee4870f 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1623,20 +1623,6 @@ void i915_gem_driver_release(struct drm_i915_private *dev_priv);
+@@ -1604,17 +1604,6 @@ void i915_gem_runtime_suspend(struct drm_i915_private *dev_priv);
  
- int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file);
+ int __must_check i915_gem_set_global_seqno(struct drm_device *dev, u32 seqno);
  
--static inline struct i915_address_space *
--i915_gem_vm_lookup(struct drm_i915_file_private *file_priv, u32 id)
+-static inline u32 i915_reset_count(struct i915_gpu_error *error)
 -{
--	struct i915_address_space *vm;
--
--	xa_lock(&file_priv->vm_xa);
--	vm = xa_load(&file_priv->vm_xa, id);
--	if (vm)
--		kref_get(&vm->ref);
--	xa_unlock(&file_priv->vm_xa);
--
--	return vm;
+-	return atomic_read(&error->reset_count);
 -}
 -
- /* i915_gem_tiling.c */
- static inline bool i915_gem_object_needs_bit17_swizzle(struct drm_i915_gem_object *obj)
- {
+-static inline u32 i915_reset_engine_count(struct i915_gpu_error *error,
+-					  const struct intel_engine_cs *engine)
+-{
+-	return atomic_read(&error->reset_engine_count[engine->uabi_class]);
+-}
+-
+ int __must_check i915_gem_init(struct drm_i915_private *dev_priv);
+ void i915_gem_driver_register(struct drm_i915_private *i915);
+ void i915_gem_driver_unregister(struct drm_i915_private *i915);
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
+index 5aedf5129814..903d838e2e63 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.h
++++ b/drivers/gpu/drm/i915/i915_gpu_error.h
+@@ -210,6 +210,17 @@ struct drm_i915_error_state_buf {
+ 	int err;
+ };
+ 
++static inline u32 i915_reset_count(struct i915_gpu_error *error)
++{
++	return atomic_read(&error->reset_count);
++}
++
++static inline u32 i915_reset_engine_count(struct i915_gpu_error *error,
++					  const struct intel_engine_cs *engine)
++{
++	return atomic_read(&error->reset_engine_count[engine->uabi_class]);
++}
++
+ #if IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR)
+ 
+ __printf(2, 3)
 -- 
 2.30.2
 
