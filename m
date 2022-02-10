@@ -1,55 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45F844B0BE8
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 12:10:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A30EE4B0C16
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 12:17:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6926C10E802;
-	Thu, 10 Feb 2022 11:10:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BE8010E802;
+	Thu, 10 Feb 2022 11:17:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21A4410E802
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 11:10:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644491413; x=1676027413;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=f4pAL/ZXP1ku1wwYxCHnyRgtVORHtPxZZVz2Yl61g9g=;
- b=DRl0brDEGiJUdGiQw/28xjfmk9x04H5PwXyP68e4muv/qlO2ffvAt8cG
- sf+I3Qy8P4kwRvf3ygxqCdeFrAZrV5Z8yyQo1paTgUaqJweX/5yPiUvw/
- afYjzSwtISeMAh0cSBYYGNGklb1fHkvAbNr9aGB+Rupf15VoWZwJLldNw
- n/RHStEtQYwfzvlkNiuByVNXzvOsZE2hZEltOE/fw7LcLkuFQ8ZyXTPvf
- zfM+Xy8YJEgG00Sz0At2gGVIgcsqPMxqns/qIkz5cBszTxRDeMjMU3AyE
- CtZsoMVwzkHLt/hzLC0MO3lmCxFLzgA2EaxiMmxRlweNOZH+tID/lEILc g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="312753272"
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="312753272"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 03:10:04 -0800
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="485645385"
-Received: from scurtin-mobl1.ger.corp.intel.com (HELO [10.213.201.86])
- ([10.213.201.86])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 03:10:02 -0800
-Message-ID: <e9824e03-1223-52a1-ccca-fc2a521ad48e@linux.intel.com>
-Date: Thu, 10 Feb 2022 11:10:00 +0000
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFE8610E802;
+ Thu, 10 Feb 2022 11:17:04 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 5790E1F38A;
+ Thu, 10 Feb 2022 11:17:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1644491823; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Qaooyu4Nb81yGZ9DFfBDmT32pNnVNgtVFQXDFuQbTA4=;
+ b=hN+nLrL1PalurFF1yrllCaO7m2K1R2oXDoYf8Gjfy2xlTmmhH52gsseq/gQq6kLhtgebEd
+ 1AKq02wXfHEcJ5O04DYN2BsKqlgODyu/5txcawihe+lGIjAmyyuUnnyDW0V82+VnbJCuVA
+ 0/K1Veq9+TRRjn18RyKRV38BKlcHmEE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1644491823;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Qaooyu4Nb81yGZ9DFfBDmT32pNnVNgtVFQXDFuQbTA4=;
+ b=enUuOAnfG8kKL9D3WUqhSyV8sgzGDmVRlfZLiLIrlCRH7Adv65mZxtgGdUHIY1MhIYFzUm
+ r56A6bZv04MnMEDw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 00EC613B43;
+ Thu, 10 Feb 2022 11:17:02 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id z2ebOi70BGJdCAAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 10 Feb 2022 11:17:02 +0000
+Message-ID: <03daab0b-979b-0a8d-3a80-514de646b2d0@suse.de>
+Date: Thu, 10 Feb 2022 12:17:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 Content-Language: en-US
-To: Casey Bowman <casey.g.bowman@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220120221652.207255-1-casey.g.bowman@intel.com>
- <e72a6679-2fe6-9390-2e7b-9c59cdd4cda8@linux.intel.com>
- <f4f83f4f-4a13-5b44-4ff5-4d32a1e850be@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <f4f83f4f-4a13-5b44-4ff5-4d32a1e850be@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC PATCH 0/1] Splitting up platform-specific calls
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20220208210824.2238981-1-daniel.vetter@ffwll.ch>
+ <20220208210824.2238981-2-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20220208210824.2238981-2-daniel.vetter@ffwll.ch>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------cEN1KyUBu0mcocQ9omzXEtbb"
+Subject: Re: [Intel-gfx] [PATCH v2 01/19] fbcon: delete a few unneeded
+ forward decl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,153 +72,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: michael.cheng@intel.com, jani.nikula@intel.com, lucas.demarchi@intel.com,
- daniel.vetter@intel.com, ville.syrjala@intel.com
+Cc: linux-fbdev@vger.kernel.org, Du Cheng <ducheng2@gmail.com>,
+ Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Helge Deller <deller@gmx.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------cEN1KyUBu0mcocQ9omzXEtbb
+Content-Type: multipart/mixed; boundary="------------aSh4Fex3IobC0EHWCJhrYAFh";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ linux-fbdev@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ Sam Ravnborg <sam@ravnborg.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Helge Deller <deller@gmx.de>,
+ Daniel Vetter <daniel@ffwll.ch>, Du Cheng <ducheng2@gmail.com>,
+ Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>,
+ Claudio Suarez <cssk@net-c.es>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Message-ID: <03daab0b-979b-0a8d-3a80-514de646b2d0@suse.de>
+Subject: Re: [PATCH v2 01/19] fbcon: delete a few unneeded forward decl
+References: <20220208210824.2238981-1-daniel.vetter@ffwll.ch>
+ <20220208210824.2238981-2-daniel.vetter@ffwll.ch>
+In-Reply-To: <20220208210824.2238981-2-daniel.vetter@ffwll.ch>
 
-On 09/02/2022 05:25, Casey Bowman wrote:
-> 
-> On 2/7/22 07:36, Tvrtko Ursulin wrote:
->>
->> On 20/01/2022 22:16, Casey Bowman wrote:
->>> In this RFC I would like to ask the community their thoughts
->>> on how we can best handle splitting architecture-specific
->>> calls.
->>>
->>> I would like to address the following:
->>>
->>> 1. How do we want to split architecture calls? Different object files
->>> per platform? Separate function calls within the same object file?
->>
->> If we are talking about per-platform divergence of significant 
->> functions (not necessarily in size but their height position in the 
->> i915 stack) I agree with Jani that top-level per platform organisation 
->> is not the best choice.
->>
->> On the other hand I doubt that there should be many, if any, such 
->> functions. In practice I think it should be only low level stuff which 
->> diverges.
-> I agree, as said with my reply to Jani, I think maybe going forward for 
-> arch-specific code, #if IS_ENABLED calls should be used sparingly, only 
-> in the cases where we do have that arch-specific implementation (like 
-> low level calls), instead of just a 'return null', as in my case.
->>
->> On a concrete example..
->>
->>> 2. How do we address dummy functions? If we have a function call that is
->>> used for one or more platforms, but is not used in another, what should
->>> we do for this case?
->>
->> ... depends on the situation. Sometimes a flavour of "warn on once" 
->> can be okay I guess, but also why not build bug on? Because..
-> True, with Jani's and your comments, I'm thinking that in the case of 
-> when we look at a potential arch-specific function where we're just 
-> returning null or something similar, we should be re-evaluating the 
-> function and seeing if we should make a different change there.
->>
->>>
->>> I've given an example of splitting an architecture call
->>> in my patch with run_as_guest() being split into different
->>> implementations for x86 and arm64 in separate object files, sharing
->>> a single header.
->>
->> ... run_as_guest may be a very tricky example, given it is called from 
->> intel_vtd_active which has a number of callers.
->>
->> What is correct behaviour on Arm in this example? None of these call 
->> sites will run on Arm? Or that you expect the warn on added in this 
->> patch to trigger as a demonstration? If so, what is the plan going 
->> forward? We can take one example and talk about it hypothetically:
->>
->> ./i915_driver.c:        drm_printf(p, "iommu: %s\n", 
->> enableddisabled(intel_vtd_active(i915)));
->>
->> What is the "fix" (refactor) for Arm here? Looks like a new top-level 
->> function is needed which does not carry the intel_vtd_ prefix but 
->> something more generic. That one could then legitimately "warn on 
->> once", while for intel_vtd_active it would be wrong to do so.
-> 
-> Good point, run_as_guest might be a bit more challenging of an example.
-> 
-> In my mind, I was thinking of just simply returning null for arm64 here 
-> as I don't believe arm64 would be making use of iommu for our cases (at 
-> least, in the short term).
-> I think this example function specifically needs to get reworked, as you 
-> mentioned, in some way, possibly refactoring intel_vtd_active or 
-> something along those lines.
-> 
->>
->> And when I say it is needed.. well perhaps it is not strictly needed 
->> in this case, but in some other cases I think we go back to the 
->> problem I stated some months ago and that is that I suspect use of 
->> intel_vtd_active is overloaded. I think it is currently used to answer 
->> all these questions: 1. Is the IOMMU active, just for information.; 2. 
->> Is the IOMMU active and we want to counteract the performance hit by 
->> say using huge pages, adjusting the display bandwidth calculations or 
->> whatever. (In which case we also may want to distinguish between 
->> pass-through and translation modes.); 3. Is a potentially buggy IOMMU 
->> active and we need to work around it. All these under one kind of 
->> worked with one iommu implementation but does it with a different IOMMU?
->>
->> Which I mean leads to end conclusion that this particular function is 
->> a tricky example to answer the questions asked. :)
->>
->>>
->>> Another suggestion from Michael (michael.cheng@intel.com) involved
->>> using a single object file, a single header, and splitting various
->>> functions calls via ifdefs in the header file.
->>
->> In principle, mostly what you have outlined sounds acceptable to me, 
->> with the difference that I would not use i915_platform, but for this 
->> particular example something like i915_hypervisor prefix.
->>
->> Then I would prepare i915 with the same scheme kernel uses, not just 
->> for source file divergence, but header file as well. That is:
->>
->> some_source.c:
->>
->> #include "i915_hypervisor.h"
->>
->> i915_hypervisor.h:
->>
->> #include "platform/i915_hypervisor.h"
->>
->> Then in i915 root you could have:
->>
->> platforms/x86/include/platform/i915_hypervisor.h
->> platforms/arm/include/platform/i915_hypervisor.h
->>
->> And some kbuild stuff to make that work. Is this doable and does it 
->> make sense? Per-platform source files could live in there as well.
->>
->> Same scheme for i915_clflush would work as well.
-> 
-> I like the idea of getting more specific for the calls here, but I'm 
-> somewhat afraid of obfuscating these functions to their own files in 
-> addition to scaling issues if we do have more and more arch-specific 
-> calls, along with more architectures in the future.
-> 
-> This just seems like it could blow up the driver in what could 
-> ultimately be unnecessary organization for a fewer number of calls if we 
-> just add a few platforms and different calls.
-> What do you think?
+--------------aSh4Fex3IobC0EHWCJhrYAFh
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-I don't have a good crystal ball to see how many of these you would end 
-up during the Arm porting effort, just my gut feeling that it shouldn't 
-be a problem to add a few files.
+DQoNCkFtIDA4LjAyLjIyIHVtIDIyOjA4IHNjaHJpZWIgRGFuaWVsIFZldHRlcjoNCj4gSSBk
+aWRuJ3QgYm90aGVyIHdpdGggYW55IGNvZGUgbW92ZW1lbnQgdG8gZml4IHRoZSBvdGhlcnMs
+IHRoZXNlIGp1c3QNCj4gZ290IGEgYml0IGluIHRoZSB3YXkuDQo+IA0KPiB2MjogUmViYXNl
+IG9uIHRvcCBvZiBIZWxnZSdzIHJldmVydHMuDQo+IA0KPiBBY2tlZC1ieTogU2FtIFJhdm5i
+b3JnIDxzYW1AcmF2bmJvcmcub3JnPiAodjEpDQo+IFJldmlld2VkLWJ5OiBHZWVydCBVeXR0
+ZXJob2V2ZW4gPGdlZXJ0QGxpbnV4LW02OGsub3JnPiAodjEpDQo+IFNpZ25lZC1vZmYtYnk6
+IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPg0KPiBDYzogSGVsZ2Ug
+RGVsbGVyIDxkZWxsZXJAZ214LmRlPg0KPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZm
+d2xsLmNoPg0KPiBDYzogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+
+DQo+IENjOiBEdSBDaGVuZyA8ZHVjaGVuZzJAZ21haWwuY29tPg0KPiBDYzogVGV0c3VvIEhh
+bmRhIDxwZW5ndWluLWtlcm5lbEBJLWxvdmUuU0FLVVJBLm5lLmpwPg0KPiBDYzogQ2xhdWRp
+byBTdWFyZXogPGNzc2tAbmV0LWMuZXM+DQo+IENjOiBHcmVnIEtyb2FoLUhhcnRtYW4gPGdy
+ZWdraEBsaW51eGZvdW5kYXRpb24ub3JnPg0KDQpBY2tlZC1ieTogVGhvbWFzIFppbW1lcm1h
+bm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+DQoNCj4gLS0tDQo+ICAgZHJpdmVycy92aWRlby9m
+YmRldi9jb3JlL2ZiY29uLmMgfCAxNyArLS0tLS0tLS0tLS0tLS0tLQ0KPiAgIDEgZmlsZSBj
+aGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMTYgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy92aWRlby9mYmRldi9jb3JlL2ZiY29uLmMgYi9kcml2ZXJzL3ZpZGVv
+L2ZiZGV2L2NvcmUvZmJjb24uYw0KPiBpbmRleCAyZmMxYjgwYTI2YWQuLjIzNWVhYWIzN2Q4
+NCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy92aWRlby9mYmRldi9jb3JlL2ZiY29uLmMNCj4g
+KysrIGIvZHJpdmVycy92aWRlby9mYmRldi9jb3JlL2ZiY29uLmMNCj4gQEAgLTE2MywyOSAr
+MTYzLDE0IEBAIHN0YXRpYyBpbnQgZmJjb25fY3Vyc29yX25vYmxpbms7DQo+ICAgICogIElu
+dGVyZmFjZSB1c2VkIGJ5IHRoZSB3b3JsZA0KPiAgICAqLw0KPiAgIA0KPiAtc3RhdGljIGNv
+bnN0IGNoYXIgKmZiY29uX3N0YXJ0dXAodm9pZCk7DQo+IC1zdGF0aWMgdm9pZCBmYmNvbl9p
+bml0KHN0cnVjdCB2Y19kYXRhICp2YywgaW50IGluaXQpOw0KPiAtc3RhdGljIHZvaWQgZmJj
+b25fZGVpbml0KHN0cnVjdCB2Y19kYXRhICp2Yyk7DQo+IC1zdGF0aWMgdm9pZCBmYmNvbl9j
+bGVhcihzdHJ1Y3QgdmNfZGF0YSAqdmMsIGludCBzeSwgaW50IHN4LCBpbnQgaGVpZ2h0LA0K
+PiAtCQkJaW50IHdpZHRoKTsNCj4gLXN0YXRpYyB2b2lkIGZiY29uX3B1dGMoc3RydWN0IHZj
+X2RhdGEgKnZjLCBpbnQgYywgaW50IHlwb3MsIGludCB4cG9zKTsNCj4gLXN0YXRpYyB2b2lk
+IGZiY29uX3B1dGNzKHN0cnVjdCB2Y19kYXRhICp2YywgY29uc3QgdW5zaWduZWQgc2hvcnQg
+KnMsDQo+IC0JCQlpbnQgY291bnQsIGludCB5cG9zLCBpbnQgeHBvcyk7DQo+ICAgc3RhdGlj
+IHZvaWQgZmJjb25fY2xlYXJfbWFyZ2lucyhzdHJ1Y3QgdmNfZGF0YSAqdmMsIGludCBib3R0
+b21fb25seSk7DQo+IC1zdGF0aWMgdm9pZCBmYmNvbl9jdXJzb3Ioc3RydWN0IHZjX2RhdGEg
+KnZjLCBpbnQgbW9kZSk7DQo+ICAgc3RhdGljIHZvaWQgZmJjb25fYm1vdmUoc3RydWN0IHZj
+X2RhdGEgKnZjLCBpbnQgc3ksIGludCBzeCwgaW50IGR5LCBpbnQgZHgsDQo+ICAgCQkJaW50
+IGhlaWdodCwgaW50IHdpZHRoKTsNCj4gLXN0YXRpYyBpbnQgZmJjb25fc3dpdGNoKHN0cnVj
+dCB2Y19kYXRhICp2Yyk7DQo+IC1zdGF0aWMgaW50IGZiY29uX2JsYW5rKHN0cnVjdCB2Y19k
+YXRhICp2YywgaW50IGJsYW5rLCBpbnQgbW9kZV9zd2l0Y2gpOw0KPiAgIHN0YXRpYyB2b2lk
+IGZiY29uX3NldF9wYWxldHRlKHN0cnVjdCB2Y19kYXRhICp2YywgY29uc3QgdW5zaWduZWQg
+Y2hhciAqdGFibGUpOw0KPiAgIA0KPiAgIC8qDQo+ICAgICogIEludGVybmFsIHJvdXRpbmVz
+DQo+ICAgICovDQo+IC1zdGF0aWMgX19pbmxpbmVfXyB2b2lkIHl3cmFwX3VwKHN0cnVjdCB2
+Y19kYXRhICp2YywgaW50IGNvdW50KTsNCj4gLXN0YXRpYyBfX2lubGluZV9fIHZvaWQgeXdy
+YXBfZG93bihzdHJ1Y3QgdmNfZGF0YSAqdmMsIGludCBjb3VudCk7DQo+IC1zdGF0aWMgX19p
+bmxpbmVfXyB2b2lkIHlwYW5fdXAoc3RydWN0IHZjX2RhdGEgKnZjLCBpbnQgY291bnQpOw0K
+PiAtc3RhdGljIF9faW5saW5lX18gdm9pZCB5cGFuX2Rvd24oc3RydWN0IHZjX2RhdGEgKnZj
+LCBpbnQgY291bnQpOw0KPiAgIHN0YXRpYyB2b2lkIGZiY29uX2Jtb3ZlX3JlYyhzdHJ1Y3Qg
+dmNfZGF0YSAqdmMsIHN0cnVjdCBmYmNvbl9kaXNwbGF5ICpwLCBpbnQgc3ksIGludCBzeCwN
+Cj4gICAJCQkgICAgaW50IGR5LCBpbnQgZHgsIGludCBoZWlnaHQsIGludCB3aWR0aCwgdV9p
+bnQgeV9icmVhayk7DQo+ICAgc3RhdGljIHZvaWQgZmJjb25fc2V0X2Rpc3Aoc3RydWN0IGZi
+X2luZm8gKmluZm8sIHN0cnVjdCBmYl92YXJfc2NyZWVuaW5mbyAqdmFyLA0KPiBAQCAtMTk0
+LDggKzE3OSw4IEBAIHN0YXRpYyB2b2lkIGZiY29uX3JlZHJhd19tb3ZlKHN0cnVjdCB2Y19k
+YXRhICp2Yywgc3RydWN0IGZiY29uX2Rpc3BsYXkgKnAsDQo+ICAgCQkJICAgICAgaW50IGxp
+bmUsIGludCBjb3VudCwgaW50IGR5KTsNCj4gICBzdGF0aWMgdm9pZCBmYmNvbl9tb2RlY2hh
+bmdlZChzdHJ1Y3QgZmJfaW5mbyAqaW5mbyk7DQo+ICAgc3RhdGljIHZvaWQgZmJjb25fc2V0
+X2FsbF92Y3Moc3RydWN0IGZiX2luZm8gKmluZm8pOw0KPiAtc3RhdGljIHZvaWQgZmJjb25f
+c3RhcnQodm9pZCk7DQo+ICAgc3RhdGljIHZvaWQgZmJjb25fZXhpdCh2b2lkKTsNCj4gKw0K
+PiAgIHN0YXRpYyBzdHJ1Y3QgZGV2aWNlICpmYmNvbl9kZXZpY2U7DQo+ICAgDQo+ICAgI2lm
+ZGVmIENPTkZJR19GUkFNRUJVRkZFUl9DT05TT0xFX1JPVEFUSU9ODQoNCi0tIA0KVGhvbWFz
+IFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUg
+U29sdXRpb25zIEdlcm1hbnkgR21iSA0KTWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJn
+LCBHZXJtYW55DQooSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJl
+cjogSXZvIFRvdGV2DQo=
 
-And I don't think it would be obfuscating anything, on the contrary it 
-makes things very clear in respect where the platform dependent boundary 
-is and what are all the bits that diverge per platforms.
+--------------aSh4Fex3IobC0EHWCJhrYAFh--
 
-Personally I would just do this all as part of your other series which 
-touches clflush and in that way establish a pattern from the start. Plus 
-that way I sleep easy not thinking how we started penalizing old 
-platforms with needless new function calls on hot paths. But it is my 
-opinion only and other people may think differently.
+--------------cEN1KyUBu0mcocQ9omzXEtbb
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-Regards,
+-----BEGIN PGP SIGNATURE-----
 
-Tvrtko
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmIE9C4FAwAAAAAACgkQlh/E3EQov+BE
+cQ//Q2CaZBkIceF3bUoO9v3HwBzBvjDXynz1Z4g+9Lf9yY8avg8SSqYarwhXmwxBKgPDrpuvaFwt
+QH+Tc8IbNxgpMF+6Qc2E11bBL//ux3NS4xHqbUxahepzMgai7AuluoEoik3x5LPMlr00CgPmFHDn
+gcvlLvA+RgmGe2/O4prZFZlT1dT39bZRz5qq/8Ji9bt8mC1eK0jMz0vvb1PMPwfJHeW05URL+UVW
+72gtN7HfMkXZxGqs0LojkSsH5sfNwex8Nw+fZlWUHCojdsIyuj1s/antcd2fMmeqbE1GTbEnWVQL
+oHEbPzYzi2pG8jjv4D50QEVQiUBb6K3nIEwAWR01Z+usih7Fgi3Y+gVkedN4CoKugtdRShrN7b0Q
+IKX011fQR8OblydwUoRcUBRKmLejvu72ivbtZP8DdETCmf+0OV59SwvLI2hmakeNY3N97k5BesjB
+HP0SAI1go19iP6BByLYvC1zEflImpFvCvn81su1gcPS/d82eJZicA0Y6OuSJTQVYkv8XFf5JZ/Yr
+M0RjemnAILfLbXPU386UpypkS6v1PgpPDLM87DREpbwlkuLNjZXorlLOFrl6bUdLc0ea2Ht6YVjR
+ogMnjgjAHUiefCCO6AM8kuitxzbFpyEQAQnVmq4W0sB1tbrPpKSNEXnreQa1LyATschb7L7AY6cB
+jIU=
+=FdDm
+-----END PGP SIGNATURE-----
+
+--------------cEN1KyUBu0mcocQ9omzXEtbb--
