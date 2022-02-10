@@ -1,55 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 419EF4B0AA2
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 11:32:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3C7C4B0AF5
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Feb 2022 11:36:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BB5310E7CB;
-	Thu, 10 Feb 2022 10:32:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0824810E7DC;
+	Thu, 10 Feb 2022 10:36:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2748210E7CB;
- Thu, 10 Feb 2022 10:32:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E13B610E7DC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 10:36:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644489122; x=1676025122;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=aUoUIvaP0mKqGQFmuLEycrw4C0O3v4YsV66X2+0pIe8=;
- b=h35QXIFWEreuRHj23y9YZlst2k4d1h9wsxNspuuDIXVgrdX//2PWbMhB
- A6E26guMKuTKEePkNJh1p7nfGFqzWuOnbVF6QSpxHDgOqIfTqBjn9//oN
- F0OZOtqmRqo+oB0Nsnex4BpUVNgZlYbhh3G5l3SivBhMjFacGYBemnHFy
- 3FvQx/y2g/JhawHbdZH/LPtG8ldeabyYafQ2KkLLdOpBnGroImgFzvlsx
- JhkImOiGjFvYVy1MKr4OGiIxrfHrCFMbC2CUxtdNlF8Ug8ChuDljsV3qn
- 5sXmha5h0sHTlO2Q0pFQI0rRB+fI/KRryg+t9XBjzzUBIn/+/lReR1eDs g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="233023666"
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="233023666"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ t=1644489411; x=1676025411;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=BTUaqp0F+v5AYFjave7Nm5FY2uvpU+hWGOVVNZDin9g=;
+ b=jWGSqbaL+Xyo5AOVuqvVeF5YyNw7CqcfEtc0LQpU2CUb7Xniwfthj5n4
+ MRNHPi5B9wFGV17UCCbyC/ymzhaefTx6tAoIUpHVNCpR8pJp9gwo+WLJp
+ LLFhFAPyFkFZXD7/v/feEwmQLiis9UpWZ0m+xKx0D1bOUeK0lwNG9SbUO
+ X07JpyWsNta+cRAioGY4M+TOov66TJEbxIelph/EveR9mTOpMqDtF05QO
+ meTcwdI7NodAlhkGV5aBwqoAA2VZRpOwYrdzJb1injSCbM5l2/KSiVuwD
+ 7w0y3IsRwQtemVOnwoBtPFDoF7HipZdnazR6v4da+tad3gyscYZ7wXWnQ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10253"; a="233024474"
+X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="233024474"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 02:32:01 -0800
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="485636297"
-Received: from scurtin-mobl1.ger.corp.intel.com (HELO [10.213.201.86])
- ([10.213.201.86])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 02:31:59 -0800
-Message-ID: <1e4fec89-7314-cc7a-db0b-37a1afddec83@linux.intel.com>
-Date: Thu, 10 Feb 2022 10:31:57 +0000
+ 10 Feb 2022 02:36:51 -0800
+X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; d="scan'208";a="541555069"
+Received: from dhogarty-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.10.221])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2022 02:36:50 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 10 Feb 2022 12:36:41 +0200
+Message-Id: <cover.1644489329.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Michael Cheng <michael.cheng@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220210012617.1061641-1-michael.cheng@intel.com>
- <20220210012617.1061641-2-michael.cheng@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220210012617.1061641-2-michael.cheng@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v9 1/6] drm: Add arch arm64 for
- drm_clflush_virt_range
+Subject: [Intel-gfx] [PATCH 0/5] drm/i915/opregion: fixes and cleanups,
+ RESEND
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,55 +57,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com, dri-devel@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Resend of https://patchwork.freedesktop.org/series/98836/
 
-On 10/02/2022 01:26, Michael Cheng wrote:
-> Add arm64 support for drm_clflush_virt_range. dcache_clean_inval_poc
-> performs a flush by first performing a clean, follow by an invalidation
-> operation.
-> 
-> v2 (Michael Cheng): Use correct macro for cleaning and invalidation the
-> 		    dcache.
-> 
-> v3 (Michael Cheng): Remove ifdef for asm/cacheflush.h
-> 
-> v4 (Michael Cheng): Rebase
-> 
-> Signed-off-by: Michael Cheng <michael.cheng@intel.com>
-> ---
->   drivers/gpu/drm/drm_cache.c | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
-> index 66597e411764..ec8d91b088ff 100644
-> --- a/drivers/gpu/drm/drm_cache.c
-> +++ b/drivers/gpu/drm/drm_cache.c
-> @@ -28,6 +28,7 @@
->    * Authors: Thomas Hellström <thomas-at-tungstengraphics-dot-com>
->    */
->   
-> +#include <asm/cacheflush.h>
+Jani Nikula (5):
+  drm/i915/opregion: check port number bounds for SWSCI display power
+    state
+  drm/i915/opregion: abstract the check for valid swsci function
+  drm/i915/opregion: early exit from encoder notify if SWSCI isn't there
+  drm/i915/opregion: handle SWSCI Mailbox #2 obsoletion
+  drm/i915/opregion: debug log about Mailbox #2 for backlight
 
-I thought linux/cacheflush.h would be correct.
+ drivers/gpu/drm/i915/display/intel_opregion.c | 78 +++++++++++++++----
+ 1 file changed, 62 insertions(+), 16 deletions(-)
 
-Regards,
+-- 
+2.30.2
 
-Tvrtko
-
->   #include <linux/cc_platform.h>
->   #include <linux/export.h>
->   #include <linux/highmem.h>
-> @@ -174,6 +175,10 @@ drm_clflush_virt_range(void *addr, unsigned long length)
->   
->   	if (wbinvd_on_all_cpus())
->   		pr_err("Timed out waiting for cache flush\n");
-> +
-> +#elif defined(CONFIG_ARM64)
-> +	void *end = addr + length;
-> +	dcache_clean_inval_poc((unsigned long)addr, (unsigned long)end);
->   #else
->   	WARN_ONCE(1, "Architecture has no drm_cache.c support\n");
->   #endif
