@@ -1,52 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DEFB4B273B
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 14:33:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D66074B276C
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 14:51:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A87010EC35;
-	Fri, 11 Feb 2022 13:33:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD12910EC35;
+	Fri, 11 Feb 2022 13:51:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2F6010EC34;
- Fri, 11 Feb 2022 13:33:52 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0457D10EC2B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 13:51:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644586432; x=1676122432;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=R0eaHqrJ1AwF0P4SdvpHRmUDKgRjAAoWy1pAWX3q6Sw=;
- b=Qx/P0fge3ubmV1a1IHuXMvfPbmg2qEgP7ppc9SpCwklKMLFqGgROVPlQ
- /2neXYvZrshwgaVZAjMlGt1Su6ckyMk1fOA/Y5bv4X55cDrvL246d/dBx
- FCO0M+Uz6WVzLcGH2T+pdUN7ubKSEew2zSKDMDsQtSpe7iJuZ9HUG6I1J
- ZJARfv6aFGDZ6mvrBw7/JNjaNbu39UJutHWRzSULa91oK4gx0MZ3exWiO
- QW5iJa0JN36jKuawho+VgAHGR2bi9pY1y6ApUFa/UZXOqTji05N9xnzGB
- w+YkSfyixNDpfYTJHXqtiXf2vFpW9HUaHDmTiDeelS4jkwa9KwQXsRqIx g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="313012806"
-X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="313012806"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 05:33:52 -0800
-X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="702118679"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
- by orsmga005-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2022 05:33:50 -0800
-Date: Fri, 11 Feb 2022 19:04:00 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <20220211133400.GC25847@intel.com>
-References: <20220128185209.18077-1-ramalingam.c@intel.com>
- <20220128185209.18077-2-ramalingam.c@intel.com>
- <CAM0jSHMCtDPk7MydenJHBE1yrghqjx8YrfMMuz_Zm4-WDvTFHA@mail.gmail.com>
- <79cefb8f-3f71-a59e-28de-6b9a59c28c30@intel.com>
+ t=1644587488; x=1676123488;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=vImEOeHbSp9/e22bv9QdVrvhBw2PGw5RLKnQ+a+NeZw=;
+ b=kux3e38Zur/t7DPkzraCOXYOaVw/obDPQKB0QdX/A7SigP2s/S0VDyWB
+ 4Ar161VsX6fRL379wTDQZcmMrEP0UeXtOThLbTNaaTcf9y3aDE2Ck9TVQ
+ bZc12KVal2ycrv+ocoQF2nj/f1vplHA3VlnpzdLMpqGUtmcjK8YN9jrK9
+ /rgzidAeMqRQ0/1wvn/LsfOdnU9ivNass09g84W1tHa/QB8v9hvDOKQNz
+ /OWwmK+E9lM6qlUs/Su/re9dKiWzkkga/uttI7ecHp6FnO8wQnP7oFfcq
+ I50/ncz6tSaX7L468XGa+DvwZ0WHYWHJ4HHlx4VdiT34uT8fy7RZzApGz A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="248565316"
+X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="248565316"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 05:51:27 -0800
+X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="483392671"
+Received: from phughe1x-mobl2.ger.corp.intel.com (HELO [10.213.201.219])
+ ([10.213.201.219])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 05:51:25 -0800
+Message-ID: <ee934ff3-c17b-6766-f6ab-d0440080e46e@linux.intel.com>
+Date: Fri, 11 Feb 2022 13:51:23 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <79cefb8f-3f71-a59e-28de-6b9a59c28c30@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/dg2: Add Wa_22011450934
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@intel.com>,
+ Casey Bowman <casey.g.bowman@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220211021510.202602-1-casey.g.bowman@intel.com>
+ <87sfsp7h49.fsf@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <87sfsp7h49.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC PATCH v2 0/1] Splitting up platform-specific
+ calls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,26 +63,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Hellstrom Thomas <thomas.hellstrom@intel.com>,
- Chris Wilson <chris.p.wilson@intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Cc: lucas.demarchi@intel.com, michael.cheng@intel.com, daniel.vetter@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2022-02-07 at 11:52:48 +0000, Matthew Auld wrote:
-> On 07/02/2022 11:48, Matthew Auld wrote:
-> > On Fri, 28 Jan 2022 at 18:52, Ramalingam C <ramalingam.c@intel.com> wrote:
-> > > 
-> > > An indirect ctx wabb is implemented as per Wa_22011450934 to avoid rcs
-> > > restore hang during context restore of a preempted context in GPGPU mode
-> > > 
-> > > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> > > cc: Chris Wilson <chris.p.wilson@intel.com>
-> > Acked-by: Matthew Auld <matthew.auld@intel.com>
+
+On 11/02/2022 11:55, Jani Nikula wrote:
+> On Thu, 10 Feb 2022, Casey Bowman <casey.g.bowman@intel.com> wrote:
+>> In this RFC I would like to ask the community their thoughts
+>> on how we can best handle splitting architecture-specific
+>> calls.
+>>
+>> I would like to address the following:
+>>
+>> 1. How do we want to split architecture calls? Different object files
+>> per platform? Separate function calls within the same object file?
+>>
+>> 2. How do we address dummy functions? If we have a function call that is
+>> used for one or more platforms, but is not used in another, what should
+>> we do for this case?
+>>
+>> I've given an example of splitting an architecture call
+>> in my patch with run_as_guest() being split into different
+>> implementations for x86 and arm64 in separate object files, sharing
+>> a single header.
+>>
+>> Another suggestion from Michael (michael.cheng@intel.com) involved
+>> using a single object file, a single header, and splitting various
+>> functions calls via ifdefs in the header file.
+>>
+>> I would appreciate any input on how we can avoid scaling issues when
+>> including multiple architectures and multiple functions (as the number
+>> of function calls will inevitably increase with more architectures).
+>>
+>> v2: Revised to use kernel's platform-splitting scheme.
 > 
-> Also, feel free to upgrade to r-b for this and patches 2-4.
+> I think this is overengineering.
+> 
+> Just add different implementations of the functions per architecture
+> next to where they are now, like I suggested before.
+> 
+> If we need to split them better later, it'll be a trivial undertaking,
+> and we'll be in a better position to do it because we'll know how many
+> functions there'll be and where they are and what they do.
+> 
+> Adding a bunch of overhead from the start seems like the wrong thing to
+> do.
 
-Thank you Matt. I have pushed these changes to the tree.
+I don't see it adds real complexity, which would normally be associated 
+with over-engineering. As a benefit I see it helping with driving the 
+clean re-design (during the porting effort) in a way that it will be 
+easy to spot is something is overly hacky, split on the wrong level, or 
+incorrectly placed.
 
-Ram.
+And it moves run_as_guest outside of intel_vtd.[hc] which IMO shows 
+immediate benefit, since it has nothing to do with intel_vtd.
+
+I suggested to add clflush as well, since I think going for 
+drm_flush_virt_range everywhere is a bit lazy given how it is a clear 
+regression for older platforms.
+
+But after that I indeed don't have a crystal ball to show me how many 
+more appropriate low-level primitives would be to use the pattern.
+
+So my vote would be to go with it, although the main thing is probably 
+to solve the conflicting asks and let guys focus on the port. Put it to 
+voting then? :)
+
+Regards,
+
+Tvrtko
