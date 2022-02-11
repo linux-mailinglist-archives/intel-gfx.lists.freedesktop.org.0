@@ -2,51 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 260934B2066
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 09:44:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C69E4B20CB
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 09:56:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC81D10EA24;
-	Fri, 11 Feb 2022 08:44:23 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30BB710EA24;
- Fri, 11 Feb 2022 08:44:23 +0000 (UTC)
-Date: Fri, 11 Feb 2022 09:44:17 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1644569059;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=XeYU8c+lRvkFWBYmpHo0677lmpDC8/OXyuCRrJWusUc=;
- b=HTCeSCici3BGao97l2RjKc8m6UqBACaDeSvRlBTRlH2UKU5jiBv+lTKdn+n0ecvYAkYRoD
- WFh30SRzfkwMBXX5be4C13kQmKD+UiUjAow1sPGRhnimk6AkK0UFt2c/xVbSVEKtH7UzKA
- JG/GmCi1b3LwsgCJnRrP6mdato9XW/wWlujwtDaWIiESvRO9eOfBmc+LDNAxL/jnq3YHfJ
- QKHyUg/c1ls+vSiq4gRI0LEcur6G4r3l9SeOZZr1fZwhrpUNK5BHn3WUoUIBVQfb6DIbb6
- UErWxVuQSWDY/AvSqomVKXHy4KvDmANh8YTN6Uco8brcUnh/z4cUCu/TTiLFzw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1644569059;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=XeYU8c+lRvkFWBYmpHo0677lmpDC8/OXyuCRrJWusUc=;
- b=EnmOBc2ZzwPMl8L9mQyoTZX14j9JBbJcDbIGukJWXqQYI6OUdqDtux+UaY3VynQecLkIml
- zNHXWQ4JAI+pEyCQ==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Mario Kleiner <mario.kleiner.de@gmail.com>
-Message-ID: <YgYh4Y119dKY8vaO@linutronix.de>
-References: <20211214140301.520464-1-bigeasy@linutronix.de>
- <20211214140301.520464-5-bigeasy@linutronix.de>
- <CAEsyxygWP50qP9Xj-GmAycb6Ex8DET2c4DbY-i3dnocaXZ=JZA@mail.gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4F0110EA27;
+	Fri, 11 Feb 2022 08:56:29 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33D1210EA1F;
+ Fri, 11 Feb 2022 08:56:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644569788; x=1676105788;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=8YYToFT+4qx3BqaIO8/V8ReZe6XZ3bG98IBedjtO2LQ=;
+ b=ZlvNp4R1blkAVmFPpBmV1Att+FPSQQs1yMONb5u5nllTpB+xZz57wpYe
+ VdO0FkfujfZCS+zon9C7LvnbyA+yUf2socY9RVCx8/mGrQ6AasHEdt7p3
+ 9jHf+gi7H2wyoAO++zf8EdansG3BCuk6C/p5b3PBy1nsWQkGlZ+kx3tLA
+ WBmiHH5tOJKlc++EMn686VMjd4BtH7WIi0Ty5lw4SmZxaNBBpgmDVYBQp
+ rqx3q/AMQbdAKBo2RsKq0yZY/6Us7pZG6PlkO/R/b1k6r8qj85K7GDTtv
+ MJ2JYtVcuoeJiIDz/MD1DTa0WADndGcG6UhzO6RKTFTSirmkIlM8RyZz4 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="247284776"
+X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="247284776"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 00:56:27 -0800
+X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="483229157"
+Received: from phughe1x-mobl2.ger.corp.intel.com (HELO [10.213.201.219])
+ ([10.213.201.219])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 00:56:26 -0800
+Message-ID: <5ab45355-15ed-74d9-3ef0-3982f41201f2@linux.intel.com>
+Date: Fri, 11 Feb 2022 08:56:24 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAEsyxygWP50qP9Xj-GmAycb6Ex8DET2c4DbY-i3dnocaXZ=JZA@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 4/8] drm/i915: Use
- preempt_disable/enable_rt() where recommended
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
+References: <20220210214708.2911301-1-John.C.Harrison@Intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220210214708.2911301-1-John.C.Harrison@Intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Do not complain about stale
+ reset notifications
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,188 +61,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Mike Galbraith <umgwanakikbuti@gmail.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Thomas Gleixner <tglx@linutronix.de>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2022-01-27 00:29:37 [+0100], Mario Kleiner wrote:
-> Hi, first thank you for implementing these preempt disables according to
-Hi Mario,
 
-> the markers i left long ago. And sorry for the rather late reply.
->=20
-> I had a look at the code, as of Linux 5.16, and did also a little test run
-> (of a standard kernel, not with PREEMPT_RT, only
-> CONFIG_PREEMPT_VOLUNTARY=3Dy) on my Intel Kabylake GT2, so some thoughts:
->=20
-> The area covers only register reads and writes. The part that worries me
-> > is:
-> > - __intel_get_crtc_scanline() the worst case is 100us if no match is
-> >   found.
-> >
->=20
-> This one can be a problem indeed on (maybe all?) modern Intel gpu's since
-> Haswell, ie. the last ~10 years. I was able to reproduce it on my Kabylake
-> Intel gpu.
->=20
-> Most of the time that for-loop with up to 100 repetitions (~ 100
-> udelay(1) + one mmio register read) (cfe.
-> https://elixir.bootlin.com/linux/v5.17-rc1/source/drivers/gpu/drm/i915/i9=
-15_irq.c#L856)
-> will not execute, because most of the time that function gets called from
-> the vblank irq handler and then that trigger condition (if
-> (HAS_DDI(dev_priv) && !position)) is not true. However, it also gets call=
-ed
-> as part of power-saving on behalf of userspace context, whenever the
-> desktop graphics goes idle for two video refresh cycles. If the desktop
-> shows graphics activity again, and vblank interrupts need to get reenable=
-d,
-> the probability of hitting that case is then ~1-4% depending on video mod=
-e.
-> How many loops it runs also varies.
->=20
-> On my little Intel(R) Core(TM) i5-8250U CPU machine with a mostly idle
-> desktop, I observed about one hit every couple of seconds of regular use,
-> and each hit took between 125 usecs and almost 250 usecs. I guess udelay(=
-1)
-> can take a bit longer than 1 usec?
+On 10/02/2022 21:47, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+> 
+> It is possible for reset notifications to arrive for a context that is
+> in the process of being banned. So don't flag these as an error, just
+> report it as informational (because it is still useful to know that
+> resets are happening even if they are being ignored).
 
-it should get very close to this. Maybe something else extended the time
-depending on what you observe.
+Is the "invalid" in the log message correct then or it should be 
+something slightly different? Delayed? Ignored? "Ignoring .. for banned.." ?
 
-> So that's too much for preempt-rt. What one could do is the following:
->=20
-> 1. In the for-loop in __intel_get_crtc_scanline(), add a preempt_enable()
-> before the udelay(1); and a preempt_disable() again after it. Or
-> potentially around the whole for-loop if the overhead of
-> preempt_en/disable() is significant?
+Regards,
 
-It is very optimized on x86 ;)
+Tvrtko
 
-> 2. In intel_get_crtc_scanline() also wrap the call to
-> __intel_get_crtc_scanline() into a preempt_disable() and preempt_enable(),
-> so we can be sure that __intel_get_crtc_scanline() always gets called with
-> preemption disabled.
->=20
-> Why should this work ok'ish? The point of the original preempt disable
-> inside i915_get_crtc_scanoutpos
-> <https://elixir.bootlin.com/linux/v5.17-rc1/C/ident/i915_get_crtc_scanout=
-pos>
-> is that those two *stime =3D ktime_get() and *etime =3D ktime_get() clock
-> queries happen as close to the scanout position query as possible to get a
-> small confidence interval for when exactly the scanoutpos was
-> read/determined from the display hardware. error =3D (etime - stime) is t=
-he
-> error margin. If that margin becomes greater than 20 usecs, then the
-> higher-level code will consider the measurement invalid and repeat the
-> whole procedure up to 3 times before giving up.
-
-The preempt-disable is needed then? The task is preemptible here on
-PREEMPT_RT but it _may_ not come to this. The difference vs !RT is that
-an interrupt will preempt this code without it.
-
-> Normally, in my experience with different graphics chips, one would obser=
-ve
-> error < 3 usecs, so the measurement almost always succeeds at first try,
-> only very rarely takes two attempts. The preempt disable is meant to make
-> sure that this stays the case on a PREEMPT_RT kernel.
-
-Was it needed?
-
-> The problem here are the relatively rare cases where we hit that up to 100
-> iterations for-loop. Here even on a regular kernel, due to hardware quirk=
-s,
-> we already exceed the 20 usecs tolerance by a huge amount of more than 100
-> usecs, leading to a retry of the measurement. And my tests showed that
-> often the two succeeding retries also fail, because of hardware quirks can
-> apparently create a blackout situation approaching 1 msec, so we lose
-> anyway, regardless if we get preempted on a RT kernel or not. That's why
-> enabling preemption on RT again during that for-loop should not make the
-> situation worse and at least keep RT as real-time as intended.
->=20
-> In practice I would also expect that this failure case is the one least
-> likely to impair userspace applications greatly in practice. The cases th=
-at
-> mostly matter are the ones executed during vblank hardware irq, where the
-> for-loop never executes and error margin and preempt off time is only abo=
-ut
-> 1 usec. My own software which depends on very precise timestamps from the
-> mechanism never reported >> 20 usecs errors during startup tests or runti=
-me
-> tests.
-
-That is without RT I assume?
-
-> > - intel_crtc_scanlines_since_frame_timestamp() not sure how long this
-> >   may take in the worst case.
-> >
-> >
-> intel_crtc_scanlines_since_frame_timestamp() should be harmless. That
-> do-while loop just tries to make sure that two register reads that should
-> happen within the same video refresh cycle are happening in the same
-> refresh cycle. As such, the while loop will almost always just execute on=
-ly
-> once, and at most two times, so that's at most 6 mmio register reads for
-> two loop iterations.
->=20
-> In the long run one could try to test if
-> __intel_get_crtc_scanline_from_timestamp
-> <https://elixir.bootlin.com/linux/v5.17-rc1/C/ident/__intel_get_crtc_scan=
-line_from_timestamp>()
-> wouldn't be the better choice for affected hardware always. Code and
-> register descriptions suggest the feature is supported by all potentially
-> affected hardware, so if it would turn out that that method works as
-> accurate and reliable as the old one, we could save the overhead and time
-> delays for that 100 for-loop iterations and make the whole timestamping
-> more reliable on modern hw.
->=20
-> It was in the RT queue for a while and nobody complained.
-> > Disable preemption on PREEPMPT_RT during timestamping.
-> >
-> >
-> Do other patches exist to implement the preempt_dis/enable() also for AMD
-> and NVidia / nouveau / vc4? I left corresponding markers for
-
-No, nobody complained. Most likely the i915 is wider used since it is
-built-in into many chipsets which then run RT and some of them use the
-display in production.
-
-> radeon/amdgpu-kms and RaspberryPi's vc4 driver. Ideally all kms drivers
-> which use scanout position queries should have such code. Always a
-> preempt_disable() before the "if (stime) *stime =3D ktime_get();" stateme=
-nt,
-> and a preempt_enable() after the "if (etime) *etime =3D ktime_get();"
-> statement.
->=20
-> Checking Linux 5.16 code, this should be safe - short preempt off interval
-> with only a few mmio register reads - for all kms drivers that support it
-> atm. I found the following functions to modify:
->=20
-> amdgpu: amdgpu_display_get_crtc_scanoutpos()
-> radeon: radeon_get_crtc_scanoutpos()
-> msm: mdp5_crtc_get_scanout_position() and dpu_crtc_get_scanout_position()
-> ltdc: ltdc_crtc_get_scanout_position()
-> vc4: vc4_crtc_get_scanout_position()
-
-I that is "small" with locks and such, then it should work
-
-> nouveau: In nvkm_head_mthd_scanoutpos(), one needs to put the
-> preempt_disable() right before
->=20
-=E2=80=A6
->=20
-> Is the plan to integrate these patches into the mainline kernel soon, as
-> part of ongoing preempt-rt upstreaming?
-
-I want to get the i915 in as part of RT upstreaming. But now I've been
-thinking to not allowing i915 on RT via Kconfig and worry about it
-afterwards.
-
-> thanks,
-> -mario
-
-Sebastian
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 8 ++++----
+>   1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index b3a429a92c0d..3a4a87d1c89c 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -4022,10 +4022,10 @@ static void guc_handle_context_reset(struct intel_guc *guc,
+>   		capture_error_state(guc, ce);
+>   		guc_context_replay(ce);
+>   	} else {
+> -		drm_err(&guc_to_gt(guc)->i915->drm,
+> -			"Invalid GuC engine reset notificaion for 0x%04X on %s: banned = %d, blocked = %d",
+> -			ce->guc_id.id, ce->engine->name, intel_context_is_banned(ce),
+> -			context_blocked(ce));
+> +		drm_info(&guc_to_gt(guc)->i915->drm,
+> +			 "Invalid GuC engine reset notification for 0x%04X on %s: banned = %d, blocked = %d",
+> +			 ce->guc_id.id, ce->engine->name, intel_context_is_banned(ce),
+> +			 context_blocked(ce));
+>   	}
+>   }
+>   
