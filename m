@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C6A84B2C3B
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 18:59:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F4E74B2C4E
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 19:00:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8E9510E24D;
-	Fri, 11 Feb 2022 17:59:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76EF210E24D;
+	Fri, 11 Feb 2022 18:00:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E88910E24D
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 17:59:03 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3153710E24D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 18:00:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644602343; x=1676138343;
+ t=1644602404; x=1676138404;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=I9RT5wgZHI6wFVZRMfMa7ASzQn6bBuGhMFfqAYkhedw=;
- b=gfnR/OlAzwHs1QhE5NApAHcB/8MkihlLqBUhajN8aqQ7le7n420ZtpQB
- Sy3LW3jBTleSsYdp4dQI3xPDvz2ChcEDbvtj6ulZY1RAMXDGEeHw1ATuT
- WaZV57oSKq8sCsW6RJZR47ejVCtScuacyyIBWl/Yojugp0xD58cmlqOmD
- VZiwCew5tcqbowQpZHOq/Xkr6i/1oek7fZPv1258Lq0MRAmnMyfrND+Us
- RnO29/N3oxisSuBpHw5DA5EKU2RUz9/7J07o73YNVc+15ZUlrzpfB8Hjh
- bjcAd7DrBDXepXFLyXbH/oLdhXjPSpv53lumZoDpyfJivRbyK48q76rR6 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10255"; a="248608981"
-X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="248608981"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 09:59:03 -0800
+ bh=iNDrlzBGrnCkV9eQj7XBlWDJOal6jSb3YgWpk2KrEz0=;
+ b=mB2R+IiEvK3vmBhtEsNnVWzrYFNSg9xvG+mZSbLVM8DByiif7k8SHc6E
+ ngzlpjuQBJA6wrgVXxis2CyPB72KU9oOMIPajNDjCiHzkQrLBz6oIzIRj
+ I9h1eYq8y+aJmq9s9h0SNP448rL2d8oTTR9GrGIUXC3pr/cr3WerbchuA
+ ey/Z4j000lKcLBP9sctNvSMpEaOXFeLNSteyn2RTYKtZ8n8/U5koS1rIZ
+ CIeg6cRGCr9FtN+hAb9vGlEah/G/hW9gl7H1+wd0WcQEBR2olNb+BTrqV
+ fjnKMcgxU0qI1BdHKdN0Dfii/SiUN1AIcevxZ5k3JkEB0pFg1ouhSFqYj w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10255"; a="233331003"
+X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="233331003"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 10:00:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="774311839"
+X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="702188927"
 Received: from lkp-server01.sh.intel.com (HELO d95dc2dabeb1) ([10.239.97.150])
- by fmsmga005.fm.intel.com with ESMTP; 11 Feb 2022 09:59:01 -0800
+ by orsmga005.jf.intel.com with ESMTP; 11 Feb 2022 10:00:02 -0800
 Received: from kbuild by d95dc2dabeb1 with local (Exim 4.92)
  (envelope-from <lkp@intel.com>)
- id 1nIaCC-0004u0-TN; Fri, 11 Feb 2022 17:59:00 +0000
-Date: Sat, 12 Feb 2022 01:58:22 +0800
+ id 1nIaDB-0004vi-7Z; Fri, 11 Feb 2022 18:00:01 +0000
+Date: Sat, 12 Feb 2022 01:59:09 +0800
 From: kernel test robot <lkp@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Message-ID: <202202112353.zFgGmyBW-lkp@intel.com>
+Message-ID: <202202120007.9ivbCK9s-lkp@intel.com>
 References: <20220211090629.15555-8-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -66,10 +66,10 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Ville,
 
-Thank you for the patch! Yet something to improve:
+Thank you for the patch! Perhaps something to improve:
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip next-20220211]
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on drm-tip/drm-tip next-20220211]
 [cannot apply to v5.17-rc3]
 [If your patch is applied to the wrong git tree, kindly drop us a note.
 And when submitting patch, we suggest to use '--base' as documented in
@@ -77,7 +77,7 @@ https://git-scm.com/docs/git-format-patch]
 
 url:    https://github.com/0day-ci/linux/commits/Ville-Syrjala/drm-i915-Plane-wm-cleanups/20220211-170856
 base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: i386-defconfig (https://download.01.org/0day-ci/archive/20220211/202202112353.zFgGmyBW-lkp@intel.com/config)
+config: i386-debian-10.3 (https://download.01.org/0day-ci/archive/20220212/202202120007.9ivbCK9s-lkp@intel.com/config)
 compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
 reproduce (this is a W=1 build):
         # https://github.com/0day-ci/linux/commit/24cedeb8c8ca97104e12936a4647665dd0e9b0f8
@@ -86,12 +86,12 @@ reproduce (this is a W=1 build):
         git checkout 24cedeb8c8ca97104e12936a4647665dd0e9b0f8
         # save the config file to linux build tree
         mkdir build_dir
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
 
 If you fix the issue, kindly add following tag as appropriate
 Reported-by: kernel test robot <lkp@intel.com>
 
-All errors (new ones prefixed by >>):
+All warnings (new ones prefixed by >>):
 
          |            ^~~~~~~
    drivers/gpu/drm/i915/i915_reg_defs.h:53:38: note: in expansion of macro '_REG_GENMASK'
@@ -103,7 +103,7 @@ All errors (new ones prefixed by >>):
    drivers/gpu/drm/i915/intel_pm.c:2949:27: note: in expansion of macro 'SSKPD_NEW_WM0_MASK_HSW'
     2949 |   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
          |                           ^~~~~~~~~~~~~~~~~~~~~~
-   include/linux/bits.h:35:22: error: left shift count >= width of type [-Werror=shift-count-overflow]
+   include/linux/bits.h:35:22: warning: left shift count >= width of type [-Wshift-count-overflow]
       35 |  (((~UL(0)) - (UL(1) << (l)) + 1) & \
          |                      ^~
    include/linux/compiler_types.h:326:9: note: in definition of macro '__compiletime_assert'
@@ -148,7 +148,7 @@ All errors (new ones prefixed by >>):
    drivers/gpu/drm/i915/intel_pm.c:2949:27: note: in expansion of macro 'SSKPD_NEW_WM0_MASK_HSW'
     2949 |   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
          |                           ^~~~~~~~~~~~~~~~~~~~~~
-   include/linux/bits.h:36:11: error: right shift count is negative [-Werror=shift-count-negative]
+   include/linux/bits.h:36:11: warning: right shift count is negative [-Wshift-count-negative]
       36 |   (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
          |           ^~
    include/linux/compiler_types.h:326:9: note: in definition of macro '__compiletime_assert'
@@ -193,7 +193,7 @@ All errors (new ones prefixed by >>):
    drivers/gpu/drm/i915/intel_pm.c:2949:27: note: in expansion of macro 'SSKPD_NEW_WM0_MASK_HSW'
     2949 |   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
          |                           ^~~~~~~~~~~~~~~~~~~~~~
->> include/linux/bitfield.h:66:16: error: right shift count is negative [-Werror=shift-count-negative]
+>> include/linux/bitfield.h:66:16: warning: right shift count is negative [-Wshift-count-negative]
       66 |      ~((_mask) >> __bf_shf(_mask)) & (_val) : 0, \
          |                ^~
    include/linux/compiler_types.h:326:9: note: in definition of macro '__compiletime_assert'
@@ -220,7 +220,7 @@ All errors (new ones prefixed by >>):
    drivers/gpu/drm/i915/intel_pm.c:2949:11: note: in expansion of macro 'REG_FIELD_GET64'
     2949 |   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
          |           ^~~~~~~~~~~~~~~
-   include/linux/bits.h:35:22: error: left shift count >= width of type [-Werror=shift-count-overflow]
+   include/linux/bits.h:35:22: warning: left shift count >= width of type [-Wshift-count-overflow]
       35 |  (((~UL(0)) - (UL(1) << (l)) + 1) & \
          |                      ^~
    include/linux/compiler_types.h:326:9: note: in definition of macro '__compiletime_assert'
@@ -265,7 +265,7 @@ All errors (new ones prefixed by >>):
    drivers/gpu/drm/i915/intel_pm.c:2949:27: note: in expansion of macro 'SSKPD_NEW_WM0_MASK_HSW'
     2949 |   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
          |                           ^~~~~~~~~~~~~~~~~~~~~~
-   include/linux/bits.h:36:11: error: right shift count is negative [-Werror=shift-count-negative]
+   include/linux/bits.h:36:11: warning: right shift count is negative [-Wshift-count-negative]
       36 |   (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
          |           ^~
    include/linux/compiler_types.h:326:9: note: in definition of macro '__compiletime_assert'
@@ -344,7 +344,7 @@ All errors (new ones prefixed by >>):
    drivers/gpu/drm/i915/intel_pm.c:2949:27: note: in expansion of macro 'SSKPD_NEW_WM0_MASK_HSW'
     2949 |   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
          |                           ^~~~~~~~~~~~~~~~~~~~~~
-   include/linux/bits.h:36:11: error: right shift count is negative [-Werror=shift-count-negative]
+   include/linux/bits.h:36:11: warning: right shift count is negative [-Wshift-count-negative]
       36 |   (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
          |           ^~
    include/linux/compiler_types.h:326:9: note: in definition of macro '__compiletime_assert'
@@ -395,7 +395,7 @@ All errors (new ones prefixed by >>):
    drivers/gpu/drm/i915/intel_pm.c:2949:27: note: in expansion of macro 'SSKPD_NEW_WM0_MASK_HSW'
     2949 |   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
          |                           ^~~~~~~~~~~~~~~~~~~~~~
->> include/linux/bitfield.h:72:18: error: left shift count is negative [-Werror=shift-count-negative]
+>> include/linux/bitfield.h:72:18: warning: left shift count is negative [-Wshift-count-negative]
       72 |            (1ULL << __bf_shf(_mask))); \
          |                  ^~
    include/linux/compiler_types.h:326:9: note: in definition of macro '__compiletime_assert'
@@ -428,7 +428,7 @@ All errors (new ones prefixed by >>):
    drivers/gpu/drm/i915/intel_pm.c:2949:11: note: in expansion of macro 'REG_FIELD_GET64'
     2949 |   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
          |           ^~~~~~~~~~~~~~~
-   include/linux/bits.h:35:22: error: left shift count >= width of type [-Werror=shift-count-overflow]
+   include/linux/bits.h:35:22: warning: left shift count >= width of type [-Wshift-count-overflow]
       35 |  (((~UL(0)) - (UL(1) << (l)) + 1) & \
          |                      ^~
    include/linux/compiler_types.h:326:9: note: in definition of macro '__compiletime_assert'
@@ -476,7 +476,7 @@ All errors (new ones prefixed by >>):
    drivers/gpu/drm/i915/intel_pm.c:2949:27: note: in expansion of macro 'SSKPD_NEW_WM0_MASK_HSW'
     2949 |   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
          |                           ^~~~~~~~~~~~~~~~~~~~~~
-   include/linux/bits.h:36:11: error: right shift count is negative [-Werror=shift-count-negative]
+   include/linux/bits.h:36:11: warning: right shift count is negative [-Wshift-count-negative]
       36 |   (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
          |           ^~
    include/linux/compiler_types.h:326:9: note: in definition of macro '__compiletime_assert'
