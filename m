@@ -2,155 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C8E04B27C6
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 15:26:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D00644B2917
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 16:29:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E2C910E8E8;
-	Fri, 11 Feb 2022 14:26:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D78D210EA71;
+	Fri, 11 Feb 2022 15:29:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB0C210E8E8
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 14:26:32 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABE6F10EA6A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 15:29:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644589592; x=1676125592;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=3IeMWwRoOQMoEEmUocMTWpRGRkEwi1dNWgvgPhnZTb8=;
- b=TFZfkuN8T4YPcI0db1kf0j5EuddIXaYOosNMLtSKClvUlXzsABA9AQZq
- NWCIsAhl9pKRhURBdGXsd0MFJgzE43pUUGXTQ5elAihScfH/hAoofe5l9
- u0HUX9psYWFiGKMaLUI5JTwYTbn20kVrgwaba0reLWhpngbPnzG4ukPGZ
- O/pjYNsBeBdDk7CPh69hcEEX3wyPfH9Ib1eOm+AaG5HSJryGazSxLdFzV
- ny4hYJRKT7I514MZ+M14pny1qhdOV1NMTbfWf16U2ptfwPAiUvnXZOdlR
- voMvvYy17dvGz3D4GIOmsEq0ryUyqwFFwyC9P8Pa7nDqqx52Gpj1R1Wl8 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="233293638"
-X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="233293638"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 06:26:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="500795064"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga002.jf.intel.com with ESMTP; 11 Feb 2022 06:26:32 -0800
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 11 Feb 2022 06:26:31 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 11 Feb 2022 06:26:31 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20 via Frontend Transport; Fri, 11 Feb 2022 06:26:31 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.176)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Fri, 11 Feb 2022 06:26:30 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Bmtd2ilkZisvppp90iKJ69wLq3EfByGC6j8hq586S4mP93YRqvEtqjzxsPbdfQ6YfsfmFRpWbIu/HUP277G47BzpFU3cM0wnHObRlv784qs4QvN+HhaRiHythnosDk5NVbJyo32Ed1AIJcchVEhp+UDp5EFJm1Bct/8az7qbLQj9bx3IOz9KkxAW5LcTRt5gSDcNpBs8fVSduwdf1Hr4CgjjkDyod2YjGa2w6jwBjJxUs3IpNnQjtcxiWDXpyXv7A1zrBXocn0jkVhreP/oEk/94w8SzaP7LIqN5UrEGj8U+T5qP4w1IJc/lA+oOP3YUs7AoRimbtJwTIohwqkV5NQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3IeMWwRoOQMoEEmUocMTWpRGRkEwi1dNWgvgPhnZTb8=;
- b=Wbt5pCuhw+T74GAIFAYUcCwJ87Jd+8Vrt+drnURaS94hqE0MolCSn+dnalPZD3gEroHe0YJIh30MGF0gAHMgo9JEyJ68+JQGsWk0zpCyt6V/7MLbOzw/okctBsoSw+T2leCpEd1zH82BYB2KoAT9h4j4FoZy4RrwKo9zaDo+keU27fMhh0Z0vx8kCDVEEeYOtczBeAWd2GZLssRBgVeETgMqhtxTImsqszrpf86gkiq/wAnd+fLc0GfkrGyzhVyiivEzz1kXSzENLVQu6SjSygl4agrLp2OHpmraIyb5NfSh3BM7UBFvHoXzHRJqTLc7p+ifXu8laYFTzt3emzQHuw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from DM6PR11MB2731.namprd11.prod.outlook.com (2603:10b6:5:c3::25) by
- DM6PR11MB2858.namprd11.prod.outlook.com (2603:10b6:5:bd::19) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4951.17; Fri, 11 Feb 2022 14:26:27 +0000
-Received: from DM6PR11MB2731.namprd11.prod.outlook.com
- ([fe80::b4f9:69c4:33a4:aca2]) by DM6PR11MB2731.namprd11.prod.outlook.com
- ([fe80::b4f9:69c4:33a4:aca2%6]) with mapi id 15.20.4951.019; Fri, 11 Feb 2022
- 14:26:27 +0000
-From: "Hogander, Jouni" <jouni.hogander@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v2 07/26] drm/i915: Add functions to get a
- power well's state/name/domains/mask/refcount
-Thread-Index: AQHYHOBF771YDtB2GEuPJRrN2qWNJayObPKA
-Date: Fri, 11 Feb 2022 14:26:27 +0000
-Message-ID: <6bed0b81eb3c6cdaf8268ca339c1c586f1718ec9.camel@intel.com>
+ t=1644593372; x=1676129372;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=CikGrAENMOkg+kapyydvqbhfWHXIGgMqvLSGvhTxieU=;
+ b=AVQfGIvVUkNz6T/mle5rx8teEu80XyCyRccY22QTVPSJ2TwWQyXkk8vN
+ Uxk80ZZWTJ5m8ajEWFqbBHB9UpV5WuLyOP7mtK6NXPD6sFckIunM66jpU
+ 8aRqQtxDwx7+nhNRH1S9goJ32fpZIO9r6yF1UrHs78woglb+sMJTvkD1d
+ lKALGv43Ir4JIHKsLWJQ9Y5iipW39j4i55p/cNxR5J1ogK0lE98hv4jRV
+ V6gxdVTEY6yC2fxi/d77TB1bYqsp2so6L63Jn5rddBRvecjZLpgjSVbiA
+ QG/i5sPjrVd72T4HxEROHAW6o7pJ9PKi4mtGuTVHrorJaJdwVQuyRcju4 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="249499287"
+X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="249499287"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 07:29:32 -0800
+X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="526989940"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 07:29:30 -0800
+Date: Fri, 11 Feb 2022 17:29:27 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Message-ID: <20220211152927.GA513586@ideak-desk.fi.intel.com>
 References: <20220208113656.179823-1-imre.deak@intel.com>
  <20220208113656.179823-8-imre.deak@intel.com>
-In-Reply-To: <20220208113656.179823-8-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d9d0f3a2-26b7-4fdf-52f2-08d9ed6a7d29
-x-ms-traffictypediagnostic: DM6PR11MB2858:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <DM6PR11MB285819B503E24D0E485CB17B8A309@DM6PR11MB2858.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2958;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: X4ya1ZstaUw4sv3HjPMEZNMbz0ASyQ/3QSOVOsYTa8fFyDoT/23sLPRw5EohtQbSocRKaBTFeozJwdTTbVPxlGYtLVXhvZlcWxp0jh6fEwC78SLye6W56AVB6KH7q1amVviTg+FD8e/neoU7i/hijwbEfME9aRPXrllmUAPujZfLtxtMXsNFBkTKIeHK9bC63GbTRseVkeWIimRAGxPq5iHbubUEIR/r3cuHucfV3UfxctR93hnSxETwJNqIg8KuSp7bkRdHDU79TkdYU664ZMWD1MDU+jNMxT8aE/RwWkcpX/DSSy2BTDxasb734H92fC3h1rvhYKKqGyfQ9ooGca68p7CLZrnLx6+/TaGtTHhV25pnoYDdLER4J9sF7n4TwrTUQaSn+tL1dF3Kmu727+X8zvHwy8TROpzKk8Tm5/ZgR5Lo9nfkBtuDN3UFcynGrX5uZtnkiOyh4ZtcPRskgM3VrPJUUi01R+1u4U21T5Na2/JBUsDriCrdOxsCmowdG7DWPcS9xydo8U13F8joT/JwtQGJYOkqfXSlW6ASiA6Bm7PxzIZWcvdqHe9LCqqrYocvlTonk2JRLjHDczEd3/DiI7tszn90BAEaVWYowVx71+I5zN4mV/OUGT/y79KoHaEMCqw4ijf9R1TVnkBhMbR/HfiGZNlJvNgJsrh9NvnzFqw1mmN8amlHFoZGiaM11jEOmAdSLIH174uQOd2snQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB2731.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(6506007)(6636002)(2616005)(316002)(86362001)(83380400001)(122000001)(38070700005)(110136005)(6512007)(508600001)(71200400001)(6486002)(66476007)(2906002)(8676002)(82960400001)(107886003)(38100700002)(186003)(5660300002)(66574015)(8936002)(91956017)(30864003)(36756003)(66446008)(4326008)(76116006)(66946007)(26005)(66556008)(64756008);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?czFiM3R1bjJTWWtYdk9OYVlGSHp2ZTBEcWZtaTlqbThXWUtKNXc0NGRCY3VT?=
- =?utf-8?B?RE45OG5rak9yL1N3dmhxSCt4cjFUSk5yOHlITHBWNmFaaUkxS2RZYTdFN0lJ?=
- =?utf-8?B?REgyZnZjMHM1anBnNGxHVkF0bkpXWVpVRm4yNDRpYUxPQ0xzclN4bHdoZWIz?=
- =?utf-8?B?OGJWclhxZHhGSlBJdFJlNjI3eDBOYUxtZUlXMkx4OUFpM2xYUXlreSt6bEpG?=
- =?utf-8?B?bVNwaTRZY1pub2JKQzRsNms3aE9nalBodVljVm9OREtkWmhueDBwMUgvR3Jh?=
- =?utf-8?B?ZTBGM2RNMzVFZG9Nb3VJNTB2V3crMHEzY3dOSVRPZnp1L3VOYnUxWlBUNFNi?=
- =?utf-8?B?OUNvRWVISlpOQjZ1YzA4M2wrRTVNTVFRWkgrSGl1blF4d0FnNEFiRThYWjJI?=
- =?utf-8?B?OFM2Y3lyendObm00U3pNMWpMZmt2ZGkza2hxVWs5Q2IybjRWMEM2dVhWbWpS?=
- =?utf-8?B?dFFDUUpIbDhnV2tmS3JyVUsrSjBod25DOThpWjNvTkFqUWFxdkJ5S0g2Y3E4?=
- =?utf-8?B?aTNwYjhEY3JhRzRWd0ROc1paUjJ4NkE1MjcrYWVPK1p5NllIUHA1S2NPQnp5?=
- =?utf-8?B?SnlGdWQxUERHejFNZlE4Q3EvaUsvL3NQekg1YVNBYStuVThGNUJGbWNnLzk4?=
- =?utf-8?B?dTR1eGRIYzJ3ODB6R1crbWk4a3FPY0dtRllWZTd2bytBb0U4TzU3d2I2a3dv?=
- =?utf-8?B?dDlFQ2J3UVp4c0RyREg5OTJ4UzZQU1FxZ1dqMGhMY3h1RFVsZ2pveDFkL3p4?=
- =?utf-8?B?dW45cTFIMFZBa2c5bmlvRFY2ZzZFN0RXZVIrVXVRUHZsazhGai94NlVuQlp3?=
- =?utf-8?B?TjR0VU1YR2dzekl5MDFWN0dUa1NiOGdjRjlleTJydEMyU0VpVjhsaHNNM25s?=
- =?utf-8?B?YSs0QzBCSk51bVFxdTRnOVN4bGh1dTkvbSt5UlhrelhlQnRNdFRJNDY2OGNP?=
- =?utf-8?B?cjE4Z2dMM2VncHVYQ2NPRUtoL0VvZHNNRTMweFg1Nnk3dXc2cmtDZUQvVkNr?=
- =?utf-8?B?ZFFJczBXU2tPL1FBZGZ1RjFsclpGd2hlTEtvbXVxbDRYb2pVekpHcFlZdXEy?=
- =?utf-8?B?ZU5WNFJnMnZYYWFhOThERE1GR3BHYm03NnNleVNLajdDTGdDZk9jdTBZWlhx?=
- =?utf-8?B?SGNIaThBbGgveXExRTlaT1ZRckduNzFtL0g4bG5vVmhzcUFrT2NsdGJkWjJt?=
- =?utf-8?B?TWhaWE1uaEt3WVh5RU9PQnZWejBnTzVVL29YVkxTbmkzaWxFaUxwNHlRWVVM?=
- =?utf-8?B?djlHU1ZYbExFM0VUWHRTbXRLckRXMlI0cjZlOG5rcFRuV2c4QW0ycmp2a3VR?=
- =?utf-8?B?c0VmL0tVQXAyUG12OUJwQktpblI3dFZTclZ3bUx4Uzl3Z3J0ZTBBT0VBQkFh?=
- =?utf-8?B?dVFyS05sZGpSeWhUNDFiRGNheWNiZkVVZWNvQmZRS016VDc2YzM0Wi9jM2tI?=
- =?utf-8?B?KzE1OGliT25qWlR0cHRGOHlwKzhKY09PS3plYjFhS1VPcmZJbEtTdy94czZR?=
- =?utf-8?B?bFJYZHNRRFVKTW1BTUJZekVrMEdaWUtIMTVCRllsYWlQNUNFa1B2OWV0WkY5?=
- =?utf-8?B?dHIvOTQ2dE1YOXZpYWpvMHArdlRLSEZYZWYvNjBWSSt5RGNSWmhVdmNzS1BN?=
- =?utf-8?B?cXQrYlh5aGt3dWRsSlErZTEzNkQxN3IrVjQ4YUdkZm5VVXlXa2dhZS9YWG5i?=
- =?utf-8?B?R3JnakFqdEcrR1R3U0NJcGpqODJQWEZnMnRnVWJGdjJHbjVYcVJqYkdJRnVi?=
- =?utf-8?B?TFBtTElvUmZQdTVpT3lqSGx2ZFZ2Rnh2Vnd0Y3gzSWNtMXNSNENjWVJvYkRQ?=
- =?utf-8?B?eDNqUkNiK3NGRGxRY0pJTG9lR1JsK1NZWHNUOCtMTjUzWFJ1OGc2blB6M2Vz?=
- =?utf-8?B?a043MzFHUlFZUUhpTU9leE1neXpuWkRtMk03VFI3dEN6Yy9icXVSUm84bkNt?=
- =?utf-8?B?d0hDLyt5bk1mdFRNUGR5V2VvQUtDbUU1NC9BRko2dm5tOXlQTkIzc3pNRVMv?=
- =?utf-8?B?bURaY1JKZCtsK0RPczZXUFpyaUhIamZIY0JtdDkyeU1vY3BSemR3T2hLNDhL?=
- =?utf-8?B?VWQvdXdkZ290MjRQVUtUWFRzQWhWVzZXYzBaUFI0a0hhbzhXZUswNTJJcnF6?=
- =?utf-8?B?MjdVYnlFR0V6QkVVam8xVVNYd2tWL2FZOUdUS3duNC9EY1pSSWFUNG1kZlI3?=
- =?utf-8?B?N0wxdVZNSVlZV3ltdGZ6bEFuazVqaUpPRWdSMWZsTnlMckpaR2FxTXZlR1ls?=
- =?utf-8?Q?oO9k5UqS2cJFG7A2E5LuZACMpkPnKmepd9ACtSllRc=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <7F06E9BB09C1C34FA2540867FE4F7257@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ <6bed0b81eb3c6cdaf8268ca339c1c586f1718ec9.camel@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2731.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9d0f3a2-26b7-4fdf-52f2-08d9ed6a7d29
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Feb 2022 14:26:27.0406 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1TzapPgW+jt2oWvWTSwgD9dNKL7s45ScJbKrH00QQEIe1ndKfmrQ18nyNMYDUVRE8gtaFDC6olSxQ/Y8uP7+BtExHkNNJCl5vmOIO1vBZjo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2858
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6bed0b81eb3c6cdaf8268ca339c1c586f1718ec9.camel@intel.com>
 Subject: Re: [Intel-gfx] [PATCH v2 07/26] drm/i915: Add functions to get a
  power well's state/name/domains/mask/refcount
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -165,247 +59,406 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIyLTAyLTA4IGF0IDEzOjM2ICswMjAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEFk
-ZCBmdW5jdGlvbnMgdG8gZ2V0IGEgcG93ZXIgd2VsbCdzIGFjdHVhbC0gYW5kIGNhY2hlZC1lbmFi
-bGVkIHN0YXRlLA0KPiBuYW1lLCBkb21haW4gbWFzayBhbmQgcmVmY291bnQsIGFzIGEgc3RlcCB0
-b3dhcmRzIG1ha2luZyB0aGUgbG93LQ0KPiBsZXZlbA0KPiBwb3dlciB3ZWxsIGludGVybmFscyAo
-aTkxNV9wb3dlcl93ZWxsX29wcy9kZXNjIHN0cnVjdHMpIGhpZGRlbi4NCg0KSXQncyBub3QgcmVh
-bGx5IGluIHNjb3BlIG9mIHRoaXMgcGF0Y2gsIGJ1dCBzdGlsbDogV2h5IHRoaXMgY2FjaGVkLQ0K
-ZW5hYmxlZCBzdGF0ZSBpcyBuZWVkZWQgb24gdGhlIGZpcnN0IGhhbmQ/IEFyZSB3ZSBleHBlY3Rp
-bmcgc2VlaW5nDQpod19zdGF0ZSBhcyBlbmFibGVkIHdoaWxlIGNvdW50ID09IDAgb3IgdmljZSB2
-ZXJzYT8NCg0KPiANCj4gTm8gZnVuY3Rpb25hbCBjaGFuZ2UuDQo+IA0KPiBTdWdnZXN0ZWQtYnk6
-IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+DQo+IENjOiBKYW5pIE5pa3VsYSA8
-amFuaS5uaWt1bGFAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUu
-ZGVha0BpbnRlbC5jb20+DQo+IC0tLQ0KPiAgLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheV9wb3dlci5jICAgIHwgNjkgKysrKysrKysrLS0tLS0tDQo+IC0tLS0NCj4gIC4uLi9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlcl93ZWxsLmMgICB8IDMxICsrKysrKysrKw0KPiAg
-Li4uL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyX3dlbGwuaCAgIHwgIDcgKysNCj4g
-IDMgZmlsZXMgY2hhbmdlZCwgNzIgaW5zZXJ0aW9ucygrKSwgMzUgZGVsZXRpb25zKC0pDQo+IA0K
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
-X3Bvd2VyLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
-cG93ZXIuYw0KPiBpbmRleCAwNTY5NjUyNDhhM2IyLi4zMjFiMjcxYzRiNjc0IDEwMDY0NA0KPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYw0K
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIu
-Yw0KPiBAQCAtMTkxLDEwICsxOTEsMTAgQEAgYm9vbCBfX2ludGVsX2Rpc3BsYXlfcG93ZXJfaXNf
-ZW5hYmxlZChzdHJ1Y3QNCj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsDQo+ICAJaXNfZW5h
-YmxlZCA9IHRydWU7DQo+ICANCj4gIAlmb3JfZWFjaF9wb3dlcl9kb21haW5fd2VsbF9yZXZlcnNl
-KGRldl9wcml2LCBwb3dlcl93ZWxsLA0KPiBCSVRfVUxMKGRvbWFpbikpIHsNCj4gLQkJaWYgKHBv
-d2VyX3dlbGwtPmRlc2MtPmFsd2F5c19vbikNCj4gKwkJaWYgKGludGVsX3Bvd2VyX3dlbGxfaXNf
-YWx3YXlzX29uKHBvd2VyX3dlbGwpKQ0KPiAgCQkJY29udGludWU7DQo+ICANCj4gLQkJaWYgKCFw
-b3dlcl93ZWxsLT5od19lbmFibGVkKSB7DQo+ICsJCWlmICghaW50ZWxfcG93ZXJfd2VsbF9pc19l
-bmFibGVkX2NhY2hlZChwb3dlcl93ZWxsKSkgew0KPiAgCQkJaXNfZW5hYmxlZCA9IGZhbHNlOw0K
-PiAgCQkJYnJlYWs7DQo+ICAJCX0NCj4gQEAgLTMzMCw3ICszMzAsNyBAQCBzdGF0aWMgdm9pZCBo
-c3dfd2FpdF9mb3JfcG93ZXJfd2VsbF9lbmFibGUoc3RydWN0DQo+IGRybV9pOTE1X3ByaXZhdGUg
-KmRldl9wcml2LA0KPiAgCWlmIChpbnRlbF9kZV93YWl0X2Zvcl9zZXQoZGV2X3ByaXYsIHJlZ3Mt
-PmRyaXZlciwNCj4gIAkJCQkgIEhTV19QV1JfV0VMTF9DVExfU1RBVEUocHdfaWR4KSwgMSkpIHsN
-Cj4gIAkJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICIlcyBwb3dlciB3ZWxsIGVuYWJsZQ0K
-PiB0aW1lb3V0XG4iLA0KPiAtCQkJICAgIHBvd2VyX3dlbGwtPmRlc2MtPm5hbWUpOw0KPiArCQkJ
-ICAgIGludGVsX3Bvd2VyX3dlbGxfbmFtZShwb3dlcl93ZWxsKSk7DQo+ICANCj4gIAkJZHJtX1dB
-Uk5fT04oJmRldl9wcml2LT5kcm0sICF0aW1lb3V0X2V4cGVjdGVkKTsNCj4gIA0KPiBAQCAtMzc4
-LDcgKzM3OCw3IEBAIHN0YXRpYyB2b2lkDQo+IGhzd193YWl0X2Zvcl9wb3dlcl93ZWxsX2Rpc2Fi
-bGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LA0KPiAgDQo+ICAJZHJtX2RiZ19r
-bXMoJmRldl9wcml2LT5kcm0sDQo+ICAJCSAgICAiJXMgZm9yY2VkIG9uIChiaW9zOiVkIGRyaXZl
-cjolZCBrdm1yOiVkDQo+IGRlYnVnOiVkKVxuIiwNCj4gLQkJICAgIHBvd2VyX3dlbGwtPmRlc2Mt
-Pm5hbWUsDQo+ICsJCSAgICBpbnRlbF9wb3dlcl93ZWxsX25hbWUocG93ZXJfd2VsbCksDQo+ICAJ
-CSAgICAhIShyZXFzICYgMSksICEhKHJlcXMgJiAyKSwgISEocmVxcyAmIDQpLCAhIShyZXFzICYN
-Cj4gOCkpOw0KPiAgfQ0KPiAgDQo+IEBAIC05NjcsOCArOTY3LDcgQEAgdm9pZA0KPiBpbnRlbF9k
-aXNwbGF5X3Bvd2VyX3NldF90YXJnZXRfZGNfc3RhdGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUN
-Cj4gKmRldl9wcml2LA0KPiAgCWlmIChzdGF0ZSA9PSBkZXZfcHJpdi0+ZG1jLnRhcmdldF9kY19z
-dGF0ZSkNCj4gIAkJZ290byB1bmxvY2s7DQo+ICANCj4gLQlkY19vZmZfZW5hYmxlZCA9IHBvd2Vy
-X3dlbGwtPmRlc2MtPm9wcy0+aXNfZW5hYmxlZChkZXZfcHJpdiwNCj4gLQkJCQkJCQkgICBwb3dl
-cl93ZWxsKTsNCj4gKwlkY19vZmZfZW5hYmxlZCA9IGludGVsX3Bvd2VyX3dlbGxfaXNfZW5hYmxl
-ZChkZXZfcHJpdiwNCj4gcG93ZXJfd2VsbCk7DQo+ICAJLyoNCj4gIAkgKiBJZiBEQyBvZmYgcG93
-ZXIgd2VsbCBpcyBkaXNhYmxlZCwgbmVlZCB0byBlbmFibGUgYW5kIGRpc2FibGUNCj4gdGhlDQo+
-ICAJICogREMgb2ZmIHBvd2VyIHdlbGwgdG8gZWZmZWN0IHRhcmdldCBEQyBzdGF0ZS4NCj4gQEAg
-LTEwOTAsMTcgKzEwODksMTcgQEAgc3RhdGljIHZvaWQNCj4gYnh0X3ZlcmlmeV9kZGlfcGh5X3Bv
-d2VyX3dlbGxzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4gIAlzdHJ1Y3Qg
-aTkxNV9wb3dlcl93ZWxsICpwb3dlcl93ZWxsOw0KPiAgDQo+ICAJcG93ZXJfd2VsbCA9IGxvb2t1
-cF9wb3dlcl93ZWxsKGRldl9wcml2LA0KPiBCWFRfRElTUF9QV19EUElPX0NNTl9BKTsNCj4gLQlp
-ZiAocG93ZXJfd2VsbC0+Y291bnQgPiAwKQ0KPiArCWlmIChpbnRlbF9wb3dlcl93ZWxsX3JlZmNv
-dW50KHBvd2VyX3dlbGwpID4gMCkNCj4gIAkJYnh0X2RkaV9waHlfdmVyaWZ5X3N0YXRlKGRldl9w
-cml2LCBwb3dlcl93ZWxsLT5kZXNjLQ0KPiA+Ynh0LnBoeSk7DQo+ICANCj4gIAlwb3dlcl93ZWxs
-ID0gbG9va3VwX3Bvd2VyX3dlbGwoZGV2X3ByaXYsDQo+IFZMVl9ESVNQX1BXX0RQSU9fQ01OX0JD
-KTsNCj4gLQlpZiAocG93ZXJfd2VsbC0+Y291bnQgPiAwKQ0KPiArCWlmIChpbnRlbF9wb3dlcl93
-ZWxsX3JlZmNvdW50KHBvd2VyX3dlbGwpID4gMCkNCj4gIAkJYnh0X2RkaV9waHlfdmVyaWZ5X3N0
-YXRlKGRldl9wcml2LCBwb3dlcl93ZWxsLT5kZXNjLQ0KPiA+Ynh0LnBoeSk7DQo+ICANCj4gIAlp
-ZiAoSVNfR0VNSU5JTEFLRShkZXZfcHJpdikpIHsNCj4gIAkJcG93ZXJfd2VsbCA9IGxvb2t1cF9w
-b3dlcl93ZWxsKGRldl9wcml2LA0KPiAgCQkJCQkgICAgICAgR0xLX0RJU1BfUFdfRFBJT19DTU5f
-Qyk7DQo+IC0JCWlmIChwb3dlcl93ZWxsLT5jb3VudCA+IDApDQo+ICsJCWlmIChpbnRlbF9wb3dl
-cl93ZWxsX3JlZmNvdW50KHBvd2VyX3dlbGwpID4gMCkNCj4gIAkJCWJ4dF9kZGlfcGh5X3Zlcmlm
-eV9zdGF0ZShkZXZfcHJpdiwNCj4gIAkJCQkJCSBwb3dlcl93ZWxsLT5kZXNjLQ0KPiA+Ynh0LnBo
-eSk7DQo+ICAJfQ0KPiBAQCAtMTIyNiw3ICsxMjI1LDcgQEAgc3RhdGljIGJvb2wNCj4gaTgzMF9w
-aXBlc19wb3dlcl93ZWxsX2VuYWJsZWQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2
-LA0KPiAgc3RhdGljIHZvaWQgaTgzMF9waXBlc19wb3dlcl93ZWxsX3N5bmNfaHcoc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUNCj4gKmRldl9wcml2LA0KPiAgCQkJCQkgIHN0cnVjdCBpOTE1X3Bvd2Vy
-X3dlbGwNCj4gKnBvd2VyX3dlbGwpDQo+ICB7DQo+IC0JaWYgKHBvd2VyX3dlbGwtPmNvdW50ID4g
-MCkNCj4gKwlpZiAoaW50ZWxfcG93ZXJfd2VsbF9yZWZjb3VudChwb3dlcl93ZWxsKSA+IDApDQo+
-ICAJCWk4MzBfcGlwZXNfcG93ZXJfd2VsbF9lbmFibGUoZGV2X3ByaXYsIHBvd2VyX3dlbGwpOw0K
-PiAgCWVsc2UNCj4gIAkJaTgzMF9waXBlc19wb3dlcl93ZWxsX2Rpc2FibGUoZGV2X3ByaXYsIHBv
-d2VyX3dlbGwpOw0KPiBAQCAtMTQ5OSw3ICsxNDk4LDcgQEAgc3RhdGljIHZvaWQgYXNzZXJ0X2No
-dl9waHlfc3RhdHVzKHN0cnVjdA0KPiBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4gIAkJ
-CQkgICAgIFBIWV9TVEFUVVNfU1BMSU5FX0xETyhEUElPX1BIWTEsDQo+IERQSU9fQ0gwLCAwKSB8
-DQo+ICAJCQkJICAgICBQSFlfU1RBVFVTX1NQTElORV9MRE8oRFBJT19QSFkxLA0KPiBEUElPX0NI
-MCwgMSkpOw0KPiAgDQo+IC0JaWYgKGNtbl9iYy0+ZGVzYy0+b3BzLT5pc19lbmFibGVkKGRldl9w
-cml2LCBjbW5fYmMpKSB7DQo+ICsJaWYgKGludGVsX3Bvd2VyX3dlbGxfaXNfZW5hYmxlZChkZXZf
-cHJpdiwgY21uX2JjKSkgew0KPiAgCQlwaHlfc3RhdHVzIHw9IFBIWV9QT1dFUkdPT0QoRFBJT19Q
-SFkwKTsNCj4gIA0KPiAgCQkvKiB0aGlzIGFzc3VtZXMgb3ZlcnJpZGUgaXMgb25seSB1c2VkIHRv
-IGVuYWJsZSBsYW5lcw0KPiAqLw0KPiBAQCAtMTU0MCw3ICsxNTM5LDcgQEAgc3RhdGljIHZvaWQg
-YXNzZXJ0X2Nodl9waHlfc3RhdHVzKHN0cnVjdA0KPiBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
-dikNCj4gIAkJCXBoeV9zdGF0dXMgfD0gUEhZX1NUQVRVU19TUExJTkVfTERPKERQSU9fUEhZMCwN
-Cj4gRFBJT19DSDEsIDEpOw0KPiAgCX0NCj4gIA0KPiAtCWlmIChjbW5fZC0+ZGVzYy0+b3BzLT5p
-c19lbmFibGVkKGRldl9wcml2LCBjbW5fZCkpIHsNCj4gKwlpZiAoaW50ZWxfcG93ZXJfd2VsbF9p
-c19lbmFibGVkKGRldl9wcml2LCBjbW5fZCkpIHsNCj4gIAkJcGh5X3N0YXR1cyB8PSBQSFlfUE9X
-RVJHT09EKERQSU9fUEhZMSk7DQo+ICANCj4gIAkJLyogdGhpcyBhc3N1bWVzIG92ZXJyaWRlIGlz
-IG9ubHkgdXNlZCB0byBlbmFibGUgbGFuZXMNCj4gKi8NCj4gQEAgLTMzMzQsMTIgKzMzMzMsMTAg
-QEAgYm9vbA0KPiBpbnRlbF9kaXNwbGF5X3Bvd2VyX3dlbGxfaXNfZW5hYmxlZChzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZQ0KPiAqZGV2X3ByaXYsDQo+ICAJCQkJCSBlbnVtIGk5MTVfcG93ZXJfd2Vs
-bF9pZA0KPiBwb3dlcl93ZWxsX2lkKQ0KPiAgew0KPiAgCXN0cnVjdCBpOTE1X3Bvd2VyX3dlbGwg
-KnBvd2VyX3dlbGw7DQo+IC0JYm9vbCByZXQ7DQo+ICANCj4gIAlwb3dlcl93ZWxsID0gbG9va3Vw
-X3Bvd2VyX3dlbGwoZGV2X3ByaXYsIHBvd2VyX3dlbGxfaWQpOw0KPiAtCXJldCA9IHBvd2VyX3dl
-bGwtPmRlc2MtPm9wcy0+aXNfZW5hYmxlZChkZXZfcHJpdiwgcG93ZXJfd2VsbCk7DQo+ICANCj4g
-LQlyZXR1cm4gcmV0Ow0KPiArCXJldHVybiBpbnRlbF9wb3dlcl93ZWxsX2lzX2VuYWJsZWQoZGV2
-X3ByaXYsIHBvd2VyX3dlbGwpOw0KPiAgfQ0KPiAgDQo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IGk5
-MTVfcG93ZXJfd2VsbF9kZXNjIHNrbF9wb3dlcl93ZWxsc1tdID0gew0KPiBAQCAtMzkwOSw3ICsz
-OTA2LDcgQEAgc3RhdGljIHZvaWQNCj4gIHRnbF90Y19jb2xkX29mZl9wb3dlcl93ZWxsX3N5bmNf
-aHcoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsDQo+ICAJCQkJICAgc3RydWN0IGk5MTVf
-cG93ZXJfd2VsbCAqcG93ZXJfd2VsbCkNCj4gIHsNCj4gLQlpZiAocG93ZXJfd2VsbC0+Y291bnQg
-PiAwKQ0KPiArCWlmIChpbnRlbF9wb3dlcl93ZWxsX3JlZmNvdW50KHBvd2VyX3dlbGwpID4gMCkN
-Cj4gIAkJdGdsX3RjX2NvbGRfb2ZmX3Bvd2VyX3dlbGxfZW5hYmxlKGk5MTUsIHBvd2VyX3dlbGwp
-Ow0KPiAgCWVsc2UNCj4gIAkJdGdsX3RjX2NvbGRfb2ZmX3Bvd2VyX3dlbGxfZGlzYWJsZShpOTE1
-LCBwb3dlcl93ZWxsKTsNCj4gQEAgLTM5MjMsNyArMzkyMCw3IEBAIHRnbF90Y19jb2xkX29mZl9w
-b3dlcl93ZWxsX2lzX2VuYWJsZWQoc3RydWN0DQo+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2
-LA0KPiAgCSAqIE5vdCB0aGUgY29ycmVjdGx5IGltcGxlbWVudGF0aW9uIGJ1dCB0aGVyZSBpcyBu
-byB3YXkgdG8ganVzdA0KPiByZWFkIGl0DQo+ICAJICogZnJvbSBQQ09ERSwgc28gcmV0dXJuaW5n
-IGNvdW50IHRvIGF2b2lkIHN0YXRlIG1pc21hdGNoDQo+IGVycm9ycw0KPiAgCSAqLw0KPiAtCXJl
-dHVybiBwb3dlcl93ZWxsLT5jb3VudDsNCj4gKwlyZXR1cm4gaW50ZWxfcG93ZXJfd2VsbF9yZWZj
-b3VudChwb3dlcl93ZWxsKTsNCj4gIH0NCj4gIA0KPiAgc3RhdGljIGNvbnN0IHN0cnVjdCBpOTE1
-X3Bvd2VyX3dlbGxfb3BzIHRnbF90Y19jb2xkX29mZl9vcHMgPSB7DQo+IEBAIC01NzI5LDcgKzU3
-MjYsNyBAQCBzdGF0aWMgdm9pZCBjaHZfcGh5X2NvbnRyb2xfaW5pdChzdHJ1Y3QNCj4gZHJtX2k5
-MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ICAJICogb3ZlcnJpZGUgYW5kIHNldCB0aGUgbGFuZSBw
-b3dlcmRvd24gYml0cyBhY2NkaW5nIHRvIHRoZQ0KPiAgCSAqIGN1cnJlbnQgbGFuZSBzdGF0dXMu
-DQo+ICAJICovDQo+IC0JaWYgKGNtbl9iYy0+ZGVzYy0+b3BzLT5pc19lbmFibGVkKGRldl9wcml2
-LCBjbW5fYmMpKSB7DQo+ICsJaWYgKGludGVsX3Bvd2VyX3dlbGxfaXNfZW5hYmxlZChkZXZfcHJp
-diwgY21uX2JjKSkgew0KPiAgCQl1MzIgc3RhdHVzID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwg
-RFBMTChQSVBFX0EpKTsNCj4gIAkJdW5zaWduZWQgaW50IG1hc2s7DQo+ICANCj4gQEAgLTU3NjAs
-NyArNTc1Nyw3IEBAIHN0YXRpYyB2b2lkIGNodl9waHlfY29udHJvbF9pbml0KHN0cnVjdA0KPiBk
-cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4gIAkJZGV2X3ByaXYtPmNodl9waHlfYXNzZXJ0
-W0RQSU9fUEhZMF0gPSB0cnVlOw0KPiAgCX0NCj4gIA0KPiAtCWlmIChjbW5fZC0+ZGVzYy0+b3Bz
-LT5pc19lbmFibGVkKGRldl9wcml2LCBjbW5fZCkpIHsNCj4gKwlpZiAoaW50ZWxfcG93ZXJfd2Vs
-bF9pc19lbmFibGVkKGRldl9wcml2LCBjbW5fZCkpIHsNCj4gIAkJdTMyIHN0YXR1cyA9IGludGVs
-X2RlX3JlYWQoZGV2X3ByaXYsIERQSU9fUEhZX1NUQVRVUyk7DQo+ICAJCXVuc2lnbmVkIGludCBt
-YXNrOw0KPiAgDQo+IEBAIC01Nzk2LDggKzU3OTMsOCBAQCBzdGF0aWMgdm9pZCB2bHZfY21ubGFu
-ZV93YShzdHJ1Y3QNCj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ICAJCWxvb2t1cF9w
-b3dlcl93ZWxsKGRldl9wcml2LCBWTFZfRElTUF9QV19ESVNQMkQpOw0KPiAgDQo+ICAJLyogSWYg
-dGhlIGRpc3BsYXkgbWlnaHQgYmUgYWxyZWFkeSBhY3RpdmUgc2tpcCB0aGlzICovDQo+IC0JaWYg
-KGNtbi0+ZGVzYy0+b3BzLT5pc19lbmFibGVkKGRldl9wcml2LCBjbW4pICYmDQo+IC0JICAgIGRp
-c3AyZC0+ZGVzYy0+b3BzLT5pc19lbmFibGVkKGRldl9wcml2LCBkaXNwMmQpICYmDQo+ICsJaWYg
-KGludGVsX3Bvd2VyX3dlbGxfaXNfZW5hYmxlZChkZXZfcHJpdiwgY21uKSAmJg0KPiArCSAgICBp
-bnRlbF9wb3dlcl93ZWxsX2lzX2VuYWJsZWQoZGV2X3ByaXYsIGRpc3AyZCkgJiYNCj4gIAkgICAg
-aW50ZWxfZGVfcmVhZChkZXZfcHJpdiwgRFBJT19DVEwpICYgRFBJT19DTU5SU1QpDQo+ICAJCXJl
-dHVybjsNCj4gIA0KPiBAQCAtNTk2NCwxMiArNTk2MSwxMiBAQCB2b2lkDQo+IGludGVsX3Bvd2Vy
-X2RvbWFpbnNfc2FuaXRpemVfc3RhdGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpDQo+
-ICANCj4gIAlmb3JfZWFjaF9wb3dlcl93ZWxsX3JldmVyc2UoaTkxNSwgcG93ZXJfd2VsbCkgew0K
-PiAgCQlpZiAocG93ZXJfd2VsbC0+ZGVzYy0+YWx3YXlzX29uIHx8IHBvd2VyX3dlbGwtPmNvdW50
-IHx8DQo+IC0JCSAgICAhcG93ZXJfd2VsbC0+ZGVzYy0+b3BzLT5pc19lbmFibGVkKGk5MTUsDQo+
-IHBvd2VyX3dlbGwpKQ0KPiArCQkgICAgIWludGVsX3Bvd2VyX3dlbGxfaXNfZW5hYmxlZChpOTE1
-LCBwb3dlcl93ZWxsKSkNCj4gIAkJCWNvbnRpbnVlOw0KPiAgDQo+ICAJCWRybV9kYmdfa21zKCZp
-OTE1LT5kcm0sDQo+ICAJCQkgICAgIkJJT1MgbGVmdCB1bnVzZWQgJXMgcG93ZXIgd2VsbCBlbmFi
-bGVkLA0KPiBkaXNhYmxpbmcgaXRcbiIsDQo+IC0JCQkgICAgcG93ZXJfd2VsbC0+ZGVzYy0+bmFt
-ZSk7DQo+ICsJCQkgICAgaW50ZWxfcG93ZXJfd2VsbF9uYW1lKHBvd2VyX3dlbGwpKTsNCj4gIAkJ
-aW50ZWxfcG93ZXJfd2VsbF9kaXNhYmxlKGk5MTUsIHBvd2VyX3dlbGwpOw0KPiAgCX0NCj4gIA0K
-PiBAQCAtNjEwOCw5ICs2MTA1LDkgQEAgc3RhdGljIHZvaWQNCj4gaW50ZWxfcG93ZXJfZG9tYWlu
-c19kdW1wX2luZm8oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpDQo+ICAJCWVudW0gaW50
-ZWxfZGlzcGxheV9wb3dlcl9kb21haW4gZG9tYWluOw0KPiAgDQo+ICAJCWRybV9kYmcoJmk5MTUt
-PmRybSwgIiUtMjVzICVkXG4iLA0KPiAtCQkJcG93ZXJfd2VsbC0+ZGVzYy0+bmFtZSwgcG93ZXJf
-d2VsbC0+Y291bnQpOw0KPiArCQkJaW50ZWxfcG93ZXJfd2VsbF9uYW1lKHBvd2VyX3dlbGwpLA0K
-PiBpbnRlbF9wb3dlcl93ZWxsX3JlZmNvdW50KHBvd2VyX3dlbGwpKTsNCj4gIA0KPiAtCQlmb3Jf
-ZWFjaF9wb3dlcl9kb21haW4oZG9tYWluLCBwb3dlcl93ZWxsLT5kZXNjLQ0KPiA+ZG9tYWlucykN
-Cj4gKwkJZm9yX2VhY2hfcG93ZXJfZG9tYWluKGRvbWFpbiwNCj4gaW50ZWxfcG93ZXJfd2VsbF9k
-b21haW5zKHBvd2VyX3dlbGwpKQ0KPiAgCQkJZHJtX2RiZygmaTkxNS0+ZHJtLCAiICAlLTIzcyAl
-ZFxuIiwNCj4gIAkJCQlpbnRlbF9kaXNwbGF5X3Bvd2VyX2RvbWFpbl9zdHIoZG9tYWluKSwNCj4g
-IAkJCQlwb3dlcl9kb21haW5zLQ0KPiA+ZG9tYWluX3VzZV9jb3VudFtkb21haW5dKTsNCj4gQEAg
-LTYxNDMsMjMgKzYxNDAsMjUgQEAgc3RhdGljIHZvaWQNCj4gaW50ZWxfcG93ZXJfZG9tYWluc192
-ZXJpZnlfc3RhdGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpDQo+ICAJCWludCBkb21h
-aW5zX2NvdW50Ow0KPiAgCQlib29sIGVuYWJsZWQ7DQo+ICANCj4gLQkJZW5hYmxlZCA9IHBvd2Vy
-X3dlbGwtPmRlc2MtPm9wcy0+aXNfZW5hYmxlZChpOTE1LA0KPiBwb3dlcl93ZWxsKTsNCj4gLQkJ
-aWYgKChwb3dlcl93ZWxsLT5jb3VudCB8fCBwb3dlcl93ZWxsLT5kZXNjLT5hbHdheXNfb24pDQo+
-ICE9DQo+ICsJCWVuYWJsZWQgPSBpbnRlbF9wb3dlcl93ZWxsX2lzX2VuYWJsZWQoaTkxNSwNCj4g
-cG93ZXJfd2VsbCk7DQo+ICsJCWlmICgoaW50ZWxfcG93ZXJfd2VsbF9yZWZjb3VudChwb3dlcl93
-ZWxsKSB8fA0KPiArCQkgICAgIGludGVsX3Bvd2VyX3dlbGxfaXNfYWx3YXlzX29uKHBvd2VyX3dl
-bGwpKSAhPQ0KPiAgCQkgICAgZW5hYmxlZCkNCj4gIAkJCWRybV9lcnIoJmk5MTUtPmRybSwNCj4g
-IAkJCQkicG93ZXIgd2VsbCAlcyBzdGF0ZSBtaXNtYXRjaCAocmVmY291bnQNCj4gJWQvZW5hYmxl
-ZCAlZCkiLA0KPiAtCQkJCXBvd2VyX3dlbGwtPmRlc2MtPm5hbWUsDQo+IC0JCQkJcG93ZXJfd2Vs
-bC0+Y291bnQsIGVuYWJsZWQpOw0KPiArCQkJCWludGVsX3Bvd2VyX3dlbGxfbmFtZShwb3dlcl93
-ZWxsKSwNCj4gKwkJCQlpbnRlbF9wb3dlcl93ZWxsX3JlZmNvdW50KHBvd2VyX3dlbGwpLA0KPiBl
-bmFibGVkKTsNCj4gIA0KPiAgCQlkb21haW5zX2NvdW50ID0gMDsNCj4gLQkJZm9yX2VhY2hfcG93
-ZXJfZG9tYWluKGRvbWFpbiwgcG93ZXJfd2VsbC0+ZGVzYy0NCj4gPmRvbWFpbnMpDQo+ICsJCWZv
-cl9lYWNoX3Bvd2VyX2RvbWFpbihkb21haW4sDQo+IGludGVsX3Bvd2VyX3dlbGxfZG9tYWlucyhw
-b3dlcl93ZWxsKSkNCj4gIAkJCWRvbWFpbnNfY291bnQgKz0gcG93ZXJfZG9tYWlucy0NCj4gPmRv
-bWFpbl91c2VfY291bnRbZG9tYWluXTsNCj4gIA0KPiAtCQlpZiAocG93ZXJfd2VsbC0+Y291bnQg
-IT0gZG9tYWluc19jb3VudCkgew0KPiArCQlpZiAoaW50ZWxfcG93ZXJfd2VsbF9yZWZjb3VudChw
-b3dlcl93ZWxsKSAhPQ0KPiBkb21haW5zX2NvdW50KSB7DQo+ICAJCQlkcm1fZXJyKCZpOTE1LT5k
-cm0sDQo+ICAJCQkJInBvd2VyIHdlbGwgJXMgcmVmY291bnQvZG9tYWluIHJlZmNvdW50DQo+IG1p
-c21hdGNoICINCj4gIAkJCQkiKHJlZmNvdW50ICVkL2RvbWFpbnMgcmVmY291bnQgJWQpXG4iLA0K
-PiAtCQkJCXBvd2VyX3dlbGwtPmRlc2MtPm5hbWUsIHBvd2VyX3dlbGwtDQo+ID5jb3VudCwNCj4g
-KwkJCQlpbnRlbF9wb3dlcl93ZWxsX25hbWUocG93ZXJfd2VsbCksDQo+ICsJCQkJaW50ZWxfcG93
-ZXJfd2VsbF9yZWZjb3VudChwb3dlcl93ZWxsKSwNCj4gIAkJCQlkb21haW5zX2NvdW50KTsNCj4g
-IAkJCWR1bXBfZG9tYWluX2luZm8gPSB0cnVlOw0KPiAgCQl9DQo+IEBAIC02MjY0LDEwICs2MjYz
-LDEwIEBAIHZvaWQgaW50ZWxfZGlzcGxheV9wb3dlcl9kZWJ1ZyhzdHJ1Y3QNCj4gZHJtX2k5MTVf
-cHJpdmF0ZSAqaTkxNSwgc3RydWN0IHNlcV9maWxlICptDQo+ICAJCWVudW0gaW50ZWxfZGlzcGxh
-eV9wb3dlcl9kb21haW4gcG93ZXJfZG9tYWluOw0KPiAgDQo+ICAJCXBvd2VyX3dlbGwgPSAmcG93
-ZXJfZG9tYWlucy0+cG93ZXJfd2VsbHNbaV07DQo+IC0JCXNlcV9wcmludGYobSwgIiUtMjVzICVk
-XG4iLCBwb3dlcl93ZWxsLT5kZXNjLT5uYW1lLA0KPiAtCQkJICAgcG93ZXJfd2VsbC0+Y291bnQp
-Ow0KPiArCQlzZXFfcHJpbnRmKG0sICIlLTI1cyAlZFxuIiwNCj4gaW50ZWxfcG93ZXJfd2VsbF9u
-YW1lKHBvd2VyX3dlbGwpLA0KPiArCQkJICAgaW50ZWxfcG93ZXJfd2VsbF9yZWZjb3VudChwb3dl
-cl93ZWxsKSk7DQo+ICANCj4gLQkJZm9yX2VhY2hfcG93ZXJfZG9tYWluKHBvd2VyX2RvbWFpbiwg
-cG93ZXJfd2VsbC0+ZGVzYy0NCj4gPmRvbWFpbnMpDQo+ICsJCWZvcl9lYWNoX3Bvd2VyX2RvbWFp
-bihwb3dlcl9kb21haW4sDQo+IGludGVsX3Bvd2VyX3dlbGxfZG9tYWlucyhwb3dlcl93ZWxsKSkN
-Cj4gIAkJCXNlcV9wcmludGYobSwgIiAgJS0yM3MgJWRcbiIsDQo+ICAJCQkJICAgaW50ZWxfZGlz
-cGxheV9wb3dlcl9kb21haW5fc3RyKHBvd2VyDQo+IF9kb21haW4pLA0KPiAgCQkJCSAgIHBvd2Vy
-X2RvbWFpbnMtDQo+ID5kb21haW5fdXNlX2NvdW50W3Bvd2VyX2RvbWFpbl0pOw0KPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyX3dl
-bGwuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dl
-cl93ZWxsLmMNCj4gaW5kZXggNjNiOTdiY2M2NGJjMy4uNDE1YWQxOTNhOGU4MyAxMDA2NDQNCj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyX3dl
-bGwuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
-cG93ZXJfd2VsbC5jDQo+IEBAIC00NywzICs0NywzNCBAQCB2b2lkIGludGVsX3Bvd2VyX3dlbGxf
-cHV0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlDQo+ICppOTE1LA0KPiAgCWlmICghLS1wb3dlcl93
-ZWxsLT5jb3VudCkNCj4gIAkJaW50ZWxfcG93ZXJfd2VsbF9kaXNhYmxlKGk5MTUsIHBvd2VyX3dl
-bGwpOw0KPiAgfQ0KPiArDQo+ICtib29sIGludGVsX3Bvd2VyX3dlbGxfaXNfZW5hYmxlZChzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwNCj4gKwkJCQkgc3RydWN0IGk5MTVfcG93ZXJfd2Vs
-bCAqcG93ZXJfd2VsbCkNCj4gK3sNCj4gKwlyZXR1cm4gcG93ZXJfd2VsbC0+ZGVzYy0+b3BzLT5p
-c19lbmFibGVkKGk5MTUsIHBvd2VyX3dlbGwpOw0KPiArfQ0KPiArDQo+ICtib29sIGludGVsX3Bv
-d2VyX3dlbGxfaXNfZW5hYmxlZF9jYWNoZWQoc3RydWN0IGk5MTVfcG93ZXJfd2VsbA0KPiAqcG93
-ZXJfd2VsbCkNCj4gK3sNCj4gKwlyZXR1cm4gcG93ZXJfd2VsbC0+aHdfZW5hYmxlZDsNCj4gK30N
-Cj4gKw0KPiArYm9vbCBpbnRlbF9wb3dlcl93ZWxsX2lzX2Fsd2F5c19vbihzdHJ1Y3QgaTkxNV9w
-b3dlcl93ZWxsDQo+ICpwb3dlcl93ZWxsKQ0KPiArew0KPiArCXJldHVybiBwb3dlcl93ZWxsLT5k
-ZXNjLT5hbHdheXNfb247DQo+ICt9DQo+ICsNCj4gK2NvbnN0IGNoYXIgKmludGVsX3Bvd2VyX3dl
-bGxfbmFtZShzdHJ1Y3QgaTkxNV9wb3dlcl93ZWxsDQo+ICpwb3dlcl93ZWxsKQ0KPiArew0KPiAr
-CXJldHVybiBwb3dlcl93ZWxsLT5kZXNjLT5uYW1lOw0KPiArfQ0KPiArDQo+ICt1NjQgaW50ZWxf
-cG93ZXJfd2VsbF9kb21haW5zKHN0cnVjdCBpOTE1X3Bvd2VyX3dlbGwgKnBvd2VyX3dlbGwpDQo+
-ICt7DQo+ICsJcmV0dXJuIHBvd2VyX3dlbGwtPmRlc2MtPmRvbWFpbnM7DQo+ICt9DQo+ICsNCj4g
-K2ludCBpbnRlbF9wb3dlcl93ZWxsX3JlZmNvdW50KHN0cnVjdCBpOTE1X3Bvd2VyX3dlbGwgKnBv
-d2VyX3dlbGwpDQo+ICt7DQo+ICsJcmV0dXJuIHBvd2VyX3dlbGwtPmNvdW50Ow0KPiArfQ0KPiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bv
-d2VyX3dlbGwuaA0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eV9wb3dlcl93ZWxsLmgNCj4gaW5kZXggYmE1YmJkMzZmN2ZjMC4uNDNhZmZiZGJjNDhjMSAxMDA2
-NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bv
-d2VyX3dlbGwuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
-c3BsYXlfcG93ZXJfd2VsbC5oDQo+IEBAIC0xMTMsNSArMTEzLDEyIEBAIHZvaWQgaW50ZWxfcG93
-ZXJfd2VsbF9nZXQoc3RydWN0DQo+IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsDQo+ICAJCQkgIHN0
-cnVjdCBpOTE1X3Bvd2VyX3dlbGwgKnBvd2VyX3dlbGwpOw0KPiAgdm9pZCBpbnRlbF9wb3dlcl93
-ZWxsX3B1dChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwNCj4gIAkJCSAgc3RydWN0IGk5
-MTVfcG93ZXJfd2VsbCAqcG93ZXJfd2VsbCk7DQo+ICtib29sIGludGVsX3Bvd2VyX3dlbGxfaXNf
-ZW5hYmxlZChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwNCj4gKwkJCQkgc3RydWN0IGk5
-MTVfcG93ZXJfd2VsbCAqcG93ZXJfd2VsbCk7DQo+ICtib29sIGludGVsX3Bvd2VyX3dlbGxfaXNf
-ZW5hYmxlZF9jYWNoZWQoc3RydWN0IGk5MTVfcG93ZXJfd2VsbA0KPiAqcG93ZXJfd2VsbCk7DQo+
-ICtib29sIGludGVsX3Bvd2VyX3dlbGxfaXNfYWx3YXlzX29uKHN0cnVjdCBpOTE1X3Bvd2VyX3dl
-bGwNCj4gKnBvd2VyX3dlbGwpOw0KPiArY29uc3QgY2hhciAqaW50ZWxfcG93ZXJfd2VsbF9uYW1l
-KHN0cnVjdCBpOTE1X3Bvd2VyX3dlbGwNCj4gKnBvd2VyX3dlbGwpOw0KPiArdTY0IGludGVsX3Bv
-d2VyX3dlbGxfZG9tYWlucyhzdHJ1Y3QgaTkxNV9wb3dlcl93ZWxsICpwb3dlcl93ZWxsKTsNCj4g
-K2ludCBpbnRlbF9wb3dlcl93ZWxsX3JlZmNvdW50KHN0cnVjdCBpOTE1X3Bvd2VyX3dlbGwgKnBv
-d2VyX3dlbGwpOw0KPiAgDQo+ICAjZW5kaWYNCg0KQlIsDQoNCkpvdW5pIEjDtmdhbmRlcg0KDQo=
+On Fri, Feb 11, 2022 at 04:26:27PM +0200, Hogander, Jouni wrote:
+> On Tue, 2022-02-08 at 13:36 +0200, Imre Deak wrote:
+> > Add functions to get a power well's actual- and cached-enabled state,
+> > name, domain mask and refcount, as a step towards making the low-
+> > level
+> > power well internals (i915_power_well_ops/desc structs) hidden.
+> 
+> It's not really in scope of this patch, but still: Why this cached-
+> enabled state is needed on the first hand? Are we expecting seeing
+> hw_state as enabled while count == 0 or vice versa?
+
+It was added for VLV/CHV where PUNIT accesses to determine the actual HW
+state had too much overhead (20ms per access). After the initial
+sync_hw() call for the given power well and the read-out of its enabled
+HW state during driver loading and system resume, the cached value
+provides the state regardless of the refcount of the power well. During
+the sanitization of pipes/encoders etc and during the verification of HW
+vs. SW state after modesets, the driver gets (multiple) if_enabled()
+reference where the cached value should speed things up.
+
+For debugging purposes (intel_power_domains_verify_state()) it still
+makes sense to check the actual HW state, hence the presence of
+functions to get both the cached and non-cached state.
+
+> > No functional change.
+> >
+> > Suggested-by: Jani Nikula <jani.nikula@intel.com>
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_power.c    | 69 +++++++++------
+> > ----
+> >  .../i915/display/intel_display_power_well.c   | 31 +++++++++
+> >  .../i915/display/intel_display_power_well.h   |  7 ++
+> >  3 files changed, 72 insertions(+), 35 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > index 056965248a3b2..321b271c4b674 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -191,10 +191,10 @@ bool __intel_display_power_is_enabled(struct
+> > drm_i915_private *dev_priv,
+> >       is_enabled = true;
+> >
+> >       for_each_power_domain_well_reverse(dev_priv, power_well,
+> > BIT_ULL(domain)) {
+> > -             if (power_well->desc->always_on)
+> > +             if (intel_power_well_is_always_on(power_well))
+> >                       continue;
+> >
+> > -             if (!power_well->hw_enabled) {
+> > +             if (!intel_power_well_is_enabled_cached(power_well)) {
+> >                       is_enabled = false;
+> >                       break;
+> >               }
+> > @@ -330,7 +330,7 @@ static void hsw_wait_for_power_well_enable(struct
+> > drm_i915_private *dev_priv,
+> >       if (intel_de_wait_for_set(dev_priv, regs->driver,
+> >                                 HSW_PWR_WELL_CTL_STATE(pw_idx), 1)) {
+> >               drm_dbg_kms(&dev_priv->drm, "%s power well enable
+> > timeout\n",
+> > -                         power_well->desc->name);
+> > +                         intel_power_well_name(power_well));
+> >
+> >               drm_WARN_ON(&dev_priv->drm, !timeout_expected);
+> >
+> > @@ -378,7 +378,7 @@ static void
+> > hsw_wait_for_power_well_disable(struct drm_i915_private *dev_priv,
+> >
+> >       drm_dbg_kms(&dev_priv->drm,
+> >                   "%s forced on (bios:%d driver:%d kvmr:%d
+> > debug:%d)\n",
+> > -                 power_well->desc->name,
+> > +                 intel_power_well_name(power_well),
+> >                   !!(reqs & 1), !!(reqs & 2), !!(reqs & 4), !!(reqs &
+> > 8));
+> >  }
+> >
+> > @@ -967,8 +967,7 @@ void
+> > intel_display_power_set_target_dc_state(struct drm_i915_private
+> > *dev_priv,
+> >       if (state == dev_priv->dmc.target_dc_state)
+> >               goto unlock;
+> >
+> > -     dc_off_enabled = power_well->desc->ops->is_enabled(dev_priv,
+> > -                                                        power_well);
+> > +     dc_off_enabled = intel_power_well_is_enabled(dev_priv,
+> > power_well);
+> >       /*
+> >        * If DC off power well is disabled, need to enable and disable
+> > the
+> >        * DC off power well to effect target DC state.
+> > @@ -1090,17 +1089,17 @@ static void
+> > bxt_verify_ddi_phy_power_wells(struct drm_i915_private *dev_priv)
+> >       struct i915_power_well *power_well;
+> >
+> >       power_well = lookup_power_well(dev_priv,
+> > BXT_DISP_PW_DPIO_CMN_A);
+> > -     if (power_well->count > 0)
+> > +     if (intel_power_well_refcount(power_well) > 0)
+> >               bxt_ddi_phy_verify_state(dev_priv, power_well->desc-
+> > >bxt.phy);
+> >
+> >       power_well = lookup_power_well(dev_priv,
+> > VLV_DISP_PW_DPIO_CMN_BC);
+> > -     if (power_well->count > 0)
+> > +     if (intel_power_well_refcount(power_well) > 0)
+> >               bxt_ddi_phy_verify_state(dev_priv, power_well->desc-
+> > >bxt.phy);
+> >
+> >       if (IS_GEMINILAKE(dev_priv)) {
+> >               power_well = lookup_power_well(dev_priv,
+> >                                              GLK_DISP_PW_DPIO_CMN_C);
+> > -             if (power_well->count > 0)
+> > +             if (intel_power_well_refcount(power_well) > 0)
+> >                       bxt_ddi_phy_verify_state(dev_priv,
+> >                                                power_well->desc-
+> > >bxt.phy);
+> >       }
+> > @@ -1226,7 +1225,7 @@ static bool
+> > i830_pipes_power_well_enabled(struct drm_i915_private *dev_priv,
+> >  static void i830_pipes_power_well_sync_hw(struct drm_i915_private
+> > *dev_priv,
+> >                                         struct i915_power_well
+> > *power_well)
+> >  {
+> > -     if (power_well->count > 0)
+> > +     if (intel_power_well_refcount(power_well) > 0)
+> >               i830_pipes_power_well_enable(dev_priv, power_well);
+> >       else
+> >               i830_pipes_power_well_disable(dev_priv, power_well);
+> > @@ -1499,7 +1498,7 @@ static void assert_chv_phy_status(struct
+> > drm_i915_private *dev_priv)
+> >                                    PHY_STATUS_SPLINE_LDO(DPIO_PHY1,
+> > DPIO_CH0, 0) |
+> >                                    PHY_STATUS_SPLINE_LDO(DPIO_PHY1,
+> > DPIO_CH0, 1));
+> >
+> > -     if (cmn_bc->desc->ops->is_enabled(dev_priv, cmn_bc)) {
+> > +     if (intel_power_well_is_enabled(dev_priv, cmn_bc)) {
+> >               phy_status |= PHY_POWERGOOD(DPIO_PHY0);
+> >
+> >               /* this assumes override is only used to enable lanes
+> > */
+> > @@ -1540,7 +1539,7 @@ static void assert_chv_phy_status(struct
+> > drm_i915_private *dev_priv)
+> >                       phy_status |= PHY_STATUS_SPLINE_LDO(DPIO_PHY0,
+> > DPIO_CH1, 1);
+> >       }
+> >
+> > -     if (cmn_d->desc->ops->is_enabled(dev_priv, cmn_d)) {
+> > +     if (intel_power_well_is_enabled(dev_priv, cmn_d)) {
+> >               phy_status |= PHY_POWERGOOD(DPIO_PHY1);
+> >
+> >               /* this assumes override is only used to enable lanes
+> > */
+> > @@ -3334,12 +3333,10 @@ bool
+> > intel_display_power_well_is_enabled(struct drm_i915_private
+> > *dev_priv,
+> >                                        enum i915_power_well_id
+> > power_well_id)
+> >  {
+> >       struct i915_power_well *power_well;
+> > -     bool ret;
+> >
+> >       power_well = lookup_power_well(dev_priv, power_well_id);
+> > -     ret = power_well->desc->ops->is_enabled(dev_priv, power_well);
+> >
+> > -     return ret;
+> > +     return intel_power_well_is_enabled(dev_priv, power_well);
+> >  }
+> >
+> >  static const struct i915_power_well_desc skl_power_wells[] = {
+> > @@ -3909,7 +3906,7 @@ static void
+> >  tgl_tc_cold_off_power_well_sync_hw(struct drm_i915_private *i915,
+> >                                  struct i915_power_well *power_well)
+> >  {
+> > -     if (power_well->count > 0)
+> > +     if (intel_power_well_refcount(power_well) > 0)
+> >               tgl_tc_cold_off_power_well_enable(i915, power_well);
+> >       else
+> >               tgl_tc_cold_off_power_well_disable(i915, power_well);
+> > @@ -3923,7 +3920,7 @@ tgl_tc_cold_off_power_well_is_enabled(struct
+> > drm_i915_private *dev_priv,
+> >        * Not the correctly implementation but there is no way to just
+> > read it
+> >        * from PCODE, so returning count to avoid state mismatch
+> > errors
+> >        */
+> > -     return power_well->count;
+> > +     return intel_power_well_refcount(power_well);
+> >  }
+> >
+> >  static const struct i915_power_well_ops tgl_tc_cold_off_ops = {
+> > @@ -5729,7 +5726,7 @@ static void chv_phy_control_init(struct
+> > drm_i915_private *dev_priv)
+> >        * override and set the lane powerdown bits accding to the
+> >        * current lane status.
+> >        */
+> > -     if (cmn_bc->desc->ops->is_enabled(dev_priv, cmn_bc)) {
+> > +     if (intel_power_well_is_enabled(dev_priv, cmn_bc)) {
+> >               u32 status = intel_de_read(dev_priv, DPLL(PIPE_A));
+> >               unsigned int mask;
+> >
+> > @@ -5760,7 +5757,7 @@ static void chv_phy_control_init(struct
+> > drm_i915_private *dev_priv)
+> >               dev_priv->chv_phy_assert[DPIO_PHY0] = true;
+> >       }
+> >
+> > -     if (cmn_d->desc->ops->is_enabled(dev_priv, cmn_d)) {
+> > +     if (intel_power_well_is_enabled(dev_priv, cmn_d)) {
+> >               u32 status = intel_de_read(dev_priv, DPIO_PHY_STATUS);
+> >               unsigned int mask;
+> >
+> > @@ -5796,8 +5793,8 @@ static void vlv_cmnlane_wa(struct
+> > drm_i915_private *dev_priv)
+> >               lookup_power_well(dev_priv, VLV_DISP_PW_DISP2D);
+> >
+> >       /* If the display might be already active skip this */
+> > -     if (cmn->desc->ops->is_enabled(dev_priv, cmn) &&
+> > -         disp2d->desc->ops->is_enabled(dev_priv, disp2d) &&
+> > +     if (intel_power_well_is_enabled(dev_priv, cmn) &&
+> > +         intel_power_well_is_enabled(dev_priv, disp2d) &&
+> >           intel_de_read(dev_priv, DPIO_CTL) & DPIO_CMNRST)
+> >               return;
+> >
+> > @@ -5964,12 +5961,12 @@ void
+> > intel_power_domains_sanitize_state(struct drm_i915_private *i915)
+> >
+> >       for_each_power_well_reverse(i915, power_well) {
+> >               if (power_well->desc->always_on || power_well->count ||
+> > -                 !power_well->desc->ops->is_enabled(i915,
+> > power_well))
+> > +                 !intel_power_well_is_enabled(i915, power_well))
+> >                       continue;
+> >
+> >               drm_dbg_kms(&i915->drm,
+> >                           "BIOS left unused %s power well enabled,
+> > disabling it\n",
+> > -                         power_well->desc->name);
+> > +                         intel_power_well_name(power_well));
+> >               intel_power_well_disable(i915, power_well);
+> >       }
+> >
+> > @@ -6108,9 +6105,9 @@ static void
+> > intel_power_domains_dump_info(struct drm_i915_private *i915)
+> >               enum intel_display_power_domain domain;
+> >
+> >               drm_dbg(&i915->drm, "%-25s %d\n",
+> > -                     power_well->desc->name, power_well->count);
+> > +                     intel_power_well_name(power_well),
+> > intel_power_well_refcount(power_well));
+> >
+> > -             for_each_power_domain(domain, power_well->desc-
+> > >domains)
+> > +             for_each_power_domain(domain,
+> > intel_power_well_domains(power_well))
+> >                       drm_dbg(&i915->drm, "  %-23s %d\n",
+> >                               intel_display_power_domain_str(domain),
+> >                               power_domains-
+> > >domain_use_count[domain]);
+> > @@ -6143,23 +6140,25 @@ static void
+> > intel_power_domains_verify_state(struct drm_i915_private *i915)
+> >               int domains_count;
+> >               bool enabled;
+> >
+> > -             enabled = power_well->desc->ops->is_enabled(i915,
+> > power_well);
+> > -             if ((power_well->count || power_well->desc->always_on)
+> > !=
+> > +             enabled = intel_power_well_is_enabled(i915,
+> > power_well);
+> > +             if ((intel_power_well_refcount(power_well) ||
+> > +                  intel_power_well_is_always_on(power_well)) !=
+> >                   enabled)
+> >                       drm_err(&i915->drm,
+> >                               "power well %s state mismatch (refcount
+> > %d/enabled %d)",
+> > -                             power_well->desc->name,
+> > -                             power_well->count, enabled);
+> > +                             intel_power_well_name(power_well),
+> > +                             intel_power_well_refcount(power_well),
+> > enabled);
+> >
+> >               domains_count = 0;
+> > -             for_each_power_domain(domain, power_well->desc-
+> > >domains)
+> > +             for_each_power_domain(domain,
+> > intel_power_well_domains(power_well))
+> >                       domains_count += power_domains-
+> > >domain_use_count[domain];
+> >
+> > -             if (power_well->count != domains_count) {
+> > +             if (intel_power_well_refcount(power_well) !=
+> > domains_count) {
+> >                       drm_err(&i915->drm,
+> >                               "power well %s refcount/domain refcount
+> > mismatch "
+> >                               "(refcount %d/domains refcount %d)\n",
+> > -                             power_well->desc->name, power_well-
+> > >count,
+> > +                             intel_power_well_name(power_well),
+> > +                             intel_power_well_refcount(power_well),
+> >                               domains_count);
+> >                       dump_domain_info = true;
+> >               }
+> > @@ -6264,10 +6263,10 @@ void intel_display_power_debug(struct
+> > drm_i915_private *i915, struct seq_file *m
+> >               enum intel_display_power_domain power_domain;
+> >
+> >               power_well = &power_domains->power_wells[i];
+> > -             seq_printf(m, "%-25s %d\n", power_well->desc->name,
+> > -                        power_well->count);
+> > +             seq_printf(m, "%-25s %d\n",
+> > intel_power_well_name(power_well),
+> > +                        intel_power_well_refcount(power_well));
+> >
+> > -             for_each_power_domain(power_domain, power_well->desc-
+> > >domains)
+> > +             for_each_power_domain(power_domain,
+> > intel_power_well_domains(power_well))
+> >                       seq_printf(m, "  %-23s %d\n",
+> >                                  intel_display_power_domain_str(power
+> > _domain),
+> >                                  power_domains-
+> > >domain_use_count[power_domain]);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > index 63b97bcc64bc3..415ad193a8e83 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > @@ -47,3 +47,34 @@ void intel_power_well_put(struct drm_i915_private
+> > *i915,
+> >       if (!--power_well->count)
+> >               intel_power_well_disable(i915, power_well);
+> >  }
+> > +
+> > +bool intel_power_well_is_enabled(struct drm_i915_private *i915,
+> > +                              struct i915_power_well *power_well)
+> > +{
+> > +     return power_well->desc->ops->is_enabled(i915, power_well);
+> > +}
+> > +
+> > +bool intel_power_well_is_enabled_cached(struct i915_power_well
+> > *power_well)
+> > +{
+> > +     return power_well->hw_enabled;
+> > +}
+> > +
+> > +bool intel_power_well_is_always_on(struct i915_power_well
+> > *power_well)
+> > +{
+> > +     return power_well->desc->always_on;
+> > +}
+> > +
+> > +const char *intel_power_well_name(struct i915_power_well
+> > *power_well)
+> > +{
+> > +     return power_well->desc->name;
+> > +}
+> > +
+> > +u64 intel_power_well_domains(struct i915_power_well *power_well)
+> > +{
+> > +     return power_well->desc->domains;
+> > +}
+> > +
+> > +int intel_power_well_refcount(struct i915_power_well *power_well)
+> > +{
+> > +     return power_well->count;
+> > +}
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.h
+> > b/drivers/gpu/drm/i915/display/intel_display_power_well.h
+> > index ba5bbd36f7fc0..43affbdbc48c1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.h
+> > @@ -113,5 +113,12 @@ void intel_power_well_get(struct
+> > drm_i915_private *i915,
+> >                         struct i915_power_well *power_well);
+> >  void intel_power_well_put(struct drm_i915_private *i915,
+> >                         struct i915_power_well *power_well);
+> > +bool intel_power_well_is_enabled(struct drm_i915_private *i915,
+> > +                              struct i915_power_well *power_well);
+> > +bool intel_power_well_is_enabled_cached(struct i915_power_well
+> > *power_well);
+> > +bool intel_power_well_is_always_on(struct i915_power_well
+> > *power_well);
+> > +const char *intel_power_well_name(struct i915_power_well
+> > *power_well);
+> > +u64 intel_power_well_domains(struct i915_power_well *power_well);
+> > +int intel_power_well_refcount(struct i915_power_well *power_well);
+> >
+> >  #endif
+> 
+> BR,
+> 
+> Jouni Högander
+> 
