@@ -1,52 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 247C64B2100
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 10:07:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BCCD4B20FE
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 10:06:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E087710EA32;
-	Fri, 11 Feb 2022 09:07:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 968B110EA2C;
+	Fri, 11 Feb 2022 09:06:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80BDC10EA33
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 09:07:16 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0BDE10EA30
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 09:06:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644570436; x=1676106436;
+ t=1644570413; x=1676106413;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=yv8/9NVmKl/XxKeICz1qUAJfXd2Ij9k3NXn/8m44CYc=;
- b=GmesMieZrqXhNZFu691wszpN4+Cbo5R9O1XdUFpGqmif2srWTc4uU7wG
- ygtUoCpd1H2HquFsBPW3sIxVJ/6gsSmWme1OYaiBHfyODYfA0xFyz4eaT
- mBk/OjeMm0rfPfxcBXCDzbaAVNK2Be1I2DmW2YrT7FwY6RfWO7AW5shzZ
- sf/8SjCOOJ8bOnlNrSPeHnCDSkDI60ggImbtqLpqXoRloJqrAVV9cT8bL
- kzJ7lud4Jahn0F49yuR0jka8Iv0yWSppEWcAdPBbAuUy5phjlDHFNsWP4
- fH++Q8f/tG+jpd+coyy8/7zLO0b7D4M9I51KuB25NWR9PYRJJxHYiOtyC w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="230337808"
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="230337808"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 01:06:50 -0800
+ bh=AoNeWFTbckVFeS8Gpae8K1Ok56Zsr0qPg9x/G91JUbE=;
+ b=OGsYi037Man8VvltXm10KlsW3xbJhhs/dBUsocPG+9yoXNkygeh9UBJ3
+ Hlw9APih0eV5FuCnSTmxcPFOrx/lWHI5G5Ggwvrcnr/4ASPyTDxrbU97G
+ FhHvDxpsshWL/tQ1SdZ1LpGRpfFIfTYxscw2aXGSmT8P6BYb65CwYygIX
+ m8pEOXOBtiK6IcED0xYPbjsSqbTrC7Sq8pvbQneraR6zBtjGkQJJx8hHi
+ bewT+dF37Ft/yj1bpLza4C6LlWQuo0yT4GHGG4HcexG6iYwho8FPRBVwY
+ 7BCqTUySgT/SpHJqUT6jR9/bjRZN9WLhWQPd6P6L2crNcSaRbHlah33HP w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="233250718"
+X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="233250718"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 01:06:53 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="500717093"
+X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="623162498"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga002.jf.intel.com with SMTP; 11 Feb 2022 01:06:48 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 11 Feb 2022 01:06:51 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 11 Feb 2022 11:06:47 +0200
+ Fri, 11 Feb 2022 11:06:50 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Feb 2022 11:06:27 +0200
-Message-Id: <20220211090629.15555-7-ville.syrjala@linux.intel.com>
+Date: Fri, 11 Feb 2022 11:06:28 +0200
+Message-Id: <20220211090629.15555-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220211090629.15555-1-ville.syrjala@linux.intel.com>
 References: <20220211090629.15555-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 6/8] drm/i915: Add REG_GENMASK64() and
- REG_FIELD_GET64()
+Subject: [Intel-gfx] [PATCH 7/8] drm/i915: Clean up SSKPD/MLTR defines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,97 +63,108 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We treat SSKPD as a 64 bit register. Add the support macros
-to define/extract bits in such registers.
+Give names to the SSKPD/MLTR fields, and use the
+REG_GENMASK* and REG_FIELD_GET*.
+
+Also drop the bogus non-mirrored SSKP register define.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg_defs.h | 57 +++++++++++++++++++++-------
- 1 file changed, 43 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/i915_reg.h | 27 ++++++++++++---------------
+ drivers/gpu/drm/i915/intel_pm.c | 24 ++++++++++++------------
+ 2 files changed, 24 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
-index 34d37bbf08cd..069799aa3768 100644
---- a/drivers/gpu/drm/i915/i915_reg_defs.h
-+++ b/drivers/gpu/drm/i915/i915_reg_defs.h
-@@ -22,20 +22,35 @@
- 	       BUILD_BUG_ON_ZERO(__is_constexpr(__n) &&		\
- 				 ((__n) < 0 || (__n) > 31))))
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 87c92314ee26..278c9cbc6f3c 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1896,10 +1896,17 @@
+ #define   MAD_DIMM_A_SIZE_SHIFT		0
+ #define   MAD_DIMM_A_SIZE_MASK		(0xff << MAD_DIMM_A_SIZE_SHIFT)
  
--/**
-- * REG_GENMASK() - Prepare a continuous u32 bitmask
-- * @__high: 0-based high bit
-- * @__low: 0-based low bit
-- *
-- * Local wrapper for GENMASK() to force u32, with compile time checks.
-- *
-- * @return: Continuous bitmask from @__high to @__low, inclusive.
-- */
--#define REG_GENMASK(__high, __low)					\
--	((u32)(GENMASK(__high, __low) +					\
--	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&	\
-+#define _REG_GENMASK(__type, __high, __low)				\
-+	((__type)(GENMASK(__high, __low) +				\
-+	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&		\
- 				 __is_constexpr(__low) &&		\
--				 ((__low) < 0 || (__high) > 31 || (__low) > (__high)))))
-+				 ((__low) < 0 ||			\
-+				  (__high) >= BITS_PER_TYPE(__type) ||	\
-+				  (__low) > (__high)))))
-+
-+/**
-+ * REG_GENMASK() - Prepare a continuous u32 bitmask
-+ * @__high: 0-based high bit
-+ * @__low: 0-based low bit
-+ *
-+ * Local wrapper for GENMASK() to force u32, with compile time checks.
-+ *
-+ * @return: Continuous bitmask from @__high to @__low, inclusive.
-+ */
-+#define REG_GENMASK(__high, __low) _REG_GENMASK(u32, __high, __low)
-+
-+/**
-+ * REG_GENMASK64() - Prepare a continuous u64 bitmask
-+ * @__high: 0-based high bit
-+ * @__low: 0-based low bit
-+ *
-+ * Local wrapper for GENMASK() to force u32, with compile time checks.
-+ *
-+ * @return: Continuous bitmask from @__high to @__low, inclusive.
-+ */
-+#define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)
+-/* snb MCH registers for priority tuning */
+ #define MCH_SSKPD			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5d10)
+-#define   MCH_SSKPD_WM0_MASK		0x3f
+-#define   MCH_SSKPD_WM0_VAL		0xc
++#define   SSKPD_NEW_WM0_MASK_HSW	REG_GENMASK64(63, 56)
++#define   SSKPD_WM4_MASK_HSW		REG_GENMASK64(40, 32)
++#define   SSKPD_WM3_MASK_HSW		REG_GENMASK64(28, 20)
++#define   SSKPD_WM2_MASK_HSW		REG_GENMASK64(19, 12)
++#define   SSKPD_WM1_MASK_HSW		REG_GENMASK64(11, 4)
++#define   SSKPD_OLD_WM0_MASK_HSW	REG_GENMASK64(3, 0)
++#define   SSKPD_WM3_MASK_SNB		REG_GENMASK(29, 24)
++#define   SSKPD_WM2_MASK_SNB		REG_GENMASK(21, 16)
++#define   SSKPD_WM1_MASK_SNB		REG_GENMASK(13, 8)
++#define   SSKPD_WM0_MASK_SNB		REG_GENMASK(5, 0)
+ 
+ /* Clocking configuration register */
+ #define CLKCFG			_MMIO(MCHBAR_MIRROR_BASE + 0xc00)
+@@ -4321,19 +4328,9 @@
+ 
+ /* Memory latency timer register */
+ #define MLTR_ILK		_MMIO(0x11222)
+-#define  MLTR_WM1_SHIFT		0
+-#define  MLTR_WM2_SHIFT		8
+ /* the unit of memory self-refresh latency time is 0.5us */
+-#define  ILK_SRLT_MASK		0x3f
+-
+-
+-/* the address where we get all kinds of latency value */
+-#define SSKPD			_MMIO(0x5d10)
+-#define SSKPD_WM_MASK		0x3f
+-#define SSKPD_WM0_SHIFT		0
+-#define SSKPD_WM1_SHIFT		8
+-#define SSKPD_WM2_SHIFT		16
+-#define SSKPD_WM3_SHIFT		24
++#define  MLTR_WM2_MASK		REG_GENMASK(13, 8)
++#define  MLTR_WM1_MASK		REG_GENMASK(5, 0)
  
  /*
-  * Local integer constant expression version of is_power_of_2().
-@@ -59,6 +74,8 @@
- 	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
- 	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
+  * The two pipe frame counter registers are not synchronized, so
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 34e46a9b8300..605944551e1b 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -2946,27 +2946,27 @@ static void intel_read_wm_latency(struct drm_i915_private *dev_priv,
+ 	} else if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
+ 		u64 sskpd = intel_uncore_read64(uncore, MCH_SSKPD);
  
-+#define _REG_FIELD_GET(__type, __mask, __val)	((__type)FIELD_GET(__mask, __val))
-+
- /**
-  * REG_FIELD_GET() - Extract a u32 bitfield value
-  * @__mask: shifted mask defining the field's length and position
-@@ -69,7 +86,19 @@
-  *
-  * @return: Masked and shifted value of the field defined by @__mask in @__val.
-  */
--#define REG_FIELD_GET(__mask, __val)	((u32)FIELD_GET(__mask, __val))
-+#define REG_FIELD_GET(__mask, __val)	_REG_FIELD_GET(u32, __mask, __val)
-+
-+/**
-+ * REG_FIELD_GET64() - Extract a u64 bitfield value
-+ * @__mask: shifted mask defining the field's length and position
-+ * @__val: value to extract the bitfield value from
-+ *
-+ * Local wrapper for FIELD_GET() to force u64 and for consistency with
-+ * REG_GENMASK64().
-+ *
-+ * @return: Masked and shifted value of the field defined by @__mask in @__val.
-+ */
-+#define REG_FIELD_GET64(__mask, __val)	_REG_FIELD_GET(u64, __mask, __val)
+-		wm[0] = (sskpd >> 56) & 0xFF;
++		wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
+ 		if (wm[0] == 0)
+-			wm[0] = sskpd & 0xF;
+-		wm[1] = (sskpd >> 4) & 0xFF;
+-		wm[2] = (sskpd >> 12) & 0xFF;
+-		wm[3] = (sskpd >> 20) & 0x1FF;
+-		wm[4] = (sskpd >> 32) & 0x1FF;
++			wm[0] = REG_FIELD_GET64(SSKPD_OLD_WM0_MASK_HSW, sskpd);
++		wm[1] = REG_FIELD_GET64(SSKPD_WM1_MASK_HSW, sskpd);
++		wm[2] = REG_FIELD_GET64(SSKPD_WM2_MASK_HSW, sskpd);
++		wm[3] = REG_FIELD_GET64(SSKPD_WM3_MASK_HSW, sskpd);
++		wm[4] = REG_FIELD_GET64(SSKPD_WM4_MASK_HSW, sskpd);
+ 	} else if (DISPLAY_VER(dev_priv) >= 6) {
+ 		u32 sskpd = intel_uncore_read(uncore, MCH_SSKPD);
  
- typedef struct {
- 	u32 reg;
+-		wm[0] = (sskpd >> SSKPD_WM0_SHIFT) & SSKPD_WM_MASK;
+-		wm[1] = (sskpd >> SSKPD_WM1_SHIFT) & SSKPD_WM_MASK;
+-		wm[2] = (sskpd >> SSKPD_WM2_SHIFT) & SSKPD_WM_MASK;
+-		wm[3] = (sskpd >> SSKPD_WM3_SHIFT) & SSKPD_WM_MASK;
++		wm[0] = REG_FIELD_GET(SSKPD_WM0_MASK_SNB, sskpd);
++		wm[1] = REG_FIELD_GET(SSKPD_WM1_MASK_SNB, sskpd);
++		wm[2] = REG_FIELD_GET(SSKPD_WM2_MASK_SNB, sskpd);
++		wm[3] = REG_FIELD_GET(SSKPD_WM3_MASK_SNB, sskpd);
+ 	} else if (DISPLAY_VER(dev_priv) >= 5) {
+ 		u32 mltr = intel_uncore_read(uncore, MLTR_ILK);
+ 
+ 		/* ILK primary LP0 latency is 700 ns */
+ 		wm[0] = 7;
+-		wm[1] = (mltr >> MLTR_WM1_SHIFT) & ILK_SRLT_MASK;
+-		wm[2] = (mltr >> MLTR_WM2_SHIFT) & ILK_SRLT_MASK;
++		wm[1] = REG_FIELD_GET(MLTR_WM1_MASK, mltr);
++		wm[2] = REG_FIELD_GET(MLTR_WM2_MASK, mltr);
+ 	} else {
+ 		MISSING_CASE(INTEL_DEVID(dev_priv));
+ 	}
 -- 
 2.34.1
 
