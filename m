@@ -1,49 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 606D94B2355
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 11:39:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08EC54B2455
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 12:34:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14B6310E1D7;
-	Fri, 11 Feb 2022 10:39:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8816610EA88;
+	Fri, 11 Feb 2022 11:34:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5A8110E1D7
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 10:39:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=OF/IgiH+v6IN/Pzp4IQTqAUh7fLzy/AMqRrw5uRs6QM=; b=LbJP76jKebDs3mjRSiss+VrY7f
- dyaOfWlffhDUHwB5AhCZaYYvYgwPKcloLfHaKYcpTn89ucITWQacDwWZdCUpXsJ1W4aPGDu1CoKWg
- Rfzrrf4xgw1gmNI7TdQWjDRc8mKeLyhdnOKMRPCY5pRyEN3Wib9vTBUNOwdD95nCv5VqFC6/0V7FQ
- Haq8I+dR+Ow1pT7b6qWtQv5lKaUKPND5wFWM1sqdcOOios9N3Wn/zaVMAzaStBFXvrfKDhY+htVJN
- 9uOg2NJnn422jyJBwlc67KqBfJSE0Vw19ZHFnLq5WuwjQtRMOFXBa8cNi2XxrR2RAgKJ34Y8iRUb+
- Lw5VTLVQ==;
-Received: from j217100.upc-j.chello.nl ([24.132.217.100]
- helo=worktop.programming.kicks-ass.net)
- by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nITKd-00AJv5-4D; Fri, 11 Feb 2022 10:39:15 +0000
-Received: by worktop.programming.kicks-ass.net (Postfix, from userid 1000)
- id 12A749853C7; Fri, 11 Feb 2022 11:39:14 +0100 (CET)
-Date: Fri, 11 Feb 2022 11:39:13 +0100
-From: Peter Zijlstra <peterz@infradead.org>
-To: Namhyung Kim <namhyung@kernel.org>
-Message-ID: <20220211103913.GR23216@worktop.programming.kicks-ass.net>
-References: <20220208184208.79303-1-namhyung@kernel.org>
- <20220209090908.GK23216@worktop.programming.kicks-ass.net>
- <CAM9d7cgq+jxu6FJuKhZkprn7dO4DiG5pDjmYZzneQYTfKOM85g@mail.gmail.com>
- <YgTXUQ9CBoo3+A+c@hirez.programming.kicks-ass.net>
- <CAM9d7cgPFLjQyopX04MwG6Leq6DwDJF2q6BxOL_Nw6J2LEZF4g@mail.gmail.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2425410E5AA;
+ Fri, 11 Feb 2022 11:34:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644579288; x=1676115288;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=19j4CU6gM/pSBaKhoxGfB/ddMAItGV1TCkkzA3NYdV4=;
+ b=LXhiOP3hvGo43Tb4qTTiTvb1Y83Or4LbNwVAc70A5fJSuoq80lbLgtw+
+ QF7HFArvc+/6lrCWg4PdhtR/rbUwiIj7H/2IMys6DwK6Uw4qGzjM+bHL8
+ ECsZbu3ja5bm1fOmGG05YDMT3JhCKk/evaIf3ocw+ezS5UZkNzXtgEDbI
+ a3F5FkhOqt9J4lanIy6gdDdTT2UyVT959TKGf3/ml06/+rVZUk9Rzq+E3
+ hum2edKpqnw73a+fWZrloeZsGhk3bb/Bl6I6nuQabkwzZqkTq8JsmKpOV
+ zYn1Fo0+c8fV9THGUbtcmG8dTuYUccqqjt34Xab5kLiZRSvpj51Aknibs g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="248548219"
+X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="248548219"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 03:34:47 -0800
+X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="602354941"
+Received: from pogara-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.19.40])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 03:34:46 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 11 Feb 2022 11:34:22 +0000
+Message-Id: <20220211113437.874691-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAM9d7cgPFLjQyopX04MwG6Leq6DwDJF2q6BxOL_Nw6J2LEZF4g@mail.gmail.com>
-Subject: Re: [Intel-gfx] [RFC 00/12] locking: Separate lock tracepoints from
- lockdep/lock_stat (v1)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 00/15] Initial support for small BAR recovery
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,22 +55,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcu <rcu@vger.kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Boqun Feng <boqun.feng@gmail.com>,
- LKML <linux-kernel@vger.kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
- Radoslaw Burny <rburny@google.com>, Byungchul Park <byungchul.park@lge.com>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- cgroups <cgroups@vger.kernel.org>, Tejun Heo <tj@kernel.org>,
- Waiman Long <longman@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
- Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>,
- linux-btrfs <linux-btrfs@vger.kernel.org>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 10, 2022 at 09:55:27PM -0800, Namhyung Kim wrote:
+Starting from DG2 we will have resizable BAR support for device local-memory,
+but in some cases the final BAR size might still be smaller than the total
+local-memory size. In such cases only part of local-memory will be CPU
+accessible, while the remainder is only accessible via the GPU. This series adds
+the basic enablers needed to ensure that the entire local-memory range is
+usable.
 
-> So you are ok with adding two new tracepoints, even if they are
-> similar to what we already have in lockdep/lock_stat, right?
+Needs to be applied on top of Arun' in-progress series[1].
 
-Yeah, I don't think adding tracepoints to the slowpaths of the various
-locks should be a problem.
+[1] https://patchwork.freedesktop.org/series/99430/
+
+v2:
+  - Various improvements and fixes as suggested by Thomas.
+v3:
+  - Add some more a-b and r-b. Also tweak patch 12 slightly, as suggested by
+    Thomas.
+
+-- 
+2.34.1
+
