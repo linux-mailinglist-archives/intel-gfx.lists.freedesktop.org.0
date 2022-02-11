@@ -1,48 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18D0E4B1DFA
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 06:49:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0B204B1E03
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 06:55:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43FD010E9E5;
-	Fri, 11 Feb 2022 05:48:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1225510E860;
+	Fri, 11 Feb 2022 05:55:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45D7810E9E5;
- Fri, 11 Feb 2022 05:48:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644558534; x=1676094534;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Mnp4+fdeIdsEA6E7aB8TBAXHKRWg9If7Edz7k7ia4sY=;
- b=Iyh7Mmyuemis1zA6koHRJHqMG24UGZbsAO4LLJihrz/lWlZIQsvM2Xi0
- oxck7k+5KUgi5NVdSi+c9SOTiMTM4jeCuOI4U/ci0AQZusgwnnqANUCyz
- a2ezI9eMjEtXAb8I4344C+4pCYzspMriTibkJTksgc/CtGC3UjcltmLTU
- EWDX8h3d3UEUzcvs4VNjDgBXiiHV7T5pn4y01PH6x+Uct5NGMB3qd7jC9
- n2LRFKgCKmB5evKEIl8biM7I66e14vPpLH5LzfNAi+PGWRqABv2q8ioVB
- YG9NERynf2sS+M3u5SmWBBiZ8kWYR48R83hiL+3+THzL8ghp5uEXVcUNv w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="230309093"
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="230309093"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 21:48:53 -0800
-X-IronPort-AV: E=Sophos;i="5.88,359,1635231600"; d="scan'208";a="701981572"
-Received: from ramaling-i9x.iind.intel.com ([10.203.144.108])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2022 21:48:51 -0800
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Date: Fri, 11 Feb 2022 11:19:03 +0530
-Message-Id: <20220211054903.24671-1-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
+ [209.85.208.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D275F10E860
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 05:55:40 +0000 (UTC)
+Received: by mail-lj1-f172.google.com with SMTP id k10so8102967ljq.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 21:55:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=nC1KApq7e2Tv1mRrJaVJbGFX4EPFBr5Wq82MxBaNzD0=;
+ b=vx57QRjEGqJpJCtfXK1DrFryipPK6uDn1KEuNQGCsCV/XjnERywgqX5u2pdpDNUrPo
+ fo6Qq2I2imj5HZrSlbL9EFNpevpAKCuIKTfwzJyEZi8CWTP9M2bV3hlg74JIoGHKlmuk
+ mfskcHAC8XQ0G5lS9g92vrYxZnJFpZOiXRCUlG+xO+o8cAvP841rjVkix/Xw1GCAwbIb
+ alvumzxHKfMLMckLVNyiC/vM+YOXejse+NxKnOkbWugo0Z4DhgDalWGrpMWqYZnKS/UX
+ NdCr5wg7AW4tEYXALjgPk6UJjFUCEcUQkVw7mEb/waXphI59Rt6pCvpHKxaMIjXO4no4
+ CRow==
+X-Gm-Message-State: AOAM530Nt+T70MDlzvh0STnxHszy3qQ4s3tlAVRuwGzSNap7QcHx8fIY
+ RuC1BleudLDqpA0W1lQGg2fK8JcPdG52ByHqRr8=
+X-Google-Smtp-Source: ABdhPJzbOzw/0zV4IgkYBd1T8G0wbLX3SjAMswL8OAcpI2VPdwnBvfBks/G9AKwLofLucGjL/8xeS4WMPSxifL2SCtI=
+X-Received: by 2002:a05:651c:a04:: with SMTP id k4mr74921ljq.180.1644558938779; 
+ Thu, 10 Feb 2022 21:55:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Don't try to process TBT
- interrupts
+References: <20220208184208.79303-1-namhyung@kernel.org>
+ <20220209090908.GK23216@worktop.programming.kicks-ass.net>
+ <CAM9d7cgq+jxu6FJuKhZkprn7dO4DiG5pDjmYZzneQYTfKOM85g@mail.gmail.com>
+ <YgTXUQ9CBoo3+A+c@hirez.programming.kicks-ass.net>
+In-Reply-To: <YgTXUQ9CBoo3+A+c@hirez.programming.kicks-ass.net>
+From: Namhyung Kim <namhyung@kernel.org>
+Date: Thu, 10 Feb 2022 21:55:27 -0800
+Message-ID: <CAM9d7cgPFLjQyopX04MwG6Leq6DwDJF2q6BxOL_Nw6J2LEZF4g@mail.gmail.com>
+To: Peter Zijlstra <peterz@infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [RFC 00/12] locking: Separate lock tracepoints from
+ lockdep/lock_stat (v1)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,98 +56,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: rcu <rcu@vger.kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, Boqun Feng <boqun.feng@gmail.com>,
+ LKML <linux-kernel@vger.kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
+ Radoslaw Burny <rburny@google.com>, Byungchul Park <byungchul.park@lge.com>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ cgroups <cgroups@vger.kernel.org>, Tejun Heo <tj@kernel.org>,
+ Waiman Long <longman@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>,
+ linux-btrfs <linux-btrfs@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+On Thu, Feb 10, 2022 at 1:14 AM Peter Zijlstra <peterz@infradead.org> wrote:
+>
+> On Wed, Feb 09, 2022 at 04:32:58PM -0800, Namhyung Kim wrote:
+> > On Wed, Feb 9, 2022 at 1:09 AM Peter Zijlstra <peterz@infradead.org> wrote:
+> > >
+> > > On Tue, Feb 08, 2022 at 10:41:56AM -0800, Namhyung Kim wrote:
+> > >
+> > > > Eventually I'm mostly interested in the contended locks only and I
+> > > > want to reduce the overhead in the fast path.  By moving that, it'd be
+> > > > easy to track contended locks with timing by using two tracepoints.
+> > >
+> > > So why not put in two new tracepoints and call it a day?
+> > >
+> > > Why muck about with all that lockdep stuff just to preserve the name
+> > > (and in the process continue to blow up data structures etc..). This
+> > > leaves distros in a bind, will they enable this config and provide
+> > > tracepoints while bloating the data structures and destroying things
+> > > like lockref (which relies on sizeof(spinlock_t)), or not provide this
+> > > at all.
+> >
+> > If it's only lockref, is it possible to change it to use arch_spinlock_t
+> > so that it can remain in 4 bytes?  It'd be really nice if we can keep
+> > spin lock size, but it'd be easier to carry the name with it for
+> > analysis IMHO.
+>
+> It's just vile and disgusting to blow up the lock size for convenience
+> like this.
+>
+> And no, there's more of that around. A lot of effort has been spend to
+> make sure spinlocks are 32bit and we're not going to give that up for
+> something as daft as this.
+>
+> Just think harder on the analysis side. Like said; I'm thinking the
+> caller IP should be good enough most of the time.
 
-DG2 is the first platform, that supports TC but not TBT.
-interrupt code is updated to avoid trying to process
-TBT-specific bits and registers.
+Ok, I'll go in this direction then.
 
-Cc: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h          |  1 +
- drivers/gpu/drm/i915/i915_irq.c          | 12 ++++++++----
- drivers/gpu/drm/i915/i915_pci.c          |  1 +
- drivers/gpu/drm/i915/intel_device_info.h |  1 +
- 4 files changed, 11 insertions(+), 4 deletions(-)
+So you are ok with adding two new tracepoints, even if they are
+similar to what we already have in lockdep/lock_stat, right?
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 5b6fd792a8d7..b9294ff5a1e6 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1433,6 +1433,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
- #define HAS_PSR_HW_TRACKING(dev_priv) \
- 	(INTEL_INFO(dev_priv)->display.has_psr_hw_tracking)
-+#define HAS_TC_WITHOUT_TBT(dev_priv)	 (INTEL_INFO(dev_priv)->display.has_tc_without_tbt)
- #define HAS_PSR2_SEL_FETCH(dev_priv)	 (DISPLAY_VER(dev_priv) >= 12)
- #define HAS_TRANSCODER(dev_priv, trans)	 ((INTEL_INFO(dev_priv)->display.cpu_transcoder_mask & BIT(trans)) != 0)
- 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index fdd568ba4a16..72b9888b2acf 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -2245,7 +2245,8 @@ static void gen11_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
- {
- 	u32 pin_mask = 0, long_mask = 0;
- 	u32 trigger_tc = iir & GEN11_DE_TC_HOTPLUG_MASK;
--	u32 trigger_tbt = iir & GEN11_DE_TBT_HOTPLUG_MASK;
-+	u32 trigger_tbt = HAS_TC_WITHOUT_TBT(dev_priv) ? 0 :
-+		iir & GEN11_DE_TBT_HOTPLUG_MASK;
- 
- 	if (trigger_tc) {
- 		u32 dig_hotplug_reg;
-@@ -3468,7 +3469,8 @@ static void gen11_hpd_irq_setup(struct drm_i915_private *dev_priv)
- 	intel_uncore_posting_read(&dev_priv->uncore, GEN11_DE_HPD_IMR);
- 
- 	gen11_tc_hpd_detection_setup(dev_priv);
--	gen11_tbt_hpd_detection_setup(dev_priv);
-+	if (!HAS_TC_WITHOUT_TBT(dev_priv))
-+		gen11_tbt_hpd_detection_setup(dev_priv);
- 
- 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
- 		icp_hpd_irq_setup(dev_priv);
-@@ -3828,8 +3830,10 @@ static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
- 
- 	if (DISPLAY_VER(dev_priv) >= 11) {
- 		u32 de_hpd_masked = 0;
--		u32 de_hpd_enables = GEN11_DE_TC_HOTPLUG_MASK |
--				     GEN11_DE_TBT_HOTPLUG_MASK;
-+		u32 de_hpd_enables = GEN11_DE_TC_HOTPLUG_MASK;
-+
-+		if (!HAS_TC_WITHOUT_TBT(dev_priv))
-+			de_hpd_enables |= GEN11_DE_TBT_HOTPLUG_MASK;
- 
- 		GEN3_IRQ_INIT(uncore, GEN11_DE_HPD_, ~de_hpd_masked,
- 			      de_hpd_enables);
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 467252f885c2..1ad5593e925f 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -1046,6 +1046,7 @@ static const struct intel_device_info dg2_info = {
- 	.graphics.rel = 55,
- 	.media.rel = 55,
- 	PLATFORM(INTEL_DG2),
-+	.display.has_tc_without_tbt = 1,
- 	.has_guc_deprivilege = 1,
- 	.has_64k_pages = 1,
- 	.platform_engine_mask =
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index 27dcfe6f2429..4d8cfd41aa31 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -171,6 +171,7 @@ enum intel_ppgtt_type {
- 	func(has_overlay); \
- 	func(has_psr); \
- 	func(has_psr_hw_tracking); \
-+	func(has_tc_without_tbt); \
- 	func(overlay_needs_physical); \
- 	func(supports_tv);
- 
--- 
-2.20.1
-
+Thanks,
+Namhyung
