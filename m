@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEBB24B262F
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 13:48:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 655184B2648
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 13:50:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96EA210EBC8;
-	Fri, 11 Feb 2022 12:48:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6941010EBD3;
+	Fri, 11 Feb 2022 12:50:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25C4E10EBC8;
- Fri, 11 Feb 2022 12:48:28 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1E7310EBC3;
+ Fri, 11 Feb 2022 12:50:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644583708; x=1676119708;
+ t=1644583819; x=1676119819;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=sMA4IiMHwtCnREkIb2+4e0f5nHX+sUyVsa1zstNiu+c=;
- b=isKOYbPx6BI5br1ZWE4x1UEKNyc7UIIgclUz/sno+UVn90PFHQXj7zR/
- du9oRYqesdyQrRbqtH3Sd6959X93t1z3BM3AmQTeA+ZkAJb9nrJuLnwfV
- KGy+WYprvY2a8xCmbldcYE4r8tquNernAZvRfxKGNkWF0rmqUbIiiyHjQ
- 9Tw8HWmjfeYF3wdszOsAxK+KV/jom4Jp/YMdjkRruld1+Vo+W2SmPfsPG
- +iYXgwTQOT4C/p1qstxhKEfX2UgjgHpevsPKfkXBfKPRtMVEWEaTh5VZH
- q0rKmOk1c2Qfpf8k5Hqir23SvuBwX+rhQc6SneMxwvDvKKrPF5XkPIJzi Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="336147484"
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="336147484"
+ bh=le1Y9ZiRDgLGbqnqoXTkTM4Rhv1K8JUf7Aq7ZYiWoME=;
+ b=Pz5R/wX4iXbBKUWZFoDlEKDSA4wUJI2ycv/Iq9PfHcG44tsnL4iX3hCf
+ xcp0bY6dvCtSD66D8/h9/bGNIYIdBrrjW9RC4CAvCeqWluW7kR8NFp0Dj
+ xKl8z7dArFqmR5COlLGARgUwUFh24lo2GvazN8MYYxZSaIO8aPO/pz1ji
+ +pF/Y+9tEt1OX9BsOyGbMwG/W2EwKJflrsnjR4eGdlpqnatw5GGQIly+e
+ QNPOoKbocaVxNfMcOmlmXC98T8KkRZv6Ci8CuOfEvbWShKcK2D2jmcVU6
+ cSeXl31YQl1I6XiJ6G9bZtpThVSAbi5OoyziUulBNltmhJrtY5kuy/QIb A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="274282137"
+X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="274282137"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 04:48:27 -0800
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="774244225"
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 04:50:19 -0800
+X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="774244563"
 Received: from olindum-mobl1.ger.corp.intel.com (HELO [10.249.254.193])
  ([10.249.254.193])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 04:48:26 -0800
-Message-ID: <fa560873-281b-d060-8d72-46a93f45a525@linux.intel.com>
-Date: Fri, 11 Feb 2022 13:48:24 +0100
+ 11 Feb 2022 04:50:17 -0800
+Message-ID: <9334e31d-fa6b-0c2f-17b1-bc182870830c@linux.intel.com>
+Date: Fri, 11 Feb 2022 13:50:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.0
 Content-Language: en-US
 To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
 References: <20220211113437.874691-1-matthew.auld@intel.com>
- <20220211113437.874691-13-matthew.auld@intel.com>
+ <20220211113437.874691-15-matthew.auld@intel.com>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20220211113437.874691-13-matthew.auld@intel.com>
+In-Reply-To: <20220211113437.874691-15-matthew.auld@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 12/15] drm/i915/create: apply
- ALLOC_GPU_ONLY by default
+Subject: Re: [Intel-gfx] [PATCH v3 14/15] drm/i915/uapi: forbid
+ ALLOC_GPU_ONLY for error capture
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,25 +67,14 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 2/11/22 12:34, Matthew Auld wrote:
-> Starting from DG2+, when dealing with LMEM, we assume that by default
-> all userspace allocations should be placed in the non-mappable portion
-> of LMEM.  Note that dumb buffers are not included here, since these are
-> not "GPU accelerated" and likely need CPU access. We choose to just
-> always set GPU_ONLY, and let the backend figure out if that should be
-> ignored on discrete devices.
+> On platforms where there might be non-mappable LMEM, force userspace to
+> mark the buffers with the correct hint. When dumping the BO contents
+> during capture we need CPU access. Note this only applies to buffers
+> that can be placed in LMEM, and also doesn't impact DG1.
 >
-> In a later patch userspace will be able to provide a hint if CPU access
-> to the buffer is needed.
->
-> v2(Thomas)
->   - Apply GPU_ONLY on all discrete devices, but only if the BO can be
->     placed in LMEM. Down in the depths this should be turned into a noop,
->     where required, and as an annotation it still make some sense. If we
->     apply it regardless of the placements then we end up needing to check
->     the placements during exec capture. Also it's slightly inconsistent
->     since the NEEDS_CPU_ACCESS can only be applied on objects that can be
->     placed in LMEM. The other annoyance would be gem_create_ext vs plain
->     gem_create, if we were to always apply GPU_ONLY.
+> v2(Reported-by: kernel test robot <lkp@intel.com>):
+>    - Also update the function signature on !CONFIG_DRM_I915_CAPTURE_ERROR
+>      builds.
 >
 > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
@@ -94,26 +83,3 @@ On 2/11/22 12:34, Matthew Auld wrote:
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
 
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_create.c | 8 ++++++++
->   1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> index 9402d4bf4ffc..ecb8c2feec46 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> @@ -424,6 +424,14 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, void *data,
->   		ext_data.n_placements = 1;
->   	}
->   
-> +	/*
-> +	 * TODO: add a userspace hint to force CPU_ACCESS for the object, which
-> +	 * can override this.
-> +	 */
-> +	if (ext_data.n_placements > 1 ||
-> +	    ext_data.placements[0]->type != INTEL_MEMORY_SYSTEM)
-> +		ext_data.flags |= I915_BO_ALLOC_GPU_ONLY;
-> +
->   	obj = __i915_gem_object_create_user_ext(i915, args->size,
->   						ext_data.placements,
->   						ext_data.n_placements,
