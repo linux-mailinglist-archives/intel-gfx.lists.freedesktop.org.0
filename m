@@ -1,54 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C69E4B20CB
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 09:56:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EA274B20F7
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 10:06:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4F0110EA27;
-	Fri, 11 Feb 2022 08:56:29 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33D1210EA1F;
- Fri, 11 Feb 2022 08:56:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06EBB10EA36;
+	Fri, 11 Feb 2022 09:06:38 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6986A10E463
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 09:06:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644569788; x=1676105788;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=8YYToFT+4qx3BqaIO8/V8ReZe6XZ3bG98IBedjtO2LQ=;
- b=ZlvNp4R1blkAVmFPpBmV1Att+FPSQQs1yMONb5u5nllTpB+xZz57wpYe
- VdO0FkfujfZCS+zon9C7LvnbyA+yUf2socY9RVCx8/mGrQ6AasHEdt7p3
- 9jHf+gi7H2wyoAO++zf8EdansG3BCuk6C/p5b3PBy1nsWQkGlZ+kx3tLA
- WBmiHH5tOJKlc++EMn686VMjd4BtH7WIi0Ty5lw4SmZxaNBBpgmDVYBQp
- rqx3q/AMQbdAKBo2RsKq0yZY/6Us7pZG6PlkO/R/b1k6r8qj85K7GDTtv
- MJ2JYtVcuoeJiIDz/MD1DTa0WADndGcG6UhzO6RKTFTSirmkIlM8RyZz4 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="247284776"
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="247284776"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 00:56:27 -0800
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="483229157"
-Received: from phughe1x-mobl2.ger.corp.intel.com (HELO [10.213.201.219])
- ([10.213.201.219])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 00:56:26 -0800
-Message-ID: <5ab45355-15ed-74d9-3ef0-3982f41201f2@linux.intel.com>
-Date: Fri, 11 Feb 2022 08:56:24 +0000
+ t=1644570396; x=1676106396;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=C2JSGBhe9hTF4buzyywkh/Y1z/ATqcVQP6HqH4OW2uM=;
+ b=ATC1vd1LN42d06fHhvObDfRsLEmNN1W/QS+nP9ACZEV7xbcNVTNuuFqd
+ ZJzgDx6HpfiM4hjH7SFs/kHgGGoxCEqAk150g6V4bGoNNqx+OY5voh8uy
+ YECz3GRAKu/PvwlGuT20gQeR56xBrANNhPXfA9EsouG3M9pLk0QOf/B01
+ DVz5SCpanVVtQc1IfmuMy2EPVkh7qO9Chs6UR1QV4gMFMbPT4ioxjsi7I
+ NpAPnE2dC3cf4VCDrlz+4faI0FthV4QNPjp20RHmTLtEvXjuXm7jxklqk
+ GMxoVH9zc7WRLCUxf9riGHW+vAgIaIjoZFHbiHf6VYF9NGBeG83pbuJMa g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="249445645"
+X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="249445645"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 01:06:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="537589996"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by fmsmga007.fm.intel.com with SMTP; 11 Feb 2022 01:06:30 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 11 Feb 2022 11:06:29 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 11 Feb 2022 11:06:21 +0200
+Message-Id: <20220211090629.15555-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
-References: <20220210214708.2911301-1-John.C.Harrison@Intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220210214708.2911301-1-John.C.Harrison@Intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Do not complain about stale
- reset notifications
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/8] drm/i915: Plane/wm cleanups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,47 +56,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On 10/02/2022 21:47, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> It is possible for reset notifications to arrive for a context that is
-> in the process of being banned. So don't flag these as an error, just
-> report it as informational (because it is still useful to know that
-> resets are happening even if they are being ignored).
+Move some plane stuff out from intel_display.c, introduce
+a scaled_planes bitmask, and using that as an excuse clean
+up a bunch of watermark registers.
 
-Is the "invalid" in the log message correct then or it should be 
-something slightly different? Delayed? Ignored? "Ignoring .. for banned.." ?
+Ville Syrjälä (8):
+  drm/i915: Move intel_plane_atomic_calc_changes() & co. out
+  drm/i915: Introduce intel_arm_planes_on_crtc()
+  drm/i915: Introduce scaled_planes bitmask
+  drm/i915: Use {active,scaled}_planes to compute ilk watermarks
+  drm/i915: Remove gen6_check_mch_setup()
+  drm/i915: Add REG_GENMASK64() and REG_FIELD_GET64()
+  drm/i915: Clean up SSKPD/MLTR defines
+  drm/i915: Polish ilk+ wm register bits
 
-Regards,
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 204 +++++++++++++++++-
+ .../gpu/drm/i915/display/intel_atomic_plane.h |  10 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 194 +----------------
+ .../drm/i915/display/intel_display_debugfs.c  |   2 +-
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ drivers/gpu/drm/i915/i915_reg.h               |  68 +++---
+ drivers/gpu/drm/i915/i915_reg_defs.h          |  57 +++--
+ drivers/gpu/drm/i915/intel_pm.c               | 104 ++++-----
+ 8 files changed, 322 insertions(+), 318 deletions(-)
 
-Tvrtko
+-- 
+2.34.1
 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 8 ++++----
->   1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index b3a429a92c0d..3a4a87d1c89c 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -4022,10 +4022,10 @@ static void guc_handle_context_reset(struct intel_guc *guc,
->   		capture_error_state(guc, ce);
->   		guc_context_replay(ce);
->   	} else {
-> -		drm_err(&guc_to_gt(guc)->i915->drm,
-> -			"Invalid GuC engine reset notificaion for 0x%04X on %s: banned = %d, blocked = %d",
-> -			ce->guc_id.id, ce->engine->name, intel_context_is_banned(ce),
-> -			context_blocked(ce));
-> +		drm_info(&guc_to_gt(guc)->i915->drm,
-> +			 "Invalid GuC engine reset notification for 0x%04X on %s: banned = %d, blocked = %d",
-> +			 ce->guc_id.id, ce->engine->name, intel_context_is_banned(ce),
-> +			 context_blocked(ce));
->   	}
->   }
->   
