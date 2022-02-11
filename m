@@ -1,54 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 655184B2648
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 13:50:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B84514B2737
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 14:32:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6941010EBD3;
-	Fri, 11 Feb 2022 12:50:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97FC910EC31;
+	Fri, 11 Feb 2022 13:32:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1E7310EBC3;
- Fri, 11 Feb 2022 12:50:19 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C70010EC2C;
+ Fri, 11 Feb 2022 13:32:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644583819; x=1676119819;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=le1Y9ZiRDgLGbqnqoXTkTM4Rhv1K8JUf7Aq7ZYiWoME=;
- b=Pz5R/wX4iXbBKUWZFoDlEKDSA4wUJI2ycv/Iq9PfHcG44tsnL4iX3hCf
- xcp0bY6dvCtSD66D8/h9/bGNIYIdBrrjW9RC4CAvCeqWluW7kR8NFp0Dj
- xKl8z7dArFqmR5COlLGARgUwUFh24lo2GvazN8MYYxZSaIO8aPO/pz1ji
- +pF/Y+9tEt1OX9BsOyGbMwG/W2EwKJflrsnjR4eGdlpqnatw5GGQIly+e
- QNPOoKbocaVxNfMcOmlmXC98T8KkRZv6Ci8CuOfEvbWShKcK2D2jmcVU6
- cSeXl31YQl1I6XiJ6G9bZtpThVSAbi5OoyziUulBNltmhJrtY5kuy/QIb A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="274282137"
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="274282137"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 04:50:19 -0800
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="774244563"
-Received: from olindum-mobl1.ger.corp.intel.com (HELO [10.249.254.193])
- ([10.249.254.193])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 04:50:17 -0800
-Message-ID: <9334e31d-fa6b-0c2f-17b1-bc182870830c@linux.intel.com>
-Date: Fri, 11 Feb 2022 13:50:16 +0100
+ t=1644586370; x=1676122370;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=6bpC44FR2dUvpDFDk0vyLSxKoxzrW58Bd5nRgFtt9G4=;
+ b=n0KFjuWcpKjveKme230JVCv80bVuCu7yhW+oE+5cF2NoftUEBINkIBeL
+ suiSq8N/UllKgbwPnobZify1pZwNZGDp16ehvzYNRk4DzKUwBOUpf8iL9
+ y4E6TK/35UU7jYprBOMCanR6q7cOocZyM2Czdm8Z2B7kGYATCPybCfPWu
+ ZJqrbSL3/31glDc2GkYZqgR8pFJyKeHzgbLeAGsitGVkp9xlcxkrigmb9
+ aXgpFhtHwxmdR1nYmWyaZ5+LcK4b58CQDjkLRCJKJblUtj6HFjDVkI1UZ
+ UfCBVL9m4gB2qrfKRoOF4blDvzKf5VOQvZ9NDzsAq53v95auhHxCfOKv6 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="237135382"
+X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="237135382"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 05:32:49 -0800
+X-IronPort-AV: E=Sophos;i="5.88,361,1635231600"; d="scan'208";a="634095526"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
+ by orsmga004-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2022 05:32:47 -0800
+Date: Fri, 11 Feb 2022 19:02:57 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <20220211133257.GB25847@intel.com>
+References: <20220128185209.18077-1-ramalingam.c@intel.com>
+ <20220128185209.18077-6-ramalingam.c@intel.com>
+ <68877a17-fff0-eef6-a2f2-a9b43dbdb5dc@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20220211113437.874691-1-matthew.auld@intel.com>
- <20220211113437.874691-15-matthew.auld@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20220211113437.874691-15-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v3 14/15] drm/i915/uapi: forbid
- ALLOC_GPU_ONLY for error capture
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <68877a17-fff0-eef6-a2f2-a9b43dbdb5dc@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/guc: Allow user to override
+ driver load failure without GuC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,25 +59,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Hellstrom Thomas <thomas.hellstrom@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 2022-02-07 at 08:55:20 -0800, Daniele Ceraolo Spurio wrote:
+> 
+> 
+> On 1/28/2022 10:52 AM, Ramalingam C wrote:
+> > From: Stuart Summers <stuart.summers@intel.com>
+> > 
+> > The driver is set currently to fail modprobe when GuC is disabled
+> > (enable_guc=0) after GuC has been loaded on a previous modprobe.
+> > For GuC deprivilege, the BIOS is setting the locked bit, so the
+> > driver always considers the GuC to have been loaded and thus does
+> > not support enable_guc=0 on these platforms.
+> > 
+> > There are some debug scenarios where loading without GuC can be
+> > interesting. Add a new feature flag for GuC deprivilege and a mode
+> > (enable_guc=0x80) which can be exclusively set to skip the locked
+> > bit check.
+> 
+> This is a debug-only patch, so IMO it should definitely not be merged as-is,
+> because we don't want normal users having access to this option as it can
+> lead to an hard gpu hangs if misused. I'm honestly not convinced we want
+> this in the tree at all, because you can still run without GuC submission by
+> setting enable_guc=2; the only thing this patch adds is the ability to skip
+> the GuC/HuC load entirely. If you think there is still value in having this
+> ability for debug, then the patch should be updated to only allow the new
+> option when one of the debug flags is set; I'd go with DEBUG_GEM as we have
+> that enabled by default in our CI builds.
 
-On 2/11/22 12:34, Matthew Auld wrote:
-> On platforms where there might be non-mappable LMEM, force userspace to
-> mark the buffers with the correct hint. When dumping the BO contents
-> during capture we need CPU access. Note this only applies to buffers
-> that can be placed in LMEM, and also doesn't impact DG1.
->
-> v2(Reported-by: kernel test robot <lkp@intel.com>):
->    - Also update the function signature on !CONFIG_DRM_I915_CAPTURE_ERROR
->      builds.
->
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+Thank you daniele. Dropping this patch as i dont see any usecase as of
+now.
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-
+Ram.
+> 
+> Daniele
+> 
+> > cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+> > Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/uc/intel_uc.c | 17 +++++++++++++++--
+> >   drivers/gpu/drm/i915/i915_params.h    |  1 +
+> >   2 files changed, 16 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> > index da199aa6989f..a1376dbd04fe 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> > @@ -108,7 +108,7 @@ static void __confirm_options(struct intel_uc *uc)
+> >   			 "Incompatible option enable_guc=%d - %s\n",
+> >   			 i915->params.enable_guc, "GuC submission is N/A");
+> > -	if (i915->params.enable_guc & ~ENABLE_GUC_MASK)
+> > +	if (i915->params.enable_guc & ~(ENABLE_GUC_MASK | ENABLE_GUC_DO_NOT_LOAD_GUC))
+> >   		drm_info(&i915->drm,
+> >   			 "Incompatible option enable_guc=%d - %s\n",
+> >   			 i915->params.enable_guc, "undocumented flag");
+> > @@ -416,8 +416,21 @@ static bool uc_is_wopcm_locked(struct intel_uc *uc)
+> >   	       (intel_uncore_read(uncore, DMA_GUC_WOPCM_OFFSET) & GUC_WOPCM_OFFSET_VALID);
+> >   }
+> > +static inline bool skip_lock_check(struct drm_i915_private *i915)
+> > +{
+> > +	/*
+> > +	 * For platforms with GuC deprivilege, if a user *really* wants
+> > +	 * to run without GuC, let that happen by setting enable_guc=0x80.
+> > +	 */
+> > +	return (HAS_GUC_DEPRIVILEGE(i915) &&
+> > +		(i915->params.enable_guc & ENABLE_GUC_DO_NOT_LOAD_GUC) &&
+> > +		!(i915->params.enable_guc & ~ENABLE_GUC_DO_NOT_LOAD_GUC));
+> > +}
+> > +
+> >   static int __uc_check_hw(struct intel_uc *uc)
+> >   {
+> > +	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
+> > +
+> >   	if (!intel_uc_supports_guc(uc))
+> >   		return 0;
+> > @@ -426,7 +439,7 @@ static int __uc_check_hw(struct intel_uc *uc)
+> >   	 * before on this system after reboot, otherwise we risk GPU hangs.
+> >   	 * To check if GuC was loaded before we look at WOPCM registers.
+> >   	 */
+> > -	if (uc_is_wopcm_locked(uc))
+> > +	if (uc_is_wopcm_locked(uc) && likely(!skip_lock_check(i915)))
+> >   		return -EIO;
+> >   	return 0;
+> > diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
+> > index c9d53ff910a0..8996ba2cc3a8 100644
+> > --- a/drivers/gpu/drm/i915/i915_params.h
+> > +++ b/drivers/gpu/drm/i915/i915_params.h
+> > @@ -32,6 +32,7 @@ struct drm_printer;
+> >   #define ENABLE_GUC_SUBMISSION		BIT(0)
+> >   #define ENABLE_GUC_LOAD_HUC		BIT(1)
+> > +#define ENABLE_GUC_DO_NOT_LOAD_GUC	BIT(7)
+> >   #define ENABLE_GUC_MASK			GENMASK(1, 0)
+> >   /*
+> 
