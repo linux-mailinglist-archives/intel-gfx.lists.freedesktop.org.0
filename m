@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFB724B2050
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 09:42:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 260934B2066
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 09:44:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83B2F10EA1F;
-	Fri, 11 Feb 2022 08:41:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC81D10EA24;
+	Fri, 11 Feb 2022 08:44:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FD0710EA1F
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 08:41:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644568917; x=1676104917;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=TQBlgx2YOXsSRvcyinCfpQuZrhaFXIRGXi+JSIVT7Jc=;
- b=VqUZvUrlQPIy+MrghPpN/Ln76T01hRbf8MyyhPUZyF6PKS2HpVg7l5ki
- Vcy/ZpUPwjQiVXVVECAsJaneVGNJMpk7E/vtE9YCHeMt/gXGvxj2R+/zW
- uf2FwnWWdwEvvkNd4GhCKcQVCtk3k3ej37lPC3ghEx/X/H0dG/pYjxsMP
- b4KGD48HiRieNVxACNzkf5xOm7NbPZ13MW/QAzYp1TCJxcNVApcYTpiW6
- OylzCa3J0NNTqrqqySsiUnSdyrm+8FH2bo6mPfcbGll0x38/mJqz8Q5iu
- yiWSb+fn398qBSydjmyKwnE5omnpSAv0XoF5T4cLEsPhlvBT5DzySytR8 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="233246172"
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="233246172"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 00:41:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="679444003"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga001.fm.intel.com with SMTP; 11 Feb 2022 00:41:54 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 11 Feb 2022 10:41:53 +0200
-Date: Fri, 11 Feb 2022 10:41:53 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <YgYhUeBZ7gbLmqUp@intel.com>
-References: <20220210231217.1706063-1-matthew.d.roper@intel.com>
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30BB710EA24;
+ Fri, 11 Feb 2022 08:44:23 +0000 (UTC)
+Date: Fri, 11 Feb 2022 09:44:17 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1644569059;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XeYU8c+lRvkFWBYmpHo0677lmpDC8/OXyuCRrJWusUc=;
+ b=HTCeSCici3BGao97l2RjKc8m6UqBACaDeSvRlBTRlH2UKU5jiBv+lTKdn+n0ecvYAkYRoD
+ WFh30SRzfkwMBXX5be4C13kQmKD+UiUjAow1sPGRhnimk6AkK0UFt2c/xVbSVEKtH7UzKA
+ JG/GmCi1b3LwsgCJnRrP6mdato9XW/wWlujwtDaWIiESvRO9eOfBmc+LDNAxL/jnq3YHfJ
+ QKHyUg/c1ls+vSiq4gRI0LEcur6G4r3l9SeOZZr1fZwhrpUNK5BHn3WUoUIBVQfb6DIbb6
+ UErWxVuQSWDY/AvSqomVKXHy4KvDmANh8YTN6Uco8brcUnh/z4cUCu/TTiLFzw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1644569059;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XeYU8c+lRvkFWBYmpHo0677lmpDC8/OXyuCRrJWusUc=;
+ b=EnmOBc2ZzwPMl8L9mQyoTZX14j9JBbJcDbIGukJWXqQYI6OUdqDtux+UaY3VynQecLkIml
+ zNHXWQ4JAI+pEyCQ==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Mario Kleiner <mario.kleiner.de@gmail.com>
+Message-ID: <YgYh4Y119dKY8vaO@linutronix.de>
+References: <20211214140301.520464-1-bigeasy@linutronix.de>
+ <20211214140301.520464-5-bigeasy@linutronix.de>
+ <CAEsyxygWP50qP9Xj-GmAycb6Ex8DET2c4DbY-i3dnocaXZ=JZA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220210231217.1706063-1-matthew.d.roper@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Move MCHBAR registers to their
- own header
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAEsyxygWP50qP9Xj-GmAycb6Ex8DET2c4DbY-i3dnocaXZ=JZA@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 4/8] drm/i915: Use
+ preempt_disable/enable_rt() where recommended
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,57 +59,188 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Mike Galbraith <umgwanakikbuti@gmail.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 10, 2022 at 03:12:17PM -0800, Matt Roper wrote:
-> Registers that exist within the MCH BAR and are mirrored into the GPU's
-> MMIO space are a good candidate to separate out into their own header.
-> 
-> For reference, the mirror of the MCH BAR lives at the following
-> locations in the graphics MMIO space:
-> 
->  * Pre-gen6:           0x10000 -  0x13000
+On 2022-01-27 00:29:37 [+0100], Mario Kleiner wrote:
+> Hi, first thank you for implementing these preempt disables according to
+Hi Mario,
 
-Should go up to 0x14000 according to some docs I have.
+> the markers i left long ago. And sorry for the rather late reply.
+>=20
+> I had a look at the code, as of Linux 5.16, and did also a little test run
+> (of a standard kernel, not with PREEMPT_RT, only
+> CONFIG_PREEMPT_VOLUNTARY=3Dy) on my Intel Kabylake GT2, so some thoughts:
+>=20
+> The area covers only register reads and writes. The part that worries me
+> > is:
+> > - __intel_get_crtc_scanline() the worst case is 100us if no match is
+> >   found.
+> >
+>=20
+> This one can be a problem indeed on (maybe all?) modern Intel gpu's since
+> Haswell, ie. the last ~10 years. I was able to reproduce it on my Kabylake
+> Intel gpu.
+>=20
+> Most of the time that for-loop with up to 100 repetitions (~ 100
+> udelay(1) + one mmio register read) (cfe.
+> https://elixir.bootlin.com/linux/v5.17-rc1/source/drivers/gpu/drm/i915/i9=
+15_irq.c#L856)
+> will not execute, because most of the time that function gets called from
+> the vblank irq handler and then that trigger condition (if
+> (HAS_DDI(dev_priv) && !position)) is not true. However, it also gets call=
+ed
+> as part of power-saving on behalf of userspace context, whenever the
+> desktop graphics goes idle for two video refresh cycles. If the desktop
+> shows graphics activity again, and vblank interrupts need to get reenable=
+d,
+> the probability of hitting that case is then ~1-4% depending on video mod=
+e.
+> How many loops it runs also varies.
+>=20
+> On my little Intel(R) Core(TM) i5-8250U CPU machine with a mostly idle
+> desktop, I observed about one hit every couple of seconds of regular use,
+> and each hit took between 125 usecs and almost 250 usecs. I guess udelay(=
+1)
+> can take a bit longer than 1 usec?
 
->  * Gen6-Gen11 + RKL:  0x140000 - 0x14FFFF
+it should get very close to this. Maybe something else extended the time
+depending on what you observe.
 
-Some docs say this goes up to 0x180000, other docs have different
-numbers. I suppose it doesn't matter all that much really. And
-BXT+ clearly can't go past 0x160000 since IIRC that's where some
-of the PHY/PLL stuff lives.
+> So that's too much for preempt-rt. What one could do is the following:
+>=20
+> 1. In the for-loop in __intel_get_crtc_scanline(), add a preempt_enable()
+> before the udelay(1); and a preempt_disable() again after it. Or
+> potentially around the whole for-loop if the overhead of
+> preempt_en/disable() is significant?
 
->  * TGL, ADL:          0x140000 - 0x15FFFF
-> 
-> Bspec: 134, 51771
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-<snip>
-> -#define GEN6_GT_PERF_STATUS	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5948)
-> -#define BXT_GT_PERF_STATUS      _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x7070)
-> -#define GEN6_RP_STATE_LIMITS	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5994)
-> -#define GEN6_RP_STATE_CAP	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5998)
-> -#define   RP0_CAP_MASK		REG_GENMASK(7, 0)
-> -#define   RP1_CAP_MASK		REG_GENMASK(15, 8)
-> -#define   RPN_CAP_MASK		REG_GENMASK(23, 16)
->  #define BXT_RP_STATE_CAP        _MMIO(0x138170)
->  #define GEN9_RP_STATE_LIMITS	_MMIO(0x138148)
->  #define XEHPSDV_RP_STATE_CAP	_MMIO(0x250014)
+It is very optimized on x86 ;)
 
-:( This is a bit unfortunate. I wonder if we should make an exception
-for these and keep them all together somewhere?
+> 2. In intel_get_crtc_scanline() also wrap the call to
+> __intel_get_crtc_scanline() into a preempt_disable() and preempt_enable(),
+> so we can be sure that __intel_get_crtc_scanline() always gets called with
+> preemption disabled.
+>=20
+> Why should this work ok'ish? The point of the original preempt disable
+> inside i915_get_crtc_scanoutpos
+> <https://elixir.bootlin.com/linux/v5.17-rc1/C/ident/i915_get_crtc_scanout=
+pos>
+> is that those two *stime =3D ktime_get() and *etime =3D ktime_get() clock
+> queries happen as close to the scanout position query as possible to get a
+> small confidence interval for when exactly the scanoutpos was
+> read/determined from the display hardware. error =3D (etime - stime) is t=
+he
+> error margin. If that margin becomes greater than 20 usecs, then the
+> higher-level code will consider the measurement invalid and repeat the
+> whole procedure up to 3 times before giving up.
 
-<snip>
-> -/* Memory latency timer register */
-> -#define MLTR_ILK		_MMIO(0x11222)
-> +#define MLTR_ILK				_MMIO(MCHBAR_MIRROR_BASE + 0x1222)
+The preempt-disable is needed then? The task is preemptible here on
+PREEMPT_RT but it _may_ not come to this. The difference vs !RT is that
+an interrupt will preempt this code without it.
 
-I'd prefer to see a separate patch for the s/number/MCHBAR_MIRROR_BASE/ 
-stuff. Very hard to review those in this form.
+> Normally, in my experience with different graphics chips, one would obser=
+ve
+> error < 3 usecs, so the measurement almost always succeeds at first try,
+> only very rarely takes two attempts. The preempt disable is meant to make
+> sure that this stays the case on a PREEMPT_RT kernel.
 
--- 
-Ville Syrjälä
-Intel
+Was it needed?
+
+> The problem here are the relatively rare cases where we hit that up to 100
+> iterations for-loop. Here even on a regular kernel, due to hardware quirk=
+s,
+> we already exceed the 20 usecs tolerance by a huge amount of more than 100
+> usecs, leading to a retry of the measurement. And my tests showed that
+> often the two succeeding retries also fail, because of hardware quirks can
+> apparently create a blackout situation approaching 1 msec, so we lose
+> anyway, regardless if we get preempted on a RT kernel or not. That's why
+> enabling preemption on RT again during that for-loop should not make the
+> situation worse and at least keep RT as real-time as intended.
+>=20
+> In practice I would also expect that this failure case is the one least
+> likely to impair userspace applications greatly in practice. The cases th=
+at
+> mostly matter are the ones executed during vblank hardware irq, where the
+> for-loop never executes and error margin and preempt off time is only abo=
+ut
+> 1 usec. My own software which depends on very precise timestamps from the
+> mechanism never reported >> 20 usecs errors during startup tests or runti=
+me
+> tests.
+
+That is without RT I assume?
+
+> > - intel_crtc_scanlines_since_frame_timestamp() not sure how long this
+> >   may take in the worst case.
+> >
+> >
+> intel_crtc_scanlines_since_frame_timestamp() should be harmless. That
+> do-while loop just tries to make sure that two register reads that should
+> happen within the same video refresh cycle are happening in the same
+> refresh cycle. As such, the while loop will almost always just execute on=
+ly
+> once, and at most two times, so that's at most 6 mmio register reads for
+> two loop iterations.
+>=20
+> In the long run one could try to test if
+> __intel_get_crtc_scanline_from_timestamp
+> <https://elixir.bootlin.com/linux/v5.17-rc1/C/ident/__intel_get_crtc_scan=
+line_from_timestamp>()
+> wouldn't be the better choice for affected hardware always. Code and
+> register descriptions suggest the feature is supported by all potentially
+> affected hardware, so if it would turn out that that method works as
+> accurate and reliable as the old one, we could save the overhead and time
+> delays for that 100 for-loop iterations and make the whole timestamping
+> more reliable on modern hw.
+>=20
+> It was in the RT queue for a while and nobody complained.
+> > Disable preemption on PREEPMPT_RT during timestamping.
+> >
+> >
+> Do other patches exist to implement the preempt_dis/enable() also for AMD
+> and NVidia / nouveau / vc4? I left corresponding markers for
+
+No, nobody complained. Most likely the i915 is wider used since it is
+built-in into many chipsets which then run RT and some of them use the
+display in production.
+
+> radeon/amdgpu-kms and RaspberryPi's vc4 driver. Ideally all kms drivers
+> which use scanout position queries should have such code. Always a
+> preempt_disable() before the "if (stime) *stime =3D ktime_get();" stateme=
+nt,
+> and a preempt_enable() after the "if (etime) *etime =3D ktime_get();"
+> statement.
+>=20
+> Checking Linux 5.16 code, this should be safe - short preempt off interval
+> with only a few mmio register reads - for all kms drivers that support it
+> atm. I found the following functions to modify:
+>=20
+> amdgpu: amdgpu_display_get_crtc_scanoutpos()
+> radeon: radeon_get_crtc_scanoutpos()
+> msm: mdp5_crtc_get_scanout_position() and dpu_crtc_get_scanout_position()
+> ltdc: ltdc_crtc_get_scanout_position()
+> vc4: vc4_crtc_get_scanout_position()
+
+I that is "small" with locks and such, then it should work
+
+> nouveau: In nvkm_head_mthd_scanoutpos(), one needs to put the
+> preempt_disable() right before
+>=20
+=E2=80=A6
+>=20
+> Is the plan to integrate these patches into the mainline kernel soon, as
+> part of ongoing preempt-rt upstreaming?
+
+I want to get the i915 in as part of RT upstreaming. But now I've been
+thinking to not allowing i915 on RT via Kconfig and worry about it
+afterwards.
+
+> thanks,
+> -mario
+
+Sebastian
