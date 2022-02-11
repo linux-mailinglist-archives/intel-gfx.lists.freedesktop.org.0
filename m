@@ -1,50 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B943C4B24E0
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 12:55:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEBB24B262F
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Feb 2022 13:48:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D72E310EAEE;
-	Fri, 11 Feb 2022 11:55:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96EA210EBC8;
+	Fri, 11 Feb 2022 12:48:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1879210EA7D
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 11:55:09 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25C4E10EBC8;
+ Fri, 11 Feb 2022 12:48:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644580509; x=1676116509;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=MuekraLPRfOBacL87jW0B9M/97gm7SQRlolycYlVOZg=;
- b=k98Bh3XESIfNukR9OBvddKCG3jupkYnKJdgnF7c5Cw1f0Sy9pZ2sBEzR
- WoscjoVzRh3Ul6m/2nYJdanNCGTlcLvESnaBrnRbHSHQijF48Y49Pez6J
- KLQOOF76u4xPKQ8MDUWpc4Ec75I+iN5TMBGZ+USusDPscarICo/8VE6Ce
- mCFGUyoGdbUBCP7hkAXWp9O0IOsyiEBXUmrn8EuFXgyzgad3pX54QY+vh
- SUamcdA4H/6qPPCUReGrlk4FmWWy0z6HriwCodeYw3asqHTK1jPN8d7GU
- qroar3NZhR0Qg+Es7QC8gNIGvTIyA3K9tYnKW18uDWdB/LIHCs96eh+s8 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="313000214"
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="313000214"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 03:55:08 -0800
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="483330711"
-Received: from rriverox-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.19.108])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2022 03:55:05 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Casey Bowman <casey.g.bowman@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220211021510.202602-1-casey.g.bowman@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220211021510.202602-1-casey.g.bowman@intel.com>
-Date: Fri, 11 Feb 2022 13:55:02 +0200
-Message-ID: <87sfsp7h49.fsf@intel.com>
+ t=1644583708; x=1676119708;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=sMA4IiMHwtCnREkIb2+4e0f5nHX+sUyVsa1zstNiu+c=;
+ b=isKOYbPx6BI5br1ZWE4x1UEKNyc7UIIgclUz/sno+UVn90PFHQXj7zR/
+ du9oRYqesdyQrRbqtH3Sd6959X93t1z3BM3AmQTeA+ZkAJb9nrJuLnwfV
+ KGy+WYprvY2a8xCmbldcYE4r8tquNernAZvRfxKGNkWF0rmqUbIiiyHjQ
+ 9Tw8HWmjfeYF3wdszOsAxK+KV/jom4Jp/YMdjkRruld1+Vo+W2SmPfsPG
+ +iYXgwTQOT4C/p1qstxhKEfX2UgjgHpevsPKfkXBfKPRtMVEWEaTh5VZH
+ q0rKmOk1c2Qfpf8k5Hqir23SvuBwX+rhQc6SneMxwvDvKKrPF5XkPIJzi Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10254"; a="336147484"
+X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="336147484"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 04:48:27 -0800
+X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; d="scan'208";a="774244225"
+Received: from olindum-mobl1.ger.corp.intel.com (HELO [10.249.254.193])
+ ([10.249.254.193])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 04:48:26 -0800
+Message-ID: <fa560873-281b-d060-8d72-46a93f45a525@linux.intel.com>
+Date: Fri, 11 Feb 2022 13:48:24 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RFC PATCH v2 0/1] Splitting up platform-specific
- calls
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220211113437.874691-1-matthew.auld@intel.com>
+ <20220211113437.874691-13-matthew.auld@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20220211113437.874691-13-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v3 12/15] drm/i915/create: apply
+ ALLOC_GPU_ONLY by default
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,71 +61,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: michael.cheng@intel.com, lucas.demarchi@intel.com, daniel.vetter@intel.com
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 10 Feb 2022, Casey Bowman <casey.g.bowman@intel.com> wrote:
-> In this RFC I would like to ask the community their thoughts
-> on how we can best handle splitting architecture-specific
-> calls.
+
+On 2/11/22 12:34, Matthew Auld wrote:
+> Starting from DG2+, when dealing with LMEM, we assume that by default
+> all userspace allocations should be placed in the non-mappable portion
+> of LMEM.  Note that dumb buffers are not included here, since these are
+> not "GPU accelerated" and likely need CPU access. We choose to just
+> always set GPU_ONLY, and let the backend figure out if that should be
+> ignored on discrete devices.
 >
-> I would like to address the following:
+> In a later patch userspace will be able to provide a hint if CPU access
+> to the buffer is needed.
 >
-> 1. How do we want to split architecture calls? Different object files
-> per platform? Separate function calls within the same object file?
+> v2(Thomas)
+>   - Apply GPU_ONLY on all discrete devices, but only if the BO can be
+>     placed in LMEM. Down in the depths this should be turned into a noop,
+>     where required, and as an annotation it still make some sense. If we
+>     apply it regardless of the placements then we end up needing to check
+>     the placements during exec capture. Also it's slightly inconsistent
+>     since the NEEDS_CPU_ACCESS can only be applied on objects that can be
+>     placed in LMEM. The other annoyance would be gem_create_ext vs plain
+>     gem_create, if we were to always apply GPU_ONLY.
 >
-> 2. How do we address dummy functions? If we have a function call that is
-> used for one or more platforms, but is not used in another, what should
-> we do for this case?
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_create.c | 8 ++++++++
+>   1 file changed, 8 insertions(+)
 >
-> I've given an example of splitting an architecture call
-> in my patch with run_as_guest() being split into different
-> implementations for x86 and arm64 in separate object files, sharing
-> a single header.
->
-> Another suggestion from Michael (michael.cheng@intel.com) involved
-> using a single object file, a single header, and splitting various
-> functions calls via ifdefs in the header file.
->
-> I would appreciate any input on how we can avoid scaling issues when
-> including multiple architectures and multiple functions (as the number
-> of function calls will inevitably increase with more architectures).
->
-> v2: Revised to use kernel's platform-splitting scheme.
-
-I think this is overengineering.
-
-Just add different implementations of the functions per architecture
-next to where they are now, like I suggested before.
-
-If we need to split them better later, it'll be a trivial undertaking,
-and we'll be in a better position to do it because we'll know how many
-functions there'll be and where they are and what they do.
-
-Adding a bunch of overhead from the start seems like the wrong thing to
-do.
-
-BR,
-Jani.
-
-
-
-
-
->
-> Casey Bowman (1):
->   i915/drm: Split out x86 and arm64 functionality
->
->  drivers/gpu/drm/i915/Makefile                         |  3 +++
->  drivers/gpu/drm/i915/i915_drv.h                       |  7 ++-----
->  drivers/gpu/drm/i915/platforms/Makefile               |  8 ++++++++
->  .../arm64/include/platform/i915_hypervisor.h          | 11 +++++++++++
->  .../platforms/x86/include/platform/i915_hypervisor.h  |  9 +++++++++
->  5 files changed, 33 insertions(+), 5 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/platforms/Makefile
->  create mode 100644 drivers/gpu/drm/i915/platforms/arm64/include/platform/i915_hypervisor.h
->  create mode 100644 drivers/gpu/drm/i915/platforms/x86/include/platform/i915_hypervisor.h
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> index 9402d4bf4ffc..ecb8c2feec46 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> @@ -424,6 +424,14 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, void *data,
+>   		ext_data.n_placements = 1;
+>   	}
+>   
+> +	/*
+> +	 * TODO: add a userspace hint to force CPU_ACCESS for the object, which
+> +	 * can override this.
+> +	 */
+> +	if (ext_data.n_placements > 1 ||
+> +	    ext_data.placements[0]->type != INTEL_MEMORY_SYSTEM)
+> +		ext_data.flags |= I915_BO_ALLOC_GPU_ONLY;
+> +
+>   	obj = __i915_gem_object_create_user_ext(i915, args->size,
+>   						ext_data.placements,
+>   						ext_data.n_placements,
