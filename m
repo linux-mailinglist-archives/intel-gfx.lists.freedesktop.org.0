@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF66A4B3A81
-	for <lists+intel-gfx@lfdr.de>; Sun, 13 Feb 2022 10:15:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C97704B3AA2
+	for <lists+intel-gfx@lfdr.de>; Sun, 13 Feb 2022 10:33:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35A8310F4C1;
-	Sun, 13 Feb 2022 09:15:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B39A10E22F;
+	Sun, 13 Feb 2022 09:33:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6854D10F4C1
- for <intel-gfx@lists.freedesktop.org>; Sun, 13 Feb 2022 09:15:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644743732; x=1676279732;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0+9h4gdneAFI8HU9XMkkmHHDEOYNHZ9uOwtlenAKakw=;
- b=igvTovlYnyEzMH4iUAPIgwkQJeYJYCRb2q1+BP7JenvNXQEUKtotEMMp
- HKv+/siRQDqShdfuouuQKdfEoov32pCNDw3Kutr1088Aie+OIjHGXO2Dd
- vtDmwAjRpNluB2gEeZv8QzanM0VQiJPUsrSItotBxP66GQXHRvJgjdH6V
- PaEdULoEEX3hp0Zk9snA1e8J3ImeIZAIaP0ocSxdl/l/1zPOMW4vRhdIy
- 8+TwFeKhUPXVhpr9FWCetm8/SWnYO2Ax1J4meox8JFAbLa0L3cP6HDN1y
- TCq1sXk0jSlFbVcDJ0ayZ3+3pvsUDBlA/rAT8XN1by+CGZ9QKSv2jicC6 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10256"; a="247528802"
-X-IronPort-AV: E=Sophos;i="5.88,365,1635231600"; d="scan'208";a="247528802"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2022 01:15:32 -0800
-X-IronPort-AV: E=Sophos;i="5.88,365,1635231600"; d="scan'208";a="702569010"
-Received: from sannilnx.jer.intel.com ([10.12.231.79])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2022 01:15:29 -0800
-From: Alexander Usyskin <alexander.usyskin@intel.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
-Date: Sun, 13 Feb 2022 11:14:58 +0200
-Message-Id: <20220213091458.2364014-6-alexander.usyskin@intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220213091458.2364014-1-alexander.usyskin@intel.com>
-References: <20220213091458.2364014-1-alexander.usyskin@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1D18C10E22C;
+ Sun, 13 Feb 2022 09:33:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 176C0A7DFB;
+ Sun, 13 Feb 2022 09:33:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3542298367094906689=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 5/5] mei: gsc: retrieve the firmware version
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arunpravin" <arunpravin.paneerselvam@amd.com>
+Date: Sun, 13 Feb 2022 09:33:48 -0000
+Message-ID: <164474482806.19581.30147061552272323@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220213085217.2705-1-Arunpravin.PaneerSelvam@amd.com>
+In-Reply-To: <20220213085217.2705-1-Arunpravin.PaneerSelvam@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv12=2C1/5=5D_drm=3A_improve_drm=5Fbuddy=5F?=
+ =?utf-8?q?alloc_function?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,98 +41,265 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Alexander Usyskin <alexander.usyskin@intel.com>, linux-kernel@vger.kernel.org,
- Tomas Winkler <tomas.winkler@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a hook to retrieve the firmware version of the
-GSC devices to bus-fixup.
-GSC has a different MKHI clients GUIDs but the same message structure
-to retrieve the firmware version as MEI so mei_fwver() can be reused.
+--===============3542298367094906689==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-CC: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
-Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
----
-V5: Rebase
-V6: Rebase
----
- drivers/misc/mei/bus-fixup.c | 25 +++++++++++++++++++++++++
- drivers/misc/mei/hw-me.c     |  2 ++
- 2 files changed, 27 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/misc/mei/bus-fixup.c b/drivers/misc/mei/bus-fixup.c
-index 67844089db21..59506ba6fc48 100644
---- a/drivers/misc/mei/bus-fixup.c
-+++ b/drivers/misc/mei/bus-fixup.c
-@@ -30,6 +30,12 @@ static const uuid_le mei_nfc_info_guid = MEI_UUID_NFC_INFO;
- #define MEI_UUID_MKHIF_FIX UUID_LE(0x55213584, 0x9a29, 0x4916, \
- 			0xba, 0xdf, 0xf, 0xb7, 0xed, 0x68, 0x2a, 0xeb)
- 
-+#define MEI_UUID_IGSC_MKHI UUID_LE(0xE2C2AFA2, 0x3817, 0x4D19, \
-+			0x9D, 0x95, 0x06, 0xB1, 0x6B, 0x58, 0x8A, 0x5D)
-+
-+#define MEI_UUID_IGSC_MKHI_FIX UUID_LE(0x46E0C1FB, 0xA546, 0x414F, \
-+			0x91, 0x70, 0xB7, 0xF4, 0x6D, 0x57, 0xB4, 0xAD)
-+
- #define MEI_UUID_HDCP UUID_LE(0xB638AB7E, 0x94E2, 0x4EA2, \
- 			      0xA5, 0x52, 0xD1, 0xC5, 0x4B, 0x62, 0x7F, 0x04)
- 
-@@ -241,6 +247,23 @@ static void mei_mkhi_fix(struct mei_cl_device *cldev)
- 	mei_cldev_disable(cldev);
- }
- 
-+static void mei_gsc_mkhi_ver(struct mei_cl_device *cldev)
-+{
-+	int ret;
-+
-+	/* No need to enable the client if nothing is needed from it */
-+	if (!cldev->bus->fw_f_fw_ver_supported)
-+		return;
-+
-+	ret = mei_cldev_enable(cldev);
-+	if (ret)
-+		return;
-+
-+	ret = mei_fwver(cldev);
-+	if (ret < 0)
-+		dev_err(&cldev->dev, "FW version command failed %d\n", ret);
-+	mei_cldev_disable(cldev);
-+}
- /**
-  * mei_wd - wd client on the bus, change protocol version
-  *   as the API has changed.
-@@ -492,6 +515,8 @@ static struct mei_fixup {
- 	MEI_FIXUP(MEI_UUID_NFC_HCI, mei_nfc),
- 	MEI_FIXUP(MEI_UUID_WD, mei_wd),
- 	MEI_FIXUP(MEI_UUID_MKHIF_FIX, mei_mkhi_fix),
-+	MEI_FIXUP(MEI_UUID_IGSC_MKHI, mei_gsc_mkhi_ver),
-+	MEI_FIXUP(MEI_UUID_IGSC_MKHI_FIX, mei_gsc_mkhi_ver),
- 	MEI_FIXUP(MEI_UUID_HDCP, whitelist),
- 	MEI_FIXUP(MEI_UUID_ANY, vt_support),
- 	MEI_FIXUP(MEI_UUID_PAVP, whitelist),
-diff --git a/drivers/misc/mei/hw-me.c b/drivers/misc/mei/hw-me.c
-index 9748d14849a1..7e77328142ff 100644
---- a/drivers/misc/mei/hw-me.c
-+++ b/drivers/misc/mei/hw-me.c
-@@ -1577,12 +1577,14 @@ static const struct mei_cfg mei_me_pch15_sps_cfg = {
- static const struct mei_cfg mei_me_gsc_cfg = {
- 	MEI_CFG_TYPE_GSC,
- 	MEI_CFG_PCH8_HFS,
-+	MEI_CFG_FW_VER_SUPP,
- };
- 
- /* Graphics System Controller Firmware Interface */
- static const struct mei_cfg mei_me_gscfi_cfg = {
- 	MEI_CFG_TYPE_GSCFI,
- 	MEI_CFG_PCH8_HFS,
-+	MEI_CFG_FW_VER_SUPP,
- };
- 
- /*
--- 
-2.32.0
+Series: series starting with [v12,1/5] drm: improve drm_buddy_alloc function
+URL   : https://patchwork.freedesktop.org/series/100069/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11224 -> Patchwork_22259
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_22259 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_22259, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/index.html
+
+Participating hosts (48 -> 44)
+------------------------------
+
+  Missing    (4): fi-bsw-cyan shard-rkl shard-dg1 shard-tglu 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_22259:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_lmem_swapping@random-engines@lmem0:
+    - bat-dg1-6:          [PASS][1] -> [INCOMPLETE][2] +2 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/bat-dg1-6/igt@gem_lmem_swapping@random-engines@lmem0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/bat-dg1-6/igt@gem_lmem_swapping@random-engines@lmem0.html
+
+  * igt@i915_selftest@live@gt_timelines:
+    - bat-dg1-5:          [PASS][3] -> [INCOMPLETE][4] +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/bat-dg1-5/igt@i915_selftest@live@gt_timelines.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/bat-dg1-5/igt@i915_selftest@live@gt_timelines.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-skl-6700k2:      [PASS][5] -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/fi-skl-6700k2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-skl-6700k2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22259 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][7] ([i915#4547])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [PASS][8] -> [INCOMPLETE][9] ([i915#2940])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-bsw-n3050:       NOTRUN -> [FAIL][10] ([fdo#109271] / [i915#1436] / [i915#3428] / [i915#4312])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-bsw-n3050/igt@runner@aborted.html
+    - fi-skl-6600u:       NOTRUN -> [FAIL][11] ([i915#4312])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-skl-6600u/igt@runner@aborted.html
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][12] ([i915#2426] / [i915#4312])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-bdw-5557u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-5557u:       [INCOMPLETE][13] ([i915#146]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3428]: https://gitlab.freedesktop.org/drm/intel/issues/3428
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11224 -> Patchwork_22259
+
+  CI-20190529: 20190529
+  CI_DRM_11224: a55c69f5d509af75d5fd907cb2c9c7a6e1ce09c2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6343: 59c59f45b8433300b1b45cc9abc4b86dd0f81084 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22259: c01dc68ea696c9411a3cc655706508d372f84fe6 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c01dc68ea696 drm/amdgpu: add drm buddy support to amdgpu
+a46e724508af drm/amdgpu: move vram inline functions into a header
+75b92ac23ffd drm: implement a method to free unused pages
+ccf915b04de0 drm: implement top-down allocation method
+07cd035b740d drm: improve drm_buddy_alloc function
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/index.html
+
+--===============3542298367094906689==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v12,1/5] drm: improve drm_buddy_alloc function</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100069/">https://patchwork.freedesktop.org/series/100069/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11224 -&gt; Patchwork_22259</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_22259 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_22259, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/index.html</p>
+<h2>Participating hosts (48 -&gt; 44)</h2>
+<p>Missing    (4): fi-bsw-cyan shard-rkl shard-dg1 shard-tglu </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_22259:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@random-engines@lmem0:</p>
+<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/bat-dg1-6/igt@gem_lmem_swapping@random-engines@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/bat-dg1-6/igt@gem_lmem_swapping@random-engines@lmem0.html">INCOMPLETE</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_timelines:</p>
+<ul>
+<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/bat-dg1-5/igt@i915_selftest@live@gt_timelines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/bat-dg1-5/igt@i915_selftest@live@gt_timelines.html">INCOMPLETE</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:</p>
+<ul>
+<li>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/fi-skl-6700k2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-skl-6700k2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22259 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3428">i915#3428</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3@smem:<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22259/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11224 -&gt; Patchwork_22259</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11224: a55c69f5d509af75d5fd907cb2c9c7a6e1ce09c2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6343: 59c59f45b8433300b1b45cc9abc4b86dd0f81084 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22259: c01dc68ea696c9411a3cc655706508d372f84fe6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c01dc68ea696 drm/amdgpu: add drm buddy support to amdgpu<br />
+a46e724508af drm/amdgpu: move vram inline functions into a header<br />
+75b92ac23ffd drm: implement a method to free unused pages<br />
+ccf915b04de0 drm: implement top-down allocation method<br />
+07cd035b740d drm: improve drm_buddy_alloc function</p>
+
+</body>
+</html>
+
+--===============3542298367094906689==--
