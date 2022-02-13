@@ -1,68 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2E734B5548
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 16:49:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 986FC4B5530
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 16:49:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1D310E2FA;
-	Mon, 14 Feb 2022 15:49:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D07B510E27C;
+	Mon, 14 Feb 2022 15:48:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
- [IPv6:2607:f8b0:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE85B10F2F7;
- Sun, 13 Feb 2022 06:51:34 +0000 (UTC)
-Received: by mail-pf1-x435.google.com with SMTP id c4so2417836pfl.7;
- Sat, 12 Feb 2022 22:51:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=8jN3bHrs2SjohtF/Og+xdp1QXzW54h0HCo7HFf5/MZw=;
- b=eGO6WKGk4GF2G1wmSF6YwpVCyUpzoU7kgAHkt2OWvZscvoVLb2sotXMmB0JArmFkdH
- GZxv240kCgeHEhPXTYzUDow84izMIzZxlfxRqdHQ6poqNxgqd3SBEdZaBIbOt2VfzCOz
- WB90oXtyxZJqjWoJkG72qtck4qMxHp+GNv+NNlHkFfVAzLOP6WpCXganJp/d3GKhz3Yp
- dDQ2IWWdYJRDLLYVl86vEf0KIoDIv6kqdWbViLcQzUP/6utM0FpBiWqZQKW5fLsjZNxa
- AqbUxPohLLEDKau9zLqZLxyzAnQdLrzEjf/iAMJb2D4TcTY3N0qUMmOdvnfMu8pjio9Y
- a0FQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=8jN3bHrs2SjohtF/Og+xdp1QXzW54h0HCo7HFf5/MZw=;
- b=sHrPkIwCfE5ZcONUxGpo5XNYMhvgPQMkvqtnFGXp6DcE32hB/E4b0d40/9w3u64q/Y
- ekKMlWnGltzW+Pxn4RjMYRQUqWu32D7b0fChPB84CsvsC1a4RdRUNwlos5Re4jzkQncV
- rV7A8S6YzTTbr7eVOwtYMnNunRKVswizANfsKEdn1GRPJPlRoobFuA04+O/gI2qK8JdY
- NTUepk4xqsNRMZ2ekLW1s2BSWtZNLbJIFJFbEOus+lCi7FNsiH5znf1Cydc72xSoKc+b
- 3Zho91B3gcjri/CfJQIq7WLDSTsVSLk1gQ6rAzJsi4M4FBnDSSh8EszRfjHI2bsEI7qN
- 3tiw==
-X-Gm-Message-State: AOAM531UlFFv0A8V6SFiM0XMVV2eAQVt0j46eHDdjZpl9McC4PHaOiip
- xjvUYfsggjeMw8ybpxWDj8Q=
-X-Google-Smtp-Source: ABdhPJzJFjlAe/vGkkjEE8ukKoZrPMom+3E9OHjTtQHdOrydJ0vW9rr7l+VrgOEHXNJQZysF9XqUjQ==
-X-Received: by 2002:a63:d318:: with SMTP id b24mr7253607pgg.255.1644735094326; 
- Sat, 12 Feb 2022 22:51:34 -0800 (PST)
-Received: from ubuntu-server.local
- (99-105-211-126.lightspeed.sntcca.sbcglobal.net. [99.105.211.126])
- by smtp.googlemail.com with ESMTPSA id v2sm9794515pjt.55.2022.02.12.22.51.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 12 Feb 2022 22:51:34 -0800 (PST)
-From: Tong Zhang <ztong0001@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, llvm@lists.linux.dev
-Date: Sat, 12 Feb 2022 22:51:06 -0800
-Message-Id: <20220213065106.48062-1-ztong0001@gmail.com>
-X-Mailer: git-send-email 2.25.1
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B865410E16F;
+ Sun, 13 Feb 2022 18:39:29 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id BC77A6120F;
+ Sun, 13 Feb 2022 18:39:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6C04C004E1;
+ Sun, 13 Feb 2022 18:39:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1644777568;
+ bh=vs/QifduZDoY/ETojuivPkDFpDkaCbp+mFAiQ9QKXeM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=falLgcQBvsXbqD+5YLjI1r1ZMPrtOBpatRB1KWnuNJZdPpvjG+1glNvUecuPgKshv
+ R0IeB2ewTJ5vBosdW21LO200CjQ0+kPkyfe+PBnE8gkyuD7YQPqrB1QLL6CBQfm1u+
+ xdPlfnqACnviL311DuyenWWRaR5MYxaxx+bT8Pmlzy7sfsg15OlovsPIm1uBL4Mh4a
+ +DqneNWYyE62qrT9xIzLdD5gEQoWkf/BfY6MTPQjyNcu9gRs/zgqO6J7BkBgxjSe/T
+ q3lghfTp0GqoRrUzjNic75qgfEwCSMo6hzSznuEBYvjXt+RvYHlQd/dHwXMVp26zfV
+ 7l2HwQheFoJQA==
+Date: Sun, 13 Feb 2022 11:39:23 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Tong Zhang <ztong0001@gmail.com>
+Message-ID: <YglQW7gVNoRJ7QpQ@dev-arch.archlinux-ax161>
+References: <20220213065106.48062-1-ztong0001@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220213065106.48062-1-ztong0001@gmail.com>
 X-Mailman-Approved-At: Mon, 14 Feb 2022 15:48:57 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: fix build issue when using clang
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix build issue when using clang
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,46 +53,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tong Zhang <ztong0001@gmail.com>
+Cc: llvm@lists.linux.dev, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, Nick Desaulniers <ndesaulniers@google.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm/i915 target adds some extra cflags, especially it does re-apply -Wall.
-In clang this will override -Wno-format-security and cause the build to
-fail when CONFIG_DRM_I915_WERROR=y. While with GCC this does not happen.
-We reapply -Wno-format-security here to get around this issue.
+On Sat, Feb 12, 2022 at 10:51:06PM -0800, Tong Zhang wrote:
+> drm/i915 target adds some extra cflags, especially it does re-apply -Wall.
+> In clang this will override -Wno-format-security and cause the build to
+> fail when CONFIG_DRM_I915_WERROR=y. While with GCC this does not happen.
+> We reapply -Wno-format-security here to get around this issue.
 
-drivers/gpu/drm/i915/gt/intel_gt.c:983:2: error: format string is not a string literal (potentially insecure) [-Werror,-Wformat-security]
-        GEM_TRACE("ERROR\n");
-        ^~~~~~~~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_gem.h:76:24: note: expanded from macro 'GEM_TRACE'
- #define GEM_TRACE(...) trace_printk(__VA_ARGS__)
-                       ^~~~~~~~~~~~~~~~~~~~~~~~~
-./include/linux/kernel.h:369:3: note: expanded from macro 'trace_printk'
-                do_trace_printk(fmt, ##__VA_ARGS__);    \
-                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-./include/linux/kernel.h:383:30: note: expanded from macro 'do_trace_printk'
-                __trace_bprintk(_THIS_IP_, trace_printk_fmt, ##args);   \
-                                           ^~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/gt/intel_gt.c:983:2: note: treat the string as an argument to avoid this
+For what it's worth, GCC would warn in the exact same way if
+-Wformat-security was included within -Wall like it is for clang:
 
-Signed-off-by: Tong Zhang <ztong0001@gmail.com>
----
- drivers/gpu/drm/i915/Makefile | 1 +
- 1 file changed, 1 insertion(+)
+drivers/gpu/drm/i915/gt/intel_gt.c: In function ‘intel_gt_invalidate_tlbs’:
+drivers/gpu/drm/i915/gt/intel_gt.c:988:9: error: format not a string literal and no format arguments [-Werror=format-security]
+  988 |         GEM_TRACE("\n");
+      |         ^~~~~~~~~
+cc1: all warnings being treated as errors
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 1b62b9f65196..c04e05a3d39f 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -13,6 +13,7 @@
- # will most likely get a sudden build breakage... Hopefully we will fix
- # new warnings before CI updates!
- subdir-ccflags-y := -Wall -Wextra
-+subdir-ccflags-y += -Wno-format-security
- subdir-ccflags-y += -Wno-unused-parameter
- subdir-ccflags-y += -Wno-type-limits
- subdir-ccflags-y += -Wno-missing-field-initializers
--- 
-2.25.1
+drivers/gpu/drm/i915/gt/selftest_execlists.c: In function ‘live_sanitycheck’:
+drivers/gpu/drm/i915/gt/selftest_execlists.c:142:25: error: format not a string literal and no format arguments [-Werror=format-security]
+  142 |                         GEM_TRACE("spinner failed to start\n");
+      |                         ^~~~~~~~~
+drivers/gpu/drm/i915/gt/selftest_execlists.c: In function ‘live_preempt’:
+drivers/gpu/drm/i915/gt/selftest_execlists.c:1775:25: error: format not a string literal and no format arguments [-Werror=format-security]
+ 1775 |                         GEM_TRACE("lo spinner failed to start\n");
+      |                         ^~~~~~~~~
+drivers/gpu/drm/i915/gt/selftest_execlists.c:1792:25: error: format not a string literal and no format arguments [-Werror=format-security]
+ 1792 |                         GEM_TRACE("hi spinner failed to start\n");
+      |                         ^~~~~~~~~
+cc1: all warnings being treated as errors
 
+If fixing these warnings instead of just disabling the warning is
+undesirable (since I feel like the entire point of the i195 cflags
+situation is to enable more warnings than the main Makefile), I think
+the commit message should be rewritten to something along the lines of:
+
+"drm/i915 adds some extra cflags, namely -Wall, which causes
+instances of -Wformat-security to appear when building with clang, even
+though this warning is turned off kernel-wide in the main Makefile:"
+
+> drivers/gpu/drm/i915/gt/intel_gt.c:983:2: error: format string is not a string literal (potentially insecure) [-Werror,-Wformat-security]
+>         GEM_TRACE("ERROR\n");
+>         ^~~~~~~~~~~~~~~~~~~~
+> ./drivers/gpu/drm/i915/i915_gem.h:76:24: note: expanded from macro 'GEM_TRACE'
+>  #define GEM_TRACE(...) trace_printk(__VA_ARGS__)
+>                        ^~~~~~~~~~~~~~~~~~~~~~~~~
+> ./include/linux/kernel.h:369:3: note: expanded from macro 'trace_printk'
+>                 do_trace_printk(fmt, ##__VA_ARGS__);    \
+>                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> ./include/linux/kernel.h:383:30: note: expanded from macro 'do_trace_printk'
+>                 __trace_bprintk(_THIS_IP_, trace_printk_fmt, ##args);   \
+>                                            ^~~~~~~~~~~~~~~~
+> drivers/gpu/drm/i915/gt/intel_gt.c:983:2: note: treat the string as an argument to avoid this
+
+"This does not happen with GCC because it does not enable
+-Wformat-security with -Wall. Disable -Wformat-security within the i915
+Makefile so that these warnings do not show up with clang."
+
+The actual diff itself looks fine to me.
+
+Cheers,
+Nathan
+
+> Signed-off-by: Tong Zhang <ztong0001@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 1b62b9f65196..c04e05a3d39f 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -13,6 +13,7 @@
+>  # will most likely get a sudden build breakage... Hopefully we will fix
+>  # new warnings before CI updates!
+>  subdir-ccflags-y := -Wall -Wextra
+> +subdir-ccflags-y += -Wno-format-security
+>  subdir-ccflags-y += -Wno-unused-parameter
+>  subdir-ccflags-y += -Wno-type-limits
+>  subdir-ccflags-y += -Wno-missing-field-initializers
+> -- 
+> 2.25.1
+> 
