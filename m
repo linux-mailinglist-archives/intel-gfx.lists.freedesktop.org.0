@@ -1,144 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BA334B3AB7
-	for <lists+intel-gfx@lfdr.de>; Sun, 13 Feb 2022 11:03:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54B574B3ABB
+	for <lists+intel-gfx@lfdr.de>; Sun, 13 Feb 2022 11:08:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9914410F2BD;
-	Sun, 13 Feb 2022 10:03:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57A5510EDE1;
+	Sun, 13 Feb 2022 10:08:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FB6C10F2BD
- for <intel-gfx@lists.freedesktop.org>; Sun, 13 Feb 2022 10:03:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644746624; x=1676282624;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Bt0RnDKark0oEEHJaDQKQAlJHAQSCNAmT5Rblz+J0GQ=;
- b=Y/bjFO7TyP0CTEQ1BisEblxlLvIyGyq/ZTvm/CxhHQKstPxDxtAKnJHy
- EXBDND0IQPdRm7vppQtckG47CoWNjQVG4zRbd9xrN7q376Y8LzqymlvrB
- Fsym5KU0w3iQAnIUj3DlE4oJZAzzv21H17bfk37wmmN7BTyYBjuOJKtX8
- wTiVsBG1qGxj8g7LT6GxYJGv06+aAImaQcSG7+i6uAPT7so9jxUZBrN9c
- sIEnLaBQHWU5sM+J6WUD3/IuFiD9FCg03w2sABaaH1Ab1N5/sYdlYqyvF
- rHOiUAbY7Cvyaci8Bx43kNRYEUGxkWRXleM+wbIbXJuqlp81WqSEggIml Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10256"; a="274501268"
-X-IronPort-AV: E=Sophos;i="5.88,365,1635231600"; d="scan'208";a="274501268"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2022 02:03:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,365,1635231600"; d="scan'208";a="602752217"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by fmsmga004.fm.intel.com with ESMTP; 13 Feb 2022 02:03:43 -0800
-Received: from fmsmsx606.amr.corp.intel.com (10.18.126.86) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Sun, 13 Feb 2022 02:03:43 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20 via Frontend Transport; Sun, 13 Feb 2022 02:03:43 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.175)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Sun, 13 Feb 2022 02:03:43 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ex4vUQmsLdERObEqsHbKnvWHLfUesBmmS/QhowBejhuDd1IdV9/QVtiCOdoGtlRb9hi+0o2kev6pOPEycAnehZCUVlONCAgDkOarekQb0ChNwNftGuiOf5o+gGRwDiPYPn+6Mgwpl/y6pH+WLgTiTfvHK0LS1TAS+YhzLD03MPVTV79yJADru20BkxDGFDRtZc2cabP/ANn1vAzMtoV0KAXPo6ndTvuT023HA1lHXgL9t8V6GkqtCrC8JFteLNg8IlCIbBww9eJmRK5geuJ4EOlZcCLVZwqIQFdtjqrpRcMgULPZ7agrG2H2KUhJo3UJvTVl329IMNYsYs6iVULlvw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jNyJeO6uIWDE0Uc6e1EYqBtO+GdKQe48MFZrNGV2F94=;
- b=CLmPx1Wnec+rSzVEeig8yJLmdcoJmVXvIpcjfWoW3PeCBEpB6FVmXfU9Rs279QPDrM4T3WcO97oETF1I1G7JdJt3Sg5Cc8LQkAVVMxQ39LesmXQ6IjooTaBdx7+PDkLICTPSlAt5sO2vCMj19Q3S3SkwOLg3UiGWx630DIKLZi/6xo4KpFUxchDrsdAZnK3oKpkYXyfvGi0lbjQO4W0k94g0niADi+yxeCMCrlzIYDKR1p+361O86du88bob97HnNJEGAIbvHOQaz2sdJYxzu+TSFZeGOwG14G2AE8sNK9te6oqBUonhuscmNIms0dGyG9bZ39IkZ7Vn+kaSV8uPNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from MW3PR11MB4651.namprd11.prod.outlook.com (2603:10b6:303:2c::21)
- by SN6PR11MB3198.namprd11.prod.outlook.com (2603:10b6:805:c3::31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.12; Sun, 13 Feb
- 2022 10:03:41 +0000
-Received: from MW3PR11MB4651.namprd11.prod.outlook.com
- ([fe80::6498:650a:6a82:7644]) by MW3PR11MB4651.namprd11.prod.outlook.com
- ([fe80::6498:650a:6a82:7644%4]) with mapi id 15.20.4975.015; Sun, 13 Feb 2022
- 10:03:40 +0000
-From: "Usyskin, Alexander" <alexander.usyskin@intel.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Thread-Topic: [PATCH v6 0/5] Add driver for GSC controller
-Thread-Index: AQHYILo8+RGY4WXVSUe7Y5RB0qLVk6yRPmeAgAAB0YA=
-Date: Sun, 13 Feb 2022 10:03:40 +0000
-Message-ID: <MW3PR11MB4651F5FB8353D56C90D6F239ED329@MW3PR11MB4651.namprd11.prod.outlook.com>
-References: <20220213091458.2364014-1-alexander.usyskin@intel.com>
- <YgjVuyE1n5vl6uR1@kroah.com>
-In-Reply-To: <YgjVuyE1n5vl6uR1@kroah.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1cd63328-d18c-4322-0731-08d9eed81c7f
-x-ms-traffictypediagnostic: SN6PR11MB3198:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <SN6PR11MB31986FC7327CAD3A93616A46ED329@SN6PR11MB3198.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: HGaIdkz4JSK7iIVWZtmKa7AdhLpSr7X58jH65wqmrMA2KU1yRP6s/RnQvPLDMaf17xLr/n0QgXz2qINUfspu2eWYs5FrbdEKqD62tw6ICRlR0w3IW53Bv5phZ+I0oBY2lgRHeimolkNcQ+30H7EStZ6RpkkGSNz3BOH5xCuIv2ZRSUHsw88A7qXLxOdo6TXmJY8xrJaBPZtjO2SNprjve3KXIE1zFo7OjpupKf8Qb+x2hVpcZJ9yHA3Bp26cqopKSvTdLuiubv/1ZMWThKzvTpC5heRilFUrgXz06ZPiteCw7vmyMAARpMZ22XBfHkhdbNImmWFTuYYmlM2J46KAhoeMvGbjx7s8kqaqbZcSXdYfi0+7RW1gD2IXUVTbVP8tvrNTKCh2Hkp+KlqrdoSCCobNzGMSk7mxGcrKUG329kTKtdPSYCHPkoCTMDWNV28Gl+3ehdbAr0ceJ5mSVkiZr5ujPeYE+mYqJnmER+3WHYbxNgOjNyo5qFLK7n+le6msy3IXj4BoT5vRF+gYbkJ8v8KqQ+yxppPXQuR+HcUQO/n94RezDPFcmFIrB2zFoy6uxuVkAAVZ22KKbCPAhHOofwTdPSOz17QaMY6b4usbYzCjM2hcUbHz41IeR+oE9cOEPsFrjz5vwtGT+F2IvDQDJ7dQgx/zYMN9Kiix52wgQb4xGQpRQsyKsEZc3umW1Sz66qiob0ZfVW+XqPwPmGuJJg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW3PR11MB4651.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(26005)(52536014)(5660300002)(38070700005)(66476007)(33656002)(8676002)(8936002)(66946007)(76116006)(4326008)(54906003)(9686003)(316002)(64756008)(66556008)(66446008)(82960400001)(186003)(83380400001)(2906002)(71200400001)(38100700002)(86362001)(55016003)(122000001)(508600001)(7696005)(6916009)(53546011)(6506007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?l0v+vcVAcTAe2xRqYBc4r9NaMD0eTiq+x92R8WfrYHWqb6kMEcSa4BUwqs/8?=
- =?us-ascii?Q?PzahDl/pPzeoUpIM219qfbFnYEn4L+XxEXn1wLarwqNQMWQHH6IuctVawt8r?=
- =?us-ascii?Q?FCH02jvjStXoS1nqKEj6MnO11eUVpcHc8DbI6voc/+u4Ga6yWRHgZOJczt+O?=
- =?us-ascii?Q?RM9HZbLHoY70TNZCbyDtapOwpDdZt5mgQPgHNM27CUU+E4VTpI1jrnnueF5L?=
- =?us-ascii?Q?jDgh2X7UisV1bb8xHnTcVq6+6capOAPLk4EwNp7qKqXC2nmIWaX30DgXXhMB?=
- =?us-ascii?Q?zm6u+/CWCUYt1w/OkQAluSjJ2OamV0ELfSlkmEtiUPuTcb1rTRn/4h/qy+Pj?=
- =?us-ascii?Q?pYlpne5mN0HM9kNhjHFLWSWVkt7yzuuIBMSF53kwtrjy/tefai8l5jRPeeBt?=
- =?us-ascii?Q?788xusWW9FN5BaSxaGeIAXViDxCulxGhnbKP+VPgNFjA9VTHJXhYnb17FT/Q?=
- =?us-ascii?Q?WPEhY24r/iA+w1ouRCD8QJqGZX4+BIrppnLKsFuWFVlQ7vIne1ZgFLBvzQ5+?=
- =?us-ascii?Q?DXWHc7HVw7itgrz6u5ZdHJaZbcrzpOSU58+COni8yhmw1jzyY11OkYM1VtXO?=
- =?us-ascii?Q?+8b0UsjolRoqbT5uAkDmPAnRcxs+ZmeziXCWtkK5xx/BkFh4+TweYRh037ea?=
- =?us-ascii?Q?rVlRPznTRIzMU5fBj718Nrb5Lgbt5g+0Sd3BSlr9C418khZeYpsmGrb04M3A?=
- =?us-ascii?Q?0V1YXdurNY3oYKZnulb9jvXExmSvfJ8rkVRkU6XoQS9bBX9e4FPt/DBfxomY?=
- =?us-ascii?Q?xW0ke8s0WrHCLv8lnl443Ku7bi/TwodKk+VCnPx9LbTiNpUbw5/ppGa817UG?=
- =?us-ascii?Q?IMTGagDTOp7dJQAjJxo1ba8yuWDOUbX6mYtwNNBdxuEhm678VUH0/1biqm8v?=
- =?us-ascii?Q?abrPVuH8Fu5dEJ+4vCborn2aUF8Qrp2ScjuJOi+s4Z9XcAxMe67Y/kdSDSfq?=
- =?us-ascii?Q?nLTDJ9qwx/wonzuJW32F3Ae9L0/47jERBmdIfEY/yRNb8cD5f6hjKXqso+bO?=
- =?us-ascii?Q?de7Io3ySg6cge92mXtzI0FOt9rHiDOAO0NXJBl8Pre0ix2kLhdPvSTMbu9p9?=
- =?us-ascii?Q?XdsVvWjU2o1UhY2sEu/WYlr/WGcjcg0nW99odk8oJkpwePASPheUyRD3Sr9L?=
- =?us-ascii?Q?Tw3OaSpzFuvN9C5dAcPIucBLuCZh3XvpAgc4nmVjaPk81dmLCT2KfBD6jITO?=
- =?us-ascii?Q?Te8Wt5Jm7Hr1DSTiZZJLWgY1XiRna9tphJHKrbXP+Wo4/NgTaDAc2xQ1OdVP?=
- =?us-ascii?Q?/tPcyEz7jT5gAnIBiJDzTYGX16uTB1dZGe/bQPq2NPYKZnUUceLh7cdywuwY?=
- =?us-ascii?Q?KvfAxkCuVtuFG5jeJC3Q8UNqdRGbJmEvR7RAsm4ZLtx/jlg3QiCphJL7naq4?=
- =?us-ascii?Q?j9Zf3jwUXimJWSqAFfrsmm5iXwwTXyJtREoNidfofwCVX/TOB9VjGRKqNjjM?=
- =?us-ascii?Q?vYBUB8HEBITdAOOONVHI/79dYDdOPrT7a1dRZPaIbgQQxlx/nWWOo5odnq1z?=
- =?us-ascii?Q?SbYx967sjNTzdO4bOpD8mNTo6pEIILKoQgUTTksGoaRcLTZiHnh+K9W4QykK?=
- =?us-ascii?Q?mqnAqmE1OJcZJjyh8oZp/KQciWbt6hPd2uI+WYhC9/BBywCYtNYiV9wqN+sh?=
- =?us-ascii?Q?6/m7PBOH5kEIhp4q4Qx+kfoaUr0+bkOD4/j+p7LLykAi2yXcj7OA8LpBAyAU?=
- =?us-ascii?Q?bONHGw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 61C0210EDE1;
+ Sun, 13 Feb 2022 10:08:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5BE44A00A0;
+ Sun, 13 Feb 2022 10:08:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6712600249876951362=="
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW3PR11MB4651.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1cd63328-d18c-4322-0731-08d9eed81c7f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Feb 2022 10:03:40.3214 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cKeqWs7vi9bXU3jHvbKs6CpbWnyJ1JQv1YIgApTn4b/CqadEhghhBqdNY2El5yK+uK+KbhFzbjhTSG0s6zNmJRPT/OuKelOj4jyrEHVn7wc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB3198
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v6 0/5] Add driver for GSC controller
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alexander Usyskin" <alexander.usyskin@intel.com>
+Date: Sun, 13 Feb 2022 10:08:35 -0000
+Message-ID: <164474691533.19582.10852230217636317749@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220213091458.2364014-1-alexander.usyskin@intel.com>
+In-Reply-To: <20220213091458.2364014-1-alexander.usyskin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
+ =?utf-8?q?_driver_for_GSC_controller_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,56 +40,227 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Winkler, 
- Tomas" <tomas.winkler@intel.com>, "Lubart, Vitaly" <vitaly.lubart@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============6712600249876951362==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Add driver for GSC controller (rev6)
+URL   : https://patchwork.freedesktop.org/series/98066/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11224 -> Patchwork_22260
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/index.html
+
+Participating hosts (48 -> 43)
+------------------------------
+
+  Missing    (5): shard-tglu fi-bsw-cyan fi-pnv-d510 shard-rkl shard-dg1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22260 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][1] ([i915#3921])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271]) +13 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-skl-6600u:       [PASS][4] -> [INCOMPLETE][5] ([i915#4547] / [i915#4838])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][6] ([i915#2722] / [i915#4312])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-skl-6600u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-5557u:       [INCOMPLETE][7] ([i915#146]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][9] ([i915#4269]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4838]: https://gitlab.freedesktop.org/drm/intel/issues/4838
 
 
-> -----Original Message-----
-> From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Sent: Sunday, February 13, 2022 11:56
-> To: Usyskin, Alexander <alexander.usyskin@intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>; Joonas Lahtinen
-> <joonas.lahtinen@linux.intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>=
-;
-> David Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>; Winkler=
-,
-> Tomas <tomas.winkler@intel.com>; Lubart, Vitaly <vitaly.lubart@intel.com>=
-;
-> intel-gfx@lists.freedesktop.org; linux-kernel@vger.kernel.org
-> Subject: Re: [PATCH v6 0/5] Add driver for GSC controller
->=20
-> On Sun, Feb 13, 2022 at 11:14:53AM +0200, Alexander Usyskin wrote:
-> > GSC is a graphics system controller, it provides
-> > a chassis controller for graphics discrete cards.
-> >
-> > There are two MEI interfaces in GSC: HECI1 and HECI2.
-> >
-> > This series includes instantiation of the auxiliary devices for HECI2
-> > and mei-gsc auxiliary device driver that binds to the auxiliary device.
-> >
-> > In v2 the platform device was replaced by the auxiliary device.
-> > v3 is the rebase over drm-tip to make public CI running.
-> > In v4 the not needed debug prints and empty line were removed,
-> >       'select' were replaced by 'depends on' in MEI Kconfig,
-> >       the new include file now listed in the MAINTATINERS file.
-> > V5, rebase and add Greg KH Reviewed-by
-> > V6, rebase and drop redundant assignments found by the kernel test
-> robot.
-> >
-> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->=20
-> This line needs to be added to the individual patches if you want any
-> tool or maintainer to pick that up.
->=20
+Build changes
+-------------
 
-Thanks for a tip, will send with your review added to the individual patche=
-s.
+  * Linux: CI_DRM_11224 -> Patchwork_22260
 
-> thanks,
->=20
-> greg k-h
+  CI-20190529: 20190529
+  CI_DRM_11224: a55c69f5d509af75d5fd907cb2c9c7a6e1ce09c2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6343: 59c59f45b8433300b1b45cc9abc4b86dd0f81084 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22260: 0387e06892c73d7e23f7350b6bf665f8533a03c0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0387e06892c7 mei: gsc: retrieve the firmware version
+7791afd29aad mei: gsc: add runtime pm handlers
+ed5240649790 mei: gsc: setup char driver alive in spite of firmware handshake failure
+f8b3b180bcda mei: add support for graphics system controller (gsc) devices
+d0b59e5994c0 drm/i915/gsc: add gsc as a mei auxiliary device
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/index.html
+
+--===============6712600249876951362==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add driver for GSC controller (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/98066/">https://patchwork.freedesktop.org/series/98066/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11224 -&gt; Patchwork_22260</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/index.html</p>
+<h2>Participating hosts (48 -&gt; 43)</h2>
+<p>Missing    (5): shard-tglu fi-bsw-cyan fi-pnv-d510 shard-rkl shard-dg1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22260 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4838">i915#4838</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11224/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22260/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11224 -&gt; Patchwork_22260</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11224: a55c69f5d509af75d5fd907cb2c9c7a6e1ce09c2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6343: 59c59f45b8433300b1b45cc9abc4b86dd0f81084 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22260: 0387e06892c73d7e23f7350b6bf665f8533a03c0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>0387e06892c7 mei: gsc: retrieve the firmware version<br />
+7791afd29aad mei: gsc: add runtime pm handlers<br />
+ed5240649790 mei: gsc: setup char driver alive in spite of firmware handshake failure<br />
+f8b3b180bcda mei: add support for graphics system controller (gsc) devices<br />
+d0b59e5994c0 drm/i915/gsc: add gsc as a mei auxiliary device</p>
+
+</body>
+</html>
+
+--===============6712600249876951362==--
