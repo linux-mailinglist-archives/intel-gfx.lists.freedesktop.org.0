@@ -2,33 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE7F54B3A71
-	for <lists+intel-gfx@lfdr.de>; Sun, 13 Feb 2022 10:02:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A0E44B3A7C
+	for <lists+intel-gfx@lfdr.de>; Sun, 13 Feb 2022 10:15:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCFB710F3E7;
-	Sun, 13 Feb 2022 09:02:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD4EA10F4BB;
+	Sun, 13 Feb 2022 09:15:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 814DD10F3E3;
- Sun, 13 Feb 2022 09:02:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7CE2CA66C9;
- Sun, 13 Feb 2022 09:02:40 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5558F10F4BC
+ for <intel-gfx@lists.freedesktop.org>; Sun, 13 Feb 2022 09:15:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644743712; x=1676279712;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cDGw7T1kUO0lrWxnKH8fGu3dAwykVExuwpxBnNOkeDU=;
+ b=dv2KIEfISm/F0DTTBxdfFbOLEPpH964kj/In+mtTWSdB88j6T+bAKhQL
+ X6nbS1ileQt/yffASf6VNfQntv0UVU/PfG1hk5sc1EfmMBIZNH09KwczW
+ FMOQdT2JYSAEz9E7h/Z33WDsMkYIjsfMsZF1GKjGiXLKMHYfByKnlfU/T
+ rtKnZU4Hwb4oQk+2jOIYjgOzmhME+o17z7Z2NAa9ldKVUc95Kjb/gv5Nr
+ TOeGioyLT0fvgUqgX1yKKvwIQYSjab3Z1t+hOwUEILjmAwI2owWC9qJRN
+ aVRpBQWUK20gkBYmPuncEnt6dqRtUq5Y7kaFP/Gibo82ElIqptqRx1Gq8 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10256"; a="247528779"
+X-IronPort-AV: E=Sophos;i="5.88,365,1635231600"; d="scan'208";a="247528779"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2022 01:15:11 -0800
+X-IronPort-AV: E=Sophos;i="5.88,365,1635231600"; d="scan'208";a="702568961"
+Received: from sannilnx.jer.intel.com ([10.12.231.79])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2022 01:15:08 -0800
+From: Alexander Usyskin <alexander.usyskin@intel.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+Date: Sun, 13 Feb 2022 11:14:53 +0200
+Message-Id: <20220213091458.2364014-1-alexander.usyskin@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin" <arunpravin.paneerselvam@amd.com>
-Date: Sun, 13 Feb 2022 09:02:40 -0000
-Message-ID: <164474296048.19581.6604174663715319457@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220213085217.2705-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20220213085217.2705-1-Arunpravin.PaneerSelvam@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv12=2C1/5=5D_drm=3A_improve_drm=5Fb?=
- =?utf-8?q?uddy=5Falloc_function?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v6 0/5] Add driver for GSC controller
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,51 +57,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, Tomas Winkler <tomas.winkler@intel.com>,
+ Alexander Usyskin <alexander.usyskin@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+GSC is a graphics system controller, it provides
+a chassis controller for graphics discrete cards.
 
-Series: series starting with [v12,1/5] drm: improve drm_buddy_alloc function
-URL   : https://patchwork.freedesktop.org/series/100069/
-State : warning
+There are two MEI interfaces in GSC: HECI1 and HECI2.
 
-== Summary ==
+This series includes instantiation of the auxiliary devices for HECI2
+and mei-gsc auxiliary device driver that binds to the auxiliary device.
 
-$ dim checkpatch origin/drm-tip
-07cd035b740d drm: improve drm_buddy_alloc function
--:368: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#368: FILE: drivers/gpu/drm/drm_buddy.c:562:
-+		BUG_ON(order > mm->max_order);
+In v2 the platform device was replaced by the auxiliary device.
+v3 is the rebase over drm-tip to make public CI running.
+In v4 the not needed debug prints and empty line were removed,
+      'select' were replaced by 'depends on' in MEI Kconfig,
+      the new include file now listed in the MAINTATINERS file. 
+V5, rebase and add Greg KH Reviewed-by
+V6, rebase and drop redundant assignments found by the kernel test robot.
 
--:369: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#369: FILE: drivers/gpu/drm/drm_buddy.c:563:
-+		BUG_ON(order < min_order);
+Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
-total: 0 errors, 2 warnings, 0 checks, 465 lines checked
-ccf915b04de0 drm: implement top-down allocation method
-75b92ac23ffd drm: implement a method to free unused pages
-a46e724508af drm/amdgpu: move vram inline functions into a header
--:12: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#12: 
-new file mode 100644
 
-total: 0 errors, 1 warnings, 0 checks, 51 lines checked
-c01dc68ea696 drm/amdgpu: add drm buddy support to amdgpu
--:63: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#63: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:41:
-+	uint32_t		mem_type;
+Alexander Usyskin (2):
+  mei: gsc: setup char driver alive in spite of firmware handshake
+    failure
+  mei: gsc: retrieve the firmware version
 
--:419: CHECK:BRACES: Unbalanced braces around else statement
-#419: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:386:
-+	else {
+Tomas Winkler (3):
+  drm/i915/gsc: add gsc as a mei auxiliary device
+  mei: add support for graphics system controller (gsc) devices
+  mei: gsc: add runtime pm handlers
 
--:448: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#448: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:411:
-+	BUG_ON(min_page_size < mm->chunk_size);
+ MAINTAINERS                              |   1 +
+ drivers/gpu/drm/i915/Kconfig             |   1 +
+ drivers/gpu/drm/i915/Makefile            |   3 +
+ drivers/gpu/drm/i915/gt/intel_gsc.c      | 196 ++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gsc.h      |  37 ++++
+ drivers/gpu/drm/i915/gt/intel_gt.c       |   3 +
+ drivers/gpu/drm/i915/gt/intel_gt.h       |   5 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c   |  13 ++
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h  |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h |   2 +
+ drivers/gpu/drm/i915/i915_drv.h          |   8 +
+ drivers/gpu/drm/i915/i915_pci.c          |   3 +-
+ drivers/gpu/drm/i915/i915_reg.h          |   2 +
+ drivers/gpu/drm/i915/intel_device_info.h |   2 +
+ drivers/misc/mei/Kconfig                 |  14 ++
+ drivers/misc/mei/Makefile                |   3 +
+ drivers/misc/mei/bus-fixup.c             |  25 +++
+ drivers/misc/mei/gsc-me.c                | 252 +++++++++++++++++++++++
+ drivers/misc/mei/hw-me.c                 |  29 ++-
+ drivers/misc/mei/hw-me.h                 |   2 +
+ include/linux/mei_aux.h                  |  19 ++
+ 21 files changed, 618 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gsc.c
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gsc.h
+ create mode 100644 drivers/misc/mei/gsc-me.c
+ create mode 100644 include/linux/mei_aux.h
 
-total: 0 errors, 1 warnings, 2 checks, 589 lines checked
-
+-- 
+2.32.0
 
