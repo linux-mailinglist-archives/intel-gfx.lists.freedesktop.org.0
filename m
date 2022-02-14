@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 848C54B5905
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 18:45:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BE374B5906
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 18:45:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8FAE10E273;
-	Mon, 14 Feb 2022 17:45:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD95010E280;
+	Mon, 14 Feb 2022 17:45:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE68F10E273
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Feb 2022 17:45:20 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AD7B10E280
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Feb 2022 17:45:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644860720; x=1676396720;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ErwG8ATEGSFsvpVr9A1/vGTJGZErhVX8CjRCfqydbDM=;
- b=Hovu2Vp6tfODIVKpCcgqg2PPPEdHMeHl9zxBXPNCiMw7L5fcA5oiqVVa
- +NEesiWFAGSL2glA7LTxJ+N5iIBSHcnNjJ32w9ZbID2nVzD9C1a8RtARf
- gEhkT1NO8NhxNtIgfrrJVfGaz/sZcPTRhv0XIAbcLwA2G4OgkUUlSHul4
- 83dRCDRID/oax7R3F+cgYB/UFIlYPFmbX3x+pfB2OA2DWsTPDogEwtDXx
- EDpkULUP4xj5gYBgeMCm8Bfk7jO36WgDKIpN/9jegTrHulVQtZmzG0WFt
- ed77dBx/Uko96mhrw/JFTtOzbPUvxlSyS4aQE3eF4mp344OsBpsuhWxdH A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="230110203"
-X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="230110203"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 09:38:19 -0800
-X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="528315029"
-Received: from unknown (HELO localhost) ([10.252.13.38])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 09:38:18 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Feb 2022 19:38:10 +0200
-Message-Id: <20220214173810.2108975-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220214173810.2108975-1-jani.nikula@intel.com>
-References: <20220214173810.2108975-1-jani.nikula@intel.com>
+ t=1644860730; x=1676396730;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=NM7mXnoCJaZTxNGRHMdyxi0SQt1vsD3B5TIwldkCf2U=;
+ b=HuEl419CFeCEnYI3iWjb9zrJdhUSkgAzNuJhhopZH+DiXbmQBbTrTlju
+ Px152/oK1uThIv/uKCReIrKgsgajLFTEoTAcHFTGLlKQkiZLM6EnMRmyJ
+ VFs0AZ1pVuTZFxJuDozWMelnUUNHSIzKm1DlCChVPCuffS3ttNkCp4LpA
+ uEsB9Obd1EykGDc46AI/dxhemCN9fYxsQXzlqBS2dJ82m2oDbUdPD3FUZ
+ keva/zmoZoqqFa61yFyDweCealFj+vlqtOym7k1N/EIyUv+U0qR8DX8Y+
+ KJN4aXetUsoHJy18Rv/5+fdvZrnAOOla2tvWJoh+Kjgdi+z1kYjHLnEjH Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="249894785"
+X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="249894785"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2022 09:39:11 -0800
+X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="703200415"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2022 09:39:10 -0800
+Date: Mon, 14 Feb 2022 19:39:28 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20220214173928.GB25816@intel.com>
+References: <20220214091811.13725-1-ville.syrjala@linux.intel.com>
+ <20220214091811.13725-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/lrc: replace include with forward
- declarations
+In-Reply-To: <20220214091811.13725-5-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915: Unconfuse pre-icl vs. icl+
+ intel_sagv_{pre, post}_plane_update()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,50 +59,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Prefer forward declarations over includes if possible.
+On Mon, Feb 14, 2022 at 11:18:09AM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> intel_sagv_{pre,post}_plane_update() can accidentally forget
+> to bail out early on pre-icl and proceed down the icl+ codepath
+> at the end of the function. Fortunately it'll bail out before
+> it gets too far due to old_qgv_mask==new_qgv_mask==0 so no real
+> bug here. But lets make the code less confusing anyway.
+> 
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> index d8eb553ffad3..068870b17c43 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3806,8 +3806,9 @@ void intel_sagv_pre_plane_update(struct intel_atomic_state *state)
+>  	if (!new_bw_state)
+>  		return;
+>  
+> -	if (DISPLAY_VER(dev_priv) < 11 && !intel_can_enable_sagv(dev_priv, new_bw_state)) {
+> -		intel_disable_sagv(dev_priv);
+> +	if (DISPLAY_VER(dev_priv) < 11) {
+> +		if (!intel_can_enable_sagv(dev_priv, new_bw_state))
+> +			intel_disable_sagv(dev_priv);
+>  		return;
+>  	}
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 2 ++
- drivers/gpu/drm/i915/gt/intel_lrc.h | 5 +++--
- 2 files changed, 5 insertions(+), 2 deletions(-)
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 5b107b698b65..004e1216e654 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -8,6 +8,8 @@
- #include "gen8_engine_cs.h"
- #include "i915_drv.h"
- #include "i915_perf.h"
-+#include "i915_reg.h"
-+#include "intel_context.h"
- #include "intel_engine.h"
- #include "intel_engine_regs.h"
- #include "intel_gpu_commands.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
-index 2af85a15a370..0b76f096b559 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.h
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
-@@ -8,11 +8,12 @@
- 
- #include <linux/types.h>
- 
--#include "intel_context.h"
--
- struct drm_i915_gem_object;
-+struct i915_gem_ww_ctx;
-+struct intel_context;
- struct intel_engine_cs;
- struct intel_ring;
-+struct kref;
- 
- /* At the start of the context image is its per-process HWS page */
- #define LRC_PPHWSP_PN	(0)
--- 
-2.30.2
+Agree, I think that was my original code as well. However to be honest, don't like
+the whole idea of splitting the code flow and bailing our prematurely for gen < 11 here.
+Would be nice to have some unified approach, so that we have common main logic for all platforms,
+like 
+if (intel_bw_state_equals(new, old))
+	return
 
+intel_bw_state_apply_restrictions(...)  -> here we would add intel_enable/disable_sagv for gen <11 and
+                                           qgv point restrictions for gen >= 11
+
+Stan
+
+>  
+> @@ -3857,8 +3858,9 @@ void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+>  	if (!new_bw_state)
+>  		return;
+>  
+> -	if (DISPLAY_VER(dev_priv) < 11 && intel_can_enable_sagv(dev_priv, new_bw_state)) {
+> -		intel_enable_sagv(dev_priv);
+> +	if (DISPLAY_VER(dev_priv) < 11) {
+> +		if (intel_can_enable_sagv(dev_priv, new_bw_state))
+> +			intel_enable_sagv(dev_priv);
+>  		return;
+>  	}
+>  
+> -- 
+> 2.34.1
+> 
