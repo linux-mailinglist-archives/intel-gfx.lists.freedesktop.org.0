@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93BDF4B5418
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 16:02:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4957C4B5419
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 16:02:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79F4210E116;
-	Mon, 14 Feb 2022 15:02:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5092B10E1CA;
+	Mon, 14 Feb 2022 15:02:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71F0210E116
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Feb 2022 15:02:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D288C10E1CA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Feb 2022 15:02:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644850937; x=1676386937;
+ t=1644850939; x=1676386939;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IVOC+SStKjfkX0aGJomIxLPEdwsQFpYqxjzi/GnRG+c=;
- b=mrFZE7IcHnd0hipgvyZ3PdTdDVvyypCxTBSKWmGVS5pvQi+tm3faUFrY
- zNAPQE+GBG6mH0Aj7cLuhyTS+v5q3mkMaI7lRY54w/FNDgwG0HM5sSb+m
- sUbg9u8NnqirFyyeAAICjUgf8iZ/tph1gzfaOHaUroy3odfGV/77UE71O
- /rjkE5BoYb1asZXpKFMMm+cWoF5WdEThNV2Yj2PitGVwYZMBfpvZGYlTr
- d1QBsLQoz+cYJrj13yz3LGFmjvfQkW03ea1iiDKJEI6I60WtBZFjP3/Pz
- qapyDIoZRoCpW89fyo3JpDb7ZBBdp5a/wX1FC+W+4plzGMKdQr8lo6RTg A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10257"; a="313381828"
-X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="313381828"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ bh=31RiwxqRpyDoDRr1IRqSx6gKbtwRXROZwabF8/iiM+M=;
+ b=LwU/ckeuYgeE7wuWe0uc+khkPDlhLOWE+hw2cvCLhuOIOd2noUn83Mvb
+ K7wmEgbx6y0zhPYxe/92rYD4XCAlIdHe7x5/g7VyhRGUeCnE/QkBRCy4o
+ fS1girRfND8PJNPakYmgDK++40/iotw0lcpmm3Do25M2zTAw6BOqVqEB7
+ Y14WBgpBPlK/4mhCcaVsaN3b8FJ9XO0OcFPbHeXwvzzmpUj9zDXD7o7gV
+ 5u8tgpMM1MqfRAY7ej9fRb+OZmHqCerQS3Lw2fdS/8hk4/OWjk/xtXJfT
+ cuT55AXWBAKPq5RPZfdmwt0znmJ3prVV80ttjxNtLcPu0OK1HFuX045BF Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10257"; a="313381844"
+X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="313381844"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 07:02:15 -0800
-X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="543649174"
+ 14 Feb 2022 07:02:19 -0800
+X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="501862910"
 Received: from unknown (HELO localhost) ([10.252.13.38])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 07:02:14 -0800
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2022 07:02:18 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Feb 2022 17:02:06 +0200
-Message-Id: <961d790b9eacad248fa7ac7d1dcf6179f543dccd.1644850884.git.jani.nikula@intel.com>
+Date: Mon, 14 Feb 2022 17:02:07 +0200
+Message-Id: <057c649f4129a9f2b8b6b77e7f4ee0856d259c23.1644850884.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1644850884.git.jani.nikula@intel.com>
 References: <cover.1644850884.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/fbdev: add
- intel_fbdev_to_framebuffer() helper
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/fbdev: hide struct intel_fbdev in
+ intel_fbdev.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,87 +61,89 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Wrap accessing struct intel_fbdev guts in a helper.
+As all access to struct intel_fbdev guts is nicely stowed away in
+intel_fbdev.c, we can hide the struct definition there too.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 6 +++---
- drivers/gpu/drm/i915/display/intel_fbdev.c           | 8 ++++++++
- drivers/gpu/drm/i915/display/intel_fbdev.h           | 7 +++++++
- 3 files changed, 18 insertions(+), 3 deletions(-)
+ .../drm/i915/display/intel_display_types.h    | 21 -------------------
+ drivers/gpu/drm/i915/display/intel_fbdev.c    | 17 +++++++++++++++
+ 2 files changed, 17 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index f4de004d470f..b0bcf4d54a74 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -16,6 +16,7 @@
- #include "intel_dp_mst.h"
- #include "intel_drrs.h"
- #include "intel_fbc.h"
-+#include "intel_fbdev.h"
- #include "intel_hdcp.h"
- #include "intel_hdmi.h"
- #include "intel_pm.h"
-@@ -124,9 +125,8 @@ static int i915_gem_framebuffer_info(struct seq_file *m, void *data)
- 	struct drm_framebuffer *drm_fb;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 60e15226a8cb..ff9288eea541 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -26,7 +26,6 @@
+ #ifndef __INTEL_DISPLAY_TYPES_H__
+ #define __INTEL_DISPLAY_TYPES_H__
  
- #ifdef CONFIG_DRM_FBDEV_EMULATION
--	if (dev_priv->fbdev && dev_priv->fbdev->helper.fb) {
--		fbdev_fb = to_intel_framebuffer(dev_priv->fbdev->helper.fb);
+-#include <linux/async.h>
+ #include <linux/i2c.h>
+ #include <linux/pm_qos.h>
+ #include <linux/pwm.h>
+@@ -38,7 +37,6 @@
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_dsc.h>
+ #include <drm/drm_encoder.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_probe_helper.h>
+ #include <drm/drm_rect.h>
+@@ -145,25 +143,6 @@ struct intel_framebuffer {
+ 	struct i915_address_space *dpt_vm;
+ };
+ 
+-struct intel_fbdev {
+-	struct drm_fb_helper helper;
+-	struct intel_framebuffer *fb;
+-	struct i915_vma *vma;
+-	unsigned long vma_flags;
+-	async_cookie_t cookie;
+-	int preferred_bpp;
 -
-+	fbdev_fb = intel_fbdev_to_framebuffer(dev_priv->fbdev);
-+	if (fbdev_fb) {
- 		seq_printf(m, "fbcon size: %d x %d, depth %d, %d bpp, modifier 0x%llx, refcount %d, obj ",
- 			   fbdev_fb->base.width,
- 			   fbdev_fb->base.height,
+-	/* Whether or not fbdev hpd processing is temporarily suspended */
+-	bool hpd_suspended : 1;
+-	/* Set when a hotplug was received while HPD processing was
+-	 * suspended
+-	 */
+-	bool hpd_waiting : 1;
+-
+-	/* Protects hpd_suspended */
+-	struct mutex hpd_lock;
+-};
+-
+ enum intel_hotplug_state {
+ 	INTEL_HOTPLUG_UNCHANGED,
+ 	INTEL_HOTPLUG_CHANGED,
 diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 41d279db2be6..3ef683916ba6 100644
+index 3ef683916ba6..4ec88807166c 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -680,3 +680,11 @@ void intel_fbdev_restore_mode(struct drm_device *dev)
- 	if (drm_fb_helper_restore_fbdev_mode_unlocked(&ifbdev->helper) == 0)
- 		intel_fbdev_invalidate(ifbdev);
- }
+@@ -50,6 +50,23 @@
+ #include "intel_fbdev.h"
+ #include "intel_frontbuffer.h"
+ 
++struct intel_fbdev {
++	struct drm_fb_helper helper;
++	struct intel_framebuffer *fb;
++	struct i915_vma *vma;
++	unsigned long vma_flags;
++	async_cookie_t cookie;
++	int preferred_bpp;
 +
-+struct intel_framebuffer *intel_fbdev_to_framebuffer(struct intel_fbdev *fbdev)
-+{
-+	if (!fbdev || !fbdev->helper.fb)
-+		return NULL;
++	/* Whether or not fbdev hpd processing is temporarily suspended */
++	bool hpd_suspended: 1;
++	/* Set when a hotplug was received while HPD processing was suspended */
++	bool hpd_waiting: 1;
 +
-+	return to_intel_framebuffer(fbdev->helper.fb);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-index de7c84250eb5..8e86c08d544f 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-@@ -10,6 +10,8 @@
- 
- struct drm_device;
- struct drm_i915_private;
-+struct intel_fbdev;
-+struct intel_framebuffer;
- 
- #ifdef CONFIG_DRM_FBDEV_EMULATION
- int intel_fbdev_init(struct drm_device *dev);
-@@ -19,6 +21,7 @@ void intel_fbdev_fini(struct drm_i915_private *dev_priv);
- void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
- void intel_fbdev_output_poll_changed(struct drm_device *dev);
- void intel_fbdev_restore_mode(struct drm_device *dev);
-+struct intel_framebuffer *intel_fbdev_to_framebuffer(struct intel_fbdev *fbdev);
- #else
- static inline int intel_fbdev_init(struct drm_device *dev)
++	/* Protects hpd_suspended */
++	struct mutex hpd_lock;
++};
++
+ static struct intel_frontbuffer *to_frontbuffer(struct intel_fbdev *ifbdev)
  {
-@@ -48,6 +51,10 @@ static inline void intel_fbdev_output_poll_changed(struct drm_device *dev)
- static inline void intel_fbdev_restore_mode(struct drm_device *dev)
- {
- }
-+static inline struct intel_framebuffer *intel_fbdev_to_framebuffer(struct intel_fbdev *fbdev)
-+{
-+	return NULL;
-+}
- #endif
- 
- #endif /* __INTEL_FBDEV_H__ */
+ 	return ifbdev->fb->frontbuffer;
 -- 
 2.30.2
 
