@@ -1,49 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC4554B48D5
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 11:01:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2833E4B456A
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 10:18:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B02DC10E30F;
-	Mon, 14 Feb 2022 10:01:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40F5610E2AD;
+	Mon, 14 Feb 2022 09:18:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D911D10E30F;
- Mon, 14 Feb 2022 10:01:30 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90A2610E2AD
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Feb 2022 09:18:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644832890; x=1676368890;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6ki3B4SKMeAIMpeJIvZP+6K8tc+2XPgGgemO1vx5zbg=;
- b=M6dvmS59od6s9wViTZeLFcXsgVZEKwBY7pu4OMMBZV8kBBLz9cvBaG+s
- H4Jx2uBvgWLLje25DDtLSl++qqGMmyelpYfi8DjtQrBmxOe6TR9FKJBYz
- JpAh1+2zM4pBwN77Nw/XDjQwhs9JA2xSjp0HfFGmtmZ8t5It7ovGanovh
- rwyiiG7FxsMyVeGKVjHjOAGLuTOC+PkVG+dteEd/BsFSSyhFTgcn10D0r
- CGVSZ7Ld7uyMHD3yekpIOUmFVCiOpePRI1AGFgLkSjDiYyxXPb1qoyLTs
- ccASKxSMJmPzjzyTuWHECITmga9WtOfLCZD0VzLUe1GiXSh9r2nGeQwsb A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10257"; a="274628589"
-X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; d="scan'208";a="274628589"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 02:01:30 -0800
-X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; d="scan'208";a="543383384"
-Received: from unknown (HELO vandita-Z390-AORUS-ULTRA.iind.intel.com)
- ([10.190.238.8])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 02:01:28 -0800
-From: Vandita Kulkarni <vandita.kulkarni@intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Mon, 14 Feb 2022 07:33:57 +0530
-Message-Id: <20220214020357.10063-6-vandita.kulkarni@intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220214020357.10063-1-vandita.kulkarni@intel.com>
-References: <20220214020357.10063-1-vandita.kulkarni@intel.com>
+ t=1644830296; x=1676366296;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PlRoA4zzfVcI8enzD59L0ew2qirV2jIjZc5bFYk3egY=;
+ b=ADD8r1cu1qVyI5rgdGXL9xvhVnXJcuog7ZyHEz+SRd6Gx+hZ+sPtD71m
+ gPiOnYiNVF0NCsreoho3waLXuXXSuj1G6IKI+BM1jzIVa5zDiwPvDn/YY
+ mlIprC5sr73MkICI790ZJ9JAcCvymiiBjtQ2NmW0YRjHUZVFMOgoX266d
+ kidE7ikRYUlBkM3me+u9BnaDkXEKFZwWAic2Hksqw8n58/chCXYPgvCrP
+ OLmhICSnscyeGGh2A5imfQP+YH8LibSG26vBLl4twozPRSxRkWE09oOdj
+ 4ZKt9qEGbGr7L1Lgta6UWWyEPgEnjYawF6yNvpiZ05cYU6745VAtvq/KC g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10257"; a="248882355"
+X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; d="scan'208";a="248882355"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2022 01:18:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; d="scan'208";a="495335238"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga006.jf.intel.com with SMTP; 14 Feb 2022 01:18:12 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 14 Feb 2022 11:18:11 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 14 Feb 2022 11:18:05 +0200
+Message-Id: <20220214091811.13725-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC v2 5/5] drm/hdmi21: Add frl_dfm_helper to Makefile
+Subject: [Intel-gfx] [PATCH 0/6] drm/i915: SAGV fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,33 +56,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- laurent.pinchart@ideasonboard.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add the new frl_dfm_helper file to drm Makefile
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
----
- drivers/gpu/drm/Makefile | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+While pokingaround the watermarks/etc. I noticed our SAGV code
+has a bunch of bugs. Let's try to fix it.
 
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 8675c2af7ae1..81fe3df8bfda 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -57,7 +57,9 @@ drm_kms_helper-y := drm_bridge_connector.o drm_crtc_helper.o \
- 		drm_scdc_helper.o drm_gem_atomic_helper.o \
- 		drm_gem_framebuffer_helper.o \
- 		drm_atomic_state_helper.o drm_damage_helper.o \
--		drm_format_helper.o drm_self_refresh_helper.o drm_rect.o
-+		drm_format_helper.o drm_self_refresh_helper.o drm_rect.o \
-+		drm_frl_dfm_helper.o
-+
- drm_kms_helper-$(CONFIG_DRM_PANEL_BRIDGE) += bridge/panel.o
- drm_kms_helper-$(CONFIG_DRM_FBDEV_EMULATION) += drm_fb_helper.o
- 
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+Ville Syrjälä (6):
+  drm/i915: Correctly populate use_sagv_wm for all pipes
+  drm/i915: Fix bw atomic check when switching between SAGV vs. no SAGV
+  drm/i915: Widen the QGV point mask
+  drm/i915: Unconfuse pre-icl vs. icl+
+    intel_sagv_{pre,post}_plane_update()
+  drm/i915: Split pre-icl vs. icl+ SAGV hooks apart
+  drm/i915: Pimp icl+ sagv pre/post update
+
+ drivers/gpu/drm/i915/display/intel_bw.c |   7 +
+ drivers/gpu/drm/i915/display/intel_bw.h |   8 +-
+ drivers/gpu/drm/i915/intel_pm.c         | 175 ++++++++++++++----------
+ 3 files changed, 116 insertions(+), 74 deletions(-)
+
 -- 
-2.32.0
+2.34.1
 
