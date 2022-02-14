@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2360D4B4575
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 10:18:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C3BA4B4576
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 10:18:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0636E10E2BD;
-	Mon, 14 Feb 2022 09:18:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEED810E2B5;
+	Mon, 14 Feb 2022 09:18:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FAD910E2B5
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Feb 2022 09:18:22 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2104110E2B8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Feb 2022 09:18:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644830302; x=1676366302;
+ t=1644830306; x=1676366306;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=p7jz2CooDnh3wCTyjwRbD6RPNbUIngB4BJvAiEu3ohY=;
- b=YeqkfbqLHq1lO8UPJbZ+YUdojR+b3f4dDcO9f8oXbpdetxIMBW3rWxax
- krkkt8qTeUh0E8Y9ZRnKldej0VPnRYy+wKEagwDq7ai1fLd4PRacnAvnQ
- OHqjeInuE2EEWrMRrFVSY8uOhMVsLIYnmKV5YOZzNlPfRUxg29eOUeCTu
- UomLrD74ZZ5HiU6o9AvfJmjQtFT1RukUgjkk980Noeet3VGDbOrLj3qe5
- qiCb0SQ9vMdf/lkrcl/OXD+U+Ow4GzCwetZNSaba43EbOiTvpjYP51Ex4
- W3KMJfWxiB+W/IVmiIQpQLRZIlaizYQRhXEgBUiYg0opyPlY4Uf4oDsUk g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10257"; a="233597640"
-X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; d="scan'208";a="233597640"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 01:18:22 -0800
+ bh=VtGM7t8bP4Ig1udolijPIR5eXP0/XCLSHYL9fQGs8Vc=;
+ b=ENk3egmXG0HaZSAVOucfMFgMIIXjlu+l2Y2pcioDrtJsaaP6sOgFj6Wn
+ SlV/YFEfxRIeU0sngWcukgoKxEVOxIKzlPvVrKLNUggzzWOmUfrvcR3Em
+ xdbJkElds1as/NHuM/yCtIVjImjKxPGwF+MYxWNWDHPBtLS0rl+QtgaBY
+ cCtrDYmQ6FWIsi00Ug0bwje1ggtixaKkKSBVpw4OnMMalZz8sr53PWgEy
+ 753EGnSrf6TjFa0pSLLnxSgJb8koJ6o8TlOTxy3Q0h2s7ePLPaFmg2Dxp
+ pMzGsFakongXDH38aRMhdEUcY70ewAaySj9KllrQzNFG1BtyY6CyxNtA8 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10257"; a="237459610"
+X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; d="scan'208";a="237459610"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2022 01:18:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; d="scan'208";a="501658262"
+X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; d="scan'208";a="624070427"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga002.jf.intel.com with SMTP; 14 Feb 2022 01:18:19 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 14 Feb 2022 01:18:22 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 14 Feb 2022 11:18:18 +0200
+ Mon, 14 Feb 2022 11:18:22 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Feb 2022 11:18:07 +0200
-Message-Id: <20220214091811.13725-3-ville.syrjala@linux.intel.com>
+Date: Mon, 14 Feb 2022 11:18:08 +0200
+Message-Id: <20220214091811.13725-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220214091811.13725-1-ville.syrjala@linux.intel.com>
 References: <20220214091811.13725-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/6] drm/i915: Fix bw atomic check when
- switching between SAGV vs. no SAGV
+Subject: [Intel-gfx] [PATCH 3/6] drm/i915: Widen the QGV point mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,42 +64,46 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-If the only thing that is changing is SAGV vs. no SAGV but
-the number of active planes and the total data rates end up
-unchanged we currently bail out of intel_bw_atomic_check()
-early and forget to actually compute the new WGV point
-mask and thus won't actually enable/disable SAGV as requested.
-This ends up poorly if we end up running with SAGV enabled
-when we shouldn't. Usually ends up in underruns.
-To fix this let's go through the QGV point mask computation
-if anyone else already added the bw state for us.
+adlp+ adds some extra bits to the QGV point mask. The code attempts
+to handle that but forgot to actually make sure we can store those
+bits in the bw state. Fix it.
 
 Cc: stable@vger.kernel.org
 Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Fixes: 20f505f22531 ("drm/i915: Restrict qgv points which don't have enough bandwidth.")
+Fixes: 192fbfb76744 ("drm/i915: Implement PSF GV point support")
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bw.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 23aa8e06de18..d72ccee7d53b 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -846,6 +846,13 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
- 	if (num_psf_gv_points > 0)
- 		mask |= REG_GENMASK(num_psf_gv_points - 1, 0) << ADLS_PSF_PT_SHIFT;
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+index 46c6eecbd917..0ceaed1c9656 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.h
++++ b/drivers/gpu/drm/i915/display/intel_bw.h
+@@ -30,19 +30,19 @@ struct intel_bw_state {
+ 	 */
+ 	u8 pipe_sagv_reject;
  
-+	/*
-+	 * If we already have the bw state then recompute everything
-+	 * even if pipe data_rate / active_planes didn't change.
-+	 * Other things (such as SAGV) may have changed.
-+	 */
-+	new_bw_state = intel_atomic_get_new_bw_state(state);
++	/* bitmask of active pipes */
++	u8 active_pipes;
 +
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
- 					    new_crtc_state, i) {
- 		unsigned int old_data_rate =
+ 	/*
+ 	 * Current QGV points mask, which restricts
+ 	 * some particular SAGV states, not to confuse
+ 	 * with pipe_sagv_mask.
+ 	 */
+-	u8 qgv_points_mask;
++	u16 qgv_points_mask;
+ 
+ 	unsigned int data_rate[I915_MAX_PIPES];
+ 	u8 num_active_planes[I915_MAX_PIPES];
+ 
+-	/* bitmask of active pipes */
+-	u8 active_pipes;
+-
+ 	int min_cdclk;
+ };
+ 
 -- 
 2.34.1
 
