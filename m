@@ -1,56 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 190DD4B5AF3
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 21:26:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2A6E4B5B7C
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Feb 2022 21:53:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A830E10E2D2;
-	Mon, 14 Feb 2022 20:26:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D83210E2ED;
+	Mon, 14 Feb 2022 20:53:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 490A010E2D2
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Feb 2022 20:26:50 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4840810E2ED
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Feb 2022 20:53:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644870411; x=1676406411;
+ t=1644871983; x=1676407983;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=jBoOC2iNaUbvP3uXz9jTVj5G8+S7Id83IdBzdJJAud8=;
- b=necPzxplB3gamh0jgDv3Byj6Bo1C5Wg4of5d9k0qOxCn9kiJjyA3Dknk
- e+xVhFhW7nf8+YgWIItMMnd1ZIjec2Xj4bmulEEv1uhhb/OH8cvmNZMke
- kDZnc6+QuU8egkO/HbVYOyD5zXJpQs8n759G4L6EtmqACDQrqT/nyHube
- 3Qx6U7kClfcydMNstgzzvQ9RJIn1tjV5Xuekic/WdUwEeiTcAtt45v4oD
- 5bjjTBXUiY1j2rSvUoxbcRQVvpvdokTdJn2MiGs0QsE0HcjWRKALAwBsG
- OZ9o4b5JVkJ/o5ErT970XKk91NCx9mU7M6M9uhR7ty74oy1xog+R95X54 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="313453453"
-X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="313453453"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 12:26:42 -0800
+ bh=HBwx+NQAYWGS0xMdILMF/nyzAgdxWHEEGvjvBbcw2yQ=;
+ b=d50Ln3Sjm61ZStGnzlJiGCHSiV6WdMYv0nDhBDXkD6BftvEW+vYuH1gJ
+ KHqOlrt13FKyxm83b6lVVKOEZ/v3bIjlB0i20Kn+5T9o85Lf+N5QbZnj9
+ qfFtZADcOViIa39akR9w9rAPLNDeKO8z2HRbHn/vXMQbWZNb4IRdDSArG
+ PlKwrP61qRTmEXj2KS0+Gri8La9nwD4/n38LHHrMkGzdqrROs51WUHxRE
+ hFqr0rkcDkhtOQOXOtdD78Era2Qcl0X5LYIALTxNkFsF5snmm/BsbN8Yh
+ TCYl3lZQWNbXCDJv17kQ/f7u18zzGu1jfqRjpvNTRG+t0G8qoPd0JY4g3 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="249013561"
+X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="249013561"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2022 12:53:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="528420774"
+X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; d="scan'208";a="496022055"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga007.jf.intel.com with SMTP; 14 Feb 2022 12:26:40 -0800
+ by orsmga006.jf.intel.com with SMTP; 14 Feb 2022 12:53:00 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 14 Feb 2022 22:26:39 +0200
-Date: Mon, 14 Feb 2022 22:26:39 +0200
+ Mon, 14 Feb 2022 22:52:59 +0200
+Date: Mon, 14 Feb 2022 22:52:59 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <Ygq6/32Cy6CjMrDu@intel.com>
-References: <20220214091811.13725-1-ville.syrjala@linux.intel.com>
- <20220214091811.13725-3-ville.syrjala@linux.intel.com>
- <20220214100536.GB24878@intel.com> <Ygot+UVlBnA/Xzfk@intel.com>
- <20220214170305.GA25600@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YgrBKynMQfRLKKrs@intel.com>
+References: <cover.1644850884.git.jani.nikula@intel.com>
+ <961d790b9eacad248fa7ac7d1dcf6179f543dccd.1644850884.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220214170305.GA25600@intel.com>
+In-Reply-To: <961d790b9eacad248fa7ac7d1dcf6179f543dccd.1644850884.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Fix bw atomic check when
- switching between SAGV vs. no SAGV
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/fbdev: add
+ intel_fbdev_to_framebuffer() helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,106 +61,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 14, 2022 at 07:03:05PM +0200, Lisovskiy, Stanislav wrote:
-> On Mon, Feb 14, 2022 at 12:24:57PM +0200, Ville Syrjälä wrote:
-> > On Mon, Feb 14, 2022 at 12:05:36PM +0200, Lisovskiy, Stanislav wrote:
-> > > On Mon, Feb 14, 2022 at 11:18:07AM +0200, Ville Syrjala wrote:
-> > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > 
-> > > > If the only thing that is changing is SAGV vs. no SAGV but
-> > > > the number of active planes and the total data rates end up
-> > > > unchanged we currently bail out of intel_bw_atomic_check()
-> > > > early and forget to actually compute the new WGV point
-> > > > mask and thus won't actually enable/disable SAGV as requested.
-> > > > This ends up poorly if we end up running with SAGV enabled
-> > > > when we shouldn't. Usually ends up in underruns.
-> > > > To fix this let's go through the QGV point mask computation
-> > > > if anyone else already added the bw state for us.
-> > > 
-> > > Haven't been looking this in a while. Despite we have been
-> > > looking like few revisions together still some bugs :(
-> > > 
-> > > I thought SAGV vs No SAGV can't change if active planes 
-> > > or data rate didn't change? Because it means we probably
-> > > still have same ddb allocations, which means SAGV state
-> > > will just stay the same.
-> > 
-> > SAGV can change due to watermarks/ddb allocations. The easiest
-> > way to trip this up is to try to use the async flip wm0/ddb 
-> > optimization. That immediately forgets to turn off SAGV and
-> > we get underruns, whcih is how I noticed this. And I don't
-> > immediately see any easy proof that this couldn't also happen
-> > due to some other plane changes.
+On Mon, Feb 14, 2022 at 05:02:06PM +0200, Jani Nikula wrote:
+> Wrap accessing struct intel_fbdev guts in a helper.
 > 
-> Thats the way it was initially implemented even before SAGV was added.
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 6 +++---
+>  drivers/gpu/drm/i915/display/intel_fbdev.c           | 8 ++++++++
+>  drivers/gpu/drm/i915/display/intel_fbdev.h           | 7 +++++++
+>  3 files changed, 18 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index f4de004d470f..b0bcf4d54a74 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -16,6 +16,7 @@
+>  #include "intel_dp_mst.h"
+>  #include "intel_drrs.h"
+>  #include "intel_fbc.h"
+> +#include "intel_fbdev.h"
+>  #include "intel_hdcp.h"
+>  #include "intel_hdmi.h"
+>  #include "intel_pm.h"
+> @@ -124,9 +125,8 @@ static int i915_gem_framebuffer_info(struct seq_file *m, void *data)
+>  	struct drm_framebuffer *drm_fb;
+>  
+>  #ifdef CONFIG_DRM_FBDEV_EMULATION
+> -	if (dev_priv->fbdev && dev_priv->fbdev->helper.fb) {
+> -		fbdev_fb = to_intel_framebuffer(dev_priv->fbdev->helper.fb);
+> -
+> +	fbdev_fb = intel_fbdev_to_framebuffer(dev_priv->fbdev);
 
-Yeah, it wasn't a problem as long as SAGV was not enabled.
+The "_to_" implies to me that this is just some kind of cast,
+which it is not. So I would drop the "_to_".
 
-> I think it can be dated back to the very first bw check was implemented.
-> 
-> commit c457d9cf256e942138a54a2e80349ee7fe20c391
-> Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Date:   Fri May 24 18:36:14 2019 +0300
-> 
->     drm/i915: Make sure we have enough memory bandwidth on ICL
-> 
-> +int intel_bw_atomic_check(struct intel_atomic_state *state)
+Otherwise the series seems fine
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+> +	if (fbdev_fb) {
+>  		seq_printf(m, "fbcon size: %d x %d, depth %d, %d bpp, modifier 0x%llx, refcount %d, obj ",
+>  			   fbdev_fb->base.width,
+>  			   fbdev_fb->base.height,
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index 41d279db2be6..3ef683916ba6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -680,3 +680,11 @@ void intel_fbdev_restore_mode(struct drm_device *dev)
+>  	if (drm_fb_helper_restore_fbdev_mode_unlocked(&ifbdev->helper) == 0)
+>  		intel_fbdev_invalidate(ifbdev);
+>  }
+> +
+> +struct intel_framebuffer *intel_fbdev_to_framebuffer(struct intel_fbdev *fbdev)
 > +{
-> +       struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +       struct intel_crtc_state *new_crtc_state, *old_crtc_state;
-> +       struct intel_bw_state *bw_state = NULL;
-> +       unsigned int data_rate, max_data_rate;
-> +       unsigned int num_active_planes;
-> +       struct intel_crtc *crtc;
-> +       int i;
+> +	if (!fbdev || !fbdev->helper.fb)
+> +		return NULL;
 > +
-> +       /* FIXME earlier gens need some checks too */
-> +       if (INTEL_GEN(dev_priv) < 11)
-> +               return 0;
-> +
-> +       for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> +                                           new_crtc_state, i) {
-> +               unsigned int old_data_rate =
-> +                       intel_bw_crtc_data_rate(old_crtc_state);
-> +               unsigned int new_data_rate =
-> +                       intel_bw_crtc_data_rate(new_crtc_state);
-> +               unsigned int old_active_planes =
-> +                       intel_bw_crtc_num_active_planes(old_crtc_state);
-> +               unsigned int new_active_planes =
-> +                       intel_bw_crtc_num_active_planes(new_crtc_state);
-> +
-> +               /*
-> +                * Avoid locking the bw state when
-> +                * nothing significant has changed.
-> +                */
-> +               if (old_data_rate == new_data_rate &&
-> +                   old_active_planes == new_active_planes)
-> +                       continue;
-> +
-> +               bw_state  = intel_atomic_get_bw_state(state);
-> +               if (IS_ERR(bw_state))
-> +                       return PTR_ERR(bw_state);
-> 
-> However, what can cause watermarks/ddb to change, besides plane state change
-> and/or active planes change? We change watermarks, when we change ddb allocations
-> and we change ddb allocations when active planes had changed and/or data rate
-> had changed.
-
-The bw code only cares about the aggregate numbers from all the planes.
-The planes could still change in some funny way where eg. some plane
-frees up some bandwidth, but the other planes gobble up the exact same
-amount and thus the aggregate numbers the bw atomic check cares about
-do not change but the watermarks/ddb do.
-
-And as mentiioned, the async flip wm0/ddb optimization makes this trivial
-to trip up since it will want to disable SAGV as there is not enough ddb
-for the SAGV watermark. And async flip specifically isn't even allowed
-to change anything that would affect the bandwidth utilization, and neither
-is it allowed to enable/disable planes.
+> +	return to_intel_framebuffer(fbdev->helper.fb);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
+> index de7c84250eb5..8e86c08d544f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+> @@ -10,6 +10,8 @@
+>  
+>  struct drm_device;
+>  struct drm_i915_private;
+> +struct intel_fbdev;
+> +struct intel_framebuffer;
+>  
+>  #ifdef CONFIG_DRM_FBDEV_EMULATION
+>  int intel_fbdev_init(struct drm_device *dev);
+> @@ -19,6 +21,7 @@ void intel_fbdev_fini(struct drm_i915_private *dev_priv);
+>  void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
+>  void intel_fbdev_output_poll_changed(struct drm_device *dev);
+>  void intel_fbdev_restore_mode(struct drm_device *dev);
+> +struct intel_framebuffer *intel_fbdev_to_framebuffer(struct intel_fbdev *fbdev);
+>  #else
+>  static inline int intel_fbdev_init(struct drm_device *dev)
+>  {
+> @@ -48,6 +51,10 @@ static inline void intel_fbdev_output_poll_changed(struct drm_device *dev)
+>  static inline void intel_fbdev_restore_mode(struct drm_device *dev)
+>  {
+>  }
+> +static inline struct intel_framebuffer *intel_fbdev_to_framebuffer(struct intel_fbdev *fbdev)
+> +{
+> +	return NULL;
+> +}
+>  #endif
+>  
+>  #endif /* __INTEL_FBDEV_H__ */
+> -- 
+> 2.30.2
 
 -- 
 Ville Syrjälä
