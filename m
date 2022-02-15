@@ -2,51 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A69E04B6DEF
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 14:46:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B20BF4B6E3C
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 15:01:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3134610E50C;
-	Tue, 15 Feb 2022 13:46:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86DC910E576;
+	Tue, 15 Feb 2022 14:00:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E00210E516
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 13:46:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644932811; x=1676468811;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Y9XsxDnZUqJau/Yinu8PIL5E+ljL0YMK0WBKyKfP/vU=;
- b=mbDGaEo/s/4xlWYUCtJpI61ZdfRY1Iu1LmaeC8WNKJEmegDijPLioE12
- R467VyRZIUhxHgMx9EvGWj+P3+PwlfReMkGVv8/uGssTRdZhcQfAh2N/i
- ++TgYzBZMYsOCknUITI19WXikddijAb6nUw7nfWvkufmdzBYROy3tvpil
- +4CsplkoyHBN5WpI9wrbUzOE4MaJxY5uX6sIe5eUpCpdPo+H/ORW+KuUt
- whZWY82ha9/rFhxKNltmY4JVNYG0A50Kl1u/ZpCZpZpVdsT7mgD63DmcL
- Vf6ggmP+OUd/OHaxD4OIX45/Y9yghzj4ib6z1aI8Lk53eO+PflWwlDIJ6 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="274927106"
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="274927106"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2022 05:46:50 -0800
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="486181162"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2022 05:46:48 -0800
-Date: Tue, 15 Feb 2022 15:47:02 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20220215134702.GA16567@intel.com>
-References: <20220210185223.95399-1-jose.souza@intel.com>
- <20220210185223.95399-2-jose.souza@intel.com>
+Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B031F10E561
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 14:00:58 +0000 (UTC)
+Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com
+ [51.77.79.158])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits))
+ (No client certificate requested)
+ by mail-4321.protonmail.ch (Postfix) with ESMTPS id 4JyjKW1NWDz4x2Sg
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 13:55:43 +0000 (UTC)
+Authentication-Results: mail-4321.protonmail.ch;
+ dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr
+ header.b="FV5jLIpD"
+Date: Tue, 15 Feb 2022 13:55:34 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail2; t=1644933337;
+ bh=6lNlCoTfcpMqvqhkT68B9BYySvB6qEPhyvPf8Q7RTQA=;
+ h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+ References:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID;
+ b=FV5jLIpDbsQD4XNbDQkQA59s8nRJV6faVAqWXc971NcsmVKHkV3WFz9CryCy95bLx
+ 5fsjgglR+qDN2pAG4VVMHRwiAW7wXc36jCrXRS53wKMt7fzTzs55bc4vbCunEn3BAO
+ Tmv6nP77HGsnX02nIOQ8IrjXl+VSweaREZ7QvAy0WPIyaIHZJiF+wUQhGw9MSGBfLo
+ qgnWv3NMfCuRNuSAJUdB1Fg6FknYIt7YMJoCxO4gh+GCkoF+MPbXltblCW/FsJeHuv
+ NvAiabP6tolfvRebFUuddQF+PsgMjroMmSaHLkMYJmetJAyvBb3HrcDh0oks/v4+3M
+ J1BM1xgrLuF9A==
+To: Emil Velikov <emil.l.velikov@gmail.com>
+From: Simon Ser <contact@emersion.fr>
+Message-ID: <KW6DNh6IRRgVJx9DfOFBnEqc4a0x-AnDXEbMxwpfEbk8dOn_KGVzAfo-slJWq-4nWW728Uc-OVpFh2w4fDE4-bxfkDuz1hFILRVvbcuXqaw=@emersion.fr>
+In-Reply-To: <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
+References: <20220208084234.1684930-1-hsinyi@chromium.org>
+ <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220210185223.95399-2-jose.souza@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/display: Implement
- Wa_16013835468
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,T_SCC_BODY_TEXT_LINE
+ shortcircuit=no autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+ mailout.protonmail.ch
+Subject: Re: [Intel-gfx] [PATCH v8 1/3] gpu: drm: separate panel orientation
+ property creating and value setting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,158 +63,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: Simon Ser <contact@emersion.fr>
+Cc: Maxime Ripard <mripard@kernel.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ linux-mediatek@lists.infradead.org,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Hsin-Yi Wang <hsinyi@chromium.org>, Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ LAKML <linux-arm-kernel@lists.infradead.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 10, 2022 at 10:52:23AM -0800, José Roberto de Souza wrote:
-> PSR2 workaround required when mode has delayed vblank.
-> 
-> BSpec: 52890
-> BSpec: 49421
-> Cc: Jouni Högander <jouni.hogander@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+On Tuesday, February 15th, 2022 at 13:04, Emil Velikov <emil.l.velikov@gmai=
+l.com> wrote:
 
+> Greetings everyone,
+>
+> Padron for joining in so late o/
+>
+> On Tue, 8 Feb 2022 at 08:42, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+> >
+> > drm_dev_register() sets connector->registration_state to
+> > DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+> > drm_connector_set_panel_orientation() is first called after
+> > drm_dev_register(), it will fail several checks and results in followin=
+g
+> > warning.
+> >
+> > Add a function to create panel orientation property and set default val=
+ue
+> > to UNKNOWN, so drivers can call this function to init the property earl=
+ier
+> > , and let the panel set the real value later.
+> >
+>
+> The warning illustrates a genuine race condition, where userspace will
+> read the old/invalid property value/state. So this patch masks away
+> the WARNING without addressing the actual issue.
+> Instead can we fix the respective drivers, so that no properties are
+> created after drm_dev_register()?
+>
+> Longer version:
+> As we look into drm_dev_register() it's in charge of creating the
+> dev/sysfs nodes (et al). Note that connectors cannot disappear at
+> runtime.
+> For panel orientation, we are creating an immutable connector
+> properly, meaning that as soon as drm_dev_register() is called we must
+> ensure that the property is available (if applicable) and set to the
+> correct value.
 
-I think we better implement it in a more generic way.
-BSpec 71580 formulates this workaround more precisely:
+Unfortunately we can't quite do this. To apply the panel orientation quirks=
+ we
+need to grab the EDID of the eDP connector, and this happened too late in m=
+y
+testing.
 
-"
-If any low power watermark is disabled because the package C state 
-has too much latency for the size of Vblank and PSR1 or PSR2 is enabled, 
-set the register bit for this pipe (listing below) to 1 to disable a 
-PSR optimization to override to the maximum watermark. 
-Clear the bit if the size of Vblank does not require low power watermarks to be disabled 
-or PSR* is disabled."
-
-
-Pipe A 0x46430 bit 23
-
-Pipe B 0x46430 bit 24
-
-Pipe C 0x46430 bit 25
-
-Pipe D 0x46430 bit 31
-
-
-TRANS_SET_CONTEXT_LATENCY is used to delay the vblank"
-
-
-Almost we must ensure that one:
-
-Vblank time >= MAX(framestart delay + package C state latency + watermark 0 time + pipe scaler pre-fill time + DSC pre-fill time, 
-                   PSR2 vblank time, SDP vblank time)
-
-Line time >= PSR2 line time
-
-I'm currently working on the latter one. I have suggestion that one I finish 
-with calculations required for this formula, I can provide some api for this
-patch in order to check if PSR can be enabled and workaround has to be applied.
-
-Stan
-
-
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 40 ++++++++++++++++++++++--
->  drivers/gpu/drm/i915/i915_reg.h          | 13 +++++---
->  2 files changed, 46 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 72bd8d3261e0c..2e0b092f4b6be 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -1063,7 +1063,23 @@ static void intel_psr_activate(struct intel_dp *intel_dp)
->  	intel_dp->psr.active = true;
->  }
->  
-> -static void intel_psr_enable_source(struct intel_dp *intel_dp)
-> +static u32 wa_16013835468_bit_get(struct intel_dp *intel_dp)
-> +{
-> +	switch (intel_dp->psr.pipe) {
-> +	case PIPE_A:
-> +		return LATENCY_REPORTING_REMOVED_PIPE_A;
-> +	case PIPE_B:
-> +		return LATENCY_REPORTING_REMOVED_PIPE_B;
-> +	case PIPE_C:
-> +		return LATENCY_REPORTING_REMOVED_PIPE_C;
-> +	default:
-> +		MISSING_CASE(intel_dp->psr.pipe);
-> +		return 0;
-> +	}
-> +}
-> +
-> +static void intel_psr_enable_source(struct intel_dp *intel_dp,
-> +				    const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->  	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
-> @@ -1133,6 +1149,20 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp)
->  		if (IS_ALDERLAKE_P(dev_priv))
->  			intel_de_rmw(dev_priv, CLKGATE_DIS_MISC, 0,
->  				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
-> +
-> +		/* Wa_16013835468:tgl[b0+], dg1 */
-> +		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_B0, STEP_FOREVER) ||
-> +		    IS_DG1(dev_priv)) {
-> +			u16 vtotal, vblank;
-> +
-> +			vtotal = crtc_state->uapi.adjusted_mode.crtc_vtotal -
-> +				 crtc_state->uapi.adjusted_mode.crtc_vdisplay;
-> +			vblank = crtc_state->uapi.adjusted_mode.crtc_vblank_end -
-> +				 crtc_state->uapi.adjusted_mode.crtc_vblank_start;
-> +			if (vblank > vtotal)
-> +				intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1, 0,
-> +					     wa_16013835468_bit_get(intel_dp));
-> +		}
->  	}
->  }
->  
-> @@ -1198,7 +1228,7 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
->  	intel_write_dp_vsc_sdp(encoder, crtc_state, &crtc_state->psr_vsc);
->  	intel_snps_phy_update_psr_power_state(dev_priv, phy, true);
->  	intel_psr_enable_sink(intel_dp);
-> -	intel_psr_enable_source(intel_dp);
-> +	intel_psr_enable_source(intel_dp, crtc_state);
->  	intel_dp->psr.enabled = true;
->  	intel_dp->psr.paused = false;
->  
-> @@ -1297,6 +1327,12 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
->  		if (IS_ALDERLAKE_P(dev_priv))
->  			intel_de_rmw(dev_priv, CLKGATE_DIS_MISC,
->  				     CLKGATE_DIS_MISC_DMASC_GATING_DIS, 0);
-> +
-> +		/* Wa_16013835468:tgl[b0+], dg1 */
-> +		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_B0, STEP_FOREVER) ||
-> +		    IS_DG1(dev_priv))
-> +			intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
-> +				     wa_16013835468_bit_get(intel_dp), 0);
->  	}
->  
->  	intel_snps_phy_update_psr_power_state(dev_priv, phy, false);
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 87c92314ee269..1cd4056400b63 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -6040,11 +6040,14 @@
->  #define HSW_NDE_RSTWRN_OPT	_MMIO(0x46408)
->  #define  RESET_PCH_HANDSHAKE_ENABLE	(1 << 4)
->  
-> -#define GEN8_CHICKEN_DCPR_1		_MMIO(0x46430)
-> -#define   SKL_SELECT_ALTERNATE_DC_EXIT	REG_BIT(30)
-> -#define   ICL_DELAY_PMRSP		REG_BIT(22)
-> -#define   DISABLE_FLR_SRC		REG_BIT(15)
-> -#define   MASK_WAKEMEM			REG_BIT(13)
-> +#define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
-> +#define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
-> +#define   LATENCY_REPORTING_REMOVED_PIPE_C	REG_BIT(25)
-> +#define   LATENCY_REPORTING_REMOVED_PIPE_B	REG_BIT(24)
-> +#define   LATENCY_REPORTING_REMOVED_PIPE_A	REG_BIT(23)
-> +#define   ICL_DELAY_PMRSP			REG_BIT(22)
-> +#define   DISABLE_FLR_SRC			REG_BIT(15)
-> +#define   MASK_WAKEMEM				REG_BIT(13)
->  
->  #define GEN11_CHICKEN_DCPR_2			_MMIO(0x46434)
->  #define   DCPR_MASK_MAXLATENCY_MEMUP_CLR	REG_BIT(27)
-> -- 
-> 2.35.1
-> 
+What we can do is create the prop early during module load, and update it w=
+hen
+we read the EDID (at the place where we create it right now). User-space wi=
+ll
+receive a hotplug event after the EDID is read, so will be able to pick up =
+the
+new value if any.
