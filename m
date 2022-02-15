@@ -2,49 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79DCD4B6C08
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 13:30:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4401C4B6C09
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 13:30:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75BE010E149;
-	Tue, 15 Feb 2022 12:30:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BFC510E481;
+	Tue, 15 Feb 2022 12:30:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B376310E149
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 12:30:04 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1527C10E481
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 12:30:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644928204; x=1676464204;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mVxI+1cioUJJ+0XYghPl5ZjQblm0HLwSwTO6RdITiSo=;
- b=lSjPMJlZuxONnddQC31/CaUGM06M+kqN9aepOTfi8Q67jBeWkF9VBrmX
- Av633sYobKAa2LG4yS5MqkKESJarOcFs7TcGDpJSeu51EdF5fWInAua22
- TAo+c+EmsdEW0ScUCqgJqp37QP/hM/JGRlmGmzQGzlxtUUhC/xF8XLSwS
- 8crjEerc/iAe0ZWwOjd6TmWTLL5q42yazNcpO1eZJVVwaIUx5DT8sMcbO
- 6qn5aNWkwPjzonHf5gXHYoyIQ9qiJ7LNGqMVLk+oV605pUWuWKT0I6L9J
- ho0eW6X5UtEiBiOSnCHxehgNbRdYGwRu7i3Sp+nnuUrpqb4hH+Rj/NY4y w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="336771994"
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="336771994"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2022 04:30:03 -0800
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="544279785"
+ t=1644928210; x=1676464210;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=uq1kRmKX8jHYynJQEOmYvGjhk24rvppIjSu6IrauGwY=;
+ b=UTKJWXURd3UpfYlkn7qmaKhPRjAqE0nUpuhD1fOMxnEew3AIPLT0F1Bq
+ hWkMtpfyZ2FIaTLFbhFbs49Z3SdJVpn/TT93zIMTudF3PDr9ChTHsgR66
+ PnC7Djs7LisnMYTNBivOX22d4JC+2bxucWn3ZYurtyewzjMCcS9+FHZxM
+ kPspJ8PYC8biYzCP+dBsPuZtSfSLucfDLyTnvbkm191uyTE2MkmcgcbLz
+ 5l1OCmwLOY3Z5uwvkECd4liuZKIyK+nbfZWU48s/3eRG6xFmk8Zmt6waJ
+ lxqwWivOWcrzAIUkYBtse4FLhI3VDk/1pO646U3Dc1qcFdQTPPG7XSvkv A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="237744793"
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="237744793"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 04:30:09 -0800
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="703640540"
 Received: from ylian16-mobl1.ccr.corp.intel.com (HELO localhost)
  ([10.252.20.230])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2022 04:30:02 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 04:30:07 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Feb 2022 14:29:56 +0200
-Message-Id: <20220215122957.2755529-1-jani.nikula@intel.com>
+Date: Tue, 15 Feb 2022 14:29:57 +0200
+Message-Id: <20220215122957.2755529-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220215122957.2755529-1-jani.nikula@intel.com>
+References: <20220215122957.2755529-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/fbdev: add
- intel_fbdev_framebuffer() helper
+Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/fbdev: hide struct intel_fbdev
+ in intel_fbdev.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,90 +63,90 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Wrap accessing struct intel_fbdev guts in a helper.
-
-v2: s/intel_fbdev_to_framebuffer/intel_fbdev_framebuffer/g (Ville)
+As all access to struct intel_fbdev guts is nicely stowed away in
+intel_fbdev.c, we can hide the struct definition there too.
 
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 6 +++---
- drivers/gpu/drm/i915/display/intel_fbdev.c           | 8 ++++++++
- drivers/gpu/drm/i915/display/intel_fbdev.h           | 7 +++++++
- 3 files changed, 18 insertions(+), 3 deletions(-)
+ .../drm/i915/display/intel_display_types.h    | 21 -------------------
+ drivers/gpu/drm/i915/display/intel_fbdev.c    | 17 +++++++++++++++
+ 2 files changed, 17 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index f6c4ad8fce19..bbc6f270c09f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -16,6 +16,7 @@
- #include "intel_dp_mst.h"
- #include "intel_drrs.h"
- #include "intel_fbc.h"
-+#include "intel_fbdev.h"
- #include "intel_hdcp.h"
- #include "intel_hdmi.h"
- #include "intel_pm.h"
-@@ -124,9 +125,8 @@ static int i915_gem_framebuffer_info(struct seq_file *m, void *data)
- 	struct drm_framebuffer *drm_fb;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 60e15226a8cb..ff9288eea541 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -26,7 +26,6 @@
+ #ifndef __INTEL_DISPLAY_TYPES_H__
+ #define __INTEL_DISPLAY_TYPES_H__
  
- #ifdef CONFIG_DRM_FBDEV_EMULATION
--	if (dev_priv->fbdev && dev_priv->fbdev->helper.fb) {
--		fbdev_fb = to_intel_framebuffer(dev_priv->fbdev->helper.fb);
+-#include <linux/async.h>
+ #include <linux/i2c.h>
+ #include <linux/pm_qos.h>
+ #include <linux/pwm.h>
+@@ -38,7 +37,6 @@
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_dsc.h>
+ #include <drm/drm_encoder.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_probe_helper.h>
+ #include <drm/drm_rect.h>
+@@ -145,25 +143,6 @@ struct intel_framebuffer {
+ 	struct i915_address_space *dpt_vm;
+ };
+ 
+-struct intel_fbdev {
+-	struct drm_fb_helper helper;
+-	struct intel_framebuffer *fb;
+-	struct i915_vma *vma;
+-	unsigned long vma_flags;
+-	async_cookie_t cookie;
+-	int preferred_bpp;
 -
-+	fbdev_fb = intel_fbdev_framebuffer(dev_priv->fbdev);
-+	if (fbdev_fb) {
- 		seq_printf(m, "fbcon size: %d x %d, depth %d, %d bpp, modifier 0x%llx, refcount %d, obj ",
- 			   fbdev_fb->base.width,
- 			   fbdev_fb->base.height,
+-	/* Whether or not fbdev hpd processing is temporarily suspended */
+-	bool hpd_suspended : 1;
+-	/* Set when a hotplug was received while HPD processing was
+-	 * suspended
+-	 */
+-	bool hpd_waiting : 1;
+-
+-	/* Protects hpd_suspended */
+-	struct mutex hpd_lock;
+-};
+-
+ enum intel_hotplug_state {
+ 	INTEL_HOTPLUG_UNCHANGED,
+ 	INTEL_HOTPLUG_CHANGED,
 diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 41d279db2be6..0f188cd28f2d 100644
+index 0f188cd28f2d..fd5bc7acf08d 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -680,3 +680,11 @@ void intel_fbdev_restore_mode(struct drm_device *dev)
- 	if (drm_fb_helper_restore_fbdev_mode_unlocked(&ifbdev->helper) == 0)
- 		intel_fbdev_invalidate(ifbdev);
- }
+@@ -50,6 +50,23 @@
+ #include "intel_fbdev.h"
+ #include "intel_frontbuffer.h"
+ 
++struct intel_fbdev {
++	struct drm_fb_helper helper;
++	struct intel_framebuffer *fb;
++	struct i915_vma *vma;
++	unsigned long vma_flags;
++	async_cookie_t cookie;
++	int preferred_bpp;
 +
-+struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
-+{
-+	if (!fbdev || !fbdev->helper.fb)
-+		return NULL;
++	/* Whether or not fbdev hpd processing is temporarily suspended */
++	bool hpd_suspended: 1;
++	/* Set when a hotplug was received while HPD processing was suspended */
++	bool hpd_waiting: 1;
 +
-+	return to_intel_framebuffer(fbdev->helper.fb);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-index de7c84250eb5..0e95e9472fa3 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-@@ -10,6 +10,8 @@
- 
- struct drm_device;
- struct drm_i915_private;
-+struct intel_fbdev;
-+struct intel_framebuffer;
- 
- #ifdef CONFIG_DRM_FBDEV_EMULATION
- int intel_fbdev_init(struct drm_device *dev);
-@@ -19,6 +21,7 @@ void intel_fbdev_fini(struct drm_i915_private *dev_priv);
- void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
- void intel_fbdev_output_poll_changed(struct drm_device *dev);
- void intel_fbdev_restore_mode(struct drm_device *dev);
-+struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
- #else
- static inline int intel_fbdev_init(struct drm_device *dev)
++	/* Protects hpd_suspended */
++	struct mutex hpd_lock;
++};
++
+ static struct intel_frontbuffer *to_frontbuffer(struct intel_fbdev *ifbdev)
  {
-@@ -48,6 +51,10 @@ static inline void intel_fbdev_output_poll_changed(struct drm_device *dev)
- static inline void intel_fbdev_restore_mode(struct drm_device *dev)
- {
- }
-+static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
-+{
-+	return NULL;
-+}
- #endif
- 
- #endif /* __INTEL_FBDEV_H__ */
+ 	return ifbdev->fb->frontbuffer;
 -- 
 2.30.2
 
