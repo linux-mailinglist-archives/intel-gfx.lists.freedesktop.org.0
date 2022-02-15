@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD4EE4B634A
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 07:13:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9EF64B635D
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 07:23:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A51A410E29A;
-	Tue, 15 Feb 2022 06:13:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9D9010E1E2;
+	Tue, 15 Feb 2022 06:23:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0553310E29A
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 06:13:46 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF98E10E1E2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 06:23:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644905627; x=1676441627;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1HZnCRYsQ4zd5kBMW1mowWDKYjBYTiVNmGlB7R8SE74=;
- b=ncHa63dp2kmj1g4tImJlza2ZaCbvYsECqxam5Oy+HiYN4hG0N5UOSdU4
- 4TiiuIYxKFKrbhcc6VFr7S7YRDkp9mwS+fDq+ZeOmQo+1UxjUBuQdToBp
- v1lcdPJzrR52Esdy74ot2/65s7Td+pOG5p1u/pzmWgIWHZkIe9Nvayebo
- 06iARutC5D33D9tdD9HqzBvj94OBkdw8wZPWa3myS6jSpcwj8XyaHgM0p
- thTCin/S7bFR1GWyJ4JHpTy24NxritdbC3y0ewODwvEi4DgJ6EbvGqECw
- C7G/zxDSXcdUU4vDSWnEn0QGfLYMGnCDHfIanjogalO+p+4Zhc5JExXEy Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="310994367"
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="310994367"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 22:13:46 -0800
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="775634471"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 22:13:45 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
+ t=1644906204; x=1676442204;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nHGAeVpLv5YNGCvpKEykjQhmy7NWJ4T1/YVbqqKvC5k=;
+ b=fKCsjNK2g2GvzMTaM124oVxYaMotf0dzRMba1/4expzEcG7abEKsQkAu
+ /MgLQcRJhuieS4FZ0wTsGAsjvWG+qp7sO9NAX/nJNz6KKImbofR0sO1eR
+ 4YgwSeEtH6HXRfbHmdrr+Wzbl9EX5htYYF7OtS0+cvhgsCVlMO2ktFpm2
+ BVq2N9S0lPhc0OAdqWty5S6MPiX8jcbT3Nn63zg3Fc3wQ4N9ZlJe7FaWK
+ F/oG2L7slmo1wz2T4Uy4nMaGDUC+eyXBO7/wpQ7t6KiVqXwV7SnLshMUk
+ bmD/9uEm6OrzgiXATjKITFnV7gCUQVMaXWhfH0c5avTybLWeeRl3mpdSG w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="336687696"
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="336687696"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2022 22:23:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="528652093"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga007.jf.intel.com with SMTP; 14 Feb 2022 22:23:22 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 15 Feb 2022 08:23:21 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Feb 2022 22:13:42 -0800
-Message-Id: <20220215061342.2055952-2-matthew.d.roper@intel.com>
+Date: Tue, 15 Feb 2022 08:23:21 +0200
+Message-Id: <20220215062321.832-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220215061342.2055952-1-matthew.d.roper@intel.com>
-References: <20220215061342.2055952-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915: Move MCHBAR registers to their
- own header
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix cursor coordinates on bigjoiner
+ slave
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,693 +60,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Registers that exist within the MCH BAR and are mirrored into the GPU's
-MMIO space are a good candidate to separate out into their own header.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-For reference, the mirror of the MCH BAR starts at the following
-locations in the graphics MMIO space (the end of the MCHBAR range
-differs slightly on each platform):
+Adjust the cursor dst coordinates appripriately when it's on
+the bigjoiner slave pipe. intel_atomic_plane_check_clipping()
+already did this but with the cursor we discard those results
+(apart from uapi.visible and error checks) since the hardware
+will be doing the clipping for us.
 
- * Pre-gen6:           0x10000
- * Gen6-Gen11 + RKL:  0x140000
-
-v2:
- - Create separate patch to swtich a few register definitions to be
-   relative to the MCHBAR mirror base.
- - Drop upper bound of MCHBAR mirror from commit message; there are too
-   many different combinations between various platforms to list out,
-   and the documentation is spotty for the older pre-gen6 platforms
-   anyway.
-
-Bspec: 134, 51771
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c       |   1 +
- drivers/gpu/drm/i915/display/intel_cdclk.c    |   1 +
- .../drm/i915/display/intel_display_power.c    |   1 +
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |   1 +
- drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |   1 +
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |   1 +
- drivers/gpu/drm/i915/gt/intel_gt_regs.h       |   7 -
- drivers/gpu/drm/i915/gt/intel_llc.c           |   1 +
- drivers/gpu/drm/i915/gt/intel_reset.c         |   1 +
- drivers/gpu/drm/i915/gt/intel_rps.c           |   1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |   1 +
- drivers/gpu/drm/i915/gvt/handlers.c           |   1 +
- drivers/gpu/drm/i915/i915_debugfs.c           |   1 +
- drivers/gpu/drm/i915/i915_reg.h               | 203 ----------------
- drivers/gpu/drm/i915/intel_dram.c             |   1 +
- drivers/gpu/drm/i915/intel_mchbar_regs.h      | 221 ++++++++++++++++++
- drivers/gpu/drm/i915/intel_pm.c               |   1 +
- 17 files changed, 235 insertions(+), 210 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/intel_mchbar_regs.h
+ drivers/gpu/drm/i915/display/intel_cursor.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 23aa8e06de18..7bbe0dc5926b 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -10,6 +10,7 @@
- #include "intel_bw.h"
- #include "intel_cdclk.h"
- #include "intel_display_types.h"
-+#include "intel_mchbar_regs.h"
- #include "intel_pcode.h"
- #include "intel_pm.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 2ade8fdd9bdd..5b600679674f 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -152,6 +152,9 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
+ 	/* Use the unclipped src/dst rectangles, which we program to hw */
+ 	plane_state->uapi.src = src;
+ 	plane_state->uapi.dst = dst;
++	if (crtc_state->bigjoiner_slave)
++		drm_rect_translate(&plane_state->uapi.dst,
++				   -crtc_state->pipe_src_w, 0);
  
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 118ef391b560..8888fda8b701 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -32,6 +32,7 @@
- #include "intel_crtc.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
-+#include "intel_mchbar_regs.h"
- #include "intel_pci_config.h"
- #include "intel_pcode.h"
- #include "intel_psr.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index d2102cc17bb4..9ebae7ac3235 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -16,6 +16,7 @@
- #include "intel_dpio_phy.h"
- #include "intel_dpll.h"
- #include "intel_hotplug.h"
-+#include "intel_mchbar_regs.h"
- #include "intel_pch_refclk.h"
- #include "intel_pcode.h"
- #include "intel_pm.h"
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 1de73a644965..b9c3196b91ca 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -16,6 +16,7 @@
- #include "i915_gem_stolen.h"
- #include "i915_reg.h"
- #include "i915_vgpu.h"
-+#include "intel_mchbar_regs.h"
- 
- /*
-  * The BIOS typically reserves some of the system's memory for the exclusive
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-index ee4049ee1fc9..76880fb8fc19 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-@@ -9,6 +9,7 @@
- #include "i915_pvinfo.h"
- #include "i915_vgpu.h"
- #include "intel_gt_regs.h"
-+#include "intel_mchbar_regs.h"
- 
- /**
-  * DOC: fence register handling
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-index 4e448c13a64c..37765919fe32 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-@@ -15,6 +15,7 @@
- #include "intel_gt_pm_debugfs.h"
- #include "intel_gt_regs.h"
- #include "intel_llc.h"
-+#include "intel_mchbar_regs.h"
- #include "intel_pcode.h"
- #include "intel_rc6.h"
- #include "intel_rps.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index a6f0220c2e9f..296d6425bb0a 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -8,13 +8,6 @@
- 
- #include "i915_reg_defs.h"
- 
--#define ILK_GDSR _MMIO(MCHBAR_MIRROR_BASE + 0x2ca4)
--#define  ILK_GRDOM_FULL		(0 << 1)
--#define  ILK_GRDOM_RENDER	(1 << 1)
--#define  ILK_GRDOM_MEDIA	(3 << 1)
--#define  ILK_GRDOM_MASK		(3 << 1)
--#define  ILK_GRDOM_RESET_ENABLE (1 << 0)
--
- #define GEN6_MBCUNIT_SNPCR	_MMIO(0x900c) /* for LLC config */
- #define   GEN6_MBC_SNPCR_SHIFT	21
- #define   GEN6_MBC_SNPCR_MASK	(3 << 21)
-diff --git a/drivers/gpu/drm/i915/gt/intel_llc.c b/drivers/gpu/drm/i915/gt/intel_llc.c
-index 335c65758d6f..40e2e28ee6c7 100644
---- a/drivers/gpu/drm/i915/gt/intel_llc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_llc.c
-@@ -10,6 +10,7 @@
- #include "i915_reg.h"
- #include "intel_gt.h"
- #include "intel_llc.h"
-+#include "intel_mchbar_regs.h"
- #include "intel_pcode.h"
- 
- struct ia_constants {
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index f64e71da5ec0..304e87c7d6fd 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -23,6 +23,7 @@
- #include "intel_gt.h"
- #include "intel_gt_pm.h"
- #include "intel_gt_requests.h"
-+#include "intel_mchbar_regs.h"
- #include "intel_pci_config.h"
- #include "intel_reset.h"
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 0cb299cdfc8f..fd95449ed46d 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -13,6 +13,7 @@
- #include "intel_gt_irq.h"
- #include "intel_gt_pm_irq.h"
- #include "intel_gt_regs.h"
-+#include "intel_mchbar_regs.h"
- #include "intel_pcode.h"
- #include "intel_rps.h"
- #include "vlv_sideband.h"
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-index 733465658e0f..b3d28b003b73 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-@@ -8,6 +8,7 @@
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "intel_guc_slpc.h"
-+#include "intel_mchbar_regs.h"
- #include "gt/intel_gt.h"
- #include "gt/intel_gt_regs.h"
- 
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index c2ae79092b14..5e3ae5970c6b 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -40,6 +40,7 @@
- #include "i915_reg.h"
- #include "gvt.h"
- #include "i915_pvinfo.h"
-+#include "intel_mchbar_regs.h"
- #include "display/intel_display_types.h"
- #include "display/intel_fbc.h"
- #include "gt/intel_gt_regs.h"
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 5ddd1929254a..946bbe57bfe5 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -49,6 +49,7 @@
- #include "i915_debugfs_params.h"
- #include "i915_irq.h"
- #include "i915_scheduler.h"
-+#include "intel_mchbar_regs.h"
- #include "intel_pm.h"
- 
- static inline struct drm_i915_private *node_to_i915(struct drm_info_node *node)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 72cb6e13b4e2..2243d9d1d941 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1830,117 +1830,8 @@
- 					    _PALETTE_B, _CHV_PALETTE_C) + \
- 				      (i) * 4)
- 
--/* MCH MMIO space */
--
--/*
-- * MCHBAR mirror.
-- *
-- * This mirrors the MCHBAR MMIO space whose location is determined by
-- * device 0 function 0's pci config register 0x44 or 0x48 and matches it in
-- * every way.  It is not accessible from the CP register read instructions.
-- *
-- * Starting from Haswell, you can't write registers using the MCHBAR mirror,
-- * just read.
-- */
--#define MCHBAR_MIRROR_BASE	0x10000
--
--#define MCHBAR_MIRROR_BASE_SNB	0x140000
--
--#define CTG_STOLEN_RESERVED		_MMIO(MCHBAR_MIRROR_BASE + 0x34)
--#define ELK_STOLEN_RESERVED		_MMIO(MCHBAR_MIRROR_BASE + 0x48)
--#define G4X_STOLEN_RESERVED_ADDR1_MASK	(0xFFFF << 16)
--#define G4X_STOLEN_RESERVED_ADDR2_MASK	(0xFFF << 4)
--#define G4X_STOLEN_RESERVED_ENABLE	(1 << 0)
--
--/* Memory controller frequency in MCHBAR for Haswell (possible SNB+) */
--#define DCLK _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5e04)
--
--/* 915-945 and GM965 MCH register controlling DRAM channel access */
--#define DCC			_MMIO(MCHBAR_MIRROR_BASE + 0x200)
--#define DCC_ADDRESSING_MODE_SINGLE_CHANNEL		(0 << 0)
--#define DCC_ADDRESSING_MODE_DUAL_CHANNEL_ASYMMETRIC	(1 << 0)
--#define DCC_ADDRESSING_MODE_DUAL_CHANNEL_INTERLEAVED	(2 << 0)
--#define DCC_ADDRESSING_MODE_MASK			(3 << 0)
--#define DCC_CHANNEL_XOR_DISABLE				(1 << 10)
--#define DCC_CHANNEL_XOR_BIT_17				(1 << 9)
--#define DCC2			_MMIO(MCHBAR_MIRROR_BASE + 0x204)
--#define DCC2_MODIFIED_ENHANCED_DISABLE			(1 << 20)
--
--/* Pineview MCH register contains DDR3 setting */
--#define CSHRDDR3CTL            _MMIO(MCHBAR_MIRROR_BASE + 0x1a8)
--#define CSHRDDR3CTL_DDR3       (1 << 2)
--
--/* 965 MCH register controlling DRAM channel configuration */
--#define C0DRB3_BW		_MMIO(MCHBAR_MIRROR_BASE + 0x206)
--#define C1DRB3_BW		_MMIO(MCHBAR_MIRROR_BASE + 0x606)
--
--/* snb MCH registers for reading the DRAM channel configuration */
--#define MAD_DIMM_C0			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5004)
--#define MAD_DIMM_C1			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5008)
--#define MAD_DIMM_C2			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x500C)
--#define   MAD_DIMM_ECC_MASK		(0x3 << 24)
--#define   MAD_DIMM_ECC_OFF		(0x0 << 24)
--#define   MAD_DIMM_ECC_IO_ON_LOGIC_OFF	(0x1 << 24)
--#define   MAD_DIMM_ECC_IO_OFF_LOGIC_ON	(0x2 << 24)
--#define   MAD_DIMM_ECC_ON		(0x3 << 24)
--#define   MAD_DIMM_ENH_INTERLEAVE	(0x1 << 22)
--#define   MAD_DIMM_RANK_INTERLEAVE	(0x1 << 21)
--#define   MAD_DIMM_B_WIDTH_X16		(0x1 << 20) /* X8 chips if unset */
--#define   MAD_DIMM_A_WIDTH_X16		(0x1 << 19) /* X8 chips if unset */
--#define   MAD_DIMM_B_DUAL_RANK		(0x1 << 18)
--#define   MAD_DIMM_A_DUAL_RANK		(0x1 << 17)
--#define   MAD_DIMM_A_SELECT		(0x1 << 16)
--/* DIMM sizes are in multiples of 256mb. */
--#define   MAD_DIMM_B_SIZE_SHIFT		8
--#define   MAD_DIMM_B_SIZE_MASK		(0xff << MAD_DIMM_B_SIZE_SHIFT)
--#define   MAD_DIMM_A_SIZE_SHIFT		0
--#define   MAD_DIMM_A_SIZE_MASK		(0xff << MAD_DIMM_A_SIZE_SHIFT)
--
--/* snb MCH registers for priority tuning */
--#define MCH_SSKPD			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5d10)
--#define   MCH_SSKPD_WM0_MASK		0x3f
--#define   MCH_SSKPD_WM0_VAL		0xc
--
--/* Clocking configuration register */
--#define CLKCFG			_MMIO(MCHBAR_MIRROR_BASE + 0xc00)
--#define CLKCFG_FSB_400					(0 << 0)	/* hrawclk 100 */
--#define CLKCFG_FSB_400_ALT				(5 << 0)	/* hrawclk 100 */
--#define CLKCFG_FSB_533					(1 << 0)	/* hrawclk 133 */
--#define CLKCFG_FSB_667					(3 << 0)	/* hrawclk 166 */
--#define CLKCFG_FSB_800					(2 << 0)	/* hrawclk 200 */
--#define CLKCFG_FSB_1067					(6 << 0)	/* hrawclk 266 */
--#define CLKCFG_FSB_1067_ALT				(0 << 0)	/* hrawclk 266 */
--#define CLKCFG_FSB_1333					(7 << 0)	/* hrawclk 333 */
--#define CLKCFG_FSB_1333_ALT				(4 << 0)	/* hrawclk 333 */
--#define CLKCFG_FSB_1600_ALT				(6 << 0)	/* hrawclk 400 */
--#define CLKCFG_FSB_MASK					(7 << 0)
--#define CLKCFG_MEM_533					(1 << 4)
--#define CLKCFG_MEM_667					(2 << 4)
--#define CLKCFG_MEM_800					(3 << 4)
--#define CLKCFG_MEM_MASK					(7 << 4)
--
--#define HPLLVCO                 _MMIO(MCHBAR_MIRROR_BASE + 0xc38)
--#define HPLLVCO_MOBILE          _MMIO(MCHBAR_MIRROR_BASE + 0xc0f)
--
--#define TSC1			_MMIO(MCHBAR_MIRROR_BASE + 0x1001)
--#define   TSE			(1 << 0)
--#define TR1			_MMIO(MCHBAR_MIRROR_BASE + 0x1006)
--#define TSFS			_MMIO(MCHBAR_MIRROR_BASE + 0x1020)
--#define   TSFS_SLOPE_MASK	0x0000ff00
--#define   TSFS_SLOPE_SHIFT	8
--#define   TSFS_INTR_MASK	0x000000ff
--
--#define CSIPLL0			_MMIO(MCHBAR_MIRROR_BASE + 0x2c10)
--#define DDRMPLL1		_MMIO(MCHBAR_MIRROR_BASE + 0x2c20)
- #define PEG_BAND_GAP_DATA	_MMIO(0x14d68)
- 
--#define GEN6_GT_PERF_STATUS	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5948)
--#define BXT_GT_PERF_STATUS      _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x7070)
--#define GEN6_RP_STATE_LIMITS	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5994)
--#define GEN6_RP_STATE_CAP	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5998)
--#define   RP0_CAP_MASK		REG_GENMASK(7, 0)
--#define   RP1_CAP_MASK		REG_GENMASK(15, 8)
--#define   RPN_CAP_MASK		REG_GENMASK(23, 16)
- #define BXT_RP_STATE_CAP        _MMIO(0x138170)
- #define GEN9_RP_STATE_LIMITS	_MMIO(0x138148)
- #define XEHPSDV_RP_STATE_CAP	_MMIO(0x250014)
-@@ -4319,14 +4210,6 @@
- 	(WM3_LP_EN | ((lat) << WM1_LP_LATENCY_SHIFT) | \
- 	 ((fbc) << WM1_LP_FBC_SHIFT) | ((pri) << WM1_LP_SR_SHIFT) | (cur))
- 
--/* Memory latency timer register */
--#define MLTR_ILK		_MMIO(MCHBAR_MIRROR_BASE + 0x1222)
--#define  MLTR_WM1_SHIFT		0
--#define  MLTR_WM2_SHIFT		8
--/* the unit of memory self-refresh latency time is 0.5us */
--#define  ILK_SRLT_MASK		0x3f
--
--
- /* the address where we get all kinds of latency value */
- #define SSKPD			_MMIO(0x5d10)
- #define SSKPD_WM_MASK		0x3f
-@@ -8216,93 +8099,7 @@ enum skl_power_gate {
- #define  DC_STATE_DEBUG_MASK_CORES	(1 << 0)
- #define  DC_STATE_DEBUG_MASK_MEMORY_UP	(1 << 1)
- 
--#define BXT_D_CR_DRP0_DUNIT8			0x1000
--#define BXT_D_CR_DRP0_DUNIT9			0x1200
--#define  BXT_D_CR_DRP0_DUNIT_START		8
--#define  BXT_D_CR_DRP0_DUNIT_END		11
--#define BXT_D_CR_DRP0_DUNIT(x)	_MMIO(MCHBAR_MIRROR_BASE_SNB + \
--				      _PICK_EVEN((x) - 8, BXT_D_CR_DRP0_DUNIT8,\
--						 BXT_D_CR_DRP0_DUNIT9))
--#define  BXT_DRAM_RANK_MASK			0x3
--#define  BXT_DRAM_RANK_SINGLE			0x1
--#define  BXT_DRAM_RANK_DUAL			0x3
--#define  BXT_DRAM_WIDTH_MASK			(0x3 << 4)
--#define  BXT_DRAM_WIDTH_SHIFT			4
--#define  BXT_DRAM_WIDTH_X8			(0x0 << 4)
--#define  BXT_DRAM_WIDTH_X16			(0x1 << 4)
--#define  BXT_DRAM_WIDTH_X32			(0x2 << 4)
--#define  BXT_DRAM_WIDTH_X64			(0x3 << 4)
--#define  BXT_DRAM_SIZE_MASK			(0x7 << 6)
--#define  BXT_DRAM_SIZE_SHIFT			6
--#define  BXT_DRAM_SIZE_4GBIT			(0x0 << 6)
--#define  BXT_DRAM_SIZE_6GBIT			(0x1 << 6)
--#define  BXT_DRAM_SIZE_8GBIT			(0x2 << 6)
--#define  BXT_DRAM_SIZE_12GBIT			(0x3 << 6)
--#define  BXT_DRAM_SIZE_16GBIT			(0x4 << 6)
--#define  BXT_DRAM_TYPE_MASK			(0x7 << 22)
--#define  BXT_DRAM_TYPE_SHIFT			22
--#define  BXT_DRAM_TYPE_DDR3			(0x0 << 22)
--#define  BXT_DRAM_TYPE_LPDDR3			(0x1 << 22)
--#define  BXT_DRAM_TYPE_LPDDR4			(0x2 << 22)
--#define  BXT_DRAM_TYPE_DDR4			(0x4 << 22)
--
--#define SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5E04)
--#define  DG1_GEAR_TYPE				REG_BIT(16)
--
--#define SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5000)
--#define  SKL_DRAM_DDR_TYPE_MASK			(0x3 << 0)
--#define  SKL_DRAM_DDR_TYPE_DDR4			(0 << 0)
--#define  SKL_DRAM_DDR_TYPE_DDR3			(1 << 0)
--#define  SKL_DRAM_DDR_TYPE_LPDDR3		(2 << 0)
--#define  SKL_DRAM_DDR_TYPE_LPDDR4		(3 << 0)
--
--#define SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x500C)
--#define SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5010)
--#define  SKL_DRAM_S_SHIFT			16
--#define  SKL_DRAM_SIZE_MASK			0x3F
--#define  SKL_DRAM_WIDTH_MASK			(0x3 << 8)
--#define  SKL_DRAM_WIDTH_SHIFT			8
--#define  SKL_DRAM_WIDTH_X8			(0x0 << 8)
--#define  SKL_DRAM_WIDTH_X16			(0x1 << 8)
--#define  SKL_DRAM_WIDTH_X32			(0x2 << 8)
--#define  SKL_DRAM_RANK_MASK			(0x1 << 10)
--#define  SKL_DRAM_RANK_SHIFT			10
--#define  SKL_DRAM_RANK_1			(0x0 << 10)
--#define  SKL_DRAM_RANK_2			(0x1 << 10)
--#define  SKL_DRAM_RANK_MASK			(0x1 << 10)
--#define  ICL_DRAM_SIZE_MASK			0x7F
--#define  ICL_DRAM_WIDTH_MASK			(0x3 << 7)
--#define  ICL_DRAM_WIDTH_SHIFT			7
--#define  ICL_DRAM_WIDTH_X8			(0x0 << 7)
--#define  ICL_DRAM_WIDTH_X16			(0x1 << 7)
--#define  ICL_DRAM_WIDTH_X32			(0x2 << 7)
--#define  ICL_DRAM_RANK_MASK			(0x3 << 9)
--#define  ICL_DRAM_RANK_SHIFT			9
--#define  ICL_DRAM_RANK_1			(0x0 << 9)
--#define  ICL_DRAM_RANK_2			(0x1 << 9)
--#define  ICL_DRAM_RANK_3			(0x2 << 9)
--#define  ICL_DRAM_RANK_4			(0x3 << 9)
--
--#define SA_PERF_STATUS_0_0_0_MCHBAR_PC		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5918)
--#define  DG1_QCLK_RATIO_MASK			REG_GENMASK(9, 2)
--#define  DG1_QCLK_REFERENCE			REG_BIT(10)
--
--#define MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x4000)
--#define   DG1_DRAM_T_RDPRE_MASK			REG_GENMASK(16, 11)
--#define   DG1_DRAM_T_RP_MASK			REG_GENMASK(6, 0)
--#define MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR_HIGH	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x4004)
--#define   DG1_DRAM_T_RCD_MASK			REG_GENMASK(15, 9)
--#define   DG1_DRAM_T_RAS_MASK			REG_GENMASK(8, 1)
--
--/*
-- * Please see hsw_read_dcomp() and hsw_write_dcomp() before using this register,
-- * since on HSW we can't write to it using intel_uncore_write.
-- */
--#define D_COMP_HSW			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5F0C)
- #define D_COMP_BDW			_MMIO(0x138144)
--#define  D_COMP_RCOMP_IN_PROGRESS	(1 << 9)
--#define  D_COMP_COMP_FORCE		(1 << 8)
--#define  D_COMP_COMP_DISABLE		(1 << 0)
- 
- /* Pipe WM_LINETIME - watermark line time */
- #define _WM_LINETIME_A		0x45270
-diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
-index 723bd0411a0e..174c95c3e10f 100644
---- a/drivers/gpu/drm/i915/intel_dram.c
-+++ b/drivers/gpu/drm/i915/intel_dram.c
-@@ -6,6 +6,7 @@
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "intel_dram.h"
-+#include "intel_mchbar_regs.h"
- #include "intel_pcode.h"
- 
- struct dram_dimm_info {
-diff --git a/drivers/gpu/drm/i915/intel_mchbar_regs.h b/drivers/gpu/drm/i915/intel_mchbar_regs.h
-new file mode 100644
-index 000000000000..f4aef00b30f7
---- /dev/null
-+++ b/drivers/gpu/drm/i915/intel_mchbar_regs.h
-@@ -0,0 +1,221 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_MCHBAR_REGS__
-+#define __INTEL_MCHBAR_REGS__
-+
-+#include "i915_reg_defs.h"
-+
-+/*
-+ * MCHBAR mirror.
-+ *
-+ * This mirrors the MCHBAR MMIO space whose location is determined by
-+ * device 0 function 0's pci config register 0x44 or 0x48 and matches it in
-+ * every way.  It is not accessible from the CP register read instructions.
-+ *
-+ * Starting from Haswell, you can't write registers using the MCHBAR mirror,
-+ * just read.
-+ */
-+
-+#define MCHBAR_MIRROR_BASE			0x10000
-+#define MCHBAR_MIRROR_BASE_SNB			0x140000
-+
-+#define CTG_STOLEN_RESERVED			_MMIO(MCHBAR_MIRROR_BASE + 0x34)
-+#define ELK_STOLEN_RESERVED			_MMIO(MCHBAR_MIRROR_BASE + 0x48)
-+#define   G4X_STOLEN_RESERVED_ADDR1_MASK	(0xFFFF << 16)
-+#define   G4X_STOLEN_RESERVED_ADDR2_MASK	(0xFFF << 4)
-+#define   G4X_STOLEN_RESERVED_ENABLE		(1 << 0)
-+
-+/* Pineview MCH register contains DDR3 setting */
-+#define CSHRDDR3CTL				_MMIO(MCHBAR_MIRROR_BASE + 0x1a8)
-+#define   CSHRDDR3CTL_DDR3			(1 << 2)
-+
-+/* 915-945 and GM965 MCH register controlling DRAM channel access */
-+#define DCC					_MMIO(MCHBAR_MIRROR_BASE + 0x200)
-+#define   DCC_ADDRESSING_MODE_SINGLE_CHANNEL	(0 << 0)
-+#define   DCC_ADDRESSING_MODE_DUAL_CHANNEL_ASYMMETRIC	(1 << 0)
-+#define   DCC_ADDRESSING_MODE_DUAL_CHANNEL_INTERLEAVED	(2 << 0)
-+#define   DCC_ADDRESSING_MODE_MASK		(3 << 0)
-+#define   DCC_CHANNEL_XOR_DISABLE		(1 << 10)
-+#define   DCC_CHANNEL_XOR_BIT_17		(1 << 9)
-+#define DCC2					_MMIO(MCHBAR_MIRROR_BASE + 0x204)
-+#define   DCC2_MODIFIED_ENHANCED_DISABLE	(1 << 20)
-+
-+/* 965 MCH register controlling DRAM channel configuration */
-+#define C0DRB3_BW				_MMIO(MCHBAR_MIRROR_BASE + 0x206)
-+#define C1DRB3_BW				_MMIO(MCHBAR_MIRROR_BASE + 0x606)
-+
-+/* Clocking configuration register */
-+#define CLKCFG					_MMIO(MCHBAR_MIRROR_BASE + 0xc00)
-+#define CLKCFG_FSB_400				(0 << 0)	/* hrawclk 100 */
-+#define CLKCFG_FSB_400_ALT			(5 << 0)	/* hrawclk 100 */
-+#define CLKCFG_FSB_533				(1 << 0)	/* hrawclk 133 */
-+#define CLKCFG_FSB_667				(3 << 0)	/* hrawclk 166 */
-+#define CLKCFG_FSB_800				(2 << 0)	/* hrawclk 200 */
-+#define CLKCFG_FSB_1067				(6 << 0)	/* hrawclk 266 */
-+#define CLKCFG_FSB_1067_ALT			(0 << 0)	/* hrawclk 266 */
-+#define CLKCFG_FSB_1333				(7 << 0)	/* hrawclk 333 */
-+#define CLKCFG_FSB_1333_ALT			(4 << 0)	/* hrawclk 333 */
-+#define CLKCFG_FSB_1600_ALT			(6 << 0)	/* hrawclk 400 */
-+#define CLKCFG_FSB_MASK				(7 << 0)
-+#define CLKCFG_MEM_533				(1 << 4)
-+#define CLKCFG_MEM_667				(2 << 4)
-+#define CLKCFG_MEM_800				(3 << 4)
-+#define CLKCFG_MEM_MASK				(7 << 4)
-+
-+#define HPLLVCO_MOBILE				_MMIO(MCHBAR_MIRROR_BASE + 0xc0f)
-+#define HPLLVCO					_MMIO(MCHBAR_MIRROR_BASE + 0xc38)
-+
-+#define TSC1					_MMIO(MCHBAR_MIRROR_BASE + 0x1001)
-+#define   TSE					(1 << 0)
-+#define TR1					_MMIO(MCHBAR_MIRROR_BASE + 0x1006)
-+#define TSFS					_MMIO(MCHBAR_MIRROR_BASE + 0x1020)
-+#define   TSFS_SLOPE_MASK			0x0000ff00
-+#define   TSFS_SLOPE_SHIFT			8
-+#define   TSFS_INTR_MASK			0x000000ff
-+
-+/* Memory latency timer register */
-+#define MLTR_ILK				_MMIO(MCHBAR_MIRROR_BASE + 0x1222)
-+#define   MLTR_WM1_SHIFT			0
-+#define   MLTR_WM2_SHIFT			8
-+/* the unit of memory self-refresh latency time is 0.5us */
-+#define   ILK_SRLT_MASK				0x3f
-+
-+#define CSIPLL0					_MMIO(MCHBAR_MIRROR_BASE + 0x2c10)
-+#define DDRMPLL1				_MMIO(MCHBAR_MIRROR_BASE + 0x2c20)
-+
-+#define ILK_GDSR				_MMIO(MCHBAR_MIRROR_BASE + 0x2ca4)
-+#define  ILK_GRDOM_FULL				(0 << 1)
-+#define  ILK_GRDOM_RENDER			(1 << 1)
-+#define  ILK_GRDOM_MEDIA			(3 << 1)
-+#define  ILK_GRDOM_MASK				(3 << 1)
-+#define  ILK_GRDOM_RESET_ENABLE			(1 << 0)
-+
-+#define BXT_D_CR_DRP0_DUNIT8			0x1000
-+#define BXT_D_CR_DRP0_DUNIT9			0x1200
-+#define   BXT_D_CR_DRP0_DUNIT_START		8
-+#define   BXT_D_CR_DRP0_DUNIT_END		11
-+#define BXT_D_CR_DRP0_DUNIT(x)			_MMIO(MCHBAR_MIRROR_BASE_SNB + \
-+						      _PICK_EVEN((x) - 8, BXT_D_CR_DRP0_DUNIT8,\
-+								 BXT_D_CR_DRP0_DUNIT9))
-+#define   BXT_DRAM_RANK_MASK			0x3
-+#define   BXT_DRAM_RANK_SINGLE			0x1
-+#define   BXT_DRAM_RANK_DUAL			0x3
-+#define   BXT_DRAM_WIDTH_MASK			(0x3 << 4)
-+#define   BXT_DRAM_WIDTH_SHIFT			4
-+#define   BXT_DRAM_WIDTH_X8			(0x0 << 4)
-+#define   BXT_DRAM_WIDTH_X16			(0x1 << 4)
-+#define   BXT_DRAM_WIDTH_X32			(0x2 << 4)
-+#define   BXT_DRAM_WIDTH_X64			(0x3 << 4)
-+#define   BXT_DRAM_SIZE_MASK			(0x7 << 6)
-+#define   BXT_DRAM_SIZE_SHIFT			6
-+#define   BXT_DRAM_SIZE_4GBIT			(0x0 << 6)
-+#define   BXT_DRAM_SIZE_6GBIT			(0x1 << 6)
-+#define   BXT_DRAM_SIZE_8GBIT			(0x2 << 6)
-+#define   BXT_DRAM_SIZE_12GBIT			(0x3 << 6)
-+#define   BXT_DRAM_SIZE_16GBIT			(0x4 << 6)
-+#define   BXT_DRAM_TYPE_MASK			(0x7 << 22)
-+#define   BXT_DRAM_TYPE_SHIFT			22
-+#define   BXT_DRAM_TYPE_DDR3			(0x0 << 22)
-+#define   BXT_DRAM_TYPE_LPDDR3			(0x1 << 22)
-+#define   BXT_DRAM_TYPE_LPDDR4			(0x2 << 22)
-+#define   BXT_DRAM_TYPE_DDR4			(0x4 << 22)
-+
-+#define MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x4000)
-+#define   DG1_DRAM_T_RDPRE_MASK			REG_GENMASK(16, 11)
-+#define   DG1_DRAM_T_RP_MASK			REG_GENMASK(6, 0)
-+#define MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR_HIGH	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x4004)
-+#define   DG1_DRAM_T_RCD_MASK			REG_GENMASK(15, 9)
-+#define   DG1_DRAM_T_RAS_MASK			REG_GENMASK(8, 1)
-+
-+#define SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5000)
-+#define   SKL_DRAM_DDR_TYPE_MASK		(0x3 << 0)
-+#define   SKL_DRAM_DDR_TYPE_DDR4		(0 << 0)
-+#define   SKL_DRAM_DDR_TYPE_DDR3		(1 << 0)
-+#define   SKL_DRAM_DDR_TYPE_LPDDR3		(2 << 0)
-+#define   SKL_DRAM_DDR_TYPE_LPDDR4		(3 << 0)
-+
-+/* snb MCH registers for reading the DRAM channel configuration */
-+#define MAD_DIMM_C0				_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5004)
-+#define MAD_DIMM_C1				_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5008)
-+#define MAD_DIMM_C2				_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x500C)
-+#define   MAD_DIMM_ECC_MASK			(0x3 << 24)
-+#define   MAD_DIMM_ECC_OFF			(0x0 << 24)
-+#define   MAD_DIMM_ECC_IO_ON_LOGIC_OFF		(0x1 << 24)
-+#define   MAD_DIMM_ECC_IO_OFF_LOGIC_ON		(0x2 << 24)
-+#define   MAD_DIMM_ECC_ON			(0x3 << 24)
-+#define   MAD_DIMM_ENH_INTERLEAVE		(0x1 << 22)
-+#define   MAD_DIMM_RANK_INTERLEAVE		(0x1 << 21)
-+#define   MAD_DIMM_B_WIDTH_X16			(0x1 << 20) /* X8 chips if unset */
-+#define   MAD_DIMM_A_WIDTH_X16			(0x1 << 19) /* X8 chips if unset */
-+#define   MAD_DIMM_B_DUAL_RANK			(0x1 << 18)
-+#define   MAD_DIMM_A_DUAL_RANK			(0x1 << 17)
-+#define   MAD_DIMM_A_SELECT			(0x1 << 16)
-+/* DIMM sizes are in multiples of 256mb. */
-+#define   MAD_DIMM_B_SIZE_SHIFT			8
-+#define   MAD_DIMM_B_SIZE_MASK			(0xff << MAD_DIMM_B_SIZE_SHIFT)
-+#define   MAD_DIMM_A_SIZE_SHIFT			0
-+#define   MAD_DIMM_A_SIZE_MASK			(0xff << MAD_DIMM_A_SIZE_SHIFT)
-+
-+#define SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x500C)
-+#define SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5010)
-+#define   SKL_DRAM_S_SHIFT			16
-+#define   SKL_DRAM_SIZE_MASK			0x3F
-+#define   SKL_DRAM_WIDTH_MASK			(0x3 << 8)
-+#define   SKL_DRAM_WIDTH_SHIFT			8
-+#define   SKL_DRAM_WIDTH_X8			(0x0 << 8)
-+#define   SKL_DRAM_WIDTH_X16			(0x1 << 8)
-+#define   SKL_DRAM_WIDTH_X32			(0x2 << 8)
-+#define   SKL_DRAM_RANK_MASK			(0x1 << 10)
-+#define   SKL_DRAM_RANK_SHIFT			10
-+#define   SKL_DRAM_RANK_1			(0x0 << 10)
-+#define   SKL_DRAM_RANK_2			(0x1 << 10)
-+#define   SKL_DRAM_RANK_MASK			(0x1 << 10)
-+#define   ICL_DRAM_SIZE_MASK			0x7F
-+#define   ICL_DRAM_WIDTH_MASK			(0x3 << 7)
-+#define   ICL_DRAM_WIDTH_SHIFT			7
-+#define   ICL_DRAM_WIDTH_X8			(0x0 << 7)
-+#define   ICL_DRAM_WIDTH_X16			(0x1 << 7)
-+#define   ICL_DRAM_WIDTH_X32			(0x2 << 7)
-+#define   ICL_DRAM_RANK_MASK			(0x3 << 9)
-+#define   ICL_DRAM_RANK_SHIFT			9
-+#define   ICL_DRAM_RANK_1			(0x0 << 9)
-+#define   ICL_DRAM_RANK_2			(0x1 << 9)
-+#define   ICL_DRAM_RANK_3			(0x2 << 9)
-+#define   ICL_DRAM_RANK_4			(0x3 << 9)
-+
-+#define SA_PERF_STATUS_0_0_0_MCHBAR_PC		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5918)
-+#define  DG1_QCLK_RATIO_MASK			REG_GENMASK(9, 2)
-+#define  DG1_QCLK_REFERENCE			REG_BIT(10)
-+
-+#define GEN6_GT_PERF_STATUS			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5948)
-+#define GEN6_RP_STATE_LIMITS			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5994)
-+#define GEN6_RP_STATE_CAP			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5998)
-+#define   RP0_CAP_MASK				REG_GENMASK(7, 0)
-+#define   RP1_CAP_MASK				REG_GENMASK(15, 8)
-+#define   RPN_CAP_MASK				REG_GENMASK(23, 16)
-+
-+/* snb MCH registers for priority tuning */
-+#define MCH_SSKPD				_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5d10)
-+#define   MCH_SSKPD_WM0_MASK			0x3f
-+#define   MCH_SSKPD_WM0_VAL			0xc
-+
-+/* Memory controller frequency in MCHBAR for Haswell (possible SNB+) */
-+#define DCLK					_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5e04)
-+#define SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5e04)
-+#define   DG1_GEAR_TYPE				REG_BIT(16)
-+
-+/*
-+ * Please see hsw_read_dcomp() and hsw_write_dcomp() before using this register,
-+ * since on HSW we can't write to it using intel_uncore_write.
-+ */
-+#define D_COMP_HSW				_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5f0c)
-+#define  D_COMP_RCOMP_IN_PROGRESS		(1 << 9)
-+#define  D_COMP_COMP_FORCE			(1 << 8)
-+#define  D_COMP_COMP_DISABLE			(1 << 0)
-+
-+#define BXT_GT_PERF_STATUS			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x7070)
-+
-+#endif /* __INTEL_MCHBAR_REGS */
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 1179bf31f743..e493d02c2d2f 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -50,6 +50,7 @@
- #include "i915_drv.h"
- #include "i915_fixed.h"
- #include "i915_irq.h"
-+#include "intel_mchbar_regs.h"
- #include "intel_pcode.h"
- #include "intel_pm.h"
- #include "vlv_sideband.h"
+ 	ret = intel_cursor_check_surface(plane_state);
+ 	if (ret)
 -- 
 2.34.1
 
