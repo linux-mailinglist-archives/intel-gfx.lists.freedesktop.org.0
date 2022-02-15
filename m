@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 611364B6320
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 06:51:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A21E4B6322
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 06:52:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB10610E2CA;
-	Tue, 15 Feb 2022 05:51:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 602E410E32D;
+	Tue, 15 Feb 2022 05:51:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1969610E193;
- Tue, 15 Feb 2022 05:51:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ABA610E31D;
+ Tue, 15 Feb 2022 05:51:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644904309; x=1676440309;
+ t=1644904311; x=1676440311;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Fm95Uni+SlgL2i6AIM+S7RddI4S2huSXszZZnBgGe80=;
- b=Q355ZppnCvyuzo0JG6gGH7Aa6nwcg4kN5uEjHmPYW5YfyyOcb4uxcQ+P
- kEcGBMDsS4Dm2wOVw1oz/FaZV7ZBBF4MQuyFVLcMB+n1RC9fOmzhxOCc9
- /JBBqBfRBHqObVUwsiefD/F1ng1q5VPNFzl8F9YR5pV5J6xfvOeBKqa53
- 8ZOXjrAbSMAKZVQaOtXXU8uH71yBcqlAfIuD1gqqvg0zG7mnQ1RfsjOSL
- PoZswQhNHLI77murL18YFBY2y5UWT+6kj1G/sSI8EEfyZBADHB7w4M/Ko
- olC4Tw/raCyhWq7KzecNzCLrEBTd/Q5PmPL6rLhx1Tn7sitZ7Bn1HwPZH A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="233802237"
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="233802237"
+ bh=Wp6YvS1jHm1j7g6EtLEki2qX31mXR8EVNk3lpFta4UE=;
+ b=NtX2CmkhYzk3lHFYQRjJ0TFYTOG73xQJZjO78NBcaf7GzyG0+37a+/48
+ XIsl/JXsRbSql44BMl0qTGFwOFv3uaprMuk6HtoJmGpwixBe1xGiUEWFM
+ RA+kymZS5qntJjDF3IoNLX5Gt58nZL0FMQTHBziib/rBP1BpaVNvfJodc
+ MIPk8vS4iz6YgoiwkMgLi2yvq8sFhgUqb/7P5sj9DKvKBPaj16E5wbd1C
+ cvxnW504zXcTa57CuOZBCDpkI7zniBsu3HlviL/iUoA8GKOah4okDNkSv
+ rxmE7V3rccwZF+vdBnSY60SdhWf6C9y5BfeQwBSbf4CeBgsxpQrAtYcKv A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="233802248"
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="233802248"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 21:51:48 -0800
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="544109307"
+ 14 Feb 2022 21:51:51 -0800
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="544109315"
 Received: from ramaling-i9x.iind.intel.com ([10.203.144.108])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 21:51:45 -0800
+ 14 Feb 2022 21:51:48 -0800
 From: Ramalingam C <ramalingam.c@intel.com>
 To: intel-gfx <intel-gfx@lists.freedesktop.org>,
  dri-devel <dri-devel@lists.freedesktop.org>
-Date: Tue, 15 Feb 2022 11:21:53 +0530
-Message-Id: <20220215055154.15363-3-ramalingam.c@intel.com>
+Date: Tue, 15 Feb 2022 11:21:54 +0530
+Message-Id: <20220215055154.15363-4-ramalingam.c@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20220215055154.15363-1-ramalingam.c@intel.com>
 References: <20220215055154.15363-1-ramalingam.c@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/dg2: Drop 38.4 MHz MPLLB tables
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Fix for PHY_MISC_TC1 offset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,246 +60,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+From: Jouni Högander <jouni.hogander@intel.com>
 
-Our early understanding of DG2 was incorrect; since the 5th display
-isn't actually a Type-C output, 38.4 MHz input clocks are never used on
-this platform and we can drop the corresponding MPLLB tables.
+Currently ICL_PHY_MISC macro is returning offset 0x64C10 for PHY_E
+port. Correct offset is 0x64C14.
 
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
+Fix this by handling PHY_E port seprately.
+
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_snps_phy.c | 208 +-----------------
- 1 file changed, 1 insertion(+), 207 deletions(-)
+ drivers/gpu/drm/i915/display/intel_snps_phy.c | 2 +-
+ drivers/gpu/drm/i915/i915_reg.h               | 6 ++++--
+ 2 files changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-index 8573a458811a..c60575cb5368 100644
+index c60575cb5368..f08061c748b3 100644
 --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-@@ -250,197 +250,6 @@ static const struct intel_mpllb_state * const dg2_dp_100_tables[] = {
- 	NULL,
- };
+@@ -32,7 +32,7 @@ void intel_snps_phy_wait_for_calibration(struct drm_i915_private *i915)
+ 		if (!intel_phy_is_snps(i915, phy))
+ 			continue;
  
--/*
-- * Basic DP link rates with 38.4 MHz reference clock.
-- */
--
--static const struct intel_mpllb_state dg2_dp_rbr_38_4 = {
--	.clock = 162000,
--	.ref_control =
--		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
--	.mpllb_cp =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 5) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 25) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
--	.mpllb_div =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_TX_CLK_DIV, 2) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FREQ_VCO, 2),
--	.mpllb_div2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 304),
--	.mpllb_fracn1 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
--	.mpllb_fracn2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 49152),
--};
--
--static const struct intel_mpllb_state dg2_dp_hbr1_38_4 = {
--	.clock = 270000,
--	.ref_control =
--		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
--	.mpllb_cp =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 5) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 25) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
--	.mpllb_div =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_TX_CLK_DIV, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FREQ_VCO, 3),
--	.mpllb_div2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 248),
--	.mpllb_fracn1 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
--	.mpllb_fracn2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 40960),
--};
--
--static const struct intel_mpllb_state dg2_dp_hbr2_38_4 = {
--	.clock = 540000,
--	.ref_control =
--		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
--	.mpllb_cp =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 5) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 25) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
--	.mpllb_div =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FREQ_VCO, 3),
--	.mpllb_div2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 248),
--	.mpllb_fracn1 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
--	.mpllb_fracn2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 40960),
--};
--
--static const struct intel_mpllb_state dg2_dp_hbr3_38_4 = {
--	.clock = 810000,
--	.ref_control =
--		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
--	.mpllb_cp =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 6) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 26) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
--	.mpllb_div =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2),
--	.mpllb_div2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 388),
--	.mpllb_fracn1 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
--	.mpllb_fracn2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 61440),
--};
--
--static const struct intel_mpllb_state dg2_dp_uhbr10_38_4 = {
--	.clock = 1000000,
--	.ref_control =
--		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
--	.mpllb_cp =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 5) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 26) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
--	.mpllb_div =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_CLK_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_MULTIPLIER, 8) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_SHIM_DIV32_CLK_SEL, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2),
--	.mpllb_div2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 488),
--	.mpllb_fracn1 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 3),
--	.mpllb_fracn2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_REM, 2) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 27306),
--
--	/*
--	 * SSC will be enabled, DP UHBR has a minimum SSC requirement.
--	 */
--	.mpllb_sscen =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_PEAK, 76800),
--	.mpllb_sscstep =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 129024),
--};
--
--static const struct intel_mpllb_state dg2_dp_uhbr13_38_4 = {
--	.clock = 1350000,
--	.ref_control =
--		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
--	.mpllb_cp =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 6) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 56) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
--	.mpllb_div =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_CLK_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_MULTIPLIER, 8) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 3),
--	.mpllb_div2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 670),
--	.mpllb_fracn1 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
--	.mpllb_fracn2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 36864),
--
--	/*
--	 * SSC will be enabled, DP UHBR has a minimum SSC requirement.
--	 */
--	.mpllb_sscen =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_PEAK, 103680),
--	.mpllb_sscstep =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 174182),
--};
--
--static const struct intel_mpllb_state * const dg2_dp_38_4_tables[] = {
--	&dg2_dp_rbr_38_4,
--	&dg2_dp_hbr1_38_4,
--	&dg2_dp_hbr2_38_4,
--	&dg2_dp_hbr3_38_4,
--	&dg2_dp_uhbr10_38_4,
--	&dg2_dp_uhbr13_38_4,
--	NULL,
--};
--
- /*
-  * eDP link rates with 100 MHz reference clock.
-  */
-@@ -749,22 +558,7 @@ intel_mpllb_tables_get(struct intel_crtc_state *crtc_state,
- 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
- 		return dg2_edp_tables;
- 	} else if (intel_crtc_has_dp_encoder(crtc_state)) {
--		/*
--		 * FIXME: Initially we're just enabling the "combo" outputs on
--		 * port A-D.  The MPLLB for those ports takes an input from the
--		 * "Display Filter PLL" which always has an output frequency
--		 * of 100 MHz, hence the use of the _100 tables below.
--		 *
--		 * Once we enable port TC1 it will either use the same 100 MHz
--		 * "Display Filter PLL" (when strapped to support a native
--		 * display connection) or different 38.4 MHz "Filter PLL" when
--		 * strapped to support a USB connection, so we'll need to check
--		 * that to determine which table to use.
--		 */
--		if (0)
--			return dg2_dp_38_4_tables;
--		else
--			return dg2_dp_100_tables;
-+		return dg2_dp_100_tables;
- 	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
- 		return dg2_hdmi_tables;
- 	}
+-		if (intel_de_wait_for_clear(i915, ICL_PHY_MISC(phy),
++		if (intel_de_wait_for_clear(i915, DG2_PHY_MISC(phy),
+ 					    DG2_PHY_DP_TX_ACK_MASK, 25))
+ 			drm_err(&i915->drm, "SNPS PHY %c failed to calibrate after 25ms.\n",
+ 				phy);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 4d12abb2d7ff..354c25f483cb 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -9559,8 +9559,10 @@ enum skl_power_gate {
+ 
+ #define _ICL_PHY_MISC_A		0x64C00
+ #define _ICL_PHY_MISC_B		0x64C04
+-#define ICL_PHY_MISC(port)	_MMIO_PORT(port, _ICL_PHY_MISC_A, \
+-						 _ICL_PHY_MISC_B)
++#define _DG2_PHY_MISC_TC1	0x64C14 /* TC1="PHY E" but offset as if "PHY F" */
++#define ICL_PHY_MISC(port)	_MMIO_PORT(port, _ICL_PHY_MISC_A, _ICL_PHY_MISC_B)
++#define DG2_PHY_MISC(port)	((port) == PHY_E ? _MMIO(_DG2_PHY_MISC_TC1) : \
++				 ICL_PHY_MISC(port))
+ #define  ICL_PHY_MISC_MUX_DDID			(1 << 28)
+ #define  ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN	(1 << 23)
+ #define  DG2_PHY_DP_TX_ACK_MASK			REG_GENMASK(23, 20)
 -- 
 2.20.1
 
