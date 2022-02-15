@@ -2,32 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 916474B7A27
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 23:04:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 291B64B7AA6
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 23:41:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 152C210E586;
-	Tue, 15 Feb 2022 22:03:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A317E10E5BC;
+	Tue, 15 Feb 2022 22:41:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D07CD10E586;
- Tue, 15 Feb 2022 22:03:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CC4A2AA0EB;
- Tue, 15 Feb 2022 22:03:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1252615601761223762=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74EA610E5BB;
+ Tue, 15 Feb 2022 22:41:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644964892; x=1676500892;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/pxvHWcsYStft3bDctZ3X4TvkpL1sWXm9WxM4m3Jc4I=;
+ b=TN94F+BEvvVMPlcREmjozyXKh/7gVaHPObEgB/DpdiHITg1l1kJJoFk7
+ iXapAYovMS9lzblrzMbIQ3pkr+e+8tlfgT1uSihXl0IPdXlr18spe0bAW
+ kX67o4sWn9nu+v4vp+WO0/BtHi/xquUs7TWz7Q/okW6qP2f34Vgi5AI+p
+ 9cyjlWo2iolFzmufZfthG5fxOlTghYh9y0p2sf+QoYvq9iT9JtrtH+XbW
+ 1kuVX3KGPPLCKjhNgpDYPo6AZp/ipvBjsb0phPjBV9P5FwIFOxuAvlX6/
+ PFPcuNJ7qR/WlpSuj2BJ8lJE5kIiwn9+ZK+jGC2H2iudayiOC8MErtXqM A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="234010446"
+X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="234010446"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 14:41:31 -0800
+X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="502696887"
+Received: from vkasired-desk2.fm.intel.com ([10.105.128.127])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 14:41:31 -0800
+From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue, 15 Feb 2022 14:23:52 -0800
+Message-Id: <20220215222352.867195-1-vivek.kasireddy@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <30de1989-6fee-d94a-7d99-6a3a8c59659d@amd.com>
+References: <30de1989-6fee-d94a-7d99-6a3a8c59659d@amd.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
-Date: Tue, 15 Feb 2022 22:03:56 -0000
-Message-ID: <164496263683.15374.16462581605735442490@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220214020357.10063-1-vandita.kulkarni@intel.com>
-In-Reply-To: <20220214020357.10063-1-vandita.kulkarni@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQWRk?=
- =?utf-8?q?_data_flow_metering_support_for_HDMI2=2E1_=28rev2=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/mm: Add an iterator to optimally walk
+ over holes for an allocation (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,303 +58,166 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1252615601761223762==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This iterator relies on drm_mm_first_hole() and drm_mm_next_hole()
+functions to identify suitable holes for an allocation of a given
+size by efficiently traversing the rbtree associated with the given
+allocator.
 
-== Series Details ==
+It replaces the for loop in drm_mm_insert_node_in_range() and can
+also be used by drm drivers to quickly identify holes of a certain
+size within a given range.
 
-Series: Add data flow metering support for HDMI2.1 (rev2)
-URL   : https://patchwork.freedesktop.org/series/99668/
-State : failure
+v2: (Tvrtko)
+- Prepend a double underscore for the newly exported first/next_hole
+- s/each_best_hole/each_suitable_hole/g
+- Mask out DRM_MM_INSERT_ONCE from the mode before calling
+  first/next_hole and elsewhere.
 
-== Summary ==
+v3: (Tvrtko)
+- Reduce the number of hunks by retaining the "mode" variable name
 
-CI Bug Log - changes from CI_DRM_11229 -> Patchwork_22263
-====================================================
+Cc: Christian König <christian.koenig@amd.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+---
+ drivers/gpu/drm/drm_mm.c | 32 +++++++++++++++-----------------
+ include/drm/drm_mm.h     | 36 ++++++++++++++++++++++++++++++++++++
+ 2 files changed, 51 insertions(+), 17 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/drm_mm.c b/drivers/gpu/drm/drm_mm.c
+index 8257f9d4f619..8efea548ae9f 100644
+--- a/drivers/gpu/drm/drm_mm.c
++++ b/drivers/gpu/drm/drm_mm.c
+@@ -352,10 +352,10 @@ static struct drm_mm_node *find_hole_addr(struct drm_mm *mm, u64 addr, u64 size)
+ 	return node;
+ }
+ 
+-static struct drm_mm_node *
+-first_hole(struct drm_mm *mm,
+-	   u64 start, u64 end, u64 size,
+-	   enum drm_mm_insert_mode mode)
++struct drm_mm_node *
++__drm_mm_first_hole(struct drm_mm *mm,
++		    u64 start, u64 end, u64 size,
++		    enum drm_mm_insert_mode mode)
+ {
+ 	switch (mode) {
+ 	default:
+@@ -374,6 +374,7 @@ first_hole(struct drm_mm *mm,
+ 						hole_stack);
+ 	}
+ }
++EXPORT_SYMBOL(__drm_mm_first_hole);
+ 
+ /**
+  * DECLARE_NEXT_HOLE_ADDR - macro to declare next hole functions
+@@ -410,11 +411,11 @@ static struct drm_mm_node *name(struct drm_mm_node *entry, u64 size)	\
+ DECLARE_NEXT_HOLE_ADDR(next_hole_high_addr, rb_left, rb_right)
+ DECLARE_NEXT_HOLE_ADDR(next_hole_low_addr, rb_right, rb_left)
+ 
+-static struct drm_mm_node *
+-next_hole(struct drm_mm *mm,
+-	  struct drm_mm_node *node,
+-	  u64 size,
+-	  enum drm_mm_insert_mode mode)
++struct drm_mm_node *
++__drm_mm_next_hole(struct drm_mm *mm,
++		   struct drm_mm_node *node,
++		   u64 size,
++		   enum drm_mm_insert_mode mode)
+ {
+ 	switch (mode) {
+ 	default:
+@@ -432,6 +433,7 @@ next_hole(struct drm_mm *mm,
+ 		return &node->hole_stack == &mm->hole_stack ? NULL : node;
+ 	}
+ }
++EXPORT_SYMBOL(__drm_mm_next_hole);
+ 
+ /**
+  * drm_mm_reserve_node - insert an pre-initialized node
+@@ -516,11 +518,11 @@ int drm_mm_insert_node_in_range(struct drm_mm * const mm,
+ 				u64 size, u64 alignment,
+ 				unsigned long color,
+ 				u64 range_start, u64 range_end,
+-				enum drm_mm_insert_mode mode)
++				enum drm_mm_insert_mode caller_mode)
+ {
+ 	struct drm_mm_node *hole;
+ 	u64 remainder_mask;
+-	bool once;
++	enum drm_mm_insert_mode mode = caller_mode & ~DRM_MM_INSERT_ONCE;
+ 
+ 	DRM_MM_BUG_ON(range_start > range_end);
+ 
+@@ -533,13 +535,9 @@ int drm_mm_insert_node_in_range(struct drm_mm * const mm,
+ 	if (alignment <= 1)
+ 		alignment = 0;
+ 
+-	once = mode & DRM_MM_INSERT_ONCE;
+-	mode &= ~DRM_MM_INSERT_ONCE;
+-
+ 	remainder_mask = is_power_of_2(alignment) ? alignment - 1 : 0;
+-	for (hole = first_hole(mm, range_start, range_end, size, mode);
+-	     hole;
+-	     hole = once ? NULL : next_hole(mm, hole, size, mode)) {
++	drm_mm_for_each_suitable_hole(hole, mm, range_start, range_end,
++				      size, mode) {
+ 		u64 hole_start = __drm_mm_hole_node_start(hole);
+ 		u64 hole_end = hole_start + hole->hole_size;
+ 		u64 adj_start, adj_end;
+diff --git a/include/drm/drm_mm.h b/include/drm/drm_mm.h
+index ac33ba1b18bc..777f659f9692 100644
+--- a/include/drm/drm_mm.h
++++ b/include/drm/drm_mm.h
+@@ -400,6 +400,42 @@ static inline u64 drm_mm_hole_node_end(const struct drm_mm_node *hole_node)
+ 	     1 : 0; \
+ 	     pos = list_next_entry(pos, hole_stack))
+ 
++struct drm_mm_node *
++__drm_mm_first_hole(struct drm_mm *mm,
++		    u64 start, u64 end, u64 size,
++		    enum drm_mm_insert_mode mode);
++
++struct drm_mm_node *
++__drm_mm_next_hole(struct drm_mm *mm,
++		   struct drm_mm_node *node,
++		   u64 size,
++		   enum drm_mm_insert_mode mode);
++
++/**
++ * drm_mm_for_each_suitable_hole - iterator to optimally walk over all
++ * holes that can fit an allocation of the given @size.
++ * @pos: &drm_mm_node used internally to track progress
++ * @mm: &drm_mm allocator to walk
++ * @range_start: start of the allowed range for the allocation
++ * @range_end: end of the allowed range for the allocation
++ * @size: size of the allocation
++ * @mode: fine-tune the allocation search
++ *
++ * This iterator walks over all holes suitable for the allocation of given
++ * @size in a very efficient manner. It is implemented by calling
++ * drm_mm_first_hole() and drm_mm_next_hole() which identify the
++ * appropriate holes within the given range by efficiently traversing the
++ * rbtree associated with @mm.
++ */
++#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
++				      size, mode) \
++	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
++				       mode & ~DRM_MM_INSERT_ONCE); \
++	     pos; \
++	     pos = mode & DRM_MM_INSERT_ONCE ? \
++	     NULL : __drm_mm_next_hole(mm, hole, size, \
++				       mode & ~DRM_MM_INSERT_ONCE))
++
+ /*
+  * Basic range manager support (drm_mm.c)
+  */
+-- 
+2.34.1
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_22263 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_22263, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/index.html
-
-Participating hosts (48 -> 45)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (4): fi-bsw-cyan shard-rkl shard-dg1 shard-tglu 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_22263:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-rkl-guc:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/fi-rkl-guc/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-rkl-guc/igt@i915_selftest@live@hangcheck.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22263 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@amdgpu/amd_cs_nop@fork-compute0:
-    - fi-blb-e6850:       NOTRUN -> [SKIP][4] ([fdo#109271]) +17 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-blb-e6850/igt@amdgpu/amd_cs_nop@fork-compute0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][5] ([fdo#109271]) +57 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-skl-6600u:       [PASS][6] -> [FAIL][7] ([i915#4547])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][8] ([i915#4312])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-skl-6600u/igt@runner@aborted.html
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][9] ([i915#2426] / [i915#4312])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-bdw-5557u:       [INCOMPLETE][10] ([i915#146]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_selftest@live@coherency:
-    - {fi-tgl-dsi}:       [INCOMPLETE][12] -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/fi-tgl-dsi/igt@i915_selftest@live@coherency.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-tgl-dsi/igt@i915_selftest@live@coherency.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [DMESG-FAIL][14] ([i915#4494] / [i915#4957]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-    - fi-hsw-4770:        [INCOMPLETE][16] ([i915#3303]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [DMESG-FAIL][18] ([i915#4528] / [i915#5026]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5026]: https://gitlab.freedesktop.org/drm/intel/issues/5026
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11229 -> Patchwork_22263
-
-  CI-20190529: 20190529
-  CI_DRM_11229: 633bb0541185395f3777b64cfd54101cda5fec15 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6345: ee18c0497ec2c74007e299c3fdd26f1613b9f514 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22263: 2c5449c01316aac517ce7502c307a0498ab3da15 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2c5449c01316 drm/hdmi21: Add frl_dfm_helper to Makefile
-6db4a39d6dde drm/hdmi21: Add support for DFM calculation with DSC
-12d033bb02c0 drm/hdmi21: Add helpers to verify non-dsc DFM requirements
-1392e71508a3 drm/hdmi21: Add non dsc frl capacity computation helpers
-b6cc89ab987b drm/hdmi21: Define frl_dfm structure
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/index.html
-
---===============1252615601761223762==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add data flow metering support for HDMI2.1 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99668/">https://patchwork.freedesktop.org/series/99668/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11229 -&gt; Patchwork_22263</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_22263 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_22263, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/index.html</p>
-<h2>Participating hosts (48 -&gt; 45)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (4): fi-bsw-cyan shard-rkl shard-dg1 shard-tglu </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_22263:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/fi-rkl-guc/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-rkl-guc/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22263 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@fork-compute0:</p>
-<ul>
-<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-blb-e6850/igt@amdgpu/amd_cs_nop@fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@coherency:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/fi-tgl-dsi/igt@i915_selftest@live@coherency.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-tgl-dsi/igt@i915_selftest@live@coherency.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11229/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5026">i915#5026</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22263/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11229 -&gt; Patchwork_22263</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11229: 633bb0541185395f3777b64cfd54101cda5fec15 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6345: ee18c0497ec2c74007e299c3fdd26f1613b9f514 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22263: 2c5449c01316aac517ce7502c307a0498ab3da15 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>2c5449c01316 drm/hdmi21: Add frl_dfm_helper to Makefile<br />
-6db4a39d6dde drm/hdmi21: Add support for DFM calculation with DSC<br />
-12d033bb02c0 drm/hdmi21: Add helpers to verify non-dsc DFM requirements<br />
-1392e71508a3 drm/hdmi21: Add non dsc frl capacity computation helpers<br />
-b6cc89ab987b drm/hdmi21: Define frl_dfm structure</p>
-
-</body>
-</html>
-
---===============1252615601761223762==--
