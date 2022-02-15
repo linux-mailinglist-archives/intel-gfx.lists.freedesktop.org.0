@@ -1,71 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E2D44B6677
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 09:48:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6470A4B6681
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 09:48:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAC9710E3F4;
-	Tue, 15 Feb 2022 08:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A19A210E416;
+	Tue, 15 Feb 2022 08:48:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB88110E40E
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 08:48:07 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9272C10E417
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 08:48:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1644914886;
+ s=mimecast20190719; t=1644914919;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=+0eleqiUVBeAPaQGD2Q6ihFW/Z9JIAN0Kj0GeNRsLaA=;
- b=gqpKXfdlEc4cCkHyZC5Qx6KpkJukaXvvD5DUos0e4q5b80Ks+tCUQ/RnLRUIMWx2NW330p
- dWzNYCUBzzYtAtE6NIvk/LlFD9TqNmzK7DFVdY6VUCLSACTj7hXKp83ZVgdgK5AjBwcg4A
- 539pEOmcCG3I3CsD7MEKB2Xn+Zylsko=
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com
- [209.85.216.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=cAghCw6nMXIP8DbPC2ZTmMjVdzgtfdV0Q4rDuIo9NkY=;
+ b=DSqmbLSAwCAJVngxiscPK3AI83fBvtKyU1g0AilU1+5l1HWqSms+MFHSUGa0sZO/SfGwjz
+ MTARKord6OnXu1SikYooOuoDXp45WeVwP+NSyH7Y/dELylzZWdS76PxZnMHKfa6/B5mtm0
+ Kk9NNo2FFnT7z/6lrYWi3bCEQd9gsF4=
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com
+ [209.85.216.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-591-XUs9jRRyP4y8kh8LMiDXPQ-1; Tue, 15 Feb 2022 03:47:55 -0500
-X-MC-Unique: XUs9jRRyP4y8kh8LMiDXPQ-1
-Received: by mail-pj1-f71.google.com with SMTP id
- gj12-20020a17090b108c00b001b89b5f3dd4so1802391pjb.6
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 00:47:55 -0800 (PST)
+ us-mta-446-SHDTjiPjPy6FMPzNHAHTnw-1; Tue, 15 Feb 2022 03:48:36 -0500
+X-MC-Unique: SHDTjiPjPy6FMPzNHAHTnw-1
+Received: by mail-pj1-f70.google.com with SMTP id
+ s10-20020a17090a948a00b001b96be201f6so1370116pjo.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 00:48:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=+0eleqiUVBeAPaQGD2Q6ihFW/Z9JIAN0Kj0GeNRsLaA=;
- b=pp0f2TSBpt3sE/+l4uf8VrXBsTUSFmaz6M7MRVrMYdMh4i7xmuOGM9UO7wonAysNU6
- LlJAFWh/349Ug49tqlhD8Tf+XFZ950aHiUHwqszE827scnfHTeU2tTb3fDGU4sWncE3j
- sgshx4RzAh+dJc3NJP1CEMmh6fNEAsmPx9G89zLso/aLGtu105UarhKSOSydHxrsQf51
- iV/K/iOwaCvPLlMB9gG1y+5EDRsC9rgKAtyA2slrcOMgNqfZZHBLC9FldkoW8sWubFoh
- pssviOfbS3cgdnvqvcT0w3rvb6u595RENfQbjbjO9QOU+jtGKOdVUqN0MLCNPw8mN0tv
- mnuw==
-X-Gm-Message-State: AOAM530y5INQE2bBaMikWZNfPtUYQDHM/pDTGBXWcgwNb0/rHGQ/jxyE
- KIV2Cmae32OVsAeEBzcXVFrI8EzB/sfX/79+h1I+j9f9XfQzYE25jHLEREqHk9X6Jl2sega8xCu
- yOvlWqk8MJsjgyBMpnbDq6p8pIvnI7U0D+8YJ0Cu//bdq
-X-Received: by 2002:a05:6a00:9a9:: with SMTP id
- u41mr3233700pfg.83.1644914874666; 
- Tue, 15 Feb 2022 00:47:54 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy1RXfHqGKUOwHiOd9TXDCmkRfLOApnv8+NP4UBdUIs2zHseVmQ3Z770IwhZgE/Zg1NSmgYeteqUdN9fAOzix8=
-X-Received: by 2002:a05:6a00:9a9:: with SMTP id
- u41mr3233676pfg.83.1644914874405; 
- Tue, 15 Feb 2022 00:47:54 -0800 (PST)
+ bh=cAghCw6nMXIP8DbPC2ZTmMjVdzgtfdV0Q4rDuIo9NkY=;
+ b=komi3vsebXgWvkPQyVl8lsG+QEq9XUFNMr5iWu9ko1tCqVElA897cuPeVUycS3Gde0
+ tam4iaUkkQJi2r8LrI+uNsp0ggU8Y+JUAcUTUPf8IkkkIuoteKtItgK3qUrvZ1eM3ocw
+ Pa29F0iriHYOQ2X7dOS0eLQKbt8PFiihbNKsu5EnEVA7IslSkwvxjvjRKZ+2ZWXbQ9GC
+ dA++VnXRQ0+LiNxAOmQAmdQdR+PXkWCkGqlArE1IYQVJL6leNFdqhKwEA8SZhqQqCPK4
+ SS4zrmuU4rjZ9aeRlGrSt2/O/p4oVu5fr34+gpBOkVyc882l6GoXhmgwubS8bJKy+kiN
+ 5mwQ==
+X-Gm-Message-State: AOAM533kPEMZWDev/6fp3LB5OOIC3xHb8RVxHH3hbW67hbalQcnGeUsQ
+ iX84NWoRXI/ybx7KG9lO4NNuT7Tl9WMLCv4bP3qvnKzFPq0/6LmrvVljLd81dHWNcMs80/VFJvX
+ jhwjf02ZDwnd5p+qT7TEEJ9BQObfUuP/qHw+IV+zLhM/J
+X-Received: by 2002:a63:2bc5:: with SMTP id r188mr2644607pgr.363.1644914915607; 
+ Tue, 15 Feb 2022 00:48:35 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxNykZwzg4bf+5n8EbXDkY7JRsdOTnLNDPgNJlOcTDejNQ8sWs8DiYpM4W3ztHYleOanIdgFMhO3Rj6Rj63QAs=
+X-Received: by 2002:a63:2bc5:: with SMTP id r188mr2644575pgr.363.1644914915393; 
+ Tue, 15 Feb 2022 00:48:35 -0800 (PST)
 MIME-Version: 1.0
 References: <1644890154-64915-1-git-send-email-wangqing@vivo.com>
- <1644890154-64915-6-git-send-email-wangqing@vivo.com>
-In-Reply-To: <1644890154-64915-6-git-send-email-wangqing@vivo.com>
+ <1644890154-64915-7-git-send-email-wangqing@vivo.com>
+In-Reply-To: <1644890154-64915-7-git-send-email-wangqing@vivo.com>
 From: Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Date: Tue, 15 Feb 2022 09:47:43 +0100
-Message-ID: <CAO-hwJJK5yeW+K_vLpWV9t3TsEdk0xCO-ETxeJsXM2c117JzNw@mail.gmail.com>
+Date: Tue, 15 Feb 2022 09:48:24 +0100
+Message-ID: <CAO-hwJLwomyHyjza8x3cEhR97HkK7Z7yPWVXwA4-1jmM=WKqeQ@mail.gmail.com>
 To: Qing Wang <wangqing@vivo.com>
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=btissoir@redhat.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH V3 5/13] hid: use time_is_after_jiffies()
- instead of open coding it
+Subject: Re: [Intel-gfx] [PATCH V3 6/13] input: serio: use
+ time_is_before_jiffies() instead of open coding it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,7 +96,7 @@ Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 15, 2022 at 2:56 AM Qing Wang <wangqing@vivo.com> wrote:
+On Tue, Feb 15, 2022 at 2:57 AM Qing Wang <wangqing@vivo.com> wrote:
 >
 > From: Wang Qing <wangqing@vivo.com>
 >
@@ -106,34 +104,38 @@ On Tue, Feb 15, 2022 at 2:56 AM Qing Wang <wangqing@vivo.com> wrote:
 > code readability.
 >
 > Signed-off-by: Wang Qing <wangqing@vivo.com>
-> Acked-by: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
+> ---
 
-FWIW, this one is
-Acked-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
-
-Wang, is there any plan to take this series through the trivial tree
-or should each maintainer take the matching patches?
+Reviewed-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
 
 Cheers,
 Benjamin
 
-> ---
->  drivers/hid/intel-ish-hid/ipc/ipc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/input/serio/ps2-gpio.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/hid/intel-ish-hid/ipc/ipc.c b/drivers/hid/intel-ish-hid/ipc/ipc.c
-> index 8ccb246..15e1423
-> --- a/drivers/hid/intel-ish-hid/ipc/ipc.c
-> +++ b/drivers/hid/intel-ish-hid/ipc/ipc.c
-> @@ -578,7 +578,7 @@ static void _ish_sync_fw_clock(struct ishtp_device *dev)
->         static unsigned long    prev_sync;
->         uint64_t        usec;
+> diff --git a/drivers/input/serio/ps2-gpio.c b/drivers/input/serio/ps2-gpio.c
+> index 8970b49..7834296
+> --- a/drivers/input/serio/ps2-gpio.c
+> +++ b/drivers/input/serio/ps2-gpio.c
+> @@ -136,7 +136,7 @@ static irqreturn_t ps2_gpio_irq_rx(struct ps2_gpio_data *drvdata)
+>         if (old_jiffies == 0)
+>                 old_jiffies = jiffies;
 >
-> -       if (prev_sync && jiffies - prev_sync < 20 * HZ)
-> +       if (prev_sync && time_is_after_jiffies(prev_sync + 20 * HZ))
->                 return;
+> -       if ((jiffies - old_jiffies) > usecs_to_jiffies(100)) {
+> +       if (time_is_before_jiffies(old_jiffies + usecs_to_jiffies(100))) {
+>                 dev_err(drvdata->dev,
+>                         "RX: timeout, probably we missed an interrupt\n");
+>                 goto err;
+> @@ -237,7 +237,7 @@ static irqreturn_t ps2_gpio_irq_tx(struct ps2_gpio_data *drvdata)
+>         if (old_jiffies == 0)
+>                 old_jiffies = jiffies;
 >
->         prev_sync = jiffies;
+> -       if ((jiffies - old_jiffies) > usecs_to_jiffies(100)) {
+> +       if (time_is_before_jiffies(old_jiffies + usecs_to_jiffies(100))) {
+>                 dev_err(drvdata->dev,
+>                         "TX: timeout, probably we missed an interrupt\n");
+>                 goto err;
 > --
 > 2.7.4
 >
