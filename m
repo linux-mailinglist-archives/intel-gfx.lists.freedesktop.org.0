@@ -2,49 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9EF64B635D
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 07:23:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDBA04B63D2
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 07:59:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9D9010E1E2;
-	Tue, 15 Feb 2022 06:23:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 231A010E29A;
+	Tue, 15 Feb 2022 06:59:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF98E10E1E2
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 06:23:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F84810E29A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 06:59:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644906204; x=1676442204;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nHGAeVpLv5YNGCvpKEykjQhmy7NWJ4T1/YVbqqKvC5k=;
- b=fKCsjNK2g2GvzMTaM124oVxYaMotf0dzRMba1/4expzEcG7abEKsQkAu
- /MgLQcRJhuieS4FZ0wTsGAsjvWG+qp7sO9NAX/nJNz6KKImbofR0sO1eR
- 4YgwSeEtH6HXRfbHmdrr+Wzbl9EX5htYYF7OtS0+cvhgsCVlMO2ktFpm2
- BVq2N9S0lPhc0OAdqWty5S6MPiX8jcbT3Nn63zg3Fc3wQ4N9ZlJe7FaWK
- F/oG2L7slmo1wz2T4Uy4nMaGDUC+eyXBO7/wpQ7t6KiVqXwV7SnLshMUk
- bmD/9uEm6OrzgiXATjKITFnV7gCUQVMaXWhfH0c5avTybLWeeRl3mpdSG w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="336687696"
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="336687696"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ t=1644908351; x=1676444351;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=CALal7OWwC5WfUKwQNV2Nnj7rixxUuloBV80vIS8u6g=;
+ b=ahYS+QNcQi4oXeAh7RKNXyMXyxajzL0kIp+opy2TyacKEXZ3ZnmkC/7N
+ slnWZWmN8geZSeZjf/LbdovsUTKWLTGH4Cqq0r7ctuLZqN598dg+M2p6z
+ lE4jNbUv9PLwQWLL6ecJLYSRmhRZ85Xl5O/CC95+l7gPnxFvzuTMCFXns
+ Nrd6tb50mnd01H7NT5yLxnQQVq9Cg/MflZEPD44tdGjhpZc7SetX4+Hae
+ IgDuR2MNvfmTnmmgwn+HIKxmuufQY/oRXQHRwe3+g431FyiftA8zX3StU
+ oIuKwSTKlYazdRqj7vGe2S6ESlGLjrKJzmfGAz16gAHFjno8950YVgPDl A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="336692234"
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="336692234"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 22:23:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="528652093"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga007.jf.intel.com with SMTP; 14 Feb 2022 22:23:22 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 15 Feb 2022 08:23:21 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Feb 2022 08:23:21 +0200
-Message-Id: <20220215062321.832-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
+ 14 Feb 2022 22:59:10 -0800
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="485999554"
+Received: from rmfenste-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.125.181])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2022 22:58:59 -0800
+Date: Mon, 14 Feb 2022 22:58:56 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Casey Bowman <casey.g.bowman@intel.com>
+Message-ID: <20220215065838.qulpdctnuw5ekocy@ldmartin-desk2>
+References: <20220211021510.202602-1-casey.g.bowman@intel.com>
+ <87sfsp7h49.fsf@intel.com>
+ <ee934ff3-c17b-6766-f6ab-d0440080e46e@linux.intel.com>
+ <1189984b-46de-7bfd-1da7-2a7cbafaf8c8@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix cursor coordinates on bigjoiner
- slave
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <1189984b-46de-7bfd-1da7-2a7cbafaf8c8@intel.com>
+Subject: Re: [Intel-gfx] [RFC PATCH v2 0/1] Splitting up platform-specific
+ calls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,36 +60,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ michael.cheng@intel.com, daniel.vetter@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Mon, Feb 14, 2022 at 10:05:56PM -0800, Casey Bowman wrote:
+>
+>On 2/11/22 05:51, Tvrtko Ursulin wrote:
+>>
+>>On 11/02/2022 11:55, Jani Nikula wrote:
+>>>On Thu, 10 Feb 2022, Casey Bowman <casey.g.bowman@intel.com> wrote:
+>>>>In this RFC I would like to ask the community their thoughts
+>>>>on how we can best handle splitting architecture-specific
+>>>>calls.
+>>>>
+>>>>I would like to address the following:
+>>>>
+>>>>1. How do we want to split architecture calls? Different object files
+>>>>per platform? Separate function calls within the same object file?
+>>>>
+>>>>2. How do we address dummy functions? If we have a function call 
+>>>>that is
+>>>>used for one or more platforms, but is not used in another, what should
+>>>>we do for this case?
+>>>>
+>>>>I've given an example of splitting an architecture call
+>>>>in my patch with run_as_guest() being split into different
+>>>>implementations for x86 and arm64 in separate object files, sharing
+>>>>a single header.
+>>>>
+>>>>Another suggestion from Michael (michael.cheng@intel.com) involved
+>>>>using a single object file, a single header, and splitting various
+>>>>functions calls via ifdefs in the header file.
+>>>>
+>>>>I would appreciate any input on how we can avoid scaling issues when
+>>>>including multiple architectures and multiple functions (as the number
+>>>>of function calls will inevitably increase with more architectures).
+>>>>
+>>>>v2: Revised to use kernel's platform-splitting scheme.
+>>>
+>>>I think this is overengineering.
+>>>
+>>>Just add different implementations of the functions per architecture
+>>>next to where they are now, like I suggested before.
+>>>
+>>>If we need to split them better later, it'll be a trivial undertaking,
+>>>and we'll be in a better position to do it because we'll know how many
+>>>functions there'll be and where they are and what they do.
+>>>
+>>>Adding a bunch of overhead from the start seems like the wrong thing to
+>>>do.
+>>
+>>I don't see it adds real complexity, which would normally be 
+>>associated with over-engineering. As a benefit I see it helping with 
+>>driving the clean re-design (during the porting effort) in a way 
+>>that it will be easy to spot is something is overly hacky, split on 
+>>the wrong level, or incorrectly placed.
+>>
+>>And it moves run_as_guest outside of intel_vtd.[hc] which IMO shows 
+>>immediate benefit, since it has nothing to do with intel_vtd.
+>>
+>>I suggested to add clflush as well, since I think going for 
+>>drm_flush_virt_range everywhere is a bit lazy given how it is a 
+>>clear regression for older platforms.
+>>
+>>But after that I indeed don't have a crystal ball to show me how 
+>>many more appropriate low-level primitives would be to use the 
+>>pattern.
+>>
+>>So my vote would be to go with it, although the main thing is 
+>>probably to solve the conflicting asks and let guys focus on the 
+>>port. Put it to voting then? :)
+>>
+>If we can get someone else to weigh in here to break the tie, that'd 
+>be helpful :)
 
-Adjust the cursor dst coordinates appripriately when it's on
-the bigjoiner slave pipe. intel_atomic_plane_check_clipping()
-already did this but with the cursor we discard those results
-(apart from uapi.visible and error checks) since the hardware
-will be doing the clipping for us.
+I don't like much the split with platforms because a) I don't think we
+have too many users to deserve that, b) if we do have something that is
+common and should be abstracted in that way, it should probably be
+outside of i915: find somewhere in the kernel that is the proper place
+to add that and c) usually we will have "do one thing for x86, do
+another for all the rest" - and the split per platform forces us to add
+an implementation for each platform (or add a generic/ to account for
+the absence of something). There will usually be one (x86) that will
+be very different than the rest.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_cursor.c | 3 +++
- 1 file changed, 3 insertions(+)
+So my vote is to go with Jani's proposal.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 2ade8fdd9bdd..5b600679674f 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -152,6 +152,9 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
- 	/* Use the unclipped src/dst rectangles, which we program to hw */
- 	plane_state->uapi.src = src;
- 	plane_state->uapi.dst = dst;
-+	if (crtc_state->bigjoiner_slave)
-+		drm_rect_translate(&plane_state->uapi.dst,
-+				   -crtc_state->pipe_src_w, 0);
- 
- 	ret = intel_cursor_check_surface(plane_state);
- 	if (ret)
--- 
-2.34.1
+Lucas De Marchi
 
+>
+>Regards,
+>Casey
+>
