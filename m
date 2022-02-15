@@ -2,48 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 389C14B7454
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 19:32:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00D7F4B7456
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 19:32:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A29610E511;
-	Tue, 15 Feb 2022 18:32:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2515710E509;
+	Tue, 15 Feb 2022 18:32:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C41210E4E9
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 18:32:11 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C50A10E509
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 18:32:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644949931; x=1676485931;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fya1CVpiCUA00uJyUf7nOp9k3CCJS5YagtWXe8IfZ1o=;
- b=KEVlslgHqC9uwOs2DDRB3+b2gsFSCZea/Ieqq9APesa1p4JbGJFd8XK2
- 71sloeaD5N4eTkLJCuEpFgLNS6ObxVL6ShoAU2Lh7rxIWc3n3FY+4cmW1
- tul2awQkh/8r93QNYPeqvDS5zv2UekCxxRgE4H+PSyLj6XXOJ+wqwPiGI
- JAUlRvZ78On+5kWg/lJ0icBQEleZMZocmbpxLR3FuCuDWhMol93Yy1XUN
- EnRiXg4AjIbBjvJyd2w+BRoQEyFBkkfjvSzsVPstRAS7uKD1H2LKLZfRY
- oDlXcmkZrW9MRRsEGwQDKeGzdEepo3sUGc0p7zt4h/ISsQ4G+xBaU0YU7 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="313701046"
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="313701046"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2022 10:32:10 -0800
+ t=1644949934; x=1676485934;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=uhG7qCG5Tw8TwdRDyu2hSv2uSiCzF5HrOQNCWm31EgI=;
+ b=IsWc1l3AsXzLmub7jmAzF0OAHoyIM3Rptt64g69d3tvBcBjxnQ8jRI6e
+ zOLu1WY9ylNN2fSZoZv14fXKvwe9UHOPL+jq23//ngAU8vSiq28qTs2ST
+ tTy5FpUy7w3cg5k23oH/A4XVmDOt0lbvTykP5E0MunpiUdAGJqJNUZyva
+ rTpvGOWJSSr6ulzh60J9ADovU+xX8t8C3MYkuytzK79/QMrBo5kbj7e86
+ v6ck6FwSGe67jftm0PZpTGfIalWBF8w55s7wYMAnUPoO4qxPQjxArrQhi
+ rJweVeMjFZksWrYgw2tfbRYXsOJ9pXTSUNAoG7Ku+s4HnSjqGZVJgYV3F g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="275001545"
+X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="275001545"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 10:32:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="587849408"
+X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="632939110"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga008.fm.intel.com with SMTP; 15 Feb 2022 10:32:08 -0800
+ by fmsmga002.fm.intel.com with SMTP; 15 Feb 2022 10:32:11 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 15 Feb 2022 20:32:08 +0200
+ Tue, 15 Feb 2022 20:32:10 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Feb 2022 20:31:56 +0200
-Message-Id: <20220215183208.6143-1-ville.syrjala@linux.intel.com>
+Date: Tue, 15 Feb 2022 20:31:57 +0200
+Message-Id: <20220215183208.6143-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220215183208.6143-1-ville.syrjala@linux.intel.com>
+References: <20220215183208.6143-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 00/12] drm/i915: Move bigjoiner refactoring
+Subject: [Intel-gfx] [PATCH 01/12] drm/i915: Fix cursor coordinates on
+ bigjoiner slave
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,54 +64,33 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-This is an attempt at more or less finish the bigjoiner
-state computation/readout refactoring.
+Adjust the cursor dst coordinates appripriately when it's on
+the bigjoiner slave pipe. intel_atomic_plane_check_clipping()
+already did this but with the cursor we discard those results
+(apart from uapi.visible and error checks) since the hardware
+will be doing the clipping for us.
 
-Stuff that should now be in decent shape:
-- cursor should appear in the right spot on all pipes
-- plane clipping/etc. independent of number of joined pipes
-  thanks to the PIPESRC drm_rect
-- the PIPESRC drm_rect should prove helpful for the seam
-  elimination stuff too in the future, as well as for some
-  other planned scaler fixes/cleanups
-- bigjoiner vs. MSO timings should be properly handled now
+v2: Rebase due to bigjoiner bitmask usage
 
-What is likely still busted:
-- panel fitter. The state computation needs to be redesigned fully
-  for bigjoiner. Semi-related to the aforementioned scaler work.
-- the modeset sequence is still a huge mess. That will have
-  to be the next major refactoring target I think.
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cursor.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Pushed the lot here:
-git://github.com/vsyrjala/linux.git pipesrc_rect_3
-
-Ville Syrjälä (12):
-  drm/i915: Fix cursor coordinates on bigjoiner slave
-  drm/i915: Remove nop bigjoiner state copy
-  drm/i915: Rename variables in intel_crtc_compute_config()
-  drm/i915: Extract intel_splitter_adjust_timings()
-  drm/i915: Extract intel_bigjoiner_adjust_timings()
-  drm/i915: Extract intel_crtc_compute_pipe_src()
-  drm/i915: Extract intel_crtc_compute_pipe_mode()
-  drm/i915: Fix MSO vs. bigjoiner timings confusion
-  drm/i915: Start tracking PIPESRC as a drm_rect
-  drm/i915: Eliminate bigjoiner boolean
-  drm/i915: Use bigjoiner_pipes more
-  drm/i915: Make the PIPESC rect relative to the entire bigjoiner area
-
- .../gpu/drm/i915/display/intel_atomic_plane.c |  20 +-
- drivers/gpu/drm/i915/display/intel_cursor.c   |   7 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 350 +++++++++++-------
- .../drm/i915/display/intel_display_debugfs.c  |   6 +-
- .../drm/i915/display/intel_display_types.h    |   5 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |  13 +-
- drivers/gpu/drm/i915/display/intel_overlay.c  |  22 +-
- drivers/gpu/drm/i915/display/intel_panel.c    |  70 ++--
- drivers/gpu/drm/i915/display/intel_vdsc.c     |   8 +-
- drivers/gpu/drm/i915/display/skl_scaler.c     |  12 +-
- .../drm/i915/display/skl_universal_plane.c    |   4 +-
- 11 files changed, 294 insertions(+), 223 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 2ade8fdd9bdd..3e80763aa828 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -152,6 +152,9 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
+ 	/* Use the unclipped src/dst rectangles, which we program to hw */
+ 	plane_state->uapi.src = src;
+ 	plane_state->uapi.dst = dst;
++	if (intel_crtc_is_bigjoiner_slave(crtc_state))
++		drm_rect_translate(&plane_state->uapi.dst,
++				   -crtc_state->pipe_src_w, 0);
+ 
+ 	ret = intel_cursor_check_surface(plane_state);
+ 	if (ret)
 -- 
 2.34.1
 
