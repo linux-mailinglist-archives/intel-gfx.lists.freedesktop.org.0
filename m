@@ -2,120 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E390F4B6475
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 08:37:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E2D44B6677
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 09:48:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB76810E3BC;
-	Tue, 15 Feb 2022 07:37:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAC9710E3F4;
+	Tue, 15 Feb 2022 08:48:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam08on2047.outbound.protection.outlook.com [40.107.102.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8371A10E3BC;
- Tue, 15 Feb 2022 07:37:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JpLT9ymveIrsqVkbGq8cxZnCgiF2ebGMjQxmMKHpMcfIN4WBPCHu76iNb0dxBpTSPSREAJqM4VIITlus3YhvxyIAqu7xm1HPZGRbPR0ho0kzyckNklu0bDR4ShNhMeZ5Dbrp+6Wyh0ah+j+Mm5Tm+cng6yQZU/fJyT+W5fBgE4u6rkqrqDdZrgwBqVMAHEmgSLiXcmlljNAOeQ53/2WecrDoNQy0xLutUAEToqUJ2mGnPqliUk+DQoBYF0QlM3Hdk7taZ8lZPnPuOc4SFj+tdTplRzq2LAKs6DPgm4+/D1yTSCtmEGY1EviQG5nec9iQtbP7+ZOcUSE9BCZAlMpa8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jMd9iBPyJpOX9rkPdDCkv2tqthskvClXZD1mTYQrZFU=;
- b=Hkc0ZB5kVeZXDmHIeW1SuXarRrxx4hlFSvXCvD+FUnnk+dRdE+DIuEskxRPH0/zDA/9/a1tulMXAxbKDrDy7SvONkyMwQlxkrrTI9kg4jx979urOcHnNHYWmXQ1ZEL/1tBNq/o5sl/e66vBLU4ZrezUiwS39KUacgAX1mlqMB9vtD0cEBj6BZ9/L+rgilQL8Cnyt7ESjgAcrf1zWajo142l2QZKf4+uYxhUIkZM73WQN7dJwTb6066+7o+ojBFEcO6QjfRMdzHdwj6UVcDDTbtjW9P2kOhKSmS/d3N/YOoafjEVNY5rg431LiB36ByUcXrmrnVAhqYzzmgT0258qeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jMd9iBPyJpOX9rkPdDCkv2tqthskvClXZD1mTYQrZFU=;
- b=dMaZYT8zouVF92IBDblAb/DIhpTrWfyV13o9Vx1wqPxNyc/mmB8IrkOk6vGN9tmNJ/CPKXB7skadQFGCqUg8HW3qZWIlDUp3UFGFf9QjnaVNXfnbhFkyTs9TP5thOnuDWGhueTG+U9sWJrAeIq3cCzTAzhqvJzpaxYui0PDBq+E=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by BYAPR12MB3591.namprd12.prod.outlook.com (2603:10b6:a03:dd::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.17; Tue, 15 Feb
- 2022 07:37:43 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::d861:5699:8188:7bd3]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::d861:5699:8188:7bd3%3]) with mapi id 15.20.4975.019; Tue, 15 Feb 2022
- 07:37:43 +0000
-Message-ID: <30de1989-6fee-d94a-7d99-6a3a8c59659d@amd.com>
-Date: Tue, 15 Feb 2022 08:37:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20220214235625.864939-1-vivek.kasireddy@intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20220214235625.864939-1-vivek.kasireddy@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AS8P250CA0029.EURP250.PROD.OUTLOOK.COM
- (2603:10a6:20b:330::34) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB88110E40E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 08:48:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1644914886;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=+0eleqiUVBeAPaQGD2Q6ihFW/Z9JIAN0Kj0GeNRsLaA=;
+ b=gqpKXfdlEc4cCkHyZC5Qx6KpkJukaXvvD5DUos0e4q5b80Ks+tCUQ/RnLRUIMWx2NW330p
+ dWzNYCUBzzYtAtE6NIvk/LlFD9TqNmzK7DFVdY6VUCLSACTj7hXKp83ZVgdgK5AjBwcg4A
+ 539pEOmcCG3I3CsD7MEKB2Xn+Zylsko=
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com
+ [209.85.216.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-591-XUs9jRRyP4y8kh8LMiDXPQ-1; Tue, 15 Feb 2022 03:47:55 -0500
+X-MC-Unique: XUs9jRRyP4y8kh8LMiDXPQ-1
+Received: by mail-pj1-f71.google.com with SMTP id
+ gj12-20020a17090b108c00b001b89b5f3dd4so1802391pjb.6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 00:47:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=+0eleqiUVBeAPaQGD2Q6ihFW/Z9JIAN0Kj0GeNRsLaA=;
+ b=pp0f2TSBpt3sE/+l4uf8VrXBsTUSFmaz6M7MRVrMYdMh4i7xmuOGM9UO7wonAysNU6
+ LlJAFWh/349Ug49tqlhD8Tf+XFZ950aHiUHwqszE827scnfHTeU2tTb3fDGU4sWncE3j
+ sgshx4RzAh+dJc3NJP1CEMmh6fNEAsmPx9G89zLso/aLGtu105UarhKSOSydHxrsQf51
+ iV/K/iOwaCvPLlMB9gG1y+5EDRsC9rgKAtyA2slrcOMgNqfZZHBLC9FldkoW8sWubFoh
+ pssviOfbS3cgdnvqvcT0w3rvb6u595RENfQbjbjO9QOU+jtGKOdVUqN0MLCNPw8mN0tv
+ mnuw==
+X-Gm-Message-State: AOAM530y5INQE2bBaMikWZNfPtUYQDHM/pDTGBXWcgwNb0/rHGQ/jxyE
+ KIV2Cmae32OVsAeEBzcXVFrI8EzB/sfX/79+h1I+j9f9XfQzYE25jHLEREqHk9X6Jl2sega8xCu
+ yOvlWqk8MJsjgyBMpnbDq6p8pIvnI7U0D+8YJ0Cu//bdq
+X-Received: by 2002:a05:6a00:9a9:: with SMTP id
+ u41mr3233700pfg.83.1644914874666; 
+ Tue, 15 Feb 2022 00:47:54 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJy1RXfHqGKUOwHiOd9TXDCmkRfLOApnv8+NP4UBdUIs2zHseVmQ3Z770IwhZgE/Zg1NSmgYeteqUdN9fAOzix8=
+X-Received: by 2002:a05:6a00:9a9:: with SMTP id
+ u41mr3233676pfg.83.1644914874405; 
+ Tue, 15 Feb 2022 00:47:54 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e7b3257b-8f5b-469a-6e64-08d9f0560d7c
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3591:EE_
-X-Microsoft-Antispam-PRVS: <BYAPR12MB3591B909C79BB843887DFDA283349@BYAPR12MB3591.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gT4jI9kpcY7ubc4sdRUQ6awfSPWcPyaLnaRO9YH0BOGgl8j5kWb/BuiASsitoHUCGqW+NZvbaj+4NR9wOzsU+1Yrb9WlXnlgI5MLgnc/s23HeWsiDrzV8Tt86Jxs+mOGXqi5akbC9Biml/bELCsLBAI7MwTSr3CkWguqtK3hzRglBSoJ/cGUVt/yy11VxM5/u93XW2EqAdfR07Bt258mszZb5tl1fCr111szu7QrxARe46ljteF+uMquhYCX1D6cCp7w+0e9QBrkcsG4mFRFlKYJtZTM66GD7qg5v1Dcz1Dw1TH6jC8TuXfwcLubno9HBKGrv5hznOGTuB/H7vK9p0OZrt77JuvYLO9IgrnwQbygUS4/fbSAbKJFhTxEpYKgXjjt/kfZJTq5G7L23AO6iCXmVa1jnr/hEcTXDiY1djaexm0ML88wPye/8HPXyqOv6Fi+aG+jI7u97tlPYy/cXGdEfB/csDawdRAYi/m4vv4nmJ/Ao9D8CXec8bE9v/GC4p+VSLadk/YRU9nNNIQltuzHYSCAtK/EyNwttu1TIOZnq3jue7G/IYizkq0/H3iy3GuwG4ucnmFhbr20/C/nq3R2lXopWqu9ZnZoIpqeh9xA5lGW3lUqZ9a3+pD5Cv/wSaye8h6CQ7fs5sqwv8i3bkJsPhpf/En/hekAH0x25gOFC0V6CAV6iSgxm5StpICxFGgjq7YPwqNCecLnACnt2pom3j89HtbEBZzzdd3La4McjGkkTO8K+waiRrUBBVXB
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(2906002)(6512007)(66556008)(316002)(8676002)(5660300002)(66946007)(6486002)(508600001)(4326008)(83380400001)(186003)(66476007)(6506007)(31686004)(31696002)(38100700002)(36756003)(8936002)(86362001)(2616005)(6666004)(54906003)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SnFCMFQ0aDFUN2s5THoyeEVYYm94U09kNFpqTHEvZXBCaERsd2tPclFuQ0lU?=
- =?utf-8?B?QmJGU0dCQ0Jxb1VzMzJybll5MVYySmlFVHFNMnhZcGdUYmNpZlpvK0lrUTZG?=
- =?utf-8?B?eDdmcjd4UTlzazlsN21BYi8rMjlyOS80RndyMkJ5RzZjQ1o2WnFGS1RMSi9i?=
- =?utf-8?B?L0p6elZvTzlJZ3ZzRVFaTkg5alljZVoyYUZmRnNXdTU4ZThvNWRZTTBxTi9j?=
- =?utf-8?B?SXA1L0swajdxbW1XdFFuTnc5aWNiRGlHY3d2Qk1UcDE1b0xabU05MVNYRFZr?=
- =?utf-8?B?a3pkc2NwcTJrM1g5ajVianQvcGFTbUpTUzZVUktQNTQxaU81c1FLZVBIVWMz?=
- =?utf-8?B?RHA5WCtZZ20yTmp1NDBCaGFTSnRwQVY1VHBUMWNuN2lBQnZsK1R2ODV6Ty9F?=
- =?utf-8?B?bjd4S29vMjdtZXdwYXV4ZzIxR0ZKTDBGQm9pR3Q1TC84cUd3T3ZvTDd4RW1j?=
- =?utf-8?B?VnJlcTZXYjJNRWVVSE1rRmZUM05XamZYb3hsZGJTM2Urc3E2a0FUb2pPN01n?=
- =?utf-8?B?RkI1ZHRTRWw4THFZUkxMcFA4bFNTcnVBRGNsZmswR1hyeTlSSTFIWWtGV1Z1?=
- =?utf-8?B?eEFvb3d0dFlQZ2RPNTQ4M2Y0bFFIQWExMnBUOWU2YlpQcTJCL2l3U2VzeG1G?=
- =?utf-8?B?c3YzNU1hb3pCam9JUE5WZGI2cnFITkJwN3BIT0V4QllreG9pSXgwQXpZbVNv?=
- =?utf-8?B?U0h4L0pqQkoraUVOaEErMUI5WWVaVVN2SHJjalJGbS9UNDdxOWVqNXpYVEVX?=
- =?utf-8?B?bFZCQmhYcXpadmo1K2pYMVhuR1hBcTJmSVNiQ05aYTdISVBnSTFaa2RkMlgz?=
- =?utf-8?B?RHlRZC9RQ2pza2pqVjdzbHE2N0dLZHN2aXFhZ3VPMlA4R3MwY0RZR0VzaWFY?=
- =?utf-8?B?WTNVc3FFcHV1V0JIOXUrN28rUGhiWjYreXVwOS9rK24zR05pank5bzI5RkFX?=
- =?utf-8?B?QlJtSjBrLys4MUhPZVlNZEkxMGRIclpMQVAzb0I4QTdGOGhLSUdqNXgxeEth?=
- =?utf-8?B?WHBVOTE1Q0ZTTEl3Tk03YmV5bkRFMVdoaUFGb1RETFRXb1MwVzFBUmJ2RWRr?=
- =?utf-8?B?VEhpUlFkaW1tTTFnMzBKZFFWTVV3K1hOVlhZWW5CNjFtV3VMUGJNVklhbnZB?=
- =?utf-8?B?cHp6MCtVcUl1VlorZ3BZQUdiLyswZk1LRHVtQWg4dk95NDFxUWJHSThRRkZT?=
- =?utf-8?B?Y1JzN0VhSVJyTCtlOTFpanBFc1FMVEszQ1F5TU0zZUhJRk1kUXBSQ1hlbkhO?=
- =?utf-8?B?MlhBUk1SMjRIcVFkdUlUeUlzaXVOd3RudjZYTUVaakg2a3lhQUE5WFFCOHVK?=
- =?utf-8?B?Y3hhQkUrSGxZYkRsNUtxdDlBYTFDSTdnT05wcUZJd2tjd1ZIZFN0Zzg4d09r?=
- =?utf-8?B?V3hLUlYvcWxTNnJNZlFjelJaRUxjYTRTUU1GKzZDT0kxby91K2I0a2xTUUs2?=
- =?utf-8?B?dE80Yk5BVXlFSVg4TVlJMEl2MktiUTdvci95Y1EwT2N1R21kSjh0bWhtRnlW?=
- =?utf-8?B?Rys0aWdqZVA1TTdIMm16SzRTNlNRSDJ5OC9Wc2pTNkRlRVVUT2E2dHlpRzhn?=
- =?utf-8?B?OWhzYXNLN1VqZ0xQVWhXZ3ZFSE9GT3phNWVOaFJnR2xXVG5kcFdiU1IrZGQx?=
- =?utf-8?B?RjNyUUZWWGtoeG02MmtoZEhxaDlMbjNsUDJEa3l0eDFUUzdTSDhVczhmVnN6?=
- =?utf-8?B?bTArY3FmNE1EMnpxVWRZWWtUQ3RqWW55ak1odHVwVmZneXVSRURWT0ZzSllY?=
- =?utf-8?B?Um5BU1BJRlltR0J6aDZWNFJnU09pRW9WSXJmbzB6ek1uTGdBRDYwZjhHUW5H?=
- =?utf-8?B?OGtVTTlHTmtSTUpMeWhVNkgrMmRzaDhuQlJpME1wdHRhQWd3Qm0vT1pnQXFK?=
- =?utf-8?B?Z0czYnBGSXlyZmI4b2hMYXMzcWJqSGI5ZmxtVkwrRGoyWm1iNk1vNjZyQnJ4?=
- =?utf-8?B?ZUprVE9rd2I5d1NBeC9KSGZjQ2h2akdJUzlYcmJlbjJDWXh0eTBaZENoWFpB?=
- =?utf-8?B?R2tjS0ZmVk1JR3JiZHg0b2FCMHRrekNrTkFmYjRDMlMwYlJDQTB2ZnZrQ0xs?=
- =?utf-8?B?UGRUMHJJOEtMMnRZVmNvQzZ4aVIyWEtoOEd1ZTljdFBRSFNhL0k5OXQ2ckY4?=
- =?utf-8?B?eHFDMWRZdkcvWkdHRUxXMHZEQjk3TGk4NWYwT2tCMFczSlNtM3F6S0FBYStx?=
- =?utf-8?Q?O3uEgQXf6ZO3LLQLVov31NM=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e7b3257b-8f5b-469a-6e64-08d9f0560d7c
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2022 07:37:43.5935 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rbi9+qRuOVBhygnLNGfHzZAKxliRoivZJK9XnJzQZySy1Mjc0twm1CoWi9grZqO2
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3591
-Subject: Re: [Intel-gfx] [PATCH 0/2] drm/mm: Add an iterator to optimally
- walk over holes suitable for an allocation
+References: <1644890154-64915-1-git-send-email-wangqing@vivo.com>
+ <1644890154-64915-6-git-send-email-wangqing@vivo.com>
+In-Reply-To: <1644890154-64915-6-git-send-email-wangqing@vivo.com>
+From: Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Date: Tue, 15 Feb 2022 09:47:43 +0100
+Message-ID: <CAO-hwJJK5yeW+K_vLpWV9t3TsEdk0xCO-ETxeJsXM2c117JzNw@mail.gmail.com>
+To: Qing Wang <wangqing@vivo.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=btissoir@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH V3 5/13] hid: use time_is_after_jiffies()
+ instead of open coding it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,39 +78,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Mike Snitzer <snitzer@redhat.com>, David Airlie <airlied@linux.ie>,
+ Michael Turquette <mturquette@baylibre.com>, dri-devel@lists.freedesktop.org,
+ Hans Verkuil <hverkuil@xs4all.nl>, dm-devel@redhat.com,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ linux-clk@vger.kernel.org, Alasdair Kergon <agk@redhat.com>,
+ amd-gfx@lists.freedesktop.org,
+ "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
+ xen-devel@lists.xenproject.org, linux-media@vger.kernel.org,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+ intel-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>,
+ linux-block@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jens Axboe <axboe@kernel.dk>, Stephen Boyd <sboyd@kernel.org>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, lkml <linux-kernel@vger.kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Roger_Pau_Monn=C3=A9?= <roger.pau@citrix.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 15.02.22 um 00:56 schrieb Vivek Kasireddy:
-> The first patch is a drm core patch that replaces the for loop in
-> drm_mm_insert_node_in_range() with the iterator and would not
-> cause any functional changes. The second patch is a i915 driver
-> specific patch that also uses the iterator but solves a different
-> problem.
-
-Sounds like a good idea to me, but I somehow only see the cover letter 
-and none of the patches.
-
-Please double check your mail setup, looks like you CCed me only on the 
-first mail and I don't see the rest on dri-devel for some reason.
-
-Regards,
-Christian.
-
+On Tue, Feb 15, 2022 at 2:56 AM Qing Wang <wangqing@vivo.com> wrote:
 >
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Nirmoy Das <nirmoy.das@intel.com>
-> Cc: Christian König <christian.koenig@amd.com>
+> From: Wang Qing <wangqing@vivo.com>
 >
-> Vivek Kasireddy (2):
->    drm/mm: Add an iterator to optimally walk over holes for an allocation
->      (v3)
->    drm/i915/gem: Don't try to map and fence large scanout buffers (v7)
+> Use the helper function time_is_{before,after}_jiffies() to improve
+> code readability.
 >
->   drivers/gpu/drm/drm_mm.c        |  32 ++++-----
->   drivers/gpu/drm/i915/i915_gem.c | 120 +++++++++++++++++++++++---------
->   include/drm/drm_mm.h            |  36 ++++++++++
->   3 files changed, 137 insertions(+), 51 deletions(-)
+> Signed-off-by: Wang Qing <wangqing@vivo.com>
+> Acked-by: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
+
+FWIW, this one is
+Acked-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
+
+Wang, is there any plan to take this series through the trivial tree
+or should each maintainer take the matching patches?
+
+Cheers,
+Benjamin
+
+> ---
+>  drivers/hid/intel-ish-hid/ipc/ipc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/hid/intel-ish-hid/ipc/ipc.c b/drivers/hid/intel-ish-hid/ipc/ipc.c
+> index 8ccb246..15e1423
+> --- a/drivers/hid/intel-ish-hid/ipc/ipc.c
+> +++ b/drivers/hid/intel-ish-hid/ipc/ipc.c
+> @@ -578,7 +578,7 @@ static void _ish_sync_fw_clock(struct ishtp_device *dev)
+>         static unsigned long    prev_sync;
+>         uint64_t        usec;
+>
+> -       if (prev_sync && jiffies - prev_sync < 20 * HZ)
+> +       if (prev_sync && time_is_after_jiffies(prev_sync + 20 * HZ))
+>                 return;
+>
+>         prev_sync = jiffies;
+> --
+> 2.7.4
 >
 
