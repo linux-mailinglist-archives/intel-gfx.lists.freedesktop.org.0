@@ -2,52 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDBA04B63D2
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 07:59:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC0BD4B643C
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 08:24:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 231A010E29A;
-	Tue, 15 Feb 2022 06:59:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 478A410E38A;
+	Tue, 15 Feb 2022 07:24:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F84810E29A
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 06:59:11 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 521B610E38A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 07:24:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644908351; x=1676444351;
+ t=1644909845; x=1676445845;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=CALal7OWwC5WfUKwQNV2Nnj7rixxUuloBV80vIS8u6g=;
- b=ahYS+QNcQi4oXeAh7RKNXyMXyxajzL0kIp+opy2TyacKEXZ3ZnmkC/7N
- slnWZWmN8geZSeZjf/LbdovsUTKWLTGH4Cqq0r7ctuLZqN598dg+M2p6z
- lE4jNbUv9PLwQWLL6ecJLYSRmhRZ85Xl5O/CC95+l7gPnxFvzuTMCFXns
- Nrd6tb50mnd01H7NT5yLxnQQVq9Cg/MflZEPD44tdGjhpZc7SetX4+Hae
- IgDuR2MNvfmTnmmgwn+HIKxmuufQY/oRXQHRwe3+g431FyiftA8zX3StU
- oIuKwSTKlYazdRqj7vGe2S6ESlGLjrKJzmfGAz16gAHFjno8950YVgPDl A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="336692234"
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="336692234"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 22:59:10 -0800
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="485999554"
-Received: from rmfenste-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.209.125.181])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2022 22:58:59 -0800
-Date: Mon, 14 Feb 2022 22:58:56 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Casey Bowman <casey.g.bowman@intel.com>
-Message-ID: <20220215065838.qulpdctnuw5ekocy@ldmartin-desk2>
-References: <20220211021510.202602-1-casey.g.bowman@intel.com>
- <87sfsp7h49.fsf@intel.com>
- <ee934ff3-c17b-6766-f6ab-d0440080e46e@linux.intel.com>
- <1189984b-46de-7bfd-1da7-2a7cbafaf8c8@intel.com>
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=wrK7kPZSv9GV6tuRFwFjOqmpuTuVckzhriwvHNh/Nkw=;
+ b=MaPcQFtOeE1DGkgDxjeTY8fAfhQ44ja2ZQHCcOcR5+xP3jUtGDEPiBR7
+ YcuWBWZiGxRNK109sm9KN+gvVlvmCBNVSjQB9J06pCSTDmpPpam40E79w
+ KeCxvsM30OloQQKN/hFXC9grDOrlifrCFd+1Nx2FBxagmsWar5MIqFwBd
+ orVIpYWxDf8Qb6VtBVkoV6mWXV5Zw29jUaknWD0yJTzue3uv8GvX9eQJE
+ OLlO6+Kdgd5kpg6i9DfcxounfSSXslZVxvi7KIx8bVTvJuGLrjqvl1z+d
+ S8D/52g0Ps4K1Sdf+6DLcYfBEPa4Od1xGbagmyXl6Avq7r9AL/ll2ozKo A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="274844425"
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="274844425"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2022 23:24:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="680880668"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by fmsmga001.fm.intel.com with SMTP; 14 Feb 2022 23:24:02 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 15 Feb 2022 09:24:01 +0200
+Date: Tue, 15 Feb 2022 09:24:01 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <YgtVEc7pw5TqzEdi@intel.com>
+References: <20220210231217.1706063-1-matthew.d.roper@intel.com>
+ <YgYhUeBZ7gbLmqUp@intel.com>
+ <YgtCLYafpS11I8HM@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <1189984b-46de-7bfd-1da7-2a7cbafaf8c8@intel.com>
-Subject: Re: [Intel-gfx] [RFC PATCH v2 0/1] Splitting up platform-specific
- calls
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YgtCLYafpS11I8HM@mdroper-desk1.amr.corp.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Move MCHBAR registers to their
+ own header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,97 +62,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- michael.cheng@intel.com, daniel.vetter@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 14, 2022 at 10:05:56PM -0800, Casey Bowman wrote:
->
->On 2/11/22 05:51, Tvrtko Ursulin wrote:
->>
->>On 11/02/2022 11:55, Jani Nikula wrote:
->>>On Thu, 10 Feb 2022, Casey Bowman <casey.g.bowman@intel.com> wrote:
->>>>In this RFC I would like to ask the community their thoughts
->>>>on how we can best handle splitting architecture-specific
->>>>calls.
->>>>
->>>>I would like to address the following:
->>>>
->>>>1. How do we want to split architecture calls? Different object files
->>>>per platform? Separate function calls within the same object file?
->>>>
->>>>2. How do we address dummy functions? If we have a function call 
->>>>that is
->>>>used for one or more platforms, but is not used in another, what should
->>>>we do for this case?
->>>>
->>>>I've given an example of splitting an architecture call
->>>>in my patch with run_as_guest() being split into different
->>>>implementations for x86 and arm64 in separate object files, sharing
->>>>a single header.
->>>>
->>>>Another suggestion from Michael (michael.cheng@intel.com) involved
->>>>using a single object file, a single header, and splitting various
->>>>functions calls via ifdefs in the header file.
->>>>
->>>>I would appreciate any input on how we can avoid scaling issues when
->>>>including multiple architectures and multiple functions (as the number
->>>>of function calls will inevitably increase with more architectures).
->>>>
->>>>v2: Revised to use kernel's platform-splitting scheme.
->>>
->>>I think this is overengineering.
->>>
->>>Just add different implementations of the functions per architecture
->>>next to where they are now, like I suggested before.
->>>
->>>If we need to split them better later, it'll be a trivial undertaking,
->>>and we'll be in a better position to do it because we'll know how many
->>>functions there'll be and where they are and what they do.
->>>
->>>Adding a bunch of overhead from the start seems like the wrong thing to
->>>do.
->>
->>I don't see it adds real complexity, which would normally be 
->>associated with over-engineering. As a benefit I see it helping with 
->>driving the clean re-design (during the porting effort) in a way 
->>that it will be easy to spot is something is overly hacky, split on 
->>the wrong level, or incorrectly placed.
->>
->>And it moves run_as_guest outside of intel_vtd.[hc] which IMO shows 
->>immediate benefit, since it has nothing to do with intel_vtd.
->>
->>I suggested to add clflush as well, since I think going for 
->>drm_flush_virt_range everywhere is a bit lazy given how it is a 
->>clear regression for older platforms.
->>
->>But after that I indeed don't have a crystal ball to show me how 
->>many more appropriate low-level primitives would be to use the 
->>pattern.
->>
->>So my vote would be to go with it, although the main thing is 
->>probably to solve the conflicting asks and let guys focus on the 
->>port. Put it to voting then? :)
->>
->If we can get someone else to weigh in here to break the tie, that'd 
->be helpful :)
+On Mon, Feb 14, 2022 at 10:03:25PM -0800, Matt Roper wrote:
+> On Fri, Feb 11, 2022 at 10:41:53AM +0200, Ville Syrjälä wrote:
+> > On Thu, Feb 10, 2022 at 03:12:17PM -0800, Matt Roper wrote:
+> > > Registers that exist within the MCH BAR and are mirrored into the GPU's
+> > > MMIO space are a good candidate to separate out into their own header.
+> > > 
+> > > For reference, the mirror of the MCH BAR lives at the following
+> > > locations in the graphics MMIO space:
+> > > 
+> > >  * Pre-gen6:           0x10000 -  0x13000
+> > 
+> > Should go up to 0x14000 according to some docs I have.
+> 
+> I think I was looking at a gm45 PRM for this.  Given the spotty
+> documentation on the older platforms and the number of different end
+> points there seem to be, maybe it's a better idea to just give the
+> starting offset in the commit message and say that the upper bound
+> varies.
 
-I don't like much the split with platforms because a) I don't think we
-have too many users to deserve that, b) if we do have something that is
-common and should be abstracted in that way, it should probably be
-outside of i915: find somewhere in the kernel that is the proper place
-to add that and c) usually we will have "do one thing for x86, do
-another for all the rest" - and the split per platform forces us to add
-an implementation for each platform (or add a generic/ to account for
-the absence of something). There will usually be one (x86) that will
-be very different than the rest.
+Sounds good.
 
-So my vote is to go with Jani's proposal.
+> 
+> > 
+> > >  * Gen6-Gen11 + RKL:  0x140000 - 0x14FFFF
+> > 
+> > Some docs say this goes up to 0x180000, other docs have different
+> > numbers. I suppose it doesn't matter all that much really. And
+> > BXT+ clearly can't go past 0x160000 since IIRC that's where some
+> > of the PHY/PLL stuff lives.
+> > 
+> > >  * TGL, ADL:          0x140000 - 0x15FFFF
+> > > 
+> > > Bspec: 134, 51771
+> > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > <snip>
+> > > -#define GEN6_GT_PERF_STATUS	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5948)
+> > > -#define BXT_GT_PERF_STATUS      _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x7070)
+> > > -#define GEN6_RP_STATE_LIMITS	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5994)
+> > > -#define GEN6_RP_STATE_CAP	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5998)
+> > > -#define   RP0_CAP_MASK		REG_GENMASK(7, 0)
+> > > -#define   RP1_CAP_MASK		REG_GENMASK(15, 8)
+> > > -#define   RPN_CAP_MASK		REG_GENMASK(23, 16)
+> > >  #define BXT_RP_STATE_CAP        _MMIO(0x138170)
+> > >  #define GEN9_RP_STATE_LIMITS	_MMIO(0x138148)
+> > >  #define XEHPSDV_RP_STATE_CAP	_MMIO(0x250014)
+> > 
+> > :( This is a bit unfortunate. I wonder if we should make an exception
+> > for these and keep them all together somewhere?
+> 
+> I don't really see a problem with having them in separate headers.  We
+> have other stuff like ILK_GDSR / GEN6_GDRST that also used to be in the
+> MCHBAR and then moved to the GT proper.
 
-Lucas De Marchi
+ILK_GDSR is not just about the GT but it can reset the 
+display engine too. IIRC GEN6_GDRST can't do that.
 
->
->Regards,
->Casey
->
+> I believe the MCHBAR mirror is
+> going away completely a platform or two down the road and all the
+> important registers are migrating to non-MCHBAR offsets, so if we try to
+> keep them all together, that defeats most of the purpose of having a
+> separate MCHBAR header?
+
+Not sure. Sadly there is no clear theme to some of the
+MCHBAR registers so I'm not sure where else we'd place them
+(assuming the plan is basically to hollow out i915_regs.h).
+
+I guess we could start with what you have here and if it turns
+out annoying we can always come up with something different later.
+
+-- 
+Ville Syrjälä
+Intel
