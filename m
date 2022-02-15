@@ -1,56 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B51CC4B6BA3
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 13:04:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C781B4B6BC6
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 13:11:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B20A110E456;
-	Tue, 15 Feb 2022 12:04:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F13D10E468;
+	Tue, 15 Feb 2022 12:11:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com
- [IPv6:2607:f8b0:4864:20::729])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E392210E453;
- Tue, 15 Feb 2022 12:04:51 +0000 (UTC)
-Received: by mail-qk1-x729.google.com with SMTP id g145so17064385qke.3;
- Tue, 15 Feb 2022 04:04:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=qbnM1QziU/XSffVJX+bwaVuJwYnLnX8GCs9DF4EaXsk=;
- b=GBMqnSHarXC8GjklagRkyGCCCF9Vo/+51OFuwdd5ApKg9dkW3pSkUxe1+Er9Afky6v
- Mh2HJsmInn/Y/1pqwHTcBVDt66gJ/n6NdvbagUwpaPDxAvKcWYOAGF9eJPUNFVcrRXtq
- xCSE7P90lHDA1hG1rhBhFZGiFUdEZBw1BFNdSm6I9ARqcXxZutmsu9NurMbQf2X083rl
- 9+kUZoxTiRxt6xCjAn7+Jb0RJO2hrZ27eujcuFSoIqQOhf4xU+BWknVKr1J/HQwRZh/a
- e5YQ7kDjPYvpT1sVr1H0+hd9UeSzNdxElh2nZKmTnlIU4cYZGHUOmV3CekLD9/CDG7mk
- a3Ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=qbnM1QziU/XSffVJX+bwaVuJwYnLnX8GCs9DF4EaXsk=;
- b=bWN8lO7/tclxLpJNMxk0nBIev/1LKMhR7Cgr/AvpZSJE4lfpoKu8xUHse4tGGZV9qO
- 9rYYxalmHlDcH0rlRzbdDaKvrT3vfofJSiOKPT55mKFgZhNhocbdZ4qmVQCpN01merRU
- 65ve6PxXwTSfzcvSTXfK9Lxze7uxYrQz5xq+aCD9aFyWqjYgqVLXCUsTD10tWD5nYg1z
- G7VxtQNFIAPOkRwlCmnQc4Q4JMZrLL2oE6Pq0n3Cv/tDuLtlm1PUtta3upBQdk15sN9P
- QXV3tja6CQRjcsUo3orNLOz21SwspwTg50cJa3wazEOBZ7e4tRC0VsmarsaEl9WW8w4Y
- ushw==
-X-Gm-Message-State: AOAM532GT6N9c8qB5UKRn1YMeEier2vuG1+AtdXkx2G8Tl+vSoUbdjfE
- 12uyzFMLMqYeDDvzaPHkc3Xvvv8sXKLR6DfoagjgCwtHyqBb/A==
-X-Google-Smtp-Source: ABdhPJxFzThI9yJ6WQ5YwMfuHeghHCKy7MGmGIpj5Bk2cqTfQYGSL/bhIOpU56LzBlNjDXYJ7jFaFlTkyTg9FfzELMc=
-X-Received: by 2002:a05:620a:4048:: with SMTP id
- i8mr1689174qko.482.1644926690999; 
- Tue, 15 Feb 2022 04:04:50 -0800 (PST)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABD1610E465;
+ Tue, 15 Feb 2022 12:11:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644927113; x=1676463113;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=zT4S6A5ModLhQpd7e86PbFMHrNsbDenFUKNBpKpWx9k=;
+ b=KPngO8FNYHASWhRZmeCyzjnyeCiBxbrGCTv1xVLQKb8AGPGXiv29fmYP
+ 2kWP/Sm7jV7mAupakoWZb46eWTin9UAo4Uhlr9jp41O7R9ygThyj2MF6U
+ 7AJ9d7m1Iqq8iPESPA3j70Cahk8lrfSN31ItUrOOJZJb5S+y+XcXg715l
+ ngqFfVIHm2MVMKA31krJ8caxv8l0djjPfrSq9HMBU+BnvrIK7zfowragV
+ x3kj96QXmIMtnrTSoOToNUVh/iD9csKnqGutoSUyKzpeW/MSgbvvcHUql
+ WO82ExMpOsMqxCjj8AvMYEGXPXPIftCTg5/xOe4Gz2PdamVJVfQ5CMUGL w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="249172649"
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="249172649"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 04:11:53 -0800
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="528823662"
+Received: from ylian16-mobl1.ccr.corp.intel.com (HELO localhost)
+ ([10.252.20.230])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 04:11:50 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Stephen Rothwell <sfr@canb.auug.org.au>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+In-Reply-To: <20220215121039.1d1ec3e6@canb.auug.org.au>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220215121039.1d1ec3e6@canb.auug.org.au>
+Date: Tue, 15 Feb 2022 14:11:47 +0200
+Message-ID: <87r1845ny4.fsf@intel.com>
 MIME-Version: 1.0
-References: <20220208084234.1684930-1-hsinyi@chromium.org>
-In-Reply-To: <20220208084234.1684930-1-hsinyi@chromium.org>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Tue, 15 Feb 2022 12:04:39 +0000
-Message-ID: <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
-To: Hsin-Yi Wang <hsinyi@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v8 1/3] gpu: drm: separate panel orientation
- property creating and value setting
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-intel tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +61,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
- Simon Ser <contact@emersion.fr>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- linux-mediatek@lists.infradead.org,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- LAKML <linux-arm-kernel@lists.infradead.org>
+Cc: Dave Airlie <airlied@linux.ie>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Greetings everyone,
-
-Padron for joining in so late o/
-
-On Tue, 8 Feb 2022 at 08:42, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+On Tue, 15 Feb 2022, Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+> Hi all,
 >
-> drm_dev_register() sets connector->registration_state to
-> DRM_CONNECTOR_REGISTERED and dev->registered to true. If
-> drm_connector_set_panel_orientation() is first called after
-> drm_dev_register(), it will fail several checks and results in following
-> warning.
+> After merging the drm-intel tree, today's linux-next build (x86_64
+> allmodconfig) failed like this:
 >
-> Add a function to create panel orientation property and set default value
-> to UNKNOWN, so drivers can call this function to init the property earlier
-> , and let the panel set the real value later.
+> drivers/gpu/drm/i915/gvt/kvmgt.c: In function 'handle_edid_regs':
+> drivers/gpu/drm/i915/gvt/kvmgt.c:595:38: error: implicit declaration of function 'drm_edid_block_valid' [-Werror=implicit-function-declaration]
+>   595 |                                 if (!drm_edid_block_valid(
+>       |                                      ^~~~~~~~~~~~~~~~~~~~
 >
+> Presumably caused by commit
+>
+>   14da21cc4671 ("drm/i915: axe lots of unnecessary includes from i915_drv.h")
+>
+> I am beginning to wonder if you guys run stuff through your CI before
+> relasing to linux-next.  Especially important when removing #include
+> statements from include files :-)
 
-The warning illustrates a genuine race condition, where userspace will
-read the old/invalid property value/state. So this patch masks away
-the WARNING without addressing the actual issue.
-Instead can we fix the respective drivers, so that no properties are
-created after drm_dev_register()?
+Thanks for the report. Apparently CI (and I) have VFIO=n, VFIO_MDEV=n,
+and DRM_I915_GVT_KVMGT=n.
 
-Longer version:
-As we look into drm_dev_register() it's in charge of creating the
-dev/sysfs nodes (et al). Note that connectors cannot disappear at
-runtime.
-For panel orientation, we are creating an immutable connector
-properly, meaning that as soon as drm_dev_register() is called we must
-ensure that the property is available (if applicable) and set to the
-correct value.
+BR,
+Jani.
 
-For illustration, consider the following scenario:
- - DRM modules are loaded late - are not built-in and not part of
-initrd (or there's no initrd)
- - kernel boots
- - plymouth/similar user-space component kicks in before the
-driver/module is loaded
- - module gets loaded, drm_dev_register() kicks in populating /dev/dri/card0
- - plymouth opens the dev node and reads DRM_MODE_PANEL_ORIENTATION_UNKNOWN
- - module updates the orientation property
 
-Thanks
-Emil
+>
+> I have used the drm-intel tree from next-20220214 for today.
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
