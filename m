@@ -2,32 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A8DE4B794D
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 22:32:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2176B4B7950
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 22:34:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 573C510E546;
-	Tue, 15 Feb 2022 21:32:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF97A88EB4;
+	Tue, 15 Feb 2022 21:33:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6902B10E546;
- Tue, 15 Feb 2022 21:32:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 647FEAADD2;
- Tue, 15 Feb 2022 21:32:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A551910E546
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 21:33:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644960836; x=1676496836;
+ h=date:from:to:subject:message-id:references:mime-version:
+ in-reply-to; bh=r7VWraZVZM5LGzi5uIDZqwRFjmKi5ch5Sc1YrAa1b7Y=;
+ b=gS6Gv3rgftTimE2xPmJ2g7m526ozWwH3ota4KWhicxYd31kJmlPA+rP3
+ alEQFo2PRzR0+X49TxGzaNcDLNo+VRbjKYWJr2onVnZOOQQPFn7MXfzNS
+ noiAKEhiN8X3CEHY/XkSSX02t/rbkc7hn0AYzL5D5O/Vb89rlXutf4oio
+ P76BX8IhAd4puyKev55hObIIUAzmTS7+ui2LuXfcDnqd8gsw98sIox7OA
+ k5X/mf3yHVYwRpnOislRc5SDbeeGlLZHuYfk/UQ1L67T0LQ6EUHmaVnWz
+ NtoMxkUknjgYG1XPGU3viQ/8UOqT3z95Kva+PlPflmChpV/nPgqo5hZLY A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="250661560"
+X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="250661560"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 13:33:56 -0800
+X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="544513310"
+Received: from dbhandar-mobl1.amr.corp.intel.com (HELO msatwood-mobl)
+ ([10.212.183.40])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 13:33:55 -0800
+Date: Tue, 15 Feb 2022 13:33:37 -0800
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>;,
+	intel-gfx@lists.freedesktop.org
+Message-ID: <20220215213337.GA13300@msatwood-mobl>
+References: <20220209051140.1599643-1-matthew.d.roper@intel.com>
+ <20220209051140.1599643-4-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
-Date: Tue, 15 Feb 2022 21:32:37 -0000
-Message-ID: <164496075740.15371.12926242294335428713@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220214020357.10063-1-vandita.kulkarni@intel.com>
-In-Reply-To: <20220214020357.10063-1-vandita.kulkarni@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Add_data_flow_metering_support_for_HDMI2=2E1_=28rev2=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220209051140.1599643-4-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915/gt: Use parameterized
+ RING_MI_MODE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,88 +58,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Add data flow metering support for HDMI2.1 (rev2)
-URL   : https://patchwork.freedesktop.org/series/99668/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-b6cc89ab987b drm/hdmi21: Define frl_dfm structure
--:13: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#13: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 124 lines checked
-1392e71508a3 drm/hdmi21: Add non dsc frl capacity computation helpers
--:12: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#12: 
-new file mode 100644
-
--:202: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#202: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:186:
-+				 unsigned int bpc, unsigned int audio_packets_line, unsigned int hblank)
-
--:307: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#307: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:291:
-+drm_get_avg_tribyte_rate(unsigned int pixel_clk_max_khz, unsigned int tb_active, unsigned int tb_blank,
-
--:396: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
-#396: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:380:
-+drm_get_frl_char_payload_actual(unsigned int tribytes_active, unsigned int tribytes_blank, unsigned int cfrl_savings)
-
--:400: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#400: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:384:
-+	frl_char_payload_actual = DIV_ROUND_UP(3 * tribytes_active, 2) + tribytes_blank - cfrl_savings;
-
--:406: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#406: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:390:
-+drm_compute_payload_utilization(unsigned int frl_char_payload_actual, unsigned int frl_char_per_line_period)
-
-total: 0 errors, 6 warnings, 0 checks, 396 lines checked
-12d033bb02c0 drm/hdmi21: Add helpers to verify non-dsc DFM requirements
--:99: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#99: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:477:
-+						 frl_dfm->params.tb_active, frl_dfm->params.tb_blank,
-
-total: 0 errors, 1 warnings, 0 checks, 170 lines checked
-6db4a39d6dde drm/hdmi21: Add support for DFM calculation with DSC
--:33: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#33: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:571:
-+drm_get_frl_hcactive_tb_target(unsigned int dsc_bpp_x16, unsigned int slice_width, unsigned int num_slices)
-
--:53: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#53: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:591:
-+drm_get_frl_hcblank_tb_target(unsigned int hcactive_target_tb, unsigned int hactive, unsigned int hblank,
-
--:70: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#70: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:608:
-+	return (hcactive_target_tb + hcblank_target_tb) * (fpixelclock_max_khz / (hactive + hblank));
-
--:89: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
-#89: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:627:
-+drm_frl_dsc_tactive_target_ns(unsigned int frl_lanes, unsigned int hcactive_target_tb, unsigned int ftb_avg_k,
-
--:137: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#137: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:675:
-+				unsigned int hactive, unsigned int hblank, unsigned int line_time_ns)
-
--:146: WARNING:LONG_LINE: line length of 125 exceeds 100 columns
-#146: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:684:
-+		tb_delta_limit = (((tactive_ref_ns * FRL_TIMING_NS_MULTIPLIER) - (hcactive_target_tb / (ftb_avg_k * 1000))) *
-
--:156: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#156: FILE: drivers/gpu/drm/drm_frl_dfm_helper.c:694:
-+		tb_delta_limit = (_tb_delta_ns * (hcactive_target_tb + hcblank_target_tb1)) / line_time_ns;
-
-total: 0 errors, 7 warnings, 0 checks, 307 lines checked
-2c5449c01316 drm/hdmi21: Add frl_dfm_helper to Makefile
-
-
+On Tue, Feb 08, 2022 at 09:11:37PM -0800, Matt Roper wrote:
+> We have both a parameterized RING_MI_MODE() macro and an RCS-specific
+> MI_MODE; drop the latter and use the former everywhere.
+> 
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_regs.h | 6 ++++++
+>  drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 8 --------
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 +++---
+>  drivers/gpu/drm/i915/intel_uncore.c         | 2 +-
+>  4 files changed, 10 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+> index cafb078cdb05..0bf8b45c9319 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
+> @@ -70,6 +70,12 @@
+>  #define RING_NOPID(base)			_MMIO((base) + 0x94)
+>  #define RING_HWSTAM(base)			_MMIO((base) + 0x98)
+>  #define RING_MI_MODE(base)			_MMIO((base) + 0x9c)
+> +#define   ASYNC_FLIP_PERF_DISABLE		REG_BIT(14)
+> +#define   MI_FLUSH_ENABLE			REG_BIT(12)
+> +#define   TGL_NESTED_BB_EN			REG_BIT(12)
+> +#define   MODE_IDLE				REG_BIT(9)
+> +#define   STOP_RING				REG_BIT(8)
+> +#define   VS_TIMER_DISPATCH			REG_BIT(6)
+>  #define RING_IMR(base)				_MMIO((base) + 0xa8)
+>  #define RING_EIR(base)				_MMIO((base) + 0xb0)
+>  #define RING_EMR(base)				_MMIO((base) + 0xb4)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> index 4cdb2cca2122..987e0e1e9c08 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> @@ -389,14 +389,6 @@
+>  #define  _3D_CHICKEN_SDE_LIMIT_FIFO_POLY_DEPTH(x)	((x) << 1) /* gen8+ */
+>  #define  _3D_CHICKEN3_SF_DISABLE_PIPELINED_ATTR_FETCH	(1 << 1) /* gen6 */
+>  
+> -#define MI_MODE		_MMIO(0x209c)
+> -# define VS_TIMER_DISPATCH				(1 << 6)
+> -# define MI_FLUSH_ENABLE				(1 << 12)
+> -# define TGL_NESTED_BB_EN				(1 << 12)
+> -# define ASYNC_FLIP_PERF_DISABLE			(1 << 14)
+> -# define MODE_IDLE					(1 << 9)
+> -# define STOP_RING					(1 << 8)
+> -
+>  #define GEN6_GT_MODE	_MMIO(0x20d0)
+>  #define GEN7_GT_MODE	_MMIO(0x7008)
+>  #define   GEN6_WIZ_HASHING(hi, lo)			(((hi) << 9) | ((lo) << 7))
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index b146a393cd79..26038066e90b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -237,7 +237,7 @@ static void gen8_ctx_workarounds_init(struct intel_engine_cs *engine,
+>  	wa_masked_en(wal, INSTPM, INSTPM_FORCE_ORDERING);
+>  
+>  	/* WaDisableAsyncFlipPerfMode:bdw,chv */
+> -	wa_masked_en(wal, MI_MODE, ASYNC_FLIP_PERF_DISABLE);
+> +	wa_masked_en(wal, RING_MI_MODE(RENDER_RING_BASE), ASYNC_FLIP_PERF_DISABLE);
+>  
+>  	/* WaDisablePartialInstShootdown:bdw,chv */
+>  	wa_masked_en(wal, GEN8_ROW_CHICKEN,
+> @@ -2474,7 +2474,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>  		 * WaDisableAsyncFlipPerfMode:snb,ivb,hsw,vlv
+>  		 */
+>  		wa_masked_en(wal,
+> -			     MI_MODE,
+> +			     RING_MI_MODE(RENDER_RING_BASE),
+>  			     ASYNC_FLIP_PERF_DISABLE);
+>  
+>  	if (GRAPHICS_VER(i915) == 6) {
+> @@ -2533,7 +2533,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>  
+>  	if (IS_GRAPHICS_VER(i915, 4, 6))
+>  		/* WaTimedSingleVertexDispatch:cl,bw,ctg,elk,ilk,snb */
+> -		wa_add(wal, MI_MODE,
+> +		wa_add(wal, RING_MI_MODE(RENDER_RING_BASE),
+>  		       0, _MASKED_BIT_ENABLE(VS_TIMER_DISPATCH),
+>  		       /* XXX bit doesn't stick on Broadwater */
+>  		       IS_I965G(i915) ? 0 : VS_TIMER_DISPATCH, true);
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 850ebfae31af..dd8fdd5863de 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -1496,7 +1496,7 @@ ilk_dummy_write(struct intel_uncore *uncore)
+>  	/* WaIssueDummyWriteToWakeupFromRC6:ilk Issue a dummy write to wake up
+>  	 * the chip from rc6 before touching it for real. MI_MODE is masked,
+>  	 * hence harmless to write 0 into. */
+> -	__raw_uncore_write32(uncore, MI_MODE, 0);
+> +	__raw_uncore_write32(uncore, RING_MI_MODE(RENDER_RING_BASE), 0);
+>  }
+>  
+>  static void
+> -- 
+> 2.34.1
+> 
