@@ -2,71 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 788764B7AD1
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 23:56:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 725BE4B7AE2
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 23:59:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96EB710E5E6;
-	Tue, 15 Feb 2022 22:56:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8D0110E60B;
+	Tue, 15 Feb 2022 22:59:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 978B410E5EB
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 22:56:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644965812; x=1676501812;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=VEZcOW53MgXTEwCd76Yh/1sEKtv4rH4fhbs2MhZC6no=;
- b=f7Wnt+b0B2NdGdZxSgl40nXUu1A1xj2T2at9OVzggCIZDvmnexA25OT2
- LOBbByscvzac8ntlPJZ+FSPLYhwrsRNiuHuGYNHvhachpm18vSm7dm0KA
- Q+2pDNZA2MdGAkyKKaxemjzxmOj3lm1+7ZUbG2VuoQfGBWj8XRU0LT68x
- bRakO7oRMlfQOKXa7JgFgRIf+Sk4+k8HSQFDOlWSQTG7msT2wOwyxH29L
- UtqqDQmC6xhTw4zz1kKRkpazsdb485gMVsUyzPHSrJkT0GUjRYc5mBN0O
- hI5/6dWRI/tTMSMKYLz1nSTkuaiuWWMhYLuW7491r8olXmuubszQ1oJ7a w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="248069689"
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="248069689"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2022 14:56:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="604060631"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga004.fm.intel.com with ESMTP; 15 Feb 2022 14:56:52 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 15 Feb 2022 14:56:51 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 15 Feb 2022 14:56:51 -0800
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14]) by
- ORSMSX601.amr.corp.intel.com ([10.22.229.14]) with mapi id 15.01.2308.020;
- Tue, 15 Feb 2022 14:56:51 -0800
-From: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/dg2: Print PHY name properly on
- calibration error
-Thread-Index: AQHYIooeRjgCQbekZUyESDa4iVGoOayVORHw
-Date: Tue, 15 Feb 2022 22:56:51 +0000
-Message-ID: <6803827db66d48078de9284f1c935ef3@intel.com>
-References: <20220215163545.2175730-1-matthew.d.roper@intel.com>
-In-Reply-To: <20220215163545.2175730-1-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com
+ [IPv6:2607:f8b0:4864:20::1035])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4441010E608;
+ Tue, 15 Feb 2022 22:59:29 +0000 (UTC)
+Received: by mail-pj1-x1035.google.com with SMTP id
+ d9-20020a17090a498900b001b8bb1d00e7so652656pjh.3; 
+ Tue, 15 Feb 2022 14:59:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=Ydg/QaEHk+YtzGHqWPzjDmBjfyy2f1JmjiAxPzP8crc=;
+ b=neA8UZ+ztvqI+c9Y0GhuINKiFZbH9bwEKDbDdCj/aBEOg8Je4KJR2FY7wqhQqcBAYk
+ 3Wy+WGL8h5hMZhHiRrJnELKEzNVne+rWwRiNSK+LaaB40t3gKAMZ5iPl6SH4z0sCF1sK
+ WeebZKAyrtHxpGEBt52RHDKoImWcRYibqiE5YdJSrERCh5ErepkYhiOc7Yw8VRa7JtSJ
+ adEHSUdt8ZETIXkSrLoXpm9wbvKFejNQ1Fv3M/q0bRnt69wRrVeApz/eynGg7QDAnCzT
+ uJF8lE/RahbG4H9xVfC7Tm4Wgh1nT1vyrj+ukgd4F45LFSngNGYO0nz3bd1+0RfzB/uo
+ Q/xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=Ydg/QaEHk+YtzGHqWPzjDmBjfyy2f1JmjiAxPzP8crc=;
+ b=V+tcmYagwQfeTZ4kkh7wjDtuNyeaQWxpoAvGPgBRojc/TqL3HbJVaQ169BpRdCRF8q
+ Jl5JGiEWN+JSGARykgkHGLGpFBHLTZeqB7frYgEGQuY750wsq1UXqhTdWx7lZPDC6KmS
+ WU+lwvRSVIzHYfeFJC4DT0aMQkLZb3+jlDcA6oZ5UqUGeSbQw+RzglcW+shJPOtPPS5P
+ DzcKoriYOcc4RdUZXJ8IIrGpkae5UPjpig0GJLfmFDTFsCAcZHntJuTMUEa9k9uU/tDW
+ ELO0t0Q9g+rM/ifb6+sYcf7cznyn032e0+cB8IMtOmy5QrfibvgVSXo944Y+SSS2YiNf
+ EemA==
+X-Gm-Message-State: AOAM532vb9dC4TP0q4NNwSKAEuZF3AN6N+xHpOOTVv8NTTmJyrM7DiY0
+ 4ZrFzctNOGCMbFjf2nEiT+I=
+X-Google-Smtp-Source: ABdhPJzD5VTWuMUJjUi6d0x1rXiN3okRfTcvfy3+tsDIIsH6bfb6SZ+FiyUr2n1wCBp6WTu5fGOOUA==
+X-Received: by 2002:a17:902:f686:: with SMTP id l6mr1079179plg.7.1644965965923; 
+ Tue, 15 Feb 2022 14:59:25 -0800 (PST)
+Received: from google.com ([2620:15c:202:201:4e4a:b0ff:e926:40e2])
+ by smtp.gmail.com with ESMTPSA id n85sm10430319pfd.142.2022.02.15.14.59.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 15 Feb 2022 14:59:25 -0800 (PST)
+Date: Tue, 15 Feb 2022 14:59:21 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Qing Wang <wangqing@vivo.com>
+Message-ID: <YgwwSUlZVakiYF8j@google.com>
+References: <1644890154-64915-1-git-send-email-wangqing@vivo.com>
+ <1644890154-64915-7-git-send-email-wangqing@vivo.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg2: Print PHY name properly on
- calibration error
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1644890154-64915-7-git-send-email-wangqing@vivo.com>
+Subject: Re: [Intel-gfx] [PATCH V3 6/13] input: serio: use
+ time_is_before_jiffies() instead of open coding it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,44 +70,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Mike Snitzer <snitzer@redhat.com>, David Airlie <airlied@linux.ie>,
+ Michael Turquette <mturquette@baylibre.com>, dri-devel@lists.freedesktop.org,
+ Hans Verkuil <hverkuil@xs4all.nl>, dm-devel@redhat.com,
+ Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ linux-clk@vger.kernel.org, Alasdair Kergon <agk@redhat.com>,
+ amd-gfx@lists.freedesktop.org, linux-input@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-media@vger.kernel.org,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+ intel-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>,
+ linux-block@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jens Axboe <axboe@kernel.dk>, Stephen Boyd <sboyd@kernel.org>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Roger Pau =?iso-8859-1?Q?Monn=E9?= <roger.pau@citrix.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Acked-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-=20
------Original Message-----
-From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Matt=
- Roper
-Sent: Tuesday, February 15, 2022 8:36 AM
-To: intel-gfx@lists.freedesktop.org
-Subject: [Intel-gfx] [PATCH] drm/i915/dg2: Print PHY name properly on calib=
-ration error
+Hi Wang,
 
-We need to use phy_name() to convert the PHY value into a human-readable ch=
-aracter in the error message.
+On Mon, Feb 14, 2022 at 05:55:43PM -0800, Qing Wang wrote:
+> From: Wang Qing <wangqing@vivo.com>
+> 
+> Use the helper function time_is_{before,after}_jiffies() to improve
+> code readability.
 
-Fixes: a6a128116e55 ("drm/i915/dg2: Wait for SNPS PHY calibration during di=
-splay init")
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/intel_snps_phy.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I applied changes by Danilo Krummrich converting the driver to use
+ktime_t (see https://lore.kernel.org/r/20220215160208.34826-3-danilokrummrich@dk-develop.de)
+which makes this change not applicable.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/dr=
-m/i915/display/intel_snps_phy.c
-index 8573a458811a..8fd00de981fc 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-@@ -35,7 +35,7 @@ void intel_snps_phy_wait_for_calibration(struct drm_i915_=
-private *i915)
- 		if (intel_de_wait_for_clear(i915, ICL_PHY_MISC(phy),
- 					    DG2_PHY_DP_TX_ACK_MASK, 25))
- 			drm_err(&i915->drm, "SNPS PHY %c failed to calibrate after 25ms.\n",
--				phy);
-+				phy_name(phy));
- 	}
- }
-=20
---
-2.34.1
+Thanks.
 
+-- 
+Dmitry
