@@ -1,74 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 406ED4B73D9
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 17:45:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 083E54B73ED
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 17:52:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3B8710E436;
-	Tue, 15 Feb 2022 16:44:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D17410E546;
+	Tue, 15 Feb 2022 16:52:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBEBA10E472;
- Tue, 15 Feb 2022 16:44:55 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 455A610E546
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 16:52:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644943495; x=1676479495;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=B6BbA7hpgJBPIX4WxOPlJ6Q0mn/lzuGCihIOv/zkEZc=;
- b=HTzOwRxQUrYaICSoxAxk/LWCw+mVcMMTwM0VIuHyZ97Q0FBmZXBPqNKn
- glWrolw0trcqFEHnmZn3hCA+1q8i1vG5m6kXiYhU1MulKMFjhqisy+U0e
- RJcnu9KNLsbg/vZB+d5JS1yA56YnKMfmq0OnoCVrQP8nQ/ae1JS1pHQtp
- WnaeawQtdHeSRtirZ0USCbgcPmlh0W1nfv+B9cBL3vVTAsp+bEkbLT1Ir
- 95BFgNAgHXaP2UU2HzXalTO+Dru6bYso9KobaBcrbgPE7ZDx3my29RGDV
- V8kjQWD3XgcDLIphlnZdbB8L7P9d7KtezB1bWo8sSX+kF4qwpNYlE0vCK Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="249226348"
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="249226348"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2022 08:44:55 -0800
+ t=1644943975; x=1676479975;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=p1zQQB9dJVmFHOxZ8jJTczpwYE10J1BOkiF8glZWmXM=;
+ b=mDdIFSEgZ1ix+/kRkooodeWzI2n7WVT28WB7aAcFgZeAkcVrmoor8Zty
+ /+7qBtRVIg7Qjn2B2cpUVu+U1BgwQmxR0P9X3SmGBkL7sd15ki/bgYgg2
+ inHM69RgrT5c3rq2lQIf58duR3uVVYNGhfGjUy4DXqpRTpVmThi20YcmL
+ u0UF97wriR3tksscPaaR/TiHBK8obH+7vVJVPbMFrs5SvY3RyQY+daQ1Q
+ EFoG0ZaCOgAyrU7WLR1bq00RLowgZTvg4qFPcWLqUNzqkARDtm+UBvc3y
+ LwALO3XV1Nylzg11DWJY66QccDh8hm8vtrOMsASYzJfLlueTg0LSQqg4G A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="250339176"
+X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="250339176"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 08:52:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="497290997"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by orsmga006.jf.intel.com with ESMTP; 15 Feb 2022 08:44:54 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 15 Feb 2022 08:44:53 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- BGSMSX604.gar.corp.intel.com (10.67.234.6) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 15 Feb 2022 22:14:50 +0530
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2308.020;
- Tue, 15 Feb 2022 08:44:48 -0800
-From: "Chery, Nanley G" <nanley.g.chery@intel.com>
-To: "juhapekka.heikkila@gmail.com" <juhapekka.heikkila@gmail.com>, "Nanley
- Chery" <nanleychery@gmail.com>, "C, Ramalingam" <ramalingam.c@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v5 16/19] uapi/drm/dg2: Introduce format
- modifier for DG2 clear color
-Thread-Index: AQHYH663IhAmnebor0aDTKWpiG9p6qyVPvUA//96bNCAAJvFgP//fGmA
-Date: Tue, 15 Feb 2022 16:44:48 +0000
-Message-ID: <3ff28a866f494a7ebec5b09eddd894c4@intel.com>
-References: <20220201104132.3050-1-ramalingam.c@intel.com>
- <20220201104132.3050-17-ramalingam.c@intel.com>
- <CAJDL4u+hX2Dbu7q5P48t44XLSOr7vA9mf_jiC607oA1Y6+2k6Q@mail.gmail.com>
- <a95a1168-5419-0688-0700-c9e81e50727b@gmail.com>
- <dc66535e7a5d4a9dae25a9548f333385@intel.com>
- <3e514431-ab0d-a455-871d-b7c9b183a98b@gmail.com>
-In-Reply-To: <3e514431-ab0d-a455-871d-b7c9b183a98b@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="570913312"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga001.jf.intel.com with SMTP; 15 Feb 2022 08:52:52 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 15 Feb 2022 18:52:51 +0200
+Date: Tue, 15 Feb 2022 18:52:51 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <YgvaY8iodSyMlyjI@intel.com>
+References: <20220214091811.13725-3-ville.syrjala@linux.intel.com>
+ <20220214100536.GB24878@intel.com> <Ygot+UVlBnA/Xzfk@intel.com>
+ <20220214170305.GA25600@intel.com> <Ygq6/32Cy6CjMrDu@intel.com>
+ <20220215085957.GA15926@intel.com> <Ygt8C/SHHLXfHw+A@intel.com>
+ <20220215110248.GA16287@intel.com> <YguN+rpdJEIjxjkC@intel.com>
+ <20220215163342.GA16750@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v5 16/19] uapi/drm/dg2: Introduce format
- modifier for DG2 clear color
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220215163342.GA16750@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Fix bw atomic check when
+ switching between SAGV vs. no SAGV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,169 +65,222 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, "Auld,
- Matthew" <matthew.auld@intel.com>, dri-devel <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSnVoYS1QZWtrYSBIZWlr
-a2lsYSA8anVoYXBla2thLmhlaWtraWxhQGdtYWlsLmNvbT4NCj4gU2VudDogVHVlc2RheSwgRmVi
-cnVhcnkgMTUsIDIwMjIgODoxNSBBTQ0KPiBUbzogQ2hlcnksIE5hbmxleSBHIDxuYW5sZXkuZy5j
-aGVyeUBpbnRlbC5jb20+OyBOYW5sZXkgQ2hlcnkNCj4gPG5hbmxleWNoZXJ5QGdtYWlsLmNvbT47
-IEMsIFJhbWFsaW5nYW0gPHJhbWFsaW5nYW0uY0BpbnRlbC5jb20+DQo+IENjOiBpbnRlbC1nZngg
-PGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+OyBBdWxkLCBNYXR0aGV3DQo+IDxtYXR0
-aGV3LmF1bGRAaW50ZWwuY29tPjsgZHJpLWRldmVsIDxkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnPg0KPiBTdWJqZWN0OiBSZTogW0ludGVsLWdmeF0gW1BBVENIIHY1IDE2LzE5XSB1YXBp
-L2RybS9kZzI6IEludHJvZHVjZSBmb3JtYXQNCj4gbW9kaWZpZXIgZm9yIERHMiBjbGVhciBjb2xv
-cg0KPiANCj4gT24gMTUuMi4yMDIyIDE3LjAyLCBDaGVyeSwgTmFubGV5IEcgd3JvdGU6DQo+ID4N
-Cj4gPg0KPiA+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+PiBGcm9tOiBKdWhhLVBl
-a2thIEhlaWtraWxhIDxqdWhhcGVra2EuaGVpa2tpbGFAZ21haWwuY29tPg0KPiA+PiBTZW50OiBU
-dWVzZGF5LCBGZWJydWFyeSAxNSwgMjAyMiA2OjU2IEFNDQo+ID4+IFRvOiBOYW5sZXkgQ2hlcnkg
-PG5hbmxleWNoZXJ5QGdtYWlsLmNvbT47IEMsIFJhbWFsaW5nYW0NCj4gPj4gPHJhbWFsaW5nYW0u
-Y0BpbnRlbC5jb20+DQo+ID4+IENjOiBpbnRlbC1nZnggPGludGVsLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmc+OyBDaGVyeSwgTmFubGV5IEcNCj4gPj4gPG5hbmxleS5nLmNoZXJ5QGludGVsLmNv
-bT47IEF1bGQsIE1hdHRoZXcgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Ow0KPiA+PiBkcmktIGRl
-dmVsIDxkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPg0KPiA+PiBTdWJqZWN0OiBSZTog
-W0ludGVsLWdmeF0gW1BBVENIIHY1IDE2LzE5XSB1YXBpL2RybS9kZzI6IEludHJvZHVjZQ0KPiA+
-PiBmb3JtYXQgbW9kaWZpZXIgZm9yIERHMiBjbGVhciBjb2xvcg0KPiA+Pg0KPiA+PiBPbiAxMi4y
-LjIwMjIgMy4xOSwgTmFubGV5IENoZXJ5IHdyb3RlOg0KPiA+Pj4gT24gVHVlLCBGZWIgMSwgMjAy
-MiBhdCAyOjQyIEFNIFJhbWFsaW5nYW0gQyA8cmFtYWxpbmdhbS5jQGludGVsLmNvbT4NCj4gPj4g
-d3JvdGU6DQo+ID4+Pj4NCj4gPj4+PiBGcm9tOiBNaWthIEthaG9sYSA8bWlrYS5rYWhvbGFAaW50
-ZWwuY29tPg0KPiA+Pj4+DQo+ID4+Pj4gREcyIGNsZWFyIGNvbG9yIHJlbmRlciBjb21wcmVzc2lv
-biB1c2VzIFRpbGU0IGxheW91dC4gVGhlcmVmb3JlLCB3ZQ0KPiA+Pj4+IG5lZWQgdG8gZGVmaW5l
-IGEgbmV3IGZvcm1hdCBtb2RpZmllciBmb3IgdUFQSSB0byBzdXBwb3J0IGNsZWFyDQo+ID4+Pj4g
-Y29sb3INCj4gPj4gcmVuZGVyaW5nLg0KPiA+Pj4+DQo+ID4+Pj4gdjI6DQo+ID4+Pj4gICAgIERp
-c3BsYXkgdmVyc2lvbiBpcyBmaXhlZC4gW0ltcmVdDQo+ID4+Pj4gICAgIEtEb2MgaXMgZW5oYW5j
-ZWQgZm9yIGNjIG1vZGlmaWVyLiBbTmFubGV5ICYgTGlvbmVsXQ0KPiA+Pj4+DQo+ID4+Pj4gU2ln
-bmVkLW9mZi1ieTogTWlrYSBLYWhvbGEgPG1pa2Eua2Fob2xhQGludGVsLmNvbT4NCj4gPj4+PiBj
-YzogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4NCj4gPj4+PiBTaWdu
-ZWQtb2ZmLWJ5OiBKdWhhLVBla2thIEhlaWtraWzDpCA8anVoYS1wZWtrYS5oZWlra2lsYUBpbnRl
-bC5jb20+DQo+ID4+Pj4gU2lnbmVkLW9mZi1ieTogUmFtYWxpbmdhbSBDIDxyYW1hbGluZ2FtLmNA
-aW50ZWwuY29tPg0KPiA+Pj4+IC0tLQ0KPiA+Pj4+ICAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZmIuYyAgICAgICAgICAgIHwgIDggKysrKysrKysNCj4gPj4+PiAgICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYyB8ICA5ICsrKysr
-KysrLQ0KPiA+Pj4+ICAgIGluY2x1ZGUvdWFwaS9kcm0vZHJtX2ZvdXJjYy5oICAgICAgICAgICAg
-ICAgICAgICAgIHwgMTAgKysrKysrKysrKw0KPiA+Pj4+ICAgIDMgZmlsZXMgY2hhbmdlZCwgMjYg
-aW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+Pj4+DQo+ID4+Pj4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmIuYw0KPiA+Pj4+IGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYi5jDQo+ID4+Pj4gaW5kZXggNGQ0ZDAxOTYz
-ZjE1Li4zZGY2ZWY1ZmZlYzUgMTAwNjQ0DQo+ID4+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9mYi5jDQo+ID4+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9mYi5jDQo+ID4+Pj4gQEAgLTE0NCw2ICsxNDQsMTIgQEAgc3RhdGljIGNv
-bnN0IHN0cnVjdCBpbnRlbF9tb2RpZmllcl9kZXNjDQo+ID4+IGludGVsX21vZGlmaWVyc1tdID0g
-ew0KPiA+Pj4+ICAgICAgICAgICAgICAgICAgIC5tb2RpZmllciA9IEk5MTVfRk9STUFUX01PRF80
-X1RJTEVEX0RHMl9NQ19DQ1MsDQo+ID4+Pj4gICAgICAgICAgICAgICAgICAgLmRpc3BsYXlfdmVy
-ID0geyAxMywgMTMgfSwNCj4gPj4+PiAgICAgICAgICAgICAgICAgICAucGxhbmVfY2FwcyA9IElO
-VEVMX1BMQU5FX0NBUF9USUxJTkdfNCB8DQo+ID4+Pj4gSU5URUxfUExBTkVfQ0FQX0NDU19NQywN
-Cj4gPj4+PiArICAgICAgIH0sIHsNCj4gPj4+PiArICAgICAgICAgICAgICAgLm1vZGlmaWVyID0g
-STkxNV9GT1JNQVRfTU9EXzRfVElMRURfREcyX1JDX0NDU19DQywNCj4gPj4+PiArICAgICAgICAg
-ICAgICAgLmRpc3BsYXlfdmVyID0geyAxMywgMTMgfSwNCj4gPj4+PiArICAgICAgICAgICAgICAg
-LnBsYW5lX2NhcHMgPSBJTlRFTF9QTEFORV9DQVBfVElMSU5HXzQgfA0KPiA+Pj4+ICsgSU5URUxf
-UExBTkVfQ0FQX0NDU19SQ19DQywNCj4gPj4+PiArDQo+ID4+Pj4gKyAgICAgICAgICAgICAgIC5j
-Y3MuY2NfcGxhbmVzID0gQklUKDEpLA0KPiA+Pj4+ICAgICAgICAgICB9LCB7DQo+ID4+Pj4gICAg
-ICAgICAgICAgICAgICAgLm1vZGlmaWVyID0gSTkxNV9GT1JNQVRfTU9EXzRfVElMRURfREcyX1JD
-X0NDUywNCj4gPj4+PiAgICAgICAgICAgICAgICAgICAuZGlzcGxheV92ZXIgPSB7IDEzLCAxMyB9
-LCBAQCAtNTU5LDYgKzU2NSw3IEBADQo+ID4+Pj4gaW50ZWxfdGlsZV93aWR0aF9ieXRlcyhjb25z
-dCBzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyICpmYiwgaW50IGNvbG9yX3BsYW5lKQ0KPiA+Pj4+ICAg
-ICAgICAgICAgICAgICAgIGVsc2UNCj4gPj4+PiAgICAgICAgICAgICAgICAgICAgICAgICAgIHJl
-dHVybiA1MTI7DQo+ID4+Pj4gICAgICAgICAgIGNhc2UgSTkxNV9GT1JNQVRfTU9EXzRfVElMRURf
-REcyX1JDX0NDUzoNCj4gPj4+PiArICAgICAgIGNhc2UgSTkxNV9GT1JNQVRfTU9EXzRfVElMRURf
-REcyX1JDX0NDU19DQzoNCj4gPj4+PiAgICAgICAgICAgY2FzZSBJOTE1X0ZPUk1BVF9NT0RfNF9U
-SUxFRF9ERzJfTUNfQ0NTOg0KPiA+Pj4+ICAgICAgICAgICBjYXNlIEk5MTVfRk9STUFUX01PRF80
-X1RJTEVEOg0KPiA+Pj4+ICAgICAgICAgICAgICAgICAgIC8qDQo+ID4+Pj4gQEAgLTc2Myw2ICs3
-NzAsNyBAQCB1bnNpZ25lZCBpbnQgaW50ZWxfc3VyZl9hbGlnbm1lbnQoY29uc3Qgc3RydWN0DQo+
-ID4+IGRybV9mcmFtZWJ1ZmZlciAqZmIsDQo+ID4+Pj4gICAgICAgICAgIGNhc2UgSTkxNV9GT1JN
-QVRfTU9EX1lmX1RJTEVEOg0KPiA+Pj4+ICAgICAgICAgICAgICAgICAgIHJldHVybiAxICogMTAy
-NCAqIDEwMjQ7DQo+ID4+Pj4gICAgICAgICAgIGNhc2UgSTkxNV9GT1JNQVRfTU9EXzRfVElMRURf
-REcyX1JDX0NDUzoNCj4gPj4+PiArICAgICAgIGNhc2UgSTkxNV9GT1JNQVRfTU9EXzRfVElMRURf
-REcyX1JDX0NDU19DQzoNCj4gPj4+PiAgICAgICAgICAgY2FzZSBJOTE1X0ZPUk1BVF9NT0RfNF9U
-SUxFRF9ERzJfTUNfQ0NTOg0KPiA+Pj4+ICAgICAgICAgICAgICAgICAgIHJldHVybiAxNiAqIDEw
-MjQ7DQo+ID4+Pj4gICAgICAgICAgIGRlZmF1bHQ6DQo+ID4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jDQo+ID4+Pj4gYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYw0KPiA+Pj4+
-IGluZGV4IGMzOGFlMDg3NmMxNS4uYjRkY2VkMTkwN2M1IDEwMDY0NA0KPiA+Pj4+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jDQo+ID4+Pj4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMN
-Cj4gPj4+PiBAQCAtNzcyLDYgKzc3Miw4IEBAIHN0YXRpYyB1MzIgc2tsX3BsYW5lX2N0bF90aWxp
-bmcodTY0IGZiX21vZGlmaWVyKQ0KPiA+Pj4+ICAgICAgICAgICAgICAgICAgIHJldHVybiBQTEFO
-RV9DVExfVElMRURfNCB8DQo+ID4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgICBQTEFORV9D
-VExfTUVESUFfREVDT01QUkVTU0lPTl9FTkFCTEUgfA0KPiA+Pj4+ICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgUExBTkVfQ1RMX0NMRUFSX0NPTE9SX0RJU0FCTEU7DQo+ID4+Pj4gKyAgICAgICBj
-YXNlIEk5MTVfRk9STUFUX01PRF80X1RJTEVEX0RHMl9SQ19DQ1NfQ0M6DQo+ID4+Pj4gKyAgICAg
-ICAgICAgICAgIHJldHVybiBQTEFORV9DVExfVElMRURfNCB8DQo+ID4+Pj4gKyBQTEFORV9DVExf
-UkVOREVSX0RFQ09NUFJFU1NJT05fRU5BQkxFOw0KPiA+Pj4+ICAgICAgICAgICBjYXNlIEk5MTVf
-Rk9STUFUX01PRF9ZX1RJTEVEX0NDUzoNCj4gPj4+PiAgICAgICAgICAgY2FzZSBJOTE1X0ZPUk1B
-VF9NT0RfWV9USUxFRF9HRU4xMl9SQ19DQ1NfQ0M6DQo+ID4+Pj4gICAgICAgICAgICAgICAgICAg
-cmV0dXJuIFBMQU5FX0NUTF9USUxFRF9ZIHwNCj4gPj4+PiBQTEFORV9DVExfUkVOREVSX0RFQ09N
-UFJFU1NJT05fRU5BQkxFOw0KPiA+Pj4+IEBAIC0yMzU4LDEwICsyMzYwLDE1IEBAIHNrbF9nZXRf
-aW5pdGlhbF9wbGFuZV9jb25maWcoc3RydWN0DQo+ID4+Pj4gaW50ZWxfY3J0Yw0KPiA+PiAqY3J0
-YywNCj4gPj4+PiAgICAgICAgICAgICAgICAgICBicmVhazsNCj4gPj4+PiAgICAgICAgICAgY2Fz
-ZSBQTEFORV9DVExfVElMRURfWUY6IC8qIGFrYSBQTEFORV9DVExfVElMRURfNCBvbiBYRV9MUEQr
-ICovDQo+ID4+Pj4gICAgICAgICAgICAgICAgICAgaWYgKEhBU180VElMRShkZXZfcHJpdikpIHsN
-Cj4gPj4+PiAtICAgICAgICAgICAgICAgICAgICAgICBpZiAodmFsICYgUExBTkVfQ1RMX1JFTkRF
-Ul9ERUNPTVBSRVNTSU9OX0VOQUJMRSkNCj4gPj4+PiArICAgICAgICAgICAgICAgICAgICAgICB1
-MzIgcmNfbWFzayA9DQo+IFBMQU5FX0NUTF9SRU5ERVJfREVDT01QUkVTU0lPTl9FTkFCTEUgfA0K
-PiA+Pj4+ICsNCj4gPj4+PiArIFBMQU5FX0NUTF9DTEVBUl9DT0xPUl9ESVNBQkxFOw0KPiA+Pj4+
-ICsNCj4gPj4+PiArICAgICAgICAgICAgICAgICAgICAgICBpZiAoKHZhbCAmIHJjX21hc2spID09
-IHJjX21hc2spDQo+ID4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZiLT5t
-b2RpZmllciA9DQo+IEk5MTVfRk9STUFUX01PRF80X1RJTEVEX0RHMl9SQ19DQ1M7DQo+ID4+Pj4g
-ICAgICAgICAgICAgICAgICAgICAgICAgICBlbHNlIGlmICh2YWwgJiBQTEFORV9DVExfTUVESUFf
-REVDT01QUkVTU0lPTl9FTkFCTEUpDQo+ID4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIGZiLT5tb2RpZmllciA9DQo+ID4+Pj4gSTkxNV9GT1JNQVRfTU9EXzRfVElMRURfREcy
-X01DX0NDUzsNCj4gPj4+PiArICAgICAgICAgICAgICAgICAgICAgICBlbHNlIGlmICh2YWwgJiBQ
-TEFORV9DVExfUkVOREVSX0RFQ09NUFJFU1NJT05fRU5BQkxFKQ0KPiA+Pj4+ICsgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgZmItPm1vZGlmaWVyID0NCj4gPj4+PiArIEk5MTVfRk9STUFU
-X01PRF80X1RJTEVEX0RHMl9SQ19DQ1NfQ0M7DQo+ID4+Pj4gICAgICAgICAgICAgICAgICAgICAg
-ICAgICBlbHNlDQo+ID4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZiLT5t
-b2RpZmllciA9IEk5MTVfRk9STUFUX01PRF80X1RJTEVEOw0KPiA+Pj4+ICAgICAgICAgICAgICAg
-ICAgIH0gZWxzZSB7DQo+ID4+Pj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvdWFwaS9kcm0vZHJtX2Zv
-dXJjYy5oDQo+ID4+Pj4gYi9pbmNsdWRlL3VhcGkvZHJtL2RybV9mb3VyY2MuaCBpbmRleCBiOGZi
-N2I0NGMwM2MuLjY5NzYxNGVhNGI4NA0KPiA+Pj4+IDEwMDY0NA0KPiA+Pj4+IC0tLSBhL2luY2x1
-ZGUvdWFwaS9kcm0vZHJtX2ZvdXJjYy5oDQo+ID4+Pj4gKysrIGIvaW5jbHVkZS91YXBpL2RybS9k
-cm1fZm91cmNjLmgNCj4gPj4+PiBAQCAtNjA1LDYgKzYwNSwxNiBAQCBleHRlcm4gIkMiIHsNCj4g
-Pj4+PiAgICAgKi8NCj4gPj4+PiAgICAjZGVmaW5lIEk5MTVfRk9STUFUX01PRF80X1RJTEVEX0RH
-Ml9NQ19DQ1MNCj4gPj4gZm91cmNjX21vZF9jb2RlKElOVEVMLA0KPiA+Pj4+IDExKQ0KPiA+Pj4+
-DQo+ID4+Pj4gKy8qDQo+ID4+Pj4gKyAqIEludGVsIGNvbG9yIGNvbnRyb2wgc3VyZmFjZXMgKEND
-UykgZm9yIERHMiBjbGVhciBjb2xvciByZW5kZXINCj4gY29tcHJlc3Npb24uDQo+ID4+Pj4gKyAq
-DQo+ID4+Pj4gKyAqIERHMiB1c2VzIGEgdW5pZmllZCBjb21wcmVzc2lvbiBmb3JtYXQgZm9yIGNs
-ZWFyIGNvbG9yIHJlbmRlcg0KPiA+PiBjb21wcmVzc2lvbi4NCj4gPj4+DQo+ID4+PiBXaGF0J3Mg
-dW5pZmllZCBhYm91dCBERzIncyBjb21wcmVzc2lvbiBmb3JtYXQ/IElmIHRoaXMgZG9lc24ndA0K
-PiA+Pj4gYWZmZWN0IHRoZSBsYXlvdXQsIG1heWJlIHdlIHNob3VsZCBkcm9wIHRoaXMgc2VudGVu
-Y2UuDQo+ID4+Pg0KPiA+Pj4+ICsgKiBUaGUgZ2VuZXJhbCBsYXlvdXQgaXMgYSB0aWxlZCBsYXlv
-dXQgdXNpbmcgNEtiIHRpbGVzIGkuZS4gVGlsZTQgbGF5b3V0Lg0KPiA+Pj4+ICsgKg0KPiA+Pj4N
-Cj4gPj4+IFRoaXMgYWxzbyBuZWVkcyBhIHBpdGNoIGFsaWduZWQgdG8gZm91ciB0aWxlcywgcmln
-aHQ/IEkgdGhpbmsgd2UgY2FuDQo+ID4+PiBzYXZlIHNvbWUgZWZmb3J0IGJ5IHJlZmVyZW5jaW5n
-IHRoZSBERzJfUkNfQ0NTIG1vZGlmaWVyIGhlcmUuDQo+ID4+Pg0KPiA+Pj4+ICsgKiBGYXN0IGNs
-ZWFyIGNvbG9yIHZhbHVlIGV4cGVjdGVkIGJ5IEhXIGlzIGxvY2F0ZWQgaW4gZmIgYXQNCj4gPj4+
-PiArIG9mZnNldA0KPiA+Pj4+ICsgMCBvZiBwbGFuZSMxDQo+ID4+Pg0KPiA+Pj4gV2h5IGlzIHRo
-ZSBleHBlY3RlZCBvZmZzZXQgaGFyZGNvZGVkIHRvIDAgaW5zdGVhZCBvZiByZWx5aW5nIG9uIHRo
-ZQ0KPiA+Pj4gb2Zmc2V0IHByb3ZpZGVkIGJ5IHRoZSBtb2RpZmllciBBUEk/IFRoaXMgbG9va3Mg
-bGlrZSBhIGJ1Zy4NCj4gPj4NCj4gPj4gSGkgTmFubGV5LA0KPiA+Pg0KPiA+PiBjYW4geW91IGVs
-YWJvcmF0ZSBhIGJpdCwgd2hpY2ggb2Zmc2V0IGZyb20gbW9kaWZpZXIgQVBJIHRoYXQgYXBwbGll
-cyB0byBjYw0KPiBzdXJmYWNlPw0KPiA+Pg0KPiA+DQo+ID4gSGkgSnVoYS1QZWtrYSwNCj4gPg0K
-PiA+IE9uIHRoZSBrZXJuZWwtc2lkZSBvZiB0aGluZ3MsIEknbSB0aGlua2luZyBvZiBkcm1fbW9k
-ZV9mYl9jbWQyOjpvZmZzZXRzWzFdLg0KPiA+DQo+IA0KPiBIaSBOYW5sZXksDQo+IA0KPiB0aGlz
-IG9mZnNldCBpcyBjb21pbmcgZnJvbSB1c2Vyc3BhY2Ugb24gY3JlYXRpb24gb2YgZnJhbWVidWZm
-ZXIsIGF0IHRoYXQgbW9tZW50DQo+IGZyb20gdXNlcnNwYWNlIGNhbGxlciBjYW4gcG9pbnQgdG8g
-b2Zmc2V0IG9mIGRlc2lyZS4gTm9ybWFsbHkgb2Zmc2V0WzBdIGlzIHNldCBhdCAwDQo+IGFuZCB0
-aGVuIG9mZnNldFtuXSBhdCBwbGFuZSBuIHN0YXJ0IHdoaWNoIGlzIG5vdCBzdGF0ZWQgdG8gaGF2
-ZSB0byBiZSBleGFjdGx5IGFmdGVyDQo+IHBsYW5lIG4tMSBlbmQuIE9yIGRpZCBJIG1pc3VuZGVy
-c3RhbmQgd2hhdCB5b3UgbWVhbnQ/DQo+IA0KDQpQZXJoYXBzLCBhdCBsZWFzdCwgSSdtIG5vdCBz
-dXJlIHdoYXQgeW91J3JlIG1lYW5pbmcgdG8gc2F5LiBUaGlzIG1vZGlmaWVyIGRlc2NyaXB0aW9u
-DQpzZWVtcyB0byBzYXkgdGhhdCB0aGUgZHJtX21vZGVfZmJfY21kMjo6b2Zmc2V0cyB2YWx1ZSBm
-b3IgdGhlIGNsZWFyIGNvbG9yIHBsYW5lDQptdXN0IGJlIHplcm8uIEFyZSB5b3Ugc2F5aW5nIHRo
-YXQgaXQncyBjb3JyZWN0PyBUaGlzIGRvZXNuJ3QgbWF0Y2ggdGhlIA0KR0VOMTJfUkNfQ0NTX0ND
-IGJlaGF2aW9yIGFuZCBkb2Vzbid0IG1hdGNoIG1lc2EncyBleHBlY3RhdGlvbnMuDQoNCi1OYW5s
-ZXkNCg0KPiBGb3IgY2MgcGxhbmUgdGhpcyBvZmZzZXQgbGlrZWx5IHdpbGwgbm90IGJlIHplcm8g
-YW55d2F5IGFuZCBjYWxsZXIgY2FuIG1vdmUgaXQgYXMgc2VlDQo+IGZpdCB0byBoYXZlIGNjIHBs
-YW5lIChwbGFuZVsxXSkgbG9jYXRpb25bMF0gYXQgcGxhY2Ugd2hlcmUgd2FudGVkIHRvIGhhdmUg
-aXQuDQo+IA0KPiAvSnVoYS1QZWtrYQ0KPiANCj4gPg0KPiA+Pj4NCj4gPj4+IFdlIHNob3VsZCBw
-cm9iYWJseSBnaXZlIHNvbWUgaW5mbyBhYm91dCB0aGUgcmVsZXZhbnQgZmllbGRzIGluIHRoZQ0K
-PiA+Pj4gZmFzdCBjbGVhciBwbGFuZSAobGlrZSB3aGF0J3MgZG9uZSBpbiB0aGUgR0VOMTJfUkNf
-Q0NTX0NDIG1vZGlmaWVyKS4NCj4gPj4NCj4gPj4gYWdyZWUsIHRoYXQncyB0b3RhbGx5IG1pc3Np
-bmcgaGVyZS4NCj4gPj4NCj4gPj4gL0p1aGEtUGVra2ENCj4gPj4NCj4gPj4+DQo+ID4+Pj4gKyAq
-Lw0KPiA+Pj4+ICsjZGVmaW5lIEk5MTVfRk9STUFUX01PRF80X1RJTEVEX0RHMl9SQ19DQ1NfQ0MN
-Cj4gPj4gZm91cmNjX21vZF9jb2RlKElOVEVMLA0KPiA+Pj4+ICsxMikNCj4gPj4+PiArDQo+ID4+
-Pj4gICAgLyoNCj4gPj4+PiAgICAgKiBUaWxlZCwgTlYxMk1ULCBncm91cGVkIGluIDY0IChwaXhl
-bHMpIHggMzIgKGxpbmVzKSAtc2l6ZWQgbWFjcm9ibG9ja3MNCj4gPj4+PiAgICAgKg0KPiA+Pj4+
-IC0tDQo+ID4+Pj4gMi4yMC4xDQo+ID4+Pj4NCj4gPg0KDQo=
+On Tue, Feb 15, 2022 at 06:33:42PM +0200, Lisovskiy, Stanislav wrote:
+> On Tue, Feb 15, 2022 at 01:26:50PM +0200, Ville Syrjälä wrote:
+> > On Tue, Feb 15, 2022 at 01:02:48PM +0200, Lisovskiy, Stanislav wrote:
+> > > On Tue, Feb 15, 2022 at 12:10:19PM +0200, Ville Syrjälä wrote:
+> > > > On Tue, Feb 15, 2022 at 10:59:57AM +0200, Lisovskiy, Stanislav wrote:
+> > > > > On Mon, Feb 14, 2022 at 10:26:39PM +0200, Ville Syrjälä wrote:
+> > > > > > On Mon, Feb 14, 2022 at 07:03:05PM +0200, Lisovskiy, Stanislav wrote:
+> > > > > > > On Mon, Feb 14, 2022 at 12:24:57PM +0200, Ville Syrjälä wrote:
+> > > > > > > > On Mon, Feb 14, 2022 at 12:05:36PM +0200, Lisovskiy, Stanislav wrote:
+> > > > > > > > > On Mon, Feb 14, 2022 at 11:18:07AM +0200, Ville Syrjala wrote:
+> > > > > > > > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > > > > > > > 
+> > > > > > > > > > If the only thing that is changing is SAGV vs. no SAGV but
+> > > > > > > > > > the number of active planes and the total data rates end up
+> > > > > > > > > > unchanged we currently bail out of intel_bw_atomic_check()
+> > > > > > > > > > early and forget to actually compute the new WGV point
+> > > > > > > > > > mask and thus won't actually enable/disable SAGV as requested.
+> > > > > > > > > > This ends up poorly if we end up running with SAGV enabled
+> > > > > > > > > > when we shouldn't. Usually ends up in underruns.
+> > > > > > > > > > To fix this let's go through the QGV point mask computation
+> > > > > > > > > > if anyone else already added the bw state for us.
+> > > > > > > > > 
+> > > > > > > > > Haven't been looking this in a while. Despite we have been
+> > > > > > > > > looking like few revisions together still some bugs :(
+> > > > > > > > > 
+> > > > > > > > > I thought SAGV vs No SAGV can't change if active planes 
+> > > > > > > > > or data rate didn't change? Because it means we probably
+> > > > > > > > > still have same ddb allocations, which means SAGV state
+> > > > > > > > > will just stay the same.
+> > > > > > > > 
+> > > > > > > > SAGV can change due to watermarks/ddb allocations. The easiest
+> > > > > > > > way to trip this up is to try to use the async flip wm0/ddb 
+> > > > > > > > optimization. That immediately forgets to turn off SAGV and
+> > > > > > > > we get underruns, whcih is how I noticed this. And I don't
+> > > > > > > > immediately see any easy proof that this couldn't also happen
+> > > > > > > > due to some other plane changes.
+> > > > > > > 
+> > > > > > > Thats the way it was initially implemented even before SAGV was added.
+> > > > > > 
+> > > > > > Yeah, it wasn't a problem as long as SAGV was not enabled.
+> > > > > > 
+> > > > > > > I think it can be dated back to the very first bw check was implemented.
+> > > > > > > 
+> > > > > > > commit c457d9cf256e942138a54a2e80349ee7fe20c391
+> > > > > > > Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > > > > Date:   Fri May 24 18:36:14 2019 +0300
+> > > > > > > 
+> > > > > > >     drm/i915: Make sure we have enough memory bandwidth on ICL
+> > > > > > > 
+> > > > > > > +int intel_bw_atomic_check(struct intel_atomic_state *state)
+> > > > > > > +{
+> > > > > > > +       struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > > > > > > +       struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+> > > > > > > +       struct intel_bw_state *bw_state = NULL;
+> > > > > > > +       unsigned int data_rate, max_data_rate;
+> > > > > > > +       unsigned int num_active_planes;
+> > > > > > > +       struct intel_crtc *crtc;
+> > > > > > > +       int i;
+> > > > > > > +
+> > > > > > > +       /* FIXME earlier gens need some checks too */
+> > > > > > > +       if (INTEL_GEN(dev_priv) < 11)
+> > > > > > > +               return 0;
+> > > > > > > +
+> > > > > > > +       for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> > > > > > > +                                           new_crtc_state, i) {
+> > > > > > > +               unsigned int old_data_rate =
+> > > > > > > +                       intel_bw_crtc_data_rate(old_crtc_state);
+> > > > > > > +               unsigned int new_data_rate =
+> > > > > > > +                       intel_bw_crtc_data_rate(new_crtc_state);
+> > > > > > > +               unsigned int old_active_planes =
+> > > > > > > +                       intel_bw_crtc_num_active_planes(old_crtc_state);
+> > > > > > > +               unsigned int new_active_planes =
+> > > > > > > +                       intel_bw_crtc_num_active_planes(new_crtc_state);
+> > > > > > > +
+> > > > > > > +               /*
+> > > > > > > +                * Avoid locking the bw state when
+> > > > > > > +                * nothing significant has changed.
+> > > > > > > +                */
+> > > > > > > +               if (old_data_rate == new_data_rate &&
+> > > > > > > +                   old_active_planes == new_active_planes)
+> > > > > > > +                       continue;
+> > > > > > > +
+> > > > > > > +               bw_state  = intel_atomic_get_bw_state(state);
+> > > > > > > +               if (IS_ERR(bw_state))
+> > > > > > > +                       return PTR_ERR(bw_state);
+> > > > > > > 
+> > > > > > > However, what can cause watermarks/ddb to change, besides plane state change
+> > > > > > > and/or active planes change? We change watermarks, when we change ddb allocations
+> > > > > > > and we change ddb allocations when active planes had changed and/or data rate
+> > > > > > > had changed.
+> > > > > > 
+> > > > > > The bw code only cares about the aggregate numbers from all the planes.
+> > > > > > The planes could still change in some funny way where eg. some plane
+> > > > > > frees up some bandwidth, but the other planes gobble up the exact same
+> > > > > > amount and thus the aggregate numbers the bw atomic check cares about
+> > > > > > do not change but the watermarks/ddb do.
+> > > > > > 
+> > > > > > And as mentiioned, the async flip wm0/ddb optimization makes this trivial
+> > > > > > to trip up since it will want to disable SAGV as there is not enough ddb
+> > > > > > for the SAGV watermark. And async flip specifically isn't even allowed
+> > > > > > to change anything that would affect the bandwidth utilization, and neither
+> > > > > > is it allowed to enable/disable planes.
+> > > > > 
+> > > > > I think the whole idea of setting ddb to minimum in case of async flip optimization
+> > > > > was purely our idea - BSpec/HSD only mentions forbidding wm levels > 0 in case of async
+> > > > > flip, however there is nothing about limiting ddb allocations.
+> > > > 
+> > > > Reducing just the watermark doesn't really make sense 
+> > > > if the goal is to keep the DBUF level to a minimum. Also
+> > > > I don't think there is any proper docs for this thing. The
+> > > > only thing we have just has some vague notes about using
+> > > > "minimum watermarks", whatever that means.
+> > > 
+> > > Was it the goal? I thought limiting watermarks would by itself also
+> > > limit package C states, thus affecting memory clocks and latency.
+> > > Because it really doesn't say anything about keeping Dbuf allocations
+> > > to a minimum. 
+> > 
+> > The goal is to miminize the amount of data in the FIFO.
+> > 
+> > > 
+> > > > 
+> > > > > 
+> > > > > Was a bit suspicious about that whole change, to be honest - and yep, now it seems to
+> > > > > cause some unexpected side effects.
+> > > > 
+> > > > The bw_state vs. SAGV bug is there regardless of the wm0 optimization.
+> > > 
+> > > I agree there is a bug. The bug is such that initial bw checks were relying
+> > > on total data rate + active planes comparison, while it should have accounted
+> > > data rate per plane usage.
+> > > 
+> > > This should have been changed in SAGV patches, but probably had gone
+> > > unnoticed both by you and me.
+> > > 
+> > > > 
+> > > > Also the SAGV watermark is not the minimum watermark (if that is
+> > > > the doc really means by that), the normal WM0 is the minimum watermark.
+> > > > So even if we interpret the doc to say that we should just disable all
+> > > > watermark levels except the smallest one (normal WM0) without changing
+> > > > the ddb allocations we would still end up disabling SAGV.
+> > > 
+> > > Thats actually a good question. Did they mean, disable all "regular" wm levels
+> > > or the SAGV one also? Probably they meant what you say, but would be nice to know
+> > > exactly.
+> > 
+> > They said neither. It's just "program minimum watermarks" which
+> > could mean anything really. They do explicitly say "DBUF level
+> > can also adversely affect flip performance." which I think is
+> > the whole point of this exercise.
+> > 
+> > > 
+> > > Anyway my point here is that, we probably shouldn't use new_bw_state as a way to 
+> > > check that plane allocations had changed. Thats just confusing.
+> > 
+> > We are not checking if plane allocations have changed. We are
+> > trying to determine if anything in the bw_state has changed.
+> > If we have said state already then something in it may have 
+> > changed and we have to recalculate anything that may depend
+> > on those changed things, namely pipe_sagv_reject->qgv_point_mask.
+> 
+> I think it is just not very intuitive that we use the fact whether
+> we can get new_bw_state or not, as a way to check if something had
+> changed.
+> Would be nice to put it in somekind of a wrapper like "has_new_bw_state"
+> or "bw_state_changed". Because for anyone not quite familiar with
+> that state paradigm we use, that would look pretty confusing that first
+> we get new_bw_state using intel_atomic_get_new_bw_state, then immediately
+> override it with intel_atomic_get_bw_state.
+> And whether we can get new_bw_state or not is just acting like a check,
+> that we don't have anything changed in bw_state.
+
+I think the only thing we'd achieve is something like this:
+
+new_bw_state = NULL;
+if (has_new_bw_state())
+	new_bw_state = get_new_bw_state();
+...
+if (!new_bw_state)
+	return 0;
+
+instead of just
+
+new_bw_state = get_new_bw_state();
+...
+if (!new_bw_state)
+	return 0;
+
+I don't know why that would be an improvement.
+
+> Moreover indeed ideally intel_bw_atomic_check should probably handle all
+> that sagv stuff as well, i.e I would suggest moving pipe_reject_mask setting,
+> based skl_compute_wm results to that function.
+> I don't see any issue here because in skl_compute_wm we just calculate the 
+> sagv wm, then in intel_bw_atomic_check we just call intel_compute_sagv_mask,
+> which then calls tgl_crtc_can_enable_sagv for each crtc and sets this mask.
+
+It's not going to work unless we split the watermark computation
+into two parts and spread it around the bandwidth check.
+
+The current steps are as follows:
+1. skl_build_pipe_wm()+skl_compute_ddb()
+2. intel_compute_sagv_mask()
+3. skl_wm_add_affected_planes()
+4. intel_bw_atomic_check()
+
+What you're after is essentially pulling intel_compute_sagv_mask() (or
+most of it) into intel_bw_atomic_check(). Which means
+skl_wm_add_affected_planes() would need a new higher level call site
+instead of being called as part of skl_compute_wm(). We have no vfunc
+for that atm.
+
+-- 
+Ville Syrjälä
+Intel
