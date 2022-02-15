@@ -2,52 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C8FC4B7B34
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 00:29:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28A484B7B4D
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 00:42:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E63810E2D9;
-	Tue, 15 Feb 2022 23:28:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DADB610E1B0;
+	Tue, 15 Feb 2022 23:42:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81E2F10E2D9;
- Tue, 15 Feb 2022 23:28:58 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB9A10E5BD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 23:42:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644967738; x=1676503738;
- h=date:from:to:subject:message-id:references:mime-version:
- content-transfer-encoding:in-reply-to;
- bh=PuOlIBLnmV0UGsziClzfYD4ZKWpxWUaUI/U5AU60124=;
- b=ML1kVJQE27pYIHhUBse913K69jCWIcSosgsksg2gJHz6gni5gWKIH+iX
- waNEjAOvlhVhJydAUSuSeg8VCKH1OoJYB7fL7KbDYodKaI9zJEbO3bguA
- OgyELIsC/7AjdNGxdoLSQFPziYpll9k1yd/QM3iQL8KMOHBH6zY5nPBOo
- HnQ2yCDE+dkQzc9TRAlHCSLGvuF/i0nEXS4+4uUEvraNf0jqsH8d528NS
- I39RQr2RxUiHqO8+qVBHffReH9f8719pbCHvsMZY2NXyukJboKOJEG8dO
- vcjHxHuSsytjNyLTtAt7mvhnLES1P0KV77p86VZZWwPuD5cj0BdMo1daU w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="275059226"
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="275059226"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2022 15:28:57 -0800
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="529124431"
-Received: from dbhandar-mobl1.amr.corp.intel.com (HELO msatwood-mobl)
- ([10.212.183.40])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2022 15:28:56 -0800
-Date: Tue, 15 Feb 2022 15:28:43 -0800
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>;,
- intel-gfx@lists.freedesktop.org;, dri-devel@lists.freedesktop.org
-Message-ID: <20220215232843.GB15418@msatwood-mobl>
-References: <20220208104524.2516209-1-lucas.demarchi@intel.com>
- <20220208104524.2516209-9-lucas.demarchi@intel.com>
+ t=1644968529; x=1676504529;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zgdK5yWi8Te1II3WDgAB7bufTFWdSNgd2U3eIFDrFzc=;
+ b=ORfFmA5lhBf+X8B95xH/ALX687jgc6OKE8EqMbqtdoPIbZKSBvsaJhRl
+ ByS4S5y/sYe3tWjSQltYqCHxRKaqzzL+MO2Y73AnUvHjZlOAYT6rSZqmu
+ ZgfW1voJTvyxoWqLBcKAIpX/eR8eQsLa85eoF7oENyAnh80oixNTG8Y5k
+ uZvTbyIWMvuL75Al3MWDRqA3P3V3rX/fewp7fAsN9CU2sj5OLalIwfGab
+ PZKMfYBrrhpfd+lbaVbQXKkEVYOK2H8pwTlApfem0dRX4b4HqSEKdc4uK
+ GRhwvJrImu2RehftpY3H1qKjX5hV+XfxwBl+WfU5hHLn+kVQ/5teOtqdH g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="237888544"
+X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="237888544"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 15:41:52 -0800
+X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="681250539"
+Received: from leemi-mobl1.amr.corp.intel.com (HELO
+ cgbowman-desk1.amr.corp.intel.com) ([10.251.143.221])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 15:41:52 -0800
+From: Casey Bowman <casey.g.bowman@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 15 Feb 2022 15:41:45 -0800
+Message-Id: <20220215234146.304035-1-casey.g.bowman@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220208104524.2516209-9-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 08/18] drm/i915/guc: Convert engine
- record to iosys_map
+Subject: [Intel-gfx] [RFC PATCH v3 0/1] Splitting up platform-specific calls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,116 +54,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: michael.cheng@intel.com, jani.nikula@intel.com, lucas.demarchi@intel.com,
+ daniel.vetter@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 08, 2022 at 02:45:14AM -0800, Lucas De Marchi wrote:
-> Use iosys_map to read fields from the dma_blob so access to IO and
-> system memory is abstracted away.
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Matt Atwood<matthew.s.atwood@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c      | 14 ++++++--------
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h      |  3 ++-
->  .../gpu/drm/i915/gt/uc/intel_guc_submission.c   | 17 ++++++++++-------
->  3 files changed, 18 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> index 6a34ab38b45f..383c5994d4ef 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> @@ -695,18 +695,16 @@ void intel_guc_ads_reset(struct intel_guc *guc)
->  
->  u32 intel_guc_engine_usage_offset(struct intel_guc *guc)
->  {
-> -	struct __guc_ads_blob *blob = guc->ads_blob;
-> -	u32 base = intel_guc_ggtt_offset(guc, guc->ads_vma);
-> -	u32 offset = base + ptr_offset(blob, engine_usage);
-> -
-> -	return offset;
-> +	return intel_guc_ggtt_offset(guc, guc->ads_vma) +
-> +		offsetof(struct __guc_ads_blob, engine_usage);
->  }
->  
-> -struct guc_engine_usage_record *intel_guc_engine_usage(struct intel_engine_cs *engine)
-> +struct iosys_map intel_guc_engine_usage_record_map(struct intel_engine_cs *engine)
->  {
->  	struct intel_guc *guc = &engine->gt->uc.guc;
-> -	struct __guc_ads_blob *blob = guc->ads_blob;
->  	u8 guc_class = engine_class_to_guc_class(engine->class);
-> +	size_t offset = offsetof(struct __guc_ads_blob,
-> +				 engine_usage.engines[guc_class][ilog2(engine->logical_mask)]);
->  
-> -	return &blob->engine_usage.engines[guc_class][ilog2(engine->logical_mask)];
-> +	return IOSYS_MAP_INIT_OFFSET(&guc->ads_map, offset);
->  }
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h
-> index e74c110facff..1c64f4d6ea21 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h
-> @@ -7,6 +7,7 @@
->  #define _INTEL_GUC_ADS_H_
->  
->  #include <linux/types.h>
-> +#include <linux/iosys-map.h>
->  
->  struct intel_guc;
->  struct drm_printer;
-> @@ -18,7 +19,7 @@ void intel_guc_ads_init_late(struct intel_guc *guc);
->  void intel_guc_ads_reset(struct intel_guc *guc);
->  void intel_guc_ads_print_policy_info(struct intel_guc *guc,
->  				     struct drm_printer *p);
-> -struct guc_engine_usage_record *intel_guc_engine_usage(struct intel_engine_cs *engine);
-> +struct iosys_map intel_guc_engine_usage_record_map(struct intel_engine_cs *engine);
->  u32 intel_guc_engine_usage_offset(struct intel_guc *guc);
->  
->  #endif
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index b3a429a92c0d..ab3cea352fb3 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -1139,6 +1139,9 @@ __extend_last_switch(struct intel_guc *guc, u64 *prev_start, u32 new_start)
->  	*prev_start = ((u64)gt_stamp_hi << 32) | new_start;
->  }
->  
-> +#define record_read(map_, field_) \
-> +	iosys_map_rd_field(map_, 0, struct guc_engine_usage_record, field_)
-> +
->  /*
->   * GuC updates shared memory and KMD reads it. Since this is not synchronized,
->   * we run into a race where the value read is inconsistent. Sometimes the
-> @@ -1153,17 +1156,17 @@ __extend_last_switch(struct intel_guc *guc, u64 *prev_start, u32 new_start)
->  static void __get_engine_usage_record(struct intel_engine_cs *engine,
->  				      u32 *last_in, u32 *id, u32 *total)
->  {
-> -	struct guc_engine_usage_record *rec = intel_guc_engine_usage(engine);
-> +	struct iosys_map rec_map = intel_guc_engine_usage_record_map(engine);
->  	int i = 0;
->  
->  	do {
-> -		*last_in = READ_ONCE(rec->last_switch_in_stamp);
-> -		*id = READ_ONCE(rec->current_context_index);
-> -		*total = READ_ONCE(rec->total_runtime);
-> +		*last_in = record_read(&rec_map, last_switch_in_stamp);
-> +		*id = record_read(&rec_map, current_context_index);
-> +		*total = record_read(&rec_map, total_runtime);
->  
-> -		if (READ_ONCE(rec->last_switch_in_stamp) == *last_in &&
-> -		    READ_ONCE(rec->current_context_index) == *id &&
-> -		    READ_ONCE(rec->total_runtime) == *total)
-> +		if (record_read(&rec_map, last_switch_in_stamp) == *last_in &&
-> +		    record_read(&rec_map, current_context_index) == *id &&
-> +		    record_read(&rec_map, total_runtime) == *total)
->  			break;
->  	} while (++i < 6);
->  }
-> -- 
-> 2.35.1
-> 
+In this RFC I would like to ask the community their thoughts
+on how we can best handle splitting architecture-specific
+calls.
+
+I would like to address the following:
+
+1. How do we want to split architecture calls? Different object files
+per platform? Separate function calls within the same object file?
+
+2. How do we address dummy functions? If we have a function call that is
+used for one or more platforms, but is not used in another, what should
+we do for this case?
+
+I've given an example of splitting an architecture call
+in my patch with run_as_guest() being split into different
+implementations for x86 and arm64 in separate object files, sharing
+a single header.
+
+Another suggestion from Michael (michael.cheng@intel.com) involved
+using a single object file, a single header, and splitting various
+functions calls via ifdefs in the header file.
+
+I would appreciate any input on how we can avoid scaling issues when
+including multiple architectures and multiple functions (as the number
+of function calls will inevitably increase with more architectures).
+
+v2: Revised to use kernel's platform-splitting scheme.
+v3: Revised to use simple if-else structure.
+
+Casey Bowman (1):
+  i915/drm: Split out x86/arm64 for run_as_guest
+
+ drivers/gpu/drm/i915/i915_drv.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+-- 
+2.25.1
+
