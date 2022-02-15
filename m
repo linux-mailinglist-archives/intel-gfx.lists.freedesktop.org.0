@@ -1,47 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E70534B6B4F
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 12:42:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B51CC4B6BA3
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 13:04:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C81B10E444;
-	Tue, 15 Feb 2022 11:42:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B20A110E456;
+	Tue, 15 Feb 2022 12:04:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF59E10E455
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 11:42:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644925347; x=1676461347;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=BpWQkJsRFSS1jW6LzHqxzIN8EsuOrNwhpGIdVsRzWgs=;
- b=cGjBZCVvSboQSwebl2PwmG+wVvwL6yAlm5AOOvPV1IaSSnY+BqEXQTq9
- RzJ2zlwer4++2hHY45/5FmoqcgE3PHTBfZJWRP7bbJy8Vh+hMToiIxWxt
- VqmBOOFi90QkH/1rwA1uGC7ooQMMdlJn9FEvZN4cp3gvL0dEgS04ipZLh
- ktpiAMrpajQ4mV6R5meJGMDbBJCH03JRxeeg3j3SYdHP0pC6SrZ9Fbe20
- VzCnJsUznW2OtFkdAMIA8EdI84ecLBIMkryfq4YJu462m74pq4UcT5n4G
- 6/nAG2qEjVxqrAuHUrsPg86pZYhjm7t9E38DuGLICC6Tjne01pIGW3yuD g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="274907356"
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="274907356"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2022 03:42:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="544260332"
-Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by orsmga008.jf.intel.com with ESMTP; 15 Feb 2022 03:42:26 -0800
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Feb 2022 17:08:18 +0530
-Message-Id: <20220215113818.729239-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com
+ [IPv6:2607:f8b0:4864:20::729])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E392210E453;
+ Tue, 15 Feb 2022 12:04:51 +0000 (UTC)
+Received: by mail-qk1-x729.google.com with SMTP id g145so17064385qke.3;
+ Tue, 15 Feb 2022 04:04:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=qbnM1QziU/XSffVJX+bwaVuJwYnLnX8GCs9DF4EaXsk=;
+ b=GBMqnSHarXC8GjklagRkyGCCCF9Vo/+51OFuwdd5ApKg9dkW3pSkUxe1+Er9Afky6v
+ Mh2HJsmInn/Y/1pqwHTcBVDt66gJ/n6NdvbagUwpaPDxAvKcWYOAGF9eJPUNFVcrRXtq
+ xCSE7P90lHDA1hG1rhBhFZGiFUdEZBw1BFNdSm6I9ARqcXxZutmsu9NurMbQf2X083rl
+ 9+kUZoxTiRxt6xCjAn7+Jb0RJO2hrZ27eujcuFSoIqQOhf4xU+BWknVKr1J/HQwRZh/a
+ e5YQ7kDjPYvpT1sVr1H0+hd9UeSzNdxElh2nZKmTnlIU4cYZGHUOmV3CekLD9/CDG7mk
+ a3Ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=qbnM1QziU/XSffVJX+bwaVuJwYnLnX8GCs9DF4EaXsk=;
+ b=bWN8lO7/tclxLpJNMxk0nBIev/1LKMhR7Cgr/AvpZSJE4lfpoKu8xUHse4tGGZV9qO
+ 9rYYxalmHlDcH0rlRzbdDaKvrT3vfofJSiOKPT55mKFgZhNhocbdZ4qmVQCpN01merRU
+ 65ve6PxXwTSfzcvSTXfK9Lxze7uxYrQz5xq+aCD9aFyWqjYgqVLXCUsTD10tWD5nYg1z
+ G7VxtQNFIAPOkRwlCmnQc4Q4JMZrLL2oE6Pq0n3Cv/tDuLtlm1PUtta3upBQdk15sN9P
+ QXV3tja6CQRjcsUo3orNLOz21SwspwTg50cJa3wazEOBZ7e4tRC0VsmarsaEl9WW8w4Y
+ ushw==
+X-Gm-Message-State: AOAM532GT6N9c8qB5UKRn1YMeEier2vuG1+AtdXkx2G8Tl+vSoUbdjfE
+ 12uyzFMLMqYeDDvzaPHkc3Xvvv8sXKLR6DfoagjgCwtHyqBb/A==
+X-Google-Smtp-Source: ABdhPJxFzThI9yJ6WQ5YwMfuHeghHCKy7MGmGIpj5Bk2cqTfQYGSL/bhIOpU56LzBlNjDXYJ7jFaFlTkyTg9FfzELMc=
+X-Received: by 2002:a05:620a:4048:: with SMTP id
+ i8mr1689174qko.482.1644926690999; 
+ Tue, 15 Feb 2022 04:04:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] iommu/vt-d: Add RPLS to quirk list to skip TE
- disabling
+References: <20220208084234.1684930-1-hsinyi@chromium.org>
+In-Reply-To: <20220208084234.1684930-1-hsinyi@chromium.org>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Tue, 15 Feb 2022 12:04:39 +0000
+Message-ID: <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
+To: Hsin-Yi Wang <hsinyi@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v8 1/3] gpu: drm: separate panel orientation
+ property creating and value setting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,49 +63,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Maxime Ripard <mripard@kernel.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+ Simon Ser <contact@emersion.fr>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ linux-mediatek@lists.infradead.org,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ LAKML <linux-arm-kernel@lists.infradead.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The VT-d spec requires (10.4.4 Global Command Register, TE
-field) that:
+Greetings everyone,
 
-Hardware implementations supporting DMA draining must drain
-any in-flight DMA read/write requests queued within the
-Root-Complex before completing the translation enable
-command and reflecting the status of the command through
-the TES field in the Global Status register.
+Padron for joining in so late o/
 
-Unfortunately, some integrated graphic devices fail to do
-so after some kind of power state transition. As the
-result, the system might stuck in iommu_disable_translati
-on(), waiting for the completion of TE transition.
+On Tue, 8 Feb 2022 at 08:42, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+>
+> drm_dev_register() sets connector->registration_state to
+> DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+> drm_connector_set_panel_orientation() is first called after
+> drm_dev_register(), it will fail several checks and results in following
+> warning.
+>
+> Add a function to create panel orientation property and set default value
+> to UNKNOWN, so drivers can call this function to init the property earlier
+> , and let the panel set the real value later.
+>
 
-This adds RPLS to a quirk list for those devices and skips
-TE disabling if the qurik hits.
+The warning illustrates a genuine race condition, where userspace will
+read the old/invalid property value/state. So this patch masks away
+the WARNING without addressing the actual issue.
+Instead can we fix the respective drivers, so that no properties are
+created after drm_dev_register()?
 
-Fixes: https://gitlab.freedesktop.org/drm/intel/-/issues/4898
-Fixes: LCK-10789
-Tested-by: Raviteja Goud Talla <ravitejax.goud.talla@intel.com>
-Cc: Ashok Raj <ashok.raj@intel.com>
-Cc: stable@vger.kernel.org
-Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
----
- drivers/iommu/intel/iommu.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Longer version:
+As we look into drm_dev_register() it's in charge of creating the
+dev/sysfs nodes (et al). Note that connectors cannot disappear at
+runtime.
+For panel orientation, we are creating an immutable connector
+properly, meaning that as soon as drm_dev_register() is called we must
+ensure that the property is available (if applicable) and set to the
+correct value.
 
-diff --git a/drivers/iommu/intel/iommu.c b/drivers/iommu/intel/iommu.c
-index 639e4438827e..bd6dac90a948 100644
---- a/drivers/iommu/intel/iommu.c
-+++ b/drivers/iommu/intel/iommu.c
-@@ -5741,7 +5741,7 @@ static void quirk_igfx_skip_te_disable(struct pci_dev *dev)
- 	ver = (dev->device >> 8) & 0xff;
- 	if (ver != 0x45 && ver != 0x46 && ver != 0x4c &&
- 	    ver != 0x4e && ver != 0x8a && ver != 0x98 &&
--	    ver != 0x9a)
-+	    ver != 0x9a && ver != 0xa7)
- 		return;
- 
- 	if (risky_device(dev))
--- 
-2.34.1
+For illustration, consider the following scenario:
+ - DRM modules are loaded late - are not built-in and not part of
+initrd (or there's no initrd)
+ - kernel boots
+ - plymouth/similar user-space component kicks in before the
+driver/module is loaded
+ - module gets loaded, drm_dev_register() kicks in populating /dev/dri/card0
+ - plymouth opens the dev node and reads DRM_MODE_PANEL_ORIENTATION_UNKNOWN
+ - module updates the orientation property
 
+Thanks
+Emil
