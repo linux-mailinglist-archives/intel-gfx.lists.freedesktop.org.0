@@ -2,50 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995244B7488
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 20:05:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F1C44B749A
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 20:19:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8B4C10E171;
-	Tue, 15 Feb 2022 19:05:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6781B891CB;
+	Tue, 15 Feb 2022 19:18:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0569E10E171
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 19:05:04 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D581810E1FD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 19:18:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644951905; x=1676487905;
+ t=1644952736; x=1676488736;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=deJnmTtExzh/IC9XgWiz8lzVyVie3z94PS/N+gt5hy4=;
- b=kzssXoq407H3vaqPfSlaa5t0goOKOjaBwZOvGME0dp7TiVvgwbGs9KT7
- GT0gkIPKv5GLhKDI5R9Ius/6TNX8Z4L0pNvwVPrI4PCZ9d4MQVJ4RdYdP
- VqMO0Dvg/yGpqFb5+dTZUumJtOyjr1cq9jRpy/cbUshjLwYSOe/PDcDvE
- qs3VoPhloGtItKjnqrklQA8wi4Xi/X7OIhEWeQHI5CG/bAOgCG18c5Rfm
- 7YO/crdryQP2vNJ6l5+9AfA/fqMC47p7STZLsWTFhMCQJcxkXZhgglCio
- nrlcqAni8PssQxbJ3VGW3i000Gj7ITlx7fTBCV5Ydtz7jwxkWV5YwX5q0 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="250634021"
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="250634021"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2022 11:05:04 -0800
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="587863190"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2022 11:05:03 -0800
-Date: Tue, 15 Feb 2022 11:05:20 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20220215190520.GB6463@labuser-Z97X-UD5H>
-References: <20220215133727.13450-1-anshuman.gupta@intel.com>
- <20220215133727.13450-7-anshuman.gupta@intel.com>
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=o7MvG4trEZptKVj/nm2ADSOXzPOf/0wv/Zxg8yyc8Q8=;
+ b=fYz28SI1rcmIF5fMMwRwX3JTS6FnulDgqXxkAbgIyfTFXWZcNjUBO7BB
+ 9LTIQ5DJygneN4LD01HmhHR/5w38GL3/PBG21Cuyy0IPjQly785MnQypH
+ aXa0qNi9x/59dkIrNH4pQszcL0TszqMv5xCyjyf+pSYJCOiIyNtLNw1ED
+ 96P9Z1RN+jIhS89/hf1l5ac3YQz0ltw2vIEdiBoE/sgIvP4r4Z4YvoyRs
+ WIm2v/3syXBBhjs82miUyQCvyV8Tpjldaap0bEg0jPDhsxXnqhRBPBZX+
+ vz+ve3fA4BQB2rsclO/k7L0386tuzA0wqVD5NRzj+6i89o11AmdjDdd3T A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="313710310"
+X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="313710310"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 11:18:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; d="scan'208";a="544457476"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga008.jf.intel.com with SMTP; 15 Feb 2022 11:18:53 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 15 Feb 2022 21:18:53 +0200
+Date: Tue, 15 Feb 2022 21:18:53 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <Ygv8nWzNP7F6c2Db@intel.com>
+References: <Ygot+UVlBnA/Xzfk@intel.com> <20220214170305.GA25600@intel.com>
+ <Ygq6/32Cy6CjMrDu@intel.com> <20220215085957.GA15926@intel.com>
+ <Ygt8C/SHHLXfHw+A@intel.com> <20220215110248.GA16287@intel.com>
+ <YguN+rpdJEIjxjkC@intel.com> <20220215163342.GA16750@intel.com>
+ <YgvaY8iodSyMlyjI@intel.com> <Ygvbu30Mo1yqgwgw@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220215133727.13450-7-anshuman.gupta@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v2 6/6] drm/i915/dgfx: Get VBT from rvda
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Ygvbu30Mo1yqgwgw@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Fix bw atomic check when
+ switching between SAGV vs. no SAGV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,75 +64,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 15, 2022 at 07:07:27PM +0530, Anshuman Gupta wrote:
-> Since OpRegion ver 2.1 MBOX3 RVDA field is Relative address of Raw
-> VBT data from OpRegion Base.
-> Populate the opreion->rvda accordingly.
-> As Intel DGFX cards supports OpRegion version 2.2 or greater,
-> RVDA as an absolute VBT physical address (Ver 2.0) doesn't applicable
-> to DGFX cards.
+On Tue, Feb 15, 2022 at 06:58:35PM +0200, Ville Syrjälä wrote:
+> On Tue, Feb 15, 2022 at 06:52:51PM +0200, Ville Syrjälä wrote:
+> > On Tue, Feb 15, 2022 at 06:33:42PM +0200, Lisovskiy, Stanislav wrote:
+> > > On Tue, Feb 15, 2022 at 01:26:50PM +0200, Ville Syrjälä wrote:
+> > > > On Tue, Feb 15, 2022 at 01:02:48PM +0200, Lisovskiy, Stanislav wrote:
+> > > > > Anyway my point here is that, we probably shouldn't use new_bw_state as a way to 
+> > > > > check that plane allocations had changed. Thats just confusing.
+> > > > 
+> > > > We are not checking if plane allocations have changed. We are
+> > > > trying to determine if anything in the bw_state has changed.
+> > > > If we have said state already then something in it may have 
+> > > > changed and we have to recalculate anything that may depend
+> > > > on those changed things, namely pipe_sagv_reject->qgv_point_mask.
+> > > 
+> > > I think it is just not very intuitive that we use the fact whether
+> > > we can get new_bw_state or not, as a way to check if something had
+> > > changed.
+> > > Would be nice to put it in somekind of a wrapper like "has_new_bw_state"
+> > > or "bw_state_changed". Because for anyone not quite familiar with
+> > > that state paradigm we use, that would look pretty confusing that first
+> > > we get new_bw_state using intel_atomic_get_new_bw_state, then immediately
+> > > override it with intel_atomic_get_bw_state.
+> > > And whether we can get new_bw_state or not is just acting like a check,
+> > > that we don't have anything changed in bw_state.
+> > 
+> > I think the only thing we'd achieve is something like this:
+> > 
+> > new_bw_state = NULL;
+> > if (has_new_bw_state())
+> > 	new_bw_state = get_new_bw_state();
+> > ...
+> > if (!new_bw_state)
+> > 	return 0;
+> > 
+> > instead of just
+> > 
+> > new_bw_state = get_new_bw_state();
+> > ...
+> > if (!new_bw_state)
+> > 	return 0;
+> > 
+> > I don't know why that would be an improvement.
 > 
-> v2:
-> - Add kzalloc NULL check for opreg_rvda pointer.
-> 
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_opregion.c | 22 ++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> index 8af3a92582cb..9907dae8f3cd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -1625,11 +1625,31 @@ static void *intel_dgfx_alloc_opregion(struct drm_i915_private *i915)
->  
->  static void *intel_dgfx_alloc_rvda(struct drm_i915_private *i915)
->  {
-> -	return ERR_PTR(-EOPNOTSUPP);
-> +	struct intel_opregion *opregion = &i915->opregion;
-> +	void *opreg_rvda;
-> +
-> +	if (!opregion->dgfx_oprom_opreg)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	opreg_rvda = kzalloc(opregion->asle->rvds, GFP_KERNEL);
-> +	if (!opreg_rvda)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	memcpy(opreg_rvda, opregion->dgfx_oprom_opreg + opregion->asle->rvda, opregion->asle->rvds);
+> Though I suppose a comment might be in order pointing the
+> reader towards intel_compute_sagv_mask().
 
-The suggestion here by Chris Wilson was to replace kzalloc + memcpy with kmemdup
+Although, I guess one idea would be to extract that data_rate
+loop thing into a separate function and then we'd just end up with
+something along the lines of:
 
-Please add that and give necessary credits for changes done by me in DII and suggested by Chris Wilson
+ret = intel_bw_check_data_rate(state);
+if (ret)
+	return ret;
 
-Manasi
+new_bw_state = intel_atomic_get_new_bw_state(state);
+if (!new_bw_state)
+	return 0;
 
-> +
-> +	/* We got RVDA, OPROM opregion + vbt image not nedded anymore */
-> +	kfree(opregion->dgfx_oprom_opreg);
-> +	opregion->dgfx_oprom_opreg = NULL;
-> +
-> +	return opreg_rvda;
->  }
->  
->  static void intel_dgfx_free_rvda(struct drm_i915_private *i915)
->  {
-> +	struct intel_opregion *opregion = &i915->opregion;
-> +
-> +	kfree(opregion->rvda);
-> +	opregion->rvda = NULL;
->  }
->  
->  static void intel_dgfx_free_opregion(struct drm_i915_private *i915)
-> -- 
-> 2.26.2
-> 
+...
+
+-- 
+Ville Syrjälä
+Intel
