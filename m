@@ -2,178 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14B6F4B6834
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 10:52:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CFC34B68DB
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Feb 2022 11:10:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44FAE10E428;
-	Tue, 15 Feb 2022 09:52:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B8AF10E425;
+	Tue, 15 Feb 2022 10:10:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
- Tue, 15 Feb 2022 09:52:49 UTC
-Received: from esa2.hc3370-68.iphmx.com (esa2.hc3370-68.iphmx.com
- [216.71.145.153])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB82610E429;
- Tue, 15 Feb 2022 09:52:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=citrix.com; s=securemail; t=1644918769;
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6DD010E439
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 10:10:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1644919823; x=1676455823;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=iw8WzCaDfNAox61c1XTlHvprnyEm93V7Mqc/NxaYPBw=;
- b=IliR9dZsfqY6kFKzpp4zJo6Tn4Em23bXl1rC0CP59UJOkhEcUJIHKV9L
- Yeu3EF1zqdc4Ln+p6JJLbsOS+zHXtRRVCDDHQnozaK4Ed7KM5pdT/FkG9
- gdDQSSh6B/GwpKAz4v3/9acFgxuYWgMYFmAJ6mOgA9M4ZjfL0zvztkE7C k=;
-Authentication-Results: esa2.hc3370-68.iphmx.com;
- dkim=pass (signature verified)
- header.i=@citrix.onmicrosoft.com
-IronPort-SDR: Wy0OJLz6BuLKyYyzm2UoNMMOAxz6G/3neQcF9aSpcIkhlg978QlODMMVsPPe3DjUQ6eUeSIp/n
- QCthxswFYy1Li6iyC2ZtdJHyNrkEtlM/dJ0mZo+66T22pj6nB9njXhj83O6ONETK/QicZW5wlU
- opmuewDGpJvhcKVUKcG73ea1cuyrrUmc8Oet+JEl0zRkXdWBKLXmJo94XBUDUJudcj5rt8BtvF
- GHjdDsFOUt9K3t/++aa6dj2bPfJTHQwcNP3FvGRMMHD6Z8J9WbzVRwNVJL4cgkHj2UAE6Ds4s+
- 6Tm7v4IVEWwyQ4Vi2lgpkYS8
-X-SBRS: 5.1
-X-MesageID: 64225888
-X-Ironport-Server: esa2.hc3370-68.iphmx.com
-X-Remote-IP: 162.221.156.83
-X-Policy: $RELAYED
-IronPort-Data: A9a23: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
- NBConD9M3BdGH2yqTr/MhBjvdpa+w==
-IronPort-HdrOrdr: A9a23:W5eZqKtRS/7uml8SUMgj8fDR7skC7oMji2hC6mlwRA09TyXGra
- +TdaUguSMc1gx9ZJhBo7G90KnpewK6yXdQ2/hqAV7EZniahILIFvAY0WKG+VPd8kLFh4xgPM
- tbAs1D4ZjLfCRHZKXBkXiF+rQbsaC6GcmT7I+0pRcdLj2CKZsQlzuRYjzrbHGeLzM2Y6bReq
- Dsgvau8FGbCAsqh4mAdzI4dtmGg+eOuIPtYBYACRJiwA6SjQmw4Lq/NxSDxB8RXx5G3L9nqA
- H+4kHEz5Tml8v+5g7X1mfV4ZgTsNz9yuFbDMjJrsQOMD3jhiuheYwkcbyfuzIepv2p9T8R4Z
- PxiiZlG/42x2Laf2mzrxeo8w780Aw243un8lOciWuLm72OeBsKT+56wa5JeBrQ7EQt+Ptm1r
- hQ4m6fv51LSTvdgSXU/bHzJl9Xv3vxhUBnvf8YjnRZX4dbQqRWt5Yj8ERcF4pFND7m6bogDP
- JlAKjnlblrmGuhHjDkV1RUsZ+RtixZJGbFfqFCgL3Y79FupgE586NCr/Zv20vp9/oGOu55Dq
- r/Q+BVfYp1P7wrhJRGdZM8qPuMexzwqC33QRCvyHTcZeg60iH22tbKCItc3pDeRHVP9up0pK
- j8
-X-IronPort-AV: E=Sophos;i="5.88,370,1635220800"; d="scan'208";a="64225888"
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ilaZ4q+uZdIfts/UFRJeZaM0CaSfhaUI5TOPze+hbufN+hwg5iWKU+RMjTQULAQhBl99p2QyPToVJweQ/2ilYug59c0JmprjOLhZQDG3ejuxIG3vDoO0TxH0SaQ7yxEQUOyLKzn+g3tF9cpUGtvN39RVhZB0k4Bn6TaPQYvfReDO92Mm3wU89wkzKZM5UHWITDAoRioOk6YKm9ad92P2EEW1CRQvEXwPwvrp3TQpF8GLXF/DYX0A/fiv8r59VxMGtizra6BUFqJMriKPpsMKvytZTVuuJKyyn/BIQHU9Pn4Dsqql31vGLQN6XmAN/jFRqCVGbmcWhsovVEp5APThpg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZGfL1e1bMDpYfkGiAfrTfHC/8z7eJZ5Kbc5EER5I8Tw=;
- b=g8+HFMAudfrhF88CIlb9USB4nGjlF4auwIeYzZnxFXCbg4+gjWXDgsLiW9mvxTxKAEODZFjcJKVOuXG/mF3DCc7SCg1VEcDmUELS2FfIxT8QnTqBPzAKehh4uJaOe2+JRGiwEwsl83tEXLkmZfZ1UVKZI3aFbEBTwUYI0VaFPSy8z44kxcHyi1KIMWk5JOyMQDbw3ytlnrJxtt2P0Ak+nfRHoQGM0P/y6k6GkeXE/yIZVVjNDuAfd7IwCCExqvi/PqougbcOZOoylnhjhZiEDYZh3XXTUg9NGy7ixAEK4As9so8okofMIfEnghM1FKJ8wDzzGnaHEY3AKmQLzKp0Sg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=citrix.onmicrosoft.com; s=selector2-citrix-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZGfL1e1bMDpYfkGiAfrTfHC/8z7eJZ5Kbc5EER5I8Tw=;
- b=LNgn9kWhTFP+qaoGPYjaMJr97wkw5aM0jbMVOU7Zv52knzicKXInSAw1GEuD41okAti8/upRUcKLszQsdhK0QdJnyaldk8J2RyLbEgygJkEHUHc948p5HPE44gTp7XPKG4mvavfpk18SKQZVCkGgxiQynn4n3GQQdGMc3DnvsYg=
-Date: Tue, 15 Feb 2022 10:45:34 +0100
-From: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>
-To: Qing Wang <wangqing@vivo.com>
-Message-ID: <Ygt2Pr26MHOMGgR1@Air-de-Roger>
-References: <1644890154-64915-1-git-send-email-wangqing@vivo.com>
- <1644890154-64915-2-git-send-email-wangqing@vivo.com>
-Content-Type: text/plain; charset=utf-8
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ONEExDm9faYOXJQNUDPrvdpAut30oOdlB9319hAulx4=;
+ b=e3eZc8frNnaB60daqw1pMsPm/fZre5YbTDQQtNfORIiHyAMZ9YQrnu+1
+ mPe1GCqan2JoLi+F/qAUlp/uVVEoFme9bBqk5/vHsebNC/onRMh7ENhUQ
+ xEkooDzHzhg02vsQcJoTBrcW6tjqxNxk3HEiEzkBEsrsqd2wrvwby8Kti
+ /vJT30JeSnCCgQN8iMD3RCe62ublob3yFUxTFyFb/rSifZx6sVppB6mRE
+ nFQVSAcK5rawYRnEa7kba14oP+7bk8pDi5kfrrI9LFvVcnCCq0fXGNufn
+ t4U7uRezGiX37hJF9Bzuju6x0SYAMOrQLqfjHPECjgpXPt5eTR5PLFXqx w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="249151956"
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="249151956"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2022 02:10:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; d="scan'208";a="570749837"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga001.jf.intel.com with SMTP; 15 Feb 2022 02:10:20 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 15 Feb 2022 12:10:19 +0200
+Date: Tue, 15 Feb 2022 12:10:19 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <Ygt8C/SHHLXfHw+A@intel.com>
+References: <20220214091811.13725-1-ville.syrjala@linux.intel.com>
+ <20220214091811.13725-3-ville.syrjala@linux.intel.com>
+ <20220214100536.GB24878@intel.com> <Ygot+UVlBnA/Xzfk@intel.com>
+ <20220214170305.GA25600@intel.com> <Ygq6/32Cy6CjMrDu@intel.com>
+ <20220215085957.GA15926@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1644890154-64915-2-git-send-email-wangqing@vivo.com>
-X-ClientProxiedBy: LO3P265CA0004.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:bb::9) To DS7PR03MB5608.namprd03.prod.outlook.com
- (2603:10b6:5:2c9::18)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 32826cc3-a767-4fe8-891b-08d9f067ec86
-X-MS-TrafficTypeDiagnostic: MWHPR03MB3053:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR03MB3053FA0087E2C31570D06F3F8F349@MWHPR03MB3053.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2276;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XwIKyJ1rEAvRB1r6HE88BUpHD6Uz5+G+3zSYNOGigqz7NUTie21YXIqvuU92NqBmDn1nEe6TixP1P9GtV9kGSmnT8Vwgc19Z2lp3C4QZ6/CjCW59WUnCC45bousTjDOBRst8ivXWUQzhtLh35raiJeMPVuhETHIRYjwMsGFYAqcpzk4mHMkhYh4BM41r3YSHn81+32lkPMR8hfMfpv9TGrljmgUFDf9LjzTsKggo3sGJX1sw7aKO27JkXUWgVJghQ7JdIzLPYk+6xRJ1fQggmAEygybuwCCmWXUgCm17rAoi/5cP9XIT/1fxDEWXHqkJml+tMDNRXFTkgkYw+HZRfyXM5fHpZSNaaOyakz9OrexvvD9kHh7aRZefDTkBvUVEpbunNo1Vx2iJ/4jRRbcodDeOi5y44NK+xRwMAiOtVj4dRdvAH3ADF69BndhDJlfK6AUZ4708oRQIQLpFj4jdHSIWgPzy6pfn2A4ZGn/2q5lg39/1u4llA3xZrWUCszX0SaDzb5nZjppoq0bHWESPRtGwqBIpiqKf5lLczaJnAQk1VFU1D6Go3axvQa1KAIDY0Fp12NNs8kw5rkQLTF94F3BJQ2ZRH4Hy6AmY/9nOcwHQ6lx8eMfqJjl2XCUxqxowKpwaYYEp6NaUnEJSSKDJHQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR03MB5608.namprd03.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(7916004)(4636009)(366004)(8676002)(66476007)(66556008)(4326008)(558084003)(9686003)(33716001)(6512007)(6666004)(86362001)(85182001)(66946007)(508600001)(8936002)(6506007)(5660300002)(7416002)(6486002)(7406005)(316002)(26005)(186003)(38100700002)(6916009)(82960400001)(2906002)(54906003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q09ReHgwWUdvalprSjFvZXhkNTBSNkl1azRTa2ZUZTBZVWNEdzhYNmtuSWxX?=
- =?utf-8?B?UWR5U2owVUUySG02WlNTdUpuRjVvNnVPdTZkMzF2MWw2QUZFWWZsT0NJakJ6?=
- =?utf-8?B?bkRpNURuYXlpQXZaWTRwQUVIa2pKTEtWOGMvbWNkcmZHNkdSK3ZaYm80UE1n?=
- =?utf-8?B?T0hwRlF4L1BpNlR3bmNDUmRYTkJUMzdGM3cxbmY5UmllUGE0M0tnSTVYNUNa?=
- =?utf-8?B?YTdLa2tNdXVmNG5JQlBQV1ZkUmRHaStOc0hEc3lpVENTd0dVYXFPbnlJbkN1?=
- =?utf-8?B?eWNNbVN2SWZPSkl0SGZEb2h3c1J5MEdMWnVRbDdtcVgvVENNRjdWMlhtZHpZ?=
- =?utf-8?B?V1RFQUI2RjNjc3lBR0pyVnRHZ01SRjBLU25GUjIzR2RPMWtvZk92Vi9tZTFR?=
- =?utf-8?B?UHNDYzExdjdrN3RjUG9pSUxFWHpXL1pQcVJJRVFVa0hUTXBEdGFyRTFkdmIv?=
- =?utf-8?B?bm9pMmt4bWdENEtwdWZMRUc4a21QR1hqbGpjS2JJbktYV3IvbVZod0NaRHFI?=
- =?utf-8?B?QUpjSk80WFlPbUlHUi9icURicW5uMGp6bkJRcDhPVjRQeklnUFBFU1A0TUcw?=
- =?utf-8?B?ZlBPd0U0RGhKUFBnb0g1TEVPajVQTERrb2hwUmZ0T2F1eVQ2VE1nYnZYWFph?=
- =?utf-8?B?b2RreDZHVEJrbjN6OEg5WVZKZW9LVTNMcVhqV2NTTWNVdHpqckU2WGJjYkNC?=
- =?utf-8?B?TzlXdCtGNmk2N05VakVPM1NJZ00yRG1meEVGOVZiNElERGxuUitIWTFDekJx?=
- =?utf-8?B?aDloV0RtUEVvWVVHVDg4QVF3L09mQlY1b1k2MmtjOWJwN0NRVWc2VC8zc2wr?=
- =?utf-8?B?S0xiOXlYK284WmJrRloyUXZZSHFYYkE4OE1TVmtRRHhNbHo0L2NnK1puOUVC?=
- =?utf-8?B?TmZWSm8wVVdhY0g5WjVnUnJkWFBJOGhsaHlOWG1hSm1MOUUwbE1XVEZ6bzVs?=
- =?utf-8?B?OCt0UGN6Umd0Q1lXM25RSTdoT0lkcUl4NklvVjFsbVk1TGk1dW95ZlZyQnc4?=
- =?utf-8?B?MzQycXFZbjBIbEZtcXRtV0pzSFk2NnRHOFpLa3pFTEFuYzdVWmF2VTRiYVZ6?=
- =?utf-8?B?Y1dNaXdORnBDSFlBa3FwdGZQSFFOL0Q5MGs1c0lMbTkxL0xwSEJiNngwV25q?=
- =?utf-8?B?am1ZNVQyUEZUNlYrZjA0OFRHenVZamlZVjd1TUVNVFZ5aEdEQ3M2UGZmZk9B?=
- =?utf-8?B?R1AzZUVqYVV5eW1kTDF0d1pJZmZ3a3NhcmMwREprWnVxOWpNRGwvbW5NcWVi?=
- =?utf-8?B?dWU3UlU2WkExSW5KR2tQMTkvVU42MnlmZ01XWGU3RGhIZUMycnJYNG96aURv?=
- =?utf-8?B?Vktxcmp0YzVaTUJhV0swRUFpUHdIbk9seG0zQlRvbWVKdldYK216THpTU2tz?=
- =?utf-8?B?REEwOHcrb0RHcXNMbkF4Nm9iQmNkMERjTi9kV1NidG4xSVVaL3gweVFmclNu?=
- =?utf-8?B?MXpla0hmU3lEVzNSLzcvdU1zNXV0cUplOHhQbmk0aHMzdS91aDBqaUk5R25o?=
- =?utf-8?B?RWNUVWtiTGVDOEZmempoV3NPMUVsS2JYbmVPaVdIK1JMaEtLbDFJaUt1NHN6?=
- =?utf-8?B?QTNoTUk0K3NCdlV3TkVrU2g1SzFLRnhkODMrVFJGcWYwT3ZwUUpwSlBmbTVB?=
- =?utf-8?B?TkQwd1Q3TFhtWHJqbTZkMWVDMEFzWEhUbUc5S3gwbkphT1ZCdkVRVnVrbk9C?=
- =?utf-8?B?b1crS1lmWlhaSjUxZG43N1ZHZTdPZ1l0d1RTQThvS2JtVGxmSmtRZXdRUDRB?=
- =?utf-8?B?T0xtNXFUWGtON2tlM05FZ25VcmdjblpaelozRnpydU0vU0F0R3BCSEFZdHY5?=
- =?utf-8?B?ay8wZzRrQ3NyZU1TL3FFVGwxeEphSzhicW1aTUUxbi9Ec042cERpSERsNkNn?=
- =?utf-8?B?YW8vOStLOWRuWStJSzYzVCt0dWk4cFpveDJnMmxDeDZjbytOb0NHOTlLUDZn?=
- =?utf-8?B?TkVoL2dRTzlHd3JON0cvV0kyck1GZlM4TEdpYnpOMjlNL29BQmRQdkdkU3lo?=
- =?utf-8?B?T2U4SEpGeDBxa1FGYUlBTjgvVXhQQndFOVVhckdDVzdFenRaMk9MSzRZMGtK?=
- =?utf-8?B?RW9EUlpZeWhIVzI3c0Yxb2JNZ2FOMUMzbG1Od2l2ZWJTYm9kMm1yNHBMR3h0?=
- =?utf-8?B?UGUxeW9TRGRPL2JaaC96L05qSCsrR09tZkxEWWVuUU5RRjlPTU5KNVBNWFM5?=
- =?utf-8?Q?RgJs9iDivClS1Q9nXOcWIRM=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32826cc3-a767-4fe8-891b-08d9f067ec86
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR03MB5608.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2022 09:45:39.1735 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 335836de-42ef-43a2-b145-348c2ee9ca5b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pCZULRE0ypM1MYAFyBxumnnbHYB9R4P24gzY44d0kV4TkZA/k/jKXVcffojdAGeVleKqo682MpIuIeFVQsferg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR03MB3053
-X-OriginatorOrg: citrix.com
-Subject: Re: [Intel-gfx] [PATCH V3 1/13] block: xen: use
- time_is_before_eq_jiffies() instead of open coding it
+In-Reply-To: <20220215085957.GA15926@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Fix bw atomic check when
+ switching between SAGV vs. no SAGV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,33 +64,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Mike Snitzer <snitzer@redhat.com>, David Airlie <airlied@linux.ie>,
- Michael Turquette <mturquette@baylibre.com>, dri-devel@lists.freedesktop.org,
- Hans Verkuil <hverkuil@xs4all.nl>, dm-devel@redhat.com,
- Benjamin Tissoires <benjamin.tissoires@redhat.com>,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
- linux-clk@vger.kernel.org, Alasdair Kergon <agk@redhat.com>,
- amd-gfx@lists.freedesktop.org, linux-input@vger.kernel.org,
- xen-devel@lists.xenproject.org, linux-media@vger.kernel.org,
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
- intel-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>,
- linux-block@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jens Axboe <axboe@kernel.dk>, Stephen Boyd <sboyd@kernel.org>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 14, 2022 at 05:55:38PM -0800, Qing Wang wrote:
-> From: Wang Qing <wangqing@vivo.com>
+On Tue, Feb 15, 2022 at 10:59:57AM +0200, Lisovskiy, Stanislav wrote:
+> On Mon, Feb 14, 2022 at 10:26:39PM +0200, Ville Syrj‰l‰ wrote:
+> > On Mon, Feb 14, 2022 at 07:03:05PM +0200, Lisovskiy, Stanislav wrote:
+> > > On Mon, Feb 14, 2022 at 12:24:57PM +0200, Ville Syrj‰l‰ wrote:
+> > > > On Mon, Feb 14, 2022 at 12:05:36PM +0200, Lisovskiy, Stanislav wrote:
+> > > > > On Mon, Feb 14, 2022 at 11:18:07AM +0200, Ville Syrjala wrote:
+> > > > > > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> > > > > > 
+> > > > > > If the only thing that is changing is SAGV vs. no SAGV but
+> > > > > > the number of active planes and the total data rates end up
+> > > > > > unchanged we currently bail out of intel_bw_atomic_check()
+> > > > > > early and forget to actually compute the new WGV point
+> > > > > > mask and thus won't actually enable/disable SAGV as requested.
+> > > > > > This ends up poorly if we end up running with SAGV enabled
+> > > > > > when we shouldn't. Usually ends up in underruns.
+> > > > > > To fix this let's go through the QGV point mask computation
+> > > > > > if anyone else already added the bw state for us.
+> > > > > 
+> > > > > Haven't been looking this in a while. Despite we have been
+> > > > > looking like few revisions together still some bugs :(
+> > > > > 
+> > > > > I thought SAGV vs No SAGV can't change if active planes 
+> > > > > or data rate didn't change? Because it means we probably
+> > > > > still have same ddb allocations, which means SAGV state
+> > > > > will just stay the same.
+> > > > 
+> > > > SAGV can change due to watermarks/ddb allocations. The easiest
+> > > > way to trip this up is to try to use the async flip wm0/ddb 
+> > > > optimization. That immediately forgets to turn off SAGV and
+> > > > we get underruns, whcih is how I noticed this. And I don't
+> > > > immediately see any easy proof that this couldn't also happen
+> > > > due to some other plane changes.
+> > > 
+> > > Thats the way it was initially implemented even before SAGV was added.
+> > 
+> > Yeah, it wasn't a problem as long as SAGV was not enabled.
+> > 
+> > > I think it can be dated back to the very first bw check was implemented.
+> > > 
+> > > commit c457d9cf256e942138a54a2e80349ee7fe20c391
+> > > Author: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> > > Date:   Fri May 24 18:36:14 2019 +0300
+> > > 
+> > >     drm/i915: Make sure we have enough memory bandwidth on ICL
+> > > 
+> > > +int intel_bw_atomic_check(struct intel_atomic_state *state)
+> > > +{
+> > > +       struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > > +       struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+> > > +       struct intel_bw_state *bw_state = NULL;
+> > > +       unsigned int data_rate, max_data_rate;
+> > > +       unsigned int num_active_planes;
+> > > +       struct intel_crtc *crtc;
+> > > +       int i;
+> > > +
+> > > +       /* FIXME earlier gens need some checks too */
+> > > +       if (INTEL_GEN(dev_priv) < 11)
+> > > +               return 0;
+> > > +
+> > > +       for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> > > +                                           new_crtc_state, i) {
+> > > +               unsigned int old_data_rate =
+> > > +                       intel_bw_crtc_data_rate(old_crtc_state);
+> > > +               unsigned int new_data_rate =
+> > > +                       intel_bw_crtc_data_rate(new_crtc_state);
+> > > +               unsigned int old_active_planes =
+> > > +                       intel_bw_crtc_num_active_planes(old_crtc_state);
+> > > +               unsigned int new_active_planes =
+> > > +                       intel_bw_crtc_num_active_planes(new_crtc_state);
+> > > +
+> > > +               /*
+> > > +                * Avoid locking the bw state when
+> > > +                * nothing significant has changed.
+> > > +                */
+> > > +               if (old_data_rate == new_data_rate &&
+> > > +                   old_active_planes == new_active_planes)
+> > > +                       continue;
+> > > +
+> > > +               bw_state  = intel_atomic_get_bw_state(state);
+> > > +               if (IS_ERR(bw_state))
+> > > +                       return PTR_ERR(bw_state);
+> > > 
+> > > However, what can cause watermarks/ddb to change, besides plane state change
+> > > and/or active planes change? We change watermarks, when we change ddb allocations
+> > > and we change ddb allocations when active planes had changed and/or data rate
+> > > had changed.
+> > 
+> > The bw code only cares about the aggregate numbers from all the planes.
+> > The planes could still change in some funny way where eg. some plane
+> > frees up some bandwidth, but the other planes gobble up the exact same
+> > amount and thus the aggregate numbers the bw atomic check cares about
+> > do not change but the watermarks/ddb do.
+> > 
+> > And as mentiioned, the async flip wm0/ddb optimization makes this trivial
+> > to trip up since it will want to disable SAGV as there is not enough ddb
+> > for the SAGV watermark. And async flip specifically isn't even allowed
+> > to change anything that would affect the bandwidth utilization, and neither
+> > is it allowed to enable/disable planes.
 > 
-> Use the helper function time_is_{before,after}_jiffies() to improve
-> code readability.
+> I think the whole idea of setting ddb to minimum in case of async flip optimization
+> was purely our idea - BSpec/HSD only mentions forbidding wm levels > 0 in case of async
+> flip, however there is nothing about limiting ddb allocations.
+
+Reducing just the watermark doesn't really make sense 
+if the goal is to keep the DBUF level to a minimum. Also
+I don't think there is any proper docs for this thing. The
+only thing we have just has some vague notes about using
+"minimum watermarks", whatever that means.
+
 > 
-> Signed-off-by: Wang Qing <wangqing@vivo.com>
+> Was a bit suspicious about that whole change, to be honest - and yep, now it seems to
+> cause some unexpected side effects.
 
-Acked-by: Roger Pau Monn√© <roger.pau@citrix.com>
+The bw_state vs. SAGV bug is there regardless of the wm0 optimization.
 
-Thanks, Roger.
+Also the SAGV watermark is not the minimum watermark (if that is
+the doc really means by that), the normal WM0 is the minimum watermark.
+So even if we interpret the doc to say that we should just disable all
+watermark levels except the smallest one (normal WM0) without changing
+the ddb allocations we would still end up disabling SAGV.
+
+> Also we are now forcing the recalculation to be done always no matter what and using
+> new bw state for that in a bit counterintuitive way, which I don't like. 
+> Not even sure that will always work, as we are not guaranteed to get a non-NULL
+> new_bw_state object from calling intel_atomic_get_new_bw_state, for that purpose we
+> typically call intel_atomic_get_bw_state, which is supposed to do that and its called only
+> here and in cause of CDCLK recalculation, which is called in intel_cdclk_atomic_check and
+> done right after this one.
+
+If there is no bw_state then bw_state->pipe_sagv_reject can't have
+changed and there is nothing to recalculate.
+
+> 
+> So if we haven't called intel_atomic_get_bw_state beforehand, which we didn't because there are
+> 2 places, where new bw state was supposed to be created to be usable by intel_atomic_get_new_bw_state
+> - I think, we will(or might) get a NULL here, because intel_atomic_get_bw_state hasn't been called yet.
+
+Yes, NULL is perfectly fine.
+
+-- 
+Ville Syrj‰l‰
+Intel
