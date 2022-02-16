@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC4624B84F7
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 10:54:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8B04B8508
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 10:58:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AD9E10E61E;
-	Wed, 16 Feb 2022 09:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A66410E9E0;
+	Wed, 16 Feb 2022 09:58:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9780810E661
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 09:54:07 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A46FD10E9DF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 09:58:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645005247; x=1676541247;
+ t=1645005509; x=1676541509;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=FKzh5eNlMO2JWH/4cp/2ZROGUF/7gDTwfvzT6qgKIsY=;
- b=TQ5tDCy5QrzMnb1uI2BcwJVtdhD+g2aqPr6VhKRCO7xpr1pL+94YZvoD
- z5+0hF3ygNju9BDsNo4uXaWgNiP3x14E1sNbvYPrvU8vv3yVTpFCxRYKI
- p5nbeK4vbkbEyHBj9ANMVreAr5p7nUMJTbfO6rPZYI4LefUx97NH+aoQs
- kZLMi6ImOyLncRDEtERKAynoy+eOMnOoKg8QF0QoZQS7A7JbQfoDvogXZ
- Rkq7IrrTx9m0kgYgUxZGAPu1UINz407fDqpJkYIMW4RED+NUhWjQ7U3JK
- 0XR5P+0y6CF5J6wzzlwIvTqlyMSjL138KCHVdIuLIwVhzFUrFpbHvP5Vc Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="336998684"
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="336998684"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 01:54:06 -0800
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="486850299"
+ bh=9icH289zsN/UZGvPOuwhrbR6bu1EWNQ80x2tN3Nsq5s=;
+ b=QdPHTNzh7e0meucfm977rFrv6Y8rPvJgRSkHbr2eqbJYErlm0fS/GgAb
+ sKhHhkvlY2WopOkPNsO29lR2/cKkDq1DQ9ewKxPaIgDYgb/jyYvlIlTQ+
+ 0FwdhdJclt1UYkqEp1h2CcilYxdIXkqplXvwm0iz2RA8MxSlNJHgXFHHj
+ pKRz1tibTpKCdmryhw6H/6wX/XfcclCrdncf91IXLlXGtncDIy54hbeKD
+ 7YLK7DAT/a0AzKF7pJHtKxC0JxxL9OFOikpwqLtzsS3vjTHtjGf9F5nwi
+ FDD6HqcSI+NrgEGyG+MDNyL3/FKVtL1kMHuqn7179+HqJvWBIpyVQT1xi Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="249398596"
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="249398596"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 01:57:19 -0800
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="498635622"
 Received: from rbilei-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.13.113])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 01:54:05 -0800
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 01:57:17 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220211090629.15555-6-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220211182045.23555-1-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220211090629.15555-1-ville.syrjala@linux.intel.com>
- <20220211090629.15555-6-ville.syrjala@linux.intel.com>
-Date: Wed, 16 Feb 2022 11:54:00 +0200
-Message-ID: <87y22b3znr.fsf@intel.com>
+References: <20220211090629.15555-7-ville.syrjala@linux.intel.com>
+ <20220211182045.23555-1-ville.syrjala@linux.intel.com>
+Date: Wed, 16 Feb 2022 11:57:12 +0200
+Message-ID: <87v8xf3zif.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 5/8] drm/i915: Remove gen6_check_mch_setup()
+Subject: Re: [Intel-gfx] [PATCH v2 6/8] drm/i915: Add REG_GENMASK64() and
+ REG_FIELD_GET64()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,68 +66,67 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, 11 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> snb_wm_latency_quirk() already boosts up the latency values
-> so the extra warning about the SSKPD value being insufficient
-> is now redundant. Drop it.
+> We treat SSKPD as a 64 bit register. Add the support macros
+> to define/extract bits in such registers.
+>
+> v2: Fix 32bit builds
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-I just might not understand what's going on...
-
-...but snb_wm_latency_quirk() is only called for display 6, not for ivb
-where the check is also removed?
-
-BR,
-Jani.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/intel_pm.c | 15 ---------------
->  1 file changed, 15 deletions(-)
+>  drivers/gpu/drm/i915/i915_reg_defs.h | 27 +++++++++++++++++++++++++++
+>  1 file changed, 27 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index 0fa3dce9bd54..34e46a9b8300 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -7432,17 +7432,6 @@ static void cpt_init_clock_gating(struct drm_i915_=
-private *dev_priv)
->  	}
->  }
+> diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/=
+i915_reg_defs.h
+> index 34d37bbf08cd..d78d78fce431 100644
+> --- a/drivers/gpu/drm/i915/i915_reg_defs.h
+> +++ b/drivers/gpu/drm/i915/i915_reg_defs.h
+> @@ -37,6 +37,21 @@
+>  				 __is_constexpr(__low) &&		\
+>  				 ((__low) < 0 || (__high) > 31 || (__low) > (__high)))))
 >=20=20
-> -static void gen6_check_mch_setup(struct drm_i915_private *dev_priv)
-> -{
-> -	u32 tmp;
-> -
-> -	tmp =3D intel_uncore_read(&dev_priv->uncore, MCH_SSKPD);
-> -	if ((tmp & MCH_SSKPD_WM0_MASK) !=3D MCH_SSKPD_WM0_VAL)
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "Wrong MCH_SSKPD value: 0x%08x This can cause underruns.\n",
-> -			    tmp);
-> -}
-> -
->  static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
->  {
->  	u32 dspclk_gate =3D ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> @@ -7500,8 +7489,6 @@ static void gen6_init_clock_gating(struct drm_i915_=
-private *dev_priv)
->  	g4x_disable_trickle_feed(dev_priv);
+> +/**
+> + * REG_GENMASK64() - Prepare a continuous u64 bitmask
+> + * @__high: 0-based high bit
+> + * @__low: 0-based low bit
+> + *
+> + * Local wrapper for GENMASK_ULL() to force u64, with compile time check=
+s.
+> + *
+> + * @return: Continuous bitmask from @__high to @__low, inclusive.
+> + */
+> +#define REG_GENMASK64(__high, __low)					\
+> +	((u64)(GENMASK_ULL(__high, __low) +				\
+> +	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&		\
+> +				 __is_constexpr(__low) &&		\
+> +				 ((__low) < 0 || (__high) > 63 || (__low) > (__high)))))
+> +
+>  /*
+>   * Local integer constant expression version of is_power_of_2().
+>   */
+> @@ -71,6 +86,18 @@
+>   */
+>  #define REG_FIELD_GET(__mask, __val)	((u32)FIELD_GET(__mask, __val))
 >=20=20
->  	cpt_init_clock_gating(dev_priv);
-> -
-> -	gen6_check_mch_setup(dev_priv);
->  }
->=20=20
->  static void lpt_init_clock_gating(struct drm_i915_private *dev_priv)
-> @@ -7853,8 +7840,6 @@ static void ivb_init_clock_gating(struct drm_i915_p=
-rivate *dev_priv)
->=20=20
->  	if (!HAS_PCH_NOP(dev_priv))
->  		cpt_init_clock_gating(dev_priv);
-> -
-> -	gen6_check_mch_setup(dev_priv);
->  }
->=20=20
->  static void vlv_init_clock_gating(struct drm_i915_private *dev_priv)
+> +/**
+> + * REG_FIELD_GET64() - Extract a u64 bitfield value
+> + * @__mask: shifted mask defining the field's length and position
+> + * @__val: value to extract the bitfield value from
+> + *
+> + * Local wrapper for FIELD_GET() to force u64 and for consistency with
+> + * REG_GENMASK64().
+> + *
+> + * @return: Masked and shifted value of the field defined by @__mask in =
+@__val.
+> + */
+> +#define REG_FIELD_GET64(__mask, __val)	((u64)FIELD_GET(__mask, __val))
+> +
+>  typedef struct {
+>  	u32 reg;
+>  } i915_reg_t;
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
