@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C289F4B8F87
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 18:43:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C8B94B8F88
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 18:43:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB7F010E700;
-	Wed, 16 Feb 2022 17:42:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FF0A10E728;
+	Wed, 16 Feb 2022 17:43:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A74A810E700
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 17:42:58 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1D2610E728
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 17:43:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645033378; x=1676569378;
+ t=1645033381; x=1676569381;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VYGCyd12BQzMGVyqbgMrgzm2BF3UhRG18MnduDdt6mE=;
- b=OsmKDjUXfzJkUt3m6VQi5tGylyukdB6YmStfJy5hHvL+TVOJ0oADOD4o
- aX7vlGkKOiiipoJxAaFQ8F3HypqK1XI6hYknGCecUkmd1wp4uE3kVqLnA
- Ni2BzNc60ns2OujzTSlW962kHWczUHvXwivHMPkw9Nek1EF1Xq7s5GVNw
- Ic3Sh2cBjsz+zknPQ1INbA4uYm4g0lrw3TjANvRhkos9R1Hq/TNjpX4Tl
- f3L9AKdMTJ0zm5yQxJUXuladKCJU3zzN4Oo6c4nNT3eD1Y8kdNUfKC0+I
- TQU+Xm6LuZWDCsu60+e/Pu7+OZHPYHvSno8j0Der95kGDbScbiYwmnTUZ w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="231304618"
-X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="231304618"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 09:42:57 -0800
+ bh=p7jz2CooDnh3wCTyjwRbD6RPNbUIngB4BJvAiEu3ohY=;
+ b=WEdi3Etk5AXNHupQok0QT/36TLkGpsTs+PY/bwK+s2D2BgWkfrB1tPYd
+ tpqU/PtGBgFyHyAclDUU4ahvlXoai/3U3wiV76S5G5+TrSktJhZxzjmD1
+ uPUvS6T5BzJCT+3ZvBhLy2XekewiDaro13D5l1iXQ8uOYRR1mnWhJvOfd
+ UeAeQGUt7S2Bvi14lqN5jyG8G6JTaCptQOSjxvNrx6NIjxRUC1l8SbPvA
+ b5i0KFmbqX54Uf1NG+MJtciZ38ZSGehEkHJLMRlbdT+dyHnKKD0U3sq3y
+ XBhd1eif1waA6frM8waH9M6nPsHaFGrvkvwfyNJP8UbGuNVPpAnYtHyX5 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="311424071"
+X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="311424071"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 09:43:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="633789452"
+X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="540228132"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga002.fm.intel.com with SMTP; 16 Feb 2022 09:42:54 -0800
+ by fmsmga007.fm.intel.com with SMTP; 16 Feb 2022 09:42:58 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 16 Feb 2022 19:42:54 +0200
+ Wed, 16 Feb 2022 19:42:57 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Feb 2022 19:42:45 +0200
-Message-Id: <20220216174250.4449-2-ville.syrjala@linux.intel.com>
+Date: Wed, 16 Feb 2022 19:42:46 +0200
+Message-Id: <20220216174250.4449-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220216174250.4449-1-ville.syrjala@linux.intel.com>
 References: <20220216174250.4449-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/6] drm/i915: Correctly populate use_sagv_wm
- for all pipes
+Subject: [Intel-gfx] [PATCH v2 2/6] drm/i915: Fix bw atomic check when
+ switching between SAGV vs. no SAGV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,61 +65,42 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-When changing between SAGV vs. no SAGV on tgl+ we have to
-update the use_sagv_wm flag for all the crtcs or else
-an active pipe not already in the state will end up using
-the wrong watermarks. That is especially bad when we end up
-with the tighter non-SAGV watermarks with SAGV enabled.
-Usually ends up in underruns.
+If the only thing that is changing is SAGV vs. no SAGV but
+the number of active planes and the total data rates end up
+unchanged we currently bail out of intel_bw_atomic_check()
+early and forget to actually compute the new WGV point
+mask and thus won't actually enable/disable SAGV as requested.
+This ends up poorly if we end up running with SAGV enabled
+when we shouldn't. Usually ends up in underruns.
+To fix this let's go through the QGV point mask computation
+if anyone else already added the bw state for us.
 
 Cc: stable@vger.kernel.org
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Fixes: 7241c57d3140 ("drm/i915: Add TGL+ SAGV support")
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Fixes: 20f505f22531 ("drm/i915: Restrict qgv points which don't have enough bandwidth.")
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_pm.c | 22 +++++++++++-----------
- 1 file changed, 11 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 9f5e3c399f8d..bd32fd70e6b2 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -4007,6 +4007,17 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
- 			return ret;
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 23aa8e06de18..d72ccee7d53b 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -846,6 +846,13 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ 	if (num_psf_gv_points > 0)
+ 		mask |= REG_GENMASK(num_psf_gv_points - 1, 0) << ADLS_PSF_PT_SHIFT;
  
-+	if (intel_can_enable_sagv(dev_priv, new_bw_state) !=
-+	    intel_can_enable_sagv(dev_priv, old_bw_state)) {
-+		ret = intel_atomic_serialize_global_state(&new_bw_state->base);
-+		if (ret)
-+			return ret;
-+	} else if (new_bw_state->pipe_sagv_reject != old_bw_state->pipe_sagv_reject) {
-+		ret = intel_atomic_lock_global_state(&new_bw_state->base);
-+		if (ret)
-+			return ret;
-+	}
++	/*
++	 * If we already have the bw state then recompute everything
++	 * even if pipe data_rate / active_planes didn't change.
++	 * Other things (such as SAGV) may have changed.
++	 */
++	new_bw_state = intel_atomic_get_new_bw_state(state);
 +
- 	for_each_new_intel_crtc_in_state(state, crtc,
- 					 new_crtc_state, i) {
- 		struct skl_pipe_wm *pipe_wm = &new_crtc_state->wm.skl.optimal;
-@@ -4022,17 +4033,6 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
- 			intel_can_enable_sagv(dev_priv, new_bw_state);
- 	}
- 
--	if (intel_can_enable_sagv(dev_priv, new_bw_state) !=
--	    intel_can_enable_sagv(dev_priv, old_bw_state)) {
--		ret = intel_atomic_serialize_global_state(&new_bw_state->base);
--		if (ret)
--			return ret;
--	} else if (new_bw_state->pipe_sagv_reject != old_bw_state->pipe_sagv_reject) {
--		ret = intel_atomic_lock_global_state(&new_bw_state->base);
--		if (ret)
--			return ret;
--	}
--
- 	return 0;
- }
- 
+ 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+ 					    new_crtc_state, i) {
+ 		unsigned int old_data_rate =
 -- 
 2.34.1
 
