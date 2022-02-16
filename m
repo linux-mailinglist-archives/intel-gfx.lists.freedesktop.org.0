@@ -1,53 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F8B04B8508
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 10:58:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A5214B8506
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 10:58:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A66410E9E0;
-	Wed, 16 Feb 2022 09:58:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9592610E9C6;
+	Wed, 16 Feb 2022 09:58:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A46FD10E9DF
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 09:58:29 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A61510E9C6;
+ Wed, 16 Feb 2022 09:58:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645005509; x=1676541509;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=9icH289zsN/UZGvPOuwhrbR6bu1EWNQ80x2tN3Nsq5s=;
- b=QdPHTNzh7e0meucfm977rFrv6Y8rPvJgRSkHbr2eqbJYErlm0fS/GgAb
- sKhHhkvlY2WopOkPNsO29lR2/cKkDq1DQ9ewKxPaIgDYgb/jyYvlIlTQ+
- 0FwdhdJclt1UYkqEp1h2CcilYxdIXkqplXvwm0iz2RA8MxSlNJHgXFHHj
- pKRz1tibTpKCdmryhw6H/6wX/XfcclCrdncf91IXLlXGtncDIy54hbeKD
- 7YLK7DAT/a0AzKF7pJHtKxC0JxxL9OFOikpwqLtzsS3vjTHtjGf9F5nwi
- FDD6HqcSI+NrgEGyG+MDNyL3/FKVtL1kMHuqn7179+HqJvWBIpyVQT1xi Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="249398596"
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="249398596"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 01:57:19 -0800
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="498635622"
-Received: from rbilei-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.13.113])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 01:57:17 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220211182045.23555-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220211090629.15555-7-ville.syrjala@linux.intel.com>
- <20220211182045.23555-1-ville.syrjala@linux.intel.com>
-Date: Wed, 16 Feb 2022 11:57:12 +0200
-Message-ID: <87v8xf3zif.fsf@intel.com>
+ t=1645005507; x=1676541507;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=2Nl47R+l/Dyorm/plhVMc/vkL37v28gUnjuXNQsPVTw=;
+ b=bxgpQMfjk6IssU3fRQF3bQ+LSrNTwc5iw6+YC7N+Rv8yN3sBL0oJlxk4
+ SX+wCJ11PlJTtxjUGGxzZNMGM8Tin0bdJhdaDKZfNerBlP2nReFaPZcH2
+ npQ5Y/tXb32SJCx5nPuBAaNiuwHH4zpj7YU7nvw4nwTT1ZHRsc1VjoeKZ
+ cX6B+whTkT/N8HXLn8p4yH2FyGPOK/RovLRHnoYyNqx4mWnhrZvmjfbIr
+ IBMGGxMd8KbTz1EkOLSXgHhexMM/e9k/zIJiMeL5P1zctn+n5T2Smm4zR
+ zJPmz7hckNbw/pnjZAzsfEM4b23nCwN6Lx5UVUADPu5LhFXhKcf/i3oX/ g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="230529728"
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="230529728"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 01:57:55 -0800
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="502952891"
+Received: from sphadnis-mobl1.amr.corp.intel.com (HELO [10.212.82.113])
+ ([10.212.82.113])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 01:57:52 -0800
+Message-ID: <9a7b0e48-b00f-be11-7fc7-bc26719cbc1e@linux.intel.com>
+Date: Wed, 16 Feb 2022 09:57:49 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 6/8] drm/i915: Add REG_GENMASK64() and
- REG_FIELD_GET64()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+References: <20220216083849.91239-1-jiapeng.chong@linux.alibaba.com>
+ <87h78z5gmp.fsf@intel.com> <YgzBpX2SKCh4cb19@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <YgzBpX2SKCh4cb19@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: fix unsigned integer to signed
+ assignment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,73 +63,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, airlied@linux.ie,
+ intel-gfx@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ sumit.semwal@linaro.org, linaro-mm-sig@lists.linaro.org,
+ christian.koenig@amd.com, linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 11 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> We treat SSKPD as a 64 bit register. Add the support macros
-> to define/extract bits in such registers.
->
-> v2: Fix 32bit builds
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+On 16/02/2022 09:19, Ville Syrjälä wrote:
+> On Wed, Feb 16, 2022 at 11:02:06AM +0200, Jani Nikula wrote:
+>> On Wed, 16 Feb 2022, Jiapeng Chong <jiapeng.chong@linux.alibaba.com> wrote:
+>>> Eliminate the follow smatch warning:
+>>>
+>>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4640
+>>> guc_create_virtual() warn: assigning (-2) to unsigned variable
+>>> 've->base.instance'.
+>>>
+>>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4641
+>>> guc_create_virtual() warn: assigning (-2) to unsigned variable
+>>> 've->base.uabi_instance'.
+>>>
+>>> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+>>> Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+>>
+>> The report seems to be valid, but I don't think this is the fix.
+>>
+>> Where do we even check for invalid instance/uabi_instance in code?
+> 
+> The whole thing seems rather poorly documented as there's a matching
+> uabi struct with __u16's and the negative values are defined right
+> there in the uapi header as well.
 
-> ---
->  drivers/gpu/drm/i915/i915_reg_defs.h | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/=
-i915_reg_defs.h
-> index 34d37bbf08cd..d78d78fce431 100644
-> --- a/drivers/gpu/drm/i915/i915_reg_defs.h
-> +++ b/drivers/gpu/drm/i915/i915_reg_defs.h
-> @@ -37,6 +37,21 @@
->  				 __is_constexpr(__low) &&		\
->  				 ((__low) < 0 || (__high) > 31 || (__low) > (__high)))))
->=20=20
-> +/**
-> + * REG_GENMASK64() - Prepare a continuous u64 bitmask
-> + * @__high: 0-based high bit
-> + * @__low: 0-based low bit
-> + *
-> + * Local wrapper for GENMASK_ULL() to force u64, with compile time check=
-s.
-> + *
-> + * @return: Continuous bitmask from @__high to @__low, inclusive.
-> + */
-> +#define REG_GENMASK64(__high, __low)					\
-> +	((u64)(GENMASK_ULL(__high, __low) +				\
-> +	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&		\
-> +				 __is_constexpr(__low) &&		\
-> +				 ((__low) < 0 || (__high) > 63 || (__low) > (__high)))))
-> +
->  /*
->   * Local integer constant expression version of is_power_of_2().
->   */
-> @@ -71,6 +86,18 @@
->   */
->  #define REG_FIELD_GET(__mask, __val)	((u32)FIELD_GET(__mask, __val))
->=20=20
-> +/**
-> + * REG_FIELD_GET64() - Extract a u64 bitfield value
-> + * @__mask: shifted mask defining the field's length and position
-> + * @__val: value to extract the bitfield value from
-> + *
-> + * Local wrapper for FIELD_GET() to force u64 and for consistency with
-> + * REG_GENMASK64().
-> + *
-> + * @return: Masked and shifted value of the field defined by @__mask in =
-@__val.
-> + */
-> +#define REG_FIELD_GET64(__mask, __val)	((u64)FIELD_GET(__mask, __val))
-> +
->  typedef struct {
->  	u32 reg;
->  } i915_reg_t;
+Negative ones are exception values to be used in conjunction with the virtual engine uapi (see "DOC: Virtual Engine uAPI" and also comment next to I915_CONTEXT_PARAM_ENGINES).
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+AFAIK assigning negative int to unsigned int is defined and fine.
+
+Compiler does warn on comparisons which is why we have:
+
+./gem/i915_gem_busy.c:  if (id == (u16)I915_ENGINE_CLASS_INVALID)
+./gem/i915_gem_busy.c:  if (id == (u16)I915_ENGINE_CLASS_INVALID)
+./gem/i915_gem_context.c:               if (ci.engine_class == (u16)I915_ENGINE_CLASS_INVALID &&
+./gem/i915_gem_context.c:                   ci.engine_instance == (u16)I915_ENGINE_CLASS_INVALID_NONE)
+
+So I think no action needed here.
+
+Regards,
+
+Tvrtko
+  
+>>
+>> BR,
+>> Jani.
+>>
+>>
+>>> ---
+>>>   drivers/gpu/drm/i915/gt/intel_engine_types.h | 4 ++--
+>>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>> index 36365bdbe1ee..dc7cc06c68e7 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>> @@ -328,10 +328,10 @@ struct intel_engine_cs {
+>>>   	intel_engine_mask_t logical_mask;
+>>>   
+>>>   	u8 class;
+>>> -	u8 instance;
+>>> +	s8 instance;
+>>>   
+>>>   	u16 uabi_class;
+>>> -	u16 uabi_instance;
+>>> +	s16 uabi_instance;
+>>>   
+>>>   	u32 uabi_capabilities;
+>>>   	u32 context_size;
+>>
+>> -- 
+>> Jani Nikula, Intel Open Source Graphics Center
+> 
