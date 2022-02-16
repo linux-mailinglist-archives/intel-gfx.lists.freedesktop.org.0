@@ -1,58 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B99A4BA06A
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 13:56:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5DFF4BA112
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 14:26:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AB3510EE4C;
-	Thu, 17 Feb 2022 12:56:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91D4010E6B2;
+	Thu, 17 Feb 2022 13:26:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C2D310EE4C;
- Thu, 17 Feb 2022 12:56:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645102595; x=1676638595;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=9zHnjADZdW6K8aBJ8mkjKVLkdspC6Yl6QYHIxnBZs8Q=;
- b=m1aCsLQWlS4cSm4t2E+dVmFEIIHcePZUl2pmCAbTckR65DmrlIgQ9peM
- CtoQUE/dIefk5gccWNwslrShUGctWprtV3vSuamP0zGpOAstQB91MFP5g
- 8gYcP5FYcc4dJnMzTKXkXkN2Xa4N2o6JYAiWCBIrE1kxB6yIxMuEZST6u
- SHBoZxBFNKUDDRjewD4k8gdPaki7MlvRm87XekNqfJVa7lwatW4Y/7lW5
- yzS0rfxBnu5846wGdrwc/xpXO+Jo6wrN2f4NbkCBGILb6xxR+V4FAGLNQ
- ENIiqIGxYanezOb895YiwGqfl56TPqLu728DDwRTFxsU2/RIpbZ8W5ron g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="231489407"
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="231489407"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 04:56:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="545581979"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga008.jf.intel.com with SMTP; 17 Feb 2022 04:56:32 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 17 Feb 2022 14:56:31 +0200
-Date: Thu, 17 Feb 2022 14:56:31 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Message-ID: <Yg5F/xiC7PKyGU0J@intel.com>
-References: <20220215055154.15363-1-ramalingam.c@intel.com>
- <20220215055154.15363-4-ramalingam.c@intel.com>
- <Ygy68/f1ERpTKJJW@intel.com>
- <392e942460079346d1ce9d3a17db11f9d02a17f5.camel@intel.com>
- <YgzMzNYlAoQPGhj1@intel.com>
- <11bc21211988d45e73a7be212d31263574dfb1ca.camel@intel.com>
- <Yg0Rz8hntpO4WfAx@intel.com>
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37E7210E3D6;
+ Wed, 16 Feb 2022 19:38:37 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 01E7BB81ED6;
+ Wed, 16 Feb 2022 19:38:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28A69C004E1;
+ Wed, 16 Feb 2022 19:38:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1645040312;
+ bh=YUNeMwnffWU/vzA+11lFMuMWe0+JjFTHVyeqME5xzxw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=RvhRgyEjawXUAql0FqCTCcTpqR6GYBvsqNC9EZPqI5ZukTe3YMkyAiJ+1YKBf+Rlr
+ sxewfhO7AtNd8GwQy/RQGGJ/AXgX1LgrWMnZTpDKZCiIl4MoI0X8P3b4yUkf4X3JeP
+ l7bOM+By1/829q8HEUDp0joAEckiMlN1bSJeEtmm9DT0v1cg0aKN9haMO+KRTEXTKx
+ BIawC1huC6S2hOqZ/gswPro0qF/Bzg0858Vu6QjTMbuvQTz7D1gR8uQt+HV6mEdhmv
+ BV4TgmRvjAQDxRzfAaigAGsmsMmR8Yj0ESiy1ZrH3LP0qLNGtaqg4OazRGKQ9Qu6L7
+ d13KOv1rLre5w==
+Date: Wed, 16 Feb 2022 13:46:09 -0600
+From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Message-ID: <20220216194609.GA903947@embeddedor>
+References: <20220215174743.GA878920@embeddedor>
+ <202202151016.C0471D6E@keescook>
+ <20220215192110.GA883653@embeddedor> <Ygv8wY75hNqS7zO6@unreal>
+ <20220215193221.GA884407@embeddedor>
+ <CAJZ5v0jpAnQk+Hub6ue6t712RW+W0YBjb_gAcZZbUeuYMGv7mg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Yg0Rz8hntpO4WfAx@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Fix for PHY_MISC_TC1 offset
+In-Reply-To: <CAJZ5v0jpAnQk+Hub6ue6t712RW+W0YBjb_gAcZZbUeuYMGv7mg@mail.gmail.com>
+X-Mailman-Approved-At: Thu, 17 Feb 2022 13:26:55 +0000
+Subject: Re: [Intel-gfx] [PATCH][next] treewide: Replace zero-length arrays
+ with flexible-array members
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,102 +58,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..."
+ <alsa-devel@alsa-project.org>, linux-ia64@vger.kernel.org,
+ Linux-sh list <linux-sh@vger.kernel.org>,
+ nouveau <nouveau@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, target-devel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, sparclinux@vger.kernel.org,
+ linux-i3c@lists.infradead.org, linux-arch <linux-arch@vger.kernel.org>,
+ linux-s390@vger.kernel.org, Leon Romanovsky <leon@kernel.org>,
+ "open list:BLUETOOTH DRIVERS" <linux-bluetooth@vger.kernel.org>,
+ linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev,
+ ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+ bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+ Ext4 Developers List <linux-ext4@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, linux-xtensa@linux-xtensa.org,
+ Kees Cook <keescook@chromium.org>, mpi3mr-linuxdrv.pdl@broadcom.com,
+ coresight@lists.linaro.org, sparmaintainer@unisys.com,
+ linux-um@lists.infradead.org, greybus-dev@lists.linaro.org,
+ linux-rpi-kernel@lists.infradead.org,
+ Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ "open list:ACPI COMPONENT ARCHITECTURE \(ACPICA\)" <devel@acpica.org>,
+ linux-cifs@vger.kernel.org,
+ "open list:TARGET SUBSYSTEM" <linux-scsi@vger.kernel.org>,
+ netdev <netdev@vger.kernel.org>, samba-technical@lists.samba.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ linux-perf-users@vger.kernel.org, GR-QLogic-Storage-Upstream@marvell.com,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ linux-alpha@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 16, 2022 at 05:01:35PM +0200, Ville Syrjälä wrote:
-> On Wed, Feb 16, 2022 at 02:11:54PM +0000, Hogander, Jouni wrote:
-> > On Wed, 2022-02-16 at 12:07 +0200, Ville Syrjälä wrote:
-> > > On Wed, Feb 16, 2022 at 09:36:02AM +0000, Hogander, Jouni wrote:
-> > > > On Wed, 2022-02-16 at 10:50 +0200, Ville Syrjälä wrote:
-> > > > > On Tue, Feb 15, 2022 at 11:21:54AM +0530, Ramalingam C wrote:
-> > > > > > From: Jouni Högander <jouni.hogander@intel.com>
-> > > > > > 
-> > > > > > Currently ICL_PHY_MISC macro is returning offset 0x64C10 for
-> > > > > > PHY_E
-> > > > > > port. Correct offset is 0x64C14.
-> > > > > 
-> > > > > Why is it PHY_E and not PHY_F?
-> > > > 
-> > > > This is a valid question. It seems we have followed
-> > > > intel_phy_is_snps()
-> > > > here:
-> > > > 
-> > > > // snip
-> > > > else if (IS_DG2(dev_priv))
-> > > > 		/*
-> > > > 		 * All four "combo" ports and the TC1 port (PHY E) use
-> > > > 		 * Synopsis PHYs.
-> > > > 		 */
-> > > > 		return phy <= PHY_E;
-> > > > // snip
-> > > > 
-> > > > According to spec port E is "No connection". Better place to fix
-> > > > this
-> > > > could be intel_phy_is_snps() itself?
-> > > 
-> > > I think the crucial question is where are all the places that
-> > > the results of intel_port_to_phy() get used.
-> > > 
-> > > I do see that for all the actual snps phy registers we
-> > > do want PHY_E, but maybe it would be better to have a local
-> > > SNPS_PHY enum just for intel_snps_phy.c, and leave the other
-> > > phy thing for everything else?
-> > > 
-> > > Not sure if there is some other register we index with the
-> > > phy that specifically wants PHY_E?
-> > 
-> > I went through registers accesses in intel_snps_phy.c. It is actually
-> > only this one register which offset is wrong with PHY_E. Everything
-> > else seems to be assuming PHY_E including those SNPS_* registers (as
-> > you mentioned). I'm starting to think it would be overkill to open up
-> > this phy enum for this purpose. I would propose to stick with current
-> > patch. Maybe just update commit message. What do you think?
+On Wed, Feb 16, 2022 at 08:05:47PM +0100, Rafael J. Wysocki wrote:
+> On Tue, Feb 15, 2022 at 8:24 PM Gustavo A. R. Silva
+> <gustavoars@kernel.org> wrote:
 > 
-> I would put it the other way. It is *only* the SNPS PHY IP registers
-> that use the wonky offsets (unless you found some others?). Everythting
-> on the Intel IP side wants it to be PHY_F.
+> Can you also send the ACPI patch separately, please?
 > 
-> So still would make more sense to me to add a new enum for the
-> SNPS PHY instance and remap across the boundary. Otherwise we're
-> just propagating this madness everwhere rather than containing in
-> the SNPS PHY implementation.
+> We would like to route it through the upstream ACPICA code base.
 
-Seems people want this is asap. I suppose it'll do as a temporary
-measure given the phy stuff is already such mess.
-Acked-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Yeah; no problem.
 
-As for the proper way to do stuff, I'm thinking roughly:
-enum intel_spns_phy {
-	SNPS_PHY_A,
-	...
-	SNPS_PHY_TC1, // == current PHY_E in value
-};
-and I think that can stay entirely inside intel_snps_phy.c.
-
-As for our currnet enum phy I think we could start with something like
-this:
-enum phy {
-	PHY_A,
-	...
-	PHY_F,
-
-	PHY_TC1 = PHY_F,
-	...
-};
-
-I think that should make it line up with PHY_MISC stuff and the 
-VBT as well. So in the VBT code we could nuke all those crazy mapping
-tables and just do:
- old platform: port -> VBT port
- new platform: phy -> VBT port
-
-And we could probably have encoder->phy which gets populated
-in the encoder init per-platform, similar to hpd_pin. That
-would get rid of the intel_port_to_phy() disaster.
-
--- 
-Ville Syrjälä
-Intel
+Thanks
+--
+Gustavo
