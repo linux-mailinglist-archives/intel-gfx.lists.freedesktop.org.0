@@ -1,53 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8D644B91C0
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 20:50:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E74294B91D8
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 20:55:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C11B10E220;
-	Wed, 16 Feb 2022 19:50:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E623892BC;
+	Wed, 16 Feb 2022 19:55:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D90B010E220
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 19:50:11 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A53F289296
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 19:55:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645041011; x=1676577011;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=cPHHOk3fiYYADqg5gWSwkLVA4UArhsHjq463s//56VA=;
- b=ExXKpkEKPLcObVxidM/A4yqm+tVg6j4i+TtHp5/8kt8boruKtedrCmBJ
- Wgu5XT7eaheMXACfQq4l6doQAIJCyVBmJCySd/Tpv9pbhUx/NkiVFKKxp
- w8chvauFv92NWfRfez4zJNw09l4aUFoNEWFfGYl05BzSfYPNj/WhtlOTN
- sbRab+CMEUqXLItdP5Cf8HyAf1KYtM3/M5bCaI3cRS069KXn3kUVDL1Fl
- XBIoCoNZQvrTtaBf15yjbvH6/etFpw/8rKpctcOj4f84cLbnJsG5mIpav
- qttTxSHpktsCxoH9z1NlrsXdIgC4nFhFAY5s1J2GwO6n9nUKUdkIO+Rk6 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="250909229"
-X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="250909229"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 11:50:11 -0800
-X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="704449049"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 11:50:11 -0800
-Date: Wed, 16 Feb 2022 11:50:30 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220216195024.GF27285@labuser-Z97X-UD5H>
-References: <20220215183208.6143-1-ville.syrjala@linux.intel.com>
- <20220215183208.6143-9-ville.syrjala@linux.intel.com>
+ t=1645041319; x=1676577319;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SvdmHFDYO8hwDG1iuRgcH+4moGS/UQknSxuGy9UmZT0=;
+ b=IkKDwMZIP/HzNVxN4k4fpdUTBfbWl1gHCLWGvJw88ayty8SkvAOGdDxm
+ +afPwaTMXUoeSap6OXiFj5wZBHy8hDQFnOnb3sYgfdRGv0rIeWpIrhTMe
+ eWgLgPJqxoDS3P9Yb/d8/f+VZCcu+2mhYBQEbUof0GssOqFrr+g2i5jZH
+ sPoKTtwnV/a/VdXzUD0yIQj/OguvrNUbENu8CRfmYX1FnQrVLDezWxkKA
+ UzgfSkz+e4MdtoOgZfTJAdWcN9BNabGpu9hIrBh1zVoiEcQJuXiGCDBRW
+ xQMbbPTSWWD4blTL3D904sWK1J4j/w4+bkR1+fXE13Nue4eV83VHTQIOC g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="250448211"
+X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="250448211"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 11:55:19 -0800
+X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="545140325"
+Received: from sannilnx.jer.intel.com ([10.12.231.79])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 11:55:15 -0800
+From: Alexander Usyskin <alexander.usyskin@intel.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Date: Wed, 16 Feb 2022 21:54:54 +0200
+Message-Id: <20220216195459.3918414-1-alexander.usyskin@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220215183208.6143-9-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 08/12] drm/i915: Fix MSO vs. bigjoiner
- timings confusion
+Subject: [Intel-gfx] [PATCH v8 0/5] Add driver for GSC controller
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,139 +58,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, Tomas Winkler <tomas.winkler@intel.com>,
+ Alexander Usyskin <alexander.usyskin@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 15, 2022 at 08:32:04PM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> When calculating pipe_mode and when doing readout we need
-> to order our steps correctly.
-> 
-> 1. We start with adjusted_mode crtc timings being populated
->    with the transcoder timings (either via readout or
->    compute_config(). These will be per-segment for MSO.
-> 2. For all other uses we want the full crtc timings so
->    we ask intel_splitter_adjust_timings() to expand
->    the per-segment numbers to their full glory
-> 3. If bigjoiner is used we the divide the full numbers
->    down to per-pipe numbers using intel_bigjoiner_adjust_timings()
-> 
-> During readout we also have to reconstruct the adjusted_mode
-> normal timings (ie. not the crtc_ stuff). These are supposed
-> to reflect the full timings of the display. So we grab these
-> between steps 2 and 3.
-> 
-> The "user" mode readout (mainly done for fastboot purposes)
-> should be whatever mode the user would have used had they
-> asked us to do a modeset. We want the full timings for this
-> as the per-segment timings are not suppoesed to be user visible.
-> Also the user mode normal timings hdisplay/vdisplay need to
-> match PIPESRC (that is where we get our PIPESRC size
-> we doing a modeset with a user supplied mode).
-> 
-> And we end up with
-> - adjusted_mode normal timigns == full timings
-> - adjusted_mode crtc timings == transcoder timings
->   (per-segment timings for MSO, full timings otherwise)
-> - pipe_mode normal/crtc timings == pipe timings
->   (full timings divided by the number of bigjoiner pipes, if any)
-> - user mode normal timings == full timings with
->   hdisplay/vdisplay replaced with PIPESRC size
-> - user mode crtc timings == full timings
-> 
-> Yes, that is a lot of timings. One day we'll try to remove
-> some of the ones we don't actually need to keep around...
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+GSC is a graphics system controller, it provides
+a chassis controller for graphics discrete cards.
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+There are two MEI interfaces in GSC: HECI1 and HECI2.
 
-Manasi
+This series includes instantiation of the auxiliary devices for HECI2
+and mei-gsc auxiliary device driver that binds to the auxiliary device.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 50 +++++++++++++-------
->  1 file changed, 32 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 6ff58164929c..131be3bb8026 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2769,25 +2769,33 @@ static void intel_crtc_readout_derived_state(struct intel_crtc_state *crtc_state
->  	struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
->  	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->  
-> +	/*
-> +	 * Start with the adjusted_mode crtc timings, which
-> +	 * have been filled with the transcoder timings.
-> +	 */
->  	drm_mode_copy(pipe_mode, adjusted_mode);
->  
-> -	intel_bigjoiner_adjust_timings(crtc_state, pipe_mode);
-> -
-> -	if (crtc_state->splitter.enable) {
-> -		intel_splitter_adjust_timings(crtc_state, pipe_mode);
-> -
-> -		intel_mode_from_crtc_timings(pipe_mode, pipe_mode);
-> -		intel_mode_from_crtc_timings(adjusted_mode, pipe_mode);
-> -	} else {
-> -		intel_mode_from_crtc_timings(pipe_mode, pipe_mode);
-> -		intel_mode_from_crtc_timings(adjusted_mode, adjusted_mode);
-> -	}
-> -
-> -	intel_crtc_compute_pixel_rate(crtc_state);
-> -
-> -	drm_mode_copy(mode, adjusted_mode);
-> +	/* Expand MSO per-segment transcoder timings to full */
-> +	intel_splitter_adjust_timings(crtc_state, pipe_mode);
-> +
-> +	/*
-> +	 * We want the full numbers in adjusted_mode normal timings,
-> +	 * adjusted_mode crtc timings are left with the raw transcoder
-> +	 * timings.
-> +	 */
-> +	intel_mode_from_crtc_timings(adjusted_mode, pipe_mode);
-> +
-> +	/* Populate the "user" mode with full numbers */
-> +	drm_mode_copy(mode, pipe_mode);
-> +	intel_mode_from_crtc_timings(mode, mode);
->  	mode->hdisplay = crtc_state->pipe_src_w << crtc_state->bigjoiner;
->  	mode->vdisplay = crtc_state->pipe_src_h;
-> +
-> +	/* Derive per-pipe timings in case bigjoiner is used */
-> +	intel_bigjoiner_adjust_timings(crtc_state, pipe_mode);
-> +	intel_mode_from_crtc_timings(pipe_mode, pipe_mode);
-> +
-> +	intel_crtc_compute_pixel_rate(crtc_state);
->  }
->  
->  static void intel_encoder_get_config(struct intel_encoder *encoder,
-> @@ -2836,15 +2844,21 @@ static int intel_crtc_compute_pipe_mode(struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->  	struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
->  	int clock_limit = i915->max_dotclk_freq;
->  
-> -	drm_mode_copy(pipe_mode, &crtc_state->hw.adjusted_mode);
-> -
-> -	intel_bigjoiner_adjust_timings(crtc_state, pipe_mode);
-> +	/*
-> +	 * Start with the adjusted_mode crtc timings, which
-> +	 * have been filled with the transcoder timings.
-> +	 */
-> +	drm_mode_copy(pipe_mode, adjusted_mode);
->  
-> +	/* Expand MSO per-segment transcoder timings to full */
->  	intel_splitter_adjust_timings(crtc_state, pipe_mode);
->  
-> +	/* Derive per-pipe timings in case bigjoiner is used */
-> +	intel_bigjoiner_adjust_timings(crtc_state, pipe_mode);
->  	intel_mode_from_crtc_timings(pipe_mode, pipe_mode);
->  
->  	if (DISPLAY_VER(i915) < 4) {
-> -- 
-> 2.34.1
-> 
+In v2 the platform device was replaced by the auxiliary device.
+v3 is the rebase over drm-tip to make public CI running.
+In v4 the not needed debug prints and empty line were removed,
+      'select' were replaced by 'depends on' in MEI Kconfig,
+      the new include file now listed in the MAINTATINERS file. 
+V5, rebase and add Greg KH Reviewed-by
+V6, rebase and drop redundant assignments found by the kernel test robot.
+V7, add Greg KH Reviewed-by to the individual patches
+V8, address Tvrtko comments for i915
+
+Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+Alexander Usyskin (2):
+  mei: gsc: setup char driver alive in spite of firmware handshake
+    failure
+  mei: gsc: retrieve the firmware version
+
+Tomas Winkler (3):
+  drm/i915/gsc: add gsc as a mei auxiliary device
+  mei: add support for graphics system controller (gsc) devices
+  mei: gsc: add runtime pm handlers
+
+ MAINTAINERS                              |   1 +
+ drivers/gpu/drm/i915/Kconfig             |   1 +
+ drivers/gpu/drm/i915/Makefile            |   3 +
+ drivers/gpu/drm/i915/gt/intel_gsc.c      | 199 ++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gsc.h      |  37 ++++
+ drivers/gpu/drm/i915/gt/intel_gt.c       |   3 +
+ drivers/gpu/drm/i915/gt/intel_gt.h       |   5 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c   |  13 ++
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h  |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h |   2 +
+ drivers/gpu/drm/i915/i915_drv.h          |   8 +
+ drivers/gpu/drm/i915/i915_pci.c          |   3 +-
+ drivers/gpu/drm/i915/i915_reg.h          |   2 +
+ drivers/gpu/drm/i915/intel_device_info.h |   2 +
+ drivers/misc/mei/Kconfig                 |  14 ++
+ drivers/misc/mei/Makefile                |   3 +
+ drivers/misc/mei/bus-fixup.c             |  25 +++
+ drivers/misc/mei/gsc-me.c                | 252 +++++++++++++++++++++++
+ drivers/misc/mei/hw-me.c                 |  29 ++-
+ drivers/misc/mei/hw-me.h                 |   2 +
+ include/linux/mei_aux.h                  |  19 ++
+ 21 files changed, 621 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gsc.c
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gsc.h
+ create mode 100644 drivers/misc/mei/gsc-me.c
+ create mode 100644 include/linux/mei_aux.h
+
+-- 
+2.32.0
+
