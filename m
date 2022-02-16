@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F08EF4B8748
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 13:00:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E3054B874E
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 13:04:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 276BB10E775;
-	Wed, 16 Feb 2022 12:00:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75D1B10E3E8;
+	Wed, 16 Feb 2022 12:04:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com
- [IPv6:2607:f8b0:4864:20::f2a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9FF310E755;
- Wed, 16 Feb 2022 12:00:44 +0000 (UTC)
-Received: by mail-qv1-xf2a.google.com with SMTP id x3so1814582qvd.8;
- Wed, 16 Feb 2022 04:00:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=cQvOjIROjp4zDNuMZYbqh86L4m+vxJGvKJ604jfTJTw=;
- b=N9wnl8+At1bfN/IgY71qE/9enXNC/I0uomEOiyCqHs1huRf80v1vPyf1KPwTBtuuMY
- ySRrLpd/13BnMtPnT7dsgCj7vksrB9Vnz5k521h31u402pz97WT/nQvNlr7HCmrEk5Jd
- S8QvmdldTCng6bBWqBb9wbHuEGB687ESAVndbnYFA3Ic7aaUpeTGW3Pil6EbgJ3yw84R
- GILrnTSmsLHTiUVrt79J9hMQqfjtojnyiim9lpVXK9cSf9sUTip3OqGYZkBMxYDh03yi
- MJ3IwWCRgjUyTDySrE7H66awu/k+u62bEdMul20Kqp+EOUn6qGgKHBaI99awmFHe8Cc0
- 3n2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=cQvOjIROjp4zDNuMZYbqh86L4m+vxJGvKJ604jfTJTw=;
- b=CWBASinIw0MmljSmhu/mCA1aDcnsnp8YSoD2oNg+vA/Opxd0z/aR/7pnJHNR0zBNlv
- G3yC1TXELJf4jKP2pgrcKU6AGF+vVNPn/yA4KKAnpJ91FsgUc/eWa6AQvfcxbLHBSEFg
- EhZiLwPKjlf+JsbONelF/Zhz6ZWJwrDn5gTQujM+5/6heJWJJokVa/3Ig7yKaNGo1IrE
- x5mvR2KY4DkIpwIykBfuylz4pnl8iMi4UU6ORD0xtU8Jv+UBwxvq6WLLRHTmFiGPZQ5m
- glIrBP2AaaTX26adUvIcLMnC/jWgsJv/FZx+Mnj7usKF4SNsW/aaMTvs9DoxznGUWAIc
- lsAQ==
-X-Gm-Message-State: AOAM531gBIzVsnm+i2N63v7LYZt+gtiBUmYuRLtk4cHfiFxm3GxnL1QE
- IkbLw/Wo+qzd3yltBhKjsY7gH6ypjbVTG31Tq34=
-X-Google-Smtp-Source: ABdhPJwg7yjA4t72Kpkib54Bk/3LZCXg5ZKFnD3VS3sB64mSjOVkkzuHZ7deSjR6ZyjiByrca9BkgKOtd/mBXxfw0Cc=
-X-Received: by 2002:ad4:58af:0:b0:42c:33e5:ddda with SMTP id
- ea15-20020ad458af000000b0042c33e5dddamr1483996qvb.27.1645012843985; Wed, 16
- Feb 2022 04:00:43 -0800 (PST)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6DC710E3E8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 12:04:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1645013045; x=1676549045;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=nl8GK8mOI649s6l53KlxFSU4dpekbJIMHhJ7EE7RAqU=;
+ b=iaePu6cYJHcX2S91vJUbmD7QtC676SxV2hRpyp57HAVL0PyqYuQNX8I0
+ WYpEcBmZrw4sVo/NFYORTVkP9SDAPG9hRnQrhK98WgAE2Eyx3O5I1N+p2
+ j5BRMvFFmOE+Rp3UjEKgD/I1XH/CHyJr9QzlrTJlM37YOaAN06IpHpgIh
+ JwThthHXSIQDRKYEigXoVZQx4IrXRwSqim3hJ7ZBK3v1myvjvkI6wejj1
+ BjBqqWhu9BUH70f301Ub2k3u0m+L7rFBwQj7B8Z1G5RZ2lknUvrMkVp1w
+ F9eFV49ic1q/SrbgQMM7HCctlG+6CMymPz2k3Q2Y6KV8gbxBhO2e66Xqd A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="250531906"
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="250531906"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 04:04:04 -0800
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="502995160"
+Received: from sphadnis-mobl1.amr.corp.intel.com (HELO [10.212.82.113])
+ ([10.212.82.113])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 04:04:01 -0800
+Message-ID: <7ed77377-1e6e-4329-1fda-87854f9bb938@linux.intel.com>
+Date: Wed, 16 Feb 2022 12:03:59 +0000
 MIME-Version: 1.0
-References: <20220208084234.1684930-1-hsinyi@chromium.org>
- <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
- <KW6DNh6IRRgVJx9DfOFBnEqc4a0x-AnDXEbMxwpfEbk8dOn_KGVzAfo-slJWq-4nWW728Uc-OVpFh2w4fDE4-bxfkDuz1hFILRVvbcuXqaw=@emersion.fr>
- <CACvgo532-pC+7DLFCo=DWTX-OnJEJvSoTmQnt3_qLhiT4cqEMg@mail.gmail.com>
- <GYG6EVT1MqtmfKiPpMhDG9mpuATnmwVDq2PuE_dpDat5oQW_t1tUfm39lSWHj32D5r7mrog27sL4dkgdMYQ5BN830TfVOrgQ4Ts8LcO8Hcs=@emersion.fr>
-In-Reply-To: <GYG6EVT1MqtmfKiPpMhDG9mpuATnmwVDq2PuE_dpDat5oQW_t1tUfm39lSWHj32D5r7mrog27sL4dkgdMYQ5BN830TfVOrgQ4Ts8LcO8Hcs=@emersion.fr>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Wed, 16 Feb 2022 12:00:32 +0000
-Message-ID: <CACvgo52+o9_ETC+1RKzqKkyw3ZJ28RjH0BqC9DfmNAKqByud8Q@mail.gmail.com>
-To: Simon Ser <contact@emersion.fr>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v8 1/3] gpu: drm: separate panel orientation
- property creating and value setting
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: "Usyskin, Alexander" <alexander.usyskin@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+References: <20220213103215.2440248-1-alexander.usyskin@intel.com>
+ <20220213103215.2440248-2-alexander.usyskin@intel.com>
+ <f88b7780-cf4f-d2f5-f2ba-cd3d7bf2a0d4@linux.intel.com>
+ <MW3PR11MB465112EBAFF7BC9681EF2D03ED349@MW3PR11MB4651.namprd11.prod.outlook.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <MW3PR11MB465112EBAFF7BC9681EF2D03ED349@MW3PR11MB4651.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v7 1/5] drm/i915/gsc: add gsc as a mei
+ auxiliary device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,111 +69,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- linux-mediatek@lists.infradead.org,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Hsin-Yi Wang <hsinyi@chromium.org>, Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- LAKML <linux-arm-kernel@lists.infradead.org>
+Cc: "Winkler, Tomas" <tomas.winkler@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Lubart,
+ Vitaly" <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 15 Feb 2022 at 16:37, Simon Ser <contact@emersion.fr> wrote:
->
-> On Tuesday, February 15th, 2022 at 15:38, Emil Velikov <emil.l.velikov@gmail.com> wrote:
->
-> > On Tue, 15 Feb 2022 at 13:55, Simon Ser <contact@emersion.fr> wrote:
-> > >
-> > > On Tuesday, February 15th, 2022 at 13:04, Emil Velikov <emil.l.velikov@gmail.com> wrote:
-> > >
-> > > > Greetings everyone,
-> > > >
-> > > > Padron for joining in so late o/
-> > > >
-> > > > On Tue, 8 Feb 2022 at 08:42, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
-> > > > >
-> > > > > drm_dev_register() sets connector->registration_state to
-> > > > > DRM_CONNECTOR_REGISTERED and dev->registered to true. If
-> > > > > drm_connector_set_panel_orientation() is first called after
-> > > > > drm_dev_register(), it will fail several checks and results in following
-> > > > > warning.
-> > > > >
-> > > > > Add a function to create panel orientation property and set default value
-> > > > > to UNKNOWN, so drivers can call this function to init the property earlier
-> > > > > , and let the panel set the real value later.
-> > > > >
-> > > >
-> > > > The warning illustrates a genuine race condition, where userspace will
-> > > > read the old/invalid property value/state. So this patch masks away
-> > > > the WARNING without addressing the actual issue.
-> > > > Instead can we fix the respective drivers, so that no properties are
-> > > > created after drm_dev_register()?
-> > > >
-> > > > Longer version:
-> > > > As we look into drm_dev_register() it's in charge of creating the
-> > > > dev/sysfs nodes (et al). Note that connectors cannot disappear at
-> > > > runtime.
-> > > > For panel orientation, we are creating an immutable connector
-> > > > properly, meaning that as soon as drm_dev_register() is called we must
-> > > > ensure that the property is available (if applicable) and set to the
-> > > > correct value.
-> > >
-> > > Unfortunately we can't quite do this. To apply the panel orientation quirks we
-> > > need to grab the EDID of the eDP connector, and this happened too late in my
-> > > testing.
-> > >
-> > > What we can do is create the prop early during module load, and update it when
-> > > we read the EDID (at the place where we create it right now). User-space will
-> > > receive a hotplug event after the EDID is read, so will be able to pick up the
-> > > new value if any.
-> >
-> > Didn't quite get that, are you saying that a GETPROPERTY for the EDID,
-> > the ioctl blocks or that we get an empty EDID?
->
-> I'm not referring to GETPROPERTY, I'm referring to the driver getting the EDID
-> from the sink (here, the eDP panel). In my experimentations with amdgpu I
-> noticed that the driver module load finished before the EDID was available to
-> the driver. Maybe other drivers behave differently and probe connectors when
-> loaded, not sure.
->
-I see thanks.
 
-> > The EDID hotplug even thing is neat - sounds like it also signals on
-> > panel orientation, correct?
-> > On such an event, which properties userspace should be re-fetching -
-> > everything or guess randomly?
-> >
-> > Looking through the documentation, I cannot see a clear answer :-\
->
-> User-space should re-fetch *all* properties. In practice some user-space may
-> only be fetching some properties, but that should get fixed in user-space.
->
-> Also the kernel can indicate that only a single connector changed via the
-> "CONNECTOR" uevent prop, or even a single connector property via "PROPERTY".
-> See [1] for a user-space implementation. But all of this is purely an optional
-> optimization. Re-fetching all properties is a bit slower (especially if some
-> drmModeGetConnector calls force-probe connectors) but works perfectly fine.
->
-Looking at KDE/kwin (the one I'm running) - doesn't seem like it
-handles any of the three "HOTPLUG", "PROPERTY" or "CONNECTOR" uevents
-:-\
-Skimming through GNOME/mutter - it handles "HOTPLUG", but not the optional ones.
 
-Guess we're in the clear wrt potential races, even though the
-documentation on the topic is lacklustre.
+On 15/02/2022 15:22, Usyskin, Alexander wrote:
 
-> It would be nice to document, if you have the time feel free to send a patch
-> and CC danvet, pq and me.
->
+>>> +{
+>>> +	irq_set_chip_and_handler_name(irq, &gsc_irq_chip,
+>>> +				      handle_simple_irq, "gsc_irq_handler");
+>>> +
+>>> +	return irq_set_chip_data(irq, dev_priv);
+>>
+>> I am not familiar with this interrupt scheme - does dev_priv get used at
+>> all by handle_simple_irq, or anyone, after being set here?
 
-Doubt I will have the time in the upcoming weeks, but I'll add it to
-my ever-growing TODO list :-P
+What about this? Is dev_priv required or you could pass in NULL just as 
+well?
 
-Thanks
-Emil
+>>
+>>> +}
+>>> +
+>>> +struct intel_gsc_def {
+>>> +	const char *name;
+>>> +	const unsigned long bar;
+>>
+>> Unusual, why const out of curiosity? And is it "bar" or "base" would be
+>> more accurate?
+>>
+> Some leftover, thanks for spotting this!
+> It is a base of bar. I prefer bar name here. But not really matter.
+
+Is it?
+
++	adev->bar.start = def->bar + pdev->resource[0].start;
+
+Looks like offset on top of BAR, no?
+
+>>> +{
+>>> +	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+>>> +	struct mei_aux_device *adev;
+>>> +	struct auxiliary_device *aux_dev;
+>>> +	const struct intel_gsc_def *def;
+>>> +	int ret;
+>>> +
+>>> +	intf->irq = -1;
+>>> +	intf->id = intf_id;
+>>> +
+>>> +	if (intf_id == 0 && !HAS_HECI_PXP(dev_priv))
+>>> +		return;
+>>
+>> Isn't inf_id == 0 always a bug with this patch, regardless of
+>> HAS_HECI_PXP, since the support is incomplete in this patch? If so I'd
+>> be more comfortable with a plain drm_WARN_ON_ONCE(intf_id == 0).
+>>
+> There will be patches for other cards that have pxp as soon as this is reviewed.
+> It is better to have infra prepared for two heads.
+
+My point is things are half-prepared since you don't have the id 0 in 
+the array, regardless of the HAS_HECI_PXP. Yes it can't be true now, but 
+if you add a patch which enables it to be true, you have to modify the 
+array at the same time or risk a broken patch in the middle.
+
+I don't see the point of the condition making it sound like there are 
+two criteria to enter below, while in fact there is only one in current 
+code, and that it that it must not be entered because array is incomplete!
+
+>>> +
+>>> +	if (!HAS_HECI_GSC(gt->i915))
+>>> +		return;
+>>
+>> Likewise?
+>>
+>>> +
+>>> +	if (gt->gsc.intf[intf_id].irq <= 0) {
+>>> +		DRM_ERROR_RATELIMITED("error handling GSC irq: irq not
+>> set");
+>>
+>> Like this, but use logging functions which say which device please.
+>>
+> drm_err_ratelimited fits here?
+
+AFAICT it would be a programming bug and not something that can happen 
+at runtime hence drm_warn_on_once sounds correct for both.
+
+>>>    }
+>>> @@ -182,6 +185,8 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
+>>>    	/* Disable RCS, BCS, VCS and VECS class engines. */
+>>>    	intel_uncore_write(uncore, GEN11_RENDER_COPY_INTR_ENABLE,
+>> 0);
+>>>    	intel_uncore_write(uncore, GEN11_VCS_VECS_INTR_ENABLE,	  0);
+>>> +	if (HAS_HECI_GSC(gt->i915))
+>>> +		intel_uncore_write(uncore,
+>> GEN11_GUNIT_CSME_INTR_ENABLE, 0);
+>>>
+>>>    	/* Restore masks irqs on RCS, BCS, VCS and VECS engines. */
+>>>    	intel_uncore_write(uncore, GEN11_RCS0_RSVD_INTR_MASK,	~0);
+>>> @@ -195,6 +200,8 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
+>>>    	intel_uncore_write(uncore, GEN11_VECS0_VECS1_INTR_MASK,
+>> 	~0);
+>>>    	if (HAS_ENGINE(gt, VECS2) || HAS_ENGINE(gt, VECS3))
+>>>    		intel_uncore_write(uncore,
+>> GEN12_VECS2_VECS3_INTR_MASK, ~0);
+>>> +	if (HAS_HECI_GSC(gt->i915))
+>>> +		intel_uncore_write(uncore,
+>> GEN11_GUNIT_CSME_INTR_MASK, ~0);
+>>>
+>>>    	intel_uncore_write(uncore,
+>> GEN11_GPM_WGBOXPERF_INTR_ENABLE, 0);
+>>>    	intel_uncore_write(uncore,
+>> GEN11_GPM_WGBOXPERF_INTR_MASK,  ~0);
+>>> @@ -209,6 +216,7 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
+>>>    {
+>>>    	struct intel_uncore *uncore = gt->uncore;
+>>>    	u32 irqs = GT_RENDER_USER_INTERRUPT;
+>>> +	const u32 gsc_mask = GSC_IRQ_INTF(0) | GSC_IRQ_INTF(1);
+>>
+>> Why enable the one which is not supported by the patch? No harm doing it?
+>>
+> No harm and the next patch will be soon, this patch unfortunately is long overdue.
+
+Just feels a bit lazy. You are adding two feature test macros to 
+prepare, so why not use them.
+
+Regards,
+
+Tvrtko
