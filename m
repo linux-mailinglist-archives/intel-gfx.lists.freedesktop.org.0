@@ -1,37 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C68EA4B8E21
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 17:37:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 530BA4B8CF4
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 16:55:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8BC610E7ED;
-	Wed, 16 Feb 2022 16:37:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46F3E10E8F1;
+	Wed, 16 Feb 2022 15:55:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 304 seconds by postgrey-1.36 at gabe;
- Wed, 16 Feb 2022 08:44:03 UTC
-Received: from out30-131.freemail.mail.aliyun.com
- (out30-131.freemail.mail.aliyun.com [115.124.30.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C06910E8F3
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 08:44:02 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R151e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04394;
- MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=15; SR=0;
- TI=SMTPD_---0V4cKwYt_1645000730; 
-Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0V4cKwYt_1645000730) by smtp.aliyun-inc.com(127.0.0.1);
- Wed, 16 Feb 2022 16:38:55 +0800
-From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-To: jani.nikula@linux.intel.com
-Date: Wed, 16 Feb 2022 16:38:49 +0800
-Message-Id: <20220216083849.91239-1-jiapeng.chong@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B13910E8F1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 15:55:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1645026907; x=1676562907;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=E5fzknbC1NZIx/Iwn0WG0gx8NOVoAhJGX/sFO3366sw=;
+ b=W9EKbkqDS7P0AzHBbIxMCHZkS5QTTreJz7RgT+wxK4V8QxHSy+NglABh
+ ErMGijKXBDUwG0auAl0R8XyPlLrCJBqQKSwbnLgOsGArDPpO+1ybwUqJ/
+ c5Y+LgtY9nA/h1B6olDjb0RdZ10ud/37vo5kdF1zuUYq6t+fpuO6vOs3H
+ ncXfk4EaJ8q6vMNSINruJjMNpZoQ5gHo4xPMuQoXNchZ9BCb2BUhVFwTy
+ 4k4+j07iv8sYJmoYE4Q9a9l01ukh3NlhJHVzyWaOjy0uVHsVI2vHsYROo
+ oXEOWcm4rI4zaGkAMRnImIaP5g9qkdVYdjiw7tKj8JF/Rvt7bJRHRz2Kk w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="275227674"
+X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="275227674"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 07:47:20 -0800
+X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="487128597"
+Received: from rbilei-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.13.113])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 07:47:18 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 16 Feb 2022 17:47:08 +0200
+Message-Id: <20220216154711.3329667-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 16 Feb 2022 16:37:34 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: fix unsigned integer to signed
- assignment
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/dsi: disassociate VBT video
+ transfer mode from register values
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,47 +56,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, airlied@linux.ie,
- intel-gfx@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- christian.koenig@amd.com, linaro-mm-sig@lists.linaro.org,
- rodrigo.vivi@intel.com, sumit.semwal@linaro.org, linux-media@vger.kernel.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Eliminate the follow smatch warning:
+The VBT DSI video transfer mode field values have been defined in terms
+of the VLV MIPI_VIDEO_MODE_FORMAT register. The ICL DSI code maps that
+to ICL DSI_TRANS_FUNC_CONF() register. The values are the same, though
+the shift is different.
 
-drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4640
-guc_create_virtual() warn: assigning (-2) to unsigned variable
-'ve->base.instance'.
+Make a clean break and disassociate the values from each other. Assume
+the values can be different, and translate the VBT value to VLV and ICL
+register values as needed. Use the existing macros from intel_bios.h.
 
-drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4641
-guc_create_virtual() warn: assigning (-2) to unsigned variable
-'ve->base.uabi_instance'.
+This will be useful in splitting the DSI register macros to files by DSI
+implementation.
 
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_types.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c       | 11 +++----
+ drivers/gpu/drm/i915/display/intel_dsi.h     |  4 +--
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 10 +++---
+ drivers/gpu/drm/i915/display/vlv_dsi.c       | 33 ++++++++++++++++----
+ 4 files changed, 39 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 36365bdbe1ee..dc7cc06c68e7 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -328,10 +328,10 @@ struct intel_engine_cs {
- 	intel_engine_mask_t logical_mask;
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 2d5bb9195b20..479d5e1165d9 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -788,14 +788,14 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+ 		/* program DSI operation mode */
+ 		if (is_vid_mode(intel_dsi)) {
+ 			tmp &= ~OP_MODE_MASK;
+-			switch (intel_dsi->video_mode_format) {
++			switch (intel_dsi->video_mode) {
+ 			default:
+-				MISSING_CASE(intel_dsi->video_mode_format);
++				MISSING_CASE(intel_dsi->video_mode);
+ 				fallthrough;
+-			case VIDEO_MODE_NON_BURST_WITH_SYNC_EVENTS:
++			case NON_BURST_SYNC_EVENTS:
+ 				tmp |= VIDEO_MODE_SYNC_EVENT;
+ 				break;
+-			case VIDEO_MODE_NON_BURST_WITH_SYNC_PULSE:
++			case NON_BURST_SYNC_PULSE:
+ 				tmp |= VIDEO_MODE_SYNC_PULSE;
+ 				break;
+ 			}
+@@ -960,8 +960,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
  
- 	u8 class;
--	u8 instance;
-+	s8 instance;
+ 	/* TRANS_HSYNC register to be programmed only for video mode */
+ 	if (is_vid_mode(intel_dsi)) {
+-		if (intel_dsi->video_mode_format ==
+-		    VIDEO_MODE_NON_BURST_WITH_SYNC_PULSE) {
++		if (intel_dsi->video_mode == NON_BURST_SYNC_PULSE) {
+ 			/* BSPEC: hsync size should be atleast 16 pixels */
+ 			if (hsync_size < 16)
+ 				drm_err(&dev_priv->drm,
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/i915/display/intel_dsi.h
+index a3a906cb097e..eafef0a87fea 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi.h
++++ b/drivers/gpu/drm/i915/display/intel_dsi.h
+@@ -79,8 +79,8 @@ struct intel_dsi {
+ 	 */
+ 	enum mipi_dsi_pixel_format pixel_format;
  
- 	u16 uabi_class;
--	u16 uabi_instance;
-+	s16 uabi_instance;
+-	/* video mode format for MIPI_VIDEO_MODE_FORMAT register */
+-	u32 video_mode_format;
++	/* NON_BURST_SYNC_PULSE, NON_BURST_SYNC_EVENTS, or BURST_MODE */
++	int video_mode;
  
- 	u32 uabi_capabilities;
- 	u32 context_size;
+ 	/* eot for MIPI_EOT_DISABLE register */
+ 	u8 eotp_pkt;
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+index a85574c413e8..a1cd86e53e21 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
++++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+@@ -675,11 +675,11 @@ void intel_dsi_log_params(struct intel_dsi *intel_dsi)
+ 	drm_dbg_kms(&i915->drm, "Lane count %d\n", intel_dsi->lane_count);
+ 	drm_dbg_kms(&i915->drm, "DPHY param reg 0x%x\n", intel_dsi->dphy_reg);
+ 	drm_dbg_kms(&i915->drm, "Video mode format %s\n",
+-		    intel_dsi->video_mode_format == VIDEO_MODE_NON_BURST_WITH_SYNC_PULSE ?
++		    intel_dsi->video_mode == NON_BURST_SYNC_PULSE ?
+ 		    "non-burst with sync pulse" :
+-		    intel_dsi->video_mode_format == VIDEO_MODE_NON_BURST_WITH_SYNC_EVENTS ?
++		    intel_dsi->video_mode == NON_BURST_SYNC_EVENTS ?
+ 		    "non-burst with sync events" :
+-		    intel_dsi->video_mode_format == VIDEO_MODE_BURST ?
++		    intel_dsi->video_mode == BURST_MODE ?
+ 		    "burst" : "<unknown>");
+ 	drm_dbg_kms(&i915->drm, "Burst mode ratio %d\n",
+ 		    intel_dsi->burst_mode_ratio);
+@@ -739,7 +739,7 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
+ 	intel_dsi->dual_link = mipi_config->dual_link;
+ 	intel_dsi->pixel_overlap = mipi_config->pixel_overlap;
+ 	intel_dsi->operation_mode = mipi_config->is_cmd_mode;
+-	intel_dsi->video_mode_format = mipi_config->video_transfer_mode;
++	intel_dsi->video_mode = mipi_config->video_transfer_mode;
+ 	intel_dsi->escape_clk_div = mipi_config->byte_clk_sel;
+ 	intel_dsi->lp_rx_timeout = mipi_config->lp_rx_timeout;
+ 	intel_dsi->hs_tx_timeout = mipi_config->hs_tx_timeout;
+@@ -770,7 +770,7 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
+ 	 * Target ddr frequency from VBT / non burst ddr freq
+ 	 * multiply by 100 to preserve remainder
+ 	 */
+-	if (intel_dsi->video_mode_format == VIDEO_MODE_BURST) {
++	if (intel_dsi->video_mode == BURST_MODE) {
+ 		if (mipi_config->target_burst_mode_freq) {
+ 			u32 bitrate = intel_dsi_bitrate(intel_dsi);
+ 
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 20141f33ed64..f0c38173491e 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -1492,7 +1492,7 @@ static void intel_dsi_prepare(struct intel_encoder *intel_encoder,
+ 		 */
+ 
+ 		if (is_vid_mode(intel_dsi) &&
+-			intel_dsi->video_mode_format == VIDEO_MODE_BURST) {
++			intel_dsi->video_mode == BURST_MODE) {
+ 			intel_de_write(dev_priv, MIPI_HS_TX_TIMEOUT(port),
+ 				       txbyteclkhs(adjusted_mode->crtc_htotal, bpp, intel_dsi->lane_count, intel_dsi->burst_mode_ratio) + 1);
+ 		} else {
+@@ -1568,12 +1568,33 @@ static void intel_dsi_prepare(struct intel_encoder *intel_encoder,
+ 		intel_de_write(dev_priv, MIPI_CLK_LANE_SWITCH_TIME_CNT(port),
+ 			       intel_dsi->clk_lp_to_hs_count << LP_HS_SSW_CNT_SHIFT | intel_dsi->clk_hs_to_lp_count << HS_LP_PWR_SW_CNT_SHIFT);
+ 
+-		if (is_vid_mode(intel_dsi))
+-			/* Some panels might have resolution which is not a
++		if (is_vid_mode(intel_dsi)) {
++			u32 fmt = intel_dsi->video_frmt_cfg_bits | IP_TG_CONFIG;
++
++			/*
++			 * Some panels might have resolution which is not a
+ 			 * multiple of 64 like 1366 x 768. Enable RANDOM
+-			 * resolution support for such panels by default */
+-			intel_de_write(dev_priv, MIPI_VIDEO_MODE_FORMAT(port),
+-				       intel_dsi->video_frmt_cfg_bits | intel_dsi->video_mode_format | IP_TG_CONFIG | RANDOM_DPI_DISPLAY_RESOLUTION);
++			 * resolution support for such panels by default.
++			 */
++			fmt |= RANDOM_DPI_DISPLAY_RESOLUTION;
++
++			switch (intel_dsi->video_mode) {
++			default:
++				MISSING_CASE(intel_dsi->video_mode);
++				fallthrough;
++			case NON_BURST_SYNC_EVENTS:
++				fmt |= VIDEO_MODE_NON_BURST_WITH_SYNC_EVENTS;
++				break;
++			case NON_BURST_SYNC_PULSE:
++				fmt |= VIDEO_MODE_NON_BURST_WITH_SYNC_PULSE;
++				break;
++			case BURST_MODE:
++				fmt |= VIDEO_MODE_BURST;
++				break;
++			}
++
++			intel_de_write(dev_priv, MIPI_VIDEO_MODE_FORMAT(port), fmt);
++		}
+ 	}
+ }
+ 
 -- 
-2.20.1.7.g153144c
+2.30.2
 
