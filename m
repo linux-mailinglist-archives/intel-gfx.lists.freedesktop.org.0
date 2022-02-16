@@ -2,50 +2,152 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D8494B8CFE
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 16:56:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B79704B8D9A
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 17:13:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 560A610EA3B;
-	Wed, 16 Feb 2022 15:56:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 555C910E5D9;
+	Wed, 16 Feb 2022 16:13:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC4510EA3B
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 15:56:42 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EEDF10E5D9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 16:13:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645027002; x=1676563002;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=mz6JqEZVa2e5y5W4gjau+fRGcBpuVwyhJ4PN+iLjWFQ=;
- b=n1373+1Nqx6mCFsKveR8VSNgoSMQe5vks8JvEYbsvQxN8xBPFZ0zzvTb
- aDrNmjpGE8JTAxv72d78D0AkVu/W2YE/LEfFkM/w6yQEzHc4twDR8cgia
- wL9dTjMd6z+yptCrh1X79BkVwmw82zQAZdSTKwyCaXFzI4X0OGbIp3LWb
- s73OcB4DwoIkE/3b3p9fR+mraJQZdb3ZmqwyCa5gev5xLBW/BSBBWmHaT
- j2GJtwNnRYXlOj23YH6Wt5o5JYf8wpBWvP1y4bWqxup83XG5NOofdQ2af
- UpRSRm7DfT+om095NfNZ14Eqt+YLcFN4Xa8vaoC6MEXGg7NDEfkeGmHxE A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="313918096"
-X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="313918096"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 07:47:34 -0800
-X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="571334465"
-Received: from rbilei-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.13.113])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 07:47:32 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Feb 2022 17:47:11 +0200
-Message-Id: <20220216154711.3329667-4-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220216154711.3329667-1-jani.nikula@intel.com>
-References: <20220216154711.3329667-1-jani.nikula@intel.com>
+ t=1645028023; x=1676564023;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-id:content-transfer-encoding:mime-version;
+ bh=zGqDN5zkMvVuPO1pbn/fQU4wcu4Wpytq0nLuPq2p9Ew=;
+ b=Vk/AXAkRSE6nZ6efgjvvs/4oc2my7vK9mKSLCv5oe/cHO4X2LsG/BT7I
+ MdAhSXnPGqd/zZVRp9dMQ8r7XBJuXnDcO5avQT6CfgBvNdY+encWp4rfS
+ lLAjHc3eJdnTfzRfft8KVt7+3QCFpUKbrEmKKjTniUeI60VrScW69FoA1
+ qRGDYpdz32HTIiP3jNurikOWo0wFC+G1C3EZejFlQP9Xzir07BhGdppQI
+ P25/PWIu92lMoV0VGJeGQ+Oso2yjy7dmvIpeC4wAh9QWlXLte/5RGm/uh
+ ALjXNGBy6V41IVRI3ERxD67jC82uUnPwqGdceMu8uCydgTnJeZvkHbNOJ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="234193711"
+X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="234193711"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 08:13:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="487160954"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga003.jf.intel.com with ESMTP; 16 Feb 2022 08:13:17 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Wed, 16 Feb 2022 08:13:17 -0800
+Received: from fmsmsx606.amr.corp.intel.com (10.18.126.86) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Wed, 16 Feb 2022 08:13:17 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20 via Frontend Transport; Wed, 16 Feb 2022 08:13:17 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.105)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.20; Wed, 16 Feb 2022 08:13:16 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MED4sGcYOu2/ySfQ3ZxvIjOjIdyO+kyhYW0IcdPyWbB9qYo6wGXzkuO2NrRpLkRC2vILmYgwWD4Bh7TiWi1YQ+urNQN2xt22jOMNYsCzTWovBQwZmTq7hosFXktax/ZLrSC0Bm12nFtk6dV59DFq8Mz4Wn44K75j1tA51I2epLYDWCbPhBIi5rCJAtRvtKFjE0AxUWCPZY108KcJXzpqEwnv2jRJiwfoEVcKtLRZofCuIIYqzsCwTr/FZxz7zL/eEdyq3t8Gy1Gkq1GxhQs7CkBf5X3WPvJ6VUtOXA5DcggCosXkHTtrpFlYd6cOuEB7wsOEtOallwjJvh0eNjKZ/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zGqDN5zkMvVuPO1pbn/fQU4wcu4Wpytq0nLuPq2p9Ew=;
+ b=kacK85wO/I0w5hECD4qnAsQV7UqjSBY25MbLwM21M0s4nn4/1A/7w7HsRxt1GaOc8ADUAN8UMl++u1bFW9W7ZmvS5uEEJ0gN84HtX2hnxthvSZdg8E6Jpg7/gH5bPrRrcC7hqHrzd4SEcuexWoCNc76PbISgqXhGQYexpFh1iiW2Xe5TAOaV9r6XpXIgOdl3SM5wt86zLL6o/xJM5+KGOiflOorz1PqQC3hxfMKlG6oTGUBlAfSTaZpOJvoB8gI0/dltShjaZz463tS8glCPtCqrRU2FSjnWWHG/kFUSg9U6GI4UuEk8rS9feAjHLsW1d890tNfwRKVw6u6mkdOhpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from MW4PR11MB5911.namprd11.prod.outlook.com (2603:10b6:303:16b::16)
+ by DM6PR11MB4220.namprd11.prod.outlook.com (2603:10b6:5:204::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.16; Wed, 16 Feb
+ 2022 16:13:14 +0000
+Received: from MW4PR11MB5911.namprd11.prod.outlook.com
+ ([fe80::e4d0:2424:fab3:eb0e]) by MW4PR11MB5911.namprd11.prod.outlook.com
+ ([fe80::e4d0:2424:fab3:eb0e%4]) with mapi id 15.20.4995.014; Wed, 16 Feb 2022
+ 16:13:14 +0000
+From: "Yokoyama, Caz" <caz.yokoyama@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH topic/for-CI] drm/i915: Add DG2 PCI IDs
+Thread-Index: AQHYIrV9ARu8Ip/aPUerqxLq4jr+c6yWWsUA
+Date: Wed, 16 Feb 2022 16:13:14 +0000
+Message-ID: <1e6dbfc2e899dca401a92953110d347960263253.camel@intel.com>
+References: <20220215214544.2197483-1-matthew.d.roper@intel.com>
+In-Reply-To: <20220215214544.2197483-1-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 72fbb1d9-9229-4db0-afb7-08d9f1673c1f
+x-ms-traffictypediagnostic: DM6PR11MB4220:EE_
+x-microsoft-antispam-prvs: <DM6PR11MB42202367C185728B19BF2FB39F359@DM6PR11MB4220.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1013;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: aWQz98ZVw7G1xlgsLhWS4lfLGxhmd4ohF+OCPBusCdTyv3kal5GseBy/P5/q+VQ/PJlVgdldBaFxAK2f0Pq1N5d5kUNtfzLpwMzJgH1aN41G/1W5rYOMvUpQDeZdc+ocyXpcQtYBQ11miFfw+PxnwL+4YiYskDISvXuSci0bwG14CsmIBrgLYe0sEHi2tFlgY7+CAZjGb8kCF6OxoRSu9q5sDpjywShQ2spCmBG01TQFu1nYEjB63ZbHbmZ1+UBbEjR+b6u8EdMzjzrHb4ekdjwmj1NAkrZbXHsNCVObcsSA/H/4DqOznoMdrC40014sHBjQMBH+Aq4cyCCx4qO1113+G1UQYyTe2i0Y07rgJsx2BoiEPAGu3NCDxEuNry5tPtHwtDCZh4iz2CDOTdj6KmYtFlBO5SuSXHl0xDyXVIToOq/4xjRkFYs/rns+owFAzHHKvglJhGsXZMsRo3tDN8YaQ4fU7E+bEghgUah/NKFn6rxU0DLGBAScNqjo00uBQGRRV9IpaO1T9gqma7fWnb4vabTJLgw9grot0q82iMzA1VVYSRBoCiOeq/o6rK1cQbVLRGtjhRZITTRGviqycACq2TYlesqaMdzzLmWV4Ma+gUVgqsWRrjFJgzxD4CO4sNEKJzVne/gg5jhX5BU16tRphjutY1E45BmW2J4TC9MsREQCE1qy1kZotF24cVl518NI9T+MnAAq6au+t42hqA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW4PR11MB5911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(38070700005)(86362001)(122000001)(38100700002)(82960400001)(8676002)(66476007)(64756008)(66556008)(66446008)(76116006)(66946007)(6916009)(2906002)(316002)(36756003)(8936002)(5660300002)(186003)(26005)(2616005)(83380400001)(508600001)(6486002)(6512007)(71200400001)(6506007);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MFNGL1FQelJPZ3lWYkFhaXNuMmpmUit0anU0bmg0eFFhSU1ua2t3QklJZWpG?=
+ =?utf-8?B?ekZJRlpUa1psL1lxZkpON0pVZXlnZmVoZklsQnl4UmpZV2VBT1JBM0NzNlJS?=
+ =?utf-8?B?QlpIbGY2SDlTdEtsVTFKeDVLMEwxYzNvdGoyZlhGM1lId2VLSG5ZUDZ3eWR3?=
+ =?utf-8?B?aXFYVnJUelpPZXVSMi9BeU5KRXlPU09Dd2tTQ25QKzhBSFk2bnZlRkhsMG9y?=
+ =?utf-8?B?SmNpcmYrbzMvdEFSeWdGY1lvOGZBczRMWGVPV0s4RU03Q3g2bkVncTNQcnps?=
+ =?utf-8?B?d1ZpaEU1Nm1QNFlvZXc5SlA5SERXUHByY0JQcThsZldkWlh0alphLzZaOHpC?=
+ =?utf-8?B?NzJnNmZoUDVaMEFQYnBzMUVhMnVZeGRSNXd2NnFZYjh3NVBVcVVucjZoelhI?=
+ =?utf-8?B?R1k1V05hRHlNaUdOcFEwQzdOQVJEMzJXOUZoNytCK2RqRjZyS3FSNnpWK2dW?=
+ =?utf-8?B?WWlJclIyN1ZkZDRaT0xjdFVKeE0zamtNRjZsdEdUTzY4bVhjVC9BTC9pTzFv?=
+ =?utf-8?B?aTFJMi8zREp1bmF5TmIyaldCMVhHeTRQNWIrbUMyRlVnUEZuV29EKytacU55?=
+ =?utf-8?B?cEphTjRwTUMyTDJweUh0cnpXTjVzbCsza1REbm5uMWhLanQ4Z3F1WHk3UTl4?=
+ =?utf-8?B?NkRleDNFUjFpMDVoS1BveFlnYkJwaUVpcjFNTE9OMHFuVWhVRHpQdEJXbnh5?=
+ =?utf-8?B?Nk9BaUQrK0szSmVJRDNJYTVSRlBOYWVxVmR6YjUwcDFTcFBmdWkyNktSc2VY?=
+ =?utf-8?B?bXFSY1lIYWhWSW5GRTI5cTE3akQ2NFlUUTg2WkYxejloRlE2ak9QdWIwWnBN?=
+ =?utf-8?B?eVByUVd2OHJJbXRCL1RmajIrNUlhckZJMGdhWlBkeTNYenBFcG9hNll2a2JO?=
+ =?utf-8?B?NXlIenN3NGFvVkRyc3VuUjVtcFF2aFR5N1ByL05Xb1dUbEpOcHFGQSt1dS9F?=
+ =?utf-8?B?ZWZCRGxmaHArWEJvY0R4VTk3RjA1NHJENDRuSUZuVmJVdkVaUzh3QSsyMzZx?=
+ =?utf-8?B?bUI0TDg1V2djbW5iN2VjY2xZVDI2VS92YnAyMC8wVkFzZlhJSWFFa2VIV3ov?=
+ =?utf-8?B?TG9IT0xjM0lkUW9YTTVGbmxqNGR3OFMxMldNc2dQaGtCVmxpNUVpVVNTd1gy?=
+ =?utf-8?B?di9aYW1kVS9IdkJNWXVGNkFBVW5VNEZoT2pscUFPTlYzM1Fob0tjN1N1dS82?=
+ =?utf-8?B?cUNSS2NUK1JFNmdLa3RKQitRdC8wTTNWY3BiZGtHSkljRFAyclNSVXVPdjZZ?=
+ =?utf-8?B?NkJkS2l6ZGEzTFdCYXlPWDZTOUFFUVNBYndaUG1odlAvaWhMZnNkTHZsaDZB?=
+ =?utf-8?B?L1JDZ05lMFhhRkpIS043Q0hqWFY1dXpKeDdSMW9obUxaNUdyb3Btd285SW94?=
+ =?utf-8?B?U2FIcC9iY2xYUDF6cnl3ZmEvaCtUL1RQMU00RTIyeTdmQ0JrSHV2SXZtT1Nt?=
+ =?utf-8?B?R3ZieEQ3cmFlSFRWM09LOXdIK2tKYUtxZ2dIQzN1OTJjd0lyc2hEdDN1V2pK?=
+ =?utf-8?B?Z2tSK3BYMElBUWRlakErSzdmV0J4M2YwTisyOE8waEhUYVZadnNHVFFKK1l0?=
+ =?utf-8?B?N1RPR1dtd2RzOXY3TFJ1bmVvaWhzc28yOURlMlkvdDJST1BXWDhOVDV4SUtw?=
+ =?utf-8?B?Z2tOSlFOZ3R0S3NaUHprL1dZY2t1d0tIeFBqcEhwYzhuVzE3ZHF3MkRFNGNN?=
+ =?utf-8?B?NHF6TzZjUWdhRFBjQ29pVnlVL0V5ZU9aTWJ2ays5Vk1vYzlrcTh4bDRtRFhN?=
+ =?utf-8?B?RnQvcm1tWlVDb2k5V1NJaHJyWEFFb1dXYXdBUnhPemczSnBUWk1mWWZZelJj?=
+ =?utf-8?B?OFI2VDZ1S3VkUzIrc3N1TXNYM1VJdXc1R2FZSjdkSk4yUnhiZkxOMks4dER2?=
+ =?utf-8?B?dUwrSFl1Snh1NEUyOWlSbFRPQy9YMUJVdVhTYVd1N3N3TVZORWNYUTJPNEc4?=
+ =?utf-8?B?eE1CankyQmdaWmVDS2dNa09ucU9OMnBXekc4NEMyOGwzNjRURkNxenZ4MGNL?=
+ =?utf-8?B?NU1UM0M3RjZtU2FZcjhHRzdQd0VsYXZpTjIzZUptVGtwSlVNZUFpUjJLUnll?=
+ =?utf-8?B?Zm1ZYjJIbmhaZTRnY0RJeUFKSGJKUmJoWmdhUlQ4RG1wbFVOdkoxNUJTdnp2?=
+ =?utf-8?B?R0RpZDhubVJDeXdjR3dGTUp1cGp5bmZGZkxnbTVyVk0vQkswbnRVbGloOWRh?=
+ =?utf-8?Q?eQFRsIe/g5JVPtIJ7FXbeO0=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <61F8C1B17E2FB244BE8118DF9A9BD3F5@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/reg: split out icl_dsi_regs.h
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB5911.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72fbb1d9-9229-4db0-afb7-08d9f1673c1f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Feb 2022 16:13:14.1802 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 348a6baMHJAecq/DKOVVJn43YJWpadt5p0cDGAn+JsmuWkaBXy0sS7prsZTnDptxspHnZd2OpegRGC8yEWtT8w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4220
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH topic/for-CI] drm/i915: Add DG2 PCI IDs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,753 +160,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The ICL DSI registers have fairly isolated usage. Split the register
-macros to a separate file.
-
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c      |   1 +
- drivers/gpu/drm/i915/display/icl_dsi_regs.h | 342 ++++++++++++++++++++
- drivers/gpu/drm/i915/i915_irq.c             |   1 +
- drivers/gpu/drm/i915/i915_reg.h             | 333 -------------------
- 4 files changed, 344 insertions(+), 333 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/icl_dsi_regs.h
-
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 3c01565e62b2..13b07c6fd6be 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -29,6 +29,7 @@
- #include <drm/drm_mipi_dsi.h>
- 
- #include "icl_dsi.h"
-+#include "icl_dsi_regs.h"
- #include "intel_atomic.h"
- #include "intel_backlight.h"
- #include "intel_combo_phy.h"
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi_regs.h b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-new file mode 100644
-index 000000000000..f78f28b8dd94
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-@@ -0,0 +1,342 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#ifndef __ICL_DSI_REGS_H__
-+#define __ICL_DSI_REGS_H__
-+
-+#include "i915_reg_defs.h"
-+
-+/* Gen11 DSI */
-+#define _MMIO_DSI(tc, dsi0, dsi1)	_MMIO_TRANS((tc) - TRANSCODER_DSI_0, \
-+						    dsi0, dsi1)
-+#define _ICL_DSI_ESC_CLK_DIV0		0x6b090
-+#define _ICL_DSI_ESC_CLK_DIV1		0x6b890
-+#define ICL_DSI_ESC_CLK_DIV(port)	_MMIO_PORT((port),	\
-+							_ICL_DSI_ESC_CLK_DIV0, \
-+							_ICL_DSI_ESC_CLK_DIV1)
-+#define _ICL_DPHY_ESC_CLK_DIV0		0x162190
-+#define _ICL_DPHY_ESC_CLK_DIV1		0x6C190
-+#define ICL_DPHY_ESC_CLK_DIV(port)	_MMIO_PORT((port),	\
-+						_ICL_DPHY_ESC_CLK_DIV0, \
-+						_ICL_DPHY_ESC_CLK_DIV1)
-+#define  ICL_BYTE_CLK_PER_ESC_CLK_MASK		(0x1f << 16)
-+#define  ICL_BYTE_CLK_PER_ESC_CLK_SHIFT	16
-+#define  ICL_ESC_CLK_DIV_MASK			0x1ff
-+#define  ICL_ESC_CLK_DIV_SHIFT			0
-+#define DSI_MAX_ESC_CLK			20000		/* in KHz */
-+
-+#define _ADL_MIPIO_REG			0x180
-+#define ADL_MIPIO_DW(port, dw)		_MMIO(_ICL_COMBOPHY(port) + _ADL_MIPIO_REG + 4 * (dw))
-+#define   TX_ESC_CLK_DIV_PHY_SEL	REGBIT(16)
-+#define   TX_ESC_CLK_DIV_PHY_MASK	REG_GENMASK(23, 16)
-+#define   TX_ESC_CLK_DIV_PHY		REG_FIELD_PREP(TX_ESC_CLK_DIV_PHY_MASK, 0x7f)
-+
-+#define _DSI_CMD_FRMCTL_0		0x6b034
-+#define _DSI_CMD_FRMCTL_1		0x6b834
-+#define DSI_CMD_FRMCTL(port)		_MMIO_PORT(port,	\
-+						   _DSI_CMD_FRMCTL_0,\
-+						   _DSI_CMD_FRMCTL_1)
-+#define   DSI_FRAME_UPDATE_REQUEST		(1 << 31)
-+#define   DSI_PERIODIC_FRAME_UPDATE_ENABLE	(1 << 29)
-+#define   DSI_NULL_PACKET_ENABLE		(1 << 28)
-+#define   DSI_FRAME_IN_PROGRESS			(1 << 0)
-+
-+#define _DSI_INTR_MASK_REG_0		0x6b070
-+#define _DSI_INTR_MASK_REG_1		0x6b870
-+#define DSI_INTR_MASK_REG(port)		_MMIO_PORT(port,	\
-+						   _DSI_INTR_MASK_REG_0,\
-+						   _DSI_INTR_MASK_REG_1)
-+
-+#define _DSI_INTR_IDENT_REG_0		0x6b074
-+#define _DSI_INTR_IDENT_REG_1		0x6b874
-+#define DSI_INTR_IDENT_REG(port)	_MMIO_PORT(port,	\
-+						   _DSI_INTR_IDENT_REG_0,\
-+						   _DSI_INTR_IDENT_REG_1)
-+#define   DSI_TE_EVENT				(1 << 31)
-+#define   DSI_RX_DATA_OR_BTA_TERMINATED		(1 << 30)
-+#define   DSI_TX_DATA				(1 << 29)
-+#define   DSI_ULPS_ENTRY_DONE			(1 << 28)
-+#define   DSI_NON_TE_TRIGGER_RECEIVED		(1 << 27)
-+#define   DSI_HOST_CHKSUM_ERROR			(1 << 26)
-+#define   DSI_HOST_MULTI_ECC_ERROR		(1 << 25)
-+#define   DSI_HOST_SINGL_ECC_ERROR		(1 << 24)
-+#define   DSI_HOST_CONTENTION_DETECTED		(1 << 23)
-+#define   DSI_HOST_FALSE_CONTROL_ERROR		(1 << 22)
-+#define   DSI_HOST_TIMEOUT_ERROR		(1 << 21)
-+#define   DSI_HOST_LOW_POWER_TX_SYNC_ERROR	(1 << 20)
-+#define   DSI_HOST_ESCAPE_MODE_ENTRY_ERROR	(1 << 19)
-+#define   DSI_FRAME_UPDATE_DONE			(1 << 16)
-+#define   DSI_PROTOCOL_VIOLATION_REPORTED	(1 << 15)
-+#define   DSI_INVALID_TX_LENGTH			(1 << 13)
-+#define   DSI_INVALID_VC			(1 << 12)
-+#define   DSI_INVALID_DATA_TYPE			(1 << 11)
-+#define   DSI_PERIPHERAL_CHKSUM_ERROR		(1 << 10)
-+#define   DSI_PERIPHERAL_MULTI_ECC_ERROR	(1 << 9)
-+#define   DSI_PERIPHERAL_SINGLE_ECC_ERROR	(1 << 8)
-+#define   DSI_PERIPHERAL_CONTENTION_DETECTED	(1 << 7)
-+#define   DSI_PERIPHERAL_FALSE_CTRL_ERROR	(1 << 6)
-+#define   DSI_PERIPHERAL_TIMEOUT_ERROR		(1 << 5)
-+#define   DSI_PERIPHERAL_LP_TX_SYNC_ERROR	(1 << 4)
-+#define   DSI_PERIPHERAL_ESC_MODE_ENTRY_CMD_ERR	(1 << 3)
-+#define   DSI_EOT_SYNC_ERROR			(1 << 2)
-+#define   DSI_SOT_SYNC_ERROR			(1 << 1)
-+#define   DSI_SOT_ERROR				(1 << 0)
-+
-+/* ICL DSI MODE control */
-+#define _ICL_DSI_IO_MODECTL_0				0x6B094
-+#define _ICL_DSI_IO_MODECTL_1				0x6B894
-+#define ICL_DSI_IO_MODECTL(port)	_MMIO_PORT(port,	\
-+						    _ICL_DSI_IO_MODECTL_0, \
-+						    _ICL_DSI_IO_MODECTL_1)
-+#define  COMBO_PHY_MODE_DSI				(1 << 0)
-+
-+/* TGL DSI Chicken register */
-+#define _TGL_DSI_CHKN_REG_0			0x6B0C0
-+#define _TGL_DSI_CHKN_REG_1			0x6B8C0
-+#define TGL_DSI_CHKN_REG(port)		_MMIO_PORT(port,	\
-+						    _TGL_DSI_CHKN_REG_0, \
-+						    _TGL_DSI_CHKN_REG_1)
-+#define TGL_DSI_CHKN_LSHS_GB_MASK		REG_GENMASK(15, 12)
-+#define TGL_DSI_CHKN_LSHS_GB(byte_clocks)	REG_FIELD_PREP(TGL_DSI_CHKN_LSHS_GB_MASK, \
-+							       (byte_clocks))
-+#define _ICL_DSI_T_INIT_MASTER_0	0x6b088
-+#define _ICL_DSI_T_INIT_MASTER_1	0x6b888
-+#define ICL_DSI_T_INIT_MASTER(port)	_MMIO_PORT(port,	\
-+						   _ICL_DSI_T_INIT_MASTER_0,\
-+						   _ICL_DSI_T_INIT_MASTER_1)
-+#define   DSI_T_INIT_MASTER_MASK	REG_GENMASK(15, 0)
-+
-+#define _DPHY_CLK_TIMING_PARAM_0	0x162180
-+#define _DPHY_CLK_TIMING_PARAM_1	0x6c180
-+#define DPHY_CLK_TIMING_PARAM(port)	_MMIO_PORT(port,	\
-+						   _DPHY_CLK_TIMING_PARAM_0,\
-+						   _DPHY_CLK_TIMING_PARAM_1)
-+#define _DSI_CLK_TIMING_PARAM_0		0x6b080
-+#define _DSI_CLK_TIMING_PARAM_1		0x6b880
-+#define DSI_CLK_TIMING_PARAM(port)	_MMIO_PORT(port,	\
-+						   _DSI_CLK_TIMING_PARAM_0,\
-+						   _DSI_CLK_TIMING_PARAM_1)
-+#define  CLK_PREPARE_OVERRIDE		(1 << 31)
-+#define  CLK_PREPARE(x)		((x) << 28)
-+#define  CLK_PREPARE_MASK		(0x7 << 28)
-+#define  CLK_PREPARE_SHIFT		28
-+#define  CLK_ZERO_OVERRIDE		(1 << 27)
-+#define  CLK_ZERO(x)			((x) << 20)
-+#define  CLK_ZERO_MASK			(0xf << 20)
-+#define  CLK_ZERO_SHIFT		20
-+#define  CLK_PRE_OVERRIDE		(1 << 19)
-+#define  CLK_PRE(x)			((x) << 16)
-+#define  CLK_PRE_MASK			(0x3 << 16)
-+#define  CLK_PRE_SHIFT			16
-+#define  CLK_POST_OVERRIDE		(1 << 15)
-+#define  CLK_POST(x)			((x) << 8)
-+#define  CLK_POST_MASK			(0x7 << 8)
-+#define  CLK_POST_SHIFT		8
-+#define  CLK_TRAIL_OVERRIDE		(1 << 7)
-+#define  CLK_TRAIL(x)			((x) << 0)
-+#define  CLK_TRAIL_MASK		(0xf << 0)
-+#define  CLK_TRAIL_SHIFT		0
-+
-+#define _DPHY_DATA_TIMING_PARAM_0	0x162184
-+#define _DPHY_DATA_TIMING_PARAM_1	0x6c184
-+#define DPHY_DATA_TIMING_PARAM(port)	_MMIO_PORT(port,	\
-+						   _DPHY_DATA_TIMING_PARAM_0,\
-+						   _DPHY_DATA_TIMING_PARAM_1)
-+#define _DSI_DATA_TIMING_PARAM_0	0x6B084
-+#define _DSI_DATA_TIMING_PARAM_1	0x6B884
-+#define DSI_DATA_TIMING_PARAM(port)	_MMIO_PORT(port,	\
-+						   _DSI_DATA_TIMING_PARAM_0,\
-+						   _DSI_DATA_TIMING_PARAM_1)
-+#define  HS_PREPARE_OVERRIDE		(1 << 31)
-+#define  HS_PREPARE(x)			((x) << 24)
-+#define  HS_PREPARE_MASK		(0x7 << 24)
-+#define  HS_PREPARE_SHIFT		24
-+#define  HS_ZERO_OVERRIDE		(1 << 23)
-+#define  HS_ZERO(x)			((x) << 16)
-+#define  HS_ZERO_MASK			(0xf << 16)
-+#define  HS_ZERO_SHIFT			16
-+#define  HS_TRAIL_OVERRIDE		(1 << 15)
-+#define  HS_TRAIL(x)			((x) << 8)
-+#define  HS_TRAIL_MASK			(0x7 << 8)
-+#define  HS_TRAIL_SHIFT		8
-+#define  HS_EXIT_OVERRIDE		(1 << 7)
-+#define  HS_EXIT(x)			((x) << 0)
-+#define  HS_EXIT_MASK			(0x7 << 0)
-+#define  HS_EXIT_SHIFT			0
-+
-+#define _DPHY_TA_TIMING_PARAM_0		0x162188
-+#define _DPHY_TA_TIMING_PARAM_1		0x6c188
-+#define DPHY_TA_TIMING_PARAM(port)	_MMIO_PORT(port,	\
-+						   _DPHY_TA_TIMING_PARAM_0,\
-+						   _DPHY_TA_TIMING_PARAM_1)
-+#define _DSI_TA_TIMING_PARAM_0		0x6b098
-+#define _DSI_TA_TIMING_PARAM_1		0x6b898
-+#define DSI_TA_TIMING_PARAM(port)	_MMIO_PORT(port,	\
-+						   _DSI_TA_TIMING_PARAM_0,\
-+						   _DSI_TA_TIMING_PARAM_1)
-+#define  TA_SURE_OVERRIDE		(1 << 31)
-+#define  TA_SURE(x)			((x) << 16)
-+#define  TA_SURE_MASK			(0x1f << 16)
-+#define  TA_SURE_SHIFT			16
-+#define  TA_GO_OVERRIDE		(1 << 15)
-+#define  TA_GO(x)			((x) << 8)
-+#define  TA_GO_MASK			(0xf << 8)
-+#define  TA_GO_SHIFT			8
-+#define  TA_GET_OVERRIDE		(1 << 7)
-+#define  TA_GET(x)			((x) << 0)
-+#define  TA_GET_MASK			(0xf << 0)
-+#define  TA_GET_SHIFT			0
-+
-+/* DSI transcoder configuration */
-+#define _DSI_TRANS_FUNC_CONF_0		0x6b030
-+#define _DSI_TRANS_FUNC_CONF_1		0x6b830
-+#define DSI_TRANS_FUNC_CONF(tc)		_MMIO_DSI(tc,	\
-+						  _DSI_TRANS_FUNC_CONF_0,\
-+						  _DSI_TRANS_FUNC_CONF_1)
-+#define  OP_MODE_MASK			(0x3 << 28)
-+#define  OP_MODE_SHIFT			28
-+#define  CMD_MODE_NO_GATE		(0x0 << 28)
-+#define  CMD_MODE_TE_GATE		(0x1 << 28)
-+#define  VIDEO_MODE_SYNC_EVENT		(0x2 << 28)
-+#define  VIDEO_MODE_SYNC_PULSE		(0x3 << 28)
-+#define  TE_SOURCE_GPIO			(1 << 27)
-+#define  LINK_READY			(1 << 20)
-+#define  PIX_FMT_MASK			(0x3 << 16)
-+#define  PIX_FMT_SHIFT			16
-+#define  PIX_FMT_RGB565			(0x0 << 16)
-+#define  PIX_FMT_RGB666_PACKED		(0x1 << 16)
-+#define  PIX_FMT_RGB666_LOOSE		(0x2 << 16)
-+#define  PIX_FMT_RGB888			(0x3 << 16)
-+#define  PIX_FMT_RGB101010		(0x4 << 16)
-+#define  PIX_FMT_RGB121212		(0x5 << 16)
-+#define  PIX_FMT_COMPRESSED		(0x6 << 16)
-+#define  BGR_TRANSMISSION		(1 << 15)
-+#define  PIX_VIRT_CHAN(x)		((x) << 12)
-+#define  PIX_VIRT_CHAN_MASK		(0x3 << 12)
-+#define  PIX_VIRT_CHAN_SHIFT		12
-+#define  PIX_BUF_THRESHOLD_MASK		(0x3 << 10)
-+#define  PIX_BUF_THRESHOLD_SHIFT	10
-+#define  PIX_BUF_THRESHOLD_1_4		(0x0 << 10)
-+#define  PIX_BUF_THRESHOLD_1_2		(0x1 << 10)
-+#define  PIX_BUF_THRESHOLD_3_4		(0x2 << 10)
-+#define  PIX_BUF_THRESHOLD_FULL		(0x3 << 10)
-+#define  CONTINUOUS_CLK_MASK		(0x3 << 8)
-+#define  CONTINUOUS_CLK_SHIFT		8
-+#define  CLK_ENTER_LP_AFTER_DATA	(0x0 << 8)
-+#define  CLK_HS_OR_LP			(0x2 << 8)
-+#define  CLK_HS_CONTINUOUS		(0x3 << 8)
-+#define  LINK_CALIBRATION_MASK		(0x3 << 4)
-+#define  LINK_CALIBRATION_SHIFT		4
-+#define  CALIBRATION_DISABLED		(0x0 << 4)
-+#define  CALIBRATION_ENABLED_INITIAL_ONLY	(0x2 << 4)
-+#define  CALIBRATION_ENABLED_INITIAL_PERIODIC	(0x3 << 4)
-+#define  BLANKING_PACKET_ENABLE		(1 << 2)
-+#define  S3D_ORIENTATION_LANDSCAPE	(1 << 1)
-+#define  EOTP_DISABLED			(1 << 0)
-+
-+#define _DSI_CMD_RXCTL_0		0x6b0d4
-+#define _DSI_CMD_RXCTL_1		0x6b8d4
-+#define DSI_CMD_RXCTL(tc)		_MMIO_DSI(tc,	\
-+						  _DSI_CMD_RXCTL_0,\
-+						  _DSI_CMD_RXCTL_1)
-+#define  READ_UNLOADS_DW		(1 << 16)
-+#define  RECEIVED_UNASSIGNED_TRIGGER	(1 << 15)
-+#define  RECEIVED_ACKNOWLEDGE_TRIGGER	(1 << 14)
-+#define  RECEIVED_TEAR_EFFECT_TRIGGER	(1 << 13)
-+#define  RECEIVED_RESET_TRIGGER		(1 << 12)
-+#define  RECEIVED_PAYLOAD_WAS_LOST	(1 << 11)
-+#define  RECEIVED_CRC_WAS_LOST		(1 << 10)
-+#define  NUMBER_RX_PLOAD_DW_MASK	(0xff << 0)
-+#define  NUMBER_RX_PLOAD_DW_SHIFT	0
-+
-+#define _DSI_CMD_TXCTL_0		0x6b0d0
-+#define _DSI_CMD_TXCTL_1		0x6b8d0
-+#define DSI_CMD_TXCTL(tc)		_MMIO_DSI(tc,	\
-+						  _DSI_CMD_TXCTL_0,\
-+						  _DSI_CMD_TXCTL_1)
-+#define  KEEP_LINK_IN_HS		(1 << 24)
-+#define  FREE_HEADER_CREDIT_MASK	(0x1f << 8)
-+#define  FREE_HEADER_CREDIT_SHIFT	0x8
-+#define  FREE_PLOAD_CREDIT_MASK		(0xff << 0)
-+#define  FREE_PLOAD_CREDIT_SHIFT	0
-+#define  MAX_HEADER_CREDIT		0x10
-+#define  MAX_PLOAD_CREDIT		0x40
-+
-+#define _DSI_CMD_TXHDR_0		0x6b100
-+#define _DSI_CMD_TXHDR_1		0x6b900
-+#define DSI_CMD_TXHDR(tc)		_MMIO_DSI(tc,	\
-+						  _DSI_CMD_TXHDR_0,\
-+						  _DSI_CMD_TXHDR_1)
-+#define  PAYLOAD_PRESENT		(1 << 31)
-+#define  LP_DATA_TRANSFER		(1 << 30)
-+#define  VBLANK_FENCE			(1 << 29)
-+#define  PARAM_WC_MASK			(0xffff << 8)
-+#define  PARAM_WC_LOWER_SHIFT		8
-+#define  PARAM_WC_UPPER_SHIFT		16
-+#define  VC_MASK			(0x3 << 6)
-+#define  VC_SHIFT			6
-+#define  DT_MASK			(0x3f << 0)
-+#define  DT_SHIFT			0
-+
-+#define _DSI_CMD_TXPYLD_0		0x6b104
-+#define _DSI_CMD_TXPYLD_1		0x6b904
-+#define DSI_CMD_TXPYLD(tc)		_MMIO_DSI(tc,	\
-+						  _DSI_CMD_TXPYLD_0,\
-+						  _DSI_CMD_TXPYLD_1)
-+
-+#define _DSI_LP_MSG_0			0x6b0d8
-+#define _DSI_LP_MSG_1			0x6b8d8
-+#define DSI_LP_MSG(tc)			_MMIO_DSI(tc,	\
-+						  _DSI_LP_MSG_0,\
-+						  _DSI_LP_MSG_1)
-+#define  LPTX_IN_PROGRESS		(1 << 17)
-+#define  LINK_IN_ULPS			(1 << 16)
-+#define  LINK_ULPS_TYPE_LP11		(1 << 8)
-+#define  LINK_ENTER_ULPS		(1 << 0)
-+
-+/* DSI timeout registers */
-+#define _DSI_HSTX_TO_0			0x6b044
-+#define _DSI_HSTX_TO_1			0x6b844
-+#define DSI_HSTX_TO(tc)			_MMIO_DSI(tc,	\
-+						  _DSI_HSTX_TO_0,\
-+						  _DSI_HSTX_TO_1)
-+#define  HSTX_TIMEOUT_VALUE_MASK	(0xffff << 16)
-+#define  HSTX_TIMEOUT_VALUE_SHIFT	16
-+#define  HSTX_TIMEOUT_VALUE(x)		((x) << 16)
-+#define  HSTX_TIMED_OUT			(1 << 0)
-+
-+#define _DSI_LPRX_HOST_TO_0		0x6b048
-+#define _DSI_LPRX_HOST_TO_1		0x6b848
-+#define DSI_LPRX_HOST_TO(tc)		_MMIO_DSI(tc,	\
-+						  _DSI_LPRX_HOST_TO_0,\
-+						  _DSI_LPRX_HOST_TO_1)
-+#define  LPRX_TIMED_OUT			(1 << 16)
-+#define  LPRX_TIMEOUT_VALUE_MASK	(0xffff << 0)
-+#define  LPRX_TIMEOUT_VALUE_SHIFT	0
-+#define  LPRX_TIMEOUT_VALUE(x)		((x) << 0)
-+
-+#define _DSI_PWAIT_TO_0			0x6b040
-+#define _DSI_PWAIT_TO_1			0x6b840
-+#define DSI_PWAIT_TO(tc)		_MMIO_DSI(tc,	\
-+						  _DSI_PWAIT_TO_0,\
-+						  _DSI_PWAIT_TO_1)
-+#define  PRESET_TIMEOUT_VALUE_MASK	(0xffff << 16)
-+#define  PRESET_TIMEOUT_VALUE_SHIFT	16
-+#define  PRESET_TIMEOUT_VALUE(x)	((x) << 16)
-+#define  PRESPONSE_TIMEOUT_VALUE_MASK	(0xffff << 0)
-+#define  PRESPONSE_TIMEOUT_VALUE_SHIFT	0
-+#define  PRESPONSE_TIMEOUT_VALUE(x)	((x) << 0)
-+
-+#define _DSI_TA_TO_0			0x6b04c
-+#define _DSI_TA_TO_1			0x6b84c
-+#define DSI_TA_TO(tc)			_MMIO_DSI(tc,	\
-+						  _DSI_TA_TO_0,\
-+						  _DSI_TA_TO_1)
-+#define  TA_TIMED_OUT			(1 << 16)
-+#define  TA_TIMEOUT_VALUE_MASK		(0xffff << 0)
-+#define  TA_TIMEOUT_VALUE_SHIFT		0
-+#define  TA_TIMEOUT_VALUE(x)		((x) << 0)
-+
-+#endif /* __ICL_DSI_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index fdd568ba4a16..8647554519a2 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -34,6 +34,7 @@
- 
- #include <drm/drm_drv.h>
- 
-+#include "display/icl_dsi_regs.h"
- #include "display/intel_de.h"
- #include "display/intel_display_trace.h"
- #include "display/intel_display_types.h"
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 4bff6f5477a9..94299819b107 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -8589,82 +8589,6 @@ enum skl_power_gate {
- #define CGM_PIPE_GAMMA(pipe, i, w)	_MMIO(_PIPE(pipe, _CGM_PIPE_A_GAMMA, _CGM_PIPE_B_GAMMA) + (i) * 8 + (w) * 4)
- #define CGM_PIPE_MODE(pipe)		_MMIO_PIPE(pipe, _CGM_PIPE_A_MODE, _CGM_PIPE_B_MODE)
- 
--/* Gen11 DSI */
--#define _MMIO_DSI(tc, dsi0, dsi1)	_MMIO_TRANS((tc) - TRANSCODER_DSI_0, \
--						    dsi0, dsi1)
--#define _ICL_DSI_ESC_CLK_DIV0		0x6b090
--#define _ICL_DSI_ESC_CLK_DIV1		0x6b890
--#define ICL_DSI_ESC_CLK_DIV(port)	_MMIO_PORT((port),	\
--							_ICL_DSI_ESC_CLK_DIV0, \
--							_ICL_DSI_ESC_CLK_DIV1)
--#define _ICL_DPHY_ESC_CLK_DIV0		0x162190
--#define _ICL_DPHY_ESC_CLK_DIV1		0x6C190
--#define ICL_DPHY_ESC_CLK_DIV(port)	_MMIO_PORT((port),	\
--						_ICL_DPHY_ESC_CLK_DIV0, \
--						_ICL_DPHY_ESC_CLK_DIV1)
--#define  ICL_BYTE_CLK_PER_ESC_CLK_MASK		(0x1f << 16)
--#define  ICL_BYTE_CLK_PER_ESC_CLK_SHIFT	16
--#define  ICL_ESC_CLK_DIV_MASK			0x1ff
--#define  ICL_ESC_CLK_DIV_SHIFT			0
--#define DSI_MAX_ESC_CLK			20000		/* in KHz */
--
--#define _ADL_MIPIO_REG			0x180
--#define ADL_MIPIO_DW(port, dw)		_MMIO(_ICL_COMBOPHY(port) + _ADL_MIPIO_REG + 4 * (dw))
--#define   TX_ESC_CLK_DIV_PHY_SEL	REGBIT(16)
--#define   TX_ESC_CLK_DIV_PHY_MASK	REG_GENMASK(23, 16)
--#define   TX_ESC_CLK_DIV_PHY		REG_FIELD_PREP(TX_ESC_CLK_DIV_PHY_MASK, 0x7f)
--
--#define _DSI_CMD_FRMCTL_0		0x6b034
--#define _DSI_CMD_FRMCTL_1		0x6b834
--#define DSI_CMD_FRMCTL(port)		_MMIO_PORT(port,	\
--						   _DSI_CMD_FRMCTL_0,\
--						   _DSI_CMD_FRMCTL_1)
--#define   DSI_FRAME_UPDATE_REQUEST		(1 << 31)
--#define   DSI_PERIODIC_FRAME_UPDATE_ENABLE	(1 << 29)
--#define   DSI_NULL_PACKET_ENABLE		(1 << 28)
--#define   DSI_FRAME_IN_PROGRESS			(1 << 0)
--
--#define _DSI_INTR_MASK_REG_0		0x6b070
--#define _DSI_INTR_MASK_REG_1		0x6b870
--#define DSI_INTR_MASK_REG(port)		_MMIO_PORT(port,	\
--						   _DSI_INTR_MASK_REG_0,\
--						   _DSI_INTR_MASK_REG_1)
--
--#define _DSI_INTR_IDENT_REG_0		0x6b074
--#define _DSI_INTR_IDENT_REG_1		0x6b874
--#define DSI_INTR_IDENT_REG(port)	_MMIO_PORT(port,	\
--						   _DSI_INTR_IDENT_REG_0,\
--						   _DSI_INTR_IDENT_REG_1)
--#define   DSI_TE_EVENT				(1 << 31)
--#define   DSI_RX_DATA_OR_BTA_TERMINATED		(1 << 30)
--#define   DSI_TX_DATA				(1 << 29)
--#define   DSI_ULPS_ENTRY_DONE			(1 << 28)
--#define   DSI_NON_TE_TRIGGER_RECEIVED		(1 << 27)
--#define   DSI_HOST_CHKSUM_ERROR			(1 << 26)
--#define   DSI_HOST_MULTI_ECC_ERROR		(1 << 25)
--#define   DSI_HOST_SINGL_ECC_ERROR		(1 << 24)
--#define   DSI_HOST_CONTENTION_DETECTED		(1 << 23)
--#define   DSI_HOST_FALSE_CONTROL_ERROR		(1 << 22)
--#define   DSI_HOST_TIMEOUT_ERROR		(1 << 21)
--#define   DSI_HOST_LOW_POWER_TX_SYNC_ERROR	(1 << 20)
--#define   DSI_HOST_ESCAPE_MODE_ENTRY_ERROR	(1 << 19)
--#define   DSI_FRAME_UPDATE_DONE			(1 << 16)
--#define   DSI_PROTOCOL_VIOLATION_REPORTED	(1 << 15)
--#define   DSI_INVALID_TX_LENGTH			(1 << 13)
--#define   DSI_INVALID_VC			(1 << 12)
--#define   DSI_INVALID_DATA_TYPE			(1 << 11)
--#define   DSI_PERIPHERAL_CHKSUM_ERROR		(1 << 10)
--#define   DSI_PERIPHERAL_MULTI_ECC_ERROR	(1 << 9)
--#define   DSI_PERIPHERAL_SINGLE_ECC_ERROR	(1 << 8)
--#define   DSI_PERIPHERAL_CONTENTION_DETECTED	(1 << 7)
--#define   DSI_PERIPHERAL_FALSE_CTRL_ERROR	(1 << 6)
--#define   DSI_PERIPHERAL_TIMEOUT_ERROR		(1 << 5)
--#define   DSI_PERIPHERAL_LP_TX_SYNC_ERROR	(1 << 4)
--#define   DSI_PERIPHERAL_ESC_MODE_ENTRY_CMD_ERR	(1 << 3)
--#define   DSI_EOT_SYNC_ERROR			(1 << 2)
--#define   DSI_SOT_SYNC_ERROR			(1 << 1)
--#define   DSI_SOT_ERROR				(1 << 0)
--
- /* Gen4+ Timestamp and Pipe Frame time stamp registers */
- #define GEN4_TIMESTAMP		_MMIO(0x2358)
- #define ILK_TIMESTAMP_HI	_MMIO(0x70070)
-@@ -8680,24 +8604,6 @@ enum skl_power_gate {
- #define PIPE_FRMTMSTMP(pipe)		\
- 			_MMIO_PIPE2(pipe, _PIPE_FRMTMSTMP_A)
- 
--/* ICL DSI MODE control */
--#define _ICL_DSI_IO_MODECTL_0				0x6B094
--#define _ICL_DSI_IO_MODECTL_1				0x6B894
--#define ICL_DSI_IO_MODECTL(port)	_MMIO_PORT(port,	\
--						    _ICL_DSI_IO_MODECTL_0, \
--						    _ICL_DSI_IO_MODECTL_1)
--#define  COMBO_PHY_MODE_DSI				(1 << 0)
--
--/* TGL DSI Chicken register */
--#define _TGL_DSI_CHKN_REG_0			0x6B0C0
--#define _TGL_DSI_CHKN_REG_1			0x6B8C0
--#define TGL_DSI_CHKN_REG(port)		_MMIO_PORT(port,	\
--						    _TGL_DSI_CHKN_REG_0, \
--						    _TGL_DSI_CHKN_REG_1)
--#define TGL_DSI_CHKN_LSHS_GB_MASK		REG_GENMASK(15, 12)
--#define TGL_DSI_CHKN_LSHS_GB(byte_clocks)	REG_FIELD_PREP(TGL_DSI_CHKN_LSHS_GB_MASK, \
--							       (byte_clocks))
--
- /* Display Stream Splitter Control */
- #define DSS_CTL1				_MMIO(0x67400)
- #define  SPLITTER_ENABLE			(1 << 31)
-@@ -8736,245 +8642,6 @@ enum skl_power_gate {
- 							   _ICL_PIPE_DSS_CTL2_PB, \
- 							   _ICL_PIPE_DSS_CTL2_PC)
- 
--
--#define _ICL_DSI_T_INIT_MASTER_0	0x6b088
--#define _ICL_DSI_T_INIT_MASTER_1	0x6b888
--#define ICL_DSI_T_INIT_MASTER(port)	_MMIO_PORT(port,	\
--						   _ICL_DSI_T_INIT_MASTER_0,\
--						   _ICL_DSI_T_INIT_MASTER_1)
--#define   DSI_T_INIT_MASTER_MASK	REG_GENMASK(15, 0)
--
--#define _DPHY_CLK_TIMING_PARAM_0	0x162180
--#define _DPHY_CLK_TIMING_PARAM_1	0x6c180
--#define DPHY_CLK_TIMING_PARAM(port)	_MMIO_PORT(port,	\
--						   _DPHY_CLK_TIMING_PARAM_0,\
--						   _DPHY_CLK_TIMING_PARAM_1)
--#define _DSI_CLK_TIMING_PARAM_0		0x6b080
--#define _DSI_CLK_TIMING_PARAM_1		0x6b880
--#define DSI_CLK_TIMING_PARAM(port)	_MMIO_PORT(port,	\
--						   _DSI_CLK_TIMING_PARAM_0,\
--						   _DSI_CLK_TIMING_PARAM_1)
--#define  CLK_PREPARE_OVERRIDE		(1 << 31)
--#define  CLK_PREPARE(x)		((x) << 28)
--#define  CLK_PREPARE_MASK		(0x7 << 28)
--#define  CLK_PREPARE_SHIFT		28
--#define  CLK_ZERO_OVERRIDE		(1 << 27)
--#define  CLK_ZERO(x)			((x) << 20)
--#define  CLK_ZERO_MASK			(0xf << 20)
--#define  CLK_ZERO_SHIFT		20
--#define  CLK_PRE_OVERRIDE		(1 << 19)
--#define  CLK_PRE(x)			((x) << 16)
--#define  CLK_PRE_MASK			(0x3 << 16)
--#define  CLK_PRE_SHIFT			16
--#define  CLK_POST_OVERRIDE		(1 << 15)
--#define  CLK_POST(x)			((x) << 8)
--#define  CLK_POST_MASK			(0x7 << 8)
--#define  CLK_POST_SHIFT		8
--#define  CLK_TRAIL_OVERRIDE		(1 << 7)
--#define  CLK_TRAIL(x)			((x) << 0)
--#define  CLK_TRAIL_MASK		(0xf << 0)
--#define  CLK_TRAIL_SHIFT		0
--
--#define _DPHY_DATA_TIMING_PARAM_0	0x162184
--#define _DPHY_DATA_TIMING_PARAM_1	0x6c184
--#define DPHY_DATA_TIMING_PARAM(port)	_MMIO_PORT(port,	\
--						   _DPHY_DATA_TIMING_PARAM_0,\
--						   _DPHY_DATA_TIMING_PARAM_1)
--#define _DSI_DATA_TIMING_PARAM_0	0x6B084
--#define _DSI_DATA_TIMING_PARAM_1	0x6B884
--#define DSI_DATA_TIMING_PARAM(port)	_MMIO_PORT(port,	\
--						   _DSI_DATA_TIMING_PARAM_0,\
--						   _DSI_DATA_TIMING_PARAM_1)
--#define  HS_PREPARE_OVERRIDE		(1 << 31)
--#define  HS_PREPARE(x)			((x) << 24)
--#define  HS_PREPARE_MASK		(0x7 << 24)
--#define  HS_PREPARE_SHIFT		24
--#define  HS_ZERO_OVERRIDE		(1 << 23)
--#define  HS_ZERO(x)			((x) << 16)
--#define  HS_ZERO_MASK			(0xf << 16)
--#define  HS_ZERO_SHIFT			16
--#define  HS_TRAIL_OVERRIDE		(1 << 15)
--#define  HS_TRAIL(x)			((x) << 8)
--#define  HS_TRAIL_MASK			(0x7 << 8)
--#define  HS_TRAIL_SHIFT		8
--#define  HS_EXIT_OVERRIDE		(1 << 7)
--#define  HS_EXIT(x)			((x) << 0)
--#define  HS_EXIT_MASK			(0x7 << 0)
--#define  HS_EXIT_SHIFT			0
--
--#define _DPHY_TA_TIMING_PARAM_0		0x162188
--#define _DPHY_TA_TIMING_PARAM_1		0x6c188
--#define DPHY_TA_TIMING_PARAM(port)	_MMIO_PORT(port,	\
--						   _DPHY_TA_TIMING_PARAM_0,\
--						   _DPHY_TA_TIMING_PARAM_1)
--#define _DSI_TA_TIMING_PARAM_0		0x6b098
--#define _DSI_TA_TIMING_PARAM_1		0x6b898
--#define DSI_TA_TIMING_PARAM(port)	_MMIO_PORT(port,	\
--						   _DSI_TA_TIMING_PARAM_0,\
--						   _DSI_TA_TIMING_PARAM_1)
--#define  TA_SURE_OVERRIDE		(1 << 31)
--#define  TA_SURE(x)			((x) << 16)
--#define  TA_SURE_MASK			(0x1f << 16)
--#define  TA_SURE_SHIFT			16
--#define  TA_GO_OVERRIDE		(1 << 15)
--#define  TA_GO(x)			((x) << 8)
--#define  TA_GO_MASK			(0xf << 8)
--#define  TA_GO_SHIFT			8
--#define  TA_GET_OVERRIDE		(1 << 7)
--#define  TA_GET(x)			((x) << 0)
--#define  TA_GET_MASK			(0xf << 0)
--#define  TA_GET_SHIFT			0
--
--/* DSI transcoder configuration */
--#define _DSI_TRANS_FUNC_CONF_0		0x6b030
--#define _DSI_TRANS_FUNC_CONF_1		0x6b830
--#define DSI_TRANS_FUNC_CONF(tc)		_MMIO_DSI(tc,	\
--						  _DSI_TRANS_FUNC_CONF_0,\
--						  _DSI_TRANS_FUNC_CONF_1)
--#define  OP_MODE_MASK			(0x3 << 28)
--#define  OP_MODE_SHIFT			28
--#define  CMD_MODE_NO_GATE		(0x0 << 28)
--#define  CMD_MODE_TE_GATE		(0x1 << 28)
--#define  VIDEO_MODE_SYNC_EVENT		(0x2 << 28)
--#define  VIDEO_MODE_SYNC_PULSE		(0x3 << 28)
--#define  TE_SOURCE_GPIO			(1 << 27)
--#define  LINK_READY			(1 << 20)
--#define  PIX_FMT_MASK			(0x3 << 16)
--#define  PIX_FMT_SHIFT			16
--#define  PIX_FMT_RGB565			(0x0 << 16)
--#define  PIX_FMT_RGB666_PACKED		(0x1 << 16)
--#define  PIX_FMT_RGB666_LOOSE		(0x2 << 16)
--#define  PIX_FMT_RGB888			(0x3 << 16)
--#define  PIX_FMT_RGB101010		(0x4 << 16)
--#define  PIX_FMT_RGB121212		(0x5 << 16)
--#define  PIX_FMT_COMPRESSED		(0x6 << 16)
--#define  BGR_TRANSMISSION		(1 << 15)
--#define  PIX_VIRT_CHAN(x)		((x) << 12)
--#define  PIX_VIRT_CHAN_MASK		(0x3 << 12)
--#define  PIX_VIRT_CHAN_SHIFT		12
--#define  PIX_BUF_THRESHOLD_MASK		(0x3 << 10)
--#define  PIX_BUF_THRESHOLD_SHIFT	10
--#define  PIX_BUF_THRESHOLD_1_4		(0x0 << 10)
--#define  PIX_BUF_THRESHOLD_1_2		(0x1 << 10)
--#define  PIX_BUF_THRESHOLD_3_4		(0x2 << 10)
--#define  PIX_BUF_THRESHOLD_FULL		(0x3 << 10)
--#define  CONTINUOUS_CLK_MASK		(0x3 << 8)
--#define  CONTINUOUS_CLK_SHIFT		8
--#define  CLK_ENTER_LP_AFTER_DATA	(0x0 << 8)
--#define  CLK_HS_OR_LP			(0x2 << 8)
--#define  CLK_HS_CONTINUOUS		(0x3 << 8)
--#define  LINK_CALIBRATION_MASK		(0x3 << 4)
--#define  LINK_CALIBRATION_SHIFT		4
--#define  CALIBRATION_DISABLED		(0x0 << 4)
--#define  CALIBRATION_ENABLED_INITIAL_ONLY	(0x2 << 4)
--#define  CALIBRATION_ENABLED_INITIAL_PERIODIC	(0x3 << 4)
--#define  BLANKING_PACKET_ENABLE		(1 << 2)
--#define  S3D_ORIENTATION_LANDSCAPE	(1 << 1)
--#define  EOTP_DISABLED			(1 << 0)
--
--#define _DSI_CMD_RXCTL_0		0x6b0d4
--#define _DSI_CMD_RXCTL_1		0x6b8d4
--#define DSI_CMD_RXCTL(tc)		_MMIO_DSI(tc,	\
--						  _DSI_CMD_RXCTL_0,\
--						  _DSI_CMD_RXCTL_1)
--#define  READ_UNLOADS_DW		(1 << 16)
--#define  RECEIVED_UNASSIGNED_TRIGGER	(1 << 15)
--#define  RECEIVED_ACKNOWLEDGE_TRIGGER	(1 << 14)
--#define  RECEIVED_TEAR_EFFECT_TRIGGER	(1 << 13)
--#define  RECEIVED_RESET_TRIGGER		(1 << 12)
--#define  RECEIVED_PAYLOAD_WAS_LOST	(1 << 11)
--#define  RECEIVED_CRC_WAS_LOST		(1 << 10)
--#define  NUMBER_RX_PLOAD_DW_MASK	(0xff << 0)
--#define  NUMBER_RX_PLOAD_DW_SHIFT	0
--
--#define _DSI_CMD_TXCTL_0		0x6b0d0
--#define _DSI_CMD_TXCTL_1		0x6b8d0
--#define DSI_CMD_TXCTL(tc)		_MMIO_DSI(tc,	\
--						  _DSI_CMD_TXCTL_0,\
--						  _DSI_CMD_TXCTL_1)
--#define  KEEP_LINK_IN_HS		(1 << 24)
--#define  FREE_HEADER_CREDIT_MASK	(0x1f << 8)
--#define  FREE_HEADER_CREDIT_SHIFT	0x8
--#define  FREE_PLOAD_CREDIT_MASK		(0xff << 0)
--#define  FREE_PLOAD_CREDIT_SHIFT	0
--#define  MAX_HEADER_CREDIT		0x10
--#define  MAX_PLOAD_CREDIT		0x40
--
--#define _DSI_CMD_TXHDR_0		0x6b100
--#define _DSI_CMD_TXHDR_1		0x6b900
--#define DSI_CMD_TXHDR(tc)		_MMIO_DSI(tc,	\
--						  _DSI_CMD_TXHDR_0,\
--						  _DSI_CMD_TXHDR_1)
--#define  PAYLOAD_PRESENT		(1 << 31)
--#define  LP_DATA_TRANSFER		(1 << 30)
--#define  VBLANK_FENCE			(1 << 29)
--#define  PARAM_WC_MASK			(0xffff << 8)
--#define  PARAM_WC_LOWER_SHIFT		8
--#define  PARAM_WC_UPPER_SHIFT		16
--#define  VC_MASK			(0x3 << 6)
--#define  VC_SHIFT			6
--#define  DT_MASK			(0x3f << 0)
--#define  DT_SHIFT			0
--
--#define _DSI_CMD_TXPYLD_0		0x6b104
--#define _DSI_CMD_TXPYLD_1		0x6b904
--#define DSI_CMD_TXPYLD(tc)		_MMIO_DSI(tc,	\
--						  _DSI_CMD_TXPYLD_0,\
--						  _DSI_CMD_TXPYLD_1)
--
--#define _DSI_LP_MSG_0			0x6b0d8
--#define _DSI_LP_MSG_1			0x6b8d8
--#define DSI_LP_MSG(tc)			_MMIO_DSI(tc,	\
--						  _DSI_LP_MSG_0,\
--						  _DSI_LP_MSG_1)
--#define  LPTX_IN_PROGRESS		(1 << 17)
--#define  LINK_IN_ULPS			(1 << 16)
--#define  LINK_ULPS_TYPE_LP11		(1 << 8)
--#define  LINK_ENTER_ULPS		(1 << 0)
--
--/* DSI timeout registers */
--#define _DSI_HSTX_TO_0			0x6b044
--#define _DSI_HSTX_TO_1			0x6b844
--#define DSI_HSTX_TO(tc)			_MMIO_DSI(tc,	\
--						  _DSI_HSTX_TO_0,\
--						  _DSI_HSTX_TO_1)
--#define  HSTX_TIMEOUT_VALUE_MASK	(0xffff << 16)
--#define  HSTX_TIMEOUT_VALUE_SHIFT	16
--#define  HSTX_TIMEOUT_VALUE(x)		((x) << 16)
--#define  HSTX_TIMED_OUT			(1 << 0)
--
--#define _DSI_LPRX_HOST_TO_0		0x6b048
--#define _DSI_LPRX_HOST_TO_1		0x6b848
--#define DSI_LPRX_HOST_TO(tc)		_MMIO_DSI(tc,	\
--						  _DSI_LPRX_HOST_TO_0,\
--						  _DSI_LPRX_HOST_TO_1)
--#define  LPRX_TIMED_OUT			(1 << 16)
--#define  LPRX_TIMEOUT_VALUE_MASK	(0xffff << 0)
--#define  LPRX_TIMEOUT_VALUE_SHIFT	0
--#define  LPRX_TIMEOUT_VALUE(x)		((x) << 0)
--
--#define _DSI_PWAIT_TO_0			0x6b040
--#define _DSI_PWAIT_TO_1			0x6b840
--#define DSI_PWAIT_TO(tc)		_MMIO_DSI(tc,	\
--						  _DSI_PWAIT_TO_0,\
--						  _DSI_PWAIT_TO_1)
--#define  PRESET_TIMEOUT_VALUE_MASK	(0xffff << 16)
--#define  PRESET_TIMEOUT_VALUE_SHIFT	16
--#define  PRESET_TIMEOUT_VALUE(x)	((x) << 16)
--#define  PRESPONSE_TIMEOUT_VALUE_MASK	(0xffff << 0)
--#define  PRESPONSE_TIMEOUT_VALUE_SHIFT	0
--#define  PRESPONSE_TIMEOUT_VALUE(x)	((x) << 0)
--
--#define _DSI_TA_TO_0			0x6b04c
--#define _DSI_TA_TO_1			0x6b84c
--#define DSI_TA_TO(tc)			_MMIO_DSI(tc,	\
--						  _DSI_TA_TO_0,\
--						  _DSI_TA_TO_1)
--#define  TA_TIMED_OUT			(1 << 16)
--#define  TA_TIMEOUT_VALUE_MASK		(0xffff << 0)
--#define  TA_TIMEOUT_VALUE_SHIFT		0
--#define  TA_TIMEOUT_VALUE(x)		((x) << 0)
--
- #define GEN12_GSMBASE			_MMIO(0x108100)
- #define GEN12_DSMBASE			_MMIO(0x1080C0)
- 
--- 
-2.30.2
-
+UmV2aWV3ZWQtYnk6IENheiBZb2tveWFtYSA8Y2F6Lnlva295YW1hQGludGVsLmNvbT4NCi1jYXoN
+Cg0KT24gVHVlLCAyMDIyLTAyLTE1IGF0IDEzOjQ1IC0wODAwLCBNYXR0IFJvcGVyIHdyb3RlOg0K
+PiBERzIgaGFyZHdhcmUgd2lsbCBzdGFydCBzaG93aW5nIHVwIGluIENJIHNob3J0bHk7IGxldCdz
+IG1ha2Ugc3VyZQ0KPiBpdCdzDQo+IHJlY29nbml6ZWQgYnkgdGhlIGRyaXZlci4NCj4gDQo+IEJz
+cGVjOiA0NDQ3Nw0KPiBDYzogUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29tPg0K
+PiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4NCj4gQ2M6IEpvb25hcyBM
+YWh0aW5lbiA8am9vbmFzLmxhaHRpbmVuQGxpbnV4LmludGVsLmNvbT4NCj4gQ2M6IFR2cnRrbyBV
+cnN1bGluIDx0dnJ0a28udXJzdWxpbkBsaW51eC5pbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6
+IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYyAgICAgICAgICB8ICAyICstDQo+ICBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jIHwgMjEgKysrKysrKysrKysrKysrKysrDQo+
+ICBpbmNsdWRlL2RybS9pOTE1X3BjaWlkcy5oICAgICAgICAgICAgICAgIHwgMjcNCj4gKysrKysr
+KysrKysrKysrKysrKysrKysrDQo+ICAzIGZpbGVzIGNoYW5nZWQsIDQ5IGluc2VydGlvbnMoKyks
+IDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X3BjaS5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYw0KPiBpbmRleCA4
+MjQ2Y2JlOWIwMWQuLjkxNjc3YTlmMzMwYyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9wY2kuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5j
+DQo+IEBAIC0xMDM4LDcgKzEwMzgsNiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2Rldmlj
+ZV9pbmZvDQo+IHhlaHBzZHZfaW5mbyA9IHsNCj4gIAkucmVxdWlyZV9mb3JjZV9wcm9iZSA9IDEs
+DQo+ICB9Ow0KPiAgDQo+IC1fX21heWJlX3VudXNlZA0KPiAgc3RhdGljIGNvbnN0IHN0cnVjdCBp
+bnRlbF9kZXZpY2VfaW5mbyBkZzJfaW5mbyA9IHsNCj4gIAlYRV9IUF9GRUFUVVJFUywNCj4gIAlY
+RV9IUE1fRkVBVFVSRVMsDQo+IEBAIC0xMTM3LDYgKzExMzYsNyBAQCBzdGF0aWMgY29uc3Qgc3Ry
+dWN0IHBjaV9kZXZpY2VfaWQgcGNpaWRsaXN0W10gPQ0KPiB7DQo+ICAJSU5URUxfQURMTl9JRFMo
+JmFkbF9wX2luZm8pLA0KPiAgCUlOVEVMX0RHMV9JRFMoJmRnMV9pbmZvKSwNCj4gIAlJTlRFTF9S
+UExTX0lEUygmYWRsX3NfaW5mbyksDQo+ICsJSU5URUxfREcyX0lEUygmZGcyX2luZm8pLA0KPiAg
+CXswLCAwLCAwfQ0KPiAgfTsNCj4gIE1PRFVMRV9ERVZJQ0VfVEFCTEUocGNpLCBwY2lpZGxpc3Qp
+Ow0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8u
+Yw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMNCj4gaW5kZXgg
+OTRkYTVhYTM3MzkxLi5hZTEzYmMzYzc5NzAgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aW50ZWxfZGV2aWNlX2luZm8uYw0KPiBAQCAtMTc4LDYgKzE3OCwxOCBAQCBzdGF0aWMgY29uc3Qg
+dTE2IHN1YnBsYXRmb3JtX3JwbHNfaWRzW10gPSB7DQo+ICAJSU5URUxfUlBMU19JRFMoMCksDQo+
+ICB9Ow0KPiAgDQo+ICtzdGF0aWMgY29uc3QgdTE2IHN1YnBsYXRmb3JtX2cxMF9pZHNbXSA9IHsN
+Cj4gKwlJTlRFTF9ERzJfRzEwX0lEUygwKSwNCj4gK307DQo+ICsNCj4gK3N0YXRpYyBjb25zdCB1
+MTYgc3VicGxhdGZvcm1fZzExX2lkc1tdID0gew0KPiArCUlOVEVMX0RHMl9HMTFfSURTKDApLA0K
+PiArfTsNCj4gKw0KPiArc3RhdGljIGNvbnN0IHUxNiBzdWJwbGF0Zm9ybV9nMTJfaWRzW10gPSB7
+DQo+ICsJSU5URUxfREcyX0cxMl9JRFMoMCksDQo+ICt9Ow0KPiArDQo+ICBzdGF0aWMgYm9vbCBm
+aW5kX2RldmlkKHUxNiBpZCwgY29uc3QgdTE2ICpwLCB1bnNpZ25lZCBpbnQgbnVtKQ0KPiAgew0K
+PiAgCWZvciAoOyBudW07IG51bS0tLCBwKyspIHsNCj4gQEAgLTIyMCw2ICsyMzIsMTUgQEAgdm9p
+ZCBpbnRlbF9kZXZpY2VfaW5mb19zdWJwbGF0Zm9ybV9pbml0KHN0cnVjdA0KPiBkcm1faTkxNV9w
+cml2YXRlICppOTE1KQ0KPiAgCX0gZWxzZSBpZiAoZmluZF9kZXZpZChkZXZpZCwgc3VicGxhdGZv
+cm1fcnBsc19pZHMsDQo+ICAJCQkgICAgICBBUlJBWV9TSVpFKHN1YnBsYXRmb3JtX3JwbHNfaWRz
+KSkpIHsNCj4gIAkJbWFzayA9IEJJVChJTlRFTF9TVUJQTEFURk9STV9SUExfUyk7DQo+ICsJfSBl
+bHNlIGlmIChmaW5kX2RldmlkKGRldmlkLCBzdWJwbGF0Zm9ybV9nMTBfaWRzLA0KPiArCQkJICAg
+ICAgQVJSQVlfU0laRShzdWJwbGF0Zm9ybV9nMTBfaWRzKSkpIHsNCj4gKwkJbWFzayA9IEJJVChJ
+TlRFTF9TVUJQTEFURk9STV9HMTApOw0KPiArCX0gZWxzZSBpZiAoZmluZF9kZXZpZChkZXZpZCwg
+c3VicGxhdGZvcm1fZzExX2lkcywNCj4gKwkJCSAgICAgIEFSUkFZX1NJWkUoc3VicGxhdGZvcm1f
+ZzExX2lkcykpKSB7DQo+ICsJCW1hc2sgPSBCSVQoSU5URUxfU1VCUExBVEZPUk1fRzExKTsNCj4g
+Kwl9IGVsc2UgaWYgKGZpbmRfZGV2aWQoZGV2aWQsIHN1YnBsYXRmb3JtX2cxMl9pZHMsDQo+ICsJ
+CQkgICAgICBBUlJBWV9TSVpFKHN1YnBsYXRmb3JtX2cxMl9pZHMpKSkgew0KPiArCQltYXNrID0g
+QklUKElOVEVMX1NVQlBMQVRGT1JNX0cxMik7DQo+ICAJfQ0KPiAgDQo+ICAJaWYgKElTX1RJR0VS
+TEFLRShpOTE1KSkgew0KPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vaTkxNV9wY2lpZHMuaCBi
+L2luY2x1ZGUvZHJtL2k5MTVfcGNpaWRzLmgNCj4gaW5kZXggNTMzODkwZGM5ZGExLi4zNjA5ZjMy
+NTRmMjQgMTAwNjQ0DQo+IC0tLSBhL2luY2x1ZGUvZHJtL2k5MTVfcGNpaWRzLmgNCj4gKysrIGIv
+aW5jbHVkZS9kcm0vaTkxNV9wY2lpZHMuaA0KPiBAQCAtNjgxLDQgKzY4MSwzMSBAQA0KPiAgCUlO
+VEVMX1ZHQV9ERVZJQ0UoMHhBNzg4LCBpbmZvKSwgXA0KPiAgCUlOVEVMX1ZHQV9ERVZJQ0UoMHhB
+Nzg5LCBpbmZvKQ0KPiAgDQo+ICsvKiBERzIgKi8NCj4gKyNkZWZpbmUgSU5URUxfREcyX0cxMF9J
+RFMoaW5mbykgXA0KPiArCUlOVEVMX1ZHQV9ERVZJQ0UoMHg1NjkwLCBpbmZvKSwgXA0KPiArCUlO
+VEVMX1ZHQV9ERVZJQ0UoMHg1NjkxLCBpbmZvKSwgXA0KPiArCUlOVEVMX1ZHQV9ERVZJQ0UoMHg1
+NjkyLCBpbmZvKSwgXA0KPiArCUlOVEVMX1ZHQV9ERVZJQ0UoMHg1NkEwLCBpbmZvKSwgXA0KPiAr
+CUlOVEVMX1ZHQV9ERVZJQ0UoMHg1NkExLCBpbmZvKSwgXA0KPiArCUlOVEVMX1ZHQV9ERVZJQ0Uo
+MHg1NkEyLCBpbmZvKQ0KPiArDQo+ICsjZGVmaW5lIElOVEVMX0RHMl9HMTFfSURTKGluZm8pIFwN
+Cj4gKwlJTlRFTF9WR0FfREVWSUNFKDB4NTY5MywgaW5mbyksIFwNCj4gKwlJTlRFTF9WR0FfREVW
+SUNFKDB4NTY5NCwgaW5mbyksIFwNCj4gKwlJTlRFTF9WR0FfREVWSUNFKDB4NTY5NSwgaW5mbyks
+IFwNCj4gKwlJTlRFTF9WR0FfREVWSUNFKDB4NTZBNSwgaW5mbyksIFwNCj4gKwlJTlRFTF9WR0Ff
+REVWSUNFKDB4NTZBNiwgaW5mbyksIFwNCj4gKwlJTlRFTF9WR0FfREVWSUNFKDB4NTZCMCwgaW5m
+byksIFwNCj4gKwlJTlRFTF9WR0FfREVWSUNFKDB4NTZCMSwgaW5mbykNCj4gKw0KPiArI2RlZmlu
+ZSBJTlRFTF9ERzJfRzEyX0lEUyhpbmZvKSBcDQo+ICsJSU5URUxfVkdBX0RFVklDRSgweDU2QTMs
+IGluZm8pLCBcDQo+ICsJSU5URUxfVkdBX0RFVklDRSgweDU2QTQsIGluZm8pDQo+ICsNCj4gKyNk
+ZWZpbmUgSU5URUxfREcyX0lEUyhpbmZvKSBcDQo+ICsJSU5URUxfREcyX0cxMF9JRFMoaW5mbyks
+IFwNCj4gKwlJTlRFTF9ERzJfRzExX0lEUyhpbmZvKSwgXA0KPiArCUlOVEVMX0RHMl9HMTJfSURT
+KGluZm8pDQo+ICsNCj4gICNlbmRpZiAvKiBfSTkxNV9QQ0lJRFNfSCAqLw0K
