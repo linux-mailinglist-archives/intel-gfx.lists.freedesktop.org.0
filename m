@@ -1,54 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00D8F4B866C
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 12:04:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B60D24B868C
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 12:19:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34D1A10E5D9;
-	Wed, 16 Feb 2022 11:04:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA60010E77D;
+	Wed, 16 Feb 2022 11:19:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A21F10E650
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 11:04:29 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C83A10E77D;
+ Wed, 16 Feb 2022 11:19:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645009469; x=1676545469;
+ t=1645010379; x=1676546379;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=z2BhCCYqNJJw1IrFXBiATiQ8DcRjbGLRFJpbZPIV6Fk=;
- b=IotDJ1PJwWPy1n0O4HhwUNp2J+ic67TtzO6lUNavbsxh4xpX3lEr28hP
- bpF3px5p5aVWd0ijsj7xoTvp3KQgMi4lk9cFcUjjeGpY6kv9fGm2OHxGw
- 1s7PDRDBWVhxJfp9aPoRCk6r1J10E1sxI+RGnuwuBulq9H2t4Q1NOvEOE
- QtaVXmO6cGDlXbLRx/w14P1WSu705yI1QHvbjDihREFM5oIGugKIG3sB4
- DFNUewRN1Bk8o2hFOkYZ2vOh4TH931VmckukiCwxzbP3dz5PtgPTdMyjc
- P69uogBSJYIIuHQ1Yv8rW9GyH2BK2BcJ3yAF41ZJbWHRzWzgiSolU8ZLL w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="337014193"
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="337014193"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 03:04:28 -0800
+ bh=eZpMFh9JD7e4Isl+qXnDubW4pV2rz0ffUf1mP1q117A=;
+ b=arj39bp5vde/rtzp820+kcu8TDp+eQ5ouTvVrQv+hRCvkQG0YKTc6fRo
+ bc4iBvXjGQ1cjyjq4vplnkPhSlEWi9/p4sxDyg05dKphL/QecXNtEitee
+ c1FSTlz/yPmhZI9o6PsGm1OEuKwUMUDD4VdJW7BYExUOcqMFu1xa193dU
+ Rlsi/MdMoOlfzGOHVZaXqYE3+0Ux0lbSO4/f8x0IZdSR1aSeLFlUa7Q6Y
+ QqXgwcx2G18qdh11cjx2kC4jyztexj3yrMbd/8pnIXjKOjDlHt/M7gNO3
+ wYr6tWcVsMLnXk0iJkRusAhtXrJpWuehhsz/NpN+WWnPfQih3Gx7emud1 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="250783196"
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="250783196"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 03:19:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="544876124"
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="529406067"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga008.jf.intel.com with SMTP; 16 Feb 2022 03:04:26 -0800
+ by orsmga007.jf.intel.com with SMTP; 16 Feb 2022 03:19:35 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 16 Feb 2022 13:04:25 +0200
-Date: Wed, 16 Feb 2022 13:04:25 +0200
+ Wed, 16 Feb 2022 13:19:35 +0200
+Date: Wed, 16 Feb 2022 13:19:35 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <YgzaOVz15qLUTd7g@intel.com>
-References: <20220215183208.6143-1-ville.syrjala@linux.intel.com>
- <20220215183208.6143-11-ville.syrjala@linux.intel.com>
- <b713032b-2696-677f-d1a6-b3eece58b678@intel.com>
+To: dri-devel@lists.freedesktop.org
+Message-ID: <Ygzdx3W2A/XcYOXg@intel.com>
+References: <20220209091928.14766-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <b713032b-2696-677f-d1a6-b3eece58b678@intel.com>
+In-Reply-To: <20220209091928.14766-1-ville.syrjala@linux.intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 10/12] drm/i915: Eliminate bigjoiner boolean
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/atomic: Don't pollute
+ crtc_state->mode_blob with error pointers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,102 +60,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: fuyufan <fuyufan@huawei.com>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <maxime@cerno.tech>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 16, 2022 at 04:27:49PM +0530, Nautiyal, Ankit K wrote:
+On Wed, Feb 09, 2022 at 11:19:27AM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> On 2/16/2022 12:02 AM, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Since we now have the bigjoiner_pipes bitmask the boolean
-> > is redundant. Get rid of it.
-> >
-> > Also, populating bigjoiner_pipes already during
-> > encoder->compute_config() allows us to use it much earlier
-> > during the state calculation as well. The initial aim is
-> > to use it in intel_crtc_compute_config().
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
-> >   drivers/gpu/drm/i915/display/intel_display.c  | 50 ++++++++-----------
-> >   .../drm/i915/display/intel_display_debugfs.c  |  2 +-
-> >   .../drm/i915/display/intel_display_types.h    |  3 --
-> >   drivers/gpu/drm/i915/display/intel_dp.c       | 13 ++---
-> >   drivers/gpu/drm/i915/display/intel_vdsc.c     |  8 +--
-> >   .../drm/i915/display/skl_universal_plane.c    |  2 +-
-> >   7 files changed, 36 insertions(+), 44 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-> > index 1f448f4e9aaf..da6cf0515164 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> > @@ -640,7 +640,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
-> >   	 * FIXME bigjoiner fastpath would be good
-> >   	 */
-> >   	if (!crtc_state->hw.active || intel_crtc_needs_modeset(crtc_state) ||
-> > -	    crtc_state->update_pipe || crtc_state->bigjoiner)
-> > +	    crtc_state->update_pipe || crtc_state->bigjoiner_pipes)
-> >   		goto slow;
-> >   
-> >   	/*
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 47b5d8cc16fd..192474163edb 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -1926,7 +1926,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
-> >   	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
-> >   		return;
-> >   
-> > -	if (!new_crtc_state->bigjoiner) {
-> > +	if (!new_crtc_state->bigjoiner_pipes) {
-> >   		intel_encoders_pre_pll_enable(state, crtc);
-> >   
-> >   		if (new_crtc_state->shared_dpll)
-> > @@ -2727,7 +2727,7 @@ static void intel_crtc_compute_pixel_rate(struct intel_crtc_state *crtc_state)
-> >   static void intel_bigjoiner_adjust_timings(const struct intel_crtc_state *crtc_state,
-> >   					   struct drm_display_mode *mode)
-> >   {
-> > -	if (!crtc_state->bigjoiner)
-> > +	if (!crtc_state->bigjoiner_pipes)
-> >   		return;
-> >   
-> >   	mode->crtc_clock /= 2;
-> > @@ -2811,7 +2811,7 @@ static void intel_bigjoiner_compute_pipe_src(struct intel_crtc_state *crtc_state
-> >   {
-> >   	int width, height;
-> >   
-> > -	if (!crtc_state->bigjoiner)
-> > +	if (!crtc_state->bigjoiner_pipes)
-> >   		return;
-> >   
-> >   	width = drm_rect_width(&crtc_state->pipe_src);
-> > @@ -4218,7 +4218,6 @@ static void intel_bigjoiner_get_config(struct intel_crtc_state *crtc_state)
-> >   	if (((master_pipes | slave_pipes) & BIT(pipe)) == 0)
-> >   		return;
-> >   
-> > -	crtc_state->bigjoiner = true;
-> >   	crtc_state->bigjoiner_pipes =
-> >   		BIT(get_bigjoiner_master_pipe(pipe, master_pipes, slave_pipes)) |
-> >   		get_bigjoiner_slave_pipes(pipe, master_pipes, slave_pipes);
+> Make sure we don't assign an error pointer to crtc_state->mode_blob
+> as that will break all kinds of places that assume either NULL or a
+> valid pointer (eg. drm_property_blob_put()).
 > 
-> Although not part of this patch, do we need to check if 
-> get_bigjoiner_master_pipe() does not give PIPE_INVALID?
-> 
-> Perhaps in a case where master_pipe is read as 0 but some garbage for 
-> slave_pipes during readout?
-> 
-> Should there be a check for INVALID_PIPE, before feeding into BIT() macro?
+> Reported-by: fuyufan <fuyufan@huawei.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-I think if we want to do more thourough validation against totally bogus
-hardware programming then we should just do it once at the start.
-enabled_bigjoiner_pipes() does have something, but it's only good for
-the two joined pipes cases. Also it just warns and doesn't do anything
-more than that atm. The simple option might be to make it just zero out
-the masks entirely if they look totally bogus. The readout would then
-be skipped for all slave pipes.
+Slapped on a cc:stable just in case this can actually happen
+in the wild, and pushed to drm-misc-fixes with Maxime's irc ack
+(thanks).
+
+> ---
+>  drivers/gpu/drm/drm_atomic_uapi.c | 14 ++++++++------
+>  1 file changed, 8 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+> index 9781722519c3..54d62fdb4ef9 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -76,15 +76,17 @@ int drm_atomic_set_mode_for_crtc(struct drm_crtc_state *state,
+>  	state->mode_blob = NULL;
+>  
+>  	if (mode) {
+> +		struct drm_property_blob *blob;
+> +
+>  		drm_mode_convert_to_umode(&umode, mode);
+> -		state->mode_blob =
+> -			drm_property_create_blob(state->crtc->dev,
+> -						 sizeof(umode),
+> -						 &umode);
+> -		if (IS_ERR(state->mode_blob))
+> -			return PTR_ERR(state->mode_blob);
+> +		blob = drm_property_create_blob(crtc->dev,
+> +						sizeof(umode), &umode);
+> +		if (IS_ERR(blob))
+> +			return PTR_ERR(blob);
+>  
+>  		drm_mode_copy(&state->mode, mode);
+> +
+> +		state->mode_blob = blob;
+>  		state->enable = true;
+>  		drm_dbg_atomic(crtc->dev,
+>  			       "Set [MODE:%s] for [CRTC:%d:%s] state %p\n",
+> -- 
+> 2.34.1
 
 -- 
 Ville Syrjälä
