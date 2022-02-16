@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A5214B8506
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 10:58:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 462D14B8541
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 11:11:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9592610E9C6;
-	Wed, 16 Feb 2022 09:58:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40B8D10E775;
+	Wed, 16 Feb 2022 10:11:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A61510E9C6;
- Wed, 16 Feb 2022 09:58:27 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A78010E775;
+ Wed, 16 Feb 2022 10:11:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645005507; x=1676541507;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=2Nl47R+l/Dyorm/plhVMc/vkL37v28gUnjuXNQsPVTw=;
- b=bxgpQMfjk6IssU3fRQF3bQ+LSrNTwc5iw6+YC7N+Rv8yN3sBL0oJlxk4
- SX+wCJ11PlJTtxjUGGxzZNMGM8Tin0bdJhdaDKZfNerBlP2nReFaPZcH2
- npQ5Y/tXb32SJCx5nPuBAaNiuwHH4zpj7YU7nvw4nwTT1ZHRsc1VjoeKZ
- cX6B+whTkT/N8HXLn8p4yH2FyGPOK/RovLRHnoYyNqx4mWnhrZvmjfbIr
- IBMGGxMd8KbTz1EkOLSXgHhexMM/e9k/zIJiMeL5P1zctn+n5T2Smm4zR
- zJPmz7hckNbw/pnjZAzsfEM4b23nCwN6Lx5UVUADPu5LhFXhKcf/i3oX/ g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="230529728"
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="230529728"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 01:57:55 -0800
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="502952891"
-Received: from sphadnis-mobl1.amr.corp.intel.com (HELO [10.212.82.113])
- ([10.212.82.113])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 01:57:52 -0800
-Message-ID: <9a7b0e48-b00f-be11-7fc7-bc26719cbc1e@linux.intel.com>
-Date: Wed, 16 Feb 2022 09:57:49 +0000
+ t=1645006303; x=1676542303;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=+FJRsZksRk4hm38iGEai+Nae1XuHF0MB1kBHEBkxWCM=;
+ b=FaKJ9+7SDzfp8QZtw5sWqhAqQ9dHL9xhwELPI0j36n4qfqSNc9AM+6fQ
+ vvPaP7NaXuihiDQbC8IKCHulJw1ntKYU5j5RGo2Htxy7U8GWzg5hAQIrh
+ xOSwTtYDvHcsFYePMCXQdoRwlk8WcRFob2HG9JaLH+J0LlNfZI72kkD+v
+ bkd3SF6speKRkQmczyx5J7rL3y629O5F0DXDSP1rPrP6pMORBfqJ/RE64
+ y+iuZ4UDsvrtvHmJPQOpoMGfAL1+u7EjXuDO537QgdW37R5pDwEmOnGSl
+ gCNAbxbLpl6UExrhIzNur/gVLJQvt0BgV0QuUYrErHK+o3QjXJLaeM5Uh Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="337004032"
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="337004032"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 02:07:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="544850819"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga008.jf.intel.com with SMTP; 16 Feb 2022 02:07:09 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 16 Feb 2022 12:07:08 +0200
+Date: Wed, 16 Feb 2022 12:07:08 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Message-ID: <YgzMzNYlAoQPGhj1@intel.com>
+References: <20220215055154.15363-1-ramalingam.c@intel.com>
+ <20220215055154.15363-4-ramalingam.c@intel.com>
+ <Ygy68/f1ERpTKJJW@intel.com>
+ <392e942460079346d1ce9d3a17db11f9d02a17f5.camel@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-References: <20220216083849.91239-1-jiapeng.chong@linux.alibaba.com>
- <87h78z5gmp.fsf@intel.com> <YgzBpX2SKCh4cb19@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <YgzBpX2SKCh4cb19@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: fix unsigned integer to signed
- assignment
+In-Reply-To: <392e942460079346d1ce9d3a17db11f9d02a17f5.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Fix for PHY_MISC_TC1 offset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,83 +62,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, airlied@linux.ie,
- intel-gfx@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- sumit.semwal@linaro.org, linaro-mm-sig@lists.linaro.org,
- christian.koenig@amd.com, linux-media@vger.kernel.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 16/02/2022 09:19, Ville SyrjÃ¤lÃ¤ wrote:
-> On Wed, Feb 16, 2022 at 11:02:06AM +0200, Jani Nikula wrote:
->> On Wed, 16 Feb 2022, Jiapeng Chong <jiapeng.chong@linux.alibaba.com> wrote:
->>> Eliminate the follow smatch warning:
->>>
->>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4640
->>> guc_create_virtual() warn: assigning (-2) to unsigned variable
->>> 've->base.instance'.
->>>
->>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4641
->>> guc_create_virtual() warn: assigning (-2) to unsigned variable
->>> 've->base.uabi_instance'.
->>>
->>> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
->>> Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
->>
->> The report seems to be valid, but I don't think this is the fix.
->>
->> Where do we even check for invalid instance/uabi_instance in code?
+On Wed, Feb 16, 2022 at 09:36:02AM +0000, Hogander, Jouni wrote:
+> On Wed, 2022-02-16 at 10:50 +0200, Ville Syrjälä wrote:
+> > On Tue, Feb 15, 2022 at 11:21:54AM +0530, Ramalingam C wrote:
+> > > From: Jouni Högander <jouni.hogander@intel.com>
+> > > 
+> > > Currently ICL_PHY_MISC macro is returning offset 0x64C10 for PHY_E
+> > > port. Correct offset is 0x64C14.
+> > 
+> > Why is it PHY_E and not PHY_F?
 > 
-> The whole thing seems rather poorly documented as there's a matching
-> uabi struct with __u16's and the negative values are defined right
-> there in the uapi header as well.
-
-Negative ones are exception values to be used in conjunction with the virtual engine uapi (see "DOC: Virtual Engine uAPI" and also comment next to I915_CONTEXT_PARAM_ENGINES).
-
-AFAIK assigning negative int to unsigned int is defined and fine.
-
-Compiler does warn on comparisons which is why we have:
-
-./gem/i915_gem_busy.c:  if (id == (u16)I915_ENGINE_CLASS_INVALID)
-./gem/i915_gem_busy.c:  if (id == (u16)I915_ENGINE_CLASS_INVALID)
-./gem/i915_gem_context.c:               if (ci.engine_class == (u16)I915_ENGINE_CLASS_INVALID &&
-./gem/i915_gem_context.c:                   ci.engine_instance == (u16)I915_ENGINE_CLASS_INVALID_NONE)
-
-So I think no action needed here.
-
-Regards,
-
-Tvrtko
-  
->>
->> BR,
->> Jani.
->>
->>
->>> ---
->>>   drivers/gpu/drm/i915/gt/intel_engine_types.h | 4 ++--
->>>   1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
->>> index 36365bdbe1ee..dc7cc06c68e7 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
->>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
->>> @@ -328,10 +328,10 @@ struct intel_engine_cs {
->>>   	intel_engine_mask_t logical_mask;
->>>   
->>>   	u8 class;
->>> -	u8 instance;
->>> +	s8 instance;
->>>   
->>>   	u16 uabi_class;
->>> -	u16 uabi_instance;
->>> +	s16 uabi_instance;
->>>   
->>>   	u32 uabi_capabilities;
->>>   	u32 context_size;
->>
->> -- 
->> Jani Nikula, Intel Open Source Graphics Center
+> This is a valid question. It seems we have followed intel_phy_is_snps()
+> here:
 > 
+> // snip
+> else if (IS_DG2(dev_priv))
+> 		/*
+> 		 * All four "combo" ports and the TC1 port (PHY E) use
+> 		 * Synopsis PHYs.
+> 		 */
+> 		return phy <= PHY_E;
+> // snip
+> 
+> According to spec port E is "No connection". Better place to fix this
+> could be intel_phy_is_snps() itself?
+
+I think the crucial question is where are all the places that
+the results of intel_port_to_phy() get used.
+
+I do see that for all the actual snps phy registers we
+do want PHY_E, but maybe it would be better to have a local
+SNPS_PHY enum just for intel_snps_phy.c, and leave the other
+phy thing for everything else?
+
+Not sure if there is some other register we index with the
+phy that specifically wants PHY_E?
+
+Also it kinda looks to me like for VBT port mapping we also
+want PHY_F essentially since the modern platforms make the
+VBT port mapping PHY based and xelpd_port_mapping() uses
+PORT_TC1<->DVO_PORT_*F. Not that we actually use enum phy
+in the VBT code atm, but I'm thinking we probably should
+since it might allow us to get rid of all those different
+mapping tables. Though the whole intel_port_to_phy()
+disaster needs to get cleaned up first IMO.
+
+-- 
+Ville Syrjälä
+Intel
