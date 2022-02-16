@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC1DE4B7FD1
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 06:01:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA22F4B7FD7
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 06:02:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F8B310E3E8;
-	Wed, 16 Feb 2022 05:01:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD4E610E15C;
+	Wed, 16 Feb 2022 05:02:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4A7A610E198;
- Wed, 16 Feb 2022 05:01:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9F91810E198;
+ Wed, 16 Feb 2022 05:02:42 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 46CCFA66C9;
- Wed, 16 Feb 2022 05:01:44 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A0AB8A66C9;
+ Wed, 16 Feb 2022 05:02:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ramalingam C" <ramalingam.c@intel.com>
-Date: Wed, 16 Feb 2022 05:01:44 -0000
-Message-ID: <164498770424.16093.10809478268560604185@emeril.freedesktop.org>
+Date: Wed, 16 Feb 2022 05:02:42 -0000
+Message-ID: <164498776265.16093.9170293343186215285@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220215055154.15363-1-ramalingam.c@intel.com>
 In-Reply-To: <20220215055154.15363-1-ramalingam.c@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/dg2=3A_5th_Display_output?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/dg2=3A_5th_Display_output?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,15 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-29a23013314f drm/i915/dg2: Enable 5th display
-f7ec8750ea22 drm/i915/dg2: Drop 38.4 MHz MPLLB tables
-6ec3dcb34d04 drm/i915: Fix for PHY_MISC_TC1 offset
--:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'port' - possible side-effects?
-#43: FILE: drivers/gpu/drm/i915/i915_reg.h:9564:
-+#define DG2_PHY_MISC(port)	((port) == PHY_E ? _MMIO(_DG2_PHY_MISC_TC1) : \
-+				 ICL_PHY_MISC(port))
-
-total: 0 errors, 0 warnings, 1 checks, 20 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
