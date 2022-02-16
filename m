@@ -2,121 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EBFE4B85DD
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 11:36:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B66844B8605
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 11:40:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E97AC10E623;
-	Wed, 16 Feb 2022 10:36:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5D6410E344;
+	Wed, 16 Feb 2022 10:40:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2040.outbound.protection.outlook.com [40.107.244.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A14DB10E5F5;
- Wed, 16 Feb 2022 10:36:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EwqtY98122kNPT1ZqVxx++1oimzWZzEbIHYwPgUvLicFInLNjZTpsMQpR24JHT8LEnd0JNiWIH2JWEazu7E3LSof4zfGRG0wXPdIWHVJtlvdOr7pVtLgXzGp9V850MECr+BTbheR+f4dPWVJluVEBUjD8x4K1tGS7YPnkLYRfNDbMHhysv3zn2LbcWvJBzbl+l/LhfAyBYclJq+uXCs2RaZmW4IZg0KC5Gg//jc9PhNQqGhlMZEZWbTehX7Nf5LIjdeYbodjLILe/O5bVgUOL/ccwxF/IdBWKrBX+gIYp5oo61LVFOQAIpitk9fL1+mQ5M2+iODRjT+zZ33dchioYg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6sbFq0v5be1qoUS2ZU3pehe+qp22T4mlbu9DFZSJfkk=;
- b=LHxoexSwdhxWk5krlbCSa96Am3jdaqwaB65nOLsdKcyndjbsmxBhWhkWOFq2f4D+8PEXmvvJYy5MBuR27ZKUki45yNxfxCkuZ/IO6S8SwfuTH4afYWcqHXomISlGEyyORN6uV/C+0V40CM6CD6dZo1rUdGFSc90WB6DEqpsITjBUVMTJP9np5a+5KuFGVCxZXj9Dp56kGmB4va4/U0NGmTseqRulBRsmt2bZWaaSqWNLcLXb30pqqB/pvM7/CxxtmICMQdWMtGOOmctwiUMKPAG+YtE5LreqaRjt5DSoD2mb7awm0+DD9SitQtWe/p1KqRbM4brYj82Ck5aAjgv5Rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6sbFq0v5be1qoUS2ZU3pehe+qp22T4mlbu9DFZSJfkk=;
- b=l/vE9vyoi8BshHI8smEhuyYHWgdRMAB3auijFEGF6XLl+Ot6gOB0lONjS8XvcN6FSAdMWQ1vnqo/F83TQGCANzuexo7h1ixGPSTa5UxhMzsaVdJZPKMECaMr0IR+qpDnWFGP6dSOunvPqCVGojVMWQmd+2HSgdrt2/kUWeW98Ig=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by DM5PR12MB1497.namprd12.prod.outlook.com (2603:10b6:4:d::22) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4995.15; Wed, 16 Feb 2022 10:36:28 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::e03f:901a:be6c:b581]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::e03f:901a:be6c:b581%6]) with mapi id 15.20.4995.016; Wed, 16 Feb 2022
- 10:36:27 +0000
-Message-ID: <11828cdd-8d7b-b9a2-5a8c-ee0eac2f8aa8@amd.com>
-Date: Wed, 16 Feb 2022 11:36:21 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <30de1989-6fee-d94a-7d99-6a3a8c59659d@amd.com>
- <20220215222352.867195-1-vivek.kasireddy@intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20220215222352.867195-1-vivek.kasireddy@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM6PR02CA0031.eurprd02.prod.outlook.com
- (2603:10a6:20b:6e::44) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7685F10E344
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 10:40:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1645008029; x=1676544029;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=4C9GjrTqxDVqQ5GHzHYYjObSuDUFYj63bfmSVAkC/CQ=;
+ b=Vav0jM0ZIubqtXWHNG738pNpWWqS8PNV4oZJKKK0c6akHXDbQLC1I9DQ
+ O/eEHrycLKDFk6+5xYEJtC1Qb4f1IDDD7i/rAdB93KD1SrSUyIT4CwHY7
+ SV8rMMDVpjrmwJ6D155ARh0QzCvGSfdBliC4NAITU1lKe/gENTFPl9fcj
+ KUlpfCxy0A2fwsQlmYrtwKYz8YWb173Hpbzfu7W6cCkkYZlP94mRPOZEQ
+ tftBcSfjgyVB54gJ3+8Fcgl41rlkvvfzUg9HMi0k+nK5N5GF797IrQXcd
+ i9dL5NIKHXTKuUO11R8smv44xv2zue3xXwHFoKwAJ8YdHdwFMUHiecO6r A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="234115939"
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="234115939"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 02:40:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="498736989"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga006.jf.intel.com with SMTP; 16 Feb 2022 02:40:26 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 16 Feb 2022 12:40:26 +0200
+Date: Wed, 16 Feb 2022 12:40:26 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YgzUmn39XmIk3p5Y@intel.com>
+References: <20220211090629.15555-1-ville.syrjala@linux.intel.com>
+ <20220211090629.15555-9-ville.syrjala@linux.intel.com>
+ <87o8373xzz.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 112c74d4-9e9a-4a0b-bfaa-08d9f1382feb
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1497:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB14970380C881FAB8758BFF2083359@DM5PR12MB1497.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YrBRS6y1JalGcZw+A6o2sSGqy24RH6yeXdJtFYIONEc/VzAlM9sIFRMmIiC2VmeGZOok9UFcQcgngngxnN10Y/xT/lzc8PmM5EnGXHFK540vhoJHit1QY6Eua38pYOxda75gmMvQLye5JJMij5H36dOFQl3aecMHVMeERhHYOCdYMHxbAtAHrOP//YRGR6a2iapze2CosgmurOKCePjcKB1FrqlsxKkbfOlsKwMvOIwlqpDla/K3aTzYxqjAmbDIuRSNTAuS1J88g20UiCVureVP3lVNYSXVXJCnBFFJRAEdMCoNhGGFe0qfpbZcQpkSKQfszu+WA+bL8xzp8ljKFej5PUDcDJjrK5+lYfwo+ZIRXjrcV5GqhwS+3WbGoLCvbdmPnal15wHXilttdPl1OJgdWI/U9Dgc9Ug64TR895MelqSzl59V4egUZZTjcshYNmoms9QAg6Pxgox9CSfAoqwlH3fr7XACILza6hSGYrfOd73yiV26PXm6Y+uSuUqL2qr1nrbh3Ik3hU8rgUOhPCHCzxEjiYkZdwMd/S4p00X3v4KM30SXwohYgBi7iPOXr1B/+vLyYbMwCXxoZouUcN4C8BjJrhEq62dLLeiJsEs4/YllwHhrst8ZOkVcDqAfqgoaSyiCuAzj/esnFAF0rmK6MFpq08MkELNaEW74DuqwZIzcs6Azl4CqVSx+wqAejl/2wSXs/wMioYhxsuQ1zkIhjXnnQkOJ37ux+tK4EXN+tn0clcGVzwI09pQqjzg0
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(31686004)(36756003)(186003)(83380400001)(26005)(8676002)(2616005)(66946007)(66556008)(8936002)(66476007)(86362001)(38100700002)(316002)(2906002)(31696002)(6486002)(508600001)(5660300002)(54906003)(6666004)(6506007)(6512007)(4326008)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RVVzM1pKOUMyZ2pmZ0gxQlVKZW13VGRlVDdOVWRvemVHTzRjakVCWEVxN1I0?=
- =?utf-8?B?aHZhQzBFTjllRVVGVTZHb3Nmb0F0dEl1Z1hHcEtDbHZZNDc5bUl1VG9oeEFR?=
- =?utf-8?B?OFc4VjM0UWxYM3dDU2NsRlRlZ3p3ZFcyNzM0YVhzSXJDMC8zNzRLY0ZJc1BO?=
- =?utf-8?B?anpBdHM3OXo2Y01ZaVRBMGRGakh3WUlTSHEvekJRaSt3V3JaVlhzd2hzcHVD?=
- =?utf-8?B?TkZUUnpURndLUjAyR0dnKzRNdnNkMWJkSFN5SndKams5QXBlRGR6cmpUSy9N?=
- =?utf-8?B?WmtFNDQvaHR5WXc2WWl6UDl3Rk5icGsxempBaDdNZXYwb3BMbWZCWjRNMk4r?=
- =?utf-8?B?YkdJVzV2WU8ySExZaW1QYnBXYm41NzhTNkg3amU2NkZOak9HdXg0UnRaYXZX?=
- =?utf-8?B?aGkxblc2dkFORDNEeThMK1QrbHdHTGlaMWlnVENSKzgwV3NuWnN0dnh6WG9Q?=
- =?utf-8?B?ZlEwQVFEUm1BREFtdWF4dUJQR1J6eG9KKzJNeGVtUlJObnVORndHaFZBOXBB?=
- =?utf-8?B?WkRwRFdlc1l3YllaeDNQU0dwV0tGTzVGcEdqdTBMaVFaTDc3M0NMemNBQ2lr?=
- =?utf-8?B?L3hmVnlkVTVpTzV4VEpZZm01dzE4MXVlQUNMQm5Fc3ljSTZuOC9PbElEQlJp?=
- =?utf-8?B?d011d2FNSVNlS3ZCdmF6Rng4NXU0QXRRWTlrMmY5SU9pOTljaWFhdk5yYnEv?=
- =?utf-8?B?Q2ZLcHplZDgxMW8xV2pBVkFPSVhkREwweFlWcTlhUFNGSFlmanpIL2tGR2h4?=
- =?utf-8?B?SUhpMDErNDBHMDgyRGpQSThOL0Rpc0JXNVVlTmpjakI3MWNvZzNlRlY3bjUy?=
- =?utf-8?B?Z0w4VFR6aTVYbExXa3huQmIydjA4OWpvT241VDNjQk9DS084VGRrY3ViYmVZ?=
- =?utf-8?B?WFVqYnNQZERlbGtCc2FpUlFXNXpjWWRhODZLMGhHMjl5QzREcktZRFBVMGFG?=
- =?utf-8?B?Uy81b29IL3QvZWF4K2FCdDNrOE5GNWxtVlRMMlFIVldHRkQ4RERTd3RTUGlV?=
- =?utf-8?B?TlgrU2RIZTdzbVJseEIxclFGZmVsd1FIU3VBQ1o0a2hEK3BUZWlPY3owYktG?=
- =?utf-8?B?OW5zT3hMTHJlQnFldEFBei80MDVhVGJvVVR4aTV5cmxCRG1aV2p5OWVzQmlj?=
- =?utf-8?B?aDQwYm9zeGRPL3JvSjQ1SFJNNy9vTHBFUU9YZEJhRnhUbmZZbGtpRVhla3ZF?=
- =?utf-8?B?VElBd0pRQ2VDWDgybVFTRGN4dXRESUFPMS9YYzUzaVJ0bFRyd25GM1hFVTRV?=
- =?utf-8?B?RmNNdTdVVzBncGF3UTlXN25QQ0VNT21sbjRwU0pWakZWQXBNVFZSZjFIUHAy?=
- =?utf-8?B?YTZndlJoOStXNGVLYjhTVjNQbHM5OVJudnJoWGRHbW1halk3bWZ4UURBclIw?=
- =?utf-8?B?NkRodXU1Um5DdDk1SS8yaUxScmVqb1UrNFhoNXRxTzR6QXJLL3VMU3RPV3Qw?=
- =?utf-8?B?aVZ5T0IvdzNvK3YxUkl3ZjFWNmIvTk1vcW5uZklWa3drRGhwS1lETzcrUjJZ?=
- =?utf-8?B?am9GSWNpcTZrVjdrbkVKTG5hUkdiaGJQTjIzTGptY3c2MVRWNE95ME8xRzZa?=
- =?utf-8?B?aUVqSEhrNkRqYUhKUjlRMlAvc3IyVEp5SUNPZGk4R1ZPOUFkRGF5WjZ5a0pM?=
- =?utf-8?B?eEN1UTBNeXRJYjRDRmlqb0dSV1JTeDQyODIzS0VqZHhHRzg0cGFkeCtlYzBt?=
- =?utf-8?B?YVZnMWNZOHhOY3k1Z2xoUmJSdCtLZHJianpjeS9hMGhqSDUrRTVsRFFaRVV6?=
- =?utf-8?B?YWdaYVp6ZU52bzc1NmZJMXQ5V1pUQVJGUi9ZeTZxRHZuREdFamZ6OW1IYjB6?=
- =?utf-8?B?YmZjWTJEQ2RySDFhZ21kN2NKdWpTTEZ6eW0reGJWYmlSQi9rMzJvellRNnlG?=
- =?utf-8?B?aDZsVnpGM0xvUVk4d3VpaStXSW9KVktueVB1NSt3T1pEaGM4bFlNejg5RmdR?=
- =?utf-8?B?ZXkrcDlFRjFsWkhYdk56OUs0bG5yVnBFTEZDZVdtZWJReHVYU2FFQms2UUNr?=
- =?utf-8?B?aVFmRmhXc2ViWEtqSXd6K01MVklreGE3RCtxcjNlZjloaEZHR1kveWxuWjVF?=
- =?utf-8?B?M2RsV3FGOE03WWFZSEFtbGJPdFI4OWZoZ0tabE9Ja01hOGpPejNIdjNvV1Q4?=
- =?utf-8?Q?r2SA=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 112c74d4-9e9a-4a0b-bfaa-08d9f1382feb
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2022 10:36:27.7046 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EuUMwYYjrr+AV6J2q+3mO0UPN2pb8GHcCLdq5XQ/FoNkzlifj59PLsY24ywY49vT
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1497
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/mm: Add an iterator to optimally
- walk over holes for an allocation (v3)
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87o8373xzz.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 8/8] drm/i915: Polish ilk+ wm register bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,173 +61,244 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 15.02.22 um 23:23 schrieb Vivek Kasireddy:
-> This iterator relies on drm_mm_first_hole() and drm_mm_next_hole()
-> functions to identify suitable holes for an allocation of a given
-> size by efficiently traversing the rbtree associated with the given
-> allocator.
->
-> It replaces the for loop in drm_mm_insert_node_in_range() and can
-> also be used by drm drivers to quickly identify holes of a certain
-> size within a given range.
->
-> v2: (Tvrtko)
-> - Prepend a double underscore for the newly exported first/next_hole
-> - s/each_best_hole/each_suitable_hole/g
-> - Mask out DRM_MM_INSERT_ONCE from the mode before calling
->    first/next_hole and elsewhere.
->
-> v3: (Tvrtko)
-> - Reduce the number of hunks by retaining the "mode" variable name
->
-> Cc: Christian KÃ¶nig <christian.koenig@amd.com>
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+On Wed, Feb 16, 2022 at 12:29:52PM +0200, Jani Nikula wrote:
+> On Fri, 11 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Use REG_GENMASK() & co. for ilk+ watermarm registers.
+> 
+> *watermark
+> 
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_debugfs.c  |  2 +-
+> >  drivers/gpu/drm/i915/i915_reg.h               | 41 +++++++------
+> >  drivers/gpu/drm/i915/intel_pm.c               | 57 +++++++++----------
+> >  3 files changed, 49 insertions(+), 51 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > index f4de004d470f..b219e162f1d1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > @@ -78,7 +78,7 @@ static int i915_sr_status(struct seq_file *m, void *unused)
+> >  	if (DISPLAY_VER(dev_priv) >= 9)
+> >  		/* no global SR status; inspect per-plane WM */;
+> >  	else if (HAS_PCH_SPLIT(dev_priv))
+> > -		sr_enabled = intel_de_read(dev_priv, WM1_LP_ILK) & WM1_LP_SR_EN;
+> > +		sr_enabled = intel_de_read(dev_priv, WM1_LP_ILK) & WM_LP_ENABLE;
+> >  	else if (IS_I965GM(dev_priv) || IS_G4X(dev_priv) ||
+> >  		 IS_I945G(dev_priv) || IS_I945GM(dev_priv))
+> >  		sr_enabled = intel_de_read(dev_priv, FW_BLC_SELF) & FW_BLC_SELF_EN;
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index 278c9cbc6f3c..0dd4d34e7cd7 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -4298,33 +4298,32 @@
+> >  #define _WM0_PIPEC_IVB		0x45200
+> >  #define WM0_PIPE_ILK(pipe)	_MMIO_PIPE3((pipe), _WM0_PIPEA_ILK, \
+> >  					    _WM0_PIPEB_ILK, _WM0_PIPEC_IVB)
+> > -#define  WM0_PIPE_PLANE_MASK	(0xffff << 16)
+> > -#define  WM0_PIPE_PLANE_SHIFT	16
+> > -#define  WM0_PIPE_SPRITE_MASK	(0xff << 8)
+> > -#define  WM0_PIPE_SPRITE_SHIFT	8
+> > -#define  WM0_PIPE_CURSOR_MASK	(0xff)
+> > +#define  WM0_PIPE_PRIMARY_MASK	REG_GENMASK(23, 16)
+> 
+> Should be (31,16) to match current WM0_PIPE_PLANE_MASK.
+> 
+> I didn't try to find the bspec, but if this is an intentional fix,
+> should be split out to a separate patch.
 
-Of hand it looks like it does what the description says without any 
-functional change, but I don't know the internals of drm_mm so well either.
+Right. Forgot that I refined the bitfield sizes here. I'll
+split that part out.
 
-Feel free to add an Acked-by: Christian KÃ¶nig <christian.koenig@amd.com>.
+An easy way to double check these w/o a spec is
+ilk_{plane,cursor}_wm_reg_max(). Assuming those are correct
+of course :) Hmm, I guess I could also think about rewriting
+those to use the *_MASK defines. Though I'd have to define
+separate masks for each platform variant...
 
-Regards,
-Christian.
+> 
+> Other than that,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> ---
->   drivers/gpu/drm/drm_mm.c | 32 +++++++++++++++-----------------
->   include/drm/drm_mm.h     | 36 ++++++++++++++++++++++++++++++++++++
->   2 files changed, 51 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_mm.c b/drivers/gpu/drm/drm_mm.c
-> index 8257f9d4f619..8efea548ae9f 100644
-> --- a/drivers/gpu/drm/drm_mm.c
-> +++ b/drivers/gpu/drm/drm_mm.c
-> @@ -352,10 +352,10 @@ static struct drm_mm_node *find_hole_addr(struct drm_mm *mm, u64 addr, u64 size)
->   	return node;
->   }
->   
-> -static struct drm_mm_node *
-> -first_hole(struct drm_mm *mm,
-> -	   u64 start, u64 end, u64 size,
-> -	   enum drm_mm_insert_mode mode)
-> +struct drm_mm_node *
-> +__drm_mm_first_hole(struct drm_mm *mm,
-> +		    u64 start, u64 end, u64 size,
-> +		    enum drm_mm_insert_mode mode)
->   {
->   	switch (mode) {
->   	default:
-> @@ -374,6 +374,7 @@ first_hole(struct drm_mm *mm,
->   						hole_stack);
->   	}
->   }
-> +EXPORT_SYMBOL(__drm_mm_first_hole);
->   
->   /**
->    * DECLARE_NEXT_HOLE_ADDR - macro to declare next hole functions
-> @@ -410,11 +411,11 @@ static struct drm_mm_node *name(struct drm_mm_node *entry, u64 size)	\
->   DECLARE_NEXT_HOLE_ADDR(next_hole_high_addr, rb_left, rb_right)
->   DECLARE_NEXT_HOLE_ADDR(next_hole_low_addr, rb_right, rb_left)
->   
-> -static struct drm_mm_node *
-> -next_hole(struct drm_mm *mm,
-> -	  struct drm_mm_node *node,
-> -	  u64 size,
-> -	  enum drm_mm_insert_mode mode)
-> +struct drm_mm_node *
-> +__drm_mm_next_hole(struct drm_mm *mm,
-> +		   struct drm_mm_node *node,
-> +		   u64 size,
-> +		   enum drm_mm_insert_mode mode)
->   {
->   	switch (mode) {
->   	default:
-> @@ -432,6 +433,7 @@ next_hole(struct drm_mm *mm,
->   		return &node->hole_stack == &mm->hole_stack ? NULL : node;
->   	}
->   }
-> +EXPORT_SYMBOL(__drm_mm_next_hole);
->   
->   /**
->    * drm_mm_reserve_node - insert an pre-initialized node
-> @@ -516,11 +518,11 @@ int drm_mm_insert_node_in_range(struct drm_mm * const mm,
->   				u64 size, u64 alignment,
->   				unsigned long color,
->   				u64 range_start, u64 range_end,
-> -				enum drm_mm_insert_mode mode)
-> +				enum drm_mm_insert_mode caller_mode)
->   {
->   	struct drm_mm_node *hole;
->   	u64 remainder_mask;
-> -	bool once;
-> +	enum drm_mm_insert_mode mode = caller_mode & ~DRM_MM_INSERT_ONCE;
->   
->   	DRM_MM_BUG_ON(range_start > range_end);
->   
-> @@ -533,13 +535,9 @@ int drm_mm_insert_node_in_range(struct drm_mm * const mm,
->   	if (alignment <= 1)
->   		alignment = 0;
->   
-> -	once = mode & DRM_MM_INSERT_ONCE;
-> -	mode &= ~DRM_MM_INSERT_ONCE;
-> -
->   	remainder_mask = is_power_of_2(alignment) ? alignment - 1 : 0;
-> -	for (hole = first_hole(mm, range_start, range_end, size, mode);
-> -	     hole;
-> -	     hole = once ? NULL : next_hole(mm, hole, size, mode)) {
-> +	drm_mm_for_each_suitable_hole(hole, mm, range_start, range_end,
-> +				      size, mode) {
->   		u64 hole_start = __drm_mm_hole_node_start(hole);
->   		u64 hole_end = hole_start + hole->hole_size;
->   		u64 adj_start, adj_end;
-> diff --git a/include/drm/drm_mm.h b/include/drm/drm_mm.h
-> index ac33ba1b18bc..777f659f9692 100644
-> --- a/include/drm/drm_mm.h
-> +++ b/include/drm/drm_mm.h
-> @@ -400,6 +400,42 @@ static inline u64 drm_mm_hole_node_end(const struct drm_mm_node *hole_node)
->   	     1 : 0; \
->   	     pos = list_next_entry(pos, hole_stack))
->   
-> +struct drm_mm_node *
-> +__drm_mm_first_hole(struct drm_mm *mm,
-> +		    u64 start, u64 end, u64 size,
-> +		    enum drm_mm_insert_mode mode);
-> +
-> +struct drm_mm_node *
-> +__drm_mm_next_hole(struct drm_mm *mm,
-> +		   struct drm_mm_node *node,
-> +		   u64 size,
-> +		   enum drm_mm_insert_mode mode);
-> +
-> +/**
-> + * drm_mm_for_each_suitable_hole - iterator to optimally walk over all
-> + * holes that can fit an allocation of the given @size.
-> + * @pos: &drm_mm_node used internally to track progress
-> + * @mm: &drm_mm allocator to walk
-> + * @range_start: start of the allowed range for the allocation
-> + * @range_end: end of the allowed range for the allocation
-> + * @size: size of the allocation
-> + * @mode: fine-tune the allocation search
-> + *
-> + * This iterator walks over all holes suitable for the allocation of given
-> + * @size in a very efficient manner. It is implemented by calling
-> + * drm_mm_first_hole() and drm_mm_next_hole() which identify the
-> + * appropriate holes within the given range by efficiently traversing the
-> + * rbtree associated with @mm.
-> + */
-> +#define drm_mm_for_each_suitable_hole(pos, mm, range_start, range_end, \
-> +				      size, mode) \
-> +	for (pos = __drm_mm_first_hole(mm, range_start, range_end, size, \
-> +				       mode & ~DRM_MM_INSERT_ONCE); \
-> +	     pos; \
-> +	     pos = mode & DRM_MM_INSERT_ONCE ? \
-> +	     NULL : __drm_mm_next_hole(mm, hole, size, \
-> +				       mode & ~DRM_MM_INSERT_ONCE))
-> +
->   /*
->    * Basic range manager support (drm_mm.c)
->    */
+Thanks.
 
+> 
+> > +#define  WM0_PIPE_SPRITE_MASK	REG_GENMASK(15, 8)
+> > +#define  WM0_PIPE_CURSOR_MASK	REG_GENMASK(5, 0)
+> > +#define  WM0_PIPE_PRIMARY(x)	REG_FIELD_PREP(WM0_PIPE_PRIMARY_MASK, (x))
+> > +#define  WM0_PIPE_SPRITE(x)	REG_FIELD_PREP(WM0_PIPE_SPRITE_MASK, (x))
+> > +#define  WM0_PIPE_CURSOR(x)	REG_FIELD_PREP(WM0_PIPE_CURSOR_MASK, (x))
+> >  #define WM1_LP_ILK		_MMIO(0x45108)
+> > -#define  WM1_LP_SR_EN		(1 << 31)
+> > -#define  WM1_LP_LATENCY_SHIFT	24
+> > -#define  WM1_LP_LATENCY_MASK	(0x7f << 24)
+> > -#define  WM1_LP_FBC_MASK	(0xf << 20)
+> > -#define  WM1_LP_FBC_SHIFT	20
+> > -#define  WM1_LP_FBC_SHIFT_BDW	19
+> > -#define  WM1_LP_SR_MASK		(0x7ff << 8)
+> > -#define  WM1_LP_SR_SHIFT	8
+> > -#define  WM1_LP_CURSOR_MASK	(0xff)
+> >  #define WM2_LP_ILK		_MMIO(0x4510c)
+> > -#define  WM2_LP_EN		(1 << 31)
+> >  #define WM3_LP_ILK		_MMIO(0x45110)
+> > -#define  WM3_LP_EN		(1 << 31)
+> > +#define  WM_LP_ENABLE		REG_BIT(31)
+> > +#define  WM_LP_LATENCY_MASK	REG_GENMASK(30, 24)
+> > +#define  WM_LP_FBC_MASK_BDW	REG_GENMASK(23, 19)
+> > +#define  WM_LP_FBC_MASK_ILK	REG_GENMASK(23, 20)
+> > +#define  WM_LP_PRIMARY_MASK	REG_GENMASK(18, 8)
+> > +#define  WM_LP_CURSOR_MASK	REG_GENMASK(7, 0)
+> > +#define  WM_LP_LATENCY(x)	REG_FIELD_PREP(WM_LP_LATENCY_MASK, (x))
+> > +#define  WM_LP_FBC_BDW(x)	REG_FIELD_PREP(WM_LP_FBC_MASK_BDW, (x))
+> > +#define  WM_LP_FBC_ILK(x)	REG_FIELD_PREP(WM_LP_FBC_MASK_ILK, (x))
+> > +#define  WM_LP_PRIMARY(x)	REG_FIELD_PREP(WM_LP_PRIMARY_MASK, (x))
+> > +#define  WM_LP_CURSOR(x)	REG_FIELD_PREP(WM_LP_CURSOR_MASK, (x))
+> >  #define WM1S_LP_ILK		_MMIO(0x45120)
+> >  #define WM2S_LP_IVB		_MMIO(0x45124)
+> >  #define WM3S_LP_IVB		_MMIO(0x45128)
+> > -#define  WM1S_LP_EN		(1 << 31)
+> > -
+> > -#define HSW_WM_LP_VAL(lat, fbc, pri, cur) \
+> > -	(WM3_LP_EN | ((lat) << WM1_LP_LATENCY_SHIFT) | \
+> > -	 ((fbc) << WM1_LP_FBC_SHIFT) | ((pri) << WM1_LP_SR_SHIFT) | (cur))
+> > +#define  WM_LP_SPRITE_ENABLE	REG_BIT(31) /* ilk/snb WM1S only */
+> > +#define  WM_LP_SPRITE_MASK	REG_GENMASK(10, 0)
+> > +#define  WM_LP_SPRITE(x)	REG_FIELD_PREP(WM_LP_SPRITE_MASK, (x))
+> >  
+> >  /* Memory latency timer register */
+> >  #define MLTR_ILK		_MMIO(0x11222)
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> > index 605944551e1b..9382284134e6 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -3409,29 +3409,28 @@ static void ilk_compute_wm_results(struct drm_i915_private *dev_priv,
+> >  		 * disabled. Doing otherwise could cause underruns.
+> >  		 */
+> >  		results->wm_lp[wm_lp - 1] =
+> > -			(ilk_wm_lp_latency(dev_priv, level) << WM1_LP_LATENCY_SHIFT) |
+> > -			(r->pri_val << WM1_LP_SR_SHIFT) |
+> > -			r->cur_val;
+> > +			WM_LP_LATENCY(ilk_wm_lp_latency(dev_priv, level)) |
+> > +			WM_LP_PRIMARY(r->pri_val) |
+> > +			WM_LP_CURSOR(r->cur_val);
+> >  
+> >  		if (r->enable)
+> > -			results->wm_lp[wm_lp - 1] |= WM1_LP_SR_EN;
+> > +			results->wm_lp[wm_lp - 1] |= WM_LP_ENABLE;
+> >  
+> >  		if (DISPLAY_VER(dev_priv) >= 8)
+> > -			results->wm_lp[wm_lp - 1] |=
+> > -				r->fbc_val << WM1_LP_FBC_SHIFT_BDW;
+> > +			results->wm_lp[wm_lp - 1] |= WM_LP_FBC_BDW(r->fbc_val);
+> >  		else
+> > -			results->wm_lp[wm_lp - 1] |=
+> > -				r->fbc_val << WM1_LP_FBC_SHIFT;
+> > +			results->wm_lp[wm_lp - 1] |= WM_LP_FBC_ILK(r->fbc_val);
+> > +
+> > +		results->wm_lp_spr[wm_lp - 1] = WM_LP_SPRITE(r->spr_val);
+> >  
+> >  		/*
+> > -		 * Always set WM1S_LP_EN when spr_val != 0, even if the
+> > +		 * Always set WM_LP_SPRITE_EN when spr_val != 0, even if the
+> >  		 * level is disabled. Doing otherwise could cause underruns.
+> >  		 */
+> >  		if (DISPLAY_VER(dev_priv) <= 6 && r->spr_val) {
+> >  			drm_WARN_ON(&dev_priv->drm, wm_lp != 1);
+> > -			results->wm_lp_spr[wm_lp - 1] = WM1S_LP_EN | r->spr_val;
+> > -		} else
+> > -			results->wm_lp_spr[wm_lp - 1] = r->spr_val;
+> > +			results->wm_lp_spr[wm_lp - 1] |= WM_LP_SPRITE_ENABLE;
+> > +		}
+> >  	}
+> >  
+> >  	/* LP0 register values */
+> > @@ -3444,9 +3443,9 @@ static void ilk_compute_wm_results(struct drm_i915_private *dev_priv,
+> >  			continue;
+> >  
+> >  		results->wm_pipe[pipe] =
+> > -			(r->pri_val << WM0_PIPE_PLANE_SHIFT) |
+> > -			(r->spr_val << WM0_PIPE_SPRITE_SHIFT) |
+> > -			r->cur_val;
+> > +			WM0_PIPE_PRIMARY(r->pri_val) |
+> > +			WM0_PIPE_SPRITE(r->spr_val) |
+> > +			WM0_PIPE_CURSOR(r->cur_val);
+> >  	}
+> >  }
+> >  
+> > @@ -3538,24 +3537,24 @@ static bool _ilk_disable_lp_wm(struct drm_i915_private *dev_priv,
+> >  	struct ilk_wm_values *previous = &dev_priv->wm.hw;
+> >  	bool changed = false;
+> >  
+> > -	if (dirty & WM_DIRTY_LP(3) && previous->wm_lp[2] & WM1_LP_SR_EN) {
+> > -		previous->wm_lp[2] &= ~WM1_LP_SR_EN;
+> > +	if (dirty & WM_DIRTY_LP(3) && previous->wm_lp[2] & WM_LP_ENABLE) {
+> > +		previous->wm_lp[2] &= ~WM_LP_ENABLE;
+> >  		intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, previous->wm_lp[2]);
+> >  		changed = true;
+> >  	}
+> > -	if (dirty & WM_DIRTY_LP(2) && previous->wm_lp[1] & WM1_LP_SR_EN) {
+> > -		previous->wm_lp[1] &= ~WM1_LP_SR_EN;
+> > +	if (dirty & WM_DIRTY_LP(2) && previous->wm_lp[1] & WM_LP_ENABLE) {
+> > +		previous->wm_lp[1] &= ~WM_LP_ENABLE;
+> >  		intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, previous->wm_lp[1]);
+> >  		changed = true;
+> >  	}
+> > -	if (dirty & WM_DIRTY_LP(1) && previous->wm_lp[0] & WM1_LP_SR_EN) {
+> > -		previous->wm_lp[0] &= ~WM1_LP_SR_EN;
+> > +	if (dirty & WM_DIRTY_LP(1) && previous->wm_lp[0] & WM_LP_ENABLE) {
+> > +		previous->wm_lp[0] &= ~WM_LP_ENABLE;
+> >  		intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, previous->wm_lp[0]);
+> >  		changed = true;
+> >  	}
+> >  
+> >  	/*
+> > -	 * Don't touch WM1S_LP_EN here.
+> > +	 * Don't touch WM_LP_SPRITE_ENABLE here.
+> >  	 * Doing so could cause underruns.
+> >  	 */
+> >  
+> > @@ -6803,9 +6802,9 @@ static void ilk_pipe_wm_get_hw_state(struct intel_crtc *crtc)
+> >  		 * multiple pipes are active.
+> >  		 */
+> >  		active->wm[0].enable = true;
+> > -		active->wm[0].pri_val = (tmp & WM0_PIPE_PLANE_MASK) >> WM0_PIPE_PLANE_SHIFT;
+> > -		active->wm[0].spr_val = (tmp & WM0_PIPE_SPRITE_MASK) >> WM0_PIPE_SPRITE_SHIFT;
+> > -		active->wm[0].cur_val = tmp & WM0_PIPE_CURSOR_MASK;
+> > +		active->wm[0].pri_val = REG_FIELD_GET(WM0_PIPE_PRIMARY_MASK, tmp);
+> > +		active->wm[0].spr_val = REG_FIELD_GET(WM0_PIPE_SPRITE_MASK, tmp);
+> > +		active->wm[0].cur_val = REG_FIELD_GET(WM0_PIPE_CURSOR_MASK, tmp);
+> >  	} else {
+> >  		int level, max_level = ilk_wm_max_level(dev_priv);
+> >  
+> > @@ -7229,12 +7228,12 @@ void vlv_wm_sanitize(struct drm_i915_private *dev_priv)
+> >   */
+> >  static void ilk_init_lp_watermarks(struct drm_i915_private *dev_priv)
+> >  {
+> > -	intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM3_LP_ILK) & ~WM1_LP_SR_EN);
+> > -	intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM2_LP_ILK) & ~WM1_LP_SR_EN);
+> > -	intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM1_LP_ILK) & ~WM1_LP_SR_EN);
+> > +	intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM3_LP_ILK) & ~WM_LP_ENABLE);
+> > +	intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM2_LP_ILK) & ~WM_LP_ENABLE);
+> > +	intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM1_LP_ILK) & ~WM_LP_ENABLE);
+> >  
+> >  	/*
+> > -	 * Don't touch WM1S_LP_EN here.
+> > +	 * Don't touch WM_LP_SPRITE_ENABLE here.
+> >  	 * Doing so could cause underruns.
+> >  	 */
+> >  }
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+
+-- 
+Ville Syrjälä
+Intel
