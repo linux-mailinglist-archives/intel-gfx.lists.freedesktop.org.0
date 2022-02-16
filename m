@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE4F4B849C
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 10:40:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC4624B84F7
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 10:54:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDD0A10E77D;
-	Wed, 16 Feb 2022 09:40:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AD9E10E61E;
+	Wed, 16 Feb 2022 09:54:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B453510E77D
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 09:40:01 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9780810E661
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 09:54:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645004401; x=1676540401;
+ t=1645005247; x=1676541247;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=nqp0yrug1/DhpHaCqyf3hcELCmeRXJLjel8+qmsV4qE=;
- b=fBW+C57ywLEOBYdFYXnjldlt3QNs3b7HBc3ciRz1uZWkfXTYCy93C7XA
- AUHezUj3jNViYHpeIB1BkD1Jx2632SFTuQ8MnYvEfk5bxM3R9pjhMqHMU
- Pnno9HkGHmhaEL443PYw+qdqkPCI95oDuaUkhTsi0ibUbRbBwIEXLfR7F
- VbpAp3Lb2VAs3Ujla0pcWnq5c3xAW/jzFg3MXlXSnESjQW/GxCAxSjCW9
- 4B3+W++AHE49OrHIYZz+z0Q7JaTh2gWP/PeI0ALAsvTdU9aLcj/7Bbb/h
- 71QGLfezMI35nWuQQo/QivOszwHNe6VL41gruQ09AI2hDDTk/wqlPrw2a Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="248161340"
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="248161340"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 01:40:01 -0800
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="544838008"
+ bh=FKzh5eNlMO2JWH/4cp/2ZROGUF/7gDTwfvzT6qgKIsY=;
+ b=TQ5tDCy5QrzMnb1uI2BcwJVtdhD+g2aqPr6VhKRCO7xpr1pL+94YZvoD
+ z5+0hF3ygNju9BDsNo4uXaWgNiP3x14E1sNbvYPrvU8vv3yVTpFCxRYKI
+ p5nbeK4vbkbEyHBj9ANMVreAr5p7nUMJTbfO6rPZYI4LefUx97NH+aoQs
+ kZLMi6ImOyLncRDEtERKAynoy+eOMnOoKg8QF0QoZQS7A7JbQfoDvogXZ
+ Rkq7IrrTx9m0kgYgUxZGAPu1UINz407fDqpJkYIMW4RED+NUhWjQ7U3JK
+ 0XR5P+0y6CF5J6wzzlwIvTqlyMSjL138KCHVdIuLIwVhzFUrFpbHvP5Vc Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="336998684"
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="336998684"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 01:54:06 -0800
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="486850299"
 Received: from rbilei-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.13.113])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 01:39:59 -0800
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 01:54:05 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220211090629.15555-5-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220211090629.15555-6-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20220211090629.15555-1-ville.syrjala@linux.intel.com>
- <20220211090629.15555-5-ville.syrjala@linux.intel.com>
-Date: Wed, 16 Feb 2022 11:39:54 +0200
-Message-ID: <871r035evp.fsf@intel.com>
+ <20220211090629.15555-6-ville.syrjala@linux.intel.com>
+Date: Wed, 16 Feb 2022 11:54:00 +0200
+Message-ID: <87y22b3znr.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 4/8] drm/i915: Use {active,
- scaled}_planes to compute ilk watermarks
+Subject: Re: [Intel-gfx] [PATCH 5/8] drm/i915: Remove gen6_check_mch_setup()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,45 +65,68 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, 11 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Use the {active,scaled}_planes bitmasks from the crtc state
-> rather than poking at the plane state directly. One step
-> towards eliminating the last use of the somewhat questionble
-> intel_atomic_crtc_state_for_each_plane_state() macro which
-> peeks into the plane state without actually holding the plane
-> mutex.
+> snb_wm_latency_quirk() already boosts up the latency values
+> so the extra warning about the SSKPD value being insufficient
+> is now redundant. Drop it.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+I just might not understand what's going on...
+
+...but snb_wm_latency_quirk() is only called for display 6, not for ivb
+where the check is also removed?
+
+BR,
+Jani.
 
 > ---
->  drivers/gpu/drm/i915/intel_pm.c | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/i915/intel_pm.c | 15 ---------------
+>  1 file changed, 15 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
 _pm.c
-> index 4f2f0e80beef..0fa3dce9bd54 100644
+> index 0fa3dce9bd54..34e46a9b8300 100644
 > --- a/drivers/gpu/drm/i915/intel_pm.c
 > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -3179,12 +3179,8 @@ static int ilk_compute_pipe_wm(struct intel_atomic=
-_state *state,
+> @@ -7432,17 +7432,6 @@ static void cpt_init_clock_gating(struct drm_i915_=
+private *dev_priv)
 >  	}
+>  }
 >=20=20
->  	pipe_wm->pipe_enabled =3D crtc_state->hw.active;
-> -	if (sprstate) {
-> -		pipe_wm->sprites_enabled =3D sprstate->uapi.visible;
-> -		pipe_wm->sprites_scaled =3D sprstate->uapi.visible &&
-> -			(drm_rect_width(&sprstate->uapi.dst) !=3D drm_rect_width(&sprstate->u=
-api.src) >> 16 ||
-> -			 drm_rect_height(&sprstate->uapi.dst) !=3D drm_rect_height(&sprstate-=
->uapi.src) >> 16);
-> -	}
-> +	pipe_wm->sprites_enabled =3D crtc_state->active_planes & BIT(PLANE_SPRI=
-TE0);
-> +	pipe_wm->sprites_scaled =3D crtc_state->scaled_planes & BIT(PLANE_SPRIT=
-E0);
+> -static void gen6_check_mch_setup(struct drm_i915_private *dev_priv)
+> -{
+> -	u32 tmp;
+> -
+> -	tmp =3D intel_uncore_read(&dev_priv->uncore, MCH_SSKPD);
+> -	if ((tmp & MCH_SSKPD_WM0_MASK) !=3D MCH_SSKPD_WM0_VAL)
+> -		drm_dbg_kms(&dev_priv->drm,
+> -			    "Wrong MCH_SSKPD value: 0x%08x This can cause underruns.\n",
+> -			    tmp);
+> -}
+> -
+>  static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
+>  {
+>  	u32 dspclk_gate =3D ILK_VRHUNIT_CLOCK_GATE_DISABLE;
+> @@ -7500,8 +7489,6 @@ static void gen6_init_clock_gating(struct drm_i915_=
+private *dev_priv)
+>  	g4x_disable_trickle_feed(dev_priv);
 >=20=20
->  	usable_level =3D max_level;
+>  	cpt_init_clock_gating(dev_priv);
+> -
+> -	gen6_check_mch_setup(dev_priv);
+>  }
+>=20=20
+>  static void lpt_init_clock_gating(struct drm_i915_private *dev_priv)
+> @@ -7853,8 +7840,6 @@ static void ivb_init_clock_gating(struct drm_i915_p=
+rivate *dev_priv)
+>=20=20
+>  	if (!HAS_PCH_NOP(dev_priv))
+>  		cpt_init_clock_gating(dev_priv);
+> -
+> -	gen6_check_mch_setup(dev_priv);
+>  }
+>=20=20
+>  static void vlv_init_clock_gating(struct drm_i915_private *dev_priv)
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
