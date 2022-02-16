@@ -2,51 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F29B4B857F
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 11:30:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB7444B85D2
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 11:33:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8BAA10E645;
-	Wed, 16 Feb 2022 10:30:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED8A610E764;
+	Wed, 16 Feb 2022 10:33:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A200010E645
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 10:30:00 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09FC610E764;
+ Wed, 16 Feb 2022 10:33:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645007400; x=1676543400;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=JZApZMu7gljpJnNXZfKUPu8hJCrGq3NxuYw1fAplLPc=;
- b=kTh4CmO1Docd7NJNwJXI4bVWL00X0P6rVhRsh4FLUH+qv+sf6hw+62KI
- vUj+BZpyMsXzC+qV1rUU5hzQpGDZ6AJnofAXScI0NQ5ckCMevMBCI6Ee9
- zWdIKM1mYTCZAKaBxr4+hKPAOuLKC5If3xgrmPWmHhE4ab6Q38x2u1jaq
- CXy2FDm691pvsmS0riWO0+JfqY8B2vwwSa7ozWBbFj6sGiJ/Z+/GHJGzb
- BSBvWDpXHfbzF1qKc7FAiRt/tEsx5fBuahAShOzmF/H+GEmS9tkZ802B2
- gF2Pz50nErCVARHptJ18Dg9TKfJr9H3Ebo3CSaXspjp5bnXQOUzGCiySX g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="250313205"
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="250313205"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 02:30:00 -0800
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="544862320"
+ t=1645007620; x=1676543620;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=0EU2xKs5/be5ABCYsSQiiugsjJ0zBzNPzGsy9hvHN5k=;
+ b=Cc8Z5UN55VUUq7oE82M5IqRwvArKd1jEfOkglIIv2uXr6NAnf6+Kt+8D
+ q+GRBnKmeh7Cot8f7J7jfMc5DOmSk9mJxxGYdGTT2Zca/PaTbKEbzNPYZ
+ +o6v0lN+Jusfjvbo4cI5hyBYJie3n2ij1V4NvLOzRjUS/KrbV8bkKtTpA
+ Xw+pQl7YWzx+ZhkNIml78cOM7RLgb1wkl9bDSlZ0BYDqbv2PMqVUb7mFr
+ Hi+k8gQGOGkOcxMvm9lXr8Bem7hlp4WPnALnq0HLrTjP6P6Sc4BUoO2n0
+ bUb7rZ8wBuwzPvyv70vPpVQ86q+UjDeQXSd+aX1Ak4Wux6ZNzz7obVtpg Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="234115085"
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="234115085"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 02:33:39 -0800
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="502968616"
 Received: from rbilei-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.13.113])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 02:29:58 -0800
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 02:33:35 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220211090629.15555-9-ville.syrjala@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Ville =?utf-8?B?U3ly?=
+ =?utf-8?B?asOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <9a7b0e48-b00f-be11-7fc7-bc26719cbc1e@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220211090629.15555-1-ville.syrjala@linux.intel.com>
- <20220211090629.15555-9-ville.syrjala@linux.intel.com>
-Date: Wed, 16 Feb 2022 12:29:52 +0200
-Message-ID: <87o8373xzz.fsf@intel.com>
+References: <20220216083849.91239-1-jiapeng.chong@linux.alibaba.com>
+ <87h78z5gmp.fsf@intel.com> <YgzBpX2SKCh4cb19@intel.com>
+ <9a7b0e48-b00f-be11-7fc7-bc26719cbc1e@linux.intel.com>
+Date: Wed, 16 Feb 2022 12:33:30 +0200
+Message-ID: <87leyb3xtx.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 8/8] drm/i915: Polish ilk+ wm register bits
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: fix unsigned integer to signed
+ assignment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,242 +61,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, airlied@linux.ie,
+ intel-gfx@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ sumit.semwal@linaro.org, linaro-mm-sig@lists.linaro.org,
+ christian.koenig@amd.com, linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 11 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Wed, 16 Feb 2022, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+> On 16/02/2022 09:19, Ville Syrj=C3=A4l=C3=A4 wrote:
+>> On Wed, Feb 16, 2022 at 11:02:06AM +0200, Jani Nikula wrote:
+>>> On Wed, 16 Feb 2022, Jiapeng Chong <jiapeng.chong@linux.alibaba.com> wr=
+ote:
+>>>> Eliminate the follow smatch warning:
+>>>>
+>>>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4640
+>>>> guc_create_virtual() warn: assigning (-2) to unsigned variable
+>>>> 've->base.instance'.
+>>>>
+>>>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4641
+>>>> guc_create_virtual() warn: assigning (-2) to unsigned variable
+>>>> 've->base.uabi_instance'.
+>>>>
+>>>> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+>>>> Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+>>>
+>>> The report seems to be valid, but I don't think this is the fix.
+>>>
+>>> Where do we even check for invalid instance/uabi_instance in code?
+>>=20
+>> The whole thing seems rather poorly documented as there's a matching
+>> uabi struct with __u16's and the negative values are defined right
+>> there in the uapi header as well.
 >
-> Use REG_GENMASK() & co. for ilk+ watermarm registers.
+> Negative ones are exception values to be used in conjunction with the vir=
+tual engine uapi (see "DOC: Virtual Engine uAPI" and also comment next to I=
+915_CONTEXT_PARAM_ENGINES).
+>
+> AFAIK assigning negative int to unsigned int is defined and fine.
+>
+> Compiler does warn on comparisons which is why we have:
+>
+> ./gem/i915_gem_busy.c:  if (id =3D=3D (u16)I915_ENGINE_CLASS_INVALID)
+> ./gem/i915_gem_busy.c:  if (id =3D=3D (u16)I915_ENGINE_CLASS_INVALID)
+> ./gem/i915_gem_context.c:               if (ci.engine_class =3D=3D (u16)I=
+915_ENGINE_CLASS_INVALID &&
+> ./gem/i915_gem_context.c:                   ci.engine_instance =3D=3D (u1=
+6)I915_ENGINE_CLASS_INVALID_NONE)
+>
+> So I think no action needed here.
 
-*watermark
+We never check instance or uabi_instance members against
+I915_ENGINE_CLASS_INVALID_VIRTUAL anywhere.
+
+BR,
+Jani.
 
 >
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  .../drm/i915/display/intel_display_debugfs.c  |  2 +-
->  drivers/gpu/drm/i915/i915_reg.h               | 41 +++++++------
->  drivers/gpu/drm/i915/intel_pm.c               | 57 +++++++++----------
->  3 files changed, 49 insertions(+), 51 deletions(-)
+> Regards,
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
-rs/gpu/drm/i915/display/intel_display_debugfs.c
-> index f4de004d470f..b219e162f1d1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -78,7 +78,7 @@ static int i915_sr_status(struct seq_file *m, void *unu=
-sed)
->  	if (DISPLAY_VER(dev_priv) >=3D 9)
->  		/* no global SR status; inspect per-plane WM */;
->  	else if (HAS_PCH_SPLIT(dev_priv))
-> -		sr_enabled =3D intel_de_read(dev_priv, WM1_LP_ILK) & WM1_LP_SR_EN;
-> +		sr_enabled =3D intel_de_read(dev_priv, WM1_LP_ILK) & WM_LP_ENABLE;
->  	else if (IS_I965GM(dev_priv) || IS_G4X(dev_priv) ||
->  		 IS_I945G(dev_priv) || IS_I945GM(dev_priv))
->  		sr_enabled =3D intel_de_read(dev_priv, FW_BLC_SELF) & FW_BLC_SELF_EN;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 278c9cbc6f3c..0dd4d34e7cd7 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -4298,33 +4298,32 @@
->  #define _WM0_PIPEC_IVB		0x45200
->  #define WM0_PIPE_ILK(pipe)	_MMIO_PIPE3((pipe), _WM0_PIPEA_ILK, \
->  					    _WM0_PIPEB_ILK, _WM0_PIPEC_IVB)
-> -#define  WM0_PIPE_PLANE_MASK	(0xffff << 16)
-> -#define  WM0_PIPE_PLANE_SHIFT	16
-> -#define  WM0_PIPE_SPRITE_MASK	(0xff << 8)
-> -#define  WM0_PIPE_SPRITE_SHIFT	8
-> -#define  WM0_PIPE_CURSOR_MASK	(0xff)
-> +#define  WM0_PIPE_PRIMARY_MASK	REG_GENMASK(23, 16)
-
-Should be (31,16) to match current WM0_PIPE_PLANE_MASK.
-
-I didn't try to find the bspec, but if this is an intentional fix,
-should be split out to a separate patch.
-
-Other than that,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-> +#define  WM0_PIPE_SPRITE_MASK	REG_GENMASK(15, 8)
-> +#define  WM0_PIPE_CURSOR_MASK	REG_GENMASK(5, 0)
-> +#define  WM0_PIPE_PRIMARY(x)	REG_FIELD_PREP(WM0_PIPE_PRIMARY_MASK, (x))
-> +#define  WM0_PIPE_SPRITE(x)	REG_FIELD_PREP(WM0_PIPE_SPRITE_MASK, (x))
-> +#define  WM0_PIPE_CURSOR(x)	REG_FIELD_PREP(WM0_PIPE_CURSOR_MASK, (x))
->  #define WM1_LP_ILK		_MMIO(0x45108)
-> -#define  WM1_LP_SR_EN		(1 << 31)
-> -#define  WM1_LP_LATENCY_SHIFT	24
-> -#define  WM1_LP_LATENCY_MASK	(0x7f << 24)
-> -#define  WM1_LP_FBC_MASK	(0xf << 20)
-> -#define  WM1_LP_FBC_SHIFT	20
-> -#define  WM1_LP_FBC_SHIFT_BDW	19
-> -#define  WM1_LP_SR_MASK		(0x7ff << 8)
-> -#define  WM1_LP_SR_SHIFT	8
-> -#define  WM1_LP_CURSOR_MASK	(0xff)
->  #define WM2_LP_ILK		_MMIO(0x4510c)
-> -#define  WM2_LP_EN		(1 << 31)
->  #define WM3_LP_ILK		_MMIO(0x45110)
-> -#define  WM3_LP_EN		(1 << 31)
-> +#define  WM_LP_ENABLE		REG_BIT(31)
-> +#define  WM_LP_LATENCY_MASK	REG_GENMASK(30, 24)
-> +#define  WM_LP_FBC_MASK_BDW	REG_GENMASK(23, 19)
-> +#define  WM_LP_FBC_MASK_ILK	REG_GENMASK(23, 20)
-> +#define  WM_LP_PRIMARY_MASK	REG_GENMASK(18, 8)
-> +#define  WM_LP_CURSOR_MASK	REG_GENMASK(7, 0)
-> +#define  WM_LP_LATENCY(x)	REG_FIELD_PREP(WM_LP_LATENCY_MASK, (x))
-> +#define  WM_LP_FBC_BDW(x)	REG_FIELD_PREP(WM_LP_FBC_MASK_BDW, (x))
-> +#define  WM_LP_FBC_ILK(x)	REG_FIELD_PREP(WM_LP_FBC_MASK_ILK, (x))
-> +#define  WM_LP_PRIMARY(x)	REG_FIELD_PREP(WM_LP_PRIMARY_MASK, (x))
-> +#define  WM_LP_CURSOR(x)	REG_FIELD_PREP(WM_LP_CURSOR_MASK, (x))
->  #define WM1S_LP_ILK		_MMIO(0x45120)
->  #define WM2S_LP_IVB		_MMIO(0x45124)
->  #define WM3S_LP_IVB		_MMIO(0x45128)
-> -#define  WM1S_LP_EN		(1 << 31)
-> -
-> -#define HSW_WM_LP_VAL(lat, fbc, pri, cur) \
-> -	(WM3_LP_EN | ((lat) << WM1_LP_LATENCY_SHIFT) | \
-> -	 ((fbc) << WM1_LP_FBC_SHIFT) | ((pri) << WM1_LP_SR_SHIFT) | (cur))
-> +#define  WM_LP_SPRITE_ENABLE	REG_BIT(31) /* ilk/snb WM1S only */
-> +#define  WM_LP_SPRITE_MASK	REG_GENMASK(10, 0)
-> +#define  WM_LP_SPRITE(x)	REG_FIELD_PREP(WM_LP_SPRITE_MASK, (x))
->=20=20
->  /* Memory latency timer register */
->  #define MLTR_ILK		_MMIO(0x11222)
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index 605944551e1b..9382284134e6 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -3409,29 +3409,28 @@ static void ilk_compute_wm_results(struct drm_i91=
-5_private *dev_priv,
->  		 * disabled. Doing otherwise could cause underruns.
->  		 */
->  		results->wm_lp[wm_lp - 1] =3D
-> -			(ilk_wm_lp_latency(dev_priv, level) << WM1_LP_LATENCY_SHIFT) |
-> -			(r->pri_val << WM1_LP_SR_SHIFT) |
-> -			r->cur_val;
-> +			WM_LP_LATENCY(ilk_wm_lp_latency(dev_priv, level)) |
-> +			WM_LP_PRIMARY(r->pri_val) |
-> +			WM_LP_CURSOR(r->cur_val);
->=20=20
->  		if (r->enable)
-> -			results->wm_lp[wm_lp - 1] |=3D WM1_LP_SR_EN;
-> +			results->wm_lp[wm_lp - 1] |=3D WM_LP_ENABLE;
->=20=20
->  		if (DISPLAY_VER(dev_priv) >=3D 8)
-> -			results->wm_lp[wm_lp - 1] |=3D
-> -				r->fbc_val << WM1_LP_FBC_SHIFT_BDW;
-> +			results->wm_lp[wm_lp - 1] |=3D WM_LP_FBC_BDW(r->fbc_val);
->  		else
-> -			results->wm_lp[wm_lp - 1] |=3D
-> -				r->fbc_val << WM1_LP_FBC_SHIFT;
-> +			results->wm_lp[wm_lp - 1] |=3D WM_LP_FBC_ILK(r->fbc_val);
-> +
-> +		results->wm_lp_spr[wm_lp - 1] =3D WM_LP_SPRITE(r->spr_val);
->=20=20
->  		/*
-> -		 * Always set WM1S_LP_EN when spr_val !=3D 0, even if the
-> +		 * Always set WM_LP_SPRITE_EN when spr_val !=3D 0, even if the
->  		 * level is disabled. Doing otherwise could cause underruns.
->  		 */
->  		if (DISPLAY_VER(dev_priv) <=3D 6 && r->spr_val) {
->  			drm_WARN_ON(&dev_priv->drm, wm_lp !=3D 1);
-> -			results->wm_lp_spr[wm_lp - 1] =3D WM1S_LP_EN | r->spr_val;
-> -		} else
-> -			results->wm_lp_spr[wm_lp - 1] =3D r->spr_val;
-> +			results->wm_lp_spr[wm_lp - 1] |=3D WM_LP_SPRITE_ENABLE;
-> +		}
->  	}
->=20=20
->  	/* LP0 register values */
-> @@ -3444,9 +3443,9 @@ static void ilk_compute_wm_results(struct drm_i915_=
-private *dev_priv,
->  			continue;
->=20=20
->  		results->wm_pipe[pipe] =3D
-> -			(r->pri_val << WM0_PIPE_PLANE_SHIFT) |
-> -			(r->spr_val << WM0_PIPE_SPRITE_SHIFT) |
-> -			r->cur_val;
-> +			WM0_PIPE_PRIMARY(r->pri_val) |
-> +			WM0_PIPE_SPRITE(r->spr_val) |
-> +			WM0_PIPE_CURSOR(r->cur_val);
->  	}
->  }
->=20=20
-> @@ -3538,24 +3537,24 @@ static bool _ilk_disable_lp_wm(struct drm_i915_pr=
-ivate *dev_priv,
->  	struct ilk_wm_values *previous =3D &dev_priv->wm.hw;
->  	bool changed =3D false;
->=20=20
-> -	if (dirty & WM_DIRTY_LP(3) && previous->wm_lp[2] & WM1_LP_SR_EN) {
-> -		previous->wm_lp[2] &=3D ~WM1_LP_SR_EN;
-> +	if (dirty & WM_DIRTY_LP(3) && previous->wm_lp[2] & WM_LP_ENABLE) {
-> +		previous->wm_lp[2] &=3D ~WM_LP_ENABLE;
->  		intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, previous->wm_lp[2]);
->  		changed =3D true;
->  	}
-> -	if (dirty & WM_DIRTY_LP(2) && previous->wm_lp[1] & WM1_LP_SR_EN) {
-> -		previous->wm_lp[1] &=3D ~WM1_LP_SR_EN;
-> +	if (dirty & WM_DIRTY_LP(2) && previous->wm_lp[1] & WM_LP_ENABLE) {
-> +		previous->wm_lp[1] &=3D ~WM_LP_ENABLE;
->  		intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, previous->wm_lp[1]);
->  		changed =3D true;
->  	}
-> -	if (dirty & WM_DIRTY_LP(1) && previous->wm_lp[0] & WM1_LP_SR_EN) {
-> -		previous->wm_lp[0] &=3D ~WM1_LP_SR_EN;
-> +	if (dirty & WM_DIRTY_LP(1) && previous->wm_lp[0] & WM_LP_ENABLE) {
-> +		previous->wm_lp[0] &=3D ~WM_LP_ENABLE;
->  		intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, previous->wm_lp[0]);
->  		changed =3D true;
->  	}
->=20=20
->  	/*
-> -	 * Don't touch WM1S_LP_EN here.
-> +	 * Don't touch WM_LP_SPRITE_ENABLE here.
->  	 * Doing so could cause underruns.
->  	 */
->=20=20
-> @@ -6803,9 +6802,9 @@ static void ilk_pipe_wm_get_hw_state(struct intel_c=
-rtc *crtc)
->  		 * multiple pipes are active.
->  		 */
->  		active->wm[0].enable =3D true;
-> -		active->wm[0].pri_val =3D (tmp & WM0_PIPE_PLANE_MASK) >> WM0_PIPE_PLAN=
-E_SHIFT;
-> -		active->wm[0].spr_val =3D (tmp & WM0_PIPE_SPRITE_MASK) >> WM0_PIPE_SPR=
-ITE_SHIFT;
-> -		active->wm[0].cur_val =3D tmp & WM0_PIPE_CURSOR_MASK;
-> +		active->wm[0].pri_val =3D REG_FIELD_GET(WM0_PIPE_PRIMARY_MASK, tmp);
-> +		active->wm[0].spr_val =3D REG_FIELD_GET(WM0_PIPE_SPRITE_MASK, tmp);
-> +		active->wm[0].cur_val =3D REG_FIELD_GET(WM0_PIPE_CURSOR_MASK, tmp);
->  	} else {
->  		int level, max_level =3D ilk_wm_max_level(dev_priv);
->=20=20
-> @@ -7229,12 +7228,12 @@ void vlv_wm_sanitize(struct drm_i915_private *dev=
-_priv)
->   */
->  static void ilk_init_lp_watermarks(struct drm_i915_private *dev_priv)
->  {
-> -	intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, intel_uncore_read(&de=
-v_priv->uncore, WM3_LP_ILK) & ~WM1_LP_SR_EN);
-> -	intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, intel_uncore_read(&de=
-v_priv->uncore, WM2_LP_ILK) & ~WM1_LP_SR_EN);
-> -	intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, intel_uncore_read(&de=
-v_priv->uncore, WM1_LP_ILK) & ~WM1_LP_SR_EN);
-> +	intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, intel_uncore_read(&de=
-v_priv->uncore, WM3_LP_ILK) & ~WM_LP_ENABLE);
-> +	intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, intel_uncore_read(&de=
-v_priv->uncore, WM2_LP_ILK) & ~WM_LP_ENABLE);
-> +	intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, intel_uncore_read(&de=
-v_priv->uncore, WM1_LP_ILK) & ~WM_LP_ENABLE);
->=20=20
->  	/*
-> -	 * Don't touch WM1S_LP_EN here.
-> +	 * Don't touch WM_LP_SPRITE_ENABLE here.
->  	 * Doing so could cause underruns.
->  	 */
->  }
+> Tvrtko
+>=20=20=20
+>>>
+>>> BR,
+>>> Jani.
+>>>
+>>>
+>>>> ---
+>>>>   drivers/gpu/drm/i915/gt/intel_engine_types.h | 4 ++--
+>>>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gp=
+u/drm/i915/gt/intel_engine_types.h
+>>>> index 36365bdbe1ee..dc7cc06c68e7 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>>> @@ -328,10 +328,10 @@ struct intel_engine_cs {
+>>>>   	intel_engine_mask_t logical_mask;
+>>>>=20=20=20
+>>>>   	u8 class;
+>>>> -	u8 instance;
+>>>> +	s8 instance;
+>>>>=20=20=20
+>>>>   	u16 uabi_class;
+>>>> -	u16 uabi_instance;
+>>>> +	s16 uabi_instance;
+>>>>=20=20=20
+>>>>   	u32 uabi_capabilities;
+>>>>   	u32 context_size;
+>>>
+>>> --=20
+>>> Jani Nikula, Intel Open Source Graphics Center
+>>=20
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
