@@ -1,49 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 099D64B8A6F
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 14:39:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF95C4B8A94
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 14:45:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9960A10E737;
-	Wed, 16 Feb 2022 13:39:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20B6510ED84;
+	Wed, 16 Feb 2022 13:45:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 177BD10E8CE
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 13:39:02 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCE4310ED84
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 13:45:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645018742; x=1676554742;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HPkWPSTg4TzJ7sguQTkDHjyDtun+N9VWpwF2ESU4FG8=;
- b=Hp0ue+7i49RLl1YmIXCwGpvOpo4qX7pKY2mB4M4N0uNeVTxoZF+t2mLI
- 3q6sE9CBspl32ElK9fe+A23zXv+bXU8J4NaH6tzo9A+VcesQek8/IaZQi
- SaFCwEl4HDgpPTu/EntoI1XUbBWWio5G2tFHyRN6TqtGW2K/mh70fvHNl
- UNBqtZ/AGx1t4QY61/hBOXv2al45ywM2oYA4Emn9l446ZmDQv+ZBCZm+D
- 7M72YUp2LIIOBEXTPCW41KO7D5Ju0Tu1cWaC2S7p7Px4I/FXDwyImdmix
- n61MQoPoIR+m8pyRSuTjjotKPsav+90jdx4hrrbaYD4nVftcCcZbNW1ob g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="238007743"
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="238007743"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 05:39:01 -0800
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="636492021"
-Received: from mmcgown-mobl2.amr.corp.intel.com (HELO
- josouza-mobl2.amr.corp.intel.com) ([10.251.4.3])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 05:38:59 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Feb 2022 05:40:59 -0800
-Message-Id: <20220216134059.25348-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.35.1
+ t=1645019137; x=1676555137;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=QpluKiNeR4C4uKTmfyjkE2pmhQlPmOWt15mnozuWaaY=;
+ b=eRddnKQ8f6DHmAKIchVd2jsqiDHQbMkfQ6UFeVQP4MxT5HNtGoNQCMMP
+ sPcx98cjyOvA7oCo4dfHH/Yd1zRPzjLHAjLARmpLcTf7xBuechLNSUQbG
+ RqBoHLnaeyBpavKKSdOtd9m37V8j83N1QE7lkqSt7lbv8PYdktciz+GJx
+ cHYBdfrZxnkYLBLfu0NrOu8AqHkbtQUWS4jR934BjnMQ58IyzrOlHyLDP
+ /ittY6fARKeemm4aB9OO8Cr72m2vT9Vspw6rhmIeKSdkQUca6JJi1SPh+
+ AYdOSL3eG0RoYPN6CFtRGT01Zofuk6R6/zh4UMRFmLhUVePrYcJQhBhTB w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="234143166"
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="234143166"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 05:45:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="776427669"
+Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
+ by fmsmga005.fm.intel.com with ESMTP; 16 Feb 2022 05:45:36 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Wed, 16 Feb 2022 13:45:34 +0000
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2308.020;
+ Wed, 16 Feb 2022 05:45:33 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 2/2] drm/i915/display: Implement
+ Wa_16013835468
+Thread-Index: AQHYHq8Vn2g7FHoykkiuttI3LDPjFKyVLcMAgAGShwA=
+Date: Wed, 16 Feb 2022 13:45:33 +0000
+Message-ID: <117ed77340346c58899c1e334f6c71bb272b08f5.camel@intel.com>
+References: <20220210185223.95399-1-jose.souza@intel.com>
+ <20220210185223.95399-2-jose.souza@intel.com>
+ <20220215134702.GA16567@intel.com>
+In-Reply-To: <20220215134702.GA16567@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <61C9B83467EB964FA20EEDC80FBB6C79@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/display/tgl+: Implement new PLL
- programming step
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/display: Implement
+ Wa_16013835468
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,285 +74,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A new programming step was added to combo and TC PLL sequences.
-If override_AFC_startup is set in VBT, driver should overwrite
-AFC_startup value to 0x0 or 0x7 in PLL's div0 register.
-
-The current understating is that only TGL needs this and all other
-display 12 and newer platforms will have a older VBT or a newer VBT
-with override_AFC_startup set to 0 but in any case there is a
-drm_warn_on_once() to let us know if this is not true.
-
-v2:
-- specification updated, now AFC can be override to 0x0 or 0x7
-- not using a union for div0 (Imre)
-- following previous wrong vbt naming: bits instead of bytes (Imre)
-
-BSpec: 49204
-BSpec: 20122
-BSpec: 49968
-BSpec: 71360
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Imre Deak <imre.deak@intel.com> # v1
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c     |  6 +++
- drivers/gpu/drm/i915/display/intel_display.c  |  1 +
- .../drm/i915/display/intel_display_debugfs.c  |  1 +
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 44 +++++++++++++------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  3 ++
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |  8 ++++
- drivers/gpu/drm/i915/i915_drv.h               |  3 ++
- drivers/gpu/drm/i915/i915_reg.h               | 12 +++++
- 8 files changed, 65 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index aec0efd5350ef..40b5e7ed12c20 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -596,6 +596,12 @@ parse_general_features(struct drm_i915_private *i915,
- 	} else {
- 		i915->vbt.orientation = DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
- 	}
-+
-+	if (bdb->version >= 249 && general->afc_startup_config) {
-+		i915->vbt.override_afc_startup = true;
-+		i915->vbt.override_afc_startup_val = general->afc_startup_config == 0x1 ? 0x0 : 0x7;
-+	}
-+
- 	drm_dbg_kms(&i915->drm,
- 		    "BDB_GENERAL_FEATURES int_tv_support %d int_crt_support %d lvds_use_ssc %d lvds_ssc_freq %d display_clock_mode %d fdi_rx_polarity_inverted %d\n",
- 		    i915->vbt.int_tv_support,
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6229038475513..9e663692b0f00 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6502,6 +6502,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 		PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr1);
- 		PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr2);
- 		PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr0);
-+		PIPE_CONF_CHECK_X(dpll_hw_state.div0);
- 		PIPE_CONF_CHECK_X(dpll_hw_state.ebb0);
- 		PIPE_CONF_CHECK_X(dpll_hw_state.ebb4);
- 		PIPE_CONF_CHECK_X(dpll_hw_state.pll0);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 1a202a5c39a53..56b86781a7b16 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1014,6 +1014,7 @@ static int i915_shared_dplls_info(struct seq_file *m, void *unused)
- 		seq_printf(m, " wrpll:   0x%08x\n", pll->state.hw_state.wrpll);
- 		seq_printf(m, " cfgcr0:  0x%08x\n", pll->state.hw_state.cfgcr0);
- 		seq_printf(m, " cfgcr1:  0x%08x\n", pll->state.hw_state.cfgcr1);
-+		seq_printf(m, " div0:    0x%08x\n", pll->state.hw_state.div0);
- 		seq_printf(m, " mg_refclkin_ctl:        0x%08x\n",
- 			   pll->state.hw_state.mg_refclkin_ctl);
- 		seq_printf(m, " mg_clktop2_coreclkctl1: 0x%08x\n",
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 6723c3de5a80c..569903d47aea5 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -2748,6 +2748,9 @@ static void icl_calc_dpll_state(struct drm_i915_private *i915,
- 		pll_state->cfgcr1 |= TGL_DPLL_CFGCR1_CFSELOVRD_NORMAL_XTAL;
- 	else
- 		pll_state->cfgcr1 |= DPLL_CFGCR1_CENTRAL_FREQ_8400;
-+
-+	if (i915->vbt.override_afc_startup)
-+		pll_state->div0 = TGL_DPLL0_DIV0_AFC_STARTUP(i915->vbt.override_afc_startup_val);
- }
- 
- static bool icl_mg_pll_find_divisors(int clock_khz, bool is_dp, bool use_ssc,
-@@ -2949,6 +2952,11 @@ static bool icl_calc_mg_pll_state(struct intel_crtc_state *crtc_state,
- 					 DKL_PLL_DIV0_PROP_COEFF(prop_coeff) |
- 					 DKL_PLL_DIV0_FBPREDIV(m1div) |
- 					 DKL_PLL_DIV0_FBDIV_INT(m2div_int);
-+		if (dev_priv->vbt.override_afc_startup) {
-+			u8 val = dev_priv->vbt.override_afc_startup_val;
-+
-+			pll_state->mg_pll_div0 |= DKL_PLL_DIV0_AFC_STARTUP(val);
-+		}
- 
- 		pll_state->mg_pll_div1 = DKL_PLL_DIV1_IREF_TRIM(iref_trim) |
- 					 DKL_PLL_DIV1_TDC_TARGET_CNT(tdc_targetcnt);
-@@ -3448,10 +3456,10 @@ static bool dkl_pll_get_hw_state(struct drm_i915_private *dev_priv,
- 		MG_CLKTOP2_CORECLKCTL1_A_DIVRATIO_MASK;
- 
- 	hw_state->mg_pll_div0 = intel_de_read(dev_priv, DKL_PLL_DIV0(tc_port));
--	hw_state->mg_pll_div0 &= (DKL_PLL_DIV0_INTEG_COEFF_MASK |
--				  DKL_PLL_DIV0_PROP_COEFF_MASK |
--				  DKL_PLL_DIV0_FBPREDIV_MASK |
--				  DKL_PLL_DIV0_FBDIV_INT_MASK);
-+	val = DKL_PLL_DIV0_MASK;
-+	if (dev_priv->vbt.override_afc_startup)
-+		val |= DKL_PLL_DIV0_AFC_STARTUP_MASK;
-+	hw_state->mg_pll_div0 &= val;
- 
- 	hw_state->mg_pll_div1 = intel_de_read(dev_priv, DKL_PLL_DIV1(tc_port));
- 	hw_state->mg_pll_div1 &= (DKL_PLL_DIV1_IREF_TRIM_MASK |
-@@ -3513,6 +3521,10 @@ static bool icl_pll_get_hw_state(struct drm_i915_private *dev_priv,
- 						 TGL_DPLL_CFGCR0(id));
- 		hw_state->cfgcr1 = intel_de_read(dev_priv,
- 						 TGL_DPLL_CFGCR1(id));
-+		if (dev_priv->vbt.override_afc_startup) {
-+			hw_state->div0 = intel_de_read(dev_priv, TGL_DPLL0_DIV0(id));
-+			hw_state->div0 &= TGL_DPLL0_DIV0_AFC_STARTUP_MASK;
-+		}
- 	} else {
- 		if (IS_JSL_EHL(dev_priv) && id == DPLL_ID_EHL_DPLL4) {
- 			hw_state->cfgcr0 = intel_de_read(dev_priv,
-@@ -3554,7 +3566,7 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
- {
- 	struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
- 	const enum intel_dpll_id id = pll->info->id;
--	i915_reg_t cfgcr0_reg, cfgcr1_reg;
-+	i915_reg_t cfgcr0_reg, cfgcr1_reg, div0_reg = INVALID_MMIO_REG;
- 
- 	if (IS_ALDERLAKE_S(dev_priv)) {
- 		cfgcr0_reg = ADLS_DPLL_CFGCR0(id);
-@@ -3568,6 +3580,7 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
- 	} else if (DISPLAY_VER(dev_priv) >= 12) {
- 		cfgcr0_reg = TGL_DPLL_CFGCR0(id);
- 		cfgcr1_reg = TGL_DPLL_CFGCR1(id);
-+		div0_reg = TGL_DPLL0_DIV0(id);
- 	} else {
- 		if (IS_JSL_EHL(dev_priv) && id == DPLL_ID_EHL_DPLL4) {
- 			cfgcr0_reg = ICL_DPLL_CFGCR0(4);
-@@ -3580,6 +3593,12 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
- 
- 	intel_de_write(dev_priv, cfgcr0_reg, hw_state->cfgcr0);
- 	intel_de_write(dev_priv, cfgcr1_reg, hw_state->cfgcr1);
-+	drm_WARN_ON_ONCE(&dev_priv->drm, dev_priv->vbt.override_afc_startup &&
-+			 !i915_mmio_reg_valid(div0_reg));
-+	if (dev_priv->vbt.override_afc_startup &&
-+	    i915_mmio_reg_valid(div0_reg))
-+		intel_de_rmw(dev_priv, div0_reg, TGL_DPLL0_DIV0_AFC_STARTUP_MASK,
-+			     hw_state->div0);
- 	intel_de_posting_read(dev_priv, cfgcr1_reg);
- }
- 
-@@ -3667,13 +3686,11 @@ static void dkl_pll_write(struct drm_i915_private *dev_priv,
- 	val |= hw_state->mg_clktop2_hsclkctl;
- 	intel_de_write(dev_priv, DKL_CLKTOP2_HSCLKCTL(tc_port), val);
- 
--	val = intel_de_read(dev_priv, DKL_PLL_DIV0(tc_port));
--	val &= ~(DKL_PLL_DIV0_INTEG_COEFF_MASK |
--		 DKL_PLL_DIV0_PROP_COEFF_MASK |
--		 DKL_PLL_DIV0_FBPREDIV_MASK |
--		 DKL_PLL_DIV0_FBDIV_INT_MASK);
--	val |= hw_state->mg_pll_div0;
--	intel_de_write(dev_priv, DKL_PLL_DIV0(tc_port), val);
-+	val = DKL_PLL_DIV0_MASK;
-+	if (dev_priv->vbt.override_afc_startup)
-+		val |= DKL_PLL_DIV0_AFC_STARTUP_MASK;
-+	intel_de_rmw(dev_priv, DKL_PLL_DIV0(tc_port), val,
-+		     hw_state->mg_pll_div0);
- 
- 	val = intel_de_read(dev_priv, DKL_PLL_DIV1(tc_port));
- 	val &= ~(DKL_PLL_DIV1_IREF_TRIM_MASK |
-@@ -3912,13 +3929,14 @@ static void icl_dump_hw_state(struct drm_i915_private *dev_priv,
- 			      const struct intel_dpll_hw_state *hw_state)
- {
- 	drm_dbg_kms(&dev_priv->drm,
--		    "dpll_hw_state: cfgcr0: 0x%x, cfgcr1: 0x%x, "
-+		    "dpll_hw_state: cfgcr0: 0x%x, cfgcr1: 0x%x, div0: 0x%x, "
- 		    "mg_refclkin_ctl: 0x%x, hg_clktop2_coreclkctl1: 0x%x, "
- 		    "mg_clktop2_hsclkctl: 0x%x, mg_pll_div0: 0x%x, "
- 		    "mg_pll_div2: 0x%x, mg_pll_lf: 0x%x, "
- 		    "mg_pll_frac_lock: 0x%x, mg_pll_ssc: 0x%x, "
- 		    "mg_pll_bias: 0x%x, mg_pll_tdc_coldst_bias: 0x%x\n",
- 		    hw_state->cfgcr0, hw_state->cfgcr1,
-+		    hw_state->div0,
- 		    hw_state->mg_refclkin_ctl,
- 		    hw_state->mg_clktop2_coreclkctl1,
- 		    hw_state->mg_clktop2_hsclkctl,
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index 91fe181462b2e..ba2fdfce15792 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -208,6 +208,9 @@ struct intel_dpll_hw_state {
- 	/* icl */
- 	u32 cfgcr0;
- 
-+	/* tgl */
-+	u32 div0;
-+
- 	/* bxt */
- 	u32 ebb0, ebb4, pll0, pll1, pll2, pll3, pll6, pll8, pll9, pll10, pcsdw12;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index a39d6cfea87aa..b9397d9363c52 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -162,6 +162,14 @@ struct bdb_general_features {
- 	u8 dp_ssc_freq:1;	/* SSC freq for PCH attached eDP */
- 	u8 dp_ssc_dongle_supported:1;
- 	u8 rsvd11:2; /* finish byte */
-+
-+	/* bits 6 */
-+	u8 tc_hpd_retry_timeout:7; /* 242 */
-+	u8 rsvd12:1;
-+
-+	/* bits 7 */
-+	u8 afc_startup_config:2;/* 249 */
-+	u8 rsvd13:6;
- } __packed;
- 
- /*
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 418091484e02a..f600d1cb01b34 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -357,6 +357,9 @@ struct intel_vbt_data {
- 	unsigned int bios_lvds_val; /* initial [PCH_]LVDS reg val in VBIOS */
- 	enum drm_panel_orientation orientation;
- 
-+	bool override_afc_startup;
-+	u8 override_afc_startup_val;
-+
- 	enum drrs_support_type drrs_type;
- 
- 	struct {
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 4ea1713e6b608..060f5c2e26479 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -7987,6 +7987,12 @@ enum skl_power_gate {
- #define RKL_DPLL_CFGCR0(pll)		_MMIO_PLL(pll, _TGL_DPLL0_CFGCR0, \
- 						  _TGL_DPLL1_CFGCR0)
- 
-+#define _TGL_DPLL0_DIV0					0x164B00
-+#define _TGL_DPLL1_DIV0					0x164C00
-+#define TGL_DPLL0_DIV0(pll)				_MMIO_PLL(pll, _TGL_DPLL0_DIV0, _TGL_DPLL1_DIV0)
-+#define   TGL_DPLL0_DIV0_AFC_STARTUP_MASK		REG_GENMASK(27, 25)
-+#define   TGL_DPLL0_DIV0_AFC_STARTUP(val)		REG_FIELD_PREP(TGL_DPLL0_DIV0_AFC_STARTUP_MASK, (val))
-+
- #define _TGL_DPLL0_CFGCR1		0x164288
- #define _TGL_DPLL1_CFGCR1		0x164290
- #define _TGL_TBTPLL_CFGCR1		0x1642A0
-@@ -8034,6 +8040,8 @@ enum skl_power_gate {
- 
- /* DEKEL PHY MMIO Address = Phy base + (internal address & ~index_mask) */
- #define _DKL_PLL_DIV0			0x200
-+#define   DKL_PLL_DIV0_AFC_STARTUP_MASK	REG_GENMASK(27, 25)
-+#define   DKL_PLL_DIV0_AFC_STARTUP(val)	REG_FIELD_PREP(DKL_PLL_DIV0_AFC_STARTUP_MASK, (val))
- #define   DKL_PLL_DIV0_INTEG_COEFF(x)	((x) << 16)
- #define   DKL_PLL_DIV0_INTEG_COEFF_MASK	(0x1F << 16)
- #define   DKL_PLL_DIV0_PROP_COEFF(x)	((x) << 12)
-@@ -8043,6 +8051,10 @@ enum skl_power_gate {
- #define   DKL_PLL_DIV0_FBPREDIV_MASK	(0xF << DKL_PLL_DIV0_FBPREDIV_SHIFT)
- #define   DKL_PLL_DIV0_FBDIV_INT(x)	((x) << 0)
- #define   DKL_PLL_DIV0_FBDIV_INT_MASK	(0xFF << 0)
-+#define   DKL_PLL_DIV0_MASK		(DKL_PLL_DIV0_INTEG_COEFF_MASK | \
-+					 DKL_PLL_DIV0_PROP_COEFF_MASK | \
-+					 DKL_PLL_DIV0_FBPREDIV_MASK | \
-+					 DKL_PLL_DIV0_FBDIV_INT_MASK)
- #define DKL_PLL_DIV0(tc_port)		_MMIO(_PORT(tc_port, _DKL_PHY1_BASE, \
- 						    _DKL_PHY2_BASE) + \
- 						    _DKL_PLL_DIV0)
--- 
-2.35.1
-
+T24gVHVlLCAyMDIyLTAyLTE1IGF0IDE1OjQ3ICswMjAwLCBMaXNvdnNraXksIFN0YW5pc2xhdiB3
+cm90ZToNCj4gT24gVGh1LCBGZWIgMTAsIDIwMjIgYXQgMTA6NTI6MjNBTSAtMDgwMCwgSm9zw6kg
+Um9iZXJ0byBkZSBTb3V6YSB3cm90ZToNCj4gPiBQU1IyIHdvcmthcm91bmQgcmVxdWlyZWQgd2hl
+biBtb2RlIGhhcyBkZWxheWVkIHZibGFuay4NCj4gPiANCj4gPiBCU3BlYzogNTI4OTANCj4gPiBC
+U3BlYzogNDk0MjENCj4gPiBDYzogSm91bmkgSMO2Z2FuZGVyIDxqb3VuaS5ob2dhbmRlckBpbnRl
+bC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5z
+b3V6YUBpbnRlbC5jb20+DQo+IA0KPiANCj4gSSB0aGluayB3ZSBiZXR0ZXIgaW1wbGVtZW50IGl0
+IGluIGEgbW9yZSBnZW5lcmljIHdheS4NCj4gQlNwZWMgNzE1ODAgZm9ybXVsYXRlcyB0aGlzIHdv
+cmthcm91bmQgbW9yZSBwcmVjaXNlbHk6DQo+IA0KPiAiDQo+IElmIGFueSBsb3cgcG93ZXIgd2F0
+ZXJtYXJrIGlzIGRpc2FibGVkIGJlY2F1c2UgdGhlIHBhY2thZ2UgQyBzdGF0ZSANCj4gaGFzIHRv
+byBtdWNoIGxhdGVuY3kgZm9yIHRoZSBzaXplIG9mIFZibGFuayBhbmQgUFNSMSBvciBQU1IyIGlz
+IGVuYWJsZWQsIA0KPiBzZXQgdGhlIHJlZ2lzdGVyIGJpdCBmb3IgdGhpcyBwaXBlIChsaXN0aW5n
+IGJlbG93KSB0byAxIHRvIGRpc2FibGUgYSANCj4gUFNSIG9wdGltaXphdGlvbiB0byBvdmVycmlk
+ZSB0byB0aGUgbWF4aW11bSB3YXRlcm1hcmsuIA0KPiBDbGVhciB0aGUgYml0IGlmIHRoZSBzaXpl
+IG9mIFZibGFuayBkb2VzIG5vdCByZXF1aXJlIGxvdyBwb3dlciB3YXRlcm1hcmtzIHRvIGJlIGRp
+c2FibGVkIA0KPiBvciBQU1IqIGlzIGRpc2FibGVkLiINCg0KVGhpcyBpcyBhIGRpZmZlcmVudCB3
+b3JrYXJvdW5kIHRoYW4gdGhlIG9uZSBpbXBsZW1lbnRlZCBpbiB0aGlzIHBhdGNoLg0KVGhlIHBy
+b2dyYW1taW5nIGJpdHMgYXJlIHRoZSBzYW1lIGJ1dCB0aGV5IGhhdmUgZGlmZmVyZW50ICJ0cmln
+Z2VycyIgY2hlY2tzLg0KDQo+IA0KPiANCj4gUGlwZSBBIDB4NDY0MzAgYml0IDIzDQo+IA0KPiBQ
+aXBlIEIgMHg0NjQzMCBiaXQgMjQNCj4gDQo+IFBpcGUgQyAweDQ2NDMwIGJpdCAyNQ0KPiANCj4g
+UGlwZSBEIDB4NDY0MzAgYml0IDMxDQo+IA0KPiANCj4gVFJBTlNfU0VUX0NPTlRFWFRfTEFURU5D
+WSBpcyB1c2VkIHRvIGRlbGF5IHRoZSB2YmxhbmsiDQo+IA0KPiANCj4gQWxtb3N0IHdlIG11c3Qg
+ZW5zdXJlIHRoYXQgb25lOg0KPiANCj4gVmJsYW5rIHRpbWUgPj0gTUFYKGZyYW1lc3RhcnQgZGVs
+YXkgKyBwYWNrYWdlIEMgc3RhdGUgbGF0ZW5jeSArIHdhdGVybWFyayAwIHRpbWUgKyBwaXBlIHNj
+YWxlciBwcmUtZmlsbCB0aW1lICsgRFNDIHByZS1maWxsIHRpbWUsIA0KPiAgICAgICAgICAgICAg
+ICAgICAgUFNSMiB2YmxhbmsgdGltZSwgU0RQIHZibGFuayB0aW1lKQ0KPiANCj4gTGluZSB0aW1l
+ID49IFBTUjIgbGluZSB0aW1lDQo+IA0KPiBJJ20gY3VycmVudGx5IHdvcmtpbmcgb24gdGhlIGxh
+dHRlciBvbmUuIEkgaGF2ZSBzdWdnZXN0aW9uIHRoYXQgb25lIEkgZmluaXNoIA0KPiB3aXRoIGNh
+bGN1bGF0aW9ucyByZXF1aXJlZCBmb3IgdGhpcyBmb3JtdWxhLCBJIGNhbiBwcm92aWRlIHNvbWUg
+YXBpIGZvciB0aGlzDQo+IHBhdGNoIGluIG9yZGVyIHRvIGNoZWNrIGlmIFBTUiBjYW4gYmUgZW5h
+YmxlZCBhbmQgd29ya2Fyb3VuZCBoYXMgdG8gYmUgYXBwbGllZC4NCj4gDQo+IFN0YW4NCj4gDQo+
+IA0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5j
+IHwgNDAgKysrKysrKysrKysrKysrKysrKysrKy0tDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2k5MTVfcmVnLmggICAgICAgICAgfCAxMyArKysrKy0tLQ0KPiA+ICAyIGZpbGVzIGNoYW5nZWQs
+IDQ2IGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0pDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gaW5kZXggNzJiZDhkMzI2MWUwYy4uMmUw
+YjA5MmY0YjZiZSAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX3Bzci5jDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9wc3IuYw0KPiA+IEBAIC0xMDYzLDcgKzEwNjMsMjMgQEAgc3RhdGljIHZvaWQgaW50ZWxfcHNy
+X2FjdGl2YXRlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApDQo+ID4gIAlpbnRlbF9kcC0+cHNy
+LmFjdGl2ZSA9IHRydWU7DQo+ID4gIH0NCj4gPiAgDQo+ID4gLXN0YXRpYyB2b2lkIGludGVsX3Bz
+cl9lbmFibGVfc291cmNlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApDQo+ID4gK3N0YXRpYyB1
+MzIgd2FfMTYwMTM4MzU0NjhfYml0X2dldChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQ0KPiA+
+ICt7DQo+ID4gKwlzd2l0Y2ggKGludGVsX2RwLT5wc3IucGlwZSkgew0KPiA+ICsJY2FzZSBQSVBF
+X0E6DQo+ID4gKwkJcmV0dXJuIExBVEVOQ1lfUkVQT1JUSU5HX1JFTU9WRURfUElQRV9BOw0KPiA+
+ICsJY2FzZSBQSVBFX0I6DQo+ID4gKwkJcmV0dXJuIExBVEVOQ1lfUkVQT1JUSU5HX1JFTU9WRURf
+UElQRV9COw0KPiA+ICsJY2FzZSBQSVBFX0M6DQo+ID4gKwkJcmV0dXJuIExBVEVOQ1lfUkVQT1JU
+SU5HX1JFTU9WRURfUElQRV9DOw0KPiA+ICsJZGVmYXVsdDoNCj4gPiArCQlNSVNTSU5HX0NBU0Uo
+aW50ZWxfZHAtPnBzci5waXBlKTsNCj4gPiArCQlyZXR1cm4gMDsNCj4gPiArCX0NCj4gPiArfQ0K
+PiA+ICsNCj4gPiArc3RhdGljIHZvaWQgaW50ZWxfcHNyX2VuYWJsZV9zb3VyY2Uoc3RydWN0IGlu
+dGVsX2RwICppbnRlbF9kcCwNCj4gPiArCQkJCSAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19z
+dGF0ZSAqY3J0Y19zdGF0ZSkNCj4gPiAgew0KPiA+ICAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
+KmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7DQo+ID4gIAllbnVtIHRyYW5zY29kZXIg
+Y3B1X3RyYW5zY29kZXIgPSBpbnRlbF9kcC0+cHNyLnRyYW5zY29kZXI7DQo+ID4gQEAgLTExMzMs
+NiArMTE0OSwyMCBAQCBzdGF0aWMgdm9pZCBpbnRlbF9wc3JfZW5hYmxlX3NvdXJjZShzdHJ1Y3Qg
+aW50ZWxfZHAgKmludGVsX2RwKQ0KPiA+ICAJCWlmIChJU19BTERFUkxBS0VfUChkZXZfcHJpdikp
+DQo+ID4gIAkJCWludGVsX2RlX3JtdyhkZXZfcHJpdiwgQ0xLR0FURV9ESVNfTUlTQywgMCwNCj4g
+PiAgCQkJCSAgICAgQ0xLR0FURV9ESVNfTUlTQ19ETUFTQ19HQVRJTkdfRElTKTsNCj4gPiArDQo+
+ID4gKwkJLyogV2FfMTYwMTM4MzU0Njg6dGdsW2IwK10sIGRnMSAqLw0KPiA+ICsJCWlmIChJU19U
+R0xfRElTUExBWV9TVEVQKGRldl9wcml2LCBTVEVQX0IwLCBTVEVQX0ZPUkVWRVIpIHx8DQo+ID4g
+KwkJICAgIElTX0RHMShkZXZfcHJpdikpIHsNCj4gPiArCQkJdTE2IHZ0b3RhbCwgdmJsYW5rOw0K
+PiA+ICsNCj4gPiArCQkJdnRvdGFsID0gY3J0Y19zdGF0ZS0+dWFwaS5hZGp1c3RlZF9tb2RlLmNy
+dGNfdnRvdGFsIC0NCj4gPiArCQkJCSBjcnRjX3N0YXRlLT51YXBpLmFkanVzdGVkX21vZGUuY3J0
+Y192ZGlzcGxheTsNCj4gPiArCQkJdmJsYW5rID0gY3J0Y19zdGF0ZS0+dWFwaS5hZGp1c3RlZF9t
+b2RlLmNydGNfdmJsYW5rX2VuZCAtDQo+ID4gKwkJCQkgY3J0Y19zdGF0ZS0+dWFwaS5hZGp1c3Rl
+ZF9tb2RlLmNydGNfdmJsYW5rX3N0YXJ0Ow0KPiA+ICsJCQlpZiAodmJsYW5rID4gdnRvdGFsKQ0K
+PiA+ICsJCQkJaW50ZWxfZGVfcm13KGRldl9wcml2LCBHRU44X0NISUNLRU5fRENQUl8xLCAwLA0K
+PiA+ICsJCQkJCSAgICAgd2FfMTYwMTM4MzU0NjhfYml0X2dldChpbnRlbF9kcCkpOw0KPiA+ICsJ
+CX0NCj4gPiAgCX0NCj4gPiAgfQ0KPiA+ICANCj4gPiBAQCAtMTE5OCw3ICsxMjI4LDcgQEAgc3Rh
+dGljIHZvaWQgaW50ZWxfcHNyX2VuYWJsZV9sb2NrZWQoc3RydWN0IGludGVsX2RwICppbnRlbF9k
+cCwNCj4gPiAgCWludGVsX3dyaXRlX2RwX3ZzY19zZHAoZW5jb2RlciwgY3J0Y19zdGF0ZSwgJmNy
+dGNfc3RhdGUtPnBzcl92c2MpOw0KPiA+ICAJaW50ZWxfc25wc19waHlfdXBkYXRlX3Bzcl9wb3dl
+cl9zdGF0ZShkZXZfcHJpdiwgcGh5LCB0cnVlKTsNCj4gPiAgCWludGVsX3Bzcl9lbmFibGVfc2lu
+ayhpbnRlbF9kcCk7DQo+ID4gLQlpbnRlbF9wc3JfZW5hYmxlX3NvdXJjZShpbnRlbF9kcCk7DQo+
+ID4gKwlpbnRlbF9wc3JfZW5hYmxlX3NvdXJjZShpbnRlbF9kcCwgY3J0Y19zdGF0ZSk7DQo+ID4g
+IAlpbnRlbF9kcC0+cHNyLmVuYWJsZWQgPSB0cnVlOw0KPiA+ICAJaW50ZWxfZHAtPnBzci5wYXVz
+ZWQgPSBmYWxzZTsNCj4gPiAgDQo+ID4gQEAgLTEyOTcsNiArMTMyNywxMiBAQCBzdGF0aWMgdm9p
+ZCBpbnRlbF9wc3JfZGlzYWJsZV9sb2NrZWQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkNCj4g
+PiAgCQlpZiAoSVNfQUxERVJMQUtFX1AoZGV2X3ByaXYpKQ0KPiA+ICAJCQlpbnRlbF9kZV9ybXco
+ZGV2X3ByaXYsIENMS0dBVEVfRElTX01JU0MsDQo+ID4gIAkJCQkgICAgIENMS0dBVEVfRElTX01J
+U0NfRE1BU0NfR0FUSU5HX0RJUywgMCk7DQo+ID4gKw0KPiA+ICsJCS8qIFdhXzE2MDEzODM1NDY4
+OnRnbFtiMCtdLCBkZzEgKi8NCj4gPiArCQlpZiAoSVNfVEdMX0RJU1BMQVlfU1RFUChkZXZfcHJp
+diwgU1RFUF9CMCwgU1RFUF9GT1JFVkVSKSB8fA0KPiA+ICsJCSAgICBJU19ERzEoZGV2X3ByaXYp
+KQ0KPiA+ICsJCQlpbnRlbF9kZV9ybXcoZGV2X3ByaXYsIEdFTjhfQ0hJQ0tFTl9EQ1BSXzEsDQo+
+ID4gKwkJCQkgICAgIHdhXzE2MDEzODM1NDY4X2JpdF9nZXQoaW50ZWxfZHApLCAwKTsNCj4gPiAg
+CX0NCj4gPiAgDQo+ID4gIAlpbnRlbF9zbnBzX3BoeV91cGRhdGVfcHNyX3Bvd2VyX3N0YXRlKGRl
+dl9wcml2LCBwaHksIGZhbHNlKTsNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaTkxNV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gPiBpbmRl
+eCA4N2M5MjMxNGVlMjY5Li4xY2Q0MDU2NDAwYjYzIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X3JlZy5oDQo+ID4gQEAgLTYwNDAsMTEgKzYwNDAsMTQgQEANCj4gPiAgI2RlZmluZSBIU1df
+TkRFX1JTVFdSTl9PUFQJX01NSU8oMHg0NjQwOCkNCj4gPiAgI2RlZmluZSAgUkVTRVRfUENIX0hB
+TkRTSEFLRV9FTkFCTEUJKDEgPDwgNCkNCj4gPiAgDQo+ID4gLSNkZWZpbmUgR0VOOF9DSElDS0VO
+X0RDUFJfMQkJX01NSU8oMHg0NjQzMCkNCj4gPiAtI2RlZmluZSAgIFNLTF9TRUxFQ1RfQUxURVJO
+QVRFX0RDX0VYSVQJUkVHX0JJVCgzMCkNCj4gPiAtI2RlZmluZSAgIElDTF9ERUxBWV9QTVJTUAkJ
+UkVHX0JJVCgyMikNCj4gPiAtI2RlZmluZSAgIERJU0FCTEVfRkxSX1NSQwkJUkVHX0JJVCgxNSkN
+Cj4gPiAtI2RlZmluZSAgIE1BU0tfV0FLRU1FTQkJCVJFR19CSVQoMTMpDQo+ID4gKyNkZWZpbmUg
+R0VOOF9DSElDS0VOX0RDUFJfMQkJCV9NTUlPKDB4NDY0MzApDQo+ID4gKyNkZWZpbmUgICBTS0xf
+U0VMRUNUX0FMVEVSTkFURV9EQ19FWElUCQlSRUdfQklUKDMwKQ0KPiA+ICsjZGVmaW5lICAgTEFU
+RU5DWV9SRVBPUlRJTkdfUkVNT1ZFRF9QSVBFX0MJUkVHX0JJVCgyNSkNCj4gPiArI2RlZmluZSAg
+IExBVEVOQ1lfUkVQT1JUSU5HX1JFTU9WRURfUElQRV9CCVJFR19CSVQoMjQpDQo+ID4gKyNkZWZp
+bmUgICBMQVRFTkNZX1JFUE9SVElOR19SRU1PVkVEX1BJUEVfQQlSRUdfQklUKDIzKQ0KPiA+ICsj
+ZGVmaW5lICAgSUNMX0RFTEFZX1BNUlNQCQkJUkVHX0JJVCgyMikNCj4gPiArI2RlZmluZSAgIERJ
+U0FCTEVfRkxSX1NSQwkJCVJFR19CSVQoMTUpDQo+ID4gKyNkZWZpbmUgICBNQVNLX1dBS0VNRU0J
+CQkJUkVHX0JJVCgxMykNCj4gPiAgDQo+ID4gICNkZWZpbmUgR0VOMTFfQ0hJQ0tFTl9EQ1BSXzIJ
+CQlfTU1JTygweDQ2NDM0KQ0KPiA+ICAjZGVmaW5lICAgRENQUl9NQVNLX01BWExBVEVOQ1lfTUVN
+VVBfQ0xSCVJFR19CSVQoMjcpDQo+ID4gLS0gDQo+ID4gMi4zNS4xDQo+ID4gDQoNCg==
