@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 462D14B8541
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 11:11:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D86E4B854D
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Feb 2022 11:14:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40B8D10E775;
-	Wed, 16 Feb 2022 10:11:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 501AD10EA2C;
+	Wed, 16 Feb 2022 10:14:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A78010E775;
- Wed, 16 Feb 2022 10:11:43 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E85610E9B0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 10:14:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645006303; x=1676542303;
+ t=1645006492; x=1676542492;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=+FJRsZksRk4hm38iGEai+Nae1XuHF0MB1kBHEBkxWCM=;
- b=FaKJ9+7SDzfp8QZtw5sWqhAqQ9dHL9xhwELPI0j36n4qfqSNc9AM+6fQ
- vvPaP7NaXuihiDQbC8IKCHulJw1ntKYU5j5RGo2Htxy7U8GWzg5hAQIrh
- xOSwTtYDvHcsFYePMCXQdoRwlk8WcRFob2HG9JaLH+J0LlNfZI72kkD+v
- bkd3SF6speKRkQmczyx5J7rL3y629O5F0DXDSP1rPrP6pMORBfqJ/RE64
- y+iuZ4UDsvrtvHmJPQOpoMGfAL1+u7EjXuDO537QgdW37R5pDwEmOnGSl
- gCNAbxbLpl6UExrhIzNur/gVLJQvt0BgV0QuUYrErHK+o3QjXJLaeM5Uh Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="337004032"
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="337004032"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 02:07:12 -0800
+ bh=I5B8ZhyMQFkVoPO1Kev4hJ2c8jifq08at+eB1Q1Zt98=;
+ b=lehpNpqEOKScTGru6422rvhUUZM8A0oDhmBrGYHD6ICGiD3Hvm0Bn3mI
+ DH+teEuX/EnQvFxD0ndtZ0HyDchK2pspROJ+Tn9VrnGTkvuhLPKngo9+o
+ TKgUmNF4XU1re/B5sJNEFcG0U9bR6rPyNfI6Bk+TN9fsPUsNJFth4yVrY
+ Ds8rDHCiM2ZkNrRkzNmV8sl0gCMGfwfYC0YdrSq0nWpKfr4jbDGipULVG
+ L1g3y7Ap+rj/7AsPINf0BNmPflB+OB1MNMMq6doSgvu7WWmpvwTaYBYiA
+ 8RyzfiFI0lcoJJLV94rvKpeRteLtmn6bQag47EOJ1h6KxBfZ5zKxkGZSO g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="237977159"
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="237977159"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 02:09:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="544850819"
+X-IronPort-AV: E=Sophos;i="5.88,373,1635231600"; d="scan'208";a="529380411"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga008.jf.intel.com with SMTP; 16 Feb 2022 02:07:09 -0800
+ by orsmga007.jf.intel.com with SMTP; 16 Feb 2022 02:09:55 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 16 Feb 2022 12:07:08 +0200
-Date: Wed, 16 Feb 2022 12:07:08 +0200
+ Wed, 16 Feb 2022 12:09:54 +0200
+Date: Wed, 16 Feb 2022 12:09:54 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Message-ID: <YgzMzNYlAoQPGhj1@intel.com>
-References: <20220215055154.15363-1-ramalingam.c@intel.com>
- <20220215055154.15363-4-ramalingam.c@intel.com>
- <Ygy68/f1ERpTKJJW@intel.com>
- <392e942460079346d1ce9d3a17db11f9d02a17f5.camel@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YgzNchcUFOMZNxFe@intel.com>
+References: <20220211090629.15555-1-ville.syrjala@linux.intel.com>
+ <20220211090629.15555-6-ville.syrjala@linux.intel.com>
+ <87y22b3znr.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <392e942460079346d1ce9d3a17db11f9d02a17f5.camel@intel.com>
+In-Reply-To: <87y22b3znr.fsf@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Fix for PHY_MISC_TC1 offset
+Subject: Re: [Intel-gfx] [PATCH 5/8] drm/i915: Remove gen6_check_mch_setup()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,55 +61,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 16, 2022 at 09:36:02AM +0000, Hogander, Jouni wrote:
-> On Wed, 2022-02-16 at 10:50 +0200, Ville Syrjälä wrote:
-> > On Tue, Feb 15, 2022 at 11:21:54AM +0530, Ramalingam C wrote:
-> > > From: Jouni Högander <jouni.hogander@intel.com>
-> > > 
-> > > Currently ICL_PHY_MISC macro is returning offset 0x64C10 for PHY_E
-> > > port. Correct offset is 0x64C14.
-> > 
-> > Why is it PHY_E and not PHY_F?
+On Wed, Feb 16, 2022 at 11:54:00AM +0200, Jani Nikula wrote:
+> On Fri, 11 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > snb_wm_latency_quirk() already boosts up the latency values
+> > so the extra warning about the SSKPD value being insufficient
+> > is now redundant. Drop it.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> This is a valid question. It seems we have followed intel_phy_is_snps()
-> here:
+> I just might not understand what's going on...
 > 
-> // snip
-> else if (IS_DG2(dev_priv))
-> 		/*
-> 		 * All four "combo" ports and the TC1 port (PHY E) use
-> 		 * Synopsis PHYs.
-> 		 */
-> 		return phy <= PHY_E;
-> // snip
+> ...but snb_wm_latency_quirk() is only called for display 6, not for ivb
+> where the check is also removed?
+
+Hmm. Not sure this was ever an issue on IVB. I think the BIOSen
+might have gotten all fixed by that time. Not sure. I guess we can
+keep this for now. And maybe I should just rewrite to look at the
+parsed latency values instead...
+
 > 
-> According to spec port E is "No connection". Better place to fix this
-> could be intel_phy_is_snps() itself?
-
-I think the crucial question is where are all the places that
-the results of intel_port_to_phy() get used.
-
-I do see that for all the actual snps phy registers we
-do want PHY_E, but maybe it would be better to have a local
-SNPS_PHY enum just for intel_snps_phy.c, and leave the other
-phy thing for everything else?
-
-Not sure if there is some other register we index with the
-phy that specifically wants PHY_E?
-
-Also it kinda looks to me like for VBT port mapping we also
-want PHY_F essentially since the modern platforms make the
-VBT port mapping PHY based and xelpd_port_mapping() uses
-PORT_TC1<->DVO_PORT_*F. Not that we actually use enum phy
-in the VBT code atm, but I'm thinking we probably should
-since it might allow us to get rid of all those different
-mapping tables. Though the whole intel_port_to_phy()
-disaster needs to get cleaned up first IMO.
+> BR,
+> Jani.
+> 
+> > ---
+> >  drivers/gpu/drm/i915/intel_pm.c | 15 ---------------
+> >  1 file changed, 15 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> > index 0fa3dce9bd54..34e46a9b8300 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -7432,17 +7432,6 @@ static void cpt_init_clock_gating(struct drm_i915_private *dev_priv)
+> >  	}
+> >  }
+> >  
+> > -static void gen6_check_mch_setup(struct drm_i915_private *dev_priv)
+> > -{
+> > -	u32 tmp;
+> > -
+> > -	tmp = intel_uncore_read(&dev_priv->uncore, MCH_SSKPD);
+> > -	if ((tmp & MCH_SSKPD_WM0_MASK) != MCH_SSKPD_WM0_VAL)
+> > -		drm_dbg_kms(&dev_priv->drm,
+> > -			    "Wrong MCH_SSKPD value: 0x%08x This can cause underruns.\n",
+> > -			    tmp);
+> > -}
+> > -
+> >  static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
+> >  {
+> >  	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
+> > @@ -7500,8 +7489,6 @@ static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
+> >  	g4x_disable_trickle_feed(dev_priv);
+> >  
+> >  	cpt_init_clock_gating(dev_priv);
+> > -
+> > -	gen6_check_mch_setup(dev_priv);
+> >  }
+> >  
+> >  static void lpt_init_clock_gating(struct drm_i915_private *dev_priv)
+> > @@ -7853,8 +7840,6 @@ static void ivb_init_clock_gating(struct drm_i915_private *dev_priv)
+> >  
+> >  	if (!HAS_PCH_NOP(dev_priv))
+> >  		cpt_init_clock_gating(dev_priv);
+> > -
+> > -	gen6_check_mch_setup(dev_priv);
+> >  }
+> >  
+> >  static void vlv_init_clock_gating(struct drm_i915_private *dev_priv)
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 
 -- 
 Ville Syrjälä
