@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3CA74B947E
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 00:28:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B4664B947F
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 00:28:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F162810E651;
-	Wed, 16 Feb 2022 23:28:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5A3210E66E;
+	Wed, 16 Feb 2022 23:28:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6873210E64D
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 23:28:16 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 597B110E66E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 23:28:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645054096; x=1676590096;
+ t=1645054099; x=1676590099;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=F249CJNT8T/PayZMICF+NWzItXmv23IqcFhyvV18S/0=;
- b=NfS6wuIi4Us+Vb5E2kWe6jwyGL3o8jzJFAMiIXEQ+CAlReuSJpM+WFHz
- 5C1SGUo3q+RztF8t1jgTaIJkhGR7DZCI7rXQz3ndHc/LRKR1E0W8zD+fc
- 62EJzWdKpE+Q6zR7q+xgX+PcqQhzaXl+m1dIbGPrxWJchzGQItIeEA6Mt
- B1vuLBmPNrZjWsIpHK+FVlFBQ2XH4I7wCa7SSvUnytutj8d45NOYWMKYG
- 53W6vP94kAEWqBndjyf8lZgPVgHhUWnn1iO6siMTQUuooe57QohINfd8L
- bTd8+6Mx6l3NhRl+pPMi3XvZrolVQ0Zvd66HmZSau7zI6rDYy9t9zrDSi A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="250481826"
-X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="250481826"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 15:28:15 -0800
+ bh=DqLV8kK5USlepUlPm/ExghVyrbvavb/ljY0AmFCTzS4=;
+ b=B85SNvNVGjB2yibH/xiqXpgXA4HhNueARMMEAnjNRhTYorki5VArhdLt
+ O9GILrDU/nnvxuNk5lEizmFhzBMS+YhTWVOvKYO/yckZAwgHvT2mAVieX
+ cYRLY8iHdfRBySyFk4cBsUZJ3cUVJZ5BGshlp0W/ViY1oVcG18iOBdbEI
+ XDmDHKBtbZKAobCW4F63kjivYbNMMhofIoI5HVtGx9M6xzuRiQICBcCZG
+ qgyEEheaAeiYkuo/JkyJ+NrWsFvw6DjYjwVJi0G5dFhqPHJZwUzBNEtmQ
+ S/9vwF08LyJfZKz8SFGlNKa9I4edUYeW7hRc/FW6j4Lr363phGd+0jDzB Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="250944874"
+X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="250944874"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 15:28:18 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="625664894"
+X-IronPort-AV: E=Sophos;i="5.88,374,1635231600"; d="scan'208";a="588825559"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by FMSMGA003.fm.intel.com with SMTP; 16 Feb 2022 15:28:13 -0800
+ by fmsmga008.fm.intel.com with SMTP; 16 Feb 2022 15:28:16 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 17 Feb 2022 01:28:12 +0200
+ Thu, 17 Feb 2022 01:28:15 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 17 Feb 2022 01:28:05 +0200
-Message-Id: <20220216232806.6194-3-ville.syrjala@linux.intel.com>
+Date: Thu, 17 Feb 2022 01:28:06 +0200
+Message-Id: <20220216232806.6194-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220216232806.6194-1-ville.syrjala@linux.intel.com>
 References: <20220216232806.6194-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/3] drm/i915: Clean up SSKPD/MLTR defines
+Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915: Polish ilk+ wm register bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,130 +64,210 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Give names to the SSKPD/MLTR fields, and use the
-REG_GENMASK* and REG_FIELD_GET*.
+Use REG_GENMASK() & co. for ilk+ watermark registers.
 
-Also drop the bogus non-mirrored SSKP register define.
-
-v2: Rebase due to intel_mchbar_regs.h
-    Leave gen6_check_mch_setup() in place for the moment
+v2: Stick to the current bitmask sizes (Jani)
+    Fix "watermarm" typo (Jani)
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h          |  8 --------
- drivers/gpu/drm/i915/intel_mchbar_regs.h | 17 +++++++++++-----
- drivers/gpu/drm/i915/intel_pm.c          | 26 ++++++++++++------------
- 3 files changed, 25 insertions(+), 26 deletions(-)
+ .../drm/i915/display/intel_display_debugfs.c  |  2 +-
+ drivers/gpu/drm/i915/i915_reg.h               | 41 +++++++------
+ drivers/gpu/drm/i915/intel_pm.c               | 57 +++++++++----------
+ 3 files changed, 49 insertions(+), 51 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 1a202a5c39a5..2c9c750ed911 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -78,7 +78,7 @@ static int i915_sr_status(struct seq_file *m, void *unused)
+ 	if (DISPLAY_VER(dev_priv) >= 9)
+ 		/* no global SR status; inspect per-plane WM */;
+ 	else if (HAS_PCH_SPLIT(dev_priv))
+-		sr_enabled = intel_de_read(dev_priv, WM1_LP_ILK) & WM1_LP_SR_EN;
++		sr_enabled = intel_de_read(dev_priv, WM1_LP_ILK) & WM_LP_ENABLE;
+ 	else if (IS_I965GM(dev_priv) || IS_G4X(dev_priv) ||
+ 		 IS_I945G(dev_priv) || IS_I945GM(dev_priv))
+ 		sr_enabled = intel_de_read(dev_priv, FW_BLC_SELF) & FW_BLC_SELF_EN;
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 2243d9d1d941..27e3f3441a8b 100644
+index 27e3f3441a8b..26b496fa3197 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4210,14 +4210,6 @@
- 	(WM3_LP_EN | ((lat) << WM1_LP_LATENCY_SHIFT) | \
- 	 ((fbc) << WM1_LP_FBC_SHIFT) | ((pri) << WM1_LP_SR_SHIFT) | (cur))
- 
--/* the address where we get all kinds of latency value */
--#define SSKPD			_MMIO(0x5d10)
--#define SSKPD_WM_MASK		0x3f
--#define SSKPD_WM0_SHIFT		0
--#define SSKPD_WM1_SHIFT		8
--#define SSKPD_WM2_SHIFT		16
--#define SSKPD_WM3_SHIFT		24
+@@ -4182,33 +4182,32 @@
+ #define _WM0_PIPEC_IVB		0x45200
+ #define WM0_PIPE_ILK(pipe)	_MMIO_PIPE3((pipe), _WM0_PIPEA_ILK, \
+ 					    _WM0_PIPEB_ILK, _WM0_PIPEC_IVB)
+-#define  WM0_PIPE_PLANE_MASK	(0xffff << 16)
+-#define  WM0_PIPE_PLANE_SHIFT	16
+-#define  WM0_PIPE_SPRITE_MASK	(0xff << 8)
+-#define  WM0_PIPE_SPRITE_SHIFT	8
+-#define  WM0_PIPE_CURSOR_MASK	(0xff)
++#define  WM0_PIPE_PRIMARY_MASK	REG_GENMASK(31, 16)
++#define  WM0_PIPE_SPRITE_MASK	REG_GENMASK(15, 8)
++#define  WM0_PIPE_CURSOR_MASK	REG_GENMASK(7, 0)
++#define  WM0_PIPE_PRIMARY(x)	REG_FIELD_PREP(WM0_PIPE_PRIMARY_MASK, (x))
++#define  WM0_PIPE_SPRITE(x)	REG_FIELD_PREP(WM0_PIPE_SPRITE_MASK, (x))
++#define  WM0_PIPE_CURSOR(x)	REG_FIELD_PREP(WM0_PIPE_CURSOR_MASK, (x))
+ #define WM1_LP_ILK		_MMIO(0x45108)
+-#define  WM1_LP_SR_EN		(1 << 31)
+-#define  WM1_LP_LATENCY_SHIFT	24
+-#define  WM1_LP_LATENCY_MASK	(0x7f << 24)
+-#define  WM1_LP_FBC_MASK	(0xf << 20)
+-#define  WM1_LP_FBC_SHIFT	20
+-#define  WM1_LP_FBC_SHIFT_BDW	19
+-#define  WM1_LP_SR_MASK		(0x7ff << 8)
+-#define  WM1_LP_SR_SHIFT	8
+-#define  WM1_LP_CURSOR_MASK	(0xff)
+ #define WM2_LP_ILK		_MMIO(0x4510c)
+-#define  WM2_LP_EN		(1 << 31)
+ #define WM3_LP_ILK		_MMIO(0x45110)
+-#define  WM3_LP_EN		(1 << 31)
++#define  WM_LP_ENABLE		REG_BIT(31)
++#define  WM_LP_LATENCY_MASK	REG_GENMASK(30, 24)
++#define  WM_LP_FBC_MASK_BDW	REG_GENMASK(23, 19)
++#define  WM_LP_FBC_MASK_ILK	REG_GENMASK(23, 20)
++#define  WM_LP_PRIMARY_MASK	REG_GENMASK(18, 8)
++#define  WM_LP_CURSOR_MASK	REG_GENMASK(7, 0)
++#define  WM_LP_LATENCY(x)	REG_FIELD_PREP(WM_LP_LATENCY_MASK, (x))
++#define  WM_LP_FBC_BDW(x)	REG_FIELD_PREP(WM_LP_FBC_MASK_BDW, (x))
++#define  WM_LP_FBC_ILK(x)	REG_FIELD_PREP(WM_LP_FBC_MASK_ILK, (x))
++#define  WM_LP_PRIMARY(x)	REG_FIELD_PREP(WM_LP_PRIMARY_MASK, (x))
++#define  WM_LP_CURSOR(x)	REG_FIELD_PREP(WM_LP_CURSOR_MASK, (x))
+ #define WM1S_LP_ILK		_MMIO(0x45120)
+ #define WM2S_LP_IVB		_MMIO(0x45124)
+ #define WM3S_LP_IVB		_MMIO(0x45128)
+-#define  WM1S_LP_EN		(1 << 31)
 -
+-#define HSW_WM_LP_VAL(lat, fbc, pri, cur) \
+-	(WM3_LP_EN | ((lat) << WM1_LP_LATENCY_SHIFT) | \
+-	 ((fbc) << WM1_LP_FBC_SHIFT) | ((pri) << WM1_LP_SR_SHIFT) | (cur))
++#define  WM_LP_SPRITE_ENABLE	REG_BIT(31) /* ilk/snb WM1S only */
++#define  WM_LP_SPRITE_MASK	REG_GENMASK(10, 0)
++#define  WM_LP_SPRITE(x)	REG_FIELD_PREP(WM_LP_SPRITE_MASK, (x))
+ 
  /*
   * The two pipe frame counter registers are not synchronized, so
-  * reading a stable value is somewhat tricky. The following code
-diff --git a/drivers/gpu/drm/i915/intel_mchbar_regs.h b/drivers/gpu/drm/i915/intel_mchbar_regs.h
-index f4aef00b30f7..2aad2f0cc8db 100644
---- a/drivers/gpu/drm/i915/intel_mchbar_regs.h
-+++ b/drivers/gpu/drm/i915/intel_mchbar_regs.h
-@@ -78,10 +78,9 @@
- 
- /* Memory latency timer register */
- #define MLTR_ILK				_MMIO(MCHBAR_MIRROR_BASE + 0x1222)
--#define   MLTR_WM1_SHIFT			0
--#define   MLTR_WM2_SHIFT			8
- /* the unit of memory self-refresh latency time is 0.5us */
--#define   ILK_SRLT_MASK				0x3f
-+#define   MLTR_WM2_MASK				REG_GENMASK(13, 8)
-+#define   MLTR_WM1_MASK				REG_GENMASK(5, 0)
- 
- #define CSIPLL0					_MMIO(MCHBAR_MIRROR_BASE + 0x2c10)
- #define DDRMPLL1				_MMIO(MCHBAR_MIRROR_BASE + 0x2c20)
-@@ -199,8 +198,16 @@
- 
- /* snb MCH registers for priority tuning */
- #define MCH_SSKPD				_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5d10)
--#define   MCH_SSKPD_WM0_MASK			0x3f
--#define   MCH_SSKPD_WM0_VAL			0xc
-+#define   SSKPD_NEW_WM0_MASK_HSW		REG_GENMASK64(63, 56)
-+#define   SSKPD_WM4_MASK_HSW			REG_GENMASK64(40, 32)
-+#define   SSKPD_WM3_MASK_HSW			REG_GENMASK64(28, 20)
-+#define   SSKPD_WM2_MASK_HSW			REG_GENMASK64(19, 12)
-+#define   SSKPD_WM1_MASK_HSW			REG_GENMASK64(11, 4)
-+#define   SSKPD_OLD_WM0_MASK_HSW		REG_GENMASK64(3, 0)
-+#define   SSKPD_WM3_MASK_SNB			REG_GENMASK(29, 24)
-+#define   SSKPD_WM2_MASK_SNB			REG_GENMASK(21, 16)
-+#define   SSKPD_WM1_MASK_SNB			REG_GENMASK(13, 8)
-+#define   SSKPD_WM0_MASK_SNB			REG_GENMASK(5, 0)
- 
- /* Memory controller frequency in MCHBAR for Haswell (possible SNB+) */
- #define DCLK					_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5e04)
 diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index d4d487f040a1..a60818015ada 100644
+index a60818015ada..113537343461 100644
 --- a/drivers/gpu/drm/i915/intel_pm.c
 +++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -2947,27 +2947,27 @@ static void intel_read_wm_latency(struct drm_i915_private *dev_priv,
- 	} else if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
- 		u64 sskpd = intel_uncore_read64(uncore, MCH_SSKPD);
+@@ -3410,29 +3410,28 @@ static void ilk_compute_wm_results(struct drm_i915_private *dev_priv,
+ 		 * disabled. Doing otherwise could cause underruns.
+ 		 */
+ 		results->wm_lp[wm_lp - 1] =
+-			(ilk_wm_lp_latency(dev_priv, level) << WM1_LP_LATENCY_SHIFT) |
+-			(r->pri_val << WM1_LP_SR_SHIFT) |
+-			r->cur_val;
++			WM_LP_LATENCY(ilk_wm_lp_latency(dev_priv, level)) |
++			WM_LP_PRIMARY(r->pri_val) |
++			WM_LP_CURSOR(r->cur_val);
  
--		wm[0] = (sskpd >> 56) & 0xFF;
-+		wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
- 		if (wm[0] == 0)
--			wm[0] = sskpd & 0xF;
--		wm[1] = (sskpd >> 4) & 0xFF;
--		wm[2] = (sskpd >> 12) & 0xFF;
--		wm[3] = (sskpd >> 20) & 0x1FF;
--		wm[4] = (sskpd >> 32) & 0x1FF;
-+			wm[0] = REG_FIELD_GET64(SSKPD_OLD_WM0_MASK_HSW, sskpd);
-+		wm[1] = REG_FIELD_GET64(SSKPD_WM1_MASK_HSW, sskpd);
-+		wm[2] = REG_FIELD_GET64(SSKPD_WM2_MASK_HSW, sskpd);
-+		wm[3] = REG_FIELD_GET64(SSKPD_WM3_MASK_HSW, sskpd);
-+		wm[4] = REG_FIELD_GET64(SSKPD_WM4_MASK_HSW, sskpd);
- 	} else if (DISPLAY_VER(dev_priv) >= 6) {
- 		u32 sskpd = intel_uncore_read(uncore, MCH_SSKPD);
+ 		if (r->enable)
+-			results->wm_lp[wm_lp - 1] |= WM1_LP_SR_EN;
++			results->wm_lp[wm_lp - 1] |= WM_LP_ENABLE;
  
--		wm[0] = (sskpd >> SSKPD_WM0_SHIFT) & SSKPD_WM_MASK;
--		wm[1] = (sskpd >> SSKPD_WM1_SHIFT) & SSKPD_WM_MASK;
--		wm[2] = (sskpd >> SSKPD_WM2_SHIFT) & SSKPD_WM_MASK;
--		wm[3] = (sskpd >> SSKPD_WM3_SHIFT) & SSKPD_WM_MASK;
-+		wm[0] = REG_FIELD_GET(SSKPD_WM0_MASK_SNB, sskpd);
-+		wm[1] = REG_FIELD_GET(SSKPD_WM1_MASK_SNB, sskpd);
-+		wm[2] = REG_FIELD_GET(SSKPD_WM2_MASK_SNB, sskpd);
-+		wm[3] = REG_FIELD_GET(SSKPD_WM3_MASK_SNB, sskpd);
- 	} else if (DISPLAY_VER(dev_priv) >= 5) {
- 		u32 mltr = intel_uncore_read(uncore, MLTR_ILK);
+ 		if (DISPLAY_VER(dev_priv) >= 8)
+-			results->wm_lp[wm_lp - 1] |=
+-				r->fbc_val << WM1_LP_FBC_SHIFT_BDW;
++			results->wm_lp[wm_lp - 1] |= WM_LP_FBC_BDW(r->fbc_val);
+ 		else
+-			results->wm_lp[wm_lp - 1] |=
+-				r->fbc_val << WM1_LP_FBC_SHIFT;
++			results->wm_lp[wm_lp - 1] |= WM_LP_FBC_ILK(r->fbc_val);
++
++		results->wm_lp_spr[wm_lp - 1] = WM_LP_SPRITE(r->spr_val);
  
- 		/* ILK primary LP0 latency is 700 ns */
- 		wm[0] = 7;
--		wm[1] = (mltr >> MLTR_WM1_SHIFT) & ILK_SRLT_MASK;
--		wm[2] = (mltr >> MLTR_WM2_SHIFT) & ILK_SRLT_MASK;
-+		wm[1] = REG_FIELD_GET(MLTR_WM1_MASK, mltr);
-+		wm[2] = REG_FIELD_GET(MLTR_WM2_MASK, mltr);
- 	} else {
- 		MISSING_CASE(INTEL_DEVID(dev_priv));
+ 		/*
+-		 * Always set WM1S_LP_EN when spr_val != 0, even if the
++		 * Always set WM_LP_SPRITE_EN when spr_val != 0, even if the
+ 		 * level is disabled. Doing otherwise could cause underruns.
+ 		 */
+ 		if (DISPLAY_VER(dev_priv) <= 6 && r->spr_val) {
+ 			drm_WARN_ON(&dev_priv->drm, wm_lp != 1);
+-			results->wm_lp_spr[wm_lp - 1] = WM1S_LP_EN | r->spr_val;
+-		} else
+-			results->wm_lp_spr[wm_lp - 1] = r->spr_val;
++			results->wm_lp_spr[wm_lp - 1] |= WM_LP_SPRITE_ENABLE;
++		}
  	}
-@@ -7394,7 +7394,7 @@ static void gen6_check_mch_setup(struct drm_i915_private *dev_priv)
- 	u32 tmp;
  
- 	tmp = intel_uncore_read(&dev_priv->uncore, MCH_SSKPD);
--	if ((tmp & MCH_SSKPD_WM0_MASK) != MCH_SSKPD_WM0_VAL)
-+	if (REG_FIELD_GET(SSKPD_WM0_MASK_SNB, tmp) != 12)
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Wrong MCH_SSKPD value: 0x%08x This can cause underruns.\n",
- 			    tmp);
+ 	/* LP0 register values */
+@@ -3445,9 +3444,9 @@ static void ilk_compute_wm_results(struct drm_i915_private *dev_priv,
+ 			continue;
+ 
+ 		results->wm_pipe[pipe] =
+-			(r->pri_val << WM0_PIPE_PLANE_SHIFT) |
+-			(r->spr_val << WM0_PIPE_SPRITE_SHIFT) |
+-			r->cur_val;
++			WM0_PIPE_PRIMARY(r->pri_val) |
++			WM0_PIPE_SPRITE(r->spr_val) |
++			WM0_PIPE_CURSOR(r->cur_val);
+ 	}
+ }
+ 
+@@ -3539,24 +3538,24 @@ static bool _ilk_disable_lp_wm(struct drm_i915_private *dev_priv,
+ 	struct ilk_wm_values *previous = &dev_priv->wm.hw;
+ 	bool changed = false;
+ 
+-	if (dirty & WM_DIRTY_LP(3) && previous->wm_lp[2] & WM1_LP_SR_EN) {
+-		previous->wm_lp[2] &= ~WM1_LP_SR_EN;
++	if (dirty & WM_DIRTY_LP(3) && previous->wm_lp[2] & WM_LP_ENABLE) {
++		previous->wm_lp[2] &= ~WM_LP_ENABLE;
+ 		intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, previous->wm_lp[2]);
+ 		changed = true;
+ 	}
+-	if (dirty & WM_DIRTY_LP(2) && previous->wm_lp[1] & WM1_LP_SR_EN) {
+-		previous->wm_lp[1] &= ~WM1_LP_SR_EN;
++	if (dirty & WM_DIRTY_LP(2) && previous->wm_lp[1] & WM_LP_ENABLE) {
++		previous->wm_lp[1] &= ~WM_LP_ENABLE;
+ 		intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, previous->wm_lp[1]);
+ 		changed = true;
+ 	}
+-	if (dirty & WM_DIRTY_LP(1) && previous->wm_lp[0] & WM1_LP_SR_EN) {
+-		previous->wm_lp[0] &= ~WM1_LP_SR_EN;
++	if (dirty & WM_DIRTY_LP(1) && previous->wm_lp[0] & WM_LP_ENABLE) {
++		previous->wm_lp[0] &= ~WM_LP_ENABLE;
+ 		intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, previous->wm_lp[0]);
+ 		changed = true;
+ 	}
+ 
+ 	/*
+-	 * Don't touch WM1S_LP_EN here.
++	 * Don't touch WM_LP_SPRITE_ENABLE here.
+ 	 * Doing so could cause underruns.
+ 	 */
+ 
+@@ -6760,9 +6759,9 @@ static void ilk_pipe_wm_get_hw_state(struct intel_crtc *crtc)
+ 		 * multiple pipes are active.
+ 		 */
+ 		active->wm[0].enable = true;
+-		active->wm[0].pri_val = (tmp & WM0_PIPE_PLANE_MASK) >> WM0_PIPE_PLANE_SHIFT;
+-		active->wm[0].spr_val = (tmp & WM0_PIPE_SPRITE_MASK) >> WM0_PIPE_SPRITE_SHIFT;
+-		active->wm[0].cur_val = tmp & WM0_PIPE_CURSOR_MASK;
++		active->wm[0].pri_val = REG_FIELD_GET(WM0_PIPE_PRIMARY_MASK, tmp);
++		active->wm[0].spr_val = REG_FIELD_GET(WM0_PIPE_SPRITE_MASK, tmp);
++		active->wm[0].cur_val = REG_FIELD_GET(WM0_PIPE_CURSOR_MASK, tmp);
+ 	} else {
+ 		int level, max_level = ilk_wm_max_level(dev_priv);
+ 
+@@ -7186,12 +7185,12 @@ void vlv_wm_sanitize(struct drm_i915_private *dev_priv)
+  */
+ static void ilk_init_lp_watermarks(struct drm_i915_private *dev_priv)
+ {
+-	intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM3_LP_ILK) & ~WM1_LP_SR_EN);
+-	intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM2_LP_ILK) & ~WM1_LP_SR_EN);
+-	intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM1_LP_ILK) & ~WM1_LP_SR_EN);
++	intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM3_LP_ILK) & ~WM_LP_ENABLE);
++	intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM2_LP_ILK) & ~WM_LP_ENABLE);
++	intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM1_LP_ILK) & ~WM_LP_ENABLE);
+ 
+ 	/*
+-	 * Don't touch WM1S_LP_EN here.
++	 * Don't touch WM_LP_SPRITE_ENABLE here.
+ 	 * Doing so could cause underruns.
+ 	 */
+ }
 -- 
 2.34.1
 
