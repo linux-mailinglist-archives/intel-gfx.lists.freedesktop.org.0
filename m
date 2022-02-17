@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 062314B97CB
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 05:34:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 427DF4B97CC
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 05:35:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CEF310E7F9;
-	Thu, 17 Feb 2022 04:34:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4195910E838;
+	Thu, 17 Feb 2022 04:35:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5170D10E7F9;
- Thu, 17 Feb 2022 04:34:21 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F180810E842;
+ Thu, 17 Feb 2022 04:35:28 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4D548A008A;
- Thu, 17 Feb 2022 04:34:21 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id F20D0AADD6;
+ Thu, 17 Feb 2022 04:35:28 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Souza, Jose" <jose.souza@intel.com>
-Date: Thu, 17 Feb 2022 04:34:21 -0000
-Message-ID: <164507246128.18052.1784210054790373399@emeril.freedesktop.org>
+Date: Thu, 17 Feb 2022 04:35:28 -0000
+Message-ID: <164507252898.18053.5718366289446540705@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220216134059.25348-1-jose.souza@intel.com>
 In-Reply-To: <20220216134059.25348-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/display/tgl+=3A_Implement_new_PLL_programming_step?=
- =?utf-8?q?_=28rev3=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/display/tgl+=3A_Implement_new_PLL_programming_step_=28?=
+ =?utf-8?q?rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,16 +54,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-ab74bc303b59 drm/i915/display/tgl+: Implement new PLL programming step
--:247: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#247: FILE: drivers/gpu/drm/i915/i915_reg.h:7875:
-+#define TGL_DPLL0_DIV0(pll)				_MMIO_PLL(pll, _TGL_DPLL0_DIV0, _TGL_DPLL1_DIV0)
-
--:249: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
-#249: FILE: drivers/gpu/drm/i915/i915_reg.h:7877:
-+#define   TGL_DPLL0_DIV0_AFC_STARTUP(val)		REG_FIELD_PREP(TGL_DPLL0_DIV0_AFC_STARTUP_MASK, (val))
-
-total: 0 errors, 2 warnings, 0 checks, 192 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
