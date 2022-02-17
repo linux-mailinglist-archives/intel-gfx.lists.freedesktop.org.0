@@ -1,55 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F7D84B9D21
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 11:29:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 317FB4B9D2B
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 11:32:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F12C10E158;
-	Thu, 17 Feb 2022 10:29:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B28E10E975;
+	Thu, 17 Feb 2022 10:32:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A8E810E956
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 10:29:08 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8285310E975
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 10:32:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645093748; x=1676629748;
- h=date:from:to:subject:message-id:references:mime-version:
- content-transfer-encoding:in-reply-to;
- bh=5QpJkJ1FFQ5cvE46tUL1IG5MC61FezyDXbT57gDYGwk=;
- b=i3/2d9GNsS4VSyZI94I/XYL+LGpx/cakUBXW9UpkM4JnksoyIuS7SwQ7
- dnUyTiSH89+aqPv7bk45D+DSWu66HgNRfnh31PWscSdP4G/fe/HetbNsQ
- UB/lhYb0HXQEpUcGjY7Gamkv3Y0XPqW4p8f5FLaXHqV/ljvE+0WdUTIgK
- zybWsvhpAEkfM2WAqypqi5/p4WpysIkRZu3p4BRtbnm1lyEVoL43PNWFn
- 2q3virqzaUzOXygxhKCJCXAdBdRqIw+xb7LS8oe86uXRbdKUsf5xq9vdZ
- qnnz18fR1vOB60XKe9cMchZMeoA3wo5Orb1BJsel/JfU4BWzm7jYhUog9 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="248441337"
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="248441337"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 02:29:07 -0800
+ t=1645093944; x=1676629944;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zOZA7qOPxLod+HsCAVMdYWHzn+PZnNEyfYSt1ZGX9jA=;
+ b=nhzJTTE1AymxJkgO3Vcq33zsUP+34shGaz+s5h9Sbhp2SR3vKQyB9zwS
+ bi5nxzB9XMxNfR1I+jReNBLK7VoC6Ttr6/d3K4hxBAHK5jMdwYlSPEQkK
+ kcaCeiIll204qC095weoUBgKbYZgN702Lj7NiNB4lXCF+kVMfsdemRuaV
+ gHDsRNxmWFZKe2EleZZt1F0TzD+jlpbtjDpAaSHUOw/3kuv8N3vOAZlHn
+ 0YRoXf28+CO/J7kN6UTE+t0/P7LFjZVXxzapIv5LTzFN1uCBl6DwXPvPe
+ ezMXa8amuLLn6GWcYP7UhfojwUQxhbYz7TvuUHF2Ymb6Q/kDUcZPD+zO/ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="337288890"
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="337288890"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 02:32:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="571740351"
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="503444921"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga001.jf.intel.com with SMTP; 17 Feb 2022 02:29:05 -0800
+ by orsmga002.jf.intel.com with SMTP; 17 Feb 2022 02:32:22 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 17 Feb 2022 12:29:04 +0200
-Date: Thu, 17 Feb 2022 12:29:04 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+ Thu, 17 Feb 2022 12:32:21 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Message-ID: <Yg4jcNGjhuSAoPvB@intel.com>
-References: <20220215183208.6143-1-ville.syrjala@linux.intel.com>
- <164505996499.18050.13429344508225280466@emeril.freedesktop.org>
+Date: Thu, 17 Feb 2022 12:32:17 +0200
+Message-Id: <20220217103221.10405-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <164505996499.18050.13429344508225280466@emeril.freedesktop.org>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Move_bigjoiner_refactoring?=
+Subject: [Intel-gfx] [PATCH 0/4] drm/i915: Fix disabled crtc state clearing,
+ again
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,54 +60,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 17, 2022 at 01:06:04AM -0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/i915: Move bigjoiner refactoring
-> URL   : https://patchwork.freedesktop.org/series/100195/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_11238 -> Patchwork_22286
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_22286 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_22286, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22286/index.html
-> 
-> Participating hosts (46 -> 44)
-> ------------------------------
-> 
->   Additional (1): fi-pnv-d510 
->   Missing    (3): fi-bsw-cyan bat-jsl-2 shard-tglu 
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_22286:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@kms_force_connector_basic@force-load-detect:
->     - fi-hsw-4770:        [PASS][1] -> [FAIL][2]
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Grr. This one is a real issue. Sort of regression from the original
-bigjoiner patches, but only clearly exposed by this pipesrc rect
-stuff. More fixes incoming...
+The latest bigjoiner pipesrc rect series ran into problems
+due to stale junk left over in the state of disabled crtcs.
+
+This was a mild surprise since I clearly remember addressing
+that very issue a few years ago. Turns out the introduction
+of bigjoiner undid that work, so now I get to restore it 
+back to working order.
+
+Also pimped the debugfs state dump a bit to help diagnose
+such issues.
+
+Ville Syrjälä (4):
+  drm/i915: Dump the crtc hw state always
+  drm/i915: Dump hw.enable and pipe_mode
+  drm/i915: Remove odd any_ms=true assignment
+  drm/i915: Properly clear crtc state when disabling it fully, again
+
+ drivers/gpu/drm/i915/display/intel_display.c  | 10 +++++-----
+ .../drm/i915/display/intel_display_debugfs.c  | 19 ++++++++++---------
+ 2 files changed, 15 insertions(+), 14 deletions(-)
 
 -- 
-Ville Syrj�l�
-Intel
+2.34.1
+
