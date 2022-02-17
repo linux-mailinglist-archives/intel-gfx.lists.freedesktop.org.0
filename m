@@ -1,33 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEE7F4BA7C0
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 19:11:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F332D4BA7EF
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 19:15:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E390710E623;
-	Thu, 17 Feb 2022 18:11:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD74F10E662;
+	Thu, 17 Feb 2022 18:15:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 13F7910E2F1;
- Thu, 17 Feb 2022 18:11:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 12174AADDA;
- Thu, 17 Feb 2022 18:11:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1163489929887559965=="
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com
+ [IPv6:2607:f8b0:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11B5110E652
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 18:15:33 +0000 (UTC)
+Received: by mail-oi1-x22b.google.com with SMTP id j2so481841oie.7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 10:15:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=LTdIi3omDeTFcEkX2muEvJCXzPVhzD5HrTufMm86oCI=;
+ b=GSF0k4x3nPfJK+/zPABl1ZAtXgahSz7RYjSchmHk2bwKgMZF5sdY/KYcg/py1eNnBe
+ oEo3hUU91BQ1QHyDl373gmhqHHBjrTt9ZV5zZygLW6ey4BEwP95BsALmYbV8Kh5EVbFc
+ w1TQQXbpwAs3Hy1K0135JbMIuaz6JajLOnm94=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=LTdIi3omDeTFcEkX2muEvJCXzPVhzD5HrTufMm86oCI=;
+ b=o+AdlIB/buq0DWvcpEgxoj7OZWuHmVFAY77lq7a3PM+vMgcUTBTNyFoxCHII5Ddrst
+ /D0jW/LZBof4lVwZ32Snow+q7/Bc//+xvpF9DPczW5RZsFO0Wr2AgvPo8FAvuEvGTyyS
+ bth+djfvcKJ2UlSv1NL+skG/D9bzQoLZLCESEhnP1a+CAzUjszq9EiV9gomIviHJJPhb
+ e5LUuc5tgxU2OS0YK/pbO8tZnvDyZ62LyJWPtQ5LapNflsD4L47X7le5bzChfVpDIHvh
+ Vku6cV/7MrfxdRizeHOwPKci2Y0530+jKntSsXSnQ0an3z8DDCl87ys5RDbJ65pEuThr
+ /phA==
+X-Gm-Message-State: AOAM531HKIbbPOTzst07MOfc9YbMfXY680pMLof2IrzzRFLHcx/LgXKc
+ HarJwyT2U39ScpvJGCn1M9tCqmchVljnQJDHoxsQPMs1ROM=
+X-Google-Smtp-Source: ABdhPJwkxr5ZAmKTEKFykke3Ix79Qf2hnC81K9ByuxjeKLO3pwvMOeqjqSCvpYhX5BtFRIoe/uhR/8Emp2+x6q8Z+oc=
+X-Received: by 2002:a05:6808:1b0c:b0:2d2:fcfc:46a8 with SMTP id
+ bx12-20020a0568081b0c00b002d2fcfc46a8mr1666869oib.278.1645121732284; Thu, 17
+ Feb 2022 10:15:32 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Thu, 17 Feb 2022 18:11:07 -0000
-Message-ID: <164512146706.18052.10411054029360937421@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220216232806.6194-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20220216232806.6194-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Plane/wm_cleanups_=28rev3=29?=
+References: <20220209224507.874751-1-jordan.l.justen@intel.com>
+ <20220209224507.874751-4-jordan.l.justen@intel.com>
+In-Reply-To: <20220209224507.874751-4-jordan.l.justen@intel.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Thu, 17 Feb 2022 19:15:21 +0100
+Message-ID: <CAKMK7uEMLiMMkLgZgtGtE_1jBH4Rq4+g=9m_mh_jzL6dfH1x7g@mail.gmail.com>
+To: Jordan Justen <jordan.l.justen@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v4 3/4] drm/i915/uapi: Add struct
+ drm_i915_query_hwconfig_blob_item
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,180 +61,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1163489929887559965==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Feb 9, 2022 at 11:45 PM Jordan Justen <jordan.l.justen@intel.com> wrote:
+>
+> Also, document DRM_I915_QUERY_HWCONFIG_BLOB with this struct.
+>
+> v3:
+>  * Add various changes suggested by Tvrtko
+>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Signed-off-by: Jordan Justen <jordan.l.justen@intel.com>
+> Acked-by: Jon Bloomfield <jon.bloomfield@intel.com>
 
-== Series Details ==
+Please check with make htmldocs that the output works&looks good (you
+mix up DOC: and struct sections, so that part wont work for sure).
+With that addressed:
 
-Series: drm/i915: Plane/wm cleanups (rev3)
-URL   : https://patchwork.freedesktop.org/series/100020/
-State : success
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11241 -> Patchwork_22307
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/index.html
-
-Participating hosts (46 -> 43)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (4): fi-bsw-cyan bat-dg2-8 fi-icl-u2 shard-tglu 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22307 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][1] ([fdo#109271]) +57 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [PASS][2] -> [DMESG-FAIL][3] ([i915#4957])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11241/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-    - bat-dg1-5:          [PASS][4] -> [DMESG-FAIL][5] ([i915#4494] / [i915#4957])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11241/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-tgl-1115g4:      [DMESG-FAIL][6] ([i915#3987]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11241/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#3987]: https://gitlab.freedesktop.org/drm/intel/issues/3987
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11241 -> Patchwork_22307
-
-  CI-20190529: 20190529
-  CI_DRM_11241: cb239fa15d6782735c7b8df0c0a3075947de7eef @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6347: 37ea4c86f97c0e05fcb6b04cff72ec927930536e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22307: 0e2211c01abe00493af8764f5184048d3c413d48 @ git://anongit.freedesktop.org/gfx-ci/linux
+> ---
+>  include/uapi/drm/i915_drm.h | 35 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 069d2fadfbd9..8279515ae2ce 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -3276,6 +3276,41 @@ struct drm_i915_gem_create_ext_protected_content {
+>         __u32 flags;
+>  };
+>
+> +/**
+> + * DOC: GuC HWCONFIG blob uAPI
+> + *
+> + * The GuC produces a blob with information about the current device.
+> + * i915 reads this blob from GuC and makes it available via this uAPI.
+> + *
+> + * The returned blob is a sequence of items of variable length
+> + * described by struct drm_i915_query_hwconfig_blob_item. The
+> + * drm_i915_query_hwconfig_blob_item length field gives the length of
+> + * the drm_i915_query_hwconfig_blob_item data[] array. The length is
+> + * the number of u32 items in the data[] array, and *not* the number
+> + * of bytes.
+> + *
+> + * The key and length fields are required, so the minimum item size is
+> + * 2 x u32, or 8 bytes, when the length field is 0. If the length
+> + * field is 1, then the item's size is 12 bytes.
+> + *
+> + * The overall blob returned by DRM_I915_QUERY_HWCONFIG_BLOB will end
+> + * at the same location as the end of the final
+> + * drm_i915_query_hwconfig_blob_item. In other words, walking through
+> + * the individual items is guaranteed to eventually arrive at the
+> + * exact end of the entire blob.
+> + *
+> + * The meaning of the key field and the data values are documented in
+> + * the Programmer's Reference Manual.
+> + */
+> +struct drm_i915_query_hwconfig_blob_item {
+> +       /** @key: Enum which defines how to interpret @data values. */
+> +       __u32 key;
+> +       /** @length: The number of u32 values in the @data array. */
+> +       __u32 length;
+> +       /** @key: Array of values with meaning defined by @key */
+> +       __u32 data[];
+> +};
+> +
+>  /* ID of the protected content session managed by i915 when PXP is active */
+>  #define I915_PROTECTED_CONTENT_DEFAULT_SESSION 0xf
+>
+> --
+> 2.34.1
+>
 
 
-== Linux commits ==
-
-0e2211c01abe drm/i915: Polish ilk+ wm register bits
-f983e7c5abed drm/i915: Clean up SSKPD/MLTR defines
-0d7ee8c549ee drm/i915: Introduce intel_crtc_planes_update_arm()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/index.html
-
---===============1163489929887559965==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Plane/wm cleanups (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100020/">https://patchwork.freedesktop.org/series/100020/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11241 -&gt; Patchwork_22307</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/index.html</p>
-<h2>Participating hosts (46 -&gt; 43)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (4): fi-bsw-cyan bat-dg2-8 fi-icl-u2 shard-tglu </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22307 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11241/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
-</li>
-<li>
-<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11241/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_pm:<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11241/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3987">i915#3987</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22307/fi-tgl-1115g4/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11241 -&gt; Patchwork_22307</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11241: cb239fa15d6782735c7b8df0c0a3075947de7eef @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6347: 37ea4c86f97c0e05fcb6b04cff72ec927930536e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22307: 0e2211c01abe00493af8764f5184048d3c413d48 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0e2211c01abe drm/i915: Polish ilk+ wm register bits<br />
-f983e7c5abed drm/i915: Clean up SSKPD/MLTR defines<br />
-0d7ee8c549ee drm/i915: Introduce intel_crtc_planes_update_arm()</p>
-
-</body>
-</html>
-
---===============1163489929887559965==--
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
