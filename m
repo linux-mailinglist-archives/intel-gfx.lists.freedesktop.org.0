@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8594BAD41
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 00:40:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70DA74BAD49
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 00:43:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEE3710E648;
-	Thu, 17 Feb 2022 23:40:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 996F410E17D;
+	Thu, 17 Feb 2022 23:43:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4541F10E17D;
- Thu, 17 Feb 2022 23:40:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D430E10E17D;
+ Thu, 17 Feb 2022 23:43:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 45A5AA8830;
- Thu, 17 Feb 2022 23:40:31 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D0AFEA8830;
+ Thu, 17 Feb 2022 23:43:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Date: Thu, 17 Feb 2022 23:40:31 -0000
-Message-ID: <164514123128.18050.14498077688948277967@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Thu, 17 Feb 2022 23:43:20 -0000
+Message-ID: <164514140081.18053.9613450462476590106@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220217144158.21555-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20220217144158.21555-1-andi.shyti@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBJ?=
- =?utf-8?q?ntroduce_multitile_support?=
+References: <20220217152237.670220-1-imre.deak@intel.com>
+In-Reply-To: <20220217152237.670220-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Disconnect_PHYs_left_connected_by_BIOS_on_disab?=
+ =?utf-8?q?led_ports?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,24 +48,18 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Introduce multitile support
-URL   : https://patchwork.freedesktop.org/series/100331/
+Series: drm/i915: Disconnect PHYs left connected by BIOS on disabled ports
+URL   : https://patchwork.freedesktop.org/series/100336/
 State : warning
 
 == Summary ==
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  MODPOST modules-only.symvers
-ERROR: modpost: "__divdi3" [drivers/gpu/drm/i915/i915.ko] undefined!
-scripts/Makefile.modpost:134: recipe for target 'modules-only.symvers' failed
-make[1]: *** [modules-only.symvers] Error 1
-make[1]: *** Deleting file 'modules-only.symvers'
-Makefile:1746: recipe for target 'modules' failed
-make: *** [modules] Error 2
+$ dim checkpatch origin/drm-tip
+921ff943d11a drm/i915: Disconnect PHYs left connected by BIOS on disabled ports
+-:19: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 64851a32c463 ("drm/i915/tc: Add a mode for the TypeC PHY's disconnected state")'
+#19: 
+Before commit 64851a32c463e5 the PHY connected state was read out even
 
-== Logs ==
+total: 1 errors, 0 warnings, 0 checks, 48 lines checked
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22316/build_32bit.log
+
