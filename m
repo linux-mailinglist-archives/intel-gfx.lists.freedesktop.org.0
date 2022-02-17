@@ -1,51 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1FB04BA95E
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 20:14:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E0474BA963
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 20:14:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68E3710E42C;
-	Thu, 17 Feb 2022 19:13:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 797CA10E40F;
+	Thu, 17 Feb 2022 19:14:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADFF010E400;
- Thu, 17 Feb 2022 19:13:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645125234; x=1676661234;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=8ZKLLLN8J0C2eGmj8qBLKfoPHChkVDCKnZQ1jwxA+p8=;
- b=CC3K3zmDZi2UB2GBDD961PV+3AHZlERjHqG/wWj6Rql9rMy7xyikszJ0
- 42Sk0+jqqKN1sJHP38RdCAyyyQLGlruHlh9gRZnfh6j960yDnmwczxNod
- YoPxCWz4DIXqKuDNp2VNaEHYSlvwDs5SDODYfrnyuAzZKYkCeUASecL7+
- acOIgJVXmw/WMP7bQ9DWVICLV5JDj2fN0OxuhAea3kPgbO+it72wVBpv6
- saaTkbrDypuWGbRB4TLG/RyH6jcUulsGBsJZRtwGjAJoVKguwbJdQSPdf
- Q8arEqy+6HTz8QagSOTAqrokvzl+JiD9l6oapdgpLpMKilzMsMfXO5MRK w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="238356532"
-X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="238356532"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 11:13:54 -0800
-X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="637310519"
-Received: from orsosgc001.jf.intel.com (HELO unerlige-ril-10.165.21.154)
- ([10.165.21.154])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 11:13:54 -0800
-Date: Thu, 17 Feb 2022 11:13:54 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Ramalingam C <ramalingam.c@intel.com>
-Message-ID: <20220217191354.GG34157@unerlige-ril-10.165.21.154>
-References: <20220215053115.6023-1-ramalingam.c@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 233E510E3F8;
+ Thu, 17 Feb 2022 19:14:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 23D79AADD4;
+ Thu, 17 Feb 2022 19:14:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220215053115.6023-1-ramalingam.c@intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Skip the i915_perf_init for
- dg2
+Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lee Shawn C" <shawn.c.lee@intel.com>
+Date: Thu, 17 Feb 2022 19:14:27 -0000
+Message-ID: <164512526714.18051.1713200923157693164@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220215062321.832-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220215062321.832-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Fix_cursor_coordinates_on_bigjoiner_slave_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,44 +40,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 15, 2022 at 11:01:15AM +0530, Ramalingam C wrote:
->i915_perf is not enabled for dg2 yet, hence skip the feature
->initialization.
->
->Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
->cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->---
-> drivers/gpu/drm/i915/i915_perf.c | 4 ++++
-> 1 file changed, 4 insertions(+)
->
->diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
->index 36f1325baa7d..5ac9604d07b3 100644
->--- a/drivers/gpu/drm/i915/i915_perf.c
->+++ b/drivers/gpu/drm/i915/i915_perf.c
->@@ -4373,6 +4373,10 @@ void i915_perf_init(struct drm_i915_private *i915)
->
-> 	/* XXX const struct i915_perf_ops! */
->
->+	/* i915_perf is not enabled for DG2 yet */
->+	if (IS_DG2(i915))
->+		return;
->+
+== Series Details ==
 
-lgtm
+Series: drm/i915: Fix cursor coordinates on bigjoiner slave (rev2)
+URL   : https://patchwork.freedesktop.org/series/100154/
+State : failure
 
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+== Summary ==
 
-Thanks,
-Umesh
-> 	perf->oa_formats = oa_formats;
-> 	if (IS_HASWELL(i915)) {
-> 		perf->ops.is_valid_b_counter_reg = gen7_is_valid_b_counter_addr;
->-- 
->2.20.1
->
+CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  DESCEND objtool
+  CHK     include/generated/compile.h
+  CC [M]  drivers/gpu/drm/i915/display/intel_cursor.o
+drivers/gpu/drm/i915/display/intel_cursor.c: In function ‘intel_check_cursor’:
+drivers/gpu/drm/i915/display/intel_cursor.c:155:18: error: ‘struct intel_crtc_state’ has no member named ‘bigjoiner_slave’; did you mean ‘bigjoiner_pipes’?
+  if (crtc_state->bigjoiner_slave)
+                  ^~~~~~~~~~~~~~~
+                  bigjoiner_pipes
+scripts/Makefile.build:288: recipe for target 'drivers/gpu/drm/i915/display/intel_cursor.o' failed
+make[4]: *** [drivers/gpu/drm/i915/display/intel_cursor.o] Error 1
+scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm/i915' failed
+make[3]: *** [drivers/gpu/drm/i915] Error 2
+scripts/Makefile.build:550: recipe for target 'drivers/gpu/drm' failed
+make[2]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:550: recipe for target 'drivers/gpu' failed
+make[1]: *** [drivers/gpu] Error 2
+Makefile:1831: recipe for target 'drivers' failed
+make: *** [drivers] Error 2
+
+
