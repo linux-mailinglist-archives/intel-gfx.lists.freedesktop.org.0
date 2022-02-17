@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F2984BA4C7
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 16:45:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B38E4BA505
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 16:54:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBA6F10ED0B;
-	Thu, 17 Feb 2022 15:45:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BFC110EADE;
+	Thu, 17 Feb 2022 15:54:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA02010EB3A;
- Thu, 17 Feb 2022 15:45:13 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A85CC10EADE;
+ Thu, 17 Feb 2022 15:54:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645112713; x=1676648713;
+ t=1645113243; x=1676649243;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=x0Sjhy23qKvrvWx1/OaVuSgVMkaku3F28lUTUNbSrss=;
- b=hr8e5OFVHGOWiEbeh4nqQnQcHbRHp/wLMEy5KhoPYlM7Kf1FNEcnWRru
- tVTJGf4+y1FbuChyFdc4Y7wmFWqSUtJoQ84x5YWcC8CbXxjet3Ujl0IBY
- bCocIiNkhnOziegnbFQPblHCOHuif+XUOGqb7VZmkw9AeJh4GiZ618d9Q
- 4njRIyGkyB6NiJFmk0ZEh0Y2nmT8riYFDOH+XVPlEv9bOkVCW9G0M45Mm
- 5RiNp+mDhqZS7Tn2Qv4/tYT2cbq+0Hvdql8LjO9+0BbTSuEahgNao/9da
- WLxjHGFZgpc6Mkud1YduBKNAPuUPYO3qhZcB6rmPE0So4fYKdZjryLvyX w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="251099405"
-X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="251099405"
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=feiIE8hKQ7xOTurPToJ7wkzWqz3KqfWns/T191tEu1c=;
+ b=Qbs6jasBXbBQ/AIf7r6cv9n+A72a2rCHeGHSAUhUrw5BjJil3WTfS9sL
+ M5rt4P7ALCE5CcyFuzY9MAFyUsqAUvWRkLWgEw1L5HrEsJ7hROrnWz3lA
+ N2KBHa5TWKACX+3eISdD3UeZwcA/ca88WlcCxAT3I8eZwsJahJ8fixd/n
+ w5hpNmcGMU4VCFxY2RVm+IVVg8G492KZR5ktPqLxrQSEz8qxB/OUUE2QE
+ tsz9oWznnTfKcpun/U3ehxghGRPRXlElI20vsdbacbNnyZSRDfl1SP7sP
+ TtPBAINxx/cicponjiEkn3gqbbcznEwLmiN1OT9RwAiPjNvSFz7hKRtXo A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="249737135"
+X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="249737135"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 07:45:12 -0800
-X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="545667954"
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 07:54:03 -0800
+X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="545672799"
 Received: from pkivi-mobl.ger.corp.intel.com (HELO intel.com) ([10.252.43.228])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 07:45:07 -0800
-Date: Thu, 17 Feb 2022 16:45:05 +0100
+ 17 Feb 2022 07:54:00 -0800
+Date: Thu, 17 Feb 2022 16:53:58 +0100
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <Yg5tgepi3dkP6Y0M@intel.intel>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <Yg5vlgoTEfJRWP9U@intel.intel>
 References: <20220217144158.21555-1-andi.shyti@linux.intel.com>
- <20220217144158.21555-8-andi.shyti@linux.intel.com>
+ <20220217144158.21555-6-andi.shyti@linux.intel.com>
+ <12c2fcf8-ef3b-e59c-fe1e-23bc8f12cfe5@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220217144158.21555-8-andi.shyti@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 7/7] drm/i915/gt: Adding new sysfs
- frequency attributes
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <12c2fcf8-ef3b-e59c-fe1e-23bc8f12cfe5@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 5/7] drm/i915/gt: Create per-tile RC6
+ sysfs interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,46 +66,71 @@ Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Tvrtko,
 
-I forgot to add some note to this patch...
+> > Now tiles have their own sysfs interfaces under the gt/
+> > directory. Because RC6 is a property that can be configured on a
+> > tile basis, then each tile should have its own interface
+> > 
+> > The new sysfs structure will have a similar layout for the 4 tile
+> > case:
+> > 
+> > /sys/.../card0
+> >           ├── gt
+> >           │   ├── gt0
+> >           │   │   ├── id
+> >           │   │   ├── rc6_enable
+> >           │   │   ├── rc6_residency_ms
+> >           .   .   .
+> >           .   .   .
+> >           .   .
+> >           │   └── gtN
+> >           │       ├── id
+> >           │       ├── rc6_enable
+> >           │       ├── rc6_residency_ms
+> >           │       .
+> >           │       .
+> >           │
+> >           └── power/                -+
+> >                ├── rc6_enable        |    Original interface
+> >                ├── rc6_residency_ms  +->  kept as existing ABI;
+> >                .                     |    it multiplexes over
+> >                .                     |    the GTs
+> >                                     -+
+> > 
+> > The existing interfaces have been kept in their original location
+> > to preserve the existing ABI. They act on all the GTs: when
+> > reading they provide the average value from all the GTs.
+> 
+> Average feels very odd to me. I'd ask if we can get away providing an errno
+> instead? Or tile zero data?
 
-[...]
+Real multiplexing would be providing something when reading and
+when writing. The idea of average came while revieweing with
+Chris the write multiplexing. Indeed it makes sense to provide
+some common value, but I don't know how useful it can be to the
+user (still if the user needs any average).
 
-> +static ssize_t throttle_reason_status_show(struct device *dev,
-> +					   struct device_attribute *attr,
-> +					   char *buff)
-> +{
-> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
-> +	struct intel_rps *rps = &gt->rps;
-> +	bool status = !!intel_rps_read_throttle_reason_status(rps);
+Joonas, Chris... any idea?
 
-why are these boolean? Can't we send whatever we read from the
-register?
+> Case in point, and please correct me if I am wrong, legacy rc6_enable
+> returns tile zero, while residency returns average.
 
-[...]
+As the interface is done now, the rc6_enable is just returning
+whether the gpu (i.e. i915, not gt) supports RC6 or not. I think
+there is a patch later.
 
-> +#define GT0_PERF_LIMIT_REASONS		_MMIO(0x1381A8)
-> +#define   GT0_PERF_LIMIT_REASONS_MASK	0x00000de3
+> Even the deprecated message gets logged with every access right?
+> 
+> Btw is the deperecated message limited to multi-tile platforms (can't see
+> that it is) and what is the plan for that?
 
-This mask is really weird! Sujaritha, can you please explain it?
+yes, at this point the message would need to be removed and I
+forgot to do it.
 
-It looks something like this,
+> It's a tough problem, no easy answers even after all this time. :D
 
-  REG_GENMASK(11, 6) | REG_GENMASK(2, 0)
+yeah! quite hard to get it conceptually right!
 
-But I don't know if it improves any readability, in any case, the
-mask is not clear.
-
-> +#define   PROCHOT_MASK			BIT(1)
-> +#define   THERMAL_LIMIT_MASK		BIT(2)
-> +#define   RATL_MASK			BIT(6)
-> +#define   VR_THERMALERT_MASK		BIT(7)
-> +#define   VR_TDC_MASK			BIT(8)
-> +#define   POWER_LIMIT_4_MASK		BIT(9)
-> +#define   POWER_LIMIT_1_MASK		BIT(11)
-> +#define   POWER_LIMIT_2_MASK		BIT(12)
-
-I hope I got these right. Sujaritha, can you please check?
-
+Thanks Tvrtko,
 Andi
