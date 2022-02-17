@@ -2,65 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90DBF4BA455
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 16:27:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DB394BA46C
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 16:34:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B751210ED4F;
-	Thu, 17 Feb 2022 15:27:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6628110E4AF;
+	Thu, 17 Feb 2022 15:34:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C913E10ED4F
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 15:27:42 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBF5310E4AF;
+ Thu, 17 Feb 2022 15:34:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645111662; x=1676647662;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=rP/wAo6u1NpTZphPM3H9zEJxX3dtCWUuGvFXy7FfK18=;
- b=ivoP1u1odYEOdTk1gpv8HayP08cwihgBMZNUV0vW/QN9K3kOS0IZG/5F
- L3wjC2mrKpLUHrMz8JQKTkSU64tgfh+6Fy1BPPHmK2596nunG+Mv45Ymv
- esKPtzc2Dvv155h7WYz5Wt+lCBhi3pzmvu4Wu+DHrP/nc2mv+d2sfyTgh
- a1VtOI+RMRmi7EPDI3ErPs55pJv8zT+iY2g+0Q45Xk/HzqEKwRdTrU75T
- jhm3N8Lo6QzfRl3KRsBgH8rRISatsCXorROM2hOT62ebg4uq/JZvhykYB
- lqZrU3swgV3IRZqLXtopCLIRzPvA1a3Ejmd753rZjyBxmArL48LkwUS+j Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="275487259"
-X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="275487259"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 07:27:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="637183449"
-Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
- by orsmga004.jf.intel.com with ESMTP; 17 Feb 2022 07:27:41 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 17 Feb 2022 15:27:39 +0000
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2308.020;
- Thu, 17 Feb 2022 07:27:38 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [PATCH] drm/i915: Disconnect PHYs left connected by BIOS on
- disabled ports
-Thread-Index: AQHYJBI0mBLaYPNKHEa+ydNfMSbp/qyYZF6A
-Date: Thu, 17 Feb 2022 15:27:38 +0000
-Message-ID: <abf2e7d187ab1dbdc67a1442da680e3f5b38064e.camel@intel.com>
-References: <20220217152237.670220-1-imre.deak@intel.com>
-In-Reply-To: <20220217152237.670220-1-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D930C33F15BAE8418BFC4045D5AE429B@intel.com>
-Content-Transfer-Encoding: base64
+ t=1645112069; x=1676648069;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=tufJJOsSGRQvdredhZQTbHQQjWYGMbE6iB0AKyxu8FA=;
+ b=OIReXpBh75aTghCCPyRMVOXTuCvqOTBvk4zRmDaPpftJpnkTpyMJHpGt
+ HqQgqlsm9TBkppUQHSdgRj/H0vNidXcdjFa7MxxC6ySgeUaWaMR7UyN02
+ tE0I8HptlXxse7TB3BrGa9rRtfCpK682rKkQE3Hh77dG73tMzSSSXjdmt
+ vFGCmKVHQXuG+VlP1o9bO31DxRbtGhBcGdMf9MYsPhD/U3BhY6KnBfuqu
+ JXmkRxbWIqK3Dn77CKnaAbvLZwdZMmH4mkp9j5zEnOq6rNXgLw77ZiIt5
+ fKQ5bS0GgL7gpU9CVbujJylPmPfOSiwpQ4EtxRuElSLQtKJd1JmmRRfRN g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="248493756"
+X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="248493756"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 07:34:29 -0800
+X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="530300712"
+Received: from markorti-mobl.ger.corp.intel.com (HELO [10.213.216.21])
+ ([10.213.216.21])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 07:34:26 -0800
+Message-ID: <12c2fcf8-ef3b-e59c-fe1e-23bc8f12cfe5@linux.intel.com>
+Date: Thu, 17 Feb 2022 15:34:23 +0000
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Disconnect PHYs left connected by
- BIOS on disabled ports
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
+References: <20220217144158.21555-1-andi.shyti@linux.intel.com>
+ <20220217144158.21555-6-andi.shyti@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20220217144158.21555-6-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v5 5/7] drm/i915/gt: Create per-tile RC6
+ sysfs interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,71 +64,543 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIyLTAyLTE3IGF0IDE3OjIyICswMjAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEJJ
-T1MgbWF5IGxlYXZlIGEgVHlwZUMgUEhZIGluIGEgY29ubmVjdGVkIHN0YXRlIGV2ZW4gdGhvdWdo
-IHRoZQ0KPiBjb3JyZXNwb25kaW5nIHBvcnQgaXMgZGlzYWJsZWQuIFRoaXMgd2lsbCBwcmV2ZW50
-IGFueSBob3RwbHVnIGV2ZW50cw0KPiBmcm9tIGJlaW5nIHNpZ25hbGxlZCAoYWZ0ZXIgdGhlIG1v
-bml0b3IgZGVhc3NlcnRzIGFuZCB0aGVuIHJlYXNzZXJ0cyBpdHMNCj4gSFBEKSB1bnRpbCB0aGUg
-UEhZIGlzIGRpc2Nvbm5lY3RlZCBhbmQgc28gdGhlIGRyaXZlciB3aWxsIG5vdCBkZXRlY3QgYQ0K
-PiBjb25uZWN0ZWQgc2luay4gUmVib290aW5nIHdpdGggdGhlIFBIWSBpbiB0aGUgY29ubmVjdGVk
-IHN0YXRlIGFsc28NCj4gcmVzdWx0cyBpbiBhIHN5c3RlbSBoYW5nLg0KPiANCj4gRml4IHRoZSBh
-Ym92ZSBieSBkaXNjb25uZWN0aW5nIFR5cGVDIFBIWXMgb24gZGlzYWJsZWQgcG9ydHMuDQo+IA0K
-PiBCZWZvcmUgY29tbWl0IDY0ODUxYTMyYzQ2M2U1IHRoZSBQSFkgY29ubmVjdGVkIHN0YXRlIHdh
-cyByZWFkIG91dCBldmVuDQo+IGZvciBkaXNhYmxlZCBwb3J0cyBhbmQgbGF0ZXIgdGhlIFBIWSBn
-b3QgZGlzY29ubmVjdGVkIGFzIGEgc2lkZSBlZmZlY3QNCj4gb2YgYSB0Y19wb3J0X2xvY2svdW5s
-b2NrKCkgc2VxdWVuY2UgKGR1cmluZyBjb25uZWN0b3IgcHJvYmluZyksIGhlbmNlDQo+IHJlY292
-ZXJpbmcgdGhlIHBvcnQncyBob3RwbHVnIGZ1bmN0aW9uYWxpdHkuDQoNClJldmlld2VkLWJ5OiBK
-b3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KPiANCj4gQ2xv
-c2VzOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsLy0vaXNzdWVzLzUw
-MTQNCj4gRml4ZXM6IDY0ODUxYTMyYzQ2MyAoImRybS9pOTE1L3RjOiBBZGQgYSBtb2RlIGZvciB0
-aGUgVHlwZUMgUEhZJ3MgZGlzY29ubmVjdGVkIHN0YXRlIikNCj4gQ2M6IDxzdGFibGVAdmdlci5r
-ZXJuZWwub3JnPiAjIHY1LjE2Kw0KPiBDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5z
-b3V6YUBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGlu
-dGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Rj
-LmMgfCAyOCArKysrKysrKysrKysrKysrKystLS0tLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgMjEg
-aW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX3RjLmMNCj4gaW5kZXggZmVlYWQwOGRkZjhmZi4uZmMwMzdjMDI3ZWE1YSAx
-MDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jDQo+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMuYw0KPiBAQCAtNjkz
-LDYgKzY5Myw4IEBAIHZvaWQgaW50ZWxfdGNfcG9ydF9zYW5pdGl6ZShzdHJ1Y3QgaW50ZWxfZGln
-aXRhbF9wb3J0ICpkaWdfcG9ydCkNCj4gIHsNCj4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
-aTkxNSA9IHRvX2k5MTUoZGlnX3BvcnQtPmJhc2UuYmFzZS5kZXYpOw0KPiAgCXN0cnVjdCBpbnRl
-bF9lbmNvZGVyICplbmNvZGVyID0gJmRpZ19wb3J0LT5iYXNlOw0KPiArCWludGVsX3dha2VyZWZf
-dCB0Y19jb2xkX3dyZWY7DQo+ICsJZW51bSBpbnRlbF9kaXNwbGF5X3Bvd2VyX2RvbWFpbiBkb21h
-aW47DQo+ICAJaW50IGFjdGl2ZV9saW5rcyA9IDA7DQo+ICANCj4gIAltdXRleF9sb2NrKCZkaWdf
-cG9ydC0+dGNfbG9jayk7DQo+IEBAIC03MDQsMTIgKzcwNiwxMSBAQCB2b2lkIGludGVsX3RjX3Bv
-cnRfc2FuaXRpemUoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpDQo+ICANCj4g
-IAlkcm1fV0FSTl9PTigmaTkxNS0+ZHJtLCBkaWdfcG9ydC0+dGNfbW9kZSAhPSBUQ19QT1JUX0RJ
-U0NPTk5FQ1RFRCk7DQo+ICAJZHJtX1dBUk5fT04oJmk5MTUtPmRybSwgZGlnX3BvcnQtPnRjX2xv
-Y2tfd2FrZXJlZik7DQo+ICsNCj4gKwl0Y19jb2xkX3dyZWYgPSB0Y19jb2xkX2Jsb2NrKGRpZ19w
-b3J0LCAmZG9tYWluKTsNCj4gKw0KPiArCWRpZ19wb3J0LT50Y19tb2RlID0gaW50ZWxfdGNfcG9y
-dF9nZXRfY3VycmVudF9tb2RlKGRpZ19wb3J0KTsNCj4gIAlpZiAoYWN0aXZlX2xpbmtzKSB7DQo+
-IC0JCWVudW0gaW50ZWxfZGlzcGxheV9wb3dlcl9kb21haW4gZG9tYWluOw0KPiAtCQlpbnRlbF93
-YWtlcmVmX3QgdGNfY29sZF93cmVmID0gdGNfY29sZF9ibG9jayhkaWdfcG9ydCwgJmRvbWFpbik7
-DQo+IC0NCj4gLQkJZGlnX3BvcnQtPnRjX21vZGUgPSBpbnRlbF90Y19wb3J0X2dldF9jdXJyZW50
-X21vZGUoZGlnX3BvcnQpOw0KPiAtDQo+ICAJCWlmICghaWNsX3RjX3BoeV9pc19jb25uZWN0ZWQo
-ZGlnX3BvcnQpKQ0KPiAgCQkJZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwNCj4gIAkJCQkgICAgIlBv
-cnQgJXM6IFBIWSBkaXNjb25uZWN0ZWQgd2l0aCAlZCBhY3RpdmUgbGluayhzKVxuIiwNCj4gQEAg
-LTcxOCwxMCArNzE5LDIzIEBAIHZvaWQgaW50ZWxfdGNfcG9ydF9zYW5pdGl6ZShzdHJ1Y3QgaW50
-ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCkNCj4gIA0KPiAgCQlkaWdfcG9ydC0+dGNfbG9ja193
-YWtlcmVmID0gdGNfY29sZF9ibG9jayhkaWdfcG9ydCwNCj4gIAkJCQkJCQkgICZkaWdfcG9ydC0+
-dGNfbG9ja19wb3dlcl9kb21haW4pOw0KPiAtDQo+IC0JCXRjX2NvbGRfdW5ibG9jayhkaWdfcG9y
-dCwgZG9tYWluLCB0Y19jb2xkX3dyZWYpOw0KPiArCX0gZWxzZSB7DQo+ICsJCS8qDQo+ICsJCSAq
-IFRCVC1hbHQgaXMgdGhlIGRlZmF1bHQgbW9kZSBpbiBhbnkgY2FzZSB0aGUgUEhZIG93bmVyc2hp
-cCBpcyBub3QNCj4gKwkJICogaGVsZCAocmVnYXJkbGVzcyBvZiB0aGUgc2luaydzIGNvbm5lY3Rl
-ZCBsaXZlIHN0YXRlKSwgc28NCj4gKwkJICogd2UnbGwganVzdCBzd2l0Y2ggdG8gZGlzY29ubmVj
-dGVkIG1vZGUgZnJvbSBpdCBoZXJlIHdpdGhvdXQNCj4gKwkJICogYSBub3RlLg0KPiArCQkgKi8N
-Cj4gKwkJaWYgKGRpZ19wb3J0LT50Y19tb2RlICE9IFRDX1BPUlRfVEJUX0FMVCkNCj4gKwkJCWRy
-bV9kYmdfa21zKCZpOTE1LT5kcm0sDQo+ICsJCQkJICAgICJQb3J0ICVzOiBQSFkgbGVmdCBpbiAl
-cyBtb2RlIG9uIGRpc2FibGVkIHBvcnQsIGRpc2Nvbm5lY3RpbmcgaXRcbiIsDQo+ICsJCQkJICAg
-IGRpZ19wb3J0LT50Y19wb3J0X25hbWUsDQo+ICsJCQkJICAgIHRjX3BvcnRfbW9kZV9uYW1lKGRp
-Z19wb3J0LT50Y19tb2RlKSk7DQo+ICsJCWljbF90Y19waHlfZGlzY29ubmVjdChkaWdfcG9ydCk7
-DQo+ICAJfQ0KPiAgDQo+ICsJdGNfY29sZF91bmJsb2NrKGRpZ19wb3J0LCBkb21haW4sIHRjX2Nv
-bGRfd3JlZik7DQo+ICsNCj4gIAlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiUG9ydCAlczogc2Fu
-aXRpemUgbW9kZSAoJXMpXG4iLA0KPiAgCQkgICAgZGlnX3BvcnQtPnRjX3BvcnRfbmFtZSwNCj4g
-IAkJICAgIHRjX3BvcnRfbW9kZV9uYW1lKGRpZ19wb3J0LT50Y19tb2RlKSk7DQoNCg==
+
+On 17/02/2022 14:41, Andi Shyti wrote:
+> Now tiles have their own sysfs interfaces under the gt/
+> directory. Because RC6 is a property that can be configured on a
+> tile basis, then each tile should have its own interface
+> 
+> The new sysfs structure will have a similar layout for the 4 tile
+> case:
+> 
+> /sys/.../card0
+>           ├── gt
+>           │   ├── gt0
+>           │   │   ├── id
+>           │   │   ├── rc6_enable
+>           │   │   ├── rc6_residency_ms
+>           .   .   .
+>           .   .   .
+>           .   .
+>           │   └── gtN
+>           │       ├── id
+>           │       ├── rc6_enable
+>           │       ├── rc6_residency_ms
+>           │       .
+>           │       .
+>           │
+>           └── power/                -+
+>                ├── rc6_enable        |    Original interface
+>                ├── rc6_residency_ms  +->  kept as existing ABI;
+>                .                     |    it multiplexes over
+>                .                     |    the GTs
+>                                     -+
+> 
+> The existing interfaces have been kept in their original location
+> to preserve the existing ABI. They act on all the GTs: when
+> reading they provide the average value from all the GTs.
+
+Average feels very odd to me. I'd ask if we can get away providing an 
+errno instead? Or tile zero data?
+
+Case in point, and please correct me if I am wrong, legacy rc6_enable 
+returns tile zero, while residency returns average.
+
+Even the deprecated message gets logged with every access right?
+
+Btw is the deperecated message limited to multi-tile platforms (can't 
+see that it is) and what is the plan for that?
+
+It's a tough problem, no easy answers even after all this time. :D
+
+Regards,
+
+Tvrtko
+
+> 
+> This patch is not really adding exposing new interfaces (new
+> ABI) other than adapting the existing one to more tiles. In any
+> case this new set of interfaces will be a basic tool for system
+> managers and administrators when using i915.
+> 
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/Makefile               |   1 +
+>   drivers/gpu/drm/i915/gt/intel_gt_sysfs.c    |  19 ++
+>   drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c | 220 ++++++++++++++++++++
+>   drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.h |  15 ++
+>   drivers/gpu/drm/i915/i915_sysfs.c           | 128 ------------
+>   5 files changed, 255 insertions(+), 128 deletions(-)
+>   create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+>   create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.h
+> 
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 277064b00afd..7104558b81d5 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -106,6 +106,7 @@ gt-y += \
+>   	gt/intel_gt_pm_irq.o \
+>   	gt/intel_gt_requests.o \
+>   	gt/intel_gt_sysfs.o \
+> +	gt/intel_gt_sysfs_pm.o \
+>   	gt/intel_gtt.o \
+>   	gt/intel_llc.o \
+>   	gt/intel_lrc.o \
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
+> index 0206e9aa4867..132b90247a41 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs.c
+> @@ -13,6 +13,7 @@
+>   #include "i915_sysfs.h"
+>   #include "intel_gt.h"
+>   #include "intel_gt_sysfs.h"
+> +#include "intel_gt_sysfs_pm.h"
+>   #include "intel_gt_types.h"
+>   #include "intel_rc6.h"
+>   
+> @@ -54,6 +55,11 @@ struct intel_gt *intel_gt_sysfs_get_drvdata(struct device *dev,
+>   	return kobj_to_gt(kobj);
+>   }
+>   
+> +static struct kobject *gt_get_parent_obj(struct intel_gt *gt)
+> +{
+> +	return &gt->i915->drm.primary->kdev->kobj;
+> +}
+> +
+>   static ssize_t id_show(struct device *dev,
+>   		       struct device_attribute *attr,
+>   		       char *buf)
+> @@ -107,6 +113,17 @@ void intel_gt_sysfs_register(struct intel_gt *gt)
+>   	struct kobject *dir;
+>   	char name[80];
+>   
+> +	/*
+> +	 * We need to make things right with the
+> +	 * ABI compatibility. The files were originally
+> +	 * generated under the parent directory.
+> +	 *
+> +	 * We generate the files only for gt 0
+> +	 * to avoid duplicates.
+> +	 */
+> +	if (gt_is_root(gt))
+> +		intel_gt_sysfs_pm_init(gt, gt_get_parent_obj(gt));
+> +
+>   	snprintf(name, sizeof(name), "gt%d", gt->info.id);
+>   
+>   	dir = intel_gt_create_kobj(gt, gt->i915->sysfs_gt, name);
+> @@ -115,4 +132,6 @@ void intel_gt_sysfs_register(struct intel_gt *gt)
+>   			 "failed to initialize %s sysfs root\n", name);
+>   		return;
+>   	}
+> +
+> +	intel_gt_sysfs_pm_init(gt, dir);
+>   }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+> new file mode 100644
+> index 000000000000..27d93a36894a
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
+> @@ -0,0 +1,220 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2022 Intel Corporation
+> + */
+> +
+> +#include <drm/drm_device.h>
+> +#include <linux/sysfs.h>
+> +#include <linux/printk.h>
+> +
+> +#include "i915_drv.h"
+> +#include "i915_sysfs.h"
+> +#include "intel_gt.h"
+> +#include "intel_gt_regs.h"
+> +#include "intel_gt_sysfs.h"
+> +#include "intel_gt_sysfs_pm.h"
+> +#include "intel_rc6.h"
+> +
+> +#ifdef CONFIG_PM
+> +static s64
+> +sysfs_gt_attribute_r_func(struct device *dev, struct device_attribute *attr,
+> +			  s64 (func)(struct intel_gt *gt))
+> +{
+> +	struct intel_gt *gt;
+> +	s64 ret = 0;
+> +
+> +	if (!is_object_gt(&dev->kobj)) {
+> +		int i, num_gt = 0;
+> +		struct drm_i915_private *i915 = kdev_minor_to_i915(dev);
+> +
+> +		for_each_gt(gt, i915, i) {
+> +			ret += func(gt);
+> +			num_gt++;
+> +		}
+> +
+> +		ret /= num_gt;
+> +	} else {
+> +		gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> +		ret = func(gt);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static u32 get_residency(struct intel_gt *gt, i915_reg_t reg)
+> +{
+> +	intel_wakeref_t wakeref;
+> +	u64 res = 0;
+> +
+> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> +		res = intel_rc6_residency_us(&gt->rc6, reg);
+> +
+> +	return DIV_ROUND_CLOSEST_ULL(res, 1000);
+> +}
+> +
+> +static ssize_t rc6_enable_show(struct device *dev,
+> +			       struct device_attribute *attr,
+> +			       char *buff)
+> +{
+> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev, attr->attr.name);
+> +	u8 mask = 0;
+> +
+> +	if (HAS_RC6(gt->i915))
+> +		mask |= BIT(0);
+> +	if (HAS_RC6p(gt->i915))
+> +		mask |= BIT(1);
+> +	if (HAS_RC6pp(gt->i915))
+> +		mask |= BIT(2);
+> +
+> +	return sysfs_emit(buff, "%x\n", mask);
+> +}
+> +
+> +static s64 __rc6_residency_ms_show(struct intel_gt *gt)
+> +{
+> +	return get_residency(gt, GEN6_GT_GFX_RC6);
+> +}
+> +
+> +static ssize_t rc6_residency_ms_show(struct device *dev,
+> +				     struct device_attribute *attr,
+> +				     char *buff)
+> +{
+> +	s64 rc6_residency = sysfs_gt_attribute_r_func(dev, attr,
+> +						      __rc6_residency_ms_show);
+> +
+> +	return sysfs_emit(buff, "%u\n", (u32) rc6_residency);
+> +}
+> +
+> +static s64 __rc6p_residency_ms_show(struct intel_gt *gt)
+> +{
+> +	return get_residency(gt, GEN6_GT_GFX_RC6p);
+> +}
+> +
+> +static ssize_t rc6p_residency_ms_show(struct device *dev,
+> +				      struct device_attribute *attr,
+> +				      char *buff)
+> +{
+> +	s64 rc6p_residency = sysfs_gt_attribute_r_func(dev, attr,
+> +						__rc6p_residency_ms_show);
+> +
+> +	return sysfs_emit(buff, "%u\n", (u32) rc6p_residency);
+> +}
+> +
+> +static s64 __rc6pp_residency_ms_show(struct intel_gt *gt)
+> +{
+> +	return get_residency(gt, GEN6_GT_GFX_RC6pp);
+> +}
+> +
+> +static ssize_t rc6pp_residency_ms_show(struct device *dev,
+> +				       struct device_attribute *attr,
+> +				       char *buff)
+> +{
+> +	s64 rc6pp_residency = sysfs_gt_attribute_r_func(dev, attr,
+> +						__rc6pp_residency_ms_show);
+> +
+> +	return sysfs_emit(buff, "%u\n", (u32) rc6pp_residency);
+> +}
+> +
+> +static s64 __media_rc6_residency_ms_show(struct intel_gt *gt)
+> +{
+> +	return get_residency(gt, VLV_GT_MEDIA_RC6);
+> +}
+> +
+> +static ssize_t media_rc6_residency_ms_show(struct device *dev,
+> +					   struct device_attribute *attr,
+> +					   char *buff)
+> +{
+> +	s64 rc6_residency = sysfs_gt_attribute_r_func(dev, attr,
+> +						__media_rc6_residency_ms_show);
+> +
+> +	return sysfs_emit(buff, "%u\n", (u32) rc6_residency);
+> +}
+> +
+> +static DEVICE_ATTR_RO(rc6_enable);
+> +static DEVICE_ATTR_RO(rc6_residency_ms);
+> +static DEVICE_ATTR_RO(rc6p_residency_ms);
+> +static DEVICE_ATTR_RO(rc6pp_residency_ms);
+> +static DEVICE_ATTR_RO(media_rc6_residency_ms);
+> +
+> +static struct attribute *rc6_attrs[] = {
+> +	&dev_attr_rc6_enable.attr,
+> +	&dev_attr_rc6_residency_ms.attr,
+> +	NULL
+> +};
+> +
+> +static struct attribute *rc6p_attrs[] = {
+> +	&dev_attr_rc6p_residency_ms.attr,
+> +	&dev_attr_rc6pp_residency_ms.attr,
+> +	NULL
+> +};
+> +
+> +static struct attribute *media_rc6_attrs[] = {
+> +	&dev_attr_media_rc6_residency_ms.attr,
+> +	NULL
+> +};
+> +
+> +static const struct attribute_group rc6_attr_group[] = {
+> +	{ .attrs = rc6_attrs, },
+> +	{ .name = power_group_name, .attrs = rc6_attrs, },
+> +};
+> +
+> +static const struct attribute_group rc6p_attr_group[] = {
+> +	{ .attrs = rc6p_attrs, },
+> +	{ .name = power_group_name, .attrs = rc6p_attrs, },
+> +};
+> +
+> +static const struct attribute_group media_rc6_attr_group[] = {
+> +	{ .attrs = media_rc6_attrs, },
+> +	{ .name = power_group_name, .attrs = media_rc6_attrs, },
+> +};
+> +
+> +static int __intel_gt_sysfs_create_group(struct kobject *kobj,
+> +					 const struct attribute_group *grp)
+> +{
+> +	return is_object_gt(kobj) ?
+> +	       sysfs_create_group(kobj, &grp[0]) :
+> +	       sysfs_merge_group(kobj, &grp[1]);
+> +}
+> +
+> +static void intel_sysfs_rc6_init(struct intel_gt *gt, struct kobject *kobj)
+> +{
+> +	int ret;
+> +
+> +	if (!HAS_RC6(gt->i915))
+> +		return;
+> +
+> +	ret = __intel_gt_sysfs_create_group(kobj, rc6_attr_group);
+> +	if (ret)
+> +		drm_warn(&gt->i915->drm,
+> +			 "failed to create gt%u RC6 sysfs files\n",
+> +			 gt->info.id);
+> +
+> +	/*
+> +	 * cannot use the is_visible() attribute because
+> +	 * the upper object inherits from the parent group.
+> +	 */
+> +	if (HAS_RC6p(gt->i915)) {
+> +		ret = __intel_gt_sysfs_create_group(kobj, rc6p_attr_group);
+> +		if (ret)
+> +			drm_warn(&gt->i915->drm,
+> +				 "failed to create gt%u RC6p sysfs files\n",
+> +				 gt->info.id);
+> +	}
+> +
+> +	if (IS_VALLEYVIEW(gt->i915) || IS_CHERRYVIEW(gt->i915)) {
+> +		ret = __intel_gt_sysfs_create_group(kobj, media_rc6_attr_group);
+> +		if (ret)
+> +			drm_warn(&gt->i915->drm,
+> +				 "failed to create media %u RC6 sysfs files\n",
+> +				 gt->info.id);
+> +	}
+> +}
+> +#else
+> +static void intel_sysfs_rc6_init(struct intel_gt *gt, struct kobject *kobj)
+> +{
+> +}
+> +#endif /* CONFIG_PM */
+> +
+> +void intel_gt_sysfs_pm_init(struct intel_gt *gt, struct kobject *kobj)
+> +{
+> +	intel_sysfs_rc6_init(gt, kobj);
+> +}
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.h
+> new file mode 100644
+> index 000000000000..f567105a4a89
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2022 Intel Corporation
+> + */
+> +
+> +#ifndef __SYSFS_GT_PM_H__
+> +#define __SYSFS_GT_PM_H__
+> +
+> +#include <linux/kobject.h>
+> +
+> +#include "intel_gt_types.h"
+> +
+> +void intel_gt_sysfs_pm_init(struct intel_gt *gt, struct kobject *kobj);
+> +
+> +#endif /* SYSFS_RC6_H */
+> diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
+> index 3643efde52ca..b08a959e5ccc 100644
+> --- a/drivers/gpu/drm/i915/i915_sysfs.c
+> +++ b/drivers/gpu/drm/i915/i915_sysfs.c
+> @@ -45,107 +45,6 @@ struct drm_i915_private *kdev_minor_to_i915(struct device *kdev)
+>   	return to_i915(minor->dev);
+>   }
+>   
+> -#ifdef CONFIG_PM
+> -static u32 calc_residency(struct drm_i915_private *dev_priv,
+> -			  i915_reg_t reg)
+> -{
+> -	intel_wakeref_t wakeref;
+> -	u64 res = 0;
+> -
+> -	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref)
+> -		res = intel_rc6_residency_us(&to_gt(dev_priv)->rc6, reg);
+> -
+> -	return DIV_ROUND_CLOSEST_ULL(res, 1000);
+> -}
+> -
+> -static ssize_t rc6_enable_show(struct device *kdev,
+> -			       struct device_attribute *attr, char *buf)
+> -{
+> -	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
+> -	unsigned int mask;
+> -
+> -	mask = 0;
+> -	if (HAS_RC6(dev_priv))
+> -		mask |= BIT(0);
+> -	if (HAS_RC6p(dev_priv))
+> -		mask |= BIT(1);
+> -	if (HAS_RC6pp(dev_priv))
+> -		mask |= BIT(2);
+> -
+> -	return sysfs_emit(buf, "%x\n", mask);
+> -}
+> -
+> -static ssize_t rc6_residency_ms_show(struct device *kdev,
+> -				     struct device_attribute *attr, char *buf)
+> -{
+> -	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
+> -	u32 rc6_residency = calc_residency(dev_priv, GEN6_GT_GFX_RC6);
+> -	return sysfs_emit(buf, "%u\n", rc6_residency);
+> -}
+> -
+> -static ssize_t rc6p_residency_ms_show(struct device *kdev,
+> -				      struct device_attribute *attr, char *buf)
+> -{
+> -	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
+> -	u32 rc6p_residency = calc_residency(dev_priv, GEN6_GT_GFX_RC6p);
+> -	return sysfs_emit(buf, "%u\n", rc6p_residency);
+> -}
+> -
+> -static ssize_t rc6pp_residency_ms_show(struct device *kdev,
+> -				       struct device_attribute *attr, char *buf)
+> -{
+> -	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
+> -	u32 rc6pp_residency = calc_residency(dev_priv, GEN6_GT_GFX_RC6pp);
+> -	return sysfs_emit(buf, "%u\n", rc6pp_residency);
+> -}
+> -
+> -static ssize_t media_rc6_residency_ms_show(struct device *kdev,
+> -					   struct device_attribute *attr, char *buf)
+> -{
+> -	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
+> -	u32 rc6_residency = calc_residency(dev_priv, VLV_GT_MEDIA_RC6);
+> -	return sysfs_emit(buf, "%u\n", rc6_residency);
+> -}
+> -
+> -static DEVICE_ATTR_RO(rc6_enable);
+> -static DEVICE_ATTR_RO(rc6_residency_ms);
+> -static DEVICE_ATTR_RO(rc6p_residency_ms);
+> -static DEVICE_ATTR_RO(rc6pp_residency_ms);
+> -static DEVICE_ATTR_RO(media_rc6_residency_ms);
+> -
+> -static struct attribute *rc6_attrs[] = {
+> -	&dev_attr_rc6_enable.attr,
+> -	&dev_attr_rc6_residency_ms.attr,
+> -	NULL
+> -};
+> -
+> -static const struct attribute_group rc6_attr_group = {
+> -	.name = power_group_name,
+> -	.attrs =  rc6_attrs
+> -};
+> -
+> -static struct attribute *rc6p_attrs[] = {
+> -	&dev_attr_rc6p_residency_ms.attr,
+> -	&dev_attr_rc6pp_residency_ms.attr,
+> -	NULL
+> -};
+> -
+> -static const struct attribute_group rc6p_attr_group = {
+> -	.name = power_group_name,
+> -	.attrs =  rc6p_attrs
+> -};
+> -
+> -static struct attribute *media_rc6_attrs[] = {
+> -	&dev_attr_media_rc6_residency_ms.attr,
+> -	NULL
+> -};
+> -
+> -static const struct attribute_group media_rc6_attr_group = {
+> -	.name = power_group_name,
+> -	.attrs =  media_rc6_attrs
+> -};
+> -#endif
+> -
+>   static int l3_access_valid(struct drm_i915_private *i915, loff_t offset)
+>   {
+>   	if (!HAS_L3_DPF(i915))
+> @@ -497,29 +396,6 @@ void i915_setup_sysfs(struct drm_i915_private *dev_priv)
+>   	struct device *kdev = dev_priv->drm.primary->kdev;
+>   	int ret;
+>   
+> -#ifdef CONFIG_PM
+> -	if (HAS_RC6(dev_priv)) {
+> -		ret = sysfs_merge_group(&kdev->kobj,
+> -					&rc6_attr_group);
+> -		if (ret)
+> -			drm_err(&dev_priv->drm,
+> -				"RC6 residency sysfs setup failed\n");
+> -	}
+> -	if (HAS_RC6p(dev_priv)) {
+> -		ret = sysfs_merge_group(&kdev->kobj,
+> -					&rc6p_attr_group);
+> -		if (ret)
+> -			drm_err(&dev_priv->drm,
+> -				"RC6p residency sysfs setup failed\n");
+> -	}
+> -	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+> -		ret = sysfs_merge_group(&kdev->kobj,
+> -					&media_rc6_attr_group);
+> -		if (ret)
+> -			drm_err(&dev_priv->drm,
+> -				"Media RC6 residency sysfs setup failed\n");
+> -	}
+> -#endif
+>   	if (HAS_L3_DPF(dev_priv)) {
+>   		ret = device_create_bin_file(kdev, &dpf_attrs);
+>   		if (ret)
+> @@ -565,8 +441,4 @@ void i915_teardown_sysfs(struct drm_i915_private *dev_priv)
+>   		sysfs_remove_files(&kdev->kobj, gen6_attrs);
+>   	device_remove_bin_file(kdev,  &dpf_attrs_1);
+>   	device_remove_bin_file(kdev,  &dpf_attrs);
+> -#ifdef CONFIG_PM
+> -	sysfs_unmerge_group(&kdev->kobj, &rc6_attr_group);
+> -	sysfs_unmerge_group(&kdev->kobj, &rc6p_attr_group);
+> -#endif
+>   }
