@@ -1,34 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D648C4BA8C1
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 19:51:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 740084BA958
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 20:12:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A27F10E36A;
-	Thu, 17 Feb 2022 18:51:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B22FC10E3F8;
+	Thu, 17 Feb 2022 19:12:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8D02B10E36A;
- Thu, 17 Feb 2022 18:51:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 88A8AAADD2;
- Thu, 17 Feb 2022 18:51:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E5FC10E21A;
+ Thu, 17 Feb 2022 19:12:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1645125148; x=1676661148;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=UrDfMpkAEv0VK8yjea3T2cx6XqPvHRRW0eKwMY6tJ+w=;
+ b=MVEdCfDNPghQT7bW2JxRI3kwoPorPxdRR6uQABwKbKDr7v0HQi2YxjWR
+ qMNFFYw89Svko3CgisSrFHdj6tliZuDaqbPBN/xyGLhfvCw8TjlZ0H+zx
+ 3yygp/vjn4g+n2CYBufXJwTC4SBu6pgqGzbfs5TJ9B4zj7KZQGqZsyVFy
+ Kjkj8HNCxEnMO8CNYU8oCmQqNJ+d2LOOfionQp/xGZPJ/c9cDJFuc1Vs6
+ 7CPC9+jSyW+o+2YfJiwFGzDfmIL25HxX612iL5AU2lNGoVbww2ioRMbNy
+ NoTCVFfAEXKt157ipbM1lfSA/E4ePgFycbTpMrj7HPEJ2BBmpn+F93l/y Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="250691463"
+X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="250691463"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 11:12:27 -0800
+X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="637309889"
+Received: from orsosgc001.jf.intel.com (HELO unerlige-ril-10.165.21.154)
+ ([10.165.21.154])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 11:12:27 -0800
+Date: Thu, 17 Feb 2022 11:12:26 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Message-ID: <20220217191226.GF34157@unerlige-ril-10.165.21.154>
+References: <20220216181504.7155-1-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vivek Kasireddy" <vivek.kasireddy@intel.com>
-Date: Thu, 17 Feb 2022 18:51:08 -0000
-Message-ID: <164512386853.18052.15222955742182909216@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220217075014.922605-1-vivek.kasireddy@intel.com>
-In-Reply-To: <20220217075014.922605-1-vivek.kasireddy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/mm=3A_Add_an_iterator_to_optimally_walk_over_holes_suitable?=
- =?utf-8?q?_for_an_allocation_=28rev2=29?=
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20220216181504.7155-1-vinay.belgaumkar@intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc/slpc: Correct the param count
+ for unset param
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +58,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Feb 16, 2022 at 10:15:04AM -0800, Vinay Belgaumkar wrote:
+>SLPC unset param H2G only needs one parameter - the id of the
+>param.
+>
+>Fixes: 025cb07bebfa ("drm/i915/guc/slpc: Cache platform frequency limits")
+>
+>Suggested-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>---
+> drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
+>
+>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+>index 13b27b8ff74e..ba21ace973da 100644
+>--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+>+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+>@@ -110,7 +110,7 @@ static int guc_action_slpc_unset_param(struct intel_guc *guc, u8 id)
+> {
+> 	u32 request[] = {
+> 		GUC_ACTION_HOST2GUC_PC_SLPC_REQUEST,
+>-		SLPC_EVENT(SLPC_EVENT_PARAMETER_UNSET, 2),
+>+		SLPC_EVENT(SLPC_EVENT_PARAMETER_UNSET, 1),
 
-Series: drm/mm: Add an iterator to optimally walk over holes suitable for an allocation (rev2)
-URL   : https://patchwork.freedesktop.org/series/100136/
-State : warning
+lgtm,
 
-== Summary ==
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
-
+Thanks,
+Umesh
+> 		id,
+> 	};
+>
+>-- 
+>2.34.0
+>
