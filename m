@@ -2,32 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E811D4B9E51
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 12:08:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E7D84B9E71
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 12:16:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ECE510E965;
-	Thu, 17 Feb 2022 11:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A62F10E846;
+	Thu, 17 Feb 2022 11:16:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D354010E965;
- Thu, 17 Feb 2022 11:08:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CDCB5AADDA;
- Thu, 17 Feb 2022 11:08:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3356308852826724727=="
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 802FE10E70F;
+ Thu, 17 Feb 2022 11:16:55 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 25CC01F383;
+ Thu, 17 Feb 2022 11:16:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1645096614; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=IdCkGEe5ZqGrkp2ZHYJA6ao+ejPpzlXkrH9wuHzh2p4=;
+ b=vDqgHlBGTXedmhUOyHzh+BbXnst0fhqujuG9egy0NMt0vhYjdHLyButfqIZKPCXUJ/5+Bo
+ QbJq7o4McPpAbAs3soXH32x2Ni4z2NYSqet57arc/KXAUO1BF4XJ9WQ4cD6ORjQH3bp/1a
+ zkRBzukDpSyKdG1vGS9amCdjoctBBHc=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1645096614;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=IdCkGEe5ZqGrkp2ZHYJA6ao+ejPpzlXkrH9wuHzh2p4=;
+ b=CzSb6+aan2lgfKUJhTqytHO2xY6ACr/IxsX0+ALmhNY6qGPWVFCdAMk6IytMnkJ2OR43Qj
+ RTlw5ZN56ComiyDA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id DC18E13BBF;
+ Thu, 17 Feb 2022 11:16:53 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id OMeNNKUuDmJPVwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 17 Feb 2022 11:16:53 +0000
+Date: Thu, 17 Feb 2022 12:16:52 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <Yg4mzQALMX69UmA3@linux-uq9g>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 17 Feb 2022 11:08:23 -0000
-Message-ID: <164509610383.18050.13464243675078590505@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220216174250.4449-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20220216174250.4449-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_SAGV_fixes_=28rev2=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,220 +64,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3356308852826724727==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave and Daniel,
 
-== Series Details ==
+here's drm-misc-fixes for this week.
 
-Series: drm/i915: SAGV fixes (rev2)
-URL   : https://patchwork.freedesktop.org/series/100091/
-State : success
+Best regards
+Thomas
 
-== Summary ==
+drm-misc-fixes-2022-02-17:
+ * drm/cma-helper: Set VM_DONTEXPAND
+ * drm/atomic: Fix error handling in drm_atomic_set_mode_for_crtc()
+The following changes since commit 9da1e9ab82c92d0e89fe44cad2cd7c2d18d64070:
 
-CI Bug Log - changes from CI_DRM_11239 -> Patchwork_22302
-====================================================
+  drm/rockchip: vop: Correct RK3399 VOP register fields (2022-02-08 18:10:36 +0100)
 
-Summary
--------
+are available in the Git repository at:
 
-  **SUCCESS**
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2022-02-17
 
-  No regressions found.
+for you to fetch changes up to 439cf34c8e0a8a33d8c15a31be1b7423426bc765:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/index.html
+  drm/atomic: Don't pollute crtc_state->mode_blob with error pointers (2022-02-16 12:32:07 +0200)
 
-Participating hosts (44 -> 43)
-------------------------------
+----------------------------------------------------------------
+ * drm/cma-helper: Set VM_DONTEXPAND
+ * drm/atomic: Fix error handling in drm_atomic_set_mode_for_crtc()
 
-  Additional (2): bat-rpls-1 bat-jsl-2 
-  Missing    (3): fi-bsw-cyan shard-tglu fi-ilk-650 
+----------------------------------------------------------------
+Robin Murphy (1):
+      drm/cma-helper: Set VM_DONTEXPAND for mmap
 
-Known issues
-------------
+Ville Syrjälä (1):
+      drm/atomic: Don't pollute crtc_state->mode_blob with error pointers
 
-  Here are the changes found in Patchwork_22302 that come from known issues:
+ drivers/gpu/drm/drm_atomic_uapi.c    | 14 ++++++++------
+ drivers/gpu/drm/drm_gem_cma_helper.c |  1 +
+ 2 files changed, 9 insertions(+), 6 deletions(-)
 
-### IGT changes ###
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
 
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-skl-6600u:       [PASS][2] -> [INCOMPLETE][3] ([i915#4547])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11239/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][4] -> [DMESG-WARN][5] ([i915#4269])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11239/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][6] ([i915#3921]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11239/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [DMESG-FAIL][8] ([i915#4528] / [i915#5026]) -> [DMESG-FAIL][9] ([i915#5026])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11239/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4528]: https://gitlab.freedesktop.org/drm/intel/issues/4528
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
-  [i915#5026]: https://gitlab.freedesktop.org/drm/intel/issues/5026
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11239 -> Patchwork_22302
-
-  CI-20190529: 20190529
-  CI_DRM_11239: 069b6b1205e457625ecffa88ec32e7ae1fcea76b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6347: 37ea4c86f97c0e05fcb6b04cff72ec927930536e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22302: 0cf9d860a4b7563fb97b9e0ad39fe5e484b8b507 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0cf9d860a4b7 drm/i915: Extract intel_bw_check_data_rate()
-18a8091e899f drm/i915: Extract icl_qgv_points_mask()
-00f686b0338a drm/i915: Pimp icl+ sagv pre/post update
-07d3be9bb68b drm/i915: Split pre-icl vs. icl+ SAGV hooks apart
-986e2fb035e6 drm/i915: Fix bw atomic check when switching between SAGV vs. no SAGV
-fbd773db3249 drm/i915: Correctly populate use_sagv_wm for all pipes
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/index.html
-
---===============3356308852826724727==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: SAGV fixes (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100091/">https://patchwork.freedesktop.org/series/100091/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11239 -&gt; Patchwork_22302</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Additional (2): bat-rpls-1 bat-jsl-2 <br />
-  Missing    (3): fi-bsw-cyan shard-tglu fi-ilk-650 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22302 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11239/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11239/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11239/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@requests:<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11239/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4528">i915#4528</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5026">i915#5026</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22302/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5026">i915#5026</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11239 -&gt; Patchwork_22302</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11239: 069b6b1205e457625ecffa88ec32e7ae1fcea76b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6347: 37ea4c86f97c0e05fcb6b04cff72ec927930536e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22302: 0cf9d860a4b7563fb97b9e0ad39fe5e484b8b507 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0cf9d860a4b7 drm/i915: Extract intel_bw_check_data_rate()<br />
-18a8091e899f drm/i915: Extract icl_qgv_points_mask()<br />
-00f686b0338a drm/i915: Pimp icl+ sagv pre/post update<br />
-07d3be9bb68b drm/i915: Split pre-icl vs. icl+ SAGV hooks apart<br />
-986e2fb035e6 drm/i915: Fix bw atomic check when switching between SAGV vs. no SAGV<br />
-fbd773db3249 drm/i915: Correctly populate use_sagv_wm for all pipes</p>
-
-</body>
-</html>
-
---===============3356308852826724727==--
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
