@@ -1,150 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E2784B9CED
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 11:18:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7717C4B9D18
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 11:26:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7FDF10F0C8;
-	Thu, 17 Feb 2022 10:18:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22BBF10E866;
+	Thu, 17 Feb 2022 10:26:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DE5E10F0CA
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 10:17:59 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9979589D4D;
+ Thu, 17 Feb 2022 10:26:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645093079; x=1676629079;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=gkZfQ0YzQuAK672gUc8ph16JdAVvs8cICpEb5Xr5JLw=;
- b=LFVb3v+oL3298FOKQlMAKaOgnW1No5ozEP583t1GWOwfq2l2qCm1GGlU
- KgWsokb5tTZNsd33drh5TyUr5b6W9309Kc5kXpU9Xo0ddhaY0W0SivauT
- 5q4u6Apmj68V4T1+sIPJYLVEq0yffSGe29N0C7ODWpcmsreBOfPWEiGPM
- eaVL8zvtB/71E3Qh5GMyMrWgyFN+gZYhqS+WnBKsdWoLLIz5igOVXJI5V
- BliRNg1ocOrm8d/i8/xz9L47KAG40aGkKBgYFW+gDnsbjj6+1AFEXWpKz
- ORAMtSSQlzGnGkNbbSZvCVjuICivGGjrUL+WO46oixHCnr9nGCVCX20dL w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="248439811"
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="248439811"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 02:17:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="774554927"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga006.fm.intel.com with ESMTP; 17 Feb 2022 02:17:59 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 17 Feb 2022 02:17:58 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20 via Frontend Transport; Thu, 17 Feb 2022 02:17:58 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.45) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Thu, 17 Feb 2022 02:17:58 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HW6Gn7bWE5sM+JJl/EouxyvG5UVC0xXPUdxFctpkpRFjc4WLYtizL9JFaNMWd0D5RwnBlOP9h/WqtBgFUiXKXV2Jfx+4nNWEd7975Z5YplMMqY3arym2JbiVxYInfSVgeC4TADZkMr8KX4CpBgsVd0fqDVvwdQKMEag6ofexWBfPzMnD12oSDN4j2PfUAvtpDVwT5zBuWSivSlIl0uoHKeDnbVNWmY2YPuSi0uBV5I6wF75wi5m6qKSDJ5bhSOBiP3idn9PxInP0yKTmvD+LhDMLDfK5peN6bd4uAbzMq2eCl2JkCNgEzPVrmxU7M3yQyf1y+kMmf2vABS/+C5YnPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8m9CBbxibY1JNwg/YzA1HBnIAuAqq+FDG8JXot1xgqI=;
- b=aoEOGakGNHhxXJxbuz7cMIuhQ5M4j4P0HBvDceGWeOoqyPkbo4ljvEcrnLyBQ3fxub6Hee6HICtrHXCFja5A0KHvaHJNK4C71wgmtOeT4hIfus4Dwy3NVQuupUp7fmZ0uT2xOF+9GdC1NAnqDHGJ5U5yWSbKoeDFiwxJVzAARWxxau/HNtUciElnxwxeFGCtmZTSCj73EDd3Pnn0vdSYPuZCAdZRm9t35jKQkIeAURjf0ldU4Lg4YHM19P32r2hfzoILhvUZi1lFkKC12s/oY9oepahR/mqZ3FMq1hRmwhtluwG4nr/VmjXdCKhl47O/WagCm6XdfMVfDBlQcZP8Ow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by DM5PR11MB1354.namprd11.prod.outlook.com (2603:10b6:3:15::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.17; Thu, 17 Feb
- 2022 10:17:56 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::2d:20a0:15d8:e530]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::2d:20a0:15d8:e530%2]) with mapi id 15.20.4995.017; Thu, 17 Feb 2022
- 10:17:56 +0000
-Message-ID: <beba377f-1cf5-48bb-20cd-b91cd11acb86@intel.com>
-Date: Thu, 17 Feb 2022 15:47:46 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.6.1
-Content-Language: en-US
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- <intel-gfx@lists.freedesktop.org>
-References: <20220215183208.6143-1-ville.syrjala@linux.intel.com>
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20220215183208.6143-1-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BMXPR01CA0087.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:54::27) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+ t=1645093599; x=1676629599;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=q2HYOybcW9k1XA8iTUNIPnKJu/CZnf672Cqf04gSAB0=;
+ b=JtRpo130Hu5MZgYgHv4em5qH9QkhPrvFgcM5uKYldpfZ193MtjdORKeY
+ Dz9GrufaiJiRGpwdvvg3U+Icwyb52AorVGyAkGZeTK0mI9uhzlop1vOHV
+ b5Tz3Udg2GmSua/Xi/Lq9EKdiw56XR5WUM/AhvxAluB+5ZPvS2D2XVl1c
+ /fLAWFrGCKRDj8Ebg2ImLnYmctFA/Z5oGj3tUCC1OE1Pn2KtJKcGSqpmT
+ vF5tINR8mvVDvvL3OeDZyo+ZuDEKTFt4Aba9nAejMH2E3sZUPAoPjEpNS
+ Kn3HAfDPbl/cv5Nq9LDbqf4gJiTJAZ2s1FL60HuH25RJw88kP3sNhHKb+ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="314112801"
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="314112801"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 02:26:38 -0800
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="545509593"
+Received: from skhalil-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.171])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 02:26:35 -0800
+Date: Thu, 17 Feb 2022 12:26:33 +0200
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <Yg4i2aCZvvee5Eai@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d00dd525-28ef-40f3-a250-08d9f1fec3ee
-X-MS-TrafficTypeDiagnostic: DM5PR11MB1354:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR11MB1354A3CDAAC848DCEF0B9DA3CE369@DM5PR11MB1354.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nbp788WI8+MIxTKcSUJEEwlTq0mjFTzolK7767/1KiUY1AKNq4Fk9m9Wxu5KpNtR33ZFYeGE3WnhreYdgUASio+pxxY5QSlfOv4geSxev4sLXwsrg3E/nrf7y+BIG8ETNy55t5LWM0bv1KTXowe53RQVsb5Lys3jbRe+nfCAKIdwDt8RL+AR1+EkgUJfEmV7FdBaw1/9pSmX4yxE9to8n2PXBRyMQwR/PCpHzv8YbIHXjJP6j6vyMSDkr6ptp8gJ/ZtFrstqC8KsPdCGBB6/F491bPyiELHbbfJPppIG7GIQ+1L/i2aUTvWkVJJTWv3KEHKeW6gQzTqZbtGoENZPAsdiE86ykxD9qkytqDITp3J3st04nMc66HwP6c1xZm1/1Oh1rS3eZP1kycUsRr6SCDgHFB69r5orkSr20vw7Sj9leivb5JjbIrqeLHmCTG777mceXJT0HIAuxC73c4QrUpQgFam55o/IqrNCiGiitL2VwWIIOpPxZPXKdvJpntK9oo2lj9CbIuaG5q37iA1mz2WICa+tdGqywx7Hner+xPHcEuMaztmMDKHRz4ItJ9Bb50BNBXEB8AFmauLqe5y8ATC2tnWEtoTY2T6XZuTkccakjszRrFTuJwEeKlvnCSU3Q+O0y6PY8PxYiAMqmgPZ9V/qOWpLIokze637GkpdY08AXdVNasI5Vt4L0ogWlxPYhxA4Ru2KqGvfFG43SGSLpfnjmm/j6go2f9bZ2XERnb0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(186003)(26005)(86362001)(66946007)(316002)(5660300002)(66574015)(2906002)(66556008)(8676002)(66476007)(8936002)(83380400001)(6486002)(36756003)(6666004)(82960400001)(31686004)(6512007)(508600001)(31696002)(2616005)(38100700002)(53546011)(55236004)(6506007)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TXVEcU1zZ1dWbk5vQ0J2b0xDckhjUDNkclo3Q0YwS1R1cVNMa0t6NkhJWm84?=
- =?utf-8?B?YStkYlc4T2o2L0VVTnpVTzY4ek5BNkwrcThJU0NOMDQ1MTFha2RvS21pZHNX?=
- =?utf-8?B?T1FTOTU1bEFMam1EM3FFblRYaThMRXplMks0VDg0VVRVQ2NpYnR1ek42K3lZ?=
- =?utf-8?B?WVNpU0Y0N2JVdURjMFY5bDA4TjNwekcyNW1IVGdJVklNMDkyZ2N4cEtuaVhh?=
- =?utf-8?B?N2xjZm1kTGNZRk5NcHNReVhTRHFUKzdDUEU5NU0zWGdWL0dORFVWVmM3eEtk?=
- =?utf-8?B?MXA0UzhVMkx2YVo1eEF1V2dQM0ZoNjB6blhMdkt3ZTN1UU4vSnNJQktncWl5?=
- =?utf-8?B?WG5SUUFSODFvSk5pRklIZEpXMDFrZVp4NVZkV1phSEk1VTRJOFZEUXI4amJQ?=
- =?utf-8?B?dHJyUEhWWmYrdytueVowK3FhY1lnZVgxL1BXenlDN3UzYmYxWmNReGg3Smlk?=
- =?utf-8?B?d3JNZWtrcEY3QnVrRXpWRit1T3FvYXc4U3FXK0p0b1kvTVkyOGhQQnh0QnZp?=
- =?utf-8?B?bEhPZW5ISm5BQUZwNXZBbGFHbVk4UXh0UFJmRUY3VEhZUmVtQndHV3Y2L2I0?=
- =?utf-8?B?VzVxVFdlQ0VZd2RxL0xuOHQveEsxeXNwSU1HamNGOXZKa0dRQXNLNWkxR1Vi?=
- =?utf-8?B?K1BmcnJ3elNVZE44eHN3VkZLTVdqR1Jkbit1ZkVIR1BNTFAzNFlmTFFNSDh4?=
- =?utf-8?B?bytNenVJQ1lrenVMcTRpejg1R3k3TW1wRWFhaVRGU2FjU05aU2ZhN0pNdEJj?=
- =?utf-8?B?d1JWRVE3U1pRQUtnMzczcCszNktxWjdscTNrS1BQWTlNaEd0ZjU3cllLTlM1?=
- =?utf-8?B?eXBXNm5FbCtzcEFmblJyS1lrMmFJTEVRYkRMcExMZWdETlNwMHZhR28rZlZv?=
- =?utf-8?B?LzNmNFIyUWpaVThKbGtJMW8vR1lWeEFyVG9YKzVhM0JrbUFvbTV3UmllRjJz?=
- =?utf-8?B?WnFmNE1GT2lBRXFKYUJJVmp5eTdaclNIcHZVdXM1UFpkRGlPb2lyZU9QbDFZ?=
- =?utf-8?B?QmR5Zk1iNUVnNjJQNnQ1MTNIVnYwL3c3MDNGMW94VUY3NTlUVmpSazFYa2wz?=
- =?utf-8?B?eTJYQzlLTHZBMFZ1QnNCZ2cxRVozSEJ1VzdqZkxMNlBRQ3V3bVJqcTZyOUV5?=
- =?utf-8?B?b3JlaGhuTWVLdU1qZk1rZENPVTdEZjFnYUVsZlFtWTkxak82UHdCakVVSjl2?=
- =?utf-8?B?RkhwR1p5YWlUVDAxSktFeTJzMzNqNzErZEp4SUdYQjNxb0ZzU0dwc2VzU3Fv?=
- =?utf-8?B?NWkrQVNBQllNV3JmMysxcXFYZXo0K0VPUHRRZzhtZXNYd1JIRThzRVpDeDIx?=
- =?utf-8?B?bHI2WG04UW1Ga2g2NnZ1UkZQbkw0dVR6SmxCMnB1UzM3c2t1MlBrMDJkOTgz?=
- =?utf-8?B?Yk1XNkN2clVvM2tOUEw2bGQzZ3F3aTRQT2RyVFFVT29XWGVuVW0xSVFUQkli?=
- =?utf-8?B?SUo2bkFVa1oxWXU2N0hhRlhOVFR3SFhyN05CaVNDVmxoL0xXWDlKTUdXTkpq?=
- =?utf-8?B?aC9UNG1mMktRelBXQjZyZUh1TTkwZEsyRGhTZjZFRkhvQm9VKzNocWViQWlX?=
- =?utf-8?B?U3h0OTI5bHBVWThmR3BjWjBrZGo3OHRLQjcvSFc1SmpqOVRqZDE5SUMveUx4?=
- =?utf-8?B?NmtvbytRblh1Ynlwd2cyQkpaTU1mSEZCSWRnT280Tm90WDN0MHUvemlNMHFn?=
- =?utf-8?B?MGJ6ckI0MVNhZ3o4blMva2d5RWVJNkV0SEY5emQxZ1lENVZ4b0RUczc0WUVL?=
- =?utf-8?B?NmpVTisvMWozblJzZ1poV0FJOVF2VGdyUi8xSFVwMng3QVcreGwwN3hjbDZM?=
- =?utf-8?B?eHVjZFBEZE9nWHBxeG8yKzg4UFRrNDdTcGVyRk5yTi9HRlNKK3VxaWZ4OU5T?=
- =?utf-8?B?N3p5d2ZHR2NaSHlQOEFLZEZlR2wwNVlETHlXMytPbGhDNzJxL2pSZ1djWmJD?=
- =?utf-8?B?cTRoMWsvYk9CbGo4S2tzZ0YwVExxbjJEdThCQy9CNjlSY1VQR2Zhb29rWDRN?=
- =?utf-8?B?eGlQRmQ0emRwQUx1Vm5DazAzMUd0NmVkTVE5ZjREUXB4NVJkWXJVWll6WjRs?=
- =?utf-8?B?enJGR243aUUyWnRUZDVWbDA3eEgzeGJzWGJpSGJlS2ErQ04xWG5jQWkvNUIr?=
- =?utf-8?B?VDZmbWJHZCtRTGRDYkN6RlpJNEVWV0xzaHAxOFlMTE5BQUR4Wlc2ci80VExP?=
- =?utf-8?B?cHhDcTZTSUIzdGlRVnFPN3owSXA4SEpoQk9Pb1N6cnEvdzdQMXdVL0VESHQy?=
- =?utf-8?Q?dZ3PlQqJn8J/8rwbbFYRkI/k39k9KsG7JKwT5Dr/5U=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d00dd525-28ef-40f3-a250-08d9f1fec3ee
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2022 10:17:56.4568 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: y5jF5jXJfmgDJ/m5LZ4hMmFmhG3gfebFG4+tLJJWuH6JkNFIkioV1wG+mSunOjIE3xHVAg48UCfvpKpkg5/UlAioZFrmIhXFejqTSAjJEwE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1354
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 00/12] drm/i915: Move bigjoiner refactoring
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-intel-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,66 +55,370 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Dave & Daniel,
 
-Was able to test 8k@60/30 with the changes, where bigjoiner will come 
-into play, didn't get any issues/errors.
+Here is the first drm-intel-gt-next feature PR towards v5.18.
 
-Thanks & Regards,
+For DG2 adds subplatform G12, missing workarounds and fixes GuC
+loading on ARM64. C0/D0 stepping info added for RPL-S.
 
-Ankit
+For uAPI enables support for simple parallel submission with
+execlists which was previously enabled only for GuC.
 
-On 2/16/2022 12:01 AM, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->
-> This is an attempt at more or less finish the bigjoiner
-> state computation/readout refactoring.
->
-> Stuff that should now be in decent shape:
-> - cursor should appear in the right spot on all pipes
-> - plane clipping/etc. independent of number of joined pipes
->    thanks to the PIPESRC drm_rect
-> - the PIPESRC drm_rect should prove helpful for the seam
->    elimination stuff too in the future, as well as for some
->    other planned scaler fixes/cleanups
-> - bigjoiner vs. MSO timings should be properly handled now
->
-> What is likely still busted:
-> - panel fitter. The state computation needs to be redesigned fully
->    for bigjoiner. Semi-related to the aforementioned scaler work.
-> - the modeset sequence is still a huge mess. That will have
->    to be the next major refactoring target I think.
->
-> Pushed the lot here:
-> git://github.com/vsyrjala/linux.git pipesrc_rect_3
->
-> Ville Syrjälä (12):
->    drm/i915: Fix cursor coordinates on bigjoiner slave
->    drm/i915: Remove nop bigjoiner state copy
->    drm/i915: Rename variables in intel_crtc_compute_config()
->    drm/i915: Extract intel_splitter_adjust_timings()
->    drm/i915: Extract intel_bigjoiner_adjust_timings()
->    drm/i915: Extract intel_crtc_compute_pipe_src()
->    drm/i915: Extract intel_crtc_compute_pipe_mode()
->    drm/i915: Fix MSO vs. bigjoiner timings confusion
->    drm/i915: Start tracking PIPESRC as a drm_rect
->    drm/i915: Eliminate bigjoiner boolean
->    drm/i915: Use bigjoiner_pipes more
->    drm/i915: Make the PIPESC rect relative to the entire bigjoiner area
->
->   .../gpu/drm/i915/display/intel_atomic_plane.c |  20 +-
->   drivers/gpu/drm/i915/display/intel_cursor.c   |   7 +-
->   drivers/gpu/drm/i915/display/intel_display.c  | 350 +++++++++++-------
->   .../drm/i915/display/intel_display_debugfs.c  |   6 +-
->   .../drm/i915/display/intel_display_types.h    |   5 +-
->   drivers/gpu/drm/i915/display/intel_dp.c       |  13 +-
->   drivers/gpu/drm/i915/display/intel_overlay.c  |  22 +-
->   drivers/gpu/drm/i915/display/intel_panel.c    |  70 ++--
->   drivers/gpu/drm/i915/display/intel_vdsc.c     |   8 +-
->   drivers/gpu/drm/i915/display/skl_scaler.c     |  12 +-
->   .../drm/i915/display/skl_universal_plane.c    |   4 +-
->   11 files changed, 294 insertions(+), 223 deletions(-)
->
+Further fixes for PMU metrics when GuC is enabled, better error
+reporting for GuC loading failures. Fix for PXP unbind splat.
+Updates to GuC version 69.0.3 with improvements to GT reset
+scenarios.
+
+The rest is mostly refactoring of the memory management code,
+as highlights introduction of async unbinding/migration and
+removal of short-term pinning in execbuf.
+
+Then a few selftest and coding style fixes.
+
+Regards, Joonas
+
+***
+
+drm-intel-gt-next-2022-02-17:
+
+UAPI Changes:
+
+- Weak parallel submission support for execlists
+
+  Minimal implementation of the parallel submission support for
+  execlists backend that was previously only implemented for GuC.
+  Support one sibling non-virtual engine.
+
+Core Changes:
+
+- Two backmerges of drm/drm-next for header file renames/changes and
+  i915_regs reorganization
+
+Driver Changes:
+
+- Add new DG2 subplatform: DG2-G12 (Matt R)
+- Add new DG2 workarounds (Matt R, Ram, Bruce)
+- Handle pre-programmed WOPCM registers for DG2+ (Daniele)
+- Update guc shim control programming on XeHP SDV+ (Daniele)
+- Add RPL-S C0/D0 stepping information (Anusha)
+- Improve GuC ADS initialization to work on ARM64 on dGFX (Lucas)
+
+- Fix KMD and GuC race on accessing PMU busyness (Umesh)
+- Use PM timestamp instead of RING TIMESTAMP for reference in PMU with GuC (Umesh)
+- Report error on invalid reset notification from GuC (John)
+- Avoid WARN splat by holding RPM wakelock during PXP unbind (Juston)
+- Fixes to parallel submission implementation (Matt B.)
+- Improve GuC loading status check/error reports (John)
+- Tweak TTM LRU priority hint selection (Matt A.)
+- Align the plane_vma to min_page_size of stolen mem (Ram)
+
+- Introduce vma resources and implement async unbinding (Thomas)
+- Use struct vma_resource instead of struct vma_snapshot (Thomas)
+- Return some TTM accel move errors instead of trying memcpy move (Thomas)
+- Fix a race between vma / object destruction and unbinding (Thomas)
+- Remove short-term pins from execbuf (Maarten)
+- Update to GuC version 69.0.3 (John, Michal Wa.)
+- Improvements to GT reset paths in GuC backend (Matt B.)
+- Use shrinker_release_pages instead of writeback in shmem object hooks (Matt A., Tvrtko)
+- Use trylock instead of blocking lock when freeing GEM objects (Maarten)
+- Allocate intel_engine_coredump_alloc with ALLOW_FAIL (Matt B.)
+- Fixes to object unmapping and purging (Matt A)
+- Check for wedged device in GuC backend (John)
+- Avoid lockdep splat by locking dpt_obj around set_cache_level (Maarten)
+- Allow dead vm to unbind vma's without lock (Maarten)
+- s/engine->i915/i915/ for DG2 engine workarounds (Matt R)
+
+- Use to_gt() helper for GGTT accesses (Michal Wi.)
+- Selftest improvements (Matt B., Thomas, Ram)
+- Coding style and compiler warning fixes (Matt B., Jasmine, Andi, Colin, Gustavo, Dan)
+
+The following changes since commit 53dbee4926d3706ca9e03f3928fa85b5ec3bc0cc:
+
+  Merge tag 'drm-misc-next-2022-01-27' of git://anongit.freedesktop.org/drm/drm-misc into drm-next (2022-02-01 19:02:41 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2022-02-17
+
+for you to fetch changes up to 154cfae6158141b18d65abb0db679bb51a8294e7:
+
+  drm/i915/dg2: Add Wa_22011100796 (2022-02-11 17:11:44 +0530)
+
+----------------------------------------------------------------
+UAPI Changes:
+
+- Weak parallel submission support for execlists
+
+  Minimal implementation of the parallel submission support for
+  execlists backend that was previously only implemented for GuC.
+  Support one sibling non-virtual engine.
+
+Core Changes:
+
+- Two backmerges of drm/drm-next for header file renames/changes and
+  i915_regs reorganization
+
+Driver Changes:
+
+- Add new DG2 subplatform: DG2-G12 (Matt R)
+- Add new DG2 workarounds (Matt R, Ram, Bruce)
+- Handle pre-programmed WOPCM registers for DG2+ (Daniele)
+- Update guc shim control programming on XeHP SDV+ (Daniele)
+- Add RPL-S C0/D0 stepping information (Anusha)
+- Improve GuC ADS initialization to work on ARM64 on dGFX (Lucas)
+
+- Fix KMD and GuC race on accessing PMU busyness (Umesh)
+- Use PM timestamp instead of RING TIMESTAMP for reference in PMU with GuC (Umesh)
+- Report error on invalid reset notification from GuC (John)
+- Avoid WARN splat by holding RPM wakelock during PXP unbind (Juston)
+- Fixes to parallel submission implementation (Matt B.)
+- Improve GuC loading status check/error reports (John)
+- Tweak TTM LRU priority hint selection (Matt A.)
+- Align the plane_vma to min_page_size of stolen mem (Ram)
+
+- Introduce vma resources and implement async unbinding (Thomas)
+- Use struct vma_resource instead of struct vma_snapshot (Thomas)
+- Return some TTM accel move errors instead of trying memcpy move (Thomas)
+- Fix a race between vma / object destruction and unbinding (Thomas)
+- Remove short-term pins from execbuf (Maarten)
+- Update to GuC version 69.0.3 (John, Michal Wa.)
+- Improvements to GT reset paths in GuC backend (Matt B.)
+- Use shrinker_release_pages instead of writeback in shmem object hooks (Matt A., Tvrtko)
+- Use trylock instead of blocking lock when freeing GEM objects (Maarten)
+- Allocate intel_engine_coredump_alloc with ALLOW_FAIL (Matt B.)
+- Fixes to object unmapping and purging (Matt A)
+- Check for wedged device in GuC backend (John)
+- Avoid lockdep splat by locking dpt_obj around set_cache_level (Maarten)
+- Allow dead vm to unbind vma's without lock (Maarten)
+- s/engine->i915/i915/ for DG2 engine workarounds (Matt R)
+
+- Use to_gt() helper for GGTT accesses (Michal Wi.)
+- Selftest improvements (Matt B., Thomas, Ram)
+- Coding style and compiler warning fixes (Matt B., Jasmine, Andi, Colin, Gustavo, Dan)
+
+----------------------------------------------------------------
+Andi Shyti (2):
+      drm/i915: Remove unused i915->ggtt
+      drm/i915: fix header file inclusion for might_alloc()
+
+Anusha Srivatsa (1):
+      drm/i915/rpl-s: Add stepping info
+
+Bruce Chang (1):
+      drm/i915/dg2: Add Wa_22011100796
+
+Colin Ian King (1):
+      i915: make array flex_regs static const
+
+Dan Carpenter (1):
+      drm/i915: delete shadow "ret" variable
+
+Daniele Ceraolo Spurio (2):
+      drm/i915/wopcm: Handle pre-programmed WOPCM registers
+      drm/i915/guc: Update guc shim control programming on newer platforms
+
+Gustavo A. R. Silva (1):
+      drm/i915/guc: Use struct_size() helper in kmalloc()
+
+Jasmine Newsome (1):
+      drm/i915/gem: Use local pointer ttm for __i915_ttm_move
+
+John Harrison (5):
+      drm/i915/guc: Report error on invalid reset notification
+      drm/i915/guc: Check for wedged before doing stuff
+      drm/i915/guc: Temporarily bump the GuC load timeout
+      drm/i915/guc: Update to GuC version 69.0.3
+      drm/i915/guc: Improve GuC loading status check/error reports
+
+Joonas Lahtinen (1):
+      Merge drm/drm-next into drm-intel-gt-next
+
+Juston Li (1):
+      drm/i915/pxp: Hold RPM wakelock during PXP unbind
+
+Lucas De Marchi (2):
+      drm/i915/guc: Prepare for error propagation
+      drm/i915/guc: Use a single pass to calculate regset
+
+Maarten Lankhorst (8):
+      drm/i915: Call i915_gem_evict_vm in vm_fault_gtt to prevent new ENOSPC errors, v2.
+      drm/i915: Add locking to i915_gem_evict_vm(), v3.
+      drm/i915: Add object locking to i915_gem_evict_for_node and i915_gem_evict_something, v2.
+      drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind, v2.
+      drm/i915: Remove support for unlocked i915_vma unbind
+      drm/i915: Remove short-term pins from execbuf, v6.
+      drm/i915: Lock dpt_obj around set_cache_level, v2.
+      drm/i915: Allow dead vm to unbind vma's without lock.
+
+Matt Roper (4):
+      drm/i915/dg2: Add Wa_18018781329
+      drm/i915/dg2: Add Wa_14015227452
+      drm/i915/dg2: s/engine->i915/i915/ for engine workarounds
+      drm/i915: Introduce G12 subplatform of DG2
+
+Matthew Auld (7):
+      drm/i915: remove writeback hook
+      drm/i915: clean up shrinker_release_pages
+      drm/i915: don't call free_mmap_offset when purging
+      drm/i915/ttm: only fault WILLNEED objects
+      drm/i915/ttm: add unmap_virtual callback
+      drm/i915/ttm: ensure we unmap when purging
+      drm/i915/ttm: tweak priority hint selection
+
+Matthew Brost (11):
+      drm/i915/execlists: Weak parallel submission support for execlists
+      drm/i915: Fix possible uninitialized variable in parallel extension
+      drm/i915: Increment composite fence seqno
+      drm/i915/selftests: Add a cancel request selftest that triggers a reset
+      drm/i915/guc: Remove hacks for reset and schedule disable G2H being received out of order
+      drm/i915: Allocate intel_engine_coredump_alloc with ALLOW_FAIL
+      drm/i915/guc: Add work queue to trigger a GT reset
+      drm/i915/guc: Flush G2H handler during a GT reset
+      drm/i915: Lock timeline mutex directly in error path of eb_pin_timeline
+      drm/i915/guc: Ensure multi-lrc fini breadcrumb math is correct
+      drm/i915/selftests: Use less in contexts steal guc id test
+
+Michał Winiarski (5):
+      drm/i915/gt: Use to_gt() helper for GGTT accesses
+      drm/i915: Use to_gt() helper for GGTT accesses
+      drm/i915/gem: Use to_gt() helper for GGTT accesses
+      drm/i915/display: Use to_gt() helper for GGTT accesses
+      drm/i915/selftests: Use to_gt() helper for GGTT accesses
+
+Ramalingam C (3):
+      drm/i915/dg2: Add Wa_22011450934
+      drm/i915: align the plane_vma to min_page_size of stolen mem
+      drm/i915: More gt idling time with guc submission
+
+Thomas Hellström (9):
+      drm/i915: Initial introduction of vma resources
+      drm/i915: Use the vma resource as argument for gtt binding / unbinding
+      drm/i915: Don't pin the object pages during pending vma binds
+      drm/i915: Use vma resources for async unbinding
+      drm/i915: Asynchronous migration selftest
+      drm/i915: Use struct vma_resource instead of struct vma_snapshot
+      drm/i915: Fix vma resource freeing
+      drm/i915: Fix a race between vma / object destruction and unbinding
+      drm/i915/ttm: Return some errors instead of trying memcpy move
+
+Tvrtko Ursulin (1):
+      Merge drm/drm-next into drm-intel-gt-next
+
+Umesh Nerlige Ramappa (2):
+      drm/i915/pmu: Use PM timestamp instead of RING TIMESTAMP for reference
+      drm/i915/pmu: Fix KMD and GuC race on accessing busyness
+
+ Documentation/gpu/i915.rst                         |   1 +
+ drivers/gpu/drm/i915/Makefile                      |   2 +-
+ drivers/gpu/drm/i915/display/intel_dpt.c           |  33 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.c        |   8 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c           |   2 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c         |   2 +-
+ drivers/gpu/drm/i915/display/intel_plane_initial.c |   7 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c        |  11 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h        |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     | 248 ++++++------
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c           |  36 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c         |  18 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.h         |   4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |  51 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c          |  10 -
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c             |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c          |  17 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c       |  30 +-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c         |   8 +-
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c         |  15 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |  16 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c       |  27 +-
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c    |  39 +-
+ .../drm/i915/gem/selftests/i915_gem_client_blt.c   |   4 +-
+ .../gpu/drm/i915/gem/selftests/i915_gem_context.c  |   2 +-
+ .../gpu/drm/i915/gem/selftests/i915_gem_migrate.c  | 192 +++++++++-
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |  25 +-
+ .../gpu/drm/i915/gem/selftests/i915_gem_object.c   |   2 +-
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c               |  19 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |  37 +-
+ drivers/gpu/drm/i915/gt/intel_context.c            |   4 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c          |   9 +-
+ .../gpu/drm/i915/gt/intel_execlists_submission.c   |  38 ++
+ drivers/gpu/drm/i915/gt/intel_ggtt.c               | 133 ++++---
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c       |   7 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c                 |   7 +-
+ drivers/gpu/drm/i915/gt/intel_gt.h                 |   2 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.c                |   4 +
+ drivers/gpu/drm/i915/gt/intel_gtt.h                |  19 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c                |  32 ++
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c              |  22 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c        |   4 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c              |   9 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        |  39 +-
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c       |   2 +-
+ drivers/gpu/drm/i915/gt/selftest_reset.c           |   2 +-
+ drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h   |  80 ++--
+ drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h    |  23 ++
+ drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h      |  82 ++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c             | 126 ++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h             |  25 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c         | 204 +++++++---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c          | 143 +++----
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          |  38 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h        |  37 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c         |  31 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.h         |   3 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h         |   7 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  | 262 +++++++++----
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c             |   1 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c              |  31 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c           |  43 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h           |   2 +-
+ drivers/gpu/drm/i915/gt/uc/selftest_guc.c          |   2 +-
+ drivers/gpu/drm/i915/gvt/aperture_gm.c             |   2 +-
+ drivers/gpu/drm/i915/gvt/dmabuf.c                  |   2 +-
+ drivers/gpu/drm/i915/i915_debugfs.c                |   7 +-
+ drivers/gpu/drm/i915/i915_driver.c                 |  10 +-
+ drivers/gpu/drm/i915/i915_drv.h                    |  32 +-
+ drivers/gpu/drm/i915/i915_gem.c                    |  37 +-
+ drivers/gpu/drm/i915/i915_gem_evict.c              | 101 ++++-
+ drivers/gpu/drm/i915/i915_gem_gtt.c                |  16 +-
+ drivers/gpu/drm/i915/i915_gem_gtt.h                |   4 +
+ drivers/gpu/drm/i915/i915_getparam.c               |   2 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c              |  89 ++---
+ drivers/gpu/drm/i915/i915_module.c                 |   3 +
+ drivers/gpu/drm/i915/i915_pci.c                    |   1 +
+ drivers/gpu/drm/i915/i915_perf.c                   |   8 +-
+ drivers/gpu/drm/i915/i915_reg.h                    |  12 +-
+ drivers/gpu/drm/i915/i915_request.c                |  12 +-
+ drivers/gpu/drm/i915/i915_request.h                |   6 +-
+ drivers/gpu/drm/i915/i915_vgpu.c                   |   2 +-
+ drivers/gpu/drm/i915/i915_vma.c                    | 376 +++++++++++++-----
+ drivers/gpu/drm/i915/i915_vma.h                    |  34 +-
+ drivers/gpu/drm/i915/i915_vma_resource.c           | 418 +++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_vma_resource.h           | 234 ++++++++++++
+ drivers/gpu/drm/i915/i915_vma_snapshot.c           | 134 -------
+ drivers/gpu/drm/i915/i915_vma_snapshot.h           | 112 ------
+ drivers/gpu/drm/i915/i915_vma_types.h              |  19 +-
+ drivers/gpu/drm/i915/intel_device_info.h           |   4 +-
+ drivers/gpu/drm/i915/intel_step.c                  |  15 +
+ drivers/gpu/drm/i915/intel_wopcm.c                 |  42 ++-
+ drivers/gpu/drm/i915/selftests/i915_gem.c          |   8 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_evict.c    |  28 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      | 209 +++++++----
+ drivers/gpu/drm/i915/selftests/i915_request.c      | 119 +++++-
+ drivers/gpu/drm/i915/selftests/i915_vma.c          |  30 +-
+ drivers/gpu/drm/i915/selftests/igt_flush_test.c    |   2 +-
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c   |  11 +-
+ drivers/gpu/drm/i915/selftests/mock_gtt.c          |  21 +-
+ drivers/gpu/drm/i915/selftests/mock_gtt.h          |   3 +-
+ 101 files changed, 3149 insertions(+), 1359 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+ create mode 100644 drivers/gpu/drm/i915/i915_vma_resource.c
+ create mode 100644 drivers/gpu/drm/i915/i915_vma_resource.h
+ delete mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.c
+ delete mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.h
