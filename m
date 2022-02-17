@@ -1,52 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3847C4B9AA5
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 09:09:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5BA84B9AA7
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 09:10:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F68610E9E2;
-	Thu, 17 Feb 2022 08:09:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01EC010EA08;
+	Thu, 17 Feb 2022 08:10:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CA5F10E9E0
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 08:09:24 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6324710EA0E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 08:10:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645085364; x=1676621364;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=Oxw68NUA6gb0fgg1wX/G3iNznK+YKMUZoZOdL59UY/Q=;
- b=GeTYep3kLd63LJ8R2B9tAPv2pSne6ICkhdx89vAzx58rcdYixFroLycf
- pDKhRdod5zH0dXSZCPayCDfvkXgFt/ftSdmG75MoovwPT8L7LAINgXmXY
- 4Ce9JICx5FVJVmWytxQVjl/3frlihkxiTvpH41d9MtI+cuz+NB4mEL393
- 2vku9MXp5cAOIStStGtlWDErJur2sx8f59l1i5iFf3LkhFc746DnDytUw
- b9goqmz5TsJBe6U5rcktMxghpvuD1usBtrYEggaULEhDi31UAiLPrX+Ds
- kzQtJ1Et498KX6GWfELKW20ZfwWVQK4lV+rguhwjIijrlhpd4tHP0aPyI Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="250556992"
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="250556992"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 00:09:24 -0800
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="545444328"
-Received: from acushion-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.21.45])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 00:09:22 -0800
-From: Jani Nikula <jani.nikula@intel.com>
+ t=1645085442; x=1676621442;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=FXDvVl8HF75nfa98LAJhgTSnpprpf5sTEbeE0JAN304=;
+ b=KuSEng0CZbbhqoSwK/i9JpvHmEjNlueB9Wf7+BsuVzPNXLrnAlFsMpHe
+ IGwBFwo4tafrKlRdf5XlWRZuDjo+6LY2JC+9lnhB5GD5A69M9Nmxfp1iT
+ 9LWk/xawFzQ1kLWfgI2UqXyrjmFE5FEgZ1/jwSmivxod+ypGTPZq9A1Pr
+ QrK6l696iFlvQjRq2cqnFjTapsc7kIqYfx5CqOOcj0ZBIldGJ4tGKarFc
+ zKTDdeWPbJhY+lpY4DNZtd28rsNfp1LHpIvBwhj56Z6Nx2RRuLpnBnnNx
+ pviN/k0njljPT44hTMHq9Oj3TXa2dwuxjqJFUM7NNeqeSj0t0jwgLwnzz A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="248418365"
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="248418365"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 00:10:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="776994724"
+Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.78])
+ by fmsmga005.fm.intel.com with ESMTP; 17 Feb 2022 00:10:41 -0800
+From: Lee Shawn C <shawn.c.lee@intel.com>
 To: intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220215122957.2755529-2-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220215122957.2755529-1-jani.nikula@intel.com>
- <20220215122957.2755529-2-jani.nikula@intel.com>
-Date: Thu, 17 Feb 2022 10:09:20 +0200
-Message-ID: <874k4x52z3.fsf@intel.com>
+Date: Thu, 17 Feb 2022 16:22:46 +0800
+Message-Id: <20220217082246.2631-1-shawn.c.lee@intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220215062321.832-1-ville.syrjala@linux.intel.com>
+References: <20220215062321.832-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/fbdev: hide struct
- intel_fbdev in intel_fbdev.c
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix cursor coordinates on bigjoiner
+ slave
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,100 +60,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 15 Feb 2022, Jani Nikula <jani.nikula@intel.com> wrote:
-> As all access to struct intel_fbdev guts is nicely stowed away in
-> intel_fbdev.c, we can hide the struct definition there too.
->
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Pushed to din, thanks for the review.
+Adjust the cursor dst coordinates appripriately when it's on
+the bigjoiner slave pipe. intel_atomic_plane_check_clipping()
+already did this but with the cursor we discard those results
+(apart from uapi.visible and error checks) since the hardware
+will be doing the clipping for us.
 
-BR,
-Jani.
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Tested-by: Lee Shawn C <shawn.c.lee@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cursor.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> ---
->  .../drm/i915/display/intel_display_types.h    | 21 -------------------
->  drivers/gpu/drm/i915/display/intel_fbdev.c    | 17 +++++++++++++++
->  2 files changed, 17 insertions(+), 21 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 60e15226a8cb..ff9288eea541 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -26,7 +26,6 @@
->  #ifndef __INTEL_DISPLAY_TYPES_H__
->  #define __INTEL_DISPLAY_TYPES_H__
->=20=20
-> -#include <linux/async.h>
->  #include <linux/i2c.h>
->  #include <linux/pm_qos.h>
->  #include <linux/pwm.h>
-> @@ -38,7 +37,6 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_dsc.h>
->  #include <drm/drm_encoder.h>
-> -#include <drm/drm_fb_helper.h>
->  #include <drm/drm_fourcc.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_rect.h>
-> @@ -145,25 +143,6 @@ struct intel_framebuffer {
->  	struct i915_address_space *dpt_vm;
->  };
->=20=20
-> -struct intel_fbdev {
-> -	struct drm_fb_helper helper;
-> -	struct intel_framebuffer *fb;
-> -	struct i915_vma *vma;
-> -	unsigned long vma_flags;
-> -	async_cookie_t cookie;
-> -	int preferred_bpp;
-> -
-> -	/* Whether or not fbdev hpd processing is temporarily suspended */
-> -	bool hpd_suspended : 1;
-> -	/* Set when a hotplug was received while HPD processing was
-> -	 * suspended
-> -	 */
-> -	bool hpd_waiting : 1;
-> -
-> -	/* Protects hpd_suspended */
-> -	struct mutex hpd_lock;
-> -};
-> -
->  enum intel_hotplug_state {
->  	INTEL_HOTPLUG_UNCHANGED,
->  	INTEL_HOTPLUG_CHANGED,
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm=
-/i915/display/intel_fbdev.c
-> index 0f188cd28f2d..fd5bc7acf08d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -50,6 +50,23 @@
->  #include "intel_fbdev.h"
->  #include "intel_frontbuffer.h"
->=20=20
-> +struct intel_fbdev {
-> +	struct drm_fb_helper helper;
-> +	struct intel_framebuffer *fb;
-> +	struct i915_vma *vma;
-> +	unsigned long vma_flags;
-> +	async_cookie_t cookie;
-> +	int preferred_bpp;
-> +
-> +	/* Whether or not fbdev hpd processing is temporarily suspended */
-> +	bool hpd_suspended: 1;
-> +	/* Set when a hotplug was received while HPD processing was suspended */
-> +	bool hpd_waiting: 1;
-> +
-> +	/* Protects hpd_suspended */
-> +	struct mutex hpd_lock;
-> +};
-> +
->  static struct intel_frontbuffer *to_frontbuffer(struct intel_fbdev *ifbd=
-ev)
->  {
->  	return ifbdev->fb->frontbuffer;
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 67633f9f0e4a..de5c8617f585 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -157,6 +157,9 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
+ 	/* Use the unclipped src/dst rectangles, which we program to hw */
+ 	plane_state->uapi.src = src;
+ 	plane_state->uapi.dst = dst;
++	if (crtc_state->bigjoiner_slave)
++		drm_rect_translate(&plane_state->uapi.dst,
++				   -crtc_state->pipe_src_w, 0);
+ 
+ 	ret = intel_cursor_check_surface(plane_state);
+ 	if (ret)
+-- 
+2.17.1
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
