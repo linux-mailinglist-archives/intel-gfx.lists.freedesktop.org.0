@@ -2,83 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 592634B9C31
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 10:39:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E9604B9C41
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 10:41:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7270810E93C;
-	Thu, 17 Feb 2022 09:39:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8625210EB36;
+	Thu, 17 Feb 2022 09:41:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 397AB10E948
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 09:39:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1645090784;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=jLgXyaDdyKmF629yX/8jyqbwgfWH8asfchQ3m/1p7wI=;
- b=ZzCU8/Sax08B6tueFEC5QMANr1g4s7BkxkVsW2VBMgV34b9faJxoht8T+ZMa922nPBibuX
- xVtUTf7VOD+fROhwwR81fcf2sdi+6XLqZuTALHrHZJOBxW/OxE90XqSTvYZdmXlhzzrWVv
- w0ShK+/dbd5v2DPp0owqjcS8Nj4ZpB8=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-477-AVytr0i7PmO0G9sCgGzxUQ-1; Thu, 17 Feb 2022 04:39:43 -0500
-X-MC-Unique: AVytr0i7PmO0G9sCgGzxUQ-1
-Received: by mail-wm1-f72.google.com with SMTP id
- n26-20020a05600c3b9a00b0037c524e6d97so1433192wms.9
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 01:39:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=jLgXyaDdyKmF629yX/8jyqbwgfWH8asfchQ3m/1p7wI=;
- b=AHWnI2GW3OXWqHYve9aZMq66C5Nnuk9CiyePn5ARj0+8C1bibiaPz6MJO3sBnjL/vu
- 4F5jKIHvt8X86ypHvnpfrqJx4SO66JwbA11bDQE/bQ4bNhiv+hRzvb1Jk6PRv6KLVPg5
- K6GxyW/prjF2DVTNeTg6DtLaHOUmo+FerjY3RenndXOd+zdbTzL/IDOpk5oG4w2dsS3d
- +7Eo+RZmZWzE3pT+8Q+YUz3Azarvz8Dz+fP6l7tZG9e5Tlbs+dtJE5b6ei/m1qx0iMsR
- UBas5iOIZrGLOhHFkeOzBHbYBnqqVjhH2r6kMZd2/CwKTZk9+T8zIaBV4GQC0zNo/GSk
- h3Hg==
-X-Gm-Message-State: AOAM531x2FludcGH5DgBW0B1vs8CbD41nYWggy+XkjveivSuWdleWL7m
- cazWGdgjY0DBx/lQ+O1hzrCJqroUY6oth1AW6G5lytJkREdZS3vQ2oDW1/7eue7lEHFMcZSfhov
- 6oJRRHnC/9A65S3zpUE0/gdB+5O7Y
-X-Received: by 2002:a05:600c:34c4:b0:37b:f84d:d55a with SMTP id
- d4-20020a05600c34c400b0037bf84dd55amr5219785wmq.123.1645090781817; 
- Thu, 17 Feb 2022 01:39:41 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJybTPMdUEv4yErAw/bHWXz3opBkboEQXbUIb0XIqgnTJgBeyfbHp2oe3xxJk8q91rF306F1sQ==
-X-Received: by 2002:a05:600c:34c4:b0:37b:f84d:d55a with SMTP id
- d4-20020a05600c34c400b0037bf84dd55amr5219771wmq.123.1645090781577; 
- Thu, 17 Feb 2022 01:39:41 -0800 (PST)
-Received: from [192.168.1.102] ([92.176.231.205])
- by smtp.gmail.com with ESMTPSA id y4sm17410167wrd.54.2022.02.17.01.39.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 17 Feb 2022 01:39:41 -0800 (PST)
-Message-ID: <3cb4c64a-6a6a-97bf-682e-efcf9bd748b5@redhat.com>
-Date: Thu, 17 Feb 2022 10:39:39 +0100
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89EC910EB1D;
+ Thu, 17 Feb 2022 09:41:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1645090906; x=1676626906;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=0n2mnzriut++++zqdobTTYF+VpbN2fheJCxQx2jXG0Y=;
+ b=kE42y7WSNcox/iTbSbDnIeHJ0ODsawmMrNj+mwH9zC50TE48i4zCkamr
+ aDQu2c5piH3N/seIvfoHMJquNLet9YQJC4ULyo9jjpwhK2ekmOWP7goI3
+ sbbsIPSppgbrDnjDHuN28ZrBS4NAHcu2wbEkYwHhbBiM+2+ubphvNfKzB
+ FeFixE1//hW3M9904ZjuK09zzgjd5H8j7SDY29rZRmv83alvpPUPsuM/i
+ UOTqTUVrPPJa/Z76BkC1Tbt9wsHpcthNBXrEOvYCqtJHjmht+QEhjgHi5
+ 4T/yeKL23ncdpvOGZ9zstwuJnMZHMBCCKoh8IxYteDGbXqv2mA5SGpZKm A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="238240361"
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="238240361"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 01:41:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="604840808"
+Received: from lkp-server01.sh.intel.com (HELO 6f05bf9e3301) ([10.239.97.150])
+ by fmsmga004.fm.intel.com with ESMTP; 17 Feb 2022 01:41:44 -0800
+Received: from kbuild by 6f05bf9e3301 with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1nKdIF-00001x-Gb; Thu, 17 Feb 2022 09:41:43 +0000
+Date: Thu, 17 Feb 2022 17:40:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <202202171718.0GTDm2wX-lkp@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-References: <202202171455.bclm1YBC-lkp@intel.com>
- <20220217063625.sm5ua5xf4jo2ekku@ldmartin-desk2>
- <79301ef2-03d4-ca96-3d7f-6f9b80f319e1@redhat.com>
- <20220217092545.4zpjnh344fmrcg26@ldmartin-desk2>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20220217092545.4zpjnh344fmrcg26@ldmartin-desk2>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [drm-tip:drm-tip 4/8]
- drivers/gpu/drm/solomon/ssd130x.c:451:18: error: incomplete definition of
- type 'struct dma_buf_map'
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: [Intel-gfx] [drm-intel:topic/core-for-CI 1/1]
+ drivers/gpu/drm/i915/intel_device_info.c:236:14: error:
+ 'INTEL_SUBPLATFORM_G12' undeclared; did you mean 'INTEL_SUBPLATFORM_G10'?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,80 +58,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, intel-gfx@lists.freedesktop.org,
- llvm@lists.linux.dev, Douglas Anderson <dianders@chromium.org>,
+Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org,
  dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2/17/22 10:25, Lucas De Marchi wrote:
-> On Thu, Feb 17, 2022 at 10:00:42AM +0100, Javier Martinez Canillas wrote:
+tree:   git://anongit.freedesktop.org/drm-intel topic/core-for-CI
+head:   b56d8d7bad86a9badc1d1b9ea2d1730fa1d3978b
+commit: b56d8d7bad86a9badc1d1b9ea2d1730fa1d3978b [1/1] drm/i915: Add DG2 PCI IDs
+config: x86_64-randconfig-a011 (https://download.01.org/0day-ci/archive/20220217/202202171718.0GTDm2wX-lkp@intel.com/config)
+compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+reproduce (this is a W=1 build):
+        git remote add drm-intel git://anongit.freedesktop.org/drm-intel
+        git fetch --no-tags drm-intel topic/core-for-CI
+        git checkout b56d8d7bad86a9badc1d1b9ea2d1730fa1d3978b
+        # save the config file to linux build tree
+        mkdir build_dir
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
 
-[snip]
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
->>> this is now called iosys_map in drm-intel... drm-tip will need a fixup
->>> for the merge.
->>>
->>
->> I thought that the drm-intel tree was only for Intel DRM drivers changes and
->> subsystem wide changes should be merged through drm-mic ?
->>
->> Doing refactoring in that tree will likely lead to merge conflicts like this.
-> 
-> Yes, I know. My initial proposal was to split the rename and do it per
-> branch to avoid this kind of situation, but it was requested to be done
-> all in a single patch. Since I had other ~15 patches dependent on that
-> one to be merged in drm-intel, it was agreed to do the rename via
-> drm-intel. See 
-> https://lore.kernel.org/lkml/e3813696-7b91-510c-987f-85ed2fd502d6@suse.de/
->
+All errors (new ones prefixed by >>):
 
-Got it. Thanks for the explanation.
- 
-> I guess the conflicts won't be that terrible and can be fixed as they
-> show up.
->
+   In file included from include/linux/bits.h:6,
+                    from include/linux/ratelimit_types.h:5,
+                    from include/linux/printk.h:10,
+                    from include/drm/drm_print.h:30,
+                    from drivers/gpu/drm/i915/intel_device_info.c:25:
+   drivers/gpu/drm/i915/intel_device_info.c: In function 'intel_device_info_subplatform_init':
+>> drivers/gpu/drm/i915/intel_device_info.c:236:14: error: 'INTEL_SUBPLATFORM_G12' undeclared (first use in this function); did you mean 'INTEL_SUBPLATFORM_G10'?
+     236 |   mask = BIT(INTEL_SUBPLATFORM_G12);
+         |              ^~~~~~~~~~~~~~~~~~~~~
+   include/vdso/bits.h:7:30: note: in definition of macro 'BIT'
+       7 | #define BIT(nr)   (UL(1) << (nr))
+         |                              ^~
+   drivers/gpu/drm/i915/intel_device_info.c:236:14: note: each undeclared identifier is reported only once for each function it appears in
+     236 |   mask = BIT(INTEL_SUBPLATFORM_G12);
+         |              ^~~~~~~~~~~~~~~~~~~~~
+   include/vdso/bits.h:7:30: note: in definition of macro 'BIT'
+       7 | #define BIT(nr)   (UL(1) << (nr))
+         |                              ^~
 
-Agreed.
 
->> Noticed your series in dri-devel but missed that already landed in drm-intel.
->>
->> The resolution should just be [0] right? If you confirm that then I can post
->> a proper patch to dri-devel.
->>
->>>>>> drivers/gpu/drm/solomon/ssd130x.c:451:18: error: incomplete definition of type 'struct dma_buf_map'
->>>>           void *vmap = map->vaddr; /* TODO: Use mapping abstraction properly */
->>>>                        ~~~^
->>>
->>> this shouldn't really be done.
->>>
->>
->> Yes, I know but asked what would be the proper way and didn't get an answer.
->> We have many drivers doing the same and I couldn't find one that was doing
->> it correctly to use as a reference:
->>
->> $ git grep "TODO: Use mapping abstraction properly" | wc -l
->> 15
->>
->> If you point me the proper way, I'll be happy to post a patch to change it.
-> 
-> It depends what you want to do with the address. There are APIs to copy
-> from/to. I also added a few to read/write to an offset. It seems the
-> problem here is that you need to pass that to a helper,
-> drm_fb_xrgb8888_to_mono_reversed(). I think the proper solution would be
-> to change the helper to accept an iosys_map* as argument rather than a
-> void*.
->
+vim +236 drivers/gpu/drm/i915/intel_device_info.c
 
-That makes a lot of sense. Once the dust settles and your series land in
-drm-misc-next, I can take a look at this and removing the TODO comment.
+   201	
+   202	void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+   203	{
+   204		const struct intel_device_info *info = INTEL_INFO(i915);
+   205		const struct intel_runtime_info *rinfo = RUNTIME_INFO(i915);
+   206		const unsigned int pi = __platform_mask_index(rinfo, info->platform);
+   207		const unsigned int pb = __platform_mask_bit(rinfo, info->platform);
+   208		u16 devid = INTEL_DEVID(i915);
+   209		u32 mask = 0;
+   210	
+   211		/* Make sure IS_<platform> checks are working. */
+   212		RUNTIME_INFO(i915)->platform_mask[pi] = BIT(pb);
+   213	
+   214		/* Find and mark subplatform bits based on the PCI device id. */
+   215		if (find_devid(devid, subplatform_ult_ids,
+   216			       ARRAY_SIZE(subplatform_ult_ids))) {
+   217			mask = BIT(INTEL_SUBPLATFORM_ULT);
+   218		} else if (find_devid(devid, subplatform_ulx_ids,
+   219				      ARRAY_SIZE(subplatform_ulx_ids))) {
+   220			mask = BIT(INTEL_SUBPLATFORM_ULX);
+   221			if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
+   222				/* ULX machines are also considered ULT. */
+   223				mask |= BIT(INTEL_SUBPLATFORM_ULT);
+   224			}
+   225		} else if (find_devid(devid, subplatform_portf_ids,
+   226				      ARRAY_SIZE(subplatform_portf_ids))) {
+   227			mask = BIT(INTEL_SUBPLATFORM_PORTF);
+   228		} else if (find_devid(devid, subplatform_g10_ids,
+   229				      ARRAY_SIZE(subplatform_g10_ids))) {
+   230			mask = BIT(INTEL_SUBPLATFORM_G10);
+   231		} else if (find_devid(devid, subplatform_g11_ids,
+   232				      ARRAY_SIZE(subplatform_g11_ids))) {
+   233			mask = BIT(INTEL_SUBPLATFORM_G11);
+   234		} else if (find_devid(devid, subplatform_g12_ids,
+   235				      ARRAY_SIZE(subplatform_g12_ids))) {
+ > 236			mask = BIT(INTEL_SUBPLATFORM_G12);
+   237		}
+   238	
+   239		if (IS_TIGERLAKE(i915)) {
+   240			struct pci_dev *root, *pdev = to_pci_dev(i915->drm.dev);
+   241	
+   242			root = list_first_entry(&pdev->bus->devices, typeof(*root), bus_list);
+   243	
+   244			drm_WARN_ON(&i915->drm, mask);
+   245			drm_WARN_ON(&i915->drm, (root->device & TGL_ROOT_DEVICE_MASK) !=
+   246				    TGL_ROOT_DEVICE_ID);
+   247	
+   248			switch (root->device & TGL_ROOT_DEVICE_SKU_MASK) {
+   249			case TGL_ROOT_DEVICE_SKU_ULX:
+   250				mask = BIT(INTEL_SUBPLATFORM_ULX);
+   251				break;
+   252			case TGL_ROOT_DEVICE_SKU_ULT:
+   253				mask = BIT(INTEL_SUBPLATFORM_ULT);
+   254				break;
+   255			}
+   256		}
+   257	
+   258		GEM_BUG_ON(mask & ~INTEL_SUBPLATFORM_MASK);
+   259	
+   260		RUNTIME_INFO(i915)->platform_mask[pi] |= mask;
+   261	}
+   262	
 
-> Lucas De Marchi
->>>
->>> Lucas De Marchi
-Best regards,
--- 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
-
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
