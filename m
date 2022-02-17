@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2A7A4B99D1
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 08:26:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C6EB4B99EF
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 08:38:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0333B10E966;
-	Thu, 17 Feb 2022 07:26:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 426AB10E967;
+	Thu, 17 Feb 2022 07:38:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9613A10E91B;
- Thu, 17 Feb 2022 07:26:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 92F34AADD6;
- Thu, 17 Feb 2022 07:26:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC85D10E157;
+ Thu, 17 Feb 2022 07:38:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1645083507; x=1676619507;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=95PVtzd8+x4bl4Blz6/cVKLMrONA/5I7Kdokv0tHahc=;
+ b=L6hOhU5MVWYVaj/7zYDXdTW21PEX5S2cye/d/OnTaWdvxsZHnbnDGn1a
+ byuommMck/UIbujNWAd3zqIR2qWIsTJmjORpcX7ns/7Z0Rw9K2ZhpO8wR
+ /M3lUQ7RI9cbvt21iDMvuQOtrSDqot8BRmtcjzNYojRJ1OvzmF1Ck/K+t
+ hVGOvtQ99A0ENGkkIAM+1XmXgoF6IwUgqhY0eV0RSeQWO08j04VFtU/95
+ zBLdhySoH5LF4Qq1MaRhf8NsOnJcWFwDU/4/2LeTIW6JI2DdgQ98AUZHF
+ ppeAzH5npRAg98Oc/YxIxz4yPNSwid55eluCSCim0VPX/REA9F0kUZklE w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="238219891"
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="238219891"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 23:38:26 -0800
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="501477825"
+Received: from acushion-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.21.45])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 23:38:24 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Wang, Zhi A" <zhi.a.wang@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <bddb363f-2772-4c1b-0637-5ac3165a1979@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220215122030.2741656-1-jani.nikula@intel.com>
+ <bddb363f-2772-4c1b-0637-5ac3165a1979@intel.com>
+Date: Thu, 17 Feb 2022 09:38:21 +0200
+Message-ID: <87a6eq3pua.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Thu, 17 Feb 2022 07:26:39 -0000
-Message-ID: <164508279956.18050.9437624423723686337@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220216174147.3073235-1-lucas.demarchi@intel.com>
-In-Reply-To: <20220216174147.3073235-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/guc=3A_Refactor_ADS_access_to_use_iosys=5Fmap_=28rev3?=
- =?utf-8?q?=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: #include drm_edid.h for
+ drm_edid_block_valid()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +59,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 16 Feb 2022, "Wang, Zhi A" <zhi.a.wang@intel.com> wrote:
+> On 2/15/22 12:20 PM, Nikula, Jani wrote:
+>> As the excessive #includes from i915_drv.h were axed, kvmgt.c build
+>> started failing. Add the necessary #include where needed.
+>> 
+>> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+>> Fixes: 14da21cc4671 ("drm/i915: axe lots of unnecessary includes from i915_drv.h")
+>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+>> Cc: Zhi Wang <zhi.a.wang@intel.com>
+>> Cc: intel-gvt-dev@lists.freedesktop.org
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> 
+>> ---
+>> 
+>> Going to merge this via drm-intel-next along with the regressing commit.
+>> ---
+>>  drivers/gpu/drm/i915/gvt/kvmgt.c | 2 ++
+>>  1 file changed, 2 insertions(+)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+>> index 20b82fb036f8..e8d6c76e9234 100644
+>> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
+>> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+>> @@ -46,6 +46,8 @@
+>>  
+>>  #include <linux/nospec.h>
+>>  
+>> +#include <drm/drm_edid.h>
+>> +
+>>  #include "i915_drv.h"
+>>  #include "gvt.h"
+>>  
+>> 
+> Hi:
+>
+> Thanks for the notification!
+>
+> Reviewed-by: Zhi Wang <zhi.a.wang@intel.com>
 
-Series: drm/i915/guc: Refactor ADS access to use iosys_map (rev3)
-URL   : https://patchwork.freedesktop.org/series/99711/
-State : warning
+Thanks, pushed to drm-intel-next.
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+BR,
+Jani.
 
 
+-- 
+Jani Nikula, Intel Open Source Graphics Center
