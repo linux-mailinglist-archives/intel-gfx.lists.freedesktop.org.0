@@ -2,52 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F3FF4B9ADA
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 09:27:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 458394B9B47
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 09:39:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E426010EADE;
-	Thu, 17 Feb 2022 08:27:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 556E410E8AE;
+	Thu, 17 Feb 2022 08:39:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0924E10EAD9
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 08:27:01 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC9010E8AE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 08:39:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645086422; x=1676622422;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=RdTkeqgCbsmkkhFTU5NJznorClmMnL/pFRUEcVvbsdI=;
- b=mH1H5Mraup13U9STpGNq/wCBmwYNfs+vH9TOrNEAqH6FDffPeVN47vFG
- ZThkEQbc9X2qoDjkIjjb92+dsK6qJ4mmnQv7CZizR+Dva2smGLgjWLFWF
- aU0Nn/s6P+BA69ey7FUN28lqIwtxA7aD/sxSAo4gTGxF6Spw+n1Eb8BSH
- QXX2YPddp81p7CIyxdGjEa/RjaK5JB9ZPOOISj+ldGCG304HCPCS/3FAK
- G/LzPHBjRMz4+b9cH1/ueHuU6k7Wnwb5HyyEW2uz40bz2S3X/U9EuNnat
- tfWyadB8OMvh5gZ91KGjG6mBNK5CLagXk2fxviPwRLDuMRK3S7Jd7Mqtm Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="314092588"
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="314092588"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 00:27:01 -0800
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="636970750"
+ t=1645087186; x=1676623186;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MZzimIp5d0BtjX+gy1u6bJJWGzihPZypwyIWCHAmihI=;
+ b=E3vgR+Ah2W4EIeknoJ1ayauIXMKMOj+K2kcsrI/9FB0pJBn/nK7dMxne
+ 68YXCX0XYsqtJ0eCsAa3ZkvXluciE5LW7cEuoR5hy3PT0JTMFbyIPfxlJ
+ 1p4v/4zfN2Z2+AKJB2d6nFCgDNSQ3wkFpApjd0ZHs/1Rb1+6kk5bQloB3
+ okzL8PjoERU6s813hU85ufUu665VgIY0MTTj6/ww4rOJ6fh0t9nJ1eiBc
+ blpn/aGrcZrCiO06DMmvy3+4KOv8i1GTitAjYMsiLjVEmgQxNcc9jIJSL
+ uWKBAvlO8fiqJa+pL+gzauGQQFu6NMiHB9iZuQ/7XiEf6t8gIH4PN50az g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="230788660"
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="230788660"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 00:39:46 -0800
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="487982435"
 Received: from acushion-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.21.45])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 00:27:00 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220215183208.6143-5-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220215183208.6143-1-ville.syrjala@linux.intel.com>
- <20220215183208.6143-5-ville.syrjala@linux.intel.com>
-Date: Thu, 17 Feb 2022 10:26:57 +0200
-Message-ID: <871r01525q.fsf@intel.com>
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 00:39:44 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 17 Feb 2022 10:39:38 +0200
+Message-Id: <20220217083938.3587465-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 04/12] drm/i915: Extract
- intel_splitter_adjust_timings()
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/dp: remove accidental static on what
+ should be a local variable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,118 +57,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 15 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Let's not replicate the same piece of code to expand
-> the MSO segment timings to full width in many places.
-> Pull it into a helper
+The variable should obviously be local, not static.
 
-Did I duplicate that? Yuck.
+Fixes: a421d8a99216 ("drm/i915/dp: rewrite DP 2.0 128b/132b link training based on errata")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 9197cc1734d2..5d98773efd1b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -1408,7 +1408,7 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
+ void intel_dp_start_link_train(struct intel_dp *intel_dp,
+ 			       const struct intel_crtc_state *crtc_state)
+ {
+-	static bool passed;
++	bool passed;
+ 	/*
+ 	 * TODO: Reiniting LTTPRs here won't be needed once proper connector
+ 	 * HW state readout is added.
+-- 
+2.30.2
 
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 54 ++++++++++----------
->  1 file changed, 26 insertions(+), 28 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 5da8db3dda8f..70017526fa81 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2724,6 +2724,30 @@ static void intel_crtc_compute_pixel_rate(struct i=
-ntel_crtc_state *crtc_state)
->  			ilk_pipe_pixel_rate(crtc_state);
->  }
->=20=20
-> +static void intel_splitter_adjust_timings(const struct intel_crtc_state =
-*crtc_state,
-> +					  struct drm_display_mode *mode)
-> +{
-> +	int overlap =3D crtc_state->splitter.pixel_overlap;
-> +	int n =3D crtc_state->splitter.link_count;
-> +
-> +	if (!crtc_state->splitter.enable)
-> +		return;
-> +
-> +	/*
-> +	 * eDP MSO uses segment timings from EDID for transcoder
-> +	 * timings, but full mode for everything else.
-> +	 *
-> +	 * h_full =3D (h_segment - pixel_overlap) * link_count
-> +	 */
-> +	mode->crtc_hdisplay =3D (mode->crtc_hdisplay - overlap) * n;
-> +	mode->crtc_hblank_start =3D (mode->crtc_hblank_start - overlap) * n;
-> +	mode->crtc_hblank_end =3D (mode->crtc_hblank_end - overlap) * n;
-> +	mode->crtc_hsync_start =3D (mode->crtc_hsync_start - overlap) * n;
-> +	mode->crtc_hsync_end =3D (mode->crtc_hsync_end - overlap) * n;
-> +	mode->crtc_htotal =3D (mode->crtc_htotal - overlap) * n;
-> +	mode->crtc_clock *=3D n;
-> +}
-> +
->  static void intel_crtc_readout_derived_state(struct intel_crtc_state *cr=
-tc_state)
->  {
->  	struct drm_display_mode *mode =3D &crtc_state->hw.mode;
-> @@ -2747,22 +2771,7 @@ static void intel_crtc_readout_derived_state(struc=
-t intel_crtc_state *crtc_state
->  	}
->=20=20
->  	if (crtc_state->splitter.enable) {
-> -		int n =3D crtc_state->splitter.link_count;
-> -		int overlap =3D crtc_state->splitter.pixel_overlap;
-> -
-> -		/*
-> -		 * eDP MSO uses segment timings from EDID for transcoder
-> -		 * timings, but full mode for everything else.
-> -		 *
-> -		 * h_full =3D (h_segment - pixel_overlap) * link_count
-> -		 */
-> -		pipe_mode->crtc_hdisplay =3D (pipe_mode->crtc_hdisplay - overlap) * n;
-> -		pipe_mode->crtc_hblank_start =3D (pipe_mode->crtc_hblank_start - overl=
-ap) * n;
-> -		pipe_mode->crtc_hblank_end =3D (pipe_mode->crtc_hblank_end - overlap) =
-* n;
-> -		pipe_mode->crtc_hsync_start =3D (pipe_mode->crtc_hsync_start - overlap=
-) * n;
-> -		pipe_mode->crtc_hsync_end =3D (pipe_mode->crtc_hsync_end - overlap) * =
-n;
-> -		pipe_mode->crtc_htotal =3D (pipe_mode->crtc_htotal - overlap) * n;
-> -		pipe_mode->crtc_clock *=3D n;
-> +		intel_splitter_adjust_timings(crtc_state, pipe_mode);
->=20=20
->  		intel_mode_from_crtc_timings(pipe_mode, pipe_mode);
->  		intel_mode_from_crtc_timings(adjusted_mode, pipe_mode);
-> @@ -2807,18 +2816,7 @@ static int intel_crtc_compute_config(struct intel_=
-crtc *crtc,
->  		crtc_state->pipe_src_w /=3D 2;
->  	}
->=20=20
-> -	if (crtc_state->splitter.enable) {
-> -		int n =3D crtc_state->splitter.link_count;
-> -		int overlap =3D crtc_state->splitter.pixel_overlap;
-> -
-> -		pipe_mode->crtc_hdisplay =3D (pipe_mode->crtc_hdisplay - overlap) * n;
-> -		pipe_mode->crtc_hblank_start =3D (pipe_mode->crtc_hblank_start - overl=
-ap) * n;
-> -		pipe_mode->crtc_hblank_end =3D (pipe_mode->crtc_hblank_end - overlap) =
-* n;
-> -		pipe_mode->crtc_hsync_start =3D (pipe_mode->crtc_hsync_start - overlap=
-) * n;
-> -		pipe_mode->crtc_hsync_end =3D (pipe_mode->crtc_hsync_end - overlap) * =
-n;
-> -		pipe_mode->crtc_htotal =3D (pipe_mode->crtc_htotal - overlap) * n;
-> -		pipe_mode->crtc_clock *=3D n;
-> -	}
-> +	intel_splitter_adjust_timings(crtc_state, pipe_mode);
->=20=20
->  	intel_mode_from_crtc_timings(pipe_mode, pipe_mode);
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
