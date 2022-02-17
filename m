@@ -1,54 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 842A54B9BF4
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 10:25:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF76A4B9BFA
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 10:26:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F40810EDCF;
-	Thu, 17 Feb 2022 09:25:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E25BB10EDE7;
+	Thu, 17 Feb 2022 09:26:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67A4810EDD4;
- Thu, 17 Feb 2022 09:25:47 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4811810EDE7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 09:26:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645089947; x=1676625947;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=c9VpxmpqyPbdKVv7bGkudznhAWVeNpsJ2GNtw03B7g4=;
- b=StrNxHg6tZyS9afVkzXdEQ/vPJmZE25ALMBdBYqu9PqkVvQV46MsFDyf
- Tq3kFU2famR92azHTXcPcR5nDOnLJFYga4ZVOLlU3FDyDz/TBMEsLv6i/
- hzi2hj8HvPQTWLJZHCmXp7Kx+oGF8lNR9YME9D7mD3xCRkWzxFjmTf3xO
- VywTHGrH+thTDdJbGMRJA2yvObld7iDHLuMdPJl/Ggm+ryZ1Zfa5TRJc/
- RlqI3XP3JkVNtgxqeCs9+yR9Wyfl7NBBSySIptyPz62QEXa86MrkGv7fa
- 25miy07mJ2WkBv8wadr078FgrOqqMqV960wI4bGAQZc7lW7BmueTKKWNt w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="311577508"
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="311577508"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 01:25:46 -0800
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="540878738"
-Received: from zcmahone-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.252.137.102])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 01:25:46 -0800
-Date: Thu, 17 Feb 2022 01:25:45 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Message-ID: <20220217092545.4zpjnh344fmrcg26@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <202202171455.bclm1YBC-lkp@intel.com>
- <20220217063625.sm5ua5xf4jo2ekku@ldmartin-desk2>
- <79301ef2-03d4-ca96-3d7f-6f9b80f319e1@redhat.com>
+ t=1645089985; x=1676625985;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=qceDIk6fShH4bjNsZhrpzgHMTaQ402bs+RNbTC98hLY=;
+ b=IsDG4rksOPesQQdONd+qxESO+ZNYA5E87j8fQziVcq/cfh3PRNUif1V5
+ HoTH7u5Kcz+RZ6/RcvskYuhc+YDXrq0+0QKODAT21q+amGnsrtrpmInv1
+ OwgCEs1esZIjdRc6CJxgv7woatkq3YdLvAoNMqM64o1gYgBx2sjgb/bal
+ uIF/hPQzTbiiKIeHuHddug63oSffCjRDOnqi3SSNmb5UpG8/32stXT70b
+ rQNDsGhIMPtvNL2y0vOrH5U07DrMzfIQm6Ne2QcsS5YTfE83WsmplraZD
+ bYv4gGwuchnsnbQtYmo3EcxEzlkXPjs8Ha4XVQ6IgUzXVY7QhUxUxPflw Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="250778153"
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="250778153"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 01:26:24 -0800
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="530070662"
+Received: from markorti-mobl.ger.corp.intel.com (HELO [10.213.216.21])
+ ([10.213.216.21])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 01:26:21 -0800
+Message-ID: <9910e85e-334d-7ceb-f7f2-6fc25eaacf1e@linux.intel.com>
+Date: Thu, 17 Feb 2022 09:26:18 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <79301ef2-03d4-ca96-3d7f-6f9b80f319e1@redhat.com>
-Subject: Re: [Intel-gfx] [drm-tip:drm-tip 4/8]
- drivers/gpu/drm/solomon/ssd130x.c:451:18: error: incomplete definition of
- type 'struct dma_buf_map'
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: "Usyskin, Alexander" <alexander.usyskin@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+References: <20220213103215.2440248-1-alexander.usyskin@intel.com>
+ <20220213103215.2440248-2-alexander.usyskin@intel.com>
+ <f88b7780-cf4f-d2f5-f2ba-cd3d7bf2a0d4@linux.intel.com>
+ <MW3PR11MB465112EBAFF7BC9681EF2D03ED349@MW3PR11MB4651.namprd11.prod.outlook.com>
+ <7ed77377-1e6e-4329-1fda-87854f9bb938@linux.intel.com>
+ <MW3PR11MB46512DE0897242041BAE055EED359@MW3PR11MB4651.namprd11.prod.outlook.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <MW3PR11MB46512DE0897242041BAE055EED359@MW3PR11MB4651.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v7 1/5] drm/i915/gsc: add gsc as a mei
+ auxiliary device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,143 +71,201 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, intel-gfx@lists.freedesktop.org,
- llvm@lists.linux.dev, Douglas Anderson <dianders@chromium.org>,
- dri-devel@lists.freedesktop.org
+Cc: "Winkler, Tomas" <tomas.winkler@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Lubart,
+ Vitaly" <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 17, 2022 at 10:00:42AM +0100, Javier Martinez Canillas wrote:
->Hello Lucas,
->
->On 2/17/22 07:36, Lucas De Marchi wrote:
->> +Javier
+
+
+On 16/02/2022 17:14, Usyskin, Alexander wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Sent: Wednesday, February 16, 2022 14:04
+>> To: Usyskin, Alexander <alexander.usyskin@intel.com>; Greg Kroah-
+>> Hartman <gregkh@linuxfoundation.org>; Jani Nikula
+>> <jani.nikula@linux.intel.com>; Joonas Lahtinen
+>> <joonas.lahtinen@linux.intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+>> David Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>
+>> Cc: linux-kernel@vger.kernel.org; Winkler, Tomas
+>> <tomas.winkler@intel.com>; Lubart, Vitaly <vitaly.lubart@intel.com>; intel-
+>> gfx@lists.freedesktop.org
+>> Subject: Re: [Intel-gfx] [PATCH v7 1/5] drm/i915/gsc: add gsc as a mei
+>> auxiliary device
 >>
 >>
->> On Thu, Feb 17, 2022 at 02:25:08PM +0800, kernel test robot wrote:
->>> tree:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
->>> head:   e141e36b2871c529379f7ec7d5d6ebae3137a51b
->>> commit: 7ca6504c36709f35c4cc38ae6acc1c9c3d72136f [4/8] Merge remote-tracking branch 'drm-misc/drm-misc-next' into drm-tip
->>> config: mips-buildonly-randconfig-r002-20220217 (https://download.01.org/0day-ci/archive/20220217/202202171455.bclm1YBC-lkp@intel.com/config)
->>> compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 0bad7cb56526f2572c74449fcf97c1fcda42b41d)
->>> reproduce (this is a W=1 build):
->>>        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->>>        chmod +x ~/bin/make.cross
->>>        # install mips cross compiling tool for clang build
->>>        # apt-get install binutils-mips-linux-gnu
->>>        git remote add drm-tip git://anongit.freedesktop.org/drm/drm-tip
->>>        git fetch --no-tags drm-tip drm-tip
->>>        git checkout 7ca6504c36709f35c4cc38ae6acc1c9c3d72136f
->>>        # save the config file to linux build tree
->>>        mkdir build_dir
->>>        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash drivers/gpu/drm/solomon/
->>>
->>> If you fix the issue, kindly add following tag as appropriate
->>> Reported-by: kernel test robot <lkp@intel.com>
->>>
->>> All error/warnings (new ones prefixed by >>):
->>>
->>>>> drivers/gpu/drm/solomon/ssd130x.c:447:74: warning: declaration of 'struct dma_buf_map' will not be visible outside of this function [-Wvisibility]
->>>   static int ssd130x_fb_blit_rect(struct drm_framebuffer *fb, const struct dma_buf_map *map,
->>>                                                                            ^
 >>
->> this is now called iosys_map in drm-intel... drm-tip will need a fixup
->> for the merge.
+>> On 15/02/2022 15:22, Usyskin, Alexander wrote:
 >>
->
->I thought that the drm-intel tree was only for Intel DRM drivers changes and
->subsystem wide changes should be merged through drm-mic ?
->
->Doing refactoring in that tree will likely lead to merge conflicts like this.
-
-Yes, I know. My initial proposal was to split the rename and do it per
-branch to avoid this kind of situation, but it was requested to be done
-all in a single patch. Since I had other ~15 patches dependent on that
-one to be merged in drm-intel, it was agreed to do the rename via
-drm-intel. See 
-https://lore.kernel.org/lkml/e3813696-7b91-510c-987f-85ed2fd502d6@suse.de/
-
-I guess the conflicts won't be that terrible and can be fixed as they
-show up.
-
->Noticed your series in dri-devel but missed that already landed in drm-intel.
->
->The resolution should just be [0] right? If you confirm that then I can post
->a proper patch to dri-devel.
->
->>>>> drivers/gpu/drm/solomon/ssd130x.c:451:18: error: incomplete definition of type 'struct dma_buf_map'
->>>           void *vmap = map->vaddr; /* TODO: Use mapping abstraction properly */
->>>                        ~~~^
+>>>>> +{
+>>>>> +	irq_set_chip_and_handler_name(irq, &gsc_irq_chip,
+>>>>> +				      handle_simple_irq, "gsc_irq_handler");
+>>>>> +
+>>>>> +	return irq_set_chip_data(irq, dev_priv);
+>>>>
+>>>> I am not familiar with this interrupt scheme - does dev_priv get used at
+>>>> all by handle_simple_irq, or anyone, after being set here?
 >>
->> this shouldn't really be done.
+>> What about this? Is dev_priv required or you could pass in NULL just as
+>> well?
 >>
->
->Yes, I know but asked what would be the proper way and didn't get an answer.
->We have many drivers doing the same and I couldn't find one that was doing
->it correctly to use as a reference:
->
->$ git grep "TODO: Use mapping abstraction properly" | wc -l
->15
->
->If you point me the proper way, I'll be happy to post a patch to change it.
-
-It depends what you want to do with the address. There are APIs to copy
-from/to. I also added a few to read/write to an offset. It seems the
-problem here is that you need to pass that to a helper,
-drm_fb_xrgb8888_to_mono_reversed(). I think the proper solution would be
-to change the helper to accept an iosys_map* as argument rather than a
-void*.
-
-Lucas De Marchi
-
->
->> Lucas De Marchi
+> 
+> It is not used, will remove
+> 
+>>>>
+>>>>> +}
+>>>>> +
+>>>>> +struct intel_gsc_def {
+>>>>> +	const char *name;
+>>>>> +	const unsigned long bar;
+>>>>
+>>>> Unusual, why const out of curiosity? And is it "bar" or "base" would be
+>>>> more accurate?
+>>>>
+>>> Some leftover, thanks for spotting this!
+>>> It is a base of bar. I prefer bar name here. But not really matter.
 >>
->
->[0]
->From f8268e5b15c321b56862904665f5e312bf50d397 Mon Sep 17 00:00:00 2001
->From: Javier Martinez Canillas <javierm@redhat.com>
->Date: Thu, 17 Feb 2022 09:52:37 +0100
->Subject: [PATCH] drm/solomon: Rename dma-buf-map to iosys-map
->
->Commit 7938f4218168 ("dma-buf-map: Rename to iosys-map") renamed the struct
->dma_buf_map to struct iosys_map, but this change wasn't present in drm-misc
->when the ssd130x driver was merged, and it created a merge conflict.
->
->Fix this by renaming the data structure type in the ssd130x driver.
->
->Reported-by: kernel test robot <lkp@intel.com>
->Suggested-by: Lucas De Marchi <lucas.demarchi@intel.com>
->Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
->---
-> drivers/gpu/drm/solomon/ssd130x.c | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->
->diff --git a/drivers/gpu/drm/solomon/ssd130x.c b/drivers/gpu/drm/solomon/ssd130x.c
->index 19697c8c5a2c..92c1902f53e4 100644
->--- a/drivers/gpu/drm/solomon/ssd130x.c
->+++ b/drivers/gpu/drm/solomon/ssd130x.c
->@@ -444,7 +444,7 @@ static void ssd130x_clear_screen(struct ssd130x_device *ssd130x)
-> 	kfree(buf);
-> }
->
->-static int ssd130x_fb_blit_rect(struct drm_framebuffer *fb, const struct dma_buf_map *map,
->+static int ssd130x_fb_blit_rect(struct drm_framebuffer *fb, const struct iosys_map *map,
+>> Is it?
+>>
+>> +	adev->bar.start = def->bar + pdev->resource[0].start;
+>>
+>> Looks like offset on top of BAR, no?
+>>
+> 
+> Offset on top of DG bar; but start of HECI1/2 bar too.
 
-I added this as a fixup to dim, so it's applied on the merge commit. I
-think it would be preferred to have this in the merge resolution when
-drm-intel propagates all the way back to drm-misc
+Ok. :)
 
+>>>>> +{
+>>>>> +	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+>>>>> +	struct mei_aux_device *adev;
+>>>>> +	struct auxiliary_device *aux_dev;
+>>>>> +	const struct intel_gsc_def *def;
+>>>>> +	int ret;
+>>>>> +
+>>>>> +	intf->irq = -1;
+>>>>> +	intf->id = intf_id;
+>>>>> +
+>>>>> +	if (intf_id == 0 && !HAS_HECI_PXP(dev_priv))
+>>>>> +		return;
+>>>>
+>>>> Isn't inf_id == 0 always a bug with this patch, regardless of
+>>>> HAS_HECI_PXP, since the support is incomplete in this patch? If so I'd
+>>>> be more comfortable with a plain drm_WARN_ON_ONCE(intf_id == 0).
+>>>>
+>>> There will be patches for other cards that have pxp as soon as this is
+>> reviewed.
+>>> It is better to have infra prepared for two heads.
+>>
+>> My point is things are half-prepared since you don't have the id 0 in
+>> the array, regardless of the HAS_HECI_PXP. Yes it can't be true now, but
+>> if you add a patch which enables it to be true, you have to modify the
+>> array at the same time or risk a broken patch in the middle.
+>>
+>> I don't see the point of the condition making it sound like there are
+>> two criteria to enter below, while in fact there is only one in current
+>> code, and that it that it must not be entered because array is incomplete!
+>>
+> 
+> We initialize both cells in gsc->intf array, the first one with defaults (two lines before this line)
+> for systems without working PXP, like DG1.
+> The code on GSC level does not know that we don't have PXP and don't want to know.
 
-> 				struct drm_rect *rect)
-> {
-> 	struct ssd130x_device *ssd130x = drm_to_ssd130x(fb->dev);
->-- 
->2.34.1
->
->Best regards,
->-- 
->Javier Martinez Canillas
->Linux Engineering
->Red Hat
->
+By defaults you mean "-1" ?
+
+My point is intel_gsc_def_dg1[] does not contain anything valid for 
+interface zero. If you change HAS_HECI_PXP to return true, the code 
+below does:
+
+   def = &intel_gsc_def_dg1[intf_id];
+
+And points to template data not populated.
+
+So you have to change two in conjuction. Hence safest code for this 
+patch would simply be:
+
+   if (intf_id == 0) {
+	drm_WARN_ON_ONCE(, "Code not implemented yet!\n");
+	return;
+    }
+
+When you add entries to intel_gsc_def_dg1[] in a later series/patch, 
+then you simply remove the above lines altogether.
+
+> 
+>>>>> +
+>>>>> +	if (!HAS_HECI_GSC(gt->i915))
+>>>>> +		return;
+>>>>
+>>>> Likewise?
+>>>>
+>>>>> +
+>>>>> +	if (gt->gsc.intf[intf_id].irq <= 0) {
+>>>>> +		DRM_ERROR_RATELIMITED("error handling GSC irq: irq not
+>>>> set");
+>>>>
+>>>> Like this, but use logging functions which say which device please.
+>>>>
+>>> drm_err_ratelimited fits here?
+>>
+>> AFAICT it would be a programming bug and not something that can happen
+>> at runtime hence drm_warn_on_once sounds correct for both.
+>>
+> 
+> Sure, will do
+> 
+>>>>>     }
+>>>>> @@ -182,6 +185,8 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
+>>>>>     	/* Disable RCS, BCS, VCS and VECS class engines. */
+>>>>>     	intel_uncore_write(uncore, GEN11_RENDER_COPY_INTR_ENABLE,
+>>>> 0);
+>>>>>     	intel_uncore_write(uncore, GEN11_VCS_VECS_INTR_ENABLE,	  0);
+>>>>> +	if (HAS_HECI_GSC(gt->i915))
+>>>>> +		intel_uncore_write(uncore,
+>>>> GEN11_GUNIT_CSME_INTR_ENABLE, 0);
+>>>>>
+>>>>>     	/* Restore masks irqs on RCS, BCS, VCS and VECS engines. */
+>>>>>     	intel_uncore_write(uncore, GEN11_RCS0_RSVD_INTR_MASK,	~0);
+>>>>> @@ -195,6 +200,8 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
+>>>>>     	intel_uncore_write(uncore, GEN11_VECS0_VECS1_INTR_MASK,
+>>>> 	~0);
+>>>>>     	if (HAS_ENGINE(gt, VECS2) || HAS_ENGINE(gt, VECS3))
+>>>>>     		intel_uncore_write(uncore,
+>>>> GEN12_VECS2_VECS3_INTR_MASK, ~0);
+>>>>> +	if (HAS_HECI_GSC(gt->i915))
+>>>>> +		intel_uncore_write(uncore,
+>>>> GEN11_GUNIT_CSME_INTR_MASK, ~0);
+>>>>>
+>>>>>     	intel_uncore_write(uncore,
+>>>> GEN11_GPM_WGBOXPERF_INTR_ENABLE, 0);
+>>>>>     	intel_uncore_write(uncore,
+>>>> GEN11_GPM_WGBOXPERF_INTR_MASK,  ~0);
+>>>>> @@ -209,6 +216,7 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
+>>>>>     {
+>>>>>     	struct intel_uncore *uncore = gt->uncore;
+>>>>>     	u32 irqs = GT_RENDER_USER_INTERRUPT;
+>>>>> +	const u32 gsc_mask = GSC_IRQ_INTF(0) | GSC_IRQ_INTF(1);
+>>>>
+>>>> Why enable the one which is not supported by the patch? No harm doing
+>> it?
+>>>>
+>>> No harm and the next patch will be soon, this patch unfortunately is long
+>> overdue.
+>>
+>> Just feels a bit lazy. You are adding two feature test macros to
+>> prepare, so why not use them.
+>>
+> 
+> I've been told that better to enable them both from the HW perspective,
+> the real interrupt enable magic happens in GSC FW, not here.
+
+Well whatever.. As long as logging of spurious/unexpected interrupts is 
+in place I can live with that.
+
+Regards,
+
+Tvrtko
