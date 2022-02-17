@@ -2,53 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0244F4BA9A9
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 20:21:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B1AE4BA9E2
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 20:35:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17A7610E6D6;
-	Thu, 17 Feb 2022 19:21:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC50810E206;
+	Thu, 17 Feb 2022 19:35:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 007FC10E6D6
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 19:21:39 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3E3510E206;
+ Thu, 17 Feb 2022 19:35:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645125699; x=1676661699;
+ t=1645126519; x=1676662519;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=fox4tZ/N3RsIK99P/3w+2Sj9EZ115k17SWDTFCGKavI=;
- b=PtxjJD4fuMuoEMkmChOPhWdsI9bNzoHxDnBFHbtrexlMAnmV1n5m4Gev
- s7Umm1t6kXWPOn52ZRnMHpf8WE0TCLXYVguXkOzKUpzCiMsDnfC7K58qD
- yPnjg9og96uH6ptegTumBz5FJkYUp7wVyGMPn2FpO4rDzoiV7HtsIKJA8
- jmS8psbHVl1JINX1/D0gAxgDgwD87Yze/TsACjBS/ZYjn4suLeBRqUe4m
- mpAE/K0VIjvoIRjJ7G9yZ9noAys1oKnZJti3GJi7W9kYqkFGsmOvXifOY
- hT/aX/lDbeDHGRB51JYdDJASadqczrKuJFkabuaaOEbAbDN+QIC2XAew7 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="314219872"
-X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="314219872"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 11:21:39 -0800
-X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="545803906"
-Received: from orsosgc001.jf.intel.com (HELO unerlige-ril-10.165.21.154)
- ([10.165.21.154])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 11:21:39 -0800
-Date: Thu, 17 Feb 2022 11:21:39 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-Message-ID: <20220217192139.GH34157@unerlige-ril-10.165.21.154>
-References: <20220126104822.3653079-1-alan.previn.teres.alexis@intel.com>
- <20220126104822.3653079-8-alan.previn.teres.alexis@intel.com>
- <20220211013629.GA34157@unerlige-ril-10.165.21.154>
- <df189b62fad353301c33ea2c37fba1391e11a6d7.camel@intel.com>
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=PCIc8R938Gw6+OOWD8T0O/hqNVXqP/Me74Z+JDMG4Hw=;
+ b=AGYaSCnhDdgnd1nBe4a/18aVxVaIE60g6WfwfZzPJtAI9J3emlSU0UfA
+ efnftsjOMFS5kdepQmkqzgw4/hBH/CVMprS8qAzzv6vrIgTcX9wwDn8vh
+ Lw9uXHyD+g5mYZaeu1Fa5E6+hOxru1UBdd6jas9NZGEROfP4gXXR58KP7
+ /mpwxztEEXb64BH1So2ALxKp8IAQcpOTiOujGdj4k+cS9ZPuAxEFQKOCC
+ 6IhzID9GOOMe/hVkN02VrzwF/lYsZ+uQf5tUADyku8AQZSzst30nj61c4
+ ecckQoDHkB2lkdwMY7DVByBpvqS10iVI4Kv9AMbWxfD33s/7W+O+228Kc A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="337402500"
+X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="337402500"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 11:35:19 -0800
+X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="530465307"
+Received: from csavery-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.47.201])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 11:35:19 -0800
+Date: Thu, 17 Feb 2022 11:35:18 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Ramalingam C <ramalingam.c@intel.com>
+Message-ID: <20220217193518.7efoiswvblp5kvd3@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220215055154.15363-1-ramalingam.c@intel.com>
+ <20220215055154.15363-3-ramalingam.c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
 Content-Disposition: inline
-In-Reply-To: <df189b62fad353301c33ea2c37fba1391e11a6d7.camel@intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH v5 07/10] drm/i915/guc: Extract GuC error
- capture lists on G2H notification.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220215055154.15363-3-ramalingam.c@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/dg2: Drop 38.4 MHz MPLLB tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,122 +59,259 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Feb 13, 2022 at 11:47:00AM -0800, Teres Alexis, Alan Previn wrote:
->Thanks Umesh for reviewing the patch.
->Am fixing all the rest but a couple of comments.
->Responses to the latter and other questions below:
+On Tue, Feb 15, 2022 at 11:21:53AM +0530, Ramalingam C wrote:
+>From: Matt Roper <matthew.d.roper@intel.com>
 >
->...alan
+>Our early understanding of DG2 was incorrect; since the 5th display
+>isn't actually a Type-C output, 38.4 MHz input clocks are never used on
+>this platform and we can drop the corresponding MPLLB tables.
 >
->> > +enum intel_guc_state_capture_event_status {
->> > +   INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_SUCCESS = 0x0,
->> > +   INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_NOSPACE = 0x1,
->> > +};
->> > +
->> > +#define INTEL_GUC_STATE_CAPTURE_EVENT_STATUS_MASK      0x1
->>
->> MASK is not needed. See below
->
->Alan: Oh wait, actually the mask for the capture status is 0x000000FF
->(above is a typo). I'll fix above  mask and shall not change the
->code below because the upper 24 bits of the first dword of this msg
->is not defined.
->
->...
->
->
->> > +static int guc_capture_buf_cnt(struct __guc_capture_bufstate *buf)
->> > +{
->> > +   if (buf->rd == buf->wr)
->> > +           return 0;
->> > +   if (buf->wr > buf->rd)
->> > +           return (buf->wr - buf->rd);
->> > +   return (buf->size - buf->rd) + buf->wr;
->> > +}
->>
->> Is this a circular buffer shared between GuC and kmd? Since the size is
->> a power of 2, the above function is simply:
->>
->Alan: not this is not a circular buffer, so I'll keep the above
->version.
->> static u32 guc_capture_buf_count(struct __guc_capture_bufstate *buf)
->> {
->>       return (buf->wr - buf->rd) & (buf->size - 1);
->> }
->>
->
->...
->
->> > +static int
->> > +guc_capture_log_remove_dw(struct intel_guc *guc, struct __guc_capture_bufstate *buf,
->> > +                     u32 *dw)
->> > +{
->> > +   struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
->> > +   int tries = 2;
->> > +   int avail = 0;
->> > +   u32 *src_data;
->> > +
->> > +   if (!guc_capture_buf_cnt(buf))
->> > +           return 0;
->> > +
->> > +   while (tries--) {
->> > +           avail = guc_capture_buf_cnt_to_end(buf);
->>
->> Shouldn't this be avail = guc_capture_buf_cnt(buf)?
->>
->
->Alan : The "guc_capture_log_get_[foo]" functions only call above
->guc_capture_log_remove_dw when there isnt sufficient space to
->copy out an entire structure from the space between the read pointer
->and the end of the subregion (before the wrap-around). Those function
->would populate the structure dword by dword by calling above func.
->(NOTE the buffer and all error capture output structs are dword
->aligned). Thats why above function tries twice and resets buf->rd = 0
->if we find no space left at the end of the subregion (i.e. need to
->wrap around) - which can only be done by calling
->"guc_capture_buf_cnt_to_end".
->
->...
->
->> > +
->> > +   /* Bookkeeping stuff */
->> > +   guc->log_state[GUC_CAPTURE_LOG_BUFFER].flush += log_buf_state_local.flush_to_file;
->> > +   new_overflow = intel_guc_check_log_buf_overflow(guc,
->> > +                                                   &guc->log_state[GUC_CAPTURE_LOG_BUFFER],
->> > +                                                   full_count);
->>
->> I am not sure how the overflow logic works here and whether it is
->> applicable to the error capture buffer. Is the guc log buffer one big
->> buffer where the error capture is just a portion of that buffer? If so,
->> is the wrap around applicable to just the errorcapture buffer or to the
->> whole buffer?
->>
->Alan: Yes, the guc log buffer is one big log buffer but there are 3 independent
->subregions within that are populated with different content and are used
->in different ways and timings. Each guc-log subregion (general-logs,
->crash-dump and error-capture) has it's own read and write pointers.
+>Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+>Cc: José Roberto de Souza <jose.souza@intel.com>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
 
-got it. I would also put this one detail in the commit message since 
-it's not quickly inferred.
 
->
->
->> Also what is the wrap_offset field in struct guc_log_buffer_state?
->
->Alan: This is the byte offset of a location in the subregion that is the 1st byte
->after the last valid guc entry written by Guc firmware before a wraparound
->was done. This would generate a tiny hole at the end of the subregion for better
->cacheline alignment when flushing entries into the subregion. However,
->the error-capture subregion is dword aligned and all of the output structures
->used for error-capture are also dword aligned so this can never happen for the
->error-capture subregion.
->
-Makes sense, thanks for clarifying.
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Umesh
+Lucas De Marchi
+
+
+>---
+> drivers/gpu/drm/i915/display/intel_snps_phy.c | 208 +-----------------
+> 1 file changed, 1 insertion(+), 207 deletions(-)
 >
->>
+>diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+>index 8573a458811a..c60575cb5368 100644
+>--- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
+>+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+>@@ -250,197 +250,6 @@ static const struct intel_mpllb_state * const dg2_dp_100_tables[] = {
+> 	NULL,
+> };
+>
+>-/*
+>- * Basic DP link rates with 38.4 MHz reference clock.
+>- */
+>-
+>-static const struct intel_mpllb_state dg2_dp_rbr_38_4 = {
+>-	.clock = 162000,
+>-	.ref_control =
+>-		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
+>-	.mpllb_cp =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 5) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 25) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
+>-	.mpllb_div =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_TX_CLK_DIV, 2) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FREQ_VCO, 2),
+>-	.mpllb_div2 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 304),
+>-	.mpllb_fracn1 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
+>-	.mpllb_fracn2 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 49152),
+>-};
+>-
+>-static const struct intel_mpllb_state dg2_dp_hbr1_38_4 = {
+>-	.clock = 270000,
+>-	.ref_control =
+>-		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
+>-	.mpllb_cp =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 5) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 25) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
+>-	.mpllb_div =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_TX_CLK_DIV, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FREQ_VCO, 3),
+>-	.mpllb_div2 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 248),
+>-	.mpllb_fracn1 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
+>-	.mpllb_fracn2 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 40960),
+>-};
+>-
+>-static const struct intel_mpllb_state dg2_dp_hbr2_38_4 = {
+>-	.clock = 540000,
+>-	.ref_control =
+>-		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
+>-	.mpllb_cp =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 5) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 25) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
+>-	.mpllb_div =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FREQ_VCO, 3),
+>-	.mpllb_div2 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 248),
+>-	.mpllb_fracn1 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
+>-	.mpllb_fracn2 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 40960),
+>-};
+>-
+>-static const struct intel_mpllb_state dg2_dp_hbr3_38_4 = {
+>-	.clock = 810000,
+>-	.ref_control =
+>-		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
+>-	.mpllb_cp =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 6) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 26) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
+>-	.mpllb_div =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2),
+>-	.mpllb_div2 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 388),
+>-	.mpllb_fracn1 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
+>-	.mpllb_fracn2 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 61440),
+>-};
+>-
+>-static const struct intel_mpllb_state dg2_dp_uhbr10_38_4 = {
+>-	.clock = 1000000,
+>-	.ref_control =
+>-		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
+>-	.mpllb_cp =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 5) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 26) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
+>-	.mpllb_div =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_CLK_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_MULTIPLIER, 8) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_SHIM_DIV32_CLK_SEL, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 2),
+>-	.mpllb_div2 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 488),
+>-	.mpllb_fracn1 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 3),
+>-	.mpllb_fracn2 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_REM, 2) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 27306),
+>-
+>-	/*
+>-	 * SSC will be enabled, DP UHBR has a minimum SSC requirement.
+>-	 */
+>-	.mpllb_sscen =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_PEAK, 76800),
+>-	.mpllb_sscstep =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 129024),
+>-};
+>-
+>-static const struct intel_mpllb_state dg2_dp_uhbr13_38_4 = {
+>-	.clock = 1350000,
+>-	.ref_control =
+>-		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 1),
+>-	.mpllb_cp =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 6) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 56) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
+>-	.mpllb_div =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_CLK_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_MULTIPLIER, 8) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 3),
+>-	.mpllb_div2 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 670),
+>-	.mpllb_fracn1 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
+>-	.mpllb_fracn2 =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_QUOT, 36864),
+>-
+>-	/*
+>-	 * SSC will be enabled, DP UHBR has a minimum SSC requirement.
+>-	 */
+>-	.mpllb_sscen =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_EN, 1) |
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_PEAK, 103680),
+>-	.mpllb_sscstep =
+>-		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 174182),
+>-};
+>-
+>-static const struct intel_mpllb_state * const dg2_dp_38_4_tables[] = {
+>-	&dg2_dp_rbr_38_4,
+>-	&dg2_dp_hbr1_38_4,
+>-	&dg2_dp_hbr2_38_4,
+>-	&dg2_dp_hbr3_38_4,
+>-	&dg2_dp_uhbr10_38_4,
+>-	&dg2_dp_uhbr13_38_4,
+>-	NULL,
+>-};
+>-
+> /*
+>  * eDP link rates with 100 MHz reference clock.
+>  */
+>@@ -749,22 +558,7 @@ intel_mpllb_tables_get(struct intel_crtc_state *crtc_state,
+> 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
+> 		return dg2_edp_tables;
+> 	} else if (intel_crtc_has_dp_encoder(crtc_state)) {
+>-		/*
+>-		 * FIXME: Initially we're just enabling the "combo" outputs on
+>-		 * port A-D.  The MPLLB for those ports takes an input from the
+>-		 * "Display Filter PLL" which always has an output frequency
+>-		 * of 100 MHz, hence the use of the _100 tables below.
+>-		 *
+>-		 * Once we enable port TC1 it will either use the same 100 MHz
+>-		 * "Display Filter PLL" (when strapped to support a native
+>-		 * display connection) or different 38.4 MHz "Filter PLL" when
+>-		 * strapped to support a USB connection, so we'll need to check
+>-		 * that to determine which table to use.
+>-		 */
+>-		if (0)
+>-			return dg2_dp_38_4_tables;
+>-		else
+>-			return dg2_dp_100_tables;
+>+		return dg2_dp_100_tables;
+> 	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+> 		return dg2_hdmi_tables;
+> 	}
+>-- 
+>2.20.1
+>
