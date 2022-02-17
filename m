@@ -1,33 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 084134B9688
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 04:19:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 492B24B96E5
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 04:48:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B96610E722;
-	Thu, 17 Feb 2022 03:19:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 898DF10E731;
+	Thu, 17 Feb 2022 03:48:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0592910E722;
- Thu, 17 Feb 2022 03:19:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 02C58AADD2;
- Thu, 17 Feb 2022 03:19:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1305291828492041363=="
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com
+ [IPv6:2607:f8b0:4864:20::d29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A83D510E731;
+ Thu, 17 Feb 2022 03:48:36 +0000 (UTC)
+Received: by mail-io1-xd29.google.com with SMTP id h5so2214902ioj.3;
+ Wed, 16 Feb 2022 19:48:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=WX6MJz/RVmu5KU05M8p6pw0cbdiL13QxNy+cJ91otYI=;
+ b=d4W6T2hoWi2DLEPWhP29U01f7jjXpO4/jxusulpHAFgBnZJxEhulxoG73pLteKLv37
+ A6Kn/eoMG2/dmrz3GmCi0UlCls1b1zotKBOdUG+LGBu8tRssVfmRMz9hYnOjFhHdZYX1
+ rTGjsGMetAi3icEEes4488Yy9smVgBBYU+F2k5ckupGqYYYeFYUJkqTGvLku1cfzL4+E
+ HL6Ocww7mMvh1aDzPezp19by7fjpAYeDzGTAqepvgPqUHaZMs2ZjcbKmjJ1gN+FFcmLL
+ bH5y1D488kTn3eBtI+ilfKEqDsC5nLMbIwgkUVFbKaxulzzRCyFlfucOa2JHpjKRZdit
+ ABYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=WX6MJz/RVmu5KU05M8p6pw0cbdiL13QxNy+cJ91otYI=;
+ b=JtY1oMQtYJ3xQoaDygqR6h+nCchBAHZkFwksbpPvj7u0gB0vUEOHqYZwIs6ldpxygA
+ wb0nOCYNDMJoUgoXiIhWC9dkLb+0kR8YK08yAv8AdhqbEO9gpIX2jLGRePp2lxXp2est
+ pKSxhAeiFrywLuRKp3MnOQ1bMQzqCrO3xqOaLh6VqnlscjxEjEO8uz/Es+IamwRLPNZB
+ 8cFmm7ErHQlUEiRUsiD74UtDSi6HD/V5XwJjkzHqs7GkHsBUaBx+g4c2UYFYci410biU
+ 2+jOagz2rifpVWRciQeyjMWAZcqRD1o+tQFfo6uCqjToGehL9iu0t6vijKLZrNTofkOy
+ dTzQ==
+X-Gm-Message-State: AOAM530Z0JJAuxilBlwOiuE/rvtyhbYCNn4vKT5NYxm+eddrgPhOJrFL
+ /fLYw5cIONjr9ZE9i0HndYEOmh3w6nvXGQ==
+X-Google-Smtp-Source: ABdhPJxyyYVp2cpU+u+Brn6vc+Sa2k3avtGDvXSzA1PMgl1XvLDtup0SaBDOqBlcJQLSAvD+iRZDHw==
+X-Received: by 2002:a02:7163:0:b0:314:3b74:525a with SMTP id
+ n35-20020a027163000000b003143b74525amr701416jaf.260.1645069715755; 
+ Wed, 16 Feb 2022 19:48:35 -0800 (PST)
+Received: from frodo.hsd1.co.comcast.net ([2601:284:8204:2010::1b19])
+ by smtp.googlemail.com with ESMTPSA id l16sm1127874ilc.54.2022.02.16.19.48.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 16 Feb 2022 19:48:35 -0800 (PST)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com, gregkh@linuxfoundation.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Date: Wed, 16 Feb 2022 20:48:16 -0700
+Message-Id: <20220217034829.64395-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Date: Thu, 17 Feb 2022 03:19:32 -0000
-Message-ID: <164506797297.18051.12987563764698824530@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220214020357.10063-1-vandita.kulkarni@intel.com>
-In-Reply-To: <20220214020357.10063-1-vandita.kulkarni@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
- =?utf-8?q?_data_flow_metering_support_for_HDMI2=2E1_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/12] use dynamic-debug under drm.debug api
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,285 +69,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jim Cromie <jim.cromie@gmail.com>, daniel.vetter@ffwll.ch,
+ linux@rasmusvillemoes.dk, seanpaul@chromium.org, joe@perches.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1305291828492041363==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+drm.debug api provides ~23 macros to issue 10 categories of debug
+messages, each enabled by a bit in /sys/module/drm/parameters/debug.
+drm_debug_enabled(category) tests these bits at runtime; while cheap
+individually, the costs accumulate.
 
-== Series Details ==
+For CONFIG_DRM_USE_DYNAMIC_DEBUG=y, this patchset obsoletes those
+runtime tests (inside drm_*dbg) by wrapping the 2 fns in one of the
+dynamic_func_call* Factory macros.  The config dependence is due to
+the .data footprint cost of the tables; AMDGPU has ~4k callsites, at
+56 bytes each.
 
-Series: Add data flow metering support for HDMI2.1 (rev3)
-URL   : https://patchwork.freedesktop.org/series/99668/
-State : success
+This creates entries in /proc/dynamic_debug/control for each callsite,
+and each has .class_id = macros'-category.  This, and a new query
+keyword, allow (1st):
 
-== Summary ==
+  # 1=DRM_UT_KMS (iirc)
+  #> echo "module drm class 1 +p  > /proc/dynamic_debug/control
 
-CI Bug Log - changes from CI_DRM_11238 -> Patchwork_22293
-====================================================
+Then equivalently:
+  # except it also clears other flags
+  #> echo 0x01 > /sys/module/drm/parameters/debug
 
-Summary
--------
+dyndbg:
+ - fixes a bug in dyndbg static_key toggling, @stable cc'd
+ - adds support for distinct classes to dyndbg (new,unused feature)
+ - add DECLARE_DYNAMIC_DEBUG_CLASSBITS macro and callbacks
+   to implement bitmap -> classid sysfs knob
+dyndbg:
+ - drops exported fn: dynamic_debug_exec_queries()
+   any potential users would just use macro, or a tweak on it.
+ - improve info-msg to print both "old -> new" flags
+drm:
+ - adapts drm to use that support (link category to class_id)
+ - wraps drm_*dbg() in a dyndbg Factory macro to get NOOP optimized debugs
+   this disconnects drm.debug sysfs knob
+ - uses DECLARE_DYNAMIC_DEBUG_CLASSBITS macro
+   this reconnects sysfs knob
 
-  **SUCCESS**
+This could be -v12, but the focus and subject has wandered a bit, and
+patchwork CI had multiple different notions of the version.
+Noteworthy changes:
 
-  No regressions found.
+- no tracefs stuff here, refocus
+  split out already, needs maturation, more attention.
+  its competing with a diet plan, to reduce 56 bytes/callsite. RFC.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/index.html
+Previous drm.debug approach:
 
-Participating hosts (46 -> 42)
-------------------------------
+- avoided drm_dbg & drm_devdbg by splicing in pr_debug & dev_dbg
+  this preserved the optional decorations: module:function:line:
 
-  Additional (1): fi-pnv-d510 
-  Missing    (5): fi-bxt-dsi shard-tglu fi-bsw-n3050 fi-tgl-1115g4 fi-bsw-cyan 
+- used DRM_UT_CORE => "drm:core:" prefix-string, cpp cat'd to formats
+  this made sites selectable by matching to that format prefix
 
-Known issues
-------------
+This version:
 
-  Here are the changes found in Patchwork_22293 that come from known issues:
+- .class_id is easier to explain, and no config/format-string diffs
 
-### IGT changes ###
+- wraps drm_dbg & drm_devdbg callsites for jumplabel enablement
+  efficiency was original goal.
 
-#### Issues hit ####
+- loses the optional decorations.
+  drm has its own logmsg standards, doesnt need decorations slapped on
+  later: could recast flags for drm specific decorations
 
-  * igt@amdgpu/amd_prime@amd-to-i915:
-    - fi-ivb-3770:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-ivb-3770/igt@amdgpu/amd_prime@amd-to-i915.html
+This is based on 5.17-rc4
 
-  * igt@gem_flink_basic@bad-flink:
-    - fi-skl-6600u:       NOTRUN -> [INCOMPLETE][2] ([i915#4547])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html
+Its also here: in (dd-drm branch)
+  ghlinux-ro	https://github.com/jimc/linux.git (fetch)
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][3] ([fdo#109271]) +57 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html
+I'll push further fixes there as they come.
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][4] ([i915#3921])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html
+Jim Cromie (13):
+  dyndbg: fix static_branch manipulation @stable
+  dyndbg: add class_id field and query support
+  dyndbg: add DEFINE_DYNAMIC_DEBUG_CLASSBITS macro and callbacks
+  dyndbg: drop EXPORTed dynamic_debug_exec_queries
+  dyndbg: improve change-info to have old and new
+  dyndbg: abstract dyndbg_site_is_printing
+  drm_print: condense enum drm_debug_category
+  drm_print: interpose drm_*dbg with forwarding macros
+  drm_print: wrap drm_*_dbg in dyndbg jumplabel
+  drm_print: refine drm_debug_enabled for dyndbg+jump-label
+  drm_print: prefer bare printk KERN_DEBUG on generic fn
+  drm_print: add _ddebug desc to drm_*dbg prototypes
+  drm_print: use DEFINE_DYNAMIC_DEBUG_CLASSBITS for drm.debug
 
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html
+ .../admin-guide/dynamic-debug-howto.rst       |   7 +
+ drivers/gpu/drm/Kconfig                       |  12 ++
+ drivers/gpu/drm/Makefile                      |   2 +
+ drivers/gpu/drm/drm_print.c                   |  56 ++++---
+ include/drm/drm_print.h                       |  80 +++++++---
+ include/linux/dynamic_debug.h                 | 113 +++++++++++---
+ lib/dynamic_debug.c                           | 140 ++++++++++++++----
+ 7 files changed, 323 insertions(+), 87 deletions(-)
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cfl-8109u:       [PASS][6] -> [DMESG-FAIL][7] ([i915#295])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11238/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html
+-- 
+2.35.1
 
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-cfl-8109u:       [PASS][8] -> [DMESG-WARN][9] ([i915#295]) +10 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11238/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][10] ([fdo#109271]) +13 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - {fi-tgl-dsi}:       [DMESG-WARN][11] ([i915#2867]) -> [PASS][12] +16 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11238/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-ivb-3770:        [INCOMPLETE][13] ([i915#3303]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11238/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
-    - bat-dg1-5:          [DMESG-FAIL][15] ([i915#4494] / [i915#4957]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11238/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-6:          [DMESG-FAIL][17] ([i915#4957]) -> [DMESG-FAIL][18] ([i915#4494] / [i915#4957])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11238/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#295]: https://gitlab.freedesktop.org/drm/intel/issues/295
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11238 -> Patchwork_22293
-
-  CI-20190529: 20190529
-  CI_DRM_11238: e141e36b2871c529379f7ec7d5d6ebae3137a51b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6347: 37ea4c86f97c0e05fcb6b04cff72ec927930536e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22293: 39548edaac34fe2c18235eac1a974ccccaafe3fc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-39548edaac34 drm/hdmi21: Add frl_dfm_helper to Makefile
-50465c7508e4 drm/hdmi21: Add support for DFM calculation with DSC
-90a37e26767c drm/hdmi21: Add helpers to verify non-dsc DFM requirements
-16bf1d98714a drm/hdmi21: Add non dsc frl capacity computation helpers
-a99528e005f6 drm/hdmi21: Define frl_dfm structure
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/index.html
-
---===============1305291828492041363==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add data flow metering support for HDMI2.1 (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99668/">https://patchwork.freedesktop.org/series/99668/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11238 -&gt; Patchwork_22293</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/index.html</p>
-<h2>Participating hosts (46 -&gt; 42)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (5): fi-bxt-dsi shard-tglu fi-bsw-n3050 fi-tgl-1115g4 fi-bsw-cyan </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22293 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
-<ul>
-<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-ivb-3770/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-skl-6600u/igt@gem_flink_basic@bad-flink.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-pnv-d510/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-bdw-5557u/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-bdw-5557u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11238/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-cfl-8109u/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11238/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/295">i915#295</a>) +10 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11238/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-tgl-dsi/igt@i915_selftest@live@gem_contexts.html">PASS</a> +16 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11238/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11238/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11238/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22293/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11238 -&gt; Patchwork_22293</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11238: e141e36b2871c529379f7ec7d5d6ebae3137a51b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6347: 37ea4c86f97c0e05fcb6b04cff72ec927930536e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22293: 39548edaac34fe2c18235eac1a974ccccaafe3fc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>39548edaac34 drm/hdmi21: Add frl_dfm_helper to Makefile<br />
-50465c7508e4 drm/hdmi21: Add support for DFM calculation with DSC<br />
-90a37e26767c drm/hdmi21: Add helpers to verify non-dsc DFM requirements<br />
-16bf1d98714a drm/hdmi21: Add non dsc frl capacity computation helpers<br />
-a99528e005f6 drm/hdmi21: Define frl_dfm structure</p>
-
-</body>
-</html>
-
---===============1305291828492041363==--
