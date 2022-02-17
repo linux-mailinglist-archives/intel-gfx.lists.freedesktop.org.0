@@ -1,51 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF98E4B97DC
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 05:48:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DFB14B97F7
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 06:02:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8337A10E8BC;
-	Thu, 17 Feb 2022 04:48:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EAD010E9F5;
+	Thu, 17 Feb 2022 05:02:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A7C310E8BC
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 04:48:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645073315; x=1676609315;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=8ltB1TnuMzcr45mUMHAdf82ToRGbCds+ciftB7LknqM=;
- b=agNKkTOiT9AbP3rPar97PZhdbRKm1odQU7Dl9WihfWlAHViHfsoKrxfu
- lNQ/0bd9O20CmBiPq+HLVIvAUsyXRm1rZ2RTd1iWkKhnKdcBGUP3v5arV
- aP2gtiSV3EwvOFZJWZaz0kbg9x8NC/IEPxkWNsxwg9RyUgklUF1eymuFg
- GFij537HPAq4K/ssnqDBUgPAHXb5u5AULBMrP6To3mGPtYwysdH2QOPZf
- ol+0oI1ovPN7ahzV2uA9C58kApc2Y/dt0GVOcckY4GXIFaRgW/iS6yfXt
- b6wf2Sb0wGIXp4dEBNMGTWWZlw7VDTrpEhjkSqIay7EN3pgRVGTy2KLBZ Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="250992561"
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="250992561"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 20:48:34 -0800
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; d="scan'208";a="545361185"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 20:48:34 -0800
-Date: Wed, 16 Feb 2022 20:48:32 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <Yg3ToJhNhMe8WLY7@mdroper-desk1.amr.corp.intel.com>
-References: <20220216154711.3329667-1-jani.nikula@intel.com>
- <20220216154711.3329667-2-jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B0A5B10E9F5;
+ Thu, 17 Feb 2022 05:02:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AE6EEAADD4;
+ Thu, 17 Feb 2022 05:02:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220216154711.3329667-2-jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/dsi: add separate init timer
- mask definition for ICL DSI
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 17 Feb 2022 05:02:19 -0000
+Message-ID: <164507413971.18050.3445944916554417114@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220216154711.3329667-1-jani.nikula@intel.com>
+In-Reply-To: <20220216154711.3329667-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/4=5D_drm/i915/dsi=3A_disassociate_VBT_?=
+ =?utf-8?q?video_transfer_mode_from_register_values?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,56 +41,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 16, 2022 at 05:47:09PM +0200, Jani Nikula wrote:
-> Having a separate definition will be useful for splitting VLV and ICL
-> register files.
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Series: series starting with [1/4] drm/i915/dsi: disassociate VBT video transfer mode from register values
+URL   : https://patchwork.freedesktop.org/series/100249/
+State : failure
 
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 2 +-
->  drivers/gpu/drm/i915/i915_reg.h        | 1 +
->  2 files changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 479d5e1165d9..3c01565e62b2 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -570,7 +570,7 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
->  	/* Program T-INIT master registers */
->  	for_each_dsi_port(port, intel_dsi->ports) {
->  		tmp = intel_de_read(dev_priv, ICL_DSI_T_INIT_MASTER(port));
-> -		tmp &= ~MASTER_INIT_TIMER_MASK;
-> +		tmp &= ~DSI_T_INIT_MASTER_MASK;
->  		tmp |= intel_dsi->init_count;
->  		intel_de_write(dev_priv, ICL_DSI_T_INIT_MASTER(port), tmp);
->  	}
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 4ea1713e6b60..5646c843fd0d 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -9204,6 +9204,7 @@ enum skl_power_gate {
->  #define ICL_DSI_T_INIT_MASTER(port)	_MMIO_PORT(port,	\
->  						   _ICL_DSI_T_INIT_MASTER_0,\
->  						   _ICL_DSI_T_INIT_MASTER_1)
-> +#define   DSI_T_INIT_MASTER_MASK	REG_GENMASK(15, 0)
->  
->  #define _DPHY_CLK_TIMING_PARAM_0	0x162180
->  #define _DPHY_CLK_TIMING_PARAM_1	0x6c180
-> -- 
-> 2.30.2
-> 
+== Summary ==
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+Applying: drm/i915/dsi: disassociate VBT video transfer mode from register values
+Applying: drm/i915/dsi: add separate init timer mask definition for ICL DSI
+Applying: drm/i915/reg: split out vlv_dsi_regs.h and vlv_dsi_pll_regs.h
+error: sha1 information is lacking or useless (drivers/gpu/drm/i915/i915_reg.h).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0003 drm/i915/reg: split out vlv_dsi_regs.h and vlv_dsi_pll_regs.h
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
+
