@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C206E4BA83A
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 19:29:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F924BA83F
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Feb 2022 19:30:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4BF010E1EA;
-	Thu, 17 Feb 2022 18:29:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA0D110E1EA;
+	Thu, 17 Feb 2022 18:30:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B1D610E1EA
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 18:29:41 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F97610E1EA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 18:30:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645122581; x=1676658581;
+ t=1645122642; x=1676658642;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=ZESTdfIDbSmIb9I/yPThSPDo6X1sZN0f05BAmB7Yonw=;
- b=Z88J/tK2ENxThJBjYzJYGepfxbNxwFve5Se8aGJz/mwkWsUQL0IZPCJr
- JEFEeKwCdvcLwRrplqA3XI0rxoRAI1S8PDW8Rc+nVecSpG7bc9CgxTxx8
- JOWBK5BCsINwty4MzhbxQYvfRzuljnUuUJesK38R16i79205bCE3a/7Nr
- XK0xwWqDXtNSQ2Movkb5f0FpE7SNa2JZo9NigSjHcw4TFcCh1q5xqi7Yl
- Ptat1LcLwcODkUYPPL6ysvjFA9wtpMFYzUk9RmgM5SmkiIfmKOUZUhDQu
- YrkST9f2Z3ed+kUmeSC4y/iWAJrTb+fHINGoM9cJdolsKi3yycuHy1GVX Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="230906081"
-X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="230906081"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 10:29:40 -0800
-X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="704941052"
+ bh=vgDyCsWZBkuWdY0SQFvqQzCUSzo0U4lrkk+xQxQO3eI=;
+ b=glB5jqISLDb4Y5fVBhMyQkK/RbtbfNnqKMhZGUAsCJS3czr2W3utbTGq
+ tI791IDHOJzDM5fJlSr4Yxcqs2HNwC5WEwCnPDHDxvsq9KBPNmTS85OIj
+ we0kmYrlgWu1wGn/7OlQrfOt9WXQ4sijP6RRZIXTShmeqyYmuSrPLFZY1
+ 0/D4v0Qh6s77P9+n+XqwFZVJ8K30DEI4+LYVUQ4B5AAeZGuvlOZ4PIrl3
+ y8l4K8dRPmgjzsDkwe6kiIOxCo9lVNd3kjs8Ev3WcgH52J1Zjt4h7JuI2
+ yaOzDoByfv8G5hRUs2yAVbvtI8DQ/TAJoZWvGeFldzIL5XjdTGMDEcYPi Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="314208705"
+X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="314208705"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 10:30:41 -0800
+X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; d="scan'208";a="503042758"
 Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 10:29:39 -0800
-Date: Thu, 17 Feb 2022 20:29:53 +0200
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 10:30:40 -0800
+Date: Thu, 17 Feb 2022 20:31:00 +0200
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220217182953.GA3823@intel.com>
-References: <20220216174250.4449-1-ville.syrjala@linux.intel.com>
- <20220216174250.4449-3-ville.syrjala@linux.intel.com>
+Message-ID: <20220217183100.GB3823@intel.com>
+References: <20220214091811.13725-1-ville.syrjala@linux.intel.com>
+ <20220214091811.13725-6-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220216174250.4449-3-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220214091811.13725-6-ville.syrjala@linux.intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2 2/6] drm/i915: Fix bw atomic check when
- switching between SAGV vs. no SAGV
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915: Split pre-icl vs. icl+ SAGV
+ hooks apart
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,53 +59,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 16, 2022 at 07:42:46PM +0200, Ville Syrjala wrote:
+On Mon, Feb 14, 2022 at 11:18:10AM +0200, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> If the only thing that is changing is SAGV vs. no SAGV but
-> the number of active planes and the total data rates end up
-> unchanged we currently bail out of intel_bw_atomic_check()
-> early and forget to actually compute the new WGV point
-> mask and thus won't actually enable/disable SAGV as requested.
-> This ends up poorly if we end up running with SAGV enabled
-> when we shouldn't. Usually ends up in underruns.
-> To fix this let's go through the QGV point mask computation
-> if anyone else already added the bw state for us.
-> 
-> Cc: stable@vger.kernel.org
-> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Fixes: 20f505f22531 ("drm/i915: Restrict qgv points which don't have enough bandwidth.")
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
+> To further reduce the confusion between the pre-icl vs. icl+
+> SAGV codepaths let's do a full split.
 
 Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 7 +++++++
->  1 file changed, 7 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 23aa8e06de18..d72ccee7d53b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -846,6 +846,13 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
->  	if (num_psf_gv_points > 0)
->  		mask |= REG_GENMASK(num_psf_gv_points - 1, 0) << ADLS_PSF_PT_SHIFT;
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 120 ++++++++++++++++++++------------
+>  1 file changed, 77 insertions(+), 43 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> index 068870b17c43..8b70cdc3b58b 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3785,34 +3785,44 @@ intel_disable_sagv(struct drm_i915_private *dev_priv)
+>  	return 0;
+>  }
 >  
-> +	/*
-> +	 * If we already have the bw state then recompute everything
-> +	 * even if pipe data_rate / active_planes didn't change.
-> +	 * Other things (such as SAGV) may have changed.
-> +	 */
-> +	new_bw_state = intel_atomic_get_new_bw_state(state);
+> -void intel_sagv_pre_plane_update(struct intel_atomic_state *state)
+> +static void skl_sagv_pre_plane_update(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	const struct intel_bw_state *new_bw_state =
+> +		intel_atomic_get_new_bw_state(state);
 > +
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
->  		unsigned int old_data_rate =
+> +	if (!new_bw_state)
+> +		return;
+> +
+> +	if (!intel_can_enable_sagv(i915, new_bw_state))
+> +		intel_disable_sagv(i915);
+> +}
+> +
+> +static void skl_sagv_post_plane_update(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	const struct intel_bw_state *new_bw_state =
+> +		intel_atomic_get_new_bw_state(state);
+> +
+> +	if (!new_bw_state)
+> +		return;
+> +
+> +	if (intel_can_enable_sagv(i915, new_bw_state))
+> +		intel_enable_sagv(i915);
+> +}
+> +
+> +static void icl_sagv_pre_plane_update(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> -	const struct intel_bw_state *new_bw_state;
+> -	const struct intel_bw_state *old_bw_state;
+> -	u32 new_mask = 0;
+> +	const struct intel_bw_state *old_bw_state =
+> +		intel_atomic_get_old_bw_state(state);
+> +	const struct intel_bw_state *new_bw_state =
+> +		intel_atomic_get_new_bw_state(state);
+> +	u32 new_mask;
+>  
+> -	/*
+> -	 * Just return if we can't control SAGV or don't have it.
+> -	 * This is different from situation when we have SAGV but just can't
+> -	 * afford it due to DBuf limitation - in case if SAGV is completely
+> -	 * disabled in a BIOS, we are not even allowed to send a PCode request,
+> -	 * as it will throw an error. So have to check it here.
+> -	 */
+> -	if (!intel_has_sagv(dev_priv))
+> -		return;
+> -
+> -	new_bw_state = intel_atomic_get_new_bw_state(state);
+>  	if (!new_bw_state)
+>  		return;
+>  
+> -	if (DISPLAY_VER(dev_priv) < 11) {
+> -		if (!intel_can_enable_sagv(dev_priv, new_bw_state))
+> -			intel_disable_sagv(dev_priv);
+> -		return;
+> -	}
+> -
+> -	old_bw_state = intel_atomic_get_old_bw_state(state);
+>  	/*
+>  	 * Nothing to mask
+>  	 */
+> @@ -3837,34 +3847,18 @@ void intel_sagv_pre_plane_update(struct intel_atomic_state *state)
+>  	icl_pcode_restrict_qgv_points(dev_priv, new_mask);
+>  }
+>  
+> -void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+> +static void icl_sagv_post_plane_update(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> -	const struct intel_bw_state *new_bw_state;
+> -	const struct intel_bw_state *old_bw_state;
+> +	const struct intel_bw_state *old_bw_state =
+> +		intel_atomic_get_old_bw_state(state);
+> +	const struct intel_bw_state *new_bw_state =
+> +		intel_atomic_get_new_bw_state(state);
+>  	u32 new_mask = 0;
+>  
+> -	/*
+> -	 * Just return if we can't control SAGV or don't have it.
+> -	 * This is different from situation when we have SAGV but just can't
+> -	 * afford it due to DBuf limitation - in case if SAGV is completely
+> -	 * disabled in a BIOS, we are not even allowed to send a PCode request,
+> -	 * as it will throw an error. So have to check it here.
+> -	 */
+> -	if (!intel_has_sagv(dev_priv))
+> -		return;
+> -
+> -	new_bw_state = intel_atomic_get_new_bw_state(state);
+>  	if (!new_bw_state)
+>  		return;
+>  
+> -	if (DISPLAY_VER(dev_priv) < 11) {
+> -		if (intel_can_enable_sagv(dev_priv, new_bw_state))
+> -			intel_enable_sagv(dev_priv);
+> -		return;
+> -	}
+> -
+> -	old_bw_state = intel_atomic_get_old_bw_state(state);
+>  	/*
+>  	 * Nothing to unmask
+>  	 */
+> @@ -3882,6 +3876,46 @@ void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+>  	icl_pcode_restrict_qgv_points(dev_priv, new_mask);
+>  }
+>  
+> +void intel_sagv_pre_plane_update(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +
+> +	/*
+> +	 * Just return if we can't control SAGV or don't have it.
+> +	 * This is different from situation when we have SAGV but just can't
+> +	 * afford it due to DBuf limitation - in case if SAGV is completely
+> +	 * disabled in a BIOS, we are not even allowed to send a PCode request,
+> +	 * as it will throw an error. So have to check it here.
+> +	 */
+> +	if (!intel_has_sagv(i915))
+> +		return;
+> +
+> +	if (DISPLAY_VER(i915) >= 11)
+> +		icl_sagv_pre_plane_update(state);
+> +	else
+> +		skl_sagv_pre_plane_update(state);
+> +}
+> +
+> +void intel_sagv_post_plane_update(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +
+> +	/*
+> +	 * Just return if we can't control SAGV or don't have it.
+> +	 * This is different from situation when we have SAGV but just can't
+> +	 * afford it due to DBuf limitation - in case if SAGV is completely
+> +	 * disabled in a BIOS, we are not even allowed to send a PCode request,
+> +	 * as it will throw an error. So have to check it here.
+> +	 */
+> +	if (!intel_has_sagv(i915))
+> +		return;
+> +
+> +	if (DISPLAY_VER(i915) >= 11)
+> +		icl_sagv_post_plane_update(state);
+> +	else
+> +		skl_sagv_post_plane_update(state);
+> +}
+> +
+>  static bool skl_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
 > -- 
 > 2.34.1
 > 
