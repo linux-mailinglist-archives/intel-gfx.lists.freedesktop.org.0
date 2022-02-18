@@ -1,54 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D22E64BB8BF
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 12:57:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C6C4BB8C8
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 13:01:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AEDD10E391;
-	Fri, 18 Feb 2022 11:57:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F51E10E391;
+	Fri, 18 Feb 2022 12:01:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BB6810E391;
- Fri, 18 Feb 2022 11:57:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645185423; x=1676721423;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=mP4AAe6GEPELC8qa7HPpCq/3z8XeScXVNdFcHpVrhbg=;
- b=B+n7Wa8WvWl2hN0OJHxvungEeufXL13aenEkmKYMUGgjsMXTc7uPY82+
- N0rh5CMpk7jF6QNuTcmDaydq1G/DKHIsqwNZFbGyNHtpcnjLz03KPi66Y
- 3KNgkK825tiRzQP3776vn9fFcnYCfvcM6vVvvTYaSKCKlRXewVvm+prAG
- HsWLSY6kwyQumBPe2ooHQWWQZ9df+0YXVxWNCxjP0LmcScFsQWbJ5rxys
- 0aHMz2+u6/QJeH877d59GdswWs4dVfQ0oK4134DMKFOH43mS5wjuZOaU3
- boW2pfUql6paKKuQTIMaVPR12rWk4PjVScT/OnOq2rybXYtmbi3K00d/I A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="248708365"
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="248708365"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 03:57:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="546253500"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga008.jf.intel.com with SMTP; 18 Feb 2022 03:56:59 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 18 Feb 2022 13:56:58 +0200
-Date: Fri, 18 Feb 2022 13:56:58 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <Yg+JivyhsNufopPc@intel.com>
-References: <20220218100403.7028-1-ville.syrjala@linux.intel.com>
- <20220218100403.7028-2-ville.syrjala@linux.intel.com>
- <0e2baaab-6a38-5f80-5552-57326d781c43@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9928B10E391;
+ Fri, 18 Feb 2022 12:01:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 93453AA0ED;
+ Fri, 18 Feb 2022 12:01:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0e2baaab-6a38-5f80-5552-57326d781c43@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 01/22] drm: Add drm_mode_init()
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 18 Feb 2022 12:01:35 -0000
+Message-ID: <164518569556.25450.17525517270074555754@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220216173703.1750589-1-matthew.auld@intel.com>
+In-Reply-To: <20220216173703.1750589-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/ttm=3A_fixup_the_mock=5Fbo_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,56 +40,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 18, 2022 at 12:22:44PM +0100, Andrzej Hajda wrote:
-> 
-> 
-> On 18.02.2022 11:03, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Add a variant of drm_mode_copy() that explicitly clears out
-> > the list head of the destination mode. Helpful to guarantee
-> > we don't have stack garbage left in there for on-stack modes.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >   drivers/gpu/drm/drm_modes.c | 17 +++++++++++++++++
-> >   include/drm/drm_modes.h     |  2 ++
-> >   2 files changed, 19 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
-> > index 96b13e36293c..40d4ce4a1da4 100644
-> > --- a/drivers/gpu/drm/drm_modes.c
-> > +++ b/drivers/gpu/drm/drm_modes.c
-> > @@ -892,6 +892,23 @@ void drm_mode_copy(struct drm_display_mode *dst, const struct drm_display_mode *
-> >   }
-> >   EXPORT_SYMBOL(drm_mode_copy);
-> >   
-> > +/**
-> > + * drm_mode_init - initialize the mode from another mode
-> > + * @dst: mode to overwrite
-> > + * @src: mode to copy
-> > + *
-> > + * Copy an existing mode into another mode, zeroing the
-> > + * list head of the destination mode. Typically used
-> > + * to guarantee the list head is not left with stack
-> > + * garbage in on-stack modes.
-> > + */
-> > +void drm_mode_init(struct drm_display_mode *dst, const struct drm_display_mode *src)
-> > +{
-> > +	memset(dst, 0, sizeof(*dst));
-> 
-> Why not just clear the list head? Or maybe poison it? It would be more 
-> cleaner.
+== Series Details ==
 
-Then we have two places that need to be updated if some other field
-gets introduced that needs preserving. With a full memset() we only
-have to care about drm_mode_copy(). Don't see much point in
-micro-optimizing this thing.
+Series: drm/i915/ttm: fixup the mock_bo (rev2)
+URL   : https://patchwork.freedesktop.org/series/100255/
+State : warning
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+31d5b4fb673a drm/i915/ttm: fixup the mock_bo
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+<6> [299.836278] i915: Running i915_gem_huge_page_mock_selftests/igt_mock_memory_region_huge_pages
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+
+
