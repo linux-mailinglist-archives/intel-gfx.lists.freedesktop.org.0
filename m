@@ -2,71 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 163EA4BB80E
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 12:29:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86AEA4BB7FD
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 12:25:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26A4F10EC2D;
-	Fri, 18 Feb 2022 11:29:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFE2F10EA9E;
+	Fri, 18 Feb 2022 11:25:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF3210E85A;
- Thu, 17 Feb 2022 22:07:06 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id E4ABEB82486;
- Thu, 17 Feb 2022 22:07:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B94EC340E8;
- Thu, 17 Feb 2022 22:07:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1645135621;
- bh=+aPKJYM7vg0EYwrtq2Hsglc06uQwtSfGjhDhOzVSNnI=;
- h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
- b=QVW8paqsPqBFZzhIbIlJ/AhIhgxVIlPq6jD35Q5A/7cgKpNKxksfdXTJJ7HZJqIGj
- ASdgIDTnkvXHo/mgGAODjhX19wht2j3tAGbF0ygUawuMEQ9OrRsyXZiXi16wcV/BLS
- Yjv5yr65inaOE4CKpbTRdi5j7GnOcSMiwNUHlXZ1PqagQkcgQD62Jdwu3FvW1sEqKs
- c2BQPNY7y8LZwy84K6zyI7TlFLHUtTUqX8yZfegx2OOgobj7VDCo03aZFoHGicE+gq
- B3XegwM5u6P4IxPo+KZKOKoAZfkILHX6DcO6i6N2oE+tkrt/fUL4Dp4lJlTp7iImXC
- 89aFzHU4050oQ==
-Content-Type: text/plain; charset="utf-8"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAFD510EA11;
+ Fri, 18 Feb 2022 11:25:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1645183529; x=1676719529;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IjnCDa8zGx/Mw5DSU2XCOFdZVljnetKnEZf8gLsK1tQ=;
+ b=UpC99Ezi9vpMLryZaWDJSyd8nCIs6gExZpZKHXKzgv3pvH/U6qXgV/nr
+ TlbBUh6aKc1wyLG+GllRD1AQKjxNM3LIFlvGm1aG9ZORQCYQDRPHhGrko
+ 2T+0E9QVsY0cw7ChZAHGTvvhq9y5d/C0e/ART7rwX9+CSjLW7crdKE9hP
+ 07nc3atSaoDWDs28SVCv4YxJgjo9mISw8p+B6elVu7Wxbj95K2emvy7ao
+ RrdNtUyN7tzSc2K8RxL5cHX+06mOXfAfeIKTrNt4GjyrnOQTMyA51M4Ca
+ 0EHjnQxN0NQejjHpZ0TF68i6MkxscrMWJBRxIcCIkG+zyiN4ImyEXBLD1 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="238512848"
+X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="238512848"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 03:25:29 -0800
+X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="705344756"
+Received: from jawiblin-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.23.195])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 03:25:28 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 18 Feb 2022 11:22:40 +0000
+Message-Id: <20220218112242.2117968-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1644890154-64915-3-git-send-email-wangqing@vivo.com>
-References: <1644890154-64915-1-git-send-email-wangqing@vivo.com>
- <1644890154-64915-3-git-send-email-wangqing@vivo.com>
-From: Stephen Boyd <sboyd@kernel.org>
-To: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
-	Alasdair Kergon <agk@redhat.com>,
-	Alex Deucher <alexander.deucher@amd.com>,
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-	Christian =?utf-8?q?K=C3=B6nig?= <christian.koenig@amd.com>,
-	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Jani Nikula <jani.nikula@linux.intel.com>,
-	Jens Axboe <axboe@kernel.dk>, Jiri Kosina <jikos@kernel.org>,
-	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-	Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Mike Snitzer <snitzer@redhat.com>, Qing Wang <wangqing@vivo.com>,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>,
-	Roger Pau =?utf-8?q?Monn=C3=A9?= <roger.pau@citrix.com>,
-	Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
-	amd-gfx@lists.freedesktop.org, dm-devel@redhat.com,
-	dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesk,
-	top.org@freedesktop.org, linux-block@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-	xen-devel@lists.xenproject.org
-Date: Thu, 17 Feb 2022 14:06:58 -0800
-User-Agent: alot/0.10
-Message-Id: <20220217220701.9B94EC340E8@smtp.kernel.org>
-X-Mailman-Approved-At: Fri, 18 Feb 2022 11:29:20 +0000
-Subject: Re: [Intel-gfx] [PATCH V3 2/13] clk: mvebu: use
- time_is_before_eq_jiffies() instead of open coding it
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/2] doc/rfc for small BAR support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,17 +55,12 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wang Qing <wangqing@vivo.com>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Qing Wang (2022-02-14 17:55:39)
-> From: Wang Qing <wangqing@vivo.com>
->=20
-> Use the helper function time_is_{before,after}_jiffies() to improve
-> code readability.
->=20
-> Signed-off-by: Wang Qing <wangqing@vivo.com>
-> ---
+The new bits of proposed uAPI for the upcoming small BAR support.
 
-Applied to clk-next
+-- 
+2.34.1
+
