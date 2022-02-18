@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FC874BC2A3
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 23:38:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A4DE4BC2BF
+	for <lists+intel-gfx@lfdr.de>; Sat, 19 Feb 2022 00:05:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79D7310EF6B;
-	Fri, 18 Feb 2022 22:38:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CCFC10F09B;
+	Fri, 18 Feb 2022 23:05:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46F5E10EF6B;
- Fri, 18 Feb 2022 22:38:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645223883; x=1676759883;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/s1wabFbgc28mlABuCGVtAWgq4f+FmKnM0eC6Yos7Ms=;
- b=E2m4y/fRbiTXAHEB1u8ln2FCevFlnUzzrZV9RmyMMR0HRIVxMtLYKhPZ
- jbGuSdlEK5Ufu2ER4M3URYwdkxfAQZ+60dTdkmw7TEcWMKfKADhdsJACz
- sbAH5hT0rUBmUZ+KLm98X+iAId49j3Z/EiXIkCLTNO4FrX4HgUcSctl6z
- WAPTRmVH16uJJoU2kI6WP8eq7GyGN2BAmqtKFeAhw1A0OPA6QhGQBtueI
- T5zAYY2jXyPQpmY/e+wpSizYyvHgTTClclaF3PB+/6mVSJ0KEho/FgbiL
- 7mPuxPLy3uWVqdn83htXEuptbfzL627fdsatth8kUpntaP9pCCc6KJt0O A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10262"; a="311982137"
-X-IronPort-AV: E=Sophos;i="5.88,380,1635231600"; d="scan'208";a="311982137"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 14:38:02 -0800
-X-IronPort-AV: E=Sophos;i="5.88,380,1635231600"; d="scan'208";a="605679282"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 14:38:01 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 18 Feb 2022 14:38:53 -0800
-Message-Id: <20220218223853.939464-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.35.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3DBE010F09A;
+ Fri, 18 Feb 2022 23:05:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3B7CEAADD6;
+ Fri, 18 Feb 2022 23:05:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH topic/core-for-CI] drm/i915/dg2: Add relocation
- exception
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael Cheng" <michael.cheng@intel.com>
+Date: Fri, 18 Feb 2022 23:05:33 -0000
+Message-ID: <164522553322.25459.7933793221116319680@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220217202644.122937-1-michael.cheng@intel.com>
+In-Reply-To: <20220217202644.122937-1-michael.cheng@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Move_=23define_wbvind=5Fon=5Fall=5Fcpus_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,40 +40,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The move to softpin in igt is ongoing and should land soon.
-Meanwhile, like was done for ADL and RKL, add an exception to allow
-running the igt display tests before that conversion is complete
-so we can unblock CI.
+== Series Details ==
 
-Cc: Zbigniew Kempczynski <zbigniew.kempczynski@intel.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Jason Ekstrand <jason@jlekstrand.net>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: Move #define wbvind_on_all_cpus (rev3)
+URL   : https://patchwork.freedesktop.org/series/99991/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index f8f07d0bd83b..85f4808957b9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -504,7 +504,7 @@ static bool platform_has_relocs_enabled(const struct i915_execbuffer *eb)
- 	 */
- 	if (GRAPHICS_VER(eb->i915) < 12 || IS_TIGERLAKE(eb->i915) ||
- 	    IS_ROCKETLAKE(eb->i915) || IS_ALDERLAKE_S(eb->i915) ||
--	    IS_ALDERLAKE_P(eb->i915))
-+	    IS_ALDERLAKE_P(eb->i915) || IS_DG2(eb->i915))
- 		return true;
- 
- 	return false;
--- 
-2.35.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+8c5741d746ef drm_cache: Add logic for wbvind_on_all_cpus
+-:34: WARNING:INCLUDE_LINUX: Use #include <linux/smp.h> instead of <asm/smp.h>
+#34: FILE: include/drm/drm_cache.h:37:
++#include <asm/smp.h>
+
+total: 0 errors, 1 warnings, 0 checks, 20 lines checked
+ca2aac49253c drm/i915/gem: Remove logic for wbinvd_on_all_cpus
+b80161c6c202 drm/i915/: Add drm_cache.h
+
 
