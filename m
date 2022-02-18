@@ -2,47 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 107AF4BC17C
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 22:01:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A1E4BC17D
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 22:02:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38CA610E1B1;
-	Fri, 18 Feb 2022 21:01:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B0CD10E1B1;
+	Fri, 18 Feb 2022 21:02:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 741BB10E1B1
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 21:01:41 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 518C410E1B1;
+ Fri, 18 Feb 2022 21:02:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645218101; x=1676754101;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bXIRM5Zps6Lp79LM+/hNOK4MRQnV6xlbYiTEWXeWs6o=;
- b=dzyyDhFhuohxj/a4LdOQOE5l8IqLvebZCRo/fPbOBU6MxgDG2wIlDDXV
- GRDQB8pwX+6h2irbDhRwvRm9N4jn4jWBhCAxAvxalRI132TujvCxvcfLz
- v9uX35u8oNWyMhbVAIj7DqHLjYm9O7kAkyx6hdH+bGyFViaAZSXJmQwKV
- t/iZ09NL/LnJo/YwCNnRytbznGj1DTZhEYEBeXZH2R16ifzKHM2YMIGwJ
- QsXuKQzd0RUIX75MdbhvcsbHmphPFUmmM3SPGmljG76a5GQGR2qV9+yiL
- bqQ1IUT17/PCLHZeuLvJOT73ZES3x9Ktt7B0yz0p2Cu8OneXs8L+QaUUQ A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10262"; a="238628776"
-X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="238628776"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 13:01:25 -0800
-X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="626737643"
-Received: from psanchog-mobl.amr.corp.intel.com (HELO
- josouza-mobl2.amr.corp.intel.com) ([10.134.36.77])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 13:01:23 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Feb 2022 13:03:30 -0800
-Message-Id: <20220218210330.48653-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.35.1
+ t=1645218158; x=1676754158;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=V1eLV/y0z7huggG7K0R0fJvDE1jzU70TClA48L6pUTM=;
+ b=YerRht+oA6hhpZkAZbV0Q+UaMfVnsmT7MacZd8V261V1ut17bu/q2y5c
+ GWDgBQp03FuBRZuTQTb3TBwkJRalu5rg2XeKpvYvN6rtY1HYiKaPdjPE+
+ hKAkzk7jEvsGjjZTivI20vYjA5RyLzJoDhMD0sqVj5t2AKGUEybhQenYN
+ 0eGZH0rsE5qvXXW77BhMfGALlw5+RnGaukUObj1xhr5f9LpP8JrE0XUe5
+ hKuUl+YJsrM//Nu1L1d22iRa8zy4Mog3gDIb0IQepZDJqz2Ls3qhg9jvE
+ lMgDTvFjvSsj9kCc7FHVa8aC9SjJy6WFqtHNIStPGMHKPNpYzT0+0za1w g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10262"; a="275805918"
+X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="275805918"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 13:02:37 -0800
+X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="635987394"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 13:02:37 -0800
+Date: Fri, 18 Feb 2022 12:56:47 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20220218205647.GA3494@jons-linux-dev-box>
+References: <20220216174147.3073235-1-lucas.demarchi@intel.com>
+ <20220216174147.3073235-15-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/rps/tgl+: Remove RPS interrupt support
+In-Reply-To: <20220216174147.3073235-15-lucas.demarchi@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v3 14/16] drm/i915/guc: Convert
+ guc_mmio_reg_state_init to iosys_map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,38 +60,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TGL+ and newer platforms don't support RPS up and low interruption
-limits.
-It is not used for broadwell and newer plaforms that supports
-execlist but here making sure that it is explicit not used even in
-debug scenarios.
+On Wed, Feb 16, 2022 at 09:41:45AM -0800, Lucas De Marchi wrote:
+> Now that the regset list is prepared, convert guc_mmio_reg_state_init()
+> to use iosys_map to copy the array to the final location and
+> initialize additional fields in ads.reg_state_list.
+> 
+> v2: Just use an offset instead of temporary iosys_map.
+> 
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-BSpec: 33301
-BSpec: 52069
-BSpec: 9520
-HSD: 1405911647
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Signed-off-by: JosÃ© Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_rps.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index fd95449ed46da..c8124101aada2 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -1486,7 +1486,7 @@ void intel_rps_enable(struct intel_rps *rps)
- 
- 	if (has_busy_stats(rps))
- 		intel_rps_set_timer(rps);
--	else if (GRAPHICS_VER(i915) >= 6)
-+	else if (GRAPHICS_VER(i915) >= 6 && GRAPHICS_VER(i915) <= 11)
- 		intel_rps_set_interrupts(rps);
- 	else
- 		/* Ironlake currently uses intel_ips.ko */ {}
--- 
-2.35.1
-
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 28 ++++++++++++----------
+>  1 file changed, 16 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> index ec0ccdf98dfa..90cbb93a2945 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> @@ -383,40 +383,44 @@ static long guc_mmio_reg_state_create(struct intel_guc *guc)
+>  	return ret;
+>  }
+>  
+> -static void guc_mmio_reg_state_init(struct intel_guc *guc,
+> -				    struct __guc_ads_blob *blob)
+> +static void guc_mmio_reg_state_init(struct intel_guc *guc)
+>  {
+>  	struct intel_gt *gt = guc_to_gt(guc);
+>  	struct intel_engine_cs *engine;
+> -	struct guc_mmio_reg *ads_registers;
+>  	enum intel_engine_id id;
+>  	u32 addr_ggtt, offset;
+>  
+>  	offset = guc_ads_regset_offset(guc);
+>  	addr_ggtt = intel_guc_ggtt_offset(guc, guc->ads_vma) + offset;
+> -	ads_registers = (struct guc_mmio_reg *)(((u8 *)blob) + offset);
+>  
+> -	memcpy(ads_registers, guc->ads_regset, guc->ads_regset_size);
+> +	iosys_map_memcpy_to(&guc->ads_map, offset, guc->ads_regset,
+> +			    guc->ads_regset_size);
+>  
+>  	for_each_engine(engine, gt, id) {
+>  		u32 count = guc->ads_regset_count[id];
+> -		struct guc_mmio_reg_set *ads_reg_set;
+>  		u8 guc_class;
+>  
+>  		/* Class index is checked in class converter */
+>  		GEM_BUG_ON(engine->instance >= GUC_MAX_INSTANCES_PER_CLASS);
+>  
+>  		guc_class = engine_class_to_guc_class(engine->class);
+> -		ads_reg_set = &blob->ads.reg_state_list[guc_class][engine->instance];
+>  
+>  		if (!count) {
+> -			ads_reg_set->address = 0;
+> -			ads_reg_set->count = 0;
+> +			ads_blob_write(guc,
+> +				       ads.reg_state_list[guc_class][engine->instance].address,
+> +				       0);
+> +			ads_blob_write(guc,
+> +				       ads.reg_state_list[guc_class][engine->instance].count,
+> +				       0);
+>  			continue;
+>  		}
+>  
+> -		ads_reg_set->address = addr_ggtt;
+> -		ads_reg_set->count = count;
+> +		ads_blob_write(guc,
+> +			       ads.reg_state_list[guc_class][engine->instance].address,
+> +			       addr_ggtt);
+> +		ads_blob_write(guc,
+> +			       ads.reg_state_list[guc_class][engine->instance].count,
+> +			       count);
+>  
+>  		addr_ggtt += count * sizeof(struct guc_mmio_reg);
+>  	}
+> @@ -643,7 +647,7 @@ static void __guc_ads_init(struct intel_guc *guc)
+>  	blob->ads.gt_system_info = base + ptr_offset(blob, system_info);
+>  
+>  	/* MMIO save/restore list */
+> -	guc_mmio_reg_state_init(guc, blob);
+> +	guc_mmio_reg_state_init(guc);
+>  
+>  	/* Private Data */
+>  	blob->ads.private_data = base + guc_ads_private_data_offset(guc);
+> -- 
+> 2.35.1
+> 
