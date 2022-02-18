@@ -2,52 +2,157 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C276C4BB662
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 11:08:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C44874BB675
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 11:11:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 279C810F052;
-	Fri, 18 Feb 2022 10:08:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BA5910F071;
+	Fri, 18 Feb 2022 10:11:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98E9A10F04E;
- Fri, 18 Feb 2022 10:08:18 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F39E510F06F;
+ Fri, 18 Feb 2022 10:11:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645178898; x=1676714898;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=NL0qZO6Q51NwuLE3xq73LdrjI3Xg/7heFZK3q3vYHxY=;
- b=CcrdCpbOBT4aVWjy87ZTyrbMkE6WspoOTv7mSorZZkIgZDh3rFODg7k8
- YrPpNETaY7+ZMRpTgWezrbQPkQZVLt+cXctckG8fXjEnPFY1Kwd8tHY6w
- Lqrx8TWRsMAE+vuggIX1H0U5n51PRvjXx4jip+N1+KO5Ketjhvt+j/1Nx
- 3gYMqRM7SKerH/GRC97mCof/d62zk0p/Bl5K6wamUXwZ+Yr/SgdIjZ40O
- yhQpOTyx+lmGhUcn4DI/1q2MqEmovFLB4yk1JnU7EirFMdWXYojEqRkFO
- zjVA/KGD5R0ubBDgozjx+Vbt8DCD48KxLQtLh3I6RwaK8BTOIS7HyEMUQ A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="238502782"
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="238502782"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 02:08:18 -0800
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="546220535"
-Received: from svaddara-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.147.37])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 02:08:17 -0800
-Date: Fri, 18 Feb 2022 02:08:18 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ramalingam C <ramalingam.c@intel.com>
-Message-ID: <20220218100818.qv5iqqtj4jnjz24l@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220201104132.3050-1-ramalingam.c@intel.com>
- <20220201104132.3050-12-ramalingam.c@intel.com>
+ t=1645179094; x=1676715094;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=tCccRiwobay9DULgPmXUhgPNS+hL0ny+CccAw6bWo8k=;
+ b=kmR+kbAgQ79ctG2zobTNrYZ4l0gaNZ4YwiHOsnMAs2Cs/Tq77gUGqQ5k
+ CngERb23dN7zCgl40I2T495wxiTxq9znCsf2yOz4gUm+4PRc6IVX5zj1y
+ jZVaT9RzQsKk3+mRsJ/k7LmCady2yXw4KYTqiCnI8FollqCjy1l5TTL4R
+ UVDrbv0WTXT8PRg3FkXM5Y6HO9faz9w8+kwOCxZQ4NzoeEmV42+W4a9Ou
+ osaNW3O3tTpsf0Wu45v9K3CeeLYzO3iSlFrswjhH8K5GjR5GMXGtxP/N9
+ VLWVtZvBx4bz0a9Fo7WlLMZBZX1Ae+1oakhR1gaxm24Rq97+D6P7K94sW w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="231735319"
+X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="231735319"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 02:11:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="682444549"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by fmsmga001.fm.intel.com with ESMTP; 18 Feb 2022 02:11:33 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Fri, 18 Feb 2022 02:11:33 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Fri, 18 Feb 2022 02:11:32 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20 via Frontend Transport; Fri, 18 Feb 2022 02:11:32 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.20; Fri, 18 Feb 2022 02:11:32 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z+tZ7467OiuyRMt5HmkiYu7hv3m9vn8tBVlbzXy1JHKET/zrp/PxISKS+LCbAtGkN2AdvrFBKYDpMFRqdvy+uOjKqcLbVqZWr5woxjPd7w86sTA3y2gBjIOqlonzvnt7NAIzFcy+ClWHWC+7o2LEGp7rSSJt+eDMyWprM+vC0hJv3Z2ew7EEQHmsgGiwLOmSX6TLX9D4NDGjiOcYnciurwoirG1Rbc/Edg1PVuYZMk0bvS0pJ4T1C7JFOu/I9vWhz5GKsvveAW/uPmuYqkOqqafSWOquICgUWdzUEbJEafE+J9TXAW/3/3BJ8MCyI0ZG+UUgz1kuiHd7g/e4JidMxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SzHuwU1mWUeBa0w2b7jO8kf+m0gyDxrsAXfRuZKXkEs=;
+ b=gvcTYQBi/KJzOWZQVJY2pnirRSYRqpJhtYm46cC0EoLH/a13CF0zJrmGXBw3xbD+Sbf5L2VO/GmTrjj/Bbuiow/V2oVam84Ry2IpolnykG1xv3g2OW8rxJDPybFDOruxLvfjW4cUkCwZ54Ir2iWKCZ/JOY72HSBeHYUCc7+2w1cbNjDgiiKXF4FQnL4e+rLi7n7bOOl8l0GVYwjFr5UnZ1qB5W3U45UUrcWHgk4peyXe9qTMqM2yE7xwa4vajhrUt7f4SncPyRdoxxJb8bpdoDHXLf27Xmrxhpd7z/wIlKl/Jc3oYTDl8cLhv5wUvZhGMo1fPA43WQKZpjPaPzZTcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM6PR11MB3180.namprd11.prod.outlook.com (2603:10b6:5:9::13) by
+ CH0PR11MB5346.namprd11.prod.outlook.com (2603:10b6:610:b9::13) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4995.16; Fri, 18 Feb 2022 10:11:30 +0000
+Received: from DM6PR11MB3180.namprd11.prod.outlook.com
+ ([fe80::11f6:76fa:fc62:6511]) by DM6PR11MB3180.namprd11.prod.outlook.com
+ ([fe80::11f6:76fa:fc62:6511%6]) with mapi id 15.20.4995.016; Fri, 18 Feb 2022
+ 10:11:30 +0000
+Message-ID: <be54417d-3fe2-9af6-a1e9-85d516b7fd87@intel.com>
+Date: Fri, 18 Feb 2022 11:11:24 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.6.1
+Content-Language: en-US
+To: Eric Dumazet <edumazet@google.com>
+References: <20220217140441.1218045-1-andrzej.hajda@intel.com>
+ <20220217140441.1218045-4-andrzej.hajda@intel.com>
+ <CANn89iJ3W3ioVUaBJikCpFdCa9o_APpqyb0FmK9AmYPtgOeC7w@mail.gmail.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <CANn89iJ3W3ioVUaBJikCpFdCa9o_APpqyb0FmK9AmYPtgOeC7w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO2P265CA0467.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:a2::23) To DM6PR11MB3180.namprd11.prod.outlook.com
+ (2603:10b6:5:9::13)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220201104132.3050-12-ramalingam.c@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 11/19] drm/i915/lmem: Enable lmem for
- platforms with Flat CCS
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 13475f63-08ef-463b-21d3-08d9f2c70875
+X-MS-TrafficTypeDiagnostic: CH0PR11MB5346:EE_
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-Microsoft-Antispam-PRVS: <CH0PR11MB53466B24AF5320D3AA9669C6EB379@CH0PR11MB5346.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:256;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: oGUe7a0/T9W2ohTJ+2rEgF0ySpKCSRYfYPi7/Z2Yws+UGJu0pVQ/Y09lBz8kKV2ijmiX55oAPcf8Tdd0I8oi0STVDa2b8flCWoZIs3AVLVC/1fiV2UgKO1SuyReY1XPKJwmBV+h96+TscpRR5Jp1fExThQp9bCW1SxYHoNZ+SVLQkbv1BZ8ll+0XVHB7HOpte6+MAusRapqzoHjjmhrzPL4mNX0Oll8wiPjxayJnaaZFQYUN+yR99r+RVEtGNznQn5Ov0MrZ5FDCU222f4P/wbpQGhtltvk4tjx6S3okW9E8wb9xBMupGcKv7ECr6RXxDmuCTMue+YKRh9lE3qV5hmyDpcZKVz5JDBPwx+u1nmZIpS8rrn4G7/6yF4QgoVwbCr9IlXpCz3UuBA2o7X2Fv78nAg0q+Q4iD2UzMPZFf4v1+3ZV1v0dZN8Jvz4clSeBaTbGRv9tNxjTT6CLbvVpRwZcib3A/gCWuESbiQWfpqpF2GMOp9PQIOuQnyU2Alz5/eV4VnbRdc5V0pnmku8clF+VLEYGFVOTM7+OcBpNPrlgQ1dQHw7AZHCuM60ARJTocWDl9YsyL4Y5sLcVIBf9/HqoagsLHIY9iO3HuWF1rin8/tjsoOtxFI92OftKmkAxumCC+sDjQ9iP2zkNJlF9o9GdCREoA+lyZNuuIrO3Lj1MgCudtThCKxeLsGeE24hGz9ZYRjjXoEyVGj9QV9QwHwVxzQo3zccNX6Jvj0ZdwXw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB3180.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(6512007)(2616005)(86362001)(31696002)(6486002)(8676002)(66476007)(4326008)(508600001)(66946007)(66556008)(2906002)(36916002)(6506007)(26005)(186003)(6666004)(44832011)(53546011)(5660300002)(8936002)(83380400001)(38100700002)(82960400001)(31686004)(6916009)(54906003)(36756003)(316002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bFNNWmxhZHZBZUx1djYvV2xTS0NUVHBXRmh3U3JWUGUwOHNrdW1uajFFem1s?=
+ =?utf-8?B?WDYvcjlkZ1pNVS9vOVZrWjlCaCtyeW1BVXVEU1diNFpHeXc4TWlOY0xURlpH?=
+ =?utf-8?B?cDUrdG94ZW1XMFZvSXF4dGVTb01BOUUzV1YvTXRhUitVWk1jZ1ZnR1M2Y2lr?=
+ =?utf-8?B?WGc3NFo5NWd2RTN3Z2duV05yZ1lEdXY5TUJEY0FsMmV2aEpFUEUxbHFTMERP?=
+ =?utf-8?B?NXlFcjMrVExyTTNSTDRSR2F0dHQybThwN0lxSkhySW1teXVLU2oyV09sa3Na?=
+ =?utf-8?B?RjFHMUt4Z0ZacldPL3VnRU9JOUt6Q2hYK0Z5Y1dVUHBmbnUzVVhSc2JyTHJU?=
+ =?utf-8?B?NnFwaTVZY0srVGUxUzlzb3RJZ0xDNFhoS2UyUDhlTWdwNndUdUJnclYxY25s?=
+ =?utf-8?B?NHkzN0dVanNoblZXTU9vdjJjaFIwem41Mk9zVEU2M0o3ODR1dUNYRFNzNHp1?=
+ =?utf-8?B?MkNReGw5VFl1bThteHVCaUdFS0dtbFNWa2V0cjVleWlUQ2FCVGN5K3k3eGRz?=
+ =?utf-8?B?UXllUTZkaVV2NGJEQmVsZVhlcXViRVhiZDM5SDBLNVdGSDlOOEE3dXRnRnFs?=
+ =?utf-8?B?SWl5Z21vMVlxRmZDbmJVczNmekRBRGNUZHdMUnAvYUJXTllQL2FScXFWU1VM?=
+ =?utf-8?B?SkRrSGx4WmdDbHhwVVpIUE1ZRUNmalNRMWs2UnFRemRzZzNuSUpCOFcyZlJ4?=
+ =?utf-8?B?VFR5U0JzOVZtcHEwamNBcndBeWJJZTVhWnpaaXpUSHJyRFZCSnhDTWF4NVJW?=
+ =?utf-8?B?NTlFbU9TODU0V2liYlQ1Rk9SelArMk5qNFZMZmdQblgzdW1DTUlLcDV5Y1hJ?=
+ =?utf-8?B?WGtuWVRjTXJiSzFoVERDcjA4cXlJTGF1ZnErVnB3ekdoam1FTE9sMHNjNGYr?=
+ =?utf-8?B?Q0pVdDhUS20wSHcvTCtMeTVaS3JWd3NZZGdnczJ0OG9FKzQwQnpRNDFZdHV0?=
+ =?utf-8?B?Y1Rlb1VyM3M3QmlJbG41K2ZBcUVzbUo3bjdKZGoxd3BjZS9NWWxwRTIvdnFE?=
+ =?utf-8?B?aXp2SjVuQ1h1RjJOUCtxWnVzUndySkZsUnhtZ1E4RWRRSTgzWlhWM2kwNGEz?=
+ =?utf-8?B?a2JyVlY2SzJ5VU05QXEvL3BtL3hKOFArbXhTQS82QStqUUxGdk45cTdLemh0?=
+ =?utf-8?B?OHlQM0tLV3U4b04vdWZwdzd4RUxGdFh6OTV0MC95eEVQQWhVR0NPMVYvNjZ5?=
+ =?utf-8?B?Z0hHZHNHV05kMlVmRFhtbjNJYTRDejlKUHNVQ2NOczNkRDQ2UVlhQlJTMWpL?=
+ =?utf-8?B?OGdVMTdaWk1LeHk5MjJUa3BoTVZ0bzVLVmdOaTlFeWh5TzFNTHI3aThRblVX?=
+ =?utf-8?B?N0swOUNpdGRWNjdoY3YxK01VaEdoZ1RCSHM4WEdNeXQ5YVJkTUI3YVVqV3Uz?=
+ =?utf-8?B?Vkd1dGR0VFZhbGgwcG81eGdzS0FydFJUOGZRSytsdjh5Nm43K2MwL09OcCtq?=
+ =?utf-8?B?anZyMzFPQVBEV1NndldzTnR6R2dSVjg1SHczR1gySjRYZFRzTlZCanRpdldH?=
+ =?utf-8?B?aDU3dUdPRVY2UnBFQjczU1ZWR3NBNW96dnY2ZFVhTFcwc1ViMUxpWGsxMXlP?=
+ =?utf-8?B?cW9MQlIwMWxrMmN1L2NKeUNxOGs5T1ZhaXJVS0J4dU5FT0dOdHVWTEUxbm43?=
+ =?utf-8?B?U25YNGxudTdIaGc0ZDBTVUJoZ0cvV1FqWFlQdkRReFlTdWJQQzgrOFowN1M5?=
+ =?utf-8?B?TWJiWFRDTWJxV1FQVmQwOWVZMitCMjFpbzlpNW5pZUErM0xTOFA2T3ZNc1Fw?=
+ =?utf-8?B?VHhoY3A4bUF2emlDYWFRSzFYVEgwZEJGZVltUGNXRHkyaERrNWpEQTMyOC91?=
+ =?utf-8?B?aytlWmJvdEV2RThpN2h0a1ZNSHI3UFdNWlg2M1Ewc01TK1RHVTY4aGNER28w?=
+ =?utf-8?B?SG5ZRUpiOVQwM0tubUU0Ty9tZE5Td3ZCVk5sblNCdHBVMGp2ZkZ3cFhNRGJH?=
+ =?utf-8?B?VkRPbER3eUlLVFdSS1k1QjduaEtweFI1dUh1R0F2Vll4SmZOTzlkU0VSOU1j?=
+ =?utf-8?B?OW1aRmpOK0ZjZ29UYldJYXlLZUFlZnBOS0pKVm5NTFNsNTlHemp3aHZVdmFW?=
+ =?utf-8?B?Vm9xS0xJVUgxT3p1OFRsaTJaZDBXSUJjcGVIVVRYSTdmZStpdHpobjdQcU1Y?=
+ =?utf-8?B?dVRldTBRT1FqdE1KZlZmSTh2S0hHaVpCZTFzVDRHUThIWFZjbGdvbFFSWjg1?=
+ =?utf-8?Q?EEb9grL2PZKWrA5KPwyLK4E=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 13475f63-08ef-463b-21d3-08d9f2c70875
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3180.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2022 10:11:30.6912 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jKj7pHMEcIimwYVj2nZb4WRW3wpATTmcAgyyvSPaJAiDV7CEQ4/cHUqCMtiZKb27KBvZ/9zHxJ25GaWM813sQQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5346
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 3/9] lib/ref_tracker:
+ __ref_tracker_dir_print improve printing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,147 +165,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Chris Wilson <chris.p.wilson@intel.com>, netdev <netdev@vger.kernel.org>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ LKML <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, Jakub
+ Kicinski <kuba@kernel.org>, Dmitry Vyukov <dvyukov@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 01, 2022 at 04:11:24PM +0530, Ramalingam C wrote:
->From: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
->
->A portion of device memory is reserved for Flat CCS so usable
->device memory will be reduced by size of Flat CCS. Size of
->Flat CCS is specified in “XEHPSDV_FLAT_CCS_BASE_ADDR”.
->So to get effective device memory we need to subtract
->total device memory by Flat CCS memory size.
->
->v2:
->  Addressed the small bar related issue [Matt]
->  Removed a reduntant check [Matt]
->
->Cc: Matthew Auld <matthew.auld@intel.com>
->Signed-off-by: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
->Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
->---
-> drivers/gpu/drm/i915/gt/intel_gt.c          | 19 ++++++++++++++++
-> drivers/gpu/drm/i915/gt/intel_gt.h          |  1 +
-> drivers/gpu/drm/i915/gt/intel_region_lmem.c | 24 +++++++++++++++++++--
-> drivers/gpu/drm/i915/i915_reg.h             |  3 +++
-> 4 files changed, 45 insertions(+), 2 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
->index f59933abbb3a..e40d98cb3a2d 100644
->--- a/drivers/gpu/drm/i915/gt/intel_gt.c
->+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
->@@ -911,6 +911,25 @@ u32 intel_gt_read_register_fw(struct intel_gt *gt, i915_reg_t reg)
-> 	return intel_uncore_read_fw(gt->uncore, reg);
-> }
->
->+u32 intel_gt_read_register(struct intel_gt *gt, i915_reg_t reg)
->+{
->+	int type;
->+	u8 sliceid, subsliceid;
->+
->+	for (type = 0; type < NUM_STEERING_TYPES; type++) {
->+		if (intel_gt_reg_needs_read_steering(gt, reg, type)) {
->+			intel_gt_get_valid_steering(gt, type, &sliceid,
->+						    &subsliceid);
->+			return intel_uncore_read_with_mcr_steering(gt->uncore,
->+								   reg,
->+								   sliceid,
->+								   subsliceid);
->+		}
->+	}
->+
->+	return intel_uncore_read(gt->uncore, reg);
->+}
->+
-> void intel_gt_info_print(const struct intel_gt_info *info,
-> 			 struct drm_printer *p)
-> {
->diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
->index 2dad46c3eff2..0f571c8ee22b 100644
->--- a/drivers/gpu/drm/i915/gt/intel_gt.h
->+++ b/drivers/gpu/drm/i915/gt/intel_gt.h
->@@ -85,6 +85,7 @@ static inline bool intel_gt_needs_read_steering(struct intel_gt *gt,
-> }
->
-> u32 intel_gt_read_register_fw(struct intel_gt *gt, i915_reg_t reg);
->+u32 intel_gt_read_register(struct intel_gt *gt, i915_reg_t reg);
->
-> void intel_gt_info_print(const struct intel_gt_info *info,
-> 			 struct drm_printer *p);
->diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
->index 21215a080088..f1d37b46b505 100644
->--- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
->+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
->@@ -205,8 +205,28 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
-> 	if (!IS_DGFX(i915))
-> 		return ERR_PTR(-ENODEV);
->
->-	/* Stolen starts from GSMBASE on DG1 */
->-	lmem_size = intel_uncore_read64(uncore, GEN12_GSMBASE);
->+	if (HAS_FLAT_CCS(i915)) {
->+		u64 tile_stolen, flat_ccs_base_addr_reg, flat_ccs_base;
->+
->+		lmem_size = pci_resource_len(pdev, 2);
->+		flat_ccs_base_addr_reg = intel_gt_read_register(gt, XEHPSDV_FLAT_CCS_BASE_ADDR);
-
-nit since this will need a respin due to conflicts:
-we usually call _reg an i915_reg_t variable. But here you have the
-value, not the register. Maybe "flat_ccs_base_addr"?
 
 
->+		flat_ccs_base = (flat_ccs_base_addr_reg >> XEHPSDV_CCS_BASE_SHIFT) * SZ_64K;
->+
->+		if (GEM_WARN_ON(lmem_size < flat_ccs_base))
->+			return ERR_PTR(-ENODEV);
->+
->+		tile_stolen = lmem_size - flat_ccs_base;
->+
->+		/* If the FLAT_CCS_BASE_ADDR register is not populated, flag an error */
->+		if (tile_stolen == lmem_size)
->+			DRM_ERROR("CCS_BASE_ADDR register did not have expected value\n");
-
-drm_err()
-
->+
->+		lmem_size -= tile_stolen;
->+	} else {
->+		/* Stolen starts from GSMBASE without CCS */
->+		lmem_size = intel_uncore_read64(&i915->uncore, GEN12_GSMBASE);
->+	}
->+
+On 17.02.2022 16:38, Eric Dumazet wrote:
+> On Thu, Feb 17, 2022 at 6:05 AM Andrzej Hajda <andrzej.hajda@intel.com> wrote:
+>> To improve readibility of ref_tracker printing following changes
+>> have been performed:
+>> - added display name for ref_tracker_dir,
+>> - stack trace is printed indented, in the same printk call,
+>> - total number of references is printed every time,
+>> - print info about dropped references.
+>>
+>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>> Reviewed-by: Chris Wilson <chris.p.wilson@intel.com>
+>> ---
+>>   include/linux/ref_tracker.h | 15 ++++++++++++---
+>>   lib/ref_tracker.c           | 28 ++++++++++++++++++++++------
+>>   2 files changed, 34 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/include/linux/ref_tracker.h b/include/linux/ref_tracker.h
+>> index b9c968a716483..090230e5b485d 100644
+>> --- a/include/linux/ref_tracker.h
+>> +++ b/include/linux/ref_tracker.h
+>> @@ -15,18 +15,26 @@ struct ref_tracker_dir {
+>>          refcount_t              untracked;
+>>          struct list_head        list; /* List of active trackers */
+>>          struct list_head        quarantine; /* List of dead trackers */
+>> +       char                    name[32];
+>>   #endif
+>>   };
+>>
+>>   #ifdef CONFIG_REF_TRACKER
+>> -static inline void ref_tracker_dir_init(struct ref_tracker_dir *dir,
+>> -                                       unsigned int quarantine_count)
+>> +
+>> +// Temporary allow two and three arguments, until consumers are converted
+>> +#define ref_tracker_dir_init(_d, _q, args...) _ref_tracker_dir_init(_d, _q, ##args, #_d)
+>> +#define _ref_tracker_dir_init(_d, _q, _n, ...) __ref_tracker_dir_init(_d, _q, _n)
+>> +
+>> +static inline void __ref_tracker_dir_init(struct ref_tracker_dir *dir,
+>> +                                       unsigned int quarantine_count,
+>> +                                       const char *name)
+>>   {
+>>          INIT_LIST_HEAD(&dir->list);
+>>          INIT_LIST_HEAD(&dir->quarantine);
+>>          spin_lock_init(&dir->lock);
+>>          dir->quarantine_avail = quarantine_count;
+>>          refcount_set(&dir->untracked, 1);
+>> +       strlcpy(dir->name, name, sizeof(dir->name));
+>>          stack_depot_init();
+>>   }
+>>
+>> @@ -47,7 +55,8 @@ int ref_tracker_free(struct ref_tracker_dir *dir,
+>>   #else /* CONFIG_REF_TRACKER */
+>>
+>>   static inline void ref_tracker_dir_init(struct ref_tracker_dir *dir,
+>> -                                       unsigned int quarantine_count)
+>> +                                       unsigned int quarantine_count,
+>> +                                       ...)
+>>   {
+>>   }
+>>
+>> diff --git a/lib/ref_tracker.c b/lib/ref_tracker.c
+>> index 0e9c7d2828ccb..943cff08110e3 100644
+>> --- a/lib/ref_tracker.c
+>> +++ b/lib/ref_tracker.c
+>> @@ -1,4 +1,7 @@
+>>   // SPDX-License-Identifier: GPL-2.0-or-later
+>> +
+>> +#define pr_fmt(fmt) "ref_tracker: " fmt
+>> +
+>>   #include <linux/export.h>
+>>   #include <linux/list_sort.h>
+>>   #include <linux/ref_tracker.h>
+>> @@ -7,6 +10,7 @@
+>>   #include <linux/stackdepot.h>
+>>
+>>   #define REF_TRACKER_STACK_ENTRIES 16
+>> +#define STACK_BUF_SIZE 1024
 >
-> 	io_start = pci_resource_start(pdev, 2);
-> 	if (GEM_WARN_ON(lmem_size > pci_resource_len(pdev, 2)))
->diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->index 0f36af8dc3a1..9b5423572fe9 100644
->--- a/drivers/gpu/drm/i915/i915_reg.h
->+++ b/drivers/gpu/drm/i915/i915_reg.h
->@@ -11651,6 +11651,9 @@ enum skl_power_gate {
-> #define   SGGI_DIS			REG_BIT(15)
-> #define   SGR_DIS			REG_BIT(13)
+>>   struct ref_tracker {
+>>          struct list_head        head;   /* anchor into dir->list or dir->quarantine */
+>> @@ -26,31 +30,43 @@ static int ref_tracker_cmp(void *priv, const struct list_head *a, const struct l
+>>   void __ref_tracker_dir_print(struct ref_tracker_dir *dir,
+>>                             unsigned int display_limit)
+>>   {
+>> -       unsigned int i = 0, count = 0;
+>> +       unsigned int i = 0, count = 0, total = 0;
+>>          struct ref_tracker *tracker;
+>>          depot_stack_handle_t stack;
+>> +       char *sbuf;
+>>
+>>          lockdep_assert_held(&dir->lock);
+>>
+>>          if (list_empty(&dir->list))
+>>                  return;
+>>
+>> +       sbuf = kmalloc(STACK_BUF_SIZE, GFP_NOWAIT);
+>> +
+>> +       list_for_each_entry(tracker, &dir->list, head)
+>> +               ++total;
+> Another iteration over a potential long list.
 >
->+#define XEHPSDV_FLAT_CCS_BASE_ADDR             _MMIO(0x4910)
->+#define   XEHPSDV_CCS_BASE_SHIFT               8
->+
+> You can count the @skipped number in the following iteration just fine.
 
-you will have a conflict here... I fixed it locally by moving to
-gt/intel_gt_regs.h
+Skipped is already in 'count', but you are right with double looping> I 
+can count total in the same loop,
+just forgot to merge loops during code evolution.
+Will be fixed.
 
+Regards
+Andrzej
 
-With the above,
-
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Lucas De Marchi
-
-> /* gamt regs */
-> #define GEN8_L3_LRA_1_GPGPU _MMIO(0x4dd4)
-> #define   GEN8_L3_LRA_1_GPGPU_DEFAULT_VALUE_BDW  0x67F1427F /* max/min for LRA1/2 */
->-- 
->2.20.1
+> int skipped = 0;
 >
+>> +
+>>          list_sort(NULL, &dir->list, ref_tracker_cmp);
+>>
+>>          list_for_each_entry(tracker, &dir->list, head) {
+>> -               if (i++ >= display_limit)
+>> -                       break;
+>>                  if (!count++)
+>>                          stack = tracker->alloc_stack_handle;
+>>                  if (stack == tracker->alloc_stack_handle &&
+>>                      !list_is_last(&tracker->head, &dir->list))
+>>                          continue;
+>> +               if (i++ >= display_limit)
+>                              skipped++;
+>> +                       continue;
+>>
+>> -               pr_err("leaked %d references.\n", count);
+>> -               if (stack)
+>> -                       stack_depot_print(stack);
+>> +               if (sbuf && !stack_depot_snprint(stack, sbuf, STACK_BUF_SIZE, 4))
+>> +                       sbuf[0] = 0;
+>> +               pr_err("%s@%pK has %d/%d users at\n%s\n",
+>> +                      dir->name, dir, count, total, sbuf);
+>>                  count = 0;
+>>          }
+>> +       if (i > display_limit)
+>> +               pr_err("%s@%pK skipped %d/%d reports with %d unique stacks.\n",
+>> +                      dir->name, dir, count, total, i - display_limit);
+>> +
+>> +       kfree(sbuf);
+>>   }
+>>   EXPORT_SYMBOL(__ref_tracker_dir_print);
+>>
+>> --
+>> 2.25.1
+>>
+
