@@ -1,51 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 624664BC29D
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 23:34:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC874BC2A3
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 23:38:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D57A10ED4D;
-	Fri, 18 Feb 2022 22:34:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79D7310EF6B;
+	Fri, 18 Feb 2022 22:38:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 151CE10ED4D;
- Fri, 18 Feb 2022 22:34:15 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46F5E10EF6B;
+ Fri, 18 Feb 2022 22:38:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645223655; x=1676759655;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=MbPPAnT0lnFEeCtqd3UkohahPnY60SHGwzsvC99IBUc=;
- b=kVRYREniaXUDfMNALPxZ48k5MTZ1mXyE1R0naLio4S3sdU+5kjHFbnfR
- vmco8MYJPdHAwi91zo6b7UQ/MXfAjexR/0KQQLqFirS+Cd0adX6uWS13m
- YP4dICnU/MdPMha1/1yfSoLeB/9fzP4Xe/6+zK8bnEiQn/P0YlgxprCDb
- ILrynhVK8fyLMiSD0oYpCX4IF+cHYKnhM8/lvI4LJPcEydSbOjRkuzk4W
- oU0kNrrACQSyuF0dstKje7B45k+3tMi9mSmWhozp3Odrz7G29lX9w/C1o
- GKmXxvwdHJy5b/3H1JUsMyCvlxEZbfuFhaBiZS5XZ5P/jr+V97YFXNhfL g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10262"; a="238647643"
-X-IronPort-AV: E=Sophos;i="5.88,380,1635231600"; d="scan'208";a="238647643"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 14:34:14 -0800
-X-IronPort-AV: E=Sophos;i="5.88,380,1635231600"; d="scan'208";a="572475539"
-Received: from svaddara-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.147.37])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 14:34:13 -0800
-Date: Fri, 18 Feb 2022 14:34:15 -0800
+ t=1645223883; x=1676759883;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/s1wabFbgc28mlABuCGVtAWgq4f+FmKnM0eC6Yos7Ms=;
+ b=E2m4y/fRbiTXAHEB1u8ln2FCevFlnUzzrZV9RmyMMR0HRIVxMtLYKhPZ
+ jbGuSdlEK5Ufu2ER4M3URYwdkxfAQZ+60dTdkmw7TEcWMKfKADhdsJACz
+ sbAH5hT0rUBmUZ+KLm98X+iAId49j3Z/EiXIkCLTNO4FrX4HgUcSctl6z
+ WAPTRmVH16uJJoU2kI6WP8eq7GyGN2BAmqtKFeAhw1A0OPA6QhGQBtueI
+ T5zAYY2jXyPQpmY/e+wpSizYyvHgTTClclaF3PB+/6mVSJ0KEho/FgbiL
+ 7mPuxPLy3uWVqdn83htXEuptbfzL627fdsatth8kUpntaP9pCCc6KJt0O A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10262"; a="311982137"
+X-IronPort-AV: E=Sophos;i="5.88,380,1635231600"; d="scan'208";a="311982137"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 14:38:02 -0800
+X-IronPort-AV: E=Sophos;i="5.88,380,1635231600"; d="scan'208";a="605679282"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 14:38:01 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: kernel test robot <lkp@intel.com>
-Message-ID: <20220218223415.gjut5qik2iujd7db@ldmartin-desk2>
-References: <202202171718.0GTDm2wX-lkp@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 18 Feb 2022 14:38:53 -0800
+Message-Id: <20220218223853.939464-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <202202171718.0GTDm2wX-lkp@intel.com>
-Subject: Re: [Intel-gfx] [drm-intel:topic/core-for-CI 1/1]
- drivers/gpu/drm/i915/intel_device_info.c:236:14: error:
- 'INTEL_SUBPLATFORM_G12' undeclared; did you mean 'INTEL_SUBPLATFORM_G10'?
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH topic/core-for-CI] drm/i915/dg2: Add relocation
+ exception
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,41 +55,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 17, 2022 at 05:40:51PM +0800, kernel test robot wrote:
->tree:   git://anongit.freedesktop.org/drm-intel topic/core-for-CI
->head:   b56d8d7bad86a9badc1d1b9ea2d1730fa1d3978b
->commit: b56d8d7bad86a9badc1d1b9ea2d1730fa1d3978b [1/1] drm/i915: Add DG2 PCI IDs
->config: x86_64-randconfig-a011 (https://download.01.org/0day-ci/archive/20220217/202202171718.0GTDm2wX-lkp@intel.com/config)
->compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
->reproduce (this is a W=1 build):
->        git remote add drm-intel git://anongit.freedesktop.org/drm-intel
->        git fetch --no-tags drm-intel topic/core-for-CI
->        git checkout b56d8d7bad86a9badc1d1b9ea2d1730fa1d3978b
->        # save the config file to linux build tree
->        mkdir build_dir
->        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
->
->If you fix the issue, kindly add following tag as appropriate
->Reported-by: kernel test robot <lkp@intel.com>
->
->All errors (new ones prefixed by >>):
->
->   In file included from include/linux/bits.h:6,
->                    from include/linux/ratelimit_types.h:5,
->                    from include/linux/printk.h:10,
->                    from include/drm/drm_print.h:30,
->                    from drivers/gpu/drm/i915/intel_device_info.c:25:
->   drivers/gpu/drm/i915/intel_device_info.c: In function 'intel_device_info_subplatform_init':
->>> drivers/gpu/drm/i915/intel_device_info.c:236:14: error: 'INTEL_SUBPLATFORM_G12' undeclared (first use in this function); did you mean 'INTEL_SUBPLATFORM_G10'?
->     236 |   mask = BIT(INTEL_SUBPLATFORM_G12);
->         |              ^~~~~~~~~~~~~~~~~~~~~
+The move to softpin in igt is ongoing and should land soon.
+Meanwhile, like was done for ADL and RKL, add an exception to allow
+running the igt display tests before that conversion is complete
+so we can unblock CI.
 
-I rebased the topic/core-for-CI branch an in the process squashed a define for
-INTEL_SUBPLATFORM_G12 to fix this.
+Cc: Zbigniew Kempczynski <zbigniew.kempczynski@intel.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Jason Ekstrand <jason@jlekstrand.net>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Lucas De Marchi
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index f8f07d0bd83b..85f4808957b9 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -504,7 +504,7 @@ static bool platform_has_relocs_enabled(const struct i915_execbuffer *eb)
+ 	 */
+ 	if (GRAPHICS_VER(eb->i915) < 12 || IS_TIGERLAKE(eb->i915) ||
+ 	    IS_ROCKETLAKE(eb->i915) || IS_ALDERLAKE_S(eb->i915) ||
+-	    IS_ALDERLAKE_P(eb->i915))
++	    IS_ALDERLAKE_P(eb->i915) || IS_DG2(eb->i915))
+ 		return true;
+ 
+ 	return false;
+-- 
+2.35.1
+
