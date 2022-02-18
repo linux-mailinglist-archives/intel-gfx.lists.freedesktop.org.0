@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1E724BB3EF
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 09:11:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17B614BB406
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 09:20:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 919AA10E2A4;
-	Fri, 18 Feb 2022 08:11:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21F6D10ED82;
+	Fri, 18 Feb 2022 08:20:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B9BC10E2A4
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 08:11:17 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80ABD10ED69;
+ Fri, 18 Feb 2022 08:20:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645171877; x=1676707877;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=LiZID4fxZQB45UMYWDRtM12C6tUj2HvyWmZuzV7VBmk=;
- b=kAj2Zicq91Bese5HdnlBXAB+74pqMPherAlxmATvfRmBRCewI9YBUJyl
- SWC117OcLklO0if1GCDoNAo5zjUDW7y2nSO7MYn3+2MeA7CDl/gCnPFr5
- m29F8VhEDOWS5acbXf/uKwvV/1Gy8b/AoLGSUx5wYJb4+xbTVJpngQhUj
- RIHI95MC0u5dEAOyRGjU+AmZpe7sROsh2kbfePbpxaNsh4e78Sx9yMfLo
- RbT7ID/5YeJGqhyxXHRMV32ndlecG8Bl5v1JZKQEBwyuMw0z0ushdLVHw
- e7dKvYkrkSQPB5i1HzyRcn/4yt6+mxYpPlNa6pDwRoSDgONKMN2c9JOTH w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="314341995"
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="314341995"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 00:11:16 -0800
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="530823335"
-Received: from tmgallag-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.23.60])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 00:11:15 -0800
-From: Jani Nikula <jani.nikula@intel.com>
+ t=1645172420; x=1676708420;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=AJbKvng7hV2tgOeyvqFasoui1jkJgeMmty9uLRiz/Xo=;
+ b=UOCvMMY4lIOE2L4scWEhGxfwSINR8RuKUpPp5OWCmbfYL+K7uY9y0RjK
+ RvkZxhiitNNZWuuOSbYVOTEPh8rgaYGnVG223yC/OMHy42/p1eCIaZFLf
+ 5jWT/mkWJCXWaPd7DWoSpvDb57NF0FpORqLle+GDpFMkMViA7DZKnygbO
+ 1JXjOtaMMn7JnoM+ZQ97ZJb95dFEOgXRX3N9I/1q6tAx13flVtapWw2gP
+ 9K7ZQsCqKo676rgxD+FZVapu8U5RdRPDvEcTkI8M9d4E+HtIRPC2M1BJ8
+ 9nTMeYj8sAqvQprgoJDqqjrYEDG2s6sUQA4eXSvNjcexepm0Uw904XAFF A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="234610476"
+X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="234610476"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 00:20:19 -0800
+X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="777936202"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
+ by fmsmga005-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2022 00:20:15 -0800
+Date: Fri, 18 Feb 2022 13:50:31 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <20220217085243.izxxie7zi3ttsyo4@ldmartin-desk2>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220217083938.3587465-1-jani.nikula@intel.com>
- <20220217085243.izxxie7zi3ttsyo4@ldmartin-desk2>
-Date: Fri, 18 Feb 2022 10:11:10 +0200
-Message-ID: <87y2283881.fsf@intel.com>
+Message-ID: <20220218082031.GA3646@intel.com>
+References: <20220201104132.3050-1-ramalingam.c@intel.com>
+ <20220201104132.3050-10-ramalingam.c@intel.com>
+ <20220218053916.risswlri3cjyjvhd@ldmartin-desk2>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: remove accidental static on
- what should be a local variable
+Content-Disposition: inline
+In-Reply-To: <20220218053916.risswlri3cjyjvhd@ldmartin-desk2>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v5 09/19] Doc/gpu/rfc/i915: i915 DG2 64k
+ pagesize uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,52 +59,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Kenneth Graunke <kenneth@whitecape.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Slawomir Milczarek <slawomir.milczarek@intel.com>,
+ Pekka Paalanen <ppaalanen@gmail.com>, Matthew Auld <matthew.auld@intel.com>,
+ Simon Ser <contact@emersion.fr>, mesa-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 17 Feb 2022, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Thu, Feb 17, 2022 at 10:39:38AM +0200, Jani Nikula wrote:
->>The variable should obviously be local, not static.
->>
->>Fixes: a421d8a99216 ("drm/i915/dp: rewrite DP 2.0 128b/132b link training=
- based on errata")
->>Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
->
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+On 2022-02-17 at 21:39:16 -0800, Lucas De Marchi wrote:
+> On Tue, Feb 01, 2022 at 04:11:22PM +0530, Ramalingam C wrote:
+> > Details of the 64k pagesize support added as part of DG2 enabling and its
+> > implicit impact on the uAPI.
+> > 
+> > v2: improvised the Flat-CCS documentation [Danvet & CQ]
+> > v3: made only for 64k pagesize support
+> > 
+> > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> > cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > cc: Matthew Auld <matthew.auld@intel.com>
+> > cc: Simon Ser <contact@emersion.fr>
+> > cc: Pekka Paalanen <ppaalanen@gmail.com>
+> > Cc: Jordan Justen <jordan.l.justen@intel.com>
+> > Cc: Kenneth Graunke <kenneth@whitecape.org>
+> > Cc: mesa-dev@lists.freedesktop.org
+> > Cc: Tony Ye <tony.ye@intel.com>
+> > Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
+> > ---
+> > Documentation/gpu/rfc/i915_dg2.rst | 25 +++++++++++++++++++++++++
+> > Documentation/gpu/rfc/index.rst    |  3 +++
+> > 2 files changed, 28 insertions(+)
+> > create mode 100644 Documentation/gpu/rfc/i915_dg2.rst
+> > 
+> > diff --git a/Documentation/gpu/rfc/i915_dg2.rst b/Documentation/gpu/rfc/i915_dg2.rst
+> > new file mode 100644
+> > index 000000000000..f4eb5a219897
+> > --- /dev/null
+> > +++ b/Documentation/gpu/rfc/i915_dg2.rst
+> > @@ -0,0 +1,25 @@
+> > +====================
+> > +I915 DG2 RFC Section
+> > +====================
+> > +
+> > +Upstream plan
+> > +=============
+> > +Plan to upstream the DG2 enabling is:
+> > +
+> > +* Merge basic HW enabling for DG2 (Still without pciid)
+> > +* Merge the 64k support for lmem
+> > +* Merge the flat CCS enabling patches
+> > +* Add the pciid for DG2 and enable the DG2 in CI
+> 
+> does this make sense after the fact? Earlier version of this patch
+> Daniel Vetter asked this to be moved to the be the first patch. I see
+> you added it in the cover letter, but keeping this in
+> gpu/rfc/i915_dg2.rst doesn't make much sense IMO. Maybe just drop this
+> patch?
 
-Thanks, pushed to din.
+Yes. I couldn't move this to the start of the series as the kdoc
+referenced here are from later patches of the series.
 
-BR,
-Jani.
+But now considering we have the Kdoc for uapi at the respective patches
+itself we could drop this patch.
 
->
+Daniel, Hope you agree on that?
+
+Ram.
+> 
 > Lucas De Marchi
->
->>---
->> drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
->> 1 file changed, 1 insertion(+), 1 deletion(-)
->>
->>diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
-ers/gpu/drm/i915/display/intel_dp_link_training.c
->>index 9197cc1734d2..5d98773efd1b 100644
->>--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->>+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->>@@ -1408,7 +1408,7 @@ intel_dp_128b132b_link_train(struct intel_dp *intel=
-_dp,
->> void intel_dp_start_link_train(struct intel_dp *intel_dp,
->> 			       const struct intel_crtc_state *crtc_state)
->> {
->>-	static bool passed;
->>+	bool passed;
->> 	/*
->> 	 * TODO: Reiniting LTTPRs here won't be needed once proper connector
->> 	 * HW state readout is added.
->>--=20
->>2.30.2
->>
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+> 
+> > +
+> > +
+> > +64K page support for lmem
+> > +=========================
+> > +On DG2 hw, local-memory supports minimum GTT page size of 64k only. 4k is not
+> > +supported anymore.
+> > +
+> > +DG2 hw doesn't support the 64k (lmem) and 4k (smem) pages in the same ppgtt
+> > +Page table. Refer the struct drm_i915_gem_create_ext for the implication of
+> > +handling the 64k page size.
+> > +
+> > +.. kernel-doc:: include/uapi/drm/i915_drm.h
+> > +        :functions: drm_i915_gem_create_ext
+> > diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
+> > index 91e93a705230..afb320ed4028 100644
+> > --- a/Documentation/gpu/rfc/index.rst
+> > +++ b/Documentation/gpu/rfc/index.rst
+> > @@ -20,6 +20,9 @@ host such documentation:
+> > 
+> >     i915_gem_lmem.rst
+> > 
+> > +.. toctree::
+> > +    i915_dg2.rst
+> > +
+> > .. toctree::
+> > 
+> >     i915_scheduler.rst
+> > -- 
+> > 2.20.1
+> > 
