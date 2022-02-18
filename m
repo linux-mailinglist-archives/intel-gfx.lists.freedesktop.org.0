@@ -2,48 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29B144BC12C
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 21:28:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AEDC4BC151
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 21:42:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0135B10E18A;
-	Fri, 18 Feb 2022 20:28:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08A7410E18A;
+	Fri, 18 Feb 2022 20:42:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5474C10E18A
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 20:28:03 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6846310E13E;
+ Fri, 18 Feb 2022 20:42:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645216083; x=1676752083;
+ t=1645216944; x=1676752944;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=UsEaTjQQI4lSd68OlQpiotbuhNvbThbFiz4Pt0MlxC4=;
- b=IWg8/XkyN4y9OaEyk7mCs3D083pWA15+Ppv/WJncKM4YBN4WDo+KwlsJ
- wbmKrs5cCzqCBJrnUOpKT8pAM7v1HZAQHCij+Vmey7Mq9ibQUuY5tsmDj
- zRDZNHArVs9xiu259udj/SgzXS4bBhG29vWBDbt+F3hHo/rTXFp5H1Hr3
- P5yM/FaMWagCXe/fRMos4SW8ioMxvUyrIlHjrjeYMmSkR8w3hTgw/EEWc
- 8qJr4OJE0f0NL4Qbqzzn9ehcRd45TJMf2ilBS8tl333hbosz18SuRnqV7
- J7mNE+WC/JbRtYgstUaKtDCWYgrWYKC6Doo5xaxS4HsAH85CtzcTDuRjZ w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10262"; a="314477288"
-X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="314477288"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 12:28:02 -0800
-X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="546461577"
-Received: from araschdo-mobl.amr.corp.intel.com (HELO intel.com)
- ([10.255.33.117])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 12:28:02 -0800
-Date: Fri, 18 Feb 2022 15:27:59 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Message-ID: <YhABT97K6C2NQRJb@intel.com>
-References: <20220217123223.748184-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ExycIC81nz2tFIifOp20Enbl3c3rKWHchsGM9iUoqs8=;
+ b=izjw0bAnbzBbyn1kPZ0czfXtNak5u+goO5hyzg6ZgowofHETSkJWM8pH
+ +o/HJNaFK0TGrndjZifRz9sHqCvzu6U2jpduDYJHY8U7qkdQaupM4MTUt
+ aoz7XBwVXERz/54SuQ3x5PFSNWlNF10+v2DiKnW6pjq7YNHCYP2UtWYRP
+ xoFfy05gy/o20kU5H/2ar+U+vsLS8PXmltZWmk2rs/NPtizDJNS0TOENo
+ ZoOU2/2/ewF1blehuniKD+ZUkfFBY8trwBPxZOCCVV5uFVz+fQkGx2GJE
+ vc63EQ3AD5tvOXeAqgvozjaaas28oI5pSvMm5y4/QDKVcZU43g0S3L4lU w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10262"; a="231183739"
+X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="231183739"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 12:42:23 -0800
+X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="637871221"
+Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
+ ([10.1.27.20])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 12:42:10 -0800
+Date: Fri, 18 Feb 2022 12:36:19 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20220218203619.GA3259@jons-linux-dev-box>
+References: <20220216174147.3073235-1-lucas.demarchi@intel.com>
+ <20220216174147.3073235-10-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220217123223.748184-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: use get_reset_domain() helper
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220216174147.3073235-10-lucas.demarchi@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v3 09/16] drm/i915/guc: Convert
+ guc_ads_private_data_reset to iosys_map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,119 +60,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 17, 2022 at 06:02:23PM +0530, Tejas Upadhyay wrote:
-> We dont need to implement reset_domain in intel_engine
-> _setup(), but can be done as a helper. Implemented as
-> engine->reset_domain = get_reset_domain().
+On Wed, Feb 16, 2022 at 09:41:40AM -0800, Lucas De Marchi wrote:
+> Use iosys_map_memset() to zero the private data as ADS may be either
+> on system or IO memory.
 > 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-it is a good non-functional clean-up in the engine setup function and we
-will need this soon to be called from more other places, so:
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 74 +++++++++++++----------
->  1 file changed, 42 insertions(+), 32 deletions(-)
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index e53008b4dd05..e855c801ba28 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -293,6 +293,46 @@ static void nop_irq_handler(struct intel_engine_cs *engine, u16 iir)
->  	GEM_DEBUG_WARN_ON(iir);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> index c61648ef3920..d924486490c1 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> @@ -714,8 +714,8 @@ static void guc_ads_private_data_reset(struct intel_guc *guc)
+>  	if (!size)
+>  		return;
+>  
+> -	memset((void *)guc->ads_blob + guc_ads_private_data_offset(guc), 0,
+> -	       size);
+> +	iosys_map_memset(&guc->ads_map, guc_ads_private_data_offset(guc),
+> +			 0, size);
 >  }
 >  
-> +static u32 get_reset_domain(u8 ver, enum intel_engine_id id)
-> +{
-> +	u32 reset_domain;
-> +
-> +	if (ver >= 11) {
-> +		static const u32 engine_reset_domains[] = {
-> +			[RCS0]  = GEN11_GRDOM_RENDER,
-> +			[BCS0]  = GEN11_GRDOM_BLT,
-> +			[VCS0]  = GEN11_GRDOM_MEDIA,
-> +			[VCS1]  = GEN11_GRDOM_MEDIA2,
-> +			[VCS2]  = GEN11_GRDOM_MEDIA3,
-> +			[VCS3]  = GEN11_GRDOM_MEDIA4,
-> +			[VCS4]  = GEN11_GRDOM_MEDIA5,
-> +			[VCS5]  = GEN11_GRDOM_MEDIA6,
-> +			[VCS6]  = GEN11_GRDOM_MEDIA7,
-> +			[VCS7]  = GEN11_GRDOM_MEDIA8,
-> +			[VECS0] = GEN11_GRDOM_VECS,
-> +			[VECS1] = GEN11_GRDOM_VECS2,
-> +			[VECS2] = GEN11_GRDOM_VECS3,
-> +			[VECS3] = GEN11_GRDOM_VECS4,
-> +		};
-> +		GEM_BUG_ON(id >= ARRAY_SIZE(engine_reset_domains) ||
-> +			   !engine_reset_domains[id]);
-> +		reset_domain = engine_reset_domains[id];
-> +	} else {
-> +		static const u32 engine_reset_domains[] = {
-> +			[RCS0]  = GEN6_GRDOM_RENDER,
-> +			[BCS0]  = GEN6_GRDOM_BLT,
-> +			[VCS0]  = GEN6_GRDOM_MEDIA,
-> +			[VCS1]  = GEN8_GRDOM_MEDIA2,
-> +			[VECS0] = GEN6_GRDOM_VECS,
-> +		};
-> +		GEM_BUG_ON(id >= ARRAY_SIZE(engine_reset_domains) ||
-> +			   !engine_reset_domains[id]);
-> +		reset_domain = engine_reset_domains[id];
-> +	}
-> +
-> +	return reset_domain;
-> +}
-> +
->  static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id,
->  			      u8 logical_instance)
->  {
-> @@ -328,38 +368,8 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id,
->  	engine->id = id;
->  	engine->legacy_idx = INVALID_ENGINE;
->  	engine->mask = BIT(id);
-> -	if (GRAPHICS_VER(gt->i915) >= 11) {
-> -		static const u32 engine_reset_domains[] = {
-> -			[RCS0]  = GEN11_GRDOM_RENDER,
-> -			[BCS0]  = GEN11_GRDOM_BLT,
-> -			[VCS0]  = GEN11_GRDOM_MEDIA,
-> -			[VCS1]  = GEN11_GRDOM_MEDIA2,
-> -			[VCS2]  = GEN11_GRDOM_MEDIA3,
-> -			[VCS3]  = GEN11_GRDOM_MEDIA4,
-> -			[VCS4]  = GEN11_GRDOM_MEDIA5,
-> -			[VCS5]  = GEN11_GRDOM_MEDIA6,
-> -			[VCS6]  = GEN11_GRDOM_MEDIA7,
-> -			[VCS7]  = GEN11_GRDOM_MEDIA8,
-> -			[VECS0] = GEN11_GRDOM_VECS,
-> -			[VECS1] = GEN11_GRDOM_VECS2,
-> -			[VECS2] = GEN11_GRDOM_VECS3,
-> -			[VECS3] = GEN11_GRDOM_VECS4,
-> -		};
-> -		GEM_BUG_ON(id >= ARRAY_SIZE(engine_reset_domains) ||
-> -			   !engine_reset_domains[id]);
-> -		engine->reset_domain = engine_reset_domains[id];
-> -	} else {
-> -		static const u32 engine_reset_domains[] = {
-> -			[RCS0]  = GEN6_GRDOM_RENDER,
-> -			[BCS0]  = GEN6_GRDOM_BLT,
-> -			[VCS0]  = GEN6_GRDOM_MEDIA,
-> -			[VCS1]  = GEN8_GRDOM_MEDIA2,
-> -			[VECS0] = GEN6_GRDOM_VECS,
-> -		};
-> -		GEM_BUG_ON(id >= ARRAY_SIZE(engine_reset_domains) ||
-> -			   !engine_reset_domains[id]);
-> -		engine->reset_domain = engine_reset_domains[id];
-> -	}
-> +	engine->reset_domain = get_reset_domain(GRAPHICS_VER(gt->i915),
-> +						id);
->  	engine->i915 = i915;
->  	engine->gt = gt;
->  	engine->uncore = gt->uncore;
+>  /**
 > -- 
-> 2.34.1
+> 2.35.1
 > 
