@@ -1,55 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EFA64BB566
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 10:21:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A7704BB5F6
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 10:53:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1C5C10F143;
-	Fri, 18 Feb 2022 09:21:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A232E10F210;
+	Fri, 18 Feb 2022 09:53:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 300F810F141;
- Fri, 18 Feb 2022 09:21:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4A4D10F20B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 09:53:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645176093; x=1676712093;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=su/3T94pVDNsaL5hedw6oR2jhqFC6VvwaIdbglb4bg0=;
- b=WdtkrdI7gXrVKMz8NwoKGi44g3zJvWg8kyDM8ipcX/lKacKDMyg3eB+5
- KHaQDdGx0GWAltiW/ZRnYRDrizHVvhrSUE5LZUlv2UfWMKIRCGkHDPmUz
- ZZT7+96SP8FPQyx/lQ8N03sFak4+DSo9Gfpsg5KmGiP1RgCIVNBrkmdaL
- ds1+FHZTHLRlgsMTZXG+FAtN73I7MZTRvV+eiKBsMsI5pU/pBKx9CMvO/
- KxoWoWJVgOWvRz1o7hMiGJkbE5AENgfujsAu7u1MruYktigvL/9RhUExs
- eZ0Q++fAabx1haQbltBzZsQNDobW4mFjfU4ljFUql1XqUWFUQX3NkI0Io g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="248687127"
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="248687127"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1645178023; x=1676714023;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DPaQ9LCeeonQj/4OGAghXBzs0cNz1ibQcVHZDpgk8ik=;
+ b=QxK7nP/DWp1z6DamROZPiuWalhRh9V8IxKhKR7vBOAPIdhsbDCDw5j5x
+ VJ614697/MTX9sJLRzgd6qLuif9Py9/YMG4fO6u9l8TGYDKjsDgWkLovm
+ H/jPeRgMaTf6G96/BwSqi8Fp1Sm4DP0JkDs6VPyNBDxEAjSsdYvIUSJ7C
+ Ul+AxKio2oOltB8OI2yyLM50A9dCGnh2w3UOV7Aa2BUZF/DcUioepcOCl
+ seiGCXk4n59HAO5D02xXCGtDu57B3PO0OFujjF+rpZUKQi4PJ+RNiHklL
+ AYE9SGQSSnyhFcC4MEshQt23z0JYS8tEVBsQj7bAnK4b/nPt+Hco55wYB Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="248691405"
+X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="248691405"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 01:21:32 -0800
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="546205177"
-Received: from dkalinic-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.249.33.147])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 01:21:30 -0800
-Date: Fri, 18 Feb 2022 10:21:26 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <Yg9lFn2SFR4WwmOV@intel.intel>
-References: <20220217144158.21555-1-andi.shyti@linux.intel.com>
- <20220217144158.21555-6-andi.shyti@linux.intel.com>
- <12c2fcf8-ef3b-e59c-fe1e-23bc8f12cfe5@linux.intel.com>
- <Yg5vlgoTEfJRWP9U@intel.intel>
- <57edfc5a-a330-8661-1509-b375f67b495e@linux.intel.com>
+ 18 Feb 2022 01:53:43 -0800
+X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="637693770"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 01:53:43 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 18 Feb 2022 01:54:36 -0800
+Message-Id: <20220218095438.451576-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <57edfc5a-a330-8661-1509-b375f67b495e@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 5/7] drm/i915/gt: Create per-tile RC6
- sysfs interface
+Subject: [Intel-gfx] [PATCH 0/2] drm/i915/dg2: Do not use phy E
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,87 +54,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+This is an alternative to
+https://patchwork.freedesktop.org/series/100151/
+("drm/i915/dg2: 5th Display output").
 
-> > > > Now tiles have their own sysfs interfaces under the gt/
-> > > > directory. Because RC6 is a property that can be configured on a
-> > > > tile basis, then each tile should have its own interface
-> > > > 
-> > > > The new sysfs structure will have a similar layout for the 4 tile
-> > > > case:
-> > > > 
-> > > > /sys/.../card0
-> > > >            ├── gt
-> > > >            │   ├── gt0
-> > > >            │   │   ├── id
-> > > >            │   │   ├── rc6_enable
-> > > >            │   │   ├── rc6_residency_ms
-> > > >            .   .   .
-> > > >            .   .   .
-> > > >            .   .
-> > > >            │   └── gtN
-> > > >            │       ├── id
-> > > >            │       ├── rc6_enable
-> > > >            │       ├── rc6_residency_ms
-> > > >            │       .
-> > > >            │       .
-> > > >            │
-> > > >            └── power/                -+
-> > > >                 ├── rc6_enable        |    Original interface
-> > > >                 ├── rc6_residency_ms  +->  kept as existing ABI;
-> > > >                 .                     |    it multiplexes over
-> > > >                 .                     |    the GTs
-> > > >                                      -+
-> > > > 
-> > > > The existing interfaces have been kept in their original location
-> > > > to preserve the existing ABI. They act on all the GTs: when
-> > > > reading they provide the average value from all the GTs.
-> > > 
-> > > Average feels very odd to me. I'd ask if we can get away providing an errno
-> > > instead? Or tile zero data?
-> > 
-> > Real multiplexing would be providing something when reading and
-> > when writing. The idea of average came while revieweing with
-> > Chris the write multiplexing. Indeed it makes sense to provide
-> > some common value, but I don't know how useful it can be to the
-> > user (still if the user needs any average).
-> > 
-> > Joonas, Chris... any idea?
-> > 
-> > > Case in point, and please correct me if I am wrong, legacy rc6_enable
-> > > returns tile zero, while residency returns average.
-> > 
-> > As the interface is done now, the rc6_enable is just returning
-> > whether the gpu (i.e. i915, not gt) supports RC6 or not. I think
-> > there is a patch later.
-> > 
-> > > Even the deprecated message gets logged with every access right?
-> > > 
-> > > Btw is the deperecated message limited to multi-tile platforms (can't see
-> > > that it is) and what is the plan for that?
-> > 
-> > yes, at this point the message would need to be removed and I
-> > forgot to do it.
-> 
-> Maybe it is correct to have it, I don't know at this point. Is the plan to
-> remove the warning everywhere, or only have it on multi-tile platforms, or
-> new platforms? And/or remove legacy files after a while on all platforms, or
-> just new ones?
+We tried to enable the 5th port in order to get rid of
+the unclaimed register access, but even after the basic plumbing, we
+are still getting and error that the phy failed to calibrate.
 
-At this point I guess the warning should be removed from
-everywhere (i.e.  only those RC6 and RPS interfaces that are
-duplicated/multiplexed).
+So, rather than enabling it and needing another fix on top later, let's
+just fix the immediate issue: we are initializing only 4 ports/phys, but
+intel_phy_is_snps() returns we have 5, so we access registers we
+shouldn't.
 
-We shouldn't be supposed to need more usage of multiplexed
-interfaces in the future (maybe just rc6 enable, but I don't see
-it really necessary).
+I'm still bringing "drm/i915/dg2: Drop 38.4 MHz MPLLB tables", as that
+is just eliminating dead code.
 
-Thanks,
-Andi
+Lucas De Marchi (1):
+  drm/i915/dg2: Do not use phy E
+
+Matt Roper (1):
+  drm/i915/dg2: Drop 38.4 MHz MPLLB tables
+
+ drivers/gpu/drm/i915/display/intel_display.c  |   5 +-
+ drivers/gpu/drm/i915/display/intel_snps_phy.c | 208 +-----------------
+ 2 files changed, 4 insertions(+), 209 deletions(-)
+
+-- 
+2.35.1
+
