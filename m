@@ -1,157 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 779FD4BB802
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 12:25:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D391A4BB85F
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 12:40:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E14E10EC1C;
-	Fri, 18 Feb 2022 11:25:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4E0F10EA27;
+	Fri, 18 Feb 2022 11:40:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F8F910EC1C;
- Fri, 18 Feb 2022 11:25:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645183541; x=1676719541;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=E6cHzxMKXbfBLRvZOM6o5cgMUIX5Usrenkv8n42gNfk=;
- b=HmzP2JH0JNDqtPsjEHR7i93cTywx11ABrjbZOrbJ+rzZ6Pv0GSVJxto3
- PaMAWADTye6xDsJisA2jZMvhSnUaS4MO2m/lW/tncCs5VmoFBc76vDuLw
- vvljn0mG2SlItAGC5bhdl8WGKkg5ErIpFVUXNrmzN+yhZKBOwdwTAIvIN
- QqMvVAJ4EgKX1HsvlFx8IldMU01g7XIddvAwWoamZfIcuJs/9cnmzbiPX
- C8hIrK54x4NS3yfyTgsu/1kxGmgDRi57M2O6PLov3nxb/R56/HNaSS/PM
- rFpPq04jFSkkC1BQw75J7Hp5iCFS4gYS/ADqWBAJdFrzjrAIvuhS58djV Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="250864236"
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="250864236"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 03:25:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="626596411"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by FMSMGA003.fm.intel.com with ESMTP; 18 Feb 2022 03:25:40 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 18 Feb 2022 03:25:39 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 18 Feb 2022 03:25:39 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20 via Frontend Transport; Fri, 18 Feb 2022 03:25:39 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.175)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Fri, 18 Feb 2022 03:25:39 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GuPinH5akW48s3Cyodvrg7g0KRST0bK+l10FJh5/hzc7lrQR2dxtsjrAhwxGjA/3WB+fo7lcHo7OgkAeu2/nQm+plRiQvSAkwcrC1mC1b3JB9+k+lzY7s0y0ZCQAPqHY/txYDYAxxwnSxrhQlBv5wNQKSEpaMWeVS8NB3YRmndVN8r0zGjI7ctu12Lv3f6cNS8jjZcPysNxsLIObl4zYDiI4bFNG5yssklypOFKQhHMBFl8Xcnmuul8oyrI2xJZ5xcwk/rsXbjqc/W/eCa7cR3JHRiy4IgfOLku4s9QMiF66v6YcoD14qrEt/tKh+Vpv5xMwNEi9QpB92EhKCHYAcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lAZUWsp6YcuGG804+ijE0c654qebDKAfOe6KvEUFAJ4=;
- b=EnZl7XLUwAVtyP25zZBHBqp75lgvlCU8XOhO3+ePKOgCsY6zcSc+xuyZ59uEdqAI5vY0xDE+586Vb0LewTZTwQJh55dg4ZuShWEA5hf8dZqWMkF0eC6ESvIfD00IF+NowbIc45Unqrjie9DX81soRVXJo61CtUGio6OAEwgeTWxtPOab63RMprwvIDvpemgrqlHugULg4EaqypqKINX2jqMRzjPIVxSxdRqCUfjmhKt9Vwl7XptxLvSyZott9PI3nON3zIRlzTmEv9x7yiEnSDWL4O0/ccCKs3wlkMLX14J3V8IKwrt7LSeT77VFkAjMQmr+Jm/+5jdN4Im/k/F8rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM6PR11MB3180.namprd11.prod.outlook.com (2603:10b6:5:9::13) by
- BN6PR11MB0051.namprd11.prod.outlook.com (2603:10b6:405:65::25) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4995.22; Fri, 18 Feb 2022 11:25:37 +0000
-Received: from DM6PR11MB3180.namprd11.prod.outlook.com
- ([fe80::11f6:76fa:fc62:6511]) by DM6PR11MB3180.namprd11.prod.outlook.com
- ([fe80::11f6:76fa:fc62:6511%6]) with mapi id 15.20.4995.016; Fri, 18 Feb 2022
- 11:25:37 +0000
-Message-ID: <87462b40-c5c5-103e-3897-9f6cc5c91112@intel.com>
-Date: Fri, 18 Feb 2022 12:25:31 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.6.1
-Content-Language: en-US
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- <dri-devel@lists.freedesktop.org>
-References: <20220218100403.7028-1-ville.syrjala@linux.intel.com>
- <20220218100403.7028-7-ville.syrjala@linux.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20220218100403.7028-7-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: LO4P123CA0350.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:18d::13) To DM6PR11MB3180.namprd11.prod.outlook.com
- (2603:10b6:5:9::13)
+Received: from mail-41104.protonmail.ch (mail-41104.protonmail.ch
+ [185.70.41.104])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C6E310EA27
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 11:40:04 +0000 (UTC)
+Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com
+ [51.77.79.158])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits))
+ (No client certificate requested)
+ by mail-41104.protonmail.ch (Postfix) with ESMTPS id 4K0V9Y53dnz4x73K
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 11:40:01 +0000 (UTC)
+Authentication-Results: mail-41104.protonmail.ch;
+ dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr
+ header.b="ChUDHjrs"
+Date: Fri, 18 Feb 2022 11:39:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail2; t=1645184396;
+ bh=SoHk44i+hSrhGCWSov+A62f5mQ4gQxdPxK6xjt+fVz8=;
+ h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+ References:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID;
+ b=ChUDHjrsfiukE7xWvak5fl+9SyIK7pibGyeOyRknvdnWxOVzG99VSWcQsJSiPUt6f
+ 9grvADHYFpp6DuC3gpQxTA69WdKAKyR7Mo/nwEB5QUyrC/dx+/CtDZF2YWNhQPW2Tl
+ 6+PnGc7RYTUjB1yibcvsbposFqs/0AkGQWJQfO//UxykAiqHXBvIPFzDz0UEkfa/fp
+ MPDl3GjdqU9eTZAdYmjZdoFqdVxzIO9C1MOXcv02MRUgupJ5WQim3ZWvjshZxNREVr
+ Dea5zfYRhicyLTflwxZeX0A1AFnYhkSLuejA6v53Ic38Uw3A/A2lg1P0Tvxx56g9q5
+ bAYyZ4KyBzgvQ==
+To: Hans de Goede <hdegoede@redhat.com>
+From: Simon Ser <contact@emersion.fr>
+Message-ID: <YV87l-2XXzmZ2i6GuGd__uf85s2JQkbXt_qTQDYlbBh1kW2COJoNLUDinmLCokKyy-_0ZnIMUcZeW0GdJ8zF690iYi4ThKrjc09omNMe-0g=@emersion.fr>
+In-Reply-To: <d3f0cc20-d226-ee42-cc98-b469949cec9e@redhat.com>
+References: <20220208084234.1684930-1-hsinyi@chromium.org>
+ <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
+ <KW6DNh6IRRgVJx9DfOFBnEqc4a0x-AnDXEbMxwpfEbk8dOn_KGVzAfo-slJWq-4nWW728Uc-OVpFh2w4fDE4-bxfkDuz1hFILRVvbcuXqaw=@emersion.fr>
+ <CACvgo532-pC+7DLFCo=DWTX-OnJEJvSoTmQnt3_qLhiT4cqEMg@mail.gmail.com>
+ <GYG6EVT1MqtmfKiPpMhDG9mpuATnmwVDq2PuE_dpDat5oQW_t1tUfm39lSWHj32D5r7mrog27sL4dkgdMYQ5BN830TfVOrgQ4Ts8LcO8Hcs=@emersion.fr>
+ <CACvgo52+o9_ETC+1RKzqKkyw3ZJ28RjH0BqC9DfmNAKqByud8Q@mail.gmail.com>
+ <d3f0cc20-d226-ee42-cc98-b469949cec9e@redhat.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 20783079-9110-4264-848d-08d9f2d1630f
-X-MS-TrafficTypeDiagnostic: BN6PR11MB0051:EE_
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-Microsoft-Antispam-PRVS: <BN6PR11MB0051F74BD7FF58C8F2DC026CEB379@BN6PR11MB0051.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: b5+wWmypupyU6BeaHsfzTX8LFl5Nbwan0pWGA7VvpphcxcQJzTwsBIl7FqRH2wV4cCeqmm0CG+pfHCEP2AKvqrKvZgXHnwkyA0GasEIo8t2vlZsNtf+Y3uv82KqKX0q9sKBra717/jg91l0nKLaZDg8xLxhnXoqgOmTgHRcdw/u0Oc+U99M7IO0c/kfMDh0/CS3T46EU3qAo7+wiUjfN2XSphpPkwv8dNaZIgs0tP+z+RrjrIz4cKSrY8WuQjTJoFP8dFFXRUssk97t6U1IR+SmKuJFt12h5KVL8wC4w2IJ9h9ahUAoqk4mWFrrBAwo0BBg757ngzPNexQMvjonwspzblNF+yJyf9CZ8PUSzcIzywaHRh9ngGFUygjqYKfS9Ax+0E1p07blfuVvAY22rW/w18UkHNQ08C2QcU6jVWa2vSI3oZ4bOnQO9VMdqiClJovUrJH9WS/z8s3DgIiw+z3Ymzw8OmLDc1jPr/COQVk6oZVXbn09r1dGDAMjVs6vGFv3k9BZao094mJaK+/F4WPe9RU2UMJXSm7jjsxzsIrPGDsbCmEgecLBQzyuWNHEnMEI/uN7qyIfdNyrSYUtnDS7TvIDAqOHtgWKzHjRDrbbUl2ycO2pZP/e10ovJp7KNRCGPDu2oTQqajLMJ/IIGcisUwfrDdJNPmiYev0TGVs0ynQCIwMawqQlMi1Ry6RwVRu/SGDLy0+zABvvkGacpNHeGBdkWwB9fd16RDpqwH+3HU6j/IuQWwEAbAZYep6p6
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB3180.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(366004)(86362001)(38100700002)(83380400001)(508600001)(6486002)(36916002)(53546011)(6512007)(31696002)(316002)(8936002)(44832011)(36756003)(186003)(26005)(54906003)(5660300002)(66574015)(31686004)(66476007)(66946007)(66556008)(8676002)(82960400001)(4326008)(2906002)(2616005)(6506007)(6666004)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YlZvMHNhUTJnOU0xMVFBaFp3YkRxb1RpbzAwTnlSVWFpc2ZId0xiZ3Nvc2FJ?=
- =?utf-8?B?MFBtTHdxS21aQ0duZ3RmZDRlSzBTR3JodmlaVmFuS1RmVXB5T0pzUENxMUMr?=
- =?utf-8?B?M090UXNuTXRwaGFjUnFFNEhkT2M3ZGVJTUI2RDU5cDlaK1QrSW1jMk5saDNx?=
- =?utf-8?B?emNLRGpxMzdJbldVRXhDQlNHZy85MVhLVFRFR1IvcTJQR2hyRVFGakJ4UDUv?=
- =?utf-8?B?ZHEwZ0RNMDY0S0RQYXliaUpvbkYwKzhhcWNBT013b0lrYWtlVE1VYmMxR0Ur?=
- =?utf-8?B?MVcxTXVlWHN6S3FjclFqOG9GU0N5WHJ3NExsMGFHblRwM0VtcDYvOTRXV2k3?=
- =?utf-8?B?cTA1TVFCUU52TEF3U0FhRWkvREoxaUdtc3AwOTE0TkNHZFhGcmR0QVFjUG43?=
- =?utf-8?B?SFpLamFMaWg5dDJpUmNJKzViRjlEWWRzV25NN0FadkpwZ2JyTXRRQ2RPRjZ4?=
- =?utf-8?B?cEFxdlFTYnBFMFBWVjRSKzF1aXc0KzZZTDVXTG9VMm95VWFqRkN5TzJlVmdh?=
- =?utf-8?B?cWZRbFpWMzlOUmVnSmZGdTlENmlhVzF1cDgveUxUT0gzVFo0YWJzQStDUmkz?=
- =?utf-8?B?UVIrbHRYOG1IRjRqWTV3VkVUeTJ2R2J0T0VmNTdPay8xMk0rYnkxbnJyRWpT?=
- =?utf-8?B?bXlhcVlqNVVWazRjTmlUVmthNU9mUjR1R3BhQWZuaUFJRzR1aGwxU1c5RHZn?=
- =?utf-8?B?b3dqUERWb2hmRU05TklqZWgweFQwY0ZJRXdLc2Z1c0ZMWjEvbVZOUU5Jb1Vq?=
- =?utf-8?B?b0s1MVErZnZCQzA1WlNSUUxwSkhLTEh0cnE2eXRnYUYwcDJpTnVpTll3d3p2?=
- =?utf-8?B?TU42Q2hVSzdDdUVuRklzcUxWbnhwWXdsMnRaT1JtZmM2YTF0M09LV1B4VUlH?=
- =?utf-8?B?M3hrejdza0UvM25yU3ZMODlLQzR4ek5yUzRESndFOU5SZ01odkNRNXFlYlky?=
- =?utf-8?B?VU1vZE5COUV3N2lRTDE2NVdhQStLZzYvTFMzdjRvcndyMUp6NkU5TDk4Ly9y?=
- =?utf-8?B?V0c2NVFvT2ZBbzBtVkNJUDNUWXZKSElLRDJSTlZDT0JXNHFYelV6UUtQQmtX?=
- =?utf-8?B?V2JFNmFjdW54L29GVDlvWGxjTlpEcnl4Unp2ZkpCM0hYS0lFRlFSdTlDc0VP?=
- =?utf-8?B?VkVoTWJpajNFT2RxYnNQemFtNytBczhaZTVFOENLVHl1dzlPZG1SbUFYNFVF?=
- =?utf-8?B?OVhveVR4bHRJT1NWRWNrc29kaTNzaTdTUloxbXpUV2FyMVlReUdUUFo4UDhB?=
- =?utf-8?B?V1RwcGJhQU1FZElCTFphcFIzd2VlRnBUcUZmTGFWeHY5dDJEblJvS3UyeGRT?=
- =?utf-8?B?L1ExUG8xKzJCaEpUUWMvRytVZkdEMDI0czc2NnJtYk1sTVB0dUU4VnRFWGNB?=
- =?utf-8?B?Ni83ckl6NjR3SllDOTZIa3FIdHROaHg0V1RkQkdIU0pQYko0ay9tNXNkQUlY?=
- =?utf-8?B?TEJjUWRzbzdyVjdlMUN3Rm9CbkpwN0xnR0t4ZDJvaU5oNWIwaXEreGlIdFVC?=
- =?utf-8?B?WnhPaDVPb21QOHhMZnFVZkdHMGt1NE5rMDViZC85a3owQTN3NlkvcjhZaHNW?=
- =?utf-8?B?T3haQ1EraHlUVWdKSU1uMW5YUmJZUFZOWmxzTVlwaFdBK1ZraUo4U1BpSFNr?=
- =?utf-8?B?M05jKytBVW1FMm1CZ1c2dFVRN0pMWHFmVXNHS2UvQ2xkNk52ak9OaStoUytK?=
- =?utf-8?B?b2tPRmZoZkl5SHg0bzE2SmZsclkwZFB0OEpmK2w0MkFOMDROQXdzWFQzeTg1?=
- =?utf-8?B?TExVdVdXT3IxR05zTTErRGhQcFB6akQyMVNrYnNXWVVCWUJsODVmcmYwbzhX?=
- =?utf-8?B?WlVYUWRsRjZIdGhqOTJZOStwUzBya3BqOU9hckppSTJqU2VTK1dEUnVZQzhZ?=
- =?utf-8?B?ZFpGREo1QzBlWTdlaUhRcCtLRGdDcmo4NnhCNVB6cHozT3o3OVVhM1R5MXBS?=
- =?utf-8?B?RmU4bUI1bk8yeCszZTdpUGMwT2NwVnhXWURWUDU1bVp5ellURmVtZmpwZTVI?=
- =?utf-8?B?YUZQUlpZMVd6T0JmdGJmOW5BOS9uZlpwRmJSOWZkWC8xdmRyck5XcFlINktj?=
- =?utf-8?B?RENxZUJ2SUMxRjhEdnQ2YmxIRVBBajZ0Rk1mQm1hWFhLeC9FWkNRVTJxdU1z?=
- =?utf-8?B?V1pDT3ViZzcvUDVGeGhnQWFOcy9BYndZMEl4ZndhL2tlZUFOeFhlQzNvMk0z?=
- =?utf-8?Q?gcolXJMmBPYP3rc8oyM9VyQ=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20783079-9110-4264-848d-08d9f2d1630f
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3180.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2022 11:25:37.5714 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MmCGagPf5PVNJAIREl3HPHItiiyrYFrYvGvu2/MEXWo6GfnwUlxLeMpPXLLBqQk228O/G+Vy9wArtZrpARo0VQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB0051
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 06/22] drm/bridge: Use drm_mode_copy()
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,T_SCC_BODY_TEXT_LINE
+ shortcircuit=no autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+ mailout.protonmail.ch
+Subject: Re: [Intel-gfx] [PATCH v8 1/3] gpu: drm: separate panel orientation
+ property creating and value setting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,129 +69,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
- Neil Armstrong <narmstrong@baylibre.com>, intel-gfx@lists.freedesktop.org,
- Jonas Karlman <jonas@kwiboo.se>, Robert Foss <robert.foss@linaro.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>
+Reply-To: Simon Ser <contact@emersion.fr>
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ devicetree <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Alex Deucher <alexander.deucher@amd.com>,
+ Rob Herring <robh+dt@kernel.org>, linux-mediatek@lists.infradead.org,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Hsin-Yi Wang <hsinyi@chromium.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ LAKML <linux-arm-kernel@lists.infradead.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Friday, February 18th, 2022 at 11:38, Hans de Goede <hdegoede@redhat.com=
+> wrote:
 
+> What I'm reading in the above is that it is being considered to allow
+> changing the panel-orientation value after the connector has been made
+> available to userspace; and let userspace know about this through a ueven=
+t.
+>
+> I believe that this is a bad idea, it is important to keep in mind here
+> what userspace (e.g. plymouth) uses this prorty for. This property is
+> used to rotate the image being rendered / shown on the framebuffer to
+> adjust for the panel orientation.
+>
+> So now lets assume we apply the correct upside-down orientation later
+> on a device with an upside-down mounted LCD panel. Then on boot the
+> following could happen:
+>
+> 1. amdgpu exports a connector for the LCD panel to userspace without
+> setting panel-orient=3Dupside-down
+> 2. plymouth sees this and renders its splash normally, but since the
+> panel is upside-down it will now actually show upside-down
 
-On 18.02.2022 11:03, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->
-> struct drm_display_mode embeds a list head, so overwriting
-> the full struct with another one will corrupt the list
-> (if the destination mode is on a list). Use drm_mode_copy()
-> instead which explicitly preserves the list head of
-> the destination mode.
->
-> Even if we know the destination mode is not on any list
-> using drm_mode_copy() seems decent as it sets a good
-> example. Bad examples of not using it might eventually
-> get copied into code where preserving the list head
-> actually matters.
->
-> Obviously one case not covered here is when the mode
-> itself is embedded in a larger structure and the whole
-> structure is copied. But if we are careful when copying
-> into modes embedded in structures I think we can be a
-> little more reassured that bogus list heads haven't been
-> propagated in.
->
-> @is_mode_copy@
-> @@
-> drm_mode_copy(...)
-> {
-> ...
-> }
->
-> @depends on !is_mode_copy@
-> struct drm_display_mode *mode;
-> expression E, S;
-> @@
-> (
-> - *mode = E
-> + drm_mode_copy(mode, &E)
-> |
-> - memcpy(mode, E, S)
-> + drm_mode_copy(mode, E)
-> )
->
-> @depends on !is_mode_copy@
-> struct drm_display_mode mode;
-> expression E;
-> @@
-> (
-> - mode = E
-> + drm_mode_copy(&mode, &E)
-> |
-> - memcpy(&mode, E, S)
-> + drm_mode_copy(&mode, E)
-> )
->
-> @@
-> struct drm_display_mode *mode;
-> @@
-> - &*mode
-> + mode
->
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Cc: Robert Foss <robert.foss@linaro.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+At this point amdgpu hasn't probed the connector yet. So the connector
+will be marked as disconnected, and plymouth shouldn't render anything.
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> 3. amdgpu adjusts the panel-orient prop to upside-down, sends out
+> uevents
 
-Regards
-Andrzej
-> ---
->   drivers/gpu/drm/bridge/nwl-dsi.c          | 2 +-
->   drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 2 +-
->   drivers/gpu/drm/bridge/tc358767.c         | 2 +-
->   3 files changed, 3 insertions(+), 3 deletions(-)
+That's when amdgpu marks the connector as connected. So everything
+should be fine I believe, no bad frame.
+
+> 4. Lets assume plymouth handles this well (i) and now adjust its
+> rendering and renders the next frame of the bootsplash 180=C2=B0 rotated
+> to compensate for the panel being upside down. Then from now on
+> the user will see the splash normally
 >
-> diff --git a/drivers/gpu/drm/bridge/nwl-dsi.c b/drivers/gpu/drm/bridge/nwl-dsi.c
-> index 963a6794735f..881cf338d5cf 100644
-> --- a/drivers/gpu/drm/bridge/nwl-dsi.c
-> +++ b/drivers/gpu/drm/bridge/nwl-dsi.c
-> @@ -857,7 +857,7 @@ nwl_dsi_bridge_mode_set(struct drm_bridge *bridge,
->   	/* Save the new desired phy config */
->   	memcpy(&dsi->phy_cfg, &new_cfg, sizeof(new_cfg));
->   
-> -	memcpy(&dsi->mode, adjusted_mode, sizeof(dsi->mode));
-> +	drm_mode_copy(&dsi->mode, adjusted_mode);
->   	drm_mode_debug_printmodeline(adjusted_mode);
->   
->   	if (pm_runtime_resume_and_get(dev) < 0)
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> index 4befc104d220..a563460f8d20 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> @@ -2830,7 +2830,7 @@ static void dw_hdmi_bridge_mode_set(struct drm_bridge *bridge,
->   	mutex_lock(&hdmi->mutex);
->   
->   	/* Store the display mode for plugin/DKMS poweron events */
-> -	memcpy(&hdmi->previous_mode, mode, sizeof(hdmi->previous_mode));
-> +	drm_mode_copy(&hdmi->previous_mode, mode);
->   
->   	mutex_unlock(&hdmi->mutex);
->   }
-> diff --git a/drivers/gpu/drm/bridge/tc358767.c b/drivers/gpu/drm/bridge/tc358767.c
-> index c23e0abc65e8..7f9574b17caa 100644
-> --- a/drivers/gpu/drm/bridge/tc358767.c
-> +++ b/drivers/gpu/drm/bridge/tc358767.c
-> @@ -1312,7 +1312,7 @@ static void tc_bridge_mode_set(struct drm_bridge *bridge,
->   {
->   	struct tc_data *tc = bridge_to_tc(bridge);
->   
-> -	tc->mode = *mode;
-> +	drm_mode_copy(&tc->mode, mode);
->   }
->   
->   static struct edid *tc_get_edid(struct drm_bridge *bridge,
+> So this means that the user will briefly see the bootsplash rendered
+> upside down which IMHO is not acceptable behavior. Also see my footnote
+> about how I seriously doubt plymouth will see the panel-orient change
+> at all.
+>
+> I'm also a bit unsure about:
+>
+> a) How you can register the panel connector with userspace before
+> reading the edid, don't you need the edid to give the physical size +
+> modeline to userspace, which you cannot just leave out ?
 
+Yup. The KMS EDID property is created before the EDID is read, and is set
+to zero (NULL blob). The width/height in mm and other info are also zero.
+You can try inspecting the state printed by drm_info on any disconnected
+connector to see for yourself.
+
+> I guess the initial modeline is inherited from the video-bios, but
+> what about the physical size? Note that you cannot just change the
+> physical size later either, that gets used to determine the hidpi
+> scaling factor in the bootsplash, and changing that after the initial
+> bootsplash dislay will also look ugly
+>
+> b) Why you need the edid for the panel-orientation property at all,
+> typically the edid prom is part of the panel and the panel does not
+> know that it is mounted e.g. upside down at all, that is a property
+> of the system as a whole not of the panel as a standalone unit so
+> in my experience getting panel-orient info is something which comes
+> from the firmware /video-bios not from edid ?
+
+This is an internal DRM thing. The orientation quirks logic uses the
+mode size advertised by the EDID. I agree that at least in the Steam
+Deck case it may not make a lot of sense to use any info from the
+EDID, but that's needed for the current status quo.
+
+Also note, DisplayID has a bit to indicate the panel orientation IIRC.
+Would be nice to support parsing this at some point.
