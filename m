@@ -2,53 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A92C4BC061
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 20:43:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FDB64BC066
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 20:44:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70A5010E8C8;
-	Fri, 18 Feb 2022 19:43:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B23D10E89C;
+	Fri, 18 Feb 2022 19:44:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9B6410E862;
- Fri, 18 Feb 2022 19:43:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645213404; x=1676749404;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=baOXokhByXXziWZwCqa3Bh4RX/PKcroubuFVmmtj6zE=;
- b=R5t3x8mOujLEBO+O3vcxjqiuEVc+27yvwDqeoXQv93dBPwhKwwFtarJ1
- Eu5K9qcy0y2a8srcjJQgE5y+BLwtSDlUZKoH32sLoi5KYrHJR4KUmf5Hg
- j0STk5xfZnn795X9rUkwNQC4x/EEpGxfiCTu1NeFsnLhoe6dYAq7cvQBT
- EfuMLDPQac7vjVgIP/OCH1fAklFyVS7BN5blXK+sqyc5J2xH3eyvk3RV2
- kL9nxiFGpYmp1K0OkB1mOB9TUyRxwjmkyid3hOuXwnumnXcCKEHLzDKOg
- 8ylU0CGJLqh7NdVJ7YMc/zAteUTXkyRoPa5vuhguaIOLWgL0KmHOjC7lP A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10262"; a="238606610"
-X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="238606610"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 11:43:24 -0800
-X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="504111596"
-Received: from sporter-mobl.ger.corp.intel.com (HELO localhost)
- ([10.209.62.47])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 11:42:24 -0800
-From: Jordan Justen <jordan.l.justen@intel.com>
-To: Ramalingam C <ramalingam.c@intel.com>, Robert Beckett
- <bob.beckett@collabora.com>
-In-Reply-To: <20220218185540.GA7762@intel.com>
-References: <20220208203419.1094362-1-bob.beckett@collabora.com>
- <20220208203419.1094362-6-bob.beckett@collabora.com>
- <87ee40ojpc.fsf@jljusten-skl> <20220218134735.GB3646@intel.com>
- <78df4b73-9b2d-670b-a6b0-a45b476f1f0a@collabora.com>
- <20220218185540.GA7762@intel.com>
-Date: Fri, 18 Feb 2022 11:42:23 -0800
-Message-ID: <875ypcneqo.fsf@jljusten-skl>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3B46A10E8C8;
+ Fri, 18 Feb 2022 19:44:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3849DAADD9;
+ Fri, 18 Feb 2022 19:44:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v8 5/5] drm/i915/uapi: document behaviour
- for DG2 64K support
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Fri, 18 Feb 2022 19:44:25 -0000
+Message-ID: <164521346522.25451.7324891089085301611@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220216174147.3073235-1-lucas.demarchi@intel.com>
+In-Reply-To: <20220216174147.3073235-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/guc=3A_Refactor_ADS_access_to_use_iosys=5Fmap_=28r?=
+ =?utf-8?q?ev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,33 +41,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Simon Ser <contact@emersion.fr>,
- intel-gfx@lists.freedesktop.org, Kenneth Graunke <kenneth@whitecape.org>,
- Slawomir Milczarek <slawomir.milczarek@intel.com>,
- Pekka Paalanen <ppaalanen@gmail.com>, Matthew Auld <matthew.auld@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, mesa-dev@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ramalingam C <ramalingam.c@intel.com> writes:
+== Series Details ==
 
-> On 2022-02-18 at 18:06:00 +0000, Robert Beckett wrote:
->> 
->> If desired, we can make the wording clearer, maybe something like:
->> 
->> "To keep things simple for userland, we mandate that any GTT mappings
->> must be aligned to 2MB. The kernel will internally pad them out to the next
->> 2MB boundary"
->
-> Added the extra information in next version @
-> https://patchwork.freedesktop.org/patch/475166/?series=100419&rev=1
->
-> Jordan, hope this explanation clears your doubt.
+Series: drm/i915/guc: Refactor ADS access to use iosys_map (rev4)
+URL   : https://patchwork.freedesktop.org/series/99711/
+State : warning
 
-Ok. It sounds like what we are doing in Mesa matches what is required by
-hardware and the kernel. Thanks.
+== Summary ==
 
--Jordan
+$ dim checkpatch origin/drm-tip
+554203971464 iosys-map: Add offset to iosys_map_memcpy_to()
+5a68a5465b0a iosys-map: Add a few more helpers
+-:103: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'map_' may be better as '(map_)' to avoid precedence issues
+#103: FILE: include/linux/iosys-map.h:156:
++#define IOSYS_MAP_INIT_OFFSET(map_, offset_) ({				\
++	struct iosys_map copy = *map_;					\
++	iosys_map_incr(&copy, offset_);					\
++	copy;								\
++})
+
+-:258: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'struct_offset__' may be better as '(struct_offset__)' to avoid precedence issues
+#258: FILE: include/linux/iosys-map.h:432:
++#define iosys_map_rd_field(map__, struct_offset__, struct_type__, field__) ({	\
++	struct_type__ *s;							\
++	iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__),	\
++		     typeof(s->field__));					\
++})
+
+-:258: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'struct_type__' may be better as '(struct_type__)' to avoid precedence issues
+#258: FILE: include/linux/iosys-map.h:432:
++#define iosys_map_rd_field(map__, struct_offset__, struct_type__, field__) ({	\
++	struct_type__ *s;							\
++	iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__),	\
++		     typeof(s->field__));					\
++})
+
+-:258: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'field__' - possible side-effects?
+#258: FILE: include/linux/iosys-map.h:432:
++#define iosys_map_rd_field(map__, struct_offset__, struct_type__, field__) ({	\
++	struct_type__ *s;							\
++	iosys_map_rd(map__, struct_offset__ + offsetof(struct_type__, field__),	\
++		     typeof(s->field__));					\
++})
+
+-:279: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'struct_offset__' may be better as '(struct_offset__)' to avoid precedence issues
+#279: FILE: include/linux/iosys-map.h:453:
++#define iosys_map_wr_field(map__, struct_offset__, struct_type__, field__, val__) ({	\
++	struct_type__ *s;								\
++	iosys_map_wr(map__, struct_offset__ + offsetof(struct_type__, field__),		\
++		     typeof(s->field__), val__);					\
++})
+
+-:279: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'struct_type__' may be better as '(struct_type__)' to avoid precedence issues
+#279: FILE: include/linux/iosys-map.h:453:
++#define iosys_map_wr_field(map__, struct_offset__, struct_type__, field__, val__) ({	\
++	struct_type__ *s;								\
++	iosys_map_wr(map__, struct_offset__ + offsetof(struct_type__, field__),		\
++		     typeof(s->field__), val__);					\
++})
+
+-:279: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'field__' - possible side-effects?
+#279: FILE: include/linux/iosys-map.h:453:
++#define iosys_map_wr_field(map__, struct_offset__, struct_type__, field__, val__) ({	\
++	struct_type__ *s;								\
++	iosys_map_wr(map__, struct_offset__ + offsetof(struct_type__, field__),		\
++		     typeof(s->field__), val__);					\
++})
+
+total: 0 errors, 0 warnings, 7 checks, 217 lines checked
+5aed3fa10ede drm/i915/gt: Add helper for shmem copy to iosys_map
+f7aaba839570 drm/i915/guc: Keep iosys_map of ads_blob around
+4156cb519230 drm/i915/guc: Add read/write helpers for ADS blob
+e71bbda4bf0f drm/i915/guc: Convert golden context init to iosys_map
+49375cce81e4 drm/i915/guc: Convert policies update to iosys_map
+234c1edc8ec8 drm/i915/guc: Convert engine record to iosys_map
+13c3dafcbb9c drm/i915/guc: Convert guc_ads_private_data_reset to iosys_map
+e2af5d8aae81 drm/i915/guc: Convert golden context prep to iosys_map
+0a9faaccb3d3 drm/i915/guc: Replace check for golden context size
+6518310edc43 drm/i915/guc: Convert mapping table to iosys_map
+cd0f41c2e8ba drm/i915/guc: Convert capture list to iosys_map
+dea23b4eadd0 drm/i915/guc: Convert guc_mmio_reg_state_init to iosys_map
+62befe7c758b drm/i915/guc: Convert __guc_ads_init to iosys_map
+-:42: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#42: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:623:
++	ads_blob_write(guc, system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_VDBOX_SFC_SUPPORT_MASK],
+
+-:52: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#52: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:630:
++			       system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_DOORBELL_COUNT_PER_SQIDI],
+
+total: 0 errors, 2 warnings, 0 checks, 52 lines checked
+107e7bba4a41 drm/i915/guc: Remove plain ads_blob pointer
+
+
