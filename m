@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C771D4BC165
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 21:51:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 293C94BC176
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 21:56:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA6ED10E4B9;
-	Fri, 18 Feb 2022 20:51:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB7B810E4B9;
+	Fri, 18 Feb 2022 20:56:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2ADF810E4B9;
- Fri, 18 Feb 2022 20:51:24 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB23A10E14F;
+ Fri, 18 Feb 2022 20:56:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645217484; x=1676753484;
+ t=1645217773; x=1676753773;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=516zcotZ4vKJxew/o+TSv3WXclgDhYK9iJrfeEkN4bs=;
- b=BUgmq8l0IM3gGvC9zx6Dtslq/DXcUTyLAUO2Q9whMdLl6vhgTdKpOoDr
- GLbK1l3QceqqFayXMTzPFTFjD6t9l7tFhcc06+NqXGNVM0To1y9r1N/Ag
- nmTlLvFMC66l3636H/RR2IcnNSTUGxfsZI5BMr4opaxdrctKX0JraJrZf
- v4J6dWAtNde9qPUt9o2YqDj1SDHMqICYxUXBpIKSC2a4LlMykQg+Q3WZ5
- GWmFHBwAcF6MXDb1ZpVW5SrPEHGIbYUaufUNoBwnVMfQDdNoH0OTeItfo
- lq6+jntR5qGhWczXm7wEIlFTAFMyJ+b+z1lCJGMKaWe4Pv7eL/uoY+sGB Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10262"; a="275802167"
-X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="275802167"
+ bh=gCWzRHU3FmfqP6z4ucIUIRXirwWZn1bTYNHU7ZQCx5s=;
+ b=WPFGQvct3MGgtjVGXhy9/z3Q224h6L7J9CHPvgOBxrR7gB6KfCsIsgIC
+ BgcD2CgsR1ajcCczs0Ajc+WAYDm2lr+m862cTJp6MJpd36qLacnWwsPvb
+ TWc970wPpLGnKAmvL7HmQfIN3Cm9F3De6e6F3zUuyT3xoroaEEpQiKgUC
+ 26848hsaCrwemO7t4Yz+E2+TdyF4NfXUJel4EI4aP4H+GTfBEiyBXwmqN
+ gzwPCyVeyJrUMaqD8UlwuDa5JUePNskfIQXPBap/uJSE9BHmVTgUnFp8d
+ Eai+mULSX0m8+svubJIRDn3BX8r1AeGIcbK5PDTBC8LTcxhnwuYdwpvGV g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10262"; a="248800897"
+X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="248800897"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 12:51:23 -0800
-X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="705519738"
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 12:56:13 -0800
+X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="705521519"
 Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
  ([10.1.27.20])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 12:51:23 -0800
-Date: Fri, 18 Feb 2022 12:45:32 -0800
+ 18 Feb 2022 12:56:12 -0800
+Date: Fri, 18 Feb 2022 12:50:22 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20220218204532.GA3351@jons-linux-dev-box>
+Message-ID: <20220218205021.GA3475@jons-linux-dev-box>
 References: <20220216174147.3073235-1-lucas.demarchi@intel.com>
- <20220216174147.3073235-13-lucas.demarchi@intel.com>
+ <20220216174147.3073235-14-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220216174147.3073235-13-lucas.demarchi@intel.com>
+In-Reply-To: <20220216174147.3073235-14-lucas.demarchi@intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v3 12/16] drm/i915/guc: Convert mapping
- table to iosys_map
+Subject: Re: [Intel-gfx] [PATCH v3 13/16] drm/i915/guc: Convert capture list
+ to iosys_map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,10 +68,8 @@ Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 16, 2022 at 09:41:43AM -0800, Lucas De Marchi wrote:
-> Use iosys_map to write the fields system_info.mapping_table[][].
-> Since we already have the info_map around where needed, just use it
-> instead of going through guc->ads_map.
+On Wed, Feb 16, 2022 at 09:41:44AM -0800, Lucas De Marchi wrote:
+> Use iosys_map to write the fields ads.capture_*.
 > 
 > Cc: Matt Roper <matthew.d.roper@intel.com>
 > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
@@ -84,50 +82,46 @@ On Wed, Feb 16, 2022 at 09:41:43AM -0800, Lucas De Marchi wrote:
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> index b739781bd133..c3c31b679e79 100644
+> index c3c31b679e79..ec0ccdf98dfa 100644
 > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
 > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> @@ -204,7 +204,7 @@ int intel_guc_global_policies_update(struct intel_guc *guc)
+> @@ -580,7 +580,7 @@ static void guc_init_golden_context(struct intel_guc *guc)
+>  	GEM_BUG_ON(guc->ads_golden_ctxt_size != total_size);
 >  }
 >  
->  static void guc_mapping_table_init(struct intel_gt *gt,
-> -				   struct guc_gt_system_info *system_info)
-> +				   struct iosys_map *info_map)
+> -static void guc_capture_list_init(struct intel_guc *guc, struct __guc_ads_blob *blob)
+> +static void guc_capture_list_init(struct intel_guc *guc)
 >  {
->  	unsigned int i, j;
->  	struct intel_engine_cs *engine;
-> @@ -213,14 +213,14 @@ static void guc_mapping_table_init(struct intel_gt *gt,
->  	/* Table must be set to invalid values for entries not used */
->  	for (i = 0; i < GUC_MAX_ENGINE_CLASSES; ++i)
->  		for (j = 0; j < GUC_MAX_INSTANCES_PER_CLASS; ++j)
-> -			system_info->mapping_table[i][j] =
-> -				GUC_MAX_INSTANCES_PER_CLASS;
-> +			info_map_write(info_map, mapping_table[i][j],
-> +				       GUC_MAX_INSTANCES_PER_CLASS);
+>  	int i, j;
+>  	u32 addr_ggtt, offset;
+> @@ -592,11 +592,11 @@ static void guc_capture_list_init(struct intel_guc *guc, struct __guc_ads_blob *
 >  
->  	for_each_engine(engine, gt, id) {
->  		u8 guc_class = engine_class_to_guc_class(engine->class);
+>  	for (i = 0; i < GUC_CAPTURE_LIST_INDEX_MAX; i++) {
+>  		for (j = 0; j < GUC_MAX_ENGINE_CLASSES; j++) {
+> -			blob->ads.capture_instance[i][j] = addr_ggtt;
+> -			blob->ads.capture_class[i][j] = addr_ggtt;
+> +			ads_blob_write(guc, ads.capture_instance[i][j], addr_ggtt);
+> +			ads_blob_write(guc, ads.capture_class[i][j], addr_ggtt);
+>  		}
 >  
-> -		system_info->mapping_table[guc_class][ilog2(engine->logical_mask)] =
-> -			engine->instance;
-> +		info_map_write(info_map, mapping_table[guc_class][ilog2(engine->logical_mask)],
-> +			       engine->instance);
+> -		blob->ads.capture_global[i] = addr_ggtt;
+> +		ads_blob_write(guc, ads.capture_global[i], addr_ggtt);
 >  	}
 >  }
 >  
-> @@ -631,7 +631,7 @@ static void __guc_ads_init(struct intel_guc *guc)
->  	/* Golden contexts for re-initialising after a watchdog reset */
->  	guc_prep_golden_context(guc);
->  
-> -	guc_mapping_table_init(guc_to_gt(guc), &blob->system_info);
-> +	guc_mapping_table_init(guc_to_gt(guc), &info_map);
->  
+> @@ -636,7 +636,7 @@ static void __guc_ads_init(struct intel_guc *guc)
 >  	base = intel_guc_ggtt_offset(guc, guc->ads_vma);
 >  
+>  	/* Capture list for hang debug */
+> -	guc_capture_list_init(guc, blob);
+> +	guc_capture_list_init(guc);
+>  
+>  	/* ADS */
+>  	blob->ads.scheduler_policies = base + ptr_offset(blob, policies);
 > -- 
 > 2.35.1
 > 
