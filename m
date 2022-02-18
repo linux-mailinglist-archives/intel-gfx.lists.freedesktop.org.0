@@ -1,50 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C15414BBFEE
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 19:48:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73A4C4BBFFC
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 19:55:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5497A10EA07;
-	Fri, 18 Feb 2022 18:48:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 465BB10E7C0;
+	Fri, 18 Feb 2022 18:55:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B486310E8FA;
- Fri, 18 Feb 2022 18:48:23 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0D4310E75B;
+ Fri, 18 Feb 2022 18:55:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645210103; x=1676746103;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+NmTkdBXabwQBVcTobA69dhtxWgh2gLVuhu5fK1PJBk=;
- b=m24zFSnKls03rzZlGyXJGlTKV2hYTH+cDzn15yj36uTDZSMNLQv+N+VM
- VRd61KVtr+vDKKnnWPlJGqHd6ppa0Qh5igJsAFIVUb2gXov/AZKq6qz3c
- Xcj1XGw7JcCYiksgcUwmJUI3waIeP+/RYR1pbf6lfJYZf5st6oBMBxqY6
- bGIc6H7LateC5vkxCTiEUgSbWoX6RGKR/f6zjmKYC7dDtFtx9vtvxuxrK
- JSWCA8+vRtnb5MUixaT7EucVgbNiu5ReEAhKTWdY/pXwD5U9gFgrWxibv
- RLuVh4/BU4dweZy39vHG14nOv7kjuf3n1NGeX5eaTthITyembtn1nvBfo Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10262"; a="251388847"
-X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="251388847"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 10:48:23 -0800
-X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="489642494"
-Received: from ramaling-i9x.iind.intel.com ([10.203.144.108])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2022 10:48:20 -0800
+ t=1645210530; x=1676746530;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=A/pt0JouG2A35RjAzS61fMx6Y80ODkG2+c2DnZHED/8=;
+ b=EGx13HkNH73r6iDypX1icXNUi0i/HuISX2UzrUKCBVrDtniHapsjEJdM
+ 0U7rDyIt/RftRF2JQryeBjxFXmgKRS5h/UXi03EJzgjVjgtdcw4P0eDjP
+ kerWkODWT9QTvqpqUvUOmyjhSdsYOBiUjinnO5VLs3CeNOJlyNyvopm+O
+ IeNA22NBf4f7SvfD7w+Iv6QyzVyixHKpeONVycRXQD1BLXbWbp5CovA/F
+ nDFXuylKg9zG8qbrDFRgFUVThPGKtMcrgxG/LrlxJKDa1Uc0DaxVeLpcd
+ yAxDPOyuisDHKoQaiODMtq7kh3oVuL23RcahH6IBW+ExO6nNeJpMO6Vh0 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10262"; a="238594527"
+X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="238594527"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2022 10:55:30 -0800
+X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; d="scan'208";a="637830201"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.203.144.108])
+ by orsmga004-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2022 10:55:25 -0800
+Date: Sat, 19 Feb 2022 00:25:40 +0530
 From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Date: Sat, 19 Feb 2022 00:17:52 +0530
-Message-Id: <20220218184752.7524-16-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220218184752.7524-1-ramalingam.c@intel.com>
-References: <20220218184752.7524-1-ramalingam.c@intel.com>
+To: Robert Beckett <bob.beckett@collabora.com>
+Message-ID: <20220218185540.GA7762@intel.com>
+References: <20220208203419.1094362-1-bob.beckett@collabora.com>
+ <20220208203419.1094362-6-bob.beckett@collabora.com>
+ <87ee40ojpc.fsf@jljusten-skl> <20220218134735.GB3646@intel.com>
+ <78df4b73-9b2d-670b-a6b0-a45b476f1f0a@collabora.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 15/15] drm/i915/gt: Clear compress metadata for
- Xe_HP platforms
+In-Reply-To: <78df4b73-9b2d-670b-a6b0-a45b476f1f0a@collabora.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v8 5/5] drm/i915/uapi: document behaviour
+ for DG2 64K support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,253 +61,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com, CQ Tang <cq.tang@intel.com>
+Cc: Simon Ser <contact@emersion.fr>, dri-devel@lists.freedesktop.org,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ Kenneth Graunke <kenneth@whitecape.org>,
+ Slawomir Milczarek <slawomir.milczarek@intel.com>,
+ Pekka Paalanen <ppaalanen@gmail.com>, Matthew Auld <matthew.auld@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, mesa-dev@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
+On 2022-02-18 at 18:06:00 +0000, Robert Beckett wrote:
+> 
+> 
+> On 18/02/2022 13:47, Ramalingam C wrote:
+> > On 2022-02-17 at 20:57:35 -0800, Jordan Justen wrote:
+> > > Robert Beckett <bob.beckett@collabora.com> writes:
+> > > 
+> > > > From: Matthew Auld <matthew.auld@intel.com>
+> > > > 
+> > > > On discrete platforms like DG2, we need to support a minimum page size
+> > > > of 64K when dealing with device local-memory. This is quite tricky for
+> > > > various reasons, so try to document the new implicit uapi for this.
+> > > > 
+> > > > v3: fix typos and less emphasis
+> > > > v2: Fixed suggestions on formatting [Daniel]
+> > > > 
+> > > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> > > > Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+> > > > Acked-by: Jordan Justen <jordan.l.justen@intel.com>
+> > > > Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+> > > > Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > > cc: Simon Ser <contact@emersion.fr>
+> > > > cc: Pekka Paalanen <ppaalanen@gmail.com>
+> > > > Cc: Jordan Justen <jordan.l.justen@intel.com>
+> > > > Cc: Kenneth Graunke <kenneth@whitecape.org>
+> > > > Cc: mesa-dev@lists.freedesktop.org
+> > > > Cc: Tony Ye <tony.ye@intel.com>
+> > > > Cc: Slawomir Milczarek <slawomir.milczarek@intel.com>
+> > > > ---
+> > > >   include/uapi/drm/i915_drm.h | 44 ++++++++++++++++++++++++++++++++-----
+> > > >   1 file changed, 39 insertions(+), 5 deletions(-)
+> > > > 
+> > > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > > > index 5e678917da70..77e5e74c32c1 100644
+> > > > --- a/include/uapi/drm/i915_drm.h
+> > > > +++ b/include/uapi/drm/i915_drm.h
+> > > > @@ -1118,10 +1118,16 @@ struct drm_i915_gem_exec_object2 {
+> > > >   	/**
+> > > >   	 * When the EXEC_OBJECT_PINNED flag is specified this is populated by
+> > > >   	 * the user with the GTT offset at which this object will be pinned.
+> > > > +	 *
+> > > >   	 * When the I915_EXEC_NO_RELOC flag is specified this must contain the
+> > > >   	 * presumed_offset of the object.
+> > > > +	 *
+> > > >   	 * During execbuffer2 the kernel populates it with the value of the
+> > > >   	 * current GTT offset of the object, for future presumed_offset writes.
+> > > > +	 *
+> > > > +	 * See struct drm_i915_gem_create_ext for the rules when dealing with
+> > > > +	 * alignment restrictions with I915_MEMORY_CLASS_DEVICE, on devices with
+> > > > +	 * minimum page sizes, like DG2.
+> > > >   	 */
+> > > >   	__u64 offset;
+> > > > @@ -3145,11 +3151,39 @@ struct drm_i915_gem_create_ext {
+> > > >   	 *
+> > > >   	 * The (page-aligned) allocated size for the object will be returned.
+> > > >   	 *
+> > > > -	 * Note that for some devices we have might have further minimum
+> > > > -	 * page-size restrictions(larger than 4K), like for device local-memory.
+> > > > -	 * However in general the final size here should always reflect any
+> > > > -	 * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
+> > > > -	 * extension to place the object in device local-memory.
+> > > > +	 *
+> > > > +	 * DG2 64K min page size implications:
+> > > > +	 *
+> > > > +	 * On discrete platforms, starting from DG2, we have to contend with GTT
+> > > > +	 * page size restrictions when dealing with I915_MEMORY_CLASS_DEVICE
+> > > > +	 * objects.  Specifically the hardware only supports 64K or larger GTT
+> > > > +	 * page sizes for such memory. The kernel will already ensure that all
+> > > > +	 * I915_MEMORY_CLASS_DEVICE memory is allocated using 64K or larger page
+> > > > +	 * sizes underneath.
+> > > > +	 *
+> > > > +	 * Note that the returned size here will always reflect any required
+> > > > +	 * rounding up done by the kernel, i.e 4K will now become 64K on devices
+> > > > +	 * such as DG2.
+> > > > +	 *
+> > > > +	 * Special DG2 GTT address alignment requirement:
+> > > > +	 *
+> > > > +	 * The GTT alignment will also need to be at least 2M for such objects.
+> > > > +	 *
+> > > > +	 * Note that due to how the hardware implements 64K GTT page support, we
+> > > > +	 * have some further complications:
+> > > > +	 *
+> > > > +	 *   1) The entire PDE (which covers a 2MB virtual address range), must
+> > > > +	 *   contain only 64K PTEs, i.e mixing 4K and 64K PTEs in the same
+> > > > +	 *   PDE is forbidden by the hardware.
+> > > > +	 *
+> > > > +	 *   2) We still need to support 4K PTEs for I915_MEMORY_CLASS_SYSTEM
+> > > > +	 *   objects.
+> > > > +	 *
+> > > > +	 * To keep things simple for userland, we mandate that any GTT mappings
+> > > > +	 * must be aligned to and rounded up to 2MB.
+> > > 
+> > > Could I get a clarification about this "rounded up" part.
+> > > 
+> > > Currently Mesa is aligning the start of each and every buffer VMA to be
+> > > 2MiB aligned. But, we are *not* taking any steps to "round up" the size
+> > > of buffers to 2MiB alignment.
+> > > 
+> > > Bob's Mesa MR from a while ago,
+> > > 
+> > > https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/14599
+> > > 
+> > > was trying to add this "round up" size for buffers. We didn't accept
+> > > this MR because we thought if we have ensured that no other buffer will
+> > > use the same 2MiB VMA range, then it should not be required.
+> > > 
+> > > If what we are doing is ok, then maybe this "round up" language should
+> > > be dropped? Or, perhaps the "round up" mentioned here isn't implying we
+> > > must align the size of buffers that we create, and I'm misinterpreting
+> > > this.
+> > Jordan,
+> > 
+> > as per my understanding this size rounding up to 2MB is for the VMA mapping,
+> > not for the buffer size.
+> correct, only the vma is rounded up
+> 
+> > 
+> > Even if we drop this rounding up of vma size to 2MB but align the VMA
+> > start to 2MB address then also this should be fine. Becasue the remaining of the
+> > last PDE(2MB) will never be used for any other GTT mapping as the
+> > starting addr wont align to 2MB.
+> The kernel has to handle 4K pages also, which could in theory attempt to be
+> placed in any remaining space within a 2MB region, which is not supported.
+> For this reason, the kernel rounds up the vma to next 2MB to ensure no 4K
+> pages can treat the remaining space as a candidate for placement.
+> 
+> For mesa, this is not required as they only ever use 2MB alignment for all
+> buffers, hence the denial of the mesa mr.
+> 
+> Internally, the kernel will still round up the vma reservations to prevent
+> any kernel 4K buffers being situated in remaining space.
+> 
+> If desired, we can make the wording clearer, maybe something like:
+> 
+> "To keep things simple for userland, we mandate that any GTT mappings
+> must be aligned to 2MB. The kernel will internally pad them out to the next
+> 2MB boundary"
 
-Xe-HP and latest devices support Flat CCS which reserved a portion of
-the device memory to store compression metadata, during the clearing of
-device memory buffer object we also need to clear the associated
-CCS buffer.
+Added the extra information in next version @ https://patchwork.freedesktop.org/patch/475166/?series=100419&rev=1
 
-Flat CCS memory can not be directly accessed by S/W.
-Address of CCS buffer associated main BO is automatically calculated
-by device itself. KMD/UMD can only access this buffer indirectly using
-XY_CTRL_SURF_COPY_BLT cmd via the address of device memory buffer.
+Jordan, hope this explanation clears your doubt.
 
-v2: Fixed issues with platform naming [Lucas]
-v3: Rebased [Ram]
-    Used the round_up funcs [Bob]
-v4: Fixed ccs blk calculation [Ram]
-    Added Kdoc on flat-ccs.
-
-Cc: CQ Tang <cq.tang@intel.com>
-Signed-off-by: Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  15 ++
- drivers/gpu/drm/i915/gt/intel_migrate.c      | 145 ++++++++++++++++++-
- 2 files changed, 156 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-index f8253012d166..166de5436c4a 100644
---- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-@@ -203,6 +203,21 @@
- #define GFX_OP_DRAWRECT_INFO     ((0x3<<29)|(0x1d<<24)|(0x80<<16)|(0x3))
- #define GFX_OP_DRAWRECT_INFO_I965  ((0x7900<<16)|0x2)
- 
-+#define XY_CTRL_SURF_INSTR_SIZE	5
-+#define MI_FLUSH_DW_SIZE		3
-+#define XY_CTRL_SURF_COPY_BLT		((2 << 29) | (0x48 << 22) | 3)
-+#define   SRC_ACCESS_TYPE_SHIFT		21
-+#define   DST_ACCESS_TYPE_SHIFT		20
-+#define   CCS_SIZE_SHIFT		8
-+#define   XY_CTRL_SURF_MOCS_SHIFT	25
-+#define   NUM_CCS_BYTES_PER_BLOCK	256
-+#define   NUM_BYTES_PER_CCS_BYTE	256
-+#define   NUM_CCS_BLKS_PER_XFER		1024
-+#define   INDIRECT_ACCESS		0
-+#define   DIRECT_ACCESS			1
-+#define  MI_FLUSH_LLC			BIT(9)
-+#define  MI_FLUSH_CCS			BIT(16)
-+
- #define COLOR_BLT_CMD			(2 << 29 | 0x40 << 22 | (5 - 2))
- #define XY_COLOR_BLT_CMD		(2 << 29 | 0x50 << 22)
- #define SRC_COPY_BLT_CMD		(2 << 29 | 0x43 << 22)
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index 20444d6ceb3c..9f9cd2649377 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -16,6 +16,8 @@ struct insert_pte_data {
- };
- 
- #define CHUNK_SZ SZ_8M /* ~1ms at 8GiB/s preemption delay */
-+#define GET_CCS_BYTES(i915, size)	(HAS_FLAT_CCS(i915) ? \
-+					 DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE) : 0)
- 
- static bool engine_supports_migration(struct intel_engine_cs *engine)
- {
-@@ -467,6 +469,113 @@ static bool wa_1209644611_applies(int ver, u32 size)
- 	return height % 4 == 3 && height <= 8;
- }
- 
-+/**
-+ * DOC: Flat-CCS - Memory compression for Local memory
-+ *
-+ * On Xe-HP and later devices, we use dedicated compression control state (CCS)
-+ * stored in local memory for each surface, to support the 3D and media
-+ * compression formats.
-+ *
-+ * The memory required for the CCS of the entire local memory is 1/256 of the
-+ * local memory size. So before the kernel boot, the required memory is reserved
-+ * for the CCS data and a secure register will be programmed with the CCS base
-+ * address.
-+ *
-+ * Flat CCS data needs to be cleared when a lmem object is allocated.
-+ * And CCS data can be copied in and out of CCS region through
-+ * XY_CTRL_SURF_COPY_BLT. CPU can't access the CCS data directly.
-+ *
-+ * When we exaust the lmem, if the object's placements support smem, then we can
-+ * directly decompress the compressed lmem object into smem and start using it
-+ * from smem itself.
-+ *
-+ * But when we need to swapout the compressed lmem object into a smem region
-+ * though objects' placement doesn't support smem, then we copy the lmem content
-+ * as it is into smem region along with ccs data (using XY_CTRL_SURF_COPY_BLT).
-+ * When the object is referred, lmem content will be swaped in along with
-+ * restoration of the CCS data (using XY_CTRL_SURF_COPY_BLT) at corresponding
-+ * location.
-+ */
-+
-+static inline u32 *i915_flush_dw(u32 *cmd, u64 dst, u32 flags)
-+{
-+	/* Mask the 3 LSB to use the PPGTT address space */
-+	*cmd++ = MI_FLUSH_DW | flags;
-+	*cmd++ = lower_32_bits(dst);
-+	*cmd++ = upper_32_bits(dst);
-+
-+	return cmd;
-+}
-+
-+static u32 calc_ctrl_surf_instr_size(struct drm_i915_private *i915, int size)
-+{
-+	u32 num_cmds, num_blks, total_size;
-+
-+	if (!GET_CCS_BYTES(i915, size))
-+		return 0;
-+
-+	/*
-+	 * XY_CTRL_SURF_COPY_BLT transfers CCS in 256 byte
-+	 * blocks. one XY_CTRL_SURF_COPY_BLT command can
-+	 * trnasfer upto 1024 blocks.
-+	 */
-+	num_blks = DIV_ROUND_UP(GET_CCS_BYTES(i915, size),
-+				NUM_CCS_BYTES_PER_BLOCK);
-+	num_cmds = DIV_ROUND_UP(num_blks, NUM_CCS_BLKS_PER_XFER);
-+	total_size = (XY_CTRL_SURF_INSTR_SIZE) * num_cmds;
-+
-+	/*
-+	 * We need to add a flush before and after
-+	 * XY_CTRL_SURF_COPY_BLT
-+	 */
-+	total_size += 2 * MI_FLUSH_DW_SIZE;
-+	return total_size;
-+}
-+
-+static u32 *_i915_ctrl_surf_copy_blt(u32 *cmd, u64 src_addr, u64 dst_addr,
-+				     u8 src_mem_access, u8 dst_mem_access,
-+				     int src_mocs, int dst_mocs,
-+				     u16 num_ccs_blocks)
-+{
-+	int i = num_ccs_blocks;
-+
-+	/*
-+	 * The XY_CTRL_SURF_COPY_BLT instruction is used to copy the CCS
-+	 * data in and out of the CCS region.
-+	 *
-+	 * We can copy at most 1024 blocks of 256 bytes using one
-+	 * XY_CTRL_SURF_COPY_BLT instruction.
-+	 *
-+	 * In case we need to copy more than 1024 blocks, we need to add
-+	 * another instruction to the same batch buffer.
-+	 *
-+	 * 1024 blocks of 256 bytes of CCS represent a total 256KB of CCS.
-+	 *
-+	 * 256 KB of CCS represents 256 * 256 KB = 64 MB of LMEM.
-+	 */
-+	do {
-+		/*
-+		 * We use logical AND with 1023 since the size field
-+		 * takes values which is in the range of 0 - 1023
-+		 */
-+		*cmd++ = ((XY_CTRL_SURF_COPY_BLT) |
-+			  (src_mem_access << SRC_ACCESS_TYPE_SHIFT) |
-+			  (dst_mem_access << DST_ACCESS_TYPE_SHIFT) |
-+			  (((i - 1) & 1023) << CCS_SIZE_SHIFT));
-+		*cmd++ = lower_32_bits(src_addr);
-+		*cmd++ = ((upper_32_bits(src_addr) & 0xFFFF) |
-+			  (src_mocs << XY_CTRL_SURF_MOCS_SHIFT));
-+		*cmd++ = lower_32_bits(dst_addr);
-+		*cmd++ = ((upper_32_bits(dst_addr) & 0xFFFF) |
-+			  (dst_mocs << XY_CTRL_SURF_MOCS_SHIFT));
-+		src_addr += SZ_64M;
-+		dst_addr += SZ_64M;
-+		i -= NUM_CCS_BLKS_PER_XFER;
-+	} while (i > 0);
-+
-+	return cmd;
-+}
-+
- static int emit_copy(struct i915_request *rq,
- 		     u32 dst_offset, u32 src_offset, int size)
- {
-@@ -614,16 +723,23 @@ intel_context_migrate_copy(struct intel_context *ce,
- 	return err;
- }
- 
--static int emit_clear(struct i915_request *rq, u64 offset, int size, u32 value)
-+static int emit_clear(struct i915_request *rq, u64 offset, int size,
-+		      u32 value, bool is_lmem)
- {
--	const int ver = GRAPHICS_VER(rq->engine->i915);
-+	struct drm_i915_private *i915 = rq->engine->i915;
-+	const int ver = GRAPHICS_VER(i915);
-+	u32 num_ccs_blks, ccs_ring_size;
- 	u32 *cs;
- 
- 	GEM_BUG_ON(size >> PAGE_SHIFT > S16_MAX);
- 
- 	offset += (u64)rq->engine->instance << 32;
- 
--	cs = intel_ring_begin(rq, ver >= 8 ? 8 : 6);
-+	/* Clear flat css only when value is 0 */
-+	ccs_ring_size = (is_lmem && !value) ?
-+			 calc_ctrl_surf_instr_size(i915, size) : 0;
-+
-+	cs = intel_ring_begin(rq, round_up(ver >= 8 ? 8 + ccs_ring_size : 6, 2));
- 	if (IS_ERR(cs))
- 		return PTR_ERR(cs);
- 
-@@ -646,6 +762,27 @@ static int emit_clear(struct i915_request *rq, u64 offset, int size, u32 value)
- 		*cs++ = value;
- 	}
- 
-+	if (is_lmem && HAS_FLAT_CCS(i915) && !value) {
-+		num_ccs_blks = DIV_ROUND_UP(GET_CCS_BYTES(i915, size),
-+					    NUM_CCS_BYTES_PER_BLOCK);
-+
-+		/*
-+		 * Flat CCS surface can only be accessed via
-+		 * XY_CTRL_SURF_COPY_BLT CMD and using indirect
-+		 * mapping of associated LMEM.
-+		 * We can clear ccs surface by writing all 0s,
-+		 * so we will flush the previously cleared buffer
-+		 * and use it as a source.
-+		 */
-+		cs = i915_flush_dw(cs, offset, MI_FLUSH_LLC | MI_FLUSH_CCS);
-+		cs = _i915_ctrl_surf_copy_blt(cs, offset, offset,
-+					      DIRECT_ACCESS, INDIRECT_ACCESS,
-+					      1, 1, num_ccs_blks);
-+		cs = i915_flush_dw(cs, offset, MI_FLUSH_LLC | MI_FLUSH_CCS);
-+
-+		if (ccs_ring_size & 1)
-+			*cs++ = MI_NOOP;
-+	}
- 	intel_ring_advance(rq, cs);
- 	return 0;
- }
-@@ -711,7 +848,7 @@ intel_context_migrate_clear(struct intel_context *ce,
- 		if (err)
- 			goto out_rq;
- 
--		err = emit_clear(rq, offset, len, value);
-+		err = emit_clear(rq, offset, len, value, is_lmem);
- 
- 		/* Arbitration is re-enabled between requests. */
- out_rq:
--- 
-2.20.1
-
+Ram.
+> 
+> 
+> > 
+> > Bob, Is the above understanding is right? if so could we drop the
+> > requirement of mapping the vma size to 2MB?
+> > 
+> > Ram
+> > > 
+> > > -Jordan
+> > > 
+> > > > As this only wastes virtual
+> > > > +	 * address space and avoids userland having to copy any needlessly
+> > > > +	 * complicated PDE sharing scheme (coloring) and only affects DG2, this
+> > > > +	 * is deemed to be a good compromise.
+> > > >   	 */
+> > > >   	__u64 size;
+> > > >   	/**
+> > > > -- 
+> > > > 2.25.1
