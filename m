@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C39854BB2A5
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 07:40:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D108E4BB2A6
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Feb 2022 07:41:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A804710EC2D;
-	Fri, 18 Feb 2022 06:40:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3300610ECBB;
+	Fri, 18 Feb 2022 06:41:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDBF310EC2D
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 06:40:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6687910EC2F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 06:40:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645166455; x=1676702455;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=08PmiHBNCZaTTILoMRqX7ZbJniX7Rn6LJfQ6n3r4gkk=;
- b=cDQ4VWomoUtwH+LjCpAaNmkJUS5pPrHGdcyiJsfeWGQhqaeWtUn9S7aB
- A+8iIWWXJDoVGL08plx2vhIh42xkeu7Jcqlkkpfybbj8pv0gg4xhEjLRg
- W5MJipsoeq2ejTvl/SDd/kMrbYFNSaYWYxgpbkn958gHw33XEDqmITa2u
- IHIWBQnn8zeFFnnuJE7u12fGNfS3/geXv74FpgysxQ9l0XQEi4H19k7Vt
- 9NQeHFqXPIK2akRF0sKwPULrQcE89VOkSB5nPafM0U+19JPQhhiUhupdO
- xeijE6Zvd+Sx5xRdYeEcqqX3GMAyofdhuQOlzfgujJ/PuV1brTCps5HkC w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="234596135"
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="234596135"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ t=1645166458; x=1676702458;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=MMUZnS254kiahwIMmYkdJ6jdA/3iKNdg4myA+66Fq14=;
+ b=gJYqSpvpuBWwFKetM2qosjpRDuZo0nSLyVqBIecmUAb3HzoOKIitxKpm
+ M8fRrGkhr4jRouR1gbnufE43l85F0frfD85FHxnodbJVrQh0H70Il5g/v
+ pcECa9P/otWlMN8khWfsX0MuI59OEx5uJ03AE9DarJJBTVt5HhhwJYMDu
+ R0n+YxbUQlilNWotTsVKEU6rUju2v2/VbipX6LjFjcOIcyeXXHLaDXihp
+ aDYYrF0IgHIhkCH3sM2mEYu3c+jg7hpSfKrXd10o+edr2GdBP9cV1WW9i
+ G3b0xxtHqe/L2WqYSV6OZJmU4eJiDYtgYQ2FBDaEV4QXT6gzax+93hhzZ w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="234596141"
+X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="234596141"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 22:40:55 -0800
+ 17 Feb 2022 22:40:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="503889022"
+X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; d="scan'208";a="626520470"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga002.jf.intel.com with SMTP; 17 Feb 2022 22:40:52 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 17 Feb 2022 22:40:56 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 18 Feb 2022 08:40:52 +0200
+ Fri, 18 Feb 2022 08:40:55 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Feb 2022 08:40:37 +0200
-Message-Id: <20220218064039.12834-5-ville.syrjala@linux.intel.com>
+Date: Fri, 18 Feb 2022 08:40:38 +0200
+Message-Id: <20220218064039.12834-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220218064039.12834-1-ville.syrjala@linux.intel.com>
 References: <20220218064039.12834-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 4/6] drm/i915: Pimp icl+ sagv pre/post update
+Subject: [Intel-gfx] [PATCH v3 5/6] drm/i915: Extract icl_qgv_points_mask()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,87 +63,79 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add some debugs on what exactly we're doing to the QGV point mask
-in the icl+ sagv pre/post plane update hooks. Currently we're just
-guessing.
+Declutter intel_bw_atomic_check() a bit by pulling
+the max QGV mask calculation out.
 
-v2: s/u32/u16/ for consistency with the mask sizes (Stan)
-
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_pm.c | 37 ++++++++++++++++-----------------
- 1 file changed, 18 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 35 ++++++++++++++++---------
+ 1 file changed, 22 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index bf8cf71f5b07..ea7a4bb079d3 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -3815,26 +3815,22 @@ static void icl_sagv_pre_plane_update(struct intel_atomic_state *state)
- 		intel_atomic_get_old_bw_state(state);
- 	const struct intel_bw_state *new_bw_state =
- 		intel_atomic_get_new_bw_state(state);
--	u32 new_mask;
-+	u16 old_mask, new_mask;
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 1fd1d2182d8f..6637da75f878 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -816,6 +816,26 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state)
+ 	return 0;
+ }
  
- 	if (!new_bw_state)
- 		return;
++static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
++{
++	unsigned int num_psf_gv_points = i915->max_bw[0].num_psf_gv_points;
++	unsigned int num_qgv_points = i915->max_bw[0].num_qgv_points;
++	u16 mask = 0;
++
++	/*
++	 * We can _not_ use the whole ADLS_QGV_PT_MASK here, as PCode rejects
++	 * it with failure if we try masking any unadvertised points.
++	 * So need to operate only with those returned from PCode.
++	 */
++	if (num_qgv_points > 0)
++		mask |= REG_GENMASK(num_qgv_points - 1, 0);
++
++	if (num_psf_gv_points > 0)
++		mask |= REG_GENMASK(num_psf_gv_points - 1, 0) << ADLS_PSF_PT_SHIFT;
++
++	return mask;
++}
++
+ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+@@ -831,23 +851,11 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ 	unsigned int num_qgv_points = dev_priv->max_bw[0].num_qgv_points;
+ 	unsigned int num_psf_gv_points = dev_priv->max_bw[0].num_psf_gv_points;
+ 	bool changed = false;
+-	u32 mask = 0;
+ 
+ 	/* FIXME earlier gens need some checks too */
+ 	if (DISPLAY_VER(dev_priv) < 11)
+ 		return 0;
  
 -	/*
--	 * Nothing to mask
+-	 * We can _not_ use the whole ADLS_QGV_PT_MASK here, as PCode rejects
+-	 * it with failure if we try masking any unadvertised points.
+-	 * So need to operate only with those returned from PCode.
 -	 */
--	if (new_bw_state->qgv_points_mask == old_bw_state->qgv_points_mask)
--		return;
+-	if (num_qgv_points > 0)
+-		mask |= REG_GENMASK(num_qgv_points - 1, 0);
 -
-+	old_mask = old_bw_state->qgv_points_mask;
- 	new_mask = old_bw_state->qgv_points_mask | new_bw_state->qgv_points_mask;
- 
--	/*
--	 * If new mask is zero - means there is nothing to mask,
--	 * we can only unmask, which should be done in unmask.
--	 */
--	if (!new_mask)
-+	if (old_mask == new_mask)
- 		return;
- 
-+	WARN_ON(!new_bw_state->base.changed);
-+
-+	drm_dbg_kms(&dev_priv->drm, "Restricting QGV points: 0x%x -> 0x%x\n",
-+		    old_mask, new_mask);
-+
- 	/*
- 	 * Restrict required qgv points before updating the configuration.
- 	 * According to BSpec we can't mask and unmask qgv points at the same
-@@ -3851,19 +3847,22 @@ static void icl_sagv_post_plane_update(struct intel_atomic_state *state)
- 		intel_atomic_get_old_bw_state(state);
- 	const struct intel_bw_state *new_bw_state =
- 		intel_atomic_get_new_bw_state(state);
--	u32 new_mask = 0;
-+	u16 old_mask, new_mask;
- 
- 	if (!new_bw_state)
- 		return;
- 
--	/*
--	 * Nothing to unmask
--	 */
--	if (new_bw_state->qgv_points_mask == old_bw_state->qgv_points_mask)
--		return;
+-	if (num_psf_gv_points > 0)
+-		mask |= REG_GENMASK(num_psf_gv_points - 1, 0) << ADLS_PSF_PT_SHIFT;
 -
-+	old_mask = old_bw_state->qgv_points_mask | new_bw_state->qgv_points_mask;
- 	new_mask = new_bw_state->qgv_points_mask;
+ 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+ 					    new_crtc_state, i) {
+ 		unsigned int old_data_rate =
+@@ -979,7 +987,8 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ 	 * We store the ones which need to be masked as that is what PCode
+ 	 * actually accepts as a parameter.
+ 	 */
+-	new_bw_state->qgv_points_mask = ~allowed_points & mask;
++	new_bw_state->qgv_points_mask = ~allowed_points &
++		icl_qgv_points_mask(dev_priv);
  
-+	if (old_mask == new_mask)
-+		return;
-+
-+	WARN_ON(!new_bw_state->base.changed);
-+
-+	drm_dbg_kms(&dev_priv->drm, "Relaxing QGV points: 0x%x -> 0x%x\n",
-+		    old_mask, new_mask);
-+
  	/*
- 	 * Allow required qgv points after updating the configuration.
- 	 * According to BSpec we can't mask and unmask qgv points at the same
+ 	 * If the actual mask had changed we need to make sure that
 -- 
 2.34.1
 
