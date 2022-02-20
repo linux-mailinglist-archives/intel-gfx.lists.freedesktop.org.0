@@ -1,50 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BAA24BCD7F
-	for <lists+intel-gfx@lfdr.de>; Sun, 20 Feb 2022 11:18:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC78F4BCEE4
+	for <lists+intel-gfx@lfdr.de>; Sun, 20 Feb 2022 15:34:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE71310F9ED;
-	Sun, 20 Feb 2022 10:18:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E29F410E2BF;
+	Sun, 20 Feb 2022 14:34:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8053310F9EB;
- Sun, 20 Feb 2022 10:18:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645352316; x=1676888316;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=/g8/eppV3DbILu3LGgiF4TLBIfB493/4+HVvDxhyXXk=;
- b=CBl4yYG5rx5+5EWIXtG8OOpNYMKX/d5bYIPO7L7bAyQZtxBC4TMgfkZb
- JGD0CQzS1C55npyLr56DbABldXsR9MTyADrJOdVU6GrssYKxPS6107uvG
- uO2MHIpXXgEx/P1Q3BXUiVVMSlZz42lLieWUy4DZ3a3IQkG5SdTmGLaP/
- 0g+sxwDMVdTnp6+cuhEpv4e7JSF2GOWW5dmihZmBcrcBQdP0CKDgh46go
- QbE+BfyDUAIc84UlP80a2r2pL1S9RYoL25VnNJwCe6vjoovbJfAC6bJh5
- W5esXzzu+DZUBgHJhlc1e44NvEjSjuzCIlmkCT61WbLnheEyRm7iK5goo Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10263"; a="231331096"
-X-IronPort-AV: E=Sophos;i="5.88,383,1635231600"; d="scan'208";a="231331096"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2022 02:18:36 -0800
-X-IronPort-AV: E=Sophos;i="5.88,383,1635231600"; d="scan'208";a="507282588"
-Received: from josefseb-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.135.109])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2022 02:18:35 -0800
-Date: Sun, 20 Feb 2022 02:18:40 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ramalingam C <ramalingam.c@intel.com>
-Message-ID: <20220220101840.ygf3s357y372v3fl@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220218184752.7524-1-ramalingam.c@intel.com>
+Received: from server2.walther.xyz (server2.walther.xyz [193.200.241.189])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FF7C10E2BF
+ for <intel-gfx@lists.freedesktop.org>; Sun, 20 Feb 2022 14:34:02 +0000 (UTC)
+Message-ID: <ea520ac7-3955-398b-0646-28ae033e3ada@walther.xyz>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walther.xyz; s=2021;
+ t=1645367639;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=GwJMjfvWRpZjCjvRajQagFLLGYOjyJwAu9vG4QOGe3Q=;
+ b=CibwlllY80FtdalR90OklJrEWw07DTuQTyCm8abXy/BTB8LiM7iS+ePV8TlywBNr1ivq0F
+ mt703W2uBKuOaw1AeDarrFgkozO3e8+864ynunuUyuC397cXtmpVb+iTxPtoX25IksBhlZ
+ FpSnFQVk7522ojAZHrgvUrJ2YAbky2znabRgbS9UsXXGpsRzeiX76ve0H8GfRqBAhhc++Q
+ KII2wli51bwnCob26W4jBEjWY7oW3378VLaV85sGggPRWqxLYxNSY6Eh/3IyYUKOaKR/dL
+ LNMLr+ozYZaSx/59lHHFmUmQdelA/7mi57jJ00BWd15yAud66HMu0SlxEsTktg==
+Date: Sun, 20 Feb 2022 15:33:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20220218184752.7524-1-ramalingam.c@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 00/15] drm/i915: Enable DG2
+Content-Language: de-AT-frami
+To: intel-gfx@lists.freedesktop.org
+References: <326ea3aa-1eb9-3458-0c99-5a15d4f7a437@walther.xyz>
+From: Matthias Walther <matthias@walther.xyz>
+In-Reply-To: <326ea3aa-1eb9-3458-0c99-5a15d4f7a437@walther.xyz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+ auth=pass smtp.auth=matthias@walther.xyz smtp.mailfrom=matthias@walther.xyz
+Subject: Re: [Intel-gfx] Enable DisplayPort MST on low cost USB-C docks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,35 +49,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Feb 19, 2022 at 12:17:37AM +0530, Ramalingam C wrote:
->Enabling the Dg2 on drm/i915.
+Hm, no ideas on this?
+
+
+Am 28.01.22 um 20:50 schrieb Matthias Walther:
+> Hello,
 >
->This series adds support for 64k pagesize and documents the uapi
->impacts. And also adds basic flat-ccs enabling patches to
->support the local memory initialization and object creation. Kdoc is
->added to document the Flat-ccs support.
+> there are a lot of quite similar, low cost USB-C docks with multiple 
+> display output (usually 2x HDMI + 1x VGA) available on the big online 
+> platforms such as Amazon, Ebay, and Aliexpress.
 >
->Flat-ccs modifiers will be enabled in upcoming patches.
+> Internally the display outputs are connected via DisplayPort. If you 
+> connect a monitor to one of the ports, it's detected as display port 
+> connection in xrandr. Always the same dpX in xrandr, independently of 
+> which physical port in use. This suggests that all physical outputs 
+> are connected to the same DisplayPort output.
 >
->Note:
->This is subset of https://patchwork.freedesktop.org/series/95686/ The
->remaining patches of the series will be pursued in subsequent series.
+> On Microsoft's Windows these docks support multi headed output, like a 
+> different image on all displays (called expand mode in Windows). 
+> However the vendor advertises, that on MacOS the adapter can only 
+> display the same image on all ports of the adapter. This might be a 
+> hint, that the adapter internally uses DisplayPort's Multi-Stream 
+> Transport (MST) technology for the second and third display output 
+> (2nd HDMI, VGA), as Apple does not support MST while Microsoft does. 
+> Linux behaves just like MacOS here and only mirrors the image.
 >
->And few patches are reviewed at and pulled from many series like
->https://patchwork.freedesktop.org/series/99119/
->https://patchwork.freedesktop.org/series/100373/
->https://patchwork.freedesktop.org/series/97544/
+> Linux is supposed to support MST since like around 2014. There are 
+> parameters to enable it for i915, e. g. i915.enable_dp_mst={1,2}.
+>
+> However unfortunately those USB-C docks do not support multi-headed 
+> output on Linux. The second monitor is not detected, there is just a 
+> mirrored image of the first monitor on monitor two and three.
+>
+> Does Linux support MST over Thunderbolt 3/4? Is there maybe a hidden 
+> command that the Windows driver uses to switch MST on in the dock's 
+> chipset?
+>
+> Any hints on how to debug this would be highly appreciated! Those 
+> adapters become more and more popular, they are affordable and it 
+> would be awesome to make them fully work with Linux.
+>
+> Best,
+> Matthias
 >
 
-Patches 1-4 had already being applied from their own patch series.
-Patch 15 still needs some changes
-
-All the other patches were applied to drm-intel-gt-next.
-
-thanks
-Lucas De Marchi
