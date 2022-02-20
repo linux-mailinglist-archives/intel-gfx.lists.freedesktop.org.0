@@ -1,48 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A606D4BCFEE
-	for <lists+intel-gfx@lfdr.de>; Sun, 20 Feb 2022 17:38:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22C634BD002
+	for <lists+intel-gfx@lfdr.de>; Sun, 20 Feb 2022 18:00:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26D3310E28F;
-	Sun, 20 Feb 2022 16:38:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27DE410E15A;
+	Sun, 20 Feb 2022 17:00:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D323510E28F
- for <intel-gfx@lists.freedesktop.org>; Sun, 20 Feb 2022 16:38:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645375083; x=1676911083;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=REj5crru6ygWhjmpE5TYKRMGIFdFRTe/zHduLeVGBY0=;
- b=Q8ciUBjBL7BJe0W7/N/F1fESQGSRKRCmJ/n7r0oZpTgR3n8cS3gJIV/y
- pN1LljBkWQnwPPPMDfM25YrPDTBpCTGu5U5Si6gaoPBo6mIriaYxoN5vr
- W47qu3yS6bRpEQd3OBZZsEy75gHkEIfcdr5e2kIApE3DkMz/Lov5zr2hL
- SnjVRP2IF6o8GFNhgPfSZtlhchB+nHu+RReHUgDtYSl0ymohPTwPNPZCo
- YjgOpOoenvPTEu/cvOdTYMjwlngDpNyETcOr+kCKQJKSmwi8rXyYSVMDm
- 8fi9icW9CsvMLNJ1olzjFNiKrz/SVGvFBJgrVTcx53fjY6FoBfzPQRRA5 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="314650652"
-X-IronPort-AV: E=Sophos;i="5.88,383,1635231600"; d="scan'208";a="314650652"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2022 08:38:03 -0800
-X-IronPort-AV: E=Sophos;i="5.88,383,1635231600"; d="scan'208";a="490199548"
-Received: from srr4-3-linux-105-anshuma1.iind.intel.com ([10.223.74.179])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2022 08:38:00 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun, 20 Feb 2022 22:07:30 +0530
-Message-Id: <20220220163730.5021-7-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20220220163730.5021-1-anshuman.gupta@intel.com>
-References: <20220220163730.5021-1-anshuman.gupta@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 23C0D10E15A;
+ Sun, 20 Feb 2022 17:00:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 162A7A0118;
+ Sun, 20 Feb 2022 17:00:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 6/6] drm/i915/dgfx: Get VBT from rvda
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Sun, 20 Feb 2022 17:00:31 -0000
+Message-ID: <164537643105.25025.4633807886251999099@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220220163730.5021-1-anshuman.gupta@intel.com>
+In-Reply-To: <20220220163730.5021-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_DGFX_OpRegion_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,69 +40,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, rodrigo.vivi@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since OpRegion ver 2.1 MBOX3 RVDA field is Relative address of Raw
-VBT data from OpRegion Base.
-Populate the opreion->rvda accordingly.
-As Intel DGFX cards supports OpRegion version 2.2 or greater,
-RVDA as an absolute VBT physical address (Ver 2.0) doesn't applicable
-to DGFX cards.
+== Series Details ==
 
-v2:
-- Add kzalloc NULL check for opreg_rvda pointer.
+Series: DGFX OpRegion (rev3)
+URL   : https://patchwork.freedesktop.org/series/99738/
+State : warning
 
-v3:
-- Added kmemdup() insead of kzalloc() + memcpy() in
-  intel_dgfx_alloc_rvda(), and added necessary
-  credit to Manasi.
+== Summary ==
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_opregion.c | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+$ dim checkpatch origin/drm-tip
+c0905817ebdb drm/i915/opregion: Add intel_opregion_init() wrapper
+a90a3f2681d0 drm/i915/opregion: Abstract opregion function
+-:214: ERROR:SPACING: space required before the open parenthesis '('
+#214: FILE: drivers/gpu/drm/i915/display/intel_opregion.c:1265:
++	if(drm_WARN_ON(&i915->drm, !opregion->asls || !opregion->header))
 
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index ea201c602755..5de1bc3e6e69 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -1621,11 +1621,28 @@ static void *intel_dgfx_alloc_opregion(struct drm_i915_private *i915)
- 
- static void *intel_dgfx_alloc_rvda(struct drm_i915_private *i915)
- {
--	return ERR_PTR(-EOPNOTSUPP);
-+	struct intel_opregion *opregion = &i915->opregion;
-+	void *opreg_rvda;
-+
-+	if (!opregion->dgfx_oprom_opreg)
-+		return ERR_PTR(-EINVAL);
-+
-+	opreg_rvda = kmemdup(opregion->dgfx_oprom_opreg + opregion->asle->rvda,
-+			     opregion->asle->rvds, GFP_KERNEL);
-+
-+	/* We got RVDA, OPROM opregion + vbt image not nedded anymore */
-+	kfree(opregion->dgfx_oprom_opreg);
-+	opregion->dgfx_oprom_opreg = NULL;
-+
-+	return opreg_rvda ?: ERR_PTR(-ENOMEM);
- }
- 
- static void intel_dgfx_free_rvda(struct drm_i915_private *i915)
- {
-+	struct intel_opregion *opregion = &i915->opregion;
-+
-+	kfree(opregion->rvda);
-+	opregion->rvda = NULL;
- }
- 
- static void intel_dgfx_free_opregion(struct drm_i915_private *i915)
--- 
-2.26.2
+total: 1 errors, 0 warnings, 0 checks, 254 lines checked
+746dd2f8a0c1 drm/i915/opregion: Add dgfx opregion func
+35de4da7ebcd drm/i915/opregion: Cond dgfx opregion func registration
+90ff2a12e00a drm/i915/dgfx: OPROM OpRegion Setup
+-:235: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*exprom_hdr)...) over kzalloc(sizeof(struct expansion_rom_header)...)
+#235: FILE: drivers/gpu/drm/i915/display/intel_opregion.c:1046:
++	exprom_hdr = kzalloc(sizeof(struct expansion_rom_header), GFP_KERNEL);
+
+-:236: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*exprom_pci_data)...) over kzalloc(sizeof(struct pci_data_structure)...)
+#236: FILE: drivers/gpu/drm/i915/display/intel_opregion.c:1047:
++	exprom_pci_data = kzalloc(sizeof(struct pci_data_structure), GFP_KERNEL);
+
+total: 0 errors, 0 warnings, 2 checks, 413 lines checked
+06b60e64062b drm/i915/dgfx: Get VBT from rvda
+
 
