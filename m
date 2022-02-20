@@ -1,40 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D38154BCAF7
-	for <lists+intel-gfx@lfdr.de>; Sat, 19 Feb 2022 23:02:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA52C4BCB92
+	for <lists+intel-gfx@lfdr.de>; Sun, 20 Feb 2022 02:48:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF5D210E16A;
-	Sat, 19 Feb 2022 22:02:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04EEE10E1DF;
+	Sun, 20 Feb 2022 01:48:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 399 seconds by postgrey-1.36 at gabe;
- Sat, 19 Feb 2022 22:02:23 UTC
-Received: from host24.ssl-gesichert.at (host24.ssl-gesichert.at
- [213.145.225.190])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7D9310E16A
- for <intel-gfx@lists.freedesktop.org>; Sat, 19 Feb 2022 22:02:23 +0000 (UTC)
-Received: (qmail 1538852 invoked by uid 7799); 19 Feb 2022 22:55:41 +0100
-Received: by simscan 1.4.0 ppid: 1538818, pid: 1538849, t: 0.0366s
- scanners: clamav: 0.101.5/m:62/d:26439
-Received: from 84-115-39-147.cable.dynamic.surfer.at (HELO ?192.168.0.15?)
- (philipp@gortan.org@84.115.39.147)
- by host24.ssl-gesichert.at with SMTP [34404]; 19 Feb 2022 22:55:41 +0100
-Message-ID: <84fea452-bd9b-f059-06d1-c101a6d5a873@gortan.org>
-Date: Sat, 19 Feb 2022 22:56:46 +0100
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CDE910E1DF;
+ Sun, 20 Feb 2022 01:48:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1645321684; x=1676857684;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JjnYCWylTa6AOEdn4Hy6NgxquQXB22bJbux7LJ5Odec=;
+ b=Bw+gauvU6uj7cAQ/8K3EDh/SgSYemuoEc10DyYh7RtdtooJKf12nfQqe
+ N1w3zcg9HII49CnWy88HrQKfP34ZcXwDncbBOnUbuTuccNAB171bjhp3l
+ W4rEBru79zf5gwM8B1LHVEcT2nphY97UkqziFB6kEs8Ca2byZfs7QdTP9
+ IV7OJZmme2ajyiPJ47j/UfYWuiktUc2uA4eA1+5ZJ755J2eOs3jGL8byP
+ vwN9shvuEQbsLtl3kfOQtOw58KHKwywm8mKCbi8sfh+1BzC2DsO7POU/S
+ qwitWqDLH2IAV5y12b+rju2NIp290NxUolbrk+RRYpZfcBBCrWcg/HzCk g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10263"; a="231306876"
+X-IronPort-AV: E=Sophos;i="5.88,382,1635231600"; d="scan'208";a="231306876"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2022 17:48:01 -0800
+X-IronPort-AV: E=Sophos;i="5.88,382,1635231600"; d="scan'208";a="531392484"
+Received: from vkasired-desk2.fm.intel.com ([10.105.128.127])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2022 17:48:01 -0800
+From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Sat, 19 Feb 2022 17:31:24 -0800
+Message-Id: <20220220013127.962336-1-vivek.kasireddy@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Content-Language: en-US
-To: intel-gfx@lists.freedesktop.org
-References: <20220217152237.670220-1-imre.deak@intel.com>
-From: Philipp Gortan <philipp@gortan.org>
-In-Reply-To: <20220217152237.670220-1-imre.deak@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] drm/i915: Disconnect PHYs left connected by BIOS on
- disabled ports
+Subject: [Intel-gfx] [PATCH v3 0/3] drm/mm: Add an iterator to optimally
+ walk over holes suitable for an allocation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,37 +56,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2/17/22 16:22, Imre Deak wrote:
-> BIOS may leave a TypeC PHY in a connected state even though the
-> corresponding port is disabled. This will prevent any hotplug events
-> from being signalled (after the monitor deasserts and then reasserts its
-> HPD) until the PHY is disconnected and so the driver will not detect a
-> connected sink. Rebooting with the PHY in the connected state also
-> results in a system hang.
-> 
-> Fix the above by disconnecting TypeC PHYs on disabled ports.
-> 
-> Before commit 64851a32c463e5 the PHY connected state was read out even
-> for disabled ports and later the PHY got disconnected as a side effect
-> of a tc_port_lock/unlock() sequence (during connector probing), hence
-> recovering the port's hotplug functionality.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5014
-> Fixes: 64851a32c463 ("drm/i915/tc: Add a mode for the TypeC PHY's disconnected state")
-> Cc: <stable@vger.kernel.org> # v5.16+
-> Cc: José Roberto de Souza <jose.souza@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+The first patch is a drm core patch that replaces the for loop in
+drm_mm_insert_node_in_range() with the iterator and would not
+cause any functional changes. The second patch is a i915 driver
+specific patch that also uses the iterator but solves a different
+problem.
 
-Issue seen on my Lenovo ThinkPad L14 Gen 2 with Intel TigerLake-LP GT2 
-(Iris Xe) using Arch Linux, after upgrading the kernel from 5.15.3 and 
-5.16.0. Bisected my way to isolate commit 64851a32 as the first bad 
-commit. Applying Imre's patch onto drm-tip reliably fixes the issue for me.
+v2:
+- Added a new patch to this series to fix a potential NULL
+  dereference.
+- Fixed a typo associated with the iterator introduced in the
+  drm core patch.
+- Added locking around the snippet in the i915 patch that
+  traverses the GGTT hole nodes.
 
-Reported-and-tested-by: Philipp Gortan <philipp@gortan.org>
+v3: (Tvrtko)
+- Replaced mutex_lock with mutex_lock_interruptible_nested() in
+  the i915 patch.
 
-Thanks!
-Philipp
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Christian König <christian.koenig@amd.com>
+
+Vivek Kasireddy (3):
+  drm/mm: Ensure that the entry is not NULL before extracting rb_node
+  drm/mm: Add an iterator to optimally walk over holes for an allocation
+    (v4)
+  drm/i915/gem: Don't try to map and fence large scanout buffers (v9)
+
+ drivers/gpu/drm/drm_mm.c        |  37 +++++----
+ drivers/gpu/drm/i915/i915_gem.c | 128 +++++++++++++++++++++++---------
+ include/drm/drm_mm.h            |  36 +++++++++
+ 3 files changed, 148 insertions(+), 53 deletions(-)
+
+-- 
+2.34.1
+
