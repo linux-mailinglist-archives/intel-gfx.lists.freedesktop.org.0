@@ -2,47 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 586504BDA13
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 15:07:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D25F4BDA14
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 15:07:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 566BF10E816;
-	Mon, 21 Feb 2022 14:07:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFB1B10E80B;
+	Mon, 21 Feb 2022 14:07:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAB6A10E801;
- Mon, 21 Feb 2022 14:07:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 193E310E80B;
+ Mon, 21 Feb 2022 14:07:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645452420; x=1676988420;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9LWwWZGMylyhL1oAfDDdvw3yEZ/lS/xp4EMo9Ne55jE=;
- b=HrMoVxr8a9QLhiJ7RdPY8grrpLJ/EGH0tCxEZhh6tYgPGmcQLHmNV8NZ
- WKkjMV+keczJ/FD7wY2OYJmWiA6TkGeGKT4LF3yfZPEOHQPDrb6KiKk9v
- UUZF2cdM6t7Vj0HCYQPRnPFk+Cbc/u+LsuChTBntBGG9Xz9KmxZBSXTPS
- +HGikkk51aA8hn79C7Ojp+CULBhOkI3ecKzoUASdNMQedPwxtemehnQyo
- p1fFPTocoGKNfJM7jsBk0XExbrkDlElnFri/1nEyBMJm1Nb4KkM+1FXU2
- GtKCviz+fDr5K0/N4c+9nH52Ven8B1E0sgHcQ2J8JSZVFIdz2XY7HHnTT Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="312259046"
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="312259046"
+ t=1645452422; x=1676988422;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=iH8jE2ltVwzGVWuQJELoCtTFIqbJFkO3iwlDsCVelWk=;
+ b=bOy9EIUFF6dOadCjpLkUlo+8a1MdkfyGQJnsDW8j20Q/tphAfDDjVz/S
+ OT3BKHtfPDo+Mw7kGHE9yqPi1bmBusvTbS16kxcoZIjYlF8M/sbiEwK7o
+ w/6CMHrFqpo42HVqJTG3p/HMe/+qY9zDaHYggf2S4AeYlAUFdtz3sHRPX
+ NkqQDBGCdt8y36q0jwbHXHlWZ21qNj3tygttBbwUTtYhvf1Vp07aY9oEB
+ cmYY/T8/8B8OOklYfMRp9H5yeAWvYfVe8fpBAGRKIpK+vL3eI1oovwBdt
+ hCgrmK/Jwmb4zLjhIiBkoeY3ZUcqx5bCGqCqh5R9QdYNT89NgCLAhnHKK Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="312259063"
+X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="312259063"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 06:03:57 -0800
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="547348644"
+ 21 Feb 2022 06:03:58 -0800
+X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="547348652"
 Received: from joeyegax-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.23.97])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 06:03:56 -0800
+ 21 Feb 2022 06:03:57 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Mon, 21 Feb 2022 14:03:41 +0000
-Message-Id: <20220221140342.2487679-1-matthew.auld@intel.com>
+Date: Mon, 21 Feb 2022 14:03:42 +0000
+Message-Id: <20220221140342.2487679-2-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220221140342.2487679-1-matthew.auld@intel.com>
+References: <20220221140342.2487679-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 1/2] test/i915/gem_ctx_shared: prefer
+Subject: [Intel-gfx] [PATCH i-g-t 2/2] test/i915/gem_exec_await: prefer
  gem_mmap__device_coherent
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,22 +68,24 @@ Make it play nice on at least DG1.
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- tests/i915/gem_ctx_shared.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests/i915/gem_exec_await.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/tests/i915/gem_ctx_shared.c b/tests/i915/gem_ctx_shared.c
-index 37444185..b38b7f73 100644
---- a/tests/i915/gem_ctx_shared.c
-+++ b/tests/i915/gem_ctx_shared.c
-@@ -290,7 +290,7 @@ static void exec_shared_gtt(int i915, const intel_ctx_cfg_t *cfg,
- 	execbuf.flags |= I915_EXEC_FENCE_IN;
+diff --git a/tests/i915/gem_exec_await.c b/tests/i915/gem_exec_await.c
+index bf8eb682..fe176595 100644
+--- a/tests/i915/gem_exec_await.c
++++ b/tests/i915/gem_exec_await.c
+@@ -126,8 +126,8 @@ static void wide(int fd, const intel_ctx_t *ctx, int ring_size,
+ 		if (ahnd)
+ 			exec[e].exec[0].flags = EXEC_OBJECT_PINNED;
  
- 	scratch = gem_create(i915, 4096);
--	s = gem_mmap__wc(i915, scratch, 0, 4096, PROT_WRITE);
-+	s = gem_mmap__device_coherent(i915, scratch, 0, 4096, PROT_WRITE);
+-		exec[e].cmd = gem_mmap__wc(fd, exec[e].exec[0].handle,
+-					   0, 4096, PROT_WRITE);
++		exec[e].cmd = gem_mmap__device_coherent(fd, exec[e].exec[0].handle,
++							0, 4096, PROT_WRITE);
  
- 	gem_set_domain(i915, scratch, I915_GEM_DOMAIN_WC, I915_GEM_DOMAIN_WC);
- 	s[0] = bbe;
+ 		gem_set_domain(fd, exec[e].exec[0].handle,
+ 			       I915_GEM_DOMAIN_WC, I915_GEM_DOMAIN_WC);
 -- 
 2.34.1
 
