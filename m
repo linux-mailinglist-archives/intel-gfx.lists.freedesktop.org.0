@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E20C34BD962
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 12:18:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73B974BD964
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 12:18:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB60F10E5A1;
-	Mon, 21 Feb 2022 11:18:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3D2810E5F8;
+	Mon, 21 Feb 2022 11:18:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23B0610E5AB
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 11:18:10 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96EBA10E604
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 11:18:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645442290; x=1676978290;
+ t=1645442334; x=1676978334;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=OJP+jeYsffns09f1wY8SCsJBr9jviuZNz0N+ZMwQKmw=;
- b=bhSuRihM2+ItRIqol8vqEDWsd1k+1iimxSdGjziBtBlHb9SzZ7mO1wYE
- 83PpsYxkSbvceUomOjyJiu+fh692mY/EKrJUI7ExW3YhMUIBeVfkq+SXp
- mOMwdZt39VbKI5ANX6UG3QvEnQmO9LM3uhXpGgO0XxMFNa95xlPbwoOg3
- 7Ld9wHYXEDSRBrq7k7MIJ1mODHy/+/FGCNWWDR14YYcOxFfpguorNqS4V
- wy/iTxJdU2eQ0sinUBlAdEL/MgPIcfGg0awms+GRiWDjwmlYpwE6G0Kfx
- dNwQBfYdP5hmYOzIDTPUap8bN/6xLJgfIvmZwkg3zuO0MRl9FG+gxhyS4 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="249069935"
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="249069935"
+ bh=rkuFrYQENZcclgV5+7eUCLMEVgV1BVlvwBmc9EhCpzI=;
+ b=imJDcmoojMkaCEy3mAtELI1u3LvzmrBI+XcimfOVZQ/5woutSrb9gv7u
+ Xo86p3Q5+MHH7xBifoiv7aeIBoeqX7HKRufoefRjzI7RHpEWZdy3wJ53B
+ W7BGQxoFBk+K4e0NNRkGrW4B7iIr85GBT6H8gwjmX3OytFPftOChfmWa7
+ 74InVoCHJTKio6DbPNs1cVl1MH5Q64YZDhwIq6Kec0/jAztrpDZh4/rPQ
+ 5ie9cJC6G9CVVDACDo490yV8n2oFWnR4NF4m0mONIBGAvVUVHrn7YNFps
+ x9zzD4SU+vZpWnPfA8PrmDV6jbJUUW1HoYqgQdRPrRPUYBV6L53khBcgF A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="238905147"
+X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="238905147"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 03:18:08 -0800
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="507603771"
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2022 03:18:53 -0800
+X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="507603912"
 Received: from unknown (HELO intel.com) ([10.237.72.65])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 03:18:07 -0800
-Date: Mon, 21 Feb 2022 13:18:23 +0200
+ 21 Feb 2022 03:18:52 -0800
+Date: Mon, 21 Feb 2022 13:19:14 +0200
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220221111823.GA17861@intel.com>
+Message-ID: <20220221111914.GB17861@intel.com>
 References: <20220210062403.18690-1-ville.syrjala@linux.intel.com>
- <20220210062403.18690-6-ville.syrjala@linux.intel.com>
+ <20220210062403.18690-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220210062403.18690-6-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220210062403.18690-5-ville.syrjala@linux.intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2 5/5] drm/i915: Make pre-skl sprite plane
- registers unlocked
+Subject: Re: [Intel-gfx] [PATCH v2 4/5] drm/i915: Make most pre-skl primary
+ plane registers unlocked
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,216 +63,119 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 10, 2022 at 08:24:03AM +0200, Ville Syrjala wrote:
+On Thu, Feb 10, 2022 at 08:24:02AM +0200, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Drop the locks around sprite plane register writes. The
-> lock isn't needed since each plane's register are neatly
+> Drop the locks around most primary plane register writes.
+> The lock isn't needed since each plane's register are neatly
 > contained on their own cachelines.
+> 
+> The one exception we have to make is DSPADDR/DSPSURF which is
+> (ab)used to also trigger FBC nukes on pre-snb (since the
+> hardware doesn't seem to have any dedicated mechanism to
+> trigger nukes). So we need to keep the lock around it to
+> protect against the rmw performed by the fbc code.
 > 
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_sprite.c | 45 ---------------------
->  1 file changed, 45 deletions(-)
+>  drivers/gpu/drm/i915/display/i9xx_plane.c | 24 +++++++++--------------
+>  1 file changed, 9 insertions(+), 15 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-> index 2d71294aaceb..f6875a49b8cb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -430,9 +430,6 @@ vlv_sprite_update_noarm(struct intel_plane *plane,
->  	int crtc_y = plane_state->uapi.dst.y1;
->  	u32 crtc_w = drm_rect_width(&plane_state->uapi.dst);
->  	u32 crtc_h = drm_rect_height(&plane_state->uapi.dst);
-> -	unsigned long irqflags;
-> -
-> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
->  
->  	intel_de_write_fw(dev_priv, SPSTRIDE(pipe, plane_id),
->  			  plane_state->view.color_plane[0].mapping_stride);
-> @@ -440,8 +437,6 @@ vlv_sprite_update_noarm(struct intel_plane *plane,
->  			  SP_POS_Y(crtc_y) | SP_POS_X(crtc_x));
->  	intel_de_write_fw(dev_priv, SPSIZE(pipe, plane_id),
->  			  SP_HEIGHT(crtc_h - 1) | SP_WIDTH(crtc_w - 1));
-> -
-> -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
->  }
->  
->  static void
-> @@ -457,14 +452,11 @@ vlv_sprite_update_arm(struct intel_plane *plane,
->  	u32 x = plane_state->view.color_plane[0].x;
->  	u32 y = plane_state->view.color_plane[0].y;
->  	u32 sprctl, linear_offset;
-> -	unsigned long irqflags;
->  
->  	sprctl = plane_state->ctl | vlv_sprite_ctl_crtc(crtc_state);
->  
->  	linear_offset = intel_fb_xy_to_linear(x, y, plane_state, 0);
->  
-> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
-> -
->  	if (IS_CHERRYVIEW(dev_priv) && pipe == PIPE_B)
->  		chv_sprite_update_csc(plane_state);
->  
-> @@ -494,8 +486,6 @@ vlv_sprite_update_arm(struct intel_plane *plane,
->  
->  	vlv_sprite_update_clrc(plane_state);
->  	vlv_sprite_update_gamma(plane_state);
-> -
-> -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
->  }
->  
->  static void
-> @@ -505,14 +495,9 @@ vlv_sprite_disable_arm(struct intel_plane *plane,
->  	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
->  	enum pipe pipe = plane->pipe;
->  	enum plane_id plane_id = plane->id;
-> -	unsigned long irqflags;
-> -
-> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
->  
->  	intel_de_write_fw(dev_priv, SPCNTR(pipe, plane_id), 0);
->  	intel_de_write_fw(dev_priv, SPSURF(pipe, plane_id), 0);
-> -
-> -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
->  }
->  
->  static bool
-> @@ -862,15 +847,12 @@ ivb_sprite_update_noarm(struct intel_plane *plane,
->  	u32 src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
->  	u32 src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
->  	u32 sprscale = 0;
-> -	unsigned long irqflags;
->  
->  	if (crtc_w != src_w || crtc_h != src_h)
->  		sprscale = SPRITE_SCALE_ENABLE |
->  			SPRITE_SRC_WIDTH(src_w - 1) |
->  			SPRITE_SRC_HEIGHT(src_h - 1);
->  
-> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
-> -
->  	intel_de_write_fw(dev_priv, SPRSTRIDE(pipe),
->  			  plane_state->view.color_plane[0].mapping_stride);
->  	intel_de_write_fw(dev_priv, SPRPOS(pipe),
-> @@ -879,8 +861,6 @@ ivb_sprite_update_noarm(struct intel_plane *plane,
->  			  SPRITE_HEIGHT(crtc_h - 1) | SPRITE_WIDTH(crtc_w - 1));
->  	if (IS_IVYBRIDGE(dev_priv))
->  		intel_de_write_fw(dev_priv, SPRSCALE(pipe), sprscale);
-> -
-> -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
->  }
->  
->  static void
-> @@ -895,14 +875,11 @@ ivb_sprite_update_arm(struct intel_plane *plane,
->  	u32 x = plane_state->view.color_plane[0].x;
->  	u32 y = plane_state->view.color_plane[0].y;
->  	u32 sprctl, linear_offset;
-> -	unsigned long irqflags;
->  
->  	sprctl = plane_state->ctl | ivb_sprite_ctl_crtc(crtc_state);
->  
->  	linear_offset = intel_fb_xy_to_linear(x, y, plane_state, 0);
->  
-> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
-> -
->  	if (key->flags) {
->  		intel_de_write_fw(dev_priv, SPRKEYVAL(pipe), key->min_value);
->  		intel_de_write_fw(dev_priv, SPRKEYMSK(pipe),
-> @@ -931,8 +908,6 @@ ivb_sprite_update_arm(struct intel_plane *plane,
->  			  intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
->  
->  	ivb_sprite_update_gamma(plane_state);
-> -
-> -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
->  }
->  
->  static void
-> @@ -941,17 +916,12 @@ ivb_sprite_disable_arm(struct intel_plane *plane,
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> index a87b65cd41fd..af190bacdd97 100644
+> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> @@ -418,9 +418,6 @@ static void i9xx_plane_update_noarm(struct intel_plane *plane,
 >  {
 >  	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
->  	enum pipe pipe = plane->pipe;
+>  	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
 > -	unsigned long irqflags;
 > -
 > -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
 >  
->  	intel_de_write_fw(dev_priv, SPRCTL(pipe), 0);
->  	/* Disable the scaler */
->  	if (IS_IVYBRIDGE(dev_priv))
->  		intel_de_write_fw(dev_priv, SPRSCALE(pipe), 0);
->  	intel_de_write_fw(dev_priv, SPRSURF(pipe), 0);
-> -
-> -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
->  }
->  
->  static bool
-> @@ -1204,15 +1174,12 @@ g4x_sprite_update_noarm(struct intel_plane *plane,
->  	u32 src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
->  	u32 src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
->  	u32 dvsscale = 0;
-> -	unsigned long irqflags;
->  
->  	if (crtc_w != src_w || crtc_h != src_h)
->  		dvsscale = DVS_SCALE_ENABLE |
->  			DVS_SRC_WIDTH(src_w - 1) |
->  			DVS_SRC_HEIGHT(src_h - 1);
->  
-> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
-> -
->  	intel_de_write_fw(dev_priv, DVSSTRIDE(pipe),
+>  	intel_de_write_fw(dev_priv, DSPSTRIDE(i9xx_plane),
 >  			  plane_state->view.color_plane[0].mapping_stride);
->  	intel_de_write_fw(dev_priv, DVSPOS(pipe),
-> @@ -1220,8 +1187,6 @@ g4x_sprite_update_noarm(struct intel_plane *plane,
->  	intel_de_write_fw(dev_priv, DVSSIZE(pipe),
->  			  DVS_HEIGHT(crtc_h - 1) | DVS_WIDTH(crtc_w - 1));
->  	intel_de_write_fw(dev_priv, DVSSCALE(pipe), dvsscale);
+> @@ -441,8 +438,6 @@ static void i9xx_plane_update_noarm(struct intel_plane *plane,
+>  		intel_de_write_fw(dev_priv, DSPSIZE(i9xx_plane),
+>  				  DISP_HEIGHT(crtc_h - 1) | DISP_WIDTH(crtc_w - 1));
+>  	}
 > -
 > -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
 >  }
 >  
->  static void
-> @@ -1236,14 +1201,11 @@ g4x_sprite_update_arm(struct intel_plane *plane,
->  	u32 x = plane_state->view.color_plane[0].x;
->  	u32 y = plane_state->view.color_plane[0].y;
->  	u32 dvscntr, linear_offset;
-> -	unsigned long irqflags;
->  
->  	dvscntr = plane_state->ctl | g4x_sprite_ctl_crtc(crtc_state);
->  
->  	linear_offset = intel_fb_xy_to_linear(x, y, plane_state, 0);
->  
-> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
-> -
->  	if (key->flags) {
->  		intel_de_write_fw(dev_priv, DVSKEYVAL(pipe), key->min_value);
->  		intel_de_write_fw(dev_priv, DVSKEYMSK(pipe),
-> @@ -1267,8 +1229,6 @@ g4x_sprite_update_arm(struct intel_plane *plane,
->  		g4x_sprite_update_gamma(plane_state);
+>  static void i9xx_plane_update_arm(struct intel_plane *plane,
+> @@ -465,8 +460,6 @@ static void i9xx_plane_update_arm(struct intel_plane *plane,
 >  	else
->  		ilk_sprite_update_gamma(plane_state);
+>  		dspaddr_offset = linear_offset;
+>  
+> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
 > -
+>  	if (IS_CHERRYVIEW(dev_priv) && i9xx_plane == PLANE_B) {
+>  		int crtc_x = plane_state->uapi.dst.x1;
+>  		int crtc_y = plane_state->uapi.dst.y1;
+> @@ -496,13 +489,15 @@ static void i9xx_plane_update_arm(struct intel_plane *plane,
+>  	 * the control register just before the surface register.
+>  	 */
+>  	intel_de_write_fw(dev_priv, DSPCNTR(i9xx_plane), dspcntr);
+> +
+> +	/* lock to protect against rmw in fbc nuke */
+> +	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+>  	if (DISPLAY_VER(dev_priv) >= 4)
+>  		intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane),
+>  				  intel_plane_ggtt_offset(plane_state) + dspaddr_offset);
+>  	else
+>  		intel_de_write_fw(dev_priv, DSPADDR(i9xx_plane),
+>  				  intel_plane_ggtt_offset(plane_state) + dspaddr_offset);
+> -
+>  	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+>  }
+>  
+> @@ -540,14 +535,14 @@ static void i9xx_plane_disable_arm(struct intel_plane *plane,
+>  	 */
+>  	dspcntr = i9xx_plane_ctl_crtc(crtc_state);
+>  
+> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+> -
+>  	intel_de_write_fw(dev_priv, DSPCNTR(i9xx_plane), dspcntr);
+> +
+> +	/* lock to protect against rmw in fbc nuke */
+> +	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+>  	if (DISPLAY_VER(dev_priv) >= 4)
+>  		intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane), 0);
+>  	else
+>  		intel_de_write_fw(dev_priv, DSPADDR(i9xx_plane), 0);
+> -
+>  	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+>  }
+>  
+> @@ -566,8 +561,10 @@ g4x_primary_async_flip(struct intel_plane *plane,
+>  	if (async_flip)
+>  		dspcntr |= DISP_ASYNC_FLIP;
+>  
+> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+>  	intel_de_write_fw(dev_priv, DSPCNTR(i9xx_plane), dspcntr);
+> +
+> +	/* lock to protect against rmw in fbc nuke */
+> +	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+>  	intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane),
+>  			  intel_plane_ggtt_offset(plane_state) + dspaddr_offset);
+>  	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+> @@ -582,12 +579,9 @@ vlv_primary_async_flip(struct intel_plane *plane,
+>  	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+>  	u32 dspaddr_offset = plane_state->view.color_plane[0].offset;
+>  	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
+> -	unsigned long irqflags;
+>  
+> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+>  	intel_de_write_fw(dev_priv, DSPADDR_VLV(i9xx_plane),
+>  			  intel_plane_ggtt_offset(plane_state) + dspaddr_offset);
 > -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
 >  }
 >  
 >  static void
-> @@ -1277,16 +1237,11 @@ g4x_sprite_disable_arm(struct intel_plane *plane,
->  {
->  	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
->  	enum pipe pipe = plane->pipe;
-> -	unsigned long irqflags;
-> -
-> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
->  
->  	intel_de_write_fw(dev_priv, DVSCNTR(pipe), 0);
->  	/* Disable the scaler */
->  	intel_de_write_fw(dev_priv, DVSSCALE(pipe), 0);
->  	intel_de_write_fw(dev_priv, DVSSURF(pipe), 0);
-> -
-> -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
->  }
->  
->  static bool
 > -- 
 > 2.34.1
 > 
