@@ -1,57 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 757CE4BEE5D
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 00:41:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F4D64BEE5F
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 00:46:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81EBE10E561;
-	Mon, 21 Feb 2022 23:41:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BD0610E4FD;
+	Mon, 21 Feb 2022 23:46:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22E8F10E561;
- Mon, 21 Feb 2022 23:41:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645486910; x=1677022910;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=zPiVt7qLwbT6nB0jKSQdDpJT674lr4cYd2X+OAPFFyo=;
- b=Kjttoiv4+bSjKT5AixljLuxb4uHLc8NhTbkfant+ZLtarpg4UC2L9CAn
- kwgF2Tyu8NFgwoAaoGKS1s+jog+LOFok5XgwfWV/izn+jG2eXu87OZlK2
- km7KcV01blNLEUP+5/aq6rdMP3l4HEXe20m4P0PdT1w+/Ou1tg6YLJuvs
- qzOQ86IeqGOY2Pc7N8OPLdQ81Ch56dAYEMC1phcyE1blS41atzNcbFul8
- 2Px4z6SBZX3qiRQoc/kkRkpgvAKNzFT2cvzq89d1PB2Tua/Cq8HNBHqcO
- 6CXD9NWNOawIt3ffXhIlKtsC6K1e+DN62V4oSJ5eXckVXLCd/zGJNDnau A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10265"; a="250401933"
-X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; d="scan'208";a="250401933"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 15:41:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; d="scan'208";a="591103571"
-Received: from lkp-server01.sh.intel.com (HELO da3212ac2f54) ([10.239.97.150])
- by fmsmga008.fm.intel.com with ESMTP; 21 Feb 2022 15:41:45 -0800
-Received: from kbuild by da3212ac2f54 with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nMIJN-00025T-1D; Mon, 21 Feb 2022 23:41:45 +0000
-Date: Tue, 22 Feb 2022 07:41:21 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yongzhi Liu <lyz_cs@pku.edu.cn>, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- tvrtko.ursulin@linux.intel.com, airlied@linux.ie, daniel@ffwll.ch,
- thomas.hellstrom@linux.intel.com, maarten.lankhorst@linux.intel.com,
- matthew.auld@intel.com, matthew.d.roper@intel.com,
- tzimmermann@suse.de, michal.winiarski@intel.com
-Message-ID: <202202220722.25BhJJ6r-lkp@intel.com>
-References: <1645455221-38580-1-git-send-email-lyz_cs@pku.edu.cn>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3C48110E4FD;
+ Mon, 21 Feb 2022 23:46:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 38FB6A0BCB;
+ Mon, 21 Feb 2022 23:46:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1645455221-38580-1-git-send-email-lyz_cs@pku.edu.cn>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Check input parameter for NULL
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Date: Mon, 21 Feb 2022 23:46:31 -0000
+Message-ID: <164548719120.21413.7121958356449724850@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220221232542.1481315-1-andrzej.hajda@intel.com>
+In-Reply-To: <20220221232542.1481315-1-andrzej.hajda@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_use_ref=5Ftracker_library_for_tracking_wakerefs?=
+ =?utf-8?q?_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,99 +41,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
- kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Yongzhi,
+== Series Details ==
 
-Thank you for the patch! Perhaps something to improve:
+Series: drm/i915: use ref_tracker library for tracking wakerefs (rev3)
+URL   : https://patchwork.freedesktop.org/series/100327/
+State : warning
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on v5.17-rc5 next-20220217]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+== Summary ==
 
-url:    https://github.com/0day-ci/linux/commits/Yongzhi-Liu/drm-i915-Check-input-parameter-for-NULL/20220221-225508
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: i386-randconfig-a014-20220221 (https://download.01.org/0day-ci/archive/20220222/202202220722.25BhJJ6r-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project d271fc04d5b97b12e6b797c6067d3c96a8d7470e)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/c54be425a38b3f4cb82c5badecf6b343f9e24a90
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Yongzhi-Liu/drm-i915-Check-input-parameter-for-NULL/20220221-225508
-        git checkout c54be425a38b3f4cb82c5badecf6b343f9e24a90
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
+$ dim checkpatch origin/drm-tip
+eec39ef01f2c ref_tracker: implement use-after-free detection
+e7636c41be32 ref_tracker: add a count of untracked references
+414f58d98e73 ref_tracker: remove filter_irq_stacks() call
+5a389d9482be lib/ref_tracker: add unlocked leak print helper
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
+To have reliable detection of leaks, caller must be able to check under the same
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+-:23: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#23: FILE: include/linux/ref_tracker.h:40:
++void __ref_tracker_dir_print(struct ref_tracker_dir *dir,
++			   unsigned int display_limit);
 
-All warnings (new ones prefixed by >>):
+-:49: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#49: FILE: lib/ref_tracker.c:18:
++void __ref_tracker_dir_print(struct ref_tracker_dir *dir,
++			   unsigned int display_limit)
 
->> drivers/gpu/drm/i915/gem/i915_gem_phys.c:100:13: warning: mixing declarations and code is a C99 extension [-Wdeclaration-after-statement]
-           dma_addr_t dma = sg_dma_address(pages->sgl);
-                      ^
-   1 warning generated.
+total: 0 errors, 1 warnings, 2 checks, 105 lines checked
+36bd9e9d6260 lib/ref_tracker: __ref_tracker_dir_print improve printing
+-:37: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#37: FILE: include/linux/ref_tracker.h:31:
++static inline void __ref_tracker_dir_init(struct ref_tracker_dir *dir,
++					unsigned int quarantine_count,
+
+-:46: WARNING:STRLCPY: Prefer strscpy over strlcpy - see: https://lore.kernel.org/r/CAHk-=wgfRnXz0W3D37d01q3JFkr_i_uTL=V6A6G1oUZcprmknw@mail.gmail.com/
+#46: FILE: include/linux/ref_tracker.h:41:
++	strlcpy(dir->name, name, sizeof(dir->name));
+
+-:140: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#140: FILE: lib/ref_tracker.c:66:
++void __ref_tracker_dir_print(struct ref_tracker_dir *dir,
++			   unsigned int display_limit)
+
+total: 0 errors, 1 warnings, 2 checks, 151 lines checked
+bd88fd5cf435 lib/ref_tracker: add printing to memory buffer
+-:52: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fmt' - possible side-effects?
+#52: FILE: lib/ref_tracker.c:70:
++#define pr_ostream(stream, fmt, args...) \
++({ \
++	struct ostream *_s = (stream); \
++\
++	if (!_s->buf) { \
++		pr_err(fmt, ##args); \
++	} else { \
++		int ret, len = _s->size - _s->used; \
++		ret = snprintf(_s->buf + _s->used, len, pr_fmt(fmt), ##args); \
++		_s->used += min(ret, len); \
++	} \
++})
+
+-:105: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#105: FILE: lib/ref_tracker.c:125:
++void __ref_tracker_dir_print(struct ref_tracker_dir *dir,
++			   unsigned int display_limit)
+
+total: 0 errors, 0 warnings, 2 checks, 109 lines checked
+359c7ae0d260 lib/ref_tracker: remove warnings in case of allocation failure
+e1a8bc8a2d3a drm/i915: Separate wakeref tracking
+-:7: WARNING:REPEATED_WORD: Possible repeated word: 'that'
+#7: 
+utility so that that we can reuse it for other online debugging of
+
+-:453: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#453: 
+new file mode 100644
+
+-:710: WARNING:NEW_TYPEDEFS: do not add new typedefs
+#710: FILE: drivers/gpu/drm/i915/intel_wakeref_tracker.h:13:
++typedef depot_stack_handle_t intel_wakeref_t;
+
+-:715: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#715: FILE: drivers/gpu/drm/i915/intel_wakeref_tracker.h:18:
++	spinlock_t lock;
+
+-:731: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#731: FILE: drivers/gpu/drm/i915/intel_wakeref_tracker.h:34:
++void intel_wakeref_tracker_remove(struct intel_wakeref_tracker *w,
++			   intel_wakeref_t handle);
+
+-:768: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#768: FILE: drivers/gpu/drm/i915/intel_wakeref_tracker.h:71:
++static inline void __intel_wakeref_tracker_show(const struct intel_wakeref_tracker *w, struct drm_printer *p) {}
+
+-:769: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#769: FILE: drivers/gpu/drm/i915/intel_wakeref_tracker.h:72:
++static inline void intel_wakeref_tracker_show(struct intel_wakeref_tracker *w, struct drm_printer *p) {}
+
+-:773: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Chris Wilson <chris.p.wilson@intel.com>' != 'Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>'
+
+total: 0 errors, 6 warnings, 2 checks, 713 lines checked
+29a2d4b63b37 drm/i915: Track leaked gt->wakerefs
+-:450: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt' - possible side-effects?
+#450: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm.h:75:
++#define with_intel_gt_pm(gt, wf) \
++	for (wf = intel_gt_pm_get(gt); wf; intel_gt_pm_put(gt, wf), wf = 0)
+
+-:450: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'wf' - possible side-effects?
+#450: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm.h:75:
++#define with_intel_gt_pm(gt, wf) \
++	for (wf = intel_gt_pm_get(gt); wf; intel_gt_pm_put(gt, wf), wf = 0)
+
+-:798: ERROR:ASSIGN_IN_IF: do not use assignment in if condition
+#798: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1280:
++	if (!in_reset && (wakeref = intel_gt_pm_get_if_awake(gt))) {
+
+total: 1 errors, 0 warnings, 2 checks, 775 lines checked
+fdce0e9f8058 drm/i915: Correct type of wakeref variable
+79bf0307dd7d drm/i915: replace Intel internal tracker with kernel core ref_tracker
+-:254: WARNING:NEW_TYPEDEFS: do not add new typedefs
+#254: FILE: drivers/gpu/drm/i915/intel_wakeref.h:24:
++typedef unsigned long intel_wakeref_t;
+
+-:357: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#357: 
+deleted file mode 100644
+
+total: 0 errors, 2 warnings, 0 checks, 286 lines checked
 
 
-vim +100 drivers/gpu/drm/i915/gem/i915_gem_phys.c
-
-f033428db28bdf Chris Wilson      2019-05-28   93  
-a61170975718d5 Maarten Lankhorst 2021-03-23   94  void
-f033428db28bdf Chris Wilson      2019-05-28   95  i915_gem_object_put_pages_phys(struct drm_i915_gem_object *obj,
-f033428db28bdf Chris Wilson      2019-05-28   96  			       struct sg_table *pages)
-f033428db28bdf Chris Wilson      2019-05-28   97  {
-c54be425a38b3f Yongzhi Liu       2022-02-21   98  	if (!pages)
-c54be425a38b3f Yongzhi Liu       2022-02-21   99  		return;
-c6790dc22312f5 Chris Wilson      2020-02-02 @100  	dma_addr_t dma = sg_dma_address(pages->sgl);
-c6790dc22312f5 Chris Wilson      2020-02-02  101  	void *vaddr = sg_page(pages->sgl);
-c6790dc22312f5 Chris Wilson      2020-02-02  102  
-f033428db28bdf Chris Wilson      2019-05-28  103  	__i915_gem_object_release_shmem(obj, pages, false);
-f033428db28bdf Chris Wilson      2019-05-28  104  
-f033428db28bdf Chris Wilson      2019-05-28  105  	if (obj->mm.dirty) {
-f033428db28bdf Chris Wilson      2019-05-28  106  		struct address_space *mapping = obj->base.filp->f_mapping;
-c6790dc22312f5 Chris Wilson      2020-02-02  107  		void *src = vaddr;
-f033428db28bdf Chris Wilson      2019-05-28  108  		int i;
-f033428db28bdf Chris Wilson      2019-05-28  109  
-f033428db28bdf Chris Wilson      2019-05-28  110  		for (i = 0; i < obj->base.size / PAGE_SIZE; i++) {
-f033428db28bdf Chris Wilson      2019-05-28  111  			struct page *page;
-f033428db28bdf Chris Wilson      2019-05-28  112  			char *dst;
-f033428db28bdf Chris Wilson      2019-05-28  113  
-f033428db28bdf Chris Wilson      2019-05-28  114  			page = shmem_read_mapping_page(mapping, i);
-f033428db28bdf Chris Wilson      2019-05-28  115  			if (IS_ERR(page))
-f033428db28bdf Chris Wilson      2019-05-28  116  				continue;
-f033428db28bdf Chris Wilson      2019-05-28  117  
-f033428db28bdf Chris Wilson      2019-05-28  118  			dst = kmap_atomic(page);
-c6790dc22312f5 Chris Wilson      2020-02-02  119  			drm_clflush_virt_range(src, PAGE_SIZE);
-c6790dc22312f5 Chris Wilson      2020-02-02  120  			memcpy(dst, src, PAGE_SIZE);
-f033428db28bdf Chris Wilson      2019-05-28  121  			kunmap_atomic(dst);
-f033428db28bdf Chris Wilson      2019-05-28  122  
-f033428db28bdf Chris Wilson      2019-05-28  123  			set_page_dirty(page);
-f033428db28bdf Chris Wilson      2019-05-28  124  			if (obj->mm.madv == I915_MADV_WILLNEED)
-f033428db28bdf Chris Wilson      2019-05-28  125  				mark_page_accessed(page);
-f033428db28bdf Chris Wilson      2019-05-28  126  			put_page(page);
-c6790dc22312f5 Chris Wilson      2020-02-02  127  
-c6790dc22312f5 Chris Wilson      2020-02-02  128  			src += PAGE_SIZE;
-f033428db28bdf Chris Wilson      2019-05-28  129  		}
-f033428db28bdf Chris Wilson      2019-05-28  130  		obj->mm.dirty = false;
-f033428db28bdf Chris Wilson      2019-05-28  131  	}
-f033428db28bdf Chris Wilson      2019-05-28  132  
-f033428db28bdf Chris Wilson      2019-05-28  133  	sg_free_table(pages);
-f033428db28bdf Chris Wilson      2019-05-28  134  	kfree(pages);
-f033428db28bdf Chris Wilson      2019-05-28  135  
-8ff5446a7ca47c Thomas Zimmermann 2021-01-28  136  	dma_free_coherent(obj->base.dev->dev,
-c6790dc22312f5 Chris Wilson      2020-02-02  137  			  roundup_pow_of_two(obj->base.size),
-c6790dc22312f5 Chris Wilson      2020-02-02  138  			  vaddr, dma);
-f033428db28bdf Chris Wilson      2019-05-28  139  }
-f033428db28bdf Chris Wilson      2019-05-28  140  
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
