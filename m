@@ -1,59 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F42184BDB19
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 18:12:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDABF4BDB41
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 18:23:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D02210E6A6;
-	Mon, 21 Feb 2022 17:12:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10E3910E736;
+	Mon, 21 Feb 2022 17:23:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 228DF10E6A1;
- Mon, 21 Feb 2022 17:12:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645463548; x=1676999548;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=nxwG4SOMfItx/Ds+PRWnbsOOm6Ikh9rqlB7RDu7lVsM=;
- b=nu0OQqY3wz6yQtmMNCAF1fKKLcVFx0TOum/cproFKFNtKJPTH714inYE
- Tn1PMtgxo9K9+EmzF840qqzOTfA/bt7OzuS1KQleBpoIOXsmWr3UaqLAJ
- k/K1gmkPzmkw5n6b7WEIMk0GNLgtTXuNs98IM0Utf8rLcD4cbku/acsrW
- 8qIG0xBveZyaRQY/MFNKiO4ze4h4m5yyBpGERmvMZC3NY4KAv5mb3GNaP
- didsdo8CEaVhrJxhBJyeDpCxG/2hWjOq0elV+9NdFXUJx4TG3UOPdvLuC
- RGQtF1sus8FFTygVZCpN7A9qlpKRVdhnhej/sNDNJybR1JZ1zLtbCsE+e g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10265"; a="249124727"
-X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; d="scan'208";a="249124727"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 09:12:27 -0800
-X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; d="scan'208";a="531921169"
-Received: from mkilleen-mobl1.ger.corp.intel.com (HELO [10.213.218.216])
- ([10.213.218.216])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 09:12:25 -0800
-Message-ID: <02fe43a4-0cb5-54e3-cd2f-b4bc128e7161@linux.intel.com>
-Date: Mon, 21 Feb 2022 17:12:23 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EA8B510E72F;
+ Mon, 21 Feb 2022 17:23:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E41DDA47DF;
+ Mon, 21 Feb 2022 17:23:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0357005092965092768=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-References: <20220217144158.21555-1-andi.shyti@linux.intel.com>
- <20220217144158.21555-6-andi.shyti@linux.intel.com>
- <12c2fcf8-ef3b-e59c-fe1e-23bc8f12cfe5@linux.intel.com>
- <Yg5vlgoTEfJRWP9U@intel.intel>
- <164518120389.6218.14670990912373168491@jlahtine-mobl.ger.corp.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <164518120389.6218.14670990912373168491@jlahtine-mobl.ger.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 5/7] drm/i915/gt: Create per-tile RC6
- sysfs interface
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Mon, 21 Feb 2022 17:23:50 -0000
+Message-ID: <164546423092.21413.2151333296576078013@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220221110356.5532-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20220221110356.5532-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915=3A_Move_framestart=5Fdelay?=
+ =?utf-8?q?_to_crtc=5Fstate?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,92 +41,269 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0357005092965092768==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 18/02/2022 10:46, Joonas Lahtinen wrote:
-> Quoting Andi Shyti (2022-02-17 17:53:58)
->> Hi Tvrtko,
->>
->>>> Now tiles have their own sysfs interfaces under the gt/
->>>> directory. Because RC6 is a property that can be configured on a
->>>> tile basis, then each tile should have its own interface
->>>>
->>>> The new sysfs structure will have a similar layout for the 4 tile
->>>> case:
->>>>
->>>> /sys/.../card0
->>>>            \u251c\u2500\u2500 gt
->>>>            \u2502   \u251c\u2500\u2500 gt0
->>>>            \u2502   \u2502   \u251c\u2500\u2500 id
->>>>            \u2502   \u2502   \u251c\u2500\u2500 rc6_enable
->>>>            \u2502   \u2502   \u251c\u2500\u2500 rc6_residency_ms
->>>>            .   .   .
->>>>            .   .   .
->>>>            .   .
->>>>            \u2502   \u2514\u2500\u2500 gtN
->>>>            \u2502       \u251c\u2500\u2500 id
->>>>            \u2502       \u251c\u2500\u2500 rc6_enable
->>>>            \u2502       \u251c\u2500\u2500 rc6_residency_ms
->>>>            \u2502       .
->>>>            \u2502       .
->>>>            \u2502
->>>>            \u2514\u2500\u2500 power/                -+
->>>>                 \u251c\u2500\u2500 rc6_enable        |    Original interface
->>>>                 \u251c\u2500\u2500 rc6_residency_ms  +->  kept as existing ABI;
->>>>                 .                     |    it multiplexes over
->>>>                 .                     |    the GTs
->>>>                                      -+
->>>>
->>>> The existing interfaces have been kept in their original location
->>>> to preserve the existing ABI. They act on all the GTs: when
->>>> reading they provide the average value from all the GTs.
->>>
->>> Average feels very odd to me. I'd ask if we can get away providing an errno
->>> instead? Or tile zero data?
-> 
-> Tile zero data is always wrong, in my opinion. If we have round-robin
-> scaling workloads like some media cases, part of the system load might
-> just disappear when it goes to tile 1.
+== Series Details ==
 
-I was thinking that in conjunction with deprecated log message it 
-wouldn't be wrong - I mean if the route take was to eventually retire 
-the legacy files altogether.
+Series: series starting with [1/4] drm/i915: Move framestart_delay to crtc_state
+URL   : https://patchwork.freedesktop.org/series/100484/
+State : success
 
->> Real multiplexing would be providing something when reading and
->> when writing. The idea of average came while revieweing with
->> Chris the write multiplexing. Indeed it makes sense to provide
->> some common value, but I don't know how useful it can be to the
->> user (still if the user needs any average).
-> 
-> I think all read/write controls like min/max/boost_freq should return
-> an error from the global interface if all the tiles don't return same
-> value. Write will always overwrite per-tile values.
+== Summary ==
 
-That would work I think, if the option chosen was not to retire the 
-legacy files.
+CI Bug Log - changes from CI_DRM_11263 -> Patchwork_22341
+====================================================
 
-> When we have frequency readbacks without control, returning MAX() across
-> tiles would be the logical thing. The fact that parts of the hardware can
-> be clocked lower when one part is fully utilized is the "new feature".
-> 
-> After that we're only really left with the rc6_residency_ms. And that is
-> the tough one. I'm inclined that MIN() across tiles would be the right
-> answer. If you are fully utilizing a single tile, you should be able to
-> see it.
-  So we have MIN, AVG or SUM, or errno, or remove the file (which is 
-just a different kind of errno?) to choose from. :)
+Summary
+-------
 
-Regards,
+  **SUCCESS**
 
-Tvrtko
+  No regressions found.
 
-> This all would be what feels natural for an user who has their setup
-> tuned for single-tile device. And would allow simple round-robing
-> balancing across the tiles in somewhat coherent manner.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/index.html
+
+Participating hosts (45 -> 41)
+------------------------------
+
+  Additional (2): bat-dg2-8 fi-apl-guc 
+  Missing    (6): shard-tglu fi-bsw-cyan fi-icl-u2 fi-kbl-8809g shard-rkl shard-dg1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22341 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-hsw-4770:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-apl-guc:         NOTRUN -> [DMESG-WARN][2] ([i915#1610])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-apl-guc/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-skl-6600u:       [PASS][3] -> [INCOMPLETE][4] ([i915#4547])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11263/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][5] -> [INCOMPLETE][6] ([i915#3921])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11263/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][7] ([i915#4312])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-skl-6600u/igt@runner@aborted.html
+    - fi-apl-guc:         NOTRUN -> [FAIL][8] ([i915#2426] / [i915#4312])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-apl-guc/igt@runner@aborted.html
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][9] ([i915#2426] / [i915#4312])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-bdw-5557u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - fi-bdw-5557u:       [INCOMPLETE][10] ([i915#146]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11263/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-hsw-4770:        [INCOMPLETE][12] ([i915#4785]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11263/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-cml-u2:          [DMESG-WARN][14] ([i915#4269]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11263/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-kbl-guc:         [SKIP][16] ([fdo#109271]) -> [FAIL][17] ([i915#3049])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11263/fi-kbl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-kbl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#3049]: https://gitlab.freedesktop.org/drm/intel/issues/3049
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4785]: https://gitlab.freedesktop.org/drm/intel/issues/4785
+  [i915#5137]: https://gitlab.freedesktop.org/drm/intel/issues/5137
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11263 -> Patchwork_22341
+
+  CI-20190529: 20190529
+  CI_DRM_11263: 4f574e4e0184dfccce23b438846b95bbb4d14e39 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6349: 0513032006f385f34fcd094c810b93f31cbed09d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22341: 5c2c5dd707a4d3e5ed0d381400d8314e45693744 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+5c2c5dd707a4 drm/i915: Relocate a few more pch transcoder bits
+4881ec7a860a drm/i915: Relocate ibx pch port sanitation code
+ee349a2861c4 drm/i915: Remove framestart_delay sanitation
+7d7813453e30 drm/i915: Move framestart_delay to crtc_state
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/index.html
+
+--===============0357005092965092768==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/i915: Move framestart_delay to crtc_state</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100484/">https://patchwork.freedesktop.org/series/100484/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11263 -&gt; Patchwork_22341</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/index.html</p>
+<h2>Participating hosts (45 -&gt; 41)</h2>
+<p>Additional (2): bat-dg2-8 fi-apl-guc <br />
+  Missing    (6): shard-tglu fi-bsw-cyan fi-icl-u2 fi-kbl-8809g shard-rkl shard-dg1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22341 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-hsw-4770/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-apl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11263/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11263/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-apl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11263/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-bdw-5557u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11263/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4785">i915#4785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11263/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_pm_rpm@basic-pci-d3-state:<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11263/fi-kbl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22341/fi-kbl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3049">i915#3049</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11263 -&gt; Patchwork_22341</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11263: 4f574e4e0184dfccce23b438846b95bbb4d14e39 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6349: 0513032006f385f34fcd094c810b93f31cbed09d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22341: 5c2c5dd707a4d3e5ed0d381400d8314e45693744 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>5c2c5dd707a4 drm/i915: Relocate a few more pch transcoder bits<br />
+4881ec7a860a drm/i915: Relocate ibx pch port sanitation code<br />
+ee349a2861c4 drm/i915: Remove framestart_delay sanitation<br />
+7d7813453e30 drm/i915: Move framestart_delay to crtc_state</p>
+
+</body>
+</html>
+
+--===============0357005092965092768==--
