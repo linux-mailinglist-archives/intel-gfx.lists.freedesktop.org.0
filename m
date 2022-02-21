@@ -2,50 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6BD14BF97A
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 14:32:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 270FE4BF97E
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 14:33:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 295C210E669;
-	Tue, 22 Feb 2022 13:32:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EC8010E66C;
+	Tue, 22 Feb 2022 13:32:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F5BB10E509
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 10:44:46 +0000 (UTC)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1nM6Az-0005yH-Ah; Mon, 21 Feb 2022 11:44:17 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1nM6At-000P4c-Mq; Mon, 21 Feb 2022 11:44:10 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1nM6As-004a8j-5E; Mon, 21 Feb 2022 11:44:10 +0100
-Date: Mon, 21 Feb 2022 11:44:06 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20220221104406.q65kdxunhelyi27v@pengutronix.de>
-References: <20210514100142.1182997-1-u.kleine-koenig@pengutronix.de>
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com
+ [IPv6:2607:f8b0:4864:20::b2d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A629B10E358
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 23:54:24 +0000 (UTC)
+Received: by mail-yb1-xb2d.google.com with SMTP id w63so16270875ybe.10
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 15:54:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=3lC+GIB4kzAe3ece369swUyKHnvK/S1h9xrQbJ/8q+w=;
+ b=GOHpLflJrqC43QFF/5GQvG7V2qEcPuaQvtK5vbSduDp5b1yp3G7IW6vFy9EFQmifR3
+ R3K6rvushU3hJCS+Q6RbNcy7Y3MCAD1xh9DmsmuJ2Cuki5Tpvo/WJIioUd+G4028WrXV
+ 6EuITKbzai/dr+E7N6V+RpaG1AFgkgkp6ZhZ8BaDO2LbPeNApEd5+THSlbqAL01gEya8
+ 0Xor7hYcueU2c9Tbn4MBzNzpxCXuancOC8749h9QPVjrrHJ3E6H1ilmIQGjh55yX4Tre
+ yHb37zO9WMY3AhiVF9UhNZkRfPoZ3Oq5BjEJAfTtRCAwySv7PvxrLqZhsd9hjmo9PsV4
+ R69A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=3lC+GIB4kzAe3ece369swUyKHnvK/S1h9xrQbJ/8q+w=;
+ b=4CcMIiOXBF0FI47v4gcf9tRef2R2zScibT3axJSI1x/XmD82kkHB7KyviQcWCqxxTQ
+ oDeKDFxjUyLnsG63bsw/+zV9uvbbONWDMLegqnrfVVDXkB54/fkvN0rLuTTit6cUBrWc
+ 4SPE085Z5DmgQv11ViJI4u87ZIHhbwYjSOikLV5GJPcbb74tA9jh8w2Y1vsnLwjfwX6C
+ DBFmpCMJVS4ZgtS8P4/hAkypWFTimJcrmmAK0HzmjXcrKr08kawI0jap7kDu6Jl73tUq
+ 7kpUTwhg9XIrQJtSz9+0sz4aOq5is3uquAmVZC/YSjA4dVoloio9PlsN68kK9sDfuKDD
+ R6ag==
+X-Gm-Message-State: AOAM533qzVVw0Dw7p/9qLrtArHU0tQ0TUQdHqS5EGUPeC3mmIv4OoKkA
+ SXhdEPTqEBSPQ7z+QZMGjkmVPlXGVCtqF4wx5ql2yg==
+X-Google-Smtp-Source: ABdhPJwK0jOhPcM1lDe3429/m25HSYMiQee5DR7/0JGbbsQegVXI/XBsnoJbutUJ1jTG6re1CQZuJ8cXV0HIPfxMSxQ=
+X-Received: by 2002:a25:a28d:0:b0:623:fa1b:3eb7 with SMTP id
+ c13-20020a25a28d000000b00623fa1b3eb7mr21159078ybi.387.1645487663454; Mon, 21
+ Feb 2022 15:54:23 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="fo7jxdx5d4fj6bzu"
-Content-Disposition: inline
-In-Reply-To: <20210514100142.1182997-1-u.kleine-koenig@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
+References: <20220221232542.1481315-1-andrzej.hajda@intel.com>
+ <20220221232542.1481315-8-andrzej.hajda@intel.com>
+In-Reply-To: <20220221232542.1481315-8-andrzej.hajda@intel.com>
+From: Eric Dumazet <edumazet@google.com>
+Date: Mon, 21 Feb 2022 15:54:12 -0800
+Message-ID: <CANn89i+E3z-iXSJh8316KSycYk2VTS-n0E=tAOj23fuDSi1Zjg@mail.gmail.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Tue, 22 Feb 2022 13:32:50 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm: Only select I2C_ALGOBIT for drivers
- that actually need it
+Subject: Re: [Intel-gfx] [PATCH v3 07/11] lib/ref_tracker: remove warnings
+ in case of allocation failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,188 +65,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xinliang Liu <xinliang.liu@linaro.org>, Chen Feng <puck.chen@hisilicon.com>,
- intel-gfx@lists.freedesktop.org, Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- John Stultz <john.stultz@linaro.org>, dri-devel@lists.freedesktop.org,
- kernel@pengutronix.de, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- nouveau@lists.freedesktop.org, Tian Tao <tiantao6@hisilicon.com>,
- Ben Skeggs <bskeggs@redhat.com>
+Cc: Chris Wilson <chris.p.wilson@intel.com>, netdev <netdev@vger.kernel.org>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ LKML <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
+ Jakub Kicinski <kuba@kernel.org>, Dmitry Vyukov <dvyukov@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---fo7jxdx5d4fj6bzu
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-On Fri, May 14, 2021 at 12:01:42PM +0200, Uwe Kleine-K=F6nig wrote:
-> While working on a drm driver that doesn't need the i2c algobit stuff I
-> noticed that DRM selects this code even tough only 8 drivers actually use
-> it. While also only some drivers use i2c, keep the select for I2C for the
-> next cleanup patch. Still prepare this already by also selecting I2C for
-> the individual drivers.
->=20
-> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-
-This patch is already old but the issue is still valid and the patch
-even still applies to today's Linus' master branch.
-
-I didn't receive any human feedback. If you consider this patch
-worthwile I can recheck if it's still correct as is or needs adaption.
-
-Best regards
-Uwe
-
+On Mon, Feb 21, 2022 at 3:26 PM Andrzej Hajda <andrzej.hajda@intel.com> wrote:
+>
+> Library can handle allocation failures. To avoid allocation warnings
+> __GFP_NOWARN has been added everywhere. Moreover GFP_ATOMIC has been
+> replaced with GFP_NOWAIT in case of stack allocation on tracker free
+> call.
+>
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 > ---
->  drivers/gpu/drm/Kconfig                 | 5 ++++-
->  drivers/gpu/drm/ast/Kconfig             | 2 ++
->  drivers/gpu/drm/gma500/Kconfig          | 2 ++
->  drivers/gpu/drm/hisilicon/hibmc/Kconfig | 2 ++
->  drivers/gpu/drm/i915/Kconfig            | 2 ++
->  drivers/gpu/drm/mgag200/Kconfig         | 2 ++
->  drivers/gpu/drm/nouveau/Kconfig         | 2 ++
->  7 files changed, 16 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index 3c16bd1afd87..351ea617c498 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -12,7 +12,6 @@ menuconfig DRM
->  	select HDMI
->  	select FB_CMDLINE
->  	select I2C
-> -	select I2C_ALGOBIT
->  	select DMA_SHARED_BUFFER
->  	select SYNC_FILE
->  # gallium uses SYS_kcmp for os_same_file_description() to de-duplicate
-> @@ -233,6 +232,8 @@ config DRM_RADEON
->          select DRM_KMS_HELPER
->          select DRM_TTM
->  	select DRM_TTM_HELPER
-> +	select I2C
-> +	select I2C_ALGOBIT
->  	select POWER_SUPPLY
->  	select HWMON
->  	select BACKLIGHT_CLASS_DEVICE
-> @@ -254,6 +255,8 @@ config DRM_AMDGPU
->  	select DRM_SCHED
->  	select DRM_TTM
->  	select DRM_TTM_HELPER
-> +	select I2C
-> +	select I2C_ALGOBIT
->  	select POWER_SUPPLY
->  	select HWMON
->  	select BACKLIGHT_CLASS_DEVICE
-> diff --git a/drivers/gpu/drm/ast/Kconfig b/drivers/gpu/drm/ast/Kconfig
-> index fbcf2f45cef5..bcc25decd485 100644
-> --- a/drivers/gpu/drm/ast/Kconfig
-> +++ b/drivers/gpu/drm/ast/Kconfig
-> @@ -6,6 +6,8 @@ config DRM_AST
->  	select DRM_VRAM_HELPER
->  	select DRM_TTM
->  	select DRM_TTM_HELPER
-> +	select I2C
-> +	select I2C_ALGOBIT
->  	help
->  	 Say yes for experimental AST GPU driver. Do not enable
->  	 this driver without having a working -modesetting,
-> diff --git a/drivers/gpu/drm/gma500/Kconfig b/drivers/gpu/drm/gma500/Kcon=
-fig
-> index 0cff20265f97..e26c3a24955d 100644
-> --- a/drivers/gpu/drm/gma500/Kconfig
-> +++ b/drivers/gpu/drm/gma500/Kconfig
-> @@ -3,6 +3,8 @@ config DRM_GMA500
->  	tristate "Intel GMA500/600/3600/3650 KMS Framebuffer"
->  	depends on DRM && PCI && X86 && MMU
->  	select DRM_KMS_HELPER
-> +	select I2C
-> +	select I2C_ALGOBIT
->  	# GMA500 depends on ACPI_VIDEO when ACPI is enabled, just like i915
->  	select ACPI_VIDEO if ACPI
->  	select BACKLIGHT_CLASS_DEVICE if ACPI
-> diff --git a/drivers/gpu/drm/hisilicon/hibmc/Kconfig b/drivers/gpu/drm/hi=
-silicon/hibmc/Kconfig
-> index 43943e980203..ac8c42dc79f6 100644
-> --- a/drivers/gpu/drm/hisilicon/hibmc/Kconfig
-> +++ b/drivers/gpu/drm/hisilicon/hibmc/Kconfig
-> @@ -6,6 +6,8 @@ config DRM_HISI_HIBMC
->  	select DRM_VRAM_HELPER
->  	select DRM_TTM
->  	select DRM_TTM_HELPER
-> +	select I2C
-> +	select I2C_ALGOBIT
->  	help
->  	  Choose this option if you have a Hisilicon Hibmc soc chipset.
->  	  If M is selected the module will be called hibmc-drm.
-> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-> index 69f57ca9c68d..b3bb6f7cfbbc 100644
-> --- a/drivers/gpu/drm/i915/Kconfig
-> +++ b/drivers/gpu/drm/i915/Kconfig
-> @@ -13,6 +13,8 @@ config DRM_I915
->  	select DRM_PANEL
->  	select DRM_MIPI_DSI
->  	select RELAY
-> +	select I2C
-> +	select I2C_ALGOBIT
->  	select IRQ_WORK
->  	# i915 depends on ACPI_VIDEO when ACPI is enabled
->  	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
-> diff --git a/drivers/gpu/drm/mgag200/Kconfig b/drivers/gpu/drm/mgag200/Kc=
-onfig
-> index eec59658a938..b28c5e4828f4 100644
-> --- a/drivers/gpu/drm/mgag200/Kconfig
-> +++ b/drivers/gpu/drm/mgag200/Kconfig
-> @@ -4,6 +4,8 @@ config DRM_MGAG200
->  	depends on DRM && PCI && MMU
->  	select DRM_GEM_SHMEM_HELPER
->  	select DRM_KMS_HELPER
-> +	select I2C
-> +	select I2C_ALGOBIT
->  	help
->  	 This is a KMS driver for Matrox G200 chips. It supports the original
->  	 MGA G200 desktop chips and the server variants. It requires 0.3.0
-> diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kc=
-onfig
-> index 9436310d0854..8823f0b24c73 100644
-> --- a/drivers/gpu/drm/nouveau/Kconfig
-> +++ b/drivers/gpu/drm/nouveau/Kconfig
-> @@ -7,6 +7,8 @@ config DRM_NOUVEAU
->  	select DRM_KMS_HELPER
->  	select DRM_TTM
->  	select DRM_TTM_HELPER
-> +	select I2C
-> +	select I2C_ALGOBIT
->  	select BACKLIGHT_CLASS_DEVICE if DRM_NOUVEAU_BACKLIGHT
->  	select ACPI_VIDEO if ACPI && X86 && BACKLIGHT_CLASS_DEVICE && INPUT
->  	select X86_PLATFORM_DEVICES if ACPI && X86
->=20
-> base-commit: 315d99318179b9cd5077ccc9f7f26a164c9fa998
-> --=20
-> 2.30.2
->=20
->=20
->=20
+>  lib/ref_tracker.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/lib/ref_tracker.c b/lib/ref_tracker.c
+> index 2ef4596b6b36f..cae4498fcfd70 100644
+> --- a/lib/ref_tracker.c
+> +++ b/lib/ref_tracker.c
+> @@ -189,7 +189,7 @@ int ref_tracker_alloc(struct ref_tracker_dir *dir,
+>         unsigned long entries[REF_TRACKER_STACK_ENTRIES];
+>         struct ref_tracker *tracker;
+>         unsigned int nr_entries;
+> -       gfp_t gfp_mask = gfp;
+> +       gfp_t gfp_mask = gfp | __GFP_NOWARN;
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+SGTM
 
---fo7jxdx5d4fj6bzu
-Content-Type: application/pgp-signature; name="signature.asc"
+>         unsigned long flags;
+>
+>         WARN_ON_ONCE(dir->dead);
+> @@ -237,7 +237,8 @@ int ref_tracker_free(struct ref_tracker_dir *dir,
+>                 return -EEXIST;
+>         }
+>         nr_entries = stack_trace_save(entries, ARRAY_SIZE(entries), 1);
+> -       stack_handle = stack_depot_save(entries, nr_entries, GFP_ATOMIC);
+> +       stack_handle = stack_depot_save(entries, nr_entries,
+> +                                       GFP_NOWAIT | __GFP_NOWARN);
 
------BEGIN PGP SIGNATURE-----
+Last time I looked at this, __GFP_NOWARN was enforced in __stack_depot_save()
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmITbPMACgkQwfwUeK3K
-7An5cgf/a9YGvJyV58Jivjfe2u2Dl/jKZ1+fArYpC3h0O76yBGqkT1CnEpgOaFJl
-hjxWBIe+EwewKUcegjXnB58iNQmpH7tRet0BVfXluqLVQxKwgU7aFfiEJ9Hh81ua
-epDFlbF3BUbVrrc3kXnTCoZTN6fOobAKDkU5SB8yEIR/85kbdQddGdSZtCE+FzBR
-LIJPwaXafALQx9KQAsezXk3vOAm7wW1g602U24rVOLdM7GkPP4hhW0ygGrFzocBB
-XkcuYGZGuZZNCcOCHSClhj7uA56suoSfZUK1at8PoGt2nBXT9oDP7MhSWIqjT/m1
-43OTRW7a4MxzLRhTcwiiQJawYBvh7w==
-=xsnb
------END PGP SIGNATURE-----
-
---fo7jxdx5d4fj6bzu--
+>
+>         spin_lock_irqsave(&dir->lock, flags);
+>         if (tracker->dead) {
+> --
+> 2.25.1
+>
