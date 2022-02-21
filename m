@@ -1,50 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A9834BD9EF
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 14:36:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F7CA4BDA09
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 14:55:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D72110E344;
-	Mon, 21 Feb 2022 13:36:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD13010E73C;
+	Mon, 21 Feb 2022 13:55:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A83B010E317;
- Mon, 21 Feb 2022 13:36:47 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1B8410E72F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 13:55:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645450607; x=1676986607;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ARqJmaDlo21rcMScAaIqVWbKxjby/BAi23J0kEZgcvw=;
- b=I90kawQReESE0ICi8rBTgnm+E1ZhHVHFFf/FpdwXwO48io1xQ6XBj30l
- ook+Ig6F6YOD9jn7m3iIshbvORSZnZiUETysgjsp8WmZW06fTEY2OuHr6
- /EpiZFwnXs6goIz1MPyGxt5f7uW1ukB0e1TLZpSHnRP4kDyus+yvUvrUz
- WIIm3PFOcM6qskIwDoU07TJTdhhoWTfD25lcqcrGshaLmRxQkTb4W3Hqf
- dNHduDYu1W0pj5li1xrNxNnvDhRAdFBP/iitqeJLikzIy8IEdWrR52Ywa
- M7qhv0BgH2UtL6JBPMmAphYQA1Jtgzwr6BkUHTptfSQEQyGQrrDURg76D A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="238923639"
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="238923639"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 05:36:47 -0800
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="638557494"
-Received: from asparren-mobl2.ger.corp.intel.com (HELO [10.249.254.160])
- ([10.249.254.160])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 05:36:45 -0800
-Message-ID: <82a6da925a9a8f3d41acb6762111b0dc42350a7c.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Mon, 21 Feb 2022 14:36:43 +0100
-In-Reply-To: <20220221121103.2473831-1-matthew.auld@intel.com>
-References: <20220221121103.2473831-1-matthew.auld@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
+ t=1645451721; x=1676987721;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-id:content-transfer-encoding:mime-version;
+ bh=nAQqxn3OKmiQa/o5f2Ep60ytMz+APQqMGxqUO8VO4d4=;
+ b=fwqYm1lQninjFYEOcuKvoGXE6bgHvP8Z6AdWvpD1C+HiLd8k7piCZOf5
+ 24QJnqYMif7qbIQVcfb+O+C1EkkMDIPchUbfqycTc/GZCRKijz0kv0U0T
+ Gpjqf9hfuZ0WimW18ZoXWB4VPyHxM+B13eMs+9rU+Zwj6tEqyQNQmwvdo
+ 1WDkjBJA8XJoGoNXIVSwSlQC9lJGbLGwnh9L2RmGN5IOnIGSr92w2sNG6
+ 6T0Qr6eHu7wV0VPJW8LReArJJJYKF/QsWYhWEOdc5cudBkFtoAFj/l8SX
+ WaxoJLVzVOG5aUfZoM0WWCWtdA7XxgPACqUS699RbnusbV0Llza1aJWEi g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="249090431"
+X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="249090431"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2022 05:55:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="573114376"
+Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
+ by orsmga001.jf.intel.com with ESMTP; 21 Feb 2022 05:55:20 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Mon, 21 Feb 2022 13:55:18 +0000
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2308.020;
+ Mon, 21 Feb 2022 05:55:17 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v2] drm/i915/adlp: Add TypeC PHY
+ TBT->DP-alt/legacy mode switch workaround
+Thread-Index: AQHYJMOHjWEauToX0kO9QD8VZ2l94qyekoeA
+Date: Mon, 21 Feb 2022 13:55:16 +0000
+Message-ID: <595e645dd0ca1110b6d68626a9ecd5b4307b5878.camel@intel.com>
+References: <20220218122611.767974-1-imre.deak@intel.com>
+ <20220218123149.768485-1-imre.deak@intel.com>
+In-Reply-To: <20220218123149.768485-1-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D0137C786279AE47A49C2F09330A5B64@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/ttm: fixup the mock_bo
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/adlp: Add TypeC PHY
+ TBT->DP-alt/legacy mode switch workaround
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,108 +74,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2022-02-21 at 12:11 +0000, Matthew Auld wrote:
-> When running the mock selftests we currently blow up with:
-> 
-> <6> [299.836278] i915: Running
-> i915_gem_huge_page_mock_selftests/igt_mock_memory_region_huge_pages
-> <1> [299.836356] BUG: kernel NULL pointer dereference, address:
-> 00000000000000c8
-> <1> [299.836361] #PF: supervisor read access in kernel mode
-> <1> [299.836364] #PF: error_code(0x0000) - not-present page
-> <6> [299.836367] PGD 0 P4D 0
-> <4> [299.836369] Oops: 0000 [#1] PREEMPT SMP NOPTI
-> <4> [299.836372] CPU: 1 PID: 1429 Comm: i915_selftest Tainted: G    
-> U            5.17.0-rc4-CI-CI_DRM_11227+ #1
-> <4> [299.836376] Hardware name: Intel(R) Client Systems
-> NUC11TNHi5/NUC11TNBi5, BIOS TNTGL357.0042.2020.1221.1743 12/21/2020
-> <4> [299.836380] RIP: 0010:ttm_resource_init+0x57/0x90 [ttm]
-> <4> [299.836392] RSP: 0018:ffffc90001e4f680 EFLAGS: 00010203
-> <4> [299.836395] RAX: 0000000000000000 RBX: ffffc90001e4f708 RCX:
-> 0000000000000000
-> <4> [299.836398] RDX: ffff888116172528 RSI: ffffc90001e4f6f8 RDI:
-> 0000000000000000
-> <4> [299.836401] RBP: ffffc90001e4f6f8 R08: 00000000000001b0 R09:
-> ffff888116172528
-> <4> [299.836403] R10: 0000000000000001 R11: 00000000a4cb2e51 R12:
-> ffffc90001e4fa90
-> <4> [299.836406] R13: ffff888116172528 R14: ffff888130d7f4b0 R15:
-> ffff888130d7f400
-> <4> [299.836409] FS:  00007ff241684500(0000)
-> GS:ffff88849fe80000(0000) knlGS:0000000000000000
-> <4> [299.836412] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> <4> [299.836416] CR2: 00000000000000c8 CR3: 0000000107b80001 CR4:
-> 0000000000770ee0
-> <4> [299.836418] PKRU: 55555554
-> <4> [299.836420] Call Trace:
-> <4> [299.836422]  <TASK>
-> <4> [299.836423]  i915_ttm_buddy_man_alloc+0x68/0x240 [i915]
-> 
-> ttm_resource_init() now needs to access the bo->bdev, and also wants
-> to
-> store the bo reference. Try to keep both working. The mock_bo is a
-> hack
-> so we can interface directly with the ttm managers alloc() and free()
-> hooks for
-> our mock testing, without invoking other TTM features like eviction,
-> moves, etc.
-> 
-> v2: make sure we only touch res->bo if the alloc() returns
-> successfully
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5123
-> Fixes: 0e05fc49c358 ("drm/ttm: add common accounting to the resource
-> mgr v3")
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Acked-by: Christian König <christian.koenig@amd.com>
-
-
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/intel_region_ttm.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/intel_region_ttm.c
-> b/drivers/gpu/drm/i915/intel_region_ttm.c
-> index f2b888c16958..7dea07c579aa 100644
-> --- a/drivers/gpu/drm/i915/intel_region_ttm.c
-> +++ b/drivers/gpu/drm/i915/intel_region_ttm.c
-> @@ -200,11 +200,14 @@ intel_region_ttm_resource_alloc(struct
-> intel_memory_region *mem,
->         int ret;
->  
->         mock_bo.base.size = size;
-> +       mock_bo.bdev = &mem->i915->bdev;
->         place.flags = flags;
->  
->         ret = man->func->alloc(man, &mock_bo, &place, &res);
->         if (ret == -ENOSPC)
->                 ret = -ENXIO;
-> +       if (!ret)
-> +               res->bo = NULL; /* Rather blow up, then some uaf */
->         return ret ? ERR_PTR(ret) : res;
->  }
->  
-> @@ -219,6 +222,11 @@ void intel_region_ttm_resource_free(struct
-> intel_memory_region *mem,
->                                     struct ttm_resource *res)
->  {
->         struct ttm_resource_manager *man = mem->region_private;
-> +       struct ttm_buffer_object mock_bo = {};
-> +
-> +       mock_bo.base.size = res->num_pages << PAGE_SHIFT;
-> +       mock_bo.bdev = &mem->i915->bdev;
-> +       res->bo = &mock_bo;
->  
->         man->func->free(man, res);
->  }
-
-
+T24gRnJpLCAyMDIyLTAyLTE4IGF0IDE0OjMxICswMjAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEFk
+ZCBkaXNwbGF5IHdvcmthcm91bmQgIyAxMzA5MTc5NDY5ICwgd2hpY2ggZml4ZXMgYSBQSFkgaGFu
+ZyB3aGVuDQo+IHN3aXRjaGluZyBmcm9tIFRCVCBtb2RlIHRvIERQLWFsdC9sZWdhY3kgbW9kZS4g
+VGhlIHdvcmthcm91bmQgYWxzbw0KPiByZXF1aXJlcyBhbiBJRldJL1BIWSBmaXJtd2FyZSBjaGFu
+Z2UsIGJlZm9yZSB0aGF0IHRoaXMgY2hhbmdlIGhhcyBubw0KPiBlZmZlY3QgKHRoZSBES0xfUENT
+X0RXNS9TT0ZUUkVTRVQgZmxhZyBpcyBhbHdheXMgY2xlYXJlZCkuDQo+IA0KPiBIU0RFUzogMTgw
+MTgyMzc4NjYNCj4gSFNERVM6IDE2MDE0NDczMzE5DQo+IA0KPiB2MjogQWRkIHRoZSBXQSBjb21t
+ZW50IGFuZCBtYWtlIHRoZSBXQSBmdW5jIG5hbWUgbW9yZSBhY2N1cmF0ZS4NCj4gDQoNClJldmll
+d2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0K
+PiBTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+DQo+IC0tLQ0K
+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyB8IDIwICsrKysrKysr
+KysrKysrKysrKystDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAg
+IHwgIDYgKysrKysrDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDI1IGluc2VydGlvbnMoKyksIDEgZGVs
+ZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0K
+PiBpbmRleCA5ZGVlMTI5ODY5OTFjLi5lNmUyNmU0Y2Q4N2Q3IDEwMDY0NA0KPiAtLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gQEAgLTMxMDEsMTAgKzMxMDEsMjQgQEAg
+aW50ZWxfZGRpX3ByZV9wbGxfZW5hYmxlKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRl
+LA0KPiAgCQkJCQkJY3J0Y19zdGF0ZS0+bGFuZV9sYXRfb3B0aW1fbWFzayk7DQo+ICB9DQo+ICAN
+Cj4gKy8qIERpc3BsYXkgV0EgIzEzMDkxNzk0Njk6IGFkbC1wICovDQo+ICtzdGF0aWMgdm9pZCBh
+ZGxwX3RidF90b19kcF9hbHRfbGVnYWN5X3N3aXRjaF93YShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAq
+ZW5jb2RlcikNCj4gK3sNCj4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5
+MTUoZW5jb2Rlci0+YmFzZS5kZXYpOw0KPiArCWVudW0gdGNfcG9ydCB0Y19wb3J0ID0gaW50ZWxf
+cG9ydF90b190YyhpOTE1LCBlbmNvZGVyLT5wb3J0KTsNCj4gKwlpbnQgbG47DQo+ICsNCj4gKwlm
+b3IgKGxuID0gMDsgbG4gPCAyOyBsbisrKSB7DQo+ICsJCWludGVsX2RlX3dyaXRlKGk5MTUsIEhJ
+UF9JTkRFWF9SRUcodGNfcG9ydCksIEhJUF9JTkRFWF9WQUwodGNfcG9ydCwgbG4pKTsNCj4gKwkJ
+aW50ZWxfZGVfcm13KGk5MTUsIERLTF9QQ1NfRFc1KHRjX3BvcnQpLCBES0xfUENTX0RXNV9DT1JF
+X1NPRlRSRVNFVCwgMCk7DQo+ICsJfQ0KPiArfQ0KPiArDQo+ICBzdGF0aWMgdm9pZCBpbnRlbF9k
+ZGlfcHJlcGFyZV9saW5rX3JldHJhaW4oc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwNCj4gIAkJ
+CQkJICAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpDQo+ICB7DQo+
+IC0Jc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIgPSAmZHBfdG9fZGlnX3BvcnQoaW50ZWxf
+ZHApLT5iYXNlOw0KPiArCXN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0ID0gZHBf
+dG9fZGlnX3BvcnQoaW50ZWxfZHApOw0KPiArCXN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVy
+ID0gJmRpZ19wb3J0LT5iYXNlOw0KPiAgCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
+diA9IHRvX2k5MTUoZW5jb2Rlci0+YmFzZS5kZXYpOw0KPiAgCWVudW0gcG9ydCBwb3J0ID0gZW5j
+b2Rlci0+cG9ydDsNCj4gIAl1MzIgZHBfdHBfY3RsLCBkZGlfYnVmX2N0bDsNCj4gQEAgLTMxNDAs
+NiArMzE1NCwxMCBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kZGlfcHJlcGFyZV9saW5rX3JldHJhaW4o
+c3RydWN0IGludGVsX2RwICppbnRlbF9kcCwNCj4gIAlpbnRlbF9kZV93cml0ZShkZXZfcHJpdiwg
+ZHBfdHBfY3RsX3JlZyhlbmNvZGVyLCBjcnRjX3N0YXRlKSwgZHBfdHBfY3RsKTsNCj4gIAlpbnRl
+bF9kZV9wb3N0aW5nX3JlYWQoZGV2X3ByaXYsIGRwX3RwX2N0bF9yZWcoZW5jb2RlciwgY3J0Y19z
+dGF0ZSkpOw0KPiAgDQo+ICsJaWYgKElTX0FMREVSTEFLRV9QKGRldl9wcml2KSAmJg0KPiArCSAg
+ICAoaW50ZWxfdGNfcG9ydF9pbl9kcF9hbHRfbW9kZShkaWdfcG9ydCkgfHwgaW50ZWxfdGNfcG9y
+dF9pbl9sZWdhY3lfbW9kZShkaWdfcG9ydCkpKQ0KPiArCQlhZGxwX3RidF90b19kcF9hbHRfbGVn
+YWN5X3N3aXRjaF93YShlbmNvZGVyKTsNCj4gKw0KPiAgCWludGVsX2RwLT5EUCB8PSBERElfQlVG
+X0NUTF9FTkFCTEU7DQo+ICAJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIERESV9CVUZfQ1RMKHBv
+cnQpLCBpbnRlbF9kcC0+RFApOw0KPiAgCWludGVsX2RlX3Bvc3RpbmdfcmVhZChkZXZfcHJpdiwg
+RERJX0JVRl9DVEwocG9ydCkpOw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aTkxNV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gaW5kZXggMjZi
+NDk2ZmEzMTk3Mi4uOGFiYmRjNjJiOTgxZiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9yZWcuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5o
+DQo+IEBAIC03OTA3LDYgKzc5MDcsMTIgQEAgZW51bSBza2xfcG93ZXJfZ2F0ZSB7DQo+ICAjZGVm
+aW5lIF9ES0xfUEhZNl9CQVNFCQkJMHgxNkQwMDANCj4gIA0KPiAgLyogREVLRUwgUEhZIE1NSU8g
+QWRkcmVzcyA9IFBoeSBiYXNlICsgKGludGVybmFsIGFkZHJlc3MgJiB+aW5kZXhfbWFzaykgKi8N
+Cj4gKyNkZWZpbmUgX0RLTF9QQ1NfRFc1CQkJMHgxNA0KPiArI2RlZmluZSBES0xfUENTX0RXNSh0
+Y19wb3J0KQkJX01NSU8oX1BPUlQodGNfcG9ydCwgX0RLTF9QSFkxX0JBU0UsIFwNCj4gKwkJCQkJ
+CSAgICBfREtMX1BIWTJfQkFTRSkgKyBcDQo+ICsJCQkJCQkgICAgX0RLTF9QQ1NfRFc1KQ0KPiAr
+I2RlZmluZSAgIERLTF9QQ1NfRFc1X0NPUkVfU09GVFJFU0VUCVJFR19CSVQoMTEpDQo+ICsNCj4g
+ICNkZWZpbmUgX0RLTF9QTExfRElWMAkJCTB4MjAwDQo+ICAjZGVmaW5lICAgREtMX1BMTF9ESVYw
+X0lOVEVHX0NPRUZGKHgpCSgoeCkgPDwgMTYpDQo+ICAjZGVmaW5lICAgREtMX1BMTF9ESVYwX0lO
+VEVHX0NPRUZGX01BU0sJKDB4MUYgPDwgMTYpDQoNCg==
