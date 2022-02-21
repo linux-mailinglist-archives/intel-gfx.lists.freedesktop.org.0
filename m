@@ -1,52 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 997344BD955
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 12:10:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1145B4BD956
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 12:14:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7417A10E499;
-	Mon, 21 Feb 2022 11:10:25 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8829410E499
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 11:10:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2262410E2A0;
+	Mon, 21 Feb 2022 11:14:39 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F80F10E2A0;
+ Mon, 21 Feb 2022 11:14:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645441823; x=1676977823;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=QYm/0D3Tt5oPIEFxdNyxrOFRQsjyItGYNq0ruytfywE=;
- b=WNt8tgxRBHoULhg/HJRoskQSp9bokC70LbIfituF0mq4d2FvVj/2evmH
- dqPn8HXVlTtAlD5EydL29dtQidBux3cZaq65KJujvsJf7pB06FGUgD2uo
- PqBaGzQLve2IJ+m1PIIFmYXj8oGC70ERGAMcOOdl/rff6XcZi/L1Xh269
- uXxVSJCcdsuRet6YiSpBIvJvk1+paNicMVbkmBsMBrMG2qjFcsl5SxxPB
- RemSrw4gRpkGk+pw37UDQGfM9I4Lv6I/fmktMYZobJVrIktVhfnAzE2Lj
- g/N1N2diDZvNAU+TnIzzb1mq+t8ZUKAICYzUR5M9o2+FOFr9FPdZnTqT9 g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="232109337"
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="232109337"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 03:10:23 -0800
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="706224045"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 03:10:21 -0800
-Date: Mon, 21 Feb 2022 13:10:39 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220221111039.GA17795@intel.com>
-References: <20220218064039.12834-1-ville.syrjala@linux.intel.com>
- <20220218064039.12834-6-ville.syrjala@linux.intel.com>
+ t=1645442078; x=1676978078;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=TvbJ3vSGodYfMyTTYBnSkODUNvzL55ny9Q8+ODOW3i4=;
+ b=k67DTYTHm4r8/26riIR4zKFzk+6VmcmI2NyR+QQRUIZQlvB5vR/KrxjJ
+ +ULNOq/QJfio+gaS1ffcA/5LMQe9l7zybc8xg/x2H/x7+VovnpvO1o0Hg
+ 68qrS7/9PvmFB6rqnlR2kttTZy0kL8ItWhxeMRLnWx+lTV4kOIo2SVMKQ
+ oSwvw1DL9QA0raIW8S5uGoAL0RP4SpQuZqyuHnN2htDILCkArI9KnsvPN
+ uR+ulkznNLPCNq5turcSyeckdHkrizxPzp55/wXEBLlQBgZpmvwY2gD2/
+ mYdT2Vr/EJUIFBU920wYjzNA/8Fs8ATuIdxhBkvx+QAqvUtCdvE3VTLzj Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="235029872"
+X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="235029872"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2022 03:14:37 -0800
+X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="531820779"
+Received: from mkilleen-mobl1.ger.corp.intel.com (HELO [10.213.218.216])
+ ([10.213.218.216])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2022 03:14:35 -0800
+Message-ID: <c00c7999-79d1-7c3e-d4e8-df2a887834d8@linux.intel.com>
+Date: Mon, 21 Feb 2022 11:14:33 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220218064039.12834-6-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v3 5/6] drm/i915: Extract
- icl_qgv_points_mask()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Rob Clark <robdclark@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+References: <20220106165536.57208-1-tvrtko.ursulin@linux.intel.com>
+ <20220106165536.57208-7-tvrtko.ursulin@linux.intel.com>
+ <YegpiY3MU15RsEfk@phenom.ffwll.local>
+ <CAF6AEGs58S7U=1nso=0BAURUuobeUam4V0j1W7ZsrK5W7MqRvw@mail.gmail.com>
+ <423c8ff1-3a4b-3e69-8561-3056c7d2d20f@linux.intel.com>
+ <fb6f1a2c-6e23-cfdf-2ce5-80209a005227@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <fb6f1a2c-6e23-cfdf-2ce5-80209a005227@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 6/7] drm: Document fdinfo format
+ specification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,89 +66,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
+ Daniel Stone <daniel@fooishbar.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Chris Healy <cphealy@gmail.com>, David M Nieto <David.Nieto@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 18, 2022 at 08:40:38AM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Declutter intel_bw_atomic_check() a bit by pulling
-> the max QGV mask calculation out.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Hi Rob,
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 35 ++++++++++++++++---------
->  1 file changed, 22 insertions(+), 13 deletions(-)
+On 25/01/2022 10:24, Tvrtko Ursulin wrote:
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 1fd1d2182d8f..6637da75f878 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -816,6 +816,26 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state)
->  	return 0;
->  }
->  
-> +static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
-> +{
-> +	unsigned int num_psf_gv_points = i915->max_bw[0].num_psf_gv_points;
-> +	unsigned int num_qgv_points = i915->max_bw[0].num_qgv_points;
-> +	u16 mask = 0;
-> +
-> +	/*
-> +	 * We can _not_ use the whole ADLS_QGV_PT_MASK here, as PCode rejects
-> +	 * it with failure if we try masking any unadvertised points.
-> +	 * So need to operate only with those returned from PCode.
-> +	 */
-> +	if (num_qgv_points > 0)
-> +		mask |= REG_GENMASK(num_qgv_points - 1, 0);
-> +
-> +	if (num_psf_gv_points > 0)
-> +		mask |= REG_GENMASK(num_psf_gv_points - 1, 0) << ADLS_PSF_PT_SHIFT;
-> +
-> +	return mask;
-> +}
-> +
->  int intel_bw_atomic_check(struct intel_atomic_state *state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> @@ -831,23 +851,11 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
->  	unsigned int num_qgv_points = dev_priv->max_bw[0].num_qgv_points;
->  	unsigned int num_psf_gv_points = dev_priv->max_bw[0].num_psf_gv_points;
->  	bool changed = false;
-> -	u32 mask = 0;
->  
->  	/* FIXME earlier gens need some checks too */
->  	if (DISPLAY_VER(dev_priv) < 11)
->  		return 0;
->  
-> -	/*
-> -	 * We can _not_ use the whole ADLS_QGV_PT_MASK here, as PCode rejects
-> -	 * it with failure if we try masking any unadvertised points.
-> -	 * So need to operate only with those returned from PCode.
-> -	 */
-> -	if (num_qgv_points > 0)
-> -		mask |= REG_GENMASK(num_qgv_points - 1, 0);
-> -
-> -	if (num_psf_gv_points > 0)
-> -		mask |= REG_GENMASK(num_psf_gv_points - 1, 0) << ADLS_PSF_PT_SHIFT;
-> -
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
->  		unsigned int old_data_rate =
-> @@ -979,7 +987,8 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
->  	 * We store the ones which need to be masked as that is what PCode
->  	 * actually accepts as a parameter.
->  	 */
-> -	new_bw_state->qgv_points_mask = ~allowed_points & mask;
-> +	new_bw_state->qgv_points_mask = ~allowed_points &
-> +		icl_qgv_points_mask(dev_priv);
->  
->  	/*
->  	 * If the actual mask had changed we need to make sure that
-> -- 
-> 2.34.1
+> On 21/01/2022 11:50, Tvrtko Ursulin wrote:
+>> On 20/01/2022 16:44, Rob Clark wrote:
 > 
+> [snip]
+> 
+>>> If there is a tool somewhere that displays this info, that would be
+>>> useful for testing my implementation.
+>>
+>> I have a patch to Intel specific intel_gpu_top (see 
+>> https://patchwork.freedesktop.org/patch/468491/?series=98555&rev=1). 
+>> I'll have a look to see how much work would it be to extract common 
+>> bits into a library and write a quick agnostic tool using it.
+> 
+> I factored out some code from intel_gpu_top in a quick and dirty attempt 
+> to make it generic and made a very rudimentary tools/gputop:
+> 
+> https://cgit.freedesktop.org/~tursulin/intel-gpu-tools/log/?h=gputop
+
+Have you managed to spend any time playing with this yet?
+
+The only remaining open was Daniel's mild concern if vendor agnostic 
+userspace is possible using the proposed spec. If you managed to wire up 
+the compliant exports and gputop tool works I think that concern would 
+be settled.
+
+Regards,
+
+Tvrtko
