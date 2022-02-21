@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E38924BD950
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 12:04:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 505E34BD951
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 12:04:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32F6E10E4D5;
-	Mon, 21 Feb 2022 11:04:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC8E710E559;
+	Mon, 21 Feb 2022 11:04:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56DE110E4D5
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 11:04:06 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE02310E52D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 11:04:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645441446; x=1676977446;
+ t=1645441450; x=1676977450;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=SEQHGBKbQH4bkTbYBgiqL4mYLQBwy7RuPRksxkyvPDM=;
- b=g5UwyHYZqPqaYcYIII/ik8FoFXnX9wG37YOQZlL5Q4Yk7sw6TcCJZ71C
- /0TG9H7V5hb4kktuc6NhcmIOW8BTUFL7SZA5itsQ1Lxq5VF0CMAdzqr1B
- ODiHrEpfGYRzQz1r3GgQkMsb8eNJvuTC2iQJfkHk40ANxCsJQXE0fAZVM
- 3fLkkOBrXRfZ+oDl8X+zT9aESLj02VD/CMdCtD0IrMncnvzpFXwAVUkdA
- /X8f+i+EE6B5WQVfxZeJzhVi6cSNWD5wVdyF/NxdY5h6UcQVG45DD2EQK
- 9pUb+XGf0Zpp5FykSUIBT3bSagzltW8HaVXDEnodhv92RugVHY70IJk8P w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="238902527"
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="238902527"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 03:04:05 -0800
+ bh=pzHPLPQkx+D5/TN3FjYs4L1YJWZZrjXAqbToNinKEoE=;
+ b=k2IfFUvaITtDsIXTpniYm/xisrmRgyMHz1V4kalf15EO31fEhxl621RJ
+ JhQNN2phIL7aj8+E5q7aXt25icoBoTnPQcINvWxVlgxNprKGNxMuFhHlb
+ 0oH5WMAFs9ntJQ29QeBh3u3BJoyCtezu7GiVdgJv0CSDHo7jVVXp6Cgpd
+ 4Ju8UNsnb3FUYqxmq6mUWTsiY1lJAIfh5ko6lRobSykW3uJHaW9/Ho7WU
+ csBgDBhsR9htUIXZwbuIkhu3dKlramn2tcU4m8nVJQvIrZoTSVGmpYpw2
+ +FY6p0Zb2lfdlXpeG6V4z7Dv5gDc6hbY67wcgZlHYKfcU0R3GLthTp0RX Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="276080073"
+X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="276080073"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2022 03:04:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="573075606"
+X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="505010401"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga001.jf.intel.com with SMTP; 21 Feb 2022 03:04:03 -0800
+ by orsmga002.jf.intel.com with SMTP; 21 Feb 2022 03:04:06 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 21 Feb 2022 13:04:02 +0200
+ Mon, 21 Feb 2022 13:04:05 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 21 Feb 2022 13:03:55 +0200
-Message-Id: <20220221110356.5532-3-ville.syrjala@linux.intel.com>
+Date: Mon, 21 Feb 2022 13:03:56 +0200
+Message-Id: <20220221110356.5532-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220221110356.5532-1-ville.syrjala@linux.intel.com>
 References: <20220221110356.5532-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/4] drm/i915: Relocate ibx pch port sanitation
- code
+Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Relocate a few more pch
+ transcoder bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,198 +64,138 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Move the ibx pch port sanitation code into intel_pch_display.c
-where it now belongs.
+Move intel_crtc_pch_transcoder() and has_pch_trancoder() to a
+more appropritate place (intel_pch_display.c).
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  | 63 +----------------
- .../gpu/drm/i915/display/intel_pch_display.c  | 67 +++++++++++++++++++
- .../gpu/drm/i915/display/intel_pch_display.h  |  3 +
- 3 files changed, 71 insertions(+), 62 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 19 +------------------
+ drivers/gpu/drm/i915/display/intel_display.h  |  1 -
+ drivers/gpu/drm/i915/display/intel_dp.c       |  1 +
+ .../gpu/drm/i915/display/intel_pch_display.c  | 17 +++++++++++++++++
+ .../gpu/drm/i915/display/intel_pch_display.h  |  7 +++++++
+ 5 files changed, 26 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 656c8319e546..7f0ba41ad35b 100644
+index 7f0ba41ad35b..0e6310aa2e10 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -10249,66 +10249,6 @@ static void intel_early_display_was(struct drm_i915_private *dev_priv)
+@@ -514,16 +514,6 @@ void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
+ 			 expected_mask);
+ }
+ 
+-enum pipe intel_crtc_pch_transcoder(struct intel_crtc *crtc)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-
+-	if (HAS_PCH_LPT(dev_priv))
+-		return PIPE_A;
+-	else
+-		return crtc->pipe;
+-}
+-
+ void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
+@@ -9815,13 +9805,6 @@ static struct intel_connector *intel_encoder_find_connector(struct intel_encoder
+ 	return NULL;
+ }
+ 
+-static bool has_pch_trancoder(struct drm_i915_private *dev_priv,
+-			      enum pipe pch_transcoder)
+-{
+-	return HAS_PCH_IBX(dev_priv) || HAS_PCH_CPT(dev_priv) ||
+-		(HAS_PCH_LPT_H(dev_priv) && pch_transcoder == PIPE_A);
+-}
+-
+ static void intel_sanitize_crtc(struct intel_crtc *crtc,
+ 				struct drm_modeset_acquire_ctx *ctx)
+ {
+@@ -9876,7 +9859,7 @@ static void intel_sanitize_crtc(struct intel_crtc *crtc,
+ 		 * PCH transcoders B and C would prevent enabling the south
+ 		 * error interrupt (see cpt_can_enable_serr_int()).
+ 		 */
+-		if (has_pch_trancoder(dev_priv, crtc->pipe))
++		if (intel_has_pch_trancoder(dev_priv, crtc->pipe))
+ 			crtc->pch_fifo_underrun_disabled = true;
  	}
  }
- 
--static void ibx_sanitize_pch_hdmi_port(struct drm_i915_private *dev_priv,
--				       enum port port, i915_reg_t hdmi_reg)
--{
--	u32 val = intel_de_read(dev_priv, hdmi_reg);
--
--	if (val & SDVO_ENABLE ||
--	    (val & SDVO_PIPE_SEL_MASK) == SDVO_PIPE_SEL(PIPE_A))
--		return;
--
--	drm_dbg_kms(&dev_priv->drm,
--		    "Sanitizing transcoder select for HDMI %c\n",
--		    port_name(port));
--
--	val &= ~SDVO_PIPE_SEL_MASK;
--	val |= SDVO_PIPE_SEL(PIPE_A);
--
--	intel_de_write(dev_priv, hdmi_reg, val);
--}
--
--static void ibx_sanitize_pch_dp_port(struct drm_i915_private *dev_priv,
--				     enum port port, i915_reg_t dp_reg)
--{
--	u32 val = intel_de_read(dev_priv, dp_reg);
--
--	if (val & DP_PORT_EN ||
--	    (val & DP_PIPE_SEL_MASK) == DP_PIPE_SEL(PIPE_A))
--		return;
--
--	drm_dbg_kms(&dev_priv->drm,
--		    "Sanitizing transcoder select for DP %c\n",
--		    port_name(port));
--
--	val &= ~DP_PIPE_SEL_MASK;
--	val |= DP_PIPE_SEL(PIPE_A);
--
--	intel_de_write(dev_priv, dp_reg, val);
--}
--
--static void ibx_sanitize_pch_ports(struct drm_i915_private *dev_priv)
--{
--	/*
--	 * The BIOS may select transcoder B on some of the PCH
--	 * ports even it doesn't enable the port. This would trip
--	 * assert_pch_dp_disabled() and assert_pch_hdmi_disabled().
--	 * Sanitize the transcoder select bits to prevent that. We
--	 * assume that the BIOS never actually enabled the port,
--	 * because if it did we'd actually have to toggle the port
--	 * on and back off to make the transcoder A select stick
--	 * (see. intel_dp_link_down(), intel_disable_hdmi(),
--	 * intel_disable_sdvo()).
--	 */
--	ibx_sanitize_pch_dp_port(dev_priv, PORT_B, PCH_DP_B);
--	ibx_sanitize_pch_dp_port(dev_priv, PORT_C, PCH_DP_C);
--	ibx_sanitize_pch_dp_port(dev_priv, PORT_D, PCH_DP_D);
--
--	/* PCH SDVOB multiplex with HDMIB */
--	ibx_sanitize_pch_hdmi_port(dev_priv, PORT_B, PCH_HDMIB);
--	ibx_sanitize_pch_hdmi_port(dev_priv, PORT_C, PCH_HDMIC);
--	ibx_sanitize_pch_hdmi_port(dev_priv, PORT_D, PCH_HDMID);
--}
- 
- /* Scan out the current hw modeset state,
-  * and sanitizes it to the current state
-@@ -10330,8 +10270,7 @@ intel_modeset_setup_hw_state(struct drm_device *dev,
- 	/* HW state is read out, now we need to sanitize this mess. */
- 	get_encoder_power_domains(dev_priv);
- 
--	if (HAS_PCH_IBX(dev_priv))
--		ibx_sanitize_pch_ports(dev_priv);
-+	intel_pch_sanitize(dev_priv);
- 
- 	/*
- 	 * intel_sanitize_plane_mapping() may need to do vblank
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 11d6134c53c8..8513703086b7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -565,7 +565,6 @@ void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state);
+ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state);
+ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe);
+ void i830_disable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe);
+-enum pipe intel_crtc_pch_transcoder(struct intel_crtc *crtc);
+ int vlv_get_hpll_vco(struct drm_i915_private *dev_priv);
+ int vlv_get_cck_clock(struct drm_i915_private *dev_priv,
+ 		      const char *name, u32 reg, int ref_freq);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 1046e7fe310a..f93878011cad 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -67,6 +67,7 @@
+ #include "intel_lspcon.h"
+ #include "intel_lvds.h"
+ #include "intel_panel.h"
++#include "intel_pch_display.h"
+ #include "intel_pps.h"
+ #include "intel_psr.h"
+ #include "intel_tc.h"
 diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-index 00232dab217d..43e717f4f8e7 100644
+index 43e717f4f8e7..837152dca063 100644
 --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-@@ -88,6 +88,67 @@ static void assert_pch_transcoder_disabled(struct drm_i915_private *dev_priv,
- 			pipe_name(pipe));
- }
+@@ -14,6 +14,23 @@
+ #include "intel_pps.h"
+ #include "intel_sdvo.h"
  
-+static void ibx_sanitize_pch_hdmi_port(struct drm_i915_private *dev_priv,
-+				       enum port port, i915_reg_t hdmi_reg)
++bool intel_has_pch_trancoder(struct drm_i915_private *i915,
++			     enum pipe pch_transcoder)
 +{
-+	u32 val = intel_de_read(dev_priv, hdmi_reg);
-+
-+	if (val & SDVO_ENABLE ||
-+	    (val & SDVO_PIPE_SEL_MASK) == SDVO_PIPE_SEL(PIPE_A))
-+		return;
-+
-+	drm_dbg_kms(&dev_priv->drm,
-+		    "Sanitizing transcoder select for HDMI %c\n",
-+		    port_name(port));
-+
-+	val &= ~SDVO_PIPE_SEL_MASK;
-+	val |= SDVO_PIPE_SEL(PIPE_A);
-+
-+	intel_de_write(dev_priv, hdmi_reg, val);
++	return HAS_PCH_IBX(i915) || HAS_PCH_CPT(i915) ||
++		(HAS_PCH_LPT_H(i915) && pch_transcoder == PIPE_A);
 +}
 +
-+static void ibx_sanitize_pch_dp_port(struct drm_i915_private *dev_priv,
-+				     enum port port, i915_reg_t dp_reg)
++enum pipe intel_crtc_pch_transcoder(struct intel_crtc *crtc)
 +{
-+	u32 val = intel_de_read(dev_priv, dp_reg);
++	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
 +
-+	if (val & DP_PORT_EN ||
-+	    (val & DP_PIPE_SEL_MASK) == DP_PIPE_SEL(PIPE_A))
-+		return;
-+
-+	drm_dbg_kms(&dev_priv->drm,
-+		    "Sanitizing transcoder select for DP %c\n",
-+		    port_name(port));
-+
-+	val &= ~DP_PIPE_SEL_MASK;
-+	val |= DP_PIPE_SEL(PIPE_A);
-+
-+	intel_de_write(dev_priv, dp_reg, val);
++	if (HAS_PCH_LPT(i915))
++		return PIPE_A;
++	else
++		return crtc->pipe;
 +}
 +
-+static void ibx_sanitize_pch_ports(struct drm_i915_private *dev_priv)
-+{
-+	/*
-+	 * The BIOS may select transcoder B on some of the PCH
-+	 * ports even it doesn't enable the port. This would trip
-+	 * assert_pch_dp_disabled() and assert_pch_hdmi_disabled().
-+	 * Sanitize the transcoder select bits to prevent that. We
-+	 * assume that the BIOS never actually enabled the port,
-+	 * because if it did we'd actually have to toggle the port
-+	 * on and back off to make the transcoder A select stick
-+	 * (see. intel_dp_link_down(), intel_disable_hdmi(),
-+	 * intel_disable_sdvo()).
-+	 */
-+	ibx_sanitize_pch_dp_port(dev_priv, PORT_B, PCH_DP_B);
-+	ibx_sanitize_pch_dp_port(dev_priv, PORT_C, PCH_DP_C);
-+	ibx_sanitize_pch_dp_port(dev_priv, PORT_D, PCH_DP_D);
-+
-+	/* PCH SDVOB multiplex with HDMIB */
-+	ibx_sanitize_pch_hdmi_port(dev_priv, PORT_B, PCH_HDMIB);
-+	ibx_sanitize_pch_hdmi_port(dev_priv, PORT_C, PCH_HDMIC);
-+	ibx_sanitize_pch_hdmi_port(dev_priv, PORT_D, PCH_HDMID);
-+}
-+
- static void intel_pch_transcoder_set_m1_n1(struct intel_crtc *crtc,
- 					   const struct intel_link_m_n *m_n)
- {
-@@ -564,3 +625,9 @@ void lpt_pch_get_config(struct intel_crtc_state *crtc_state)
- 
- 	crtc_state->hw.adjusted_mode.crtc_clock = lpt_get_iclkip(dev_priv);
- }
-+
-+void intel_pch_sanitize(struct drm_i915_private *i915)
-+{
-+	if (HAS_PCH_IBX(i915))
-+		ibx_sanitize_pch_ports(i915);
-+}
+ static void assert_pch_dp_disabled(struct drm_i915_private *dev_priv,
+ 				   enum pipe pipe, enum port port,
+ 				   i915_reg_t dp_reg)
 diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.h b/drivers/gpu/drm/i915/display/intel_pch_display.h
-index 749473d99320..4ef033bb5807 100644
+index 4ef033bb5807..41a63413cb3d 100644
 --- a/drivers/gpu/drm/i915/display/intel_pch_display.h
 +++ b/drivers/gpu/drm/i915/display/intel_pch_display.h
-@@ -6,6 +6,7 @@
+@@ -6,12 +6,19 @@
  #ifndef _INTEL_PCH_DISPLAY_H_
  #define _INTEL_PCH_DISPLAY_H_
  
-+struct drm_i915_private;
++#include <linux/types.h>
++
++enum pipe;
+ struct drm_i915_private;
  struct intel_atomic_state;
  struct intel_crtc;
  struct intel_crtc_state;
-@@ -32,4 +33,6 @@ void intel_pch_transcoder_get_m1_n1(struct intel_crtc *crtc,
- void intel_pch_transcoder_get_m2_n2(struct intel_crtc *crtc,
- 				    struct intel_link_m_n *m_n);
+ struct intel_link_m_n;
  
-+void intel_pch_sanitize(struct drm_i915_private *i915);
++bool intel_has_pch_trancoder(struct drm_i915_private *i915,
++			     enum pipe pch_transcoder);
++enum pipe intel_crtc_pch_transcoder(struct intel_crtc *crtc);
 +
- #endif
+ void ilk_pch_pre_enable(struct intel_atomic_state *state,
+ 			struct intel_crtc *crtc);
+ void ilk_pch_enable(struct intel_atomic_state *state,
 -- 
 2.34.1
 
