@@ -1,51 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D25F4BDA14
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 15:07:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB7B4BDA16
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Feb 2022 15:13:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFB1B10E80B;
-	Mon, 21 Feb 2022 14:07:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D49AE10E4B2;
+	Mon, 21 Feb 2022 14:12:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 193E310E80B;
- Mon, 21 Feb 2022 14:07:02 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3517810E703;
+ Mon, 21 Feb 2022 14:12:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645452422; x=1676988422;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=iH8jE2ltVwzGVWuQJELoCtTFIqbJFkO3iwlDsCVelWk=;
- b=bOy9EIUFF6dOadCjpLkUlo+8a1MdkfyGQJnsDW8j20Q/tphAfDDjVz/S
- OT3BKHtfPDo+Mw7kGHE9yqPi1bmBusvTbS16kxcoZIjYlF8M/sbiEwK7o
- w/6CMHrFqpo42HVqJTG3p/HMe/+qY9zDaHYggf2S4AeYlAUFdtz3sHRPX
- NkqQDBGCdt8y36q0jwbHXHlWZ21qNj3tygttBbwUTtYhvf1Vp07aY9oEB
- cmYY/T8/8B8OOklYfMRp9H5yeAWvYfVe8fpBAGRKIpK+vL3eI1oovwBdt
- hCgrmK/Jwmb4zLjhIiBkoeY3ZUcqx5bCGqCqh5R9QdYNT89NgCLAhnHKK Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="312259063"
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="312259063"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 06:03:58 -0800
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="547348652"
+ t=1645452778; x=1676988778;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lFGIImgHd6/ff58qxg2a/Fs06PSapnqmi056xJ7TBe0=;
+ b=ZLeOrdu0OLhS9enl+Ep55GzvY04bF9frhYViGrCZrNuiD0HGT57w28JZ
+ L1/ZkanVTAi6FbWdiaKOX4TimL/PVTFEJ2kCfZngT3volflkrFbps0mF+
+ hSrEEldD1vIYP1W3YLsxRN62fVk52kz/WSKcJrS2uYzVNuqsANa45nJHC
+ frQ7a3Z1b7NsEK/G4d1s24fGpQ7dw07a0QaSv6QeVdO+p4mf0toe/R/md
+ EucN+4wzlR5ced27gwtV1H/Lj1oftTnlw/hek1NlIG9fMNIbJMGnNubV9
+ DC4u0NY3vD8sQnuDYjDu17c1MH97gpc4aLmFA1W02kVwZzAQVZJju1ke6 Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="238931638"
+X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="238931638"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2022 06:11:36 -0800
+X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; d="scan'208";a="683217305"
 Received: from joeyegax-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.23.97])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 06:03:57 -0800
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2022 06:11:34 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Mon, 21 Feb 2022 14:03:42 +0000
-Message-Id: <20220221140342.2487679-2-matthew.auld@intel.com>
+Date: Mon, 21 Feb 2022 14:10:31 +0000
+Message-Id: <20220221141036.2490380-1-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220221140342.2487679-1-matthew.auld@intel.com>
-References: <20220221140342.2487679-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 2/2] test/i915/gem_exec_await: prefer
- gem_mmap__device_coherent
+Subject: [Intel-gfx] [PATCH i-g-t 1/6] lib/i915_drm_local: Add
+ I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,29 +61,54 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make it play nice on at least DG1.
+For now dump into i915_drm_local.h. Once the uapi on the kernel side is
+merged, and is part of drm-next, we can sync the kernel headers and
+remove this.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- tests/i915/gem_exec_await.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ lib/i915/i915_drm_local.h | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/tests/i915/gem_exec_await.c b/tests/i915/gem_exec_await.c
-index bf8eb682..fe176595 100644
---- a/tests/i915/gem_exec_await.c
-+++ b/tests/i915/gem_exec_await.c
-@@ -126,8 +126,8 @@ static void wide(int fd, const intel_ctx_t *ctx, int ring_size,
- 		if (ahnd)
- 			exec[e].exec[0].flags = EXEC_OBJECT_PINNED;
+diff --git a/lib/i915/i915_drm_local.h b/lib/i915/i915_drm_local.h
+index 9e82c968..7b5285f3 100644
+--- a/lib/i915/i915_drm_local.h
++++ b/lib/i915/i915_drm_local.h
+@@ -21,6 +21,33 @@ extern "C" {
+  */
+ #define I915_ENGINE_CLASS_COMPUTE 4
  
--		exec[e].cmd = gem_mmap__wc(fd, exec[e].exec[0].handle,
--					   0, 4096, PROT_WRITE);
-+		exec[e].cmd = gem_mmap__device_coherent(fd, exec[e].exec[0].handle,
-+							0, 4096, PROT_WRITE);
- 
- 		gem_set_domain(fd, exec[e].exec[0].handle,
- 			       I915_GEM_DOMAIN_WC, I915_GEM_DOMAIN_WC);
++/*
++ * Signal to the kernel that the object will need to be accessed via
++ * the CPU.
++ *
++ * Only valid when placing objects in I915_MEMORY_CLASS_DEVICE, and only
++ * strictly required on platforms where only some of the device memory
++ * is directly visible or mappable through the CPU, like on DG2+.
++ *
++ * One of the placements MUST also be I915_MEMORY_CLASS_SYSTEM, to
++ * ensure we can always spill the allocation to system memory, if we
++ * can't place the object in the mappable part of
++ * I915_MEMORY_CLASS_DEVICE.
++ *
++ * Note that buffers that need to be captured with EXEC_OBJECT_CAPTURE,
++ * will need to enable this hint, if the object can also be placed in
++ * I915_MEMORY_CLASS_DEVICE, starting from DG2+. The execbuf call will
++ * throw an error otherwise. This also means that such objects will need
++ * I915_MEMORY_CLASS_SYSTEM set as a possible placement.
++ *
++ * Without this hint, the kernel will assume that non-mappable
++ * I915_MEMORY_CLASS_DEVICE is preferred for this object. Note that the
++ * kernel can still migrate the object to the mappable part, as a last
++ * resort, if userspace ever CPU faults this object, but this might be
++ * expensive, and so ideally should be avoided.
++ */
++#define I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS (1 << 0)
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.34.1
 
