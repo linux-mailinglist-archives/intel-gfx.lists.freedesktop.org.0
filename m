@@ -1,59 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 606104BF97C
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 14:33:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B2BD4BF980
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 14:33:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA2C510E67C;
-	Tue, 22 Feb 2022 13:32:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63B1B10E649;
+	Tue, 22 Feb 2022 13:33:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com
- [IPv6:2607:f8b0:4864:20::112f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D822410E58E
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 00:08:21 +0000 (UTC)
-Received: by mail-yw1-x112f.google.com with SMTP id
- 00721157ae682-2d66f95f1d1so155474787b3.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 16:08:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com
+ [IPv6:2607:f8b0:4864:20::735])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA2E210E5D3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 03:33:03 +0000 (UTC)
+Received: by mail-qk1-x735.google.com with SMTP id z66so14013737qke.10
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 19:33:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=qva2eVchuG91mMO8NiXPQBiXDN67++/1UcHENhMZQPg=;
- b=J1i7ma7EIJzTK+LmOTZCElMH3Vqr8OabMw/6BAsutkzErJb/HGHk+UbMuVoqX1PtUK
- L20RwffKCybGGLZvT7Ij+Nh7LwA4KLNW00bC9v823avgBahOuMiY6/+hpcnynTo2OgBP
- dtPLCLHKRMHTJ6txY/Hz2nxDDoF5VkcBYw9nThAVkLx/YhhAQScR2fC/8dzp+Y99yplQ
- /apP8DkwuST4esSv/MvIYM7AiqIXUmZw0yyAYsNjij/IEcMWz5A+BAk8juT6Tlr6EFi3
- QIiqoELTn9qwWVuuW01H7aLD8Io/tlqf3ERZz4wXEPj/+Zg8EV+Oc7ebmPEc2kjWCTAn
- BFsQ==
+ :cc; bh=PLWBhKe0X/ruh/r28hHG79mG03RtefhG1kN8xtLSGgc=;
+ b=y5R0Wp9ynN/ZP2BYjD43SEkuS2nEX+NDWjzm4xL0lSe+nKfDb4UQNJArEJHOL6h7Fp
+ A6MmSPJCdf64GqnhUYFpWeMYPGJRhbdWJl6/nF2OEEPtJ0I6KYltiDsS3lhCUgfztbe7
+ V4Xkm/6wXxaDvT7CZhTAzDGN7ekSOrOwKeJ3fyxoa8+tnfxR8daid9U2sbKd4QgYrsuV
+ 6jOkEen/wq0l73nJzYSogD3O0s4CYYUbFw+4bqNpW6F5zmMFs0QgTlll1bvaG7dwgKVy
+ nI5x4rCpdxn+f5kG5nGNjR53zTbDVi5r878W00FRoRm2OsXbYyfk115M40PYzBZwhdsf
+ 02LA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=qva2eVchuG91mMO8NiXPQBiXDN67++/1UcHENhMZQPg=;
- b=0UTJ8BpiB1XgrxCfp/JW8EtXph5k1LZcpnaLkFm9hHkO0v58nXTiJHJV2qll3Wnp+J
- H2PIzizz7Y3m66sZdABZrDs4Yq5Xgg7yPv50oB4GsUFPqAqWybClI8+zABAxoXoKguLW
- eHTsRl4zPXFZUAkIwHWJ2ntFPTfQsA1a2SxPuhD5GcvlHePeUtQqz74bMidR55yqnGUY
- FPdCxzjsxSmMpVk8VQNaBuXHZTFx1HF5KUOGEXXat1AuP2sw1p9G/J1KxkIhCcVMhu6R
- WsacOLDfFIwWsOfp6sVxaXwvkILlHzlC70ZlXBWgXAZV4u32iQSfOUvdsJhUOBoRRGHp
- v+mw==
-X-Gm-Message-State: AOAM532oDPcER9ThH89PnY/bbSaBYaE0I66DRsLreA+HGO2P6HnoZjCj
- fBMSRYSJM8F5jAqn0aX33b2Nmuonaa5omWFVTWVPWw==
-X-Google-Smtp-Source: ABdhPJynSfOIQkEOMtXYr81F8ybIWpEzANR6Yr+GnGAd+gTQAFkEgW3l8LZQxeRXwFU/mvr8+vv85qhg/KaXVlOVX/M=
-X-Received: by 2002:a81:1d5:0:b0:2d0:e2aa:1ae0 with SMTP id
- 204-20020a8101d5000000b002d0e2aa1ae0mr21685288ywb.278.1645488500522; Mon, 21
- Feb 2022 16:08:20 -0800 (PST)
+ bh=PLWBhKe0X/ruh/r28hHG79mG03RtefhG1kN8xtLSGgc=;
+ b=Vx6nz0KYPu9tBJzJ3J0AGo3xuxMfjVucsDSxAtU3V6Yng8mDCQIeZgdMcpZAqXZfw2
+ L0IOTHLhkcSjsF+xtRPOP9zzjfvp/bE1QwSHKc5z6RvB0xAJFmR1rmm171aUjacDLkES
+ uDOovJ6l+cxAmhzrsFRS6DhItKcBCVhFYYIwhUUaVAA03rBEs5xjb/kNxGzRnEMrbUSI
+ ae3cjOwujXkc9hgzPL414GYG5wLJwXj30u7vQ9ZowLcmsylGOapPi4ObpHnkDVKUz++Y
+ esWz4r62hrNYZyc4aF6slRxlNGejWKkTdBmoiB/Pt3jfN+rUyFsQQNdO0T0Sv1KsQ2FX
+ jMZA==
+X-Gm-Message-State: AOAM533hiLVRIG51GZqpG8whtWw4/zJ/Tv56HKWIFonhRN+bv6Ppg0wI
+ OYBQntxYQgs0s+VbQr0LZcuBxlKiGEgPjCa5vD09pw==
+X-Google-Smtp-Source: ABdhPJw46TUgRsjaAYwmuHOKYwpFeQyyRSsJwy+d1Dq1hDqgAXGMeD2OMee/voUqaBanPsg9tVyKTp0XBNq4m6kNrZs=
+X-Received: by 2002:a05:620a:1673:b0:62c:da57:aa32 with SMTP id
+ d19-20020a05620a167300b0062cda57aa32mr11687543qko.203.1645500782561; Mon, 21
+ Feb 2022 19:33:02 -0800 (PST)
 MIME-Version: 1.0
-References: <20220221232542.1481315-1-andrzej.hajda@intel.com>
- <20220221232542.1481315-6-andrzej.hajda@intel.com>
-In-Reply-To: <20220221232542.1481315-6-andrzej.hajda@intel.com>
-From: Eric Dumazet <edumazet@google.com>
-Date: Mon, 21 Feb 2022 16:08:09 -0800
-Message-ID: <CANn89iJxaPqTLY0BaD79Ubxx55RMtWzZk_jkpuF1cp3Wsy2RzA@mail.gmail.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
+References: <20220202085429.22261-1-suraj.kandpal@intel.com>
+ <20220202085429.22261-6-suraj.kandpal@intel.com>
+ <Yfp8Q6OFqTAvESOi@pendragon.ideasonboard.com>
+ <87y22ts948.fsf@intel.com> <YfqGbqQQz5vrDaLI@pendragon.ideasonboard.com>
+ <CAA8EJpqr6MB64EAtLU3nBjgjx1COwn4auenCCw4kHB489VG0CA@mail.gmail.com>
+ <d69038d6-a853-d2d9-81de-0ad10c4d6a3a@quicinc.com>
+ <54fc4268-6418-817b-7cec-28a9dc9ba7b5@quicinc.com>
+ <YgSbk11nQ6bd4SWK@pendragon.ideasonboard.com>
+In-Reply-To: <YgSbk11nQ6bd4SWK@pendragon.ideasonboard.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 22 Feb 2022 06:32:50 +0300
+Message-ID: <CAA8EJpqCgnLiQ7G+xY0E1j4PPbvPo+d-4vN+8-Nw84TWMSDmYA@mail.gmail.com>
+To: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Tue, 22 Feb 2022 13:32:50 +0000
-Subject: Re: [Intel-gfx] [PATCH v3 05/11] lib/ref_tracker:
- __ref_tracker_dir_print improve printing
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/rcar_du: changes to rcar-du driver
+ resulting from drm_writeback_connector structure changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,210 +71,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@intel.com>, netdev <netdev@vger.kernel.org>,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- LKML <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- Jakub Kicinski <kuba@kernel.org>, Dmitry Vyukov <dvyukov@google.com>
+Cc: carsten.haitzler@arm.com, Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx@lists.freedesktop.org, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 21, 2022 at 3:26 PM Andrzej Hajda <andrzej.hajda@intel.com> wrote:
+On Thu, 10 Feb 2022 at 07:59, Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
 >
-> To improve readibility of ref_tracker printing following changes
+> Hi Abhinav,
+>
+> On Wed, Feb 09, 2022 at 05:40:29PM -0800, Abhinav Kumar wrote:
+> > Hi Laurent
+> >
+> > Gentle reminder on this.
+>
+> I won't have time before next week I'm afraid.
 
-   readability
+Laurent, another gentle ping.
 
-> have been performed:
-> - reports are printed per stack_handle - log is more compact,
-> - added display name for ref_tracker_dir,
-> - stack trace is printed indented, in the same printk call,
-> - total number of references is printed every time,
-> - print info about dropped references.
 >
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> ---
->  include/linux/ref_tracker.h | 15 +++++--
->  lib/ref_tracker.c           | 90 ++++++++++++++++++++++++++++++++-----
->  2 files changed, 91 insertions(+), 14 deletions(-)
->
-> diff --git a/include/linux/ref_tracker.h b/include/linux/ref_tracker.h
-> index 3e9e9df2a41f5..a2cf1f6309adb 100644
-> --- a/include/linux/ref_tracker.h
-> +++ b/include/linux/ref_tracker.h
-> @@ -17,12 +17,19 @@ struct ref_tracker_dir {
->         bool                    dead;
->         struct list_head        list; /* List of active trackers */
->         struct list_head        quarantine; /* List of dead trackers */
-> +       char                    name[32];
->  #endif
->  };
->
->  #ifdef CONFIG_REF_TRACKER
-> -static inline void ref_tracker_dir_init(struct ref_tracker_dir *dir,
-> -                                       unsigned int quarantine_count)
-> +
-> +// Temporary allow two and three arguments, until consumers are converted
-> +#define ref_tracker_dir_init(_d, _q, args...) _ref_tracker_dir_init(_d, _q, ##args, #_d)
-> +#define _ref_tracker_dir_init(_d, _q, _n, ...) __ref_tracker_dir_init(_d, _q, _n)
-> +
-> +static inline void __ref_tracker_dir_init(struct ref_tracker_dir *dir,
-> +                                       unsigned int quarantine_count,
-> +                                       const char *name)
->  {
->         INIT_LIST_HEAD(&dir->list);
->         INIT_LIST_HEAD(&dir->quarantine);
-> @@ -31,6 +38,7 @@ static inline void ref_tracker_dir_init(struct ref_tracker_dir *dir,
->         dir->dead = false;
->         refcount_set(&dir->untracked, 1);
->         refcount_set(&dir->no_tracker, 1);
-> +       strlcpy(dir->name, name, sizeof(dir->name));
->         stack_depot_init();
->  }
->
-> @@ -51,7 +59,8 @@ int ref_tracker_free(struct ref_tracker_dir *dir,
->  #else /* CONFIG_REF_TRACKER */
->
->  static inline void ref_tracker_dir_init(struct ref_tracker_dir *dir,
-> -                                       unsigned int quarantine_count)
-> +                                       unsigned int quarantine_count,
-> +                                       ...)
->  {
->  }
->
-> diff --git a/lib/ref_tracker.c b/lib/ref_tracker.c
-> index 5e9f90bbf771b..ab1253fde244e 100644
-> --- a/lib/ref_tracker.c
-> +++ b/lib/ref_tracker.c
-> @@ -1,11 +1,16 @@
->  // SPDX-License-Identifier: GPL-2.0-or-later
-> +
-> +#define pr_fmt(fmt) "ref_tracker: " fmt
-> +
->  #include <linux/export.h>
-> +#include <linux/list_sort.h>
->  #include <linux/ref_tracker.h>
->  #include <linux/slab.h>
->  #include <linux/stacktrace.h>
->  #include <linux/stackdepot.h>
->
->  #define REF_TRACKER_STACK_ENTRIES 16
-> +#define STACK_BUF_SIZE 1024
->
->  struct ref_tracker {
->         struct list_head        head;   /* anchor into dir->list or dir->quarantine */
-> @@ -14,24 +19,87 @@ struct ref_tracker {
->         depot_stack_handle_t    free_stack_handle;
->  };
->
-> -void __ref_tracker_dir_print(struct ref_tracker_dir *dir,
-> -                          unsigned int display_limit)
-> +struct ref_tracker_dir_stats {
-> +       int total;
-> +       int count;
-> +       struct {
-> +               depot_stack_handle_t stack_handle;
-> +               unsigned int count;
-> +       } stacks[];
-> +};
-> +
-> +static struct ref_tracker_dir_stats *
-> +ref_tracker_get_stats(struct ref_tracker_dir *dir, unsigned int limit)
->  {
-> +       struct ref_tracker_dir_stats *stats;
->         struct ref_tracker *tracker;
-> -       unsigned int i = 0;
->
-> -       lockdep_assert_held(&dir->lock);
-> +       stats = kmalloc(struct_size(stats, stacks, limit),
-> +                       GFP_NOWAIT | __GFP_NOWARN);
-
-I would be more comfortable if the allocation was done by the caller,
-possibly using GFP_KERNEL and evenutally kvmalloc(),
-instead of under dir->lock ?
-
-
-> +       if (!stats)
-> +               return ERR_PTR(-ENOMEM);
-> +       stats->total = 0;
-> +       stats->count = 0;
->
->         list_for_each_entry(tracker, &dir->list, head) {
-> -               if (i < display_limit) {
-> -                       pr_err("leaked reference.\n");
-> -                       if (tracker->alloc_stack_handle)
-> -                               stack_depot_print(tracker->alloc_stack_handle);
-> -                       i++;
-> -               } else {
-> -                       break;
-> +               depot_stack_handle_t stack = tracker->alloc_stack_handle;
-> +               int i;
-> +
-> +               ++stats->total;
-> +               for (i = 0; i < stats->count; ++i)
-> +                       if (stats->stacks[i].stack_handle == stack)
-> +                               break;
-> +               if (i >= limit)
-> +                       continue;
-> +               if (i >= stats->count) {
-> +                       stats->stacks[i].stack_handle = stack;
-> +                       stats->stacks[i].count = 0;
-> +                       ++stats->count;
->                 }
-> +               ++stats->stacks[i].count;
-> +       }
-> +
-> +       return stats;
-> +}
-> +
-> +void __ref_tracker_dir_print(struct ref_tracker_dir *dir,
-> +                          unsigned int display_limit)
-> +{
-> +       struct ref_tracker_dir_stats *stats;
-> +       unsigned int i = 0, skipped;
-> +       depot_stack_handle_t stack;
-> +       char *sbuf;
-> +
-> +       lockdep_assert_held(&dir->lock);
-> +
-> +       if (list_empty(&dir->list))
-> +               return;
-> +
-> +       stats = ref_tracker_get_stats(dir, display_limit);
-> +       if (IS_ERR(stats)) {
-> +               pr_err("%s@%pK: couldn't get stats, error %pe\n",
-> +                      dir->name, dir, stats);
-> +               return;
->         }
-> +
-
-> +       sbuf = kmalloc(STACK_BUF_SIZE, GFP_NOWAIT | __GFP_NOWARN);
-
-Same remark. These allocations are most probably going to happen from process
-context, I think GFP_KERNEL is more robust.
-
-This is debugging infra, it would be sad if we give up at this point,
-after storing MB of traces :)
-
-> +
-> +       for (i = 0, skipped = stats->total; i < stats->count; ++i) {
-> +               stack = stats->stacks[i].stack_handle;
-> +               if (sbuf && !stack_depot_snprint(stack, sbuf, STACK_BUF_SIZE, 4))
-> +                       sbuf[0] = 0;
-> +               pr_err("%s@%pK has %d/%d users at\n%s\n", dir->name, dir,
-> +                      stats->stacks[i].count, stats->total, sbuf);
-> +               skipped -= stats->stacks[i].count;
-> +       }
-> +
-> +       if (skipped)
-> +               pr_err("%s@%pK skipped reports about %d/%d users.\n",
-> +                      dir->name, dir, skipped, stats->total);
-> +
-> +       kfree(sbuf);
-> +
-> +       kfree(stats);
->  }
->  EXPORT_SYMBOL(__ref_tracker_dir_print);
+> > On 2/6/2022 11:20 PM, Abhinav Kumar wrote:
+> > > Hi Laurent
+> > >
+> > > On 2/6/2022 3:32 PM, Dmitry Baryshkov wrote:
+> > >> On Wed, 2 Feb 2022 at 16:26, Laurent Pinchart
+> > >> <laurent.pinchart@ideasonboard.com> wrote:
+> > >>>
+> > >>> Hi Jani,
+> > >>>
+> > >>> On Wed, Feb 02, 2022 at 03:15:03PM +0200, Jani Nikula wrote:
+> > >>>> On Wed, 02 Feb 2022, Laurent Pinchart wrote:
+> > >>>>> On Wed, Feb 02, 2022 at 02:24:28PM +0530, Kandpal Suraj wrote:
+> > >>>>>> Changing rcar_du driver to accomadate the change of
+> > >>>>>> drm_writeback_connector.base and drm_writeback_connector.encoder
+> > >>>>>> to a pointer the reason for which is explained in the
+> > >>>>>> Patch(drm: add writeback pointers to drm_connector).
+> > >>>>>>
+> > >>>>>> Signed-off-by: Kandpal Suraj <suraj.kandpal@intel.com>
+> > >>>>>> ---
+> > >>>>>>   drivers/gpu/drm/rcar-du/rcar_du_crtc.h      | 2 ++
+> > >>>>>>   drivers/gpu/drm/rcar-du/rcar_du_writeback.c | 8 +++++---
+> > >>>>>>   2 files changed, 7 insertions(+), 3 deletions(-)
+> > >>>>>>
+> > >>>>>> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+> > >>>>>> b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+> > >>>>>> index 66e8839db708..68f387a04502 100644
+> > >>>>>> --- a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+> > >>>>>> +++ b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+> > >>>>>> @@ -72,6 +72,8 @@ struct rcar_du_crtc {
+> > >>>>>>     const char *const *sources;
+> > >>>>>>     unsigned int sources_count;
+> > >>>>>>
+> > >>>>>> +  struct drm_connector connector;
+> > >>>>>> +  struct drm_encoder encoder;
+> > >>>>>
+> > >>>>> Those fields are, at best, poorly named. Furthermore, there's no
+> > >>>>> need in
+> > >>>>> this driver or in other drivers using drm_writeback_connector to
+> > >>>>> create
+> > >>>>> an encoder or connector manually. Let's not polute all drivers because
+> > >>>>> i915 doesn't have its abstractions right.
+> > >>>>
+> > >>>> i915 uses the quite common model for struct inheritance:
+> > >>>>
+> > >>>>        struct intel_connector {
+> > >>>>                struct drm_connector base;
+> > >>>>                /* ... */
+> > >>>>        }
+> > >>>>
+> > >>>> Same with at least amd, ast, fsl-dcu, hisilicon, mga200, msm, nouveau,
+> > >>>> radeon, tilcdc, and vboxvideo.
+> > >>>>
+> > >>>> We could argue about the relative merits of that abstraction, but I
+> > >>>> think the bottom line is that it's popular and the drivers using it are
+> > >>>> not going to be persuaded to move away from it.
+> > >>>
+> > >>> Nobody said inheritance is bad.
+> > >>>
+> > >>>> It's no coincidence that the drivers who've implemented writeback so
+> > >>>> far
+> > >>>> (komeda, mali, rcar-du, vc4, and vkms) do not use the abstraction,
+> > >>>> because the drm_writeback_connector midlayer does, forcing the issue.
+> > >>>
+> > >>> Are you sure it's not a coincidence ? :-)
+> > >>>
+> > >>> The encoder and especially connector created by drm_writeback_connector
+> > >>> are there only because KMS requires a drm_encoder and a drm_connector to
+> > >>> be exposed to userspace (and I could argue that using a connector for
+> > >>> writeback is a hack, but that won't change). The connector is "virtual",
+> > >>> I still fail to see why i915 or any other driver would need to wrap it
+> > >>> into something else. The whole point of the drm_writeback_connector
+> > >>> abstraction is that drivers do not have to manage the writeback
+> > >>> drm_connector manually, they shouldn't touch it at all.
+> > >>
+> > >> Laurent, I wanted to shift a bit from the question of drm_connector to
+> > >> the question of drm_encoder being embedded in the
+> > >> drm_writeback_connector.
+> > >> In case of the msm driver the drm_encoder is not a lightweight entity,
+> > >> but a full-featured driver part. Significant part of it can be shared
+> > >> with the writeback implementation, if we allow using a pointer to the
+> > >> external drm_encoder with the drm_writeback_connector.
+> > >> Does the following patch set stand a chance to receive your ack?
+> > >>   - Switch drm_writeback_connector to point to drm_encoder rather than
+> > >> embedding it?
+> > >>   - Create drm_encoder for the drm_writeback_connector when one is not
+> > >> specified, so the current drivers can be left unchanged.
+> > >>
+> > >
+> > > I second Dmitry's request here. For the reasons he has mentioned along
+> > > with the possibility of the writeback encoder being shared across
+> > > display pipelines, strengthens our request of the drm encoder being a
+> > > pointer inside the drm_writeback_connector instead of embedding it.
+> > >
+> > > Like I had shown in my RFC, in case the other drivers dont specify one,
+> > > we can allocate one:
+> > >
+> > > https://patchwork.kernel.org/project/dri-devel/patch/1642732195-25349-1-git-send-email-quic_abhinavk@quicinc.com/
+> > >
+> > >
+> > > We think this should be a reasonable accomodation to the existing
+> > > drm_writeback driver.
+> > >
+> > > Thanks
+> > >
+> > > Abhinav
+> > >
+> > >>>
+> > >>>> So I think drm_writeback_connector should *not* use the inheritance
+> > >>>> abstraction because it's a midlayer that should leave that option to
+> > >>>> the
+> > >>>> drivers. I think drm_writeback_connector needs to be changed to
+> > >>>> accommodate that, and, unfortunately, it means current writeback users
+> > >>>> need to be changed as well.
+> > >>>>
+> > >>>> I am not sure, however, if the series at hand is the right
+> > >>>> approach. Perhaps writeback can be modified to allocate the stuff for
+> > >>>> you if you prefer it that way, as long as the drm_connector is not
+> > >>>> embedded in struct drm_writeback_connector.
+> > >>>>
+> > >>>>> Nack.
+> > >>>>>
+> > >>>>>>     struct drm_writeback_connector writeback;
+> > >>>>>>   };
+> > >>>>>>
+> > >>>>>> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
+> > >>>>>> b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
+> > >>>>>> index c79d1259e49b..5b1e83380c47 100644
+> > >>>>>> --- a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
+> > >>>>>> +++ b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
+> > >>>>>> @@ -200,8 +200,10 @@ int rcar_du_writeback_init(struct
+> > >>>>>> rcar_du_device *rcdu,
+> > >>>>>>   {
+> > >>>>>>     struct drm_writeback_connector *wb_conn = &rcrtc->writeback;
+> > >>>>>>
+> > >>>>>> -  wb_conn->encoder.possible_crtcs = 1 <<
+> > >>>>>> drm_crtc_index(&rcrtc->crtc);
+> > >>>>>> -  drm_connector_helper_add(&wb_conn->base,
+> > >>>>>> +  wb_conn->base = &rcrtc->connector;
+> > >>>>>> +  wb_conn->encoder = &rcrtc->encoder;
+> > >>>>>> +  wb_conn->encoder->possible_crtcs = 1 <<
+> > >>>>>> drm_crtc_index(&rcrtc->crtc);
+> > >>>>>> +  drm_connector_helper_add(wb_conn->base,
+> > >>>>>>                              &rcar_du_wb_conn_helper_funcs);
+> > >>>>>>
+> > >>>>>>     return drm_writeback_connector_init(&rcdu->ddev, wb_conn,
+> > >>>>>> @@ -220,7 +222,7 @@ void rcar_du_writeback_setup(struct
+> > >>>>>> rcar_du_crtc *rcrtc,
+> > >>>>>>     struct drm_framebuffer *fb;
+> > >>>>>>     unsigned int i;
+> > >>>>>>
+> > >>>>>> -  state = rcrtc->writeback.base.state;
+> > >>>>>> +  state = rcrtc->writeback.base->state;
+> > >>>>>>     if (!state || !state->writeback_job)
+> > >>>>>>             return;
+> > >>>>>>
 >
 > --
-> 2.25.1
+> Regards,
 >
+> Laurent Pinchart
+
+
+
+-- 
+With best wishes
+Dmitry
