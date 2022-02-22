@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E44454C0570
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 00:42:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C2F04C0574
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 00:43:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BF8E10E206;
-	Tue, 22 Feb 2022 23:42:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD2A810E158;
+	Tue, 22 Feb 2022 23:43:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 26D4410E158;
- Tue, 22 Feb 2022 23:42:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 10F3C10E158;
+ Tue, 22 Feb 2022 23:43:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 22059A00A0;
- Tue, 22 Feb 2022 23:42:43 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 11B8DA00A0;
+ Tue, 22 Feb 2022 23:43:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
-Date: Tue, 22 Feb 2022 23:42:43 -0000
-Message-ID: <164557336310.23041.980232691635566126@emeril.freedesktop.org>
+Date: Tue, 22 Feb 2022 23:43:19 -0000
+Message-ID: <164557339906.23042.13165588919779043926@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20220222145206.76118-1-balasubramani.vivekanandan@intel.com>
 In-Reply-To: <20220222145206.76118-1-balasubramani.vivekanandan@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Use_the_memcpy=5Ffrom=5Fwc_function_from_drm?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Use_the_memcpy=5Ffrom=5Fwc_function_from_drm?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,18 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-8a3424cc9277 drm: Relax alignment constraint for destination address
-6acb0786b38d drm: Add drm_memcpy_from_wc() variant which accepts destination address
-6745ebf6450b drm/i915: use the memcpy_from_wc call from the drm
-422645148875 drm/i915/guc: use the memcpy_from_wc call from the drm
-31fa2a37993d drm/i915/selftests: use the memcpy_from_wc call from the drm
-fcb2d0374e1b drm/i915/gt: Avoid direct dereferencing of io memory
--:27: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matthew Brost <matthew.brost@intel.com'
-#27: 
-Cc: Matthew Brost <matthew.brost@intel.com
-
-total: 1 errors, 0 warnings, 0 checks, 57 lines checked
-5166347f7d66 drm/i915: Avoid dereferencing io mapped memory
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
