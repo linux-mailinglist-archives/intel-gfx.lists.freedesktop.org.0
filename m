@@ -1,65 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CAB14C02EE
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 21:17:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E42554C0385
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 22:08:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57FDB10E421;
-	Tue, 22 Feb 2022 20:17:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1824810E69B;
+	Tue, 22 Feb 2022 21:08:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB06E10E415;
- Tue, 22 Feb 2022 20:17:15 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 63475212BD;
- Tue, 22 Feb 2022 20:17:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1645561034; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Ko8a0kgKzb1ejVoVYy/oirEXyPWddkA145wKlShMsBI=;
- b=uiDVM7yWKeNH5rtLXV2dWLMJhHrkitP4nAN9Ei+JF/eYSYQirc0yJPbmIwa6OneDWUyeSH
- 1j3l2T53pz7Y5HRsd9wvHHYF5Oub8DBNOKsAAbtQbrSJwnYykXicpBF7TIZNzsgNBMzJWO
- bVgzLPxjJB1WvFI/6GSxtslB2Gtaz5I=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1645561034;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Ko8a0kgKzb1ejVoVYy/oirEXyPWddkA145wKlShMsBI=;
- b=NY4s1c9DSSm7RsdVI/CGbiupoAvU9Ottlp8q7Hj4kNXEtWnpbOpL1mhCz/N1rc8Bwu6yNH
- R8qhleAVYlPrSiCQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 24C0A13C2F;
- Tue, 22 Feb 2022 20:17:14 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id sFXKB8pEFWLNIAAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Tue, 22 Feb 2022 20:17:14 +0000
-Message-ID: <66c26d95-cca6-63ca-2bdd-d90dd0a5228e@suse.de>
-Date: Tue, 22 Feb 2022 21:17:13 +0100
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BFCF10E69B;
+ Tue, 22 Feb 2022 21:08:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1645564086; x=1677100086;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=HudAJSnASomyFTW3O8YCdCDMFySpKwzLS52NWQNyAIY=;
+ b=fT5szqbm+aIT+bZDG9BbfXvOB0TgMtIk8bqZBwRsbaYLPBwJCBOGd974
+ EOxEHDnEKw/52Q/FUw9RXdCAxdhSyvX+dCKoBa6e1InoOq3hgRpgfVnVj
+ r4sgoP7TYiVodZoPf8JC8fGhX8+tdunJkq/HTR0k1MhPkG6GNFo/maAuF
+ 9aAc/XNQhV1oqNP6DLNQt7dsI5/Xxud+xkuzKBdPglFNwDAk8qADCgp3x
+ YW1ZcM//u3aPghpitpN68xJAGfuiSOhfR3AayGcHsa0W4SrWlv11fFtEI
+ UNRgVnytty/vBtT4pm7+R/DBf0gaf3lMJrQQpWacMcnAcCvsC7InM6whD Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="338251417"
+X-IronPort-AV: E=Sophos;i="5.88,389,1635231600"; d="scan'208";a="338251417"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2022 13:08:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,389,1635231600"; d="scan'208";a="637163817"
+Received: from lkp-server01.sh.intel.com (HELO 788b1cd46f0d) ([10.239.97.150])
+ by fmsmga002.fm.intel.com with ESMTP; 22 Feb 2022 13:08:03 -0800
+Received: from kbuild by 788b1cd46f0d with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1nMcOA-0000cW-J0; Tue, 22 Feb 2022 21:08:02 +0000
+Date: Wed, 23 Feb 2022 05:07:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Michael Cheng <michael.cheng@intel.com>,
+	intel-gfx@lists.freedesktop.org
+Message-ID: <202202230507.uLh3qqTV-lkp@intel.com>
+References: <20220222172649.331661-2-michael.cheng@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Content-Language: en-US
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Dave Airlie <airlied@gmail.com>
-References: <456a23c6-7324-7543-0c45-751f30ef83f7@linux.intel.com>
- <CAPM=9twqNAQ0+O40SPJOZk=RHkBo5sdHUSWdbaga25Xh8gLs3A@mail.gmail.com>
- <5f628861-1969-f313-f931-cf8608ef6acf@linux.intel.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <5f628861-1969-f313-f931-cf8608ef6acf@linux.intel.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------KV0stUvUOS8h0RBuImHA6OFE"
-Subject: Re: [Intel-gfx] [PULL] drm-misc-next
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220222172649.331661-2-michael.cheng@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3 1/3] drm_cache: Add logic for
+ wbvind_on_all_cpus
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,104 +61,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "DRM maintainer tools announcements, discussion,
- and development" <dim-tools@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: kbuild-all@lists.01.org, lucas.demarchi@intel.com,
+ dri-devel@lists.freedesktop.org, michael.cheng@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------KV0stUvUOS8h0RBuImHA6OFE
-Content-Type: multipart/mixed; boundary="------------lcYD2pDaCDpYrghOjqcuLr3Y";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Dave Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Maxime Ripard <mripard@kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "DRM maintainer tools announcements, discussion, and development"
- <dim-tools@lists.freedesktop.org>
-Message-ID: <66c26d95-cca6-63ca-2bdd-d90dd0a5228e@suse.de>
-Subject: Re: [PULL] drm-misc-next
-References: <456a23c6-7324-7543-0c45-751f30ef83f7@linux.intel.com>
- <CAPM=9twqNAQ0+O40SPJOZk=RHkBo5sdHUSWdbaga25Xh8gLs3A@mail.gmail.com>
- <5f628861-1969-f313-f931-cf8608ef6acf@linux.intel.com>
-In-Reply-To: <5f628861-1969-f313-f931-cf8608ef6acf@linux.intel.com>
+Hi Michael,
 
---------------lcYD2pDaCDpYrghOjqcuLr3Y
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Thank you for the patch! Yet something to improve:
 
-SGkNCg0KQW0gMDEuMDIuMjIgdW0gMDk6MTcgc2NocmllYiBNYWFydGVuIExhbmtob3JzdDoN
-Cj4gT3AgMDEtMDItMjAyMiBvbSAwNzozOCBzY2hyZWVmIERhdmUgQWlybGllOg0KPj4gT24g
-VGh1LCAyNyBKYW4gMjAyMiBhdCAyMTo1NywgTWFhcnRlbiBMYW5raG9yc3QNCj4+IDxtYWFy
-dGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+IHdyb3RlOg0KPj4+IEhpIERhdmUgJiBE
-YW5pZWwsDQo+Pj4NCj4+PiBGaXJzdCBwdWxsIGZvciB2NS4xOA0KPj4gSSB3YXMgdHJ5aW5n
-IHRvIGJlIGFsbCBlZmZpY2llbnQgYW5kIGdldCB0aGlzIHB1bGxlZCBpbiB0aW1lIGZvciBv
-bmNlLg0KPj4NCj4+DQo+PiBIb3dldmVyIGl0IGJyb2tlIGJ1aWxkaW5nIG9uIG15IGFybSB0
-ZXN0IGJ1aWxkLg0KPj4NCj4+IFRoZSBuZXcgRFAgaGVscGVyIEtjb25maWcgaXMgd3Jvbmcg
-c29tZXdoZXJlLg0KPj4NCj4+IEkndmUgYXR0YWNoZWQgdGhlIC5jb25maWcsIGJ1dCBpdCBh
-cHBlYXJzIEkgZ2V0IERSTV9EUF9IRUxQRVIgc2V0IHRvIE0NCj4+IGJ1dCBBTkFMT0dJWF9E
-UCBzZXQgdG8gWSBhbmQgaXQgZmFpbHMgdG8gbGluayBiZWNhdXNlIHRoZSBkcCBoZWxwZXIN
-Cj4+IHNob3VsZCBiZSBZLg0KPj4NCj4+IFJlZ2FyZHMsDQo+PiBEYXZlLg0KPiBCZWxvdyBz
-aG91bGQgbGlrZWx5IGZpeCBpdD8NCg0KSSBoYXZlIGJlZW4gdHJ5aW5nIGFnYWluIGp1c3Qg
-bm93IHdpdGggdGhlIGxhdGVzdCBkcm0tdGlwIGFuZCBjYW5ub3QgDQpyZXByb2R1Y2UgdGhl
-IGlzc3VlIHdpdGggdGhlIGF0dGFjaGVkIGNvbmZpZy4NCg0KVGhpcyBQUiBoYXMgYmVlbiBs
-b25nIG92ZXJkdWUuIE1hYXJ0ZW4sIGNhbiB5b3UgcGxlYXNlIHNlbmQgb3V0IGFuIA0KdXBk
-YXRlIEFTQVA/DQoNCkJlc3QgcmVnYXJkcw0KVGhvbWFzDQoNCj4gDQo+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vZXh5bm9zL0tjb25maWcgYi9kcml2ZXJzL2dwdS9kcm0vZXh5
-bm9zL0tjb25maWcNCj4gaW5kZXggNmEyNTFlM2FhNzc5Li5mMjdjZmQyYTk3MjYgMTAwNjQ0
-DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9leHlub3MvS2NvbmZpZw0KPiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vZXh5bm9zL0tjb25maWcNCj4gQEAgLTY2LDYgKzY2LDcgQEAgY29uZmln
-IERSTV9FWFlOT1NfRFANCj4gICAJYm9vbCAiRXh5bm9zIHNwZWNpZmljIGV4dGVuc2lvbnMg
-Zm9yIEFuYWxvZ2l4IERQIGRyaXZlciINCj4gICAJZGVwZW5kcyBvbiBEUk1fRVhZTk9TX0ZJ
-TUQgfHwgRFJNX0VYWU5PUzdfREVDT04NCj4gICAJc2VsZWN0IERSTV9BTkFMT0dJWF9EUA0K
-PiArCXNlbGVjdCBEUk1fRFBfSEVMUEVSDQo+ICAgCWRlZmF1bHQgRFJNX0VYWU5PUw0KPiAg
-IAlzZWxlY3QgRFJNX1BBTkVMDQo+ICAgCWhlbHANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9yb2NrY2hpcC9LY29uZmlnIGIvZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL0tj
-b25maWcNCj4gaW5kZXggZDU5ZGNhNWVmYjUyLi5mYTVjZmRhNGU5MGUgMTAwNjQ0DQo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9LY29uZmlnDQo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9yb2NrY2hpcC9LY29uZmlnDQo+IEBAIC04LDYgKzgsNyBAQCBjb25maWcgRFJN
-X1JPQ0tDSElQDQo+ICAgCXNlbGVjdCBEUk1fUEFORUwNCj4gICAJc2VsZWN0IFZJREVPTU9E
-RV9IRUxQRVJTDQo+ICAgCXNlbGVjdCBEUk1fQU5BTE9HSVhfRFAgaWYgUk9DS0NISVBfQU5B
-TE9HSVhfRFANCj4gKwlzZWxlY3QgRFJNX0RQX0hFTFBFUiBpZiBST0NLQ0hJUF9BTkFMT0dJ
-WF9EUA0KPiAgIAlzZWxlY3QgRFJNX0RXX0hETUkgaWYgUk9DS0NISVBfRFdfSERNSQ0KPiAg
-IAlzZWxlY3QgRFJNX0RXX01JUElfRFNJIGlmIFJPQ0tDSElQX0RXX01JUElfRFNJDQo+ICAg
-CXNlbGVjdCBHRU5FUklDX1BIWSBpZiBST0NLQ0hJUF9EV19NSVBJX0RTSQ0KPiANCg0KLS0g
-DQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcg0KU1VTRSBT
-b2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJIDQpNYXhmZWxkc3RyLiA1LCA5MDQwOSBO
-w7xybmJlcmcsIEdlcm1hbnkNCihIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykNCkdlc2Now6Rm
-dHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on drm/drm-next drm-tip/drm-tip v5.17-rc5 next-20220217]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
---------------lcYD2pDaCDpYrghOjqcuLr3Y--
+url:    https://github.com/0day-ci/linux/commits/Michael-Cheng/Move-define-wbvind_on_all_cpus/20220223-012853
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+config: nios2-randconfig-r003-20220221 (https://download.01.org/0day-ci/archive/20220223/202202230507.uLh3qqTV-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/3aaa40c95b16a78c9059a77536de70bb08ce05e9
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Michael-Cheng/Move-define-wbvind_on_all_cpus/20220223-012853
+        git checkout 3aaa40c95b16a78c9059a77536de70bb08ce05e9
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=nios2 SHELL=/bin/bash drivers/gpu/drm/
 
---------------KV0stUvUOS8h0RBuImHA6OFE
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
------BEGIN PGP SIGNATURE-----
+All errors (new ones prefixed by >>):
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmIVRMkFAwAAAAAACgkQlh/E3EQov+Aj
-ExAAzRuMjvU2Um+WHROx4zssk9eNhNFzgpoWSeEgF+c0ERduWmHyBGvITUNZYpc61eeW8+KbYJnl
-ZC5tF0feS5mTTiU0+Ll18arLu2l+2RYu2OB035nMDo6NwLOQIAjqjdnyLMpPjpxWU6hyx9MbjhEk
-dVM+qMY1TY8zVhXSiHLQGycCtE0/cf21CQms21LIVw6DUt9y2g0QSOKhJE2NO2JsOHGpmBdbHDzo
-xYw4VQ5PVXXHNmZ2wb9EOBZh0AscdSVv1IVdFDMH2dFc0mKTfuwVJ2DpO8eElW/k4Al5YdsjIc7j
-APIswcubEk/2ZUUeQOvYEI3VU+va14hAq4SuIurI9jMXM8F2KK+v6hUsw2awUGC3jDYGo6KnO9XL
-7WkJJYiicH9Ew7jDOnbcZSz2lppY4nUL7MNLYfL5H8pS5GEbcqDcVGIVGyIbyjk1IlazE/HqgYEk
-cE2ayrAqej/Vr56tXoTs8D7ToeTNmZ8H/4x4TOaAcZrFnPUdWtX/qhmDQ9An/+NSHLoEvpj1QlL8
-N1IrXGCkjfgsN6ZGKXo0bMH/DGzxui5u4Hb5xlD4VREktzF0BaneOcfM3rTospMfDEg65j6A4uHe
-1/BUBitBL8pRckKuSAiuSFcPHOijlpOO1Yon/gx2zErkDgkv791YdChmEdc+oc4mzNYg6hDI+uew
-6E8=
-=Xm+L
------END PGP SIGNATURE-----
+   In file included from drivers/gpu/drm/drm_cache.c:37:
+>> include/drm/drm_cache.h:37:10: fatal error: asm/smp.h: No such file or directory
+      37 | #include <asm/smp.h>
+         |          ^~~~~~~~~~~
+   compilation terminated.
 
---------------KV0stUvUOS8h0RBuImHA6OFE--
+
+vim +37 include/drm/drm_cache.h
+
+    35	
+    36	#include <linux/scatterlist.h>
+  > 37	#include <asm/smp.h>
+    38	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
