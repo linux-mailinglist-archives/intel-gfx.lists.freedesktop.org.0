@@ -1,48 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09B1C4BFF45
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 17:51:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02C6E4BFF46
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 17:51:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52AA410E8B2;
-	Tue, 22 Feb 2022 16:51:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB3110E892;
+	Tue, 22 Feb 2022 16:51:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57B6B10E8B2
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 16:51:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34D9A10E893
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 16:51:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645548701; x=1677084701;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=74KcdEryCz8ZGGeWm4Is8QhX4rwsCfB9KrZKG/tqzZ0=;
- b=MBdlqN5KlI92g7VD0ntFV9MjIj9e7PLq2xP1TlivY+nx62IBjoVGT4jD
- 9ExYhAm8xoklxhlW1ANGQNaWS8HW5L2ZD/WnEWShprgXuY+t3xhcM0aGL
- ubZjCZVn7IwMYG/ibbquG6CdskLOZq2f4lfaQuFlqmC9b2eEmzIRURpg5
- 5EPajrAynd/MejgV0CDdEP6z5yP8aR/X7I/PECtqCbaqSB81ULHap1oqg
- syxPoetbI/uWzhy/p/cZf19Hc3Vcokl54c937etrIo857BgWPf57ClsEM
- OU9TLR3Uh6TpDkpY1iMCI7RrMDzlckCgR5vsmNhxEnxJ4JX5UdwWdZPgW Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="314985501"
-X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; d="scan'208";a="314985501"
+ t=1645548702; x=1677084702;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=+qXgp+trh6uKXI4QukxG53A35pQ5zaqHoCZ8Pv3Nel4=;
+ b=XypNSgRWfNJTOCJNMgXXC0SMJ7LbiQymVKJanbChhKce4qWdP/5teAhT
+ dtIkvIroEztbprxHh1DgH5zlFGiVU2o82W9UeKgErpF8SMiZeTgWx/sOU
+ KbbDxtJikiFwnpRRS92vyCVrBA/zaSnYdmeVx59+M56ARe35mJbm+pyjd
+ xtUHGA+hko1gThAZ3j56k2g/8MTB91ILjD0RF0kVZf9UiIMKIR7hZ/IaK
+ Z2KswGeqAOH1+2P+7lLs/uJHXGIXk27bN49tA1oO16RIRHS/Q0OXbtndh
+ ANzhmppvZwKF8NEe3RzhzY5CqxEgbqSPdXIlH9Qg1RjGAfx2en3niucd/ A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="314985504"
+X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; d="scan'208";a="314985504"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2022 08:51:40 -0800
-X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; d="scan'208";a="547828234"
+ 22 Feb 2022 08:51:42 -0800
+X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; d="scan'208";a="547828244"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2022 08:51:39 -0800
+ 22 Feb 2022 08:51:40 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 22 Feb 2022 18:51:29 +0200
-Message-Id: <20220222165137.1004194-1-imre.deak@intel.com>
+Date: Tue, 22 Feb 2022 18:51:30 +0200
+Message-Id: <20220222165137.1004194-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20220222165137.1004194-1-imre.deak@intel.com>
+References: <20220222165137.1004194-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/8] drm/i915: Move power well code to a
- separate file
+Subject: [Intel-gfx] [PATCH 1/8] drm/i915: Fix the VDSC_PW2 power domain
+ enum value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,41 +60,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is the first half of patchset [1], rebased on drm-tip and adding
-the R-b tags from Jouni. I'll send the second half separately as that
-needs a minor change and it's worth having a separate CI test result for
-the changes there (convert the u64 domain to a bitmap, sanitize the
-port/aux_ch->power domain mappings).
+The POWER_DOMAIN_TRANSCODER() macro depends on the
+POWER_DOMAIN_TRANSCODER_A/B .. DSI_A/C enum values to be consecutive,
+move POWER_DOMAIN_TRANSCODER_VDSC_PW2 after these to ensure this. The
+wrong order didn't cause a problem, since the DSI_A/C domains are in
+always-on power wells on all relevant platforms. The same power well
+ends up being enabled/disabled when the VDSC_PW2 domain is selected
+incorrectly.
 
-[1] https://patchwork.freedesktop.org/series/99476/
+While at it add a code comment about enum values that need to stay
+consecutive.
 
-Cc: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power.c |  4 ++--
+ drivers/gpu/drm/i915/display/intel_display_power.h | 11 +++++++++--
+ 2 files changed, 11 insertions(+), 4 deletions(-)
 
-Imre Deak (8):
-  drm/i915: Fix the VDSC_PW2 power domain enum value
-  drm/i915: Sanitize open-coded power well enable()/disable() calls
-  drm/i915: Remove redundant state verification during TypeC AUX power
-    well disabling
-  drm/i915: Move i915_power_well_regs struct into i915_power_well_ops
-  drm/i915: Move power well get/put/enable/disable functions to a new
-    file
-  drm/i915: Add function to call a power well's sync_hw() hook
-  drm/i915: Add functions to get a power well's
-    state/name/domains/mask/refcount
-  drm/i915: Move intel_display_power_well_is_enabled() to
-    intel_display_power_well.c
-
- drivers/gpu/drm/i915/Makefile                 |   1 +
- .../drm/i915/display/intel_display_debugfs.c  |   1 +
- .../drm/i915/display/intel_display_power.c    | 521 ++++--------------
- .../drm/i915/display/intel_display_power.h    |  37 +-
- .../i915/display/intel_display_power_well.c   | 113 ++++
- .../i915/display/intel_display_power_well.h   | 153 +++++
- drivers/gpu/drm/i915/display/intel_hdcp.c     |   1 +
- 7 files changed, 386 insertions(+), 441 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_power_well.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_power_well.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 9ebae7ac32356..4ca0e61ca5932 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -153,12 +153,12 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
+ 		return "TRANSCODER_D";
+ 	case POWER_DOMAIN_TRANSCODER_EDP:
+ 		return "TRANSCODER_EDP";
+-	case POWER_DOMAIN_TRANSCODER_VDSC_PW2:
+-		return "TRANSCODER_VDSC_PW2";
+ 	case POWER_DOMAIN_TRANSCODER_DSI_A:
+ 		return "TRANSCODER_DSI_A";
+ 	case POWER_DOMAIN_TRANSCODER_DSI_C:
+ 		return "TRANSCODER_DSI_C";
++	case POWER_DOMAIN_TRANSCODER_VDSC_PW2:
++		return "TRANSCODER_VDSC_PW2";
+ 	case POWER_DOMAIN_PORT_DDI_A_LANES:
+ 		return "PORT_DDI_A_LANES";
+ 	case POWER_DOMAIN_PORT_DDI_B_LANES:
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+index f6d0e6e73c6d9..f28aa4b500c42 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.h
++++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+@@ -14,6 +14,11 @@ struct drm_i915_private;
+ struct i915_power_well;
+ struct intel_encoder;
+ 
++/*
++ * Keep the pipe, transcoder, port (DDI_LANES,DDI_IO,AUX) domain instances
++ * consecutive, so that the pipe,transcoder,port -> power domain macros
++ * work correctly.
++ */
+ enum intel_display_power_domain {
+ 	POWER_DOMAIN_DISPLAY_CORE,
+ 	POWER_DOMAIN_PIPE_A,
+@@ -29,10 +34,12 @@ enum intel_display_power_domain {
+ 	POWER_DOMAIN_TRANSCODER_C,
+ 	POWER_DOMAIN_TRANSCODER_D,
+ 	POWER_DOMAIN_TRANSCODER_EDP,
+-	/* VDSC/joining for eDP/DSI transcoder (ICL) or pipe A (TGL) */
+-	POWER_DOMAIN_TRANSCODER_VDSC_PW2,
+ 	POWER_DOMAIN_TRANSCODER_DSI_A,
+ 	POWER_DOMAIN_TRANSCODER_DSI_C,
++
++	/* VDSC/joining for eDP/DSI transcoder (ICL) or pipe A (TGL) */
++	POWER_DOMAIN_TRANSCODER_VDSC_PW2,
++
+ 	POWER_DOMAIN_PORT_DDI_A_LANES,
+ 	POWER_DOMAIN_PORT_DDI_B_LANES,
+ 	POWER_DOMAIN_PORT_DDI_C_LANES,
 -- 
 2.27.0
 
