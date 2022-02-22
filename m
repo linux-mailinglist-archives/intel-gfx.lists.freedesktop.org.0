@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D2F94C0246
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 20:47:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 680D74C02D5
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 21:07:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA9B410E6AC;
-	Tue, 22 Feb 2022 19:47:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBAF110E385;
+	Tue, 22 Feb 2022 20:07:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9098A10E6AC
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 19:47:47 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3748110E385
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 20:07:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645559267; x=1677095267;
+ t=1645560443; x=1677096443;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=uzP+8Y/iNqjzmjFE2fqg79F1GTd4Ao7Hp50O5p/Uaug=;
- b=XgxS6mVpKiZyK8sU5CRxdlTZkq4pG267yzP+btHXbzZXH1HyOSeHFj7j
- IB6caiUbeDP7e+OB+gd/jm1hcvJBNExrs5GLjwryR6CchJEKtidDBMIc5
- E/aHaa7nxAKozDdg4xTNNNzi6YM/CQMr5qwERBmG3yjUg9z0R9VfVflI9
- 25YGsYeYWYDpT2iwwOwyaY9aWsMpsjVyH8xYgl8xcD0+62iEyXzNChxTx
- u3zEJvZdqaCFM7C2Zq7IIas0iYRVt7E8JIspPfhKb+gZFpo9iOxqWAh1M
- N3VazoDuXYl87pTxTxTIh+gdPgqHkKN43sBpLZQuFHSaQjv15JZJinfx4 Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="251533522"
-X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; d="scan'208";a="251533522"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2022 11:47:38 -0800
-X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; d="scan'208";a="543064002"
-Received: from ionyenwu-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.209.126.239])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2022 11:47:38 -0800
-Date: Tue, 22 Feb 2022 11:47:37 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Message-ID: <20220222194737.utcp257zt4yo7vwc@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220222181937.592346-1-anusha.srivatsa@intel.com>
+ bh=dRATuUoajovsZxIz1z+lbmdlgp41G992PkX1oKu7tBg=;
+ b=CkAJHIM8b8aoYAaRUo05aPlRFjgm0yyFOOyM0i4Sf2KmT9SgPdLizlSk
+ FwUEZIYuYWK9uq+1AlirReLQQx2HSYvTU3UyS6GE10FL6NUGl3q9svj3R
+ XB8u9lwiDzjadH6+UcFH2lRAD/XGGobpsiKWakZuqVSzPPG+6jcUiZ1wL
+ yyba3Yvd8WDTV8Fwix6kjTaZC4nZBO8x52ctPwiNCZwg98yFNgyafGNRx
+ wl21vqgvd9YeKwe1Eue3A4rmpGDYhEq/fBrPTR1iy1Kqgng8+n6Nml0uq
+ oGfmcD39UhuTPL2eF4Zf5iuCR5S3xc8x0VeRRPji+8bLzlihYj7cudqB2 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="250629109"
+X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; d="scan'208";a="250629109"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2022 12:07:22 -0800
+X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; d="scan'208";a="573564792"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2022 12:07:22 -0800
+Date: Tue, 22 Feb 2022 12:07:54 -0800
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20220222200754.GA22644@labuser-Z97X-UD5H>
+References: <20220215202601.22943-1-manasi.d.navare@intel.com>
+ <20220217220108.GA31689@labuser-Z97X-UD5H>
+ <87v8xc372n.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220222181937.592346-1-anusha.srivatsa@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg1: Remove require_force_probe
- protection
+In-Reply-To: <87v8xc372n.fsf@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display/vrr: Reset VRR capable
+ property on a long hpd
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,51 +64,89 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 22, 2022 at 10:19:37AM -0800, Anusha Srivatsa wrote:
->DG1 at a state where we can safely remove require_force_probe.
+On Fri, Feb 18, 2022 at 10:36:00AM +0200, Jani Nikula wrote:
+> On Thu, 17 Feb 2022, "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
+> > Hi Jani,
+> >
+> > This addresses the review comments, could you please take a look at thsi patch?
+> 
+> Sorry for the delay,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-BAT is not passing to consider this:
+Thanks for the comments and review, pushed now to din
 
-https://intel-gfx-ci.01.org/tree/drm-tip/bat-dg1-5.html
-https://intel-gfx-ci.01.org/tree/drm-tip/bat-dg1-6.html
+Regards
+Manasi
 
-<6> [619.626490] i915 0000:03:00.0: [drm] Got error capture: status = 0
-<3> [619.626495] i915 0000:03:00.0: [drm] *ERROR* GuC engine reset request failed on 2:0 (vecs0) because 0x00000000
-<6> [619.772548] i915 0000:03:00.0: [drm] GPU HANG: ecode 12:0:00000000
-<5> [619.777166] i915 0000:03:00.0: [drm] Resetting chip for GuC failed to reset engine mask=0x400
-<6> [619.781956] i915 0000:03:00.0: [drm] GuC firmware i915/dg1_guc_69.0.3.bin version 69.0
-<6> [619.781960] i915 0000:03:00.0: [drm] HuC firmware i915/dg1_huc_7.9.3.bin version 7.9
-<7> [619.800021] i915 0000:03:00.0: [drm:guc_enable_communication [i915]] GuC communication enabled
-<6> [619.803067] i915 0000:03:00.0: [drm] HuC authenticated
-<6> [619.807778] i915 0000:03:00.0: [drm] GuC submission enabled
-<6> [619.807780] i915 0000:03:00.0: [drm] GuC SLPC enabled
-<6> [619.848454] i915 0000:03:00.0: [drm] Got error capture: status = 0
-<6> [620.617459] i915 0000:03:00.0: [drm] GPU HANG: ecode 12:0:00000000
-<6> [620.621833] i915_reset_engine(vecs0:others-priority): 2 resets
-<3> [620.655812] Global reset (count=1)!
-<3> [620.724265] i915/intel_hangcheck_live_selftests: igt_reset_engines failed with error -22
-
-
-Lucas De Marchi
-
->
->Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
->---
-> drivers/gpu/drm/i915/i915_pci.c | 1 -
-> 1 file changed, 1 deletion(-)
->
->diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
->index f449c454b6f8..cafc569fdf66 100644
->--- a/drivers/gpu/drm/i915/i915_pci.c
->+++ b/drivers/gpu/drm/i915/i915_pci.c
->@@ -909,7 +909,6 @@ static const struct intel_device_info dg1_info = {
-> 	.graphics.rel = 10,
-> 	PLATFORM(INTEL_DG1),
-> 	.display.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
->-	.require_force_probe = 1,
-> 	.platform_engine_mask =
-> 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) |
-> 		BIT(VCS0) | BIT(VCS2),
->-- 
->2.25.1
->
+> 
+> 
+> >
+> > Manasi
+> >
+> > On Tue, Feb 15, 2022 at 12:26:01PM -0800, Manasi Navare wrote:
+> >> With some VRR panels, user can turn VRR ON/OFF on the fly from the panel settings.
+> >> When VRR is turned OFF ,sends a long HPD to the driver clearing the Ignore MSA bit
+> >> in the DPCD. Currently the driver parses that onevery HPD but fails to reset
+> >> the corresponding VRR Capable Connector property.
+> >> Hence the userspace still sees this as VRR Capable panel which is incorrect.
+> >> 
+> >> Fix this by explicitly resetting the connector property.
+> >> 
+> >> v2: Reset vrr capable if status == connector_disconnected
+> >> v3: Use i915 and use bool vrr_capable (Jani Nikula)
+> >> v4: Move vrr_capable to after update modes call (Jani N)
+> >> Remove the redundant comment (Jan N)
+> >> 
+> >> Cc: Jani Nikula <jani.nikula@intel.com>
+> >> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/display/intel_dp.c | 17 +++++++++++++----
+> >>  1 file changed, 13 insertions(+), 4 deletions(-)
+> >> 
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> index 1046e7fe310a..929e9b6febf1 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> @@ -4455,6 +4455,12 @@ intel_dp_detect(struct drm_connector *connector,
+> >>  		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
+> >>  		memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
+> >>  
+> >> +		/* Reset VRR Capable property */
+> >> +		drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s] VRR capable: FALSE\n",
+> >> +			    connector->base.id, connector->name);
+> >> +		drm_connector_set_vrr_capable_property(connector,
+> >> +						       false);
+> >> +
+> >>  		if (intel_dp->is_mst) {
+> >>  			drm_dbg_kms(&dev_priv->drm,
+> >>  				    "MST device may have disappeared %d vs %d\n",
+> >> @@ -4569,15 +4575,18 @@ static int intel_dp_get_modes(struct drm_connector *connector)
+> >>  {
+> >>  	struct intel_connector *intel_connector = to_intel_connector(connector);
+> >>  	struct edid *edid;
+> >> +	struct drm_i915_private *i915 = to_i915(connector->dev);
+> >>  	int num_modes = 0;
+> >>  
+> >>  	edid = intel_connector->detect_edid;
+> >>  	if (edid) {
+> >> -		num_modes = intel_connector_update_modes(connector, edid);
+> >> +		bool vrr_capable;
+> >>  
+> >> -		if (intel_vrr_is_capable(connector))
+> >> -			drm_connector_set_vrr_capable_property(connector,
+> >> -							       true);
+> >> +		num_modes = intel_connector_update_modes(connector, edid);
+> >> +		vrr_capable = intel_vrr_is_capable(connector);
+> >> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
+> >> +			    connector->base.id, connector->name, yesno(vrr_capable));
+> >> +		drm_connector_set_vrr_capable_property(connector, vrr_capable);
+> >>  	}
+> >>  
+> >>  	/* Also add fixed mode, which may or may not be present in EDID */
+> >> -- 
+> >> 2.19.1
+> >> 
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
