@@ -2,56 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67DB44BEEE9
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 02:25:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE4AB4BEEF4
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 02:46:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C70C10E4D7;
-	Tue, 22 Feb 2022 01:24:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3502710E32D;
+	Tue, 22 Feb 2022 01:46:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1011E10E49F;
- Tue, 22 Feb 2022 01:24:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645493092; x=1677029092;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=E1JK6Bg0MDA4WbVGoRXJp1ks0ExQHd7+FMQPc6IIx4g=;
- b=HsyrgB5ujj+w+zwZnzqgz1fUm528QL5I+B0bRyQ1fsd2mvyWp0O+p0cP
- dLp9tCpeC/8+mCm8F8LfGDxg9Z0FRf6/P8azamRN1JqYXihSC+YdIn2oG
- UNtBEKF6HXvwdpUrJ71oGECx2av9ykk/3giARPptTHRxfzoGQPlzuhh6i
- KYbIagnn5ce20leRJgjZUCJ36AkVJum3XRWNbl5sH53xULem2dt3QS3wl
- zdKnBlgArKkPAklIuezN+K9h9F+1z8+9rDVI03K9NeOwo7/XoEDYQf7hX
- WX+cfgTDmKqHXtXB7S5ou6QmUz6BsNrG9A3iqbARErOO4Zj5IiwmcDyS9 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10265"; a="250410322"
-X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; d="scan'208";a="250410322"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 17:24:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; d="scan'208";a="683339218"
-Received: from lkp-server01.sh.intel.com (HELO da3212ac2f54) ([10.239.97.150])
- by fmsmga001.fm.intel.com with ESMTP; 21 Feb 2022 17:24:48 -0800
-Received: from kbuild by da3212ac2f54 with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nMJv5-0002Be-DY; Tue, 22 Feb 2022 01:24:47 +0000
-Date: Tue, 22 Feb 2022 09:23:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yongzhi Liu <lyz_cs@pku.edu.cn>, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- tvrtko.ursulin@linux.intel.com, airlied@linux.ie, daniel@ffwll.ch,
- thomas.hellstrom@linux.intel.com, maarten.lankhorst@linux.intel.com,
- matthew.auld@intel.com, matthew.d.roper@intel.com,
- tzimmermann@suse.de, michal.winiarski@intel.com
-Message-ID: <202202220935.3r4emO4y-lkp@intel.com>
-References: <1645455221-38580-1-git-send-email-lyz_cs@pku.edu.cn>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCB1E10E32D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 01:46:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1645494366;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=96JzHwNa1B2QXjUWnZ374iz4+U14qI3CRmOmAH0GIUs=;
+ b=fwuCgpMQ26Il8odr942/AQhazAi/LOUGoF4MzVMs6NTmlg3wCF5RXqnsVwK7YKyLe866b9
+ BoWpayl3pVydmIaViGaR2QFrRZA0TIfXHB45KnNC1p5+nTbpqf3fWv/yJw4wRQ3acbU7OW
+ 3RmTPXNbN+Lzkr+fJXbKnCca41FkhuQ=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-454-A3TMIR7zP1-fgoF3xzHrdA-1; Mon, 21 Feb 2022 20:46:01 -0500
+X-MC-Unique: A3TMIR7zP1-fgoF3xzHrdA-1
+Received: by mail-qk1-f199.google.com with SMTP id
+ q5-20020a05620a0d8500b004738c1b48beso16131248qkl.7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 17:46:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:subject:from:to:date:organization
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=96JzHwNa1B2QXjUWnZ374iz4+U14qI3CRmOmAH0GIUs=;
+ b=brZI4TM3Ox2xS1L0AKWwy0a0pBwENgMkXOaNKFWEOx09XsZqWy7yoYH0sA9/zK8P2O
+ zP60ELOeI+GJHorA3E++5SbgDWlSwu1hQE4WkM1GT1MTcMZe8BHgIwC7c24EELHdGpzs
+ dJwYwLHUa6qAO38/Uqgajr4FmbP6vUOfAxrGy+mvOOblk5+mukEfqH53h+yL1UebpBQQ
+ fXvK5MWoVxjQTMYVLyURScCV4HGL2V8Q3vXmvN8SoYG6NEc+AofeWp6J8TGCOyb88l/j
+ g4j1DBtohQ1lJdcKvohG7yr0vDUqEOx7s94DvERLYz4vyU7sOWPohksAsTsmI47dBvb6
+ wzqw==
+X-Gm-Message-State: AOAM532b5IuSlzSO5H1bTuroSg6DAvZVK101Bo9X22cKO5T80Y6exnfD
+ Uaa/1ShyWgR0ew+d0DVFZO46PC2uLVMosa5X7uzh4WaXCrszl/ahv0qAE26DXsGrtfT6MaFt972
+ fqrcLeaIRbL9lHJsDWD0WRDJgfItw
+X-Received: by 2002:a0c:bec2:0:b0:42d:7a97:7c50 with SMTP id
+ f2-20020a0cbec2000000b0042d7a977c50mr17596028qvj.64.1645494360783; 
+ Mon, 21 Feb 2022 17:46:00 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyRyX/nST1Psi3yWzhSr7BZIQG7ecyOcllTfLzjLqbPHMXIvAV7C+vXZhS0bg1zhOmNbnqosg==
+X-Received: by 2002:a0c:bec2:0:b0:42d:7a97:7c50 with SMTP id
+ f2-20020a0cbec2000000b0042d7a977c50mr17596017qvj.64.1645494360574; 
+ Mon, 21 Feb 2022 17:46:00 -0800 (PST)
+Received: from [192.168.8.138] (pool-96-230-100-15.bstnma.fios.verizon.net.
+ [96.230.100.15])
+ by smtp.gmail.com with ESMTPSA id j128sm6512810qkd.61.2022.02.21.17.45.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 21 Feb 2022 17:46:00 -0800 (PST)
+Message-ID: <e93170406e5ea46e95f44d4e33f0c86a78c0623a.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: events@lists.x.org, xorg-devel@lists.freedesktop.org, 
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ libre-soc-dev@lists.libre-soc.org
+Date: Mon, 21 Feb 2022 20:45:58 -0500
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.42.3 (3.42.3-1.fc35)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1645455221-38580-1-git-send-email-lyz_cs@pku.edu.cn>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Check input parameter for NULL
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] 2022 X.Org Board of Directors Elections Nomination
+ period is NOW
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,97 +88,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Yongzhi,
+We are seeking nominations for candidates for election to the X.Org Foundation
+Board of Directors. All X.Org Foundation members are eligible for election to
+the board.
 
-Thank you for the patch! Yet something to improve:
+Nominations for the 2022 election are now open and will remain open until
+23:59 UTC on 06 March 2022.
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on v5.17-rc5 next-20220217]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+The Board consists of directors elected from the membership. Each year, an
+election is held to bring the total number of directors to eight. The four
+members receiving the highest vote totals will serve as directors for two year
+terms.
 
-url:    https://github.com/0day-ci/linux/commits/Yongzhi-Liu/drm-i915-Check-input-parameter-for-NULL/20220221-225508
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: i386-randconfig-a004-20220221 (https://download.01.org/0day-ci/archive/20220222/202202220935.3r4emO4y-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/0day-ci/linux/commit/c54be425a38b3f4cb82c5badecf6b343f9e24a90
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Yongzhi-Liu/drm-i915-Check-input-parameter-for-NULL/20220221-225508
-        git checkout c54be425a38b3f4cb82c5badecf6b343f9e24a90
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+The directors who received two year terms starting in 2021 were Lyude Paul,
+Samuel Iglesias Gonsálvez, Manasi D Navare and Daniel Vetter. They will
+continue to serve until their term ends in 2023. Current directors whose term
+expires in 2022 are Emma Anholt, Keith Packard, Harry Wentland and Mark
+Filion.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+A director is expected to participate in the fortnightly IRC meeting to
+discuss current business and to attend the annual meeting of the X.Org
+Foundation, which will be held at a location determined in advance by the
+Board of Directors.
 
-All errors (new ones prefixed by >>):
+A member may nominate themselves or any other member they feel is qualified.
+Nominations should be sent to the Election Committee at elections at x.org.
 
-   drivers/gpu/drm/i915/gem/i915_gem_phys.c: In function 'i915_gem_object_put_pages_phys':
->> drivers/gpu/drm/i915/gem/i915_gem_phys.c:100:2: error: ISO C90 forbids mixed declarations and code [-Werror=declaration-after-statement]
-     100 |  dma_addr_t dma = sg_dma_address(pages->sgl);
-         |  ^~~~~~~~~~
-   cc1: all warnings being treated as errors
+Nominees shall be required to be current members of the X.Org Foundation, and
+submit a personal statement of up to 200 words that will be provided to
+prospective voters. The collected statements, along with the statement of
+contribution to the X.Org Foundation in the member's account page on
+http://members.x.org, will be made available to all voters to help them make
+their voting decisions.
+
+Nominations, membership applications or renewals and completed personal
+statements must be received no later than 23:59 UTC on 6th March 2022.
+
+The slate of candidates will be published 14 March 2022 and candidate Q&A will
+begin then. The deadline for Xorg membership applications and renewals is 17
+March 2022.
+
+Cheers, Lyude Paul, on behalf of the X.Org BoD
 
 
-vim +100 drivers/gpu/drm/i915/gem/i915_gem_phys.c
-
-f033428db28bdf Chris Wilson      2019-05-28   93  
-a61170975718d5 Maarten Lankhorst 2021-03-23   94  void
-f033428db28bdf Chris Wilson      2019-05-28   95  i915_gem_object_put_pages_phys(struct drm_i915_gem_object *obj,
-f033428db28bdf Chris Wilson      2019-05-28   96  			       struct sg_table *pages)
-f033428db28bdf Chris Wilson      2019-05-28   97  {
-c54be425a38b3f Yongzhi Liu       2022-02-21   98  	if (!pages)
-c54be425a38b3f Yongzhi Liu       2022-02-21   99  		return;
-c6790dc22312f5 Chris Wilson      2020-02-02 @100  	dma_addr_t dma = sg_dma_address(pages->sgl);
-c6790dc22312f5 Chris Wilson      2020-02-02  101  	void *vaddr = sg_page(pages->sgl);
-c6790dc22312f5 Chris Wilson      2020-02-02  102  
-f033428db28bdf Chris Wilson      2019-05-28  103  	__i915_gem_object_release_shmem(obj, pages, false);
-f033428db28bdf Chris Wilson      2019-05-28  104  
-f033428db28bdf Chris Wilson      2019-05-28  105  	if (obj->mm.dirty) {
-f033428db28bdf Chris Wilson      2019-05-28  106  		struct address_space *mapping = obj->base.filp->f_mapping;
-c6790dc22312f5 Chris Wilson      2020-02-02  107  		void *src = vaddr;
-f033428db28bdf Chris Wilson      2019-05-28  108  		int i;
-f033428db28bdf Chris Wilson      2019-05-28  109  
-f033428db28bdf Chris Wilson      2019-05-28  110  		for (i = 0; i < obj->base.size / PAGE_SIZE; i++) {
-f033428db28bdf Chris Wilson      2019-05-28  111  			struct page *page;
-f033428db28bdf Chris Wilson      2019-05-28  112  			char *dst;
-f033428db28bdf Chris Wilson      2019-05-28  113  
-f033428db28bdf Chris Wilson      2019-05-28  114  			page = shmem_read_mapping_page(mapping, i);
-f033428db28bdf Chris Wilson      2019-05-28  115  			if (IS_ERR(page))
-f033428db28bdf Chris Wilson      2019-05-28  116  				continue;
-f033428db28bdf Chris Wilson      2019-05-28  117  
-f033428db28bdf Chris Wilson      2019-05-28  118  			dst = kmap_atomic(page);
-c6790dc22312f5 Chris Wilson      2020-02-02  119  			drm_clflush_virt_range(src, PAGE_SIZE);
-c6790dc22312f5 Chris Wilson      2020-02-02  120  			memcpy(dst, src, PAGE_SIZE);
-f033428db28bdf Chris Wilson      2019-05-28  121  			kunmap_atomic(dst);
-f033428db28bdf Chris Wilson      2019-05-28  122  
-f033428db28bdf Chris Wilson      2019-05-28  123  			set_page_dirty(page);
-f033428db28bdf Chris Wilson      2019-05-28  124  			if (obj->mm.madv == I915_MADV_WILLNEED)
-f033428db28bdf Chris Wilson      2019-05-28  125  				mark_page_accessed(page);
-f033428db28bdf Chris Wilson      2019-05-28  126  			put_page(page);
-c6790dc22312f5 Chris Wilson      2020-02-02  127  
-c6790dc22312f5 Chris Wilson      2020-02-02  128  			src += PAGE_SIZE;
-f033428db28bdf Chris Wilson      2019-05-28  129  		}
-f033428db28bdf Chris Wilson      2019-05-28  130  		obj->mm.dirty = false;
-f033428db28bdf Chris Wilson      2019-05-28  131  	}
-f033428db28bdf Chris Wilson      2019-05-28  132  
-f033428db28bdf Chris Wilson      2019-05-28  133  	sg_free_table(pages);
-f033428db28bdf Chris Wilson      2019-05-28  134  	kfree(pages);
-f033428db28bdf Chris Wilson      2019-05-28  135  
-8ff5446a7ca47c Thomas Zimmermann 2021-01-28  136  	dma_free_coherent(obj->base.dev->dev,
-c6790dc22312f5 Chris Wilson      2020-02-02  137  			  roundup_pow_of_two(obj->base.size),
-c6790dc22312f5 Chris Wilson      2020-02-02  138  			  vaddr, dma);
-f033428db28bdf Chris Wilson      2019-05-28  139  }
-f033428db28bdf Chris Wilson      2019-05-28  140  
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
