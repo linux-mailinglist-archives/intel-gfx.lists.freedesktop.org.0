@@ -1,54 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23DB14BF39C
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 09:28:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 230854BF42C
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 09:57:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 459CA10F4D9;
-	Tue, 22 Feb 2022 08:27:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE2EB10E716;
+	Tue, 22 Feb 2022 08:57:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C684A10F4DA
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 08:27:57 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 656CC10E583;
+ Tue, 22 Feb 2022 08:57:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645518477; x=1677054477;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=lt8yDS3FFXO/CyGpMnrAnssDkDm2dsptiOvvBC8KdiY=;
- b=cqhZ/CTf7KpsNVuEobjfa6N3v3oKGqkire5q4PvVkSGr0GrT5STQePqA
- YaiTB4U5dPYBpb2C3Aq2Qe5fgwYUEtChOnbyZo53RaJfDAmzp/w5qlKAM
- oNi9cDcSLeOG6cTyqVfErumjm1ry2YOt1Zo4v2KI6sm4K6+NlQqeaUgph
- 0TvIcPGiYoqZCajGcSfOGQajKJZgPowKLJRyAn33EfFKMXgSNiiRk6u53
- 4+wYwGTOD+4bcAUIpg+f7WFpEaaQ/4OT2KskPW0+c2ZFyVreBOUlmkxcQ
- m46OeHwBgeE6eNZtHLNsqKyGn7fzmPsnbE2eJnrSjmd5JCI2PC3YH2b9u A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10265"; a="312386200"
-X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; d="scan'208";a="312386200"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2022 00:27:57 -0800
-X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; d="scan'208";a="507897561"
-Received: from sjgillin-mobl.ger.corp.intel.com (HELO [10.213.218.63])
- ([10.213.218.63])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2022 00:27:56 -0800
-Message-ID: <3c58aae6-337b-3ee5-1595-bc7a84242965@linux.intel.com>
-Date: Tue, 22 Feb 2022 08:27:54 +0000
+ t=1645520230; x=1677056230;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=WEQ+a23JfXj8381jlANFpZbfSt6ysjl+D1/uRYig71s=;
+ b=dgT3Z/47JlY4FeKe9Nkgh96hYxJbsAjn8TNnXEPICenOIIOOTfDwvjyE
+ kSASvMZZpDxd7c82Pf5Fq75n79h45zcMVaIquUko+05fZytwcEbheE7/Q
+ YGKA6Q/SGbSbzEs70t9MO7Fr1KP9YE/Qi6IhdfPAh/fpvc7f5ZAbkfWo4
+ w4OPPeRKW88V11OQuDTJz1jz2Hp/xviRuYe5jyFozBHXh351wumBrNxzu
+ WzfDDfRZr+69OMg3noetdyAh5PFKaYlvo8fspUDfAiyz9j3zHSugyAt9g
+ L0xFD3D2gwyM2X30c8JPKROkJXIr/3zgqpzmQMleXi5blCVg2YnYMlSSz Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10265"; a="251410782"
+X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; d="scan'208";a="251410782"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2022 00:57:09 -0800
+X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; d="scan'208";a="547650327"
+Received: from cene1-mobl.ger.corp.intel.com (HELO intel.com) ([10.252.62.215])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2022 00:57:06 -0800
+Date: Tue, 22 Feb 2022 10:57:02 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YhSlXprNK2Wp5dlh@intel.intel>
+References: <20220217144158.21555-1-andi.shyti@linux.intel.com>
+ <20220217144158.21555-6-andi.shyti@linux.intel.com>
+ <12c2fcf8-ef3b-e59c-fe1e-23bc8f12cfe5@linux.intel.com>
+ <Yg5vlgoTEfJRWP9U@intel.intel>
+ <164518120389.6218.14670990912373168491@jlahtine-mobl.ger.corp.intel.com>
+ <02fe43a4-0cb5-54e3-cd2f-b4bc128e7161@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20220221191031.267690-1-jose.souza@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20220221191031.267690-1-jose.souza@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Simply subplatform detection
+In-Reply-To: <02fe43a4-0cb5-54e3-cd2f-b4bc128e7161@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 5/7] drm/i915/gt: Create per-tile RC6
+ sysfs interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,161 +62,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Fred Gao <fred.gao@intel.com>
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Tvrtko and Joonas,
 
-On 21/02/2022 19:10, Jos√© Roberto de Souza wrote:
-> In the past we had a need to differentiate TGL U and TGL Y, there
-> was a different voltage swing table for each subplatform and some PCI
-> ids of this subplatforms are shared but it turned out that it was a
-> specification mistake and the voltage swing table was indeed the same
-> but we went ahead with that patch because we needed to differentiate
-> TGL U and Y from TGL H and by that time TGL H was embargoed so that
-> was the perfect way to land it upstream.
+> > > > > Now tiles have their own sysfs interfaces under the gt/
+> > > > > directory. Because RC6 is a property that can be configured on a
+> > > > > tile basis, then each tile should have its own interface
+> > > > > 
+> > > > > The new sysfs structure will have a similar layout for the 4 tile
+> > > > > case:
+> > > > > 
+> > > > > /sys/.../card0
+> > > > >            \u251c\u2500\u2500 gt
+> > > > >            \u2502†† \u251c\u2500\u2500 gt0
+> > > > >            \u2502†† \u2502†† \u251c\u2500\u2500 id
+> > > > >            \u2502†† \u2502†† \u251c\u2500\u2500 rc6_enable
+> > > > >            \u2502†† \u2502†† \u251c\u2500\u2500 rc6_residency_ms
+> > > > >            .   .   .
+> > > > >            .   .   .
+> > > > >            .   .
+> > > > >            \u2502†† \u2514\u2500\u2500 gtN
+> > > > >            \u2502††     \u251c\u2500\u2500 id
+> > > > >            \u2502††     \u251c\u2500\u2500 rc6_enable
+> > > > >            \u2502††     \u251c\u2500\u2500 rc6_residency_ms
+> > > > >            \u2502       .
+> > > > >            \u2502       .
+> > > > >            \u2502
+> > > > >            \u2514\u2500\u2500 power/                -+
+> > > > >                 \u251c\u2500\u2500 rc6_enable        |    Original interface
+> > > > >                 \u251c\u2500\u2500 rc6_residency_ms  +->  kept as existing ABI;
+> > > > >                 .                     |    it multiplexes over
+> > > > >                 .                     |    the GTs
+> > > > >                                      -+
+> > > > > 
+> > > > > The existing interfaces have been kept in their original location
+> > > > > to preserve the existing ABI. They act on all the GTs: when
+> > > > > reading they provide the average value from all the GTs.
+> > > > 
+> > > > Average feels very odd to me. I'd ask if we can get away providing an errno
+> > > > instead? Or tile zero data?
+> > 
+> > Tile zero data is always wrong, in my opinion. If we have round-robin
+> > scaling workloads like some media cases, part of the system load might
+> > just disappear when it goes to tile 1.
 > 
-> Now the embargo for TGL H is long past and now we even have
-> INTEL_TGL_12_GT1_IDS with all TGL H ids, so we can drop this PCI root
-> check and only rely in the PCI ids to differentiate TGL U and Y from
-> TGL H that actually has code differences.
-> 
-> Besides the simplification this will fix issues in virtualization
-> environments where the PCI root is virtualized and don't have the same
-> id as actual hardware.
-> 
-> Cc: Fred Gao <fred.gao@intel.com>
-> Signed-off-by: Jos√© Roberto de Souza <jose.souza@intel.com>
-> ---
->   .../drm/i915/display/intel_ddi_buf_trans.c    |  2 +-
->   drivers/gpu/drm/i915/i915_drv.h               |  9 +++------
->   drivers/gpu/drm/i915/i915_reg.h               |  6 ------
->   drivers/gpu/drm/i915/intel_device_info.c      | 20 +------------------
->   drivers/gpu/drm/i915/intel_step.c             |  2 +-
->   5 files changed, 6 insertions(+), 33 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> index 0c32210bf5031..934a9f9e7dabb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> @@ -1321,7 +1321,7 @@ tgl_get_combo_buf_trans_dp(struct intel_encoder *encoder,
->   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->   
->   	if (crtc_state->port_clock > 270000) {
-> -		if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv)) {
-> +		if (IS_TGL_UY(dev_priv)) {
->   			return intel_get_buf_trans(&tgl_uy_combo_phy_trans_dp_hbr2,
->   						   n_entries);
->   		} else {
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 1c2f4ae4ebf98..c5eb2a3a1a590 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1147,12 +1147,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->   #define IS_ICL_WITH_PORT_F(dev_priv) \
->   	IS_SUBPLATFORM(dev_priv, INTEL_ICELAKE, INTEL_SUBPLATFORM_PORTF)
->   
-> -#define IS_TGL_U(dev_priv) \
-> +#define IS_TGL_UY(dev_priv) \
->   	IS_SUBPLATFORM(dev_priv, INTEL_TIGERLAKE, INTEL_SUBPLATFORM_ULT)
->   
-> -#define IS_TGL_Y(dev_priv) \
-> -	IS_SUBPLATFORM(dev_priv, INTEL_TIGERLAKE, INTEL_SUBPLATFORM_ULX)
-> -
->   #define IS_SKL_GRAPHICS_STEP(p, since, until) (IS_SKYLAKE(p) && IS_GRAPHICS_STEP(p, since, until))
->   
->   #define IS_KBL_GRAPHICS_STEP(dev_priv, since, until) \
-> @@ -1170,11 +1167,11 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->   	 IS_DISPLAY_STEP(__i915, since, until))
->   
->   #define IS_TGL_UY_GRAPHICS_STEP(__i915, since, until) \
-> -	((IS_TGL_U(__i915) || IS_TGL_Y(__i915)) && \
-> +	(IS_TGL_UY(__i915) && \
->   	 IS_GRAPHICS_STEP(__i915, since, until))
->   
->   #define IS_TGL_GRAPHICS_STEP(__i915, since, until) \
-> -	(IS_TIGERLAKE(__i915) && !(IS_TGL_U(__i915) || IS_TGL_Y(__i915)) && \
-> +	(IS_TIGERLAKE(__i915) && !IS_TGL_UY(__i915)) && \
->   	 IS_GRAPHICS_STEP(__i915, since, until))
->   
->   #define IS_RKL_DISPLAY_STEP(p, since, until) \
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 2b8a3086ed35a..30aa1d99f2244 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -8823,12 +8823,6 @@ enum skl_power_gate {
->   #define   DSB_ENABLE			(1 << 31)
->   #define   DSB_STATUS			(1 << 0)
->   
-> -#define TGL_ROOT_DEVICE_ID		0x9A00
-> -#define TGL_ROOT_DEVICE_MASK		0xFF00
-> -#define TGL_ROOT_DEVICE_SKU_MASK	0xF
-> -#define TGL_ROOT_DEVICE_SKU_ULX		0x2
-> -#define TGL_ROOT_DEVICE_SKU_ULT		0x4
-> -
->   #define CLKREQ_POLICY			_MMIO(0x101038)
->   #define  CLKREQ_POLICY_MEM_UP_OVRD	REG_BIT(1)
->   
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index ae13bc3c7970e..4329828b0db25 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -149,6 +149,7 @@ static const u16 subplatform_ult_ids[] = {
->   	INTEL_WHL_U_GT3_IDS(0),
->   	INTEL_CML_U_GT1_IDS(0),
->   	INTEL_CML_U_GT2_IDS(0),
-> +	INTEL_TGL_12_GT2_IDS(0),
->   };
->   
->   static const u16 subplatform_ulx_ids[] = {
-> @@ -243,25 +244,6 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
->   		mask = BIT(INTEL_SUBPLATFORM_G12);
->   	}
->   
-> -	if (IS_TIGERLAKE(i915)) {
-> -		struct pci_dev *root, *pdev = to_pci_dev(i915->drm.dev);
-> -
-> -		root = list_first_entry(&pdev->bus->devices, typeof(*root), bus_list);
-> -
-> -		drm_WARN_ON(&i915->drm, mask);
-> -		drm_WARN_ON(&i915->drm, (root->device & TGL_ROOT_DEVICE_MASK) !=
-> -			    TGL_ROOT_DEVICE_ID);
-> -
-> -		switch (root->device & TGL_ROOT_DEVICE_SKU_MASK) {
-> -		case TGL_ROOT_DEVICE_SKU_ULX:
-> -			mask = BIT(INTEL_SUBPLATFORM_ULX);
-> -			break;
-> -		case TGL_ROOT_DEVICE_SKU_ULT:
-> -			mask = BIT(INTEL_SUBPLATFORM_ULT);
-> -			break;
-> -		}
-> -	}
+> I was thinking that in conjunction with deprecated log message it wouldn't
+> be wrong - I mean if the route take was to eventually retire the legacy
+> files altogether.
 
-Hmm 1d3cc7ab2b00 ("drm/i915/tgl: Set subplatforms") should have declared 
-it was using the subtplatform bits. Now I suggest you add this to 
-intel_device_info.h for documentation purposes:
+that's a good point... do we want to treat the legacy interfaces
+as an error or do we want to make them a feature? As the
+discussion is turning those interfaces are becoming a feature.
+But what are we going to do with the coming interfaces?
 
-/* TGL */
-#define INTEL_SUBPLATFORM_ULT   (0)
+E.g. in the future we will have the rc6_enable/disable that can
+be a command, so that we will add the "_store" interface per
+tile. What are we going to do with the above interfaces? Are we
+going to add a multiplexed command as well?
 
-Regards,
+> > When we have frequency readbacks without control, returning MAX() across
+> > tiles would be the logical thing. The fact that parts of the hardware can
+> > be clocked lower when one part is fully utilized is the "new feature".
+> > 
+> > After that we're only really left with the rc6_residency_ms. And that is
+> > the tough one. I'm inclined that MIN() across tiles would be the right
+> > answer. If you are fully utilizing a single tile, you should be able to
+> > see it.
+>  So we have MIN, AVG or SUM, or errno, or remove the file (which is just a
+> different kind of errno?) to choose from. :)
 
-Tvrtko
+in this case it would just be MIN and MAX. At the end we have
+here only two types of interface: frequencies and residency_ms.
+For the first type we would use 'max', for the second 'min'.
 
-> -
->   	GEM_BUG_ON(mask & ~INTEL_SUBPLATFORM_MASK);
->   
->   	RUNTIME_INFO(i915)->platform_mask[pi] |= mask;
-> diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
-> index ac1a796b28084..4fd69ecd14811 100644
-> --- a/drivers/gpu/drm/i915/intel_step.c
-> +++ b/drivers/gpu/drm/i915/intel_step.c
-> @@ -165,7 +165,7 @@ void intel_step_init(struct drm_i915_private *i915)
->   	} else if (IS_ROCKETLAKE(i915)) {
->   		revids = rkl_revids;
->   		size = ARRAY_SIZE(rkl_revids);
-> -	} else if (IS_TGL_U(i915) || IS_TGL_Y(i915)) {
-> +	} else if (IS_TGL_UY(i915)) {
->   		revids = tgl_uy_revids;
->   		size = ARRAY_SIZE(tgl_uy_revids);
->   	} else if (IS_TIGERLAKE(i915)) {
+But the question holds in case we want keep adding interfaces to
+the above directories.
+
+Andi
