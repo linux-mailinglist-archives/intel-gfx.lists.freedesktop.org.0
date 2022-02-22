@@ -2,52 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83A2F4C04F6
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 00:00:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A1AC4C050C
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 00:02:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA97B10E3A3;
-	Tue, 22 Feb 2022 23:00:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E675C10E81C;
+	Tue, 22 Feb 2022 23:02:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DE0210E34D
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 23:00:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645570815; x=1677106815;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=fmrQQORBBY/sTx9sU1/FNoedcFnocpqf+yXKoC46o24=;
- b=K4EVN/d2L2ASW97j+efb1PWNvuGNuMGir3Oc5y5TKeb2zf9Q/obBx8/p
- UXVpGvDBmi3/LogcBQnOj73UahW3CQJ5E0QSUlO+JgoHniffBuYJuB65X
- 1CkjjOucHrK5NflVoSt3bRH567hwZA4zLd/uMFNaJZ8cTe7pJAkOTdfwE
- jND+QhrJ0feiFdffYEhcSTFghBn88BHwPTmVT7/ijT+2zyCdwXUpnvMDX
- 62fDHf5mImETy5bTDhgbPByh47gGuhkyKJNCw8XyYe3+LqVKCFpElh2t1
- zTv76AOf5Yltxj3wgiXCIHVlMdB0f7K1vE3KzWl6tgiSwXSQbRpDM70pB A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="338269467"
-X-IronPort-AV: E=Sophos;i="5.88,389,1635231600"; d="scan'208";a="338269467"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2022 15:00:14 -0800
-X-IronPort-AV: E=Sophos;i="5.88,389,1635231600"; d="scan'208";a="683690350"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2022 15:00:14 -0800
-Date: Tue, 22 Feb 2022 15:00:46 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20220222230040.GB6452@labuser-Z97X-UD5H>
-References: <20220217103221.10405-1-ville.syrjala@linux.intel.com>
- <20220217103221.10405-5-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8B4E210E81C;
+ Tue, 22 Feb 2022 23:02:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 872DCA77A5;
+ Tue, 22 Feb 2022 23:02:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7526720509949274989=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220217103221.10405-5-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Properly clear crtc state
- when disabling it fully, again
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Souza, Jose" <jose.souza@intel.com>
+Date: Tue, 22 Feb 2022 23:02:34 -0000
+Message-ID: <164557095450.23043.2987787161407434652@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220222141424.35165-1-jose.souza@intel.com>
+In-Reply-To: <20220222141424.35165-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/tgl=3A_Simply_subplatform_detection_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,64 +40,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 17, 2022 at 12:32:21PM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Currently we just leave the old gunk lying around in the crtc
-> state when userspace asks us to fully disable the crtc. That
-> doesn't match what the state would be had we never even enabled
-> the crtc in the first place. So let's make this consistent and
-> call intel_crtc_prepare_cleared_state() for disabled crtcs as well
-> (excluding bigjoiner slaves of course which have had their state
-> copied from the master).
-> 
-> I actually already did this once in commit fff13e63a141 ("drm/i915:
-> Clear most of crtc state when disabling the crtc") but then
-> commit 19f65a3dbf75 ("drm/i915: Try to make bigjoiner work in atomic
-> check") undid it all :(
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============7526720509949274989==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-okay agree
+== Series Details ==
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+Series: drm/i915/tgl: Simply subplatform detection (rev2)
+URL   : https://patchwork.freedesktop.org/series/100517/
+State : success
 
-Manasi
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 61adfcd7cf63..e160cee3240d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7627,9 +7627,8 @@ static int intel_atomic_check(struct drm_device *dev,
->  			continue;
->  		}
->  
-> -		if (!new_crtc_state->uapi.enable) {
-> -			if (!intel_crtc_is_bigjoiner_slave(new_crtc_state))
-> -				intel_crtc_copy_uapi_to_hw_state_modeset(state, crtc);
-> +		if (intel_crtc_is_bigjoiner_slave(new_crtc_state)) {
-> +			drm_WARN_ON(&dev_priv->drm, new_crtc_state->uapi.enable);
->  			continue;
->  		}
->  
-> @@ -7637,6 +7636,9 @@ static int intel_atomic_check(struct drm_device *dev,
->  		if (ret)
->  			goto fail;
->  
-> +		if (!new_crtc_state->hw.enable)
-> +			continue;
-> +
->  		ret = intel_modeset_pipe_config(state, new_crtc_state);
->  		if (ret)
->  			goto fail;
-> -- 
-> 2.34.1
-> 
+CI Bug Log - changes from CI_DRM_11268 -> Patchwork_22354
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22354/index.html
+
+Participating hosts (17 -> 17)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22354 that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [DMESG-FAIL][1] ([i915#4957]) -> [DMESG-FAIL][2] ([i915#4494] / [i915#4957])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11268/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22354/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4897]: https://gitlab.freedesktop.org/drm/intel/issues/4897
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5068]: https://gitlab.freedesktop.org/drm/intel/issues/5068
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11268 -> Patchwork_22354
+
+  CI-20190529: 20190529
+  CI_DRM_11268: 26326bf05392ab3da8cba36642a0efec97f00da9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6352: 11b4d227d8f0efad522519c8fd9525774247c8d8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22354: c43e8f8725935a7cb8320c63027437f53e54437e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c43e8f872593 drm/i915/tgl: Simply subplatform detection
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22354/index.html
+
+--===============7526720509949274989==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/tgl: Simply subplatform detection (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100517/">https://patchwork.freedesktop.org/series/100517/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22354/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22354/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11268 -&gt; Patchwork_22354</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22354/index.html</p>
+<h2>Participating hosts (17 -&gt; 17)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22354 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11268/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22354/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11268 -&gt; Patchwork_22354</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11268: 26326bf05392ab3da8cba36642a0efec97f00da9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6352: 11b4d227d8f0efad522519c8fd9525774247c8d8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22354: c43e8f8725935a7cb8320c63027437f53e54437e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c43e8f872593 drm/i915/tgl: Simply subplatform detection</p>
+
+</body>
+</html>
+
+--===============7526720509949274989==--
