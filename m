@@ -2,46 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3CED4BEEF0
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 02:35:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67DB44BEEE9
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 02:25:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08FF510E525;
-	Tue, 22 Feb 2022 01:35:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C70C10E4D7;
+	Tue, 22 Feb 2022 01:24:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D890F10E525
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 01:35:01 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1011E10E49F;
+ Tue, 22 Feb 2022 01:24:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645493702; x=1677029702;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4PgDrBRY2YcawppbntjO6mOuyY4hpDjKmYaZ8svBETU=;
- b=dsxsK3xDmNR12qDP8brFLvqJOzNgIw1Fi0gWiDPWYkIICoC1pUSyWkM6
- 1CvXKw6Z/pl5z/v7v1trLHNTN2XEQNK2A9yzx6kMI7cf0oir3QjemuOyD
- iVijxKB+qbDtJPpHSAws0BoFba2mpFqCccnkfTYMcOfvOhKpGL8Ho8yoD
- 5D75wV1+cNDP7ZIk19Rvwn5I2mbiSaFdItDwhO7KpGIDKdwLzlg9zOnpP
- fkyRCit4dU2rFZJnvj/XFHiVdpS62ZfFNJnW8nsM5gGXR6mSqCmtdC5c/
- DNvf2EhbFboibvGdM2DlF3jc+VSXHtA3tKmnxUt4miGz6+xX4sJVxltPU Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10265"; a="312335998"
-X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; d="scan'208";a="312335998"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 17:35:01 -0800
+ t=1645493092; x=1677029092;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=E1JK6Bg0MDA4WbVGoRXJp1ks0ExQHd7+FMQPc6IIx4g=;
+ b=HsyrgB5ujj+w+zwZnzqgz1fUm528QL5I+B0bRyQ1fsd2mvyWp0O+p0cP
+ dLp9tCpeC/8+mCm8F8LfGDxg9Z0FRf6/P8azamRN1JqYXihSC+YdIn2oG
+ UNtBEKF6HXvwdpUrJ71oGECx2av9ykk/3giARPptTHRxfzoGQPlzuhh6i
+ KYbIagnn5ce20leRJgjZUCJ36AkVJum3XRWNbl5sH53xULem2dt3QS3wl
+ zdKnBlgArKkPAklIuezN+K9h9F+1z8+9rDVI03K9NeOwo7/XoEDYQf7hX
+ WX+cfgTDmKqHXtXB7S5ou6QmUz6BsNrG9A3iqbARErOO4Zj5IiwmcDyS9 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10265"; a="250410322"
+X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; d="scan'208";a="250410322"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2022 17:24:51 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; d="scan'208";a="505363677"
-Received: from cliu38-mobl3.sh.intel.com ([10.239.147.47])
- by orsmga002.jf.intel.com with ESMTP; 21 Feb 2022 17:35:00 -0800
-From: Chuansheng Liu <chuansheng.liu@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 22 Feb 2022 09:22:15 +0800
-Message-Id: <20220222012215.9545-1-chuansheng.liu@intel.com>
-X-Mailer: git-send-email 2.25.0.rc2
+X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; d="scan'208";a="683339218"
+Received: from lkp-server01.sh.intel.com (HELO da3212ac2f54) ([10.239.97.150])
+ by fmsmga001.fm.intel.com with ESMTP; 21 Feb 2022 17:24:48 -0800
+Received: from kbuild by da3212ac2f54 with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1nMJv5-0002Be-DY; Tue, 22 Feb 2022 01:24:47 +0000
+Date: Tue, 22 Feb 2022 09:23:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yongzhi Liu <lyz_cs@pku.edu.cn>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tvrtko.ursulin@linux.intel.com, airlied@linux.ie, daniel@ffwll.ch,
+ thomas.hellstrom@linux.intel.com, maarten.lankhorst@linux.intel.com,
+ matthew.auld@intel.com, matthew.d.roper@intel.com,
+ tzimmermann@suse.de, michal.winiarski@intel.com
+Message-ID: <202202220935.3r4emO4y-lkp@intel.com>
+References: <1645455221-38580-1-git-send-email-lyz_cs@pku.edu.cn>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: fix one mem leak in
- mmap_offset_attach()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1645455221-38580-1-git-send-email-lyz_cs@pku.edu.cn>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Check input parameter for NULL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,67 +64,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The below memory leak information is caught:
+Hi Yongzhi,
+
+Thank you for the patch! Yet something to improve:
+
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on v5.17-rc5 next-20220217]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Yongzhi-Liu/drm-i915-Check-input-parameter-for-NULL/20220221-225508
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+config: i386-randconfig-a004-20220221 (https://download.01.org/0day-ci/archive/20220222/202202220935.3r4emO4y-lkp@intel.com/config)
+compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/0day-ci/linux/commit/c54be425a38b3f4cb82c5badecf6b343f9e24a90
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Yongzhi-Liu/drm-i915-Check-input-parameter-for-NULL/20220221-225508
+        git checkout c54be425a38b3f4cb82c5badecf6b343f9e24a90
+        # save the config file to linux build tree
+        mkdir build_dir
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   drivers/gpu/drm/i915/gem/i915_gem_phys.c: In function 'i915_gem_object_put_pages_phys':
+>> drivers/gpu/drm/i915/gem/i915_gem_phys.c:100:2: error: ISO C90 forbids mixed declarations and code [-Werror=declaration-after-statement]
+     100 |  dma_addr_t dma = sg_dma_address(pages->sgl);
+         |  ^~~~~~~~~~
+   cc1: all warnings being treated as errors
+
+
+vim +100 drivers/gpu/drm/i915/gem/i915_gem_phys.c
+
+f033428db28bdf Chris Wilson      2019-05-28   93  
+a61170975718d5 Maarten Lankhorst 2021-03-23   94  void
+f033428db28bdf Chris Wilson      2019-05-28   95  i915_gem_object_put_pages_phys(struct drm_i915_gem_object *obj,
+f033428db28bdf Chris Wilson      2019-05-28   96  			       struct sg_table *pages)
+f033428db28bdf Chris Wilson      2019-05-28   97  {
+c54be425a38b3f Yongzhi Liu       2022-02-21   98  	if (!pages)
+c54be425a38b3f Yongzhi Liu       2022-02-21   99  		return;
+c6790dc22312f5 Chris Wilson      2020-02-02 @100  	dma_addr_t dma = sg_dma_address(pages->sgl);
+c6790dc22312f5 Chris Wilson      2020-02-02  101  	void *vaddr = sg_page(pages->sgl);
+c6790dc22312f5 Chris Wilson      2020-02-02  102  
+f033428db28bdf Chris Wilson      2019-05-28  103  	__i915_gem_object_release_shmem(obj, pages, false);
+f033428db28bdf Chris Wilson      2019-05-28  104  
+f033428db28bdf Chris Wilson      2019-05-28  105  	if (obj->mm.dirty) {
+f033428db28bdf Chris Wilson      2019-05-28  106  		struct address_space *mapping = obj->base.filp->f_mapping;
+c6790dc22312f5 Chris Wilson      2020-02-02  107  		void *src = vaddr;
+f033428db28bdf Chris Wilson      2019-05-28  108  		int i;
+f033428db28bdf Chris Wilson      2019-05-28  109  
+f033428db28bdf Chris Wilson      2019-05-28  110  		for (i = 0; i < obj->base.size / PAGE_SIZE; i++) {
+f033428db28bdf Chris Wilson      2019-05-28  111  			struct page *page;
+f033428db28bdf Chris Wilson      2019-05-28  112  			char *dst;
+f033428db28bdf Chris Wilson      2019-05-28  113  
+f033428db28bdf Chris Wilson      2019-05-28  114  			page = shmem_read_mapping_page(mapping, i);
+f033428db28bdf Chris Wilson      2019-05-28  115  			if (IS_ERR(page))
+f033428db28bdf Chris Wilson      2019-05-28  116  				continue;
+f033428db28bdf Chris Wilson      2019-05-28  117  
+f033428db28bdf Chris Wilson      2019-05-28  118  			dst = kmap_atomic(page);
+c6790dc22312f5 Chris Wilson      2020-02-02  119  			drm_clflush_virt_range(src, PAGE_SIZE);
+c6790dc22312f5 Chris Wilson      2020-02-02  120  			memcpy(dst, src, PAGE_SIZE);
+f033428db28bdf Chris Wilson      2019-05-28  121  			kunmap_atomic(dst);
+f033428db28bdf Chris Wilson      2019-05-28  122  
+f033428db28bdf Chris Wilson      2019-05-28  123  			set_page_dirty(page);
+f033428db28bdf Chris Wilson      2019-05-28  124  			if (obj->mm.madv == I915_MADV_WILLNEED)
+f033428db28bdf Chris Wilson      2019-05-28  125  				mark_page_accessed(page);
+f033428db28bdf Chris Wilson      2019-05-28  126  			put_page(page);
+c6790dc22312f5 Chris Wilson      2020-02-02  127  
+c6790dc22312f5 Chris Wilson      2020-02-02  128  			src += PAGE_SIZE;
+f033428db28bdf Chris Wilson      2019-05-28  129  		}
+f033428db28bdf Chris Wilson      2019-05-28  130  		obj->mm.dirty = false;
+f033428db28bdf Chris Wilson      2019-05-28  131  	}
+f033428db28bdf Chris Wilson      2019-05-28  132  
+f033428db28bdf Chris Wilson      2019-05-28  133  	sg_free_table(pages);
+f033428db28bdf Chris Wilson      2019-05-28  134  	kfree(pages);
+f033428db28bdf Chris Wilson      2019-05-28  135  
+8ff5446a7ca47c Thomas Zimmermann 2021-01-28  136  	dma_free_coherent(obj->base.dev->dev,
+c6790dc22312f5 Chris Wilson      2020-02-02  137  			  roundup_pow_of_two(obj->base.size),
+c6790dc22312f5 Chris Wilson      2020-02-02  138  			  vaddr, dma);
+f033428db28bdf Chris Wilson      2019-05-28  139  }
+f033428db28bdf Chris Wilson      2019-05-28  140  
 
 ---
-unreferenced object 0xffff997dd4e3b240 (size 64):
-  comm "gem_tiled_fence", pid 10332, jiffies 4294959326 (age
-220778.420s)
-  hex dump (first 32 bytes):
-    01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-    00 00 00 00 00 00 00 00 00 be f2 d4 7d 99 ff ff  ............}...
-  backtrace:
-    [<ffffffffa0f04365>] kmem_cache_alloc_trace+0x2e5/0x450
-    [<ffffffffc062f3ac>] drm_vma_node_allow+0x2c/0xe0 [drm]
-    [<ffffffffc13149ea>] __assign_mmap_offset_handle+0x1da/0x4a0 [i915]
-    [<ffffffffc1315235>] i915_gem_mmap_offset_ioctl+0x55/0xb0 [i915]
-    [<ffffffffc06207e4>] drm_ioctl_kernel+0xb4/0x140 [drm]
-    [<ffffffffc0620ac7>] drm_ioctl+0x257/0x410 [drm]
-    [<ffffffffa0f553ae>] __x64_sys_ioctl+0x8e/0xc0
-    [<ffffffffa1821128>] do_syscall_64+0x38/0xc0
-[<ffffffffa1a0007c>] entry_SYSCALL_64_after_hwframe+0x44/0xae
----
-
-The issue is always reproduced with the test:
-gem_tiled_fence_blits --run-subtest basic
-
-It tries to mmap_gtt the same object several times, it is like:
-create BO
-mmap_gtt BO
-unmap BO
-mmap_gtt BO <== second time mmap_gtt
-unmap
-
-The leak happens at the second time mmap_gtt in function mmap_offset_attach(),
-it will simply increase the reference count to 2 by calling drm_vma_node_allow()
-directly since the mmo has been created at the first time.
-However the driver just revokes the vma_node one time when closing the object,
-it leads to memory leak easily.
-
-This patch is to fix the memory leak by calling drm_vma_node_allow() one
-time also.
-
-Signed-off-by: Chuansheng Liu <chuansheng.liu@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index efe69d6b86f4..aa2d770d4280 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -680,7 +680,7 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
- 	mmo = insert_mmo(obj, mmo);
- 	GEM_BUG_ON(lookup_mmo(obj, mmap_type) != mmo);
- out:
--	if (file)
-+	if (!drm_vma_node_is_allowed(&mmo->vma_node, file))
- 		drm_vma_node_allow(&mmo->vma_node, file);
- 	return mmo;
- 
--- 
-2.25.0.rc2
-
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
