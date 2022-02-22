@@ -2,53 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E42554C0385
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 22:08:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F1CC4C0411
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Feb 2022 22:49:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1824810E69B;
-	Tue, 22 Feb 2022 21:08:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B43D10E79F;
+	Tue, 22 Feb 2022 21:49:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BFCF10E69B;
- Tue, 22 Feb 2022 21:08:05 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DA1A10E79F;
+ Tue, 22 Feb 2022 21:49:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645564086; x=1677100086;
+ t=1645566576; x=1677102576;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=HudAJSnASomyFTW3O8YCdCDMFySpKwzLS52NWQNyAIY=;
- b=fT5szqbm+aIT+bZDG9BbfXvOB0TgMtIk8bqZBwRsbaYLPBwJCBOGd974
- EOxEHDnEKw/52Q/FUw9RXdCAxdhSyvX+dCKoBa6e1InoOq3hgRpgfVnVj
- r4sgoP7TYiVodZoPf8JC8fGhX8+tdunJkq/HTR0k1MhPkG6GNFo/maAuF
- 9aAc/XNQhV1oqNP6DLNQt7dsI5/Xxud+xkuzKBdPglFNwDAk8qADCgp3x
- YW1ZcM//u3aPghpitpN68xJAGfuiSOhfR3AayGcHsa0W4SrWlv11fFtEI
- UNRgVnytty/vBtT4pm7+R/DBf0gaf3lMJrQQpWacMcnAcCvsC7InM6whD Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="338251417"
-X-IronPort-AV: E=Sophos;i="5.88,389,1635231600"; d="scan'208";a="338251417"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2022 13:08:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,389,1635231600"; d="scan'208";a="637163817"
-Received: from lkp-server01.sh.intel.com (HELO 788b1cd46f0d) ([10.239.97.150])
- by fmsmga002.fm.intel.com with ESMTP; 22 Feb 2022 13:08:03 -0800
-Received: from kbuild by 788b1cd46f0d with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nMcOA-0000cW-J0; Tue, 22 Feb 2022 21:08:02 +0000
-Date: Wed, 23 Feb 2022 05:07:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michael Cheng <michael.cheng@intel.com>,
-	intel-gfx@lists.freedesktop.org
-Message-ID: <202202230507.uLh3qqTV-lkp@intel.com>
-References: <20220222172649.331661-2-michael.cheng@intel.com>
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=qXepcxQySxqZDGn/5Yyb7hpnVKBtuUhmgQfPTO6Wbvc=;
+ b=VdKbR7zDJze753iOENvWXu0cqcElmtDmbZchVC/9VaE1jMiVemMD2PRb
+ 6f/59lPNE8+s9TkMebpz7TkCa2zz9kq7yC6TW1j77ZDDqkODxeKWT/J9U
+ 6AfcgJ2U6fUi9nliAF7NPUYAgALlNd/Grc/okiMs5UnDSUr17JJlisskh
+ cTLf0qgRoo4UGnrC0cwM53V+cl5cJp+Ms8z2bHto6TEiFZ21+LUpd30gv
+ 2fmeJ/fZtMHl2s4VtAUAoq59rLmDaPF7aanMShUtVpye5OD2yCg1b7OGj
+ JQeATVbGJoLjf26f+lSO9PnQh7Iiu84ZXI+dZlq3+AE1ByyOzenYGHY4z A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="312537248"
+X-IronPort-AV: E=Sophos;i="5.88,389,1635231600"; d="scan'208";a="312537248"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2022 13:49:35 -0800
+X-IronPort-AV: E=Sophos;i="5.88,389,1635231600"; d="scan'208";a="543095740"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2022 13:49:35 -0800
+Date: Tue, 22 Feb 2022 13:49:34 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Michael Cheng <michael.cheng@intel.com>
+Message-ID: <YhVablVDkSEPFqwZ@mdroper-desk1.amr.corp.intel.com>
+References: <20220210183636.1187973-1-michael.cheng@intel.com>
+ <20220210183636.1187973-2-michael.cheng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220222172649.331661-2-michael.cheng@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 1/3] drm_cache: Add logic for
- wbvind_on_all_cpus
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220210183636.1187973-2-michael.cheng@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v10 1/6] drm: Add arch arm64 for
+ drm_clflush_virt_range
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,55 +59,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, lucas.demarchi@intel.com,
- dri-devel@lists.freedesktop.org, michael.cheng@intel.com
+Cc: intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Michael,
+On Thu, Feb 10, 2022 at 10:36:31AM -0800, Michael Cheng wrote:
+> Add arm64 support for drm_clflush_virt_range. dcache_clean_inval_poc
+> performs a flush by first performing a clean, follow by an invalidation
+> operation.
+> 
+> v2 (Michael Cheng): Use correct macro for cleaning and invalidation the
+> 		    dcache.
+> 
+> v3 (Michael Cheng): Remove ifdef for asm/cacheflush.h
+> 
+> v4 (Michael Cheng): Rebase
+> 
+> v5 (Michael Cheng): Replace asm/cacheflush.h with linux/cacheflush.h
 
-Thank you for the patch! Yet something to improve:
+Note that you only really need to indicate that you're the one making
+these updates in cases where you're picking up someone else's patch and
+carrying it forward; otherwise it's pretty clear that you were also the
+author of v2-v5.
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm/drm-next drm-tip/drm-tip v5.17-rc5 next-20220217]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+However when possible it is a good idea to indicate who suggested
+various changes you're making.  E.g., I think a lot of these were based
+on feedback from Tvrtko?
 
-url:    https://github.com/0day-ci/linux/commits/Michael-Cheng/Move-define-wbvind_on_all_cpus/20220223-012853
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: nios2-randconfig-r003-20220221 (https://download.01.org/0day-ci/archive/20220223/202202230507.uLh3qqTV-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/3aaa40c95b16a78c9059a77536de70bb08ce05e9
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Michael-Cheng/Move-define-wbvind_on_all_cpus/20220223-012853
-        git checkout 3aaa40c95b16a78c9059a77536de70bb08ce05e9
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=nios2 SHELL=/bin/bash drivers/gpu/drm/
+> 
+> Signed-off-by: Michael Cheng <michael.cheng@intel.com>
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Change appears to accurately implement the same type of cache flush as
+what we have on the x86 backend.
 
-All errors (new ones prefixed by >>):
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-   In file included from drivers/gpu/drm/drm_cache.c:37:
->> include/drm/drm_cache.h:37:10: fatal error: asm/smp.h: No such file or directory
-      37 | #include <asm/smp.h>
-         |          ^~~~~~~~~~~
-   compilation terminated.
+> ---
+>  drivers/gpu/drm/drm_cache.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
+> index 66597e411764..2e233f53331e 100644
+> --- a/drivers/gpu/drm/drm_cache.c
+> +++ b/drivers/gpu/drm/drm_cache.c
+> @@ -28,6 +28,7 @@
+>   * Authors: Thomas Hellström <thomas-at-tungstengraphics-dot-com>
+>   */
+>  
+> +#include <linux/cacheflush.h>
+>  #include <linux/cc_platform.h>
+>  #include <linux/export.h>
+>  #include <linux/highmem.h>
+> @@ -174,6 +175,11 @@ drm_clflush_virt_range(void *addr, unsigned long length)
+>  
+>  	if (wbinvd_on_all_cpus())
+>  		pr_err("Timed out waiting for cache flush\n");
+> +
+> +#elif defined(CONFIG_ARM64)
+> +	void *end = addr + length;
+> +	dcache_clean_inval_poc((unsigned long)addr, (unsigned long)end);
+> +
+>  #else
+>  	WARN_ONCE(1, "Architecture has no drm_cache.c support\n");
+>  #endif
+> -- 
+> 2.25.1
+> 
 
-
-vim +37 include/drm/drm_cache.h
-
-    35	
-    36	#include <linux/scatterlist.h>
-  > 37	#include <asm/smp.h>
-    38	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
