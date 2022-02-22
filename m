@@ -2,53 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 288704C055F
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 00:32:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C57EB4C0565
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 00:37:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E399C10E296;
-	Tue, 22 Feb 2022 23:32:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0976E10E158;
+	Tue, 22 Feb 2022 23:37:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FBA310E24F;
- Tue, 22 Feb 2022 23:32:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645572730; x=1677108730;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=pnHkLzQtPiiFEa4hGqqSmZ+Uh+AOGtvt5T/1sNx+pQY=;
- b=GLLJ6LLea/wnfl2RyIo+xvZbk7p8wDMawqwmQlLoDpraNBiym61w89so
- GyaWZgIjKCacLeRreWRkP7L68nVK1g4p4F/KbubuCTXqRJvsWSaxBWqR+
- dYNffFZMZ2YBj1DMI6mLhgkmu3JQJ1/UCe/UX78GRVZOmQy5OKSNTOOkF
- su5vlRIjbld0iTCNP9q2i6DQTxjLxPs2VVwufci4uDFbwn/k25eqRvgVj
- EjRTA56Df2ZGw0k0B11fmtdGMltUPiBBmh3JaybMEqBN2yHXFkcMmNV8s
- 1sP063ix3G9n6NapFErX5y/n6hh7yZGZIbL01J3zVKSdl+chm6qw8+SZi g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="250663018"
-X-IronPort-AV: E=Sophos;i="5.88,389,1635231600"; d="scan'208";a="250663018"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2022 15:32:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,389,1635231600"; d="scan'208";a="532438636"
-Received: from lkp-server01.sh.intel.com (HELO 788b1cd46f0d) ([10.239.97.150])
- by orsmga007.jf.intel.com with ESMTP; 22 Feb 2022 15:32:07 -0800
-Received: from kbuild by 788b1cd46f0d with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nMeda-0000jt-SH; Tue, 22 Feb 2022 23:32:06 +0000
-Date: Wed, 23 Feb 2022 07:31:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michael Cheng <michael.cheng@intel.com>,
-	intel-gfx@lists.freedesktop.org
-Message-ID: <202202230701.l0i1vncs-lkp@intel.com>
-References: <20220222172649.331661-2-michael.cheng@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D72B310E158;
+ Tue, 22 Feb 2022 23:37:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D43A6AA0ED;
+ Tue, 22 Feb 2022 23:37:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4213346100894459394=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220222172649.331661-2-michael.cheng@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 1/3] drm_cache: Add logic for
- wbvind_on_all_cpus
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Souza, Jose" <jose.souza@intel.com>
+Date: Tue, 22 Feb 2022 23:37:34 -0000
+Message-ID: <164557305482.23041.6138195604609418719@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220222142045.48509-1-jose.souza@intel.com>
+In-Reply-To: <20220222142045.48509-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Use_unions_per_platform_in_intel=5Fdpll=5Fhw?=
+ =?utf-8?q?=5Fstate?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,68 +41,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, lucas.demarchi@intel.com,
- dri-devel@lists.freedesktop.org, michael.cheng@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Michael,
+--===============4213346100894459394==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thank you for the patch! Perhaps something to improve:
+== Series Details ==
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on drm/drm-next drm-tip/drm-tip v5.17-rc5 next-20220217]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Series: drm/i915/display: Use unions per platform in intel_dpll_hw_state
+URL   : https://patchwork.freedesktop.org/series/100577/
+State : success
 
-url:    https://github.com/0day-ci/linux/commits/Michael-Cheng/Move-define-wbvind_on_all_cpus/20220223-012853
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: openrisc-randconfig-r025-20220221 (https://download.01.org/0day-ci/archive/20220223/202202230701.l0i1vncs-lkp@intel.com/config)
-compiler: or1k-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/3aaa40c95b16a78c9059a77536de70bb08ce05e9
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Michael-Cheng/Move-define-wbvind_on_all_cpus/20220223-012853
-        git checkout 3aaa40c95b16a78c9059a77536de70bb08ce05e9
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=openrisc SHELL=/bin/bash drivers/gpu/drm/vgem/
+== Summary ==
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+CI Bug Log - changes from CI_DRM_11268 -> Patchwork_22355
+====================================================
 
-All warnings (new ones prefixed by >>):
+Summary
+-------
 
-   In file included from include/drm/drm_cache.h:37,
-                    from drivers/gpu/drm/vgem/vgem_drv.h:33,
-                    from drivers/gpu/drm/vgem/vgem_fence.c:28:
->> arch/openrisc/include/asm/smp.h:15: warning: "raw_smp_processor_id" redefined
-      15 | #define raw_smp_processor_id()  (current_thread_info()->cpu)
-         | 
-   In file included from include/linux/lockdep.h:14,
-                    from include/linux/spinlock.h:62,
-                    from include/linux/vmalloc.h:5,
-                    from include/asm-generic/io.h:911,
-                    from arch/openrisc/include/asm/io.h:36,
-                    from include/linux/io.h:13,
-                    from include/linux/iosys-map.h:9,
-                    from include/linux/dma-buf.h:16,
-                    from drivers/gpu/drm/vgem/vgem_fence.c:23:
-   include/linux/smp.h:191: note: this is the location of the previous definition
-     191 | #define raw_smp_processor_id()                  0
-         | 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22355/index.html
+
+Participating hosts (18 -> 17)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (2): fi-icl-u2 shard-tglu 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22355 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][1] ([fdo#109271]) +57 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22355/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-6:          [DMESG-FAIL][2] ([i915#4957]) -> [DMESG-FAIL][3] ([i915#4494] / [i915#4957])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11268/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22355/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
 
 
-vim +/raw_smp_processor_id +15 arch/openrisc/include/asm/smp.h
+Build changes
+-------------
 
-8e6d08e0a15e7d4 Stefan Kristiansson 2014-05-11  14  
-8e6d08e0a15e7d4 Stefan Kristiansson 2014-05-11 @15  #define raw_smp_processor_id()	(current_thread_info()->cpu)
-8e6d08e0a15e7d4 Stefan Kristiansson 2014-05-11  16  #define hard_smp_processor_id()	mfspr(SPR_COREID)
-8e6d08e0a15e7d4 Stefan Kristiansson 2014-05-11  17  
+  * Linux: CI_DRM_11268 -> Patchwork_22355
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+  CI-20190529: 20190529
+  CI_DRM_11268: 26326bf05392ab3da8cba36642a0efec97f00da9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6352: 11b4d227d8f0efad522519c8fd9525774247c8d8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22355: 8464317cead47363a0995d4314a885bb007f99e8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8464317cead4 drm/i915/display: Use unions per platform in intel_dpll_hw_state
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22355/index.html
+
+--===============4213346100894459394==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Use unions per platform in intel_dpll_hw_state</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100577/">https://patchwork.freedesktop.org/series/100577/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22355/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22355/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11268 -&gt; Patchwork_22355</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22355/index.html</p>
+<h2>Participating hosts (18 -&gt; 17)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (2): fi-icl-u2 shard-tglu </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22355 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@prime_vgem@basic-userptr:<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22355/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11268/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22355/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11268 -&gt; Patchwork_22355</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11268: 26326bf05392ab3da8cba36642a0efec97f00da9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6352: 11b4d227d8f0efad522519c8fd9525774247c8d8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22355: 8464317cead47363a0995d4314a885bb007f99e8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>8464317cead4 drm/i915/display: Use unions per platform in intel_dpll_hw_state</p>
+
+</body>
+</html>
+
+--===============4213346100894459394==--
