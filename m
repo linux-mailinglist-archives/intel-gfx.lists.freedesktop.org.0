@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D0DA4C13B4
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 14:13:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 753164C13B3
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 14:13:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B342010F37F;
-	Wed, 23 Feb 2022 13:13:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3C0310F389;
+	Wed, 23 Feb 2022 13:13:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1DA210F373
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Feb 2022 13:13:24 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D81E10F384
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Feb 2022 13:13:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645622004; x=1677158004;
+ t=1645622008; x=1677158008;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yJtEBcZTXoWA5k00CHBQ69RGwpUm5v4uMoger9s5sYo=;
- b=aYc6tql+prKfRASmNHodZ9KMv4cSFXhhTwpBS6vBbyxpH+aq9nTNnsQ+
- OVjL3/tUZeG2ljoJLiRnZ/w437wXt8MnOlAXhTnn3DKe10ECZ9pHLpwZc
- qWVQUbyjMjm5JdKs3JFN5q2g+VAj5yfOKKEZsR0EB3BI33JndV522zNLo
- OajcdTovrKru1r0dt7UUIJ8lWddoyWU9eSG0tliC5NVKOP1Mef74eEgVM
- 6MGLYR1HqJmTZSA7hlJ+hr/wycMJhKOHHyLf5IYWxjF5gbcMKhm6C2Ggp
- 9Yne39uoTiMEUPnz++szAyWavexr7RKnqh9a0e4dx5i22hacCsqx8pB0z g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="235466258"
-X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="235466258"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 05:13:24 -0800
+ bh=vY5A5vQf911RzKCbTsBnUCEIwlmXE+jfHFbdXLhbkck=;
+ b=SRfXTVlTEW/uJxSp8GjxcqCdKPzi1xY3MmBC50bd9ngmhZU7baxmEJhI
+ J1TqM45EdXPnOlxPLbis4Ch78cZL0mHkWUwCPYCU6NfxLdvOzqqPapSuV
+ vt7L5S6E+XKycggxuja5VNPE0qAGNAc2LW8qQNgdUort0KnVmiyAzpExz
+ 7eNYfwJdIaWo6lRww5xYDfSTwTfO/hE0RWTAN6pohhNLlxuaRgsnzGhmi
+ 49Iefxumz2U7PIZbmlSZgfKixka/1NYtvvUHEmwZV/Ip8qO9eA1oAieCJ
+ sm7Zk07mQvcg0iFvZA9+4Kh9palZEj00LxVPDeWyDaruSzjfnIWzfCiTX Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="250784826"
+X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="250784826"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2022 05:13:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="532676483"
+X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="508431959"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga007.jf.intel.com with SMTP; 23 Feb 2022 05:13:22 -0800
+ by orsmga006.jf.intel.com with SMTP; 23 Feb 2022 05:13:25 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 23 Feb 2022 15:13:21 +0200
+ Wed, 23 Feb 2022 15:13:24 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Feb 2022 15:13:04 +0200
-Message-Id: <20220223131315.18016-3-ville.syrjala@linux.intel.com>
+Date: Wed, 23 Feb 2022 15:13:05 +0200
+Message-Id: <20220223131315.18016-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220223131315.18016-1-ville.syrjala@linux.intel.com>
 References: <20220223131315.18016-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 02/13] drm/i915: Fix cursor coordinates on
- bigjoiner slave
+Subject: [Intel-gfx] [PATCH v2 03/13] drm/i915: Remove nop bigjoiner state
+ copy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,34 +64,34 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Adjust the cursor dst coordinates appripriately when it's on
-the bigjoiner slave pipe. intel_atomic_plane_check_clipping()
-already did this but with the cursor we discard those results
-(apart from uapi.visible and error checks) since the hardware
-will be doing the clipping for us.
+We just copied over the whole master crtc state, including
+cpu_transcoder+has_audio. No need to copy those again.
 
-v2: Rebase due to bigjoiner bitmask usage
+Also get rid of the unhelpful comment.
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 2ade8fdd9bdd..3e80763aa828 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -152,6 +152,9 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
- 	/* Use the unclipped src/dst rectangles, which we program to hw */
- 	plane_state->uapi.src = src;
- 	plane_state->uapi.dst = dst;
-+	if (intel_crtc_is_bigjoiner_slave(crtc_state))
-+		drm_rect_translate(&plane_state->uapi.dst,
-+				   -crtc_state->pipe_src_w, 0);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f3f5f11a5abf..8c61a8190c64 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5593,12 +5593,9 @@ copy_bigjoiner_crtc_state_modeset(struct intel_atomic_state *state,
  
- 	ret = intel_cursor_check_surface(plane_state);
- 	if (ret)
+ 	copy_bigjoiner_crtc_state_nomodeset(state, slave_crtc);
+ 
+-	/* Some fixups */
+ 	slave_crtc_state->uapi.mode_changed = master_crtc_state->uapi.mode_changed;
+ 	slave_crtc_state->uapi.connectors_changed = master_crtc_state->uapi.connectors_changed;
+ 	slave_crtc_state->uapi.active_changed = master_crtc_state->uapi.active_changed;
+-	slave_crtc_state->cpu_transcoder = master_crtc_state->cpu_transcoder;
+-	slave_crtc_state->has_audio = master_crtc_state->has_audio;
+ 
+ 	return 0;
+ }
 -- 
 2.34.1
 
