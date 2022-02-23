@@ -2,49 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C43304C1CA3
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 20:52:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EFC74C1CAB
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 20:53:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F2F610E764;
-	Wed, 23 Feb 2022 19:52:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 120C110E21E;
+	Wed, 23 Feb 2022 19:53:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B61510E433;
- Wed, 23 Feb 2022 19:51:57 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7815B10E65E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Feb 2022 19:53:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645645918; x=1677181918;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=NpD0lCeER2ZF++l7t05bIZFosJNn5RXlL2L0xj9m/i8=;
- b=b43gxQ0+kKjIkbCQiKDoMAUEbHxY276tPSF592UgmdujyK05dNN0C5zj
- qFhE32CkP42ihCa06O5lzUwKBNLcB2VZSxYMQ1mkVHm7UYlH5zqwFQpSB
- wiP41RhGSoBTOCwBTOoKX2SwJW8j3DpN2olow2qUIoTuxAeu8UGS4Ps7L
- NV+eyv39esBkmI605h3aFP5wIxpa7tYlXn4DuF0WXfQH4M6AASWkdNrg+
- TSncDeySbVY+rKkfJjJHeoyNn/ssLfjFWfh8gZR9476c4YQH67g6ZY/TO
- m5lN/YMgsriNh0mRxB5EEcZADSc92y/78eM1MuZbXcd9F9ZBQR5zf6enK A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="232688804"
-X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="232688804"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 11:51:49 -0800
-X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="508576550"
-Received: from ramaling-i9x.iind.intel.com ([10.203.144.108])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 11:51:47 -0800
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Date: Thu, 24 Feb 2022 01:22:03 +0530
-Message-Id: <20220223195203.13708-3-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220223195203.13708-1-ramalingam.c@intel.com>
-References: <20220223195203.13708-1-ramalingam.c@intel.com>
+ t=1645646029; x=1677182029;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=RiEf5KWHwG0m1fkIxXao8udTE0Ticxq24EEOPe9QHCM=;
+ b=Ca/ffl1C7XPKVLst0iApKjxyNBSNA4LWAr+TAnEzuu0N8nRs0zTZK7S+
+ Qsg+WB3CXTuAo15Otv1fKuVCGI5CnXmgXna4eZHB+1x13Ao5QGvofGLhg
+ uUSdxgOzZx0lKsMZoKmCGJPRWhlObJHryPrOPhXCTqvNYajm4bc8NGFol
+ iS/XF4THUc345Qph1k/msoIROON1IcWNhF0mjFlLoAG7Aeerm6bHd0DAY
+ StRw1V5rZ0csq+qlUnwYzd1uOklSj1NaADEqQaEJGSsnJDij8fNtWj5en
+ 61V1HMv6Mj7vJpRTl70OArpVZeQKj2tBZyCAbgzKuhBHpGs/ZzKStZe6o g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="338505512"
+X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="338505512"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2022 11:53:49 -0800
+X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="543445259"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2022 11:53:49 -0800
+Date: Wed, 23 Feb 2022 11:54:22 -0800
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20220223195422.GB9839@labuser-Z97X-UD5H>
+References: <20220223131315.18016-1-ville.syrjala@linux.intel.com>
+ <20220223131315.18016-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] hda/i915: split the wait for the component
- binding
+In-Reply-To: <20220223131315.18016-2-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v2 01/13] drm/i915: Avoid negative shift due
+ to bigjoiner_pipes==0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,92 +60,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kai Vehmanen <kai.vehmanen@intel.com>, lucas.demarchi@intel.com
+Cc: intel-gfx@lists.freedesktop.org, kernel test robot <oliver.sang@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Split the wait for component binding from i915 in multiples of
-sysctl_hung_task_timeout_secs. This helps to avoid the possible kworker
-thread hung detection given below.
+On Wed, Feb 23, 2022 at 03:13:03PM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> bigjoiner_pipes==0 leads bigjoiner_master_pipe() to
+> do BIT(ffs(0)-1) which is undefined behaviour. The code should
+> actually still work fine since the only place we provoke
+> that is intel_crtc_bigjoiner_slave_pipes() and it'll bitwise
+> AND the result with 0, so doesn't really matter what we get
+> out of bigjoiner_master_pipe(). But best not provoke undefined
+> behaviour anyway.
+> 
+> Reported-by: kernel test robot <oliver.sang@intel.com>
+> Fixes: a6e7a006f5d5 ("drm/i915: Change bigjoiner state tracking to use the pipe bitmask")
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-<3>[   60.946316] INFO: task kworker/11:1:104 blocked for more than 30
-seconds.
-<3>[   60.946479]       Tainted: G        W
-5.17.0-rc5-CI-CI_DRM_11265+ #1
-<3>[   60.946580] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs"
-disables this message.
-<6>[   60.946688] task:kworker/11:1    state:D stack:14192 pid:  104
-ppid:     2 flags:0x00004000
-<6>[   60.946713] Workqueue: events azx_probe_work [snd_hda_intel]
-<6>[   60.946740] Call Trace:
-<6>[   60.946745]  <TASK>
-<6>[   60.946763]  __schedule+0x42c/0xa80
-<6>[   60.946797]  schedule+0x3f/0xc0
-<6>[   60.946811]  schedule_timeout+0x1be/0x2e0
-<6>[   60.946829]  ? del_timer_sync+0xb0/0xb0
-<6>[   60.946849]  ? 0xffffffff81000000
-<6>[   60.946864]  ? wait_for_completion_timeout+0x79/0x120
-<6>[   60.946879]  wait_for_completion_timeout+0xab/0x120
-<6>[   60.946906]  snd_hdac_i915_init+0xa5/0xb0 [snd_hda_core]
-<6>[   60.946943]  azx_probe_work+0x71/0x84c [snd_hda_intel]
-<6>[   60.946974]  process_one_work+0x275/0x5c0
-<6>[   60.947010]  worker_thread+0x37/0x370
-<6>[   60.947028]  ? process_one_work+0x5c0/0x5c0
-<6>[   60.947038]  kthread+0xef/0x120
-<6>[   60.947047]  ? kthread_complete_and_exit+0x20/0x20
-<6>[   60.947065]  ret_from_fork+0x22/0x30
-<6>[   60.947110]  </TASK>
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-cc: Kai Vehmanen <kai.vehmanen@intel.com>
-cc: Lucas De Marchi <lucas.demarchi@intel.com>
----
- sound/hda/hdac_i915.c | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+Manasi
 
-diff --git a/sound/hda/hdac_i915.c b/sound/hda/hdac_i915.c
-index d20a450a9a15..daaeebc5099e 100644
---- a/sound/hda/hdac_i915.c
-+++ b/sound/hda/hdac_i915.c
-@@ -6,6 +6,7 @@
- #include <linux/init.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-+#include <linux/sched/sysctl.h>
- #include <sound/core.h>
- #include <sound/hdaudio.h>
- #include <sound/hda_i915.h>
-@@ -163,7 +164,8 @@ static bool dg1_gfx_present(void)
- int snd_hdac_i915_init(struct hdac_bus *bus)
- {
- 	struct drm_audio_component *acomp;
--	int err;
-+	unsigned long timeout, ret = 0;
-+	int err, i, itr_cnt;
- 
- 	if (!i915_gfx_present())
- 		return -ENODEV;
-@@ -182,9 +184,18 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
- 	if (!acomp->ops) {
- 		if (!IS_ENABLED(CONFIG_MODULES) ||
- 		    !request_module("i915")) {
-+			if (!sysctl_hung_task_timeout_secs) {
-+				itr_cnt = 1;
-+				timeout = msecs_to_jiffies(60 * 1000);
-+			} else {
-+				itr_cnt = DIV_ROUND_UP(60, sysctl_hung_task_timeout_secs);
-+				timeout = msecs_to_jiffies(sysctl_hung_task_timeout_secs * 1000);
-+			}
-+
- 			/* 60s timeout */
--			wait_for_completion_timeout(&acomp->master_bind_complete,
--						    msecs_to_jiffies(30 * 1000));
-+			for (i = 0; i < itr_cnt || !ret; i++)
-+				ret = wait_for_completion_timeout(&acomp->master_bind_complete,
-+								  timeout);
- 		}
- 	}
- 	if (!acomp->ops) {
--- 
-2.20.1
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 80b19c304c43..f3f5f11a5abf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -346,7 +346,10 @@ static enum pipe bigjoiner_master_pipe(const struct intel_crtc_state *crtc_state
+>  
+>  u8 intel_crtc_bigjoiner_slave_pipes(const struct intel_crtc_state *crtc_state)
+>  {
+> -	return crtc_state->bigjoiner_pipes & ~BIT(bigjoiner_master_pipe(crtc_state));
+> +	if (crtc_state->bigjoiner_pipes)
+> +		return crtc_state->bigjoiner_pipes & ~BIT(bigjoiner_master_pipe(crtc_state));
+> +	else
+> +		return 0;
+>  }
+>  
+>  bool intel_crtc_is_bigjoiner_slave(const struct intel_crtc_state *crtc_state)
+> -- 
+> 2.34.1
+> 
