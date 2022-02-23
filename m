@@ -2,49 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 822CF4C11D3
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 12:48:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB00E4C1212
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 13:00:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55F6710EBA0;
-	Wed, 23 Feb 2022 11:48:06 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1473E10E69B;
+	Wed, 23 Feb 2022 12:00:23 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9284B10EBA0
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Feb 2022 11:48:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DB5810E69B;
+ Wed, 23 Feb 2022 12:00:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645616885; x=1677152885;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=U2m58QhCrXo/UBLioJleUhdz/3UxNpGVJZT4XhSK9Ys=;
- b=EGy+MqQ8bibXz+UpXveIn9BmASxleCiK5EZ3uprXno7BaieJGEBEoLBd
- o/hCYkqKs/PCmj7XmnkXNboeY3PKip+LLxzKom6XzG++20Qrq5TPCQl59
- o5UVWVNVvZS3BoiqAAF07BvKSU5av/Qmv34J3mo00BVeIAvLKU5JdusaH
- g28FokCrDg7N3A84vSa6hv3GM2YkSLLXanyWYa+s+I/4pvd/S2LTwqWMG
- 7XMexdsF1sBkzkRRbRwnRRnf5+bTX6+r4uSzLeeJHkrFfKGGkifAxmym1
- lAz/LUlRLMkkFks4Xfwx1LprVph7wLl17AucRyWCusxdGShTjRSx46hbX Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="252137800"
-X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="252137800"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1645617622; x=1677153622;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=adixlrNztqZ7xloyBEesbJO8itBcd5a2vOZGYJd313g=;
+ b=dQPAfDWznkszfM9IweSJfRYdgxmNMhGO4KRb7CLubxfwI5bSibaKyhPV
+ +srKGbGOT9fhXYjMDoddcTdTcw+ZznJJMcCg2kc5F531wJfTS1DkKGg8J
+ FHo4TW0J3sPVU/XB1yEwpBAp6PLCx7z4AzR3u4NFLBZYpLTTjzQ6f93lc
+ BjLmrgtJ6bDLQ8NIoO9UlFOc3NupX0e5bTg9UZ1KssfBGYGqLq3zxNNn9
+ AegwpOwRIZW/GNmnXlvtczxEz7y6F4BwoaDxBODE7p8Azm5NL+97C4Tqx
+ 7scEro9CeKHa2w2HNg3A9wJThTqgSXYTjn37VZq16Di+23FzI73Qs3mlb w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="252139330"
+X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="252139330"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 03:48:05 -0800
-X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="548207693"
-Received: from sgadve-mobl3.gar.corp.intel.com (HELO
- jhogande-mobl1.ger.corp.intel.com) ([10.249.34.56])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 03:48:02 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Feb 2022 13:47:12 +0200
-Message-Id: <20220223114712.3238932-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.25.1
+ 23 Feb 2022 04:00:22 -0800
+X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="707005766"
+Received: from lportx-mobl3.ger.corp.intel.com (HELO [10.213.242.198])
+ ([10.213.242.198])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2022 04:00:21 -0800
+Message-ID: <ccc8d37f-2bcc-b258-4969-430c609c11d0@linux.intel.com>
+Date: Wed, 23 Feb 2022 12:00:18 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/psr: Set "SF Partial Frame Enable"
- also on full update
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
+References: <20220218213307.1338478-1-John.C.Harrison@Intel.com>
+ <647b611a-d159-3a6f-2e3a-c8039a9503ec@linux.intel.com>
+ <7ceb4723-7ebf-3762-ddb7-b16e48e804d3@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <7ceb4723-7ebf-3762-ddb7-b16e48e804d3@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 0/3] Improve anti-pre-emption w/a for
+ compute workloads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,96 +63,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mihai Harpau <mishu@piatafinanciara.ro>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we are observing occasional screen flickering when
-PSR2 selective fetch is enabled. More specifically glitch seems
-to happen on full frame update when cursor moves to coords
-x = -1 or y = -1.
 
-According to Bspec SF Single full frame should not be set if
-SF Partial Frame Enable is not set. This happened to be true for
-ADLP as PSR2_MAN_TRK_CTL_ENABLE is always set and for ADLP it's
-actually "SF Partial Frame Enable" (Bit 31).
 
-Setting "SF Partial Frame Enable" bit also on full update seems to
-fix screen flickering.
+On 23/02/2022 02:22, John Harrison wrote:
+> On 2/22/2022 01:53, Tvrtko Ursulin wrote:
+>> On 18/02/2022 21:33, John.C.Harrison@Intel.com wrote:
+>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>
+>>> Compute workloads are inherently not pre-emptible on current hardware.
+>>> Thus the pre-emption timeout was disabled as a workaround to prevent
+>>> unwanted resets. Instead, the hang detection was left to the heartbeat
+>>> and its (longer) timeout. This is undesirable with GuC submission as
+>>> the heartbeat is a full GT reset rather than a per engine reset and so
+>>> is much more destructive. Instead, just bump the pre-emption timeout
+>>
+>> Can we have a feature request to allow asking GuC for an engine reset?
+> For what purpose?
 
-Also make code more clear by setting PSR2_MAN_TRK_CTL_ENABLE
-only if not on ADLP as this bit doesn't exist in ADLP.
+To allow "stopped heartbeat" to reset the engine, however..
 
-Bspec: 49274
+> GuC manages the scheduling of contexts across engines. With virtual 
+> engines, the KMD has no knowledge of which engine a context might be 
+> executing on. Even without virtual engines, the KMD still has no 
+> knowledge of which context is currently executing on any given engine at 
+> any given time.
+> 
+> There is a reason why hang detection should be left to the entity that 
+> is doing the scheduling. Any other entity is second guessing at best.
+> 
+> The reason for keeping the heartbeat around even when GuC submission is 
+> enabled is for the case where the KMD/GuC have got out of sync with 
+> either other somehow or GuC itself has just crashed. I.e. when no 
+> submission at all is working and we need to reset the GuC itself and 
+> start over.
 
-Reported-by: Lyude Paul <lyude@redhat.com>
-Cc: Mihai Harpau <mishu@piatafinanciara.ro>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Bugzilla: https://gitlab.freedesktop.org/drm/intel/-/issues/5077
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 20 ++++++++++++++++++--
- drivers/gpu/drm/i915/i915_reg.h          |  1 +
- 2 files changed, 19 insertions(+), 2 deletions(-)
+.. I wasn't really up to speed to know/remember heartbeats are nerfed 
+already in GuC mode.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 2e0b092f4b6b..90aca75e05e0 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1439,6 +1439,13 @@ static inline u32 man_trk_ctl_single_full_frame_bit_get(struct drm_i915_private
- 	       PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME;
- }
- 
-+static inline u32 man_trk_ctl_partial_frame_bit_get(struct drm_i915_private *dev_priv)
-+{
-+	return IS_ALDERLAKE_P(dev_priv) ?
-+	       ADLP_PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE :
-+	       PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE;
-+}
-+
- static void psr_force_hw_tracking_exit(struct intel_dp *intel_dp)
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-@@ -1543,7 +1550,17 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	u32 val = PSR2_MAN_TRK_CTL_ENABLE;
-+	u32 val = 0;
-+
-+	/*
-+	 * ADL_P doesn't have HW tracking nor manual tracking enable
-+	 * bit
-+	 */
-+	if (!IS_ALDERLAKE_P(dev_priv))
-+		val = PSR2_MAN_TRK_CTL_ENABLE;
-+
-+	/* SF partial frame enable has to be set even on full update */
-+	val |= man_trk_ctl_partial_frame_bit_get(dev_priv);
- 
- 	if (full_update) {
- 		/*
-@@ -1563,7 +1580,6 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
- 	} else {
- 		drm_WARN_ON(crtc_state->uapi.crtc->dev, clip->y1 % 4 || clip->y2 % 4);
- 
--		val |= PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE;
- 		val |= PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(clip->y1 / 4 + 1);
- 		val |= PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(clip->y2 / 4 + 1);
- 	}
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 2b8a3086ed35..89bbb64e520d 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2316,6 +2316,7 @@
- #define  ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(val)	REG_FIELD_PREP(ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR_MASK, val)
- #define  ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR_MASK		REG_GENMASK(12, 0)
- #define  ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(val)		REG_FIELD_PREP(ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR_MASK, val)
-+#define  ADLP_PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE		REG_BIT(31)
- #define  ADLP_PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME		REG_BIT(14)
- #define  ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME		REG_BIT(13)
- 
--- 
-2.25.1
+I am not sure it was the best way since full reset penalizes everyone 
+for one hanging engine. Better question would be why leave heartbeats 
+around to start with with GuC? If you want to use it to health check 
+GuC, as you say, maybe just send a CT message and expect replies? Then 
+full reset would make sense. It also achieves the goal of not seconding 
+guessing the submission backend you raise.
 
+Like it is now, and the need for this series demonstrates it, the whole 
+thing has a pretty poor "impedance" match. Not even sure what 
+intel_guc_find_hung_context is doing in intel_engine_hearbeat.c - why is 
+that not in intel_gt_handle_error at least? Why is hearbeat code special 
+and other callers of intel_gt_handle_error don't need it?
+
+Regards,
+
+Tvrtko
