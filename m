@@ -2,58 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A3A74C14C7
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 14:53:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA7BF4C14C6
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 14:53:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94DBD10F6D4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33B7810F6D9;
 	Wed, 23 Feb 2022 13:52:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 85926 seconds by postgrey-1.36 at gabe;
- Tue, 22 Feb 2022 14:46:26 UTC
-Received: from zg8tmty1ljiyny4xntqumjca.icoremail.net
- (zg8tmty1ljiyny4xntqumjca.icoremail.net [165.227.154.27])
- by gabe.freedesktop.org (Postfix) with SMTP id F278B10E61A;
- Tue, 22 Feb 2022 14:46:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=pku.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
- Message-Id; bh=/N7f5ydQqsIl84ZhQi0C4HKqO/xehbQ85yFBefZFYwk=; b=X
- UeNkJ9QAmEf/PymO4YyvkY/VCWtYG0jdJ5o54ElhmJQpY0U/D64umY6rXX1f9vV5
- InUUDK4xv8o6zA84TeLIl5qiAm2jTQ467gHirl6qOFBeoBwRmJ9I8TuoMNH+zjob
- b8kCEL01GyFja+suykJjqK8x/ftQlh1N5LiXaF24Cw=
-Received: from localhost (unknown [10.129.21.144])
- by front01 (Coremail) with SMTP id 5oFpogBnbjot9xRiEyD3AQ--.4786S2;
- Tue, 22 Feb 2022 22:46:05 +0800 (CST)
-From: Yongzhi Liu <lyz_cs@pku.edu.cn>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@linux.ie,
- daniel@ffwll.ch, thomas.hellstrom@linux.intel.com,
- maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
- matthew.d.roper@intel.com, lyz_cs@pku.edu.cn, tzimmermann@suse.de,
- michal.winiarski@intel.com
-Date: Tue, 22 Feb 2022 06:46:01 -0800
-Message-Id: <1645541161-46607-1-git-send-email-lyz_cs@pku.edu.cn>
-X-Mailer: git-send-email 2.7.4
-X-CM-TRANSID: 5oFpogBnbjot9xRiEyD3AQ--.4786S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7JF1DGr45Gr1kXw4xCw4xCrg_yoWDZwc_CF
- Wakr1fGwnrWrs0kF17Cws3AFy0yFyjgr4kuw10yrZ3Jry2yr4DX3s2yr1UAF18GFWUuF9x
- Gw4Du3Z8Ars0kjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUb3AFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AK
- wVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20x
- vE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4UJVWxJr1l84ACjcxK6I8E
- 87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c
- 8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_
- Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwI
- xGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lc2xSY4AK
- 6svPMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_Kr1UJr1l4I8I3I0E4IkC6x
- 0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
- zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
- 4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
- CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCT
- nIWIevJa73UjIFyTuYvjfUoOJ5UUUUU
-X-CM-SenderInfo: irzqijirqukmo6sn3hxhgxhubq/1tbiAwEIBlPy7uKuvgAXsm
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
+ [IPv6:2a00:1450:4864:20::32b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B04CB10E975;
+ Wed, 23 Feb 2022 12:09:25 +0000 (UTC)
+Received: by mail-wm1-x32b.google.com with SMTP id
+ v2-20020a7bcb42000000b0037b9d960079so1420243wmj.0; 
+ Wed, 23 Feb 2022 04:09:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=XthWtcx8CQQ6z/Lfovl9ePMxpx3VHx/bDsastA+Xo/Y=;
+ b=Y22cedrxeR+ywyVnUEBJ3MqpAQqnxuukkkbsAQRovrWabWEHabwzrgc17KdGiGOdno
+ IcSfsG9xcKK/PzvfrAjNob+muSRsfRTssCmuqTuG2BcIK+G5n7awdRq11RmEftEXZvnh
+ PCT24MiKvnplpPn91CXRNja1ceFgaPanB3ZtW3+5KplWtYVJtR2pm6BkopWOTggGr4MS
+ fmfN8LKpVjtncGQs8v1RFqREMxuSg4hop2IeekPD+7BaebKmkEfRS3ZqoYIoUYHB2RRZ
+ ffRba93CCry6mCGYojsiRTXVXoL7uzphXPQVl8sBZZSt8wYt/+IstT9JYggESauX2jFg
+ BfpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=XthWtcx8CQQ6z/Lfovl9ePMxpx3VHx/bDsastA+Xo/Y=;
+ b=D+NlO6enh1eVNzQS93ngSY+ouWmoyycxUPOAWzeRjaZ8IOkZq6/MS1zfbxp3cXvvMY
+ 0iB5KqrcdFjJIaZedrfDRBBUb0uB5UUUYYamB7w2vG4RIiSUoAXRHUmlDZtDbQp0l1Pt
+ keYWPn0b+5sv4vApDQWhEEoP7mXUcexPPOMA/o+p+ESvqDCBTMJ5kEol8N+TOQZRWQcv
+ xnZE0x1oGUHWegKXk0hCgbV+KzVTwcu3i0ckWlIzhORbMUW+kNkAgocSYiVvv02ldvJH
+ p2ecanQk4NHMLCIK4U26TIRrQ/UN4/Y1Z3mvGkQ/oJgjcYuZifAohzYOam7WtpOh8MMk
+ uT0w==
+X-Gm-Message-State: AOAM530uGZ6uEG8i6mz0axn05O4hRrA0Ora8tuIkbZRwaw11RENP5606
+ aKDVoEfTirarK3Pl3ODbVeQ=
+X-Google-Smtp-Source: ABdhPJwhENDV0VlSU5f4YqTw2faSx1qMsaw+VxmLxp2w2HX7Rtqr3nK3WWBoH9/uoF2ijiMQmEtPug==
+X-Received: by 2002:a05:600c:48a:b0:380:3f3a:e08e with SMTP id
+ d10-20020a05600c048a00b003803f3ae08emr7160797wme.1.1645618164119; 
+ Wed, 23 Feb 2022 04:09:24 -0800 (PST)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194])
+ by smtp.gmail.com with ESMTPSA id j10sm6733042wmq.20.2022.02.23.04.09.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 23 Feb 2022 04:09:23 -0800 (PST)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Wed, 23 Feb 2022 12:09:23 +0000
+Message-Id: <20220223120923.239867-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 23 Feb 2022 13:52:58 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: Check input parameter for NULL
+Subject: [Intel-gfx] [PATCH][V2] drm/i915: make a handful of read-only
+ arrays static const
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,45 +77,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[why]
-i915_gem_object_put_pages_phys() frees pages and standard
-pattern is to allow caller to not care if it's
-NULL or not. This will reduce burden on
-the callers to perform this check.
+Don't populate the read-only arrays on the stack but instead make
+them static const and signed 8 bit ints. Also makes the object code a
+little smaller.  Reformat the statements to clear up checkpatch warning.
 
-[how]
-Fix it by adding Null check.
-
-Signed-off-by: Yongzhi Liu <lyz_cs@pku.edu.cn>
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_phys.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-index ca6faff..09c3dcb 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-@@ -95,8 +95,13 @@ void
- i915_gem_object_put_pages_phys(struct drm_i915_gem_object *obj,
- 			       struct sg_table *pages)
+V2: Make arrays signed 8 bit integers as requested by Ville Syrjälä
+
+---
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 3faea903b9ae..d49f66237ec3 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -378,10 +378,18 @@ calculate_rc_params(struct rc_parameters *rc,
  {
--	dma_addr_t dma = sg_dma_address(pages->sgl);
--	void *vaddr = sg_page(pages->sgl);
-+	dma_addr_t dma;
-+	void *vaddr;
-+
-+	if (!pages)
-+		return;
-+	dma = sg_dma_address(pages->sgl);
-+	vaddr = sg_page(pages->sgl);
- 
- 	__i915_gem_object_release_shmem(obj, pages, false);
+ 	int bpc = vdsc_cfg->bits_per_component;
+ 	int bpp = vdsc_cfg->bits_per_pixel >> 4;
+-	int ofs_und6[] = { 0, -2, -2, -4, -6, -6, -8, -8, -8, -10, -10, -12, -12, -12, -12 };
+-	int ofs_und8[] = { 2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -12, -12, -12 };
+-	int ofs_und12[] = { 2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -12, -12, -12 };
+-	int ofs_und15[] = { 10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -10, -12, -12, -12 };
++	static const s8 ofs_und6[] = {
++		0, -2, -2, -4, -6, -6, -8, -8, -8, -10, -10, -12, -12, -12, -12
++	};
++	static const s8 ofs_und8[] = {
++		2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -12, -12, -12
++	};
++	static const s8 ofs_und12[] = {
++		2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -12, -12, -12
++	};
++	static const s8 ofs_und15[] = {
++		10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -10, -12, -12, -12
++	};
+ 	int qp_bpc_modifier = (bpc - 8) * 2;
+ 	u32 res, buf_i, bpp_i;
  
 -- 
-2.7.4
+2.34.1
 
