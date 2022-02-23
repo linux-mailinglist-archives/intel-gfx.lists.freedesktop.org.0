@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B3764C1F17
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 23:49:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D75EC4C1F58
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 00:07:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E905710E187;
-	Wed, 23 Feb 2022 22:49:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1174810E580;
+	Wed, 23 Feb 2022 23:07:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EAD0910E4D4;
- Wed, 23 Feb 2022 22:49:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id DEBF210E580;
+ Wed, 23 Feb 2022 23:07:32 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E7976AADD3;
- Wed, 23 Feb 2022 22:49:49 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DC31DA77A5;
+ Wed, 23 Feb 2022 23:07:32 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Wed, 23 Feb 2022 22:49:49 -0000
-Message-ID: <164565658991.25287.12304194908938599861@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Wed, 23 Feb 2022 23:07:32 -0000
+Message-ID: <164565765287.25286.13933909920309096844@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220222140422.1121163-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20220222140422.1121163-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIFBl?=
- =?utf-8?q?r_client_GPU_utilisation_=28rev2=29?=
+References: <20220222141424.35165-1-jose.souza@intel.com>
+In-Reply-To: <20220222141424.35165-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/tgl=3A_Simply_subplatform_detection_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,13 +47,29 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Per client GPU utilisation (rev2)
-URL   : https://patchwork.freedesktop.org/series/100573/
-State : warning
+Series: drm/i915/tgl: Simply subplatform detection (rev3)
+URL   : https://patchwork.freedesktop.org/series/100517/
+State : failure
 
 == Summary ==
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/gem/i915_gem_context_types.h:417: warning: Function parameter or member 'client_link' not described in 'i915_gem_context'
+Applying: drm/i915/tgl: Simply subplatform detection
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+M	drivers/gpu/drm/i915/i915_drv.h
+M	drivers/gpu/drm/i915/i915_reg.h
+M	drivers/gpu/drm/i915/intel_device_info.c
+M	drivers/gpu/drm/i915/intel_device_info.h
+M	drivers/gpu/drm/i915/intel_step.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/intel_device_info.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/intel_device_info.c
+Auto-merging drivers/gpu/drm/i915/i915_reg.h
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/i915/tgl: Simply subplatform detection
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
