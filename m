@@ -2,47 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 384F44C1FA3
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 00:29:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5A184C203B
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 00:48:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C1B610E3D9;
-	Wed, 23 Feb 2022 23:29:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4881B10E131;
+	Wed, 23 Feb 2022 23:48:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BE5B10E1D6;
- Wed, 23 Feb 2022 23:29:51 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 876DA10E131
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Feb 2022 23:48:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645658991; x=1677194991;
- h=date:from:to:cc:subject:message-id:mime-version:
+ t=1645660132; x=1677196132;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=ZfDu1h4uCUoMJYG68VyxwCaelhzJ81rmY8RlHLbjYI8=;
- b=iJ+zCcgy7OomMSi76XZLg4idemaUVysByJIjeH4l2ZUKZeB2r85HubKH
- A+HqafIWhKU4kaIOqTBNAkvpQreI77jQpySKyuPhHOZ2W32ylcuST2WEP
- xlBSZR2z8pmk3PiGQdQ0KoB8thnmJoQsf/QEgimZ7Vw/PNxa1nV/DUJ1e
- LtdTvbpZi4k1O0M+skqpVt+fZbM4NLSD+jhAs5RjjBrk7M+66gLjFNRZK
- eKZnzeyL2KXLwKjQvlQBx7rFZIfOhApEraw18Tj+kqkbpzGIzzJk3wocZ
- jvh/NYmi40SQ1REPL0XOfSLewtbg9O7+ChE5lB6ldiRku5QgOz2cz7ht8 A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="232728275"
-X-IronPort-AV: E=Sophos;i="5.88,392,1635231600"; d="scan'208";a="232728275"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 15:29:50 -0800
-X-IronPort-AV: E=Sophos;i="5.88,392,1635231600"; d="scan'208";a="548488246"
-Received: from macunaro-mobl2.amr.corp.intel.com (HELO intel.com)
- ([10.255.39.200])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 15:29:48 -0800
-Date: Wed, 23 Feb 2022 18:29:46 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YhbDan8wNZBR6FzF@intel.com>
+ bh=9NgiLlWMnPtwTcu9EKaJyVePbqOf3vqzuS/m5WJwBmo=;
+ b=PdO96m8HjsP7EoTCjZBbsfR7+G9cgAE00Jrkl512l4D50HJSlyws6+pd
+ izSVzov2C8BhHF6uYxoXs49z1KACa9v49NT2WZtyEpsJhicWCMtclNJxO
+ OolPaN8GUQwpmnBG8q+zPXDxOlyH1+a9NpbCeENrYZs6BAduXrvTM2nOU
+ zQWJuN4dRv8D5i4MPqn+zHqwhZ+2ktFJ2/pxOMxheXve8Pdqpb5rUYKS7
+ ZkmSnOviVf1gNUBSSultYmVnudmpKX0/H4bfToi5iBMO7bq2CHwM+AGD3
+ UbO5M+DkxjeWbucnOqI9n5ElRF9BCIHmf0pBEvhxJI3WflgcgQqHu4CMq w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="315335127"
+X-IronPort-AV: E=Sophos;i="5.88,392,1635231600"; d="scan'208";a="315335127"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2022 15:48:51 -0800
+X-IronPort-AV: E=Sophos;i="5.88,392,1635231600"; d="scan'208";a="639510936"
+Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2022 15:48:51 -0800
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 23 Feb 2022 15:46:07 -0800
+Message-Id: <20220223234607.903551-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-intel-next
+Subject: [Intel-gfx] [PATCH] drm/i915/cdclk: Add cdclk check to atomic check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,932 +53,374 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+Checking cdclk conditions during atomic check and preparing
+for commit phase so we can have atomic commit as simple
+as possible. Add the specific steps to be taken during
+cdclk changes, prepare for squashing, crawling and modeset
+scenarios.
+
+Rename functions intel_cdclk_can_squash() and
+intel_cdclk_can_crawl() since they no longer simply check
+if squashing and crawling can be performed.
+
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 162 +++++++++++-------
+ drivers/gpu/drm/i915/display/intel_cdclk.h    |  16 +-
+ .../drm/i915/display/intel_display_power.c    |   2 +-
+ 3 files changed, 116 insertions(+), 64 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 8888fda8b701..62dc246ca471 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1700,12 +1700,18 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 			  const struct intel_cdclk_config *cdclk_config,
+ 			  enum pipe pipe)
+ {
++	struct intel_cdclk_state *cdclk_state =  to_intel_cdclk_state(dev_priv->cdclk.obj.state);
++	struct intel_atomic_state *state = cdclk_state->base.state;
++	const struct intel_cdclk_state *new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
++	struct cdclk_steps *cdclk_steps = new_cdclk_state->steps;
+ 	int cdclk = cdclk_config->cdclk;
+ 	int vco = cdclk_config->vco;
++	u32 squash_ctl = 0;
+ 	u32 val;
+ 	u16 waveform;
+ 	int clock;
+ 	int ret;
++	int i;
+ 
+ 	/* Inform power controller of upcoming frequency change. */
+ 	if (DISPLAY_VER(dev_priv) >= 11)
+@@ -1728,40 +1734,43 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 		return;
+ 	}
+ 
+-	if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->cdclk.hw.vco > 0 && vco > 0) {
+-		if (dev_priv->cdclk.hw.vco != vco)
++	for (i = 0; i < CDCLK_ACTIONS; i++) {
++		switch (cdclk_steps[i].action) {
++		case CDCLK_MODESET:
++			if (DISPLAY_VER(dev_priv) >= 11) {
++				if (dev_priv->cdclk.hw.vco != 0 &&
++				    dev_priv->cdclk.hw.vco != vco)
++					icl_cdclk_pll_disable(dev_priv);
++
++				if (dev_priv->cdclk.hw.vco != vco)
++					icl_cdclk_pll_enable(dev_priv, vco);
++			} else {
++				if (dev_priv->cdclk.hw.vco != 0 &&
++				    dev_priv->cdclk.hw.vco != vco)
++					bxt_de_pll_disable(dev_priv);
++
++				if (dev_priv->cdclk.hw.vco != vco)
++					bxt_de_pll_enable(dev_priv, vco);
++			}
++			clock = cdclk;
++			break;
++		case CDCLK_CRAWL:
+ 			adlp_cdclk_pll_crawl(dev_priv, vco);
+-	} else if (DISPLAY_VER(dev_priv) >= 11) {
+-		if (dev_priv->cdclk.hw.vco != 0 &&
+-		    dev_priv->cdclk.hw.vco != vco)
+-			icl_cdclk_pll_disable(dev_priv);
+-
+-		if (dev_priv->cdclk.hw.vco != vco)
+-			icl_cdclk_pll_enable(dev_priv, vco);
+-	} else {
+-		if (dev_priv->cdclk.hw.vco != 0 &&
+-		    dev_priv->cdclk.hw.vco != vco)
+-			bxt_de_pll_disable(dev_priv);
+-
+-		if (dev_priv->cdclk.hw.vco != vco)
+-			bxt_de_pll_enable(dev_priv, vco);
+-	}
+-
+-	waveform = cdclk_squash_waveform(dev_priv, cdclk);
+-
+-	if (waveform)
+-		clock = vco / 2;
+-	else
+-		clock = cdclk;
+-
+-	if (has_cdclk_squasher(dev_priv)) {
+-		u32 squash_ctl = 0;
+-
+-		if (waveform)
++			clock = cdclk;
++			break;
++		case CDCLK_SQUASH:
++			waveform =  cdclk_squash_waveform(dev_priv, cdclk_steps[i].cdclk);
++			clock = vco / 2;
+ 			squash_ctl = CDCLK_SQUASH_ENABLE |
+ 				CDCLK_SQUASH_WINDOW_SIZE(0xf) | waveform;
+-
+-		intel_de_write(dev_priv, CDCLK_SQUASH_CTL, squash_ctl);
++			intel_de_write(dev_priv, CDCLK_SQUASH_CTL, squash_ctl);
++			break;
++		case CDCLK_NOOP:
++			break;
++		default:
++			MISSING_CASE(cdclk_steps[i].action);
++			break;
++		}
+ 	}
+ 
+ 	val = bxt_cdclk_cd2x_div_sel(dev_priv, clock, vco) |
+@@ -1951,11 +1960,12 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915)
+ 		skl_cdclk_uninit_hw(i915);
+ }
+ 
+-static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
+-				  const struct intel_cdclk_config *a,
+-				  const struct intel_cdclk_config *b)
++static bool intel_cdclk_crawl(struct drm_i915_private *dev_priv,
++			      const struct intel_cdclk_state *a,
++			      struct intel_cdclk_state *b)
+ {
+ 	int a_div, b_div;
++	struct cdclk_steps *cdclk_transition = b->steps;
+ 
+ 	if (!HAS_CDCLK_CRAWL(dev_priv))
+ 		return false;
+@@ -1964,19 +1974,25 @@ static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
+ 	 * The vco and cd2x divider will change independently
+ 	 * from each, so we disallow cd2x change when crawling.
+ 	 */
+-	a_div = DIV_ROUND_CLOSEST(a->vco, a->cdclk);
+-	b_div = DIV_ROUND_CLOSEST(b->vco, b->cdclk);
++	a_div = DIV_ROUND_CLOSEST(a->actual.vco, a->actual.cdclk);
++	b_div = DIV_ROUND_CLOSEST(b->actual.vco, b->actual.cdclk);
++
++	cdclk_transition[0].action = CDCLK_CRAWL;
++	cdclk_transition[0].cdclk = b->actual.cdclk;
++	cdclk_transition[1].action = CDCLK_NOOP;
++	cdclk_transition[1].cdclk = b->actual.cdclk;
+ 
+-	return a->vco != 0 && b->vco != 0 &&
+-		a->vco != b->vco &&
++	return a->actual.vco != 0 && b->actual.vco != 0 &&
++		a->actual.vco != b->actual.vco &&
+ 		a_div == b_div &&
+-		a->ref == b->ref;
++		a->actual.ref == b->actual.ref;
+ }
+ 
+-static bool intel_cdclk_can_squash(struct drm_i915_private *dev_priv,
+-				   const struct intel_cdclk_config *a,
+-				   const struct intel_cdclk_config *b)
++static bool intel_cdclk_squash(struct drm_i915_private *dev_priv,
++			       const struct intel_cdclk_state *a,
++			       struct intel_cdclk_state *b)
+ {
++	struct cdclk_steps *cdclk_transition = b->steps;
+ 	/*
+ 	 * FIXME should store a bit more state in intel_cdclk_config
+ 	 * to differentiate squasher vs. cd2x divider properly. For
+@@ -1986,10 +2002,15 @@ static bool intel_cdclk_can_squash(struct drm_i915_private *dev_priv,
+ 	if (!has_cdclk_squasher(dev_priv))
+ 		return false;
+ 
+-	return a->cdclk != b->cdclk &&
+-		a->vco != 0 &&
+-		a->vco == b->vco &&
+-		a->ref == b->ref;
++	cdclk_transition[0].action = CDCLK_SQUASH;
++	cdclk_transition[0].cdclk = b->actual.cdclk;
++	cdclk_transition[1].action = CDCLK_NOOP;
++	cdclk_transition[1].cdclk = b->actual.cdclk;
++
++	return a->actual.cdclk != b->actual.cdclk &&
++		a->actual.vco != 0 &&
++		a->actual.vco == b->actual.vco &&
++		a->actual.ref == b->actual.ref;
+ }
+ 
+ /**
+@@ -2002,9 +2023,25 @@ static bool intel_cdclk_can_squash(struct drm_i915_private *dev_priv,
+  * True if changing between the two CDCLK configurations
+  * requires all pipes to be off, false if not.
+  */
+-bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
++bool intel_cdclk_needs_modeset(struct drm_i915_private *i915,
++			       const struct intel_cdclk_config *a,
+ 			       const struct intel_cdclk_config *b)
+ {
++	struct intel_cdclk_state *cdclk_state =  to_intel_cdclk_state(i915->cdclk.obj.state);
++	struct intel_atomic_state *state = cdclk_state->base.state;
++	const struct intel_cdclk_state *new_cdclk_state =
++		intel_atomic_get_new_cdclk_state(state);
++	struct cdclk_steps *cdclk_transition = new_cdclk_state->steps;
++
++	if (a->cdclk != b->cdclk ||
++	    a->vco != b->vco ||
++	    a->ref != b->ref) {
++		cdclk_transition[0].action = CDCLK_MODESET;
++		cdclk_transition[0].cdclk = b->cdclk;
++		cdclk_transition[1].action = CDCLK_NOOP;
++		cdclk_transition[1].cdclk = b->cdclk;
++	}
++
+ 	return a->cdclk != b->cdclk ||
+ 		a->vco != b->vco ||
+ 		a->ref != b->ref;
+@@ -2052,10 +2089,11 @@ static bool intel_cdclk_can_cd2x_update(struct drm_i915_private *dev_priv,
+  * Returns:
+  * True if the CDCLK configurations don't match, false if they do.
+  */
+-static bool intel_cdclk_changed(const struct intel_cdclk_config *a,
++static bool intel_cdclk_changed(struct drm_i915_private *i915,
++				const struct intel_cdclk_config *a,
+ 				const struct intel_cdclk_config *b)
+ {
+-	return intel_cdclk_needs_modeset(a, b) ||
++	return intel_cdclk_needs_modeset(i915, a, b) ||
+ 		a->voltage_level != b->voltage_level;
+ }
+ 
+@@ -2084,7 +2122,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+ {
+ 	struct intel_encoder *encoder;
+ 
+-	if (!intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_config))
++	if (!intel_cdclk_changed(dev_priv, &dev_priv->cdclk.hw, cdclk_config))
+ 		return;
+ 
+ 	if (drm_WARN_ON_ONCE(&dev_priv->drm, !dev_priv->cdclk_funcs->set_cdclk))
+@@ -2131,7 +2169,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+ 	intel_audio_cdclk_change_post(dev_priv);
+ 
+ 	if (drm_WARN(&dev_priv->drm,
+-		     intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_config),
++		     intel_cdclk_changed(dev_priv, &dev_priv->cdclk.hw, cdclk_config),
+ 		     "cdclk state doesn't match!\n")) {
+ 		intel_cdclk_dump_config(dev_priv, &dev_priv->cdclk.hw, "[hw state]");
+ 		intel_cdclk_dump_config(dev_priv, cdclk_config, "[sw state]");
+@@ -2155,7 +2193,7 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+ 		intel_atomic_get_new_cdclk_state(state);
+ 	enum pipe pipe = new_cdclk_state->pipe;
+ 
+-	if (!intel_cdclk_changed(&old_cdclk_state->actual,
++	if (!intel_cdclk_changed(dev_priv, &old_cdclk_state->actual,
+ 				 &new_cdclk_state->actual))
+ 		return;
+ 
+@@ -2184,7 +2222,7 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
+ 		intel_atomic_get_new_cdclk_state(state);
+ 	enum pipe pipe = new_cdclk_state->pipe;
+ 
+-	if (!intel_cdclk_changed(&old_cdclk_state->actual,
++	if (!intel_cdclk_changed(dev_priv, &old_cdclk_state->actual,
+ 				 &new_cdclk_state->actual))
+ 		return;
+ 
+@@ -2738,7 +2776,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+ 	if (ret)
+ 		return ret;
+ 
+-	if (intel_cdclk_changed(&old_cdclk_state->actual,
++	if (intel_cdclk_changed(dev_priv, &old_cdclk_state->actual,
+ 				&new_cdclk_state->actual)) {
+ 		/*
+ 		 * Also serialize commits across all crtcs
+@@ -2749,7 +2787,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+ 			return ret;
+ 	} else if (old_cdclk_state->active_pipes != new_cdclk_state->active_pipes ||
+ 		   old_cdclk_state->force_min_cdclk != new_cdclk_state->force_min_cdclk ||
+-		   intel_cdclk_changed(&old_cdclk_state->logical,
++		   intel_cdclk_changed(dev_priv, &old_cdclk_state->logical,
+ 				       &new_cdclk_state->logical)) {
+ 		ret = intel_atomic_lock_global_state(&new_cdclk_state->base);
+ 		if (ret)
+@@ -2776,14 +2814,14 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+ 			pipe = INVALID_PIPE;
+ 	}
+ 
+-	if (intel_cdclk_can_squash(dev_priv,
+-				   &old_cdclk_state->actual,
+-				   &new_cdclk_state->actual)) {
++	if (intel_cdclk_squash(dev_priv,
++			       old_cdclk_state,
++			       new_cdclk_state)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "Can change cdclk via squasher\n");
+-	} else if (intel_cdclk_can_crawl(dev_priv,
+-					 &old_cdclk_state->actual,
+-					 &new_cdclk_state->actual)) {
++	} else if (intel_cdclk_crawl(dev_priv,
++				     old_cdclk_state,
++				     new_cdclk_state)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "Can change cdclk via crawl\n");
+ 	} else if (pipe != INVALID_PIPE) {
+@@ -2792,7 +2830,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "Can change cdclk cd2x divider with pipe %c active\n",
+ 			    pipe_name(pipe));
+-	} else if (intel_cdclk_needs_modeset(&old_cdclk_state->actual,
++	} else if (intel_cdclk_needs_modeset(dev_priv, &old_cdclk_state->actual,
+ 					     &new_cdclk_state->actual)) {
+ 		/* All pipes must be switched off while we change the cdclk. */
+ 		ret = intel_modeset_all_pipes(state);
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+index df66f66fbad0..5008463958b1 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+@@ -20,6 +20,14 @@ struct intel_cdclk_config {
+ 	u8 voltage_level;
+ };
+ 
++enum cdclk_actions {
++	CDCLK_MODESET = 0,
++	CDCLK_SQUASH,
++	CDCLK_CRAWL,
++	CDCLK_NOOP,
++	CDCLK_ACTIONS
++};
++
+ struct intel_cdclk_state {
+ 	struct intel_global_state base;
+ 
+@@ -49,6 +57,11 @@ struct intel_cdclk_state {
+ 
+ 	/* bitmask of active pipes */
+ 	u8 active_pipes;
++
++	struct cdclk_steps {
++		enum cdclk_actions action;
++		u32 cdclk;
++	} steps[CDCLK_ACTIONS];
+ };
+ 
+ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state);
+@@ -58,7 +71,8 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv);
+ void intel_update_max_cdclk(struct drm_i915_private *dev_priv);
+ void intel_update_cdclk(struct drm_i915_private *dev_priv);
+ u32 intel_read_rawclk(struct drm_i915_private *dev_priv);
+-bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
++bool intel_cdclk_needs_modeset(struct drm_i915_private *i915,
++			       const struct intel_cdclk_config *a,
+ 			       const struct intel_cdclk_config *b);
+ void intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state);
+ void intel_set_cdclk_post_plane_update(struct intel_atomic_state *state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 9ebae7ac3235..72edcc5bbea3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1298,7 +1298,7 @@ static void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
+ 	intel_cdclk_get_cdclk(dev_priv, &cdclk_config);
+ 	/* Can't read out voltage_level so can't use intel_cdclk_changed() */
+ 	drm_WARN_ON(&dev_priv->drm,
+-		    intel_cdclk_needs_modeset(&dev_priv->cdclk.hw,
++		    intel_cdclk_needs_modeset(dev_priv, &dev_priv->cdclk.hw,
+ 					      &cdclk_config));
+ 
+ 	gen9_assert_dbuf_enabled(dev_priv);
+-- 
+2.25.1
 
-Please notice that this pull request includes the drm-intel-gt-next
-(drm-intel-gt-next-2022-02-17) that didn't applied cleanly for you due to
-many conflicts generated by a big divergence from our drm-intel
-branches.
-
-So, please apply this one and ignore the one that Joonas had sent.
-
-While applying the drm-intel-gt-next-2022-02-17 I have used
-the drm-rerere/fixups/drm-intel-gt-next.patch entirely as part
-of the merge conflict resolution. Now all the i915 changes should
-apply cleanly for you on drm-next.
-
-Moving forward we will need to have more constant cross merges
-or chain PRs whenever we start to have big divergences like this
-so the linux-next and drm-next don't get disrupted again.
-
-Thanks,
-Rodrigo.
-
-Here goes drm-intel-next-2022-02-23:
-Linux core:
------------
-iosys-map: Add offset to iosys_map_memcpy_to() (Lucas)
-iosys-map: Add a few more helpers (Lucas)
-
-i915 (display and core changes on drm-intel-next):
---------------------------------------------------
-
-- Display's DBuf and watermark related fixes and improvements (Ville)
-- More i915 header and other code clean-up (Jani)
-- Display IPS fixes and improvements (Ville)
-- OPRegion fixes and cleanups (Jani)
-- Fix the plane end Y offset check for FBC (Ville)
-- DP 128b/132b updates (Jani)
-- Disable runtime pm wakeref tracking for the mock device selftest (Ville)
-- Many display code clean-up while targeting to fix up DP DFP 4:2:0 handling (Ville)
-- Bigjoiner state tracking and more bigjoiner related work (Ville)
-- Update DMC_DEBUG3 register for DG1 (Chuansheng)
-- SAGV fixes (Ville)
-- More GT register cleanup (Matt)
-- Fix build issue when using clang (Tong)
-- Display DG2 fixes (Matt)
-- ADL-P PHY related fixes (Imre)
-- PSR2 fixes (Jose)
-- Add PCH Support for Alder Lake N (Tejas)
-
-drm-intel-gt-next (drm-intel-gt-next-2022-02-17):
--------------------------------------------------
-UAPI Changes:
-
-- Weak parallel submission support for execlists
-
-  Minimal implementation of the parallel submission support for
-  execlists backend that was previously only implemented for GuC.
-  Support one sibling non-virtual engine.
-
-Core Changes:
-
-- Two backmerges of drm/drm-next for header file renames/changes and
-  i915_regs reorganization
-
-Driver Changes:
-
-- Add new DG2 subplatform: DG2-G12 (Matt R)
-- Add new DG2 workarounds (Matt R, Ram, Bruce)
-- Handle pre-programmed WOPCM registers for DG2+ (Daniele)
-- Update guc shim control programming on XeHP SDV+ (Daniele)
-- Add RPL-S C0/D0 stepping information (Anusha)
-- Improve GuC ADS initialization to work on ARM64 on dGFX (Lucas)
-
-- Fix KMD and GuC race on accessing PMU busyness (Umesh)
-- Use PM timestamp instead of RING TIMESTAMP for reference in PMU with GuC (Umesh)
-- Report error on invalid reset notification from GuC (John)
-- Avoid WARN splat by holding RPM wakelock during PXP unbind (Juston)
-- Fixes to parallel submission implementation (Matt B.)
-- Improve GuC loading status check/error reports (John)
-- Tweak TTM LRU priority hint selection (Matt A.)
-- Align the plane_vma to min_page_size of stolen mem (Ram)
-
-- Introduce vma resources and implement async unbinding (Thomas)
-- Use struct vma_resource instead of struct vma_snapshot (Thomas)
-- Return some TTM accel move errors instead of trying memcpy move (Thomas)
-- Fix a race between vma / object destruction and unbinding (Thomas)
-- Remove short-term pins from execbuf (Maarten)
-- Update to GuC version 69.0.3 (John, Michal Wa.)
-- Improvements to GT reset paths in GuC backend (Matt B.)
-- Use shrinker_release_pages instead of writeback in shmem object hooks (Matt A., Tvrtko)
-- Use trylock instead of blocking lock when freeing GEM objects (Maarten)
-- Allocate intel_engine_coredump_alloc with ALLOW_FAIL (Matt B.)
-- Fixes to object unmapping and purging (Matt A)
-- Check for wedged device in GuC backend (John)
-- Avoid lockdep splat by locking dpt_obj around set_cache_level (Maarten)
-- Allow dead vm to unbind vma's without lock (Maarten)
-- s/engine->i915/i915/ for DG2 engine workarounds (Matt R)
-
-- Use to_gt() helper for GGTT accesses (Michal Wi.)
-- Selftest improvements (Matt B., Thomas, Ram)
-- Coding style and compiler warning fixes (Matt B., Jasmine, Andi, Colin, Gustavo, Dan)
-
-Thanks,
-Rodrigo.
-
-The following changes since commit 7938f4218168ae9fc4bdddb15976f9ebbae41999:
-
-  dma-buf-map: Rename to iosys-map (2022-02-07 16:35:35 -0800)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-2022-02-23
-
-for you to fetch changes up to 30424ebae8df0f786835e7a31ad790fa00764f35:
-
-  Merge tag 'drm-intel-gt-next-2022-02-17' of git://anongit.freedesktop.org/drm/drm-intel into drm-intel-next (2022-02-23 15:03:51 -0500)
-
-----------------------------------------------------------------
-Linux core:
------------
-iosys-map: Add offset to iosys_map_memcpy_to() (Lucas)
-iosys-map: Add a few more helpers (Lucas)
-
-i915 (display and core changes on drm-intel-next):
---------------------------------------------------
-
-- Display's DBuf and watermark related fixes and improvements (Ville)
-- More i915 header and other code clean-up (Jani)
-- Display IPS fixes and improvements (Ville)
-- OPRegion fixes and cleanups (Jani)
-- Fix the plane end Y offset check for FBC (Ville)
-- DP 128b/132b updates (Jani)
-- Disable runtime pm wakeref tracking for the mock device selftest (Ville)
-- Many display code clean-up while targeting to fix up DP DFP 4:2:0 handling (Ville)
-- Bigjoiner state tracking and more bigjoiner related work (Ville)
-- Update DMC_DEBUG3 register for DG1 (Chuansheng)
-- SAGV fixes (Ville)
-- More GT register cleanup (Matt)
-- Fix build issue when using clang (Tong)
-- Display DG2 fixes (Matt)
-- ADL-P PHY related fixes (Imre)
-- PSR2 fixes (Jose)
-- Add PCH Support for Alder Lake N (Tejas)
-
-drm-intel-gt-next (drm-intel-gt-next-2022-02-17):
--------------------------------------------------
-UAPI Changes:
-
-- Weak parallel submission support for execlists
-
-  Minimal implementation of the parallel submission support for
-  execlists backend that was previously only implemented for GuC.
-  Support one sibling non-virtual engine.
-
-Core Changes:
-
-- Two backmerges of drm/drm-next for header file renames/changes and
-  i915_regs reorganization
-
-Driver Changes:
-
-- Add new DG2 subplatform: DG2-G12 (Matt R)
-- Add new DG2 workarounds (Matt R, Ram, Bruce)
-- Handle pre-programmed WOPCM registers for DG2+ (Daniele)
-- Update guc shim control programming on XeHP SDV+ (Daniele)
-- Add RPL-S C0/D0 stepping information (Anusha)
-- Improve GuC ADS initialization to work on ARM64 on dGFX (Lucas)
-
-- Fix KMD and GuC race on accessing PMU busyness (Umesh)
-- Use PM timestamp instead of RING TIMESTAMP for reference in PMU with GuC (Umesh)
-- Report error on invalid reset notification from GuC (John)
-- Avoid WARN splat by holding RPM wakelock during PXP unbind (Juston)
-- Fixes to parallel submission implementation (Matt B.)
-- Improve GuC loading status check/error reports (John)
-- Tweak TTM LRU priority hint selection (Matt A.)
-- Align the plane_vma to min_page_size of stolen mem (Ram)
-
-- Introduce vma resources and implement async unbinding (Thomas)
-- Use struct vma_resource instead of struct vma_snapshot (Thomas)
-- Return some TTM accel move errors instead of trying memcpy move (Thomas)
-- Fix a race between vma / object destruction and unbinding (Thomas)
-- Remove short-term pins from execbuf (Maarten)
-- Update to GuC version 69.0.3 (John, Michal Wa.)
-- Improvements to GT reset paths in GuC backend (Matt B.)
-- Use shrinker_release_pages instead of writeback in shmem object hooks (Matt A., Tvrtko)
-- Use trylock instead of blocking lock when freeing GEM objects (Maarten)
-- Allocate intel_engine_coredump_alloc with ALLOW_FAIL (Matt B.)
-- Fixes to object unmapping and purging (Matt A)
-- Check for wedged device in GuC backend (John)
-- Avoid lockdep splat by locking dpt_obj around set_cache_level (Maarten)
-- Allow dead vm to unbind vma's without lock (Maarten)
-- s/engine->i915/i915/ for DG2 engine workarounds (Matt R)
-
-- Use to_gt() helper for GGTT accesses (Michal Wi.)
-- Selftest improvements (Matt B., Thomas, Ram)
-- Coding style and compiler warning fixes (Matt B., Jasmine, Andi, Colin, Gustavo, Dan)
-
-----------------------------------------------------------------
-Andi Shyti (2):
-      drm/i915: Remove unused i915->ggtt
-      drm/i915: fix header file inclusion for might_alloc()
-
-Anusha Srivatsa (1):
-      drm/i915/rpl-s: Add stepping info
-
-Bruce Chang (1):
-      drm/i915/dg2: Add Wa_22011100796
-
-Chuansheng Liu (1):
-      drm/i915/dg1: Update DMC_DEBUG3 register
-
-Colin Ian King (1):
-      i915: make array flex_regs static const
-
-Dan Carpenter (1):
-      drm/i915: delete shadow "ret" variable
-
-Daniele Ceraolo Spurio (2):
-      drm/i915/wopcm: Handle pre-programmed WOPCM registers
-      drm/i915/guc: Update guc shim control programming on newer platforms
-
-Gustavo A. R. Silva (1):
-      drm/i915/guc: Use struct_size() helper in kmalloc()
-
-Imre Deak (2):
-      drm/i915: Disconnect PHYs left connected by BIOS on disabled ports
-      drm/i915/adlp: Add TypeC PHY TBT->DP-alt/legacy mode switch workaround
-
-Jani Nikula (46):
-      drm/i915: group i915_drv.h forward declarations together
-      drm/i915/color: hide struct intel_color_funcs
-      drm/i915/hpd: hide struct intel_hotplug_funcs
-      drm/i915/fdi: hide struct intel_fdi_funcs
-      drm/i915/dpll: add intel_dpll_crtc_compute_clock()
-      drm/i915/dpll: hide struct intel_dpll_funcs
-      drm/i915/pm: hide struct drm_i915_clock_gating_funcs
-      drm/i915: move intel_hws_csb_write_index() out of i915_drv.h
-      drm/i915: move the DRIVER_* macros to i915_driver.[ch]
-      drm/i915/opregion: check port number bounds for SWSCI display power state
-      drm/i915/opregion: abstract the check for valid swsci function
-      drm/i915/opregion: early exit from encoder notify if SWSCI isn't there
-      drm/i915/opregion: handle SWSCI Mailbox #2 obsoletion
-      drm/i915/opregion: debug log about Mailbox #2 for backlight
-      drm/dp: add drm_dp_128b132b_read_aux_rd_interval()
-      drm/dp: add 128b/132b link status helpers from DP 2.0 E11
-      drm/dp: add some new DPCD macros from DP 2.0 E11
-      drm/i915/dp: move intel_dp_prepare_link_train() call
-      drm/i915/dp: rewrite DP 2.0 128b/132b link training based on errata
-      drm/i915/dp: add 128b/132b support to link status checks
-      drm/i915/mst: update slot information for 128b/132b
-      drm/i915: split out i915_gem_internal.h from i915_drv.h
-      drm/i915: remove leftover i915_gem_pm.h declarations from i915_drv.h
-      drm/i915: split out gem/i915_gem_dmabuf.h from i915_drv.h
-      drm/i915: split out gem/i915_gem_create.h from i915_drv.h
-      drm/i915: split out gem/i915_gem_domain.h from i915_drv.h
-      drm/i915: move i915_cache_level_str() static in i915_debugfs.c
-      drm/i915: move i915_gem_vm_lookup() where it's used
-      drm/i915: move i915_reset_count()/i915_reset_engine_count() out of i915_drv.h
-      drm/i915: split out i915_file_private.h from i915_drv.h
-      drm/i915: don't include drm_cache.h in i915_drv.h
-      drm/i915: include shmem_fs.h only where needed
-      drm/i915: include some drm headers only where needed
-      drm/i915: axe lots of unnecessary includes from i915_drv.h
-      drm/i915: fix drm_i915.h include grouping and sorting
-      drm/i915/gvt: #include drm_edid.h for drm_edid_block_valid()
-      drm/i915/fbdev: add intel_fbdev_framebuffer() helper
-      drm/i915/fbdev: hide struct intel_fbdev in intel_fbdev.c
-      drm/i915/lrc: move lrc_get_runtime() to intel_lrc.c
-      drm/i915/lrc: replace include with forward declarations
-      drm/i915/dp: remove accidental static on what should be a local variable
-      drm/i915/dsi: disassociate VBT video transfer mode from register values
-      drm/i915/dsi: add separate init timer mask definition for ICL DSI
-      drm/i915/reg: split out vlv_dsi_regs.h and vlv_dsi_pll_regs.h
-      drm/i915/reg: split out icl_dsi_regs.h
-      drm/i915/pxp: prefer forward declaration over includes
-
-Jasmine Newsome (1):
-      drm/i915/gem: Use local pointer ttm for __i915_ttm_move
-
-John Harrison (5):
-      drm/i915/guc: Report error on invalid reset notification
-      drm/i915/guc: Check for wedged before doing stuff
-      drm/i915/guc: Temporarily bump the GuC load timeout
-      drm/i915/guc: Update to GuC version 69.0.3
-      drm/i915/guc: Improve GuC loading status check/error reports
-
-Joonas Lahtinen (1):
-      Merge drm/drm-next into drm-intel-gt-next
-
-José Roberto de Souza (3):
-      drm/i915/display/tgl+: Implement new PLL programming step
-      drm/i915/display: Group PSR2 prog sequences and workarounds
-      drm/i915/display: Implement Wa_16013835468
-
-Jouni Högander (1):
-      drm/i915: Fix for PHY_MISC_TC1 offset
-
-Juston Li (1):
-      drm/i915/pxp: Hold RPM wakelock during PXP unbind
-
-Lucas De Marchi (4):
-      drm/i915/guc: Prepare for error propagation
-      drm/i915/guc: Use a single pass to calculate regset
-      iosys-map: Add offset to iosys_map_memcpy_to()
-      iosys-map: Add a few more helpers
-
-Maarten Lankhorst (8):
-      drm/i915: Call i915_gem_evict_vm in vm_fault_gtt to prevent new ENOSPC errors, v2.
-      drm/i915: Add locking to i915_gem_evict_vm(), v3.
-      drm/i915: Add object locking to i915_gem_evict_for_node and i915_gem_evict_something, v2.
-      drm/i915: Add i915_vma_unbind_unlocked, and take obj lock for i915_vma_unbind, v2.
-      drm/i915: Remove support for unlocked i915_vma unbind
-      drm/i915: Remove short-term pins from execbuf, v6.
-      drm/i915: Lock dpt_obj around set_cache_level, v2.
-      drm/i915: Allow dead vm to unbind vma's without lock.
-
-Manasi Navare (1):
-      drm/i915/display/vrr: Reset VRR capable property on a long hpd
-
-Matt Roper (16):
-      drm/i915/dg2: Add Wa_18018781329
-      drm/i915/dg2: Add Wa_14015227452
-      drm/i915/dg2: s/engine->i915/i915/ for engine workarounds
-      drm/i915: Introduce G12 subplatform of DG2
-      drm/i915/gt: Drop duplicate register definition for VDBOX_CGCTL3F18
-      drm/i915/gt: Move SFC lock bits to intel_engine_regs.h
-      drm/i915/gt: Use parameterized RING_MI_MODE
-      drm/i915/gt: Cleanup spacing of intel_gt_regs.h
-      drm/i915/gt: Use consistent offset notation in intel_gt_regs.h
-      drm/i915/gt: Order GT registers by MMIO offset
-      drm/i915: Define MCH registers relative to MCHBAR_MIRROR_BASE
-      drm/i915: Move MCHBAR registers to their own header
-      drm/i915: Add missing intel_mchbar_regs.h
-      drm/i915/dg2: Print PHY name properly on calibration error
-      drm/i915/dg2: Drop 38.4 MHz MPLLB tables
-      drm/i915/dg2: Enable 5th port
-
-Matthew Auld (7):
-      drm/i915: remove writeback hook
-      drm/i915: clean up shrinker_release_pages
-      drm/i915: don't call free_mmap_offset when purging
-      drm/i915/ttm: only fault WILLNEED objects
-      drm/i915/ttm: add unmap_virtual callback
-      drm/i915/ttm: ensure we unmap when purging
-      drm/i915/ttm: tweak priority hint selection
-
-Matthew Brost (11):
-      drm/i915/execlists: Weak parallel submission support for execlists
-      drm/i915: Fix possible uninitialized variable in parallel extension
-      drm/i915: Increment composite fence seqno
-      drm/i915/selftests: Add a cancel request selftest that triggers a reset
-      drm/i915/guc: Remove hacks for reset and schedule disable G2H being received out of order
-      drm/i915: Allocate intel_engine_coredump_alloc with ALLOW_FAIL
-      drm/i915/guc: Add work queue to trigger a GT reset
-      drm/i915/guc: Flush G2H handler during a GT reset
-      drm/i915: Lock timeline mutex directly in error path of eb_pin_timeline
-      drm/i915/guc: Ensure multi-lrc fini breadcrumb math is correct
-      drm/i915/selftests: Use less in contexts steal guc id test
-
-Michał Winiarski (5):
-      drm/i915/gt: Use to_gt() helper for GGTT accesses
-      drm/i915: Use to_gt() helper for GGTT accesses
-      drm/i915/gem: Use to_gt() helper for GGTT accesses
-      drm/i915/display: Use to_gt() helper for GGTT accesses
-      drm/i915/selftests: Use to_gt() helper for GGTT accesses
-
-Ramalingam C (3):
-      drm/i915/dg2: Add Wa_22011450934
-      drm/i915: align the plane_vma to min_page_size of stolen mem
-      drm/i915: More gt idling time with guc submission
-
-Rodrigo Vivi (1):
-      Merge tag 'drm-intel-gt-next-2022-02-17' of git://anongit.freedesktop.org/drm/drm-intel into drm-intel-next
-
-Tejas Upadhyay (1):
-      drm/i915/adl-n: Add PCH Support for Alder Lake N
-
-Thomas Hellström (9):
-      drm/i915: Initial introduction of vma resources
-      drm/i915: Use the vma resource as argument for gtt binding / unbinding
-      drm/i915: Don't pin the object pages during pending vma binds
-      drm/i915: Use vma resources for async unbinding
-      drm/i915: Asynchronous migration selftest
-      drm/i915: Use struct vma_resource instead of struct vma_snapshot
-      drm/i915: Fix vma resource freeing
-      drm/i915: Fix a race between vma / object destruction and unbinding
-      drm/i915/ttm: Return some errors instead of trying memcpy move
-
-Tong Zhang (1):
-      drm/i915: fix build issue when using clang
-
-Tvrtko Ursulin (1):
-      Merge drm/drm-next into drm-intel-gt-next
-
-Umesh Nerlige Ramappa (2):
-      drm/i915/pmu: Use PM timestamp instead of RING TIMESTAMP for reference
-      drm/i915/pmu: Fix KMD and GuC race on accessing busyness
-
-Ville Syrjälä (52):
-      drm/i915: Fix dbuf slice config lookup
-      drm/i915: Fix mbus join config lookup
-      drm/i915: Move vblank waits out from IPS code
-      drm/i915: Change IPS calling convention
-      drm/i915: Hoover the IPS enable/disable calls into the pre/post update hooks
-      drm/i915: Move the IPS code to its own file
-      drm/i915: Extract hsw_ips_get_config()
-      drm/i915: Fix IPS disable in intel_plane_disable_noatomic()
-      drm/i915/fbc: Fix the plane end Y offset check
-      drm/i915/selftests: Disable runtime pm wakeref tracking for the mock device
-      drm/i915: Drop pointless dev_priv argument
-      drm/i915: Extract skl_ddb_entry_init()
-      drm/i915: Fix plane relative_data_rate calculation
-      drm/i915: Introduce skl_plane_ddb_iter
-      drm/i915: Extract skl_allocate_plane_ddb()
-      drm/i915: Extract skl_crtc_calc_dbuf_bw()
-      drm/i915/hdmi: Simplify intel_hdmi_mode_clock_valid()
-      drm/i915/dp: Reuse intel_hdmi_tmds_clock()
-      drm/i915: Flag crtc scaling_filter changes as modeset
-      drm/i915: Fix bigjoiner state copy fails
-      drm/i915: Remove weird code from intel_atomic_check_bigjoiner()
-      drm/i915: Clean up the bigjoiner state copy logic
-      drm/i915: Nuke some dead code
-      drm/i915: Introduce intel_crtc_is_bigjoiner_{slave,master}()
-      drm/i915: Convert for_each_intel_crtc_mask() to take a pipe mask instead
-      drm/i915: Use for_each_intel_crtc_in_pipe_mask() more
-      drm/i915: Return both master and slave pipes from enabled_bigjoiner_pipes()
-      drm/i915: Change bigjoiner state tracking to use the pipe bitmask
-      drm/i915: Move intel_plane_atomic_calc_changes() & co. out
-      drm/i915: Introduce scaled_planes bitmask
-      drm/i915: Use {active,scaled}_planes to compute ilk watermarks
-      drm/i915: Add REG_GENMASK64() and REG_FIELD_GET64()
-      drm/i915: Widen the QGV point mask
-      drm/i915: Unconfuse pre-icl vs. icl+ intel_sagv_{pre,post}_plane_update()
-      drm/i915: Clean up SSKPD/MLTR defines
-      drm/i915: Introduce intel_crtc_planes_update_arm()
-      drm/i915: Polish ilk+ wm register bits
-      drm/i915: Move PIPE_CHICKEN RMW out from the vblank evade critical section
-      drm/i915: Make the pipe/output CSC register writes lockless
-      drm/i915: Make the CHV CGM CSC register writes lockless
-      drm/i915: Drop pointless i830 PIPECONF read
-      drm/i915: Correctly populate use_sagv_wm for all pipes
-      drm/i915: Fix bw atomic check when switching between SAGV vs. no SAGV
-      drm/i915: Split pre-icl vs. icl+ SAGV hooks apart
-      drm/i915: Pimp icl+ sagv pre/post update
-      Revert "drm/i915/display/vrr: Reset VRR capable property on a long hpd"
-      drm/i915: Dump the crtc hw state always
-      drm/i915: Dump hw.enable and pipe_mode
-      drm/i915: Remove odd any_ms=true assignment
-      drm/i915: Properly clear crtc state when disabling it fully, again
-      drm/i915: Extract icl_qgv_points_mask()
-      drm/i915: Extract intel_bw_check_data_rate()
-
- .../bindings/display/bridge/lvds-codec.yaml        |    1 +
- .../bindings/display/bridge/ti,sn65dsi83.yaml      |    5 +-
- .../bindings/display/panel/panel-simple.yaml       |    2 +
- .../bindings/display/panel/sony,acx424akp.yaml     |   11 +-
- Documentation/gpu/drm-internals.rst                |    6 +
- Documentation/gpu/drm-kms-helpers.rst              |   26 +-
- Documentation/gpu/drm-kms.rst                      |    6 +-
- Documentation/gpu/drm-mm.rst                       |    2 +-
- Documentation/gpu/i915.rst                         |    1 +
- Documentation/gpu/todo.rst                         |   15 +
- Documentation/gpu/vkms.rst                         |    2 -
- drivers/char/agp/ati-agp.c                         |    8 +-
- drivers/char/agp/backend.c                         |    2 +
- drivers/char/agp/frontend.c                        |    4 +-
- drivers/char/agp/nvidia-agp.c                      |    3 +-
- drivers/char/agp/sworks-agp.c                      |    5 +-
- drivers/char/agp/via-agp.c                         |    3 -
- drivers/dma-buf/dma-resv.c                         |   46 +-
- drivers/dma-buf/st-dma-resv.c                      |   26 +-
- drivers/dma-buf/udmabuf.c                          |    4 +
- drivers/firmware/sysfb_simplefb.c                  |    2 +-
- drivers/gpu/drm/Kconfig                            |   15 +
- drivers/gpu/drm/Makefile                           |   14 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c     |    4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c             |    5 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c        |    6 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c            |    6 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c        |    5 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c            |    2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h           |    4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c    |    3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c            |   10 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c       |    5 +-
- drivers/gpu/drm/amd/amdgpu/atombios_dp.c           |    2 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |    4 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h  |    2 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    |    4 +-
- drivers/gpu/drm/amd/display/dc/core/dc_link_dpcd.c |    2 +-
- drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c        |    2 +-
- drivers/gpu/drm/amd/display/dc/os_types.h          |    2 +-
- drivers/gpu/drm/amd/display/include/dpcd_defs.h    |    2 +-
- drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h    |    2 +-
- .../gpu/drm/arm/display/komeda/d71/d71_component.c |   12 +-
- drivers/gpu/drm/arm/display/komeda/komeda_drv.c    |    3 +-
- drivers/gpu/drm/arm/hdlcd_drv.c                    |    3 +-
- drivers/gpu/drm/arm/malidp_drv.c                   |    3 +-
- drivers/gpu/drm/ast/ast_drv.c                      |   18 +-
- drivers/gpu/drm/ast/ast_main.c                     |    2 +
- drivers/gpu/drm/ast/ast_mode.c                     |    5 +-
- drivers/gpu/drm/bridge/Kconfig                     |    5 +
- drivers/gpu/drm/bridge/adv7511/adv7511.h           |    1 +
- drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       |   31 +-
- drivers/gpu/drm/bridge/adv7511/adv7533.c           |    2 +-
- drivers/gpu/drm/bridge/analogix/Kconfig            |    2 +
- drivers/gpu/drm/bridge/analogix/analogix-anx6345.c |    2 +-
- drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c |    2 +-
- .../gpu/drm/bridge/analogix/analogix-i2c-dptx.c    |    2 +-
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.c |    4 +-
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.h |    2 +-
- drivers/gpu/drm/bridge/analogix/anx7625.c          |  440 +++-
- drivers/gpu/drm/bridge/analogix/anx7625.h          |   80 +-
- drivers/gpu/drm/bridge/cadence/Kconfig             |    1 +
- .../gpu/drm/bridge/cadence/cdns-mhdp8546-core.c    |   20 +-
- .../gpu/drm/bridge/cadence/cdns-mhdp8546-core.h    |    2 +-
- drivers/gpu/drm/bridge/chipone-icn6211.c           |   39 +-
- drivers/gpu/drm/bridge/ite-it66121.c               |    3 -
- drivers/gpu/drm/bridge/lontium-lt9611.c            |    4 +-
- drivers/gpu/drm/bridge/lontium-lt9611uxc.c         |    4 +-
- drivers/gpu/drm/bridge/nwl-dsi.c                   |    8 +-
- drivers/gpu/drm/bridge/parade-ps8640.c             |   33 +-
- drivers/gpu/drm/bridge/sii902x.c                   |  129 +-
- drivers/gpu/drm/bridge/sil-sii8620.c               |    2 +-
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   16 +-
- drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c      |   25 +-
- drivers/gpu/drm/bridge/tc358767.c                  |    2 +-
- drivers/gpu/drm/bridge/tc358775.c                  |    4 +-
- drivers/gpu/drm/bridge/ti-sn65dsi83.c              |   53 +-
- drivers/gpu/drm/bridge/ti-sn65dsi86.c              |    4 +-
- drivers/gpu/drm/dp/Makefile                        |    9 +
- drivers/gpu/drm/{drm_dp_helper.c => dp/drm_dp.c}   |   89 +-
- drivers/gpu/drm/{ => dp}/drm_dp_aux_bus.c          |    4 +-
- drivers/gpu/drm/{ => dp}/drm_dp_aux_dev.c          |    6 +-
- drivers/gpu/drm/{ => dp}/drm_dp_cec.c              |    2 +-
- drivers/gpu/drm/{ => dp}/drm_dp_dual_mode_helper.c |    2 +-
- drivers/gpu/drm/dp/drm_dp_helper_internal.h        |   33 +
- drivers/gpu/drm/dp/drm_dp_helper_mod.c             |   22 +
- drivers/gpu/drm/{ => dp}/drm_dp_mst_topology.c     |    8 +-
- .../drm/{ => dp}/drm_dp_mst_topology_internal.h    |    2 +-
- drivers/gpu/drm/drm_buddy.c                        |  535 ++++
- drivers/gpu/drm/drm_cache.c                        |    2 +-
- drivers/gpu/drm/drm_color_mgmt.c                   |    4 +
- drivers/gpu/drm/drm_crtc_helper_internal.h         |   27 -
- drivers/gpu/drm/drm_dsc.c                          |    2 +-
- drivers/gpu/drm/drm_edid.c                         |  104 +-
- drivers/gpu/drm/drm_fb_helper.c                    |    2 +-
- drivers/gpu/drm/drm_kms_helper_common.c            |   14 -
- drivers/gpu/drm/drm_plane.c                        |    9 +-
- drivers/gpu/drm/drm_privacy_screen.c               |    5 +-
- drivers/gpu/drm/drm_privacy_screen_x86.c           |   17 +
- drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c       |    3 +-
- drivers/gpu/drm/exynos/Kconfig                     |    1 +
- drivers/gpu/drm/exynos/exynos_drm_dsi.c            |   13 +-
- drivers/gpu/drm/gma500/cdv_intel_dp.c              |   14 +-
- drivers/gpu/drm/gma500/gma_display.c               |    6 +-
- drivers/gpu/drm/gma500/intel_bios.c                |    2 +-
- drivers/gpu/drm/gma500/mmu.c                       |    8 +-
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c    |    3 +-
- drivers/gpu/drm/i915/Kconfig                       |    2 +
- drivers/gpu/drm/i915/Makefile                      |    5 +-
- drivers/gpu/drm/i915/display/hsw_ips.c             |  271 ++
- drivers/gpu/drm/i915/display/hsw_ips.h             |   26 +
- drivers/gpu/drm/i915/display/icl_dsi.c             |   14 +-
- drivers/gpu/drm/i915/display/icl_dsi_regs.h        |  342 +++
- drivers/gpu/drm/i915/display/intel_atomic.c        |   11 -
- drivers/gpu/drm/i915/display/intel_atomic.h        |    2 -
- drivers/gpu/drm/i915/display/intel_atomic_plane.c  |  217 +-
- drivers/gpu/drm/i915/display/intel_atomic_plane.h  |   14 +-
- drivers/gpu/drm/i915/display/intel_bios.c          |    8 +-
- drivers/gpu/drm/i915/display/intel_bw.c            |  167 +-
- drivers/gpu/drm/i915/display/intel_bw.h            |    8 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c         |    2 +
- drivers/gpu/drm/i915/display/intel_color.c         |  119 +-
- drivers/gpu/drm/i915/display/intel_ddi.c           |   33 +-
- drivers/gpu/drm/i915/display/intel_display.c       |  981 +++-----
- drivers/gpu/drm/i915/display/intel_display.h       |   11 +-
- .../gpu/drm/i915/display/intel_display_debugfs.c   |   39 +-
- drivers/gpu/drm/i915/display/intel_display_power.c |    1 +
- drivers/gpu/drm/i915/display/intel_display_types.h |   33 +-
- drivers/gpu/drm/i915/display/intel_dp.c            |   95 +-
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c       |    4 +-
- .../gpu/drm/i915/display/intel_dp_link_training.c  |  307 ++-
- .../gpu/drm/i915/display/intel_dp_link_training.h  |    6 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |   33 +-
- drivers/gpu/drm/i915/display/intel_dpll.c          |   12 +
- drivers/gpu/drm/i915/display/intel_dpll.h          |    1 +
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |   44 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h      |    3 +
- drivers/gpu/drm/i915/display/intel_dpt.c           |   37 +-
- drivers/gpu/drm/i915/display/intel_dsb.c           |    2 +
- drivers/gpu/drm/i915/display/intel_dsi.h           |    4 +-
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c       |   11 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.c        |    9 +-
- drivers/gpu/drm/i915/display/intel_fbc.c           |    5 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c         |   27 +-
- drivers/gpu/drm/i915/display/intel_fbdev.h         |    7 +
- drivers/gpu/drm/i915/display/intel_fdi.c           |    5 +
- drivers/gpu/drm/i915/display/intel_gmbus.c         |   16 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c          |   49 +-
- drivers/gpu/drm/i915/display/intel_hdmi.h          |    1 +
- drivers/gpu/drm/i915/display/intel_hotplug.c       |    7 +-
- drivers/gpu/drm/i915/display/intel_lspcon.c        |    4 +-
- drivers/gpu/drm/i915/display/intel_opregion.c      |   78 +-
- drivers/gpu/drm/i915/display/intel_overlay.c       |    1 +
- drivers/gpu/drm/i915/display/intel_plane_initial.c |   14 +-
- drivers/gpu/drm/i915/display/intel_psr.c           |  119 +-
- drivers/gpu/drm/i915/display/intel_snps_phy.c      |  212 +-
- drivers/gpu/drm/i915/display/intel_tc.c            |   26 +-
- drivers/gpu/drm/i915/display/intel_vbt_defs.h      |    8 +
- drivers/gpu/drm/i915/display/intel_vdsc.c          |   47 +-
- drivers/gpu/drm/i915/display/intel_vdsc.h          |    1 -
- drivers/gpu/drm/i915/display/vlv_dsi.c             |   34 +-
- drivers/gpu/drm/i915/display/vlv_dsi_pll.c         |    1 +
- drivers/gpu/drm/i915/display/vlv_dsi_pll_regs.h    |  109 +
- drivers/gpu/drm/i915/display/vlv_dsi_regs.h        |  480 ++++
- drivers/gpu/drm/i915/gem/i915_gem_clflush.c        |    2 +
- drivers/gpu/drm/i915/gem/i915_gem_context.c        |   27 +-
- drivers/gpu/drm/i915/gem/i915_gem_context.h        |    2 +-
- drivers/gpu/drm/i915/gem/i915_gem_create.c         |    3 +
- drivers/gpu/drm/i915/gem/i915_gem_create.h         |   17 +
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c         |    1 +
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.h         |   18 +
- drivers/gpu/drm/i915/gem/i915_gem_domain.c         |    5 +-
- drivers/gpu/drm/i915/gem/i915_gem_domain.h         |   15 +
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  249 +-
- drivers/gpu/drm/i915/gem/i915_gem_internal.c       |    1 +
- drivers/gpu/drm/i915/gem/i915_gem_internal.h       |   23 +
- drivers/gpu/drm/i915/gem/i915_gem_mman.c           |   39 +-
- drivers/gpu/drm/i915/gem/i915_gem_object.c         |   23 +
- drivers/gpu/drm/i915/gem/i915_gem_object.h         |    4 +-
- drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |   51 +-
- drivers/gpu/drm/i915/gem/i915_gem_pages.c          |   12 +-
- drivers/gpu/drm/i915/gem/i915_gem_pm.c             |    3 +-
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c          |   20 +-
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.c       |   30 +-
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c         |    9 +-
- drivers/gpu/drm/i915/gem/i915_gem_throttle.c       |    1 +
- drivers/gpu/drm/i915/gem/i915_gem_tiling.c         |   15 +-
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |   18 +-
- drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c       |   27 +-
- drivers/gpu/drm/i915/gem/selftests/huge_pages.c    |   42 +-
- .../drm/i915/gem/selftests/i915_gem_client_blt.c   |    4 +-
- .../gpu/drm/i915/gem/selftests/i915_gem_context.c  |    3 +-
- .../gpu/drm/i915/gem/selftests/i915_gem_migrate.c  |  192 +-
- drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |   29 +-
- .../gpu/drm/i915/gem/selftests/i915_gem_object.c   |    2 +-
- drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c |    1 +
- drivers/gpu/drm/i915/gem/selftests/mock_context.c  |    1 +
- drivers/gpu/drm/i915/gt/gen6_ppgtt.c               |   21 +-
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |   37 +-
- drivers/gpu/drm/i915/gt/intel_context.c            |    4 +-
- drivers/gpu/drm/i915/gt/intel_context_sseu.c       |    1 +
- drivers/gpu/drm/i915/gt/intel_engine.h             |    2 +
- drivers/gpu/drm/i915/gt/intel_engine_cs.c          |   21 +-
- drivers/gpu/drm/i915/gt/intel_engine_regs.h        |   23 +
- .../gpu/drm/i915/gt/intel_execlists_submission.c   |   40 +-
- drivers/gpu/drm/i915/gt/intel_ggtt.c               |  133 +-
- drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c       |    8 +-
- drivers/gpu/drm/i915/gt/intel_gt.c                 |   14 +-
- drivers/gpu/drm/i915/gt/intel_gt.h                 |    2 +-
- drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c     |    1 +
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c      |    1 +
- drivers/gpu/drm/i915/gt/intel_gt_regs.h            | 2630 ++++++++++----------
- drivers/gpu/drm/i915/gt/intel_gtt.c                |    5 +
- drivers/gpu/drm/i915/gt/intel_gtt.h                |   19 +-
- drivers/gpu/drm/i915/gt/intel_llc.c                |    1 +
- drivers/gpu/drm/i915/gt/intel_lrc.c                |   45 +
- drivers/gpu/drm/i915/gt/intel_lrc.h                |   16 +-
- drivers/gpu/drm/i915/gt/intel_ppgtt.c              |   22 +-
- drivers/gpu/drm/i915/gt/intel_region_lmem.c        |    5 +-
- drivers/gpu/drm/i915/gt/intel_renderstate.c        |    2 +
- drivers/gpu/drm/i915/gt/intel_reset.c              |   25 +-
- drivers/gpu/drm/i915/gt/intel_ring.c               |    1 +
- drivers/gpu/drm/i915/gt/intel_ring_submission.c    |    4 +
- drivers/gpu/drm/i915/gt/intel_rps.c                |    1 +
- drivers/gpu/drm/i915/gt/intel_timeline.c           |    5 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c        |   45 +-
- drivers/gpu/drm/i915/gt/selftest_execlists.c       |    1 +
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c       |    3 +-
- drivers/gpu/drm/i915/gt/selftest_lrc.c             |    2 +
- drivers/gpu/drm/i915/gt/selftest_migrate.c         |    2 +
- drivers/gpu/drm/i915/gt/selftest_reset.c           |    2 +-
- drivers/gpu/drm/i915/gt/selftest_rps.c             |    2 +
- drivers/gpu/drm/i915/gt/selftest_workarounds.c     |    1 +
- drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h   |   80 +-
- drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h    |   23 +
- drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h      |   82 +
- drivers/gpu/drm/i915/gt/uc/intel_guc.c             |  126 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.h             |   25 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c         |  204 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c          |  143 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          |   38 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h        |   37 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_log.c         |   31 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_log.h         |    3 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h         |    7 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c        |    3 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  |  262 +-
- drivers/gpu/drm/i915/gt/uc/intel_huc.c             |    1 +
- drivers/gpu/drm/i915/gt/uc/intel_uc.c              |   31 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c           |   45 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h           |    2 +-
- drivers/gpu/drm/i915/gt/uc/selftest_guc.c          |    2 +-
- drivers/gpu/drm/i915/gvt/aperture_gm.c             |    2 +-
- drivers/gpu/drm/i915/gvt/dmabuf.c                  |    7 +-
- drivers/gpu/drm/i915/gvt/execlist.c                |    2 +-
- drivers/gpu/drm/i915/gvt/handlers.c                |    2 +
- drivers/gpu/drm/i915/gvt/kvmgt.c                   |    2 +
- drivers/gpu/drm/i915/i915_buddy.c                  |  466 ----
- drivers/gpu/drm/i915/i915_buddy.h                  |  143 --
- drivers/gpu/drm/i915/i915_cmd_parser.c             |    2 +
- drivers/gpu/drm/i915/i915_debugfs.c                |   19 +-
- drivers/gpu/drm/i915/i915_driver.c                 |   28 +-
- drivers/gpu/drm/i915/i915_driver.h                 |    5 +
- drivers/gpu/drm/i915/i915_drv.h                    |  328 +--
- drivers/gpu/drm/i915/i915_file_private.h           |  108 +
- drivers/gpu/drm/i915/i915_gem.c                    |   44 +-
- drivers/gpu/drm/i915/i915_gem_evict.c              |  101 +-
- drivers/gpu/drm/i915/i915_gem_evict.h              |    6 +-
- drivers/gpu/drm/i915/i915_gem_gtt.c                |   16 +-
- drivers/gpu/drm/i915/i915_gem_gtt.h                |    4 +
- drivers/gpu/drm/i915/i915_getparam.c               |    2 +-
- drivers/gpu/drm/i915/i915_gpu_error.c              |   91 +-
- drivers/gpu/drm/i915/i915_gpu_error.h              |   11 +
- drivers/gpu/drm/i915/i915_irq.c                    |   17 +-
- drivers/gpu/drm/i915/i915_irq.h                    |    1 +
- drivers/gpu/drm/i915/i915_mitigations.c            |    1 +
- drivers/gpu/drm/i915/i915_module.c                 |    7 +-
- drivers/gpu/drm/i915/i915_pci.c                    |    2 +
- drivers/gpu/drm/i915/i915_perf.c                   |   11 +-
- drivers/gpu/drm/i915/i915_reg.h                    | 1203 +--------
- drivers/gpu/drm/i915/i915_reg_defs.h               |   27 +
- drivers/gpu/drm/i915/i915_request.c                |   13 +-
- drivers/gpu/drm/i915/i915_request.h                |    6 +-
- drivers/gpu/drm/i915/i915_scatterlist.c            |   11 +-
- drivers/gpu/drm/i915/i915_ttm_buddy_manager.c      |   37 +-
- drivers/gpu/drm/i915/i915_ttm_buddy_manager.h      |    4 +-
- drivers/gpu/drm/i915/i915_vgpu.c                   |    2 +-
- drivers/gpu/drm/i915/i915_vma.c                    |  569 +++--
- drivers/gpu/drm/i915/i915_vma.h                    |   34 +-
- drivers/gpu/drm/i915/i915_vma_resource.c           |  418 ++++
- drivers/gpu/drm/i915/i915_vma_resource.h           |  234 ++
- drivers/gpu/drm/i915/i915_vma_snapshot.c           |  134 -
- drivers/gpu/drm/i915/i915_vma_snapshot.h           |  112 -
- drivers/gpu/drm/i915/i915_vma_types.h              |   19 +-
- drivers/gpu/drm/i915/intel_device_info.h           |    4 +-
- drivers/gpu/drm/i915/intel_dram.c                  |    1 +
- drivers/gpu/drm/i915/intel_mchbar_regs.h           |  228 ++
- drivers/gpu/drm/i915/intel_pch.c                   |    1 +
- drivers/gpu/drm/i915/intel_pch.h                   |    1 +
- drivers/gpu/drm/i915/intel_pm.c                    |  477 ++--
- drivers/gpu/drm/i915/intel_runtime_pm.c            |    3 +
- drivers/gpu/drm/i915/intel_runtime_pm.h            |    1 +
- drivers/gpu/drm/i915/intel_step.c                  |   15 +
- drivers/gpu/drm/i915/intel_uncore.c                |    2 +-
- drivers/gpu/drm/i915/intel_wopcm.c                 |   42 +-
- drivers/gpu/drm/i915/pxp/intel_pxp_pm.h            |    2 +-
- drivers/gpu/drm/i915/selftests/i915_buddy.c        |  787 ------
- drivers/gpu/drm/i915/selftests/i915_gem.c          |   11 +-
- drivers/gpu/drm/i915/selftests/i915_gem_evict.c    |   29 +-
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      |  210 +-
- .../gpu/drm/i915/selftests/i915_mock_selftests.h   |    1 -
- drivers/gpu/drm/i915/selftests/i915_request.c      |  120 +-
- drivers/gpu/drm/i915/selftests/i915_selftest.c     |    1 +
- drivers/gpu/drm/i915/selftests/i915_vma.c          |   31 +-
- drivers/gpu/drm/i915/selftests/igt_flush_test.c    |    2 +-
- drivers/gpu/drm/i915/selftests/igt_spinner.c       |    1 +
- .../gpu/drm/i915/selftests/intel_memory_region.c   |   13 +-
- drivers/gpu/drm/i915/selftests/mock_gem_device.c   |   13 +-
- drivers/gpu/drm/i915/selftests/mock_gtt.c          |   21 +-
- drivers/gpu/drm/i915/selftests/mock_gtt.h          |    3 +-
- drivers/gpu/drm/imx/dcss/dcss-drv.c                |    3 +-
- drivers/gpu/drm/ingenic/ingenic-drm-drv.c          |   62 +-
- drivers/gpu/drm/ingenic/ingenic-drm.h              |   38 +
- drivers/gpu/drm/meson/meson_drv.c                  |   25 +-
- drivers/gpu/drm/meson/meson_osd_afbcd.c            |   41 +-
- drivers/gpu/drm/meson/meson_osd_afbcd.h            |    1 +
- drivers/gpu/drm/mgag200/mgag200_mode.c             |    5 +-
- drivers/gpu/drm/msm/Kconfig                        |    1 +
- drivers/gpu/drm/msm/dp/dp_audio.c                  |    2 +-
- drivers/gpu/drm/msm/dp/dp_aux.h                    |    2 +-
- drivers/gpu/drm/msm/dp/dp_catalog.c                |    2 +-
- drivers/gpu/drm/msm/dp/dp_ctrl.c                   |    2 +-
- drivers/gpu/drm/msm/edp/edp.h                      |   77 +
- drivers/gpu/drm/msm/edp/edp_ctrl.c                 | 1373 ++++++++++
- drivers/gpu/drm/mxsfb/mxsfb_drv.c                  |    9 +
- drivers/gpu/drm/nouveau/Kconfig                    |    1 +
- drivers/gpu/drm/nouveau/dispnv50/disp.c            |    2 +-
- drivers/gpu/drm/nouveau/nouveau_connector.h        |    2 +-
- drivers/gpu/drm/nouveau/nouveau_dp.c               |   17 +-
- drivers/gpu/drm/nouveau/nouveau_encoder.h          |    4 +-
- drivers/gpu/drm/nouveau/nouveau_mem.c              |    3 +-
- drivers/gpu/drm/nouveau/nouveau_mem.h              |    3 +-
- drivers/gpu/drm/nouveau/nouveau_ttm.c              |   13 +-
- drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c      |  317 ++-
- drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.h      |   35 +-
- drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c  |   13 +-
- .../gpu/drm/nouveau/nvkm/engine/disp/sorga102.c    |    4 +
- .../gpu/drm/nouveau/nvkm/engine/disp/sorgf119.c    |   14 +-
- .../gpu/drm/nouveau/nvkm/engine/disp/sorgm107.c    |   18 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c     |    9 +-
- drivers/gpu/drm/omapdrm/omap_gem_dmabuf.c          |    1 +
- drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c     |    8 +-
- drivers/gpu/drm/panel/panel-edp.c                  |   21 +-
- drivers/gpu/drm/panel/panel-samsung-atna33xc20.c   |    4 +-
- drivers/gpu/drm/panel/panel-simple.c               |   33 +
- drivers/gpu/drm/panfrost/panfrost_features.h       |  212 +-
- drivers/gpu/drm/panfrost/panfrost_gpu.c            |   32 +-
- drivers/gpu/drm/radeon/atombios_dp.c               |    2 +-
- drivers/gpu/drm/radeon/radeon_connectors.c         |    4 +-
- drivers/gpu/drm/radeon/radeon_dp_mst.c             |    2 +-
- drivers/gpu/drm/radeon/radeon_mode.h               |    4 +-
- drivers/gpu/drm/radeon/radeon_ttm.c                |    4 +-
- drivers/gpu/drm/rockchip/Kconfig                   |    2 +
- drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    |    4 +-
- drivers/gpu/drm/rockchip/cdn-dp-core.c             |    2 +-
- drivers/gpu/drm/rockchip/cdn-dp-core.h             |    2 +-
- drivers/gpu/drm/rockchip/rockchip_lvds.c           |    2 +-
- drivers/gpu/drm/rockchip/rockchip_rgb.c            |    2 +-
- drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c |    8 +-
- drivers/gpu/drm/selftests/test-drm_plane_helper.c  |    4 +
- drivers/gpu/drm/stm/drv.c                          |    5 +
- drivers/gpu/drm/stm/dw_mipi_dsi-stm.c              |  114 +-
- drivers/gpu/drm/stm/ltdc.c                         |  810 ++++--
- drivers/gpu/drm/stm/ltdc.h                         |   12 +-
- drivers/gpu/drm/tegra/Kconfig                      |    1 +
- drivers/gpu/drm/tegra/dp.c                         |    2 +-
- drivers/gpu/drm/tegra/dpaux.c                      |    2 +-
- drivers/gpu/drm/tegra/sor.c                        |    2 +-
- drivers/gpu/drm/tilcdc/tilcdc_drv.c                |    4 +-
- drivers/gpu/drm/tiny/bochs.c                       |   20 +-
- drivers/gpu/drm/tiny/cirrus.c                      |   17 +-
- drivers/gpu/drm/tiny/simpledrm.c                   |   22 +-
- drivers/gpu/drm/ttm/ttm_bo_util.c                  |    7 +-
- drivers/gpu/drm/ttm/ttm_range_manager.c            |    4 +-
- drivers/gpu/drm/ttm/ttm_resource.c                 |   35 +
- drivers/gpu/drm/ttm/ttm_sys_manager.c              |    3 +-
- drivers/gpu/drm/v3d/v3d_drv.c                      |    8 +-
- drivers/gpu/drm/vc4/vc4_bo.c                       |    2 -
- drivers/gpu/drm/vc4/vc4_drv.c                      |   33 +-
- drivers/gpu/drm/vc4/vc4_hdmi.c                     |  132 +-
- drivers/gpu/drm/vc4/vc4_hdmi.h                     |    5 +-
- drivers/gpu/drm/vc4/vc4_regs.h                     |    3 +
- drivers/gpu/drm/virtio/virtgpu_gem.c               |    3 +
- drivers/gpu/drm/vkms/vkms_drv.h                    |    2 +
- drivers/gpu/drm/vkms/vkms_output.c                 |   29 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_gmrid_manager.c      |    4 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_system_manager.c     |    3 +-
- drivers/gpu/drm/xlnx/Kconfig                       |    1 +
- drivers/gpu/drm/xlnx/zynqmp_dp.c                   |    2 +-
- drivers/platform/chrome/Kconfig                    |   11 +
- drivers/platform/chrome/Makefile                   |    1 +
- drivers/platform/chrome/chromeos_privacy_screen.c  |  153 ++
- drivers/platform/x86/thinkpad_acpi.c               |    2 +-
- drivers/video/fbdev/asiliantfb.c                   |    2 +-
- drivers/video/fbdev/core/fbmem.c                   |   29 +-
- drivers/video/fbdev/s3c-fb.c                       |    2 +-
- drivers/video/fbdev/simplefb.c                     |   65 +-
- drivers/video/fbdev/vga16fb.c                      |    5 +
- include/drm/bridge/dw_mipi_dsi.h                   |    4 +-
- include/drm/{ => dp}/drm_dp_aux_bus.h              |    0
- include/drm/{ => dp}/drm_dp_dual_mode_helper.h     |    0
- include/drm/{ => dp}/drm_dp_helper.h               |   31 +-
- include/drm/{ => dp}/drm_dp_mst_helper.h           |    2 +-
- include/drm/drm_buddy.h                            |  150 ++
- include/drm/drm_connector.h                        |   18 +-
- include/drm/drm_crtc.h                             |   10 +
- include/drm/drm_dsc.h                              |    2 +-
- include/drm/drm_edid.h                             |    4 +-
- include/drm/drm_mipi_dbi.h                         |    2 +-
- include/drm/drm_modeset_lock.h                     |    1 +
- include/drm/drm_module.h                           |  125 +
- include/drm/drm_plane.h                            |    2 +-
- include/drm/drm_privacy_screen_driver.h            |   13 +-
- include/drm/ttm/ttm_resource.h                     |   23 +-
- include/linux/dma-buf-map.h                        |  266 ++
- include/linux/dma-resv.h                           |    4 +-
- include/linux/fb.h                                 |    1 +
- include/linux/iosys-map.h                          |  218 +-
- include/linux/rwsem.h                              |    2 +-
- include/soc/bcm2835/raspberrypi-firmware.h         |    1 +
- include/uapi/drm/panfrost_drm.h                    |    4 +-
- 431 files changed, 14323 insertions(+), 8342 deletions(-)
- create mode 100644 drivers/gpu/drm/dp/Makefile
- rename drivers/gpu/drm/{drm_dp_helper.c => dp/drm_dp.c} (97%)
- rename drivers/gpu/drm/{ => dp}/drm_dp_aux_bus.c (99%)
- rename drivers/gpu/drm/{ => dp}/drm_dp_aux_dev.c (98%)
- rename drivers/gpu/drm/{ => dp}/drm_dp_cec.c (99%)
- rename drivers/gpu/drm/{ => dp}/drm_dp_dual_mode_helper.c (99%)
- create mode 100644 drivers/gpu/drm/dp/drm_dp_helper_internal.h
- create mode 100644 drivers/gpu/drm/dp/drm_dp_helper_mod.c
- rename drivers/gpu/drm/{ => dp}/drm_dp_mst_topology.c (99%)
- rename drivers/gpu/drm/{ => dp}/drm_dp_mst_topology_internal.h (94%)
- create mode 100644 drivers/gpu/drm/drm_buddy.c
- create mode 100644 drivers/gpu/drm/i915/display/hsw_ips.c
- create mode 100644 drivers/gpu/drm/i915/display/hsw_ips.h
- create mode 100644 drivers/gpu/drm/i915/display/icl_dsi_regs.h
- create mode 100644 drivers/gpu/drm/i915/display/vlv_dsi_pll_regs.h
- create mode 100644 drivers/gpu/drm/i915/display/vlv_dsi_regs.h
- create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_create.h
- create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_dmabuf.h
- create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_domain.h
- create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_internal.h
- create mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
- delete mode 100644 drivers/gpu/drm/i915/i915_buddy.c
- delete mode 100644 drivers/gpu/drm/i915/i915_buddy.h
- create mode 100644 drivers/gpu/drm/i915/i915_file_private.h
- create mode 100644 drivers/gpu/drm/i915/i915_vma_resource.c
- create mode 100644 drivers/gpu/drm/i915/i915_vma_resource.h
- delete mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.c
- delete mode 100644 drivers/gpu/drm/i915/i915_vma_snapshot.h
- create mode 100644 drivers/gpu/drm/i915/intel_mchbar_regs.h
- delete mode 100644 drivers/gpu/drm/i915/selftests/i915_buddy.c
- create mode 100644 drivers/gpu/drm/msm/edp/edp.h
- create mode 100644 drivers/gpu/drm/msm/edp/edp_ctrl.c
- create mode 100644 drivers/platform/chrome/chromeos_privacy_screen.c
- rename include/drm/{ => dp}/drm_dp_aux_bus.h (100%)
- rename include/drm/{ => dp}/drm_dp_dual_mode_helper.h (100%)
- rename include/drm/{ => dp}/drm_dp_helper.h (98%)
- rename include/drm/{ => dp}/drm_dp_mst_helper.h (99%)
- create mode 100644 include/drm/drm_buddy.h
- create mode 100644 include/drm/drm_module.h
- create mode 100644 include/linux/dma-buf-map.h
