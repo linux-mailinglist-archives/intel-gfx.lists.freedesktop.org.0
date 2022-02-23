@@ -2,60 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEEA84C1502
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 15:04:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E86694C15A6
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 15:47:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5685C10E70E;
-	Wed, 23 Feb 2022 14:04:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CADA410EB56;
+	Wed, 23 Feb 2022 14:46:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 902B010E182;
- Wed, 23 Feb 2022 14:04:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645625042; x=1677161042;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=HSthDVuz1QFzikPFHjUDIUAZbUOucQYS6wZC2DwU9g4=;
- b=X3u2Yua4RbxKcIZxArdkC0XELuwAM1276BTTKYa9oZjh5+DljtCoBfKr
- XCWQgsMWcPwk4F7LybMrZiRS5hucSaYfS6JvAdCXIYxdZS8pJjVp/YhqC
- WuQBFdG4A8djU8R5AEbZKt6e/wkb4zE/4azSPNYfR1JZ3BlWlXYT6EsmQ
- 0lfLxA4+UDnmHC4Swrm0aSuBhgnRvj4QU2R/rNEpQBZ9EsKHiUFeo1aLA
- iBZZHCvvVHCbaDlcv4MJOsXV4ySizFc7eE4u1GRqWa3BzhAbUoqPOyrp+
- 8yy5q5j1QCMfFl8bfQaTjRnXy8lrnvLuziAuIwWZgq3HVHfKQEYKdDwSX A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="276587572"
-X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="276587572"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 06:04:01 -0800
-X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="707039919"
-Received: from lportx-mobl3.ger.corp.intel.com (HELO [10.213.242.198])
- ([10.213.242.198])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 06:04:00 -0800
-Message-ID: <8a892190-73ce-fc7d-9c93-e17a929df78e@linux.intel.com>
-Date: Wed, 23 Feb 2022 14:03:58 +0000
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4244110EB56;
+ Wed, 23 Feb 2022 14:46:57 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id DA492B81FE8;
+ Wed, 23 Feb 2022 14:46:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 868AEC340E7;
+ Wed, 23 Feb 2022 14:46:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1645627614;
+ bh=vpgwV1R5ym8F2CoToh9UIP31zXnshBp9Dq+OGFK5Z/8=;
+ h=From:To:Cc:Subject:Date:From;
+ b=gVyUDvCICsCNnrnMNypi1UPFXpITuN6dKZLPYItiHFpSIYVAZvQgT35cM8c7++MDY
+ Tqxh+st74Bskw7JxPGjXIgyH4k/R8vT4DXEiBnszZsJP+6/A/C0c1wA5iGfjma9Avv
+ AGS6tuwRMd5P/dLtpMfOxT1SWmwueOPS56sL8vyEaLVFtmKOwhaiRajSLG1Ias7HAG
+ 7aMpcokII15HeIXgTdftXUKnDZUfiHJo+77l0F3v7JMHIbH0usc+pv4tDvSLsUk+Ic
+ cnFH/gEzrsPXSeKACOClrH5Ztx6roDEZI+W6CLYbYzKN15Wz3nOCKOkpkUQIi5NYMD
+ KcuXxTvucLfvg==
+From: broonie@kernel.org
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+Date: Wed, 23 Feb 2022 14:46:49 +0000
+Message-Id: <20220223144649.254884-1-broonie@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: "Kasireddy, Vivek" <vivek.kasireddy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-References: <20220217075014.922605-1-vivek.kasireddy@intel.com>
- <20220217075014.922605-2-vivek.kasireddy@intel.com>
- <a37a0c45-615e-e731-e124-7db18bc06e1f@linux.intel.com>
- <20f0acb8260a4f18aeadbcc73847e06f@intel.com>
- <242fada2-dc13-c272-787a-3a0cd4efd52b@linux.intel.com>
- <a4fd740802ec4ab98bf8480f069e5ebf@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <a4fd740802ec4ab98bf8480f069e5ebf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm/mm: Ensure that the entry is not
- NULL before extracting rb_node
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] linux-next: manual merge of the drm-intel tree with the
+ drm-intel-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,48 +56,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi all,
 
-On 23/02/2022 04:35, Kasireddy, Vivek wrote:
-> Hi Tvrtko,
-> 
->>
->> On 18/02/2022 03:47, Kasireddy, Vivek wrote:
->>> Hi Tvrtko,
->>>
->>>>
->>>> On 17/02/2022 07:50, Vivek Kasireddy wrote:
->>>>> While looking for next holes suitable for an allocation, although,
->>>>> it is highly unlikely, make sure that the DECLARE_NEXT_HOLE_ADDR
->>>>> macro is using a valid node before it extracts the rb_node from it.
->>>>
->>>> Was the need for this just a consequence of insufficient locking in the
->>>> i915 patch?
->>> [Kasireddy, Vivek] Partly, yes; but I figured since we are anyway doing
->>> if (!entry || ..), it makes sense to dereference entry and extract the rb_node
->>> after this check.
->>
->> Unless I am blind I don't see that it makes a difference.
->> "&entry->rb_hole_addr" is taking an address of, which works "fine" is
-> [Kasireddy, Vivek] Ah, didn't realize it was the same thing as offsetof().
-> 
->> entry is NULL. And does not get past the !entry check for the actual
->> de-reference via RB_EMPTY_NODE. With your patch you move that after the
->> !entry check but still have it in the RB_EMPTY_NODE macro. Again, unless
->> I am blind, I think just drop this patch.
-> [Kasireddy, Vivek] Sure; do you want me to send another version with this
-> patch dropped? Or, would you be able to just merge the other two from the
-> latest version of this series?
+Today's linux-next merge of the drm-intel tree got a conflict in:
 
-Please send without the first patch so we get clean set of CI results.
+  drivers/gpu/drm/i915/display/intel_bw.c
 
-You can use "--subject-prefix=CI" with git format-patchs and 
---suppress-cc=all with git send-email to avoid spamming people and let 
-readers know the re-send is just for the purpose of getting CI results.
+between commit:
 
-Regards,
+  ec663bca9128f ("drm/i915: Fix bw atomic check when switching between SAGV vs. no SAGV")
 
-Tvrtko
+from the drm-intel-fixes tree and commit:
+
+  6d8ebef53c2cc ("drm/i915: Extract intel_bw_check_data_rate()")
+
+from the drm-intel tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+(took the drm-intel version)
