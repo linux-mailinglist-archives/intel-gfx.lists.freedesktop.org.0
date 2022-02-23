@@ -2,53 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEFA84C1A08
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 18:43:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20C084C1A42
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 18:53:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64A2210E1A4;
-	Wed, 23 Feb 2022 17:43:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8335210E200;
+	Wed, 23 Feb 2022 17:53:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AA1F10E1A4;
- Wed, 23 Feb 2022 17:43:45 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABAC10E474
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Feb 2022 17:53:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645638225; x=1677174225;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=uIha5lnBQ66T+YaH0cbufqYHRGsTz5rnB/uxz/JJ4NA=;
- b=JFm+wu2oDZB1WEAHRZ+eLtRFpZMBHsIry78Zwmvth9dLvt3CyqLAJt1+
- rwjxrP84eLIuI5EEq8QnMlaOM8Rm7t1vMjtX/YHtPr/b2TZOJPyfTqgBU
- sXtSYEFYgRX3HaW63UMcc5kzDrrwbaU/OAQ28FGtKw6Sq+a/sTdBvTtFc
- 88fLOFjziz3eES6GRpEKkudEhksSjWXSiW7RcqafVyIOVuipI53vEPaQ7
- BLajsJ5chtlSfjyy+1VpGbDRyRYMB8Up7dSh4BQ7nBoYhgRne0tzL1Kkb
- Nvc4ZZeisCQ+MqytkS50atJNmu4OWRAff/nJrH4pfXqGkiNMeXiBw5Mrb Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="250864740"
-X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="250864740"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 09:43:43 -0800
+ t=1645638797; x=1677174797;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=QaResm+cKtt2Hdn0fBtzyqDuDpG+q/RybsywgFJYiyw=;
+ b=bC4P7G/eY7zyw5axXnGEBBshqqP5Sy8aZhPXs79Mu6JhM3SGkzdW0Uvq
+ m4d954pr0qlg0PasF27+MXNqRaN2b9yzvfmiozWU20pq6LsJ+7Kx1yy2+
+ g3DH8u82oyH2xSdTbR9re/TjlpXGIBBVerqZ3MKc1DNskVDjBPE/lZpZJ
+ PRbayLw3PnzEAdp0QWCTAnWfzMFqC83kNV3OtOLioodalgspOfG54AJ7P
+ 5jnpzo2sMjC+z6UMN6XVa8+NcldJgk+5Az/jNuZ/SGfz2NMXAphDiZsN4
+ 6DmKRlX0ubczxo9UOIaIGG9yAYgwYYXT04FngzeXrCxeLWSp8mlLrTqJt w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="315266950"
+X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="315266950"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2022 09:53:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="707129173"
-Received: from lkp-server01.sh.intel.com (HELO 788b1cd46f0d) ([10.239.97.150])
- by orsmga005.jf.intel.com with ESMTP; 23 Feb 2022 09:43:40 -0800
-Received: from kbuild by 788b1cd46f0d with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nMvfw-0001ey-8r; Wed, 23 Feb 2022 17:43:40 +0000
-Date: Thu, 24 Feb 2022 01:43:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michael Cheng <michael.cheng@intel.com>,
-	intel-gfx@lists.freedesktop.org
-Message-ID: <202202240139.LQIfrVfS-lkp@intel.com>
-References: <20220223055900.415627-2-michael.cheng@intel.com>
+X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; d="scan'208";a="639404166"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by orsmga004.jf.intel.com with ESMTP; 23 Feb 2022 09:53:11 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Wed, 23 Feb 2022 09:53:11 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Wed, 23 Feb 2022 09:53:10 -0800
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2308.020;
+ Wed, 23 Feb 2022 09:53:10 -0800
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/rps/tgl+: Remove RPS interrupt
+ support
+Thread-Index: AQHYJQ08SXHkzwD6p0mtnEqqKYJJJqyhcjZw
+Date: Wed, 23 Feb 2022 17:53:10 +0000
+Message-ID: <270050b550124a1a8fde2aa5cbdec5a5@intel.com>
+References: <20220218210330.48653-1-jose.souza@intel.com>
+In-Reply-To: <20220218210330.48653-1-jose.souza@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.200.16
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220223055900.415627-2-michael.cheng@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v11 1/6] drm: Add arch arm64 for
- drm_clflush_virt_range
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/rps/tgl+: Remove RPS interrupt
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +79,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, lucas.demarchi@intel.com,
- dri-devel@lists.freedesktop.org, michael.cheng@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Michael,
-
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on drm-tip/drm-tip]
-[also build test ERROR on drm/drm-next]
-[cannot apply to drm-intel/for-linux-next v5.17-rc5 next-20220222]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Michael-Cheng/Use-drm_clflush-instead-of-clflush/20220223-140110
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20220224/202202240139.LQIfrVfS-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/f4c92ba1f52db578a26ac9944e2cbe52c548e8e9
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Michael-Cheng/Use-drm_clflush-instead-of-clflush/20220223-140110
-        git checkout f4c92ba1f52db578a26ac9944e2cbe52c548e8e9
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "dcache_clean_inval_poc" [drivers/gpu/drm/drm.ko] undefined!
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
+bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBKb3PDqQ0K
+PiBSb2JlcnRvIGRlIFNvdXphDQo+IFNlbnQ6IEZyaWRheSwgRmVicnVhcnkgMTgsIDIwMjIgMTow
+NCBQTQ0KPiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBb
+SW50ZWwtZ2Z4XSBbUEFUQ0hdIGRybS9pOTE1L3Jwcy90Z2wrOiBSZW1vdmUgUlBTIGludGVycnVw
+dA0KPiBzdXBwb3J0DQo+IA0KPiBUR0wrIGFuZCBuZXdlciBwbGF0Zm9ybXMgZG9uJ3Qgc3VwcG9y
+dCBSUFMgdXAgYW5kIGxvdyBpbnRlcnJ1cHRpb24NCj4gbGltaXRzLg0KPiBJdCBpcyBub3QgdXNl
+ZCBmb3IgYnJvYWR3ZWxsIGFuZCBuZXdlciBwbGFmb3JtcyB0aGF0IHN1cHBvcnRzIGV4ZWNsaXN0
+IGJ1dA0KPiBoZXJlIG1ha2luZyBzdXJlIHRoYXQgaXQgaXMgZXhwbGljaXQgbm90IHVzZWQgZXZl
+biBpbiBkZWJ1ZyBzY2VuYXJpb3MuDQo+IA0KPiBCU3BlYzogMzMzMDENCj4gQlNwZWM6IDUyMDY5
+DQo+IEJTcGVjOiA5NTIwDQo+IEhTRDogMTQwNTkxMTY0Nw0KPiBDYzogVmluYXkgQmVsZ2F1bWth
+ciA8dmluYXkuYmVsZ2F1bWthckBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEpvc8OpIFJv
+YmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KDQpSZXZpZXdlZC1ieTogQW51
+c2hhIFNyaXZhdHNhIDxhbnVzaGEuc3JpdmF0c2FAaW50ZWwuY29tPg0KDQo+IC0tLQ0KPiAgZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcnBzLmMgfCAyICstDQo+ICAxIGZpbGUgY2hhbmdl
+ZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ycHMuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L2ludGVsX3Jwcy5jDQo+IGluZGV4IGZkOTU0NDllZDQ2ZGEuLmM4MTI0MTAxYWFkYTIgMTAw
+NjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jwcy5jDQo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jwcy5jDQo+IEBAIC0xNDg2LDcgKzE0ODYs
+NyBAQCB2b2lkIGludGVsX3Jwc19lbmFibGUoc3RydWN0IGludGVsX3JwcyAqcnBzKQ0KPiANCj4g
+IAlpZiAoaGFzX2J1c3lfc3RhdHMocnBzKSkNCj4gIAkJaW50ZWxfcnBzX3NldF90aW1lcihycHMp
+Ow0KPiAtCWVsc2UgaWYgKEdSQVBISUNTX1ZFUihpOTE1KSA+PSA2KQ0KPiArCWVsc2UgaWYgKEdS
+QVBISUNTX1ZFUihpOTE1KSA+PSA2ICYmIEdSQVBISUNTX1ZFUihpOTE1KSA8PSAxMSkNCj4gIAkJ
+aW50ZWxfcnBzX3NldF9pbnRlcnJ1cHRzKHJwcyk7DQo+ICAJZWxzZQ0KPiAgCQkvKiBJcm9ubGFr
+ZSBjdXJyZW50bHkgdXNlcyBpbnRlbF9pcHMua28gKi8ge30NCj4gLS0NCj4gMi4zNS4xDQoNCg==
