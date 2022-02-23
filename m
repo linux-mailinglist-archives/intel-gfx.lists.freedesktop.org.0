@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AC6E4C131C
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 13:47:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2964D4C1326
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 13:48:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF73710F1CA;
-	Wed, 23 Feb 2022 12:47:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9636A10F211;
+	Wed, 23 Feb 2022 12:48:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0143D10F1CA;
- Wed, 23 Feb 2022 12:47:33 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C925110F20E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Feb 2022 12:48:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645620454; x=1677156454;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=QQxeX/jbVCxYVyClBrFI4ueqwrzdBsTi7qkw3tVNQtM=;
- b=bE6Gsj1sskD+iGIiLTNrpRRF3M/reSWMhXpmXo1rH1yXsV3xHUyoB7EG
- Jkhny+Sbt5H96JzCbHzeu6q/MXWzdh6dvamvZtF3JQwhkNzbOqtGG1dPm
- c3T2AeHYWk+IFPrbTFBD8tAJEqD4zt5n+RXUml6R11mC7I7AQks+m+l1F
- HofB1sET5tiZb9eIkb9sAP/8/LVNnVS9/dSLhB/NxhZfkwkKf1QAIx/bK
- ekofWIorDha8ZHYDd2MfDJyj4X+YAO4CNhiFK3B5D3Fa7fhWYi5SCz7IW
- kv6zGlDWD3UENs8cB1AV09z06y14znGuSAYjav5h0Q4cSleACYyrF2lQX g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="232574667"
-X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="232574667"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 04:47:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="491183315"
-Received: from lkp-server01.sh.intel.com (HELO 788b1cd46f0d) ([10.239.97.150])
- by orsmga003.jf.intel.com with ESMTP; 23 Feb 2022 04:47:30 -0800
-Received: from kbuild by 788b1cd46f0d with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nMr3K-0001Ou-1I; Wed, 23 Feb 2022 12:47:30 +0000
-Date: Wed, 23 Feb 2022 20:46:59 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michael Cheng <michael.cheng@intel.com>,
-	intel-gfx@lists.freedesktop.org
-Message-ID: <202202231817.dkY1qGrU-lkp@intel.com>
-References: <20220223055900.415627-2-michael.cheng@intel.com>
+ t=1645620534; x=1677156534;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nlUcmFUc7freBg3H3j5F7qGwaoO7ljZ7SrqCOZ4s2W4=;
+ b=jROxYbkw1XXU/NQjF+H9wD/3cKT5nN6RJGMshq0XRvY4T/aFkfCKmn5e
+ VjzBpPQ2D8I1Yz0Vagv2aZ+kSKxfx0ld0wy3VDRhHb1u+hVAuP0xAb6QJ
+ IDWY0qsndDvh7xmHe0MQp4td6uAcoeKJKBLxNjNJ3qprIcdtx3HptENDu
+ fRuGjkqOPtl6d5hVAiP61CFnfhFgbugW5qXOaolsX+CjxIg/YGlTMMhMg
+ XjeKazas7MVLRwtsXw0uwxAvwAe4eNpEu9KaH94KyHBb8NQuZCT6H56qj
+ MezUvItQM+/yUl/WCqtqFzTYJtMtQp2UfRjQt5vK1Rr1b4iBktG/JRR4U Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="251873063"
+X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="251873063"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2022 04:48:54 -0800
+X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="548230964"
+Received: from sgadve-mobl3.gar.corp.intel.com (HELO
+ jhogande-mobl1.ger.corp.intel.com) ([10.249.34.56])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2022 04:48:51 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 23 Feb 2022 14:48:07 +0200
+Message-Id: <20220223124807.3284451-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220223055900.415627-2-michael.cheng@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v11 1/6] drm: Add arch arm64 for
- drm_clflush_virt_range
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/psr: Set "SF Partial Frame Enable"
+ also on full update
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,126 +57,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, llvm@lists.linux.dev, lucas.demarchi@intel.com,
- dri-devel@lists.freedesktop.org, michael.cheng@intel.com
+Cc: Mihai Harpau <mharpau@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Michael,
+Currently we are observing occasional screen flickering when
+PSR2 selective fetch is enabled. More specifically glitch seems
+to happen on full frame update when cursor moves to coords
+x = -1 or y = -1.
 
-Thank you for the patch! Perhaps something to improve:
+According to Bspec SF Single full frame should not be set if
+SF Partial Frame Enable is not set. This happened to be true for
+ADLP as PSR2_MAN_TRK_CTL_ENABLE is always set and for ADLP it's
+actually "SF Partial Frame Enable" (Bit 31).
 
-[auto build test WARNING on drm-tip/drm-tip]
-[also build test WARNING on drm/drm-next]
-[cannot apply to drm-intel/for-linux-next v5.17-rc5 next-20220222]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Setting "SF Partial Frame Enable" bit also on full update seems to
+fix screen flickering.
 
-url:    https://github.com/0day-ci/linux/commits/Michael-Cheng/Use-drm_clflush-instead-of-clflush/20220223-140110
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-config: s390-randconfig-r013-20220221 (https://download.01.org/0day-ci/archive/20220223/202202231817.dkY1qGrU-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project d271fc04d5b97b12e6b797c6067d3c96a8d7470e)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install s390 cross compiling tool for clang build
-        # apt-get install binutils-s390x-linux-gnu
-        # https://github.com/0day-ci/linux/commit/f4c92ba1f52db578a26ac9944e2cbe52c548e8e9
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Michael-Cheng/Use-drm_clflush-instead-of-clflush/20220223-140110
-        git checkout f4c92ba1f52db578a26ac9944e2cbe52c548e8e9
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=s390 SHELL=/bin/bash drivers/gpu/drm/
+Also make code more clear by setting PSR2_MAN_TRK_CTL_ENABLE
+only if not on ADLP as this bit doesn't exist in ADLP.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Bspec: 49274
 
-All warnings (new ones prefixed by >>):
+v2: Fix Mihai Harpau email address
 
-   In file included from drivers/gpu/drm/drm_cache.c:31:
->> include/linux/cacheflush.h:12:46: warning: declaration of 'struct folio' will not be visible outside of this function [-Wvisibility]
-   static inline void flush_dcache_folio(struct folio *folio)
-                                                ^
-   In file included from drivers/gpu/drm/drm_cache.c:35:
-   In file included from include/linux/iosys-map.h:9:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:75:
-   include/asm-generic/io.h:464:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __raw_readb(PCI_IOBASE + addr);
-                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:477:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/big_endian.h:37:59: note: expanded from macro '__le16_to_cpu'
-   #define __le16_to_cpu(x) __swab16((__force __u16)(__le16)(x))
-                                                             ^
-   include/uapi/linux/swab.h:102:54: note: expanded from macro '__swab16'
-   #define __swab16(x) (__u16)__builtin_bswap16((__u16)(x))
-                                                        ^
-   In file included from drivers/gpu/drm/drm_cache.c:35:
-   In file included from include/linux/iosys-map.h:9:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:75:
-   include/asm-generic/io.h:490:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/big_endian.h:35:59: note: expanded from macro '__le32_to_cpu'
-   #define __le32_to_cpu(x) __swab32((__force __u32)(__le32)(x))
-                                                             ^
-   include/uapi/linux/swab.h:115:54: note: expanded from macro '__swab32'
-   #define __swab32(x) (__u32)__builtin_bswap32((__u32)(x))
-                                                        ^
-   In file included from drivers/gpu/drm/drm_cache.c:35:
-   In file included from include/linux/iosys-map.h:9:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:75:
-   include/asm-generic/io.h:501:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writeb(value, PCI_IOBASE + addr);
-                               ~~~~~~~~~~ ^
-   include/asm-generic/io.h:511:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
-   include/asm-generic/io.h:521:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
-   include/asm-generic/io.h:609:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           readsb(PCI_IOBASE + addr, buffer, count);
-                  ~~~~~~~~~~ ^
-   include/asm-generic/io.h:617:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           readsw(PCI_IOBASE + addr, buffer, count);
-                  ~~~~~~~~~~ ^
-   include/asm-generic/io.h:625:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           readsl(PCI_IOBASE + addr, buffer, count);
-                  ~~~~~~~~~~ ^
-   include/asm-generic/io.h:634:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           writesb(PCI_IOBASE + addr, buffer, count);
-                   ~~~~~~~~~~ ^
-   include/asm-generic/io.h:643:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           writesw(PCI_IOBASE + addr, buffer, count);
-                   ~~~~~~~~~~ ^
-   include/asm-generic/io.h:652:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           writesl(PCI_IOBASE + addr, buffer, count);
-                   ~~~~~~~~~~ ^
-   13 warnings generated.
-
-
-vim +12 include/linux/cacheflush.h
-
-522a0032af0055 Matthew Wilcox (Oracle  2021-11-06   6) 
-522a0032af0055 Matthew Wilcox (Oracle  2021-11-06   7) #if ARCH_IMPLEMENTS_FLUSH_DCACHE_PAGE
-522a0032af0055 Matthew Wilcox (Oracle  2021-11-06   8) #ifndef ARCH_IMPLEMENTS_FLUSH_DCACHE_FOLIO
-522a0032af0055 Matthew Wilcox (Oracle  2021-11-06   9) void flush_dcache_folio(struct folio *folio);
-522a0032af0055 Matthew Wilcox (Oracle  2021-11-06  10) #endif
-522a0032af0055 Matthew Wilcox (Oracle  2021-11-06  11) #else
-522a0032af0055 Matthew Wilcox (Oracle  2021-11-06 @12) static inline void flush_dcache_folio(struct folio *folio)
-522a0032af0055 Matthew Wilcox (Oracle  2021-11-06  13) {
-522a0032af0055 Matthew Wilcox (Oracle  2021-11-06  14) }
-522a0032af0055 Matthew Wilcox (Oracle  2021-11-06  15) #define ARCH_IMPLEMENTS_FLUSH_DCACHE_FOLIO 0
-522a0032af0055 Matthew Wilcox (Oracle  2021-11-06  16) #endif /* ARCH_IMPLEMENTS_FLUSH_DCACHE_PAGE */
-522a0032af0055 Matthew Wilcox (Oracle  2021-11-06  17) 
-
+Reported-by: Lyude Paul <lyude@redhat.com>
+Cc: Mihai Harpau <mharpau@gmail.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Bugzilla: https://gitlab.freedesktop.org/drm/intel/-/issues/5077
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+ drivers/gpu/drm/i915/display/intel_psr.c | 20 ++++++++++++++++++--
+ drivers/gpu/drm/i915/i915_reg.h          |  1 +
+ 2 files changed, 19 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 2e0b092f4b6b..90aca75e05e0 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1439,6 +1439,13 @@ static inline u32 man_trk_ctl_single_full_frame_bit_get(struct drm_i915_private
+ 	       PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME;
+ }
+ 
++static inline u32 man_trk_ctl_partial_frame_bit_get(struct drm_i915_private *dev_priv)
++{
++	return IS_ALDERLAKE_P(dev_priv) ?
++	       ADLP_PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE :
++	       PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE;
++}
++
+ static void psr_force_hw_tracking_exit(struct intel_dp *intel_dp)
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+@@ -1543,7 +1550,17 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	u32 val = PSR2_MAN_TRK_CTL_ENABLE;
++	u32 val = 0;
++
++	/*
++	 * ADL_P doesn't have HW tracking nor manual tracking enable
++	 * bit
++	 */
++	if (!IS_ALDERLAKE_P(dev_priv))
++		val = PSR2_MAN_TRK_CTL_ENABLE;
++
++	/* SF partial frame enable has to be set even on full update */
++	val |= man_trk_ctl_partial_frame_bit_get(dev_priv);
+ 
+ 	if (full_update) {
+ 		/*
+@@ -1563,7 +1580,6 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
+ 	} else {
+ 		drm_WARN_ON(crtc_state->uapi.crtc->dev, clip->y1 % 4 || clip->y2 % 4);
+ 
+-		val |= PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE;
+ 		val |= PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(clip->y1 / 4 + 1);
+ 		val |= PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(clip->y2 / 4 + 1);
+ 	}
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 2b8a3086ed35..89bbb64e520d 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2316,6 +2316,7 @@
+ #define  ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(val)	REG_FIELD_PREP(ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR_MASK, val)
+ #define  ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR_MASK		REG_GENMASK(12, 0)
+ #define  ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(val)		REG_FIELD_PREP(ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR_MASK, val)
++#define  ADLP_PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE		REG_BIT(31)
+ #define  ADLP_PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME		REG_BIT(14)
+ #define  ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME		REG_BIT(13)
+ 
+-- 
+2.25.1
+
