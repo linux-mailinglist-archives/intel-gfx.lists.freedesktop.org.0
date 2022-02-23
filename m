@@ -1,51 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D914C0E3F
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 09:29:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BC174C0E57
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 09:38:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0891F10E461;
-	Wed, 23 Feb 2022 08:29:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30A6F10F0F5;
+	Wed, 23 Feb 2022 08:38:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9538C10E461
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Feb 2022 08:29:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645604961; x=1677140961;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=I5mRBty6cUCU7qpDzpX48kOjtGwxb+p7SLySm4kMedo=;
- b=WQgcWD0rWZsRdmKF7PX5Pj+or88nNwr6ZesMHk0tM2TcMCkrZxGhjfgQ
- stLEyX9ysrfstJfsEHAL4EeJEkUainNo7dF4dzsEZajaW4Iyb+XGkpb05
- Wl0jaiJDWAIK5/VfenfFJENbuwt44PJrWFSgsoCAo6Dun4BZs2KSETFYM
- bXs4a7O3kCCskUBYiTm1H/vzSppZbuqGnJJypQFyTqqlHM5A6n7yrDfxP
- Jq0iWzRBjjrYb/vTRHd07eHCrFasvRVLno98P/DZATxTc2t4eC6lCcWQo
- gg9SqonMkPGpxvRJJca6g3DOaxHIGLuui1QEIpm/AP93C94Lik6e6aTGG w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="315140842"
-X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="315140842"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 00:29:20 -0800
-X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="548144044"
-Received: from khagn-mobl.ger.corp.intel.com (HELO localhost) ([10.252.44.68])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 00:29:19 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20220223081810.19917-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220223081810.19917-1-ville.syrjala@linux.intel.com>
-Date: Wed, 23 Feb 2022 10:29:16 +0200
-Message-ID: <87mtii6l5v.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8B2F110F0F6;
+ Wed, 23 Feb 2022 08:38:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 86222AADD3;
+ Wed, 23 Feb 2022 08:38:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5534144472664813114=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] Revert "drm/i915/display/vrr: Reset VRR
- capable property on a long hpd"
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael Cheng" <michael.cheng@intel.com>
+Date: Wed, 23 Feb 2022 08:38:35 -0000
+Message-ID: <164560551551.25288.4455692390570349360@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220223055900.415627-1-michael.cheng@intel.com>
+In-Reply-To: <20220223055900.415627-1-michael.cheng@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgVXNl?=
+ =?utf-8?q?_drm=5Fclflush*_instead_of_clflush_=28rev10=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,77 +40,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 23 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> This reverts commit 9bc34b4d0f3cb368241684cc5e0445d435dded44.
->
-> Just oopses on most machines.
->
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+--===============5534144472664813114==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Auch, "ERROR: It appears as if the changes made in Patchwork_22288
-prevented too many machines from booting." [1].
+== Series Details ==
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Series: Use drm_clflush* instead of clflush (rev10)
+URL   : https://patchwork.freedesktop.org/series/99450/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11269 -> Patchwork_22366
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22366/index.html
+
+Participating hosts (16 -> 16)
+------------------------------
+
+  Additional (1): bat-rpls-2 
+  Missing    (1): fi-pnv-d510 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22366 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@requests:
+    - fi-blb-e6850:       [PASS][1] -> [DMESG-FAIL][2] ([i915#5026])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11269/fi-blb-e6850/igt@i915_selftest@live@requests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22366/fi-blb-e6850/igt@i915_selftest@live@requests.html
+
+  * igt@runner@aborted:
+    - fi-blb-e6850:       NOTRUN -> [FAIL][3] ([fdo#109271] / [i915#2403] / [i915#2426] / [i915#4312])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22366/fi-blb-e6850/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@perf:
+    - {fi-tgl-dsi}:       [DMESG-WARN][4] ([i915#2867]) -> [PASS][5] +17 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11269/fi-tgl-dsi/igt@i915_selftest@live@perf.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22366/fi-tgl-dsi/igt@i915_selftest@live@perf.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
+  [i915#4898]: https://gitlab.freedesktop.org/drm/intel/issues/4898
+  [i915#5026]: https://gitlab.freedesktop.org/drm/intel/issues/5026
 
 
-[1] https://lore.kernel.org/r/164506400291.18053.4904919379639827273@emeril=
-.freedesktop.org
+Build changes
+-------------
+
+  * Linux: CI_DRM_11269 -> Patchwork_22366
+
+  CI-20190529: 20190529
+  CI_DRM_11269: 09d2de01f86139b074e80a1245e824311157aae9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6352: 11b4d227d8f0efad522519c8fd9525774247c8d8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22366: 5a4f7d6bae061f39308ea3055eafbdfbdb0b9543 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 17 ++++-------------
->  1 file changed, 4 insertions(+), 13 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 929e9b6febf1..1046e7fe310a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4455,12 +4455,6 @@ intel_dp_detect(struct drm_connector *connector,
->  		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
->  		memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
->=20=20
-> -		/* Reset VRR Capable property */
-> -		drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s] VRR capable: FALSE\n",
-> -			    connector->base.id, connector->name);
-> -		drm_connector_set_vrr_capable_property(connector,
-> -						       false);
-> -
->  		if (intel_dp->is_mst) {
->  			drm_dbg_kms(&dev_priv->drm,
->  				    "MST device may have disappeared %d vs %d\n",
-> @@ -4575,18 +4569,15 @@ static int intel_dp_get_modes(struct drm_connecto=
-r *connector)
->  {
->  	struct intel_connector *intel_connector =3D to_intel_connector(connecto=
-r);
->  	struct edid *edid;
-> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
->  	int num_modes =3D 0;
->=20=20
->  	edid =3D intel_connector->detect_edid;
->  	if (edid) {
-> -		bool vrr_capable;
-> -
->  		num_modes =3D intel_connector_update_modes(connector, edid);
-> -		vrr_capable =3D intel_vrr_is_capable(connector);
-> -		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
-> -			    connector->base.id, connector->name, yesno(vrr_capable));
-> -		drm_connector_set_vrr_capable_property(connector, vrr_capable);
-> +
-> +		if (intel_vrr_is_capable(connector))
-> +			drm_connector_set_vrr_capable_property(connector,
-> +							       true);
->  	}
->=20=20
->  	/* Also add fixed mode, which may or may not be present in EDID */
+== Linux commits ==
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+5a4f7d6bae06 drm/i915/gt: replace cache_clflush_range
+70b3d4fedcc1 drm/i915/: Re-work clflush_write32
+8b02f7f23860 drm/i915/gt: Re-work reset_csb
+7f401242b602 drm/i915/gt: Drop invalidate_csb_entries
+2b91c9fe06d4 drm/i915/gt: Re-work intel_write_status_page
+0bcb5f73bfd4 drm: Add arch arm64 for drm_clflush_virt_range
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22366/index.html
+
+--===============5534144472664813114==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Use drm_clflush* instead of clflush (rev10)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99450/">https://patchwork.freedesktop.org/series/99450/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22366/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22366/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11269 -&gt; Patchwork_22366</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22366/index.html</p>
+<h2>Participating hosts (16 -&gt; 16)</h2>
+<p>Additional (1): bat-rpls-2 <br />
+  Missing    (1): fi-pnv-d510 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22366 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11269/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22366/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5026">i915#5026</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22366/fi-blb-e6850/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@perf:<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11269/fi-tgl-dsi/igt@i915_selftest@live@perf.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22366/fi-tgl-dsi/igt@i915_selftest@live@perf.html">PASS</a> +17 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11269 -&gt; Patchwork_22366</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11269: 09d2de01f86139b074e80a1245e824311157aae9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6352: 11b4d227d8f0efad522519c8fd9525774247c8d8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22366: 5a4f7d6bae061f39308ea3055eafbdfbdb0b9543 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>5a4f7d6bae06 drm/i915/gt: replace cache_clflush_range<br />
+70b3d4fedcc1 drm/i915/: Re-work clflush_write32<br />
+8b02f7f23860 drm/i915/gt: Re-work reset_csb<br />
+7f401242b602 drm/i915/gt: Drop invalidate_csb_entries<br />
+2b91c9fe06d4 drm/i915/gt: Re-work intel_write_status_page<br />
+0bcb5f73bfd4 drm: Add arch arm64 for drm_clflush_virt_range</p>
+
+</body>
+</html>
+
+--===============5534144472664813114==--
