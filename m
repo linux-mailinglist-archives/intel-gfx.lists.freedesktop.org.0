@@ -1,50 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73FE84C0E1B
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 09:18:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03D914C0E3F
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Feb 2022 09:29:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3953110F008;
-	Wed, 23 Feb 2022 08:18:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0891F10E461;
+	Wed, 23 Feb 2022 08:29:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF7810F006
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Feb 2022 08:18:16 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9538C10E461
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Feb 2022 08:29:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645604296; x=1677140296;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7s0qtZNBgjCHduS2k7Uo9ZOS+BmTy0VmSj9VJF7jcCI=;
- b=LZr953YFZBO6QwQ6VqRqYDrFOi24C1Vil/VwzSLidSx1PZXc/ZFdkBy8
- wuXsC+HuFqkFePGejlwEcrcvAwh0oxZGMF0uUq1AuY+celjkU4hzlWkNz
- T2Q+AzP62/VprvIaRCpPPTq07rxuCzlgGhbRVP+Fo7rstgW3HfxHsBH9i
- ZEpmNM1L8j/bL0A5TygAWeQMn19vQt8X80hm+0jo3tSK720XooHYCxZzL
- i5OMDC9QRhFUH2AlU0/xZg0seUGKGDGFPD5uU+L+LQ52AuUMrfuSVZ8QU
- btGPWTdBINi+hTkH39jmjuzUxhDFOGOwZ2g7+fAC3i1QE4/eUsEJSM4wx A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="231885095"
-X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="231885095"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2022 00:18:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="683814367"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga001.fm.intel.com with SMTP; 23 Feb 2022 00:18:11 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 23 Feb 2022 10:18:10 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Feb 2022 10:18:10 +0200
-Message-Id: <20220223081810.19917-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
+ t=1645604961; x=1677140961;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=I5mRBty6cUCU7qpDzpX48kOjtGwxb+p7SLySm4kMedo=;
+ b=WQgcWD0rWZsRdmKF7PX5Pj+or88nNwr6ZesMHk0tM2TcMCkrZxGhjfgQ
+ stLEyX9ysrfstJfsEHAL4EeJEkUainNo7dF4dzsEZajaW4Iyb+XGkpb05
+ Wl0jaiJDWAIK5/VfenfFJENbuwt44PJrWFSgsoCAo6Dun4BZs2KSETFYM
+ bXs4a7O3kCCskUBYiTm1H/vzSppZbuqGnJJypQFyTqqlHM5A6n7yrDfxP
+ Jq0iWzRBjjrYb/vTRHd07eHCrFasvRVLno98P/DZATxTc2t4eC6lCcWQo
+ gg9SqonMkPGpxvRJJca6g3DOaxHIGLuui1QEIpm/AP93C94Lik6e6aTGG w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="315140842"
+X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="315140842"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2022 00:29:20 -0800
+X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; d="scan'208";a="548144044"
+Received: from khagn-mobl.ger.corp.intel.com (HELO localhost) ([10.252.44.68])
+ by orsmga008-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 00:29:19 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20220223081810.19917-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20220223081810.19917-1-ville.syrjala@linux.intel.com>
+Date: Wed, 23 Feb 2022 10:29:16 +0200
+Message-ID: <87mtii6l5v.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] Revert "drm/i915/display/vrr: Reset VRR capable
- property on a long hpd"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] Revert "drm/i915/display/vrr: Reset VRR
+ capable property on a long hpd"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,63 +58,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Wed, 23 Feb 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> This reverts commit 9bc34b4d0f3cb368241684cc5e0445d435dded44.
+>
+> Just oopses on most machines.
+>
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-This reverts commit 9bc34b4d0f3cb368241684cc5e0445d435dded44.
+Auch, "ERROR: It appears as if the changes made in Patchwork_22288
+prevented too many machines from booting." [1].
 
-Just oopses on most machines.
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-Cc: Manasi Navare <manasi.d.navare@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 17 ++++-------------
- 1 file changed, 4 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 929e9b6febf1..1046e7fe310a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4455,12 +4455,6 @@ intel_dp_detect(struct drm_connector *connector,
- 		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
- 		memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
- 
--		/* Reset VRR Capable property */
--		drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s] VRR capable: FALSE\n",
--			    connector->base.id, connector->name);
--		drm_connector_set_vrr_capable_property(connector,
--						       false);
--
- 		if (intel_dp->is_mst) {
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "MST device may have disappeared %d vs %d\n",
-@@ -4575,18 +4569,15 @@ static int intel_dp_get_modes(struct drm_connector *connector)
- {
- 	struct intel_connector *intel_connector = to_intel_connector(connector);
- 	struct edid *edid;
--	struct drm_i915_private *i915 = to_i915(connector->dev);
- 	int num_modes = 0;
- 
- 	edid = intel_connector->detect_edid;
- 	if (edid) {
--		bool vrr_capable;
--
- 		num_modes = intel_connector_update_modes(connector, edid);
--		vrr_capable = intel_vrr_is_capable(connector);
--		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
--			    connector->base.id, connector->name, yesno(vrr_capable));
--		drm_connector_set_vrr_capable_property(connector, vrr_capable);
-+
-+		if (intel_vrr_is_capable(connector))
-+			drm_connector_set_vrr_capable_property(connector,
-+							       true);
- 	}
- 
- 	/* Also add fixed mode, which may or may not be present in EDID */
--- 
-2.34.1
+[1] https://lore.kernel.org/r/164506400291.18053.4904919379639827273@emeril=
+.freedesktop.org
 
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 17 ++++-------------
+>  1 file changed, 4 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 929e9b6febf1..1046e7fe310a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4455,12 +4455,6 @@ intel_dp_detect(struct drm_connector *connector,
+>  		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
+>  		memset(intel_dp->dsc_dpcd, 0, sizeof(intel_dp->dsc_dpcd));
+>=20=20
+> -		/* Reset VRR Capable property */
+> -		drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s] VRR capable: FALSE\n",
+> -			    connector->base.id, connector->name);
+> -		drm_connector_set_vrr_capable_property(connector,
+> -						       false);
+> -
+>  		if (intel_dp->is_mst) {
+>  			drm_dbg_kms(&dev_priv->drm,
+>  				    "MST device may have disappeared %d vs %d\n",
+> @@ -4575,18 +4569,15 @@ static int intel_dp_get_modes(struct drm_connecto=
+r *connector)
+>  {
+>  	struct intel_connector *intel_connector =3D to_intel_connector(connecto=
+r);
+>  	struct edid *edid;
+> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
+>  	int num_modes =3D 0;
+>=20=20
+>  	edid =3D intel_connector->detect_edid;
+>  	if (edid) {
+> -		bool vrr_capable;
+> -
+>  		num_modes =3D intel_connector_update_modes(connector, edid);
+> -		vrr_capable =3D intel_vrr_is_capable(connector);
+> -		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
+> -			    connector->base.id, connector->name, yesno(vrr_capable));
+> -		drm_connector_set_vrr_capable_property(connector, vrr_capable);
+> +
+> +		if (intel_vrr_is_capable(connector))
+> +			drm_connector_set_vrr_capable_property(connector,
+> +							       true);
+>  	}
+>=20=20
+>  	/* Also add fixed mode, which may or may not be present in EDID */
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
