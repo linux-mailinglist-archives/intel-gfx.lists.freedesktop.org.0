@@ -1,34 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA37B4C295D
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 11:28:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D12414C2997
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 11:36:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB39810F977;
-	Thu, 24 Feb 2022 10:28:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D7BB10F9D1;
+	Thu, 24 Feb 2022 10:36:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8676810F977;
- Thu, 24 Feb 2022 10:28:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 84300A77A5;
- Thu, 24 Feb 2022 10:28:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8799969570809468004=="
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6B1910F9CF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Feb 2022 10:36:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1645698964; x=1677234964;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=5X8OmY1V0FeT2zsioKzzWR8KQhkhF0RTHeji3OozDyU=;
+ b=ZJbDJauE3onX0TjXldP8eGKmMKQMLZw23SATeKVhEa/7virvOuPYB/f6
+ s8rOX6fQgEcBW83RFyc3yMI0B6/79pLLDOzbjelN61dF4uNRXLu5PlxHx
+ chzgSS0ESxfY9iWHVd53aG1Bi28kU4hNsiAQ3V3dGlF6/pVQY1+X+K4oQ
+ X4F++2n2GC39V9ZKWK5LzrOoJ3krsHAoGm+bvkH5j807FxxPuM/Hkwv+y
+ YMzfyoR/jh9JiNt2VxyxLxqreTz/oWoZLBIggOe/eO4jyOve36XqK8ZK8
+ ShGJIWk/yNpJgFZvYIIU3d/Kgi/sDpBsd0JqhV52Z/mPn3g1NdZX+okRx g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="251031250"
+X-IronPort-AV: E=Sophos;i="5.88,393,1635231600"; d="scan'208";a="251031250"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2022 02:36:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,393,1635231600"; d="scan'208";a="548688565"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by orsmga008.jf.intel.com with SMTP; 24 Feb 2022 02:36:00 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 24 Feb 2022 12:35:59 +0200
+Date: Thu, 24 Feb 2022 12:35:59 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Message-ID: <Yhdfj3T+VWOumMYZ@intel.com>
+References: <20220223131315.18016-1-ville.syrjala@linux.intel.com>
+ <20220223131315.18016-13-ville.syrjala@linux.intel.com>
+ <20220223200022.GC9839@labuser-Z97X-UD5H>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Colin Ian King" <colin.i.king@gmail.com>
-Date: Thu, 24 Feb 2022 10:28:52 -0000
-Message-ID: <164569853251.24969.10029307739471575169@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220223120923.239867-1-colin.i.king@gmail.com>
-In-Reply-To: <20220223120923.239867-1-colin.i.king@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_make_a_handful_of_read-only_arrays_static_const_=28rev?=
- =?utf-8?q?2=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220223200022.GC9839@labuser-Z97X-UD5H>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 12/13] drm/i915: Use bigjoiner_pipes more
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,229 +61,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8799969570809468004==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Feb 23, 2022 at 12:00:28PM -0800, Navare, Manasi wrote:
+> On Wed, Feb 23, 2022 at 03:13:14PM +0200, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > Replace the hardcoded 2 pipe assumptions when we're massaging
+> > pipe_mode and the pipe_src rect to be suitable for bigjoiner.
+> > Instead we can just count the number of pipes in the bitmask.
+> > 
+> > v2: Introduce intel_bigjoiner_num_pipes()
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 31 +++++++++++++-------
+> >  1 file changed, 20 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 9b4013ed3d98..7a09bb33c1eb 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -368,6 +368,11 @@ bool intel_crtc_is_bigjoiner_master(const struct intel_crtc_state *crtc_state)
+> >  		crtc->pipe == bigjoiner_master_pipe(crtc_state);
+> >  }
+> >  
+> > +static int intel_bigjoiner_num_pipes(const struct intel_crtc_state *crtc_state)
+> > +{
+> > +	return hweight8(crtc_state->bigjoiner_pipes);
+> > +}
+> 
+> Okay yes makes sense. Although bigjoiner will always be between just 2 pipes so why not hardcode to 2 and
+> use the  if (!crtc_state->bigjoiner_pipes) as the check instead of num_pipes < 2.
+> When we have a joiner for 4 pipes, in that case also bigjoiner will still be only between 2 pipes.
+> So in bigjoiner_pipe mask, it will always only have 2 pipes.
 
-== Series Details ==
+It'll be whatever pipes we have when we have more pipes.
 
-Series: drm/i915: make a handful of read-only arrays static const (rev2)
-URL   : https://patchwork.freedesktop.org/series/100570/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_11277 -> Patchwork_22386
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/index.html
-
-Participating hosts (45 -> 33)
-------------------------------
-
-  Missing    (12): fi-kbl-soraka fi-bdw-samus bat-dg1-6 bat-dg1-5 bat-dg2-8 fi-icl-u2 fi-bsw-cyan bat-adlp-6 fi-pnv-d510 bat-rpls-2 bat-jsl-2 bat-jsl-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22386 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@fork-compute0:
-    - fi-ivb-3770:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-ivb-3770/igt@amdgpu/amd_cs_nop@fork-compute0.html
-
-  * igt@i915_selftest@live:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][2] ([i915#4547])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-skl-6600u/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-skl-6700k2:      [PASS][3] -> [DMESG-FAIL][4] ([i915#2291] / [i915#541])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-skl-6700k2/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-skl-6700k2/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][5] -> [INCOMPLETE][6] ([i915#3921])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][7] ([fdo#109271])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-skl-6600u/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-ivb-3770:        [INCOMPLETE][8] ([i915#3303]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-skl-6600u:       [FAIL][10] ([i915#4547]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       [FAIL][12] ([i915#4312]) -> [FAIL][13] ([i915#1436] / [i915#4312])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-skl-6600u/igt@runner@aborted.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-skl-6600u/igt@runner@aborted.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11277 -> Patchwork_22386
-
-  CI-20190529: 20190529
-  CI_DRM_11277: a9d1ffee8dbe2c5506cccf9077eab8fe439eea46 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6355: 83ec34916bd8268bc331105cf77c4d3d3cd352be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22386: 3587ab5414169a1fa485cb67360f2cfb528b47c7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3587ab541416 drm/i915: make a handful of read-only arrays static const
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/index.html
-
---===============8799969570809468004==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: make a handful of read-only arrays static const (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100570/">https://patchwork.freedesktop.org/series/100570/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11277 -&gt; Patchwork_22386</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/index.html</p>
-<h2>Participating hosts (45 -&gt; 33)</h2>
-<p>Missing    (12): fi-kbl-soraka fi-bdw-samus bat-dg1-6 bat-dg1-5 bat-dg2-8 fi-icl-u2 fi-bsw-cyan bat-adlp-6 fi-pnv-d510 bat-rpls-2 bat-jsl-2 bat-jsl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22386 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@fork-compute0:</p>
-<ul>
-<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-ivb-3770/igt@amdgpu/amd_cs_nop@fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-skl-6600u/igt@i915_selftest@live.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-skl-6700k2/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-skl-6700k2/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-skl-6600u/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22386/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11277 -&gt; Patchwork_22386</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11277: a9d1ffee8dbe2c5506cccf9077eab8fe439eea46 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6355: 83ec34916bd8268bc331105cf77c4d3d3cd352be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22386: 3587ab5414169a1fa485cb67360f2cfb528b47c7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>3587ab541416 drm/i915: make a handful of read-only arrays static const</p>
-
-</body>
-</html>
-
---===============8799969570809468004==--
+-- 
+Ville Syrjälä
+Intel
