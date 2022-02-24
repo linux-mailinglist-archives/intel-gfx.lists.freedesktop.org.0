@@ -1,33 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8708C4C2091
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 01:24:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 514E94C2096
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 01:27:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B69B410E134;
-	Thu, 24 Feb 2022 00:24:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 379EA10E117;
+	Thu, 24 Feb 2022 00:27:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0C18510E117;
- Thu, 24 Feb 2022 00:24:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D83E8A0118;
- Thu, 24 Feb 2022 00:24:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3668751210057617260=="
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com
+ [199.106.114.39])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A14810E117;
+ Thu, 24 Feb 2022 00:27:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1645662470; x=1677198470;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=39qc0oj8v8AP/LsR+PDwU9a0qlZaleEmotoVtEoHS9U=;
+ b=v5S9+xdQ5EQDbhDk6ql9OSQoUkDM739vgeiKpU4fTX7jG8QrJl1x7UkS
+ 9L60EKIifhp9DfOAGB508V/b6Y59UhkNF8trczA3OSwn7m/z8zQ2GI9Bs
+ 4R3Dju847L21Vwmn7ZzonrucKcGROnwXSHjrDRyw4+tEbguTMZT04ZrwQ E=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 23 Feb 2022 16:27:49 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2022 16:27:49 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Wed, 23 Feb 2022 16:27:49 -0800
+Received: from [10.110.59.224] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Wed, 23 Feb
+ 2022 16:27:48 -0800
+Message-ID: <ff169a9c-44b9-797b-0c4e-389a9a68694e@quicinc.com>
+Date: Wed, 23 Feb 2022 16:27:47 -0800
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Thu, 24 Feb 2022 00:24:23 -0000
-Message-ID: <164566226384.32677.4432486774853613411@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20220222165137.1004194-1-imre.deak@intel.com>
-In-Reply-To: <20220222165137.1004194-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Move_power_well_code_to_a_separate_file_=28rev2=29?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Content-Language: en-US
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>
+References: <20220202085429.22261-1-suraj.kandpal@intel.com>
+ <20220202085429.22261-6-suraj.kandpal@intel.com>
+ <Yfp8Q6OFqTAvESOi@pendragon.ideasonboard.com> <87y22ts948.fsf@intel.com>
+ <YfqGbqQQz5vrDaLI@pendragon.ideasonboard.com>
+ <CAA8EJpqr6MB64EAtLU3nBjgjx1COwn4auenCCw4kHB489VG0CA@mail.gmail.com>
+ <d69038d6-a853-d2d9-81de-0ad10c4d6a3a@quicinc.com>
+ <54fc4268-6418-817b-7cec-28a9dc9ba7b5@quicinc.com>
+ <YgSbk11nQ6bd4SWK@pendragon.ideasonboard.com>
+ <CAA8EJpqCgnLiQ7G+xY0E1j4PPbvPo+d-4vN+8-Nw84TWMSDmYA@mail.gmail.com>
+ <YhSR7CuSCJnHn0iD@pendragon.ideasonboard.com>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <YhSR7CuSCJnHn0iD@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/rcar_du: changes to rcar-du driver
+ resulting from drm_writeback_connector structure changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,415 +75,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: carsten.haitzler@arm.com, Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3668751210057617260==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Laurent
 
-== Series Details ==
+Thanks for responding.
 
-Series: drm/i915: Move power well code to a separate file (rev2)
-URL   : https://patchwork.freedesktop.org/series/100591/
-State : success
+On 2/21/2022 11:34 PM, Laurent Pinchart wrote:
+> Hi Dmitry,
+> 
+> On Tue, Feb 22, 2022 at 06:32:50AM +0300, Dmitry Baryshkov wrote:
+>> On Thu, 10 Feb 2022 at 07:59, Laurent Pinchart wrote:
+>>> On Wed, Feb 09, 2022 at 05:40:29PM -0800, Abhinav Kumar wrote:
+>>>> Hi Laurent
+>>>>
+>>>> Gentle reminder on this.
+>>>
+>>> I won't have time before next week I'm afraid.
+>>
+>> Laurent, another gentle ping.
+> 
+> I'm really late on this so I probably deserve a bit of a rougher ping,
+> but thanks for being gentle :-)
+> 
+>>>> On 2/6/2022 11:20 PM, Abhinav Kumar wrote:
+>>>>> On 2/6/2022 3:32 PM, Dmitry Baryshkov wrote:
+>>>>>> On Wed, 2 Feb 2022 at 16:26, Laurent Pinchart wrote:
+>>>>>>> On Wed, Feb 02, 2022 at 03:15:03PM +0200, Jani Nikula wrote:
+>>>>>>>> On Wed, 02 Feb 2022, Laurent Pinchart wrote:
+>>>>>>>>> On Wed, Feb 02, 2022 at 02:24:28PM +0530, Kandpal Suraj wrote:
+>>>>>>>>>> Changing rcar_du driver to accomadate the change of
+>>>>>>>>>> drm_writeback_connector.base and drm_writeback_connector.encoder
+>>>>>>>>>> to a pointer the reason for which is explained in the
+>>>>>>>>>> Patch(drm: add writeback pointers to drm_connector).
+>>>>>>>>>>
+>>>>>>>>>> Signed-off-by: Kandpal Suraj <suraj.kandpal@intel.com>
+>>>>>>>>>> ---
+>>>>>>>>>>    drivers/gpu/drm/rcar-du/rcar_du_crtc.h      | 2 ++
+>>>>>>>>>>    drivers/gpu/drm/rcar-du/rcar_du_writeback.c | 8 +++++---
+>>>>>>>>>>    2 files changed, 7 insertions(+), 3 deletions(-)
+>>>>>>>>>>
+>>>>>>>>>> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+>>>>>>>>>> b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+>>>>>>>>>> index 66e8839db708..68f387a04502 100644
+>>>>>>>>>> --- a/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+>>>>>>>>>> +++ b/drivers/gpu/drm/rcar-du/rcar_du_crtc.h
+>>>>>>>>>> @@ -72,6 +72,8 @@ struct rcar_du_crtc {
+>>>>>>>>>>      const char *const *sources;
+>>>>>>>>>>      unsigned int sources_count;
+>>>>>>>>>>
+>>>>>>>>>> +  struct drm_connector connector;
+>>>>>>>>>> +  struct drm_encoder encoder;
+>>>>>>>>>
+>>>>>>>>> Those fields are, at best, poorly named. Furthermore, there's no need in
+>>>>>>>>> this driver or in other drivers using drm_writeback_connector to create
+>>>>>>>>> an encoder or connector manually. Let's not polute all drivers because
+>>>>>>>>> i915 doesn't have its abstractions right.
+>>>>>>>>
+>>>>>>>> i915 uses the quite common model for struct inheritance:
+>>>>>>>>
+>>>>>>>>         struct intel_connector {
+>>>>>>>>                 struct drm_connector base;
+>>>>>>>>                 /* ... */
+>>>>>>>>         }
+>>>>>>>>
+>>>>>>>> Same with at least amd, ast, fsl-dcu, hisilicon, mga200, msm, nouveau,
+>>>>>>>> radeon, tilcdc, and vboxvideo.
+>>>>>>>>
+>>>>>>>> We could argue about the relative merits of that abstraction, but I
+>>>>>>>> think the bottom line is that it's popular and the drivers using it are
+>>>>>>>> not going to be persuaded to move away from it.
+>>>>>>>
+>>>>>>> Nobody said inheritance is bad.
+>>>>>>>
+>>>>>>>> It's no coincidence that the drivers who've implemented writeback so far
+>>>>>>>> (komeda, mali, rcar-du, vc4, and vkms) do not use the abstraction,
+>>>>>>>> because the drm_writeback_connector midlayer does, forcing the issue.
+>>>>>>>
+>>>>>>> Are you sure it's not a coincidence ? :-)
+>>>>>>>
+>>>>>>> The encoder and especially connector created by drm_writeback_connector
+>>>>>>> are there only because KMS requires a drm_encoder and a drm_connector to
+>>>>>>> be exposed to userspace (and I could argue that using a connector for
+>>>>>>> writeback is a hack, but that won't change). The connector is "virtual",
+>>>>>>> I still fail to see why i915 or any other driver would need to wrap it
+>>>>>>> into something else. The whole point of the drm_writeback_connector
+>>>>>>> abstraction is that drivers do not have to manage the writeback
+>>>>>>> drm_connector manually, they shouldn't touch it at all.
+>>>>>>
+>>>>>> Laurent, I wanted to shift a bit from the question of drm_connector to
+>>>>>> the question of drm_encoder being embedded in the drm_writeback_connector.
+>>>>>> In case of the msm driver the drm_encoder is not a lightweight entity,
+>>>>>> but a full-featured driver part. Significant part of it can be shared
+>>>>>> with the writeback implementation, if we allow using a pointer to the
+>>>>>> external drm_encoder with the drm_writeback_connector.
+>>>>>> Does the following patch set stand a chance to receive your ack?
+>>>>>>    - Switch drm_writeback_connector to point to drm_encoder rather than
+>>>>>> embedding it?
+>>>>>>    - Create drm_encoder for the drm_writeback_connector when one is not
+>>>>>> specified, so the current drivers can be left unchanged.
+> 
+> The situation is a bit different for the encoder indeed.
+> 
+> The encoder concept is loosely defined nowadays, with more and more of
+> the "real" encoders being implemented as a drm_bridge. That's what I
+> usually recommend when reviewing new drivers. drm_encoder is slowly
+> becoming an empty shell (see for instance [1]), although that transition
+> is not enforced globally and will thus take a long time to complete (if
+> ever).
+> 
+> This being said, lots of drivers have "featureful" encoder
+> implementations, and that won't go away any time soon. In those cases, I
+> could be OK with drivers optionally passing an encoder fo the writeback
+> helper if the hardware really shares resources between writeback and a
+> real encoder. I would however be careful there, as in many cases I would
+> expect the need to pass a custom encoder to originate from an old
+> software design decision rather than from the hardware architecture. In
+> those cases it would be best, I think, to move towards cleaning up the
+> software architecture, but that can be done step by step and I won't
+> consider that a requirement to implement writeback support.
+> 
+> In the MSM case in particular, can you explain what resources are shared
+> between writeback and hardware encoder(s) ?
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/rcar-du/rcar_du_encoder.c
+> 
 
-== Summary ==
+Yes, we indeed have a lot of functionality in our encoder. It shares 
+both interrupt and clock control for all interfaces including writeback.
 
-CI Bug Log - changes from CI_DRM_11276 -> Patchwork_22373
-====================================================
+Moreover, like I was mentioning earlier, on some of the chipsets where 
+display hardware is limited, the hardware components mapped to a drm 
+encoder can be shared between the panel and writeback paths.
 
-Summary
--------
+For your reference, please check [1]
 
-  **SUCCESS**
+[1] 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c#n174
 
-  No regressions found.
+Hence we are requesting that drm_writeback not embed an encoder but 
+acommodate a pointer to drm_encoder instead.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/index.html
-
-Participating hosts (46 -> 44)
-------------------------------
-
-  Additional (2): fi-kbl-soraka fi-pnv-d510 
-  Missing    (4): fi-ctg-p8600 fi-bdw-5557u fi-bdw-samus fi-hsw-4200u 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_22373 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-multi-fence:
-    - fi-blb-e6850:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-blb-e6850/igt@amdgpu/amd_basic@cs-multi-fence.html
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@i915_selftest@live:
-    - fi-skl-6600u:       NOTRUN -> [FAIL][8] ([i915#4547])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][9] ([i915#1886] / [i915#2291])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-adlp-4:         [PASS][10] -> [DMESG-FAIL][11] ([i915#5020])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/bat-adlp-4/igt@i915_selftest@live@workarounds.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/bat-adlp-4/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_busy@basic@flip:
-    - bat-adlp-4:         [PASS][12] -> [DMESG-WARN][13] ([i915#3576])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/bat-adlp-4/igt@kms_busy@basic@flip.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/bat-adlp-4/igt@kms_busy@basic@flip.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][14] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][15] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][16] ([fdo#109271]) +3 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [PASS][17] -> [DMESG-WARN][18] ([i915#4269])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][19] ([fdo#109271] / [i915#533])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][20] ([fdo#109271] / [i915#533])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][21] ([fdo#109271]) +57 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-5:          [DMESG-FAIL][22] ([i915#4494] / [i915#4957]) -> [PASS][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
-    - fi-snb-2600:        [INCOMPLETE][24] ([i915#3921]) -> [PASS][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-blb-e6850:       [DMESG-FAIL][26] ([i915#5026]) -> [PASS][27]
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/fi-blb-e6850/igt@i915_selftest@live@requests.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-blb-e6850/igt@i915_selftest@live@requests.html
-
-  * igt@kms_busy@basic@modeset:
-    - bat-adlp-4:         [DMESG-WARN][28] ([i915#3576]) -> [PASS][29] +1 similar issue
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/bat-adlp-4/igt@kms_busy@basic@modeset.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/bat-adlp-4/igt@kms_busy@basic@modeset.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - fi-bsw-n3050:       [FAIL][30] ([i915#2346]) -> [PASS][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/fi-bsw-n3050/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-bsw-n3050/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       [FAIL][32] ([i915#4312]) -> [FAIL][33] ([i915#1436] / [i915#4312])
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/fi-skl-6600u/igt@runner@aborted.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4312]: https://gitlab.freedesktop.org/drm/intel/issues/4312
-  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
-  [i915#5020]: https://gitlab.freedesktop.org/drm/intel/issues/5020
-  [i915#5026]: https://gitlab.freedesktop.org/drm/intel/issues/5026
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_11276 -> Patchwork_22373
-
-  CI-20190529: 20190529
-  CI_DRM_11276: 9f1f2bb5b108286547a5bb3e7b89d41b6c1300e4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6355: 83ec34916bd8268bc331105cf77c4d3d3cd352be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22373: 9c9e390deab323f6e2f00ab1cc3c2e4a8b8425d6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-9c9e390deab3 drm/i915: Move intel_display_power_well_is_enabled() to intel_display_power_well.c
-8fa77d53732a drm/i915: Add functions to get a power well's state/name/domains/mask/refcount
-c16a7406900a drm/i915: Add function to call a power well's sync_hw() hook
-081e436efd29 drm/i915: Move power well get/put/enable/disable functions to a new file
-0e55a7f760fd drm/i915: Move i915_power_well_regs struct into i915_power_well_ops
-c7ba874e9ab2 drm/i915: Remove redundant state verification during TypeC AUX power well disabling
-5c755c694d9d drm/i915: Sanitize open-coded power well enable()/disable() calls
-27d38490b3c1 drm/i915: Fix the VDSC_PW2 power domain enum value
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/index.html
-
---===============3668751210057617260==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Move power well code to a separate file (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100591/">https://patchwork.freedesktop.org/series/100591/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11276 -&gt; Patchwork_22373</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/index.html</p>
-<h2>Participating hosts (46 -&gt; 44)</h2>
-<p>Additional (2): fi-kbl-soraka fi-pnv-d510 <br />
-  Missing    (4): fi-ctg-p8600 fi-bdw-5557u fi-bdw-samus fi-hsw-4200u </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22373 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-multi-fence:</p>
-<ul>
-<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-blb-e6850/igt@amdgpu/amd_basic@cs-multi-fence.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@i915_selftest@live.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/bat-adlp-4/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/bat-adlp-4/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5020">i915#5020</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/bat-adlp-4/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/bat-adlp-4/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +57 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>
-<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-<li>
-<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/fi-blb-e6850/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5026">i915#5026</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-blb-e6850/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@modeset:</p>
-<ul>
-<li>bat-adlp-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/bat-adlp-4/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/bat-adlp-4/igt@kms_busy@basic@modeset.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/fi-bsw-n3050/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-bsw-n3050/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11276/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22373/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4312">i915#4312</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11276 -&gt; Patchwork_22373</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11276: 9f1f2bb5b108286547a5bb3e7b89d41b6c1300e4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6355: 83ec34916bd8268bc331105cf77c4d3d3cd352be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22373: 9c9e390deab323f6e2f00ab1cc3c2e4a8b8425d6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>9c9e390deab3 drm/i915: Move intel_display_power_well_is_enabled() to intel_display_power_well.c<br />
-8fa77d53732a drm/i915: Add functions to get a power well's state/name/domains/mask/refcount<br />
-c16a7406900a drm/i915: Add function to call a power well's sync_hw() hook<br />
-081e436efd29 drm/i915: Move power well get/put/enable/disable functions to a new file<br />
-0e55a7f760fd drm/i915: Move i915_power_well_regs struct into i915_power_well_ops<br />
-c7ba874e9ab2 drm/i915: Remove redundant state verification during TypeC AUX power well disabling<br />
-5c755c694d9d drm/i915: Sanitize open-coded power well enable()/disable() calls<br />
-27d38490b3c1 drm/i915: Fix the VDSC_PW2 power domain enum value</p>
-
-</body>
-</html>
-
---===============3668751210057617260==--
+>>>>> I second Dmitry's request here. For the reasons he has mentioned along
+>>>>> with the possibility of the writeback encoder being shared across
+>>>>> display pipelines, strengthens our request of the drm encoder being a
+>>>>> pointer inside the drm_writeback_connector instead of embedding it.
+>>>>>
+>>>>> Like I had shown in my RFC, in case the other drivers dont specify one,
+>>>>> we can allocate one:
+>>>>>
+>>>>> https://patchwork.kernel.org/project/dri-devel/patch/1642732195-25349-1-git-send-email-quic_abhinavk@quicinc.com/
+>>>>>
+>>>>> We think this should be a reasonable accomodation to the existing
+>>>>> drm_writeback driver.
+>>>>>
+>>>>>>>> So I think drm_writeback_connector should *not* use the inheritance
+>>>>>>>> abstraction because it's a midlayer that should leave that option tothe
+>>>>>>>> drivers. I think drm_writeback_connector needs to be changed to
+>>>>>>>> accommodate that, and, unfortunately, it means current writeback users
+>>>>>>>> need to be changed as well.
+>>>>>>>>
+>>>>>>>> I am not sure, however, if the series at hand is the right
+>>>>>>>> approach. Perhaps writeback can be modified to allocate the stuff for
+>>>>>>>> you if you prefer it that way, as long as the drm_connector is not
+>>>>>>>> embedded in struct drm_writeback_connector.
+>>>>>>>>
+>>>>>>>>> Nack.
+>>>>>>>>>
+>>>>>>>>>>      struct drm_writeback_connector writeback;
+>>>>>>>>>>    };
+>>>>>>>>>>
+>>>>>>>>>> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
+>>>>>>>>>> index c79d1259e49b..5b1e83380c47 100644
+>>>>>>>>>> --- a/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
+>>>>>>>>>> +++ b/drivers/gpu/drm/rcar-du/rcar_du_writeback.c
+>>>>>>>>>> @@ -200,8 +200,10 @@ int rcar_du_writeback_init(struct rcar_du_device *rcdu,
+>>>>>>>>>>    {
+>>>>>>>>>>      struct drm_writeback_connector *wb_conn = &rcrtc->writeback;
+>>>>>>>>>>
+>>>>>>>>>> -  wb_conn->encoder.possible_crtcs = 1 << drm_crtc_index(&rcrtc->crtc);
+>>>>>>>>>> -  drm_connector_helper_add(&wb_conn->base,
+>>>>>>>>>> +  wb_conn->base = &rcrtc->connector;
+>>>>>>>>>> +  wb_conn->encoder = &rcrtc->encoder;
+>>>>>>>>>> +  wb_conn->encoder->possible_crtcs = 1 << drm_crtc_index(&rcrtc->crtc);
+>>>>>>>>>> +  drm_connector_helper_add(wb_conn->base,
+>>>>>>>>>>                               &rcar_du_wb_conn_helper_funcs);
+>>>>>>>>>>
+>>>>>>>>>>      return drm_writeback_connector_init(&rcdu->ddev, wb_conn,
+>>>>>>>>>> @@ -220,7 +222,7 @@ void rcar_du_writeback_setup(struct rcar_du_crtc *rcrtc,
+>>>>>>>>>>      struct drm_framebuffer *fb;
+>>>>>>>>>>      unsigned int i;
+>>>>>>>>>>
+>>>>>>>>>> -  state = rcrtc->writeback.base.state;
+>>>>>>>>>> +  state = rcrtc->writeback.base->state;
+>>>>>>>>>>      if (!state || !state->writeback_job)
+>>>>>>>>>>              return;
+>>>>>>>>>>
+> 
