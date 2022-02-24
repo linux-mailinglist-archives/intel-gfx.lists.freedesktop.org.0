@@ -1,44 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97B264C3419
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 18:55:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC4F44C3446
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 19:02:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F23F310ECA1;
-	Thu, 24 Feb 2022 17:55:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D696D10ED13;
+	Thu, 24 Feb 2022 18:02:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8986810EC98
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Feb 2022 17:55:29 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0053510ED13
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Feb 2022 18:02:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645725329; x=1677261329;
+ t=1645725771; x=1677261771;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=yOv6D77pW2BxSP4GZ68RS0MyWyTzTM7PjPAbGmEeKHk=;
- b=F1ugkjk7GLTLMHrzNpIhNPyhwY/V+CB+ZCJuBpkU20zufMvJsazE1449
- 7jhXewldA4oRlAIV4/eiHjGQrsJVPbkDXKdvwhdYl75sRJpTXsmUHEFfd
- z5FSge9H0UruZFcUvGXOUoy+ywA4uIIvWQmjyDrCAn/60A9lRS/uLdwuv
- BB2wySu977rYtiBQHnp0tfxBr3Za9qP2ysuClVVUGMo8gt8tdIHDF2Jiy
- h/jFz2AQn4syRSOKcft7RCqGPV6fIKfVWObQX4FyLKCPoa4q/v0Ka32ck
- RIu9dZOYIr4RpnL+eTsDLIwh0TLiNB2EXmjO7HMIAsgB6vrAFhxulVD9n Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="252498402"
-X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="252498402"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2022 09:55:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="543786217"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by fmsmga007.fm.intel.com with SMTP; 24 Feb 2022 09:55:26 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 24 Feb 2022 19:55:25 +0200
-Date: Thu, 24 Feb 2022 19:55:25 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+ bh=fwEVHz8LtshE+nZGCrkjErgsXXkBmT6pLQqLILaM/fA=;
+ b=Ev+OY4KoznH76JLmB+nW2LBE0eBKdxg2r7GgkSC3Sx23DT9Qp9sblHtl
+ l0EVsY+P980XonGdT2WBlZAYFdlsffFjCrQnTt5hSFI4U8kgvdHSIzf0E
+ efIlccJ+qE53Z9RSxvG+vczi4MBJdeGOOCudZzQW0S/QCD0T0wWPaldE9
+ 7oxmFiAW+xpvSgqjtW49UcBC8HuXj5AjY0vdHQYEj491+ViiUjbZhxDTl
+ PAE3cOasPxuNYbPedstS4a8m81XUO+yxc9qIKEbVsFGJOuqH1AwGQ087v
+ DPKZojwo+9A14NRxIsJ8+oISPKqh7tOB/sxTSl0S/8y/uXPY0tFSFIex7 g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="252037922"
+X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="252037922"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2022 10:02:45 -0800
+X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="508967546"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2022 10:02:43 -0800
+Date: Thu, 24 Feb 2022 20:02:39 +0200
+From: Imre Deak <imre.deak@intel.com>
 To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <YhfGjbiC+2roWxbD@intel.com>
+Message-ID: <20220224180239.GB1069351@ideak-desk.fi.intel.com>
 References: <20220223205551.813749-1-jose.souza@intel.com>
  <Yhdb0UMM8gskEDmt@intel.com>
  <bcd7d64a3c2fcecd78efbfc4a711721fa9e32e16.camel@intel.com>
@@ -51,7 +49,6 @@ Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 In-Reply-To: <9d5049fe87faf41fba7649335cecbd64fba0c77a.camel@intel.com>
-X-Patchwork-Hint: comment
 Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Use unions per
  platform in intel_dpll_hw_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -70,7 +67,7 @@ Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 24, 2022 at 05:48:10PM +0000, Souza, Jose wrote:
+On Thu, Feb 24, 2022 at 07:48:10PM +0200, Souza, Jose wrote:
 > On Thu, 2022-02-24 at 17:39 +0200, Ville Syrjälä wrote:
 > > On Thu, Feb 24, 2022 at 01:49:36PM +0000, Souza, Jose wrote:
 > > > On Thu, 2022-02-24 at 15:25 +0200, Ville Syrjälä wrote:
@@ -148,28 +145,12 @@ On Thu, Feb 24, 2022 at 05:48:10PM +0000, Souza, Jose wrote:
 > 	u32 mg_pll_bias_mask;
 > 	u32 mg_pll_tdc_coldst_bias_mask;
 > };
-
-struct {
-	....
-} whatever;
-
-In this case the name that immediately came to mind was just "mg"
-(+ then drop the extra mg_ namespace in the members).
-
-We could name the types too I guess if we wanted to use those
-somewhere. Eg. instead of passing in the whole union to some
-function we could just pass in the specific substruct.
-
 > 
 > So we would need to access members with icl_tc.mg_refclkin_ctl?
 > 
 > I can do that but the diff will be huge.
 > Are you okay with that too Imre?
-> 
-> 
-> > 
-> 
 
--- 
-Ville Syrjälä
-Intel
+Yes, makes sense to clarify the type of PLL params at each place they
+are used.
+
