@@ -1,33 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D48AF4C24B2
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 08:51:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B1A54C24C8
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 08:55:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E95F10F50F;
-	Thu, 24 Feb 2022 07:51:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADD7A10F487;
+	Thu, 24 Feb 2022 07:55:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6F88510F50E;
- Thu, 24 Feb 2022 07:51:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E0BF810F484;
+ Thu, 24 Feb 2022 07:55:01 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6A137A008A;
- Thu, 24 Feb 2022 07:51:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2482236168635539010=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id DD375A008A;
+ Thu, 24 Feb 2022 07:55:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lee Shawn C" <shawn.c.lee@intel.com>
-Date: Thu, 24 Feb 2022 07:51:53 -0000
-Message-ID: <164568911339.24969.224176251636085877@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Thu, 24 Feb 2022 07:55:01 -0000
+Message-ID: <164568930190.32675.15652491667762447621@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20220215062321.832-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20220215062321.832-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_cursor_coordinates_on_bigjoiner_slave_=28rev3=29?=
+References: <20220223135112.655569-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20220223135112.655569-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/helpers=3A_Make_the_suballocation_manager_drm_generic?=
+ =?utf-8?b?LiAocmV2Mik=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,191 +46,222 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2482236168635539010==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Fix cursor coordinates on bigjoiner slave (rev3)
-URL   : https://patchwork.freedesktop.org/series/100154/
-State : success
+Series: drm/helpers: Make the suballocation manager drm generic. (rev2)
+URL   : https://patchwork.freedesktop.org/series/99713/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_11277 -> Patchwork_22384
-====================================================
+$ dim checkpatch origin/drm-tip
+18b5ce2eb239 drm: Extract amdgpu_sa.c as a generic suballocation helper
+-:41: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#41: 
+new file mode 100644
 
-Summary
--------
+-:46: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#46: FILE: drivers/gpu/drm/drm_suballoc.c:1:
++/*
 
-  **SUCCESS**
+-:118: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#118: FILE: drivers/gpu/drm/drm_suballoc.c:73:
++	BUG_ON(align & (align - 1));
 
-  No regressions found.
+-:147: WARNING:SUSPECT_COMMA_SEMICOLON: Possible comma where semicolon could be used
+#147: FILE: drivers/gpu/drm/drm_suballoc.c:102:
++		sa_manager->hole = &sa_manager->olist,
++		drm_suballoc_try_free(sa_manager);
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/index.html
+-:182: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!sa->fence"
+#182: FILE: drivers/gpu/drm/drm_suballoc.c:137:
++		if (sa->fence == NULL ||
 
-Participating hosts (45 -> 42)
-------------------------------
+-:190: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#190: FILE: drivers/gpu/drm/drm_suballoc.c:145:
++static inline unsigned drm_suballoc_hole_soffset(struct drm_suballoc_manager *sa_manager)
 
-  Missing    (3): fi-bsw-cyan fi-bdw-samus fi-pnv-d510 
+-:200: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#200: FILE: drivers/gpu/drm/drm_suballoc.c:155:
++static inline unsigned drm_suballoc_hole_eoffset(struct drm_suballoc_manager *sa_manager)
 
-Known issues
-------------
+-:212: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#212: FILE: drivers/gpu/drm/drm_suballoc.c:167:
++				   unsigned size)
 
-  Here are the changes found in Patchwork_22384 that come from known issues:
+-:214: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#214: FILE: drivers/gpu/drm/drm_suballoc.c:169:
++	unsigned soffset, eoffset;
 
-### IGT changes ###
+-:244: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#244: FILE: drivers/gpu/drm/drm_suballoc.c:199:
++	unsigned soffset, eoffset, i;
 
-#### Issues hit ####
+-:258: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int *' to bare use of 'unsigned *'
+#258: FILE: drivers/gpu/drm/drm_suballoc.c:213:
++				   unsigned *tries)
 
-  * igt@amdgpu/amd_cs_nop@fork-compute0:
-    - fi-ivb-3770:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/fi-ivb-3770/igt@amdgpu/amd_cs_nop@fork-compute0.html
+-:261: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#261: FILE: drivers/gpu/drm/drm_suballoc.c:216:
++	unsigned i, best_idx, soffset, best, tmp;
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-skl-6600u:       NOTRUN -> [INCOMPLETE][2] ([i915#4547])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
+-:285: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#285: FILE: drivers/gpu/drm/drm_suballoc.c:240:
++		sa = list_first_entry(&sa_manager->flist[i],
++					 struct drm_suballoc, flist);
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][3] -> [INCOMPLETE][4] ([i915#3921])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+-:293: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#293: FILE: drivers/gpu/drm/drm_suballoc.c:248:
++		if (tries[i] > 2) {
++			continue;
++		}
 
-  
-#### Possible fixes ####
+-:316: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#316: FILE: drivers/gpu/drm/drm_suballoc.c:271:
++		/* we knew that this one is signaled,
++		   so it's save to remote it */
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-ivb-3770:        [INCOMPLETE][5] ([i915#3303]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+-:316: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#316: FILE: drivers/gpu/drm/drm_suballoc.c:271:
++		   so it's save to remote it */
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-cml-u2:          [DMESG-WARN][7] ([i915#4269]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html
+-:338: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#338: FILE: drivers/gpu/drm/drm_suballoc.c:293:
++	unsigned tries[DRM_SUBALLOC_MAX_QUEUES];
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:339: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#339: FILE: drivers/gpu/drm/drm_suballoc.c:294:
++	unsigned count;
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
-  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
-  [i915#4269]: https://gitlab.freedesktop.org/drm/intel/issues/4269
-  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+-:347: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kmalloc(sizeof(*sa)...) over kmalloc(sizeof(struct drm_suballoc)...)
+#347: FILE: drivers/gpu/drm/drm_suballoc.c:302:
++	sa = kmalloc(sizeof(struct drm_suballoc), GFP_KERNEL);
+
+-:390: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#390: FILE: drivers/gpu/drm/drm_suballoc.c:345:
++			r = wait_event_interruptible_locked(
+
+-:425: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#425: FILE: drivers/gpu/drm/drm_suballoc.c:380:
++	BUG_ON(queue >= DRM_SUBALLOC_MAX_QUEUES);
+
+-:447: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#447: FILE: drivers/gpu/drm/drm_suballoc.c:402:
++		uint64_t soffset = i->soffset;
+
+-:448: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#448: FILE: drivers/gpu/drm/drm_suballoc.c:403:
++		uint64_t eoffset = i->eoffset;
+
+-:449: WARNING:LINE_SPACING: Missing a blank line after declarations
+#449: FILE: drivers/gpu/drm/drm_suballoc.c:404:
++		uint64_t eoffset = i->eoffset;
++		if (&i->olist == sa_manager->hole) {
+
+-:449: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#449: FILE: drivers/gpu/drm/drm_suballoc.c:404:
++		if (&i->olist == sa_manager->hole) {
+[...]
++		} else {
+[...]
+
+-:450: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#450: FILE: drivers/gpu/drm/drm_suballoc.c:405:
++			seq_printf(m, ">");
+
+-:452: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#452: FILE: drivers/gpu/drm/drm_suballoc.c:407:
++			seq_printf(m, " ");
+
+-:461: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#461: FILE: drivers/gpu/drm/drm_suballoc.c:416:
++		seq_printf(m, "\n");
+
+-:478: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#478: FILE: include/drm/drm_suballoc.h:1:
++/*
+
+-:479: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
+#479: FILE: include/drm/drm_suballoc.h:2:
++ * SPDX-License-Identifier: MIT
+
+total: 0 errors, 24 warnings, 6 checks, 523 lines checked
+840abcc732de drm/amd: Convert amdgpu to use suballocation helper.
+-:63: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#63: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu.h:424:
++	uint64_t			gpu_addr;
+
+-:122: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#122: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:351:
++static inline void * amdgpu_sa_bo_cpu_addr(struct drm_suballoc *sa_bo)
+
+-:136: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#136: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:365:
++		     unsigned size);
+
+-:159: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#159: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c:49:
++			      unsigned size, u32 suballoc_align, u32 domain)
+
+-:177: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#177: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c:56:
++	r = amdgpu_bo_create_kernel(adev, size, AMDGPU_GPU_PAGE_SIZE, domain, &sa_manager->bo,
+ 				&sa_manager->gpu_addr, &sa_manager->cpu_ptr);
+
+-:230: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#230: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c:82:
++		     unsigned size)
+
+total: 1 errors, 3 warnings, 2 checks, 482 lines checked
+f31ddb2b08c1 drm/radeon: Use the drm suballocation manager implementation.
+-:89: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#89: FILE: drivers/gpu/drm/radeon/radeon.h:519:
++	uint64_t			gpu_addr;
+
+-:141: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#141: FILE: drivers/gpu/drm/radeon/radeon_ib.c:204:
++					      RADEON_IB_POOL_SIZE*64*1024, 256,
+ 					                         ^
+
+-:141: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#141: FILE: drivers/gpu/drm/radeon/radeon_ib.c:204:
++					      RADEON_IB_POOL_SIZE*64*1024, 256,
+ 					                            ^
+
+-:151: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#151: FILE: drivers/gpu/drm/radeon/radeon_ib.c:212:
++					      RADEON_IB_POOL_SIZE*64*1024, 256,
+ 					                         ^
+
+-:151: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#151: FILE: drivers/gpu/drm/radeon/radeon_ib.c:212:
++					      RADEON_IB_POOL_SIZE*64*1024, 256,
+ 					                            ^
+
+-:177: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#177: FILE: drivers/gpu/drm/radeon/radeon_object.h:183:
++static inline void * radeon_sa_bo_cpu_addr(struct drm_suballoc *sa_bo)
+
+-:194: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#194: FILE: drivers/gpu/drm/radeon/radeon_object.h:198:
++extern int radeon_sa_bo_new(struct radeon_sa_manager *sa_manager,
+
+-:196: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#196: FILE: drivers/gpu/drm/radeon/radeon_object.h:200:
++			    unsigned size);
+
+-:197: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#197: FILE: drivers/gpu/drm/radeon/radeon_object.h:201:
++extern void radeon_sa_bo_free(struct drm_suballoc **sa_bo,
+
+-:215: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#215: FILE: drivers/gpu/drm/radeon/radeon_sa.c:49:
++			      unsigned size, u32 sa_align, u32 domain, u32 flags)
+
+-:274: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#274: FILE: drivers/gpu/drm/radeon/radeon_sa.c:122:
++		     unsigned size)
+
+total: 1 errors, 3 warnings, 7 checks, 540 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_11277 -> Patchwork_22384
-
-  CI-20190529: 20190529
-  CI_DRM_11277: a9d1ffee8dbe2c5506cccf9077eab8fe439eea46 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6355: 83ec34916bd8268bc331105cf77c4d3d3cd352be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_22384: 20de2ce1ff31e58cdb205cea105301994ab20f18 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-20de2ce1ff31 drm/i915: Fix cursor coordinates on bigjoiner slave
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/index.html
-
---===============2482236168635539010==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix cursor coordinates on bigjoiner slave (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/100154/">https://patchwork.freedesktop.org/series/100154/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_11277 -&gt; Patchwork_22384</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/index.html</p>
-<h2>Participating hosts (45 -&gt; 42)</h2>
-<p>Missing    (3): fi-bsw-cyan fi-bdw-samus fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_22384 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@fork-compute0:</p>
-<ul>
-<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/fi-ivb-3770/igt@amdgpu/amd_cs_nop@fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4269">i915#4269</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22384/fi-cml-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_11277 -&gt; Patchwork_22384</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_11277: a9d1ffee8dbe2c5506cccf9077eab8fe439eea46 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6355: 83ec34916bd8268bc331105cf77c4d3d3cd352be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_22384: 20de2ce1ff31e58cdb205cea105301994ab20f18 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>20de2ce1ff31 drm/i915: Fix cursor coordinates on bigjoiner slave</p>
-
-</body>
-</html>
-
---===============2482236168635539010==--
