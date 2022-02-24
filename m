@@ -1,83 +1,157 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C7DC4C3675
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 21:02:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 956024C3678
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 21:03:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 662FA10E311;
-	Thu, 24 Feb 2022 20:02:29 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A5A310E13B
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Feb 2022 20:02:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1645732947;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=guztHtEflM7LlCCQ1Yg9Uvj2FDqnuky0A5/FzHM4Rys=;
- b=PuKbkP8gJeHPhodldM60O2QTBP9LNaOIv6uB+30W4YhBSIUQRG+mRjz962Z83kNRZp++Se
- bT6uEqHjyLl9RyrP3haE5ckuQ1HWEs8M7Hm+tEXYPpssloYZOSNkgRMNTEXXTQKO5yGFp4
- SkCUvw7bldw6KOOEmeHI9HBeZbOQl50=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-416-ydGZ6WZBMkCKd9NPc6uGdg-1; Thu, 24 Feb 2022 15:02:26 -0500
-X-MC-Unique: ydGZ6WZBMkCKd9NPc6uGdg-1
-Received: by mail-qt1-f197.google.com with SMTP id
- c2-20020ac81102000000b002de4af72dcbso430498qtj.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Feb 2022 12:02:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=guztHtEflM7LlCCQ1Yg9Uvj2FDqnuky0A5/FzHM4Rys=;
- b=X0oxQVkh3gPUbVS/YBQ2XVEBp+ElTBlcCuyrgekShfw+oFyEQdj4uhxKcyf/pgROfA
- Qr/sFt16Q5LMDdl6Htbi67eecscLd3PZqLE8fvQjY9slq9CtXyryFgdxieWtelV7hlpK
- Y0mK2CG3mGcJX+qZROxTHNlzEqvb1ugngnlAkd17o0vaNWNtYZQLBJXr9jjpH2dS5fm6
- ZkDeoDjNODMA7MU9GSi6k9KM9f1TRGbkeV/rhJb+j6vuuLX3Cg7+aiTkOz+BLpr9aCfa
- zM3LePx47XU3ydhKkyHzJnd1gpWahHfc461FoS8QHrWaRIvpM04jMGLZDBywNfm/fr1R
- 7ixg==
-X-Gm-Message-State: AOAM5326gubw1J2vOyBjZ2xhGwXLgAR5+tx6HDQk0tpMV0Q39jDf9uDw
- LfnU27TjAGmrwiltzBSIxT2114gUgxZEMDf6UqMG3LwU7rGmgGOOg+bbkejcQ+fTUSw7p/yDh+e
- 2hYEBlW0X9pJUmiKqPo3NFz77YcWT
-X-Received: by 2002:ac8:7fcc:0:b0:2de:6ff:4a17 with SMTP id
- b12-20020ac87fcc000000b002de06ff4a17mr3873926qtk.151.1645732940010; 
- Thu, 24 Feb 2022 12:02:20 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyEjCNGO2xdfPQyrk7oUIWrxWjJCbnCV/pdrNCTLbSGzUMYvz1S+M9hTCbX82x58yOZlairQw==
-X-Received: by 2002:ac8:7fcc:0:b0:2de:6ff:4a17 with SMTP id
- b12-20020ac87fcc000000b002de06ff4a17mr3873610qtk.151.1645732936679; 
- Thu, 24 Feb 2022 12:02:16 -0800 (PST)
-Received: from [192.168.8.138] (pool-96-230-100-15.bstnma.fios.verizon.net.
- [96.230.100.15]) by smtp.gmail.com with ESMTPSA id
- d15-20020a05622a15cf00b002de711a190bsm165524qty.71.2022.02.24.12.02.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Feb 2022 12:02:16 -0800 (PST)
-Message-ID: <2b4072ba31eb3b26c205b3335020ebd4866ef000.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: "Souza, Jose" <jose.souza@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "Hogander, Jouni"
- <jouni.hogander@intel.com>
-Date: Thu, 24 Feb 2022 15:02:09 -0500
-In-Reply-To: <4cb2fee5d362cf2ac7172ad1405d164c6b0206dd.camel@intel.com>
-References: <20220223124807.3284451-1-jouni.hogander@intel.com>
- <4cb2fee5d362cf2ac7172ad1405d164c6b0206dd.camel@intel.com>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.42.3 (3.42.3-1.fc35)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E9B110E568;
+	Thu, 24 Feb 2022 20:03:10 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74AA410E13B;
+ Thu, 24 Feb 2022 20:03:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1645732988; x=1677268988;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=UYEHul+IB3Kkkkp+9llMTJ2nTVho93pjrOUvaF/8cz0=;
+ b=ahFo4g6GST8qpYnRoB/kQhgNYU1K70JbGgNrBzZtlaJ6isBU9Z+uSjYb
+ MShFOT/c4YL7neypoLOtNlB/5pRv557tHciydxZ5XAS6g4riD+lOyOcUo
+ uiLxcfbxixHCSl9lt3PR8cuAqywIvz3H+ADjEYI6/GWP2xKpEIZEvKxPT
+ pyZL2OWpt8Lku2JQOF+1En+TB7z/sS9Ztho6WbTL7uKpaTQ5JiuzCIby+
+ P9ML5OEfHA85AmME1WdRpfCHqqsNIfmx9DyOtxFJZ4qi1JEJ+1q7li9AP
+ D8LGAoNcrkMhHH0g+OUcNZcgZhb5zj+leLpfSCkuqMSr9EJwd0ZZySpST A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="232962864"
+X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="232962864"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2022 12:03:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="637972306"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga002.fm.intel.com with ESMTP; 24 Feb 2022 12:03:07 -0800
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Thu, 24 Feb 2022 12:03:07 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Thu, 24 Feb 2022 12:03:06 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20 via Frontend Transport; Thu, 24 Feb 2022 12:03:06 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.40) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.20; Thu, 24 Feb 2022 12:02:59 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ba5Dhhu4chKbOuALsDrFAT11Ylqk2VfMWoZJ5acWx0W4ZAjeADWPrm+7OEzda7BbCDgqo4EsObE6Cpt85nAtXPcMyyFELWZzQrHgMyTJd+hnS7/AZtxi3Iwi2ompzQbag6VVBxCDPhA9b6HSD0bdSeMq3BymX7wnWYzsIzwNoDLL4SWbD0saVlaBRLZizQz/yc7G3kMnPWMQEDGoCNhRUcVERlw0E11jcCXgKZ72h7qeRD2jMFzwJ3m8Pik99G0FGT4dqCKMbqPQFPR3aaXgpmww2A/Is2e6x+VpkQkc2oWf4m/FIBKZo3i75SvPsK/G4nO3G5kcGAXbv2/qOAaXLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JrnWtizvqUXICvik2+JWiy3KgCrkSITdHkHRvvfkThE=;
+ b=bk67H9h/A0jD/r6YzWXo50qoD1vOAQRNKHYjkBfyb7ywW20wCn0giw73n/JkGTeexBfDNQR9joO2iuqziwrpurocx/sAW4/ZCT0fhCATsHXsxFvqRSvKwOUxcq4TL74qIKc5buEhniXXMH2Ot5kDU8NG4WtlI3AtsRcf1uR2AilUiyT/Eu9BDi0SpuvmxlWXDl+j1bbaSxJEM9mbUVtimPyYkaizFl3jemwHKKM4ZeZhSPZ1ItvsZ5TeSHJnrnUv/2qIUGraOiVel6Ib3pUhDtk3OkLKD94V8VIo5mE8CtQW8aJNC0l6z055E7Y+HMYuJr6S0r4G3434oYuQ0btQ8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by MW3PR11MB4763.namprd11.prod.outlook.com (2603:10b6:303:2c::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.22; Thu, 24 Feb
+ 2022 20:02:57 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::dd36:1843:a629:4ad7]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::dd36:1843:a629:4ad7%4]) with mapi id 15.20.5017.022; Thu, 24 Feb 2022
+ 20:02:57 +0000
+Message-ID: <6526515c-a4d1-1815-3ee8-6a35dfa5036f@intel.com>
+Date: Thu, 24 Feb 2022 12:02:54 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.6.1
+Content-Language: en-GB
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ <Intel-GFX@Lists.FreeDesktop.Org>
+References: <20220218213307.1338478-1-John.C.Harrison@Intel.com>
+ <647b611a-d159-3a6f-2e3a-c8039a9503ec@linux.intel.com>
+ <7ceb4723-7ebf-3762-ddb7-b16e48e804d3@intel.com>
+ <ccc8d37f-2bcc-b258-4969-430c609c11d0@linux.intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <ccc8d37f-2bcc-b258-4969-430c609c11d0@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MW4PR03CA0107.namprd03.prod.outlook.com
+ (2603:10b6:303:b7::22) To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/psr: Set "SF Partial Frame
- Enable" also on full update
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d8ab9cbf-79a4-4ddb-a51d-08d9f7d0a6f0
+X-MS-TrafficTypeDiagnostic: MW3PR11MB4763:EE_
+X-Microsoft-Antispam-PRVS: <MW3PR11MB47635EF236C1AC75D86B74A4BD3D9@MW3PR11MB4763.namprd11.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zP8lRvTsyMZKILNdIX3TfD2mCmpz6RDkY2bTF+3DBeI2s6GtxiLaHqpgmHssFg4BgLHrsuELhyf0j1FaH0BnrgwC11+r1B+0AIxCLYn/EM0zku65RdUroiws5bC2A0l0S6RUWPiuqkHTVg/myrSaUkdHmTwa5GgrbsfGNf91K6rNXQpcw4i+Aw253x+tWUwYf6WCp5qLNDVSI/f7xml3J3zA8x5cdd1FYqIRbcPLwth2AzdW3Z6NctNUnlh4XW/3Zxlo66chT6RcrY18cVKrBaojQHCBhP7s1FKICIPbx9OKaaPhvc/5yN7wkjcNVVYesrcS8oEUIS17OxYTphHl0pCMKO6tzvepkvPjN3hZBZJ6UvikXb19i7TY2RVRQNBtbe46SnbCTWemy2gA10/Hxzzgd5hILKZ62D+/ARB7oShlQ/9zTbkh+1gOU8yNN69haqeQ9uVeOS5xXBtwnKB9P+z9aJyCAXPSR8/bJw74mhHPz2MhuzLw144iiRlbAWx7i/Nme6Q4iRpindFpcauC6Dvq8NOW9Ea6/SpSnvCvhY7tpsKsU93k6ZcHMvXqLSMydtzMAlShdGI27txt3H+RbiAMuwwcKW8hgx4zbwKIOhbuMWuHGEFRJ1tnajMpkzE5SsT8FcOLnam0bkP46/DoUthUAuDMMeKv0f/ZMxcS/ZaX5u91iU3M/yMaWW06WXbEmccg+QcGfsQHycY1Nxo9Eoys8+9RtqQqXRS4YFeyL3Rrlosh0qHvrFKVLe+9TQuD
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(366004)(31686004)(31696002)(6506007)(6512007)(6666004)(66476007)(66556008)(66946007)(4326008)(83380400001)(6486002)(36756003)(316002)(8676002)(38100700002)(2616005)(8936002)(26005)(186003)(53546011)(86362001)(5660300002)(82960400001)(2906002)(508600001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eTZJTGNwU3pSNys3cU45Q0RUWG8rQVRNWGZRYlJOWjNkclc0VnJPVjBLNHhz?=
+ =?utf-8?B?VjZiUWJHMTNaa1JBRW9PNjl5L1l2ZGtucnI5aElLaE1oUGs5ZGJLanZzMnYy?=
+ =?utf-8?B?OFhnaWRMWTZLQUJXa3F2aFFPVnIxbm9kZng4NzVoSDF3U2NxQndRNGdFZHdo?=
+ =?utf-8?B?Z29CWE40S0ZZK2VYWjF4UjNGVXpzRnNLdmRRRjZSTk1mVkFoci9kb0hXQVlI?=
+ =?utf-8?B?YnVVcEFoQ05rWjlQc2E5dmVLV2FWU2F2eTFBNWkycnUraHhjTkY1RWpsRGR5?=
+ =?utf-8?B?QXgxb1hNRyt0ckFnbkVPQlFPS2hBazJObnFOL1lFTFZINXJna003M3pnSElD?=
+ =?utf-8?B?M0xndFZPUll2QmFiQ0o3UHRkTGZPR2JQMTljNnhtUlNFY2lnSjZaVTBOc2ov?=
+ =?utf-8?B?SGdBSlRmRTBjTWl6MEdva2Qvd2o4Q1AwU0I5SWRiTEgwUnlqNkl6NFZDVUF5?=
+ =?utf-8?B?YXEwWm5jeEFpa2ZvMDIzYkFRa2RzWWk3ckJxS1h4NEtlK3RRbTFwYWh5TnBa?=
+ =?utf-8?B?Q2VPL0NEWWt1RXp1VEo5OTJEVks1cklCQ3pqTEtRdXFoL0pLZi9pZmVOTTg4?=
+ =?utf-8?B?b1BSYjZqWkVic1RlNEFTUFZ5eExGNTc0czJVc3BydGVaOWNMcnJWckRDVGxs?=
+ =?utf-8?B?WEh3WUFTbVVJd1ZGSDJ5Ty8yWmgrdG5MVmxQY042KzVLT0xEb3dzcWlXZW5G?=
+ =?utf-8?B?Q3NmalVkVG81dk1aMG1EYWxodHdrVWIxdjYvNTc1b0lzblZMbVVvd2lWMEVj?=
+ =?utf-8?B?bFpFUXJrVm0ycmdGUEVDR1RsbTFpSnJRZU01YzZHdFFvNnBkMDVyUG5RVm82?=
+ =?utf-8?B?VktRYk9BbUZXUkRBZzZ4RSszZXBoT3BzNzRzemxRQjUzTjVVNFdidG1hUDZr?=
+ =?utf-8?B?eTVrZE1teTVBbnpMVXlzMWJOMlk4N2Qra1VzRWdEYnUxUU1sUHpJcXRSeXFq?=
+ =?utf-8?B?OGlCTXpvTGV1Rm1lckFzQUsyZjVFYUlCMTVsSTAyN0MwM2N3eWZicmljRDNz?=
+ =?utf-8?B?WFhFcG1GMnJ4dWM1Y2VQYXd2YkMwR0ZFd0ZnKzQvc2R2enpxVHA0KzRRcmpT?=
+ =?utf-8?B?MG5La0RqMjFYNWdnUzhmZWlrNjVBT1ArTjZuV0VQWStkeE12SU9zd1Z6TFdn?=
+ =?utf-8?B?Uzd0ZGxieFFQWVFVVURyd2s1eGcwTjMwTG1ZV1FpZGYxN3NFMGJuV0VoeGhV?=
+ =?utf-8?B?cTJFTWV3TG81bUZ4Z2lYU2VGZEYwS21XUVcvc0NINkVzbzJ0elVQcjVhQTVS?=
+ =?utf-8?B?bmhEdlVwdjVqalB3a080dW1lQVpwNWU0L21NSSs5aGtYcFdDRHpQRHhtNXVo?=
+ =?utf-8?B?RDNSTmFtVVkxd0tDVWVvTGpObTJvNEFKektUZDcyMlVEazBHalpwWStmeVlt?=
+ =?utf-8?B?d2ltM1p5b1ByTGdTM2pyWUxZNXp3cXRuRkhnU1FXTUdPU2doSDUxdkYxcVJJ?=
+ =?utf-8?B?Um55SVhLcnVJazBjOXNqRGRhR0Z4ZzA2SithR0VJZUl1UVAvUTVpUzVuNXVj?=
+ =?utf-8?B?TU1XUXN6ZnRMaUUzTWdoV0M3djJPcnZyaWprc0pPZEJndkRPUElEdk9Nb2JB?=
+ =?utf-8?B?ZXo4S1RFTHY5NUtwSzJGTk9Na2pGWlpuSDdFVWlnUmRmdDBvNmIvcS9STXRN?=
+ =?utf-8?B?VjBISXRCVHBjc0ZEZE0vYjZRRnVSNGZEem5CWVpXcVhDcmZkcnZlbHpVNjBn?=
+ =?utf-8?B?TW5abXFzbXdVVWpROGNweGYvVDJRckFjelRyTmhUU0ZRdm01MXM1OWphVlVQ?=
+ =?utf-8?B?bXc1dzJTcmk3Z3hoNkYwMGdpOFQ2c1lFb3BZY0xxRDB4RytUUDN6VFp6bkt3?=
+ =?utf-8?B?d2xtUHBjb2lQWE5xbjNPclRkSFY0VkVlYUYvVEVNUU0xajdwUXd3U0VPY0N5?=
+ =?utf-8?B?WGpqZG9VMzVCWnlFQ1JlbnZiVU80RUJUTXNVa3ZFc2Q5eTUyMWJsNnpEQUhJ?=
+ =?utf-8?B?MnpJVkFTdmZodzM0NUh5dE5wWFY2YVVRWDEyRDVTVnMrMCtJSnlkQ0d5RjE4?=
+ =?utf-8?B?RWI5alkyMVFTQ2d5SXF6eEVqK3h6eWdBRG91cnFMajZLazlHSlI5aWNSTk1R?=
+ =?utf-8?B?aG92aTI1K0t3eElkQUxlR2R1OUlYOEREUXord0kxZ0VUUDFQVHpUR1Nxb1RN?=
+ =?utf-8?B?d0d5TldIVHdlSWFMc3lrUmh3Njh4djQxcWFwaW5IQnZvN0ZRWHNiWnQ1YWpn?=
+ =?utf-8?B?U00rKys1cEhRTTR1NlljOU1vUkRDQnBWWG1HaFpFd3puZ1VFNVdmVGQrQThL?=
+ =?utf-8?Q?7AtbM91pCPYykuEoIeV63D9XmBYKRyllM6/gldZva4=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8ab9cbf-79a4-4ddb-a51d-08d9f7d0a6f0
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2022 20:02:57.6932 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7F5cgUCJyiICXt1OD8T8dyavioHXpoOA+hHcUEf0gALqguPycVmZXBOhGbwds9J3GfVpbGthR1CW7BU+ZNzjung0GGANn3WmxKY1NnGkoD8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4763
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 0/3] Improve anti-pre-emption w/a for
+ compute workloads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,132 +164,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mharpau@gmail.com" <mharpau@gmail.com>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Also - I realized this is missing an appropriate Fixes: tag for the commit
-that enabled PSR2 selective fetch on tigerlake in the first place
+On 2/23/2022 04:00, Tvrtko Ursulin wrote:
+> On 23/02/2022 02:22, John Harrison wrote:
+>> On 2/22/2022 01:53, Tvrtko Ursulin wrote:
+>>> On 18/02/2022 21:33, John.C.Harrison@Intel.com wrote:
+>>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>>
+>>>> Compute workloads are inherently not pre-emptible on current hardware.
+>>>> Thus the pre-emption timeout was disabled as a workaround to prevent
+>>>> unwanted resets. Instead, the hang detection was left to the heartbeat
+>>>> and its (longer) timeout. This is undesirable with GuC submission as
+>>>> the heartbeat is a full GT reset rather than a per engine reset and so
+>>>> is much more destructive. Instead, just bump the pre-emption timeout
+>>>
+>>> Can we have a feature request to allow asking GuC for an engine reset?
+>> For what purpose?
+>
+> To allow "stopped heartbeat" to reset the engine, however..
+>
+>> GuC manages the scheduling of contexts across engines. With virtual 
+>> engines, the KMD has no knowledge of which engine a context might be 
+>> executing on. Even without virtual engines, the KMD still has no 
+>> knowledge of which context is currently executing on any given engine 
+>> at any given time.
+>>
+>> There is a reason why hang detection should be left to the entity 
+>> that is doing the scheduling. Any other entity is second guessing at 
+>> best.
+>>
+>> The reason for keeping the heartbeat around even when GuC submission 
+>> is enabled is for the case where the KMD/GuC have got out of sync 
+>> with either other somehow or GuC itself has just crashed. I.e. when 
+>> no submission at all is working and we need to reset the GuC itself 
+>> and start over.
+>
+> .. I wasn't really up to speed to know/remember heartbeats are nerfed 
+> already in GuC mode.
+Not sure what you mean by that claim. Engine resets are handled by GuC 
+because GuC handles the scheduling. You can't do the former if you 
+aren't doing the latter. However, the heartbeat is still present and is 
+still the watchdog by which engine resets are triggered. As per the rest 
+of the submission process, the hang detection and recovery is split 
+between i915 and GuC.
 
-On Wed, 2022-02-23 at 17:32 +0000, Souza, Jose wrote:
-> On Wed, 2022-02-23 at 14:48 +0200, Jouni Högander wrote:
-> > Currently we are observing occasional screen flickering when
-> > PSR2 selective fetch is enabled. More specifically glitch seems
-> > to happen on full frame update when cursor moves to coords
-> > x = -1 or y = -1.
-> > 
-> > According to Bspec SF Single full frame should not be set if
-> > SF Partial Frame Enable is not set. This happened to be true for
-> > ADLP as PSR2_MAN_TRK_CTL_ENABLE is always set and for ADLP it's
-> > actually "SF Partial Frame Enable" (Bit 31).
-> > 
-> > Setting "SF Partial Frame Enable" bit also on full update seems to
-> > fix screen flickering.
-> > 
-> > Also make code more clear by setting PSR2_MAN_TRK_CTL_ENABLE
-> > only if not on ADLP as this bit doesn't exist in ADLP.
-> 
-> Bit exist but has another name.
-> 
-> > 
-> > Bspec: 49274
-> > 
-> > v2: Fix Mihai Harpau email address
-> > 
-> > Reported-by: Lyude Paul <lyude@redhat.com>
-> > Cc: Mihai Harpau <mharpau@gmail.com>
-> > Cc: José Roberto de Souza <jose.souza@intel.com>
-> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Bugzilla: https://gitlab.freedesktop.org/drm/intel/-/issues/5077
-> > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_psr.c | 20 ++++++++++++++++++--
-> >  drivers/gpu/drm/i915/i915_reg.h          |  1 +
-> >  2 files changed, 19 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
-> > b/drivers/gpu/drm/i915/display/intel_psr.c
-> > index 2e0b092f4b6b..90aca75e05e0 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > @@ -1439,6 +1439,13 @@ static inline u32
-> > man_trk_ctl_single_full_frame_bit_get(struct drm_i915_private
-> >                PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME;
-> >  }
-> >  
-> > +static inline u32 man_trk_ctl_partial_frame_bit_get(struct
-> > drm_i915_private *dev_priv)
-> > +{
-> > +       return IS_ALDERLAKE_P(dev_priv) ?
-> > +              ADLP_PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE :
-> > +              PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE;
-> > +}
-> > +
-> >  static void psr_force_hw_tracking_exit(struct intel_dp *intel_dp)
-> >  {
-> >         struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> > @@ -1543,7 +1550,17 @@ static void psr2_man_trk_ctl_calc(struct
-> > intel_crtc_state *crtc_state,
-> >  {
-> >         struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> >         struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> > -       u32 val = PSR2_MAN_TRK_CTL_ENABLE;
-> > +       u32 val = 0;
-> > +
-> > +       /*
-> > +        * ADL_P doesn't have HW tracking nor manual tracking enable
-> > +        * bit
-> > +        */
-> 
-> Nit: Unnecessary comment.
-> 
-> Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
-> 
-> > +       if (!IS_ALDERLAKE_P(dev_priv))
-> > +               val = PSR2_MAN_TRK_CTL_ENABLE;
-> > +
-> > +       /* SF partial frame enable has to be set even on full update */
-> > +       val |= man_trk_ctl_partial_frame_bit_get(dev_priv);
-> >  
-> >         if (full_update) {
-> >                 /*
-> > @@ -1563,7 +1580,6 @@ static void psr2_man_trk_ctl_calc(struct
-> > intel_crtc_state *crtc_state,
-> >         } else {
-> >                 drm_WARN_ON(crtc_state->uapi.crtc->dev, clip->y1 % 4 ||
-> > clip->y2 % 4);
-> >  
-> > -               val |= PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE;
-> >                 val |= PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(clip->y1 / 4
-> > + 1);
-> >                 val |= PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(clip->y2 / 4 +
-> > 1);
-> >         }
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> > b/drivers/gpu/drm/i915/i915_reg.h
-> > index 2b8a3086ed35..89bbb64e520d 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -2316,6 +2316,7 @@
-> >  #define 
-> > ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(val)       REG_FIELD_PREP(ADLP_
-> > PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR_MASK, val)
-> >  #define 
-> > ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR_MASK         REG_GENMASK(12, 0)
-> >  #define 
-> > ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(val)         REG_FIELD_PREP(ADLP_
-> > PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR_MASK, val)
-> > +#define 
-> > ADLP_PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE         REG_BIT(31)
-> >  #define 
-> > ADLP_PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME            REG_BIT(14)
-> >  #define 
-> > ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME         REG_BIT(13)
-> >  
-> 
 
--- 
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+>
+> I am not sure it was the best way since full reset penalizes everyone 
+> for one hanging engine. Better question would be why leave heartbeats 
+> around to start with with GuC? If you want to use it to health check 
+> GuC, as you say, maybe just send a CT message and expect replies? Then 
+> full reset would make sense. It also achieves the goal of not 
+> seconding guessing the submission backend you raise.
+Adding yet another hang detection mechanism is yet more complication and 
+is unnecessary when we already have one that works well enough. As 
+above, the heartbeat is still required for sending the pulses that cause 
+pre-emptions and so let GuC detect hangs. It also provides a fallback 
+against a dead GuC by default. So why invent yet another wheel?
+
+>
+> Like it is now, and the need for this series demonstrates it, the 
+> whole thing has a pretty poor "impedance" match. Not even sure what 
+> intel_guc_find_hung_context is doing in intel_engine_hearbeat.c - why 
+> is that not in intel_gt_handle_error at least? Why is hearbeat code 
+> special and other callers of intel_gt_handle_error don't need it?
+There is no guilty context if the reset was triggered via debugfs or 
+similar. And as stated ad nauseam, i915 is no longer handling the 
+scheduling and so cannot make assumptions about what is or is not 
+running on the hardware at any given time. And obviously, if the reset 
+initiated by GuC itself then i915 should not be second guessing the 
+guilty context as the GuC notification has already told us who was 
+responsible.
+
+And to be clear, the 'poor impedance match' is purely because we don't 
+have mid-thread pre-emption and so need a stupidly huge timeout on 
+compute capable engines. Whereas, we don't want a total heatbeat timeout 
+of a minute or more. That is the impedance mis-match. If the 640ms was 
+acceptable for RCS then none of this hacky timeout algorithm mush would 
+be needed.
+
+John.
+
+
+>
+> Regards,
+>
+> Tvrtko
 
