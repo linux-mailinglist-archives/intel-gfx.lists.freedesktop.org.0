@@ -1,58 +1,71 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 767C64C2DAD
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 14:58:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C0F74C2E01
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 15:16:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8665510E814;
-	Thu, 24 Feb 2022 13:58:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7586110E87F;
+	Thu, 24 Feb 2022 14:16:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C25F10E814;
- Thu, 24 Feb 2022 13:58:53 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F103B10E87F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Feb 2022 14:15:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645711133; x=1677247133;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=vbVRuThB12/xWAXDw0PRbhLips7wQZ1Yd939k86AU7s=;
- b=gvazmQ96vSVCFRqcTmINVgJu4D8CAYdES2dCVnfuXUaLJnOZOh86ului
- cn+8SDZxtAWUhR74SjeMM2C+017ANd9ht/ccoqaUANCQ7GIB57auRfWZ4
- fKOYA18v0GLa7MeaUm8TXcBfwVqLlgB7e6avuhPOG6CfgeLCeKhPG6jJi
- aLNVGWxNKhNANU+PPzVgL8Z397O7uOQjrbev31dQEZYhny5k5UeAxEKwH
- A4x7lGN8mdAqxIu4ay0XTQ9i5AkBIicPeL02YXM4nHmR8K8VFPJx9370o
- xrDtuzhJgdZSfnXFwkyRlaVjTRPaaBeQwlwT4Cutqj8NyMRFCBkB2KoqX w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="338674695"
-X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="338674695"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2022 05:58:52 -0800
+ t=1645712159; x=1677248159;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=zI8lirKu2RDUcwREF4bUFCFMJ7lYJ7cekw3XFhEBiUs=;
+ b=mrVJLJM2Na00eKZcOzJ5tRZ5+9dS8LiCwngTFtdiwLvfy6FM3DQUBJ7y
+ UJssianE3H/Wvpb8FdD36uUJXmYEuQW9+1hcVA8yUjGTFsuFtjGMCAZbJ
+ eoIOnm6ZICkBUOAgXCsUD1kZk6AC8kgj5tTZl9f5GhHQ1v9G9XRe/vMHV
+ f47Ze7yQWiFd7noP7CDvZQsVEJlsv2gjDCg5dybsVVU8SloC7oykWJ83A
+ XOONoDWLFNpRq2q653J5cxL6nUgbeqj5AtUrbCqyEHLZEclGhZYR3J1C/
+ OuMY0fIsoiwwdYkCMUzUrpj74NYWOyYGLZT73eTczouflMJ8thaaSscHw g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="239638107"
+X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="239638107"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2022 06:15:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="508877461"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by orsmga006.jf.intel.com with ESMTP; 24 Feb 2022 05:58:50 -0800
-Received: from [10.249.157.70] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.157.70])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 21ODwm0q030928; Thu, 24 Feb 2022 13:58:48 GMT
-Message-ID: <b2d323a1-01ea-7e75-94f6-4efc36017c1c@intel.com>
-Date: Thu, 24 Feb 2022 14:58:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.6.1
+X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="777065272"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
+ by fmsmga006.fm.intel.com with ESMTP; 24 Feb 2022 06:15:45 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Thu, 24 Feb 2022 06:15:45 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 24 Feb 2022 06:15:44 -0800
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2308.020;
+ Thu, 24 Feb 2022 06:15:44 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display: Allow users to disable PSR2
+Thread-Index: AQHYKOz7fWJqCeQPZEycxfqlgPgbDqyjAkWAgAAv4gCAAADIAIAAAUUAgAASuAA=
+Date: Thu, 24 Feb 2022 14:15:44 +0000
+Message-ID: <f1a70a21b762017c9a1af38721095506fb147389.camel@intel.com>
+References: <20220223194103.715109-1-jose.souza@intel.com>
+ <YhdaA6hbK0bhjWsQ@intel.com>
+ <6dfd659cd15317139cade1c4c1e2825475167940.camel@intel.com>
+ <YheC1ujieOVpAHjV@intel.com> <YheD5iiAFhLD5SMu@intel.com>
+In-Reply-To: <YheD5iiAFhLD5SMu@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Jordan Justen <jordan.l.justen@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
-References: <20220222103640.1006006-1-jordan.l.justen@intel.com>
- <20220222103640.1006006-2-jordan.l.justen@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20220222103640.1006006-2-jordan.l.justen@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v5 1/4] drm/i915/guc: Add fetch of hwconfig
- table
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <AAD5518A0EEB0940AF75B034A239BA48@intel.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Allow users to disable
+ PSR2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,352 +78,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 22.02.2022 11:36, Jordan Justen wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> Implement support for fetching the hardware description table from the
-> GuC. The call is made twice - once without a destination buffer to
-> query the size and then a second time to fill in the buffer.
-> 
-> Note that the table is only available on ADL-P and later platforms.
-> 
-> v5 (of Jordan's posting):
->  * Various changes made by Jordan and recommended by Michal
->    - Makefile ordering
->    - Adjust "struct intel_guc_hwconfig hwconfig" comment
->    - Set Copyright year to 2022 in intel_guc_hwconfig.c/.h
->    - Drop inline from hwconfig_to_guc()
->    - Replace hwconfig param with guc in __guc_action_get_hwconfig()
->    - Move zero size check into guc_hwconfig_discover_size()
->    - Change comment to say zero size offset/size is needed to get size
->    - Add has_guc_hwconfig to devinfo and drop has_table()
->    - Change drm_err to notice in __uc_init_hw() and use %pe
-> 
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> Acked-by: Jon Bloomfield <jon.bloomfield@intel.com>
-> Signed-off-by: Jordan Justen <jordan.l.justen@intel.com>
-> ---
->  drivers/gpu/drm/i915/Makefile                 |   1 +
->  .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   1 +
->  .../gpu/drm/i915/gt/uc/abi/guc_errors_abi.h   |   4 +
->  drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   3 +
->  .../gpu/drm/i915/gt/uc/intel_guc_hwconfig.c   | 145 ++++++++++++++++++
->  .../gpu/drm/i915/gt/uc/intel_guc_hwconfig.h   |  19 +++
->  drivers/gpu/drm/i915/gt/uc/intel_uc.c         |   7 +
->  drivers/gpu/drm/i915/i915_pci.c               |   1 +
->  drivers/gpu/drm/i915/intel_device_info.h      |   1 +
->  9 files changed, 182 insertions(+)
->  create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
->  create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.h
-> 
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index e9ce09620eb5..661f1afb51d7 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -188,6 +188,7 @@ i915-y += gt/uc/intel_uc.o \
->  	  gt/uc/intel_guc_ct.o \
->  	  gt/uc/intel_guc_debugfs.o \
->  	  gt/uc/intel_guc_fw.o \
-> +	  gt/uc/intel_guc_hwconfig.o \
->  	  gt/uc/intel_guc_log.o \
->  	  gt/uc/intel_guc_log_debugfs.o \
->  	  gt/uc/intel_guc_rc.o \
-> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> index fe5d7d261797..4a61c819f32b 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-> @@ -137,6 +137,7 @@ enum intel_guc_action {
->  	INTEL_GUC_ACTION_ENGINE_FAILURE_NOTIFICATION = 0x1009,
->  	INTEL_GUC_ACTION_SETUP_PC_GUCRC = 0x3004,
->  	INTEL_GUC_ACTION_AUTHENTICATE_HUC = 0x4000,
-> +	INTEL_GUC_ACTION_GET_HWCONFIG = 0x4100,
->  	INTEL_GUC_ACTION_REGISTER_CONTEXT = 0x4502,
->  	INTEL_GUC_ACTION_DEREGISTER_CONTEXT = 0x4503,
->  	INTEL_GUC_ACTION_REGISTER_COMMAND_TRANSPORT_BUFFER = 0x4505,
-> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
-> index 488b6061ee89..f9e2a6aaef4a 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
-> @@ -8,6 +8,10 @@
->  
->  enum intel_guc_response_status {
->  	INTEL_GUC_RESPONSE_STATUS_SUCCESS = 0x0,
-> +	INTEL_GUC_RESPONSE_NOT_SUPPORTED = 0x20,
-> +	INTEL_GUC_RESPONSE_NO_ATTRIBUTE_TABLE = 0x201,
-> +	INTEL_GUC_RESPONSE_NO_DECRYPTION_KEY = 0x202,
-> +	INTEL_GUC_RESPONSE_DECRYPTION_FAILED = 0x204,
->  	INTEL_GUC_RESPONSE_STATUS_GENERIC_FAIL = 0xF000,
->  };
->  
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> index f9240d4baa69..2058eb8c3d0c 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> @@ -13,6 +13,7 @@
->  #include "intel_guc_fw.h"
->  #include "intel_guc_fwif.h"
->  #include "intel_guc_ct.h"
-> +#include "intel_guc_hwconfig.h"
->  #include "intel_guc_log.h"
->  #include "intel_guc_reg.h"
->  #include "intel_guc_slpc_types.h"
-> @@ -37,6 +38,8 @@ struct intel_guc {
->  	struct intel_guc_ct ct;
->  	/** @slpc: sub-structure containing SLPC related data and objects */
->  	struct intel_guc_slpc slpc;
-> +	/** @hwconfig: data related to hardware configuration KLV blob */
-> +	struct intel_guc_hwconfig hwconfig;
->  
->  	/** @sched_engine: Global engine used to submit requests to GuC */
->  	struct i915_sched_engine *sched_engine;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
-> new file mode 100644
-> index 000000000000..ad289603460c
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
-> @@ -0,0 +1,145 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2022 Intel Corporation
-> + */
-> +
-> +#include "gt/intel_gt.h"
-> +#include "i915_drv.h"
-> +#include "i915_memcpy.h"
-> +#include "intel_guc_hwconfig.h"
-> +
-> +static struct intel_guc *hwconfig_to_guc(struct intel_guc_hwconfig *hwconfig)
-> +{
-> +	return container_of(hwconfig, struct intel_guc, hwconfig);
-> +}
-> +
-> +/*
-> + * GuC has a blob containing hardware configuration information (HWConfig).
-> + * This is formatted as a simple and flexible KLV (Key/Length/Value) table.
-> + *
-> + * For example, a minimal version could be:
-> + *   enum device_attr {
-> + *     ATTR_SOME_VALUE = 0,
-> + *     ATTR_SOME_MASK  = 1,
-> + *   };
-> + *
-> + *   static const u32 hwconfig[] = {
-> + *     ATTR_SOME_VALUE,
-> + *     1,		// Value Length in DWords
-> + *     8,		// Value
-> + *
-> + *     ATTR_SOME_MASK,
-> + *     3,
-> + *     0x00FFFFFFFF, 0xFFFFFFFF, 0xFF000000,
-> + *   };
-> + *
-> + * The attribute ids are defined in a hardware spec.
-> + */
-> +
-> +static int __guc_action_get_hwconfig(struct intel_guc *guc,
-> +				     u32 ggtt_offset, u32 ggtt_size)
-> +{
-> +	u32 action[] = {
-> +		INTEL_GUC_ACTION_GET_HWCONFIG,
-> +		ggtt_offset,
-> +		0, /* upper 32 bits of address */
-
-nit: to avoid comments we can use
-
-	lower_32_bits(ggtt_offset),
-	upper_32_bits(ggtt_offset),
-
-> +		ggtt_size,
-> +	};
-> +	int ret;
-> +
-> +	ret = intel_guc_send_mmio(guc, action, ARRAY_SIZE(action), NULL, 0);
-> +	if (ret == -ENXIO)
-> +		return -ENOENT;
-> +
-> +	return ret;
-> +}
-> +
-> +static int guc_hwconfig_discover_size(struct intel_guc_hwconfig *hwconfig)
-> +{
-> +	struct intel_guc *guc = hwconfig_to_guc(hwconfig);
-> +	int ret;
-> +
-> +	/* Sending a query with zero offset and size will return the
-> +	 * size of the blob.
-> +	 */
-
-nit: wrong format of multi line comment
-
-> +	ret = __guc_action_get_hwconfig(guc, 0, 0);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (ret == 0)
-> +		return -EINVAL;
-> +
-> +	hwconfig->size = ret;
-> +	return 0;
-> +}
-> +
-> +static int guc_hwconfig_fill_buffer(struct intel_guc_hwconfig *hwconfig)
-> +{
-> +	struct intel_guc *guc = hwconfig_to_guc(hwconfig);
-> +	struct i915_vma *vma;
-> +	u32 ggtt_offset;
-> +	void *vaddr;
-> +	int ret;
-> +
-> +	GEM_BUG_ON(!hwconfig->size);
-> +
-> +	ret = intel_guc_allocate_and_map_vma(guc, hwconfig->size, &vma, &vaddr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ggtt_offset = intel_guc_ggtt_offset(guc, vma);
-> +
-> +	ret = __guc_action_get_hwconfig(guc, ggtt_offset, hwconfig->size);
-> +	if (ret >= 0)
-> +		memcpy(hwconfig->ptr, vaddr, hwconfig->size);
-> +
-> +	i915_vma_unpin_and_release(&vma, I915_VMA_RELEASE_MAP);
-> +
-> +	return ret;
-> +}
-> +
-> +/**
-> + * intel_guc_hwconfig_fini - Finalize the HWConfig
-> + *
-> + * Free up the memory allocation holding the table.
-> + */
-> +void intel_guc_hwconfig_fini(struct intel_guc_hwconfig *hwconfig)
-> +{
-> +	kfree(hwconfig->ptr);
-> +	hwconfig->size = 0;
-> +	hwconfig->ptr = NULL;
-> +}
-> +
-> +/**
-> + * intel_guc_hwconfig_init - Initialize the HWConfig
-> + *
-> + * Retrieve the HWConfig table from the GuC and save it away in a local memory
-
-"local memory" may have different meaning, maybe ".. save it locally"
-
-with comment reworded,
-
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-
-> + * allocation. It can then be queried on demand by other users later on.
-> + */
-> +int intel_guc_hwconfig_init(struct intel_guc_hwconfig *hwconfig)
-> +{
-> +	struct intel_guc *guc = hwconfig_to_guc(hwconfig);
-> +	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
-> +	int ret;
-> +
-> +	if (!INTEL_INFO(i915)->has_guc_hwconfig)
-> +		return 0;
-> +
-> +	ret = guc_hwconfig_discover_size(hwconfig);
-> +	if (ret)
-> +		return ret;
-> +
-> +	hwconfig->ptr = kmalloc(hwconfig->size, GFP_KERNEL);
-> +	if (!hwconfig->ptr) {
-> +		hwconfig->size = 0;
-> +		return -ENOMEM;
-> +	}
-> +
-> +	ret = guc_hwconfig_fill_buffer(hwconfig);
-> +	if (ret < 0) {
-> +		intel_guc_hwconfig_fini(hwconfig);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.h
-> new file mode 100644
-> index 000000000000..bfb90ae168dc
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.h
-> @@ -0,0 +1,19 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2022 Intel Corporation
-> + */
-> +
-> +#ifndef _INTEL_GUC_HWCONFIG_H_
-> +#define _INTEL_GUC_HWCONFIG_H_
-> +
-> +#include <linux/types.h>
-> +
-> +struct intel_guc_hwconfig {
-> +	u32 size;
-> +	void *ptr;
-> +};
-> +
-> +int intel_guc_hwconfig_init(struct intel_guc_hwconfig *hwconfig);
-> +void intel_guc_hwconfig_fini(struct intel_guc_hwconfig *hwconfig);
-> +
-> +#endif /* _INTEL_GUC_HWCONFIG_H_ */
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> index 09ed29df67bc..0cefa2a95190 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> @@ -489,6 +489,11 @@ static int __uc_init_hw(struct intel_uc *uc)
->  	if (ret)
->  		goto err_log_capture;
->  
-> +	ret = intel_guc_hwconfig_init(&guc->hwconfig);
-> +	if (ret)
-> +		drm_notice(&i915->drm, "Failed to retrieve hwconfig table: %pe\n",
-> +			   ERR_PTR(ret));
-> +
->  	ret = guc_enable_communication(guc);
->  	if (ret)
->  		goto err_log_capture;
-> @@ -562,6 +567,8 @@ static void __uc_fini_hw(struct intel_uc *uc)
->  	if (intel_uc_uses_guc_submission(uc))
->  		intel_guc_submission_disable(guc);
->  
-> +	intel_guc_hwconfig_fini(&guc->hwconfig);
-> +
->  	__uc_sanitize(uc);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 76e590fcb903..1d31e35a5154 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -990,6 +990,7 @@ static const struct intel_device_info adl_p_info = {
->  		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
->  	.ppgtt_size = 48,
->  	.dma_mask_size = 39,
-> +	.has_guc_hwconfig = 1,
->  };
->  
->  #undef GEN
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> index 3699b1c539ea..82d8d6bc30ff 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -133,6 +133,7 @@ enum intel_ppgtt_type {
->  	func(gpu_reset_clobbers_display); \
->  	func(has_reset_engine); \
->  	func(has_global_mocs); \
-> +	func(has_guc_hwconfig); \
->  	func(has_gt_uc); \
->  	func(has_l3_dpf); \
->  	func(has_llc); \
+KyBSb2RyaWdvDQoNCk9uIFRodSwgMjAyMi0wMi0yNCBhdCAxNToxMSArMDIwMCwgVmlsbGUgU3ly
+asOkbMOkIHdyb3RlOg0KPiBPbiBUaHUsIEZlYiAyNCwgMjAyMiBhdCAwMzowNjozMFBNICswMjAw
+LCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6DQo+ID4gT24gVGh1LCBGZWIgMjQsIDIwMjIgYXQgMDE6
+MDE6MjRQTSArMDAwMCwgU291emEsIEpvc2Ugd3JvdGU6DQo+ID4gPiBPbiBUaHUsIDIwMjItMDIt
+MjQgYXQgMTI6MTIgKzAyMDAsIFZpbGxlIFN5cmrDpGzDpCB3cm90ZToNCj4gPiA+ID4gT24gV2Vk
+LCBGZWIgMjMsIDIwMjIgYXQgMTE6NDE6MDNBTSAtMDgwMCwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6
+YSB3cm90ZToNCj4gPiA+ID4gPiBTb21lIHVzZXJzIGFyZSBzdWZmZXJpbmcgd2l0aCBQU1IyIGlz
+c3VlcyB0aGF0IGFyZSB1bmRlciBkZWJ1ZyBvcg0KPiA+ID4gPiA+IGlzc3VlcyB0aGF0IHdlcmUg
+cm9vdCBjYXVzZWQgdG8gcGFuZWwgZmlybXdhcmUsIHRvIG1ha2UgbGlmZSBvZiB0aG9zZQ0KPiA+
+ID4gPiA+IHVzZXJzIGVhc2llciBoZXJlIGFkZGluZyBhIG9wdGlvbiB0byBkaXNhYmxlIFBTUjEg
+d2l0aCBrZXJuZWwNCj4gPiA+ID4gPiBwYXJhbWV0ZXIuDQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4g
+VXNpbmcgdGhlIHNhbWUgZW5hYmxlX3BzciB0aGF0IGlzIGN1cnJlbnQgdXNlZCB0byB0dXJuIFBT
+UjEgYW5kIFBTUjINCj4gPiA+ID4gPiBvZmYgb3Igb24gYW5kIGFkZGluZyBhIG5ldyB2YWx1ZSB0
+byBvbmx5IGRpc2FibGUgUFNSMi4NCj4gPiA+ID4gPiBUaGUgcHJldmlvdXMgdmFsaWQgdmFsdWVz
+IGRpZCBub3QgaGFkIHRoZWlyIGJlaGF2aW9yIGNoYW5nZWQuDQo+ID4gPiA+ID4gDQo+ID4gPiA+
+ID4gTGluazogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vl
+cy80OTUxDQo+ID4gPiA+ID4gQ2M6IEpvdW5pIEjDtmdhbmRlciA8am91bmkuaG9nYW5kZXJAaW50
+ZWwuY29tPg0KPiA+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEg
+PGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiA+ID4gPiA+IC0tLQ0KPiA+ID4gPiA+ICBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIHwgNCArKysrDQo+ID4gPiA+ID4gIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFyYW1zLmMgICAgICAgfCAyICstDQo+ID4gPiA+ID4g
+IDIgZmlsZXMgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+ID4gPiA+
+ID4gDQo+ID4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfcHNyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+
+ID4gPiA+ID4gaW5kZXggMmUwYjA5MmY0YjZiZS4uZmM2YjY4NGJiN2JlYyAxMDA2NDQNCj4gPiA+
+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4g
+PiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiA+
+ID4gPiA+IEBAIC0xMDAsMTEgKzEwMCwxNSBAQCBzdGF0aWMgYm9vbCBwc3JfZ2xvYmFsX2VuYWJs
+ZWQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkNCj4gPiA+ID4gPiAgDQo+ID4gPiA+ID4gIHN0
+YXRpYyBib29sIHBzcjJfZ2xvYmFsX2VuYWJsZWQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkN
+Cj4gPiA+ID4gPiAgew0KPiA+ID4gPiA+ICsJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUg
+PSBkcF90b19pOTE1KGludGVsX2RwKTsNCj4gPiA+ID4gPiArDQo+ID4gPiA+ID4gIAlzd2l0Y2gg
+KGludGVsX2RwLT5wc3IuZGVidWcgJiBJOTE1X1BTUl9ERUJVR19NT0RFX01BU0spIHsNCj4gPiA+
+ID4gPiAgCWNhc2UgSTkxNV9QU1JfREVCVUdfRElTQUJMRToNCj4gPiA+ID4gPiAgCWNhc2UgSTkx
+NV9QU1JfREVCVUdfRk9SQ0VfUFNSMToNCj4gPiA+ID4gPiAgCQlyZXR1cm4gZmFsc2U7DQo+ID4g
+PiA+ID4gIAlkZWZhdWx0Og0KPiA+ID4gPiA+ICsJCWlmIChpOTE1LT5wYXJhbXMuZW5hYmxlX3Bz
+ciA9PSAyKQ0KPiA+ID4gPiA+ICsJCQlyZXR1cm4gZmFsc2U7DQo+ID4gPiA+ID4gIAkJcmV0dXJu
+IHRydWU7DQo+ID4gPiA+ID4gIAl9DQo+ID4gPiA+ID4gIH0NCj4gPiA+ID4gPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wYXJhbXMuYyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2k5MTVfcGFyYW1zLmMNCj4gPiA+ID4gPiBpbmRleCBlZWEzNTVjMmZjMjhhLi5hOWI5N2U2
+ZWIzZGYwIDEwMDY0NA0KPiA+ID4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+cGFyYW1zLmMNCj4gPiA+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BhcmFt
+cy5jDQo+ID4gPiA+ID4gQEAgLTk0LDcgKzk0LDcgQEAgaTkxNV9wYXJhbV9uYW1lZF91bnNhZmUo
+ZW5hYmxlX2hhbmdjaGVjaywgYm9vbCwgMDQwMCwNCj4gPiA+ID4gPiAgDQo+ID4gPiA+ID4gIGk5
+MTVfcGFyYW1fbmFtZWRfdW5zYWZlKGVuYWJsZV9wc3IsIGludCwgMDQwMCwNCj4gPiA+ID4gPiAg
+CSJFbmFibGUgUFNSICINCj4gPiA+ID4gPiAtCSIoMD1kaXNhYmxlZCwgMT1lbmFibGVkKSAiDQo+
+ID4gPiA+ID4gKwkiKDA9ZGlzYWJsZWQsIDE9ZW5hYmxlIHVwIHRvIFBTUjIgaWYgc3VwcG9ydGVk
+LCAyPWVuYWJsZSB1cCB0byBQU1IxKSAiDQo+ID4gPiA+IA0KPiA+ID4gPiBUaGF0IHNlZW1zIHZl
+cnkgdW5pbnR1aXRpdmUuIEkgd291bGQganVzdCBtYWtlIGl0IDE9PVBTUjEgYW5kIDI9PVBTUjIu
+DQo+ID4gPiANCj4gPiA+IFRoaXMgd2lsbCBicmVhayBjdXJyZW50IGJlaGF2aW9yLg0KPiA+IA0K
+PiA+IEl0J3MgYSBtb2RwYXJhbS4gV2Ugcm91dGluZWx5IGJyZWFrIHRob3NlIHNpbmNlIHRoZXkg
+YXJlIG5vdCBtZWFudA0KPiA+IHRvIHVzZWQgYnkgbm9ybWFsIHVzZXJzIGFzIGFueSBraW5kIG9m
+IHBlcm1hbmVudCAibWFrZSBteSBtYWNoaW5lDQo+ID4gd29yayIga25vYi4NCj4gDQo+IEJ1dCBJ
+IGd1ZXNzIGlmIHdlIHdhbnQgdG8gbWFrZSBpdCBhIGJpdCBsZXNzIHBhaW5mdWwgeW91ciBpZGVh
+IG9mIGEgbmV3DQo+IG1vZHBhcmFtIG1pZ2h0IHdvcmsuICsgZGVwcmVjYXRlIHRoZSBvbGQgcGFy
+YW0gYW5kIHJlbW92ZSBhZnRlciBvbmUgb3INCj4gdHdvIGtlcm5lbCByZWxlYXNlcy4NCg0KV2Fz
+IHRoaW5raW5nIGFib3V0IGEgbmV3IG9uZSB0byBsaW1pdCB0aGUgdmVyc2lvbiBvZiBQU1I6DQoN
+CmVuYWJsZV9wc3JfdmVyc2lvbg0KZGVmYXVsdCA9IDAocGVyLWNoaXAgZGVmYXVsdCksIDEgPSB1
+cCB0byBQU1IxLCAyID0gUFNSMg0KDQo+IA0KDQo=
