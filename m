@@ -2,42 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B34B4C2E6C
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 15:29:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1D9A4C2E6D
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 15:30:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A1B010E9D0;
-	Thu, 24 Feb 2022 14:29:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05DAE10E9D2;
+	Thu, 24 Feb 2022 14:30:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AFD610E9D0
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Feb 2022 14:29:39 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCFE610E9D2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Feb 2022 14:30:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645712979; x=1677248979;
+ t=1645713002; x=1677249002;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=R3AGGNBHslR9yQqrkk1cuVdZ0EVUD7Fh6OPYlGieAg0=;
- b=JpqIyMxoQex9pT3FNuXwytucHuPksp3S4No3oDJpalNoIz772z7PwZml
- AbqUXc5ofXa3OX4vRlt1ujZpC1RY0J+bmNmY5zuvZoP19HxfPQcmiYy6f
- OhAvHuN5dDXcViet6I+sbwP7T7P5hSzmWYIPvpEHINsiz//ebBiaDa9Wv
- acQUTxev6Nnub+JAq3du/jBpD+bu4Q2lsulTN+ZcyaWBosmQUqkFQ4xR+
- cFgUHB0h8d+qniodjlg0sndzvZhm7Bmcpc0aW8T7xOdtKayYzPCUNLgVK
- AJd0PFo4AZC/CKEtqfy6QZDVsBD7HFnt/J/6B19cACpA2Mo8CRy+xEHqn Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="252166120"
-X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="252166120"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2022 06:29:38 -0800
-X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="548768042"
-Received: from vishaliy-mobl.amr.corp.intel.com (HELO intel.com)
- ([10.255.35.126])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2022 06:29:37 -0800
-Date: Thu, 24 Feb 2022 09:29:34 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+ bh=D8yECrO7LVsfF2coIsy7kLYhDgSdolvXaC2lrNI6Jxo=;
+ b=MGBhO0NuFPFJsBnt2KfMXbv8cYJmvOxC0dLXRpe/98trKzMqXjWDxcll
+ +8cRNle4Yzygm9PF/id6iwKizIF9PH+UWoYNenYrbdVouHDRmBaLgn4Rw
+ k25aNNfWfVsAEmLoCKQvy87u6vllV/kqlg4SXqcNZi49kMPfqXw27Z4MN
+ h2jHYfMETto+b4vBdnqRhoiCoUfqzyYwjL9OwEQY0xSGHeIcW55BK6m7U
+ 4Usy7ln8eCGcIRN3vIdtoEROXE+jn2v462qhl1kvdNh4gmsDRx+8jfsuP
+ fB7RCHAXVTsOf5I41fnWlKgVm/tcYdZ7csiSKswqmBuZEYovMlQv7HoM6 w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="252438049"
+X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="252438049"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2022 06:30:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="628487396"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+ by FMSMGA003.fm.intel.com with SMTP; 24 Feb 2022 06:29:59 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 24 Feb 2022 16:29:59 +0200
+Date: Thu, 24 Feb 2022 16:29:59 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <YheWTjUKQ2U2etF9@intel.com>
+Message-ID: <YheWZ9aUHe4xZKUt@intel.com>
 References: <20220223194103.715109-1-jose.souza@intel.com>
  <YhdaA6hbK0bhjWsQ@intel.com>
  <6dfd659cd15317139cade1c4c1e2825475167940.camel@intel.com>
@@ -48,6 +49,7 @@ Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 In-Reply-To: <f1a70a21b762017c9a1af38721095506fb147389.camel@intel.com>
+X-Patchwork-Hint: comment
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Allow users to disable
  PSR2
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -62,7 +64,8 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
@@ -138,23 +141,10 @@ On Thu, Feb 24, 2022 at 02:15:44PM +0000, Souza, Jose wrote:
 > 
 > enable_psr_version
 > default = 0(per-chip default), 1 = up to PSR1, 2 = PSR2
-> 
-> > 
-> 
 
-My trauma with PSR makes me to ask if we really wants this option.
-Is PSR1 really more stable at this point? Shouldn't we just disable everything
-while we fix the PSR2 and avoid touching the parameter?
+I would use the standard -1==default, 0==disable convention here.
+Then we can drop the old param after a short transition period.
 
-If we are confident that PSR1 is better than simply disabling, then
-I like the idea of a new parameter that overrides the previous one so
-we can delete in a couple months and keep only one.
-
-i915.psr
-default=-1 (per-chip default), 0=disabled, 1=psr1, 2=psr2
-
-but I also would be okay breaking a parameter that is marked as unstable
-and which main use externally is to disable the psr (i915.enable_psr=0).
-
-Thanks,
-Rodrigo.
+-- 
+Ville Syrjälä
+Intel
