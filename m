@@ -1,56 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CF1E4C2CCF
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 14:11:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B318B4C2CD1
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Feb 2022 14:14:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD84810E146;
-	Thu, 24 Feb 2022 13:11:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9E4210E117;
+	Thu, 24 Feb 2022 13:14:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD31810E146
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Feb 2022 13:11:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645708265; x=1677244265;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=iW14KX6FxfJOwqZY9TXqiIRZnH0HWBxuG61Iq/NT5tQ=;
- b=N3q8IOgKktCuFodg+/7m5aFhPGrnuTzYcGT0+pDV1YA7PSncyTJuCmOv
- 2l7DYdYy6aWjmGWlILrodqFO/w2Pg6cK4iL6OFgFgp+w23JKSoUIsSqEx
- W99Mm+Ilds/afLkScnjAmP+6rNmR1slcCYymMTzm8y0QRBg31uuoS/cIy
- jnRcjnkJFhOtT0/GynNjGAw9OsXaXbKZY7jOuIc473ij/a9388ogMq/oJ
- zHWPlDBLoAS++gq0S7GphobW4dsRb9OnRC9HFmYDVinl1c7glaZ4fjZpW
- +3RtMwJdmDwQRHb4n+HxaDw1YCWX6mzBkJaKTrdOfLZgvRFD/VM82DzUW A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="252151128"
-X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; d="scan'208";a="252151128"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2022 05:11:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,134,1635231600"; d="scan'208";a="508864646"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
- by orsmga006.jf.intel.com with SMTP; 24 Feb 2022 05:11:02 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 24 Feb 2022 15:11:02 +0200
-Date: Thu, 24 Feb 2022 15:11:02 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <YheD5iiAFhLD5SMu@intel.com>
-References: <20220223194103.715109-1-jose.souza@intel.com>
- <YhdaA6hbK0bhjWsQ@intel.com>
- <6dfd659cd15317139cade1c4c1e2825475167940.camel@intel.com>
- <YheC1ujieOVpAHjV@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4112910E117;
+ Thu, 24 Feb 2022 13:14:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3DB45A00E8;
+ Thu, 24 Feb 2022 13:14:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1285112846745448735=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YheC1ujieOVpAHjV@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Allow users to disable
- PSR2
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Souza, Jose" <jose.souza@intel.com>
+Date: Thu, 24 Feb 2022 13:14:38 -0000
+Message-ID: <164570847822.24969.880153302912646767@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20220223194946.725328-1-jose.souza@intel.com>
+In-Reply-To: <20220223194946.725328-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Check_stolen_memory_size_before_calling_drm=5Fmm=5Fini?=
+ =?utf-8?q?t_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,74 +41,263 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 24, 2022 at 03:06:30PM +0200, Ville Syrjälä wrote:
-> On Thu, Feb 24, 2022 at 01:01:24PM +0000, Souza, Jose wrote:
-> > On Thu, 2022-02-24 at 12:12 +0200, Ville Syrjälä wrote:
-> > > On Wed, Feb 23, 2022 at 11:41:03AM -0800, José Roberto de Souza wrote:
-> > > > Some users are suffering with PSR2 issues that are under debug or
-> > > > issues that were root caused to panel firmware, to make life of those
-> > > > users easier here adding a option to disable PSR1 with kernel
-> > > > parameter.
-> > > > 
-> > > > Using the same enable_psr that is current used to turn PSR1 and PSR2
-> > > > off or on and adding a new value to only disable PSR2.
-> > > > The previous valid values did not had their behavior changed.
-> > > > 
-> > > > Link: https://gitlab.freedesktop.org/drm/intel/-/issues/4951
-> > > > Cc: Jouni Högander <jouni.hogander@intel.com>
-> > > > Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_psr.c | 4 ++++
-> > > >  drivers/gpu/drm/i915/i915_params.c       | 2 +-
-> > > >  2 files changed, 5 insertions(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > index 2e0b092f4b6be..fc6b684bb7bec 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > > @@ -100,11 +100,15 @@ static bool psr_global_enabled(struct intel_dp *intel_dp)
-> > > >  
-> > > >  static bool psr2_global_enabled(struct intel_dp *intel_dp)
-> > > >  {
-> > > > +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > > > +
-> > > >  	switch (intel_dp->psr.debug & I915_PSR_DEBUG_MODE_MASK) {
-> > > >  	case I915_PSR_DEBUG_DISABLE:
-> > > >  	case I915_PSR_DEBUG_FORCE_PSR1:
-> > > >  		return false;
-> > > >  	default:
-> > > > +		if (i915->params.enable_psr == 2)
-> > > > +			return false;
-> > > >  		return true;
-> > > >  	}
-> > > >  }
-> > > > diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-> > > > index eea355c2fc28a..a9b97e6eb3df0 100644
-> > > > --- a/drivers/gpu/drm/i915/i915_params.c
-> > > > +++ b/drivers/gpu/drm/i915/i915_params.c
-> > > > @@ -94,7 +94,7 @@ i915_param_named_unsafe(enable_hangcheck, bool, 0400,
-> > > >  
-> > > >  i915_param_named_unsafe(enable_psr, int, 0400,
-> > > >  	"Enable PSR "
-> > > > -	"(0=disabled, 1=enabled) "
-> > > > +	"(0=disabled, 1=enable up to PSR2 if supported, 2=enable up to PSR1) "
-> > > 
-> > > That seems very unintuitive. I would just make it 1==PSR1 and 2==PSR2.
-> > 
-> > This will break current behavior.
-> 
-> It's a modparam. We routinely break those since they are not meant
-> to used by normal users as any kind of permanent "make my machine
-> work" knob.
+--===============1285112846745448735==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-But I guess if we want to make it a bit less painful your idea of a new
-modparam might work. + deprecate the old param and remove after one or
-two kernel releases.
+== Series Details ==
 
--- 
-Ville Syrjälä
-Intel
+Series: drm/i915: Check stolen memory size before calling drm_mm_init (rev4)
+URL   : https://patchwork.freedesktop.org/series/99917/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_11277 -> Patchwork_22390
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/index.html
+
+Participating hosts (45 -> 41)
+------------------------------
+
+  Additional (1): bat-adls-5 
+  Missing    (5): bat-dg2-8 fi-bsw-cyan fi-icl-u2 fi-pnv-d510 fi-bdw-samus 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_22390 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@fork-compute0:
+    - fi-ivb-3770:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-ivb-3770/igt@amdgpu/amd_cs_nop@fork-compute0.html
+
+  * igt@i915_selftest@live:
+    - fi-skl-6600u:       NOTRUN -> [INCOMPLETE][2] ([i915#4794])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-skl-6600u/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][3] -> [INCOMPLETE][4] ([i915#3921])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][5] ([fdo#109271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-skl-6600u/igt@prime_vgem@basic-userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3@smem:
+    - {fi-rkl-11600}:     [INCOMPLETE][6] ([i915#5127]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg1-5:          [DMESG-FAIL][8] ([i915#4494] / [i915#4957]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/bat-dg1-5/igt@i915_selftest@live@hangcheck.html
+    - bat-dg1-6:          [DMESG-FAIL][10] ([i915#4494] / [i915#4957]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/bat-dg1-6/igt@i915_selftest@live@hangcheck.html
+    - fi-ivb-3770:        [INCOMPLETE][12] ([i915#3303]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_busy@basic@modeset:
+    - {bat-adlp-6}:       [DMESG-WARN][14] ([i915#3576]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/bat-adlp-6/igt@kms_busy@basic@modeset.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/bat-adlp-6/igt@kms_busy@basic@modeset.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-skl-6600u:       [FAIL][16] ([i915#4547]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-skl-6600u/igt@kms_psr@primary_page_flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3138]: https://gitlab.freedesktop.org/drm/intel/issues/3138
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3576]: https://gitlab.freedesktop.org/drm/intel/issues/3576
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#3921]: https://gitlab.freedesktop.org/drm/intel/issues/3921
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4494]: https://gitlab.freedesktop.org/drm/intel/issues/4494
+  [i915#4547]: https://gitlab.freedesktop.org/drm/intel/issues/4547
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4794]: https://gitlab.freedesktop.org/drm/intel/issues/4794
+  [i915#4957]: https://gitlab.freedesktop.org/drm/intel/issues/4957
+  [i915#5068]: https://gitlab.freedesktop.org/drm/intel/issues/5068
+  [i915#5127]: https://gitlab.freedesktop.org/drm/intel/issues/5127
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_11277 -> Patchwork_22390
+
+  CI-20190529: 20190529
+  CI_DRM_11277: a9d1ffee8dbe2c5506cccf9077eab8fe439eea46 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6355: 83ec34916bd8268bc331105cf77c4d3d3cd352be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_22390: e8601666f7a1194601000f6e68f590c495b2bfb9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e8601666f7a1 drm/i915: Check stolen memory size before calling drm_mm_init
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/index.html
+
+--===============1285112846745448735==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Check stolen memory size before calling drm_mm_init (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/99917/">https://patchwork.freedesktop.org/series/99917/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_11277 -&gt; Patchwork_22390</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/index.html</p>
+<h2>Participating hosts (45 -&gt; 41)</h2>
+<p>Additional (1): bat-adls-5 <br />
+  Missing    (5): bat-dg2-8 fi-bsw-cyan fi-icl-u2 fi-pnv-d510 fi-bdw-samus </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_22390 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-compute0:</p>
+<ul>
+<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-ivb-3770/igt@amdgpu/amd_cs_nop@fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-skl-6600u/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4794">i915#4794</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3921">i915#3921</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-skl-6600u/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@smem:</p>
+<ul>
+<li>{fi-rkl-11600}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5127">i915#5127</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-rkl-11600/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>
+<p>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/bat-dg1-5/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+<li>
+<p>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4494">i915#4494</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4957">i915#4957</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/bat-dg1-6/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+<li>
+<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@modeset:</p>
+<ul>
+<li>{bat-adlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/bat-adlp-6/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3576">i915#3576</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/bat-adlp-6/igt@kms_busy@basic@modeset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_11277/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4547">i915#4547</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_22390/fi-skl-6600u/igt@kms_psr@primary_page_flip.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_11277 -&gt; Patchwork_22390</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_11277: a9d1ffee8dbe2c5506cccf9077eab8fe439eea46 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6355: 83ec34916bd8268bc331105cf77c4d3d3cd352be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_22390: e8601666f7a1194601000f6e68f590c495b2bfb9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>e8601666f7a1 drm/i915: Check stolen memory size before calling drm_mm_init</p>
+
+</body>
+</html>
+
+--===============1285112846745448735==--
