@@ -2,60 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D24CF4C4D72
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 19:15:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E624C4D81
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Feb 2022 19:19:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9350910E76C;
-	Fri, 25 Feb 2022 18:15:03 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CDEE10E7A3;
+	Fri, 25 Feb 2022 18:19:37 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F30C10E18B;
- Fri, 25 Feb 2022 18:15:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A122210E7A3;
+ Fri, 25 Feb 2022 18:19:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1645812902; x=1677348902;
+ t=1645813176; x=1677349176;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=/BJPfkxf1yC4dlgLXPfj+qYatUIW5Q2sBAAvBd52JV0=;
- b=Bd0F9y3uIyhd9nnK4QFe7s/2FV5NCmui94HegmkdimOLZb1VzT2rQ0f1
- psbQYplrvslF7YDnjdRZIBbImrrtctCdSIw54exei5mh8mqNL5yRML9N4
- X9HmW9a7zpVtNsyl8tG2/OPyHpHUGr591czgyBmDlXWfxn1aEJ6JKEoiL
- puTQRloixLrB+Rkq0Pbhg32/k+UNTcJagqy/kqAkqEYWkmzwugTdB3yvL
- /+tpb9q0Rbxlx+e94CMT9vKwYJbQnrXUiEHAgOzjQLJ7YCMWvKx1+XKHH
- JE5Ke9NBlIrZJq8nGLSxey5TiPyENO5OGJvc+1n9xVg2jVmBofJ4Jmvnh w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="251381661"
-X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="251381661"
+ bh=gDHXi9K6CM0Sw9tUGDFB5MuyAhrhbKOM8kw4Q/kadP4=;
+ b=ZKqEjoqUFOBAdVmWicTuTskpLoJMqklAfzgk8o35amQq3DQFZwa2Qhoh
+ CaI50K0OagnWSiu1RYCKkh1VyGOBELAWxP4R2xAJ+YnXINkqiFnvE/s0h
+ ImQXX1eGu1Ut2h4z6rc0+PG1QqjGeIF7k6tFDmVoBy8gQ0jy2xMuTmmeq
+ GwuU7axNJ06y8WHIvejk6cX4xfL5ChGqsukzkUidMKS4ZBQ0PB5Ly6YUz
+ VhQMGnaHIsw2dhrmbSSlAvVOKJRPSmtaOhYNJszKiV+m1L3NxjGDheAD7
+ x+vMbPYPcN8xAIuhVDtAFENjZol2AqgHJmLsNpadUYSDWGzQHV4K63jka A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10268"; a="251382564"
+X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="251382564"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 10:15:01 -0800
-X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="549363358"
+ 25 Feb 2022 10:19:35 -0800
+X-IronPort-AV: E=Sophos;i="5.90,136,1643702400"; d="scan'208";a="549365209"
 Received: from pkinsell-mobl.ger.corp.intel.com (HELO [10.213.234.117])
  ([10.213.234.117])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2022 10:14:59 -0800
-Message-ID: <ed505a8e-2d2b-135b-aaab-7e4a0befd5ba@linux.intel.com>
-Date: Fri, 25 Feb 2022 18:14:57 +0000
+ 25 Feb 2022 10:19:30 -0800
+Message-ID: <9f8dd83b-ded2-6a75-2857-2a6a3246fa03@linux.intel.com>
+Date: Fri, 25 Feb 2022 18:19:28 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, Intel-GFX@Lists.FreeDesktop.Org
-References: <20220218213307.1338478-1-John.C.Harrison@Intel.com>
- <20220218213307.1338478-3-John.C.Harrison@Intel.com>
- <2a486991-1bfd-9b23-0b43-9173d17b7e13@linux.intel.com>
- <e95e8710-8410-2869-dec1-7f7a9e9a74fb@intel.com>
- <18205069-1210-745f-3bcc-2eddb0d17da1@linux.intel.com>
- <94e9889d-d71a-1428-516d-2928807cbf43@intel.com>
- <6ee75384-2cf0-6b34-ed54-3c7dc9ca31a3@linux.intel.com>
- <d6624800-87b0-f992-bc83-868744e2839c@intel.com>
+To: Michael Cheng <michael.cheng@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220225032436.904942-1-michael.cheng@intel.com>
+ <20220225032436.904942-2-michael.cheng@intel.com>
+ <011a236d-7ed4-0d48-e8a6-c9bd98740d5b@linux.intel.com>
+ <718c6339-4a19-0de0-2666-a32be7c56dd7@intel.com>
+ <0b9dd25f-63ea-9121-6326-14087f5f8e63@linux.intel.com>
+ <ce1fadfd-4ae3-8639-8b92-4666ac68da14@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <d6624800-87b0-f992-bc83-868744e2839c@intel.com>
+In-Reply-To: <ce1fadfd-4ae3-8639-8b92-4666ac68da14@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/gt: Make the heartbeat play
- nice with long pre-emption timeouts
+Subject: Re: [Intel-gfx] [PATCH v12 1/6] drm: Add arch arm64 for
+ drm_clflush_virt_range
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,400 +66,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: lucas.demarchi@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-I'll try to simplify the discussion here:
+On 25/02/2022 17:40, Michael Cheng wrote:
+> Ah, thanks for pointing that out, when I do include it though, it causes 
+> a few warning other systems such as h8300 and s390.
 
-On 24/02/2022 19:45, John Harrison wrote:
-> On 2/24/2022 03:41, Tvrtko Ursulin wrote:
->> On 23/02/2022 20:00, John Harrison wrote:
->>> On 2/23/2022 05:58, Tvrtko Ursulin wrote:
->>>> On 23/02/2022 02:45, John Harrison wrote:
->>>>> On 2/22/2022 03:19, Tvrtko Ursulin wrote:
->>>>>> On 18/02/2022 21:33, John.C.Harrison@Intel.com wrote:
->>>>>>> From: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>
->>>>>>> Compute workloads are inherantly not pre-emptible for long 
->>>>>>> periods on
->>>>>>> current hardware. As a workaround for this, the pre-emption timeout
->>>>>>> for compute capable engines was disabled. This is undesirable 
->>>>>>> with GuC
->>>>>>> submission as it prevents per engine reset of hung contexts. 
->>>>>>> Hence the
->>>>>>> next patch will re-enable the timeout but bumped up by an order of
->>>>>>> magnititude.
->>>>>>
->>>>>> (Some typos above.)
->>>>> I'm spotting 'inherently' but not anything else.
->>>>
->>>> Magnititude! O;)
->>> Doh!
->>>
->>> [snip]
->>>
->>>>> Whereas, bumping all heartbeat periods to be greater than the 
->>>>> pre-emption timeout is wasteful and unnecessary. That leads to a 
->>>>> total heartbeat time of about a minute. Which is a very long time 
->>>>> to wait for a hang to be detected and recovered. Especially when 
->>>>> the official limit on a context responding to an 'are you dead' 
->>>>> query is only 7.5 seconds.
->>>>
->>>> Not sure how did you get one minute?
->>> 7.5 * 2 (to be safe) = 15. 15 * 5 (number of heartbeat periods) = 75 
->>> => 1 minute 15 seconds
->>>
->>> Even ignoring any safety factor and just going with 7.5 * 5 still 
->>> gets you to 37.5 seconds which is over a half a minute and likely to 
->>> race.
->>
->> Ah because my starting point is there should be no preempt timeout = 
->> heartbeat * 3, I just think that's too ugly.
-> Then complain at the hardware designers to give us mid-thread 
-> pre-emption back. The heartbeat is only one source of pre-emption 
-> events. For example, a user can be running multiple contexts in parallel 
-> and expecting them to time slice on a single engine. Or maybe a user is 
-> just running one compute task in the background but is doing render work 
-> in the foreground. Etc.
+Errors look like? I haven't heard that kernel code is not allowed to 
+include something from linux/ on some arch yet.
+
+> Since it is already pulled is, would it be OK to leave it out for this 
+> case? Or we could use something like !IS_H8300 and !IS_S390
 > 
-> There was a reason the original hack was to disable pre-emption rather 
-> than increase the heartbeat. This is simply a slightly less ugly version 
-> of the same hack. And unfortunately, the basic idea of the hack is 
-> non-negotiable.
-> 
-> As per other comments, 'tP(RCS) = tH *3' or 'tP(RCS) = tP(default) * 12' 
-> or 'tP(RCS) = 7500' are the available options. Given that the heartbeat 
-> is the ever present hard limit, it seems most plausible to base the hack 
-> on that. Any of the others works, though. Although I think a explicit 
-> hardcoded value is the most ugly. I guess the other option is to add 
-> CONFIG_DRM_I915_PREEMPT_TIMEOUT_COMPUTE and default that to 7500.
-> 
-> Take your pick. But 640ms is not allowed.
-> 
->>
->>>> Regardless, crux of argument was to avoid GuC engine reset and 
->>>> heartbeat reset racing with each other, and to do that by 
->>>> considering the preempt timeout with the heartbeat interval. I was 
->>>> thinking about this scenario in this series:
->>>>
->>>> [Please use fixed width font and no line wrap to view.]
->>>>
->>>> A)
->>>>
->>>> tP = preempt timeout
->>>> tH = hearbeat interval
->>>>
->>>> tP = 3 * tH
->>>>
->>>> 1) Background load = I915_PRIORITY_DISPLAY
->>>>
->>>> <-- [tH] --> Pulse1 <-- [tH] --> Pulse2 <-- [tH] --> Pulse3 <---- [2 
->>>> * tH] ----> FULL RESET
->>>>                                                        |
->>>>                                                        \- preemption 
->>>> triggered, tP = 3 * tH ------\
->>>> \-> preempt timeout would hit here
->>>>
->>>> Here we have collateral damage due full reset, since we can't tell 
->>>> GuC to reset just one engine and we fudged tP just to "account" for 
->>>> heartbeats.
->>> You are missing the whole point of the patch series which is that the 
->>> last heartbeat period is '2 * tP' not '2 * tH'.
->>> +        longer = READ_ONCE(engine->props.preempt_timeout_ms) * 2;
->>>
->>> By making the last period double the pre-emption timeout, it is 
->>> guaranteed that the FULL RESET stage cannot be hit before the 
->>> hardware has attempted and timed-out on at least one pre-emption.
->>
->> Oh well :) that probably means the overall scheme is too odd for me. 
->> tp = 3tH and last pulse after 2tP I mean.
-> To be accurate, it is 'tP(RCS) = 3 * tH(default); tH(final) = 
-> tP(current) * 2;'. Seems fairly straight forward to me. It's not a 
-> recursive definition or anything like that. It gives us a total 
-> heartbeat timeout that is close to the original version but still allows 
-> at least one pre-emption event.
-> 
->>
->>> [snip]
->>>
->>>
->>>> <-- [tH] --> Pulse1 <-- [tH] --> Pulse2 <-- [tH] --> Pulse3 <---- [2 
->>>> * tH] ----> full reset would be here
->>>>                |
->>>>                \- preemption triggered, tP = 3 * tH ----------------\
->>>> \-> Preempt timeout reset
->>>>
->>>> Here is is kind of least worse, but question is why we fudged tP 
->>>> when it gives us nothing good in this case.
->>>>
->>> The point of fudging tP(RCS) is to give compute workloads longer to 
->>> reach a pre-emptible point (given that EU walkers are basically not 
->>> pre-emptible). The reason for doing the fudge is not connected to the 
->>> heartbeat at all. The fact that it causes problems for the heartbeat 
->>> is an undesired side effect.
->>>
->>> Note that the use of 'tP(RCS) = tH * 3' was just an arbitrary 
->>> calculation that gave us something that all interested parties were 
->>> vaguely happy with. It could just as easily be a fixed, hard coded 
->>> value of 7.5s but having it based on something configurable seemed 
->>> more sensible. The other option was 'tP(RCS) = tP * 12' but that felt 
->>> more arbitrary than basing it on the average heartbeat timeout. As 
->>> in, three heartbeat periods is about what a normal prio task gets 
->>> before it gets pre-empted by the heartbeat. So using that for general 
->>> purpose pre-emptions (e.g. time slicing between multiple user apps) 
->>> seems reasonable.
->>
->> I think the fact you say tP fudge is not related to heartbeats and 
->> then go to mention heartbeat even in the "formula" which uses no tH is 
->> saying something (at least that's how I read the 7.5s option). :)
-> I said the tP fudge is not because of the heartbeat. It is obviously 
-> related.
-> 
-> As per comment above, the fudge factor is based on the heartbeat because 
-> the heartbeat is the ultimate limit. But the *reason* for the fudge fact 
-> has nothing to do with the heartbeat. It is required even if heartbeats 
-> are disabled.
-> 
->>
->>>> B)
->>>>
->>>> Instead, my idea to account for preempt timeout when calculating 
->>>> when to schedule next hearbeat would look like this:
->>>>
->>>> First of all tP can be left at a large value unrelated to tH. Lets 
->>>> say tP = 640ms. tH stays 2.5s.
->>> 640ms is not 'large'. The requirement is either zero (disabled) or 
->>> region of 7.5s. The 640ms figure is the default for non-compute 
->>> engines. Anything that can run EUs needs to be 'huge'.
->>>
->>>
->>>>
->>>> 1) Background load = I915_PRIORITY_DISPLAY
->>>>
->>>> <-- [tH + tP] --> Pulse1 <-- [tH + tP] --> Pulse2 <-- [tH + tP] --> 
->>>> Pulse3 <-- [tH + tP] --> full reset would be here
->>> Sure, this works but each period is now 2.5 + 7.5 = 10s. The full 
->>> five periods is therefore 50s, which is practically a minute.
->>
->> No, in my proposal it is 3 * (2.5s + 640ms) =~ 9.3s.
-> Not good enough. After 2.5s, we send a pulse. After a further 640ms we 
-> perform an engine reset. That means your compute workload had only 640ms 
-> after being told to pre-empt to reach a pre-emption point. That won't 
-> work. It needs to be multiple seconds.
-> 
->>
->>> [snip]
->>>
->>>> Am I missing some requirement or you see another problem with this 
->>>> idea?
->>>>
->>>>>> On a related topic, if GuC engine resets stop working when preempt 
->>>>>> timeout is set to zero - I think we need to somehow let the user 
->>>>>> know if they try to tweak it via sysfs. Perhaps go as far as 
->>>>>> -EINVAL in GuC mode, if i915.reset has not explicitly disabled 
->>>>>> engine resets.
->>>>> Define 'stops working'. The definition of the sysfs interface is 
->>>>> that a value of zero disables pre-emption. If you don't have 
->>>>> pre-emption and your hang detection mechanism relies on pre-emption 
->>>>> then you don't have a hang detection mechanism either. If the user 
->>>>> really wants to allow 
->>>>
->>>> By stops working I meant that it stops working. :)
->>>>
->>>> With execlist one can disable preempt timeout and "stopped 
->>>> heartbeat" can still reset the stuck engine and so avoid collateral 
->>>> damage. With GuC it appears this is not possible. So I was thinking 
->>>> this is something worthy a log notice.
->>>>
->>>>> their context to run forever and never be pre-empted then that 
->>>>> means they also don't want it to be reset arbitrarily. Which means 
->>>>> they would also be disabling the heartbeat timer as well. Indeed, 
->>>>> this is what we 
->>>>
->>>> I don't think so. Preempt timeout is disabled already on TGL/RCS 
->>>> upstream but hearbeat is not and so hangcheck still works.
->>> The pre-emption disable in upstream is not a valid solution for 
->>> compute customers. It is a worst-of-all-worlds hack for general 
->>> usage. As noted already, any actual compute specific customer is 
->>> advised to disable all forms of reset and do their hang detection 
->>> manually. A slightly less worse hack for customers that are not 
->>> actually running long compute workloads (i.e. the vast majority of 
->>> end users) is to just use a long pre-emption timeout.
->>
->> If disabled preemption timeout is worst of all words and compute needs 
->> to disable heartbeat as well then why did we put it in? Perhaps it was 
->> not know at the time it would not be good enough. But anyway, do I 
->> read you correct that current thinking is it would be better to leave 
->> it at default 640ms?
-> No. We cannot have the RCS default to 640ms.
-> 
-> Note that there is a difference between 'general end user who might run 
-> some compute' and 'compute focused customer'. The driver defaults 
-> (disabled or 7500ms) are for the general user who gets the 
-> out-of-the-box experience and expects to be able to run 'normal' 
-> workloads without hitting problems. I.e. they expect hung tasks to get 
-> reset in a timely manner and while they might run some AI or other 
-> compute workloads, they are not a HPC datacenter. Whereas the compute 
-> datacenter customer expects their workloads to run for arbitrarily long 
-> times (minutes, hours, maybe even days) without being arbitrarily 
-> killed. Those customers will be explicitly configuring their datacenter 
-> server for that scenario and thus don't care what the defaults are.
+> around the header file?
 
-Okay maybe I misunderstood what you were saying earlier about worst of 
-all worlds and all. But tell me this, if preemption timeout on RCS is 
-not directly related to hearbeats, but to some pessimistic expected user 
-workloads, what is wrong with my scheme of calculating the next 
-heartbeat pulse as tH + tP?
-
-We can leave tH as default 2.5s and tP you set for RCS to 12s if that is 
-what you say is required. Or whatever long value really.
-
-Your only objection is that ends up with too long total time before 
-reset? Or something else as well?
-
-It's long but it is correct in a way. Because we can't expect hearbeat 
-to react quicker than the interval + preempt timeout (or timeslice for 
-equal priority) + some scheduling latency.
-
-I conceptually disagree with the last hearbeat pulse being special. If 
-the user concept is "after N heartbeats you are out" and you want to 
-make it "after N-1 heartbeats plus 2 preemption periods you are out", 
-where preemption period actually depends on heartbeat period, then that 
-sounds really convoluted to me.
-
-And we don't know which of the pulses will trigger preemption since user 
-priority we don't control. So low priority compute task gets reset after 
-5s, normal priority gets to run for 12s. Effectively making context 
-priority a variable in hangcheck.
-
->>
->> If so, if we went with my proposal, would everyone be happy? If yes, 
->> isn't it a simpler scheme? No special casing when setting the preempt 
->> timeout, no special casing of the last heartbeat pulse. Works 
->> predictably regardless of the priority of the hypothetical 
->> non-preemptible workload.
-> No, we have to have the increased pre-emption timeout. And that has 
-> ripple effects of making very long heartbeats or risking races with the 
-> heartbeat beating the per engine reset.
-> 
-> 
->>
->>>>> advise compute customers to do. It is then up to the user 
->>>>> themselves to spot a hang and to manually kill (Ctrl+C, kill ###, 
->>>>> etc.) their task. Killing the CPU task will automatically clear up 
->>>>> any GPU resources allocated to that task (excepting context 
->>>>> persistence, which is a) broken and b) something we also tell 
->>>>> compute customers to disable).
->>>>
->>>> What is broken with context persistence? I noticed one patch 
->>>> claiming to be fixing something in that area which looked suspect. 
->>>> Has it been established no userspace relies on it?
->>> One major issue is that it has hooks into the execlist scheduler 
->>> backend. I forget the exact details right now. The implementation as 
->>> a whole is incredibly complex and convoluted :(. But there's stuff 
->>> about what happens when you disable the heartbeat after having closed 
->>> a persistence context's handle (and thus made it persisting). There's 
->>> also things like it sends a super high priority heartbeat pulse at 
->>> the point of becoming persisting. That plays havoc for platforms with 
->>> dependent engines and/or compute workloads. A context becomes 
->>> persisting on RCS and results in your unrealted CCS work being reset. 
->>> It's a mess.
->>>
->>> The comment from Daniel Vetter is that persistence should have no 
->>> connection to the heartbeat at all. All of that dynamic behaviour and 
->>> complexity should just be removed.
->>
->> Dependent engines is definitely a topic on it's own, outside 
->> hearbeats, persistence and all.
-> Except that it has implications for persistence which the current driver 
-> does not take into account.
-
-Well current driver does not take RCS+CCS dependency into account so 
-that should come first, or all in one package at least.
-
->> Otherwise there is definitely complexity in the execlists backend but 
->> I am not sure if logic persistence and heartbeats are so very 
->> connected. It does send a pulse when heartbeat interval is changed, 
->> which if going to zero, it will kick of closed contexts if it can:
->>
->> static struct intel_engine_cs *
->> __execlists_schedule_in(struct i915_request *rq)
->> {
->>     struct intel_engine_cs * const engine = rq->engine;
->>     struct intel_context * const ce = rq->context;
->>
->>     intel_context_get(ce);
->>
->>     if (unlikely(intel_context_is_closed(ce) &&
->>              !intel_engine_has_heartbeat(engine)))
->>         intel_context_set_banned(ce);
->>
->>     if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
->>         reset_active(rq, engine);
->>
->> Is this what you mean? The point of this is to make sure persistent 
->> context does not hog the engine forever if hangcheck has been disabled.
->>
->> Reminds me of my improvement to customer experience which never got in 
->> (https://patchwork.freedesktop.org/patch/451491/?series=93420&rev=2). 
->> Point of that one was to avoid engine reset (or worse) after user 
->> presses "Ctrl-C" if something takes just over 1ms to cleanly complete.
-> The plan is that the persistent contexts would still get the default 
-> grace period (pre-emption timeout at least) to finish but Ctrl+C will 
-> kill it within a timely manner if it does not finish.
-
-Yes my patch does that. ;) Currently non-persistent is killed to quickly 
-triggering pointless and alarming engine resets. Users reported this 
-last year and I tried to fix it.
-
->>> Persistence itself can stay. There are valid UMD use cases. It is 
->>> just massively over complicated and doesn't work in all corner cases 
->>> when not using execlist submission or on newer platforms. The 
->>> simplification that is planned is to allow contexts to persist until 
->>> the associated DRM master handle is closed. At that point, all 
->>> contexts associated with that DRM handle are killed. That is what AMD 
->>> and others apparently implement.
->>
->> Okay, that goes against one recent IGT patch which appeared to work 
->> around something by moving the position of _context_ close.
-> No it does not. The context close is not the trigger. The trigger is 
-
-Well patch says:
-"""
-The spin all test relied on context persistence unecessarily by trying
-to destroy contexts while keeping spinners active.
-The current implementation of context persistence in i915 can cause
-failures with GuC enabled, and persistence is not needed for this test.
-
-Moving intel_ctx_destroy after igt_spin_end.
-"""
-
-Implying moving context close to after spin end fixes things for GuC, 
-not fd close.
+Unlikely, now you made me curious why it does not work.
 
 Regards,
 
 Tvrtko
 
-> closing the top level DRM handle. If your context has persistence 
-> enabled (the default) then closing the context handle will have no 
-> effect. No pulse, no pre-emption, no kill, nothing. But when the top 
-> level handle is closed (application exit through whatever mechanism) 
-> then all GPU resources will be cleaned up. As above, with at least a 
-> pre-emption timeout grace period, but after that it is termination time.
 > 
-> The media use cases for persistence are all happy with this scheme. I 
-> don't actually recall if we got a reply back from the OGL people. They 
-> were definitely on the email thread/Jira task and did not complain. OCL 
-> obviously don't care as their first action is to explicitly disable 
-> persistence.
-> 
-> John.
-> 
+> On 2022-02-25 9:33 a.m., Tvrtko Ursulin wrote:
+>>
+>> On 25/02/2022 16:52, Michael Cheng wrote:
+>>> Hi Tvrtko,
+>>>
+>>> It seems without cacheflush.h being included, when I build for arm64 
+>>> or x86, it stills pulls in cacheflush.h:
+>>>
+>>> ./.drm_cache.o.cmd:838: include/linux/cacheflush.h \
+>>> ./.drm_cache.o.cmd:839: arch/x86/include/asm/cacheflush.h \
+>>> ./.drm_cache.o.cmd:920: include/asm-generic/cacheflush.h \
+>>> ./.drm_cache.o.cmd:830: include/linux/cacheflush.h \
+>>> ./.drm_cache.o.cmd:831: arch/arm64/include/asm/cacheflush.h \
+>>> ./.drm_cache.o.cmd:1085: include/asm-generic/cacheflush.h \
+>>> So it seems without including it, cacheflush.h stills get pulled in,
+>>> I think its because its a required kernel source to build the kernel
+>>> per specific architecture, but please correct if I am wrong,as I am 
+>>> still
+>>> trying to understand how things works!
+>>
+>> Probably:
+>>
+>> drm_cache.c:
+>>
+>> #include <linux/highmem.h>
+>>
+>> linux/highmem.h:
+>>
+>> #include <linux/cacheflush.h>
+>>
+>> But it is more correct to explicitly include what you use. So if 
+>> drm_cache.c uses stuff declared in cacheflush.h, it should include it.
 >>
 >> Regards,
 >>
 >> Tvrtko
-> 
+>>
+>>> Michael Cheng
+>>> On 2022-02-25 8:28 a.m., Tvrtko Ursulin wrote:
+>>>>
+>>>> On 25/02/2022 03:24, Michael Cheng wrote:
+>>>>> Add arm64 support for drm_clflush_virt_range. caches_clean_inval_pou
+>>>>> performs a flush by first performing a clean, follow by an 
+>>>>> invalidation
+>>>>> operation.
+>>>>>
+>>>>> v2 (Michael Cheng): Use correct macro for cleaning and invalidation 
+>>>>> the
+>>>>>             dcache. Thanks Tvrtko for the suggestion.
+>>>>>
+>>>>> v3 (Michael Cheng): Replace asm/cacheflush.h with linux/cacheflush.h
+>>>>>
+>>>>> v4 (Michael Cheng): Arm64 does not export dcache_clean_inval_poc as a
+>>>>>             symbol that could be use by other modules, thus use
+>>>>>             caches_clean_inval_pou instead. Also this version
+>>>>>                 removes include for cacheflush, since its already
+>>>>>             included base on architecture type.
+>>>>
+>>>> What does it mean that it is included based on architecture type? 
+>>>> Some of the other header already pulls it in?
+>>>>
+>>>> Regards,
+>>>>
+>>>> Tvrtko
+>>>>
+>>>>> Signed-off-by: Michael Cheng <michael.cheng@intel.com>
+>>>>> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+>>>>> ---
+>>>>>   drivers/gpu/drm/drm_cache.c | 5 +++++
+>>>>>   1 file changed, 5 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
+>>>>> index c3e6e615bf09..81c28714f930 100644
+>>>>> --- a/drivers/gpu/drm/drm_cache.c
+>>>>> +++ b/drivers/gpu/drm/drm_cache.c
+>>>>> @@ -174,6 +174,11 @@ drm_clflush_virt_range(void *addr, unsigned 
+>>>>> long length)
+>>>>>         if (wbinvd_on_all_cpus())
+>>>>>           pr_err("Timed out waiting for cache flush\n");
+>>>>> +
+>>>>> +#elif defined(CONFIG_ARM64)
+>>>>> +    void *end = addr + length;
+>>>>> +    caches_clean_inval_pou((unsigned long)addr, (unsigned long)end);
+>>>>> +
+>>>>>   #else
+>>>>>       WARN_ONCE(1, "Architecture has no drm_cache.c support\n");
+>>>>>   #endif
