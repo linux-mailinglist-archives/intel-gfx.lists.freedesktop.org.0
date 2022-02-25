@@ -1,68 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FE044C6D51
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 14:00:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C95DE4C6F5A
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Feb 2022 15:26:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6317F10E6FE;
-	Mon, 28 Feb 2022 13:00:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 015F810E82D;
+	Mon, 28 Feb 2022 14:26:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49D7410E6FE;
- Mon, 28 Feb 2022 13:00:01 +0000 (UTC)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out1.suse.de (Postfix) with ESMTP id 5F35721991;
- Mon, 28 Feb 2022 12:59:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1646053199;
- h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
- cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=GYvrOH34zCWl0BM57x3MsoAIfmyz0j5aUqs18/+9t2Q=;
- b=CjK8nNU5xeMNbntdPyPSfsq8/1RCdmnnM+tnemCL9lQAmpVtTSbi2i0S/zED3dXrk+604R
- F7IO7CYu/SbuKXg9SBt5CXTg/P34/O1YqlSaqPLhtC63aEQddztfpC4Hi7UwtxSCvZvSgX
- /+ilzqW9cikrpXqztnZDSBZcWjPDsWQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1646053199;
- h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
- cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=GYvrOH34zCWl0BM57x3MsoAIfmyz0j5aUqs18/+9t2Q=;
- b=YC640EWtiJvSsnZFCbq8EFRrctbU3bFx2JBcqb+i/kX+D3HkAqM4d4d/mY/yRse7T0PyAW
- 0aoolUYAD4EZD9DA==
-Received: from ds.suse.cz (ds.suse.cz [10.100.12.205])
- by relay2.suse.de (Postfix) with ESMTP id 81766A3B84;
- Mon, 28 Feb 2022 12:59:58 +0000 (UTC)
-Received: by ds.suse.cz (Postfix, from userid 10065)
- id A86B6DA823; Mon, 28 Feb 2022 13:56:07 +0100 (CET)
-Date: Mon, 28 Feb 2022 13:56:07 +0100
-From: David Sterba <dsterba@suse.cz>
-To: Arnd Bergmann <arnd@kernel.org>
-Message-ID: <20220228125607.GG12643@twin.jikos.cz>
-Mail-Followup-To: dsterba@suse.cz, Arnd Bergmann <arnd@kernel.org>,
- linux-kbuild@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Masahiro Yamada <masahiroy@kernel.org>, llvm@lists.linux.dev,
- Jonathan Corbet <corbet@lwn.net>,
- Federico Vaga <federico.vaga@vaga.pv.it>,
- Alex Shi <alexs@kernel.org>, Hu Haowen <src.res@email.cn>,
- Michal Marek <michal.lkml@markovi.net>,
- Nick Desaulniers <ndesaulniers@google.com>,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc-tw-discuss@lists.sourceforge.net,
- linux-arm-kernel@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- greybus-dev@lists.linaro.org, linux-staging@lists.linux.dev,
- linux-btrfs@vger.kernel.org
-References: <20220228103142.3301082-1-arnd@kernel.org>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4A45410E193;
+ Fri, 25 Feb 2022 18:25:03 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AF73E11FB;
+ Fri, 25 Feb 2022 10:25:02 -0800 (PST)
+Received: from [10.57.39.47] (unknown [10.57.39.47])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0FE093F70D;
+ Fri, 25 Feb 2022 10:25:00 -0800 (PST)
+Message-ID: <5c254623-98d2-75f3-52cb-209b8de304b6@arm.com>
+Date: Fri, 25 Feb 2022 18:24:54 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220228103142.3301082-1-arnd@kernel.org>
-User-Agent: Mutt/1.5.23.1-rc1 (2014-03-12)
-Subject: Re: [Intel-gfx] [PATCH] [v2] Kbuild: move to -std=gnu11
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Content-Language: en-GB
+To: Michael Cheng <michael.cheng@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20220225032436.904942-1-michael.cheng@intel.com>
+ <20220225032436.904942-2-michael.cheng@intel.com>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220225032436.904942-2-michael.cheng@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 28 Feb 2022 14:26:05 +0000
+Subject: Re: [Intel-gfx] [PATCH v12 1/6] drm: Add arch arm64 for
+ drm_clflush_virt_range
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,48 +46,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: dsterba@suse.cz
-Cc: linux-arm-kernel@lists.infradead.org,
- Michal Marek <michal.lkml@markovi.net>, linux-doc@vger.kernel.org,
- Arnd Bergmann <arnd@arndb.de>, Jonathan Corbet <corbet@lwn.net>,
- linux-staging@lists.linux.dev, Masahiro Yamada <masahiroy@kernel.org>,
- llvm@lists.linux.dev, Nick Desaulniers <ndesaulniers@google.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- greybus-dev@lists.linaro.org, Alex Shi <alexs@kernel.org>,
- Federico Vaga <federico.vaga@vaga.pv.it>, Hu Haowen <src.res@email.cn>,
- intel-gfx@lists.freedesktop.org, linux-btrfs@vger.kernel.org,
- Linus Torvalds <torvalds@linux-foundation.org>,
- linux-doc-tw-discuss@lists.sourceforge.net, linux-kbuild@vger.kernel.org
+Cc: Catalin Marinas <catalin.marinas@arm.com>, lucas.demarchi@intel.com,
+ dri-devel@lists.freedesktop.org, Will Deacon <will@kernel.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 28, 2022 at 11:27:43AM +0100, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
+[ +arm64 maintainers for their awareness, which would have been a good 
+thing to do from the start ]
+
+On 2022-02-25 03:24, Michael Cheng wrote:
+> Add arm64 support for drm_clflush_virt_range. caches_clean_inval_pou
+> performs a flush by first performing a clean, follow by an invalidation
+> operation.
 > 
+> v2 (Michael Cheng): Use correct macro for cleaning and invalidation the
+> 		    dcache. Thanks Tvrtko for the suggestion.
 > 
-> Link: https://lore.kernel.org/lkml/CAHk-=wiyCH7xeHcmiFJ-YgXUy2Jaj7pnkdKpcovt8fYbVFW3TA@mail.gmail.com/
-> Link: https://github.com/ClangBuiltLinux/linux/issues/1603
-> Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
-> Cc: Masahiro Yamada <masahiroy@kernel.org>
-> Cc: linux-kbuild@vger.kernel.org
-> Cc: llvm@lists.linux.dev
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> v3 (Michael Cheng): Replace asm/cacheflush.h with linux/cacheflush.h
+> 
+> v4 (Michael Cheng): Arm64 does not export dcache_clean_inval_poc as a
+> 		    symbol that could be use by other modules, thus use
+> 		    caches_clean_inval_pou instead. Also this version
+> 	            removes include for cacheflush, since its already
+> 		    included base on architecture type.
+> 
+> Signed-off-by: Michael Cheng <michael.cheng@intel.com>
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
-> [v2]
->  - added -std=gnu11 back, rather than just relying on the default
->  - minor changes to changelog text
-> ---
->  Documentation/process/programming-language.rst              | 4 ++--
->  .../translations/it_IT/process/programming-language.rst     | 4 ++--
->  .../translations/zh_CN/process/programming-language.rst     | 4 ++--
->  .../translations/zh_TW/process/programming-language.rst     | 4 ++--
->  Makefile                                                    | 6 +++---
->  arch/arm64/kernel/vdso32/Makefile                           | 2 +-
->  drivers/gpu/drm/i915/Makefile                               | 1 +
->  drivers/staging/greybus/tools/Makefile                      | 3 ++-
+>   drivers/gpu/drm/drm_cache.c | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
+> index c3e6e615bf09..81c28714f930 100644
+> --- a/drivers/gpu/drm/drm_cache.c
+> +++ b/drivers/gpu/drm/drm_cache.c
+> @@ -174,6 +174,11 @@ drm_clflush_virt_range(void *addr, unsigned long length)
+>   
+>   	if (wbinvd_on_all_cpus())
+>   		pr_err("Timed out waiting for cache flush\n");
+> +
+> +#elif defined(CONFIG_ARM64)
+> +	void *end = addr + length;
+> +	caches_clean_inval_pou((unsigned long)addr, (unsigned long)end);
 
-For
+Why does i915 need to ensure the CPU's instruction cache is coherent 
+with its data cache? Is it a self-modifying driver?
 
->  fs/btrfs/Makefile                                           | 1 +
+Robin.
 
-Acked-by: David Sterba <dsterba@suse.com>
+(Note that the above is somewhat of a loaded question, and I do actually 
+have half an idea of what you're trying to do here and why it won't fly, 
+but I'd like to at least assume you've read the documentation of the 
+function you decided was OK to use)
+
+> +
+>   #else
+>   	WARN_ONCE(1, "Architecture has no drm_cache.c support\n");
+>   #endif
